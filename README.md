@@ -1,0 +1,192 @@
+# 📚 Computer Engineering Library
+
+> A library organized as a Computer Engineering track. Curriculum reading lists (folder `00_`) are bilingual (PT-BR / EN). Full books are grouped by topic in folders `01_`–`13_`. See `FILE_CONVENTIONS.md` for the naming and formatting standard.
+
+
+## Reference documents
+
+- [FILE_CONVENTIONS.md](FILE_CONVENTIONS.md) — folder/file naming and internal formatting standard
+- [ROLES_AND_ACRONYMS.md](ROLES_AND_ACRONYMS.md) — tech roles and acronyms glossary
+- [AGENTS_AND_SKILLS_BY_ROLE.md](AGENTS_AND_SKILLS_BY_ROLE.md) — Agent prompt + Skill per role
+
+## 00 · Academic Curriculum (bilingual reading lists)
+
+- [01_digital_circuits](00_academic_curriculum/01_digital_circuits.md)
+- [02_discrete_mathematics](00_academic_curriculum/02_discrete_mathematics.md)
+- [03_programming_languages](00_academic_curriculum/03_programming_languages.md)
+- [05_analytic_geometry](00_academic_curriculum/05_analytic_geometry.md)
+- [06_intro_calculus](00_academic_curriculum/06_intro_calculus.md)
+- [07_intro_linear_algebra](00_academic_curriculum/07_intro_linear_algebra.md)
+- [08_data_structure](00_academic_curriculum/08_data_structure.md)
+- [13_statistics_probability](00_academic_curriculum/13_statistics_probability.md)
+- [14_advanced_calculus](00_academic_curriculum/14_advanced_calculus.md)
+- [15_haskell](00_academic_curriculum/15_haskell.md)
+- [16_analysis_of_algorithms](00_academic_curriculum/16_analysis_of_algorithms.md)
+- [17_numeric_methods](00_academic_curriculum/17_numeric_methods.md)
+- [18_database](00_academic_curriculum/18_database.md)
+- [20_logical_programming](00_academic_curriculum/20_logical_programming.md)
+- [21_computer_network](00_academic_curriculum/21_computer_network.md)
+- [22_software_engineering](00_academic_curriculum/22_software_engineering.md)
+- [23_operating_system](00_academic_curriculum/23_operating_system.md)
+- [24_math_optimization](00_academic_curriculum/24_math_optimization.md)
+- [25_fundamentals_computer_graphics](00_academic_curriculum/25_fundamentals_computer_graphics.md)
+- [26_automata_theory](00_academic_curriculum/26_automata_theory.md)
+- [27_artificial_intelligence](00_academic_curriculum/27_artificial_intelligence.md)
+- [28_distributed_computing](00_academic_curriculum/28_distributed_computing.md)
+- [29_graphs](00_academic_curriculum/29_graphs.md)
+- [30_multivariable_calculus](00_academic_curriculum/30_multivariable_calculus.md)
+- [31_theory_of_computation](00_academic_curriculum/31_theory_of_computation.md)
+- [32_deep_learning](00_academic_curriculum/32_deep_learning.md)
+- [33_compilers](00_academic_curriculum/33_compilers.md)
+- [34_quantum_computing](00_academic_curriculum/34_quantum_computing.md)
+
+## 01 · Languages & Fundamentals
+
+- [Core Java - Volume I - Horstmann](01_languages_and_fundamentals/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
+- [Core Java - Volume II - Horstmann](01_languages_and_fundamentals/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
+- [Eloquent JavaScript - Haverbeke](01_languages_and_fundamentals/Eloquent%20JavaScript%20-%20Haverbeke.md)
+- [JavaScript - The Good Parts - Crockford](01_languages_and_fundamentals/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
+- [Mastering Node.js](01_languages_and_fundamentals/Mastering%20Node.js.md)
+- [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_languages_and_fundamentals/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
+- [Programming Ruby 3.3 (preview) - Rappin](01_languages_and_fundamentals/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
+- [Programming Ruby 3.3 - Rappin, Thomas](01_languages_and_fundamentals/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
+- [Python Crash Course - Matthes](01_languages_and_fundamentals/Python%20Crash%20Course%20-%20Matthes.md)
+- [Ruby on Rails Tutorial (6th Ed) - Hartl](01_languages_and_fundamentals/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
+- [The Go Programming Language - Donovan, Kernighan](01_languages_and_fundamentals/The%20Go%20Programming%20Language%20-%20Donovan,%20Kernighan.md)
+
+## 02 · Algorithms & Data Structures
+
+- [Introduction to Algorithms (4th Ed) - Cormen, Leiserson](02_algorithms_and_data_structures/Introduction%20to%20Algorithms%20(4th%20Ed)%20-%20Cormen,%20Leiserson.md)
+
+## 03 · Software Design & Architecture
+
+- [A Philosophy of Software Design (2nd Ed) - Ousterhout](03_design_and_architecture/A%20Philosophy%20of%20Software%20Design%20(2nd%20Ed)%20-%20Ousterhout.md)
+- [Clean Architecture - Martin](03_design_and_architecture/Clean%20Architecture%20-%20Martin.md)
+- [Clean Code - Martin](03_design_and_architecture/Clean%20Code%20-%20Martin.md)
+- [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
+- [Design Patterns - Gang of Four](03_design_and_architecture/Design%20Patterns%20-%20Gang%20of%20Four.md)
+- [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
+- [Domain-Driven Design - Evans](03_design_and_architecture/Domain-Driven%20Design%20-%20Evans.md)
+- [Enterprise Integration Patterns - Hohpe, Woolf](03_design_and_architecture/Enterprise%20Integration%20Patterns%20-%20Hohpe,%20Woolf.md)
+- [Fundamentals of Software Architecture (alt copy) - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20(alt%20copy)%20-%20Richards,%20Ford.md)
+- [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
+- [Head First Design Patterns - Freeman](03_design_and_architecture/Head%20First%20Design%20Patterns%20-%20Freeman.md)
+- [Learning Domain-Driven Design - Khononov](03_design_and_architecture/Learning%20Domain-Driven%20Design%20-%20Khononov.md)
+- [Patterns of Enterprise Application Architecture - Fowler](03_design_and_architecture/Patterns%20of%20Enterprise%20Application%20Architecture%20-%20Fowler.md)
+- [Refactoring - Improving the Design of Existing Code - Fowler](03_design_and_architecture/Refactoring%20-%20Improving%20the%20Design%20of%20Existing%20Code%20-%20Fowler.md)
+- [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
+- [Software Architecture in Practice (3rd Ed) - Bass](03_design_and_architecture/Software%20Architecture%20in%20Practice%20(3rd%20Ed)%20-%20Bass.md)
+- [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
+- [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
+- [The Object-Oriented Thought Process (3rd Ed) - Weisfeld](03_design_and_architecture/The%20Object-Oriented%20Thought%20Process%20(3rd%20Ed)%20-%20Weisfeld.md)
+- [Why Reactive](03_design_and_architecture/Why%20Reactive.md)
+
+## 04 · Software Engineering & Practices
+
+- [Agile Software Development - Martin](04_engineering_and_practices/Agile%20Software%20Development%20-%20Martin.md)
+- [Agile Testing - A Practical Guide - Crispin, Gregory](04_engineering_and_practices/Agile%20Testing%20-%20A%20Practical%20Guide%20-%20Crispin,%20Gregory.md)
+- [Code Complete (2nd Ed) - McConnell](04_engineering_and_practices/Code%20Complete%20(2nd%20Ed)%20-%20McConnell.md)
+- [Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce](04_engineering_and_practices/Growing%20Object-Oriented%20Software,%20Guided%20by%20Tests%20-%20Freeman,%20Pryce.md)
+- [Spec-Driven Development - The Complete Book](04_engineering_and_practices/Spec-Driven%20Development%20-%20The%20Complete%20Book.md)
+- [Specification by Example - Adzic](04_engineering_and_practices/Specification%20by%20Example%20-%20Adzic.md)
+- [Test-Driven Development by Example - Beck](04_engineering_and_practices/Test-Driven%20Development%20by%20Example%20-%20Beck.md)
+- [The Mythical Man-Month - Brooks](04_engineering_and_practices/The%20Mythical%20Man-Month%20-%20Brooks.md)
+- [The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(20th%20Anniversary%20Ed)%20-%20Hunt,%20Thomas.md)
+- [The Pragmatic Programmer (alt copy) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(alt%20copy)%20-%20Hunt,%20Thomas.md)
+- [Unit Testing - Principles, Practices and Patterns - Khorikov](04_engineering_and_practices/Unit%20Testing%20-%20Principles,%20Practices%20and%20Patterns%20-%20Khorikov.md)
+- [Working Effectively with Legacy Code - Feathers](04_engineering_and_practices/Working%20Effectively%20with%20Legacy%20Code%20-%20Feathers.md)
+- [xUnit Test Patterns - Meszaros](04_engineering_and_practices/xUnit%20Test%20Patterns%20-%20Meszaros.md)
+
+## 05 · Databases & Data
+
+- [Database Internals - Petrov](05_databases/Database%20Internals%20-%20Petrov.md)
+- [Database System Concepts (7th Ed) - Silberschatz, Korth](05_databases/Database%20System%20Concepts%20(7th%20Ed)%20-%20Silberschatz,%20Korth.md)
+- [Designing Data-Intensive Applications - Kleppmann](05_databases/Designing%20Data-Intensive%20Applications%20-%20Kleppmann.md)
+- [Graph Databases - Robinson, Webber](05_databases/Graph%20Databases%20-%20Robinson,%20Webber.md)
+- [NoSQL Distilled - Sadalage, Fowler](05_databases/NoSQL%20Distilled%20-%20Sadalage,%20Fowler.md)
+- [SQL Antipatterns - Karwin](05_databases/SQL%20Antipatterns%20-%20Karwin.md)
+- [SQL Performance Explained - Winand](05_databases/SQL%20Performance%20Explained%20-%20Winand.md)
+- [Seven Databases in Seven Weeks - Redmond, Wilson](05_databases/Seven%20Databases%20in%20Seven%20Weeks%20-%20Redmond,%20Wilson.md)
+- [Streaming Systems - Akidau, Chernyak, Lax](05_databases/Streaming%20Systems%20-%20Akidau,%20Chernyak,%20Lax.md)
+- [The Data Warehouse Toolkit (3rd Ed) - Kimball](05_databases/The%20Data%20Warehouse%20Toolkit%20(3rd%20Ed)%20-%20Kimball.md)
+
+## 06 · Web & Frontend
+
+- [Angular 22 - Complete Professional Guide](06_web_and_frontend/Angular%2022%20-%20Complete%20Professional%20Guide.md)
+- [CSS in Depth (2nd Ed) - Grant](06_web_and_frontend/CSS%20in%20Depth%20(2nd%20Ed)%20-%20Grant.md)
+- [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
+- [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
+- [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
+- [Learning GraphQL - Porcello, Banks (PT-BR)](06_web_and_frontend/Learning%20GraphQL%20-%20Porcello,%20Banks%20(PT-BR).md)
+- [Learning GraphQL - Porcello, Banks](06_web_and_frontend/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
+- [Learning React Native - Eisenman](06_web_and_frontend/Learning%20React%20Native%20-%20Eisenman.md)
+- [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
+- [Refactoring UI - Wathan, Schoger](06_web_and_frontend/Refactoring%20UI%20-%20Wathan,%20Schoger.md)
+- [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
+
+## 07 · DevOps, SRE & Operations
+
+- [Accelerate - Forsgren, Humble, Kim](07_devops_sre_operations/Accelerate%20-%20Forsgren,%20Humble,%20Kim.md)
+- [Continuous Delivery - Humble, Farley](07_devops_sre_operations/Continuous%20Delivery%20-%20Humble,%20Farley.md)
+- [Effective DevOps - Davis, Daniels](07_devops_sre_operations/Effective%20DevOps%20-%20Davis,%20Daniels.md)
+- [Jenkins Essentials - Soni](07_devops_sre_operations/Jenkins%20Essentials%20-%20Soni.md)
+- [Kubernetes - Up and Running - Hightower, Burns, Beda](07_devops_sre_operations/Kubernetes%20-%20Up%20and%20Running%20-%20Hightower,%20Burns,%20Beda.md)
+- [Linux Utilities Cookbook - Lee](07_devops_sre_operations/Linux%20Utilities%20Cookbook%20-%20Lee.md)
+- [Observability Engineering - Majors, Fong-Jones, Miranda](07_devops_sre_operations/Observability%20Engineering%20-%20Majors,%20Fong-Jones,%20Miranda.md)
+- [Pro Git (2nd Ed) - Chacon, Straub](07_devops_sre_operations/Pro%20Git%20(2nd%20Ed)%20-%20Chacon,%20Straub.md)
+- [Release It! - Nygard](07_devops_sre_operations/Release%20It!%20-%20Nygard.md)
+- [Site Reliability Engineering - Google](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Google.md)
+- [Systems Performance (2nd Ed) - Gregg](07_devops_sre_operations/Systems%20Performance%20(2nd%20Ed)%20-%20Gregg.md)
+- [The DevOps Handbook - Kim, Humble, Debois](07_devops_sre_operations/The%20DevOps%20Handbook%20-%20Kim,%20Humble,%20Debois.md)
+- [The Phoenix Project - Kim, Behr, Spafford](07_devops_sre_operations/The%20Phoenix%20Project%20-%20Kim,%20Behr,%20Spafford.md)
+
+## 08 · Distributed Systems & Microservices
+
+- [Building Microservices - Newman](08_distributed_systems/Building%20Microservices%20-%20Newman.md)
+
+## 09 · Security & Privacy
+
+- [Building Secure and Reliable Systems - Google](09_security_and_privacy/Building%20Secure%20and%20Reliable%20Systems%20-%20Google.md)
+- [OWASP ASVS 4.0.3](09_security_and_privacy/OWASP%20ASVS%204.0.3.md)
+- [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
+- [Practical Data Privacy - Kamara](09_security_and_privacy/Practical%20Data%20Privacy%20-%20Kamara.md)
+- [Privacy's Blueprint - Hartzog](09_security_and_privacy/Privacy's%20Blueprint%20-%20Hartzog.md)
+- [Security Engineering (3rd Ed) - Anderson](09_security_and_privacy/Security%20Engineering%20(3rd%20Ed)%20-%20Anderson.md)
+- [The Art of Software Security Assessment - Dowd, McDonald](09_security_and_privacy/The%20Art%20of%20Software%20Security%20Assessment%20-%20Dowd,%20McDonald.md)
+- [The EU GDPR - A Practical Guide - Voigt, von dem Bussche](09_security_and_privacy/The%20EU%20GDPR%20-%20A%20Practical%20Guide%20-%20Voigt,%20von%20dem%20Bussche.md)
+- [The Privacy Engineer's Manifesto - Dennedy](09_security_and_privacy/The%20Privacy%20Engineer's%20Manifesto%20-%20Dennedy.md)
+- [The Tangled Web - Zalewski](09_security_and_privacy/The%20Tangled%20Web%20-%20Zalewski.md)
+- [The Web Application Hacker's Handbook - Stuttard, Pinto](09_security_and_privacy/The%20Web%20Application%20Hacker's%20Handbook%20-%20Stuttard,%20Pinto.md)
+- [Threat Modeling - Shostack](09_security_and_privacy/Threat%20Modeling%20-%20Shostack.md)
+
+## 10 · AI & LLM
+
+- [Context Engineering - Designing Information Environments for LLM Systems](10_ai_and_llm/Context%20Engineering%20-%20Designing%20Information%20Environments%20for%20LLM%20Systems.md)
+- [Prompt Engineering - Principles, Patterns and Practice](10_ai_and_llm/Prompt%20Engineering%20-%20Principles,%20Patterns%20and%20Practice.md)
+
+## 11 · Management, Product & Process
+
+- [An Elegant Puzzle - Larson](11_management_product_process/An%20Elegant%20Puzzle%20-%20Larson.md)
+- [Continuous Discovery Habits - Torres](11_management_product_process/Continuous%20Discovery%20Habits%20-%20Torres.md)
+- [Escaping the Build Trap - Perri](11_management_product_process/Escaping%20the%20Build%20Trap%20-%20Perri.md)
+- [Inspired - Cagan](11_management_product_process/Inspired%20-%20Cagan.md)
+- [Just Enough Research - Hall](11_management_product_process/Just%20Enough%20Research%20-%20Hall.md)
+- [Making Things Happen - Berkun](11_management_product_process/Making%20Things%20Happen%20-%20Berkun.md)
+- [Staff Engineer - Larson](11_management_product_process/Staff%20Engineer%20-%20Larson.md)
+- [Team Topologies - Skelton, Pais](11_management_product_process/Team%20Topologies%20-%20Skelton,%20Pais.md)
+- [The Manager's Path - Fournier](11_management_product_process/The%20Manager's%20Path%20-%20Fournier.md)
+- [The Mom Test - Fitzpatrick](11_management_product_process/The%20Mom%20Test%20-%20Fitzpatrick.md)
+- [User Story Mapping - Patton](11_management_product_process/User%20Story%20Mapping%20-%20Patton.md)
+
+## 12 · Design & UX
+
+- [The Design of Everyday Things - Norman](12_design_ux/The%20Design%20of%20Everyday%20Things%20-%20Norman.md)
+
+## 13 · Automation & Integration
+
+- [Hermes Agent - Complete Professional Guide](13_automation_and_integration/Hermes%20Agent%20-%20Complete%20Professional%20Guide.md)
+- [n8n - Complete Professional Guide](13_automation_and_integration/n8n%20-%20Complete%20Professional%20Guide.md)
+
+---
+
+**Total: 136 book/reading-list files**
