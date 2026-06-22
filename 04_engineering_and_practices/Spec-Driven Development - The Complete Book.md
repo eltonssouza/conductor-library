@@ -59,7 +59,7 @@ software_dev: core
 
 ---
 
-# PART I — FOUNDATIONS
+## PART I — FOUNDATIONS
 
 ---
 
@@ -293,7 +293,7 @@ SDD is **iterative and agile**. You specify a small slice, generate, validate, l
 
 ---
 
-# PART II — ANATOMY OF A SPECIFICATION
+## PART II — ANATOMY OF A SPECIFICATION
 
 ---
 
@@ -601,7 +601,7 @@ Tables make it impossible to forget a combination — and a missing row becomes 
 
 ---
 
-# PART III — THE WORKFLOW
+## PART III — THE WORKFLOW
 
 ---
 
@@ -829,7 +829,7 @@ Validation fails
 
 ---
 
-# PART IV — PRACTICE
+## PART IV — PRACTICE
 
 ---
 
@@ -1081,7 +1081,7 @@ Principle: **the spec lives in the same repository as the code it describes.** T
 
 ---
 
-# PART V — MATURITY AND SCALE
+## PART V — MATURITY AND SCALE
 
 ---
 
@@ -1280,7 +1280,7 @@ AI made cheap the part that was expensive (writing code) and, in doing so, made 
 
 ---
 
-# APPENDICES
+## APPENDICES
 
 ---
 

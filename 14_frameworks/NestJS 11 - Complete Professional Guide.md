@@ -84,7 +84,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations: Architecture & Building Blocks
+## Part I – Foundations: Architecture & Building Blocks
 
 Part I gives you the mental model that makes everything else in NestJS click. Nest is an **opinionated, modular framework** built around dependency injection and a metadata-driven design. Once you understand how modules wire providers together, how controllers map HTTP to handlers, and how the CLI scaffolds it all, the rest of the framework reads as consistent variations on the same theme. This part establishes the architecture, the module system, and the controller layer.
 

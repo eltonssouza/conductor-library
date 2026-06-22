@@ -83,7 +83,7 @@ Progressive depth across five maturity levels, all centered on Vue 3:
 
 ---
 
-# Part I – Foundations of Vue 3
+## Part I – Foundations of Vue 3
 
 Part I builds the mental model you need before writing serious Vue. Vue 3 is a **reactive, component-oriented** framework: you describe UI declaratively in Single-File Components, and a fine-grained reactivity system keeps the DOM in sync with your state. The three pillars covered here — the toolchain and mental model, template syntax, and reactivity — are the foundation every later chapter builds on. Master these and the Composition API, routing, and state management become natural extensions rather than new concepts.
 

@@ -91,7 +91,7 @@ P1. Intelligent Corporate Assistant · P2. Multi-Agent Support Center · P3. Aut
 
 ---
 
-# Part I – Introduction to Hermes Agent
+## Part I – Introduction to Hermes Agent
 
 Part I builds the mental model needed for everything else. Hermes Agent is not "yet another LLM wrapper": it is a different category of software — an **autonomous, terminal-native agent that gets more capable the longer it runs**. Understanding why, where it came from, and how it differs from competitors is a prerequisite for using its advanced capabilities well (memory, Skills, MCP, multi-agents).
 

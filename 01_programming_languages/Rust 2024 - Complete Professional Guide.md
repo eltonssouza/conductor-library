@@ -9,7 +9,7 @@ stack: rust
 
 ---
 
-# Rust — Complete Professional Guide
+## Rust — Complete Professional Guide
 ### Ownership, Borrowing, Traits, Generics, Error Handling, Async, Cargo
 **Edition for Rust (2024 edition)**
 
@@ -91,7 +91,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-# Part I – Foundations, the toolchain, and Cargo
+## Part I – Foundations, the toolchain, and Cargo
 
 Rust earns its reputation at the point where most languages force a trade: it gives you the control and predictability of a systems language while preventing entire classes of memory and concurrency bugs at compile time. Part I builds the foundation that makes the rest of the book legible. You will install and drive the toolchain, learn how Cargo structures real projects, and — most importantly — internalize ownership and borrowing, the single idea that everything else in Rust depends on. By the end of these three chapters you can read idiomatic Rust, model data with structs and enums, and reason about who owns what.
 

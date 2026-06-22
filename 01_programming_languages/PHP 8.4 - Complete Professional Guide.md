@@ -86,7 +86,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Language Foundations & Types
+## Part I – Language Foundations & Types
 
 Part I establishes the bedrock: how PHP represents values, how the type system constrains them, and how `strict_types` changes the rules. Modern PHP is a *typed* language in practice — the engine still runs untyped code, but professional codebases declare types everywhere and let the runtime enforce contracts. The three chapters here give you the vocabulary (scalars, compound types, special types) and the discipline (strict mode) that every later chapter assumes.
 

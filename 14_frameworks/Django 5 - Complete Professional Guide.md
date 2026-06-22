@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations: Project, Apps & Settings
+## Part I – Foundations: Project, Apps & Settings
 
 Part I gives you the structural map of a Django 5 project. Django is opinionated about *where things go* and *how a request flows*, and those conventions are the productivity engine behind the framework's "batteries included" promise. Before writing a single model or view, you need to understand the project/app distinction, how settings drive everything, and how the URL-to-view dispatch works. Master these three chapters and the rest of Django becomes a set of well-labeled drawers.
 

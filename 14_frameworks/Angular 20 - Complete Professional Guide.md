@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v20:
 
 ---
 
-# Part I – Angular 20 Overview & Reactivity Foundations
+## Part I – Angular 20 Overview & Reactivity Foundations
 
 Part I gives you the strategic map of Angular 20 and the reactive foundations the rest of the book builds on. v20 is a **"reactivity matures"** release: the **Signals API stabilizes** (`effect`, `linkedSignal`, `toSignal` are production-ready), **zoneless change detection** advances to **developer preview**, **incremental hydration** and **route-level render modes** become **stable**, **built-in control flow** is fully stable, and **Signal Forms** arrives in **developer preview**. Understanding what graduated to stable — and what's still preview — is the difference between adopting confidently and adopting prematurely.
 

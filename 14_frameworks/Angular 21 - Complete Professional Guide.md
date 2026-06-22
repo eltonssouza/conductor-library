@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v21:
 
 ---
 
-# Part I – Angular 21 Overview & Signals-first Shift
+## Part I – Angular 21 Overview & Signals-first Shift
 
 Part I gives you the strategic map of Angular 21 and the rationale behind its most aggressive **"signals-first"** shift yet. v21 is the release where reactivity stops being an opt-in experiment and becomes the framework's default mental model: **Signal Forms** introduce a brand-new signal-based forms API, **zoneless change detection becomes the default for new projects**, and **Vitest becomes the default test runner** for new apps. Understanding these three pillars — and the AI/accessibility tooling around them — is the difference between adopting v21 with intent and merely upgrading a version number.
 

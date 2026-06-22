@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v18:
 
 ---
 
-# Part I – Angular 18 Overview & Foundations
+## Part I – Angular 18 Overview & Foundations
 
 Part I gives you the strategic map of Angular 18. v18 is a **"stabilize-and-experiment"** release: features that were in developer preview for several versions (**deferrable views** and **built-in control flow**) become **stable**, **Angular Material 3** ships as stable, and the framework opens the door to its long-term reactivity goal with **experimental zoneless change detection**. Understanding which features are production-ready and which are still experimental is the difference between confidently adopting v18 and accidentally shipping a preview API.
 

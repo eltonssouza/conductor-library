@@ -82,7 +82,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations: App, Server & Routing Basics
+## Part I – Foundations: App, Server & Routing Basics
 
 Part I builds the mental model you'll use for the rest of the book: what Express 5 is, how an Express application starts and serves requests, and how routing maps incoming HTTP requests to your handlers. Express 5 keeps the minimalist philosophy of Express 4 but tightens several behaviors — most importantly, **rejected Promises from async handlers are now forwarded to error-handling middleware automatically**, and the **route path syntax changed** because of an upgraded `path-to-regexp`. Understanding these foundations prevents the most common production surprises.
 

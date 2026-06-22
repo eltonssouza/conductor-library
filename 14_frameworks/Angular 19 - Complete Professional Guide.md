@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v19:
 
 ---
 
-# Part I – Angular 19 Overview & Standalone Migration
+## Part I – Angular 19 Overview & Standalone Migration
 
 Part I gives you the strategic map of Angular 19 and a concrete migration path. v19 is a **"standalone-by-default"** release: standalone components — the recommended authoring model for several versions — become the **default**, and the compiler now treats every component, directive, and pipe as standalone unless you opt out. Alongside this, v19 ships **incremental hydration**, **route-level render mode**, new reactive primitives (`linkedSignal()`, `resource()`), the `@let` template syntax, **HMR by default**, and **event replay on by default** for SSR. Understanding which behaviors flipped — and how the automated migration helps — is the difference between a smooth upgrade and a confusing one.
 

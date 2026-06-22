@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Fastify 5 Fundamentals
+## Part I – Fastify 5 Fundamentals
 
 Part I gives you the mental model you need before anything else: what the Fastify **instance** is, how **routing** maps requests to handlers, and how to **bootstrap** a real project so it stays maintainable as it grows. Fastify's design philosophy is **low overhead and a great developer experience** — it achieves speed largely through compiling JSON Schemas into fast validators and serializers, and it achieves structure through an encapsulation-based plugin system. Understanding the instance and the route lifecycle first makes every later concept (plugins, hooks, decorators) fall into place.
 

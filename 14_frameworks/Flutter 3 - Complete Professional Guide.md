@@ -83,7 +83,7 @@ Flutter rewards a layered approach: master the language and the widget tree firs
 
 ---
 
-# Part I – Foundations: Dart and the Widget Model
+## Part I – Foundations: Dart and the Widget Model
 
 Flutter is a declarative UI toolkit written in Dart. You describe what the interface should look like for a given state, and the framework reconciles the on-screen result. To work effectively you need two foundations: the Dart language (with sound null safety and Dart 3 features) and the widget model that turns immutable configuration objects into pixels. Part I builds both, then teaches the layout system that governs how widgets size and position themselves. By the end you can read, reason about, and write idiomatic Flutter screens with confidence.
 
