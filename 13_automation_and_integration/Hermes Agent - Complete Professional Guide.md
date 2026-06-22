@@ -1,5 +1,6 @@
 ---
-software_dev: core
+software_dev: stack
+stack: hermes
 ---
 
 # Hermes Agent - Complete Professional Guide
