@@ -1,6 +1,6 @@
 # Tech Roles & Acronyms
 
-> Roles covered by this library, with name and acronym.
+> Roles covered by this library, with name and acronym. These map to the role agents Conductor scaffolds into a project — see [CONDUCTOR.md](CONDUCTOR.md) and [AGENTS_AND_SKILLS_BY_ROLE.md](AGENTS_AND_SKILLS_BY_ROLE.md).
 
 ## Management, Product & Process
 - **PM** — Product Manager

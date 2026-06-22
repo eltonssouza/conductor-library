@@ -5,9 +5,14 @@
 
 ## Reference documents
 
+- [CONDUCTOR.md](CONDUCTOR.md) — how the Conductor app consumes this library (install/ingest)
 - [FILE_CONVENTIONS.md](FILE_CONVENTIONS.md) — folder/file naming and internal formatting standard
 - [ROLES_AND_ACRONYMS.md](ROLES_AND_ACRONYMS.md) — tech roles and acronyms glossary
 - [AGENTS_AND_SKILLS_BY_ROLE.md](AGENTS_AND_SKILLS_BY_ROLE.md) — Agent prompt + Skill per role
+
+## Used by Conductor
+
+This corpus is the **Library (RAG)** memory behind [Conductor](https://github.com/eltonssouza/conductor-main). You don't install it by hand — `cdt up` fetches this repo (`CONDUCTOR_LIBRARY_REPO@CONDUCTOR_LIBRARY_REF`, default `eltonssouza/conductor-library@main`), embeds every `.md` with bge-m3, and indexes it in ChromaDB. Each top-level folder becomes the RAG `category`; the `software_dev` frontmatter tier lets the corpus be filtered to development-relevant material. See [CONDUCTOR.md](CONDUCTOR.md) for the full integration and environment variables.
 
 ## 00 · Academic Curriculum (reading lists)
 
