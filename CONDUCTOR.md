@@ -60,8 +60,14 @@ To index a fork or branch instead of the default corpus, set the environment var
 
 The repo is downloaded once, but **only the selected books are written to disk —
 and thus chunked and embedded** into ChromaDB. So a Java + Angular dev never even
-extracts the Ruby/Go/React books, and the index stays small and on-topic. Two
-dials, read at `cdt up`:
+extracts the Ruby/Go/React books, and the index stays small and on-topic.
+
+**Auto-selection (default).** Run `cdt up` from a project and Conductor detects
+its stack and ingests the matching books automatically — `cdt detect` shows what
+it would pick. The library is one global index, so the choice **accumulates**:
+work on an Angular app today and a Go service tomorrow, and the index grows to
+cover both. Override or pin it explicitly with the two dials below, read at
+`cdt up`:
 
 - **Tiers** (`CONDUCTOR_LIBRARY_TIERS`, default `core`) — language-agnostic
   `software_dev` tiers. The default is `core` only: the engineering craft that
