@@ -1,13 +1,19 @@
+# Programming Ruby 1.9 & 2.0 (4th Ed)
+
+> **Author(s):** Thomas Â· **Edition:** 4th Ed Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 Programming Ruby 1.9 & 2.0
 The Pragmatic Programmers' Guide
 Dave Thomas with Chad Fowler
 Andy Hunt
 The Pragmatic Bookshelf
-Dallas, Texas · Raleigh, North Carolina
+Dallas, Texas ï¿½ Raleigh, North Carolina
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and The Pragmatic Programmers, LLC was aware of a trademark claim, the designations have been printed in initial capital letters or in all capitals. The Pragmatic Starter Kit, The Pragmatic Programmer, Pragmatic Programming, Pragmatic Bookshelf, PragProg and the linking g device are trademarks of The Pragmatic Programmers, LLC. Every precaution was taken in the preparation of this book. However, the publisher assumes no responsibility for errors or omissions, or for damages that may result from the use of information (including program listings) contained herein. Our Pragmatic courses, workshops, and other products can help you and your team create better software and have more fun. For more information, as well as the latest Pragmatic titles, please visit us at http://pragprog.com.
 The team that produced this book includes: Janet Furlow (producer) Juliet Benda (rights) Ellie Callahan (support)
-Copyright © 2013 The Pragmatic Programmers, LLC.
+Copyright ï¿½ 2013 The Pragmatic Programmers, LLC.
 All rights reserved.
 No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher.
 Printed in the United States of America. ISBN-13: 978-1-93778-549-9 Encoded using the finest acid-free high-entropy binary digits. Book version: P1.0--June, 2013
@@ -114,7 +120,7 @@ Part I -- Facets of Ruby
 
 68
 
-Contents · iv
+Contents ï¿½ iv
 
 5. Sharing Functionality: Inheritance, Modules, and Mixins . . . . 69
 
@@ -254,7 +260,7 @@ Contents · iv
 
 167
 
-Contents · v
+Contents ï¿½ v
 
 12.4 Mutual Exclusion
 
@@ -408,7 +414,7 @@ Part II -- Ruby in Its Setting
 
 269
 
-Contents · vi
+Contents ï¿½ vi
 
 19.3 Running RDoc
 
@@ -570,7 +576,7 @@ Part III -- Ruby Crystallized
 
 377
 
-Contents · vii
+Contents ï¿½ vii
 
 24.7 instance_eval and class_eval
 
@@ -674,7 +680,7 @@ Index . . . . . . . . . . . . . . . . 833
 
 Foreword to the Third Edition
 I wrote forewords to the previous two editions of this book. For the first edition, I wrote about motivation. For the second edition, I wrote about miracles. For this third edition, I'd like to write about courage. I always admire brave people. People around Ruby seem to be brave, like the authors of this book. They were brave to jump in to a relatively unknown language like Ruby. They were brave to try new technology. They could have happily stayed with an old technology, but they didn't. They built their own world using new bricks and mortar. They were adventurers, explorers, and pioneers. By their effort, we have a fruitful result--Ruby. Now, I feel that I've created my own universe with help from those brave people. At first, I thought it was a miniature universe, like the one in "Fessenden's Worlds." But now it seems like a real universe. Countless brave people are now working with Ruby. They challenge new things every day, trying to make the world better and bigger. I am very glad I am part of the Ruby world. I suppose that even the world itself could not contain the books that should be written. But now we have the first book, updated to the most recent. Enjoy. Yukihiro Matsumoto, aka "Matz" Japan, February 2009
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Preface
 This book is a new version of the PickAxe, as Programming Ruby is known to Ruby programmers. It is a tutorial and reference for versions 1.9 and 2.0 of the Ruby programming language.
@@ -685,9 +691,9 @@ When Andy and I wrote the first edition, we had to explain the background and ap
 That belief is even stronger today. More than thirteen years later, Ruby is still my language of choice: I use it for client applications and web applications. I use it to run our publishing business (our online store, http://pragprog.com, is more than 40,000 lines of Rails code), and I use it for all those little programming jobs I do just to get things running smoothly.
 In all those years, Ruby has progressed nicely. A large number of methods have been added to the built-in classes and modules, and the size of the standard library (those libraries included in the Ruby distribution) has grown tremendously. The community now has a standard documentation system (RDoc), and RubyGems has become the system of choice for packaging Ruby code for distribution. We have a best-of-breed web application framework, Ruby on Rails, with others waiting in the wings. We are leading the world when it comes to testing, with tools such as RSpec and Cucumber, and we're working through the hard problems of packaging and dependency management. We've matured nicely.
 But Ruby is older than that. The first release of this book happened on Ruby's 20th birthday (it was created on February 24, 1993). The release of Ruby 2.0 is a celebration of that anniversary.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Preface · xii
+Preface ï¿½ xii
 
 Ruby Versions
 This version of the PickAxe documents both Ruby 2.0 and Ruby 1.9.3.1
@@ -714,9 +720,9 @@ You'll find links to the source code for almost all the book's example code at h
 
 1. Ruby version numbering used to follow the same scheme used for many other open source projects. Releases with even minor version numbers--1.6, 1.8, and so on--were stable, public releases. These are the releases that are prepackaged and made available on the various Ruby websites. Development versions of the software had odd minor version numbers, such as 1.5 and 1.7. However, in 2007 Matz broke with convention and made 1.9 a stable public release of Ruby.
 2. http://www.pragprog.com/titles/ruby4/errata.html
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Acknowledgments · xiii
+Acknowledgments ï¿½ xiii
 Acknowledgments
 The first International Ruby Conference had something like 32 attendees. We could all fit into the tiny hotel bar and talk the night away. Things have changed. The annual conference now sells out many hundreds of seats within hours, and an increasing number of secondary conferences have sprung up to meet the needs of folks who can't get to RubyConf.
 As the community has grown, so has Ruby. The language and its libraries are now many times bigger than they were back when the first edition of this book came out.
@@ -729,9 +735,9 @@ Dave Thomas The Pragmatic Programmers dave@pragprog.com June 2013
 
 3. http://www.flickr.com/photos/pragdave/sets/72157625046498937/
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Preface · xiv
+Preface ï¿½ xiv
 
 Notation Conventions
 Literal code examples are shown using a sans-serif font:
@@ -764,7 +770,7 @@ Command-line invocations are shown with literal text in a regular font, and para
 ruby < flags >* progname < arguments >*
 
 4. In some other Ruby documentation, you may see class methods written as Fred::new. This is perfectly valid Ruby syntax; we just happen to think that Fred.new is less distracting to read.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Road Map
 The main text of this book has four separate parts, each with its own personality and each addressing different aspects of the Ruby language.
@@ -775,11 +781,11 @@ The Ruby Library Reference is Part IV. It's big. We document more than 1,300 met
 So, how should you read this book? Well, depending on your level of expertise with programming in general and OO in particular, you may initially want to read just a few portions of the book. Here are our recommendations.
 If you're a beginner, you may want to start with the tutorial material in Part I. Keep the library reference close at hand as you start to write programs. Get familiar with the basic classes such as Array, Hash, and String. As you become more comfortable in the environment, you may want to investigate some of the more advanced topics in Part III.
 If you're already comfortable with Perl, Python, Java, or Smalltalk, then we suggest reading Chapter 1, Getting Started, on page 3, which talks about installing and running Ruby, followed by the introduction in Chapter 2, Ruby.new, on page 15. From there, you may want
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Road Map · xvi
+Road Map ï¿½ xvi
 to take the slower approach and keep going with the tutorial that follows, or you can skip ahead to the gritty details starting in Part III, followed by the library reference in Part IV. Experts, gurus, and "I-don't-need-no-stinking-tutorial" types can dive straight into the language reference in Chapter 22, The Ruby Language, on page 297; skim the library reference; and then use the book as a (rather attractive) coffee coaster. Of course, nothing is wrong with just starting at the beginning and working your way through page by page. And don't forget, if you run into a problem that you can't figure out, help is available. For more information, see Appendix 1, Support, on page 829.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Part I
 Facets of Ruby
@@ -795,9 +801,9 @@ Directories, Folders, and Navigation
 It is beyond the scope of this book to teach the commands available at the prompt, but we do need to cover the basics of finding your way around.
 If you're used to a GUI tool such as Explorer on Windows or Finder on OS X for navigating to your files, then you'll be familiar with the idea of folders--locations on your hard drive that can hold files and other folders.
 When you're at the command prompt, you have access to these same folders. But, somewhat confusingly, at the prompt these folders are called directories (because they contain lists of other directories and files). These directories are organized into a strict hierarchy. On Unixbased systems (including OS X), there's one top-level directory, called / (a forward slash). On Windows, there is a top-level directory for each drive on your system, so you'll find the top level for your C: drive at C:\ (that's the drive letter C, a colon, and a backslash).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 4
+Chapter 1. Getting Started ï¿½ 4
 The path to a file or directory is the set of directories that you have to traverse to get to it from the top-level directory, followed by the name of the file or directory itself. Each component in this name is separated by a forward slash (on Unix) or a backslash (on Windows). So, if you organized your projects in a directory called projects under the top-level directory and if the projects directory had a subdirectory for your time_planner project, the full path to the README file would be /projects/time_planner/readme.txt on Unix and C:\projects\time_planner\readme.txt on Windows.
 Spaces in Directory Names and Filenames
 Most operating systems now allow you to create folders with spaces in their names. This is great when you're working at the GUI level. However, from the command prompt, spaces can be a headache, because the shell that interprets what you type will treat the spaces in file and folder names as being parameter separators and not as part of the name. You can get around this, but it generally isn't worth the hassle. If you are creating new folders and files, it's easiest to avoid spaces in their names.
@@ -823,9 +829,9 @@ $ cd /projects $ mkdir expense_tracker $ cd expense_tracker $ pwd /projects/expe
 
 Notice that to change to the new directory, we could just give its name relative to the current directory--we don't have to enter the full path.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Installing Ruby · 5
+Installing Ruby ï¿½ 5
 
 We suggest you create a directory called pickaxe to hold the code you write while reading this book:
 
@@ -851,9 +857,9 @@ The simple solution (and probably the right one to use if you're not planning on
 Simply navigate to http://rubyinstaller.org, click the big DOWNLOAD button, and select the Ruby version you want. Save the file to your downloads folder, and then run it once it has downloaded. Click through the Windows nanny warnings, and you'll come to a conventional installer. Accept the defaults, and when the installer finishes, you'll have an entry for Ruby in your All Programs menu of the Start menu:
 
 Select Start Command Prompt with Ruby to open a copy of the Windows command shell with the environment set up to run Ruby.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 6
+Chapter 1. Getting Started ï¿½ 6
 pik: Install Multiple Ruby Environments The pik system by Gordon Thiesfeld allows you to manage multiple Ruby interpreters on the same machine, switching between them easily. Obviously, this isn't something everyone needs, so you may want to skip to Source Code from This Book on page 9.
 Before you start, make sure you have a working Ruby on your machine, using the instructions from the previous section to download and use RubyInstaller if necessary.
 Then, install pik. Visit http://github.com/vertiginous/pik/downloads. Look near the top for the list of .msi files, and choose the latest. Double-click the filename to download and install it.
@@ -870,9 +876,9 @@ C:\> pik install jruby ** Downloading: http://jruby.org......downloads/1.5.2/jru
 ** Adding: 152: jruby 1.5.2 (ruby 1.8.7 patchlevel 249) (2010-08-20 1c5e29d) (Java HotSpot(TM) Client VM 1.6.0_21) [x86-java] Located at: C:\Users\dave\.pik\rubies\JRuby-152\bin
 You now have two Ruby interpreters managed by pik. You can switch between them at the command line:
 C:\>pik list 152: jruby 1.5.2 (ruby 1.8.7 patchlevel 249) (2010-08-20 1c5e29d) (Java H... 193: ruby 1.9.3p0 (2011-10-30) [i386-mingw32]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Installing Ruby · 7
+Installing Ruby ï¿½ 7
 C:\>pik use 152 C:\>jruby -v jruby 1.5.2 (ruby 1.8.7 patchlevel 249) (2010-08-20 1c5e29d) (Java HotSpot(TM) Client VM 1.6.0_21) [x86-java]
 C:\>pik use 193 C:\>ruby -v ruby 1.9.3p0 (2011-10-30) [i386-mingw32]
 If you plan on installing gems that have native code components (that is, they interface to existing Windows libraries using C code), you'll need a C development environment on your machine, and you'll need to download and install the Pik development kit.
@@ -887,9 +893,9 @@ If this makes you nervous, you can always download the script first, inspect it,
 $ curl -L get.rvm.io >rvm-installer $ less rvm-installer $ bash rvm-installer
 1. RVM isn't the only way of managing multiple Ruby installations. You might want to look at rbenv (https://github.com/sstephenson/rbenv/) or chruby (https://github.com/postmodern/chruby).
 2. http://rvm.io/rvm/prerequisites/
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 8
+Chapter 1. Getting Started ï¿½ 8
 Behind the scenes, either option fetches a script from the RVM git repository and executes it on your local box. The end result is that RVM is installed in a directory named .rvm beneath your home directory. At the end of the process, RVM spits out a page or so of information. You should read it.
 You may need to knit RVM into your environment. To find out, have a look at the end of ~/.bashrc. If it doesn't mention RVM, add the following:
 source $HOME/.rvm/scripts/rvm
@@ -907,9 +913,9 @@ The rvm use command applies only to the current terminal session. If you want to
 $ rvm use --default 2.0.0
 3. The website, http://rvm.io/, has even more information. 4. http://rvm.io/rvm/install/ 5. This is the only time you'll need these privileges. Once your system has all the tools it needs, RVM can
 do the rest of its work as a regular user.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Running Ruby · 9
+Running Ruby ï¿½ 9
 The RubyGems that you install while you're using an RVM-installed Ruby will be added to that version of Ruby and not installed globally. Do not prepend the gem install command with a sudo--bad things will happen.
 Why Stop with Ruby 2.0?
 As well as installing stable versions of the Matz Ruby interpreter, RVM will also manage interpreters from different sources (JRuby, Rubinius, Ruby Enterprise Edition, and so on--rvm list known gives the full list). It will also install versions of Ruby directly from the developers' repository--versions that are not official releases. The Ruby developers use Subversion (often abbreviated as SVN) as their revision control system, so you'll need a Subversion client installed on your machine. Once done, you can use RVM to install the very latest Ruby using rvm install ruby-head or the latest version of the 2.0 branch using rvm install 2.0head.
@@ -924,9 +930,9 @@ Interactive Ruby
 One way to run Ruby interactively is simply to type ruby at the shell prompt. Here we typed in the single puts expression and an end-of-file character (which is Ctrl+D on our system).
 6. http://pragprog.com/titles/ruby4/code 7. Remember, you may need to use ruby1.9 as the command name if you installed using a package man-
 agement system.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 10
+Chapter 1. Getting Started ï¿½ 10
 
 This process works, but it's painful if you make a typo, and you can't really see what's going on as you type.
 
@@ -976,9 +982,9 @@ You can run a Ruby program from a file as you would any other shell script, Perl
 
 $ ruby myprog.rb Hello, Ruby Programmer It is now 2013-05-27 12:30:36 -0500
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ruby Documentation: RDoc and ri · 11
+Ruby Documentation: RDoc and ri ï¿½ 11
 On Unix systems, you can use the "shebang" notation as the first line of the program file:8
 #!/usr/bin/ruby puts "Hello, Ruby Programmer" puts "It is now #{Time.now}"
 If you make this source file executable (using, for instance, chmod +x myprog.rb), Unix lets you run the file as a program:
@@ -996,9 +1002,9 @@ Instance methods: garbage_collect
 8. If your system supports it, you can avoid hard-coding the path to Ruby in the "shebang" line by using #!/usr/bin/env ruby, which will search your path for ruby and then execute it.
 9. Including http://www.ruby-doc.org and http://rubydoc.info 10. If you installed Ruby using rvm, there's one additional step to get ri documentation available. At a
 prompt, enter rvm docs generate.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 12
+Chapter 1. Getting Started ï¿½ 12
 
 For information on a particular method, give its name as a parameter:
 $ ri GC::enable ---------------------------------------------------------------- GC::enable GC.enable => true or false --------------------------------------------------------------------------Enables garbage collection, returning true if garbage collection was disabled.
@@ -1046,22 +1052,22 @@ h.assoc("foo")
 
 #=> nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ruby Documentation: RDoc and ri · 13
+Ruby Documentation: RDoc and ri ï¿½ 13
 For general help on using ri, type ri --help. In particular, you might want to experiment with the --format option, which tells ri how to render decorated text (such as section headings). If your terminal program supports ANSI escape sequences, using --format=ansi will generate a nice, colorful display. Once you find a set of options you like, you can set them into the RI environment variable. Using our shell (zsh), this would be done using the following:
 $ export RI="--format ansi --width 70"
 If a class or module isn't yet documented in RDoc format, ask the friendly folks over at suggestions@ruby-doc.org to consider adding it. All this command-line hacking may seem a tad off-putting if you're not a regular visitor to the shell prompt. But, in reality, it isn't that difficult, and the power you get from being able to string together commands this way is often surprising. Stick with it, and you'll be well on your way to mastering both Ruby and your computer.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 2
 Ruby.new
 Most books on programming languages look about the same. They start with chapters on basic types: integers, strings, and so on. Then they look at expressions, before moving on to if and while statements. Then, perhaps around Chapter 7 or 8, they'll start mentioning classes. We find that somewhat tedious. Instead, when we designed this book, we had a grand plan (we were younger then). We wanted to document the language from the top down, starting with classes and objects and ending with the nitty-gritty syntax details. It seemed like a good idea at the time. After all, most everything in Ruby is an object, so it made sense to talk about objects first. Or so we thought. Unfortunately, it turns out to be difficult to describe a language that way. If you haven't covered strings, if statements, assignments, and other details, it's difficult to write examples of classes. Throughout our top-down description, we kept coming across low-level details we needed to cover so that the example code would make sense. So, we came up with another grand plan (they don't call us pragmatic for nothing). We'd still describe Ruby starting at the top. But before we did that, we'd add a short chapter that described all the common language features used in the examples along with the special vocabulary used in Ruby, a kind of mini-tutorial to bootstrap us into the rest of the book. And that mini-tutorial is this chapter.
 2.1 Ruby Is an Object-Oriented Language
 Let's say it again. Ruby is a genuine object-oriented language. Everything you manipulate is an object, and the results of those manipulations are themselves objects. However, many languages make the same claim, and their users often have a different interpretation of what object-oriented means and a different terminology for the concepts they employ. So, before we get too far into the details, let's briefly look at the terms and notation that we'll be using. When you write object-oriented programs, you're normally looking to model concepts from the real world. During this modeling process you'll discover categories of things that need to be represented in code. In a jukebox, the concept of a "song" could be such a category. In Ruby, you'd define a class to represent each of these entities. A class is a combination of state
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 16
+Chapter 2. Ruby.new ï¿½ 16
 (for example, the name of the song) and methods that use that state (perhaps a method to play the song).
 Once you have these classes, you'll typically want to create a number of instances of each. For the jukebox system containing a class called Song, you'd have separate instances for popular hits such as "Ruby Tuesday," "Enveloped in Python," "String of Pearls," "Small Talk," and so on. The word object is used interchangeably with class instance (and being lazy typists, we'll probably be using the word object more frequently).
 In Ruby, these objects are created by calling a constructor, a special method associated with a class. The standard constructor is called new.
@@ -1074,9 +1080,9 @@ puts "gin joint".length puts "Rick".index("c") puts 42.even? puts sam.play(song)
 produces: 9 2 true duh dum, da dum de dum ...
 Each line shows a method being called as an argument to puts. The thing before the period is called the receiver, and the name after the period is the method to be invoked. The first example asks a string for its length; the second asks a different string to find the index of the letter c. The third line asks the number 42 if it is even (the question mark is part of the method
 1. This idea of expressing method calls in the form of messages comes from Smalltalk.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Some Basic Ruby · 17
+Some Basic Ruby ï¿½ 17
 
 name even?). Finally, we ask Sam to play us a song (assuming there's an existing variable called sam that references an appropriate object).
 It's worth noting here a major difference between Ruby and most other languages. In (say) Java, you'd find the absolute value of some number by calling a separate function and passing in that number. You could write this:
@@ -1109,9 +1115,9 @@ Good night, John-Boy Good night, Mary-Ellen
 As the example shows, Ruby syntax is clean. You don't need semicolons at the ends of statements as long as you put each statement on a separate line. Ruby comments start with a # character and run to the end of the line. Code layout is pretty much up to you; indentation is not significant (but using two-character indentation will make you friends in the community if you plan on distributing your code).
 Methods are defined with the keyword def, followed by the method name (in this case, the name is say_goodnight) and the method's parameters between parentheses. (In fact, the parentheses are optional, but we like to use them.) Ruby doesn't use braces to delimit the bodies of compound statements and definitions. Instead, you simply finish the body with the keyword end. Our method's body is pretty simple. The first line concatenates the literal string "Good night," and the parameter name and assigns the result to the local variable result.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 18
+Chapter 2. Ruby.new ï¿½ 18
 The next line returns that result to the caller. Note that we didn't have to declare the variable result; it sprang into existence when we assigned to it.
 Having defined the method, we invoke it twice. In both cases, we pass the result to the method puts, which simply outputs its argument followed by a newline (moving on to the next line of output):
 Good night, John-Boy Good night, Mary-Ellen
@@ -1126,9 +1132,9 @@ puts "And good night,\nGrandma" produces: And good night, Grandma
 The second thing that Ruby does with double-quoted strings is expression interpolation. Within the string, the sequence #{expression} is replaced by the value of expression. We could use this to rewrite our previous method:
 def say_goodnight(name) result = "Good night, #{name}" return result
 end puts say_goodnight('Pa') produces: Good night, Pa
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Some Basic Ruby · 19
+Some Basic Ruby ï¿½ 19
 When Ruby constructs this string object, it looks at the current value of name and substitutes it into the string. Arbitrarily complex expressions are allowed in the #{...} construct. In the following example, we invoke the capitalize method, defined for all strings, to output our parameter with a leading uppercase letter:
 def say_goodnight(name) result = "Good night, #{name.capitalize}" return result
 end puts say_goodnight('uncle')
@@ -1143,9 +1149,9 @@ Ruby uses a convention that may seem strange at first: the first characters of a
 Following this initial character, a name can be any combination of letters, digits, and underscores (with the proviso that the character following an @ sign may not be a digit). However, by convention, multiword instance variables are written with underscores between the words, and multiword class names are written in MixedCase (with each word capitalized). Method names may end with the characters ?, !, and =.
 2. If your source files use non-ASCII characters (for example, because they're written in UTF-8 encoding), all non-ASCII characters are assumed to be lowercase letters.
 3. Although we talk about global and class variables here for completeness, you'll find they are rarely used in Ruby programs. There's a lot of evidence that global variables make programs harder to maintain. Class variables are not as dangerous--it's just that people tend not to use them much.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 20
+Chapter 2. Ruby.new ï¿½ 20
 
 Local Variable: Instance Variable: Class Variable: Global Variable: Class Name: Constant Name:
 
@@ -1191,9 +1197,9 @@ a[3]
 
 Ruby hashes are similar to arrays. A hash literal uses braces rather than square brackets. The literal must supply two objects for every entry: one for the key, the other for the value. The key and value are normally separated by =>.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Symbols · 21
+Symbols ï¿½ 21
 
 For example, you could use a hash to map musical instruments to their orchestral sections.
 
@@ -1238,9 +1244,9 @@ Often, when programming, you need to create a name for something significant. Fo
 
 NORTH = 1 EAST = 2 SOUTH = 3 WEST = 4
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 22
+Chapter 2. Ruby.new ï¿½ 22
 
 Then, in the rest of your code, you could use the constants instead of the numbers:
 
@@ -1314,9 +1320,9 @@ puts "An oboe is a #{inst_section[:oboe]} instrument"
 
 produces: An oboe is a woodwind instrument
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Control Structures · 23
+Control Structures ï¿½ 23
 
 2.5 Control Structures
 Ruby has all the usual control structures, such as if statements and while loops. Java, C, and Perl programmers may well get caught by the lack of braces around the bodies of these statements. Instead, Ruby uses the keyword end to signify the end of a body of all the control structures:
@@ -1362,9 +1368,9 @@ Here it is again, rewritten using a statement modifier:
 
 puts "Danger, Will Robinson" if radiation > 3000
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 24
+Chapter 2. Ruby.new ï¿½ 24
 Similarly, this while loop:
 square = 4 while square < 1000
 square = square*square end
@@ -1381,9 +1387,9 @@ The forward slashes delimit the pattern, which consists of the two things we're 
 /P(erl|ython)/
 You can also specify repetition within patterns. /ab+c/ matches a string containing an a followed by one or more b's, followed by a c. Change the plus to an asterisk, and /ab*c/ creates a regular expression that matches one a, zero or more b's, and one c.
 You can also match one of a group of characters within a pattern. Some common examples are character classes such as \s, which matches a whitespace character (space, tab, newline, and so on); \d, which matches any digit; and \w, which matches any character that may appear in a typical word. A dot (.) matches (almost) any character. A table of these character classes appears in Table 2, Character class abbreviations, on page 101.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 25
+Blocks and Iterators ï¿½ 25
 
 We can put all this together to produce some useful regular expressions:
 
@@ -1443,9 +1449,9 @@ Code blocks are just chunks of code between braces or between do and end. This i
 
 { puts "Hello" }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 26
+Chapter 2. Ruby.new ï¿½ 26
 This is also a code block:
 do club.enroll(person) person.socialize
 end
@@ -1463,9 +1469,9 @@ call_block { puts "In the block" } produces: Start of method In the block In the
 The code in the block (puts "In the block") is executed twice, once for each call to yield.
 You can provide arguments to the call to yield, and they will be passed to the block. Within the block, you list the names of the parameters to receive these arguments between vertical bars (|params...|). The following example shows a method calling its associated block twice, passing the block two arguments each time:
 4. Some people like to think of the association of a block with a method as a kind of argument passing. This works on one level, but it isn't really the whole story. You may be better off thinking of the block and the method as coroutines, which transfer control back and forth between themselves.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Reading and 'Riting · 27
+Reading and 'Riting ï¿½ 27
 def who_says_what yield("Dave", "hello") yield("Andy", "goodbye")
 end
 who_says_what {|person, phrase| puts "#{person} says #{phrase}"} produces: Dave says hello Andy says goodbye
@@ -1478,9 +1484,9 @@ Here we ask an array to call the block once for each of its elements. Then, obje
 Ruby comes with a comprehensive I/O library. However, in most of the examples in this book, we'll stick to a few simple methods. We've already come across two methods that do output: puts writes its arguments with a newline after each; print also writes its arguments but with no newline. Both can be used to write to any I/O object, but by default they write to standard output.
 Another output method we use a lot is printf, which prints its arguments under the control of a format string (just like printf in C or Perl):
 printf("Number: %5.2f,\nString: %s\n", 1.23, "hello") produces: Number: 1.23, String: hello
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 28
+Chapter 2. Ruby.new ï¿½ 28
 In this example, the format string "Number: %5.2f,\nString: %s\n" tells printf to substitute in a floating-point number (with a minimum of five characters, two after the decimal point) and a string. Notice the newlines (\n) embedded in the string; each moves the output onto the next line. You have many ways to read input into your program. Probably the most traditional is to use the method gets, which returns the next line from your program's standard input stream:
 line = gets print line
 Because gets returns nil when it reaches the end of input, you can use its return value in a loop condition. Notice that in the following code the condition to the while is an assignment: we store whatever gets returns into the variable line and then test to see whether that returned value was nil or false before continuing:
@@ -1494,7 +1500,7 @@ $ ruby cmd_line.rb ant bee cat dog You gave 4 arguments ["ant", "bee", "cat", "d
 Often, the arguments to a program are the names of files that you want to process. In this case, you can use a second technique: the variable ARGF is a special kind of I/O object that acts like all the contents of all the files whose names are passed on the command line (or standard input if you don't pass any filenames). We'll look at that some more in ARGF, on page 213.
 2.10 Onward and Upward
 That's it. We've finished our lightning-fast tour of some of the basic features of Ruby. We took a look at objects, methods, strings, containers, and regular expressions; saw some simple control structures; and looked at some rather nifty iterators. We hope this chapter has given you enough ammunition to be able to attack the rest of this book. It's time to move on and move up--up to a higher level. Next, we'll be looking at classes and objects, things that are at the same time both the highest-level constructs in Ruby and the essential underpinnings of the entire language.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 3
 Classes, Objects, and Variables
@@ -1502,9 +1508,9 @@ From the examples we've shown so far, you may be wondering about our earlier ass
 tut_classes/stock_stats/data.csv "Date","ISBN","Price" "2013-04-12","978-1-9343561-0-4",39.45 "2013-04-13","978-1-9343561-6-6",45.67 "2013-04-14","978-1-9343560-7-4",36.95
 Our job is to take all the CSV files and work out how many of each title we have, as well as the total list price of the books in stock. Whenever you're designing OO systems, a good first step is to identify the things you're dealing with. Typically each type of thing becomes a class in your final program, and the things themselves are instances of these classes. It seems pretty clear that we'll need something to represent each data reading captured by the scanners. Each instance of this will represent a particular row of data, and the collection of all of these objects will represent all the data we've captured. Let's call this class BookInStock. (Remember, class names start with an uppercase letter, and method names normally start with a lowercase letter.)
 class BookInStock end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 30
+Chapter 3. Classes, Objects, and Variables ï¿½ 30
 As we saw in the previous chapter, we can create new instances of this class using new:
 a_book = BookInStock.new another_book = BookInStock.new
 After this code runs, we'd have two distinct objects, both of class BookInStock. But, besides that they have different identities, these two objects are otherwise the same--there's nothing to distinguish one from the other. And, what's worse, these objects actually don't hold any of the information we need them to hold.
@@ -1517,9 +1523,9 @@ For class BookInStock, the initialize method takes two parameters. These paramet
 This method also illustrates something that often trips up newcomers to Ruby. Notice how we say @isbn = isbn. It's easy to imagine that the two variables here, @isbn and isbn, are somehow related--it looks like they have the same name. But they don't. The former is an instance variable, and the "at" sign is actually part of its name.
 Finally, this code illustrates a simple piece of validation. The Float method takes its argument and converts it to a floating-point number,1 terminating the program with an error if that conversion fails. (Later in the book we'll see how to handle these exceptional situations.) What we're doing here is saying that we want to accept any object for the price parameter as long as that parameter can be converted to a float. We can pass in a float, an integer, and even a string containing the representation of a float, and it will work. Let's try this now. We'll create three objects, each with different initial state. The p method prints out an internal representation of an object. Using it, we can see that in each case our parameters got transferred into the object's state, ending up as instance variables:
 1. Yes, we know. We shouldn't be holding prices in inexact old floats. Ruby has classes that hold fixedpoint values exactly, but we want to look at classes, not arithmetic, in this section.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 31
+Chapter 3. Classes, Objects, and Variables ï¿½ 31
 class BookInStock def initialize(isbn, price) @isbn = isbn @price = Float(price) end
 end
 b1 = BookInStock.new("isbn1", 3) p b1
@@ -1532,9 +1538,9 @@ b1 = BookInStock.new("isbn1", 3) puts b1
 b2 = BookInStock.new("isbn2", 3.14) puts b2
 b3 = BookInStock.new("isbn3", "5.67") puts b3 produces: #<BookInStock:0x007fb424847468> #<BookInStock:0x007fb424847238> #<BookInStock:0x007fb424847058>
 Remember, puts simply writes strings to your program's standard output. When you pass it an object based on a class you wrote, it doesn't really know what to do with it, so it uses a very simple expedient: it writes the name of the object's class, followed by a colon and the object's unique identifier (a hexadecimal number). It puts the whole lot inside #<...>. Our experience tells us that during development we'll be printing out the contents of a BookInStock object many times, and the default formatting leaves something to be desired. Fortunately, Ruby has a standard message, to_s, that it sends to any object it wants to render as a string. So, when we pass one of our BookInStock objects to puts, the puts method calls to_s
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 32
+Chapter 3. Classes, Objects, and Variables ï¿½ 32
 in that object to get its string representation. So, let's override the default implementation of to_s to give us a better rendering of our objects:
 class BookInStock def initialize(isbn, price) @isbn = isbn @price = Float(price) end def to_s "ISBN: #{@isbn}, price: #{@price}" end
 end
@@ -1546,9 +1552,9 @@ The BookInStock objects we've created so far have an internal state (the ISBN an
 However, an object that is totally secretive is pretty useless--you can create it, but then you can't do anything with it. You'll normally define methods that let you access and manipulate the state of an object, allowing the outside world to interact with the object. These externally visible facets of an object are called its attributes.
 For our BookInStock objects, the first thing we may need is the ability to find out the ISBN and price (so we can count each distinct book and perform price calculations). One way of doing that is to write accessor methods:
 class BookInStock def initialize(isbn, price) @isbn = isbn @price = Float(price) end def isbn @isbn end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Attributes · 33
+Objects and Attributes ï¿½ 33
 def price @price
 end # .. end
 book = BookInStock.new("isbn1", 12.34) puts "ISBN = #{book.isbn}" puts "Price = #{book.price}" produces: ISBN = isbn1 Price = 12.34
@@ -1560,9 +1566,9 @@ end
 # .. end
 book = BookInStock.new("isbn1", 12.34) puts "ISBN = #{book.isbn}" puts "Price = #{book.price}" produces: ISBN = isbn1 Price = 12.34
 This is the first time we've used symbols in this chapter. As we discussed on page 21, symbols are just a convenient way of referencing a name. In this code, you can think of :isbn as meaning the name isbn and think of plain isbn as meaning the value of the variable. In this example, we named the accessor methods isbn and price. The corresponding instance variables are @isbn and @price. These accessor methods are identical to the ones we wrote by hand earlier. There's a common misconception, particularly among people who come from languages such as Java and C#, that the attr_reader declaration somehow declares instance variables. It doesn't. It creates the accessor methods, but the variables themselves don't need to be declared --they just pop into existence when you use them. Ruby completely decouples instance variables and accessor methods, as we'll see in Virtual Attributes, on page 35.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 34
+Chapter 3. Classes, Objects, and Variables ï¿½ 34
 
 Writable Attributes
 Sometimes you need to be able to set an attribute from outside the object. For example, let's assume that we have to discount the price of some titles after reading in the raw scan data.
@@ -1636,9 +1642,9 @@ New price = 25.349999999999998
 
 The assignment book.price = book.price * 0.75 invokes the method price= in the book object, passing it the discounted price as an argument. If you create a method whose name ends with an equals sign, that name can appear on the left side of an assignment.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Attributes · 35
+Objects and Attributes ï¿½ 35
 
 Again, Ruby provides a shortcut for creating these simple attribute-setting methods. If you want a write-only accessor, you can use the form attr_writer, but that's fairly rare. You're far more likely to want both a reader and a writer for a given attribute, so you'll use the handydandy attr_accessor method:
 class BookInStock attr_reader :isbn attr_accessor :price
@@ -1688,9 +1694,9 @@ end # ... end
 
 2. We multiply the floating-point price by 100 to get the price in cents but then add 0.5 before converting to an integer. Why? Because floating-point numbers don't always have an exact internal representation. When we multiply 33.8 by 100, we get 3379.99999999999954525265. The Integer method would truncate this to 3379. Adding 0.5 before calling Integer rounds up the floating-point value, ensuring we get the best integer representation. This is a good example of why you want to use BigDecimal, not Float, in financial calculations.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 36
+Chapter 3. Classes, Objects, and Variables ï¿½ 36
 
 book = BookInStock.new("isbn1", 33.80)
 
@@ -1756,9 +1762,9 @@ Price in cents = 1234
 Here we've used attribute methods to create a virtual instance variable. To the outside world, price_in_cents seems to be an attribute like any other. Internally, though, it has no corresponding instance variable.
 This is more than a curiosity. In his landmark book Object-Oriented Software Construction [Mey97], Bertrand Meyer calls this the Uniform Access Principle. By hiding the difference between instance variables and calculated values, you are shielding the rest of the world from the implementation of your class. You're free to change how things work in the future without impacting the millions of lines of code that use your class. This is a big win.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Classes Working with Other Classes · 37
+Classes Working with Other Classes ï¿½ 37
 Attributes, Instance Variables, and Methods
 This description of attributes may leave you thinking that they're nothing more than methods --why'd we need to invent a fancy name for them? In a way, that's absolutely right. An attribute is just a method. Sometimes an attribute simply returns the value of an instance variable. Sometimes an attribute returns the result of a calculation. And sometimes those funky methods with equals signs at the end of their names are used to update the state of an object. So, the question is, where do attributes stop and regular methods begin? What makes something an attribute and not just a plain old method? Ultimately, that's one of those "angels on a pinhead" questions. Here's a personal take. When you design a class, you decide what internal state it has and also decide how that state is to appear on the outside (to users of your class). The internal state is held in instance variables. The external state is exposed through methods we're calling attributes. And the other actions your class can perform are just regular methods. It really isn't a crucially important distinction, but by calling the external state of an object its attributes, you're helping clue people in to how they should view the class you've written.
 3.2 Classes Working with Other Classes
@@ -1770,9 +1776,9 @@ def total_value_in_stock # ...
 end
 def number_of_each_isbn # ...
 end end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 38
+Chapter 3. Classes, Objects, and Variables ï¿½ 38
 
 We'd call it using something like this:
 
@@ -1804,9 +1810,9 @@ Again, this is the pattern you want to aim for. Your initialize method sets up a
 So, let's turn this from a code fragment into a working program. We're going to organize our source into three files. The first, book_in_stock.rb, will contain the definition of the class BookInStock. The second, csv_reader.rb, is the source for the CsvReader class. Finally, a third file, stock_stats.rb, is the main driver program. We'll start with book_in_stock.rb:
 
 3. If you encounter an error along the lines of "`Float': can't convert nil into Float (TypeError)" when you run this code, you likely have extra spaces at the end of the header line in your CSV data file. The CSV library is pretty strict about the formats it accepts.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Classes Working with Other Classes · 39
+Classes Working with Other Classes ï¿½ 39
 tut_classes/stock_stats/book_in_stock.rb class BookInStock
 attr_reader :isbn, :price
 def initialize(isbn, price) @isbn = isbn @price = Float(price)
@@ -1825,21 +1831,21 @@ reader = CsvReader.new
 ARGV.each do |csv_file_name| STDERR.puts "Processing #{csv_file_name}" reader.read_in_csv_data(csv_file_name)
 end
 puts "Total value = #{reader.total_value_in_stock}"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 40
+Chapter 3. Classes, Objects, and Variables ï¿½ 40
 Again, this file uses require_relative to bring in the library it needs (in this case, the csv_reader.rb file). It uses the ARGV variable to access the program's command-line arguments, loading CSV data for each file specified on the command line. We can run this program using the simple CSV data file as we showed on page 29:
 $ ruby stock_stats.rb data.csv Processing data.csv Total value = 122.07000000000001
 Do we need three source files for this? No. In fact, most Ruby developers would probably start off by sticking all this code into a single file--it would contain both class definitions as well as the driver code. But as your programs grow (and almost all programs grow over time), you'll find that this starts to get cumbersome. You'll also find it harder to write automated tests against the code if it is in a monolithic chunk. Finally, you won't be able to reuse classes if they're all bundled into the final program. Anyway, let's get back to our discussion of classes.
 3.3 Access Control
 When designing a class interface, it's important to consider just how much of your class you'll be exposing to the outside world. Allow too much access into your class, and you risk increasing the coupling in your application--users of your class will be tempted to rely on details of your class's implementation, rather than on its logical interface. The good news is that the only easy way to change an object's state in Ruby is by calling one of its methods. Control access to the methods, and you've controlled access to the object. A good rule of thumb is never to expose methods that could leave an object in an invalid state. Ruby gives you three levels of protection:
-· Public methods can be called by anyone--no access control is enforced. Methods are public by default (except for initialize, which is always private).
-· Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family.
-· Private methods cannot be called with an explicit receiver--the receiver is always the current object, also known as self. This means that private methods can be called only in the context of the current object; you can't invoke another object's private methods.
+ï¿½ Public methods can be called by anyone--no access control is enforced. Methods are public by default (except for initialize, which is always private).
+ï¿½ Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family.
+ï¿½ Private methods cannot be called with an explicit receiver--the receiver is always the current object, also known as self. This means that private methods can be called only in the context of the current object; you can't invoke another object's private methods.
 The difference between "protected" and "private" is fairly subtle and is different in Ruby than in most common OO languages. If a method is protected, it may be called by any instance of the defining class or its subclasses. If a method is private, it may be called only within the context of the calling object--it is never possible to access another object's private methods directly, even if the object is of the same class as the caller. Ruby differs from other OO languages in another important way. Access control is determined dynamically, as the program runs, not statically. You will get an access violation only when the code attempts to execute the restricted method.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Access Control · 41
+Access Control ï¿½ 41
 
 Specifying Access Control
 You specify access levels to methods within class or module definitions using one or more of the three functions public, protected, and private. You can use each function in two different ways.
@@ -1871,9 +1877,9 @@ class MyClass def method1 end def method2 end # ... and so on
 public :method1, :method4 protected :method2 private :method3 end
 It's time for some examples. Perhaps we're modeling an accounting system where every debit has a corresponding credit. Because we want to ensure that no one can break this rule, we'll make the methods that do the debits and credits private, and we'll define our external interface in terms of transactions.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 42
+Chapter 3. Classes, Objects, and Variables ï¿½ 42
 
 class Account attr_accessor :balance def initialize(balance) @balance = balance end
 end
@@ -1908,9 +1914,9 @@ def greater_balance_than?(other) @cleared_balance > other.cleared_balance
 end end
 Because cleared_balance is protected, it's available only within Account objects.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variables · 43
+Variables ï¿½ 43
 
 3.4 Variables
 Now that we've gone to the trouble to create all these objects, let's make sure we don't lose them. Variables are used to keep track of objects; each variable holds a reference to an object. Let's confirm this with some code:
@@ -1946,9 +1952,9 @@ Tim
 String
 Jim
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 44
+Chapter 3. Classes, Objects, and Variables ï¿½ 44
 
 Assignment aliases objects, potentially giving you multiple variables that reference the same object. But can't this cause problems in your code? It can, but not as often as you'd think (objects in Java, for example, work exactly the same way). In the previous example, for instance, you could avoid aliasing by using the dup method of String, which creates a new string object with identical contents:
 
@@ -1967,7 +1973,7 @@ from prog.rb:4:in `<main>' prog.rb:4:in `[]=': can't modify frozen String (Runti
 
 There's more to say about classes and objects in Ruby. We still have to look at class methods and at concepts such as mixins and inheritance. We'll do that in Chapter 5, Sharing Functionality: Inheritance, Modules, and Mixins, on page 69. But, for now, know that everything you manipulate in Ruby is an object and that objects start life as instances of classes. And one of the most common things we do with objects is create collections of them. But that's the subject of our next chapter.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 4
 Containers, Blocks, and Iterators
@@ -2019,9 +2025,9 @@ b
 
 1. Some languages call hashes associative arrays or dictionaries. 2. In the code examples that follow, we're often going to show the value of expressions such as a[0] in a
 comment at the end of the line. If you simply typed this fragment of code into a file and executed it using Ruby, you'd see no output--you'd need to add something like a call to puts to have the values written to the console.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 46
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 46
 
 Arrays are indexed using the [ ] operator. As with most Ruby operators, this is actually a method (an instance method of class Array) and hence can be overridden in subclasses. As the example shows, array indices start at zero. Index an array with a non-negative integer, and it returns the object at that position or returns nil if nothing is there. Index an array with a negative integer, and it counts from the end.
 
@@ -2125,9 +2131,9 @@ a = [ 1, 3, 5, 7, 9 ] a[1] = 'bat' a[-3] = 'cat' a[3] = [ 9, 8 ] a[6] = 99
 
 #=> [1, 3, 5, 7, 9] #=> [1, "bat", 5, 7, 9] #=> [1, "bat", "cat", 7, 9] #=> [1, "bat", "cat", [9, 8], 9] #=> [1, "bat", "cat", [9, 8], 9, nil, 99]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hashes · 47
+Hashes ï¿½ 47
 
 If the index to [ ]= is two numbers (a start and a length) or a range, then those elements in the original array are replaced by whatever is on the right side of the assignment. If the length is zero, the right side is inserted into the array before the start position; no elements are removed. If the right side is itself an array, its elements are used in the replacement. The array size is automatically adjusted if the index selects a different number of elements than are available on the right side of the assignment.
 
@@ -2173,9 +2179,9 @@ The reference section lists the methods in class Array on page 421. It is well w
 4.2 Hashes
 Hashes (sometimes known as associative arrays, maps, or dictionaries) are similar to arrays in that they are indexed collections of object references. However, while you index arrays with integers, you index a hash with objects of any type: symbols, strings, regular expressions, and so on. When you store a value in a hash, you actually supply two objects--the index,
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 48
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 48
 
 which is normally called the key, and the entry to be stored with that key. You can subsequently retrieve the entry by indexing the hash with the same key value that you used to store it.
 The example that follows uses hash literals--a list of key value pairs between braces:
@@ -2217,9 +2223,9 @@ string.downcase.scan(/[\w']+/) end
 This method uses two very useful string methods: downcase returns a lowercase version of a string, and scan returns an array of substrings that match a given pattern. In this case, the pattern is [\w']+, which matches sequences containing "word characters" and single quotes.
 We can play with this method. Notice how the result is an array:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hashes · 49
+Hashes ï¿½ 49
 p words_from_string("But I didn't inhale, he said (emphatically)")
 produces: ["but", "i", "didn't", "inhale", "he", "said", "emphatically"]
 Our next task is to calculate word frequencies. To do this, we'll create a hash object indexed by the words in our list. Each entry in this hash stores the number of times that word occurred. Let's say we already have read part of the list, and we have seen the word the already. Then we'd have a hash that contained this:
@@ -2239,9 +2245,9 @@ counts[word] += 1 end counts end
 p count_frequency(["sparky", "the", "cat", "sat", "on", "the", "mat"])
 produces: {"sparky"=>1, "the"=>2, "cat"=>1, "sat"=>1, "on"=>1, "mat"=>1}
 One little job left. The hash containing the word frequencies is ordered based on the first time it sees each word. It would be better to display the results based on the frequencies of the words. We can do that using the hash's sort_by method. When you use sort_by, you give it a block that tells the sort what to use when making comparisons. In our case, we'll just use the count. The result of the sort is an array containing a set of two-element arrays, with each subarray corresponding to a key/entry pair in the original hash. This makes our whole program:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 50
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 50
 
 require_relative "words_from_string.rb" require_relative "count_frequency.rb"
 
@@ -2287,9 +2293,9 @@ end
 def test_many_words assert_equal(["the", "cat", "sat", "on", "the", "mat"], words_from_string("the cat sat on the mat"))
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hashes · 51
+Hashes ï¿½ 51
 def test_ignores_punctuation assert_equal(["the", "cat's", "mat"], words_from_string("<the!> cat's, -mat-"))
 end end produces: Run options: # Running tests: .... Finished tests in 0.006458s, 619.3868 tests/s, 929.0802 assertions/s. 4 tests, 6 assertions, 0 failures, 0 errors, 0 skips
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
@@ -2298,9 +2304,9 @@ require_relative 'count_frequency' require 'test/unit'
 class TestCountFrequency < Test::Unit::TestCase def test_empty_list assert_equal({}, count_frequency([])) end def test_single_word assert_equal({"cat" => 1}, count_frequency(["cat"])) end def test_two_different_words assert_equal({"cat" => 1, "sat" => 1}, count_frequency(["cat", "sat"])) end def test_two_words_with_adjacent_repeat assert_equal({"cat" => 2, "sat" => 1}, count_frequency(["cat", "cat", "sat"])) end def test_two_words_with_non_adjacent_repeat assert_equal({"cat" => 2, "sat" => 1}, count_frequency(["cat", "sat", "cat"])) end
 end produces: Run options: # Running tests: ..... Finished tests in 0.006327s, 790.2639 tests/s, 790.2639 assertions/s. 5 tests, 5 assertions, 0 failures, 0 errors, 0 skips
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 52
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 52
 4.3 Blocks and Iterators
 In our program that wrote out the results of our word frequency analysis, we had the following loop:
 for i in 0..4 word = top_five[i][0] count = top_five[i][1] puts "#{word}: #{count}"
@@ -2319,9 +2325,9 @@ some_array.each {|value| puts value * 3 }
 sum = 0 other_array.each do |value|
 sum += value puts value / sum end
 You can think of a block as being somewhat like the body of an anonymous method. Just like a method, the block can take parameters (but, unlike a method, those parameters appear at the start of the block between vertical bars). Both the blocks in the preceding example take a single parameter, value. And, just like a method, the body of a block is not executed when Ruby first sees it. Instead, the block is saved away to be called later.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 53
+Blocks and Iterators ï¿½ 53
 Blocks can appear in Ruby source code only immediately after the invocation of some method. If the method takes parameters, the block appears after these parameters. In a way, you can almost think of the block as being one extra parameter, passed to that method. Let's look at a simple example that sums the squares of the numbers in an array:
 sum = 0 [1, 2, 3, 4].each do |value|
 square = value * value sum += square end puts sum produces: 30
@@ -2334,9 +2340,9 @@ end
 puts sum
 square.draw # BOOM!
 This code would fail, because the variable square, which originally held a Shape object, will have been overwritten inside the block and will hold a number by the time the each method returns. This problem doesn't bite often, but when it does, it can be very confusing. Fortunately, Ruby has a couple of answers. First, parameters to a block are always local to a block, even if they have the same name as locals in the surrounding scope. (You'll get a warning message if you run Ruby with the -w option.)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 54
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 54
 value = "some shape" [ 1, 2 ].each {|value| puts value } puts value produces: 1 2 some shape
 Second, you can define block-local variables by putting them after a semicolon in the block's parameter list. So, in our sum-of-squares example, we should have indicated that the square variable was block-local by writing it as follows:
 square = "some shape"
@@ -2350,9 +2356,9 @@ Within the method, the block may be invoked, almost as if it were a method itsel
 def two_times yield yield
 end two_times { puts "Hello" } produces: Hello Hello
 3. Programming-language buffs will be pleased to know that the keyword yield was chosen to echo the yield function in Liskov's language CLU, a language that is more than thirty years old and yet contains features that still haven't been widely exploited by the CLU-less.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 55
+Blocks and Iterators ï¿½ 55
 
 The block (the code between the braces) is associated with the call to the two_times method.
 Within this method, yield is called two times. Each time, it invokes the code in the block, and
@@ -2384,14 +2390,14 @@ Some iterators are common to many types of Ruby collections. Let's look at three
 each is probably the simplest iterator--all it does is yield successive elements of its collection:
 [ 1, 3, 5, 7, 9 ].each {|i| puts i }
 produces: 1 3 5 7 9
-The each iterator has a special place in Ruby; we'll describe how it's used as the basis of the language's for loop on page 140, and we'll see on page 77 how defining an each method can add a whole lot more functionality to the classes you write­for free.
+The each iterator has a special place in Ruby; we'll describe how it's used as the basis of the language's for loop on page 140, and we'll see on page 77 how defining an each method can add a whole lot more functionality to the classes you writeï¿½for free.
 A block may also return a value to the method. The value of the last expression evaluated in the block is passed back to the method as the value of the yield. This is how the find method used by class Array works.5 Its implementation would look something like the following:
 
 4. The basic Fibonacci series is a sequence of integers, starting with two 1s, in which each subsequent term is the sum of the two preceding terms. The series is sometimes used in sorting algorithms and in analyzing natural phenomena.
 5. The find method is actually defined in module Enumerable, which is mixed into class Array.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 56
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 56
 class Array def find each do |value| return value if yield(value) end nil end
 end
 [1, 3, 5, 7, 9].find {|v| v*v > 30 } # => 7
@@ -2406,9 +2412,9 @@ Sometimes you want to keep track of how many times you've been through the block
 f = File.open("testfile") f.each.with_index do |line, index|
 puts "Line #{index} is: #{line}" end f.close
 produces: Line 0 is: This is line one Line 1 is: This is line two
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 57
+Blocks and Iterators ï¿½ 57
 
 Line 2 is: This is line three Line 3 is: And so on...
 
@@ -2439,9 +2445,9 @@ It's also worth spending another paragraph looking at why Ruby's internal iterat
 Fortunately, Ruby comes with a built-in Enumerator class, which implements external iterators in Ruby for just such occasions.
 You can create an Enumerator object by calling the to_enum method (or its synonym, enum_for) on a collection such as an array or a hash:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 58
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 58
 a = [ 1, 3, "cat" ] h = { dog: "canine", fox: "vulpine" }
 # Create Enumerators enum_a = a.to_enum enum_h = h.to_enum
 enum_a.next # => 1 enum_h.next # => [:dog, "canine"] enum_a.next # => 3 enum_h.next # => [:fox, "vulpine"]
@@ -2456,9 +2462,9 @@ end produces: 1-a 2-b 3-c
 Enumerators Are Objects Enumerators take something that's normally executable code (the act of iterating) and turn it into an object. This means you can do things programmatically with enumerators that aren't easily done with regular loops. For example, the Enumerable module defines each_with_index. This invokes its host class's each Method, returning successive values along with an index:
 result = [] [ 'a', 'b', 'c' ].each_with_index {|item, index| result << [item, index] } result # => [["a", 0], ["b", 1], ["c", 2]]
 6. You can also handle this in your own iterator methods by rescuing the StopIteration exception, but because we haven't talked about exceptions yet, we won't go into details here.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 59
+Blocks and Iterators ï¿½ 59
 
 But what if you wanted to iterate and receive an index but use a different method than each to control that iteration? For example, you might want to iterate over the characters in a string. There's no method called each_char_with_index built into the String class.
 Enumerators to the rescue. The each_char method of strings will return an enumerator if you don't give it a block, and you can then call each_with_index on that enumerator:
@@ -2489,9 +2495,9 @@ end
 5.times { print triangular_numbers.next, " " } puts
 produces: 1 3 6 10 15
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 60
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 60
 
 Enumerator objects are also enumerable (that is to say, the methods available to enumerable objects are also available to them). That means we can use Enumerable's methods (such as first) on them:
 triangular_numbers = Enumerator.new do |yielder| number = 0 count = 1 loop do number += count count += 1 yielder.yield number end
@@ -2525,9 +2531,9 @@ produces: [10, 120, 190, 210, 300]
 Here we use the &block notation to pass the block as a parameter to the infinite_select method.
 As Brian Candler pointed out in the ruby-core mailing list (message 19679), you can make this more convenient by adding filters such as infinite_select directly to the Enumerator class. Here's an example that returns the first five triangular numbers that are multiples of 10 and that have the digit 3 in them:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 61
+Blocks and Iterators ï¿½ 61
 
 triangular_numbers = Enumerator.new do |yielder| # ... as before
 end
@@ -2550,9 +2556,9 @@ New in 2.0
 
 p Integer.all.first(10) produces: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 62
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 62
 There are a couple of things to note here. First, see how I used a keyword parameter on the block both to declare and initialize a local variable n.7 Second, see how we convert the basic generator into a lazy enumerator with the call to lazy after the end of the block. Calling the first method on this returns the numbers 1 through 10, but this doesn't exercise the method's lazy characteristics. Let's instead get the first 10 multiples of three.
 p Integer .all .select {|i| (i % 3).zero? } .first(10)
 produces: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
@@ -2567,9 +2573,9 @@ p multiple_of_three.first(10)
 m3_palindrome = multiple_of_three .select { |i| palindrome?(i) }
 p m3_palindrome.first(10) produces: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30] [3, 6, 9, 33, 66, 99, 111, 141, 171, 222]
 7. It would be nice to be able to define a true block-local variable using the semicolon separator, but Ruby doesn't allow these variables to have initializers.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 63
+Blocks and Iterators ï¿½ 63
 
 You could also code up the various predicates as free-standing procs, if you feel it aids readability or reusablility.
 
@@ -2595,9 +2601,9 @@ produces:
 This is line one This is line two This is line three And so on...
 open_and_process is a class method--it may be called independently of any particular file object. We want it to take the same arguments as the conventional File.open method, but we don't really care what those arguments are. To do this, we specified the arguments as *args, meaning "collect the actual parameters passed to the method into an array named args." We then call File.open, passing it *args as a parameter. This expands the array back into individual
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 64
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 64
 parameters. The net result is that open_and_process transparently passes whatever parameters it receives to File.open.
 Once the file has been opened, open_and_process calls yield, passing the open file object to the block. When the block returns, the file is closed. In this way, the responsibility for closing an open file has been shifted from the users of file objects to the file objects themselves.
 The technique of having files manage their own life cycle is so useful that the class File supplied with Ruby supports it directly. If File.open has an associated block, then that block will be invoked with a file object, and the file will be closed when the block terminates. This is interesting, because it means that File.open has two different behaviors. When called with a block, it executes the block and closes the file. When called without a block, it returns the file object. This is made possible by the method block_given?, which returns true if a block is associated with the current method. Using this method, you could implement something similar to the standard File.open (again, ignoring error handling) using the following:
@@ -2610,9 +2616,9 @@ Remember we said that you can think of blocks as being like an implicit paramete
 Here's an example where we create a Proc object in one instance method and store it in an instance variable. We then invoke the proc from a second instance method.
 class ProcExample def pass_in_block(&action) @stored_proc = action end def use_proc(parameter) @stored_proc.call(parameter) end
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 65
+Blocks and Iterators ï¿½ 65
 eg = ProcExample.new eg.pass_in_block { |param| puts "The parameter is #{param}" } eg.use_proc(99) produces: The parameter is 99
 See how the call method on a proc object invokes the code in the original block? Many Ruby programs store and later call blocks in this way--it's a great way of implementing callbacks, dispatch tables, and so on. But you can go one step further. If a block can be turned into an object by adding an ampersand parameter to a method, what happens if that method then returns the Proc object to the caller?
 def create_block_object(&block) block
@@ -2627,9 +2633,9 @@ def n_times(thing) lambda {|n| thing * n }
 end
 p1 = n_times(23) p1.call(3) # => 69 p1.call(4) # => 92 p2 = n_times("Hello ") p2.call(3) # => "Hello Hello Hello "
 8. There's actually a third, proc, but it is effectively deprecated.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 66
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 66
 The method n_times returns a Proc object that references the method's parameter, thing. Even though that parameter is out of scope by the time the block is called, the parameter remains accessible to the block. This is called a closure--variables in the surrounding scope that are referenced in a block remain accessible for the life of that block and the life of any Proc object created from that block. Here's another example--a method that returns a Proc object that returns successive powers of 2 when called:
 def power_proc_generator value = 1 lambda { value += value }
 end
@@ -2645,9 +2651,9 @@ proc1 = -> arg { puts "In proc1 with #{arg}" } proc2 = -> arg1, arg2 { puts "In 
 proc1.call "ant" proc2.call "bee", "cat" proc3.call "dog", "elk" produces: In proc1 with ant In proc2 with bee and cat In proc3 with dog and elk
 The -> form is more compact than using lambda and seems to be in favor when you want to pass one or more Proc objects to a method:
 9. Let's start by getting something out of the way. Why ->? For compatibility across all the different source file encodings, Matz is restricted to using pure 7-bit ASCII for Ruby operators, and the choice of available characters is severely limited by the ambiguities inherent in the Ruby syntax. He felt that -> was (kind of) reminiscent of a Greek lambda character .
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks and Iterators · 67
+Blocks and Iterators ï¿½ 67
 
 def my_if(condition, then_clause, else_clause) if condition then_clause.call else else_clause.call end
 end
@@ -2672,9 +2678,9 @@ Blocks written using the old syntax take their parameter lists between vertical 
 
 New in 2.0
 
-10. Actually, they are more versatile, because these blocks are also closures, while methods are not. report erratum · discuss
+10. Actually, they are more versatile, because these blocks are also closures, while methods are not. report erratum ï¿½ discuss
 
-Chapter 4. Containers, Blocks, and Iterators · 68
+Chapter 4. Containers, Blocks, and Iterators ï¿½ 68
 proc1 = lambda do |a, *b, &block| puts "a = #{a.inspect}" puts "b = #{b.inspect}" block.call
 end proc1.call(1, 2, 3, 4) { puts "in block1" } produces: a=1 b = [2, 3, 4] in block1
 And here's one using the new -> notation:
@@ -2682,7 +2688,7 @@ proc2 = -> a, *b, &block do puts "a = #{a.inspect}" puts "b = #{b.inspect}" bloc
 end proc2.call(1, 2, 3, 4) { puts "in block2" } produces: a=1 b = [2, 3, 4] in block2
 4.4 Containers Everywhere
 Containers, blocks, and iterators are core concepts in Ruby. The more you write in Ruby, the more you'll find yourself moving away from conventional looping constructs. Instead, you'll write classes that support iteration over their contents. And you'll find that this code is compact, easy to read, and a joy to maintain. If this all seems too weird, don't worry. After a while, it'll start to come naturally. And you'll have plenty of time to practice as you use Ruby libraries and frameworks.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 5
 Sharing Functionality: Inheritance,
@@ -2694,9 +2700,9 @@ In this chapter, we'll look at two different (but related) mechanisms for this k
 In the previous chapter, we saw that when puts needs to convert an object to a string, it calls that object's to_s method. But we've also written our own classes that don't explicitly implement to_s. Despite this, objects of these classes respond successfully when we call to_s on them. How this works has to do with inheritance, subclassing, and how Ruby determines what method to run when you send a message to an object.
 Inheritance allows you to create a class that is a refinement or specialization of another class. This class is called a subclass of the original, and the original is a superclass of the subclass. People also talk of child and parent classes.
 1. Why? Because the world changes. And when you adapt your application to each change, you want to know that you've changed exactly the code you need to change. If each real-world concept is implemented at a single point in the code, this becomes vastly easier.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 70
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 70
 The basic mechanism of subclassing is simple. The child inherits all of the capabilities of its parent class--all the parent's instance methods are available in instances of the child. Let's look at a trivial example and then later build on it. Here's a definition of a parent class and a child class that inherits from it:
 class Parent def say_hello puts "Hello from #{self}" end
 end
@@ -2709,9 +2715,9 @@ But what's the superclass of Parent?
 class Parent end Parent.superclass # => Object
 If you don't define an explicit superclass when defining a class, Ruby automatically makes the built-in class Object that class's parent. Let's go further:
 Object.superclass # => BasicObject
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Inheritance and Messages · 71
+Inheritance and Messages ï¿½ 71
 Class BasicObject is used in certain kinds of metaprogramming, acting as a blank canvas. What's its parent?
 BasicObject.superclass.inspect # => "nil"
 So, we've finally reached the end. BasicObject is the root class of our hierarchy of classes. Given any class in any Ruby application, you can ask for its superclass, then the superclass of that class, and so on, and you'll eventually get back to BasicObject.
@@ -2728,9 +2734,9 @@ produces: Person named Michael
 Armed with our knowledge of subclassing, we now know there's nothing special about this code. The puts method calls to_s on its arguments. In this case, the argument is a Person object. Because class Person defines a to_s method, that method is called. If it hadn't defined a to_s method, then Ruby looks for (and finds) to_s in Person's parent class, Object.
 It is common to use subclassing to add application-specific behavior to a standard library or framework class. If you've used Ruby on Rails,2 you'll have subclassed ActionController when writing your own controller classes. Your controllers get all the behavior of the base
 2. http://www.rubyonrails.com
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 72
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 72
 controller and add their own specific handlers to individual user actions. If you've used the FXRuby GUI framework,3 you'll have used subclassing to add your own application-specific behavior to FX's standard GUI widgets.
 Here's a more self-contained example. Ruby comes with a library called GServer that implements basic TCP server functionality. You add your own behavior to it by subclassing the GServer class. Let's use that to write some code that waits for a client to connect on a socket and then returns the last few lines of the system log file. This is an example of something that's actually quite useful in long-running applications--by building in such a server, you can access the internal state of the application while it is running (possibly even remotely).
 The GServer class handles all the mechanics of interfacing to TCP sockets. When you create a GServer object, you tell it the port to listen on.4 Then, when a client connects, the GServer object calls its serve method to handle that connection. Here's the implementation of that serve method in the GServer class:
@@ -2770,9 +2776,9 @@ I don't want to focus too much on the details of running the server. Instead, le
 
 3. http://www.fxruby.org/ 4. You can tell it a lot more, as well. We chose to keep it simple here.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Modules · 73
+Modules ï¿½ 73
 This means that a log server is a kind of GServer, sharing all the GServer functionality. It also means we can add our own specialized behavior.
 The first such specialization is the initialize method. We want our log server to run on TCP port 12345. That's a parameter that would normally be passed to the GServer constructor. So, within the initialize method of the LogServer, we want to invoke the initialize method of GServer, our parent, passing it the port number. We do that using the Ruby keyword super. When you invoke super, Ruby sends a message to the parent of the current object, asking it to invoke a method of the same name as the method invoking super. It passes this method the parameters that were passed to super.
 This is a crucial step and one often forgotten by folks new to OO. When you subclass another class, you are responsible for making sure the initialization required by that class gets run. This means that, unless you know it isn't needed, you'll need to put a call to super somewhere in your subclass's initialize method. (If your subclass doesn't need an initialize method, then there's no need to do anything, because it will be the parent class's initialize method that gets run when your objects get created.)
@@ -2783,11 +2789,11 @@ The use of the serve method shows a common idiom when using subclassing. A paren
 So, instead, let's look at mixins, a different way of sharing functionality in Ruby code. But, before we look at mixins, we'll need to get familiar with Ruby modules.
 5.2 Modules
 Modules are a way of grouping together methods, classes, and constants. Modules give you two major benefits:
-· Modules provide a namespace and prevent name clashes. · Modules support the mixin facility.
+ï¿½ Modules provide a namespace and prevent name clashes. ï¿½ Modules support the mixin facility.
 5. You can also access this server from a web browser by connecting to http://127.0.0.1:12345.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 74
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 74
 
 Namespaces
 As you start to write bigger Ruby programs, you'll find yourself producing chunks of reusable code--libraries of related routines that are generally applicable. You'll want to break this code into separate files so the contents can be shared among different Ruby programs.
@@ -2827,9 +2833,9 @@ If a third program wants to use these modules, it can simply load the two files 
 
 6. But we will conventionally use all uppercase letters when writing them.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Mixins · 75
+Mixins ï¿½ 75
 tut_modules/pin_head.rb require_relative 'trig' require_relative 'moral' y = Trig.sin(Trig::PI/4) wrongdoing = Moral.sin(Moral::VERY_BAD)
 As with class methods, you call a module method by preceding its name with the module's name and a period, and you reference a constant using the module name and two colons.
 5.3 Mixins
@@ -2844,9 +2850,9 @@ end
 ph = Phonograph.new("West End Blues") et = EightTrack.new("Surrealistic Pillow")
 ph.who_am_i? # => "Phonograph (id: 70266478767560): West End Blues" et.who_am_i? # => "EightTrack (id: 70266478767520): Surrealistic Pillow"
 By including the Debug module, both the Phonograph and EightTrack classes gain access to the who_am_i? instance method.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 76
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 76
 We'll make a couple of points about the include statement before we go on.
 First, it has nothing to do with files. C programmers use a preprocessor directive called #include to insert the contents of one file into another during compilation. The Ruby include statement simply makes a reference to a module. If that module is in a separate file, you must use require (or its less commonly used cousin, load) to drag that file in before using include. Second, a Ruby include does not simply copy the module's instance methods into the class. Instead, it makes a reference from the class to the included module. If multiple classes include that module, they'll all point to the same thing. If you change the definition of a method within a module, even while your program is running, all classes that include that module will exhibit the new behavior.7
 Mixins give you a wonderfully controlled way of adding functionality to classes. However, their true power comes out when the code in the mixin starts to interact with code in the class that uses it. Let's take the standard Ruby mixin Comparable as an example. The Comparable mixin adds the comparison operators (<, <=, ==, >=, and >), as well as the method between?, to a class. For this to work, Comparable assumes that any class that uses it defines the operator <=>. So, as a class writer, you define one method, <=>; include Comparable; and get six comparison functions for free.
@@ -2862,9 +2868,9 @@ puts "#{p1.name}'s name > #{p2.name}'s name" end
 # Sort an array of Person objects
 puts "Sorted list:" puts [ p1, p2, p3].sort
 7. Of course, we're speaking only of methods here. Instance variables are always per object, for example.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Iterators and the Enumerable Module · 77
+Iterators and the Enumerable Module ï¿½ 77
 produces: Matz's name > Guido's name Sorted list: Guido Larry Matz
 We included Comparable in our Person class and then defined a <=> method. We were then able to perform comparisons (such as p1 > p2) and even sort an array of Person objects.
 Inheritance and Mixins
@@ -2890,9 +2896,9 @@ Because inject is made available by Enumerable, we can use it in any class that 
 
 We could also define our own class that mixes in Enumerable and hence gets inject support:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 78
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 78
 
 tut_modules/vowel_finder.rb class VowelFinder
 include Enumerable
@@ -2937,9 +2943,9 @@ Instance Variables in Mixins
 People coming to Ruby from C++ often ask, "What happens to instance variables in a mixin? In C++, I have to jump through some hoops to control how variables are shared in a multipleinheritance hierarchy. How does Ruby handle this?"
 Well, for starters, it's not really a fair question. Remember how instance variables work in Ruby: the first mention of an @-prefixed variable creates the instance variable in the current object, self.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Composing Modules · 79
+Composing Modules ï¿½ 79
 For a mixin, this means the module you mix into your client class (the mixee?) may create instance variables in the client object and may use attr_reader and friends to define accessors for these instance variables. For instance, the Observable module in the following example adds an instance variable @observer_list to any class that includes it:
 tut_modules/observer_impl.rb module Observable
 def observers @observer_list ||= []
@@ -2956,9 +2962,9 @@ end def add_viewer(viewer)
 # ... end
 For the most part, mixin modules don't use instance variables directly--they use accessors to retrieve data from the client object. But if you need to create a mixin that has to have its own state, ensure that the instance variables have unique names to distinguish them from any other mixins in the system (perhaps by using the module's name as part of the variable name). Alternatively, the module could use a module-level hash, indexed by the current object ID, to store instance-specific data without using Ruby instance variables:
 module Test State = {} def state=(value) State[object_id] = value end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins · 80
+Chapter 5. Sharing Functionality: Inheritance, Modules, and Mixins ï¿½ 80
 def state State[object_id]
 end end
 class Client include Test
@@ -2973,9 +2979,9 @@ Inheritance and mixins both allow you to write code in one place and effectively
 As with most questions of design, the answer is, well...it depends. However, over the years developers have come up with some pretty clear general guidelines to help us decide.
 First let's look at subclassing. Classes in Ruby are related to the idea of types. It would be natural to say that "cat" is a string and [1,2] is an array. And that's another way of saying that the class of "cat" is String and the class of [1,2] is Array. When we create our own classes, you can think of it as adding new types to the language. And when we subclass either a built-in class or our own class, we're creating a subtype.
 Now, a lot of research has been done on type theories. One of the more famous results is the Liskov Substitution Principle. Formally, this states, "Let q(x) be a property provable about objects x of type T. Then q(y) should be true for objects y of type S where S is a subtype of T." What this means is that you should be able to substitute an object of a child class wherever you use an object of the parent class--the child should honor the parent's contract. There's another way of looking at this: we should be able to say that the child object is a kind of the parent. We're used to saying this in English: a car is a vehicle, a cat is an animal, and so on. This means that a cat should, at the very least, be capable of doing everything we say that an animal can do.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Inheritance, Mixins, and Design · 81
+Inheritance, Mixins, and Design ï¿½ 81
 So, when you're looking for subclassing relationships while designing your application, be on the lookout for these is-a relationships. But...here's the bad news. In the real world, there really aren't that many true is a relationships. Instead, it's far more common to have has a or uses a relationships between things. The real world is built using composition, not strict hierarchies. In the past, we've tended to gloss over that fact when programming. Because inheritance was the only scheme available for sharing code, we got lazy and said things like "My Person class is a subclass of my DatabaseWrapper class." (Indeed, the Rails framework makes just this mistake.) But a person object is not a kind of database wrapper object. A person object uses a database wrapper to provide persistence services. Is this just a theoretical issue? No! Inheritance represents an incredibly tight coupling of two components. Change a parent class, and you risk breaking the child class. But, even worse, if code that uses objects of the child class relies on those objects also having methods defined in the parent, then all that code will break, too. The parent class's implementation leaks through the child classes and out into the rest of the code. With a decent-sized program, this becomes a serious inhibitor to change. And that's why we need to move away from inheritance in our designs. Instead, we need to be using composition wherever we see a case of A uses a B, or A has a B. Our persisted Person object won't subclass DataWrapper. Instead, it'll construct a reference to a database wrapper object and use that object reference to save and restore itself. But that can also make code messy. And that's where a combination of mixins and metaprogramming comes to the rescue, because we can say this:
 class Person include Persistable # ...
 end
@@ -2983,7 +2989,7 @@ instead of this:
 class Person < DataWrapper # ...
 end
 If you're new to object-oriented programming, this discussion may feel remote and abstract. But as you start to code larger and larger programs, we urge you to think about the issues discussed here. Try to reserve inheritance for the times where it is justified. And try to explore all the cool ways that mixins let you write decoupled, flexible code.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 6
 Standard Types
@@ -3025,9 +3031,9 @@ You write integers using an optional leading sign, an optional base indicator (0
 
 => 123456789123456789 # Bignum
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 6. Standard Types · 84
+Chapter 6. Standard Types ï¿½ 84
 
 A numeric literal with a decimal point and/or an exponent is turned into a Float object, corresponding to the native architecture's double data type. You must both precede and follow the decimal point with a digit (if you write 1.0e3 as 1.e3, Ruby will try to invoke the method e3 on the object 1).
 Ruby includes support for rational and complex numbers. Rational numbers are the ratio of two integers--they are fractions--and hence have an exact representation (unlike floats). Complex numbers represent points on the complex plane. They have two components, the real and imaginary parts.
@@ -3058,9 +3064,9 @@ some_file.each do |line| v1, v2 = line.split print Integer(v1) + Integer(v2), " 
 end
 produces: 7 11 15
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Numbers · 85
+Numbers ï¿½ 85
 
 How Numbers Interact
 Most of the time, numbers work the way you'd expect. If you perform some operation between two numbers of the same class, the answer will typically be a number of that same class (although, as we've seen, fixnums can become bignums, and vice versa). If the two numbers are different classes, the result will have the class of the more general one. If you mix integers and floats, the result will be a float; if you mix floats and complex numbers, the result will be complex.
@@ -3126,9 +3132,9 @@ produces: X X X 1 2 3 4 5 99 98 97 96 95 50 55 60 65 70 75 80
 
 As with other iterators, if you leave the block off, the call returns an Enumerator object:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 6. Standard Types · 86
+Chapter 6. Standard Types ï¿½ 86
 
 10.downto(7).with_index {|num, index| puts "#{index}: #{num}"}
 produces: 0: 10 1: 9 2: 8 3: 7
@@ -3167,9 +3173,9 @@ In fact, the Q is optional:
 
 1. Prior to Ruby 1.9, strings were sequences of 8-bit bytes.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Strings · 87
+Strings ï¿½ 87
 
 %!general double-quoted string! # => general double-quoted string
 
@@ -3203,9 +3209,9 @@ produces: 2.0.0 Encoding of "dog" is UTF-8
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 6. Standard Types · 88
+Chapter 6. Standard Types ï¿½ 88
 
 If you override the encoding, you'll do that for all strings in the file:
 #encoding: utf-8 plain_string = "dog" puts "Encoding of #{plain_string.inspect} is #{plain_string.encoding}" utf_string = "og" puts "Encoding of #{utf_string.inspect} is #{utf_string.encoding}"
@@ -3235,7 +3241,7 @@ Do yourself a favor and forget this section. It's far easier to use regular octa
 
 Working with Strings
 String is probably the largest built-in Ruby class, with more than one hundred standard methods. We won't go through them all here; the library reference has a complete list. Instead, we'll look at some common string idioms--things that are likely to pop up during day-today programming.
-Maybe we've been given a file containing information on a song playlist. For historical reasons (are there any other kind?), the list of songs is stored as lines in the file. Each line holds the name of the file containing the song, the song's duration, the artist, and the title, all in vertical bar­separated fields. A typical file may start like this:
+Maybe we've been given a file containing information on a song playlist. For historical reasons (are there any other kind?), the list of songs is stored as lines in the file. Each line holds the name of the file containing the song, the song's duration, the artist, and the title, all in vertical barï¿½separated fields. A typical file may start like this:
 
 tut_stdtypes/songdata
 
@@ -3251,13 +3257,13 @@ Waller
 
 Looking at the data, it's clear that we'll be using some of class String's many methods to extract and clean up the fields before we use them. At a minimum, we'll need to
 
-· break each line into fields, · convert the running times from mm:ss to seconds, and · remove those extra spaces from the artists' names.
+ï¿½ break each line into fields, ï¿½ convert the running times from mm:ss to seconds, and ï¿½ remove those extra spaces from the artists' names.
 
 Our first task is to split each line into fields, and String#split will do the job nicely. In this case, we'll pass split a regular expression, /\s*\|\s*/, that splits the line into tokens wherever split
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Strings · 89
+Strings ï¿½ 89
 
 finds a vertical bar, optionally surrounded by spaces. And, because the line read from the file has a trailing newline, we'll use String#chomp to strip it off just before we apply the split. We'll store details of each song in a Struct that contains an attribute for each of the three fields. (A Struct is simply a data structure that contains a given set of attributes--in this case the title, name, and length. Struct is described in the reference section on page 693.)
 Song = Struct.new(:title, :name, :length)
@@ -3287,9 +3293,9 @@ Finally, we have the minor matter of the time format: the file says 2:58, and we
 "2:58".split(/:/) # => ["2", "58"]
 Instead, we'll use a related method. String#scan is similar to split in that it breaks a string into chunks based on a pattern. However, unlike split, with scan you specify the pattern that you want the chunks to match. In this case, we want to match one or more digits for both the minutes and seconds components. The pattern for one or more digits is /\d+/:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 6. Standard Types · 90
+Chapter 6. Standard Types ï¿½ 90
 
 Song = Struct.new(:title, :name, :length)
 
@@ -3331,9 +3337,9 @@ Ranges have methods that let you iterate over them and test their contents in a 
 
 2. Sometimes people worry that ranges take a lot of memory. That's not an issue: the range 1..100000 is held as a Range object containing references to two Fixnum objects. However, convert a range into an array, and all that memory will get used.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ranges · 91
+Ranges ï¿½ 91
 
 digits = 0..9
 
@@ -3366,9 +3372,9 @@ As well as representing sequences, ranges can also be used as conditional expres
 while line = gets puts line if line =~ /start/ .. line =~ /end/
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 6. Standard Types · 92
+Chapter 6. Standard Types ï¿½ 92
 
 Behind the scenes, the range keeps track of the state of each of the tests. We'll show some examples of this in the description of loops on page 138 and in the .language section on page 320.
 
@@ -3415,7 +3421,7 @@ puts "Vintage gem" end
 produces:
 Vintage gem
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 7
 Regular Expressions
@@ -3423,14 +3429,14 @@ We probably spend most of our time in Ruby working with strings, so it seems rea
 Now, before we get too far in, here's a warning: there have been whole books written on regular expressions.1 There is complexity and subtlety here that rivals that of the rest of Ruby. So if you've never used regular expressions, don't expect to read through this whole chapter the first time. In fact, you'll find two emergency exits in what follows. If you're new to regular expressions, I strongly suggest you read through to the first and then bail out. When some regular expression question next comes up, come back here and maybe read through to the next exit. Then, later, when you're feeling comfortable with regular expressions, you can give the whole chapter a read.
 7.1 What Regular Expressions Let You Do
 A regular expression is a pattern that can be matched against a string. It can be a simple pattern, such as the string must contain the sequence of letters "cat", or the pattern can be complex, such as the string must start with a protocol identifier, followed by two literal forward slashes, followed by..., and so on. This is cool in theory. But what makes regular expressions so powerful is what you can do with them in practice:
-· You can test a string to see whether it matches a pattern. · You can extract from a string the sections that match all or part of a pattern. · You can change the string, replacing parts that match a pattern.
+ï¿½ You can test a string to see whether it matches a pattern. ï¿½ You can extract from a string the sections that match all or part of a pattern. ï¿½ You can change the string, replacing parts that match a pattern.
 Ruby provides built-in support that makes pattern matching and substitution convenient and concise. In this section, we'll work through the basics of regular expression patterns and see how Ruby supports matching and replacing based on those patterns. In the sections that follow, we'll dig deeper into both the patterns and Ruby's support for them.
 
 1. Such as Mastering Regular Expressions: Powerful Techniques for Perl and Other Tools [Fri97]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 94
+Chapter 7. Regular Expressions ï¿½ 94
 
 7.2 Ruby's Regular Expressions
 There are many ways of creating a regular expression pattern. By far the most common is to write it between forward slashes. Thus, the pattern /cat/ is a regular expression literal in the same way that "cat" is a string literal.
@@ -3477,9 +3483,9 @@ end
 produces: There's a cat here somewhere
 
 2. Some folks say this is inefficient, because the string will end up calling the regular expression code to do the match. These folks are correct in theory but wrong in practice.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ruby's Regular Expressions · 95
+Ruby's Regular Expressions ï¿½ 95
 The following code prints lines in testfile that have the string on in them:
 File.foreach("testfile").with_index do |line, index| puts "#{index}: #{line}" if line =~ /on/
 end produces: 0: This is line one 3: And so on...
@@ -3494,9 +3500,9 @@ str = "Dog and Cat" new_str1 = str.sub(/a/, "*") new_str2 = str.gsub(/a/, "*") p
 Both sub and gsub return a new string. (If no substitutions are made, that new string will just be a copy of the original.) If you want to modify the original string, use the sub! and gsub! forms:
 str = "now is the time" str.sub!(/i/, "*") str.gsub!(/t/, "T") puts str produces: now *s The Time
 3. Actually, it does more than that, but we won't get to that for a while.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 96
+Chapter 7. Regular Expressions ï¿½ 96
 
 Unlike sub and gsub, sub! and gsub! return the string only if the pattern was matched. If no match for the pattern is found in the string, they return nil instead. This means it can make sense (depending on your need) to use the ! forms in conditions.
 So, at this point you know how to use patterns to look for text in a string and how to substitute different text for those matches. And, for many people, that's enough. So if you're itching to get on to other Ruby topics, now is a good time to move on to the next chapter. At some point, you'll likely need to do something more complex with regular expressions (for example, matching a time by looking for two digits, a colon, and two more digits). You can then come back and read the next section.
@@ -3527,9 +3533,9 @@ A regular expression may include one or more options that modify the way the pat
 i Case insensitive. The pattern match will ignore the case of letters in the pattern and string. (The old technique of setting $= to make matches case insensitive no longer works.)
 o Substitute once. Any #{...} substitutions in a particular regular expression literal will be performed just once, the first time it is evaluated. Otherwise, the substitutions will be performed every time the literal generates a Regexp object.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Digging Deeper · 97
+Digging Deeper ï¿½ 97
 
 m Multiline mode. Normally, "." matches any character except a newline. With the /m option, "." matches any character.
 x Extended mode. Complex regular expressions can be difficult to read. The x option allows you to insert spaces and newlines in the pattern to make it more readable. You can also use # to introduce comments.
@@ -3578,9 +3584,9 @@ show_regexp('Fats Waller', /z/)
 
 # => no match
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 98
+Chapter 7. Regular Expressions ï¿½ 98
 
 Deeper Patterns
 We said earlier that, within a pattern, all characters match themselves except . | ( ) [ ] { } + \ ^ $ * and ?. Let's dig a bit deeper into this.
@@ -3607,9 +3613,9 @@ Character Classes
 A character class is a set of characters between brackets: [characters] matches any single character between the brackets, so [aeiou] matches a vowel, [,.:;!?] matches some punctuation, and so on. The significance of the special regular expression characters--.|(){+^$*?--is turned off inside the brackets. However, normal string substitution still occurs, so (for example) \b represents a backspace character, and \n represents a newline (see Table 11, Substitutions in double-quoted strings, on page 300). In addition, you can use the abbreviations shown in Table 2, Character class abbreviations, on page 101, so that \s matches any whitespace character, not just a literal space:
 show_regexp('Price $12.', /[aeiou]/) # => Pr->i<-ce $12. show_regexp('Price $12.', /[\s]/) # => Price-> <-$12. show_regexp('Price $12.', /[$.]/) # => Price ->$<-12.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Digging Deeper · 99
+Digging Deeper ï¿½ 99
 
 Within the brackets, the sequence c1-c2 represents all the characters from c1 to c2 in the current encoding:
 
@@ -3647,9 +3653,9 @@ If you look at the table, you'll see that some of the character classes have dif
 
 New in 2.0
 
-show_regexp('über.', /(?a)\w+/) # => ü->ber<-. show_regexp('über.', /(?d)\w+/) # => ü->ber<-. show_regexp('über.', /(?u)\w+/) # => ->über<-.
+show_regexp('ï¿½ber.', /(?a)\w+/) # => ï¿½->ber<-. show_regexp('ï¿½ber.', /(?d)\w+/) # => ï¿½->ber<-. show_regexp('ï¿½ber.', /(?u)\w+/) # => ->ï¿½ber<-.
 
-show_regexp('über.', /(?d)\W+/) # => ->ü<-ber. show_regexp('über.', /(?u)\W+/) # => über->.<-
+show_regexp('ï¿½ber.', /(?d)\W+/) # => ->ï¿½<-ber. show_regexp('ï¿½ber.', /(?u)\W+/) # => ï¿½ber->.<-
 
 The POSIX character classes, as shown in Table 3, Posix character classes, on page 114, correspond to the ctype(3) macros of the same names. They can also be negated by putting an up arrow (or caret) after the first colon:
 
@@ -3675,9 +3681,9 @@ If you want to include the literal characters ] and - in a character class, esca
 
 a = 'see [The PickAxe-page 123]' show_regexp(a, /[\]]/) # => see [The PickAxe-page 123->]<show_regexp(a, /[0-9\]]/) # => see [The PickAxe-page ->1<-23] show_regexp(a, /[\d\-]/) # => see [The PickAxe->-<-page 123]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 100
+Chapter 7. Regular Expressions ï¿½ 100
 
 You can create the intersection of character classes using &&. So, to match all lowercase ASCII letters that aren't vowels, you could use this:
 str = "now is the time" str.gsub(/[a-z&&[^aeiou]]/, '*') # => "*o* i* **e *i*e"
@@ -3696,9 +3702,9 @@ Matches zero or more occurrences of r Matches one or more occurrences of r Match
 These repetition constructs have a high precedence--they bind only to the immediately preceding matching construct in the pattern. /ab+/ matches an a followed by one or more b's, not a sequence of ab's.
 These patterns are called greedy, because by default they will match as much of the string as they can. You can alter this behavior and have them match the minimum by adding a question mark suffix. The repetition is then called lazy--it stops once it has done the minimum amount of work required.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Digging Deeper · 101
+Digging Deeper ï¿½ 101
 
 Sequence \d
 \D \h \H \R \s
@@ -3751,9 +3757,9 @@ show_regexp(a, /mo??o/)
 
 Be very careful when using the * modifier. It matches zero or more occurrences. We often forget about the zero part. In particular, a pattern that contains just a * repetition will always match, whatever string you pass it. For example, the pattern /a*/ will always match, because every string contains zero or more a's.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 102
+Chapter 7. Regular Expressions ï¿½ 102
 
 a = "The moon is made of cheese" # both of these match an empty substring at the start of the string show_regexp(a, /m*/) # => -><-The moon is made of cheese show_regexp(a, /Z*/) # => -><-The moon is made of cheese
 
@@ -3827,9 +3833,9 @@ Parentheses also collect the results of pattern matching. Ruby counts opening pa
 
 If you're using the MatchData object returned by the match method, you can index into it to get the corresponding subpatterns:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Digging Deeper · 103
+Digging Deeper ï¿½ 103
 
 md = /(\d\d):(\d\d)(..)/.match("12:50am")
 
@@ -3888,9 +3894,9 @@ a = "quick brown fox" a.sub(/^./) {|match| match.upcase }
 
 # => "Quick brown fox"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 104
+Chapter 7. Regular Expressions ï¿½ 104
 a.gsub(/[aeiou]/) {|vowel| vowel.upcase } # => "qUIck brOwn fOx"
 Maybe we want to normalize names entered by users into a web application. They may enter DAVE THOMAS, dave thomas, or dAvE tHoMas, and we'd like to store it as Dave Thomas. The following method is a simple first iteration. The pattern that matches the first character of a word is \b\w--look for a word boundary followed by a word character. Combine this with gsub, and we can hack the names:
 def mixed_case(name) name.downcase.gsub(/\b\w/) {|first| first.upcase }
@@ -3908,9 +3914,9 @@ puts "fred:smith".sub(/(\w+):(\w+)/, '\2, \1') puts "nercpyitno".gsub(/(.)(.)/, 
 You can also reference named groups:
 puts "fred:smith".sub(/(?<first>\w+):(?<last>\w+)/, '\k<last>, \k<first>') puts "nercpyitno".gsub(/(?<c1>.)(?<c2>.)/, '\k<c2>\k<c1>') produces: smith, fred encryption
 Additional backslash sequences work in substitution strings: \& (last match), \+ (last matched group), \` (string prior to match), \' (string after match), and \\ (a literal backslash).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Advanced Regular Expressions · 105
+Advanced Regular Expressions ï¿½ 105
 
 It gets confusing if you want to include a literal backslash in a substitution. The obvious thing to write is str.gsub(/\\/, '\\\\').
 Clearly, this code is trying to replace each backslash in str with two. The programmer doubled up the backslashes in the replacement text, knowing that they'd be converted to \\ in syntax analysis. However, when the substitution occurs, the regular expression engine performs another pass through the string, converting \\ to \, so the net effect is to replace each single backslash with another single backslash. You need to write gsub(/\\/, '\\\\\\\\\')!
@@ -3953,9 +3959,9 @@ New in 2.0
 
 4. Onigmo is an extension of the Oniguruma regular expression engine.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 106
+Chapter 7. Regular Expressions ï¿½ 106
 
 date =~ %r{(\d+)(/|:)(\d+)(/|:)(\d+)} [$1,$2,$3,$4,$5] # => ["12", "/", "25", "/", "2010"]
 
@@ -4003,9 +4009,9 @@ $1
 
 # => "XX"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Advanced Regular Expressions · 107
+Advanced Regular Expressions ï¿½ 107
 
 Why did the second match succeed? Well, the regular expression engine saw the X+ in the pattern and happily gobbled up all the Xs in the string. It then saw the pattern (?!O), saying that it should not now be looking at an O. Unfortunately, it is looking at an O, so the match doesn't succeed. But the engine doesn't give up. No sir! Instead it says, "Maybe I was wrong to consume every single X in the string. Let's try consuming one less and see what happens." This is called backtracking--when a match fails, the engine goes back and tries to match a different way. In this case, by backtracking past a single character, it now finds itself looking at the last X in the string (the one before the final O). And that X is not an O, so the negative lookahead succeeds, and the pattern matches. Look carefully at the output of the previous program: there are three Xs in the first match but only two in the second.
 But this wasn't the intent of our regexp. Once it finds a sequence of Xs, those Xs should be locked away. We don't want one of them being the terminator of the pattern. We can get that behavior by telling Ruby not to backtrack once it finds a string of Xs. There are a couple of ways of doing this.
@@ -4053,9 +4059,9 @@ $1
 
 # => "XXXX"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 108
+Chapter 7. Regular Expressions ï¿½ 108
 
 Backreferences and Named Matches
 Within a pattern, the sequences \n (where n is a number), \k'n', and \k<n> all refer to the nth captured subpattern. Thus, the expression /(...)\1/ matches six characters with the first three characters being the same as the last three.
@@ -4082,9 +4088,9 @@ re = / \A (?<brace_expression> { ( [^{}] | \g<brace_expression> )* } ) \Z
 
 # anything other than braces # ...or... # a nested brace expression
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Advanced Regular Expressions · 109
+Advanced Regular Expressions ï¿½ 109
 
 We use the x option to allow us to write the expression with lots of space, which makes it easier to understand. We also indent it, just as we would indent Ruby code. And we can also use Ruby-style comments to document the tricky stuff. You can read this regular expression as follows: a brace expression is an open brace, then a sequence of zero or more characters or brace expressions, and then a closing brace.
 
@@ -4145,9 +4151,9 @@ Mr Jones and Sally Mr Bond and Ms Moneypenny Samson and Delilah Dr Jekyll and hi
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 110
+Chapter 7. Regular Expressions ï¿½ 110
 
 The rule is that if the first person in the list has a title, then so should the second. This means that the first and fourth lines in this list are invalid.
 We can start with a pattern to match a line with an optional title and a name. We know we've reached the end of the name when we find the word and with spaces around it.
@@ -4225,9 +4231,9 @@ re = %r{ (?:(?<title>Mrs | Mr | Ms | Dr )\s)? (.*?) \s and \s (\g<title>\s)? (.+
 We need to make the second test for a title mandatory if the first test matches. That's where the conditional subpatterns come in.
 The syntax (?(n)subpattern) will apply the subpattern match only if a previous group number n also matched. You can also test named groups using the syntaxes (?(<name>)subpattern) or (?('name')subpattern).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Advanced Regular Expressions · 111
+Advanced Regular Expressions ï¿½ 111
 In our case, we want to apply a test for the second title if the first title is present. That first title is matched by the group named title, so the condition group looks like (?<title>...):
 re = %r{ (?:(?<title>Mrs | Mr | Ms | Dr )\s)? (.*?) \s and \s (?(<title>)\g<title>\s) (.+)
 }x re.match("Mr Smith and Sally") # => #<MatchData "Mr Smith and Sally" title:nil>
@@ -4240,9 +4246,9 @@ The match failed, as we expected, but when we add a title to Sally, it succeeds.
 Let's try this on our list:
 DATA.each do |line| re = %r{ ^(?> (?:(?<title>Mrs | Mr | Ms | Dr )\s)? (.*?) \s and \s ) (?(<title>)\g<title>\s) (.+) }x if line =~ re print "VALID: " else print "INVALID: " end puts line
 end __END__ Mr Jones and Sally Mr Bond and Ms Moneypenny Samson and Delilah Dr Jekyll and himself Ms Hinky Smith and Ms Jones Dr Wood and Mrs Wood Thelma and Louise
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 112
+Chapter 7. Regular Expressions ï¿½ 112
 
 produces: INVALID: Mr Jones and Sally VALID: Mr Bond and Ms Moneypenny VALID: Samson and Delilah INVALID: Dr Jekyll and himself VALID: Ms Hinky Smith and Ms Jones VALID: Dr Wood and Mrs Wood VALID: Thelma and Louise
 Alternatives in Conditions Being British, I have a national duty to emulate my compatriates on informercials and shout "But Wait! There's More!" Conditional subpatterns can also have an else clause.
@@ -4283,9 +4289,9 @@ md = sentence.match("The cat drinks water") puts "The subject is #{md[:subject]}
 
 md = sentence.match("The big dog eats smelly bones") puts "The last adjective in the second sentence is #{md[:adjective]}"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-\z · 113
+\z ï¿½ 113
 
 sentence =~ "The gerbil generates big PDFs" puts "And the object in the last sentence is #{$~[:object]}"
 produces: The subject is cat and the verb is drinks The last adjective in the second sentence is smelly And the object in the last sentence is PDFs
@@ -4304,9 +4310,9 @@ Turns on the corresponding option. If used inside a group, the effect is limited
 7.5 \z
 So, that's it. If you've made it this far, consider yourself a regular expression ninja. Get out there and match some strings.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 7. Regular Expressions · 114
+Chapter 7. Regular Expressions ï¿½ 114
 
 [:alnum:] [:alpha:] [:ascii:] [:blank:] [:cntrl:]
 [:digit:] [:graph:] [:lower:] [:print:] [:punct:]
@@ -4314,7 +4320,7 @@ Chapter 7. Regular Expressions · 114
 
 POSIX Character Classes (Unicode)
 Text in parentheses indicates the Unicode classes. These apply if the regular expression's encoding is one of the Unicode encodings.
-Alphanumeric (Letter | Mark | Decimal_Number) Uppercase or lowercase letter (Letter | Mark) 7-bit character including nonprinting Blank and tab (+ Space_Separator) Control characters--at least 0x00­0x1f, 0x7f (Control | Format | Unassigned | Private_Use | Surrogate) Digit (Decimal_Number) Printable character excluding space (Unicode also excludes Control, Unassigned, and Surrogate) Lowercase letter (Lowercase_Letter) Any printable character (including space) Printable character excluding space and alphanumeric (Connector_Punctuation | Dash_ Punctuation | Close_Punctuation | Final_Punctuation | Initial_Punctuation | Other_Punctuation | Open_Punctuation) Whitespace (same as \s) Uppercase letter (Uppercase_Letter) Hex digit (0­9, a­f, A­F) Alphanumeric, underscore, and multibyte (Letter | Mark | Decimal_Number | Connector_ Punctuation)
+Alphanumeric (Letter | Mark | Decimal_Number) Uppercase or lowercase letter (Letter | Mark) 7-bit character including nonprinting Blank and tab (+ Space_Separator) Control characters--at least 0x00ï¿½0x1f, 0x7f (Control | Format | Unassigned | Private_Use | Surrogate) Digit (Decimal_Number) Printable character excluding space (Unicode also excludes Control, Unassigned, and Surrogate) Lowercase letter (Lowercase_Letter) Any printable character (including space) Printable character excluding space and alphanumeric (Connector_Punctuation | Dash_ Punctuation | Close_Punctuation | Final_Punctuation | Initial_Punctuation | Other_Punctuation | Open_Punctuation) Whitespace (same as \s) Uppercase letter (Uppercase_Letter) Hex digit (0ï¿½9, aï¿½f, Aï¿½F) Alphanumeric, underscore, and multibyte (Letter | Mark | Decimal_Number | Connector_ Punctuation)
 
 Table 3--Posix character classes
 
@@ -4350,7 +4356,7 @@ Any, Assigned, C, Cc, Cf, Cn, Co, Cs, L, Ll, Lm, Lo, Lt, Lu, M, Mc, Me, Mn, N, N
 
 Table 4--Unicode character properties
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 8
 More About Methods
@@ -4387,9 +4393,9 @@ end
 # 3 arguments
 
 1. You won't get an immediate error if you start a method name with an uppercase letter, but when Ruby sees you calling the method, it might guess that it is a constant, not a method invocation, and as a result it may parse the call incorrectly. By convention, methods names starting with an uppercase letter are used for type conversion. The Integer method, for example, converts its parameter to an integer.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 8. More About Methods · 116
+Chapter 8. More About Methods ï¿½ 116
 
 def my_other_new_method # Code for the method would go here
 end
@@ -4444,9 +4450,9 @@ rest=[] rest=["two"] rest=["two", "three"]
 In this example, the first argument is assigned to the first method parameter as usual. However, the next parameter is prefixed with an asterisk, so all the remaining arguments are bundled into a new Array, which is then assigned to that parameter.
 Folks sometimes use a splat to specify arguments that are not used by the method but that are perhaps used by the corresponding method in a superclass. (Note that in this example we call super with no parameters. This is a special case that means "invoke this method in the superclass, passing it all the parameters that were given to the original method.")
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Defining a Method · 117
+Defining a Method ï¿½ 117
 
 class Child < Parent def do_something(*not_used) # our processing super end
 end
@@ -4474,9 +4480,9 @@ double(3) {|val| "I got #{val}" }
 
 double("tom") {|val| "Then I got #{val}" } # => "Then I got tomtom"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 8. More About Methods · 118
+Chapter 8. More About Methods ï¿½ 118
 
 However, if the last parameter in a method definition is prefixed with an ampersand, any associated block is converted to a Proc object, and that object is assigned to the parameter. This allows you to store the block for use later.
 class TaxCalculator def initialize(name, &block) @name, @block = name, block end def get_tax(amount) "#@name on #{amount} = #{ @block.call(amount) }" end
@@ -4503,9 +4509,9 @@ end
 
 # called on current object. # self is not changed, as # there is no receiver
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Calling a Method · 119
+Calling a Method ï¿½ 119
 This defaulting mechanism is how Ruby implements private methods. Private methods may not be called with a receiver, so they must be methods available in the current object. In the previous example, we'd probably want to make the helper methods private, because they shouldn't be called from outside the InvoiceWriter class:
 class InvoiceWriter def initialize(order) @order = order end def write_on(output) write_header_on(output) write_body_on(output) write_totals_on(output) end
 private
@@ -4522,9 +4528,9 @@ Method Return Values
 Every method you call returns a value (although there's no rule that says you have to use that value). The value of a method is the value of the last statement executed by the method:
 2. Other Ruby documentation sometimes calls these method calls without parentheses commands. 3. In particular, you must use parentheses on a method call that is itself a parameter to another method
 call (unless it is the last parameter).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 8. More About Methods · 120
+Chapter 8. More About Methods ï¿½ 120
 
 def meth_one
 
@@ -4590,9 +4596,9 @@ five(*(10..14))
 
 five(*[1,2], 3, *(4..5)) # => "I was passed 1 2 3 4 5"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Calling a Method · 121
+Calling a Method ï¿½ 121
 As of Ruby 1.9, splat arguments can appear anywhere in the parameter list, and you can intermix splat and regular arguments.
 Making Blocks More Dynamic We've already seen how to associate a block with a method call:
 collection.each do |member| # ...
@@ -4607,9 +4613,9 @@ print "(t)imes or (p)lus: " operator = gets print "number: " number = Integer(ge
 calc = lambda {|n| n*number } else
 calc = lambda {|n| n+number } end puts((1..10).collect(&calc).join(", ")) produces: (t)imes or (p)lus: t number: 2 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
 If the last argument to a method is preceded by an ampersand, Ruby assumes that it is a Proc object. It removes it from the parameter list, converts the Proc object into a block, and associates it with the method.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 8. More About Methods · 122
+Chapter 8. More About Methods ï¿½ 122
 
 Hash and Keyword Arguments
 People commonly use hashes as a way of passing optional named arguments to a method. For example, we could consider adding a search facility to an MP3 playlist:
@@ -4635,9 +4641,9 @@ Ruby 2 to the rescue. You can now define keyword arguments to your methods. You 
 def search(field, genre: nil, duration: 120) p [field, genre, duration ]
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Calling a Method · 123
+Calling a Method ï¿½ 123
 search(:title) search(:title, duration: 432) search(:title, duration: 432, genre: "jazz") produces: [:title, nil, 120] [:title, nil, 432] [:title, "jazz", 432]
 Pass in an invalid option, and Ruby complains:
 def search(field, genre: nil, duration: 120) p [field, genre, duration ]
@@ -4652,7 +4658,7 @@ def search(field, genre: nil, duration: 120, **rest) p [field, genre, duration, 
 end
 options = { duration: 432, stars: 3, genre: "jazz", tempo: "slow" } search(:title, options) produces: [:title, "jazz", 432, {:stars=>3, :tempo=>"slow"}]
 A well-written Ruby program will typically contain many methods, each quite small, so it's worth getting familiar with the options available when defining and using them. At some point you'll probably want to read Method Arguments, on page 324 to see exactly how arguments in a method call get mapped to the method's formal parameters when you have combinations of default parameters and splat parameters.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 9
 Expressions
@@ -4688,9 +4694,9 @@ end
 
 We'll talk more about if and case later on page 135.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 126
+Chapter 9. Expressions ï¿½ 126
 
 9.1 Operator Expressions
 
@@ -4738,9 +4744,9 @@ You can add similar support to your classes:
 class ScoreKeeper def initialize @total_score = @count = 0 end def <<(score) @total_score += score @count += 1 self end def average fail "No scores" if @count.zero? Float(@total_score) / @count end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Miscellaneous Expressions · 127
+Miscellaneous Expressions ï¿½ 127
 scores = ScoreKeeper.new scores << 10 << 20 << 40 puts "Average = #{scores.average}" produces: Average = 23.333333333333332
 Note that there's a subtlety in this code--the << method explicitly returns self. It does this to allow the method chaining in the line scores << 10 << 20 << 40. Because each call to << returns the scores object, you can then call << again, passing in a new score. As well as the obvious operators, such as +, *, and <<, indexing using square brackets is also implemented as a method call. When you write this:
 some_obj[1,2,3]
@@ -4753,9 +4759,9 @@ end
 s = SomeClass.new s[1] = 2 s['cat', 'dog'] = 'enemies' produces: Indexed with 1 value = 2 Indexed with cat, dog value = "enemies"
 9.2 Miscellaneous Expressions
 As well as the obvious operator expressions and method calls and the (perhaps) less obvious statement expressions (such as if and case), Ruby has a few more things that you can use in expressions.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 128
+Chapter 9. Expressions ï¿½ 128
 
 Command Expansion
 If you enclose a string in backquotes (sometimes called backticks) or use the delimited form prefixed by %x, it will (by default) be executed as a command by your underlying operating system. The value of the expression is the standard output of that command. Newlines will not be stripped, so it is likely that the value you get back will have a trailing return or linefeed character.
@@ -4789,9 +4795,9 @@ produces:
 Just about every example we've given so far in this book has featured assignment. Perhaps it's about time we said something about it.
 An assignment statement sets the variable or attribute on its left side (the lvalue) to refer to the value on the right (the rvalue). It then returns that rvalue as the result of the assignment expression. This means you can chain assignments, and you can perform assignments in some unexpected places:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Assignment · 129
+Assignment ï¿½ 129
 
 a=b=1+2+3
 
@@ -4834,9 +4840,9 @@ In older Rubys, the result of the assignment was the value returned by the attri
 class Test def val=(val) @val = val return 99 end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 130
+Chapter 9. Expressions ï¿½ 130
 
 t = Test.new result = (t.val = 2) result # => 2
 
@@ -4871,9 +4877,9 @@ Splats and Assignment If Ruby sees any splats on the right side of an assignment
 a, b, c, d, e = *(1..2), 3, *[4, 5] # a=1, b=2, c=3, d=4, e=5
 Exactly one lvalue may be a splat. This makes it greedy--it will end up being an array, and that array will contain as many of the corresponding rvalues as possible. So, if the splat is the last lvalue, it will soak up any rvalues that are left after assigning to previous lvalues:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Assignment · 131
+Assignment ï¿½ 131
 
 a, *b = 1, 2, 3 # a=1, b=[2, 3]
 
@@ -4909,11 +4915,11 @@ a += "shame"
 
 # => d*mn sh*m*
 
-Something you won't find in Ruby are the autoincrement (++) and autodecrement (­) operators of C and Java. Use the += and -= forms instead.
+Something you won't find in Ruby are the autoincrement (++) and autodecrement (ï¿½) operators of C and Java. Use the += and -= forms instead.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 132
+Chapter 9. Expressions ï¿½ 132
 9.4 Conditional Execution
 Ruby has several different mechanisms for conditional execution of code; most of them should feel familiar, and many have some neat twists. Before we get into them, though, we need to spend a short time looking at boolean expressions.
 Boolean Expressions
@@ -4928,9 +4934,9 @@ nil || 99 # => 99 false || 99 # => 99 "cat" || 99 # => "cat"
 As with and, the only difference between or and || is their precedence. To make life interesting, and and or have the same precedence, but && has a higher precedence than ||. A common idiom is to use ||= to assign a value to a variable only if that variable isn't already set:
 var ||= "default value"
 This is almost, but not quite, the same as var = var || "default value". It differs in that no assignment is made at all if the variable is already set. In pseudocode, this might be written as var = "default value" unless var or as var || var = "default value".
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Conditional Execution · 133
+Conditional Execution ï¿½ 133
 
 not and ! return the opposite of their operand (false if the operand is true and true if the operand is false). And, yes, not and ! differ only in precedence.
 All these precedence rules are summarized in Table 13, Ruby operators (high to low precedence), on page 318.
@@ -4973,9 +4979,9 @@ t = T.new p(t == "value") p(t != "value")
 produces:
 Comparing self == value true Comparing self == value false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 134
+Chapter 9. Expressions ï¿½ 134
 
 Operator == ===
 <=>
@@ -4997,9 +5003,9 @@ Comparing self == value true Comparing self != value false
 You can use a Ruby range as a boolean expression. A range such as exp1..exp2 will evaluate as false until exp1 becomes true. The range will then evaluate as true until exp2 becomes true. Once this happens, the range resets, ready to fire again. We show some examples of this later on page 138.
 Prior to Ruby 1.8, you could use a bare regular expression as a boolean expression. This is now deprecated. You can still use the ~ operator (described in the reference section on page 661) to match $_ against a pattern, but this will probably also disappear in the future.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Conditional Execution · 135
+Conditional Execution ï¿½ 135
 
 if and unless Expressions
 An if expression in Ruby is pretty similar to if statements in other languages:
@@ -5037,9 +5043,9 @@ end
 
 The unless statement does support else, but most people seem to agree that it's clearer to switch to an if statement in these cases.
 
-1. Ruby 1.8 allowed you to use a colon character in place of the then keyword. This is no longer supported. report erratum · discuss
+1. Ruby 1.8 allowed you to use a colon character in place of the then keyword. This is no longer supported. report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 136
+Chapter 9. Expressions ï¿½ 136
 
 Finally, for the C fans out there, Ruby also supports the C-style conditional expression:
 cost = duration > 180 ? 0.35 : 0.25
@@ -5082,9 +5088,9 @@ song.play end
 
 The second form of the case statement is probably more common. You specify a target at the top of the case statement, and each when clause lists one or more comparisons to be tested against that target:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-case Expressions · 137
+case Expressions ï¿½ 137
 
 case command when "debug"
 dump_debug_info dump_symbols when /p\s+(\w+)/ dump_variable($1) when "quit", "exit" exit else print "Illegal command: #{command}" end
@@ -5124,9 +5130,9 @@ case shape when Square, Rectangle
 
 2. Ruby 1.8 lets you use a colon in place of the then keyword. Ruby 1.9 does not support this.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 138
+Chapter 9. Expressions ï¿½ 138
 
 9.6 Loops
 
@@ -5174,9 +5180,9 @@ third fourth fifth
 
 This uses some behind-the-scenes magic behavior: gets assigns the last line read to the global variable $_, the ~ operator does a regular expression match against $_, and print with
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Loops · 139
+Loops ï¿½ 139
 no arguments prints $_. This kind of code is falling out of fashion in the Ruby community and may end up being removed from the language.
 The start and end of a range used in a boolean expression can themselves be expressions. These are evaluated each time the overall boolean expression is evaluated. For example, the following code uses the fact that the variable $. contains the current input line number to display line numbers 1 through 3 as well as those between a match of /eig/ and /nin/:
 File.foreach("ordinal") do |line| if (($. == 1) || line =~ /eig/) .. (($. == 3) || line =~ /nin/) print line end
@@ -5194,9 +5200,9 @@ Let's look at some examples:
 end
 produces: Ho! Ho! Ho!
 It's easy to avoid fence-post and off-by-one errors; this loop will execute three times, period. In addition to times, integers can loop over specific ranges by calling downto and upto, and all numbers can loop using step. For instance, a traditional "for" loop that runs from 0 to 9 (something like for(i=0; i < 10; i++)) is written as follows:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 140
+Chapter 9. Expressions ï¿½ 140
 0.upto(9) do |x| print x, " "
 end produces: 0123456789
 A loop from 0 to 12 by 3 can be written as follows:
@@ -5214,9 +5220,9 @@ for ... in
 Earlier we said that the only built-in Ruby looping primitives were while and until. What's this for thing, then? Well, for is almost a lump of syntactic sugar. When you write this:
 for song in playlist song.play
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Loops · 141
+Loops ï¿½ 141
 Ruby translates it into something like this:
 playlist.each do |song| song.play
 end
@@ -5237,9 +5243,9 @@ break, redo, and next
 The loop control constructs break, redo, and next let you alter the normal flow through a loop or iterator.3
 break terminates the immediately enclosing loop; control resumes at the statement following the block. redo repeats the current iteration of the loop from the start but without reevaluating the condition or fetching the next element (in an iterator). next skips to the end of the loop, effectively starting the next iteration:
 3. Ruby 1.8 and earlier also supported the retry keyword as a looping mechanism. This has been removed in Ruby 1.9.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 9. Expressions · 142
+Chapter 9. Expressions ï¿½ 142
 
 while line = gets next if line =~ /^\s*#/ break if line =~ /^END/
 
@@ -5265,9 +5271,9 @@ The scoping rules for blocks (such as those used by loop and each) are different
 end [ x, y ]
 produces: prog.rb:4:in `<main>': undefined local variable or method `x' for main:Object (NameError)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variable Scope, Loops, and Blocks · 143
+Variable Scope, Loops, and Blocks ï¿½ 143
 
 However, if at the time the block executes a local variable already exists with the same name as that of a variable in the block, the existing local variable will be used in the block. Its value will therefore be available after the block finishes. As the following example shows, this applies to normal variables in the block but not to the block's parameters:
 
@@ -5309,24 +5315,24 @@ end
 puts "Total = #{total}, square = #{square}" produces: Total = 14, square = yes
 If you are concerned about the scoping of variables with blocks, turn on Ruby warnings, and declare your block-local variables explicitly.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 10
 Exceptions, catch, and throw
 So far, we've been developing code in Pleasantville, a wonderful place where nothing ever, ever goes wrong. Every library call succeeds, users never enter incorrect data, and resources are plentiful and cheap. Well, that's about to change. Welcome to the real world! In the real world, errors happen. Good programs (and programmers) anticipate them and arrange to handle them gracefully. This isn't always as easy as it may sound. Often the code that detects an error does not have the context to know what to do about it. For example, attempting to open a file that doesn't exist is acceptable in some circumstances and is a fatal error at other times. What's your file-handling module to do? The traditional approach is to use return codes. The open method could return some specific value to say it failed. This value is then propagated back through the layers of calling routines until someone wants to take responsibility for it. The problem with this approach is that managing all these error codes can be a pain. If a function calls open, then read, and finally close and if each can return an error indication, how can the function distinguish these error codes in the value it returns to its caller? To a large extent, exceptions solve this problem. Exceptions let you package information about an error into an object. That exception object is then propagated back up the calling stack automatically until the runtime system finds code that explicitly declares that it knows how to handle that type of exception.
 10.1 The Exception Class
 Information about an exception is encapsulated in an object of class Exception or one of class Exception's children. Ruby predefines a tidy hierarchy of exceptions, shown in Figure 1, Standard exception hierarchy, on page 146. As we'll see later, this hierarchy makes handling exceptions considerably easier. When you need to raise an exception, you can use one of the built-in Exception classes, or you can create one of your own. Make your own exceptions subclasses of StandardError or one of its children. If you don't, your exceptions won't be caught by default. Every Exception has associated with it a message string and a stack backtrace. If you define your own exceptions, you can add extra information.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 10. Exceptions, catch, and throw · 146
+Chapter 10. Exceptions, catch, and throw ï¿½ 146
 Exception NoMemoryError ScriptError LoadError Gem::LoadError NotImplementedError SyntaxError SecurityError SignalException Interrupt StandardError ArgumentError Gem::Requirement::BadRequirementError EncodingError Encoding::CompatibilityError Encoding::ConverterNotFoundError Encoding::InvalidByteSequenceError Encoding::UndefinedConversionError FiberError IndexError KeyError StopIteration IOError EOFError LocalJumpError Math::DomainError NameError NoMethodError RangeError FloatDomainError RegexpError RuntimeError Gem::Exception SystemCallError ThreadError TypeError ZeroDivisionError SystemExit Gem::SystemExitException SystemStackError
 Figure 1--Standard exception hierarchy
 10.2 Handling Exceptions
 Here's some simple code that uses the open-uri library to download the contents of a web page and write it to a file, line by line:
 tut_exceptions/fetch_web_page/fetch1.rb require 'open-uri' web_page = open("http://pragprog.com/podcasts") output = File.open("podcasts.html", "w") while line = web_page.gets
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Handling Exceptions · 147
+Handling Exceptions ï¿½ 147
 output.puts line end output.close
 What happens if we get a fatal error halfway through? We certainly don't want to store an incomplete page to the output file.
 Let's add some exception-handling code and see how it helps. To do exception handling, we enclose the code that could raise an exception in a begin/end block and use one or more rescue clauses to tell Ruby the types of exceptions we want to handle. Because we specified Exception in the rescue line, we'll handle exceptions of class Exception and all of its subclasses (which covers all Ruby exceptions). In the error-handling block, we report the error, close and delete the output file, and then reraise the exception:
@@ -5340,9 +5346,9 @@ begin eval string
 rescue SyntaxError, NameError => boom print "String doesn't compile: " + boom
 rescue StandardError => bang print "Error running script: " + bang
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 10. Exceptions, catch, and throw · 148
+Chapter 10. Exceptions, catch, and throw ï¿½ 148
 
 How does Ruby decide which rescue clause to execute? It turns out that the processing is pretty similar to that used by the case statement. For each rescue clause in the begin block, Ruby compares the raised exception against each of the parameters in turn. If the raised exception matches a parameter, Ruby executes the body of the rescue and stops looking. The match is made using parameter===$!. For most exceptions, this means that the match will succeed if the exception named in the rescue clause is the same as the type of the currently thrown exception or is a superclass of that exception.1 If you write a rescue clause with no parameter list, the parameter defaults to StandardError.
 If no rescue clause matches or if an exception is raised outside a begin/end block, Ruby moves up the stack and looks for an exception handler in the caller, then in the caller's caller, and so on.
@@ -5370,9 +5376,9 @@ The ensure clause does just this. ensure goes after the last rescue clause and c
 
 1. This comparison happens because exceptions are classes, and classes in turn are kinds of Module. The === method is defined for modules, returning true if the class of the operand is the same as or is a descendant of the receiver.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Handling Exceptions · 149
+Handling Exceptions ï¿½ 149
 f = File.open("testfile") begin
 # .. process rescue
 # .. handle error ensure
@@ -5391,9 +5397,9 @@ As an example of code that retries on exceptions, take a look at the following, 
 begin # First try an extended login. If it fails, fall back to a normal login if @esmtp then @command.ehlo(helodom) else @command.helo(helodom) end
 rescue ProtocolError if @esmtp then @esmtp = false retry else raise end
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 10. Exceptions, catch, and throw · 150
+Chapter 10. Exceptions, catch, and throw ï¿½ 150
 This code tries first to connect to an SMTP server using the EHLO command, which is not universally supported. If the connection attempt fails, the code sets the @esmtp variable to false and retries the connection. If this fails a second time, the exception is raised up to the caller.
 10.3 Raising Exceptions
 So far, we've been on the defensive, handling exceptions raised by others. It's time to turn the tables and go on the offensive. (Some say your gentle authors are always offensive, but that's a different book.) You can raise exceptions in your code with the Object#raise method (or its somewhat judgmental synonym, Object#fail):
@@ -5407,9 +5413,9 @@ raise ArgumentError, "Name too big", caller
 In the last example, we remove the current routine from the stack backtrace, which is often useful in library modules. We do this using the caller method, which returns the current stack trace. We can take this further; the following code removes two routines from the backtrace by passing only a subset of the call stack to the new exception:
 raise ArgumentError, "Name too big", caller[1..-1]
 2. Technically, this argument can be any object that responds to the message exception by returning an object such that object.kind_of?(Exception) is true.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-catch and throw · 151
+catch and throw ï¿½ 151
 Adding Information to Exceptions
 You can define your own exceptions to hold any information that you need to pass out from the site of an error. For example, certain types of network errors may be transient depending on the circumstances. If such an error occurs and the circumstances are right, you could set a flag in the exception to tell the handler that it may be worth retrying the operation:
 tut_exceptions/retry_exception.rb class RetryException < RuntimeError
@@ -5428,9 +5434,9 @@ Although the exception mechanism of raise and rescue is great for abandoning exe
 word_list = File.open("wordlist") catch (:done) do
 result = [] while line = word_list.gets
 word = line.chomp throw :done unless word =~ /^\w+$/ result << word end puts result.reverse end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 10. Exceptions, catch, and throw · 152
+Chapter 10. Exceptions, catch, and throw ï¿½ 152
 catch defines a block that is labeled with the given name (which may be a Symbol or a String). The block is executed normally until a throw is encountered.
 When Ruby encounters a throw, it zips back up the call stack looking for a catch block with a matching symbol. When it finds it, Ruby unwinds the stack to that point and terminates the block. So, in the previous example, if the input does not contain correctly formatted lines, the throw will skip to the end of the corresponding catch, not only terminating the while loop but also skipping the code that writes the reversed list. If the throw is called with the optional second parameter, that value is returned as the value of the catch. In this example, our word list incorrectly contains the line "*wow*." Without the second parameter to throw, the corresponding catch returns nil.
 word_list = File.open("wordlist") word_in_error = catch(:done) do
@@ -5442,7 +5448,7 @@ print prompt res = readline.chomp throw :quit_requested if res == "!" res end
 catch :quit_requested do name = prompt_and_get("Name: ") age = prompt_and_get("Age: ") sex = prompt_and_get("Sex: ") # .. # process information
 end
 As this example illustrates, the throw does not have to appear within the static scope of the catch.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 11
 Basic Input and Output
@@ -5455,9 +5461,9 @@ Ruby defines a single base class, IO, to handle input and output. This base clas
 As you may expect, you can create a new file object using File.new:
 file = File.new("testfile", "r") # ... process the file file.close
 1. For those who just have to know the implementation details, this means that a single IO object can sometimes be managing more than one operating system file descriptor. For example, if you open a pair of pipes, a single IO object contains both a read pipe and a write pipe.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 11. Basic Input and Output · 154
+Chapter 11. Basic Input and Output ï¿½ 154
 The first parameter is the filename. The second is the mode string, which lets you open the file for reading, writing, or both. (Here we opened testfile for reading with an "r". We could also have used "w" for write or "r+" for read-write. The full list of allowed modes appears in the reference section on page 494.) You can also optionally specify file permissions when creating a file; see the description of File.new on page 494 for details. After opening the file, we can work with it, writing and/or reading data as needed. Finally, as responsible software citizens, we close the file, ensuring that all buffered data is written and that all related resources are freed.
 But here Ruby can make life a little bit easier for you. The method File.open also opens a file. In regular use, it behaves just like File.new. However, if you associate a block with the call, open behaves differently. Instead of returning a new File object, it invokes the block, passing the newly opened File as a parameter. When the block exits, the file is automatically closed.
 File.open("testfile", "r") do |file| # ... process the file
@@ -5471,9 +5477,9 @@ The same methods that we've been using for "simple" I/O are available for all fi
 For example, we could create a program called copy.rb:
 tut_io/copy.rb while line = gets
 puts line end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Reading and Writing Files · 155
+Reading and Writing Files ï¿½ 155
 If we run this program with no arguments, it will read lines from the console and copy them back to the console. Note that each line is echoed once the Return key is pressed. (In this and later examples, we show user input in a bold font.) The ^D is the end-of-file character on Unix systems.
 $ ruby copy.rb These are lines These are lines that I am typing that I am typing ^D
 We can also pass in one or more filenames on the command line, in which case gets will read from each in turn:
@@ -5486,9 +5492,9 @@ Iterators for Reading
 As well as using the usual loops to read data from an IO stream, you can also use various Ruby iterators. IO#each_byte invokes a block with the next 8-bit byte from the IO object (in this case, an object of type File). The chr method converts an integer to the corresponding ASCII character:
 File.open("testfile") do |file| file.each_byte.with_index do |ch, index| print "#{ch.chr}:#{ch} " break if index > 10 end
 end produces: T:84 h:104 i:105 s:115 :32 i:105 s:115 :32 l:108 i:105 n:110 e:101
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 11. Basic Input and Output · 156
+Chapter 11. Basic Input and Output ï¿½ 156
 
 IO#each_line calls the block with each line from the file. In the next example, we'll make the original newlines visible using String#dump so you can see that we're not cheating:
 File.open("testfile") do |file| file.each_line {|line| puts "Got #{line.dump}" }
@@ -5516,9 +5522,9 @@ arr[0]
 
 Don't forget that I/O is never certain in an uncertain world--exceptions will be raised on most errors, and you should be ready to rescue them and take appropriate action.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Reading and Writing Files · 157
+Reading and Writing Files ï¿½ 157
 Writing to Files
 So far, we've been merrily calling puts and print, passing in any old object and trusting that Ruby will do the right thing (which, of course, it does). But what exactly is it doing?
 The answer is pretty simple. With a couple of exceptions, every object you pass to puts and print is converted to a string by calling that object's to_s method. If for some reason the to_s method doesn't return a valid string, a string is created containing the object's class name and ID, something like #<ClassName:0x123456>:
@@ -5534,9 +5540,9 @@ endl = "\n" STDOUT << 99 << " red balloons" << endl produces: 99 red balloons
 Again, the << method uses to_s to convert its arguments to strings before printing them.
 Although we started off disparaging the poor << operator, there are actually some good reasons for using it. Because other classes (such as String and Array) also implement a <<
 2. The pack method takes an array of data and packs it into a string. See the description in the reference section on page 432.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 11. Basic Input and Output · 158
+Chapter 11. Basic Input and Output ï¿½ 158
 
 operator with similar semantics, you can quite often write code that appends to something using << without caring whether it is added to an array, a file, or a string. This kind of flexibility also makes unit testing easy. We discuss this idea in greater detail in the chapter on duck typing on page 343.
 
@@ -5562,9 +5568,9 @@ client = TCPSocket.open('127.0.0.1', 'www') client.send("OPTIONS /~dave/ HTTP/1.
 produces:
 HTTP/1.1 200 OK Date: Mon, 27 May 2013 17:31:00 GMT Server: Apache/2.2.22 (Unix) DAV/2 PHP/5.3.15 with Suhosin-Patch mod_ssl/2.2.22 OpenSSL/0.9.8r Allow: GET,HEAD,POST,OPTIONS Content-Length: 0 Connection: close Content-Type: text/html
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Parsing HTML · 159
+Parsing HTML ï¿½ 159
 At a higher level, the lib/net set of library modules provides handlers for a set of applicationlevel protocols (currently FTP, HTTP, POP, SMTP, and telnet). These are documented in the library section on page 772. For example, the following program lists the images that are displayed on this book's home page. (To save space, we show only the first three):
 require 'net/http'
 http = Net::HTTP.new('pragprog.com', 80) response = http.get('/book/ruby3/programming-ruby-1-9')
@@ -5578,9 +5584,9 @@ end produces: http://pragprog.com/assets/logo-c5c7f9c2f950df63a71871ba2f6bb115.g
 Having read HTML from a website, you might want to parse information out of it. Often, simple regular expressions do the job. In the example that follows, we're using the %r{...} regular expression literal, because the match contains a forward slash character, and regular expressions are complex enough without having to add extra backslashes.
 require 'open-uri' page = open('http://pragprog.com/titles/ruby3/programming-ruby-1-9').read if page =~ %r{<title>(.*?)</title>}m
 puts "Title is #{$1.inspect}" end produces: Title is "The Pragmatic Bookshelf | Programming Ruby 1.9"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 11. Basic Input and Output · 160
+Chapter 11. Basic Input and Output ï¿½ 160
 But regular expressions won't always work. For example, if someone had an extra space in the <title> tag, the match would have failed. For real-world use, you probably want to use a library that can parse HTML (and XML) properly. Although not part of Ruby, the Nokogiri library is very popular.3 It's a very rich library--we'll only scratch the surface here. Documentation is available inside the gem.
 require 'open-uri' require 'nokogiri'
 doc = Nokogiri::HTML(open("http://pragprog.com/"))
@@ -5589,13 +5595,13 @@ puts "Page title is " + doc.xpath("//title").inner_html
 # Output the second hyperlink in the site-links div using xpath and css puts "\nSecond hyperlink is" puts doc.xpath('id("site-links")//a[2]') puts doc.css('#site-links a:nth-of-type(2)')
 produces: Page title is The Pragmatic Bookshelf <p>
 The <em>Pragmatic BookshelfTM</em> is an imprint of <a href="http://pragprog.com/">The Pragmatic Programmers, LLC</a>.
-<br> Copyright © 1999­2013 The Pragmatic Programmers, LLC. All Rights Reserved. </p>
+<br> Copyright ï¿½ 1999ï¿½2013 The Pragmatic Programmers, LLC. All Rights Reserved. </p>
 Second hyperlink is <a href="http://pragprog.com/about">About Us</a> <a href="http://pragprog.com/about">About Us</a>
 Nokogiri can also update and create HTML and XML.
 
 3. Install it using gem install nokogiri.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 12
 Fibers, Threads, and Processes
@@ -5608,9 +5614,9 @@ end end counts.keys.sort.each {|k| print "#{k}:#{counts[k]} "} produces: and:1 i
 However, this code is messy--it mixes word finding with word counting. We could fix this by writing a method that reads the file and yields each successive word. But fibers give us a simpler solution:
 words = Fiber.new do File.foreach("testfile") do |line| line.scan(/\w+/) do |word| Fiber.yield word.downcase end end nil
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 162
+Chapter 12. Fibers, Threads, and Processes ï¿½ 162
 
 counts = Hash.new(0) while word = words.resume
 counts[word] += 1 end counts.keys.sort.each {|k| print "#{k}:#{counts[k]} "}
@@ -5638,9 +5644,9 @@ The basic fiber support in Ruby is limited--fibers can yield control only back t
 
 1. In fact, the nil is not strictly needed, as foreach will return nil when it terminates. The nil just makes it explicit.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Multithreading · 163
+Multithreading ï¿½ 163
 support. Once it is loaded, fibers gain a transfer method, allowing them to transfer control to arbitrary other fibers.
 A related but more general mechanism is the continuation. A continuation is a way of recording the state of your running program (where it is, the current binding, and so on) and then resuming from that state at some point in the future. You can use continuations to implement coroutines (and other new control structures). Continuations have also been used to store the state of a running web application between requests--a continuation is created when the application sends a response to the browser; then, when the next request arrives from that browser, the continuation is invoked, and the application continues from where it left off. You enable continuations in Ruby by requiring the continuation library, described in the library section on page 739.
 12.2 Multithreading
@@ -5652,9 +5658,9 @@ pages = %w( www.rubycentral.org slashdot.org www.google.com )
 threads = pages.map do |page_to_fetch| Thread.new(page_to_fetch) do |url| http = Net::HTTP.new(url, 80) print "Fetching: #{url}\n" resp = http.get('/') print "Got #{url}: #{resp.message}\n" end
 end threads.each {|thr| thr.join }
 produces: Fetching: www.rubycentral.org Fetching: slashdot.org Fetching: www.google.com Got www.google.com: OK Got slashdot.org: OK Got www.rubycentral.org: OK
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 164
+Chapter 12. Fibers, Threads, and Processes ï¿½ 164
 Let's look at this code in more detail, because a few subtle things are happening.
 New threads are created with the Thread.new call. It is given a block that contains the code to be run in a new thread. In our case, the block uses the net/http library to fetch the top page from each of our nominated sites. Our tracing clearly shows that these fetches are going on in parallel.
 When we create the thread, we pass the required URL as a parameter. This parameter is passed to the block as url. Why do we do this, rather than simply using the value of the variable page_to_fetch within the block?
@@ -5665,9 +5671,9 @@ Manipulating Threads Another subtlety occurs on the last line in our download pr
 When a Ruby program terminates, all threads are killed, regardless of their states. However, you can wait for a particular thread to finish by calling that thread's Thread#join method. The calling thread will block until the given thread is finished. By calling join on each of the requester threads, you can make sure that all three requests have completed before you terminate the main program. If you don't want to block forever, you can give join a timeout parameter--if the timeout expires before the thread terminates, the join call returns nil. Another variant of join, the method Thread#value, returns the value of the last statement executed by the thread.
 In addition to join, a few other handy routines are used to manipulate threads. The current thread is always accessible using Thread.current. You can obtain a list of all threads using Thread.list, which returns a list of all Thread objects that are runnable or stopped. To determine the status of a particular thread, you can use Thread#status and Thread#alive?.
 You can adjust the priority of a thread using Thread#priority=. Higher-priority threads will run before lower-priority threads. We'll talk more about thread scheduling, and stopping and starting threads, in just a bit.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Multithreading · 165
+Multithreading ï¿½ 165
 Thread Variables A thread can normally access any variables that are in scope when the thread is created. Variables local to the block containing the thread code are local to the thread and are not shared. But what if you need per-thread variables that can be accessed by other threads-- including the main thread? Class Thread has a facility that allows thread-local variables to be created and accessed by name. You simply treat the thread object as if it were a Hash, writing to elements using []= and reading them back using []. In the example that follows, each thread records the current value of the variable count in a thread-local variable with the key mycount. To do this, the code uses the symbol :mycount when indexing thread objects. (A race condition2 exists in this code, but we haven't talked about synchronization yet, so we'll just quietly ignore it for now.)
 count = 0 threads = 10.times.map do |i|
 Thread.new do sleep(rand(0.1)) Thread.current[:mycount] = count count += 1
@@ -5677,9 +5683,9 @@ The main thread waits for the subthreads to finish and then prints that thread's
 Threads and Exceptions
 What happens if a thread raises an unhandled exception depends on the setting of the abort_on_exception flag (documented in the reference on page 702) and on the setting of the interpreter's $DEBUG flag (described in the Ruby options section on page 210). If abort_on_exception is false and the debug flag is not enabled (the default condition), an unhandled exception simply kills the current thread--all the rest continue to run. In fact, you don't even hear about the exception until you issue a join on the thread that raised it. In the following example, thread 1 blows up and fails to produce any output. However, you can still see the trace from the other threads.
 2. A race condition occurs when two or more pieces of code (or hardware) both try to access some shared resource, and the outcome changes depending on the order in which they do so. In the example here, it is possible for one thread to set the value of its mycount variable to count, but before it gets a chance to increment count, the thread gets descheduled and another thread reuses the same value of count. These issues are fixed by synchronizing the access to shared resources (such as the count variable).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 166
+Chapter 12. Fibers, Threads, and Processes ï¿½ 166
 threads = 4.times.map do |number| Thread.new(number) do |i| raise "Boom!" if i == 1 print "#{i}\n" end
 end puts "Waiting" sleep 0.1 puts "Done"
 produces: 0 2 Waiting 3 Done
@@ -5694,9 +5700,9 @@ produces: 0 Waiting 2 3 Failed: Boom! Done
 However, set abort_on_exception to true or use -d to turn on the debug flag, and an unhandled exception kills the main thread, so the message Done never appears. (This is different from Ruby 1.8, where the exception killed all running threads.)
 Thread.abort_on_exception = true threads = 4.times.map do |number|
 Thread.new(number) do |i| raise "Boom!" if i == 1 print "#{i}\n"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Controlling the Thread Scheduler · 167
+Controlling the Thread Scheduler ï¿½ 167
 
 end end puts "Waiting" threads.each {|t| t.join } puts "Done"
 produces:
@@ -5733,9 +5739,9 @@ We create 10 threads, and each increments the shared sum variable 100,000 times.
 
 3. And, worse, some of these primitives are unsafe in use. Charles Nutter of JRuby fame has a blog post that illustrates one problem: http://blog.headius.com/2008/02/rubys-threadraise-threadkill-timeoutrb.html.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 168
+Chapter 12. Fibers, Threads, and Processes ï¿½ 168
 
 gets calculated--let's say that the value of sum is 99,999, so new_value will be 100,000. Before storing the new value back into sum, we call print, and that causes another thread to be scheduled (because we're waiting for the I/O to complete). So a second thread also fetches the value of 99,999 and increments it. It stores 100,000 into sum, then loops around again and stores 100,001, and 100,002, and so on. Eventually the original thread continues running because it finished writing its message. It immediate stores it's value of 100,000 into the sum, overwriting (and losing) all the values stored by the other thread(s). We lost data.
 
@@ -5766,9 +5772,9 @@ produces:
 
 This pattern is so common that the Mutex class provides Mutex#synchronize, which locks the mutex, runs the code in a block, and then unlocks the mutex. This also ensures that the mutex will get unlocked even if an exception is thrown while it is locked.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Mutual Exclusion · 169
+Mutual Exclusion ï¿½ 169
 
 sum = 0 mutex = Mutex.new threads = 10.times.map do
 Thread.new do 100_000.times do mutex.synchronize do new_value = sum + 1 print "#{new_value} sum = new_value end end
@@ -5791,9 +5797,9 @@ loop do print "Enter currency code and amount: " line = gets if rate_mutex.try_l
 end
 If you are holding the lock on a mutex and you want to temporarily unlock it, allowing others to use it, you can call Mutex#sleep. We could use this to rewrite the previous example:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 170
+Chapter 12. Fibers, Threads, and Processes ï¿½ 170
 
 rate_mutex = Mutex.new exchange_rates = ExchangeRates.new exchange_rates.update_from_online_feed
 
@@ -5818,9 +5824,9 @@ system("tar xzf test.tgz") # => true
 
 # => "Mon May 27 12:31:17 CDT 2013\n"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Running Multiple Processes · 171
+Running Multiple Processes ï¿½ 171
 The method Object#system executes the given command in a subprocess; it returns true if the command was found and executed properly. It raises an exception if the command cannot be found. It returns false if the command ran but returned an error. In case of failure, you'll find the subprocess's exit code in the global variable $?.
 One problem with system is that the command's output will simply go to the same destination as your program's output, which may not be what you want. To capture the standard output of a subprocess, you can use the backquote characters, as with `date` in the previous example. Remember that you may need to use String#chomp to remove the line-ending characters from the result.
 OK, this is fine for simple cases--we can run some other process and get the return status. But many times we need a bit more control than that. We'd like to carry on a conversation with the subprocess, possibly sending it data and possibly getting some back. The method IO.popen does just this. The popen method runs a command as a subprocess and connects that subprocess's standard input and standard output to a Ruby IO object. Write to the IO object, and the subprocess can read it on standard input. Whatever the subprocess writes is available in the Ruby program by reading from the IO object.
@@ -5828,9 +5834,9 @@ For example, on our systems one of the more useful utilities is pig, a program t
 pig = IO.popen("local/util/pig", "w+") pig.puts "ice cream after they go to bed" pig.close_write puts pig.gets produces: iceway eamcray afterway eythay ogay otay edbay
 This example illustrates both the apparent simplicity and the more subtle real-world complexities involved in driving subprocesses through pipes. The code certainly looks simple enough: open the pipe, write a phrase, and read back the response. But it turns out that the pig program doesn't flush the output it writes. Our original attempt at this example, which had a pig.puts followed by a pig.gets, hung forever. The pig program processed our input, but its response was never written to the pipe. We had to insert the pig.close_write line. This sends an end-of-file to pig's standard input, and the output we're looking for gets flushed as pig terminates.
 popen has one more twist. If the command you pass it is a single minus sign (-), popen will fork a new Ruby interpreter. Both this and the original interpreter will continue running by returning from the popen. The original process will receive an IO object back, and the child will receive nil. This works only on operating systems that support the fork(2) call (and for now this excludes Windows).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 12. Fibers, Threads, and Processes · 172
+Chapter 12. Fibers, Threads, and Processes ï¿½ 172
 pipe = IO.popen("-","w+") if pipe
 pipe.puts "Get a job!" STDERR.puts "Child says '#{pipe.gets.chomp}'" else STDERR.puts "Dad says '#{gets.chomp}'" puts "OK" end produces: Dad says 'Get a job!' Child says 'OK'
 As well as the popen method, some platforms support Object#fork, Object#exec, and IO.pipe. The filenaming convention of many IO methods and Object#open will also spawn subprocesses if you put a | as the first character of the filename (see the introduction to class IO on page 536 for details). Note that you cannot create pipes using File.new; it's just for files.
@@ -5845,16 +5851,16 @@ end
 fork { exec("sort testfile > output.txt") }
 # Do other stuff... produces: Child pid 22026: terminated
 For more information on using and controlling external processes, see the documentation for Object#open and IO.popen, as well as the section on the Process module on page 637.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Running Multiple Processes · 173 Blocks and Subprocesses
+Running Multiple Processes ï¿½ 173 Blocks and Subprocesses
 IO.popen works with a block in pretty much the same way as File.open does. If you pass it a command, such as date, the block will be passed an IO object as a parameter:
 IO.popen("date") {|f| puts "Date is #{f.gets}" } produces: Date is Mon May 27 12:31:17 CDT 2013
 The IO object will be closed automatically when the code block exits, just as it is with File.open. If you associate a block with fork, the code in the block will be run in a Ruby subprocess, and the parent will continue after the block:
 fork do puts "In child, pid = #$$" exit 99
 end pid = Process.wait puts "Child terminated, pid = #{pid}, status = #{$?.exitstatus}" produces: In child, pid = 22033 Child terminated, pid = 22033, status = 99
 $? is a global variable that contains information on the termination of a subprocess. See the section on Process::Status on page 644 for more information.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 13
 Unit Testing
@@ -5866,9 +5872,9 @@ Unit testing is a Good Thing.
 But why have a chapter on unit testing in the middle of a book on Ruby? Well, it's because unit testing and languages such as Ruby seem to go hand in hand. The flexibility of Ruby makes writing tests easy, and the tests make it easier to verify that your code is working. Once you get into the swing of it, you'll find yourself writing a little code, writing a test or two, verifying that everything is copacetic, and then writing some more code.
 Unit testing is also pretty trivial--run a program that calls part of your application's code, get back some results, and then check the results are what you expected.
 Let's say we're testing a Roman number class. So far, the code is pretty simple: it just lets us create an object representing a certain number and display that object in Roman numerals:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 176
+Chapter 13. Unit Testing ï¿½ 176
 
 unittesting/romanbug.rb # This code has bugs class Roman
 MAX_ROMAN = 4999
@@ -5893,25 +5899,25 @@ MiniTest is largely compatible with Test::Unit but without a lot of bells and wh
 
 1. In Ruby 1.8, this was Nathaniel Talbott's Test::Unit framework. MiniTest is a rewrite of this.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Testing Framework · 177
+The Testing Framework ï¿½ 177
 MiniTest::Unit vs. Test::Unit
 Folks have been using Test::Unit with Ruby for a good number of years now. However, the core team decided to replace the testing framework that comes as standard with Ruby with something a little leaner. Ryan Davis and Eric Hodel wrote MiniTest::Unit as a partial drop-in replacement for Test::Unit. Most of the assertions in MiniTest mirror those in Test::Unit::TestCase. The major differences are the absence of assert_not_raises and assert_not_throws and the renaming of all the negative assertions. In Test::Unit you'd say assert_not_nil(x) and assert_not(x); in MiniTest you'd use refute_nil(x) and refute(x). MiniTest also drops most of the little-used features of Test::Unit, including test cases, GUI runners, and some assertions. And, probably most significantly, MiniTest does not automatically invoke the test cases when you execute a file that contains them. So, you have three basic options with this style of unit testing:
-· require "minitest/unit", and use the MiniTest functionality. · require "test/unit", and use MiniTest with the Test::Unit compatibility layer. This adds in the
-assertions in Additional Test::Unit assertions, on page 194, and enables the autorun functionality. · You can install the test-unit gem and get all the original Test::Unit functionality back, along with
+ï¿½ require "minitest/unit", and use the MiniTest functionality. ï¿½ require "test/unit", and use MiniTest with the Test::Unit compatibility layer. This adds in the
+assertions in Additional Test::Unit assertions, on page 194, and enables the autorun functionality. ï¿½ You can install the test-unit gem and get all the original Test::Unit functionality back, along with
 a bunch of new assertions.
 13.1 The Testing Framework
-The Ruby testing framework is basically three facilities wrapped into a neat package: · It gives you a way of expressing individual tests. · It provides a framework for structuring the tests. · It gives you flexible ways of invoking the tests.
+The Ruby testing framework is basically three facilities wrapped into a neat package: ï¿½ It gives you a way of expressing individual tests. ï¿½ It provides a framework for structuring the tests. ï¿½ It gives you flexible ways of invoking the tests.
 Assertions == Expected Results
 Rather than have you write series of individual if statements in your tests, the testing framework provides a set of assertions that achieve the same thing. Although a number of different styles of assertion exist, they all follow basically the same pattern. Each gives you a way of specifying a desired result and a way of passing in the actual outcome. If the actual doesn't equal the expected, the assertion outputs a nice message and records the failure. For example, we could rewrite our previous test of the Roman class using the testing framework. For now, ignore the scaffolding code at the start and end, and just look at the assert_equal methods:
 require_relative 'romanbug' require 'test/unit' class TestRoman < Test::Unit::TestCase
 def test_simple assert_equal("i", Roman.new(1).to_s) assert_equal("ix", Roman.new(9).to_s)
 end
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 178
+Chapter 13. Unit Testing ï¿½ 178
 produces: Run options: # Running tests: . Finished tests in 0.006937s, 144.1545 tests/s, 288.3091 assertions/s. 1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 The first assertion says that we're expecting the Roman number string representation of 1 to be "i," and the second test says we expect 9 to be "ix." Luckily for us, both expectations are met, and the tracing reports that our tests pass. Let's add a few more tests:
@@ -5925,9 +5931,9 @@ ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 Uh-oh! The second assertion failed. See how the error message uses the fact that the assert knows both the expected and actual values: it expected to get "ii" but instead got "i." Looking at our code, you can see a clear bug in to_s. If the count after dividing by the factor is greater than zero, then we should output that many Roman digits. The existing code outputs just one. The fix is easy:
 def to_s value = @value roman = "" for code, factor in FACTORS count, value = value.divmod(factor) roman << (code * count) end roman
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Testing Framework · 179
+The Testing Framework ï¿½ 179
 Now let's run our tests again:
 require_relative 'roman3' require 'test/unit' class TestRoman < Test::Unit::TestCase
 def test_simple assert_equal("i", Roman.new(1).to_s) assert_equal("ii", Roman.new(2).to_s) assert_equal("iii", Roman.new(3).to_s) assert_equal("iv", Roman.new(4).to_s) assert_equal("ix", Roman.new(9).to_s)
@@ -5941,9 +5947,9 @@ def test_simple NUMBERS.each do |arabic, roman| r = Roman.new(arabic) assert_equ
 end end produces: Run options: # Running tests: . Finished tests in 0.006280s, 159.2357 tests/s, 955.4140 assertions/s. 1 tests, 6 assertions, 0 failures, 0 errors, 0 skips
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 What else can we test? Well, the constructor checks that the number we pass in can be represented as a Roman number, throwing an exception if it can't. Let's test the exception:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 180
+Chapter 13. Unit Testing ï¿½ 180
 require_relative 'roman3' require 'test/unit'
 class TestRoman < Test::Unit::TestCase
 NUMBERS = { 1 => "i", 2 => "ii", 3 => "iii", 4 => "iv", 5 => "v", 9 => "ix" }
@@ -5958,9 +5964,9 @@ The final parameter to every assertion is a message that will be output before a
 require 'test/unit' class ATestThatFails < Test::Unit::TestCase
 def test_user_created user = User.find(1) refute_nil(user, "User with ID=1 should exist")
 end end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Structuring Tests · 181
+Structuring Tests ï¿½ 181
 produces: Run options: # Running tests: F Finished tests in 0.007598s, 131.6136 tests/s, 131.6136 assertions/s.
 1) Failure: test_user_created(ATestThatFails) [prog.rb:11]: User with ID=1 should exist. Expected nil to not be nil.
 1 tests, 1 assertions, 1 failures, 0 errors, 0 skips
@@ -5978,9 +5984,9 @@ require 'test/unit' require_relative 'playlist_builder'
 class TestPlaylistBuilder < Test::Unit::TestCase
 def test_empty_playlist db = DBI.connect('DBI:mysql:playlists') pb = PlaylistBuilder.new(db) assert_empty(pb.playlist) db.disconnect
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 182
+Chapter 13. Unit Testing ï¿½ 182
 def test_artist_playlist db = DBI.connect('DBI:mysql:playlists') pb = PlaylistBuilder.new(db) pb.include_artist("krauss") refute_empty(pb.playlist, "Playlist shouldn't be empty") pb.playlist.each do |entry| assert_match(/krauss/i, entry.artist) end db.disconnect
 end
 def test_title_playlist db = DBI.connect('DBI:mysql:playlists') pb = PlaylistBuilder.new(db) pb.include_title("midnight") refute_empty(pb.playlist, "Playlist shouldn't be empty") pb.playlist.each do |entry| assert_match(/midnight/i, entry.title) end db.disconnect
@@ -5994,9 +6000,9 @@ require 'test/unit' require_relative 'playlist_builder'
 class TestPlaylistBuilder < Test::Unit::TestCase
 def setup @db = DBI.connect('DBI:mysql:playlists') @pb = PlaylistBuilder.new(@db)
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Organizing and Running Tests · 183
+Organizing and Running Tests ï¿½ 183
 def teardown @db.disconnect
 end
 def test_empty_playlist assert_empty(@pb.playlist)
@@ -6012,9 +6018,9 @@ Inside the teardown method, you can detect whether the preceding test succeeded 
 The test cases we've shown so far are all runnable Test::Unit programs. If, for example, the test case for the Roman class was in a file called test_roman.rb, we could run the tests from the command line using this:
 $ ruby test_roman.rb Run options: # Running tests: .. Finished tests in 0.004540s, 440.5286 tests/s, 1762.1145 assertions/s. 2 tests, 8 assertions, 0 failures, 0 errors, 0 skips ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 Test::Unit is clever enough to run the tests even though there's no main program. It collects all the test case classes and runs each in turn.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 184
+Chapter 13. Unit Testing ï¿½ 184
 If we want, we can ask it to run just a particular test method:
 $ ruby test_roman.rb -n test_range Run options: -n test_range # Running tests: . Finished tests in 0.004481s, 223.1645 tests/s, 446.3289 assertions/s. 1 tests, 2 assertions, 0 failures, 0 errors, 0 skips ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 or tests whose names match a regular expression:
@@ -6028,9 +6034,9 @@ test/ test_roman.rb other tests...
 other stuff...
 This works well as a way of organizing files but leaves you with a small problem: how do you tell Ruby where to find the library files to test? For example, if our TestRoman test code was in a test/ subdirectory, how does Ruby know where to find the roman.rb source file, the thing we're trying to test?
 An option that doesn't work reliably is to build the path into require statements in the test code and run the tests from the test/ subdirectory:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Organizing and Running Tests · 185
+Organizing and Running Tests ï¿½ 185
 require 'test/unit' require '../lib/roman'
 class TestRoman < Test::Unit::TestCase # ...
 end
@@ -6045,11 +6051,11 @@ $ ruby -I lib test/test_roman.rb
 This would be a good time to investigate using Rake to automate your testing.
 Test Suites
 After a while, you'll grow a decent collection of test cases for your application. You may well find that these tend to cluster: one group of cases tests a particular set of functions, and another group tests a different set of functions. If so, you can group those test cases together into test suites, letting you run them all as a group. This is easy to do--just create a Ruby file that requires test/unit and then requires each of the files holding the test cases you want to group. This way, you build yourself a hierarchy of test material.
-· You can run individual tests by name. · You can run all the tests in a file by running that file. · You can group a number of files into a test suite and run them as a unit. · You can group test suites into other test suites.
+ï¿½ You can run individual tests by name. ï¿½ You can run all the tests in a file by running that file. ï¿½ You can group a number of files into a test suite and run them as a unit. ï¿½ You can group test suites into other test suites.
 This gives you the ability to run your unit tests at a level of granularity that you control, testing just one method or testing the entire application.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 186
+Chapter 13. Unit Testing ï¿½ 186
 At this point, it's worthwhile to think about naming conventions. Nathaniel Talbott, the author of Test::Unit, uses the convention that test cases are in files named tc_xxx and test suites are in files named ts_xxx. Most people seem to use test_ as the test-case filename prefix:
 # file ts_dbaccess.rb require_relative 'test/unit' require_relative 'test_connect' require_relative 'test_query' require_relative 'test_update' require_relative 'test_delete'
 Now, if you run Ruby on the file ts_dbaccess.rb, you execute the test cases in the four files you've required.
@@ -6063,9 +6069,9 @@ Starting to Score Tennis Matches
 The scoring system used in lawn tennis originated in the Middle Ages. As players win successive points, their scores are shown as 15, 30, and 40. The next point is a win unless your opponent also has 40. If you're both tied at 40, then different rules apply--the first player with a clear two-point advantage is the winner.2
 We have to write a class that handles this scoring system. Let's use RSpec specifications to drive the process. We install RSpec with gem install rspec. We'll then create our first specification file:
 2. Some say the 0, 15, 30, 40 system is a corruption of the fact that scoring used to be done using the quarters of a clock face. Us, we just think those medieval folks enjoyed a good joke.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RSpec and Shoulda · 187
+RSpec and Shoulda ï¿½ 187
 unittesting/bdd/1/ts_spec.rb describe "TennisScorer", "basic scoring" do
 it "should start with a score of 0-0" it "should be 15-0 if the server wins a point" it "should be 0-15 if the receiver wins a point" it "should be 15-15 after they both win a point" # ... end
 This file contains nothing more than a description of an aspect of the tennis scoring class (that we haven't yet written, by the way). It contains a description of the basic scoring system. Inside the description are a set of four expectations (it "should start..." and so on). We can run this specification using the rspec command:3
@@ -6080,9 +6086,9 @@ unittesting/bdd/2/ts_spec.rb require_relative "tennis_scorer"
 describe TennisScorer, "basic scoring" do it "should start with a score of 0-0" do ts = TennisScorer.new ts.score.should == "0-0" end
 it "should be 15-0 if the server wins a point" it "should be 0-15 if the receiver wins a point" it "should be 15-15 after they both win a point" end
 3. We're running these examples with RSpec2. This will probably be the default version by the time you read this, but I had to use gem install rspec --pre because it was prerelease when I was writing this chapter.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 188
+Chapter 13. Unit Testing ï¿½ 188
 Note that we've assumed we have a class TennisScorer in a file called tennis_scorer.rb. Our first expectation now has a code block associated with it. Inside that block, we create a TennisScorer and then use a funky RSpec syntax to validate that the score starts out at 0 to 0. This particular aspect of RSpec probably generates the most controversy--some people love it, others find it awkward. Either way, ts.score.should == "0-0" is basically the same as an assertion in Test::Unit.
 We'll beef up our TennisScorer class, but only enough to let it satisfy this assertion:
 unittesting/bdd/2/tennis_scorer.rb class TennisScorer
@@ -6101,9 +6107,9 @@ describe TennisScorer, "basic scoring" do it "should start with a score of 0-0" 
 it "should be 15-0 if the server wins a point" do ts = TennisScorer.new ts.give_point_to(:server) ts.score.should == "15-0"
 end
 it "should be 0-15 if the receiver wins a point" it "should be 15-15 after they both win a point" end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RSpec and Shoulda · 189
+RSpec and Shoulda ï¿½ 189
 This won't run, because our TennisScorer class doesn't implement a give_point_to method. Let's rectify that. Our code isn't finished, but it lets the test pass:
 unittesting/bdd/3/tennis_scorer.rb class TennisScorer
 OPPOSITE_SIDE_OF_NET = { :server => :receiver, :receiver => :server }
@@ -6123,9 +6129,9 @@ unittesting/bdd/4/ts_spec.rb require_relative "tennis_scorer"
 describe TennisScorer, "basic scoring" do before(:each) do @ts = TennisScorer.new end
 it "should start with a score of 0-0" do @ts.score.should == "0-0"
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 190
+Chapter 13. Unit Testing ï¿½ 190
 it "should be 15-0 if the server wins a point" do @ts.give_point_to(:server) @ts.score.should == "15-0"
 end
 it "should be 0-15 if the receiver wins a point" do @ts.give_point_to(:receiver) @ts.score.should == "0-15"
@@ -6146,9 +6152,9 @@ it "should be 0-15 if the receiver wins a point" do ts.give_point_to(:receiver) 
 end
 it "should be 15-15 after they both win a point" do ts.give_point_to(:receiver) ts.give_point_to(:server) ts.score.should == "15-15"
 end end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RSpec and Shoulda · 191
+RSpec and Shoulda ï¿½ 191
 We're going to stop here, but I suggest that you might want to take this code and continue to develop it. Write expectations such as these:
 it "should be 40-0 after the server wins three points" it "should be W-L after the server wins four points" it "should be L-W after the receiver wins four points" it "should be Deuce after each wins three points" it "should be A-server after each wins three points and the server gets one more"
 RSpec has a lot more depth than just the description of expectations. In particular, you can use it with Cucumber, an entire language for describing and running complete user stories. But that's beyond the scope of this book.
@@ -6167,18 +6173,18 @@ should "be 15-0 if the server wins a point" do @ts.give_point_to(:server) assert
 end
 should "be 0-15 if the receiver wins a point" do @ts.give_point_to(:receiver) assert_score("0-15")
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 192
+Chapter 13. Unit Testing ï¿½ 192
 should "be 15-15 after they both win a point" do @ts.give_point_to(:receiver) @ts.give_point_to(:server) assert_score("15-15")
 end end end
 $ ruby ts_shoulda.rb Run options: # Running tests: .... Finished tests in 0.008528s, 469.0432 tests/s, 469.0432 assertions/s. 4 tests, 4 assertions, 0 failures, 0 errors, 0 skips ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 Behind the scenes, Shoulda is creating Test::Unit test methods for each should block in your tests. This is why we can use regular Test::Unit assertions in Shoulda code. But Shoulda also works hard to maintain the right context for our tests. For example, we can nest contexts and their setup blocks, allowing us to have some initialization that's common to all tests and some that's common to just a subset. We can apply this to our tennis example. We'll write nested contexts and put setup blocks at each level. When Shoulda executes our tests, it runs all the appropriate setup blocks for the should blocks.
 unittesting/bdd/4/ts_shoulda_1.rb require 'test/unit' require 'shoulda' require_relative 'tennis_scorer.rb'
 class TennisScorerTest < Test::Unit::TestCase def assert_score(target) assert_equal(target, @ts.score) end context "Tennis scores" do setup do @ts = TennisScorer.new end should "start with a score of 0-0" do assert_score("0-0") end context "where the server wins a point" do setup do @ts.give_point_to(:server) end should "be 15-0" do assert_score("15-0") end context "and the oponent wins a point" do setup do @ts.give_point_to(:receiver) end should "be 15-15" do assert_score("15-15") end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Test::Unit assertions · 193
+Test::Unit assertions ï¿½ 193
 end end should "be 0-15 if the receiver wins a point" do
 @ts.give_point_to(:receiver) assert_score("0-15") end end end
 Let's run it:
@@ -6194,9 +6200,9 @@ assert_ | refute_ in_epsilon(expected_float, actual_float, epsilon=0.001, < mess
 assert_ | refute_ includes(collection, obj, < message > ) Expects include?(obj) on collection to return true (false).
 assert_ | refute_ instance_of(klass, obj, message ) Expects obj to be (not to be) a instance of klass.
 assert_ | refute_ kind_of(klass, obj, < message > ) Expects obj to be (not to be) a kind of klass.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 13. Unit Testing · 194
+Chapter 13. Unit Testing ï¿½ 194
 assert_ | refute_ match(regexp, string, < message > ) Expects string to (not) match regexp.
 assert_ | refute_ nil(obj, < message > ) Expects obj to be (not) nil.
 assert_ | refute_ operator(obj1, operator, obj2, < message > ) Expects the result of sending the message operator to obj1 with parameter obj2 to be (not to be) true.
@@ -6216,7 +6222,7 @@ assert_not_same(expected, actual, < message > ) Expects !expected.equal?(actual)
 assert_nothing_raised(Exception, ...) { block } Expects the block not to raise one of the listed exceptions.
 assert_nothing_thrown(expected_symbol, < message > ) { block } Expects the block not to throw the given symbol.
 assert_raise(Exception, ...) { block } Synonym for assert_raises.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 14
 When Trouble Strikes!
@@ -6268,9 +6274,9 @@ n * fact(n-1)
 
 9 p fact(5)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 14. When Trouble Strikes! · 196
+Chapter 14. When Trouble Strikes! ï¿½ 196
 (rdb:1) b 2 Set breakpoint 1 at t.rb:2 (rdb:1) c breakpoint 1, fact at t.rb:2 t.rb:2: if n <= 0 (rdb:1) disp n 1: n = 5 (rdb:1) del 1 (rdb:1) watch n==1 Set watchpoint 2 (rdb:1) c watchpoint 2, fact at t.rb:fact t.rb:1:def fact(n) 1: n = 1 (rdb:1) where --> #1 t.rb:1:in `fact'
 #2 t.rb:5:in `fact' #3 t.rb:5:in `fact' #4 t.rb:5:in `fact' #5 t.rb:5:in `fact' #6 t.rb:9 (rdb:1) del 2 (rdb:1) c 120
 14.2 Interactive Ruby
@@ -6279,9 +6285,9 @@ irb < irb-options > < ruby_script > < program-arguments >
 irb displays the value of each expression as you complete it. For instance:
 irb(main):001:0> a = 1 + irb(main):002:0* 2 * 3 / irb(main):003:0* 4 % 5 => 2 irb(main):004:0> 2+2 => 4 irb(main):005:0> def test irb(main):006:1> puts "Hello, world!" irb(main):007:1> end => nil irb(main):008:0> test Hello, world! => nil irb(main):009:0>
 irb also allows you to create subsessions, each one of which may have its own context. For example, you can create a subsession with the same (top-level) context as the original session or create a subsession in the context of a particular class or instance. The sample session that follows is a bit longer but shows how you can create subsessions and switch between them.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Editor Support · 197
+Editor Support ï¿½ 197
 
 $ irb
 
@@ -6377,9 +6383,9 @@ The Ruby interpreter is designed to read a program in one pass; this means you c
 
 We can take advantage of this feature to run Ruby code from inside an editor. In Emacs, for instance, you can select a region of Ruby text and use the command Meta-| to execute Ruby. The Ruby interpreter will use the selected region as standard input, and output will go to a
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 14. When Trouble Strikes! · 198
+Chapter 14. When Trouble Strikes! ï¿½ 198
 
 buffer named *Shell Command Output*. This feature has come in quite handy for us while writing this book--just select a few lines of Ruby in the middle of a paragraph, and try it!
 
@@ -6394,11 +6400,11 @@ While we are on the subject, this would probably be a good place to mention that
 
 So, you've read through enough of the book, you start to write your very own Ruby program, and it doesn't work. Here's a list of common gotchas and other tips:
 
-· First and foremost, run your scripts with warnings enabled (the -w command-line option).
+ï¿½ First and foremost, run your scripts with warnings enabled (the -w command-line option).
 
-· If you happen to forget a comma (,) in an argument list--especially to print--you can produce some very odd error messages.
+ï¿½ If you happen to forget a comma (,) in an argument list--especially to print--you can produce some very odd error messages.
 
-· An attribute setter is not being called. Within a class definition, Ruby will parse setter= as an assignment to a local variable, not as a method call. Use the form self.setter= to indicate the method call:
+ï¿½ An attribute setter is not being called. Within a class definition, Ruby will parse setter= as an assignment to a local variable, not as a method call. Use the form self.setter= to indicate the method call:
 
 class Incorrect
 
@@ -6418,7 +6424,7 @@ end
 
 obj = Incorrect.new obj.one # => nil obj.two # => 2
 
-· Objects that don't appear to be properly set up may have been victims of an incorrectly spelled initialize method:
+ï¿½ Objects that don't appear to be properly set up may have been victims of an incorrectly spelled initialize method:
 
 class Incorrect
 
@@ -6436,9 +6442,9 @@ end
 
 1. Many developers use Sublime Text (http://www.sublimetext.com/), a cross-platform editor chock full of features, including Ruby code execution.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-But It Doesn't Work! · 199
+But It Doesn't Work! ï¿½ 199
 
 ultimate = Incorrect.new ultimate.answer # => nil
 
@@ -6459,13 +6465,13 @@ end
 end
 
 ultimate = Incorrect.new ultimate.answer # => nil
-· A parse error at the last line of the source often indicates a missing end keyword, sometimes quite a bit earlier.
-· This ugly message--syntax error, unexpected $end, expecting keyword_end--means that you have an end missing somewhere in your code. (The $end in the message means end-offile, so the message simply means that Ruby hit the end of your code before finding all the end keywords it was expecting.) Try running with -w, which will warn when it finds ends that aren't aligned with their opening if/while/class.
-· As of Ruby 1.9, block parameters are no longer in the same scope as local variables. This may be incompatibile with older code. Run with the -w flag to spot these issues:
+ï¿½ A parse error at the last line of the source often indicates a missing end keyword, sometimes quite a bit earlier.
+ï¿½ This ugly message--syntax error, unexpected $end, expecting keyword_end--means that you have an end missing somewhere in your code. (The $end in the message means end-offile, so the message simply means that Ruby hit the end of your code before finding all the end keywords it was expecting.) Try running with -w, which will warn when it finds ends that aren't aligned with their opening if/while/class.
+ï¿½ As of Ruby 1.9, block parameters are no longer in the same scope as local variables. This may be incompatibile with older code. Run with the -w flag to spot these issues:
 entry = "wibble" [1, 2, 3].each do |entry|
 # do something with entry end puts "Last entry = #{entry}"
 produces: prog.rb:2: warning: shadowing outer local variable - entry Last entry = wibble
-· Watch out for precedence issues, especially when using {...} instead of do...end:
+ï¿½ Watch out for precedence issues, especially when using {...} instead of do...end:
 def one(arg) if block_given? "block given to 'one' returns #{yield}" else arg end
 end
 
@@ -6475,14 +6481,14 @@ end
 result1 = one two { "three"
 }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 14. When Trouble Strikes! · 200
+Chapter 14. When Trouble Strikes! ï¿½ 200
 result2 = one two do "three"
 end
 puts "With braces, result = #{result1}" puts "With do/end, result = #{result2}" produces: With braces, result = block given to 'two' returns three With do/end, result = block given to 'one' returns three
-· Output written to a terminal may be buffered. This means you may not see a message you write immediately. In addition, if you write messages to both STDOUT and STDERR, the output may not appear in the order you were expecting. Always use nonbuffered I/O (set sync=true) for debug messages.
-· If numbers don't come out right, perhaps they're strings. Text read from a file will be a String and will not be automatically converted to a number by Ruby. A call to Integer will work wonders (and will throw an exception if the input isn't a well-formed integer). The following is a common mistake Perl programmers make:
+ï¿½ Output written to a terminal may be buffered. This means you may not see a message you write immediately. In addition, if you write messages to both STDOUT and STDERR, the output may not appear in the order you were expecting. Always use nonbuffered I/O (set sync=true) for debug messages.
+ï¿½ If numbers don't come out right, perhaps they're strings. Text read from a file will be a String and will not be automatically converted to a number by Ruby. A call to Integer will work wonders (and will throw an exception if the input isn't a well-formed integer). The following is a common mistake Perl programmers make:
 while line = gets num1, num2 = line.split(/,/) # ...
 end
 You can rewrite this as follows:
@@ -6491,17 +6497,17 @@ end
 Or, you could convert all the strings using map:
 while line = gets num1, num2 = line.split(/,/).map {|val| Integer(val) } # ...
 end
-· Unintended aliasing--if you are using an object as the key of a hash, make sure it doesn't change its hash value (or arrange to call Hash#rehash if it does):
+ï¿½ Unintended aliasing--if you are using an object as the key of a hash, make sure it doesn't change its hash value (or arrange to call Hash#rehash if it does):
 arr = [1, 2] hash = { arr => "value" } hash[arr] # => "value" arr[0] = 99 hash[arr] # => nil hash.rehash # => {[99, 2]=>"value"} hash[arr] # => "value"
-· Make sure the class of the object you are using is what you think it is. If in doubt, use puts my_obj.class.
-report erratum · discuss
+ï¿½ Make sure the class of the object you are using is what you think it is. If in doubt, use puts my_obj.class.
+report erratum ï¿½ discuss
 
-But It's Too Slow! · 201
-· Make sure your method names start with a lowercase letter and class and constant names start with an uppercase letter.
-· If method calls aren't doing what you'd expect, make sure you've put parentheses around the arguments.
-· Make sure the open parenthesis of a method's parameter list butts up against the end of the method name with no intervening spaces.
-· Use irb and the debugger.
-· Use Object#freeze. If you suspect that some unknown portion of code is setting a variable to a bogus value, try freezing the variable. The culprit will then be caught during the attempt to modify the variable.
+But It's Too Slow! ï¿½ 201
+ï¿½ Make sure your method names start with a lowercase letter and class and constant names start with an uppercase letter.
+ï¿½ If method calls aren't doing what you'd expect, make sure you've put parentheses around the arguments.
+ï¿½ Make sure the open parenthesis of a method's parameter list butts up against the end of the method name with no intervening spaces.
+ï¿½ Use irb and the debugger.
+ï¿½ Use Object#freeze. If you suspect that some unknown portion of code is setting a variable to a bogus value, try freezing the variable. The culprit will then be caught during the attempt to modify the variable.
 One major technique makes writing Ruby code both easier and more fun. Develop your applications incrementally. Write a few lines of code, and then write tests (perhaps using Test::Unit). Write a few more lines of code, and then exercise them. One of the major benefits of a dynamically typed language is that things don't have to be complete before you use them.
 14.5 But It's Too Slow!
 Ruby is an interpreted, high-level language, and as such it may not perform as fast as a lower-level language such as C. In the following sections, we'll list some basic things you can do to improve performance; also take a look in the index under Performance for other pointers.
@@ -6511,9 +6517,9 @@ You can use the Benchmark module, also described in the library section on page 
 require 'benchmark' include Benchmark
 LOOP_COUNT = 1_000_000
 bmbm(12) do |test| test.report("inline:") do LOOP_COUNT.times do |x| # nothing end end test.report("method:") do def method # nothing end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 14. When Trouble Strikes! · 202
+Chapter 14. When Trouble Strikes! ï¿½ 202
 
 LOOP_COUNT.times do |x| method
 end end end
@@ -6555,9 +6561,9 @@ end
 puts "#{count} twelve-character words"
 The first time we ran this (without profiling) against a dictionary of almost 235,000 words, it took a noticeable time to complete. Wondering if we could improve on this, we added the command-line option -r profile and tried again. Eventually we saw output that looked like the following:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-But It's Too Slow! · 203
+But It's Too Slow! ï¿½ 203
 
 20460 twelve-character words
 
@@ -6771,23 +6777,23 @@ Remember to check the code without the profiler afterward, though--sometimes the
 
 Ruby is a wonderfully transparent and expressive language, but it does not relieve the programmer of the need to apply common sense: creating unnecessary objects, performing unneeded work, and creating bloated code will slow down your programs regardless of the language.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 14. When Trouble Strikes! · 204 Code Execution Coverage
+Chapter 14. When Trouble Strikes! ï¿½ 204 Code Execution Coverage
 Ruby 1.9.2 comes with low-level code coverage built in to the interpreter (see the Coverage module on page 740). It tracks which lines of code were executed in your code. People are starting to build libraries that wrap this low-level functionality with filters, HTML output, and the like. Two examples are Mark Bates' CoverMe and Christoph Olszowka's simplecov. Both are installed as gems, and both come with comprehensive instructions on how to integrate them into your test environment. For our simple tennis scoring example, the summary, written as an HTML file, is fairly straightforward:
 Click the name of a file, and you'll get a display of which lines were executed:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-But It's Too Slow! · 205
+But It's Too Slow! ï¿½ 205
 
-empty b[reak] [file|class:]line b[reak] [file|class:]name b[reak] cat[ch] exception cat[ch] c[ont] del[ete] [nnn] disp[lay] expr disp[lay] down nnn=1 f[rame] fin[ish] h[elp] l[ist] [start­end] m[ethod] i[nstance] obj m[ethod] Name n[ext] nnn=1 [p] expr
+empty b[reak] [file|class:]line b[reak] [file|class:]name b[reak] cat[ch] exception cat[ch] c[ont] del[ete] [nnn] disp[lay] expr disp[lay] down nnn=1 f[rame] fin[ish] h[elp] l[ist] [startï¿½end] m[ethod] i[nstance] obj m[ethod] Name n[ext] nnn=1 [p] expr
 q[uit] s[tep] nnn=1 th[read] l[ist] th[read] [c[ur[rent]]] th[read] [c[ur[rent]]] nnn th[read] stop nnn th[read] resume nnn th[read] [sw[itch]] nnn tr[ace] (on|off) [all] undisp[lay] [nnn] up nnn=1 v[ar] c[onst] Name v[ar] g[lobal] v[ar] l[ocal] v[ar] i[stance] obj wat[ch] expr w[here]
 
 A null command repeats the last command. Sets breakpoint at given line in file (default current file) or class. Sets breakpoint at method in file or class. Displays breakpoints and watchpoints. Stops when exception is raised. Lists current catches. Continues execution. Deletes breakpoint nnn (default all). Displays value of nnn every time debugger gets control. Shows current displays. Moves down nnn levels in the call stack. Synonym for where. Finishes execution of the current function. Shows summary of commands. Lists source lines from start to end. Displays instance methods of obj. Displays instance methods of the class or module name. Executes next nnn lines, stepping over methods. Evaluates expr in the current context. expr may include assignment to variables and method invocations. Exits the debugger. Executes next nnn lines, stepping into methods. Lists all threads. Displays status of current thread. Makes thread nnn current and stops it. Makes thread nnn current and stops it. Resumes thread nnn. Switches thread context to nnn. Toggles execution trace of current or all threads. Removes display (default all). Moves up nnn levels in the call stack. Displays constants in class or module name. Displays global variables. Displays local variables. Displays instance variables of obj. Breaks when expression becomes true. Displays current call stack.
 
 Table 6--Debugger commands
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Part II
 Ruby in Its Setting
@@ -6796,13 +6802,13 @@ CHAPTER 15
 Ruby and Its World
 It's an unfortunate fact of life that our applications have to deal with the big, bad world. In this chapter, we'll look at how Ruby interacts with its environment. Microsoft Windows users will probably also want to look at the platform-specific information on page 289.
 15.1 Command-Line Arguments
-"In the beginning was the command line."1 Regardless of the system in which Ruby is deployed, whether it be a super-high-end scientific graphics workstation or an embedded PDA device, you have to start the Ruby interpreter somehow, and that gives us the opportunity to pass in command-line arguments. A Ruby command line consists of three parts: options to the Ruby interpreter, optionally the name of a program to run, and optionally a set of arguments for that program: ruby < options > < ­ > < programfile > < arguments >* The Ruby options are terminated by the first word on the command line that doesn't start with a hyphen or by the special flag -- (two hyphens). If no filename is present on the command line or if the filename is a single hyphen, Ruby reads the program source from standard input. Arguments for the program itself follow the program name. For example, the following:
+"In the beginning was the command line."1 Regardless of the system in which Ruby is deployed, whether it be a super-high-end scientific graphics workstation or an embedded PDA device, you have to start the Ruby interpreter somehow, and that gives us the opportunity to pass in command-line arguments. A Ruby command line consists of three parts: options to the Ruby interpreter, optionally the name of a program to run, and optionally a set of arguments for that program: ruby < options > < ï¿½ > < programfile > < arguments >* The Ruby options are terminated by the first word on the command line that doesn't start with a hyphen or by the special flag -- (two hyphens). If no filename is present on the command line or if the filename is a single hyphen, Ruby reads the program source from standard input. Arguments for the program itself follow the program name. For example, the following:
 $ ruby -w - "Hello World"
 will enable warnings, read a program from standard input, and pass it the string "Hello World" as an argument.
 1. This is the title of a marvelous essay by Neal Stephenson (available online via http://www.cryptonomicon.com/ beginning.html).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 210
+Chapter 15. Ruby and Its World ï¿½ 210
 
 New in 2.0 New in 2.0 New in 2.0 New in 2.0
 
@@ -6821,9 +6827,9 @@ Command-Line Options
 --enable-gems Allows Ruby to automatically load RubyGems from require. There is a corresponding --disable-gems option.
 --enable-rubyopt Allows Ruby to use the RUBYOPT environment variable. (This is the default.) You should probably disable this option in an environment you want to secure.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Command-Line Arguments · 211
+Command-Line Arguments ï¿½ 211
 
 -E encoding, --encoding encoding, --encoding=encoding Specifies the default character encoding for data read from and written to the outside world. This can be used to set both the external encoding (the encoding to be assumed for file contents) and optionally the default internal encoding (the file contents are transcoded to this when read and transcoded from this when written). The format of the encoding parameter is -E external, -E external:internal, or -E :internal. See Chapter 17, Character Encoding, on page 239 for details. See also -U.
 -e 'command' Executes command as one line of Ruby source. Several -e's are allowed, and the commands are treated as multiple lines in the same program. If programfile is omitted when -e is present, execution stops after the -e commands have been run. Programs run using -e have access to the old behavior of ranges and regular expressions in conditions--ranges of integers compare against the current input line number, and regular expressions match against $_.
@@ -6852,9 +6858,9 @@ $ ruby -n -e "print if /wombat/" *.txt
 
 $ ruby -p -e "$_.downcase!" *.txt
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 212
+Chapter 15. Ruby and Its World ï¿½ 212
 -r library Requires the named library or gem before executing.
 -S Looks for the program file using the RUBYPATH or PATH environment variable.
 -s Any command-line switches found after the program filename, but before any filename arguments or before a --, are removed from ARGV and set to a global variable named for the switch. In the following example, the effect of this would be to set the variable $opt to "electric":
@@ -6871,9 +6877,9 @@ $ ruby -s prog -opt=electric ./mydata
 Argument Processing: ARGV and ARGF
 Any command-line arguments after the program filename are available to your Ruby program in the global array ARGV. For instance, assume test.rb contains the following program:
 ARGV.each {|arg| p arg }
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Command-Line Arguments · 213
+Command-Line Arguments ï¿½ 213
 Invoke it with the following command line:
 $ ruby -w test.rb "Hello World" a1 1.6180
 It'll generate the following output:
@@ -6888,9 +6894,9 @@ while line = gets printf "%d: %10s[%d] %s", ARGF.lineno, ARGF.filename, ARGF.fil
 end
 If we run it, passing a couple of file names, it will copy the contents of those files.
 $ ruby copy.rb testfile otherfile 1: testfile[1] This is line one 2: testfile[2] This is line two 3: testfile[3] This is line three 4: testfile[4] And so on... 5: otherfile[1] ANOTHER LINE ONE 6: otherfile[2] AND ANOTHER LINE TWO 7: otherfile[3] AND FINALLY THE LAST LINE
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 214
+Chapter 15. Ruby and Its World ï¿½ 214
 In-place Editing In-place editing is a hack inherited from Perl. It allows you to alter the contents of files passed in on the command line, retaining a backup copy of the original contents. To turn on in-place editing, give Ruby the file extension to use for the backup file, either with the -i [ext] command line option, or by calling ARGF.inplace_mode=ext in your code. Now, as your code reads through each file given on the command line, Ruby will rename the original file by appending the backup extension. It will then create a new file with the original name, and open it for writing on standard output. This all means that if you code a program such as this:
 while line = gets puts line.chomp.reverse
 end
@@ -6904,9 +6910,9 @@ You can access operating system environment variables using the predefined varia
 ENV['SHELL'] ENV['HOME'] ENV['USER'] ENV.keys.size ENV.keys[0, 4]
 The values of some environment variables are read by Ruby when it first starts. These variables modify the behavior of the interpreter. The environment variables used by Ruby are listed in the following table.
 2. ENV is not actually a hash, but if you need to, you can convert it into a Hash using ENV#to_hash.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Environment Variables · 215
+Environment Variables ï¿½ 215
 
 Variable Name DLN_LIBRARY_PATH HOME
 LOGDIR
@@ -6937,9 +6943,9 @@ A Ruby program may write to the ENV object. On most systems, this changes the va
 
 3. This applies to MRI only.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 216
+Chapter 15. Ruby and Its World ï¿½ 216
 puts "In parent, term = #{ENV['TERM']}" fork do
 puts "Start of child 1, term = #{ENV['TERM']}" ENV['TERM'] = "ansi" fork do
 puts "Start of child 2, term = #{ENV['TERM']}" end Process.wait puts "End of child 1, term = #{ENV['TERM']}" end Process.wait puts "Back in parent, term = #{ENV['TERM']}"
@@ -6954,9 +6960,9 @@ On our OS X box, with RVM installed, this produces the following list:
 The site_ruby directories are intended to hold modules and extensions that you've added. The architecture-dependent directories (x86_64-darwin... in this case) hold executables and other things specific to this particular machine. All these directories are automatically included in Ruby's search for libraries.
 Sometimes this isn't enough. Perhaps you're working on a large project written in Ruby and you and your colleagues have built a substantial library of Ruby code. You want everyone on the team to have access to all this code. You have a couple of options to accomplish this. If your program runs at a safe level of zero (see Chapter 26, Locking Ruby in the Safe, on page 409), you can set the environment variable RUBYLIB to a list of one or more directories to be searched.4 If your program is not setuid, you can use the command-line parameter -I to do the same thing.
 4. The separator between entries is a semicolon on Windows; for Unix, it's a colon.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RubyGems Integration · 217
+RubyGems Integration ï¿½ 217
 The Ruby variable $: is an array of places to search for loaded files. As we've seen, this variable is initialized to the list of standard directories, plus any additional ones you specified using RUBYLIB and -I. You can always add directories to this array from within your running program. Prior to Ruby 1.9, this used to be a common idiom:
 $: << File.dirname(__FILE__) require 'other_file'
 This added the directory of the running file to the search path, so other_file.rb could be found there by the subsequent require. Now we use require_relative instead.
@@ -6974,9 +6980,9 @@ Let's start by seeing whether Builder is available as a gem:
 $ gem query --details --remote --name-matches builder AntBuilder (0.4.3)
 Author: JRuby-extras Homepage: http://jruby-extras.rubyforge.org/ AntBuilder: Use ant from JRuby. Only usable within JRuby builder (2.1.2) Author: Jim Weirich Homepage: http://onestepback.org Builders for MarkUp.
 The --details option displays the descriptions of any gems it finds. The --remote option searches the remote repository. And the --name-matches option says to search the central gem
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 218
+Chapter 15. Ruby and Its World ï¿½ 218
 repository for any gem whose name matches the regular expression /builder/. (We could have used the short-form options -d, -r, and -n.) The result shows a number of gems have builder in their name; the one we want is just plain builder.
 The number after the name shows the latest version. You can see a list of all available versions using the --all option. We'll also use the list command, as it lets us match on an exact name:
 $ gem list --details --remote --all builder *** REMOTE GEMS ***
@@ -6992,9 +6998,9 @@ Reading the Gem Documentation
 Being that this is your first time using Builder, you're not exactly sure how to use it. Fortunately, RubyGems installed the documentation for Builder on your machine. We just have to find it.
 As with most things in RubyGems, the documentation for each gem is stored in a central, protected, RubyGems-specific place. This will vary by system and by where you may explicitly choose to install your gems. The most reliable way to find the documents is to ask the gem command where your RubyGems main directory is located:
 $ gem environment gemdir /usr/local/lib/ruby/gems/1.9.3
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RubyGems Integration · 219
+RubyGems Integration ï¿½ 219
 RubyGems stores generated documentation beneath the doc/ subdirectory of this directory. The easiest way to view gems' RDoc documentation is to use RubyGems' included gem server utility. To start gem server, simply type this:
 $ gem server Server started at http://[::ffff:0.0.0.0]:8808 Server started at http://0.0.0.0:8808
 gem server starts a web server running on whatever computer you run it on. By default, it will start on port 8808 and will serve gems and their documentation from the default RubyGems installation directory. Both the port and the gem directory are overridable via command-line options, using the -p and -d options, respectively. Once you've started the gem server, if you are running it on your local computer, you can access the documentation for your installed gems by pointing your web browser to http://localhost:8808. There, you will see a list of the gems you have installed with their descriptions and links to their RDoc documentation. Click the rdoc link for Builder--the result will look something like the following.
@@ -7004,9 +7010,9 @@ require 'builder' xml = Builder::XmlMarkup.new(target: STDOUT, indent: 2) xml.pe
 xml.name do xml.first "Dave"
 end xml.location "Texas" xml.preference("ruby") end
 5. Prior to Ruby 1.9, before you could use a gem in your code, you first had to load a support library called rubygems. Ruby now integrates that support directly, so this step is no longer needed.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 220
+Chapter 15. Ruby and Its World ï¿½ 220
 produces: <person type="programmer">
 <name> <first>Dave</first>
 </name> <location>Texas</location> <preference>ruby</preference> </person>
@@ -7023,9 +7029,9 @@ Have we just overwritten the 2.1.2 release of Builder that we'd previously insta
 $ gem list builder *** LOCAL GEMS *** builder (2.1.2, 0.1.1)
 Now that we have both versions installed locally, how do we tell our legacy code to use the old one while still having our new code use the latest version? It turns out that require automatically loads the latest version of a gem, so the earlier code on page 219 will work fine. If we want to specify a version number when we load a gem, we have to do a little bit more work, making it explicit that we're using RubyGems:
 6. By the time this book reaches you, the list of available versions will likely have changed.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RubyGems Integration · 221
+RubyGems Integration ï¿½ 221
 
 gem 'builder', '< 1.0' require 'builder'
 
@@ -7046,9 +7052,9 @@ Gems Can Be More Than Libraries
 As well as installing libraries that can be used inside your application code, RubyGems can also install utility programs that you can invoke from the command line. Often these utilities are wrappers around the libraries included in the gem. For example, Marcel Molina's AWS:S3 gem is a library that gives you programmatic access to Amazon's S3 storage facility. As well as the library itself, Marcel provided a command-line utility, s3sh, which lets you interact with your S3 assets. When you install the gem, s3sh is automatically loaded into the same bin/ directory that holds the Ruby interpreter.
 There's a small problem with these installed utilities. Although gems supports versioning of libraries, it does not version command-line utilities. With these, it's "last one in wins."
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 222
+Chapter 15. Ruby and Its World ï¿½ 222
 15.6 The Rake Build Tool
 As well as the Builder gem, Jim Weirich wrote an incredibly useful utility program called Rake. Prior to Ruby 1.9, you had to install Rake as a separate gem, but it is now included in the base Ruby installation. Rake was initially implemented as a Ruby version of Make, the common build utility. However, calling Rake a build utility is to miss its true power. Really, Rake is an automation tool--it's a way of putting all those tasks that you perform in a project into one neat and tidy place. Let's start with a trivial example. As you edit files, you often accumulate backup files in your working directories. On Unix systems, these files often have the same name as the original files, but with a tilde character appended. On Windows boxes, the files often have a .bak extension. We could write a trivial Ruby program that deletes these files. For a Unix box, it might look something like this:
 require 'fileutils' files = Dir['*~'] FileUtils::rm files, verbose: true
@@ -7057,9 +7063,9 @@ desc "Remove files whose names end with a tilde" task :delete_unix_backups do
 files = Dir['*~'] rm(files, verbose: true) unless files.empty? end
 Although it doesn't have an .rb extension, this is actually just a file of Ruby code. Rake defines an environment containing methods such as desc and task and then executes the Rakefile. The desc method provides a single line of documentation for the task that follows it. The task method defines a Rake task that can be executed from the command line. The parameter is the name of the task (a symbol), and the block that follows is the code to be executed. Here we can just use rm--all the methods in FileUtils are automatically available inside Rake files. We can invoke this task from the command line:
 $ rake delete_unix_backups (in /Users/dave/BS2/titles/ruby4/Book/code/rake) rm entry~
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Rake Build Tool · 223
+The Rake Build Tool ï¿½ 223
 The first line shows us the name of the directory where Rake found the Rakefile (remember that this might be in a directory above our current working directory). The next line is the output of the rm method, in this case showing it deleted the single file entry~.
 OK, now let's write a second task in the same Rakefile. This one deletes Windows backup files.
 desc "Remove files with a .bak extension" task :delete_windows_backups do
@@ -7079,9 +7085,9 @@ desc "Remove files with a .bak extension" task :delete_windows_backups do
 delete "*.bak" end
 desc "Remove Unix and Windows backup files" task :delete_backups => [ :delete_unix_backups, :delete_windows_backups ] do
 puts "All backups deleted" end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 15. Ruby and Its World · 224
+Chapter 15. Ruby and Its World ï¿½ 224
 
 If a Rake task is named default, it will be executed if you invoke Rake with no parameters.
 
@@ -7117,7 +7123,7 @@ Extension libraries use this configuration file in order to compile and link pro
 
 7. http://martinfowler.com/articles/rake.html 8. http://errtheblog.com/posts/60-sake-bomb 9. http://github.com/wycats/thor
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 16
 Namespaces, Source Files, and Distribution
@@ -7130,9 +7136,9 @@ class Square SIDES = 4 def initialize(side_length) @side_length = side_length en
 end
 puts "A triangle has #{Triangle::SIDES} sides"
 sq = Square.new(3) puts "Area of square = #{sq.area}"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 226
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 226
 
 produces:
 A triangle has 3 sides Area of square = 9
@@ -7162,9 +7168,9 @@ Some languages, such as Java, make this easy. They dictate that each outer-level
 1. The thing to the right of the :: can also be a class or module method, but this use is falling out of favor --using a period makes it clearer that it's just a regular old method call.
 2. Remember that we said that most everything in Ruby is an object. Well, classes and modules are, too. The name that you use for a class, such as String, is really just a Ruby constant containing the object representing that class.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Organizing Your Source · 227
+Organizing Your Source ï¿½ 227
 languages, such as Ruby, have no rules relating source files and their content. In Ruby, you're free to organize your code as you like. But, in the real world, you'll find that some kind of consistency really helps. It will make it easier for you to navigate your own projects, and it will also help when you read (or incorporate) other people's code. So, the Ruby community is gradually adopting a kind of de facto standard. In many ways, it follows the spirit of the Java model, but without some of the inconveniences suffered by our Java brethren. Let's start with the basics.
 Small Programs
 Small, self-contained scripts can be in a single file. However, if you do this, you won't easily be able to write automated tests for your program, because the test code won't be able to load the file containing your source without the program itself running. So, if you want to write a small program that also has automated tests, split that program into a trivial driver that provides the external interface (the command-line part of the code) and one or more files containing the rest. Your tests can then exercise these separate files without actually running the main body of your program. Let's try this for real. Here's a simple program that finds anagrams in a dictionary. Feed it one or more words, and it gives you the anagrams of each. Here's an example:
@@ -7180,9 +7186,9 @@ end
 opts.on("-h", "--help", "Show this message") do puts opts exit
 end
 3. You might be wondering about the line word.unpack("c*").sort.pack("c*"). This uses the function unpack to break a string into an array of characters, which are then sorted and packed back into a string.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 228
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 228
 
 begin ARGV << "-h" if ARGV.empty? opts.parse!(ARGV)
 rescue OptionParser::ParseError => e STDERR.puts e.message, "\n", opts exit(-1)
@@ -7200,7 +7206,7 @@ ARGV.each do |word| signature = signature_of(word) if signatures[signature] puts
 end
 Then someone asks us for a copy, and we start to feel embarrassed. It has no tests, and it isn't particularly well packaged.
 Looking at the code, there are clearly three sections. The first twenty-five or so lines do option parsing, the next ten or so lines read and convert the dictionary, and the last few lines look up each command-line argument and report the result. Let's split our file into four parts:
-· An option parser · A class to hold the lookup table for anagrams · A class that looks up words given on the command line · A trivial command-line interface
+ï¿½ An option parser ï¿½ A class to hold the lookup table for anagrams ï¿½ A class that looks up words given on the command line ï¿½ A trivial command-line interface
 
 The first three of these are effectively library files, used by the fourth.
 
@@ -7210,9 +7216,9 @@ anagram/ bin/ lib/ test/
 
 <- top-level <- command-line interface goes here <- three library files go here <- test files go here
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Organizing Your Source · 229
+Organizing Your Source ï¿½ 229
 
 Now let's look at the library files. We know we're going to be defining (at least) three classes. Right now, these classes will be used only inside our command-line program, but it's conceivable that other people might want to include one or more of our libraries in their own code. This means that we should be polite and not pollute the top-level Ruby namespace with the names of all our classes and so on. We'll create just one top-level module, Anagram, and then place all our classes inside this module. This means that the full name of (say) our options-parsing class will be Anagram::Options.
 This choice informs our decision on where to put the corresponding source files. Because class Options is inside the module Anagram, it makes sense to put the corresponding file, options.rb, inside a directory named anagram/ in the lib/ directory. This helps people who read your code in the future; when they see a name like A::B::C, they know to look for c.rb in the b/ directory in the a/ directory of your library. So, we can now flesh out our directory structure with some files:
@@ -7257,9 +7263,9 @@ word..."
 opts.on("-d", "--dict path", String, "Path to dictionary") do |dict| @dictionary = dict
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 230
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 230
 opts.on("-h", "--help", "Show this message") do puts opts exit
 end
 begin argv = ["-h"] if argv.empty? opts.parse!(argv)
@@ -7276,9 +7282,9 @@ context "specifying words and no dictionary" do should "return the words" do opt
 end
 context "specifying words and a dictionary" do should "return the words" do opts = Anagram::Options.new(["-d", "mydict", "word1", "word2"])
 4. We talk about Shoulda in the Unit Testing chapter on page 186.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Organizing Your Source · 231
+Organizing Your Source ï¿½ 231
 assert_equal ["word1", "word2"], opts.words_to_find end end end
 The line to note in this file is as follows:
 require_relative '../lib/anagram/options'
@@ -7296,9 +7302,9 @@ end
 def self.signature_of(word) word.unpack("c*").sort.pack("c*")
 end end end
 Again, we embed the Finder class inside the top-level Anagram module. And, again, this code is self-contained, allowing us to write some simple unit tests:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 232
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 232
 packaging/anagram/test/test_finder.rb require 'test/unit' require 'shoulda' require_relative '../lib/anagram/finder'
 class TestFinder < Test::Unit::TestCase
 context "signature" do { "cat" => "act", "act" => "act", "wombat" => "abmotw" }.each do |word, signature| should "be #{signature} for #{word}" do assert_equal signature, Anagram::Finder.signature_of(word) end end
@@ -7317,9 +7323,9 @@ We now have all the support code in place. We just need to run it. We'll make th
 
 5. If you're on Windows, you might want to wrap the invocation of this in a .cmd file.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Distributing and Installing Your Code · 233
+Distributing and Installing Your Code ï¿½ 233
 packaging/anagram/bin/anagram #! /usr/local/rubybook/bin/ruby require 'anagram/runner'
 runner = Anagram::Runner.new(ARGV) runner.run
 The code that this script invokes (lib/anagram/runner.rb) knits our other libraries together:
@@ -7334,9 +7340,9 @@ There's nothing like a cheating coed teaching code.
 16.3 Distributing and Installing Your Code
 Now that we have our code a little tidier, it would be nice to be able to distribute it to others. We could just zip or tar it up and send them our files, but then they'd have to run the code the way we do, remembering to add the correct -I lib options and so on. They'd also have some problems if they wanted to reuse one of our library files--it would be sitting in some random directory on their hard drive, not in a standard location used by Ruby. Instead, we're looking for a way to take our little application and install it in a standard way.
 Now, Ruby already has a standard installation structure on your computer. When Ruby is installed, it puts its commands (ruby, ri, irb, and so on) into a directory of binary files. It puts
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 234
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 234
 
 its libraries into another directory tree and documentation somewhere else. So, one option would be to write an installation script that you distribute with your code that copies components of your application to the appropriate directories on the system that's installing it.
 
@@ -7404,9 +7410,9 @@ end
 
 6. Prior to RubyGems, folks often distibuted a tool called setup.rb with their libraries. This would install the library into the standard Ruby directory structure on a user's machine.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Distributing and Installing Your Code · 235
+Distributing and Installing Your Code ï¿½ 235
 The first line of the spec gives our gem a name. This is important--it will be used as part of the package name, and it will appear as the name of the gem when installed. Although it can be mixed case, we find that confusing, so do our poor brains a favor and use lowercase for gem names.
 The version string is significant, because RubyGems will use it both for package naming and for dependency management. Stick to the x.y.z format.7
 The platform field tells RubyGems that (in this case) our gem is pure Ruby code. It's also possible to package (for example) Windows .exe files inside a gem, in which case you'd use Gem::Platform::Win32.
@@ -7425,9 +7431,9 @@ $ sudo gem install pkg/anagram-0.0.1.gem Successfully installed anagram-0.0.1 1 
 
 7. And read http://www.rubygems.org/read/chapter/7 for information on what the numbers mean. 8. http://www.rubygems.org/read/book/4 9. http://www.rubygems.org/
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 16. Namespaces, Source Files, and Distribution · 236
+Chapter 16. Namespaces, Source Files, and Distribution ï¿½ 236
 And check to see that it is there:
 $ gem list anagram -d *** LOCAL GEMS *** anagram (0.0.1)
 Author: Dave Thomas Homepage: http://pragdave.pragprog.com Installed at: /usr/local/lib/ruby/gems/1.9.0
@@ -7443,9 +7449,9 @@ And, at that point, any Ruby user in the world can do this:
 $ gem search -r anagram *** REMOTE GEMS *** anagram (0.0.1)
 and, even better, can do this:
 $ gem install anagram
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Distributing and Installing Your Code · 237
+Distributing and Installing Your Code ï¿½ 237
 Adding Even More Automation
 The Jeweler library10 can create a new project skeleton that follows the layout guidelines in this chapter. It also provides a set of Rake tasks that will help create and manage your project as a gem.
 If you're a Rails user, you'll have come across bundler, a utility that manages the gems used by your application. Bundler is more general than this: it can be used to manage the gems used by any piece of Ruby code.
@@ -7454,7 +7460,7 @@ See You on GitHub Finally, if you're developing a Ruby application or library th
 
 10. http://github.com/technicalpickles/jeweler 11. http://github.com
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 17
 Character Encoding
@@ -7464,9 +7470,9 @@ Before delving into the details, let's spend a few minutes thinking about why we
 She converts her program into a gem, and users around the world try it. Dan, in the United States, doesn't read Japanese, so the content of her source files makes no sense to him. However, because the source files carry their encoding around with them, there's no problem; his Ruby happily compiles her code. But Dan wants to test her code against a file that contains regular old ASCII characters. That's no problem, because the file encoding is determined by Dan's locale, not by the encoding of the Ruby source. Similarly, Sophie in Paris uses the same gem, but her data is encoded in ISO-8859-1 (which is basically ASCII plus a useful subset of accented European characters in character positions above 127). Again, no problem.
 Back in Japan, Yui has a new feature to add to her library. Users want to create short PDF summaries of the data she reads, but the PDF-writing library she's using supports only ISO8859-1 characters. So, regardless of the encoding of the source code of her program and the files she reads, she needs to be able to create 8859-1 strings at runtime. Again, we need to be able to decouple the encoding of individual objects from the encoding of everything else.
 If this sounds complex, well...it is. But the good news is that the Ruby team spent a long time thinking up ways to make it all relatively easy to use when you're writing code. In this section, we'll look at how to work with the various encodings, and I'll try to list some conventions that will make your code work in the brave new multinational world.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 240
+Chapter 17. Character Encoding ï¿½ 240
 17.1 Encodings
 At the heart of the Ruby encoding system is the new Encoding class.1 Objects of class Encoding each represent a different character encoding. The Encoding.list method returns a list of the built-in encodings, and the Encoding.aliases method returns a hash where the keys are aliases and the values are the corresponding base encoding. We can use these two methods to build a table of known encoding names:
 encoding/list_encodings.rb encodings = Encoding
@@ -7482,9 +7488,9 @@ Strings, regular expressions, symbols, I/O streams, and program source files are
 First and foremost, there's a simple rule: if you only ever use 7-bit ASCII characters in your source, then the source file encoding is irrelevant. So, the simplest way to write Ruby source files that just work everywhere is to stick to boring old ASCII.
 1. For a nice, easy read on encodings, charcter sets, and Unicode, you could take a look at Joel Spolsky's 2003 article on the Web at http://www.joelonsoftware.com/articles/Unicode.html.
 2. There isn't actually a character encoding called ASCII-8BIT. It's a Ruby fantasy but a useful one. We'll talk about it shortly.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Source Files · 241
+Source Files ï¿½ 241
 
 ASCII-8BIT (BINARY) Big5-UAO CP51932 CP855 CP951 EUC-JP-2004 (EUC-JISX0213) eucJP-ms (euc-jp-ms) GB1988 IBM437 (CP437) IBM852 IBM860 (CP860) IBM863 (CP863) IBM866 (CP866) ISO-2022-JP-2 (ISO2022-JP2) ISO-8859-10 (ISO8859-10) ISO-8859-14 (ISO8859-14) ISO-8859-2 (ISO8859-2) ISO-8859-5 (ISO8859-5) ISO-8859-8 (ISO8859-8) KOI8-U macCyrillic MacJapanese (MacJapan) macThai Shift_JIS SJIS-SoftBank TIS-620 UTF-16BE (UCS-2BE) UTF-32BE (UCS-4BE) UTF-8 (CP65001) UTF8-MAC (UTF-8-MAC, UTF-8-HFS) Windows-1251 (CP1251) Windows-1254 (CP1254) Windows-1257 (CP1257) Windows-874 (CP874)
 
@@ -7501,9 +7507,9 @@ As Ruby is just scanning for coding:, you could also write the following.
 
 3. Or a string passed to eval
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 242
+Chapter 17. Character Encoding ï¿½ 242
 
 # encoding: ascii
 Emacs users might like the fact that this also works:
@@ -7533,9 +7539,9 @@ produces:
 puts "The size of a string containing  is #{PI.size}" ^
 prog.rb:2: invalid multibyte char (Windows-31J) prog.rb:3: syntax error, unexpected tCONSTANT, expecting end-of-input
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Source Files · 243
+Source Files ï¿½ 243
 
 This time, Ruby complains because the file contains byte sequences that are illegal in the given encoding. And, to make matters even more confusing, the parser swallowed up the double quote after the  character, presumably while trying to build a valid SJIS character. This led to the second error message, because the word The is now interpreted as program text.
 
@@ -7569,9 +7575,9 @@ You can create arbitrary Unicode characters in strings and regular expressions u
 Literals containing a \u sequence will always be encoded UTF-8, regardless of the source file encoding.
 The String#bytes method is a convenient way to inspect the bytes in a string object. Notice that in the following code, the 16-bit codepoint is converted to a two-byte UTF-8 encoding:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 244
+Chapter 17. Character Encoding ï¿½ 244
 # encoding: utf-8 "pi: \u03c0".bytes # => [112, 105, 58, 32, 207, 128]
 Eight-Bit Clean Encodings Ruby supports a virtual encoding called ASCII-8BIT. Despite the ASCII in the name, this is really intended to be used on data streams that contain binary data (which is why it has an alias of BINARY}). However, you can also use this as an encoding for source files. If you do, Ruby interprets all characters with codes below 128 as regular ASCII and all other characters as valid constituents of variable names. This is basically a neat hack, because it allows you to compile a file written in an encoding you don't know--the characters with the high-order bit set will be assumed to be printable.
 # encoding: ascii-8bit  = 3.14159 puts " = #{}" puts "Size of '' = #{''.size}" produces:  = 3.14159 Size of '' = 2
@@ -7586,9 +7592,9 @@ STRING_U = "og" # \xe2\x88\x82\x6f\x67
 Now let's require both of these files into a third file. Just for the heck of it, let's declare the third file to have SJIS encoding:
 # encoding: sjis
 require_relative 'iso-8859-1' require_relative 'utf'
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Transcoding · 245
+Transcoding ï¿½ 245
 
 def show_encoding(str) puts "'#{str.bytes.to_a}' (#{str.size} chars, #{str.bytesize} bytes) " + "has encoding #{str.encoding.name}"
 end
@@ -7601,9 +7607,9 @@ Each file has an independent encoding, and string literals in each retain their 
 
 17.3 Transcoding
 
-As we've already seen, strings, symbols, and regular expressions are now labeled with their encoding. You can convert a string from one encoding to another using the String#encode method. For example, we can convert the word olé from UTF-8 to ISO-8859-1:
+As we've already seen, strings, symbols, and regular expressions are now labeled with their encoding. You can convert a string from one encoding to another using the String#encode method. For example, we can convert the word olï¿½ from UTF-8 to ISO-8859-1:
 
-# encoding: utf-8 ole_in_utf = "olé" ole_in_utf.encoding ole_in_utf.bytes.to_a
+# encoding: utf-8 ole_in_utf = "olï¿½" ole_in_utf.encoding ole_in_utf.bytes.to_a
 
 # => #<Encoding:UTF-8> # => [111, 108, 195, 169]
 
@@ -7625,9 +7631,9 @@ You can, however, override this behavior, for example supplying a placeholder ch
 
 # encoding: utf-8 pi = "pi = " puts pi.encode("iso-8859-1", :undef => :replace, :replace => "??")
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 246
+Chapter 17. Character Encoding ï¿½ 246
 
 produces: pi = ??
 
@@ -7647,7 +7653,7 @@ str.bytes.to_a # => [195, 169]
 
 str.encoding # => #<Encoding:UTF-8>
 
-Finally, you can use encode (with two parameters) to convert between two encodings if your source string is ASCII-8BIT. This might happen if, for example, you're reading data in binary mode from a file and choose not to encode it at the time you read it. Here we fake that out by creating an ASCII-8BIT string that contains an ISO-8859-1 sequence (our old friend olé). We then convert the string to UTF-8. To do this, we have to tell encode the actual encoding of the bytes by passing it a second parameter:
+Finally, you can use encode (with two parameters) to convert between two encodings if your source string is ASCII-8BIT. This might happen if, for example, you're reading data in binary mode from a file and choose not to encode it at the time you read it. Here we fake that out by creating an ASCII-8BIT string that contains an ISO-8859-1 sequence (our old friend olï¿½). We then convert the string to UTF-8. To do this, we have to tell encode the actual encoding of the bytes by passing it a second parameter:
 
 # encoding: ascii-8bit
 
@@ -7681,9 +7687,9 @@ Every I/O object has an associated external encoding. This is the encoding of th
 
 Now, your program may want to operate internally in a different encoding. For example, some of my files may be encoded with ISO-8859-1, but we want our Ruby program to work internally using UTF-8. Ruby I/O objects manage this by having an optional associated internal encoding. If set, then input will be transcoded from the external to the internal encodings on read operations, and output will be transcoded from internal to external encoding on write operations.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Input and Output Encoding · 247
+Input and Output Encoding ï¿½ 247
 
 Let's start with the simple cases. On our OS X box, the default external encoding is UTF-8. If we don't override it, all our file I/O will therefore also be in UTF-8. We can query the external encoding of an I/O object using the IO#external_encoding method:
 
@@ -7698,7 +7704,7 @@ f = File.open("/etc/passwd", "r:ascii") puts "File encoding is #{f.external_enco
 produces:
 File encoding is US-ASCII Data encoding is US-ASCII
 
-You can force Ruby to transcode--change the encoding--of data it reads and writes by putting two encoding names in the mode string, again with a colon before each. For example, the file iso-8859-1.txt contains the word olé in ISO-8859-1 encoding, so the e-acute (é) character is encoded by the single byte \xe9. I can view this file's contents in hex using the od commandline tool. (Windows users can use the d command in debug to do the same.)
+You can force Ruby to transcode--change the encoding--of data it reads and writes by putting two encoding names in the mode string, again with a colon before each. For example, the file iso-8859-1.txt contains the word olï¿½ in ISO-8859-1 encoding, so the e-acute (ï¿½) character is encoded by the single byte \xe9. I can view this file's contents in hex using the od commandline tool. (Windows users can use the d command in debug to do the same.)
 
 0000000 0000004
 
@@ -7713,15 +7719,15 @@ UTF-8 UTF-8 ol?
 The problem is that the binary sequence for the e-acute isn't the same in ISO-8859-1 and UTF-8. Ruby just assumed the file contained UTF-8 characters, tagging the string it read accordingly.
 We can tell the program that the file contains ISO-8859-1:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 248
+Chapter 17. Character Encoding ï¿½ 248
 f = File.open("iso-8859-1.txt", "r:iso-8859-1") puts f.external_encoding.name line = f.gets puts line.encoding puts line
 produces: ISO-8859-1 ISO-8859-1 ol?
 This doesn't help us much. The string is now tagged with the correct encoding, but our operating system is still expecting UTF-8 output.
 The solution is to map the ISO-8859-1 to UTF-8 on input:
 f = File.open("iso-8859-1.txt", "r:iso-8859-1:utf-8") puts f.external_encoding.name line = f.gets puts line.encoding puts line
-produces: ISO-8859-1 UTF-8 olé
+produces: ISO-8859-1 UTF-8 olï¿½
 If you specify two encoding names when opening an I/O object, the first is the external encoding, and the second is the internal encoding. Data is transcoded from the former to the latter on reading and the opposite way on writing.
 Binary Files
 In the old days, we Unix users used to make little snide comments about the way that Windows users had to open binary files using a special binary mode. Well, now the Windows folks can get their own back. If you want to open a file containing binary data in Ruby, you must now specify the binary flag, which will automatically select the 8-bit clean ASCII-8BIT encoding. To make things explicit, you can use "binary" as an alias for the encoding:
@@ -7729,9 +7735,9 @@ f = File.open("iso-8859-1.txt", "rb") puts "Implicit encoding is #{f.external_en
 produces: Implicit encoding is ASCII-8BIT Explicit encoding is ASCII-8BIT String encoding is ASCII-8BIT
 17.5 Default External Encoding
 If you look at the text files on your computer, the chances are that they'll all use the same encoding. In the United States, that'll probably be UTF-8 or ASCII. In Europe, it might be UTF-8 or ISO-8859-x. If you use a Windows box, you may be using a different set of encodings
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Encoding Compatibility · 249
+Encoding Compatibility ï¿½ 249
 (use the console chcp command to find your current code page). But whatever encoding you use, the chances are good that you'll stick with it for the majority of your work.
 On Unix-like boxes, you'll probably find you have the LANG environment variable set. On one of our OS X boxes, it has the value en_US.UTF-8
 This says that we're using the English language in the U.S. territory and the default code set is UTF-8. On startup, Ruby looks for this environment variable and, if present, sets the default external encoding from the code set component. Thus, on this box, Ruby 1.9 programs run with a default external encoding of UTF-8. If instead we were in Japan and the LANG variable were set to ja_JP.sjis, the encoding would be set to Shift JIS. We can look at the default external encoding by querying the Encoding class. While we're at it, we'll experiment with different values in the LANG environment variable:
@@ -7745,9 +7751,9 @@ Before Ruby performs operations involving strings or regular expressions, it fir
 of the encodings. 3. If the encodings in the two objects are compatible (which we'll discuss next), the opera-
 tion is permitted. 4. Otherwise, an exception is raised.
 Let's say you have a set of text files containing markup. In some of the files, authors used the sequence &hellip; to represent an ellipsis. In other files, which have UTF-8 encoding, authors used an actual ellipsis character (\u2026). We want to convert both forms to three periods.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 17. Character Encoding · 250
+Chapter 17. Character Encoding ï¿½ 250
 We can start off with a simplistic solution:
 # encoding: utf-8 while line = gets
 result = line.gsub(/&hellip;/, "...") .gsub(/\u2026/, "...") # unicode ellipsis
@@ -7761,11 +7767,11 @@ $ ruby -E iso-8859-1:utf-8
 You can specify just an internal encoding by omitting the external option but leaving the colon:
 $ ruby -E :utf-8
 Indeed, because UTF-8 is probably the best of the available transcoding targets, Ruby has the -U command-line option, which sets the internal encoding to UTF-8.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Fun with Unicode · 251
+Fun with Unicode ï¿½ 251
 You can query the default internal encoding in your code with the Encoding.default_internal method. This returns nil if no default internal encoding has been set.
-One last note before we leave this section: if you compare two strings with different encodings, Ruby does not normalize them. Thus, "é" tagged with a UTF-8 encoding will not compare equal to "é" tagged with ISO-8859-1, because the underlying bytes are different.
+One last note before we leave this section: if you compare two strings with different encodings, Ruby does not normalize them. Thus, "ï¿½" tagged with a UTF-8 encoding will not compare equal to "ï¿½" tagged with ISO-8859-1, because the underlying bytes are different.
 17.8 Fun with Unicode
 As Daniel Berger pointed out,4 we can now do fun things with method and variable names:
 # encoding: utf-8 def (*args)
@@ -7775,7 +7781,7 @@ Of course, this way can lead to some pretty obscure and hard-to-use code. (For e
 
 4. http://www.oreillynet.com/ruby/blog/2007/10/fun_with_unicode_1.html
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 18
 Interactive Ruby Shell
@@ -7788,9 +7794,9 @@ ruby 2.0 > 1 + 2 => 3 ruby 2.0 > 3 + ruby 2.0 > 4 => 7
 You can leave irb by typing exit or quit or by entering an end-of-file character (unless IGNORE_EOF mode is set).
 During an irb session, the work you do is accumulated in irb's workspace. Variables you set, methods you define, and classes you create are all remembered and may be used subsequently in that session.
 ruby 2.0 > def fib_up_to(n) ruby 2.0 ?> f1, f2 = 1, 1 ruby 2.0 ?> while f1 <= n ruby 2.0 ?> puts f1 ruby 2.0 ?> f1, f2 = f2, f1+f2 ruby 2.0 ?> end ruby 2.0 ?> end => nil
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 18. Interactive Ruby Shell · 254
+Chapter 18. Interactive Ruby Shell ï¿½ 254
 ruby 2.0 > fib_up_to(4) 1 1 2 3 => nil
 Notice the nil return values. These are the results of defining the method and then running it--our method printed the Fibonacci numbers but then returned nil.
 A great use of irb is experimenting with code you've already written. Perhaps you want to track down a bug, or maybe you just want to play. If you load your program into irb, you can then create instances of the classes it defines and invoke its methods. For example, the file code/irb/fibbonacci_sequence.rb contains the following method definition:
@@ -7805,9 +7811,9 @@ If your Ruby installation has readline support, then you can use irb's completio
 For example, the following snippet shows the middle of an irb session, where you just assigned a string object to the variable a.
 ruby 2.0 > a = "cat" => "cat"
 You now want to try the method String#reverse on this object. You start by typing a.re and hitting Tab twice.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Command Line · 255
+Command Line ï¿½ 255
 
 Option --back-trace-limit n
 --context-mode n -d -E enc -f -h, --help -I directories --inf-ruby-mode
@@ -7819,19 +7825,19 @@ Description Displays backtrace information using the top n and last n entries. T
 
 Table 9--irb Command-line options
 
-ruby 2.0 > a.re«Tab»«Tab»
+ruby 2.0 > a.reï¿½Tabï¿½ï¿½Tabï¿½
 a.replace a.respond_to? a.reverse a.reverse! a.respond_to_missing?
 irb lists all the methods supported by the object in a whose names start with re. We see the one we want, reverse, and enter the next character of its name, v, followed by the Tab key:
-ruby 2.0 > a.rev«TAB»
+ruby 2.0 > a.revï¿½TABï¿½
 ruby 2.0 > a.reverse => "tac"
 irb responds to the Tab key by expanding the name as far as it can go, in this case completing the word reverse. If we keyed Tab twice at this point, it would show us the current options, reverse and reverse!. However, because reverse is the one we want, we instead hit Enter , and the line of code is executed.
 Tab completion isn't limited to built-in names. If we define a class in irb, then tab completion works when we try to invoke one of its methods:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 18. Interactive Ruby Shell · 256
+Chapter 18. Interactive Ruby Shell ï¿½ 256
 ruby 2.0 > class Test ruby 2.0 ?> def my_method ruby 2.0 ?> end ruby 2.0 ?> end => nil ruby 2.0 > t = Test.new => #<Test:0x000001009fc8c8>
-ruby 2.0 > t.my«TAB»
+ruby 2.0 > t.myï¿½TABï¿½
 ruby 2.0 > t.my_method => nil
 Tab completion is implemented as an extension library. On some systems this is loaded by default. On others you'll need to load it when you invoke irb from the command line:
 $ irb -r irb/completion
@@ -7849,9 +7855,9 @@ dave[ruby4/Book 13:44:16] irb -r ./code/irb/fibonacci_sequence.rb ruby 2.0 > res
 => [1, 1, 2, 3, 5] ruby 2.0 > fg 1
 => #<IRB::Irb: @context=#<IRB::Context:0x00000100952670>, ... ruby 2.0 > result
 => ["cat", "dog", "elk"] ruby 2.0 >
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Command Line · 257
+Command Line ï¿½ 257
 Subsessions and Bindings
 If you specify an object when you create a subsession, that object becomes the value of self in that binding. This is a convenient way to experiment with objects. In the following example, we create a subsession with the string "wombat" as the default object. Methods with no receiver will be executed by that object.
 ruby 2.0 > self => main
@@ -7869,9 +7875,9 @@ irb uses an initialization file in which you can set commonly used options or ex
 Within the initialization file, you may run any arbitrary Ruby code. You can also set configuration values. The list of configuration variables is given in irb Configuration Options, on page 259--the values that can be used in an initialization file are the symbols (starting with a colon). You use these symbols to set values into the IRB.conf hash. For example, to make SIMPLE the default prompt mode for all your irb sessions, you could have the following in your initialization file:
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 As an interesting twist on configuring irb, you can set IRB.conf[:IRB_RC] to a Proc object. This proc will be invoked whenever the irb context is changed and will receive the configuration for that context as a parameter. You can use this facility to change the configuration dynamically based on the context. For example, the following .irbrc file sets the prompt so that only the main prompt shows the irb level, but continuation prompts and the result still line up:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 18. Interactive Ruby Shell · 258
+Chapter 18. Interactive Ruby Shell ï¿½ 258
 IRB.conf[:IRB_RC] = lambda do |conf| leader = " " * conf.irb_name.length conf.prompt_i = "#{conf.irb_name} --> " conf.prompt_s = leader + ' \-" ' conf.prompt_c = leader + ' \-+ ' conf.return_format = leader + " ==> %s\n\n" puts "Welcome!"
 end
 An irb session using this .irbrc file looks like the following:
@@ -7889,9 +7895,9 @@ Interactive Configuration
 Most configuration values are also available while you're running irb. The list in irb Configuration Options, on page 259 shows these values as conf.xxx. For example, to change your prompt back to SIMPLE, you could use the following:
 ruby 2.0 > 1 + ruby 2.0 > 2
 => 3 ruby 2.0 > conf.prompt_mode = :SIMPLE => :SIMPLE
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Command Line · 259
+Command Line ï¿½ 259
 >> 1 + ?> 2 => 3
 irb Configuration Options
 In the descriptions that follow, a label of the form :XXX signifies a key used in the IRB.conf hash in an initialization file, and conf.xxx signifies a value that can be set interactively. The value in square brackets at the end of the description is the option's default.
@@ -7909,9 +7915,9 @@ last_value The last value output by irb. [...]
 prompt_c The prompt for a continuing statement (for example, immediately after an if). [depends]
 prompt_i The standard, top-level prompt. [depends]
 :PROMPT_MODE / prompt_mode The style of prompt to display. [:DEFAULT]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 18. Interactive Ruby Shell · 260
+Chapter 18. Interactive Ruby Shell ï¿½ 260
 prompt_s The prompt for a continuing string. [depends]
 :PROMPT See Configuring the Prompt, on page 261. [...]
 :RC / rc If false, do not load an initialization file. [true]
@@ -7929,9 +7935,9 @@ help ClassName, string, or symbol Displays the ri help for the given thing.
 irb(main):001:0> help "String.encoding" ------------------------------------------------- String#encoding obj.encoding => encoding ----------------------------------------------------------------Returns the Encoding object that represents the encoding of obj.
 exit, quit, irb_exit, irb_quit Quits this irb session or subsession. If you've used cb to change bindings (detailed in a moment), exits from this binding mode.
 1. For some inexplicable reason, many of these commands have up to nine different aliases. We don't bother to show all of them.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Commands · 261
+Commands ï¿½ 261
 
 conf, context, irb_context Displays current configuration. Modifying the configuration is achieved by invoking methods of conf. The list in irb Configuration Options, on page 259 shows the available conf settings.
 For example, to set the default prompt to something subservient, you could use this:
@@ -7971,9 +7977,9 @@ IRB.conf[:PROMPT][:MY_PROMPT] = { # name of prompt mode
 
 }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 18. Interactive Ruby Shell · 262
+Chapter 18. Interactive Ruby Shell ï¿½ 262
 
 Once you've defined a prompt, you have to tell irb to use it. From the command line, you can use the --prompt option. (Notice how the name of the prompt on the command line is automatically converted to uppercase, with hyphens changing to underscores.)
 $ irb --prompt my-prompt
@@ -8012,7 +8018,7 @@ IRB.conf[:SAVE_HISTORY] = 50
 
 # save last 50 commands
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 19
 Documenting Ruby
@@ -8028,9 +8034,9 @@ end
 Even though the source contains no internal documentation, RDoc still manages to extract interesting information from it. We have three panes at the top of the screen showing the files, classes, and methods for which we have documentation. For class Counter, RDoc shows us the attributes and methods (including the method signatures). And if we clicked a method signature, RDoc would pop up a window containing the source code for the corresponding method.
 1. RDoc isn't the only Ruby documentation tool. Those who like a more formal, tag-based scheme might want to look at Yard at http://yardoc.org.
 2. RDoc can also document Fortran 77 programs.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 264
+Chapter 19. Documenting Ruby ï¿½ 264
 If our source code contains comments, RDoc can use them to spice up the documentation it produces.
 # Implements a simple accumulator, whose # value is accessed via the attribute # _counter_. Calling the method Counter#inc # increments this value. class Counter
 # The current value of the count attr_reader :counter # create a new Counter with the given # initial value def initialize(initial_value=0)
@@ -8044,9 +8050,9 @@ Instance methods: inc
 Attributes: counter
 ----------------------------------------------------------------- Counter#inc inc()
 ----------------------------------------------------------------------------increment the current value of the count
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 265
+Chapter 19. Documenting Ruby ï¿½ 265
 
 Ruby distributions have the built-in classes and modules (and some libraries) documented this way.3 Here's what you see if you type ri Proc:
 $ ri Proc Proc < Object (from ruby core) -----------------------------------------------------------------------------Proc objects are blocks of code that have been bound to a set of local variables. Once bound, the code may be called in different contexts and still access those variables.
@@ -8092,9 +8098,9 @@ This document is a list of user visible feature changes made between releases ex
 
 3. If you're using rvm, you'll need to run rvm docs generate.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 266
+Chapter 19. Documenting Ruby ï¿½ 266
 19.1 Adding RDoc to Ruby Code
 RDoc parses Ruby source files to extract the major elements (such as classes, modules, methods, attributes, and so on). You can choose to associate additional documentation with these by simply adding a comment block before the element in the file.
 One of the design goals of RDoc was to leave the source code looking totally natural. In most cases, there is no need for any special markup in your code to get RDoc to produce decent looking documentation. For example, comment blocks can be written fairly naturally:
@@ -8109,9 +8115,9 @@ RDoc stops processing comments if it finds a comment line starting with #--. Thi
 # Extract the age and calculate the # date of birth. #-# FIXME: fails if the birthday falls on February 29th, or if the person # was born before epoch and the installed Ruby doesn't support negative time_t #++ # The DOB is returned as a Time object. #-# But should probably change to use Date.
 def get_dob(person) ...
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Adding RDoc to Ruby Code · 267
+Adding RDoc to Ruby Code ï¿½ 267
 
 Hyperlinks
 Names of classes, source files, and any method names containing an underscore or preceded by a hash character are automatically hyperlinked from comment text to their description.
@@ -8120,7 +8126,7 @@ Hyperlinks can also be of the form label[url], where the label is used in the di
 
 Lists
 Lists are typed as indented paragraphs with the following:
-· As asterisk (*) or hyphen (-) for bullet lists · A digit followed by a period for numbered lists · An uppercase or lowercase letter followed by a period for alpha lists
+ï¿½ As asterisk (*) or hyphen (-) for bullet lists ï¿½ A digit followed by a period for numbered lists ï¿½ An uppercase or lowercase letter followed by a period for alpha lists
 
 For example, you could produce something like the previous text with this:
 
@@ -8161,9 +8167,9 @@ files are present, the first is used as the index.
 
 #
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 268
+Chapter 19. Documenting Ruby ï¿½ 268
 
 # <tt>--quiet:</tt>:: do not output the names, sizes, byte counts,
 
@@ -8210,9 +8216,9 @@ fred() {|index, position| ... }
 module SM #:nodoc: class Input end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Adding RDoc to C Extensions · 269
+Adding RDoc to C Extensions ï¿½ 269
 module Markup #:nodoc: all class Output end
 end
 :doc: This forces a method or attribute to be documented even if it wouldn't otherwise be. This is useful if, for example, you want to include documentation of a particular private method.
@@ -8228,9 +8234,9 @@ Comment blocks can contain other directives:
 A larger example of a file documented using RDoc is shown in Section 19.4, Ruby source file documented with RDoc, on page 272.
 19.2 Adding RDoc to C Extensions
 RDoc understands many of the conventions used when writing extensions to Ruby in C.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 270
+Chapter 19. Documenting Ruby ï¿½ 270
 
 If RDoc sees a C function named Init_Classname, it treats it as a class definition--any C comment before the Init_ function will be used as the class's documentation.
 The Init_ function is normally used to associate C functions with Ruby method names. For example, a Cipher extension may define a Ruby method salt=, implemented by the C function salt_set using a call such as this:
@@ -8251,9 +8257,9 @@ Although RDoc heuristics work well for finding the class and method comments for
 
 /* * Document-method: reset * * Clear the current buffer and prepare to add new * cipher text. Any accumulated output cipher text * is also cleared. */
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Running RDoc · 271
+Running RDoc ï¿½ 271
 
 Finally, it is possible in the Init_xxx function to associate a Ruby method with a C function in a different C source file. RDoc would not find this function without your help: you add a reference to the file containing the function definition by adding a special comment to the rb_define_method call. The following example tells RDoc to look in the file md5.c for the function (and related comment) corresponding to the md5 method:
 
@@ -8280,16 +8286,16 @@ New in 2.0
 
 main*.rb constants.rb
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 272
+Chapter 19. Documenting Ruby ï¿½ 272
 
 Some project standards ask for documentation in a top-level README file. You may find it convenient to write this file in RDoc format and then use the :include: directive to incorporate the README into the documentation for the main class.
 Create Documentation for ri
 RDoc is also used to create documentation that will be later displayed using ri. When you run ri, it by default looks for documentation in three places:4
-· The system documentation directory, which holds the documentation distributed with Ruby and which is created by the Ruby install process
-· The site directory, which contains sitewide documentation added locally
-· The user documentation directory, stored under the user's own home directory
+ï¿½ The system documentation directory, which holds the documentation distributed with Ruby and which is created by the Ruby install process
+ï¿½ The site directory, which contains sitewide documentation added locally
+ï¿½ The user documentation directory, stored under the user's own home directory
 You can find these three directories using ri --list-doc-dirs.
 $ ri --list-doc-dirs /Users/dave/.rvm/rubies/ruby-2.0.0-p0/share/ri/2.0.0/system /Users/dave/.rvm/rubies/ruby-2.0.0-p0/share/ri/2.0.0/site /Users/dave/.rdoc
 To add documentation to ri, you need to tell RDoc which output directory to use. For your own use, it's easiest to use the --ri option, which installs the documentation into ~/.rdoc:
@@ -8316,9 +8322,9 @@ $ cd ruby source base/lib $ rdoc --ri-system
 
 4. You can override the directory location using the --op option to RDoc and subsequently using the --doc-dir option with ri.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ruby source file documented with RDoc · 273
+Ruby source file documented with RDoc ï¿½ 273
 
 # # If a block is given, supply successive values to the block and # return +nil+, otherwise return all values as an array. def Fibonacci.sequence(count, &block)
 result, block = setup_optional_block(block) generate do |val|
@@ -8369,9 +8375,9 @@ if block.nil? [ result = [], lambda {|val| result << val } ]
 else [ nil, block ]
 end end end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 19. Documenting Ruby · 274
+Chapter 19. Documenting Ruby ï¿½ 274
 19.5 C source file documented with RDoc
 #include "ruby.h" #include "cdjukebox.h"
 static VALUE cCDPlayer; static void cd_free(void *p) { ... } static VALUE cd_alloc(VALUE klass) { ... } static void progress(CDJukebox *rec, int percent) { ... }
@@ -8384,13 +8390,13 @@ CDJukebox *jb; Data_Get_Struct(self, CDJukebox, jb); jukebox_seek(jb, NUM2INT(di
 /* call-seq: * player.seek_time -> Float * * Return the average seek time for this unit (in seconds) */
 static VALUE cd_seek_time(VALUE self) {
 double tm; CDJukebox *jb; Data_Get_Struct(self, CDJukebox, jb); tm = get_avg_seek_time(jb); return rb_float_new(tm); }
-report erratum · discuss
+report erratum ï¿½ discuss
 
-C source file documented with RDoc · 275
+C source file documented with RDoc ï¿½ 275
 /* Interface to the Spinzalot[http://spinzalot.cd] * CD Player library. */
 void Init_CDPlayer() { cCDPlayer = rb_define_class("CDPlayer", rb_cObject); rb_define_alloc_func(cCDPlayer, cd_alloc); rb_define_method(cCDPlayer, "initialize", cd_initialize, 1); rb_define_method(cCDPlayer, "seek", cd_seek, 2); rb_define_method(cCDPlayer, "seek_time", cd_seek_time, 0);
 }
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 20
 Ruby and the Web
@@ -8403,9 +8409,9 @@ Put this script in a CGI directory, mark it as executable, and you'll be able to
 However, that's hacking around at a pretty low level. You'd need to write your own request parsing, session management, cookie manipulation, output escaping, and so on. Fortunately, options are available to make this easier.
 20.2 Using cgi.rb
 Class CGI provides support for writing CGI scripts. With it, you can manipulate forms, cookies, and the environment; maintain stateful sessions; and so on. It's a fairly large class, but we'll take a quick look at its capabilities here.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 20. Ruby and the Web · 278
+Chapter 20. Ruby and the Web ï¿½ 278
 Quoting
 When dealing with URLs and HTML code, you must be careful to quote certain characters. For instance, a slash character (/) has special meaning in a URL, so it must be "escaped" if it's not part of the path name. That is, any / in the query portion of the URL will be translated to the string %2F and must be translated back to a / for you to use it. Space and ampersand are also special characters. To handle this, CGI provides the routines CGI.escape and CGI.unescape:
 require 'cgi' puts CGI.escape("Nicholas Payton/Trumpet & Flugel Horn") produces: Nicholas+Payton%2FTrumpet+%26+Flugel+Horn
@@ -8419,18 +8425,18 @@ Query Parameters
 HTTP requests from the browser to your application may contain parameters, either passed as part of the URL or passed as data embedded in the body of the request. Processing of these parameters is complicated by the fact that a value with a given name may be returned multiple times in the same request. For example, say we're writing a survey to find out why folks like Ruby. The HTML for our form looks like the following.
 <html> <head> <title>Test Form</title> </head>
 <body> <p> I like Ruby because: </p>
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Using cgi.rb · 279
+Using cgi.rb ï¿½ 279
 <form action="cgi-bin/survey.rb"> <p> <input type="checkbox" name="reason" value="flexible" /> It's flexible </p> <p> <input type="checkbox" name="reason" value="transparent" /> It's transparent </p> <p> <input type="checkbox" name="reason" value="perlish" /> It's like Perl </p> <p> <input type="checkbox" name="reason" value="fun" /> It's fun </p> <p> Your name: <input type="text" name="name"/> </p> <input type="submit"/>
 </form> </body> </html>
 When someone fills in this form, they might check multiple reasons for liking Ruby (as shown in the following screenshot):
 In this case, the form data corresponding to the name reason will have three values, corresponding to the three checked boxes. Class CGI gives you access to form data in a couple of ways. First, we can just treat the CGI object as a hash, indexing it with field names and getting back field values.
 require 'cgi' cgi = CGI.new cgi['name'] # => "Dave Thomas" cgi['reason'] # => "flexible"
 However, this doesn't work well with the reason field, because we see only one of the three values. We can ask to see them all by using the CGI#params method. The value returned by params acts like a hash containing the request parameters. You can both read and write this hash (the latter allows you to modify the data associated with a request). Note that each of the values in the hash is actually an array.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 20. Ruby and the Web · 280
+Chapter 20. Ruby and the Web ï¿½ 280
 
 cgi = CGI.new
 
@@ -8459,9 +8465,9 @@ Templating systems let you separate the presentation and logic of your applicati
 
 1. http://www.hokstad.com/mini-reviews-of-19-ruby-template-engines.html
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Templating Systems · 281
+Templating Systems ï¿½ 281
 
 Haml
 Haml is a library that generates HTML documents from a template.2 Unlike many other templating systems, Haml uses indentation to indicate nesting (yup, just like Python). For example, you can represent a <ul> in Haml using this:
@@ -8498,16 +8504,16 @@ puts engine.render(nil, data)
 
 2. http://haml-lang.com/
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 20. Ruby and the Web · 282
+Chapter 20. Ruby and the Web ï¿½ 282
 
 produces:
 <body> <div id='welcome-box'> <p>Hello, Dave Thomas</p> </div> <p> As of 2013-05-27 12:31:30 -0500 the reasons you gave were: </p> <table> <tr> <th>Reason</th> <th>Rank</th> </tr> <tr> <td>flexible</td> <td>87</td> </tr> <tr> <td>transparent</td> <td>76</td> </tr> <tr> <td>fun</td> <td>94</td> </tr> </table>
 </body>
 erb and eruby
 So far we've looked at using Ruby to create HTML output, but we can turn the problem inside out; we can actually embed Ruby in an HTML document.
-A number of packages allow you to embed Ruby statements in an HTML document­generically, this markup is known as "eRuby." There are several different implementations of eRuby , including erubis and erb. erubis is available as a gem, while erb is written in pure Ruby and is included with the standard distribution. We'll look at erb here.
+A number of packages allow you to embed Ruby statements in an HTML documentï¿½generically, this markup is known as "eRuby." There are several different implementations of eRuby , including erubis and erb. erubis is available as a gem, while erb is written in pure Ruby and is included with the standard distribution. We'll look at erb here.
 Embedding Ruby in HTML is a very powerful concept--it basically gives us the equivalent of a tool such as ASP, JSP, or PHP, but with the full power of Ruby.
 Using erb
 erb is a filter. Input text is passed through untouched, with the following exceptions:
@@ -8517,9 +8523,9 @@ Expression <% ruby code %> <%= ruby expression %>
 
 Description This executes the Ruby code between the delimiters. This evaluates the Ruby expression and replaces the sequence with the expression's value. The Ruby code between the delimiters is ignored (useful for testing).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Templating Systems · 283
+Templating Systems ï¿½ 283
 
 Expression % line of ruby code
 
@@ -8541,9 +8547,9 @@ erb works by rewriting its input as a Ruby script and then executing that script
 $ erb -x f1.erb #coding:ASCII-8BIT _erbout = ''; 99.downto(96) do |number| _erbout.concat(( number ).to_s); _erbout.concat " bottles of beer...\n" ; end _erbout.force_encoding(__ENCODING__)
 Notice how erb builds a string, _erbout, containing both the static strings from the template and the results of executing expressions (in this case the value of number).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 20. Ruby and the Web · 284
+Chapter 20. Ruby and the Web ï¿½ 284
 Embedding erb in Your Code
 So far we've shown erb running as a command-line filter. However, the most common use is to use it as a library in your own code. (This is what Rails does with its .erb templates.)
 require 'erb'
@@ -8558,9 +8564,9 @@ Cookies are a way of letting web applications store their state on the user's ma
 web/cookies.rb #!/usr/bin/ruby require 'cgi'
 COOKIE_NAME = 'chocolate chip'
 cgi = CGI.new values = cgi.cookies[COOKIE_NAME]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Cookies · 285
+Cookies ï¿½ 285
 
 if values.empty? msg = "It looks as if you haven't visited recently"
 else msg = "You last visited #{values[0]}"
@@ -8595,12 +8601,12 @@ sess["accesscount"] = count sess["lastaccess"] = Time.now.to_s sess.close
 cgi.out { cgi.html { cgi.body { msg } }
 }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 20. Ruby and the Web · 286
+Chapter 20. Ruby and the Web ï¿½ 286
 The code in the previous example used the default storage mechanism for sessions: persistent data was stored in files in your default temporary directory (see Dir.tmpdir). The filenames will all start with web-session. and will end with a hashed version of the session number. See the documentation for CGI::Session for more information.
 20.5 Choice of Web Servers
-So far, we've been running Ruby scripts under the Apache web server. However, Ruby comes bundled with WEBrick, a flexible, pure-Ruby HTTP server toolkit. WEBrick is an extensible plug-in­based framework that lets you write servers to handle HTTP requests and responses. The following is a basic HTTP server that serves documents and directory indexes:
+So far, we've been running Ruby scripts under the Apache web server. However, Ruby comes bundled with WEBrick, a flexible, pure-Ruby HTTP server toolkit. WEBrick is an extensible plug-inï¿½based framework that lets you write servers to handle HTTP requests and responses. The following is a basic HTTP server that serves documents and directory indexes:
 web/webrick1.rb #!/usr/bin/ruby require 'webrick' include WEBrick
 s = HTTPServer.new(Port: 2000,DocumentRoot: File.join(Dir.pwd, "/html"))
 trap("INT") { s.shutdown } s.start
@@ -8612,12 +8618,12 @@ s = HTTPServer.new(Port: 2000)
 class HelloServlet < HTTPServlet::AbstractServlet def do_GET(req, res) res['Content-Type'] = "text/html" res.body = %{ <html><body> <p>Hello. You're calling from a #{req['User-Agent']}</p> <p>I see parameters: #{req.query.keys.join(', ')}</p> </body></html>} end
 end
 s.mount("/hello", HelloServlet) trap("INT"){ s.shutdown } s.start
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Frameworks · 287 20.6 Frameworks
+Frameworks ï¿½ 287 20.6 Frameworks
 In reality, almost no one uses CGI to write web-based Ruby applications any more. Most of the real action these days is with frameworks. Frameworks abstract away all this low-level detail and also help you structure your code into something that is both easy to write and (probably more importantly) easy to maintain. At the time of writing, Ruby on Rails3 is the leading web framework for Ruby. It has an incredibly active community and a vast set of plug-ins, so the chances are good you'll find a lot of preexisting code to help you kick-start your application. Other alternatives include Camping, Padrino, Sinatra, and Ramaze.4 By the time you read this, the list will have grown. And, if you fancy writing your own framework, consider making it independent of the underlying web server by building it on top of Rack.5
 3. http://www.rubyonrails.org 4. http://camping.rubyforge.org/files/README.html, http://padrinorb.com, http://www.sinatrarb.com/, and http://ramaze.net/ 5. http://rack.rubyforge.org/
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 21
 Ruby and Microsoft Windows
@@ -8629,9 +8635,9 @@ You may have to run the command prompt with elevated privileges to make this wor
 C:\> set PATHEXT=.rb;%PATHEXT%
 21.2 Win32API
 If you plan on doing Ruby programming that needs to access some Windows 32 API functions directly or that needs to use the entry points in some other DLLs, we have good news for you--the Win32API library.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 21. Ruby and Microsoft Windows · 290
+Chapter 21. Ruby and Microsoft Windows ï¿½ 290
 As an example, here's some code that's part of a larger Windows application used by our book fulfillment system to download and print invoices and receipts. A web application generates a PDF file, which the Ruby script running on Windows downloads into a local file. The script then uses the print shell command under Windows to print this file.
 arg = "ids=#{resp.intl_orders.join(",")}" fname = "/temp/invoices.pdf"
 site = Net::HTTP.new(HOST, PORT) site.use_ssl = true http_resp, = site.get2("/ship/receipt?" + arg,
@@ -8646,9 +8652,9 @@ If groveling around in the low-level Windows API doesn't interest you, Windows A
 Windows Automation allows an automation controller (a client) to issue commands and queries against an automation server, such as Microsoft Excel, Word, and so on.
 You can execute an automation server's method by calling a method of the same name from a WIN32OLE object. For instance, you can create a new WIN32OLE client that launches a fresh copy of Internet Explorer and commands it to visit its home page:
 win32/gohome.rb require 'win32ole' ie = WIN32OLE.new('InternetExplorer.Application') ie.visible = true ie.gohome
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Windows Automation · 291
+Windows Automation ï¿½ 291
 You could also make it navigate to a particular page:
 win32/navigate.rb require 'win32ole' ie = WIN32OLE.new('InternetExplorer.Application') ie.visible = true ie.navigate("http://www.pragprog.com")
 Methods that aren't known to WIN32OLE (such as visible, gohome, or navigate) are passed on to the WIN32OLE#invoke method, which sends the proper commands to the server.
@@ -8665,9 +8671,9 @@ end
 spreadsheet = OOSpreadsheet.new cell = spreadsheet.get_cell(1, 0) cell.Value = 1234
 cells = spreadsheet.get_cell_range(1, 2, 5, 3)
 1. See http://udk.openoffice.org/common/man/tutorial/office_automation.html for links to resources on automating OpenOffice.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 21. Ruby and Microsoft Windows · 292
+Chapter 21. Ruby and Microsoft Windows ï¿½ 292
 cols = cells.Columns.count rows = cells.Rows.count
 cols.times do |col_no| rows.times do |row_no| cell = cells.getCellByPosition(col_no, row_no) cell.Value = (col_no + 1)*(row_no+1) end
 end
@@ -8698,9 +8704,9 @@ excel.Workbooks.Add excel.Range("a1").Value = 10 excel.Range("a2").Value = 20 ex
 excel.Range("a1:a3").each do |cell| p cell.Value
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Windows Automation · 293
+Windows Automation ï¿½ 293
 Events
 Your automation client written in Ruby can register itself to receive events from other programs. This is done using the WIN32OLE_EVENT class.
 This example (based on code from the Win32OLE 0.1.1 distribution) shows the use of an event sink that logs the URLs that a user browses to when using Internet Explorer:
@@ -8718,9 +8724,9 @@ As with most (if not all) high-level languages, it can be all too easy to churn 
 With WIN32OLE, you need to be careful with unnecessary dynamic lookups. Where possible, it is better to assign a WIN32OLE object to a variable and then reference elements from it, rather than creating a long chain of "." expressions.
 For example, instead of writing this:
 workbook.Worksheets(1).Range("A1").value = 1 workbook.Worksheets(1).Range("A2").value = 2 workbook.Worksheets(1).Range("A3").value = 4 workbook.Worksheets(1).Range("A4").value = 8
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 21. Ruby and Microsoft Windows · 294
+Chapter 21. Ruby and Microsoft Windows ï¿½ 294
 we can eliminate the common subexpressions by saving the first part of the expression to a temporary variable and then make calls from that variable:
 worksheet = workbook.Worksheets(1)
 worksheet.Range("A1").value = 1 worksheet.Range("A2").value = 2 worksheet.Range("A3").value = 4 worksheet.Range("A4").value = 8
@@ -8738,7 +8744,7 @@ The wrapper object is then used to call the message box entry point in the DLL. 
 
 2. http://svn.ruby-lang.org/repos/ruby/trunk/ext/win32ole/sample/olegen.rb
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Part III
 Ruby Crystallized
@@ -8769,9 +8775,9 @@ a=1 b = 2; c = 3 d=4+5+
 
 # no '\' needed # '\' needed
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 298
+Chapter 22. The Ruby Language ï¿½ 298
 
 Physical lines between a line starting with =begin and a line starting with =end are ignored by Ruby and may be used to comment out sections of code or to embed documentation.
 You can pipe programs to the Ruby interpreter's standard input stream:
@@ -8802,9 +8808,9 @@ Example %q{\a and #{1+2} are literal} %Q{\a and #{1+2} are expanded} %w[ one two
 Unlike their lowercase counterparts, %I, %Q, and %W will preform interpolation:
 %i{ one digit#{1+1} three } # => [:one, :"digit\#{1+1}", :three] %I{ one digit#{1+1} three } # => [:one, :digit2, :three] %q{ one digit#{1+1} three } # => " one digit\#{1+1} three " %Q{ one digit#{1+1} three } # => " one digit2 three " %w{ one digit#{1+1} three } # => ["one", "digit\#{1+1}", "three"] %W{ one digit#{1+1} three } # => ["one", "digit2", "three"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Basic Types · 299
+The Basic Types ï¿½ 299
 
 Following the type character is a delimiter, which can be any nonalphanumericic or nonmultibyte character. If the delimiter is one of the characters (, [, {, or <, the literal consists of the characters up to the matching closing delimiter, taking account of nested delimiter pairs. For all other delimiters, the literal comprises the characters up to the next occurrence of the delimiter character.
 %q/this is a string/ %q-string%q(a (nested) string)
@@ -8857,9 +8863,9 @@ A numeric literal with a decimal point and/or an exponent is turned into a Float
 
 1234e-2 # => 12.34
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 300
+Chapter 22. The Ruby Language ï¿½ 300
 
 Rational and Complex Numbers
 Classes that support rational numbers (ratios of integers) and complex numbers are built into the Ruby interpreter. However, Ruby provides no language-level support for these numeric types--there are no rational or complex literals, for example. See the descriptions of Complex on page 451 and Rational on page 656 for more information.
@@ -8963,9 +8969,9 @@ a = 123
 
 Last, and probably least (in terms of usage), you can get the string corresponding to an ASCII character by preceding that character with a question mark.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Basic Types · 301
+The Basic Types ï¿½ 301
 
 ?a ?\n ?\C-a ?\M-a ?\M-\C-a ?\C-?
 
@@ -8988,9 +8994,9 @@ end
 produces: 70214897722200 70214897722080 70214897721960
 There's more information in the documentation for class String on page 666.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 302
+Chapter 22. The Ruby Language ï¿½ 302
 
 Ranges
 Outside the context of a conditional expression, expr..expr and expr...expr construct Range objects. The two-dot form is an inclusive range; the one with three dots is a range that excludes its last element. See the description of class Range on page 650 for details. Also see the description of conditional expressions on page 320 for other uses of ranges.
@@ -9033,9 +9039,9 @@ If you keep an external reference to an object that is used as a key and use tha
 
 1. As of Ruby 1.9, a comma may no longer be used to separate keys and values in hash literals. A comma still appears between each key/value pair.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Basic Types · 303
+The Basic Types ï¿½ 303
 
 arr = [1, 2, 3]
 
@@ -9072,9 +9078,9 @@ Regexp.new( 'pattern' < , options > )
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 304
+Chapter 22. The Ruby Language ï¿½ 304
 
 options is one or more of i (case insensitive), o (substitute once), m (. matches newline), and x (allow spaces and comments). You can additionally override the default encoding of the pattern with n (no encoding-ASCII), e (EUC), s (Shift_JIS), or u (UTF-8).
 
@@ -9098,9 +9104,9 @@ characters All except . | ( ) [ \ ^ { + $ * and ? match themselves. To match one
 
 2. Some of the information here is based on http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Basic Types · 305
+The Basic Types ï¿½ 305
 
 re* Matches zero or more occurrences of re.
 re+ Matches one or more occurrences of re.
@@ -9127,9 +9133,9 @@ re1 | re2 Matches either re1 or re2.
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 306
+Chapter 22. The Ruby Language ï¿½ 306
 
 \k<name>+/-n or \k'name'+/-n The contents of the named group at the given relative nesting level.
 \g<name> or \g<number> Invokes the named or numbered group.
@@ -9211,7 +9217,7 @@ In these descriptions, uppercase letter means A through Z, and digit means 0 thr
 A name is an uppercase letter, a lowercase letter, or an underscore, followed by name characters: any combination of upper- and lowercase letters, underscores, and digits.
 A local variable name consists of a lowercase letter followed by name characters. It is conventional to use underscores rather than camelCase to write multiword names, but the interpreter does not enforce this.
 fred anObject _x three_two_one
-If the source file encoding is UTF-8, elta and été are both valid local variable names.
+If the source file encoding is UTF-8, elta and ï¿½tï¿½ are both valid local variable names.
 An instance variable name starts with an "at" sign (@) followed by name characters. It is generally a good idea to use a lowercase letter after the @. The @ sign forms part of the instance variable name.
 @name @_ @size
 A class variable name starts with two "at" signs (@@) followed by name characters.
@@ -9221,9 +9227,9 @@ By convention, constant object references are normally spelled using uppercase l
 
 3. Such names will not be usable from other source files with different encoding.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Names · 307
+Names ï¿½ 307
 module Math ALMOST_PI = 22.0/7.0
 end class BigBlob end
 Global variables, and some special system variables, start with a dollar sign ($) followed by name characters. In addition, Ruby defines a set of two-character global variable names in which the second character is a punctuation character. These predefined variables are listed Predefined Variables, on page 311. Finally, a global variable name can be formed using $- followed by a single letter or underscore. These latter variables typically mirror the setting of the corresponding command-line option (see Execution Environment Variables, on page 313 for details):
@@ -9238,9 +9244,9 @@ produces: i==1, a=1 Function 'a' called i==2, a=99
 During the parse, Ruby sees the use of a in the first puts statement and, because it hasn't yet seen any assignment to a, assumes that it is a method call. By the time it gets to the second puts statement, though, it has seen an assignment and so treats a as a variable.
 Note that the assignment does not have to be executed--Ruby just has to have seen it. This program does not raise an error.
 a = 1 if false; a # => nil
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 308
+Chapter 22. The Ruby Language ï¿½ 308
 
 22.5 Variables and Constants
 Ruby variables and constants hold references to objects. Variables themselves do not have an intrinsic type. Instead, the type of a variable is defined solely by the messages to which the object referenced by the variable responds. (When we say that a variable is not typed, we mean that any given variable can at different times hold references to objects of many different types.)
@@ -9281,9 +9287,9 @@ Const::CONST
 
 Const::NEW_CONST = 123
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variables and Constants · 309
+Variables and Constants ï¿½ 309
 
 Global variables are available throughout a program. Every reference to a particular global name returns the same object. Referencing an uninitialized global variable returns nil.
 Class variables are available throughout a class or module body. Class variables must be initialized before use. A class variable is shared among all instances of a class and is available within the class itself.
@@ -9322,9 +9328,9 @@ Class variables are inherited by children but propagate upward if first defined 
 class Top @@A = "top A" @@B = "top B" def dump puts values end def values "#{self.class.name}: @@A = #@@A, @@B = #@@B" end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 310
+Chapter 22. The Ruby Language ï¿½ 310
 class MiddleOne < Top @@B = "One B" @@C = "One C" def values super + ", C = #@@C" end
 end class MiddleTwo < Top
 @@B = "Two B" @@C = "Two C" def values
@@ -9339,9 +9345,9 @@ Method parameters are considered to be variables local to that method.
 Block parameters are assigned values when the block is invoked.
 If a local variable is first assigned in a block, it is local to the block.
 If a block uses a variable that is previously defined in the scope containing the block's definition, then the block will share that variable with the scope. There are two exceptions to this. Block parameters are always local to the block. In addition, variables listed after a semicolon at the end of the block parameter list are also always local to the block.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variables and Constants · 311
+Variables and Constants ï¿½ 311
 a=1 b=2 c=3
 some_method { |b; c| a = b + 1; c = a + 1; d = c + 1 }
 In this previous example, the variable a inside the block is shared with the surrounding scope. The variables b and c are not shared, because they are listed in the block's parameter list, and the variable d is not shared because it occurs only inside the block. A block takes on the set of local variables in existence at the time that it is created. This forms part of its binding. Note that although the binding of the variables is fixed at this point, the block will have access to the current values of these variables when it executes. The binding preserves these variables even if the original enclosing scope is destroyed. The bodies of while, until, and for loops are part of the scope that contains them; previously existing locals can be used in the loop, and any new locals created will be available outside the bodies afterward.
@@ -9352,9 +9358,9 @@ The exception object passed to raise. [thread] $@  Array
 The stack backtrace generated by the last exception. See the description of Object#caller on page 613 for details. [thread]
 Pattern Matching Variables These variables (except $=) are set to nil after an unsuccessful pattern match. $&  String
 The string matched (following a successful pattern match). This variable is local to the current scope. [r/o, thread]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 312
+Chapter 22. The Ruby Language ï¿½ 312
 $+  String The contents of the highest-numbered group matched following a successful pattern match. Thus, in "cat" =~ /(c|a)(t|z)/, $+ will be set to "t." This variable is local to the current scope. [r/o, thread]
 $`  String The string preceding the match in a successful pattern match. This variable is local to the current scope. [r/o, thread]
 $'  String The string following the match in a successful pattern match. This variable is local to the current scope. [r/o, thread]
@@ -9370,9 +9376,9 @@ $.  Fixnum The number of the last line read from the current input file.
 $;  String The default separator pattern used by String#split. May be set using the -F command-line option.
 $<  ARGF.class Synonym for ARGF. See ARGF, on page 213.
 $>  IO The destination stream for Object#print and Object#printf. The default value is STDOUT.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variables and Constants · 313
+Variables and Constants ï¿½ 313
 $_  String The last line read by Object#gets or Object#readline. Many string-related functions in the Kernel module operate on $_ by default. The variable is local to the current scope. [thread]
 $-F  String Synonym for $;.
 $stderr, $stdout, $stdin,  IO The current standard error, standard output, and standard input streams.
@@ -9389,9 +9395,9 @@ __callee__  Symbol The name of the lexically enclosing method.
 $-d  Object Synonym for $DEBUG.
 $DEBUG  Object Set to true if the -d command-line option is specified.
 __ENCODING__  String The encoding of the current source file. [r/o]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 314
+Chapter 22. The Ruby Language ï¿½ 314
 __FILE__  String The name of the current source file. [r/o]
 $F  Array The array that receives the split input line if the -a command-line option is used.
 $FILENAME  String The name of the current input file. Equivalent to $<.filename. [r/o]
@@ -9408,9 +9414,9 @@ $SAFE  Fixnum The current safe level (see Section 26.1, Safe Levels, on page 410
 $VERBOSE  Object Set to true if the -v, --version, -W, or -w option is specified on the command line. Set to false if no option, or -W1 is given. Set to nil if -W0 was specified. Setting this option to true causes the interpreter and some library routines to report additional information. Setting to nil suppresses all warnings (including the output of Object#warn).
 $-v, $-w  Object Synonyms for $VERBOSE.
 $-W  Object Return the value set by the -W command-line option.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Variables and Constants · 315
+Variables and Constants ï¿½ 315
 Standard Objects ARGF  Object
 Provides access to a list of files. Used by command line processing. See ARGF, on page 213.
 ARGV  Array A synonym for $*.
@@ -9428,9 +9434,9 @@ RUBY_DESCRIPTION  String Version number and architecture of the interpreter.
 RUBY_ENGINE  String The name of the Ruby interpreter. Returns "ruby" for Matz's version. Other interpreters include macruby, ironruby, jruby, and rubinius.
 RUBY_PATCHLEVEL  String The patch level of the interpreter.
 RUBY_PLATFORM  String The identifier of the platform running this program. This string is in the same form as the platform identifier used by the GNU configure utility (which is not a coincidence).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 316
+Chapter 22. The Ruby Language ï¿½ 316
 RUBY_RELEASE_DATE  String The date of this release.
 RUBY_REVISION  String The revision of the interpreter.
 RUBY_VERSION  String The version number of the interpreter.
@@ -9446,20 +9452,20 @@ if __FILE__ == $0 # tests...
 end
 22.6 Expressions, Conditionals, and Loops
 Single terms in an expression may be any of the following:
-· Literal. Ruby literals are numbers, strings, arrays, hashes, ranges, symbols, and regular expressions. These are described in Section 22.3, The Basic Types, on page 299.
-· Shell command. A shell command is a string enclosed in backquotes or in a general delimited string starting with %x. The string is executed using the host operating system's standard shell, and the resulting standard output stream is returned as the value of the expression. The execution also sets the $? variable with the command's exit status.
+ï¿½ Literal. Ruby literals are numbers, strings, arrays, hashes, ranges, symbols, and regular expressions. These are described in Section 22.3, The Basic Types, on page 299.
+ï¿½ Shell command. A shell command is a string enclosed in backquotes or in a general delimited string starting with %x. The string is executed using the host operating system's standard shell, and the resulting standard output stream is returned as the value of the expression. The execution also sets the $? variable with the command's exit status.
 filter = "*.c" files = `ls #{filter}` files = %x{ls #{filter}}
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Expressions, Conditionals, and Loops · 317
+Expressions, Conditionals, and Loops ï¿½ 317
 
-· Variable reference or constant reference. A variable is referenced by citing its name. Depending on scope (see Scope of Constants and Variables, on page 308), you reference a constant either by citing its name or by qualifying the name, using the name of the class or module containing the constant and the scope operator (::).
+ï¿½ Variable reference or constant reference. A variable is referenced by citing its name. Depending on scope (see Scope of Constants and Variables, on page 308), you reference a constant either by citing its name or by qualifying the name, using the name of the class or module containing the constant and the scope operator (::).
 
 barney APP_NAMR Math::PI
 
 # variable reference # constant reference # qualified constant reference
 
-· Method invocation. The various ways of invoking a method are described in Section 22.8, Invoking a Method, on page 327.
+ï¿½ Method invocation. The various ways of invoking a method are described in Section 22.8, Invoking a Method, on page 327.
 
 Operator Expressions
 Expressions may be combined using operators. The Ruby operators in precedence order are listed in Table 13, Ruby operators (high to low precedence), on page 318. The operators with a  in the Method column are implemented as methods and may be overridden.
@@ -9487,9 +9493,9 @@ If you are writing an [ ]= method that accepts a variable number of indices, it 
 def []=(*indices, value) # ...
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 318
+Chapter 22. The Ruby Language ï¿½ 318
 
 Method   
   
@@ -9511,18 +9517,18 @@ Table 13--Ruby operators (high to low precedence)
 
 The value of an assignment expression is its rvalue. This is true even if the assignment is to an attribute method that returns something different.
 Parallel Assignment An assignment expression may have one or more lvalues and one or more rvalues. This section explains how Ruby handles assignment with different combinations of arguments:
-· If any rvalue is prefixed with an asterisk and implements to_a, the rvalue is replaced with the elements returned by to_a, with each element forming its own rvalue.
-· If the assignment contains one lvalue and multiple rvalues, the rvalues are converted to an array and assigned to that lvalue.
-· If the assignment contains multiple lvalues and one rvalue, the rvalue is expanded if possible into an array of rvalues as described in (1).
-· Successive rvalues are assigned to the lvalues. This assignment effectively happens in parallel so that (for example) a,b=b,a swaps the values in a and b.
-· If there are more lvalues than rvalues, the excess will have nil assigned to them.
-· If there are more rvalues than lvalues, the excess will be ignored.
+ï¿½ If any rvalue is prefixed with an asterisk and implements to_a, the rvalue is replaced with the elements returned by to_a, with each element forming its own rvalue.
+ï¿½ If the assignment contains one lvalue and multiple rvalues, the rvalues are converted to an array and assigned to that lvalue.
+ï¿½ If the assignment contains multiple lvalues and one rvalue, the rvalue is expanded if possible into an array of rvalues as described in (1).
+ï¿½ Successive rvalues are assigned to the lvalues. This assignment effectively happens in parallel so that (for example) a,b=b,a swaps the values in a and b.
+ï¿½ If there are more lvalues than rvalues, the excess will have nil assigned to them.
+ï¿½ If there are more rvalues than lvalues, the excess will be ignored.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Expressions, Conditionals, and Loops · 319
-· At most one lvalue can be prefixed by an asterisk. This lvalue will end up being an array and will contain as many rvalues as possible. If there are lvalues to the right of the starred lvalue, these will be assigned from the trailing rvalues, and whatever rvalues are left will be assigned to the splat lvalue.
-· If an lvalue contains a parenthesized list, the list is treated as a nested assignment statement, and then it is assigned from the corresponding rvalue as described by these rules.
+Expressions, Conditionals, and Loops ï¿½ 319
+ï¿½ At most one lvalue can be prefixed by an asterisk. This lvalue will end up being an array and will contain as many rvalues as possible. If there are lvalues to the right of the starred lvalue, these will be assigned from the trailing rvalues, and whatever rvalues are left will be assigned to the splat lvalue.
+ï¿½ If an lvalue contains a parenthesized list, the list is treated as a nested assignment statement, and then it is assigned from the corresponding rvalue as described by these rules.
 See Parallel Assignment, on page 130 for examples of parallel assignment. The value of a parallel assignment is its array of rvalues.
 Block Expressions
 begin body
@@ -9538,9 +9544,9 @@ expr1 or expr2 expr1 || expr2
 The not and ! operators evaluate their operand. If true, the expression returns false. If false, the expression returns true.
 The word forms of these operators (and, or, and not) have a lower precedence than the corresponding symbol forms (&&, ||, and !). For details, see Table 13, Ruby operators (high to low precedence), on page 318.
 defined? The defined? keyword returns nil if its argument, which can be an arbitrary expression, is not defined. Otherwise, it returns a description of that argument. For examples, check out the tutorial on page 133.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 320
+Chapter 22. The Ruby Language ï¿½ 320
 
 Comparison Operators
 The Ruby syntax defines the comparison operators ==, ===, <=>, <, <=, >, >=, and =~. All these operators are implemented as methods. By convention, the language also uses the standard methods eql? and equal? (see Table 5, Common comparison operators, on page 134). Although the operators have intuitive meaning, it is up to the classes that implement them to produce meaningful comparison semantics. The library reference on page 417 starting describes the comparison semantics for the built-in classes. The module Comparable provides support for implementing the operators ==, <, <=, >, and >=, as well as the method between? in terms of <=>. The operator === is used in case expressions, described in case Expressions, on page 321.
@@ -9578,9 +9584,9 @@ Regular Expressions in Boolean Expressions In versions of Ruby prior to 1.8, a s
 $ ruby -ne 'print if /one/' testfile This is line one
 In regular code, the use of implicit operands and $_ is being slowly phased out, so it is better to use an explicit match against a variable.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Expressions, Conditionals, and Loops · 321
+Expressions, Conditionals, and Loops ï¿½ 321
 
 if and unless Expressions
 
@@ -9622,9 +9628,9 @@ end
 
 4. Prior to Ruby 1.9, you could use a colon instead of then. This is no longer supported.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 322
+Chapter 22. The Ruby Language ï¿½ 322
 A comparison can be an array reference preceded by an asterisk, in which case it is expanded into that array's elements before the tests are performed on each. When a comparison returns true, the search stops, and the body associated with the comparison is executed (no break is required). case then returns the value of the last expression executed. If no comparison matches, this happens: if an else clause is present, its body will be executed; otherwise, case silently returns nil. The then keyword separates the when comparisons from the bodies and is not needed if the body starts on a new line. As an optimization in Matz's Ruby 1.9 and later, comparisons between literal strings and between numbers do not use ===.
 Loops
 while boolean-expression < do >
@@ -9638,9 +9644,9 @@ body end
 loop, which iterates its associated block, is not a language construct--it is a method in module Kernel.
 loop do print "Input: " break unless line = gets process(line)
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Method Definition · 323
+Method Definition ï¿½ 323
 while and until Modifiers
 expression while boolean-expression expression until boolean-expression
 If expression is anything other than a begin/end block, executes expression zero or more times while boolean-expression is true (for while) or false (for until).
@@ -9661,9 +9667,9 @@ A method definition using an unadorned method name within a class or module defi
 
 5. The retry keyword is no longer permitted in a loop context.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 324
+Chapter 22. The Ruby Language ï¿½ 324
 
 Outside a class or module definition, a definition with an unadorned method name is added as a private method to class Object. It may be called in any context without an explicit receiver.
 
@@ -9710,9 +9716,9 @@ New in 2.0
 Method Arguments
 A method definition may have zero or more regular arguments, zero or more keyword arguments, a optional splat argument, an optional double splat argument, and an optional block argument. Arguments are separated by commas, and the argument list may be enclosed in parentheses.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Method Definition · 325
+Method Definition ï¿½ 325
 
 A regular argument is a local variable name, optionally followed by an equals sign and an expression giving a default value. The expression is evaluated at the time the method is called. The expressions are evaluated from left to right. An expression may reference a parameter that precedes it in the argument list.
 
@@ -9798,9 +9804,9 @@ mixed(1, 2, 3) # => [1, 2, [3]]
 
 mixed(1, 2, 3, 4) # => [1, 2, [3, 4]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 326
+Chapter 22. The Ruby Language ï¿½ 326
 
 New in 2.0
 
@@ -9836,9 +9842,9 @@ The keyword undef allows you to undefine a method.
 undef name | symbol ...
 An undefined method still exists; it is simply marked as being undefined. If you undefine a method in a child class and then call that method on an instance of that child class, Ruby will immediately raise a NoMethodError--it will not look for the method in the child's parents.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Invoking a Method · 327
+Invoking a Method ï¿½ 327
 
 22.8 Invoking a Method
 
@@ -9881,9 +9887,9 @@ regular(99, **others, a: 1, b: 2) regular(99, **others, a: 1, b: 2, **rest)
 
 When a method defined with keyword arguments is called, Ruby matches the keys in the passed hash with each argument, assigning values when it finds a match.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 328
+Chapter 22. The Ruby Language ï¿½ 328
 
 def keywords(a, b: 2, c: 3) "a=#{a}, b=#{b}, c=#{c}"
 end
@@ -9921,9 +9927,9 @@ Ruby arranges for the value of Object#block_given? to reflect the availability o
 def other_method(&block) puts "block_given = #{block_given?}, block = #{block.inspect}"
 end other_method { } other_method
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Invoking a Method · 329
+Invoking a Method ï¿½ 329
 
 produces:
 block_given = true, block = #<Proc:0x007fafc305c3d0@prog.rb:4> block_given = false, block = nil
@@ -9948,9 +9954,9 @@ super
 super < ( < , param >* < , *array > ) > < block >
 Within the body of a method, a call to super acts like a call to the original method, except that the search for a method body starts in the superclass of the object that contained the original method. If no parameters (and no parentheses) are passed to super, the original method's parameters will be passed; otherwise, the parameters to super will be passed.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 330
+Chapter 22. The Ruby Language ï¿½ 330
 
 Operator Methods
 expr operator operator expr expr1 operator expr2
@@ -9990,9 +9996,9 @@ When used as an lvalue, element reference invokes the method []= in the receiver
 alias new_name old_name
 This creates a new name that refers to an existing method, operator, global variable, or regular expression backreference ($&, $`, $', and $+). Local variables, instance variables, class variables, and constants may not be aliased. The parameters to alias may be names or symbols.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Class Definition · 331
+Class Definition ï¿½ 331
 
 class Fixnum alias plus +
 end 1.plus(3)
@@ -10044,16 +10050,16 @@ end
 A Ruby class definition creates or extends an object of class Class by executing the code in body. In the first form, a named class is created or extended. The resulting Class object is assigned to a constant named classname (keep reading for scoping rules). This name should start with an uppercase letter. In the second form, an anonymous (singleton) class is associated with the specific object.
 If present, superexpr should be an expression that evaluates to a Class object that will be the superclass of the class being defined. If omitted, it defaults to class Object.
 Within body, most Ruby expressions are executed as the definition is read. However:
-· Method definitions will register the methods in a table in the class object.
-· Nested class and module definitions will be stored in constants within the class, not as global constants. These nested classes and modules can be accessed from outside the defining class using :: to qualify their names.
+ï¿½ Method definitions will register the methods in a table in the class object.
+ï¿½ Nested class and module definitions will be stored in constants within the class, not as global constants. These nested classes and modules can be accessed from outside the defining class using :: to qualify their names.
 module NameSpace class Example CONST = 123
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 332
+Chapter 22. The Ruby Language ï¿½ 332
 
 end end obj = NameSpace::Example.new a = NameSpace::Example::CONST
-· The Module#include method will add the named modules as anonymous superclasses of the class being defined.
+ï¿½ The Module#include method will add the named modules as anonymous superclasses of the class being defined.
 The classname in a class definition may be prefixed by the names of existing classes or modules using the scope operator (::). This syntax inserts the new definition into the namespace of the prefixing module(s) and/or class(es) but does not interpret the definition in the scope of these outer classes. A classname with a leading scope operator places that class or module in the top-level scope.
 In the following example, class C is inserted into module A's namespace but is not interpreted in the context of A. As a result, the reference to CONST resolves to the top-level constant of that name, not A's version. We also have to fully qualify the singleton method name, because C on its own is not a known constant in the context of A::C.
 CONST = "outer"
@@ -10078,9 +10084,9 @@ Chapter 24, Metaprogramming, on page 357 describes in more detail how Class obje
 Creating Objects from Classes
 obj = classexpr.new < ( < , args >* ) >
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module Definitions · 333
+Module Definitions ï¿½ 333
 
 Class Class defines the instance method Class#new, which creates an instance of the class of its receiver (classexpr). This is done by calling the method classexpr.allocate. You can override this method, but your implementation must return an object of the correct class. It then invokes initialize in the newly created object and passes it any arguments originally passed to new.
 If a class definition overrides the class method new without calling super, no objects of that class can be created, and calls to new will silently return nil.
@@ -10131,9 +10137,9 @@ Mod.method1
 
 Mod::Inner::method2 # => "outer scope"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 334
+Chapter 22. The Ruby Language ï¿½ 334
 
 Mixins: Including Modules
 class|module name include expr
@@ -10159,18 +10165,18 @@ The instance method and module method are two different methods: the method defi
 
 You can also use module_function with no parameters, in which case all subsequent methods will be module methods.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Access Control · 335
+Access Control ï¿½ 335
 22.12 Access Control
 private < symbol >* protected < symbol >* public < symbol >*
 Ruby defines three levels of protection for module and class constants and methods:
-· Public. Accessible to anyone.
-· Protected. Can be invoked only by objects of the defining class and its subclasses.
-· Private. Can be called only in functional form (that is, with an implicit receiver of self). Private methods therefore can be called in the defining class and by that class's descendents and ancestors, but only within the same object. See Section 3.3, Access Control, on page 40 for examples.
+ï¿½ Public. Accessible to anyone.
+ï¿½ Protected. Can be invoked only by objects of the defining class and its subclasses.
+ï¿½ Private. Can be called only in functional form (that is, with an implicit receiver of self). Private methods therefore can be called in the defining class and by that class's descendents and ancestors, but only within the same object. See Section 3.3, Access Control, on page 40 for examples.
 Each function can be used in two different ways:
-· If used with no arguments, the three functions set the default access control of subsequently defined methods.
-· With arguments, the functions set the access control of the named methods and constants.
+ï¿½ If used with no arguments, the three functions set the default access control of subsequently defined methods.
+ï¿½ With arguments, the functions set the access control of the named methods and constants.
 Access control is enforced when a method is invoked.
 22.13 Blocks, Closures, and Proc Objects
 A code block is a set of Ruby statements and expressions between braces or a do/end pair. The block may start with an argument list between vertical bars. A code block may appear only immediately after a method invocation. The start of the block (the brace or the do) must be on the same logical source line as the end of the invocation.
@@ -10180,30 +10186,30 @@ Braces have a high precedence; do has a low precedence. If the method invocation
 Within the body of the invoked method, the code block may be called using the yield keyword. Parameters passed to yield will be assigned to arguments in the block. A warning will be generated if yield passes multiple parameters to a block that takes just one. The return value of the yield is the value of the last expression evaluated in the block or the value passed to a next statement executed in the block.
 A block is a closure; it remembers the context in which it was defined, and it uses that context whenever it is called. The context includes the value of self, the constants, the class variables, the local variables, and any captured block.
 class BlockExample CONST = 0 @@a = 3 def return_closure
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 336
+Chapter 22. The Ruby Language ï¿½ 336
 a=1 @a = 2 lambda { [ CONST, a, @a, @@a, yield ] } end def change_values @a += 1 @@a += 1 end end
 eg = BlockExample.new block = eg.return_closure { "original" }
 block.call # => [0, 1, 2, 3, "original"] eg.change_values block.call # => [0, 1, 3, 4, "original"]
 Here, the return_closure method returns a lambda that encapsulates access to the local variable a, instance variable @a, class variable @@a, and constant CONST. We call the block outside the scope of the object that contains these values, but they are still available via the closure. If we then call the object to change some values, the values accessed via the closure also change.
 Block Arguments
 Block argument lists are very similar to method argument lists:
-· You can specify default values. · You can specify splat (starred) arguments. · The last argument can be prefixed with an ampersand, in which case it will collect any
-block passed when the original block is called. · Block-local variables are declared by placing them after a semicolon in the argument
+ï¿½ You can specify default values. ï¿½ You can specify splat (starred) arguments. ï¿½ The last argument can be prefixed with an ampersand, in which case it will collect any
+block passed when the original block is called. ï¿½ Block-local variables are declared by placing them after a semicolon in the argument
 list.
 These changes make it possible to use Module#define_method to create methods based on blocks that have similar capabilities to methods created using def.
 Proc Objects
 Ruby's blocks are chunks of code attached to a method. Blocks are not objects, but they can be converted into objects of class Proc. There are four ways of converting a block into a Proc object.
-· By passing a block to a method whose last parameter is prefixed with an ampersand. That parameter will receive the block as a Proc object.
+ï¿½ By passing a block to a method whose last parameter is prefixed with an ampersand. That parameter will receive the block as a Proc object.
 def meth1(p1, p2, &block) puts block.inspect
 end meth1(1,2) { "a block" } meth1(3,4)
 produces: #<Proc:0x007f97cb12c400@prog.rb:4> nil
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks, Closures, and Proc Objects · 337
+Blocks, Closures, and Proc Objects ï¿½ 337
 
-· By calling Proc.new, again associating it with a block.6
+ï¿½ By calling Proc.new, again associating it with a block.6
 
 block = Proc.new { "a block" }
 
@@ -10211,7 +10217,7 @@ block
 
 # => #<Proc:0x007fd4a4064638@prog.rb:1>
 
-· By calling the method Object#lambda, associating a block with the call.
+ï¿½ By calling the method Object#lambda, associating a block with the call.
 
 block = lambda { "a block" }
 
@@ -10219,7 +10225,7 @@ block
 
 # => #<Proc:0x007f9d4c12c5c8@prog.rb:1 (lambda)>
 
-· Using the -> syntax.
+ï¿½ Using the -> syntax.
 
 lam = ->(p1, p2) { p1 + p2 } lam.call(4, 3) # => 7
 
@@ -10243,9 +10249,9 @@ produces: Caller likes 7
 
 6. There's also a built-in Object#proc method. In Ruby 1.8, this was equivalent to lambda. In Ruby 1.9 and later, it is the same as Proc.new. Don't use proc in new code.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 338
+Chapter 22. The Ruby Language ï¿½ 338
 
 Within a raw proc, a break terminates the method that invoked the block. The return value of the method is any parameters passed to the break.
 
@@ -10294,9 +10300,9 @@ meth4
 
 # => 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Exceptions · 339
+Exceptions ï¿½ 339
 
 A lambda behaves more like a free-standing method body: a return simply returns from the block to the caller of the block:
 def meth5 p = lambda { return 99 } res = p.call "The block returned #{res}"
@@ -10321,23 +10327,23 @@ When an exception is raised, Ruby places a reference to the Exception object in 
 
 Handling Exceptions
 Exceptions may be handled in the following ways:
-· Within the scope of a begin/end block:
+ï¿½ Within the scope of a begin/end block:
 begin code... code...
 < rescue < , parm >* < , => var > < , then > error handling code... >*
 < else no exception code... >
 < ensure always executed code... >
 end
-· Within the body of a method:
+ï¿½ Within the body of a method:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 22. The Ruby Language · 340
+Chapter 22. The Ruby Language ï¿½ 340
 def method name and args code... code...
 < rescue < , parm >* < , => var > < , then > error handling code... >*
 < else no exception code... >
 < ensure always executed code... >
 end
-· After the execution of a single statement:
+ï¿½ After the execution of a single statement:
 statement < rescue statement >*
 A block or method may have multiple rescue clauses, and each rescue clause may specify zero or more exception parameters. A rescue clause with no parameter is treated as if it had a parameter of StandardError. This means that some lower-level exceptions will not be caught by a parameterless rescue class. If you want to rescue every exception, use this:
 rescue Exception => e
@@ -10350,23 +10356,23 @@ Within a rescue clause, raise with no parameters will reraise the exception in $
 Rescue Statement Modifier A statement may have an optional rescue modifier followed by another statement (and by extension another rescue modifier, and so on). The rescue modifier takes no exception parameter and rescues StandardError and its children.
 If an exception is raised to the left of a rescue modifier, the statement on the left is abandoned, and the value of the overall line is the value of the statement on the right:
 values = [ "1", "2.3", /pattern/ ] result = values.map {|v| Integer(v) rescue Float(v) rescue String(v) } result # => [1, 2.3, "(?-mix:pattern)"]
-report erratum · discuss
+report erratum ï¿½ discuss
 
-catch and throw · 341
+catch and throw ï¿½ 341
 Retrying a Block The retry statement can be used within a rescue clause to restart the enclosing begin/end block from the beginning.
 22.15 catch and throw
 The method Object#catch executes its associated block:
 catch ( object ) do code...
 end
 The method Object#throw interrupts the normal processing of statements: throw( object < , obj > ) When a throw is executed, Ruby searches up the call stack for the first catch block with a matching object. If it is found, the search stops, and execution resumes past the end of the catch's block. If the throw is passed a second parameter, that value is returned as the value of the catch. Ruby honors the ensure clauses of any block expressions it traverses while looking for a corresponding catch. If no catch block matches the throw, Ruby raises an ArgumentError exception at the location of the throw.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 23
 Duck Typing
-You'll have noticed that in Ruby we don't declare the types of variables or methods-- everything is just some kind of object. Now, it seems like folks react to this in two ways. Some like this kind of flexibility and feel comfortable writing code with dynamically typed variables and methods. If you're one of those people, you might want to skip to Section 23.1, Classes Aren't Types, on page 344. Some, though, get nervous when they think about all those objects floating around unconstrained. If you've come to Ruby from a language such as C# or Java, where you're used to giving all your variables and methods a type, you may feel that Ruby is just too sloppy to use to write "real" applications. It isn't. We'd like to spend a couple of paragraphs trying to convince you that the lack of static typing is not a problem when it comes to writing reliable applications. We're not trying to criticize other languages here. Instead, we'd just like to contrast approaches. The reality is that the static type systems in most mainstream languages don't really help that much in terms of program security. If Java's type system were reliable, for example, it wouldn't need to implement ClassCastException. The exception is necessary, though, because there is runtime type uncertainty in Java (as there is in C++, C#, and others). Static typing can be good for optimizing code, and it can help IDEs do clever things with tooltip help, but we haven't seen much evidence that it promotes more reliable code. On the other hand, once you use Ruby for a while, you realize that dynamically typed variables actually add to your productivity in many ways. You'll also be surprised to discover that your fears about the type chaos were unfounded. Large, long-running Ruby programs run significant applications and just don't throw any type-related errors. Why is this? Partly, it's a question of common sense. If you coded in Java (pre­Java 1.5), all your containers were effectively untyped: everything in a container was just an Object, and you cast it to the required type when you extracted an element. And yet you probably never saw a ClassCastException when you ran these programs. The structure of the code just didn't permit it. You put Person objects in, and you later took Person objects out. You just don't write programs that would work in another way.
-report erratum · discuss
+You'll have noticed that in Ruby we don't declare the types of variables or methods-- everything is just some kind of object. Now, it seems like folks react to this in two ways. Some like this kind of flexibility and feel comfortable writing code with dynamically typed variables and methods. If you're one of those people, you might want to skip to Section 23.1, Classes Aren't Types, on page 344. Some, though, get nervous when they think about all those objects floating around unconstrained. If you've come to Ruby from a language such as C# or Java, where you're used to giving all your variables and methods a type, you may feel that Ruby is just too sloppy to use to write "real" applications. It isn't. We'd like to spend a couple of paragraphs trying to convince you that the lack of static typing is not a problem when it comes to writing reliable applications. We're not trying to criticize other languages here. Instead, we'd just like to contrast approaches. The reality is that the static type systems in most mainstream languages don't really help that much in terms of program security. If Java's type system were reliable, for example, it wouldn't need to implement ClassCastException. The exception is necessary, though, because there is runtime type uncertainty in Java (as there is in C++, C#, and others). Static typing can be good for optimizing code, and it can help IDEs do clever things with tooltip help, but we haven't seen much evidence that it promotes more reliable code. On the other hand, once you use Ruby for a while, you realize that dynamically typed variables actually add to your productivity in many ways. You'll also be surprised to discover that your fears about the type chaos were unfounded. Large, long-running Ruby programs run significant applications and just don't throw any type-related errors. Why is this? Partly, it's a question of common sense. If you coded in Java (preï¿½Java 1.5), all your containers were effectively untyped: everything in a container was just an Object, and you cast it to the required type when you extracted an element. And yet you probably never saw a ClassCastException when you ran these programs. The structure of the code just didn't permit it. You put Person objects in, and you later took Person objects out. You just don't write programs that would work in another way.
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 344
+Chapter 23. Duck Typing ï¿½ 344
 
 Well, it's the same in Ruby. If you use a variable for some purpose, chances are very good that you'll be using it for the same purpose when you access it again three lines later. The kind of chaos that could happen just doesn't happen.
 On top of that, folks who code Ruby a lot tend to adopt a certain style of coding. They write lots of short methods and tend to test as they go along. The short methods mean that the scope of most variables is limited; there just isn't that much time for things to go wrong with their type. And the testing catches the silly errors when they happen; typos and the like just don't get a chance to propagate through the code.
@@ -10393,9 +10399,9 @@ public class Person implements Customer {
 
 public long getID() { ... } public Calendar getDateOfLastContact() { ... } // ... }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Classes Aren't Types · 345
+Classes Aren't Types ï¿½ 345
 So, even in Java, the class is not always the type--sometimes the type is a subset of the class, and sometimes objects implement multiple types.
 In Ruby, the class is never (OK, almost never) the type. Instead, the type of an object is defined more by what that object can do. In Ruby, we call this duck typing. If an object walks like a duck and talks like a duck, then the interpreter is happy to treat it as if it were a duck.
 Let's look at an example. Perhaps we've written a method to write our customer's name to the end of an open file:
@@ -10411,9 +10417,9 @@ produces: Run options: # Running tests: . Finished tests in 0.007193s, 139.0241 
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 We have to do all that work to create a file to write to, then reopen it, and read in the contents to verify the correct string was written. We also have to delete the file when we've finished (but only if it exists).
 Instead, though, we could rely on duck typing. All we need is something that walks like a file and talks like a file that we can pass in to the method under test. And all that means in
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 346
+Chapter 23. Duck Typing ï¿½ 346
 this circumstance is that we need an object that responds to the << method by appending something. Do we have something that does this? How about a humble String?
 require 'test/unit' require_relative 'addcust'
 class TestAddCustomer < Test::Unit::TestCase def test_add c = Customer.new("Ima", "Customer") f = "" c.append_name_to_file(f) assert_equal("Ima Customer", f) end
@@ -10427,9 +10433,9 @@ end produces: Run options: # Running tests: . Finished tests in 0.006641s, 150.5
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 Indeed, this form may be more convenient if we wanted to check that the correct individual things were inserted.
 So, duck typing is convenient for testing, but what about in the body of applications themselves? Well, it turns out that the same thing that made the tests easy in the previous example also makes it easy to write flexible application code.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Classes Aren't Types · 347
+Classes Aren't Types ï¿½ 347
 In fact, Dave had an interesting experience where duck typing dug him (and a client) out of a hole. He'd written a large Ruby-based web application that (among other things) kept a database table full of details of participants in a competition. The system provided a commaseparated value (CSV) download capability so administrators could import this information into their local spreadsheets.
 Just before competition time, the phone starts ringing. The download, which had been working fine up to this point, was now taking so long that requests were timing out. The pressure was intense, because the administrators had to use this information to build schedules and send out mailings.
 A little experimentation showed that the problem was in the routine that took the results of the database query and generated the CSV download. The code looked something like this:
@@ -10443,9 +10449,9 @@ def csv_from_row(op, row) # as before
 end
 result = [] query.each_row {|row| csv_from_row(result, row)}
 http.write result.join
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 348
+Chapter 23. Duck Typing ï¿½ 348
 All that changed is that we passed an array into the csv_from_row method. Because it (implicitly) used duck typing, the method itself was not modified; it continued to append the data it generated to its parameter, not caring what type that parameter was. After the method returned its result, we joined all those individual lines into one big string. This one change reduced the time to run from more than three minutes to a few seconds.
 23.2 Coding like a Duck
 If you want to write your programs using the duck typing philosophy, you really need to remember only one thing: an object's type is determined by what it can do, not by its class. (In fact, older versions of Ruby had a method Object#type that returned the class of an object.)
@@ -10461,9 +10467,9 @@ result = "" append_song(result, song)
 You don't need to check the type of the arguments. If they support << (in the case of result) or title and artist (in the case of song), everything will just work. If they don't, your method will throw an exception anyway (just as it would have done if you'd checked the types). But without the check, your method is suddenly a lot more flexible. You could pass it an array, a string, a file, or any other object that appends using <<, and it would just work.
 Now sometimes you may want more than this style of laissez-faire programming. You may have good reasons to check that a parameter can do what you need. Will you get thrown out of the duck typing club if you check the parameter against a class? No, you won't.1 But you may want to consider checking based on the object's capabilities, rather than its class:
 1. The duck typing club doesn't check to see whether you're a member anyway....
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Standard Protocols and Coercions · 349
+Standard Protocols and Coercions ï¿½ 349
 def append_song(result, song) # test we're given the right parameters unless result.respond_to?(:<<) fail TypeError.new("'result' needs `<<' capability") end unless song.respond_to?(:artist) && song.respond_to?(:title) fail TypeError.new("'song' needs 'artist' and 'title'") end
 result << song.title << " (" << song.artist << ")" end
 result = "" append_song(result, song)
@@ -10476,9 +10482,9 @@ We've already come across the first. Methods such as to_s and to_i convert their
 The second form of conversion function uses methods with names such as to_str and to_int. These are strict conversion functions. You implement them only if your object can naturally be used every place a string or an integer could be used. For example, our Roman number objects have a clear representation as an integer and so should implement to_int. When it comes to stringiness, however, we have to think a bit harder.
 Roman numbers clearly have a string representation, but are they strings? Should we be able to use them wherever we can use a string itself? No, probably not. Logically, they're a representation of a number. You can represent them as strings, but they aren't plug-compatible with strings. For this reason, a Roman number won't implement to_str--it isn't really a string. Just to drive this home, Roman numerals can be converted to strings using to_s, but they aren't inherently strings, so they don't implement to_str.
 To see how this works in practice, let's look at opening a file. The first parameter to File.new can be either an existing file descriptor (represented by an integer) or a filename to open. However, Ruby doesn't simply look at the first parameter and check whether its type is
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 350
+Chapter 23. Duck Typing ï¿½ 350
 Fixnum or String. Instead, it gives the object passed in the opportunity to represent itself as a number or a string. If it were written in Ruby, it may look something like this:
 class File def self.new(file, *args) if file.respond_to?(:to_int) IO.new(file.to_int, *args) else name = file.to_str # call operating system to open file 'name' end end
 end
@@ -10494,9 +10500,9 @@ class OneTwo def to_a [ 1, 2 ] end
 end
 ot = OneTwo.new a, b = *ot puts "a = #{a}, b = #{b}" printf("%d -- %d\n", *ot)
 produces: a = 1, b = 2 1 -- 2
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Standard Protocols and Coercions · 351
+Standard Protocols and Coercions ï¿½ 351
 to_enum  Enumerator This converts an object (presumably a collection) to an enumerator. It's never called internally by the interpreter.
 to_hash  Hash This is used when the interpreter expects to see Hash.
 to_int  Integer This is used when the interpreter expects to see an integer value (such as a file descriptor or as a parameter to Object#Integer).
@@ -10513,9 +10519,9 @@ to_str  String Used pretty much any place the interpreter is looking for a Strin
 class OneTwo def to_str "one-two" end
 end
 ot = OneTwo.new puts("count: " + ot) File.open(ot) rescue puts $!.message produces: count: one-two No such file or directory - one-two
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 352
+Chapter 23. Duck Typing ï¿½ 352
 to_sym  Symbol Expresses the receiver as a symbol. This is used by the interpreter when compiling instruction sequences, but it's probably not useful in user code.
 Note that classes such as Integer and Fixnum implement the to_int method, and String implements to_str. That way, you can call the strict conversion functions polymorphically:
 # it doesn't matter if obj is a Fixnum or a # Roman number, the conversion still succeeds num = obj.to_int
@@ -10530,9 +10536,9 @@ end
 This method creates a Proc, which, when called on an object, sends that object the symbol itself. So, when names.map(&:upcase) starts to iterate over the strings in names, it'll call the block, passing in the first name and invoking its upcase method. It's an incredibly elegant use of coercion and of closures. However, it comes at a price. The use of dynamic method invocations mean that the version of our code that uses &:upcase is about half as fast as the more explicitly coded block. This doesn't worry me personally unless I happen to be in a performance-critical section of my code.
 Numeric Coercion
 We previously said there were three types of conversion performed by the interpreter. We covered loose and strict conversion. The third is numeric coercion.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Standard Protocols and Coercions · 353
+Standard Protocols and Coercions ï¿½ 353
 
 Here's the problem. When you write 1+2, Ruby knows to call the + on the object 1 (a Fixnum), passing it the Fixnum 2 as a parameter. However, when you write 1+2.3, the same + method now receives a Float parameter. How can it know what to do (particularly because checking the classes of your parameters is against the spirit of duck typing)?
 The answer lies in Ruby's coercion protocol, based on the method coerce. The basic operation of coerce is simple. It takes two numbers (its receiver and its parameter). It returns a twoelement array containing representations of these two numbers (but with the parameter first, followed by the receiver). The coerce method guarantees that these two objects will have the same class and therefore that they can be added (or multiplied, compared, or whatever).
@@ -10562,9 +10568,9 @@ iv = Roman.new(4) xi = Roman.new(11)
 3 * iv # => 12 1.2 * xi # => 13.2
 Of course, class Roman as implemented doesn't know how to do addition. You couldn't have written xi+3 in the previous example, because Roman doesn't have a + method. And that's probably as it should be. But let's go wild and implement addition for Roman numbers:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 23. Duck Typing · 354
+Chapter 23. Duck Typing ï¿½ 354
 
 class Roman MAX_ROMAN = 4999
 
@@ -10592,9 +10598,9 @@ iv + 3 iv + 3 + 4
 
 # => vii # => xi
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Walk the Walk, Talk the Talk · 355
+Walk the Walk, Talk the Talk ï¿½ 355
 
 iv + 3.14159 xi + 4900 xi + 4990
 
@@ -10606,7 +10612,7 @@ Finally, be careful with coerce--try always to coerce into a more general type, 
 Duck typing can generate controversy. Every now and then a thread flares on the mailing lists or someone blogs for or against the concept. Many of the contributors to these discussions have some fairly extreme positions.
 Ultimately, though, duck typing isn't a set of rules; it's just a style of programming. Design your programs to balance paranoia and flexibility. If you feel the need to constrain the types of objects that the users of a method pass in, ask yourself why. Try to determine what could go wrong if you were expecting a String and instead get an Array. Sometimes, the difference is crucially important. Often, though, it isn't. Try erring on the more permissive side for a while, and see whether bad things happen. If not, perhaps duck typing isn't just for the birds.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 24
 Metaprogramming
@@ -10617,9 +10623,9 @@ Ruby makes metaprogramming easy. As a result, most advanced Ruby programmers wil
 24.1 Objects and Classes
 Classes and objects are obviously central to Ruby, but at first sight they can be a little confusing. It seems like there are a lot of concepts: classes, objects, class objects, instance methods, class methods, singleton classes, and virtual classes. In reality, however, Ruby has just a single underlying class and object structure.
 A Ruby object has three components: a set of flags, some instance variables, and an associated class. A Ruby class is itself an object of class Class. It contains all the things an object has plus a set of method definitions and a reference to a superclass (which is itself another class).
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 358
+Chapter 24. Metaprogramming ï¿½ 358
 And, basically, that's it. From here, you could work out the details of metaprogramming for yourself. But, as always, the devil lurks in the details, so let's dig a little deeper.
 self and Method Calling
 Ruby has the concept of the current object. This current object is referenced by the built-in, read-only variable self. self has two significant roles in a running Ruby program.
@@ -10633,9 +10639,9 @@ end
 t = Test.new t.one produces: 99
 The call to Test.new on the second-to-last line creates a new object of class Test, assigning that object to the variable t. Then, on the next line, we call the method t.one. To execute this call, Ruby sets self to t and then looks in t's class for the method one. Ruby finds the method defined on line 2 and calls it.
 1. If it can't find the method in the object's class hierarchy, Ruby looks for a method called method_missing on the original receiver, starting back at the class of self and then looking up the superclass chain.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Classes · 359
+Objects and Classes ï¿½ 359
 Inside the method, we set the instance variable @var to 99. This instance variable will be associated with the current object. What is that object? Well, the call to t.one set self to t, so within the one method, self will be that particular instance of class Test.
 On the next line, one calls two. Because there's no explicit receiver, self is not changed. When Ruby looks for the method two, it looks in Test, the class of t.
 The method two references an instance variable @var. Again, Ruby looks for this variable in the current object and finds the same variable that was set by the method one.
@@ -10651,9 +10657,9 @@ class Test @var = 99 def self.value_of_var @var end
 end
 Test.value_of_var # => 99
 The fact that self is set to the class during a class definition turns out to be a dramatically elegant decision, but to see why, we'll first need to have a look at singletons.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 360
+Chapter 24. Metaprogramming ï¿½ 360
 24.2 Singletons
 Ruby lets you define methods that are specific to a particular object. These are called singleton methods. Let's start with a simple string object:
 animal = "cat" puts animal.upcase produces: CAT
@@ -10682,9 +10688,9 @@ produces:
 The cat says miaow CAT
 We've already seen how the call to animal.speak works when we looked at how methods are invoked. Ruby sets self to the string object "cat" referenced by animal and then looks for a method speak in that object's class. Surprisingly, it finds it. It's initially surprising because the class of "cat" is String, and String doesn't have a speak method. So, does Ruby have some kind of special-case magic for these methods that are defined on individual objects?
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Singletons · 361
+Singletons ï¿½ 361
 Thankfully, the answer is "no." Ruby's object model is remarkably consistent. When we defined the singleton method for the "cat" object, Ruby created a new anonymous class and defined the speak method in that class. This anonymous class is sometimes called a singleton class and other times an eigenclass. I prefer the former, because it ties in to the idea of singleton methods.
 Ruby makes this singleton class the class of the "cat" object and makes String (which was the original class of "cat") the superclass of the singleton class. The picture looks like this:
 class
@@ -10711,9 +10717,9 @@ What happens if we instead call animal.upcase? The processing starts the same wa
 Singletons and Classes
 Earlier, we said that inside a class definition, self is set to the class object being defined. It turns out that this is the basis for one of the more elegant aspects of Ruby's object model.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 362
+Chapter 24. Metaprogramming ï¿½ 362
 
 Recall that we can define class methods in Ruby using either of the forms def self.xxx or def ClassName.xxx:
 class Dave def self.class_method_one puts "Class method one" end def Dave.class_method_two puts "Class method two" end
@@ -10747,9 +10753,9 @@ Class
 super class methods:
 - new() ...
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Singletons · 363
+Singletons ï¿½ 363
 The object diagram for class Dave after the methods are defined looks like this:
 class
 Module
@@ -10784,9 +10790,9 @@ puts "Original value = #{Test.var}" Test.var = "cat" puts "New value = #{Test.va
 produces: Original value = 99 New value = cat
 Newcomers to Ruby commonly make the mistake of setting instance variables inline in the class definition (as we did with @var in the previous code) and then attempting to access
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 364
+Chapter 24. Metaprogramming ï¿½ 364
 
 these variables from instance methods. As the code illustrates, this won't work, because instance variables defined in the class body are associated with the class object, not with instances of the class.
 
@@ -10823,9 +10829,9 @@ Note the notation that Ruby uses to denote a singleton class: #<Class:#<String:.
 Ruby goes to some trouble to stop you from using singleton classes outside the context of their original object. For example, you can't create a new instance of a singleton class:
 singleton = class << "cat"; self; end singleton.new
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Inheritance and Visibility · 365
+Inheritance and Visibility ï¿½ 365
 produces: from prog.rb:2:in `<main>'
 prog.rb:2:in `new': can't create instance of singleton class (TypeError)
 Let's tie together what we know about instance variables, self, and singleton classes. We wrote class-level accessor methods on page 363 to let us get and set the value of an instance variable defined in a class object. But Ruby already has attr_accessor, which defines getter and setter methods. Normally, though, these are defined as instance methods and hence will access values stored in instances of a class. To make them work with class-level instance variables, we have to invoke attr_accessor in the singleton class:
@@ -10842,9 +10848,9 @@ class Derived2 < Base end
 In this example, you would be able to invoke a_method in instances of class Derived1 but not via instances of Base or Derived2.
 So, how does Ruby pull off this feat of having one method with two different visibilities? Simply put, it cheats.
 If a subclass changes the visibility of a method in a parent, Ruby effectively inserts a hidden proxy method in the subclass that invokes the original method using super. It then sets the visibility of that proxy to whatever you requested. This means that the following code:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 366
+Chapter 24. Metaprogramming ï¿½ 366
 class Derived1 < Base public :a_method
 end
 is effectively the same as this:
@@ -10860,7 +10866,7 @@ end
 s = Song.new s.log("created") produces: 12:31:37: #<Song:0x007f952b0478c0> (created)
 Ruby implements include very simply: the module that you include is effectively added as a superclass of the class being defined. It's as if the module is the parent of the class that it is mixed in to. And that would be the end of the description except for one small wrinkle. Because the module is injected into the chain of superclasses, it must itself hold a link to the original parent class. If it didn't, there'd be no way of traversing the superclass chain to look up methods. However, you can mix the same module into many different classes, and those classes could potentially have totally different superclass chains. If there were just one module object that we mixed in to all these classes, there'd be no way of keeping track of the different superclasses for each.
 To get around this, Ruby uses a clever trick. When you include a module in class Example, Ruby constructs a new class object, makes it the superclass of Example, and then sets the superclass of the new class to be the original superclass of Example. It then references the module's methods from this new class object in such a way that when you look a method up in this class, it actually looks it up in the module:
-report erratum · discuss
+report erratum ï¿½ discuss
 
 class
 Object
@@ -10875,7 +10881,7 @@ Logger
 class methods:
 - log()
 
-Modules and Mixins · 367
+Modules and Mixins ï¿½ 367
 class
 Object super class methods:
 - clone() - dup() ...
@@ -10901,9 +10907,9 @@ puts "After change, greeting is #{ex.greeting}"
 produces: Before change, greeting is Hello After change, greeting is Hi
 If a module itself includes other modules, a chain of proxy classes will be added to any class that includes that module, one proxy for each module that is directly or indirectly included.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 368
+Chapter 24. Metaprogramming ï¿½ 368
 
 Finally, Ruby will include a module only once in an inheritance chain--including a module that is already included by one of your superclasses has no effect.
 
@@ -10932,9 +10938,9 @@ obj = "Grouchy" obj.extend Humor obj.tickle # => "Grouchy says hee, hee!"
 
 2. Actually, it inserts the dummy class above the original class, and then moves the methods from the original to the copy.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Modules and Mixins · 369
+Modules and Mixins ï¿½ 369
 
 Stop for a second to think about how this might be implemented.
 When Ruby executes obj.tickle in this code example, it does the usual trick of looking in the class of obj for a method called tickle. For extend to work, it has to add the instance methods in the Humor module into the superclass chain for the class of obj. So, just as with singleton method definitions, Ruby creates a singleton class for obj and then includes the module Humor in that class. In fact, just to prove that this is all that happens, here's the C implementation of extend in the current Ruby 1.9 interpreter:
@@ -10958,9 +10964,9 @@ Now, before going any further, here is the mandatory warning. Refinements are no
 New in 2.0
 
 3. This is clearly a problem in theory. Does it happen in practice? Actually, surprisingly little. But you can never be sure that things will quite work as you expect. Even if you don't override these classes, it is possible you're using two separate libraries whose patches to third-party classes clash.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 370
+Chapter 24. Metaprogramming ï¿½ 370
 outdated as new releases of Ruby change the spec. If you are writing code that uses refinements, you'll want to keep track of these changes.
 A refinement is a way of packaging a set of changes to one or more classes. These refinements are defined within a module.
 If a Ruby source file then elects to use this module of refinements, the change will apply to the source in that module past the point where the refinement is used. However code outside this file is not affected.
@@ -10976,9 +10982,9 @@ Let's step it up a notch. We'll define three source files. Here's one that conta
 metaprogramming/ref1/vanity_refinement.rb module VanityPuts
 refine Object do private def puts(*args) args.each do |arg| Kernel::puts("Dave says: #{arg}") end end
 end end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Modules and Mixins · 371
+Modules and Mixins ï¿½ 371
 And here's a file that uses this refinement.
 metaprogramming/ref1/file_using_refinement.rb using VanityPuts
 puts "I'm in #{File::basename(__FILE__)}"
@@ -10992,9 +10998,9 @@ Notice how the puts calls in the main program are unadorned, but the calls in th
 Refinements--use and scoping You can define refinements in any module. A refinement may only refer to a class (not a module). The using call that activates a refinement module can only occur at the top-level scope or in a string that is evaluated. using may not be called inside a class or module definition.4 The basic scoping rule is simple. A refinement is activated in a source file by calling using. For the rest of that source file, the methods that are defined in that refinement are active.
 Designing with Refinements Refinements are too new for the community to have come to any kind of consensus on the best way to use them. However, it seems likey that there are at least two basic use cases. The first is the case where a developer wants to make changes to a third party class for their own use. For example, a tool such as Rake, which issues a lot of calls to run external programs using the system method might want to modify the built-in version of system so that it logs errors differently. However, it does not want that logging to apply to other calls to system that are not part of Rake. In this case, the code will use the refinement locally within its own source files. It will be an implementation detail, hidden from users of the code.
 4. This is the area where we're likely to see changes in the future.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 372
+Chapter 24. Metaprogramming ï¿½ 372
 The second use case is where a library writer offers the refinement as part of their external interface. For example, the Rails Active Support code defines methods such as hours, minutes, and ago on numbers, allowing you to write 3.days.ago. Right now, those changes to numbers are global. But, using refinements, the Rails team could code the new methods, but not add them in to any system classes. Instead, their API would document how to add them for yourself into just those source files that uses them. They might tell you to to write
 using Rails::Extensions::Durations
 in any source file that needs to use them.
@@ -11011,9 +11017,9 @@ Let's create a trivial example and then build it up into something realistic. We
 class Example def self.add_logging def log(msg) STDERR.puts Time.now.strftime("%H:%M:%S: ") + "#{self} (#{msg})" end end
 add_logging end
 ex = Example.new ex.log("hello") produces: 12:31:38: #<Example:0x007fc14310fa20> (hello)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Metaprogramming Class-Level Macros · 373
+Metaprogramming Class-Level Macros ï¿½ 373
 Clearly, this is a silly piece of code. But bear with me--it'll get better. And we can still learn some stuff from it. First, notice that add_logging is a class method--it is defined in the class object's singleton class. That means we can call it later in the class definition without an explicit receiver, because self is set to the class object inside a class definition.
 Then, notice that the add_logging method contains a nested method definition. This inner definition will get executed only when we call the add_logging method. The result is that log will be defined as an instance method of class Example.
 Let's take one more step. We can define the add_logging method in one class and then use it in a subclass. This works because the singleton class hierarchy parallels the regular class hierarchy. As a result, class methods in a parent class are also available in the child class, as the following example shows.
@@ -11030,9 +11036,9 @@ end
 class Album < Logger add_logging "CD"
 end
 To do this, let's define the log method on the fly. We can no longer use a straightforward def...end-style definition. Instead, we'll use one of the cornerstones of metaprogramming, define_method. This takes the name of a method and a block, defining a method with the given
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 374
+Chapter 24. Metaprogramming ï¿½ 374
 name and with the block as the method body. Any arguments in the block definition become parameters to the method being defined.
 class Logger def self.add_logging(id_string) define_method(:log) do |msg| now = Time.now.strftime("%H:%M:%S") STDERR.puts "#{now}-#{id_string}: #{self} (#{msg})" end end
 end
@@ -11049,9 +11055,9 @@ class AttrLogger def self.attr_logger(name) attr_reader name define_method("#{na
 end
 class Example < AttrLogger attr_logger :value
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Metaprogramming Class-Level Macros · 375
+Metaprogramming Class-Level Macros ï¿½ 375
 ex = Example.new ex.value = 123 puts "Value is #{ex.value}" ex.value = "cat" puts "Value is now #{ex.value}"
 produces: Assigning 123 to value Value is 123 Assigning "cat" to value Value is now cat
 Again, we use the fact that the block defining the method body is a closure, accessing the name of the attribute in the log message string. Notice we also make use of the fact that attr_reader is simply a class method--we can call it inside our class method to define the reader method for our attribute. Note another common bit of metaprogramming--we use instance_variable_set to set the value of an instance variable (duh). There's a corresponding _get method that fetches the value of a named instance variable.
@@ -11063,9 +11069,9 @@ end class Example
 extend AttrLogger attr_logger :value end
 ex = Example.new ex.value = 123 puts "Value is #{ex.value}" ex.value = "cat" puts "Value is now #{ex.value}"
 produces: Assigning 123 to value Value is 123 Assigning "cat" to value Value is now cat
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 376
+Chapter 24. Metaprogramming ï¿½ 376
 Things get a little trickier if you want to add both class methods and instance methods into the class being defined. Here's one technique, used extensively in the implementation of Rails. It makes use of a Ruby hook method, included, which is called automatically by Ruby when you include a module into a class. It is passed the class object of the class being defined.
 module GeneralLogger # Instance method to be added to any class that includes us def log(msg) puts Time.now.strftime("%H:%M: ") + msg end
 # module containing class methods to be added module ClassMethods
@@ -11079,9 +11085,9 @@ ex = Example.new ex.log("New example created") ex.value = 123 puts "Value is #{e
 produces: 12:31: New example created 12:31: Assigning 123 to value Value is 123 12:31: Assigning "cat" to value Value is cat
 Notice how the included callback is used to extend the host class with the methods defined in the inner module ClassMethods.
 Now, as an exercise, try executing the previous example in your head. For each line of code, work out the value of self. Master this, and you've pretty much mastered this style of metaprogramming in Ruby.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Two Other Forms of Class Definition · 377
+Two Other Forms of Class Definition ï¿½ 377
 24.6 Two Other Forms of Class Definition
 Just in case you thought we'd exhausted the ways of defining Ruby classes, let's look at two other options.
 Subclassing Expressions
@@ -11102,9 +11108,9 @@ end end
 However, we can do this more elegantly (although at the cost of an additional class object) by writing this:
 class Person < Struct.new(:name, :address, :likes) def to_s "#{self.name} lives in #{self.address} and likes #{self.likes}" end
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 378
+Chapter 24. Metaprogramming ï¿½ 378
 dave = Person.new('Dave', 'Texas') dave.likes = "Programming Languages" puts dave produces: Dave lives in Texas and likes Programming Languages
 Creating Singleton Classes
 Let's look at some Ruby code:
@@ -11119,9 +11125,9 @@ By default, these classes will be direct descendents of Object. You can give the
 some_class = Class.new(String) do def vowel_movement tr 'aeiou', '*' end
 end
 obj = some_class.new("now is the time") puts obj.vowel_movement produces: n*w *s th* t*m*
-report erratum · discuss
+report erratum ï¿½ discuss
 
-instance_eval and class_eval · 379
+instance_eval and class_eval ï¿½ 379
 How Classes Get Their Names
 You may have noticed that the classes created by Class.new have no name. However, if you assign the class object for a class with no name to a constant, Ruby automatically names the class after the constant:
 some_class = Class.new obj = some_class.new puts "Initial name is #{some_class.name}" SomeClass = some_class puts "Then the name is #{some_class.name}" puts "also works via the object: #{obj.class.name}" produces: Initial name is Then the name is SomeClass also works via the object: SomeClass
@@ -11134,9 +11140,9 @@ puts "Dave's name is #{dave.name}" puts "Chad lives in #{chad.address}" produces
 The methods Object#instance_eval, Module#class_eval, and Module#module_eval let you set self to be some arbitrary object, evaluate the code in a block with, and then reset self:
 "cat".instance_eval do puts "Upper case = #{upcase}" puts "Length is #{self.length}"
 end produces: Upper case = CAT Length is 3
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 380
+Chapter 24. Metaprogramming ï¿½ 380
 Both forms also take a string, but this is considered a little dangerous.
 First, it is slow--calling eval effectively compiles the code in the string before executing it. But, even worse, eval can be dangerous. If there's any chance that external data--stuff that comes from outside your application--can wind up inside the parameter to eval, then you have a security hole, because that external data may end up containing arbitrary code that your application will blindly execute.
 That said, here's an example using a string parameter:
@@ -11152,9 +11158,9 @@ MyClass.instance_eval do def class_method puts "In a class method" end
 end MyClass.class_method produces: In a class method
 It might be helpful to remember that, when defining methods, class_eval and instance_eval have precisely the wrong names: class_eval defines instance methods, and instance_eval defines class methods. Go figure.
 Ruby has variants of these methods. Object#instance_exec, Module#class_exec, and Module#module_exec behave identically to their _eval counterparts but take only a block (that is, they do not take a string). Any arguments given to the methods are passed in as block parameters.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-instance_eval and class_eval · 381
+instance_eval and class_eval ï¿½ 381
 This is an important feature. Previously it was impossible to pass an instance variable into a block given to one of the _eval methods--because self is changed by the call, these variables go out of scope. With the _exec form, you can now pass them in:
 @animal = "cat" "dog".instance_exec(@animal) do |other|
 puts "#{other} and #{self}" end produces: cat and dog
@@ -11170,9 +11176,9 @@ instance_eval and Domain-Specific Languages
 It turns out that instance_eval has a pivotal role to play in a certain type of domain-specific language (DSL). For example, we might be writing a simple DSL for turtle graphics.5 To draw a set of three 5x5 squares, we might write the following:6
 5. In turtle graphics systems, you imagine you have a turtle you can command to move forward n squares, turn left, and turn right. You can also make the turtle raise and lower a pen. If the pen is lowered, a line will be drawn tracing the turtle's subsequent movements. Very few of these turtles exist in the wild, so we tend to simulate them inside computers.
 6. Yes, the forward(4) is correct in this code. The initial point is always drawn.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 382
+Chapter 24. Metaprogramming ï¿½ 382
 3.times do forward(8) pen_down 4.times do forward(4) left end pen_up
 end
 Clearly, pen_down, forward, left, and pen_up can be implemented as Ruby methods. However, to call them without a receiver like this, either we have to be within a class that defines them (or is a child of such a class) or we have to make the methods global. instance_eval to the rescue. We can define a class Turtle that defines the various methods we need as instance methods. We'll also define a walk method, which will execute our turtle DSL, and a draw method to draw the resulting picture:
@@ -11186,9 +11192,9 @@ So, what is the correct implementation of walk? Well, we clearly have to use ins
 def walk(&block) instance_eval(&block)
 end
 Notice how we captured the block into a variable and then expanded that variable back into a block in the call to instance_eval.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hook Methods · 383
+Hook Methods ï¿½ 383
 See Section 24.11, The Turtle Graphics Program, on page 391 for a complete listing of the turtle program.
 Is this a good use of instance_eval? It depends on the circumstances. The benefit is that the code inside the block looks simple--you don't have to make the receiver explicit:
 4.times do turtle.forward(4) turtle.left
@@ -11206,9 +11212,9 @@ Method-related hooks method_added, method_missing, method_removed, method_undefi
 Class and module-related hooks append_features, const_missing, extend_object, extended, included, inherited, initialize_clone, initialize_copy, initialize_dup
 Object marshaling hooks marshal_dump, marshal_load
 Coercion hooks coerce, induced_from, to_xxx
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 384
+Chapter 24. Metaprogramming ï¿½ 384
 
 We won't discuss all of them in this chapter--instead, we'll show just a few examples of use. The reference section of this book describes the individual methods, and Chapter 23, Duck Typing, on page 343 discusses the coercion methods in more detail.
 
@@ -11244,9 +11250,9 @@ puts "\nShipping 90oz domestic" puts Shipping.shipping_options(90, false)
 
 puts "\nShipping 16oz international" puts Shipping.shipping_options(16, true)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hook Methods · 385
+Hook Methods ï¿½ 385
 produces: Shipping 16oz domestic MediaMail FlatRatePriorityEnvelope
 Shipping 90oz domestic MediaMail
 Shipping 16oz international InternationalFlatRateBox
@@ -11261,9 +11267,9 @@ def method_missing(name, *args, &block) puts "Called #{name} with #{args.inspect
 end
 wibble wobble 1, 2 wurble(3, 4) { stuff } produces: Called wibble with [] and Called wobble with [1, 2] and Called wurble with [3, 4] and #<Proc:0x007fd7d910fb18@prog.rb:7>
 Before we get too deep into the details, I'll offer a tip about etiquette. There are two main ways that people use method_missing. The first intercepts every use of an undefined method and handles it. The second is more subtle; it intercepts all calls but handles only some of
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 386
+Chapter 24. Metaprogramming ï¿½ 386
 them. In the latter case, it is important to forward on the call to a superclass if you decide not to handle it in your method_missing implementation:
 class MyClass < OtherClass def method_missing(name, *args, &block) if <some condition> # handle call else super # otherwise pass it on end end
 end
@@ -11275,9 +11281,9 @@ puts "#{obj.name} lives in #{obj.address} and likes #{obj.likes}"
 produces: Dave lives in Texas and likes Programming
 Let's use method_missing to write our own version of OpenStruct:
 class MyOpenStruct < BasicObject def initialize(initial_values = {}) @values = initial_values end def _singleton_class class << self self end end def method_missing(name, *args, &block) if name[-1] == "=" base_name = name[0..-2].intern _singleton_class.instance_exec(name) do |name| define_method(name) do |value| @values[base_name] = value end end @values[base_name] = args[0] else _singleton_class.instance_exec(name) do |name|
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hook Methods · 387
+Hook Methods ï¿½ 387
 define_method(name) do @values[name]
 end end @values[name] end end end
 obj = MyOpenStruct.new(name: "Dave") obj.address = "Texas" obj.likes = "Programming"
@@ -11290,9 +11296,9 @@ Also notice how we had to jump through some hoops to define the method. We want 
 However, this code reveals a dark underbelly of using method_missing and BasicObject:
 obj = MyOpenStruct.new(name: "Dave") obj.address = "Texas"
 o1 = obj.dup o1.name = "Mike" o1.address = "Colorado" produces: prog.rb:37:in `<main>': undefined method `name=' for nil:NilClass (NoMethodError)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 388
+Chapter 24. Metaprogramming ï¿½ 388
 The dup method is not defined by BasicObject; it appears in class Object. So when we called dup, it was picked up by our method_missing handler, and we just returned nil (because we don't have yet have an attribute called dup). We could fix this so that it at least reports an error:
 def method_missing(name, *args, &block) if name[-1] == "=" # as before... else super unless @values.has_key? name # as before... end
 end
@@ -11306,9 +11312,9 @@ Let's bring together all the metaprogramming topics we've discussed in a final e
 
 7. It also looks for /^find_or_(initialize|create)_by_(.*)/.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-One Last Example · 389
+One Last Example ï¿½ 389
 
 require_relative 'trace_calls' class Example
 def one(arg) puts "One called with #{arg}"
@@ -11333,9 +11339,9 @@ klass.instance_eval do method_object = instance_method(method)
 
 define_method(method) do |*args, &block| puts "==> calling #{method} with #{args.inspect}"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 390
+Chapter 24. Metaprogramming ï¿½ 390
 result = method_object.bind(self).call(*args, &block) puts "<== #{method} returned #{result.inspect}" result end end end end
 When we include this module in a class, the included hook method gets invoked. It first uses the instance_methods reflection method to find all the existing instance methods in the host class (the false parameter limits the list to methods in the class itself, and not in its superclasses). For each existing method, the module calls a helper method, wrap, to add some tracing code to it. We'll talk about wrap shortly.
 Next, the included method uses another hook, method_added. This is called by Ruby whenever a method is defined in the receiver. Note that we define this method in the class passed to the included method. This means that the method will be called when methods are added to this host class and not to the module. This is what allows us to include TraceCalls at the top of a class and then add methods to that class--all those method definitions will be handled by method_added.
@@ -11346,9 +11352,9 @@ The key to understanding this code, and most metaprogramming code, is to follow 
 Finally, there's one small detail we have to cover to complete the metaprogramming environment. Many times in this book we've claimed that everything in Ruby is an object. However, we've used one thing time and time again that appears to contradict this--the top-level Ruby execution environment:
 puts "Hello, World"
 8. The ability of a block to take a block parameter was added in Ruby 1.9.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-The Turtle Graphics Program · 391
+The Turtle Graphics Program ï¿½ 391
 Not an object in sight. We may as well be writing some variant of Fortran or Basic. But dig deeper, and you'll come across objects and classes lurking in even the simplest code.
 We know that the literal "Hello, World" generates a Ruby String, so that's one object. We also know that the bare method call to puts is effectively the same as self.puts. But what is self?
 self.class # => Object
@@ -11366,9 +11372,9 @@ def left @direction -= 1 @direction = 3 if @direction < 0
 end
 def right @direction += 1 @direction = 0 if @direction > 3
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 24. Metaprogramming · 392
+Chapter 24. Metaprogramming ï¿½ 392
 
 def walk(&block) instance_eval(&block)
 end
@@ -11393,20 +11399,20 @@ produces:
 
 ##### ## ## ## #####
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 25
 Reflection, ObjectSpace, and
 Distributed Ruby
 One of the advantages of dynamic languages such as Ruby is the ability to introspect--to examine aspects of a program from within the program itself. This is also called reflection. When people introspect, we think about our thoughts and feelings. This is interesting, because we're using thought to analyze thought. It's the same when programs use introspection--a program can discover the following information about itself:
-· What objects it contains · Its class hierarchy · The attributes and methods of objects · Information on methods
+ï¿½ What objects it contains ï¿½ Its class hierarchy ï¿½ The attributes and methods of objects ï¿½ Information on methods
 Armed with this information, we can look at particular objects and decide which of their methods to call at runtime--even if the class of the object didn't exist when we first wrote the code. We can also start doing clever things, perhaps modifying the program while it's running. Later in this chapter we'll look at distributed Ruby and marshaling, two reflectionbased technologies that let us send objects around the world and through time.
 25.1 Looking at Objects
 Have you ever craved the ability to traverse all the living objects in your program? We have! Ruby lets you perform this trick with ObjectSpace.each_object. We can use it to do all sorts of neat tricks. For example, to iterate over all objects of type Complex, you'd write the following:
 a = Complex(1, 2) b = Complex(99, -100) ObjectSpace.each_object(Complex) {|x| puts x } produces: 0+1i 99-100i 1+2i
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 394
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 394
 
 Where did that extra number, (0+1i), come from? We didn't define it in our program. Well, the Complex class defines a constant for I, the square root of -1. Since we are examining all living objects in the system, these turn up as well.
 
@@ -11459,9 +11465,9 @@ Knowing about objects is one part of reflection, but to get the whole picture, y
 
 1. Or under its bonnet, for objects created to the east of the Atlantic
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Looking at Classes · 395
+Looking at Classes ï¿½ 395
 
 Looking at the class hierarchy is easy. You can get the parent of any particular class using Class#superclass. For classes and modules, the Module#ancestors method lists both superclasses and mixed-in modules:
 klass = Fixnum begin
@@ -11497,9 +11503,9 @@ Demo.constants(false)
 
 # => [:CONST]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 396
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 396
 
 demo = Demo.new
 
@@ -11553,9 +11559,9 @@ method_object = method(:double)
 [ 1, 3, 5, 7 ].map(&method_object) # => [2, 6, 10, 14]
 Method objects are bound to one particular object. You can create unbound methods (of class UnboundMethod) and then subsequently bind them to one or more objects. The binding creates a new Method object. As with aliases, unbound methods are references to the definition of the method at the time they are created:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Calling Methods Dynamically · 397
+Calling Methods Dynamically ï¿½ 397
 
 unbound_length = String.instance_method(:length)
 
@@ -11607,9 +11613,9 @@ require 'benchmark' include Benchmark
 
 test = "Stormy Weather" m = test.method(:length) n = 100000
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 398
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 398
 
 bm(12) do |x| x.report("call") { n.times { m.call } } x.report("send") { n.times { test.send(:length) } } x.report("eval") { n.times { eval "test.length" } }
 end
@@ -11640,9 +11646,9 @@ The problem with this technique is that you're relying on there not being an exi
 class Object old_system_method = instance_method(:system) define_method(:system) do |*args| old_system_method.bind(self).call(*args).tap do |result| puts "system(#{args.join(', ')}) returned #{result.inspect}" end end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-System Hooks · 399
+System Hooks ï¿½ 399
 
 system("date") system("kangaroo", "-hop 10", "skippy")
 produces: Mon May 27 12:31:43 CDT 2013 system(date) returned true system(kangaroo, -hop 10, skippy) returned nil
@@ -11666,9 +11672,9 @@ class Object attr_accessor :timestamp
 end
 Then, we need to hook object creation to add this timestamp. One way to do this is to do our method-renaming trick on Class#new, the method that's called to allocate space for a new object. The technique isn't perfect--some built-in objects, such as literal strings, are constructed without calling new--but it'll work just fine for objects we write.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 400
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 400
 
 class Class old_new = instance_method :new define_method :new do |*args, &block| result = old_new.bind(self).call(*args, &block) result.timestamp = Time.now result end
 end
@@ -11695,9 +11701,9 @@ end t = Test.new t.test
 produces:
 #<TracePoint:c_return `trace'@prog.rb:7> #<TracePoint:line@prog.rb:10> #<TracePoint:c_call `new'@prog.rb:10> #<TracePoint:c_call `initialize'@prog.rb:10> #<TracePoint:c_return `initialize'@prog.rb:10> #<TracePoint:c_return `new'@prog.rb:10> #<TracePoint:line@prog.rb:11>
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Tracing Your Program's Execution · 401
+Tracing Your Program's Execution ï¿½ 401
 #<TracePoint:call `test'@prog.rb:2> #<TracePoint:line@prog.rb:3 in `test'> #<TracePoint:return `test'@prog.rb:4>
 The method trace_var (described in the reference section on page 630) lets you add a hook to a global variable; whenever an assignment is made to the global, your proc is invoked.
 How Did We Get Here?
@@ -11711,9 +11717,9 @@ Source Code
 Ruby executes programs from plain old files. You can look at these files to examine the source code that makes up your program using one of a number of techniques. The special variable __FILE__ contains the name of the current source file. This leads to a fairly short (if cheating) Quine--a program that outputs its own source code:
 print File.read(__FILE__) produces: print File.read(__FILE__)
 As we saw in the previous section, the method Object#caller returns the call stack as a list. Each entry in this list starts off with a filename, a colon, and a line number in that file. You can parse this information to display source. In the following example, we have a main program, main.rb, that calls a method in a separate file, sub.rb. That method in turns invokes a block, where we traverse the call stack and write out the source lines involved. Notice the use of a hash of file contents, indexed by the filename. Here's the code that dumps out the call stack, including source information:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 402
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 402
 
 ospace/caller/stack_dumper.rb
 
@@ -11787,9 +11793,9 @@ Ruby 1.9 comes with a new virtual machine, called YARV. As well as being faster 
 
 If you'd like to know what Ruby is doing with all that code you're writing, you can ask YARV to show you the intermediate code that it is executing. You can ask it to compile the
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Marshaling and Distributed Ruby · 403
+Marshaling and Distributed Ruby ï¿½ 403
 
 Ruby code in a string or in a file and then disassemble it and even run it.2 Here's a trivial example:
 
@@ -11884,9 +11890,9 @@ Ruby features the ability to serialize objects, letting you store them somewhere
 
 2. People often ask whether they can dump the opcodes out and later reload them. The answer is no-- the interpreter has the code to do this, but it is disabled because there is not yet an intermediate code verifier for YARV.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 404
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 404
 
 Ruby calls this kind of serialization marshaling (think of railroad marshaling yards where individual cars are assembled in sequence into a complete train, which is then dispatched somewhere). Saving an object and some or all of its components is done using the method Marshal.dump. Typically, you will dump an entire object tree starting with some given object. Later, you can reconstitute the object using Marshal.load.
 Here's a short example. We have a class Chord that holds a collection of musical notes. We'd like to save away a particularly wonderful chord so we can e-mail it to a couple hundred of our closest friends so they can load it into their copy of Ruby and savor it too. Let's start with the classes for Note and Chord:
@@ -11917,9 +11923,9 @@ Custom Serialization Strategy
 Not all objects can be dumped: bindings, procedure objects, instances of class IO, and singleton objects cannot be saved outside the running Ruby environment (a TypeError will be raised if you try). Even if your object doesn't contain one of these problematic objects, you may want to take control of object serialization yourself.
 Marshal provides the hooks you need. In the objects that require custom serialization, simply implement two instance methods: one called marshal_dump, which writes the object out to a string, and one called marshal_load, which reads a string that you had previously created and
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Marshaling and Distributed Ruby · 405
+Marshaling and Distributed Ruby ï¿½ 405
 uses it to initialize a newly allocated object. (In earlier Ruby versions you'd use methods called _dump and _load, but the new versions play better with Ruby's object allocation scheme.) The instance method marshal_dump should return an object representing the state to be dumped. When the object is subsequently reconstituted using Marshal.load, the method marshal_load will be called with this object and will use it to set the state of its receiver--it will be run in the context of an allocated but not initialized object of the class being loaded. For instance, here is a sample class that defines its own serialization. For whatever reasons, Special doesn't want to save one of its internal data members, @volatile. The author has decided to serialize the two other instance variables in an array.
 class Special def initialize(valuable, volatile, precious) @valuable = valuable @volatile = volatile @precious = precious end
 def marshal_dump [ @valuable, @precious ]
@@ -11933,9 +11939,9 @@ obj = Marshal.load(data) puts "After: obj = #{obj}" produces: Before: obj = Hell
 For more details, see the reference section on page 557.
 YAML for Marshaling
 The Marshal module is built into the interpreter and uses a binary format to store objects externally. Although fast, this binary format has one major disadvantage: if the interpreter changes significantly, the marshal binary format may also change, and old dumped files may no longer be loadable.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 406
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 406
 An alternative is to use a less fussy external format, preferably one using text rather than binary files. One option, supplied as a standard library, is YAML.3 We can adapt our previous marshal example to use YAML. Rather than implement specific loading and dumping methods to control the marshal process, we simply define the method to_yaml_properties, which returns a list of instance variables to be saved:
 ospace/yaml.rb require 'yaml'
 class Special def initialize(valuable, volatile, precious) @valuable = valuable @volatile = volatile @precious = precious end
@@ -11948,11 +11954,11 @@ puts "Before: obj = #{obj}" data = YAML.dump(obj) obj = YAML.load(data) puts "Af
 We can take a look at what YAML creates as the serialized form of the object--it's pretty simple:
 obj = Special.new("Hello", "there", "World") puts YAML.dump(obj) produces: --- !ruby/object:Special precious: World valuable: Hello
 Distributed Ruby
-Since we can serialize an object or a set of objects into a form suitable for out-of-process storage, we can transmit objects from one process to another. Couple this capability with the power of networking, and voilà--you have a distributed object system. To save you the
+Since we can serialize an object or a set of objects into a form suitable for out-of-process storage, we can transmit objects from one process to another. Couple this capability with the power of networking, and voilï¿½--you have a distributed object system. To save you the
 3. http://www.yaml.org. YAML stands for YAML Ain't Markup Language, but that hardly seems important.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Marshaling and Distributed Ruby · 407
+Marshaling and Distributed Ruby ï¿½ 407
 trouble of having to write the code, we suggest using Masatoshi Seki's Distributed Ruby library (drb), which is now available as a standard Ruby library. Using drb, a Ruby process may act as a server, as a client, or as both. A drb server acts as a source of objects, while a client is a user of those objects. To the client, it appears that the objects are local, but in reality the code is still being executed remotely. A server starts a service by associating an object with a given port. Threads are created internally to handle incoming requests on that port, so remember to join the drb thread before exiting your program:
 require 'drb'
 class TestServer def add(*args) args.inject {|n,v| n + v} end
@@ -11963,11 +11969,11 @@ ospace/drb/drb_client.rb require 'drb' DRb.start_service() obj = DRbObject.new(n
 The client connects to the server and calls the method add, which uses the magic of inject to sum its arguments. It returns the result, which the client prints out:
 Sum is: 6
 The initial nil argument to DRbObject indicates that we want to attach to a new distributed object. We could also use an existing object. Ho hum, you say. This sounds like Java's RMI or CORBA or whatever. Yes, it is a functional distributed object mechanism--but it is written in just a few hundred lines of Ruby code. No C, nothing fancy, just plain old Ruby code. Of course, it has no naming service, trader service, or anything like you'd see in CORBA, but it is simple and reasonably fast. On a 2.5GHz Power Mac system, this sample code runs at about 1,300 remote message calls per second. And if you do need naming services, DRb has a ring server that might fit the bill. And, if you like the look of Sun's JavaSpaces, the basis of the JINI architecture, you'll be interested to know that drb is distributed with a short module that does the same kind of thing. JavaSpaces is based on a technology called Linda. To prove that its Japanese author has a sense of humor, Ruby's version of Linda is known as Rinda.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 25. Reflection, ObjectSpace, and Distributed Ruby · 408 25.8 Compile Time? Runtime? Anytime!
+Chapter 25. Reflection, ObjectSpace, and Distributed Ruby ï¿½ 408 25.8 Compile Time? Runtime? Anytime!
 The important thing to remember about Ruby is that there isn't a big difference between "compile time" and "runtime." It's all the same. You can add code to a running process. You can redefine methods on the fly, change their scope from public to private, and so on. You can even alter basic types, such as Class and Object. Once you get used to this flexibility, it is hard to go back to a static language such as C++ or even to a half-static language such as Java. But then, why would you want to do that?
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 26
 Locking Ruby in the Safe
@@ -11991,9 +11997,9 @@ Roughly seven seconds after Walter puts the application online, a twelve-year-ol
 Walter learned an important lesson. All external data is dangerous. Don't let it close to interfaces that can modify your system. In this case, the content of the form field was the external data, and the call to eval was the security breach, allowing arbitrary code to be executed on Walter's server.
 Fortunately, Ruby provides support for reducing this risk. All information from the outside world can be marked as tainted. When running in a safe mode, potentially dangerous methods will raise a SecurityError if passed a tainted object.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 26. Locking Ruby in the Safe · 410
+Chapter 26. Locking Ruby in the Safe ï¿½ 410
 
 26.1 Safe Levels
 The variable $SAFE determines Ruby's level of paranoia.
@@ -12016,9 +12022,9 @@ Any Ruby object derived from some external source (for example, a string read fr
 
 1. A Unix script may be flagged to be run under a different user or group ID than the person running it. This allows the script to have privileges that the user does not have; the script can access resources that the user would otherwise be prohibited from using. These scripts are called setuid or setgid.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Trusted Objects · 411
+Trusted Objects ï¿½ 411
 
 the following code. Any object with external data somewhere in its past will be tainted. This tainting process is performed regardless of the current safe level. You can see whether an object is tainted using Object#tainted?.
 # internal data
@@ -12068,9 +12074,9 @@ Ruby 1.9 adds trust, a new dimension to the concept of safety. All objects are m
 Let's get more specific. Objects created while Ruby's safe level is less than 3 are trusted. However, objects created while the safe level is 3 or 4 will be untrusted. Code running at safe levels 3 and 4 is also considered to be untrusted. Because untrusted code can modify only untrusted objects, code at safe levels 3 and 4 will not be able to modify objects created at a lower safe level.
 
 2. You can also use some devious tricks to do this without using untaint. We'll leave it up to your darker side to find them.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 26. Locking Ruby in the Safe · 412
+Chapter 26. Locking Ruby in the Safe ï¿½ 412
 dog = "dog is trusted" cat = lambda { $SAFE = 3; "cat is untrusted" }.call
 puts "dog.untrusted? = #{dog.untrusted?}" puts "cat.untrusted? = #{cat.untrusted?}"
 # running at safe level 1, these operations will succeed puts dog.upcase! puts cat.upcase!
@@ -12080,16 +12086,16 @@ produces: from prog.rb:16:in `block in <main>' from prog.rb:16:in `call' from pr
 dog.untrusted? = false cat.untrusted? = true DOG IS TRUSTED CAT IS UNTRUSTED cat is now 'cat is untrusted' prog.rb:16:in `downcase!': Insecure: can't modify string (SecurityError)
 You can set and unset the trusted status of an object using Object#untrust and Object#trust (but you have to be at below safe level 4 to call untrust and below safe level 3 to call trust). The method Object#untrusted? returns true if an object is untrusted.
 26.4 Definition of the safe levels
-$SAFE  1 · The environment variables RUBYLIB and RUBYOPT are not processed, and the current directory is not added to the path. · The command-line options -e, -i, -I, -r, -s, -S, and -x are not allowed. · Can't start processes from $PATH if any directory in it is world-writable. · Can't manipulate or chroot to a directory whose name is a tainted string. · Can't glob tainted strings. · Can't eval tainted strings. · Can't load or require a file whose name is a tainted string (unless the load is wrapped). · Can't manipulate or query the status of a file or pipe whose name is a tainted string. · Can't execute a system command or exec a program from a tainted string. · Can't pass trap a tainted string.
-$SAFE  2 · Can't change, make, or remove directories, or use chroot. · Can't load a file from a world-writable directory. · Can't load a file from a tainted filename starting with ~.
-report erratum · discuss
+$SAFE  1 ï¿½ The environment variables RUBYLIB and RUBYOPT are not processed, and the current directory is not added to the path. ï¿½ The command-line options -e, -i, -I, -r, -s, -S, and -x are not allowed. ï¿½ Can't start processes from $PATH if any directory in it is world-writable. ï¿½ Can't manipulate or chroot to a directory whose name is a tainted string. ï¿½ Can't glob tainted strings. ï¿½ Can't eval tainted strings. ï¿½ Can't load or require a file whose name is a tainted string (unless the load is wrapped). ï¿½ Can't manipulate or query the status of a file or pipe whose name is a tainted string. ï¿½ Can't execute a system command or exec a program from a tainted string. ï¿½ Can't pass trap a tainted string.
+$SAFE  2 ï¿½ Can't change, make, or remove directories, or use chroot. ï¿½ Can't load a file from a world-writable directory. ï¿½ Can't load a file from a tainted filename starting with ~.
+report erratum ï¿½ discuss
 
-Definition of the safe levels · 413
-· Can't use File#chmod, File#chown, File#lstat, File.stat, File#truncate, File.umask, File#flock, IO#ioctl, IO#stat, Object#fork, Object#syscall, Object#trap. Process.setpgid, Process.setsid, Process.setpriority, or Process.egid=.
-· Can't handle signals using trap.
-$SAFE  3 · All objects are tainted when they are created. · Can't untaint objects. · Can't add trust to an object. · Objects are created untrusted.
-$SAFE  4 · Can't modify a nontainted array, hash, or string. · Can't modify a global variable. · Can't access instance variables of nontainted objects. · Can't change an environment variable. · Can't close or reopen nontainted files. · Can't freeze nontainted objects. · Can't change visibility of methods (private/public/protected). · Can't make an alias in a nontainted class or module. · Can't get metainformation (such as method or variable lists). · Can't define, redefine, remove, or undef a method in a nontainted class or module. · Can't modify Object. · Can't remove instance variables or constants from nontainted objects. · Can't manipulate threads, terminate a thread other than the current thread, or set abort_on_exception. · Can't have thread-local variables. · Can't raise an exception in a thread with a lower $SAFE value. · Can't move threads between ThreadGroups. · Can't invoke exit, exit!, or abort. · Can load only wrapped files and can't include modules in untainted classes and modules. · Can't convert symbol identifiers to object references. · Can't write to files or pipes. · Can't use autoload. · Can't taint objects. · Can't untrust an object.
-report erratum · discuss
+Definition of the safe levels ï¿½ 413
+ï¿½ Can't use File#chmod, File#chown, File#lstat, File.stat, File#truncate, File.umask, File#flock, IO#ioctl, IO#stat, Object#fork, Object#syscall, Object#trap. Process.setpgid, Process.setsid, Process.setpriority, or Process.egid=.
+ï¿½ Can't handle signals using trap.
+$SAFE  3 ï¿½ All objects are tainted when they are created. ï¿½ Can't untaint objects. ï¿½ Can't add trust to an object. ï¿½ Objects are created untrusted.
+$SAFE  4 ï¿½ Can't modify a nontainted array, hash, or string. ï¿½ Can't modify a global variable. ï¿½ Can't access instance variables of nontainted objects. ï¿½ Can't change an environment variable. ï¿½ Can't close or reopen nontainted files. ï¿½ Can't freeze nontainted objects. ï¿½ Can't change visibility of methods (private/public/protected). ï¿½ Can't make an alias in a nontainted class or module. ï¿½ Can't get metainformation (such as method or variable lists). ï¿½ Can't define, redefine, remove, or undef a method in a nontainted class or module. ï¿½ Can't modify Object. ï¿½ Can't remove instance variables or constants from nontainted objects. ï¿½ Can't manipulate threads, terminate a thread other than the current thread, or set abort_on_exception. ï¿½ Can't have thread-local variables. ï¿½ Can't raise an exception in a thread with a lower $SAFE value. ï¿½ Can't move threads between ThreadGroups. ï¿½ Can't invoke exit, exit!, or abort. ï¿½ Can load only wrapped files and can't include modules in untainted classes and modules. ï¿½ Can't convert symbol identifiers to object references. ï¿½ Can't write to files or pipes. ï¿½ Can't use autoload. ï¿½ Can't taint objects. ï¿½ Can't untrust an object.
+report erratum ï¿½ discuss
 
 Part IV
 Ruby Library Reference
@@ -12127,9 +12133,9 @@ Finally, for methods that can be called in several different forms, we list each
 
 Standard classes are listed alphabetically, followed by the standard modules. Within each, we list the class (or module) methods, followed by the instance methods.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 418
+Chapter 27. Built-in Classes and Modules ï¿½ 418
 Array (page 421): Class [], new, try_convert Instance &, *, +, -, <<, <=>, ==, [], []=, |, assoc, at, bsearch, combination, collect!, compact, compact!, concat, count, cycle, delete, delete_at, delete_if, each, each_index, empty?, eql?, fetch, fill, find_index, flatten, flatten!, frozen?, index, insert, join, keep_if, last, length, map!, pack, permutation, pop, product, push, rassoc, reject!, repeated_combination, repeated_permutation, replace, reverse, reverse!, reverse_each, rindex, rotate, rotate!, sample, select!, shift, shuffle, shuffle!, size, slice, slice!, sort!, sort_by!, to_a, to_ary, to_s, transpose, uniq, uniq!, unshift, values_at
 BasicObject (page 439): Instance !, ==, !=, __id__, equal?, instance_eval, instance_exec, __send__ Private method_missing, singleton_method_added, singleton_method_removed, singleton_method_undefined
 Bignum (page 444): Instance Arithmeticoperations, Bitoperations, <=>, ==, [], abs, div, divmod, eql?, fdiv, magnitude, modulo, remainder, size, to_f, to_s
@@ -12149,9 +12155,9 @@ Float (page 513): Instance Arithmeticoperations, Comparisons, <=>, ==, abs, ceil
 Hash (page 521): Class [], new, try_convert Instance ==, [], []=, assoc, clear, compare_by_identity, compare_by_identity?, default, default=, default_proc, default_proc=, delete, delete_if, each, each_key, each_pair, each_value, empty?, fetch, flatten, has_key?, has_value?, include?, index, invert, keep_if, key, key?, keys, length, member?, merge, merge!, rassoc, rehash, reject, reject!, replace, select, select!, shift, size, sort, store, to_a, to_h, to_hash, to_s, update, value?, values, values_at
 Integer (page 532): Instance ceil, chr, denominator, downto, even?, floor, gcd, gcdlcm, integer?, lcm, next, numerator, odd?, ord, pred, rationalize, round, succ, times, to_i, to_int, to_r, truncate, upto
 IO (page 536): Class binread, binwrite, copy_stream, for_fd, foreach, new, open, pipe, popen, read, readlines, select, sysopen, try_convert, write Instance <<, advise, autoclose=, autoclose?, binmode, binmode?, bytes, chars, close, close_on_exec?, close _on_exec=, close_read, close_write, closed?, codepoints, each, each_byte, each_char, each_codepoint, each_line, eof, eof?, external_encoding, fcntl, fdatasync, fileno, flush, fsync, getbyte, getc, gets, internal_encoding, ioctl, isatty, lineno, lineno=, lines, pid, pos, pos=, print, printf, putc, puts, read, readbyte, readchar, readline, readlines, readpartial, read_nonblock, reopen, rewind, seek, set_encoding, stat, sync, sync=, sysread, sysseek, syswrite, tell, to_i, to_io, tty?, ungetbyte, ungetc, write, write_nonblock
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Alphabetical Listing · 419
+Alphabetical Listing ï¿½ 419
 MatchData (page 559): Instance [], begin, captures, end, length, names, offset, post_match, pre_match, regexp, size, string, to_a, to_s, values_at
 Method (page 565): Instance [], ==, arity, call, eql?, name, owner, parameters, receiver, source_location, to_proc, unbind
 Module (page 568): Class constants, nesting, new Instance <,<=,==,>,>=, <=>, ===, ancestors, autoload, autoload?, class_ eval, class_exec, class_variable_defined?, class_variable_get, class_variable_set, class_variables, const_defined?, const_get, const_missing, const_set, constants, include?, included_modules, instance_method, instance_methods, method_defined?, module_eval, module_exec, name, private_class_method, private_constant, private_instance_methods, private_method_ defined?, protected_instance_methods, protected_method_defined?, public_class_method, public_constant, public_instance _method, public_instance_methods, public_method_defined?, remove_class_variable Private alias_method, append_features, attr, attr_accessor, attr_reader, attr_writer, define_method, extend_object, extended, include, included, method_added, method _removed, method_undefined, module_function, prepend, private, protected, public, refine, remove_const, remove_method, undef_method
@@ -12169,15 +12175,15 @@ String (page 666): Class new, try_convert Instance %, *, +, <<, <=>, ==, =~, [],
 Struct (page 693): Class new, new, [], members Instance ==, [], []=, each, each_pair, length, members, size, to_a, to_h, values, values_at
 Struct::Tms (page 697):
 Symbol (page 698): Class all_symbols Instance <=>, ==, =~, [], capitalize, casecmp, downcase, empty?, encoding, id2name, inspect, intern, length, match, next, size, slice, succ, swapcase, to_proc, to_s, to_sym, upcase
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 420
+Chapter 27. Built-in Classes and Modules ï¿½ 420
 Thread (page 702): Class abort_on_exception, abort_on_exception=, current, exclusive, exit, fork, kill, list, main, new, pass, start, stop Instance [], []=, abort_on_exception, abort_on_exception=, add_trace_func, alive?, backtrace, backtrace_locations, exit, group, join, keys, key?, kill, priority, priority=, raise, run, safe_level, set_trace_func, status, stop?, terminate, thread_variable?, thread_variables, thread_variable_get, thread_variable_set, value, wakeup ThreadGroup (page 710): Class new Instance add, enclose, enclosed?, list Time (page 712): Class at, gm, local, mktime, new, now, utc Instance +, -, <=>, day-name?, asctime, ctime, day, dst?, getgm, getlocal, getutc, gmt?, gmtime, gmt_offset, gmtoff, hour, isdst, localtime, mday, min, mon, month, nsec, round, sec, strftime, subsec, succ, to_a, to_f, to_i, to_r, to_s, tv_nsec, tv_sec, tv_usec, usec, utc, utc?, utc_offset, wday, yday, year, zone TracePoint (page 722): Class new, trace Instance binding, defined_class, disable, enable, enabled?, event, lineno, method_ id, path, raised_exception, return_value, self TrueClass (page 725): Instance &, ^, | UnboundMethod (page 726): Instance arity, bind, name, owner, parameters, source_location
 Built-in Modules
 Comparable (page 450): Instance Comparisons, between? Enumerable (page 466): Instance all?, any?, chunk, collect, collect_concat, count, cycle, detect, drop, drop_while, each_cons, each_entry, each_slice, each_with_index, each_with_object, entries, find, find_all, find_index, first, flat_map, grep, group_by, include?, inject, lazy, map, max, max_by, member?, min, min_by, minmax, minmax_by, none?, one?, partition, reduce, reject, reverse_each, select, slice_before, sort, sort_by, take, take_while, to_a, zip Errno (page 482): FileTest (page 509): GC (page 517): Class count, disable, enable, start, stat, stress, stress= Instance garbage_collect GC::Profiler (page 519): Class clear, disable, enable, enabled?, raw_data, report, result, total_time Kernel (page 556): Marshal (page 557): Class dump, load, restore Math (page 562): Class acos, acosh, asin, asinh, atan, atanh, atan2, cbrt, cos, cosh, erf, erfc, exp, frexp, gamma, hypot, ldexp, lgamma, log, log10, log2, sin, sinh, sqrt, tan, tanh ObjectSpace (page 631): Class _id2ref, count_objects, define_finalizer, each_object, garbage_collect, undefine_finalizer Process (page 637): Class abort, daemon, detach, egid, egid=, euid, euid=, exec, exit, exit!, fork, getpgid, getpgrp, getpriority, getrlimit, getsid, gid, gid=, groups, groups=, initgroups, kill, maxgroups, maxgroups=, pid, ppid, setpgid, setpgrp, setpriority, setrlimit, setsid, spawn, times, uid, uid=, wait, waitall, wait2, waitpid, waitpid2 Process::GID (page 643): Class change_privilege, eid, eid=, grant_privilege, re_exchange, re_exchangeable?, rid, sid_available?, switch Process::Sys (page 647): Class getegid, geteuid, getgid, getuid, issetugid, setegid, seteuid, setgid, setregid, setresgid, setresuid, setreuid, setrgid, setruid, setuid Process::UID (page 648): Class change_privilege, eid, eid=, grant_privilege, re_exchange, re_exchangeable?, rid, sid_available?, switch Signal (page 664): Class list, signame, trap
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 421
+Array ï¿½ 421
 
 Class Array
 
@@ -12244,9 +12250,9 @@ a
 
 squares = Array.new(5) {|i| i*i} squares # => [0, 1, 4, 9, 16]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 422
+Chapter 27. Built-in Classes and Modules ï¿½ 422
 
 copy = Array.new(squares)
 
@@ -12316,9 +12322,9 @@ Array Difference--Returns a new array that is a copy of the original array, remo
 
 [ 1, 1, 2, 2, 3, 3, 4, 5 ] - [ 1, 2, 4 ] # => [3, 3, 5]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 423
+Array ï¿½ 423
 
 <<
 
@@ -12398,9 +12404,9 @@ a[5..10]
 
 # => []
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 424
+Chapter 27. Built-in Classes and Modules ï¿½ 424
 
 [ ]=
 
@@ -12480,9 +12486,9 @@ arr.at( int )  obj or nil
 
 Returns the element at index int. A negative index counts from the end of arr. Returns nil if the index is out of range. See also Array#[].
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 425
+Array ï¿½ 425
 
 a = [ "a", "b", "c", "d", "e" ] a.at(0) # => "a" a.at(-1) # => "e"
 
@@ -12540,9 +12546,9 @@ a
 
 # => ["a!", "b!", "c!", "d!"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 426
+Chapter 27. Built-in Classes and Modules ï¿½ 426
 
 compact
 
@@ -12619,9 +12625,9 @@ produces:
 
 2:h
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 427
+Array ï¿½ 427
 
 delete
 
@@ -12687,9 +12693,9 @@ Same as Array#each but passes the index of the element instead of the element it
 a = [ "a", "b", "c" ] a.each_index {|x| print x, " -- " }
 produces: 0 -- 1 -- 2 --
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 428
+Chapter 27. Built-in Classes and Modules ï¿½ 428
 
 empty?
 
@@ -12777,9 +12783,9 @@ a.fill {|i| i*i}
 
 a.fill(-3) {|i| i+100} # => [0, 101, 102, 103]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 429
+Array ï¿½ 429
 
 find_index
 
@@ -12859,20 +12865,20 @@ Synonym for Array#find_index.
 
 arr.index( obj )  int or nil arr.index { |item| ... }  int or nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 430
+Chapter 27. Built-in Classes and Modules ï¿½ 430
 
 Directive @ A a B b C c D, d E e F, f G g H h I i L l M m
 N n P p Q, q S s U u V v w X x Z
 
-Meaning Move to absolute position Sequence of bytes (space padded, count is width) Sequence of bytes (null padded, count is width) Bit string (most significant first) Bit string (least significant first) Unsigned byte Byte Double-precision float, native format Double-precision float, little-endian byte order Single-precision float, little-endian byte order Single-precision float, native format Double-precision float, network (big-endian) byte order Single-precision float, network (big-endian) byte order Hex string (high nibble first) Hex string (low nibble first) Unsigned integer Integer Unsigned long Long Quoted printable, MIME encoding (see RFC2045) Base64-encoded string; by default adds linefeeds every 60 characters; "m0" suppresses linefeeds Long, network (big-endian) byte order Short, network (big-endian) byte order Pointer to a structure (fixed-length string) Pointer to a null-terminated string 64-bit number Unsigned short Short UTF-8 UU-encoded string Long, little-endian byte order Short, little-endian byte order BER-compressed integer° Back up a byte Null byte Same as "a," except a null byte is appended if the * modifier is given ° The octets of a BER-compressed integer represent an unsigned integer in base 128, most significant digit first, with as few digits as possible. Bit eight (the high bit) is set on each byte except the last (Self-Describing Binary Data Representation, MacLeod).
+Meaning Move to absolute position Sequence of bytes (space padded, count is width) Sequence of bytes (null padded, count is width) Bit string (most significant first) Bit string (least significant first) Unsigned byte Byte Double-precision float, native format Double-precision float, little-endian byte order Single-precision float, little-endian byte order Single-precision float, native format Double-precision float, network (big-endian) byte order Single-precision float, network (big-endian) byte order Hex string (high nibble first) Hex string (low nibble first) Unsigned integer Integer Unsigned long Long Quoted printable, MIME encoding (see RFC2045) Base64-encoded string; by default adds linefeeds every 60 characters; "m0" suppresses linefeeds Long, network (big-endian) byte order Short, network (big-endian) byte order Pointer to a structure (fixed-length string) Pointer to a null-terminated string 64-bit number Unsigned short Short UTF-8 UU-encoded string Long, little-endian byte order Short, little-endian byte order BER-compressed integerï¿½ Back up a byte Null byte Same as "a," except a null byte is appended if the * modifier is given ï¿½ The octets of a BER-compressed integer represent an unsigned integer in base 128, most significant digit first, with as few digits as possible. Bit eight (the high bit) is set on each byte except the last (Self-Describing Binary Data Representation, MacLeod).
 
 Table 14--Template characters for Array.pack
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 431
+Array ï¿½ 431
 
 insert
 
@@ -12947,9 +12953,9 @@ Synonym for Array#collect!.
 
 arr.map! { |obj| ... }  arr
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 432
+Chapter 27. Built-in Classes and Modules ï¿½ 432
 
 pack
 
@@ -12995,9 +13001,9 @@ a
 
 # => ["f", "r", "a", "b"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 433
+Array ï¿½ 433
 
 product
 
@@ -13038,9 +13044,9 @@ a = [1, 2, 3] a.repeated_combination(2).to_a # => [[1, 1], [1, 2], [1, 3], [2, 2
 # .. 3]] a.repeated_combination(3).to_a # => [[1, 1, 1], [1, 1, 2], [1, 1, 3], [1, 2, 2],
 # .. [1, 2, 3], [1, 3, 3], [2, 2, 2], [2, 2, 3], # .. [2, 3, 3], [3, 3, 3]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 434
+Chapter 27. Built-in Classes and Modules ï¿½ 434
 
 repeated_permutation
 
@@ -13104,9 +13110,9 @@ Same as Array#each but traverses arr in reverse order.
 a = [ "a", "b", "c" ] a.reverse_each {|x| print x, " " }
 produces: cba
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 435
+Array ï¿½ 435
 
 rindex
 
@@ -13173,9 +13179,9 @@ arr.shift( n = 1 )  obj or nil
 
 Returns the first n elements (or the first element with no argument) of arr and removes it (shifting all other elements down by one). Returns nil if the array is empty.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 436
+Chapter 27. Built-in Classes and Modules ï¿½ 436
 
 args = [ "-m", "-q", "-v", "filename" ]
 
@@ -13270,9 +13276,9 @@ arr.slice!( range )  an_array or nil
 
 Deletes the element(s) given by an index (optionally with a length) or by a range. Returns the deleted object, subarray, or nil if the index is out of range.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Array · 437
+Array ï¿½ 437
 
 a = [ "a", "b", "c" ]
 
@@ -13349,9 +13355,9 @@ Assumes that arr is an array of arrays and transposes the rows and columns.
 
 a = [[1,2], [3,4], [5,6]] a.transpose # => [[1, 3, 5], [2, 4, 6]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 438
+Chapter 27. Built-in Classes and Modules ï¿½ 438
 
 uniq
 
@@ -13411,9 +13417,9 @@ a.values_at(5..7, 1..2)
 
 # => ["f", nil, nil, "b", "c"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-BasicObject · 439
+BasicObject ï¿½ 439
 Class BasicObject
 BasicObject is the root of Ruby's class hierarchy. It deliberately has just a few methods, allowing it to be conveniently used as the basis for a number of metaprogramming techniques. If you write code in a direct descendent of BasicObject, you will not have unqualified access to the methods in Kernel, which normally get mixed in to Object. This example illustrates how to invoke Kernel methods explicitly:
 class SimpleBuilder < BasicObject def __puts_at_indent__(string) ::Kernel.puts " " * @indent + string end def method_missing(name, *args, &block) @indent ||= 0 __puts_at_indent__("<#{name}>") @indent += 2 __puts_at_indent__(args.join) unless args.empty? yield if ::Kernel.block_given? @indent -= 2 __puts_at_indent__("</#{name}>") end
@@ -13423,9 +13429,9 @@ r.name "Dave" r.address do
 r.street "123 Main" r.city "Pleasantville" end end produces: <person> <name> Dave </name> <address> <street>
 123 Main </street> <city>
 Pleasantville </city> </address> </person>
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 440
+Chapter 27. Built-in Classes and Modules ï¿½ 440
 
 Instance Methods !
 
@@ -13470,9 +13476,9 @@ When metaprogramming, instance_eval is often used to execute the methods in a bl
 class Recorder < BasicObject attr_reader :__calls__ def method_missing(name, *args, &block) @__calls__ ||= [] @__calls__ << [ name, args ] end def record(&block) instance_eval(&block) end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-BasicObject · 441
+BasicObject ï¿½ 441
 
 r = Recorder.new r.record do
 disable "safety" pull "control rod", dir: "out" run end
@@ -13502,9 +13508,9 @@ Invokes the method identified by symbol, passing it any arguments and block.
 class Klass < BasicObject def hello(*args) "Hello " + args.join(' ') end
 end k = Klass.new k.__send__ :hello, "gentle", "readers" # => "Hello gentle readers"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 442
+Chapter 27. Built-in Classes and Modules ï¿½ 442
 
 Private Instance Methods method_missing
 
@@ -13576,9 +13582,9 @@ end
 
 def Chatty.three() end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-BasicObject · 443
+BasicObject ï¿½ 443
 
 class <<self remove_method :three remove_method :one
 end end
@@ -13596,9 +13602,9 @@ end
 produces:
 Undefining one
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 444
+Chapter 27. Built-in Classes and Modules ï¿½ 444
 
 Class Bignum < Integer
 
@@ -13608,7 +13614,7 @@ While Fixnum values are immediate, Bignum objects are not--assignment and parame
 Instance Methods Arithmetic operations
 Performs various arithmetic operations on big.
 
-big + number big ­ number big * number big / number big % number big ** number big -@
+big + number big ï¿½ number big * number big / number big % number big ** number big -@
 
 Addition Subtraction Multiplication Division Modulo Exponentiation Unary minus
 
@@ -13635,9 +13641,9 @@ Returns true only if obj has the same value as big. Contrast this with Bignum#eq
 
 68719476736 == 68719476736.0 # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Bignum · 445
+Bignum ï¿½ 445
 
 []
 
@@ -13700,9 +13706,9 @@ Returns the floating-point result of dividing big by number. Alias for Bignum#qu
 
 -1234567890987654321.fdiv(-987654321) # => 1249999989.609375
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 446
+Chapter 27. Built-in Classes and Modules ï¿½ 446
 
 magnitude
 
@@ -13758,9 +13764,9 @@ Returns a string containing the representation of big radix base (2 to 36).
 
 78546939656932.to_s(36) # => "rubyrules"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Binding · 447
+Binding ï¿½ 447
 
 Class Binding
 
@@ -13785,9 +13791,9 @@ bind.eval( string < , file < , line > > )  obj
 
 Evaluates the Ruby code in string using the context of bind. Equivalent to calling Object#eval with a second argument of bind. See the start of this section for an example.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 448
+Chapter 27. Built-in Classes and Modules ï¿½ 448
 
 Class Class < Module
 
@@ -13822,9 +13828,9 @@ cls.new( < args >* )  obj
 
 Calls allocate to create a new object of cls's class and then invokes the newly created object's initialize method, passing it args.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Class · 449
+Class ï¿½ 449
 
 superclass
 
@@ -13856,9 +13862,9 @@ class Middle < Top end
 class Bottom < Middle end
 produces: New subclass: Middle New subclass: Bottom
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 450
+Chapter 27. Built-in Classes and Modules ï¿½ 450
 
 Module Comparable
 
@@ -13904,9 +13910,9 @@ Returns false if obj <=> min is less than zero or if obj <=> max is greater than
 
 'gnu'.between?('ant', 'dog') # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Complex · 451
+Complex ï¿½ 451
 
 Class Complex < Numeric
 
@@ -13965,16 +13971,16 @@ Synonym for Complex.rect.
 
 Complex.rectangular( read, imag )  complex
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 452
+Chapter 27. Built-in Classes and Modules ï¿½ 452
 
 Instance Methods Arithmetic operations
 Performs various arithmetic operations on complex.
 
 complex + numeric Addition
 
-complex ­ numeric Subtraction
+complex ï¿½ numeric Subtraction
 
 complex * numeric Multiplication
 
@@ -14034,9 +14040,9 @@ Synonym for Complex#conjugate.
 
 complex.arg  number complex.conj  a_complex
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Complex · 453
+Complex ï¿½ 453
 
 conjugate
 
@@ -14115,9 +14121,9 @@ complex.magnitude  int or float
 
 Returns the magnitude of complex (the distance of complex from the origin of the number line). The positive square root of real2 + imag2.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 454
+Chapter 27. Built-in Classes and Modules ï¿½ 454
 
 Complex(1, 1).magnitude # => 1.4142135623730951 Complex(3, 4).magnitude # => 5.0 Complex::I.magnitude # => 1
 
@@ -14177,9 +14183,9 @@ Returns an array containing the real and imaginary components of complex.
 
 Complex::I.rect # => [0, 1]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Complex · 455
+Complex ï¿½ 455
 
 rectangular
 Synonym for Complex#rect.
@@ -14221,9 +14227,9 @@ Returns the real part of complex as a rational number, raising an exception if t
 
 Complex(2.5, 0).to_r # => (5/2)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 456
+Chapter 27. Built-in Classes and Modules ï¿½ 456
 
 Class Dir
 Objects of class Dir are directory streams representing directories in the underlying file system. They provide a variety of ways to list directories and their contents. See also File on page 488.
@@ -14280,9 +14286,9 @@ Dir.chroot( dirname )  0
 
 Changes this process's idea of the file system root. Only a privileged process may make this call. Not available on all platforms. On Unix systems, see chroot(2) for more information.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Dir · 457
+Dir ï¿½ 457
 
 Dir.chdir("/production/secure/root") Dir.chroot("/production/secure/root") Dir.pwd
 
@@ -14337,9 +14343,9 @@ Dir.getwd
 
 # => "/private/tmp"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 458
+Chapter 27. Built-in Classes and Modules ï¿½ 458
 
 glob
 
@@ -14410,9 +14416,9 @@ Dir.mkdir( dirname < , permissions > )  0
 
 Makes a new directory named dirname, with permissions specified by the optional parameter permissions. The permissions may be modified by the value of File.umask and are ignored on Windows. Raises a SystemCallError if the directory cannot be created. See also the discussion of permissions on page 488.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Dir · 459
+Dir ï¿½ 459
 
 new
 
@@ -14460,9 +14466,9 @@ d = Dir.new("testdir") d.each {|name| puts "Got #{name}" }
 produces:
 Got . Got .. Got .svn Got config.h Got main.rb
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 460
+Chapter 27. Built-in Classes and Modules ï¿½ 460
 
 path
 Returns the path parameter passed to dir's constructor.
@@ -14543,7 +14549,7 @@ d.read
 
 # => ".."
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 tell
 Returns the current position in dir. See also Dir#seek.
@@ -14551,13 +14557,13 @@ d = Dir.new("testdir") d.tell # => 0 d.read # => "." d.tell # => 1
 to_path
 Synonym for Dir.path.
 
-Dir · 461
+Dir ï¿½ 461
 dir.tell  int
 dir.to_path  dirname
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 462
+Chapter 27. Built-in Classes and Modules ï¿½ 462
 
 Class Encoding
 
@@ -14587,9 +14593,9 @@ Determines whether two strings have compatible encodings (meaning, for example, 
 
 Encoding.compatible?(ascii1, ascii2) # => #<Encoding:UTF-8> Encoding.compatible?(ascii1, iso) # => #<Encoding:ISO-8859-1> Encoding.compatible?(ascii1, utf) # => #<Encoding:UTF-8> Encoding.compatible?(iso, utf) # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Encoding · 463
+Encoding ï¿½ 463
 
 Encoding
 ASCII-8BIT Big5-HKSCS
@@ -14614,9 +14620,9 @@ MacThai, MACTHAI MacUkraine, MACUKRAINE SJIS_DoCoMo, SJIS_DOCOMO SJIS_SoftBank, 
 
 Table 15--Encoding names and class names
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 464
+Chapter 27. Built-in Classes and Modules ï¿½ 464
 
 default_external
 
@@ -14677,9 +14683,9 @@ Returns a list of the names of loaded encodings.
 
 Encoding.name_list.sort.first(5) # => ["646", "ANSI_X3.4-1968", "ASCII", # .. "ASCII-8BIT", "BINARY"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Encoding · 465
+Encoding ï¿½ 465
 
 Instance Methods ascii_compatible?
 
@@ -14721,9 +14727,9 @@ enc.replicate( name )  new_encoding
 
 Create a copy of the encoding enc with the given name (which must be unique).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 466
+Chapter 27. Built-in Classes and Modules ï¿½ 466
 
 Module Enumerable
 
@@ -14763,9 +14769,9 @@ enum = [ 1, 2, 3, 4, 5 ].chunk {|element| element.odd? ? :odd : :_separator} enu
 
 The following example uses the fact that a failing pattern match returns nil:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerable · 467
+Enumerable ï¿½ 467
 
 # This code reads its own source and returns each comment block File.foreach(__FILE__).chunk do |line|
 # A comment is a group of consecutive # lines starting with '#' line =~ /^\s*#/ end.each do |_, lines| p lines end
@@ -14811,9 +14817,9 @@ enum.cycle { |obj| ... }  nil or enumerator enum.cycle( times ) { |obj| ... }  n
 
 Returns nil if enum has no elements; otherwise, passes the elements, one at a time, to the block, repeating when it reaches the end. The number of times it repeats is set by the
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 468
+Chapter 27. Built-in Classes and Modules ï¿½ 468
 
 parameter. If the parameter is missing, cycles forever. Equivalent to enum.to_a.cycle. See also Array#cycle. Returns an Enumerator object if no block is given.
 
@@ -14870,9 +14876,9 @@ enum.each_entry { |element| ... }  enum enum.each_entry  enumerator
 
 Repeatedly calls enum.each, passing the result to the block. If each returns a single value, it is passed unchanged to the block. If a call to each returns multiple values, they are packaged into an array and passed to the block.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerable · 469
+Enumerable ï¿½ 469
 
 class Generator
 
@@ -14940,9 +14946,9 @@ hash
 
 # => {"cat"=>"TAC", "dog"=>"GOD", "wombat"=>"TABMOW"}
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 470
+Chapter 27. Built-in Classes and Modules ï¿½ 470
 
 entries
 Synonym for Enumerable#to_a.
@@ -14992,9 +14998,9 @@ enum.grep( pattern )  array enum.grep( pattern ) { |obj| ... }  array
 
 Returns an array of every element in enum for which pattern === element. If the optional block is supplied, each matching element is passed to it, and the block's result is stored in the output array.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerable · 471
+Enumerable ï¿½ 471
 
 (1..100).grep 38..44
 
@@ -15079,9 +15085,9 @@ longest_word
 
 # => "sheep"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 472
+Chapter 27. Built-in Classes and Modules ï¿½ 472
 
 # find the length of the longest word
 
@@ -15147,9 +15153,9 @@ a.min
 
 a.min {|a,b| a.length <=> b.length } # => "dog"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerable · 473
+Enumerable ï¿½ 473
 
 min_by
 
@@ -15205,9 +15211,9 @@ Returns two arrays, the first containing the elements of enum for which the bloc
 
 (1..6).partition {|i| (i&1).zero?} # => [[2, 4, 6], [1, 3, 5]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 474
+Chapter 27. Built-in Classes and Modules ï¿½ 474
 
 reduce
 Synonym for Enumerable#inject.
@@ -15248,11 +15254,11 @@ red yellow pitches high low middle
 produces:
 [["colors", " red", " yellow", "pitches", " high", " low", " middle"]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerable · 475
+Enumerable ï¿½ 475
 
-Collapse sequences of three or more consecutive things into first­last.
+Collapse sequences of three or more consecutive things into firstï¿½last.
 input = [ 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15 ]
 
 def returning(value) yield value
@@ -15266,7 +15272,7 @@ State = Struct.new(:last_value) # Need to box the value to make it mutable
 returning(value != state.last_value.succ) do state.last_value = value
 end end
 
-p(slices.map do |runs| # replace runs of 3 or more with first­last runs.size < 3 ? runs : "#{ runs.first }-#{ runs.last }"
+p(slices.map do |runs| # replace runs of 3 or more with firstï¿½last runs.size < 3 ? runs : "#{ runs.first }-#{ runs.last }"
 end.join(', '))
 produces: "1-5, 8, 9, 11-13, 15"
 
@@ -15302,9 +15308,9 @@ total 0.030000 ( 0.140000 (
 
 real 0.026899) 0.145687)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 476
+Chapter 27. Built-in Classes and Modules ï¿½ 476
 
 However, in cases where comparing the keys is a nontrivial operation, the algorithm used by sort_by is considerably faster.
 sort_by can also be useful for multilevel sorts. One trick, which relies on the fact that arrays are compared element by element, is to have the block return an array of each of the comparison keys. For example, to sort a list of words first on their length and then alphabetically, you could write the following:
@@ -15365,9 +15371,9 @@ a = [ 4, 5, 6 ] b = [ 7, 8, 9 ]
 
 # => [[1], [2], [3]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerator · 477
+Enumerator ï¿½ 477
 
 Class Enumerator
 
@@ -15412,9 +15418,9 @@ end
 
 twos = multiples_of(2) threes = multiples_of(3)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 478
+Chapter 27. Built-in Classes and Modules ï¿½ 478
 
 5.times do puts "#{twos.next} #{threes.next}"
 end
@@ -15450,9 +15456,9 @@ puts "#{index}: #{subarray}" end
 produces:
 0: [1, 2, 3] 1: [4, 5, 6] 2: [7, 8, 9] 3: [10]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerator · 479
+Enumerator ï¿½ 479
 
 each_with_object enum.each_with_object( memo ) { |item, memo| ... }  memo or enumerator
 
@@ -15510,9 +15516,9 @@ enum.next_values  array
 
 Enumerator.next returns successive values yielded by enum. However, it effectively uses raw proc semantics and so is unable to distinguish the case when the iterator yields nil and the case where the yield is passed no parameter. Similarly, it cannot distinguish yield 1,2 from yield [1,2]--both are received as [1,2]. next_values overcomes this by always returning an array, and that array contains exactly what was passed to the yield.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 480
+Chapter 27. Built-in Classes and Modules ï¿½ 480
 
 def each yield 1 yield nil yield 2, 3 yield [4,5]
 end enum = to_enum enum.next enum.next enum.next enum.next
@@ -15545,9 +15551,9 @@ array = [ 1, 2, 3, 4 ] e1 = array.to_enum e2 = array.to_enum e1.next # => 1 e1.n
 
 Has no effect if the underlying method of the enumerator has side effects and therefore cannot be rewound.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Enumerator · 481
+Enumerator ï¿½ 481
 
 size
 
@@ -15582,9 +15588,9 @@ enum.with_object( memo ) { |item, memo| ... }  memo or enumerator
 
 Synonym for each_with_object.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 482
+Chapter 27. Built-in Classes and Modules ï¿½ 482
 Module Errno
 Ruby exception objects are subclasses of Exception. However, operating systems typically report errors using plain integers. Module Errno is created dynamically to map these operating system errors to Ruby classes, with each error number generating its own subclass of SystemCallError. Because the subclass is created in module Errno, its name will start Errno::.
 Exception StandardError SystemCallError Errno::XXX
@@ -15593,9 +15599,9 @@ Errno::EACCES::Errno # => 13 Errno::EAGAIN::Errno # => 35 Errno::EINTR::Errno # 
 The full list of operating system errors on your particular platform is available as the constants of Errno. Any user-defined exceptions in this module (including subclasses of existing exceptions) must also define an Errno constant.
 Errno.constants[0..4] # => [:NOERROR, :EPERM, :ENOENT, :ESRCH, :EINTR]
 As of Ruby 1.8, exceptions are matched in rescue clauses using Module#===. The === method is overridden for class SystemCallError to compare based on the Errno value. Thus, if two distinct Errno classes have the same underlying Errno value, they will be treated as the same exception by a rescue clause.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Exception · 483
+Exception ï¿½ 483
 
 Class Exception
 
@@ -15637,9 +15643,9 @@ print detail.backtrace.join("\n") end
 produces:
 prog.rb:2:in `a' prog.rb:5:in `b' prog.rb:8:in `<main>'
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 484
+Chapter 27. Built-in Classes and Modules ï¿½ 484
 
 exception
 
@@ -15679,9 +15685,9 @@ produces: This program did not succeed
 
 exc.success?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Exception · 485
+Exception ï¿½ 485
 
 to_s
 
@@ -15695,9 +15701,9 @@ end
 produces:
 The message The message
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 486
+Chapter 27. Built-in Classes and Modules ï¿½ 486
 
 Class FalseClass
 
@@ -15727,9 +15733,9 @@ Or--Returns false if obj is nil or false; true otherwise.
 
 false | obj  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Fiber · 487
+Fiber ï¿½ 487
 
 Class Fiber
 
@@ -15764,9 +15770,9 @@ Resumes fiber. See Fiber.yield for a discussion and example of parameter passing
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 488
+Chapter 27. Built-in Classes and Modules ï¿½ 488
 
 Class File < IO
 
@@ -15804,9 +15810,9 @@ Converts a path to an absolute path. Relative paths are referenced from the curr
 puts File.absolute_path("bin") puts File.absolute_path("../../bin", "/tmp/x")
 produces: /Users/dave/BS2/published/ruby4/Book/bin /bin
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 489
+File ï¿½ 489
 
 atime
 
@@ -15862,9 +15868,9 @@ Changes the owner and/or group of the named file(s) to the given numeric owner a
 
 File.chown(nil, 100, "testfile")
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 490
+Chapter 27. Built-in Classes and Modules ï¿½ 490
 
 ctime
 
@@ -15927,9 +15933,9 @@ Synonym for File.exist?.
 
 File.exists? ( filename )  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 491
+File ï¿½ 491
 
 expand_path
 
@@ -15992,9 +15998,9 @@ Expand braces in the pattern. (new in 2.0)
 A backslash does not escape special characters in globs, and a backslash in the pattern must match a backslash in the filename.
 Forward slashes in the filename are treated as separating parts of a path and so must be explicitly matched in the pattern.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 492
+Chapter 27. Built-in Classes and Modules ï¿½ 492
 
 FNM_DOTMATCH FNM_CASEFOLD
 
@@ -16104,9 +16110,9 @@ Returns true if the effective group ID of the process is the same as the group I
 
 File.grpowned?("/etc/passwd") # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 493
+File ï¿½ 493
 
 identical?
 
@@ -16178,9 +16184,9 @@ File.lstat( filename )  stat
 
 Returns status information for file as an object of type File::Stat. Same as IO#stat on page 554 but does not follow the last symbolic link. Instead, reports on the link itself.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 494
+Chapter 27. Built-in Classes and Modules ï¿½ 494
 
 File.symlink("testfile", "link2test") # => 0
 
@@ -16228,9 +16234,9 @@ File::APPEND File::ASYNC
 
 Opens the file in append mode; all writes will occur at end of file. Generate a signal when input or output become possible.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 495
+File ï¿½ 495
 
 File::BINARY File::CREAT File::DIRECT File::DSYNC
 File::EXCL File::NOATIME File::NOCTTY
@@ -16252,9 +16258,9 @@ Table 17--File and I/O open options
 
 See also IO.open on page 539 for a block form of File.new.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 496
+Chapter 27. Built-in Classes and Modules ï¿½ 496
 
 # open for reading, default external encoding f = File.new("testfile", "r")
 # open for reading, assume contents are utf-8 f = File.new("testfile", "r:utf-8")
@@ -16313,9 +16319,9 @@ Returns true if the named file is readable by the real user ID of this process.
 
 File.readable_real?("testfile") # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 497
+File ï¿½ 497
 
 readlink
 
@@ -16365,9 +16371,9 @@ Returns true if the named file's set-group-id permission bit is set and returns 
 
 File.setgid?("/usr/sbin/lpc") # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 498
+Chapter 27. Built-in Classes and Modules ï¿½ 498
 
 setuid?
 
@@ -16423,9 +16429,9 @@ File.sticky?( filename )  true or false
 
 Returns true if the named file has its sticky bit set and returns false if it doesn't or if the operating system doesn't support this feature.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 499
+File ï¿½ 499
 
 symlink
 
@@ -16511,9 +16517,9 @@ File.mtime("testfile")
 
 # => 2013-05-27 12:32:07 -0500
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 500
+Chapter 27. Built-in Classes and Modules ï¿½ 500
 
 world_readable?
 
@@ -16575,9 +16581,9 @@ file.chmod( permission )  0
 
 Changes permission bits on file to the bit pattern represented by permission. Actual effects are platform dependent; on Unix systems, see chmod(2) for details. Follows symbolic links. See the discussion of permissions on page 488. Also see File.lchmod.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File · 501
+File ï¿½ 501
 
 f = File.new("out", "w");
 
@@ -16646,9 +16652,9 @@ File.new("testfile").mtime # => 2013-05-27 12:32:07 -0500
 
 file.mtime  time
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 502
+Chapter 27. Built-in Classes and Modules ï¿½ 502
 
 path
 
@@ -16695,9 +16701,9 @@ File.size("out")
 
 # => 5
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File::Stat · 503
+File::Stat ï¿½ 503
 
 Class File::Stat
 Objects of class File::Stat encapsulate common status information for File objects. The information is recorded at the moment the File::Stat object is created; changes made to the file after that point will not be reflected. File::Stat objects are returned by IO#stat, File.stat, File#lstat, and File.lstat. Many of these methods may return platform-specific values, and not all values are meaningful on all systems. See also Object#test on page 628.
@@ -16740,9 +16746,9 @@ Returns true if the file is a block device and returns false if it isn't or if t
 
 File.stat("testfile").blockdev? # => false File.stat("/dev/disk0").blockdev? # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 504
+Chapter 27. Built-in Classes and Modules ï¿½ 504
 
 blocks
 
@@ -16808,9 +16814,9 @@ File.stat(".").directory?
 
 # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File::Stat · 505
+File::Stat ï¿½ 505
 
 executable?
 
@@ -16874,9 +16880,9 @@ File.chmod(0644, "testfile")
 
 File.stat("testfile").mode.to_s(8) # => "100644"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 506
+Chapter 27. Built-in Classes and Modules ï¿½ 506
 
 mtime
 Returns a Time object containing the modification time for statfile.
@@ -16950,9 +16956,9 @@ File.stat("/dev/tty").rdev_minor
 
 # => 0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-File::Stat · 507
+File::Stat ï¿½ 507
 
 readable?
 
@@ -17012,9 +17018,9 @@ Returns true if statfile is a socket and returns false if it isn't or if the ope
 
 File.stat("testfile").socket? # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 508
+Chapter 27. Built-in Classes and Modules ï¿½ 508
 
 sticky?
 
@@ -17080,9 +17086,9 @@ Returns true if statfile is writable by the effective user ID of this process.
 
 File.stat("testfile").writable? # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-FileTest · 509
+FileTest ï¿½ 509
 
 writable_real?
 
@@ -17104,9 +17110,9 @@ Module FileTest
 FileTest implements file test operations similar to those used in File::Stat. The methods in FileTest are duplicated in class File. Rather than repeat the documentation here, we list the names of the methods and refer you to the documentation for File on page 488. FileTest appears to be a somewhat vestigial module.
 The FileTest methods are: blockdev?, chardev?, directory?, executable?, executable_real?, exist?, exists?, file?, grpowned?, identical?, owned?, pipe?, readable?, readable_real?, setgid?, setuid?, size, size?, socket?, sticky?, symlink?, world_readable?, world_writable?, writable?, writable_real?, zero?
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 510
+Chapter 27. Built-in Classes and Modules ï¿½ 510
 
 Class Fixnum < Integer
 
@@ -17120,7 +17126,7 @@ Performs various arithmetic operations on fix.
 
 fix + numeric Addition
 
-fix ­ numeric Subtraction
+fix ï¿½ numeric Subtraction
 
 fix * numeric Multiplication
 
@@ -17163,9 +17169,9 @@ Comparison--Returns -1, 0, or +1 depending on whether fix is less than, equal to
 
 42 <=> 13 # => 1 13 <=> 42 # => -1 -1 <=> -1 # => 0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Fixnum · 511
+Fixnum ï¿½ 511
 
 []
 
@@ -17221,9 +17227,9 @@ fix.magnitude  int
 
 Returns the magnitude of fix (the distance of fix from the origin of the number line). Synonym for Fixnum#abs. See also Complex#magnitude.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 512
+Chapter 27. Built-in Classes and Modules ï¿½ 512
 
 modulo
 Synonym for Fixnum#%.
@@ -17306,9 +17312,9 @@ Returns true if fix is zero.
 
 fix.zero?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Float · 513
+Float ï¿½ 513
 
 Class Float < Numeric
 
@@ -17335,7 +17341,7 @@ Performs various arithmetic operations on flt.
 
 flt + numeric Addition
 
-flt ­ numeric Subtraction
+flt ï¿½ numeric Subtraction
 
 flt * numeric Multiplication
 
@@ -17364,9 +17370,9 @@ flt == obj  true or false
 
 Returns true only if obj has the same value as flt. Contrast this with Float#eql?, which requires obj to be a Float.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 514
+Chapter 27. Built-in Classes and Modules ï¿½ 514
 
 1.0 == 1.0
 
@@ -17430,9 +17436,9 @@ Returns the largest integer less than or equal to flt.
 
 flt.floor  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Float · 515
+Float ï¿½ 515
 
 1.2.floor # => 1 2.0.floor # => 2 (-1.2).floor # => -2 (-2.0).floor # => -2
 
@@ -17508,9 +17514,9 @@ Math::PI.rationalize(0.01)
 
 # => (22/7)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 516
+Chapter 27. Built-in Classes and Modules ï¿½ 516
 
 round
 
@@ -17573,9 +17579,9 @@ Returns true if flt is 0.0.
 
 flt.truncate  int flt.zero?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-GC · 517
+GC ï¿½ 517
 
 GC Module
 
@@ -17626,9 +17632,9 @@ Returns the current value of the stress flag (see GC.stress=).
 
 GC.stress  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 518
+Chapter 27. Built-in Classes and Modules ï¿½ 518
 
 stress=
 
@@ -17644,9 +17650,9 @@ garbage_collect  nil
 Equivalent to GC.start.
 include GC garbage_collect # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-GC::Profiler · 519
+GC::Profiler ï¿½ 519
 
 Module GC::Profiler
 
@@ -17723,9 +17729,9 @@ animal = "cat" 22.times { animal *= 2 }
 
 p GC::Profiler.raw_data.size p GC::Profiler.raw_data[0, 2]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 520
+Chapter 27. Built-in Classes and Modules ï¿½ 520
 produces: 5 [{:GC_TIME=>1.0999999999997123e-05, :GC_INVOKE_TIME=>0.03359, :HEAP_USE_SIZE=>691000, :HEAP_TOTAL_SIZE=>700040, :HEAP_TOTAL_OBJECTS=>17501, :GC_IS_MARKED=>false}, {:GC_TIME=>0.0014199999999999977, :GC_INVOKE_TIME=>0.033891, :HEAP_USE_SIZE=>331080, :HEAP_TOTAL_SIZE=>700040, :HEAP_TOTAL_OBJECTS=>17501, :GC_IS_MARKED=>0}]
 
 report
@@ -17744,9 +17750,9 @@ GC::Profiler.total_time  float
 
 Returns the total time spend in garbage collection during this profile run.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 521
+Hash ï¿½ 521
 
 Class Hash
 
@@ -17804,9 +17810,9 @@ h.keys
 
 # => ["a", "b"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 522
+Chapter 27. Built-in Classes and Modules ï¿½ 522
 
 # While this creates a new default object each time
 
@@ -17849,9 +17855,9 @@ Element Reference--Retrieves the value stored for key. If not found, returns the
 
 h = { "a" => 100, "b" => 200 } h["a"] # => 100 h["c"] # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 523
+Hash ï¿½ 523
 
 [ ]=
 
@@ -17930,9 +17936,9 @@ Returns true if hsh compares keys by identity.
 
 hsh.compare_by_identity?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 524
+Chapter 27. Built-in Classes and Modules ï¿½ 524
 
 default
 
@@ -18028,9 +18034,9 @@ h[2]
 
 h["cat"] # => "catcat"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 525
+Hash ï¿½ 525
 
 delete
 
@@ -18089,12 +18095,12 @@ Calls block once for each key in hsh, passing the value as a parameter.
 
 h = { "a" => 100, "b" => 200 } h.each_value {|value| puts value }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces:
 100 200
 
-Chapter 27. Built-in Classes and Modules · 526
+Chapter 27. Built-in Classes and Modules ï¿½ 526
 
 empty?
 Returns true if hsh contains no key/value pairs.
@@ -18141,9 +18147,9 @@ h = { "a" => 100, "b" => 200 } h.has_key?("a") # => true h.has_key?("z") # => fa
 
 hsh.has_key?( key )  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 527
+Hash ï¿½ 527
 
 has_value?
 
@@ -18202,9 +18208,9 @@ Synonym for Hash#has_key?.
 
 hsh.key?( key )  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 528
+Chapter 27. Built-in Classes and Modules ï¿½ 528
 
 keys
 
@@ -18281,9 +18287,9 @@ Searches hsh for the first element whose value is val, returning the key and val
 
 h = { "a" => 100, "b" => 200, "c" => 100 } h.rassoc(100) # => ["a", 100] h.rassoc(200) # => ["b", 200]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 529
+Hash ï¿½ 529
 
 rehash
 
@@ -18361,9 +18367,9 @@ a
 
 # => {:a=>1}
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 530
+Chapter 27. Built-in Classes and Modules ï¿½ 530
 
 shift
 
@@ -18430,9 +18436,9 @@ Converts hsh to a string by converting the hash to an array of [ key, value ] pa
 
 h = { "c" => 300, "a" => 100, "d" => 400, "c" => 300 } h.to_s # => "{\"c\"=>300, \"a\"=>100, \"d\"=>400}"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Hash · 531
+Hash ï¿½ 531
 
 update
 Synonym for Hash#merge!.
@@ -18470,9 +18476,9 @@ h.default = "cat"
 
 h.values_at("a", "c", "z") # => [100, 300, "cat"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 532
+Chapter 27. Built-in Classes and Modules ï¿½ 532
 
 Class Integer < Numeric
 
@@ -18506,7 +18512,7 @@ Returns a string containing the character represented by the receiver's value. V
 
 # => "\xE9"
 
-233.chr(Encoding::UTF_8) # => "é"
+233.chr(Encoding::UTF_8) # => "ï¿½"
 
 denominator
 
@@ -18544,9 +18550,9 @@ Returns true if int is even.
 
 int.even?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Integer · 533
+Integer ï¿½ 533
 
 floor
 
@@ -18609,9 +18615,9 @@ num.numerator # => 6004799503160661
 
 int.numerator  integer
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 534
+Chapter 27. Built-in Classes and Modules ï¿½ 534
 
 odd?
 
@@ -18665,9 +18671,9 @@ Returns int.
 
 int.to_i  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Integer · 535
+Integer ï¿½ 535
 
 to_int
 Synonym for Integer#to_i.
@@ -18690,20 +18696,20 @@ Iterates block, passing in integer values from int up to and including integer.
 
 5.upto(10) {|i| print i, " " } produces: 5 6 7 8 9 10
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 536
+Chapter 27. Built-in Classes and Modules ï¿½ 536
 Class IO
 Subclasses: File Class IO is the basis for all input and output in Ruby. An I/O stream may be duplexed (that is, bidirectional) and so may use more than one native operating system stream. Many of the examples in this section use class File, the only standard subclass of IO. The two classes are closely associated. As used in this section, portname may take any of the following forms:
-· A plain string represents a filename suitable for the underlying operating system. · A string starting with | indicates a subprocess. The remainder of the string following |
-is invoked as a process with appropriate input/output channels connected to it. · A string equal to |- will create another Ruby instance as a subprocess. The IO class uses the Unix abstraction of file descriptors (fds), small integers that represent open files. Conventionally, standard input has an fd of 0, standard output has an fd of 1, and standard error has an fd of 2. Ruby will convert path names between different operating system conventions if possible. For instance, on Windows the filename /gumby/ruby/test.rb will be opened as \gumby\ruby\test.rb. When specifying a Windows-style filename in a double-quoted Ruby string, remember to escape the backslashes.
+ï¿½ A plain string represents a filename suitable for the underlying operating system. ï¿½ A string starting with | indicates a subprocess. The remainder of the string following |
+is invoked as a process with appropriate input/output channels connected to it. ï¿½ A string equal to |- will create another Ruby instance as a subprocess. The IO class uses the Unix abstraction of file descriptors (fds), small integers that represent open files. Conventionally, standard input has an fd of 0, standard output has an fd of 1, and standard error has an fd of 2. Ruby will convert path names between different operating system conventions if possible. For instance, on Windows the filename /gumby/ruby/test.rb will be opened as \gumby\ruby\test.rb. When specifying a Windows-style filename in a double-quoted Ruby string, remember to escape the backslashes.
 "c:\\gumby\\ruby\\test.rb"
 Our examples here will use the Unix-style forward slashes; File::SEPARATOR can be used to get the platform-specific separator character. I/O ports may be opened in any one of several different modes, which are shown in this section as mode. This mode string must be one of the values listed in Table 16, Mode values, on page 494. As of Ruby 1.9, the mode may also contain information on the external and internal encoding of the data associated with the port. If an external encoding is specified, Ruby assumes that the data it received from the operating system uses that encoding. If no internal encoding is given, strings read from the port will have this encoding. If an internal encoding is given, data will be transcoded from the external to the internal encoding, and strings will have that encoding. The reverse happens on output.
 Mixes In
 Enumerable: all?, any?, chunk, collect, collect_concat, count, cycle, detect, drop, drop_while, each_ cons, each_entry, each_slice, each_with_index, each_with_object, entries, find, find_all, find_index, first, flat_map, grep, group_by, include?, inject, lazy, map, max, max_by, member?, min, min_by, minmax, minmax_by, none?, one?, partition, reduce, reject, reverse_each, select, slice_before, sort, sort _by, take, take_while, to_a, zip
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 537
+IO ï¿½ 537
 
 Class Methods binread
 
@@ -18752,9 +18758,9 @@ Synonym for IO.new.
 
 IO.for_fd( int, mode )  io
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 538
+Chapter 27. Built-in Classes and Modules ï¿½ 538
 
 foreach
 
@@ -18789,12 +18795,12 @@ produces: Hello World
 
 # '2' is standard error
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 539
+IO ï¿½ 539
 
-# encoding: utf-8 b = IO.new(2, mode: "w", encoding: "utf-8", crlf_newline: true) b.puts "olé"
-produces: olé
+# encoding: utf-8 b = IO.new(2, mode: "w", encoding: "utf-8", crlf_newline: true) b.puts "olï¿½"
+produces: olï¿½
 
 open
 
@@ -18815,9 +18821,9 @@ end
 produces:
 This is line one This is line two This is line three And so on...
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 540
+Chapter 27. Built-in Classes and Modules ï¿½ 540
 
 pipe
 
@@ -18844,9 +18850,9 @@ IO.popen( cmd, mode="r" )  io IO.popen( cmd, mode="r" ) { |io| ... }  obj
 
 Runs the specified command string as a subprocess; the subprocess's standard input and output will be connected to the returned IO object. The parameter cmd may be a string or (in Ruby 1.9) an array of strings. In the latter case, the array is used as the argv parameter for the new process, and no special shell processing is performed on the strings. In addition, if the array starts with a hash, it will be used to set environment variables in the subprocess, and if it ends with a hash, the hash will be used to set execution options for the subprocess. See Object#spawn for details. If cmd is a string, it will be subject to shell expansion. If the cmd string starts with a minus sign (-) and the operating system supports fork(2), then the current Ruby process is forked. The default mode for the new file object is r, but mode may be set to any of the modes in Table 16, Mode values, on page 494.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 541
+IO ï¿½ 541
 
 If a block is given, Ruby will run the command as a child connected to Ruby with a pipe. Ruby's end of the pipe will be passed as a parameter to the block. In this case, IO.popen returns the value of the block.
 If a block is given with a cmd_string of "-", the block will be run in two separate processes: once in the parent and once in a child. The parent process will be passed the pipe object as a parameter to the block, the child version of the block will be passed nil, and the child's standard in and standard out will be connected to the parent through the pipe. Not available on all platforms. Also see the Open3 library on page 782 and Object#exec on page 615.
@@ -18878,9 +18884,9 @@ IO.read("testfile", 20)
 
 IO.read("testfile", 20, 10) # => "ne one\nThis is line "
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 542
+Chapter 27. Built-in Classes and Modules ï¿½ 542
 
 readlines
 
@@ -18951,9 +18957,9 @@ IO.read("somefile")
 
 # => "maddening"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 543
+IO ï¿½ 543
 
 Instance Methods <<
 String Output--Writes obj to io. obj will be converted to a string using to_s.
@@ -18992,9 +18998,9 @@ io.binmode  io
 
 Puts io into binary mode. It is more common to use the "b" modifier in the mode string to set binary mode when you open a file. Binary mode is required when reading or writing files containing bit sequences that are not valid in the encoding of the file. Once a stream is in binary mode, it cannot be reset to nonbinary mode.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 544
+Chapter 27. Built-in Classes and Modules ï¿½ 544
 
 binmode?
 Returns true if io is in binary mode.
@@ -19062,12 +19068,12 @@ Closes the read end of a duplex I/O stream (in other words, one that contains bo
 
 f = IO.popen("/bin/sh","r+") f.close_read f.readlines
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces:
 from prog.rb:3:in `<main>' prog.rb:3:in `readlines': not opened for reading (IOError)
 
-IO · 545
+IO ï¿½ 545
 
 close_write
 
@@ -19124,9 +19130,9 @@ produces:
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 546
+Chapter 27. Built-in Classes and Modules ï¿½ 546
 
 each_byte
 
@@ -19194,9 +19200,9 @@ f.eof
 
 # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 547
+IO ï¿½ 547
 
 eof?
 Synonym for IO#eof.
@@ -19244,9 +19250,9 @@ io.fsync  0 or nil
 
 Immediately writes all buffered data in io to disk. Returns nil if the underlying operating system does not support fsync(2). Note that fsync differs from using IO#sync=. The latter ensures that data is flushed from Ruby's buffers but does not guarantee that the underlying operating system actually writes it to disk.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 548
+Chapter 27. Built-in Classes and Modules ï¿½ 548
 
 getbyte
 
@@ -19303,9 +19309,9 @@ io.ioctl( cmd, arg )  int
 
 Provides a mechanism for issuing low-level commands to control or query I/O devices. The command (which is an integer), arguments, and results are platform dependent. If arg is a number, its value is passed directly. If it is a string, it is interpreted as a binary sequence of bytes. On Unix platforms, see ioctl(2) for details. Not implemented on all platforms.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 549
+IO ï¿½ 549
 
 isatty
 
@@ -19366,9 +19372,9 @@ Returns the process ID of a child process associated with io. This will be set b
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 550
+Chapter 27. Built-in Classes and Modules ï¿½ 550
 
 pipe = IO.popen("-") if pipe
 STDERR.puts "In parent, child pid is #{pipe.pid}" pipe.close else STDERR.puts "In child, pid is #{$$}" end
@@ -19419,9 +19425,9 @@ io.putc( obj )  obj
 
 If obj is a string, write its first character. Otherwise treat obj as a number, and write its loworder byte as a character. Note that this is not encoding safe, because the byte may be just part of a multibyte sequence.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 551
+IO ï¿½ 551
 
 #encoding: utf-8 STDOUT.putc "ABC" STDOUT.putc "og" STDOUT.putc 65
 produces: AA
@@ -19474,9 +19480,9 @@ io.readline( separator, limit )  string or nil
 
 Reads a line as with IO#gets but raises an EOFError on end of file.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 552
+Chapter 27. Built-in Classes and Modules ï¿½ 552
 
 readlines
 
@@ -19567,9 +19573,9 @@ buffer "" "def\n" "def\n" "" ""
 
 pipe content "abc\ndef\n" "" "ghi\n" "ghi\n" ""
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 553
+IO ï¿½ 553
 
 read_nonblock
 
@@ -19619,9 +19625,9 @@ f = File.new("testfile") f.internal_encoding
 
 # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 554
+Chapter 27. Built-in Classes and Modules ï¿½ 554
 
 f.external_encoding
 
@@ -19705,9 +19711,9 @@ f.sysread(10)
 
 # => "And so on."
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO · 555
+IO ï¿½ 555
 
 syswrite
 
@@ -19803,9 +19809,9 @@ f.getc
 
 # => "o"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 556
+Chapter 27. Built-in Classes and Modules ï¿½ 556
 
 write
 
@@ -19826,9 +19832,9 @@ Module Kernel
 
 The Kernel module is included by class Object, so its methods are available in every Ruby object. The Kernel methods are documented in class Object on page 599.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Marshal · 557
+Marshal ï¿½ 557
 Module Marshal
 The marshaling library converts collections of Ruby objects into a byte stream, allowing them to be stored outside the currently active script. This data may subsequently be read and the original objects reconstituted. Marshaling is described in Section 25.7, Marshaling and Distributed Ruby, on page 403. Also see the YAML library on page 827.
 Marshaled data has major and minor version numbers stored along with the object information. In normal use, marshaling can load only data written with the same major version number and an equal or lower minor version number. If Ruby's "verbose" flag is set (normally using -d, -v, -w, or --verbose), the major and minor numbers must match exactly. Marshal versioning is independent of Ruby's version numbers. You can extract the version by reading the first two bytes of marshaled data.
@@ -19842,9 +19848,9 @@ end def marshal_load(marshal_data)
 t = TimedDump.new t.other_data = "wibble" t.when_dumped # => nil
 str = Marshal.dump(t)
 newt = Marshal.load(str) newt.when_dumped # => "12:32PM" newt.other_data # => "wibble"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 558
+Chapter 27. Built-in Classes and Modules ï¿½ 558
 
 Module Constants
 MAJOR_VERSION Major part of marshal format version number MINOR_VERSION Minor part of marshal format version number
@@ -19871,9 +19877,9 @@ A synonym for Marshal.load.
 
 restore( from < , proc > )  obj
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-MatchData · 559
+MatchData ï¿½ 559
 
 Class MatchData
 
@@ -19951,9 +19957,9 @@ f3
 
 # => "113"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 560
+Chapter 27. Built-in Classes and Modules ï¿½ 560
 
 end
 
@@ -20025,9 +20031,9 @@ Returns the portion of the original string before the current match. (Same as $`
 
 m = /(.)(.)(\d+)(\d)/.match("THX1138.") m.pre_match # => "T"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-MatchData · 561
+MatchData ï¿½ 561
 
 regexp
 
@@ -20067,9 +20073,9 @@ Returns the matches corresponding to the given indices.
 
 m = /(.)(.)(\d+)(\d)/.match("THX1138.") m.values_at(3,1,2) # => ["113", "H", "X"] m.values_at(0, 4) # => ["HX1138", "8"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 562
+Chapter 27. Built-in Classes and Modules ï¿½ 562
 
 Module Math
 
@@ -20124,9 +20130,9 @@ Computes the cosine of x (expressed in radians). Returns -1..1.
 
 Math.cos( x )  float
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Math · 563
+Math ï¿½ 563
 
 cosh
 Computes the hyperbolic cosine of x (expressed in radians).
@@ -20180,7 +20186,7 @@ Returns sqrt(x2 + y2), the hypotenuse of a right-angled triangle with sides x an
 Math.hypot(3, 4) # => 5.0
 
 ldexp
-Returns the value of float × 2n.
+Returns the value of float ï¿½ 2n.
 fraction, exponent = Math.frexp(1234) Math.ldexp(fraction, exponent) # => 1234.0
 
 Math.ldexp( float, n )  float
@@ -20191,9 +20197,9 @@ Math.lgamma( x )  [ float, sign ]
 
 The first element of the returned array is the natural logarithm of the absolute value of the gamma function of x. The second value is -1 if the gamma function returned a negative number, +1 otherwise.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 564
+Chapter 27. Built-in Classes and Modules ï¿½ 564
 
 log
 
@@ -20240,9 +20246,9 @@ Math.tanh( float )  float
 
 Computes the hyperbolic tangent of numeric (expressed in radians).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Method · 565
+Method ï¿½ 565
 
 Class Method
 
@@ -20309,9 +20315,9 @@ def six(a, b, *c, &d); end
 
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 566
+Chapter 27. Built-in Classes and Modules ï¿½ 566
 
 c = C.new c.method(:one).arity # => 0 c.method(:two).arity # => 1 c.method(:three).arity # => -1 c.method(:four).arity # => 2 c.method(:five).arity # => -3 c.method(:six).arity # => -3
 "cat".method(:size).arity # => 0 "cat".method(:replace).arity # => 1 "cat".method(:squeeze).arity # => -1 "cat".method(:count).arity # => -1
@@ -20359,9 +20365,9 @@ meth.parameters  array
 
 Returns an array describing the parameters taken by the method. Each entry in the array is itself an array. The first entry of each subarray contains the role of the parameter (:req for
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Method · 567
+Method ï¿½ 567
 
 required, :opt for optional, :rest for a splat parameter, and :block for a block). If the parameter has a name, it will be the second entry in the subarray.
 def m(a, b=1, *c, &d) end method(:m).parameters # => [[:req, :a], [:opt, :b], [:rest, :c], [:block, :d]]
@@ -20395,9 +20401,9 @@ meth.unbind  unbound_method
 
 Dissociates meth from its current receiver. The resulting UnboundMethod can subsequently be bound to a new object of the same class (see UnboundMethod on page 726).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 568
+Chapter 27. Built-in Classes and Modules ï¿½ 568
 
 Class Module
 
@@ -20470,9 +20476,9 @@ Returns the list of modules nested at the point of call.
 
 Module.nesting  array
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 569
+Module ï¿½ 569
 
 module M1 module M2 nest = Module.nesting p nest p nest[0].name end
 end
@@ -20540,9 +20546,9 @@ Parent < Unrelated # => nil
 
 Parent > Unrelated # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 570
+Chapter 27. Built-in Classes and Modules ï¿½ 570
 
 <=>
 
@@ -20582,9 +20588,9 @@ A::B.doit produces: In Module A::B
 
 # autoloads "module_b"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 571
+Module ï¿½ 571
 
 autoload?
 
@@ -20634,9 +20640,9 @@ Sets the value of the named class variable. The two @ signs must appear in the n
 class One @@var1 = "wibble"
 end One.class_variable_set(:@@var1, 99) # => 99 One.class_variable_get("@@var1") # => 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 572
+Chapter 27. Built-in Classes and Modules ï¿½ 572
 
 class_variables
 
@@ -20677,9 +20683,9 @@ Invoked when a reference is made to an undefined constant in mod. It is passed a
 def Object.const_missing(name) @looked_for ||= {} str_name = name.to_s raise "Class not found: #{name}" if @looked_for[str_name] @looked_for[str_name] = 1 file = str_name.downcase require file klass = const_get(name) return klass if klass raise "Class not found: #{name}"
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 573
+Module ï¿½ 573
 
 const_set
 
@@ -20735,9 +20741,9 @@ Mixin.included_modules # => [] Outer.included_modules # => [Mixin]
 
 mod.included_modules  array
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 574
+Chapter 27. Built-in Classes and Modules ï¿½ 574
 
 instance_method
 
@@ -20790,9 +20796,9 @@ C.instance_methods(false)
 
 C.instance_methods(true).length # => 56
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 575
+Module ï¿½ 575
 
 method_defined?
 
@@ -20828,9 +20834,9 @@ Behaves the same as the block form for Module#module_eval, except any parameters
 class Thing end name = :new_instance_variable Thing.module_exec(name) do |iv_name|
 attr_accessor iv_name end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 576
+Chapter 27. Built-in Classes and Modules ï¿½ 576
 
 t = Thing.new t.new_instance_variable = "wibble" pt
 produces: #<Thing:0x007f9b01847fa8 @new_instance_variable="wibble">
@@ -20883,9 +20889,9 @@ Mod.instance_methods
 
 Mod.private_instance_methods # => [:method1]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 577
+Module ï¿½ 577
 
 private_method_defined?
 
@@ -20940,9 +20946,9 @@ mod.public_class_method( < symbol >+ )  nil
 
 Makes a list of existing class methods public.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 578
+Chapter 27. Built-in Classes and Modules ï¿½ 578
 
 public_constant
 
@@ -20980,9 +20986,9 @@ mod.public_method_defined?( symbol )  true or false
 
 Returns true if the named public method is defined by mod (or its included modules and, if mod is a class, its ancestors).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 579
+Module ï¿½ 579
 
 module A def method1; end
 end class B
@@ -21021,9 +21027,9 @@ end include Mod exit(99)
 produces:
 Exiting with code 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 580
+Chapter 27. Built-in Classes and Modules ï¿½ 580
 
 append_features
 
@@ -21056,9 +21062,9 @@ end
 
 d = Test.new("Dave", "Ruby") d.name # => "Dave" d.likes # => "Ruby"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 581
+Module ï¿½ 581
 
 attr_writer
 
@@ -21105,9 +21111,9 @@ Note that it is possible to define methods with names that are not valid if you 
 class Silly define_method("Oh !@!#^!") { "As Snoopy says" }
 end Silly.new.send("Oh !@!#^!") # => "As Snoopy says"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 582
+Chapter 27. Built-in Classes and Modules ï¿½ 582
 
 extend_object
 
@@ -21153,9 +21159,9 @@ end
 
 New in 2.0 See also Module#prepend.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 583
+Module ï¿½ 583
 
 included
 
@@ -21193,9 +21199,9 @@ remove_method(:one) end
 produces:
 Removing one
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 584
+Chapter 27. Built-in Classes and Modules ï¿½ 584
 
 method_undefined
 
@@ -21225,9 +21231,9 @@ Mod.one # => "This is one" c = Cls.new c.call_one # => "This is one" module Mod
 def one "This is the new one"
 end end Mod.one # => "This is one" c.call_one # => "This is the new one"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 585
+Module ï¿½ 585
 
 prepend
 
@@ -21271,9 +21277,9 @@ public( < symbol >* )  mod
 
 With no arguments, sets the default visibility for subsequently defined methods to public. With arguments, sets the named methods to have public visibility. See "Access Control" on page 335.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 586
+Chapter 27. Built-in Classes and Modules ï¿½ 586
 
 refine
 
@@ -21313,9 +21319,9 @@ end
 class Child < Parent def hello puts "In child" end
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Module · 587
+Module ï¿½ 587
 
 c = Child.new c.hello
 
@@ -21332,9 +21338,9 @@ end c.hello
 produces:
 In child In parent prog.rb:24:in `<main>': undefined method `hello' for #<Child:0x007fcfa4042ee8> (NoMethodError)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 588
+Chapter 27. Built-in Classes and Modules ï¿½ 588
 
 Class Mutex
 
@@ -21390,9 +21396,9 @@ mutex.unlock  mutex
 
 Unlock mutex, which must be locked by the current thread. May not be called from a trap New in 2.0 handler.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-NilClass · 589
+NilClass ï¿½ 589
 
 Class NilClass
 
@@ -21444,7 +21450,7 @@ nil.to_c # => (0+0i)
 
 nil.to_c  Complex(0,0)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 to_f
 Always returns zero.
@@ -21462,12 +21468,12 @@ to_s
 Always returns the empty string.
 nil.to_s # => ""
 
-Chapter 27. Built-in Classes and Modules · 590
+Chapter 27. Built-in Classes and Modules ï¿½ 590
 nil.to_f  0.0 nil.to_h  {} nil.to_i  0 nil.to_r  Rational(0,1) nil.to_s  ""
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Numeric · 591
+Numeric ï¿½ 591
 
 Class Numeric
 
@@ -21477,29 +21483,29 @@ Numeric is the fundamental base type for the abstract class Integer and the conc
 % & * ** + +@ -@ / < << <= <=> == === > >= >> [] ^ abs abs2 angle arg ceil chr coerce conj conjugate denominator div divmod downto eql? even? fdiv finite? floor gcd gcdlcm i imag
 
 Numeric
- ­ ­ ­ ­  ­  ­ ­ ­ ­  ­ ­ ­ ­ ­ ­ ­      ­       ­  ­  ­  ­ ­  
+ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½      ï¿½       ï¿½  ï¿½  ï¿½  ï¿½ ï¿½  
 
 Integer
-­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­   ­ ­ ­  ­ ­  ­  ­ ­    ­ ­
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½   ï¿½ ï¿½ ï¿½  ï¿½ ï¿½  ï¿½  ï¿½ ï¿½    ï¿½ ï¿½
 
 Fixnum
-     ­                ­ ­ ­ ­ ­ ­ ­ ­ ­   ­ ­   ­ ­ ­ ­ ­ ­
+     ï¿½                ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½   ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½
 
 Bignum
-     ­                ­ ­ ­ ­ ­  ­ ­ ­   ­    ­ ­ ­ ­ ­ ­
+     ï¿½                ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½   ï¿½    ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½
 
 Float
- ­    ­     ­       ­ ­ ­  ­    ­  ­ ­  ­  ­  ­    ­ ­ ­ ­
+ ï¿½    ï¿½     ï¿½       ï¿½ ï¿½ ï¿½  ï¿½    ï¿½  ï¿½ ï¿½  ï¿½  ï¿½  ï¿½    ï¿½ ï¿½ ï¿½ ï¿½
 
 Rational
-­ ­    ­  ­  ­ ­ ­   ­ ­ ­ ­ ­ ­ ­ ­ ­ ­  ­  ­ ­  ­ ­ ­ ­ ­  ­  ­ ­ ­ ­
+ï¿½ ï¿½    ï¿½  ï¿½  ï¿½ ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½ ï¿½ ï¿½
 
 Complex
-­ ­    ­    ­ ­ ­ ­  ­ ­ ­ ­ ­ ­     ­ ­     ­ ­ ­  ­  ­ ­ ­ ­ ­ 
+ï¿½ ï¿½    ï¿½    ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½     ï¿½ ï¿½     ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ 
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 592
+Chapter 27. Built-in Classes and Modules ï¿½ 592
 
 imaginary infinite? integer? lcm
 magnitude modulo nan? next
@@ -21513,25 +21519,25 @@ to_r to_s truncate upto zero?
 | ~
 
 Numeric
- ­  ­   ­ ­   ­ ­   ­  ­       ­  ­ ­  ­ ­  ­ ­  ­  ­ ­
+ ï¿½  ï¿½   ï¿½ ï¿½   ï¿½ ï¿½   ï¿½  ï¿½       ï¿½  ï¿½ ï¿½  ï¿½ ï¿½  ï¿½ ï¿½  ï¿½  ï¿½ ï¿½
 
 Integer
-­ ­   ­ ­ ­  ­    ­ ­  ­  ­ ­ ­ ­ ­  ­ ­   ­ ­    ­   ­ ­ ­
+ï¿½ ï¿½   ï¿½ ï¿½ ï¿½  ï¿½    ï¿½ ï¿½  ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½   ï¿½ ï¿½    ï¿½   ï¿½ ï¿½ ï¿½
 
 Fixnum
-­ ­ ­ ­   ­ ­ ­ ­  ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­  ­  ­ ­  ­ ­ ­  ­ ­   
+ï¿½ ï¿½ ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½  ï¿½ ï¿½ ï¿½  ï¿½ ï¿½   
 
 Bignum
-­ ­ ­ ­   ­ ­ ­ ­  ­ ­ ­ ­ ­ ­ ­ ­ ­ ­  ­  ­ ­ ­ ­  ­ ­ ­  ­ ­ ­  
+ï¿½ ï¿½ ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½  ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½  
 
 Float
-­  ­ ­    ­ ­  ­ ­  ­ ­   ­ ­ ­ ­ ­  ­ ­ ­ ­ ­       ­  ­ ­
+ï¿½  ï¿½ ï¿½    ï¿½ ï¿½  ï¿½ ï¿½  ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½       ï¿½  ï¿½ ï¿½
 
 Rational
-­ ­ ­ ­ ­ ­ ­ ­ ­  ­ ­ ­ ­ ­   ­ ­ ­ ­ ­  ­ ­ ­ ­ ­   ­    ­ ­ ­ ­
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½   ï¿½ ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½ ï¿½   ï¿½    ï¿½ ï¿½ ï¿½ ï¿½
 
 Complex
- ­ ­ ­  ­ ­ ­ ­  ­ ­   ­       ­ ­ ­ ­ ­ ­    ­   ­ ­ ­ ­ ­
+ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½ ï¿½ ï¿½  ï¿½ ï¿½   ï¿½       ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½    ï¿½   ï¿½ ï¿½ ï¿½ ï¿½ ï¿½
 
 Table 20--Methods in the numeric classes
 
@@ -21543,14 +21549,14 @@ Unary Plus--Returns the receiver's value.
 
 +num  num
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Numeric · 593
+Numeric ï¿½ 593
 
 -@
 Unary Minus--Returns the receiver's value, negated.
 
-­num  numeric
+ï¿½num  numeric
 
 <=>
 Returns zero if num equals other and returns nil otherwise.
@@ -21618,9 +21624,9 @@ Returns the smallest integer greater than or equal to num. Class Numeric achieve
 
 (-1.0).ceil # => -1
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 594
+Chapter 27. Built-in Classes and Modules ï¿½ 594
 
 coerce
 
@@ -21646,9 +21652,9 @@ end
 1 + "2" # => 3 1 - "2.3" # => -1.2999999999999998 1.2 + "2.3" # => 3.5 1.5 - "2" # => -0.5
 coerce is discussed in the tutorial on page 352.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Numeric · 595
+Numeric ï¿½ 595
 
 conj
 Synonym for Numeric#conjugate.
@@ -21817,9 +21823,9 @@ Returns true if num and numeric are the same type and have equal values.
 
 (1.0).eql?(1.0) # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 596
+Chapter 27. Built-in Classes and Modules ï¿½ 596
 
 fdiv
 Synonym for Numeric#quo.
@@ -21886,9 +21892,9 @@ b
 
 # => ["A", "a", "AA", "Aa", "aA", "BB", "Bb", "bB", "bb", "z"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Numeric · 597
+Numeric ï¿½ 597
 
 numerator
 
@@ -21962,9 +21968,9 @@ Returns an array containing the real and imaginary components of num. See also C
 
 1.5.rect # => [1.5, 0]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 598
+Chapter 27. Built-in Classes and Modules ï¿½ 598
 
 rectangular
 Synonym for Numeric#rect.
@@ -22010,9 +22016,9 @@ Returns true if num has a zero value.
 
 num.truncate  int num.zero?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 599
+Object ï¿½ 599
 
 Class Object < BasicObject
 
@@ -22061,9 +22067,9 @@ obj.clone  other_obj
 
 Produces a shallow copy of obj--the instance variables of obj are copied, but not the objects they reference. Copies the frozen and tainted state of obj, along with any associated singleton class. See also the discussion under Object#dup.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 600
+Chapter 27. Built-in Classes and Modules ï¿½ 600
 
 class Klass
 
@@ -22137,9 +22143,9 @@ For example:
 1.display "cat".display [ 4, 5, 6 ].display
 produces: 1cat[4, 5, 6]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 601
+Object ï¿½ 601
 
 dup
 
@@ -22190,9 +22196,9 @@ Writing obj.extend(Mod) is basically the same as the following:
 class <<obj include Mod
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 602
+Chapter 27. Built-in Classes and Modules ï¿½ 602
 
 freeze
 
@@ -22232,9 +22238,9 @@ These methods should copy across any state information that dup and clone cannot
 class Container attr_accessor :content
 end a = Container.new a.content = "cat" b = a.dup a.content[1..-1] = "anary" a.content # => "canary" b.content # => "canary"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 603
+Object ï¿½ 603
 
 The next example uses initialize_copy to create a new string in the duplicated object.
 class Container attr_accessor :content def initialize_copy(other) @content = String.new(other.content) end
@@ -22285,9 +22291,9 @@ Returns true if the named variable is defined. Note that a common idiom, testing
 class Fred def initialize(p1, p2) @a, @b = p1, p2 end
 end fred = Fred.new('cat', 99) fred.instance_variable_defined?(:@a) # => true fred.instance_variable_defined?("@b") # => true fred.instance_variable_defined?(:@c) # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 604
+Chapter 27. Built-in Classes and Modules ï¿½ 604
 
 instance_variable_get
 
@@ -22327,9 +22333,9 @@ obj.kind_of?( klass )  true or false
 
 Returns true if klass is the class of obj or if klass is one of the superclasses of obj or modules included in obj.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 605
+Object ï¿½ 605
 
 module M end class A
 include M end class B < A; end class C < B; end
@@ -22382,9 +22388,9 @@ If regular is true, returns a list of the names of methods publicly accessible i
 class Klass def my_method; end
 end k = Klass.new def k.single; end k.methods[0..6] # => [:single, :my_method, :nil?, :===, :=~, :!~, :eql?] k.methods.length # => 56 k.methods(false) # => [:single]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 606
+Chapter 27. Built-in Classes and Modules ï¿½ 606
 
 nil?
 All objects except nil return false.
@@ -22428,9 +22434,9 @@ Synonym for Object#methods.
 
 obj.public_methods  array
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 607
+Object ï¿½ 607
 
 public_send
 
@@ -22472,9 +22478,9 @@ obj.singleton_class  klass
 
 Returns the singleton class of obj, creating one if necessary. TrueClass, FalseClass, and NilClass are their own singleton classes. Fixnum has no singleton class.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 608
+Chapter 27. Built-in Classes and Modules ï¿½ 608
 
 obj = "cat" old_way = class << obj; self; end new_way = obj.singleton_class
 
@@ -22529,9 +22535,9 @@ a = "cat" a.tainted? # => false a.taint # => "cat" a.tainted? # => true a.untain
 
 obj.tainted?  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 609
+Object ï¿½ 609
 
 tap
 
@@ -22570,9 +22576,9 @@ Removes the taint from obj.
 
 obj.untaint  obj
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 610
+Chapter 27. Built-in Classes and Modules ï¿½ 610
 
 untrust
 Marks obj as untrusted. (See the section on trust on page 411.)
@@ -22633,9 +22639,9 @@ Returns arg as an Array. First tries to call arg.to_ary and then arg.to_a. If bo
 
 Array(1..5) # => [1, 2, 3, 4, 5]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 611
+Object ï¿½ 611
 
 Complex
 
@@ -22700,9 +22706,9 @@ Rational(1) Rational("1") Rational("1", "2") Rational(1, 0.5) Rational("3/2") Ra
 
 # => 1/1 # => 1/1 # => 1/2 # => 2/1 # => 3/2 # => 15/8
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 612
+Chapter 27. Built-in Classes and Modules ï¿½ 612
 
 String
 
@@ -22761,9 +22767,9 @@ autoload?( name )  file_name or nil
 
 Returns the name of the file that will be autoloaded when the string or symbol name is referenced in the top-level context or returns nil if there is no associated autoload.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 613
+Object ï¿½ 613
 
 autoload(:Fred, "module_fred") # => nil
 
@@ -22841,9 +22847,9 @@ c(1)
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 614
+Chapter 27. Built-in Classes and Modules ï¿½ 614
 
 c(2) c(3)
 
@@ -22885,9 +22891,9 @@ chop  string
 
 (Almost) equivalent to $_.dup.chop!, except that if chop performs no action, $_ is unchanged and nil is not returned. See String#chop! on page 672. Available only if the -n or -p commandline option is present.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 615
+Object ï¿½ 615
 
 define_method
 
@@ -22942,9 +22948,9 @@ exec(< env, > command < , args >*, < options > )
 
 Replaces the current process by running the given external command. If exec is given a single argument, that argument is taken as a line that is subject to shell expansion before being executed. If command contains a newline or any of the characters ?*?{}[]<>()~&|$;'`", or under Windows if command looks like a shell-internal command (for example dir), command is run under a shell. On Unix system, Ruby does this by prepending sh -c. Under Windows, it uses the name of a shell in either RUBYSHELL or COMSPEC.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 616
+Chapter 27. Built-in Classes and Modules ï¿½ 616
 
 If multiple arguments are given, the second and subsequent arguments are passed as parameters to command with no shell expansion. If the first argument is a two-element array, the first element is the command to be executed, and the second argument is used as the argv[0] value, which may show up in process listings. In MSDOS environments, the command is executed in a subshell; otherwise, one of the exec(2) system calls is used, so the running command may inherit some of the environment of the original program (including open file descriptors). Raises SystemCallError if the command couldn't execute (typically Errno::ENOENT).
 
@@ -22980,9 +22986,9 @@ lambda { |obj| puts "in finalizer" })
 produces:
 at_exit function in finalizer
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 617
+Object ï¿½ 617
 
 exit!
 
@@ -23025,9 +23031,9 @@ gem_original_require < filename >+
 
 The version of Object#require that does not know about RubyGems.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 618
+Chapter 27. Built-in Classes and Modules ï¿½ 618
 
 gets
 
@@ -23064,9 +23070,9 @@ end class B < A
 attr_reader :var1, :var2 def initialize(p1, p2)
 super(p1) puts "Initializing B: p2 = #{p2}" @var2 = p2 end end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 619
+Object ï¿½ 619
 
 b = B.new("cat", "dog") puts b.inspect
 produces: Initializing A: p1 = cat Initializing B: p2 = dog #<B:0x007f817990eaa0 @var1="cat", @var2="dog">
@@ -23105,9 +23111,9 @@ Repeatedly executes the block.
 
 loop < { ... } >
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 620
+Chapter 27. Built-in Classes and Modules ï¿½ 620
 
 loop do print "Type something: " line = gets break if line.nil? || line =~ /^[qQ]/ # ...
 end
@@ -23136,7 +23142,7 @@ Open a subprocess, and read its output:
 
 cmd = open("|date") print cmd.gets cmd.close
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces: Mon May 27 12:32:39 CDT 2013
 Open a subprocess running the same Ruby program:
@@ -23148,7 +23154,7 @@ open("|-") do |f| if f.nil? puts "in Child" else puts "Got: #{f.gets}" end
 end
 produces: Got: in Child
 
-Object · 621
+Object ï¿½ 621
 
 p
 
@@ -23169,9 +23175,9 @@ print "cat", [1,2,3], 99, "\n" $, = ", " $\ = "\n" print "cat", [1,2,3], 99
 produces:
 cat[1, 2, 3]99 cat, [1, 2, 3], 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 622
+Chapter 27. Built-in Classes and Modules ï¿½ 622
 
 printf
 Equivalent to the following:
@@ -23220,9 +23226,9 @@ rand( max=0 )  number rand( range )  number
 
 Converts max to an integer using max1 = max.to_i.abs. If the result is zero or nil, returns a pseudorandom floating-point number greater than or equal to 0.0 and less than 1.0. Otherwise,
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 623
+Object ï¿½ 623
 
 returns a pseudorandom integer greater than or equal to zero and less than max1. If a range is passed, return a random number in that range. Object#srand may be used to ensure
 repeatable sequences of random numbers between different runs of the program. See also
@@ -23315,9 +23321,9 @@ the loaded feature is added to the array in $". A feature will not be loaded if 
 
 1. Or whatever the default shared library extension is on the current platform 2. As of Ruby 1.9, this name is converted to an absolute path, so require 'a';require './a' will load a.rb once.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 624
+Chapter 27. Built-in Classes and Modules ï¿½ 624
 
 require 'my-library.rb' require 'db-driver'
 
@@ -23355,9 +23361,9 @@ Suspends the current thread for numeric seconds (which may be a Float with fract
 
 Time.now # => 2013-05-27 12:32:41 -0500 sleep 1.9 # => 2 Time.now # => 2013-05-27 12:32:43 -0500
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 625
+Object ï¿½ 625
 
 spawn
 
@@ -23389,15 +23395,15 @@ If true or 0, the new process will be a process group leader. Otherwise, the pro
 
 The fd_desc parameter identifies an I/O stream to be opened or assigned in the child process. It can be one of :in, STDIN, or 0 to represent standard input; :out, STDOUT, or 1 for standard
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 626
+Chapter 27. Built-in Classes and Modules ï¿½ 626
 
 output; or :err, STDERR, or 2 for standard error. It can also be an array containing one or more of these, in which case all fds in the array will be opened on the same stream.
 The stream parameter can be the following:
-· One of :in, STDIN, or 0 to represent the current standard input; :out, STDOUT, or 1 for the current standard output; or :err, STDERR, or 2 for the current standard error.
-· A string representing the name of a file or device.
-· An array. If it contains [:child, fd], redirects to the fd of the child process. Otherwise, the first element is the name of a file or device, the optional second element is the mode, and the optional third element the permission. See the description of File#new on page 494 for details.
+ï¿½ One of :in, STDIN, or 0 to represent the current standard input; :out, STDOUT, or 1 for the current standard output; or :err, STDERR, or 2 for the current standard error.
+ï¿½ A string representing the name of a file or device.
+ï¿½ An array. If it contains [:child, fd], redirects to the fd of the child process. Otherwise, the first element is the name of a file or device, the optional second element is the mode, and the optional third element the permission. See the description of File#new on page 494 for details.
 This example shows the options in action:
 reader, writer = IO.pipe pid = spawn("echo '4*a(1)' | bc -l", [ STDERR, STDOUT ] => writer) writer.close Process::waitpid2(pid) reader.gets # => "3.14159265358979323844\n"
 
@@ -23430,9 +23436,9 @@ Uses the next argument as the field width. If negative, left-justifies the resul
 
 The field width is an optional integer, followed optionally by a period and a precision. The width specifies the minimum number of characters that will be written to the result for this field. For numeric fields, the precision controls the number of decimal places displayed. As of Ruby 1.9, the number zero is converted to a zero-length string if a precision of 0 is given. For string fields, the precision determines the maximum number of characters to be copied
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 627
+Object ï¿½ 627
 
 from the string. (Thus, the format sequence %10.10s will always contribute exactly ten characters to the result.)
 The field type characters are:
@@ -23505,9 +23511,9 @@ sprintf("%+g:% g:%-g", 1.23, 1.23, 1.23) # => "+1.23:1.23:1.23"
 
 In Ruby 1.9, you can pass a hash as the second argument and insert values from this hash into the string. The notation <name> can be used between a percent sign and a field-type character, in which case the name will be used to look up a value in the hash, and that value will be formatted according to the field specification. The notation {name} is equivalent to <name>s, substituting the corresponding value as a string. You can use width and other flag characters between the opening percent sign and the {.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 628
+Chapter 27. Built-in Classes and Modules ï¿½ 628
 
 sprintf("%<number>d %04<number>x", number: 123) # => "123007b"
 
@@ -23557,9 +23563,9 @@ test(cmd, file1 < , file2 > )  obj
 
 Uses cmd to perform various tests on file1 (see the first table that follows) or on file1 and file2 (see the second table).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Object · 629
+Object ï¿½ 629
 
 Flag
 
@@ -23683,9 +23689,9 @@ throw( symbol < , obj > )
 
 Transfers control to the end of the active catch block waiting for symbol. Raises NameError if there is no catch block for the symbol. The optional second parameter supplies a return value for the catch block, which otherwise defaults to nil. For examples, see Object#catch on page 614.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 630
+Chapter 27. Built-in Classes and Modules ï¿½ 630
 
 trace_var
 
@@ -23728,9 +23734,9 @@ New in 2.0
 Writes the given message to STDERR (unless $VERBOSE is nil, perhaps because the -W0 commandline option was given). If multiple messages are given, writes each on a new line.
 warn "Danger, Will Robinson!" produces: Danger, Will Robinson!
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-ObjectSpace · 631
+ObjectSpace ï¿½ 631
 
 Module ObjectSpace
 
@@ -23776,9 +23782,9 @@ Returns a hash where the keys are the interpreter-specific internal object types
 
 ObjectSpace.count_objects # => {:TOTAL=>17493, :FREE=>60, :T_OBJECT=>49, # .. :T_CLASS=>471, :T_MODULE=>21, :T_FLOAT=>4, # .. :T_STRING=>7748, :T_REGEXP=>64, :T_ARRAY=>1464, # .. :T_HASH=>57, :T_BIGNUM=>3, :T_FILE=>17, # .. :T_DATA=>701, :T_MATCH=>20, :T_COMPLEX=>1, # .. :T_RATIONAL=>2, :T_NODE=>6790, :T_ICLASS=>21}
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 632
+Chapter 27. Built-in Classes and Modules ï¿½ 632
 
 define_finalizer
 
@@ -23818,9 +23824,9 @@ Removes all finalizers for obj.
 
 ObjectSpace.undefine_finalizer( obj )
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Proc · 633
+Proc ï¿½ 633
 
 Class Proc
 
@@ -23881,12 +23887,12 @@ end
 
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces:
 0 is even 1 is not even 2 is even 3 is not even
 
-Chapter 27. Built-in Classes and Modules · 634
+Chapter 27. Built-in Classes and Modules ï¿½ 634
 
 arity
 
@@ -23940,9 +23946,9 @@ a_proc[9, 1, 2, 3]
 
 If the block being called accepts a single parameter and you give call more than one parameter, only the first will be passed to the block. This is a change from Ruby 1.8.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Proc · 635
+Proc ï¿½ 635
 
 a_proc = Proc.new {|a| puts a} a_proc.call(1,2,3)
 produces: 1
@@ -23970,9 +23976,9 @@ prc.lambda?  true or false
 
 Returns true if prc has lambda semantics (that is, if argument passing acts as it does with method calls). See the discussion in Section 22.13, Blocks, Closures, and Proc Objects, on page 335.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 636
+Chapter 27. Built-in Classes and Modules ï¿½ 636
 
 parameters
 
@@ -24012,9 +24018,9 @@ Synonym for Proc#call.
 
 prc.yield( < params >* )  obj
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process · 637
+Process ï¿½ 637
 
 Module Process
 
@@ -24046,9 +24052,9 @@ produces:
 dyld: DYLD_ environment variables being ignored because main executable (/bin/ps) is setuid or setgid
 PID STAT 24002 Z+
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 638
+Chapter 27. Built-in Classes and Modules ï¿½ 638
 
 In the next example, Process.detach is used to reap the child automatically--no child processes are left running.
 pid = fork { sleep 0.1 } Process.detach(pid) sleep 1 system("ps -o pid,state -p #{pid}")
@@ -24098,9 +24104,9 @@ See Object#fork on page 617.
 
 Process.fork < { ... } >  int or nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process · 639
+Process ï¿½ 639
 
 getpgid
 
@@ -24157,9 +24163,9 @@ Sets the group ID for this process.
 
 Process.gid= int  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 640
+Chapter 27. Built-in Classes and Modules ï¿½ 640
 
 groups
 
@@ -24208,9 +24214,9 @@ Process.maxgroups= limit  count
 
 Sets the maximum number of supplementary group IDs that can be processed by the groups and groups= methods. If a number larger than 4096 is given, 4096 will be used.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process · 641
+Process ï¿½ 641
 
 pid
 Returns the process ID of this process. Not available on all platforms.
@@ -24275,9 +24281,9 @@ Synonym for Object#spawn.
 
 Process.spawn(< env, > command < , args >*, < options > )  pid
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 642
+Chapter 27. Built-in Classes and Modules ï¿½ 642
 
 times
 
@@ -24355,9 +24361,9 @@ status.exitstatus
 
 # => 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process::GID · 643
+Process::GID ï¿½ 643
 
 waitpid
 
@@ -24415,9 +24421,9 @@ Process::GID.eid  egid
 
 Returns the effective group ID for this process. Synonym for Process.egid.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 644
+Chapter 27. Built-in Classes and Modules ï¿½ 644
 
 eid=
 Synonym for Process::GID.grant_privilege.
@@ -24491,9 +24497,9 @@ $?.exited?
 
 $?.exitstatus # => 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process::Status · 645
+Process::Status ï¿½ 645
 
 POSIX systems record information on processes using a 16-bit integer. The lower bits record the process status (stopped, exited, signaled), and the upper bits possibly contain additional information (for example, the program's return code in the case of exited processes). Before Ruby 1.8, these bits were exposed directly to the Ruby program. Ruby now encapsulates these in a Process::Status object. To maximize compatibility, however, these objects retain a bit-oriented interface. In the descriptions that follow, when we talk about the integer value of stat, we're referring to this 16-bit value.
 
@@ -24573,9 +24579,9 @@ $?.exited?
 
 $?.exitstatus # => 99
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 646
+Chapter 27. Built-in Classes and Modules ï¿½ 646
 
 pid
 
@@ -24654,13 +24660,13 @@ Equivalent to stat.to_i.to_s.
 
 stat.to_s  string
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process::Sys · 647
+Process::Sys ï¿½ 647
 
 Module Process::Sys
 
-Process::Sys provides system call­level access to the process user and group environment. Many of the calls are aliases of those in the Process module and are packaged here for completeness. See also Process::GID and Process::UID for a higher-level (and more portable) interface.
+Process::Sys provides system callï¿½level access to the process user and group environment. Many of the calls are aliases of those in the Process module and are packaged here for completeness. See also Process::GID and Process::UID for a higher-level (and more portable) interface.
 
 Class Methods getegid
 
@@ -24714,9 +24720,9 @@ Process::Sys.setregid( rgid, egid )
 
 Sets the real and effective group IDs to rgid and egid, failing if the underlying system call fails. Raises NotImplementedError on systems that don't support setregid(2).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 648
+Chapter 27. Built-in Classes and Modules ï¿½ 648
 
 setresgid
 
@@ -24770,9 +24776,9 @@ Process::UID.eid  euid
 
 Returns the effective user ID for this process. Synonym for Process.euid.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Process::UID · 649
+Process::UID ï¿½ 649
 
 eid=
 Synonym for Process::UID.grant_privilege.
@@ -24815,9 +24821,9 @@ Process::UID.switch  euid Process::UID.switch { ... }  obj
 
 Handles the toggling of user privilege. In the block form, automatically toggles the IDs back when the block terminates (as long as the block doesn't use other Process::UID calls to interfere). Without a block, returns the original effective user ID.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 650
+Chapter 27. Built-in Classes and Modules ï¿½ 650
 
 Class Range
 
@@ -24876,9 +24882,9 @@ In the previous code example, class Xs includes the Comparable module. This is b
 Mixes In
 Enumerable: all?, any?, chunk, collect, collect_concat, count, cycle, detect, drop, drop_while, each_ cons, each_entry, each_slice, each_with_index, each_with_object, entries, find, find_all, find_index, first, flat_map, grep, group_by, include?, inject, lazy, map, max, max_by, member?, min, min_by, minmax, minmax_by, none?, one?, partition, reduce, reject, reverse_each, select, slice_before, sort, sort _by, take, take_while, to_a, zip
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Range · 651
+Range ï¿½ 651
 
 Class Methods new
 
@@ -24927,9 +24933,9 @@ end
 produces:
 Bitsize of 101 is 3 Bitsize of 1010000 is 7 Bitsize of 1011010000000010000000000000000 is 31
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 652
+Chapter 27. Built-in Classes and Modules ï¿½ 652
 
 And here's a somewhat surprising example that finds x for which sin(x) equals 0.5.
 (0.0..Math::PI/2).bsearch {|x| Math.sin(x) >= 0.5} # => 0.5235987755982989
@@ -24978,9 +24984,9 @@ Returns the first (or first n) elements of rng.
 
 ('aa'..'bb').first # => "aa" ('aa'..'bb').first(5) # => ["aa", "ab", "ac", "ad", "ae"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Range · 653
+Range ï¿½ 653
 
 include?
 
@@ -25059,9 +25065,9 @@ Returns the number of elements in rng. In Ruby 2.0, only works for ranges of int
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 654
+Chapter 27. Built-in Classes and Modules ï¿½ 654
 
 step
 
@@ -25093,9 +25099,9 @@ Here's step with numbers:
 
 (1.0..5.0).step(1.5).to_a # => [1.0, 2.5, 4.0]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Random · 655
+Random ï¿½ 655
 
 Class Random
 
@@ -25146,9 +25152,9 @@ Returns the seed for this random number generator.
 
 rand.seed  bignum
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 656
+Chapter 27. Built-in Classes and Modules ï¿½ 656
 
 Class Rational < Numeric
 
@@ -25205,9 +25211,9 @@ rat == numeric
 
 Returns true if rat has the same value as numeric. Comparisons against integers and rational numbers are exact; comparisons against floats first convert rat to a float.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Rational · 657
+Rational ï¿½ 657
 
 ceil
 Returns the smallest integer greater than or equal to rat.
@@ -25270,9 +25276,9 @@ Rational("22/7").round # => 3 Rational("-22/7").round # => -3
 
 rat.round  numeric
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 658
+Chapter 27. Built-in Classes and Modules ï¿½ 658
 
 to_f
 Returns the floating-point representation of rat.
@@ -25289,9 +25295,9 @@ Rational("22/7").truncate # => 3 Rational("-22/7").truncate # => -3
 rat.to_f  float rat.to_i  integer
 rat.to_r  rat rat.truncate  numeric
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Regexp · 659
+Regexp ï¿½ 659
 
 Class Regexp
 
@@ -25343,9 +25349,9 @@ Constructs a new regular expression from the string or the regexp. In the latter
 
 3. No other values are accepted as of Ruby 1.9.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 660
+Chapter 27. Built-in Classes and Modules ï¿½ 660
 
 # encoding: utf-8
 
@@ -25413,9 +25419,9 @@ rxp == other_regexp  true or false
 Equality--Two regexps are equal if their patterns are identical, they have the same character set code, and their casefold? values are the same.
 /abc/ == /abc/x # => false /abc/ == /abc/i # => false /abc/u == /abc/n # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Regexp · 661
+Regexp ï¿½ 661
 
 ===
 
@@ -25483,9 +25489,9 @@ rxp.fixed_encoding?  true or false
 
 A regular expression containing only 7-bit characters can be matched against a string in any encoding. In this case, fixed_encoding? returns false. Otherwise, it returns true.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 662
+Chapter 27. Built-in Classes and Modules ï¿½ 662
 
 /cat/.fixed_encoding? # => false /cat/s.fixed_encoding? # => true /cat/u.fixed_encoding? # => true
 
@@ -25573,9 +25579,9 @@ Regexp::MULTILINE
 
 # => 4
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Regexp · 663
+Regexp ï¿½ 663
 
 /cat/.options
 
@@ -25625,9 +25631,9 @@ r2.source
 
 # => "(?ix-m:ab+c)"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 664
+Chapter 27. Built-in Classes and Modules ï¿½ 664
 
 Module Signal
 
@@ -25651,9 +25657,9 @@ Returns a list of signal names mapped to the corresponding underlying signal num
 
 Signal.list # => {"ABRT"=>6, "ALRM"=>14, "BUS"=>10, "CHLD"=>20, "CLD"=>20, # .. "CONT"=>19, "EMT"=>7, "EXIT"=>0, "FPE"=>8, "HUP"=>1, "ILL"=>4, # .. "INFO"=>29, "INT"=>2, "IO"=>23, "IOT"=>6, "KILL"=>9, "PIPE"=>13, # .. "PROF"=>27, "QUIT"=>3, "SEGV"=>11, "STOP"=>17, "SYS"=>12, # .. "TERM"=>15, "TRAP"=>5, "TSTP"=>18, "TTIN"=>21, "TTOU"=>22, # .. "URG"=>16, "USR1"=>30, "USR2"=>31, "VTALRM"=>26, "WINCH"=>28, # .. "XCPU"=>24, "XFSZ"=>25}
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Signal · 665
+Signal ï¿½ 665
 
 signame
 
@@ -25686,9 +25692,9 @@ In child, PID=24189 exit pid 24189 with 0 Child died (20) exit pid 24188 with 0
 
 Note that you must specify a block taking a parameter if you use lambda to create the proc object.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 666
+Chapter 27. Built-in Classes and Modules ï¿½ 666
 
 Class String
 A String object holds and manipulates a sequence of characters. String objects may be created using String.new or as literals (see Strings, on page 300).
@@ -25735,9 +25741,9 @@ str % arg  string
 
 Format--Uses str as a format specification and returns the result of applying it to arg. If the format specification contains more than one substitution, then arg must be an Array containing the values to be substituted. See Object#sprintf on page 626 for details of the format string.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 667
+String ï¿½ 667
 
 puts "%05d" % 123 puts "%-5s: %08x" % [ "ID", self.object_id ] puts "%-5<name>s: %08<value>x" % { name: "ID", value: self.object_id }
 produces:
@@ -25793,9 +25799,9 @@ Comparison--Returns -1 if str is less than, 0 if str is equal to, and +1 if str 
 
 "abcdef" <=> "abcde" # => 1 "abcdef" <=> "abcdef" # => 0 "abcdef" <=> "abcdefg" # => -1 "abcdef" <=> "ABCDEF" # => 1
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 668
+Chapter 27. Built-in Classes and Modules ï¿½ 668
 
 ==
 
@@ -25842,9 +25848,9 @@ a = "hello there" a[1] a[1,3] a[1..3] a[1...3]
 
 4. Except for a strange corner case. If regexp is a string or can be coerced into a string, a TypeError exception is raised.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 669
+String ï¿½ 669
 
 a[-3,2]
 
@@ -25918,9 +25924,9 @@ str.ascii_only?  true or false
 
 Returns true if the string contains no characters with a character code greater than 127 (that is, it contains only 7-bit ASCII characters).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 670
+Chapter 27. Built-in Classes and Modules ï¿½ 670
 
 # encoding: utf-8
 
@@ -25939,7 +25945,7 @@ New in 2.0
 
 str.b  string
 Returns a copy of the contents of str with ASCII-8BIT encoding. This is a convenient way to get to the byte values of any string.
-str = "øg" str.length # => 3
+str = "ï¿½g" str.length # => 3
 
 bstr = str.b bstr.length # => 6
 
@@ -25997,9 +26003,9 @@ Returns the string consisting of length bytes starting at byte position offset, 
 
 # => [226, 136, 130, 100, 111, 103] # => "\xE2" # => "\xE2\x88"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 671
+String ï¿½ 671
 
 a.byteslice(0, 3) # => "" a.byteslice(-2, 2) # => "og" a.byteslice(-2..-1) # => "og"
 
@@ -26067,9 +26073,9 @@ Returns an enumerator (Ruby 1.9) or array (Ruby 2.0) for the characters (single 
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 672
+Chapter 27. Built-in Classes and Modules ï¿½ 672
 
 # encoding: utf-8
 
@@ -26143,9 +26149,9 @@ str.chop  string
 
 Returns a new String with the last character removed. If the string ends with \r\n, both characters are removed. Applying chop to an empty string returns an empty string. String#chomp is often a safer alternative, because it leaves the string unchanged if it doesn't end in a record separator.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 673
+String ï¿½ 673
 
 "string\r\n".chop # => "string"
 
@@ -26226,9 +26232,9 @@ str.crypt( settings )  string
 
 Applies a one-way cryptographic hash to str by invoking the standard library function crypt. The argument is to some extent system dependent. On traditional Unix boxes, it is often a two-character salt string. On more modern boxes, it may also control things such as DES encryption parameters. See the man page for crypt(3) for details.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 674
+Chapter 27. Built-in Classes and Modules ï¿½ 674
 
 # standard salt
 
@@ -26310,9 +26316,9 @@ str.each_char  enum str.each_char { |char| ... }  str
 
 Synonym for String#chars. The each_char form is falling out of favor.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 675
+String ï¿½ 675
 
 each_codepoint
 Synonym for String#codepoints.
@@ -26360,11 +26366,11 @@ After encoding, escape characters that would otherwise have special meaning in X
 
 Table 22--Options to encode and encode!
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 676
+Chapter 27. Built-in Classes and Modules ï¿½ 676
 
-# encoding: utf-8 ole_in_utf = "olé" ole_in_utf.encoding ole_in_utf.dump
+# encoding: utf-8 ole_in_utf = "olï¿½" ole_in_utf.encoding ole_in_utf.dump
 
 # => #<Encoding:UTF-8> # => "ol\u{e9}"
 
@@ -26378,7 +26384,7 @@ ole_in_8859.dump
 
 Using a default internal encoding of ISO-8859-1 and a source file encoding of UTF-8:
 
-#!/usr/local/rubybook/bin/ruby -E:ISO-8859-1 # encoding: utf-8 utf_string = "olé" utf_string.encoding # => #<Encoding:UTF-8> iso_string = utf_string.encode iso_string.encoding # => #<Encoding:ISO-8859-1>
+#!/usr/local/rubybook/bin/ruby -E:ISO-8859-1 # encoding: utf-8 utf_string = "olï¿½" utf_string.encoding # => #<Encoding:UTF-8> iso_string = utf_string.encode iso_string.encoding # => #<Encoding:ISO-8859-1>
 
 Attempt to transcode a string with characters not available in the destination encoding:
 
@@ -26422,9 +26428,9 @@ Returns true if str ends with any of the given suffixes.
 
 "ruby code".end_with?("python", "perl", "code") # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 677
+String ï¿½ 677
 
 eql?
 Returns true if obj is a String with identical contents to str.
@@ -26477,9 +26483,9 @@ Returns a copy of str with all occurrences of pattern replaced with either repla
 
 If a string is used as the replacement, special variables from the match (such as $& and $1) cannot be substituted into it, because substitution into the string occurs before the pattern match starts. However, the sequences \1, \2, and so on, may be used to interpolate successive numbered groups in the match, and \k<name> will substitute the corresponding named captures. These sequences are shown in the following table.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 678
+Chapter 27. Built-in Classes and Modules ï¿½ 678
 
 Sequence \1, \2, ... \9 \& \` \' \+ \k<name>
 
@@ -26535,9 +26541,9 @@ Treats leading characters from str as a string of hexadecimal digits (with an op
 
 "wombat".hex # => 0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 679
+String ï¿½ 679
 
 include?
 Returns true if str contains the given string.
@@ -26598,9 +26604,9 @@ str.lines( sep=$/ )  enum | array str.lines( sep=$/ ) { |substr| ... }  str}
 
 Splits str using the supplied parameter as the record separator ($/ by default) and passing each substring in turn to the supplied block. If a zero-length record separator is supplied,
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 680
+Chapter 27. Built-in Classes and Modules ï¿½ 680
 
 New in 2.0
 
@@ -26657,9 +26663,9 @@ Removes leading whitespace characters from str, returning nil if no change was m
 
 # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 681
+String ï¿½ 681
 
 match
 
@@ -26731,9 +26737,9 @@ Searches str for pattern (which may be a string or a regular expression). Return
 
 "THX1138".partition("11") # => ["THX", "11", "38"] "THX1138".partition(/\d\d/) # => ["THX", "11", "38"] "THX1138".partition("99") # => ["THX1138", "", ""]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 682
+Chapter 27. Built-in Classes and Modules ï¿½ 682
 
 prepend
 
@@ -26814,9 +26820,9 @@ If width is greater than the length of str, returns a new String of length width
 
 "hello".rjust(20, "padding") # => "paddingpaddingphello"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 683
+String ï¿½ 683
 
 rpartition
 
@@ -26880,12 +26886,12 @@ And the block form:
 
 a.scan(/\w+/) {|w| print "<<#{w}>> " } puts a.scan(/(.)(.)/) {|a,b| print b, a } puts
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces:
 <<cruel>> <<world>> rceu lowlr
 
-Chapter 27. Built-in Classes and Modules · 684
+Chapter 27. Built-in Classes and Modules ï¿½ 684
 
 setbyte
 
@@ -26974,9 +26980,9 @@ str.slice!( range )  string or nil str.slice!( regexp )  string or nil str.slice
 
 Deletes the specified portion from str and returns the portion deleted. The forms that take a Fixnum will raise an IndexError if the value is out of range; the Range form will raise a RangeError, and the Regexp and String forms will silently not change the string.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 685
+String ï¿½ 685
 
 string = "this is a string"
 
@@ -27028,9 +27034,9 @@ The parameter(s) specify a set of characters using the procedure described for S
 
 "putters putt balls".squeeze("m-z") # => "puters put balls"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 686
+Chapter 27. Built-in Classes and Modules ï¿½ 686
 
 squeeze!
 
@@ -27098,9 +27104,9 @@ str.succ  string
 
 Returns the successor to str. The successor is calculated by incrementing characters starting from the rightmost alphanumeric (or the rightmost character if there are no alphanumerics) in the string. Incrementing a digit always results in another digit, and incrementing a letter results in another letter of the same case. Incrementing nonalphanumerics uses the underlying character set's collating sequence.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 687
+String ï¿½ 687
 
 If the increment generates a "carry," the character to the left of it is incremented. This process repeats until there is no carry, adding a character if necessary. An exception is when the carry is generated by a sequence of digits in a string containing digits, nonalpha characters, and more digits, in which case the carry applies to the digits. This allows for incrementing (for example) numbers with decimal places.
 
@@ -27171,9 +27177,9 @@ str.swapcase!  str or nil
 
 Equivalent to String#swapcase but modifies str in place, returning str. Returns nil if no changes were made.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 688
+Chapter 27. Built-in Classes and Modules ï¿½ 688
 
 to_c
 
@@ -27263,9 +27269,9 @@ Returns the result of interpreting leading characters in str as a rational numbe
 
 # => 123/1 # => 5/6 # => 5/1 # => (0/1)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 689
+String ï¿½ 689
 
 to_s
 Returns the receiver.
@@ -27302,7 +27308,7 @@ str.tr( from_string, to_string )  string
 
 Returns a copy of str with the characters in from_string replaced by the corresponding char-
 acters in to_string. If to_string is shorter than from_string, it is padded with its last character.
-Both strings may use the c1­c2 notation to denote ranges of characters, and from_string may start with a ^, which denotes all characters except those listed.
+Both strings may use the c1ï¿½c2 notation to denote ranges of characters, and from_string may start with a ^, which denotes all characters except those listed.
 
 "hello".tr('aeiou', '*') # => "h*ll*" "hello".tr('^aeiou', '*') # => "*e**o" "hello".tr('el', 'ip') # => "hippo" "hello".tr('a-y', 'b-z') # => "ifmmp"
 
@@ -27320,9 +27326,9 @@ Processes a copy of str as described under String#tr and then removes duplicate 
 
 "hello".tr_s('l', 'r') # => "hero" "hello".tr_s('el', '*') # => "h*o" "hello".tr_s('el', 'hx') # => "hhxo"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 690
+Chapter 27. Built-in Classes and Modules ï¿½ 690
 
 tr_s!
 
@@ -27380,9 +27386,9 @@ Iterates through successive values, starting at str and ending at string inclusi
 "a8".upto("b6") {|s| print s, ' ' } puts for s in "a8".."b6"
 print s, ' ' end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-String · 691
+String ï¿½ 691
 
 produces:
 a8 a9 b0 b1 b2 b3 b4 b5 b6 a8 a9 b0 b1 b2 b3 b4 b5 b6
@@ -27405,24 +27411,24 @@ Returns true if str contains a valid byte sequence in its current encoding.
 
 # encoding: binary str = "\xE2" str.force_encoding("utf-8") str.valid_encoding? # => false str = "\xE2\x88\x82" str.force_encoding("utf-8") str.valid_encoding? # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 692
+Chapter 27. Built-in Classes and Modules ï¿½ 692
 
 Format
 A a B b C c d,D E e f,F G g H h I i L l M m N n P p Q q S s U u V v w X x Z @
 
 Function
-Sequence of bytes with trailing nulls and ASCII spaces removed. Sequence of bytes. Extracts bits from each byte (MSB first). Extracts bits from each byte (LSB first). Extracts a byte as an unsigned integer. Extracts a byte as an integer. Treat sizeof(double) bytes as a native double. Treats sizeof(double) bytes as a double in little-endian byte order. Treats sizeof(float) bytes as a float in little-endian byte order. Treats sizeof(float) bytes as a native float. Treats sizeof(double) bytes as a double in network byte order. Treats sizeof(float) bytes as a float in network byte order. Extracts hex nibbles from each byte (most significant first). Extracts hex nibbles from each byte (least significant first). Treats sizeof(int)° successive bytes as an unsigned native integer. Treats sizeof(int)° successive bytes as a signed native integer. Treats four° successive bytes as an unsigned native long integer. Treats four° successive characters as a signed native long integer. Extracts a quoted-printable string. Extracts a Base64-encoded string. By default, accepts \n and \r. "m0" rejects these. Treats four bytes as an unsigned long in network byte order. Treats two bytes as an unsigned short in network byte order. Treats sizeof(char *) bytes as a pointer and returns len bytes from the referenced location. Treats sizeof(char *) bytes as a pointer to a null-terminated string. Treats eight bytes as an unsigned quad word (64 bits). Treats eight bytes as a signed quad word (64 bits). Treats two° bytes characters as an unsigned short in native byte order. Treats two° successive bytes as a signed short in native byte order. Extracts UTF-8 characters as unsigned integers. Extracts a UU-encoded string. Treats four bytes as an unsigned long in little-endian byte order. Treats two bytes as an unsigned short in little-endian byte order. BER-compressed integer (see Array#pack for more information). Skips backward one byte. Skips forward one byte. String with trailing nulls removed. Skips to the byte offset given by the length argument. ° May be modified by appending _ or ! to the directive.
+Sequence of bytes with trailing nulls and ASCII spaces removed. Sequence of bytes. Extracts bits from each byte (MSB first). Extracts bits from each byte (LSB first). Extracts a byte as an unsigned integer. Extracts a byte as an integer. Treat sizeof(double) bytes as a native double. Treats sizeof(double) bytes as a double in little-endian byte order. Treats sizeof(float) bytes as a float in little-endian byte order. Treats sizeof(float) bytes as a native float. Treats sizeof(double) bytes as a double in network byte order. Treats sizeof(float) bytes as a float in network byte order. Extracts hex nibbles from each byte (most significant first). Extracts hex nibbles from each byte (least significant first). Treats sizeof(int)ï¿½ successive bytes as an unsigned native integer. Treats sizeof(int)ï¿½ successive bytes as a signed native integer. Treats fourï¿½ successive bytes as an unsigned native long integer. Treats fourï¿½ successive characters as a signed native long integer. Extracts a quoted-printable string. Extracts a Base64-encoded string. By default, accepts \n and \r. "m0" rejects these. Treats four bytes as an unsigned long in network byte order. Treats two bytes as an unsigned short in network byte order. Treats sizeof(char *) bytes as a pointer and returns len bytes from the referenced location. Treats sizeof(char *) bytes as a pointer to a null-terminated string. Treats eight bytes as an unsigned quad word (64 bits). Treats eight bytes as a signed quad word (64 bits). Treats twoï¿½ bytes characters as an unsigned short in native byte order. Treats twoï¿½ successive bytes as a signed short in native byte order. Extracts UTF-8 characters as unsigned integers. Extracts a UU-encoded string. Treats four bytes as an unsigned long in little-endian byte order. Treats two bytes as an unsigned short in little-endian byte order. BER-compressed integer (see Array#pack for more information). Skips backward one byte. Skips forward one byte. String with trailing nulls removed. Skips to the byte offset given by the length argument. ï¿½ May be modified by appending _ or ! to the directive.
 
 Returns
 String String String String Fixnum Fixnum Float Float Float Float Float Float String String Integer Integer Integer Integer String String Fixnum Fixnum String String Integer Integer Fixnum Fixnum Integer String Fixnum Fixnum Integer -- -- String --
 
 Table 24--Directives for String#unpack
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Struct · 693
+Struct ï¿½ 693
 
 Class Struct
 Subclasses: Struct::Tms
@@ -27455,9 +27461,9 @@ Customer.new("Dave", "123 Main")
 
 A block passed to the constructor is evaluated in the context of the new struct's class and hence allows you conveniently to add instance methods to the new struct.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 694
+Chapter 27. Built-in Classes and Modules ï¿½ 694
 
 Customer = Struct.new(:name, :address) do def to_s "#{self.name} lives at #{self.address}" end
 end Customer.new("Dave", "123 Main").to_s # => "Dave lives at 123 Main"
@@ -27500,9 +27506,9 @@ joe = Customer.new("Joe Smith", "123 Maple, Anytown NC", 12345) joejr = Customer
 
 joe == joejr # => true joe == jane # => false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Struct · 695
+Struct ï¿½ 695
 
 []
 
@@ -27554,9 +27560,9 @@ Customer = Struct.new(:name, :address, :zip) joe = Customer.new("Joe Smith", "12
 produces:
 name => Joe Smith address => 123 Maple, Anytown NC zip => 12345
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 696
+Chapter 27. Built-in Classes and Modules ï¿½ 696
 
 length
 Returns the number of attributes.
@@ -27602,9 +27608,9 @@ Returns an array containing the elements in joe corresponding to the given indic
 
 Lots = Struct.new(:a, :b, :c, :d, :e, :f) l = Lots.new(11, 22, 33, 44, 55, 66) l.values_at(1, 3, 5) # => [22, 44, 66] l.values_at(0, 2, 4) # => [11, 33, 55] l.values_at(-1, -3, -5) # => [66, 44, 22]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Struct::Tms · 697
+Struct::Tms ï¿½ 697
 
 Class Struct::Tms < Struct
 
@@ -27618,9 +27624,9 @@ See also Struct on page 693 and Process.times on page 642.
 def eat_cpu 10_000.times { File.open("/etc/passwd").close }
 end 3.times { fork { eat_cpu } } eat_cpu Process.waitall t = Process::times [ t.utime, t.stime] # => [0.13, 0.24] [ t.cutime, t.cstime ] # => [0.27, 0.68]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 698
+Chapter 27. Built-in Classes and Modules ï¿½ 698
 
 Class Symbol
 Symbol objects represent names inside the Ruby interpreter. They are generated using the :name or :"arbitrary text" literal syntax and by using the various to_sym methods. The same Symbol object will be created for a given name string for the duration of a program's execution, regardless of the context or meaning of that name. Symbols can be arbitrary sequences of characters. Like strings, a symbol literal containing any characters with the top bit set will have an encoding determined by the encoding of the source file containing the definition.
@@ -27669,9 +27675,9 @@ Converts sym to a string and matches it against obj.
 
 sym =~ obj  int or nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Symbol · 699
+Symbol ï¿½ 699
 
 []
 
@@ -27763,9 +27769,9 @@ Returns true if the string representation of sym is empty.
 
 sym.empty  true or false
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 700
+Chapter 27. Built-in Classes and Modules ï¿½ 700
 
 encoding
 Returns the encoding of sym.
@@ -27820,9 +27826,9 @@ Synonym for Symbol#length.
 
 sym.next  symbol sym.size  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Symbol · 701
+Symbol ï¿½ 701
 
 slice
 Synonym for Symbol#[ ].
@@ -27870,9 +27876,9 @@ Returns a symbol with all the characters of sym in uppercase.
 
 sym.to_s  string sym.to_sym  sym sym.upcase  symbol
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 702
+Chapter 27. Built-in Classes and Modules ï¿½ 702
 
 Class Thread
 
@@ -27915,9 +27921,9 @@ Thread.exit
 
 Terminates the currently running thread and schedules another thread to be run. If this thread is already marked to be killed, exit returns the Thread. If this is the main thread, or the last thread, exits the process.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Thread · 703
+Thread ï¿½ 703
 
 fork
 Synonym for Thread.start.
@@ -27980,9 +27986,9 @@ Invokes the thread scheduler to pass execution to another thread.
 
 Thread.pass
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 704
+Chapter 27. Built-in Classes and Modules ï¿½ 704
 
 a = Thread.new { print "a"; Thread.pass; print "b" } b = Thread.new { print "x"; Thread.pass; print "y" } a.join; b.join
 produces: axby
@@ -28018,9 +28024,9 @@ thr[ symbol ] = obj obj
 
 Attribute Assignment--Sets or creates the value of a fiber-local variable, using either a symbol or a string. See also Thread#thread_variable_set.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Thread · 705
+Thread ï¿½ 705
 
 abort_on_exception
 
@@ -28071,9 +28077,9 @@ end p thr.status p thr.backtrace Thread.pass p thr.status p thr.backtrace
 produces:
 "run" starting sleeping ["prog.rb:5:in `sleep'", "/tmp/prog.rb:5:in `sleeper'", "/tmp/prog.rb:7:in `block in <main>'"] "sleep" ["prog.rb:5:in `sleep'", "/tmp/prog.rb:5:in `sleeper'", "/tmp/prog.rb:7:in `block in <main>'"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 706
+Chapter 27. Built-in Classes and Modules ï¿½ 706
 
 backtrace_locations
 New in 2.0 Analog of the global caller_locations method.
@@ -28131,14 +28137,14 @@ New in 2.0 You cannot join to the current or main thread.
 
 a = Thread.new { print "a"; sleep(10); print "b"; print "c" } x = Thread.new { print "x"; Thread.pass; print "y"; print "z" } x.join # Let x thread finish, a will be killed on exit.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 produces: axyz
 The following example illustrates the limit parameter:
 y = Thread.new { loop { sleep 0.1; print "tick...\n" }} y.join(0.25) puts "Gave up waiting..."
 produces: tick... tick... Gave up waiting...
 
-Thread · 707
+Thread ï¿½ 707
 
 keys
 Returns an array of the names of the fiber-local variables (as symbols).
@@ -28175,9 +28181,9 @@ thr.priority= int  thr
 
 Sets the priority of thr to integer. Higher-priority threads will run before lower-priority threads. If you find yourself messing with thread priorities to get things to work, you're doing something wrong.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 708
+Chapter 27. Built-in Classes and Modules ï¿½ 708
 
 count_high = count_low = 0 Thread.new do
 Thread.current.priority = 1 loop { count_high += 1 } end Thread.new do Thread.current.priority = -1 loop { count_low += 1 } end
@@ -28221,9 +28227,9 @@ thr.set_trace_func( proc )  proc thr.set_trace_func( nil )  nil
 
 Analog to the global set_trace_func method, but for a particular thread.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Thread · 709
+Thread ï¿½ 709
 
 status
 
@@ -28318,9 +28324,9 @@ Return the value of the thread-local variable with the given name.
 
 New in 2.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 710
+Chapter 27. Built-in Classes and Modules ï¿½ 710
 
 thread_variable_set
 
@@ -28368,9 +28374,9 @@ puts "Default group is #{ThreadGroup::Default.list}" tg = ThreadGroup.new t1 = T
 produces:
 Default group is [#<Thread:0x007fee488c0cd8 run>] t1 is #<Thread:0x007fee4890f1d0>, t2 is #<Thread:0x007fee4890eff0> Default group now [#<Thread:0x007fee488c0cd8 run>, #<Thread:0x007fee4890eff0 sleep>] tg group now [#<Thread:0x007fee4890f1d0 sleep>]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-ThreadGroup · 711
+ThreadGroup ï¿½ 711
 
 enclose
 
@@ -28398,9 +28404,9 @@ Returns an array of all existing Thread objects that belong to this group.
 
 ThreadGroup::Default.list # => [#<Thread:0x007f82e98c0cd0 run>]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 712
+Chapter 27. Built-in Classes and Modules ï¿½ 712
 
 Class Time
 Time is an abstraction of dates and times. Time is stored internally as the number of seconds and microseconds since the epoch, January 1, 1970 00:00 UTC. On some operating systems, this offset is allowed to be negative. Also see the Date library module on page 744.The Time class treats Greenwich mean time (GMT) and Coordinated Universal Time (UTC)5 as equivalent. GMT is the older way of referring to these baseline times but persists in the names of calls on POSIX systems.
@@ -28444,9 +28450,9 @@ Creates a time based on given values, interpreted as UTC. The year must be speci
 
 Time.gm(2000,"jan",1,20,15,1) # => 2000-01-01 20:15:01 UTC
 
-5. Yes, UTC really does stand for Coordinated Universal Time. There was a committee involved. report erratum · discuss
+5. Yes, UTC really does stand for Coordinated Universal Time. There was a committee involved. report erratum ï¿½ discuss
 
-Time · 713
+Time ï¿½ 713
 
 local
 
@@ -28514,9 +28520,9 @@ t = Time.now
 
 t + (60 * 60 * 24) # => 2013-05-28 12:33:12 -0500
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 714
+Chapter 27. Built-in Classes and Modules ï¿½ 714
 
 -
 
@@ -28590,9 +28596,9 @@ t.day
 
 time.ctime  string time.day  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Time · 715
+Time ï¿½ 715
 
 dst?
 Synonym for Time#isdst.
@@ -28701,9 +28707,9 @@ t.gmt?
 
 time.gmtime  time
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 716
+Chapter 27. Built-in Classes and Modules ï¿½ 716
 
 gmt_offset
 
@@ -28791,9 +28797,9 @@ t.min
 
 time.min  int
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Time · 717
+Time ï¿½ 717
 
 mon
 
@@ -28863,9 +28869,9 @@ t.sec
 time.sec  int
 
 6. Yes, seconds really can range from zero to 60. This allows the system to inject leap seconds every now and then to correct for the fact time measured by atomic clocks differs from time measured by a spinning earth.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 718
+Chapter 27. Built-in Classes and Modules ï¿½ 718
 
 strftime
 
@@ -28884,9 +28890,9 @@ Format %% %a %A %b %B %c %C %d %D %e %F %g %G %h %H %I %j %k %l %L %m %M %n %N %
 
 Meaning Literal % The abbreviated weekday name ("Sun") The full weekday name ("Sunday") The abbreviated month name ("Jan") The full month name ("January") The preferred local date and time representation The two digit century (currently 20) Day of the month (01..31) Date (%m/%d/%y) Day of the month, blank padded (1..31) ISO8601 date (%Y-%m-%d) Last 2 digits of ISO8601 week-based year ISO8601 week-based year The abbreviated month name ("Jan") Hour of the day, 24-hour clock (00..23) Hour of the day, 12-hour clock (01..12) Day of the year (001..366) Hour of the day, 24-hour clock, blank padded (0..23) Hour of the day, 12-hour clock, blank padded (1..12) Milliseconds of the second Month of the year (01..12) Minute of the hour (00..59) Newline Fractional seconds Meridian indicator ("AM" or "PM") Meridian indicator ("am" or "pm") 12 hour time (%I:%M:%S %p)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Time · 719
+Time ï¿½ 719
 
 Format %R %s %S %t %T %u %U %w %v %V %W
 %x %X %y %Y %z %Z %%
@@ -28932,9 +28938,9 @@ Returns a ten-element array of values for time: {[sec, min, hour, day, month, ye
 
 Time.now.to_a # => [14, 33, 12, 27, 5, 2013, 1, 147, true, "CDT"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 720
+Chapter 27. Built-in Classes and Modules ï¿½ 720
 
 to_f
 
@@ -29005,9 +29011,9 @@ t.usec
 
 # => 878664
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Time · 721
+Time ï¿½ 721
 
 utc
 
@@ -29096,9 +29102,9 @@ t = Time.gm(2000, "jan", 1, 20, 15, 1) t.zone # => "UTC" t = Time.local(2000, "j
 
 time.zone  string
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 722
+Chapter 27. Built-in Classes and Modules ï¿½ 722
 
 Class TracePoint
 
@@ -29124,9 +29130,9 @@ The events you can capture are:
 
 block entry block exit call a C-language routine return from a C-language routine call a Ruby method start class/module definition end a class/module definition execute a ne source code line raise an exception return from a Ruby method start a thread end a thread
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-TracePoint · 723
+TracePoint ï¿½ 723
 
 Class Methods new
 
@@ -29178,9 +29184,9 @@ tp.event  symbol
 
 Returns the name of the event. See the table at the start of this section.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 724
+Chapter 27. Built-in Classes and Modules ï¿½ 724
 
 lineno
 The source line number where the event occurred.
@@ -29212,9 +29218,9 @@ The value of self at the time the event occurred.
 
 tp.self  obj
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-TrueClass · 725
+TrueClass ï¿½ 725
 
 Class TrueClass
 
@@ -29241,9 +29247,9 @@ Or--Returns true. Because obj is an argument to a method call, it is always eval
 true | puts("or") true || puts("logical or")
 produces: or
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 27. Built-in Classes and Modules · 726
+Chapter 27. Built-in Classes and Modules ï¿½ 726
 
 Class UnboundMethod
 
@@ -29295,9 +29301,9 @@ umeth.arity  fixnum
 
 See Method#arity on page 565.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-UnboundMethod · 727
+UnboundMethod ï¿½ 727
 
 bind
 
@@ -29368,7 +29374,7 @@ umeth.source_location  [ filename, lineno ] or nil
 
 Returns the source filename and line number where umeth was defined or nil if self was not defined in Ruby source. See Method#source_location for an example.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 28
 Standard Library
@@ -29379,29 +29385,29 @@ It's all very well suggesting that you "consult the library's own documentation,
 If there's no RDoc documentation available, the next place to look is the library. If you have a source distribution of Ruby, these library files are in the ext/ and lib/ subdirectories. If instead you have a binary-only installation, you can still find the source of pure-Ruby library modules (normally in the lib/ruby/1.9/ directory under your Ruby installation). Often, library source directories contain documentation that the author has not yet converted to RDoc format.
 If you still can't find documentation, turn to your search engine of choice. Many of the Ruby standard libraries are also hosted as external projects. The authors develop them stand-alone and then periodically integrate the code into the standard Ruby distribution. For example, if you want detailed information on the API for the YAML library, Try searching for yaml ruby--you'll probably end up at http://www.yaml.org/YAML_for_ruby.html.
 The next port of call is the ruby-talk mailing list. Ask a (polite) question there, and chances are that you'll get a knowledgeable response within hours. See the tips in Section A1.3, Mailing Lists, on page 830 for pointers on how to subscribe.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 730
+Chapter 28. Standard Library ï¿½ 730
 
 New in 2.0
 
 And if you still can't find documentation, you can always follow Obi Wan's advice and do what we did when documenting Ruby--use the source. You'd be surprised at how easy it is to read the actual source of Ruby libraries and work out the details of usage.
 There are some libraries that we don't document, either because they are pretty low level or because we cover them extensively elsewhere in the book. These libraries include:
-· debug--the Ruby debugger, covered in Section 14.1, Ruby Debugger, on page 195. · iconv--has been removed from Ruby 2.0. Use String#encode. · mkmf--covered in the online guide to extending Ruby. · objspace--extensions to the ObjectSpace class designed to be used by the Ruby core team. · psych--an interface to libyaml. You'll probably just use the YAML library. · racc--this is the runtime used by the Racc parser generator. If you need this library,
-you'll also need the external Racc system. · rake--see Section 15.6, The Rake Build Tool, on page 222. · rdoc--see Chapter 19, Documenting Ruby, on page 263. · rubygems--covered in Section 15.5, RubyGems Integration, on page 217 and in Using
+ï¿½ debug--the Ruby debugger, covered in Section 14.1, Ruby Debugger, on page 195. ï¿½ iconv--has been removed from Ruby 2.0. Use String#encode. ï¿½ mkmf--covered in the online guide to extending Ruby. ï¿½ objspace--extensions to the ObjectSpace class designed to be used by the Ruby core team. ï¿½ psych--an interface to libyaml. You'll probably just use the YAML library. ï¿½ racc--this is the runtime used by the Racc parser generator. If you need this library,
+you'll also need the external Racc system. ï¿½ rake--see Section 15.6, The Rake Build Tool, on page 222. ï¿½ rdoc--see Chapter 19, Documenting Ruby, on page 263. ï¿½ rubygems--covered in Section 15.5, RubyGems Integration, on page 217 and in Using
 RubyGems, on page 234.
 
 28.1 Library Changes in Ruby 1.9
 These are the library changes in Ruby 1.9:
-· Much of the Complex and Rational libraries are now built in to the interpreter. However, requiring the external libraries adds some functionally. In the case of Rational, this functionality is minimal.
-· The CMath library has been added. · The Enumerator library is now built in. · The Fiber library has been added (it adds coroutine support to fibers). · The Fiddle library (an interface to libffi, which supports calling functions in shared
-librries) is documented as a replacement for DL. · ftools has been removed (and replaced by fileutils). · The Generator library has been removed (use fibers). · Notes on using irb from inside applications have been added. · jcode has been removed in favor of built-in encoding support. · The json library has been added. · The matrix library no longer requires that you include mathn. · The mutex library is now built in. · parsedate has been removed. The Date class handles most of its functionality. · readbytes has been removed. Class IO now supports the method directly. · A description of Ripper has been added. · A description of SecureRandom has been added. · The shell library has been omitted, because it seems more like a curiosity than something
-folks would use (and it's broken under 1.9). · The soap library has been removed. · I've omitted the sync library. It is broken under 1.9, and the monitor library seems to
-be cleaner. · Win32API is now deprecated in favor of using the DL library.
+ï¿½ Much of the Complex and Rational libraries are now built in to the interpreter. However, requiring the external libraries adds some functionally. In the case of Rational, this functionality is minimal.
+ï¿½ The CMath library has been added. ï¿½ The Enumerator library is now built in. ï¿½ The Fiber library has been added (it adds coroutine support to fibers). ï¿½ The Fiddle library (an interface to libffi, which supports calling functions in shared
+librries) is documented as a replacement for DL. ï¿½ ftools has been removed (and replaced by fileutils). ï¿½ The Generator library has been removed (use fibers). ï¿½ Notes on using irb from inside applications have been added. ï¿½ jcode has been removed in favor of built-in encoding support. ï¿½ The json library has been added. ï¿½ The matrix library no longer requires that you include mathn. ï¿½ The mutex library is now built in. ï¿½ parsedate has been removed. The Date class handles most of its functionality. ï¿½ readbytes has been removed. Class IO now supports the method directly. ï¿½ A description of Ripper has been added. ï¿½ A description of SecureRandom has been added. ï¿½ The shell library has been omitted, because it seems more like a curiosity than something
+folks would use (and it's broken under 1.9). ï¿½ The soap library has been removed. ï¿½ I've omitted the sync library. It is broken under 1.9, and the monitor library seems to
+be cleaner. ï¿½ Win32API is now deprecated in favor of using the DL library.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Abbrev · 731
+Abbrev ï¿½ 731
 
 Library Abbrev
 
@@ -29410,11 +29416,11 @@ Generate Sets of Unique Abbreviations
 Given a set of strings, calculates the set of unambiguous abbreviations for those strings and returns a hash where the keys are all the possible abbreviations and the values are the full strings. Thus, given input of "car" and "cone," the keys pointing to "car" would be "ca" and "car," and those pointing to "cone" would be "co," "con," and "cone."
 An optional pattern or a string may be specified--only those input strings matching the pattern, or beginning with the string, are considered for inclusion in the output hash.
 Including the Abbrev library also adds an abbrev method to class Array.
-· Shows the abbreviation set of some words:
+ï¿½ Shows the abbreviation set of some words:
 require 'abbrev'
 
 Abbrev::abbrev(%w{ruby rune}) # => {"ruby"=>"ruby", "rub"=>"ruby", # .. "rune"=>"rune", "run"=>"rune"}
-· A trivial command loop using abbreviations:
+ï¿½ A trivial command loop using abbreviations:
 require 'abbrev'
 
 COMMANDS = %w{ sample send start status stop }.abbrev
@@ -29424,27 +29430,27 @@ while line = gets line = line.chomp
 case COMMANDS[line] when "sample" then # ... when "send" then # ... # ... else
 STDERR.puts "Unknown command: #{line}" end end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 732
+Chapter 28. Standard Library ï¿½ 732
 
 Library Base64
 
 Base64 Conversion Functions
 
 Performs encoding and decoding of binary data using a Base64 representation. This allows you to represent any binary data in purely printable characters. The encoding is specified in RFC 2045 and RFC 4648.1
-· Encodes and decodes strings. Note the newlines inserted into the Base64 string.
+ï¿½ Encodes and decodes strings. Note the newlines inserted into the Base64 string.
 require 'base64' str = "Now is the time for all good coders\nto learn Ruby" converted = Base64.encode64(str) puts converted puts Base64.decode64(converted)
 produces: Tm93IGlzIHRoZSB0aW1lIGZvciBhbGwgZ29vZCBjb2RlcnMKdG8gbGVhcm4g UnVieQ== Now is the time for all good coders to learn Ruby
-· Now uses RFC 4648 variants:
+ï¿½ Now uses RFC 4648 variants:
 require 'base64' str = "Now is the time for all good coders\nto learn Ruby" converted = Base64.strict_encode64(str) puts converted puts Base64.strict_decode64(converted)
 produces: Tm93IGlzIHRoZSB0aW1lIGZvciBhbGwgZ29vZCBjb2RlcnMKdG8gbGVhcm4gUnVieQ== Now is the time for all good coders to learn Ruby
 
 1. http://www.faqs.org/rfcs/rfc2045.html and http://www.faqs.org/rfcs/rfc4648.html
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Benchmark · 733
+Benchmark ï¿½ 733
 
 Library Benchmark
 
@@ -29453,7 +29459,7 @@ Time Code Execution
 Allows code execution to be timed and the results tabulated. The Benchmark module is easier to use if you include it in your top-level environment.
 See also: Profile (page 791)
 
-· Compares the costs of four kinds of method dispatch:
+ï¿½ Compares the costs of four kinds of method dispatch:
 
 require 'benchmark' include Benchmark string = "Stormy Weather" m = string.method(:length) bm(6) do |x|
 x.report("direct") { 100_000.times { string.length } } x.report("call") { 100_000.times { m.call } } x.report("send") { 100_000.times { string.send(:length) } } x.report("eval") { 100_000.times { eval "string.length" } } end
@@ -29469,7 +29475,7 @@ total 0.010000 ( 0.020000 ( 0.020000 ( 1.220000 (
 
 real 0.012705) 0.022576) 0.020664) 1.224656)
 
-· Which is better: reading all of a dictionary and splitting it or splitting it line by line? Use bmbm to run a rehearsal before doing the timing:
+ï¿½ Which is better: reading all of a dictionary and splitting it or splitting it line by line? Use bmbm to run a rehearsal before doing the timing:
 
 require 'benchmark' include Benchmark bmbm(6) do |x|
 x.report("all") do str = File.read("/usr/share/dict/words") words = str.scan(/[-\w']+/)
@@ -29499,9 +29505,9 @@ total 0.190000 ( 0.300000 (
 
 real 0.185983) 0.302548)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 734
+Chapter 28. Standard Library ï¿½ 734
 
 Library BigDecimal
 
@@ -29514,7 +29520,7 @@ bigdecimal/jacobian Constructs the Jacobian (a matrix enumerating the partial de
 bigdecimal/newton Solves the roots of nonlinear function using Newton's method. Not dependent on BigDecimal.
 bigdecimal/nlsolve Wraps the bigdecimal/newton library for equations of big decimals.
 You can find English-language documentation in the file ext/bigdecimal/bigdecimal_en.html in the Ruby source distribution.
-· # Calculate the area of a circle using BigDecimal numbers
+ï¿½ # Calculate the area of a circle using BigDecimal numbers
 require 'bigdecimal' require 'bigdecimal/math' include BigMath
 
 pi = BigMath::PI(20) # 20 is the number of decimal digits
@@ -29524,13 +29530,13 @@ radius = BigDecimal("2.14156987652974674392")
 area = pi * radius**2
 
 area.to_s # => "0.144083540446856044176720033806679561688599846410 # .. 445032583215824758780405545861780909930190528E2"
-· # The same with regular floats
+ï¿½ # The same with regular floats
 radius = 2.14156987652974674392
 Math::PI * radius**2 # => 14.408354044685602
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-CGI · 735
+CGI ï¿½ 735
 
 Library CGI
 
@@ -29539,24 +29545,24 @@ CGI Programming Support
 The CGI class provides support for programs used as Common Gateway Interface (CGI) scripts in a web server. CGI objects are initialized with data from the environment and from the HTTP request, and they provide convenient accessors to form data and cookies. They can also manage sessions using a variety of storage mechanisms. Class CGI also provides basic facilities for HTML generation and class methods to escape and unescape requests and HTML.
 See also: CGI::Session (page 737)
 
-· Escapes and unescapes special characters in URLs and HTML. Numeric entities less than 256 will be encoded based on the encoding of the input string. Other numeric entities will be left unchanged.
+ï¿½ Escapes and unescapes special characters in URLs and HTML. Numeric entities less than 256 will be encoded based on the encoding of the input string. Other numeric entities will be left unchanged.
 
 require 'cgi' CGI.escape('c:\My Files') CGI.unescape('c%3a%5cMy+Files') CGI::escapeHTML('"a"<b & c') CGI.unescapeHTML('&quot;a&quot;&lt;=&gt;b') CGI.unescapeHTML('&#65;&#x41;') str = '2&#x3c0;r' str.force_encoding("utf-8") CGI.unescapeHTML(str)
 
 # => c%3A%5CMy+Files # => c:\My Files # => &quot;a&quot;&lt;b &amp; c # => "a"<=>b # => AA
 # => 2r
 
-· Access information from the incoming request:
+ï¿½ Access information from the incoming request:
 
 require 'cgi' c = CGI.new c.auth_type c.user_agent
 
 # => "basic" # => "Mozscape Explorari V5.6"
 
-· Access form fields from an incoming request. Assume that the following script, installed as test.cgi, was linked to using http://mydomain.com/test.cgi?fred=10&barney=cat:
+ï¿½ Access form fields from an incoming request. Assume that the following script, installed as test.cgi, was linked to using http://mydomain.com/test.cgi?fred=10&barney=cat:
 
 require 'cgi' c = CGI.new c['fred'] # => "10" c.keys # => ["fred", "barney"] c.params # => {"fred"=>["10"], "barney"=>["cat"]}
 
-· If a form contains multiple fields with the same name, the corresponding values will be returned to the script as an array. The [] accessor returns just the first of these--index the result of the params method to get them all.
+ï¿½ If a form contains multiple fields with the same name, the corresponding values will be returned to the script as an array. The [] accessor returns just the first of these--index the result of the params method to get them all.
 In this example, assume the form has three fields called "name":
 
 require 'cgi'
@@ -29577,25 +29583,25 @@ c.params
 
 # => {"name"=>["fred", "wilma", "barney"]}
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 736
-· Sends a response to the browser. (Not many folks use this form of HTML generation­use one of the templating libraries described in Section 20.3, Templating Systems, on page 280.
+Chapter 28. Standard Library ï¿½ 736
+ï¿½ Sends a response to the browser. (Not many folks use this form of HTML generationï¿½use one of the templating libraries described in Section 20.3, Templating Systems, on page 280.
 require 'cgi' cgi = CGI.new("html5") cgi.http_header("type" => "text/html", "expires" => Time.now + 30) cgi.out do
 cgi.html do cgi.head{ cgi.title{"Hello World!"} } + cgi.body do cgi.pre do CGI::escapeHTML( "params: " + cgi.params.inspect + "\n" + "cookies: " + cgi.cookies.inspect + "\n") end end
 end end
-· Stores a cookie in the client browser:
+ï¿½ Stores a cookie in the client browser:
 require 'cgi' cgi = CGI.new("html5") cookie = CGI::Cookie.new('name' => 'mycookie',
 'value' => 'chocolate chip', 'expires' => Time.now + 3600)
 cgi.out('cookie' => cookie) do cgi.head + cgi.body { "Cookie stored" }
 end
-· Retrieves a previously stored cookie:
+ï¿½ Retrieves a previously stored cookie:
 require 'cgi' cgi = CGI.new("html5") cookie = cgi.cookies['mycookie']
 cgi.out('cookie' => cookie) do cgi.head + cgi.body { "Flavor: " + cookie[0] }
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-CGI::Session · 737
+CGI::Session ï¿½ 737
 
 Library CGI::Session
 
@@ -29617,9 +29623,9 @@ sess["accesscount"] = count sess["lastaccess"] = Time.now.to_s sess.close
 cgi.out { cgi.html { cgi.body { msg } }
 }
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 738
+Chapter 28. Standard Library ï¿½ 738
 
 Library CMath
 
@@ -29627,7 +29633,7 @@ Complex Transcendental Functions
 
 As of Ruby 1.9, the Complex class is built in to the interpreter. There is no need to require the complex library to create and manipulate complex numbers. However, if you want the transcendental functions defined by Math to work with complex numbers, you must also require the cmath library. The functions affected are as follows: acosh, acos, asinh, asin, atan2, atanh, atan, cosh, cos, exp, log10, log, sinh, sin, sqrt, tanh, and tan.
 The complex library makes these complex functions the default (so, if you require 'complex', you can use Math::sin and not CMath::sin).
-· require 'cmath'
+ï¿½ require 'cmath'
 point = Complex(2, 3) CMath::sin(point) # => (9.15449914691143-4.168906959966565i) CMath::cos(point) # => (-4.189625690968807-9.109227893755337i)
 
 Library Complex
@@ -29635,37 +29641,37 @@ Library Complex
 Complex Numbers
 
 Loads the cmath library, which defines the transcendental functions for complex numbers. It then arranges things so that these complex-aware functions are the ones invoked when you use Math::. The net effect is that, after requiring complex, you can use functions such as Math::sin on any numeric value, including complex numbers.
-· Using transcendental numbers with complex arguments will, by default, cause an error:
+ï¿½ Using transcendental numbers with complex arguments will, by default, cause an error:
 point = Complex(2, 3) Math::sin(point)
 produces: from prog.rb:2:in `sin' from prog.rb:2:in `<main>'
 prog.rb:2:in `to_f': can't convert 2+3i into Float (RangeError)
-· However...
+ï¿½ However...
 require 'complex' point = Complex(2, 3) Math::sin(point) # => (9.15449914691143-4.168906959966565i)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Continuation · 739
+Continuation ï¿½ 739
 
 Library Continuation
 
 Continuations
 
 Continuation objects are generated by the Object#callcc method, which becomes available only when the continuation library is loaded. They hold a return address and execution context, allowing a nonlocal return to the end of the callcc block from anywhere within a program. Continuations are somewhat analogous to a structured version of C's setjmp/longjmp (although they contain more state, so you may consider them closer to threads). This (somewhat contrived) example allows the inner loop to abandon processing early.
-· Does a nonlocal exit when a condition is met:
+ï¿½ Does a nonlocal exit when a condition is met:
 require 'continuation' callcc do |cont|
 for i in 0..4 print "\n#{i}: " for j in i*5...(i+1)*5 cont.call() if j == 7 printf "%3d", j end
 end end print "\n"
 produces:
 0: 0 1 2 3 4 1: 5 6
-· The call stack for methods is preserved in continuations:
+ï¿½ The call stack for methods is preserved in continuations:
 require 'continuation' def strange
 callcc {|continuation| return continuation} print "Back in method, " end print "Before method. " continuation = strange() print "After method. " continuation.call if continuation
 produces:
 Before method. After method. Back in method, After method.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 740
+Chapter 28. Standard Library ï¿½ 740
 
 Library coverage
 
@@ -29723,9 +29729,9 @@ puts x
 
 --: end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-CSV · 741
+CSV ï¿½ 741
 
 Library CSV
 
@@ -29738,7 +29744,7 @@ sl_csv/csvfile 12,eggs,2.89, 2,"shirt, blue",21.45,special 1,"""Hello Kitty"" ba
 
 sl_csv/csvfile_hdr Count,Description,Price 12,eggs,2.89, 2,"shirt, blue",21.45,special 1,"""Hello Kitty"" bag",13.99
 
-· Reads a file containing CSV data and processes line by line:
+ï¿½ Reads a file containing CSV data and processes line by line:
 
 require 'csv' CSV.foreach("csvfile") do |row|
 qty = row[0].to_i price = row[2].to_f printf "%20s: $%5.2f %s\n", row[1], qty*price, row[3] || " end
@@ -29749,7 +29755,7 @@ produces:
 
 eggs: $34.68 --shirt, blue: $42.90 special "Hello Kitty" bag: $13.99 ---
 
-· Processes a CSV file that contains a header line. Automatically converts fields that look like numbers.
+ï¿½ Processes a CSV file that contains a header line. Automatically converts fields that look like numbers.
 
 require 'csv' total_cost = 0 CSV.foreach("csvfile_hdr", headers: true, converters: :numeric)
 total_cost += data["Count"] * data["Price"] end puts "Total cost is #{total_cost}"
@@ -29758,19 +29764,19 @@ do |data|
 
 produces: Total cost is 91.57
 
-· Writes CSV data to an existing open stream (STDOUT in this case). Uses | as the column separator.
+ï¿½ Writes CSV data to an existing open stream (STDOUT in this case). Uses | as the column separator.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 742
+Chapter 28. Standard Library ï¿½ 742
 require 'csv' CSV(STDOUT, col_sep: "|") do |csv|
 csv << [ 1, "line 1", 27 ] csv << [ 2, nil, 123 ] csv << [ 3, "|bar|", 32.5] end produces: 1|line 1|27 2||123 3|"|bar|"|32.5
-· Accesses a CSV file as a two-dimensional table:
+ï¿½ Accesses a CSV file as a two-dimensional table:
 require 'csv' table = CSV.read("csvfile_hdr",
 headers: true, header_converters: :symbol) puts "Row count = #{table.count}" puts "First row = #{table[0].fields}" puts "Count of eggs = #{table[0][:count]}" table << [99, "red balloons", 1.23] table[:in_stock] = [10, 5, 10, 10] puts "\nAfter adding a row and a column, the new table is:" puts table produces: Row count = 3 First row = ["12", "eggs", "2.89", nil] Count of eggs = 12 After adding a row and a column, the new table is: count,description,price,,in_stock 12,eggs,2.89,,10 2,"shirt, blue",21.45,special,5 1,"""Hello Kitty"" bag",13.99,10 99,red balloons,1.23,,10
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Curses · 743
+Curses ï¿½ 743
 
 Library Curses
 
@@ -29817,16 +29823,16 @@ end
 
 break paddle.up paddle.down
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 744
+Chapter 28. Standard Library ï¿½ 744
 
 Library Date/DateTime
 
 Date and Time Manipulation
 
 The date library implements classes Date and DateTime, which provide a comprehensive set of facilities for storing, manipulating, and converting dates with or without time components. The classes can represent and manipulate civil, ordinal, commercial, Julian, and standard dates, starting January 1, 4713 BCE. The DateTime class extends Date with hours, minutes, seconds, and fractional seconds, and it provides some support for time zones. The classes also provide support for parsing and formatting date and datetime strings. The classes have a rich interface--consult the ri documentation for details. The introductory notes in the file lib/date.rb in the Ruby source tree are also well worth reading.
-· Experiment with various representations:
+ï¿½ Experiment with various representations:
 require 'date'
 
 d = Date.new(2000, 3, 31)
@@ -29855,7 +29861,7 @@ d1.to_s
 
 # => [7, 0]
 
-· Essential information about Christmas:
+ï¿½ Essential information about Christmas:
 
 require 'date'
 
@@ -29866,9 +29872,9 @@ diff = xmas - now
 puts "It's #{diff.to_i} days to Christmas" puts "Christmas #{year} falls on a #{xmas.strftime('%A')}"
 produces: It's 211 days to Christmas Christmas 2013 falls on a Wednesday
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-DBM · 745
+DBM ï¿½ 745
 
 Library DBM
 
@@ -29891,9 +29897,9 @@ end
 Produces:
 ["name", "dob"] "1997-12-25" String
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 746
+Chapter 28. Standard Library ï¿½ 746
 
 Library Delegator
 
@@ -29901,7 +29907,7 @@ Delegate Calls to Other Object
 
 Object delegation is a way of composing objects--extending an object with the capabilities of another--at runtime. The Ruby Delegator class implements a simple but powerful delegation scheme, where requests are automatically forwarded from a master class to delegates or their ancestors and where the delegate can be changed at runtime with a single method call.
 See also: Forwardable (page 759)
-· For simple cases where the class of the delegate is fixed, make the master class a subclass of DelegateClass, passing the name of the class to be delegated as a parameter. In the master class's initialize method, pass the object to be delegated to the superclass.
+ï¿½ For simple cases where the class of the delegate is fixed, make the master class a subclass of DelegateClass, passing the name of the class to be delegated as a parameter. In the master class's initialize method, pass the object to be delegated to the superclass.
 require 'delegate'
 
 class Words < DelegateClass(Array) def initialize(list = "/usr/share/dict/words") words = File.read(list).split super(words) end
@@ -29919,7 +29925,7 @@ words.size
 
 words.grep(/matz/) # => ["matzo", "matzoon", "matzos", "matzoth"]
 
-· Use SimpleDelegator to delegate to a particular object (which can be changed):
+ï¿½ Use SimpleDelegator to delegate to a particular object (which can be changed):
 
 require 'delegate'
 
@@ -29927,18 +29933,18 @@ words = File.read("/usr/share/dict/words").split names = File.read("/usr/share/d
 
 stats = SimpleDelegator.new(words) stats.size # => 235886 stats[226] # => "abidingly" stats.__setobj__(names) stats.size # => 1308 stats[226] # => "Deirdre"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Digest · 747
+Digest ï¿½ 747
 
 Library Digest
 
 MD5, RIPEMD-160 SHA1, and SHA2 Digests
 
 The Digest module is the home for a number of classes that implement message digest algorithms: MD5, RIPEMD-160, SHA1, and SHA2 (256, 384, and 512 bit). The interface to all these classes is identical.
-· You can create a binary or hex digest for a given string by calling the class method digest or hexdigest.
-· You can also create an object (optionally passing in an initial string) and determine the object's hash by calling the digest or hexdigest instance methods. You can then append to the string using the update method and then recover an updated hash value.
-· Calculates some MD5 and SHA1 hashes:
+ï¿½ You can create a binary or hex digest for a given string by calling the class method digest or hexdigest.
+ï¿½ You can also create an object (optionally passing in an initial string) and determine the object's hash by calling the digest or hexdigest instance methods. You can then append to the string using the update method and then recover an updated hash value.
+ï¿½ Calculates some MD5 and SHA1 hashes:
 require 'digest/md5' require 'digest/sha1'
 
 for hash_class in [ Digest::MD5, Digest::SHA1 ]
@@ -29956,9 +29962,9 @@ Using Digest::MD5 5eb63bbbe01eeed093cb22bb8f5acdc3 5eb63bbbe01eeed093cb22bb8f5ac
 
 Using Digest::SHA1 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed Kq5sNclPz7QV2+lfQIuc6R7oRu0=
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 748
+Chapter 28. Standard Library ï¿½ 748
 
 Library dRuby
 
@@ -29966,7 +29972,7 @@ Distributed Ruby Objects (drb)
 
 dRuby allows Ruby objects to be distributed across a network connection. Although expressed in terms of clients and servers, once the initial connection is established, the protocol is effectively symmetrical: either side can invoke methods in objects on the other side. Normally, objects passed and returned by remote calls are passed by value; including the DRbUndumped module in an object forces it to be passed by reference (useful when implementing callbacks).
 See also: Rinda (page 798) XMLRPC (page 826)
-· This server program is observable--it notifies all registered listeners of changes to a count value:
+ï¿½ This server program is observable--it notifies all registered listeners of changes to a count value:
 sl_drb/drb_server1.rb require 'drb' require 'drb/observer'
 
 class Counter include DRb::DRbObservable
@@ -29975,7 +29981,7 @@ def run 5.times do |count| changed notify_observers(count) end
 end end
 
 counter = Counter.new DRb.start_service('druby://localhost:9001', counter) DRb.thread.join
-· This client program interacts with the server, registering a listener object to receive callbacks before invoking the server's run method:
+ï¿½ This client program interacts with the server, registering a listener object to receive callbacks before invoking the server's run method:
 sl_drb/drb_client1.rb require 'drb'
 
 class Listener include DRbUndumped
@@ -29987,9 +29993,9 @@ DRb.start_service counter = DRbObject.new(nil, "druby://localhost:9001")
 
 listener = Listener.new counter.add_observer(listener) counter.run
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-English · 749
+English ï¿½ 749
 
 Library English
 
@@ -30078,9 +30084,9 @@ $OUTPUT_FIELD_SEPARATOR = ' -- ' "waterbuffalo" =~ /buff/ print $., $INPUT_LINE_
 produces:
 0 -- 0 -alo -- alo -24658 -- 24658
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 750
+Chapter 28. Standard Library ï¿½ 750
 
 Library erb
 
@@ -30105,9 +30111,9 @@ produces:
 An optional second parameter to ERB.new sets the safe level for evaluating expressions. If nil, expressions are evaluated in the current thread; otherwise, a new thread is created, and its $SAFE level is set to the parameter value.
 The optional third parameter to ERB.new allows some control of the interpretation of the input and of the way whitespace is added to the output. If the third parameter is a string and that string contains a percent sign, then ERb treats lines starting with a percent sign specially. Lines starting with a single percent sign are treated as if they were enclosed in <%...%>. Lines
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-erb · 751
+erb ï¿½ 751
 starting with a double percent sign are copied to the output with a single leading percent sign.
 require 'erb' str = %{\ % 2.times do |i|
 This is line <%= i %> %end %%%done} ERB.new(str, 0, '%').run produces:
@@ -30117,9 +30123,9 @@ require 'erb' str1 = %{\ * <%= "cat" %> <%= "dog" %> } ERB.new(str1, 0, ">").run
 The erb library also defines the helper module ERB::Util that contains two methods: html_escape (aliased as h) and url_encode (aliased as u). These are equivalent to the CGI methods escapeHTML and escape, respectively (except escape encodes spaces as plus signs, and url_encode uses %20).
 require 'erb' include ERB::Util str1 = %{\ h(a) = <%= h(a) %> u(a) = <%= u(a) %> } a = "< a & b >" ERB.new(str1).run(binding) produces: h(a) = &lt; a &amp; b &gt; u(a) = %3C%20a%20%26%20b%20%3E
 You may find the command-line utility erb is supplied with your Ruby distribution. This allows you to run erb substitutions on an input file; see erb --help for details.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 752
+Chapter 28. Standard Library ï¿½ 752
 
 Library Etc
 
@@ -30128,25 +30134,25 @@ Access User and Group Information in /etc/passwd
 Only if: Unix or Cygwin
 
 The Etc module provides a number of methods for querying the passwd and group facilities on Unix systems.
-· Finds out information about the currently logged-in user:
+ï¿½ Finds out information about the currently logged-in user:
 require 'etc'
 
 name = Etc.getlogin info = Etc.getpwnam(name) info.name # => "dave" info.uid # => 501 info.dir # => "/Users/dave" info.shell # => "/bin/zsh"
 
 group = Etc.getgrgid(info.gid) group.name # => "staff"
-· Returns the names of users on the system used to create this book:
+ï¿½ Returns the names of users on the system used to create this book:
 require 'etc'
 
 users = [] Etc.passwd {|passwd| users << passwd.name } users[1,5].join(", ") # => "_appleevents, _appowner, _appserver, _ard,
 # .. _assetcache"
-· Returns the IDs of groups on the system used to create this book:
+ï¿½ Returns the IDs of groups on the system used to create this book:
 require 'etc'
 
 ids = [] Etc.group {|entry| ids << entry.gid } ids[1,5].join(", ") # => "55, 87, 81, 79, 33"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-expect · 753
+expect ï¿½ 753
 
 Library expect
 
@@ -30155,7 +30161,7 @@ Expect Method for IO Objects
 The expect library adds the method expect to all IO objects. This allows you to write code that waits for a particular string or pattern to be available from the I/O stream. The expect method is particularly useful with pty objects (see the Pty library on page 794) and with network connections to remote servers, where it can be used to coordinate the use of external interactive processes.
 If the global variable $expect_verbose is true, the expect method writes all characters read from the I/O stream to STDOUT.
 See also: pty (page 794)
-· Connects to the local FTP server, logs in, and prints out the name of the user's directory. (Note that it would be a lot easier to do this using the net/ftp library.)
+ï¿½ Connects to the local FTP server, logs in, and prints out the name of the user's directory. (Note that it would be a lot easier to do this using the net/ftp library.)
 # This code might be specific to the particular ftp daemon.
 
 require 'expect' require 'socket'
@@ -30168,16 +30174,16 @@ socket.expect("ready") socket.puts("user testuser") socket.expect("331 User test
 produces:
 220 ::1 FTP server (tnftpd 20100324+GSSAPI) ready. 331 User testuser accepted, provide password. 230 User testuser logged in. 257 "/Users/testuser" is the current directory.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 754
+Chapter 28. Standard Library ï¿½ 754
 
 Library Fcntl
 
 Symbolic Names for IO#fcntl Commands
 
 The Fcntl module provides symbolic names for each of the host system's available fcntl(2) constants (defined in fcntl.h). That is, if the host system has a constant named F_GETLK defined in fcntl.h, then the Fcntl module will have a corresponding constant Fcntl::F_GETLK with the same value as the header file's #define.
-· Different operating system will have different Fcntl constants available. The value associated with a constant of a given name may also differ across platforms. Here are the values on our Mac OS X system:
+ï¿½ Different operating system will have different Fcntl constants available. The value associated with a constant of a given name may also differ across platforms. Here are the values on our Mac OS X system:
 require 'fcntl'
 Fcntl.constants.sort.each do |name| printf "%10s: 0x%06x\n", name, Fcntl.const_get(name)
 end
@@ -30188,16 +30194,16 @@ O_ACCMODE: 0x000003 O_CREAT: 0x000200 O_EXCL: 0x000800
 O_NDELAY: 0x000004 O_NOCTTY: 0x020000 O_NONBLOCK: 0x000004 O_RDONLY: 0x000000
 O_RDWR: 0x000002 O_TRUNC: 0x000400 O_WRONLY: 0x000001
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Fiber · 755
+Fiber ï¿½ 755
 
 Library Fiber
 
 Coroutines Using Fibers
 
 The Fiber class that is built into Ruby provides a generator-like capability--fibers may be created and resumed from some controlling program. If you want to extend the Fiber class to provide full, symmetrical coroutines, you need first to require the fiber library. This adds two instance methods, transfer and alive?, to Fiber objects and adds the singleton method current to the Fiber class.
-· It is difficult to come up with a meaningful, concise example of symmetric coroutines that can't more easily be coded with asymetric (plain old) fibers. So, here's an artificial example:
+ï¿½ It is difficult to come up with a meaningful, concise example of symmetric coroutines that can't more easily be coded with asymetric (plain old) fibers. So, here's an artificial example:
 require 'fiber'
 
 # take items two at a time off a queue, calling the producer # if not enough are available consumer = Fiber.new do |producer, queue|
@@ -30212,20 +30218,20 @@ consumer.transfer(producer, [])
 produces:
 Producing more stuff Queue size is 3 Consume 1 and 2 Producing more stuff Queue size is 4 Consume 3 and 4 Consume 5 and 6 Producing more stuff Queue size is 3 Consume 7 and 8 Producing more stuff Queue size is 4 Consume 9 and 10
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 756
+Chapter 28. Standard Library ï¿½ 756
 
 Library Fiddle
 
 Access Dynamically Loaded Libraries (.dll and .so)
 
 The Fiddle module is a wrapper around libffi, a library that provides access to shared libraries. On Windows boxes, it can be used to interface with functions in DLLs. Under Unix it can load shared libraries. Because Ruby does not have typed method parameters or return values, you must define the types expected by the methods you call by specifying their signatures.
-· Here's a trivial C program that we'll build as a shared library:
+ï¿½ Here's a trivial C program that we'll build as a shared library:
 
 sl_fiddle/lib.c #include <stdio.h> int print_msg(char *text, int number) { int count = printf("Text: %s (%d)\n", text, number); fflush(stdout); return count; }
 
-· Generates a proxy to access the print_msg method in the shared library. The way this book is built, the shared library is in the same directory as the Ruby code; this directory must be added to the directories searched when looking for dynamic objects. You can do this by setting the DYLD_LIBRARY_PATH environment variable.
+ï¿½ Generates a proxy to access the print_msg method in the shared library. The way this book is built, the shared library is in the same directory as the Ruby code; this directory must be added to the directories searched when looking for dynamic objects. You can do this by setting the DYLD_LIBRARY_PATH environment variable.
 
 require 'fiddle'
 
@@ -30250,9 +30256,9 @@ Text: Answer (42) Just wrote 18 bytes
 
 # entry point # parameter types # return type
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-FileUtils · 757
+FileUtils ï¿½ 757
 
 Library FileUtils
 
@@ -30300,9 +30306,9 @@ end
 produces:
 cd /tmp cp /etc/passwd tmp_passwd chmod 666 tmp_passwd cp -r /usr/include/net/ headers rm tmp_passwd rm -rf headers cd -
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 758
+Chapter 28. Standard Library ï¿½ 758
 
 Library Find
 
@@ -30340,16 +30346,16 @@ File: Dir: Dir: File: File: File: File: File:
 
 /etc/passwd code/ducktyping code/ducktyping/.svn code/ducktyping/addcust.rb code/ducktyping/roman3.rb code/ducktyping/testaddcust1.rb code/ducktyping/testaddcust2.rb code/ducktyping/testaddcust3.rb
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Forwardable · 759
+Forwardable ï¿½ 759
 
 Library Forwardable
 
 Object Delegation
 
 Forwardable provides a mechanism to allow classes to delegate named method calls to other objects. See also: Delegator (page 746)
-· This simple symbol table uses a hash, exposing a subset of the hash's methods:
+ï¿½ This simple symbol table uses a hash, exposing a subset of the hash's methods:
 require 'forwardable'
 
 class SymbolTable extend Forwardable def_delegator(:@hash, :[], :lookup) def_delegator(:@hash, :[]=, :add) def_delegators(:@hash, :size, :has_key?) def initialize @hash = Hash.new end
@@ -30361,7 +30367,7 @@ st.has_key?('cow') st.lookup('dog')
 
 # => true # => "canine animal"
 
-· Forwards can also be defined for individual objects by extending them with the SingleForwardable module. It's hard to think of a good reason to use this feature, so here's a silly one:
+ï¿½ Forwards can also be defined for individual objects by extending them with the SingleForwardable module. It's hard to think of a good reason to use this feature, so here's a silly one:
 
 require 'forwardable'
 
@@ -30373,9 +30379,9 @@ dog.can do |trick| puts trick
 end
 produces: roll over play dead
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 760
+Chapter 28. Standard Library ï¿½ 760
 
 Library GDBM
 
@@ -30386,7 +30392,7 @@ Only if: gdbm library available
 Interfaces to the gdbm database library.2 Although the DBM library provides generic access to gdbm databases, it doesn't expose some features of the full gdbm interface, such as the cache size, synchronization mode, reorganization, and locking. Only one process may have a GDBM database open for writing (unless locking is disabled).
 See also: DBM (page 745) SDBM (page 803)
 
-· Stores some values into a database and then reads them back. The second parameter to the open method specifies the file mode, and the next parameter uses two flags that (1) create the database if it doesn't exist and (2) force all writes to be synced to disk. Create on open is the default Ruby gdbm behavior.
+ï¿½ Stores some values into a database and then reads them back. The second parameter to the open method specifies the file mode, and the next parameter uses two flags that (1) create the database if it doesn't exist and (2) force all writes to be synced to disk. Create on open is the default Ruby gdbm behavior.
 
 require 'gdbm'
 
@@ -30395,7 +30401,7 @@ end
 
 GDBM.open("data.dbm") do |dbm| p dbm.keys p dbm['dob'] dbm.delete('dob') p dbm.keys
 end
-· Opens a database read-only. The attempt to delete a key would fail.
+ï¿½ Opens a database read-only. The attempt to delete a key would fail.
 require 'gdbm'
 
 GDBM.open("data.dbm", 0, GDBM::READER) do |dbm| p dbm.keys dbm.delete('name') # !! fails !!
@@ -30403,15 +30409,15 @@ end
 
 2. http://www.gnu.org/software/gdbm/gdbm.html
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-GetoptLong · 761
+GetoptLong ï¿½ 761
 
 Library GetoptLong
 
 Parse Command-Line Options
 
-Class GetoptLong supports GNU-style command-line option parsing. Options may be a minus sign (-) followed by a single character or may be two minus signs (­) followed by a name (a long option). Long options may be abbreviated to their shortest unambiguous lengths.
+Class GetoptLong supports GNU-style command-line option parsing. Options may be a minus sign (-) followed by a single character or may be two minus signs (ï¿½) followed by a name (a long option). Long options may be abbreviated to their shortest unambiguous lengths.
 A single internal option may have multiple external representations. For example, the option to control verbose output could be any of -v, --verbose, or --details. Some options may also take an associated value.
 Each internal option is passed to GetoptLong as an array, containing strings representing the option's external forms and a flag. The flag specifies how GetoptLong is to associate an argument with the option (NO_ARGUMENT, REQUIRED_ARGUMENT, or OPTIONAL_ARGUMENT).
 If the environment variable POSIXLY_CORRECT is set, all options must precede nonoptions on the command line. Otherwise, the default behavior of GetoptLong is to reorganize the command line to put the options at the front. This behavior may be changed by setting the attribute GetoptLong#ordering= to one of PERMUTE, REQUIRE_ORDER, or RETURN_IN_ORDER. The environment variable POSIXLY_CORRECT may not be overridden.
@@ -30451,9 +30457,9 @@ end
 puts "Remaining args: #{ARGV.join(', ')}"
 produces: Option: --size, arg "10k" Option: --verbose, arg "" Option: --query, arg "" Remaining args: a.txt, b.doc
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 762
+Chapter 28. Standard Library ï¿½ 762
 
 Library GServer
 
@@ -30462,12 +30468,12 @@ Generic TCP Server
 This is a simple framework for writing TCP servers. To use it, subclass the GServer class, set the port (and potentially other parameters) in the constructor, and then implement a serve method to handle incoming requests.
 GServer manages a thread pool for incoming connections, so your serve method may be running in multiple threads in parallel.
 You can run multiple GServer copies on different ports in the same application.
-· When a connection is made on port 2000, responds with the current time as a string. Terminates after handling three requests.
+ï¿½ When a connection is made on port 2000, responds with the current time as a string. Terminates after handling three requests.
 require 'gserver' class TimeServer < GServer
 def initialize super(2000) @count = 3
 end def serve(client)
 client.puts Time.now @count -= 1 stop if @count.zero? end end server = TimeServer.new server.start.join
-· You can test this server by reading from localhost on port 2000. We use curl to do this-- you could also use telnet:
+ï¿½ You can test this server by reading from localhost on port 2000. We use curl to do this-- you could also use telnet:
 $ curl -s localhost:2000 2013-05-27 12:33:22 -0500
 
 Library IO/console
@@ -30475,15 +30481,15 @@ Library IO/console
 Add console support to IO objects
 
 Require io/console, and I/O objects associated with terminals gain the methods IO#raw, IO#raw!, IO#getch, IO#echo=, IO#echo?, IO#noecho, IO#winsize, IO#winsize=, IO#iflush, IO#oflush, and IO#ioflush. The IO class also gains a singleton method, IO.console, which returns an I/O object connected to the controlling terminal of the process.
-· Prompt for a password with no echo.
+ï¿½ Prompt for a password with no echo.
 require 'io/console' password = STDIN.noecho do
 print "Your password: " gets end
-· What's the size of the controlling terminal?
+ï¿½ What's the size of the controlling terminal?
 require "io/console" IO.console.winsize # => [22, 137]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-IO/nonblock · 763
+IO/nonblock ï¿½ 763
 
 Library IO/nonblock
 
@@ -30496,7 +30502,7 @@ Library IO/Wait
 Check for Pending Data to Be Read
 
 Including the library io/wait adds the methods IO#nread, IO#ready?, and IO#wait to the standard IO class. These allow an IO object opened on a stream (not a file) to be queried to see whether data is available to be read without reading it and to wait for a given number of bytes to become available.
-· Sets up a pipe between two processes and writes 10 bytes at a time into it. Periodically sees how much data is available.
+ï¿½ Sets up a pipe between two processes and writes 10 bytes at a time into it. Periodically sees how much data is available.
 require 'io/wait'
 
 Only if: FIONREAD feature in ioctl(2)
@@ -30509,9 +30515,9 @@ end
 produces:
 No data available 10 bytes available: 0000000000 10 bytes available: 1111111111 10 bytes available: 2222222222 No data available 10 bytes available: 3333333333 10 bytes available: 4444444444 No data available
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 764
+Chapter 28. Standard Library ï¿½ 764
 
 Library IPAddr
 
@@ -30558,9 +30564,9 @@ v6.family
 
 other = IPAddr.new("192.168.23.56") v4.include?(other) # => true
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-irb · 765
+irb ï¿½ 765
 
 Library irb
 
@@ -30577,9 +30583,9 @@ Here's a simple session using it:
 $ ruby code/sl_irb/run_irb.rb 1 2 3 ^Cruby-1.9.2-p0 > @value = "wibble"
 => "wibble" ruby-1.9.2-p0 > exit 4 Value = wibble 5 Value = wibble ...
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 766
+Chapter 28. Standard Library ï¿½ 766
 
 Library json
 
@@ -30588,11 +30594,11 @@ Generate and Parse JSON Format
 JSON is a language-independent data interchange format based on key/value pairs (hashes in Ruby) and sequences of values (arrays in Ruby).3 JSON is frequently used to exchange data between JavaScript running in browsers and server-based applications. JSON is not a general-purpose object marshaling format. Although you can add to_json methods to your own classes, you will lose interoperability.
 See also: yaml (page 827)
 
-· Serializes a data structure into a string and writes that to a file:
+ï¿½ Serializes a data structure into a string and writes that to a file:
 
 require 'json' data = { name: 'dave', address: [ 'tx', 'usa' ], age: 17 } serialized = data.to_json serialized # => {"name":"dave","address":["tx","usa"],"age":17} File.open("data", "w") {|f| f.puts serialized}
 
-· Reads the serialized data from the file and reconstitutes it:
+ï¿½ Reads the serialized data from the file and reconstitutes it:
 
 require 'json'
 
@@ -30604,7 +30610,7 @@ data
 
 # => {"name"=>"dave", "address"=>["tx", "usa"], "age"=>17}
 
-· The methods j and jj convert their argument to JSON and write the result to STDOUT (jj prettyprints). This can be useful in irb.
+ï¿½ The methods j and jj convert their argument to JSON and write the result to STDOUT (jj prettyprints). This can be useful in irb.
 
 require 'json' data = { name: 'dave', address: [ 'tx', 'usa' ], age: 17 } puts "Regular" j data puts "Pretty" jj data
 produces:
@@ -30614,23 +30620,23 @@ Regular {"name":"dave","address":["tx","usa"],"age":17} Pretty {
 
 3. http://www.ietf.org/rfc/rfc4627.txt
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Logger · 767
+Logger ï¿½ 767
 
 Library Logger
 
 Application Logging
 
 Writes log messages to a file or stream. Supports automatic time- or size-based rolling of log files. Messages can be assigned severities, and only those messages at or above the logger's current reporting level will be logged.
-· During development, you may want to see all messages:
+ï¿½ During development, you may want to see all messages:
 require 'logger' log = Logger.new(STDOUT) log.level = Logger::DEBUG log.datetime_format = "%H:%M:%S" log.info("Application starting") 3.times do |i|
 log.debug("Executing loop, i = #{i}") temperature = some_calculation(i) # defined externally if temperature > 50
 log.warn("Possible overheat. i = #{i}") end end
 
 log.info("Application terminating")
 produces: I, [12:33:23#24712] INFO -- : Application starting D, [12:33:23#24712] DEBUG -- : Executing loop, i = 0 D, [12:33:23#24712] DEBUG -- : Executing loop, i = 1 D, [12:33:23#24712] DEBUG -- : Executing loop, i = 2 W, [12:33:23#24712] WARN -- : Possible overheat. i = 2 I, [12:33:23#24712] INFO -- : Application terminating
-· In deployment, you can turn off anything below INFO:
+ï¿½ In deployment, you can turn off anything below INFO:
 require 'logger' log = Logger.new(STDOUT) log.level = Logger::INFO log.datetime_format = "%H:%M:%S"
 
 # as above...
@@ -30640,15 +30646,15 @@ I, [12:33:23#24714] W, [12:33:23#24714] I, [12:33:23#24714]
 
 INFO -- : Application starting WARN -- : Possible overheat. i = 2 INFO -- : Application terminating
 
-· Logs to a file, which is rotated when it gets to about 10KB. Keeps up to five old files.
+ï¿½ Logs to a file, which is rotated when it gets to about 10KB. Keeps up to five old files.
 
 require 'logger' log = Logger.new("application.log", 5, 10*1024)
 
 log.info("Application starting") # ...
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 768
+Chapter 28. Standard Library ï¿½ 768
 
 Library mathn
 
@@ -30656,15 +30662,15 @@ Unified Numbers
 
 The mathn library attempts to bring some unity to numbers under Ruby, making classes Bignum, Complex, Fixnum, Integer, and Rational work and play better together. It automatically includes the libraries complex, rational, matrix, and prime.
 
-· Types will tend to convert between themselves in a more natural way (so, for example, Complex::I squared will evaluate to -1, rather than Complex[-1,0]).
+ï¿½ Types will tend to convert between themselves in a more natural way (so, for example, Complex::I squared will evaluate to -1, rather than Complex[-1,0]).
 
-· Division will tend to produce more accurate results. The conventional division operator (/) is redefined to use quo, which doesn't round.
+ï¿½ Division will tend to produce more accurate results. The conventional division operator (/) is redefined to use quo, which doesn't round.
 
-· Related to the previous point, rational numbers will be used in preference to floats when possible. Dividing one by two results in the rational number 1/2, rather than 0.5 (or 0, the result of normal integer division).
+ï¿½ Related to the previous point, rational numbers will be used in preference to floats when possible. Dividing one by two results in the rational number 1/2, rather than 0.5 (or 0, the result of normal integer division).
 
 See also: Matrix (page 769) Rational (page 794) Complex (page 738) Prime (page 790)
 
-· Without mathn:
+ï¿½ Without mathn:
 
 require 'matrix' 36/16 Math.sqrt(36/16)
 
@@ -30686,7 +30692,7 @@ Complex::I * Complex::I # => (-1+0i)
 
 Matrix.diagonal(6,7,8)/3 # => Matrix[[2, 0, 0], [0, 2, 0], [0, 0, 2]]
 
-· With mathn:
+ï¿½ With mathn:
 
 36/16 Math.sqrt(36/16)
 
@@ -30708,9 +30714,9 @@ Complex::I * Complex::I # => -1
 
 Matrix.diagonal(6,7,8)/3 # => Matrix[[2, 0, 0], [0, 7/3, 0], [0, 0, 8/3]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Matrix · 769
+Matrix ï¿½ 769
 
 Library Matrix
 
@@ -30764,9 +30770,9 @@ New in Ruby 1.9, MiniTest is now the standard unit testing framework supplied wi
 The unit testing framework is similar to the original Test::Unit framework. However, if you want functionality that is the same as Test::Unit, use the Test::Unit wrappers for MiniTest-- simply require "test/unit" as normal.
 Chapter 13, Unit Testing, on page 175 contains a tutorial on unit testing with Ruby.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 770
+Chapter 28. Standard Library ï¿½ 770
 
 Library Monitor
 
@@ -30807,9 +30813,9 @@ generator.join consumer.join
 produces:
 2 3 5 7 11
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Mutex_m · 771
+Mutex_m ï¿½ 771
 
 Library Mutex_m
 
@@ -30827,9 +30833,9 @@ t1 = Thread.new { 100_000.times { c.tick } } t2 = Thread.new { 100_000.times { c
 t1.join t2.join
 c.count # => 200000
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 772
+Chapter 28. Standard Library ï¿½ 772
 
 Library Net::FTP
 
@@ -30866,9 +30872,9 @@ e9949b2023a63b6259b02bed4fb13064
 
 12149 Sep 10 06:02 MD5SUM.txt 13565 Sep 10 06:03 SHA1SUM.txt ruby-man-1.4.6-jp.tar.gz ruby-man-1.4.6.tar.gz ruby-man-ja-1.6.6-20011225-rd.tar.gz ruby-man-ja-html-20050214.tar.bz2 ruby-man-ja-html-20050214.tar.gz
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Net::HTTP · 773
+Net::HTTP ï¿½ 773
 
 Library Net::HTTP
 
@@ -30877,7 +30883,7 @@ HTTP Client
 The net/http library provides a simple client to fetch headers and web page contents using the HTTP and HTTPS protocols.
 The get post and head methods return a response object, with the content of the response accessible through the response's body method.
 See also: OpenSSL (page 783) open-uri (page 781) URI (page 822)
-· Opens a connection and fetches a page, displaying the response code and message, header information, and some of the body:
+ï¿½ Opens a connection and fetches a page, displaying the response code and message, header information, and some of the body:
 require 'net/http'
 
 Net::HTTP.start('www.pragprog.com') do |http| response = http.get('/categories/new') puts "Code = #{response.code}" puts "Message = #{response.message}" response.each {|key, val| printf "%-14s = %-40.40s\n", key, val } p response.body[0, 55]
@@ -30923,7 +30929,7 @@ connection
 
 "<html><body>You are being <a href=\"http://pragprog.com/"
 
-· Fetches a single page, displaying the response code and message, header information, and some of the body:
+ï¿½ Fetches a single page, displaying the response code and message, header information, and some of the body:
 
 require 'net/http'
 
@@ -30942,9 +30948,9 @@ date
 
 = Mon, 27 May 2013 17:36:21 GMT
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 774
+Chapter 28. Standard Library ï¿½ 774
 
 location
 
@@ -30974,7 +30980,7 @@ connection
 
 "<html><body>You are being <a href=\"http://pragprog.com/"
 
-· Follows redirections (the open-uri library does this automatically). This code comes from the RDoc documentation.
+ï¿½ Follows redirections (the open-uri library does this automatically). This code comes from the RDoc documentation.
 
 require 'net/http' require 'uri'
 
@@ -31002,16 +31008,16 @@ end
 
 response = fetch('http://www.ruby-lang.org') p response.body[0, 50]
 produces: Trying: http://www.ruby-lang.org "<html>\n <head>\n <script type=\"text/javascript\""
-· Searches our site for things about Ruby and lists the authors. (This would be tidier using Hpricot.)
+ï¿½ Searches our site for things about Ruby and lists the authors. (This would be tidier using Hpricot.)
 require 'net/http'
 
 uri = URI.parse('http://pragprog.com/search') response = Net::HTTP.post_form(uri, "q" => "ruby") puts response.body.scan(%r{<p class="by-line">by (.*?)</p>})[0,3]
 produces:
 Caleb Tennis Maik Schmidt Bruce Tate
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Net::IMAP · 775
+Net::IMAP ï¿½ 775
 
 Library Net::IMAP
 
@@ -31021,19 +31027,19 @@ The Internet Mail Access Protocol (IMAP) is used to allow mail clients to access
 The examples that follow are taken with minor modifications from the RDoc documentation in the library source file.
 The TMail gem provides an interface for creating and parsing email messages.
 See also: Net::POP (page 776)
-· Lists senders and subjects of messages to "dave" in the inbox:
+ï¿½ Lists senders and subjects of messages to "dave" in the inbox:
 require 'net/imap'
 imap = Net::IMAP.new('my.mailserver.com') imap.authenticate('LOGIN', 'dave', 'secret') imap.examine('INBOX') puts "Message count: #{ imap.responses["EXISTS"]}" imap.search(["TO", "dave"]).each do |message_id|
 envelope = imap.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"] puts "#{envelope.from[0].name}: \t#{envelope.subject}"
 end
-· Moves all email messages with a date in April 2008 from the folder Mail/sent-mail to Mail/sent-apr08:
+ï¿½ Moves all email messages with a date in April 2008 from the folder Mail/sent-mail to Mail/sent-apr08:
 require 'net/imap' imap = Net::IMAP.new('my.mailserver.com') imap.authenticate('LOGIN', 'dave', 'secret') imap.select('Mail/sent-mail') if not imap.list('Mail/', 'sent-apr08')
 imap.create('Mail/sent-apr08') end imap.search(["BEFORE", "01-May-2008",
 "SINCE", "1-Apr-2008"]).each do |message_id| imap.copy(message_id, "Mail/sent-apr08") imap.store(message_id, "+FLAGS", [:Deleted]) end imap.expunge
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 776
+Chapter 28. Standard Library ï¿½ 776
 
 Library Net::POP
 
@@ -31051,21 +31057,21 @@ by pragprog.com (8.11.6/8.11.6) with ESMTP id i2PJMW701809 for <joe@carat.ruby-s
 Ruby 1.9 has even more new features, both in the core language and in the supplied libraries.
 Try it out!
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Net::SMTP · 777
+Net::SMTP ï¿½ 777
 
 Library Net::SMTP
 
 Simple SMTP Client
 
 The net/smtp library provides a simple client to send electronic mail using the Simple Mail Transfer Protocol (SMTP). It does not assist in the creation of the message payload--it simply delivers messages once an RFC 822 message has been constructed. The TMail gem provides an interface for creating and parsing email messages.
-· Sends an e-mail from a string:
+ï¿½ Sends an e-mail from a string:
 require 'net/smtp'
 
 msg = "Subject: Test\n\nNow is the time\n" Net::SMTP.start('pragprog.com') do |smtp|
 smtp.send_message(msg, 'dave@pragprog.com', ['dave']) end
-· Sends an e-mail using an SMTP object and an adapter:
+ï¿½ Sends an e-mail using an SMTP object and an adapter:
 require 'net/smtp'
 
 Net::SMTP::start('pragprog.com', 25, "pragprog.com") do |smtp|
@@ -31088,27 +31094,27 @@ end
 
 end
 
-· Sends an e-mail to a server requiring CRAM-MD5 authentication:
+ï¿½ Sends an e-mail to a server requiring CRAM-MD5 authentication:
 
 require 'net/smtp'
 
 msg = "Subject: Test\n\nNow is the time\n" Net::SMTP.start('pragprog.com', 25, 'pragprog.com',
 'user', 'password', :cram_md5) do |smtp| smtp.send_message(msg, 'dave@pragprog.com', ['dave']) end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 778
+Chapter 28. Standard Library ï¿½ 778
 
 Library Net::Telnet
 
 Telnet Client
 
 The net/telnet library provides a complete implementation of a telnet client and includes features that make it a convenient mechanism for interacting with nontelnet services.
-· Connects to localhost, runs the date command, and disconnects:
+ï¿½ Connects to localhost, runs the date command, and disconnects:
 
 require 'net/telnet' tn = Net::Telnet.new({}) tn.login "testuser", "wibble" tn.cmd "date" # => "date\nMon May 27 12:33:29 CDT 2013\nlight-boy:~ testuser$ "
 
-· The methods new, cmd, login, and waitfor take an optional block. If present, the block is passed output from the server as it is received by the routine. This can be used to provide real-time output, rather than waiting (for example) for a login to complete before displaying the server's response.
+ï¿½ The methods new, cmd, login, and waitfor take an optional block. If present, the block is passed output from the server as it is received by the routine. This can be used to provide real-time output, rather than waiting (for example) for a login to complete before displaying the server's response.
 
 require 'net/telnet' tn = Net::Telnet.new({}) tn.login("testuser", "wibble") tn.cmd("date")
 
@@ -31121,7 +31127,7 @@ Darwin/BSD (light-boy.local) (ttys007)
 
 login: testuser Password: Last login: Mon May 27 12:33:29 on ttys007 light-boy:~ testuser$ date Mon May 27 12:33:29 CDT 2013 light-boy:~ testuser$
 
-· Query a WHOIS server on port 43.
+ï¿½ Query a WHOIS server on port 43.
 
 require 'net/telnet'
 
@@ -31144,25 +31150,25 @@ puts tn.sock.grep(/ on /)
 produces:
 Record last updated on 15-Oct-2012. Record expires on 19-Jan-2016. Record created on 19-Jan-1999.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-NKF · 779
+NKF ï¿½ 779
 
 Library NKF
 
 Interface to Network Kanji Filter
 
 The NKF module is a wrapper around Itaru Ichikawa's Network Kanji Filter (NKF) library (version 1.7). It provides functions to guess at the encoding of JIS, EUC, and SJIS streams and to convert from one encoding to another. Even though Ruby 1.9 now supports these encodings natively, this library is still useful for guessing encodings.
-· As of Ruby 1.9, NFK uses the built-in encoding objects:
+ï¿½ As of Ruby 1.9, NFK uses the built-in encoding objects:
 require 'nkf' NKF::AUTO # => nil NKF::JIS # => #<Encoding:ISO-2022-JP (dummy)> NKF::EUC # => #<Encoding:EUC-JP> NKF::SJIS # => #<Encoding:Shift_JIS>
-· Guesses at the encoding of a string. (Thanks to Nobu Nakada for the examples on this page.)
+ï¿½ Guesses at the encoding of a string. (Thanks to Nobu Nakada for the examples on this page.)
 require 'nkf' p NKF.guess("Yukihiro Matsumoto") p NKF.guess("\e$B$^$D$b$H$f$-$R$m\e(B") p NKF.guess("\244\336\244\304\244\342\244\310\244\346\244\255\244\322\244\355") p NKF.guess("\202\334\202\302\202\340\202\306\202\344\202\253\202\320\202\353")
 produces: #<Encoding:US-ASCII> #<Encoding:ISO-2022-JP (dummy)> #<Encoding:EUC-JP> #<Encoding:Shift_JIS>
-· The NFK.nkf method takes two parameters. The first is a set of options, passed on to the NKF library. The second is the string to translate. The following examples assume that your console is set up to accommodate Japanese characters. The text at the end of the three ruby commands is Yukihiro Matsumoto in Hiragana.
+ï¿½ The NFK.nkf method takes two parameters. The first is a set of options, passed on to the NKF library. The second is the string to translate. The following examples assume that your console is set up to accommodate Japanese characters. The text at the end of the three ruby commands is Yukihiro Matsumoto in Hiragana.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 780
+Chapter 28. Standard Library ï¿½ 780
 
 Library Observable
 
@@ -31227,9 +31233,9 @@ checker = CheckWaterTemperature.new checker.add_observer(Warner.new {|t| t < 80}
 produces:
 Current temperature: 83 Current temperature: 75 --- 2013-05-27 12:33:30 -0500: Temperature outside range: 75 Current temperature: 90 Current temperature: 134 --- 2013-05-27 12:33:30 -0500: Temperature outside range: 134 Current temperature: 134 Current temperature: 112 Current temperature: 79 --- 2013-05-27 12:33:30 -0500: Temperature outside range: 79
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-open-uri · 781
+open-uri ï¿½ 781
 
 Library open-uri
 
@@ -31280,9 +31286,9 @@ Status: ["200", "OK"]
 
 <script type="text/javascript">
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 782
+Chapter 28. Standard Library ï¿½ 782
 
 Library Open3
 
@@ -31299,9 +31305,9 @@ end
 produces:
 STDOUT: 12 STDERR: Runtime error (func=(main), adr=3): Divide by zero STDOUT: 32
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-OpenSSL · 783
+OpenSSL ï¿½ 783
 
 Library OpenSSL
 
@@ -31312,7 +31318,7 @@ See also: Net::FTP (page 772) Net::HTTP (page 773) Socket (page 807)
 
 Only if: OpenSSL library available
 
-· Accesses a secure website using HTTPS. Note that SSL is used to tunnel to the site, but the requested page also requires standard HTTP basic authorization.
+ï¿½ Accesses a secure website using HTTPS. Note that SSL is used to tunnel to the site, but the requested page also requires standard HTTP basic authorization.
 
 require 'net/https'
 
@@ -31320,7 +31326,7 @@ USER = "xxx" PW = "yyy"
 
 site = Net::HTTP.new("www.securestuff.com", 443) site.use_ssl = true response = site.get2("/cgi-bin/cokerecipe.cgi",
 'Authorization' => 'Basic ' + ["#{USER}:#{PW}"].pack('m').strip)
-· Creates a socket that uses SSL. This isn't a good example of accessing a website. However, it illustrates how a socket can be encrypted.
+ï¿½ Creates a socket that uses SSL. This isn't a good example of accessing a website. However, it illustrates how a socket can be encrypted.
 require 'socket' require 'openssl'
 
 socket = TCPSocket.new("www.secure-stuff.com", 443)
@@ -31335,19 +31341,19 @@ p line end
 
 4. http://www.openssl.org
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 784
+Chapter 28. Standard Library ï¿½ 784
 
 Library OptionParser
 
 Option Parsing
 
 OptionParser is a flexible and extensible way to parse command-line arguments. It has a particularly rich abstraction of the concept of an option.
-· An option can have multiple short names (options preceded by a single hyphen) and multiple long names (options preceded by two hyphens). Thus, an option that displays help may be available as -h, -?, --help, and --about. Users may abbreviate long option names to the shortest nonambiguous prefix.
-· An option may be specified as having no argument, an optional argument, or a required argument. Arguments can be validated against patterns or lists of valid values.
-· Arguments may be returned as objects of any type (not just strings). The argument type system is extensible (we add Date handling in the example).
-· Arguments can have one or more lines of descriptive text, used when generating usage information.
+ï¿½ An option can have multiple short names (options preceded by a single hyphen) and multiple long names (options preceded by two hyphens). Thus, an option that displays help may be available as -h, -?, --help, and --about. Users may abbreviate long option names to the shortest nonambiguous prefix.
+ï¿½ An option may be specified as having no argument, an optional argument, or a required argument. Arguments can be validated against patterns or lists of valid values.
+ï¿½ Arguments may be returned as objects of any type (not just strings). The argument type system is extensible (we add Date handling in the example).
+ï¿½ Arguments can have one or more lines of descriptive text, used when generating usage information.
 Options are specified using the on and def methods. These methods take a variable number of arguments that cumulatively build a definition of each option. The arguments accepted by these methods are:
 "-x" "-xARG" "-x=ARG" "-x[OPT]" "-x[=OPT]" "-x PLACE" Option has short name x. First form has no argument, next two have mandatory argument, next two have optional argument, last specifies argument follows option. The short names may also be specified as a range (such as "-[a-c]").
 "--switch" "--switch=ARG" "--switch=[OPT]" "--switch PLACE" Option has long name switch. First form has no argument, next has a mandatory argument, the next has an optional argument, and the last specifies the argument follows the switch.
@@ -31359,9 +31365,9 @@ opt.on("-x", "-y", "-z", "=N")
 array Argument must be one of the values from array.
 proc or method Argument type conversion is performed by the given proc or method (rather than using the block associated with the on or def method call).
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-OptionParser · 785
+OptionParser ï¿½ 785
 
 ClassName Argument must match that defined for ClassName, which may be predefined or added using OptionParser.accept. Built-in argument classes are Object: Any string. No conversion. This is the default. String: Any nonempty string. No conversion. Integer: Ruby/C-like integer with optional sign (0ddd is octal, 0bddd binary, 0xddd hexadecimal). Converts to Integer. Float: Float number format. Converts to Float. Numeric: Generic numeric format. Converts to Integer for integers, Float for floats. Array: Argument must be of list of strings separated by a comma. OptionParser::DecimalInteger: Decimal integer. Converted to Integer. OptionParser::OctalInteger: Ruby/C-like octal/hexadecimal/binary integer. OptionParser::DecimalNumeric: Decimal integer/float number. Integers converted to Integer, floats to Float. TrueClass, FalseClass: Boolean switch.
 See also: GetoptLong (page 761)
@@ -31388,9 +31394,9 @@ produces:
 -s 1234 -x seen -a 2008-12-25 Remainder = fred, wilma Usage: prog [options]
 -x -s, --size VAL -a, --at DATE
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 786
+Chapter 28. Standard Library ï¿½ 786
 
 Library OpenStruct
 
@@ -31431,17 +31437,17 @@ require 'ostruct'
 ice = OpenStruct.new p ice.freeze ice.freeze = "yes"
 produces: #<OpenStruct> prog.rb:5:in `<main>': can't modify frozen OpenStruct (TypeError)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Pathname · 787
+Pathname ï¿½ 787
 
 Library Pathname
 
 Representation of File Paths
 
-A Pathname represents the absolute or relative name of a file. It has two distinct uses. First, it allows manipulation of the parts of a file path (extracting components, building new paths, and so on). Second (and somewhat confusingly), it acts as a façade for some methods in classes Dir, File, and module FileTest, forwarding on calls for the file named by the Pathname object.
+A Pathname represents the absolute or relative name of a file. It has two distinct uses. First, it allows manipulation of the parts of a file path (extracting components, building new paths, and so on). Second (and somewhat confusingly), it acts as a faï¿½ade for some methods in classes Dir, File, and module FileTest, forwarding on calls for the file named by the Pathname object.
 See also: File (page 488)
-· Path name manipulation:
+ï¿½ Path name manipulation:
 require 'pathname'
 
 p1 = Pathname.new("/usr/bin")
@@ -31474,7 +31480,7 @@ p5 = Pathname.new("testdir") puts p5.realpath puts p5.children
 produces:
 /Users/dave/BS2/published/ruby4/Book/testdir testdir/.svn testdir/config.h testdir/main.rb
 
-· Path name as proxy for file and directory status requests:
+ï¿½ Path name as proxy for file and directory status requests:
 require 'pathname'
 
 p1 = Pathname.new("/usr/bin/ruby")
@@ -31501,9 +31507,9 @@ p2.read p2.readlines
 
 # => "This is line one\nThis is line two\nThis is # .. line three\nAnd so on...\n" # => ["This is line one\n", "This is line two\n", # .. "This is line three\n", "And so on...\n"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 788
+Chapter 28. Standard Library ï¿½ 788
 
 PP Library
 
@@ -31512,7 +31518,7 @@ Pretty-print Objects
 PP uses the PrettyPrint library to format the results of inspecting Ruby objects. As well as the methods in the class, it defines a global function, pp, which works like the existing p method but formats its output.
 PP has a default layout for all Ruby objects. However, you can override the way it handles a class by defining the method pretty_print, which takes a PP object as a parameter. It should use that PP object's methods text, breakable, nest, group, and pp to format its output (see PrettyPrint for details).
 See also: JSON (page 766) PrettyPrint (page 789) YAML (page 827)
-· Compares "p" and "pp":
+ï¿½ Compares "p" and "pp":
 require 'pp'
 Customer = Struct.new(:name, :sex, :dob, :country) cust = Customer.new("Walter Wall", "Male", "12/25/1960", "Niue")
 puts "Regular print" p cust
@@ -31520,7 +31526,7 @@ puts "\nPretty print" pp cust produces: Regular print #<struct Customer name="Wa
 
 Pretty print #<struct Customer
 name="Walter Wall", sex="Male", dob="12/25/1960", country="Niue">
-· You can tell PP not to display an object if it has already displayed it:
+ï¿½ You can tell PP not to display an object if it has already displayed it:
 require 'pp'
 
 a = "string" b=[a] c = [ b, b ] PP.sharing_detection = false pp c
@@ -31528,9 +31534,9 @@ a = "string" b=[a] c = [ b, b ] PP.sharing_detection = false pp c
 PP.sharing_detection = true pp c
 produces: [["string"], ["string"]] [["string"], [...]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-PrettyPrint · 789
+PrettyPrint ï¿½ 789
 
 Library PrettyPrint
 
@@ -31549,9 +31555,9 @@ produces:
 Object [ Numeric [ Complex Float Integer [ Bignum Fixnum ] Rational ]
 ]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 790
+Chapter 28. Standard Library ï¿½ 790
 
 Library prime
 
@@ -31560,7 +31566,7 @@ Prime Numbers
 Provides facilities for generating prime numbers, as well as factoring numbers. Note that the Prime class is a singleton.
 See also: mathn (page 768)
 
-· The prime library extends the number classes to include new functionality and adds a new class Prime:
+ï¿½ The prime library extends the number classes to include new functionality and adds a new class Prime:
 
 require 'prime'
 
@@ -31572,19 +31578,19 @@ require 'prime'
 
 60.prime_division # => [[2, 2], [3, 1], [5, 1]]
 
-· You can also use it to generate sequences of primes:
+ï¿½ You can also use it to generate sequences of primes:
 
 require 'prime' Prime.each {|p| break if p > 20; print p, " " }
 produces: 2 3 5 7 11 13 17 19
 
-· Because Prime.each returns an enumerator if no block is present, we can write the previous example more concisely.
+ï¿½ Because Prime.each returns an enumerator if no block is present, we can write the previous example more concisely.
 
 require 'prime' puts Prime.each.take_while {|p| p <= 20 }.join(" ")
 produces: 2 3 5 7 11 13 17 19
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Profile · 791
+Profile ï¿½ 791
 
 Library Profile
 
@@ -31636,9 +31642,9 @@ total ms/call
 
 name Object#ackerman TracePoint#enable Module#method_added TracePoint#disable #toplevel
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 792
+Chapter 28. Standard Library ï¿½ 792
 
 Library Profiler__
 
@@ -31734,9 +31740,9 @@ total ms/call
 
 name Range#include? Array#each Object#calc_sales_totals Object#calc_discount Range#=== TracePoint#enable Float#<=> Fixnum#<=> SalesData#price Fixnum#+ SalesData#qty TracePoint#disable #toplevel
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-PStore · 793
+PStore ï¿½ 793
 
 Library PStore
 
@@ -31763,9 +31769,9 @@ produces:
 Roots: names, tree Douglas, Barenberg, Meyer ["top",
 ["A", ["B", [], []], []], ["C", ["D", [], ["E", [], []]], []]]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 794
+Chapter 28. Standard Library ï¿½ 794
 
 Library PTY
 
@@ -31798,9 +31804,9 @@ Exponentiation power! and rpower are aliases for **.
 
 5. Currently found at http://www.codeforpeople.com/lib/ruby/session/
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Readline · 795
+Readline ï¿½ 795
 
 Library Readline
 
@@ -31848,19 +31854,19 @@ The resolv library is a pure-Ruby implementation of a DNS client--it can be used
 Loading the additional library resolv-replace insinuates the resolv library into Ruby's socket library on page 807.
 Basic name lookups are already built-in to the standard socket libraries. The resolv library exists because, prior to Ruby 1.9, calling the operating system to do a name lookup would suspend all interpreter threads. That is no longer the case.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 796
+Chapter 28. Standard Library ï¿½ 796
 
 Library REXML
 
 XML Processing Library
 
 REXML is a pure-Ruby XML processing library, including DTD-compliant document parsing, XPath querying, and document generation. It supports both tree-based and stream-based document processing. Because it is written in Ruby, it is available on all platforms supporting Ruby. REXML has a full and complex interface--this section contains a few small examples.
-· Assume the file demo.xml contains this:
+ï¿½ Assume the file demo.xml contains this:
 <classes language="ruby"> <class name="Numeric"> Numeric represents all numbers. <class name="Float"> Floating point numbers have a fraction and a mantissa. </class> <class name="Integer"> Integers contain exact integral values. <class name="Fixnum"> Fixnums are stored as machine ints. </class> <class name="Bignum"> Bignums store arbitraty-sized integers. </class> </class> </class>
 </classes>
-· Reads and processes the XML:
+ï¿½ Reads and processes the XML:
 require 'rexml/document'
 
 xml = REXML::Document.new(File.open("code/sl_rexml/demo.xml"))
@@ -31881,7 +31887,7 @@ Fixnums are stored as machine ints.\n
 
 "
 
-· Reads in a document, adds and deletes elements, and manipulates attributes before writing it back out:
+ï¿½ Reads in a document, adds and deletes elements, and manipulates attributes before writing it back out:
 
 require 'rexml/document' include REXML
 
@@ -31889,7 +31895,7 @@ xml = Document.new(File.open("code/sl_rexml/demo.xml"))
 
 cls = Element.new("class") cls.attributes["name"] = "Rational"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 cls.text = "Represents complex numbers"
 # Remove Integer's children, and add our new node as # the one after Integer int = xml.elements["//class[@name='Integer']"] int.delete_at(1) int.delete_at(2) int.next_sibling = cls
@@ -31904,11 +31910,11 @@ produces:
 Integers contain exact integral values. </class> <class class_name='Rational'>
 Represents complex numbers </class> </class> </classes>
 
-REXML · 797
+REXML ï¿½ 797
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 798
+Chapter 28. Standard Library ï¿½ 798
 
 Library Rinda
 
@@ -31917,12 +31923,12 @@ Tuplespace Implementation
 Tuplespaces are a distributed blackboard system. Processes may add tuples to the blackboard, and other processes may remove tuples from the blackboard that match a certain pattern. Originally presented by David Gelernter, tuplespaces offer an interesting scheme for distributed cooperation among heterogeneous processes.
 Rinda, the Ruby implementation of tuplespaces, offers some interesting additions to the concept. In particular, the Rinda implementation uses the === operator to match tuples. This means that tuples may be matched using regular expressions, the classes of their elements, and the element values.
 See also: DRb (page 748)
-· The blackboard is a DRb server that offers a shared tuplespace:
+ï¿½ The blackboard is a DRb server that offers a shared tuplespace:
 require 'rinda/tuplespace' MY_URI = "druby://127.0.0.1:12131" DRb.start_service(MY_URI, Rinda::TupleSpace.new) DRb.thread.join
-· The arithmetic agent accepts messages containing an arithmetic operator and two numbers. It stores the result back on the blackboard.
+ï¿½ The arithmetic agent accepts messages containing an arithmetic operator and two numbers. It stores the result back on the blackboard.
 require 'rinda/rinda' MY_URI = "druby://127.0.0.1:12131" DRb.start_service ts = Rinda::TupleSpaceProxy.new(DRbObject.new(nil, MY_URI)) loop do
 op, v1, v2 = ts.take([ %r{^[-+/*]$}, Numeric, Numeric]) ts.write(["result", v1.send(op, v2)]) end
-· The client places tuples on the blackboard and reads back the result of each:
+ï¿½ The client places tuples on the blackboard and reads back the result of each:
 require 'rinda/rinda' MY_URI = "druby://127.0.0.1:12131" DRb.start_service ts = Rinda::TupleSpaceProxy.new(DRbObject.new(nil, MY_URI))
 
 queries = [[ "+", 1, 2 ], [ "*", 3, 4 ], [ "/", 8, 2 ]] queries.each do |q|
@@ -31930,32 +31936,32 @@ ts.write(q) ans = ts.take(["result", nil]) puts "#{q[1]} #{q[0]} #{q[2]} = #{ans
 produces:
 1+2=3 3 * 4 = 12 8/2=4
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Ripper · 799
+Ripper ï¿½ 799
 
 Library Ripper
 
 Parse Ruby Source
 
 The ripper library gives you access to Ruby's parser. It can tokenize input, return lexical tokens, and return a nested S-expression. It also supports event-based parsing.
-· Tokenize a line of Ruby code:
+ï¿½ Tokenize a line of Ruby code:
 require "ripper" content = "a=1;b=2;puts a+b" p Ripper.tokenize(content)
 produces: ["a", "=", "1", ";", "b", "=", "2", ";", "puts", " ", "a", "+", "b"]
-· Does a lexical analysis, returning token types, values, and line and column numbers:
+ï¿½ Does a lexical analysis, returning token types, values, and line and column numbers:
 require "ripper" require "pp" content = "a=1;b=2;puts a+b" pp Ripper.lex(content)[0,5]
 produces: [[[1, 0], :on_ident, "a"],
 [[1, 1], :on_op, "="], [[1, 2], :on_int, "1"], [[1, 3], :on_semicolon, ";"], [[1, 4], :on_ident, "b"]]
-· Returns the sexp representing a chunk of code:
+ï¿½ Returns the sexp representing a chunk of code:
 require "ripper" require "pp" content = "a=1;b=2;puts a+b" pp Ripper.sexp(content)
 produces: [:program,
 [[:assign, [:var_field, [:@ident, "a", [1, 0]]], [:@int, "1", [1, 2]]], [:assign, [:var_field, [:@ident, "b", [1, 4]]], [:@int, "2", [1, 6]]], [:command, [:@ident, "puts", [1, 8]], [:args_add_block, [[:binary, [:var_ref, [:@ident, "a", [1, 13]]], :+, [:var_ref, [:@ident, "b", [1, 15]]]]], false]]]]
-· As a (silly) example of event-based lexical analysis, here's a program that finds class definitions and their associated comment blocks. For each, it outputs the class name and the comment. It might be considered the zeroth iteration of an RDoc-like program.
+ï¿½ As a (silly) example of event-based lexical analysis, here's a program that finds class definitions and their associated comment blocks. For each, it outputs the class name and the comment. It might be considered the zeroth iteration of an RDoc-like program.
 The parameter to parse is an accumulator--it is passed between event handlers and can be used to construct the result.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 800
+Chapter 28. Standard Library ï¿½ 800
 require 'ripper'
 # This class handles parser events, extracting # comments and attaching them to class definitions class BabyRDoc < Ripper::Filter
 def initialize(*) super reset_state
@@ -31975,22 +31981,22 @@ def reset_state @comment = "" @expecting_class_name = false
 end end
 BabyRDoc.new(File.read(__FILE__)).parse(STDOUT) produces: BabyRDoc:
 This class handles parser events, extracting comments and attaching them to class definitions
-report erratum · discuss
+report erratum ï¿½ discuss
 
-RSS · 801
+RSS ï¿½ 801
 
 Library RSS
 
 RSS Feed Generation and Parsing
 
 Rich Site Summary or RDF Site Summary or Really Simple Syndication--take your pick. RSS is the protocol of choice for disseminating news on the Internet. The Ruby RSS library supports creating and parsing streams compliant with RSS 0.9, RSS 1.0, and RSS 2.0.
-· Reads and summarizes the latest stories from http://ruby-lang.org:
+ï¿½ Reads and summarizes the latest stories from http://ruby-lang.org:
 require 'rss/2.0' require 'open-uri'
 
 open('http://ruby-lang.org/en/feeds/news.rss') do |http| response = http.read result = RSS::Parser.parse(response, false) puts "Channel: " + result.channel.title result.items.each_with_index do |item, i| puts "#{i+1}. #{item.title}" if i < 3 end
 end
 produces: Channel: Ruby News 1. Ruby 1.9.3-p429 is released 2. Ruby 2.0.0-p195 is released 3. Object taint bypassing in DL and Fiddle in Ruby (CVE-2013-2065)
-· Generates some RSS information:
+ï¿½ Generates some RSS information:
 require 'rss/0.9'
 
 rss = RSS::Rss.new("0.9")
@@ -32035,9 +32041,9 @@ end
 
 puts rss.to_s
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 802
+Chapter 28. Standard Library ï¿½ 802
 
 Library Scanf
 
@@ -32046,7 +32052,7 @@ Input Format Conversion
 Implements a version of the C library scanf function, which extracts values from a string under the control of a format specifier.
 The Ruby version of the library adds a scanf method to both class IO and class String. The version in IO applies the format string to the next line read from the receiver. The version in String applies the format string to the receiver. The library also adds the global method Object#scanf, which uses as its source the next line of standard input.
 Scanf has one main advantage over using regular expressions to break apart a string: a regular expression extracts strings, whereas scanf will return objects converted to the correct type.
-· Splits a date string into its constituents:
+ï¿½ Splits a date string into its constituents:
 require 'scanf'
 
 date = "2010-12-15"
@@ -32067,7 +32073,7 @@ day
 
 year.class # => Fixnum
 
-· The block form of scanf applies the format multiple times to the input string, returning each set of results to the block. The numbers are returned as integers, not strings:
+ï¿½ The block form of scanf applies the format multiple times to the input string, returning each set of results to the block. The numbers are returned as integers, not strings:
 
 require 'scanf'
 
@@ -32075,14 +32081,14 @@ data = "cat:7 dog:9 cow:17 walrus:31"
 
 data.scanf("%[^:]:%d ") do |animal, value| puts "A #{animal.strip} has #{value}" end
 produces: A cat has 7 A dog has 9 A cow has 17 A walrus has 31
-· Extracts hex numbers:
+ï¿½ Extracts hex numbers:
 require 'scanf'
 
 data = "decaf bad" data.scanf("%3x%2x%x") # => [3564, 175, 2989]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-SDBM · 803
+SDBM ï¿½ 803
 
 Library SDBM
 
@@ -32103,12 +32109,12 @@ Library SecureRandom
 Access to Secure Random Number Generators
 
 Provides access to one of your operating system's secure random number generators. If the OpenSSL library is installed, the module uses its random_bytes method. Otherwise, the module looks for and uses /dev/urandom or the CryptGenRandom method in the Windows API.
-· Generates some random numbers:
+ï¿½ Generates some random numbers:
 require 'securerandom' # Random floats such that 0.0 <= rand < 1.0 SecureRandom.random_number(0) # => 0.26256698786247024 SecureRandom.random_number(0) # => 0.6885743213737645
 
 # Random integers such that 0 <= rand < 1000 SecureRandom.random_number(1000) # => 112 SecureRandom.random_number(1000) # => 273
 
-· Generates ten random bytes, returning the result as a hex string, a Base64 string, and a string of binary data. A different random string is returned for each call.
+ï¿½ Generates ten random bytes, returning the result as a hex string, a Base64 string, and a string of binary data. A different random string is returned for each call.
 
 require 'securerandom'
 
@@ -32122,16 +32128,16 @@ SecureRandom.base64(10)
 
 SecureRandom.random_bytes(10) # => "\x7FO\0r\r\xC1?\xB7b#"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 804
+Chapter 28. Standard Library ï¿½ 804
 
 Library Set
 
 Implement Various Forms of Set
 
 A Set is a collection of unique values (where uniqueness is determined using eql? and hash). Convenience methods let you build sets from enumerable objects.
-· Basic set operations:
+ï¿½ Basic set operations:
 require 'set'
 
 set1 = Set.new([:bear, :cat, :deer])
@@ -32166,7 +32172,7 @@ set1 ^ set2
 
 # => #<Set: {:dog, :cow, :bear, :deer, :fox}>
 
-· Partitions the users in our /etc/passwd file into subsets where members of each subset have adjacent user IDs:
+ï¿½ Partitions the users in our /etc/passwd file into subsets where members of each subset have adjacent user IDs:
 
 require 'etc' require 'set'
 
@@ -32182,19 +32188,19 @@ produces:
 
 ======= 93/_calendar 92/_securityagent 91/_tokend ======= 202/_coreaudiod 203/_screensaver 201/Guest 200/_softwareupdate ======= ...
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Shellwords · 805
+Shellwords ï¿½ 805
 
 Library Shellwords
 
 Manipulate Shell Lines Using POSIX Semantics
 
 Given a string representative of a shell command line, splits it into word tokens according to POSIX semantics. Also allows you to create properly escaped shell lines from individual words.
-· Spaces between double or single quotes are treated as part of a word.
-· Double quotes may be escaped using a backslash.
-· Spaces escaped by a backslash are not used to separate words.
-· Otherwise, tokens separated by whitespace are treated as words.
+ï¿½ Spaces between double or single quotes are treated as part of a word.
+ï¿½ Double quotes may be escaped using a backslash.
+ï¿½ Spaces escaped by a backslash are not used to separate words.
+ï¿½ Otherwise, tokens separated by whitespace are treated as words.
 
 require 'shellwords' include Shellwords
 
@@ -32214,9 +32220,9 @@ shelljoin(["Code Ruby", "Be Happy"]) # => Code\ Ruby Be\ Happy
 In addition, the library adds shellsplit and shelljoin methods to classes String and Array, respectively:
 require 'shellwords' include Shellwords %{Code\\ Ruby Be Happy!}.shellsplit # => ["Code Ruby", "Be", "Happy!"] ["Code Ruby", "Be Happy"].shelljoin # => "Code\\ Ruby Be\\ Happy"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 806
+Chapter 28. Standard Library ï¿½ 806
 
 Library Singleton
 
@@ -32251,9 +32257,9 @@ b.object_id
 
 # => 70323856933480
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Socket · 807
+Socket ï¿½ 807
 
 Library Socket
 
@@ -32271,16 +32277,16 @@ msg, sender = socket.recvfrom(100) host = sender[3] puts "#{Time.now}: #{host} '
 produces:
 2013-05-27 12:33:39 -0500: 127.0.0.1 'Up and Running!' 2013-05-27 12:33:39 -0500: 127.0.0.1 'Done!'
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 808
+Chapter 28. Standard Library ï¿½ 808
 
 Library StringIO
 
 Treat Strings as IO Objects
 
 In some ways, the distinction between strings and file contents is artificial: the contents of a file are basically a string that happens to live on disk, not in memory. The StringIO library aims to unify the two concepts, making strings act as if they were opened IO objects. Once a string is wrapped in a StringIO object, it can be read from and written to as if it were an open file. This can make unit testing a lot easier. It also lets you pass strings into classes and methods that were originally written to work with files. StringIO objects take their encoding from the string you pass in or the default external encoding is that no string is passed.
-· Reads and writes from a string:
+ï¿½ Reads and writes from a string:
 require 'stringio'
 
 sio = StringIO.new("time flies like an arrow")
@@ -32317,7 +32323,7 @@ sio.read
 
 # => "fruitflies like a banana"
 
-· Uses StringIO as a testing aid:
+ï¿½ Uses StringIO as a testing aid:
 
 require 'stringio' require 'csv' require 'test/unit'
 
@@ -32328,16 +32334,16 @@ Run options: # Running tests: . Finished tests in 0.004047s, 247.0966 tests/s, 2
 
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-StringScanner · 809
+StringScanner ï¿½ 809
 
 Library StringScanner
 
 Basic String Tokenizer
 
 StringScanner objects progress through a string, matching (and optionally returning) tokens that match a given pattern. Unlike the built-in scan methods, StringScanner objects maintain a current position pointer in the string being examined, so each call resumes from the position in the string where the previous call left off. Pattern matches are anchored to this previous point.
-· Implements a simple language:
+ï¿½ Implements a simple language:
 require 'strscan'
 
 # Handle the language: # set <var> = <value> # get <var>
@@ -32361,9 +32367,9 @@ end end
 Run this from the command line, typing in phrases from the language:
 $ ruby strscan.rb set a = dave set b = hello get b b => "hello" get a a => "dave"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 810
+Chapter 28. Standard Library ï¿½ 810
 
 Library Syslog
 
@@ -32374,23 +32380,23 @@ New in 2.0
 
 The Syslog class is a simple wrapper around the Unix syslog(3) library. It allows messages to be written at various severity levels to the logging daemon, where they are disseminated according to the configuration in syslog.conf. Ruby 2.0 adds support for Syslog::Logger, which is compatible with the Logger API.
 The following examples assume the log file is /var/log/system.log.
-· Adds to our local system log. We'll log all the levels configured for the user facility for our system (which is every level except debug and info messages).
+ï¿½ Adds to our local system log. We'll log all the levels configured for the user facility for our system (which is every level except debug and info messages).
 
 require 'syslog' log = Syslog.open("test") # "test" is the app name log.debug("Warm and fuzzy greetings from your program") log.info("Program starting") log.notice("I said 'Hello!'") log.warning("If you don't respond soon, I'm quitting") log.err("You haven't responded after %d milliseconds", 7) log.alert("I'm telling your mother...") log.emerg("I'm feeling totally crushed") log.crit("Aarrgh....")
 system("tail -6 /var/log/system.log")
 produces:
 Sep 16 12:48:44 dave-4 test[35121]: Warm and fuzzy greetings from your program Sep 16 12:48:44 dave-4 test[35121]: Program starting Sep 16 12:48:44 dave-4 test[35121]: I said 'Hello!' Sep 16 12:48:44 dave-4 test[35121]: If you don't respond soon, I'm quitting Sep 16 12:48:44 dave-4 test[35121]: You haven't responded after 7 milliseconds Sep 16 12:48:44 dave-4 test[35121]: I'm telling your mother... Sep 16 12:48:44 dave-4 test[35121]: I'm feeling totally crushed Sep 16 12:48:44 dave-4 test[35121]: Aarrgh....
 
-· Logs only errors and above:
+ï¿½ Logs only errors and above:
 
 require 'syslog' log = Syslog.open("test") log.mask = Syslog::LOG_UPTO(Syslog::LOG_ERR) log.debug("Warm and fuzzy greetings from your program") log.info("Program starting") log.notice("I said 'Hello!'") log.warning("If you don't respond soon, I'm quitting") log.err("You haven't responded after %d milliseconds", 7) log.alert("I'm telling your mother...") log.emerg("I'm feeling totally crushed") log.crit("Aarrgh....")
 
 system("tail -4 /var/log/system.log")
 produces: Sep 16 12:48:44 dave-4 test[35124]: You haven't responded after 7 milliseconds Sep 16 12:48:44 dave-4 test[35124]: I'm telling your mother... Sep 16 12:48:44 dave-4 test[35124]: I'm feeling totally crushed Sep 16 12:48:44 dave-4 test[35124]: Aarrgh....
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Tempfile · 811
+Tempfile ï¿½ 811
 
 Library Tempfile
 
@@ -32404,9 +32410,9 @@ See also: tmpdir (page 818)
 require 'tempfile' tf = Tempfile.new("afile") tf.path # => "/var/folders/44/j19_ml3n3dx7bwrb_qmbcjyc0000gn/T/afile20130527-24
 # .. 867-1greefy" tf.puts("Cosi Fan Tutte") tf.close tf.open tf.gets # => "Cosi Fan Tutte\n" tf.close(true)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 812
+Chapter 28. Standard Library ï¿½ 812
 
 Library Test::Unit
 
@@ -32429,9 +32435,9 @@ Run options: # Running tests: . Finished tests in 0.004140s, 241.5459 tests/s, 1
 
 ruby -v: ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-darwin12.2.0]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-thread · 813
+thread ï¿½ 813
 
 Library thread
 
@@ -32451,9 +32457,9 @@ producers.each(&:join) consumers.size.times { queue.enq(:END_OF_WORK) } consumer
 produces:
 consumer 1: consumed "Item 0 from producer 1" consumer 1: consumed "Item 1 from producer 1" consumer 1: consumed "Item 2 from producer 1" consumer 1: consumed "Item 0 from producer 2" consumer 2: consumed "Item 1 from producer 2" consumer 3: consumed "Item 2 from producer 2" consumer 1: consumed :END_OF_WORK consumer 3: consumed :END_OF_WORK consumer 2: consumed :END_OF_WORK
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 814
+Chapter 28. Standard Library ï¿½ 814
 
 Library ThreadsWait
 
@@ -32492,9 +32498,9 @@ group.all_waits
 
 # => nil
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Time · 815
+Time ï¿½ 815
 
 Library Time
 
@@ -32524,9 +32530,9 @@ Time.xmlschema("2010-04-01T16:32:45") Time.xmlschema("2010-04-01T16:32:45.12-06:
 
 Time.now.rfc2822 # => "Mon, 27 May 2013 12:33:41 -0500" Time.now.httpdate # => "Mon, 27 May 2013 17:33:41 GMT" Time.now.xmlschema # => "2013-05-27T12:33:41-05:00"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 816
+Chapter 28. Standard Library ï¿½ 816
 
 Library Timeout
 
@@ -32541,9 +32547,9 @@ produces:
 About to sleep for 1 Timeout period is 1.5 That was refreshing About to sleep for 2 Timeout period is 1.5 Woken up early!!
 Be careful when using timeouts--you may find them interrupting system calls that you cannot reliably restart, resulting in possible data loss.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Tk · 817
+Tk ï¿½ 817
 
 Tk Library
 
@@ -32566,9 +32572,9 @@ x = Math.sin(a*t) y = Math.cos(b*t) points << plot(x) << plot(y) end TkcLine.new
 produces:
 
 6. All these environments require that the Tcl/Tk libraries are installed before the Ruby Tk extension can be used.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 818
+Chapter 28. Standard Library ï¿½ 818
 
 Library tmpdir
 
@@ -32599,16 +32605,16 @@ name = Dir.mktmpdir
 
 Dir.rmdir(name)
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Tracer · 819
+Tracer ï¿½ 819
 
 Library Tracer
 
 Trace Program Execution
 
 The tracer library uses Object#set_trace_func to trace all or part of a Ruby program's execution. The traced lines show the thread number, file, line number, class, event, and source line. The events shown are - for a change of line, < for a call, > for a return, C for a class definition, and E for the end of a definition.
-· You can trace an entire program by including the tracer library from the command line:
+ï¿½ You can trace an entire program by including the tracer library from the command line:
 class Account def initialize(balance) @balance = balance end def debit(amt) if @balance < amt fail "Insufficient funds" else @balance -= amt end end
 end acct = Account.new(100) acct.debit(40)
 
@@ -32638,7 +32644,7 @@ if @balance < amt
 
 #0:prog.rb:12:Account:<: end
 
-· You can also use tracer objects to trace just a portion of your code and use filters to select what to trace:
+ï¿½ You can also use tracer objects to trace just a portion of your code and use filters to select what to trace:
 
 require 'tracer' tracer = Tracer.new tracer.add_filter lambda {|event, *rest| event == "line" } acct = Account.new(100) tracer.on { acct.debit(40) }
 
@@ -32654,9 +32660,9 @@ if @balance < amt
 
 @balance -= amt
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 820
+Chapter 28. Standard Library ï¿½ 820
 
 Library TSort
 
@@ -32664,7 +32670,7 @@ Topological Sort
 
 Given a set of dependencies between nodes (where each node depends on zero or more other nodes and there are no cycles in the graph of dependencies), a topological sort will return a list of the nodes ordered such that no node follows a node that depends on it. One use for this is scheduling tasks, where the order means that you complete the dependencies before you start any task that depends on them. The make program uses a topological sort to order its execution.
 In the Ruby implementation, you mix in the TSort module and define two methods: tsort_each_node, which yields each node in turn, and tsort_each_child, which, given a node, yields each of that node's dependencies.
-· Given the set of dependencies among the steps for making a piña colada, what is the optimum order for undertaking the steps?
+ï¿½ Given the set of dependencies among the steps for making a piï¿½a colada, what is the optimum order for undertaking the steps?
 require 'tsort'
 
 class Tasks include TSort def initialize @dependencies = {} end def add_dependency(task, *relies_on) @dependencies[task] = relies_on end def tsort_each_node(&block) @dependencies.each_key(&block) end def tsort_each_child(node, &block) deps = @dependencies[node] deps.each(&block) if deps end
@@ -32698,27 +32704,27 @@ produces:
 
 open_blender add_rum add_pc_mix add_ice close_blender blend_mix pour_drink
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-un · 821
+un ï¿½ 821
 
 un Library
 
 Command-Line Interface to FileUtils
 
-Why un? When you invoke it from the command line with the -r option to Ruby, it spells -run. This pun gives a hint as to the intent of the library: it lets you run commands (in this case, a subset of the methods in FileUtils) from the command line. In theory this gives you an operating system­independent set of file manipulation commands, possibly useful when writing portable Makefiles.
+Why un? When you invoke it from the command line with the -r option to Ruby, it spells -run. This pun gives a hint as to the intent of the library: it lets you run commands (in this case, a subset of the methods in FileUtils) from the command line. In theory this gives you an operating systemï¿½independent set of file manipulation commands, possibly useful when writing portable Makefiles.
 See also: FileUtils (page 757)
-· The available commands are as follows:
-$ ruby -run -e cp ­ < options >* source dest $ ruby -run -e ln ­ < options >* target linkname $ ruby -run -e mv ­ < options >* source dest $ ruby -run -e rm ­ < options >* file $ ruby -run -e mkdir ­ < options >* dirs $ ruby -run -e rmdir ­ < options >* dirs $ ruby -run -e install ­ < options >* source dest $ ruby -run -e chmod ­ < options >* octal_mode file $ ruby -run -e touch ­ < options >* file
+ï¿½ The available commands are as follows:
+$ ruby -run -e cp ï¿½ < options >* source dest $ ruby -run -e ln ï¿½ < options >* target linkname $ ruby -run -e mv ï¿½ < options >* source dest $ ruby -run -e rm ï¿½ < options >* file $ ruby -run -e mkdir ï¿½ < options >* dirs $ ruby -run -e rmdir ï¿½ < options >* dirs $ ruby -run -e install ï¿½ < options >* source dest $ ruby -run -e chmod ï¿½ < options >* octal_mode file $ ruby -run -e touch ï¿½ < options >* file
 Note the use of -- to tell the Ruby interpreter that options to the program follow.
 You can get a list of all available commands with this:
 $ ruby -run -e help
 For help on a particular command, append the command's name:
 $ ruby -run -e help mkdir
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 822
+Chapter 28. Standard Library ï¿½ 822
 
 Library URI
 
@@ -32783,9 +32789,9 @@ uri.path
 
 uri.typecode # => "i"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-WeakRef · 823
+WeakRef ï¿½ 823
 
 Library WeakRef
 
@@ -32793,11 +32799,11 @@ Support for Weak References
 
 In Ruby, objects are not eligible for garbage collection if references still exist to them. Normally, this is a Good Thing--it would be disconcerting to have an object simply evaporate while you were using it. However, sometimes you may need more flexibility. For example, you might want to implement an in-memory cache of commonly used file contents. As you read more files, the cache grows. At some point, you may run low on memory. The garbage collector will be invoked, but the objects in the cache are all referenced by the cache data structures and so will not be deleted.
 A weak reference behaves like any normal object reference with one important exception-- the referenced object may be garbage collected, even while references to it exist. In the cache example, if the cached files were accessed using weak references, once memory runs low, they will be garbage collected, freeing memory for the rest of the application.
-· Weak references introduce a slight complexity. Because the object referenced can be deleted by garbage collection at any time, code that accesses these objects must take care to ensure that the references are valid. Two techniques can be used. First, the code can reference the objects normally. Any attempt to reference an object that has been garbage collected will raise a WeakRef::RefError exception.
+ï¿½ Weak references introduce a slight complexity. Because the object referenced can be deleted by garbage collection at any time, code that accesses these objects must take care to ensure that the references are valid. Two techniques can be used. First, the code can reference the objects normally. Any attempt to reference an object that has been garbage collected will raise a WeakRef::RefError exception.
 require 'weakref' # Generate lots of small strings. Hopefully the early ones will have # been garbage collected... refs = (1..10000).map {|i| WeakRef.new("#{i}") } puts "Last element is #{refs.last}" puts "First element is #{refs.first}"
 produces:
 Last element is 10000 prog.rb:6:in `<main>': Invalid Reference - probably recycled (WeakRef::RefError)
-· Alternatively, use the WeakRef#weakref_alive? method to check that a reference is valid before using it. Garbage collection must be disabled during the test and subsequent reference to the object. In a single-threaded program, you could use something like this:
+ï¿½ Alternatively, use the WeakRef#weakref_alive? method to check that a reference is valid before using it. Garbage collection must be disabled during the test and subsequent reference to the object. In a single-threaded program, you could use something like this:
 ref = WeakRef.new(some_object)
 
 # .. some time later
@@ -32805,9 +32811,9 @@ ref = WeakRef.new(some_object)
 gc_was_disabled = GC.disable if ref.weakref_alive?
 # do stuff with 'ref' end GC.enable unless gc_was_disabled
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 824
+Chapter 28. Standard Library ï¿½ 824
 
 Library WEBrick
 
@@ -32815,7 +32821,7 @@ Web Server Toolkit
 
 WEBrick is a pure-Ruby framework for implementing HTTP-based servers. The Ruby standard library includes WEBrick services that implement a standard web server (serving files and directory listings) and servlets supporting CGI, erb, file download, and the mounting of Ruby lambdas.
 The Web programming chapter has more examples of WEBrick on page 286.
-· The following code mounts two Ruby procs on a web server.
+ï¿½ The following code mounts two Ruby procs on a web server.
 Requests to http://localhost:2000/hello run one proc, and the other proc is invoked by requests to http://localhost:2000/bye.
 #!/usr/bin/ruby
 
@@ -32831,22 +32837,22 @@ hello = HTTPServlet::ProcHandler.new(hello_proc) bye = HTTPServlet::ProcHandler.
 s = HTTPServer.new(:Port => 2000) s.mount("/hello", hello) s.mount("/bye", bye)
 trap("INT"){ s.shutdown } s.start
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-WIN32OLE · 825
+WIN32OLE ï¿½ 825
 
 Library WIN32OLE
 
 Windows Automation
 
 This is an interface to Windows automation, allowing Ruby code to interact with Windows applications. The Ruby interface to Windows is discussed in more detail in Chapter 21, Ruby and Microsoft Windows, on page 289.
-· Opens Internet Explorer and asks it to display our home page:
+ï¿½ Opens Internet Explorer and asks it to display our home page:
 require 'win32ole'
 
 Only if: Windows
 
 ie = WIN32OLE.new('InternetExplorer.Application') ie.visible = true ie.navigate("http://www.pragprog.com")
-· Creates a new chart in Microsoft Excel and then rotates it. This code is one of the samples that comes with the library.
+ï¿½ Creates a new chart in Microsoft Excel and then rotates it. This code is one of the samples that comes with the library.
 require 'win32ole'
 
 # -4100 is the value for the Excel constant xl3DColumn. ChartTypeVal = -4100;
@@ -32862,9 +32868,9 @@ excelchart.rotation=rot; end # Done, bye
 
 excel.ActiveWorkbook.Close(0); excel.Quit();
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 826
+Chapter 28. Standard Library ï¿½ 826
 
 Library XMLRPC
 
@@ -32872,16 +32878,16 @@ Remote Procedure Calls using XML-RPC
 
 XMLRPC allows clients to invoke methods on networked servers using the XML-RPC protocol. Communications take place over HTTP. The server may run in the context of a web server, in which case ports 80 or 443 (for SSL) will typically be used. The server may also be run stand-alone. The Ruby XML-RPC server implementation supports operation as a CGI script, as a mod_ruby script, as a WEBrick handler, and as a stand-alone server. Basic authentication is supported, and clients can communicate with servers via proxies. Servers may throw FaultException errors--these generate the corresponding exception on the client (or optionally may be flagged as a status return to the call).
 See also: dRuby (page 748) WEBrick (page 824)
-· The following simple server accepts a temperature in Celsius and converts it to Fahrenheit. It runs within the context of the WEBrick web server.
+ï¿½ The following simple server accepts a temperature in Celsius and converts it to Fahrenheit. It runs within the context of the WEBrick web server.
 sl_xmlrpc/xmlserver.rb require 'webrick' require 'xmlrpc/server' xml_servlet = XMLRPC::WEBrickServlet.new xml_servlet.add_handler("convert_celcius") do |celcius| celcius*1.8 + 32 end xml_servlet.add_multicall # Add support for multicall server = WEBrick::HTTPServer.new(:Port => 2000) server.mount("/RPC2", xml_servlet) trap("INT"){ server.shutdown } server.start
-· This client makes calls to the temperature conversion server. Note that in the output we show both the server's logging and the client program's output.
+ï¿½ This client makes calls to the temperature conversion server. Note that in the output we show both the server's logging and the client program's output.
 require 'xmlrpc/client' server = XMLRPC::Client.new("localhost", "/RPC2", 2000) puts server.call("convert_celcius", 0) puts server.call("convert_celcius", 100) puts server.multicall(['convert_celcius', -10], ['convert_celcius', 200])
 produces:
 [2013-05-27 12:33:44] INFO WEBrick 1.3.1 [2013-05-27 12:33:44] INFO ruby 2.0.0 (2013-02-24) [x86_64-darwin12.2.0] [2013-05-27 12:33:44] INFO WEBrick::HTTPServer#start: pid=24895 port=2000 localhost - - [27/May/2013:12:33:45 CDT] "POST /RPC2 HTTP/1.1" 200 124 - -> /RPC2 localhost - - [27/May/2013:12:33:45 CDT] "POST /RPC2 HTTP/1.1" 200 125 - -> /RPC2 localhost - - [27/May/2013:12:33:45 CDT] "POST /RPC2 HTTP/1.1" 200 290 - -> /RPC2 32.0 212.0 14.0 392.0
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-YAML · 827
+YAML ï¿½ 827
 
 Library YAML
 
@@ -32892,14 +32898,14 @@ See also: json (page 766)
 
 New in 2.0
 
-· YAML can be used to store an object tree in a flat file:
+ï¿½ YAML can be used to store an object tree in a flat file:
 
 require 'yaml' tree = { name: 'ruby',
 uses: [ 'scripting', 'web', 'testing', 'etc' ] }
 
 File.open("tree.yml", "w") {|f| YAML.dump(tree, f)}
 
-· Once stored, it can be read by another program:
+ï¿½ Once stored, it can be read by another program:
 
 require 'yaml'
 
@@ -32909,7 +32915,7 @@ tree[:uses][1]
 
 # => "web"
 
-· The YAML format is also a convenient way to store configuration information for programs. Because it is readable, it can be maintained by hand using a normal editor and then read as objects by programs. For example, a configuration file may contain the following:
+ï¿½ The YAML format is also a convenient way to store configuration information for programs. Because it is readable, it can be maintained by hand using a normal editor and then read as objects by programs. For example, a configuration file may contain the following:
 sl_yaml/config.yml --username: dave prefs: background: dark foreground: cyan timeout: 30
 
 We can use this in a program:
@@ -32923,9 +32929,9 @@ config["username"]
 
 config["prefs"]["timeout"] * 10 # => 300
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 28. Standard Library · 828
+Chapter 28. Standard Library ï¿½ 828
 
 Library Zlib
 
@@ -32934,7 +32940,7 @@ Read and Write Compressed Files
 Only if: zlib library available
 
 The Zlib module is home to a number of classes for compressing and decompressing streams and for working with gzip-format compressed files. They also calculate zip checksums.
-· Compresses /etc/passwd as a gzip file and then reads the result back:
+ï¿½ Compresses /etc/passwd as a gzip file and then reads the result back:
 require 'zlib'
 
 # These methods can take a filename Zlib::GzipWriter.open("passwd.gz") do |gz|
@@ -32955,7 +32961,7 @@ wheel staff
 5086 Jul 20 2011 /etc/passwd 1621 May 27 12:33 passwd.gz
 
 _installassistant:*:25:25:Install Assistant:/var/empty:/usr/bin/false _lp:*:26:26:Printing Services:/var/spool/cups:/usr/bin/false _postfix:*:27:27:Postfix Mail Server:/var/spool/postfix:/usr/bin/false
-· Compresses data sent between two processes:
+ï¿½ Compresses data sent between two processes:
 require 'zlib'
 
 rd, wr = IO.pipe
@@ -32966,7 +32972,7 @@ end
 produces:
 We got: This is a string to compress
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 APPENDIX 1
 Support
@@ -32980,9 +32986,9 @@ The official Ruby home page is http://www.ruby-lang.org.
 You'll find many open source Ruby projects on Github (http://github.com) and RubyForge (http://www.rubyforge.org). http://rubygems.org is the official RubyGems repository.1 (GitHub used to be another source of RubyGems--this is no longer the case.)
 http://www.ruby-doc.org is a portal to various sources of Ruby documentation. Much of it comes from previous editions of this book.
 1. In March 2010, RubyGems.org, GemCutter.org, and RubyForge.org became a single, unified server of gems.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Appendix 1. Support · 830
+Appendix 1. Support ï¿½ 830
 
 While you're surfing, drop in on http://www.pragprog.com and see what we're up to.
 A1.2 Usenet Newsgroup
@@ -33002,7 +33008,7 @@ Before submitting a bug, it might be a good idea to post a question about it to 
 Once you've decided you have a genuine bug, submit a bug report via the Ruby Issue Tracking site mentioned previosuly. When reporting a suspected bug, it's a good idea to include the output of running ruby -v along with any problematic source code. People will also need to know the operating system you're running. If you compiled your own version of Ruby, it may be a good idea to attach your rbconfig.rb file as well.
 If you have a problem using irb, be aware of its limitations (see the reference section on page 253. See what happens using just Ruby itself.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 APPENDIX 2
 Bibliography
@@ -33015,12 +33021,12 @@ Jeffrey E. F. Friedl. Mastering Regular Expressions. O'Reilly & Associates, Inc.
 
 [Mey97] Bertrand Meyer. Object-Oriented Software Construction. Prentice Hall, Englewood Cliffs, NJ, Second, 1997.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Index
 
 SYMBOLS
-! (logical not), 133, 319 ! method, class BasicObject, 440 != (not equal), 133, 320 != method, class BasicObject, 440 !~ (does not match), 95, 97, 133, 320 !~ method, class Object, 599 # (comment), 297 # (instance method), xiv #! (setting encoding), 241 #! (shebang), 11 #{...} (substitute in pattern), 94, 305 #{...} (substitute in string), 86, 300 $ (global variable prefix), 307, 311 $ (in pattern), 98, 304 $! variable, 147, 311, 339­340 $" variable, 313, 623 $$ variable, 313 $& variable, 97, 311, 559 $' variable, 97, 312, 560 $* variable, 313, 618 $+ variable, 312 $, variable, 312, 431, 621 $-0 variable, 312 $-F variable, 313 $-I variable, 314 $-W variable, 314 $-a variable, 313 $-d variable, 313 $-i variable, 314 $-l variable, 314 $-p variable, 314 $-v variable, 314 $-w variable, 314 $. variable, 312, 549 $/ variable, 210­211, 312, 672, 679
+! (logical not), 133, 319 ! method, class BasicObject, 440 != (not equal), 133, 320 != method, class BasicObject, 440 !~ (does not match), 95, 97, 133, 320 !~ method, class Object, 599 # (comment), 297 # (instance method), xiv #! (setting encoding), 241 #! (shebang), 11 #{...} (substitute in pattern), 94, 305 #{...} (substitute in string), 86, 300 $ (global variable prefix), 307, 311 $ (in pattern), 98, 304 $! variable, 147, 311, 339ï¿½340 $" variable, 313, 623 $$ variable, 313 $& variable, 97, 311, 559 $' variable, 97, 312, 560 $* variable, 313, 618 $+ variable, 312 $, variable, 312, 431, 621 $-0 variable, 312 $-F variable, 313 $-I variable, 314 $-W variable, 314 $-a variable, 313 $-d variable, 313 $-i variable, 314 $-l variable, 314 $-p variable, 314 $-v variable, 314 $-w variable, 314 $. variable, 312, 549 $/ variable, 210ï¿½211, 312, 672, 679
 
 $: variable, 211, 217, 313, 623
 $; variable, 211, 312, 685
@@ -33031,7 +33037,7 @@ $? variable, 128, 171, 173, 313, 316, 610, 628, 642, 644
 $@ variable, 311
 $\ variable, 211, 312, 550, 621
 $` variable, 97, 312, 560
-$~ variable, 312, 559, 659, 661­662
+$~ variable, 312, 559, 659, 661ï¿½662
 % method class Bignum, 444 class Fixnum, 510 class Float, 513 class Numeric, 593 class Rational, 656 class String, 666
 %{...} (string literal), 86, 300
 & (block parameter to method), 64, 118, 328
@@ -33056,7 +33062,7 @@ class Rational, 656 class String, 667
 .. and ... (range), 90, 320
 / method class Bignum, 444 class Complex, 452
 
-Index · 834
+Index ï¿½ 834
 
 class Fixnum, 510 class Float, 513 class Rational, 656
 /.../ (regexp), 303
@@ -33096,7 +33102,7 @@ class Process::Status, 645 class Range, 651 class Rational, 656 class Regexp, 66
 @ (instance variable prefix), 306
 @@ (class variable prefix), 306
 [ ] method, class Array, 46
-[ ] method class Array, 421, 423 class Bignum, 445 class Dir, 456 class Fixnum, 511 class Hash, 521­522 class MatchData, 97, 559 class Method, 565 class Proc, 633 class String, 668 class Struct, 694­695
+[ ] method class Array, 421, 423 class Bignum, 445 class Dir, 456 class Fixnum, 511 class Hash, 521ï¿½522 class MatchData, 97, 559 class Method, 565 class Proc, 633 class String, 668 class Struct, 694ï¿½695
 
 class Symbol, 699 class Thread, 704
 [ ]= method class Array, 46, 424 class Hash, 523 class String, 669 class Struct, 695 class Thread, 704
@@ -33108,7 +33114,7 @@ class Symbol, 699 class Thread, 704
 \' (in substitution), 104
 \+ (in substitution), 104
 \` (in substitution), 104
-^ (in pattern), 98­99, 304
+^ (in pattern), 98ï¿½99, 304
 ^ method class Bignum, 444 class FalseClass, 486 class Fixnum, 510 class NilClass, 589 class TrueClass, 725
 $_ variable, 138, 211, 313, 320, 548, 618
 __ENCODING__ constant, 242, 313
@@ -33136,7 +33142,7 @@ DIGITS
 $0 variable, 213, 313, 316 -0[octal] (Ruby option), 210 $1...$9 (in pattern) variable, 102, 305 $1...$n variable, 312 \1...\9 (in substitution), 104 \1...\n (in pattern), 102, 305
 A
 -a (Ruby option), 210, 313 \A (in pattern), 304 Abbrev module, 731, 795 Abbreviations, calculating, 731 abort method
-class Object, 612 module Process, 637 abort_on_exception method, class Thread, 165, 702, 705 abort_on_exception= method, class Thread, 702, 705 abs method class Bignum, 445 class Complex, 452 class Fixnum, 511 class Float, 514 class Numeric, 593 abs2 method class Complex, 452 class Numeric, 593 absolute_path method, class File, 488 Access control, 40, 335 method, 576­577, 585 overriding in subclass, 365 Accessor method, 32 acos method, module Math, 562, 738 acosh method, module Math, 562, 738 ActiveRecord class, 388 ActiveRelation (Rails), 63 Ad hoc testing, 176 add method, class ThreadGroup, 710 add_observer method, module Observable, 780 add_trace_func method, class Thread, 705 advise method, class IO, 543 AF_INET class, 764 Alias, 44, 200, 308, 330 alias_method method class Module, 579 class Object, 398
+class Object, 612 module Process, 637 abort_on_exception method, class Thread, 165, 702, 705 abort_on_exception= method, class Thread, 702, 705 abs method class Bignum, 445 class Complex, 452 class Fixnum, 511 class Float, 514 class Numeric, 593 abs2 method class Complex, 452 class Numeric, 593 absolute_path method, class File, 488 Access control, 40, 335 method, 576ï¿½577, 585 overriding in subclass, 365 Accessor method, 32 acos method, module Math, 562, 738 acosh method, module Math, 562, 738 ActiveRecord class, 388 ActiveRelation (Rails), 63 Ad hoc testing, 176 add method, class ThreadGroup, 710 add_observer method, module Observable, 780 add_trace_func method, class Thread, 705 advise method, class IO, 543 AF_INET class, 764 Alias, 44, 200, 308, 330 alias_method method class Module, 579 class Object, 398
 
 aliases method, class Encoding, 240, 462
 alive? method class Fiber, 755 class Thread, 705
@@ -33155,19 +33161,19 @@ APOP authentication, 776
 append_features method, class Module, 580
 arg method class Complex, 452 class Numeric, 593
 ARGF constant, 28, 213, 315
-Argument, method, 115­116
+Argument, method, 115ï¿½116
 ArgumentError exception, 341
-ARGV constant, 28, 211­212, 315, 618, 761, 784
+ARGV constant, 28, 211ï¿½212, 315, 618, 761, 784
 Arithmetic, 768, 794
 Arithmetic operations method class Bignum, 444 class Complex, 452 class Fixnum, 510 class Float, 513 class Rational, 656
 arity method class Method, 565 class Proc, 634 class UnboundMethod, 726
 Array creating, 45 expanding as method parameter, 120, 327 indexing, 46 literal, 20, 302 method argument, 325
 Array class, 350, 421 &, 422 *, 422 +, 422 -, 422 <<, 423 <=>, 423 ==, 423 [ ], 46
 
-Index · 835
+Index ï¿½ 835
 [ ], 421, 423 [ ]=, 46, 424 |, 424 assoc, 424 at, 424 bsearch, 425 collect!, 425 combination, 425 compact, 426 compact!, 426 concat, 426 count, 426 cycle, 426, 468 delete, 427 delete_at, 427 delete_if, 427 each, 427 each_index, 427 empty?, 428 eql?, 428 fetch, 428 fill, 428 find_index, 429 first, 47 flatten, 429 flatten!, 429, 526 frozen?, 429 index, 429 insert, 431 join, 431 keep_if, 431 last, 47, 431 length, 431 map!, 431 new, 421 pack, 157, 432 permutation, 432 pop, 47, 432 product, 433 push, 47, 433 rassoc, 433 reject!, 433 repeated_combination, 433 repeated_permutation, 434 replace, 434 reverse, 434 reverse!, 434 reverse_each, 434 rindex, 435 rotate, 435 rotate!, 435 sample, 435 scanf, 802 select!, 435 shift, 47, 435 shuffle, 436 shuffle!, 436 size, 436 slice, 436 slice!, 436 sort!, 437 sort_by!, 437 to_a, 437 to_ary, 437
 
-Index · 836
+Index ï¿½ 836
 
 to_s, 437 transpose, 437 try_convert, 422 uniq, 438 uniq!, 438 unshift, 47, 438 values_at, 438
 Array method, class Object, 610
@@ -33190,7 +33196,7 @@ atan2 method, module Math, 562, 738
 atanh method, module Math, 562, 738
 atime method class File, 489, 500 class File::Stat, 503
 attr method, 333 class Module, 580
-attr_accessor method, 35, 333, 365, 372­373 class Module, 580 writing own, 374
+attr_accessor method, 35, 333, 365, 372ï¿½373 class Module, 580 writing own, 374
 attr_reader method, 33, 333 class Module, 580
 attr_writer method, 333 class Module, 581
 Attribute, 32 assignment, 198, 330 defining special accessors, 374 virtual, 35 writable, 34
@@ -33207,7 +33213,7 @@ B
 \B (in pattern), 304
 \b (in pattern), 304
 b method, class String, 670
-Backreferences (in regular expressions), 102, 104­105, 305, 330
+Backreferences (in regular expressions), 102, 104ï¿½105, 305, 330
 backtrace method class Exception, 483 class Thread, 705
 backtrace_locations method, class Thread, 706
 Backtracking (regular expression), 106
@@ -33247,7 +33253,7 @@ binwrite method, class IO, 537
 Bit operations method class Bignum, 444 class Fixnum, 510
 blksize method, class File::Stat, 503
 
-Index · 837
+Index ï¿½ 837
 
 Block, 25, 52, 335 break and next, 337 calling, 337 as closure, 66 creating object from, 336 and files, 154 fork, popen, and subprocess, 173, 540, 620, 782 as iterator, 54 with method, 396 as parameter to method, 117, 326, 328 parameters, 26 return from, 338 as transaction, 63 variable scope, 53, 142, 164, 310
 block_given? method, class Object, 64, 328, 613
@@ -33274,7 +33280,7 @@ C
 -c (Ruby option), 210
 -C directory (Ruby option), 210
 call method class Method, 396, 566 class Proc, 65, 634
-:call-seq: (RDoc), 269­270
+:call-seq: (RDoc), 269ï¿½270
 callcc method, class Object, 739
 __callee__ method, class Object, 313, 401, 610
 caller method, class Object, 150, 401, 613
@@ -33295,7 +33301,7 @@ cbrt method, module Math, 562
 ceil method class Float, 514 class Integer, 532 class Numeric, 593 class Rational, 657
 center method, class String, 671
 CGI class, 277, 735 cookies, 284 has_key?, 280 params, 279
-CGI programming, 277­287 cookies, 284 embedding Ruby (erb), 282 forms, 279 generate HTML, 280 query parameters, 278 quoting, 278 session, 285 WEBrick, 286
+CGI programming, 277ï¿½287 cookies, 284 embedding Ruby (erb), 282 forms, 279 generate HTML, 280 query parameters, 278 quoting, 278 session, 285 WEBrick, 286
 CGI::Session class, 737
 change_privilege method module Process::GID, 643 module Process::UID, 648
 changed method, module Observable, 780
@@ -33327,11 +33333,11 @@ class_variable_set method, class Module, 571
 class_variables method, class Module, 572
 Classes ActiveRecord, 388
 
-Index · 838
+Index ï¿½ 838
 
-AF_INET, 764 Array, 350, 421 BasicObject, 71, 358, 387 BasicSocket, 153, 807 BigDecimal, 35, 734 Bignum, 83, 444, 510, 734, 768 Binding, 316, 447 CGI, 277, 735 CGI::Session, 737 Class, 357, 448 Complex, 300, 451, 738, 768 Continuation, 739 CSV, 38, 741 CSV::Row, 741 Date, 712, 744 DateTime, 744 DBM, 745 Delegator, 746 Dir, 456, 787 DRb, 748 Encoding, 240, 462, 675 Enumerator, 57, 85, 351, 477, 609 Enumerator::Lazy, 61 Enumerator::Yielder, 477 Exception, 145, 339, 483 FalseClass, 486 Fiber, 162, 487, 755 File, 153, 488, 509, 539, 787 File::Stat, 503 Fixnum, 83, 510, 768 Float, 84, 513 GetoptLong, 761 GServer, 762 Hash, 351, 521 Integer, 351, 532, 768 IO, 153, 351, 536, 753, 802, 807­
+AF_INET, 764 Array, 350, 421 BasicObject, 71, 358, 387 BasicSocket, 153, 807 BigDecimal, 35, 734 Bignum, 83, 444, 510, 734, 768 Binding, 316, 447 CGI, 277, 735 CGI::Session, 737 Class, 357, 448 Complex, 300, 451, 738, 768 Continuation, 739 CSV, 38, 741 CSV::Row, 741 Date, 712, 744 DateTime, 744 DBM, 745 Delegator, 746 Dir, 456, 787 DRb, 748 Encoding, 240, 462, 675 Enumerator, 57, 85, 351, 477, 609 Enumerator::Lazy, 61 Enumerator::Yielder, 477 Exception, 145, 339, 483 FalseClass, 486 Fiber, 162, 487, 755 File, 153, 488, 509, 539, 787 File::Stat, 503 Fixnum, 83, 510, 768 Float, 84, 513 GetoptLong, 761 GServer, 762 Hash, 351, 521 Integer, 351, 532, 768 IO, 153, 351, 536, 753, 802, 807ï¿½
 808 IPAddr, 764 IPSocket, 807 JSON, 766 Logger, 767 MatchData, 97, 102, 559, 659,
-662, 668 Matrix, 769 Method, 396, 565, 581, 600, 726 MiniTest::Unit, 769 Module, 568 Monitor, 770, 813 Mutex, 168, 588, 771 Net::FTP, 772 Net::HTTP, 773, 822 Net::IMAP, 775 Net::POP3, 776 Net::SMTP, 777 Net::Telnet, 778 NilClass, 589 Numeric, 591 Object, 70, 391, 599 OpenStruct, 386, 693, 786 Pathname, 787 PP, 788 PrettyPrint, 621, 788­789 Proc, 64, 118, 336, 351, 567, 581,
+662, 668 Matrix, 769 Method, 396, 565, 581, 600, 726 MiniTest::Unit, 769 Module, 568 Monitor, 770, 813 Mutex, 168, 588, 771 Net::FTP, 772 Net::HTTP, 773, 822 Net::IMAP, 775 Net::POP3, 776 Net::SMTP, 777 Net::Telnet, 778 NilClass, 589 Numeric, 591 Object, 70, 391, 599 OpenStruct, 386, 693, 786 Pathname, 787 PP, 788 PrettyPrint, 621, 788ï¿½789 Proc, 64, 118, 336, 351, 567, 581,
 600, 633
 
 Process::Status, 173, 642, 644 PStore, 793 Pysch, 827 Queue, 170, 813 Random, 655 Range, 302, 650 Rational, 300, 656, 768, 794 Regexp, 96, 351, 659 RubyVM, 402 SDBM, 803 Set, 422, 424, 804 SimpleDelegator, 746 SizedQueue, 813 Socket, 807 SOCKSSocket, 807 String, 86, 88, 300, 351, 666, 802 StringIO, 158, 808 StringScanner, 809 Struct, 377, 379, 693 Struct::Tms, 697 Symbol, 352, 679, 698 Syslog, 810 TCPSocket, 807 Tempfile, 811 Test::Unit, 812 Thread, 702 ThreadGroup, 706, 710 ThreadsWait, 814 Time, 488, 712, 815 Tk, 817 TracePoint, 400, 722 TrueClass, 725 UDPSocket, 807 UnboundMethod, 396, 565, 567,
@@ -33350,7 +33356,7 @@ Code coverage, 204, 740
 Code profiler, 202
 codepoints method class IO, 545 class String, 673
 
-Coding system (ASCII, EUC, SJIS, UTF-8), 239­251, 779
+Coding system (ASCII, EUC, SJIS, UTF-8), 239ï¿½251, 779
 coerce method, 353 class Numeric, 353, 594
 Coercion, 352
 collect method, module Enumerable, 56, 467
@@ -33360,7 +33366,7 @@ combination method, class Array, 425
 Comma-separated data, 741
 Command (type of method), 119
 Command expansion, 128
-Command line, 3, 155, 209 arguments, 28, 212 editing with readline, 795 options, 210­212 parsing, 761, 784, 805
+Command line, 3, 155, 209 arguments, 28, 212 editing with readline, 795 options, 210ï¿½212 parsing, 761, 784, 805
 Comment, 297 for RDoc, 264 regular expression, 105, 305
 compact method, class Array, 426
 compact! method, class Array, 426
@@ -33374,7 +33380,7 @@ compile method, class Regexp, 659
 Completion, tab, 254
 Complex class, 300, 451, 738, 768 *, 452 **, 452 +, 452 +@, 452 -, 452 -@, 452 /, 452 ==, 452 abs, 452 abs2, 452 angle, 452 arg, 452
 
-Index · 839
+Index ï¿½ 839
 
 Arithmetic operations, 452 conj, 452 conjugate, 453 denominator, 453 eql?, 453 fdiv, 453 imag, 453 imaginary, 453 magnitude, 453 numerator, 454 phase, 454 polar, 451, 454 quo, 454 rationalize, 454 real, 455 real?, 455 rect, 451, 454 rectangular, 451, 455 to_f, 455 to_i, 455 to_r, 455 transcendental functions, 738
 Complex method, 84 class Object, 611
@@ -33391,9 +33397,9 @@ const_get method, class Module, 572
 const_missing method, class Module, 572
 const_set method, class Module, 573
 Constant, 308 class name, 306 listing in module, 395 name, 306 scope, 308
-Constants __ENCODING__, 242, 313 __FILE__, 314, 316, 401 __LINE__, 314 ARGF, 28, 213, 315 ARGV, 28, 211­212, 315, 618, 761, 784 DATA, 298, 315 Errno, 148 FALSE, 315
+Constants __ENCODING__, 242, 313 __FILE__, 314, 316, 401 __LINE__, 314 ARGF, 28, 213, 315 ARGV, 28, 211ï¿½212, 315, 618, 761, 784 DATA, 298, 315 Errno, 148 FALSE, 315
 
-false, 132, 315, 319 File::NULL, 488 NIL, 315 nil, 20, 132, 315, 319 RUBY_COPYRIGHT, 315 RUBY_DESCRIPTION, 315 RUBY_ENGINE, 315 RUBY_PATCHLEVEL, 315 RUBY_PLATFORM, 315 RUBY_RELEASE_DATE, 316 RUBY_REVISION, 316 RUBY_VERSION, 316 SCRIPT_LINES__, 316, 402 STDERR, 316 STDIN, 316, 620 STDOUT, 316, 620­621 TOPLEVEL_BINDING, 316 TRUE, 316 true, 132, 315, 319
+false, 132, 315, 319 File::NULL, 488 NIL, 315 nil, 20, 132, 315, 319 RUBY_COPYRIGHT, 315 RUBY_DESCRIPTION, 315 RUBY_ENGINE, 315 RUBY_PATCHLEVEL, 315 RUBY_PLATFORM, 315 RUBY_RELEASE_DATE, 316 RUBY_REVISION, 316 RUBY_VERSION, 316 SCRIPT_LINES__, 316, 402 STDERR, 316 STDIN, 316, 620 STDOUT, 316, 620ï¿½621 TOPLEVEL_BINDING, 316 TRUE, 316 true, 132, 315, 319
 constants method, class Module, 568, 573
 Constructor, 16, 30 initialize method, 618
 Contact, authors' email, xii
@@ -33409,7 +33415,7 @@ Coordinated Universal Time, 712
 copy_stream method, class IO, 537
 --copyright (Ruby option), 210
 coredump? method, class Process::Status, 645
-Coroutine, 161­162
+Coroutine, 161ï¿½162
 cos method, module Math, 562, 738
 cosh method, module Math, 563, 738
 count method class Array, 426 class String, 673 module Enumerable, 467 module GC, 517
@@ -33427,7 +33433,7 @@ class File, 490, 501 class File::Stat, 504 class Time, 714 Current directory, 45
 D
 \D (in pattern), 304 \d (in pattern), 304 -d, --debug (Ruby option), 165, 210,
 313, 557 daemon method, module Process, 637 DATA constant, 298, 315 Date class, 712, 744, see also Time
-class DateTime class, 744 Davis, Ryan, 176­177 day method, class Time, 714 day-name? method, class Time, 714 DBM class, 745 Debug mode, 165, 210 $DEBUG variable, 210, 313, 702, 706 Debugger, 195
+class DateTime class, 744 Davis, Ryan, 176ï¿½177 day method, class Time, 714 day-name? method, class Time, 714 DBM class, 745 Debug mode, 165, 210 $DEBUG variable, 210, 313, 702, 706 Debugger, 195
 commands, 205 Decimal notation, 83, 299 default method, class Hash, 524 Default parameters, 116, 325 Default rake task, 224 Default value, hash, 521 default= method, class Hash, 524 default_external method, class Encod-
 ing, 464 default_external= method, class Encod-
 ing, 464 default_internal method, class Encod-
@@ -33435,7 +33441,7 @@ ing, 251, 464 default_internal= method, class Encod-
 ing, 464 default_proc method, class Hash, 524 default_proc= method, class Hash, 524 $deferr, $defout variable, 313 define_finalizer method, module Ob-
 jectSpace, 632
 
-Index · 840
+Index ï¿½ 840
 
 define_method method class Module, 336, 339, 373, 387, 581 class Object, 615
 define_singleton_method method, class Object, 600
@@ -33502,7 +33508,7 @@ drop method, module Enumerable, 468
 drop_while method, module Enumerable, 468
 dst? method, class Time, 715
 DTD, 796
-Duck typing, 343­355
+Duck typing, 343ï¿½355
 dummy? method, class Encoding, 465
 --dump (Ruby option), 210, 557
 dump method class String, 674 module Marshal, 404, 558
@@ -33511,13 +33517,13 @@ Dynamic compilation, 615 linking, 756 method invocation, 396
 E
 -e 'command' (Ruby option), 211
 -E encoding (Ruby option), 211
--E encoding (Ruby option), 249­250
+-E encoding (Ruby option), 249ï¿½250
 each method, 55, 477 class Array, 427 class Dir, 459 class Enumerator, 478 class Hash, 525 class IO, 545 class Range, 652 class Struct, 695 module Enumerable, 55, 466
 each_byte method class IO, 155, 546 class String, 674
 each_char method class IO, 546 class String, 674
 each_codepoint method class IO, 546 class String, 675
 
-Index · 841
+Index ï¿½ 841
 
 each_cons method, module Enumerable, 468
 each_entry method, module Enumerable, 468
@@ -33528,7 +33534,7 @@ each_object method, module ObjectSpace, 393, 395, 632
 each_pair method class Hash, 525 class Struct, 695
 each_slice method, module Enumerable, 469
 each_value method, class Hash, 525
-each_with_index method class Enumerator, 59, 478 module Enumerable, 58­59, 469
+each_with_index method class Enumerator, 59, 478 module Enumerable, 58ï¿½59, 469
 each_with_object method class Enumerator, 479 module Enumerable, 469
 Echo (console), 762
 echo= method, class IO, 762
@@ -33542,7 +33548,7 @@ eid= method module Process::GID, 644 module Process::UID, 649
 Element reference ([ ]), 330
 else with case, 321 and exceptions, 149, 340 with if, 321
 elsif, 321
-Emacs, 197­198 and encoding, 242 key binding in readline, 795
+Emacs, 197ï¿½198 and encoding, 242 key binding in readline, 795
 Email address for feedback, xii date/time formats, 815 fetching with IMAP, 775 fetching with POP, 776 sending with SMTP, 777
 Embedded documentation, 263, 298
 empty? method class Array, 428 class Hash, 526 class String, 675 class Symbol, 699
@@ -33556,7 +33562,7 @@ enclose method, class ThreadGroup, 711
 enclosed? method, class ThreadGroup, 711
 encode method, class String, 245, 675
 encode! method, class String, 676
-Encoding, 239­251 character, 779 compatibility, 249 default external, 248 default internal, 250 8-bit clean, 244, 248 external, 246 internal, 246 listing known, 240 literal, 243 in mode string, 494 regular expression, 97 regular expression, string, and symbol, 243 setting using comment, 241 source file, 240, 244, 297 transcoding, 245, 247, 250 Unicode literal, 243
+Encoding, 239ï¿½251 character, 779 compatibility, 249 default external, 248 default internal, 250 8-bit clean, 244, 248 external, 246 internal, 246 listing known, 240 literal, 243 in mode string, 494 regular expression, 97 regular expression, string, and symbol, 243 setting using comment, 241 source file, 240, 244, 297 transcoding, 245, 247, 250 Unicode literal, 243
 encoding: option (file open), 495
 Encoding class, 240, 462, 675 aliases, 240, 462 ascii_compatible?, 465 compatible?, 462 default_external, 464 default_external=, 464 default_internal, 251, 464 default_internal=, 464 dummy?, 465 find, 464 list, 240, 464 locale_charmap, 464 name, 465 name_list, 464 names, 465 replicate, 465
 encoding method class Regexp, 661 class String, 676 class Symbol, 700
@@ -33573,9 +33579,9 @@ English names for $ variables, 311, 749
 ensure (exceptions), 148, 340
 entries method class Dir, 457 module Enumerable, 470
 enum_for method, class Object, 57, 477, 601
-Enumerable module, 77, 466 all?, 466 any?, 466 chunk, 466 collect, 56, 467 collect_concat, 467 convert to Set, 804 count, 467 cycle, 467 detect, 468 drop, 468 drop_while, 468 each, 55, 466 each_cons, 468 each_entry, 468 each_slice, 469 each_with_index, 58­59, 469 each_with_object, 469 entries, 470 find, 470 find_all, 470 find_index, 470 first, 470 flat_map, 470 grep, 470 group_by, 471 include?, 471 inject, 57, 471, 474 lazy, 472 map, 56, 472 max, 472 max_by, 472 member?, 472 min, 472 min_by, 473 minmax, 473 minmax_by, 473 none?, 473 one?, 473 partition, 473 reduce, 474 reject, 433, 474 reverse_each, 474 select, 474 slice_before, 474 sort, 475 sort_by, 475
+Enumerable module, 77, 466 all?, 466 any?, 466 chunk, 466 collect, 56, 467 collect_concat, 467 convert to Set, 804 count, 467 cycle, 467 detect, 468 drop, 468 drop_while, 468 each, 55, 466 each_cons, 468 each_entry, 468 each_slice, 469 each_with_index, 58ï¿½59, 469 each_with_object, 469 entries, 470 find, 470 find_all, 470 find_index, 470 first, 470 flat_map, 470 grep, 470 group_by, 471 include?, 471 inject, 57, 471, 474 lazy, 472 map, 56, 472 max, 472 max_by, 472 member?, 472 min, 472 min_by, 473 minmax, 473 minmax_by, 473 none?, 473 one?, 473 partition, 473 reduce, 474 reject, 433, 474 reverse_each, 474 select, 474 slice_before, 474 sort, 475 sort_by, 475
 
-Index · 842
+Index ï¿½ 842
 
 take, 476 take_while, 476 to_a, 476 with_index, 56, 59 zip, 476
 Enumerator, lazy, 61
@@ -33583,7 +33589,7 @@ Enumerator class, 57, 85, 351, 477, 609 each, 478 each_with_index, 59, 478 each_
 Enumerator::Lazy class, 61
 Enumerator::Yielder class, 477
 ENV variable, 214, 315
-Environment variables, 214 COMSPEC, 215, 615 DLN_LIBRARY_PATH, 215 HOME, 215, 456, 491 LANG, 249 LOGDIR, 215, 456 OPENSSL_CONF, 215 PATH, 212 POSIXLY_CORRECT, 761 RI, 13 RUBY_FIBER_MACHINE_STACK_SIZE, 215 RUBY_FIBER_VM_STACK_SIZE, 215 RUBY_TCL_DLL, 215 RUBY_THREAD_MACHINE_STACK_SIZE, 215 RUBY_THREAD_VM_STACK_SIZE, 215 RUBY_TK_DLL, 215 RUBYLIB, 215­216, 412 RUBYLIB_PREFIX, 215 RUBYOPT, 210, 215, 412 RUBYPATH, 212, 215 RUBYSHELL, 215, 615 SHELL, 215 unsetting, 216
+Environment variables, 214 COMSPEC, 215, 615 DLN_LIBRARY_PATH, 215 HOME, 215, 456, 491 LANG, 249 LOGDIR, 215, 456 OPENSSL_CONF, 215 PATH, 212 POSIXLY_CORRECT, 761 RI, 13 RUBY_FIBER_MACHINE_STACK_SIZE, 215 RUBY_FIBER_VM_STACK_SIZE, 215 RUBY_TCL_DLL, 215 RUBY_THREAD_MACHINE_STACK_SIZE, 215 RUBY_THREAD_VM_STACK_SIZE, 215 RUBY_TK_DLL, 215 RUBYLIB, 215ï¿½216, 412 RUBYLIB_PREFIX, 215 RUBYOPT, 210, 215, 412 RUBYPATH, 212, 215 RUBYSHELL, 215, 615 SHELL, 215 unsetting, 216
 eof method, class IO, 546
 eof? method, class IO, 547
 EOFError exception, 552
@@ -33592,12 +33598,12 @@ eql? method, 134, 523 class Array, 428 class Bignum, 445 class Complex, 453 clas
 
 class Object, 601 class Range, 652 class String, 677
 equal? method, 134 class BasicObject, 440
-erb, 282­284, 750
+erb, 282ï¿½284, 750
 ERB::Util module, 751
 erf method, module Math, 563
 erfc method, module Math, 563
 Errno constant, 148
-Errno module, 148, 482­483
+Errno module, 148, 482ï¿½483
 Errors in book, reporting, xii
 escape method, class Regexp, 659
 Etc module, 752
@@ -33608,9 +33614,9 @@ eval method class Binding, 447 class Object, 397, 447, 615
 even? method class Fixnum, 511 class Integer, 532
 event method, class TracePoint, 723
 Example code, download, 9
-Exception, 145­152, 339 handling, 147 hierarchy, 146 raising, 150, 622 stored in $!, 311 testing, 179 in thread, 165, 702
-Exception class, 145, 339, 483 ==, 483 backtrace, 483 exception, 483­484 message, 484 new, 483 set_backtrace, 484 status, 484 success?, 484 to_s, 485
-exception method, class Exception, 483­484
+Exception, 145ï¿½152, 339 handling, 147 hierarchy, 146 raising, 150, 622 stored in $!, 311 testing, 179 in thread, 165, 702
+Exception class, 145, 339, 483 ==, 483 backtrace, 483 exception, 483ï¿½484 message, 484 new, 483 set_backtrace, 484 status, 484 success?, 484 to_s, 485
+exception method, class Exception, 483ï¿½484
 Exceptions ArgumentError, 341 EOFError, 552 FaultException, 826 FiberError, 162 IndexError, 428, 669 LocalJumpError, 338 NameError, 385 NoMethodError, 326, 385 RangeError, 669 RuntimeError, 44, 150, 339 SecurityError, 409 StandardError, 145, 148, 340 StopIteration, 58, 479, 620 SystemCallError, 148, 482, 616
 
 SystemExit, 214, 484, 616 ThreadError, 338, 588 Timeout::Error, 816 TypeError, 404, 611, 668 WeakRef::RefError, 823
@@ -33630,7 +33636,7 @@ exp method, module Math, 563, 738
 expand_path method, class File, 491
 expect method, class IO, 753, 794
 $expect_verbose variable, 753
-Expression, 125­143, 316­323 boolean, 132, 319 case, 136, 321 if, 135, 321 range as boolean, 134 substitution in string, 300 ternary, 136, 321
+Expression, 125ï¿½143, 316ï¿½323 boolean, 132, 319 case, 136, 321 if, 135, 321 range as boolean, 134 substitution in string, 300 ternary, 136, 321
 extend method, class Object, 368, 601
 Extend Ruby, documentation (RDoc), 269
 extend_object method, class Module, 582
@@ -33638,7 +33644,7 @@ extended method, class Module, 582
 Extended mode (regexp), 97
 External iterator, 57
 
-Index · 843
+Index ï¿½ 843
 
 --external-encoding=encoding (Ruby option), 211
 external_encoding method, class IO, 247, 547
@@ -33661,13 +33667,13 @@ feed method, class Enumerator, 479
 Feedback, email address, xii
 fetch method class Array, 428 class Hash, 526
 ffi, 756
-Fiber class, 162, 487, 755 alive?, 755 coroutine, 161­162 current, 755 new, 487 resume, 162, 487 transfer, 163, 755 yield, 162, 487
+Fiber class, 162, 487, 755 alive?, 755 coroutine, 161ï¿½162 current, 755 new, 487 resume, 162, 487 transfer, 163, 755 yield, 162, 487
 FiberError exception, 162
 Fibonacci series, 55
 Fiddle library, 756
 File associations under Windows, 289 and blocks, 154 descriptor, 542 directory traversal, 758 encoding of data, 246 expanding names, 488, 491 FNM_xxx filename match constants, 491 including source, 211, 216
 
-lock modes, 501 match modes, 491 modes, 494 open modes, 494 opening, 153 owner, 489, 501, 505, 507­508 path name, 536, 787 permission, 488, 499 reading, 154 temporary, 811 tests, 628 writing, 157
+lock modes, 501 match modes, 491 modes, 494 open modes, 494 opening, 153 owner, 489, 501, 505, 507ï¿½508 path name, 536, 787 permission, 488, 499 reading, 154 temporary, 811 tests, 628 writing, 157
 File class, 153, 488, 509, 539, 787 absolute_path, 488 atime, 489, 500 basename, 489 blockdev?, 489 chardev?, 489 chmod, 489, 500 chown, 489, 501 ctime, 490, 501 delete, 490 directory?, 490 dirname, 490 executable?, 490 executable_real?, 490 exist?, 490 exists?, 490 expand_path, 491 extname, 491 file?, 491 flock, 501 fnmatch, 458, 491 fnmatch?, 492 ftype, 492 grpowned?, 492 identical?, 493 join, 493 lchmod, 493 lchown, 493 link, 493 lstat, 493, 501 mtime, 494, 501 new, 153, 494 open, 64, 154, 351 owned?, 496 path, 496, 502 pipe?, 496 readable?, 496 readable_real?, 496 readlink, 497 realdirpath, 497 realpath, 497 rename, 497 setgid?, 497 setuid?, 498 size, 498, 502 size?, 498 socket?, 498 split, 498 stat, 498 sticky?, 498 symlink, 499
 
 symlink?, 499 to_path, 502 truncate, 499, 502 umask, 499 unlink, 499 utime, 499 world_readable?, 500 world_writable?, 500 writable?, 500 writable_real?, 500 zero?, 500
@@ -33680,7 +33686,7 @@ FileTest module, 509, 787
 FileUtils module, 222, 757, 821
 fill method, class Array, 428
 
-Index · 844
+Index ï¿½ 844
 
 Financial calculations, 35
 find method class Encoding, 464 module Enumerable, 470
@@ -33709,7 +33715,7 @@ for_fd method, class IO, 537
 
 force_encoding method, class String, 246, 677
 foreach method class Dir, 457 class IO, 156, 538
-fork method class Object, 172­173, 617 class Thread, 703 module Process, 638
+fork method class Object, 172ï¿½173, 617 class Thread, 703 module Process, 638
 format method, class Object, 617
 Forms (Web), 279
 Fortran, documentation, 263
@@ -33736,7 +33742,7 @@ gdbm, 745, 760
 Gelernter, David, 798
 gem server, 219
 
-Index · 845
+Index ï¿½ 845
 
 gem method, class Object, 617 gem server, 236 gem_original_require method, class
 Object, 617 gem_server, 218 GemCutter.org, 829 Gemspec, 234 gemspec, 234 General delimited string, 298 Generator library, 730 get method, 773 getbyte method
@@ -33767,7 +33773,7 @@ has_key? method class CGI, 280 class Hash, 526
 has_many method, 372
 has_value? method, class Hash, 527
 Hash, 47 => and : in literals, 48, 302 creating, 48 default value, 21 functions, 747 indexing, 48 key requirements, 302 literal, 21, 302 as method parameter, 122, 327 symbol as keys, 22
-Hash class, 351, 521 ==, 522 [ ], 521­522 [ ]=, 523 assoc, 523 clear, 523 compare_by_identity, 523 compare_by_identity?, 523 default, 524 default=, 524 default_proc, 524 default_proc=, 524 delete, 525
+Hash class, 351, 521 ==, 522 [ ], 521ï¿½522 [ ]=, 523 assoc, 523 clear, 523 compare_by_identity, 523 compare_by_identity?, 523 default, 524 default=, 524 default_proc, 524 default_proc=, 524 delete, 525
 
 delete_if, 525 each, 525 each_key, 525 each_pair, 525 each_value, 525 empty?, 526 fetch, 526 flatten, 526 has_key?, 526 has_value?, 527 include?, 527 index, 527 invert, 527 keep_if, 527 key, 527 key?, 527 keys, 528 length, 528 member?, 528 merge, 528 merge!, 528 new, 521 rassoc, 528 rehash, 303, 529 reject, 529 reject!, 529 replace, 529 select, 529 select!, 529 shift, 530 size, 530 sort, 530 sort_by, 49 store, 530 to_a, 530 to_h, 530 to_hash, 530 to_s, 530 try_convert, 522 update, 531 value?, 531 values, 531 values_at, 531
 Hash functions, 747
@@ -33783,11 +33789,11 @@ Hodel, Eric, 177
 Hokstad, Vidar, 280
 HOME (environment variable), 215, 456, 491
 home method, class Dir, 458
-Hook methods, 383­388, 398
+Hook methods, 383ï¿½388, 398
 hour method, class Time, 716
 Howard, Ara T., 794
 
-Index · 846
+Index ï¿½ 846
 
 HTML generate with Builder, 280 parsing, 159
 HTML documentation with RDoc, 263
@@ -33839,8 +33845,8 @@ Interpreter, 402 running, 209
 "Invalid multibyte char" error, 242
 Inverse, matrix, 769
 invert method, class Hash, 527
-I/O, 153­160 binary data, 157 buffering problems, 200 encoding, 246 nonblocking (nowait), 763
-IO class, 153, 351, 536, 753, 802, 807­ 808 <<, 157, 543 advise, 543 autoclose=, 543 autoclose?, 543 binmode, 543 binmode?, 544 binread, 537 binwrite, 537 bytes, 544, 548, 551
+I/O, 153ï¿½160 binary data, 157 buffering problems, 200 encoding, 246 nonblocking (nowait), 763
+IO class, 153, 351, 536, 753, 802, 807ï¿½ 808 <<, 157, 543 advise, 543 autoclose=, 543 autoclose?, 543 binmode, 543 binmode?, 544 binread, 537 binwrite, 537 bytes, 544, 548, 551
 
 chars, 544 chr, 155 close, 544 close_on_exec=, 544 close_on_exec?, 544 close_read, 544 close_write, 545 closed?, 545 codepoints, 545 copy_stream, 537 each, 545 each_byte, 155, 546 each_char, 546 each_codepoint, 546 each_line, 156, 546 echo=, 762 echo?, 762 eof, 546 eof?, 547 expect, 753, 794 external_encoding, 247, 547 fcntl, 547 fdatasync, 547 fileno, 547 flush, 547 for_fd, 537 foreach, 156, 538 fsync, 547 getbyte, 544, 548 getc, 548 getch, 762 gets, 548 iflush, 762 internal_encoding, 548 ioctl, 548 ioflush, 762 isatty, 549 lineno, 549 lineno=, 549 lines, 549 new, 494, 538 noecho, 762 nonblock, 763 nonblock=, 763 nonblock?, 763 nread, 763 oflush, 762 open, 351, 539 pid, 549 pipe, 172, 540 popen, 171, 540 pos, 550 pos=, 550 print, 550 printf, 550 putc, 550 puts, 551 raw, 762 raw!, 762 read, 541, 551 read_nonblock, 553 readbyte, 551 readchar, 551 readline, 551
 
@@ -33853,8 +33859,8 @@ ioflush method, class IO, 762
 IP address representation, 764
 IPAddr class, 764
 IPSocket class, 807
-irb, 10, 196, 253­262 command-line options, 255 commands, 260 configuration, 258 embedding, 765 extending, 258 load files into, 254 prompt, 257, 261 subsession, 256 tab completion, 254
-.irbrc, _irbrc, irb.rc, $irbrc, 256­257
+irb, 10, 196, 253ï¿½262 command-line options, 255 commands, 260 configuration, 258 embedding, 765 extending, 258 load files into, 254 prompt, 257, 261 subsession, 256 tab completion, 254
+.irbrc, _irbrc, irb.rc, $irbrc, 256ï¿½257
 is_a? method, class Object, 604
 isatty method, class IO, 549
 isdst method, class Time, 716
@@ -33863,7 +33869,7 @@ issetugid method, module Process::Sys, 647
 Iterator, 25, 54, 139 external, internal, 57 for reading files, 155
 iterator? method, class Object, 619
 
-Index · 847
+Index ï¿½ 847
 J
 j method, 766 Jacquard loom, 357 jcode library, 730 Jeweler (gem generator), 237 JIS, 779 join method
 class Array, 431 class File, 493 class Thread, 164, 706 JRuby, 6, 9 JSON class, 766
@@ -33876,7 +33882,7 @@ class Object, 65, 337, 339, 619, 635
 vs. Proc.new, 337 lambda? method, class Proc, 635 LANG (environment variable), 249 last method
 class Array, 47, 431 class Range, 653 last_match method, class Regexp, 659 last_modified method, 781 Lavena, Luis, 5 Layout, source code, 297 Lazy enumeration, see Enumerator, lazy Lazy evaluation of values, 59
 
-Index · 848
+Index ï¿½ 848
 
 lazy method class Enumerator, 61 module Enumerable, 472
 Lazy patterns, 100
@@ -33888,7 +33894,7 @@ Leap seconds, 717
 length method class Array, 431 class Hash, 528 class MatchData, 560 class String, 679 class Struct, 696 class Symbol, 700
 lgamma method, module Math, 563
 libffi, 756
-Library, standard, 729­829
+Library, standard, 729ï¿½829
 libyaml, 827
 Line continuation, 297
 lineno method class IO, 549 class TracePoint, 724
@@ -33901,7 +33907,7 @@ list method class Encoding, 240, 464 class Thread, 703 class ThreadGroup, 711 mo
 Literal array, 302 ASCII, 88, 300 Bignum, 83, 299 character, 88, 300 Fixnum, 83, 299 Float, 84, 299 hash, 302 range, 90, 302 regular expression, 94, 303 String, 86, 300 symbol, 21, 303
 ljust method, class String, 680
 _load, 557
-load method, 76 class Object, 216, 313, 410, 619 module Marshal, 404­405, 558
+load method, 76 class Object, 216, 313, 410, 619 module Marshal, 404ï¿½405, 558
 $LOAD_PATH variable, 185, 211, 255, 314
 $LOADED_FEATURES variable, 314
 local method, class Time, 713
@@ -33909,12 +33915,12 @@ local method, class Time, 713
 local_variables method, class Object, 619
 locale_charmap method, class Encoding, 464
 LocalJumpError exception, 338 localtime method, class Time, 716 lock method, class Mutex, 588 locked? method, class Mutex, 588 Locking (file with flock), 501 log method, module Math, 564, 738 log10 method, module Math, 564, 738 log2 method, module Math, 564 LOGDIR (environment variable), 215,
-456 Logger (syslog), 810 Logger class, 767 Look ahead and behind, 106 Loop, 532, 534­535, 598 loop method, 140, 322
+456 Logger (syslog), 810 Logger class, 767 Look ahead and behind, 106 Loop, 532, 534ï¿½535, 598 loop method, 140, 322
 class Object, 58, 140, 619 lstat method, class File, 493, 501 lstrip method, class String, 680 lstrip! method, class String, 680 Lvalue, 128, 317
 M
 /m regexp option, 97 Magic comment (set encoding us-
 ing), 241 magnitude method
-class Bignum, 446 class Complex, 453 class Fixnum, 511 class Float, 515 class Numeric, 596 Mailing lists, 830 :main: (RDoc), 269 main method, class Thread, 703 Main program, 390 map method, module Enumerable, 56, 472 map! method, class Array, 431 Marshal module, 403, 557, see also YAML and JSON dump, 404, 558 limitations, 557 load, 404­405, 558 restore, 558 marshal_dump method, 404, 557 marshal_load method, 557 match method class Regexp, 97, 662 class String, 681 class Symbol, 700
+class Bignum, 446 class Complex, 453 class Fixnum, 511 class Float, 515 class Numeric, 596 Mailing lists, 830 :main: (RDoc), 269 main method, class Thread, 703 Main program, 390 map method, module Enumerable, 56, 472 map! method, class Array, 431 Marshal module, 403, 557, see also YAML and JSON dump, 404, 558 limitations, 557 load, 404ï¿½405, 558 restore, 558 marshal_dump method, 404, 557 marshal_load method, 557 match method class Regexp, 97, 662 class String, 681 class Symbol, 700
 
 MatchData class, 97, 102, 559, 659, 662, 668 [ ], 97, 559 begin, 559 captures, 559 end, 560 length, 560 names, 560 offset, 560 post_match, 560 pre_match, 560 regexp, 561 size, 561 string, 561 to_a, 561 to_s, 561 values_at, 561
 Math module, 226, 562, 738 acos, 562, 738 acosh, 562, 738 asin, 562, 738 asinh, 562, 738 atan, 562, 738 atan2, 562, 738 atanh, 562, 738 cbrt, 562 cos, 562, 738 cosh, 563, 738 erf, 563 erfc, 563 exp, 563, 738 frexp, 563 gamma, 563 hypot, 563 ldexp, 563 lgamma, 563 log, 564, 738 log10, 564, 738 log2, 564 sin, 564, 738 sinh, 564, 738 sqrt, 564, 738 tan, 564, 738 tanh, 564, 738
@@ -33930,7 +33936,7 @@ mday method, class Time, 716
 measure method, 258
 member? method class Hash, 528
 
-Index · 849
+Index ï¿½ 849
 
 class Range, 653 module Enumerable, 472
 members method, class Struct, 694, 696
@@ -33942,8 +33948,8 @@ Message box, Windows, 294
 message method, class Exception, 484
 Meta character, 88, 300
 meta method, 781
-Metaprogramming, 357­391 BasicObject, 439
-Method, 115­123 access control, 40, 576­577, 585 aliasing, 330 ambiguity, 80 arguments, 324 array parameter, 120 block as parameter, 117 calling, 118, 327, 358 calling dynamically, 396 class, 362, 369 defining, 115­116, 323 getter, 32 instance, 16 with iterator, 396 keyword argument, 122 module, 74 naming, 19, 115, 323 nested method definition, 324 object, 396, 605­606 as operator, 126 parameters, 115­116 private, 119 renaming, 398 return value, 116, 119, 329 setter, 34 singleton, 360 undefining, 326 vs. variable name, 307 variable-length arguments, 116
+Metaprogramming, 357ï¿½391 BasicObject, 439
+Method, 115ï¿½123 access control, 40, 576ï¿½577, 585 aliasing, 330 ambiguity, 80 arguments, 324 array parameter, 120 block as parameter, 117 calling, 118, 327, 358 calling dynamically, 396 class, 362, 369 defining, 115ï¿½116, 323 getter, 32 instance, 16 with iterator, 396 keyword argument, 122 module, 74 naming, 19, 115, 323 nested method definition, 324 object, 396, 605ï¿½606 as operator, 126 parameters, 115ï¿½116 private, 119 renaming, 398 return value, 116, 119, 329 setter, 34 singleton, 360 undefining, 326 vs. variable name, 307 variable-length arguments, 116
 Method class, 396, 565, 581, 600, 726 ==, 565 [ ], 565 arity, 565 call, 396, 566 eql?, 566 name, 566 owner, 566 parameters, 566 receiver, 567 source_location, 567 to_proc, 567 unbind, 567
 method method, class Object, 565, 605
 
@@ -33956,7 +33962,7 @@ method_removed method, class Module, 583
 method_undefined method, class Module, 584
 methods method, class Object, 394, 605
 Meyer, Bertrand, 36
-Microsoft Windows, 289­294 accessing API, 289 automation, 290, 825 file associations, 289 message box, 294 printing under, 290 running Ruby, 289
+Microsoft Windows, 289ï¿½294 accessing API, 289 automation, 290, 825 file associations, 289 message box, 294 printing under, 290 running Ruby, 289
 min method class Range, 653 class Time, 716 module Enumerable, 472
 min_by method, module Enumerable, 473
 MiniTest::Unit class, 769
@@ -33968,7 +33974,7 @@ mktime method, class Time, 713
 mod_ruby, safe level, 410
 mode: option (file open), 495
 mode method, class File::Stat, 505
-Module, 225­226 constant, 74 defining, 333 function, 334 include, 76 instance variable, 78 load, 76 as mixin, 75, 334, 366 as namespace, 74 naming, 19 require, 76 wrap, 410
+Module, 225ï¿½226 constant, 74 defining, 333 function, 334 include, 76 instance variable, 78 load, 76 as mixin, 75, 334, 366 as namespace, 74 naming, 19 require, 76 wrap, 410
 Module class, 568 <, <=, ==, >, >=, 569 <=>, 570 ===, 570 alias_method, 579
 
 ancestors, 395, 570 append_features, 580 attr, 580 attr_accessor, 580 attr_reader, 580 attr_writer, 581 autoload, 570 autoload?, 571 class_eval, 379, 571, 600 class_exec, 380, 571 class_variable_defined?, 571 class_variable_get, 571 class_variable_set, 571 class_variables, 572 const_defined?, 572 const_get, 572 const_missing, 572 const_set, 573 constants, 568, 573 define_method, 336, 339, 373,
@@ -33976,10 +33982,10 @@ ancestors, 395, 570 append_features, 580 attr, 580 attr_accessor, 580 attr_reade
 module_eval method, class Module, 379, 575
 module_exec method, class Module, 380, 575
 
-Index · 850
+Index ï¿½ 850
 
 module_function method, class Module, 334, 584
-Modules, 73 Abbrev, 731, 795 Anagram, 229 Base64, 732 Benchmark, 201, 258, 397, 733 BigMath, 734 Comparable, 76, 450, 510, 656 Config, 224 Curses, 743 Digest, 747 DL, 294 DRbUndumped, 748 Enumerable, 77, 466 ERB::Util, 751 Errno, 148, 482­483 Etc, 752 Fcntl, 547, 754 FileTest, 509, 787 FileUtils, 222, 757, 821 Find, 758 Forwardable, 759 GC, 517 GC::Profiler, 519 Kernel, 556 Marshal, 403, 557 Math, 226, 562, 738 MonitorMixin, 770 Mutex_m, 771 NKF, 779 ObjectSpace, 631 Observable, 780 Open3, 541, 782 Process, 172, 637, 647 Process::GID, 643, 647 Process::Sys, 647 Process::UID, 647­648 Profile, 202 Profiler, 791 Profiler__, 792 PTY, 794 REXML, 796 Rinda, 798 Ripper, 799 RSS, 801 SecureRandom, 803 Session, 794 Shellwords, 805 Signal, 630, 664 SingleForwardable, 759 Singleton, 806 Timeout, 816 TraceCalls, 389 TSort, 820 XMLRPC, 826 Zlib, 828
+Modules, 73 Abbrev, 731, 795 Anagram, 229 Base64, 732 Benchmark, 201, 258, 397, 733 BigMath, 734 Comparable, 76, 450, 510, 656 Config, 224 Curses, 743 Digest, 747 DL, 294 DRbUndumped, 748 Enumerable, 77, 466 ERB::Util, 751 Errno, 148, 482ï¿½483 Etc, 752 Fcntl, 547, 754 FileTest, 509, 787 FileUtils, 222, 757, 821 Find, 758 Forwardable, 759 GC, 517 GC::Profiler, 519 Kernel, 556 Marshal, 403, 557 Math, 226, 562, 738 MonitorMixin, 770 Mutex_m, 771 NKF, 779 ObjectSpace, 631 Observable, 780 Open3, 541, 782 Process, 172, 637, 647 Process::GID, 643, 647 Process::Sys, 647 Process::UID, 647ï¿½648 Profile, 202 Profiler, 791 Profiler__, 792 PTY, 794 REXML, 796 Rinda, 798 Ripper, 799 RSS, 801 SecureRandom, 803 Session, 794 Shellwords, 805 Signal, 630, 664 SingleForwardable, 759 Singleton, 806 Timeout, 816 TraceCalls, 389 TSort, 820 XMLRPC, 826 Zlib, 828
 modulo method class Bignum, 446 class Fixnum, 512 class Float, 515 class Numeric, 596
 Molina, Marcel, 221
 
@@ -34020,7 +34026,7 @@ Net::POP3 class, 776
 Net::SMTP class, 777
 Net::Telnet class, 778
 Network protocols DNS, 795 ftp, 772, 781, 822 generic server for, 762 HTTP, 773, 781, 822 http, 158 HTTPS, 783, 822 IMAP, 775 IP address representation, 764 IPv4/IPv6, 764 LDAP, 822 POP, 776 SMTP, 777 socket, 158, 807 telnet, 778
-new method, 16, see also Constructor class Array, 421 class Class, 333, 378, 448 class Dir, 459 class Enumerator, 477 class Exception, 483 class Fiber, 487 class File, 153, 494 class Hash, 521 class IO, 494, 538 class Module, 569 class Proc, 65, 619, 633 class Random, 655 class Range, 651 class Regexp, 659 class String, 666 class Struct, 693­694 class Thread, 164, 703 class ThreadGroup, 710 class Time, 713 class TracePoint, 723
+new method, 16, see also Constructor class Array, 421 class Class, 333, 378, 448 class Dir, 459 class Enumerator, 477 class Exception, 483 class Fiber, 487 class File, 153, 494 class Hash, 521 class IO, 494, 538 class Module, 569 class Proc, 65, 619, 633 class Random, 655 class Range, 651 class Regexp, 659 class String, 666 class Struct, 693ï¿½694 class Thread, 164, 703 class ThreadGroup, 710 class Time, 713 class TracePoint, 723
 new_seed method, class Random, 655
 Newline (\n), 18, 300
 Newsgroup, 830
@@ -34066,10 +34072,10 @@ O
 Object, 16 aliasing, 44, 200, 308 constituents of, 357 creation, 30, 332, 399 current (self), 358 extending, 368 finalizer, 631 ID, 16, 394 immediate, 394, 510 listing active, 393 listing methods in, 394 object_id, 631 persistence, 793 tainting, 410
 Object class, 70, 391, 599 !~, 599 <=>, 599 ===, 599 =~, 599 __callee__, 313, 401, 610 __dir__, 610 __method__, 314, 610 ` (backquote), 128 ` (backquote), 128, 170 ` (backquote), 610 abort, 612 alias_method, 398 Array, 610 at_exit, 612 autoload, 612 autoload?, 612
 
-Index · 851
-binding, 397, 447, 613 block_given?, 64, 328, 613 callcc, 739 caller, 150, 401, 613 caller_locations, 614 catch, 142, 151, 341, 614 chomp, 614 chop, 614 class, 599 clone, 599 Complex, 611 define_method, 615 define_singleton_method, 600 display, 600 dup, 601 enum_for, 57, 477, 601 eql?, 601 eval, 397, 447, 615 exec, 172, 541, 615 exit, 484, 616 exit!, 617 extend, 368, 601 fail, 150, 617 Float, 611, 688 fork, 172­173, 617 format, 617 freeze, 201, 602 frozen?, 602 gem, 617 gem_original_require, 617 gets, 28, 313, 618 global_variables, 618 gsub, 618 Hash, 611 hash, 602 initialize, 618 initialize_clone, 602 initialize_copy, 602 initialize_dup, 603 inspect, 603, 788 instance_eval, 379 instance_exec, 380 instance_of?, 603 instance_variable_defined?, 603 instance_variable_get, 604 instance_variable_set, 604 instance_variables, 604 Integer, 611 is_a?, 604 iterator?, 619 kind_of?, 604 lambda, 65, 337, 339, 619, 635 load, 216, 313, 410, 619 local_variables, 619 loop, 58, 140, 619 method, 565, 605 method_missing, 329, 358, 385 methods, 394, 605 nil?, 606 object_id, 606 open, 159, 620, 781 p, 621 pp, 788 print, 312, 621
+Index ï¿½ 851
+binding, 397, 447, 613 block_given?, 64, 328, 613 callcc, 739 caller, 150, 401, 613 caller_locations, 614 catch, 142, 151, 341, 614 chomp, 614 chop, 614 class, 599 clone, 599 Complex, 611 define_method, 615 define_singleton_method, 600 display, 600 dup, 601 enum_for, 57, 477, 601 eql?, 601 eval, 397, 447, 615 exec, 172, 541, 615 exit, 484, 616 exit!, 617 extend, 368, 601 fail, 150, 617 Float, 611, 688 fork, 172ï¿½173, 617 format, 617 freeze, 201, 602 frozen?, 602 gem, 617 gem_original_require, 617 gets, 28, 313, 618 global_variables, 618 gsub, 618 Hash, 611 hash, 602 initialize, 618 initialize_clone, 602 initialize_copy, 602 initialize_dup, 603 inspect, 603, 788 instance_eval, 379 instance_exec, 380 instance_of?, 603 instance_variable_defined?, 603 instance_variable_get, 604 instance_variable_set, 604 instance_variables, 604 Integer, 611 is_a?, 604 iterator?, 619 kind_of?, 604 lambda, 65, 337, 339, 619, 635 load, 216, 313, 410, 619 local_variables, 619 loop, 58, 140, 619 method, 565, 605 method_missing, 329, 358, 385 methods, 394, 605 nil?, 606 object_id, 606 open, 159, 620, 781 p, 621 pp, 788 print, 312, 621
 
-Index · 852
+Index ï¿½ 852
 
 printf, 27, 312, 622 private_methods, 606 proc, 337, 622 protected_methods, 606 public_method, 606 public_methods, 606 public_send, 607 putc, 622 puts, 622 raise, 150, 339, 622 rand, 622 Rational, 611 readline, 313, 623 readlines, 623 remove_instance_variable, 623 require, 216, 313, 570, 623 require_relative, 231, 624 respond_to?, 394, 607 respond_to_missing?, 607 scanf, 802 select, 624 send, 396, 607 set_trace_func, 400, 447, 624, 819 singleton_class, 607 singleton_methods, 608 sleep, 624 spawn, 625 split, 210 sprintf, 626 srand, 628 String, 612 sub, 628 syscall, 628 system, 171, 628 taint, 608 tainted?, 608 tap, 609 test, 628 throw, 151, 341, 629 to_enum, 57, 477, 609 to_s, 31, 609 trace_var, 630 trap, 172, 630 trust, 412, 609 type, 348 untaint, 609 untrace_var, 630 untrust, 412, 610 untrusted?, 412, 610 using, 630 warn, 212, 314, 630
 Object-oriented terminology, 15
@@ -34089,7 +34095,7 @@ Olszowka, Christoph, 204
 Once option (regexp), 96
 one? method, module Enumerable, 473
 Onigmo, 105, 303
-Oniguruma, 105, 303­304
+Oniguruma, 105, 303ï¿½304
 Opcodes, 402
 open method class Dir, 459 class File, 64, 154, 351 class IO, 351, 539 class Object, 159, 620, 781
 open-uri library, 146, 159, 781
@@ -34112,7 +34118,7 @@ P
 p method, 30 class Object, 621
 
 pack method, class Array, 157, 432
-Packaging, 226­237 creating gem, 235 distributing code, 233
+Packaging, 226ï¿½237 creating gem, 235 distributing code, 233
 Paragraph mode, 210
 Parallel assignment, 130, 318
 Parameter default, 116 to block, 26
@@ -34130,7 +34136,7 @@ Pathname class, 787
 Patterns observer, 780 singleton, 806
 peek method, class Enumerator, 480
 peek_values method, class Enumerator, 480
-Performance, 201, 347, 733 dynamic method invocation, 397 profiling, 202, 791­792 windows automation, 293
+Performance, 201, 347, 733 dynamic method invocation, 397 profiling, 202, 791ï¿½792 windows automation, 293
 Perlisms, 138
 perm: option (file open), 495
 permutation method, class Array, 432
@@ -34142,7 +34148,7 @@ pik, 6
 pipe method, class IO, 172, 540
 pipe? method class File, 496 class File::Stat, 506
 
-Index · 853
+Index ï¿½ 853
 
 polar method class Complex, 451, 454 class Numeric, 597
 pop method, class Array, 47, 432
@@ -34163,9 +34169,9 @@ pre_match method class MatchData, 560 class Regexp, 97
 Precedence do...end vs {}, 199, 335 of operators, 318
 pred method, class Integer, 534
 prepend method class Module, 585 class String, 682
-Pretty printing, 788­789
+Pretty printing, 788ï¿½789
 pretty_print method, 788
-PrettyPrint class, 621, 788­789
+PrettyPrint class, 621, 788ï¿½789
 prime library, 790
 Print, under Windows, 290
 print method class IO, 550 class Object, 312, 621
@@ -34181,7 +34187,7 @@ private_method_defined? method, class Module, 577
 private_methods method, class Object, 606
 Proc class, 64, 118, 336, 351, 567, 581, 600, 633 ==, 633 ===, 633 [ ], 633 arity, 634 binding, 634 call, 65, 634 curry, 635 lambda?, 635 new, 65, 619, 633 parameters, 636 source_location, 636 to_proc, 636 to_s, 636 yield, 636
 proc method class Object, 337, 622 return from, 339 safe level, 410 vs. lambda, 337
-Process, 170­173, 549, see also $$ variable block, 173 creating, 170, 536, 540, 620, 782 ermination, 612 exec, 615 ID, 549 priority, 639, 641 Ruby subprocess, 171, 173, 536, 540, 782 setting name, 313 termination, 172, 214, 617, 638, 642 times, 697
+Process, 170ï¿½173, 549, see also $$ variable block, 173 creating, 170, 536, 540, 620, 782 ermination, 612 exec, 615 ID, 549 priority, 639, 641 Ruby subprocess, 171, 173, 536, 540, 782 setting name, 313 termination, 172, 214, 617, 638, 642 times, 697
 Process class, times, 697
 Process module, 172, 637, 647 abort, 637 daemon, 637 detach, 637 egid, 638 egid=, 638 euid, 638 euid=, 638 exec, 638 exit, 638 exit!, 638 fork, 638 getpgid, 639 getpgrp, 639 getpriority, 639 getrlimit, 639 getsid, 639 gid, 639
 
@@ -34190,10 +34196,10 @@ Process::GID module, 643, 647 change_privilege, 643 eid, 643 eid=, 644 grant_pri
 Process::Status class, 173, 642, 644 &, 645 ==, 645 >>, 645 coredump?, 645 exited?, 645 exitstatus, 645 pid, 646 signaled?, 646 stopped?, 646 stopsig, 646 success?, 646 termsig, 646 to_i, 646 to_s, 646
 Process::Sys module, 647 getegid, 647 geteuid, 647 getgid, 647 getuid, 647 issetugid, 647 setegid, 647 seteuid, 647 setgid, 647 setregid, 647 setresgid, 648 setresuid, 648 setreuid, 648 setrgid, 648
 
-Index · 854
+Index ï¿½ 854
 
 setruid, 648 setuid, 648
-Process::UID module, 647­648 change_privilege, 648 eid, 648 eid=, 649 grant_privilege, 649 re_exchange, 649 re_exchangeable?, 649 rid, 649 sid_available?, 649 switch, 649
+Process::UID module, 647ï¿½648 change_privilege, 648 eid, 648 eid=, 649 grant_privilege, 649 re_exchange, 649 re_exchangeable?, 649 rid, 649 sid_available?, 649 switch, 649
 product method, class Array, 433
 Profile module, 202
 Profiler module, 791
@@ -34240,7 +34246,7 @@ Rails, ActiveRelation, 63
 Rails, Web framework, 280 templates with erb, 282
 raise method class Object, 150, 339, 622 class Thread, 708
 raised_exception method, class TracePoint, 724
-Rake, 222­224 default task, 224 dependencies, 223 Rakefile, 222
+Rake, 222ï¿½224 default task, 224 dependencies, 223 Rakefile, 222
 rand method, see also SecureRandom class Object, 622 class Random, 655
 Random class, 655 bytes, 655 new, 655 new_seed, 655 rand, 655 seed, 655 srand, 655
 Range, 90 as condition, 91, 134, 138, 320 as interval, 92 literal, 90, 302 as sequence, 90
@@ -34259,13 +34265,13 @@ raw! method, class IO, 762
 raw_data method, module GC::Profiler, 519
 rbconfig.rb, 224
 
-Index · 855
+Index ï¿½ 855
 
 rdev method, class File::Stat, 506
 rdev_major method, class File::Stat, 506
 rdev_minor method, class File::Stat, 506
 rdiv method class Bignum, 794 class Fixnum, 794
-RDoc, 11, 263­272 C extensions, 269 :call-seq:, 269­270 comment format, 266 :doc:, 269 Document-class:, 270 Document-method:, 270 documentation, 272 documentation modifiers, 268 embedding in Ruby, 266 :enddoc:, 269 heading, 268 hyperlink, 267 :include:, 269 lists, 267 :main:, 269 :nodoc:, 268 :notnew:, 269 including README, 272 rules, 268 running, 271 :startdoc:, 269 :stopdoc:, 269 :title:, 269 yield parameters, 268 :yields:, 268
+RDoc, 11, 263ï¿½272 C extensions, 269 :call-seq:, 269ï¿½270 comment format, 266 :doc:, 269 Document-class:, 270 Document-method:, 270 documentation, 272 documentation modifiers, 268 embedding in Ruby, 266 :enddoc:, 269 heading, 268 hyperlink, 267 :include:, 269 lists, 267 :main:, 269 :nodoc:, 268 :notnew:, 269 including README, 272 rules, 268 running, 271 :startdoc:, 269 :stopdoc:, 269 :title:, 269 yield parameters, 268 :yields:, 268
 rdtool, 298
 re_exchange method module Process::GID, 644 module Process::UID, 649
 re_exchangeable? method module Process::GID, 644 module Process::UID, 649
@@ -34300,13 +34306,13 @@ REE, 9
 Reference to object, 43 weak, 823
 refine method, class Module, 586
 Refinements, 369
-Reflection, 393­402 into objects, 394
+Reflection, 393ï¿½402 into objects, 394
 refute_nil method, 180
 Regexp class, 96, 351, 659 ==, 660 ===, 661 =~, 661 ~, 661 casefold?, 661 compile, 659 encoding, 661 escape, 659 fixed_encoding?, 661 last_match, 659 match, 97, 662 named_captures, 662 names, 662 new, 659 options, 662 post_match, 97 pre_match, 97 quote, 660 source, 663 to_s, 663
 
 try_convert, 351, 660 union, 660
 regexp method, class MatchData, 561
-Regular expression, 93­113, 303­ 306 alternation, 102 anchor, 98 backtracking, 106­107 character class, 98 as condition, 320 encoding, 97, 243 extensions, 105, 305 greedy and lazy, 100 grouping, 102 intersection of character class, 100 literal, 94, 303 look ahead/behind, 106 named groups, 103 nested, 107 Onigmo, 105 Oniguruma, 304 options, 96, 113, 305, 659 pattern match variables, 311 possessive, 107 quoting within, 94 repetition, 100 substitution, 678 Unicode property, 100
+Regular expression, 93ï¿½113, 303ï¿½ 306 alternation, 102 anchor, 98 backtracking, 106ï¿½107 character class, 98 as condition, 320 encoding, 97, 243 extensions, 105, 305 greedy and lazy, 100 grouping, 102 intersection of character class, 100 literal, 94, 303 look ahead/behind, 106 named groups, 103 nested, 107 Onigmo, 105 Oniguruma, 304 options, 96, 113, 305, 659 pattern match variables, 311 possessive, 107 quoting within, 94 repetition, 100 substitution, 678 Unicode property, 100
 rehash method, class Hash, 303, 529
 reject method class Hash, 529 module Enumerable, 433, 474
 reject! method class Array, 433 class Hash, 529
@@ -34323,7 +34329,7 @@ replace method class Array, 434 class Hash, 529 class String, 682
 replicate method, class Encoding, 465
 report method, module GC::Profiler, 520
 
-Index · 856
+Index ï¿½ 856
 
 require method, 76, 219 class Object, 216, 313, 570, 623
 require_relative method, class Object, 231, 624
@@ -34347,7 +34353,7 @@ RFC 2045/4648 (base 64), 732
 RFC 2396 (URI), 822
 RFC 2616 (HTTP), 815
 RFC 2822 (e-mail), 815
-ri, 11, 263­272 sample output, 265
+ri, 11, 263ï¿½272 sample output, 265
 RI (environment variable), 13
 Rich Site Summary, 801
 rid method module Process::GID, 644 module Process::UID, 649
@@ -34370,7 +34376,7 @@ RSS module, 801
 rstrip method, class String, 683
 rstrip! method, class String, 683
 Rubinius, 9
-Ruby bug reporting, 830 debugger, 195 distributed, 406 download, 5 install on Linux and OS X, 7 install on Windows, 5 language reference, 297­341 and Perl, 138 versions, xii Web sites, xii, 829
+Ruby bug reporting, 830 debugger, 195 distributed, 406 download, 5 install on Linux and OS X, 7 install on Windows, 5 language reference, 297ï¿½341 and Perl, 138 versions, xii Web sites, xii, 829
 Ruby Documentation Project, 13, 829
 Ruby Enterprise Edition, 9
 Ruby mode (Emacs), 197
@@ -34394,9 +34400,9 @@ RUBY_THREAD_VM_STACK_SIZE (environment variable), 215
 RUBY_TK_DLL (environment variable), 215
 RUBY_VERSION constant, 316
 RubyForge, 829
-RubyGems, 217­221, 234­236 create .gem, 235 disable automatic requiring, 210 documentation, 218 enable automatic requiring, 210 finding, 217 gem server, 219 gem server, 236 gemspec, 234 generate with Jeweler, 237 installing, 218 installing applications, 221 list installed, 218 naming, 235 repository, 829 RubyGems.org, 829 server, 218 serving from RubyGems.org, 236 test on install, 218 versioning, 220­221, 235
+RubyGems, 217ï¿½221, 234ï¿½236 create .gem, 235 disable automatic requiring, 210 documentation, 218 enable automatic requiring, 210 finding, 217 gem server, 219 gem server, 236 gemspec, 234 generate with Jeweler, 237 installing, 218 installing applications, 221 list installed, 218 naming, 235 repository, 829 RubyGems.org, 829 server, 218 serving from RubyGems.org, 236 test on install, 218 versioning, 220ï¿½221, 235
 RubyGems.org, 236
-RUBYLIB (environment variable), 215­216, 412
+RUBYLIB (environment variable), 215ï¿½216, 412
 RUBYLIB_PREFIX (environment variable), 215
 RUBYOPT (environment variable), 210, 215, 412
 RUBYPATH (environment variable), 212, 215
@@ -34416,15 +34422,15 @@ S
 \s (in pattern), 304
 S3 (Amazon), 221
 s3sh, 221
-Safe level, 409­412 list of constraints, 412
+Safe level, 409ï¿½412 list of constraints, 412
 
-Index · 857
+Index ï¿½ 857
 
 and proc, 410 setting using -T, 212 and tainting, 410
 $SAFE variable, 212, 314, 410, 608, 750
 safe_level method, class Thread, 708
 sample method, class Array, 435
-Sandbox, 410­411 chroot, 456
+Sandbox, 410ï¿½411 chroot, 456
 scan method, class String, 48, 89, 683, 809
 scanf library, 802
 scanf method class Array, 802 class Object, 802 class String, 802
@@ -34550,7 +34556,7 @@ Stack, unwinding, 148, 152, 340
 Stack frame, 195
 Stack size, 215
 
-Standard Library, 729­829
+Standard Library, 729ï¿½829
 StandardError exception, 145, 148, 340
 start method class Thread, 704 module GC, 517
 start_with? method, class String, 686
@@ -34562,7 +34568,7 @@ STDERR constant, 316
 $stderr variable, 313
 STDIN constant, 316, 620
 $stdin variable, 313
-STDOUT constant, 316, 620­621
+STDOUT constant, 316, 620ï¿½621
 $stdout variable, 313
 step method class Numeric, 139, 598 class Range, 654
 Stephenson, Neal, 209
@@ -34580,10 +34586,10 @@ strftime method, class Time, 718
 String, 86 #{ ... }, 86 %... delimiters, 298 control characters \n etc., 300 conversion for output, 157, 621 encoding, 243 expression interpolation, 18 here document, 87, 301 literal, 18, 86, 300 literal concatenation, 301
 String class, 86, 88, 300, 351, 666, 802 %, 666 *, 667 +, 667
 
-Index · 858
+Index ï¿½ 858
 <<, 667 <=>, 667 ==, 668 =~, 668 [ ], 668 [ ]=, 669 ascii_only?, 669 b, 670 bytes, 243, 670 bytesize, 670 byteslice, 670 capitalize, 671 capitalize!, 671 casecmp, 671 center, 671 chars, 671 chomp, 89, 672 chomp!, 672 chop, 672 chop!, 673 chr, 672 clear, 672 codepoints, 673 concat, 673 count, 673 crypt, 673 delete, 674 delete!, 674 downcase, 48, 674 downcase!, 674 dump, 674 each_byte, 674 each_char, 674 each_codepoint, 675 each_line, 675 empty?, 675 encode, 245, 675 encode!, 676 encoding, 676 end_with?, 676 eql?, 677 force_encoding, 246, 677 getbyte, 677 gsub, 95, 677 gsub!, 95, 678 hex, 678 include?, 679 index, 679 insert, 679 intern, 679 length, 679 lines, 679 ljust, 680 lstrip, 680 lstrip!, 680 match, 681 new, 666 next, 681 next!, 681 oct, 681 ord, 681 partition, 681 prepend, 682 replace, 682
 
-Index · 859
+Index ï¿½ 859
 
 reverse, 682 reverse!, 682 rindex, 682 rjust, 682 rpartition, 683 rstrip, 683 rstrip!, 683 scan, 48, 89, 683, 809 scanf, 802 setbyte, 684 size, 684 slice, 684 slice!, 684 split, 88, 685 squeeze, 89, 685 squeeze!, 686 start_with?, 686 strip, 686 strip!, 686 sub, 95, 686 sub!, 95, 686 succ, 686 succ!, 687 sum, 687 swapcase, 687 swapcase!, 687 to_c, 688 to_f, 688 to_i, 688 to_r, 688 to_s, 689 to_str, 689 to_sym, 689 tr, 689 tr!, 689 tr_s, 689 tr_s!, 690 try_convert, 666 unpack, 690 upcase, 690 upcase!, 690 upto, 690 valid_encoding?, 691
 String method, class Object, 612
@@ -34592,7 +34598,7 @@ StringIO class, 158, 808
 StringScanner class, 809
 strip method, class String, 686
 strip! method, class String, 686
-Struct class, 377, 379, 693 ==, 694 [ ], 694­695 [ ]=, 695 each, 695 each_pair, 695 length, 696 members, 694, 696 new, 693­694 OpenStruct, 786 size, 696 subclassing, 377 to_a, 696
+Struct class, 377, 379, 693 ==, 694 [ ], 694ï¿½695 [ ]=, 695 each, 695 each_pair, 695 length, 696 members, 694, 696 new, 693ï¿½694 OpenStruct, 786 size, 696 subclassing, 377 to_a, 696
 
 to_h, 696 values, 696 values_at, 696
 Struct::Tms class, 697
@@ -34621,9 +34627,9 @@ T
 -T level (Ruby option), 212, 410 Tab completion, irb, 254 taint method, class Object, 608 Tainted objects, 410, 608 tainted? method, class Object, 608 take method, module Enumerable,
 476 take_while method, module Enumer-
 able, 476 Talbott, Nathaniel, 176, 186 tan method, module Math, 564, 738 tanh method, module Math, 564, 738 tap method, class Object, 609 task method, 222 TCPSocket class, 807 teardown method, 182 Technical support, 829 tell method
-class Dir, 461 class IO, 555 Tempfile class, 811 Templates, 280­284 eruby, 282, 750 Haml, 281 Temporary directory, 818 Temporary file, 811
+class Dir, 461 class IO, 555 Tempfile class, 811 Templates, 280ï¿½284 eruby, 282, 750 Haml, 281 Temporary directory, 818 Temporary file, 811
 
-Index · 860
+Index ï¿½ 860
 
 Terminal, 3 pseudo, 794
 terminate method, class Thread, 709
@@ -34633,11 +34639,11 @@ Test case, 181
 test method, class Object, 628
 Test suites, 185
 Test::Unit class, 812
-Testing, 175­193 ad hoc, 176 assertions, 177, 193­194 cases, 181 exceptions, 179 for feedback, 175 Framework, 177­193 gem, 218 naming conventions, 186 Roman numerals, 175 RSpec, 186 setup, 182, 192 Shoulda, 191 using StringIO, 808 structuring tests, 181 suites, 185 teardown, 182 what is a unit test?, 175 where to put files, 184
+Testing, 175ï¿½193 ad hoc, 176 assertions, 177, 193ï¿½194 cases, 181 exceptions, 179 for feedback, 175 Framework, 177ï¿½193 gem, 218 naming conventions, 186 Roman numerals, 175 RSpec, 186 setup, 182, 192 Shoulda, 191 using StringIO, 808 structuring tests, 181 suites, 185 teardown, 182 what is a unit test?, 175 where to put files, 184
 textmode: option (file open), 495
 then, 321
 Thiesfeld, Gordon, 6
-Thread, 161­170 condition variable, 170 creating, 163 exception, 165 group, 710 queue, 813 race condition, 165 scheduling, 167 synchronization, 167­170, 770­ 771, 813 variable, 165 variable scope, 164 waiting for multiple, 814
+Thread, 161ï¿½170 condition variable, 170 creating, 163 exception, 165 group, 710 queue, 813 race condition, 165 scheduling, 167 synchronization, 167ï¿½170, 770ï¿½ 771, 813 variable, 165 variable scope, 164 waiting for multiple, 814
 Thread class, 702 [ ], 704 [ ]=, 704 abort_on_exception, 165, 702, 705 abort_on_exception=, 702, 705 add_trace_func, 705 alive?, 705 backtrace, 705 backtrace_locations, 706 current, 702 exclusive, 702 exit, 702, 706 fork, 703 group, 706 join, 164, 706 key?, 707
 
 keys, 707 kill, 703, 707 list, 703 main, 703 new, 164, 703 pass, 703 priority, 707 priority=, 707 Queue, 813 raise, 708 run, 708 safe_level, 708 set_trace_func, 708 SizedQueue, 813 start, 704 status, 709 stop, 704 stop?, 709 terminate, 709 thread_variable?, 709 thread_variable_get, 709 thread_variable_set, 710 thread_variables, 709 value, 164, 710 wakeup, 710
@@ -34663,7 +34669,7 @@ TMail, 775, 777
 tmpdir library, 818
 tmpdir method, class Dir, 286, 818
 to_a method, 318, 327, 350 class Array, 437 class Hash, 530 class MatchData, 561 class NilClass, 589 class Struct, 696 class Time, 719 module Enumerable, 476
-to_ary method, 350, 422­423, 437 class Array, 437
+to_ary method, 350, 422ï¿½423, 437 class Array, 437
 to_c method class NilClass, 589 class Numeric, 598 class String, 688
 
 to_enum method, 90, 351 class Object, 57, 477, 609
@@ -34680,7 +34686,7 @@ to_r method class Complex, 455 class Float, 516 class Integer, 535 class NilClas
 to_regexp method, 351, 660
 to_s method, 349 class Array, 437 class Bignum, 446 class Exception, 485 class Fixnum, 512 class Float, 516 class Hash, 530 class MatchData, 561 class NilClass, 590 class Object, 31, 609 class Proc, 636
 
-Index · 861
+Index ï¿½ 861
 
 class Process::Status, 646 class Regexp, 663 class String, 689 class Symbol, 701 class Time, 720 print, 157, 621
 to_str method, 349, 351, 666 class String, 689
@@ -34747,7 +34753,7 @@ undefine_finalizer method, module ObjectSpace, 632
 ungetbyte method, class IO, 555
 ungetc method, class IO, 555
 
-Index · 862
+Index ï¿½ 862
 
 Unicode literal, 243 property (in regular expression), 100
 Uniform Access Principle, 36 union method, class Regexp, 660 uniq method, class Array, 438 uniq! method, class Array, 438 UNIXSocket class, 807 unlink method
@@ -34760,7 +34766,7 @@ class Hash, 531 class Struct, 696
 values_at method class Array, 438 class Hash, 531 class MatchData, 561 class Struct, 696
 Variable class, 309 class name, 306 global, 307, 309 instance, 16, 30, 78, 306, 310, 395 local, 306 vs. method name, 307 naming, 19, 306 predefined, 311 as reference, 43, 308 scope, 142, 164, 308 thread, 165 weak reference, 823
 Variable-length argument list, 116
-Variables $!, 147, 311, 339­340 $", 313, 623 $$, 313 $&, 97, 311, 559 $', 97, 312, 560 $*, 313, 618 $+, 312 $,, 312, 431, 621 $-0, 312 $-F, 313 $-I, 314 $-W, 314 $-a, 313 $-d, 313 $-i, 314 $-l, 314 $-p, 314 $-v, 314 $-w, 314 $., 312, 549 $/, 210­211, 312, 672, 679 $:, 211, 217, 313, 623 $;, 211, 312, 685 $<, 312 $=, 96, 312 $>, 312 $?, 128, 171, 173, 313, 316, 610, 628, 642, 644 $@, 311 $\, 211, 312, 550, 621 $`, 97, 312, 560 $~, 312, 559, 659, 661­662 $_, 138, 211, 313, 320, 548, 618 $0, 213, 313, 316 $1...$9 (in pattern), 102, 305 $1...$n, 312 $DEBUG, 210, 313, 702, 706 $deferr, $defout, 313 ENV, 214, 315 $expect_verbose, 753 $F, 210, 314 $FILENAME, 314
+Variables $!, 147, 311, 339ï¿½340 $", 313, 623 $$, 313 $&, 97, 311, 559 $', 97, 312, 560 $*, 313, 618 $+, 312 $,, 312, 431, 621 $-0, 312 $-F, 313 $-I, 314 $-W, 314 $-a, 313 $-d, 313 $-i, 314 $-l, 314 $-p, 314 $-v, 314 $-w, 314 $., 312, 549 $/, 210ï¿½211, 312, 672, 679 $:, 211, 217, 313, 623 $;, 211, 312, 685 $<, 312 $=, 96, 312 $>, 312 $?, 128, 171, 173, 313, 316, 610, 628, 642, 644 $@, 311 $\, 211, 312, 550, 621 $`, 97, 312, 560 $~, 312, 559, 659, 661ï¿½662 $_, 138, 211, 313, 320, 548, 618 $0, 213, 313, 316 $1...$9 (in pattern), 102, 305 $1...$n, 312 $DEBUG, 210, 313, 702, 706 $deferr, $defout, 313 ENV, 214, 315 $expect_verbose, 753 $F, 210, 314 $FILENAME, 314
 
 $LOAD_PATH, 185, 211, 255, 314 $LOADED_FEATURES, 314 predefined, 311 $PROGRAM_NAME, 213, 314, 749 $SAFE, 212, 314, 410, 608, 750 self, 78, 118, 315, 329, 358 $stderr, 313 $stdin, 313 $stdout, 313 $VERBOSE, 210, 212, 314, 630 Vector class, 769 $VERBOSE variable, 210, 212, 314, 630 --version (Ruby option), 212 Versions of Ruby, xii vi and vim, 197 key bindings in readline, 795 Virtual attribute, 35 Virtual machine, 402
 W
@@ -34768,7 +34774,7 @@ W
 class IO, 763 module Process, 172, 642 wait2 method, module Process, 642 waitall method, module Process, 642 waitpid method, module Process, 643 waitpid2 method, module Process, 643 wakeup method, class Thread, 710 Walk directory tree, 758 warn method, class Object, 212, 314, 630 Warnings, 212 ARGV[0] is not $0, 213 be careful with tainted data,
 409 strings aren't numbers, 84, 200 wday method, class Time, 721 Weak reference, 823 WeakRef class, 823 weakref_alive?, 823 WeakRef::RefError exception, 823 weakref_alive? method, class WeakRef, 823 Web framework, Ruby on Rails, 280, 282, 287 Web server, WEBrick, 286, 824 Web sites for Ruby, xii, 829 Webcoder, Walter, 409 WEBrick, 286, 824 Weirich, Jim, 217, 222 when (in case), 321
 
-Index · 863
+Index ï¿½ 863
 
 while loop, 138, 322 as modifier, 138, 323
 Win32API library, 289, 730
@@ -34801,7 +34807,7 @@ class File, 500 class File::Stat, 509 class Fixnum, 512 class Float, 516 class N
 Put Fun in Functional Programming
 Looking for functional programming that's closer to Ruby, but with a battle-proven environment that's unrivaled for massive scalability, concurrency, distribution and fault tolerance? Maybe the time is right for the Next Big Thing. Maybe it's Elixir, running on the Erlang VM.
 You want to explore functional programming, but are put off by the academic feel (tell me about monads just one more time). You know you need concurrent applications, but also know these are almost impossible to get right. Meet Elixir, a functional, concurrent language built on the rock-solid Erlang VM. Elixir's pragmatic syntax and built-in support for metaprogramming will make you productive and keep you interested for the long haul. This book is the introduction to Elixir for experienced programmers. Dave Thomas (240 pages) ISBN: 9781937785581. $36 http://pragprog.com/book/elixir
-A multi-user game, web site, cloud application, or networked database can have thousands of users all interacting at the same time. You need a powerful, industrial-strength tool to handle the really hard problems inherent in parallel, concurrent environments. You need Erlang. In this second edition of the bestselling Programming Erlang, you'll learn how to write parallel programs that scale effortlessly on multicore systems. "A gem; a sensible, practical introduction to functional programming." --Gilad Bracha ­ Co-author of the Java language and Java Virtual Machine specifications, creator of the Newspeak language, member of the Dart language team Joe Armstrong (510 pages) ISBN: 9781937785536. $42 http://pragprog.com/book/jaerlang2
+A multi-user game, web site, cloud application, or networked database can have thousands of users all interacting at the same time. You need a powerful, industrial-strength tool to handle the really hard problems inherent in parallel, concurrent environments. You need Erlang. In this second edition of the bestselling Programming Erlang, you'll learn how to write parallel programs that scale effortlessly on multicore systems. "A gem; a sensible, practical introduction to functional programming." --Gilad Bracha ï¿½ Co-author of the Java language and Java Virtual Machine specifications, creator of the Newspeak language, member of the Dart language team Joe Armstrong (510 pages) ISBN: 9781937785536. $42 http://pragprog.com/book/jaerlang2
 
 Rails and More Rails
 Start with the classic book for web development with Rails, then see how the realm of experts is fast becoming the stuff of day-to-day development.
@@ -34811,7 +34817,7 @@ Rails 4 introduces a number of user-facing changes, and the ebook has been updat
 Sam Ruby (490 pages) ISBN: 9781937785567. $43.95 http://pragprog.com/book/rails4
 Get ready to see Rails as you've never seen it before. Learn how to extend the framework, change its behavior, and replace whole components to bend it to your will. Eight different test-driven tutorials will help you understand Rails' inner workings and prepare you to tackle complicated projects with solutions that are well-tested, modular, and easy to maintain.
 This second edition of the bestselling Crafting Rails Applications has been updated to Rails 4 and discusses new topics such as streaming, mountable engines, and thread safety.
-José Valim (200 pages) ISBN: 9781937785550. $36 http://pragprog.com/book/jvrails2
+Josï¿½ Valim (200 pages) ISBN: 9781937785550. $36 http://pragprog.com/book/jvrails2
 
 Go Beyond Code
 There's more to life than just coding: expand your mind with the joy of pure math, and extend your body's health and wellness.
@@ -34823,7 +34829,7 @@ Joe Kutner (220 pages) ISBN: 9781937785314. $36 http://pragprog.com/book/jkthp
 
 Testing is only the beginning
 Start with Test Driven Development, Domain Driven Design, and Acceptance Test Driven Planning in Ruby. Then add Shoulda, Cucumber, Factory Girl, and Rcov for the ultimate in Ruby and Rails development.
-Behaviour-Driven Development (BDD) gives you the best of Test Driven Development, Domain Driven Design, and Acceptance Test Driven Planning techniques, so you can create better software with self-documenting, executable tests that bring users and developers together with a common language. Get the most out of BDD in Ruby with The RSpec Book, written by the lead developer of RSpec, David Chelimsky. David Chelimsky, Dave Astels, Zach Dennis, Aslak Hellesøy, Bryan Helmkamp, Dan North (450 pages) ISBN: 9781934356371. $38.95 http://pragprog.com/book/achbd
+Behaviour-Driven Development (BDD) gives you the best of Test Driven Development, Domain Driven Design, and Acceptance Test Driven Planning techniques, so you can create better software with self-documenting, executable tests that bring users and developers together with a common language. Get the most out of BDD in Ruby with The RSpec Book, written by the lead developer of RSpec, David Chelimsky. David Chelimsky, Dave Astels, Zach Dennis, Aslak Hellesï¿½y, Bryan Helmkamp, Dan North (450 pages) ISBN: 9781934356371. $38.95 http://pragprog.com/book/achbd
 Rails Test Prescriptions is a comprehensive guide to testing Rails applications, covering Test-Driven Development from both a theoretical perspective (why to test) and from a practical perspective (how to test effectively). It covers the core Rails testing tools and procedures for Rails 2 and Rails 3, and introduces popular add-ons, including RSpec, Shoulda, Cucumber, Factory Girl, and Rcov. Noel Rappin (368 pages) ISBN: 9781934356647. $34.95 http://pragprog.com/book/nrtest
 
 What you Need to Know
@@ -34861,4 +34867,3 @@ Contact Us
 Online Orders: Customer Service: International Rights: Academic Use: Write for Us: Or Call:
 
 http://pragprog.com/catalog support@pragprog.com translations@pragprog.com academic@pragprog.com http://pragprog.com/write-for-us +1 800-699-7764
-

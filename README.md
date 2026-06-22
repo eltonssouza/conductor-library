@@ -1,6 +1,6 @@
 # 📚 Computer Engineering Library
 
-> A library organized as a Computer Engineering track. Curriculum reading lists (folder `00_`) are bilingual (PT-BR / EN). Full books are grouped by topic in folders `01_`–`13_`. See `FILE_CONVENTIONS.md` for the naming and formatting standard.
+> A library organized as a Computer Engineering track. **English-only**, no images. Curriculum reading lists live in folder `00_`; full books are grouped by topic in folders `01_`–`13_`. See `FILE_CONVENTIONS.md` for the naming and formatting standard.
 
 
 ## Reference documents
@@ -9,7 +9,7 @@
 - [ROLES_AND_ACRONYMS.md](ROLES_AND_ACRONYMS.md) — tech roles and acronyms glossary
 - [AGENTS_AND_SKILLS_BY_ROLE.md](AGENTS_AND_SKILLS_BY_ROLE.md) — Agent prompt + Skill per role
 
-## 00 · Academic Curriculum (bilingual reading lists)
+## 00 · Academic Curriculum (reading lists)
 
 - [01_digital_circuits](00_academic_curriculum/01_digital_circuits.md)
 - [02_discrete_mathematics](00_academic_curriculum/02_discrete_mathematics.md)
@@ -117,7 +117,6 @@
 - [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
 - [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
 - [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
-- [Learning GraphQL - Porcello, Banks (PT-BR)](06_web_and_frontend/Learning%20GraphQL%20-%20Porcello,%20Banks%20(PT-BR).md)
 - [Learning GraphQL - Porcello, Banks](06_web_and_frontend/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
 - [Learning React Native - Eisenman](06_web_and_frontend/Learning%20React%20Native%20-%20Eisenman.md)
 - [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
@@ -189,4 +188,4 @@
 
 ---
 
-**Total: 136 book/reading-list files**
+**Total: 135 book/reading-list files**

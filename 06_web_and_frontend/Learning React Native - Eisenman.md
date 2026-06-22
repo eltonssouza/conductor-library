@@ -1,3 +1,9 @@
+# Learning React Native
+
+> **Author(s):** Eisenman Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 2nd Edition
 Learning
 React Native
@@ -13,7 +19,7 @@ Beijing Boston Farnham Sebastopol Tokyo
 Learning React Native
 by Bonnie Eisenman
 
-Copyright © 2018 Bonnie Eisenman. All rights reserved.
+Copyright ï¿½ 2018 Bonnie Eisenman. All rights reserved.
 
 Printed in the United States of America.
 
@@ -642,11 +648,11 @@ Please address comments and questions concerning this book to the publisher: O'R
 We have a web page for this book, where we list errata, examples, and any additional information. You can access this page at http://bit.ly/learning-react-native-2e. To comment or ask technical questions about this book, send email to bookques- tions@oreilly.com. For more information about our books, courses, conferences, and news, see our web- site at http://www.oreilly.com. Find us on Facebook: http://facebook.com/oreilly Follow us on Twitter: http://twitter.com/oreillymedia Watch us on YouTube: http://www.youtube.com/oreillymedia
 Resources
 It's dangerous to go alone! Well, not really, but that doesn't mean you have to. Here are some resources you may find useful as you work through the book:
-· The GitHub repository for this book contains all of the code samples we'll be dis- cussing. If you get stumped or want more context, try looking here first.
-· Join the mailing list at LearningReactNative.com for follow-up articles, sugges- tions, and helpful resources.
-· The official documentation has a lot of good reference material. Additionally, the React Native community is a useful resource:
-· The react-native tag on Stack Overflow · The Reactiflux chat group includes many core contributors and other helpful
-folks · #reactnative (irc.lc/freenode/reactnative) on Freenode
+ï¿½ The GitHub repository for this book contains all of the code samples we'll be dis- cussing. If you get stumped or want more context, try looking here first.
+ï¿½ Join the mailing list at LearningReactNative.com for follow-up articles, sugges- tions, and helpful resources.
+ï¿½ The official documentation has a lot of good reference material. Additionally, the React Native community is a useful resource:
+ï¿½ The react-native tag on Stack Overflow ï¿½ The Reactiflux chat group includes many core contributors and other helpful
+folks ï¿½ #reactnative (irc.lc/freenode/reactnative) on Freenode
 xii | Preface
 
 Acknowledgments
@@ -798,7 +804,7 @@ Developer Setup: Create React Native App | 15
 In order to view your application, you'll need the Expo app for iOS or Android. Once you have it installed, point your phone's camera at the QR code, and your React Native app will load. Note that your phone and computer will need to be on the same network, and able to communicate with each other. Congrats! You've created your first React Native app, compiled it, and gotten it run- ning on a real device. In the next section, we'll cover how to do a full, traditional installation of React Native. You can skip to "Exploring the Sample Code" on page 19 instead if you'd like to get started programming.
 Developer Setup: The Traditional Approach
 Instructions for installing React Native and all of its dependencies can be found in the official React Native documentation. You can use Windows, macOS, or Linux to develop applications with React Native. However, macOS is required to develop iOS applications. Linux and Windows users can still use React Native to write Android applications. Because the setup instructions vary by platform and React Native version, we won't go into them in detail here, but you'll need to set up the following:
-· node.js · React Native · iOS development environment (Xcode) · Android development environment (JDK, Android SDK, Android Studio) If you don't want to install developer tools for both iOS and Android, that's fine--just make sure that you have at least one of them set up.
+ï¿½ node.js ï¿½ React Native ï¿½ iOS development environment (Xcode) ï¿½ Android development environment (JDK, Android SDK, Android Studio) If you don't want to install developer tools for both iOS and Android, that's fine--just make sure that you have at least one of them set up.
 Creating Your First Application with react-native
 You can use the React Native command-line tools to create a new application. Run the following command to install the command-line tools:
 npm install -g react-native-cli
@@ -921,7 +927,7 @@ For sanity's sake, let's also pull the forecast rendering into its own component
 Example 3-13. <Forecast> component in Forecast.js
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
-class Forecast extends Component { render() { return ( <View style={styles.container}> <Text style={styles.bigText}> {this.props.main} </Text> <Text style={styles.mainText}> Current conditions: {this.props.description} </Text> <Text style={styles.bigText}> {this.props.temp}°F </Text> </View> ); }
+class Forecast extends Component { render() { return ( <View style={styles.container}> <Text style={styles.bigText}> {this.props.main} </Text> <Text style={styles.mainText}> Current conditions: {this.props.description} </Text> <Text style={styles.bigText}> {this.props.temp}ï¿½F </Text> </View> ); }
 }
 const styles = StyleSheet.create({ container: { height: 130 }, bigText: { flex: 2, fontSize: 20, textAlign: "center", margin: 10, color: "#FFFFFF" }, mainText: { flex: 1, fontSize: 16, textAlign: "center", color: "#FFFFFF" }
 });
@@ -1035,7 +1041,7 @@ For our first real application, we've already covered a lot of ground. We introd
 36 | Chapter 3: Building Your First Application
 
 the user. We demonstrated how to implement basic styling in React Native, as well as how to use images and include assets in our application. Finally, we learned how to use the React Native networking API to request data from external web sources. Not bad for a first application! Hopefully, this chapter has demonstrated how quickly you can build React Native applications with useful features that feel at home on a mobile device. If you want to extend your application further, here are some things to try:
-· Add more images and change them based on the forecast · Add validation to the zip code field · Switch to using a more appropriate keypad for the zip code input · Display the five-day weather forecast Once we cover more topics, such as geolocation, you will be able to extend the weather application even further. Of course, this has been a pretty quick survey. In the next few chapters, we will focus on gaining a deeper understanding of React Native best practices, and look at how to use a lot more features, too!
+ï¿½ Add more images and change them based on the forecast ï¿½ Add validation to the zip code field ï¿½ Switch to using a more appropriate keypad for the zip code input ï¿½ Display the five-day weather forecast Once we cover more topics, such as geolocation, you will be able to extend the weather application even further. Of course, this has been a pretty quick survey. In the next few chapters, we will focus on gaining a deeper understanding of React Native best practices, and look at how to use a lot more features, too!
 Summary | 37
 
 CHAPTER 4
@@ -1410,7 +1416,7 @@ Figure 4-11. An Android toolbar (left) and an Android drawer (right)
 70 | Chapter 4: Components for Mobile
 
 These components are very useful for organizing multiple screens within your appli- cation. <TabBarIOS> and <DrawerLayoutAndroid>, for example, give you an easy way to switch between multiple modes or functions. <SegmentedControlIOS> and <Tool barAndroid> are better suited for more fine-grained controls. You'll want to refer to the platform-specific design guidelines for how best to use these components:
-· Android Design Guide · iOS Human Interface Guidelines We'll cover how to use platform-specific components in more depth in Chapter 7.
+ï¿½ Android Design Guide ï¿½ iOS Human Interface Guidelines We'll cover how to use platform-specific components in more depth in Chapter 7.
 Summary
 In this chapter, we dug into the specifics of a variety of the most important compo- nents in React Native. We discussed how to use basic low-level components, like <Text> and <Image>, as well as more abstract components like <FlatList>, <SectionList>, and <TabBarIOS>. We also looked at how to use various touchfocused APIs and components in case you want to build your own custom touch han- dlers. At this point, you should be equipped to build basic functional applications using React Native! Now that you've acquainted yourself with the components discussed in this chapter, building upon them and combining them to create your own applica- tions should feel remarkably similar to working with React on the web. Of course, building up basic functioning applications is only part of the battle. In the next chapter, we'll focus on styling and how to use React Native's implementation of styles to get the look and feel you want on mobile.
 Summary | 71
@@ -1501,8 +1507,8 @@ Positioning and Designing Layouts
 One of the biggest changes when working with styling in React Native is positioning. CSS supports a proliferation of positioning techniques. Between float, absolute posi- tioning, tables, block layout, and more, it's easy to get lost! React Native's approach to positioning is more focused, relying primarily on flexbox as well as absolute position- ing, along with the familiar properties of margin and padding. In this section, we'll look at how layouts are constructed in React Native, and finish off by building a lay- out in the style of a Mondrian painting.
 Using Layouts with Flexbox
 Flexbox is a CSS3 layout mode. Unlike existing layout modes such as block and inline, flexbox gives us a direction-agnostic way of constructing layouts. (That's right: finally, vertically centering is easy!) React Native leans heavily on flexbox. If you want to read more about the general specification, the MDN documentation is a good place to start. With React Native, the following flexbox props are available:
-· flex · flexDirection · flexWrap · alignSelf · alignItems Additionally, these related values impact layout:
-· height · width · margin · border · padding If you have worked with flexbox on the web before, there won't be many surprises here. Because flexbox is so important to constructing layouts in React Native, though, we'll spend some time now exploring how it works. The basic idea behind flexbox is that you should be able to create predictably struc- tured layouts, even with dynamically sized elements. Because we're designing for
+ï¿½ flex ï¿½ flexDirection ï¿½ flexWrap ï¿½ alignSelf ï¿½ alignItems Additionally, these related values impact layout:
+ï¿½ height ï¿½ width ï¿½ margin ï¿½ border ï¿½ padding If you have worked with flexbox on the web before, there won't be many surprises here. Because flexbox is so important to constructing layouts in React Native, though, we'll spend some time now exploring how it works. The basic idea behind flexbox is that you should be able to create predictably struc- tured layouts, even with dynamically sized elements. Because we're designing for
 80 | Chapter 5: Styles
 
 mobile and need to accommodate multiple screen sizes and orientations, this is a use- ful (dare I say necessary?) feature. We'll start with a parent <View> and some children:
@@ -1775,7 +1781,7 @@ The SmarterWeather Application | 107
 Example 6-11. <Forecast> component renders information about the forecast
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
-class Forecast extends Component { render() { return ( <View style={styles.forecast}> <Text style=> {this.props.temp}°F </Text> <Text style=> {this.props.main} </Text> </View> ); }
+class Forecast extends Component { render() { return ( <View style={styles.forecast}> <Text style=> {this.props.temp}ï¿½F </Text> <Text style=> {this.props.main} </Text> </View> ); }
 }
 const styles = StyleSheet.create({ forecast: { alignItems: "center" } });
 export default Forecast;
@@ -1957,7 +1963,7 @@ import { NativeModules } from "react-native"; export default NativeModules.Hello
 Then, requiring it becomes much more straightforward:
 import HelloWorld from "./HelloWorld";
 The HelloWorld.js JavaScript file is also a good opportunity to add any JavaScript-side functionality to your module. Phew. Objective-C can feel verbose, and we have to keep track of a couple of different files. But congratulations: you've written a "Hello, World" for your Objective-C module! To review, an Objective-C module must do the following in order to be available in React Native:
-· Import the RCTBridgeModule header · Declare that your module implements the RCTBridgeModule interface · Call the RCT_EXPORT_MODULE() macro · Have at least one method that is exported using the RCT_EXPORT_METHOD macro Native modules can then make use of any API provided by the iOS SDK. (Note that the API you provide to React Native must be asynchronous.) Apple provides exten- sive documentation for the iOS SDK, and there are many resources available from third parties as well. Note that your developer licenses will come in handy here--it's often difficult to access the SDK documentation without one. Now that we've written our own basic "Hello, World," let's take a deeper look at how react-native-video is implemented.
+ï¿½ Import the RCTBridgeModule header ï¿½ Declare that your module implements the RCTBridgeModule interface ï¿½ Call the RCT_EXPORT_MODULE() macro ï¿½ Have at least one method that is exported using the RCT_EXPORT_METHOD macro Native modules can then make use of any API provided by the iOS SDK. (Note that the API you provide to React Native must be asynchronous.) Apple provides exten- sive documentation for the iOS SDK, and there are many resources available from third parties as well. Note that your developer licenses will come in handy here--it's often difficult to access the SDK documentation without one. Now that we've written our own basic "Hello, World," let's take a deeper look at how react-native-video is implemented.
 120 | Chapter 7: Modules and Native Code
 
 Exploring react-native-video for iOS
@@ -1979,7 +1985,7 @@ This time, instead of subclassing NSObject, RCTVideo subclasses UIView. That mak
 { RCTVideoPlayerViewController* playerLayer = [[RCTVideoPlayerViewController alloc] init]; playerLayer.showsPlaybackControls = NO; playerLayer.rctDelegate = self; playerLayer.view.frame = self.bounds; playerLayer.player = _player; playerLayer.view.frame = self.bounds; return playerLayer;
 }
 There are also various methods for things like calculating the duration of the video, loading in the video and setting it as the source, and more. Feel free to step through these methods and figure out what role they play. The other piece of the puzzle is the RCTVideoManager. To create a native UI compo- nent, as opposed to just a module, we also need a view manager. As the name implies, while the view actually handles rendering logic and similar tasks, the view manager deals with other stuff (event handling, property exports, etc.). At a minimum, the view manager class needs to:
-· Subclass RCTViewManager · Use the RCT_EXPORT_MODULE() macro · Implement the -(UIView *)view method
+ï¿½ Subclass RCTViewManager ï¿½ Use the RCT_EXPORT_MODULE() macro ï¿½ Implement the -(UIView *)view method
 The view method should return a UIView instance. In this case, we can see that it instantiates and returns an RCTVideo:
 - (UIView *)view {
 return [[RCTVideo alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
@@ -2024,7 +2030,7 @@ Log.e("HelloWorldModule", "Saluton, " + message);
 } }
 There's quite a bit of boilerplate here. Let's take this piece by piece. First, we begin with a package statement:
 package com.depends.helloworld;
-This is based on the file's location in the directory. Next, we import several React Native­specific files, as well as android.util.Log. Any module you write should import the same React Native files. Then we declare our HelloWorldModule class. It's public, meaning that external files can use it; and it extends the ReactContextBaseJavaModule, meaning that it inherits methods from ReactContextBaseJavaModule:
+This is based on the file's location in the directory. Next, we import several React Nativeï¿½specific files, as well as android.util.Log. Any module you write should import the same React Native files. Then we declare our HelloWorldModule class. It's public, meaning that external files can use it; and it extends the ReactContextBaseJavaModule, meaning that it inherits methods from ReactContextBaseJavaModule:
 public class HelloWorldModule extends ReactContextBaseJavaModule { ... }
 There are three methods implemented here: HelloWorldModule, getName, and greet ing. In Java, a method with the same name as the class is called the constructor. The Hello WorldModule method is thus a bit of boilerplate; we invoke the ReactContextBase JavaModule constructor with a call to super(reactContext) and don't do anything else. getName determines which name we'll use later on to access this module from our JavaScript code, so make sure it's correct! In this case, we name it "HelloWorld." Note that we add an @Override decorator here. You'll want to implement getName for any other modules you write. Finally, greeting is our own method, which we want to be available in our JavaScript code. We add a @ReactMethod decorator so that React Native knows this method should be exposed. To log something when greeting is called, we call Log.e like so:
 Log.e("HelloWorldModule", "Hello, " + name);
@@ -2055,7 +2061,7 @@ Figure 7-6 shows the output you should see in your shell.
 Figure 7-6. Output from logcat Now that we've written our "Hello, World" example from Java, let's look at the imple- mentation of react-native-video for Android.
 Exploring react-native-video for Java
 react-native-video for Android is basically a wrapper around the MediaPlayer API. It consists mainly of three files:
-· ReactVideoView.java · ReactVideoPackage.java · ReactVideoViewManager.java The ReactVideoPackage.java file, shown in Example 7-8, looks very similar to our HelloWorldPackage.java file.
+ï¿½ ReactVideoView.java ï¿½ ReactVideoPackage.java ï¿½ ReactVideoViewManager.java The ReactVideoPackage.java file, shown in Example 7-8, looks very similar to our HelloWorldPackage.java file.
 Example 7-8. ReactVideoPackage.java
 package com.brentvatne.react;
 import android.app.Activity; import com.facebook.react.ReactPackage; import com.facebook.react.bridge.JavaScriptModule; import com.facebook.react.bridge.NativeModule; import com.facebook.react.bridge.ReactApplicationContext; import com.facebook.react.uimanager.ViewManager;
@@ -2153,12 +2159,12 @@ import { Platform, StyleSheet } from "react-native"; const styles = StyleSheet.c
 color: (Platform.OS === "ios") ? "#FF6666" : "#DD4444", });
 When to Use Platform-Specific Components
 When is it appropriate to use a platform-specific component? In most cases, you'll want to do so when there's a platform-specific interaction pattern that you want your application to adhere to. If you want your application to feel truly "native," it's worth paying attention to platform-specific UI norms. Apple and Google both provide human interface guidelines for their platforms which are worth consulting:
-· iOS Human Interface Guidelines · Android Design Reference By creating platform-specific versions of only certain components, you can strike a balance between code reuse and platform-based customization. In most cases, you should only need separate implementations of a handful of components in order to support both iOS and Android.
+ï¿½ iOS Human Interface Guidelines ï¿½ Android Design Reference By creating platform-specific versions of only certain components, you can strike a balance between code reuse and platform-based customization. In most cases, you should only need separate implementations of a handful of components in order to support both iOS and Android.
 When to Use Platform-Specific Components | 137
 
 CHAPTER 9
 Debugging and Developer Tools
-As you develop your own applications, chances are that something will go wrong along the way. When it's time to debug your applications, we happily have some React Native­specific tools that will make the job easier. There are also some nasty bugs that can crop up at the intersection of React Native and its host platform. In this chapter, we'll dig into the common pitfalls of React Native development and the tools you can use to tackle them. And because any discussion of debugging would be incomplete without reference to testing, we'll also cover the basics of getting automa- ted testing set up for your React Native code.
+As you develop your own applications, chances are that something will go wrong along the way. When it's time to debug your applications, we happily have some React Nativeï¿½specific tools that will make the job easier. There are also some nasty bugs that can crop up at the intersection of React Native and its host platform. In this chapter, we'll dig into the common pitfalls of React Native development and the tools you can use to tackle them. And because any discussion of debugging would be incomplete without reference to testing, we'll also cover the basics of getting automa- ted testing set up for your React Native code.
 JavaScript Debugging Practices, Translated
 When working with React for the web, we have a number of common JavaScriptbased tools and techniques to help us debug our applications. Most of these are also available for React Native, though occasionally with some minor adjustments. React Native gives us access to the console, debugger, and React developer tools that we're accustomed to using, so debugging JavaScript-based issues in React Native should feel familiar.
 Activating the Developer Options
@@ -2259,7 +2265,7 @@ Debugging Beyond JavaScript | 153
 
 If you are having trouble uploading to your iOS device, make sure that your device is selected correctly as the build target. Is your device of a supported type, based on your project settings? If your app explicitly disallows iPads, for instance, you won't be able to deploy to an iPad. If you are using the React Native packager to rebuild your files as you make edits, you may see the screen shown in Figure 9-16.
 Figure 9-16. Could not connect to the development server This indicates that your application has attempted to load its bundled JavaScript file from the React Native packager but is unable to do so. In this case, run through the following checks:
-· Are your computer and iOS device on the same WiFi network? · Is the React Native packager running from the project directory?
+ï¿½ Are your computer and iOS device on the same WiFi network? ï¿½ Is the React Native packager running from the project directory?
 154 | Chapter 9: Debugging and Developer Tools
 
 Simulator Behavior
@@ -2409,7 +2415,7 @@ When inspecting the diff, you can then decide whether or not the changes were in
 When You're Stuck
 If you end up with a particularly nasty problem that you can't solve on your own, you can try consulting the community. There are plenty of places to go to ask for advice:
 
-· The #reactnative IRC chat (irc.lc/freenode/reactnative) · The React discussion forum · StackOverflow
+ï¿½ The #reactnative IRC chat (irc.lc/freenode/reactnative) ï¿½ The React discussion forum ï¿½ StackOverflow
 
 If you suspect your issue may be a bug in React Native itself, check the existing list of issues on GitHub. When you report issues, it's useful to create a small proof-ofconcept application demonstrating the problem.
 
@@ -2424,7 +2430,7 @@ Navigation and Structure in Larger Applications
 Now that we've covered many of the pieces you need to build your own React Native applications, let's put everything together. Up until now, we've mostly dealt with small examples. In this chapter, we'll look at the structure of a larger application. We'll cover how to use the <StackNavigation> component from react-navigation to handle transitions between different screens in an application. The example application from this chapter will also be used in Chapter 11, where we'll look at how to integrate the state management library Redux into our applica- tion.
 The Flashcard Application
 In this chapter, we're going to be building a flashcard application that allows users to create decks of cards and then review them. The flashcard application is more com- plex than the sample applications we've been building so far. It's meant to model what a more fleshed-out application might look like. All the code is available on GitHub. This application is entirely JavaScript-based and cross-platform: it will work on iOS or Android, and is compatible with Expo (meaning you can use the Create React Native App). As illustrated in Figure 10-1, the Flashcard app has three main views:
-· The home page, which lists available decks and allows you to create new decks · The card creation screen · The review screen
+ï¿½ The home page, which lists available decks and allows you to create new decks ï¿½ The card creation screen ï¿½ The review screen
 163
 
 Figure 10-1. Viewing decks, card creation, and card review Users of the app go through two main interaction flows. The first deals with content creation (i.e., the creation of decks as well as cards). The content creation process works as follows (illustrated in Figure 10-2):
@@ -2746,17 +2752,17 @@ Using React-Navigation | 185
 Figure 10-6. Setting the title via navigationOptions
 Implementing the Rest
 Now that we have the StackNavigator in place, we need to wire it up to the rest of the application. Specifically, the following interactions should work:
-· Tapping a deck from the <DeckScreen> should navigate to the <ReviewScreen> · Tapping the plus button from the <DeckScreen> should navigate to the <New
-CardScreen> · Tapping Done from the <NewCardScreen> should navigate back to the
-<DeckScreen> · Tapping Create Card from the <NewCardScreen> should navigate to a fresh <New
+ï¿½ Tapping a deck from the <DeckScreen> should navigate to the <ReviewScreen> ï¿½ Tapping the plus button from the <DeckScreen> should navigate to the <New
+CardScreen> ï¿½ Tapping Done from the <NewCardScreen> should navigate back to the
+<DeckScreen> ï¿½ Tapping Create Card from the <NewCardScreen> should navigate to a fresh <New
 CardScreen>
 186 | Chapter 10: Navigation and Structure in Larger Applications
 
-· Tapping Review Deck from the <NewCardScreen> should navigate to the <ReviewScreen>
-· Tapping Stop Reviewing from the <ReviewScreen> should navigate back to the <DeckScreen>
-· Tapping Done from the <ReviewScreen> should navigate back to the <DeckScreen>
-· Creating a deck from the <DeckScreen> should navigate to the <NewCardScreen> The updated code for this section is located on GitHub. The following files will be updated:
-· components/DeckScreen/Deck.js · components/DeckScreen/DeckCreation.js · components/DeckScreen/index.js · components/NewCardScreen/index.js · components/ReviewScreen/index.js · components/Flashcards.js · components/Header/Logo.js
+ï¿½ Tapping Review Deck from the <NewCardScreen> should navigate to the <ReviewScreen>
+ï¿½ Tapping Stop Reviewing from the <ReviewScreen> should navigate back to the <DeckScreen>
+ï¿½ Tapping Done from the <ReviewScreen> should navigate back to the <DeckScreen>
+ï¿½ Creating a deck from the <DeckScreen> should navigate to the <NewCardScreen> The updated code for this section is located on GitHub. The following files will be updated:
+ï¿½ components/DeckScreen/Deck.js ï¿½ components/DeckScreen/DeckCreation.js ï¿½ components/DeckScreen/index.js ï¿½ components/NewCardScreen/index.js ï¿½ components/ReviewScreen/index.js ï¿½ components/Flashcards.js ï¿½ components/Header/Logo.js
 Summary
 Organizing larger applications in React Native is sometimes a challenge. While we've looked at the pieces necessary to build React Native applications in previous chapters, the flashcards application is a meatier example of how it all fits together. By using the React Navigation library, we can combine many disparate screens of an app into a cohesive user experience. In the next section, we'll improve upon the flashcards application by adding Redux, a state management library, and integrating it with AsyncStorage to persist state between application launches.
 Summary | 187
@@ -3034,7 +3040,7 @@ export default reducer;
 And...that's it! Because state is managed by Redux, we can be confident that by modi- fying our deck reducer, we've ensured that all relevant state changes will be persisted to AsyncStorage.
 Summary and Homework
 A common critique of Redux--and similar state management libraries--is that it adds significant boilerplate to your application. Indeed, we had to write several new files in order to integrate Redux into our flashcard application. However, by express- ing state relationships explicitly rather than mutating state locally, this "boilerplate" makes existing complexity much more manageable. It's harder to write state-based bugs with Redux! You also get some nice bonuses like time travel debugging. Plus, as we saw when integrating AsyncStorage, making further changes to your application becomes much easier. Which particular state management library you use doesn't matter so much; there are many reasonable ways to structure a large application. However, as with any large React application, if you don't plan for state management, eventually you will proba- bly start to encounter bugs related to state mutations and have difficulty making changes to existing components. This is a good sign that you need to put more plan- ning into your state and data flow management. The flashcard application is meant to serve as a reference. In many ways, it's a "mini- mum viable project," and there are plenty of ways it could be improved. That being said, there's still plenty to explore in the codebase, and I encourage you to dig into it. If you want to get some more practice working within the context of React Native, check out the GitHub repository and try extending the flashcard application. Here are some ideas to get you started:
-· Add the ability to delete decks · Add a screen where you can view all cards in a deck · Display statistics about review performance over time · Experiment with different styles
+ï¿½ Add the ability to delete decks ï¿½ Add a screen where you can view all cards in a deck ï¿½ Display statistics about review performance over time ï¿½ Experiment with different styles
 206 | Chapter 11: State Management in Larger Applications
 
 Conclusion
@@ -3281,4 +3287,3 @@ About the Author
 Bonnie Eisenman is a software engineer at Twitter with previous experience at Code- cademy, Google, and Fog Creek Software. She has spoken at several conferences on topics ranging from React to musical programming and Arduinos. In her spare time, she enjoys building electronic musical instruments, laser-cutting chocolate, and learning languages.
 Colophon
 The animal on the cover of Learning React Native is a ringtail possum (Pseudocheirus peregrinus), a marsupial that is native to Australia. Ringtail possums are herbivorous and live primarily in forested regions. It is named for its prehensile tail, which is often coiled at the tip. Ringtail possums are gray-brown in color and can grow up to 35 centimeters in length. The diet of the ringtail possum consists of a variety of leaves, flowers, and fruits. They are nocturnal and live in communal nests known as dreys. As marsupials, ringtail possums carry their young in pouches until they are developed enough to survive on their own. The ringtail possum population declined steeply in the 1950s but has recovered in recent years. However, they are still at risk of habitat loss due to deforestation. Many of the animals on O'Reilly covers are endangered; all of them are important to the world. To learn more about how you can help, go to animals.oreilly.com. The cover image is from Shaw's Zoology. The cover fonts are URW Typewriter and Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad Condensed; and the code font is Dalton Maag's Ubuntu Mono.
-

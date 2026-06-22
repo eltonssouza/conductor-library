@@ -1,3 +1,9 @@
+# n8n - Complete Professional Guide
+
+> **Category:** 13_automation_and_integration · **Language:** English
+
+---
+
 # n8n — Complete Professional Guide
 ### Workflow Automation, Enterprise Integrations, and Generative AI in Production
 **Edition updated for n8n 2.x (June 2026)**
@@ -871,7 +877,3 @@ return {
 > **End of Part I.** The fundamentals are in place: what n8n is, its evolution up to the 2.x line, its internal architecture, the operational vocabulary, and the map of use cases. **Part II — Installation and Environments** (Chapters 6–13) starts getting hands-on with infrastructure: Docker, Docker Compose, Kubernetes, AWS, Azure, GCP, Self-Hosted, and Cloud.
 
 <!--APPEND-PARTE-II-->
-
-
-
-

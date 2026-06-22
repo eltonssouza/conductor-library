@@ -1,3 +1,9 @@
+# Core Java - Volume I
+
+> **Author(s):** Horstmann Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 About This eBook
 ePUB is an open, industry-standard format for eBooks. However, support of ePUB and its many features varies across reading devices and applications. Use your device or app settings to customize the presentation to your liking. Settings that you can customize often include font, font size, single or double column, landscape or portrait mode, and figures that you can click or tap to enlarge. For additional information about the settings and features on your reading device or app, visit the device manufacturer's Web site.
 Many titles include programming code or configuration examples. To optimize the presentation of these elements, view the eBook in single-column, landscape mode and adjust the font size to the smallest setting.
@@ -16,13 +22,13 @@ For information about buying this title in bulk quantities, or for special sales
 For government sales inquiries, please contact governmentsales@pearsoned.com. For questions about sales outside the U.S., please contact intlcs@pearson.com.
 Please contact us with concerns about any potential bias at pearson.com/reportbias.html.
 Visit us on the Web: informit.com/aw
-Copyright © 2024 Pearson Education, Inc.
-Portions copyright © 1996-2013 Oracle and/or its affiliates. All Rights Reserved.
+Copyright ï¿½ 2024 Pearson Education, Inc.
+Portions copyright ï¿½ 1996-2013 Oracle and/or its affiliates. All Rights Reserved.
 Oracle America Inc. does not make any representations or warranties as to the accuracy, adequacy or completeness of any information contained in this work, and is not responsible for any errors or omissions.
 Microsoft and/or its respective suppliers make no representations about the suitability of the information contained in the documents and related graphics published as part of the services for any purpose. All such documents and related graphics are provided "as is" without warranty of any kind. Microsoft and/or its respective suppliers hereby disclaim all warranties and conditions with regard to this information, including all warranties and conditions of merchantability, whether express, implied or statutory, fitness for a particular purpose, title and non-infringement. In no event shall Microsoft and/or its respective suppliers be liable for any special, indirect or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or
 
 in connection with the use or performance of information available from the services. The documents and related graphics contained herein could include technical inaccuracies or typographical errors. Changes are periodically added to the information herein. Microsoft and/or its respective suppliers may make improvements and/or changes in the product(s) and/or the program(s) described herein at any time. Partial screen shots may be viewed in full within the software version specified.
-Microsoft® Windows®, and Microsoft Office® are registered trademarks of the Microsoft Corporation in the U.S.A. and other countries. This book is not sponsored or endorsed by or affiliated with the Microsoft Corporation.
+Microsoftï¿½ Windowsï¿½, and Microsoft Officeï¿½ are registered trademarks of the Microsoft Corporation in the U.S.A. and other countries. This book is not sponsored or endorsed by or affiliated with the Microsoft Corporation.
 All rights reserved. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, request forms and the appropriate contacts within the Pearson Education Global Rights & Permissions Department, please visit www.pearson.com/permissions.
 ISBN-13: 978-0-13-532837-8 ISBN-10: 0-13-532837-3
 
@@ -108,10 +114,10 @@ Writing a book is always a monumental effort, and rewriting it doesn't seem to b
 A large number of individuals at Pearson provided valuable assistance but managed to stay behind the scenes. I'd like them all to know how much I appreciate their efforts. As always, my warm thanks go to my editor, Greg Doench, for steering the book through the writing and production process, and for allowing me to be blissfully unaware of the existence of all those folks behind the scenes. I am very grateful to Julie Nahil for production support, to Dmitry Kirsanov and Alina Kirsanova for copyediting the manuscript, and to Clovis L. Tondo for reviewing the final content. I wrote the book using HTML and CSS, and Prince (https://princexml.com) turned it into PDF--a workflow that I highly recommend. My thanks also to my coauthor of earlier editions, Gary Cornell, who has since moved on to other ventures.
 Thanks to the many readers of earlier editions who reported errors and made lots of thoughtful suggestions for improvement. I am particularly grateful to the excellent reviewing team who went over the manuscript with an amazing eye for detail and saved me from many embarrassing errors.
 
-Reviewers of this and earlier editions include Chuck Allison (Utah Valley University), Lance Andersen (Oracle), Gail Anderson (Anderson Software Group), Paul Anderson (Anderson Software Group), Alec Beaton (IBM), Cliff Berg, Andrew Binstock (Oracle), Joshua Bloch, David Brown, Corky Cartwright, Frank Cohen (PushToTest), Chris Crane (devXsolution), Dr. Nicholas J. De Lillo (Manhattan College), Rakesh Dhoopar (Oracle), Ahmad R. Elkomey, Robert Evans (Senior Staff, The Johns Hopkins University Applied Physics Lab), David Geary (Clarity Training), Jim Gish (Oracle), Brian Goetz (Oracle), Angela Gordon, Dan Gordon (Electric Cloud), Rob Gordon, John Gray (University of Hartford), Cameron Gregory (olabs.com), Andrzej Grzesik, Marty Hall (coreservlets.com, Inc.), Vincent Hardy (Adobe Systems), Dan Harkey (San Jose State University), Steve Haines, William Higgins (IBM), Marc Hoffmann (mtrail), Vladimir Ivanovic (PointBase), Jerry Jackson (CA Technologies), Heinz Kabutz (Java Specialists), Stepan V. Kalinin (I-Teco/Servionica LTD), Tim Kimmet (Walmart), John Kostaras, Jerzy Krolak, Chris Laffra, Charlie Lai (Apple), Angelika Langer, Jeff Langr (Langr Software Solutions), Doug Langston, Hang Lau (McGill University), Mark Lawrence, Doug Lea (SUNY Oswego), Gregory Longshore, Bob Lynch (Lynch Associates), Philip Milne (consultant), Mark Morrissey (The Oregon Graduate Institute), Mahesh Neelakanta (Florida Atlantic University), José Paumard (Oracle), Hao Pham, Paul Philion, Blake Ragsdell, Ylber Ramadani (Ryerson University), Stuart Reges (University of Arizona), Simon Ritter (Azul Systems), Rich Rosen (Interactive Data Corporation), Peter Sanders (ESSI University, Nice, France), Dr. Paul Sanghera (San Jose State University and Brooks College), Paul Sevinc (Teamup AG), Devang Shah (Sun Microsystems), Yoshiki Shibata, Richard Slywczak (NASA/Glenn Research Center), Bradley A. Smith, Steven Stelting (Oracle), Christopher Taylor, Luke Taylor (Valtech), George Thiruvathukal, Kim
+Reviewers of this and earlier editions include Chuck Allison (Utah Valley University), Lance Andersen (Oracle), Gail Anderson (Anderson Software Group), Paul Anderson (Anderson Software Group), Alec Beaton (IBM), Cliff Berg, Andrew Binstock (Oracle), Joshua Bloch, David Brown, Corky Cartwright, Frank Cohen (PushToTest), Chris Crane (devXsolution), Dr. Nicholas J. De Lillo (Manhattan College), Rakesh Dhoopar (Oracle), Ahmad R. Elkomey, Robert Evans (Senior Staff, The Johns Hopkins University Applied Physics Lab), David Geary (Clarity Training), Jim Gish (Oracle), Brian Goetz (Oracle), Angela Gordon, Dan Gordon (Electric Cloud), Rob Gordon, John Gray (University of Hartford), Cameron Gregory (olabs.com), Andrzej Grzesik, Marty Hall (coreservlets.com, Inc.), Vincent Hardy (Adobe Systems), Dan Harkey (San Jose State University), Steve Haines, William Higgins (IBM), Marc Hoffmann (mtrail), Vladimir Ivanovic (PointBase), Jerry Jackson (CA Technologies), Heinz Kabutz (Java Specialists), Stepan V. Kalinin (I-Teco/Servionica LTD), Tim Kimmet (Walmart), John Kostaras, Jerzy Krolak, Chris Laffra, Charlie Lai (Apple), Angelika Langer, Jeff Langr (Langr Software Solutions), Doug Langston, Hang Lau (McGill University), Mark Lawrence, Doug Lea (SUNY Oswego), Gregory Longshore, Bob Lynch (Lynch Associates), Philip Milne (consultant), Mark Morrissey (The Oregon Graduate Institute), Mahesh Neelakanta (Florida Atlantic University), Josï¿½ Paumard (Oracle), Hao Pham, Paul Philion, Blake Ragsdell, Ylber Ramadani (Ryerson University), Stuart Reges (University of Arizona), Simon Ritter (Azul Systems), Rich Rosen (Interactive Data Corporation), Peter Sanders (ESSI University, Nice, France), Dr. Paul Sanghera (San Jose State University and Brooks College), Paul Sevinc (Teamup AG), Devang Shah (Sun Microsystems), Yoshiki Shibata, Richard Slywczak (NASA/Glenn Research Center), Bradley A. Smith, Steven Stelting (Oracle), Christopher Taylor, Luke Taylor (Valtech), George Thiruvathukal, Kim
 
 Topley (StreamingEdge), Janet Traub, Paul Tyma (consultant), Christian Ullenboom, Peter van der Linden, Joe Wang (Oracle), Sven Woltmann, Burt Walsh, Dan Xu (Oracle), and John Zavgren (Oracle).
-Cay Horstmann Düsseldorf, Germany October 2023
+Cay Horstmann Dï¿½sseldorf, Germany October 2023
 
 Chapter 1  An Introduction
 to Java
@@ -1103,11 +1109,11 @@ Requirement
 
 byte 1 byte
 
-­128 to 127
+ï¿½128 to 127
 
 short 2 bytes
 
-­32,768 to 32,767
+ï¿½32,768 to 32,767
 
 Storage
 
@@ -1119,11 +1125,11 @@ Requirement
 
 int 4 bytes
 
-­2,147,483,648 to 2,147,483,647 (just over 2 billion)
+ï¿½2,147,483,648 to 2,147,483,647 (just over 2 billion)
 
 long 8 bytes
 
-­ 9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+ï¿½ 9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
 
 In most situations, the int type is the most practical. If you want to represent the number of inhabitants of our planet, you'll need to resort to a long. The byte and short types are mainly intended for specialized applications, such as lowlevel file handling, or for large arrays when storage space is at a premium.
 Under Java, the ranges of the integer types do not depend on the machine on which you will be running the Java code. This alleviates a major pain for the programmer who wants to move software from one platform to another, or even between operating systems on the same platform. In contrast, C and C++ programs use the most efficient integer type for each processor. As a result, a C program that runs well on a 32-bit processor may exhibit integer overflow on a 16-bit system. Since Java programs must run with the same results on all machines, the ranges for the various types are fixed.
@@ -1133,7 +1139,7 @@ example, 010 is 8)--naturally, this can be confusing, and few programmers use oc
 You can write numbers in binary, with a prefix 0b or 0B. For example, 0b1001 is 9. You can add underscores to number literals, such as 1_000_000 (or 0b1111_0100_0010_0100_0000) to denote one million. The underscores are for human eyes only. The Java compiler simply removes them.
 C++ Note: In C and C++, the sizes of types such as int and long depend on the target platform. On a 16bit processor such as the 8086, integers are 2 bytes, but on a 32-bit processor like a Pentium or SPARC they are 4-byte quantities. Similarly, long values are 4-byte on 32-bit processors and 8-byte on 64-bit processors. These differences make it challenging to write cross-platform programs. In Java, the sizes of all numeric types are platform-independent.
 Note that Java does not have any unsigned versions of the int, long, short, or byte types.
-Note: If you work with integer values that can never be negative and you really need an additional bit, you can, with some care, interpret signed integer values as unsigned. For example, instead of having a byte value b represent the range from ­128 to 127, you may want a range from 0 to 255. You can store it in a byte. Due to the nature of binary arithmetic, addition, subtraction, and multiplication will work provided they don't overflow. For other operations, call Byte.toUnsignedInt(b) to get an int value between 0
+Note: If you work with integer values that can never be negative and you really need an additional bit, you can, with some care, interpret signed integer values as unsigned. For example, instead of having a byte value b represent the range from ï¿½128 to 127, you may want a range from 0 to 255. You can store it in a byte. Due to the nature of binary arithmetic, addition, subtraction, and multiplication will work provided they don't overflow. For other operations, call Byte.toUnsignedInt(b) to get an int value between 0
 
 and 255, then process the integer value and cast back
 to byte. The Integer and Long classes have methods for unsigned division and remainder.
@@ -1149,11 +1155,11 @@ Requirement
 
 4 bytes
 
-Approximately ±3.40282347 ×1038 (6­7 significant decimal digits)
+Approximately ï¿½3.40282347 ï¿½1038 (6ï¿½7 significant decimal digits)
 
 double 8 bytes
 
-Approximately ±1.79769313486231570 ×10308 (15 significant decimal digits)
+Approximately ï¿½1.79769313486231570 ï¿½10308 (15 significant decimal digits)
 
 The name double refers to the fact that these numbers have twice the precision of the float type. (Some people call these double-precision numbers.) The limited precision of float (6-7 significant digits) is simply not sufficient for many situations. Use float values only when you work with a library that requires them, or when you need to store a very large number of them.
 Java 20 adds a couple of methods (Float.floatToFloat16 and Float.float16toFloat) for storing "half-precision" 16-bit
@@ -1161,7 +1167,7 @@ Java 20 adds a couple of methods (Float.floatToFloat16 and Float.float16toFloat)
 floating-point numbers in short values. These are used for implementating neural networks.
 Numbers of type float have a suffix F or f (for example, 3.14F). Floating-point numbers without an F suffix (such as 3.14) are always considered to be of type double. You can optionally supply the D or d suffix (for example, 3.14D).
 An E or e denotes a decimal exponent. For example, 1.729E3 is the same as 1729.
-Note: You can specify floating-point literals in hexadecimal. For example, 0.125 = 2­3 can be written as 0x1.0p-3. In hexadecimal notation, you use a p, not an e, to denote the exponent. (An e is a hexadecimal digit.) Note that the mantissa is written in hexadecimal and the exponent in decimal. The base of the exponent is 2, not 10.
+Note: You can specify floating-point literals in hexadecimal. For example, 0.125 = 2ï¿½3 can be written as 0x1.0p-3. In hexadecimal notation, you use a p, not an e, to denote the exponent. (An e is a hexadecimal digit.) Note that the mantissa is written in hexadecimal and the exponent in decimal. The base of the exponent is 2, not 10.
 All floating-point computations follow the IEEE 754 specification. In particular, there are three special floatingpoint values to denote overflows and errors:
 Positive infinity Negative infinity NaN (not a number)
 For example, the result of dividing a positive floating-point number by 0 is positive infinity. Dividing 0.0 by 0 or the square root of a negative number yields NaN.
@@ -1248,7 +1254,7 @@ Even more insidiously, you must beware of \u inside comments. The comment
 yields a syntax error since \u000A is replaced with a newline when the program is read. Similarly, a comment
 // look inside c:\users
 yields a syntax error because the \u is not followed by four hex digits.
-Note: You can have any number of u in a Unicode escape sequence: \u00E9 and \uuu00E9 both denote the character é. There is a reason for this oddity. Consider a programmer happily coding in Unicode who is forced, for some archaic reason, to check in code as ASCII only. A conversion tool can turn any character > U+007F into a Unicode escape and add a u to every existing Unicode escape. That makes the conversion reversible. For example, \uD800 é is turned into \uuD800 \u00E9 and can be converted back to \uD800 é.
+Note: You can have any number of u in a Unicode escape sequence: \u00E9 and \uuu00E9 both denote the character ï¿½. There is a reason for this oddity. Consider a programmer happily coding in Unicode who is forced, for some archaic reason, to check in code as ASCII only. A conversion tool can turn any character > U+007F into a Unicode escape and add a u to every existing Unicode escape. That makes the conversion reversible. For example, \uD800 ï¿½ is turned into \uuD800 \u00E9 and can be converted back to \uD800 ï¿½.
 3.3.4. Unicode and the char Type
 To fully understand the char type, you have to know about the Unicode encoding scheme. Before Unicode, there were many different character encoding standards: ASCII in the United States, ISO 8859-1 for Western European languages, KOI-8 for Russian, GB18030 and BIG-5 for Chinese, and so on. This caused two problems. First, a particular code value corresponds to different letters in the different encoding schemes. Second, the encodings for languages with large character sets have variable length:
 
@@ -1289,8 +1295,8 @@ Notice the semicolon at the end of each declaration. The semicolon is necessary 
 The identifier for a variable name (as well as for other names) is made up of letters, digits, currency symbols, and
 
 "punctuation connectors." The first character cannot be a digit.
-Symbols like '+' or '©' cannot be used inside variable names, nor can spaces. Letter case is significant: main and Main are distinct identifiers. The length of an identifier is essentially unlimited.
-The terms "letter," "digit," and "currency symbol" are much broader in Java than in most languages. A letter is any Unicode character that denotes a letter in a language. For example, German users can use umlauts such as ä in variable names; Greek speakers could use a . Similarly, digits are 0­9 and any Unicode characters that denote a digit. Currency symbols are $, , ¥, and so on. Punctuation
+Symbols like '+' or 'ï¿½' cannot be used inside variable names, nor can spaces. Letter case is significant: main and Main are distinct identifiers. The length of an identifier is essentially unlimited.
+The terms "letter," "digit," and "currency symbol" are much broader in Java than in most languages. A letter is any Unicode character that denotes a letter in a language. For example, German users can use umlauts such as ï¿½ in variable names; Greek speakers could use a . Similarly, digits are 0ï¿½9 and any Unicode characters that denote a digit. Currency symbols are $, , ï¿½, and so on. Punctuation
  connectors include the underscore character _, a "wavy low
 line" , and a few others. In practice, most programmers stick to A-Z, a-z, 0-9, and the underscore _.
 Tip: If you are really curious as to what Unicode characters can be used in identifiers, you can use the isJavaIdentifierStart and isJavaIdentifierPart methods in the Character class to check.
@@ -1603,7 +1609,7 @@ Note: The virtual machine is not required to store strings as sequences of char 
 The length method yields the number of char values required for a given string. For example:
  String greeting = "Ciao ";
 int n = greeting.length(); // is 9
-The call s.charAt(n) returns the char value at position n, where n is between 0 and s.length() ­ 1. (Like C and C++, Java counts positions in a string starting with 0.) For example:
+The call s.charAt(n) returns the char value at position n, where n is between 0 and s.length() ï¿½ 1. (Like C and C++, Java counts positions in a string starting with 0.) For example:
 char first = greeting.charAt(0); // first is 67 or 'C' char last = greeting.charAt(8); // last is 56825
 However, these calls are not very useful. The last char value is just a part of the flag symbol, and you won't generally care what these values are.
 Still, you sometimes need to know where a substring is located in a string. Use the indexOf method:
@@ -1677,7 +1683,7 @@ java.lang.String 1.0
 char charAt(int index) returns the code unit at the specified location. You probably don't want to call this method unless you are interested in low-level code units. int length() returns the number of code units of the string. boolean equals(Object other) returns true if the string equals other. boolean equalsIgnoreCase(String other) returns true if the string equals other, except for upper/lowercase distinction. int compareTo(String other) returns a negative value if the string comes before other in dictionary order, a positive value if the string comes after other in dictionary order, or 0 if the strings are equal. boolean isEmpty() 6 boolean isBlank() 11 return true if the string is empty or consists of whitespace. boolean startsWith(String prefix) boolean endsWith(String suffix) return true if the string starts with prefix or ends with suffix. int indexOf(String str) int indexOf(String str, int fromIndex) int indexOf(String str, int fromIndex, int toIndex) 21 return the start of the first substring equal to the string str, starting at index 0 or at fromIndex, and ending at the end of the string or at toIndex. Return -1
 
 if str does not occur in this string or the specified substring.
-int lastIndexOf(String str) int lastIndexOf(String str, int fromIndex) return the start of the last substring equal to the string str, starting at the end of the string or at fromIndex, or -1 if str does not occur. String replace(CharSequence oldString, CharSequence newString) returns a new string that is obtained by replacing all substrings matching oldString in the string with the string newString. You can supply String or StringBuilder arguments for the CharSequence parameters. String substring(int beginIndex) String substring(int beginIndex, int endIndex) return a new string consisting of all code units from beginIndex until the end of the string or until endIndex ­ 1.
+int lastIndexOf(String str) int lastIndexOf(String str, int fromIndex) return the start of the last substring equal to the string str, starting at the end of the string or at fromIndex, or -1 if str does not occur. String replace(CharSequence oldString, CharSequence newString) returns a new string that is obtained by replacing all substrings matching oldString in the string with the string newString. You can supply String or StringBuilder arguments for the CharSequence parameters. String substring(int beginIndex) String substring(int beginIndex, int endIndex) return a new string consisting of all code units from beginIndex until the end of the string or until endIndex ï¿½ 1.
 String toLowerCase() String toUpperCase() return a new string containing all characters in the original string, with uppercase characters converted to lowercase, or lowercase characters converted to uppercase.
 String strip() 11 String stripLeading() 11 String stripTrailing() 11 return a new string by eliminating leading and trailing, or just leading or trailing whitespace in the original string. Use these methods instead of the archaic trim method that eliminates characters  U+0020.
 String join(CharSequence delimiter, CharSequence...
@@ -1724,7 +1730,7 @@ Note: The legacy StringBuffer class is less efficient than StringBuilder, but it
 happens in a single thread (which is usually the case), you should use StringBuilder. The APIs of both classes are identical.
 The following API notes contain the most important methods for the StringBuilder class.
 java.lang.StringBuilder 5.0
-StringBuilder() StringBuilder(CharSequence seq) constructs an empty string builder, or one with the given initial content. int length() returns the number of code units of the builder or buffer. StringBuilder append(String str) appends a string and returns the string builder. StringBuilder appendCodePoint(int cp) appends a code point, converting it into one or two code units, and returns this. StringBuilder insert(int offset, String str) inserts a string at position offset and returns the string builder. StringBuilder delete(int startIndex, int endIndex) deletes the code units with offsets startIndex to endIndex ­ 1 and returns the string builder. StringBuilder repeat(CharSequence cs, int count) 21 Appends count copies of cs and returns the string builder.
+StringBuilder() StringBuilder(CharSequence seq) constructs an empty string builder, or one with the given initial content. int length() returns the number of code units of the builder or buffer. StringBuilder append(String str) appends a string and returns the string builder. StringBuilder appendCodePoint(int cp) appends a code point, converting it into one or two code units, and returns this. StringBuilder insert(int offset, String str) inserts a string at position offset and returns the string builder. StringBuilder delete(int startIndex, int endIndex) deletes the code units with offsets startIndex to endIndex ï¿½ 1 and returns the string builder. StringBuilder repeat(CharSequence cs, int count) 21 Appends count copies of cs and returns the string builder.
 
 StringBuilder reverse() Reverses the code points in this string builder and returns the builder. String toString() returns a string with the same data as the builder or buffer contents.
 3.6.10. Text Blocks
@@ -1781,7 +1787,7 @@ Hello, Cay. Next year, you'll be 65.
 Finally, note the line
 import java.util.*;
 at the beginning of the program. The Scanner class is defined in the java.util package. Whenever you use a class that is not defined in the basic java.lang package, you need to use an import directive. Packages and import directives are covered in more detail in Chapter 4.
-Caution: You may run into trouble if you run this program from a terminal (by calling java InputTest), and you use Windows, and your name contains characters other than the 26 Roman upper- and lowercase characters (such as Bérengère or ). By default, Windows terminals use an archaic character encoding for System.out, but not for the Scanner. The result is garbled output. To fix this, switch the terminal to the UTF-8 encoding, by issuing the following terminal command prior to running the program:
+Caution: You may run into trouble if you run this program from a terminal (by calling java InputTest), and you use Windows, and your name contains characters other than the 26 Roman upper- and lowercase characters (such as Bï¿½rengï¿½re or ). By default, Windows terminals use an archaic character encoding for System.out, but not for the Scanner. The result is garbled output. To fix this, switch the terminal to the UTF-8 encoding, by issuing the following terminal command prior to running the program:
 chcp 65001
 Then, if you use Java 18 or above, all will be well. With older versions of Java, run the program as:
 java -Dfile.encoding=utf-8 InputTest
@@ -2482,10 +2488,10 @@ The first slot of a for loop can declare multiple variables, provided they are o
 for (int i = 1, j = 10; i <= 10; i++, j--) { ... }
 While technically legal, this stretches the intuitive meaning of the for loop, and you should consider a while loop instead.
 Listing 3.5 shows a typical example of a for loop.
-The program computes the odds of winning a lottery. For example, if you must pick six numbers from the numbers 1 to 50 to win, then there are (50 × 49 × 48 × 47 × 46 × 45)/(1 × 2 × 3 × 4 × 5 × 6) possible outcomes, so your chance is 1 in 15,890,700. Good luck!
+The program computes the odds of winning a lottery. For example, if you must pick six numbers from the numbers 1 to 50 to win, then there are (50 ï¿½ 49 ï¿½ 48 ï¿½ 47 ï¿½ 46 ï¿½ 45)/(1 ï¿½ 2 ï¿½ 3 ï¿½ 4 ï¿½ 5 ï¿½ 6) possible outcomes, so your chance is 1 in 15,890,700. Good luck!
 In general, if you pick k numbers out of n, there are
-n × (n - 1) × (n - 2) ×  × (n - k + 1)
-1×2×3×4××k
+n ï¿½ (n - 1) ï¿½ (n - 2) ï¿½  ï¿½ (n - k + 1)
+1ï¿½2ï¿½3ï¿½4ï¿½ï¿½k
 possible outcomes. The following for loop computes this value:
 int lotteryOdds = 1; for (int i = 1; i <= k; i++)
 lotteryOdds = lotteryOdds * (n - i + 1) / i;
@@ -3005,7 +3011,7 @@ numbers[i] = i + 1;
 
 A second array holds the numbers to be drawn:
 int[] result = new int[k];
-Now draw k numbers. The Math.random method returns a random floating-point number that is between 0 (inclusive) and 1 (exclusive). Multiplying the result with n yields a random number between 0 and n ­ 1.
+Now draw k numbers. The Math.random method returns a random floating-point number that is between 0 (inclusive) and 1 (exclusive). Multiplying the result with n yields a random number between 0 and n ï¿½ 1.
 int r = (int) (Math.random() * n);
 Set the ith result to be the number at that index. Initially, that is just r + 1, but as you'll see presently, the contents of the numbers array are changed after each draw.
 result[i] = numbers[r];
@@ -3171,7 +3177,7 @@ System.out.println(r);
 46 }
 
 java.util.Arrays 1.2
-static String toString(T[] a) 5.0 returns a string with the elements of a, enclosed in brackets and delimited by commas. In this and the following methods, the component type T of the array can be int, long, short, char, byte, boolean, float, or double. static T[] copyOf(T[] a, int end) 6 static T[] copyOfRange(T[] a, int start, int end) 6 return an array of the same type as a, of length either end or end ­ start, filled with the values of a. If end is larger than a.length, the result is padded with 0 or false values. static void sort(T[] a) sorts the array, using a tuned QuickSort algorithm. static void fill(T[] a, T v) sets all elements of the array to v. static boolean equals(T[] a, T[] b) returns true if the arrays have the same length and if the elements at corresponding indexes match.
+static String toString(T[] a) 5.0 returns a string with the elements of a, enclosed in brackets and delimited by commas. In this and the following methods, the component type T of the array can be int, long, short, char, byte, boolean, float, or double. static T[] copyOf(T[] a, int end) 6 static T[] copyOfRange(T[] a, int start, int end) 6 return an array of the same type as a, of length either end or end ï¿½ start, filled with the values of a. If end is larger than a.length, the result is padded with 0 or false values. static void sort(T[] a) sorts the array, using a tuned QuickSort algorithm. static void fill(T[] a, T v) sets all elements of the array to v. static boolean equals(T[] a, T[] b) returns true if the arrays have the same length and if the elements at corresponding indexes match.
 
 3.10.7. Multidimensional Arrays
 
@@ -3631,13 +3637,13 @@ Next, look for verbs. Items are added to orders. Orders are shipped or canceled.
 Of course, the "noun and verb" is but a rule of thumb; only experience can help you decide which nouns and verbs are the important ones when building your classes.
 4.1.4. Relationships between Classes
 The most common relationships between classes are
-Dependence ("uses­a") Aggregation ("has­a") Inheritance ("is­a")
-The dependence, or "uses­a" relationship, is the most obvious and also the most general. For example, the Order class uses the Account class because Order objects need to access Account objects to check for credit status. But the Item class does not depend on the Account class, because Item objects never need to worry about customer accounts. Thus, a class depends on another class if its methods use or manipulate objects of that class.
+Dependence ("usesï¿½a") Aggregation ("hasï¿½a") Inheritance ("isï¿½a")
+The dependence, or "usesï¿½a" relationship, is the most obvious and also the most general. For example, the Order class uses the Account class because Order objects need to access Account objects to check for credit status. But the Item class does not depend on the Account class, because Item objects never need to worry about customer accounts. Thus, a class depends on another class if its methods use or manipulate objects of that class.
 
 Try to minimize the number of classes that depend on each other. The point is, if a class A is unaware of the existence of a class B, it is also unconcerned about any changes to B. (And this means that changes to B do not introduce bugs into A.) In software engineering terminology, you want to minimize the coupling between classes.
-The aggregation, or "has­a" relationship, is easy to understand because it is concrete; for example, an Order object contains Item objects. Containment means that objects of class A contain objects of class B.
-Note: Some methodologists view the concept of aggregation with disdain and prefer to use a more general "association" relationship. From the point of view of modeling, that is understandable. But for programmers, the "has­a" relationship makes a lot of sense. I like to use aggregation for another reason as well: The standard notation for associations is less clear. See Table 4.1.
-The inheritance, or "is­a" relationship, expresses a relationship between a more special and a more general class. For example, a RushOrder class inherits from an Order class. The specialized RushOrder class has special methods for priority handling and a different method for computing shipping charges, but its other methods, such as adding items and billing, are inherited from the Order class. In general, if class D extends class C, class D inherits methods from class C but has more capabilities. (See the next chapter which discusses this important notion at some length.)
+The aggregation, or "hasï¿½a" relationship, is easy to understand because it is concrete; for example, an Order object contains Item objects. Containment means that objects of class A contain objects of class B.
+Note: Some methodologists view the concept of aggregation with disdain and prefer to use a more general "association" relationship. From the point of view of modeling, that is understandable. But for programmers, the "hasï¿½a" relationship makes a lot of sense. I like to use aggregation for another reason as well: The standard notation for associations is less clear. See Table 4.1.
+The inheritance, or "isï¿½a" relationship, expresses a relationship between a more special and a more general class. For example, a RushOrder class inherits from an Order class. The specialized RushOrder class has special methods for priority handling and a different method for computing shipping charges, but its other methods, such as adding items and billing, are inherited from the Order class. In general, if class D extends class C, class D inherits methods from class C but has more capabilities. (See the next chapter which discusses this important notion at some length.)
 Many programmers use the UML (Unified Modeling Language) notation to draw class diagrams that describe the relationships between classes. You can see an example of such a diagram in Figure 4.2. You draw classes as rectangles, and relationships as arrows with various adornments. Table 4.1 shows the UML arrow styles that this book uses.
 
 Figure 4.2: A class diagram
@@ -5398,7 +5404,7 @@ return id;
 84 }
 
 java.util.random.RandomGenerator 17
-int nextInt(int n) returns a random integer between 0 and n ­ 1. static RandomGenerator of(String name) yields a random generator for the given algorithm name. The algorithm named "L64X128MixRandom" is suitable for most applications. static RandomGenerator getDefault() yields a strong random generator with 64 or more state bits.
+int nextInt(int n) returns a random integer between 0 and n ï¿½ 1. static RandomGenerator of(String name) yields a random generator for the given algorithm name. The algorithm named "L64X128MixRandom" is suitable for most applications. static RandomGenerator getDefault() yields a strong random generator with 64 or more state bits.
 
 java.util.Random 1.0
 static from(RandomGenerator generator) 19 returns a Random instance whose methods delegate to the given RandomGenerator. This is useful with legacy code.
@@ -6344,7 +6350,7 @@ This chapter also covers reflection, the ability to find out more about classes 
 Subclasses
 Let's return to the Employee class discussed in the previous chapter. Suppose (alas) you work for a company where managers are treated differently from other employees. Managers are, of course, just like employees in many respects. Both employees and managers are paid a salary. However, while employees are expected to complete their assigned tasks in return for receiving their salary, managers get bonuses if they actually achieve what they
 
-are supposed to do. This is the kind of situation that cries out for inheritance. Why? Well, you need to define a new class, Manager, and add functionality. But you can retain some of what you have already programmed in the Employee class, and all the fields of the original class can be preserved. More abstractly, there is an obvious "is­a" relationship between Manager and Employee. Every manager is an employee: This "is­a" relationship is the hallmark of inheritance.
+are supposed to do. This is the kind of situation that cries out for inheritance. Why? Well, you need to define a new class, Manager, and add functionality. But you can retain some of what you have already programmed in the Employee class, and all the fields of the original class can be preserved. More abstractly, there is an obvious "isï¿½a" relationship between Manager and Employee. Every manager is an employee: This "isï¿½a" relationship is the hallmark of inheritance.
 Note: In this chapter, I use the classic example of employees and managers, but I must ask you to take this example with a grain of salt. In the real world, an employee can become a manager, so you would want to model being a manager as a role of an employee, not a subclass. In my example, however, I assume the corporate world is populated by two kinds of people: those who are forever employees, and those who have always been managers.
 5.1.1. Defining Subclasses
 Here is how you define a Manager class that inherits from the Employee class. Use the Java keyword extends to denote inheritance.
@@ -6588,8 +6594,8 @@ There is usually more than one chain of descent from a distant ancestor class. Y
 
 C++ Note: In C++, a class can have multiple superclasses. Java does not support multiple inheritance. For ways to recover much of the functionality of multiple inheritance, see Chapter 6.
 5.1.5. Polymorphism
-A simple rule can help you decide whether or not inheritance is the right design for your data. The "is­a" rule states that every object of the subclass is an object of the superclass. For example, every manager is an employee. Thus, it makes sense for the Manager class to be a subclass of the Employee class. Naturally, the opposite is not true-- not every employee is a manager.
-Another way of formulating the "is­a" rule is the substitution principle. That principle states that you can use a subclass object whenever the program expects a superclass object.
+A simple rule can help you decide whether or not inheritance is the right design for your data. The "isï¿½a" rule states that every object of the subclass is an object of the superclass. For example, every manager is an employee. Thus, it makes sense for the Manager class to be a subclass of the Employee class. Naturally, the opposite is not true-- not every employee is a manager.
+Another way of formulating the "isï¿½a" rule is the substitution principle. That principle states that you can use a subclass object whenever the program expects a superclass object.
 For example, you can assign a subclass object to a superclass variable.
 Employee e; e = new Employee(. . .); // Employee object expected e = new Manager(. . .); // OK, Manager can be used as well
 In the Java programming language, object variables are polymorphic. A variable of type Employee can refer to an object of type Employee or to an object of any subclass of the Employee class (such as Manager, Executive, Secretary, and so on).
@@ -6946,7 +6952,7 @@ However, you can do better. First, use the null-safe method Objects.hashCode. It
 public int hashCode() {
 return 7 * Objects.hashCode(name) + 11 * Double.hashCode(salary) + 13 * Objects.hashCode(hireDay);
 }
-Caution: If the instance variables have small ranges of possible values, you need to achieve as many distinct hash codes as possible. Consider hashing calendar dates. Computing 7 * year + 11 * month + 13 * day yields many collisions. In contrast, 31 * 12 * year + 31 * month + day is a "perfect hash function." Assuming a reasonable year range, no two dates have the same hash code. (The actual hashCode method of the LocalDate class, which supports a range of ±999,999,999 years, is a bit more complex.)
+Caution: If the instance variables have small ranges of possible values, you need to achieve as many distinct hash codes as possible. Consider hashing calendar dates. Computing 7 * year + 11 * month + 13 * day yields many collisions. In contrast, 31 * 12 * year + 31 * month + day is a "perfect hash function." Assuming a reasonable year range, no two dates have the same hash code. (The actual hashCode method of the LocalDate class, which supports a range of ï¿½999,999,999 years, is a bit more complex.)
 Combining multiple hash values can be tedious. In many cases, you can simply call Objects.hash with all fields. It will
 
 combine the hash codes of its arguments. Then the Employee.hashCode method is simply
@@ -10299,12 +10305,12 @@ wrappers. Primitive type return values must be unwrapped.
 I want to end this chapter with some hints that I have found useful when using inheritance.
 1. Place common operations and fields in the superclass. This is why we put the name field into the Person class instead of replicating it in the Employee and Student classes.
 2. Don't use protected fields. Some programmers think it is a good idea to define most instance fields as protected, "just in case," so that subclasses can access these fields if they need to. However, the protected mechanism doesn't give much protection, for two reasons. First, the set of subclasses is unbounded--anyone can form a subclass of your classes and then write code that directly accesses protected instance fields, thereby breaking encapsulation. And second, in Java, all classes in the same package have access to protected fields, whether or not they are subclasses. However, protected methods can be useful to indicate methods that are not ready for general use and should be redefined in subclasses.
-3. Use inheritance to model the "is­a" relationship. Inheritance is a handy code-saver, but sometimes people overuse it. For example, suppose we need a Contractor class. Contractors have names and hire dates, but they do not have salaries. Instead, they are paid by the hour, and they do not stay around long
+3. Use inheritance to model the "isï¿½a" relationship. Inheritance is a handy code-saver, but sometimes people overuse it. For example, suppose we need a Contractor class. Contractors have names and hire dates, but they do not have salaries. Instead, they are paid by the hour, and they do not stay around long
 
 enough to get a raise. There is the temptation to form a subclass Contractor from Employee and add an hourlyWage field.
 public class Contractor extends Employee {
 private double hourlyWage; ... }
-This is not a good idea, however, because now each contractor object has both a salary and hourly wage field. It will cause you no end of grief when you implement methods for printing paychecks or tax forms. You will end up writing more code than you would have written by not inheriting in the first place. The contractor-employee relationship fails the "is­a" test. A contractor is not a special case of an employee.
+This is not a good idea, however, because now each contractor object has both a salary and hourly wage field. It will cause you no end of grief when you implement methods for printing paychecks or tax forms. You will end up writing more code than you would have written by not inheriting in the first place. The contractor-employee relationship fails the "isï¿½a" test. A contractor is not a special case of an employee.
 4. Don't use inheritance unless all inherited methods make sense. Suppose we want to write a Holiday class. Surely every holiday is a day, and days can be expressed as instances of the GregorianCalendar class, so we can use inheritance.
 class Holiday extends GregorianCalendar { . . . }
 Unfortunately, the set of holidays is not closed under the inherited operations. One of the public methods of GregorianCalendar is add. And add can turn holidays into nonholidays:
@@ -10588,7 +10594,7 @@ static int compare(int x, int y) 7 returns a negative integer if x < y, zero if 
 
 java.lang.Double 1.0
 static int compare(double x, double y) 1.4 returns a negative integer if x < y, zero if x and y are equal, and a positive integer otherwise.
-Note: According to the language standard: "The implementor must ensure sgn(x.compareTo(y)) = -sgn(y.compareTo(x)) for all x and y. (This implies that x.compareTo(y) must throw an exception if y.compareTo(x) throws an exception.)" Here, sgn is the sign of a number: sgn(n) is ­1 if n is negative, 0 if n equals 0, and 1 if n is positive. In plain English, if you flip the arguments of compareTo, the sign (but not necessarily the actual value) of the result must also flip.
+Note: According to the language standard: "The implementor must ensure sgn(x.compareTo(y)) = -sgn(y.compareTo(x)) for all x and y. (This implies that x.compareTo(y) must throw an exception if y.compareTo(x) throws an exception.)" Here, sgn is the sign of a number: sgn(n) is ï¿½1 if n is negative, 0 if n equals 0, and 1 if n is positive. In plain English, if you flip the arguments of compareTo, the sign (but not necessarily the actual value) of the result must also flip.
 As with the equals method, problems can arise when inheritance comes into play.
 Since Manager extends Employee, it implements Comparable<Employee> and not Comparable<Manager>. If Manager chooses to override compareTo, it must be prepared to compare managers to employees. It can't simply cast an employee to a manager:
 class Manager extends Employee {
@@ -13449,7 +13455,7 @@ void setDefaultAssertionStatus(boolean b) 1.4 enables or disables assertions for
 Every Java programmer is familiar with the process of inserting System.out.println calls into troublesome code to gain insight into program behavior. Of course, once you have figured out the cause of trouble, you remove the print statements--only to put them back in when the next problem surfaces. Logging frameworks are designed to overcome this problem.
 7.5.1. Should You Use the Java Logging Framework?
 Java has a standard logging framework, usually called after its package name java.util.logging and sometimes abbreviated as j.u.l. However, other logging frameworks have more features and are in common use, such as Log4j (https://logging.apache.org/log4j/2.x) and Logback (https://logback.qos.ch).
-If you want to give users of your code the choice of logging framework, then you should use a "façade" library that sends log messages to the preferred framework. A commonly used façade with a pleasant API is SLF4J (https://www.slf4j.org). Another façade is the "platform logging API" (also known as JEP 264). It is very basic but a part of the JDK. The façade is sometimes called the frontend. It provides the API that programmers use to log messages. The backend is in charge of filtering and formatting the messages, and putting them somewhere. The backend needs to be configurable by deployers, usually by editing configuration files.
+If you want to give users of your code the choice of logging framework, then you should use a "faï¿½ade" library that sends log messages to the preferred framework. A commonly used faï¿½ade with a pleasant API is SLF4J (https://www.slf4j.org). Another faï¿½ade is the "platform logging API" (also known as JEP 264). It is very basic but a part of the JDK. The faï¿½ade is sometimes called the frontend. It provides the API that programmers use to log messages. The backend is in charge of filtering and formatting the messages, and putting them somewhere. The backend needs to be configurable by deployers, usually by editing configuration files.
 
 In the following sections, I will show you how to use the platform logging API as frontend and java.util.logging as a backend. This can be a reasonable choice if you find the frontend API sufficient, since you can always swap out the backend.
 The java.util.logging backend has fewer features than its more popular alternatives, but it suffices for many use cases. Because of its simplicity, it is less susceptible to attacks. In contrast, obscure features of Log4j allowed hackers to craft program inputs that, when logged, caused malicious code execution.
@@ -14394,7 +14400,7 @@ double middle = ArrayAlg.getMiddle(3.14, 1729, 0);
 The error message complains, in cryptic terms that vary from one compiler version to another, that there are two ways of interpreting this code, both equally valid. In a nutshell, the compiler autoboxed the arguments into a Double and two Integer objects, and then it tried to find a
 
 common supertype of these classes. It actually found two: Number and the Comparable interface, which is itself a generic type. In this case, the remedy is to write all arguments as double values.
-Tip: Peter von der Ahé recommends this trick if you want to see which type the compiler infers for a generic method call: Purposefully introduce an error and study the resulting error message. For example, consider the call ArrayAlg.getMiddle("Hello", 0, null). Assign the result to a JButton, which can't possibly be right. You will get an error report:
+Tip: Peter von der Ahï¿½ recommends this trick if you want to see which type the compiler infers for a generic method call: Purposefully introduce an error and study the resulting error message. For example, consider the call ArrayAlg.getMiddle("Hello", 0, null). Assign the result to a JButton, which can't possibly be right. You will get an error report:
 found: java.lang.Object&java.io.Serializable&java.lang.Compa rable<? extends java.lang.Object&java.io.Serializable&java.lang.Compa rable<?>>
 In plain English, you can assign the result to Object, Serializable, or Comparable.
 C++ Note: In C++, you place the type parameters after the method name. That can lead to nasty parsing ambiguities. For example, g(f<a,b>(c)) can mean "call g with the result of f<a,b>(c)," or "call g with the two boolean values f<a and b>(c)."
@@ -16690,7 +16696,7 @@ Now you have seen the fundamental methods of the LinkedList class. Use a ListIte
 As you saw in Section 9.2, many other useful methods for operating on linked lists are declared in the Collection interface. These are, for the most part, implemented in the AbstractCollection superclass of the LinkedList class. For example, the toString method invokes toString on all elements and produces one long string of the format [A, B, C]. This is handy for debugging. Use the contains method to check whether an element is present in a linked list. For example, the call staff.contains("Harry") returns true if the linked list already contains a string equal to the string "Harry".
 The Java Collections Framework also supplies a number of methods that are, from a theoretical perspective, somewhat
 
-dubious. Linked lists do not support fast random access. If you want to see the nth element of a linked list, you have to start at the beginning and skip past the first n ­ 1 elements. There is no shortcut. For that reason, programmers don't usually use linked lists in situations where elements need to be accessed by an integer index.
+dubious. Linked lists do not support fast random access. If you want to see the nth element of a linked list, you have to start at the beginning and skip past the first n ï¿½ 1 elements. There is no shortcut. For that reason, programmers don't usually use linked lists in situations where elements need to be accessed by an integer index.
 Nevertheless, the LinkedList class supplies a get method that lets you access a particular element:
 LinkedList<String> list = . . .; String obj = list.get(n);
 Of course, this method is not very efficient. If you find yourself using it, you are probably using a wrong data structure for your problem.
@@ -17685,7 +17691,7 @@ static <E extends Enum<E>> EnumSet<E> of(E e1, E e2, E e3, E e4, E e5) static <E
 java.util.EnumMap<K extends Enum<K>, V> 5.0
 EnumMap(Class<K> keyType) constructs an empty mutable map whose keys have the given type.
 java.util.IdentityHashMap<K, V> 1.4
-IdentityHashMap() IdentityHashMap(int expectedMaxSize) construct an empty identity hash map whose capacity is the smallest power of 2 exceeding 1.5 × expectedMaxSize. (The default for expectedMaxSize is 21.)
+IdentityHashMap() IdentityHashMap(int expectedMaxSize) construct an empty identity hash map whose capacity is the smallest power of 2 exceeding 1.5 ï¿½ expectedMaxSize. (The default for expectedMaxSize is 21.)
 
 java.lang.System 1.0
 static int identityHashCode(Object obj) 1.1 returns the same hash code (derived from the object's memory address) that Object.hashCode computes, even if the class to which obj belongs has redefined the hashCode method.
@@ -18002,7 +18008,7 @@ static <T extends Comparable<? super T>> int binarySearch(List<T> elements, T ke
 
 should be inserted at index -i - 1 for the list to stay sorted.
 java.util.Arrays 1.2
-static int binarySearch(T[] a, T key) static int binarySearch(T[] a, int start, int end, T key) 6 use the binary search algorithm to search for the key in the sorted array a. If the key is found, its index is returned. Otherwise, a negative value r is returned; ­r ­ 1 is the spot at which key should be inserted to keep a sorted. The component type T of the array can be Object, int, long, short, char, byte, boolean, float, or double. static <T> T binarySearch(T[] a, T key, Comparator<? super T> c) static <T> T binarySearch(T[] a, int start, int end, T key, Comparator<? super T> c) 6 use the binary search algorithm to search for the key in the array a that has been sorted with the given comparator.
+static int binarySearch(T[] a, T key) static int binarySearch(T[] a, int start, int end, T key) 6 use the binary search algorithm to search for the key in the sorted array a. If the key is found, its index is returned. Otherwise, a negative value r is returned; ï¿½r ï¿½ 1 is the spot at which key should be inserted to keep a sorted. The component type T of the array can be Object, int, long, short, char, byte, boolean, float, or double. static <T> T binarySearch(T[] a, T key, Comparator<? super T> c) static <T> T binarySearch(T[] a, int start, int end, T key, Comparator<? super T> c) 6 use the binary search algorithm to search for the key in the array a that has been sorted with the given comparator.
 9.6.4. Simple Algorithms
 The Collections class contains several simple but useful algorithms. Among them is the example from the beginning of this section--finding the maximum value of a collection. Others include copying elements from one list to another, filling a container with a constant value, and reversing a list.
 
@@ -18021,7 +18027,7 @@ This makes a difference if the predicate reads the collection. Consider this exa
 var words = new ArrayList<String>(List.of("Ada", "C++", "Java")) words.removeIf(w -> w.length() == words.size()); // Now words is ["Java"]
 In the first pass, all words of length 3 are marked for removal, and in the second pass, they are removed.
 However, if words is a LinkedList or a HashSet, then the same call to removeIf only removes one of the threeletter words. After the first removal, the predicate tests whether the collection has size 2.
-Why the difference? A naïve one-pass implementation would have been inefficient for array-backed collections. It didn't immediately occur to the developers that there is an efficient one-pass algorithm. By the time they thought of it, they decided not to use it for compatibility's sake--see https://bugs.openjdk.org/browse/JDK-8143577.
+Why the difference? A naï¿½ve one-pass implementation would have been inefficient for array-backed collections. It didn't immediately occur to the developers that there is an efficient one-pass algorithm. By the time they thought of it, they decided not to use it for compatibility's sake--see https://bugs.openjdk.org/browse/JDK-8143577.
 
 java.util.Collections 1.2
 static <T extends Comparable<? super T>> T min(Collection<T> elements) static <T extends Comparable<? super T>> T max(Collection<T> elements) static <T> min(Collection<T> elements, Comparator<? super T> c) static <T> max(Collection<T> elements, Comparator<? super T> c) return the smallest or largest element in the collection. (The parameter bounds are simplified for clarity.) static <T> void copy(List<? super T> to, List<T> from) copies all elements from a source list to the same positions in the target list. The target list must be at least as long as the source list. static <T> void fill(List<? super T> l, T value) sets all positions of a list to the same value. static <T> boolean addAll(Collection<? super T> c, T... values) 5.0 adds all values to the given collection and returns true if the collection changed as a result. static <T> boolean replaceAll(List<T> l, T oldValue, T newValue) 1.4 replaces all elements equal to oldValue with newValue. static int indexOfSubList(List<?> l, List<?> s) 1.4 static int lastIndexOfSubList(List<?> l, List<?> s) 1.4 return the index of the first or last sublist of l equaling s, or -1 if no sublist of l equals s. For example, if l is [s, t, a, r] and s is [t, a, r], then both methods return the index 1.
@@ -20696,7 +20702,7 @@ The Java designers loosely adapted the monitor concept. Every object in Java has
 
 However, a Java object differs from a monitor in three important ways, compromising thread safety:
 Fields are not required to be private. Methods are not required to be synchronized. The intrinsic lock is available to clients.
-This disrespect for security enraged Per Brinch Hansen. In a scathing review of the multithreading primitives in Java, he wrote: "It is astounding to me that Java's insecure parallelism is taken seriously by the programming community, a quarter of a century after the invention of monitors and Concurrent Pascal. It has no merit" (Java's Insecure Parallelism, ACM SIGPLAN Notices 34:38­45, April 1999).
+This disrespect for security enraged Per Brinch Hansen. In a scathing review of the multithreading primitives in Java, he wrote: "It is astounding to me that Java's insecure parallelism is taken seriously by the programming community, a quarter of a century after the invention of monitors and Concurrent Pascal. It has no merit" (Java's Insecure Parallelism, ACM SIGPLAN Notices 34:38ï¿½45, April 1999).
 10.5.9. Volatile Fields
 Sometimes, it seems excessive to pay the cost of synchronization just to read or write an instance field or two. After all, what can go wrong? Unfortunately, with modern processors and compilers, there is plenty of room for error.
 Computers with multiple processors can temporarily hold memory values in registers or local memory caches. As a consequence, threads running in different processors may see different values for the same memory location! Compilers can reorder instructions for maximum throughput. Compilers won't choose an ordering that changes the meaning of the code, but they make the assumption that memory values are only changed when there are explicit instructions in the code. However, a memory value can be changed by another thread!
@@ -21624,13 +21630,13 @@ Note: At first glance, it seems a bit odd that these methods have parallel in th
 The parallelSetAll method fills an array with values that are computed from a function. The function receives the element index and computes the value at that location.
 Arrays.parallelSetAll(values, i -> i % 10); // fills values with 0 1 2 3 4 5 6 7 8 9 0 1 2 . . .
 Clearly, this operation benefits from being parallelized. There are versions for all primitive type arrays and for object arrays.
-Finally, there is a parallelPrefix method that replaces each array element with the accumulation of the prefix for a given associative operation. Huh? Here is an example. Consider the array [1, 2, 3, 4, . . .] and the × operation. After executing Arrays.parallelPrefix(values, (x, y) -> x * y), the array contains
+Finally, there is a parallelPrefix method that replaces each array element with the accumulation of the prefix for a given associative operation. Huh? Here is an example. Consider the array [1, 2, 3, 4, . . .] and the ï¿½ operation. After executing Arrays.parallelPrefix(values, (x, y) -> x * y), the array contains
 
-[1, 1 × 2, 1 × 2 × 3, 1 × 2 × 3 × 4, . . .]
+[1, 1 ï¿½ 2, 1 ï¿½ 2 ï¿½ 3, 1 ï¿½ 2 ï¿½ 3 ï¿½ 4, . . .]
 Perhaps surprisingly, this computation can be parallelized. First, join neighboring elements, as indicated here:
-[1, 1 × 2, 3, 3 × 4, 5, 5 × 6, 7, × 8]
+[1, 1 ï¿½ 2, 3, 3 ï¿½ 4, 5, 5 ï¿½ 6, 7, ï¿½ 8]
 The gray values are left alone. Clearly, one can make this computation in parallel in separate regions of the array. In the next step, update the indicated elements by multiplying them with elements that are one or two positions below:
-[1, 1 × 2, 1 × 2 × 3, 1 × 2 × 3 × 4, 5, 5 × 6, 5 × 6 × 7, 5 × 6 × 7 × 8]
+[1, 1 ï¿½ 2, 1 ï¿½ 2 ï¿½ 3, 1 ï¿½ 2 ï¿½ 3 ï¿½ 4, 5, 5 ï¿½ 6, 5 ï¿½ 6 ï¿½ 7, 5 ï¿½ 6 ï¿½ 7 ï¿½ 8]
 This, again, can be done in parallel. After log n steps, the process is complete. This is a win over the straightforward linear computation if sufficient processors are available. On special-purpose hardware, this algorithm is commonly used, and users of such hardware are quite ingenious in adapting it to a variety of problems.
 10.6.8. Older Thread-Safe Collections
 Ever since the initial release of Java, the Vector and Hashtable classes provided thread-safe implementations of a dynamic array and a hash table. These classes are now considered obsolete, having been replaced by the ArrayList and HashMap classes. Those classes are not thread-safe. Instead, a different mechanism is supplied in the collections library. Any collection class can be made thread-safe by means of a synchronization wrapper:
@@ -24819,7 +24825,7 @@ module in the same program. These can be desirable features, but you must use me
 A module is a collection of packages. The package names in the module need not be related. For example, the module java.sql contains packages java.sql, javax.sql, and javax.transaction.xa. Also, as you can see from this example, it is perfectly acceptable for the module name to be the same as a package name.
 Just like a package name, a module name is made up of letters, digits, underscores, and periods. Also, just as with package names, there is no hierarchical relationship between modules. If you had a module com.horstmann and another module com.horstmann.corejava, they would be unrelated, as far as the module system is concerned.
 When creating a module for use by others, it is important to ensure that its name is globally unique. It is expected that most module names will follow the "reverse domain name" convention, just like package names.
-The easiest approach is to name a module after the toplevel package that the module provides. For example, the SLF4J logging façade has a module org.slf4j with packages org.slf4j, org.slf4j.spi, org.slf4j.event, and org.slf4j.helpers.
+The easiest approach is to name a module after the toplevel package that the module provides. For example, the SLF4J logging faï¿½ade has a module org.slf4j with packages org.slf4j, org.slf4j.spi, org.slf4j.event, and org.slf4j.helpers.
 This convention prevents package name conflicts in modules. Any given package can only be placed in one module. If your module names are unique and your
 
 package names start with the module name, then your package names will also be unique.
@@ -25762,7 +25768,7 @@ Symbols
 ! operator 3.5.7, 3.5.11 != operator 3.5.7, 3.5.11, 3.8.4 # (number sign)
 in javadoc hyperlinks 4.10.7 printf flag 3.7.2 $ (dollar sign) delimiter, for inner classes 6.3.3 in variable names 3.4.1
 printf flag 3.7.2 % (percent sign)
-arithmetic operator 3.5.1, 3.5.11 conversion character 3.7.2 "for each" loop 3.10.3 for array lists 5.3.2 for collections 9.1.3, 10.6.8 for multidimensional arrays 3.10.7 "Has­a" relationship 4.1.4 "Is­a" relationship 4.1.4, 5.1.5, 5.11 "Uses­a" relationship 4.1.4
+arithmetic operator 3.5.1, 3.5.11 conversion character 3.7.2 "for each" loop 3.10.3 for array lists 5.3.2 for collections 9.1.3, 10.6.8 for multidimensional arrays 3.10.7 "Hasï¿½a" relationship 4.1.4 "Isï¿½a" relationship 4.1.4, 5.1.5, 5.11 "Usesï¿½a" relationship 4.1.4
 & (ampersand) bitwise operator 3.5.10, 3.5.11 in bounding types 8.4 in reference parameters (C++) 4.5
 && operator 3.5.7, 3.5.11 > (right angle bracket)
 in shell syntax 3.7.3, 7.6 relational operator 3.5.7, 3.5.11
@@ -26981,7 +26987,7 @@ get, set methods 10.5.7 synchronization in 9.3.2
 @version annotation 4.10.8, 4.10.10 Views 9.5
 bulk operations for 9.6.5 checked 9.5.6 restricted 9.5.8 subranges of 9.5.3 synchronized 9.5.7 unmodifiable 9.5.2 Visual Basic built-in date type in 4.2.1 syntax of 1.2.1 Visual Studio 2.2
 void keyword 3.1, Appendix volatile keyword 10.5.9, 10.5.11,
-Appendix Volatile fields 10.5.9 von der Ahé, Peter 8.3
+Appendix Volatile fields 10.5.9 von der Ahï¿½, Peter 8.3
 W
 wait method of Object 10.2.3, 10.5.6
 Wait sets 10.5.4
@@ -27013,4 +27019,3 @@ Yasson 12.7 yield keyword 3.8.5, Appendix yield method (Thread) 10.2.2
 Z
 ZIP archives for JMOD files 12.14
 ZIP format 4.8.6, 4.9
-

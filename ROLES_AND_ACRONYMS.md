@@ -1,55 +1,55 @@
-# Profissões e Siglas — Tecnologia / Tech Roles & Acronyms
+# Tech Roles & Acronyms
 
-> Cargos cobertos por este acervo, com nome e sigla. / Roles covered by this library, with name and acronym.
+> Roles covered by this library, with name and acronym.
 
-## Gestão, Produto e Processo / Management, Product & Process
-- **PM** — Product Manager (Gerente de Produto)
-- **PO** — Product Owner (Dono do Produto)
-- **TPM** — Technical Program Manager (Gerente Técnico de Programa)
-- **EM** — Engineering Manager (Gerente de Engenharia)
-- **BA** — Business Analyst (Analista de Negócios)
+## Management, Product & Process
+- **PM** — Product Manager
+- **PO** — Product Owner
+- **TPM** — Technical Program Manager
+- **EM** — Engineering Manager
+- **BA** — Business Analyst
 - **SM** — Scrum Master
-- **AC** — Agile Coach (Coach Ágil)
-- **CTO** — Chief Technology Officer (Diretor de Tecnologia)
-- **VPE** — VP of Engineering (VP de Engenharia)
+- **AC** — Agile Coach
+- **CTO** — Chief Technology Officer
+- **VPE** — VP of Engineering
 
-## Engenharia / Desenvolvimento — Engineering / Development
-- **SWE** — Software Engineer (Engenheiro de Software)
-- **TL** — Tech Lead (Líder Técnico)
-- **FE** — Frontend Engineer (Desenvolvedor Front-end)
-- **BE** — Backend Engineer (Desenvolvedor Back-end)
-- **FSE** — Full-Stack Engineer (Desenvolvedor Full-Stack)
-- **StaffE** — Staff Engineer (Engenheiro Staff)
-- **PrincipalE** — Principal Engineer (Engenheiro Principal)
+## Engineering / Development
+- **SWE** — Software Engineer
+- **TL** — Tech Lead
+- **FE** — Frontend Engineer
+- **BE** — Backend Engineer
+- **FSE** — Full-Stack Engineer
+- **StaffE** — Staff Engineer
+- **PrincipalE** — Principal Engineer
 
-## Arquitetura / Architecture
-- **SWA** — Software Architect (Arquiteto de Software)
-- **SA** — Solutions Architect (Arquiteto de Soluções)
-- **EA** — Enterprise Architect (Arquiteto Corporativo)
+## Architecture
+- **SWA** — Software Architect
+- **SA** — Solutions Architect
+- **EA** — Enterprise Architect
 
-## Dados e IA / Data & AI
-- **DBA** — Database Administrator (Administrador de Banco de Dados)
-- **DE** — Data Engineer (Engenheiro de Dados)
-- **DS** — Data Scientist (Cientista de Dados)
-- **MLE** — Machine Learning Engineer (Engenheiro de ML)
-- **AIE** — AI Engineer (Engenheiro de IA)
+## Data & AI
+- **DBA** — Database Administrator
+- **DE** — Data Engineer
+- **DS** — Data Scientist
+- **MLE** — Machine Learning Engineer
+- **AIE** — AI Engineer
 
-## Operações / Infraestrutura — Operations / Infrastructure
-- **SRE** — Site Reliability Engineer (Engenheiro de Confiabilidade)
-- **DevOps** — DevOps Engineer (Engenheiro DevOps)
-- **PE** — Platform Engineer (Engenheiro de Plataforma)
+## Operations / Infrastructure
+- **SRE** — Site Reliability Engineer
+- **DevOps** — DevOps Engineer
+- **PE** — Platform Engineer
 
-## Qualidade / Quality
-- **QA** — Quality Assurance (Analista de Qualidade)
-- **SDET** — Software Development Engineer in Test (Engenheiro de Testes)
+## Quality
+- **QA** — Quality Assurance
+- **SDET** — Software Development Engineer in Test
 
-## Segurança e Privacidade / Security & Privacy
-- **SecEng** — Security Engineer (Engenheiro de Segurança)
-- **AppSec** — Application Security Engineer (Engenheiro de Segurança de Aplicações)
-- **CISO** — Chief Information Security Officer (Diretor de Segurança da Informação)
-- **DPO** — Data Protection Officer (Encarregado de Proteção de Dados)
+## Security & Privacy
+- **SecEng** — Security Engineer
+- **AppSec** — Application Security Engineer
+- **CISO** — Chief Information Security Officer
+- **DPO** — Data Protection Officer
 
 ## Design / UX
-- **UXD** — UX Designer (Designer de UX)
-- **UXR** — UX Researcher (Pesquisador de UX)
-- **UID** — UI Designer (Designer de UI)
+- **UXD** — UX Designer
+- **UXR** — UX Researcher
+- **UID** — UI Designer

@@ -1,3 +1,9 @@
+# Angular 22 - Complete Professional Guide
+
+> **Category:** 06_web_and_frontend · **Language:** English
+
+---
+
 # Angular 22 — Complete Professional Guide
 ### What's New in v22: Signal Forms, Resources, OnPush by Default, Fetch, AI Tooling, and Migration
 **Edition for Angular v22.0 (released June 3, 2026)**
@@ -477,5 +483,3 @@ export class CartComponent {
 > **End of Part I.** You now have the strategic map of Angular 22 (what's new and why), the full breaking-change inventory (auto-migrated vs manual), and a two-phase migration playbook. **Part II — Reactivity: Resources & Debouncing** (Chapters 4–6) dives into the now-stable Resource API (`resource`, `rxResource`, `httpResource`, `chain`, SSR caching), the new `debounced()` function, and OnPush-by-default change detection.
 
 <!--APPEND-PARTE-II-->
-
-

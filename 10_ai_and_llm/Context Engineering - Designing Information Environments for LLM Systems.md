@@ -1,3 +1,9 @@
+# Context Engineering - Designing Information Environments for LLM Systems
+
+> **Category:** 10_ai_and_llm · **Language:** English
+
+---
+
 # Context Engineering: Designing Information Environments for LLM Systems
 
 *A Practitioner's Guide* — 2026

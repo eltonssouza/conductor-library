@@ -1,9 +1,15 @@
+# Eloquent JavaScript
+
+> **Author(s):** Haverbeke Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 Eloquent JavaScript
 A Modern Introduction to Programming
 Marijn Haverbeke
 
-Copyright © 2014 by Marijn Haverbeke This work is licensed under a Creative Commons attribution-noncommercial license (http://creativecommons.org/licenses/by-nc/3.0/). All code in the book may also be considered licensed under an MIT license (http:// opensource.org/licenses/MIT).
-The illustrations are contributed by various artists: Cover by Wasif Hyder. Computer (introduction) and unicycle people (Chapter 21) by Max Xiantu. Sea of bits (Chapter 1) and weresquirrel (Chapter 4) by Margarita Martínez and José Menor. Octopuses (Chapter 2 and 4) by Jim Tierney. Object with on/off switch (Chapter 6) by Dyle MacGregor. Regular expression diagrams in Chapter 9 generated with regexper.com by Jeff Avallone. Game concept for Chapter 15 by Thomas Palef. Pixel art in Chapter 16 by Antonio Perdomo Pastor.
+Copyright ï¿½ 2014 by Marijn Haverbeke This work is licensed under a Creative Commons attribution-noncommercial license (http://creativecommons.org/licenses/by-nc/3.0/). All code in the book may also be considered licensed under an MIT license (http:// opensource.org/licenses/MIT).
+The illustrations are contributed by various artists: Cover by Wasif Hyder. Computer (introduction) and unicycle people (Chapter 21) by Max Xiantu. Sea of bits (Chapter 1) and weresquirrel (Chapter 4) by Margarita Martï¿½nez and Josï¿½ Menor. Octopuses (Chapter 2 and 4) by Jim Tierney. Object with on/off switch (Chapter 6) by Dyle MacGregor. Regular expression diagrams in Chapter 9 generated with regexper.com by Jeff Avallone. Game concept for Chapter 15 by Thomas Palef. Pixel art in Chapter 16 by Antonio Perdomo Pastor.
 The second edition of Eloquent JavaScript was made possible by 454 financial backers. You can buy a print version of this book, with an extra bonus chapter included, printed by No Starch Press at http://www.amazon.com/gp/product/
 1593275846/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=
 1593275846&linkCode=as2&tag=marijhaver-20&linkId=VPXXXSRYC5COG5R5.
@@ -702,7 +708,7 @@ Fractional numbers are written by using a dot.
 9.81
 For very big or very small numbers, you can also use scientific notation by adding an "e" (for "exponent"), followed by the exponent of the number:
 2.998 e8
-That is 2.998 × 108 = 299,800,000. Calculations with whole numbers (also called integers) smaller than
+That is 2.998 ï¿½ 108 = 299,800,000. Calculations with whole numbers (also called integers) smaller than
 the aforementioned 9 quadrillion are guaranteed to always be precise. Unfortunately, calculations with fractional numbers are generally not. Just as  (pi) cannot be precisely expressed by a finite number of decimal digits, many numbers lose some precision when only 64 bits are available to store them. This is a shame, but it causes practical problems only in specific situations. The important thing is to be aware of it and treat
 13
 
@@ -1026,7 +1032,7 @@ Write a program that uses console.log to print all the numbers from 1 to 100, wi
 When you have that working, modify your program to print "FizzBuzz", for numbers that are divisible by both 3 and 5 (and still print "Fizz" or "Buzz" for numbers divisible by only one of those).
 (This is actually an interview question that has been claimed to weed out a significant percentage of programmer candidates. So if you solved it, you're now allowed to feel good about yourself.)
 Chess board
-Write a program that creates a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chess board.
+Write a program that creates a string that represents an 8ï¿½8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chess board.
 Passing this string to console.log should show something like this:
 #### ####
 #### ####
@@ -1261,10 +1267,10 @@ Minimum
 The previous chapter introduced the standard function Math.min that returns its smallest argument. We can do that ourselves now. Write a function min that takes two arguments and returns their minimum.
 Recursion
 We've seen that % (the remainder operator) can be used to test whether a number is even or odd by using % 2 to check whether it's divisible by two. Here's another way to define whether a positive whole number is even or odd:
-· Zero is even.
+ï¿½ Zero is even.
 59
 
-· One is odd. · For any other number N, its evenness is the same as N - 2. Define a recursive function isEven corresponding to this description. The function should accept a number parameter and return a Boolean. Test it on 50 and 75. See how it behaves on -1. Why? Can you think of a way to fix this?
+ï¿½ One is odd. ï¿½ For any other number N, its evenness is the same as N - 2. Define a recursive function isEven corresponding to this description. The function should accept a number parameter and return a Boolean. Test it on 50 and 75. See how it behaves on -1. Why? Can you think of a way to fix this?
 Bean counting
 You can get the Nth character, or letter, from a string by writing "string". charAt(N), similar to how you get its length with "s".length. The returned value will be a string containing only one character (for example, "b" ). The first character has position zero, which causes the last one to be found at position string.length - 1. In other words, a two-character string has length 2, and its characters have positions 0 and 1.
 Write a function countBs that takes a string as its only argument and returns a number that indicates how many uppercase "B" characters are in the string.
@@ -1386,20 +1392,20 @@ Squirrel, no pizza
 
  can be computed using the following formula, where n refers to the table:
 
- = n11nn10·0n0-·nn·110nn·001
+ = n11nn10ï¿½0n0-ï¿½nnï¿½110nnï¿½001
 
 (4.1)
 
 The notation n01 indicates the number of measurements where the first variable (squirrelness) is false (0) and the second variable (pizza) is true
 
 (1). In this example, n01 is 9.
-The value n1· refers to the sum of all measurements where the first variable is true, which is 5 in the example table. Likewise, n·0 refers to the sum of the measurements where the second variable is false.
+The value n1ï¿½ refers to the sum of all measurements where the first variable is true, which is 5 in the example table. Likewise, nï¿½0 refers to the sum of the measurements where the second variable is false.
 
 So for the pizza table, the part above the division line (the dividend)
 
 would be the
 
-bsqeu1a×re76ro-ot4×of95=×8450×, 1a0n×d80th, eorpar3t40b0e0lo0w. Tithi(sthcoemdeivsiosourt)
+bsqeu1aï¿½re76ro-ot4ï¿½of95=ï¿½8450ï¿½, 1a0nï¿½d80th, eorpar3t40b0e0lo0w. Tithi(sthcoemdeivsiosourt)
 
 would to  
 
@@ -1417,7 +1423,7 @@ This is the function that computes the  coefficient from such an array:
 function phi(table) { return (table[3] * table[0] - table[2] * table[1]) / Math.sqrt((table[2] + table[3]) * (table[0] + table[1]) * (table[1] + table[3]) * (table[0] + table[2]));
 }
 console.log(phi([76, 9, 4, 1])); //  0.068599434
-This is simply a direct translation of the  formula into JavaScript. Math .sqrt is the square root function, as provided by the Math object in a standard JavaScript environment. We have to sum two fields from the table to get fields like n1· because the sums of rows or columns are not stored directly in our data structure.
+This is simply a direct translation of the  formula into JavaScript. Math .sqrt is the square root function, as provided by the Math object in a standard JavaScript environment. We have to sum two fields from the table to get fields like n1ï¿½ because the sums of rows or columns are not stored directly in our data structure.
 Jacques kept his journal for three months. The resulting data set is available in the coding sandbox for this chapter(eloquentjavascript.net/code#4), where it is stored in the JOURNAL variable, and in a downloadable file.
 To extract a two-by-two table for a specific event from this journal, we must loop over all the entries and tally up how many times the event occurs in relation to squirrel transformations.
 function hasEvent(event , entry) { return entry.events.indexOf(event) != -1;
@@ -1791,7 +1797,7 @@ A program that processes an array is most elegantly expressed as a sequence of c
 Likewise, passing a function to forEach and letting that method handle the array iteration for us is convenient and easy to read. But function calls in JavaScript are costly compared to simple loop bodies.
 And so it goes with a lot of techniques that help improve the clarity of a program. Abstractions add layers between the raw things the computer is doing and the concepts we are working with and thus cause the machine to perform more work. This is not an iron law--there are programming languages that have better support for building abstractions without adding inefficiencies, and even in JavaScript, an experienced programmer can find ways to write abstract code that is still fast. But it is a problem that comes up a lot.
 Fortunately, most computers are insanely fast. If you are processing a modest set of data or doing something that has to happen only on a human time scale (say, every time the user clicks a button), then it does not matter whether you wrote a pretty solution that takes half a millisecond or a super-optimized solution that takes a tenth of a millisecond.
-It is helpful to roughly keep track of how often a piece of your program is going to run. If you have a loop inside a loop (either directly or through the outer loop calling a function that ends up performing the inner loop), the code inside the inner loop will end up running N ×M times, where N is the number of times the outer loop repeats and M is the number of times the inner loop repeats within each iteration of the outer loop. If that inner loop contains another loop that makes P rounds, its body will run M ×N ×P times, and so on. This can add up to large numbers, and when a program is slow, the problem can often be traced to only a small part of the code, which sits inside an inner loop.
+It is helpful to roughly keep track of how often a piece of your program is going to run. If you have a loop inside a loop (either directly or through the outer loop calling a function that ends up performing the inner loop), the code inside the inner loop will end up running N ï¿½M times, where N is the number of times the outer loop repeats and M is the number of times the inner loop repeats within each iteration of the outer loop. If that inner loop contains another loop that makes P rounds, its body will run M ï¿½N ï¿½P times, and so on. This can add up to large numbers, and when a program is slow, the problem can often be traced to only a small part of the code, which sits inside an inner loop.
 98
 
 Great-great-great-great-...
@@ -2041,9 +2047,9 @@ The way our table-building system will work is that the builder function will as
 the correct size and assemble the results into a single string. The layout program will communicate with the cell objects through
 a well-defined interface. That way, the types of cells that the program supports is not fixed in advance. We can add new cell styles later-- for example, underlined cells for table headers--and if they support our interface, they will just work, without requiring changes to the layout program.
 This is the interface:
-· minHeight() returns a number indicating the minimum height this cell requires (in lines).
-· minWidth() returns a number indicating this cell's minimum width (in characters).
-· draw(width, height) returns an array of length height, which contains a series of strings that are each width characters wide. This represents the content of the cell.
+ï¿½ minHeight() returns a number indicating the minimum height this cell requires (in lines).
+ï¿½ minWidth() returns a number indicating this cell's minimum width (in characters).
+ï¿½ draw(width, height) returns an array of length height, which contains a series of strings that are each width characters wide. This represents the content of the cell.
 I'm going to make heavy use of higher-order array methods in this example since it lends itself well to that approach.
 The first part of the program computes arrays of minimum column widths and row heights for a grid of cells. The rows variable will hold an array of arrays, with each inner array representing a row of cells.
 function rowHeights(rows) { return rows.map(function(row) { return row.reduce(function(max , cell) { return Math.max(max , cell.minHeight()); }, 0); });
@@ -2082,7 +2088,7 @@ var result = []; for (var i = 0; i < height; i++) {
 var line = this.text[i] || ""; result.push(line + repeat(" ", width - line.length)); } return result; };
 
 The code uses a helper function called repeat, which builds a string whose value is the string argument repeated times number of times. The draw method uses it to add "padding" to lines so that they all have the required length.
-Let's try everything we've written so far by building up a 5 × 5 checkerboard.
+Let's try everything we've written so far by building up a 5 ï¿½ 5 checkerboard.
 
 var rows = [];
 
@@ -2319,7 +2325,7 @@ console . log ( grid [1][2]) ;
 129
 
 //  bottom right
-Or we can use a single array, with size width × height, and decide that the element at (x,y) is found at position x + (y × width) in the array.
+Or we can use a single array, with size width ï¿½ height, and decide that the element at (x,y) is found at position x + (y ï¿½ width) in the array.
 var grid = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"];
 console.log(grid[2 + (1 * 3)]); //  bottom right
 Since the actual access to this array will be wrapped in methods on the grid object type, it doesn't matter to outside code which approach we take. I chose the second representation because it makes it much easier to create the array. When calling the Array constructor with a single number as an argument, it creates a new empty array of the given length.
@@ -3448,12 +3454,12 @@ boundary
 
 Our expression matches a string if we can find a path from the left side of the diagram to the right side. We keep a current position in the string, and every time we move through a box, we verify that the part of the string after our current position matches that box.
 So if we try to match "the 3 pigs" with our regular expression, our progress through the flow chart would look like this:
-· At position 4, there is a word boundary, so we can move past the first box.
-· Still at position 4, we find a digit, so we can also move past the second box.
-· At position 5, one path loops back to before the second (digit) box, while the other moves forward through the box that holds a single space character. There is a space here, not a digit, so we must take the second path.
-· We are now at position 6 (the start of "pigs") and at the three-way branch in the diagram. We don't see "cow" or "chicken" here, but we do see "pig", so we take that branch.
-· At position 9, after the three-way branch, one path skips the s box and goes straight to the final word boundary, while the other path matches an s. There is an s character here, not a word boundary, so we go through the s box.
-· We're at position 10 (the end of the string) and can match only a word boundary. The end of a string counts as a word boundary, so we go through the last box and have successfully matched this string.
+ï¿½ At position 4, there is a word boundary, so we can move past the first box.
+ï¿½ Still at position 4, we find a digit, so we can also move past the second box.
+ï¿½ At position 5, one path loops back to before the second (digit) box, while the other moves forward through the box that holds a single space character. There is a space here, not a digit, so we must take the second path.
+ï¿½ We are now at position 6 (the start of "pigs") and at the three-way branch in the diagram. We don't see "cow" or "chicken" here, but we do see "pig", so we take that branch.
+ï¿½ At position 9, after the three-way branch, one path skips the s box and goes straight to the final word boundary, while the other path matches an s. There is an s character here, not a word boundary, so we go through the s box.
+ï¿½ We're at position 10 (the end of the string) and can match only a word boundary. The end of a string counts as a word boundary, so we go through the last box and have successfully matched this string.
 Conceptually, a regular expression engine looks for a match in a string as follows: it starts at the start of the string and tries a match there. In this case, there is a word boundary there, so it'd get past the first box--but there is no digit, so it'd fail at the second box. Then it moves on to the second character in the string and tries to begin a new match there... and so on, until it finds a match or reaches the end of the string and decides that there really is no match.
 173
 
@@ -3580,12 +3586,12 @@ searchengine = http :// www . google . com / search ?q= $1 spitefulness =9.7
 ; comments are preceded by a semicolon... ; each section concerns an individual enemy [larry] fullname=Larry Doe type=kindergarten bully website=http://www.geocities.com/CapeCanaveral /11451
 [gargamel] fullname=Gargamel type=evil sorcerer outputdir =/ home / marijn / enemies / gargamel
 The exact rules for this format (which is actually a widely used format, usually called an INI file) are as follows:
-· Blank lines and lines starting with semicolons are ignored.
+ï¿½ Blank lines and lines starting with semicolons are ignored.
 182
 
-· Lines wrapped in [ and ] start a new section.
-· Lines containing an alphanumeric identifier followed by an = character add a setting to the current section.
-· Anything else is invalid.
+ï¿½ Lines wrapped in [ and ] start a new section.
+ï¿½ Lines containing an alphanumeric identifier followed by an = character add a setting to the current section.
+ï¿½ Anything else is invalid.
 Our task is to convert a string like this into an array of objects, each with a name property and an array of settings. We'll need one such object for each section and one for the global settings at the top.
 Since the format has to be processed line by line, splitting up the file into separate lines is a good start. We used string.split("\n") to do this in Chapter 6. Some operating systems, however, use not just a newline character to separate lines but a carriage return character followed by a newline ("\r\n"). Given that the split method also allows a regular expression as its argument, we can split on a regular expression like /\r?\n/ to split in a way that allows both "\n" and "\r\n" between lines.
 function parseINI(string) { // Start with an object to hold the top -level fields var currentSection = {name: null , fields: []}; var categories = [currentSection];
@@ -3599,7 +3605,7 @@ If the line is not a comment, the code then checks whether the line starts a new
 The last meaningful possibility is that the line is a normal setting, which the code adds to the current section object.
 If a line matches none of these forms, the function throws an error. Note the recurring use of ^ and $ to make sure the expression matches the whole line, not just part of it. Leaving these out results in code that mostly works but behaves strangely for some input, which can be a difficult bug to track down. The pattern if (match = string.match(...)) is similar to the trick of using an assignment as the condition for while. You often aren't sure that your call to match will succeed, so you can access the resulting object only inside an if statement that tests for this. To not break the pleasant chain of if forms, we assign the result of the match to a variable and immediately use that assignment as the test in the if statement.
 International characters
-Because of JavaScript's initial simplistic implementation and the fact that this simplistic approach was later set in stone as standard behavior, JavaScript's regular expressions are rather dumb about characters that do not appear in the English language. For example, as far as JavaScript's regular expressions are concerned, a "word character" is only one of the 26 characters in the Latin alphabet (uppercase or lowercase) and, for some reason, the underscore character. Things like é or ß, which most definitely are word characters, will not match \w (and will match uppercase \W, the nonword category).
+Because of JavaScript's initial simplistic implementation and the fact that this simplistic approach was later set in stone as standard behavior, JavaScript's regular expressions are rather dumb about characters that do not appear in the English language. For example, as far as JavaScript's regular expressions are concerned, a "word character" is only one of the 26 characters in the Latin alphabet (uppercase or lowercase) and, for some reason, the underscore character. Things like ï¿½ or ï¿½, which most definitely are word characters, will not match \w (and will match uppercase \W, the nonword category).
 By a strange historical accident, \s (whitespace) does not have this problem and matches all characters that the Unicode standard considers whitespace, including things like the nonbreaking space and the Mongo-
 184
 
@@ -4564,8 +4570,8 @@ Moving in circles is done using the trigonometry functions Math.cos and Math.sin
 Math.cos and Math.sin are useful for finding points that lie on a circle around point (0,0) with a radius of one unit. Both functions interpret their argument as the position on this circle, with zero denoting the point on the far right of the circle, going clockwise until 2 (about 6.28) has taken us around the whole circle. Math.cos tells you the x-coordinate of the point that corresponds to the given position around the circle, while Math.sin yields the y-coordinate. Positions (or angles) greater than 2 or less than 0 are valid--the rotation repeats so that a+2 refers to the same angle as a.
 cos(-)
 sin(-)
-sin(¼)
-cos(¼)
+sin(ï¿½)
+cos(ï¿½)
 The cat animation code keeps a counter, angle, for the current angle of the animation and increments it in proportion to the elapsed time every
 248
 
@@ -5108,7 +5114,7 @@ if (yEnd > this.height) return "lava";
 
 for (var y = yStart; y < yEnd; y++) { for (var x = xStart; x < xEnd; x++) { var fieldType = this.grid[y][x]; if (fieldType) return fieldType; }
 } };
-This method computes the set of grid squares that the body overlaps with by using Math.floor and Math.ceil on the body's coordinates. Remember that grid squares are 1×1 units in size. By rounding the sides of a box up and down, we get the range of background squares that the box touches.
+This method computes the set of grid squares that the body overlaps with by using Math.floor and Math.ceil on the body's coordinates. Remember that grid squares are 1ï¿½1 units in size. By rounding the sides of a box up and down, we get the range of background squares that the box touches.
 If the body sticks out of the level, we always return "wall" for the sides and top and "lava" for the bottom. This ensures that the player dies when falling out of the world. When the body is fully inside the grid, we loop over the block of grid squares found by rounding the coordinates and return the content of the first nonempty square we find.
 Collisions between the player and other dynamic actors (coins, moving lava) are handled after the player moved. When the motion has taken the player into another actor, the appropriate effect--collecting a coin or dying--is activated.
 This method scans the array of actors, looking for an actor that overlaps the one given as an argument:
@@ -5330,8 +5336,6 @@ radius =40
 angle =0
 
 to
-
-
 
 1 2
 
@@ -5668,8 +5672,6 @@ degrees
 or
 
 1 4
-
-
 
 radians)
 
@@ -6118,9 +6120,9 @@ Autocompletion
 Extend a text field so that when the user types, a list of suggested values is shown below the field. You have an array of possible values available and should show those that start with the text that was typed. When a suggestion is clicked, replace the text field's current value with it.
 Conway's Game of Life
 Conway's Game of Life is a simple simulation that creates artificial "life" on a grid, each cell of which is either live or not. Each generation (turn), the following rules are applied:
-· Any live cell with fewer than two or more than three live neighbors dies.
-· Any live cell with two or three live neighbors lives on to the next generation.
-· Any dead cell with exactly three live neighbors becomes a live cell.
+ï¿½ Any live cell with fewer than two or more than three live neighbors dies.
+ï¿½ Any live cell with two or three live neighbors lives on to the next generation.
+ï¿½ Any dead cell with exactly three live neighbors becomes a live cell.
 A neighbor is defined as any adjacent cell, including diagonally adjacent ones.
 Note that these rules are applied to the whole grid at once, not one square at a time. That means the counting of neighbors is based on the situation at the start of the generation, and changes happening to neighbor cells during this generation should not influence the new state of a given cell.
 357
@@ -6292,7 +6294,7 @@ This is a more advanced exercise than the preceding two, and it will require you
 A flood fill tool colors the pixel under the mouse and the surrounding pixels of the same color. For the purpose of this exercise, we will consider such a group to include all pixels that can be reached from our starting pixel by moving in single-pixel horizontal and vertical steps (not diagonal), without ever touching a pixel that has a color different from the starting pixel.
 The following image illustrates the set of pixels colored when the flood fill tool is used at the marked pixel:
 The flood fill does not leak through diagonal gaps and does not touch pixels that are not reachable, even if they have the same color as the target pixel.
-You will once again need getImageData to find out the color for each pixel. It is probably a good idea to fetch the whole image in one go and then pick out pixel data from the resulting array. The pixels are organized in this array in a similar way to the grid elements in Chapter 7, one row at a time, except that each pixel is represented by four values. The first value for the pixel at (x,y) is at position (x + y × width) × 4.
+You will once again need getImageData to find out the color for each pixel. It is probably a good idea to fetch the whole image in one go and then pick out pixel data from the resulting array. The pixels are organized in this array in a similar way to the grid elements in Chapter 7, one row at a time, except that each pixel is represented by four values. The first value for the pixel at (x,y) is at position (x + y ï¿½ width) ï¿½ 4.
 Do include the fourth (alpha) value this time since we want to be able to tell the difference between empty and black pixels.
 374
 
@@ -7149,7 +7151,7 @@ Given a pair of starting coordinates and the image data for the whole canvas, th
 6. Color the pixel at the current coordinates and add the coordinates to the array of colored pixels.
 7. Add the coordinates of each adjacent pixel whose color is the same as the starting pixel's original color to the work list.
 8. Return to step 3.
-The work list can simply be an array of vector objects. The data structure that tracks colored pixels will be consulted very often. Searching through the whole thing every time a new pixel is visited will take a lot of time. You could instead create an array that has a value in it for every pixel, using again the x + y × width scheme for associating positions with pixels. When checking whether a pixel has been colored already, you could directly access the field corresponding to the current pixel.
+The work list can simply be an array of vector objects. The data structure that tracks colored pixels will be consulted very often. Searching through the whole thing every time a new pixel is visited will take a lot of time. You could instead create an array that has a value in it for every pixel, using again the x + y ï¿½ width scheme for associating positions with pixels. When checking whether a pixel has been colored already, you could directly access the field corresponding to the current pixel.
 You can compare colors by running over the relevant part of the data array, comparing one field at a time. Or you can "condense" a color to a single number or string and compare those. When doing this, ensure that every color produces a unique value. For example, simply adding the color's components is not safe since multiple colors will have the same sum.
 445
 
@@ -7196,7 +7198,7 @@ The code for rendering talks would have to be duplicated on the server. The inde
 
 Index
 
-* operator, 14, 20, 167 *= operator, 36 + operator, 14, 16, 20, 97, 167 ++ operator, 37 += operator, 36 - operator, 14, 16, 20 ­ operator, 37 -= operator, 36 / operator, 14 /= operator, 36 <= operator, 17 = operator, 25, 66, 182, 184, 213 == operator, 17, 20, 69, 85 === operator, 21, 85, 428 ?: operator, 19, 22 [] (array), 62 [] (subscript), 63 % operator, 14, 36, 310, 424, 425,
+* operator, 14, 20, 167 *= operator, 36 + operator, 14, 16, 20, 97, 167 ++ operator, 37 += operator, 36 - operator, 14, 16, 20 ï¿½ operator, 37 -= operator, 36 / operator, 14 /= operator, 36 <= operator, 17 = operator, 25, 66, 182, 184, 213 == operator, 17, 20, 69, 85 === operator, 21, 85, 428 ?: operator, 19, 22 [] (array), 62 [] (subscript), 63 % operator, 14, 36, 310, 424, 425,
 437, 439 && operator, 18, 21, 104 || operator, 18, 21, 54, 104, 132,
 355, 424 > operator, 17 >= operator, 17 < operator, 17 {} (block), 33, 46, 91 {} (object), 65, 122 200 (HTTP status code), 325, 385
 
@@ -7210,12 +7212,12 @@ tree abstraction, 6, 42, 86, 87, 90, 97,
 450
 
 addEventListener method, 253, 292, 386
-addition, 14, 126 address, 324 address bar, 222, 324, 326 adoption, 164 age difference (exercise), 103, 428 alert function, 27, 49, 225 algorithm, 445 alignment, 122 all function, 340, 442 alpha, 374 alphanumeric character, 166 alt attribute, 236 alt key, 258 altKey property, 258 ambiguity, 219 AMD, 197, 200 American English, 167 ampersand character, 224, 327 analysis, 149, 153 ancestor element, 283 ancestry example, 92, 94­96, 99,
+addition, 14, 126 address, 324 address bar, 222, 324, 326 adoption, 164 age difference (exercise), 103, 428 alert function, 27, 49, 225 algorithm, 445 alignment, 122 all function, 340, 442 alpha, 374 alphanumeric character, 166 alt attribute, 236 alt key, 258 altKey property, 258 ambiguity, 219 AMD, 197, 200 American English, 167 ampersand character, 224, 327 analysis, 149, 153 ancestor element, 283 ancestry example, 92, 94ï¿½96, 99,
 101, 103 ANCESTRY_FILE data set, 93 angle, 248, 305, 306, 372, 440 angle brackets, 223, 224 animate method, 288 animation, 139, 146, 247, 248, 251,
 263, 271, 274, 276, 278, 285, 286, 288, 290, 291, 293, 294, 309, 310, 315, 318, 320, 323, 439, 440 anonymous function, 191 appendChild method, 235, 280, 436 Apple, 227
 
 application (of functions), see function application
-apply method, 92, 107 approximation, 128 arc, 304­306 arc method, 305, 440 arcTo method, 304, 305 area, 371 argument, 27, 49, 54, 176, 206 arguments object, 79, 91, 426
+apply method, 92, 107 approximation, 128 arc, 304ï¿½306 arc method, 305, 440 arcTo method, 304, 305 area, 371 argument, 27, 49, 54, 176, 206 arguments object, 79, 91, 426
 indexing, 80 argv property, 379 arithmetic, 14, 20, 213 Armstrong, Joe, 105 array, 64, 65, 67, 73, 84, 88, 89,
 92, 93, 103, 128, 129, 162, 168, 218, 276, 429 as grid, 129, 374 as table, 71 creation, 62, 98, 130, 426 filtering, 94 indexing, 63, 73, 77, 88, 117, 130, 132, 411, 426, 437 length of, 64, 130 methods, 76, 79, 84, 89, 94, 95, 104, 411 searching, 73, 77 traversal, 88 Array constructor, 130 Array prototype, 108, 111 array-like object, 79, 92, 201, 214, 232, 233, 245, 345, 349, 352, 383 arrow function, 135 artificial intelligence, 128, 140, 147, 217, 430 artificial life, 128, 273, 357
 
@@ -7224,8 +7226,8 @@ indexing, 80 argv property, 379 arithmetic, 14, 20, 213 Armstrong, Joe, 105 arra
 artificial stupidity (exercise), 147, 430
 ASCII art, 381 assert function, 161 assertion, 161, 162 assignment, 25, 36, 182, 184, 219,
 436 assumption, 159, 162 asterisk, 14, 167 asynchronous I/O, 197, 330, 376,
-377 asynchronous programming, 198­
-200, 295, 330, 333, 335, 337, 345, 352, 376­378, 382, 386, 390 attack, 332 attribute, 224, 238, 361, 443 authorization, 404 autocompletion (exercise), 357, 443 autofocus attribute, 344 automatic semicolon insertion, 24 avatar, 273 average function, 97, 103, 428, 429 axis, 289, 299, 311, 312
+377 asynchronous programming, 198ï¿½
+200, 295, 330, 333, 335, 337, 345, 352, 376ï¿½378, 382, 386, 390 attack, 332 attribute, 224, 238, 361, 443 authorization, 404 autocompletion (exercise), 357, 443 autofocus attribute, 344 automatic semicolon insertion, 24 avatar, 273 average function, 97, 103, 428, 429 axis, 289, 299, 311, 312
 Babbage, Charles, 61 background, 273, 280, 286, 287,
 316 background (CSS), 271, 273, 282 backgroundReadFile function, 198,
 332 backslash character, 15, 164, 166,
@@ -7242,13 +7244,13 @@ Banks, Ian, 272 bean counting (exercise), 60, 426 beforeunload event, 265 behavi
 
 bouncing, 131, 275, 277, 286, 289, 323
 BouncingCritter type, 131 boundary, 171, 173, 179, 184, 186,
-316, 432 box, 163, 229, 273, 323, 440 box shadow (CSS), 283 br (HTML tag), 443 braces, see curly braces branching, 172, 174 branching recursion, 53, 313 break keyword, 36, 37 breakpoint, 154 British English, 167 browser, 2, 6, 27­29, 82, 193, 197,
-220, 222, 225­227, 253, 273, 274, 323, 324, 326, 328, 330, 332, 338, 339, 346, 354, 356, 365, 368, 396, 400, 401, 423 browser wars, 227 Browserify, 197 browsers, 9 brush, 360, 365, 366, 370 bubbling, see event propagation bucket fill, 374, 445 budget, 423 Buffer type, 383, 386, 387 bug, 86, 149, 153, 179, 181, 186, 189, 190, 227, 396 business software, 328 button, 252, 326, 345, 358, 370 button (HTML tag), 226, 253, 258, 271, 346, 354, 357 buttons property, 261 byName object, 99, 103
+316, 432 box, 163, 229, 273, 323, 440 box shadow (CSS), 283 br (HTML tag), 443 braces, see curly braces branching, 172, 174 branching recursion, 53, 313 break keyword, 36, 37 breakpoint, 154 British English, 167 browser, 2, 6, 27ï¿½29, 82, 193, 197,
+220, 222, 225ï¿½227, 253, 273, 274, 323, 324, 326, 328, 330, 332, 338, 339, 346, 354, 356, 365, 368, 396, 400, 401, 423 browser wars, 227 Browserify, 197 browsers, 9 brush, 360, 365, 366, 370 bubbling, see event propagation bucket fill, 374, 445 budget, 423 Buffer type, 383, 386, 387 bug, 86, 149, 153, 179, 181, 186, 189, 190, 227, 396 business software, 328 button, 252, 326, 345, 358, 370 button (HTML tag), 226, 253, 258, 271, 346, 354, 357 buttons property, 261 byName object, 99, 103
 
 cache, 196, 198, 434 call method, 107, 111, 123, 136,
-142, 214 call stack, 48­50, 54, 156, 157,
+142, 214 call stack, 48ï¿½50, 54, 156, 157,
 159, 160 callback function, 252, 293, 294,
-330, 332­335, 376, 377, 382, 383, 386, 393, 416, 446 calling (of functions), see function application camel case, 38, 244 cancelAnimationFrame function, 268 canvas, 274, 297, 300­305, 307­ 314, 319­322, 362, 367, 368, 373, 441 context, 298, 299, 369 path, 301 size, 298, 300 canvas (HTML tag), 298, 360 canvas property, 362 CanvasDisplay type, 314­316, 318 capitalization, 38, 109, 168, 244, 250, 328, 329, 387, 437 capture group, 169, 171, 176, 406 career, 272 caret character, 166, 171, 184 carnivore, 148 carriage return, 183 cascading, 244 Cascading Style Sheets, see CSS case conversion, 64 case keyword, 37 case sensitivity, 168, 329, 433 casual computing, 1 cat's hat (exercise), 251 catch keyword, 156, 157, 159, 160,
+330, 332ï¿½335, 376, 377, 382, 383, 386, 393, 416, 446 calling (of functions), see function application camel case, 38, 244 cancelAnimationFrame function, 268 canvas, 274, 297, 300ï¿½305, 307ï¿½ 314, 319ï¿½322, 362, 367, 368, 373, 441 context, 298, 299, 369 path, 301 size, 298, 300 canvas (HTML tag), 298, 360 canvas property, 362 CanvasDisplay type, 314ï¿½316, 318 capitalization, 38, 109, 168, 244, 250, 328, 329, 387, 437 capture group, 169, 171, 176, 406 career, 272 caret character, 166, 171, 184 carnivore, 148 carriage return, 183 cascading, 244 Cascading Style Sheets, see CSS case conversion, 64 case keyword, 37 case sensitivity, 168, 329, 433 casual computing, 1 cat's hat (exercise), 251 catch keyword, 156, 157, 159, 160,
 
 453
 
@@ -7260,20 +7262,20 @@ cache, 196, 198, 434 call method, 107, 111, 123, 136,
 clearing, 239, 297, 309, 316, 441 clearInterval function, 268 clearRect method, 309, 441 clearTimeout function, 267, 268 cleverness, 201 click event, 253, 255, 259, 442,
 443, 447 client, 221, 338, 385, 400, 413 clientHeight property, 240 clientWidth property, 240 clientX property, 260, 363 clientY property, 260, 363 clipboard, 226, 270 clipping, 316 cloneNode method, 418 cloning, 418 closePath method, 302 closing tag, 224, 225 closure, 50, 91, 218, 352, 435, 436,
 438, 439 code, 8, 177, 272
-structure of, 23, 44 code golf, 186 code structure, 34, 42, 124, 188 coin, 273­275, 287, 289­292, 319 Coin type, 278, 289 collaboration, 220 collection, 6, 62, 65, 67, 84, 126,
-430 collision detection, 286, 287, 289­
+structure of, 23, 44 code golf, 186 code structure, 34, 42, 124, 188 coin, 273ï¿½275, 287, 289ï¿½292, 319 Coin type, 278, 289 collaboration, 220 collection, 6, 62, 65, 67, 84, 126,
+430 collision detection, 286, 287, 289ï¿½
 291, 440 colon character, 19, 37, 66, 243 color, 298, 300, 316, 360, 365, 373 color (CSS), 243 color picker, 365 color picker (exercise), 373, 444 colWidths function, 116
 
 454
 
-comma character, 206 command key, 258 command line, 376, 378­380 comment, 39, 93, 177, 182, 184,
+comma character, 206 command key, 258 command line, 376, 378ï¿½380 comment, 39, 93, 177, 182, 184,
 218, 231, 400, 403, 409, 419, 435 comment field reset (exercise), 422, 448 COMMENT_NODE code, 231 CommonJS, 194, 195, 197, 204, 380, 381 communication, 220, 338 community, 377 comparison, 17, 21, 33, 37, 85, 213, 426 of colors, 445 of DOM nodes, 448 of NaN, 18 of numbers, 17, 28 of objects, 69 of strings, 17 of undefined values, 20 compass direction, 131, 140 compatibility, 7, 220, 227, 328, 365 compilation, 216, 435 completion, 328, 357 complexity, 3, 4, 86, 98, 105, 124, 175, 202, 245, 266, 279 composability, 6, 97, 98, 201 compositing, 365 composition, 124 computed property, 63 computer, 1, 3 concat method, 77, 103, 120, 436 concatenation, 16, 77, 120, 436, 444, 446
 
 concurrency, 266 conditional execution, 19, 30, 37,
 41, 212, 422 conditional operator, 19, 22 configuration, 182 confirm function, 29 Confucius, 2 connection, 221, 324, 330, 333,
 339, 400, 401 consistency, 38, 220, 232 console.log, 6, 10, 16, 28, 48, 50,
-58, 80, 154, 379, 388 constant, 81, 290 constructor, 38, 109, 110, 121­
-124, 126, 131, 132, 134, 141, 151, 157, 170, 179, 275 content negotiation (exercise), 340, 395, 441, 446 Content-Length header, 325 Content-Type header, 325, 385, 389, 397 context, 299, 362, 363, 369 context menu, 256 context parameter, 135, 136 continue keyword, 36 control flow, 30, 32, 34, 35, 48, 91, 156, 252, 337, 378 control key, 258 control point, 302­304 controls object, 361, 365 convention, 38, 201 Conway's Game of Life, 357 coordinates, 126, 129, 130, 133, 248, 259, 260, 276, 281, 284, 287, 299, 300, 305, 311, 363, 444, 445
+58, 80, 154, 379, 388 constant, 81, 290 constructor, 38, 109, 110, 121ï¿½
+124, 126, 131, 132, 134, 141, 151, 157, 170, 179, 275 content negotiation (exercise), 340, 395, 441, 446 Content-Length header, 325 Content-Type header, 325, 385, 389, 397 context, 299, 362, 363, 369 context menu, 256 context parameter, 135, 136 continue keyword, 36 control flow, 30, 32, 34, 35, 48, 91, 156, 252, 337, 378 control key, 258 control point, 302ï¿½304 controls object, 361, 365 convention, 38, 201 Conway's Game of Life, 357 coordinates, 126, 129, 130, 133, 248, 259, 260, 276, 281, 284, 287, 299, 300, 305, 311, 363, 444, 445
 
 455
 
@@ -7284,73 +7286,73 @@ copy-paste programming, 56, 189 copying, 418 correlation, 70, 71, 73, 75, 76 cos
 404, 406 createTextNode method, 236, 442 createWriteStream function, 386,
 392 crisp, 320 critter, 128, 131, 136, 140, 143,
 145, 148 Crockford, Douglas, 220 cross-domain request, 332, 368,
-373 crying, 168 cryptography, 339 CSS, 243, 244, 262, 281­283, 285,
+373 crying, 168 cryptography, 339 CSS, 243, 244, 262, 281ï¿½283, 285,
 297, 300, 362 ctrlKey property, 258 curl program, 392 curly braces, 33, 42, 65, 66, 89,
-168, 425 cursor, 347, 348 curve, 302­304 cycle, 231
+168, 425 cursor, 347, 348 curve, 302ï¿½304 cycle, 231
 Dark Blue (game), 272
 
 dash character, 14, 166, 244 data, 3, 11, 61 data attribute, 238, 239, 271 data event, 387 data format, 93, 232, 331 data loss, 421 data set, 72, 92, 119 data structure, 61, 62, 74, 84, 99,
-129, 201, 206, 231, 320, 358, 431 data URL, 367 database, 328 dataTable function, 120, 123 date, 166, 168­170 Date constructor, 170 date field, 365 Date type, 191, 203 Date.now function, 170, 403 dblclick event, 259 debouncing, 268 debugger statement, 154 debugging, 7, 149­151, 153, 154, 157, 160­162, 186 decentralization, 220 decimal number, 11, 153, 174 declaration, 243 decodeURIComponent function, 327, 389, 406, 446 decoupling, 190 deep comparison, 69, 85 deep comparison (exercise), 85, 428 default behavior, 242, 256, 437 default keyword, 37 default value, 21, 100, 300, 355, 426 defensive programming, 137, 139
+129, 201, 206, 231, 320, 358, 431 data URL, 367 database, 328 dataTable function, 120, 123 date, 166, 168ï¿½170 Date constructor, 170 date field, 365 Date type, 191, 203 Date.now function, 170, 403 dblclick event, 259 debouncing, 268 debugger statement, 154 debugging, 7, 149ï¿½151, 153, 154, 157, 160ï¿½162, 186 decentralization, 220 decimal number, 11, 153, 174 declaration, 243 decodeURIComponent function, 327, 389, 406, 446 decoupling, 190 deep comparison, 69, 85 deep comparison (exercise), 85, 428 default behavior, 242, 256, 437 default keyword, 37 default value, 21, 100, 300, 355, 426 defensive programming, 137, 139
 
 456
 
-define function, 198­200 defineProperty function, 113, 122,
+define function, 198ï¿½200 defineProperty function, 113, 122,
 429 degree, 305, 311 DELETE method, 325, 326, 388,
 391, 407, 419 delete operator, 67 denodeify function, 393 dependence, 70 dependency, 189, 190, 194, 197,
-199, 204, 382 deserialization, 93 developer tools, 8, 28, 154, 159 dialog box, 27, 29 diamond, 322, 439 digit, 11, 13, 153, 166­169, 187 Dijkstra, Edsger, 128 dimensions, 126, 128, 240, 272,
-274, 286, 298, 425 dinosaur, 217 direct child node, 245 directions object, 131, 140 directory, 382, 384, 388­391, 396,
+199, 204, 382 deserialization, 93 developer tools, 8, 28, 154, 159 dialog box, 27, 29 diamond, 322, 439 digit, 11, 13, 153, 166ï¿½169, 187 Dijkstra, Edsger, 128 dimensions, 126, 128, 240, 272,
+274, 286, 298, 425 dinosaur, 217 direct child node, 245 directions object, 131, 140 directory, 382, 384, 388ï¿½391, 396,
 397, 447 disabled attribute, 345 discretization, 128, 273, 286, 288,
 293 dispatching, 37, 405 display, 279, 280, 294, 314, 320,
-321, 415, 416 display (CSS), 243, 271, 414 division, 14 division by zero, 15 DNA, 99­101 do loop, 34 doctype, 223, 225 document, 222, 229, 265, 297
+321, 415, 416 display (CSS), 243, 271, 414 division, 14 division by zero, 15 DNA, 99ï¿½101 do loop, 34 doctype, 223, 225 document, 222, 229, 265, 297
 
 document format, 338, 340 Document Object Model, see DOM documentation, 201, 376 documentElement property, 230,
-330 dollar sign, 25, 171, 176, 184 DOM, 230­232, 234, 235, 238, 245,
-253, 258, 273, 274, 280, 282, 283, 297, 298, 320, 331, 342, 347, 360, 414, 418 construction, 232, 235, 237, 360, 414 domain, 222, 325, 332, 354, 368 domain-specific language, 86, 152, 164, 217, 245, 337, 414 DOMDisplay type, 280, 281, 314 dot character, see period character double click, 259 double-quote character, 15, 187, 205, 224 download, 8, 190, 250, 392, 400, 421 draggable bar example, 260 dragging, 260 drawImage method, 308, 309, 311, 314, 317, 318, 441 drawing, 229, 240, 241, 247, 279, 280, 283, 298­300, 302, 313, 318, 319, 359, 360, 365, 443 drawing program example, 259, 359 drawTable function, 117 drawTalk function, 417, 418, 423 drop-down menu, 343, 350
+330 dollar sign, 25, 171, 176, 184 DOM, 230ï¿½232, 234, 235, 238, 245,
+253, 258, 273, 274, 280, 282, 283, 297, 298, 320, 331, 342, 347, 360, 414, 418 construction, 232, 235, 237, 360, 414 domain, 222, 325, 332, 354, 368 domain-specific language, 86, 152, 164, 217, 245, 337, 414 DOMDisplay type, 280, 281, 314 dot character, see period character double click, 259 double-quote character, 15, 187, 205, 224 download, 8, 190, 250, 392, 400, 421 draggable bar example, 260 dragging, 260 drawImage method, 308, 309, 311, 314, 317, 318, 441 drawing, 229, 240, 241, 247, 279, 280, 283, 298ï¿½300, 302, 313, 318, 319, 359, 360, 365, 443 drawing program example, 259, 359 drawTable function, 117 drawTalk function, 417, 418, 423 drop-down menu, 343, 350
 
 457
 
 duplication, 190, 434 dynamic scope, 157 dynamic typing, 149
 ECMAScript, 7 ECMAScript 6, 7, 46, 135, 335 ecosystem, 128, 147, 148 ecstatic module, 406 editor, 274 efficiency, 52, 84, 98, 196, 216,
-241, 274, 282, 299, 430 Egg language, 205, 206, 209­211,
-213­215, 217, 218, 231 electronic life, 128, 131, 132, 134,
-136, 137, 139, 141, 142, 144, 145, 203, 273 elegance, 52, 98, 207 element, 224, 231, 237 ELEMENT_NODE code, 231, 436 elementFromChar function, 133 elements property, 345, 346 ellipse, 247, 248 else keyword, 31 elt function, 237, 361, 414 email, 338 email field, 365 empty set, 178 encapsulation, 105, 106, 124, 129, 130, 189­191, 201, 204, 253, 279 encodeURIComponent function, 327, 402 encoding, 221 encryption, 339 end event, 387 end method, 385, 386, 389, 446 enemies example, 182
+241, 274, 282, 299, 430 Egg language, 205, 206, 209ï¿½211,
+213ï¿½215, 217, 218, 231 electronic life, 128, 131, 132, 134,
+136, 137, 139, 141, 142, 144, 145, 203, 273 elegance, 52, 98, 207 element, 224, 231, 237 ELEMENT_NODE code, 231, 436 elementFromChar function, 133 elements property, 345, 346 ellipse, 247, 248 else keyword, 31 elt function, 237, 361, 414 email, 338 email field, 365 empty set, 178 encapsulation, 105, 106, 124, 129, 130, 189ï¿½191, 201, 204, 253, 279 encodeURIComponent function, 327, 402 encoding, 221 encryption, 339 end event, 387 end method, 385, 386, 389, 446 enemies example, 182
 
-energy, 141­144, 430 engineering, 227 ENOENT (status code), 390, 395 Enter key, 346 enter key, 369 entity, 224 entropy, 141 enumerability, 113 environment, 27, 211, 213, 214,
-266, 435 equality, 17 erase tool, 364, 365 error, 149­151, 153­155, 159, 160 error event, 334, 353, 392 error handling, 149, 155, 156, 159,
-333, 336, 337, 382, 390, 393, 394, 416, 421 error message, 210, 337, 357 error recovery, 154 error response, 325, 333, 390, 391, 393 error tolerance, 137, 224 Error type, 157, 159, 160, 390 escape key, 296 escaping in HTML, 224, 226 in regexps, 164, 166, 179 in strings, 15, 205 in URLs, 327, 389, 402, 406 Escher, M.C., 297 eval, 194 evaluate function, 210, 211, 213 evaluation, 194, 210, 215, 216 even number, 32, 59 event handling, 199, 252­254, 256, 257, 263, 264, 266, 273, 292, 295, 296, 308, 320,
+energy, 141ï¿½144, 430 engineering, 227 ENOENT (status code), 390, 395 Enter key, 346 enter key, 369 entity, 224 entropy, 141 enumerability, 113 environment, 27, 211, 213, 214,
+266, 435 equality, 17 erase tool, 364, 365 error, 149ï¿½151, 153ï¿½155, 159, 160 error event, 334, 353, 392 error handling, 149, 155, 156, 159,
+333, 336, 337, 382, 390, 393, 394, 416, 421 error message, 210, 337, 357 error recovery, 154 error response, 325, 333, 390, 391, 393 error tolerance, 137, 224 Error type, 157, 159, 160, 390 escape key, 296 escaping in HTML, 224, 226 in regexps, 164, 166, 179 in strings, 15, 205 in URLs, 327, 389, 402, 406 Escher, M.C., 297 eval, 194 evaluate function, 210, 211, 213 evaluation, 194, 210, 215, 216 even number, 32, 59 event handling, 199, 252ï¿½254, 256, 257, 263, 264, 266, 273, 292, 295, 296, 308, 320,
 
 458
 
-330, 346, 347, 349, 360, 386, 419, 438, 439, 443 event object, 254, 257, 259, 260, 363, 372 event propagation, 254, 255, 261, 264, 265 event type, 254 every and some (exercise), 104, 429 every method, 104 evolution, 164, 189 exception, 334, 393 exception handling, 156, 157, 159­ 161, 163, 333, 334, 368, 393, 394, 442, 444 exec method, 168, 169, 180, 181 execution order, 30, 47, 48 exercises, 2, 8, 40, 153 exit method, 379 expectation, 256 experiment, 3, 8, 186, 258 exploit, 226 exponent, 13, 187, 433 exponentiation, 33, 35 exporting, 193, 196, 434 exports object, 193, 195, 196, 381, 434 expression, 23, 24, 28, 33, 35, 46, 192, 205, 206, 211 expressivity, 1, 217 extinction, 147 extraction, 169
+330, 346, 347, 349, 360, 386, 419, 438, 439, 443 event object, 254, 257, 259, 260, 363, 372 event propagation, 254, 255, 261, 264, 265 event type, 254 every and some (exercise), 104, 429 every method, 104 evolution, 164, 189 exception, 334, 393 exception handling, 156, 157, 159ï¿½ 161, 163, 333, 334, 368, 393, 394, 442, 444 exec method, 168, 169, 180, 181 execution order, 30, 47, 48 exercises, 2, 8, 40, 153 exit method, 379 expectation, 256 experiment, 3, 8, 186, 258 exploit, 226 exponent, 13, 187, 433 exponentiation, 33, 35 exporting, 193, 196, 434 exports object, 193, 195, 196, 381, 434 expression, 23, 24, 28, 33, 35, 46, 192, 205, 206, 211 expressivity, 1, 217 extinction, 147 extraction, 169
 factorial function, 10 failure, 333 fallthrough, 37 false, 17
 
 farm example, 56, 58, 172 farmer, 92 field, 259, 326, 342, 345, 349, 353,
 358, 360, 365, 422, 448 figlet module, 381 file, 188, 194, 325, 326, 351, 359,
-369, 380, 383, 384, 386, 388­391, 448 file extension, 389 file field, 342, 351, 352 file format, 182 file reading, 352 file server, 413 file server example, 388, 389, 391, 392, 394, 396, 397, 446, 447 file system, 351, 360, 368, 382, 383, 388, 448 File type, 352 FileReader type, 352, 353, 369 files property, 352 fill method, 301 fillColor property, 307 filling, 300, 301, 307, 321 fillRect method, 300, 309, 372, 375, 444 fillStyle property, 300, 360, 362, 366 fillText method, 307, 308, 440 filter method, 94, 102, 117, 276, 428 finally keyword, 158, 163, 432 finish event, 392 Firefox, 227, 328 firewall, 397, 401 firstChild property, 233 fixed positioning, 264
+369, 380, 383, 384, 386, 388ï¿½391, 448 file extension, 389 file field, 342, 351, 352 file format, 182 file reading, 352 file server, 413 file server example, 388, 389, 391, 392, 394, 396, 397, 446, 447 file system, 351, 360, 368, 382, 383, 388, 448 File type, 352 FileReader type, 352, 353, 369 files property, 352 fill method, 301 fillColor property, 307 filling, 300, 301, 307, 321 fillRect method, 300, 309, 372, 375, 444 fillStyle property, 300, 360, 362, 366 fillText method, 307, 308, 440 filter method, 94, 102, 117, 276, 428 finally keyword, 158, 163, 432 finish event, 392 Firefox, 227, 328 firewall, 397, 401 firstChild property, 233 fixed positioning, 264
 
 459
 
 FizzBuzz (exercise), 41, 424 flattening (exercise), 103 flexibility, 7 flipHorizontally function, 318, 439 flipHorizontally method, 312 flipping, see mirroring floating-point number, 13 flood fill (exercise), 374, 445 flow diagram, 172, 174 focus, 258, 264, 344, 345, 348,
 349, 422, 448 focus event, 264, 265, 368 focus method, 344 fold function, 95 font, 308, 370 font-family (CSS), 244 font-weight (CSS), 244 food, 141, 143, 145, 147, 431 food chain, 145, 148 for attribute, 349 for loop, 35, 36, 74, 88, 133, 160,
-426, 427 for/in loop, 74, 75, 112­114, 121,
+426, 427 for/in loop, 74, 75, 112ï¿½114, 121,
 428, 429 forEach method, 88, 89, 92, 98,
 117, 134, 352, 438 form, 326, 327, 342, 345, 346, 397 form (HTML tag), 342, 345, 369,
-413, 420, 447, 449 form property, 345 forwarding, 404 fractal example, 313 fractional number, 13, 187, 273 frame, 309, 310, 315, 318, 441 framework, 57, 144 fromCharCode function, 258 fs module, 382­384, 396
+413, 420, 447, 449 form property, 345 forwarding, 404 fractal example, 313 fractional number, 13, 187, 273 frame, 309, 310, 315, 318, 441 framework, 57, 144 fromCharCode function, 258 fs module, 382ï¿½384, 396
 
 fsp object, 394 function, 6, 27, 42, 150, 188, 205,
 206, 215, 438 application, 27, 28, 43, 48, 49,
-52, 92, 94, 98, 102, 159, 211 as namespace, 189, 191 as property, 64 as value, 42, 46, 50, 88, 90, 94, 97, 98, 102, 142, 254, 293, 295, 332, 439 body, 42 declaration, 47 definition, 42, 47, 55 higher-order, 47, 88­90, 92, 94, 95, 97, 100, 116, 135, 136, 176, 293, 295 model of, 51 naming, 55, 57 purity, 58 scope, 43, 45, 134, 218 wrapping, 91 Function constructor, 195, 199, 213, 216, 357, 442 function keyword, 42, 47, 192 Function prototype, 108, 111 future, 7, 26, 47, 135, 185, 200, 323, 335
+52, 92, 94, 98, 102, 159, 211 as namespace, 189, 191 as property, 64 as value, 42, 46, 50, 88, 90, 94, 97, 98, 102, 142, 254, 293, 295, 332, 439 body, 42 declaration, 47 definition, 42, 47, 55 higher-order, 47, 88ï¿½90, 92, 94, 95, 97, 100, 116, 135, 136, 176, 293, 295 model of, 51 naming, 55, 57 purity, 58 scope, 43, 45, 134, 218 wrapping, 91 Function constructor, 195, 199, 213, 216, 357, 442 function keyword, 42, 47, 192 Function prototype, 108, 111 future, 7, 26, 47, 135, 185, 200, 323, 335
 game, 257, 272, 273, 275, 292, 295, 314
 screenshot, 285, 319 game of life (exercise), 357, 443 GAME_LEVELS data set, 295 garbage collection, 12 garble example, 380 gardening, 399
 
 460
 
 gatherCorrelations function, 74 gaudy home pages, 271 generation, 357, 358, 443 get function, 335 GET method, 325, 326, 329, 346,
-386, 388, 389, 402, 407, 447 getAttribute method, 238, 240 getBoundingClientRect method, 241, 260, 363 getContext method, 299 getDate method, 171 getDay method, 191 getElementById method, 234 getElementsByClassName method, 235 getElementsByName method, 349 getElementsByTagName method, 234, 236, 239, 250, 436 getFullYear method, 171 getHours method, 171 getImageData method, 373, 374 getItem method, 354, 355 getMinutes method, 171 getMonth method, 171 getPrototypeOf function, 108­110, 219, 436 getResponseHeader method, 329 getSeconds method, 171 getter, 121, 122, 126 getTime method, 170 getURL function, 334 getYear method, 171 global object, 82, 134, 150, 379 global scope, 44, 82, 189, 191, 192, 197, 213, 253, 267, 379, 380, 436
+386, 388, 389, 402, 407, 447 getAttribute method, 238, 240 getBoundingClientRect method, 241, 260, 363 getContext method, 299 getDate method, 171 getDay method, 191 getElementById method, 234 getElementsByClassName method, 235 getElementsByName method, 349 getElementsByTagName method, 234, 236, 239, 250, 436 getFullYear method, 171 getHours method, 171 getImageData method, 373, 374 getItem method, 354, 355 getMinutes method, 171 getMonth method, 171 getPrototypeOf function, 108ï¿½110, 219, 436 getResponseHeader method, 329 getSeconds method, 171 getter, 121, 122, 126 getTime method, 170 getURL function, 334 getYear method, 171 global object, 82, 134, 150, 379 global scope, 44, 82, 189, 191, 192, 197, 213, 253, 267, 379, 380, 436
 
 globalCompositeOperation property, 365
-Goethe, Johann Wolfgang von, 342 Google, 227 graceful degradation, 423 grammar, 23, 182 grandfather, 99, 100 graph, 321 graphical user interface, 1 graphics, 273, 274, 279, 282, 297­
-299, 308, 320, 321 gravity, 290 greater than, 17 greed, 177, 178 grid, 128­130, 136, 139, 273, 274,
+Goethe, Johann Wolfgang von, 342 Google, 227 graceful degradation, 423 grammar, 23, 182 grandfather, 99, 100 graph, 321 graphical user interface, 1 graphics, 273, 274, 279, 282, 297ï¿½
+299, 308, 320, 321 gravity, 290 greater than, 17 greed, 177, 178 grid, 128ï¿½130, 136, 139, 273, 274,
 276, 281, 287, 357, 374, 443 Grid type, 130 groupBy function, 103 grouping, 14, 33, 103, 168, 169, 176, 429, 432
 h1 (HTML tag), 223, 240 hard drive, 11, 351, 354, 376, 422 hard-coding, 234, 322, 362 hasEvent function, 72 hash character, 218 hasOwnProperty method, 113, 114,
 219, 436 head (HTML tag), 223, 225, 230 head property, 230 header, 325, 326, 329, 332, 385 height (CSS), 372 help text example, 264 helper function, 232 herbivore, 145, 147, 148, 431 hexadecimal number, 174, 327
@@ -7359,23 +7361,23 @@ h1 (HTML tag), 223, 240 hard drive, 11, 351, 354, 376, 422 hard-coding, 234, 322
 
 hidden element, 243, 271, 414 higher-order function, see func-
 tion, higher-order highlightCode function, 239 history, 6, 105, 412 holy war, 105 hooligan, 404 Host header, 325, 329 hover effect, 261, 262 href attribute, 224, 234, 238, 367 HTML, 223, 225, 229, 231, 249,
-297­299, 320, 321, 324, 353, 360, 397 html (HTML tag), 225, 230 HTML5 form fields, 365 HTTP, 222, 324­328, 331, 332, 334, 335, 338, 339, 342, 384, 385, 388, 391, 392, 397, 400­402 http module, 384, 385, 396 HTTPS, 222, 338, 339, 386 https module, 386 human language, 1, 23, 42 hype, 106 Hypertext Markup Language, see HTML Hypertext Transfer Prototol, see HTTP
+297ï¿½299, 320, 321, 324, 353, 360, 397 html (HTML tag), 225, 230 HTML5 form fields, 365 HTTP, 222, 324ï¿½328, 331, 332, 334, 335, 338, 339, 342, 384, 385, 388, 391, 392, 397, 400ï¿½402 http module, 384, 385, 396 HTTPS, 222, 338, 339, 386 https module, 386 human language, 1, 23, 42 hype, 106 Hypertext Markup Language, see HTML Hypertext Transfer Prototol, see HTTP
 id attribute, 234, 244, 349, 413 idempotency, 391, 447 identifier, 206 identitiy, 69 if keyword, 30, 184
 chaining, 31, 37, 424, 425 image, 224, 236, 265, 297, 326,
 360, 368
 
 imagination, 272 img (HTML tag), 224, 236, 242,
-265, 297, 308, 309, 368 implementation, 185 implementation detail, 190 implements (reserved word), 26 in operator, 67, 73, 112­114, 428 indentation, 34, 35 index, 63, 117 index property, 169 index.html, 413 indexOf method, 73, 77, 78, 165,
-180, 411, 443 infinite loop, 36, 49, 141, 160, 426 infinity, 15 inheritance, 108, 122­125, 141, 160,
+265, 297, 308, 309, 368 implementation, 185 implementation detail, 190 implements (reserved word), 26 in operator, 67, 73, 112ï¿½114, 428 indentation, 34, 35 index, 63, 117 index property, 169 index.html, 413 indexOf method, 73, 77, 78, 165,
+180, 411, 443 infinite loop, 36, 49, 141, 160, 426 infinity, 15 inheritance, 108, 122ï¿½125, 141, 160,
 390 ini file, 182, 189 initialization, 265, 413, 415 inline element, 240, 242 inner function, 45, 91, 118, 436 inner loop, 98, 175 innerHeight property, 264 innerWidth property, 264 input, 29, 137, 149, 154, 252, 274,
 344, 376, 408 input (HTML tag), 264, 270, 342,
-347­349, 351 input event, 348, 443 insertBefore method, 235 install, 381 installation, 190 instance, 109 instanceof operator, 124, 160 instantiateTemplate function, 423,
+347ï¿½349, 351 input event, 348, 443 insertBefore method, 235 install, 381 installation, 190 instance, 109 instanceof operator, 124, 160 instantiateTemplate function, 423,
 448 instantiation, 417
 
 462
 
 instruction, 4 integer, 13 integration, 164, 232 interconnection, 188 interface, 105, 115, 116, 118, 123,
-126, 131, 138, 164, 190­ 192, 194, 198, 232, 279, 297, 299, 314, 328, 335, 336, 347, 402, 430 design, 57, 164, 170, 176, 180, 191, 200, 232, 301, 328 interface (reserved word), 26 interface design, 202 internationalization, 184 Internet, 182, 220­222, 226, 396, 397 Internet Explorer, 227, 328 interpretation, 8, 194, 210, 211, 215, 216 interview question, 41 inversion, 166 invoking (of functions), see function application IP address, 222, 324, 326, 397 isEven (exercise), 59, 425 isInside function, 262 isNaN function, 31 isolation, 105, 189, 190, 192, 194, 226 iteration, 126
+126, 131, 138, 164, 190ï¿½ 192, 194, 198, 232, 279, 297, 299, 314, 328, 335, 336, 347, 402, 430 design, 57, 164, 170, 176, 180, 191, 200, 232, 301, 328 interface (reserved word), 26 interface design, 202 internationalization, 184 Internet, 182, 220ï¿½222, 226, 396, 397 Internet Explorer, 227, 328 interpretation, 8, 194, 210, 211, 215, 216 interview question, 41 inversion, 166 invoking (of functions), see function application IP address, 222, 324, 326, 397 isEven (exercise), 59, 425 isInside function, 262 isNaN function, 31 isolation, 105, 189, 190, 192, 194, 226 iteration, 126
 Jacques, 61 Java, 7 JavaScript, 6
 absence of, 423 availability of, 1 flexibility of, 7
 
@@ -7390,10 +7392,10 @@ Kernighan, Brian, 149 key code, 257, 258, 292 keyboard, 27, 256, 257, 273, 288,
 463
 
 Knuth, Donald, 42 Kurds, 270
-label, 308, 323 label (HTML tag), 349 labeling, 349 landscape example, 45 Last-Modified header, 325 lastChild property, 233 lastIndex property, 180, 181 lastIndexOf method, 77 lava, 273­275, 277, 283, 286­290,
-292, 319 Lava type, 277, 288 layering, 202, 221 layout, 240, 241, 243 laziness, 241 leaf node, 231 leak, 226, 296, 368, 396, 446 learning, 2, 3, 7, 8, 399 left (CSS), 246­248, 251, 372 legend, 132 length property, 79
-for array, 64, 88 for string, 56, 63, 79, 426 less than, 17 let keyword, 26, 46 level, 273­276, 280, 283, 288, 294,
-295, 438 Level type, 275 lexical scoping, 45, 46, 91 library, 190, 232, 333, 380­382 life expectancy (exercise), 103, 429 LifeLikeWorld type, 141 line, 24, 34, 183, 184, 297, 300­
+label, 308, 323 label (HTML tag), 349 labeling, 349 landscape example, 45 Last-Modified header, 325 lastChild property, 233 lastIndex property, 180, 181 lastIndexOf method, 77 lava, 273ï¿½275, 277, 283, 286ï¿½290,
+292, 319 Lava type, 277, 288 layering, 202, 221 layout, 240, 241, 243 laziness, 241 leaf node, 231 leak, 226, 296, 368, 396, 446 learning, 2, 3, 7, 8, 399 left (CSS), 246ï¿½248, 251, 372 legend, 132 length property, 79
+for array, 64, 88 for string, 56, 63, 79, 426 less than, 17 let keyword, 26, 46 level, 273ï¿½276, 280, 283, 288, 294,
+295, 438 Level type, 275 lexical scoping, 45, 46, 91 library, 190, 232, 333, 380ï¿½382 life expectancy (exercise), 103, 429 LifeLikeWorld type, 141 line, 24, 34, 183, 184, 297, 300ï¿½
 303, 305, 306, 322, 364, 439
 
 line break, 15, 183 line comment, 39, 178 line tool, 360, 363, 364 line width, 300, 310 lineCap property, 364 lines of code, 215 lineTo method, 301, 305 lineWidth property, 300, 360, 362,
@@ -7401,17 +7403,17 @@ line break, 15, 183 line comment, 39, 178 line tool, 360, 363, 364 line width, 3
 211 literate programming, 189 live data structure, 229, 236, 246,
 438 live view, 400, 401, 416 lives (exercise), 295, 438 load event, 265, 308, 318, 330,
 352, 368, 441 loading, 197 local scope, 189, 215 local variable, 43, 50, 89, 91, 219,
-426, 438 localhost, 384 localStorage object, 354, 355, 419 locked box (exercise), 163, 432 logging, 154 logical and, 18 logical operators, 18 logical or, 18 long polling, 400­403, 408, 410,
+426, 438 localhost, 384 localStorage object, 354, 355, 419 locked box (exercise), 163, 432 logging, 154 logical and, 18 logical operators, 18 logical or, 18 long polling, 400ï¿½403, 408, 410,
 411, 415, 420, 421
 
 464
 
 long-polling, 401 loop, 5, 6, 32, 35, 40, 41, 52, 88,
-89, 96­98, 135, 181, 422, 425, 426, 438, 439 termination of, 36 loop body, 34, 89 lycanthropy, 61, 69
-machine code, 4, 216 mafia, 227, 332 magic, 100, 108, 205, 368 malicious script, 226, 266 man-in-the-middle, 338 map, 74, 99, 103, 112­114, 277,
-346, 429 map method, 95, 116­118, 135,
+89, 96ï¿½98, 135, 181, 422, 425, 426, 438, 439 termination of, 36 loop body, 34, 89 lycanthropy, 61, 69
+machine code, 4, 216 mafia, 227, 332 magic, 100, 108, 205, 368 malicious script, 226, 266 man-in-the-middle, 338 map, 74, 99, 103, 112ï¿½114, 277,
+346, 429 map method, 95, 116ï¿½118, 135,
 381, 428 Marcus Aurelius, 252 match method, 169, 181 matching, 165, 171, 172, 180, 186
-algorithm, 172­174 Math object, 59, 63, 80 Math.abs function, 444 Math.acos function, 81 Math.asin function, 81 Math.atan function, 81 Math.ceil function, 82, 287, 317 Math.cos function, 81, 248, 372,
+algorithm, 172ï¿½174 Math object, 59, 63, 80 Math.abs function, 444 Math.acos function, 81 Math.asin function, 81 Math.atan function, 81 Math.ceil function, 82, 287, 317 Math.cos function, 81, 248, 372,
 440 Math.floor function, 82, 287, 317 Math.max function, 28, 63, 80,
 316 Math.min function, 28, 59, 80,
 316, 444 Math.PI constant, 81, 305 Math.random function, 81, 132,
@@ -7424,30 +7426,30 @@ Math.round function, 82 Math.sin function, 81, 248, 278,
 
 465
 
-Miro, Joan, 359 mirror, 312, 323, 441 mirroring, 310, 311 MKCOL method, 397, 447 mkdir function, 447 modification date, 391 modifier key, 258 modularity, 328 module, 188­191, 193, 194, 196,
+Miro, Joan, 359 mirror, 312, 323, 441 mirroring, 310, 311 MKCOL method, 397, 447 mkdir function, 447 modification date, 391 modifier key, 258 modularity, 328 module, 188ï¿½191, 193, 194, 196,
 197, 203, 280, 376, 380, 381, 405 module loader, 194, 197, 200, 380 module object, 196 modulo operator, 14 Mongolian vowel separator, 184 month name (exercise), 203, 433 Mosaic, 227 motion, 273 MOUNTAINS data set, 115, 119, 250 mouse, 27, 360, 362, 363, 372, 443 mouse button, 254, 255, 259 mouse cursor, 259 mouse trail (exercise), 271, 437 mousedown event, 255, 259, 360, 363, 442 mousemove event, 260, 261, 268, 269, 271, 360, 363, 364, 437 mouseout event, 261 mouseover event, 261, 368 mouseup event, 259, 261, 360, 363 moveTo method, 301, 305 Mozilla, 227, 328 multiple attribute, 350, 352 multiple choice, 343
 
 multiple-choice, 342, 349 multiplication, 14, 277, 289 multiplier function, 51 music, 272 mutability, 66, 68, 112 mutation, 430
 name attribute, 346, 349 namespace, 80, 189, 191, 193, 195 namespace pollution, 80, 189, 192 naming, 5, 7 NaN, 15, 18, 19, 150 negation, 16, 18 neighbor, 357, 443 nerd, 179 nesting
-in regexps, 175 of arrays, 71 of expressions, 23, 207 of functions, 45, 91, 118 of loops, 41, 98, 133, 425 of objects, 230, 233 of scope, 45 Netscape, 6, 227 network, 220­222, 295, 338, 376,
+in regexps, 175 of arrays, 71 of expressions, 23, 207 of functions, 45, 91, 118 of loops, 41, 98, 133, 425 of objects, 230, 233 of scope, 45 Netscape, 6, 227 network, 220ï¿½222, 295, 338, 376,
 377, 403 new operator, 109 newline character, 15, 41, 166, 178,
-183, 442 nextSibling property, 233 node, 230, 231 node program, 378, 379 Node.js, 8, 9, 28, 190, 197, 376­
-378, 380­382, 384­386, 388, 389, 391­393, 395, 400, 401, 404, 421 node_modules directory, 380, 382
+183, 442 nextSibling property, 233 node, 230, 231 node program, 378, 379 Node.js, 8, 9, 28, 190, 197, 376ï¿½
+378, 380ï¿½382, 384ï¿½386, 388, 389, 391ï¿½393, 395, 400, 401, 404, 421 node_modules directory, 380, 382
 
 466
 
-NodeList type, 232 nodeType property, 231, 436, 438 nodeValue property, 234 nonbreaking space, 184 not a number, 15 note-taking example, 354 notification, 401 NPM, 190, 380­382, 389, 393, 405,
+NodeList type, 232 nodeType property, 231, 436, 438 nodeValue property, 234 nonbreaking space, 184 not a number, 15 note-taking example, 354 notification, 401 NPM, 190, 380ï¿½382, 389, 393, 405,
 406 npm program, 381, 382, 389 null, 19, 20, 54, 63, 85, 92, 102,
 132, 155, 428 number, 12, 68, 165, 187, 433
 conversion to, 20, 30 notation, 12, 13 precision of, 13 representation, 12 special values, 15 number field, 365 Number function, 30, 38 number puzzle example, 53
 object, 28, 61, 65, 67, 68, 73, 80, 82, 84, 93, 105, 108, 124, 129, 230, 428
-as map, 73, 99, 103, 112­114, 131, 133, 277, 429
+as map, 73, 99, 103, 112ï¿½114, 131, 133, 277, 429
 creation, 109 identity, 69 looping over, 74 property, 63 Object prototype, 108, 109, 113,
 114 object-oriented programming, 105,
 106, 115, 124 Object.create function, 109, 114,
 215
 
-Object.keys function, 121, 132, 250 obstacle, 141, 286 obstacleAt method, 286 offsetHeight property, 240, 241 offsetWidth property, 240 on method, 386 onclick attribute, 226, 253 open method, 328­330 OpenGL, 298 opening tag, 224 operator, 14, 16, 17, 21, 206, 213
+Object.keys function, 121, 132, 250 obstacle, 141, 286 obstacleAt method, 286 offsetHeight property, 240, 241 offsetWidth property, 240 on method, 386 onclick attribute, 226, 253 open method, 328ï¿½330 OpenGL, 298 opening tag, 224 operator, 14, 16, 17, 21, 206, 213
 application, 14 optimization, 52, 58, 98, 241, 268,
 274, 282, 320, 323, 355, 367, 375, 384 option (HTML tag), 343, 344, 349, 350, 363, 447 optional, 167 optional argument, 49, 79, 83 options property, 350 ordering, 221 organization, 188, 189 outline, 300 output, 16, 27, 28, 149, 154, 214, 376, 396, 442 overflow, 13 overflow (CSS), 283 overlap, 287 overlay, 244 overriding, 110, 115, 123, 434 overwriting, 392, 397, 408
 p (HTML tag), 223, 240 package (reserved word), 26 package manager, 190 package.json file, 382 padding (CSS), 281
@@ -7457,14 +7459,14 @@ p (HTML tag), 223, 240 package (reserved word), 26 package manager, 190 package.
 page reload, 265, 342, 346, 354, 449
 pageX property, 259, 372 pageXOffset property, 241 pageY property, 259, 372 pageYOffset property, 241, 264 Palef, Thomas, 272 paragraph, 224 parallelism, 266, 326, 377, 378 parameter, 27, 42, 43, 49, 79, 89,
 91, 92, 151, 438 parent node, 254 parentheses, 14, 23, 27, 31, 33,
-35, 89, 168, 171, 172, 184, 192, 206, 432 parentNode property, 233 parse function, 209 parseApply function, 208 parseExpression function, 207 parseINI function, 184 parsing, 93, 149, 184, 192, 205­ 207, 209, 211, 214, 224, 229, 328, 389, 410 partial application, 102 password, 338, 396, 404 password field, 342 path canvas, 301, 302, 305, 364, 439 closing, 301, 302 file system, 380, 388, 389, 447 URL, 325, 329, 388, 389, 402, 404 pathfinding, 140, 147, 431 patience, 374 pattern, 164­166, 179 pausing (exercise), 296, 439 pea soup, 87
+35, 89, 168, 171, 172, 184, 192, 206, 432 parentNode property, 233 parse function, 209 parseApply function, 208 parseExpression function, 207 parseINI function, 184 parsing, 93, 149, 184, 192, 205ï¿½ 207, 209, 211, 214, 224, 229, 328, 389, 410 partial application, 102 password, 338, 396, 404 password field, 342 path canvas, 301, 302, 305, 364, 439 closing, 301, 302 file system, 380, 388, 389, 447 URL, 325, 329, 388, 389, 402, 404 pathfinding, 140, 147, 431 patience, 374 pattern, 164ï¿½166, 179 pausing (exercise), 296, 439 pea soup, 87
 
 peanuts, 76 percent, 264 percent sign, 327 performance, 175, 216, 241, 266,
 274, 320, 375, 384 period character, 28, 63, 166, 178,
 187, 446 persistence, 353, 400, 419, 421,
-448 phase, 278, 279, 289 phi coefficient, 70­72 phi function, 72 photosynthesis, 141, 142, 145 physics, 285, 290, 437 physics engine, 286 pi, 13, 81, 248, 278, 305 PI constant, 81 picture, 297, 298, 309, 320, 360 pie chart example, 306, 308, 323,
-440 pipe, 221 pipe character, 172, 433 pipe method, 389, 392 pixel, 240, 249, 259, 274, 281, 297­
-299, 308, 309, 316, 320, 321, 323, 368, 373, 374 pixel art, 309 pizza, 70, 71 placeholder, 415, 418 plant, 141, 142, 144, 145, 147, 431 Plant type, 144 PlantEater type, 145 platform game, 272, 295 Plaugher, P.J., 149 player, 272­276, 283, 286, 287, 289, 291, 294, 319
+448 phase, 278, 279, 289 phi coefficient, 70ï¿½72 phi function, 72 photosynthesis, 141, 142, 145 physics, 285, 290, 437 physics engine, 286 pi, 13, 81, 248, 278, 305 PI constant, 81 picture, 297, 298, 309, 320, 360 pie chart example, 306, 308, 323,
+440 pipe, 221 pipe character, 172, 433 pipe method, 389, 392 pixel, 240, 249, 259, 274, 281, 297ï¿½
+299, 308, 309, 316, 320, 321, 323, 368, 373, 374 pixel art, 309 pizza, 70, 71 placeholder, 415, 418 plant, 141, 142, 144, 145, 147, 431 Plant type, 144 PlantEater type, 145 platform game, 272, 295 Plaugher, P.J., 149 player, 272ï¿½276, 283, 286, 287, 289, 291, 294, 319
 
 468
 
@@ -7476,7 +7478,7 @@ player character, 309, 318 Player type, 277, 289 plus character, 14, 167, 187 pl
 
 nature of, 3 program size, 86, 186, 279, 337 programming
 difficulty of, 2 history of, 4 joy of, 3 programming language, 1, 4, 149,
-189, 205, 217, 232, 238, 377 power of, 6 programming style, 3, 24, 33­35, 38, 117, 121, 124, 279, 394 progress bar, 263 project chapter, 128, 188, 205, 272, 359, 399 promise, 335­337, 340, 353, 393­ 395, 442 Promise constructor, 335, 340, 442 promise module, 393 prompt function, 29, 370 promptDirection function, 159, 161 promptInteger function, 155 propagation, see event propagation property, 28, 63, 65, 82, 107, 108, 110, 113, 121, 133, 150, 238, 300 assignment, 66 deletion, 67 model of, 66 naming, 138 own, 113 testing for, 67 protected (reserved word), 26 protocol, 221, 222, 324, 325, 367 prototype, 108­112, 123, 192, 215, 219, 435, 448
+189, 205, 217, 232, 238, 377 power of, 6 programming style, 3, 24, 33ï¿½35, 38, 117, 121, 124, 279, 394 progress bar, 263 project chapter, 128, 188, 205, 272, 359, 399 promise, 335ï¿½337, 340, 353, 393ï¿½ 395, 442 Promise constructor, 335, 340, 442 promise module, 393 prompt function, 29, 370 promptDirection function, 159, 161 promptInteger function, 155 propagation, see event propagation property, 28, 63, 65, 82, 107, 108, 110, 113, 121, 133, 150, 238, 300 assignment, 66 deletion, 67 model of, 66 naming, 138 own, 113 testing for, 67 protected (reserved word), 26 protocol, 221, 222, 324, 325, 367 prototype, 108ï¿½112, 123, 192, 215, 219, 435, 448
 
 469
 
@@ -7496,15 +7498,15 @@ rabbit example, 107, 109, 112 radian, 305, 311 radio button, 342, 349 radius, 30
 
 470
 
-207, 209, 211, 233, 250, 313, 418, 425, 427, 432, 436, 448 reduce method, 95, 96, 99, 103, 116, 117 reduceAncestors function, 100, 101 ReferenceError type, 219 RegExp constructor, 164, 179 regexp golf (exercise), 186 registerChange function, 408, 411, 448 regular expression, 164­166, 176­ 180, 182, 185, 186, 208, 239, 405, 406, 435, 446 alternatives, 172 backtracking, 174 boundary, 171 creation, 164, 179 escaping, 164, 179, 433 flags, 168, 176, 179, 433 global, 176, 180, 181 grouping, 168, 176 internationalization, 184 matching, 172, 173, 180 methods, 165, 169, 180 repetition, 167 relatedTarget property, 262 relative path, 380, 388, 396, 447 relative positioning, 246, 247 relative URL, 329 relativePos function, 363, 444 remainder operator, 14, 36, 310, 424, 425, 437, 439 remote access, 388 remote procedure call, 338 removeChild method, 235 removeEventListener method, 253,
+207, 209, 211, 233, 250, 313, 418, 425, 427, 432, 436, 448 reduce method, 95, 96, 99, 103, 116, 117 reduceAncestors function, 100, 101 ReferenceError type, 219 RegExp constructor, 164, 179 regexp golf (exercise), 186 registerChange function, 408, 411, 448 regular expression, 164ï¿½166, 176ï¿½ 180, 182, 185, 186, 208, 239, 405, 406, 435, 446 alternatives, 172 backtracking, 174 boundary, 171 creation, 164, 179 escaping, 164, 179, 433 flags, 168, 176, 179, 433 global, 176, 180, 181 grouping, 168, 176 internationalization, 184 matching, 172, 173, 180 methods, 165, 169, 180 repetition, 167 relatedTarget property, 262 relative path, 380, 388, 396, 447 relative positioning, 246, 247 relative URL, 329 relativePos function, 363, 444 remainder operator, 14, 36, 310, 424, 425, 437, 439 remote access, 388 remote procedure call, 338 removeChild method, 235 removeEventListener method, 253,
 
 439 removeItem method, 354 rename function, 383 rendering, 299 repeating key, 257 repetition, 55, 167, 168, 175, 179,
 268, 422, 448 replace method, 176, 187, 432,
-446 replaceChild method, 235 replaceSelection function, 348 reproduction, 141, 143­145, 147,
-431 request, 324­326, 328, 346, 384­
+446 replaceChild method, 235 replaceSelection function, 348 reproduction, 141, 143ï¿½145, 147,
+431 request, 324ï¿½326, 328, 346, 384ï¿½
 386, 392, 400 request function, 385, 386, 396,
 446 requestAnimationFrame function,
-247, 266, 268, 293, 323, 437 require function, 194­197, 204, 380, 382, 389, 405 RequireJS, 200 reserved word, 26, 240 reset, 448 resize, 369 resolution, 380 resource, 222, 325, 326, 338, 367, 388, 407 response, 324­326, 332, 385, 389, 391, 394, 446 responseText property, 329, 330 responseXML property, 330 responsiveness, 252, 376 restore method, 313, 314 result property, 352 return keyword, 43, 48, 109, 425,
+247, 266, 268, 293, 323, 437 require function, 194ï¿½197, 204, 380, 382, 389, 405 RequireJS, 200 reserved word, 26, 240 reset, 448 resize, 369 resolution, 380 resource, 222, 325, 326, 338, 367, 388, 407 response, 324ï¿½326, 332, 385, 389, 391, 394, 446 responseText property, 329, 330 responseXML property, 330 responsiveness, 252, 376 restore method, 313, 314 result property, 352 return keyword, 43, 48, 109, 425,
 
 471
 
@@ -7514,18 +7516,18 @@ rabbit example, 107, 109, 112 radian, 305, 311 radio button, 342, 349 radius, 30
 Safari, 227 sandbox, 8, 61, 93, 119, 226, 229,
 331, 368, 373 save link, 367 save method, 313, 314 saving, 360 scale method, 310, 312 scaling, 281, 309, 310, 318, 441 scheduling, 376
 
-scientific notation, 13, 187 scope, 43­45, 50, 82, 134, 189,
+scientific notation, 13, 187 scope, 43ï¿½45, 50, 82, 134, 189,
 191, 195, 218, 219, 436 script (HTML tag), 225, 265, 266,
 415 scroll event, 263, 268 scrolling, 256, 263, 264, 284, 292,
 316 search method, 180 searching, 173, 174, 180, 234, 374 section, 183, 184 Secure HTTP, see HTTPS security, 226, 331, 338, 351, 354,
 368, 389, 396, 404 SecurityError type, 368, 444 select (HTML tag), 343, 344, 349,
-350, 354, 360, 362, 447 selected attribute, 350 selection, 347, 363 selectionEnd property, 347 selectionStart property, 347 selector, 245 self variable, 134, 135 self-closing tag, 224 semicolon, 23, 24, 35, 243 send method, 328­330 sequence, 167 sequence (exercise), 126, 430 serialization, 93 server, 221, 222, 324­326, 328,
+350, 354, 360, 362, 447 selected attribute, 350 selection, 347, 363 selectionEnd property, 347 selectionStart property, 347 selector, 245 self variable, 134, 135 self-closing tag, 224 semicolon, 23, 24, 35, 243 send method, 328ï¿½330 sequence, 167 sequence (exercise), 126, 430 serialization, 93 server, 221, 222, 324ï¿½326, 328,
 329, 332, 338, 376, 384, 385, 387, 388, 400, 404 session, 356, 368 sessionStorage object, 356 set, 165, 166, 231 setAttribute method, 238, 240 setInterval function, 268, 309, 371
 
 472
 
 setItem method, 354, 355 setRequestHeader method, 329,
-340 setter, 121, 122 setTimeout function, 267, 268, 411 shape, 297, 301, 304, 308, 322 shapes (exercise), 322, 439 shared property, 109­111, 123 shift key, 258 shift method, 76 shiftKey property, 258 short-circuit evaluation, 22, 54,
+340 setter, 121, 122 setTimeout function, 267, 268, 411 shape, 297, 301, 304, 308, 322 shapes (exercise), 322, 439 shared property, 109ï¿½111, 123 shift key, 258 shift method, 76 shiftKey property, 258 short-circuit evaluation, 22, 54,
 212, 429 SICP, 205 side effect, 24, 28, 36, 43, 58, 68,
 84, 94, 181, 192, 232, 235, 241, 301, 313 sign, 13, 187, 433 sign bit, 13 signal, 11 simplicity, 202, 216 simulation, 128, 132, 136, 139, 141, 146, 272, 277, 357, 437 sine, 81, 248, 278, 289 single-quote character, 15, 187, 226 size attribute, 350 skill, 360 skill-sharing, 399 skill-sharing project, 399, 400, 402, 404, 413, 423 skipSpace function, 208, 218 slash character, 14, 39, 164, 178, 329, 396, 446, 447 slice method, 77, 78, 237, 353, 435
 
@@ -7537,35 +7539,35 @@ sloppy programming, 137, 269 smooth animation, 248 SMTP, 221 some method, 104, 4
 state, 24, 33, 35, 36, 276, 300, 313, 315, 422, 430, 438
 statement, 23, 24, 30, 33, 35, 43, 192
 static (reserved word), 26 static file, 402, 406 static typing, 149 Stats type, 390 status code, 325, 329, 333, 334,
-379, 389 status property, 329 statusText property, 329 stdout property, 388 stoicism, 252 stopPropagation method, 255 stream, 221, 385­387, 389, 392 StretchCell (exercise), 126, 430 strict mode, 150 string, 15, 62, 64, 65, 68, 257, 258
-indexing, 60, 77, 79, 169 methods, 78, 118, 169 notation, 15 properties, 78 searching, 78 String function, 30, 115 stroke method, 301­303 strokeRect method, 300, 440 strokeStyle property, 300, 360, 364,
-366 strokeText method, 307, 308 stroking, 300, 307, 321 strong (HTML tag), 239, 240, 242 structure, 189, 223, 229 structure sharing, 84 style, 242 style (HTML tag), 244 style attribute, 242­244, 280
+379, 389 status property, 329 statusText property, 329 stdout property, 388 stoicism, 252 stopPropagation method, 255 stream, 221, 385ï¿½387, 389, 392 StretchCell (exercise), 126, 430 strict mode, 150 string, 15, 62, 64, 65, 68, 257, 258
+indexing, 60, 77, 79, 169 methods, 78, 118, 169 notation, 15 properties, 78 searching, 78 String function, 30, 115 stroke method, 301ï¿½303 strokeRect method, 300, 440 strokeStyle property, 300, 360, 364,
+366 strokeText method, 307, 308 stroking, 300, 307, 321 strong (HTML tag), 239, 240, 242 structure, 189, 223, 229 structure sharing, 84 style, 242 style (HTML tag), 244 style attribute, 242ï¿½244, 280
 
 style sheet, 244, 245, 280, 281, 283, 285, 367, 413
 submit, 342, 346 submit event, 346, 347, 369, 414,
 420, 447 substitution, 58 subtraction, 14, 126 suggestion, 357 sum function, 6, 83 summing (exercise), 83, 426 summing example, 5, 86, 95, 214 survey, 306 Sussman, Gerald, 205 SVG, 297, 299, 300, 320, 321 switch keyword, 37 synchronization, 403, 416, 420 synchronous I/O, 197, 330, 376,
 377, 384, 441 syntax, 12, 14, 15, 23, 24, 26, 30,
-32, 35, 37, 42, 47, 65, 149, 150, 156, 159, 187, 192, 205, 206 syntax highlighting example, 238­ 240 syntax tree, 206, 207, 209, 210, 230, 231 SyntaxError type, 208
+32, 35, 37, 42, 47, 65, 149, 150, 156, 159, 187, 192, 205, 206 syntax highlighting example, 238ï¿½ 240 syntax tree, 206, 207, 209, 210, 230, 231 SyntaxError type, 208
 tab character, 15, 34 tab key, 345 tabbed interface (exercise), 271,
-438 tabindex attribute, 258, 345 table, 70­72, 115, 249, 281, 282 table (HTML tag), 249, 273, 281,
-443 table example, 115­119, 122, 250,
+438 tabindex attribute, 258, 345 table, 70ï¿½72, 115, 249, 281, 282 table (HTML tag), 249, 273, 281,
+443 table example, 115ï¿½119, 122, 250,
 
 474
 
-436 tableFor function, 72 tag, 223, 224, 229, 244 tagName property, 250 tainting, 368 talk, 399, 400, 407­409, 416 talksAbout function, 233 tampering, 338 tangent, 81 target property, 255, 262, 349,
+436 tableFor function, 72 tag, 223, 224, 229, 244 tagName property, 250 tainting, 368 talk, 399, 400, 407ï¿½409, 416 talksAbout function, 233 tampering, 338 tangent, 81 target property, 255, 262, 349,
 443 task management example, 77 taste, 188, 204 TCP, 221, 324, 402 td (HTML tag), 250 template, 414, 417, 422, 448, 449 template-repeat attribute, 422, 448 tentacle (analogy), 25, 66, 69 ternary operator, 19, 22 test method, 165 test suite, 151, 152 testing framework, 152 text, 15, 188, 223, 229, 231, 239,
-258, 307, 320, 321, 323, 347, 350, 370, 383, 442 text field, 264, 270, 342­344, 347, 348, 357, 369 text input, 29 text node, 231, 233, 236, 361, 438 text wrapping, 320 text-align (CSS), 250 TEXT_NODE code, 231, 438 textAlign property, 308, 440 textarea (HTML tag), 268, 343, 347, 354, 357, 447 textBaseline property, 308, 440 TextCell type, 119, 122
+258, 307, 320, 321, 323, 347, 350, 370, 383, 442 text field, 264, 270, 342ï¿½344, 347, 348, 357, 369 text input, 29 text node, 231, 233, 236, 361, 438 text wrapping, 320 text-align (CSS), 250 TEXT_NODE code, 231, 438 textAlign property, 308, 440 textarea (HTML tag), 268, 343, 347, 354, 357, 447 textBaseline property, 308, 440 TextCell type, 119, 122
 
 textContent property, 239, 442, 443
 th (HTML tag), 250 then method, 336, 337, 442 theory, 153 this, 64, 107, 109, 134, 135, 137,
 142, 150, 193 thread, 266, 267, 377, 378 throw keyword, 156, 157, 160, 163,
 393, 432 Tiger type, 148 tile, 317 time, 166, 168, 170, 248, 269, 285,
-286, 288, 289, 293, 295, 315, 318, 416 time field, 365 timeline, 225, 247, 252, 266, 377 timeout, 267, 401, 403, 411 times method, 277 title, 413 title (HTML tag), 223, 225 toDataURL method, 367, 368, 373 toLowerCase method, 64, 250 tool, 164, 186, 360, 362, 370, 372 tools object, 362 top (CSS), 246­248, 251, 372 top-level scope, see global scope toString method, 108, 111, 113, 115, 129, 133, 387 toUpperCase method, 64, 250, 387 tr (HTML tag), 250 trackDrag function, 363, 371, 444 trackKeys function, 292, 296 transform (CSS), 297 transformation, 310­313, 323, 439 translate method, 311, 312 Transmission Control Protocol, see
+286, 288, 289, 293, 295, 315, 318, 416 time field, 365 timeline, 225, 247, 252, 266, 377 timeout, 267, 401, 403, 411 times method, 277 title, 413 title (HTML tag), 223, 225 toDataURL method, 367, 368, 373 toLowerCase method, 64, 250 tool, 164, 186, 360, 362, 370, 372 tools object, 362 top (CSS), 246ï¿½248, 251, 372 top-level scope, see global scope toString method, 108, 111, 113, 115, 129, 133, 387 toUpperCase method, 64, 250, 387 tr (HTML tag), 250 trackDrag function, 363, 371, 444 trackKeys function, 292, 296 transform (CSS), 297 transformation, 310ï¿½313, 323, 439 translate method, 311, 312 Transmission Control Protocol, see
 
 475
 
 TCP transparent, 298, 309, 373, 374 transpilation, 216 trapezoid, 322, 439 traversal, 173 tree, 99, 108, 206, 231 trial and error, 153, 290, 304 triangle (exercise), 40, 424 trigonometry, 81, 248 trim method, 79 true, 17 trust, 226 try keyword, 157, 158, 333, 334,
-368, 393, 432, 442 Turkish, 270 turn, 128, 129 Twitter, 325 type, 12, 16, 124, 149 type attribute, 342, 346 type coercion, 19­21, 30 type property, 206, 254 typeof operator, 16, 85, 428 typing, 258, 268, 270 typo, 149
+368, 393, 432, 442 Turkish, 270 turn, 128, 129 Twitter, 325 type, 12, 16, 124, 149 type attribute, 342, 346 type coercion, 19ï¿½21, 30 type property, 206, 254 typeof operator, 16, 85, 428 typing, 258, 268, 270 typo, 149
 unary operator, 16 uncaught exception, 159, 334, 335,
 393 undefined, 19, 20, 26, 43, 49, 63,
 66, 150, 155 underline, 242 underscore character, 25, 38, 117,
@@ -7598,4 +7600,3 @@ XML, 232, 298, 328, 330, 331
 XML namespace, 298 XMLHttpRequest, 328, 330, 332,
 340, 347, 397, 415, 447 xmlns attribute, 298 yield (reserved word), 26 Yuan-Ma, 11, 376 Zawinski, Jamie, 164 zero-based counting, 60, 63, 170 zeroPad function, 57 zigzag, 439 zooming, 320
 478
-

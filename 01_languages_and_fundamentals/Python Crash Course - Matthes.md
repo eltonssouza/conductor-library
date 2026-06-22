@@ -1,46 +1,40 @@
+# Python Crash Course
+
+> **Author(s):** Matthes · **Category:** 01_languages_and_fundamentals · **Language:** English
+
+---
+
 PYTHON 
 CRASH COURSE 
-
 
 HANDS-ON » PROJECT-BASED 
 
-
 PYTHON CRASH COURSE 
-
 
 PYTHON 
 CRASH COURSE 
-
 
 A Handa-On, Project-Banaed 
 Introduction to Programming 
 
-
 by Eric Matthes 
-
 
 no starch 
 press 
 
-
 San Francisco 
 
-
 PYTHON CRASH COURSE. Copyright © 2016 by Eric Matthes. 
-
 
 All rights reserved. No part of this work may be reproduced or transmitted in any form or by any means, 
 electronic or mechanical, including photocopying, recording, or by any information storage or retrieval 
 system, without the prior written permission of the copyright owner and the publisher. 
 
-
 First printing 
 1918171615 123456789 
 
-
 ISBN-10: 1-59327-603-6 
 ISBN-13: 978-1-59327-603-4 
-
 
 Publisher: William Pollock 
 Production Editor: Riley Hoffman 
@@ -52,9 +46,7 @@ Jopyeditor: Anne Marie Walker
 Compositor: Riley Hoffman 
 Proofreader: James Fraleigh 
 
-
 For information on distribution, translations, or bulk sales, please contact No Starch Press, Inc. directly: 
-
 
 No Starch Press, Inc. 
 
@@ -62,9 +54,7 @@ No Starch Press, Inc.
 phone: 415.863.9900; info@nostarch.com 
 www.nostarch.com 
 
-
 Library of Congress Cataloging-in-Publication Data 
-
 
 Matthes, Eric, 1972- 
 
@@ -86,22 +76,18 @@ QA76.73.P98M38 2015
 005.13'3--dc23 
 2015018135 
 
-
 No Starch Press and the No Starch Press logo are registered trademarks of No Starch Press, Inc. Other 
 product and company names mentioned herein may be the trademarks of their respective owners. Rather 
 than use a trademark symbol with every occurrence of a trademarked name, we are using the names only 
 in an editorial fashion and to the benefit of the trademark owner, with no intention of infringement of the 
 trademark. 
 
-
 The information in this book is distributed on an “As Is” basis, without warranty. While every precaution 
 has been taken in the preparation of this work, neither the author nor No Starch Press, Inc. shall have any 
 liability to any person or entity with respect to any loss or damage caused or alleged to be caused directly or 
 indirectly by the information contained in it. 
 
-
 About the Author 
-
 
 Eric Matthes is a high school science and math teacher living in Alaska, 
 where he teaches an introductory Python course. He has been writing 
@@ -110,9 +96,7 @@ ware that addresses inefficiencies in education and brings the benefits of
 open source software to the field of education. In his spare time he enjoys 
 climbing mountains and spending time with his family. 
 
-
 About the Technical Reviewer 
-
 
 Kenneth Love has been a Python programmer and teacher for many years. 
 He has given talks and tutorials at conferences, done professional train- 
@@ -121,24 +105,18 @@ education company. Kenneth is also the co-creator of the django-braces
 package, which provides several handy mixins for Django’s class-based 
 views. You can keep up with him on Twitter at @kennethlove. 
 
-
 For my father, who always made time to 
 answer my questions about programming, 
 and for Ever, who is just beginning to ask me 
 his questions 
 
-
 BRIEF CONTENTS 
-
 
 Acknowledgmeénts:.43.4 ccdadefadiceg sarge decane fad ted av nts We edeeh Paes xxvii 
 
-
 INtPOGUGHION 2 x a6v eno Ao Mod a5 wat ood wa te Ma a A ee pate Node TS xxix 
 
-
 PART I: BASICS... occ ccc ccc cc ccc croc cer eccvcccvcvcs I 
-
 
 Chapter 1: Getting Started... 0... eee eens 3 
 Chapter 2: Variables and Simple Data Types ......... 0.0. eee eee eee ee 19 
@@ -152,26 +130,19 @@ Chapter 9::Classes iia /s-sg'4 este cbGN 2 dupe g Pog eta ee E AR ao ba aE ele O
 Chapter 10: Files and Exceptions... 0.0.0.0. 0.0.0 e cece ee teen eneeeee 189 
 Chapter 11: Testing Your Code... 1... cee ee ett e es 215 
 
-
 PART Il: PROJECTS «é s:.:60.6 ose dee Cee ee see cess 23T 
-
 
 Project 1: Alien Invasion 
 
-
 Chapter 12: A Ship That Fires Bullets... 0.0.0... 2c eee 235 
 
-
 Project 2: Data Visualization 
-
 
 Chapter 15: Generating Data. 2... ttt ene 321 
 Chapter 16: Downloading Data... 2.6... eee teens 349 
 Chapter 17: Working with APIs... 0.0.0... 0. cece eee 377 
 
-
 Project 3: Web Applications 
-
 
 Chapter 18: Getting Started with Django... 1... eee eee eee 397 
 Chapters) 9:User Accounts::.25.4-2 ind hw eid i ek ee hehe ha ay A427 
@@ -183,12 +154,9 @@ Appendix C: Getting Help ce ecnreh geri dente bean ge bated own, beset tes A499
 Appendix D: Using Git for Version Control... 0.6... eee tee 505 
 INdex:..2wtdernuinew tte dene dnabaltie Yeaada We yes hdd de bee ould He yaweyesd 515 
 
-
 x Brief Contents 
 
-
 CONTENTS IN DETAIL 
-
 
 ACKNOWLEDGMENTS xxvii 
 INTRODUCTION xxix 
@@ -196,9 +164,7 @@ Whio:ls-This: Book Fore) vais sane Sati i iS oka eat XXX
 What Can You Expect to Learn? 2.0... eee teens XXX 
 Why Python?ic cs esti ak aii an Sere aoee an Sea yh io Wk eae dee eae xxxi 
 
-
 PART I: BASICS 1 
-
 
 1 
 GETTING STARTED 3 
@@ -236,12 +202,9 @@ Printingsin Python:2s.4 vat tol ee EO Ee 29
 Exercise 2-3: Personal Message .. 1.0... eet eee ee 29 
 Exercise 2-4: Name Cases. 1... 0.0.0 tee 29 
 
-
 Exercise 2-5: Famous Quote... 0... cee ee eee ee 29 
 
-
 Exercise 2-6: Famous Quote 2... 0... ee ee eee 29 
-
 
 Exercise 2-7: Stripping Names... 1.0.0... 0c eee 29 
 Numbersivc.2.35 cs tetstrciriee ean oe Peeradel woking wate ath tence el aoe ede Oo es 30 
@@ -293,12 +256,9 @@ A Closer Look at Looping... 2... 6... eee eee teens 54
 Doing More Work Within a for Loop... 2... eee eee eee 55 
 Doing Something After a for Loop... 1... ee ee eee 56 
 
-
 xii Contents in Detail 
 
-
 Avoiding Indentation Errors... 6... eee ee 57 
-
 
 Forgetting to Indent... 0... 00... eee eects 57 
 Forgetting to Indent Additional Lines .... 0.2.0.0... 0. eee eee eee 58 
@@ -351,15 +311,11 @@ Numerical Comparisons ........ 00.0 eee eee eet eee 78
 Checking Multiple Conditions... 2.0... ee eee 79 
 Checking Whether a Value Is ina List. 2... ee 80 
 
-
 Contents in Detail 
-
 
 xiii 
 
-
 Checking Whether a Value Is Not ina List... 2... 0. ee ee 81 
-
 
 Boolean Expressions... 1.0.0... cece cette ene eee 81 
 Exercise 5-1: Conditional Tests ..... 0... ccc eenen ee 82 
@@ -413,12 +369,9 @@ INS SHING i tcl eect wees sets Geis Ue ees ei Vepath Tee asec te ees oth Goh ate
 A: Listot:-Dictionaries:25 042 acne ackck sodas gle perekee aa be cba dean Bla gee} 109 
 Ac Listinsa:Dictionary ec teas oes heey oes Sey oes Sova es 2 11] 
 
-
 xiv Contents in Detail 
 
-
 A Dictionary in a Dictionary... 2... eee 113 
-
 
 Exercise:6-7: People scien uiseati cae ha nels heads eee eee eee eee 114 
 EXGrcise:0-8 Pets: Sac s yee Yee inhale spay a eh geen er Page pee 115 
@@ -468,12 +421,9 @@ Positional Arguments... 1.0.0... eee eee 136
 Keyword Arguments ........ 0.0.0 eee teeta 137 
 Default: Values? 22:0) tera tae ddra b eases veg kee doh caetaaS 138 
 
-
 Contents in Detail XV 
 
-
 Equivalent Function Calls... 0.2.0... teens 139 
-
 
 Avoiding Argument Errors... 0.0... eee eee 140 
 Exércise 8-32 T-Shith ics i Sid 5 so, ated a ap ea ee 141 
@@ -525,12 +475,9 @@ Modifying Attribute Values... 2... ee ete ene 168
 Exercise 9-4: Number Served... 1.0.0... 0c cece eects 171 
 Exercise 9-5: Login Attempts... 0.0.00. ccc cece eee 17] 
 
-
 xvi Contents in Detail 
 
-
 IAMSrItANGE! 4), che ete eta hs See Bvt tds eek otk, Rene A pete he tle Ok Ried ake ko 172 
-
 
 The __init__() Method for a Child Class... 0... 0.000000 cee eee eee 172 
 Inheritance in Python 2.7.0.0... 0... 0c e cece eee eee 173 
@@ -583,15 +530,11 @@ Handling the ZeroDivisionError Exception .......... 0.000 e eee eee 200
 Using try-except Blocks .. 00... eect eee eee 200 
 Using Exceptions to Prevent Crashes... 1.0.2.2... 000 cece eee eee 201 
 
-
 Contents in Detail 
-
 
 xvii 
 
-
 Thevelse:Block=.: 2:45 Get 6 hes tals a ee hh ya a as hoe saps es og te 202 
-
 
 Handling the FileNotFoundError Exception............ 000 cece ee eee 203 
 Analyzing: Lextic 6.22 qa 3 eee cou 5, cote en alee raver eatt a ete aceasta d 204 
@@ -629,12 +572,9 @@ The setUp() Method... 2. tee eens 227
 Exercise: 11-3: Employee is. os 58> acd Sitaydis hake aria ea sad ee ea peas 228 
 SUMMGIYk.4, 2 haat hited eae aie ras nie diwali Gee teas aie dled 228 
 
-
 PART II: PROJECTS 231 
 
-
 PROJECT 1: ALIEN INVASION 
-
 
 12 
 
@@ -646,12 +586,9 @@ Installing Pygame:s.2<.4:ce-k cea Sap ee eevee dhe vad Heeshetadaeebas ss 236
 Installing Python Packages with pip. ... 2.2.0... ec eee eee eee 237 
 Installing Pygame on Linux... 2... ee eee 238 
 
-
 xviii Contents in Detail 
 
-
 Installing Pygame on OSX... ee eee 239 
-
 
 Installing Pygame on Windows. ........0 00 ce cece eee eee eee 240 
 Starting the Game Project... 6.6... eee tees 240 
@@ -703,12 +640,9 @@ Determining How Many Aliens Fitin a Row..... 0.0.0.0 eee ee eee 269
 Creating Rows of Aliens... 0... 0... cece eee eee 270 
 Creating! thé: Fleets issih ocr cl Sik heehee Bea 8 etka, 271 
 
-
 Contents in Detail xix 
 
-
 Refactoring create_fleet(). 2... teens 273 
-
 
 Adding: ROWS ic.2-feca cca hen a Seen Wee Eevee ered eee aoe ene 273 
 Exercise Lal 2 StOMss. <2 aye bp ed a 8 eb ay ck 276 
@@ -759,12 +693,9 @@ Increasing Point Values... 1.0.0... eee eee teens 306
 Rounding'the Scores css cx sega capensis Shang ewe Ped ngs whewbare das 307 
 HightScores 424s acta iaaies Maia Gate Raney gar eats aa aan e baaees 308 
 
-
 XX Contents in Detail 
 
-
 Displaying the Level... 0... 2. ec eee eee 310 
-
 
 Displaying the Number of Ships... . 0.0.0.0... cece eee ee eee 313 
 Exercise 14-4: All-Time High Score... 1.0... ccc cts 317 
@@ -772,9 +703,7 @@ Exercise 14-5: Refactoring... 0.0.0... ccc cece cette eens 317
 Exercise 14-6: Expanding Alien Invasion... 0... 0... eect eee 317 
 SUMMON) 22 ot5.c28 S sais hed arehs douche Medintain wy Geb Aedugticgle aah & aoe ta ween aeaseatacele eo 317 
 
-
 PROJECT 2: DATA VISUALIZATION 
-
 
 15 
 
@@ -822,15 +751,11 @@ Creating the: Die Class... s:i.clcnahboy eects na eb antag wa eb bene te each 4 
 Rolling the Diet newts wean pet eka yoked den ce ea ois ages Deets 341 
 Analyzing the Results... 0.0.0.0... cece ete 341 
 
-
 Contents in Detail 
-
 
 xxi 
 
-
 Making a Histogram... cette eee nee 342 
-
 
 Rolling Two: Dice ea. 6.6 eer He Het ia eee Pee Pe Pech ee Ye 343 
 Rolling Dice of Different Sizes... 2... ee eee 345 
@@ -880,12 +805,9 @@ Gitand.Githtby. ones pegged aeiey edd reds owe ate edu eg tren ed 378
 Requesting Data Using an API Call... 2.2... ee ee 378 
 Installing Requests... 2... cette teens 379 
 
-
 xxii Contents in Detail 
 
-
 Processing an API Response... 1.2... 2... eee eee 379 
-
 
 Working with the Response Dictionary............00 000 ee eee eee eee 380 
 Summarizing the Top Repositories... 2... 2... ee eee 382 
@@ -901,9 +823,7 @@ Exercise 17-2: Active Discussions .. 0.0... 00. ccc ee ee ees 393
 Exercise 17-3: Testing python_repos.py... 1.0... cece eects 393 
 SUMMON Ap icoe ear o ys RS oA ue mins BP ne Rs ele ARs Bie og satus wl sy 393 
 
-
 PROJECT 3: WEB APPLICATIONS 
-
 
 18 
 
@@ -944,12 +864,9 @@ Template Inheritance... 6... ect eee ee A416
 The Topics: Page: agence ovine fas eee a ae ee ee toe oe ee A418 
 Individual Topic Pagess.. + is2 .aspcea aad aneas nawe donee aa deed arabes A21 
 
-
 Contents in Detail xxiii 
 
-
 Exercise 18-7: Template Documentation... ....... 00.00 e eee eee eee 424 
-
 
 Exercise 18-8: Pizzeria Pages... 1.0.0... eee A424 
 SUMMONY: 225. stics fice See ts ao we Sata g eee ai wang Gade a ataig aechkesteatale aed & A25 
@@ -1036,12 +953,9 @@ Making a Procfile to Start Processes... 2... eee eee A469
 
 Modifying wsgi.py for Heroku .... 0.0.0... c eee eee ene 470 
 
-
 xxiv Contents in Detail 
 
-
 Making a Directory for Static Files... 2... 2. ee ee eee 470 
-
 
 Using the gunicorn Server Locally... 0.0.0.0... cece eee 470 
 Using Git to Track the Project's Files... 0.0.0... 0 ee cece eee ee 471 
@@ -1089,33 +1003,25 @@ Running Python Programs in Sublime Text... ........0 00000 eee eee A95
 Configuring Sublime Text... 0... oe eee eee A95 
 Customizing Sublime Text Settings... 20.0.0... eee ee eee A496 
 
-
 Contents in Detail XXV 
-
 
 Installing IDLE on Linux... 2... ee eee 
 Installing:IDLE of OS Xoo cscs ost. eck Pataca cable Peles ek ao nett et 
 Installing IDLE on Windows .......... 000 cece eee eee 
 Customizing IDLE Settings ... 2.2... 0... eee 
 
-
 EMGOS“GNG Vii sete ehenittit float araingleck pa eow ol itp d a wn Shaleckapniden d taiere dens 
-
 
 Cc 
 
-
 GETTING HELP 
 Piksti Steps esas Co sAcs eoained boca OS tated cpa ase Maca ned hs Ag veined ceae waar edetseina eae wane 
-
 
 TAGGIN ee oe i ee gh Ee eae agit ME EM hs thE h aided Merl 
 Takera: Break: 3.00 4.2 tte rs oa tides Bete a eet on ea ES 
 Refer to This Book's Resources ...... 0.0.00. cece eee ee eee 
 
-
 Searching Online: 25.) ds tsbacse wet Went ee Waal he BE wee eT WRN 
-
 
 Stack ‘OvetlOw's, e¢uchae ee daddies $ uasdeweg ndedee ae enasdas te 
 The Official Python Documentation .. 0.0.0.0... c eee ee eee 
@@ -1123,26 +1029,20 @@ Official Library Documentation... 0.0.0... eee eee nee
 t/learnpython sida. Se oA ie ea Me ie a a et es SA at 
 Blog: POStS! 225 Sadhu heh atstes ache Re Pee oe RA aa Patt 
 
-
 IRC (Internet Relay Chat)... 0... eee eee 
-
 
 Make an IRC Account... 0.0.0.0... cee eee eee ee 
 Chaninels:to-JOinies) cis de hoe el ek ite SRE eS Seen 
 
-
 VRE CU NH 2s Socios oe ah eth caer nH Se, Bcc: Sateg Mae tats Bate reese a ede Be cicls caben en bes 
-
 
 USING GIT FOR VERSION CONTROL 
 Installing: Git-.2 sia eetehe witewee ies ein eee mel se ol ete ae 
-
 
 Installing Git on Linux 2.2... 2... eee 
 Installing: Git.on:OS Xx. exces are Red heat Bhd ete eo here ee 
 Installing Git on Windows ........ 0.0 cece eee eee eee 
 Gontiguring’ Gitiweo84 gaotideid eaves beg oh fens ahs bees 
-
 
 Making :c:Projécts:. 35 2%) <eaaweS Shite mate pyaaedy oe pale A ee pave aheon ee pales 
 Ignoring Files: .ro..20 een eas doled epee ton ddareas a ded Mega naghoa harms s 
@@ -1156,24 +1056,17 @@ Reverting: a:Cnangeay.4 oil vnwd hese wa tee ng Meee oe tA a Wat
 Checking Out Previous Commits ......... 0.0 cece eect eet eee ee 
 Deleting the Repository... 6... eee eee eens 
 
-
 INDEX 
-
 
 xxvi 
 
-
 Contents in Detail 
-
 
 513 
 
-
 515 
 
-
 ACKNOWLEDGMENTS 
-
 
 This book would not have been possible without the wonderful and 
 extremely professional staff at No Starch Press. Bill Pollock invited me to 
@@ -1199,12 +1092,9 @@ to thank my wife, Erin, for supporting and encouraging me through the
 writing of this book, and Id like to thank my son, Ever, whose curiosity 
 inspires me every single day. 
 
-
 INTRODUCTION 
 
-
 Every programmer has a story about 
-
 
 how they learned to write their first pro- 
 gram. I started learning as a child when 
@@ -1213,13 +1103,11 @@ my father was working for Digital Equipment
 Corporation, one of the pioneering companies of the 
 modern computing era. I wrote my first program on a 
 
-
 kit computer my dad had assembled in our basement. The computer con- 
 sisted of nothing more than a bare motherboard connected to a keyboard 
 without a case, and it had a bare cathode ray tube for a monitor. My initial 
 program was a simple number guessing game, which looked something 
 like this: 
-
 
 I'm thinking of a number! Try to guess the number I'm thinking of: 25 
 Too low! Guess again: 50 
@@ -1230,9 +1118,7 @@ That's it! Would you like to play again? (yes/no) no
 
 Thanks for playing! 
 
-
 XXX 
-
 
 Pll always remember how satisfied I felt watching my family play a game 
 that I created and that worked as I intended it to. 
@@ -1243,9 +1129,7 @@ The software I write now meets a more significant need than my childhood
 efforts, but the sense of satisfaction I get from creating a program that works 
 is still largely the same. 
 
-
 Who Is This Book For? 
-
 
 The goal of this book is to bring you up to speed with Python as quickly as 
 possible so you can build programs that work—games, data visualizations, 
@@ -1259,12 +1143,9 @@ is for you. Python Crash Course is also perfect for middle school and high
 school teachers who want to offer their students a project-based introduc- 
 tion to programming. 
 
-
 What Can You Expect to Learn? 
 
-
 Introduction 
-
 
 The purpose of this book is to make you a good programmer in general 
 and a good Python programmer in particular. You'll learn efficiently and 
@@ -1288,7 +1169,6 @@ You'll learn to accept input from users to make your programs inter-
 active and to keep your programs running as long as the user is active. 
 You'll explore how to write functions to make parts of your program 
 reusable, so you only have to write blocks of code that perform certain 
-
 
 actions once, which you can then use as many times as you like. You’ll then 
 extend this concept to more complicated behavior with classes, making fairly 
@@ -1324,9 +1204,7 @@ separate logs for different topics and allow others to create an account and
 start their own journals. You'll also learn how to deploy your project so any- 
 one can access it online from anywhere. 
 
-
 Why Python? 
-
 
 Every year I consider whether to continue using Python or whether to move 
 on to a different language—perhaps one that’s newer to the programming 
@@ -1341,15 +1219,11 @@ cations, solve business problems, and develop internal tools at all kinds of
 interesting companies. Python is also used heavily in scientific fields for 
 academic research and applied work. 
 
-
 Introduction XXXi 
-
 
 XXxii 
 
-
 Introduction 
-
 
 One of the most important reasons I continue to use Python is 
 because of the Python community, which includes an incredibly diverse 
@@ -1363,19 +1237,15 @@ your first programming language.
 
 Python is a great language to learn, so let’s get started! 
 
-
 PART | 
 
-
 BASICS 
-
 
 Part I of this book teaches you the basic concepts 
 you'll need to write Python programs. Many of 
 these concepts are common to all programming 
 languages, so they’ll be useful throughout your life 
 as a programmer. 
-
 
 In Chapter 1 you'll install Python on your computer and run your first 
 program, which prints the message Hello world! to the screen. 
@@ -1403,12 +1273,9 @@ of code repeatedly as long as certain conditions remain true.
 In Chapter 8 you'll write functions, which are named blocks of code 
 that perform a specific task and can be run whenever you need them. 
 
-
 2 
 
-
 Part | 
-
 
 Chapter 9 introduces classes, which allow you to model real-world 
 objects, such as dogs, cats, people, cars, rockets, and much more, so your 
@@ -1426,9 +1293,7 @@ to expand your programs without worrying about introducing new bugs.
 Testing your code is one of the first skills that will help you transition from 
 beginner to intermediate programmer. 
 
-
 GETTING STARTED 
-
 
 In this chapter you'll run your first Python 
 program, hello_world.py. First, you'll need 
@@ -1438,27 +1303,20 @@ also install a text editor to work with your Python
 programs. Text editors recognize Python code and 
 highlight sections as you write, making it easy to 
 
-
 understand the structure of your code. 
 
-
 Setting Up Your Programming Environment 
-
 
 Python differs slightly on different operating systems, so you'll need to keep 
 a few considerations in mind. Here, we’ll look at the two major versions 
 of Python currently in use and outline the steps to set up Python on your 
 system. 
 
-
 4 
-
 
 Chapter 1 
 
-
 Python 2 and Python 3 
-
 
 Today, two versions of Python are available: Python 2 and the newer 
 Python 3. Every programming language evolves as new ideas and tech- 
@@ -1475,9 +1333,7 @@ you'd rather jump into writing code instead of installing Python, you can
 start with Python 2. But the sooner you upgrade to using Python 3 the 
 better, so you'll be working with the most recent version. 
 
-
 Running Snippets of Python Code 
-
 
 Python comes with an interpreter that runs in a terminal window, allow- 
 ing you to try bits of Python without having to save and run an entire 
@@ -1485,10 +1341,8 @@ program.
 
 Throughout this book, you'll see snippets that look like this: 
 
-
 >>> print("Hello Python interpreter!") 
 Hello Python interpreter! 
-
 
 The text in bold is what you’ll type in and then execute by pressing 
 ENTER. Most of the examples in the book are small, self-contained programs 
@@ -1499,9 +1353,7 @@ efficiently. Any time you see the three angle brackets in a code listing @,
 you're looking at the output of a terminal session. We’ll try coding in the 
 interpreter for your system in a moment. 
 
-
 Hello World! 
-
 
 A long-held belief in the programming world has been that printing a 
 Hello world! message to the screen as your first program in a new language 
@@ -1509,17 +1361,13 @@ will bring you luck.
 
 In Python, you can write the Hello World program in one line: 
 
-
 print("Hello world!") 
-
 
 Such a simple program serves a very real purpose. If it runs correctly 
 on your system, any Python program you write should work as well. We'll 
 look at writing this program on your particular system in just a moment. 
 
-
 Python on Different Operating Systems 
-
 
 Python is a cross-platform programming language, which means it runs on 
 all the major operating systems. Any Python program you write should run 
@@ -1534,9 +1382,7 @@ the Hello World program and troubleshoot anything that didn’t work. Pll
 walk you through this process for each operating system, so you’ll have a 
 beginner-friendly Python programming environment. 
 
-
 Python on Linux 
-
 
 Linux systems are designed for programming, so Python is already installed 
 on most Linux computers. The people who write and maintain Linux expect 
@@ -1544,16 +1390,13 @@ you to do your own programming at some point and encourage you to do
 so. For this reason there’s very little you have to install and very few settings 
 you have to change to start programming. 
 
-
 Checking Your Version of Python 
-
 
 Open a terminal window by running the Terminal application on your 
 system (in Ubuntu, you can press CTRL-ALT-T). To find out whether Python 
 is installed, enter python with a lowercase p. You should see output telling 
 you which version of Python is installed and a >>> prompt where you can 
 start entering Python commands, like this: 
-
 
 $ python 
 
@@ -1564,7 +1407,6 @@ Python 2.7.6 (default, Mar 22 2014, 22:59:38)
 Type "help", "copyright", "credits" or "license" for more information. 
 >>> 
 
-
 This output tells you that Python 2.7.6 is currently the default version 
 of Python installed on this computer. When you've seen this output, press 
 CTRL-D or enter exit() to leave the Python prompt and return to a terminal 
@@ -1573,7 +1415,6 @@ prompt.
 To check for Python 3, you might have to specify that version; so even 
 if the output displayed Python 2.7 as the default version, try the command 
 python3: 
-
 
 $ python3 
 
@@ -1584,15 +1425,11 @@ Python 3.5.0 (default, Sep 17 2015, 13:05:18)
 Type "help", "copyright", "credits" or "license" for more information. 
 >>> 
 
-
 Getting Started 5 
-
 
 6 
 
-
 Chapter 1 
-
 
 This output means you also have Python 3 installed, so you’ll be 
 able to use either version. Whenever you see the python command in this 
@@ -1600,9 +1437,7 @@ book, enter python3 instead. Most Linux distributions have Python already
 installed, but if for some reason yours didn’t or if your system came with 
 Python 2 and you want to install Python 3, refer to Appendix A. 
 
-
 Installing a Text Editor 
-
 
 Geany is a simple text editor: it’s easy to install, will let you run almost all 
 your programs directly from the editor instead of through a terminal, uses 
@@ -1613,16 +1448,12 @@ good reason to use a different editor.
 
 You can install Geany in one line on most Linux systems: 
 
-
 $ sudo apt-get install geany 
-
 
 If this doesn’t work, see the instructions at http://geany.org/Download/ 
 ThirdPartyPackages/. 
 
-
 Running the Hello World Program 
-
 
 To start your first program, open Geany. Press the Super key (often called 
 the Windows key) and search for Geany on your system. Make a shortcut 
@@ -1637,9 +1468,7 @@ text in a helpful way.
 
 After you’ve saved your file, enter the following line: 
 
-
 print("Hello Python world!") 
-
 
 If multiple versions of Python are installed on your system, you need to 
 make sure Geany is configured to use the correct version. Go to Build > Set 
@@ -1651,25 +1480,19 @@ If the command python3 worked in a terminal session, change the
 Compile and Execute commands so Geany will use the Python 3 inter- 
 preter. Your Compile command should look like this: 
 
-
 python3 -m py_compile "%f" 
-
 
 You need to type this command exactly as it’s shown. Make sure the 
 spaces and capitalization match what is shown here. 
 Your Execute command should look like this: 
 
-
 python3 "%f" 
-
 
 Again, make sure the spacing and capitalization match what is shown 
 here. Figure 1-1 shows how these commands should look in Geany’s con- 
 figuration menu. 
 
-
 Set Build Commands 
-
 
 # Label Command Workingdirectory Reset 
 Python commands : 
@@ -1690,21 +1513,16 @@ if Execute python3 "%f" || @ |
 %d, %e, %f, %p are substituted in command and directory fields, see manual for details. 
 Cancel || OK 
 
-
 Figure 1-1: Here, Geany is configured to use Python 3 on Linux. 
-
 
 Now run hello_world.py by selecting Build > Execute in the menu, by 
 clicking the Execute icon (which shows a set of gears), or by pressing F5. 
 A terminal window should pop up with the following output: 
 
-
 Hello Python world! 
-
 
 (program exited with code: 0) 
 Press return to continue 
-
 
 If you don’t see this, check every character on the line you entered. Did 
 you accidentally capitalize print? Did you forget one or both of the quota- 
@@ -1712,44 +1530,33 @@ tion marks or parentheses? Programming languages expect very specific
 syntax, and if you don’t provide that, you'll get errors. If you can’t get the 
 program to run, see “Troubleshooting Installation Issues” on page 15. 
 
-
 Getting Started 7 
-
 
 8 
 
-
 Chapter 1 
 
-
 Running Python in a Terminal Session 
-
 
 You can try running snippets of Python code by opening a terminal and 
 typing python or python3, as you did when checking your version. Do this 
 again, but this time enter the following line in the terminal session: 
 
-
 >>> print("Hello Python interpreter!") 
 Hello Python interpreter! 
 >>> 
-
 
 You should see your message printed directly in the current terminal 
 window. Remember that you can close the Python interpreter by pressing 
 CTRL-D or by typing the command exit(). 
 
-
 Python on OS X 
-
 
 Python is already installed on most OS X systems. Once you know Python 
 is installed, you'll need to install a text editor and make sure it’s configured 
 correctly. 
 
-
 Checking Whether Python Is Installed 
-
 
 Open a terminal window by going to Applications > Utilities } Terminal. 
 
@@ -1762,7 +1569,6 @@ system and a >>> prompt where you can start entering Python commands,
 
 like this: 
 
-
 $ python 
 
 Python 2.7.5 (default, Mar 9 2014, 22:15:05) 
@@ -1771,7 +1577,6 @@ Python 2.7.5 (default, Mar 9 2014, 22:15:05)
 
 Type "help", "copyright", "credits", or "license" for more information. 
 >>> 
-
 
 This output tells you that Python 2.7.5 is currently the default version 
 installed on this computer. When you've seen this output, press CTRL-D 
@@ -1785,31 +1590,24 @@ whenever you see the python command in this book, make sure you use python3
 instead. If for some reason your system didn’t come with Python or if you 
 only have Python 2 and you want to install Python 3 now, see Appendix A. 
 
-
 Python3 
 .sublime-build 
 
-
 Running Python in a Terminal Session 
-
 
 You can try running snippets of Python code by opening a terminal and 
 typing python or python3, as you did when checking your version. Do this 
 again, but this time enter the following line in the terminal session: 
 
-
 >>> print("Hello Python interpreter!") 
 Hello Python interpreter! 
 >>> 
-
 
 You should see your message printed directly in the current terminal 
 window. Remember that you can close the Python interpreter by pressing 
 CTRL-D or by typing the command exit(). 
 
-
 Installing a Text Editor 
-
 
 Sublime Text is a simple text editor: it’s easy to install on OS X, will let you 
 run almost all of your programs directly from the editor instead of through 
@@ -1826,40 +1624,30 @@ long as you want, but the author requests that you purchase a license if you
 like it and want continual use. After the installer has been downloaded, 
 open it and then drag the Sublime Text icon into your Applications folder. 
 
-
 Configuring Sublime Text for Python 3 
-
 
 If you use a command other than python to start a Python terminal session, 
 you'll need to configure Sublime Text so it knows where to find the correct 
 version of Python on your system. Issue the following command to find out 
 the full path to your Python interpreter: 
 
-
 $ type -a python3 
 python3 is /usr/local/bin/python3 
-
 
 Now open Sublime Text, and go to Tools > Build System > New Build 
 System, which will open a new configuration file for you. Delete what you 
 see and enter the following: 
 
-
 { 
 } 
 
-
 "cmd": ["/usr/local/bin/python3", "-u", "$file"], 
-
 
 Getting Started 9 
 
-
 10 
 
-
 Chapter 1 
-
 
 This code tells Sublime Text to use your system’s python3 command 
 when running the currently open file. Make sure you use the path you 
@@ -1867,9 +1655,7 @@ found when issuing the command type -a python3 in the previous step. Save
 the file as Python3.sublime-build in the default directory that Sublime Text 
 opens when you choose Save. 
 
-
 Running the Hello World Program 
-
 
 To start your first program, launch Sublime Text by opening the 
 Applications folder and double-clicking the Sublime Text icon. You can 
@@ -1886,9 +1672,7 @@ text in a helpful way.
 
 After you’ve saved your file, enter the following line: 
 
-
 print("Hello Python world!") 
-
 
 If the command python works on your system, you can run your pro- 
 gram by selecting Tools > Build in the menu or by pressing CTRL-B. If 
@@ -1900,10 +1684,8 @@ press COMMAND-B to run your programs from now on.
 A terminal screen should appear at the bottom of the Sublime Text win- 
 dow, showing the following output: 
 
-
 Hello Python world! 
 [Finished in 0.1s] 
-
 
 If you don’t see this, check every character on the line you entered. Did 
 you accidentally capitalize print? Did you forget one or both of the quota- 
@@ -1911,16 +1693,12 @@ tion marks or parentheses? Programming languages expect very specific
 syntax, and if you don’t provide that, you'll get errors. If you can’t get the 
 program to run, see “Troubleshooting Installation Issues” on page 15. 
 
-
 Python on Windows 
-
 
 Windows doesn’t always come with Python, so you'll probably need to down- 
 load and install it, and then download and install a text editor. 
 
-
 Installing Python 
-
 
 First, check whether Python is installed on your system. Open a command 
 window by entering command into the Start menu or by holding down the 
@@ -1938,47 +1716,35 @@ system. After you’ve downloaded the file, run the installer. Make sure you
 check the option Add Python to PATH, which will make it easier to config- 
 ure your system correctly. Figure 1-2 shows this option checked. 
 
-
 *» Python 3.5.0 (32-bit) Setup _ x 
 
-
 Install Python 3.5.0 (32-bit) 
-
 
 Select Install Now to install Python with default settings, or choose Customize to 
 enable or disable features. 
 
-
 @ Install Now 
-
 
 C;\Users\matthese\AppData\Local\Programs\Python\Python35-32 
 
-
 Includes IDLE, pip and documentation 
 Creates shortcuts and file associations 
-
 
 — Customize installation 
 Choose location and features 
 _ python 
 for M Install launcher for all users (recommended) 
 
-
 wi ndows Add Python 3.5 to PATH Cas 
-
 
 Figure 1-2: Make sure you check the box labeled Add Python to PATH. 
 
-
 Starting a Python Terminal Session 
-
 
 Setting up your text editor will be straightforward if you first set up your 
 system to run Python in a terminal session. Open a command window and 
 enter python in lowercase. If you get a Python prompt (>>>), Windows has 
 found the version of Python you just installed: 
-
 
 C:\> python 
 
@@ -1989,19 +1755,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 >>> 
 
-
 Getting Started 11 
-
 
 If this worked, you can move on to the next section, “Running Python 
 in a Terminal Session.” 
 However, you may see output that looks more like this: 
 
-
 C:\> python 
 ‘python’ is not recognized as an internal or external command, operable 
 program or batch file. 
-
 
 In this case you need to tell Windows how to find the Python version 
 you just installed. Your system’s python command is usually saved in your C 
@@ -2016,7 +1778,6 @@ When you think you know the path, test it by entering that path into a
 terminal window. Open a command window and enter the full path you just 
 found: 
 
-
 C:\> C:\Python35\python 
 
 Python 3.5.0 (v3.5.0:374f501f4567, Sep 13 2015, 22:15:05) [MSC v.1900 32 bit 
@@ -2026,29 +1787,22 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 >>> 
 
-
 If this worked, you know how to access Python on your system. 
-
 
 Running Python in a Terminal Session 
 
-
 Enter the following line in your Python session, and make sure you see the 
 output Hello Python world! 
-
 
 >>> print("Hello Python world!") 
 Hello Python world! 
 >>> 
 
-
 Any time you want to run a snippet of Python code, open a command 
 window and start a Python terminal session. To close the terminal session, 
 press CTRL-Z and then press ENTER, or enter the command exit(). 
 
-
 Installing a Text Editor 
-
 
 Geany is a simple text editor: it’s easy to install, will let you run almost all of 
 your programs directly from the editor instead of through a terminal, uses 
@@ -2057,9 +1811,7 @@ window so you'll get used to using terminals. Appendix B provides informa-
 tion on other text editors, but I recommend using Geany unless you have a 
 good reason to use a different editor. 
 
-
 12 Chapter 1 
-
 
 You can download a Windows installer for Geany from hittp://geany.org/. 
 Click Releases under the Download menu, and look for the geany-1.25_ 
@@ -2078,9 +1830,7 @@ Geany how to run your program and to highlight the text in a helpful way.
 
 After you’ve saved your file, type the following line: 
 
-
 print("Hello Python world!") 
-
 
 If the command python worked on your system, you won’t have to config- 
 ure Geany; skip the next section and move on to “Running the Hello World 
@@ -2088,9 +1838,7 @@ Program” on page 14. If you needed to enter a path like C:\Python35\python
 to start a Python interpreter, follow the directions in the next section to 
 configure Geany for your system. 
 
-
 Configuring Geany 
-
 
 To configure Geany, go to Build > Set Build Commands. You should see 
 the words Compile and Execute with a command next to each. The Compile 
@@ -2102,34 +1850,25 @@ In the Compile and Execute commands, add the drive your python
 command is on and the folder where the python command is stored. Your 
 Compile command should look something like this: 
 
-
 C:\Python35\python -m py_compile "%f" 
-
 
 Your path might be a little different, but make sure the spaces and 
 capitalization match what is shown here. 
 Your Execute command should look something like this: 
 
-
 C:\Python35\python "%F" 
-
 
 Again, make sure the spacing and capitalization in your Execute com- 
 mand matches what is shown here. Figure 1-3 shows how these commands 
 should look in Geany’s configuration menu. 
 
-
 Getting Started 13 
-
 
 14 
 
-
 Chapter 1 
 
-
 ® Set Build Commands x 
-
 
 bd Label Command Working directory Reset 
 Python commands at r ; 
@@ -2148,34 +1887,25 @@ Execute commands
 1. Execute c:/Python35) python "%f" & 
 2. & 
 
-
 %d, %e, %f, %p, %l are substituted in command and directory fields, see manual for details. 
-
 
 Cancel OK 
 
-
 Figure 1-3: Here, Geany is configured to use Python 3 on Windows. 
-
 
 After you’ve set these commands correctly, click OK. 
 
-
 Running the Hello World Program 
-
 
 You should now be able to run your program successfully. Run hello_world.py 
 by selecting Build > Execute in the menu, by clicking the Execute icon 
 (which shows a set of gears), or by pressing F5. A terminal window should 
 pop up with the following output: 
 
-
 Hello Python world! 
-
 
 (program exited with code: 0) 
 Press return to continue 
-
 
 If you don’t see this, check every character on the line you entered. Did 
 you accidentally capitalize print? Did you forget one or both of the quota- 
@@ -2183,20 +1913,16 @@ tion marks or parentheses? Programming languages expect very specific
 syntax, and if you don’t provide that, you'll get errors. If you can’t get the 
 program to run, see the next section for help. 
 
-
 Troubleshooting Installation Issues 
-
 
 Hopefully, setting up your programming environment was successful, but 
 if you’ve been unable to run hello_world.py, here are a few remedies you 
 can try: 
 
-
 e When a program contains a significant error, Python displays a trace- 
 back. Python looks through the file and tries to report the problem. The 
 traceback might give you a clue as to what issue is preventing the pro- 
 gram from running. 
-
 
 e Step away from your computer, take a short break, and then try again. 
 Remember that syntax is very important in programming, so even a 
@@ -2205,32 +1931,26 @@ theses can prevent a program from running properly. Reread the rel-
 evant parts of this chapter, look over what you've done, and see if you 
 can find the mistake. 
 
-
 e Start over again. You probably don’t need to uninstall anything, but it 
 might make sense to delete your hello_world.py file and create it again 
 from scratch. 
-
 
 e Ask someone else to follow the steps in this chapter, on your computer 
 or a different one, and watch what they do carefully. You might have 
 missed one small step that someone else happens to catch. 
 
-
 e Find someone who knows Python and ask them to help you get set up. 
 If you ask around, you might find that you know someone who uses 
 Python. 
-
 
 e The setup instructions in this chapter are also available online, through 
 https://www.nostarch.com/pythoncrashcourse/. The online version of these 
 instructions may work better for you. 
 
-
 e Ask for help online. Appendix C provides a number of resources and 
 areas online, like forums and live chat sites, where you can ask for solu- 
 tions from people who’ve already worked through the issue you’re cur- 
 rently facing. 
-
 
 Don’t worry about bothering experienced programmers. Every 
 programmer has been stuck at some point, and most programmers are 
@@ -2246,24 +1966,17 @@ they’re well worth sorting out. Once you get hello_world.py running, you can
 start to learn Python, and your programming work will become more inter- 
 esting and satisfying. 
 
-
 Getting Started 15 
-
 
 16 
 
-
 Running Python Programs from a Terminal 
-
 
 Chapter 1 
 
-
 eo 
 
-
 eo 
-
 
 Most of the programs you write in your text editor you'll run directly 
 from the editor, but sometimes it’s useful to run programs from a terminal 
@@ -2275,9 +1988,7 @@ to access the directory where you've stored your program file. To try this,
 make sure you've saved the hello_world.py file in the python_work folder on 
 your desktop. 
 
-
 On Linux and OS X 
-
 
 Running a Python program from a terminal session is the same on Linux 
 and OS X. The terminal command cd, for change directory, is used to navi- 
@@ -2285,9 +1996,7 @@ gate through your file system in a terminal session. The command 1s, for
 list, shows you all the nonhidden files that exist in the current directory. 
 Open a new terminal window and issue the following commands to run 
 
-
 hello_world.py: 
-
 
 ~$ cd Desktop/python_work/ 
 ~/Desktop/python_work$ 1s 
@@ -2297,7 +2006,6 @@ hello_world.py
 ~/Desktop/python_work$ python hello_world.py 
 Hello Python world! 
 
-
 At © we use the cd command to navigate to the python_work folder, 
 which is in the Desktop folder. Next, we use the 1s command to make sure 
 hello_world.py is in this folder @. Then, we run the file using the command 
@@ -2306,9 +2014,7 @@ python hello _world.py ®.
 It’s that simple. You just use the python (or python3) command to run 
 Python programs. 
 
-
 On Windows 
-
 
 The terminal command cd, for change directory, is used to navigate through 
 your file system in a command window. The command dir, for directory, 
@@ -2316,9 +2022,7 @@ shows you all the files that exist in the current directory.
 
 Open a new terminal window and issue the following commands to run 
 
-
 hello_world.py: 
-
 
 C:\> cd Desktop\python_work 
 C:\Desktop\python_work> dir 
@@ -2328,16 +2032,13 @@ hello_world.py
 C:\Desktop\python_work> python hello_world.py 
 Hello Python world! 
 
-
 At © we use the cd command to navigate to the python_work folder, 
 which is in the Desktop folder. Next, we use the dir command to make sure 
 hello_world.py is in this folder @. Then, we run the file using the command 
 python hello _world.py ®. 
 
-
 If you haven’t configured your system to use the simple command 
 python, you may need to use the longer version of this command: 
-
 
 C:\$ cd Desktop\python_work 
 
@@ -2348,23 +2049,18 @@ hello_world.py
 C:\Desktop\python_work$ C:\Python35\python hello_world.py 
 Hello Python world! 
 
-
 Most of your programs will run fine directly from your editor, but as 
 your work becomes more complex, you might write programs that you'll 
 need to run from a terminal. 
 
-
 TRY IT YOURSELF 
-
 
 The exercises in this chapter are exploratory in nature. Starting in Chapter 2, 
 the challenges you'll solve will be based on what you've learned. 
 
-
 1-1. python.org: Explore the Python home page (htfp://python.org/) to find 
 topics that interest you. As you become familiar with Python, different parts of 
 the site will be more useful to you. 
-
 
 1-2. Hello World Typos: Open the hello_world.py file you just created. Make a 
 typo somewhere in the line and run the program again. Can you make a typo 
@@ -2372,22 +2068,17 @@ that generates an error? Can you make sense of the error message? Can you
 make a typo that doesn’t generate an error? Why do you think it didn’t make 
 an error? 
 
-
 1-3. Infinite Skills: If you had infinite programming skills, what would you build? 
 You're about to learn how to program. If you have an end goal in mind, you'll 
 
 have an immediate use for your new skills; now is a great time to draft descrip- 
 tions of what you'd like to create. It’s a good habit to keep an “ideas” notebook 
 
-
 that you can refer to whenever you want to start a new project. Take a few 
-
 
 minutes now to describe three programs you’d like to create. 
 
-
 Summary 
-
 
 In this chapter you learned a bit about Python in general, and you installed 
 Python to your system if it wasn’t already there. You also installed a text edi- 
@@ -2399,16 +2090,12 @@ In the next chapter you'll learn about the different kinds of data you
 can work with in your Python programs, and you'll learn to use variables 
 as well. 
 
-
 Getting Started 17 
-
 
 VARIABLES AND 
 SIMPLE DATA TYPES 
 
-
 In this chapter you'll learn about the dif- 
-
 
 ferent kinds of data you can work with in 
 your Python programs. You'll also learn how 
@@ -2416,26 +2103,19 @@ your Python programs. You'll also learn how
 to store your data in variables and how to use 
 those variables in your programs. 
 
-
 What Really Happens When You Run hello_world.py 
-
 
 Let’s take a closer look at what Python does when you run hello_world.py. As 
 it turns out, Python does a fair amount of work, even when it runs a simple 
 program: 
 
-
 hello_world.py — print("Hello Python world!") 
-
 
 20 
 
-
 When you run this code, you should see this output: 
 
-
 Hello Python world! 
-
 
 When you run the file hello_world.py, the ending .py indicates that 
 the file is a Python program. Your editor then runs the file through the 
@@ -2450,27 +2130,20 @@ Python world!” is not Python code and displays that phrase in orange. This
 feature is called syntax highlighting and is quite useful as you start to write 
 your own programs. 
 
-
 Variables 
 
-
 Chapter 2 
-
 
 Let’s try using a variable in hello_world.py. Add a new line at the beginning 
 of the file, and modify the second line: 
 
-
 message = "Hello Python world!" 
 print (message) 
-
 
 Run this program to see what happens. You should see the same output 
 you saw previously: 
 
-
 Hello Python world! 
-
 
 We've added a variable named message. Every variable holds a value, which 
 is the information associated with that variable. In this case the value is the 
@@ -2485,94 +2158,72 @@ Let’s expand on this program by modifying hello_world.py to print a sec-
 ond message. Add a blank line to hello_world.py, and then add two new lines 
 of code: 
 
-
 message = "Hello Python Crash Course world!" 
 print (message) 
 
-
 Now when you run hello_world.py, you should see two lines of output: 
-
 
 Hello Python world! 
 Hello Python Crash Course world! 
 
-
 You can change the value of a variable in your program at any time, 
 and Python will always keep track of its current value. 
 
-
 Naming and Using Variables 
-
 
 When you're using variables in Python, you need to adhere to a few rules 
 and guidelines. Breaking some of these rules will cause errors; other guide- 
 lines just help you write code that’s easier to read and understand. Be sure 
 to keep the following variable rules in mind: 
 
-
 e Variable names can contain only letters, numbers, and underscores. 
 They can start with a letter or an underscore, but not with a number. 
 For instance, you can call a variable message_I but not 1_message. 
 
-
 e Spaces are not allowed in variable names, but underscores can be used 
 to separate words in variable names. For example, greeting_message works, 
 but greeting message will cause errors. 
-
 
 e Avoid using Python keywords and function names as variable names; 
 that is, do not use words that Python has reserved for a particular pro- 
 grammatic purpose, such as the word print. (See “Python Keywords 
 and Built-in Functions” on page 489.) 
 
-
 e Variable names should be short but descriptive. For example, name is 
 better than n, student_name is better than s_n, and name_length is better 
 than length_of_persons_name. 
 
-
 e Be careful when using the lowercase letter /and the uppercase letter O 
 because they could be confused with the numbers J and 0. 
-
 
 It can take some practice to learn how to create good variable names, 
 especially as your programs become more interesting and complicated. As 
 you write more programs and start to read through other people’s code, 
 you'll get better at coming up with meaningful names. 
 
-
 The Python variables you're using at this point should be lowercase. You won't get 
 errors if you use uppercase letters, but it’s a good idea to avoid using them for now. 
 
-
 Avoiding Name Errors When Using Variables 
-
 
 Every programmer makes mistakes, and most make mistakes every day. 
 Although good programmers might create errors, they also know how to 
 respond to those errors efficiently. Let’s look at an error you're likely to 
 make early on and learn how to fix it. 
 
-
 Variables and Simple Data Types 21 
-
 
 22 
 
-
 Chapter 2 
 
-
 eee 
-
 
 We’ll write some code that generates an error on purpose. Enter the 
 following code, including the misspelled word mesage shown in bold: 
 
-
 message = "Hello Python Crash Course reader!" 
 print (mesage) 
-
 
 When an error occurs in your program, the Python interpreter does its 
 best to help you figure out where the problem is. The interpreter provides 
@@ -2581,12 +2232,10 @@ of where the interpreter ran into trouble when trying to execute your code.
 Here’s an example of the traceback that Python provides after you’ve acci- 
 dentally misspelled a variable’s name: 
 
-
 Traceback (most recent call last): 
 File "hello_world.py", line 2, in <module> 
 print (mesage) 
 NameError: name 'mesage' is not defined 
-
 
 The output at @ reports that an error occurs in line 2 of the file 
 hello_world.py. The interpreter shows this line to help us spot the error 
@@ -2602,15 +2251,11 @@ code, but it does ensure that variable names are spelled consistently. For
 example, watch what happens when we spell message incorrectly in another 
 place in the code as well: 
 
-
 mesage = "Hello Python Crash Course reader!" 
-
 
 In this case, the program runs successfully! 
 
-
 Hello Python Crash Course reader! 
-
 
 Computers are strict, but they disregard good and bad spelling. As a 
 result, you don’t need to consider English spelling and grammar rules when 
@@ -2623,26 +2268,20 @@ programmers spend hours hunting down these kinds of tiny errors. Try to
 laugh about it and move on, knowing it will happen frequently throughout 
 your programming life. 
 
-
 Strings 
-
 
 The best way to understand new programming concepts is to try using them in your 
 programs. If you get stuck while working on an exercise in this book, try doing some- 
 thing else for a while. If you're still stuck, review the relevant part of that chapter. If 
 you still need help, see the suggestions in Appendix C. 
 
-
 TRY IT YOURSELF 
 
-
 Write a separate program to accomplish each of these exercises. Save 
-
 
 each program with a filename that follows standard Python conventions, 
 using lowercase letters and underscores, such as simple_message.py and 
 simple_messages.py. 
-
 
 2-1. Simple Message: Store a message in a variable, and then print that 
 message. 
@@ -2650,7 +2289,6 @@ message.
 2-2. Simple Messages: Store a message in a variable, and print that message. 
 Then change the value of your variable to a new message, and print the new 
 message. 
-
 
 Because most programs define and gather some sort of data, and then do 
 something useful with it, it helps to classify different types of data. The first 
@@ -2661,52 +2299,38 @@ A string is simply a series of characters. Anything inside quotes is con-
 sidered a string in Python, and you can use single or double quotes around 
 your strings like this: 
 
-
 "This is a string." 
 "This is also a string.’ 
 
-
 This flexibility allows you to use quotes and apostrophes within your 
 strings: 
-
 
 "I told my friend, "Python is my favorite language!"' 
 "The language 'Python' is named after Monty Python, not the snake." 
 "One of Python's strengths is its diverse and supportive community." 
 
-
 Let’s explore some of the ways you can use strings. 
-
 
 Variables and Simple Data Types 23 
 
-
 24 
-
 
 name.py 
 
-
 Chapter 2 
 
-
 Changing Case in a String with Methods 
-
 
 One of the simplest tasks you can do with strings is change the case of the 
 words in a string. Look at the following code, and try to determine what’s 
 happening: 
 
-
 name = "ada lovelace" 
 print (name.title()) 
 
-
 Save this file as name.py, and then run it. You should see this output: 
 
-
 Ada Lovelace 
-
 
 In this example, the lowercase string "ada lovelace" is stored in the vari- 
 able name. The method title() appears after the variable in the print() state- 
@@ -2727,18 +2351,14 @@ Several other useful methods are available for dealing with case as well.
 For example, you can change a string to all uppercase or all lowercase letters 
 like this: 
 
-
 name = "Ada Lovelace" 
 print (name.upper()) 
 print (name. lower ()) 
 
-
 This will display the following: 
-
 
 ADA LOVELACE 
 ada lovelace 
-
 
 The lower() method is particularly useful for storing data. Many times 
 you won’t want to trust the capitalization that your users provide, so you'll 
@@ -2746,83 +2366,62 @@ convert strings to lowercase before storing them. Then when you want to
 display the information, you'll use the case that makes the most sense for 
 each string. 
 
-
 Combining or Concatenating Strings 
-
 
 It’s often useful to combine strings. For example, you might want to store 
 a first name and a last name in separate variables, and then combine them 
 when you want to display someone’s full name: 
 
-
 first_name = "ada 
 last_name = "lovelace" 
 full_name = first_name + 
 
-
 + last_name 
 
-
 print (full_name) 
-
 
 Python uses the plus symbol (+) to combine strings. In this example, 
 we use + to create a full name by combining a first_name, a space, and a 
 last_name @, giving this result: 
 
-
 ada lovelace 
-
 
 This method of combining strings is called concatenation. You can use 
 concatenation to compose complete messages using the information you’ve 
 stored in a variable. Let’s look at an example: 
 
-
 print("Hello, " + full_name.title() + "!") 
-
 
 Here, the full name is used at @ in a sentence that greets the user, and 
 the title() method is used to format the name appropriately. This code 
 returns a simple but nicely formatted greeting: 
 
-
 Hello, Ada Lovelace! 
-
 
 You can use concatenation to compose a message and then store the 
 entire message in a variable: 
 
-
 message = "Hello, " + full_name.title() + "!" 
 print (message) 
-
 
 This code displays the message “Hello, Ada Lovelace!” as well, but stor- 
 ing the message in a variable at ® makes the final print statement at @ 
 much simpler. 
 
-
 Variables and Simple Data Types 25 
-
 
 26 
 
-
 Chapter 2 
 
-
 Adding Whitespace to Strings with Tabs or Newlines 
-
 
 In programming, whitespace refers to any nonprinting character, such as 
 spaces, tabs, and end-of-line symbols. You can use whitespace to organize 
 your output so it’s easier for users to read. 
 
-
 To add a tab to your text, use the character combination \t as shown 
 at O: 
-
 
 >>> print("Python") 
 
@@ -2831,9 +2430,7 @@ Python
 >>> print("\tPython") 
 Python 
 
-
 To add a newline in a string, use the character combination \n: 
-
 
 >>> print ("Languages : \nPython\nC\nJavaScript") 
 Languages: 
@@ -2844,12 +2441,10 @@ C
 
 JavaScript 
 
-
 You can also combine tabs and newlines in a single string. The string 
 "\n\t" tells Python to move to a new line, and start the next line with a tab. 
 The following example shows how you can use a one-line string to generate 
 four lines of output: 
-
 
 >>> print ("Languages : \n\tPython\n\tC\n\tJavaScript") 
 Languages: 
@@ -2860,10 +2455,8 @@ C
 
 JavaScript 
 
-
 Newlines and tabs will be very useful in the next two chapters when you 
 start to produce many lines of output from just a few lines of code. 
-
 
 Stripping Whitespace 
 
@@ -2883,12 +2476,9 @@ Python can look for extra whitespace on the right and left sides of a
 string. To ensure that no whitespace exists at the right end of a string, use 
 the rstrip() method. 
 
-
 o © 889 
 
-
 o © ee 
-
 
 >>> favorite_language = ‘python 
 >>> favorite_language 
@@ -2901,7 +2491,6 @@ o © ee
 >>> favorite_language 
 
 "python ' 
-
 
 The value stored in favorite_language at ® contains extra whitespace 
 at the end of the string. When you ask Python for this value in a terminal 
@@ -2914,13 +2503,11 @@ when it was entered, including the extra whitespace ®.
 To remove the whitespace from the string permanently, you have to 
 store the stripped value back into the variable: 
 
-
 >>> favorite_language = ‘python 
 >>> favorite_language = favorite_language.rstrip() 
 >>> favorite_language 
 
 "python" 
-
 
 To remove the whitespace from the string, you strip the whitespace 
 from the right side of the string and then store that value back in the origi- 
@@ -2931,7 +2518,6 @@ response to user input.
 
 You can also strip whitespace from the left side of a string using the 
 lstrip() method or strip whitespace from both sides at once using strip(): 
-
 
 >>> favorite_language = ' python ' 
 >>> favorite_language.rstrip() 
@@ -2944,7 +2530,6 @@ lstrip() method or strip whitespace from both sides at once using strip():
 >>> favorite_language.strip() 
 "python" 
 
-
 In this example, we start with a value that has whitespace at the begin- 
 ning and the end @. We then remove the extra space from the right side 
 at @, from the left side at ®, and from both sides at @. Experimenting with 
@@ -2952,21 +2537,15 @@ these stripping functions can help you become familiar with manipulating
 strings. In the real world, these stripping functions are used most often to 
 clean up user input before it’s stored in a program. 
 
-
 Variables and Simple Data Types 27 
-
 
 apostrophe. py 
 
-
 28 
-
 
 Chapter 2 
 
-
 Avoiding Syntax Errors with Strings 
-
 
 One kind of error that you might see with some regularity is a syntax error. 
 A syntax error occurs when Python doesn’t recognize a section of your pro- 
@@ -2979,33 +2558,25 @@ causes errors.
 Here’s how to use single and double quotes correctly. Save this program 
 as apostrophe.py and then run it: 
 
-
 message = "One of Python's strengths is its diverse community." 
 print (message) 
-
 
 The apostrophe appears inside a set of double quotes, so the Python 
 interpreter has no trouble reading the string correctly: 
 
-
 One of Python's strengths is its diverse community. 
-
 
 However, if you use single quotes, Python can’t identify where the string 
 should end: 
 
-
 message = ‘One of Python's strengths is its diverse community.’ 
 
-
 You'll see the following output: 
-
 
 File "apostrophe.py", line 1 
 message = ‘One of Python's strengths is its diverse community.’ 
 o 
 SyntaxError: invalid syntax 
-
 
 In the output you can see that the error occurs at ® right after the 
 second single quote. This syntax error indicates that the interpreter doesn’t 
@@ -3016,23 +2587,18 @@ Syntax errors are also the least specific kind of error, so they can be difficul
 and frustrating to identify and correct. If you get stuck on a particularly stub- 
 born error, see the suggestions in Appendix C. 
 
-
 Your editor’s syntax highlighting feature should help you spot some syntax errors 
 quickly as you write your programs. If you see Python code highlighted as if it’s 
 English or English highlighted as if it’s Python code, you probably have a mis- 
 matched quotation mark somewhere in your file. 
 
-
 Printing in Python 2 
 
-
 The print statement has a slightly different syntax in Python 2: 
-
 
 >>> python2.7 
 >>> print "Hello Python 2.7 world!" 
 Hello Python 2.7 world! 
-
 
 Parentheses are not needed around the phrase you want to print 
 in Python 2. Technically, print is a function in Python 3, which is why it 
@@ -3041,37 +2607,29 @@ theses, but the behavior can be a little different than what you'll see in
 Python 3. Basically, when you're looking at code written in Python 2, 
 expect to see some print statements with parentheses and some without. 
 
-
 TRY IT YOURSELF 
-
 
 Save each of the following exercises as a separate file with a name like 
 name_cases.py. If you get stuck, take a break or see the suggestions in 
 Appendix C. 
 
-
 2-3. Personal Message: Store a person’s name in a variable, and print a mes- 
 sage to that person. Your message should be simple, such as, “Hello Eric, 
 would you like to learn some Python today?” 
 
-
 2-4, Name Cases: Store a person’s name in a variable, and then print that per- 
 son’s name in lowercase, uppercase, and titlecase. 
-
 
 2-5. Famous Quote: Find a quote from a famous person you admire. Print the 
 quote and the name of its author. Your output should look something like the 
 following, including the quotation marks: 
 
-
 Albert Einstein once said, “A person who never made a 
 mistake never tried anything new.” 
-
 
 2-6. Famous Quote 2: Repeat Exercise 2-5, but this time store the famous per- 
 son’s name in a variable called famous person. Then compose your message 
 and store it in a new variable called message. Print your message. 
-
 
 2-7. Stripping Names: Store a person’s name, and include some whitespace 
 characters at the beginning and end of the name. Make sure you use each 
@@ -3079,24 +2637,17 @@ character combination, "\t" and "\n", at least once.
 
 Print the name once, so the whitespace around the name is displayed. 
 
-
 Then print the name using each of the three stripping functions, lstrip(), 
-
 
 rstrip(), and strip(). 
 
-
 Variables and Simple Data Types 29 
-
 
 30 
 
-
 Numbers 
 
-
 Chapter 2 
-
 
 Numbers are used quite often in programming to keep score in games, rep- 
 resent data in visualizations, store information in web applications, and so 
@@ -3104,10 +2655,8 @@ on. Python treats numbers in several different ways, depending on how they
 are being used. Let’s first look at how Python manages integers, because 
 they are the simplest to work with. 
 
-
 Integers 
 You can add (+), subtract (-), multiply (*), and divide (/) integers in Python. 
-
 
 >>> 2 +3 
 5 
@@ -3118,10 +2667,8 @@ You can add (+), subtract (-), multiply (*), and divide (/) integers in Python.
 >»> 3/2 
 1.5 
 
-
 In a terminal session, Python simply returns the result of the operation. 
 Python uses two multiplication symbols to represent exponents: 
-
 
 >>> 3 ** 2 
 9 
@@ -3132,12 +2679,10 @@ Python uses two multiplication symbols to represent exponents:
 >>> 10 ** 6 
 1000000 
 
-
 Python supports the order of operations too, so you can use multiple 
 operations in one expression. You can also use parentheses to modify the 
 order of operations so Python can evaluate your expression in the order 
 you specify. For example: 
-
 
 >>> 2 + 3*4 
 
@@ -3146,22 +2691,17 @@ you specify. For example:
 >>> (2 + 3) *4 
 20 
 
-
 The spacing in these examples has no effect on how Python evaluates 
 the expressions; it simply helps you more quickly spot the operations that 
 have priority when you're reading through the code. 
 
-
 Floats 
-
 
 Python calls any number with a decimal point a float. This term is used in 
 most programming languages, and it refers to the fact that a decimal point 
 can appear at any position in a number. Every programming language must 
 
-
 birthday.py 
-
 
 be carefully designed to properly manage decimal numbers so numbers 
 behave appropriately no matter where the decimal point appears. 
@@ -3169,7 +2709,6 @@ behave appropriately no matter where the decimal point appears.
 For the most part, you can use decimals without worrying about how 
 they behave. Simply enter the numbers you want to use, and Python will 
 most likely do what you expect: 
-
 
 >>> 0.1 + 0.1 
 0.2 
@@ -3183,16 +2722,13 @@ most likely do what you expect:
 >>> 2 * 0.2 
 0.4 
 
-
 But be aware that you can sometimes get an arbitrary number of deci- 
 mal places in your answer: 
-
 
 >>> 0.2 + 0.1 
 0.30000000000000004. 
 >> 3 * 0.1 
 0.30000000000000004. 
-
 
 This happens in all languages and is of little concern. Python tries to 
 find a way to represent the result as precisely as possible, which is sometimes 
@@ -3200,50 +2736,37 @@ difficult given how computers have to represent numbers internally. Just
 ignore the extra decimal places for now; you'll learn ways to deal with the 
 extra places when you need to in the projects in Part II. 
 
-
 Avoiding Type Errors with the str() Function 
-
 
 Often, you’ ll want to use a variable’s value within a message. For example, 
 say you want to wish someone a happy birthday. You might write code 
 like this: 
 
-
 age = 23 
 message = "Happy ' 
 
-
 + age + "rd Birthday!" 
-
 
 print (message) 
 
-
 You might expect this code to print the simple birthday greeting, Happy 
 23rd birthday! But if you run this code, you'll see that it generates an error: 
-
 
 Traceback (most recent call last): 
 File "birthday.py", line 2, in <module> 
 message = "Happy " + age + "rd Birthday!" 
 
-
 @ TypeError: Can't convert 'int' object to str implicitly 
-
 
 This is a type error. It means Python can’t recognize the kind of informa- 
 tion you’re using. In this example Python sees at @ that you’re using a vari- 
 able that has an integer value (int), but it’s not sure how to interpret that 
 
-
 Variables and Simple Data Types 31 
-
 
 32 
 
-
 Chapter 2 
-
 
 value. Python knows that the variable could represent either the numerical 
 value 23 or the characters 2and 3. When you use integers within strings 
@@ -3251,32 +2774,25 @@ like this, you need to specify explicitly that you want Python to use the inte-
 ger as a string of characters. You can do this by wrapping the variable in the 
 str() function, which tells Python to represent non-string values as strings: 
 
-
 message = “Happy " + str(age) + "rd Birthday!" 
-
 
 Python now knows that you want to convert the numerical value 23 to 
 a string and display the characters 2 and 3 as part of the birthday message. 
 Now you get the message you were expecting, without any errors: 
 
-
 Happy 23rd Birthday! 
-
 
 Working with numbers in Python is straightforward most of the time. 
 If you’re getting unexpected results, check whether Python is interpreting 
 your numbers the way you want it to, either as a numerical value or as a 
 string value. 
 
-
 Integers in Python 2 
 Python 2 returns a slightly different result when you divide two integers: 
 >>> python2.7 
 
-
 >>> 3/2 
 1 
-
 
 Instead of 1.5, Python returns 1. Division of integers in Python 2 results 
 in an integer with the remainder truncated. Note that the result is not a 
@@ -3284,7 +2800,6 @@ rounded integer; the remainder is simply omitted.
 
 To avoid this behavior in Python 2, make sure that at least one of the 
 numbers is a float. By doing so, the result will be a float as well: 
-
 
 >>> 3/2 
 
@@ -3299,44 +2814,32 @@ numbers is a float. By doing so, the result will be a float as well:
 >>> 3.0 / 2.0 
 1.5 
 
-
 This division behavior is a common source of confusion when people 
 who are used to Python 3 start using Python 2, or vice versa. If you use or 
 create code that mixes integers and floats, watch out for irregular behavior. 
 
-
 TRY IT YOURSELF 
-
 
 2-8. Number Eight: Write addition, subtraction, multiplication, and division 
 operations that each result in the number 8. Be sure to enclose your operations 
 in print statements to see the results. You should create four lines that look 
 
-
 like this: 
 
-
 print(5 + 3) 
-
 
 Your output should simply be four lines with the number 8 appearing once 
 on each line. 
 
-
 2-9. Favorite Number: Store your favorite number in a variable. Then, using 
-
 
 that variable, create a message that reveals your favorite number. Print that 
 
-
 message. 
-
 
 Comments 
 
-
 comment.py 
-
 
 Comments are an extremely useful feature in most programming languages. 
 Everything you've written in your programs so far is Python code. As your 
@@ -3344,26 +2847,19 @@ programs become longer and more complicated, you should add notes within
 your programs that describe your overall approach to the problem you're 
 solving. A comment allows you to write notes in English within your programs. 
 
-
 How Do You Write Comments? 
-
 
 In Python, the hash mark (#) indicates a comment. Anything following a 
 hash mark in your code is ignored by the Python interpreter. For example: 
 
-
 # Say hello to everyone. 
 print("Hello Python people!") 
 
-
 Python ignores the first line and executes the second line. 
-
 
 Hello Python people! 
 
-
 What Kind of Comments Should You Write? 
-
 
 The main reason to write comments is to explain what your code is sup- 
 posed to do and how you are making it work. When you're in the middle of 
@@ -3373,12 +2869,9 @@ ten some of the details. You can always study your code for a while and fig-
 ure out how segments were supposed to work, but writing good comments 
 can save you time by summarizing your overall approach in clear English. 
 
-
 Variables and Simple Data Types 33 
 
-
 34 
-
 
 If you want to become a professional programmer or collaborate with 
 other programmers, you should write meaningful comments. Today, most 
@@ -3397,24 +2890,18 @@ and write comments for a sparsely commented program. From now on, I’ll
 use comments in examples throughout this book to help explain sections 
 of code. 
 
-
 TRY IT YOURSELF 
-
 
 2-10. Adding Comments: Choose two of the programs you've written, and 
 add at least one comment to each. If you don’t have anything specific to write 
 because your programs are too simple at this point, just add your name and 
 
-
 the current date at the top of each program file. Then write one sentence 
 describing what the program does. 
 
-
 The Zen of Python 
 
-
 Chapter 2 
-
 
 For a long time, the programming language Perl was the mainstay of the 
 Internet. Most interactive websites in the early days were powered by Perl 
@@ -3432,17 +2919,13 @@ philosophy is contained in “The Zen of Python” by Tim Peters. You can
 access this brief set of principles for writing good Python code by enter- 
 ing import this into your interpreter. I won’t reproduce the entire “Zen of 
 
-
 Python” here, but I'll share a few lines to help you understand why they 
 should be important to you as a beginning Python programmer. 
-
 
 >>> import this 
 The Zen of Python, by Tim Peters 
 
-
 Beautiful is better than ugly. 
-
 
 Python programmers embrace the notion that code can be beautiful 
 and elegant. In programming, people solve problems. Programmers have 
@@ -3451,32 +2934,24 @@ problems. As you learn more about Python and use it to write more code,
 someone might look over your shoulder one day and say, “Wow, that’s some 
 beautiful code!” 
 
-
 Simple is better than complex. 
-
 
 If you have a choice between a simple and a complex solution, and both 
 work, use the simple solution. Your code will be easier to maintain, and it 
 will be easier for you and others to build on that code later on. 
 
-
 Complex is better than complicated. 
-
 
 Real life is messy, and sometimes a simple solution to a problem is unat- 
 tainable. In that case, use the simplest solution that works. 
 
-
 Readability counts. 
-
 
 Even when your code is complex, aim to make it readable. When you’re 
 working on a project that involves complex coding, focus on writing infor- 
 mative comments for that code. 
 
-
 There should be one-- and preferably only one --obvious way to do it. 
-
 
 If two Python programmers are asked to solve the same problem, they 
 should come up with fairly compatible solutions. This is not to say there’s 
@@ -3485,9 +2960,7 @@ gramming consists of using small, common approaches to simple situations
 within a larger, more creative project. The nuts and bolts of your programs 
 should make sense to other Python programmers. 
 
-
 Now is better than never. 
-
 
 You could spend the rest of your life learning all the intricacies of 
 Python and of programming in general, but then you’d never complete any 
@@ -3495,12 +2968,9 @@ projects. Don’t try to write perfect code; write code that works, and then
 decide whether to improve your code for that project or move on to some- 
 thing new. 
 
-
 Variables and Simple Data Types 35 
 
-
 36 
-
 
 As you continue to the next chapter and start digging into more 
 involved topics, try to keep this philosophy of simplicity and clarity in 
@@ -3508,21 +2978,15 @@ mind. Experienced programmers will respect your code more and will
 be happy to give you feedback and collaborate with you on interesting 
 projects. 
 
-
 TRY IT YOURSELF 
-
 
 2-11. Zen of Python: Enter import this into a Python terminal session and skim 
 
-
 through the additional principles. 
-
 
 Summary 
 
-
 Chapter 2 
-
 
 In this chapter you learned to work with variables. You learned to use 
 descriptive variable names and how to resolve name errors and syn- 
@@ -3540,12 +3004,9 @@ In Chapter 3 you’ll learn to store collections of information in variables
 called lists. You'll learn to work through a list, manipulating any informa- 
 tion in that list. 
 
-
 INTRODUCING LISTS 
 
-
 In this chapter and the next you'll learn 
-
 
 what lists are and how to start working with 
 
@@ -3560,23 +3021,17 @@ sible to new programmers, and they tie together many
 
 important concepts in programming. 
 
-
 What Is a List? 
-
 
 A listis a collection of items in a particular order. You can make a list that 
 includes the letters of the alphabet, the digits from 0-9, or the names of 
 all the people in your family. You can put anything you want into a list, and 
 
-
 38 
-
 
 bicycles.py 
 
-
 Chapter 3 
-
 
 the items in your list don’t have to be related in any particular way. Because 
 a list usually contains more than one element, it’s a good idea to make the 
@@ -3586,24 +3041,18 @@ In Python, square brackets ([]) indicate a list, and individual elements
 in the list are separated by commas. Here’s a simple example of a list that 
 contains a few kinds of bicycles: 
 
-
 bicycles = ['trek', ‘cannondale', ‘redline’, ‘specialized’ ] 
 print (bicycles) 
-
 
 If you ask Python to print a list, Python returns its representation of the 
 list, including the square brackets: 
 
-
 ['trek', ‘cannondale', 'redline', ‘specialized’ ] 
-
 
 Because this isn’t the output you want your users to see, let’s learn how 
 to access the individual items in a list. 
 
-
 Accessing Elements in a List 
-
 
 Lists are ordered collections, so you can access any element in a list by 
 telling Python the position, or index, of the item desired. To access an ele- 
@@ -3612,17 +3061,13 @@ enclosed in square brackets.
 
 For example, let’s pull out the first bicycle in the list bicycles: 
 
-
 print (bicycles[o]) 
-
 
 The syntax for this is shown at ®. When we ask for a single item from a 
 list, Python returns just that element without square brackets or quotation 
 marks: 
 
-
 trek 
-
 
 This is the result you want your users to see—clean, neatly formatted 
 output. 
@@ -3631,16 +3076,12 @@ You can also use the string methods from Chapter 2 on any element in
 a list. For example, you can format the element 'trek' more neatly by using 
 the title() method: 
 
-
 print (bicycles[0] title()) 
-
 
 This example produces the same output as the preceding example 
 except ‘Trek’ is capitalized. 
 
-
 Index Positions Start at 0, Not I 
-
 
 Python considers the first item in a list to be at position 0, not position 1. 
 This is true of most programming languages, and the reason has to do with 
@@ -3655,24 +3096,18 @@ you request the item at index 3.
 
 The following asks for the bicycles at index 1 and index 3: 
 
-
 print(bicycles [1]) 
 print (bicycles[3]) 
 
-
 This code returns the second and fourth bicycles in the list: 
-
 
 cannondale 
 specialized 
 
-
 Python has a special syntax for accessing the last element in a list. By ask- 
 ing for the item at index -1, Python always returns the last item in the list: 
 
-
 print(bicycles[-1]) 
-
 
 This code returns the value 'specialized'. This syntax is quite useful, 
 because you'll often want to access the last items in a list without knowing 
@@ -3680,9 +3115,7 @@ exactly how long the list is. This convention extends to other negative index
 values as well. The index -2 returns the second item from the end of the list, 
 the index -3 returns the third item from the end, and so forth. 
 
-
 Using Individual Values from a List 
-
 
 You can use individual values from a list just as you would any other vari- 
 able. For example, you can use concatenation to create a message based on 
@@ -3691,35 +3124,26 @@ a value from a list.
 Let’s try pulling the first bicycle from the list and composing a message 
 using that value. 
 
-
 message = "My first bicycle was a" + bicycles[0].title() +7" 
-
 
 print (message) 
 
-
 Introducing Lists 39 
-
 
 At 0, we build a sentence using the value at bicycles[0] and store it in 
 the variable message. The output is a simple sentence about the first bicycle 
 in the list: 
 
-
 My first bicycle was a Trek. 
 
-
 TRY IT YOURSELF 
-
 
 Try these short programs to get some firsthand experience with Python’s lists. 
 You might want to create a new folder for each chapter's exercises to keep 
 them organized. 
 
-
 3-1. Names: Store the names of a few of your friends in a list called names. Print 
 each person's name by accessing each element in the list, one at a time. 
-
 
 3-2. Greetings: Start with the list you used in Exercise 3-1, but instead of just 
 
@@ -3727,19 +3151,14 @@ printing each person’s name, print a message to them. The text of each mes-
 sage should be the same, but each message should be personalized with the 
 person’s name. 
 
-
 3-3. Your Own List: Think of your favorite mode of transportation, such as a 
 
-
 motorcycle or a car, and make a list that stores several examples. Use your list 
-
 
 to print a series of statements about these items, such as “I would like to own a 
 Honda motorcycle.” 
 
-
 Changing, Adding, and Removing Elements 
-
 
 Most lists you create will be dynamic, meaning you'll build a list and 
 then add and remove elements from it as your program runs its course. For 
@@ -3749,106 +3168,80 @@ an alien from the list each time one is shot down. Each time a new alien
 appears on the screen, you add it to the list. Your list of aliens will decrease 
 and increase in length throughout the course of the game. 
 
-
 Modifying Elements in a List 
-
 
 The syntax for modifying an element is similar to the syntax for accessing 
 an element in a list. To change an element, use the name of the list followed 
 by the index of the element you want to change, and then provide the new 
 value you want that item to have. 
 
-
 40 Chapter 3 
-
 
 motorcycles.py @ 
 
-
 (2) 
-
 
 For example, let’s say we have a list of motorcycles, and the first item in 
 the list is 'honda'. How would we change the value of this first item? 
 
-
 motorcycles = ['honda', ‘yamaha’, ‘suzuki’ ] 
 print (motorcycles) 
 
-
 motorcycles[0] = 'ducati' 
 print (motorcycles) 
-
 
 The code at ® defines the original list, with ‘honda’ as the first element. 
 The code at @ changes the value of the first item to 'ducati'. The output 
 shows that the first item has indeed been changed, and the rest of the list 
 stays the same: 
 
-
 ['honda', ‘yamaha’, ‘suzuki’ ] 
 ['ducati', 'yamaha', 'suzuki' ] 
 
-
 You can change the value of any item in a list, not just the first item. 
 
-
 Adding Elements to a List 
-
 
 You might want to add a new element to a list for many reasons. For 
 example, you might want to make new aliens appear in a game, add new 
 data to a visualization, or add new registered users to a website you’ve 
 built. Python provides several ways to add new data to existing lists. 
 
-
 Appending Elements to the End of a List 
-
 
 The simplest way to add a new element to a list is to append the item to the 
 list. When you append an item to a list, the new element is added to the end 
 of the list. Using the same list we had in the previous example, we’ll add the 
 new element 'ducati' to the end of the list: 
 
-
 motorcycles.append('ducati' ) 
 print (motorcycles) 
-
 
 The append() method at @ adds ‘ducati’ to the end of the list without 
 affecting any of the other elements in the list: 
 
-
 ['honda', ‘yamaha’, ‘suzuki ] 
 ['honda', 'yamaha', ‘suzuki’, ‘ducati’ ] 
 
-
 Introducing Lists 41 
-
 
 The append() method makes it easy to build lists dynamically. For 
 example, you can start with an empty list and then add items to the list 
 using a series of append() statements. Using an empty list, let’s add the ele- 
 ments ‘honda’, 'yamaha', and 'suzuki' to the list: 
 
-
 motorcycles = [] 
 motorcycles. append('honda' ) 
 motorcycles.append(' yamaha’ ) 
 
-
 motorcycles. append('suzuki' ) 
 
-
 print (motorcycles) 
-
 
 The resulting list looks exactly the same as the lists in the previous 
 examples: 
 
-
 ['honda', 'yamaha', ‘suzuki'] 
-
 
 Building lists this way is very common, because you often won’t know 
 the data your users want to store in a program until after the program is 
@@ -3856,92 +3249,69 @@ running. To put your users in control, start by defining an empty list that
 will hold the users’ values. Then append each new value provided to the list 
 you just created. 
 
-
 Inserting Elements into a List 
-
 
 You can add a new element at any position in your list by using the insert() 
 method. You do this by specifying the index of the new element and the 
 value of the new item. 
 
-
 motorcycles = ['honda', 'yamaha', ‘suzuki’ ] 
-
 
 @ motorcycles.insert(0, ‘ducati') 
 print (motorcycles) 
-
 
 In this example, the code at @ inserts the value ‘ducati’ at the begin- 
 ning of the list. The insert() method opens a space at position 0 and stores 
 the value 'ducati' at that location. This operation shifts every other value 
 in the list one position to the right: 
 
-
 ['ducati', 'honda', ‘yamaha’, 'suzuki'] 
 
-
 Removing Elements from a List 
-
 
 Often, you'll want to remove an item or a set of items from a list. For 
 example, when a player shoots down an alien from the sky, you'll most 
 likely want to remove it from the list of active aliens. Or when a user 
 
-
 42 Chapter 3 
-
 
 decides to cancel their account on a web application you created, you'll 
 want to remove that user from the list of active users. You can remove an 
 item according to its position in the list or according to its value. 
 
-
 Removing an Item Using the del Statement 
-
 
 If you know the position of the item you want to remove from a list, you can 
 use the del statement. 
 
-
 motorcycles = ['honda', ‘yamaha’, ‘suzuki’ ] 
 print (motorcycles) 
-
 
 del motorcycles[0] 
 print (motorcycles) 
 
-
 The code at @ uses del to remove the first item, 'honda', from the list of 
 motorcycles: 
 
-
 ['honda', ‘yamaha’, ‘suzuki'] 
 ['yamaha', 'suzuki' ] 
-
 
 You can remove an item from any position in a list using the del state- 
 ment if you know its index. For example, here’s how to remove the second 
 item, ‘yamaha’, in the list: 
 
-
 del motorcycles[1] 
 print (motorcycles) 
 
-
 The second motorcycle is deleted from the list: 
-
 
 ['honda', ‘yamaha’, ‘suzuki’ ] 
 ['honda', ‘suzuki’ ] 
 
-
 In both examples, you can no longer access the value that was removed 
 from the list after the del statement is used. 
 
-
 Removing an Item Using the pop() Method 
-
 
 Sometimes you'll want to use the value of an item after you remove it from a 
 list. For example, you might want to get the x and y position of an alien that 
@@ -3954,27 +3324,20 @@ with that item after removing it. The term pop comes from thinking of a
 list as a stack of items and popping one item off the top of the stack. In 
 this analogy, the top of a stack corresponds to the end of a list. 
 
-
 Introducing Lists 43 
-
 
 44 
 
-
 Chapter 3 
 
-
 Let’s pop a motorcycle from the list of motorcycles: 
-
 
 @ motorcycles = ['honda', 'yamaha', 'suzuki' ] 
 print (motorcycles) 
 
-
 © popped motorcycle = motorcycles.pop() 
 © print (motorcycles) 
 @ print (popped_motorcycle) 
-
 
 We start by defining and printing the list motorcycles at @. At @ we pop 
 a value from the list and store that value in the variable popped_motorcycle. 
@@ -3985,53 +3348,40 @@ the value that was removed.
 The output shows that the value 'suzuki' was removed from the end of 
 the list and is now stored in the variable popped_motorcycle: 
 
-
 ['honda', ‘yamaha’, ‘suzuki’ ] 
 ['honda', 'yamaha' ] 
 suzuki 
-
 
 How might this pop() method be useful? Imagine that the motorcycles 
 in the list are stored in chronological order according to when we owned 
 them. If this is the case, we can use the pop() method to print a statement 
 about the last motorcycle we bought: 
 
-
 motorcycles = ['honda', ‘yamaha’, ‘suzuki’ ] 
-
 
 last_owned = motorcycles.pop() 
 print("The last motorcycle I owned was a " + last_owned.title() + ".") 
 
-
 The output is a simple sentence about the most recent motorcycle we 
 owned: 
 
-
 The last motorcycle I owned was a Suzuki. 
 
-
 Popping Items from any Position in a List 
-
 
 You can actually use pop() to remove an item in a list at any position by 
 including the index of the item you want to remove in parentheses. 
 
-
 @ first_owned = motorcycles.pop(0) 
 ® print('The first motorcycle I owned was a ' + first_owned.title() + '.') 
 
-
 eo 
-
 
 We start by popping the first motorcycle in the list at ®, and then we 
 print a message about that motorcycle at @. The output is a simple sentence 
 describing the first motorcycle I ever owned: 
 
-
 The first motorcycle I owned was a Honda. 
-
 
 Remember that each time you use pop(), the item you work with is no 
 longer stored in the list. 
@@ -4041,9 +3391,7 @@ here’s a simple way to decide: when you want to delete an item from a list
 and not use that item in any way, use the del statement; if you want to use an 
 item as you remove it, use the pop() method. 
 
-
 Removing an Item by Value 
-
 
 Sometimes you won't know the position of the value you want to remove 
 from a list. If you only know the value of the item you want to remove, you 
@@ -4052,27 +3400,21 @@ can use the remove() method.
 For example, let’s say we want to remove the value 'ducati' from the list of 
 motorcycles. 
 
-
 motorcycles = ['honda', ‘yamaha’, ‘suzuki’, ‘ducati’ ] 
 print (motorcycles) 
-
 
 motorcycles.remove('ducati' ) 
 print (motorcycles) 
 
-
 The code at @ tells Python to figure out where ‘ducati’ appears in the 
 list and remove that element: 
-
 
 ['honda', 'yamaha', ‘suzuki’, ‘ducati’ ] 
 ['honda', ‘yamaha’, ‘suzuki ] 
 
-
 You can also use the remove() method to work with a value that’s being 
 removed from a list. Let’s remove the value 'ducati' and print a reason for 
 removing it from the list: 
-
 
 too_expensive = ‘ducati’ 
 motorcycles.remove(too_ expensive) 
@@ -4080,119 +3422,90 @@ print (motorcycles)
 
 print("\nA " + too_expensive.title() + 
 
-
 is too expensive for me.") 
-
 
 After defining the list at @, we store the value 'ducati' in a variable 
 called too_expensive @. We then use this variable to tell Python which value 
 
-
 Introducing Lists 45 
-
 
 to remove from the list at ®. At @ the value 'ducati' has been removed from 
 the list but is still stored in the variable too_expensive, allowing us to print a 
 statement about why we removed 'ducati' from the list of motorcycles: 
 
-
 ['honda', ‘yamaha’, 'suzuki', ‘ducati’ ] 
 y 
 ['honda', 'yamaha', ‘suzuki’ ] 
 
-
 A Ducati is too expensive for me. 
-
 
 The remove() method deletes only the first occurrence of the value you specify. If there’s 
 a possibility the value appears more than once in the list, you'll need to use a loop to 
 determine if all occurrences of the value have been removed. You'll learn how to do 
 this in Chapter 7. 
 
-
 TRY IT YOURSELF 
-
 
 The following exercises are a bit more complex than those in Chapter 2, but 
 they give you an opportunity to use lists in all of the ways described. 
-
 
 3-4. Guest List: If you could invite anyone, living or deceased, to dinner, who 
 would you invite? Make a list that includes at least three people you'd like to 
 invite to dinner. Then use your list to print a message to each person, inviting 
 them to dinner. 
 
-
 3-5. Changing Guest List: You just heard that one of your guests can’t make the 
 dinner, so you need to send out a new set of invitations. You'll have to think of 
 someone else to invite. 
 
-
 e — Start with your program from Exercise 3-4. Add a print statement at the 
 end of your program stating the name of the guest who can’t make it. 
-
 
 Modify your list, replacing the name of the guest who can’t make it with 
 the name of the new person you are inviting. 
 
-
 Print a second set of invitation messages, one for each person who is still 
 in your list. 
 
-
 3-6. More Guests: You just found a bigger dinner table, so now more space is 
 available. Think of three more guests to invite to dinner. 
-
 
 ¢ — Start with your program from Exercise 3-4 or Exercise 3-5. Add a print 
 statement to the end of your program informing people that you found a 
 bigger dinner table. 
 
-
 Use insert() to add one new guest to the beginning of your list. 
 Use insert() to add one new guest to the middle of your list. 
 Use append() to add one new guest to the end of your list. 
 
-
 Print a new set of invitation messages, one for each person in your list. 
 
-
 46 Chapter 3 
-
 
 3-7. Shrinking Guest List: You just found out that your new dinner table won't 
 arrive in time for the dinner, and you have space for only two guests. 
 
-
 e — Start with your program from Exercise 3-6. Add a new line that prints a 
 message saying that you can invite only two people for dinner. 
-
 
 Use pop() to remove guests from your list one at a time until only two 
 names remain in your list. Each time you pop a name from your list, print 
 a message to that person letting them know you're sorry you can't invite 
 them to dinner. 
 
-
 Print a message to each of the two people still on your list, letting them 
 
-
 know they're still invited. 
-
 
 Use del to remove the last two names from your list, so you have an empty 
 list. Print your list to make sure you actually have an empty list at the end 
 of your program. 
 
-
 Organizing a List 
-
 
 cars.py 
 
-
 ) 
-
 
 Often, your lists will be created in an unpredictable order, because you can’t 
 always control the order in which your users provide their data. Although 
@@ -4202,55 +3515,41 @@ original order of your list, and other times you'll want to change the origi-
 nal order. Python provides a number of different ways to organize your lists, 
 depending on the situation. 
 
-
 Sorting a List Permanently with the sort() Method 
-
 
 Python’s sort() method makes it relatively easy to sort a list. Imagine we 
 have a list of cars and want to change the order of the list to store them 
 alphabetically. To keep the task simple, let’s assume that all the values in 
 the list are lowercase. 
 
-
 cars = ['bmw', ‘audi', ‘toyota’, ‘subaru’ ] 
 cars.sort() 
 print(cars) 
-
 
 The sort() method, shown at ®, changes the order of the list perma- 
 nently. The cars are now in alphabetical order, and we can never revert to 
 the original order: 
 
-
 ['audi', 'bmw', ‘subaru’, ‘toyota’] 
-
 
 Introducing Lists 47 
 
-
 48 
 
-
 Chapter 3 
-
 
 You can also sort this list in reverse alphabetical order by passing the 
 argument reverse=True to the sort() method. The following example sorts 
 the list of cars in reverse alphabetical order: 
 
-
 cars. sort (reverse=True) 
 print(cars) 
 
-
 Again, the order of the list is permanently changed: 
-
 
 ['toyota', 'subaru', 'bmw', ‘audi’ ] 
 
-
 Sorting a List Temporarily with the sorted() Function 
-
 
 To maintain the original order of a list but present it in a sorted order, you 
 can use the sorted() function. The sorted() function lets you display your list 
@@ -4258,40 +3557,31 @@ in a particular order but doesn’t affect the actual order of the list.
 
 Let’s try this function on the list of cars. 
 
-
 print("Here is the original list:") 
 print(cars) 
-
 
 print("\nHere is the sorted list:") 
 print (sorted(cars)) 
 
-
 print("\nHere is the original list again:") 
 print(cars) 
-
 
 We first print the list in its original order at @ and then in alphabetical 
 order at @. After the list is displayed in the new order, we show that the list is 
 still stored in its original order at ©. 
 
-
 Here is the original list: 
 ['bmw', ‘audi', ‘toyota’, ‘subaru’ ] 
-
 
 Here is the sorted list: 
 ['audi', 'bmw', 'subaru', ‘toyota’ ] 
 
-
 Here is the original list again: 
 ['bmw', ‘audi', ‘toyota’, ‘subaru’ ] 
-
 
 Notice that the list still exists in its original order at @ after the sorted() 
 function has been used. The sorted() function can also accept a reverse=True 
 argument if you want to display a list in reverse alphabetical order. 
-
 
 Sorting a list alphabetically is a bit more complicated when all the values are not in 
 lowercase. There are several ways to interpret capital letters when you're deciding on 
@@ -4299,9 +3589,7 @@ a sort order, and specifying the exact order can be more complex than we want to
 with at this time. However, most approaches to sorting will build directly on what you 
 learned in this section. 
 
-
 Printing a List in Reverse Order 
-
 
 To reverse the original order of a list, you can use the reverse() method. 
 
@@ -4309,135 +3597,101 @@ If we originally stored the list of cars in chronological order according to
 when we owned them, we could easily rearrange the list into reverse chron- 
 ological order: 
 
-
 print(cars) 
-
 
 cars.reverse() 
 print(cars) 
 
-
 Notice that reverse() doesn’t sort backward alphabetically; it simply 
 reverses the order of the list: 
 
-
 ['bmw', ‘audi', ‘toyota’, ‘subaru’ ] 
 ['subaru', ‘toyota’, ‘audi’, ‘bmw'] 
-
 
 The reverse() method changes the order of a list permanently, but you 
 can revert to the original order anytime by applying reverse() to the same 
 list a second time. 
 
-
 Finding the Length of a List 
-
 
 You can quickly find the length of a list by using the len() function. The list 
 in this example has four items, so its length is 4: 
 
-
 >>> cars = ['bmw', ‘audi’, ‘toyota’, ‘subaru'] 
 >>> len(cars) 
 4 
-
 
 You'll find len() useful when you need to identify the number of aliens 
 that still need to be shot down in a game, determine the amount of data 
 you have to manage in a visualization, or figure out the number of regis- 
 tered users on a website, among other tasks. 
 
-
 Python counts the items in a list starting with one, so you shouldn’t run into any off- 
 by-one errors when determining the length of a list. 
 
-
 Introducing Lists 49 
 
-
 50 
-
 
 TRY IT YOURSELF 
 3-8. Seeing the World: Think of at least five places in the world you’d like to 
 Visit. 
 Store the locations in a list. Make sure the list is not in alphabetical order. 
 
-
 Print your list in its original order. Don’t worry about printing the list neatly, 
 just print it as a raw Python list. 
-
 
 Use sorted() to print your list in alphabetical order without modifying the 
 actual list. 
 
-
 Show that your list is still in its original order by printing it. 
-
 
 Use sorted() to print your list in reverse alphabetical order without chang- 
 ing the order of the original list. 
 
-
 Show that your list is still in its original order by printing it again. 
-
 
 Use reverse() to change the order of your list. Print the list to show that its 
 order has changed. 
 
-
 Use reverse() to change the order of your list again. Print the list to show 
 it’s back to its original order. 
-
 
 Use sort() to change your list so it’s stored in alphabetical order. Print the 
 list to show that its order has been changed. 
 
-
 Use sort() to change your list so it’s stored in reverse alphabetical order. 
 
-
 Print the list to show that its order has changed. 
-
 
 3-9. Dinner Guests: Working with one of the programs from Exercises 3-4 
 through 3-7 (page 46), use len() to print a message indicating the number 
 of people you are inviting to dinner. 
 
-
 3-10. Every Function: Think of something you could store in a list. For example, 
 
-
 you could make a list of mountains, rivers, countries, cities, languages, or any- 
-
 
 thing else you'd like. Write a program that creates a list containing these items 
 and then uses each function introduced in this chapter at least once. 
 
-
 Avoiding Index Errors When Working with Lists 
 
-
 Chapter 3 
-
 
 One type of error is common to see when you're working with lists for the 
 first time. Let’s say you have a list with three items, and you ask for the 
 fourth item: 
 
-
 motorcycles = ['honda', 'yamaha', ‘suzuki’ ] 
 print (motorcycles[3]) 
 
-
 This example results in an index error: 
-
 
 Traceback (most recent call last): 
 File "motorcycles.py", line 3, in <module> 
 print (motorcycles[3]) 
 IndexError: list index out of range 
-
 
 Python attempts to give you the item at index 3. But when it searches 
 the list, no item in motorcycles has an index of 3. Because of the off-by-one 
@@ -4453,33 +3707,25 @@ Keep in mind that whenever you want to access the last item in a list
 you use the index -1. This will always work, even if your list has changed 
 size since the last time you accessed it: 
 
-
 print (motorcycles[-1]) 
-
 
 The index -1 always returns the last item in a list, in this case the value 
 "suzuki': 
 
-
 "suzuki' 
-
 
 The only time this approach will cause an error is when you request the 
 last item from an empty list: 
 
-
 motorcycles = [] 
 print (motorcycles[-1]) 
 
-
 No items are in motorcycles, so Python returns another index error: 
-
 
 Traceback (most recent call last): 
 File "motorcyles.py", line 3, in <module> 
 print (motorcycles[-1]) 
 IndexError: list index out of range 
-
 
 If an index error occurs and you can’t figure out how to resolve it, try printing your 
 list or just printing the length of your list. Your list might look much different than 
@@ -4487,29 +3733,21 @@ you thought it did, especially if it has been managed dynamically by your progra
 Seeing the actual list, or the exact number of items in your list, can help you sort out 
 such logical errors. 
 
-
 Introducing Lists 5] 
-
 
 52 
 
-
 TRY IT YOURSELF 
 
-
 3-11. Intentional Error: If you haven't received an index error in one of your 
-
 
 programs yet, try to make one happen. Change an index in one of your pro- 
 grams to produce an index error. Make sure you correct the error before clos- 
 ing the program. 
 
-
 Summary 
 
-
 Chapter 3 
-
 
 In this chapter you learned what lists are and how to work with the indi- 
 vidual items in a list. You learned how to define a list and how to add and 
@@ -4522,24 +3760,19 @@ ciently. By looping through each item in a list using just a few lines of code
 you'll be able to work efficiently, even when your list contains thousands or 
 millions of items. 
 
-
 WORKING WITH LISTS 
-
 
 In Chapter 3 you learned how to make a 
 simple list, and you learned to work with 
 the individual elements in a list. In this chap- 
 ter you'll learn how to loop through an entire 
 
-
 list using just a few lines of code regardless of how 
 long the list is. Looping allows you to take the same action, or set of actions, 
 with every item in a list. As a result, you'll be able to work efficiently with 
 lists of any length, including those with thousands or even millions of items. 
 
-
 Looping Through an Entire List 
-
 
 You'll often want to run through all entries in a list, performing the same 
 task with each item. For example, in a game you might want to move every 
@@ -4549,19 +3782,14 @@ perhaps you'll want to display each headline from a list of articles on a web-
 site. When you want to do the same action with every item in a list, you can 
 use Python’s for loop. 
 
-
 magicians.py ® 
 © for magician in magicians: 
 
-
 54 
-
 
 Chapter 4 
 
-
 3) 
-
 
 Let’s say we have a list of magicians’ names, and we want to print out 
 each name in the list. We could do this by retrieving each name from the 
@@ -4572,12 +3800,9 @@ of these issues by letting Python manage these issues internally.
 
 Let’s use a for loop to print out each name in a list of magicians: 
 
-
 magicians = ['alice', ‘david’, ‘carolina’ ] 
 
-
 print (magician) 
-
 
 We begin by defining a list at @, just as we did in Chapter 3. At @, 
 we define a for loop. This line tells Python to pull a name from the list 
@@ -4587,44 +3812,33 @@ and ®, once for each name in the list. It might help to read this code as
 “For every magician in the list of magicians, print the magician’s name.” 
 The output is a simple printout of each name in the list: 
 
-
 alice 
 david 
 carolina 
 
-
 A Closer Look at Looping 
-
 
 The concept of looping is important because it’s one of the most common 
 ways a computer automates repetitive tasks. For example, in a simple loop 
 like we used in magicians.py, Python initially reads the first line of the loop: 
 
-
 for magician in magicians: 
-
 
 This line tells Python to retrieve the first value from the list magicians 
 and store it in the variable magician. This first value is 'alice'. Python then 
 reads the next line: 
 
-
 print (magician) 
-
 
 Python prints the current value of magician, which is still 'alice'. Because 
 the list contains more values, Python returns to the first line of the loop: 
 
-
 for magician in magicians: 
-
 
 Python retrieves the next name in the list, 'david', and stores that value 
 in magician. Python then executes the line: 
 
-
 print (magician) 
-
 
 Python prints the current value of magician again, which is now ‘david’. 
 Python repeats the entire loop once more with the last value in the list, 
@@ -4643,28 +3857,22 @@ list. However, it’s helpful to choose a meaningful name that represents a
 single item from the list. For example, here’s a good way to start a for loop 
 for a list of cats, a list of dogs, and a general list of items: 
 
-
 for cat in cats: 
 for dog in dogs: 
 for item in list_of_items: 
-
 
 These naming conventions can help you follow the action being done 
 on each item within a for loop. Using singular and plural names can help 
 you identify whether a section of code is working with a single element from 
 the list or the entire list. 
 
-
 Doing More Work Within a for Loop 
-
 
 You can do just about anything with each item in a for loop. Let’s build on 
 the previous example by printing a message to each magician, telling them 
 that they performed a great trick: 
 
-
 print (magician.title() +", that was a great trick!") 
-
 
 The only difference in this code is at @ where we compose a message to 
 each magician, starting with that magician’s name. The first time through 
@@ -4674,19 +3882,15 @@ with the name ‘Alice’. The second time through the message will begin with
 
 The output shows a personalized message for each magician in the list: 
 
-
 Alice, that was a great trick! 
 David, that was a great trick! 
 Carolina, that was a great trick! 
-
 
 You can also write as many lines of code as you like in the for loop. 
 Every indented line following the line for magician in magicians is con- 
 sidered inside the loop, and each indented line is executed once for each 
 
-
 Working with Lists 55 
-
 
 value in the list. Therefore, you can do as much work as you like with 
 each value in the list. 
@@ -4694,38 +3898,29 @@ each value in the list.
 Let’s add a second line to our message, telling each magician that we’re 
 looking forward to their next trick: 
 
-
 e print("I can't wait to see your next trick, " 
 
-
 + magician.title() + ".\n") 
-
 
 Because we have indented both print statements, each line will be exe- 
 cuted once for every magician in the list. The newline ("\n") in the second 
 print statement ® inserts a blank line after each pass through the loop. This 
 creates a set of messages that are neatly grouped for each person in the list: 
 
-
 Alice, that was a great trick! 
 I can't wait to see your next trick, Alice. 
-
 
 David, that was a great trick! 
 I can't wait to see your next trick, David. 
 
-
 Carolina, that was a great trick! 
 I can't wait to see your next trick, Carolina. 
-
 
 You can use as many lines as you like in your for loops. In practice you'll 
 often find it useful to do a number of different operations with each item in 
 a list when you use a for loop. 
 
-
 Doing Something After a for Loop 
-
 
 What happens once a for loop has finished executing? Usually, you’ll want 
 to summarize a block of output or move on to other work that your pro- 
@@ -4737,32 +3932,24 @@ as a whole, thanking them for putting on an excellent show. To display this
 group message after all of the individual messages have been printed, we 
 place the thank you message after the for loop without indentation: 
 
-
 @ print("Thank you, everyone. That was a great magic show!") 
 
-
 56 Chapter 4 
-
 
 The first two print statements are repeated once for each magician in 
 the list, as you saw earlier. However, because the line at @ is not indented, 
 it’s printed only once: 
 
-
 Alice, that was a great trick! 
 I can't wait to see your next trick, Alice. 
-
 
 David, that was a great trick! 
 I can't wait to see your next trick, David. 
 
-
 Carolina, that was a great trick! 
 I can't wait to see your next trick, Carolina. 
 
-
 Thank you, everyone. That was a great magic show! 
-
 
 When you're processing data using a for loop, you'll find that this is a 
 good way to summarize an operation that was performed on an entire data 
@@ -4771,12 +3958,9 @@ through a list of characters and displaying each character on the screen.
 You might then write an unindented block after this loop that displays a 
 Play Now button after all the characters have been drawn to the screen. 
 
-
 Avoiding Indentation Errors 
 
-
 magicians.py 
-
 
 Python uses indentation to determine when one line of code is connected to 
 the line above it. In the previous examples, the lines that printed messages to 
@@ -4796,49 +3980,36 @@ appear in your own programs.
 
 Let’s examine some of the more common indentation errors. 
 
-
 Forgetting to Indent 
-
 
 Always indent the line after the for statement in a loop. If you forget, Python 
 will remind you: 
 
-
 magicians = ['alice', 'david', ‘carolina’ ] 
 for magician in magicians: 
 
-
 @ print (magician) 
-
 
 Working with lists 57 
 
-
 58 
 
-
 Chapter 4 
-
 
 The print statement at ® should be indented, but it’s not. When Python 
 expects an indented block and doesn’t find one, it lets you know which line 
 it had a problem with. 
 
-
 File "magicians.py", line 3 
 print (magician) 
 A 
 
-
 IndentationError: expected an indented block 
-
 
 You can usually resolve this kind of indentation error by indenting the 
 line or lines immediately after the for statement. 
 
-
 Forgetting to Indent Additional Lines 
-
 
 Sometimes your loop will run without any errors but won’t produce the 
 expected result. This can happen when youre trying to do several tasks in 
@@ -4848,7 +4019,6 @@ For example, this is what happens when we forget to indent the second
 line in the loop that tells each magician we’re looking forward to their next 
 trick: 
 
-
 magicians = ['alice', ‘david’, ‘carolina’ ] 
 
 for magician in magicians: 
@@ -4856,10 +4026,8 @@ print(magician.title() +
 
 print("I can't wait to see your next trick, 
 
-
 ", that was a great trick!") 
 " + magician.title() + ".\n") 
-
 
 The print statement at @ is supposed to be indented, but because 
 Python finds at least one indented line after the for statement, it doesn’t 
@@ -4869,7 +4037,6 @@ not indented, so it is executed only once after the loop has finished run-
 ning. Because the final value of magician is 'carolina', she is the only one 
 who receives the “looking forward to the next trick” message: 
 
-
 Alice, that was a great trick! 
 
 David, that was a great trick! 
@@ -4878,44 +4045,34 @@ Carolina, that was a great trick!
 
 I can't wait to see your next trick, Carolina. 
 
-
 This is a logical error. The syntax is valid Python code, but the code does 
 not produce the desired result because a problem occurs in its logic. If you 
 expect to see a certain action repeated once for each item in a list and it’s 
 executed only once, determine whether you need to simply indent a line or 
 a group of lines. 
 
-
 Indenting Unnecessarily 
-
 
 If you accidentally indent a line that doesn’t need to be indented, Python 
 informs you about the unexpected indent: 
 
-
 hello_world.py message = "Hello Python world!" 
 e print (message) 
-
 
 We don’t need to indent the print statement at @, because it doesn’t 
 belong to the line above it; hence, Python reports that error: 
 
-
 File "hello world.py", line 2 
 print (message) 
 
-
 IndentationError: unexpected indent 
-
 
 You can avoid unexpected indentation errors by indenting only when 
 you have a specific reason to do so. In the programs you're writing at this 
 point, the only lines you should indent are the actions you want to repeat 
 for each item in a for loop. 
 
-
 Indenting Unnecessarily After the Loop 
-
 
 If you accidentally indent code that should run after a loop has finished, that 
 code will be repeated once for each item in the list. Sometimes this prompts 
@@ -4924,47 +4081,35 @@ Python to report an error, but often you'll receive a simple logical error.
 For example, let’s see what happens when we accidentally indent the 
 line that thanked the magicians as a group for putting on a good show: 
 
-
 magicians = ['alice', 'david', ‘carolina’ ] 
 for magician in magicians: 
 print(magician.title() + ", that was a great trick!") 
 print("I can't wait to see your next trick, " + magician.title() + ".\n") 
 
-
 e print("Thank you everyone, that was a great magic show!") 
-
 
 Because the line at @ is indented, it’s printed once for each person in 
 the list, as you can see at @: 
 
-
 Alice, that was a great trick! 
 I can't wait to see your next trick, Alice. 
-
 
 @ Thank you everyone, that was a great magic show! 
 David, that was a great trick! 
 I can't wait to see your next trick, David. 
 
-
 @ Thank you everyone, that was a great magic show! 
 Carolina, that was a great trick! 
 
-
 I can't wait to see your next trick, Carolina. 
-
 
 @ Thank you everyone, that was a great magic show! 
 
-
 Working with Lists 59 
-
 
 60 
 
-
 Chapter 4 
-
 
 This is another logical error, similar to the one in “Forgetting to Indent 
 Additional Lines” on page 58. Because Python doesn’t know what you’re 
@@ -4973,18 +4118,14 @@ valid syntax. If an action is repeated many times when it should be executed
 only once, determine whether you just need to unindent the code for that 
 action. 
 
-
 Forgetting the Colon 
-
 
 The colon at the end of a for statement tells Python to interpret the next 
 line as the start of a loop. 
 
-
 magicians = ['alice', ‘david’, ‘carolina’ ] 
 for magician in magicians 
 print (magician) 
-
 
 If you accidentally forget the colon, as shown at ®, you'll get a syntax 
 error because Python doesn’t know what you're trying to do. Although 
@@ -4993,13 +4134,10 @@ surprised by the amount of time programmers spend hunting down single-
 character errors like this. Such errors are difficult to find because we often 
 just see what we expect to see. 
 
-
 TRY IT YOURSELF 
-
 
 4-1. Pizzas: Think of at least three kinds of your favorite pizza. Store these 
 pizza names in a list, and then use a for loop to print the name of each pizza. 
-
 
 ¢ Modify your for loop to print a sentence using the name of the pizza 
 instead of printing just the name of the pizza. For each pizza you should 
@@ -5010,28 +4148,21 @@ how much you like pizza. The output should consist of three or more lines
 about the kinds of pizza you like and then an additional sentence, such as 
 ! really love pizza! 
 
-
 4-2. Animals: Think of at least three different animals that have a common char- 
-
 
 acteristic. Store the names of these animals in a list, and then use a for loop to 
 print out the name of each animal. 
 
-
 ¢ Modify your program to print a statement about each animal, such as 
 A dog would make a great pet. 
-
 
 Add a line at the end of your program stating what these animals have in 
 common. You could print a sentence such as Any of these animals would 
 make a great pet! 
 
-
 Making Numerical Lists 
 
-
 numbers.py 
-
 
 Many reasons exist to store a set of numbers. For example, you’ll need to 
 keep track of the positions of each character in a game, and you might want 
@@ -5045,25 +4176,19 @@ ber of tools to help you work efficiently with lists of numbers. Once you
 understand how to use these tools effectively, your code will work well even 
 when your lists contain millions of items. 
 
-
 Using the range() Function 
-
 
 Python’s range() function makes it easy to generate a series of numbers. 
 For example, you can use the range() function to print a series of numbers 
 like this: 
 
-
 for value in range(1,5): 
 print (value) 
-
 
 Although this code looks like it should print the numbers from | to 5, it 
 doesn’t print the number 5: 
 
-
 BWNPR 
-
 
 In this example, range() prints only the numbers | through 4. This is 
 another result of the off-by-one behavior you’ll see often in programming 
@@ -5074,25 +4199,18 @@ value, which would have been 5 in this case.
 
 To print the numbers from 1 to 5, you would use range(1,6): 
 
-
 for value in range(1,6): 
-
 
 This time the output starts at 1 and ends at 5: 
 
-
 mWPWNP 
 
-
 Working with Lists 61 
-
 
 If your output is different than what you expect when you're using 
 range(), try adjusting your end value by 1. 
 
-
 Using range() to Make a List of Numbers 
-
 
 If you want to make a list of numbers, you can convert the results of range() 
 directly into a list using the list() function. When you wrap list() around a 
@@ -5101,33 +4219,25 @@ call to the range() function, the output will be a list of numbers.
 In the example in the previous section, we simply printed out a series of 
 numbers. We can use list() to convert that same set of numbers into a list: 
 
-
 numbers = list(range(1,6)) 
 print (numbers) 
 
-
 And this is the result: 
 
-
 [1, 2, 3, 4, 5] 
-
 
 We can also use the range() function to tell Python to skip numbers 
 in a given range. For example, here’s how we would list the even numbers 
 between | and 10: 
 
-
 even_numbers.py even_numbers = list(range(2,11,2)) 
 print(even_numbers) 
-
 
 In this example, the range() function starts with the value 2 and then 
 adds 2 to that value. It adds 2 repeatedly until it reaches or passes the end 
 value, 11, and produces this result: 
 
-
 [2, 4, 6, 8, 10] 
-
 
 You can create almost any set of numbers you want to using the range() 
 function. For example, consider how you might make a list of the first 10 
@@ -5135,45 +4245,34 @@ square numbers (that is, the square of each integer from | through 10). In
 Python, two asterisks (**) represent exponents. Here’s how you might put 
 the first 10 square numbers into a list: 
 
-
 squares.py @ squares = [] 
 
 for value in range(1,11): 
 square = value**2 
 squares .append(square) 
 
-
 ooo 
-
 
 @ 
 
-
 print (squares) 
-
 
 We start with an empty list called squares at ®. At @, we tell Python to 
 loop through each value from | to 10 using the range() function. Inside 
 the loop, the current value is raised to the second power and stored in the 
 
-
 62 Chapter 4 
-
 
 variable square at ©. At @, each new value of square is appended to the list 
 squares. Finally, when the loop has finished running, the list of squares is 
 printed at ®: 
 
-
 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] 
-
 
 To write this code more concisely, omit the temporary variable square 
 and append each new value directly to the list: 
 
-
 squares .append (value**2) 
-
 
 The code at @ does the same work as the lines at © and @ in squares.py. 
 Each value in the loop is raised to the second power and then immediately 
@@ -5185,13 +4284,10 @@ ier to read; other times it makes the code unnecessarily long. Focus first on
 writing code that you understand clearly, which does what you want it to do. 
 Then look for more efficient approaches as you review your code. 
 
-
 Simple Statistics with a List of Numbers 
-
 
 A few Python functions are specific to lists of numbers. For example, you 
 can easily find the minimum, maximum, and sum of a list of numbers: 
-
 
 >>> digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 
 >>> min(digits) 
@@ -5206,13 +4302,10 @@ can easily find the minimum, maximum, and sum of a list of numbers:
 
 45 
 
-
 The examples in this section use short lists of numbers in order to fit easily on the 
 page. They would work just as well if your list contained a million or more numbers. 
 
-
 List Comprehensions 
-
 
 The approach described earlier for generating the list squares consisted of 
 using three or four lines of code. A list comprehension allows you to generate 
@@ -5222,26 +4315,19 @@ appends each new element. List comprehensions are not always presented
 to beginners, but I have included them here because you'll most likely see 
 them as soon as you start looking at other people’s code. 
 
-
 Working with Lists 63 
-
 
 64 
 
-
 squares.py 
 
-
 Chapter 4 
-
 
 The following example builds the same list of square numbers you saw 
 earlier but uses a list comprehension: 
 
-
 squares = [value**2 for value in range(1,11) ] 
 print (squares) 
-
 
 To use this syntax, begin with a descriptive name for the list, such as 
 squares. Next, open a set of square brackets and define the expression for 
@@ -5254,67 +4340,51 @@ value**2. Notice that no colon is used at the end of the for statement.
 
 The result is the same list of square numbers you saw earlier: 
 
-
 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] 
-
 
 It takes practice to write your own list comprehensions, but you'll find 
 them worthwhile once you become comfortable creating ordinary lists. 
 When you're writing three or four lines of code to generate lists and it 
 begins to feel repetitive, consider writing your own list comprehensions. 
 
-
 TRY IT YOURSELF 
-
 
 4-3. Counting to Twenty: Use a for loop to print the numbers from 1 to 20, 
 inclusive. 
-
 
 4-4. One Million: Make a list of the numbers from one to one million, and then 
 use a for loop to print the numbers. (If the output is taking too long, stop it by 
 pressing CTRI-C or by closing the output window.) 
 
-
 4-5. Summing a Million: Make a list of the numbers from one to one million, 
 and then use min() and max() to make sure your list actually starts at one and 
 
-
 ends at one million. Also, use the sum() function to see how quickly Python can 
 
-
 add a million numbers. 
-
 
 A-6. Odd Numbers: Use the third argument of the range() function to make a list 
 of the odd numbers from 1 to 20. Use a for loop to print each number. 
 
-
 4-7. Threes: Make a list of the multiples of 3 from 3 to 30. Use a for loop to 
 print the numbers in your list. 
-
 
 4-8. Cubes: A number raised to the third power is called a cube. For example, 
 the cube of 2 is written as 2**3 in Python. Make a list of the first 10 cubes (that 
 is, the cube of each integer from 1 through 10), and use a for loop to print out 
 the value of each cube. 
 
-
 4-9. Cube Comprehension: Use a list comprehension to generate a list of the 
 first 10 cubes. 
 
-
 Working with Part of a List 
 
-
 players.py 
-
 
 In Chapter 3 you learned how to access single elements in a list, and in this 
 chapter you've been learning how to work through all the elements in a list. 
 You can also work with a specific group of items in a list, which Python calls 
 a slice. 
-
 
 Slicing a List 
 To make a slice, you specify the index of the first and last elements you 
@@ -5325,70 +4395,50 @@ ments 0, 1, and 2.
 
 The following example involves a list of players on a team: 
 
-
 players = ['charles', ‘martina’, ‘michael’, ‘florence’, ‘eli'] 
 
-
 @ print (players[0:3]) 
-
 
 The code at ® prints a slice of this list, which includes just the first 
 three players. The output retains the structure of the list and includes the 
 first three players in the list: 
 
-
 ['charles', ‘martina’, ‘michael’ ] 
-
 
 You can generate any subset of a list. For example, if you want the sec- 
 ond, third, and fourth items in a list, you would start the slice at index 1 and 
 end at index 4: 
 
-
 print(players [1:4]) 
-
 
 This time the slice starts with 'martina' and ends with 'florence': 
 
-
 ['martina', 'michael', ‘florence’ ] 
-
 
 If you omit the first index in a slice, Python automatically starts your 
 slice at the beginning of the list: 
 
-
 print (players [:4]) 
-
 
 Without a starting index, Python starts at the beginning of the list: 
 
-
 ['charles', ‘martina’, ‘michael’, ‘florence’ ] 
-
 
 Working with Lists 65 
 
-
 66 
 
-
 Chapter 4 
-
 
 A similar syntax works if you want a slice that includes the end of a list. 
 For example, if you want all items from the third item through the last item, 
 you can start with index 2 and omit the second index: 
 
-
 print (players[2: ]) 
-
 
 Python returns all items from the third item through the end of the list: 
 
-
 ['michael', ‘florence’, ‘eli'] 
-
 
 This syntax allows you to output all of the elements from any point in 
 your list to the end regardless of the length of the list. Recall that a nega- 
@@ -5397,39 +4447,30 @@ therefore, you can output any slice from the end of a list. For example, if
 we want to output the last three players on the roster, we can use the slice 
 players[-3:]: 
 
-
 print(players[-3 : 1) . 
-
 
 This prints the names of the last three players and would continue to 
 work as the list of players changes in size. 
 
-
 Looping Through a Slice 
-
 
 You can use a slice in a for loop if you want to loop through a subset of 
 the elements in a list. In the next example we loop through the first three 
 players and print their names as part of a simple roster: 
 
-
 players = ['charles', 'martina', 'michael', ‘florence’, ‘eli'] 
 print("Here are the first three players on my team:") 
-
 
 for player in players[:3]: 
 print (player.title()) 
 
-
 Instead of looping through the entire list of players at @, Python loops 
 through only the first three names: 
-
 
 Here are the first three players on my team: 
 Charles 
 Martina 
 Michael 
-
 
 Slices are very useful in a number of situations. For instance, when you're 
 creating a game, you could add a player’s final score to a list every time that 
@@ -5437,19 +4478,15 @@ player finishes playing. You could then get a player’s top three scores by sor
 ing the list in decreasing order and taking a slice that includes just the first 
 three scores. When you’re working with data, you can use slices to process 
 
-
 foods.py @ 
 e 
-
 
 2) 
 (3) 
 
-
 your data in chunks of a specific size. Or, when you’re building a web appli- 
 cation, you could use slices to display information in a series of pages with 
 an appropriate amount of information on each page. 
-
 
 Copying a List 
 
@@ -5466,64 +4503,49 @@ For example, imagine we have a list of our favorite foods and want to
 make a separate list of foods that a friend likes. This friend likes everything 
 in our list so far, so we can create their list by copying ours: 
 
-
 my foods = ['pizza', ‘falafel’, ‘carrot cake'] 
 friend_foods = my_foods[:] 
-
 
 print("My favorite foods are:") 
 print(my_foods) 
 
-
 print("\nMy friend's favorite foods are:") 
 print(friend_foods) 
-
 
 At © we make a list of the foods we like called my_foods. At @ we make a 
 new list called friend_foods. We make a copy of my_foods by asking for a slice 
 of my_foods without specifying any indices and store the copy in friend_foods. 
 When we print each list, we see that they both contain the same foods: 
 
-
 My favorite foods are: 
 ['pizza', 'falafel', ‘carrot cake'] 
 
-
 My friend's favorite foods are: 
 ['pizza', 'falafel', ‘carrot cake'] 
-
 
 To prove that we actually have two separate lists, we’ll add a new food 
 to each list and show that each list keeps track of the appropriate person’s 
 favorite foods: 
 
-
 my_foods.append('cannoli') 
 friend_foods.append('ice cream') 
 
-
 Working with lists 67 
-
 
 68 
 
-
 Chapter 4 
-
 
 At @ we copy the original items in my_foods to the new list friend_foods, as 
 we did in the previous example. Next, we add a new food to each list: at @ we 
 add ‘cannoli’ to my foods, and at ® we add ‘ice cream' to friend foods. We then 
 print the two lists to see whether each of these foods is in the appropriate list. 
 
-
 My favorite foods are: 
 ['pizza', 'falafel', ‘carrot cake’, ‘cannoli’ ] 
 
-
 My friend's favorite foods are: 
 ['pizza', ‘falafel’, ‘carrot cake’, ‘ice cream'] 
-
 
 The output at @ shows that 'cannoli' now appears in our list of favorite 
 foods but ‘ice cream' doesn’t. At © we can see that 'ice cream’ now appears 
@@ -5531,10 +4553,8 @@ in our friend’s list but 'cannoli' doesn’t. If we had simply set friend_food
 equal to my_foods, we would not produce two separate lists. For example, 
 here’s what happens when you try to copy a list without using a slice: 
 
-
 # This doesn't work: 
 friend _foods = my_foods 
-
 
 Instead of storing a copy of my_foods in friend_foods at @, we set 
 friend_foods equal to my_foods. This syntax actually tells Python to con- 
@@ -5547,45 +4567,33 @@ friend_foods.
 The output shows that both lists are the same now, which is not what we 
 wanted: 
 
-
 My favorite foods are: 
 ['pizza', 'falafel', ‘carrot cake’, ‘cannoli’, ‘ice cream’ ] 
-
 
 My friend's favorite foods are: 
 ['pizza', 'falafel', ‘carrot cake’, ‘cannoli’, ‘ice cream’ ] 
 
-
 Don’t worry about the details in this example for now. Basically, if you're trying to 
 
-
 Tuples 
-
 
 work with a copy of a list and you see unexpected behavior, make sure you are copying 
 the list using a slice, as we did in the first example. 
 
-
 TRY IT YOURSELF 
-
 
 4-10. Slices: Using one of the programs you wrote in this chapter, add several 
 lines to the end of the program that do the following: 
 
-
 e Print the message, The first three items in the list are:. Then use a slice to 
 print the first three items from that program’s list. 
-
 
 Print the message, Three items from the middle of the list are:. Use a slice 
 to print three items from the middle of the list. 
 
-
 Print the message, The last three items in the list are:. Use a slice to print 
 
-
 the last three items in the list. 
-
 
 4-11. My Pizzas, Your Pizzas: Start with your program from Exercise 4-1 
 (page 60). Make a copy of the list of pizzas, and call it friend_pizzas. 
@@ -5595,21 +4603,16 @@ Add a new pizza to the original list.
 
 Add a different pizza to the list friend_pizzas. 
 
-
 Prove that you have two separate lists. Print the message, My favorite 
 pizzas are:, and then use a for loop to print the first list. Print the message, 
 
-
 My friend's favorite pizzas are:, and then use a for loop to print the sec- 
 
-
 ond list. Make sure each new pizza is stored in the appropriate list. 
-
 
 4-12. More Loops: All versions of foods.py in this section have avoided using 
 for loops when printing to save space. Choose a version of foods.py, and 
 write two for loops to print each list of foods. 
-
 
 Lists work well for storing sets of items that can change throughout the 
 
@@ -5619,105 +4622,79 @@ game. However, sometimes you'll want to create a list of items that cannot
 change. Tuples allow you to do just that. Python refers to values that cannot 
 change as immutable, and an immutable list is called a tuple. 
 
-
 Defining a Tuple 
-
 
 A tuple looks just like a list except you use parentheses instead of square 
 brackets. Once you define a tuple, you can access individual elements by 
 using each item’s index, just as you would for a list. 
 
-
 Working with Lists 69 
-
 
 dimensions.py @® 
 
-
 70 
-
 
 Chapter 4 
 
-
 2) 
-
 
 For example, if we have a rectangle that should always be a certain size, 
 we can ensure that its size doesn’t change by putting the dimensions into a 
 tuple: 
 
-
 dimensions = (200, 50) 
 print (dimensions[0]) 
 print (dimensions[1]) 
-
 
 We define the tuple dimensions at ®, using parentheses instead of square 
 brackets. At @ we print each element in the tuple individually, using the 
 same syntax we’ve been using to access elements in a list: 
 
-
 200 
 50 
-
 
 Let’s see what happens if we try to change one of the items in the tuple 
 dimensions: 
 
-
 dimensions[0] = 250 
-
 
 The code at ® tries to change the value of the first dimension, but 
 Python returns a type error. Basically, because we’re trying to alter a tuple, 
 which can’t be done to that type of object, Python tells us we can’t assign a 
 new value to an item in a tuple: 
 
-
 Traceback (most recent call last): 
 File "dimensions.py", line 3, in <module> 
 dimensions[0] = 250 
 TypeError: ‘tuple’ object does not support item assignment 
 
-
 This is beneficial because we want Python to raise an error when a line 
 of code tries to change the dimensions of the rectangle. 
 
-
 Looping Through All Values in a Tuple 
-
 
 You can loop over all the values in a tuple using a for loop, just as you did 
 with a list: 
 
-
 for dimension in dimensions: 
 print (dimension) 
 
-
 Python returns all the elements in the tuple, just as it would for a list: 
-
 
 200 
 50 
 
-
 eo 
 
-
 Writing over a Tuple 
-
 
 Although you can’t modify a tuple, you can assign a new value to a variable 
 that holds a tuple. So if we wanted to change our dimensions, we could 
 redefine the entire tuple: 
 
-
 print("Original dimensions:") 
 for dimension in dimensions: 
 print (dimension) 
-
 
 dimensions = (400, 100) 
 
@@ -5726,60 +4703,45 @@ print("\nModified dimensions:")
 for dimension in dimensions: 
 print (dimension) 
 
-
 The block at ®@ defines the original tuple and prints the initial dimen- 
 sions. At ®, we store a new tuple in the variable dimensions. We then print the 
 new dimensions at ®. Python doesn’t raise any errors this time, because 
 overwriting a variable is valid: 
 
-
 Original dimensions: 
 200 
 50 
-
 
 Modified dimensions: 
 400 
 100 
 
-
 When compared with lists, tuples are simple data structures. Use them 
 when you want to store a set of values that should not be changed through- 
 out the life of a program. 
 
-
 TRY IT YOURSELF 
-
 
 4-13. Buffet: A buffet-style restaurant offers only five basic foods. Think of five 
 simple foods, and store them in a tuple. 
 Use a for loop to print each food the restaurant offers. 
 
-
 Try to modify one of the items, and make sure that Python rejects the 
 change. 
 
-
 The restaurant changes its menu, replacing two of the items with different 
-
 
 foods. Add a block of code that rewrites the tuple, and then use a for 
 
-
 loop to print each of the items on the revised menu. 
-
 
 Working with Lists 71 
 
-
 72 
-
 
 Styling Your Code 
 
-
 Chapter 4 
-
 
 Now that youre writing longer programs, ideas about how to style your code 
 are worthwhile to know. Take the time to make your code as easy as possible 
@@ -5794,9 +4756,7 @@ they follow the same guidelines. If you’re hoping to become a professional
 programmer at some point, you should begin following these guidelines as 
 soon as possible to develop good habits. 
 
-
 The Style Guide 
-
 
 When someone wants to make a change to the Python language, they write 
 a Python Enhancement Proposal (PEP). One of the oldest PEPs is PEP 8, which 
@@ -5815,9 +4775,7 @@ that’s easier to read, Python programmers will almost always encourage you
 to write code that’s easier to read. The following guidelines will help you 
 write clear code from the start. 
 
-
 Indentation 
-
 
 PEP 8 recommends that you use four spaces per indentation level. Using 
 four spaces improves readability while leaving room for multiple levels of 
@@ -5835,9 +4793,7 @@ Mixing tabs and spaces in your file can cause problems that are very
 difficult to diagnose. If you think you have a mix of tabs and spaces, you 
 can convert all tabs in a file to spaces in most editors. 
 
-
 Line Length 
-
 
 Many Python programmers recommend that each line should be less than 
 80 characters. Historically, this guideline developed because most com- 
@@ -5858,14 +4814,11 @@ ing collaboratively almost always follow the PEP 8 guidelines. Most editors
 allow you to set up a visual cue, usually a vertical line on your screen, that 
 shows you where these limits are. 
 
-
 Appendix B shows you how to configure your text editor so it always inserts four 
 spaces each time you press the TAB key and shows a vertical guideline to help you 
 follow the 79-character limit. 
 
-
 Blank Lines 
-
 
 To group parts of your program visually, use blank lines. You should use 
 blank lines to organize your files, but don’t do so excessively. By following 
@@ -5880,9 +4833,7 @@ readability of your code. The Python interpreter uses horizontal inden-
 tation to interpret the meaning of your code, but it disregards vertical 
 spacing. 
 
-
 Other Style Guidelines 
-
 
 PEP 8 has many additional styling recommendations, but most of the guide- 
 
@@ -5891,44 +4842,32 @@ lines refer to more complex programs than what you're writing at this point.
 As you learn more complex Python structures, I'll share the relevant parts of 
 the PEP 8 guidelines. 
 
-
 Working with Lists 73 
-
 
 74 
 
-
 TRY IT YOURSELF 
-
 
 4-14, PEP 8: Look through the original PEP 8 style guide at hitps://python.org/ 
 dev/peps/pep-0008/ You won't use much of it now, but it might be interesting 
 to skim through it. 
 
-
 4-15. Code Review: Choose three of the programs you've written in this chapter 
 and modify each one to comply with PEP 8: 
 
-
 e Use four spaces for each indentation level. Set your text editor to insert 
-
 
 four spaces every time you press TAB, if you haven't already done so (see 
 Appendix B for instructions on how to do this). 
 
-
 Use less than 80 characters on each line, and set your editor to show a 
 vertical guideline at the 80th character position. 
 
-
 Don't use blank lines excessively in your program files. 
-
 
 Summary 
 
-
 Chapter 4 
-
 
 In this chapter you learned how to work efficiently with the elements in a 
 list. You learned how to work through a list using a for loop, how Python 
@@ -5947,9 +4886,7 @@ of situation or information you’re looking for. You’ll also learn to use if
 statements while looping through a list to take specific actions with selected 
 elements from a list. 
 
-
 IF STATEMENTS 
-
 
 Programming often involves examining 
 
@@ -5962,7 +4899,6 @@ current state of a program and respond appropriately
 
 to that state. 
 
-
 In this chapter you’ll learn to write conditional tests, which allow you to 
 check any condition of interest. You’ll learn to write simple if statements, 
 and you'll learn how to create a more complex series of if statements to 
@@ -5971,15 +4907,11 @@ this concept to lists, so you'll be able to write a for loop that handles most
 items in a list one way but handles certain items with specific values in a 
 different way. 
 
-
 76 
-
 
 A Simple Example 
 
-
 cars.py 
-
 
 The following short example shows how if tests let you respond to special 
 situations correctly. Imagine you have a list of cars and you want to print 
@@ -5990,9 +4922,7 @@ be printed in all uppercase. The following code loops through a list of car
 names and looks for the value 'bmw'. Whenever the value is 'bmw', it’s printed 
 in uppercase instead of title case: 
 
-
 cars = ['audi', 'bmw', ‘subaru’, ‘toyota’ ] 
-
 
 for car in cars: 
 if car == 'bmw': 
@@ -6000,28 +4930,22 @@ print(car.upper())
 else: 
 print(car.title()) 
 
-
 The loop in this example first checks if the current value of car is 'bnw' ®. 
 If it is, the value is printed in uppercase. If the value of car is anything other 
 than 'bmw', it’s printed in title case: 
-
 
 Audi 
 BMW 
 Subaru 
 Toyota 
 
-
 This example combines a number of the concepts you'll learn about 
 in this chapter. Let’s begin by looking at the kinds of tests you can use to 
 examine the conditions in your program. 
 
-
 Conditional Tests 
 
-
 Chapter 5 
-
 
 At the heart of every if statement is an expression that can be evaluated as 
 True or False and is called a conditional test. Python uses the values True and 
@@ -6030,22 +4954,17 @@ conditional test evaluates to True, Python executes the code following the if
 statement. If the test evaluates to False, Python ignores the code following 
 the if statement. 
 
-
 Checking for Equality 
-
 
 Most conditional tests compare the current value of a variable to a specific 
 value of interest. The simplest conditional test checks whether the value of a 
 variable is equal to the value of interest: 
 
-
 >>> car = 'bmw' 
 >>> car == 'bmw' 
 True 
 
-
 eo 
-
 
 The line at ® sets the value of car to 'bmw' using a single equal sign, 
 as you've seen many times already. The line at @ checks whether the value 
@@ -6057,47 +4976,37 @@ returns True.
 When the value of car is anything other than 'bmw', this test returns 
 False: 
 
-
 >>> car = ‘audi’ 
 >>> car == ‘bmw' 
 False 
-
 
 A single equal sign is really a statement; you might read the code at @ 
 as “Set the value of car equal to 'audi'.” On the other hand, a double equal 
 sign, like the one at @, asks a question: “Is the value of car equal to 'bmw'?” 
 
-
 Most programming languages use equal signs in this way. 
-
 
 Ignoring Case When Checking for Equality 
 
-
 Testing for equality is case sensitive in Python. For example, two values with 
 different capitalization are not considered equal: 
-
 
 >>> car = 'Audi' 
 >>> car == ‘audi' 
 False 
 
-
 If case matters, this behavior is advantageous. But if case doesn’t matter 
 and instead you just want to test the value of a variable, you can convert the 
 variable’s value to lowercase before doing the comparison: 
-
 
 >>> car = ‘Audi’ 
 >>> car.lower() == ‘audi’ 
 True 
 
-
 This test would return True no matter how the value 'Audi' is formatted 
 because the test is now case insensitive. The lower() function doesn’t change 
 the value that was originally stored in car, so you can do this kind of com- 
 parison without affecting the original variable: 
-
 
 >>> car = ‘Audi' 
 
@@ -6108,25 +5017,18 @@ True
 
 "Audi' 
 
-
 At @ we store the capitalized string 'Audi' in the variable car. At @ 
 we convert the value of car to lowercase and compare the lowercase value 
 
-
 if Statements 77 
-
 
 78 
 
-
 toppings.py 
-
 
 Chapter 5 
 
-
 e 
-
 
 to the string ‘audi’. The two strings match, so Python returns True. At © 
 we can see that the value stored in car has not been affected by the condi- 
@@ -6141,9 +5043,7 @@ and compared to the lowercase versions of all existing usernames. During
 this check, a username like 'John' will be rejected if any variation of 'john' 
 is already in use. 
 
-
 Checking for Inequality 
-
 
 When you want to determine whether two values are not equal, you can 
 combine an exclamation point and an equal sign (!=). The exclamation 
@@ -6153,13 +5053,10 @@ Let’s use another if statement to examine how to use the inequality
 operator. We’ll store a requested pizza topping in a variable and then print 
 a message if the person did not order anchovies: 
 
-
 requested_topping = ‘mushrooms’ 
-
 
 if requested_topping != ‘anchovies’: 
 print("Hold the anchovies!") 
-
 
 The line at ® compares the value of requested_topping to the value 
 ‘anchovies'. If these two values do not match, Python returns True and exe- 
@@ -6169,55 +5066,41 @@ returns False and does not run the code following the if statement.
 Because the value of requested_topping is not ‘anchovies’, the print state- 
 ment is executed: 
 
-
 Hold the anchovies! 
-
 
 Most of the conditional expressions you write will test for equality, but 
 sometimes you'll find it more efficient to test for inequality. 
 
-
 Numerical Comparisons 
-
 
 Testing numerical values is pretty straightforward. For example, the follow- 
 ing code checks whether a person is 18 years old: 
-
 
 >>> age = 18 
 >>> age == 18 
 True 
 
-
 magic_ 
 number.py 
 
-
 e 
-
 
 You can also test to see if two numbers are not equal. For example, the 
 following code prints a message if the given answer is not correct: 
 
-
 answer = 17 
-
 
 if answer != 42: 
 print("That is not the correct answer. Please try again!") 
 
-
 The conditional test at ® passes, because the value of answer (17) is not 
 equal to 42. Because the test passes, the indented code block is executed: 
 
-
 That is not the correct answer. Please try again! 
-
 
 You can include various mathematical comparisons in your conditional 
 statements as well, such as less than, less than or equal to, greater than, and 
 greater than or equal to: 
-
 
 >>> age = 19 
 >>> age < 21 
@@ -6229,22 +5112,17 @@ False
 >>> age >= 21 
 False 
 
-
 Each mathematical comparison can be used as part of an if statement, 
 which can help you detect the exact conditions of interest. 
 
-
 Checking Multiple Conditions 
-
 
 You may want to check multiple conditions at the same time. For example, 
 sometimes you might need two conditions to be True to take an action. Other 
 times you might be satisfied with just one condition being True. The keywords 
 and and or can help you in these situations. 
 
-
 Using and to Check Multiple Conditions 
-
 
 To check whether two conditions are both True simultaneously, use the key- 
 word and to combine the two conditional tests; if each test passes, the over- 
@@ -6254,29 +5132,22 @@ expression evaluates to False.
 For example, you can check whether two people are both over 21 using 
 the following test: 
 
-
 >>> age_O = 22 
 >>> age_1 = 18 
 
 >>> age_O >= 21 and age_1 >= 21 
 False 
 
-
 if Statements 79 
-
 
 80 
 
-
 Chapter 5 
-
 
 © >>> age_1 = 22 
 
-
 >>> age_O >= 21 and age_1 >= 21 
 True 
-
 
 At @ we define two ages, age_0 and age_1. At @ we check whether both 
 ages are 21 or older. The test on the left passes, but the test on the right fails, 
@@ -6288,12 +5159,9 @@ To improve readability, you can use parentheses around the individual
 tests, but they are not required. If you use parentheses, your test would look 
 like this: 
 
-
 (age_O >= 21) and (age 1 >= 21) 
 
-
 Using or to Check Multiple Conditions 
-
 
 The keyword or allows you to check multiple conditions as well, but it 
 passes when either or both of the individual tests pass. An or expression 
@@ -6301,7 +5169,6 @@ fails only when both individual tests fail.
 
 Let’s consider two ages again, but this time we’ll look for only one per- 
 son to be over 21: 
-
 
 >>> age_O = 22 
 >>> age_1 = 18 
@@ -6314,14 +5181,11 @@ True
 >>> age_O >= 21 or age 1 >= 21 
 False 
 
-
 We start with two age variables again at @. Because the test for age_o at @ 
 passes, the overall expression evaluates to True. We then lower age_0 to 18. In 
 the test at ®, both tests now fail and the overall expression evaluates to False. 
 
-
 Checking Whether a Valve Is in a List 
-
 
 Sometimes it’s important to check whether a list contains a certain value 
 before taking an action. For example, you might want to check whether a 
@@ -6335,22 +5199,17 @@ word in. Let’s consider some code you might write for a pizzeria. We’ll
 make a list of toppings a customer has requested for a pizza and then 
 check whether certain toppings are in the list. 
 
-
 banned_ 
 users. py 
 
-
 e 
 
-
 >>> requested_toppings = ['mushrooms', ‘onions', ‘pineapple’ ] 
-
 
 >>> ‘'mushrooms' in requested_toppings 
 True 
 >>> ‘pepperoni’ in requested_toppings 
 False 
-
 
 At @ and @, the keyword in tells Python to check for the existence of 
 ‘mushrooms’ and ‘pepperoni’ in the list requested_toppings. This technique is 
@@ -6358,23 +5217,18 @@ quite powerful because you can create a list of essential values, and then
 easily check whether the value you're testing matches one of the values in 
 the list. 
 
-
 Checking Whether a Value Is Not in a List 
-
 
 Other times, it’s important to know if a value does not appear in a list. You 
 can use the keyword not in this situation. For example, consider a list of users 
 who are banned from commenting in a forum. You can check whether a 
 user has been banned before allowing that person to submit a comment: 
 
-
 banned_users = ['andrew', ‘carolina’, 'david'] 
 user = ‘marie’ 
 
-
 if user not in banned_users: 
 print(user.title() + ", you can post a response if you wish.") 
-
 
 The line at @ reads quite clearly. If the value of user is not in the list 
 banned_users, Python returns True and executes the indented line. 
@@ -6382,12 +5236,9 @@ banned_users, Python returns True and executes the indented line.
 The user ‘marie’ is not in the list banned_users, so she sees a message 
 inviting her to post a response: 
 
-
 Marie, you can post a response if you wish. 
 
-
 Boolean Expressions 
-
 
 As you learn more about programming, you'll hear the term Boolean 
 expression at some point. A Boolean expression is just another name for a 
@@ -6398,42 +5249,32 @@ Boolean values are often used to keep track of certain conditions, such
 as whether a game is running or whether a user can edit certain content on 
 a website: 
 
-
 game_active = True 
 can_edit = False 
-
 
 Boolean values provide an efficient way to track the state of a program 
 or a particular condition that is important in your program. 
 
-
 if Statements 81 
 
-
 TRY IT YOURSELF 
-
 
 5-1. Conditional Tests: Write a series of conditional tests. Print a statement 
 describing each test and your prediction for the results of each test. Your code 
 should look something like this: 
 
-
 car = ‘subaru’ 
 print("Is car == ‘subaru’? I predict True.") 
 print(car == '‘subaru') 
 
-
 print("\nIs car == ‘audi'? I predict False.") 
 print(car == ‘audi') 
 
-
 Look closely at your results, and make sure you understand why each line 
-
 
 evaluates to True or False. 
 Create at least 10 tests. Have at least 5 tests evaluate to True and another 
 5 tests evaluate to False. 
-
 
 5-2. More Conditional Tests: You don’t have to limit the number of tests you 
 create to 10. If you want to try more comparisons, write more tests and add 
@@ -6444,20 +5285,15 @@ Tests for equality and inequality with strings
 
 Tests using the lower() function 
 
-
 Numerical tests involving equality and inequality, greater than and 
 less than, greater than or equal to, and less than or equal to 
-
 
 Tests using the and keyword and the or keyword 
 Test whether an item is in a list 
 
-
 Test whether an item is not in a list 
 
-
 if Statements 
-
 
 When you understand conditional tests, you can start writing if statements. 
 Several different kinds of if statements exist, and your choice of which to 
@@ -6465,22 +5301,16 @@ use depends on the number of conditions you need to test. You saw several
 examples of if statements in the discussion about conditional tests, but now 
 let’s dig deeper into the topic. 
 
-
 Simple if Statements 
 
-
 The simplest kind of if statement has one test and one action: 
-
 
 if conditional_test: 
 do something 
 
-
 82 Chapter 5 
 
-
 voting. py 
-
 
 You can put any conditional test in the first line and just about any 
 action in the indented block following the test. If the conditional test 
@@ -6493,25 +5323,18 @@ Let’s say we have a variable representing a person’s age, and we want to
 know if that person is old enough to vote. The following code tests whether 
 the person can vote: 
 
-
 age = 19 
-
 
 @ if age >= 18: 
 
-
 (2) 
 
-
 print("You are old enough to vote!") 
-
 
 At @ Python checks to see whether the value in age is greater than or 
 equal to 18. It is, so Python executes the indented print statement at @: 
 
-
 You are old enough to vote! 
-
 
 Indentation plays the same role in if statements as it did in for loops. 
 All indented lines after an if statement will be executed if the test passes, 
@@ -6522,24 +5345,18 @@ You can have as many lines of code as you want in the block follow-
 ing the if statement. Let’s add another line of output if the person is old 
 enough to vote, asking if the individual has registered to vote yet: 
 
-
 print("Have you registered to vote yet?") 
-
 
 The conditional test passes, and both print statements are indented, so 
 both lines are printed: 
 
-
 You are old enough to vote! 
 Have you registered to vote yet? 
-
 
 If the value of age is less than 18, this program would produce no 
 output. 
 
-
 if-else Statements 
-
 
 Often, you’ll want to take one action when a conditional test passes and a dif 
 ferent action in all other cases. Python’s if-else syntax makes this possible. 
@@ -6547,42 +5364,32 @@ An if-else block is similar to a simple if statement, but the else statement
 allows you to define an action or set of actions that are executed when the 
 conditional test fails. 
 
-
 if Statements 83 
 
-
 84 
-
 
 amusement_ 
 park.py 
 
-
 Chapter 5 
-
 
 We'll display the same message we had previously if the person is old 
 enough to vote, but this time we’ll add a message for anyone who is not 
 old enough to vote: 
 
-
 age = 17 
-
 
 else: 
 print("Sorry, you are too young to vote.") 
 print("Please register to vote as soon as you turn 18!") 
-
 
 If the conditional test at @ passes, the first block of indented print 
 statements is executed. If the test evaluates to False, the else block at @ is 
 executed. Because age is less than 18 this time, the conditional test fails and 
 the code in the else block is executed: 
 
-
 Sorry, you are too young to vote. 
 Please register to vote as soon as you turn 18! 
-
 
 This code works because it has only two possible situations to evaluate: 
 a person is either old enough to vote or not old enough to vote. The if-else 
@@ -6590,9 +5397,7 @@ structure works well in situations in which you want Python to always execute
 one of two possible actions. In a simple if-else chain like this, one of the two 
 actions will always be executed. 
 
-
 The if-elif-else Chain 
-
 
 Often, you’ll need to test more than two possible situations, and to evaluate 
 these you can use Python’s if-elif-else syntax. Python executes only one 
@@ -6604,42 +5409,30 @@ Many real-world situations involve more than two possible conditions.
 For example, consider an amusement park that charges different rates for 
 different age groups: 
 
-
 e Admission for anyone under age 4 is free. 
 e Admission for anyone between the ages of 4 and 18 is $5. 
 
-
 e Admission for anyone age 18 or older is $10. 
-
 
 How can we use an if statement to determine a person’s admission rate? 
 The following code tests for the age group of a person and then prints an 
 admission price message: 
 
-
 age = 12 
-
 
 @ if age < 4: 
 
-
 print("Your admission cost is $0.") 
-
 
 @ elif age < 18: 
 
-
 print("Your admission cost is $5.") 
-
 
 ® else: 
 
-
 o 8© 8 °° 
 
-
 print("Your admission cost is $10.") 
-
 
 The if test at @ tests whether a person is under 4 years old. If the test 
 passes, an appropriate message is printed and Python skips the rest of the 
@@ -6654,9 +5447,7 @@ executed. However, the second test evaluates to True (12 is less than 18) so
 its code is executed. The output is one sentence, informing the user of the 
 admission cost: 
 
-
 Your admission cost is $5. 
-
 
 Any age greater than 17 would cause the first two tests to fail. In these 
 situations, the else block would be executed and the admission price would 
@@ -6667,14 +5458,11 @@ it would be more concise to set just the price inside the if-elif-else chain
 and then have a simple print statement that runs after the chain has been 
 evaluated: 
 
-
 price = 0 
 price = 5 
 price = 10 
 
-
 print("Your admission cost is $" + str(price) + ".") 
-
 
 The lines at @, @, and © set the value of price according to the person’s 
 age, as in the previous example. After the price is set by the if-elif-else chain, 
@@ -6689,12 +5477,9 @@ than the original approach. To change the text of the output message, you
 would need to change only one print statement rather than three separate 
 print statements. 
 
-
 if Statements 85 
 
-
 Using Multiple elif Blocks 
-
 
 You can use as many elif blocks in your code as you like. For example, if the 
 amusement park were to implement a discount for seniors, you could add 
@@ -6702,12 +5487,10 @@ one more conditional test to the code to determine whether someone quali-
 fied for the senior discount. Let’s say that anyone 65 or older pays half the 
 regular admission, or $5: 
 
-
 @ elif age < 65: 
 price = 10 
 @ else: 
 price = 5 
-
 
 Most of this code is unchanged. The second elif block at ® now checks 
 to make sure a person is less than age 65 before assigning them the full 
@@ -6715,31 +5498,23 @@ admission rate of $10. Notice that the value assigned in the else block at @
 needs to be changed to $5, because the only ages that make it to this block 
 are people 65 or older. 
 
-
 Omitting the else Block 
-
 
 Python does not require an else block at the end of an if-elif chain. Some- 
 times an else block is useful; sometimes it is clearer to use an additional 
 elif statement that catches the specific condition of interest: 
 
-
 @ elif age >= 65: 
-
 
 The extra elif block at @ assigns a price of $5 when the person is 65 or 
 older, which is a bit clearer than the general else block. With this change, 
 every block of code must pass a specific test in order to be executed. 
 
-
 86 Chapter 5 
-
 
 toppings.py 
 
-
 o 86 8 6 
-
 
 The else block is a catchall statement. It matches any condition that 
 wasn’t matched by a specific if or elif test, and that can sometimes include 
@@ -6748,9 +5523,7 @@ testing for, consider using a final elif block and omit the else block. As a
 result, you'll gain extra confidence that your code will run only under the 
 correct conditions. 
 
-
 Testing Multiple Conditions 
-
 
 The if-elif-else chain is powerful, but it’s only appropriate to use when you 
 just need one test to pass. As soon as Python finds one test that passes, it 
@@ -6765,9 +5538,7 @@ tion could be True, and you want to act on every condition that is True.
 Let’s reconsider the pizzeria example. If someone requests a two-topping 
 pizza, you'll need to be sure to include both toppings on their pizza: 
 
-
 requested toppings = ['mushrooms', ‘extra cheese’ ] 
-
 
 if 'mushrooms' in requested_toppings: 
 print("Adding mushrooms.") 
@@ -6778,9 +5549,7 @@ print("Adding pepperoni.")
 if ‘extra cheese' in requested_toppings: 
 print("Adding extra cheese.") 
 
-
 print("\nFinished making your pizza!") 
-
 
 We start at @ with a list containing the requested toppings. The if 
 statement at @ checks to see whether the person requested mushrooms 
@@ -6794,33 +5563,24 @@ are executed every time this program is run.
 Because every condition in this example is evaluated, both mushrooms 
 and extra cheese are added to the pizza: 
 
-
 Adding mushrooms. 
 Adding extra cheese. 
 
-
 Finished making your pizza! 
-
 
 if Statements 87 
 
-
 88 
 
-
 Chapter 5 
-
 
 This code would not work properly if we used an if-elif-else block, 
 because the code would stop running after only one test passes. Here’s what 
 that would look like: 
 
-
 elif ‘pepperoni’ in requested toppings: 
 
-
 elif ‘extra cheese’ in requested_toppings: 
-
 
 The test for 'mushrooms' is the first test to pass, so mushrooms are added 
 to the pizza. However, the values 'extra cheese’ and ‘pepperoni’ are never 
@@ -6828,48 +5588,36 @@ checked, because Python doesn’t run any tests beyond the first test that
 passes in an if-elif-else chain. The customer’s first topping will be added, 
 but all of their other toppings will be missed: 
 
-
 Adding mushrooms. 
 
-
 Finished making your pizza! 
-
 
 In summary, if you want only one block of code to run, use an if-elif- 
 else chain. If more than one block of code needs to run, use a series of 
 independent if statements. 
 
-
 TRY IT YOURSELF 
-
 
 5-3. Alien Colors #1: Imagine an alien was just shot down in a game. Create a 
 variable called alien_color and assign it a value of 'green', 'yellow', or 'red'. 
 
-
 e Write an if statement to test whether the alien’s color is green. If it is, print 
 a message that the player just earned 5 points. 
-
 
 Write one version of this program that passes the if test and another that 
 fails. (The version that fails will have no output.) 
 
-
 5-4. Alien Colors #2: Choose a color for an alien as you did in Exercise 5-3, and 
-
 
 write an if-else chain. 
 e If the alien’s color is green, print a statement that the player just earned 
 5 points for shooting the alien. 
 
-
 If the alien’s color isn’t green, print a statement that the player just earned 
 10 points. 
 
-
 Write one version of this program that runs the if block and another that 
 runs the else block. 
-
 
 5-5. Alien Colors #3: Turn your if-else chain from Exercise 5-4 into an if-elif- 
 else chain. 
@@ -6882,54 +5630,40 @@ If the alien is red, print a message that the player earned 15 points.
 
 Write three versions of this program, making sure each message is printed 
 
-
 for the appropriate color alien. 
-
 
 5-6. Stages of Life: Write an if-elif-else chain that determines a person’s 
 stage of life. Set a value for the variable age, and then: 
 
-
 e If the person is less than 2 years old, print a message that the person is 
 a baby. 
-
 
 If the person is at least 2 years old but less than 4, print a message that 
 the person is a toddler. 
 
-
 If the person is at least 4 years old but less than 13, print a message that 
 the person is a kid. 
-
 
 If the person is at least 13 years old but less than 20, print a message that 
 the person is a teenager. 
 
-
 If the person is at least 20 years old but less than 65, print a message that 
 the person is an adult. 
 
-
 If the person is age 65 or older, print a message that the person is an 
 
-
 elder. 
-
 
 5-7. Favorite Fruit: Make a list of your favorite fruits, and then write a series of 
 independent if statements that check for certain fruits in your list. 
 
-
 e¢ ~=Make a list of your three favorite fruits and call it favorite fruits. 
-
 
 e Write five if statements. Each should check whether a certain kind of fruit 
 is in your list. If the fruit is in your list, the if block should print a statement, 
 such as You really like bananas! 
 
-
 Using if Statements with Lists 
-
 
 You can do some interesting work when you combine lists and if state- 
 ments. You can watch for special values that need to be treated differently 
@@ -6938,21 +5672,15 @@ ciently, such as the availability of certain items in a restaurant throughout a
 shift. You can also begin to prove that your code works as you expect it to in 
 all possible situations. 
 
-
 if Statements 89 
-
 
 90 
 
-
 toppings.py 
-
 
 Chapter 5 
 
-
 Checking for Special Items 
-
 
 This chapter began with a simple example that showed how to handle a spe- 
 cial value like 'bmw', which needed to be printed in a different format than 
@@ -6966,36 +5694,27 @@ this action can be written very efficiently by making a list of toppings the
 customer has requested and using a loop to announce each topping as it’s 
 added to the pizza: 
 
-
 requested toppings = ['mushrooms', ‘green peppers’, ‘extra cheese’ ] 
-
 
 for requested topping in requested_toppings: 
 print("Adding " + requested topping + ".") 
 
-
 print("\nFinished making your pizza!") 
 
-
 The output is straightforward because this code is just a simple for loop: 
-
 
 Adding mushrooms. 
 Adding green peppers. 
 Adding extra cheese. 
 
-
 Finished making your pizza! 
-
 
 But what if the pizzeria runs out of green peppers? An if statement 
 inside the for loop can handle this situation appropriately: 
 
-
 if requested_topping == ‘green peppers’: 
 print("Sorry, we are out of green peppers right now.") 
 else: 
-
 
 This time we check each requested item before adding it to the pizza. 
 The code at ® checks to see if the person requested green peppers. If so, 
@@ -7003,20 +5722,15 @@ we display a message informing them why they can’t have green peppers.
 The else block at @ ensures that all other toppings will be added to the 
 pizza. 
 
-
 The output shows that each requested topping is handled appropriately. 
-
 
 Adding mushrooms. 
 Sorry, we are out of green peppers right now. 
 Adding extra cheese. 
 
-
 Finished making your pizza! 
 
-
 Checking That a List Is Not Empty 
-
 
 We’ve made a simple assumption about every list we’ve worked with so far; 
 we’ve assumed that each list has at least one item in it. Soon we'll let users 
@@ -7029,16 +5743,12 @@ empty before building the pizza. If the list is empty, we’ll prompt the user
 and make sure they want a plain pizza. If the list is not empty, we’ ll build 
 the pizza just as we did in the previous examples: 
 
-
 requested_toppings = [] 
-
 
 if requested_toppings: 
 
-
 else: 
 print("Are you sure you want a plain pizza?") 
-
 
 This time we start out with an empty list of requested toppings at @. 
 Instead of jumping right into a for loop, we do a quick check at @. When the 
@@ -7051,28 +5761,20 @@ if they really want a plain pizza with no toppings ®.
 The list is empty in this case, so the output asks if the user really wants 
 a plain pizza: 
 
-
 Are you sure you want a plain pizza? 
-
 
 If the list is not empty, the output will show each requested topping 
 being added to the pizza. 
 
-
 if Statements 91 
-
 
 92 
 
-
 Chapter 5 
-
 
 o oo ® 
 
-
 Using Multiple Lists 
-
 
 People will ask for just about anything, especially when it comes to pizza 
 toppings. What if a customer actually wants french fries on their pizza? You 
@@ -7085,13 +5787,10 @@ pings at the pizzeria, and the second is the list of toppings that the user has
 requested. This time, each item in requested_toppings is checked against the 
 list of available toppings before it’s added to the pizza: 
 
-
 available toppings = ['mushrooms', ‘olives', ‘green peppers’, 
 ‘pepperoni’, ‘pineapple’, ‘extra cheese’ ] 
 
-
 requested toppings = ['mushrooms', ‘french fries', ‘extra cheese’ ] 
-
 
 for requested topping in requested_toppings: 
 if requested_topping in available toppings: 
@@ -7099,12 +5798,9 @@ print("Adding " + requested_topping + ".")
 else: 
 print("Sorry, we don't have 
 
-
 + requested topping + ".") 
 
-
 print("\nFinished making your pizza!") 
-
 
 At © we define a list of available toppings at this pizzeria. Note that 
 this could be a tuple if the pizzeria has a stable selection of toppings. At @, 
@@ -7118,29 +5814,22 @@ are unavailable.
 
 This code syntax produces clean, informative output: 
 
-
 Adding mushrooms. 
 Sorry, we don't have french fries. 
 Adding extra cheese. 
 
-
 Finished making your pizza! 
-
 
 In just a few lines of code, we’ve managed a real-world situation pretty 
 effectively! 
 
-
 TRY IT YOURSELF 
-
 
 5-8. Hello Admin: Make a list of five or more usernames, including the name 
 ‘admin’. Imagine you are writing code that will print a greeting to each user 
 
-
 after they log in to a website. Loop through the list, and print a greeting to 
 each user: 
-
 
 e If the username is 'admin', print a special greeting, such as Hello admin, 
 would you like to see a status report? 
@@ -7155,18 +5844,14 @@ e If the list is empty, print the message We need to find some users!
 
 ¢ Remove all of the usernames from your list, and make sure the correct 
 
-
 message is printed. 
-
 
 5-10. Checking Usernames: Do the following to create a program that simulates 
 how websites ensure that everyone has a unique username. 
 Make a list of five or more usernames called current_users. 
 
-
 Make another list of five usernames called new_users. Make sure one or 
 two of the new usernames are also in the current_users list. 
-
 
 Loop through the new_users list to see if each new username has already 
 been used. If it has, print a message that the person will need to enter a 
@@ -7174,10 +5859,8 @@ been used. If it has, print a message that the person will need to enter a
 new username. If a username has not been used, print a message saying 
 that the username is available. 
 
-
 Make sure your comparison is case insensitive. If 'John' has been used, 
 ‘JOHN' should not be accepted. 
-
 
 5-11. Ordinal Numbers: Ordinal numbers indicate their position in a list, such 
 as Istor 2nd. Most ordinal numbers end in th, except 1, 2, and 3. 
@@ -7186,65 +5869,48 @@ Store the numbers 1 through 9 in a list.
 
 Loop through the list. 
 
-
 Use an if-elif-else chain inside the loop to print the proper ordinal end- 
 ing for each number. Your output should read "1st 2nd 3rd 4th 5th 6th 
 7th 8th 9th", and each result should be on a separate line. 
 
-
 if Statements 
-
 
 93 
 
-
 94 
 
-
 Styling Your if Statements 
-
 
 In every example in this chapter, you’ve seen good styling habits. The only 
 recommendation PEP 8 provides for styling conditional tests is to use a 
 single space around comparison operators, such as ==, >=, <=. For example: 
 
-
 if age < 4: 
-
 
 is better than: 
 
-
 if age<4: 
-
 
 Such spacing does not affect the way Python interprets your code; it just 
 makes your code easier for you and others to read. 
-
 
 TRY IT YOURSELF 
 5-12. Styling if statements: Review the programs you wrote in this chapter, and 
 make sure you styled your conditional tests appropriately. 
 
-
 5-13. Your Ideas: At this point, you’re a more capable programmer than you 
 were when you started this book. Now that you have a better sense of how 
 
-
 real-world situations are modeled in programs, you might be thinking of some 
-
 
 problems you could solve with your own programs. Record any new ideas you 
 have about problems you might want to solve as your programming skills con- 
 tinue to improve. Consider games you might want to write, data sets you might 
 want to explore, and web applications you'd like to create. 
 
-
 Summary 
 
-
 Chapter 5 
-
 
 In this chapter you learned how to write conditional tests, which always 
 evaluate to True or False. You learned to write simple if statements, if-else 
@@ -7262,12 +5928,9 @@ learn to build dictionaries, loop through them, and use them in combina-
 tion with lists and if statements. Learning about dictionaries will enable 
 you to model an even wider variety of real-world situations. 
 
-
 DICTIONARIES 
 
-
 In this chapter you'll learn how to use 
-
 
 Python’s dictionaries, which allow you to 
 
@@ -7277,7 +5940,6 @@ learn how to access the information once it’s
 in a dictionary and how to modify that information. 
 
 Because dictionaries can store an almost limitless 
-
 
 amount of information, I'll show you how to loop through the data in a 
 dictionary. Additionally, you'll learn to nest dictionaries inside lists, lists 
@@ -7292,45 +5954,33 @@ tion that can be matched up, such as a list of words and their meanings, a
 list of people’s names and their favorite numbers, a list of mountains and 
 their elevations, and so forth. 
 
-
 96 
-
 
 A Simple Dictionary 
 
-
 alien.py 
-
 
 Consider a game featuring aliens that can have different colors and point 
 values. This simple dictionary stores information about a particular alien: 
 
-
 alien_o = {'color': 'green', ‘points’: 5} 
-
 
 print(alien_o['color']) 
 print(alien_o['points']) 
 
-
 The dictionary alien_0o stores the alien’s color and point value. The two 
 print statements access and display that information, as shown here: 
 
-
 green 
 5 
-
 
 As with most new programming concepts, using dictionaries takes 
 practice. Once you’ve worked with dictionaries for a bit you’ll soon see how 
 effectively they can model real-world situations. 
 
-
 Working with Dictionaries 
 
-
 Chapter 6 
-
 
 A dictionary in Python is a collection of key-value pairs. Each key is connected 
 to a value, and you can use a key to access the value associated with that key. 
@@ -7341,9 +5991,7 @@ dictionary.
 In Python, a dictionary is wrapped in braces, {}, with a series of key- 
 value pairs inside the braces, as shown in the earlier example: 
 
-
 alien_O = {'color': 'green', ‘points’: 5} 
-
 
 A key-value pair is a set of values associated with each other. When you 
 provide a key, Python returns the value associated with that key. Every key 
@@ -7354,53 +6002,39 @@ dictionary.
 The simplest dictionary has exactly one key-value pair, as shown in this 
 modified version of the alien_o dictionary: 
 
-
 alien_o = {'color': 'green'} 
-
 
 This dictionary stores one piece of information about alien_o, namely 
 the alien’s color. The string ‘color’ is a key in this dictionary, and its associ- 
 ated value is ‘green’. 
 
-
 ©o 
 
-
 Accessing Values in a Dictionary 
-
 
 To get the value associated with a key, give the name of the dictionary and 
 then place the key inside a set of square brackets, as shown here: 
 
-
 print(alien_o['color' 1) 
-
 
 This returns the value associated with the key 'color' from the diction- 
 ary alien_o: 
 
-
 green 
-
 
 You can have an unlimited number of key-value pairs in a dictionary. 
 For example, here’s the original alien_o dictionary with two key-value pairs: 
 
-
 alien_o = {‘color': ‘green’, 'points': 5} 
-
 
 Now you can access either the color or the point value of alien_o. Ifa 
 player shoots down this alien, you can look up how many points they should 
 earn using code like this: 
 
-
 new_points = alien_0['points'] 
 print("You just earned " + str(new_points) + 
 
-
 " points!") 
-
 
 Once the dictionary has been defined, the code at @ pulls the value 
 associated with the key 'points' from the dictionary. This value is then 
@@ -7408,16 +6042,12 @@ stored in the variable new_points. The line at @ converts this integer value
 to a string and prints a statement about how many points the player just 
 earned: 
 
-
 You just earned 5 points! 
-
 
 If you run this code every time an alien is shot down, the alien’s point 
 value will be retrieved. 
 
-
 Adding New Key-Value Pairs 
-
 
 Dictionaries are dynamic structures, and you can add new key-value pairs 
 to a dictionary at any time. For example, to add a new key-value pair, you 
@@ -7430,39 +6060,29 @@ ticular position on the screen. Let’s place the alien on the left edge of the
 screen, 25 pixels down from the top. Because screen coordinates usually 
 start at the upper-left corner of the screen, we’ll place the alien on the left 
 
-
 Dictionaries 97 
-
 
 98 
 
-
 Chapter 6 
 
-
 ®o 
-
 
 edge of the screen by setting the x-coordinate to 0 and 25 pixels from the 
 top by setting its y-coordinate to positive 25, as shown here: 
 
-
 print(alien_0) 
-
 
 iT] 
 jo} 
-
 
 alien_o['x_position' ] 
 alien_o['y_position' ] 
 print (alien_0) 
 
-
 iT] 
 N 
 wm 
-
 
 We start by defining the same dictionary that we’ve been working 
 with. We then print this dictionary, displaying a snapshot of its informa- 
@@ -7470,10 +6090,8 @@ tion. At ® we add a new key-value pair to the dictionary: key 'x_position'
 and value 0. We do the same for key 'y_position' at @. When we print the 
 modified dictionary, we see the two additional key-value pairs: 
 
-
 {'color': ‘green’, 'points': 5} 
 {'color': 'green', ‘points’: 5, 'y_position': 25, 'x_position': 0} 
-
 
 The final version of the dictionary contains four key-value pairs. The 
 original two specify color and point value, and two more specify the alien’s 
@@ -7482,9 +6100,7 @@ order in which we added them. Python doesn’t care about the order in
 which you store each key-value pair; it cares only about the connection 
 between each key and its value. 
 
-
 Starting with an Empty Dictionary 
-
 
 It’s sometimes convenient, or even necessary, to start with an empty diction- 
 ary and then add each new item to it. To start filling an empty dictionary, 
@@ -7492,70 +6108,54 @@ define a dictionary with an empty set of braces and then add each key-value
 pair on its own line. For example, here’s how to build the alien_o dictionary 
 using this approach: 
 
-
 alien_o = {} 
-
 
 alien_o['color'] = 'green' 
 alien_O['points'] = 5 
 
-
 print (alien_0) 
-
 
 Here we define an empty alien_o dictionary, and then add color and 
 point values to it. The result is the dictionary we’ve been using in previous 
 examples: 
 
-
 {'color': 'green', 'points': 5 
 & P 
-
 
 Typically, you’ ll use empty dictionaries when storing user-supplied data 
 in a dictionary or when you write code that generates a large number of 
 key-value pairs automatically. 
 
-
 Modifying Values in a Dictionary 
-
 
 To modify a value in a dictionary, give the name of the dictionary with the 
 key in square brackets and then the new value you want associated with 
 that key. For example, consider an alien that changes from green to yellow 
 as a game progresses: 
 
-
 alien_o = {'color': 'green'} 
 print("The alien is " + alien o['color'] + ".") 
 
-
 alien_o['color'] = ‘yellow’ 
 print("The alien is now " + alien o['color'] + ".") 
-
 
 We first define a dictionary for alien_o that contains only the alien’s 
 color; then we change the value associated with the key 'color' to ‘yellow’. 
 The output shows that the alien has indeed changed from green to yellow: 
 
-
 The alien is green. 
 The alien is now yellow. 
-
 
 For a more interesting example, let’s track the position of an alien that 
 can move at different speeds. We’ll store a value representing the alien’s 
 current speed and then use it to determine how far to the right the alien 
 should move: 
 
-
 alien_o = {'x_position': 0, 'y position’: 25, ‘speed’: 'medium'} 
 print("Original x-position: " + str(alien_O0['x_position'])) 
 
-
 # Move the alien to the right. 
 # Determine how far to move the alien based on its current speed. 
-
 
 @ if alien_o['speed'] == 'slow': 
 x_increment = 1 
@@ -7563,17 +6163,13 @@ elif alien_o['speed'] == 'medium':
 x_increment = 2 
 else: 
 
-
 # This must be a fast alien. 
 x_increment = 3 
-
 
 # The new position is the old position plus the increment. 
 ® alien_o['x_position'] = alien_o['x_position'] + x_increment 
 
-
 print("New x-position: " + str(alien_o['x_position'])) 
-
 
 We start by defining an alien with an initial x position and y position, 
 and a speed of 'medium'. We’ve omitted the color and point values for the 
@@ -7585,15 +6181,11 @@ At 0, an if-elif-else chain determines how far the alien should move to
 the right and stores this value in the variable x_increment. If the alien’s speed 
 is 'slow', it moves one unit to the right; if the speed is 'medium', it moves two 
 
-
 Dictionaries 99 
-
 
 100 
 
-
 Chapter 6 
-
 
 units to the right; and if it’s 'fast', it moves three units to the right. Once 
 the increment has been calculated, it’s added to the value of x_position at @, 
@@ -7602,25 +6194,19 @@ and the result is stored in the dictionary’s x_position.
 Because this is a medium-speed alien, its position shifts two units to the 
 right: 
 
-
 Original x-position: 0 
 New x-position: 2 
-
 
 This technique is pretty cool: by changing one value in the alien’s dic- 
 tionary, you can change the overall behavior of the alien. For example, to 
 turn this medium-speed alien into a fast alien, you would add the line: 
 
-
 alien_o['speed'] = fast 
-
 
 The if-elif-else block would then assign a larger value to x_increment 
 the next time the code runs. 
 
-
 Removing Key-Value Pairs 
-
 
 When you no longer need a piece of information that’s stored in a diction- 
 ary, you can use the del statement to completely remove a key-value pair. 
@@ -7630,53 +6216,41 @@ remove.
 For example, let’s remove the key 'points' from the alien_o dictionary 
 along with its value: 
 
-
 alien_o = {'color': 'green', ‘points’: 5} 
 print(alien_0) 
 
-
 del alien _o['points'] 
 print(alien_0) 
-
 
 The line at ® tells Python to delete the key 'points' from the dictionary 
 alien_O and to remove the value associated with that key as well. The output 
 shows that the key 'points' and its value of 5 are deleted from the diction- 
 ary, but the rest of the dictionary is unaffected: 
 
-
 {'color': ‘green’, 'points': 5} 
 {'color': 'green'} 
 
-
 Be aware that the deleted key-value pair is removed permanenily. 
 
-
 A Dictionary of Similar Objects 
-
 
 The previous example involved storing different kinds of information about 
 one object, an alien in a game. You can also use a dictionary to store one 
 kind of information about many objects. For example, say you want to poll a 
 
-
 favorite_ 
 languages.py 
 
-
 eee 
-
 
 number of people and ask them what their favorite programming language 
 is. A dictionary is useful for storing the results of a simple poll, like this: 
-
 
 favorite_languages = { 
 ‘jen’: 'python', 
 "sarah': 'c', 
 ‘edward’: ‘ruby’, 
 ‘phil’: 'python', 
-
 
 As you can see, we’ve broken a larger dictionary into several lines. Each 
 key is the name of a person who responded to the poll, and each value is their 
@@ -7693,42 +6267,31 @@ the keys in the dictionary. It’s good practice to include a comma after the
 last key-value pair as well, so you’re ready to add a new key-value pair on the 
 next line. 
 
-
 Most editors have some functionality that helps you format extended lists and dic- 
 tionaries in a similar manner to this example. Other acceptable ways to format long 
 dictionaries are available as well, so you may see slightly different formatting in your 
 editor, or in other sources. 
 
-
 To use this dictionary, given the name of a person who took the poll, 
 you can easily look up their favorite language: 
-
 
 print("Sarah's favorite language is " + 
 favorite_languages['sarah'].title() + 
 
-
 wy 
-
 
 To see which language Sarah chose, we ask for the value at: 
 
-
 favorite_languages['sarah' ] 
-
 
 This syntax is used in the print statement at @, and the output shows 
 Sarah’s favorite language: 
 
-
 Sarah's favorite language is C. 
-
 
 Dictionaries 101 
 
-
 102 
-
 
 This example also shows how you can break up a long print statement 
 over several lines. The word print is shorter than most dictionary names, so 
@@ -7740,15 +6303,12 @@ at one indentation level under the print statement. When you've finished
 composing your output, you can place the closing parenthesis on the last 
 line of the print block ®. 
 
-
 TRY IT YOURSELF 
-
 
 6-1. Person: Use a dictionary to store information about a person you know. 
 Store their first name, last name, age, and the city in which they live. You 
 should have keys such as first_name, last_name, age, and city. Print each 
 piece of information stored in your dictionary. 
-
 
 6-2. Favorite Numbers: Use a dictionary to store people’s favorite numbers. 
 Think of five names, and use them as keys in your dictionary. Think of a favorite 
@@ -7756,17 +6316,13 @@ number for each person, and store each as a value in your dictionary. Print
 each person’s name and their favorite number. For even more fun, poll a few 
 friends and get some actual data for your program. 
 
-
 6-3. Glossary: A Python dictionary can be used to model an actual dictionary. 
 However, to avoid confusion, let's call it a glossary. 
 
-
 e Think of five programming words you've learned about in the previous 
-
 
 chapters. Use these words as the keys in your glossary, and store their 
 meanings as values. 
-
 
 Print each word and its meaning as neatly formatted output. You might 
 print the word followed by a colon and then its meaning, or print the word 
@@ -7774,12 +6330,9 @@ on one line and then print its meaning indented on a second line. Use the
 newline character (\n) to insert a blank line between each word-meaning 
 pair in your output. 
 
-
 Looping Through a Dictionary 
 
-
 Chapter 6 
-
 
 A single Python dictionary can contain just a few key-value pairs or millions 
 of pairs. Because a dictionary can contain large amounts of data, Python lets 
@@ -7788,50 +6341,39 @@ in a variety of ways; therefore, several different ways exist to loop through
 them. You can loop through all of a dictionary’s key-value pairs, through its 
 keys, or through its values. 
 
-
 user. py 
-
 
 eoso 
 
-
 Looping Through All Key-Value Pairs 
-
 
 Before we explore the different approaches to looping, let’s consider a 
 new dictionary designed to store information about a user on a website. 
 The following dictionary would store one person’s username, first name, 
 and last name: 
 
-
 user_0 = { 
 ‘username’: ‘'efermi', 
 "first': ‘enrico', 
 "last': 'fermi', 
 
-
 } 
-
 
 You can access any single piece of information about user_0 based 
 on what you've already learned in this chapter. But what if you wanted to 
 see everything stored in this user’s dictionary? To do so, you could loop 
 through the dictionary using a for loop: 
 
-
 for key, value in user_0.items(): 
 print("\nKey: " + key) 
 print("Value: " + value) 
-
 
 As shown at 9, to write a for loop for a dictionary, you create names for 
 the two variables that will hold the key and value in each key-value pair. You 
 can choose any names you want for these two variables. This code would work 
 just as well if you had used abbreviations for the variable names, like this: 
 
-
 for k, v in user_0.items() 
-
 
 The second half of the for statement at ® includes the name of the dic- 
 tionary followed by the method items(), which returns a list of key-value pairs. 
@@ -7840,36 +6382,26 @@ In the preceding example, we use the variables to print each key @, followed
 by the associated value ©. The "\n" in the first print statement ensures that a 
 blank line is inserted before each key-value pair in the output: 
 
-
 Key: last 
 Value: fermi 
-
 
 Key: first 
 Value: enrico 
 
-
 Key: username 
 Value: efermi 
 
-
 Dictionaries 103 
-
 
 languages.py 
 
-
 104 
-
 
 favorite_ 
 
-
 Chapter 6 
 
-
 ©o 
-
 
 Notice again that the key-value pairs are not returned in the order in 
 which they were stored, even when looping through a dictionary. Python 
@@ -7885,11 +6417,9 @@ refer to a person’s name and the value is always a language, we’ll use the
 variables name and language in the loop instead of key and value. This will 
 make it easier to follow what’s happening inside the loop: 
 
-
 for name, language in favorite languages.items(): 
 print(name.title() + "'s favorite language is " + 
 language.title() + ".") 
-
 
 The code at ® tells Python to loop through each key-value pair in 
 the dictionary. As it works through each pair the key is stored in the vari- 
@@ -7898,54 +6428,42 @@ names make it much easier to see what the print statement at @ is doing.
 Now, in just a few lines of code, we can display all of the information 
 from the poll: 
 
-
 Jen's favorite language is Python. 
 Sarah's favorite language is C. 
 
 Phil's favorite language is Python. 
 Edward's favorite language is Ruby. 
 
-
 This type of looping would work just as well if our dictionary stored the 
 results from polling a thousand or even a million people. 
 
-
 Looping Through All the Keys in a Dictionary 
-
 
 The keys() method is useful when you don’t need to work with all of the 
 values in a dictionary. Let’s loop through the favorite_languages dictionary 
 and print the names of everyone who took the poll: 
 
-
 @ for name in favorite languages.keys(): 
 print (name.title()) 
-
 
 The line at ® tells Python to pull all the keys from the dictionary 
 favorite_languages and store them one at a time in the variable name. The 
 output shows the names of everyone who took the poll: 
-
 
 Jen 
 Sarah 
 Phil 
 Edward 
 
-
 Looping through the keys is actually the default behavior when looping 
 through a dictionary, so this code would have exactly the same output if you 
 wrote... 
 
-
 for name in favorite_languages: 
-
 
 rather than... 
 
-
 for name in favorite_languages.keys(): 
-
 
 You can choose to use the keys() method explicitly if it makes your code 
 easier to read, or you can omit it if you wish. 
@@ -7956,39 +6474,30 @@ about the languages they chose. We’ll loop through the names in the diction-
 ary as we did previously, but when the name matches one of our friends, we'll 
 display a message about their favorite language: 
 
-
 @ friends = ['phil’, ‘sarah'] 
 for name in favorite_languages.keys(): 
 print (name.title()) 
 
-
 e if name in friends: 
 print(" Hi " + name.title() + 
 
-
 » I see your favorite language is " + 
 8 favorite_languages[name].title() + "!") 
-
 
 At ® we make a list of friends that we want to print a message to. 
 Inside the loop, we print each person’s name. Then at @ we check to see 
 whether the name we are working with is in the list friends. If it is, we print a 
 special greeting, including a reference to their language choice. To access 
 
-
 Dictionaries 105 
-
 
 106 
 
-
 Chapter 6 
-
 
 the favorite language at ©, we use the name of the dictionary and the cur- 
 rent value of name as the key. Everyone’s name is printed, but our friends 
 receive a special message: 
-
 
 Edward 
 Phil 
@@ -7997,25 +6506,19 @@ Sarah
 Hi Sarah, I see your favorite language is C! 
 Jen 
 
-
 You can also use the keys() method to find out if a particular person 
 was polled. This time, let’s find out if Erin took the poll: 
 
-
 if ‘erin’ not in favorite_languages.keys(): 
 print("Erin, please take our poll!") 
-
 
 The keys() method isn’t just for looping: It actually returns a list of all 
 the keys, and the line at ® simply checks if ‘erin’ is in this list. Because 
 she’s not, a message is printed inviting her to take the poll: 
 
-
 Erin, please take our poll! 
 
-
 Looping Through a Dictionary’s Keys in Order 
-
 
 A dictionary always maintains a clear connection between each key and 
 its associated value, but you never get the items from a dictionary in any 
@@ -8026,10 +6529,8 @@ One way to return items in a certain order is to sort the keys as they’re
 returned in the for loop. You can use the sorted() function to get a copy of 
 the keys in order: 
 
-
 for name in sorted(favorite_languages.keys()): 
 print(name.title() + ", thank you for taking the poll.") 
-
 
 This for statement is like other for statements except that we’ve wrapped 
 the sorted() function around the dictionary.keys() method. This tells Python 
@@ -8037,15 +6538,12 @@ to list all keys in the dictionary and sort that list before looping through it.
 The output shows everyone who took the poll with the names displayed in 
 order: 
 
-
 Edward, thank you for taking the poll. 
 Jen, thank you for taking the poll. 
 Phil, thank you for taking the poll. 
 Sarah, thank you for taking the poll. 
 
-
 Looping Through All Values in a Dictionary 
-
 
 If you are primarily interested in the values that a dictionary contains, 
 you can use the values() method to return a list of values without any keys. 
@@ -8053,16 +6551,13 @@ For example, say we simply want a list of all languages chosen in our pro-
 gramming language poll without the name of the person who chose each 
 language: 
 
-
 print("The following languages have been mentioned:") 
 for language in favorite_languages.values(): 
 print (language. title()) 
 
-
 The for statement here pulls each value from the dictionary and stores 
 it in the variable language. When these values are printed, we get a list of all 
 chosen languages: 
-
 
 The following languages have been mentioned: 
 Python 
@@ -8073,25 +6568,19 @@ Python
 
 Ruby 
 
-
 This approach pulls all the values from the dictionary without checking 
 for repeats. That might work fine with a small number of values, but in a 
 poll with a large number of respondents, this would result in a very repeti- 
 tive list. To see each language chosen without repetition, we can use a set. 
 A set is similar to a list except that each item in the set must be unique: 
 
-
 Dictionaries 107 
-
 
 108 
 
-
 Chapter 6 
 
-
 @ for language in set(favorite_languages.values()): 
-
 
 When you wrap set() around a list that contains duplicate items, Python 
 identifies the unique items in the list and builds a set from those items. At @ 
@@ -8100,7 +6589,6 @@ we use set() to pull out the unique languages in favorite_languages.values().
 The result is a nonrepetitive list of languages that have been mentioned 
 by people taking the poll: 
 
-
 The following languages have been mentioned: 
 Python 
 
@@ -8108,13 +6596,10 @@ C
 
 Ruby 
 
-
 As you continue learning about Python, you'll often find a built-in fea- 
 ture of the language that helps you do exactly what you want with your data. 
 
-
 TRY IT YOURSELF 
-
 
 6-4. Glossary 2: Now that you know how to loop through a dictionary, clean 
 up the code from Exercise 6-3 (page 102) by replacing your series of print 
@@ -8123,87 +6608,63 @@ When you're sure that your loop works, add five more Python terms to your
 glossary. When you run your program again, these new words and meanings 
 should automatically be included in the output. 
 
-
 6-5. Rivers: Make a dictionary containing three major rivers and the country 
 each river runs through. One key-value pair might be 'nile': ‘egypt’. 
-
 
 Use a loop to print a sentence about each river, such as The Nile runs 
 through Egypt. 
 
-
 Use a loop to print the name of each river included in the dictionary. 
-
 
 Use a loop to print the name of each country included in the dictionary. 
 . Polling: Use the code in favorite_languages.py (page 104). 
 
-
 Make a list of people who should take the favorite languages poll. Include 
 some names that are already in the dictionary and some that are not. 
-
 
 Loop through the list of people who should take the poll. If they have 
 already taken the poll, print a message thanking them for responding. 
 If they have not yet taken the poll, print a message inviting them to take 
 the poll. 
 
-
 Nesting 
 
-
 aliens.py 
-
 
 Sometimes you'll want to store a set of dictionaries in a list or a list of 
 items as a value in a dictionary. This is called nesting. You can nest a set 
 of dictionaries inside a list, a list of items inside a dictionary, or even a 
 
-
 dictionary inside another dictionary. Nesting is a powerful feature, as the 
-
 
 following examples will demonstrate. 
 
-
 A List of Dictionaries 
-
 
 The alien_o dictionary contains a variety of information about one alien, 
 
-
 but it has no room to store information about a second alien, much less a 
-
 
 screen full of aliens. How can you manage a fleet of aliens? One way is to 
 
-
 make a list of aliens in which each alien is a dictionary of information about 
 
-
 that alien. For example, the following code builds a list of three aliens: 
-
 
 alien_o = {‘color': ‘green’, 'points': 5} 
 alien_1 = {'color': ‘yellow’, 'points': 10} 
 alien_2 = {'color': 'red', ‘points’: 15} 
 
-
 @ aliens = [alien_0, alien_1, alien 2] 
-
 
 for alien in aliens: 
 print (alien) 
 
-
 We first create three dictionaries, each representing a different alien 
-
 
 At @ we pack each of these dictionaries into a list called aliens. Finally, we 
 
-
 loop through the list and print out each alien: 
-
 
 ‘color': 'green', ‘points’: 5} 
 { 8 p 
@@ -8211,47 +6672,35 @@ loop through the list and print out each alien:
 {'color': 'yellow', 'points': 10} 
 {'color': 'red', ‘points’: 15} 
 
-
 A more realistic example would involve more than three aliens with 
-
 
 code that automatically generates each alien. In the following example we 
 
-
 use range() to create a fleet of 30 aliens: 
-
 
 # Make an empty list for storing aliens. 
 aliens = [] 
-
 
 # Make 30 green aliens. 
 @ for alien_number in range(30): 
 (2) new_alien = {'color': ‘green’, 'points': 5, 'speed': ‘slow'} 
 (3) aliens.append(new_alien) 
 
-
 # Show the first 5 aliens: 
 ® for alien in aliens[:5]: 
 print (alien) 
 print("...") 
 
-
 # Show how many aliens have been created. 
 © print("Total number of aliens: " + str(len(aliens))) 
 
-
 Dictionaries 
-
 
 109 
 
-
 110 
 
-
 Chapter 6 
-
 
 This example begins with an empty list to hold all of the aliens that 
 will be created. At @ range() returns a set of numbers, which just tells 
@@ -8261,16 +6710,13 @@ aliens ©. At @ we use a slice to print the first five aliens, and then at @ we
 print the length of the list to prove we’ve actually generated the full fleet 
 of 30 aliens: 
 
-
 {'speed': 'slow', ‘color’: 'green', ‘points’: 5} 
 {'speed': 'slow', ‘color': 'green', ‘points’: 5} 
 {'speed': 'slow', ‘color': 'green', ‘points’: 5} 
 {'speed': ‘slow’, ‘color’: 'green', ‘points’: 5} 
 {'speed': ‘slow’, ‘color’: ‘green’, ‘points’: 5} 
 
-
 Total number of aliens: 30 
-
 
 These aliens all have the same characteristics, but Python considers each 
 one a separate object, which allows us to modify each alien individually. 
@@ -8282,37 +6728,29 @@ an if statement to change the color of aliens. For example, to change the
 first three aliens to yellow, medium-speed aliens worth 10 points each, we 
 could do this: 
 
-
 if alien['color 
 alien['color' ] 
-
 
 "green': 
 "yellow' 
 speed'] = 'medium' 
 points'] = 10 
 
-
 for alien in aliens[0:3]: 
 "] == 
 
-
 alien[ 
 alien[ 
-
 
 Because we want to modify the first three aliens, we loop through a 
 slice that includes only the first three aliens. All of the aliens are green now 
 but that won’t always be the case, so we write an if statement to make sure 
 
-
 pizza.py 
-
 
 we're only modifying green aliens. If the alien is green, we change the color 
 to 'yellow', the speed to 'medium', and the point value to 10, as shown in the 
 following output: 
-
 
 {'speed': 'medium', 'color': 'yellow', ‘points’: 10} 
 {'speed': 'medium', 'color': 'yellow', ‘points’: 10} 
@@ -8320,19 +6758,15 @@ following output:
 {'speed': 'slow', ‘color’: 'green', ‘points’: 5} 
 {'speed': 'slow', ‘color’: 'green', ‘points’: 5} 
 
-
 You could expand this loop by adding an elif block that turns yellow 
 aliens into red, fast-moving ones worth 15 points each. Without showing the 
 entire program again, that loop would look like this: 
 
-
 elif alien['color'] == 'yellow': 
-
 
 alien['color'] = 'red' 
 alien['speed'] = ‘fast’ 
 alien['points'] = 15 
-
 
 It’s common to store a number of dictionaries in a list when each dic- 
 tionary contains many kinds of information about one object. For example, 
@@ -8341,9 +6775,7 @@ on page 103, and store the individual dictionaries in a list called users. All
 of the dictionaries in the list should have an identical structure so you can 
 loop through the list and work with each dictionary object in the same way. 
 
-
 A List in a Dictionary 
-
 
 Rather than putting a dictionary inside a list, it’s sometimes useful to put 
 a list inside a dictionary. For example, consider how you might describe a 
@@ -8358,19 +6790,14 @@ associated with the key 'toppings'. To use the items in the list, we give the
 name of the dictionary and the key 'toppings', as we would any value in the 
 dictionary. Instead of returning a single value, we get a list of toppings: 
 
-
 # Store information about a pizza being ordered. 
 
-
 @ pizza = { 
-
 
 "crust': ‘thick’, 
 ‘toppings’: ['mushrooms', ‘extra cheese'], 
 
-
 Dictionaries 11 
-
 
 favorite. © 
 languages.py 
@@ -8378,15 +6805,12 @@ C2)
 C3] 
 112 Chapter 6 
 
-
 # Summarize the order. 
 print("You ordered a " + pizza['crust'] + "-crust pizza " + 
 "with the following toppings:") 
 
-
 for topping in pizza['toppings']: 
 print("\t" + topping) 
-
 
 We begin at @ with a dictionary that holds information about a pizza 
 that has been ordered. One key in the dictionary is 'crust', and the associ- 
@@ -8398,11 +6822,9 @@ toppings from the dictionary.
 
 The following output summarizes the pizza that we plan to build: 
 
-
 You ordered a thick-crust pizza with the following toppings: 
 mushrooms 
 extra cheese 
-
 
 You can nest a list inside a dictionary any time you want more than 
 one value to be associated with a single key in a dictionary. In the earlier 
@@ -8413,19 +6835,16 @@ each person would be a list of languages rather than a single language.
 Inside the dictionary’s for loop, we use another for loop to run through 
 the list of languages associated with each person: 
 
-
 favorite_languages = { 
 "jen': ['python', ‘ruby'], 
 "sarah': ['c'], 
 ‘edward’: ['ruby', ‘go'], 
 ‘phil’: ['python', ‘haskell'], 
 
-
 for name, languages in favorite_languages.items(): 
 print("\n" + name.title() + "'s favorite languages are:") 
 for language in languages: 
 print("\t" + language.title()) 
-
 
 As you can see at @ the value associated with each name is now a list. 
 Notice that some people have one favorite language and others have 
@@ -8433,32 +6852,25 @@ multiple favorites. When we loop through the dictionary at @, we use the
 variable name languages to hold each value from the dictionary, because we 
 know that each value will be a list. Inside the main dictionary loop, we use 
 
-
 many_users.py 
-
 
 another for loop ® to run through each person’s list of favorite languages. 
 Now each person can list as many favorite languages as they like: 
-
 
 Jen's favorite languages are: 
 Python 
 Ruby 
 
-
 Sarah's favorite languages are: 
 C 
-
 
 Phil's favorite languages are: 
 Python 
 Haskell 
 
-
 Edward's favorite languages are: 
 Ruby 
 Go 
-
 
 To refine this program even further, you could include an if statement 
 at the beginning of the dictionary’s for loop to see whether each person has 
@@ -8467,15 +6879,12 @@ If a person has more than one favorite, the output would stay the same. If
 the person has only one favorite language, you could change the wording to 
 reflect that. For example, you could say Sarah's favorite language is C. 
 
-
 You should not nest lists and dictionaries too deeply. If youre nesting items much 
 deeper than what you see in the preceding examples or you’re working with someone 
 else’s code with significant levels of nesting, most likely a simpler way to solve the 
 problem exists. 
 
-
 A Dictionary in a Dictionary 
-
 
 You can nest a dictionary inside another dictionary, but your code can get 
 complicated quickly when you do. For example, if you have several users 
@@ -8488,51 +6897,39 @@ first name, last name, and location. We'll access this information by looping
 through the usernames and the dictionary of information associated with 
 each username: 
 
-
 users = { 
 ‘aeinstein': { 
 ‘first’: ‘albert’, 
 ‘last': ‘einstein’, 
 ‘location’: ‘princeton’, 
 
-
 }5 
-
 
 Dictionaries 113 
 
-
 114 
-
 
 Chapter 6 
 
-
 eee 
-
 
 "mcurie': { 
 "first': ‘marie’, 
 ‘last’: 'curie’, 
 ‘location’: 'paris', 
 
-
 }, 
 } 
-
 
 for username, user_info in users.items(): 
 print("\nUsername: " + username) 
 full_name = user_info['first'] + 
 location = user_info['location' ] 
 
-
 + user_info['last'] 
-
 
 print("\tFull name: " + full_name.title()) 
 print("\tLocation: " + location.title()) 
-
 
 We first define a dictionary called users with two keys: one each for the 
 usernames ‘aeinstein' and 'mcurie’. The value associated with each key is 
@@ -8548,35 +6945,27 @@ which contains the dictionary of user information, has three keys: 'first',
 name and location for each person, and then print a summary of what we 
 know about each user @: 
 
-
 Username: aeinstein 
 Full name: Albert Einstein 
 Location: Princeton 
 
-
 Username: mcurie 
 Full name: Marie Curie 
 Location: Paris 
-
 
 Notice that the structure of each user’s dictionary is identical. Although 
 not required by Python, this structure makes nested dictionaries easier to 
 work with. If each user’s dictionary had different keys, the code inside the 
 for loop would be more complicated. 
 
-
 TRY IT YOURSELF 
-
 
 6-7. People: Start with the program you wrote for Exercise 6-1 (page 102). 
 Make two new dictionaries representing different people, and store all three 
 
-
 dictionaries in a list called people. Loop through your list of people. As you 
 
-
 loop through the list, print everything you know about each person. 
-
 
 6-8. Pets: Make several dictionaries, where the name of each dictionary is the 
 name of a pet. In each dictionary, include the kind of animal and the owner’s 
@@ -8584,39 +6973,31 @@ name of a pet. In each dictionary, include the kind of animal and the owner’s
 name. Store these dictionaries in a list called pets. Next, loop through your list 
 and as you do print everything you know about each pet. 
 
-
 6-9. Favorite Places: Make a dictionary called favorite places. Think of three 
 names to use as keys in the dictionary, and store one to three favorite places 
 for each person. To make this exercise a bit more interesting, ask some friends 
 to name a few of their favorite places. Loop through the dictionary, and print 
 each person’s name and their favorite places. 
 
-
 6-10. Favorite Numbers: Modify your program from Exercise 6-2 (page 102) so 
 each person can have more than one favorite number. Then print each person’s 
 name along with their favorite numbers. 
-
 
 6-11. Cities: Make a dictionary called cities. Use the names of three cities as 
 keys in your dictionary. Create a dictionary of information about each city and 
 include the country that the city is in, its approximate population, and one fact 
 about that city. The keys for each city’s dictionary should be something like 
 
-
 country, population, and fact. Print the name of each city and all of the infor- 
 
-
 mation you have stored about it. 
-
 
 6-12. Extensions: We're now working with examples that are complex enough 
 that they can be extended in any number of ways. Use one of the example pro- 
 grams from this chapter, and extend it by adding new keys and values, chang- 
 ing the context of the program or improving the formatting of the output. 
 
-
 Summary 
-
 
 In this chapter you learned how to define a dictionary and how to work 
 with the information stored in a dictionary. You learned how to access and 
@@ -8632,15 +7013,11 @@ input from people who are using your programs. This will be an exciting
 chapter, because you'll learn to make all of your programs interactive: 
 they'll be able to respond to user input. 
 
-
 Dictionaries 115 
-
 
 USER INPUT AND WHILE LOOPS 
 
-
 Most programs are written to solve an end 
-
 
 user’s problem. To do so, you usually need 
 
@@ -8648,7 +7025,6 @@ to get some information from the user. For a
 simple example, let’s say someone wants to find 
 
 out whether they’re old enough to vote. If you write a 
-
 
 program to answer this question, you need to know the user’s age before 
 you can provide an answer. The program will need to ask the user to enter, 
@@ -8666,25 +7042,18 @@ them to, so they can enter as much information as they need to; then, your
 program can work with that information. You'll use Python’s while loop to 
 keep programs running as long as certain conditions remain true. 
 
-
 118 
-
 
 With the ability to work with user input and the ability to control how 
 long your programs run, you'll be able to write fully interactive programs. 
 
-
 How the input() Function Works 
-
 
 parrot.py 
 
-
 greeter.py 
 
-
 Chapter 7 
-
 
 The input() function pauses your program and waits for the user to enter 
 some text. Once Python receives the user’s input, it stores it in a variable to 
@@ -8693,10 +7062,8 @@ make it convenient for you to work with.
 For example, the following program asks the user to enter some text, 
 then displays that message back to the user: 
 
-
 message = input("Tell me something, and I will repeat it back to you: ") 
 print (message) 
-
 
 The input() function takes one argument: the prompt, or instructions, 
 that we want to display to the user so they know what to do. In this example, 
@@ -8706,56 +7073,43 @@ their response and continues after the user presses ENTER. The response is
 stored in the variable message, then print(message) displays the input back to 
 the user: 
 
-
 Tell me something, and I will repeat it back to you: Hello everyone! 
 Hello everyone! 
-
 
 Sublime Text doesn’t run programs that prompt the user for input. You can use Sublime 
 Text to write programs that prompt for input, but you'll need to run these programs from 
 a terminal. See “Running Python Programs from a Terminal” on page 16. 
 
-
 Writing Clear Prompts 
-
 
 Each time you use the input() function, you should include a clear, easy-to- 
 follow prompt that tells the user exactly what kind of information you’re 
 looking for. Any statement that tells the user what to enter should work. For 
 example: 
 
-
 name = input("Please enter your name: ") 
 print("Hello, " + name + "!") 
-
 
 Add a space at the end of your prompts (after the colon in the preced- 
 ing example) to separate the prompt from the user’s response and to make 
 it clear to your user where to enter their text. For example: 
 
-
 Please enter your name: Eric 
 Hello, Eric! 
-
 
 Sometimes you'll want to write a prompt that’s longer than one line. For 
 example, you might want to tell the user why you're asking for certain input. 
 
-
 greeter.py 
-
 
 You can store your prompt in a variable and pass that variable to the input() 
 function. This allows you to build your prompt over several lines, then write 
 a clean input() statement. 
 
-
 prompt = "If you tell us who you are, we can personalize the messages you see." 
 prompt += "\nWhat is your first name? " 
 
-
 name = input (prompt) 
-
 
 This example shows one way to build a multi-line string. The first line 
 stores the first part of the message in the variable prompt. In the second line, 
@@ -8765,21 +7119,16 @@ string onto the end.
 The prompt now spans two lines, again with space after the question 
 mark for clarity: 
 
-
 If you tell us who you are, we can personalize the messages you see. 
 What is your first name? Eric 
 
-
 Hello, Eric! 
 
-
 Using inf() to Accept Numerical Input 
-
 
 When you use the input() function, Python interprets everything the user 
 enters as a string. Consider the following interpreter session, which asks for 
 the user’s age: 
-
 
 >>> age = input("How old are you? ") 
 How old are you? 21 
@@ -8788,13 +7137,11 @@ How old are you? 21
 
 194" 
 
-
 The user enters the number 21, but when we ask Python for the value of 
 age, it returns '21', the string representation of the numerical value entered. 
 We know Python interpreted the input as a string because the number is now 
 enclosed in quotes. If all you want to do is print the input, this works well. But 
 if you try to use the input as a number, you'll get an error: 
-
 
 >>> age = input("How old are you? ") 
 How old are you? 21 
@@ -8803,31 +7150,23 @@ Traceback (most recent call last):
 File "<stdin>", line 1, in <module> 
 TypeError: unorderable types: str() >= int() 
 
-
 When you try to use the input to do a numerical comparison ®, Python 
-
 
 produces an error because it can’t compare a string to an integer: the string 
 '21' that’s stored in age can’t be compared to the numerical value 18 @. 
 
-
 User Input and while Loops 119 
-
 
 rollercoaster.py 
 
-
 120 
 
-
 Chapter 7 
-
 
 We can resolve this issue by using the int() function, which tells 
 Python to treat the input as a numerical value. The int() function con- 
 verts a string representation of a number to a numerical representation, 
 as shown here: 
-
 
 >>> age = input("How old are you? ") 
 How old are you? 21 
@@ -8837,7 +7176,6 @@ How old are you? 21
 >>> age >= 18 
 
 True 
-
 
 In this example, when we enter 21 at the prompt, Python interprets the 
 number as a string, but the value is then converted to a numerical represen- 
@@ -8849,39 +7187,30 @@ How do you use the int() function in an actual program? Consider a
 program that determines whether people are tall enough to ride a roller 
 coaster: 
 
-
 height = input("How tall are you, in inches? ") 
 height = int(height) 
-
 
 if height >= 36: 
 print("\nYou're tall enough to ride!") 
 else: 
 print("\nYou'll be able to ride when you're a little older.") 
 
-
 The program can compare height to 36 because height = int(height) 
 converts the input value to a numerical representation before the compari- 
 son is made. If the number entered is greater than or equal to 36, we tell 
 the user that they’re tall enough: 
 
-
 How tall are you, in inches? 71 
 
-
 You're tall enough to ride! 
-
 
 When you use numerical input to do calculations and comparisons, 
 be sure to convert the input value to a numerical representation first. 
 
-
 The Modulo Operator 
-
 
 A useful tool for working with numerical information is the modulo operator (4), 
 which divides one number by another number and returns the remainder: 
-
 
 >>> 4% 3 
 1 
@@ -8890,13 +7219,10 @@ which divides one number by another number and returns the remainder:
 >>> 6 % 3 
 0 
 
-
 even_or_odd.py 
-
 
 >>> 74% 3 
 1 
-
 
 The modulo operator doesn’t tell you how many times one number fits 
 into another; it just tells you what the remainder is. 
@@ -8905,40 +7231,30 @@ When one number is divisible by another number, the remainder is 0,
 so the modulo operator always returns 0. You can use this fact to determine 
 if a number is even or odd: 
 
-
 number 
 number 
-
 
 input("Enter a number, and I'll tell you if it's even or odd: ") 
 int (number) 
-
 
 if number % 2 == 
 print("\nThe number 
 else: 
 print("\nThe number 
 
-
 + str(number) + " is even.") 
 
-
 + str(number) + " is odd.") 
-
 
 Even numbers are always divisible by two, so if the modulo of a number 
 and two is zero (here, if number % 2 == 0) the number is even. Otherwise, 
 it’s odd. 
 
-
 Enter a number, and I'll tell you if it's even or odd: 42 
-
 
 The number 42 is even. 
 
-
 Accepting Input in Python 2.7 
-
 
 If you’re using Python 2.7, you should use the raw_input() function when 
 prompting for user input. This function interprets all input as a string, just 
@@ -8950,47 +7266,36 @@ get an error that Python doesn’t understand the input; at worst you'll run
 code that you didn’t intend to run. If you’re using Python 2.7, use raw_input() 
 instead of input(). 
 
-
 TRY IT YOURSELF 
-
 
 7-1, Rental Car: Write a program that asks the user what kind of rental car they 
 would like. Print a message about that car, such as “Let me see if | can find you 
 a Subaru.” 
 
-
 7-2. Restaurant Seating: Write a program that asks the user how many people 
 are in their dinner group. If the answer is more than eight, print a message say- 
 ing they'll have to wait for a table. Otherwise, report that their table is ready. 
 
-
 7-3. Multiples of Ten: Ask the user for a number, and then report whether the 
 number is a multiple of 10 or not. 
 
-
 User Input and while Loops 121 
 
-
 Introducing while Loops 
-
 
 The for loop takes a collection of items and executes a block of code once 
 for each item in the collection. In contrast, the while loop runs as long as, 
 or while, a certain condition is true. 
 
-
 The while Loop in Action 
-
 
 You can use a while loop to count up through a series of numbers. For 
 example, the following while loop counts from 1 to 5: 
-
 
 counting. py current_number = 1 
 while current_number <= 5: 
 print (current_number) 
 current_number += 1 
-
 
 In the first line, we start counting from | by setting the value of 
 current_number to 1. The while loop is then set to keep running as long 
@@ -9006,9 +7311,7 @@ and adds | again, making the current number 3, and so on. Once the
 value of current_number is greater than 5, the loop stops running and the 
 program ends: 
 
-
 MPWN PB 
-
 
 The programs you use every day most likely contain while loops. For 
 example, a game needs a while loop to keep running as long as you want 
@@ -9017,28 +7320,22 @@ Programs wouldn't be fun to use if they stopped running before we told
 them to or kept running even after we wanted to quit, so while loops are 
 quite useful. 
 
-
 Letting the User Choose When to Quit 
-
 
 We can make the parrot.py program run as long as the user wants by putting 
 most of the program inside a while loop. We’ll define a quit value and then 
 keep the program running as long as the user has not entered the quit value: 
 
-
 parrot.py @ prompt = "\nTell me something, and I will repeat it back to you:" 
 prompt += "\nEnter 'quit' to end the program. " 
 
-
 122 Chapter 7 
-
 
 @ message = 
 
 © while message != ‘quit’: 
 message = input(prompt) 
 print (message) 
-
 
 At @, we define a prompt that tells the user their two options: enter- 
 ing a message or entering the quit value (in this case, '‘quit'). Then we set 
@@ -9061,64 +7358,48 @@ As long as the user has not entered the word 'quit', the prompt is displayed
 again and Python waits for more input. When the user finally enters ‘quit’, 
 Python stops executing the while loop and the program ends: 
 
-
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. Hello everyone! 
 Hello everyone! 
 
-
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. Hello again. 
 Hello again. 
-
 
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. quit 
 quit 
 
-
 This program works well, except that it prints the word 'quit' as if it 
 were an actual message. A simple if test fixes this: 
 
-
 if message != ‘quit’: 
-
 
 User Input and while Loops 123 
 
-
 124 
-
 
 Chapter 7 
 
-
 3) 
-
 
 4) 
 
-
 Now the program makes a quick check before displaying the message 
 and only prints the message if it does not match the quit value: 
-
 
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. Hello everyone! 
 Hello everyone! 
 
-
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. Hello again. 
 Hello again. 
 
-
 Tell me something, and I will repeat it back to you: 
 Enter 'quit' to end the program. quit 
 
-
 Using a Flag 
-
 
 In the previous example, we had the program perform certain tasks while 
 a given condition was true. But what about more complicated programs in 
@@ -9145,20 +7426,16 @@ Let’s add a flag to parrot.py from the previous section. This flag, which
 we'll call active (though you can call it anything), will monitor whether or 
 not the program should continue running: 
 
-
 active = True 
 while active: 
 message = input(prompt) 
-
 
 if message == ‘quit’: 
 active = False 
 else: 
 print (message) 
 
-
 cities.py 
-
 
 We set the variable active to True @ so the program starts in an active 
 state. Doing so makes the while statement simpler because no comparison is 
@@ -9181,9 +7458,7 @@ program stop running. When any of these events causes the active flag to
 become False, the main game loop will exit, a Game Over message can be 
 displayed, and the player can be given the option to play again. 
 
-
 Using break fo Exit a Loop 
-
 
 To exit a while loop immediately without running any remaining code in the 
 loop, regardless of the results of any conditional test, use the break statement. 
@@ -9195,71 +7470,54 @@ For example, consider a program that asks the user about places they’ve
 visited. We can stop the while loop in this program by calling break as soon 
 as the user enters the ‘quit’ value: 
 
-
 prompt = "\nPlease enter the name of a city you have visited:" 
 prompt += "\n(Enter ‘quit’ when you are finished.) " 
 
-
 while True: 
 city = input(prompt) 
-
 
 if city == ‘quit’: 
 break 
 else: 
 print("I'd love to go to " + city.title() + "!" 
 
-
 A loop that starts with while True ® will run forever unless it reaches a 
 break statement. The loop in this program continues asking the user to enter 
 the names of cities they’ve been to until they enter 'quit'. When they enter 
 ‘quit', the break statement runs, causing Python to exit the loop: 
 
-
 Please enter the name of a city you have visited: 
 (Enter 'quit' when you are finished.) New York 
 I'd love to go to New York! 
 
-
 User Input and while Loops 125 
-
 
 counting. py 
 
-
 counting.py 
-
 
 126 
 
-
 Chapter 7 
 
-
 e 
-
 
 Please enter the name of a city you have visited: 
 (Enter ‘'quit' when you are finished.) San Francisco 
 I'd love to go to San Francisco! 
 
-
 Please enter the name of a city you have visited: 
 (Enter 'quit' when you are finished.) quit 
-
 
 You can use the break statement in any of Python’s loops. For example, you could use 
 break to quit a for loop that’s working through a list or a dictionary. 
 
-
 Using continue in a Loop 
-
 
 Rather than breaking out of a loop entirely without executing the rest of its 
 code, you can use the continue statement to return to the beginning of the 
 loop based on the result of a conditional test. For example, consider a loop 
 that counts from 1 to 10 but prints only the odd numbers in that range: 
-
 
 current_number = 0 
 while current_number < 10: 
@@ -9267,9 +7525,7 @@ current_number += 1
 if current_number % 2 == 0: 
 continue 
 
-
 print (current_number) 
-
 
 First we set current_number to 0. Because it’s less than 10, Python 
 enters the while loop. Once inside the loop, we increment the count by 1 
@@ -9280,16 +7536,12 @@ the loop and return to the beginning. If the current number is not divis-
 ible by 2, the rest of the loop is executed and Python prints the current 
 number: 
 
-
 ON NWP 
-
 
 Avoiding Infinite Loops 
 
-
 Every while loop needs a way to stop running so it won’t continue to run for- 
 ever. For example, this counting loop should count from 1 to 5: 
-
 
 x=i1 
 
@@ -9297,29 +7549,22 @@ while x <= 5:
 print (x) 
 X t= 1 
 
-
 But if you accidentally omit the line x += 1 (as shown next), the loop 
 will run forever: 
 
-
 # This loop runs forever! 
-
 
 xX=1 
 while x <= 5: 
 print (x) 
 
-
 Now the value of x will start at 1 but never change. As a result, the con- 
 ditional test x <= 5 will always evaluate to True and the while loop will run 
 forever, printing a series of Is, like this: 
 
-
 PRPPRB 
 
-
 --snip-- 
-
 
 Every programmer accidentally writes an infinite while loop from time 
 to time, especially when a program’s loops have subtle exit conditions. If 
@@ -9334,34 +7579,26 @@ handles the value that should cause the loop to exit. Make sure at least
 one part of the program can make the loop’s condition False or cause it 
 to reach a break statement. 
 
-
 Some editors, such as Sublime Text, have an embedded output window. This can 
 make it difficult to stop an infinite loop, and you might have to close the editor to 
 end the loop. 
 
-
 TRY IT YOURSELF 
-
 
 7-4, Pizza Toppings: Write a loop that prompts the user to enter a series of 
 pizza toppings until they enter a 'quit' value. As they enter each topping, 
 print a message saying you'll add that topping to their pizza. 
 
-
 7-5. Movie Tickets: A movie theater charges different ticket prices depending on 
-
 
 a person’s age. If a person is under the age of 3, the ticket is free; if they are 
 between 3 and 12, the ticket is $10; and if they are over age 12, the ticket is 
 $15. Write a loop in which you ask users their age, and then tell them the cost 
 of their movie ticket. 
 
-
 (continued) 
 
-
 User Input and while Loops 127 
-
 
 7-6. Three Exits: Write different versions of either Exercise 7-4 or Exercise 7-5 
 that do each of the following at least once: 
@@ -9370,16 +7607,12 @@ e Use a conditional test in the while statement to stop the loop.
 
 e Use an active variable to control how long the loop runs. 
 
-
 e Use a break statement to exit the loop when the user enters a ‘quit’ value. 
-
 
 7-7. Infinity: Write a loop that never ends, and run it. (To end the loop, press 
 cTRL-C or close the window displaying the output.) 
 
-
 Using a while Loop with Lists and Dictionaries 
-
 
 So far, we’ve worked with only one piece of user information at a time. We 
 received the user’s input and then printed the input or a response to it. 
@@ -9393,9 +7626,7 @@ items in the list. To modify a list as you work through it, use a while loop.
 Using while loops with lists and dictionaries allows you to collect, store, and 
 organize lots of input to examine and report on later. 
 
-
 Moving Items from One List to Another 
-
 
 Consider a list of newly registered but unverified users of a website. After 
 
@@ -9404,16 +7635,13 @@ users? One way would be to use a while loop to pull users from the list of
 unconfirmed users as we verify them and then add them to a separate list of 
 confirmed users. Here’s what that code might look like: 
 
-
 confirmed_ # Start with users that need to be verified, 
 users. py # and an empty list to hold confirmed users. 
 @ unconfirmed_users = ['alice', ‘brian’, ‘candace’ ] 
 confirmed_users = [] 
 
-
 # Verify each user until there are no more unconfirmed users. 
 # Move each verified user into the list of confirmed users. 
-
 
 @ while unconfirmed_users: 
 
@@ -9422,12 +7650,9 @@ print("Verifying user: " + current_user.title())
 
 4) confirmed_users.append(current_user) 
 
-
 128 Chapter 7 
 
-
 pets.py 
-
 
 # Display all confirmed users. 
 
@@ -9435,7 +7660,6 @@ print("\nThe following users have been confirmed:")
 
 for confirmed_user in confirmed_users: 
 print(confirmed_user.title()) 
-
 
 We begin with a list of unconfirmed users at @ (Alice, Brian, and 
 Candace) and an empty list to hold confirmed users. The while loop at @ 
@@ -9451,11 +7675,9 @@ firmed users shrinks, the list of confirmed users grows. When the list of
 unconfirmed users is empty, the loop stops and the list of confirmed users 
 is printed: 
 
-
 Verifying user: Candace 
 Verifying user: Brian 
 Verifying user: Alice 
-
 
 The following users have been confirmed: 
 Candace 
@@ -9464,9 +7686,7 @@ Brian
 
 Alice 
 
-
 Removing All Instances of Specific Values from a List 
-
 
 In Chapter 3 we used remove() to remove a specific value from a list. The 
 remove() function worked because the value we were interested in appeared 
@@ -9477,47 +7697,35 @@ Say you have a list of pets with the value 'cat' repeated several times. To
 remove all instances of that value, you can run a while loop until 'cat' is no 
 longer in the list, as shown here: 
 
-
 pets = ['dog', ‘cat’, 'dog', ‘goldfish’, ‘cat', ‘rabbit’, ‘cat'] 
 print(pets) 
-
 
 while 'cat' in pets: 
 pets.remove('cat') 
 
-
 print(pets) 
-
 
 We start with a list containing multiple instances of 'cat'. After printing 
 the list, Python enters the while loop because it finds the value 'cat' in the list 
 
-
 User Input and while Loops 129 
 
-
 130 
-
 
 mountain_ 
 poll.py 
 
-
 Chapter 7 
-
 
 at least once. Once inside the loop, Python removes the first instance of 'cat', 
 returns to the while line, and then reenters the loop when it finds that 'cat' is 
 still in the list. It removes each instance of 'cat' until the value is no longer in 
 the list, at which point Python exits the loop and prints the list again: 
 
-
 ['dog', ‘cat', ‘dog', 'goldfish', ‘'cat', ‘rabbit’, ‘cat'] 
 ['dog', 'dog', ‘goldfish’, ‘rabbit’ ] 
 
-
 Filling a Dictionary with User Input 
-
 
 You can prompt for as much input as you need in each pass through a while 
 loop. Let’s make a polling program in which each pass through the loop 
@@ -9525,23 +7733,18 @@ prompts for the participant’s name and response. We'll store the data we
 gather in a dictionary, because we want to connect each response with a 
 particular user: 
 
-
 responses = {} 
-
 
 # Set a flag to indicate that polling is active. 
 polling active = True 
-
 
 while polling active: 
 # Prompt for the person's name and response. 
 name = input("\nWhat is your name? ") 
 response = input("Which mountain would you like to climb someday? ") 
 
-
 # Store the response in the dictionary: 
 responses[name] = response 
-
 
 # Find out if anyone else is going to take the poll. 
 repeat = input("Would you like to let another person respond? (yes/ no) ") 
@@ -9549,12 +7752,10 @@ if repeat == 'no':
 
 polling active = False 
 
-
 # Polling is complete. Show the results. 
 print("\n--- Poll Results ---") 
 for name, response in responses.items(): 
 print(name + " would like to climb " + response + ".") 
-
 
 The program first defines an empty dictionary (responses) and sets a flag 
 (polling active) to indicate that polling is active. As long as polling active is 
@@ -9567,38 +7768,30 @@ ning ®. If they enter yes, the program enters the while loop again. If they
 enter no, the polling active flag is set to False, the while loop stops running, 
 and the final code block at @ displays the results of the poll. 
 
-
 If you run this program and enter sample responses, you should see 
 output like this: 
-
 
 What is your name? Eric 
 Which mountain would you like to climb someday? Denali 
 Would you like to let another person respond? (yes/ no) yes 
 
-
 What is your name? Lynn 
 Which mountain would you like to climb someday? Devil's Thumb 
 Would you like to let another person respond? (yes/ no) no 
-
 
 --- Poll Results --- 
 Lynn would like to climb Devil's Thumb. 
 Eric would like to climb Denali. 
 
-
 TRY IT YOURSELF 
-
 
 7-8. Deli: Make a list called sandwich orders and fill it with the names of vari- 
 ous sandwiches. Then make an empty list called finished_sandwiches. Loop 
-
 
 through the list of sandwich orders and print a message for each order, such 
 as I made your tuna sandwich. As each sandwich is made, move it to the list 
 of finished sandwiches. After all the sandwiches have been made, print a 
 message listing each sandwich that was made. 
-
 
 7-9. No Pastrami: Using the list sandwich_orders from Exercise 7-8, make sure 
 the sandwich 'pastrami' appears in the list at least three times. Add code 
@@ -9607,16 +7800,12 @@ run out of pastrami, and then use a while loop to remove all occurrences of
 ‘pastrami’ from sandwich orders. Make sure no pastrami sandwiches end up 
 in finished_sandwiches. 
 
-
 7-10. Dream Vacation: Write a program that polls users about their dream 
-
 
 vacation. Write a prompt similar to If you could visit one place in the world, 
 where would you go? Include a block of code that prints the results of the poll. 
 
-
 Summary 
-
 
 In this chapter you learned how to use input() to allow users to provide 
 their own information in your programs. You learned to work with both 
@@ -9624,15 +7813,11 @@ text and numerical input and how to use while loops to make your programs
 run as long as your users want them to. You saw several ways to control the 
 flow of a while loop by setting an active flag, using the break statement, and 
 
-
 User Input and while Loops 13] 
-
 
 132 
 
-
 Chapter 7 
-
 
 using the continue statement. You learned how to use a while loop to move 
 items from one list to another and how to remove all instances of a value 
@@ -9645,9 +7830,7 @@ functions in separate files. By using functions, you’ll be able to write more
 efficient code that’s easier to troubleshoot and maintain and that can be 
 reused in many different programs. 
 
-
 FUNCTIONS 
-
 
 In this chapter you'll learn to write 
 functions, which are named blocks of code 
@@ -9655,7 +7838,6 @@ that are designed to do one specific job.
 When you want to perform a particular task 
 that you've defined in a function, you call the name 
 of the function responsible for it. If you need to 
-
 
 perform that task multiple times throughout your program, you don’t 
 need to type all the code for the same task again and again; you just call 
@@ -9669,32 +7851,23 @@ information and other functions designed to process data and return a
 value or set of values. Finally, you'll learn to store functions in separate files 
 called modules to help organize your main program files. 
 
-
 134 
-
 
 Defining a Function 
 
-
 greeter.py 
-
 
 Chapter 8 
 
-
 So 806 
 
-
 Here’s a simple function named greet_user() that prints a greeting: 
-
 
 def greet_user(): 
 """Display a simple greeting. 
 print("Hello!") 
 
-
 greet_user() 
-
 
 This example shows the simplest structure of a function. The line at ® 
 uses the keyword def to inform Python that you’re defining a function. This 
@@ -9720,12 +7893,9 @@ the name of the function, followed by any necessary information in paren-
 theses, as shown at @. Because no information is needed here, calling our 
 function is as simple as entering greet_user(). As expected, it prints Hello!: 
 
-
 Hello! 
 
-
 Passing Information to a Function 
-
 
 Modified slightly, the function greet_user() can not only tell the user Hello! 
 but also greet them by name. For the function to do this, you enter username 
@@ -9735,31 +7905,23 @@ specify. The function now expects you to provide a value for username each
 time you call it. When you call greet_user(), you can pass it a name, such as 
 ‘jesse’, inside the parentheses: 
 
-
 def greet_user(username) : 
-
 
 print("Hello, " + username.title() + 
 
-
 greet_user('jesse') 
-
 
 Entering greet_user('jesse') calls greet_user() and gives the function the 
 information it needs to execute the print statement. The function accepts 
 the name you passed it and displays the greeting for that name: 
 
-
 Hello, Jesse! 
-
 
 Likewise, entering greet_user('sarah') calls greet_user(), passes it 'sarah', 
 and prints Hello, Sarah! You can call greet_user() as often as you want and 
 pass it any name you want to produce a predictable output every time. 
 
-
 Arguments and Parameters 
-
 
 In the preceding greet_user() function, we defined greet_user() to require a 
 value for the variable username. Once we called the function and gave it the 
@@ -9773,55 +7935,41 @@ When we call the function, we place the value we want the function to work
 with in parentheses. In this case the argument 'jesse' was passed to the 
 function greet_user(), and the value was stored in the parameter username. 
 
-
 People sometimes speak of arguments and parameters interchangeably. Don’t be sur- 
 prised if you see the variables in a function definition referred to as arguments or the 
 variables in a function call referred to as parameters. 
 
-
 TRY IT YOURSELF 
-
 
 8-1. Message: Write a function called display message() that prints one sen- 
 tence telling everyone what you are learning about in this chapter. Call the 
 function, and make sure the message displays correctly. 
 
-
 8-2. Favorite Book: Write a function called favorite book() that accepts one 
-
 
 parameter, title. The function should print a message, such as One of my 
 favorite books is Alice in Wonderland. Call the function, making sure to 
 include a book title as an argument in the function call. 
 
-
 Passing Arguments 
-
 
 Because a function definition can have multiple parameters, a function call 
 may need multiple arguments. You can pass arguments to your functions 
 in a number of ways. You can use positional arguments, which need to be in 
 
-
 Functions 135 
-
 
 136 
 
-
 pets.py @ 
 
-
 Chapter 8 
-
 
 the same order the parameters were written; keyword arguments, where each 
 argument consists of a variable name and a value; and lists and dictionaries 
 of values. Let’s look at each of these in turn. 
 
-
 Positional Arguments 
-
 
 When you call a function, Python must match each argument in the func- 
 tion call with a parameter in the function definition. The simplest way to 
@@ -9832,23 +7980,18 @@ To see how this works, consider a function that displays information
 about pets. The function tells us what kind of animal each pet is and the 
 pet’s name, as shown here: 
 
-
 def describe pet(animal_type, pet_name): 
 
 """Display information about a pet. 
 "+ animal_type + ".") 
 "'s name is 
 
-
 print("\nI have a 
 print("My " + animal_type + 
 
-
 + pet_name.title() + ".") 
 
-
 describe pet('hamster', ‘harry') 
-
 
 The definition shows that this function needs a type of animal and the 
 animal’s name ®. When we call describe_pet(), we need to provide an ani- 
@@ -9860,37 +8003,28 @@ described.
 
 The output describes a hamster named Harry: 
 
-
 I have a hamster. 
 My hamster's name is Harry. 
 
-
 Multiple Function Calls 
-
 
 You can call a function as many times as needed. Describing a second, dif- 
 ferent pet requires just one more call to describe_pet(): 
 
-
 describe pet('dog', ‘willie’ ) 
-
 
 In this second function call, we pass describe_pet() the arguments 'dog' 
 and ‘willie’. As with the previous set of arguments we used, Python matches 
 ‘dog' with the parameter animal_type and ‘willie’ with the parameter pet_name. 
 
-
 As before, the function does its job, but this time it prints values for a dog 
 named Willie. Now we have a hamster named Harry and a dog named Willie: 
-
 
 I have a hamster. 
 My hamster's name is Harry. 
 
-
 I have a dog. 
 My dog's name is Willie. 
-
 
 Calling a function multiple times is a very efficient way to work. The 
 code describing a pet is written once in the function. Then, anytime you 
@@ -9904,48 +8038,36 @@ tions. Python works through the arguments you provide when calling the
 function and matches each one with the corresponding parameter in 
 the function’s definition. 
 
-
 Order Matters in Positional Arguments 
-
 
 You can get unexpected results if you mix up the order of the arguments in 
 a function call when using positional arguments: 
 
-
 describe pet(‘harry', ‘hamster’ ) 
-
 
 In this function call we list the name first and the type of animal second. 
 Because the argument ‘harry’ is listed first this time, that value is stored in 
 the parameter animal_type. Likewise, ‘hamster’ is stored in pet_name. Now we 
 have a “harry” named “Hamster”: 
 
-
 I have a harry. 
 My harry's name is Hamster. 
-
 
 If you get funny results like this, check to make sure the order of the 
 arguments in your function call matches the order of the parameters in the 
 function’s definition. 
 
-
 Keyword Arguments 
-
 
 A keyword argument is a name-value pair that you pass to a function. You 
 directly associate the name and the value within the argument, so when you 
 pass the argument to the function, there’s no confusion (you won’t end up 
 
-
 Functions 137 
-
 
 138 
 
-
 Chapter 8 
-
 
 with a harry named Hamster). Keyword arguments free you from having 
 to worry about correctly ordering your arguments in the function call, and 
@@ -9953,9 +8075,7 @@ they clarify the role of each value in the function call.
 
 Let’s rewrite pets.py using keyword arguments to call describe_pet(): 
 
-
 describe _pet(animal_type='hamster', pet_name='harry' ) 
-
 
 The function describe_pet() hasn’t changed. But when we call the func- 
 tion, we explicitly tell Python which parameter each argument should be 
@@ -9968,17 +8088,13 @@ The order of keyword arguments doesn’t matter because Python
 knows where each value should go. The following two function calls are 
 equivalent: 
 
-
 describe _pet(animal_type='hamster', pet_name='harry' ) 
 describe _pet(pet_name='harry', animal_type='hamster' ) 
-
 
 When you use keyword arguments, be sure to use the exact names of the parameters in 
 the function’s definition. 
 
-
 Default Values 
-
 
 When writing a function, you can define a default value for each parameter. 
 If an argument for a parameter is provided in the function call, Python uses 
@@ -9992,21 +8108,16 @@ For example, if you notice that most of the calls to describe_pet() are
 being used to describe dogs, you can set the default value of animal_type to 
 ‘dog'. Now anyone calling describe_pet() for a dog can omit that information: 
 
-
 def describe pet(pet_name, animal_type='dog'): 
 
-
 describe _pet(pet_name='willie' ) 
-
 
 We changed the definition of describe_pet() to include a default value, 
 ‘dog', for animal_type. Now when the function is called with no animal_type 
 specified, Python knows to use the value 'dog' for this parameter: 
 
-
 I have a dog. 
 My dog's name is Willie. 
-
 
 Note that the order of the parameters in the function definition had 
 to be changed. Because the default value makes it unnecessary to specify a 
@@ -10019,9 +8130,7 @@ son the first parameter needs to be pet_name.
 The simplest way to use this function now is to provide just a dog’s 
 name in the function call: 
 
-
 describe _pet('willie') 
-
 
 This function call would have the same output as the previous example. 
 The only argument provided is 'willie', so it is matched up with the first 
@@ -10031,21 +8140,16 @@ animal_type, Python uses the default value 'dog'.
 To describe an animal other than a dog, you could use a function call 
 like this: 
 
-
 describe _pet(pet_name='harry', animal_type="hamster' ) 
-
 
 Because an explicit argument for animal_type is provided, Python will 
 ignore the parameter’s default value. 
-
 
 When you use default values, any parameter with a default value needs to be listed 
 after all the parameters that don’t have default values. This allows Python to con- 
 tinue interpreting positional arguments correctly. 
 
-
 Equivalent Function Calls 
-
 
 Because positional arguments, keyword arguments, and default values can 
 
@@ -10054,25 +8158,18 @@ tion. Consider the following definition for describe_pets() with one default
 
 value provided: 
 
-
 def describe pet(pet_name, animal_type='dog'): 
-
 
 With this definition, an argument always needs to be provided for 
 pet_name, and this value can be provided using the positional or keyword 
 
-
 Functions 139 
-
 
 140 
 
-
 Chapter 8 
 
-
 eee 
-
 
 format. If the animal being described is not a dog, an argument for 
 animal_type must be included in the call, and this argument can also be 
@@ -10080,11 +8177,9 @@ specified using the positional or keyword format.
 
 All of the following calls would work for this function: 
 
-
 # A dog named Willie. 
 describe pet(‘willie') 
 describe _pet(pet_name='willie' ) 
-
 
 # A hamster named Harry. 
 
@@ -10093,17 +8188,13 @@ describe pet(‘harry', ‘hamster')
 describe _pet(pet_name='harry', animal_type='hamster' ) 
 describe _pet(animal_type='hamster', pet_name='harry' ) 
 
-
 Each of these function calls would have the same output as the previous 
 examples. 
-
 
 It doesn't really matter which calling style you use. As long as your function calls pro- 
 duce the output you want, just use the style you find easiest to understand. 
 
-
 Avoiding Argument Errors 
-
 
 When you start to use functions, don’t be surprised if you encounter errors 
 about unmatched arguments. Unmatched arguments occur when you 
@@ -10111,13 +8202,10 @@ provide fewer or more arguments than a function needs to do its work.
 For example, here’s what happens if we try to call describe_pet() with no 
 arguments: 
 
-
 describe _pet() 
-
 
 Python recognizes that some information is missing from the function 
 call, and the traceback tells us that: 
-
 
 Traceback (most recent call last): 
 File "pets.py", line 6, in <module> 
@@ -10125,11 +8213,9 @@ describe _pet()
 TypeError: describe pet() missing 2 required positional arguments: ‘animal_ 
 type’ and 'pet_name' 
 
-
 At @ the traceback tells us the location of the problem, allowing us to 
 look back and see that something went wrong in our function call. At @ 
 the offending function call is written out for us to see. At ® the traceback 
-
 
 tells us the call is missing two arguments and reports the names of the miss- 
 ing arguments. If this function were in a separate file, we could probably 
@@ -10146,9 +8232,7 @@ If you provide too many arguments, you should get a similar trace-
 back that can help you correctly match your function call to the function 
 definition. 
 
-
 TRY IT YOURSELF 
-
 
 8-3. T-Shirt: Write a function called make_shirt() that accepts a size and the 
 text of a message that should be printed on the shirt. The function should print 
@@ -10157,27 +8241,21 @@ a sentence summarizing the size of the shirt and the message printed on it.
 Call the function once using positional arguments to make a shirt. Call the 
 function a second time using keyword arguments. 
 
-
 8-4. Large Shirts: Modify the make_shirt() function so that shirts are large 
 
 by default with a message that reads / love Python. Make a large shirt and a 
 medium shirt with the default message, and a shirt of any size with a different 
 message. 
 
-
 8-5. Cities: Write a function called describe _city() that accepts the name of 
 
-
 a city and its country. The function should print a simple sentence, such as 
-
 
 Reykjavik is in Iceland. Give the parameter for the country a default value. 
 Call your function for three different cities, at least one of which is not in the 
 default country. 
 
-
 Return Values 
-
 
 A function doesn’t always have to display its output directly. Instead, it can 
 process some data and then return a value or set of values. The value the 
@@ -10186,36 +8264,27 @@ from inside a function and sends it back to the line that called the function.
 Return values allow you to move much of your program’s grunt work into 
 functions, which can simplify the body of your program. 
 
-
 Functions 141 
 
-
 142 
-
 
 formatted. @ 
 name.py 
 
-
 Chapter 8 
-
 
 Returning a Simple Value 
 
-
 Let’s look at a function that takes a first and last name, and returns a neatly 
 formatted full name: 
-
 
 def get_formatted_name(first_name, last_name): 
 """Return a full name, neatly formatted.""" 
 full_name = first_name + ' ' + last_name 
 return full_name.title() 
 
-
 musician = get_formatted_name('jimi', ‘hendrix') 
 print (musician) 
-
 
 The definition of get_formatted_name() takes as parameters a first and last 
 name ®. The function combines these two names, adds a space between 
@@ -10227,25 +8296,19 @@ variable where the return value can be stored. In this case, the returned
 value is stored in the variable musician at @. The output shows a neatly for- 
 matted name made up of the parts of a person’s name: 
 
-
 Jimi Hendrix 
-
 
 This might seem like a lot of work to get a neatly formatted name when 
 we could have just written: 
 
-
 print("Jimi Hendrix") 
-
 
 But when you consider working with a large program that needs to 
 store many first and last names separately, functions like get_formatted_name() 
 become very useful. You store first and last names separately and then call 
 this function whenever you want to display a full name. 
 
-
 Making an Argument Optional 
-
 
 Sometimes it makes sense to make an argument optional so that people 
 using the function can choose to provide extra information only if they 
@@ -10255,28 +8318,22 @@ For example, say we want to expand get_formatted_name() to handle
 middle names as well. A first attempt to include middle names might look 
 like this: 
 
-
 def get_formatted_name(first_name, middle name, last_name): 
 """Return a full name, neatly formatted.""" 
 full_name = first_name + ' ' + middle_name + 
 return full_name.title() 
 
-
 + last_name 
-
 
 musician = get_formatted_name('john', ‘lee’, ‘hooker') 
 print (musician) 
-
 
 This function works when given a first, middle, and last name. The 
 function takes in all three parts of a name and then builds a string out of 
 them. The function adds spaces where appropriate and converts the full 
 name to title case: 
 
-
 John Lee Hooker 
-
 
 But middle names aren’t always needed, and this function as written 
 would not work if you tried to call it with only a first name and a last name. 
@@ -10286,22 +8343,17 @@ value. To make get_formatted_name() work without a middle name, we set the
 default value of middle_name to an empty string and move it to the end of the 
 list of parameters: 
 
-
 def get_formatted_name(first_name, last_name, middle _name=''): 
 if middle_name: 
 full_name = first_name + ' ' + middle name + ' ' + last_name 
 else: 
 
-
 full_name = first_name + ' ' + last_name 
-
 
 musician = get_formatted_name('jimi', ‘hendrix') 
 print (musician) 
 
-
 musician = get_formatted_name('john', ‘hooker’, ‘lee') 
-
 
 In this example, the name is built from three possible parts. Because 
 there’s always a first and last name, these parameters are listed first in the 
@@ -10324,30 +8376,23 @@ we're using a middle name, however, we have to make sure the middle
 name is the last argument passed so Python will match up the positional 
 arguments correctly @. 
 
-
 Functions 143 
-
 
 This modified version of our function works for people with just a first 
 and last name, and it works for people who have a middle name as well: 
 
-
 Jimi Hendrix 
 John Lee Hooker 
-
 
 Optional values allow functions to handle a wide range of use cases 
 while letting function calls remain as simple as possible. 
 
-
 Returning a Dictionary 
-
 
 A function can return any kind of value you need it to, including more com- 
 plicated data structures like lists and dictionaries. For example, the follow- 
 ing function takes in parts of a name and returns a dictionary representing 
 a person: 
-
 
 person.py def build_person(first_name, last_name): 
 
@@ -10355,14 +8400,11 @@ person.py def build_person(first_name, last_name):
 person = {'first': first_name, ‘last’: last_name} 
 return person 
 
-
 1) 
 2) 
 
-
 musician = build person('jimi', 'hendrix') 
 © print (musician) 
-
 
 The function build_person() takes in a first and last name, and packs 
 these values into a dictionary at ®. The value of first_name is stored with 
@@ -10371,9 +8413,7 @@ entire dictionary representing the person is returned at @. The return
 value is printed at © with the original two pieces of textual information 
 now stored in a dictionary: 
 
-
 {'first': 'jimi', ‘last’: 'hendrix'} 
-
 
 This function takes in simple textual information and puts it into a 
 more meaningful data structure that lets you work with the information 
@@ -10383,24 +8423,17 @@ optional values like a middle name, an age, an occupation, or any other
 information you want to store about a person. For example, the following 
 change allows you to store a person’s age as well: 
 
-
 def build_person(first_name, last_name, age=''): 
-
 
 if age: 
 
-
 person['age'] = age 
-
 
 musician = build_person('jimi', 'hendrix', age=27) 
 
-
 144 Chapter 8 
 
-
 greeter.py 
-
 
 We add a new optional parameter age to the function definition and 
 assign the parameter an empty default value. If the function call includes a 
@@ -10408,16 +8441,13 @@ value for this parameter, the value is stored in the dictionary. This function
 always stores a person’s name, but it can also be modified to store any other 
 information you want about a person. 
 
-
 Using a Function with a while Loop 
-
 
 You can use functions with all the Python structures you’ve learned about 
 so far. For example, let’s use the get_formatted_name() function with a while 
 
 loop to greet users more formally. Here’s a first attempt at greeting people 
 using their first and last names: 
-
 
 # This is an infinite loop! 
 
@@ -10426,10 +8456,8 @@ print("\nPlease tell me your name:")
 f name = input("First name: ") 
 l_name = input("Last name: ") 
 
-
 formatted_name = get_formatted_name(f_name, 1 name) 
 print("\nHello, " + formatted_name + "!" 
-
 
 For this example, we use a simple version of get_formatted_name() that 
 doesn’t involve middle names. The while loop asks the user to enter their 
@@ -10441,29 +8469,22 @@ inputs? We want the user to be able to quit as easily as possible, so each
 prompt should offer a way to quit. The break statement offers a straight- 
 forward way to exit the loop at either prompt: 
 
-
 at any time to quit)") 
-
 
 print ( " (enter "q' } 
 
-
 if £ name 2 "q': 
-
 
 break 
 if l_name == 'q': 
 break 
 
-
 Functions 145 
-
 
 We add a message that informs the user how to quit, and then we 
 break out of the loop if the user enters the quit value at either prompt. 
 Now the program will continue greeting people until someone enters 'q' 
 for either name: 
-
 
 Please tell me your name: 
 (enter 'q' at any time to quit) 
@@ -10471,28 +8492,21 @@ First name: eric
 
 Last name: matthes 
 
-
 Hello, Eric Matthes! 
 Please tell me your name: 
-
 
 (enter 'q' at any time to quit) 
 First name: q 
 
-
 TRY IT YOURSELF 
-
 
 8-6. City Names: Write a function called city country() that takes in the name 
 of a city and its country. The function should return a string formatted like this: 
 
-
 "Santiago, Chile" 
-
 
 Call your function with at least three city-country pairs, and print the value 
 that’s returned. 
-
 
 8-7. Album: Write a function called make_album() that builds a dictionary 
 describing a music album. The function should take in an artist name and an 
@@ -10506,22 +8520,16 @@ number of tracks on an album. If the calling line includes a value for the num-
 ber of tracks, add that value to the album's dictionary. Make at least one new 
 function call that includes the number of tracks on an album. 
 
-
 8-8. User Albums: Start with your program from Exercise 8-7. Write a while 
 loop that allows users to enter an album’s artist and title. Once you have that 
 
-
 information, call make_album() with the user’s input and print the dictionary 
-
 
 that’s created. Be sure to include a quit value in the while loop. 
 
-
 146 = Chapter 8 
 
-
 Passing a List 
-
 
 You'll often find it useful to pass a list to a function, whether it’s a list of 
 names, numbers, or more complex objects, such as dictionaries. When you 
@@ -10532,39 +8540,31 @@ Say we have a list of users and want to print a greeting to each. The
 following example sends a list of names to a function called greet_users(), 
 which greets each person in the list individually: 
 
-
 greet_users.py def greet_users(names): 
 """Print a simple greeting to each user in the list. 
 for name in names: 
 msg = "Hello, 
 print (msg) 
 
-
 + name.title() + 
-
 
 @ usernames = ['hannah', 'ty', 'margot'] 
 greet_users (usernames) 
-
 
 We define greet_users() so it expects a list of names, which it stores in 
 the parameter names. The function loops through the list it receives and 
 prints a greeting to each user. At ® we define a list of users and then pass 
 the list usernames to greet_users()in our function call: 
 
-
 Hello, Hannah! 
 Hello, Ty! 
 Hello, Margot! 
-
 
 This is the output we wanted. Every user sees a personalized greet- 
 ing, and you can call the function any time you want to greet a specific set 
 of users. 
 
-
 Modifying a List in a Function 
-
 
 When you pass a list to a function, the function can modify the list. Any 
 changes made to the list inside the function’s body are permanent, allowing 
@@ -10575,11 +8575,9 @@ users submit. Designs that need to be printed are stored in a list, and after
 being printed they’re moved to a separate list. The following code does this 
 without using functions: 
 
-
 printing_ # Start with some designs that need to be printed. 
 models. py unprinted_designs = ['iphone case’, ‘robot pendant’, ‘dodecahedron’ | 
 completed_models = [] 
-
 
 # Simulate printing each design, until none are left. 
 # Move each design to completed_models after printing. 
@@ -10587,21 +8585,17 @@ while unprinted_designs:
 
 current_design = unprinted_designs.pop() 
 
-
 Functions 147 
-
 
 # Simulate creating a 3D print from the design. 
 print("Printing model: " + current_design) 
 completed_models.append(current_design) 
-
 
 # Display all completed models. 
 print("\nThe following models have been printed:") 
 for completed_model in completed_models: 
 
 print (completed_model) 
-
 
 This program starts with a list of designs that need to be printed and 
 an empty list called completed_models that each design will be moved to after 
@@ -10612,11 +8606,9 @@ rent design is being printed. It then adds the design to the list of completed
 models. When the loop is finished running, a list of the designs that have 
 been printed is displayed: 
 
-
 Printing model: dodecahedron 
 Printing model: robot pendant 
 Printing model: iphone case 
-
 
 The following models have been printed: 
 dodecahedron 
@@ -10625,12 +8617,10 @@ robot pendant
 
 iphone case 
 
-
 We can reorganize this code by writing two functions, each of which 
 does one specific job. Most of the code won’t change; we’re just making it 
 more efficient. The first function will handle printing the designs, and the 
 second will summarize the prints that have been made: 
-
 
 @ def print_models(unprinted_designs, completed_models): 
 Simulate printing each design, until none are left. 
@@ -10638,11 +8628,9 @@ Move each design to completed_models after printing.
 while unprinted_designs: 
 current_design = unprinted_designs.pop() 
 
-
 # Simulate creating a 3D print from the design. 
 print("Printing model: " + current_design) 
 completed_models.append(current_design) 
-
 
 @ def show_completed_models(completed_models): 
 """Show all the models that were printed.""" 
@@ -10650,17 +8638,13 @@ print("\nThe following models have been printed:")
 for completed_model in completed_models: 
 print (completed_model) 
 
-
 unprinted_designs = ['iphone case’, ‘robot pendant’, ‘dodecahedron’ ] 
 completed _models = [] 
 
-
 148 Chapter 8 
-
 
 print_models(unprinted_designs, completed_models) 
 show_completed_models(completed_models) 
-
 
 At © we define the function print_models() with two parameters: a list of 
 designs that need to be printed and a list of completed models. Given these 
@@ -10676,14 +8660,11 @@ been moved to two separate functions, which makes the main part of the
 program easier to understand. Look at the body of the program to see how 
 much easier it is to understand what this program is doing: 
 
-
 unprinted_designs = ['iphone case’, ‘robot pendant’, ‘dodecahedron’ | 
 completed_models = [] 
 
-
 print_models(unprinted_designs, completed_models) 
 show_completed_models(completed_models) 
-
 
 We set up a list of unprinted designs and an empty list that will hold the 
 completed models. Then, because we’ve already defined our two functions, 
@@ -10709,22 +8690,16 @@ is doing too many different tasks, try to split the code into two functions.
 Remember that you can always call a function from another function, 
 which can be helpful when splitting a complex task into a series of steps. 
 
-
 Preventing a Function from Modifying a List 
-
 
 Sometimes you'll want to prevent a function from modifying a list. For 
 example, say that you start with a list of unprinted designs and write a 
 
-
 Functions 149 
-
 
 150 
 
-
 Chapter 8 
-
 
 function to move them to a list of completed models, as in the previous 
 example. You may decide that even though you've printed all the designs, 
@@ -10737,17 +8712,13 @@ affect only the copy, leaving the original list intact.
 
 You can send a copy of a list to a function like this: 
 
-
 function_name(list_name[:]) 
-
 
 The slice notation [:] makes a copy of the list to send to the function. 
 If we didn’t want to empty the list of unprinted designs in print_models.py, 
 we could call print_models() like this: 
 
-
 print_models(unprinted_designs[:], completed_models) 
-
 
 The function print_models() can do its work because it still receives the 
 names of all unprinted designs. But this time it uses a copy of the origi- 
@@ -10762,9 +8733,7 @@ you have a specific reason to pass a copy. It’s more efficient for a function
 to work with an existing list to avoid using the time and memory needed to 
 make a separate copy, especially when you're working with large lists. 
 
-
 TRY IT YOURSELF 
-
 
 8-9. Magicians: Make a list of magician’s names. Pass the list to a function 
 called show magicians(), which prints the name of each magician in the list. 
@@ -10773,23 +8742,17 @@ Write a function called make_great() that modifies the list of magicians by add-
 ing the phrase the Great to each magician’s name. Call show_magicians() to 
 see that the list has actually been modified. 
 
-
 8-11. Unchanged Magicians: Start with your work from Exercise 8-10. Call the 
 
-
 function make_great() with a copy of the list of magicians’ names. Because the 
-
 
 original list will be unchanged, return the new list and store it in a separate list. 
 Call show_magicians() with each list to show that you have one list of the origi- 
 nal names and one list with the Great added to each magician’s name. 
 
-
 Passing an Arbitrary Number of Arguments 
 
-
 pizza.py 
-
 
 Sometimes you won't know ahead of time how many arguments a function 
 needs to accept. Fortunately, Python allows a function to collect an arbi- 
@@ -10801,15 +8764,12 @@ a person will want. The function in the following example has one param-
 eter, *toppings, but this parameter collects as many arguments as the calling 
 line provides: 
 
-
 def make_pizza(*toppings): 
 """Print the list of toppings that have been requested.""" 
 print (toppings) 
 
-
 make_pizza('pepperoni' ) 
 make_pizza('mushrooms', 'green peppers’, ‘extra cheese’) 
-
 
 The asterisk in the parameter name *toppings tells Python to make an 
 empty tuple called toppings and pack whatever values it receives into this 
@@ -10818,28 +8778,22 @@ that Python can handle a function call with one value and a call with three
 values. It treats the different calls similarly. Note that Python packs the 
 arguments into a tuple, even if the function receives only one value: 
 
-
 (‘ pepperoni’, ) 
 (‘mushrooms', 'green peppers’, ‘extra cheese’) 
 
-
 Now we can replace the print statement with a loop that runs through 
 the list of toppings and describes the pizza being ordered: 
-
 
 Summarize the pizza we are about to make. 
 print("\nMaking a pizza with the following toppings:") 
 for topping in toppings: 
 print("- " + topping) 
 
-
 The function responds appropriately, whether it receives one value or 
 three values: 
 
-
 Making a pizza with the following toppings: 
 - pepperoni 
-
 
 Making a pizza with the following toppings: 
 - mushrooms 
@@ -10848,22 +8802,16 @@ Making a pizza with the following toppings:
 
 - extra cheese 
 
-
 Functions 151 
-
 
 152 
 
-
 Chapter 8 
-
 
 This syntax works no matter how many arguments the function 
 receives. 
 
-
 Mixing Positional and Arbitrary Arguments 
-
 
 If you want a function to accept several different kinds of arguments, the 
 parameter that accepts an arbitrary number of arguments must be placed 
@@ -10874,15 +8822,12 @@ parameter.
 For example, if the function needs to take in a size for the pizza, that 
 parameter must come before the parameter *toppings: 
 
-
 def make_pizza(size, *toppings): 
 print("\nMaking a " + str(size) + 
 "-inch pizza with the following toppings:") 
 
-
 make_pizza(16, ‘pepperoni') 
 make_pizza(12, ‘'mushrooms', 'green peppers’, ‘extra cheese’) 
-
 
 In the function definition, Python stores the first value it receives in 
 the parameter size. All other values that come after are stored in the tuple 
@@ -10893,10 +8838,8 @@ Now each pizza has a size and a number of toppings, and each piece of
 information is printed in the proper place, showing size first and toppings 
 after: 
 
-
 Making a 16-inch pizza with the following toppings: 
 - pepperoni 
-
 
 Making a 12-inch pizza with the following toppings: 
 - mushrooms 
@@ -10905,9 +8848,7 @@ Making a 12-inch pizza with the following toppings:
 
 - extra cheese 
 
-
 Using Arbitrary Keyword Arguments 
-
 
 Sometimes you'll want to accept an arbitrary number of arguments, but you 
 won’t know ahead of time what kind of information will be passed to the 
@@ -10916,13 +8857,10 @@ pairs as the calling statement provides. One example involves building user
 profiles: you know you'll get information about a user, but you’re not sure 
 what kind of information you’ll receive. The function build_profile() in the 
 
-
 user_profile.py 
-
 
 following example always takes in a first and last name, but it accepts an 
 arbitrary number of keyword arguments as well: 
-
 
 def build profile(first, last, **user_info): 
 """Build a dictionary containing everything we know about a user. 
@@ -10933,12 +8871,10 @@ for key, value in user_info.items():
 profile[key] = value 
 return profile 
 
-
 user _profile = build profile('‘albert', ‘einstein’, 
 location='princeton', 
 field='physics') 
 print (user_profile) 
-
 
 The definition of build_profile() expects a first and last name, and 
 then it allows the user to pass in as many name-value pairs as they want. The 
@@ -10959,10 +8895,8 @@ name ‘einstein’, and the two key-value pairs location='princeton' and
 field='physics'. We store the returned profile in user_profile and print 
 user_profile: 
 
-
 {'first_name': 'albert', 'last_name': ‘einstein’, 
 ‘location’: ‘princeton’, 'field': 'physics'} 
-
 
 The returned dictionary contains the user’s first and last names and, 
 in this case, the location and field of study as well. The function would 
@@ -10977,31 +8911,23 @@ types correctly and to know when to use each type. For now, remember to
 use the simplest approach that gets the job done. As you progress you'll 
 learn to use the most efficient approach each time. 
 
-
 Functions 153 
-
 
 154 
 
-
 TRY IT YOURSELF 
-
 
 8-12. Sandwiches: Write a function that accepts a list of items a person wants 
 on a sandwich. The function should have one parameter that collects as many 
 
-
 items as the function call provides, and it should print a summary of the sand- 
-
 
 wich that is being ordered. Call the function three times, using a different num- 
 ber of arguments each time. 
 
-
 8-13. User Profile: Start with a copy of user_profile.py from page 153. Build 
 a profile of yourself by calling build_profile(), using your first and last names 
 and three other key-value pairs that describe you. 
-
 
 8-14. Cars: Write a function that stores information about a car in a diction- 
 ary. The function should always receive a manufacturer and a model name. It 
@@ -11009,19 +8935,14 @@ should then accept an arbitrary number of keyword arguments. Call the func-
 tion with the required information and two other name-value pairs, such as a 
 color or an optional feature. Your function should work for a call like this one: 
 
-
 car = make_car(‘subaru', ‘outback’, color="blue’, tow_package=True) 
-
 
 Print the dictionary that’s returned to make sure all the information was 
 stored correctly. 
 
-
 Storing Your Functions in Modules 
 
-
 Chapter 8 
-
 
 One advantage of functions is the way they separate blocks of code from 
 your main program. By using descriptive names for your functions, your 
@@ -11041,18 +8962,14 @@ written.
 There are several ways to import a module, and Ill show you each of 
 these briefly. 
 
-
 Importing an Entire Module 
-
 
 To start importing functions, we first need to create a module. A module 
 is a file ending in .py that contains the code you want to import into your 
 
-
 program. Let’s make a module that contains the function make_pizza(). To 
 make this module, we’ll remove everything from the file pizza.py except the 
 function make_pizza(): 
-
 
 pizza.py def make_pizza(size, *toppings): 
 """Summarize the pizza we are about to make. 
@@ -11061,19 +8978,15 @@ print("\nMaking a " + str(size) +
 for topping in toppings: 
 print("- " + topping) 
 
-
 Now we’ll make a separate file called making_pizzas.py in the same 
 directory as pizza.py. This file imports the module we just created and then 
 makes two calls to make_pizza(): 
 
-
 making_ import pizza 
-
 
 pizzas.py 
 @ pizza.make_pizza(16, ‘pepperoni’ ) 
 pizza.make_pizza(12, ‘'mushrooms', ‘green peppers’, ‘extra cheese’) 
-
 
 When Python reads this file, the line import pizza tells Python to 
 open the file pizza.py and copy all the functions from it into this program. 
@@ -11087,10 +9000,8 @@ the module you imported, pizza, followed by the name of the function,
 make_pizza(), separated by a dot @. This code produces the same output 
 as the original program that didn’t import a module: 
 
-
 Making a 16-inch pizza with the following toppings: 
 - pepperoni 
-
 
 Making a 12-inch pizza with the following toppings: 
 - mushrooms 
@@ -11099,61 +9010,45 @@ Making a 12-inch pizza with the following toppings:
 
 - extra cheese 
 
-
 This first approach to importing, in which you simply write import fol- 
 lowed by the name of the module, makes every function from the module 
 available in your program. If you use this kind of import statement to import 
 an entire module named module_name.py, each function in the module is 
 available through the following syntax: 
 
-
 module_name.function_name() 
-
 
 Functions 155 
 
-
 156 
-
 
 Chapter 8 
 
-
 Importing Specific Functions 
-
 
 You can also import a specific function from a module. Here’s the general 
 syntax for this approach: 
 
-
 from module_name import function_name 
-
 
 You can import as many functions as you want from a module by sepa- 
 rating each function’s name with a comma: 
 
-
 from module_name import function_0, function_1, function _2 
-
 
 The making_pizzas.py example would look like this if we want to import 
 just the function we’re going to use: 
 
-
 from pizza import make_pizza 
-
 
 make_pizza(16, ‘pepperoni') 
 make_pizza(12, ‘'mushrooms', 'green peppers’, ‘extra cheese’) 
-
 
 With this syntax, you don’t need to use the dot notation when you call a 
 function. Because we’ve explicitly imported the function make_pizza() in the 
 import statement, we can call it by name when we use the function. 
 
-
 Using as to Give a Function an Alias 
-
 
 If the name of a function you're importing might conflict with an exist- 
 ing name in your program or if the function name is long, you can use a 
@@ -11165,13 +9060,10 @@ Here we give the function make_pizza() an alias, mp(), by importing
 make_pizza as mp. The as keyword renames a function using the alias you 
 provide: 
 
-
 from pizza import make_pizza as mp 
-
 
 mp(16, ‘pepperoni’ ) 
 mp(12, ‘'mushrooms', ‘green peppers’, ‘extra cheese') 
-
 
 The import statement shown here renames the function make_pizza() to 
 mp() in this program. Any time we want to call make_pizza() we can simply 
@@ -11181,24 +9073,18 @@ ten in this program file.
 
 The general syntax for providing an alias is: 
 
-
 from module_name import function_name as fn 
 
-
 Using as to Give a Module an Alias 
-
 
 You can also provide an alias for a module name. Giving a module a short 
 alias, like p for pizza, allows you to call the module’s functions more quickly. 
 Calling p.make_pizza() is more concise than calling pizza.make_pizza(): 
 
-
 import pizza as p 
-
 
 p.make_pizza(16, ‘pepperoni') 
 p.make_pizza(12, ‘'mushrooms', ‘green peppers’, ‘extra cheese’) 
-
 
 The module pizza is given the alias p in the import statement, but all of 
 the module’s functions retain their original names. Calling the functions by 
@@ -11210,23 +9096,17 @@ readability of your code than using the full module name.
 
 The general syntax for this approach is: 
 
-
 import module_name as mn 
 
-
 Importing All Functions in a Module 
-
 
 You can tell Python to import every function in a module by using the aster- 
 isk (*) operator: 
 
-
 from pizza import * 
-
 
 make_pizza(16, ‘pepperoni' ) 
 make_pizza(12, ‘'mushrooms', ‘green peppers’, ‘extra cheese’) 
-
 
 The asterisk in the import statement tells Python to copy every func- 
 tion from the module pizza into this program file. Because every function 
@@ -11244,21 +9124,15 @@ code that’s easy to read and understand. I include this section so you'll
 recognize import statements like the following when you see them in other 
 people’s code: 
 
-
 from module_name import * 
-
 
 Functions 157 
 
-
 158 
-
 
 Styling Functions 
 
-
 Chapter 8 
-
 
 You need to keep a few details in mind when you're styling functions. 
 Functions should have descriptive names, and these names should use 
@@ -11278,16 +9152,12 @@ able to use it in their programs.
 If you specify a default value for a parameter, no spaces should be used 
 on either side of the equal sign: 
 
-
 def function_name(parameter_0, parameter_1='default value') 
-
 
 The same convention should be used for keyword arguments in func- 
 tion calls: 
 
-
 function_name(value_0, parameter_1='value' ) 
-
 
 PEP 8 (https://www.python.org/deu/peps/pep-0008/) recommends that 
 you limit lines of code to 79 characters so every line is visible in a reasonably 
@@ -11300,12 +9170,10 @@ level.
 Most editors automatically line up any additional lines of parameters to 
 match the indentation you have established on the first line: 
 
-
 def function_name( 
 parameter 0, parameter_1, parameter 2, 
 parameter_3, parameter_4, parameter_5): 
 function body... 
-
 
 If your program or module has more than one function, you can sepa- 
 rate each by two blank lines to make it easier to see where one function 
@@ -11315,9 +9183,7 @@ All import statements should be written at the beginning of a file.
 The only exception is if you use comments at the beginning of your file to 
 describe the overall program. 
 
-
 TRY IT YOURSELF 
-
 
 8-15. Printing Models: Put the functions for the example print_models.py in a 
 separate file called printing_functions.py. Write an import statement at the top 
@@ -11326,7 +9192,6 @@ of print_models.py, and modify the file to use the imported functions.
 8-16. Imports: Using a program you wrote that has one function in it, store that 
 function in a separate file. Import the function into your main program file, and 
 call the function using each of these approaches: 
-
 
 import module_name 
 
@@ -11337,15 +9202,11 @@ import module_name as mn
 
 from module_name import * 
 
-
 8-17. Styling Functions: Choose any three programs you wrote for this chapter, 
-
 
 and make sure they follow the styling guidelines described in this section. 
 
-
 Summary 
-
 
 In this chapter you learned how to write functions and to pass arguments 
 so that your functions have access to the information they need to do their 
@@ -11376,15 +9237,11 @@ tion names summarize what each part of a program does. Reading a series
 of function calls gives you a much quicker sense of what a program does 
 than reading a long series of code blocks. 
 
-
 Functions 159 
-
 
 160 
 
-
 Chapter 8 
-
 
 Functions also make your code easier to test and debug. When the bulk 
 of your program’s work is done by a set of functions, each of which has a 
@@ -11397,13 +9254,10 @@ you call them.
 In Chapter 9 you’ll learn to write classes. Classes combine functions and 
 data into one neat package that can be used in flexible and efficient ways. 
 
-
 CLASSES 
-
 
 Object-oriented programming is one of the 
 most effective approaches to writing soft- 
-
 
 ware. In object-oriented programming you 
 write classes that represent real-world things 
@@ -11413,7 +9267,6 @@ and situations, and you create objects based on these
 classes. When you write a class, you define the general 
 
 behavior that a whole category of objects can have. 
-
 
 When you create individual objects from the class, each object is automati- 
 cally equipped with the general behavior; you can then give each object 
@@ -11426,9 +9279,7 @@ of those classes. You'll specify the kind of information that can be stored in
 instances, and you'll define actions that can be taken with these instances. 
 You'll also write classes that extend the functionality of existing classes, so 
 
-
 162 
-
 
 similar classes can share code efficiently. You'll store your classes in mod- 
 ules and import classes written by other programmers into your own pro- 
@@ -11446,16 +9297,12 @@ you and other programmers write code based on the same kind of logic,
 you'll be able to understand each other’s work. Your programs will make 
 sense to many collaborators, allowing everyone to accomplish more. 
 
-
 Creating and Using a Class 
-
 
 dog.py @ 
 e 
 
-
 Chapter 9 
-
 
 You can model almost anything using classes. Let’s start by writing a simple 
 class, Dog, that represents a dog—not one dog in particular, but any dog. 
@@ -11467,13 +9314,10 @@ Python how to make an object representing a dog. After our class is written,
 we'll use it to make individual instances, each of which represents one spe- 
 cific dog. 
 
-
 Creating the Dog Class 
-
 
 Each instance created from the Dog class will store a name and an age, and 
 we’ll give each dog the ability to sit() and roll_over(): 
-
 
 class Dog(): 
 """A simple attempt to model a dog.""" 
@@ -11482,18 +9326,14 @@ def init__(self, name, age):
 self.name = name 
 self.age = age 
 
-
 def sit(self): 
 """Simulate a dog sitting in response to a command.""" 
 print(self.name.title() + " is now sitting.") 
 
-
 def roll over(self): 
 """Simulate rolling over in response to a command.""" 
 
-
 print(self.name.title() + " rolled over!") 
-
 
 There’s a lot to notice here, but don’t worry. You'll see this structure 
 throughout this chapter and have lots of time to get used to it. At ® we 
@@ -11502,9 +9342,7 @@ in Python. The parentheses in the class definition are empty because we’re
 creating this class from scratch. At @ we write a docstring describing what 
 this class does. 
 
-
 The __init__() Method 
-
 
 A function that’s part of a class is a method. Everything you learned about 
 functions applies to methods as well; the only practical difference for now is 
@@ -11548,41 +9386,30 @@ an animated dog sit and roll over. If this class was written to control a
 robot, these methods would direct movements that cause a dog robot to 
 sit and roll over. 
 
-
 Classes 163 
-
 
 164 
 
-
 Chapter 9 
-
 
 ®@® 
 
-
 Creating Classes in Python 2.7 
-
 
 When you create a class in Python 2.7, you need to make one minor change. 
 You include the term object in parentheses when you create a class: 
 
-
 class ClassName(object): 
 --snip-- 
-
 
 This makes Python 2.7 classes behave more like Python 3 classes, which 
 makes your work easier overall. 
 The Dog class would be defined like this in Python 2.7: 
 
-
 class Dog(object): 
 --snip-- 
 
-
 Making an Instance from a Class 
-
 
 Think of a class as a set of instructions for how to make an instance. The 
 class Dog is a set of instructions that tells Python how to make individual 
@@ -11590,15 +9417,12 @@ instances representing specific dogs.
 
 Let’s make an instance representing a specific dog: 
 
-
 my_dog = Dog('willie', 6) 
 " + my _dog.name.title() + ".") 
 "years old.") 
 
-
 print("My dog's name is 
 print("My dog is " + str(my_dog.age) + 
-
 
 The Dog class we’re using here is the one we just wrote in the previous 
 example. At ® we tell Python to create a dog whose name is 'willie' and 
@@ -11612,20 +9436,15 @@ helpful here: we can usually assume that a capitalized name like Dog refers
 to a class, and a lowercase name like my_dog refers to a single instance cre- 
 ated from a class. 
 
-
 Accessing Attributes 
-
 
 To access the attributes of an instance, you use dot notation. At @ we access 
 the value of my_dog’s attribute name by writing: 
 
-
 my_dog.name 
-
 
 Dot notation is used often in Python. This syntax demonstrates how 
 Python finds an attribute’s value. Here Python looks at the instance my_dog 
-
 
 and then finds the attribute name associated with my_dog. This is the same attri- 
 bute referred to as self.name in the class Dog. At © we use the same approach 
@@ -11636,21 +9455,16 @@ attribute, to a string.
 
 The output is a summary of what we know about my_dog: 
 
-
 My dog's name is Willie. 
 My dog is 6 years old. 
 
-
 Calling Methods 
-
 
 After we create an instance from the class Dog, we can use dot notation to 
 call any method defined in Dog. Let’s make our dog sit and roll over: 
 
-
 my_do .sit() . 
 my _dog.roll_over() 
-
 
 To call a method, give the name of the instance (in this case, my_dog) 
 and the method you want to call, separated by a dot. When Python reads 
@@ -11659,23 +9473,18 @@ code. Python interprets the line my_dog.roll_over() in the same way.
 
 Now Willie does what we tell him to: 
 
-
 Willie is now sitting. 
 Willie rolled over! 
-
 
 This syntax is quite useful. When attributes and methods have been 
 given appropriately descriptive names like name, age, sit(), and roll_over(), 
 we can easily infer what a block of code, even one we’ve never seen before, 
 is supposed to do. 
 
-
 Creating Multiple Instances 
-
 
 You can create as many instances from a class as you need. Let’s create a 
 second dog called your_dog: 
-
 
 my dog = Dog('willie’, 6) 
 your_dog = Dog(‘lucy', 3) 
@@ -11683,43 +9492,33 @@ print("My dog's name is "
 print("My dog is " + str(my_dog.age) + 
 my_dog.sit() 
 
-
 + my_dog.name.title() + ".") 
 "years old.") 
 
-
 Classes 165 
-
 
 166 
 
-
 Chapter 9 
-
 
 + your_dog.name.title() + ".") 
 "years old.") 
-
 
 print("\nYour dog's name is 
 print("Your dog is " + str(your_dog.age) + 
 your_dog.sit() 
 
-
 In this example we create a dog named Willie and a dog named Lucy. 
 Each dog is a separate instance with its own set of attributes, capable of the 
 same set of actions: 
-
 
 My dog's name is Willie. 
 My dog is 6 years old. 
 Willie is now sitting. 
 
-
 Your dog's name is Lucy. 
 Your dog is 3 years old. 
 Lucy is now sitting. 
-
 
 Even if we used the same name and age for the second dog, Python 
 would still create a separate instance from the Dog class. You can make 
@@ -11727,9 +9526,7 @@ as many instances from one class as you need, as long as you give each
 instance a unique variable name or it occupies a unique spot in a list or 
 dictionary. 
 
-
 TRY IT YOURSELF 
-
 
 9-1. Restaurant: Make a class called Restaurant. The _init__() method for 
 Restaurant should store two attributes: a restaurant_name and a cuisine type. 
@@ -11740,13 +9537,10 @@ cating that the restaurant is open.
 Make an instance called restaurant from your class. Print the two attri- 
 butes individually, and then call both methods. 
 
-
 9-2. Three Restaurants: Start with your class from Exercise 9-1. Create three 
-
 
 different instances from the class, and call describe restaurant() for each 
 instance. 
-
 
 9-3. Users: Make a class called User. Create two attributes called first_name 
 and last_name, and then create several other attributes that are typically stored 
@@ -11757,9 +9551,7 @@ a personalized greeting to the user.
 Create several instances representing different users, and call both methods 
 for each user. 
 
-
 Working with Classes and Instances 
-
 
 You can use classes to represent many real-world situations. Once you write 
 a class, you'll spend most of your time working with instances created from 
@@ -11767,14 +9559,11 @@ that class. One of the first tasks you’ll want to do is modify the attributes
 associated with a particular instance. You can modify the attributes of an 
 instance directly or write methods that update attributes in specific ways. 
 
-
 The Car Class 
-
 
 Let’s write a new class representing a car. Our class will store information 
 about the kind of car we’re working with, and it will have a method that 
 summarizes this information: 
-
 
 car.py Class Car(): 
 
@@ -11786,19 +9575,15 @@ self.make = make
 self.model = model 
 self.year = year 
 
-
 2) def get_descriptive name(self): 
 """Return a neatly formatted descriptive name. 
 long_name = str(self.year) + ' ' + self.make + ' 
 return long name.title() 
 
-
 + self.model 
-
 
 © my_new_car = Car(‘audi', 'a4', 2016) 
 print(my_new_car.get_descriptive_name()) 
-
 
 At @ in the Car class, we define the _init__() method with the self 
 parameter first, just like we did before with our Dog class. We also give 
@@ -11815,25 +9600,18 @@ At © we make an instance from the Car class and store it in the variable
 my _new_car. Then we call get_descriptive_name() to show what kind of car 
 we have: 
 
-
 2016 Audi A4 
-
 
 To make the class more interesting, let’s add an attribute that changes 
 over time. We’ll add an attribute that stores the car’s overall mileage. 
 
-
 Classes 167 
-
 
 168 
 
-
 Chapter 9 
 
-
 Setting a Default Value for an Attribute 
-
 
 Every attribute in a class needs an initial value, even if that value is 0 or an 
 empty string. In some cases, such as when setting a default value, it makes 
@@ -11845,19 +9623,15 @@ Let’s add an attribute called odometer_reading that always starts with a
 value of 0. We’ll also add a method read_odometer() that helps us read each 
 car’s odometer: 
 
-
 sel 
 elf .ye /e 
 self.odometer_reading = 0 
-
 
 def read_odometer(self): 
 """Print a statement showing the car's mileage. 
 print("This car has " + str(self.odometer_reading) + " miles on it.") 
 
-
 my_new_car i read_odometer (@) 
-
 
 This time when Python calls the __init__() method to create a new 
 instance, it stores the make, model, and year values as attributes like 
@@ -11868,52 +9642,40 @@ mileage.
 
 Our car starts with a mileage of 0: 
 
-
 2016 Audi A4 
 This car has 0 miles on it. 
-
 
 Not many cars are sold with exactly 0 miles on the odometer, so we 
 need a way to change the value of this attribute. 
 
-
 Modifying Attribute Values 
-
 
 You can change an attribute’s value in three ways: you can change the value 
 directly through an instance, set the value through a method, or increment 
 the value (add a certain amount to it) through a method. Let’s look at each 
 of these approaches. 
 
-
 Modifying an Attribute’s Value Directly 
-
 
 The simplest way to modify the value of an attribute is to access the attri- 
 bute directly through an instance. Here we set the odometer reading to 23 
 directly: 
 
-
 my new_car.odometer_reading = 23 
 my new_car.read_odometer() 
-
 
 At © we use dot notation to access the car’s odometer_reading attri- 
 bute and set its value directly. This line tells Python to take the instance 
 my_new_car, find the attribute odometer_reading associated with it, and set the 
 value of that attribute to 23: 
 
-
 2016 Audi A4 
 This car has 23 miles on it. 
-
 
 Sometimes you'll want to access attributes directly like this, but other 
 times you'll want to write a method that updates the value for you. 
 
-
 Modifying an Attribute’s Value Through a Method 
-
 
 It can be helpful to have methods that update certain attributes for you. 
 Instead of accessing the attribute directly, you pass the new value to a 
@@ -11921,45 +9683,34 @@ method that handles the updating internally.
 
 Here’s an example showing a method called update_odometer(): 
 
-
 def update_odometer(self, mileage): 
 """Set the odometer reading to the given value. 
 self.odometer_reading = mileage 
 
-
 1 1 
-
 
 my _new_car.update_odometer(23) 
 my new_car.read_odometer() 
-
 
 The only modification to Car is the addition of update_odometer() at O. 
 This method takes in a mileage value and stores it in self.odometer_reading. 
 At @ we call update_odometer() and give it 23 as an argument (corresponding 
 
-
 Classes 169 
-
 
 170 
 
-
 Chapter 9 
-
 
 to the mileage parameter in the method definition). It sets the odometer 
 reading to 23, and read_odometer() prints the reading: 
 
-
 2016 Audi A4 
 This car has 23 miles on it. 
-
 
 We can extend the method update_odometer() to do additional work 
 every time the odometer reading is modified. Let’s add a little logic to 
 make sure no one tries to roll back the odometer reading: 
-
 
 Set the odometer reading to the given value. 
 Reject the change if it attempts to roll the odometer back. 
@@ -11967,16 +9718,13 @@ if mileage >= self.odometer_reading:
 else: 7 
 print("You can't roll back an odometer!") 
 
-
 Now update_odometer() checks that the new reading makes sense before 
 modifying the attribute. If the new mileage, mileage, is greater than or equal 
 to the existing mileage, self.odometer_reading, you can update the odometer 
 reading to the new mileage @. If the new mileage is less than the existing 
 mileage, you'll get a warning that you can’t roll back an odometer 8. 
 
-
 Incrementing an Attribute’s Value Through a Method 
-
 
 Sometimes you'll want to increment an attribute’s value by a certain 
 amount rather than set an entirely new value. Say we buy a used car and 
@@ -11984,23 +9732,18 @@ put 100 miles on it between the time we buy it and the time we register it.
 Here’s a method that allows us to pass this incremental amount and add 
 that value to the odometer reading: 
 
-
 def increment_odometer(self, miles): 
 """Add the given amount to the odometer reading. 
 self.odometer_reading += miles 
 
-
 my_used_car = Car(‘subaru', ‘outback’, 2013) 
 print(my_used_car.get_descriptive_name()) 
-
 
 my_used_car.update_odometer(23500) 
 my_used_car.read_odometer() 
 
-
 @ my_used_car.increment_odometer (100) 
 my_used_car.read_odometer() 
-
 
 The new method increment_odometer() at ® takes in a number of miles, 
 and adds this value to self.odometer_reading. At @ we create a used car, 
@@ -12008,24 +9751,19 @@ my_used_car. We set its odometer to 23,500 by calling update_odometer() and
 passing it 23500 at ®. At @ we call increment_odometer() and pass it 100 to add 
 the 100 miles that we drove between buying the car and registering it: 
 
-
 2013 Subaru Outback 
 This car has 23500 miles on it. 
 This car has 23600 miles on it. 
 
-
 You can easily modify this method to reject negative increments so no 
 one uses this function to roll back an odometer. 
-
 
 You can use methods like this to control how users of your program update values 
 such as an odometer reading, but anyone with access to the program can set the odom- 
 eter reading to any value by accessing the attribute directly. Effective security takes 
 extreme attention to detail in addition to basic checks like those shown here. 
 
-
 TRY IT YOURSELF 
-
 
 9-4. Number Served: Start with your program from Exercise 9-1 (page 166). 
 Add an attribute called number_served with a default value of 0. Create an 
@@ -12039,10 +9777,8 @@ print the value again.
 Add a method called increment_number_served() that lets you increment 
 the number of customers who've been served. Call this method with any num- 
 
-
 ber you like that could represent how many customers were served in, say, a 
 day of business. 
-
 
 9-5. Login Attempts: Add an attribute called login attempts to your User 
 class from Exercise 9-3 (page 166). Write a method called increment_ 
@@ -12056,12 +9792,9 @@ several times. Print the value of login attempts to make sure it was incremented
 properly, and then call reset_login_attempts(). Print login attempts again to 
 make sure it was reset to 0. 
 
-
 Classes 171 
 
-
 Inheritance 
-
 
 You don’t always have to start from scratch when writing a class. If the class 
 you're writing is a specialized version of another class you wrote, you can 
@@ -12071,9 +9804,7 @@ called the parent class, and the new class is the child class. The child class
 inherits every attribute and method from its parent class but is also free to 
 define new attributes and methods of its own. 
 
-
 The __init__() Method for a Child Class 
-
 
 The first task Python has when creating an instance from a child class is to 
 assign values to all attributes in the parent class. To do this, the __init__() 
@@ -12087,7 +9818,6 @@ behavior specific to electric cars.
 Let’s start by making a simple version of the ElectricCar class, which 
 does everything the Car class does: 
 
-
 electric_car.py @ class Car(): 
 """A simple attempt to represent a car.""" 
 def init__(self, make, model, year): 
@@ -12096,14 +9826,11 @@ self.model = model
 self.year = year 
 self.odometer_reading = 0 
 
-
 def get_descriptive_name(self): 
 long name = str(self.year) + ' ' + self.make + ' ' + self.model 
 return long name.title() 
 
-
 def read odometer(self): 
-
 
 print("This car has " + str(self.odometer_reading) + " miles on it.") 
 def update_odometer(self, mileage): 
@@ -12112,35 +9839,26 @@ self.odometer_reading = mileage
 else: 
 print("You can't roll back an odometer!") 
 
-
 def increment_odometer(self, miles): 
 self.odometer_reading += miles 
-
 
 @ class ElectricCar(Car): 
 """Represent aspects of a car, specific to electric vehicles. 
 
-
 172 Chapter 9 
-
 
 (3) 
 
-
 ) 
 
-
 (5) 
-
 
 def init__(self, make, model, year): 
 """TInitialize attributes of the parent class. 
 super(). init __(make, model, year) 
 
-
 my tesla = ElectricCar('tesla', 'model s', 2016) 
 print(my_tesla.get_descriptive_name()) 
-
 
 At © we start with Car. When you create a child class, the parent class 
 must be part of the current file and must appear before the child class in 
@@ -12167,35 +9885,25 @@ Aside from __init__(), there are no attributes or methods yet that are
 particular to an electric car. At this point we’re just making sure the electric 
 car has the appropriate Car behaviors: 
 
-
 2016 Tesla Model S 
-
 
 The ElectricCar instance works just like an instance of Car, so now we 
 can begin defining attributes and methods specific to electric cars. 
 
-
 Inheritance in Python 2.7 
-
 
 In Python 2.7, inheritance is slightly different. The ElectricCar class would 
 look like this: 
 
-
 class Car(object): 
-
 
 super (ElectricCar, self). init (make, model, year) 
 
-
 Classes 173 
-
 
 174 
 
-
 Chapter 9 
-
 
 The super() function needs two arguments: a reference to the child 
 class and the self object. These arguments are necessary to help Python 
@@ -12203,9 +9911,7 @@ make proper connections between the parent and child classes. When you
 use inheritance in Python 2.7, make sure you define the parent class using 
 the object syntax as well. 
 
-
 Defining Attributes and Methods for the Child Class 
-
 
 Once you have a child class that inherits from a parent class, you can add 
 any new attributes and methods necessary to differentiate the child class 
@@ -12215,21 +9921,16 @@ Let’s add an attribute that’s specific to electric cars (a battery, for
 example) and a method to report on this attribute. We’ll store the battery 
 size and write a method that prints a description of the battery: 
 
-
 Initialize attributes of the parent class. 
 Then initialize attributes specific to an electric car. 
-
 
 self.battery size = 70 
 def describe _battery(self): 
 
-
 """Print a statement describing the battery size. 
 print("This car has a " + str(self.battery_size) + "-kwh battery.") 
 
-
 my tesla.describe_battery() 
-
 
 At © we add a new attribute self.battery_size and set its initial value to, 
 say, 70. This attribute will be associated with all instances created from the 
@@ -12238,31 +9939,24 @@ add a method called describe_battery() that prints information about the
 battery at @. When we call this method, we get a description that is clearly 
 specific to an electric car: 
 
-
 2016 Tesla Model S 
 This car has a 70-kWh battery. 
-
 
 There’s no limit to how much you can specialize the ElectricCar class. 
 You can add as many attributes and methods as you need to model an elec- 
 tric car to whatever degree of accuracy you need. An attribute or method 
 that could belong to any car, rather than one that’s specific to an electric 
 
-
 ) 
 
-
 (2) 
-
 
 car, Should be added to the Car class instead of the ElectricCar class. Then 
 anyone who uses the Car class will have that functionality available as well, 
 and the ElectricCar class will only contain code for the information and 
 behavior specific to electric vehicles. 
 
-
 Overriding Methods from the Parent Cass 
-
 
 You can override any method from the parent class that doesn’t fit what 
 youre trying to model with the child class. To do this, you define a method 
@@ -12274,23 +9968,18 @@ Say the class Car had a method called fill_gas_tank(). This method is
 meaningless for an all-electric vehicle, so you might want to override this 
 method. Here’s one way to do that: 
 
-
 def ElectricCar(Car): 
-
 
 def fill_gas tank(): 
 """Electric cars don't have gas tanks. 
 print("This car doesn't need a gas tank!") 
-
 
 Now if someone tries to call fill_gas_tank() with an electric car, Python 
 will ignore the method fill_gas_tank() in Car and run this code instead. When 
 you use inheritance, you can make your child classes retain what you need 
 and override anything you don’t need from the parent class. 
 
-
 Instances as Attributes 
-
 
 When modeling something from the real world in code, you may find that 
 you're adding more and more detail to a class. You'll find that you have a 
@@ -12305,39 +9994,29 @@ the car’s battery. When we see this happening, we can stop and move those
 attributes and methods to a separate class called Battery. Then we can use a 
 Battery instance as an attribute in the ElectricCar class: 
 
-
 class Battery(): 
 """A simple attempt to model a battery for an electric car.""" 
 def _ init__(self, battery _size=70): 
 """TInitialize the battery's attributes. 
 self.battery_size = battery size 
 
-
 Classes 175 
-
 
 176 
 
-
 Chapter 9 
-
 
 def describe _battery(self): 
 """Print a statement describing the battery size. 
 print("This car has a " + str(self.battery_size) + "-kwh battery.") 
 
-
 self, battery = Battery() i 
-
 
 cet 
 
-
 my tesla.battery : describe battery( ) 
 
-
 Eee £ * i\\ 
-
 
 At @ we define a new class called Battery that doesn’t inherit from any 
 other class. The __init__() method at @ has one parameter, battery_size, in 
@@ -12356,9 +10035,7 @@ We create an electric car and store it in the variable my_tesla. When
 we want to describe the battery, we need to work through the car’s battery 
 attribute: 
 
-
 my _tesla.battery.describe_battery() 
-
 
 This line tells Python to look at the instance my_tesla, find its battery 
 attribute, and call the method describe_battery() that’s associated with the 
@@ -12366,37 +10043,29 @@ Battery instance stored in the attribute.
 
 The output is identical to what we saw previously: 
 
-
 2016 Tesla Model S 
 This car has a 70-kWh battery. 
-
 
 This looks like a lot of extra work, but now we can describe the battery 
 in as much detail as we want without cluttering the ElectricCar class. Let’s 
 add another method to Battery that reports the range of the car based on 
 the battery size: 
 
-
 1) def get_range(self): 
 """Print a statement about the range this battery provides. 
 if self.battery size == 70: 
-
 
 range = 240 
 elif self.battery_ size == 85: 
 range = 270 
 
-
 message = "This car can go approximately ' 
 message += " miles on a full charge." 
 print (message) 
 
-
 + str(range) 
 
-
 (2) my tesla.battery.get_range() 
-
 
 The new method get_range() at @ performs some simple analysis. If the 
 battery’s capacity is 70 kWh, get_range() sets the range to 240 miles, and if 
@@ -12406,14 +10075,11 @@ the car’s battery attribute at 8.
 
 The output tells us the range of the car based on its battery size: 
 
-
 2016 Tesla Model S 
 This car has a 70-kWh battery. 
 This car can go approximately 240 miles on a full charge. 
 
-
 Modeling Real-World Objects 
-
 
 As you begin to model more complicated items like electric cars, you'll 
 wrestle with interesting questions. Is the range of an electric car a property 
@@ -12422,15 +10088,11 @@ fine to maintain the association of the method get_range() with the Battery
 class. But if we’re describing a manufacturer’s entire line of cars, we proba- 
 bly want to move get_range() to the ElectricCar class. The get_range() method 
 
-
 Classes 177 
-
 
 178 
 
-
 Chapter 9 
-
 
 would still check the battery size before determining the range, but it would 
 report a range specific to the kind of car it’s associated with. Alternatively, 
@@ -12450,9 +10112,7 @@ aged if you find you're ripping apart your classes and rewriting them several
 times using different approaches. In the quest to write accurate, efficient 
 code, everyone goes through this process. 
 
-
 TRY IT YOURSELF 
-
 
 9-6. Ice Cream Stand: An ice cream stand is a specific kind of restaurant. Write 
 a class called IceCreamStand that inherits from the Restaurant class you wrote 
@@ -12461,7 +10121,6 @@ in Exercise 9-1 (page 166) or Exercise 9-4 (page 171). Either version of
 the class will work; just pick the one you like better. Add an attribute called 
 flavors that stores a list of ice cream flavors. Write a method that displays 
 these flavors. Create an instance of IceCreamStand, and call this method. 
-
 
 9-7. Admin: An administrator is a special kind of user. Write a class called 
 Admin that inherits from the User class you wrote in Exercise 9-3 (page 166) 
@@ -12472,15 +10131,12 @@ of strings like "can add post", "can delete post", "can ban user", and so on.
 Write a method called show privileges() that lists the administrator's set of 
 privileges. Create an instance of Admin, and call your method. 
 
-
 9-8. Privileges: Write a separate Privileges class. The class should have one 
 attribute, privileges, that stores a list of strings as described in Exercise 9-7. 
 Move the show_privileges() method to this class. Make a Privileges instance 
 
-
 as an attribute in the Admin class. Create a new instance of Admin and use your 
 method to show its privileges. 
-
 
 9-9. Battery Upgrade: Use the final version of electric_car.py from this section. 
 Add a method to the Battery class called upgrade battery(). This method 
@@ -12489,9 +10145,7 @@ Make an electric car with a default battery size, call get_range() once, and
 then call get_range() a second time after upgrading the battery. You should 
 see an increase in the car’s range. 
 
-
 Importing Classes 
-
 
 As you add more functionality to your classes, your files can get long, even 
 when you use inheritance properly. In keeping with the overall philosophy 
@@ -12499,9 +10153,7 @@ of Python, you'll want to keep your files as uncluttered as possible. To help,
 Python lets you store classes in modules and then import the classes you 
 need into your main program. 
 
-
 Importing a Single Cass 
-
 
 Let’s create a module containing just the Car class. This brings up a subtle 
 naming issue: we already have a file named car.py in this chapter, but this 
@@ -12510,7 +10162,6 @@ We’ll resolve this naming issue by storing the Car class in a module named
 car.py, replacing the car.py file we were previously using. From now on, any 
 program that uses this module will need a more specific filename, such as 
 my_car.py. Here’s car.py with just the code from the class Car: 
-
 
 car.py ® A class that can be used to represent a car. 
 class Car(): 
@@ -12522,25 +10173,20 @@ self.model = model
 self.year = year 
 self.odometer_reading = 0 
 
-
 won 
-
 
 def get_descriptive_name(self): 
 """Return a neatly formatted descriptive name. 
 long_name = str(self.year) + ' ' + self.make + ' ' + self.model 
 return long name.title() 
 
-
 def read odometer(self): 
 """Print a statement showing the car's mileage." 
 print("This car has " + str(self.odometer_reading) + " miles on it.") 
 
-
 def update_odometer(self, mileage): 
 Set the odometer reading to the given value. 
 Reject the change if it attempts to roll the odometer back. 
-
 
 if mileage >= self.odometer_reading: 
 self.odometer_reading = mileage 
@@ -12548,26 +10194,19 @@ self.odometer_reading = mileage
 else: 
 print("You can't roll back an odometer!") 
 
-
 def increment_odometer(self, miles): 
 """Add the given amount to the odometer reading."" 
 self.odometer_reading += miles 
 
-
 Classes 179 
-
 
 180 
 
-
 my_car.py @ 
-
 
 car.py 
 
-
 Chapter 9 
-
 
 At © we include a module-level docstring that briefly describes the 
 contents of this module. You should write a docstring for each module you 
@@ -12576,26 +10215,20 @@ create.
 Now we make a separate file called my_canpy. This file will import the 
 Car class and then create an instance from that class: 
 
-
 from car import Car 
-
 
 my new_car = Car('audi', 'a4', 2016) 
 print (my_new_car.get_descriptive_name()) 
 
-
 my new_car.odometer_reading = 23 
 my _new_car.read_odometer() 
-
 
 The import statement at ® tells Python to open the car module and 
 import the class Car. Now we can use the Car class as if it were defined in 
 this file. The output is the same as we saw earlier: 
 
-
 2016 Audi A4 
 This car has 23 miles on it. 
-
 
 Importing classes is an effective way to program. Picture how long 
 this program file would be if the entire Car class were included. When you 
@@ -12605,76 +10238,56 @@ to read. You also store most of the logic in separate files; once your classes
 work as you want them to, you can leave those files alone and focus on the 
 higher-level logic of your main program. 
 
-
 Storing Multiple Classes in a Module 
-
 
 You can store as many classes as you need in a single module, although 
 each class in a module should be related somehow. The classes Battery and 
 ElectricCar both help represent cars, so let’s add them to the module carpy: 
 
-
 A set of classes used to represent gas and electric cars. 
-
 
 Now we can make a new file called my_electric_car.py, import the 
 ElectricCar class, and make an electric car: 
 
-
 my_electric_ from car import ElectricCar 
-
 
 car.py 
 my tesla = ElectricCar('tesla', ‘model s', 2016) 
-
 
 print(my_tesla.get_descriptive_name()) 
 my tesla.battery.describe battery() 
 my tesla.battery.get_range() 
 
-
 This has the same output we saw earlier, even though most of the logic 
 is hidden away in a module: 
-
 
 2016 Tesla Model S 
 This car has a 70-kWh battery. 
 This car can go approximately 240 miles on a full charge. 
 
-
 Importing Multiple Classes from a Module 
-
 
 You can import as many classes as you need into a program file. If we 
 want to make a regular car and an electric car in the same file, we need 
 to import both classes, Car and ElectricCar: 
 
-
 my_cars.py @ from car import Car, ElectricCar 
-
 
 © my_beetle = Car('volkswagen', ‘beetle’, 2016) 
 print(my_beetle.get_descriptive_name()) 
 
-
 © my_tesla = ElectricCar('tesla', ‘roadster’, 2016) 
 print(my_tesla.get_descriptive_name()) 
 
-
 Classes 181 
-
 
 my_cars.py @ 
 
-
 182 
-
 
 Chapter 9 
 
-
 2) 
-
 
 You import multiple classes from a module by separating each class 
 with a comma ®. Once you've imported the necessary classes, you're free 
@@ -12683,13 +10296,10 @@ to make as many instances of each class as you need.
 In this example we make a regular Volkswagen Beetle at @ and an elec- 
 tric Tesla Roadster at ©: 
 
-
 2016 Volkswagen Beetle 
 2016 Tesla Roadster 
 
-
 Importing an Entire Module 
-
 
 You can also import an entire module and then access the classes you need 
 using dot notation. This approach is simple and results in code that is easy 
@@ -12700,29 +10310,21 @@ current file.
 Here’s what it looks like to import the entire car module and then create 
 a regular car and an electric car: 
 
-
 import car 
-
 
 my beetle = car.Car('volkswagen', ‘beetle’, 2016) 
 
-
 my_tesla = car.ElectricCar('tesla', 'roadster', 2016) 
-
 
 At ® we import the entire car module. We then access the classes we 
 need through the module_name.class_name syntax. At @ we again create a 
 Volkswagen Beetle, and at ® we create a Tesla Roadster. 
 
-
 Importing All Gasses from a Module 
-
 
 You can import every class from a module using the following syntax: 
 
-
 from module_name import * 
-
 
 This method is not recommended for two reasons. First, it’s helpful 
 to be able to read the import statements at the top of a file and get a clear 
@@ -12736,17 +10338,13 @@ mended approach, youre likely to see it in other people’s code.
 If you need to import many classes from a module, you’re better off 
 importing the entire module and using the module_name.class_name syntax. 
 
-
 electric_car.py 
-
 
 You won't see all the classes used at the top of the file, but you'll see clearly 
 where the module is used in the program. You'll also avoid the potential 
 naming conflicts that can arise when you import every class in a module. 
 
-
 Importing a Module into a Module 
-
 
 Sometimes you'll want to spread out your classes over several modules 
 
@@ -12761,58 +10359,43 @@ and Battery classes in a separate module. We’ll make a new module called
 electric_car.py—replacing the electric_car.py file we created earlier—and copy 
 just the Battery and ElectricCar classes into this file: 
 
-
 A set of classes that can be used to represent electric cars. 
-
 
 @ from car import Car 
 
-
 car.py 
 
-
 my_cars.py @® 
-
 
 The class ElectricCar needs access to its parent class Car, so we import 
 Car directly into the module at ®. If we forget this line, Python will raise an 
 error when we try to make an ElectricCar instance. We also need to update 
 the Car module so it contains only the Car class: 
 
-
 A class that can be used to represent a car. 
-
 
 Now we can import from each module separately and create whatever 
 kind of car we need: 
 
-
 from car import Car 
 from electric_car import ElectricCar 
-
 
 my beetle = Car('volkswagen', ‘beetle’, 2016) 
 print(my_beetle.get_descriptive_name()) 
 
-
 my tesla = ElectricCar('tesla', 'roadster', 2016) 
 print(my_tesla.get_descriptive_name()) 
 
-
 Classes 183 
-
 
 At © we import Car from its module, and ElectricCar from its module. 
 We then create one regular car and one electric car. Both kinds of cars are 
 created correctly: 
 
-
 2016 Volkswagen Beetle 
 2016 Tesla Roadster 
 
-
 Finding Your Own Workflow 
-
 
 As you can see, Python gives you many options for how to structure code 
 in a large project. It’s important to know all these possibilities so you can 
@@ -12825,9 +10408,7 @@ once everything is working. If you like how modules and files interact, try
 storing your classes in modules when you start a project. Find an approach 
 that lets you write code that works, and go from there. 
 
-
 TRY IT YOURSELF 
-
 
 9-10. Imported Restaurant: Using your latest Restaurant class, store it in a mod- 
 ule. Make a separate file that imports Restaurant. Make a Restaurant instance, 
@@ -12839,17 +10420,13 @@ Store the classes User, Privileges, and Admin in one module. Create a sepa-
 rate file, make an Admin instance, and call show privileges() to show that 
 everything is working correctly. 
 
-
 9-12. Multiple Modules: Store the User class in one module, and store the 
 Privileges and Admin classes in a separate module. In a separate file, create 
-
 
 an Admin instance and call show_privileges() to show that everything is still 
 working correctly. 
 
-
 The Python Standard Library 
-
 
 The Python standard library is a set of modules included with every Python 
 installation. Now that you have a basic understanding of how classes work, 
@@ -12858,63 +10435,48 @@ ten. You can use any function or class in the standard library by including
 a simple import statement at the top of your file. Let’s look at one class, 
 OrderedDict, from the module collections. 
 
-
 184 Chapter 9 
-
 
 favorite_ 
 languages.py 
 
-
 e 
-
 
 Dictionaries allow you to connect pieces of information, but they don’t 
 keep track of the order in which you add key-value pairs. If you’re creating 
-
 
 a dictionary and want to keep track of the order in which key-value pairs 
 are added, you can use the OrderedDict class from the collections module. 
 Instances of the OrderedDict class behave almost exactly like dictionaries 
 except they keep track of the order in which key-value pairs are added. 
 
-
 Let’s revisit the favorite_languages.py example from Chapter 6. This time 
-
 
 we'll keep track of the order in which people respond to the poll: 
 
-
 from collections import OrderedDict 
-
 
 @ favorite languages = OrderedDict() 
 
-
 favorite_languages 
 favorite_languages 
 favorite_languages 
 favorite_languages 
-
 
 jen'] = ‘python’ 
 sarah'] = 'c' 
 "edward'] = ‘ruby' 
 
-
 phil'] = 'python' 
 
-
 [ 
 [ 
 [ 
 [ 
-
 
 for name, language in favorite _languages.items(): 
 print(name.title() + "'s favorite language is " + 
 language.title() + ".") 
-
 
 We begin by importing the OrderedDict class from the module 
 collections at @. At @ we create an instance of the OrderedDict class 
@@ -12925,65 +10487,48 @@ guage to favorite_languages one at a time ©. Now when we loop through
 favorite_languages at @, we know we'll always get responses back in the 
 order they were added: 
 
-
 Jen's favorite language is Python. 
 Sarah's favorite language is C. 
 
 Edward's favorite language is Ruby. 
 Phil's favorite language is Python. 
 
-
 This is a great class to be aware of because it combines the main benefit 
-
 
 of lists (retaining your original order) with the main feature of dictionari 
 
-
 es 
-
 
 (connecting pieces of information). As you begin to model real-world situa- 
 tions that you care about, you'll probably come across a situation where an 
 
-
 ordered dictionary is exactly what you need. As you learn more about the 
-
 
 standard library, you'll become familiar with a number of modules like this 
 
-
 that help you handle common situations. 
-
 
 You can also download modules from external sources. You'll see a number of these 
 
-
 examples in Part II, where we'll need external modules to complete each project. 
-
 
 Classes 
 
-
 185 
 
-
 TRY IT YOURSELF 
-
 
 9-13. OrderedDict Rewrite: Start with Exercise 6-4 (page 108), where you 
 used a standard dictionary to represent a glossary. Rewrite the program using 
 the OrderedDict class and make sure the order of the output matches the order 
 in which key-value pairs were added to the dictionary. 
 
-
 9-14. Dice: The module random contains functions that generate random num- 
 bers in a variety of ways. The function randint() returns an integer in the 
 range you provide. The following code returns a number between 1 and 6: 
 
-
 from random import randint 
 x = randint(1, 6) 
-
 
 Make a class Die with one attribute called sides, which has a default 
 value of 6. Write a method called roll1_die() that prints a random number 
@@ -12992,18 +10537,14 @@ it 10 times.
 
 Make a 10-sided die and a 20-sided die. Roll each die 10 times. 
 
-
 9-15. Python Module of the Week: One excellent resource for exploring the 
 Python standard library is a site called Python Module of the Week. Go to 
 http://pymotw.com/ and look at the table of contents. Find a module that 
 
-
 looks interesting to you and read about it, or explore the documentation of 
 the collections and random modules. 
 
-
 Styling Classes 
-
 
 A few styling issues related to classes are worth clarifying, especially as your 
 programs become more complicated. 
@@ -13026,17 +10567,13 @@ within a module you can use two blank lines to separate classes.
 If you need to import a module from the standard library and a module 
 that you wrote, place the import statement for the standard library module 
 
-
 186 Chapter 9 
-
 
 first. Then add a blank line and the import statement for the module you 
 wrote. In programs with multiple import statements, this convention makes 
 it easier to see where the different modules used in the program come from. 
 
-
 Summary 
-
 
 In this chapter you learned how to write your own classes. You learned 
 how to store information in a class using attributes and how to write 
@@ -13059,15 +10596,11 @@ you've done in a program and the work you've allowed users to do. You'll
 also learn about exceptions, a special Python class designed to help you 
 respond to errors when they arise. 
 
-
 Classes 187 
-
 
 FILES AND EXCEPTIONS 
 
-
 Now that you’ve mastered the basic skills 
-
 
 you need to write organized programs 
 that are easy to use, it’s time to think about 
@@ -13075,7 +10608,6 @@ that are easy to use, it’s time to think about
 making your programs even more relevant and 
 usable. In this chapter you'll learn to work with files 
 so your programs can quickly analyze lots of data. 
-
 
 You'll learn to handle errors so your programs don’t crash when they 
 encounter unexpected situations. You'll learn about exceptions, which are 
@@ -13091,26 +10623,19 @@ exceptions will help you deal with situations in which files don’t exist and
 deal with other problems that can cause your programs to crash. This will 
 make your programs more robust when they encounter bad data, whether 
 
-
 it comes from innocent mistakes or from malicious attempts to break your 
 programs. With the skills you'll learn in this chapter, you'll make your pro- 
 grams more applicable, usable, and stable. 
 
-
 Reading from a File 
-
 
 pi_digits. txt 
 
-
 file_reader.py 
-
 
 190 
 
-
 Chapter 10 
-
 
 An incredible amount of data is available in text files. Text files can con- 
 tain weather data, traffic data, socioeconomic data, literary works, and 
@@ -13124,18 +10649,14 @@ When you want to work with the information in a text file, the first step
 is to read the file into memory. You can read the entire contents of a file, or 
 you can work through the file one line at a time. 
 
-
 Reading an Entire File 
-
 
 To begin, we need a file with a few lines of text in it. Let’s start with a file 
 that contains pi to 30 decimal places with 10 decimal places per line: 
 
-
 3.1415926535 
 8979323846 
 2643383279 
-
 
 To try the following examples yourself, you can enter these lines in an 
 editor and save the file as pi_digits.txt, or you can download the file from the 
@@ -13145,11 +10666,9 @@ the file in the same directory where you'll store this chapter’s programs.
 Here’s a program that opens this file, reads it, and prints the contents 
 of the file to the screen: 
 
-
 with open('pi_digits.txt') as file object: 
 contents = file object.read() 
 print (contents) 
-
 
 The first line of this program has a lot going on. Let’s start by looking 
 at the open() function. To do any work with a file, even just printing its con- 
@@ -13164,7 +10683,6 @@ file_object, which we’ll work with later in the program.
 
 The keyword with closes the file once access to it is no longer needed. 
 Notice how we call open() in this program but not close(). You could open 
-
 
 and close the file by calling open() and close(), but if a bug in your program 
 prevents the close() statement from being executed, the file may never 
@@ -13181,11 +10699,9 @@ method in the second line of our program to read the entire contents of
 the file and store it as one long string in contents. When we print the value 
 of contents, we get the entire text file back: 
 
-
 3.1415926535 
 8979323846 
 2643383279 
-
 
 The only difference between this output and the original file is the 
 extra blank line at the end of the output. The blank line appears because 
@@ -13193,22 +10709,17 @@ read() returns an empty string when it reaches the end of the file; this empty
 string shows up as a blank line. If you want to remove the extra blank line, 
 you can use rstrip() in the print statement: 
 
-
 print (contents é rstrip( ) ) 7 
-
 
 Recall that Python’s rstrip() method removes, or strips, any whitespace 
 characters from the right side of a string. Now the output matches the con- 
 tents of the original file exactly: 
 
-
 3.1415926535 
 8979323846 
 2643383279 
 
-
 File Paths 
-
 
 When you pass a simple filename like pi_digits.txt to the open() function, 
 Python looks in the directory where the file that’s currently being executed 
@@ -13222,15 +10733,11 @@ program files from the text files they’re manipulating. Even though (ext_/iles
 is in python_work, just passing open() the name of a file in text_files won’t work, 
 because Python will only look in python_work and stop there; it won’t go on 
 
-
 Files and Exceptions 191 
-
 
 192 
 
-
 Chapter 10 
-
 
 and look in text_files. To get Python to open files from a directory other 
 than the one where your program file is stored, you need to provide a file 
@@ -13241,18 +10748,14 @@ to open a file from text_files. A relative file path tells Python to look for a 
 location relative to the directory where the currently running program file 
 is stored. On Linux and OS X, you’d write: 
 
-
 with open('text_files/filename.txt') as file_object: 
-
 
 This line tells Python to look for the desired .txt file in the folder 
 text_files and assumes that text_files is located inside python_work (which it is). 
 On Windows systems, you use a backslash (\) instead of a forward slash (/) 
 in the file path: 
 
-
 with open('text_files\filename.txt') as file_object: 
-
 
 You can also tell Python exactly where the file is on your computer 
 regardless of where the program that’s being executed is stored. This 
@@ -13267,35 +10770,27 @@ Absolute paths are usually longer than relative paths, so it’s helpful to
 store them in a variable and then pass that variable to open(). On Linux and 
 OS X, absolute paths look like this: 
 
-
 file_path = '/home/ehmatthes/other_files/text_files/filename.txt' 
 with open(file_path) as file object: 
 
-
 and on Windows they look like this: 
-
 
 file_path = 'C:\Users\ehmatthes\other_files\text_files\filename.txt' 
 with open(file_path) as file object: 
-
 
 Using absolute paths, you can read files from any location on your sys- 
 tem. For now it’s easiest to store files in the same directory as your program 
 files or in a folder such as text_files within the directory that stores your pro- 
 gram files. 
 
-
 Windows systems will sometimes interpret forward slashes in file paths correctly. If 
 you're using Windows and you're not getting the results you expect, make sure you try 
 using backslashes. 
 
-
 file_readerpy @® 
-
 
 (2) 
 (3) 
-
 
 Reading Line by Line 
 When you're reading a file, you'll often want to examine each line of the file. 
@@ -13309,14 +10804,11 @@ kind of formatting.
 You can use a for loop on the file object to examine each line from a 
 file one at a time: 
 
-
 filename = 'pi_digits.txt' 
-
 
 with open(filename) as file object: 
 for line in file_object: 
 print(line) 
-
 
 At @ we store the name of the file we’re reading from in the variable 
 filename. This is a common convention when working with files. Because 
@@ -13330,15 +10822,11 @@ in the file by looping over the file object ®.
 
 When we print each line, we find even more blank lines: 
 
-
 3.1415926535 
-
 
 8979323846 
 
-
 2643383279 
-
 
 These blank lines appear because an invisible newline character is 
 at the end of each line in the text file. The print statement adds its own 
@@ -13347,35 +10835,25 @@ the end of each line: one from the file and one from the print statement.
 Using rstrip() on each line in the print statement eliminates these extra 
 blank lines: 
 
-
 print(line.rstrip()) 
-
 
 Files and Exceptions 193 
 
-
 pi_string.py 
-
 
 194 
 
-
 Chapter 10 
-
 
 et) 
 
-
 Now the output matches the contents of the file once again: 
-
 
 3.1415926535 
 8979323846 
 2643383279 
 
-
 Making a List of Lines from a File 
-
 
 When you use with, the file object returned by open() is only available inside 
 the with block that contains it. If you want to retain access to a file’s contents 
@@ -13386,13 +10864,10 @@ and postpone some processing for later in the program.
 The following example stores the lines of pi_digits.txt in a list inside the 
 with block and then prints the lines outside the with block: 
 
-
 lines = file_object.readlines() 
-
 
 for line in lines: 
 print (line.rstrip()) 
-
 
 At © the readlines() method takes each line from the file and stores it 
 in a list. This list is then stored in lines, which we can continue to work with 
@@ -13400,65 +10875,50 @@ after the with block ends. At @ we use a simple for loop to print each line
 from lines. Because each item in lines corresponds to each line in the file, 
 the output matches the contents of the file exactly. 
 
-
 Working with a File’s Contents 
-
 
 After you've read a file into memory, you can do whatever you want with 
 that data, so let’s briefly explore the digits of pz. First, we'll attempt to build 
 a single string containing all the digits in the file with no whitespace in it: 
 
-
 pi_string = ' 
 for line in lines: 
 pi_string += line.rstrip() 
 
-
 print (pi_string) 
 print(len(pi_string)) 
-
 
 We start by opening the file and storing each line of digits in a list, just 
 as we did in the previous example. At @ we create a variable, pi_string, to 
 
-
 pi_string.py 
-
 
 hold the digits of pz. We then create a loop that adds each line of digits to 
 pi_string and removes the newline character from each line 8. At ® we 
 print this string and also show how long the string is: 
 
-
 3.1415926535 8979323846 2643383279 
 36 
-
 
 The variable pi_string contains the whitespace that was on the left side 
 of the digits in each line, but we can get rid of that by using strip() instead 
 of rstrip(): 
 
-
 pi_string += line.strip() 
-
 
 Now we have a string containing fi to 30 decimal places. The string 
 is 32 characters long because it also includes the leading 3 and a decimal 
 point: 
 
-
 3.141592653589793238462643383279 
 32 
-
 
 When Python reads from a text file, it interprets all text in the file as a string. If you 
 read in a number and want to work with that value in a numerical context, you'll 
 have to convert it to an integer using the int() function or convert it to a float using 
 the float() function. 
 
-
 Large Files: One Million Digits 
-
 
 So far we’ve focused on analyzing a text file that contains only three lines, 
 but the code in these examples would work just as well on much larger 
@@ -13468,40 +10928,29 @@ We don’t need to change our program at all except to pass it a different file.
 We'll also print just the first 50 decimal places, so we don’t have to watch a 
 million digits scroll by in the terminal: 
 
-
 filename = 'pi_million_digits.txt' 
-
 
 Files and Exceptions 195 
 
-
 196 
-
 
 Chapter 10 
 
-
 print(pi_string[:52] + "...") 
-
 
 The output shows that we do indeed have a string containing 7 to 
 1,000,000 decimal places: 
 
-
 3. 14159265358979323846264338327950288419716939937510... 
 1000002 
-
 
 Python has no inherent limit to how much data you can work with; you 
 can work with as much data as your system’s memory can handle. 
 
-
 To run this program (and many of the examples that follow), yowll need to download 
 the resources available at https://www.nostarch.com/pythoncrashcourse/. 
 
-
 Is Your Birthday Contained in Pi? 
-
 
 I’ve always been curious to know if my birthday appears anywhere in the 
 digits of pi. Let’s use the program we just wrote to find out if someone’s 
@@ -13509,28 +10958,22 @@ birthday appears anywhere in the first million digits of pz. We can do this
 by expressing each birthday as a string of digits and seeing if that string 
 appears anywhere in pi_string: 
 
-
 birthday = input("Enter your birthday, in the form mmddyy: ") 
 if birthday in pi_string: 
 print("Your birthday appears in the first million digits of pi!") 
 else: 
 print("Your birthday does not appear in the first million digits of pi.") 
 
-
 At ® we prompt for the user’s birthday, and then at @ we check if that 
 string is in pi_string. Let’s try it: 
-
 
 Enter your birthdate, in the form mmddyy: 120372 
 Your birthday appears in the first million digits of pi! 
 
-
 My birthday does appear in the digits of pi! Once you’ve read from a 
 file, you can analyze its contents in just about any way you can imagine. 
 
-
 TRY IT YOURSELF 
-
 
 10-1. Learning Python: Open a blank file in your text editor and write a few 
 lines summarizing what you've learned about Python so far. Start each line 
@@ -13540,30 +10983,23 @@ the file and prints what you wrote three times. Print the contents once by read-
 ing in the entire file, once by looping over the file object, and once by storing 
 the lines in a list and then working with them outside the with block. 
 
-
 10-2. Learning C: You can use the replace() method to replace any word in a 
-
 
 string with a different word. Here’s a quick example showing how to replace 
 ‘dog’ with 'cat' in a sentence: 
-
 
 >>> message = "I really like dogs." 
 >>> message.replace('dog', ‘cat') 
 "I really like cats.' 
 
-
 Read in each line from the file you just created, learning_python.txt, and 
 replace the word Python with the name of another language, such as C. Print 
 each modified line to the screen. 
 
-
 Writing to a File 
-
 
 write_ 
 message.py 
-
 
 One of the simplest ways to save data is to write it to a file. When you write 
 text to a file, the output will still be available after you close the terminal 
@@ -13572,40 +11008,29 @@ finishes running, and you can share the output files with others as well. You
 can also write programs that read the text back into memory and work with 
 it again later. 
 
-
 Writing to an Empty File 
-
 
 To write text to a file, you need to call open() with a second argument telling 
 Python that you want to write to the file. To see how this works, let’s write a 
 simple message and store it in a file instead of printing it to the screen: 
 
-
 filename = 'programming.txt' 
-
 
 @ with open(filename, 'w') as file object: 
 
-
 2) 
 
-
 file_object.write("I love programming.") 
-
 
 The call to open() in this example has two arguments @. The first argu- 
 ment is still the name of the file we want to open. The second argument, 'w', 
 tells Python that we want to open the file in write mode. You can open a file 
 
-
 Files and Exceptions 197 
-
 
 programming. txt 
 
-
 198 Chapter 10 
-
 
 in read mode ('x'), write mode (‘w'), append mode ('a'), or a mode that allows 
 you to read and write to the file ('r+'). If you omit the mode argument, 
@@ -13620,63 +11045,46 @@ At @ we use the write() method on the file object to write a string to
 the file. This program has no terminal output, but if you open the file 
 programming. txt, you'll see one line: 
 
-
 I love programming. 
-
 
 This file behaves like any other file on your computer. You can open it, 
 write new text in it, copy from it, paste to it, and so forth. 
 
-
 Python can only write strings to a text file. If you want to store numerical data in a 
 text file, you'll have to convert the data to string format first using the str() function. 
 
-
 Writing Multiple Lines 
-
 
 The write() function doesn’t add any newlines to the text you write. So if 
 you write more than one line without including newline characters, your 
 file may not look the way you want it to: 
 
-
 file_object.write("I love creating new games.") 
-
 
 If you open programming.txt, you'll see the two lines squished together: 
 
-
 I love programming.I love creating new games. 
-
 
 Including newlines in your write() statements makes each string appear 
 on its own line: 
 
-
 file object.write("I love programming. \n") 
 file _object.write("I love creating new games.\n") 
 
-
 The output now appears on separate lines: 
-
 
 I love programming. 
 I love creating new games. 
 
-
 write_ 
 message.py 
 
-
 programming. txt 
-
 
 You can also use spaces, tab characters, and blank lines to format your 
 output, just as you’ve been doing with terminal-based output. 
 
-
 Appending fo a File 
-
 
 If you want to add content to a file instead of writing over existing content, 
 you can open the file in append mode. When you open a file in append mode, 
@@ -13687,27 +11095,21 @@ yet, Python will create an empty file for you.
 Let’s modify write_message.py by adding some new reasons we love pro- 
 gramming to the existing file programming. txt: 
 
-
 with open(filename, 'a') as file object: 
 file _object.write("I also love finding meaning in large datasets.\n") 
 file_object.write("I love creating apps that can run in a browser. \n") 
-
 
 At @ we use the ‘a' argument to open the file for appending rather 
 than writing over the existing file. At @ we write two new lines, which are 
 added to programming. txt: 
 
-
 I also love finding meaning in large datasets. 
 I love creating apps that can run in a browser. 
-
 
 We end up with the original contents of the file, followed by the new 
 content we just added. 
 
-
 TRY IT YOURSELF 
-
 
 10-3. Guest: Write a program that prompts the user for their name. When they 
 respond, write their name to a file called guest.txt. 
@@ -13717,30 +11119,21 @@ they enter their name, print a greeting to the screen and add a line recording
 their visit in a file called guest_book.txt. Make sure each entry appears on a 
 new line in the file. 
 
-
 10-5. Programming Poll: Write a while loop that asks people why they like 
-
 
 programming. Each time someone enters a reason, add their reason to a file 
 
-
 that stores all the responses. 
-
 
 Files and Exceptions 199 
 
-
 200 
-
 
 Exceptions 
 
-
 division.py 
 
-
 Chapter 10 
-
 
 Python uses special objects called exceptions to manage errors that arise dur- 
 ing a program’s execution. Whenever an error occurs that makes Python 
@@ -13756,26 +11149,20 @@ running even if things start to go wrong. Instead of tracebacks, which can
 be confusing for users to read, users will see friendly error messages that 
 you write. 
 
-
 Handling the ZeroDivisionError Exception 
-
 
 Let’s look at a simple error that causes Python to raise an exception. You 
 probably know that it’s impossible to divide a number by zero, but let’s ask 
 Python to do it anyway: 
 
-
 print(5/0) 
 
-
 Of course Python can’t do this, so we get a traceback: 
-
 
 Traceback (most recent call last): 
 File "division.py", line 1, in <module> 
 print (5/0) 
 ZeroDivisionError: division by zero 
-
 
 The error reported at ® in the traceback, ZeroDivisionError, is an excep- 
 tion object. Python creates this kind of object in response to a situation 
@@ -13784,9 +11171,7 @@ program and tells us the kind of exception that was raised. We can use this
 information to modify our program. We’ll tell Python what to do when this 
 kind of exception occurs; that way, if it happens again, we're prepared. 
 
-
 Using try-except Blocks 
-
 
 When you think an error may occur, you can write a try-except block to 
 handle the exception that might be raised. You tell Python to try running 
@@ -13796,16 +11181,12 @@ of exception.
 Here’s what a try-except block for handling the ZeroDivisionError excep- 
 tion looks like: 
 
-
 try: 
-
 
 except ZeroDivisionError: 
 print("You can't divide by zero!") 
 
-
 division.py 
-
 
 We put print(5/0), the line that caused the error, inside a try block. If 
 the code in a try block works, Python skips over the except block. If the code 
@@ -13817,17 +11198,13 @@ so Python looks for an except block telling it how to respond. Python then
 runs the code in that block, and the user sees a friendly error message 
 instead of a traceback: 
 
-
 You can't divide by zero! 
-
 
 If more code followed the try-except block, the program would continue 
 running because we told Python how to handle the error. Let’s look at an 
 example where catching an error can allow a program to continue running. 
 
-
 Using Exceptions to Prevent Crashes 
-
 
 Handling errors correctly is especially important when the program has 
 more work to do after the error occurs. This happens often in programs 
@@ -13836,10 +11213,8 @@ priately, it can prompt for more valid input instead of crashing.
 
 Let’s create a simple calculator that does only division: 
 
-
 print("Give me two numbers, and I'll divide them.") 
 print("Enter 'q' to quit.") 
-
 
 while True: 
 first_number = input("\nFirst number: ") 
@@ -13850,19 +11225,15 @@ if second_number == 'q':
 break 
 answer = int(first_number) / int(second_number) 
 
-
 print (answer) 
-
 
 This program prompts the user to input a first_number ® and, if the 
 user does not enter q¢ to quit, a second_number @. We then divide these two 
 numbers to get an answer ©. This program does nothing to handle errors, 
 so asking it to divide by zero causes it to crash: 
 
-
 Give me two numbers, and I'll divide them. 
 Enter 'q' to quit. 
-
 
 First number: 5 
 Second number: 0 
@@ -13871,15 +11242,11 @@ File "division.py", line 9, in <module>
 answer = int(first_number) / int(second_number) 
 ZeroDivisionError: division by zero 
 
-
 Files and Exceptions 201 
-
 
 202 
 
-
 Chapter 10 
-
 
 It’s bad that the program crashed, but it’s also not a good idea to let 
 users see tracebacks. Nontechnical users will be confused by them, and in 
@@ -13889,9 +11256,7 @@ file, and they’ll see a part of your code that isn’t working properly. A ski
 attacker can sometimes use this information to determine which kind of 
 attacks to use against your code. 
 
-
 The else Block 
-
 
 We can make this program more error resistant by wrapping the line that 
 might produce errors in a try-except block. The error occurs on the line 
@@ -13899,13 +11264,11 @@ that performs the division, so that’s where we’ll put the try-except block.
 This example also includes an else block. Any code that depends on the try 
 block executing successfully goes in the else block: 
 
-
 try: 
 except ZeroDivisionError: 
 
 print("You can't divide by 0!") 
 else: 
-
 
 We ask Python to try to complete the division operation in a try 
 block ®, which includes only the code that might cause an error. Any 
@@ -13919,26 +11282,20 @@ zero error, we print a friendly message telling the user how to avoid this
 kind of error. The program continues to run, and the user never sees a 
 traceback: 
 
-
 Give me two numbers, and I'll divide them. 
 Enter 'q' to quit. 
-
 
 First number: 5 
 Second number: 0 
 You can't divide by o! 
 
-
 alice.py 
-
 
 First number: 5 
 Second number: 2 
 Zed 
 
-
 First number: q 
-
 
 The try-except-else block works like this: Python attempts to run the 
 code in the try statement. The only code that should go in a try statement 
@@ -13952,9 +11309,7 @@ that continue to run even when they encounter invalid data and missing
 resources. Your code will be resistant to innocent user mistakes and mali- 
 cious attacks. 
 
-
 Handling the FileNotFoundError Exception 
-
 
 One common issue when working with files is handling missing files. The 
 file you’re looking for might be in a different location, the filename may 
@@ -13965,66 +11320,50 @@ Let’s try to read a file that doesn’t exist. The following program tries
 to read in the contents of Alice in Wonderland, but I haven’t saved the file 
 alice.txt in the same directory as alice.py: 
 
-
 filename = ‘alice.txt' 
-
 
 with open(filename) as f_obj: 
 contents = f_obj.read() 
 
-
 Python can’t read from a missing file, so it raises an exception: 
-
 
 Traceback (most recent call last): 
 File "alice.py", line 3, in <module> 
 with open(filename) as f_obj: 
 FileNotFoundError: [Errno 2] No such file or directory: 'alice.txt' 
 
-
 The last line of the traceback reports a FileNotFoundError: this is the 
 exception Python creates when it can’t find the file it’s trying to open. In 
 this example, the open() function produces the error, so to handle it, the try 
 block will begin just before the line that contains open(): 
 
-
 try: 
-
 
 Files and Exceptions 203 
 
-
 204 
 
-
 Chapter 10 
-
 
 except FileNotFoundError: 
 msg = "Sorry, the file 
 print (msg) 
 
-
 + filename + " does not exist." 
-
 
 In this example, the code in the try block produces a FileNotFoundError, 
 so Python looks for an except block that matches that error. Python then 
 runs the code in that block, and the result is a friendly error message 
 instead of a traceback: 
 
-
 Sorry, the file alice.txt does not exist. 
-
 
 The program has nothing more to do if the file doesn’t exist, so the 
 error-handling code doesn’t add much to this program. Let’s build on this 
 example and see how exception handling can help when you’re working 
 with more than one file. 
 
-
 Analyzing Text 
-
 
 You can analyze text files containing entire books. Many classic works of 
 literature are available as simple text files because they are in the pub- 
@@ -14039,11 +11378,9 @@ of words in the text. We’ll use the string method split(), which can build a
 list of words from a string. Here’s what split() does with a string containing 
 just the title "Alice in Wonderland": 
 
-
 >>> title = "Alice in Wonderland" 
 >>> title.split() 
 ['Alice', ‘in', ‘Wonderland’ ] 
-
 
 The split() method separates a string into parts wherever it finds a 
 space and stores all the parts of the string in a list. The result is a list of 
@@ -14052,15 +11389,11 @@ some of the words. To count the number of words in Alice in Wonderland,
 we'll use split() on the entire text. Then we’ll count the items in the list to 
 get a rough idea of the number of words in the text: 
 
-
 word_count.py 
-
 
 ee0 
 
-
 e 
-
 
 else: 
 # Count the approximate number of words in the file. 
@@ -14068,9 +11401,7 @@ words = contents.split()
 num_words = len(words) 
 print("The file " + filename + " has about 
 
-
 + str(num_words) + " words.") 
-
 
 I moved the file alice.txt to the correct directory, so the try block will 
 work this time. At @ we take the string contents, which now contains the 
@@ -14082,41 +11413,31 @@ how many words were found in the file. This code is placed in the else block
 because it will work only if the code in the try block was executed success- 
 fully. The output tells us how many words are in alice.ixt: 
 
-
 The file alice.txt has about 29461 words. 
-
 
 The count is a little high because extra information is provided by the 
 publisher in the text file used here, but it’s a good approximation of the 
 length of Alice in Wonderland. 
 
-
 Working with Multiple Files 
-
 
 Let’s add more books to analyze. But before we do, let’s move the bulk of 
 this program to a function called count_words(). By doing so, it will be easier 
 to run the analysis for multiple books: 
 
-
 def count_words(filename): 
-
 
 Count the approximate number of words in a file. 
 
-
 filename = ‘alice.txt' 
 count_words (filename) 
-
 
 Most of this code is unchanged. We simply indented it and moved it 
 into the body of count_words(). It’s a good habit to keep comments up to date 
 when you're modifying a program, so we changed the comment to a doc- 
 string and reworded it slightly ®. 
 
-
 Files and Exceptions 205 
-
 
 Now we can write a simple loop to count the words in any text we want 
 to analyze. We do this by storing the names of the files we want to analyze 
@@ -14126,15 +11447,12 @@ Women, which are all available in the public domain. I’ve intentionally left
 siddhartha.ixt out of the directory containing word_count.py, so we can see 
 how well our program handles a missing file: 
 
-
 filenames = ['alice.txt', 'siddhartha.txt', 'moby dick.txt', 'little_women.txt'] 
 for filename in filenames: 
 count_words (filename) 
 
-
 The missing siddhartha.txt file has no effect on the rest of the program’s 
 execution: 
-
 
 The file alice.txt has about 29461 words. 
 
@@ -14142,14 +11460,12 @@ Sorry, the file siddhartha.txt does not exist.
 The file moby dick.txt has about 215136 words. 
 The file little_women.txt has about 189079 words. 
 
-
 Using the try-except block in this example provides two significant 
 advantages. We prevent our users from seeing a traceback, and we let the 
 program continue analyzing the texts it’s able to find. If we don’t catch 
 the FileNotFoundError that siddhartha.txt raised, the user would see a full 
 traceback, and the program would stop running after trying to analyze 
 Siddhartha. It would never analyze Moby Dick or Little Women. 
-
 
 Failing Silently 
 
@@ -14161,12 +11477,9 @@ and continue on as if nothing happened. To make a program fail silently, you
 write a try block as usual, but you explicitly tell Python to do nothing in the 
 except block. Python has a pass statement that tells it to do nothing in a block: 
 
-
 e pass 
 
-
 206 Chapter 10 
-
 
 The only difference between this listing and the previous one is the 
 pass statement at ®. Now when a FileNotFoundError is raised, the code in 
@@ -14175,11 +11488,9 @@ and there’s no output in response to the error that was raised. Users see
 the word counts for each file that exists, but they don’t see any indication 
 that a file was not found: 
 
-
 The file alice.txt has about 29461 words. 
 The file moby _dick.txt has about 215136 words. 
 The file little_women.txt has about 189079 words. 
-
 
 The pass statement also acts as a placeholder. It’s a reminder that you're 
 choosing to do nothing at a specific point in your program’s execution 
@@ -14188,9 +11499,7 @@ program we might decide to write any missing filenames to a file called
 missing_files.txt. Our users wouldn’t see this file, but we’d be able to read 
 the file and deal with any missing texts. 
 
-
 Deciding Which Errors to Report 
-
 
 How do you know when to report an error to your users and when to fail 
 silently? If users know which texts are supposed to be analyzed, they might 
@@ -14210,9 +11519,7 @@ raised. A little experience will help you know where to include exception
 handling blocks in your program and how much to report to users about 
 errors that arise. 
 
-
 TRY IT YOURSELF 
-
 
 10-6. Addition: One common problem when prompting for numerical input 
 occurs when people provide text instead of numbers. When you try to convert 
@@ -14220,21 +11527,16 @@ the input to an int, you'll get a TypeError. Write a program that prompts for
 two numbers. Add them together and print the result. Catch the TypeError if 
 either input value is not a number, and print a friendly error message. Test your 
 
-
 program by entering two numbers and then by entering some text instead of a 
-
 
 number. 
 (continued) 
 
-
 Files and Exceptions 207 
-
 
 10-7. Addition Calculator: Wrap your code from Exercise 10-6 in a while loop 
 so the user can continue entering numbers even if they make a mistake and 
 enter text instead of a number. 
-
 
 10-8. Cats and Dogs: Make two files, cats.txt and dogs.txt. Store at least three 
 names of cats in the first file and three names of dogs in the second file. Write 
@@ -14247,20 +11549,16 @@ executes properly.
 10-9. Silent Cats and Dogs: Modify your except block in Exercise 10-8 to fail 
 silently if either file is missing. 
 
-
 10-10. Common Words: Visit Project Gutenberg (http://gutenberg.org/) 
 and find a few texts you'd like to analyze. Download the text files for these 
 
-
 works, or copy the raw text from your browser into a text file on your 
-
 
 computer. 
 
 You can use the count() method to find out how many times a word or 
 phrase appears in a string. For example, the following code counts the number 
 of times 'row' appears in a string: 
-
 
 >>> line = "Row, row, row your boat" 
 >>> line.count('row' ) 
@@ -14271,7 +11569,6 @@ of times 'row' appears in a string:
 
 3 
 
-
 Notice that converting the string to lowercase using lower() catches 
 all appearances of the word you're looking for, regardless of how it’s 
 formatted. 
@@ -14279,9 +11576,7 @@ formatted.
 Write a program that reads the files you found at Project Gutenberg and 
 determines how many times the word 'the' appears in each text. 
 
-
 Storing Data 
-
 
 Many of your programs will ask users to input certain kinds of information. 
 You might allow users to store preferences in a game or provide data for a 
@@ -14291,25 +11586,19 @@ users close a program, you'll almost always want to save the information
 they entered. A simple way to do this involves storing your data using the 
 json module. 
 
-
 208 Chapter 10 
-
 
 number_ 
 writer. py 
 
-
 number_ 
 reader.py 
 
-
 e®e0o 
-
 
 e 
 (2) 
 (3) 
-
 
 The json module allows you to dump simple Python data structures into a 
 file and load the data from that file the next time the program runs. You can 
@@ -14318,14 +11607,11 @@ the JSON data format is not specific to Python, so you can share data you
 store in the JSON format with people who work in many other programming 
 languages. It’s a useful and portable format, and it’s easy to learn. 
 
-
 The JSON (JavaScript Object Notation) format was originally developed for JavaScript. 
 However, it has since become a common format used by many languages, including 
 Python. 
 
-
 Using json.dump() and json.load() 
-
 
 Let’s write a short program that stores a set of numbers and another pro- 
 gram that reads these numbers back into memory. The first program will 
@@ -14336,15 +11622,12 @@ The json.dump() function takes two arguments: a piece of data to
 store and a file object it can use to store the data. Here’s how you can use 
 json.dump() to store a list of numbers: 
 
-
 import json 
 numbers = [2, 3, 5, 7, 11, 13] 
 filename = 'numbers.json' 
 
-
 with open(filename, ‘w') as f_obj: 
 json.dump(numbers, f_obj) 
-
 
 We first import the json module and then create a list of numbers to 
 work with. At @ we choose a filename in which to store the list of numbers. 
@@ -14356,52 +11639,37 @@ function to store the list numbers in the file numbers.json.
 This program has no output, but let’s open the file numbers.json and 
 look at it. The data is stored in a format that looks just like Python: 
 
-
 [2, 3, 5, 7, 14, 13] 
-
 
 Now we'll write a program that uses json.load() to read the list back into 
 memory: 
-
 
 import json 
 filename = 'numbers.json' 
 with open(filename) as f_obj: 
 
-
 numbers = json. load(f_obj) 
-
 
 print (numbers) 
 
-
 Files and Exceptions 209 
-
 
 remember_ 
 
-
 me.py 
-
 
 greet_user.py 
 
-
 210 
-
 
 Chapter 10 
 
-
 11) 
-
 
 co) 
 
-
 e 
 2) 
-
 
 At © we make sure to read from the same file we wrote to. This time 
 when we open the file, we open it in read mode because Python only needs 
@@ -14410,15 +11678,11 @@ information stored in numbers.json, and we store it in the variable numbers.
 Finally we print the recovered list of numbers and see that it’s the same list 
 created in number_writer.py: 
 
-
 [2, 3, 5, 7, 14, 13] 
-
 
 This is a simple way to share data between two programs. 
 
-
 Saving and Reading User-Generated Data 
-
 
 Saving data with json is useful when you're working with user-generated 
 data, because if you don’t store your user’s information somehow, you'll 
@@ -14428,54 +11692,42 @@ remember their name when they run the program again.
 
 Let’s start by storing the user’s name: 
 
-
 import json 
 username = input("What is your name? ") 
-
 
 filename = 'username.json' 
 with open(filename, ‘w') as f_obj: 
 json.dump(username, f_obj) 
 print("We'll remember you when you come back, " + username + 
 
-
 At © we prompt for a username to store. Next, we use json.dump(), 
 passing it a username and a file object, to store the username in a file @. 
 Then we print a message informing the user that we’ve stored their 
 information ®: 
 
-
 What is your name? Eric 
 We'll remember you when you come back, Eric! 
 
-
 Now let’s write a new program that greets a user whose name has 
 already been stored: 
-
 
 import json 
 filename = 'username.json' 
 with open(filename) as f_obj: 
 
-
 username = json.load(f_obj) 
 print("Welcome back, " + username + "!") 
-
 
 remember_ 
 me.py 
 
-
 200060 
-
 
 At © we use json.load() to read the information stored in username.json 
 into the variable username. Now that we’ve recovered the username, we can 
 welcome them back @: 
 
-
 Welcome back, Eric! 
-
 
 We need to combine these two programs into one file. When someone 
 runs remember_me.py, we want to retrieve their username from memory if 
@@ -14483,9 +11735,7 @@ possible; therefore, we’ll start with a try block that attempts to recover the
 username. If the file username.json doesn’t exist, we'll have the except block 
 prompt for a username and store it in username.json for next time: 
 
-
 import json 
-
 
 # Load the username, if it has been stored previously. 
 # Otherwise, prompt for the username and store it. 
@@ -14501,9 +11751,7 @@ print("We'll remember you when you come back, " + username + "!"
 else: 
 print("Welcome back, 
 
-
 + username + "!") 
-
 
 There’s no new code here; blocks of code from the last two examples 
 are just combined into one file. At ® we try to open the file username.json. 
@@ -14517,30 +11765,22 @@ name and print a greeting ®.
 Whichever block executes, the result is a username and an appropriate 
 greeting. If this is the first time the program runs, this is the output: 
 
-
 What is your name? Eric 
 We'll remember you when you come back, Eric! 
 
-
 Otherwise: 
-
 
 Welcome back, Eric! 
 
-
 This is the output you see if the program was already run at least once. 
 
-
 Files and Exceptions 211 
-
 
 remember_ 
 me.py 
 212 Chapter 10 
 
-
 Refactoring 
-
 
 Often, you'll come to a point where your code will work, but you'll recog- 
 nize that you could improve the code by breaking it up into a series of func- 
@@ -14551,17 +11791,13 @@ We can refactor remember_me.py by moving the bulk of its logic into one
 or more functions. The focus of remember_me.py is on greeting the user, so 
 let’s move all of our existing code into a function called greet_user(): 
 
-
 def greet_user(): 
 """Greet the user by name. 
-
 
 ; 
 ename = ‘username 
 
-
 greet_user() 
-
 
 Because we’re using a function now, we update the comments with a 
 docstring that reflects how the program currently works ®. This file is a 
@@ -14573,26 +11809,20 @@ Let’s refactor greet_user() so it’s not doing so many different tasks.
 We’ll start by moving the code for retrieving a stored username to a sepa- 
 rate function: 
 
-
 import json 
-
 
 def get_stored_username(): 
 """Get stored username if available. 
 
-
 ' 
 ename = ‘user 
-
 
 except FileNotFoundE 
 return None 
 else: 
 return username 
 
-
 def 
-
 
 greet_user(): 
 """Greet the user by name. 
@@ -14605,18 +11835,13 @@ filename = 'username.json'
 with open(filename, 'w') as f_obj: 
 json.dump(username, f_obj) 
 
-
 print("We'll remember you when you come back, " 
-
 
 greet_user() 
 
-
 + username + "!") 
 
-
 The new function get_stored_username() has a clear purpose, as stated 
-
 
 in the docstring at @. This function retrieves a stored username and returns 
 the username if it finds one. If the file username.json doesn’t exist, the func- 
@@ -14624,9 +11849,7 @@ tion returns None @. This is good practice: a function should either return
 the value you’re expecting, or it should return None. This allows us to per- 
 form a simple test with the return value of the function. At ® we print a 
 
-
 welcome back message to the user if the attempt to retrieve a username 
-
 
 was successful, and if it doesn’t, we prompt for a new username. 
 
@@ -14634,23 +11857,17 @@ We should factor one more block of code out of greet_user(). If the
 username doesn’t exist, we should move the code that prompts for a 
 new username to a function dedicated to that purpose: 
 
-
 import json 
 
+def 
 
 def 
 
-
 def 
-
-
-def 
-
 
 get_stored_username(): 
 """Get stored username if available. 
 --snip-- 
-
 
 get_new_username(): 
 
@@ -14665,7 +11882,6 @@ json.dump(username, f_obj)
 
 return username 
 
-
 greet_user(): 
 """Greet the user by name. 
 username = get_stored_username() 
@@ -14676,24 +11892,17 @@ else:
 
 username = get_new_username() 
 
-
 print("We'll remember you when you come back, " 
-
 
 greet_user() 
 
-
 + username + "!") 
-
 
 Files and Exceptions 
 
-
 213 
 
-
 214 
-
 
 Each function in this final version of remember_me.py has a single, clear 
 purpose. We call greet_user(), and that function prints an appropriate mes- 
@@ -14704,9 +11913,7 @@ if necessary, which is responsible only for getting a new username and stor-
 ing it. This compartmentalization of work is an essential part of writing 
 clear code that will be easy to maintain and extend. 
 
-
 TRY IT YOURSELF 
-
 
 10-11. Favorite Number: Write a program that prompts for the user’s favorite 
 number. Use json.dump() to store this number in a file. Write a separate pro- 
@@ -14718,7 +11925,6 @@ Exercise 10-11 into one file. If the number is already stored, report the favori
 number to the user. If not, prompt for the user’s favorite number and store it in a 
 file. Run the program twice to see that it works. 
 
-
 10-13. Verify User: The final listing for remember_me.py assumes either that the 
 user has already entered their username or that the program is running for the 
 first time. We should modify it in case the current user is not the person who 
@@ -14727,15 +11933,11 @@ last used the program.
 Before printing a welcome back message in greet_user(), ask the user if 
 this is the correct username. If it’s not, call get_new_username() to get the correct 
 
-
 username. 
-
 
 Summary 
 
-
 Chapter 10 
-
 
 In this chapter, you learned how to work with files. You learned to read an 
 entire file at once and read through a file’s contents one line at a time. You 
@@ -14750,9 +11952,7 @@ you trust that the code you develop is correct, and it will help you identify
 bugs that are introduced as you continue to build on the programs you’ve 
 written. 
 
-
 TESTING YOUR CODE 
-
 
 When you write a function or a class, you 
 can also write tests for that code. Testing 
@@ -14761,7 +11961,6 @@ to in response to all the input types it’s designed
 to receive. When you write tests, you can be confident 
 that your code will work correctly as more people 
 begin to use your programs. You'll also be able to test 
-
 
 new code as you add it to make sure your changes don’t break your pro- 
 gram’s existing behavior. Every programmer makes mistakes, so every 
@@ -14775,19 +11974,15 @@ like and what a failing test looks like, and you'll learn how a failing test can
 help you improve your code. You'll learn to test functions and classes, and 
 you'll start to understand how many tests to write for a project. 
 
-
 Testing a Function 
-
 
 To learn about testing, we need code to test. Here’s a simple function that 
 takes in a first and last name, and returns a neatly formatted full name: 
-
 
 name_ def get_formatted_name(first, last): 
 function.py """Generate a neatly formatted full name. 
 full_name = first + ' ' + last 
 return full_name.title() 
-
 
 The function get_formatted_name() combines the first and last name 
 with a space in between to complete a full name, and then capitalizes and 
@@ -14795,17 +11990,13 @@ returns the full name. To check that get_formatted_name() works, let’s make
 a program that uses this function. The program names.py lets users enter a 
 first and last name, and see a neatly formatted full name: 
 
-
 names.py from name_function import get_formatted_name 
-
 
 print("Enter 'q' at any time to quit.") 
 while True: 
 first = input("\nPlease give me a first name: ") 
 
-
 if first == 'q': 
-
 
 break 
 last = input("Please give me a last name: ") 
@@ -14813,52 +12004,39 @@ if last == 'q':
 
 break 
 
-
 formatted_name = get_formatted_name(first, last) 
 print("\tNeatly formatted name: " + formatted_name + '.') 
-
 
 This program imports get_formatted_name() from name_function.py. The 
 user can enter a series of first and last names, and see the formatted full 
 names that are generated: 
 
-
 Enter 'q' at any time to quit. 
-
 
 Please give me a first name: janis 
 Please give me a last name: joplin 
 Neatly formatted name: Janis Joplin. 
 
-
 Please give me a first name: bob 
 Please give me a last name: dylan 
 
-
 Neatly formatted name: Bob Dylan. 
 
-
 Please give me a first name: q 
-
 
 We can see that the names generated here are correct. But let’s say we 
 want to modify get_formatted_name() so it can also handle middle names. 
 As we do so, we want to make sure we don’t break the way the function 
 handles names that have only a first and last name. We could test our code 
 
-
 216 Chapter 11 
-
 
 test_name_ 
 function.py 
 
-
 e 
 
-
 ee 
-
 
 by running names.py and entering a name like Janis Joplin every time we 
 modify get_formatted_name(), but that would become tedious. Fortunately, 
@@ -14867,9 +12045,7 @@ output. If we automate the testing of get_formatted_name(), we can always be
 confident that the function will work when given the kinds of names we’ve 
 written tests for. 
 
-
 Unit Tests and Test Cases 
-
 
 The module unittest from the Python standard library provides tools for 
 testing your code. A unit test verifies that one specific aspect of a function’s 
@@ -14883,9 +12059,7 @@ coverage on a large project can be daunting. It’s often good enough to write
 tests for your code’s critical behaviors and then aim for full coverage only if 
 the project starts to see widespread use. 
 
-
 A Passing Test 
-
 
 The syntax for setting up a test case takes some getting used to, but once 
 you've set up the test case it’s straightforward to add more unit tests for your 
@@ -14897,39 +12071,29 @@ your function’s behavior.
 Here’s a test case with one method that verifies that the function 
 get_formatted_name() works correctly when given a first and last name: 
 
-
 import unittest 
 from name_function import get_formatted_name 
 
-
 class NamesTestCase(unittest.TestCase): 
 
-
 Tests for 'name_function.py'. 
-
 
 def test_first_last_name(self): 
 """Do names like ‘Janis Joplin’ work?""" 
 formatted_name = get_formatted_name('janis', ‘joplin') 
 self.assertEqual(formatted_name, ‘Janis Joplin’) 
 
-
 unittest .main() 
-
 
 First, we import unittest and the function we want to test, get_formatted_ 
 name(). At ® we create a class called NamesTestCase, which will contain a series 
 of unit tests for get_formatted_name(). You can name the class anything you 
 
-
 Testing Your Code 217 
-
 
 218 
 
-
 Chapter 11 
-
 
 want, but it’s best to call it something related to the function you're about to 
 test and to use the word Testin the class name. This class must inherit from 
@@ -14952,9 +12116,7 @@ the value in formatted_name to be Janis Joplin. To check if this is true, we
 use unittest’s assertEqual() method and pass it formatted_name and ‘Janis 
 Joplin’. The line 
 
-
 self .assertEqual(formatted_name, ‘Janis Joplin’) 
-
 
 says, “Compare the value in formatted_name to the string ‘Janis Joplin’. If 
 they are equal as expected, fine. But if they don’t match, let me know!” 
@@ -14962,12 +12124,9 @@ they are equal as expected, fine. But if they don’t match, let me know!”
 The line unittest.main() tells Python to run the tests in this file. When 
 we run test_name_function.py, we get the following output: 
 
-
 Ran 1 test in 0.000s 
 
-
 OK 
-
 
 The dot on the first line of output tells us that a single test passed. The 
 next line tells us that Python ran one test, and it took less than 0.001 sec- 
@@ -14979,50 +12138,38 @@ tion. When we modify get_formatted_name(), we can run this test again. If
 the test case passes, we know the function will still work for names like 
 Janis Joplin. 
 
-
 A Failing Test 
-
 
 What does a failing test look like? Let’s modify get_formatted_name() so it can 
 handle middle names, but we’ll do so in a way that breaks the function for 
 names with just a first and last name, like Janis Joplin. 
 
-
 name_ 
 function.py 
-
 
 Here’s a new version of get_formatted_name() that requires a middle name 
 argument: 
 
-
 def get_formatted_name(first, middle, last): 
-
 
 full_name = first + + middle + + last 
 
-
 Fu 
 TULL . 
-
 
 This version should work for people with middle names, but when we 
 test it, we see that we’ve broken the function for people with just a first 
 and last name. This time, running the file test_name_function.py gives this 
 output: 
 
-
 Traceback (most recent call last): 
 File "test_name_function.py", line 8, in test_first_last_name 
 formatted_name = get_formatted_name('janis', ‘joplin') 
 TypeError: get_formatted_name() missing 1 required positional argument: ‘last’ 
 
-
 Ran 1 test in 0.000s 
 
-
 FAILED (errors=1) 
-
 
 There’s a lot of information here because there’s a lot you might need 
 to know when a test fails. The first item in the output is a single E ®, which 
@@ -15039,27 +12186,20 @@ running the test case @. This information appears at the end of the output
 so you see it right away; you don’t want to scroll up through a long output 
 listing to find out how many tests failed. 
 
-
 Responding to a Failed Test 
-
 
 What do you do when a test fails? Assuming you’re checking the right con- 
 ditions, a passing test means the function is behaving correctly and a fail- 
 ing test means there’s an error in the new code you wrote. So when a test 
 
-
 Testing Your Code 219 
 
-
 220 
-
 
 name_ 
 function.py 
 
-
 Chapter 11 
-
 
 fails, don’t change the test. Instead, fix the code that caused the test to fail. 
 Examine the changes you just made to the function, and figure out how 
@@ -15080,21 +12220,16 @@ end of the parameter list in the function definition and give it an empty
 default value. We also add an if test that builds the full name properly, 
 depending on whether or not a middle name is provided: 
 
-
 def get_formatted_name(first, last, middle=''): 
 if middle: 
 full_name = first + ' ' + middle + 
 else: 
 
-
 full_name = first + 
 
-
 + last 
 
-
 + last 
-
 
 In this new version of get_formatted_name(), the middle name is optional. 
 Ifa middle name is passed to the function (if middle:), the full name will 
@@ -15103,33 +12238,26 @@ sist of just a first and last name. Now the function should work for both
 kinds of names. To find out if the function still works for names like Janis 
 Joplin, let’s run test_name_function.py again: 
 
-
 Ran 1 test in 0.000s 
 
-
 OK 
-
 
 The test case passes now. This is ideal; it means the function works for 
 names like Janis Joplin again without us having to test the function manu- 
 ally. Fixing our function was easy because the failed test helped us identify 
 the new code that broke existing behavior. 
 
-
 Adding New Tests 
-
 
 Now that we know get_formatted_name() works for simple names again, let’s 
 write a second test for people who include a middle name. We do this by 
 adding another method to the class NamesTestCase: 
-
 
 def test_first_last_middle_name(self): 
 """Do names like ‘Wolfgang Amadeus Mozart’ work?""" 
 formatted_name = get_formatted_name( 
 ‘wolfgang’, ‘mozart’, ‘amadeus') 
 self .assertEqual(formatted_name, ‘Wolfgang Amadeus Mozart’ ) 
-
 
 We name this new method test_first_last_middle_name(). The method 
 name must start with ¢es(_ so the method runs automatically when we run 
@@ -15145,26 +12273,19 @@ middle name 9, and then we use assertEqual() to check that the returned
 full name matches the full name (first, middle, and last) that we expect. 
 When we run lest_name_function.py again, both tests pass: 
 
-
 Ran 2 tests in 0.000s 
 
-
 OK 
-
 
 Great! We now know that the function still works for names like Janis 
 Joplin, and we can be confident that it will work for names like Wolfgang 
 Amadeus Mozart as well. 
 
-
 Testing Your Code 221 
-
 
 222 
 
-
 TRY IT YOURSELF 
-
 
 11-1. City, Country: Write a function that accepts two parameters: a city name 
 and a country name. The function should return a single string of the form 
@@ -15177,7 +12298,6 @@ Write a method called test_city_country() to verify that calling your function
 with values such as 'santiago' and ‘chile’ results in the correct string. Run 
 test_cities.py, and make sure test_city_country() passes. 
 
-
 11-2. Population: Modify your function so it requires a third parameter, 
 population. It should now return a single string of the form City, Country - 
 population xxx, such as Santiago, Chile - population 5000000. Run 
@@ -15186,19 +12306,14 @@ Modify the function so the population parameter is optional. Run
 test_cities.py again, and make sure test_city_country() passes again. 
 Write a second test called test_city country population() that veri- 
 
-
 fies you can call your function with the values 'santiago', 'chile', and 
-
 
 ‘population=5000000'. Run fest_cities.py again, and make sure this new test 
 passes. 
 
-
 Testing a Class 
 
-
 Chapter 11 
-
 
 In the first part of this chapter, you wrote tests for a single function. Now 
 you'll write tests for a class. You’ll use classes in many of your own pro- 
@@ -15207,9 +12322,7 @@ you have passing tests for a class you’re working on, you can be confident
 that improvements you make to the class won’t accidentally break its cur- 
 rent behavior. 
 
-
 A Variety of Assert Methods 
-
 
 Python provides a number of assert methods in the unittest. TestCase class. 
 As mentioned earlier, assert methods test whether a condition you believe is 
@@ -15222,17 +12335,13 @@ Table 11-1 describes six commonly used assert methods. With these
 methods you can verify that returned values equal or don’t equal expected 
 values, that values are True or False, and that values are in or not ina given 
 
-
 survey. py 
-
 
 list. You can use these methods only in a class that inherits from unittest 
 . TestCase, so let’s look at how we can use one of these methods in the con- 
 text of testing an actual class. 
 
-
 Table 11-1: Assert Methods Available from the unittest Module 
-
 
 Method Use 
 
@@ -15243,15 +12352,12 @@ assertFalse(x) Verify that x is False
 assertIn(item, list) Verify that item is in list 
 assertNotIn(item, list) Verify that item is not in list 
 
-
 A Cass to Test 
-
 
 Testing a class is similar to testing a function—much of your work involves 
 testing the behavior of the methods in the class. But there are a few dif- 
 ferences, so let’s write a class to test. Consider a class that helps administer 
 anonymous surveys: 
-
 
 class AnonymousSurvey(): 
 """Collect anonymous answers to a survey question.""" 
@@ -15260,16 +12366,13 @@ def init__(self, question):
 self.question = question 
 self.responses = [] 
 
-
 def show_question(self): 
 """Show the survey question. 
 print (question) 
 
-
 def store_response(self, new_response): 
 """Store a single response to the survey. 
 self .responses.append(new_response) 
-
 
 def show_results(self): 
 """Show all the responses that have been given. 
@@ -15277,25 +12380,19 @@ print("Survey results:")
 for response in responses: 
 print('- ' + response) 
 
-
 This class starts with a survey question that you provide ® and includes 
 an empty list to store responses. The class has methods to print the survey 
 question @, add a new response to the response list ®, and print all the 
 responses stored in the list @. To create an instance from this class, all you 
 
-
 Testing Your Code 223 
 
-
 224 
-
 
 language_ 
 survey.py 
 
-
 Chapter 11 
-
 
 have to provide is a question. Once you have an instance representing a par- 
 ticular survey, you display the survey question with show_question(), store a 
@@ -15304,33 +12401,26 @@ response using store_response(), and show results with show_results().
 To show that the AnonymousSurvey class works, let’s write a program that 
 uses the class: 
 
-
 from survey import AnonymousSurvey 
-
 
 # Define a question, and make a survey. 
 question = "What language did you first learn to speak?" 
 my survey = AnonymousSurvey (question) 
 
-
 # Show the question, and store responses to the question. 
 my_survey.show_question() 
 print("Enter 'q' at any time to quit.\n") 
-
 
 while True: 
 response = input("Language: ") 
 if response == 'q': 
 break 
 
-
 my survey.store_response(response) 
-
 
 # Show the survey results. 
 print("\nThank you to everyone who participated in the survey!") 
 my _survey.show_results() 
-
 
 This program defines a question ("What language did you first learn 
 to speak?") and creates an AnonymousSurvey object with that question. The 
@@ -15339,17 +12429,14 @@ responses. Each response is stored as it is received. When all responses have
 been entered (the user inputs q to quit), show_results() prints the survey 
 results: 
 
-
 What language did you first learn to speak? 
 Enter 'q' at any time to quit. 
-
 
 Language: English 
 Language: Spanish 
 Language: English 
 Language: Mandarin 
 Language: q 
-
 
 Thank you to everyone who participated in the survey! 
 Survey results: 
@@ -15362,10 +12449,8 @@ Survey results:
 
 - Mandarin 
 
-
 test_ 
 survey. py 
-
 
 This class works for a simple anonymous survey. But let’s say we want to 
 improve AnonymousSurvey and the module it’s in, survey. We could allow each 
@@ -15379,19 +12464,15 @@ allow each user to enter multiple responses, we could accidentally change
 how single responses are handled. To ensure we don’t break existing behav- 
 ior as we develop this module, we can write tests for the class. 
 
-
 Testing the AnonymousSurvey Class 
-
 
 Let’s write a test that verifies one aspect of the way AnonymousSurvey behaves. 
 We’ll write a test to verify that a single response to the survey question is 
 stored properly. We’ll use the assertIn() method to verify that the response 
 is in the list of responses after it’s been stored: 
 
-
 import unittest 
 from survey import AnonymousSurvey 
-
 
 class TestAnonmyousSurvey(unittest.TestCase): 
 """Tests for the class AnonymousSurvey""" 
@@ -15402,12 +12483,9 @@ question = "What language did you first learn to speak?"
 my survey = AnonymousSurvey (question) 
 my _survey.store_response('English') 
 
-
 self.assertIn('English', my_survey.responses) 
 
-
 unittest .main() 
-
 
 We start by importing the unittest module and the class we want to 
 test, AnonymousSurvey. We call our test case TestAnonymousSurvey, which again 
@@ -15424,29 +12502,21 @@ language did you first learn to speak?" We store a single response, English,
 using the store_response() method. Then we verify that the response was 
 stored correctly by asserting that English is in the list my_survey.responses @. 
 
-
 Testing Your Code 225 
-
 
 226 
 
-
 Chapter 11 
-
 
 When we run (est_survey.py, the test passes: 
 
-
 Ran 1 test in 0.0015 
 
-
 OK 
-
 
 This is good, but a survey is useful only if it generates more than one 
 response. Let’s verify that three responses can be stored correctly. To do 
 this, we add another method to TestAnonymousSurvey: 
-
 
 def test_store_three_responses(self): 
 """Test that three individual responses are stored properly. 
@@ -15456,10 +12526,8 @@ responses = ['English', 'Spanish', ‘Mandarin’ ]
 for response in responses: 
 my _survey.store_response(response) 
 
-
 for response in responses: 
 self.assertIn(response, my_survey.responses) 
-
 
 We call the new method test_store_three_responses(). We create a sur- 
 vey object just like we did in test_store_single_response(). We define a list 
@@ -15470,22 +12538,16 @@ another loop and assert that each response is now in my_survey.responses @.
 When we run (est_survey.py again, both tests (for a single response and 
 for three responses) pass: 
 
-
 Ran 2 tests in 0.000s 
 
-
 OK 
-
 
 This works perfectly. However, these tests are a bit repetitive, so we'll 
 use another feature of unittest to make them more efficient. 
 
-
 eo 
 
-
 The setUp() Method 
-
 
 In test_survey.py we created a new instance of AnonymousSurvey in each test 
 method, and we created new responses in each method. The unittest. TestCase 
@@ -15498,22 +12560,17 @@ are then available in each test method you write.
 Let’s use setUp() to create a survey instance and a set of responses that 
 can be used in test_store_single response() and test_store_three_responses(): 
 
-
 def setUp(self): 
 
-
 Create a survey and a set of responses for use in all test methods. 
-
 
 question = "What language did you first learn to speak?" 
 self.my survey = AnonymousSurvey (question) 
 self.responses = ['English', ‘Spanish’, ‘Mandarin’ ] 
 
-
 Test that a single response is stored properly 
 self.my_survey.store_response(self.responses[0]) 
 self .assertIn(self.responses[0], self.my_survey.responses) 
-
 
 est t ee individual responses are storec 
 
@@ -15522,9 +12579,7 @@ self.my_survey.store_response(response)
 
 for response in self.responses: 
 
-
 self.assertIn(response, self.my_survey.responses) 
-
 
 The method setUp() does two things: it creates a survey instance 0, 
 and it creates a list of responses @. Each of these is prefixed by self, so 
@@ -15539,12 +12594,9 @@ When we run fest_survey.py again, both tests still pass. These tests would
 be particularly useful when trying to expand AnonymousSurvey to handle mul- 
 tiple responses for each person. After modifying the code to accept multiple 
 
-
 Testing Your Code 227 
 
-
 228 
-
 
 responses, you could run these tests and make sure you haven’t affected the 
 ability to store a single response or a series of individual responses. 
@@ -15555,7 +12607,6 @@ butes in setUp() and then use these instances in all your test methods. This
 is much easier than making a new set of instances and attributes in each 
 test method. 
 
-
 When a test case is running, Python prints one character for each unit test as it is 
 completed. A passing test prints a dot, a test that results in an error prints an E, and 
 a test that results in a failed assertion prints an F. This is why you'll see a different 
@@ -15563,29 +12614,22 @@ number of dots and characters on the first line of output when you run your lest
 If a test case takes a long time to run because it contains many unit tests, you can 
 watch these results to get a sense of how many tests are passing. 
 
-
 TRY IT YOURSELF 
-
 
 11-3. Employee: Write a class called Employee. The _init__() method should 
 take in a first name, a last name, and an annual salary, and store each of these 
 as attributes. Write a method called give raise() that adds $5000 to the 
 annual salary by default but also accepts a different raise amount. 
 
-
 Write a test case for Employee. Write two test methods, test_give_ 
-
 
 default_raise() and test_give custom_raise(). Use the setUp() method so 
 you don’t have to create a new employee instance in each test method. Run 
 your test case, and make sure both tests pass. 
 
-
 Summary 
 
-
 Chapter 11 
-
 
 In this chapter you learned to write tests for functions and classes using 
 tools in the unittest module. You learned to write a class that inherits from 
@@ -15605,7 +12649,6 @@ right away, so you can still fix the problem easily. Responding to a failed
 test that you ran is much easier than responding to a bug report from an 
 unhappy user. 
 
-
 Other programmers respect your projects more if you include some ini- 
 tial tests. They’ll feel more comfortable experimenting with your code and 
 be more willing to work with you on projects. If you want to contribute to a 
@@ -15618,15 +12661,11 @@ your code. Write tests for the most critical behaviors of your functions and
 classes, but don’t aim for full coverage in early projects unless you have a 
 specific reason to do so. 
 
-
 Testing Your Code 229 
-
 
 PART I 
 
-
 PROJECTS 
-
 
 Congratulations! You now know enough about Python 
 to start building interactive and meaningful projects. 
@@ -15634,14 +12673,11 @@ Creating your own projects will teach you new skills
 and solidify your understanding of the concepts 
 introduced in Part I. 
 
-
 Part II contains three types of projects, and you can choose to do any or 
 all of these projects in whichever order you like. Here’s a brief description 
 of each project to help you decide which to dig into first. 
 
-
 Alien Invasion: Making a Game with Python 
-
 
 In the Alien Invasion project (Chapters 12, 13, and 14), you’ll use the 
 Pygame package to develop a 2D game in which the aim is to shoot down a 
@@ -15649,9 +12685,7 @@ fleet of aliens as they drop down the screen in levels that increase in speed
 and difficulty. At the end of the project, you'll have learned skills that will 
 enable you to develop your own 2D games in Pygame. 
 
-
 Data Visualization 
-
 
 The Data Visualization project starts in Chapter 15, in which you’ll learn to 
 generate data and create a series of functional and beautiful visualizations 
@@ -15659,20 +12693,15 @@ of that data using matplotlib and Pygal. Chapter 16 teaches you to access
 data from online sources and feed it into a visualization package to create 
 plots of weather data and a world population map. Finally, Chapter 17 
 
-
 232 
 
-
 Part Il 
-
 
 shows you how to write a program to automatically download and visualize 
 data. Learning to make visualizations allows you to explore the field of data 
 mining, which is a highly sought-after skill in the world today. 
 
-
 Web Applications 
-
 
 In the Web Applications project (Chapters 18, 19, and 20), you’ll use the 
 Django package to create a simple web application that allows users to keep 
@@ -15685,15 +12714,11 @@ After completing this project, you'll be able to start building your own
 simple web applications, and you'll be ready to delve into more thorough 
 resources on building applications with Django. 
 
-
 PROJECT 
-
 
 ALIEN INVASION 
 
-
 A SHIP THAT FIRES BULLETS 
-
 
 Let’s build a game! We’ll use Pygame, a 
 collection of fun, powerful Python modules 
@@ -15703,9 +12728,7 @@ ticated games. With Pygame handling tasks like draw-
 ing images to the screen, you can skip much of the 
 tedious, difficult coding and focus on the higher-level 
 
-
 logic of game dynamics. 
-
 
 In this chapter, you'll set up Pygame and then create a ship that moves 
 right and left, and fires bullets in response to player input. In the next two 
@@ -15717,9 +12740,7 @@ From this chapter you'll also learn to manage large projects that span
 multiple files. We’ll refactor a lot of code and manage file contents to keep 
 our project organized and the code efficient. 
 
-
 236 
-
 
 Making games is an ideal way to have fun while learning a language. 
 It’s deeply satisfying to watch others play a game you wrote, and writing a 
@@ -15729,14 +12750,11 @@ how each block of code contributes to overall gameplay. Experiment with
 different values and settings to gain a better understanding of how to refine 
 interactions in your own games. 
 
-
 Alien Invasion will span a number of different files, so make a new folder on your sys- 
 tem called alien_invasion. Be sure to save all files for the project to this folder so your 
 import statements will work correctly. 
 
-
 Planning Your Project 
-
 
 When building a large project, it’s important to prepare a plan before you 
 begin to write your code. Your plan will keep you focused and make it more 
@@ -15745,7 +12763,6 @@ likely that you’ll complete the project.
 Let’s write a description of the overall gameplay. Although this descrip- 
 tion doesn’t cover every detail of Alien Invasion, it provides a clear idea of 
 how to start building the game: 
-
 
 In Alien Invasion, the player controls a ship that appears at 
 
@@ -15758,18 +12775,14 @@ appears that moves faster than the previous fleet. If any alien hits
 the player’s ship or reaches the bottom of the screen, the player 
 loses a ship. If the player loses three ships, the game ends. 
 
-
 For the first phase of development, we’ll make a ship that can move right 
 and left. The ship should be able to fire bullets when the player presses the 
 spacebar. After setting up this behavior, we can turn our attention to the 
 aliens and refine the gameplay. 
 
-
 Installing Pygame 
 
-
 Chapter 12 
-
 
 Before you begin coding, install Pygame. Here’s how to do so on Linux, 
 OS X, and Microsoft Windows. 
@@ -15783,32 +12796,25 @@ If you're using Python 2.7 on Linux or if you’re using Windows, you
 won't need pip to install Pygame. Instead, move on to “Installing Pygame 
 on Linux” on page 238 or “Installing Pygame on Windows” on page 240. 
 
-
 Instructions for installing pip on all systems are included in the sections that follow 
 because you'll need pip for the data visualization and web application projects. These 
 instructions are also included in the online resources at https://www.nostarch 
 .com/pythoncrashcourse/. If you have trouble with the instructions here, see if the 
 online instructions work for you. 
 
-
 Installing Python Packages with pip 
-
 
 The most recent versions of Python come with pip installed, so first check 
 whether pip is already on your system. With Python 3, pip is sometimes 
 called pip3. 
 
-
 Checking for pip on Linux and OS X 
 
-
 Open a terminal window and enter the following command: 
-
 
 $ pip --version 
 @ pip 7.0.3 from /usr/local/lib/python3.5/dist-packages (python 3.5) 
 $ 
-
 
 If you have only one version of Python installed on your system and you 
 see output similar to this, move on to either “Installing Pygame on Linux” 
@@ -15824,17 +12830,13 @@ OS X” on page 239. If pip is associated with the wrong version of Python,
 try using pip3 instead of pip. If neither command works for the version of 
 Python you're using, go to “Installing pip” on page 238. 
 
-
 Checking for pip on Windows 
 
-
 Open a terminal window and enter the following command: 
-
 
 $ python -m pip --version 
 @ pip 7.0.3 from C:\Python35\lib\site-packages (python 3.5) 
 $ 
-
 
 If your system has only one version of Python installed and you see 
 output similar to this, move on to “Installing Pygame on Windows” on 
@@ -15847,23 +12849,17 @@ that pip is associated with the version of Python you’re using—for example,
 python 3.5 at ®. If pip is associated with the correct version of Python, move 
 on to “Installing Pygame on Windows” on page 240. If pip is associated with 
 
-
 A Ship That Fires Bullets 237 
-
 
 238 
 
-
 Chapter 12 
-
 
 the wrong version of Python, try using pip3 instead of pip. If neither com- 
 mand works for the version of Python you're using, move on to “Installing 
 pip” next. 
 
-
 Installing pip 
-
 
 To install pip, go to hitps://bootstrap.pypa.io/get-pip.py. Save the file if 
 prompted to do so. If the code for get-pip.py appears in your browser, 
@@ -15872,34 +12868,25 @@ gel-pip.py. Once get-pip.py is saved on your computer, you'll need to run
 it with administrative privileges because pip will be installing new pack- 
 ages to your system. 
 
-
 Ifyou cant find get-pip.py, go to https://pip.pypa.io/, click Installation in the left 
 panel, and then under “Install pip,” follow the link to get-pip.py. 
 
-
 Installing pip on Linux and OS X 
-
 
 Use the following command to run gei-pip.py with administrative privileges: 
 
-
 $ sudo python get-pip.py 
-
 
 If you use the command python3 to start a terminal session, you should use sudo 
 python3 get-pip.py here. 
 
-
 After the program runs, use the command pip --version (or pip3 
 --version) to make sure pip was installed correctly. 
-
 
 Installing pip on Windows 
 Use the following command to run get-pip.py: 
 
-
 $ python get-pip.py 
-
 
 If you use a different command to run Python in a terminal, make sure 
 you use that command to run gel-pip.py. For example, your command might 
@@ -15908,25 +12895,19 @@ be python3 get-pip.py or C:\Python35\python get-pip.py.
 After the program runs, run the command python -m pip --version to 
 make sure pip was installed successfully. 
 
-
 Installing Pygame on Linux 
-
 
 If you’re using Python 2.7, install Pygame using the package manager. 
 Open a terminal window and run the following command, which will 
 download and install Pygame onto your system: 
 
-
 $ sudo apt-get install python-pygame 
 
-
 Test your installation in a terminal session by entering the following: 
-
 
 $ python 
 >>> import pygame 
 >>> 
-
 
 If no output appears, Python has imported Pygame and you're ready to 
 move on to “Starting the Game Project” on page 240. 
@@ -15938,27 +12919,21 @@ Enter the following to install the libraries Pygame needs. (If you use
 a command such as python3.5 on your system, replace python3-dev with 
 python3.5-dev.) 
 
-
 $ sudo apt-get install python3-dev mercurial 
 $ sudo apt-get install libsdl-image1.2-dev libsdl2-dev libsdl-ttf2.0-dev 
-
 
 This will install the libraries needed to run Alien Invasion successfully. 
 If you want to enable some more advanced functionality in Pygame, such as 
 the ability to add sounds, you can also add the following libraries: 
 
-
 $ sudo apt-get install libsdl-mixer1.2-dev libportmidi-dev 
 $ sudo apt-get install libswscale-dev libsmpeg-dev libavformat-dev libavcode-dev 
 $ sudo apt-get install python-numpy 
 
-
 Now install Pygame by entering the following (use pip3 if that’s appro- 
 priate for your system): 
 
-
 $ pip install --user hg+http://bitbucket.org/pygame/pygame 
-
 
 The output will pause for a moment after informing you which libraries 
 Pygame found. Press ENTER, even though some libraries are missing. You 
@@ -15967,31 +12942,23 @@ should see a message stating that Pygame installed successfully.
 To confirm the installation, run a Python terminal session and try to 
 import Pygame by entering the following: 
 
-
 $ python3 
 >>> import pygame 
 >>> 
 
-
 If this works, move on to “Starting the Game Project” on page 240. 
 
-
 Installing Pygame on OS X 
-
 
 You'll need Homebrew to install some packages that Pygame depends on. If 
 you haven’t already installed Homebrew, see Appendix A for instructions. 
 To install the libraries that Pygame depends on, enter the following: 
 
-
 $ brew install hg sdl sdl_image sdl_ttf 
-
 
 A Ship That Fires Bullets 239 
 
-
 240 
-
 
 This will install the libraries needed to run Alien Invasion. You should 
 see output scroll by as each library is installed. 
@@ -15999,33 +12966,25 @@ see output scroll by as each library is installed.
 If you also want to enable more advanced functionality, such as includ- 
 ing sound in games, you can install two additional libraries: 
 
-
 $ brew install sdl_mixer portmidi 
-
 
 Use the following command to install Pygame (use pip rather than pip3 
 if you're running Python 2.7): 
 
-
 $ pip3 install --user hg+http://bitbucket.org/pygame/pygame 
-
 
 Start a Python terminal session and import Pygame to check whether 
 the installation was successful (enter python rather than python3 if you’re 
 running Python 2.7): 
 
-
 $ python3 
 >>> import pygame 
 >>> 
 
-
 If the import statement works, move on to “Starting the Game Project” 
 below. 
 
-
 Installing Pygame on Windows 
-
 
 The Pygame project is hosted on a code-sharing site called Bitbucket. To 
 install Pygame on your version of Windows, find a Windows installer at 
@@ -16040,42 +12999,31 @@ If you have a file ending in .whl, copy the file to your project direc-
 tory. Open a command window, navigate to the folder that you copied the 
 installer to, and use pip to run the installer: 
 
-
 > python -m pip install --user pygame-1.9.2a0-cp35-none-win32.whl 
-
 
 Starting the Game Project 
 
-
 Chapter 12 
-
 
 Now we'll start building our game by first creating an empty Pygame win- 
 dow to which we can later draw our game elements, such as the ship and the 
 aliens. We’ll also have our game respond to user input, set the background 
 color, and load a ship image. 
 
-
 alien_ 
 invasion.py 
 
-
 @°o 
-
 
 oo 
 
-
 Creating a Pygame Window and Responding to User Input 
-
 
 First, we’ll create an empty Pygame window. Here’s the basic structure of a 
 game written in Pygame: 
 
-
 import sys 
 import pygame 
-
 
 def run_game(): 
 # Initialize game and create a screen object. 
@@ -16083,23 +13031,18 @@ pygame. init()
 screen = pygame.display.set_mode((1200, 800)) 
 pygame.display.set_caption("Alien Invasion") 
 
-
 # Start the main loop for the game. 
 while True: 
-
 
 # Watch for keyboard and mouse events. 
 for event in pygame.event.get(): 
 if event.type == pygame.QUIT: 
 sys.exit() 
 
-
 # Make the most recently drawn screen visible. 
 pygame. display. flip() 
 
-
 run_game() 
-
 
 First, we import the sys and pygame modules. The pygame module con- 
 tains the functionality needed to make a game. We’ll use the sys module to 
@@ -16128,21 +13071,15 @@ mouse. To make our program respond to events, we’ll write an event loop to
 listen for an event and perform an appropriate task depending on the kind 
 of event that occurred. The for loop at @ is an event loop. 
 
-
 A Ship That Fires Bullets 241 
-
 
 alien_ 
 
-
 invasion.py 
-
 
 242 
 
-
 Chapter 12 
-
 
 To access the events detected by Pygame, we’ll use the pygame.event.get() 
 method. Any keyboard or mouse event will cause the for loop to run. Inside 
@@ -16162,21 +13099,16 @@ izes the game and starts the main loop.
 
 Run this code now, and you should see an empty Pygame window. 
 
-
 Setting the Background Color 
-
 
 Pygame creates a black screen by default, but that’s boring. Let’s set a differ- 
 ent background color: 
 
-
 # Set the background color. 
 bg color = (230, 230, 230) 
 
-
 # Redraw the screen during each pass through the loop. 
 screen. fill(bg color) 
-
 
 First, we create a background color and store it in bg_color @. This color 
 needs to be specified only once, so we define its value before entering the 
@@ -16189,23 +13121,17 @@ to create 16 million colors. The color value (230, 230, 230) mixes equal
 amounts of red, blue, and green, which produces a light gray background 
 color. 
 
-
 settings.py 
-
 
 alien_ 
 invasion.py 
 
-
 et ) 
-
 
 At @, we fill the screen with the background color using the screen. fill() 
 method, which takes only one argument: a color. 
 
-
 Creating a Settings Class 
-
 
 Each time we introduce new functionality into our game, we’ll typically 
 introduce some new settings as well. Instead of adding settings throughout 
@@ -16219,7 +13145,6 @@ settings throughout our files.
 
 Here’s the initial Settings class: 
 
-
 class Settings(): 
 """A class to store all settings for Alien Invasion.""" 
 def init__(self): 
@@ -16229,13 +13154,10 @@ self.screen_width = 1200
 self.screen_height = 800 
 self.bg color = (230, 230, 230) 
 
-
 To make an instance of Settings and use it to access our settings, modify 
 alien_invasion.py as follows: 
 
-
 from settings import Settings 
-
 
 # Initialize pygame, settings, and screen object. 
 
@@ -16244,15 +13166,11 @@ ai_settings = Settings()
 screen = pygame.display.set_mode( 
 (ai_settings.screen width, ai_settings.screen_height) ) 
 
-
 screen . fill(ai_settings : bg color) 
-
 
 A Ship That Fires Bullets 243 
 
-
 244 
-
 
 We import Settings into the main program file, and then create an 
 instance of Settings and store it in ai_settings after making the call to 
@@ -16260,12 +13178,9 @@ pygame.init() ®. When we create a screen @, we use the screen_width and
 screen_height attributes of ai_settings, and then we use ai_settings to access 
 the background color when filling the screen at ® as well. 
 
-
 Adding the Ship Image 
 
-
 Chapter 12 
-
 
 Now let’s add the ship to our game. To draw the player’s ship on screen, 
 we'll load an image and then use the Pygame method blit() to draw the 
@@ -16295,48 +13210,37 @@ pythoncrashcourse/. The file’s background color matches the settings we’re
 using in this project. Make a folder called images inside your main project 
 folder (alien_invasion). Save the file ship.bmp in the images folder. 
 
-
 Figure 12-1: The ship for Alien Invasion 
-
 
 ship.py 
 
-
 ee) 
 
-
 Creating the Ship Class 
-
 
 After choosing an image for the ship, we need to display it onscreen. To use 
 our ship, we’ll write a module called ship, which contains the class Ship. This 
 class will manage most of the behavior of the player’s ship. 
 
-
 import pygame 
 class Ship(): 
 def init__(self, screen): 
 
-
 """TInitialize the ship and set its starting position. 
 self.screen = screen 
-
 
 # Load the ship image and get its rect. 
 self.image = pygame.image.load('images/ship.bmp' ) 
 self.rect = self.image.get_rect() 
 self.screen_rect = screen.get_rect() 
 
-
 # Start each new ship at the bottom center of the screen. 
 self.rect.centerx = self.screen_rect.centerx 
 self.rect.bottom = self.screen_rect.bottom 
 
-
 def blitme(self): 
 """Draw the ship at its current location. 
 self.screen.blit(self.image, self.rect) 
-
 
 First, we import the pygame module. The __init__() method of Ship takes 
 two parameters: the self reference and the screen where we’ll draw the ship. 
@@ -16364,20 +13268,15 @@ y attributes, which are the x- and y-coordinates of its top-left corner. These
 attributes spare you from having to do calculations that game developers 
 formerly had to do manually, and you'll find you'll use them often. 
 
-
 A Ship That Fires Bullets 245 
-
 
 invasion.py 
 
-
 246 
-
 
 In Pygame, the origin (0, 0) is at the top-left corner of the screen, and coordinates 
 increase as you go down and to the right. On a 1200 by 800 screen, the origin is at 
 the top-left corner, and the bottom-right corner has the coordinates (1200, 800). 
-
 
 We’ll position the ship at the bottom center of the screen. To do so, 
 first store the screen’s rect in self.screen_rect ®, and then make the value 
@@ -16391,31 +13290,23 @@ screen.
 At © we define the blitme() method, which will draw the image to the 
 screen at the position specified by self. rect. 
 
-
 Drawing the Ship to the Screen 
-
 
 Now let’s update alien_invasion.py so it creates a ship and calls the ship’s 
 blitme() method: 
 
-
 alien_ 
 OY 
 
-
 from ship import Ship 
-
 
 # Make a ship. 
 o ship = Ship(screen) 
 
-
 tha ccreen dirino each nas 
 1. fill(ai 
 
-
 2) ship.blitme() —_ 
-
 
 We import Ship and then make an instance of Ship (named ship) after 
 the screen has been created. It must come before the main while loop ® so 
@@ -16427,25 +13318,18 @@ When you run alien_invasion.py now, you should see an empty game
 screen with our rocket ship sitting at the bottom center, as shown in 
 Figure 12-2. 
 
-
 Chapter 12 
-
 
 © © Alien Invasion ) 
 
-
 a 
-
 
 Figure 12-2: Alien Invasion with the ship at the bottom center of the screen 
 
-
 Refactoring: the game_functions Module 
-
 
 game_ 
 functions. py 
-
 
 In larger projects, you'll often refactor code you’ve written before add- 
 ing more code. Refactoring simplifies the structure of the code you’ve 
@@ -16455,9 +13339,7 @@ tions that make Alien Invasion work. The game_functions module will pre-
 vent alien_invasion.py from becoming too lengthy and will make the logic 
 in alien_invasion.py easier to follow. 
 
-
 The check_events() Function 
-
 
 We’ll start by moving the code that manages events to a separate function 
 called check_events(). This will simplify run_game() and isolate the event man- 
@@ -16466,17 +13348,13 @@ rately from other aspects of the game, like updating the screen.
 
 Place check_events() in a separate module called game_functions: 
 
-
 import sys 
 import pygame 
-
 
 def check_events(): 
 """Respond to keypresses and mouse events. 
 
-
 A Ship That Fires Bullets 247 
-
 
 This module imports sys and pygame, which are used in the event check- 
 ing loop. The function needs no parameters at this point, and the body is 
@@ -16485,54 +13363,40 @@ copied from the event loop in alien_invasion.py.
 Now let’s modify alzen_invasion.py so it imports the game_functions module, 
 and we’ll replace the event loop with a call to check_events(): 
 
-
 alien_ 
 invasion.py 
 
-
 Lf 
-
 
 import game_functions as gf 
 
-
 gf.check_events() 
-
 
 We no longer need to import sys directly into the main program file, 
 because it’s only being used in the game_functions module now. We give the 
 imported game_functions module the alias gf for simplification. 
 
-
 The update_screen() Function 
-
 
 Let’s move the code for updating the screen to a separate function called 
 update_screen() in game_functions.py to further simplify run_game(): 
 
-
 game_ 
 functions.py 
 
-
 def update_screen(ai_settings, screen, ship): 
 """Update images on the screen and flip to the new screen.""" 
-
 
 The new update_screen() function takes three parameters: ai_settings, 
 screen, and ship. Now we need to update the while loop from alien_invasion.py 
 with a call to update_screen(): 
 
-
 alien_ 
 invasion.py 
 
-
 248 Chapter 12 
 
-
 gf.update_screen(ai_settings, screen, ship) 
-
 
 These two functions make the while loop simpler and will make further 
 development easier. Instead of working inside run_game(), we can do most of 
@@ -16547,23 +13411,17 @@ complex.
 Now that our code is restructured to make it easier to add to, we can 
 work on the dynamic aspects of the game! 
 
-
 TRY IT YOURSELF 
 
-
 12-1. Blue Sky: Make a Pygame window with a blue background. 
-
 
 12-2. Game Character: Find a bitmap image of a game character you like or 
 convert an image to a bitmap. Make a class that draws the character at the 
 center of the screen and match the background color of the image to the back- 
 
-
 ground color of the screen, or vice versa. 
 
-
 Piloting the Ship 
-
 
 Let’s give the player the ability to move the ship right and left. To do this, 
 we’ll write code that responds when the player presses the right or left 
@@ -16571,9 +13429,7 @@ arrow key. We’ll focus on movement to the right first, and then we’ll apply
 the same principles to control movement to the left. As you do this, you'll 
 learn how to control the movement of images on the screen. 
 
-
 Responding to a Keypress 
-
 
 Whenever the player presses a key, that keypress is registered in Pygame as 
 an event. Each event is picked up by the pygame.event.get() method, so we 
@@ -16583,17 +13439,13 @@ for. Each keypress is registered as a KEYDOWN event.
 When a KEYDOWN event is detected, we need to check whether the key 
 that was pressed is one that triggers a certain event. For example, if the 
 
-
 A Ship That Fires Bullets 249 
-
 
 right arrow key is pressed, we increase the ship’s rect.centerx value to 
 move the ship to the right: 
 
-
 game_ def check_events(ship): 
 functions. py ""Respond to keypresses 
-
 
 e elif event.type == pygame.KEYDOWN: 
 
@@ -16601,7 +13453,6 @@ e elif event.type == pygame.KEYDOWN:
 # Move the ship to the right. 
 
 (3) ship.rect.centerx += 1 
-
 
 We give the check_events() function a ship parameter, because the ship 
 needs to move to the right when the right arrow key is pressed. Inside 
@@ -16614,20 +13465,16 @@ the value of ship. rect.centerx by 1 ®.
 We need to update the call to check_events() in alien_invasion.py so it 
 passes ship as an argument: 
 
-
 alien_ 
 invasion.py ile Trt 
 gf.check_events (ship) 
-
 
 If you run alien_invasion.py now, you should see the ship move to the 
 right one pixel every time you press the right arrow key. That’s a start, but 
 it’s not an efficient way to control the ship. Let’s improve this control by 
 allowing continuous movement. 
 
-
 Allowing Continuous Movement 
-
 
 When the player holds down the right arrow key, we want the ship to 
 continue moving right until the player releases the key. We’ll have our 
@@ -16645,25 +13492,19 @@ moving right flag. The update() method will change the position of the ship if
 the flag is set to True. We’ll call this method any time we want to update the 
 position of the ship. 
 
-
 250 Chapter 12 
-
 
 Here are the changes to the Ship class: 
 
-
 ship.py 
-
 
 # Movement flag 
 e self.moving right = False 
-
 
 (2) def update(self): 
 """Update the ship's position based on the movement flag.""" 
 if self.moving right: 
 self.rect.centerx += 1 
-
 
 We add a self.moving right attribute in the _init__() method and set it 
 to False initially @. Then we add update(), which moves the ship right if the 
@@ -16672,18 +13513,14 @@ flag is True @.
 Now modify check_events() so that moving right is set to True when the 
 right arrow key is pressed and False when the key is released: 
 
-
 game_ 
 functions. py 
-
 
 e ship.moving right = True 
 (2) elif event.type == pygame.KEYUP: 
 
-
 if event.key == pygame.K_RIGHT: 
 ship.moving right = False 
-
 
 At 0, we modify how the game responds when the player presses the 
 right arrow key: instead of changing the ship’s position directly, we merely 
@@ -16694,22 +13531,16 @@ moving right to False.
 Finally, we modify the while loop in alien_invasion.py so it calls the ship’s 
 update() method on each pass through the loop: 
 
-
 alien_ 
 invasion.py 
 
-
 ship.update() 
-
 
 A Ship That Fires Bullets 251 
 
-
 functions. py 
 
-
 252 
-
 
 The ship’s position will update after we’ve checked for keyboard 
 events and before we update the screen. This allows the ship’s position to 
@@ -16719,35 +13550,26 @@ is used when drawing the ship to the screen.
 When you run alien_invasion.py and hold down the right arrow key, the 
 ship should move continuously to the right until you release the key. 
 
-
 Moving Both Left and Right 
-
 
 Now that the ship can move continuously to the right, adding movement to 
 the left is easy. We’ll again modify the Ship class and the check_events() func- 
 tion. Here are the relevant changes to __init__() and update() in Ship: 
 
-
 ship.py det 
-
 
 # Movement flags 
 SELF. movine-xieht 
 
-
 self.moving left = False 
 
-
 ane pdate the ship's position based on movement flags.""" 
-
 
 seiT.rect.center 
 if self.moving left: 
 self.rect.centerx -= 1 
 
-
 4 
-
 
 In __init__(), we add a self.moving_left flag. In update(), we use two sep- 
 arate if blocks rather than an elif in update() to allow the ship’s rect.centerx 
@@ -16759,27 +13581,20 @@ player might momentarily hold down both keys.
 
 We have to make two adjustments to check_events(): 
 
-
 game_ def check_events(ship): 
-
 
 elif event.key = pygame.K LEFT: 
 ship.moving left = True 
-
 
 ship.movil g right = False 
 elif event.key == pygame.K_LEFT: 
 ship.moving left = False 
 
-
 Chapter 12 
-
 
 settings.py 
 
-
 ship.py 
-
 
 If a KEYDOWN event occurs for the K_LEFT key, we set moving left to True. If 
 a KEYUP event occurs for the K_LEFT key, we set moving_left to False. We can 
@@ -16794,22 +13609,17 @@ Next, we’ll further refine the movement of the ship. Let’s adjust the
 ship’s speed and limit how far the ship can move so it doesn’t disappear off 
 the sides of the screen. 
 
-
 Adjusting the Ship’s Speed 
-
 
 Currently, the ship moves one pixel per cycle through the while loop, but 
 we can take finer control of the ship’s speed by adding a ship_speed_factor 
 attribute to the Settings class. We’ll use this attribute to determine how far 
 to move the ship on each pass through the loop. Here’s the new attribute in 
 
-
 settings. py: 
-
 
 # Ship settings 
 self.ship speed factor = 1.5 
-
 
 We set the initial value of ship_speed_factor to 1.5. When we want to 
 move the ship, we’ll adjust its position by 1.5 pixels rather than | pixel. 
@@ -16819,36 +13629,26 @@ trol of the ship’s speed when we increase the tempo of the game later on.
 However, rect attributes such as centerx store only integer values, so we need 
 to make some modifications to Ship: 
 
-
 def init__(self, ai_settings, screen): 
 
-
 self.ai_settings = ai_settings 
-
 
 # Store a decimal value for the ship's center. 
 self.center = float(self.rect.centerx) 
 
-
 A Ship That Fires Bullets 253 
 
-
 # Update the ship's center value, not the rect. 
-
 
 4) self.center 42 self.ai_settings.ship_speed_factor 
 * of 21 . moving eft 
 
-
 self. center -= self.ai_settings.ship speed factor 
-
 
 # Update rect object from self.center. 
 5) self.rect.centerx = self.center 
 
-
 def blitme(self) 
-
 
 At @, we add ai_settings to the list of parameters for __init__(), so 
 the ship will have access to its speed setting. We then turn the ai_settings 
@@ -16871,29 +13671,22 @@ that’s fine for displaying the ship.
 We need to pass ai_settings as an argument when we create an instance 
 of Ship in alien_invasion.py: 
 
-
 alien_ 
 invasion.py 
 
-
 ship = Ship(ai_settings, screen) 
-
 
 Now any value of ship_speed_factor greater than one will make the 
 ship move faster. This will be helpful in making the ship respond quickly 
 enough to shoot down aliens, and it will let us change the tempo of the 
 game as the player progresses in gameplay. 
 
-
 254 Chapter 12 
-
 
 ship.py 
 
-
 game_ 
 functions.py 
-
 
 Limiting the Ship’s Range 
 
@@ -16902,10 +13695,8 @@ down an arrow key long enough. Let’s correct this so the ship stops moving
 when it reaches the edge of the screen. We do this by modifying the update() 
 method in Ship: 
 
-
 if self.moving right ‘and self. rect. right s self. screen_rect.right: 
 if self.moving left and self. rect. left > OD - 
-
 
 This code checks the position of the ship before changing the value of 
 self.center. The code self.rect.right returns the x-coordinate value of the 
@@ -16919,35 +13710,26 @@ the value of self.center.
 If you run alien_invasion.py now, the ship should stop moving at either 
 edge of the screen. 
 
-
 Refactoring check_events() 
-
 
 The check_events() function will increase in length as we continue to 
 develop the game, so let’s break check_events() into two more functions: 
 one that handles KEYDOWN events and another that handles KEYUP events: 
 
-
 def check_keydown_events(event, ship): 
 Respond to keypresses.""" 
-
 
 def check_keyup_events(event, ship): 
 mnmpe wun 
 
-
 lL 
 LUI 
 
-
 A Ship That Fires Bullets 255 
-
 
 check_keydown_events(event, ship) 
 
-
 check_keyup_events(event, ship) 
-
 
 We make two new functions: check_keydown_events() and check_keyup_ 
 events(). Each needs an event parameter and a ship parameter. The bodies 
@@ -16956,9 +13738,7 @@ the old code with calls to the new functions. The check_events() function is
 simpler now with this cleaner code structure, which will make it easier to 
 develop further responses to player input. 
 
-
 A Quick Recap 
-
 
 In the next section, we’ll add the ability to shoot bullets, which involves 
 anew file called bullet.py and some modifications to some of the files we 
@@ -16966,9 +13746,7 @@ already have. Right now, we have four files containing a number of classes,
 functions, and methods. To be clear about how the project is organized, 
 let’s review each of these files before adding more functionality. 
 
-
 alien_invasion.py 
-
 
 The main file, alien_invasion.py, creates a number of important objects used 
 throughout the game: the settings are stored in ai_settings, the main dis- 
@@ -16980,31 +13758,24 @@ alien_invasion.py is the only file you need to run when you want to play
 Alien Invasion. The other files—settings.py, game_functions.py, ship.py— 
 contain code that is imported, directly or indirectly, into this file. 
 
-
 settings.py 
-
 
 The settings.py file contains the Settings class. This class only has an 
 __init__() method, which initializes attributes controlling the game’s 
 appearance and the ship’s speed. 
 
-
 game_functions.py 
-
 
 The game_functions.py file contains a number of functions that carry out 
 the bulk of the work in the game. The check_events() function detects rel- 
 evant events, such as keypresses and releases, and processes each of these 
 types of events through the helper functions check_keydown_events() and 
 
-
 256 Chapter 12 
-
 
 check_keyup_events(). For now, these functions manage the movement of 
 the ship. The game_functions module also contains update_screen(), which 
 redraws the screen on each pass through the main loop. 
-
 
 ship.py 
 
@@ -17013,42 +13784,31 @@ update() method to manage the ship’s position, and a blitme() method
 to draw the ship to the screen. The actual image of the ship is stored in 
 ship.bmp, which is in the images folder. 
 
-
 TRY IT YOURSELF 
-
 
 12-3. Rocket: Make a game that begins with a rocket in the center of the 
 screen. Allow the player to move the rocket up, down, left, or right using the 
 
-
 four arrow keys. Make sure the rocket never moves beyond any edge of the 
 
-
 screen. 
-
 
 12-4. Keys: Make a Pygame file that creates an empty screen. In the event 
 loop, print the event.key attribute whenever a pygame.KEYDOWN event is detected. 
 Run the program and press various keys to see how Pygame responds. 
 
-
 Shooting Bullets 
 
-
 settings.py 
-
 
 Now let’s add the ability to shoot bullets. We’ll write code that fires a bullet 
 (a small rectangle) when the player presses the spacebar. Bullets will then 
 travel straight up the screen until they disappear off the top of the screen. 
 
-
 Adding the Bullet Settings 
-
 
 First, update settings.py to include the values we’ll need for a new Bullet 
 class, at the end of the _ init__() method: 
-
 
 # Bullet settings 
 self.bullet_speed factor = 1 
@@ -17056,24 +13816,18 @@ self.bullet_width = 3
 self.bullet_height = 15 
 self.bullet_color = 60, 60, 60 
 
-
 These settings create dark gray bullets with a width of 3 pixels and a 
 height of 15 pixels. The bullets will travel slightly slower than the ship. 
 
-
 A Ship That Fires Bullets 257 
 
-
 Creating the Bullet Class 
-
 
 Now create a bullet.py file to store our Bullet class. Here’s the first part of 
 bullet.py: 
 
-
 bulletpy import pygame 
 from pygame.sprite import Sprite 
-
 
 class Bullet(Sprite): 
 """A class to manage bullets fired from the ship""" 
@@ -17082,11 +13836,9 @@ def init__(self, ai_settings, screen, ship):
 super(Bullet, self). init_() 
 self.screen = screen 
 
-
 # Create a bullet rect at (0, 0) and then set correct position. 
 1) self.rect = pygame.Rect(0, 0, ai_settings.bullet_width, 
 ai_settings.bullet_height) 
-
 
 2) self.rect.centerx = ship.rect.centerx 
 (3) self.rect.top = ship.rect.top 
@@ -17094,9 +13846,7 @@ ai_settings.bullet_height)
 8 self.y = float(self.rect.y) 
 5) self.color = ai_settings.bullet_color 
 
-
 self.speed_factor = ai_settings.bullet_speed_factor 
-
 
 The Bullet class inherits from Sprite, which we import from the 
 pygame.sprite module. When you use sprites, you can group related ele- 
@@ -17104,10 +13854,8 @@ ments in your game and act on all the grouped elements at once. To
 create a bullet instance, _init__() needs the ai_settings, screen, and ship 
 instances, and we call super() to inherit properly from Sprite. 
 
-
 The call super(Bullet, self).__init__() uses Python 2.7 syntax. This works in 
 Python 3 too, or you can also write this call more simply as super().__init__(). 
-
 
 At ®, we create the bullet’s rect attribute. The bullet is not based on an 
 image so we have to build a rect from scratch using the pygame.Rect() class. 
@@ -17126,25 +13874,18 @@ We store a decimal value for the bullet’s y-coordinate so we can make
 fine adjustments to the bullet’s speed @. At ©, we store the bullet’s color 
 and speed settings in self.color and self.speed_factor. 
 
-
 258 Chapter 12 
 
-
 bullet.py 
-
 
 alien_ 
 invasion.py 
 
-
 (3) 
-
 
 a) 
 
-
 Here’s the second part of bullet.py, update() and draw_bullet(): 
-
 
 def update(self): 
 """Move the bullet up the screen. 
@@ -17153,11 +13894,9 @@ self.y -= self.speed_ factor
 # Update the rect position. 
 self.rect.y = self.y 
 
-
 def draw _bullet(self): 
 """Draw the bullet to the screen. 
 pygame.draw.rect(self.screen, self.color, self.rect) 
-
 
 The update() method manages the bullet’s position. When a bullet 
 is fired, it moves up the screen, which corresponds to a decreasing 
@@ -17172,9 +13911,7 @@ When we want to draw a bullet, we’ll call draw_bullet(). The draw.rect()
 function fills the part of the screen defined by the bullet’s rect with the 
 color stored in self.color ®. 
 
-
 Storing Bullets in a Group 
-
 
 Now that we have a Bullet class and the necessary settings defined, we can 
 write code to fire a bullet each time the player presses the spacebar. First, 
@@ -17185,48 +13922,35 @@ extra functionality that’s helpful when building games. We’ll use this group
 to draw bullets to the screen on each pass through the main loop and to 
 update each bullet’s position: 
 
-
 from pygame. sprite import Group 
-
 
 # Make a group to store bullets in. 
 bullets = Group() 
 
-
 gf.check_events(ai_settings, screen, ship, bullets) 
-
 
 A Ship That Fires Bullets 259 
 
-
 game_ 
-
 
 functions.py 
 
-
 260 
-
 
 Chapter 12 
 
-
 5) 
-
 
 bullets .update() 
 gf.update_screen(ai_settings, screen, ship, bullets) 
-
 
 We import Group from pygame.sprite. At ®, we make an instance of Group 
 and call it bullets. This group is created outside of the while loop so we 
 don’t create a new group of bullets each time the loop cycles. 
 
-
 If you make a group like this inside the loop, you'll be creating thousands of groups 
 of bullets and your game will probably slow to a crawl. If your game freezes up, look 
 carefully at what’s happening in your main while loop. 
-
 
 We pass bullets to check_events() and update_screen(). We’ll need to work 
 with bullets in check_events() when the spacebar is pressed, and we’ll need 
@@ -17236,9 +13960,7 @@ When you call update() on a group @, the group automatically calls
 update() for each sprite in the group. The line bullets.update() calls 
 bullet.update() for each bullet we place in the group bullets. 
 
-
 Firing Bullets 
-
 
 In game_functions.py, we need to modify check_keydown_events() to fire a bullet 
 when the spacebar is pressed. We don’t need to change check_keyup_events() 
@@ -17246,31 +13968,24 @@ because nothing happens when the key is released. We also need to modify
 update_screen() to make sure each bullet is redrawn to the screen before we 
 call flip(). Here are the relevant changes to game_functions.py: 
 
-
 from bullet import Bullet 
 def check_keydown_events(event, ai_settings, screen, ship, bullets): 
 elif event.key == pygame.K_SPACE: 
 # Create a new bullet and add it to the bullets group. 
 
-
 new bullet = Bullet(ai_settings, screen, ship) 
 bullets.add(new_bullet) 
 
-
 def check_events(ai_settings, screen, ship, bullets): 
-
 
 event.type == pygame.KEYVUWN: 
 check_keydown_events(event, ai_settings, screen, ship, bullets) 
 
-
 def update_screen(ai_settings, screen, ship, bullets): 
 # Redraw all bullets behind ship and aliens. 
 
-
 for bullet in bullets.sprites(): 
 bullet.draw_bullet() 
-
 
 The group bullets is passed to check_keydown_events() @. When the 
 player presses the spacebar, we create a new bullet (a Bullet instance that we 
@@ -17291,18 +14006,13 @@ right and left, and fire as many bullets as you want. The bullets travel up the
 screen and disappear when they reach the top, as shown in Figure 12-3. You 
 can alter the size, color, and speed of the bullets in settings. py. 
 
-
 Alien Invasion ) 
-
 
 A> 
 
-
 Figure 12-3: The ship after firing a series of bullets 
 
-
 Deleting Old Bullets 
-
 
 At the moment, the bullets disappear when they reach the top, but only 
 because Pygame can’t draw them above the top of the screen. The bullets 
@@ -17310,19 +14020,15 @@ actually continue to exist; their y-coordinate values just grow increasingly
 negative. This is a problem, because they continue to consume memory and 
 processing power. 
 
-
 A Ship That Fires Bullets 261 
-
 
 We need to get rid of these old bullets, or the game will slow down from 
 doing so much unnecessary work. To do this, we need to detect when the 
 bottom value of a bullet’s rect has a value of 0, which indicates the bullet has 
 passed off the top of the screen: 
 
-
 alien_ 
 invasion.py 
-
 
 # Get rid of bullets that have disappeared. 
 for bullet in bullets.copy(): 
@@ -17330,9 +14036,7 @@ if bullet.rect.bottom <= 0:
 bullets. remove(bullet) 
 print (len(bullets) ) 
 
-
 oOeo 
-
 
 You shouldn’t remove items from a list or group within a for loop, so 
 we have to loop over a copy of the group. We use the copy() method to set 
@@ -17350,9 +14054,7 @@ leave it in, the game will slow down significantly because it takes more time
 to write output to the terminal than it does to draw graphics to the game 
 window. 
 
-
 Limiting the Number of Bullets 
-
 
 Many shooting games limit the number of bullets a player can have on the 
 screen at one time to encourage players to shoot accurately. We’ll do the 
@@ -17360,65 +14062,51 @@ same in Alien Invasion.
 
 First, store the number of bullets allowed in settings.py: 
 
-
 settings. py Bullet 
 self, | 
 
 self. bulle olor = 60, 6¢ 
 self.bullets allowed = 3 
 
-
 262 Chapter 12 
-
 
 This limits the player to three bullets at a time. We’ll use this setting 
 in game_functions.py to check how many bullets exist before creating a new 
 bullet in check_keydown_events(): 
-
 
 game_ c check keydo events(event, ai_settings, screen, ship, bu 
 functions.py 
 + Create a ew si a 
 if len(bullets) < 
 
-
 ai_settings.bullets allowed: : 
-
 
 When the spacebar is pressed, we check the length of bullets. If 
 len(bullets) is less than three, we create a new bullet. But if three bullets 
 are already active, nothing happens when the spacebar is pressed. If you run 
 the game now, you should be able to fire bullets only in groups of three. 
 
-
 Creating the update_bullets() Function 
-
 
 We want to keep our main alien_invasion.py program file as simple as 
 possible, so now that we’ve written and checked the bullet management 
 code we can move it to the game_functions module. We’ll create a new func- 
 tion called update_bullets() and add it to the end of game_functions.py: 
 
-
 game_ def update_bullets(bullets): 
 functions. py """Update position of bullets and get rid of old bullets.""" 
 # Update bullet positions. 
-
 
 The code for update_bullets() is cut and pasted from alien_invasion.py; 
 the only parameter it needs is the group bullets. 
 The while loop in alien_invasion.py looks simple again: 
 
-
 alien_ 
 invasion.py 
 
-
 gf.update bullets (bullets) 
 
-
 Ct) 
-
 
 We’ve made it so that our main loop contains only minimal code so 
 we can quickly read the function names and understand what’s happen- 
@@ -17426,33 +14114,24 @@ ing in the game. The main loop checks for player input at ®, and then it
 updates the position of the ship at @ and any bullets that have been fired 
 at ®. We then use the updated positions to draw a new screen at ®. 
 
-
 A Ship That Fires Bullets 263 
-
 
 game_ 
 
-
 functions. py 
-
 
 264 
 
-
 Creating the fire_bullet() Function 
-
 
 Let’s move the code for firing a bullet to a separate function so we 
 can use a single line of code to fire a bullet and keep the elif block in 
 check_keydown_events() simple: 
 
-
 fire bullet(ai_ settings, screen, ship, bullets) 
-
 
 def fire bullet(ai_settings, screen, ship, bullets): 
 Fire a bullet if limit not reached yet.""" 
-
 
 The function fire_bullet() simply contains the code that was used to 
 fire a bullet when the spacebar is pressed, and we add a call to fire_bullet() 
@@ -17461,25 +14140,18 @@ in check_keydown_events() when the spacebar is pressed.
 Run alien_invasion.py one more time, and make sure you can still fire 
 bullets without errors. 
 
-
 TRY IT YOURSELF 
-
 
 12-5. Sideways Shooter: Write a game that places a ship on the left side of the 
 
-
 screen and allows the player to move the ship up and down. Make the ship fire 
-
 
 a bullet that travels right across the screen when the player presses the space- 
 bar. Make sure bullets are deleted once they disappear off the screen. 
 
-
 Summary 
 
-
 Chapter 12 
-
 
 In this chapter, you learned to make a plan for a game. You learned the basic 
 structure of a game written in Pygame. You learned to set a background color 
@@ -17494,9 +14166,7 @@ In Chapter 13, we’ll add aliens to Alien Invasion. By the end of
 Chapter 13, you'll be able to shoot down aliens, hopefully before they 
 reach your ship! 
 
-
 ALIENS! 
-
 
 In this chapter we’ll add aliens to Alien 
 
@@ -17511,9 +14181,7 @@ aliens hit by a bullet. Finally, we’ll limit the number of
 
 ships a player has and end the game when the player 
 
-
 runs out of ships. 
-
 
 As you work through this chapter, you’ll learn more about Pygame 
 and about managing a larger project. You'll also learn to detect collisions 
@@ -17526,46 +14194,35 @@ tain the focus of our code-writing sessions.
 Before we start writing new code to add a fleet of aliens to the screen, 
 let’s look at the project and update our plan. 
 
-
 Reviewing Your Project 
-
 
 game_ 
 
-
 functions. py 
 
-
 266 
-
 
 When you're beginning a new phase of development on a larger project, it’s 
 always a good idea to revisit your plan and clarify what you want to accom- 
 plish with the code you're about to write. In this chapter we will: 
 
-
 e Examine our code and determine if we need to refactor before imple- 
 menting new features. 
-
 
 e Adda single alien to the top-left corner of the screen with appropriate 
 spacing around it. 
 
-
 e Use the spacing around the first alien and the overall screen size to 
 determine how many aliens can fit on the screen. We’ll write a loop to 
 create aliens to fill the upper portion of the screen. 
-
 
 e Make the fleet move sideways and down until the entire fleet is shot 
 down, an alien hits the ship, or an alien reaches the ground. If the 
 whole fleet is shot down, we'll create a new fleet. If an alien hits the 
 ship or the ground, we’ll destroy the ship and create a new fleet. 
 
-
 e Limit the number of ships the player can use, and end the game when 
 the player has used up the allotment of ships. 
-
 
 We’ll refine this plan as we implement features, but this is sufficient to 
 start with. 
@@ -17579,13 +14236,10 @@ been refactoring as we go, it’s annoying to use the mouse to close the game
 each time we run it to test a new feature. Let’s quickly add a keyboard short- 
 cut to end the game when the user presses Q: 
 
-
 ck keyc 
-
 
 elif event. key == pygame.K_q: 
 sys.exit() 
-
 
 In check_keydown_events() we add a new block that ends the game when Q 
 is pressed. This is a fairly safe change because the Q key is far from the arrow 
@@ -17593,41 +14247,31 @@ keys and the spacebar, so it’s unlikely a player will accidentally press Q and
 quit the game. Now, when testing, you can press Q to close the game rather 
 than using your mouse to close the window. 
 
-
 Creating the First Alien 
 
-
 Chapter 13 
-
 
 Placing one alien on the screen is like placing a ship on the screen. 
 The behavior of each alien is controlled by a class called Alien, which 
 we'll structure like the Ship class. We’ll continue using bitmap images 
 for simplicity. You can find your own image for an alien or use the one 
 
-
 alien.py 
-
 
 shown in Figure 13-1, which is available in the book’s resources through 
 hittps://www.nostarch.com/pythoncrashcourse/. This image has a gray back- 
 ground, which matches the screen’s background color. Make sure to save 
 the image file you choose in the zmages folder. 
 
-
 Figure 13-1: The alien we'll use to build 
 the fleet 
 
-
 Creating the Alien Cass 
-
 
 Now we’ll write the Alien class: 
 
-
 import pygame 
 from pygame.sprite import Sprite 
-
 
 class Alien(Sprite): 
 """A class to represent a single alien in the fleet.""" 
@@ -17637,111 +14281,83 @@ super(Alien, self). init__()
 self.screen = screen 
 self.ai_settings = ai_settings 
 
-
 # Load the alien image and set its rect attribute. 
 self.image = pygame. image. load('images/alien.bmp' ) 
 self.rect = self.image.get_rect() 
-
 
 # Start each new alien near the top left of the screen. 
 self.rect.x = self.rect.width 
 self.rect.y = self.rect.height 
 
-
 # Store the alien's exact position. 
 self.x = float(self.rect.x) 
-
 
 def blitme(self): 
 """Draw the alien at its current location. 
 self.screen.blit(self.image, self.rect) 
 
-
 Aliens! 267 
-
 
 alien_ 
 invasion.py 
 
-
 game_ 
 functions. py 
 
-
 268 Chapter 13 
-
 
 Most of this class is like the Ship class except for the placement of the 
 alien. We initially place each alien near the top-left corner of the screen, 
 adding a space to the left of it that’s equal to the alien’s width and a space 
 above it equal to its height ®. 
 
-
 Creating an Instance of the Alien 
-
 
 Now we create an instance of Alien in alien_invasion.py: 
 
-
 from alien import Alien 
-
 
 # Make an alien. 
 alien = Alien(ai_settings, screen) 
 
-
 gf.update_screen(ai_settings, screen, ship, alien, bullets) 
-
 
 Here we’re importing the new Alien class and creating an instance of 
 Alien just before entering the main while loop. Because we’re not changing 
 the alien’s position yet, we aren’t adding anything new inside the loop; how- 
 ever, we do modify the call to update_screen() to pass it the alien instance. 
 
-
 Making the Alien Appear Onscreen 
-
 
 To make the alien appear onscreen, we call its blitme() method in 
 update_screen(): 
 
-
 def update_screen(ai_settings, screen, ship, alien, bullets): 
-
 
 ull 
 alien.blitme() 
-
 
 We draw the alien onscreen after the ship and the bullets have been 
 drawn, so the aliens will be the top layer of the screen. Figure 13-2 shows 
 the first alien on the screen. 
 
-
 >) Alien Invasion 
-
 
 23 
 
-
 Figure 13-2: The first alien appears. 
-
 
 Now that the first alien appears correctly, we’ll write the code to draw 
 an entire fleet. 
 
-
 Building the Alien Fleet 
-
 
 To draw a fleet, we need to figure out how many aliens can fit across the 
 screen and how many rows of aliens can fit down the screen. We’ll first fig- 
 ure out the horizontal spacing between aliens and create a row; then we'll 
 determine the vertical spacing and create an entire fleet. 
 
-
 Determining How Many Aliens Fit in a Row 
-
 
 To figure out how many aliens fit in a row, let’s look at how much horizontal 
 space we have. The screen width is stored in ai_settings.screen_width, but we 
@@ -17751,12 +14367,9 @@ need an empty margin on either side of the screen. We’ll make this margin
 the width of one alien. Because we have two margins, the available space for 
 aliens is the screen width minus two alien widths: 
 
-
 available space_x = ai_settings.screen_width - (2 * alien_width) 
 
-
 Aliens! 269 
-
 
 We also need to set the spacing between aliens; we’ll make it one alien 
 width. The space needed to display one alien is twice its width: one width 
@@ -17764,44 +14377,33 @@ for the alien and one width for the empty space to its right. To find the
 number of aliens that fit across the screen, we divide the available space by 
 two times the width of an alien: 
 
-
 number aliens x = available space_x / (2 * alien_width) 
 
-
 We'll include these calculations when we create the fleet. 
-
 
 One great aspect about calculations in programming is that you don’t have to be sure 
 your formula is correct when you first write it. You can try it out and see if it works. 
 At worst, you'll have a screen that’s overcrowded with aliens or has too few aliens. 
 You can revise your calculation based on what you see on the screen. 
 
-
 Creating Rows of Aliens 
-
 
 To create a row, first create an empty group called aliens in alien_invasion.py 
 to hold all of our aliens, and then call a function in game_functions.py to 
 create a fleet: 
 
-
 alien_ t pyg 
 invasion.py from pygame. sp 
 
-
 # Make a ship, a group of bullets, and a group of aliens. 
 
-
 CInNgs, SCI 
-
 
 1) aliens = Group() 
 # Create the fleet of aliens. 
 C2) gf.create_fleet(ai_settings, screen, aliens) 
 
-
 (3) gf.update_screen(ai_settings, screen, ship, aliens, bullets) 
-
 
 Because we’re no longer creating aliens directly in alien_invasion.py, we 
 don’t need to import the Alien class into this file. 
@@ -17811,48 +14413,35 @@ call the new function create_fleet() @, which we’ll write shortly, and pass
 it the ai_settings, the screen object, and the empty group aliens. Next, mod- 
 ify the call to update_screen() to give it access to the group of aliens ®. 
 
-
 270 Chapter 13 
-
 
 game_ 
 functions.py 
 
-
 game_ 
 functions. py 
 
-
 oOeoso 
-
 
 We also need to modify update_screen(): 
 
-
 def update_screen(ai_settings, screen, ship, aliens, bullets): 
-
 
 t 
 
-
 aliens.draw(screen) 
-
 
 When you call draw() on a group, Pygame automatically draws each ele- 
 ment in the group at the position defined by its rect attribute. In this case, 
 aliens.draw(screen) draws each alien in the group to the screen. 
 
-
 Creating the Fleet 
-
 
 Now we can create the fleet. Here’s the new function create_fleet(), which 
 we place at the end of game_functions.py. We also need to import the Alien 
 class, so make sure you add an import statement at the top of the file: 
 
-
 from alien import Alien 
-
 
 def create _fleet(ai_settings, screen, aliens): 
 """Create a full fleet of aliens.""" 
@@ -17863,7 +14452,6 @@ alien width = alien.rect.width
 available space_x = ai_settings.screen_width - 2 * alien _width 
 number_aliens x = int(available_ space x / (2 * alien_width)) 
 
-
 # Create the first row of aliens. 
 for alien_number in range(number_aliens_ x): 
 # Create an alien and place it in the row. 
@@ -17871,7 +14459,6 @@ alien = Alien(ai_settings, screen)
 alien.x = alien_width + 2 * alien_width * alien_number 
 alien.rect.x = alien.x 
 aliens.add(alien) 
-
 
 We've already thought through most of this code. We need to know the 
 alien’s width and height in order to place aliens, so we create an alien at @ 
@@ -17885,9 +14472,7 @@ The only change here from our original formulas is that we’re using
 int() to ensure we end up with an integer number of aliens @ because 
 we don’t want to create partial aliens, and the range() function needs an 
 
-
 Aliens! 271 
-
 
 integer. The int() function drops the decimal part of a number, effectively 
 rounding down. (This is helpful because we’d rather have a little extra 
@@ -17905,15 +14490,11 @@ aliens.
 When you run Alien Invasion, you should see the first row of aliens 
 appear, as in Figure 13-3. 
 
-
 © Alien invasion 
-
 
 a 
 
-
 Figure 13-3: The first row of aliens 
-
 
 The first row is offset to the left, which is actually good for gameplay 
 because we want the fleet to move right until it hits the edge of the screen, 
@@ -17922,35 +14503,26 @@ Space Invaders, this movement is more interesting than having the fleet drop
 straight down. We’ll continue this motion until all aliens are shot down or 
 until an alien hits the ship or the bottom of the screen. 
 
-
 Depending on the screen width you've chosen, the alignment of the first row of aliens 
 may look slightly different on your system. 
 
-
 272 Chapter 13 
-
 
 game_ 
 functions. py 
 
-
 Refactoring create_fleet() 
-
 
 If we were finished creating a fleet, we’d probably leave create_fleet() 
 as is, but we have more work to do, so let’s clean up the function a bit. 
 Here’s create_fleet() with two new functions: get_number_aliens_x() and 
 create_alien(): 
 
-
 @ def get_number_ aliens x(ai_settings, alien width): 
-
 
 Determine the number of aliens that fit in a row. 
 
-
 return number_aliens x 
-
 
 def create_alien(ai_settings, screen, aliens, alien_number): 
 Create an alien and place it in the row.""" 
@@ -17958,16 +14530,12 @@ Create an alien and place it in the row."""
 aller Alien(ai_settings, scr ) 
 alien_width = alien.rect.width 
 
-
 \lien.rect.x 
-
 
 number_aliens x = get_number_aliens x(ai_settings, alien.rect.width) 
 
-
 ry alien number in rang umb ens xX): 
 create_alien(ai_settings, screen, aliens, alien_number) 
-
 
 The body of get_number_aliens_x() is exactly as it was in create_fleet() O. 
 The body of create_alien() is also unchanged from create_fleet() except 
@@ -17977,9 +14545,7 @@ number_aliens_x(), and we remove the line referring to alien_width, because
 that’s now handled inside create_alien(). At @ we call create_alien(). This 
 refactoring will make it easier to add new rows and create an entire fleet. 
 
-
 Adding Rows 
-
 
 To finish the fleet, determine the number of rows that fit on the screen 
 and then repeat the loop (for creating the aliens in one row) that number 
@@ -17987,27 +14553,19 @@ of times. To determine the number of rows, we find the available vertical
 space by subtracting the alien height from the top, the ship height from the 
 bottom, and two alien heights from the bottom of the screen: 
 
-
 available _space_y = ai_settings.screen_height - 3 * alien_height - ship height 
-
 
 Aliens! 273 
 
-
 game_ 
-
 
 functions. py 
 
-
 274 
-
 
 Chapter 13 
 
-
 e 
-
 
 The result will create some empty space above the ship, so the player 
 has some time to start shooting aliens at the beginning of each level. 
@@ -18017,13 +14575,10 @@ the height of one alien. To find the number of rows, we divide the available
 space by two times the height of an alien. (Again, if these calculations are 
 off, we'll see it right away and adjust until we have reasonable spacing.) 
 
-
 number_rows = available height_y / (2 * alien_height) 
-
 
 Now that we know how many rows fit in a fleet, we can repeat the code 
 for creating a row: 
-
 
 def get_number_rows(ai_settings, ship height, alien height): 
 """Determine the number of rows of aliens that fit on the screen. 
@@ -18032,26 +14587,20 @@ available space_y = (ai_settings.screen_ height -
 number_rows = int(available space_y / (2 * alien_height)) 
 return number_rows 
 
-
 def create_alien(ai_settings, screen, aliens, alien_number, row_number): 
-
 
 alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number 
 
-
 def create fleet(ai_settings, screen, ship, aliens): 
-
 
 number_rows = get_number_rows(ai settings, ship.rect. height, 
 alien.rect.height) 
-
 
 # Create the fleet of aliens. 
 for row_number in range(number_rows): 
 OY dailen_ In r in range(numbe _alle _X)> 
 create_alien(ai_settings, screen, aliens, alien_number, 
 row_number ) 
-
 
 To calculate the number of rows we can fit on the screen, we write 
 our available_space_y and number_rows calculations into the function get_ 
@@ -18065,10 +14614,8 @@ inner loop @. The inner loop creates the aliens in one row. The outer loop
 counts from 0 to the number of rows we want; Python will use the code for 
 making a single row and repeat it number_rows times. 
 
-
 alien_ 
 invasion.py 
-
 
 To nest the loops, write the new for loop and indent the code you want 
 to repeat. (Most text editors make it easy to indent and unindent blocks of 
@@ -18088,52 +14635,37 @@ The definition of create_fleet() also has a new parameter for the ship
 object, which means we need to include the ship argument in the call to 
 create_fleet() in alien_invasion.py: 
 
-
 gf.create_fleet(ai_settings, screen, ship, aliens) 
-
 
 When you run the game now, you should see a fleet of aliens, as in 
 Figure 13-4. 
 
-
 © Alien Invasion ! 
-
 
 3 
 
-
 Figure 13-4: The full fleet appears. 
-
 
 In the next section, we’ll make the fleet move! 
 
-
 Aliens! 275 
-
 
 TRY IT YOURSELF 
 
-
 13-1. Stars: Find an image of a star. Make a grid of stars appear on the screen. 
-
 
 13-2. Better Stars: You can make a more realistic star pattern by introducing 
 randomness when you place each star. Recall that you can get a random num- 
 
-
 ber like this: 
-
 
 from random import randint 
 random_number = randint(-10,10) 
 
-
 This code returns a random integer between -10 and 10. Using your code 
 in Exercise 13-1, adjust each star’s position by a random amount. 
 
-
 Making the Fleet Move 
-
 
 Now let’s make our fleet of aliens move to the right across the screen until 
 it hits the edge, and then make it drop a set amount and move in the other 
@@ -18141,23 +14673,18 @@ direction. We’ll continue this movement until all aliens have been shot
 down, one collides with the ship, or one reaches the bottom of the screen. 
 Let’s begin by making the fleet move to the right. 
 
-
 Moving the Aliens Right 
 
 To move the aliens, we’ll use an update() method in alien.py, which we’ll 
 call for each alien in the group of aliens. First, add a setting to control the 
 speed of each alien: 
 
-
 settings.py 
-
 
 # Alien settings 
 self.alien_speed_factor = 1 
 
-
 Then, use this setting to implement update(): 
-
 
 alien.py def update(self): 
 
@@ -18165,37 +14692,28 @@ alien.py def update(self):
 self.x += self.ai_settings.alien_speed_factor 
 self.rect.x = self.x 
 
-
 e 
 2) 
-
 
 Each time we update an alien’s position, we move it to the right by the 
 amount stored in alien_speed_factor. We track the alien’s exact position 
 with the self.x attribute, which can hold decimal values @. We then use 
 the value of self.x to update the position of the alien’s rect @. 
 
-
 276 Chapter 13 
-
 
 alien_ 
 invasion.py 
 
-
 game_ 
 functions. py 
 
-
 settings.py 
-
 
 In the main while loop, we have calls to update the ship and bullets. 
 Now we need to update the position of each alien as well: 
 
-
 gf. update_aliens(aliens) 
-
 
 We update the aliens’ positions after the bullets have been updated, 
 because we’ll soon be checking to see whether any bullets hit any aliens. 
@@ -18203,29 +14721,23 @@ because we’ll soon be checking to see whether any bullets hit any aliens.
 Finally, add the new function update_aliens() at the end of the file 
 game_functions.py: 
 
-
 def update_aliens(aliens): 
 """Update the postions of all aliens in the fleet. 
 aliens.update() 
-
 
 We use the update() method on the aliens group, which automatically 
 calls each alien’s update() method. When you run Alien Invasion now, you 
 should see the fleet move right and disappear off the side of the screen. 
 
-
 Creating Settings for Fleet Direction 
-
 
 Now we'll create the settings that will make the fleet move down the screen 
 and to the left when it hits the right edge of the screen. Here’s how to imple- 
 ment this behavior: 
 
-
 self.fleet_drop_speed = 10° 
 # fleet_direction of 1 represents right; -1 represents left. 
 self.fleet_direction = 1 
-
 
 The setting fleet_drop_speed controls how quickly the fleet drops down 
 the screen each time an alien reaches either edge. It’s helpful to separate 
@@ -18240,35 +14752,25 @@ changes direction. (Using numbers also makes sense because moving right
 involves adding to each alien’s x-coordinate value, and moving left involves 
 subtracting from each alien’s x-coordinate value.) 
 
-
 Aliens! 277 
-
 
 alien.py 
 
-
 game_ 
-
 
 functions. py 
 
-
 278 
-
 
 Chapter 13 
 
-
 11) 
 
-
 Checking to See Whether an Alien Has Hit the Edge 
-
 
 Now we need a method to check whether an alien is at either edge, and 
 we need to modify update() to allow each alien to move in the appropriate 
 direction: 
-
 
 def check_edges(self): 
 """Return True if alien is at edge of screen. 
@@ -18278,13 +14780,11 @@ return True
 elif self.rect.left <= 0: 
 return True 
 
-
 Move the alien right or left. 
 self.x += (self.ai_settings.alien_speed_ factor * 
 
 self.ai_settings.fleet_direction) 
 elf.rect.x = self 
-
 
 We can call the new method check_edges() on any alien to see if it’s at 
 the left or right edge. The alien is at the right edge if the right attribute of 
@@ -18298,9 +14798,7 @@ alien’s current position, moving the alien to the right; if fleet_direction
 is —1, the value will be subtracted from the alien’s position, moving the 
 alien to the left. 
 
-
 Dropping the Fleet and Changing Direction 
-
 
 When an alien reaches the edge, the entire fleet needs to drop down and 
 change direction. We therefore need to make some substantial changes 
@@ -18309,7 +14807,6 @@ are at the left or right edge. We’ll make this happen by writing the func-
 tions check_fleet_edges() and change_fleet_direction(), and then modifying 
 update_aliens(): 
 
-
 def check_fleet_edges(ai_settings, aliens): 
 """Respond appropriately if any aliens have reached an edge. 
 for alien in aliens.sprites(): 
@@ -18317,21 +14814,17 @@ if alien.check_edges():
 change_fleet_direction(ai_settings, aliens) 
 break 
 
-
 def change _fleet_direction(ai_settings, aliens): 
 """Drop the entire fleet and change the fleet's direction. 
 for alien in aliens.sprites(): 
 (2) alien.rect.y += ai_settings.fleet_drop speed 
 ai_settings.fleet_direction *= -1 
 
-
 def update_aliens(ai_settings, aliens): 
 Check if the fleet is at an edge, 
 and then update the postions of all aliens in the fleet. 
 
-
 (3) check_fleet_edges(ai_settings, aliens) 
-
 
 In check_fleet_edges(), we loop through the fleet and call check_edges() on 
 each alien @. If check_edges() returns True, we know an alien is at an edge and 
@@ -18345,57 +14838,41 @@ aliens are at an edge by calling check_fleet_edges() ©. This function needs
 an ai_settings parameter, so we include an argument for ai_settings in the 
 call to update_aliens(): 
 
-
 alien_ 
 invasion.py 
 
-
 gf. update aliens (ai_settings » aliens) 
-
 
 If you run the game now, the fleet should move back and forth between 
 the edges of the screen and drop down every time it hits an edge. Now we 
 can begin shooting down aliens and watch for any aliens that hit the ship 
 or reach the bottom of the screen. 
 
-
 TRY IT YOURSELF 
-
 
 13-3. Raindrops: Find an image of a raindrop and create a grid of raindrops. 
 Make the raindrops fall toward the bottom of the screen until they disappear. 
 
-
 13-4. Steady Rain: Modify your code in Exercise 13-3 so that when a row of 
-
 
 raindrops disappears off the bottom of the screen, a new row appears at the 
 top of the screen and begins to fall. 
 
-
 Aliens! 279 
-
 
 Shooting Aliens 
 
-
 game_ 
-
 
 functions. py 
 
-
 alien_ 
-
 
 invasion.py 
 
-
 280 
 
-
 Chapter 13 
-
 
 We’ve built our ship and a fleet of aliens, but when the bullets reach 
 the aliens, they simply pass through because we aren’t checking for col- 
@@ -18404,9 +14881,7 @@ overlap. To make the bullets shoot down aliens, we’ll use the method
 sprite. groupcollide() to look for collisions between members of two 
 groups. 
 
-
 Detecting Bullet Collisions 
-
 
 We want to know right away when a bullet hits an alien so we can make an 
 alien disappear as soon as it’s hit. To do this, we’ll look for collisions imme- 
@@ -18420,14 +14895,11 @@ a scoring system in Chapter 14.)
 
 Use this code to check for collisions in the update_bullets() function: 
 
-
 def update_bullets(aliens, bullets): 
 # Check for any bullets that have hit aliens. 
 
-
 # If so, get rid of the bullet and the alien. 
 collisions = pygame.sprite.groupcollide(bullets, aliens, True, True) 
-
 
 The new line we added loops through each bullet in the group bullets 
 and then loops through each alien in the group aliens. Whenever the rects 
@@ -18441,22 +14913,16 @@ would stay active until they disappeared off the top of the screen.)
 
 We pass the argument aliens in the call to update_bullets(): 
 
-
 gf.update_bullets(aliens, bullets) 
-
 
 When you run Alien Invasion now, aliens you hit should disappear. 
 Figure 13-5 shows a fleet that has been partially shot down. 
 
-
 x Alien Invasion 
-
 
 Figure 13-5: We can shoot aliens! 
 
-
 Making Larger Bullets for Testing 
-
 
 You can test many features of the game simply by running the game, but 
 some features are tedious to test in the normal version of a game. For 
@@ -18477,21 +14943,15 @@ Changes like these will help you test the game more efficiently and
 possibly spark ideas for giving players bonus powers. (Just remember to 
 restore the settings to normal once youre finished testing a feature.) 
 
-
 Aliens! 281 
-
 
 om Alien Invasion 
 
-
 4 
-
 
 Figure 13-6: Extra-powerful bullets make some aspects of the game easier to fest. 
 
-
 Repopulating the Fleet 
-
 
 One key feature of Alien Invasion is that the aliens are relentless: every time 
 the fleet is destroyed, a new fleet should appear. 
@@ -18501,10 +14961,8 @@ check to see whether the group aliens is empty. If it is, we call create_fleet()
 We’ll perform this check in update_bullets() because that’s where individual 
 aliens are destroyed: 
 
-
 game_ def update_bullets(ai_settings, screen, ship, aliens, bullets): 
 functions.py 
-
 
 1) if len(aliens) == 
 
@@ -18513,35 +14971,27 @@ C2) bullets.empty()
 
 create _fleet(ai_settings, screen, ship, aliens) 
 
-
 At © we check whether the group aliens is empty. If it is, we get rid 
 of any existing bullets by using the empty() method, which removes all the 
 remaining sprites from a group ®. We also call create_fleet(), which fills 
 the screen with aliens again. 
 
-
 282 Chapter 13 
-
 
 The definition of update_bullets() now has the additional parameters 
 ai_settings, screen, and ship, so we need to update the call to update_bullets() 
 in alien_invasion.py: 
 
-
 alien_ # Start the mai 
 invasion.py hi 
 f.check_¢€ 
 
-
 gf.update_bullets(ai_ settings, screen, ship, aliens, bullets) 
 gf.update aliens(ai settings, aliens) 
 
-
 Now a new fleet appears as soon as you destroy the current fleet. 
 
-
 Speeding Up the Bullets 
-
 
 If you've tried firing at the aliens in the game’s current state, you may have 
 noticed that the bullets have slowed down a bit. This is because Pygame 
@@ -18551,31 +15001,23 @@ the speed of the bullets by adjusting the value of bullet_speed_factor in
 settings.py. If we increase this value (to 3, for example), the bullets should 
 travel up the screen at a reasonable speed again: 
 
-
 # Bullet settings 
 self.bullet_speed factor = 3 
 
-
 settings.py 
-
 
 The best value for this setting depends on the speed of your system, so 
 find a value that works for you. 
 
-
 Refactoring update_bullets() 
-
 
 Let’s refactor update_bullets() so it’s not doing so many different tasks. We'll 
 move the code for dealing with bullet-alien collisions to a separate function: 
 
-
 game_ 
 functions.py 
 
-
 check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets) 
-
 
 def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets): 
 Respond to bullet-alien collisions.""" 
@@ -18584,22 +15026,17 @@ Respond to bullet-alien collisions."""
 
 C ision pygame.sprite.groupcollide(bullets, aliens 
 
-
 Aliens! 283 
-
 
 We’ve created a new function, check_bullet_alien_collisions(), to look 
 for collisions between bullets and aliens, and to respond appropriately if 
 the entire fleet has been destroyed. This keeps update_bullets() from grow- 
 ing too long and simplifies further development. 
 
-
 TRY IT YOURSELF 
-
 
 13-5. Catch: Create a game that places a character that you can move left and 
 right at the bottom of the screen. Make a ball appear at a random position at 
-
 
 the top of the screen and fall down the screen at a steady rate. If your charac- 
 
@@ -18607,9 +15044,7 @@ ter “catches” the ball by colliding with it, make the ball disappear. Make a
 ball each time your character catches the ball or whenever the ball disappears 
 off the bottom of the screen. 
 
-
 Ending the Game 
-
 
 What’s the fun and challenge in a game if you can’t lose? If the player doesn’t 
 shoot down the fleet quickly enough, we’ll have the aliens destroy the ship if 
@@ -18617,36 +15052,27 @@ they hit it. At the same time, we’ll limit the number of ships a player can us
 and we'll destroy the ship when an alien reaches the bottom of the screen. 
 We’ll end the game when the player has used up all their ships. 
 
-
 Detecting Alien-Ship Collisions 
-
 
 We'll start by checking for collisions between aliens and the ship so we can 
 respond appropriately when an alien hits it. We’ll check for alien-ship colli- 
 sions immediately after updating the position of each alien: 
 
-
 game_ def update_aliens(ai_settings, ship, aliens): 
 functions. py 
-
 
 # Look for alien-ship collisions. 
 if pygame.sprite.spritecollideany(ship, aliens): 
 print("Ship hit!!!") 
 
-
 eo 
 
-
 284 Chapter 13 
-
 
 alien_ 
 invasion.py 
 
-
 game_stats.py 
-
 
 The method spritecollideany() takes two arguments: a sprite and a 
 group. The method looks for any member of the group that’s collided with 
@@ -18665,18 +15091,14 @@ simple way to ensure we’re detecting collisions properly.)
 
 Now we need to pass ship to update_aliens(): 
 
-
 gf.update_aliens(ai_settings, ship, aliens) 
-
 
 Now when you run Alien Invasion, Ship hit!!!should appear in the ter- 
 minal whenever an alien runs into the ship. When testing this feature, set 
 alien_drop_speed to a higher value such as 50 or 100 so that the aliens will 
 reach your ship faster. 
 
-
 Responding to Alien-Ship Collisions 
-
 
 Now we need to figure out what happens when an alien collides with the 
 ship. Instead of destroying the ship instance and creating a new one, we'll 
@@ -18686,7 +15108,6 @@ game. (Tracking statistics will also be useful for scoring.)
 Let’s write a new class, GameStats, to track game statistics, and save it as 
 game_stats.py: 
 
-
 class GameStats(): 
 """Track statistics for Alien Invasion.""" 
 def init__(self, ai_settings): 
@@ -18694,33 +15115,24 @@ def init__(self, ai_settings):
 self.ai_settings = ai_settings 
 self.reset_stats() 
 
-
 def reset_stats(self): 
 """TInitialize statistics that can change during the game. 
 self.ships left = self.ai_settings.ship limit 
 
-
 We’ll make one GameStats instance for the entire time Alien Invasion is 
 running, but we’ll need to reset some statistics each time the player starts 
 
-
 Aliens! 285 
-
 
 settings.py 
 
-
 alien_ 
-
 
 invasion.py 
 
-
 game_ 
 
-
 e 
-
 
 anew game. To do this, we’ll initialize most of the statistics in the method 
 reset_stats() instead of directly in __init__(). We’ll call this method from 
@@ -18732,26 +15144,19 @@ Right now we have only one statistic, ships_left, the value of which will
 change throughout the game. The number of ships the player starts with is 
 stored in settings.py as ship_limit: 
 
-
 self.ship_ limit = 3 
-
 
 We also need to make a few changes in alien_invasion.py, to create an 
 instance of GameStats: 
 
-
 ting mpor settings 
 
-
 from game_stats import GameStats 
-
 
 # Create an instance to store game statistics. 
 stats = GameStats(ai_settings) 
 
-
 gf.update aliens(ai settings, stats, screen, ship, aliens, bullets) 
-
 
 We import the new GameStats class ®, make a stats instance @, and then 
 add the stats, screen, and ship arguments in the call to update_aliens() ®. 
@@ -18766,18 +15171,13 @@ fleet appears.)
 
 Let’s put most of this code in the function ship_hit(): 
 
-
 functions.py @ from time import sleep 
-
 
 286 
 
-
 Chapter 13 
 
-
 ship.py 
-
 
 def ship hit(ai_settings, stats, screen, ship, aliens, bullets): 
 Respond to ship being hit by alien.""" 
@@ -18786,29 +15186,22 @@ Respond to ship being hit by alien."""
 
 stats.ships left -= 1 
 
-
 # Empty the list of aliens and bullets. 
 aliens.empty() 
 bullets.empty() 
 
-
 # Create a new fleet and center the ship. 
 create _fleet(ai_settings, screen, ship, aliens) 
 
-
 ship.center_ship() 
-
 
 # Pause. 
 sleep(0.5) 
 
-
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets): 
-
 
 yyeame.Sprite.se cecolLl1idéc v(ship, ens 
 ship_hit(ai_settings, stats, screen, ship, aliens, bullets) 
-
 
 We first import the sleep() function from the time module to pause the 
 game @. The new function ship_hit() coordinates the response when the 
@@ -18829,54 +15222,40 @@ ship _hit().
 
 Here’s the new method center_ship(); add it to the end of ship.py: 
 
-
 def center_ship(self): 
 """Center the ship on the screen. 
 self.center = self.screen_rect.centerx 
-
 
 To center the ship, we set the value of the ship’s center attribute to 
 match the center of the screen, which we get through the screen_rect 
 attribute. 
 
-
 Notice that we never make more than one ship; we make only one ship instance for the 
-
 
 whole game and recenter it whenever the ship has been hit. The statistic ships_left 
 will tell us when the player has run out of ships. 
 
-
 Aliens! 287 
-
 
 game_ 
 
-
 functions.py 
-
 
 game_stats.py 
 
-
 288 
 
-
 Chapter 13 
-
 
 Run the game, shoot a few aliens, and let an alien hit the ship. The 
 game should pause, and a new fleet should appear with the ship centered 
 at the bottom of the screen again. 
 
-
 Aliens that Reach the Bottom of the Screen 
-
 
 If an alien reaches the bottom of the screen, we’ll respond the same way we 
 do when an alien hits the ship. Add a new function to perform this check, 
 and call it from update_aliens(): 
-
 
 def check_aliens bottom(ai_settings, stats, screen, ship, aliens, bullets): 
 
@@ -18892,10 +15271,8 @@ if alien.rect.bottom >= screen_rect.bottom:
 ship_hit(ai_settings, stats, screen, ship, aliens, bullets) 
 break 
 
-
 # Look for aliens hitting the bottom of the screen. 
 check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets) 
-
 
 The function check_aliens_bottom() checks to see whether any aliens 
 have reached the bottom of the screen. An alien reaches the bottom when 
@@ -18909,54 +15286,41 @@ aliens and after looking for alien-ship collisions @. Now a new fleet will
 appear every time the ship is hit by an alien or an alien reaches the bottom 
 of the screen. 
 
-
 Game Over! 
-
 
 Alien Invasion feels more complete now, but the game never ends. The 
 value of ships_left just grows increasingly negative. Let’s add a game_active 
 flag as an attribute to GameStats to end the game when the player runs out 
 of ships: 
 
-
 # Start Alien Invasion in an active state. 
 self.game_active = True 
-
 
 Now we add code to ship_hit() that sets game_active to False if the player 
 has used up all their ships: 
 
-
 game_ 
 functions.py n 
 
-
 if stats. hips left > 0: 
-
 
 else: 
 stats.game_active = False 
-
 
 Most of ship_hit() is unchanged. We’ve moved all of the existing code 
 into an if block, which tests to make sure the player has at least one ship 
 remaining. If so, we create a new fleet, pause, and move on. If the player has 
 no ships left, we set game_active to False. 
 
-
 Identifying When Parts of the Game Should Run 
-
 
 In alien_invasion.py we need to identify the parts of the game that should 
 always run and the parts that should run only when the game is active: 
 
-
 alien_ 
 invasion.py 
 
-
 if stats.game_active: 
-
 
 In the main loop, we always need to call check_events(), even if the game 
 is inactive. For example, we still need to know if the user presses Q to quit 
@@ -18969,28 +15333,20 @@ is inactive, we don’t need to update the positions of game elements.
 Now when you play Alien Invasion, the game should freeze when you've 
 used up all of your ships. 
 
-
 Aliens! 289 
-
 
 290 
 
-
 TRY IT YOURSELF 
 
-
 13-6. Game Over: Using your code from Exercise 13-5 (page 284), keep track 
-
 
 of the number of times the player misses the ball. When they've missed the ball 
 three times, end the game. 
 
-
 Summary 
 
-
 Chapter 13 
-
 
 In this chapter you learned how to add a large number of identical ele- 
 ments to a game by creating a fleet of aliens. You learned how to use 
@@ -19008,13 +15364,10 @@ when the game ends. We’ll speed up the game each time the player shoots
 down the entire fleet, and we’ll add a scoring system. The final result will 
 be a fully playable game! 
 
-
 SCORING 
-
 
 In this chapter we'll finish the Alien 
 Invasion game. We’ll add a Play button to 
-
 
 start a game on demand or to restart a game 
 
@@ -19025,9 +15378,7 @@ ter, you'll know enough to start writing games that
 increase in difficulty as a player progresses and that 
 show scores. 
 
-
 Adding the Play Button 
-
 
 In this section we’ll add a Play button that appears before a game begins 
 and reappears when the game ends so the player can play again. 
@@ -19036,36 +15387,28 @@ Right now the game begins as soon as you run alien_invasion.py. Let’s
 start the game in an inactive state and then prompt the player to click a Play 
 button to begin. To do this, enter the following in game_stats.py: 
 
-
 game_stats.py 
-
 
 # Start game in an inactive state. 
 self.game_active = False 
 
-
 Now the game should start in an inactive state with no way for the 
 player to start it until we make a Play button. 
 
-
 Creating a Button Class 
-
 
 Because Pygame doesn’t have a built-in method for making buttons, we’ll 
 write a Button class to create a filled rectangle with a label. You can use this 
 code to make any button in a game. Here’s the first part of the Button class; 
 save it as button.py: 
 
-
 button.py import pygame. font 
 class Button(): 
-
 
 o def init__(self, ai_settings, screen, msg): 
 """Tnitialize button attributes. 
 self.screen = screen 
 self.screen_rect = screen.get_rect() 
-
 
 # Set the dimensions and properties of the button. 
 2) self.width, self.height = 200, 50 
@@ -19073,24 +15416,18 @@ self.button_color = (0, 255, 0)
 self.text_color = (255, 255, 255) 
 (3) self.font = pygame.font.SysFont(None, 48) 
 
-
 # Build the button's rect object and center it. 
 8 self.rect = pygame.Rect(0, 0, self.width, self.height) 
 self.rect.center = self.screen_rect.center 
 
-
 # The button message needs to be prepped only once. 
 6 self.prep_msg(msg) 
 
-
 292 Chapter 14 
 
-
 button.py 
 
-
 button.py 
-
 
 First we import the pygame. font module, which lets Pygame render 
 text to the screen. The __init__() method takes the parameters self, the 
@@ -19109,14 +15446,12 @@ an image. At © we call prep_msg() to handle this rendering.
 
 Here’s the code for prep_msg(): 
 
-
 def prep _msg(self, msg): 
 """Turn msg into a rendered image and center text on the button. 
 self.msg image = self.font.render(msg, True, self.text_color, 
 self.button_color) 
 self.msg image rect = self.msg image.get_rect() 
 self.msg image rect.center = self.rect.center 
-
 
 The prep_msg() method needs a self parameter and the text to be ren- 
 dered as an image (msg). The call to font.render() turns the text stored in 
@@ -19134,29 +15469,23 @@ image and setting its center attribute to match that of the button.
 Finally, we create a draw_button() method that we can call to display the 
 button onscreen: 
 
-
 def draw_button(self): 
 # Draw blank button and then draw message. 
 self.screen.fill(self.button_color, self.rect) 
 self.screen.blit(self.msg image, self.msg image rect) 
-
 
 We call screen. fill() to draw the rectangular portion of the button. 
 Then we call screen.blit() to draw the text image to the screen, passing it 
 an image and the rect object associated with the image. This completes the 
 Button class. 
 
-
 Scoring 293 
 
-
 Drawing the Button to the Screen 
-
 
 We'll use the Button class to create a Play button. Because we need only 
 one Play button, we’ll create the button directly in alien_invasion.py as 
 shown here: 
-
 
 alien_ 
 invasion.py rom game stats impc ames 
@@ -19175,51 +15504,38 @@ game is inactive:
 
 game_ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, 
 
-
 functions.py play_button): 
-
 
 # Draw the play button if the game is inactive. 
 if not stats.game_active: 
 play_button.draw_button() 
 
-
 cently 
-
 
 To make the Play button visible above all other elements on the screen, 
 we draw it after all other game elements have been drawn and before flip- 
 ping to a new screen. Now when you run Alien Invasion you should see a 
 Play button in the center of the screen, as shown in Figure 14-1. 
 
-
 294 Chapter 14 
-
 
 A 
 
-
 Figure 14-1: A Play button appears when the game is inactive. 
 
-
 Starting the Game 
-
 
 To start a new game when the player clicks Play, add the following code to 
 game_functions.py to monitor mouse events over the button: 
 
-
 game_ def check_events(ai_settings, screen, stats, play_button, ship, bullets): 
 functions. py Respond to keypresses and mouse eve 
-
 
 elif event.type == pygame.MOUSEBUTTONDOWN: 
 mouse_X, mouse_y = pygame.mouse.get_pos() 
 check_play_button(stats, play_button, mouse_x, mouse_y) 
 
-
 eee 
-
 
 def check_play_button(stats, play_button, mouse_x, mouse_y): 
 
@@ -19227,7 +15543,6 @@ def check_play_button(stats, play_button, mouse_x, mouse_y):
 
 4) if play_button.rect.collidepoint(mouse_x, mouse_y): 
 stats.game_active = True 
-
 
 We've updated the definition of check_events() to accept the stats 
 and play_button parameters. We’ll use stats to access the game_active flag and 
@@ -19242,43 +15557,31 @@ function check_play_button() ©, which uses collidepoint() to see if the point
 of the mouse click overlaps the region defined by the Play button’s rect @. 
 If so, we set game_active to True, and the game begins! 
 
-
 Scoring 295 
-
 
 alien_ 
 
-
 invasion.py 
-
 
 game_ 
 
-
 functions. py 
-
 
 296 
 
-
 Chapter 14 
-
 
 The call to check_events() in alien_invasion.py needs to pass two addi- 
 tional arguments, stats and play_button: 
 
-
 gf.check_events(ai_settings, screen, stats, play button, ship, 
 bullets) 
-
 
 At this point, you should be able to start and play a full game. When 
 the game ends, the value of game_active should become False and the Play 
 button should reappear. 
 
-
 Resetting the Game 
-
 
 The code we just wrote works the first time the player clicks Play but not 
 once the first game ends, because the conditions that caused the game to 
@@ -19288,24 +15591,19 @@ To reset the game each time the player clicks Play, we need to reset the
 game Statistics, clear out the old aliens and bullets, build a new fleet, and 
 center the ship, as shown here: 
 
-
 def check_play_button(ai_settings, screen, stats, play button, ship, aliens, 
 bullets, mouse_x, mouse_y): 
 
-
 # Reset the game statistics. 
 stats.reset_stats() 
-
 
 # Empty the list of aliens and bullets. 
 aliens.empty() 
 bullets.empty() 
 
-
 # Create a new fleet and center the ship. 
 create _fleet(ai_settings, screen, ship, aliens) 
 ship.center_ship() 
-
 
 We update the definition of check_play_button() so it has access to 
 ai_settings, stats, ship, aliens, and bullets. It needs these objects to reset 
@@ -19317,18 +15615,14 @@ ships. Then we set game_active to True (so the game will begin as soon as
 the code in this function finishes running), empty the aliens and bullets 
 groups @, and create a new fleet and center the ship ®. 
 
-
 The definition of check_events() needs to be modified, as does the call 
 to check_play_button(): 
-
 
 game_ def check_events(ai_settings, screen, stats, play button, ship, aliens, 
 functions. py bullets): 
 e check play button(ai settings, screen, stats, play_button, ship, 
 
-
 aliens, bullets, mouse _x, mouse_y) 
-
 
 The definition of check_events() needs the aliens parameter, which it will 
 pass to check_play_button(). We then update the call to check_play_button() so 
@@ -19337,19 +15631,15 @@ it passes the appropriate arguments ®.
 Now update the call to check_events() in alien_invasion.py so it passes the 
 aliens argument: 
 
-
 alien_ ta € 
 invasion.py hile True: 
 gf.check_events(ai_settings, screen, stats, play button, ship, 
 aliens, bullets) 
 
-
 The game will now reset properly each time you click Play, allowing you 
 to play it as many times as you want! 
 
-
 Deactivating the Play Button 
-
 
 One issue with our Play button is that the button region on the screen will 
 continue to respond to clicks even when the Play button isn’t visible. Click 
@@ -19358,15 +15648,12 @@ restart!
 
 To fix this, set the game to start only when game_active is False: 
 
-
 game_ C eck_ _button(a tting 
 functions.py bullets, mouse_x, mouse_ 
 button_clicked = play _button.rect.collidepoint(mouse_x, mouse_y) 
 if button_clicked and not stats.game_active: 
 
-
 eo 
-
 
 The flag button_clicked stores a True or False value @, and the game 
 will restart only if Play is clicked and the game is not currently active 8. 
@@ -19374,25 +15661,19 @@ To test this behavior, start a new game and repeatedly click where the Play
 button should be. If everything works as expected, clicking the Play button 
 area should have no effect on the gameplay. 
 
-
 Scoring 297 
 
-
 Hiding the Mouse Cursor 
-
 
 We want the mouse cursor visible in order to begin play, but once play 
 begins it only gets in the way. To fix this, well make it invisible once the 
 game becomes active: 
 
-
 game_ 
 functions. py 
 
-
 # Hide the mouse cursor. 
 pygame.mouse.set_visible(False) 
-
 
 Passing False to set_visible() tells Pygame to hide the cursor when the 
 mouse is over the game window. 
@@ -19400,29 +15681,23 @@ mouse is over the game window.
 We’ll make the cursor reappear once the game ends so the player can 
 click Play to begin a new game. Here’s the code to do that: 
 
-
 game_ 
 functions. py 
 
-
 pygame.mouse.set_visible(True) 
-
 
 We make the cursor visible again as soon as the game becomes inactive, 
 which happens in ship_hit(). Attention to details like this makes your game 
 seem more professional and allows the player to focus on playing rather 
 than figuring out the user interface. 
 
-
 TRY IT YOURSELF 
-
 
 14-1. Press P to Play: Because Alien Invasion uses keyboard input to control the 
 ship, it’s best to start the game with a keypress. Add code that lets the player 
 press P to start. It may help to move some code from check play button() toa 
 start_game() function that can be called from both check play button() and 
 check_keydown_events(). 
-
 
 14-2. Target Practice: Create a rectangle at the right edge of the screen that 
 moves up and down at a steady rate. Then have a ship appear on the left 
@@ -19433,18 +15708,14 @@ at the moving, rectangular target. Add a Play button that starts the game, and
 when the player misses the target three times, end the game and make the Play 
 button reappear. Let the player restart the game with this Play button. 
 
-
 298 Chapter 14 
 
-
 Leveling Up 
-
 
 In our current game, once a player shoots down the entire alien fleet, the 
 player reaches a new level, but the game difficulty doesn’t change. Let’s 
 liven things up a bit and make the game more challenging by increasing 
 the speed of the game each time a player clears the screen. 
-
 
 Modifying the Speed Settings 
 
@@ -19453,19 +15724,14 @@ static and changing ones. We’ll also make sure that settings that change
 over the course of a game reset when we start a new game. Here’s the 
 __init__() method for settings.py: 
 
-
 settings.py 
 
-
 Initialize the game's static settings. 
-
 
 # How quickly the game speeds up 
 e self.speedup scale = 1.1 
 
-
 (2) self.initialize_dynamic_settings() 
-
 
 We continue to initialize the settings that stay constant in the __init__() 
 method. At @ we add a speedup_scale setting to control how quickly the 
@@ -19478,22 +15744,17 @@ of a game @.
 
 Here’s the code for initialize_dynamic_settings(): 
 
-
 settings.py def initialize_dynamic_settings(self): 
 """Initialize settings that change throughout the game. 
 self.ship_speed_factor = 1.5 
 self.bullet_speed factor = 3 
 
-
 Scoring 299 
-
 
 self.alien_speed_factor = 1 
 
-
 # fleet_direction of 1 represents right; -1 represents left. 
 self.fleet_direction = 1 
-
 
 This method sets the initial values for the ship, bullet, and alien speeds. 
 We'll increase these speeds as the player progresses in the game and reset 
@@ -19502,13 +15763,11 @@ this method so the aliens always move right at the beginning of a new game.
 To increase the speeds of the ship, bullets, and aliens each time the player 
 reaches a new level, use increase_speed(): 
 
-
 settings.py def increase _speed(self): 
 """Increase speed settings. 
 self.ship_speed_factor *= self.speedup scale 
 self.bullet_speed_factor *= self.speedup_scale 
 self.alien_speed_factor *= self.speedup scale 
-
 
 To increase the speed of these game elements, we multiply each speed 
 setting by the value of speedup_scale. 
@@ -19517,52 +15776,38 @@ We increase the game’s tempo by calling increase_speed() in check_
 bullet_alien_collisions() when the last alien in a fleet has been shot down 
 but before creating a new fleet: 
 
-
 game_ 
 functions. py 
-
 
 # Destroy existing bullets, speed up game, and create new fleet. 
 ] + rt-\,f 
 
-
 ai_settings.increase_speed() 
-
 
 Changing the values of the speed settings ship_speed_factor, alien_speed_ 
 factor, and bullet_speed_factor is enough to speed up the entire game! 
 
-
 Resetting the Speed 
-
 
 We need to return any changed settings to their initial values each time the 
 player starts a new game, or each new game would start with the increased 
 speed settings of the previous game: 
 
-
 game_ 
 functions.py 
-
 
 # Reset the game settings. 
 ai_settings.initialize_dynamic_settings() 
 
-
 300 Chapter 14 
-
 
 Scoring 
 
-
 game_stats.py 
-
 
 scoreboard.py 
 
-
 e 
-
 
 Playing Alien Invasion should be more fun and challenging now. Each 
 time you clear the screen, the game should speed up and become slightly 
@@ -19573,28 +15818,21 @@ a reasonable amount of time. The first couple of screens should be easy, the
 next few challenging but doable, and subsequent screens almost impossibly 
 difficult. 
 
-
 TRY IT YOURSELF 
-
 
 14-3. Challenging Target Practice: Start with your work from Exercise 14-2 
 (page 298). Make the target move faster as the game progresses, and restart 
 
-
 at the original speed when the player clicks Play. 
-
 
 Let’s implement a scoring system to track the game’s score in real time, as 
 well as to display the high score, level, and the number of ships remaining. 
 The score is a game statistic, so we'll add a score attribute to GameStats: 
 
-
 self.score = 0 
-
 
 To reset the score each time a new game Starts, we initialize score in 
 reset_stats() rather than _init_(). 
-
 
 Displaying the Score 
 
@@ -19603,9 +15841,7 @@ now this class will just display the current score, but we’ll use it to report
 the high score, level, and number of ships remaining as well. Here’s the first 
 part of the class; save it as scoreboard.py: 
 
-
 import pygame. font 
-
 
 class Scoreboard(): 
 
@@ -19614,41 +15850,30 @@ def init__(self, ai_settings, screen, stats):
 Initialize scorekeeping attributes.""" 
 self.screen = screen 
 
-
 Scoring 301 
 
-
 scoreboard.py 
 
-
 scoreboard.py 
-
 
 302 
 
-
 Chapter 14 
-
 
 RN) 
 
-
 tS) 
-
 
 self.screen_rect = screen.get_rect() 
 self.ai_settings = ai_settings 
 self.stats = stats 
 
-
 # Font settings for scoring information. 
 self.text_color = (30, 30, 30) 
 self.font = pygame.font.SysFont(None, 48) 
 
-
 # Prepare the initial score image. 
 self.prep_score() 
-
 
 Because Scoreboard writes text to the screen, we begin by importing the 
 pygame.font module. Next, we give __init__() the parameters ai_settings, 
@@ -19658,19 +15883,16 @@ text color @ and instantiate a font object ©.
 To turn the text to be displayed into an image, we call prep_score() 9, 
 which we define here: 
 
-
 def prep _score(self): 
 """Turn the score into a rendered image. 
 score str = str(self.stats.score) 
 self.score_image = self.font.render(score str, True, self.text_color, 
 self.ai_settings.bg color) 
 
-
 # Display the score at the top right of the screen. 
 self.score_ rect = self.score_image.get_rect() 
 self.score_rect.right = self.screen_rect.right - 20 
 self.score_rect.top = 20 
-
 
 In prep_score(), we first turn the numerical value stats.score into a 
 string ®, and then pass this string to render(), which creates the image 8. 
@@ -19687,21 +15909,16 @@ down from the top of the screen ©.
 Finally, we create a show_score() method to display the rendered score 
 image: 
 
-
 def show_score(self): 
 """Draw score to the screen. 
 self.screen.blit(self.score_ image, self.score_rect) 
 
-
 This method draws the score image to the screen at the location speci- 
 fied by score_rect. 
 
-
 Making a Scoreboard 
 
-
 To display the score, we’ll create a Scoreboard instance in alien_invasion.py: 
-
 
 alien_ 
 invasion.py rom game_stats import GameStats 
@@ -19720,10 +15937,8 @@ To display the score, modify update_screen() like this:
 game_ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, 
 functions. py play_button): 
 
-
 # Draw the score information. 
 sb.show_score() 
-
 
 We add sb to the list of parameters that define update_screen() and call 
 show_score() just before the Play button is drawn. 
@@ -19733,46 +15948,33 @@ the screen. (For now we just want to make sure that the score appears in the
 right place before developing the scoring system further.) Figure 14-2 shows 
 the score as it appears before the game starts. 
 
-
 Scoring 303 
-
 
 settings. py 
 
-
 game_ 
-
 
 functions.py 
 
-
 304 
-
 
 Chapter 14 
 
-
 a 
-
 
 Figure 14-2: The score appears at the top-right corner of the screen. 
 
-
 Now to assign point values to each alien! 
 
-
 Updating the Score as Aliens Are Shot Down 
-
 
 To write a live score to the screen, we update the value of stats.score when- 
 ever an alien is hit, and then call prep_score() to update the score image. 
 But first, let’s determine how many points a player gets each time they shoot 
 down an alien: 
 
-
 # Scoring 
 self.alien_points = 50 
-
 
 We’ll increase the point value of each alien as the game progresses. To 
 make sure this point value is reset each time a new game starts, we set the 
@@ -19781,23 +15983,18 @@ value in initialize_dynamic_settings().
 Update the score each time an alien is shot down in check_bullet_alien_ 
 collisions(): 
 
-
 def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, 
 aliens, bullets): 
-
 
 game_ 
 functions. py 
 
-
 alien_ 
 invasion.py 
-
 
 if collisions: 
 stats.score += ai_settings.alien points 
 sb.prep_score() 
-
 
 We update the definition of check_bullet_alien_collisions() to include 
 the stats and sb parameters so it can update the score and the scoreboard. 
@@ -19809,13 +16006,10 @@ the updated score.
 We need to modify update_bullets() to make sure the appropriate argu- 
 ments are passed between functions: 
 
-
 def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets): 
-
 
 check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, 
 aliens, bullets) 
-
 
 The definition of update_bullets() needs the additional parameters 
 stats and sb. The call to check_bullet_alien_collisions() needs to include 
@@ -19824,17 +16018,13 @@ the stats and sb arguments as well.
 We also need to modify the call to update_bullets() in the main 
 while loop: 
 
-
 gf.update_bullets(ai_ settings, screen, stats, sb, ship, aliens, 
 bullets) 
-
 
 The call to update_bullets() needs the stats and sb arguments. 
 Now when you play Alien Invasion, you should be able to rack up points! 
 
-
 Making Sure to Score All Hits 
-
 
 As currently written, our code could miss some aliens. For example, if two 
 bullets collide with aliens during the same pass through the loop or if 
@@ -19842,21 +16032,17 @@ we make an extra wide bullet to hit multiple aliens, the player will receive
 points only for one of the aliens killed. To fix this, let’s refine the way that 
 alien bullet collisions are detected. 
 
-
 Scoring 305 
-
 
 In check_bullet_alien_collisions(), any bullet that collides with an alien 
 becomes a key in the collisions dictionary. The value associated with each 
 bullet is a list of aliens it has collided with. We loop through the collisions 
 dictionary to make sure we award points for each alien hit: 
 
-
 game_ 
 functions. py 
 1) for aliens in collisions.values(): 
 stats.score += ai_settings.alien_ points * len(aliens) 
-
 
 If the collisions dictionary has been defined, we loop through all 
 values in the collisions dictionary. Remember that each value is a list of 
@@ -19866,38 +16052,29 @@ To test this, change the width of a bullet to 300 pixels and verify that you
 receive points for each alien you hit with your extra wide bullets; then 
 return the bullet width to normal. 
 
-
 Increasing Point Values 
-
 
 Because the game gets more difficult each time a player reaches a new level, 
 aliens in later levels should be worth more points. To implement this func- 
 tionality, we’ll add code to increase the point value when the game’s speed 
 increases: 
 
-
 settings.py 
-
 
 selt. spe edup_ Cale ; 1 
 # How quickly the alien point values increase 
 e self.score_ scale = 1.5 
 
-
 Increase speed settings and alien point values. 
 se lt. bu 
 elf.a ien 
 
-
 2) self.alien_points = int(self.alien_ points * self.score scale) 
-
 
 We define a rate at which points increase, which we call score_scale @. 
 A small increase in speed (1.1) makes the game grow challenging quickly, 
 
-
 306 Chapter 14 
-
 
 but in order to see a notable difference in scoring you need to change the 
 alien point value by a larger amount (1.5). Now when we increase the speed 
@@ -19907,38 +16084,28 @@ function to increase the point value by whole integers.
 To see the value of each alien, add a print statement to the method 
 increase_speed() in Settings: 
 
-
 settings.py 
 
-
 print(self ; alien points) 
-
 
 You should see the new point value in the terminal every time you 
 reach a new level. 
 
-
 Be sure to remove the print statement after verifying that the point value ts increas- 
 ing, or it may affect the performance of your game and distract the player. 
 
-
 Rounding the Score 
-
 
 Most arcade-style shooting games report scores as multiples of 10, so let’s 
 follow that lead with our scoring. Let’s also format the score to include 
 comma separators in large numbers. We’ll make this change in Scoreboard: 
 
-
 scoreboard.py 
-
 
 rounded_score = int(round(self.stats.score, -1)) 
 score str = "{:,}".format(rounded_score) 
 
-
 i e) 
-
 
 The round() function normally rounds a decimal number to a set num- 
 ber of decimal places given as the second argument. However, if you pass 
@@ -19946,11 +16113,9 @@ a negative number as the second argument, round() will round the value to
 the nearest 10, 100, 1000, and so on. The code at ® tells Python to round the 
 value of stats.score to the nearest 10 and store it in rounded_score. 
 
-
 In Python 2.7, round() always returns a decimal value, so we use int() to make sure 
 the score is reported as an integer. If you’re using Python 3, you can leave out the call 
 to int(). 
-
 
 At @, a string formatting directive tells Python to insert commas into 
 numbers when converting a numerical value to a string—for example, to 
@@ -19958,33 +16123,24 @@ output 1,000,000 instead of 1000000. Now when you run the game, you should
 see a neatly formatted, rounded score even when you rack up lots of points, 
 as shown in Figure 14-3. 
 
-
 Scoring 307 
-
 
 3,589,780 
 
-
 a 
-
 
 Figure 14-3: Rounded score with comma separators 
 
-
 High Scores 
-
 
 Every player wants to beat a game’s high score, so let’s track and report high 
 scores to give players something to work toward. We’ll store high scores in 
 GameStats: 
 
-
 game_stats.py 
-
 
 # High score should never be reset. 
 self.high_ score = 0 
-
 
 Because the high score should never be reset, we initialize high_score in 
 __init__() rather than in reset_stats(). 
@@ -19992,41 +16148,32 @@ __init__() rather than in reset_stats().
 Now we'll modify Scoreboard to display the high score. Let’s start with 
 the _ init__() method: 
 
-
 scoreboard.py 
 # Prepare the initial score images. 
 
-
 o self.prep high score() 
-
 
 The high score will be displayed separately from the score, so we need a 
 new method, prep_high_score(), to prepare the high score image ®. 
 Here’s the prep_high_score() method: 
 
-
 scoreboard.py def prep high score(self): 
 """Turn the high score into a rendered image. 
 o high_score = int(round(self.stats.high score, -1)) 
 
-
 308 Chapter 14 
-
 
 high_score str = "{:,}".format(high score) 
 self.high score image = self.font.render(high score str, True, 
 self.text_color, self.ai_settings.bg color) 
 
-
 ee 
-
 
 # Center the high score at the top of the screen. 
 
 self .high_ score rect = self.high score_image.get_rect() 
 4) self.high_score_rect.centerx = self.screen_rect.centerx 
 (5) self.high_score_rect.top = self.score_rect.top 
-
 
 We round the high score to the nearest 10 ® and format it with 
 commas @. We then generate an image from the high score ®, center the 
@@ -20036,23 +16183,18 @@ the score image ®.
 The show_score() method now draws the current score at the top right 
 and the high score at the top center of the screen: 
 
-
 scoreboard.py 
-
 
 self.screen.blit(self. high score_image, self .high_score_ rect) 
 
-
 To check for high scores, we’ll write a new function, check_high_score(), 
 in game_functions.py: 
-
 
 game_ def check_high_score(stats, sb): 
 functions. py """Check to see if there's a new high score. 
 oe if stats.score > stats.high_score: 
 stats.high_score = stats.score 
 sb.prep_ high score() 
-
 
 The function check_high_score() takes two parameters, stats and sb. It 
 uses stats to check the current score and the high score, and it needs sb to 
@@ -20064,38 +16206,28 @@ high score.
 We need to call check_high_score() each time an alien is hit after updat- 
 ing the score in check_bullet_alien_collisions(): 
 
-
 game_ 
 functions.py 
 
-
 check high score(stats, sb) 
-
 
 We call check_high_score() when the collisions dictionary is present, and 
 we do so after updating the score for all the aliens that have been hit. 
 
-
 Scoring 309 
-
 
 The first time you play Alien Invasion your score will be the high 
 score, so it will be displayed as both the current and high score. But when 
 you start a second game, your high score should appear in the middle and 
 your current score at the right, as shown in Figure 14-4. 
 
-
 2 © Alien Invasion 1 
-
 
 3,589,780 2,620 
 
-
 23 
 
-
 Figure 14-4: The high score is shown at the top center of the screen. 
-
 
 Displaying the Level 
 
@@ -20103,43 +16235,32 @@ To display the player’s level in the game, we first need an attribute in
 GameStats representing the current level. To reset the level at the start of 
 each new game, initialize it in reset_stats(): 
 
-
 game_stats.py 
 self.level = 1 
-
 
 To have Scoreboard display the current level (just below the current 
 score), we call a new method, prep_level(), from __init_ (): 
 
-
 scoreboard.py 
-
 
 self. prep _level( ) 
 
-
 310 Chapter 14 
 
-
 Here’s prep_level(): 
-
 
 scoreboard.py def prep_level(self): 
 """Turn the level into a rendered image.""" 
 e self.level_image = self.font.render(str(self.stats.level), True, 
 
-
 self.text_color, self.ai_settings.bg color) 
-
 
 # Position the level below the score. 
 self.level_rect = self.level_image.get_rect() 
 self.level_rect.right = self.score_rect.right 
 self.level_rect.top = self.score_rect.bottom + 10 
 
-
 oN) 
-
 
 The method prep_level() creates an image from the value stored in 
 stats.level @ and sets the image’s right attribute to match the score’s right 
@@ -20148,33 +16269,25 @@ the score image to leave space between the score and the level ®.
 
 We also need to update show_score(): 
 
-
 scoreboard.py lef sho 
-
 
 Draw scores and ships to the screen. 
 self.screen.blit(self.level_image, self.level_rect) - 
-
 
 This adds a line to draw the level image to the screen. 
 We’ll increment stats.level and update the level image in check_bullet_ 
 alien_collisions(): 
 
-
 game_ 
 functions.py 
 
-
 # If the entire fleet is destroyed, start a new level. 
-
 
 # Increase level. 
 stats.level += 1 
 sb.prep_level() 
 
-
 eo 
-
 
 Ifa fleet is destroyed, we increment the value of stats.level ® and call 
 prep_level() to make sure the new level is displayed correctly @. 
@@ -20182,13 +16295,10 @@ prep_level() to make sure the new level is displayed correctly @.
 To make sure the scoring and level images are updated properly at the 
 start of a new game, trigger a reset when the Play button is clicked: 
 
-
 game_ def check_play_button(ai_settings, screen, stats, sb, play button, ship, 
 functions. py aliens, bullets, mouse_x, mouse _y): 
 
-
 Scoring 311 
-
 
 # Reset the scoreboard images. 
 o sb.prep_score() 
@@ -20197,9 +16307,7 @@ sb.prep_high_score()
 
 sb.prep_ level() 
 
-
 + Empty t 
-
 
 The definition of check_play_button() needs the sb object. To reset the 
 scoreboard images, we call prep_score(), prep_high_score(), and prep_level() 
@@ -20208,15 +16316,12 @@ after resetting the relevant game settings ®.
 Now pass sb from check_events() so check_play_button() has access to the 
 scoreboard object: 
 
-
 game_ def check_events(ai_settings, screen, stats, sb, play button, ship, aliens, 
 functions. py bullets): 
-
 
 mouse _X, mouse y = pygame.mouse.get_pos() 
 oe check_play_button(ai_settings, screen, stats, sb, play button, 
 ship, aliens, bullets, mouse_x, mouse_y) 
-
 
 The definition of check_events() needs sb as a parameter, so the call to 
 check_play_button() can include sb as an argument ®. 
@@ -20224,41 +16329,31 @@ check_play_button() can include sb as an argument ®.
 Finally, update the call to check_events() in alien_invasion.py so it passes 
 sb as well: 
 
-
 alien_ # Start the mail 
 invasion.py Nhile True: 
 gf.check_events(ai_settings, screen, stats, sb, play button, ship, 
 aliens, bullets) 
 
-
 Now you can see how many levels you’ve completed, as shown in 
 Figure 14-5. 
 
-
 312 Chapter 14 
 
-
 ship.py 
-
 
 306,250 57,670 
 8 
 
-
 23 
 
-
 Figure 14-5: The current level is reported just below the current score. 
-
 
 In some classic games, the scores have labels, such as Score, High Score, and Level. 
 We've omitted these labels because the meaning of each number becomes clear once 
 you've played the game. To include these labels, add them to the score strings just 
 before the calls to font.render() in Scoreboard. 
 
-
 Displaying the Number of Ships 
-
 
 Finally, let’s display the number of ships the player has left, but this time, let’s 
 use a graphic. To do so, we’ll draw ships in the upper-left corner of the screen 
@@ -20267,55 +16362,39 @@ to represent how many ships are left, like many classic arcade games do.
 First, we need to make Ship inherit from Sprite so we can create a group 
 of ships: 
 
-
 from pygame.sprite import Sprite 
-
 
 class Ship(Sprite): 
 
-
 super (Ship, self) ._init_() 
-
 
 Here we import Sprite, make sure Ship inherits from Sprite ®, and call 
 super() at the beginning of _ init__() ®. 
 
-
 Scoring 313 
 
+scoreboard.py 
 
 scoreboard.py 
 
-
 scoreboard.py 
-
-
-scoreboard.py 
-
 
 314 Chapter 14 
 
-
 200 O96 
-
 
 Next, we need to modify Scoreboard to create a group of ships we can 
 display. Here’s the import statements and __init__(): 
 
-
 from pygame. sprite import Group 
-
 
 from ship import Ship 
 
-
 self. prep ships ( ) 
-
 
 Because we’re making a group of ships, we import the Group and Ship 
 classes. We call prep_ships() after the call to prep_level(). 
 Here’s prep_ships(): 
-
 
 def prep _ships(self): 
 
@@ -20329,7 +16408,6 @@ ship.rect.x = 10 + ship_number * ship.rect.width
 ship.rect.y = 10 
 self.ships.add(ship) 
 
-
 The prep_ships() method creates an empty group, self.ships, to 
 hold the ship instances @. To fill this group, a loop runs once for every 
 ship the player has left @. Inside the loop we create a new ship and set 
@@ -20341,19 +16419,15 @@ ships ©.
 
 Now we need to draw the ships to the screen: 
 
-
 # Draw ships. : 
 self.ships.draw(self.screen) 
-
 
 To display the ships on the screen, we call draw() on the group, and 
 Pygame draws each ship. 
 
-
 To show the player how many ships they have to start with, we call 
 prep_ships() when a new game starts. We do this in check_play_button() in 
 game_functions.py: 
-
 
 game_ def check_play button(ai_settings, screen, stats, sb, play button, ship, 
 functions. py aliens, bullets, mouse x, mouse y): 
@@ -20376,10 +16450,8 @@ sb.prep_ships()
 
 --snip-- 
 
-
 We also call prep_ships() when a ship is hit to update the display of ship 
 images when the player loses a ship: 
-
 
 game_ @ def update _aliens(ai_settings, screen, stats, sb, ship, aliens, bullets): 
 functions.py --snip-- 
@@ -20387,10 +16459,8 @@ functions.py --snip--
 if pygame.sprite.spritecollideany(ship, aliens): 
 (2) ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets) 
 
-
 # Look for aliens hitting the bottom of the screen. 
 (3) check_aliens bottom(ai_settings, screen, stats, sb, ship, aliens, bullets) 
-
 
 @ def ship hit(ai_settings, screen, stats, sb, ship, aliens, bullets): 
 """Respond to ship being hit by alien. 
@@ -20398,14 +16468,11 @@ if stats.ships left > 0:
 # Decrement ships left. 
 stats.ships left -= 1 
 
-
 # Update scoreboard. 
 C5) sb.prep_ships() 
 
-
 # Empty the list of aliens and bullets. 
 --snip-- 
-
 
 We first add the parameter sb to the definition of update_aliens() @. We 
 then pass sb to ship_hit() @ and check_aliens_bottom() so each has access to 
@@ -20415,63 +16482,47 @@ Then we update the definition of ship_hit() to include sb @. We call
 prep_ships() after decreasing the value of ships_left ©, so the correct num- 
 ber of ships is displayed each time a ship is destroyed. 
 
-
 Scoring 315 
-
 
 There’s a call to ship_hit() in check_aliens_bottom(), so update that func- 
 tion as well: 
 
-
 game_ def check_aliens bottom(ai_settings, screen, stats, sb, ship, aliens, 
 functions. py bullets): 
 
-
 H reat tnis tne same aS a snip got hit 
 ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets) 
-
 
 Now check_aliens_bottom() accepts sb as a parameter, and we add an sb 
 argument in the call to ship_hit(). 
 Finally, pass sb in the call to update_aliens() in alien_invasion.py: 
 
-
 alien_ # Start the main loop fox 
 invasion.py hile True: 
-
 
 gf.update_aliens(ai_settings, screen, stats, sb, ship, aliens, 
 bullets) 
 
-
 Figure 14-6 shows the complete scoring system with the remaining ships 
 displayed at the top left of the screen. 
 
-
 © Alien invasion 1 
-
 
 [Ar Aran 3,589,780 344,970 
 12 
 
-
 23 
-
 
 Figure 14-6: The complete scoring system for Alien Invasion 
 
-
 316 Chapter 14 
 
-
 TRY IT YOURSELF 
-
 
 14-4. All-Time High Score: The high score is reset every time a player closes 
 and restarts Alien Invasion. Fix this by writing the high score to a file before 
 calling sys.exit() and reading the high score in when initializing its value in 
 GameStats. 
-
 
 14-5. Refactoring: Look for functions and methods that are doing more 
 than one task, and refactor them to keep your code organized and efficient. 
@@ -20484,25 +16535,19 @@ prep _images() to shorten init _(). The prep _images() method could also
 help check_play_button() or start_game() if you’ve already refactored 
 check_play_button(). 
 
-
 NoTE Before attempting to refactor the project, see Appendix D to learn 
 how to restore the project to a working state if you introduce bugs 
 while refactoring. 
 
-
 14-6. Expanding Alien Invasion: Think of a way to expand Alien Invasion. For 
 example, you could program the aliens to shoot bullets down at the ship or 
 
-
 add shields for your ship to hide behind, which can be destroyed by bullets 
-
 
 from either side. Or use something like the pygame.mixer module to add sound 
 effects like explosions and shooting sounds. 
 
-
 Summary 
-
 
 In this chapter you learned to build a Play button to start a new game 
 and how to detect mouse events and hide the cursor in active games. You 
@@ -20512,16 +16557,12 @@ to modify the speed of a game as it progresses, how to implement a pro-
 gressive scoring system, and how to display information in textual and 
 nontextual ways. 
 
-
 Scoring 317 
-
 
 GENERATING DATA 
 
-
 Data visualization involves exploring data 
 through visual representations. It’s closely 
-
 
 associated with data mining, which uses code 
 to explore the patterns and connections in a 
@@ -20529,7 +16570,6 @@ to explore the patterns and connections in a
 data set. A data set can be just a small list of numbers 
 
 that fits in one line of code or many gigabytes of data. 
-
 
 Making beautiful representations of data is about more than pretty 
 pictures. When you have a simple, visually appealing representation of a 
@@ -20546,9 +16586,7 @@ People use Python for data-intensive work in genetics, climate research,
 political and economic analysis, and much more. Data scientists have writ- 
 ten an impressive array of visualization and analysis tools in Python, many 
 
-
 322 
-
 
 of which are available to you as well. One of the most popular tools is 
 matplotlib, a mathematical plotting library. We’ll use matplotlib to make 
@@ -20563,66 +16601,48 @@ can easily resize the entire representation to fit on a tiny smartwatch or
 giant monitor. We’ll use Pygal to explore what happens when you roll dice 
 in various ways. 
 
-
 Installing matplotlib 
 
-
 Chapter 15 
-
 
 First, you'll need to install matplotlib, which we’ll use for our initial set of 
 visualizations. If you haven’t used pip yet, see “Installing Python Packages 
 with pip” on page 237. 
 
-
 On Linux 
-
 
 If you’re using the version of Python that came with your system, you can 
 use your system’s package manager to install matplotlib using just one line: 
 
-
 $ sudo apt-get install python3-matplotlib 
-
 
 If you’re running Python 2.7, use this line: 
 
-
 $ sudo apt-get install python-matplotlib 
-
 
 If you installed a newer version of Python, you’ll have to install a few 
 libraries that matplotlib depends on: 
 
-
 $ sudo apt-get install python3.5-dev python3.5-tk tk-dev 
 $ sudo apt-get install libfreetype6-dev g++ 
 
-
 Then use pip to install matplotlib: 
-
 
 $ pip install --user matplotlib 
 
-
 On OS X 
-
 
 Apple includes matplotlib with its standard Python installation. To check 
 whether it’s installed on your system, open a terminal session and try 
 import matplotlib. If matplotlib isn’t already on your system and you used 
 Homebrew to install Python, install it like this: 
 
-
 $ pip install --user matplotlib 
-
 
 You might need to use pip3 instead of pip when installing packages. Also, if this 
 command doesn’t work, you might need to leave off the --user flag. 
 
-
 On Windows 
-
 
 On Windows, you'll first need to install Visual Studio. Go to https://dev 
 .windows.com/, click Downloads, and look for Visual Studio Community, 
@@ -20635,64 +16655,48 @@ the version of Python you’re using. For example, if you’re using a 32-bit ve
 sion of Python 3.5, you’ll need to download matplotlib-1.4.3-cp35-none-win32. 
 whl. 
 
-
 If you don’t see a file matching your installed version of Python, look at what’s avail- 
 able at http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib. This site 
 tends to release installers a little earlier than the official matplothb site. 
 
-
 Copy the .wAl file to your project folder, open a command window, and 
 navigate to the project folder. Then use pip to install matplotlib: 
-
 
 > cd python_work 
 python_work> python -m pip install --user matplotlib-1.4.3-cp35-none-win32.whl 
 
-
 Testing mafplotlib 
-
 
 After you’ve installed the necessary packages, test your installation by start- 
 ing a terminal session with the python or python3 command and importing 
 matplotlib: 
 
-
 $ python3 
 >>> import matplotlib 
 >>> 
 
-
 If you don’t see any error messages, then matplotlib is installed on your 
 system, and you can move on to the next section. 
-
 
 If you have trouble with your installation, see Appendix C. If all else fails, ask for 
 help. Your issue will most likely be one that an experienced Python programmer can 
 troubleshoot quickly with a little information from you. 
 
-
 The matplotlib Gallery 
-
 
 To see the kinds of visualizations you can make with matplotlib, visit the 
 sample gallery at http://matplotlib.org/, When you click a visualization in the 
 gallery, you can see the code used to generate the plot. 
 
-
 Generating Data 323 
-
 
 mpl_squares.py 
 
-
 324 
-
 
 Plotting a Simple Line Graph 
 
-
 Chapter 15 
-
 
 Let’s plot a simple line graph using matplotlib, and then customize it to 
 create a more informative visualization of our data. We’ll use the square 
@@ -20701,14 +16705,11 @@ number sequence I, 4, 9, 16, 25 as the data for the graph.
 Just provide matplotlib with the numbers as shown here, and matplotlib 
 should do the rest: 
 
-
 import matplotlib.pyplot as plt 
-
 
 squares = [1, 4, 9, 16, 25] 
 plt.plot (squares) 
 plt.show() 
-
 
 We first import the pyplot module using the alias plt so we don’t have to 
 type pyplot repeatedly. (You'll see this convention often in online examples, 
@@ -20721,45 +16722,34 @@ opens matplotlib’s viewer and displays the plot, as shown in Figure 15-1.
 The viewer allows you to zoom and navigate the plot, and if you click the 
 disk icon, you can save any plot images you like. 
 
-
 Yo Os 10 15 20 25 20 35 40 
 Slo Ol+/ em 
 
-
 Figure 15-1: One of the simplest plots you can make in matplotlib 
 
-
 Changing the Label Type and Graph Thickness 
-
 
 Although the plot shown in Figure 15-1 shows that the numbers are increas- 
 ing, the label type is too small and the line is too thin. Fortunately, matplotlib 
 allows you to adjust every feature of a visualization. 
 
-
 We'll use a few of the available customizations to improve the readabil- 
 ity of this plot, as shown here: 
 
-
 mpl_squares.py import matplotlib.pyplot as plt 
-
 
 squares = [1, 4, 9, 16, 25] 
 @ plt.plot(squares, linewidth=5) 
-
 
 # Set chart title and label axes. 
 plt.title("Square Numbers", fontsize=24) 
 plt.xlabel("Value", fontsize=14) 
 plt.ylabel("Square of Value", fontsize=14) 
 
-
 # Set size of tick labels. 
 @ plt.tick_params(axis='both', labelsize=14) 
 
-
 plt.show() 
-
 
 The linewidth parameter at @ controls the thickness of the line that 
 plot() generates. The title() function at @ sets a title for the chart. The 
@@ -20774,24 +16764,17 @@ set the font size of the tick mark labels to 14 (labelsize=14).
 As you can see in Figure 15-2, the resulting chart is much easier to read. 
 The label type is bigger, and the line graph is thicker. 
 
-
 Figure 15-2: The chart is much easier to read now. 
-
 
 Generating Data 325 
 
-
 mpl_squares.py 
-
 
 326 
 
-
 Chapter 15 
 
-
 Correcting the Plot 
-
 
 But now that we can read the chart better, we see that the data is not plotted 
 correctly. Notice at the end of the graph that the square of 4.0 is shown 
@@ -20802,55 +16785,41 @@ point corresponds to an x-coordinate value of 0, but our first point corre-
 sponds to an x-value of 1. We can override the default behavior by giving 
 plot() both the input and output values used to calculate the squares: 
 
-
 input_values = [1, 2, 3, 4, 5] 
 
-
 plt. plot(input_values, squares, linewidth=5) 
-
 
 Now plot() will graph the data correctly because we’ve provided both the 
 input and output values, so it doesn’t have to assume how the output numbers 
 were generated. The resulting plot, shown in Figure 15-3, is correct. 
 
-
 oe Square Numbers 
-
 
 20 
 
-
 rR 
 u 
-
 
 Square of Value 
 iad 
 t=) 
 
-
 Po 1.5 2.0 25) 3.0 SH} 4.0 45 5.0 
 Value 
 
-
 Soot em 
 
-
 Figure 15-3: The data is now plotted correctly. 
-
 
 You can specify numerous arguments when using plot() and use a 
 number of functions to customize your plots. We’ll continue to explore 
 these customization functions as we work with more interesting data sets 
 throughout this chapter. 
 
-
 Plotting and Styling Individual Points with scatter() 
-
 
 Sometimes it’s useful to be able to plot and style individual points based 
 on certain characteristics. For example, you might plot small values in one 
-
 
 color and larger values in a different color. You could also plot a large data 
 set with one set of styling options and then emphasize individual points by 
@@ -20859,16 +16828,13 @@ replotting them with different options.
 To plot a single point, use the scatter() function. Pass the single (x, y) 
 values of the point of interest to scatter(), and it should plot those values: 
 
-
 scatter_ import matplotlib.pyplot as plt 
 squares.py 
 plt.scatter(2, 4) 
 plt.show() 
 
-
 Let’s style the output to make it more interesting. We’ll add a title, label 
 the axes, and make sure all the text is large enough to read: 
-
 
 import matplotlib.pyplot as plt 
 
@@ -20878,46 +16844,34 @@ plt.title("Square Numbers", fontsize=24)
 plt.xlabel("Value", fontsize=14) 
 plt.ylabel("Square of Value", fontsize=14) 
 
-
 # Set size of tick labels. 
 plt.tick_params(axis='both', which='major', labelsize=14) 
 
-
 plt.show() 
-
 
 At © we call scatter() and use the s argument to set the size of the dots 
 used to draw the graph. When you run scatler_squares.py now, you should see 
 a single point in the middle of the chart, as shown in Figure 15-4. 
 
-
 Figure 15-4: Plotting a single point 
-
 
 Generating Data 327 
 
-
 Plotting a Series of Points with scatter() 
-
 
 To plot a series of points, we can pass scatter() separate lists of x- and 
 y-values, like this: 
 
-
 scatter_ import matplotlib.pyplot as plt 
 squares. py 
-
 
 x_values = [1, 2, 3, 4, 5] 
 y_values = [1, 4, 9, 16, 25] 
 
-
 plt.scatter(x_values, y_ values, s=100) 
-
 
 # Set chart title and label axes. 
 --snip-- 
-
 
 The x_values list contains the numbers to be squared, and y_values con- 
 tains the square of each number. When these lists are passed to scatter(), 
@@ -20925,33 +16879,25 @@ matplotlib reads one value from each list as it plots each point. The points
 to be plotted are (1, 1), (2, 4), (3, 9), (4, 16), and (5, 25); the result is shown 
 in Figure 15-5. 
 
-
 Figure 15-5: A scatter plot with multiple points 
 
-
 Calculating Data Automatically 
-
 
 Writing out lists by hand can be inefficient, especially when we have many 
 points. Rather than passing our points in a list, let’s use a loop in Python to 
 do the calculations for us. Here’s how this would look with 1000 points: 
-
 
 scatter_ import matplotlib.pyplot as plt 
 squares. py 
 @ x_values = list(range(1, 1001)) 
 y_values = [x**2 for x in x_values] 
 
-
 @ plt.scatter(x_values, y_values, s=40) 
-
 
 328 Chapter 15 
 
-
 # Set the range for each axis. 
 plt.axis([0, 1100, 0, 1100000]) 
-
 
 We start with a list of x-values containing the numbers | through 
 1000 @. Next, a list comprehension generates the y-values by looping 
@@ -20965,36 +16911,26 @@ requires four values: the minimum and maximum values for the x-axis and
 the y-axis. Here, we run the x-axis from 0 to 1100 and the y-axis from 0 to 
 1,100,000. Figure 15-6 shows the result. 
 
-
 Square Numbers 
-
 
 1000000 
 800000 
 600000 
 
-
 400000 
-
 
 Square of Value 
 
-
 200000 
-
 
 % 200 400 600 800 1000 
 Value 
 
-
 Solo\+/ em 
-
 
 Figure 15-6: Python can plot 1000 points as easily as it plots 5 points. 
 
-
 Removing Outlines from Data Points 
-
 
 matplotlib lets you color points individually in a scatter plot. The default— 
 blue dots with a black outline—works well for plots with a few points. But 
@@ -21002,52 +16938,38 @@ when plotting many points, the black outlines can blend together. To
 remove the outlines around points, pass the argument edgecolor='none' 
 when you call scatter(): 
 
-
 plt.scatter(x_values, y_values, edgecolor='none', s=40) 
-
 
 Run scatter_squares.py using this call, and you should see only solid blue 
 points in your plot. 
 
-
 Generating Data 329 
 
-
 330 
-
 
 scatter_ 
 squares.py 
 
-
 Chapter 15 
 
-
 Defining Custom Colors 
-
 
 To change the color of the points, pass c to scatter() with the name of a 
 color to use, as shown here: 
 
-
 plt.scatter(x_values, y_ values, c='red', edgecolor='none', s=40) 
-
 
 You can also define custom colors using the RGB color model. To 
 define a color, pass the c argument a tuple with three decimal values (one 
 each for red, green, and blue), using values between 0 and 1. For example, 
 the following line would create a plot with light blue dots: 
 
-
 plt.scatter(x_values, y_ values, c=(0, 0, 0.8), edgecolor='none', s=40) 
-
 
 Values closer to 0 produce dark colors, and values closer to 1 produce 
 lighter colors. 
 
-
 Using a Colormap 
-
 
 A colormap is a series of colors in a gradient that moves from a starting to 
 ending color. Colormaps are used in visualizations to emphasize a pattern 
@@ -21059,96 +16981,70 @@ these colormaps, you need to specify how pyplot should assign a color to
 each point in the data set. Here’s how to assign each point a color based on 
 its y-value: 
 
-
 plt.scatter(x_values, y_ values, c=y_values, cmap=plt.cm.Blues, 
 edgecolor='none', s=40) 
-
 
 We pass the list of y-values to c and then tell pyplot which colormap to 
 use through the cmap argument. This code colors the points with lower 
 y-values light blue and the points with larger y-values dark blue. The result- 
 ing plot is shown in Figure 15-7. 
 
-
 You can see all the colormaps available in pyplot at http://matplotlib.org/; go to 
 Examples, scroll down to Color Examples, and click colormaps_reference. 
 
-
 _ Square Numbers 
-
 
 1000000 
 800000 
 600000 
 
-
 400000 
-
 
 Square of Value 
 
-
 200000 
-
 
 200 400 600 800 1000 
 Value 
 
-
 20/0) +) +) Si 
-
 
 Figure 15-7: A plot using the Blues colormap 
 
-
 Saving Your Plots Automatically 
-
 
 If you want your program to automatically save the plot to a file, you can 
 replace the call to plt.show() with a call to plt.savefig(): 
 
-
 plt.savefig('squares_plot.png', bbox_inches='tight') 
-
 
 The first argument is a filename for the plot image, which will be saved 
 in the same directory as scatter_squares.py. The second argument trims extra 
 whitespace from the plot. If you want the extra whitespace around the plot, 
 you can omit this argument. 
 
-
 TRY IT YOURSELF 
-
 
 15-1. Cubes: A number raised to the third power is a cube. Plot the first five 
 
-
 cubic numbers, and then plot the first 5000 cubic numbers. 
-
 
 15-2. Colored Cubes: Apply a colormap to your cubes plot. 
 
-
 Random Walks 
-
 
 In this section we’ll use Python to generate data for a random walk and 
 then use matplotlib to create a visually appealing representation of the 
 generated data. A random walk is a path that has no clear direction but is 
 
-
 Generating Data 331 
 
-
 332 
-
 
 random_ ® 
 walk. py 
 
-
 Chapter 15 
-
 
 determined by a series of random decisions, each of which is left entirely to 
 chance. You might imagine a random walk as the path an ant would take if 
@@ -21161,9 +17057,7 @@ pushed around by water molecules. Molecular motion in a water drop is
 random, so the path a pollen grain traces out on the surface is a random 
 walk. The code we’re about to write models many real-world situations. 
 
-
 Creating the RandomWalk() Class 
-
 
 To create a random walk, we’ll create a RandomWalk class, which will make 
 random decisions about which direction the walk should take. The class 
@@ -21175,9 +17069,7 @@ We’ll use only two methods for the RandomWalk class: the __init__()
 method and fill_walk(), which will calculate the points in the walk. Let’s 
 start with _init__() as shown here: 
 
-
 from random import choice 
-
 
 class RandomWalk(): 
 """A class to generate random walks.""" 
@@ -21185,11 +17077,9 @@ def init__(self, num_points=5000):
 """Tnitialize attributes of a walk.""" 
 self.num_points = num_points 
 
-
 # All walks start at (0, 0). 
 self.x_values = [0] 
 self.y_values = [0] 
-
 
 To make random decisions, we’ll store possible choices in a list and 
 use choice() to decide which choice to use each time a decision is made ®. 
@@ -21198,24 +17088,18 @@ to generate some interesting patterns but small enough to generate walks
 quickly @. Then at © we make two lists to hold the x- and y-values, and we 
 start each walk at point (0, 0). 
 
-
 Choosing Directions 
-
 
 We'll use fill_walk(), as shown here, to fill our walk with points and deter- 
 mine the direction of each step. Add this method to random_walk.py: 
 
-
 def fill_walk(self): 
 """Calculate all the points in the walk.""" 
-
 
 # Keep taking steps until the walk reaches the desired length. 
 while len(self.x_values) < self.num_points: 
 
-
 rw_visual.py 
-
 
 # Decide which direction to go and how far to go in that direction. 
 x_direction = choice([{1, -1]) 
@@ -21224,25 +17108,20 @@ x_distance = choice([0, 1, 2, 3, 4])
 
 x_step = x_direction * x_distance 
 
-
 y_direction = choice([1, -1]) 
 y_distance = choice([0, 1, 2, 3, 4]) 
 y_step = y_ direction * y distance 
-
 
 # Reject moves that go nowhere. 
 if x_step == 0 and y step == 0: 
 continue 
 
-
 # Calculate the next x and y values. 
 next_x = self.x_values[-1] + x_step 
 next_y = self.y values[-1] + y_step 
 
-
 self.x_values.append(next_x) 
 self.y_values.append(next_y) 
-
 
 At @ we set up a loop that runs until the walk is filled with the correct 
 number of points. The main part of this method tells Python how to simu- 
@@ -21267,7 +17146,6 @@ To get the next x-value for our walk, we add the value in x_step to the
 last value stored in x_values @ and do the same for the y-values. Once we 
 have these values, we append them to x_values and y_values. 
 
-
 Plotting the Random Walk 
 
 Here’s the code to plot all the points in the walk: 
@@ -21275,28 +17153,20 @@ import matplotlib.pyplot as plt
 
 from random_walk import RandomWalk 
 
-
 # Make a random walk, and plot the points. 
-
 
 @ xw = RandomWalk() 
 
-
 rw. fill_walk() 
-
 
 Generating Data 333 
 
-
 rw_visual.py import matplotlib.pyplot as plt 
-
 
 334 
 
-
 @ plt.scatter(rw.x_values, rw.y_ values, s=15) 
 plt.show() 
-
 
 We begin by importing pyplot and RandomWalk. We then create a ran- 
 dom walk and store it in rw ®, making sure to call fill_walk(). At @ we feed 
@@ -21305,46 +17175,34 @@ Figure 15-8 shows the resulting plot with 5000 points. (The images in this
 section omit matplotlib’s viewer, but you'll continue to see it when you run 
 rw_visual.py.) 
 
-
 ~150 
-
 
 300 
 =100 
 
-
 Figure 15-8: A random walk with 5000 points 
 
-
 Generating Multiple Random Walks 
-
 
 Every random walk is different, and it’s fun to explore the various patterns 
 that can be generated. One way to use the preceding code to make multiple 
 walks without having to run the program several times is to wrap it ina 
 while loop, like this: 
 
-
 lt 
 from random_walk import RandomWalk 
-
 
 # Keep making new walks, as long as the program is active. 
 while True: 
 
-
 o keep running = input("Make another walk? (y/n): ") 
-
 
 if keep_running == 'n': 
 break 
 
-
 Chapter 15 
 
-
 rw_visual. py 
-
 
 This code will generate a random walk, display it in matplotlib’s viewer, 
 and pause with the viewer open. When you close the viewer, you’ll be asked 
@@ -21353,12 +17211,9 @@ able to generate walks that stay near the starting point, that wander off
 mostly in one direction, that have thin sections connecting larger groups 
 of points, and so on. When you want to end the program, enter n. 
 
-
 If youre using Python 2.7, remember to use raw_input() instead of input() at ®. 
 
-
 Styling the Walk 
-
 
 In this section we’ll customize our plots to emphasize the important char- 
 acteristics of each walk and deemphasize distracting elements. To do so, we 
@@ -21368,9 +17223,7 @@ teristics to deemphasize, like tick marks and labels. The result should be a
 simple visual representation that clearly communicates the path taken in 
 each random walk. 
 
-
 Coloring the Points 
-
 
 We'll use a colormap to show the order of the points in the walk and then 
 remove the black outline from each dot so the color of the dots will be 
@@ -21379,11 +17232,9 @@ pass the c argument a list containing the position of each point. Because
 the points are plotted in order, the list just contains the numbers from 1 
 to 5000, as shown here: 
 
-
 point_numbers = list(range(rw.num_points) ) 
 plt.scatter(rw.x_values, rw.y_ values, c=point_numbers, cmap=plt.cm.Blues, 
 edgecolor='none', s=15) 
-
 
 At @ we use range() to generate a list of numbers equal to the number 
 of points in the walk. Then we store them in the list point_numbers, which 
@@ -21392,31 +17243,22 @@ the c argument, use the Blues colormap, and then pass edgecolor=none to get
 rid of the black outline around each point. The result is a plot of the walk 
 that varies from light to dark blue along a gradient, as shown in Figure 15-9. 
 
-
 Generating Data 335 
-
 
 rw_visual.py 
 
-
 336 
-
 
 Chapter 15 
 
-
 100) 
-
 
 159 
 =100 0 100 200 300 400 
 
-
 Figure 15-9: A random walk colored with the Blues colormap 
 
-
 Plotting the Starting and Ending Points 
-
 
 In addition to coloring points to show their position along the walk, it 
 would be nice to see where each walk begins and ends. To do so, we can 
@@ -21424,13 +17266,11 @@ plot the first and last points individually once the main series has been
 plotted. We’ll make the end points larger and color them differently to 
 make them stand out, as shown here: 
 
-
 --snip-- 
 while True: 
 --snip-- 
 plt.scatter(rw.x_values, rw.y_ values, c=point_numbers, cmap=plt.cm.Blues, 
 edgecolor='none', s=15) 
-
 
 # Emphasize the first and last points. 
 
@@ -21439,10 +17279,8 @@ plt.scatter(0, 0, c='green', edgecolors='none', s=100)
 plt.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none', 
 s=100) 
 
-
 plt.show() 
 --snip-- 
-
 
 To show the starting point, we plot point (0, 0) in green in a larger size 
 (s=100) than the rest of the points. To mark the end point, we plot the last 
@@ -21454,24 +17292,18 @@ When you run this code, you should be able to spot exactly where each
 walk begins and ends. (If these end points don’t stand out clearly, adjust 
 their color and size until they do.) 
 
-
 rw_visual.py 
 
-
 rw_visual.py 
-
 
 Cleaning Up the Axes 
-
 
 Let’s remove the axes in this plot so they don’t distract us from the path of 
 each walk. To turn the axes off, use this code: 
 
-
 # Remove the axes. 
 plt.axes().get_xaxis().set_visible(False) 
 plt.axes().get_yaxis().set_visible(False) 
-
 
 To modify the axes, use the plt.axes() function @ to set the visibility 
 of each axis to False. As you continue to work with visualizations, you'll fre- 
@@ -21479,19 +17311,15 @@ quently see this chaining of methods.
 
 Run rw_visual.py now; you should see a series of plots with no axes. 
 
-
 Adding Plot Points 
-
 
 Let’s increase the number of points to give us more data to work with. To do 
 so, we increase the value of num_points when we make a RandomWalk instance 
 and adjust the size of each dot when drawing the plot, as shown here: 
 
-
 rw = RandomWalk(50000) 
 plt.scatter(rw.x_ values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues, 
 edgecolor='none', s=1) 
-
 
 This example creates a random walk with 50,000 points (to mirror real- 
 world data) and plots each point at size s=1. The resulting walk is wispy and 
@@ -21502,29 +17330,21 @@ Experiment with this code to see how much you can increase the num-
 ber of points in a walk before your system starts to slow down significantly 
 or the plot loses its visual appeal. 
 
-
 Generating Data 337 
-
 
 rw_visual.py 
 
-
 338 
-
 
 Chapter 15 
 
-
 Figure 15-10: A walk with 50,000 points 
 
-
 Altering the Size to Fill the Screen 
-
 
 A visualization is much more effective at communicating patterns in data 
 if it fits nicely on the screen. To make the plotting window better fit your 
 screen, adjust the size of matplotlib’s output, like this: 
-
 
 --snip-- 
 
@@ -21533,11 +17353,9 @@ while True:
 rw = RandomWalk() 
 rw. fill _walk() 
 
-
 # Set the size of the plotting window. 
 plt.figure(figsize=(10, 6)) 
 --snip-- 
-
 
 The figure() function controls the width, height, resolution, and back- 
 ground color of the plot. The figsize parameter takes a tuple, which tells 
@@ -21549,20 +17367,15 @@ Or, if you know your system’s resolution, pass figure() the resolution using
 the dpi parameter to set a plot size that makes effective use of the space 
 available on your screen, as shown here: 
 
-
 plt.figure(dpi=128, figsize=(10, 6)) 
 
-
 TRY IT YOURSELF 
-
 
 15-3. Molecular Motion: Modify rw_visual.py by replacing plt.scatter() with 
 plt.plot(). To simulate the path of a pollen grain on the surface of a drop of 
 water, pass in the rw.x_values and rw.y values, and include a linewidth argu- 
 
-
 ment. Use 5000 instead of 50,000 points. 
-
 
 15-4. Modified Random Walks: In the class RandomWalk, x_step and y step are 
 generated from the same set of conditions. The direction is chosen randomly 
@@ -21571,27 +17384,20 @@ values in these lists to see what happens to the overall shape of your walks. Tr
 a longer list of choices for the distance, such as O through 8, or remove the -1 
 from the x or y direction list. 
 
-
 15-5. Refactoring: The method fill_walk() is lengthy. Create a new method 
 
-
 called get_step() to determine the direction and distance for each step, and 
-
 
 then calculate the step. You should end up with two calls to get_step() in 
 fill _walk(): 
 
-
 x_step = get_step() 
 y_step = get_step() 
-
 
 This refactoring should reduce the size of fi11_walk() and make the 
 method easier to read and understand. 
 
-
 Rolling Dice with Pygal 
-
 
 In this section we'll use the Python visualization package Pygal to produce 
 scalable vector graphics files. These are useful in visualizations that are 
@@ -21613,55 +17419,40 @@ types of data analysis. But it also has real-world applications in casinos and
 other gambling scenarios, as well as in the way games like Monopoly and 
 many role-playing games are played. 
 
-
 Generating Data 339 
-
 
 340 
 
-
 die.py 
 
-
 Chapter 15 
-
 
 Installing Pygal 
 Install Pygal with pip. (If you haven’t used pip yet, see “Installing Python 
 
-
 Packages with pip” on page 237.) 
 On Linux and OS X, this should be something like: 
 
-
 pip install --user pygal 
-
 
 On Windows, this should be: 
 
-
 python -m pip install --user pygal 
-
 
 You may need to use the command pip3 instead of pip, and if the command still 
 doesn’t work you may need to leave off the --user flag. 
 
-
 The Pygal Gallery 
-
 
 To see what kind of visualizations are possible with Pygal, visit the gallery of 
 chart types: go to hitp://www.pygal.org/, click Documentation, and then click 
 Chart types. Each example includes source code, so you can see how the 
 visualizations are generated. 
 
-
 Creating the Die Cass 
-
 
 Here’s a class to simulate the roll of one die: 
 from random import randint 
-
 
 class Die(): 
 
@@ -21670,11 +17461,9 @@ def init__(self, num_sides=6):
 Assume a six-sided die.""" 
 self.num_sides = num_sides 
 
-
 def roll(self): 
 """"Return a random value between 1 and number of sides. 
 return randint(1, self.num_sides) 
-
 
 The _ init_() method takes one optional argument. With this class, 
 when an instance of our die is created, the number of sides will always be 
@@ -21686,29 +17475,21 @@ The roll() method uses the randint() function to return a random num-
 ber between 1 and the number of sides @. This function can return the start- 
 ing value (1), the ending value (num_sides), or any integer between the two. 
 
-
 die_visual.py 
 
-
 die_visual.py 
-
 
 ooo 
 
-
 Rolling the Die 
-
 
 Before creating a visualization based on this class, let’s roll a D6, print the 
 results, and check that the results look reasonable: 
 
-
 from die import Die 
-
 
 # Create a D6. 
 die = Die() 
-
 
 # Make some rolls, and store results in a list. 
 results = [] 
@@ -21718,23 +17499,18 @@ result = die.roll()
 
 results.append(result) 
 
-
 print(results) 
-
 
 At @ we create an instance of Die with the default six sides. At ® we roll 
 the die 100 times and store the results of each roll in the list results. Here’s 
 a sample set of results: 
-
 
 [4, 6, 55 6, 1, 55 6, 3; 55 3, 55 3, 2, 2, 1, 3; 1, 55 3, 6, 3, 6, 5» 4, 
 1, 1, 4, 2; 3, 6, 4, 2; 6, 4, 1, 3, 2; 55 6, 3, 6, 2; 1, 1, 3, 4, 1, 4, 
 3, 55 1, 4, 55 55 2; 3, 3, 1, 2; 3, 5» 6, 2; 55 6, 1, 3, 2; 1, 1, 1, 6, 
 55 55 2, 2) 6, 4, 1, 4, 55 1, 1, 1, 4, 5» 3, 3, 1, 3, 55 4, 55 6, 5» 4, 
 
-
 1, 5, 1, 2] 
-
 
 A quick scan of these results shows that the Die class seems to be work- 
 ing. We see the values 1 and 6, so we know the smallest and largest possible 
@@ -21742,16 +17518,12 @@ values are being returned, and because we don’t see 0 or 7, we know all
 the results are in the appropriate range. We also see each number from 1 
 through 6, which indicates that all possible outcomes are represented. 
 
-
 Analyzing the Results 
-
 
 We analyze the results of rolling one D6 by counting how many times we 
 roll each number: 
 
-
 for roll_num in range(1000): 
-
 
 # Analyze the results. 
 
@@ -21761,21 +17533,15 @@ for value in range(1, die.num_sides+1):
 frequency = results.count(value) 
 frequencies. append(frequency) 
 
-
 print (frequencies) 
-
 
 Generating Data 341 
 
-
 die_visual.py 
-
 
 342 
 
-
 Chapter 15 
-
 
 Because we’re using Pygal to analyze instead of print the results, we can 
 increase the number of simulated rolls to 1000 ®. To analyze the rolls, we 
@@ -21785,29 +17551,22 @@ count how many times each number appears in results ®, and then append
 this value to the frequencies list @. We then print this list before making a 
 visualization: 
 
-
 [155, 167, 168, 170, 159, 181] 
-
 
 These results look reasonable: we see six frequencies, one for each pos- 
 sible number when you roll a D6, and we see that no frequency is signifi- 
 cantly higher than any other. Now let’s visualize these results. 
 
-
 Making a Histogram 
-
 
 With a list of frequencies, we can make a histogram of the results. A histogram 
 is a bar chart showing how often certain results occur. Here’s the code to 
 create the histogram: 
 
-
 import pygal 
-
 
 # Visualize the results. 
 hist = pygal.Bar() 
-
 
 hist.title = "Results of rolling one D6 1000 times." 
 hist.x_labels = ['1', '2', '3', ‘4', '5', '6'] 
@@ -21815,10 +17574,8 @@ hist.x_title = "Result"
 
 hist.y_ title = "Frequency of Result" 
 
-
 hist.add('D6', frequencies) 
 hist.render_to_file('die_visual.svg') 
-
 
 We make a bar chart by creating an instance of pygal.Bar(), which we 
 store in hist @. We then set the title attribute of hist (just a string we use 
@@ -21832,22 +17589,16 @@ The simplest way to look at the resulting histogram is in a web browser.
 Open a new tab in any web browser and then open the file die_visual.sug 
 (in the folder where you saved die_visual.py). You should see a chart like the 
 
-
 dice_visual.py 
-
 
 one in Figure 15-11. (I’ve modified this chart slightly for printing; by default 
 Pygal generates charts with a darker background than what you see here.) 
 
-
 ) Results of rolling one = 
-
 
 rs € 1 file://fhome/ehmatthes/pec/chapter_15/dice_visual.svg = 
 
-
 Results of rolling one D6 1000 times. 
-
 
 =D6 17 Bic O besesnn 5 on 22 emma = pemieeemen si cadassesessusiseneseene 
 160. 
@@ -21869,29 +17620,21 @@ Results of rolling one D6 1000 times.
 
 Q. 
 
-
 Frequency of Result 
-
 
 @eoqooooomooocooooeoooooooo 
 
-
 Result 
-
 
 Xu 
 
-
 Figure 15-1]: A simple bar chart created with Pygal 
-
 
 Notice that Pygal has made the chart interactive: hover your cursor over 
 any bar in the chart and you'll see the data associated with it. This feature is 
 particularly useful when plotting multiple data sets on the same chart. 
 
-
 Rolling Two Dice 
-
 
 Rolling two dice results in larger numbers and a different distribution 
 of results. Let’s modify our code to create two D6 dice to simulate the 
@@ -21899,15 +17642,12 @@ way we roll a pair of dice. Each time we roll the pair, we’ll add the two
 numbers (one from each die) and store the sum in results. Save a copy of 
 die_visual.py as dice_visual.py, and make the following changes: 
 
-
 import pygal 
 from die import Die 
-
 
 # Create two D6 dice. 
 die 1 = Die() 
 die 2 = Die() 
-
 
 # Make some rolls, and store results in a list. 
 results = [] 
@@ -21915,35 +17655,27 @@ for roll_num in range(1000):
 result = die 1.roll() + die _2.roll() 
 results.append(result) 
 
-
 # Analyze the results. 
 frequencies = [] 
 
-
 @ max_result = die_1.num_sides + die_2.num_sides 
 
-
 Generating Data 343 
-
 
 © for value in range(2, max_result+1): 
 frequency = results.count(value) 
 frequencies. append(frequency) 
 
-
 # Visualize the results. 
 hist = pygal.Bar() 
-
 
 @ hist.title = "Results of rolling two D6 dice 1000 times." 
 hist.x_labels = ['2', '3', '4', '5', '6', '7', '8', '9', '10', ‘11°, '12'] 
 hist.x_title = "Result" 
 hist.y_ title = "Frequency of Result" 
 
-
 hist.add('D6 + D6', frequencies) 
 hist.render_to_file('dice visual.svg' ) 
-
 
 After creating two instances of Die, we roll the dice and calculate 
 the sum of the two dice for each roll ®. The largest possible result (12) is the 
@@ -21962,13 +17694,10 @@ to write a loop to generate this list automatically.)
 After running this code, refresh the tab in your browser showing the 
 chart; you should see a chart like the one in Figure 15-12. 
 
-
 Results of rolling two * 
 + © 1 file://fhome/ehmatthes/pce/chapter_15/dice_visual.svg 
 
-
 Results of rolling two D6 dice 1000 times. 
-
 
 aD6+D6 320° 
 150. 
@@ -21988,47 +17717,34 @@ aD6+D6 320°
 10. 
 0. 
 
-
 2 
-
 
 eoooo°o 
 
-
 Frequency of Result 
-
 
 @eooooooococqceo 
 
-
 23 4 8 6 7 8 8 AS Li WZ 
-
 
 Result 
 
-
 Figure 15-12: Simulated results of rolling two six-sided dice 1000 times 
-
 
 344 Chapter 15 
 
-
 different_ 
 dice.py 
-
 
 This graph shows the approximate results you’re likely to get when 
 you roll a pair of D6 dice. As you can see, youre least likely to roll a 2 ora 
 12 and most likely to roll a 7 because there are six ways to roll a 7, namely: 
 1 and 6, 2 and 5, 3 and 4, 4 and 3, 5 and 2, or 6 and 1. 
 
-
 Rolling Dice of Different Sizes 
-
 
 Let’s create a six-sided die and a ten-sided die, and see what happens when 
 we roll them 50,000 times: 
-
 
 # Create a D6 and a D10. 
 die 2 = Die(10) 
@@ -22038,17 +17754,13 @@ results = |]
 
 for roll_num in range(50000): 
 
-
 results.append(resu 
-
 
 hist.title = "Results of rolling a D6 and a D10 50,000 times." 
 hist.x_labels = [*2"5 "3", "Al, 5", '6', Ts: "e* 'g', ‘10', 'a1', '42', 
 "13"5 4A "45', '16'] 
 
-
 hist.add('D6 + D10', frequencies) 
-
 
 To make a D10, we pass the argument 10 when creating the second 
 Die instance ® and change the first loop to simulate 50,000 rolls instead 
@@ -22063,46 +17775,33 @@ limits the number of ways you can generate the middle numbers: there are
 six ways to roll a 7, 8, 9, 10, and 11. Therefore, these are the most common 
 results, and you're equally likely to roll any one of these numbers. 
 
-
 Generating Data 345 
-
 
 Results of rolling a D6 and a D10 50,000 times. 
 =D6 + D110 5660.0 
 
-
 4000.0 
-
 
 3000.0 
 
-
 2000.0 
-
 
 Frequency of Result 
 
-
 1000.0;---- 
-
 
 0.0 
 2345 67 8 9 101112131415 16 
 
-
 Result 
 
-
 Figure 15-13: The results of rolling a six-sided die and a ten-sided die 50,000 times 
-
 
 Our ability to use Pygal to model the rolling of dice gives us consider- 
 able freedom in exploring this phenomenon. In just minutes you can simu- 
 late a tremendous number of rolls using a large variety of dice. 
 
-
 TRY IT YOURSELF 
-
 
 15-6. Automatic Labels: Modify die.py and dice_visual.py by replacing the list 
 we used to set the value of hist.x_labels with a loop to generate this list auto- 
@@ -22110,30 +17809,23 @@ matically. If you’re comfortable with list comprehensions, try replacing the o
 for loops in die_visual.py and dice_visual.py with comprehensions as well. 
 15-7. Two D8s: Create a simulation showing what happens if you roll two eight- 
 
-
 sided dice 1000 times. Increase the number of rolls gradually until you start to 
 see the limits of your system’s capabilities. 
-
 
 15-8. Three Dice: If you roll three Dé dice, the smallest number you can roll is 3 
 and the largest number is 18. Create a visualization that shows what happens 
 when you roll three Dé dice. 
 
-
 15-9. Multiplication: When you roll two dice, you usually add the two numbers 
 together to get the result. Create a visualization that shows what happens if 
 you multiply these numbers instead. 
 
-
 15-10. Practicing with Both Libraries: Try using matplotlib to make a die-rolling 
 visualization, and use Pygal to make the visualization for a random walk. 
 
-
 346 Chapter 15 
 
-
 Summary 
-
 
 In this chapter you learned to generate data sets and create visualizations 
 of that data. You learned to create simple plots with matplotlib, and you saw 
@@ -22152,12 +17844,9 @@ projects.
 In Chapter 16 we’ll download data from online sources and continue to 
 use matplotlib and Pygal to explore that data. 
 
-
 Generating Data 347 
 
-
 DOWNLOADING DATA 
-
 
 In this chapter you'll download data sets 
 from online sources and create working 
@@ -22168,13 +17857,11 @@ which hasn’t been examined thoroughly. The ability
 to analyze this data allows you to discover patterns 
 and connections that no one else has found. 
 
-
 We'll access and visualize data stored in two common data formats, 
 CSV and JSON. We’ll use Python’s csv module to process weather data 
 stored in the CSV (comma-separated values) format and analyze high 
 and low temperatures over time in two different locations. We'll then use 
 matplotlib to generate a chart based on our downloaded data to display 
-
 
 variations in temperature in two very different environments: Sitka, Alaska, 
 and Death Valley, California. Later in the chapter, we’ll use the json module 
@@ -22187,32 +17874,24 @@ of how to build complex visualizations. The ability to access and visualize
 online data of different types and formats is essential to working with a 
 wide variety of real-world data sets. 
 
-
 The CSV File Format 
-
 
 highs_lows.py 
 
-
 350 
 
-
 Chapter 16 
-
 
 e 
 2) 
 (3) 
-
 
 One simple way to store data in a text file is to write the data as a series of 
 values separated by commas, called comma-separated values. The resulting 
 files are called CSV files. For example, here’s one line of weather data in 
 CSV format: 
 
-
 2014-1-5,61,44,26,18,7,-1,56, 30,9, 30.34, 30.27, 30.15,,,,10,4, ,0.00,0, ,195 
-
 
 This is weather data for January 5, 2014 in Sitka, Alaska. It includes the 
 day’s high and low temperatures, as well as a number of other measure- 
@@ -22226,22 +17905,17 @@ in Sitka, which is available in the book’s resources through hitps://www
 folder where you're writing this chapter’s programs. (Once you download 
 the book’s resources, you'll have all the files you need for this project.) 
 
-
 The weather data in this project was originally downloaded from http://www 
 .wunderground.com/history/. 
 
-
 Parsing the CSV File Headers 
-
 
 Python’s csv module in the standard library parses the lines in a CSV file 
 and allows us to quickly extract the values we’re interested in. Let’s start by 
 examining the first line of the file, which contains a series of headers for 
 the data: 
 
-
 import csv 
-
 
 filename = 'sitka_weather_07-2014.csv' 
 with open(filename) as f: 
@@ -22252,12 +17926,9 @@ header_row = next(reader)
 
 print (header_row) 
 
-
 highs_lows.py 
 
-
 e 
-
 
 After importing the csv module, we store the name of the file we’re 
 working with in filename. We then open the file and store the resulting 
@@ -22272,7 +17943,6 @@ headers ®. We store the data that’s returned in header_row. As you can see,
 header_row contains meaningful weather-related headers that tell us what 
 information each line of data holds: 
 
-
 ['AKDT', 'Max TemperatureF', ‘Mean TemperatureF', ‘Min TemperatureF', 
 "Max Dew PointF', 'MeanDew PointF', ‘Min DewpointF', ‘Max Humidity’, 
 "Mean Humidity’, ' Min Humidity’, ' Max Sea Level PressureIn', 
@@ -22283,7 +17953,6 @@ information each line of data holds:
 " Max Wind SpeedMPH', ' Mean Wind SpeedMPH', ' Max Gust SpeedMPH', 
 "PrecipitationIn', ' CloudCover', ' Events’, ' WindDirDegrees' ] 
 
-
 reader processes the first line of comma-separated values in the file and 
 stores each as an item in a list. The header AKDT represents Alaska Daylight 
 Time. The position of this header tells us that the first value in each line 
@@ -22292,44 +17961,32 @@ value in each line is the maximum temperature for that date, in degrees
 Fahrenheit. You can read through the rest of the headers to determine the 
 kind of information included in the file. 
 
-
 The headers are not always formatted consistently: spaces and units are in odd 
 places. This is common in raw data files but won't cause a problem. 
 
-
 Printing the Headers and Their Positions 
-
 
 To make it easier to understand the file header data, print each header and 
 its position in the list: 
 
-
 for index, column_header in enumerate(header_row): 
 print(index, column_header) 
-
 
 We use enumerate() ® on the list to get the index of each item, as well 
 as the value. (Note that we’ve removed the line print (header_row) in favor of 
 this more detailed version.) 
 
-
 Downloading Data 351 
-
 
 highs_lows.py 
 
-
 352 
-
 
 Chapter 16 
 
-
 ®@®o 
 
-
 Here’s the output showing the index of each header: 
-
 
 O AKDT 
 
@@ -22344,29 +18001,22 @@ O AKDT
 
 22 WindDirDegrees 
 
-
 Here we see that the dates and their high temperatures are stored in 
 columns 0 and 1. To explore this data, we’ll process each row of data in 
 sitka_weather_07-2014.csv and extract the values with the indices 0 and 1. 
 
-
 Extracting and Reading Data 
-
 
 Now that we know which columns of data we need, let’s read in some of that 
 data. First, we’ll read in the high temperature for each day: 
 
-
 # Get high temperatures from file. 
-
 
 highs = [] 
 for row in reader: 
 highs .append(row[1]) 
 
-
 print(highs) 
-
 
 We make an empty list called highs @ and then loop through the 
 remaining rows in the file @. The reader object continues from where it left 
@@ -22377,58 +18027,43 @@ loop, we append the data from index 1, the second column, to highs ®.
 
 The following listing shows the data now stored in highs: 
 
-
 ['64', '71', "64", '59', '69', "62', '61', "C5", 'S7', '61', "oT", '59', '57', 
 '61', "64', '61', '59', '63', '60'," "O75 '69', '63', "62', '59', “ST's 'S7', 
 '61', '59', '61', '61', '66'] 
 
-
 We've extracted the high temperature for each date and stored them 
 neatly in a list as strings. 
 
-
 highs_lows.py 
 
-
 highs_lows.py 
-
 
 @o@ 
-
 
 Next, convert these strings to numbers with int() so they can be read by 
 matplotlib: 
 
-
 high = int(row[1]) 
 highs .append(high) 
-
 
 We convert the strings to integers at ® before appending the tempera- 
 tures to the list. The result is a list of daily highs in numerical format: 
 
-
 [64, 71, 64, 59, 69, 62, 61, 55, 57, 61, 57, 59, 57, 61, 64, 61, 59, 63, 60, 57, 
 69, 63, 62, 59, 57, 57, 61, 59, 61, 61, 66] 
 
-
 Now let’s create a visualization of this data. 
 
-
 Plotting Data in a Temperature Chart 
-
 
 To visualize the temperature data we have, we’ll first create a simple plot of 
 the daily highs using matplotlib, as shown here: 
 
-
 from matplotlib import pyplot as plt 
-
 
 # Plot data. 
 fig = plt.figure(dpi=128, figsize=(10, 6)) 
 plt.plot(highs, c='red') 
-
 
 # Format plot. 
 
@@ -22438,9 +18073,7 @@ plt.xlabel('', fontsize=16)
 plt.ylabel("Temperature (F)", fontsize=16) 
 plt.tick_params(axis='both', which='major', labelsize=16) 
 
-
 plt.show() 
-
 
 We pass the list of highs to plot() @ and pass c='red' to plot the points 
 in red. (We’ll plot the highs in red and the lows in blue.) We then specify 
@@ -22450,56 +18083,41 @@ we won't label the x-axis, but plt.xlabel() does modify the font size to make
 the default labels more readable ®. Figure 16-1 shows the resulting plot: a 
 simple line graph of the high temperatures for July 2014, in Sitka, Alaska. 
 
-
 Downloading Data 353 
-
 
 354 
 
-
 Chapter 16 
-
 
 Daily high temperatures, July 2014 
 
-
 N pal AI 
-
 
 ENS) Eve) os) ae) cw) 
 
-
 ~ 
 N 
-
 
 Temperature (F) 
 ul a fo) fey) fo)) a ~ 
 fee) oO N & oa foe) oO 
 
-
 u 
 (2) 
 
-
 Figure 16-1: A line graph showing daily high temperatures for July 2014 in Sitka, Alaska 
 
-
 The datetime Module 
-
 
 Let’s add dates to our graph to make it more useful. The first date from the 
 weather data file is in the second row of the file: 
 
-
 2014-7-1,64,56,50,53,51,48, 96, 83,58, 30.19, --snip-- 
-
 
 The data will be read in as a string, so we need a way to convert the 
 string '2014-7-1' to an object representing this date. We can construct an 
 object representing July 1, 2014, using the strptime() method from the 
 datetime module. Let’s see how strptime() works in a terminal session: 
-
 
 >>> from datetime import datetime 
 
@@ -22507,7 +18125,6 @@ datetime module. Let’s see how strptime() works in a terminal session:
 >>> print(first_date) 
 
 2014-07-01 00:00:00 
-
 
 We first import the datetime class from the datetime module. Then we 
 call the method strptime() with the string containing the date we want to 
@@ -22521,9 +18138,7 @@ string as the day of the month, from 1 to 31.
 The strptime() method can take a variety of arguments to determine 
 how to interpret the date. Table 16-1 shows some of these arguments. 
 
-
 Table 16-1: Date and Time Formatting Arguments from the datetime Module 
-
 
 Argument Meaning 
 
@@ -22547,39 +18162,29 @@ oH Hour, in 24-hour format (00 to 23)
 
 Plotting Dates 
 
-
 Knowing how to process the dates in our CSV file, we can now improve our 
 plot of the temperature data by extracting dates for the daily highs and 
 passing the dates and the highs to plot(), as shown here: 
 
-
 highs_lows.py ort « 
 from datetime import datetime 
 
-
 # Get dates and high temperatures from file. 
 
-
 (1) dates, highs = [], [] 
-
 
 (2) current_date = datetime.strptime(row[0], "%Y-%m-%d" ) 
 dates .append(current_date) 
 
-
 (3) plt.plot (dates, highs, c='red') 
 
-
 Downloading Data 355 
-
 
 @ fig.autofmt_xdate() 
 plt.ylabel("Temperature (F)", fontsize=16) 
 plt.tick_params(axis='both', which='major', labelsize=16) 
 
-
 plt.show() 
-
 
 We create two empty lists to store the dates and high temperatures 
 from the file @. We then convert the data containing the date information 
@@ -22588,15 +18193,11 @@ the high temperature values to plot() at ®. The call to fig. autofmt_xdate()
 at @ draws the date labels diagonally to prevent them from overlapping. 
 Figure 16-2 shows the improved graph. 
 
-
 - Daily high temperatures, July 2014 
-
 
 Figure 16-2: The graph is more meaningful now that it has dates on the x-axis. 
 
-
 Plotting a Longer Timeframe 
-
 
 With our graph set up, let’s add more data to get a more complete picture 
 of the weather in Sitka. Copy the file svtka_weather_2014.csv, which contains 
@@ -22604,7 +18205,6 @@ a full year’s worth of Weather Underground data for Sitka, to the folder
 where you're storing this chapter’s programs. 
 
 Now we can generate a graph for the entire year’s weather: 
-
 
 highs_lows.py --snip-- 
 
@@ -22619,49 +18219,36 @@ with open(filename) as f:
 plt.xlabel('', fontsize=16) 
 --snip-- 
 
-
 356 Chapter 16 
-
 
 highs_lows.py 
 
-
 e 
-
 
 We modify the filename to use the new data file sitka_weather_2014.csv ®, 
 and we update the title of our plot to reflect the change in its content @. 
 Figure 16-3 shows the resulting plot. 
 
-
 ab Daily high temperatures - 2014 
 
-
 Temperature (F) 
-
 
 2 
 oy 
 v ® 
 
-
 oy Na ie Na 
-
 
 xa WF pO wed 
 
-
 Figure 16-3: A year's worth of data 
 
-
 Plotting a Second Data Series 
-
 
 The reworked graph in Figure 16-3 displays a substantial amount of mean- 
 ingful data, but we can make it even more useful by including the low tem- 
 peratures. We need to extract the low temperatures from the data file and 
 then add them to our graph, as shown here: 
-
 
 --snip-- 
 # Get dates, high, and low temperatures from file. 
@@ -22670,30 +18257,23 @@ with open(filename) as f:
 reader = csv.reader(f) 
 header_row = next(reader) 
 
-
 dates, highs, lows = 
 
 for row in reader: 
 current_date = datetime.strptime(row[0], "%Y-%m-%d") 
 dates.append(current_date) 
 
-
 [], (], 0] 
-
 
 high = int(row[1]) 
 highs.append(high) 
 
-
 low = int(row[3]) 
 lows .append(low) 
 
-
 357 
 
-
 Downloading Data 
-
 
 # Plot data. 
 fig = plt.figure(dpi=128, figsize=(10, 6)) 
@@ -22701,11 +18281,9 @@ plt.plot(dates, highs, c='red')
 
 © plt.plot(dates, lows, c='blue') 
 
-
 # Format plot. 
 @ plt.title("Daily high and low temperatures - 2014", fontsize=24) 
 --snip-- 
-
 
 At © we add the empty list lows to hold low temperatures, and then 
 we extract and store the low temperature for each date, from the fourth 
@@ -22713,28 +18291,21 @@ position in each row (row[3]) @. At ® we add a call to plot() for the low
 temperatures and color these values blue. Finally, we update the title @. 
 Figure 16-4 shows the resulting chart. 
 
-
 a6 . Daily high and low temperatures - 2014 
-
 
 60} 
 
-
 Temperature (F) 
-
 
 Figure 16-4: Two data series on the same plot 
 
-
 Shading an Area in the Chart 
-
 
 Having added two data series, we can now examine the range of tempera- 
 tures for each day. Let’s add a finishing touch to the graph by using shading 
 to show the range between each day’s high and low temperatures. To do so, 
 we’ll use the fill_between() method, which takes a series of x-values and two 
 series of y-values, and fills the space between the two y-value series: 
-
 
 highs_lows.py --snip-- 
 # Plot data. 
@@ -22744,12 +18315,9 @@ plt.plot(dates, lows, c="blue', alpha=0.5)
 @ plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1) 
 --snip-- 
 
-
 358 Chapter 16 
 
-
 highs_lows.py 
-
 
 The alpha argument at ® controls a color’s transparency. An alpha value 
 of 0 is completely transparent, and | (the default) is completely opaque. By 
@@ -22762,28 +18330,21 @@ filled region connects the two data series without distracting from the
 information they represent. Figure 16-5 shows the plot with the shaded 
 region between the highs and lows. 
 
-
 66 Daily high and low temperatures - 2014 
-
 
 Temperature (F) 
 as u fo) 
 iS) fo) fo) 
 
-
 Ww 
 So 
 
-
 Figure 16-5: The region between the two data sets is shaded. 
-
 
 The shading helps make the range between the two data sets immedi- 
 ately apparent. 
 
-
 Error-Checking 
-
 
 We should be able to run the code from highs_lows.py using data for any 
 location. But some weather stations occasionally malfunction and fail to 
@@ -22795,7 +18356,6 @@ perature plot for Death Valley, California. Copy the file death_valley_2014.csu
 to the folder where you’re storing this chapter’s programs, and then change 
 highs_lows.py to generate a graph for Death Valley: 
 
-
 --snip-- 
 
 # Get dates, high, and low temperatures from file. 
@@ -22803,34 +18363,27 @@ filename = 'death_valley_2014.csv'
 
 with open(filename) as f: 
 
-
 Downloading Data 359 
-
 
 When we run the program we get an error, as shown in the last line in 
 the following output: 
-
 
 Traceback (most recent call last): 
 File "highs lows.py", line 17, in <module> 
 high = int(row[1]) 
 ValueError: invalid literal for int() with base 10: '' 
 
-
 The traceback tells us that Python can’t process the high temperature 
 for one of the dates because it can’t turn an empty string ('') into an inte- 
 ger. A look through death_valley_2014.csv shows the problem: 
 
-
 2014-2-165 555 5555595999999990-00,,,-1 
-
 
 It seems that on February 16, 2014, no data was recorded; the string 
 for the high temperature is empty. To address this issue, we’ll run error- 
 checking code when the values are being read from the CSV file to handle 
 exceptions that might arise when we parse our data sets. Here’s how that 
 works: 
-
 
 try: 
 current_date = datetime.strptime(row[0], "%Y-%m-%d" ) 
@@ -22843,10 +18396,8 @@ dates .append(current_date)
 highs.append(high) 
 lows. append(low) 
 
-
 @ title = "Daily high and low temperatures - 2014\nDeath Valley, CA" 
 plt.title(title, fontsize=20) 
-
 
 Each time we examine a row, we try to extract the date and the 
 high and low temperature @. If any data is missing, Python will raise a 
@@ -22860,16 +18411,12 @@ to include the location on the plot 9.
 When you run highs_lows.py now, you'll see that only one date had miss- 
 ing data: 
 
-
 2014-02-16 missing data 
-
 
 Figure 16-6 shows the resulting plot. 
 
-
 Daily high and low temperatures - 2014 
 120 : : Death Valley, CA 
-
 
 c i hah 
 
@@ -22891,9 +18438,7 @@ i b b b b
 OY AO" AO" 40%" AO" 49" 49" 49" 49%" 40%" 40%" 40% 
 VO PT We pH WAT pre y OT ce Oh” Wo” cee 
 
-
 Figure 16-6: Daily high and low temperatures for Death Valley 
-
 
 Comparing this graph to the Sitka graph, we can see that Death Valley 
 is warmer overall than southeast Alaska, as might be expected, but also that 
@@ -22908,12 +18453,9 @@ or use remove() or del to eliminate some data after it’s been extracted. You
 can use any approach that works, as long as the result is a meaningful, accu- 
 rate visualization. 
 
-
 Downloading Data 361 
 
-
 TRY IT YOURSELF 
-
 
 16-1. San Francisco: Are temperatures in San Francisco more like temperatures 
 in Sitka or temperatures in Death Valley? Generate a high-low temperature 
@@ -22923,10 +18465,8 @@ Enter a location and date range, scroll to the bottom of the page, and find a
 link labeled Comma-Delimited File. Right-click this link, and save the data as a 
 CSV file.) 
 
-
 16-2. Sitka-Death Valley Comparison: The temperature scales on the Sitka 
 and Death Valley graphs reflect the different ranges of the data. To accu- 
-
 
 rately compare the temperature range in Sitka to that of Death Valley, you 
 need identical scales on the y-axis. Change the settings for the y-axis on 
@@ -22942,9 +18482,7 @@ your code is working, run it for a full year’s data.
 16-4. Explore: Generate a few more visualizations that examine any other 
 weather aspect you're interested in for any locations you're curious about. 
 
-
 Mapping Global Data Sets: JSON Format 
-
 
 In this section, you'll download location-based country data in the JSON 
 format and work with it using the json module. Using Pygal’s beginner- 
@@ -22952,9 +18490,7 @@ friendly mapping tool for country-based data, you’ll create visualizations
 of this data that explore global patterns concerning the world’s population 
 distribution over different countries. 
 
-
 Downloading World Population Data 
-
 
 Copy the file population_data.json, which contains population data from 
 1960 through 2010 for most of the world’s countries, to the folder where 
@@ -22962,34 +18498,26 @@ youre storing this chapter’s programs. This data comes from one of the
 many data sets that the Open Knowledge Foundation (hitp://data.okfn.org/) 
 makes freely available. 
 
-
 362 Chapter 16 
-
 
 population_ 
 data.json 
 
-
 world_ 
 population.py 
 
-
 oO°® 
-
 
 Extracting Relevant Data 
 
-
 Let’s look at population_data.json to see how we might begin to process the 
 data in the file: 
-
 
 "Country Name": "Arab World", 
 "Country Code": "ARB", 
 "Year": "1960", 
 
 "Value": "96388069" 
-
 
 "Country Name": "Arab World", 
 "Country Code": "ARB", 
@@ -23000,18 +18528,14 @@ data in the file:
 
 --snip-- 
 
-
 ] 
-
 
 The file is basically one long Python list. Each item is a dictionary with 
 four keys: a country name, a country code, a year, and a value representing 
 the population. We want to examine each country’s name and population 
 only in 2010, so start by writing a program to print just that information: 
 
-
 import json 
-
 
 # Load the data into a list. 
 filename = 'population_data.json' 
@@ -23019,14 +18543,12 @@ with open(filename) as f:
 
 pop data = json.load(f) 
 
-
 # Print the 2010 population for each country. 
 for pop _dict in pop data: 
 if pop _dict['Year'] == '2010': 
 country_name = pop dict['Country Name’ ] 
 population = pop _dict['Value' ] 
 print(country_name + ": " + population) 
-
 
 We first import the json module to be able to load the data properly 
 from the file, and then we store the data in pop_data at ®. The json.1load() 
@@ -23040,30 +18562,21 @@ son.) If the year is 2010, we store the value associated with 'Country Name'
 in country_name and the value associated with 'Value' in population at @. We 
 then print the name of each country and its population. 
 
-
 Downloading Data 363 
 
-
 world_ 
-
 
 population.py 
 
-
 world_ 
 
-
 population.py 
-
 
 364 
 
-
 Chapter 16 
 
-
 The output is a series of country names and population values: 
-
 
 Arab World: 357868000 
 
@@ -23074,28 +18587,22 @@ East Asia & Pacific (all income levels): 2201536674
 
 Zimbabwe: 12571000 
 
-
 Not all of the data we captured includes exact country names, but this 
 is a good start. Now we need to convert the data into a format Pygal can 
 work with. 
 
-
 Converting Strings into Numerical Values 
-
 
 Every key and value in population_data.json is stored as a string. To work with 
 the population data, we need to convert the population strings to numeri- 
 cal values. We do this using the int() function: 
 
-
 population 7 int(pop_dict[ ‘value’ ]) 
 print(country_name + ": " + str(population)) 
-
 
 Now we’ve stored each population value in numerical format at ®. 
 When we print the population value, we need to convert it to a string at 8. 
 However, this change results in an error for some values, as shown here: 
-
 
 Arab World: 357868000 
 Caribbean small states: 6880000 
@@ -23105,9 +18612,7 @@ Traceback (most recent call last):
 File "print_populations.py", line 12, in <module> 
 population = int(pop_dict['Value']) 
 
-
 @ ValueError: invalid literal for int() with base 10: '1127437398.85751' 
-
 
 It’s often the case that raw data isn’t formatted consistently, so we come 
 across errors a lot. Here the error occurs because Python can’t directly turn 
@@ -23116,21 +18621,16 @@ decimal value is probably the result of interpolation for years when a spe-
 cific population count was not made.) We address this error by converting 
 the string to a float and then converting that float to an integer: 
 
-
 population = int(float (pop dict[ ‘Value’ ])) 
 
-
 countries.py 
-
 
 country_ 
 codes.py 
 
-
 The float() function turns the string into a decimal, and the int() func- 
 tion drops the decimal part of the number and returns an integer. Now we 
 can print a full set of population values for the year 2010 with no errors: 
-
 
 Arab World: 357868000 
 
@@ -23141,14 +18641,11 @@ East Asia & Pacific (all income levels): 2201536674
 
 Zimbabwe: 12571000 
 
-
 Each string was successfully converted to a float and then to an integer. 
 Now that these population values are stored in a numerical format, we can 
 use them to make a world population map. 
 
-
 Obtaining Two-Digit Country Codes 
-
 
 Before we can focus on mapping, we need to address one last aspect of 
 the data. The mapping tool in Pygal expects data in a particular format: 
@@ -23163,19 +18660,14 @@ internationalization. The dictionary COUNTRIES contains the two-letter country
 codes as keys and the country names as values. To see these codes, import 
 the dictionary from the i18n module and print its keys and values: 
 
-
 from pygal.i18n import COUNTRIES 
-
 
 @ for country_code in sorted(COUNTRIES.keys()): 
 
-
 print(country_code, COUNTRIES[country_code]) 
-
 
 In the for loop we tell Python to sort the keys in alphabetical order ®. 
 Then we print each country code and the country it’s associated with: 
-
 
 ad Andorra 
 
@@ -23186,46 +18678,33 @@ af Afghanistan
 
 zw Zimbabwe 
 
-
 To extract the country code data, we write a function that searches 
 through COUNTRIES and returns the country code. We’ll write this in a sepa- 
 rate module called country_codes so we can later import it into a visualiza- 
 tion program: 
 
-
 from pygal.i18n import COUNTRIES 
-
 
 @ def get_country_code(country_name) : 
 
-
 Return the Pygal 2-digit country code for the given country. 
-
 
 Downloading Data 365 
 
-
 world_ 
-
 
 population.py 
 
-
 366 
 
-
 Chapter 16 
-
 
 2) 
 3) 
 
-
 4) 
 
-
 ®@©® 
-
 
 for code, name in COUNTRIES.items(): 
 if name == country_name: 
@@ -23233,11 +18712,9 @@ return code
 # If the country wasn't found, return None. 
 return None 
 
-
 print (get_country_code('Andorra' )) 
 print(get_country_code('United Arab Emirates’ )) 
 print (get_country_code('Afghanistan' )) 
-
 
 We pass get_country_code() the name of the country and store it in the 
 parameter country_name @. We then loop through the code-name pairs 
@@ -23247,31 +18724,24 @@ name was not found ®. Finally, we pass three country names to check that
 the function works. As expected, the program outputs three two-letter 
 country codes: 
 
-
 ad 
 ae 
 af 
-
 
 Before using this function, remove the print statements from 
 country_codes.py. 
 Next we import get_country_code() into world_population.py: 
 
-
 from country_codes import get_country_code 
-
 
 code = get_country_code(country_name) 
 if code: 
 print(code + 
 
-
 else: 
 print('ERROR - ' + country_name) 
 
-
 : "+ str(population) ) 
-
 
 After extracting the country name and population, we store the coun- 
 try code in code or None if no code is available ®. If a code is returned, the 
@@ -23280,25 +18750,20 @@ we display an error message with the name of the country we can’t find a
 code for ®. Run this program, and you'll see some country codes with their 
 populations and some error lines: 
 
-
 ERROR - Arab World 
 ERROR - Caribbean small states 
 ERROR - East Asia & Pacific (all income levels) 
 
-
 --snip-- 
 af: 34385000 
-
 
 al: 3205000 
 dz: 35468000 
 --snip-- 
 
-
 ERROR - Yemen, Rep. 
 zm: 12927000 
 zw: 12571000 
-
 
 The errors come from two sources. First, not all the classifications 
 in the data set are by country; some population statistics are for regions 
@@ -23307,33 +18772,25 @@ statistics use a different system for full names of countries (Yemen, Rep.
 instead of Yemen). For now, we’ll omit country data that cause errors and 
 see what our map looks like for the data that we recovered successfully. 
 
-
 Building a World Map 
-
 
 With the country codes we have, it’s quick and simple to make a world 
 map. Pygal includes a Worldmap chart type to help map global data sets. As 
 an example of how to use Worldmap, we’ll create a simple map that high- 
 lights North America, Central America, and South America: 
 
-
 americas.py import pygal 
-
 
 @ wm = pygal.Worldmap() 
 wm.title = ‘North, Central, and South America’ 
-
 
 @ wm.add('North America’, ['ca', 'mx', ‘us']) 
 wm.add('Central America’, ['bz', ‘cr', ‘gt’, ‘hn’, ‘ni’, ‘pa’, ‘sv']) 
 wm.add('South America’, ['ar', 'bo', ‘br’, ‘cl’, ‘co’, ‘ec’, ‘gf’, 
 
-
 "gy', pe ; "py', 'sr', ‘uy’, 've']) 
 
-
 © wm.render_to_file('americas.svg') 
-
 
 At @ we make an instance of the Worldmap class and set the map’s title 
 attribute. At @ we use the add() method, which takes in a label and a list of 
@@ -23350,65 +18807,46 @@ chart, which you can open in your browser. The output is a map highlight-
 ing North, Central, and South America in different colors, as shown in 
 Figure 16-7. 
 
-
 Downloading Data 367 
-
 
 na_ 
 
-
 populations.py 
-
 
 368 
 
-
 Chapter 16 
-
 
 North, Central, and South America - Chromium 
 
-
 1) North, Central, and Se * 
 
-
 © * © 1 file:///home/ehmatthes/pcc/chapter_16/americas.svg = 
-
 
 North America 
 @iCentral America 
 South America | 
 
-
 North, Central, and South America | 
 
-
 Figure 16-7: A simple instance of the Worldmap chart type 
-
 
 We now know how to make a map with colored areas, a key, and neat 
 labels. Let’s add data to our map to show information about a country. 
 
-
 Plotting Numerical Data on a World Map 
-
 
 To practice plotting numerical data on a map, create a map showing the 
 populations of the three countries in North America: 
 
-
 import pygal 
-
 
 wm = pygal.Worldmap() 
 wm.title = ‘Populations of Countries in North America’ 
 
-
 @ wm.add('North America’, {'ca': 34126000, 'us': 309349000, 'mx': 113423000}) 
 
-
 wm.render_to_file('na_populations.svg') 
-
 
 First create a Worldmap instance and set a title. Then use the add() 
 method, but this time pass a dictionary as the second argument instead of 
@@ -23417,51 +18855,37 @@ population numbers as its values. Pygal automatically uses these numbers to
 shade the countries from light (least populated) to dark (most populated). 
 Figure 16-8 shows the resulting map. 
 
-
 Populations of Countries in North America - Chromium 
-
 
 [) Populations of Count) x = 
 
-
 e C 1 file:///nome/ehmatthes/pcc/chapter_16/na_populations.svg 
-
 
 Populations of Countries in North America 
 
-
 North America 
 
-
 Figure 16-8: Population sizes of countries in North America 
-
 
 This map is interactive: if you hover over each country, you'll see its 
 population. Let’s add more data to our map. 
 
-
 Plotting a Complete Population Map 
-
 
 To plot population numbers for the rest of the countries, we have to con- 
 vert the country data we processed earlier into the dictionary format Pygal 
 expects, which is two-letter country codes as keys and population numbers 
 as values. Add the following code to world_population.py: 
 
-
 world_ import json 
-
 
 population.py 
 import pygal 
 
-
 from country_codes import get_country_code 
-
 
 # Load the data into a list. 
 --snip-- 
-
 
 # Build a dictionary of population data. 
 @ cc_populations = {} 
@@ -23471,24 +18895,17 @@ country = pop dict['Country Name' ]
 population = int(float(pop dict[ 'Value'])) 
 code = get_country_code(country) 
 
-
 Downloading Data 369 
-
 
 370 
 
-
 Chapter 16 
-
 
 2) 
 
-
 3) 
 
-
 4) 
-
 
 if code: 
 cc_populations[code] = population 
@@ -23496,9 +18913,7 @@ wm = pygal.Worldmap()
 wm.title = 'World Population in 2010, by Country' 
 wm.add('2010', cc_populations) 
 
-
 wm.render_to_file('world_population.svg') 
-
 
 We first import pygal. At ® we create an empty dictionary to store 
 country codes and populations in the format Pygal expects. At @ we build 
@@ -23510,24 +18925,17 @@ We make a Worldmap instance and set its title attribute ®. When we call
 add(), we pass it the dictionary of country codes and population values @. 
 Figure 16-9 shows the map that’s generated. 
 
-
 World Population in 2010, by Country - Chromium 
-
 
 {4 World Population in 2 x 
 
-
 e C 5 file:///nome/ehmatthes/pcc/chapter_16/world_population.svg 
-
 
 World Population in 2010, by Country 
 
-
 2010 
 
-
 Figure 16-9: The world’s population in 2010 
-
 
 We don’t have data for a few countries, which are colored in black, but 
 most countries are colored according to their population size. You'll deal 
@@ -23538,16 +18946,12 @@ contrast between most of the countries isn’t enough to indicate how popu-
 lated they are relative to each other. We’ll fix this by grouping countries 
 into population levels and shading each group. 
 
-
 world_ 
 population.py 
 
-
 © oe 
 
-
 Grouping Countries by Population 
-
 
 Because China and India are more heavily populated than other countries, 
 the map shows little contrast. China and India are each home to over a bil- 
@@ -23555,7 +18959,6 @@ lion people, whereas the next most populous country is the United States
 with approximately 300 million people. Instead of plotting all countries 
 as one group, let’s separate the countries into three population levels: less 
 than 10 million, between 10 million and 1 billion, and more than | billion: 
-
 
 # Group the countries into 3 population levels. 
 cc_pops_ 1, cc_pops 2, cc_pops 3 = {}, f}, {} 
@@ -23567,10 +18970,8 @@ cc_pops 2[cc] = pop
 else: 
 cc_pops 3[cc] = pop 
 
-
 # See how many countries are in each level. 
 print(len(cc_pops_1), len(cc_pops 2), len(cc_pops_3)) 
-
 
 wm.title = 'World Population in 2010, by Country' 
 wm.add('O-10m', cc_pops 1) 
@@ -23578,7 +18979,6 @@ wm.add('O-10m', cc_pops 1)
 wm.add('10m-1bn', cc_pops 2) 
 
 wm.add('>1bn', cc_pops 3) 
-
 
 To group the countries, we create an empty dictionary for each cat- 
 egory @. We then loop through cc_populations to check the population 
@@ -23591,27 +18991,19 @@ sizes of the groups. When we plot the data @, we make sure to add all three
 groups to the Worldmap. When you run this program, you'll first see the size 
 of each group: 
 
-
 85 69 2 
-
 
 Downloading Data 371 
 
-
 world_ 
-
 
 population.py 
 
-
 372 
-
 
 Chapter 16 
 
-
 11) 
-
 
 This output indicates that there are 85 countries with fewer than 
 10 million people, 69 countries with between 10 million and | billion 
@@ -23619,27 +19011,20 @@ people, and two outlier countries with over | billion. This seems like
 an even enough split for an informative map. Figure 16-10 shows the 
 resulting map. 
 
-
 World Population in 2010, by Country - Chromium 
-
 
 [5 World Population in 2 x 
 e C 1 File:///home/ehmatthes/pcc/chapter_16/world_population.svg 
 
-
 World Population in 2010, by Country 
 
-
 Figure 16-10: The world’s population shown in three different groups 
-
 
 Now three different colors help us see the distinctions between popula- 
 tion levels. Within each of the three levels, countries are shaded from light 
 to dark for smallest to largest population. 
 
-
 Styling World Maps in Pygal 
-
 
 Although the population groups in our map are effective, the default color 
 settings are pretty ugly: for example, here Pygal has chosen a garish pink 
@@ -23647,9 +19032,7 @@ and green motif. We’ll use Pygal’s styling directives to rectify the colors.
 Let’s direct Pygal to use one base color again, but this time we’ll choose 
 the color and apply more distinct shading for the three population groups: 
 
-
 import json 
-
 
 import pygal 
 
@@ -23659,21 +19042,17 @@ from pygal.style import RotateStyle
 
 # Group the countries into 3 population levels. 
 
-
 cc_pops_1, cc_pops_2, cc_pops 3 = {}, {}, {} 
-
 
 for cc, pop in cc_populations.items(): 
 if pop < 10000000: 
 --snip-- 
-
 
 © wm_style = RotateStyle('#336699') 
 
 © wm = pygal.Worldmap(style=wm_ style) 
 wn.title = 'World Population in 2010, by Country’ 
 --snip-- 
-
 
 Pygal styles are stored in the style module from which we import the 
 style RotateStyle ®. This class takes one argument, an RGB color in hex 
@@ -23692,72 +19071,52 @@ RotateStyle returns a style object, which we store in wm_style. To use this
 style object, pass it as a keyword argument when you make an instance of 
 Worldmap ®. Figure 16-11 shows the updated chart. 
 
-
 World Population in 2010, by Country - Chromium 
-
 
 [5 World Population in 2 x 
 
-
 e C 1 file:///nome/ehmatthes/pcc/chapter_16/world_population.svg 
 
-
 World Population in 2010, by Country 
-
 
  0-10m 
 @ 10m-1bn 
 @>ibn 
 
-
 Figure 16-11: The three population groups in a unified color theme 
-
 
 Downloading Data 373 
 
-
 374 
 
-
 Chapter 16 
-
 
 This styling gives the map a unified look, and it results in groups that 
 are easy to distinguish. 
 
-
 Lightening the Color Theme 
-
 
 Pygal tends to use dark themes by default. For the purposes of printing, I’ve 
 lightened the style of my charts using LightColorizedStyle. This class changes 
 the overall theme of the chart, including the background and labels as well 
 as the individual country colors. To use it, first import the style: 
 
-
 from pygal.style import LightColorizedStyle 
-
 
 You can then use LightColorizedStyle on its own, as such: 
 
-
 wm_style = LightColorizedStyle 
-
 
 But this class gives you no direct control over the color used, so Pygal 
 will choose a default base color. To set a color, use LightColorizedStyle as a 
 base for RotateStyle. Import both LightColorizedStyle and RotateStyle: 
 
-
 from pygal.style import LightColorizedStyle, RotateStyle 
-
 
 Then create a style using RotateStyle, but pass it an additional base_style 
 argument: 
 
-
 wm_style = RotateStyle('#336699', base_style=LightColorizedStyle) 
-
 
 This gives you a light overall theme but bases the country colors on the 
 color you pass as an argument. With this style you’ll see that your charts 
@@ -23767,22 +19126,16 @@ While you’re experimenting to find styling directives that work
 well for different visualizations, it can help to use aliases in your import 
 statements: 
 
-
 from pygal.style import LightColorizedStyle as LCS, RotateStyle as RS 
-
 
 This will result in shorter style definitions: 
 
-
 wm style = RS('#336699', base_style=LCS) 
-
 
 Using just this small set of styling directives gives you significant control 
 over the appearance of charts and maps in Pygal. 
 
-
 TRY IT YOURSELF 
-
 
 16-5. All Countries: On the population maps we made in this section, our pro- 
 gram couldn't automatically find two-letter codes for about 12 countries. Work 
@@ -23790,24 +19143,19 @@ out which countries are missing codes, and look through the COUNTRIES diction-
 ary for the codes. Add an if-elif block to get_country_code() so it returns the 
 correct country code values for these specific countries: 
 
-
 if country_name == 'Yemen, Rep.’ 
 return 'ye' 
 elif --snip-- 
 
-
 Place this code after the COUNTRIES loop but before the return None state- 
 ment. When you're finished, you should see a more complete map. 
-
 
 16-6. Gross Domestic Product: The Open Knowledge Foundation maintains a 
 data set containing the gross domestic product (GDP) for each country in the 
 
-
 world, which you can find at hitp://data.okfn.org/data/core/gdp/. Download 
 the JSON version of this data set, and plot the GDP of each country in the 
 world for the most recent year in the data set. 
-
 
 16-7. Choose Your Own Data: The World Bank maintains many data sets that 
 are broken down for information on each country worldwide. Go to hitp:// 
@@ -23818,15 +19166,12 @@ a program that generates a dictionary with Pygal’s two-letter country codes
 as its keys and your chosen data from the file as its values. Plot the data on a 
 Worldmap and style the map as you like. 
 
-
 16-8. Testing the country_codes Module: When we wrote the country_codes 
 module, we used print statements to check whether the get_country_code() 
 function worked. Write a proper test for this function using what you learned in 
 Chapter 11. 
 
-
 Summary 
-
 
 In this chapter you learned to work with online data sets. You learned 
 how to process CSV and JSON files, and extract the data you want to focus 
@@ -23835,15 +19180,11 @@ matplotlib, including how to use the datetime module and how to plot mul-
 tiple data series on one chart. You learned to plot country data on a world 
 map in Pygal and to style Pygal maps and charts. 
 
-
 Downloading Data 375 
-
 
 376 
 
-
 Chapter 16 
-
 
 As you gain experience with CSV and JSON files, you'll be able to 
 process almost any data you want to analyze. Most online data sets can be 
@@ -23855,9 +19196,7 @@ their own data from online sources, and then you'll create visualizations
 of that data. These are fun skills to have if you want to program as a hobby 
 and critical skills if you’re interested in programming professionally. 
 
-
 WORKING WITH APIs 
-
 
 In this chapter you'll learn how to write 
 a self-contained program to generate a 
@@ -23871,15 +19210,11 @@ always use current data to generate a visualization,
 even when that data might be rapidly changing, it 
 will always be up to date. 
 
-
 378 
-
 
 Using a Web API 
 
-
 Chapter 17 
-
 
 Aweb API is a part of a website designed to interact with programs that 
 
@@ -23888,9 +19223,7 @@ is called an API call. The requested data will be returned in an easily pro-
 cessed format, such as JSON or CSV. Most apps that rely on external data 
 sources, such as apps that integrate with social media sites, rely on API calls. 
 
-
 Git and GitHub 
-
 
 We'll base our visualization on information from GitHub, a site that 
 allows programmers to collaborate on projects. We’ll use GitHub’s API to 
@@ -23917,17 +19250,13 @@ we’ll write a program to automatically download information about the
 most-starred Python projects on GitHub, and then we’ll create an informa- 
 tive visualization of these projects. 
 
-
 Requesting Data Using an API Call 
-
 
 GitHub’s API lets you request a wide range of information through API 
 calls. To see what an API call looks like, enter the following into your 
 browser’s address bar and press ENTER: 
 
-
 https: //api.github.com/search/repositories?q=language: python&sort=stars 
-
 
 This call returns the number of Python projects currently hosted on 
 GitHub, as well as information about the most popular Python repositories. 
@@ -23939,7 +19268,6 @@ itories on GitHub.
 The question mark after repositories signals that we’re about to pass 
 an argument. The q stands for query, and the equal sign lets us begin 
 
-
 specifying a query (q=). By using language: python, we indicate that we want 
 information only on repositories that have Python as the primary language. 
 The final part, &sort=stars, sorts the projects by the number of stars they’ve 
@@ -23948,7 +19276,6 @@ been given.
 The following snippet shows the first few lines of the response. You 
 can see from the response that this URL is not intended to be entered by 
 humans. 
-
 
 { 
 
@@ -23965,7 +19292,6 @@ humans.
 "full_name": "jkbrzt/httpie", 
 --snip-- 
 
-
 As you can see in the second line of output, GitHub found a total 
 of 713,062 Python projects as of this writing. Because the value for 
 "incomplete_results" is false, we know that the request was successful 
@@ -23974,29 +19300,22 @@ API request, it would have returned true here. The "items" returned are
 displayed in the list that follows, which contains details about the most 
 popular Python projects on GitHub. 
 
-
 Installing Requests 
-
 
 The requests package allows a Python program to easily request informa- 
 tion from a website and examine the response that’s returned. To install 
 requests, issue a command like the following: 
 
-
 $ pip install --user requests 
-
 
 If you haven’t used pip yet, see “Installing Python Packages with pip” 
 on page 237. (You may need to use a slightly different version of this com- 
 mand, depending on your system’s setup.) 
 
-
 Processing an API Response 
-
 
 Now we'll begin to write a program to issue an API call and process the 
 results by identifying the most starred Python projects on GitHub: 
-
 
 python_ © import requests 
 repos.py 
@@ -24005,30 +19324,22 @@ url = 'https://api.github.com/search/repositories ?q=language: python&sort=stars
 Y = requests.get(url) 
 print("Status code:", r.status_code) 
 
-
 ooo 
-
 
 Working with APIs 379 
 
-
 380 
-
 
 python_ 
 repos.py 
 
-
 Chapter 17 
-
 
 # Store API response in a variable. 
 response _dict = r.json() 
 
-
 # Process results. 
 print(response_dict.keys()) 
-
 
 At © we import the requests module. At @ we store the URL of the 
 API call, and then we use requests to make the call ©. We call get() and 
@@ -24044,23 +19355,18 @@ resulting dictionary in response_dict.
 
 Finally, we print the keys from response_dict and see this: 
 
-
 Status code: 200 
 dict_keys(['items', 'total_count', ‘incomplete_results']) 
-
 
 Because the status code is 200, we know that the request was successful. 
 The response dictionary contains only three keys: 'items', 'total_count', and 
 ‘incomplete_results'. 
 
-
 Simple calls like this should return a complete set of results, so it’s pretty safe to ignore 
 the value associated with 'incomplete_results'. But when you're making more com- 
 plex API calls, your program should check this value. 
 
-
 Working with the Response Dictionary 
-
 
 Now that we have the information from the API call stored as a dictionary, 
 we can work with the data stored there. Let’s generate some output that 
@@ -24068,27 +19374,21 @@ summarizes the information. This is a good way to make sure we received
 the information we expected and to start examining the information we’re 
 interested in: 
 
-
 print("Total repositories:", response dict['total_count']) 
-
 
 # Explore information about the repositories. 
 repo dicts = response dict[ ‘items’ ] 
 print("Repositories returned:", len(repo_dicts)) 
 
-
 python_ 
 repos.py 
-
 
 (3) 
 4) 
 iS) 
 
-
 e 
 (2) 
-
 
 # Examine the first repository. 
 
@@ -24098,7 +19398,6 @@ print("\nKeys:", len(repo_dict))
 
 for key in sorted(repo dict.keys()): 
 print (key) 
-
 
 At @ we print the value associated with 'total_count', which represents 
 the total number of Python repositories on GitHub. 
@@ -24116,11 +19415,9 @@ information is included.
 
 The results start to give us a clearer picture of the actual data: 
 
-
 Status code: 200 
 Total repositories: 713062 
 Repositories returned: 30 
-
 
 Keys: 68 
 archive_url 
@@ -24133,7 +19430,6 @@ url
 watchers 
 watchers_count 
 
-
 GitHub’s API returns a lot of information about each repository: there 
 are 68 keys in repo_dict @. When you look through these keys, you'll get 
 a sense of the kind of information you can extract about a project. (The 
@@ -24143,33 +19439,25 @@ doing here.)
 
 Let’s pull out the values for some of the keys in repo_dict: 
 
-
 print("\nSelected information about first repository:") 
 print(‘'Name:', repo dict['name']) 
 print(‘Owner:', repo_dict['owner' ]['login']) 
 
-
 Working with APIs 38] 
 
-
 382 
-
 
 python_ 
 repos.py 
 
-
 Chapter 17 
 
-
 © print(‘Stars:', repo_dict['stargazers_count']) 
-
 
 print('Repository:', repo dict['html_url']) 
 print('Created:', repo _dict['created_at']) 
 print(‘Updated:', repo _dict['updated_at']) 
 print('Description:', repo _dict['description' ]) 
-
 
 Here we print out the values for a number of keys from the first reposi- 
 tory’s dictionary. At ® we print the name of the project. An entire diction- 
@@ -24180,11 +19468,9 @@ and the URL for the project’s GitHub repository. We then show when it was
 created @ and when it was last updated ®. Finally, we print the repository’s 
 description, and the output should look something like this: 
 
-
 Status code: 200 
 Total repositories: 713065 
 Repositories returned: 30 
-
 
 Selected information about first repository: 
 
@@ -24204,7 +19490,6 @@ Description: CLI HTTP client; user-friendly cURL replacement featuring
 intuitive UI, JSON support, syntax highlighting, wget-like downloads, 
 extensions, etc. 
 
-
 We can see that the most-starred Python project on GitHub as of this 
 writing is HTTPie, its owner is user jkbrzt, and it has been starred by more 
 than 16,000 GitHub users. We can see the URL for the project’s reposi- 
@@ -24212,15 +19497,12 @@ tory, its creation date of February 2012, and that it was updated recently.
 Finally, the description tells us that HTTPie helps make HTTP calls from 
 a terminal (CL/is short for command line interface). 
 
-
 Summarizing the Top Repositories 
-
 
 When we make a visualization for this data, we’ll want to include more than 
 one repository. Let’s write a loop to print selected information about each 
 of the repositories returned by the API call so we can include them all in 
 the visualization: 
-
 
 @ print("\nSelected information about each repository:") 
 @ for repo dict in repo dicts: 
@@ -24230,20 +19512,16 @@ print('Stars:', repo _dict['stargazers_count'])
 print(‘Repository:', repo_dict['html_url']) 
 print('Description:', repo_dict[ ‘description’ ]) 
 
-
 We print an introductory message at ®. At @ we loop through all the 
 dictionaries in repo_dicts. Inside the loop we print the name of each proj- 
 ect, its owner, how many stars it has, its URL on GitHub, and the project’s 
 description: 
 
-
 Status code: 200 
 Total repositories: 713067 
 Repositories returned: 30 
 
-
 Selected information about each repository: 
-
 
 Name: httpie 
 
@@ -24257,7 +19535,6 @@ Description: CLI HTTP client; user-friendly cURL replacement featuring
 intuitive UI, JSON support, syntax highlighting, wget-like downloads, 
 extensions, etc. 
 
-
 Name: django 
 
 Owner: django 
@@ -24268,7 +19545,6 @@ Repository: https://github.com/django/django
 
 Description: The Web framework for perfectionists with deadlines. 
 --snip-- 
-
 
 Name: powerline 
 
@@ -24282,26 +19558,20 @@ Description: Powerline is a statusline plugin for vim, and provides
 statuslines and prompts for several other applications, including zsh, bash, 
 tmux, IPython, Awesome and Otile. 
 
-
 Some interesting projects appear in these results, and it might be worth 
 taking a look at a few. But don’t spend too long on it, because we’re about 
 to create a visualization that will make it much easier to read through the 
 results. 
 
-
 Monitoring API Rate Limits 
-
 
 Most APIs are rate-limited, which means there’s a limit to how many 
 requests you can make in a certain amount of time. To see if you’re 
 
-
 Working with APIs 383 
-
 
 approaching GitHub’s limits, enter hitps://api.github.com/rate_limit into a 
 web browser. You should see a response like this: 
-
 
 { 
 "resources": { 
@@ -24323,7 +19593,6 @@ hs
 } 
 } 
 
-
 The information we’re interested in is the rate limit for the search 
 API @. We see at @ that the limit is 10 requests per minute and that we have 
 8 requests remaining for the current minute ®. The reset value represents 
@@ -24332,14 +19601,11 @@ January 1, 1970) when our quota will reset @. If you reach your quota, you'll
 get a short response that lets you know you've reached the API limit. If you 
 reach the limit, just wait until your quota resets. 
 
-
 Many APIs require you to register and obtain an API key in order to make API calls. 
 As of this writing GitHub has no such requirement, but if you obtain an API key, 
 your limits will be much higher. 
 
-
 Visualizing Repositories Using Pygal 
-
 
 Now that we have some interesting data, let’s make a visualization showing 
 the relative popularity of Python projects on GitHub. We’ll make an inter- 
@@ -24347,24 +19613,19 @@ active bar chart: the height of each bar will represent the number of stars
 the project has acquired. Clicking a bar will take you to that project’s home 
 on GitHub. Here’s an initial attempt: 
 
-
 python_ pol quests 
 repos.py import pygal 
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS 
 
-
 384 Chapter 17 
 
-
 o © 
-
 
 names, stars = [], [] 
 
 TOY repo dict 1n repo dicts: 
 names.append(repo_dict['name' ]) 
 stars.append(repo dict['stargazers_count']) 
-
 
 # Make visualization. 
 
@@ -24375,10 +19636,8 @@ chart.title = 'Most-Starred Python Projects on GitHub'
 
 chart.x_labels = names 
 
-
 chart.add('', stars) 
 chart.render_to_ file('python_repos.svg') 
-
 
 We start by importing pygal and the Pygal styles we'll need for the 
 chart. We continue to print the status of the API call response and the total 
@@ -24407,32 +19666,24 @@ in Figure 17-1. We can see that the first few projects are significantly more
 popular than the rest, but all of them are important projects in the Python 
 ecosystem. 
 
-
 Working with APIs 385 
-
 
 Most Starred Python | 
 & © | file;///nome/ehmatthes/pec/chapter_17/python_repos.svg 
 
-
 Most-Starred Python Projects on GitHub 
-
 
 tt 4 
 og, 4 Se ean Ray, 
 hae i ng 
 
-
 ka 
 
-
 bd 
-
 
 ig Ly Ly My ig My Se hy Si, ng Sey Nay See, 
 PSO RICR SS SNR 
 a, ee, 
-
 
 > 
 fe ‘ae “Ye be la, 
@@ -24441,23 +19692,18 @@ Gy %, bc) %,
 bp, %, 
 N, %, 
 
-
 Figure 17-1: The most-starred Python projects on GitHub 
 
-
 Refining Pygal Charts 
-
 
 Let’s refine the styling of our chart. We’ll be making a few different custom- 
 izations, so first restructure the code slightly by creating a configuration 
 object that contains all of our customizations to pass to Bar(): 
 
-
 python_ --snip-- 
 repos.py 
 # Make visualization. 
 my style = LS('#333366', base style=LCS) 
-
 
 my_config = pygal.Config() 
 my_config.x_label_rotation = 45 
@@ -24469,37 +19715,28 @@ my_config.truncate_label = 15
 my_config.show_y guides = False 
 my_config.width = 1000 
 
-
 @o 
-
 
 i) 
 
-
 oe 9600 
-
 
 chart = pygal.Bar(my_config, style=my style) 
 chart.title = 'Most-Starred Python Projects on GitHub' 
 chart.x_labels = names 
 
-
 chart.add('', stars) 
 chart.render_to_file('python_repos.svg') 
-
 
 At © we make an instance of Pygal’s Config class, called my_config; 
 modifying the attributes of my_config will customize the appearance of the 
 chart. We set the two attributes x_label_rotation and show_legend , origi- 
 nally passed as keyword arguments when we made an instance of Bar. At ® 
 
-
 386 Chapter 17 
-
 
 bar_ 
 descriptions. py 
-
 
 we set the font size for the chart’s title, minor labels, and major labels. The 
 minor labels in this chart are the project names along the x-axis and most 
@@ -24518,9 +19755,7 @@ We can make as many style and configuration changes as we want through
 my_config, and the line at @ won’t change. Figure 17-2 shows the restyled 
 chart. 
 
-
 Mast Starred Python | 
-
 
 C |) file:///nome/ehmatthes/pec/chapter_17/python_repos.svg = 
 Most-Starred Python Projects on GitHub 
@@ -24549,12 +19784,9 @@ Most-Starred Python Projects on GitHub
 4, % 06 ig. “ey ey, %c, “eyfo* “%e ° %e 
 *, te % eg EOS 
 
-
 Figure 17-2: The styling for the chart has been refined. 
 
-
 Adding Custom Tooltips 
-
 
 In Pygal, hovering the cursor over an individual bar shows the information 
 that the bar represents. This is commonly called a tooltip, and in this case 
@@ -24565,21 +19797,16 @@ Let’s look at a short example using the first three projects plotted indi-
 vidually with custom labels passed for each bar. To do this, we’ll pass a list 
 of dictionaries to add() instead of a list of values: 
 
-
 import pygal 
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS 
-
 
 my_style = LS('#333366', base_style=LCS) 
 chart = pygal.Bar(style=my style, x_label_rotation=45, show _legend=False) 
 
-
 Working with APIs 387 
-
 
 chart.title = 'Python Projects’ 
 chart.x_labels = ['httpie', ‘django’, 'flask'] 
-
 
 @ plot_dicts = [ 
 
@@ -24588,10 +19815,8 @@ C2) {'value': 16101, 'label': ‘Description of httpie.'},
 {'value': 14798, ‘label’: ‘Description of flask.'}, 
 ] 
 
-
 © chart.add('', plot_dicts) 
 chart.render_to_file('bar_descriptions.svg') 
-
 
 At © we define a list called plot_dicts that contains three dictionaries: 
 one for the HTTPie project, one for the Django project, and one for Flask. 
@@ -24606,45 +19831,32 @@ in the list of dictionaries representing the bars (plot_dicts) ©. Figure 17-3
 shows one of the tooltips. Pygal includes the number of stars as a default 
 tooltip in addition to the custom tooltip we passed it. 
 
-
 J Python Projects 
-
 
 © © 1 file:///nome/ehmatthes/pec/chapter_17/bar_descriptions.svg = 
 
-
 Python Projects 
-
 
 Description of httpie 
 16101 
 
-
 4 
-
 
 %, 2% “ay, hag 
 
-
 Figure 17-3: Each bar has a customized tooltip label. 
 
-
 Plotting the Data 
-
 
 To plot our data, we’ll generate plot_dicts automatically for the 30 projects 
 returned by the API call. 
 
-
 388 Chapter 17 
-
 
 python_ 
 repos.py 
 
-
 Here’s the code to do this: 
-
 
 --snip-- 
 
@@ -24652,11 +19864,9 @@ Here’s the code to do this:
 repo_dicts = response dict['items' ] 
 print("Number of items:", len(repo_dicts)) 
 
-
 @ names, plot_dicts = [], [] 
 for repo dict in repo dicts: 
 names .append(repo_dict[ 'name' ]) 
-
 
 (2) plot_dict = { 
 ‘value’: repo_dict['stargazers count'], 
@@ -24664,18 +19874,14 @@ names .append(repo_dict[ 'name' ])
 
 C3) plot_dicts.append(plot_dict) 
 
-
 # Make visualization. 
 my_style = LS('#333366', 
 --snip-- 
 
-
 base_style=LCS) 
-
 
 @ chart.add('', plot_dicts) 
 chart.render_to_file('python_repos.svg') 
-
 
 At @ we make an empty list for names and an empty list for plot_dicts. 
 We still need the names list in order to generate the labels for the x-axis. 
@@ -24686,18 +19892,14 @@ tion with the key 'label' in each plot_dict. We then append each project’s
 plot_dict to plot_dicts ©. At @ we pass the list plot_dicts to add(). Figure 17-4 
 shows the resulting chart. 
 
-
  Most'Starred Python | 3 
 ©  C | file:///nome/ehmatthes/pec/chapter_17/python_repos.svg 
 
-
 Most-Starred Python Projects on GitHub 
-
 
 yf Soy, 
 ates %, eM 
 30% 23 tg 
-
 
 16000. 
 15000.6 
@@ -24708,18 +19910,15 @@ ates %, eM
 10000.0 
 9000.0 
 
-
 Python HTTP Requests for Humans” 
 14493 
 6000.0 
-
 
 5000.6 
 4000.0 
 3000.0 
 2000.0 
 1000.0 
-
 
 0.0 
 4, % 79 %e % 4 & Sy 
@@ -24730,31 +19929,23 @@ a op he St Mag a 9 oe ta ne recs 2%, "eg! fo he,
 % & Se , %, %, 
 “y Y » on 
 
-
 Figure 17-4: Hovering over a bar shows the project's description. 
-
 
 Working with APIs 389 
 
-
 390 
-
 
 python_ 
 repos.py 
 
-
 Adding Clickable Links to Our Graph 
-
 
 Pygal also allows you to use each bar in the chart as a link to a website. To 
 add this capability, we just add one line to our code, leveraging the diction- 
 ary we’ve set up for each project. We add a new key-value pair to each proj- 
 ect’s plot_dict using the key 'xlink': 
 
-
 "xlink': repo_dict[ ‘html_url'], 
-
 
 Pygal uses the URL associated with 'xlink' to turn each bar into an 
 active link. You can click any of the bars in the chart, and the GitHub page 
@@ -24762,15 +19953,11 @@ for that project will automatically open in a new tab in your browser. Now
 you have an interactive, informative visualization of data retrieved through 
 an API! 
 
-
 The Hacker News API 
-
 
 Chapter 17 
 
-
 oN) 
-
 
 To explore how you would use API calls on other sites, we’ll look at Hacker 
 News (http://news.ycombinator.com/). On Hacker News people share articles 
@@ -24782,13 +19969,10 @@ ter for a key.
 The following call returns information about the current top article as 
 of this writing: 
 
-
 https: //hacker-news. firebaseio.com/v0/item/9884165. json 
-
 
 The response is a dictionary of information about the article with the 
 ID 9884165: 
-
 
 ‘url’: 'http://www.bbc.co.uk/news/science-environment-33524589' , 
 "type': ‘story’, 
@@ -24802,20 +19986,15 @@ ID 9884165:
 
 "text': '', 
 
-
 hn_ 
-
 
 submissions.py 
 
-
 eo 
-
 
 "by': 'nns', 
 ‘id': 9884165, 
 "kids': [9884723, 9885099, 9884789, 9885604, 9885844] 
-
 
 The dictionary contains a number of keys we can work with, such 
 as ‘url’ @ and 'title' @. The key 'descendants' contains the number of 
@@ -24827,10 +20006,8 @@ a submission has can be greater than its number of kids.
 Let’s make an API call that returns the IDs of the current top articles 
 on Hacker News, and then examine each of the top articles: 
 
-
 import requests 
 from operator import itemgetter 
-
 
 # Make an API call and store the response. 
 
@@ -24838,7 +20015,6 @@ url = 'https://hacker-news. firebaseio.com/v0/topstories.json'
 x = requests.get(url) 
 
 print("Status code:", r.status_code) 
-
 
 # Process information about each submission. 
 submission_ids = r.json() 
@@ -24851,42 +20027,32 @@ submission_r = requests.get(url)
 print(submission_r.status_code) 
 response dict = submission_r.json() 
 
-
 submission dict = { 
 ‘title’: response dict['title'], 
 ‘link': 'http://news.ycombinator.com/item?id=' + str(submission_id), 
 ‘comments': response_dict.get('descendants', 0) 
 
-
 } 
-
 
 submission _dicts.append(submission dict) 
 
-
 submission dicts = sorted(submission dicts, key=itemgetter('comments'), 
 reverse=True) 
-
 
 for submission dict in submission_dicts: 
 print("\nTitle:", submission _dict['title']) 
 print("Discussion link:", submission _dict['link']) 
 print("Comments:", submission dict['comments']) 
 
-
 First, we make the API call and print the status of the response ®. This 
 API call returns a list containing the IDs of the 500 most popular articles 
 on Hacker News at the time the call is issued. We then convert the response 
 
-
 Working with APIs 391 
-
 
 392 
 
-
 Chapter 17 
-
 
 text to a Python list at @, which we store in submission_ids. We'll use these 
 IDs to build a set of dictionaries that each store information about one of 
@@ -24924,7 +20090,6 @@ three pieces of information about each of the top submissions: the title,
 a link to the discussion page, and the number of comments the submission 
 currently has: 
 
-
 Status code: 200 
 200 
 
@@ -24934,49 +20099,38 @@ Status code: 200
 
 --snip-- 
 
-
 Title: Firefox deactivates Flash by default 
 Discussion link: http://news.ycombinator.com/item?id=9883246 
 Comments: 231 
-
 
 Title: New Horizons: Nasa spacecraft speeds past Pluto 
 Discussion link: http://news.ycombinator.com/item?id=9884165 
 Comments: 142 
 
-
 Title: Iran Nuclear Deal Is Reached With World Powers 
 Discussion link: http://news.ycombinator.com/item?id=9884005 
 Comments: 141 
-
 
 Title: Match Group Buys PlentyOfFish for $575M 
 Discussion link: http://news.ycombinator.com/item?id=9884417 
 Comments: 75 
 
-
 Title: Our Nexus 4 devices are about to explode 
 Discussion link: http://news.ycombinator.com/item?id=9885625 
 
-
 Comments: 14 
 
-
 --snip-- 
-
 
 You would use a similar process to access and analyze information with 
 any API. With this data, you could make a visualization showing which sub- 
 missions have inspired the most active recent discussions. 
 
-
 TRY IT YOURSELF 
-
 
 17-1, Other Languages: Modify the API call in python_repos.py so it generates 
 a chart showing the most popular projects in other languages. Try languages 
 such as JavaScript, Ruby, C, Java, Perl, Haskell, and Go. 
-
 
 17-2. Active Discussions: Using the data from hn_submissions.py, make a bar 
 chart showing the most active discussions currently happening on Hacker 
@@ -24984,21 +20138,16 @@ News. The height of each bar should correspond to the number of comments
 each submission has. The label for each bar should include the submission’s title, 
 and each bar should act as a link to the discussion page for that submission. 
 
-
 17-3. Testing python_repos.py: In python_repos.py, we printed the value 
 of status_code to make sure the API call was successful. Write a program 
 
-
 called test_python_repos.py, which uses unittest to assert that the value 
-
 
 of status_code is 200. Figure out some other assertions you can make—for 
 example, that the number of items returned is expected and that the total 
 number of repositories is greater than a certain amount. 
 
-
 Summary 
-
 
 In this chapter you learned how to use APIs to write self-contained pro- 
 grams that automatically gather the data they need and use that data to 
@@ -25011,15 +20160,11 @@ the charts you generate.
 
 In the final project we’ll use Django to build a web application. 
 
-
 Working with APIs 393 
-
 
 GETTING STARTED WITH DJANGO 
 
-
 Behind the scenes, today’s websites are 
-
 
 actually rich applications that act like fully 
 developed desktop applications. Python has 
@@ -25031,7 +20176,6 @@ Learning Log—an online journal system that lets
 you keep track of information you've learned about 
 particular topics. 
 
-
 We’ll write a specification for this project, and then we’ll define models 
 for the data the app will work with. We’ll use Django’s admin system to enter 
 some initial data and then learn to write views and templates so Django can 
@@ -25040,19 +20184,15 @@ build the pages of our site.
 Django is a web framework—a set of tools designed to help you build 
 interactive websites. Django can respond to page requests and make it 
 
-
 easier to read and write to a database, manage users, and much more. In 
 Chapters 19 and 20 we’ll refine the Learning Log project and then deploy it 
 to a live server so you (and your friends) can use it. 
 
-
 Setting Up a Project 
-
 
 When beginning a project, you first need to describe the project in a speci- 
 fication, or spec. Then you'll set up a virtual environment to build the proj- 
 ect in. 
-
 
 Writing a Spec 
 
@@ -25062,7 +20202,6 @@ business plan, a spec should keep you focused and help keep your project
 on track. We won’t write a full project spec here, but we’ll lay out a few clear 
 goals to keep our development process focused. Here’s the spec we’ll use: 
 
-
 We'll write a web app called Learning Log that allows users to 
 log the topics they’re interested in and to make journal entries 
 as they learn about each topic. The Learning Log home page 
@@ -25070,14 +20209,11 @@ should describe the site and invite users to either register or log
 in. Once logged in, a user should be able to create new topics, 
 add new entries, and read and edit existing entries. 
 
-
 When you learn about a new topic, keeping a journal of what you've 
 learned can be helpful in tracking and revisiting information. A good app 
 makes this process efficient. 
 
-
 Creating a Virtual Environment 
-
 
 To work with Django, we’ll first set up a virtual environment to work in. A 
 virtual environment is a place on your system where you can install packages 
@@ -25090,44 +20226,34 @@ that directory in a terminal, and create a virtual environment. If you’re
 using Python 3, you should be able to create a virtual environment with 
 the following command: 
 
-
 learning log$ python -m venv 11 env 
 learning log$ 
-
 
 Here we’re running the venv module and using it to create a virtual 
 environment named U_env. If this works, move on to “Activating the Virtual 
 Environment” on page 399. If it doesn’t work, read the next section, 
 “Installing virtualenv.” 
 
-
 398 Chapter 18 
 
-
 Installing virtualenv 
-
 
 If you're using an earlier version of Python or if your system isn’t set up to 
 use the venv module correctly, you can install the virtualenv package. To 
 install virtualenv, enter the following: 
 
-
 $ pip install --user virtualenv 
-
 
 Keep in mind that you might need to use a slightly different version of 
 this command. (If you haven’t used pip yet, see “Installing Python Packages 
 with pip” on page 237.) 
 
-
 If you're using Linux and this still doesn’t work, you can install virtualenv through 
 your system’s package manager. On Ubuntu, for example, the command sudo apt-get 
 install python-virtualenv will install virtualenv. 
 
-
 Change to the learning_log directory in a terminal, and create a virtual 
 environment like this: 
-
 
 learning log$ virtualenv 11_env 
 
@@ -25135,22 +20261,17 @@ New python executable in 11_env/bin/python
 Installing setuptools, pip...done. 
 learning log$ 
 
-
 If you have more than one version of Python installed on your system, you should 
 specify the version for virtualenv to use. For example, the command virtualenv 
 ll_env --python=python3 will create a virtual environment that uses Python 3. 
 
-
 Activating the Virtual Environment 
 Now that we have a virtual environment set up, we need to activate it with 
 
-
 the following command: 
-
 
 learning_log$ source 11_env/bin/activate 
 (11_env) learning log$ 
-
 
 This command runs the script activate in ll_env/bin. When the envi- 
 ronment is active, you'll see the name of the environment in parentheses, 
@@ -25158,39 +20279,28 @@ as shown at ®; then you can install packages to the environment and use
 packages that have already been installed. Packages you install in /l_env will 
 be available only while the environment is active. 
 
-
 If you're using Windows, use the command 11_env\Scripts\activate (without the 
 word source ) to activate the virtual environment. 
 
-
 To stop using a virtual environment, enter deactivate: 
-
 
 (1l1_env)learning_log$ deactivate 
 learning log$ 
 
-
 Getting Started with Django 399 
-
 
 400 
 
-
 Chapter 18 
 
-
 eo 
-
 
 The environment will also become inactive if you close the terminal it’s 
 running in. 
 
-
 Installing Django 
 
-
 Once you've created your virtual environment and activated it, install Django: 
-
 
 (11_env)learning_log$ pip install Django 
 Installing collected packages: Django 
@@ -25200,7 +20310,6 @@ Cleaning up...
 
 (11_env)learning_log$ 
 
-
 Because we’re working in a virtual environment, this command is the 
 same on all systems. There’s no need to use the --user flag, and there’s no 
 need to use longer commands like python -m pip install package_name. 
@@ -25208,11 +20317,9 @@ need to use longer commands like python -m pip install package_name.
 Keep in mind that Django will be available only when the environment 
 is active. 
 
-
 Creating a Project in Django 
 Without leaving the active virtual environment (remember to look for //_env 
 in parentheses), enter the following commands to create a new project: 
-
 
 (11_env) learning log$ django-admin.py startproject learning log . 
 (11_env) learning log} 1s 
@@ -25223,17 +20330,14 @@ learning log 11_env manage.py
 
 __init_.py settings.py urls.py wsgi.py 
 
-
 The command at @ tells Django to set up a new project called 
 learning_log. The dot at the end of the command creates the new project 
 with a directory structure that will make it easy to deploy the app toa 
 server when we're finished developing it. 
 
-
 Don't forget this dot, or you may run into some configuration issues when we deploy 
 the app. If you forget the dot, delete the files and folders that were created (except 
 ll_env), and run the command again. 
-
 
 Running the 1s command (dir on Windows) @ shows that Django 
 has created a new directory called learning_log. It also created a file called 
@@ -25246,23 +20350,18 @@ of which are settings.py, urls.py, and wsgi.py. The settings.py file controls ho
 Django interacts with your system and manages your project. We’ll modify 
 a few of these settings and add some settings of our own as the project 
 
-
 eo 
-
 
 evolves. The urls.py file tells Django which pages to build in response to 
 browser requests. The wsgi.py file helps Django serve the files it creates. 
 The filename is an acronym for web server gateway interface. 
 
-
 Creating the Database 
-
 
 Because Django stores most of the information related to a project ina 
 database, we need to create a database that Django can work with. To create 
 the database for the Learning Log project, enter the following command 
 (still in an active environment): 
-
 
 (11_env)learning log$ python manage.py migrate 
 Operations to perform: 
@@ -25272,7 +20371,6 @@ Apply all migrations: contenttypes, sessions, auth, admin
 Applying sessions.0001_initial... OK 
 (11_env)learning log$ 1s 
 db.sqlite3 learning log ll_env manage.py 
-
 
 Any time we modify a database, we say we’re migrating the database. 
 Issuing the migrate command for the first time tells Django to make sure the 
@@ -25288,17 +20386,13 @@ db. sqlite? @. SQLite is a database that runs off a single file; it’s ideal fo
 ing simple apps because you won’t have to pay much attention to managing 
 the database. 
 
-
 Viewing the Project 
-
 
 Let’s make sure that Django has set up the project properly. Enter the 
 runserver command as follows: 
 
-
 (11_env)learning_log$ python manage.py runserver 
 Performing system checks... 
-
 
 System check identified no issues (0 silenced). 
 
@@ -25309,15 +20403,12 @@ Starting development server at http://127.0.0.1:8000/
 
 Quit the server with CONTROL-C. 
 
-
 Django starts a server so you can view the project on your system to see 
 how well it works. When you request a page by entering a URL in a browser, 
 the Django server responds to that request by building the appropriate 
 page and sending that page to the browser. 
 
-
 Getting Started with Django 401 
-
 
 At ® Django checks to make sure the project is set up properly; at @ 
 it reports the version of Django in use and the name of the settings file 
@@ -25333,36 +20424,26 @@ like Figure 18-1, a page that Django creates to let you know all is working
 properly so far. Keep the server running for now, but when you want to stop 
 the server you can do so by pressing CTRL-C. 
 
-
 Welcome to Django - Chromium 
-
 
 | Welcometo Django = Yay 
 
-
 e € £5 localhost 
-
 
 It worked! 
 Congratulations on your first Django-powered page. 
 
-
 Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [app_Label]. 
-
 
 You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work! 
 
-
 Figure 18-1: Everything is working so far. 
-
 
 If you receive the error message That port is already in use, tell Django to use a 
 different port by entering python manage.py runserver 8001 and cycle through higher 
 numbers until you find an open port. 
 
-
 TRY IT YOURSELF 
-
 
 18-1. New Projects: To get a better idea of what Django does, build a couple 
 of empty projects and look at what it creates. Make a new folder with a simple 
@@ -25374,22 +20455,16 @@ Django, and run the command django-admin.py startproject instabook .
 Look at the files and folders this command creates, and compare them to 
 Learning Log. Do this a few times until you're familiar with what Django creates 
 
-
 when starting a new project. Then delete the project directories if you wish. 
-
 
 402 Chapter 18 
 
-
 Starting an App 
-
 
 models. py 
 
-
 e 
 12) 
-
 
 A Django project is organized as a group of individual apps that work together 
 to make the project work as a whole. For now, we’ll create just one app to 
@@ -25401,7 +20476,6 @@ opened earlier. Open a new terminal window (or tab) and navigate to the
 directory that contains manage.py. Activate the virtual environment, and 
 then run the startapp command: 
 
-
 learning_log$ source 11_env/bin/activate 
 
 (11_env)learning_log$ python manage.py startapp learning logs 
@@ -25412,7 +20486,6 @@ db.sqlite3 learning log learning logs ll_env manage.py
 
 admin.py init__.py migrations models.py tests.py views.py 
 
-
 The command startapp appname tells Django to create the infrastructure 
 needed to build an app. If you look in the project directory now, you'll see 
 a new folder called learning_logs @. Open that folder to see what Django has 
@@ -25420,9 +20493,7 @@ created @. The most important files are models.py, admin.py, and views.py.
 We’ll use models.py to define the data we want to manage in our app. We'll 
 get to admin.py and views.py a little later. 
 
-
 Defining Models 
-
 
 Let’s think about our data for a moment. Each user will need to create a 
 number of topics in their learning log. Each entry they make will be tied to 
@@ -25432,12 +20503,9 @@ entry.
 
 Open the file models.py, and look at its existing content: 
 
-
 from django.db import models 
 
-
 # Create your models here. 
-
 
 A module called models is being imported for us, and we’re being invited 
 to create models of our own. A model tells Django how to work with the data 
@@ -25445,32 +20513,24 @@ that will be stored in the app. Code-wise, a model is just a class; it has attri
 butes and methods, just like every class we’ve discussed. Here’s the model 
 for the topics users will store: 
 
-
 class Topic(models.Model): 
 """A topic the user is learning about 
 text = models.CharField(max_length=200) 
 date_added = models .DateTimeField(auto_now_add=True) 
 
-
 Getting Started with Django 403 
-
 
 404 
 
-
 settings.py 
-
 
 Chapter 18 
 
-
 3) 
-
 
 def _str_(self): 
 """Return a string representation of the model.""" 
 return self.text 
-
 
 We’ve created a class called Topic, which inherits from Model—a parent 
 class included in Django that defines the basic functionality of a model. 
@@ -25488,30 +20548,24 @@ record a date and time @. We pass the argument auto_add_now=True, which
 tells Django to automatically set this attribute to the current date and time 
 whenever the user creates a new topic. 
 
-
 To see the different kinds of fields you can use in a model, see the Django Model 
 Field Reference at https://docs.djangoproject.com/en/1.8/ref/models/ 
 fields/. You won’t need all the information right now, but it will be extremely useful 
 when you're developing your own apps. 
-
 
 We need to tell Django which attribute to use by default when it dis- 
 plays information about a topic. Django calls a ___str__() method to display 
 a simple representation of a model. Here we’ve written a__str__() method 
 that returns the string stored in the text attribute ©. 
 
-
 If youre using Python 2.7, you should call the__str__() method__unicode_() 
 instead. The body of the method is identical. 
 
-
 Activating Models 
-
 
 To use our models, we have to tell Django to include our app in the overall 
 project. Open settings.py (in the learning_log/learning_log directory), and 
 you'll see a section that tells Django which apps are installed in the project: 
-
 
 --snip-- 
 
@@ -25523,21 +20577,16 @@ INSTALLED APPS = (
 "django.contrib.messages', 
 "django.contrib.staticfiles', 
 
-
 ) 
 
-
 --snip-- 
-
 
 This is just a tuple, telling Django which apps work together to make up 
 the project. Add our app to this tuple by modifying INSTALLED_APPS so it looks 
 like this: 
 
-
 # My apps 
 ‘learning logs’, 
-
 
 Grouping apps together in a project helps to keep track of them as the 
 project grows to include more apps. Here we start a section caled My apps, 
@@ -25547,13 +20596,11 @@ Next, we need to tell Django to modify the database so it can store
 information related to the model Topic. From the terminal, run the follow- 
 ing command: 
 
-
 (11_env)learning_log$ python manage.py makemigrations learning logs 
 Migrations for 'learning_logs': 
 0001_initial.py: 
 - Create model Topic 
 (11_env) learning log$ 
-
 
 The command makemigrations tells Django to figure out how to modify 
 the database so it can store the data associated with any new models we’ve 
@@ -25564,7 +20611,6 @@ in the database.
 Now we'll apply this migration and have Django modify the database 
 for us: 
 
-
 (11_env)learning_log$ python manage.py migrate 
 --snip-- 
 Running migrations: 
@@ -25572,7 +20618,6 @@ Running migrations:
 Rendering model states... DONE 
 
 Applying learning logs.0001_initial... OK 
-
 
 Most of the output from this command is identical to the output from 
 the first time we issued the migrate command. The line we need to check 
@@ -25583,30 +20628,22 @@ Whenever we want to modify the data that Learning Log manages,
 we'll follow these three steps: modify models.py, call makemigrations on 
 learning_logs, and tell Django to migrate the project. 
 
-
 Getting Started with Django 405 
-
 
 406 
 
-
 Chapter 18 
-
 
 —} 
 
-
 The Django Admin Site 
-
 
 When you define models for an app, Django makes it easy for you to work 
 with your models through the admin site. A site’s administrators use the 
 admin site, not a site’s general users. In this section, we’ll set up the admin 
 site and use it to add some topics through the Topic model. 
 
-
 Setting Up a Superuser 
-
 
 Django allows you to create a user who has all privileges available on the 
 site, called a superuser. A privilege controls the actions a user can take. The 
@@ -25621,7 +20658,6 @@ trust into the apps they access.
 To create a superuser in Django, enter the following command and 
 respond to the prompts: 
 
-
 (11_env)learning_log$ python manage.py createsuperuser 
 Username (leave blank to use ‘ehmatthes'): 1l_admin 
 Email address: 
@@ -25634,13 +20670,11 @@ Superuser created successfully.
 
 (11_env)learning_log$ 
 
-
 When you issue the command createsuperuser, Django prompts you to 
 enter a username for the superuser ®. Here we’re using //_admin, but you 
 can enter any username you want. You can enter an email address if you 
 want or just leave this field blank @. You’ll need to enter your password 
 twice ©. 
-
 
 Some sensitive information can be hidden from a site’s administrators. For example, 
 Django doesn’t actually store the password you enter; instead, it stores a string 
@@ -25651,36 +20685,26 @@ site’s database, they'll be able to read its stored hashes but not the passwor
 a site is set up properly, it’s almost impossible to get the original passwords from the 
 hashes. 
 
-
 Registering a Model with the Admin Site 
-
 
 Django includes some models in the admin site automatically, such as User 
 and Group, but the models we create need to be registered manually. 
 
-
 admin.py 
-
 
 When we started the learning _logs app, Django created a file called 
 admin.py in the same directory as models.py: 
 
-
 from django.contrib import admin 
-
 
 # Register your models here. 
 
-
 To register Topic with the admin site, enter: 
-
 
 from django.contrib import admin 
 @ from learning _logs.models import Topic 
 
-
 © admin.site.register(Topic) 
-
 
 This code imports the model we want to register, Topic @, and then uses 
 admin. site.register() @ to tell Django to manage our model through the 
@@ -25692,24 +20716,17 @@ you just created, and you should see a screen like the one in Figure 18-2. This
 page allows you to add new users and groups and change existing ones. We 
 can also work with data related to the Topic model that we just defined. 
 
-
 Site administration | Django site admin - Chromium 
-
 
 {4 Site administration |{ x 
 
-
 e @ |B localhost:8000/admin f= 
-
 
 Django administration Welcome, I_admin. Change password / Log out 
 
-
 Site administration 
 
-
 Recent Actions 
-
 
 Groups SA (fChenge My Actions 
 Users wAdd =Ch 8 Django 
@@ -25717,37 +20734,27 @@ Users wAdd =Ch 8 Django
 Pythor 
 Topics ghAdd Change 
 
-
 Figure 18-2: The admin site with Topic included 
-
 
 If you see a message in your browser that the web page is not available, make sure you 
 still have the Django server running in a terminal window. If you don’t, activate a 
 virtual environment and reissue the command python manage.py runserver. 
 
-
 Adding Topics 
-
 
 Now that Topic has been registered with the admin site, let’s add our first 
 topic. Click Topics to go to the Topics page, which is mostly empty, because 
 we have no topics to manage yet. Click Add, and you'll see a form for adding 
 
-
 Getting Started with Django 407 
-
 
 408 
 
-
 models.py 
-
 
 Chapter 18 
 
-
 ee 
-
 
 a new topic. Enter Chess in the first box and click Save. You’ll be sent back to 
 the Topics admin page, and you'll see the topic you just created. 
@@ -25757,9 +20764,7 @@ Add again, and create a second topic, Rock Climbing. When you click Save,
 you'll be sent back to the main Topics page again, and you'll see both Chess 
 and Rock Climbing listed. 
 
-
 Defining the Entry Model 
-
 
 To record what we’ve been learning about chess and rock climbing, we need 
 to define a model for the kinds of entries users can make in their learning 
@@ -25769,22 +20774,18 @@ associated with one topic.
 
 Here’s the code for the Entry model: 
 
-
 class Entry(models.Model): 
 """Something specific learned about a topic 
 topic = models. ForeignKey (Topic) 
 text = models.TextField() 
 date_added = models.DateTimeField(auto_now_add=True) 
 
-
 class Meta: 
 verbose _name_plural = ‘entries’ 
-
 
 def _str_(self): 
 """Return a string representation of the model.""" 
 return self.text[:50] + "..." 
-
 
 The Entry class inherits from Django’s base Model class, just as Topic 
 did ©. The first attribute, topic, is a ForeignKey instance @. A foreign key is a 
@@ -25805,9 +20806,7 @@ At @ we nest the Meta class inside our Entry class. Meta holds extra infor-
 mation for managing a model; here it allows us to set a special attribute 
 telling Django to use Entries when it needs to refer to more than one entry. 
 
-
 admin.py 
-
 
 aes this, Django would refer to multiple entries as Entrys.) Finally, 
 the _ str_() method tells Django which information to show when it refers 
@@ -25815,9 +20814,7 @@ to individual entries. Because an entry can be a long body of text, we tell
 Django to show just the first 50 characters of text ©. We also add an ellipsis 
 to clarify that we’re not always displaying the entire entry. 
 
-
 Migrating the Entry Model 
-
 
 Because we’ve added a new model, we need to migrate the database again. 
 This process will become quite familiar: you modify models.py, run the com- 
@@ -25825,7 +20822,6 @@ mand python manage.py makemigrations app_name, and then run the command
 python manage.py migrate. 
 
 Migrate the database and check the output: 
-
 
 (11_env)learning log$ python manage.py makemigrations learning logs 
 Migrations for ‘learning logs': 
@@ -25841,25 +20837,19 @@ Operations to perform:
 
 Applying learning logs.0002_ entry... OK 
 
-
 A new migration called 0002_entry.py is generated, which tells Django 
 how to modify the database to store information related to the model 
 Entry ®. When we issue the migrate command, we see that Django applied 
 this migration, and everything was okay @. 
 
-
 Registering Entry with the Admin Site 
-
 
 We also need to register the Entry model. Here’s what admin.py should look 
 like now: 
 
-
 from learning logs.models import Topic, Entry 
 
-
 admin.site. register(Entry) 
-
 
 Go back to http://locathost/admin/, and you should see Entries listed 
 under learning_logs. Click the Add link for Entries, or click Entries, and 
@@ -25867,26 +20857,20 @@ then choose Add entry. You should see a drop-down list to select the topic
 you're creating an entry for and a text box for adding an entry. Select Chess 
 from the drop-down list, and add an entry. Here’s the first entry I made: 
 
-
 The opening is the first part of the game, roughly the first ten 
 moves or so. In the opening, it’s a good idea to do three things— 
 bring out your bishops and knights, try to control the center of 
 the board, and castle your king. 
 
-
 Getting Started with Django 409 
-
 
 410 
 
-
 Chapter 18 
-
 
 Of course, these are just guidelines. It will be important to learn 
 when to follow these guidelines and when to disregard these 
 suggestions. 
-
 
 When you click Save, you'll be brought back to the main admin page 
 for entries. Here you'll see the benefit of using text[:50] as the string rep- 
@@ -25897,15 +20881,12 @@ entire text of each entry.
 Make a second entry for Chess and one entry for Rock Climbing so we 
 have some initial data. Here’s a second entry for Chess: 
 
-
 In the opening phase of the game, it’s important to bring out 
 your bishops and knights. These pieces are powerful and maneu- 
 verable enough to play a significant role in the beginning moves 
 of a game. 
 
-
 And here’s a first entry for Rock Climbing: 
-
 
 One of the most important concepts in climbing is to keep your 
 weight on your feet as much as possible. There’s a myth that 
@@ -25913,26 +20894,21 @@ climbers can hang all day on their arms. In reality, good climbers
 have practiced specific ways of keeping their weight over their 
 feet whenever possible. 
 
-
 These three entries will give us something to work with as we continue 
 to develop Learning Log. 
 
-
 The Django Shell 
-
 
 Now that we’ve entered some data, we can examine that data programmati- 
 cally through an interactive terminal session. This interactive environment is 
 called the Django shell, and it’s a great environment for testing and trouble- 
 shooting your project. Here’s an example of an interactive shell session: 
 
-
 (11_env)learning_log$ python manage.py shell 
 >>> from learning _logs.models import Topic 
 >>> Topic.objects.all() 
 
 [<Topic: Chess>, <Topic: Rock Climbing>] 
-
 
 The command python manage.py shell (run in an active virtual environ- 
 ment) launches a Python interpreter that you can use to explore the data 
@@ -25944,17 +20920,13 @@ a queryset.
 We can loop over a queryset just as we'd loop over a list. Here’s how you 
 can see the ID that’s been assigned to each topic object: 
 
-
 >>> topics = Topic.objects.all() 
 >>> for topic in topics: 
 
-
 print(topic.id, topic) 
-
 
 1 Chess 
 2 Rock Climbing 
-
 
 We store the queryset in topics, and then print each topic’s id attribute 
 and the string representation of each topic. We can see that Chess has an 
@@ -25963,7 +20935,6 @@ ID of 1, and Rock Climbing has an ID of 2.
 If you know the ID of a particular object, you can get that object and 
 examine any attribute the object has. Let’s look at the text and date_added 
 values for Chess: 
-
 
 >>> t = Topic.objects.get(id=1) 
 
@@ -25975,17 +20946,14 @@ values for Chess:
 
 datetime.datetime(2015, 5, 28, 4, 39, 11, 989446, tzinfo=<UTC>) 
 
-
 We can also look at the entries related to a certain topic. Earlier we 
 defined the topic attribute for the Entry model. This was a ForeignKey, a con- 
 nection between each entry and a topic. Django can use this connection to 
 get every entry related to a certain topic, like this: 
 
-
 >>> t.entry_set.all() 
 [<Entry: The opening is the first part of the game, roughly...>, <Entry: In 
 the opening phase of the game, it's important t...>] 
-
 
 To get data through a foreign key relationship, you use the lowercase 
 name of the related model followed by an underscore and the word set ®. 
@@ -26004,22 +20972,16 @@ than it is within the files that generate web pages. We won't refer to the shell
 much, but you should continue using it to practice working with Django’s 
 syntax for accessing the data stored in the project. 
 
-
 Each time you modify your models, you'll need to restart the shell to see the effects of 
-
 
 those changes. To exit a shell session, enter CTRL-D; on Windows enter CTRL-Z and 
 then press ENTER. 
 
-
 Getting Started with Diango = 4 
-
 
 412 
 
-
 TRY IT YOURSELF 
-
 
 18-2. Short Entries: The _ str_() method in the Entry model currently appends 
 an ellipsis to every instance of Entry when Django shows it in the admin site 
@@ -26027,17 +20989,14 @@ an ellipsis to every instance of Entry when Django shows it in the admin site
 or the shell. Add an if statement to the _str__() method that adds an ellipsis 
 only if the entry is more than 50 characters long. Use the admin site to add an 
 
-
 entry that’s fewer than 50 characters in length, and check that it doesn’t have 
 an ellipsis when viewed. 
-
 
 18-3. The Django API: When you write code to access the data in your project, 
 you're writing a query. Skim through the documentation for querying your data 
 at https://docs.djangoproject.com/en/1.8/topics/db/queries/, Much of what 
 you see will look new to you, but it will be quite useful as you start to work on 
 your own projects. 
-
 
 18-4. Pizzeria: Start a new project called pizzeria with an app called pizzas. 
 Define a model Pizza with a field called name, which will hold name values 
@@ -26049,12 +21008,9 @@ sausage.
 Register both models with the admin site, and use the site to enter some 
 pizza names and toppings. Use the shell to explore the data you entered. 
 
-
 Making Pages: The Learning Log Home Page 
 
-
 Chapter 18 
-
 
 Usually, making web pages with Django consists of three stages: defining 
 URLs, writing views, and writing templates. First, you must define patterns 
@@ -26074,7 +21030,6 @@ to style when it’s complete; an app that looks good but doesn’t work well
 is pointless. For now, the home page will display only a title and a brief 
 description. 
 
-
 Mapping a URL 
 Users request pages by entering URLs into a browser and clicking links, 
 so we'll need to decide what URLs are needed in our project. The home 
@@ -26086,20 +21041,15 @@ mapping the base URL to Learning Log’s home page.
 In the main learning_log project folder, open the file urls.py. Here’s the 
 code you'll see: 
 
-
 urls. py @ from django.conf.urls import include, url 
 from django.contrib import admin 
-
 
 urlpatterns = [ 
 url(r'Sadmin/', include(admin.site.urls)), 
 
-
 eo 
 
-
 ] 
-
 
 The first two lines import the functions and modules that manage 
 URLs for the project and admin site ®. The body of the file defines the 
@@ -26110,9 +21060,7 @@ all the URLs that can be requested from the admin site.
 
 We need to include the URLs for learning_logs: 
 
-
 e url(r'', include('learning logs.urls', namespace=' learning logs')), 
-
 
 We've added a line to include the module learning _logs.urls at @. 
 This line includes a namespace argument, which allows us to distinguish 
@@ -26122,16 +21070,12 @@ which can be very helpful as your project starts to grow.
 The default urls.py is in the learning_log folder; now we need to make a 
 second urls.py file in the learning_logs folder: 
 
-
 urls. py Defines URL patterns for learning logs. 
-
 
 from django.conf.urls import url 
 
-
 urlpatterns = [ 
 # Home page 
-
 
 o 
 (2) 
@@ -26139,9 +21083,7 @@ o
 (4) 
 e url(r'*$', views.index, name='index'), 
 
-
 Getting Started with Django 413 
-
 
 To make it clear which urls.py we’re working in, we add a docstring 
 at the beginning of the file @. We then import the url function, which is 
@@ -26174,12 +21116,10 @@ The third argument provides the name index for this URL pattern so we
 can refer to it in other sections of the code. Whenever we want to provide 
 a link to the home page, we’ll use this name instead of writing out a URL. 
 
-
 Regular expressions, often called regexes, are used in almost every programming 
 language. They're incredibly useful, but they take some practice to get used to. If you 
 didn’t follow all of this, don’t worry; you'll see plenty of examples as you work through 
 this project. 
-
 
 Writing a View 
 A view function takes in information from a request, prepares the data 
@@ -26190,28 +21130,21 @@ The file views.py in learning_logs was generated automatically when
 we ran the command python manage.py startapp. Here’s what’s in views.py 
 right now: 
 
-
 views.py from django.shortcuts import render 
-
 
 # Create your views here. 
 
-
 414 Chapter 18 
 
-
 index.html 
-
 
 Currently, this file just imports the render() function, which renders the 
 response based on the data provided by views. The following code is how 
 the view for the home page should be written: 
 
-
 def index(request): 
 """The home page for Learning Log 
 return render(request, ‘learning logs/index.html') 
-
 
 When a URL request matches the pattern we just defined, Django will 
 look for a function called index() in the views.py file. Django then passes the 
@@ -26220,9 +21153,7 @@ any data for the page, so the only code in the function is a call to render().
 The render() function here uses two arguments—the original request object 
 and a template it can use to build the page. Let’s write this template. 
 
-
 Writing a Template 
-
 
 A template sets up the structure for a web page. The template defines 
 what the page should look like, and Django fills in the relevant data each 
@@ -26239,13 +21170,10 @@ text of a large project containing many individual apps. Inside the inner
 learning_logs folder, make a new file called index.himl. Write the following 
 into that file: 
 
-
 <p>Learning Log</p> 
-
 
 <p>Learning Log helps you keep track of your learning, for any topic you're 
 learning about.</p> 
-
 
 This is a very simple file. If you’re not familiar with HTML, the <p></p> 
 tags signify paragraphs. The <p> tag opens a paragraph, and the </p> tag 
@@ -26259,26 +21187,19 @@ then Django will call the function views. index(), and this will render the
 page using the template contained in index.himl. The resulting page is 
 shown in Figure 18-3. 
 
-
 Getting Started with Diango = 45 
-
 
 416 
 
-
 localhost:8000 - Chromium 
-
 
 ) localhost:8000 x 
 | @ €@ GB localhost Y= 
 Learning Log 
 
-
 Learning Log helps you keep track of your learning, for any topic you're learning about. 
 
-
 Figure 18-3: The home page for Learning Log 
-
 
 Although it may seem a complicated process for creating one page, this 
 separation between URLs, views, and templates actually works well. It allows 
@@ -26287,25 +21208,19 @@ it allows individuals to focus on the areas in which they’re strongest. For
 example, a database specialist can focus on the models, a programmer can 
 focus on the view code, and a web designer can focus on the templates. 
 
-
 TRY IT YOURSELF 
-
 
 18-5. Meal Planner: Consider an app that helps people plan their meals 
 throughout the week. Make a new folder called meal_planner, and start a new 
 Django project inside this folder. Then make a new app called meal _plans. 
 Make a simple home page for this project. 
 
-
 18-6. Pizzeria Home Page: Add a home page to the Pizzeria project you 
 started in Exercise 18-4 (page 412). 
 
-
 Building Additional Pages 
 
-
 Chapter 18 
-
 
 Now that we’ve established a routine for building a page, we can start to 
 build out the Learning Log project. We’ll build two pages that display data: 
@@ -26314,28 +21229,21 @@ lar topic. For each of these pages, we'll specify a URL pattern, write a view
 function, and write a template. But before we do this, we’ll create a base 
 template that all templates in the project can inherit from. 
 
-
 Template Inheritance 
-
 
 When building a website, you'll almost always require some elements to be 
 repeated on each page. Rather than writing these elements directly into 
 each page, you can write a base template containing the repeated elements 
 
-
 base. html 
 
-
 e 
-
 
 and then have each page inherit from the template. This approach lets you 
 focus on developing the unique aspects of each page and makes it much 
 easier to change the overall look and feel of the project. 
 
-
 The Parent Template 
-
 
 We'll start by creating a template called base.himl in the same directory as 
 index.html. This file will contain elements common to all pages; every other 
@@ -26343,14 +21251,11 @@ template will inherit from base.himl. The only element we want to repeat on
 each page right now is the title at the top. Because we’ll include this tem- 
 plate on every page, let’s make the title a link to the home page: 
 
-
 <p> 
 <a href="{% url ‘learning logs:index' %}">Learning Log</a> 
 </p> 
 
-
 {% block content %}{% endblock content %} 
-
 
 The first part of this file creates a paragraph containing the name of 
 the project, which also acts as a link to the home page. To generate a link, 
@@ -26363,9 +21268,7 @@ a uniquely named URL pattern in that namespace.
 
 In a simple HTML page, a link is surrounded by the anchor tag: 
 
-
 <a href="Link_url">link text</a> 
-
 
 Having the template tag generate the URL for us makes it much eas- 
 ier to keep our links up to date. To change a URL in our project, we only 
@@ -26382,43 +21285,30 @@ A child template doesn’t have to define every block from its parent, so
 you can reserve space in parent templates for as many blocks as you like, 
 and the child template uses only as many as it requires. 
 
-
 In Python code, we almost always indent four spaces. Template files tend to have 
-
 
 more levels of nesting than Python files, so it’s common to use only two spaces for 
 each indentation level. 
 
-
 Getting Started with Diango = 47 
-
 
 index.html 
 
-
 418 
-
 
 Chapter 18 
 
-
 2) 
-
 
 The Child Template 
 
-
 Now we need to rewrite index.html to inherit from base.html. Here’s index.html: 
-
 
 {% extends "learning logs/base.html" %} 
 
-
 {% block content %} 
 
-
 {% endblock content %} 
-
 
 If you compare this to the original index.html, you can see that we’ve 
 replaced the Learning Log title with the code for inheriting from a parent 
@@ -26444,7 +21334,6 @@ to every page that inherits from that template. In a project that includes
 tens or hundreds of pages, this structure can make it much easier and faster 
 to improve your site. 
 
-
 In a large project, it’s common to have one parent template called base.html for 
 
 the entire site and parent templates for each major section of the site. All the section 
@@ -26453,37 +21342,28 @@ template. This way you can easily modify the look and feel of the site as a whol
 section in the site, or any individual page. This configuration provides a very effi- 
 cient way to work, and it encourages you to steadily update your site over time. 
 
-
 The Topics Page 
-
 
 Now that we have an efficient approach to building pages, we can focus 
 on our next two pages: the general topics page and the page to display 
 entries for a single topic. The topics page will show all topics that users 
 have created, and it’s the first page that will involve working with data. 
 
-
 urls.py 
-
 
 views. py 
 
-
 @oo °° 
 
-
 The Topics URL Pattern 
-
 
 First, we define the URL for the topics page. It’s common to choose a 
 simple URL fragment that reflects the kind of information presented on 
 the page. We’ll use the word topics, so the URL hitp://localhost: SOOO/topics/ 
 will return this page. Here’s how we modify learning_logs/urls.py: 
 
-
 # Show all topics. 
 url(r'*topics/$', views.topics, name='topics'), 
-
 
 We’ve simply added topics/ into the regular expression argument used 
 for the home page URL ®. When Django examines a requested URL, this 
@@ -26493,16 +21373,12 @@ else after the word topics, or the pattern won’t match. Any request with a
 URL that matches this pattern will then be passed to the function topics() 
 in views.py. 
 
-
 The Topics View 
-
 
 The topics() function needs to get some data from the database and send it 
 to the template. Here’s what we need to add to views.py: 
 
-
 from .models import Topic 
-
 
 def topics(request): 
 """Show all topics. 
@@ -26510,28 +21386,21 @@ topics = Topic.objects.order_by('date_added')
 context = {'topics': topics} 
 return render(request, ‘learning logs/topics.html', context) 
 
-
 We first import the model associated with the data we need @. The 
 topics() function needs one parameter: the request object Django received 
 from the server @. At © we query the database by asking for the Topic 
 objects, sorted by the date_added attribute. We store the resulting queryset 
 in topics. 
 
-
 Getting Started with Django 419 
-
 
 420 
 
-
 topics. html 
-
 
 Chapter 18 
 
-
 e009 SOO06 
-
 
 At @ we define a context that we’ll send to the template. A context is a 
 dictionary in which the keys are names we'll use in the template to access 
@@ -26540,20 +21409,16 @@ case, there’s one key-value pair, which contains the set of topics we’ll dis
 on the page. When building a page that uses data, we pass the context vari- 
 able to render() as well as the request object and the path to the template ®. 
 
-
 The Topics Template 
-
 
 The template for the topics page receives the context dictionary so the tem- 
 plate can use the data that topics() provides. Make a file called topics.himl in 
 the same directory as index.himl. Here’s how we can display the topics in the 
 template: 
 
-
 {% extends "learning logs/base.html" %} 
 {% block content %} 
 <p>Topics</p> 
-
 
 <ul> 
 {% for topic in topics %} 
@@ -26563,9 +21428,7 @@ template:
 {% endfor %} 
 </ul> 
 
-
 {% endblock content %} 
-
 
 We start by using the {% extends %} tag to inherit from base.himl, just as 
 the index template does, and then open a content block. The body of this 
@@ -26580,22 +21443,17 @@ to indicate which lines of a for statement are part of a loop. In a template,
 every for loop needs an explicit {% endfor %} tag indicating where the end of 
 the loop occurs. So in a template, you’ll see loops written like this: 
 
-
 {% for item in list %} 
 do something with each item 
 {% endfor %} 
 
-
 Inside the loop, we want to turn each topic into an item in the bulleted 
 list. To print a variable in a template, wrap the variable name in double 
 
-
 base. html 
-
 
 e 
 (2) 
-
 
 braces. The code {{ topic }} at ® will be replaced by the value of topic on 
 each pass through the loop. The braces won’t appear on the page; they just 
@@ -26611,14 +21469,11 @@ for loop @ and then close out the bulleted list ©.
 Now we need to modify the base template to include a link to the 
 topics page: 
 
-
 <p> 
 <a href="{% url ‘learning logs:index' %}">Learning Log</a> - 
 <a href="{% url ‘learning logs:topics' %}">Topics</a> 
 
-
 /p> 
-
 
 We add a dash after the link to the home page 9, and then we add 
 a link to the topics page, using the URL template tag again @. This line 
@@ -26629,54 +21484,39 @@ Now when you refresh the home page in your browser, you'll see a
 Topics link. When you click the link, you'll see a page that looks similar to 
 Figure 18-4. 
 
-
 localhost:8000/topics/ - Chromium 
 
-
 ‘| localhost:8000/topics x 
-
 
 | € <> © [Lj locathost:8000/topics) | 
 Learning Log - Topics 
 Topics 
 
-
 « Chess 
 ¢ Rock Climbing 
 
-
 Figure 18-4: The topics page 
 
-
 Individual Topic Pages 
-
 
 Next, we need to create a page that can focus on a single topic, showing the 
 topic name and all the entries for that topic. We’ll again define a new URL 
 pattern, write a view, and create a template. We’ll also modify the topics 
 page so each item in the bulleted list links to its corresponding topic page. 
 
-
 Getting Started with Django 421 
-
 
 422 
 
-
 urls.py 
-
 
 views.py 
 
-
 Chapter 18 
-
 
 2000 © 
 
-
 The Topic URL Pattern 
-
 
 The URL pattern for the topic page is a little different than the other URL 
 patterns we’ve seen so far because it will use the topic’s id attribute to indi- 
@@ -26685,10 +21525,8 @@ detail page for the topic Chess, where the id is 1, the URL will be http://
 locathost:8000/topics/1/. Here’s a pattern to match this URL, which goes in 
 learning_logs/urls.py: 
 
-
 # Detail page for a single topic 
 url(r'“topics/(?P<topic_id>\d+)/$', views.topic, name="topic'), 
-
 
 Let’s examine the regular expression in this URL pattern, r'“topics/ 
 (?P<topic_id>\d+)/$'. The r tells Django to interpret the string as a raw 
@@ -26704,13 +21542,10 @@ When Django finds a URL that matches this pattern, it calls the view
 function topic() with the value stored in topic_id as an argument. We'll use 
 the value of topic_id to get the correct topic inside the function. 
 
-
 The Topic View 
-
 
 The topic() function needs to get the topic and all associated entries from 
 the database, as shown here: 
-
 
 def topic(request, topic_id): 
 
@@ -26722,7 +21557,6 @@ context = {'topic': topic, ‘entries’: entries}
 
 return render(request, ‘learning logs/topic.html', context) 
 
-
 This is the first view function that requires a parameter other than the 
 request object. The function accepts the value captured by the expression 
 (?P<topic_id>\d+) and stores it in topic_id @. At @ we use get() to retrieve the 
@@ -26732,15 +21566,11 @@ in front of date_added sorts the results in reverse order, which will display th
 most recent entries first. We store the topic and entries in the context dic- 
 tionary @ and send context to the template topic.himl ®. 
 
-
 topic. html 
-
 
 i) 
 
-
 o 80 ee 
-
 
 The code phrases at @ and ® are called queries, because they query the database 
 Jor specific information. When you're writing queries like these in your own projects, 
@@ -26748,18 +21578,14 @@ it’s very helpful to try them out in the Django shell first. You'll get much q
 back in the shell than you will by writing a view and template and then checking the 
 results in a browser. 
 
-
 The Topic Template 
-
 
 The template needs to display the name of the topic and the entries. We 
 also need to inform the user if no entries have been made yet for this topic: 
 
-
 {% extends ‘learning logs/base.html' %} 
 {% block content %} 
 <p>Topic: {{ topic }}</p> 
-
 
 <p>Entries:</p> 
 <ul> 
@@ -26775,9 +21601,7 @@ There are no entries for this topic yet.
 {% endfor %} 
 </ul> 
 
-
 {% endblock content %} 
-
 
 We extend base.html, as we do for all pages in the project. Next, we show 
 the topic that’s currently being displayed ®, which is stored in the template 
@@ -26796,26 +21620,19 @@ entries include line breaks in a format understood by browsers rather than
 showing a block of uninterrupted text. At @ we use the {% empty %} template 
 tag to print a message informing the user that no entries have been made. 
 
-
 Getting Started with Django 423 
-
 
 424 
 
-
 topics. html 
-
 
 Chapter 18 
 
-
 Links from the Topics Page 
-
 
 Before we look at the topic page in a browser, we need to modify the topics 
 template so each topic links to the appropriate page. Here’s the change to 
 topics. html: 
-
 
 {% for topic in topics %} 
 <li> 
@@ -26824,12 +21641,9 @@ topics. html:
 </li> 
 6 empty %) 
 
-
 {¥ 
 
-
 --Snip-- 
-
 
 We use the URL template tag to generate the proper link, based on 
 the URL pattern in learning_logs with the name ‘topic’. This URL pattern 
@@ -26840,12 +21654,9 @@ such as hitp://localhost: 8000/topics/1/.
 If you refresh the topics page and click a topic, you should see a page 
 that looks like Figure 18-5. 
 
-
 localhost:8000/topics/1/ - Chromium 
 
-
 [') localhost:8000/topics x 
-
 
 | ¢e € 6 localhost:8 
 Learning Log - Topics 
@@ -26853,43 +21664,32 @@ Topic: Chess
 Entries: 
 ¢ May 28, 2015 04:39 
 
-
 In the opening phase of the game, it’s important to bring out your bishops and knights. These pieces are powerful and maneuverable enough to 
 play a significant role in the beginning moves of a game. 
 
-
 © May 28, 2015 04:39 
-
 
 The opening is the first part of the game, roughly the first ten moves or so. In the opening, it’s a good idea to do three things—bring out your 
 bishops and knights, try to control the center of the board, and castle your king. 
 
-
 Of course, these are just guidelines. It will be important to learn when to follow these guidelines and when to disregard these suggestions. 
-
 
 —_ 
 
-
 Figure 18-5: The detail page for a single topic, showing all entries for a topic 
 
-
 TRY IT YOURSELF 
-
 
 18-7. Template Documentation: Skim the Django template documentation at 
 https://docs.djangoproject.com/en/1.8/ref/templates/. You can refer back to it 
 when you're working on your own projects. 
-
 
 18-8. Pizzeria Pages: Add a page to the Pizzeria project from Exercise 18-6 
 (page 416) that shows the names of available pizzas. Then link each pizza 
 name to a page displaying the pizza's toppings. Make sure you use template 
 inheritance to build your pages efficiently. 
 
-
 Summary 
-
 
 In this chapter you started learning how to build web applications using 
 the Django framework. You wrote a brief project spec, installed Django to a 
@@ -26913,16 +21713,12 @@ create an account and to make their own learning log. This is the heart of
 a web app—the ability to create something that any number of users can 
 interact with. 
 
-
 Getting Started with Django 425 
-
 
 USER ACCOUNTS 
 
-
 At the heart of a web application is the 
 ability for any user, anywhere in the world, 
-
 
 to register an account with your app and 
 
@@ -26933,28 +21729,21 @@ against common attacks to form-based pages so you
 don’t have to spend too much time thinking about 
 securing your apps. 
 
-
 We’ll then implement a user authentication system. You'll build a regis- 
 tration page for users to create accounts, and then restrict access to certain 
 pages to logged-in users only. We'll then modify some of the view functions 
 so users can only see their own data. You'll learn to keep your users’ data 
 safe and secure. 
 
-
 428 
-
 
 Allowing Users to Enter Data 
 
-
 forms.py 
-
 
 Chapter 19 
 
-
 oo0® © 
-
 
 Before we build an authentication system for creating accounts, we’ll first 
 add some pages that allow users to enter their own data. We’ll give users 
@@ -26965,9 +21754,7 @@ Currently, only a superuser can enter data through the admin site. We
 don’t want users to interact with the admin site, so we’ll use Django’s form- 
 building tools to build pages that allow users to enter data. 
 
-
 Adding New Topics 
-
 
 Let’s start by giving users the ability to add a new topic. Adding a form- 
 based page works in much the same way as the pages we’ve already built: 
@@ -26975,9 +21762,7 @@ we define a URL, write a view function, and write a template. The one major
 difference is the addition of a new module called forms.py, which will con- 
 tain the forms. 
 
-
 The Topic ModelForm 
-
 
 Any page that lets a user enter and submit information on a web page is a 
 Jorm, even if it doesn’t look like one. When users enter information, we need 
@@ -26991,17 +21776,14 @@ uses the information from the models we defined in Chapter 18 to auto-
 matically build a form. Write your first form in the file forms.py, which you 
 should create in the same directory as models.py: 
 
-
 from django import forms 
 from .models import Topic 
-
 
 class TopicForm(forms.ModelForm): 
 class Meta: 
 model = Topic 
 fields = ['text'] 
 labels = {'text': ''} 
-
 
 We first import the forms module and the model we’ll work with, Topic. 
 At @ we define a class called TopicForm, which inherits from forms .ModelForm. 
@@ -27012,54 +21794,40 @@ in the form. At @ we build a form from the Topic model and include only
 the text field ©. The code at @ tells Django not to generate a label for the 
 text field. 
 
-
 urls.py 
-
 
 views.py 
 
-
 -) 
-
 
 © 
 
-
 Oe) 
 
-
 The new_topic URL 
-
 
 The URL for a new page should be short and descriptive, so when the user 
 wants to add a new topic, we’ll send them to http://localhost: 8000/new_topic/. 
 Here’s the URL pattern for the new_topic page, which we add to learning_logs/ 
 urls.py: 
 
-
 # Page for adding a new topic 
 url(r'*new_topic/$', views.new_topic, name='new_topic'), 
-
 
 This URL pattern will send requests to the view function new_topic(), 
 which we’ll write next. 
 
-
 The new_topic() View Function 
-
 
 The new_topic() function needs to handle two different situations: initial 
 requests for the new_topic page (in which case it should show a blank form) 
 and the processing of any data submitted in the form. It then needs to 
 redirect the user back to the topics page: 
 
-
 from django.http import HttpResponseRedirect 
 from django.core.urlresolvers import reverse 
 
-
 from .forms import TopicForm 
-
 
 def new_topic(request): 
 """Add a new topic. 
@@ -27073,10 +21841,8 @@ if form.is valid():
 form. save() 
 return HttpResponseRedirect (reverse('learning logs: topics’ )) 
 
-
 context = {'form': form} 
 return render(request, ‘learning logs/new_topic.html', context) 
-
 
 We import the class HttpResponseRedirect, which we’ll use to redirect the 
 reader back to the topics page after they submit their topic. The reverse() 
@@ -27084,21 +21850,15 @@ function determines the URL from a named URL pattern, meaning that
 Django will generate the URL when the page is requested. We also import 
 the form we just wrote, TopicForm. 
 
-
 User Accounts 429 
-
 
 new_topic. html 
 
-
 430 
-
 
 Chapter 19 
 
-
 GET and POST Requests 
-
 
 The two main types of request you'll use when building web apps are GET 
 requests and POST requests. You use GET requests for pages that only read 
@@ -27140,23 +21900,17 @@ HttpResponseRedirect() @, which redirects the user’s browser to the topics
 page. On the topics page, the user should see the topic they just entered 
 in the list of topics. 
 
-
 The new_topic Template 
-
 
 Now we make a new template called new_topic.himl to display the form we 
 just created: 
 
-
 {% extends "learning logs/base.html" %} 
-
 
 {% block content %} 
 <p>Add a new topic:</p> 
 
-
 topics. html 
-
 
 <form action="{% url ‘learning _logs:new_topic’ %}" method='post'> 
 {% csrf_token %} 
@@ -27165,9 +21919,7 @@ topics. html
 
 </form> 
 
-
 {% endblock content %} 
-
 
 This template extends base.himl, so it has the same base structure as 
 the rest of the pages in Learning Log. At ® we define an HTML form. 
@@ -27188,80 +21940,57 @@ a simple way to display the form neatly.
 Django doesn’t create a submit button for forms, so we define one 
 at @. 
 
-
 Linking to the new_topic Page 
-
 
 Next, we include a link to the new_topic page on the topics page: 
 
-
 <a href="{% url ‘learning logs:new_topic' %}">Add a new topic:</a> 
-
 
 Place the link after the list of existing topics. Figure 19-1 shows the 
 resulting form. Go ahead and use the form to add a few new topics of 
 your own. 
 
-
 User Accounts 43] 
-
 
 432 
 
-
 forms.py 
-
 
 Chapter 19 
 
-
 localhost:8000/new_topic/ - Chromium 
-
 
 } localhost:8000/new_! x 
 
-
 e @ |B localthost:8000/new_topic w= 
-
 
 Learning Log - Topics 
 
-
 Add a new topic: 
-
 
 | add topic | 
 
-
 Figure 19-1: The page for adding a new topic 
 
-
 Adding New Entries 
-
 
 Now that the user can add a new topic, theyll want to add new entries too. 
 We’ll again define a URL, write a view function and a template, and link to 
 the page. But first we’ll add another class to forms.py. 
 
-
 The Entry ModelForm 
-
 
 We need to create a form associated with the Entry model, but this time with 
 a little more customization than TopicForm: 
 
-
 class EntryForm(forms.ModelForm) : 
-
 
 class Meta: 
 model = Entry 
 fields = ['text'] 
 
-
 labels = {'text': ''} 
 widgets = {'text': forms.Textarea(attrs={'cols': 80})} 
-
 
 We first update the import statement to include Entry as well as Topic. 
 The new class EntryForm inherits from forms.ModelForm and has a nested Meta 
@@ -27276,27 +22005,20 @@ the input widget for the field 'text' so the text area will be 80 columns wide
 instead of the default 40. This will give users enough room to write a mean- 
 ingful entry. 
 
-
 urls.py 
-
 
 views. py 
 
-
 oe oo © 
 
-
 The new_entry URL 
-
 
 We need to include a topic_id argument in the URL for adding a new entry, 
 because the entry must be associated with a particular topic. Here’s the URL, 
 which we add to learning_logs/urls.py: 
 
-
 # Page for adding a new entry 
 url(r'*new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'), 
-
 
 This URL pattern matches any URL with the form http://localhost 
 :8000/new_entry/id/, where id is a number matching the topic ID. The code 
@@ -27304,21 +22026,16 @@ This URL pattern matches any URL with the form http://localhost
 topic_id. When a URL matching this pattern is requested, Django sends the 
 request and the ID of the topic to the new_entry() view function. 
 
-
 The new_entry() View Function 
-
 
 The view function for new_entry is much like the function for adding a new 
 topic: 
 
-
 from .forms import TopicForm, EntryForm 
-
 
 def new_entry(request, topic_id): 
 """Add a new entry for a particular topic. 
 topic = Topic.objects.get(id=topic_id) 
-
 
 if request.method != 'POST': 
 # No data submitted; create a blank form. 
@@ -27333,22 +22050,16 @@ new_entry.save()
 return HttpResponseRedirect (reverse('learning logs:topic', 
 args=[topic_id])) 
 
-
 context = {'topic': topic, 'form': form} 
 return render(request, ‘learning logs/new_entry.html', context) 
 
-
 User Accounts 433 
-
 
 new_enitry. html 
 
-
 434 
 
-
 Chapter 19 
-
 
 We update the import statement to include the EntryForm we just made. 
 The definition of new_entry() has a topic_id parameter to store the value it 
@@ -27376,18 +22087,14 @@ the URL. The args list has one item in it, topic_id. The HttpResponseRedirect()
 call then redirects the user to the topic page they made an entry for, and 
 they should see their new entry in the list of entries. 
 
-
 The new_entry Template 
-
 
 As you can see in the following code, the template for new_entry is similar to 
 the template for new_topic: 
 
-
 {% extends "learning logs/base.html" %} 
 {% block content %} 
 <p><a href="{% url ‘learning logs:topic' topic.id %}">{{ topic }}</a></p> 
-
 
 <p>Add a new entry:</p> 
 
@@ -27398,9 +22105,7 @@ the template for new_topic:
 
 </form> 
 
-
 {% endblock content %} 
-
 
 We show the topic at the top of the page @, so the user can see which 
 topic they’re adding an entry to. This also acts as a link back to the main 
@@ -27410,133 +22115,97 @@ The form’s action argument includes the topic_id value in the URL,
 so the view function can associate the new entry with the correct topic @. 
 Other than that, this template looks just like new_topic.himl. 
 
-
 topic. html 
-
 
 Linking to the new_entry Page 
 
-
 Next, we need to include a link to the new_entry page from each topic page: 
-
 
 {% extends "learning logs/base.html" %} 
 {% block content %} 
 <p>Topic: {{ topic }}</p> 
 
-
 <p>Entries:</p> 
 <p> 
 
-
 <a href="{% url ‘learning logs:new_entry' topic.id %}">add new entry</a> 
-
 
 </p> 
 <ul> 
 --snip— 
 </ul> 
 
-
 {% endblock content %} 
-
 
 We add the link just before showing the entries, because adding a new 
 entry will be the most common action on this page. Figure 19-2 shows the 
 
-
 new_entry page. Now users can add new topics and as many entries as they 
 want for each topic. Try out the new_entry page by adding a few entries to 
 
-
 some of the topics you've created. 
 
-
 localhost:8000/new_entry/1/- Chromium 
-
 
 [5 localhost:8000/new_« x 
 e © BB localhost:80 
 
-
 Learning Log - Topics 
 Chess 
 
-
 Add a new entry: 
-
 
 The bishops and knights are good pieces to have out in the opening phase of the 
 game. They're both powerful enough to be useful in attacking your opponent, but 
 not so powerful that you can't afford to lose them in an early trade. 
 
-
 Figure 19-2: The new_entry page 
-
 
 Editing Entries 
 
-
 Now we'll make a page to allow users to edit the entries they’ve already 
-
 
 added. 
 
-
 User Accounts 
-
 
 435 
 
-
 436 
-
 
 urls.py 
 
-
 views.py 
-
 
 Chapter 19 
 
-
 ot) 
-
 
 The edit_entry URL 
 
-
 The URL for the page needs to pass the ID of the entry to be edited. Here’s 
 learning_logs/urls.py: 
-
 
 # Page for editing an entry 
 url(r'*edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, 
 name='edit_entry'), 
 
-
 The ID passed in the URL (for example, hitp://localhost:8000/ 
 edit_entry/1/) is stored in the parameter entry_id. The URL pattern sends 
 requests that match this format to the view function edit_entry(). 
 
-
 The edit_entry() View Function 
-
 
 When the edit_entry page receives a GET request, edit_entry() will return 
 a form for editing the entry. When the page receives a POST request with 
 revised entry text, it will save the modified text into the database: 
 
-
 from .models import Topic, Entry 
-
 
 def edit_entry(request, entry_id): 
 """Edit an existing entry. 
 entry = Entry.objects.get(id=entry_id) 
 topic = entry.topic 
-
 
 if request.method != 'POST': 
 # Initial request; pre-fill form with the current entry. 
@@ -27549,21 +22218,16 @@ form.save()
 return HttpResponseRedirect (reverse('learning logs:topic', 
 args=[topic.id])) 
 
-
 context = {'entry': entry, 'topic': topic, 'form': form} 
 return render(request, ‘learning logs/edit_entry.html', context) 
-
 
 We first need to import the Entry model. At @ we get the entry object 
 that the user wants to edit and the topic associated with this entry. In the if 
 block, which runs for a GET request, we make an instance of EntryForm with 
 
-
 edit_entry.html 
 
-
 topic. html 
-
 
 the argument instance=entry @. This argument tells Django to create the 
 form prefilled with information from the existing entry object. The user 
@@ -27577,12 +22241,9 @@ is valid; if it is, we call save() with no arguments ®. We then redirect to the
 topic page ®, where the user should see the updated version of the entry 
 they edited. 
 
-
 The edit_entry Template 
 
-
 Here’s edit_entry.himl, which is similar to new_entry.himl: 
-
 
 {% extends "learning logs/base.html" %} 
 
@@ -27591,19 +22252,14 @@ Here’s edit_entry.himl, which is similar to new_entry.himl:
 <p>Edit entry:</p> 
 <form action="{% url ‘learning logs:edit_entry' entry.id %}" method='post'> 
 
-
 {% csrf_token %} 
-
 
 {{ form.as_p }} 
 <button name="submit">save changes</button> 
 
-
 </form> 
 
-
 {% endblock content %} 
-
 
 At @ the action argument sends the form back to the edit_entry() func- 
 tion for processing. We include the entry ID as an argument in the {% url %} 
@@ -27611,25 +22267,19 @@ tag, so the view function can modify the correct entry object. We label the
 submit button as save changes to remind the user they’re saving edits, not 
 creating a new entry @. 
 
-
 Linking to the edit_entry Page 
 Now we need to include a link to the edit_entry page for each entry on the 
 topic page: 
-
 
 <p> 
 <a href="{% url ‘learning logs:edit_entry' entry.id %}">edit entry</a> 
 </p> 
 
-
 User Accounts 437 
-
 
 438 
 
-
 Chapter 19 
-
 
 We include the edit link after each entry’s date and text has been 
 displayed. We use the {% url %} template tag to determine the URL for 
@@ -27638,12 +22288,9 @@ rent entry in the loop (entry.id). The link text "edit entry" appears after
 each entry on the page. Figure 19-3 shows what the topic page looks like 
 with these links. 
 
-
 localhost:8000/topics/1/ - Chromium 
 
-
 [) localhost:8000/topics x 
-
 
 © © GE [B locathost:8000/topics/1, | = 
 Learning Log - Topics 
@@ -27654,28 +22301,20 @@ add new entry
 The bishops and knights are good pieces to have out in the opening phase of the game. They're both powerful 
 enough to be useful in attacking your opponent, but not so powerful that you can't afford to lose them in an early 
 
-
 trade. 
-
 
 edit entry 
 
-
 May 28, 2015 04:39 
-
 
 In the opening phase of the game, it’s important to bring out your bishops and knights. These pieces are powerful 
 and maneuverable enough to play a significant role in the beginning moves of a game. 
 
-
 edit entry 
-
 
 ¢ May 28, 2015 04:39 
 
-
 Figure 19-3: Each entry now has a link for editing that entry. 
-
 
 Learning Log now has most of the functionality it needs. Users can 
 add topics and entries, and read through any set of entries they want. In 
@@ -27683,43 +22322,32 @@ the next section, we’ll implement a user registration system so anyone can
 make an account with Learning Log and create their own set of topics and 
 entries. 
 
-
 TRY IT YOURSELF 
-
 
 19-1. Blog: Start a new Django project called Blog. Create an app called blogs 
 in the project, with a model called BlogPost. The model should have fields like 
 title, text, and date_added. Create a superuser for the project, and use the 
 
-
 admin site to make a couple of short posts. Make a home page that shows alll 
 posts in chronological order. 
-
 
 Create a form for making new posts and another for editing existing posts. 
 Fill in your forms to make sure they work. 
 
-
 Setting Up User Accounts 
-
 
 settings.py 
 
-
 urls. py 
-
 
 In this section we'll set up a user registration and authorization system to 
 allow people to register an account and log in and out. We'll create a new 
 app to contain all the functionality related to working with users. We’ll also 
 modify the Topic model slightly so every topic belongs to a certain user. 
 
-
 The users App 
 
-
 We'll start by creating a new app called users, using the startapp command: 
-
 
 (11_env)learning_log$ python manage.py startapp users 
 
@@ -27730,54 +22358,39 @@ db.sqlite3 learning log learning logs ll_env manage.py users
 
 admin.py _ init__.py migrations models.py tests.py views.py 
 
-
 This command makes a new directory called users @ with a structure 
 identical to the learning_logs app 8. 
-
 
 Adding users to settings.py 
 We need to add our new app to INSTALLED_APPS in settings.py, like so: 
 
-
 "users', 
-
 
 Now Django will include the users app in the overall project. 
 
-
 Including the URLs from users 
-
 
 Next, we need to modify the root urls.py so it includes the URLs we’ll write 
 for the users app: 
 
-
 url(r'*users/', include('users.urls', namespace='users')), 
-
 
 We add a line to include the file urls.py from users. This line will match 
 any URL that starts with the word users, such as http://localhost:8000/users/ 
 
-
 User Accounts 439 
-
 
 440 
 
-
 urls.py 
-
 
 login. html 
 
-
 Chapter 19 
-
 
 login/. We also create the namespace ‘users’ so we’ll be able to distinguish 
 URLs that belong to the learning_logs app from URLs that belong to the 
 users app. 
-
 
 The Login Page 
 
@@ -27785,22 +22398,17 @@ We'll first implement a login page. We’ll use the default login view Django
 provides, so the URL pattern looks a little different. Make a new urls.py file 
 in the directory learning_log/users/, and add the following to it: 
 
-
 Defines URL patterns for users 
-
 
 from django.conf.urls import url 
 from django.contrib.auth.views import login 
 
-
 from . import views 
-
 
 urlpatterns = [ 
 # Login page 
 url(r'*login/$', login, {'template_name': 'users/login.html'}, 
 name='login'), 
-
 
 We first import the default login view @. The login page’s pattern 
 matches the URL hitp://localhost:8000/users/login/ ®@. When Django reads 
@@ -27810,9 +22418,7 @@ login, not views. login). Because we’re not writing our own view function, we
 pass a dictionary telling Django where to find the template we’re about to 
 write. This template will be part of the users app, not the learning_logs app. 
 
-
 The login Template 
-
 
 When the user requests the login page, Django will use its default login 
 view, but we still need to provide a template for the page. Inside the 
@@ -27820,39 +22426,29 @@ learning_log/users/ directory, make a directory called templates; inside that,
 make another directory called users. Here’s the login.html template, which 
 you should save in learning_log/users/templates/users/: 
 
-
 {% extends "learning logs/base.html" %} 
 {% block content %} 
-
 
 {% if form.errors %} 
 <p>Your username and password didn't match. Please try again.</p> 
 {% endif %} 
 
-
 <form method="post" action="{% url 'users:login' %}"> 
 {% csrf_token %} 
 {{ form.as_p }} 
 
-
 <button name="submit">log in</button> 
-
 
 base. html 
 
-
 (5) 
 
-
 eo 
-
 
 <input type="hidden" name="next" value="{% url ‘learning logs:index' %}" /> 
 </form> 
 
-
 {% endblock content %} 
-
 
 This template extends base.himl to ensure that the login page will have 
 the same look and feel as the rest of the site. Note that a template in one 
@@ -27869,14 +22465,11 @@ At © we include a hidden form element, 'next'; the value argument tells
 Django where to redirect the user after they’ve logged in successfully. In 
 this case, we send the user back to the home page. 
 
-
 Linking to the Login Page 
-
 
 Let’s add the login link to base.html so it appears on every page. We don’t 
 want the link to display when the user is already logged in, so we nest it 
 inside an {% if %} tag: 
-
 
 <a href="{% url ‘learning logs:topics' %}">Topics</a> - 
 {% if user.is_ authenticated %} 
@@ -27884,7 +22477,6 @@ Hello, {{ user.username }}.
 {% else %} 
 <a href="{% url 'users:login' %}">log in</a> 
 {% endif %} 
-
 
 In Django’s authentication system, every template has a user variable 
 available, which always has an is_authenticated attribute set: the attribute is 
@@ -27897,26 +22489,19 @@ users have an additional username attribute set, which we use to personalize
 the greeting and remind the user they’re logged in @. At ® we display a 
 link to the login page for users who haven’t been authenticated. 
 
-
 Using the Login Page 
-
 
 We’ve already set up a user account, so let’s log in to see if the page works. 
 Go to hitp://localhost:8000/admin/. If youre still logged in as an admin, look 
 for a logout link in the header and click it. 
 
-
 User Accounts 44] 
-
 
 442 
 
-
 urls.py 
 
-
 Chapter 19 
-
 
 When you're logged out, go to http://locathost:8000/users/login/. You 
 should see a login page similar to the one shown in Figure 19-4. Enter the 
@@ -27924,27 +22509,19 @@ username and password you set up earlier, and you should be brought back
 to the index page. The header on the home page should display a greeting 
 personalized with your username. 
 
-
 localhost:8000/users/login/ - Chromium 
-
 
 } localhost:8000/users/ x 
 
-
 e €@ |B locathost:8000/users/login v= 
-
 
 Learning Log - Topics - log in 
 
-
 Username: 
-
 
 Password: 
 
-
 Figure 19-4: The login page 
-
 
 Logging Out 
 
@@ -27953,123 +22530,92 @@ logging out; users will just click a link and be sent back to the home page.
 We’ll define a URL pattern for the logout link, write a view function, and 
 provide a logout link in base.html. 
 
-
 The logout URL 
-
 
 The following code defines the URL pattern for logging out, matching the 
 URL http://locathost:8000/users/logout/. Here’s users/urls.py: 
 
-
 # Logout page 
 url(r'“logout/$', views.logout_view, name='logout'), 
-
 
 The URL pattern sends the request to the logout_view() function, which 
 is named as such to distinguish it from the logout() function we’ll call from 
 within the view. (Make sure you're modifying users/urls.py, not learning_log/ 
 urls.py.) 
 
-
 The logout_view() View Function 
-
 
 The logout_view() function is straightforward: we just import Django’s 
 logout() function, call it, and then redirect back to the home page. Open 
 users/views.py, and enter the following code. 
 
-
 views. py from django.http import HttpResponseRedirect 
 from django.core.urlresolvers import reverse 
 @ from django.contrib.auth import logout 
-
 
 def logout_view(request) : 
 """Log the user out. 
 logout (request) 
 return HttpResponseRedirect (reverse('learning_logs:index')) 
 
-
 ee 
-
 
 We import the logout() function from django.contrib.auth @. In the 
 function, we call logout() @, which requires the request object as an argu- 
 ment. We then redirect to the home page ®. 
 
-
 Linking to the logout View 
-
 
 Now we need a logout link. We'll include it as part of base.himl so it’s avail- 
 able on every page and include it in the {% if user.is_authenticated %} por- 
 tion so only users who are already logged in can see it: 
 
-
 base. html 
-
 
 Hello, {{ u 
 <a href="{% url 
 
-
 yA 
-
 
 Figure 19-5 shows the current home page as it appears to a logged-in 
 user. The styling is minimal because we’re focusing on building a site that 
 works properly. When the required set of features works, we’ll style the site 
 to look more professional. 
 
-
 localhost:8000 - Chromium 
 
-
 [} locathost:8000 
-
 
 e €  £ localhost:80¢ Ww 
 Learning Log - Topics - Hello, I]_admin. log out 
 
-
 Learning Log helps you keep track of what you're learning, about any number of topics you're | 
 working on. | 
-
 
 Figure 19-5: The home page with a personalized greeting and 
 a logout link 
 
-
 The Registration Page 
-
 
 Next, we’ll build a page to allow new users to register. We’ll use Django’s 
 default UserCreationForm but write our own view function and template. 
 
-
 User Accounts 443 
 
-
 The register URL 
-
 
 The following code provides the URL pattern for the registration page, 
 again in users/urls.py: 
 
-
 urls.py 
-
 
 # Registration page 
 url(r'*register/$', views.register, name='register'), 
 
-
 This pattern matches the URL hitp://localhost:8000/users/register/ and 
 sends requests to the register() function we’re about to write. 
 
-
 The register() View Function 
-
 
 The register() view function needs to display a blank registration form 
 when the registration page is first requested and then process completed 
@@ -28077,13 +22623,10 @@ registration forms when they’re submitted. When a registration is success-
 ful, the function also needs to log in the new user. Add the following code 
 to users/views.py: 
 
-
 views.py from django.shortcuts import render 
-
 
 from django.contrib.auth import login, logout, authenticate 
 from django.contrib.auth.forms import UserCreationForm 
-
 
 def register(request): 
 """Register a new user. 
@@ -28094,7 +22637,6 @@ else:
 # Process completed form. 
 form = UserCreationForm(data=request .POST) 
 
-
 if form.is valid(): 
 new_user = form.save() 
 # Log the user in and then redirect to home page. 
@@ -28103,19 +22645,14 @@ password=request .POST[ ' password1' ])
 login(request, authenticated_user) 
 return HttpResponseRedirect (reverse('learning logs: index')) 
 
-
 eo0—6Uu6mUCOOCOHCU 
-
 
 context = {'form': form} 
 return render(request, ‘users/register.html', context) 
 
-
 444 Chapter 19 
 
-
 register. html 
-
 
 We first import the render() function. We then import the login() and 
 authenticate() functions to log in the user if their registration information is 
@@ -28145,56 +22682,41 @@ authenticated_user objects ©, which creates a valid session for the new user.
 Finally, we redirect the user to the home page @ where a personalized 
 greeting in the header tells them their registration was successful. 
 
-
 The register Template 
-
 
 The template for the registration page is similar to the login page. Be sure 
 to save it in the same directory as login.himl: 
 
-
 {% extends "learning logs/base.html" %} 
 {% block content %} 
-
 
 <form method="post" action="{% url 'users:register' %}"> 
 {% csrf_token %} 
 {{ form.as_p }} 
 
-
 <button name="submit">register</button> 
-
 
 <input type="hidden" name="next" value="{% url ‘learning logs:index' %}" /> 
 </form> 
 
-
 {% endblock content %} 
-
 
 We use the as_p method again so Django will display all the fields in the 
 form appropriately, including any error messages if the form is not filled 
 out correctly. 
 
-
 User Accounts 445 
-
 
 446 
 
-
 base. html 
 
-
 Linking to the Registration Page 
-
 
 Next, we’ll add the code to show the registration page link to any user who 
 is not currently logged in: 
 
-
 <a href="{% url 'users:register' %}">register</a> - 
-
 
 Now users who are logged in see a personalized greeting and a logout 
 link. Users not logged in see a registration page link and a login link. Try 
@@ -28205,7 +22727,6 @@ In the next section, we’ll restrict some of the pages so they’re available
 only to registered users, and we’ll make sure every topic belongs to a spe- 
 cific user. 
 
-
 The registration system we've set up allows anyone to make any number of accounts 
 for Learning Log. But some systems require users to confirm their identity by sending 
 a confirmation email the user must reply to. By doing so, the system generates fewer 
@@ -28213,25 +22734,18 @@ spam accounts than the simple system we're using here. However, when you're lear
 ing to build apps, it’s perfectly appropriate to practice with a simple user registration 
 system like the one we're using. 
 
-
 TRY IT YOURSELF 
 
-
 19-2. Blog Accounts: Add a user authentication and registration system to the 
-
 
 Blog project you started in Exercise 19-1 (page 438). Make sure logged-in 
 users see their username somewhere on the screen and unregistered users see 
 
-
 a link to the registration page. 
-
 
 Allowing Users to Own Their Data 
 
-
 Chapter 19 
-
 
 Users should be able to enter data exclusive to them, so we’ll create a sys- 
 tem to figure out which data belongs to which user, and then we’ll restrict 
@@ -28241,34 +22755,25 @@ In this section, we'll modify the Topic model so every topic belongs to a
 specific user. This will also take care of entries, because every entry belongs 
 to a specific topic. We’ll start by restricting access to certain pages. 
 
-
 views.py 
-
 
 settings.py 
 
-
 Restricting Access with @login_required 
-
 
 Django makes it easy to restrict access to certain pages to logged-in users 
 through the @login_required decorator. A decorator is a directive placed just 
 before a function definition that Python applies to the function before it 
 runs to alter how the function code behaves. Let’s look at an example. 
 
-
 Restricting Access to the Topics Page 
-
 
 Each topic will be owned by a user, so only registered users should be able 
 to request the topics page. Add the following code to learning_logs/views.py: 
 
-
 from django. contrib.auth. decorators import login required 
 
-
 @login_required 
-
 
 We first import the login_required() function. We apply login_required() 
 as a decorator to the topics() view function by prepending login_required 
@@ -28283,10 +22788,8 @@ To make this redirect work, we need to modify settings.py so Django
 knows where to find the login page. Add the following at the very end of 
 settings. py: 
 
-
 # My settings 
 LOGIN_URL = '/users/login/' 
-
 
 Now when an unauthenticated user requests a page protected by the 
 @login_required decorator, Django will send the user to the URL defined 
@@ -28298,21 +22801,15 @@ you to the login page. Then log in to any of your accounts, and from the
 home page click the Topics link again. You should be able to reach the 
 topics page. 
 
-
 User Accounts 447 
-
 
 448 
 
-
 views. py 
-
 
 Chapter 19 
 
-
 Restricting Access Throughout Learning Log 
-
 
 Django makes it easy to restrict access to pages, but you have to decide 
 which pages to protect. It’s better to think about which pages need to be 
@@ -28326,18 +22823,13 @@ logout unrestricted. We’ll restrict access to every other page.
 Here’s learning_logs/views.py with @login_required decorators applied to 
 every view except index(): 
 
+@login_required 
 
 @login_required 
 
-
 @login_required 
 
-
 @login_required 
-
-
-@login_required 
-
 
 Try accessing each of these pages while logged out: you’ll be redirected 
 back to the login page. You’ll also be unable to click links to pages such as 
@@ -28345,9 +22837,7 @@ new_topic. But if you enter the URL hitp://localhost:8000/new_topic/, you'll be
 redirected to the login page. You should restrict access to any URL that’s 
 publicly accessible and relates to private user data. 
 
-
 Connecting Data to Certain Users 
-
 
 Now we need to connect the data submitted to the user who submitted it. 
 We need to connect only the data highest in the hierarchy to a user, and the 
@@ -28361,28 +22851,21 @@ user. We'll then have to migrate the database. Finally, we’ll have to modify
 some of the views so they only show the data associated with the currently 
 logged-in user. 
 
-
 Modifying the Topic Model 
 
-
 The modification to models.py is just two lines: 
-
 
 models. py jango.db impo1 de 
 from django.contrib.auth.models import User 
 
-
 Te 
 Le 
 
-
 owner = models.ForeignKey(User) . 
-
 
 We first import the User model from django. contrib.auth. We then add an 
 owner field to Topic, which establishes a foreign key relationship to the User 
 model. 
-
 
 Identifying Existing Users 
 When we migrate the database, Django will modify the database so it can 
@@ -28394,7 +22877,6 @@ superuser. First, we need to know the ID of that user.
 Let’s look at the IDs of all users created so far. Start a Django shell ses- 
 sion and issue the following commands: 
 
-
 (venv)learning_ log$ python manage.py shell 
 @ >>> from django.contrib.auth.models import User 
 @ >>> User.objects.all() 
@@ -28402,12 +22884,10 @@ sion and issue the following commands:
 © >>> for user in User.objects.all(): 
 print(user.username, user.id) 
 
-
 1l_admin 1 
 eric 2 
 willie 3 
 >>> 
-
 
 At ® we import the User model into the shell session. We then look at 
 all the users that have been created so far @. The output shows three users: 
@@ -28417,28 +22897,20 @@ At © we loop through the list of users and print each user’s username
 and ID. When Django asks which user to associate the existing topics with, 
 we'll use one of these ID values. 
 
-
 User Accounts 449 
-
 
 450 
 
-
 Chapter 19 
 
-
 © 
-
 
 1) 
 2) 
 
-
 Migrating the Database 
 
-
 Now that we know the IDs, we can migrate the database. 
-
 
 (venv) learning log$ python manage.py makemigrations learning logs 
 You are trying to add a non-nullable field ‘owner’ to topic without a default; 
@@ -28459,7 +22931,6 @@ Migrations for ‘learning logs’:
 
 - Add field owner to topic 
 
-
 We start by issuing the makemigrations command ®. In the output at 8, 
 Django indicates that we’re trying to add a required (non-nullable) field to 
 an existing model (topic) with no default value specified. Django gives us 
@@ -28476,7 +22947,6 @@ the field owner to the Topic model.
 Now we can carry out the migration. Enter the following in an active 
 virtual environment: 
 
-
 (venv) learning log$ python manage.py migrate 
 Operations to perform: 
 Synchronize unmigrated apps: messages, staticfiles 
@@ -28487,29 +22957,23 @@ Rendering model states... DONE
 Applying learning logs.0003 topic_owner... OK 
 (venv) learning log$ 
 
-
 Django applies the new migration, and the result is 0K @. 
 We can verify that the migration worked as expected in the shell ses- 
 sion, like this: 
-
 
 >>> from learning _logs.models import Topic 
 >>> for topic in Topic.objects.all(): 
 print(topic, topic.owner) 
 
-
 views. py 
-
 
 Chess 1]1_admin 
 Rock Climbing 11_admin 
 >>> 
 
-
 We import Topic from learning_logs.models ® and then loop through all 
 existing topics, printing each topic and the user it belongs to @. You can see 
 that each topic now belongs to the user Jl_admin. 
-
 
 You can simply reset the database instead of migrating, but that will lose all existing 
 data. It’s good practice to learn how to migrate a database while maintaining the 
@@ -28517,9 +22981,7 @@ integrity of users’ data. If you do want to start with a fresh database, issue
 mand python manage.py flush to rebuild the database structure. You'll have to create 
 a new superuser, and all of your data will be gone. 
 
-
 Restricting Topics Access to Appropriate Users 
-
 
 Currently, if you’re logged in, you'll be able to see all the topics, no matter 
 which user you're logged in as. We’ll change that by showing users only the 
@@ -28527,9 +22989,7 @@ topics that belong to them.
 
 Make the following change to the topics() function in views.py: 
 
-
 topics = Topic. objects. filter (owner=request. user) .order_by('date_added' ) 
-
 
 When a user is logged in, the request object has a request.user attribute 
 set that stores information about the user. The code fragment Topic.objects 
@@ -28542,7 +23002,6 @@ To see if this works, log in as the user you connected all existing topics
 to, and go to the topics page. You should see all the topics. Now log out, and 
 log back in as a different user. The topics page should list no topics. 
 
-
 Protecting a User’s Topics 
 We haven’t actually restricted access to the topic pages yet, so any regis- 
 tered user could try a bunch of URLs, like http://localhost:8000/topics/1/, 
@@ -28551,24 +23010,17 @@ and retrieve topic pages that happen to match.
 Try it yourself. While logged in as the user that owns all topics, copy the 
 URL or note the ID in the URL of a topic, and then log out and log back in 
 
-
 User Accounts 451 
-
 
 452 
 
-
 views. py 
-
 
 views.py 
 
-
 Chapter 19 
 
-
 2) 
-
 
 as a different user. Enter the URL of that topic. You should be able to read 
 the entries, even though you're logged in as a different user. 
@@ -28576,20 +23028,15 @@ the entries, even though you're logged in as a different user.
 We'll fix this now by performing a check before retrieving the requested 
 entries in the topic() view function: 
 
-
 jango.http import HttpR sponseRedirect, Http404 
-
 
 From diang 
 
-
 re. ur LYesoive 
-
 
 # Make sure the topic belongs to the current user. 
 if topic.owner != request.user: 
 raise Http404 
-
 
 A 404 response is a standard error response that’s returned when a 
 requested resource doesn’t exist on a server. Here we import the Http404 
@@ -28603,34 +23050,25 @@ Now if you try to view another user’s topic entries, you'll see a Page Not
 Found message from Django. In Chapter 20, we’ll configure the project so 
 users will see a proper error page. 
 
-
 Protecting the edit_entry Page 
-
 
 The edit_entry pages have URLs in the form http://localhost :8000/edit_entry/ 
 entry_id/, where the entry_id is a number. Let’s protect this page so no one 
 can use the URL to gain access to someone else’s entries: 
 
-
 if topic.owner != request.user: 
-
 
 raise Http404 
 
-
 views. py 
 
-
 eoso 
-
 
 We retrieve the entry and the topic associated with this entry. We then 
 check if the owner of the topic matches the currently logged-in user; if they 
 don’t match, we raise an Http404 exception. 
 
-
 Associating New Topics with the Current User 
-
 
 Currently, our page for adding new topics is broken, because it doesn’t 
 associate new topics with any particular user. If you try adding a new topic, 
@@ -28642,14 +23080,11 @@ There’s a straightforward fix for this problem, because we have access
 to the current user through the request object. Add the following code, 
 which associates the new topic with the current user: 
 
-
 new_topic = form.save(commit=False) 
 new_topic.owner = request.user 
 new_topic.save() 
 
-
 CTPRESPONSEREC ect(reverse Learning 108S: topics 
-
 
 When we first call form.save(), we pass the commit=False argument 
 because we need to modify the new topic before saving it to the database ®. 
@@ -28662,29 +23097,22 @@ different users as you want. Each user will have access only to their own
 data, whether they’re viewing data, entering new data, or modifying 
 old data. 
 
-
 User Accounts 453 
-
 
 454 
 
-
 TRY IT YOURSELF 
-
 
 19-3. Refactoring: There are two places in views.py where we make sure the 
 user associated with a topic matches the currently logged-in user. Put the code 
 for this check in a function called check _topic_owner(), and call this function 
 where appropriate. 
 
-
 19-4. Protecting new_entry: A user can add a new entry to another user's 
 learning log by entering a URL with the ID of a topic belonging to another 
 
-
 user. Prevent this attack by checking that the current user owns the entry’s topic 
 before saving the new entry. 
-
 
 19-5. Protected Blog: In your Blog project, make sure each blog post is con- 
 nected to a particular user. Make sure all posts are publicly accessible but only 
@@ -28692,12 +23120,9 @@ registered users can add posts and edit existing posts. In the view that allows
 users to edit their posts, make sure the user is editing their own post before pro- 
 cessing the form. 
 
-
 Summary 
 
-
 Chapter 19 
-
 
 In this chapter you learned to use forms to allow users to add new topics and 
 entries, and edit existing entries. You then learned how to implement user 
@@ -28727,16 +23152,13 @@ In the final chapter we’ll style Learning Log to make it visually appealing,
 and we’ll deploy the project to a server so anyone with Internet access can 
 register and make an account. 
 
-
 STYLING AND DEPLOYING AN APP 
-
 
 Learning Log is fully functional now, but it 
 has no styling and runs only on your local 
 machine. In this chapter we’ll style the proj- 
 ect in a simple but professional manner and 
 then deploy it to a live server so anyone in the world 
-
 
 can make an account. 
 
@@ -28751,24 +23173,18 @@ project to one of its servers, making it available to anyone with an Internet
 connection. We’ll also start using a version control system called Git to track 
 changes to the project. 
 
-
 456 
-
 
 When youre finished with Learning Log, you'll be able to develop 
 simple web applications, make them look good, and deploy them to a live 
 server. You'll also be able to use more advanced learning resources as you 
 develop your skills. 
 
-
 Styling Learning Log 
-
 
 settings. py 
 
-
 Chapter 20 
-
 
 We’ve purposely ignored styling until now to focus on Learning Log’s func- 
 tionality first. This is a good way to approach development, because an app 
@@ -28778,9 +23194,7 @@ so people will want to use it.
 In this section [ll introduce the django-bootstrap3 app and show you 
 how to integrate it into a project to make it ready for live deployment. 
 
-
 The django-bootstrap3 App 
-
 
 We'll use django-bootstrap3 to integrate Bootstrap into our project. This 
 app downloads the required Bootstrap files, places them in an appropriate 
@@ -28790,52 +23204,40 @@ project’s templates.
 To install django-bootstrap3, issue the following command in an active 
 virtual environment: 
 
-
 (11_env)learning_log$ pip install django-bootstrap3 
 --snip-- 
 Successfully installed django-bootstrap3 
 
-
 Next, we need to add the following code to include django-boostrap3 in 
 INSTALLED_APPS in seldings.py: 
 
-
 # Third party apps 
 "bootstrap3', 
-
 
 Start a new section called Third party apps for apps created by other 
 developers and add 'bootstrap3' to this section. Most apps need to be 
 included in INSTALLED_APPS, but to be sure, read the setup instructions for 
 the particular app you're using. 
 
-
 settings.py 
-
 
 We need django-bootstrap3 to include jQuery, a JavaScript library that 
 enables some of the interactive elements that the Bootstrap template pro- 
 vides. Add this code to the end of seétings.py: 
 
-
 'yeare/looin/'! 
 /uSers/Llogin/ 
-
 
 # Settings for django-bootstrap3 
 BOOTSTRAP3 = { 
 "include_jquery': True, 
 
-
 } 
-
 
 This code spares us from having to download jQuery and place it in the 
 correct location manually. 
 
-
 Using Bootstrap to Style Learning Log 
-
 
 Bootstrap is basically a large collection of styling tools. It also has a num- 
 ber of templates you can apply to your project to create a particular overall 
@@ -28849,73 +23251,52 @@ bar, a page header, and a container for the content of the page.
 Figure 20-1 shows what the home page will look like after we apply 
 Bootstrap’s template to base.himland modify index.himl slightly. 
 
-
 Learning Log - Chromium 
-
 
 [} Learning Log 
 
-
 il 
-
 
 | € © |B locathost:8000 Ww 
 
-
 Learning Log __ Topics register —_log in 
 
-
 Track your learning. 
-
 
 Register an account to make your own Learning Log, and list the 
 topics you're learning about. 
 
-
 Whenever you learn something new about a topic, make an entry 
 summarizing what you've learned. 
 
-
 Figure 20-1: The Learning Log home page using Bootstrap 
-
 
 Styling and Deploying an App = 457 
 
-
 base. html 
-
 
 458 
 
-
 Chapter 20 
 
-
 ooo © 
-
 
 Now that you know the result we’re after, the sections that follow will be 
 easier to understand. 
 
-
 Modifying base.html 
-
 
 We need to modify the base.himl template to accommodate the Bootstrap 
 template. I'll introduce the new base.html in parts. 
 
-
 Defining the HTML Headers 
-
 
 The first change to base.hitml defines the HTML headers in the file so when- 
 ever a Learning Log page is open, the browser title bar displays the site name. 
 We’ll also add some requirements for using Bootstrap in our templates. 
 Delete everything in base.html and replace it with the following code: 
 
-
 {% load bootstrap3 %} 
-
 
 <!DOCTYPE html> 
 <html lang="en"> 
@@ -28924,16 +23305,12 @@ Delete everything in base.html and replace it with the following code:
 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-
 <title>Learning Log</title> 
-
 
 {% bootstrap_css %} 
 {% bootstrap javascript %} 
 
-
 </head> 
-
 
 At @ we load the collection of template tags available in django- 
 bootstrap3. Next, we declare this file as an HTML document @ written in 
@@ -28948,23 +23325,17 @@ tells Django to include all the Bootstrap style files. The tag that follows
 enables all the interactive behavior you might use on a page, such as col- 
 lapsible navigation bars. At @ is the closing </head> tag. 
 
-
 Defining the Navigation Bar 
 Now we'll define the navigation bar at the top of the page: 
 
-
 <body> 
-
 
 <!-- Static navbar --> 
 
-
 eoo°o 
-
 
 <nav class="navbar navbar-default navbar-static-top"> 
 <div class="container"> 
-
 
 <div class="navbar-header"> 
 <button type="button" class="navbar-toggle collapsed" 
@@ -28975,12 +23346,10 @@ aria-expanded="false" aria-controls="navbar">
 Learning Log</a> 
 </div> 
 
-
 <div id="navbar" class="navbar-collapse collapse"> 
 <ul class="nav navbar-nav"> 
 <li><a href="{% url ‘learning logs:topics' %}">Topics</a></li> 
 </ul> 
-
 
 <ul class="nav navbar-nav navbar-right"> 
 {% if user.is authenticated %} 
@@ -28993,10 +23362,8 @@ Learning Log</a>
 </ul> 
 </div><!--/.nav-collapse --> 
 
-
 </div> 
 </nav> 
-
 
 The first element is the opening <body> tag. The body of an HTML file 
 contains the content users will see on a page. At @ is a <nav> element that 
@@ -29021,18 +23388,13 @@ tion bar is basically a list that starts with <ul> @, and each link is an item i
 this list (<li>) ©. To add more links, insert more lines using the following 
 structure: 
 
-
 <li><a href="{% url 'learning_logs:title' %}">Title</a></li> 
-
 
 Styling and Deploying an App 459 
 
-
 460 
 
-
 Chapter 20 
-
 
 This line represents a single link in the navigation bar. The link is taken 
 directly from the previous version of base.himl. 
@@ -29044,15 +23406,11 @@ registration links. Here we’ll display the user greeting and logout link or
 links to register or log in. The rest of the code in this section closes out the 
 elements that contain the navigation bar ®. 
 
-
 Defining the Main Part of the Page 
-
 
 The rest of base.himl contains the main part of the page: 
 
-
 <div class="container"> 
-
 
 <div class="page-header"> 
 
@@ -29063,13 +23421,10 @@ The rest of base.himl contains the main part of the page:
 {% block content %}{% endblock content %} 
 </div> 
 
-
 </div> <!-- /container --> 
-
 
 </body> 
 </html> 
-
 
 At @ is an opening div with the class container. A div is a section of a 
 web page that can be used for any purpose and can be styled with a border, 
@@ -29088,24 +23443,18 @@ shown in Figure 20-1. Try resizing the window so it’s really narrow; the
 navigation bar should be replaced by a button. Click the button, and all 
 the links should appear in a drop-down list. 
 
-
 This simplified version of the Bootstrap template should work on most recent browsers. 
 Earlier browsers may not render some styles correctly. The full template, available at 
 http://getbootstrap.com/getting-started/#examples/, will work on almost all 
 available browsers. 
 
-
 index.html 
-
 
 © oe 
 
-
 login. html 
 
-
 Styling the Home Page Using a Jumbotron 
-
 
 Let’s update the home page using the newly defined header block and 
 another Bootstrap element called a jumbotron—a large box that will stand 
@@ -29114,13 +23463,11 @@ cally used on home pages to hold a brief description of the overall project.
 While we’re at it, we’ll update the message on the home page as well. Here’s 
 index.html: 
 
-
 {% block header %} 
 <div class='jumbotron'> 
 <hi>Track your learning.</h1> 
 </div> 
 {% endblock header %} 
-
 
 <h2> 
 <a href="{% url 'users:register' %}">Register an account</a> to make 
@@ -29131,7 +23478,6 @@ Whenever you learn something new about a topic, make an entry
 summarizing what you've learned. 
 </h2> 
 
-
 At @ we tell Django that we’re about to define what goes in the header 
 block. Inside a jumbotron element @ we place a short tagline, Track your 
 learning, to give first-time visitors a sense of what Learning Log does. 
@@ -29141,51 +23487,37 @@ make an account, and we describe the two main actions—add new topics
 and make topic entries. The index page now looks like Figure 20-1 and isa 
 significant improvement over our unstyled project. 
 
-
 Styling the Login Page 
 We've refined the overall appearance of the login page but not the login 
 form yet, so let’s make the form look consistent with the rest of the page: 
 
-
 1) {% load bootstrap3 %} - 
 
-
 ® {% block header %} 
-
 
 <h2>Log in to your account.</h2> 
 {% endblock header %} 
 
-
 © <form method="post" action="{% url 'users:login' %}" class="form"> 
-
 
 Styling and Deploying an App ~=—- 461 
 
-
 462 
-
 
 Chapter 20 
 
-
 {% bootstrap form form %} 
-
 
 {% buttons %} 
 <button name="submit" class="btn btn-primary">log in</button> 
 {% endbuttons %} 
 
-
 nly 
-
 
 <input type="hidden" name="next" value="{% url ‘learning logs:index' %}" /> 
 </form> 
 
-
 {% endblock content %} 
-
 
 At @ we load the bootstrap3 template tags into this template. At @ we 
 define the header block, which describes what the page is for. Notice that 
@@ -29204,64 +23536,46 @@ cleaner and has consistent styling and a clear purpose. Try logging in with an
 incorrect username or password; you'll see that even the error messages are 
 styled consistently and integrate well with the overall site. 
 
-
 Learning Log - Chromium 
-
 
 {4 Learning Log 
 
-
 © © |B localhost:8000/user 
-
 
 Learning Log __ Topics register login 
 
-
 Log in to your account. 
-
 
 Username 
 
-
 Usemame 
-
 
 Password 
 
-
 wor 
-
 
 Figure 20-2: The login page styled with Bootstrap 
 
-
 Styling the new_fopic Page 
-
 
 Let’s make the rest of the pages look consistent as well. We’ll update the 
 new_topic page next: 
-
 
 new_fopic. html % extends "learning 
 {% load bootstrap3 %} 
 @ {% block header %} 
 
-
 <h2>Add a new topic:</h2> 
 {% endblock header %} 
-
 
 @ <form action="{% url ‘learning logs:new_topic' %}" method="post’ 
 class="form"> 
 
-
 (3) {% bootstrap_form form %} 
 (4) {% buttons %} 
 
-
 <button name="submit" class="btn btn-primary">add topic</button> 
 {% endbuttons %} 
-
 
 Most of the changes here are similar to those applied in login.himl: 
 we load bootstrap3 and add the header block with an appropriate message 
@@ -29270,54 +23584,41 @@ at ®. Then we add the class="form" attribute to the <form> tag @, use the
 bootstrap3 structure for the submit button @. Log in and navigate to the 
 new_topic page; it should look similar to the login page now. 
 
-
 Styling the Topics Page 
-
 
 Now let’s make sure the pages for viewing information are styled appropri- 
 ately as well, starting with the topics page: 
 
-
 topics. html 
 @ {% block header %} 
-
 
 <hi>Topics</h1> 
 {% endblock header %} 
 
-
 Styling and Deploying an App 463 
-
 
 2) <h3> 
 <a href="{% url ‘learning logs:topic' topic.id %}">{{ topic }}</a> 
 </h3> 
 
-
 © <h3><a href="{% url ‘learning logs:new_topic' %}">Add new topic</h3> 
-
 
 We don’t need the {% load bootstrap3 %} tag, because we’re not using any 
 custom bootstrap3 template tags in this file. We add the heading Topics inside 
 the header block ®. We style each topic as an <h3> element to make them a 
 little larger on the page @ and do the same for the link to add a new topic ®. 
 
-
 Styling the Entries on the Topic Page 
-
 
 The topic page has more content than most pages, so it needs a bit more 
 work. We’ll use Bootstrap’s panels to make each entry stand out. A panelis a 
 div with predefined styling and is perfect for displaying a topic’s entries: 
 
-
 topic. html 
-
 
 @ {% block header %} 
 <h2>{{ topic }}</h2> 
 {% endblock header %} 
-
 
 <div class="panel panel-default"> 
 <div class="panel-heading"> 
@@ -29334,17 +23635,13 @@ edit entry</a>
 </div> 
 </div> <!-- panel --> 
 
-
 464 = Chapter 20 
-
 
 {% empty %} 
 There are no entries for this topic yet. 
 {% endfor %} 
 
-
 {% endblock content %} 
-
 
 We first place the topic in the header block ®. We then delete the 
 unordered list structure previously used in this template. Instead of mak- 
@@ -29363,72 +23660,53 @@ Figure 20-3 shows the topic page with its new look. The functionality of
 Learning Log hasn’t changed, but it looks more professional and inviting 
 to users. 
 
-
 Learning Log - Chromium i 
-
 
 [5 Learning Log x 
 ¢e @ |B locathost:8000/topics/1/ w= 
 Learning Log _ Topics Hello, |_admin log out 
 Chess 
 
-
 add new entry 
 
-
 Jun alyZ, 2015 15:30 edit entry 
-
 
 The bishops and knights are good pieces to have out in the opening phase of the game. They're both powerful enough to be useful in attacking 
 your opponent, but not so powerful that you can't afford to lose them in an early trade. 
 
-
 May 28, 2015 04:39 edit entry 
-
 
 In the opening phase of the game, it’s important to bring out your bishops and knights. These pieces are powerful and maneuverable enough to 
 play a significant role in the beginning moves of a game. 
 
-
 May 28, 2015 04:39 edit entry =I 
-
 
 The opening is the first part of the game, roughly the first ten moves or so. In the opening, it's a good idea to do three things—bring out your 
 CO hishane and kninhts tn: ta-controlthe center of the hoard and castle your kina 1 a 
 
-
 Figure 20-3: The topic page with Bootstrap styling 
-
 
 If you want to use a different Bootstrap template, follow a similar process to what 
 we've done so far in this chapter. Copy the template into base.html, and modify the 
 elements that contain actual content so the template displays your project’s informa- 
 tion. Then use Bootstrap’s individual styling tools to style the content on each page. 
 
-
 Styling and Deployingan App = 465 
-
 
 466 
 
-
 TRY IT YOURSELF 
-
 
 20-1. Other Forms: We've applied Bootstrap’s styles to the login and add_topic 
 pages. Make similar changes to the rest of the form-based pages: new entry 
 and edit_entry, and register. 
 
-
 20-2. Stylish Blog: Use Bootstrap to style the Blog project you created in 
 Chapter 19. 
 
-
 Deploying Learning Log 
 
-
 Chapter 20 
-
 
 Now that we have a professional-looking project, let’s deploy it to a live 
 server so anyone with an internet connection can use it. We’ll use Heroku, 
@@ -29439,22 +23717,17 @@ The process is slightly different on Windows than it is on Linux and
 OS X. If you’re using Windows, check for notes in each section that specify 
 what you'll need to do differently on your system. 
 
-
 Making a Heroku Account 
-
 
 To make an account, go to https://heroku.com/ and click one of the signup 
 links. It’s free to make an account, and Heroku has a free tier that allows 
 you to test your projects in live deployment. 
 
-
 Herokw’s free tier has limits, such as the number of apps you can deploy and how 
 often people can visit your app. But these limits are generous enough to let you 
 practice deploying apps without any cost. 
 
-
 Installing the Heroku Toolbelt 
-
 
 To deploy and manage a project on Heroku’s servers, you'll need the tools 
 available in the Heroku Toolbelt. To install the latest version of the Heroku 
@@ -29462,26 +23735,20 @@ Toolbelt, visit https://toolbelt.heroku.com/ and follow the directions for your
 operating system, which will include either a one-line terminal command 
 or an installer you can download and run. 
 
-
 Installing Required Packages 
-
 
 You'll also need to install a number of packages that help serve Django proj- 
 ects on a live server. In an active virtual environment, issue the following 
 commands: 
-
 
 (11_env)learning_ log$ pip install dj-database-url 
 (11_env)learning_log$ pip install dj-static 
 (11_env)learning log$ pip install static3 
 (11_env)learning_log$ pip install gunicorn 
 
-
 requirements. txt 
 
-
 requirements. txt 
-
 
 Make sure you issue the commands one at a time so you know if any 
 package fails to install correctly. The package dj-database-url helps Django 
@@ -29490,29 +23757,23 @@ Django manage static files correctly, and gunicorn is a server capable of
 serving apps in a live environment. (Static files contain style rules and 
 JavaScript files.) 
 
-
 Some of the required packages may not install on Windows, so don’t be concerned if 
 you get an error message when you try to install some of them. What matters is getting 
 Heroku to install the packages on the live deployment, and we'll do that in the next 
 section. 
 
-
 Creating a Packages List with a requirements.txt File 
-
 
 Heroku needs to know which packages our project depends on, so we’ll use 
 pip to generate a file listing them. Again, from an active virtual environment, 
 issue the following command: 
 
-
 (11_env) learning log$ pip freeze > requirements.txt 
-
 
 The freeze command tells pip to write the names of all the pack- 
 ages currently installed in the project into the file requirements.txt. Open 
 requirements.txt to see the packages and version numbers installed in your 
 project (Windows users might not see all of these lines): 
-
 
 Django==1.8.4 
 dj-database-url==0.3.0 
@@ -29520,7 +23781,6 @@ dj-static==0.0.6
 django-bootstrap3==6.2.2 
 gunicorn==19.3.0 
 static3==0.6.1 
-
 
 Learning Log already depends on six different packages with specific 
 version numbers, so it requires a specific environment to run properly. 
@@ -29535,24 +23795,17 @@ database, to the list of packages. Open requirements.ixt and add the line
 psycopg2>=2.6.1. This will install version 2.6.1 of psycopg2, or a newer version 
 if it’s available: 
 
-
 Styling and Deploying an App 467 
-
 
 468 
 
-
 runtime. txt 
-
 
 settings.py 
 
-
 Chapter 20 
 
-
 psycopg2>=2.6.1 
-
 
 If any of the packages didn’t install on your system, add those as well. 
 When you're finished, your requirements. txt file should include each of the 
@@ -29560,10 +23813,8 @@ packages shown above. If a package is listed on your system but the version
 number differs from what’s shown here, keep the version you have on your 
 system. 
 
-
 If you're using Windows, make sure your version of requirements.txt matches the 
 list shown here regardless of which packages you were able to install on your system. 
-
 
 Specifying the Python Runtime 
 
@@ -29572,45 +23823,34 @@ version of Python. Let’s make sure Heroku uses the same version of Python
 we're using. In an active virtual environment, issue the command python 
 --version: 
 
-
 (11_env)learning_log$ python --version 
 Python 3.5.0 
-
 
 In this example I’m running Python 3.5.0. Make a new file called 
 runtime.txtin the same directory as manage.py, and enter the following: 
 
-
 python-3.5.0 
-
 
 This file should contain one line with your Python version specified in 
 the format shown; make sure you enter python in lowercase, followed by a 
 hyphen, followed by the three-part version number. 
-
 
 If you get an error reporting that the Python runtime you requested is not available, 
 go to https://devcenter.heroku.com/ and click Python; then look for a link to 
 Specifying a Python Runtime. Scan through the article to find the available 
 runtimes, and use the one that most closely matches your Python version. 
 
-
 Modifying settings.py for Heroku 
-
 
 Now we need to add a section at the end of settings.py to define some set- 
 tings specifically for the Heroku environment: 
 
-
 Procfile 
-
 
 # Heroku settings 
 
-
 @ if os.getcwd() == '/app': 
 (2) 
-
 
 import dj_database url 
 DATABASES = { 
@@ -29618,14 +23858,11 @@ DATABASES = {
 ‘default’: dj_database_url.config(default='postgres://localhost' ) 
 } 
 
-
 # Honor the 'X-Forwarded-Proto' header for request.is secure(). 
 SECURE_PROXY_SSL_HEADER = (‘HTTP_X FORWARDED PROTO’, ‘https') 
 
-
 # Allow all host headers. 
 ALLOWED HOSTS = ['*"] 
-
 
 # Static asset configuration 
 BASE DIR = os.path.dirname(os.path.abspath(__file_)) 
@@ -29633,7 +23870,6 @@ STATIC_ROOT = '‘staticfiles'
 STATICFILES DIRS = ( 
 os.path.join(BASE DIR, '‘static'), 
 ) 
-
 
 At © we use the function getcwd(), which gets the current working 
 directory the file is running from. In a Heroku deployment, the directory is 
@@ -29650,9 +23886,7 @@ Postgres on Heroku. The rest of the settings support HTTPS requests ®,
 ensure that Django will serve the project from Heroku’s URL @, and set 
 up the project to serve static files correctly on Heroku ®. 
 
-
 Making a Procfile to Start Processes 
-
 
 A Procfile tells Heroku which processes to start in order to serve the proj- 
 
@@ -29661,48 +23895,35 @@ ect properly. This is a one-line file that you should save as Proc/file, with an
 uppercase P and no file extension, in the same directory as manage.py. 
 Here’s what goes in Procfile: 
 
-
 web: gunicorn learning log.wsgi --log-file - 
-
 
 This line tells Heroku to use gunicorn as a server and to use the settings 
 in learning_log/wsgi.py to launch the app. The log-file flag tells Heroku the 
 kinds of events to log. 
 
-
 Styling and Deploying an App 469 
-
 
 wsgi.py 
 
-
 placeholder. txt 
-
 
 470 
 
-
 Chapter 20 
-
 
 Modifying wsgi.py for Heroku 
 We also need to modify wsgi.py for Heroku, because Heroku needs a slightly 
 different setup than what we’ve been using: 
 
-
 from dj_static import Cling 
 
-
 application = Cling(get_wsgi_application()) 
-
 
 We import Cling, which helps serve static files correctly, and use it to 
 launch the application. This code will work locally as well, so we don’t need 
 to put it in an if block. 
 
-
 Making a Directory for Static Files 
-
 
 On Heroku, Django collects all the static files and places them in one place 
 so it can manage them efficiently. We'll create a directory for these static 
@@ -29713,22 +23934,17 @@ placeholder file to store in this directory for now, because empty directories
 won't be included in the project when it’s pushed to Heroku. In the static/ 
 directory, make a file called placeholder.txt: 
 
-
 This file ensures that learning log/static/ will be added to the project. 
 Django will collect static files and place them in learning log/static/. 
-
 
 There’s nothing special about this text; it just reminds us why we 
 included this file in the project. 
 
-
 Using the gunicorn Server Locally 
-
 
 If you’re using Linux or OS X, you can try using the gunicorn server locally 
 before deploying to Heroku. From an active virtual environment, run the 
 command heroku local to start the processes defined in Procfile: 
-
 
 (11_env)learning_log$ heroku local 
 Installing Heroku Toolbelt v4... done 
@@ -29736,16 +23952,12 @@ Installing Heroku Toolbelt v4... done
 
 forego | starting web.1 on port 5000 
 
-
 @ web.1 | [2015-08-13 22:00:45 -0800] [12875] [INFO] Starting gunicorn 19.3.0 
 @ web.1 | [2015-08-13 22:00:45 -0800] [12875] [INFO] Listening at: 
 
-
 http://0.0.0.0:5000 (12875) 
 
-
 © web.1 | [2015-08-13 22:00:45 -0800] [12878] [INFO] Booting worker with pid: 12878 
-
 
 The first time you run heroku local, a number of packages from the 
 Heroku Toolbelt will be installed. The output shows that gunicorn has been 
@@ -29758,13 +23970,10 @@ should see the Learning Log home page, just as it appears when you use
 the Django server (runserver). Press CTRL-C to stop the processes started by 
 heroku local. You should continue to use runserver for local development. 
 
-
 gunicorn won't run on Windows, so skip this step if you're using Windows. This 
 won't affect your ability to deploy the project to Heroku. 
 
-
 Using Git to Track the Project’s Files 
-
 
 If you completed Chapter 17, you’ll know that Git is a version control pro- 
 gram that allows you to take a snapshot of the code in your project each 
@@ -29778,55 +23987,41 @@ ing about breaking your project. When you're deploying to a live server, you
 need to make sure you're deploying a working version of your project. If you 
 want to read more about Git and version control, see Appendix D. 
 
-
 Installing Git 
-
 
 The Heroku Toolbelt includes Git, so it should already be installed on 
 your system. But terminal windows that were open before you installed the 
 Heroku Toolbelt won’t have access to Git, so open a new terminal window 
 and issue the command git --version: 
 
-
 (11_env)learning log$ git --version 
 git version 2.5.0 
-
 
 If you get an error message for some reason, see the instructions in 
 Appendix D for installing Git. 
 
-
 Configuring Git 
-
 
 Git keeps track of who makes changes to a project, even in cases like this 
 when there’s only one person working on the project. To do this, Git needs 
 to know your username and email. You have to provide a username, but feel 
 free to make up an email for your practice projects: 
 
-
 (1l1_env)learning_ log$ git config --global user.name "ehmatthes" 
 (1l1_env)learning log$ git config --global user.email "eric@example.com" 
 
-
 Styling and Deployingan App 471 
-
 
 472 
 
-
 .gitignore 
-
 
 Chapter 20 
 
-
 @@® 
-
 
 If you forget this step, Git will prompt you for this information when 
 you make your first commit. 
-
 
 Ignoring Files 
 
@@ -29835,11 +24030,9 @@ some files. Make a file called .gitignore in the folder that contains manage.py.
 Notice that this filename begins with a dot and has no file extension. Here’s 
 what goes in .gitignore: 
 
-
 1l_env/ 
 __pycache__/ 
 * sqlite3 
-
 
 We tell Git to ignore the entire directory li_env, because we can 
 re-create it automatically at any time. We also don’t track the __pycache__ 
@@ -29849,18 +24042,14 @@ because it’s a bad habit: if you’re ever using SQLite on a server, you might
 accidentally overwrite the live database with your local test database when 
 you push the project to the server. 
 
-
 If youre using Python 2.7, replace__pycache__ with *.pyc because Python 2.7 doesnt 
 create a__pycache__ directory. 
 
-
 Committing the Project 
-
 
 We need to initialize a Git repository for Learning Log, add all the necessary 
 files to the repository, and commit the initial state of the project. Here’s how 
 we do that: 
-
 
 (11_env)learning log$ git init 
 
@@ -29887,7 +24076,6 @@ nothing to commit, working directory clean
 
 (11_env)learning_log$ 
 
-
 At © we issue the git init command to initialize an empty repository 
 in the directory containing Learning Log. At @ we use the git add . com- 
 mand, which adds all the files that aren’t being ignored to the repository. 
@@ -29895,21 +24083,16 @@ mand, which adds all the files that aren’t being ignored to the repository.
 message: the -a flag tells Git to include all changed files in this commit, and 
 the -m flag tells Git to record a log message. 
 
-
 © oe 
-
 
 Issuing the git status command @ indicates that we’re on the master 
 branch and that our working directory is clean. This is the status you'll want 
 to see any time you push your project to Heroku. 
 
-
 Pushing to Heroku 
-
 
 We're finally ready to push the project to Heroku. In an active terminal 
 session, issue the following commands: 
-
 
 (11_env)learning log$ heroku login 
 Enter your Heroku credentials. 
@@ -29922,7 +24105,6 @@ https: //afternoon-meadow-2775.herokuapp.com/ |
 https: //git.heroku.com/afternoon-meadow-2775.git 
 Git remote heroku added 
 
-
 (11_env)learning log$ git push heroku master 
 
 --snip-- 
@@ -29931,14 +24113,12 @@ remote: ----- > Launching... done, v6
 
 remote: https: //afternoon-meadow-2775.herokuapp.com/ deployed to Heroku 
 
-
 remote: Verifying deploy.... done. 
 
 To https://git.heroku.com/afternoon-meadow-2775.git 
 bdb2a35..62d711d master -> master 
 
 (11_env) learning log$ 
-
 
 First, log in to Heroku in the terminal session with the username and 
 password you used to create an account at hitps://heroku.com/ ®. Then tell 
@@ -29953,7 +24133,6 @@ When you've issued these commands, the project is deployed but not
 fully configured. To check that the server process started correctly, use the 
 heroku ps command: 
 
-
 (11_env)learning_log$ heroku ps 
 
 Free quota left: 17h 40m 
@@ -29962,25 +24141,18 @@ Free quota left: 17h 40m
 web.1: up 2015/08/14 07:08:51 (~ 10m ago) 
 (11_env)learning_log$ 
 
-
 The output shows how much more time the project can be active in 
-
 
 the next 24 hours ®. At the time of this writing, Heroku allows free deploy- 
 ments to be active for up to 18 hours in any 24-hour period. Ifa project 
 
-
 Styling and Deploying an App 473 
-
 
 474 
 
-
 Chapter 20 
 
-
 © 
-
 
 exceeds these limits, a standard server error page will be displayed; we'll 
 customize this error page shortly. At @ we see that the process defined in 
@@ -29988,32 +24160,26 @@ Procfile has been started.
 
 Now we can open the app in a browser using the command heroku open: 
 
-
 (11_env)learning_ log$ heroku open 
 Opening afternoon-meadow-2775... done 
-
 
 This command spares you from opening a browser and entering the 
 URL Heroku showed you, but that’s another way to open the site. You 
 should see the home page for Learning Log, styled correctly. However, you 
 can’t use the app yet because we haven’t set up the database. 
 
-
 Heroku’s deployment process changes from time to time. If you have any issues you 
 can’t resolve, look at Heroku’s documentation for help. Go to https://devcenter 
 -heroku.com/, click Python, and look for a link to Getting Started with Django. 
 Ifyou can't understand what you see there, check out the suggestions in Appendix C. 
 
-
 Setting Up the Database on Heroku 
-
 
 We need to run migrate once to set up the live database and apply all the 
 migrations we generated during development. You can run Django and 
 Python commands on a Heroku project using the command heroku run. 
 
 Here’s how to run migrate on the Heroku deployment: 
-
 
 (11_env)learning log$ heroku run python manage.py migrate 
 Running “python manage.py migrate’ on afternoon-meadow-2775... up, run.2435 
@@ -30025,7 +24191,6 @@ Applying learning logs.o002_entry... OK
 Applying learning logs.0003 topic_user... OK 
 Applying sessions.0001_initial... OK 
 (11_env) learning _log$ 
-
 
 We first issue the command heroku run python manage.py migrate @. 
 Heroku then creates a terminal session to run the migrate command @. 
@@ -30044,18 +24209,14 @@ Learning Log. In the next section we’ll complete a few more tasks to
 finish the deployment process and set you up to continue developing 
 Learning Log. 
 
-
 Refining the Heroku Deployment 
-
 
 In this section we’ll refine the deployment by creating a superuser, just as 
 we did locally. We’ll also make the project more secure by changing the 
 setting DEBUG to False, so users won't see any extra information in error 
 messages that they could use to attack the server. 
 
-
 Creating a Superuser on Heroku 
-
 
 You've already seen that we can run one-off commands using the heroku run 
 command. But you can also run commands by opening a Bash terminal 
@@ -30063,7 +24224,6 @@ session while connected to the Heroku server using the command heroku
 run bash. Bash is the language that runs in many Linux terminals. We’ll use 
 the Bash terminal session to create a superuser so we can access the admin 
 site on the live app: 
-
 
 (11_env)learning log$ heroku run bash 
 Running “bash” on afternoon-meadow-2775... up, run.6244 
@@ -30081,15 +24241,12 @@ Superuser created successfully.
 exit 
 (11_env)learning_log$ 
 
-
 At @ we run ls to see which files and directories exist on the server, 
 which should be the same files we have on our local system. You can navi- 
 gate this file system like any other. 
 
-
 NOTE Windows users will use the same commands shown here (such as 1s instead of dir), 
 because you’re running a Linux terminal through a remote connection. 
-
 
 At @ we run the command to create a superuser, which outputs the 
 same prompts we saw on our local system when we created a superuser in 
@@ -30105,26 +24262,19 @@ If other people have already started using your project, be aware that
 you'll have access to all of their data! Don’t take this lightly, and users will 
 continue to trust you with their data. 
 
-
 Styling and Deploying an App = 475 
-
 
 476 
 
-
 settings.py 
-
 
 Chapter 20 
 
-
 Creating a User-Friendly URL on Heroku 
-
 
 You'll probably want your URL to be friendlier and more memorable than 
 hitps://afternoon-meadow-2775.herokuapp.com/. You can rename the app using 
 a single command: 
-
 
 (11_env)learning_ log$ heroku apps:rename learning-log 
 
@@ -30135,13 +24285,11 @@ Git remote heroku updated
 
 (11_env)learning_log$ 
 
-
 You can use letters, numbers, and dashes when naming your app, and 
 call it whatever you want, as long as no one else has claimed the name. This 
 deployment now lives at https://learning-log.herokuapp.com/. The project is no 
 longer available at the previous URL; the apps: rename command completely 
 moves the project to the new URL. 
-
 
 When you deploy your project using Heroku’s free service, Heroku puts your deploy- 
 ment to sleep if it hasn't received any requests after a certain amount of time or if 
@@ -30149,9 +24297,7 @@ it’s been too active for the free tier. The first time a user accesses the sit
 sleeping, it will take longer to load, but the server will respond to subsequent requests 
 more quickly. This is how Heroku can afford to offer free deployments. 
 
-
 Securing the Live Project 
-
 
 One glaring security issue exists in the way our project is currently deployed: 
 the setting DEBUG=True in settings.py, which provides debug messages when 
@@ -30164,13 +24310,10 @@ project’s host.
 Let’s modify settzngs.py so we can see error messages locally but not on 
 the live deployment: 
 
-
 # Allow only Heroku to host the project. 
 ALLOWED_HOSTS = ['learning-log.herokuapp.com' ] 
 
-
 DEBUG = False 
-
 
 We need to make only two changes: at @ we modify ALLOWED_HOSTS, 
 so the only server allowed to host the project is Heroku. You need to use 
@@ -30179,14 +24322,11 @@ afternoon-meadow-2775.herokuapp.com, or the name you chose. At @ we set
 DEBUG to False, so Django won't share sensitive information when an error 
 occurs. 
 
-
 Committing and Pushing Changes 
-
 
 Now we need to commit the changes made to settings.py to the Git reposi- 
 tory, and then push the changes to Heroku. Here’s a terminal session show- 
 ing this process: 
-
 
 (11_env)learning log$ git commit -am "Set DEBUG=False for Heroku." 
 [master 081f635] Set DEBUG=False for Heroku. 
@@ -30198,7 +24338,6 @@ ing this process:
 nothing to commit, working directory clean 
 
 (11_env) learning log$ 
-
 
 We issue the git commit command with a short but descriptive commit 
 message ®. Remember that the -am flag makes sure Git commits all the files 
@@ -30215,9 +24354,7 @@ Appendix D to better understand how to work with Git.
 
 Now let’s push the updated repository to Heroku: 
 
-
 (11_env)learning log$ git push heroku master 
-
 
 --snip-- 
 
@@ -30231,7 +24368,6 @@ remote: ----- > Launching... done, v8
 
 remote: https://learning-log.herokuapp.com/ deployed to Heroku 
 
-
 remote: Verifying deploy.... done. 
 
 To https://git.heroku.com/learning-log.git 
@@ -30239,30 +24375,22 @@ To https://git.heroku.com/learning-log.git
 
 (11_env)learning_log$ 
 
-
 Heroku recognizes that the repository has been updated, and it 
 rebuilds the project to make sure all the changes have been taken into 
 account. It doesn’t rebuild the database, so we won’t have to run migrate for 
 this update. 
 
-
 Styling and Deploying an App 477 
-
 
 478 
 
-
 404.html 
-
 
 500. html 
 
-
 settings.py 
 
-
 Chapter 20 
-
 
 To check that the deployment is more secure now, enter the URL of 
 your project with an extension we haven’t defined. For example, try to visit 
@@ -30274,9 +24402,7 @@ Django error page. The result is perfect: you'll see informative error mes-
 sages when you're developing the project further, but users won't see criti- 
 cal information about the project’s code. 
 
-
 Creating Custom Error Pages 
-
 
 In Chapter 19, we configured Learning Log to return a 404 error if the user 
 requests a topic or entry that doesn’t belong to them. You’ve probably seen 
@@ -30288,53 +24414,39 @@ the same generic error page in both situations, but we can write our own
 404 and 500 error page templates that match the overall appearance of 
 Learning Log. These templates must go in the root template directory. 
 
-
 Making Custom Templates 
-
 
 In the learning_log/learning_log folder, make a new folder called templates. 
 Then make a new file called 404.himl using the following code: 
 
-
 {% extends "learning logs/base.html" %} 
-
 
 {% block header %} 
 <h2>The item you requested is not available. (404)</h2> 
 {% endblock header %} 
 
-
 This simple template provides the generic 404 error page information 
 but is styled to match the rest of the site. 
 Make another file called 500.himl using the following code: 
 
-
 {% extends "learning logs/base.html" %} 
-
 
 {% block header %} 
 <h2>There has been an internal error. (500)</h2> 
 {% endblock header %} 
 
-
 These new files require a slight change to settings.py. 
-
 
 "DIRS': [os.path. join(BASE_DIR, ‘learning log/templates')], 
 
-
 settings.py 
 
-
 eo 
-
 
 This change tells Django to look in the root template directory for the 
 error page templates. 
 
-
 Viewing the Error Pages Locally 
-
 
 If you want to see what the error pages look like on your system before 
 pushing them to Heroku, you'll first need to set Debug=False on your local 
@@ -30343,12 +24455,9 @@ following changes to settings.py (make sure you’re working in the part of
 settings.py that applies to the local environment, not the part that applies to 
 Heroku): 
 
-
 DEBUG = False 
 
-
 ALLOWED_HOSTS = ['localhost' ] 
-
 
 You must have at least one host specified in ALLOWED_HOSTS when DEBUG 
 is set to False. Now request a topic or entry that doesn’t belong to you 
@@ -30359,18 +24468,14 @@ When you're finished checking the error pages, set DEBUG back to True
 to further develop Learning Log. (Make sure DEBUG is still set to False in the 
 section of settings.py that applies to the Heroku deployment.) 
 
-
 The 500 error page won't show any information about the user who’s logged in, 
 because Django doesn’t send any context information in the response when there’s 
 a server error. 
 
-
 Pushing the Changes to Heroku 
-
 
 Now we need to commit the template changes and push them live to 
 Heroku: 
-
 
 (11_env)learning log$ git add . 
 
@@ -30387,23 +24492,17 @@ create mode 100644 learning _log/templates/500.html
 
 remote: Verifying deploy.... done. 
 
-
 Styling and Deploying an App 479 
-
 
 480 
 
-
 views.py 
 
-
 Chapter 20 
-
 
 To https://git.heroku.com/learning-log.git 
 2b34ca1..a64d8d3_ master -> master 
 (11_env)learning_log$ 
-
 
 We issue the git add . command at ® because we created some new 
 files in the project, so we need to tell Git to start tracking these files. Then 
@@ -30412,9 +24511,7 @@ we commit the changes @ and push the updated project to Heroku ®.
 Now when an error page appears, it should have the same styling as the 
 rest of the site, making for a smoother user experience when errors arise. 
 
-
 Using the get_object_or_404() Method 
-
 
 At this point, if a user manually requests a topic or entry that doesn’t exist, 
 they'll get a 500 server error. Django tries to render the page but it doesn’t 
@@ -30425,20 +24522,15 @@ tion tries to get the requested object from the database, but if that object
 doesn’t exist, it raises a 404 exception. We’ll import this function into 
 views.py and use it in place of get(): 
 
-
 from django.shortcuts import render, get_object_or_404 
 
-
 topic = get_object_or_404(Topic, id=topic_id) 
-
 
 Now when you request a topic that doesn’t exist (for example, hitp:// 
 locathost:8000/topics/999999/), you'll see a 404 error page. To deploy this 
 change, make a new commit, and then push the project to Heroku. 
 
-
 Ongoing Development 
-
 
 You might want to further develop Learning Log after your initial push to a 
 live server or develop your own projects to deploy. There’s a fairly consistent 
@@ -30455,7 +24547,6 @@ Then commit the changes to your repository using git commit -am
 mand git push heroku master. If you migrated your database locally, you'll 
 need to migrate the live database as well. You can either use the one-off 
 
-
 command heroku run python manage.py migrate, or open a remote terminal 
 session with heroku run bash and run the command python manage.py migrate. 
 Then visit your live project, and make sure the changes you expect to see 
@@ -30471,9 +24562,7 @@ one will be happy to help you. Solving each problem that arises helps you
 steadily develop your skills until you’re building meaningful, reliable proj- 
 ects and you're answering other people’s questions as well. 
 
-
 The SECRET_KEY Setting 
-
 
 Django uses the value of the SECRET_KEY setting in settings.py to implement a 
 number of security protocols. In this project, we’ve committed our settings 
@@ -30483,9 +24572,7 @@ fully for a production site. If you build a project that’s getting meaningful
 use, make sure you research how to handle your SECRET_KEY setting more 
 securely. 
 
-
 Deleting a Project on Heroku 
-
 
 It’s great practice to run through the deployment process a number of 
 times with the same project or with a series of small projects to get the hang 
@@ -30503,30 +24590,22 @@ firm the request for deletion by manually entering the project’s name.
 If you prefer working from a terminal, you can also delete a project by 
 issuing the destroy command: 
 
-
 (11_env)learning_log$ heroku apps:destroy --app appname 
-
 
 Here appname is the name of your project, which is either something like 
 afternoon-meadow-2775 or learning-log if you’ve renamed the project. You'll be 
 prompted to reenter the project name to confirm the deletion. 
 
-
 Deleting a project on Heroku does nothing to your local version of the project. If no 
-
 
 one has used your deployed project and you’re just practicing the deployment process, 
 it’s perfectly reasonable to delete your project on Heroku and redeploy it. 
 
-
 Styling and Deploying an App 481 
-
 
 482 
 
-
 TRY IT YOURSELF 
-
 
 20-3. Live Blog: Deploy the Blog project you've been working on to Heroku. 
 Make sure you set DEBUG to False and change the ALLOWED_HOSTS setting, so 
@@ -30537,10 +24616,8 @@ new_entry() and edit_entry() views. Make this change, test it by entering a
 URL like http://localhost:8000/new_entry/99999/, and check that you see a 
 AOA error. 
 
-
 20-5. Extended Learning Log: Add one feature to Learning Log, and push 
 the change to your live deployment. Try a simple change, such as writing 
-
 
 more about the project on the home page. Then try adding a more advanced 
 feature, such as giving users the option of making a topic public. This would 
@@ -30551,12 +24628,9 @@ project and revise views.py so any topic that’s public is visible to unauthen-
 ticated users as well. Remember to migrate the live database after you've 
 pushed your changes to Heroku. 
 
-
 Summary 
 
-
 Chapter 20 
-
 
 In this chapter you learned to give your projects a simple but professional 
 appearance using the Bootstrap library and the django-bootstrap3 app. 
@@ -30579,12 +24653,9 @@ Now that you've finished Learning Log, you can start building your own
 projects. Start simple, and make sure the project works before adding com- 
 plexity. Enjoy your learning, and good luck with your projects! 
 
-
 AFTERWORD 
 
-
 Congratulations! You’ve learned the basics 
-
 
 of Python and applied your knowledge to 
 
@@ -30593,10 +24664,8 @@ visualized some data, and made a web applica-
 
 tion. From here, you can go in a number of different 
 
-
 directions to continue developing your programming 
 skills. 
-
 
 First, you should continue to work on meaningful projects that inter- 
 est you. Programming is more appealing when you're solving relevant and 
@@ -30607,12 +24676,9 @@ to you and make visualizations that show interesting patterns and connec-
 tions. You could create your own web application or try to emulate one of 
 your favorite apps. 
 
-
 484 
 
-
 Afterword 
-
 
 Whenever possible, invite other people to try using your programs. 
 
@@ -30642,12 +24708,9 @@ variety of problems more efficiently.
 Congratulations on how far you’ve come, and good luck with your 
 continued learning! 
 
-
 INSTALLING PYTHON 
 
-
 Python has several different versions and 
-
 
 a number of ways it can be set up on each 
 operating system. This appendix is useful if 
@@ -30656,182 +24719,133 @@ the approach in Chapter 1 didn’t work, or if you
 want to install a different version of Python than the 
 one that came with your system. 
 
-
 Python on Linux 
-
 
 Python is included by default on almost every Linux system, but you might 
 want to use a different version than the default. If so, first find out which 
 version of Python you already have installed. 
 
-
 486 
-
 
 Finding the Installed Version 
 
-
 Open a terminal window and issue the following command: 
-
 
 $ python --version 
 Python 2.7.6 
-
 
 The result shows that the default version is 2.7.6. However, you might 
 also have a version of Python 3 installed. To check, enter the following 
 command: 
 
-
 $ python3 --version 
 Python 3.5.0 
-
 
 Python 3.5.0 is also installed. It’s worth running both commands before 
 you attempt to install a new version. 
 
-
 Installing Python 3 on Linux 
-
 
 If you don’t have Python 3, or if you want to install a newer version of 
 Python 3, you can install it in just a few lines. We’ll use a package called 
 deadsnakes, which makes it easy to install multiple versions of Python: 
 
-
 $ sudo add-apt-repository ppa:fkrull/deadsnakes 
 $ sudo apt-get update 
 $ sudo apt-get install python3.5 
 
-
 These commands will install Python 3.5 to your system. The following 
 code will start a terminal session running Python 3.5: 
-
 
 $ python3.5 
 >>> 
 
-
 You'll also want to use this command when you configure your text edi- 
 tor to use Python 3 and when you run programs from the terminal. 
 
-
 Python on OS X 
 
-
 Appendix A 
-
 
 Python is already installed on most OS X systems, but you might want to 
 use a different version than the default. If so, first find out which version of 
 Python you already have installed. 
 
-
 Finding the Installed Version 
 
-
 Open a terminal window, and enter the following command: 
-
 
 $ python --version 
 Python 2.7.6 
 
-
 You should also try running the command python3 --version. You'll 
-
 
 probably get an error message, but it’s worth checking to see if the version 
 
-
 you want is already installed. 
 
-
 Using Homebrew to Install Python 3 
-
 
 If you only have Python 2 installed, or if you have an older version of 
 Python 3, you can install the latest version of Python 3 using a package 
 called Homebrew. 
 
-
 Installing Homebrew 
-
 
 Homebrew depends on Apple’s Xcode package, so open a terminal and run 
 
-
 this command: 
 
-
 $ xcode-select --install 
-
 
 Click through the confirmation dialogs that pop up (this may take 
 a while, depending on the speed of your connection). Next, install 
 Homebrew: 
 
-
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ 
 master/install)" 
-
 
 You can find this command on the front page of the Homebrew site 
 at http://brew.sh/. Make sure you include a space between curl -fsSL and 
 the URL. 
 
-
 The -e in this command tells Ruby (the programming language Homebrew is 
 written in) to execute the code that’s downloaded here. You should only run com- 
 mands like this from sources you trust. 
 
-
 To confirm that Homebrew installed correctly, run this command: 
-
 
 $ brew doctor 
 Your system is ready to brew. 
 
-
 This output means you're ready to install Python packages through 
 Homebrew. 
 
-
 Installing Python 3 
-
 
 To install the latest version of Python 3, enter the following command: 
 
-
 $ brew install python3 
 
-
 Let’s check which version was installed using this command: 
-
 
 $ python3 --version 
 Python 3.5.0 
 $ 
 
-
 Installing Python 
-
 
 487 
 
-
 488 
-
 
 Now you can start a Python 3 terminal session using the command 
 python3, and you can use the python3 command to configure your text editor 
 so itruns Python programs with Python 3 instead of Python 2. 
 
-
 Python on Windows 
 
-
 Appendix A 
-
 
 Python isn’t usually included by default on Windows, but it’s worth check- 
 ing to see if it exists on the system. Open a terminal window by right- 
@@ -30839,18 +24853,14 @@ clicking on your desktop while holding the sHiFT key, and then select Open
 Command Window Here. You can also enter command into the Start Menu. In 
 the terminal window that pops up, run the following command: 
 
-
 > python --version 
 Python 3.5.0 
-
 
 If you see output like this, Python is already installed, but you still 
 might want to install a newer version. If you see an error message, you'll 
 need to download and install Python. 
 
-
 Installing Python 3 on Windows 
-
 
 Go to hitp://python.org/downloads/ and click the version of Python you want. 
 Download the installer, and when you run it make sure to check the Add 
@@ -30860,9 +24870,7 @@ modify your system’s environment variables manually. After you've installed
 Python, issue the python --version command in a new terminal window. If it 
 works, you're done. 
 
-
 Finding the Python Interpreter 
-
 
 If the simple command python doesn’t work, you'll need to tell Windows 
 where to find the Python interpreter. To find it, open your C drive and find 
@@ -30875,13 +24883,10 @@ the heading Location.
 In the terminal window, use the path to confirm the version you just 
 installed: 
 
-
 $ C:\\Python35\python --version 
 Python 3.5.0 
 
-
 Adding Python to Your Path Variable 
-
 
 It’s annoying to type the full path each time you want to start a Python ter- 
 minal, so we'll add the path to the system so you can just use the command 
@@ -30896,9 +24901,7 @@ use the right arrow key to scroll all the way to the right. Be careful not to
 overwrite the existing variable; if you do, click Cancel and try again. Add a 
 semicolon and the path to your python.exe file to the existing variable: 
 
-
 3C:\Python34 
-
 
 Close your terminal window and open a new one. This will load the 
 new Path variable into your terminal session. Now when you enter python 
@@ -30906,9 +24909,7 @@ new Path variable into your terminal session. Now when you enter python
 able. You can now start a Python terminal session by just entering python at a 
 command prompt. 
 
-
 Python Keywords and Built-in Functions 
-
 
 Python comes with its own set of keywords and built-in functions. It’s 
 important to be aware of these when you’re naming variables. One chal- 
@@ -30920,13 +24921,10 @@ built-in functions because you'll overwrite the functions.
 In this section we'll list Python’s keywords and built-in function names, 
 so you'll know which names to avoid. 
 
-
 Python Keywords 
-
 
 Each of the following keywords has a specific meaning, and you'll see an 
 error if you try to use them as a variable name. 
-
 
 False class finally is return 
 None continue for lambda try 
@@ -30937,17 +24935,13 @@ assert else import pass
 
 break except in raise 
 
-
 Installing Python 489 
 
-
 Python Built-in Functions 
-
 
 You won't get an error if you use one of the following readily available 
 built-in functions as a variable name, but you'll override the behavior of 
 that function: 
-
 
 abs() divmod() input () open() staticmethod() 
 all() enumerate() int() ord() str() 
@@ -30967,21 +24961,16 @@ delattr() help() next() setattr() buffer()
 dict() hex() object() slice() coerce() 
 dir() id() oct() sorted() intern() 
 
-
 In Python 2.7 print is a keyword, not a function. Also, unicode() is not available in 
 Python 3. Neither of these words should be used as a variable name. 
 
-
 490 Appendix A 
 
-
 TEXT EDITORS 
-
 
 Programmers spend a lot of time writ- 
 ing, reading, and editing code, and using 
 a text editor that makes this work as effi- 
-
 
 cient as possible is essential. An efficient editor 
 should highlight the structure of your code so you can 
@@ -30989,7 +24978,6 @@ catch common bugs as you're working. It should also
 include automatic indenting, markers to show appro- 
 priate line length, and keyboard shortcuts for com- 
 mon operations. 
-
 
 As a new programmer, you should use an editor that has these features 
 but doesn’t have a steep learning curve. It’s also good to know a little about 
@@ -31000,67 +24988,50 @@ Geany for beginners working on Linux or Windows, and Sublime Text for
 OS X (though it also works well on Linux and Windows). We’ll also look at 
 IDLE, the editor that comes with Python by default. Finally, we'll look at 
 
-
 492 
-
 
 Geany 
 
-
 Appendix B 
-
 
 Emacs and vim, two advanced editors you'll hear frequently mentioned as 
 you spend more time programming. We’ll use hello_world.py as an example 
 program to run in each editor. 
 
-
 Geany is a simple text editor that lets you run almost all of your programs 
 directly from the editor. It also displays your output in a terminal window, 
 which helps you get comfortable using terminals. 
 
-
 Installing Geany on Linux 
-
 
 You can install Geany using one line on most Linux systems: 
 
-
 $ sudo apt-get install geany 
-
 
 If you have multiple versions of Python installed, you'll have to config- 
 ure Geany so it uses the correct version. Open Geany, select File >} Save As, 
 and save the empty file as hello_world.py. Enter the following line in the edit- 
 ing window: 
 
-
 print("Hello Python world!") 
-
 
 Go to Build > Set Build Commands. You should see the fields Compile 
 and Execute with a command next to each. Geany assumes python is the 
 correct command for each of these, but if your system uses the python3 com- 
 mand, you’ll need to change this. In Compile, enter: 
 
-
 python3 -m py_compile "%f" 
-
 
 Make sure the spaces and capitalization in your Compile command 
 exactly match what is shown here. 
 Use this Execute command: 
 
-
 python3 "Z”f" 
-
 
 Again, make sure the spacing and capitalization exactly match what is 
 shown here. 
 
-
 Installing Geany on Windows 
-
 
 You can download a Windows installer for Geany by going to http://www 
 .geany.org/ and clicking Releases in the Download menu. Run the installer 
@@ -31070,9 +25041,7 @@ defaults.
 Open Geany, select File } Save As, and save the empty file as 
 hello_world.py. Enter the following line in the editing window: 
 
-
 print("Hello Python world!") 
-
 
 Now go to Build > Set Build Commands. You should see the fields 
 Compile and Execute with a command next to each. Each of these com- 
@@ -31085,48 +25054,36 @@ In the Compile and Execute commands, add the drive your python
 command is on, and the folder where the python command is stored. Your 
 Compile command should look like this: 
 
-
 C:\Python35\python -m py_compile "%f" 
-
 
 Your path may be a little different, but make sure the spaces and capi- 
 talization exactly match what is shown here. 
 Your Execute command should look something like this: 
 
-
 C:\Python35\python "%F" 
-
 
 Again, make sure the spacing and capitalization in your Execute com- 
 mand exactly match what is shown here. When you have these lines set cor- 
 rectly, click OK. You should now be able to run your program successfully. 
 
-
 Running Python Programs in Geany 
-
 
 There are three ways to run a program in Geany. To run hello_world.py, 
 select Build > Execute in the menu, or click the icon with a set of gears, or 
 press F5. When you run hello_world.py, you should see a terminal window 
 pop up with the following output: 
 
-
 Hello Python world! 
-
 
 (program exited with code: 0) 
 Press return to continue 
 
-
 Customizing Geany Settings 
-
 
 Now we'll set up Geany to be as efficient as possible by customizing the 
 features mentioned at the beginning of this appendix. 
 
-
 Converting Tabs to Spaces 
-
 
 Mixing tabs and spaces in your code can cause problems in your Python 
 programs that are very difficult to diagnose. To check the indentation set- 
@@ -31136,32 +25093,24 @@ width to 4, and set Type to Spaces.
 If you have a mix of tabs and spaces in one of your programs, you can 
 convert all tabs to spaces with Document > Replace Tabs by Spaces. 
 
-
 Text Editors 493 
-
 
 494 
 
-
 Setting the Line Length Indicator 
-
 
 Most editors allow you to set up a visual cue, usually a vertical line, 
 to show where your lines should end. Set this feature by selecting 
 Edit > Preferences > Editor > Display, and make sure that Long line 
 marker is enabled. Then make sure the value of Column is set to 79. 
 
-
 Indenting and Unindenting Code Blocks 
-
 
 To indent a block of code, highlight the code and go to Edit > Format > 
 Increase Indent, or press CTRL-I. To unindent a block of code, go to Edit > 
 Format > Decrease Indent, or press CTRL-U. 
 
-
 Commenting Out Blocks of Code 
-
 
 To temporarily disable a block of code, you can highlight the block and 
 
@@ -31174,12 +25123,9 @@ uncomment the block of code, highlight the block and issue the same
 
 command again. 
 
-
 Sublime Text 
 
-
 Appendix B 
-
 
 Sublime Text is a simple text editor that’s easy to install on OS X (and other 
 systems as well), and lets you run almost all your programs directly from 
@@ -31190,41 +25136,31 @@ free of charge as long as you want, but the author requests that you pur-
 chase a license if you like it and want to continue using it. We’ll download 
 Sublime Text 3, the most recent version at the time of this writing. 
 
-
 Installing Sublime Text on OS X 
-
 
 Download the installer for Sublime Text from hitp://www.sublimetext. 
 com/3. Follow the download link and click the installer for OS X. When it’s 
 downloaded, open the installer and drag the Sublime Text icon into your 
 Applications folder. 
 
-
 Installing Sublime Text on Linux 
-
 
 On most Linux systems, it’s easiest to install Sublime Text from a terminal 
 session, like this: 
-
 
 $ sudo add-apt-repository ppa:webupd8team/sublime-text-3 
 $ sudo apt-get update 
 $ sudo apt-get install sublime-text-installer 
 
-
 Python3 
 .sublime-build 
 
-
 Installing Sublime Text on Windows 
-
 
 Download an installer for Windows from hitp://www.sublimetext.com/3. 
 Run the installer, and you should see Sublime Text in your Start menu. 
 
-
 Running Python Programs in Sublime Text 
-
 
 If you’re using the version of Python that came with your system, you'll 
 probably be able to run your programs without adjusting any settings. 
@@ -31232,23 +25168,18 @@ To run programs, go to Tools > Build or press CTRL-B. When you run
 hello_world.py, you should see a terminal screen appear at the bottom of 
 the Sublime Text window displaying the following output: 
 
-
 Hello Python world! 
 [Finished in 0.1s] 
 
-
 Configuring Sublime Text 
-
 
 If you have multiple versions of Python installed or if Sublime Text won’t 
 run Python programs automatically, you'll have to set up a configuration 
 file. First, you’ll need to know the full path to your Python interpreter. On 
 Linux and OS X, issue the following command: 
 
-
 $ type -a python3 
 python3 is /usr/local/bin/python3 
-
 
 Replace python3 with the command you normally use to start a terminal 
 session. 
@@ -31260,13 +25191,10 @@ Now open Sublime Text, and go to Tools > Build System > New Build
 System, which will open a new configuration file for you. Delete what you 
 see, and enter the following: 
 
-
 { 
 } 
 
-
 "cmd": ["/usr/local/bin/python3", "-u", "$file"], 
-
 
 This code tells Sublime Text to use the python3 command when run- 
 ning the currently open file. Make sure you use the path you found in the 
@@ -31278,121 +25206,89 @@ Open hello_world.py, select Tools » Build System > Python3, and then
 select Tools > Build. You should see your output in a terminal embedded at 
 the bottom of the Sublime Text window. 
 
-
 Text Editors 495 
-
 
 496 
 
-
 IDLE 
-
 
 Appendix B 
 
-
 Customizing Sublime Text Settings 
-
 
 Now we'll set up Sublime Text to be as efficient as possible by customizing 
 the features mentioned at the beginning of this appendix. 
 
-
 Converting Tabs to Spaces 
-
 
 Go to View > Indentation and make sure there’s a check mark next to 
 Indent Using Spaces. If there isn’t, check it. 
 
-
 Setting the Line Length Indicator 
-
 
 Go to View > Ruler, and then click 80. Sublime Text will place a vertical 
 line at the 80-character mark. 
 
-
 Indenting and Unindenting Code Blocks 
-
 
 To indent a block of code, highlight it and select Edit » Line > Indent or 
 press CTRL-]. To unindent a block of code, click Edit » Line » Unindent 
 or press CTRL-[. 
 
-
 Commenting Out Blocks of Code 
-
 
 To comment out a highlighted block of code, select Edit > Comment > 
 Toggle Comment, or press CTRL-/. To uncomment a block of code, issue the 
 same command again. 
 
-
 Idle is Python’s default editor. It’s a little less intuitive to work with than 
 Geany or Sublime Text, but you’ll see references to it in other tutorials 
 aimed at beginners, so you might want to give it a try. 
 
-
 Installing IDLE on Linux 
 If you’re using Python 3, install the idle3 package like this: 
 
-
 $ sudo apt-get install idle3 
-
 
 If you’re using Python 2, install the idle package like this: 
 
-
 $ sudo apt-get install idle 
 
-
 Installing IDLE on OS X 
-
 
 If you used Homebrew to install Python, IDLE is probably already on your 
 system. In a terminal, run the command brew linkapps, which tells IDLE how 
 to find the correct Python interpreter on your system. You’ll then find IDLE 
 in your user applications folder. 
 
-
 Otherwise, go to hitps://www.python.org/download/mac/tcltk/ and follow 
 the instructions there; you'll also need to install a few graphical packages 
 that IDLE depends on. 
 
-
 Installing IDLE on Windows 
-
 
 IDLE should have been installed automatically when you installed Python. 
 You should find it in your Start menu. 
 
-
 Customizing IDLE Settings 
-
 
 Because it’s the default Python editor, most of the settings in IDLE are 
 already attuned to recommended Python settings: tabs are automatically con- 
 verted into spaces, and the line length indicator is set to 80 characters wide. 
 
-
 Indenting and Unindenting Code Blocks 
-
 
 To indent a block of code, highlight it and select Format > Indent Region or 
 press CTRL-]. To unindent a block of code, select Format > Dedent Region 
 or press CTRL-[. 
 
-
 Commenting Out Blocks of Code 
-
 
 To comment out a block of code, highlight the code, and then select 
 Format > Comment Out Region, or press ALT-3. To uncomment the code, 
 select Format > Uncomment Region, or press ALT-4. 
 
-
 Emacs and vim 
-
 
 Emacs and vim are two popular editors favored by many experienced pro- 
 grammers because they’re designed to be used so your hands never have 
@@ -31407,12 +25303,9 @@ using them until you’re comfortable writing and working with code ina
 simpler editor that lets you focus on learning to program rather than learn- 
 ing to use an editor. 
 
-
 Text Editors 497 
 
-
 GETTING HELP 
-
 
 Everyone gets stuck at some point when 
 they’re learning to program, and one of 
@@ -31422,25 +25315,19 @@ grammer is how to get unstuck efficiently. This
 appendix outlines several ways to help you get unstuck 
 when programming gets confusing. 
 
-
 First Steps 
-
 
 When you're stuck, your first step should be to assess your situation. Before 
 you can get help from anyone else, you'll need to be able to answer the fol- 
 lowing three questions clearly: 
 
-
 e What are you trying to do? 
 e What have you tried so far? 
 e What results have you been getting? 
 
-
 500 
 
-
 Appendix C 
-
 
 Your answers should be as specific as possible. For the first question, 
 explicit statements like “I’m trying to install the latest version of Python 3 
@@ -31465,7 +25352,6 @@ object) clearly, and ask it a specific question, you'll often be able to answer
 your own question. Some programming shops even keep a real rubber duck 
 around to encourage people to “talk to the duck.” 
 
-
 Try It Again 
 
 Just going back to the start and trying again can be enough to solve many 
@@ -31474,9 +25360,7 @@ this book. You might have only missed something simple, like a colon at
 the end of the for line. Going through the steps again might help you avoid 
 repeating the same mistake. 
 
-
 Take a Break 
-
 
 If you’ve been working on the same problem for a while, taking a break is 
 actually one of the best tactics you can try. When we work on the same task 
@@ -31491,18 +25375,14 @@ If you're getting frustrated, it might be worth putting your work away
 for the day. A good night’s sleep almost always makes a problem more 
 approachable. 
 
-
 Refer to This Book’s Resources 
-
 
 The online resources for this book, available through https://www.nostarch 
 .com/pythoncrashcourse/, include a number of helpful sections about setting 
 up your system and working through each chapter. If you haven’t done so 
 already, take a look at these resources and see if there’s anything that helps. 
 
-
 Searching Online 
-
 
 Chances are that someone else has had the same problem you're having 
 and has written about it online. Good searching skills and specific inquiries 
@@ -31514,11 +25394,9 @@ Searching the exact error message can be extremely helpful too. For
 example, say you get the following error when you try to start a Python ter- 
 minal session: 
 
-
 > python 
 "python' is not recognized as an internal or external command 
 > 
-
 
 Searching for the full phrase python is not recognized as an internal or 
 external command will probably yield some good advice. 
@@ -31527,9 +25405,7 @@ When you start searching for programming-related topics, a few sites
 will appear repeatedly. I'll describe some of these sites briefly, so you'll 
 know how helpful they’re likely to be. 
 
-
 Stack Overflow 
-
 
 Stack Overflow (hitp://stackoverflow.com/) is one of the most popular 
 question-and-answer sites for programmers, and will often appear in the 
@@ -31544,9 +25420,7 @@ to post updates too, so responses tend to stay relatively current. At the time
 of this writing, over 400,000 Python-related questions have been answered 
 on Stack Overflow. 
 
-
 The Official Python Documentation 
-
 
 The official Python documentation (hitp://docs.python.org/) is a bit more 
 hit or miss for beginners, because the purpose is more to document the 
@@ -31556,15 +25430,11 @@ it’s a good resource to check when it comes up in your searches and will
 become more useful to you as you continue building your understanding 
 of Python. 
 
-
 Getting Help 501 
-
 
 502 
 
-
 Official Library Documentation 
-
 
 If you’re using a specific library, such as Pygame, matplotlib, Django, and so 
 on, links to the official documentation for that project will often appear in 
@@ -31572,17 +25442,13 @@ searches—for example, hitp://docs.djangoproject.com/ is very helpful. If you�
 planning to work with any of these libraries, it’s a good idea to become 
 familiar with the official documentation. 
 
-
 r/learnpython 
-
 
 Reddit is made up of a number of subforums called subreddits. The 
 r/learnpython subreddit (hitp://reddit.com/r/learnpython/) is fairly active and 
 supportive. Here you can read others’ questions and post your own. 
 
-
 Blog Posts 
-
 
 Many programmers maintain blogs and share posts about the parts of the 
 language they’re working with. You should skim the first few comments on 
@@ -31590,12 +25456,9 @@ a blog post to see what reactions other people have had before taking any
 advice. If no comments appear, take the post with a grain of salt. It’s pos- 
 sible no one else has verified the advice. 
 
-
 IRC (Internet Relay Chat) 
 
-
 Appendix C 
-
 
 Programmers interact in real time through IRC. If you're stuck on a prob- 
 lem and searching online isn’t providing answers, asking in an IRC channel 
@@ -31603,18 +25466,14 @@ might be your best option. Most people who hang out in these channels are
 polite and helpful, especially if you can be specific about what you're trying 
 to do, what you've already tried, and what results you’re getting. 
 
-
 Make an IRC Account 
-
 
 To create an account on IRC, go to hitp://webchat.freenode.net/. Choose a 
 nickname, fill out the Captcha box, and click Connect. You'll see a message 
 welcoming you to the freenode IRC server. In the box at the bottom of the 
 window, enter the following command: 
 
-
 /msg nickserv register password email 
-
 
 Enter your own password and email address in place of password and 
 email. Choose a simple password that you don’t use for any other account. 
@@ -31622,16 +25481,12 @@ This password is not transmitted securely, so don’t even try to make a
 secure password. You'll receive an email with instructions to verify your 
 account. The email will provide you with a command like this: 
 
-
 /msg nickserv verify register nickname verification_code 
-
 
 Paste this line into the IRC site with nickname as the name you chose 
 earlier and a value for verification_code. Now you're ready to join a channel. 
 
-
 Channels to Join 
-
 
 To join the main Python channel, enter /join #python in the input box. 
 You'll see a confirmation that you joined the channel and some general 
@@ -31647,9 +25502,7 @@ channel if you’re working on web applications.
 After you’ve joined a channel, you can read the conversations other 
 people are having and ask your own questions as well. 
 
-
 IRC Culture 
-
 
 To get effective help, you should know a few details about IRC culture. 
 Focusing on the three questions at the beginning of this appendix will 
@@ -31667,15 +25520,11 @@ are in the middle of many conversations, but usually someone will address
 you in a reasonable amount of time. If few people are in the channel, it 
 might take a while to get a response. 
 
-
 Getting Help 503 
-
 
 USING GIT FOR VERSION CONTROL 
 
-
 Version control software allows you to take 
-
 
 snapshots of a project whenever it’s in a 
 working state. When you make changes to 
@@ -31684,7 +25533,6 @@ a project—for example, when you implement a
 new feature—you have the option of reverting back to 
 a previous working state if the project’s current state 
 isn’t functioning well. 
-
 
 Using version control software gives you the freedom to work on 
 improvements and make mistakes without worrying about ruining your 
@@ -31696,41 +25544,30 @@ In this appendix you'll learn to install Git and use it for version con-
 trol in the programs you’re working on now. Git is the most popular ver- 
 sion control software in use today. Many of its advanced tools help teams 
 
-
 506 
-
 
 collaborate on large projects, but its most basic features also work well for 
 solo developers. Git implements version control by tracking the changes 
 made to every file in a project; if you make a mistake, you can just return 
 to a previously saved state. 
 
-
 Installing Git 
 
-
 Appendix D 
-
 
 Git runs on all operating systems, but there are different approaches to 
 installing it on each system. The following sections provide specific instruc- 
 tions for each operating system. 
 
-
 Installing Git on Linux 
-
 
 To install Git on Linux, enter the following: 
 
-
 $ sudo apt-get install git 
-
 
 That’s it. You can now use Git in your projects. 
 
-
 Installing Git on OS X 
-
 
 Git may already be installed on your system, so try issuing the command git 
 --version. If you see output listing a specific version number, Git is installed 
@@ -31740,10 +25577,8 @@ simply follow the onscreen directions.
 You can also go to https://git-scm.com/, follow the Downloads link, and 
 click an appropriate installer for your system. 
 
-
 Installing Git on Windows 
 You can install Git for Windows from http://msysgit.github.io/. 
-
 
 Configuring Git 
 
@@ -31752,69 +25587,52 @@ one person working on the project. To do this, Git needs to know your user-
 name and email. You have to provide a username, but feel free to make up 
 a fake email address: 
 
-
 $ git config --global user.name "username" 
 $ git config --global user.email "username@example.com" 
-
 
 If you forget this step, Git will prompt you for this information when 
 you make your first commit. 
 
-
 Making a Project 
-
 
 Let’s make a project to work with. Create a folder somewhere on your sys- 
 tem called git_practice. Inside the folder, make a simple Python program: 
 
-
 hello_world.py — print("Hello Git world!") 
-
 
 We’ll use this program to explore Git’s basic functionality. 
 
-
 Ignoring Files 
-
 
 Files with the extension .pyc are automatically generated from .py files, so 
 we don’t need Git to keep track of them. These files are stored in a direc- 
 tory called __pycache__. To tell Git to ignore this directory, make a special 
 
-
 file called .gitignore—with a dot at the beginning of the filename and 
 no file extension—and add the following line to it: 
 
-
 .gitignore __pycache__/ 
-
 
 This tells Git to ignore any file in the __pycache__ directory. Using a 
 .gitignore file will keep your project clutter free and easier to work with. 
-
 
 If you're using Python 2.7, replace this line with *.pyc. Python 2.7 doesn't create 
 a__pycache__ directory; each .pyc file is stored in the same directory as its corre- 
 sponding .py file. The asterisk tells Git to ignore any file with the .pyc extension. 
 
-
 You might need to modify your text editor’s settings so it will show 
 hidden files in order to open .gztignore. Some editors are set to ignore file- 
 names that begin with a dot. 
 
-
 Initializing a Repository 
-
 
 Now that you have a directory containing a Python file and a .gitignore 
 file, you can initialize a Git repository. Open a terminal, navigate to the 
 git_practice folder, and run the following command: 
 
-
 git_practice$ git init 
 Initialized empty Git repository in git_practice/.git/ 
 git_practice$ 
-
 
 The output shows that Git has initialized an empty repository in 
 git_practice. A repository is the set of files in a program that Git is actively 
@@ -31822,18 +25640,13 @@ tracking. All the files Git uses to manage the repository are located in the
 hidden directory .git/, which you won’t need to work with at all. Just don’t 
 delete that directory, or you'll lose your project’s history. 
 
-
 Using Git for Version Control 507 
-
 
 508 
 
-
 Checking the Status 
 
-
 Before doing anything else, let’s look at the status of the project: 
-
 
 git_practice$ git status 
 # On branch master 
@@ -31859,7 +25672,6 @@ git_practice$ git status
 nothing added to commit but untracked files present (use "git add" to track) 
 git_practice$ 
 
-
 In Git, a branch is a version of the project you're working on; here you 
 can see that we’re on a branch named master @. Each time you check your 
 project’s status, it should say that you’re on the branch master. We then see 
@@ -31871,31 +25683,23 @@ haven’t told it which files to track yet. Then we’re told that there’s not
 added to the current commit, but there are untracked files present that we 
 might want to add to the repository ®. 
 
-
 Adding Files to the Repository 
-
 
 Appendix D 
 
-
 Let’s add the two files to the repository, and check the status again: 
-
 
 @ git _practice$ git add. 
 @ git practice$ git status 
-
 
 # On branch master 
 # 
 Initial commit 
 
-
 Changes to be committed: 
 (use "git rm --cached <file>..." to unstage) 
 
-
 new file:  .gitignore 
-
 
 # 
 # 
@@ -31906,28 +25710,21 @@ new file:  .gitignore
 # new file: hello world.py 
 # 
 
-
 git_practice$ 
-
 
 The command git add . adds all files within a project that are not 
 already being tracked to the repository ®. It doesn’t commit the files; it just 
 tells Git to start paying attention to them. When we check the status of the 
 
-
 project now, we can see that Git recognizes some changes that need to be 
 committed @. The label new file means these files were newly added to the 
 repository ®. 
 
-
 Making a Commit 
-
 
 eoso 
 
-
 Let’s make the first commit: 
-
 
 git_practice$ git commit -m "Started project." 
 [master (root-commit) c03d2a3] Started project. 
@@ -31938,7 +25735,6 @@ git_practice$ git status
 # On branch master 
 nothing to commit, working directory clean 
 git_practice$ 
-
 
 We issue the command git commit -m "message" ® to take a snapshot of 
 the project. The -m flag tells Git to record the message that follows ("Started 
@@ -31951,12 +25747,9 @@ want to see each time you commit a working state of your project. If you
 get a different message, read it carefully; it’s likely you forgot to add a file 
 before making a commit. 
 
-
 Checking the Log 
 
-
 Git keeps a log of all commits made to the project. Let’s check the log: 
-
 
 git_practice$ git log 
 
@@ -31965,53 +25758,40 @@ Author: Eric Matthes <eric@example.com>
 
 Date: Mon Mar 16 07:23:32 2015 -0800 
 
-
 Started project. 
 git_practice$ 
-
 
 Each time you make a commit, Git generates a unique, 40-character 
 reference ID. It records who made the commit, when it was made, and the 
 message recorded. You won’t always need all of this information, so Git pro- 
 vides an option to print a simpler version of the log entries: 
 
-
 git_practice$ git log --pretty=oneline 
 a9d74d87f1aa3b8f5b2688cb586eac1a908cfc7Ff Started project. 
 git_practice$ 
 
-
 Using Git for Version Control 509 
-
 
 The --pretty=oneline flag provides the two most important pieces of 
 information: the reference ID of the commit and the message recorded for 
 the commit. 
 
-
 The Second Commit 
-
 
 hello_world.py 
 
-
 510 
 
-
 Appendix D 
-
 
 To see the real power of version control, we need to make a change to 
 the project and commit that change. Here we’ll just add another line to 
 hello_world.py: 
 
-
 print("Hello everyone.") . 
-
 
 If we check the status of the project, we’ll see that Git has noticed the 
 file that changed: 
-
 
 git_practice$ git status 
 
@@ -32021,7 +25801,6 @@ git_practice$ git status
 
 # (use "git add <file>..." to update what will be committed) 
 
-
 # (use "git checkout -- <file>..." to discard changes in working directory) 
 # 
 
@@ -32029,15 +25808,12 @@ git_practice$ git status
 
 # 
 
-
 no changes added to commit (use "git add" and/or "git commit -a") 
 git_practice$ 
-
 
 We see the branch we’re working on 9, the name of the file that was 
 modified @, and that no changes have been committed ®. Let’s commit the 
 change and check the status again: 
-
 
 git_practice$ git commit -am "Extended greeting." 
 
@@ -32053,7 +25829,6 @@ git_practice$ git log --pretty=oneline
 be017b7F06d390261dbc64FF593be6803fd2e3a1 Started project. 
 git_practice$ 
 
-
 We make a new commit, passing the -am flag when we use the command 
 git commit ®. The -a flag tells Git to add all modified files in the repository 
 to the current commit. (If you create any new files between commits, simply 
@@ -32063,23 +25838,17 @@ The -m flag tells Git to record a message in the log for this commit.
 When we check the status of the project, we see that we once again have 
 a clean working directory @. Finally, we see the two commits in the log ®. 
 
-
 Reverting a Change 
 
-
 hello_world.py 
-
 
 Now let’s see how to abandon a change and revert back to the previous 
 working state. First, add a new line to hello_world.py: 
 
-
 print("Oh no, I broke the project!") 
-
 
 Save and run this file. 
 We check the status and see that Git notices this change: 
-
 
 git_practice$ git status 
 
@@ -32089,7 +25858,6 @@ git_practice$ git status
 
 # (use "git add <file>..." to update what will be committed) 
 
-
 # (use "git checkout -- <file>..." to discard changes in working directory) 
 # 
 
@@ -32097,10 +25865,8 @@ git_practice$ git status
 
 # 
 
-
 no changes added to commit (use "git add" and/or "git commit -a" 
 git_practice$ 
-
 
 Git sees that we modified hello_world.py ®, and we can commit the 
 change if we want to. But this time, instead of committing the change, we 
@@ -32108,7 +25874,6 @@ want to revert back to the last commit when we knew our project was work-
 ing. We won’t do anything to hello_world.py; we won't delete the line or use 
 the Undo feature in the text editor. Instead, enter the following commands 
 in your terminal session: 
-
 
 git_practice$ git checkout . 
 
@@ -32119,7 +25884,6 @@ git_practice$ git status
 nothing to commit, working directory clean 
 git_practice$ 
 
-
 The command git checkout allows you to work with any previous commit. 
 The command git checkout . abandons any changes made since the last 
 commit and restores the project to the last committed state. 
@@ -32127,40 +25891,31 @@ commit and restores the project to the last committed state.
 When you return to your text editor, you'll see that hello_world.py has 
 changed back to this: 
 
-
 Although going back to a previous state may seem trivial in this simple 
 project, if we were working on a large project with dozens of modified files, 
 all of the files that had changed since the last commit would be reverted. 
 This feature is incredibly useful: you can make as many changes as you 
 
-
 Using Git for Version Control 511 
 
-
 512 
-
 
 want when implementing a new feature, and if they don’t work, you can dis- 
 card them without harming the project. You don’t have to remember those 
 changes and manually undo them. Git does all of that for you. 
 
-
 You might have to click in your editor’s window to refresh the file and see the previous 
 version. 
 
-
 Checking Out Previous Commits 
 
-
 Appendix D 
-
 
 You can check out any commit in your log, not just the most recent, by 
 including the first six characters of the reference ID instead of a dot. By 
 checking it out, you can review an earlier commit, and you’re able to then 
 return to the latest commit or abandon your recent work and pick up devel- 
 opment from the earlier commit: 
-
 
 git_practice$ git log --pretty=oneline 
 08d4d5e39cb906f6cff197bd48e9ab32203d7ed6 Extended greeting. 
@@ -32169,24 +25924,18 @@ git_practice$ git checkout be017b
 
 Note: checking out 'be017b'. 
 
-
 You are in ‘detached HEAD' state. You can look around, make experimental 
 changes and commit them, and you can discard any commits you make in this 
 
-
 state without impacting any branches by performing another checkout. 
-
 
 If you want to create a new branch to retain commits you create, you may 
 do so (now or later) by using -b with the checkout command again. Example: 
 
-
 git checkout -b new_branch_name 
-
 
 HEAD is now at be017b7... Started project. 
 git_practice$ 
-
 
 When you check out a previous commit, you leave the master branch 
 and enter what Git refers to as a detached HEAD state @. HEAD is the cur- 
@@ -32195,7 +25944,6 @@ rent state of the project; we are detached because we’ve left a named branch
 
 To get back to the master branch, you check it out: 
 
-
 git_practice$ git checkout master 
 
 Previous HEAD position was be017b7... Started project. 
@@ -32203,16 +25951,13 @@ Switched to branch 'master'
 
 git_practice$ 
 
-
 This brings you back to the master branch. Unless you want to work with 
 some more advanced features of Git, it’s best not to make any changes to 
 your project when you've checked out an old commit. However, if you’re 
 
-
 the only one working on a project and you want to discard all of the more 
 recent commits and go back to a previous state, you can reset the project to 
 a previous commit. Working from the master branch, enter the following: 
-
 
 @ git_practice$ git status 
 # On branch master 
@@ -32229,7 +25974,6 @@ nothing to commit, working directory clean
 be017b7f06d390261dbc64ff593be6803fd2e3a1 Started project. 
 git_practice$ 
 
-
 We first check the status to make sure we’re on the master branch ®. 
 When we look at the log, we see both commits @. We then issue the git 
 reset --hard command with the first six characters of the reference ID of 
@@ -32238,9 +25982,7 @@ and see we’re on the master branch with nothing to commit @. When we
 look at the log again, we see that we’re at the commit we wanted to start 
 over from ®. 
 
-
 Deleting the Repository 
-
 
 Sometimes you'll mess up your repository’s history and won’t know how to 
 recover it. If this happens, first consider asking for help using the methods 
@@ -32255,7 +25997,6 @@ it from the command line. Afterwards, you'll need to start over with a fresh
 repository to start tracking your changes again. Here’s what this entire pro- 
 cess looks like in a terminal session: 
 
-
 @ git_practice$ git status 
 # On branch master 
 nothing to commit, working directory clean 
@@ -32265,26 +26006,19 @@ fatal: Not a git repository (or any of the parent directories): .git
 ® git_practice$ git init 
 Initialized empty Git repository in git_practice/.git/ 
 
-
 oN) 
-
 
 Using Git for Version Control 513 
 
-
 514 
-
 
 Appendix D 
 
-
 © git practice$ git status 
-
 
 # On branch master 
 # 
 Initial commit 
-
 
 # 
 # 
@@ -32299,10 +26033,8 @@ Initial commit
 
 # 
 
-
 -gitignore 
 hello_world.py 
-
 
 nothing added to commit but untracked files present (use "git add" to track) 
 git_practice$ git add . 
@@ -32315,7 +26047,6 @@ git_practice$ git status
 # On branch master 
 nothing to commit, working directory clean 
 git_practice$ 
-
 
 We first check the status and see that we have a clean working direc- 
 tory @. Then we use the command rm -rf .git to delete the .git directory 
@@ -32333,12 +26064,9 @@ commit @.
 Using version control takes a bit of practice, but once you start using it 
 you'll never want to work without it again. 
 
-
 INDEX 
 
-
 Symbols 
-
 
 + (addition), 30 
 
@@ -32378,9 +26106,7 @@ Symbols
 
 \t (tab), 26 
 
-
 A 
-
 
 addition (+), 30 
 
@@ -32400,9 +26126,7 @@ checking edges, 278
 creating, 266 
 creating rows of, 270 
 
-
 drawing to the screen, 268 
-
 
 dropping, 278 
 
@@ -32417,9 +26141,7 @@ screen, 288
 
 rebuilding fleet of, 282 
 
-
 background color, setting, 242 
-
 
 bullets 
 Bullet class, 258-259 
@@ -32428,9 +26150,7 @@ statements, 262
 deleting old, 261 
 firing, 260 
 
-
 limiting the number of, 262 
-
 
 making larger, 281 
 
@@ -32469,9 +26189,7 @@ resetting speeds, 300
 
 planning, 236 
 
-
 Alien Invasion project, continued append() method, 41-42 
-
 
 Play button application programming interface. 
 adding, 292-298 See API (application 
@@ -32493,7 +26211,6 @@ displaying the number of modifying values, 168-171
 ships, 313-316 
 displaying the score, 301 B 
 
-
 increasing point values, 306 
 
 making a scoring system, banned_users.py, 81 
@@ -32501,10 +26218,8 @@ making a scoring system, banned_users.py, 81
 
 rounding and formatting bicycles.py, 38-40 
 
-
 the score, 307 birthday.py, 31 
 bitmap (.bmp) image files, 244 
-
 
 body 
 
@@ -32515,7 +26230,6 @@ Boolean values, 81
 Bootstrap, 457 
 built-in functions, 490 
 
-
 Scoreboard class, 301 
 scoring all hits, 305 
 tracking the high score, 308 
@@ -32524,9 +26238,7 @@ tracking the score, 301
 ship 
 adjusting speed, 253-254 
 
-
 continuous movement, 
-
 
 250-253 
 
@@ -32541,35 +26253,26 @@ americas.py, 367 car.py, 167-171
 amusement_park.py, 84-87 car.py module, 179-181, 183-184 
 and keyword, 79-80 cars.py, 47-49, 76 
 
-
 API (application programming 
-
 
 : child classes, 172. See also classes: 
 interface), 377 
-
 
 ll, 378 inheritance 
 ik : cities.py, 125 
 esr ie sae classes, 161-162 
 
-
 attributes, 163 
 
-
 requesting data using, 378 accessing, 164 
-
 
 summarizing results of, 382 default values, 168 
 for Hacker News, 390-393 modifying values, 168-171 
 
-
 rate limits, 383 creating, 162-164 
 apostrophe.py, 28 
 
-
 516 Index 
-
 
 importing 
 all classes from a module, 
@@ -32619,7 +26322,6 @@ error-checking, 359
 parsing headers, 350 
 reading data, 352 
 
-
 databases. See Django: databases; 
 Heroku: databases 
 data mining, 321 
@@ -32664,18 +26366,13 @@ admin site, 406—408
 Bootstrap, 457 
 current working directory, 469 
 
-
 Index 517 
-
 
 518 
 
-
 Index 
 
-
 Django, continued 
-
 
 data 
 associating with a user, 453 
@@ -32725,7 +26422,6 @@ URLs
 namespaces, 417 
 patterns, 414 
 
-
 regular expressions, 
 414, 422 
 user ID values, 449 
@@ -32736,7 +26432,6 @@ django-boostrap3 app, 456
 docstrings, 134 
 dog.py, 162-166 
 dot notation, 155, 164 
-
 
 Einstein, Albert, 29 
 
@@ -32772,9 +26467,7 @@ to prevent crashes, 201-202
 try-except blocks, 200-201 
 ZeroDivisionError, 200 
 
-
 F 
-
 
 Jfavorite_languages.py, 100-102, 
 104-108, 112 
@@ -32789,9 +26482,7 @@ reading
 entire files, 190-191 
 line by line, 193 
 
-
 by making a list of lines, 194 
-
 
 read/write modes, 198 
 working with contents, 194 
@@ -32832,9 +26523,7 @@ passing information to, 134
 return values, 141-146 
 styling, 158 
 
-
 G 
-
 
 games. See Alien Invasion project; 
 Pygame 
@@ -32843,9 +26532,7 @@ commenting out blocks, 494
 customizing settings, 493 
 indenting and unindenting 
 
-
 blocks, 494 
-
 
 installing 
 on Linux, 492 
@@ -32879,7 +26566,6 @@ greeter.py, 118-119, 134-135
 greet_users.py, 147 
 gunicorn, 469, 470-471 
 
-
 Hacker News, 390 
 hash mark (#), for comments, 33 
 head, of an HTML file, 458 
@@ -32894,9 +26580,7 @@ migrating, 474
 setting up, 474 
 using Postgres, 469 
 
-
 Index 519 
-
 
 Heroku, continued 
 making an account, 466 
@@ -32915,7 +26599,6 @@ hex format, for colors, 373
 highs_lows.py, 350-361 
 hn_submissions.py, 391-393 
 Homebrew, 487 
-
 
 IDLE, 496-497 
 commenting out code, 497 
@@ -32947,7 +26630,6 @@ testing multiple conditions,
 import *, 157 
 import this, 34 
 
-
 indentation errors, 57-60 
 index errors, 51 
 inequality operator (!=), 78 
@@ -32963,9 +26645,7 @@ IRC (Internet relay chat), 502-503
 itemgetter() function, 391-392 
 items() method, 103 
 
-
 J 
-
 
 jQuery, 457 
 json.dump() function, 209 
@@ -32976,9 +26656,7 @@ extracting data, 363
 json.load() function, 210 
 jumbotron, 461 
 
-
 K 
-
 
 keys() method, 104 
 
@@ -32989,9 +26667,7 @@ keyword arguments, 136, 137-138
 
 keywords, 489 
 
-
 L 
-
 
 language_survey.py, 224 
 Learning Log project, 397. See also 
@@ -33006,7 +26682,6 @@ making a static file
 directory, 470 
 ongoing development, 480 
 Procfile, 469 
-
 
 requirements. txt, 467 
 SECRET _KEY setting, 481 
@@ -33057,7 +26732,6 @@ modifying, 40
 empty, 42 
 for loops, 53-60 
 
-
 if statements, 89-92 
 indentation errors, 57-60 
 indexes, 39 
@@ -33085,7 +26759,6 @@ logical errors, 58
 lower() method, 24 
 lstrip() method, 27 
 
-
 magicians.py, 54-57 
 magic_number.py, 79 
 making_pizzas.py, 155-157 
@@ -33107,15 +26780,11 @@ saving plots, 331
 scatter plots, 326-329 
 simple line graphs, 324 
 
-
 Index 521 
-
 
 522 
 
-
 Index 
-
 
 methods, 24, 165, 174-175. See also 
 classes 
@@ -33136,7 +26805,6 @@ multiplication (*), 30
 my_car.py, 180 
 my_cars.py, 181-184 
 my_electric_car.py, 181 
-
 
 name errors, 21-23 
 name_function.py, 216-221 
@@ -33163,9 +26831,7 @@ str() function, 32
 numbers.py, 61 
 number_writer.py, 209 
 
-
 0 
-
 
 object-oriented programming, 161. 
 See also classes 
@@ -33187,9 +26853,7 @@ running programs from, 16
 troubleshooting installation 
 issues, 15 
 
-
 P 
-
 
 parameters, 135, 138-139 
 parent classes, 172. See also classes: 
@@ -33214,7 +26878,6 @@ positional arguments, 135,
 136-137, 152 
 Postgres, 469 
 POST requests, 430 
-
 
 printing_models.py, 147-150 
 print statements, 24 
@@ -33265,7 +26928,6 @@ Python
 built-in functions, 490 
 documentation, 501 
 
-
 installing 
 on Linux, 485-486 
 on OS X, 487 
@@ -33286,9 +26948,7 @@ Python Enhancement Proposal
 (PEP), 72 
 python_repos.py, 379-390 
 
-
 Q 
-
 
 queries 
 
@@ -33297,7 +26957,6 @@ in databases, 423
 on GitHub (q=), 378-379 
 querysets, in databases, 410 
 quit values, 122-124 
-
 
 random_walk.py, 332 
 random walks, 331-332 
@@ -33313,9 +26972,7 @@ range() function 61-63
 readlines() method, 194 
 read() method, 191 
 
-
 rect, positioning images with, 245 
-
 
 reddit, 502 
 
@@ -33323,15 +26980,11 @@ refactoring, 212-214
 remember_me.py, 210-214 
 requests package, 379 
 
-
 Index 
-
 
 524 
 
-
 Index 
-
 
 resources 
 debugging tips, 499-500 
@@ -33352,9 +27005,7 @@ two dice, 343
 rubber duck debugging, 500 
 rw_visual.py, 333-338 
 
-
 S 
-
 
 scatter_squares.py, 327-330 
 SECRET _KEY setting, 481 
@@ -33384,7 +27035,6 @@ tabs in, 26
 whitespace in, 26-27 
 strip() method, 27 
 
-
 style guidelines, 72 
 blank lines, 73 
 CamelCaps, 186 
@@ -33406,9 +27056,7 @@ on Linux, 494
 on OS X, 494 
 on Windows, 495 
 
-
 running Python programs, 495 
-
 
 subtraction (-), 30 
 superclasses, 173. See also classes: 
@@ -33420,9 +27068,7 @@ survey.py, 223
 syntax errors, 28 
 syntax highlighting, 20 
 
-
 T 
-
 
 tab (\t), 26 
 testing code 
@@ -33440,7 +27086,6 @@ unittest module, 215, 217
 unit tests, 217 
 test_name_function.py, 217-221 
 
-
 test_survey.py, 225-228 
 text editors, 491-497 
 title() method, 24 
@@ -33448,9 +27093,7 @@ Toolbelt, Heroku, 466
 toppings.py, 78, 87-92 
 traceback, 22 
 
-
 tracking project files, 378, 471-473. 
-
 
 See also Git 
 try-except blocks, 200-201. See also 
@@ -33461,9 +27104,7 @@ for loop, 70
 writing over, 71 
 type errors, 31-32, 70 
 
-
 U 
-
 
 unittest module, 215, 217 
 unit tests, 217 
@@ -33476,9 +27117,7 @@ user.py, 103-104
 
 users.py, 113 
 
-
 V 
-
 
 values 
 key-value pairs, 96. See also 
@@ -33497,9 +27136,7 @@ deactivating, 399
 installing virtualenv, 399 
 voting. py, 83-84 
 
-
 W 
-
 
 weather data, 350-362 
 web framework, 397 
@@ -33532,37 +27169,27 @@ world_population.py, 363-374
 write_message.py, 197-199 
 write() method, 198 
 
-
 Z 
 Zen of Python, 34-36 
 
-
 ZeroDivisionError, 200 
 
-
 Index 525 
-
 
 Python Crash Course is set in New Baskerville, Futura, Dogma, and 
 TheSansMono Condensed. 
 
-
 RESOURCES 
-
 
 Visit hitps://www.nostarch.com/pythoncrashcourse/ for resources, errata, and more 
 
-
 information. 
 
-
 More no-nonsense books from () NO STARCH PRESS 
-
 
 —} 
 PYTHON 
 GROUN 
-
 
 PYTHON PLAYGROUND 
 
@@ -33574,10 +27201,8 @@ by MAHESH VENKITACHALAM
 OCTOBER 2015, 352 pp., $29.95 
 ISBN 978-1-59327-604-1 
 
-
 THE LINUX 
 COMMAND LINE 
-
 
 THE LINUX COMMAND LINE 
 A Complete Introduction 
@@ -33586,16 +27211,13 @@ by WILLIAM E. SHOTTS, JR.
 JANUARY 2012, 480 pp., $39.95 
 ISBN 978-1-59327-389-7 
 
-
 Sas Sa) 
 AUTOMATE 
 THE BORING STUFF 
 WITH PYTHO 
 
-
 AUTOMATE THE BORING STUFF 
 WITH PYTHON 
-
 
 Practical Programming for 
 Total Beginners 
@@ -33605,14 +27227,11 @@ by AL SWEIGART
 APRIL 2015, 504 pp., $29.95 
 ISBN 978-1-59327-599-0 
 
-
 ELOQUENT 
 JAVASCRIPT 
 
-
 A Modern Introduction 
 to Programming 
-
 
 ELOQUENT JAVASCRIPT, 
 
@@ -33624,15 +27243,12 @@ by MARIJN HAVERBEKE
 DECEMBER 2014, 472 pp., $39.95 
 ISBN 978-1-59327-584-6 
 
-
 PHONE: 
 800.420.7240 or 
 415.863.9900 
 
-
 DOING MATH 
 WITH PYTHO 
-
 
 DOING MATH WITH PYTHON 
 Use Programming to Explore Algebra, 
@@ -33643,13 +27259,10 @@ by AMIT SAHA
 AUGUST 2015, 264 pp., $29.95 
 ISBN 978-1-59327-640-9 
 
-
 Black Hat Python 
-
 
 Python Programming for 
 Hackers and Pentesters 
-
 
 BLACK HAT PYTHON 
 
@@ -33662,24 +27275,19 @@ by JUSTIN SEITZ
 DECEMBER 2014, 192 pp., $34.95 
 ISBN 978-1-59327-590-7 
 
-
 EMAIL: 
 SALES @NOSTARCH.COM 
-
 
 WEB: 
 WWW.NOSTARCH.COM 
 
-
 LEARN PYTHON— 
 FAST! 
-
 
 Python Crash Course is a fast-paced, thorough intro- 
 duction to programming with Python that will have you 
 writing programs, solving problems, and making things 
 that work in no time. 
-
 
 In the first half of the book, you'll learn about basic 
 programming concepts, such as lists, dictionaries, 
@@ -33694,62 +27302,45 @@ projects: a Space Invaders—inspired arcade game, data
 visualizations with Python’s super-handy libraries, and a 
 simple web app you can deploy online. 
 
-
 As you work through Python Crash Course, you'll learn 
 how to: 
-
 
 ¢ Use powerful Python libraries and tools, including 
 matplotlib, NumPy, and Pygal 
 
-
 ¢ Make 2D games that respond to keypresses and 
-
 
 mouse clicks, and that grow more difficult as the 
 game progresses 
 
-
 ¢ Work with data to generate interactive visualizations 
-
 
 ¢ Create and customize simple web apps and deploy 
 them safely online 
 
-
 ¢ Deal with mistakes and errors so you can solve your 
 own programming problems 
-
 
 If you've been thinking seriously about digging into 
 programming, Python Crash Course will get you up to 
 speed and have you writing real programs fast. Why 
 wait any longer? Start your engines and code! 
 
-
 ABOUT THE AUTHOR 
-
 
 Eric Matthes is a high school science and math teacher 
 living in Alaska, where he teaches an introductory 
 Python course. He has been writing programs since he 
 was five years old. 
 
-
 COVERS PYTHON 2 AND 3 
-
 
 no starch 
 press 
 
-
 | $39.95 (s45.9500N) 95 ($45.95 CDN) 
-
 
 NOHLAd 
 
-
 /SIOVNONV1 ONIWWV490Ud 
-?NI AATIHS 
-
-
+?NI AATIHS

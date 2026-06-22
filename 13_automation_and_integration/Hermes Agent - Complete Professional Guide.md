@@ -1,3 +1,9 @@
+# Hermes Agent - Complete Professional Guide
+
+> **Category:** 13_automation_and_integration · **Language:** English
+
+---
+
 # Hermes Agent — Complete Professional Guide
 ### Autonomous Agents, Persistent Memory, Continuous Learning, and Enterprise Architecture
 **Edition updated for Hermes Agent v0.16 — "Surface Release" (June 2026)**
@@ -856,7 +862,3 @@ Teams that already use ChatGPT for brainstorming and adopt Hermes for **continuo
 > **End of Part I.** We established what Hermes Agent is, its history up to v0.16, the philosophy of Nous Research, the concept of a self-evolving agent, and its positioning against competitors. **Part II — Internal Architecture** (Chapters 6–13) opens the hood: general architecture, internal components, the agent lifecycle, and the memory, learning, Skills, planning, and execution subsystems.
 
 <!--APPEND-PARTE-II-->
-
-
-
-

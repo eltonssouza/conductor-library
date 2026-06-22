@@ -1,8 +1,14 @@
+# Programming Ruby 3.3
+
+> **Author(s):** Rappin, Thomas Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 Programming Ruby 3.3
 The Pragmatic Programmers' Guide by Noel Rappin, with Dave Thomas
 Version: P1.0 (January 2024)
 
-Copyright © 2024 The Pragmatic Programmers, LLC. This book is licensed to the individual who purchased it. We don't copy-protect it because that would limit your ability to use it for your own purposes. Please don't break this trust--you can use this across all of your devices but please do not share this copy with other members of your team, with friends, or via file sharing services. Thanks.
+Copyright ï¿½ 2024 The Pragmatic Programmers, LLC. This book is licensed to the individual who purchased it. We don't copy-protect it because that would limit your ability to use it for your own purposes. Please don't break this trust--you can use this across all of your devices but please do not share this copy with other members of your team, with friends, or via file sharing services. Thanks.
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and The Pragmatic Programmers, LLC was aware of a trademark claim, the designations have been printed in initial capital letters or in all capitals. The Pragmatic Starter Kit, The Pragmatic Programmer, ...
 
 Table of Contents
@@ -100,7 +106,7 @@ Much of this documentation is generated from comments in the source code using a
 What's Next
 Now that you're up and running, it's time to learn how Ruby works. First, we'll do a quick overview of the main features of the language.
 Footnotes [2] https://docs.microsoft.com/en-us/windows/wsl/install [3] https://www.docker.com [4] https://replit.com [5] https://github.com/rbenv/rbenv [6] https://rvm.io [7] https://github.com/postmodern/chruby [8] https://asdf-vm.com [9] https://www.jruby.org [10] https://github.com/oracle/truffleruby [11] https://docs.microsoft.com/en-us/windows/wsl [12] https://rubyinstaller.org [13] https://docs.microsoft.com/en-us/windows/wsl [14] https://rubyinstaller.org
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 2
 Ruby.new
@@ -179,7 +185,7 @@ While we did just say that Ruby ignores comments, Ruby uses a small number of "m
 What's Next
 We finished our lightning-fast tour of some of the basic features of Ruby. We took a look at objects, methods, strings, containers, and regular expressions. We saw some simple control structures and looked at some rather nifty iterators. We hope this chapter has given you enough ammunition to be able to attack the rest of this book.
 It's time to move on and move up--up to a higher level. Next, we'll be looking at classes and objects, things that are at the same time both the highest-level constructs in Ruby and the essential underpinnings of the entire language.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 3
 Classes, Objects, and Variables
@@ -223,7 +229,7 @@ If you declare class Book and a Book class already exists, Ruby won't give an er
 
 What's Next
 There's more to say about classes and objects in Ruby. We still have to look at class methods and concepts such as mixins and inheritance. We'll do that in Chapter 6, Sharing Functionality: Inheritance, Modules, and Mixins. But, for now, know that everything you manipulate in Ruby is an object and that objects start their lives as instances of classes. And one of the most common things we do with objects is to create collections of them. But that's the subject of our next chapter.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 4
 Collections, Blocks, and Iterators
@@ -305,7 +311,7 @@ Enumerator methods can have different behaviors beyond just executing the block 
 
 What's Next
 Collections, blocks, and iterators are core concepts in Ruby. The more you write in Ruby, the more you'll find yourself moving away from conventional looping constructs. Instead, you'll write classes that support iteration over their contents. And you'll find that this code is compact, easy to read, and a joy to maintain. If this all seems too weird, don't worry. After a while, it'll start to come naturally. And you'll have plenty of time to practice as you use Ruby libraries and frameworks. Now, let's talk more about how Ruby lets you define and call methods.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 5
 More about Methods
@@ -327,7 +333,7 @@ In this example, the object connection is the receiver, download_mp3 is the name
 What's Next
 A well-written Ruby program will typically contain many methods, each quite small, so it's worth getting familiar with the options available when defining and using them. At some point, you'll probably want to read Chapter 25, Language Reference: Objects and Classes, to see exactly how arguments in a method call get mapped to the method's formal parameters when you have combinations of default parameters and splat parameters.
 Now that we have methods, we need to talk about how different classes can share functionality defined by their methods, so it's time to talk about inheritance and modules.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 6
 Sharing Functionality: Inheritance, Modules, and Mixins
@@ -355,7 +361,7 @@ What's Next
 In this chapter, we looked at using Ruby modules to encapsulate code into namespaces and to share code by using the include method to mix modules into classes. We also talked about how module inclusion affects method lookup and when to use mixins versus inheritance.
 Now that we've learned some of Ruby's class and object structure, let's look at some of the classes that Ruby uses for standard types.
 Footnotes [15] http://www.rubyonrails.org
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 7
 Basic Types: Numbers, Strings, and Ranges
@@ -389,7 +395,7 @@ If you're looking for a way to remember ...
 What's Next
 In this chapter, we covered some of Ruby's most commonly used types: numbers, strings, and ranges. We showed how to create literals and how to use the functionality of these types. Now let's look at one of Ruby's most powerful standard types--regular expressions.
 Footnotes [16] https://home.unicode.org
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 8
 Regular Expressions
@@ -445,7 +451,7 @@ By default, a regular expression will try to find the first match for the patter
 
 What's Next
 So that's it! If you've made it this far, consider yourself a regular expression ninja. Get out there and match some strings. Now we'll take a more general look at Ruby expressions.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 9
 Expressions
@@ -536,7 +542,7 @@ In Ruby, pattern matching is designed to make both these tasks easier by allowin
 
 What's Next
 In this chapter, we went through a lot of different Ruby expressions, from assignment to math to logic to loops to patterns. Next, we'll look at Ruby's exception handling and see what to do when things go wrong.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 10
 Exceptions
@@ -576,7 +582,7 @@ word = line.chomp throw :done unless /^\w+$/ ...
 
 What's Next
 In this chapter, we looked at how to make our Ruby code more error-proof by catching and raising exceptions, and you saw how to create your own exception classes that might have their own data. Next up, we're going to talk about a leading cause of exceptions in code: managing input and output.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 11
 Basic Input and Output
@@ -614,7 +620,7 @@ client = TCPSocket.open("127.0.0.1", "www") client.send("OPTIONS /~dave/ HTTP/1.
 What's Next
 In this chapter, we've seen both Ruby's simple I/O library, implemented as a series of methods in the Kernel module, and the more complicated I/O methods in the class IO and its children. We've also seen how to read and write data.
 A common problem with I/O is that it's slow and blocks programs. A common workaround is to use threading to allow the program to do multiple things at once. Let's take a look at some of Ruby's threading options.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 12
 Threads, Fibers, and Ractors
@@ -650,7 +656,7 @@ Ractors allow true parallelism within a single Ruby interpreter: each ractor mai
 What's Next
 That covers the basics of threading in Ruby. We've talked about basic threads, using system processes, fibers, and ractors. Now let's look at how we can use testing to help ensure that our code does what we expect.
 Footnotes [17] https://www.freebsd.org/cgi/man.cgi?query=fork [18] https://github.com/bruno-/fiber_scheduler
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 13
 Testing Ruby Code
@@ -768,7 +774,7 @@ Extension libraries use this configuration file to compile and link properly on 
 What's Next
 Now that we've seen how to run our Ruby files from the command line and use command-line and environment options within Ruby, we're ready to look at the entire Ruby gems system for packaging tools, managing dependencies, and organizing code.
 Footnotes [20] http://whatisthor.com [21] http://martinfowler.com/articles/rake.xhtml
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 15
 Ruby Gems
@@ -800,7 +806,7 @@ gems/aaagmnr/aaagmnr.gemspec ...
 What's Next
 In this chapter, we looked at how to build Ruby programs and package them as gems. Now it's time to dig a little deeper into working with Ruby itself. In the next chapter, we'll talk about interacting with Ruby using irb, the interactive Ruby shell.
 Footnotes [22] http://bundler.io [23] https://github.com/fxn/zeitwerk [24] https://github.com/testdouble/standard [25] http://rubygems.org
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 16
 Interactive Ruby
@@ -846,7 +852,7 @@ You can also set configuration values. The list of configuration variables is gi
 What's Next
 In this chapter, we looked at how to use Ruby interactively with irb. Debugging is a common use case for irb. In the next chapter, we'll dive into the official Ruby debugging tools.
 Footnotes [26] https://irb.tools [27] https://github.com/awesome-print/awesome_print
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 17
 Debugging Ruby
@@ -899,7 +905,7 @@ What's Next
 In this chapter, we talked about different ways to debug Ruby, including printing information to the console, using the official Ruby debugger and the popular third-party program, Pry. We also looked at how to use Ruby's benchmarking tools to identify slow spots in your code.
 Type errors are a common source of bugs in Ruby, and there are some attempts to allow developers to add type information to their Ruby code so that tooling can identify type problems before they can become bugs. Let's check this out.
 Footnotes [28] https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg [29] http://pry.github.io
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 18
 Typed Ruby
@@ -934,7 +940,7 @@ Sorbet is different from RBS in that the type annotations generally go in the Ru
 What's Next
 To be honest, we're a little conflicted about types in Ruby. We like the potential performance benefit, and the tooling advantages are promising. There's definitely a communication benefit to being explicit with types. But we worry that some of Ruby's dynamic power and flexibility is being traded for static typing, and for developers who came to Ruby for that flexibility, that can be a hard trade-off.
 Some of that communication benefit can also come from documentation. In the next chapter, we'll discuss RDoc, the official Ruby documentation solution, and YARD, a commonly used third-party extension.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 19
 Documenting Ruby
@@ -977,7 +983,7 @@ While YARD claims to be short for "Yay! A Ruby Documentation Tool," it likely wa
 
 What's Next
 In this chapter, we talked about the two most commonly used tools for documenting Ruby: RDoc and YARD. If you look around the web at documentation for Ruby gems, you'll see both of their distinctive HTML styles in regular use. Now let's take a bit of a turn and talk about Ruby's tools for working with the web itself.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Part 3Ruby Crystallized
 Ruby is a sophisticated and flexible object-oriented language, and using it effectively can mean exploring reflection, metaprogramming, and other related ideas.
@@ -1070,7 +1076,7 @@ What's Next
 In this chapter, we talked about Ruby style in terms of the decisions you make both when writing individual lines and also when writing methods and classes.
 But we've only talked about part of Ruby's dynamic toolkit. Ruby has a rich set of options that make metaprogramming easier. These are often referred to as "magic," so let's take a look behind the curtain and see how the magic is done.
 Footnotes [43] https://rubocop.org [44] https://docs.rubocop.org/rubocop/1.38/index.xhtml [45] https://docs.rubocop.org [46] https://github.com/testdouble/standard
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 22
 The Ruby Object Model and Metaprogramming
@@ -1169,7 +1175,7 @@ self.class # => ...
 What's Next
 Metaprogramming is one of Ruby's sharpest tools. Don't be afraid to use it to raise up the level at which you program. But, at the same time, use it only when necessary--overly metaprogrammed applications can become pretty obscure pretty quickly.
 There's one more piece of the Ruby metaprogramming puzzle: reflection, which is how Ruby knows things about the runtime environment. Let's take a look.
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Chapter 23
 Reflection and Object Space
@@ -1240,7 +1246,7 @@ The important thing to remember about Ruby is that there's no big difference bet
 But then, why would you want to do that?
 Now it's time to take a look at Ruby's syntax in a more structured way.
 Footnotes [47] http://www.yaml.org [48] https://www.json.org/json-en.xhtml
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Part 4Ruby Language Reference
 This part looks at the Ruby language from the bottom up. Most of what appears here is the syntax and semantics of the Ruby language. The extensive library of classes and modules will mostly be covered in Part V. However, Ruby's syntax and the library are closely entangled--literal values are part of syntax, but they create objects in the library, so we'll cover parts of the library as needed to explain the syntax.
@@ -1877,7 +1883,7 @@ Set is added to the core library. Anonymous positional and keyword arguments can
 Version 3.3
 The Prism parser is added as a way to work with parsing Ruby code. MJIT is replaced with RJIT. YJIT gets substantial performance improvements. In Ruby 3.4, the keyword it is expected to be enabled as a synonym for _1. In Ruby 3.3, a use of it that might conflict with this future usage will result in a warning.
 Footnotes [63] https://docs.ruby-lang.org/en [64] https://rubyreferences.github.io/rubychanges/evolution.xhtml
-Copyright © 2024, The Pragmatic Bookshelf.
+Copyright ï¿½ 2024, The Pragmatic Bookshelf.
 
 Thank you! We hope you enjoyed this book and that you're already thinking about what you want to learn next. To help make that decision easier, we're offering you this gift.
 Head on over to https://pragprog.com right now, and use the coupon code BUYANOTHER2024 to save 30% on your next ebook. Offer is void where prohibited or restricted. This offer does not apply to any edition of the The Pragmatic Programmer ebook.
@@ -1886,8 +1892,7 @@ And if you'd like to share your own expertise with the world, why not propose a 
 You May Be Interested In...
 Select a cover for more information
 Agile Web Development with Rails 7
-Rails 7 completely redefines what it means to produce fantastic user experiences and provides a way to achieve all the benefits of single-page applications ­ at a fraction of the complexity. Rails 7 integrates the Hotwire frameworks of Stimulus and Turbo directly as the new defaults, together with that hot newness of import maps. The result is a toolkit so powerful that it allows a single individual to create modern applications upon which they can build a competitive business. The way it used to be.
+Rails 7 completely redefines what it means to produce fantastic user experiences and provides a way to achieve all the benefits of single-page applications ï¿½ at a fraction of the complexity. Rails 7 integrates the Hotwire frameworks of Stimulus and Turbo directly as the new defaults, together with that hot newness of import maps. The result is a toolkit so powerful that it allows a single individual to create modern applications upon which they can build a competitive business. The way it used to be.
 Sam Ruby
 (474 pages) ISBN: 9781680509298 $59.95
 Ruby ...
-
