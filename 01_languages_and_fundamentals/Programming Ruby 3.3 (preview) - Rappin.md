@@ -1,5 +1,5 @@
 ---
-software_dev: core
+software_dev: stack
 ---
 
 # Programming Ruby 3.3 (preview)

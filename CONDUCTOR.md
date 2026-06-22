@@ -60,10 +60,14 @@ Conductor's ingest assumes the standard defined in [`FILE_CONVENTIONS.md`](FILE_
 1. **English only, no images** — clean text, no binary/figure noise in the index.
 2. **Top-level folder = category** — `NN_topic`; the folder name is the RAG `category` filter.
 3. **Standard header per file** — title + author/edition/category metadata for traceable citations.
-4. **`software_dev` frontmatter tier** — every content file is tagged `core | supporting | foundational | optional` (see `FILE_CONVENTIONS.md` §4). Use it to filter the corpus to software-development-relevant material:
-   - `core` + `supporting` → everything used while building software,
-   - `+ foundational` → adds the CS base (algorithms, OS, networks, compilers),
+4. **`software_dev` frontmatter tier** — every content file is tagged `core | stack | supporting | foundational | optional` (see `FILE_CONVENTIONS.md` §4). Use it to filter the corpus to software-development-relevant material:
+   - `core` → language-agnostic craft of building software (always relevant),
+   - `stack` → a specific language/framework — **the project chooses these** per its detected tech stack (Java, Go, Angular, React Native, …); don't ground in stacks the project doesn't use,
+   - `+ supporting` → adjacent delivery disciplines (DevOps, security, product, UX),
+   - `+ foundational` → the CS base (algorithms, OS, networks, compilers),
    - `optional` → pure math/theory/hardware, usually excluded from dev grounding.
+
+   This pairs with Conductor's stack detection: select `core` always, then add the `stack` books matching the project's languages/frameworks, and `supporting` by the active roles.
 
 When adding books, keep these invariants so Conductor keeps fetching, chunking, and citing the corpus cleanly.
 
