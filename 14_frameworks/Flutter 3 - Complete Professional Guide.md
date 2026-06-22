@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: flutter
+version: 3
 ---
 
 # Flutter 3 - Complete Professional Guide

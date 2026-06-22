@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: nextjs
+version: 15
 ---
 
 # Next.js 15 - Complete Professional Guide

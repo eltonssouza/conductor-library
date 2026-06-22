@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: rust
+version: 2024
 ---
 
 # Rust 2024 - Complete Professional Guide

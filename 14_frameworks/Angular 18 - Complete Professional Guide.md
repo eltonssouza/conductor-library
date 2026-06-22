@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: angular
+version: 18
 ---
 
 # Angular 18 - Complete Professional Guide

@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: express
+version: 5
 ---
 
 # Express 5 - Complete Professional Guide
