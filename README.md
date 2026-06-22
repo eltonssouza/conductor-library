@@ -45,19 +45,17 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [33_compilers](00_academic_curriculum/33_compilers.md)
 - [34_quantum_computing](00_academic_curriculum/34_quantum_computing.md)
 
-## 01 · Languages & Fundamentals
+## 01 · Programming Languages
 
-- [Core Java - Volume I - Horstmann](01_languages_and_fundamentals/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
-- [Core Java - Volume II - Horstmann](01_languages_and_fundamentals/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
-- [Eloquent JavaScript - Haverbeke](01_languages_and_fundamentals/Eloquent%20JavaScript%20-%20Haverbeke.md)
-- [JavaScript - The Good Parts - Crockford](01_languages_and_fundamentals/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
-- [Mastering Node.js](01_languages_and_fundamentals/Mastering%20Node.js.md)
-- [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_languages_and_fundamentals/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
-- [Programming Ruby 3.3 (preview) - Rappin](01_languages_and_fundamentals/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
-- [Programming Ruby 3.3 - Rappin, Thomas](01_languages_and_fundamentals/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
-- [Python Crash Course - Matthes](01_languages_and_fundamentals/Python%20Crash%20Course%20-%20Matthes.md)
-- [Ruby on Rails Tutorial (6th Ed) - Hartl](01_languages_and_fundamentals/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
-- [The Go Programming Language - Donovan, Kernighan](01_languages_and_fundamentals/The%20Go%20Programming%20Language%20-%20Donovan,%20Kernighan.md)
+- [Core Java - Volume I - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
+- [Core Java - Volume II - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
+- [Eloquent JavaScript - Haverbeke](01_programming_languages/Eloquent%20JavaScript%20-%20Haverbeke.md)
+- [JavaScript - The Good Parts - Crockford](01_programming_languages/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
+- [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
+- [Programming Ruby 3.3 (preview) - Rappin](01_programming_languages/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
+- [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
+- [Python Crash Course - Matthes](01_programming_languages/Python%20Crash%20Course%20-%20Matthes.md)
+- [The Go Programming Language - Donovan, Kernighan](01_programming_languages/The%20Go%20Programming%20Language%20-%20Donovan,%20Kernighan.md)
 
 ## 02 · Algorithms & Data Structures
 
@@ -117,13 +115,10 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 06 · Web & Frontend
 
-- [Angular 22 - Complete Professional Guide](06_web_and_frontend/Angular%2022%20-%20Complete%20Professional%20Guide.md)
 - [CSS in Depth (2nd Ed) - Grant](06_web_and_frontend/CSS%20in%20Depth%20(2nd%20Ed)%20-%20Grant.md)
 - [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
 - [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
 - [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
-- [Learning GraphQL - Porcello, Banks](06_web_and_frontend/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
-- [Learning React Native - Eisenman](06_web_and_frontend/Learning%20React%20Native%20-%20Eisenman.md)
 - [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
 - [Refactoring UI - Wathan, Schoger](06_web_and_frontend/Refactoring%20UI%20-%20Wathan,%20Schoger.md)
 - [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
@@ -190,6 +185,14 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 - [Hermes Agent - Complete Professional Guide](13_automation_and_integration/Hermes%20Agent%20-%20Complete%20Professional%20Guide.md)
 - [n8n - Complete Professional Guide](13_automation_and_integration/n8n%20-%20Complete%20Professional%20Guide.md)
+
+## 14 · Frameworks
+
+- [Angular 22 - Complete Professional Guide](14_frameworks/Angular%2022%20-%20Complete%20Professional%20Guide.md)
+- [Learning GraphQL - Porcello, Banks](14_frameworks/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
+- [Learning React Native - Eisenman](14_frameworks/Learning%20React%20Native%20-%20Eisenman.md)
+- [Mastering Node.js](14_frameworks/Mastering%20Node.js.md)
+- [Ruby on Rails Tutorial (6th Ed) - Hartl](14_frameworks/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
 
 ---
 
