@@ -1,3 +1,9 @@
+# Team Topologies
+
+> **Author(s):** Skelton, Pais Â· **Category:** 11_management_product_process Â· **Language:** English
+
+---
+
 Praise for
 TEAM TOPOLOGIES
 "Team Topologies provides fresh insights on how to anticipate and adapt to market and technology changes. To survive, enterprises need to unlearn existing command and control structures and instead move authority to leaders with the best information to take action and respond. This book will help executives and business leaders focus on the key strategies of high-performance teams to effectively address the needs of today and the evolving landscape of tomorrow."
@@ -8,8 +14,8 @@ TEAM TOPOLOGIES
 --Greg Burrell, Senior Reliability Engineer at Netflix
 "Team Topologies by Matthew Skelton and Manuel Pais is unique. It is going to have a big influence across tech companies. We need a structured and methodical approach to shaping teams for continuous delivery instead of copying a few Spotify rituals. This is the book."
 --Nick Tune, API Platform Lead, Navico
-"At Condé Nast International, [the DevOps Topologies] was crucial in understanding our current DevOps state and in defining the vision for our aspirational DevOps operating model. We were able to navigate round the pitfalls and organizational anti-patterns as excellently described in the models. . . . I am extremely pleased that Matthew and Manuel are growing on the success of the DevOps Topologies and turning their further learnings into the far-reaching book Team Topologies for organization design."
---Crystal Hirschorn, VP of Engineering, Global Strategy and Operations at Condé
+"At Condï¿½ Nast International, [the DevOps Topologies] was crucial in understanding our current DevOps state and in defining the vision for our aspirational DevOps operating model. We were able to navigate round the pitfalls and organizational anti-patterns as excellently described in the models. . . . I am extremely pleased that Matthew and Manuel are growing on the success of the DevOps Topologies and turning their further learnings into the far-reaching book Team Topologies for organization design."
+--Crystal Hirschorn, VP of Engineering, Global Strategy and Operations at Condï¿½
 
 Nast
 "The high-performing team is the core generator of value in the modern digital economy. But cultivating and scaling an adaptive ecosystem of such teams is a too-often elusive goal. In Team Topologies, Skelton and Pais provide innovative tools and concepts for structuring the next generation digital operating model. Recommended for CIOs, enterprise architects, and digital product strategists worldwide."
@@ -34,7 +40,7 @@ MATTHEW SKELTON and MANUEL PAIS
 Foreword by Ruth Malan
 
 25 NW 23rd Pl, Suite 6314 Portland, OR 97210
-Copyright © 2019 by Matthew Skelton and Manuel Pais For information about permission to reproduce selections from this book, write to Permissions, IT
+Copyright ï¿½ 2019 by Matthew Skelton and Manuel Pais For information about permission to reproduce selections from this book, write to Permissions, IT
 Revolution Press, LLC, 25 NW 23rd Pl, Suite 6314, Portland, OR 97210.
 Cover and book design by Devon Smith
 Library of Congress Catalog-in-Publication Data Available upon request
@@ -134,19 +140,19 @@ Finally, the shapes, colors, and patterns found within many of the figures also 
 Figure 0.1: The Four Team Types and Three Interaction Modes
 For the fullest understanding, you should read the book from cover to cover, as the subject matter builds up chapter by chapter. However, we have written the material so that each section is fairly independent.
 In that spirit, here are some scenarios with corresponding ways to read the book that might match with your current situation:
-· I need more clarity about different team types and which team types are
+ï¿½ I need more clarity about different team types and which team types are
 effective.  Review Chapter 1 (overview), then Chapter 4 (static topologies), then Chapter 5 (fundamental topologies).
-· I need to split up a large, monolithic software system.
+ï¿½ I need to split up a large, monolithic software system.
  Review Chapter 6 (boundaries) and then Chapter 3 (the team).
-· I need to improve the architecture of the software system.
+ï¿½ I need to improve the architecture of the software system.
  Review Chapter 2 (Conway's law), then Chapter 4 (static topologies), then Chapter 6 (boundaries).
-· I need to improve the effectiveness of software development teams.
+ï¿½ I need to improve the effectiveness of software development teams.
  Review Chapter 3 (the team), then Chapter 6 (boundaries), then Chapter 5 (fundamental topologies).
-· I need to improve morale and effectiveness within teams.
+ï¿½ I need to improve morale and effectiveness within teams.
  Review Chapter 3 (the team) and then Chapter 5 (fundamental topologies).
-· I need to understand where to invest effort to help with projected growth.
+ï¿½ I need to understand where to invest effort to help with projected growth.
  Review Chapter 1 (overview), then Chapter 5 (fundamental topologies), then Chapter 8 (topology evolution).
-· I need to understand how to evolve team topologies to meet changing
+ï¿½ I need to understand how to evolve team topologies to meet changing
 business needs.  Review Chapter 7 (dynamic aspects) and then Chapter 8 (topology evolution and organizational sensing).
 Key Influences that Informed this Book
 
@@ -201,7 +207,7 @@ Beyond the Org Chart
 So if org charts are not an accurate representation of organizational structures, what is? Niels Pflaeging, author of Organize for Complexity, identifies not one but three different organizational structures in every organization:2
 1. Formal structure (the org chart)--facilitates compliance 2. Informal structure--the "realm of influence" between individuals 3. Value creation structure--how work actually gets done based on inter-
 personal and inter-team reputation
-Pflaeging suggests that the key to successful knowledge work organizations is in the interactions between the informal structure and the value creation structure (that is, the interactions between people and teams).3 Other authors have proposed similar characterizations, such as Frédéric Laloux in Reinventing Organizations or Brian Robertson's Holacracy approach.4
+Pflaeging suggests that the key to successful knowledge work organizations is in the interactions between the informal structure and the value creation structure (that is, the interactions between people and teams).3 Other authors have proposed similar characterizations, such as Frï¿½dï¿½ric Laloux in Reinventing Organizations or Brian Robertson's Holacracy approach.4
 The Team Topologies approach acknowledges the importance of informal and value creation structures as defined by Pflaeging. By empowering teams, and treating them as fundamental building blocks, individuals inside those teams move closer together to act as a team rather than just a group of people. On the other hand, by explicitly agreeing on interaction modes with other teams, expectations on behaviors become clearer and inter-team trust grows.
 Over the last several decades, there have been many new approaches to organizing businesses, but usually the new design remains a static view of the organization that does not take into consideration the real behaviors and structures that emerge after reorganization. For instance, the "matrix management" approach that started in the 1990s--and became quite popular over the next couple of decades--tried to address the inherent complexity of highly uncertain, highly skilled work by having individuals report to both business and functional managers. Despite a clearer focus on business value compared to a purely functional organization of teams, this is still a static view of the world that becomes outdated as the business and technology domains quickly evolve.
 For workers, re-orgs, like introducing matrix management, can bring a lot of fear and worry. Often, it's seen as a time and effort drain that is more likely to
@@ -392,11 +398,11 @@ Software Architectures that Encourage TeamScoped Flow
 
 Conway's law tells us that we need to understand what software architecture is needed before we organize our teams, otherwise the communication paths and incentives in the organization will end up dictating the software architecture. As Michael Nygard says: "Team assignments are the first draft of the architecture."7
 For a safe, rapid flow of changes, we need to consider team-scoped flow and design the software architecture to fit it. The fundamental means of delivery is the team (see more in Chapter 3), so the system architecture needs to enable and encourage fast flow within each team. Thankfully, in practice, this means that we can follow proven software-architecture good practices:
-· Loose coupling--components do not hold strong dependencies on other
+ï¿½ Loose coupling--components do not hold strong dependencies on other
 components
-· High cohesion--components have clearly bounded responsibilities, and
+ï¿½ High cohesion--components have clearly bounded responsibilities, and
 their internal elements are strongly related
-· Clear and appropriate version compatibility · Clear and appropriate cross-team testing
+ï¿½ Clear and appropriate version compatibility ï¿½ Clear and appropriate cross-team testing
 At a conceptual level, software architectures should resemble the flows of change they enable; instead of a series of interconnected components, we should be designing flows on top of an underlying platform (we will cover platforms in Chapter 5).
 By keeping things team sized, we help to achieve what MacCormack and colleagues call "an `architecture for participation' that promotes ease of understanding by limiting module size, and ease of contribution by minimizing the propagation of design changes."8 In other words, we need a team-first software architecture that maximizes people's ability to work with it.
 Keeping things decoupled and team-scoped should be a key, ongoing organization test because, as John Roberts says in The Modern Firm, "real gains in performance can often be achieved by adopting designs that adhere to [a] disaggregated model."9 These performance gains are partly due to the increased rate of flow of change and partly due to the organization's ability to change the architecture to suit new contexts.
@@ -474,19 +480,19 @@ High-trust organizations may sustain larger teams. There are exceptions to the s
 
 Smaller Size Fosters Trust
 The limit on team size and Dunbar's number extends to groupings of teams, departments, streams of work, lines of business, and so on. In addition to Dunbar's number, anthropological research shows that the type and depth of relationship we can have with people has clear limits:7
-· Around five people--limit of people with whom we can hold close
+ï¿½ Around five people--limit of people with whom we can hold close
 personal relationships and working memory
-· Around fifteen people--limit of people with whom we can experience
+ï¿½ Around fifteen people--limit of people with whom we can experience
 deep trust
-· Around fifty people--limit of people with whom we can have mutual trust · Around 150 people--limit of people whose capabilities we can remember
+ï¿½ Around fifty people--limit of people with whom we can have mutual trust ï¿½ Around 150 people--limit of people whose capabilities we can remember
 Some researchers have identified possible limits to effective social relationships at around 500 and 1,500 (there is roughly a three times multiplier at work here). The key point is that--whether we like it or not--there are natural restrictions on the size of effective groupings within any organization. As the size of a group increases, the dynamics and behaviors between group members will be subtly or radically different, and patterns and rules that worked at a smaller scale will probably fail to work at a larger scale.
 Teams need trust to operate effectively, but if the size of a group grows too large for the necessary level of trust, that group can no longer be as effective as it was when it was a smaller unit. Within an organization building and running software systems, it is therefore important to consciously limit the size of team groupings to Dunbar's number to help achieve predictable behavior and interactions from those teams:
-· A single team: around five to eight people (based on industry experience)
+ï¿½ A single team: around five to eight people (based on industry experience)
  In high-trust organizations: no more than fifteen people
-· Families ("tribes"): groupings of teams of no more than fifty people
+ï¿½ Families ("tribes"): groupings of teams of no more than fifty people
 
  In high-trust organizations: groupings of no more than 150 people
-· Divisions/streams/profit & loss (P&L) lines: groupings of no more than
+ï¿½ Divisions/streams/profit & loss (P&L) lines: groupings of no more than
 150 or 500 people
 Organizations can be composed from Dunbar-compatible groupings of these sizes; when one of the limits is reached, the need to split off another unit as a semi-independent grouping arises. We can visualize this "scaling by Dunbar" as concentric circles of increasingly larger or smaller groups (see Figure 3.1, based on the "onion" concept from James Lewis8):
 
@@ -519,7 +525,7 @@ Team Members Need a Team-First Mindset
 The team should be the fundamental means of delivery rather than the individual. If we follow this team-first approach, we need to ensure that the people within our teams also have (or develop) a team-first mindset. This may be unfamiliar to some people, but with the right coaching and time to learn, many people adapt.
 For teams to work, team members should put the needs of the team above their own. They should:
 
-· Arrive for stand-ups and meetings on time. · Keep discussions and investigations on track. · Encourage a focus on team goals. · Help unblock other team members before starting on new work. · Mentor new or less experienced team members. · Avoid "winning" arguments and, instead, agree to explore options.
+ï¿½ Arrive for stand-ups and meetings on time. ï¿½ Keep discussions and investigations on track. ï¿½ Encourage a focus on team goals. ï¿½ Help unblock other team members before starting on new work. ï¿½ Mentor new or less experienced team members. ï¿½ Avoid "winning" arguments and, instead, agree to explore options.
 However, even with coaching, some people are unsuitable to work on teams or are unwilling to put team needs above their own. Such people can destroy teamwork and, in extreme cases, destroy teams. These people are "team toxic" and need to be removed before damage is done. There is a good amount of research in this area. For example, one study found that "collectively oriented team members were more likely to attend to the task inputs of other team members and to improve their performance during team interaction than egocentric team members."16
 Embrace Diversity in Teams
 In the context of rapidly changing requirements and technologies, teams must continuously find novel and creative ways to address the challenges placed upon them and to communicate effectively with other teams. Recent research in both civilian and military contexts strongly suggests that teams with members of diverse backgrounds tend to produce more creative solutions more rapidly and tend to be better at empathizing with other teams' needs.17
@@ -540,11 +546,11 @@ Cognitive load also applies to teams that do less coding and more execution of t
 With a team-first approach, the team's responsibilities are matched to the cognitive load that the team can handle. The positive ripple effect of this can change how teams are designed and how they interact with each other across an organization.
 For software-delivery teams, a team-first approach to cognitive load means limiting the size of the software system that a team is expected to work with; that is, organizations should not allow a software subsystem to grow beyond the cognitive load of the team responsible for the software. This has strong and quite radical implications for the shape and architecture of software systems, as we shall see later in the book.
 Cognitive load was characterized in 1988 by psychologist John Sweller as "the total amount of mental effort being used in the working memory."22 Sweller defines three different kinds of cognitive load:
-· Intrinsic cognitive load--relates to aspects of the task fundamental to the
+ï¿½ Intrinsic cognitive load--relates to aspects of the task fundamental to the
 problem space (e.g., "What is the structure of a Java class?" "How do I create a new method?")
-· Extraneous cognitive load--relates to the environment in which the task is
+ï¿½ Extraneous cognitive load--relates to the environment in which the task is
 being done (e.g., "How do I deploy this component again?" "How do I configure this service?")
-· Germane cognitive load--relates to aspects of the task that need special
+ï¿½ Germane cognitive load--relates to aspects of the task that need special
 
 attention for learning or high performance (e.g., "How should this service interact with the ABC service?")
 For example, the intrinsic cognitive load for a web application developer could be the knowledge of the computer language being used (on top of the fundamentals of programming), the extraneous cognitive load might be details of the commands needed to instantiate a dynamic testing environment (which needs multiple hard-to-remember console commands), and the germane cognitive load could be the specific aspects of the business domain that the application developer is programming (such as an invoicing system or a video-processing algorithm). Jo Pearce's work on cognitive load in the context of software development provides numerous additional examples.23
@@ -588,15 +594,15 @@ Figure 3.3: Typical vs. Team-First Software Subsystem Boundaries
 On the left, we see typical software subsystem boundaries, with different parts of systems or products assigned to a mix of multiple teams, single teams, and individuals. On the right, we see the Team Topologies' team-first approach to software subsystem boundaries, with every part of the system being team sized and owned by one team.
 
 To increase the size of a software subsystem or domain for which a team is responsible, tune the ecosystem in which the team works in order to maximize the cognitive capacity of the team (by reducing the intrinsic and extraneous types of load):
-· Provide a team-first working environment (physical or virtual). (You'll see
+ï¿½ Provide a team-first working environment (physical or virtual). (You'll see
 more later in this chapter).
-· Minimize team distractions during the workweek by limiting meetings,
+ï¿½ Minimize team distractions during the workweek by limiting meetings,
 reducing emails, assigning a dedicated team or person to support queries, and so forth.
-· Change the management style by communicating goals and outcomes
+ï¿½ Change the management style by communicating goals and outcomes
 rather than obsessing over the "how," what McChrystal calls "Eyes On, Hands Off" in Team of Teams.26
-· Increase the quality of developer experience (DevEx) for other teams using
+ï¿½ Increase the quality of developer experience (DevEx) for other teams using
 your team's code and APIs through good documentation, consistency, good UX, and other DevEx practices.
-· Use a platform that is explicitly designed to reduce cognitive load for
+ï¿½ Use a platform that is explicitly designed to reduce cognitive load for
 teams building software on top of it.
 By actively reducing extraneous mental overheads for teams and team members through these and similar approaches, organizations can give teams more cognitive space to take on more challenging parts of the software systems. Conversely, if an organization does not have team-first office space, good management practices, and especially a team-first platform, then the size of software subsystems that teams can take on will be smaller. A larger number of smaller parts requires more teams to work on them, costing more. Taking a team-first approach to software subsystem boundaries by designing for cognitive load means happier teams and (eventually) lower costs.
 Albert Bertilsson, Solution Team Lead, and Gustaf Nilsson Kotte, Web Developer, felt the weight of a continuously increasing cognitive load on the mobile team they were leading at IKEA back in 2017. As they relayed to us, in the previous year, the team kept growing as a result of successful delivery of
@@ -611,15 +617,15 @@ Now that we see the team as the fundamental means of delivery, we can begin to d
 Define "Team APIs" that Include Code, Documentation, and User Experience
 
 With stable, long-lived teams that own specific bits of the software systems, we can begin to build a stable team API: an API surrounding each team. An API (application programming interface) is a description and specification for how to interact programmatically with software, so we extend this idea to entire interactions with the team. The team API includes:
-· Code: runtime endpoints, libraries, clients, UI, etc. produced by the team · Versioning: how the team communicates changes to its code and services
+ï¿½ Code: runtime endpoints, libraries, clients, UI, etc. produced by the team ï¿½ Versioning: how the team communicates changes to its code and services
 (e.g., using semantic versioning [SemVer] as a "team promise" not to break things)
-· Wiki and documentation: especially how-to guides for the software owned
+ï¿½ Wiki and documentation: especially how-to guides for the software owned
 by the team
-· Practices and principles: the team's preferred ways of working · Communication: the team's approach to remote communication tools, such
+ï¿½ Practices and principles: the team's preferred ways of working ï¿½ Communication: the team's approach to remote communication tools, such
 as chat tools and video conferencing
-· Work information: what the team is working on now, what's coming next,
+ï¿½ Work information: what the team is working on now, what's coming next,
 and overall priorities in the short to medium term
-· Other: anything else that other teams need to use to interact with the team
+ï¿½ Other: anything else that other teams need to use to interact with the team
 The team API should explicitly consider usability by other teams: Will other teams find it easy and straightforward to interact with us, or will it be difficult and confusing? How easy will it be for a new team to get on board with our code and working practices? How do we respond to pull requests and other suggestions from other teams? Is our team backlog and product roadmap easily visible and understandable by other teams?
 For effective team-first ownership of software, teams need to continuously define, advertise, test, and evolve their team API to ensure that it is fit for purpose for the consumers of that API: other teams. In Dynamic Reteaming (by Heidi Helfand), Evan Wiley, Director of Program Management at Pivotal Cloud Foundry (PCF), a major enterprise Platform-as-a-Service (PaaS) provider, describes how more than fifty teams are seen at PCF:
 
@@ -662,17 +668,17 @@ CASE STUDY: STREAM-ALIGNED OFFICE LAYOUT FOR FLOW-BASED COLLABORATION AT AUTO TR
 Dave Whyte, Operations Engineering Lead, Auto Trader Andy Humphrey, Head of Customer Operations, Auto Trader
 Back in 2013, as we started to move from a print-based business with many different offices around the country to a 100% digital business, we began to look at ways we could improve collaboration and optimize for the flow of work. We reorganized from fifteen offices into three, with our main office in Manchester, UK, on only two floors. The working environment was created to be as open plan as possible, with all senior managers sitting with their teams and no private offices. This made it much easier for people to communicate with each other, and we finally started bridging the gap between "the business" and IT.
 Our new offices were built for collaboration, from the way the desks could be laid out to the limits on the number of monitor screens that one person could have at their desk (to avoid people "hiding" behind screens). Over the past few years, we have experimented with different office layouts and seating plans to help the right teams communicate and to promote flow:
-· Organizing technical and non-technical teams on the same floors
+ï¿½ Organizing technical and non-technical teams on the same floors
 and in the same areas: This helped break down barriers between departments that shared the same goals and customers. The
 
 equipment given to sales, product, service, and technology became more aligned so that we could share tools more widely and work in the same way (e.g., all our sales and service colleagues have laptops; you don't have to be a rockstar developer to get a MacBook anymore).
-· Clear-desk policy: We provided lockers for personal belongings
+ï¿½ Clear-desk policy: We provided lockers for personal belongings
 and encouraged people to move around the office and sit where they needed to be that day in order to add value and not be limited to sitting at the same desk in the same team.
-· Technology restrictions: The desks were designed with single
+ï¿½ Technology restrictions: The desks were designed with single
 monitors so that people could see those sitting opposite them and interact more freely. It was common for some technical staff to have two or three monitors, so this was not popular; but it's an interesting example of becoming a digital organization by actually restricting the use of some technology in order to meet the goal of being more collaborative. The desks even had recessed legs, creating a bench effect, so that people could move between them without snagging [their] legs--helping pairing and sitting with other people.
-· Writable walls: To encourage more informal, creative
+ï¿½ Writable walls: To encourage more informal, creative
 conversations, the walls were made writable so that people could draw as they discussed, whether they were in a corridor or next to a car. Most meeting rooms were made of glass so that people could see who was in there and work out if they needed to be in there too. We also created more informal meeting spaces--sofas, soft chairs, etc.--so that people could sit down for a chat with a colleague without needing to plan a meeting room in advance.
-· Event spaces: We also have event spaces designed into all our
+ï¿½ Event spaces: We also have event spaces designed into all our
 buildings, so we can get together as a company and even invite our local community by hosting events and meetups that help us get to know and work with people outside our organization.
 
 We now have all the people in a certain business division sitting together. For example, private advertising is one of our business areas, handling vehicle sales by private individuals, and everyone involved in this stream of business sits on the same floor: marketing people, sales people, developers, testers, product managers, and so on. This means that everyone in the same business stream can "feel the pain" together and all decisions are more jointly owned. We have found that you start seeing things from other people's viewpoints when you sit with them.
@@ -916,7 +922,7 @@ The architecture of the system gets cemented in the forms of the teams that deve
 --Ruth Malan, "Conway's Law"
 In many organizations, there is a variety of team types and there are even teams taking on multiple roles (e.g., an infrastructure and tooling team). This sprawl makes it hard for everyone to visualize the full organizational landscape: Do we have the right teams in place? Are we lacking capabilities in some areas that are not being addressed by any team? Does it look like teams have the necessary balance between autonomy and support by other teams?
 Answering these questions becomes simpler if we reduce the number of team variations to four fundamental team topologies:
-· Stream-aligned team · Enabling team · Complicated-subsystem team · Platform team
+ï¿½ Stream-aligned team ï¿½ Enabling team ï¿½ Complicated-subsystem team ï¿½ Platform team
 When used with care, these are the only four team topologies needed to build and run modern software systems. When combined with effective software boundaries (as presented in Chapter 6) and team interactions (as presented in Chapter 7), the restriction of these four team types acts as a powerful template
 
 for effective organization design (see Figure 5.1 on page 80).
@@ -949,7 +955,7 @@ There is very little coordination required between service teams, leading to a h
 The Amazon two-pizza-team model is an example of stream-aligned teams: the teams are substantially independent, have ownership over their services, and have responsibility for the runtime success of the software they write. The fact that Amazon has been using this model for over seventeen years shows how effective it can be to align teams to independent streams of change.
 Capabilities within a Stream-Aligned Team
 Generally speaking, each stream-aligned team will require a set of capabilities in order to progress work from its initial (requirements) exploration stages to production. These capabilities include (but are not restricted to):
-· Application security · Commercial and operational viability analysis · Design and architecture · Development and coding · Infrastructure and operability · Metrics and monitoring · Product management and ownership · Testing and quality assurance · User experience (UX)
+ï¿½ Application security ï¿½ Commercial and operational viability analysis ï¿½ Design and architecture ï¿½ Development and coding ï¿½ Infrastructure and operability ï¿½ Metrics and monitoring ï¿½ Product management and ownership ï¿½ Testing and quality assurance ï¿½ User experience (UX)
 It's critical not to assume each capability maps to an individual role in the team; that would mean teams would have to include at least nine members to match the list above. Instead, we're talking about being able, as a team, to understand and act upon the above capabilities. This might mean having a mix of generalists and a few specialists. Having only specialized roles would lead to a bottleneck every time a piece of work depended on a specialist who might be currently busy.
 NOTE
 Site Reliability Engineering (SRE) teams, pioneered by Google, are really a special
@@ -965,21 +971,21 @@ Finally, not all software situations need products or features (especially those
 Expected Behaviors
 As we've seen, the mission of stream-aligned teams is to ensure the smooth flow of work for a given stream, often related to a business domain area but not always.
 What kind of behaviors and outcomes do we expect to see in an effective stream-aligned team?
-· A stream-aligned team aims to produce a steady flow of feature
+ï¿½ A stream-aligned team aims to produce a steady flow of feature
 delivery.
-· A stream-aligned team is quick to course correct based on feedback
+ï¿½ A stream-aligned team is quick to course correct based on feedback
 from the latest changes.
-· A stream-aligned team uses an experimental approach to product
+ï¿½ A stream-aligned team uses an experimental approach to product
 evolution, expecting to constantly learn and adapt.
-· A stream-aligned team has minimal (ideally zero) hand-offs of work to
+ï¿½ A stream-aligned team has minimal (ideally zero) hand-offs of work to
 other teams.
-· A stream-aligned team is evaluated on the sustainable flow of change it
+ï¿½ A stream-aligned team is evaluated on the sustainable flow of change it
 produces (together with some supporting technical and team-health metrics).
-· A stream-aligned team must have time and space to address code
+ï¿½ A stream-aligned team must have time and space to address code
 quality changes (sometimes called "tech debt") to ensure that changing the code remains safe and easy to do.
-· A stream-aligned team proactively and regularly reaches out to the
+ï¿½ A stream-aligned team proactively and regularly reaches out to the
 supporting fundamental-topologies teams (complicated subsystem, enabling, and platform).
-· Members of a stream-aligned team feel they have achieved or are in the
+ï¿½ Members of a stream-aligned team feel they have achieved or are in the
 path to achieving "autonomy, mastery, and purpose," the three key components of engaged knowledge workers, according to Daniel Pink.7
 
 (We will provide a more detailed view of how stream-aligned teams relate to the platform in Chapter 8.)
@@ -997,16 +1003,16 @@ Knowledge transfer between an enabling and a stream-aligned team can take shape 
 Expected Behaviors
 As we've seen, the mission of enabling teams is to help stream-aligned teams acquire missing capabilities, usually around a specific technical or product management area.
 What kind of behaviors and outcomes do we expect to see in an effective enabling team?
-· An enabling team proactively seeks to understand the needs of stream-
+ï¿½ An enabling team proactively seeks to understand the needs of stream-
 
 aligned teams, establishing regular checkpoints and jointly agreeing when more collaboration is needed.
-· An enabling team stays ahead of the curve in keeping abreast of new
+ï¿½ An enabling team stays ahead of the curve in keeping abreast of new
 approaches, tooling, and practices in their area of expertise, well before an actual need is expected from stream-aligned teams. In the past, this has been the mission of architecture or innovation teams, but the focus on enabling other teams creates a better dynamic.
-· An enabling team acts as a messenger of both good news (e.g., "There's
+ï¿½ An enabling team acts as a messenger of both good news (e.g., "There's
 a new UI automation framework that can reduce our custom test code by 50%.") and bad news (e.g., "Javascript framework X, which we're using extensively, is no longer actively maintained."). This helps with management of the technology life cycle.
-· Occasionally, the enabling team might act as a proxy for external (or
+ï¿½ Occasionally, the enabling team might act as a proxy for external (or
 internal) services that are currently too difficult for stream-aligned teams to use directly.
-· An enabling team promotes learning not only inside the enabling team
+ï¿½ An enabling team promotes learning not only inside the enabling team
 but across stream-aligned teams, acting as a curator that facilitates appropriate knowledge sharing inside the organization (supporting what Tom DeMarco and Tim Lister call a "key learning function."10
 CASE STUDY: ENGINEERING ENABLEMENT TEAM WITHIN A LARGE LEGAL ORGANIZATION
 Robin Weston, Engineering Leader, BCG Digital Ventures
@@ -1036,15 +1042,15 @@ The goal of this team is to reduce the cognitive load of stream-aligned teams wo
 Examples of complicated subsystems might include a video processing codec, a mathematical model, a real-time trade reconciliation algorithm, a transaction reporting system for financial services, or a face-recognition engine.
 
 The critical difference between a traditional component team (created when a subsystem is identified as being or expected to be shared by multiple systems) and a complicated-subsystem team is that the complicated-subsystem team is created only when a subsystem needs mostly specialized knowledge. The decision is driven by team cognitive load, not by a perceived opportunity to share the component.
-Consequently, we expect to have only a few complicated-subsystem teams in a Team Topologies­driven organization when compared to the number of component teams in a traditional structure. (Later in this chapter, we'll look at how to map traditional component teams to one of the fundamental topologies supporting stream-aligned teams.)
+Consequently, we expect to have only a few complicated-subsystem teams in a Team Topologiesï¿½driven organization when compared to the number of component teams in a traditional structure. (Later in this chapter, we'll look at how to map traditional component teams to one of the fundamental topologies supporting stream-aligned teams.)
 Expected Behaviors
 As we've seen, the mission of complicated-subsystem teams is to off-load work from stream-aligned teams on particularly complicated subsystems that need to be developed by a group of specialists.
 What kind of behaviors and outcomes do we expect to see in an effective complicated-subsystem team?
-· A complicated-subsystem team is mindful of the current stage of
+ï¿½ A complicated-subsystem team is mindful of the current stage of
 development of the subsystem and acts accordingly: high collaboration with stream-aligned teams during early exploration and development phases; reduced interaction and focus on the subsystem interface and feature evolution and usage during later stages, when the subsystem has stabilized.
-· With a complicated-subsystem team, delivery speed and quality for the
+ï¿½ With a complicated-subsystem team, delivery speed and quality for the
 subsystem is clearly higher than if/when the subsystem was being developed by a stream-aligned team (before the decision to split).
-· The complicated-subsystem team correctly prioritizes and delivers
+ï¿½ The complicated-subsystem team correctly prioritizes and delivers
 upcoming work respecting the needs of the stream-aligned teams that use the complicated subsystem.
 Platform Teams
 
@@ -1067,15 +1073,15 @@ Expected Behaviors
 As we've seen, the mission for a platform team is to provide the underlying internal services required by stream-aligned teams to deliver higher level services or functionalities, thus reducing their cognitive load.
 
 What kind of behaviors and outcomes do we expect to see in an effective platform team?
-· A platform team uses strong collaboration with stream-aligned teams to
+ï¿½ A platform team uses strong collaboration with stream-aligned teams to
 understand their needs.
-· A platform team relies on fast prototyping techniques and involves
+ï¿½ A platform team relies on fast prototyping techniques and involves
 stream-aligned team members for fast feedback on what works and what does not.
-· A platform team has a strong focus on usability and reliability for their
+ï¿½ A platform team has a strong focus on usability and reliability for their
 services (treating the platform as a product), and regularly assesses if the services are still fit for purpose and usable.
-· A platform team leads by example: using the services they provide
+ï¿½ A platform team leads by example: using the services they provide
 internally (when applicable), partnering with stream-aligned teams and enabling teams, and consuming lower level platforms (owned by other platform teams) whenever possible.
-· A platform team understands that adoption of internal new services, like
+ï¿½ A platform team understands that adoption of internal new services, like
 new technologies, is not immediate, but instead evolves along an adoption curve.
 CASE STUDY: SKY BETTING & GAMING-- PLATFORM FEATURE TEAMS (PART 1)
 Michael Maibaum, Chief Architect, Sky Betting & Gaming
@@ -1116,7 +1122,7 @@ Avoid Team Silos in the Flow of Change
 Generally speaking, teams composed only of people with a single functional expertise should be avoided if we want to deliver software rapidly and safely. Traditionally, many organizations created islands, or "silos," of functional
 
 expertise by grouping the staff, such as:
-· Testing or "quality assurance" (QA) · Database administration (DBA) · User experience (UX) · Architecture · Data processing (such as ETL)
+ï¿½ Testing or "quality assurance" (QA) ï¿½ Database administration (DBA) ï¿½ User experience (UX) ï¿½ Architecture ï¿½ Data processing (such as ETL)
 For years, many organizations used a dedicated "operations" team to manage all aspects of the live or production systems, preventing flow of changes with an explicit hand-off from teams building software coupled with delays accepting the changes. This model also works poorly for safe and rapid flow of change; instead, we combine stream-aligned teams that support and operate software in production together with platform teams that provide the underlying "substrate" for stream-aligned teams.
 Organizations that optimize for a safe and rapid flow of change tend to use mixed-discipline or cross-functional teams aligned to the flow of change--what we call stream-aligned teams. Sometimes a particular area is so complicated that a dedicated complicated-subsystem team is needed (see earlier in this chapter). But such teams never sit in the flow of change; instead, they provide services to stream-aligned teams. Work is never handed off to another team for a later stage in the flow.
 TIP
@@ -1298,7 +1304,7 @@ Sometimes other natural or available team-first fracture planes for assigning wo
 Of course, achieving such results often requires some initial experimentation and fine tuning. It is unlikely to guarantee a specific end result without actually giving it a fair try first. A simple heuristic that can help guide assessment of your system and team boundaries is simply to ask: Could we, as a team, effectively consume or provide this subsystem as a service? If the answer is yes, then the subsystem is a good candidate for splitting off and assigning to a team to own and evolve.
 FINDING GOOD SOFTWARE BOUNDARIES AT POPPULO
 Stephanie Sheehan, VP of Operations at Poppulo Damien Daly, Director of Engineering at Poppulo
-Poppulo enables organizations to plan, target, publish, and measure the impact of their communications across multiple digital channels, all in one place. Over four years from 2012 we trebled in size, opened offices in the US, and grew an extensive customer portfolio of the world's greatest brands, including Nestlé, Experian, LinkedIn, Honda, and RollsRoyce. As of 2019, the Poppulo platform is used by more than 15 million employees in more than a hundred countries. Getting to this point we have had to scale from a single development team to eight product teams, one SRE team, and an infra-team in the space of three years.
+Poppulo enables organizations to plan, target, publish, and measure the impact of their communications across multiple digital channels, all in one place. Over four years from 2012 we trebled in size, opened offices in the US, and grew an extensive customer portfolio of the world's greatest brands, including Nestlï¿½, Experian, LinkedIn, Honda, and RollsRoyce. As of 2019, the Poppulo platform is used by more than 15 million employees in more than a hundred countries. Getting to this point we have had to scale from a single development team to eight product teams, one SRE team, and an infra-team in the space of three years.
 Back in 2015, we expected significant growth in our customer base and in the size of our engineering staff, so we wanted to make sure that we split up the monolith in a way that helped the new teams to be largely independent and autonomous. As we hired more engineers, the architecture and practices which worked for a single team were not going to scale. We put DevOps and continuous delivery practices at the center of our design choices and started transitioning to a microservices-type architecture from our existing (successful) monolithic system.
 We began by adopting a stronger focus on "the team" as the means to
 
@@ -1641,12 +1647,12 @@ Techniques from domain-driven design (DDD) such as event storming and context ma
 Summary: Three Well-Defined Team Interaction Modes
 An effective, modern organization building and running software is a product of the interactions between teams. Yet many organizations fail to define what good team interactions look like, resulting in confusion, annoyance, and ineffectiveness. Simply defining a set of teams with responsibility boundaries is not enough to produce an effective sociotechnical system; it is also necessary to define sensible and effective interactions between teams.
 In this chapter, we've seen how three core team interaction modes provide the clarity needed for all team interactions within the organization:
-· Collaboration: two teams work closely together for a defined period to
+ï¿½ Collaboration: two teams work closely together for a defined period to
 discover new patterns, approaches, and limitations. Responsibility is shared and boundaries blurred, but problems are solved rapidly and the organization learns quickly.
 
-· X-as-a-Service: one team consumes something (such as a service or an
+ï¿½ X-as-a-Service: one team consumes something (such as a service or an
 API) provided "as a service" from another team. Responsibilities are clearly delineated and--if the boundary is effective--the consuming team can deliver rapidly. The team providing the service seeks to make their service as easy to consume as possible.
-· Facilitating: one team helps another team to learn or adopt new approaches
+ï¿½ Facilitating: one team helps another team to learn or adopt new approaches
 for a defined period of time. The team providing the facilitation aims to make the other team self-sufficient as soon as possible, while the team receiving the facilitation has an open-minded attitude to learning.
 The combination of well-defined team types and well-defined team interactions provides a clear and powerful way to promote team-based organizational effectiveness, avoiding the ambiguities and conflicts that many organizations experience.
 
@@ -1758,11 +1764,11 @@ Triggers for Evolution of Team Topologies
 Using the advice from Chapter 5, it is fairly straightforward to map an organization's structure to the four fundamental team topologies at a specific point in time, but it's often difficult to have the required organizational selfawareness to detect when it's time to evolve the team structure. There are some situations that act as triggers to redesign team topologies within the organization. Learning to recognize these will help an organization continue to adapt and evolve with its needs.
 Trigger: Software Has Grown Too Large for One Team
 Symptoms
-· A startup company grows beyond fifteen people (Dunbar's number). · Other teams spend lots of time waiting on a single team to undertake
+ï¿½ A startup company grows beyond fifteen people (Dunbar's number). ï¿½ Other teams spend lots of time waiting on a single team to undertake
 changes.
-· Changes to certain components or workflows in the system routinely get
+ï¿½ Changes to certain components or workflows in the system routinely get
 assigned to the same people, even when they're already busy or away.
-· Team members complain about lack of system documentation.
+ï¿½ Team members complain about lack of system documentation.
 Context
 
 Context
@@ -1772,14 +1778,14 @@ This reinforcing cycle of specialization is a local optimization ("get this requ
 Another aspect at play occurs when the team no longer holds a holistic view of the system; thus, it loses the self-awareness to realize when the system has become too large. While there is some correlation between system size in terms of lines of code or features, it is the limit on cognitive capacity to handle changes to the system in an effective way that is most of concern here.
 Trigger: Delivery Cadence Is Becoming Slower
 Symptoms
-· Team members qualitatively feel it takes longer to release changes than it
+ï¿½ Team members qualitatively feel it takes longer to release changes than it
 used to.
-· Team velocity or throughput metrics show a clear downward variation
+ï¿½ Team velocity or throughput metrics show a clear downward variation
 compared to one year ago. (There is always some variation, so make sure it's not accidental.)
-· Team members complain that the delivery process used to be simpler, with
+ï¿½ Team members complain that the delivery process used to be simpler, with
 
 fewer steps.
-· Work in progress keeps increasing, with many changes waiting for another
+ï¿½ Work in progress keeps increasing, with many changes waiting for another
 team's action.
 Context
 A long-lived, high-performing product team should be able to steadily improve their delivery cadence as they find ways to work more efficiently together and remove bottlenecks in delivery. However, a pre-requisite for these teams to flourish is to grant them autonomy over the entire life cycle of the product. This means no hard dependencies on external teams, such as waiting for another team to create new infrastructure. Being able to self-serve new infrastructure via an internal platform is a soft dependency (assuming the provisioning self-service is maintained by a platform team).
@@ -1789,11 +1795,11 @@ Note that it's also possible that delivery has slowed down because of accrued te
 Trigger: Multiple Business Services Rely On a Large Set of Underlying Services
 
 Symptoms
-· Stream-aligned teams have limited visibility of end-to-end flow within
+ï¿½ Stream-aligned teams have limited visibility of end-to-end flow within
 their service area.
-· It becomes difficult to achieve a smooth and rapid flow of change due to
+ï¿½ It becomes difficult to achieve a smooth and rapid flow of change due to
 the number and complexity of subsystem integrations.
-· Attempts to "reuse" an existing set of services and subsystems becomes
+ï¿½ Attempts to "reuse" an existing set of services and subsystems becomes
 more and more challenging.
 Context
 In some highly regulated industry sectors, such as finance, insurance, legal, and government, several different high-level business services may rely on a large set of separate underlying services, APIs, or subsystems. For example, an insurance company may need to conduct lengthy physical checks on factory machinery in order to provide an updated insurance quote; or a bank may need to await delivery of proof-of-address documents before opening a new bank account. The lower-level systems on which these higher-level business services rely might provide specialist payment mechanisms, data cleansing, identity verification, background legal checks, and so forth, each of which needs multiple teams working on it to evolve and sustain the service. Business process management (BPM)--perhaps augmented with machine learning (ML)--can help to automate some of the work in these cases; but engaged, aware teams still need to configure and test the BPM workflow scenarios. Some of these services and subsystems may be built and provided in house, but others may be provided by external suppliers.
@@ -1819,18 +1825,18 @@ Many organizations--those with unstable and ill-defined teams, relying on key in
 Not only do organizations need to sense things with high fidelity, they also need to respond rapidly. Organisms generally have separate specialized organs for sensing (eyes, ears, etc.) and responding to input (limbs, body, etc.). The kinds of signals that different teams will be able to detect will differ depending on what the team does and how close it is to external customers, internal customers, other teams, and so on, but each team will be capable of providing sensory input to the organization and responding to the information by adjusting their team interaction patterns.
 Thankfully, to help us with this task of what Naomi Stanford calls "environmental scanning,"7 we have modern digital tools. Rich telemetry from digital metrics and logging helps teams achieve a real-time view of the health and performance of their software systems; and lightweight, network-connected devices (IoT and 4IR) provide regular sensor data from many thousands of physical locations.
 So, what kinds of things should an organization sense? These questions can help an organization discover the answer:
-· Have we misunderstood how users need/want to behave? · Do we need to change team-interaction modes to enhance how the
+ï¿½ Have we misunderstood how users need/want to behave? ï¿½ Do we need to change team-interaction modes to enhance how the
 organization is working?
 
-· Should we still be building thing X in house? Should we be renting it from
+ï¿½ Should we still be building thing X in house? Should we be renting it from
 an external provider?
-· Is the close collaboration between Team A and Team B still effective?
+ï¿½ Is the close collaboration between Team A and Team B still effective?
 Should we move toward an X-as-a-Service model?
-· Is the flow of work for Team C as smooth as it could be? What hampers
+ï¿½ Is the flow of work for Team C as smooth as it could be? What hampers
 flow?
-· Does the platform for teams D, E, F, and G provide everything those teams
+ï¿½ Does the platform for teams D, E, F, and G provide everything those teams
 need? Is an enabling team needed for a period of time?
-· Are the promises between these two teams still valid and achievable? What
+ï¿½ Are the promises between these two teams still valid and achievable? What
 needs to change to make the promises more realistic?
 IT Operations as High-Value Sensory Input to Development
 Moving quickly relies on sensory feedback about the environment. To sustain a fast flow of software changes, organizations must invest in organizational sensing and cybernetic control. A key aspect of this sensory feedback is the use of IT operations teams as high-fidelity sensory input for development teams, requiring joined-up communications between teams running systems (Ops) and teams building systems (Dev). Sadly, many organizations prevent themselves from moving quickly and safely. As Sriram Narayan says, "Project sponsors looking to reduce cost opt for a different team of lower-cost people for maintenance work. This is false economy. It hurts the larger business outcome and reduces IT agility."8
@@ -1876,22 +1882,22 @@ Figure 9.1: Core Ideas of Team Topologies
 Four Team Types and Three Interaction Modes
 Building and running a software system can be achieved using only four team types. Other team types can be actively harmful to an organization.
 The four fundamental Team Topologies are:
-· Stream aligned: a team aligned to the main flow of business change, with
+ï¿½ Stream aligned: a team aligned to the main flow of business change, with
 cross-functional skills mix and the ability to deliver significant increments without waiting on another team.
-· Platform: a team that works on the underlying platform supporting stream-
+ï¿½ Platform: a team that works on the underlying platform supporting stream-
 aligned teams in delivery. The platform simplifies otherwise complex technology and reduces cognitive load for teams that use it.
-· Enabling: a team that assists other teams in adopting and modifying
+ï¿½ Enabling: a team that assists other teams in adopting and modifying
 software as part of a transition or learning period.
-· Complicated subsystem: a team with a special remit for a subsystem that is
+ï¿½ Complicated subsystem: a team with a special remit for a subsystem that is
 too complicated to be dealt with by a normal stream-aligned team or
 
 platform team. Optional and only used when really necessary.
 The combination of these specific team types is all that's needed for effective software delivery with fast flow. However, the interaction modes between these four fundamental team topologies are vitally important to understanding and nurturing effective software delivery:
-· Collaboration mode: two teams work together on a shared goal,
+ï¿½ Collaboration mode: two teams work together on a shared goal,
 particularly during discovery of new technology or approaches. The overhead is valuable due to the rapid pace of learning.
-· X-as-a-Service mode: one team consumes something provided by another
+ï¿½ X-as-a-Service mode: one team consumes something provided by another
 team (such as an API, a tool, or a full software product). Collaboration is minimal.
-· Facilitating mode: one team (usually an enabling team) facilitates another
+ï¿½ Facilitating mode: one team (usually an enabling team) facilitates another
 team in learning or adopting a new approach.
 Team interactions outside these three core interaction modes are wasteful and indicative of poorly chosen team responsibility boundaries and poorly understood team purposes.
 Team-First Thinking: Cognitive Load, Team API, Team-Sized Architecture
@@ -1914,13 +1920,13 @@ Team Topologies is not static but capable of and expected to change as the situa
 Team Topologies Alone Are Not Sufficient for IT Effectiveness
 The Team Topologies approach to software systems represents a major step forward for many organizations around the world, providing insights into how and why different team combinations and interactions work and when to use them, along with practical advice and patterns to follow in specific circumstances.
 However, Team Topologies alone will not produce an effective softwaredelivery and operations organization. Beyond the structures and dynamics suggested in this book, important additional ingredients of success include:
-· A healthy organizational culture: an environment that supports the
+ï¿½ A healthy organizational culture: an environment that supports the
 professional development of individuals and teams--one in which people feel empowered and safe to speak out about problems, and the organization expects to learn continuously.
-· Good engineering practices: test-first design and development of all
+ï¿½ Good engineering practices: test-first design and development of all
 aspects of the systems, a focus on continuous delivery and operability practices, pairing and mobbing for code review, avoiding the search for a single "root cause" for incidents, designing for testability, and so on.
-· Healthy funding and financial practices: avoiding the pernicious effects of
+ï¿½ Healthy funding and financial practices: avoiding the pernicious effects of
 a CapEx/OpEx split between different parts of the IT organization (or at least mitigating the worst aspects of this by estimating CapEx/OpEx through sampling the work), avoiding project-driven deadlines and largebatch budgeting wherever possible, and allocating training budgets to teams or groups rather than individuals.
-· Clarity of business vision: the executive or leadership provides a clear,
+ï¿½ Clarity of business vision: the executive or leadership provides a clear,
 non-conflicting vision and direction for the rest of the organization, with horizons at human-relevant timescales (such as three months, six months, twelve months) and clear reasoning behind the priorities, so people in the organization can understand how and why these were chosen.
 
 You can think of it like elements needed for creating and maintaining a garden: the Team Topologies approach acts like the instructions for placing the flowers and plants, along with patterns for pruning and training; whereas the cultural, engineering, and financial elements are like the soil, water, and fertilizer that helps the plants grow healthily.
@@ -1929,22 +1935,22 @@ A lack of clarity in business vision is akin to asking a horticulture team to "c
 Next Steps: How to Get Started with Team Topologies
 1: Start with the Team
 First, as an organization ask yourself: What does the team need in order to:
-· Act and operate as an effective team? · Own part of the software effectively? · Focus on meeting the needs of users? · Reduce unnecessary cognitive load? · Consume and provide software and information to other teams?
+ï¿½ Act and operate as an effective team? ï¿½ Own part of the software effectively? ï¿½ Focus on meeting the needs of users? ï¿½ Reduce unnecessary cognitive load? ï¿½ Consume and provide software and information to other teams?
 Answering these questions honestly should lead to team-first approaches to office space, developer tooling, usability of platforms, realistic
 
 subsystem/domain splitting, team-friendly architecture, rich telemetry, and so forth.
 Having started with the team, you can address other important aspects of fast flow for modern software: alignment to streams, the platform, and additional capabilities to support and enhance the work of teams.
 2: Identify Suitable Streams of Change
 Each organization needs to choose a set of change streams that act as "pipes" down which the most important changes flow. These streams are the main focus for flow within the organization, and all other work within the organization takes place to help flow within these streams (directly or indirectly). Exactly what is chosen for the streams depends very much on the nature of the organization, but some typical streams might be:
-· Citizen-oriented tasks for government online services: applying for a
+ï¿½ Citizen-oriented tasks for government online services: applying for a
 passport, paying taxes, or registering for a set of healthcare options (taskoriented streams).
-· Business banking products: online money management, automation of
+ï¿½ Business banking products: online money management, automation of
 bank transactions, invoicing clients (role-oriented streams).
-· Online ticket purchasing: searching for tickets, purchasing tickets,
+ï¿½ Online ticket purchasing: searching for tickets, purchasing tickets,
 managing "My Account" and refunds (activity streams).
-· Regional products: European market, North American market, Asian
+ï¿½ Regional products: European market, North American market, Asian
 market, etc. (geographical streams).
-· Market segment: consumer, small and medium business, enterprise, large
+ï¿½ Market segment: consumer, small and medium business, enterprise, large
 corporate (user-type streams).
 Stream-aligned teams should be aligned to the streams you identify. These high-level streams should match the "change pressure" from the core of your organization. If there is no clear or obvious set of change streams, then it is usually beneficial to identify these before going further.
 3: Identify a Thinnest Viable Platform (TVP)
@@ -1954,11 +1960,11 @@ Naturally, the platform will evolve over time as the technology ecosystem evolve
 Remember: technology is only ever a part of the platform; roadmaps, guided evolution, clear documentation, a concern for DevEx, and appropriate encapsulation of underlying complexity are all key parts of an effective delivery platform for stream-aligned teams.
 4: Identify Capability Gaps in Team Coaching, Mentoring, Service Management, and Documentation
 Having a team-first approach based around core streams of change enabled by a platform is a great place for an organization to start; however, the capabilities and skills needed to make this setup work are more varied and less common than many organizations expect. As we have seen in previous chapters (especially Chapter 5 and Chapter 7), you need to ensure that your teams are populated not just with technologists focused on code or computer systems but also with people who have other skills. In particular, you need people who understand and practice:
-· Team coaching
+ï¿½ Team coaching
 
-· Mentoring (especially of senior staff) · Service management (for all kinds of teams and areas, not just for
+ï¿½ Mentoring (especially of senior staff) ï¿½ Service management (for all kinds of teams and areas, not just for
 production systems)
-· Well-written documentation · Process improvement
+ï¿½ Well-written documentation ï¿½ Process improvement
 
 These kinds of capabilities help teams within the organization to continually improve their practices, communicate, and interact with other teams, which, in turn, helps the whole organization to safely increase the rate of change flow. No serious sports team would consider not employing coaches and trainers, and no serious organization should be without coaches and trainers either.
 
@@ -1993,33 +1999,33 @@ X-as-a-Service mode: consuming or providing something with minimal collaboration
 
 RECOMMENDED READING
 Key Management Concepts and Practices for Reliable, Fast Flow
-· Accelerate: The Science of Lean Software and DevOps: Building and
+ï¿½ Accelerate: The Science of Lean Software and DevOps: Building and
 Scaling High Performing Technology Organizations by Nicole Forsgren, PhD, Jez Humble, and Gene Kim (Portland, Oregon: IT Revolution, 2018).
-· Designing Delivery: Rethinking IT in the Digital Service Economy by Jeff
+ï¿½ Designing Delivery: Rethinking IT in the Digital Service Economy by Jeff
 Sussna (Beijing: O'Reilly Media, 2015).
-· Fearless Change: Patterns for Introducing New Ideas by Mary Lynn Manns
+ï¿½ Fearless Change: Patterns for Introducing New Ideas by Mary Lynn Manns
 and Linda Rising (Boston: Addison Wesley, 2004).
 Key Practices and Approaches for Organizations, Software, and Systems
-· Team Genius: The New Science of High-Performing Organizations by
+ï¿½ Team Genius: The New Science of High-Performing Organizations by
 Rich Karlgaard and Michael S. Malone (New York, NY: HarperBusiness, 2015).
-· Agile Development in the Large: Diving into the Deep by Jutta Eckstein
+ï¿½ Agile Development in the Large: Diving into the Deep by Jutta Eckstein
 (New York: Dorset House Publishing Co Inc.,US, 2004).
-· Domain-Driven Design: Tackling Complexity in the Heart of Software by
+ï¿½ Domain-Driven Design: Tackling Complexity in the Heart of Software by
 Eric Evans (Boston: Addison-Wesley, 2003).
-· Thinking in Promises by Mark Burgess (Sebastopol, California: O'Reilly
+ï¿½ Thinking in Promises by Mark Burgess (Sebastopol, California: O'Reilly
 Media, 2015).
 Key Engineering Practices that Enable Fast Flow
 
-· Continuous Delivery: Reliable Software Releases through Build, Test, and
+ï¿½ Continuous Delivery: Reliable Software Releases through Build, Test, and
 Deployment Automation by Jez Humble and David Farley (Upper Saddle
 River, NJ: Addison Wesley, 2010).
-· Release It! Design and Deploy Production-Ready Software by Michael T.
+ï¿½ Release It! Design and Deploy Production-Ready Software by Michael T.
 Nygard (Raleigh, North Carolina: O'Reilly, 2018).
-· Team Guide to Software Operability, Team Guide Series 1, by Matthew
+ï¿½ Team Guide to Software Operability, Team Guide Series 1, by Matthew
 Skelton and Rob Thatcher (Leeds, UK: Conflux Books, 2016).
-· Team Guide to Software Testability, Team Guide Series 3, by Ash Winter
+ï¿½ Team Guide to Software Testability, Team Guide Series 3, by Ash Winter
 and Rob Meaney (Leeds, UK: Conflux Books, 2018).
-· Team Guide to Software Releasability, Team Guide Series 4, by Manuel
+ï¿½ Team Guide to Software Releasability, Team Guide Series 4, by Manuel
 Pais and Chris O'Dell (Leeds, UK: Conflux Books, 2018).
 
 REFERENCES
@@ -2030,13 +2036,13 @@ Adkins, Lyssa. Coaching Agile Teams: A Companion for ScrumMasters, Agile Coaches
 Allen, Thomas J. Managing the Flow of Technology. Cambridge, MA: MIT Press, 1984. Allspaw, John. "Blameless PostMortems and a Just Culture." Code as Craft (blog), May 22, 2012.
 https://codeascraft.com/2012/05/22/blameless-postmortems/. Almeida, Thiago. "DevOps Lessons Learned at Microsoft Engineering." InfoQ, May 22, 2016.
 https://www.infoq.com/articles/devops-lessons-microsoft. Ancona, Deborah Gladstein, and David F. Caldwell. "Demography and Design: Predictors of New Product
-Team Performance." Organization Science 3 no. 3 (1992): 321­341. https://doi.org/10.1287/orsc.3.3.321. Axelrod, Robert A. Complexity of Cooperation: Agent-Based Models of Competition and Collaboration. Princeton, NJ: Princeton University Press, 1997. Bauernberger, Joachim. "DevOps in Telecoms--Is It Possible?" Telecom Tech News, October 1, 2014. http://www.telecomstechnews.com/news/2014/oct/01/devops-telecoms-it-possible/. Beal, Helen. "The Industry Just Can't Decide about DevOps Teams." InfoQ, October 26, 2017. https://www.infoq.com/news/2017/10/devops-teams-good-or-bad. Beer, Stafford. Brain of the Firm, 2nd edition. Chichester, UK: John Wiley & Sons, 1995. Bennett, Drake. "The Dunbar Number, From the Guru of Social Networks." Bloomberg.com, January 11, 2013. http://www.bloomberg.com/news/articles/2013-01-10/the-dunbar-number-from-the-guru-ofsocial-networks. Bernstein, Ethan, John Bunch, Niko Canner, and Michael Lee. "Beyond the Holacracy Hype." Harvard Business Review, July 1, 2016. https://hbr.org/2016/07/beyond-the-holacracy-hype. Bernstein, Ethan, Jesse Shore, and David Lazer. "How Intermittent Breaks in Interaction Improve Collective Intelligence." Proceedings of the National Academy of Sciences 115 no. 35 (August, 2018): 8734­8739. https://doi.org/10.1073/pnas.1802407115. Bernstein, Ethan S., and Stephen Turban. "The Impact of the `Open' Workspace on Human Collaboration."
+Team Performance." Organization Science 3 no. 3 (1992): 321ï¿½341. https://doi.org/10.1287/orsc.3.3.321. Axelrod, Robert A. Complexity of Cooperation: Agent-Based Models of Competition and Collaboration. Princeton, NJ: Princeton University Press, 1997. Bauernberger, Joachim. "DevOps in Telecoms--Is It Possible?" Telecom Tech News, October 1, 2014. http://www.telecomstechnews.com/news/2014/oct/01/devops-telecoms-it-possible/. Beal, Helen. "The Industry Just Can't Decide about DevOps Teams." InfoQ, October 26, 2017. https://www.infoq.com/news/2017/10/devops-teams-good-or-bad. Beer, Stafford. Brain of the Firm, 2nd edition. Chichester, UK: John Wiley & Sons, 1995. Bennett, Drake. "The Dunbar Number, From the Guru of Social Networks." Bloomberg.com, January 11, 2013. http://www.bloomberg.com/news/articles/2013-01-10/the-dunbar-number-from-the-guru-ofsocial-networks. Bernstein, Ethan, John Bunch, Niko Canner, and Michael Lee. "Beyond the Holacracy Hype." Harvard Business Review, July 1, 2016. https://hbr.org/2016/07/beyond-the-holacracy-hype. Bernstein, Ethan, Jesse Shore, and David Lazer. "How Intermittent Breaks in Interaction Improve Collective Intelligence." Proceedings of the National Academy of Sciences 115 no. 35 (August, 2018): 8734ï¿½8739. https://doi.org/10.1073/pnas.1802407115. Bernstein, Ethan S., and Stephen Turban. "The Impact of the `Open' Workspace on Human Collaboration."
 
 Philosophical Transactions of the Royal Society B 373 no. 1753 (2018). https://doi.org/10.1098/rstb.2017.0239.
 Betz, Charles. Managing Digital: Concepts and Practices. The Open Group, 2018.
 Beyer, Betsy, Jennifer Petoff, Chris Jones, and Niall Richard Murphy (eds). Site Reliability Engineering: How Google Runs Production Systems. Sebastopol, CA: O'Reilly, 2016.
 Blalock, Micah. "Of Mustard Seeds and Microservices." Credera (blog), May 6, 2015. https://www.credera.com/blog/technology-insights/java/mustard-seeds-microservices/.
-Bosch, Jan. "On the Development of Software Product-Family Components." In Software Product Lines, edited by Robert L. Nord, 146­164. Berlin: Springer, 2004.
+Bosch, Jan. "On the Development of Software Product-Family Components." In Software Product Lines, edited by Robert L. Nord, 146ï¿½164. Berlin: Springer, 2004.
 Bottcher, Evan. "What I Talk About When I Talk About Platforms." MartinFowler.com (blog), March 5, 2018. https://martinfowler.com/articles/talk-about-platforms.html.
 Brandolini, Alberto. "Strategic Domain Driven Design with Context Mapping." InfoQ, November 25, 2009. https://www.infoq.com/articles/ddd-contextmapping.
 Bright, Peter. "How Microsoft Dragged Its Development Practices into the 21st Century." Ars Technica, August 6, 2014. https://arstechnica.com/information-technology/2014/08/how-microsoft-dragged-itsdevelopment-practices-into-the-21st-century/.
@@ -2044,11 +2050,11 @@ Brooks, Fred. The Mythical Man-Month: Essays on Software Engineering. Boston, MA
 Brown, Simon. "Are You a Software Architect?" InfoQ, February 9, 2010. https://www.infoq.com/articles/brown-are-you-a-software-architect.
 Bryson, Brandon. "Architects Should Code: The Architect's Misconception." InfoQ, August 6, 2015. https://www.infoq.com/articles/architects-should-code-bryson.
 Burgess, Mark. Thinking in Promises: Designing Systems for Cooperation. Sebastopol, CA: O'Reilly Media, 2015.
-Carayon, Pascale. "Human Factors of Complex Sociotechnical Systems." Applied Ergonomics, Special Issue: Meeting Diversity in Ergonomics 37 no. 4 (2006): 525­535. https://doi.org/10.1016/j.apergo.2006.04.011.
+Carayon, Pascale. "Human Factors of Complex Sociotechnical Systems." Applied Ergonomics, Special Issue: Meeting Diversity in Ergonomics 37 no. 4 (2006): 525ï¿½535. https://doi.org/10.1016/j.apergo.2006.04.011.
 Casella, Karen. "Improving Team Productivity by Reducing Context Switching | LinkedIn." LinkedIn Pulse, October 26, 2016. https://www.linkedin.com/pulse/improving-team-productivity-reducingcontext-karen-casella/.
 Chaudhary, Mukesh. "Working with Component Teams: How to Navigate the Complexity-Scrum Alliance." ScrumAlliance.org, September 5, 2012. https://www.scrumalliance.org/community/memberarticles/301.
-Cherns, Albert. "The Principles of Sociotechnical Design." Human Relations 29 no. 8 (1976): 783­792. https://doi.org/10.1177/001872677602900806.
-Clegg, Chris W. "Sociotechnical Principles for System Design." Applied Ergonomics 31 no. 5 (2000): 463­ 477. https://doi.org/10.1016/S0003-6870(00)00009-0.
+Cherns, Albert. "The Principles of Sociotechnical Design." Human Relations 29 no. 8 (1976): 783ï¿½792. https://doi.org/10.1177/001872677602900806.
+Clegg, Chris W. "Sociotechnical Principles for System Design." Applied Ergonomics 31 no. 5 (2000): 463ï¿½ 477. https://doi.org/10.1016/S0003-6870(00)00009-0.
 Cockcroft, Adrian. "Goto Berlin--Migrating to Microservices (Fast Delivery)." Presented at the GOTO
 
 Berlin conference, Berlin, November 15, 2014. http://www.slideshare.net/adriancockcroft/goto-berlin.
@@ -2067,27 +2073,27 @@ Davies, Rachel, and Liz Sedley. Agile Coaching. Raleigh, NC: Pragmatic Bookshelf
 DeGrandis, Dominica. Making Work Visible: Exposing Time Theft to Optimize Workflow. Portland, OR: IT Revolution Press, 2017.
 DeMarco, Tom, and Timothy Lister. Peopleware: Productive Projects and Teams, 2nd revised edition. New York, NY: Dorset, 1999.
 Deming, W. Edwards. Out of the Crisis. Cambridge, MA: MIT Press, 1986.
-DeSanctis, Gerardine, and Marshall Scott Poole. "Capturing the Complexity in Advnaced Technology Use: Adaptive Structuration Theory." Organization Science 5 no. 2 (May 1994): 121­147.
+DeSanctis, Gerardine, and Marshall Scott Poole. "Capturing the Complexity in Advnaced Technology Use: Adaptive Structuration Theory." Organization Science 5 no. 2 (May 1994): 121ï¿½147.
 Dogan, Jaana B. "The SRE Model." Medium, July 31, 2017. https://medium.com/@rakyll/the-sre-model6e19376ef986.
 Doorley, Scott, and Scott Witthoft. Make Space: How to Set the Stage for Create Collaboration. Hoboken, NJ: John Wiley & Sons, 2012.
 Driskell, James E., and Eduardo Salas. "Collective Behavior and Team Performance." Human Factors 34
 
-no. 3 (1992): 277­288. https://doi.org/10.1177/001872089203400303.
-Driskell, James E., Eduardo Salas, and Joan Johnston. "Does Stress Lead to a Loss of Team Perspective?" Group Dynamics: Theory, Research, and Practice 3, no. 4 (1999): 291­302.
+no. 3 (1992): 277ï¿½288. https://doi.org/10.1177/001872089203400303.
+Driskell, James E., Eduardo Salas, and Joan Johnston. "Does Stress Lead to a Loss of Team Perspective?" Group Dynamics: Theory, Research, and Practice 3, no. 4 (1999): 291ï¿½302.
 Drucker, Peter. The Daily Drucker: 366 Days of Insight and Motivation for Getting the Right Things Done. New York: HarperCollins, 2018.
-Dunbar, R. I. M. "Neocortex Size as a Constraint on Group Size in Primates." Journal of Human Evolution 22, no. 6 (1992): 469­493. https://doi.org/10.1016/0047-2484(92)90081-J.
+Dunbar, R. I. M. "Neocortex Size as a Constraint on Group Size in Primates." Journal of Human Evolution 22, no. 6 (1992): 469ï¿½493. https://doi.org/10.1016/0047-2484(92)90081-J.
 Dunbar, Professor Robin. How Many Friends Does One Person Need?: Dunbar's Number and Other Evolutionary Quirks. London: Faber & Faber, 2010.
 Eckstein, Jutta. Agile Development in the Large: Diving into the Deep. New York: Dorset, 2004.
-Eckstein, Jutta. "Architecture in Large Scale Agile Development." In Agile Methods. Large-Scale Development, Refactoring, Testing, and Estimation, edited by Torgeir Dingsøyr, Nils Brede Moe, Roberto Tonelli, Steve Counsell, Cigdem Gencel, and Kai Petersen. Switzerland, Springer International Publishing, 2014.
-Edmondson, Amy. "Psychological Safety and Learning Behavior in Work Teams." Administrative Science Quarterly 44 no. 2 (1999): 350­383. https://doi.org/10.2307/2666999.
+Eckstein, Jutta. "Architecture in Large Scale Agile Development." In Agile Methods. Large-Scale Development, Refactoring, Testing, and Estimation, edited by Torgeir Dingsï¿½yr, Nils Brede Moe, Roberto Tonelli, Steve Counsell, Cigdem Gencel, and Kai Petersen. Switzerland, Springer International Publishing, 2014.
+Edmondson, Amy. "Psychological Safety and Learning Behavior in Work Teams." Administrative Science Quarterly 44 no. 2 (1999): 350ï¿½383. https://doi.org/10.2307/2666999.
 Edmondson, Amy C. Managing the Risk of Learning: Psychological Safety in Work Teams. In International Handbook of Organization Teamwork and Cooperative Working, edited by Michael A. West, Dean Tjosvold, and Ken G. Smith. Hoboken, NJ: Wiley & Sons, 2003.
 Edwards, Damon. "What is DevOps?" Dev2Ops.org, February 23, 2010. http://dev2ops.orgg/2010/02/whatis-devops.
 The Essential Elements of Enterprise PaaS. Palo Alto, CA: Pivotal, 2015. https://content.pivotal.io/whitepapers/the-essential-elements-of-enterprise-paas.
 Evans, Eric. Domain-Driven Design: Tackling Complexity in the Heart of Software. Boston, MA: Addison Wesley, 2003.
 Evans, William. "The Need for Speed: Enabling DevOps through Enterprise Architecture | #DOES16." SlideShare, posted by William Evans, November 2, 2016. https://www.slideshare.net/willevans/theneed-for-speed-enabling-devops-through-enterprise-architecture.
-Fan, Xiaocong, Po-Chun Chen, and John Yen. "Learning HMM-Based Cognitive Load Models for Supporting Human-Agent Teamwork." Cognitive Systems Research 11, no. 1 (2010): 108­119.
+Fan, Xiaocong, Po-Chun Chen, and John Yen. "Learning HMM-Based Cognitive Load Models for Supporting Human-Agent Teamwork." Cognitive Systems Research 11, no. 1 (2010): 108ï¿½119.
 Feathers, Michael. Working Effectively with Legacy Code. Upper Saddle River, NJ: Prentice Hall, 2004.
-Forrester, Russ, and Allan B. Drexler. "A Model for Team-Based Organization Performance." The Academy of Management Executive 13 no. 3 (1999), 36­49.
+Forrester, Russ, and Allan B. Drexler. "A Model for Team-Based Organization Performance." The Academy of Management Executive 13 no. 3 (1999), 36ï¿½49.
 Forsgren, PhD, Nicole, Jez Humble, and Gene Kim. Accelerate: The Science of Lean Software and Devops: Building and Scaling High Performing Technology Organizations. Portland, Oregon: IT Revolution Press, 2018.
 Fowler, Martin. "Bliki: BoundedContext." MartinFowler.com (blog), January 15, 2014. https://martinfowler.com/bliki/BoundedContext.html.
 
@@ -2145,8 +2151,8 @@ Ingles, Paul. "Convergence to Kubernetes." Paul Ingles (blog), June 18, 2018. ht
 
 innolution. n.d. "Feature Team Definition | Innolution." Accessed October 14, 2018. https://innolution.com/resources/glossary/feature-team
 "DevOps Over Coffee--Adidas." YouTube video, 32:03, posted by IT Revolution, July 3, 2018. https://www.youtube.com/watch?v=oOjdXeGp44E&feature=youtu.be&t=1071.
-Jang, Sujin. "Cultural Brokerage and Creative Performance in Multicultural Teams." Organization Science 28 no. 6 (2017): 993­1009. https://doi.org/10.1287/orsc.2017.1162.
-Jay, Graylin, Joanne Hale, Randy Smith, David Hale, Nicholas Kraft, and Charles Ward. "Cyclomatic Complexity and Lines of Code: Empirical Evidence of a Stable Linear Relationship." Journal of Software Engineering & Applications 2 (January): 137­143. https://doi.org/10.4236/jsea.2009.23020.
+Jang, Sujin. "Cultural Brokerage and Creative Performance in Multicultural Teams." Organization Science 28 no. 6 (2017): 993ï¿½1009. https://doi.org/10.1287/orsc.2017.1162.
+Jay, Graylin, Joanne Hale, Randy Smith, David Hale, Nicholas Kraft, and Charles Ward. "Cyclomatic Complexity and Lines of Code: Empirical Evidence of a Stable Linear Relationship." Journal of Software Engineering & Applications 2 (January): 137ï¿½143. https://doi.org/10.4236/jsea.2009.23020.
 John, Wolfgang. "DevOps for Service Providers--Next Generation Tools." Ericsson Research Blog. December 7, 2015. https://www.ericsson.com/research-blog/cloud/devops-for-service-providers-nextgeneration-tools/.
 Johnston, Joan H., Stephen M. Fiore, Carol Paris, and C. A. P. Smith. "Application of Cognitive Load Theory to Developing a Measure of Team Decision Efficiency." Military Psychology 3 (2003). https://www.tandfonline.com/doi/abs/10.1037/h0094967.
 Karlgaard, Rich, and Michael S. Malone. Team Genius: The New Science of High-Performing Organizations. New York, NY: HarperBusiness, 2015.
@@ -2158,7 +2164,7 @@ Kelly, Allan. Project Myopia: Why Projects Damage Software #NoProjects. Allan Ke
 Kelly, Allan. "Return to Conway's Law." Allan Kelly Associates (blog), January 17, 2006. https://www.allankellyassociates.co.uk/archives/1169/return-to-conways-law/.
 Kersten, Mik. Project to Product: How to Survive and Thrive in the Age of Digital Disruption with the Flow Framework. Portland, OR: IT Revolution Press, 2018.
 Kim, Gene, Jez Humble, Patrick Debois, and John Willis. The DevOps Handbook: How to Create WorldClass Agility, Reliability, and Security in Technology Organizations. Portland, OR: IT Revolution Press, 2016.
-Kim, Dr. Kyung Hee, and Robert A. Pierce. "Convergent Versus Divergent Thinking." In Encyclopedia of Creativity, Invention, Innovation and Entrepreneurship, edited by Elias G. Carayannis, 245­250. New York: Springer, 2013.
+Kim, Dr. Kyung Hee, and Robert A. Pierce. "Convergent Versus Divergent Thinking." In Encyclopedia of Creativity, Invention, Innovation and Entrepreneurship, edited by Elias G. Carayannis, 245ï¿½250. New York: Springer, 2013.
 Kitagawa, Justin. "Platforms at Twilio: Unlocking Developer Effectiveness." InfoQ, October 18, 2018. https://www.infoq.com/presentations/twilio-devops
 Kitson, Jon. "Squad Health Checks." Sky Betting & Gaming Technology (blog), February 1, 2017.
 
@@ -2169,21 +2175,21 @@ Kniberg, Henrik. "Squad Health Check Model--Visualizing What to Improve." Spotif
 Knight, Pamela. "Acquisition Community Team Dynamics: The Tuckman Model vs. the DAU Model." Proceedings from the 4th Annual Acquisition Research Symposium of the Naval Postgraduate School (2007). https://apps.dtic.mil/dtic/tr/fulltext/u2/a493549.pdf.
 Kotter, John P. "Accelerate!" Harvard Business Review, November 1, 2012. https://hbr.org/2012/11/accelerate.
 Kramer, Staci D. "The Biggest Thing Amazon Got Right: The Platform." Gigaom, October 12, 2011. https://gigaom.com/2011/10/12/419-the-biggest-thing-amazon-got-right-the-platform/.
-Laloux, Frédéric. Reinventing Organizations: An Illustrated Invitation to Join the Conversation on NextStage Organizations. Oxford, UK: Nelson Parker, 2016.
+Laloux, Frï¿½dï¿½ric. Reinventing Organizations: An Illustrated Invitation to Join the Conversation on NextStage Organizations. Oxford, UK: Nelson Parker, 2016.
 Lane, Kim. "The Secret to Amazon's Success--Internal APIs." API Evangelist (blog), January 12, 2012. http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/.
 Larman, Craig, and Bas Vodde. "Choose Feature Teams over Component Teams for Agility." InfoQ, July 15, 2008. https://www.infoq.com/articles/scaling-lean-agile-feature-teams.
 Larman, Craig, and Bas Vodde. Large-Scale Scrum: More with LeSS. Upper Saddle River, NJ: AddisonWesley Professional, 2016.
 Leffingwell, Dean. "Feature Teams vs. Component Teams (Continued)." Scaling Software Agility (blog), May 2, 2011. https://scalingsoftwareagility.wordpress.com/2011/05/02/feature-teams-vs-componentteams-continued/.
-Leffingwell, Dean. "Organizing at Scale: Feature Teams vs. Component Teams ­ Part 3." Scaling Software Agility (blog), July 22, 2009. https://scalingsoftwareagility.wordpress.com/2009/07/22/organizingagile-at-scale-feature-teams-versus-component-teams-part-3/.
+Leffingwell, Dean. "Organizing at Scale: Feature Teams vs. Component Teams ï¿½ Part 3." Scaling Software Agility (blog), July 22, 2009. https://scalingsoftwareagility.wordpress.com/2009/07/22/organizingagile-at-scale-feature-teams-versus-component-teams-part-3/.
 Leffingwell, Dean. Scaling Software Agility: Best Practices for Large Enterprises. Upper Saddle River, NJ: Addison-Wesley Professional, 2007.
 Lencioni, Patrick M. The Five Dysfunctions of a Team: A Leadership Fable. San Francisco, CA: John Wiley & Sons, 2002.
 Leveson, Nancy G. Engineering a Safer World: Systems Thinking Applied to Safety. Cambridge, MA: MIT Press, 2017.
-Levina, Natalia, and Emmanuelle Vaast. "The Emergence of Boundary Spanning Competence in Practice: Implications for Information Systems' Implementation and Use." MIS Quarterly 29 no. 2 (June 2005): 335­363. https://papers.ssrn.com/abstract=1276022.
+Levina, Natalia, and Emmanuelle Vaast. "The Emergence of Boundary Spanning Competence in Practice: Implications for Information Systems' Implementation and Use." MIS Quarterly 29 no. 2 (June 2005): 335ï¿½363. https://papers.ssrn.com/abstract=1276022.
 Lewis, James. "Microservices and the Inverse Conway Manoeuvre--James Lewis." YouTube video, 57:57,
 
 posted by NDC Conferences, February 16, 2017. https://www.youtube.com/watch?v=uamh7xppO3E.
 
-Lim, Beng-Chong, and Katherine J. Klein. "Team Mental Models and Team Performance: A Field Study of the Effects of Team Mental Model Similarity and Accuracy." Journal of Organizational Behavior 27, no. 4 (June 1, 2006): 403­418. https://doi.org/10.1002/job.387.
+Lim, Beng-Chong, and Katherine J. Klein. "Team Mental Models and Team Performance: A Field Study of the Effects of Team Mental Model Similarity and Accuracy." Journal of Organizational Behavior 27, no. 4 (June 1, 2006): 403ï¿½418. https://doi.org/10.1002/job.387.
 
 Linders, Ben. "Scaling Teams to Grow Effective Organizations." InfoQ, August 11, 2016. https://www.infoq.com/news/2016/08/scaling-teams.
 
@@ -2193,9 +2199,9 @@ Lowe, Steven A. "How to Use Event Storming to Achieve Domain-Driven Design." Tec
 
 Luo, Jiao, Andrew H. Van de Ven, Runtian Jing, and Yuan Jiang. "Transitioning from a Hierarchical Product Organization to an Open Platform Organization: A Chinese Case Study." Journal of Organization Design 7 (January): 1. https://doi.org/10.1186/s41469-017-0026-x.
 
-MacCormack, Alan, John Rusnak, and Carliss Y. Baldwin. "Exploring the Structure of Complex Software Designs: An Empirical Study of Open Source and Proprietary Code." Management Science 52, no. 7 (2006): 1015­1030. https://doi.org/10.1287/mnsc.1060.0552.
+MacCormack, Alan, John Rusnak, and Carliss Y. Baldwin. "Exploring the Structure of Complex Software Designs: An Empirical Study of Open Source and Proprietary Code." Management Science 52, no. 7 (2006): 1015ï¿½1030. https://doi.org/10.1287/mnsc.1060.0552.
 
-MacCormack, Alan, Carliss Y. Baldwin, and John Rusnak. "Exploring the Duality Between Product and Organizational Architectures: A Test of the `Mirroring' Hypothesis." Research Policy 41, no. 8 (October 2012): 1309­1024. http://www.hbs.edu/faculty/Pages/item.aspx?num=43260.
+MacCormack, Alan, Carliss Y. Baldwin, and John Rusnak. "Exploring the Duality Between Product and Organizational Architectures: A Test of the `Mirroring' Hypothesis." Research Policy 41, no. 8 (October 2012): 1309ï¿½1024. http://www.hbs.edu/faculty/Pages/item.aspx?num=43260.
 
 Malan, Ruth. "Conway's Law." TraceintheSand.com (blog), February 13, 2008. http://traceinthesand.com/blog/2008/02/13/conways-law/.
 
@@ -2211,7 +2217,7 @@ Meadows, Donella. Leverage Points: Places to Intervene in a System. Hartland, VT
 
 Mihaljov, Timo. "Having a Dedicated DevOps Person Who Does All the DevOpsing Is like Having a Dedicated Collaboration Person Who Does All the Collaborating." Tweet. @noidi. April 14, 2017. https://twitter.com/noidi/status/852879869998501889.
 
-Miller, G. A. "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information." Psychological Review 63 no. 2 (1956): 81­97.
+Miller, G. A. "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information." Psychological Review 63 no. 2 (1956): 81ï¿½97.
 
 Minick, Eric. "The Goal for a `DevOps Team' Should Be to Put Itself out of Business by Enabling the Rest
 
@@ -2345,7 +2351,7 @@ Rozovsky, Julia. "Re:Work--The Five Keys to a Successful Google Team." re:Work (
 Rubin, Kenneth S. Essential Scrum: A Practical Guide to the Most Popular Agile Process. Upper Saddle River, NJ: Addison Wesley, 2012.
 Rummler, Geary, and Alan Brache. Improving Performance: How to Manage the White Space on the Organization Chart, 3rd edition. San Francisco, CA: Jossey-Bass, 2013.
 Salas, Eduardo, and Stephen M. Fiore, eds. Team Cognition: Understanding the Factors That Drive Process and Performance. Washington, DC: American Psychological Association, 2004.
-Scholtes, Ingo, Pavlin Mavrodiev, and Frank Schweitzer. "From Aristotle to Ringelmann: A Large-Scale Analysis of Team Productivity and Coordination in Open Source Software Projects." Empirical Software Engineering 21 no. 2 (2016): 642­683. https://doi.org/10.1007/s10664-015-9406-4.
+Scholtes, Ingo, Pavlin Mavrodiev, and Frank Schweitzer. "From Aristotle to Ringelmann: A Large-Scale Analysis of Team Productivity and Coordination in Open Source Software Projects." Empirical Software Engineering 21 no. 2 (2016): 642ï¿½683. https://doi.org/10.1007/s10664-015-9406-4.
 Schotkamp, Tom, and Martin Danoesastro. "HR's Pioneering Role in Agile at ING." BCG (blog), June 1, 2018. https://www.bcg.com/en-gb/publications/2018/human-resources-pioneering-role-agile-ing.aspx.
 Schwartz, Mark, Jason Cox, Jonathan Snyder, Mark Rendell, Chivas Nambiar, and Mustafa Kapadia. Thinking Environments: Evaluating Organization Models for DevOps to Accelerate. Portland, OR: IT Revolution Press, 2016.
 Seiter, Courtney. "We've Changed Our Product Team Structure 4 Times: Here's Where We Are Today." Buffer (blog), October 20, 2015. https://open.buffer.com/product-team-evolution/.
@@ -2383,13 +2389,13 @@ https://twitter.com/matthewpskelton/status/1022111880423395329.
 
 Skelton, Matthew, and Rob Thatcher. Team Guide to Software Operability. Leeds, UK: Conflux Books, 2016.
 
-Skulmowski, Alexander, and Rey, Günter Daniel. "Measuring Cognitive Load in Embodied Learning Settings." Frontiers in Psychology 8 (August 2, 2017). https://doi.org/10.3389/fpsyg.2017.01191.
+Skulmowski, Alexander, and Rey, Gï¿½nter Daniel. "Measuring Cognitive Load in Embodied Learning Settings." Frontiers in Psychology 8 (August 2, 2017). https://doi.org/10.3389/fpsyg.2017.01191.
 
 Smith, Steve, and Matthew Skelton, eds. Build Quality In. Leeds, UK: Conflux Digital, 2015.
 
 Snowden, Dave. "The Rule of 5, 15 & 150." Cognitive Edge (blog), December 10, 2006. http://cognitiveedge.com/blog/logn-0-093-3-389-logcr-1-r20-764-t3410-35-p0-001/.
 
-Sosa, Manuel E., Steven D. Eppinger, and Craig M. Rowles. "The Misalignment of Product Architecture and Organizational Structure in Complex Product Development." Management Science 50 no. 12 (December 2004): 1674­1689.
+Sosa, Manuel E., Steven D. Eppinger, and Craig M. Rowles. "The Misalignment of Product Architecture and Organizational Structure in Complex Product Development." Management Science 50 no. 12 (December 2004): 1674ï¿½1689.
 
 Stanford, Naomi. Guide to Organisation Design: Creating High-Performing and Adaptable Enterprises (Economist Books), 2nd Edition. London: Economist Books, 2015.
 
@@ -2403,17 +2409,17 @@ September
 
 https://www.researchgate.net/publication/254831689_Facilitating_Team_Cognition_How_designers_mirror_what_NPD_
 
-Strode, Diane E., Sid L. Huff, Beverley Hope, and Sebastian Link. "Coordination in Co-Located Agile Software Development Projects." Journal of Systems and Software, Special Issue: Agile Development 85, no. 6 (June 1, 2012): 1222­38. https://doi.org/10.1016/j.jss.2012.02.017.
+Strode, Diane E., Sid L. Huff, Beverley Hope, and Sebastian Link. "Coordination in Co-Located Agile Software Development Projects." Journal of Systems and Software, Special Issue: Agile Development 85, no. 6 (June 1, 2012): 1222ï¿½38. https://doi.org/10.1016/j.jss.2012.02.017.
 
 Sussna, Jeff. Designing Delivery: Rethinking IT in the Digital Service Economy. Sebastopol, CA: O'Reilly Media, 2015.
 
-Sweller, John. "Cognitive Load During Problem Solving: Effects on Learning." Cognitive Science 12 no. 2 (1988): 257­285.
+Sweller, John. "Cognitive Load During Problem Solving: Effects on Learning." Cognitive Science 12 no. 2 (1988): 257ï¿½285.
 
-Sweller, John. "Cognitive Load Theory, Learning Difficulty, and Instructional Design." Learning and Instruction 4 (1994): 295­312.
+Sweller, John. "Cognitive Load Theory, Learning Difficulty, and Instructional Design." Learning and Instruction 4 (1994): 295ï¿½312.
 
 "System Team." Scaled Agile Framework website, last updated October 5, 2018. https://www.scaledagileframework.com/system-team/.
 
-Tuckman, Bruce W. "Developmental Sequence in Small Groups." Psychological Bulletin 63 no. 6 (1965): 384­399. https://doi.org/10.1037/h0022100.
+Tuckman, Bruce W. "Developmental Sequence in Small Groups." Psychological Bulletin 63 no. 6 (1965): 384ï¿½399. https://doi.org/10.1037/h0022100.
 
 Tune, Nick. "Domain-Driven Architecture Diagrams." Nick Tune's Tech Strategy Blog, August 15, 2015. https://medium.com/nick-tune-tech-strategy-blog/domain-driven-architecture-diagrams-139a75acb578.
 Tune, Nick, and Scott Millett. Designing Autonomous Teams and Services. Sebastopol, CA: O'Reilly Media, 2017.
@@ -2424,7 +2430,7 @@ Wastell, Katherine. "What We Mean When We Talk about Service Design at the Co-Op
 Webber, Emily. Building Successful Communities of Practice. San Francisco, CA: Blurb, 2018.
 Weinberg, Gerald M. An Introduction to General Systems Thinking, 25th Silver Anniversary Edition. New York: Dorset, 2001.
 Wiener, Norbert. Cybernetics: Or Control and Communication in the Animal and the Machine, 2nd edition. Cambridge, Mass: MIT Press, 1961.
-Westrum, R. 2004. "A Typology of Organisational Cultures." Quality & Safety in Health Care 13 Suppl. 2 (1961): ii22­27. https://doi.org/10.1136/qshc.2003.009522.
+Westrum, R. 2004. "A Typology of Organisational Cultures." Quality & Safety in Health Care 13 Suppl. 2 (1961): ii22ï¿½27. https://doi.org/10.1136/qshc.2003.009522.
 "What Team Structure is Right for DevOps to Flourish?" DevOpsTopologies.com, accessed March 21, 2019. http://web.devopstopologies.com.
 Wiley, Evan. "Scaling XP Through Self-Similarity at Pivotal Cloud Foundry." Agile Alliance (blog), July 28, 2018. https://www.agilealliance.org/resources/experience-reports/scaling-xp-through-self-similarityat-pivotal-cloud-foundry/.
 Womack, James P., and Daniel T. Jones. Lean Thinking: Banish Waste and Create Wealth In Your Corporation. NY: Simon & Schuster/Free Press, 2003.
@@ -2436,34 +2442,34 @@ Foreword
 Preface
 1. Skelton, "What Team Structure Is Right for DevOps to Flourish?" 2. Skelton, "How Different Team Topologies Influence DevOps Culture."
 Chapter 1
-1. Schwartz et al., Thinking Environments, 21. 2. Pflaeging, Organize for Complexity, 34­41. 3. Pflaeging, Organize for Complexity. 4. Laloux, Reinventing Organizations; Robertson, Holocracy. 5. Stanford, Guide to Organisation Design, 14­16. 6. Conway, "How do Committees Invent?, 31. 7. Conway, "How do Committees Invent?"; Kelly, "Conway's Law & Continuous Delivery." 8. Kelly, "Conway's Law v. Software Architecture." 9. Raymond, The New Hacker's Dictionary, 124. 10. Lewis, "Microservices and the Inverse Conway." 11. Pink, Drive, 49.
+1. Schwartz et al., Thinking Environments, 21. 2. Pflaeging, Organize for Complexity, 34ï¿½41. 3. Pflaeging, Organize for Complexity. 4. Laloux, Reinventing Organizations; Robertson, Holocracy. 5. Stanford, Guide to Organisation Design, 14ï¿½16. 6. Conway, "How do Committees Invent?, 31. 7. Conway, "How do Committees Invent?"; Kelly, "Conway's Law & Continuous Delivery." 8. Kelly, "Conway's Law v. Software Architecture." 9. Raymond, The New Hacker's Dictionary, 124. 10. Lewis, "Microservices and the Inverse Conway." 11. Pink, Drive, 49.
 Chapter 2
-1. "DevOps Over Coffee ­ Adidas;" Fernando Cornago, person email communication with the authors, March 2019.
-2. MacCormack et al., "Exploring the Structure of Complex Software Designs," 1015­1030; MacCormack et al., "Exploring the Duality Between Product and Organizational Architectures," 1309­ 1024.
-3. Sosa et al., "The Misalignment of Product Architecture and Organizational Structure in Complex Product Development," 1674­1689.
+1. "DevOps Over Coffee ï¿½ Adidas;" Fernando Cornago, person email communication with the authors, March 2019.
+2. MacCormack et al., "Exploring the Structure of Complex Software Designs," 1015ï¿½1030; MacCormack et al., "Exploring the Duality Between Product and Organizational Architectures," 1309ï¿½ 1024.
+3. Sosa et al., "The Misalignment of Product Architecture and Organizational Structure in Complex Product Development," 1674ï¿½1689.
 4. Malan, "Conway's Law."
 
 5. Conway, "How do Committees Invent?" 28. 6. Forsgren et al., Accelerate, 63. 7. Nygard, Release It!, 4. 8. MacCormack et al., "Exploring the Structure of Complex Software Designs." 9. Roberts, The Modern Firm, 190. 10. Reinertsen, The Principles of Product Development Flow, 257. 11. Malan, "Conway's Law." 12. Kelly, "Return to Conway's Law." 13. Stanford, Guide to Organisation Design, 4. 14. Sosa et al., "The Misalignment of Product Architecture." 15. Cohn, "Nine Questions to Assess Scrum Team Structure." 16. Kniberg, "Real-Life Agile Scaling."
 Chapter 3
-1. Driskell and Salas, "Collective Behavior and Team Performance," 277­288. 2. McChrystal et al., Team of Teams, 94. 3. Rozovsky, "Re:Work--The Five Keys to a Successful Google Team." 4. Crawford, At opening quotes. "Amazon's `Two-Pizza Teams.'" 5. Dunbar, "Neocortex Size as a Constraint on Group Size in Primates," 469­493. 6. Snowden, "The Rule of 5, 15 & 150;" Dunbar, How Many Friends Does One Person Need?; Bennett,
-"The Dunbar Number, From the Guru of Social Networks;" Burgess, Thinking in Promises, 87. 7. Snowden, "The Rule of 5, 15 & 150;" Karlgaard and Malone, Team Genius, 201­205. 8. Lewis, "Microservices and the Inverse Conway Manoeuvre." 9. Munns, "Chris Munns, DevOps @ Amazon." 10. Brooks, The Mythical Man-Month. 11. Tuckman, "Developmental Sequence in Small Groups," 384­399. 12. Kelly, Project Myopia, 72. 13. Helfand, Dynamic Reteaming, 123. 14. Knight, "Acquisition Community Team Dynamics." 15. Humble et al., Lean Enterprise, 37. 16. Driskell and Salas, "Collective Behavior and Team Performance;" Rock and Grant, Why Diverse
-Teams Are Smarter. 17. Jang, "Cultural Brokerage and Creative Performance in Multicultural Teams," 993­1009; Carayon,
-"Human Factors of Complex Sociotechnical Systems," 525­535. 18. DeMarco and Lister, Peopleware, 156.
+1. Driskell and Salas, "Collective Behavior and Team Performance," 277ï¿½288. 2. McChrystal et al., Team of Teams, 94. 3. Rozovsky, "Re:Work--The Five Keys to a Successful Google Team." 4. Crawford, At opening quotes. "Amazon's `Two-Pizza Teams.'" 5. Dunbar, "Neocortex Size as a Constraint on Group Size in Primates," 469ï¿½493. 6. Snowden, "The Rule of 5, 15 & 150;" Dunbar, How Many Friends Does One Person Need?; Bennett,
+"The Dunbar Number, From the Guru of Social Networks;" Burgess, Thinking in Promises, 87. 7. Snowden, "The Rule of 5, 15 & 150;" Karlgaard and Malone, Team Genius, 201ï¿½205. 8. Lewis, "Microservices and the Inverse Conway Manoeuvre." 9. Munns, "Chris Munns, DevOps @ Amazon." 10. Brooks, The Mythical Man-Month. 11. Tuckman, "Developmental Sequence in Small Groups," 384ï¿½399. 12. Kelly, Project Myopia, 72. 13. Helfand, Dynamic Reteaming, 123. 14. Knight, "Acquisition Community Team Dynamics." 15. Humble et al., Lean Enterprise, 37. 16. Driskell and Salas, "Collective Behavior and Team Performance;" Rock and Grant, Why Diverse
+Teams Are Smarter. 17. Jang, "Cultural Brokerage and Creative Performance in Multicultural Teams," 993ï¿½1009; Carayon,
+"Human Factors of Complex Sociotechnical Systems," 525ï¿½535. 18. DeMarco and Lister, Peopleware, 156.
 
-19. Stanford, Guide to Organisation Design, 287. 20. Deming, Out of the Crisis, 22. 21. Roberts, The Modern Firm, 277. 22. Sweller, "Cognitive Load During Problem Solving: Effects on Learning," 257­285. 23. Pearce, "Day 3: Managing Cognitive Load for Team Learning;" Pearce, "Hacking Your Head." 24. Driskell et al., "Does Stress Lead to a Loss of Team Perspective," 300. 25. Jay et al., "Cyclomatic Complexity and Lines of Code," 137­143. 26. MacChrystal et al., Team of Teams, 94. 27. Lim and Klein, "Team Mental Models and Team Performance," 403­418. 28. Evan Wiley, as quoted in Helfand, Dynamic Reteaming, 121. 29. Jeff Bezos, as quoted in Lane, "The Secret to Amazon's Success." 30. Axelrod, Complexity of Cooperation; Burgess, Thinking in Promises, 73. 31. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 32. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 33. Forsgren et al., Accelerate, 181. 34. Jeremy Brown, personal communication with the authors, March 2019. 35. Doorley and Witthoft, Make Space, 16. 36. Fried and Hansson, Remote, 91.
+19. Stanford, Guide to Organisation Design, 287. 20. Deming, Out of the Crisis, 22. 21. Roberts, The Modern Firm, 277. 22. Sweller, "Cognitive Load During Problem Solving: Effects on Learning," 257ï¿½285. 23. Pearce, "Day 3: Managing Cognitive Load for Team Learning;" Pearce, "Hacking Your Head." 24. Driskell et al., "Does Stress Lead to a Loss of Team Perspective," 300. 25. Jay et al., "Cyclomatic Complexity and Lines of Code," 137ï¿½143. 26. MacChrystal et al., Team of Teams, 94. 27. Lim and Klein, "Team Mental Models and Team Performance," 403ï¿½418. 28. Evan Wiley, as quoted in Helfand, Dynamic Reteaming, 121. 29. Jeff Bezos, as quoted in Lane, "The Secret to Amazon's Success." 30. Axelrod, Complexity of Cooperation; Burgess, Thinking in Promises, 73. 31. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 32. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 33. Forsgren et al., Accelerate, 181. 34. Jeremy Brown, personal communication with the authors, March 2019. 35. Doorley and Witthoft, Make Space, 16. 36. Fried and Hansson, Remote, 91.
 Chapter 4
 1. Stanford, Guide to Organisation Design, 3. 2. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 3. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 4. Kniberg and Ivarsson, "Scaling Agile @ Spotify." 5. Forsgren et al., Accelerate, 63. 6. Skelton, "What Team Structure Is Right for DevOps to Flourish?" 7. John, "DevOps for Service Providers--Next Generation Tools." 8. Hastie, "An Interview with Sam Guckenheimer on Microsoft's Journey to Cloud Cadence." 9. Ben Treynor, as quoted in Niall Murphy, "What is `Site Reliability Engineering'?" 10. Dogan, "The SRE Model." 11. Rensin, "Introducing Google Customer Reliability Engineering." 12. Netflix Technology Blog, "Full Cycle Developers at Netflix--Operate What You Build." 13. DeGrandis, Making Work Visible, 82. 14. Strode and Huff, "A Taxonomy of Dependencies in Agile Software Development."
 
 15. Pulak Agrawal, personal communication with the authors, March 2019. 16. Pulak Agrawal, personal communication with the authors, March 2019.
 Chapter 5
 1. Luo et al., "Transitioning from a Hierarchical Product Organization to an Open Platform Organization."
-2. Reinertsen, The Principles of Product Development Flow, 265. 3. Lane, "The Secret to Amazon's Success--Internal APIs;" Hoff, "Amazon Architecture." 4. Crawford, "Amazon's `Two-Pizza Teams;'" Munns, "Chris Munns, DevOps @ Amazon." 5. Kramer, "The Biggest Thing Amazon Got Right." 6. Sussna, Designing Delivery, 148. 7. Pink, Drive, 49. 8. Eckstein, "Architecture in Large Scale Agile Development," 21­29. 9. Robert Greenleaf, The Servant as Leader. 10. DeMarco and Lister, Peopleware, 212. 11. Webber, Building Successful Communities of Practice, 11. 12. Bottcher, "What I Talk About When I Talk About Platforms." 13. Eckstein, Agile Development in the Large, 53. 14. Neumark, "DevOps & Product Teams--Win or Fail?" 15. Reinertsen, The Principles of Product Development Flow, 292. 16. Womack and Jones, Lean Thinking. 17. Urquhart, "IT Operations in a Cloudy World." 18. Kniberg, "Real-Life Agile Scaling." 19. Kelly, Business Patterns for Software Developers, 88­89. 20. Conway, "Toward Simplifying Application Development, in a Dozen Lessons." 21. Shibata, "How to Build a Platform Team Now!" 22. Shibata, "How to Build a Platform Team Now!" 23. Beer, Brain of the Firm, 238. 24. Shibata, "How to Build a Platform Team Now!" 25. Hall, "ITSM, DevOps, and Why Three-Tier Support Should Be Replaced with Swarming." 26. Forsgren et al., Accelerate, 68.
+2. Reinertsen, The Principles of Product Development Flow, 265. 3. Lane, "The Secret to Amazon's Success--Internal APIs;" Hoff, "Amazon Architecture." 4. Crawford, "Amazon's `Two-Pizza Teams;'" Munns, "Chris Munns, DevOps @ Amazon." 5. Kramer, "The Biggest Thing Amazon Got Right." 6. Sussna, Designing Delivery, 148. 7. Pink, Drive, 49. 8. Eckstein, "Architecture in Large Scale Agile Development," 21ï¿½29. 9. Robert Greenleaf, The Servant as Leader. 10. DeMarco and Lister, Peopleware, 212. 11. Webber, Building Successful Communities of Practice, 11. 12. Bottcher, "What I Talk About When I Talk About Platforms." 13. Eckstein, Agile Development in the Large, 53. 14. Neumark, "DevOps & Product Teams--Win or Fail?" 15. Reinertsen, The Principles of Product Development Flow, 292. 16. Womack and Jones, Lean Thinking. 17. Urquhart, "IT Operations in a Cloudy World." 18. Kniberg, "Real-Life Agile Scaling." 19. Kelly, Business Patterns for Software Developers, 88ï¿½89. 20. Conway, "Toward Simplifying Application Development, in a Dozen Lessons." 21. Shibata, "How to Build a Platform Team Now!" 22. Shibata, "How to Build a Platform Team Now!" 23. Beer, Brain of the Firm, 238. 24. Shibata, "How to Build a Platform Team Now!" 25. Hall, "ITSM, DevOps, and Why Three-Tier Support Should Be Replaced with Swarming." 26. Forsgren et al., Accelerate, 68.
 Chapter 6
 
 Chapter 6
 1. Forsgren et al., Accelerate, 63. 2. Forsgren et al., Accelerate, 66 3. Bernstein and Turban, "The Impact of the `Open' Workspace on Human Collaboration." 4. Evans, Domain-Driven Design. 5. Fowler, "Bliki: BoundedContext." 6. Tune and Millett, Designing Autonomous Teams and Services, 38. 7. Nygard, "The Perils of Semantic Coupling." 8. Helfand, Dynamic Reteaming, 203. 9. Hering, DevOps for the Modern Enterprise, 45. 10. Phillips, "Testing Observability."
 Chapter 7
-1. Bernstein et al., "How Intermittent Breaks in Interaction Improve Collective Intelligence," 8734­8739. 2. Rother, Toyota Kata, 236. 3. Kim and Pierce, "Convergent Versus Divergent Thinking," 245­250. 4. Urquhart, "Communications and Conway's Law." 5. Betz, Managing Digital, 253. 6. Burgess, Thinking in Promises, 105. 7. Reinertsen, The Principles of Product Development Flow, 233. 8. Malan, "Conway's Law." 9. Kelly, "Return to Conway's Law." 10. Helfand, Dynamic Reteaming, 121; Wiley, as quoted in Helfand, Dynamic Reteaming, 121. 11. Helfand, Dynamic Reteaming, 13. 12. Reinertsen, The Principles of Product Development Flow, 254.
+1. Bernstein et al., "How Intermittent Breaks in Interaction Improve Collective Intelligence," 8734ï¿½8739. 2. Rother, Toyota Kata, 236. 3. Kim and Pierce, "Convergent Versus Divergent Thinking," 245ï¿½250. 4. Urquhart, "Communications and Conway's Law." 5. Betz, Managing Digital, 253. 6. Burgess, Thinking in Promises, 105. 7. Reinertsen, The Principles of Product Development Flow, 233. 8. Malan, "Conway's Law." 9. Kelly, "Return to Conway's Law." 10. Helfand, Dynamic Reteaming, 121; Wiley, as quoted in Helfand, Dynamic Reteaming, 121. 11. Helfand, Dynamic Reteaming, 13. 12. Reinertsen, The Principles of Product Development Flow, 254.
 Chapter 8
 1. Forsgren et al., Accelerate, 63. 2. Ingles, "Convergence to Kubernetes." 3. Ingles, "Convergence to Kubernetes," 4. Sussna, Designing Delivery, 61. 5. Kotter, "Accelerate!" 6. Drucker, The Daily Drucker, 291. 7. Stanford, Guide to Organisation Design, 17.
 
@@ -2472,81 +2478,81 @@ Conclusion
 1. Conway, "How do Committees Invent?" 31. 2. Manns and Rising, Fearless Change.
 
 INDEX
-A Accelerate: The Science of Dev Ops (Forsgren, Humble, & Kim), 18, 64, 86, 112, 114, 154 Accenture, 75­76 "Acquisition Community Team Dynamics: The Tuckman Model vs. the DAU Model" (Knight), xx ad hoc team design, 62 adaptive structuration theory, xix Adidas, 16 adoption of new practices, 155­159 Agile IT Organization Design (Narayan), 173 Agrawal, Pulak, 75­76 Amazon, 32, 35, 82­83, 112 anti-patterns, 62 Antunes, Miguel, 11 APIs
-defined, 187 effective, 148 team, 47­56 application monolith, 113, 187 Auto Trader, 53­55, 97­99 awkward team interactions, 150­151 AWS, 49 Axelrod, Robert, 49 Azure, 69, 101
-B Balena.io, 101 basic team organization, 146­148 BCG Digital Ventures, 88­90 Beer, Stafford, 103 benched bay approach, 51 Bertilsson, Albert, 47 Bezos, Jeff, 49, 82­83 Boone, Mary, xxi Borland Delphi, 101 Bottcher, Evan, 92 bottlenecks, 11­12
+A Accelerate: The Science of Dev Ops (Forsgren, Humble, & Kim), 18, 64, 86, 112, 114, 154 Accenture, 75ï¿½76 "Acquisition Community Team Dynamics: The Tuckman Model vs. the DAU Model" (Knight), xx ad hoc team design, 62 adaptive structuration theory, xix Adidas, 16 adoption of new practices, 155ï¿½159 Agile IT Organization Design (Narayan), 173 Agrawal, Pulak, 75ï¿½76 Amazon, 32, 35, 82ï¿½83, 112 anti-patterns, 62 Antunes, Miguel, 11 APIs
+defined, 187 effective, 148 team, 47ï¿½56 application monolith, 113, 187 Auto Trader, 53ï¿½55, 97ï¿½99 awkward team interactions, 150ï¿½151 AWS, 49 Axelrod, Robert, 49 Azure, 69, 101
+B Balena.io, 101 basic team organization, 146ï¿½148 BCG Digital Ventures, 88ï¿½90 Beer, Stafford, 103 benched bay approach, 51 Bertilsson, Albert, 47 Bezos, Jeff, 49, 82ï¿½83 Boone, Mary, xxi Borland Delphi, 101 Bottcher, Evan, 92 bottlenecks, 11ï¿½12
 
-boundaries, 39­47 domain limitations, 42­45 misplaced, 150­151 relative domain complexity, 41­42 responsibility restriction, 39­41 software boundary size, 45­47 team-first, 111­126
-bounded context, 115­116, 187 Brain of the Firm (Beer), 103 Brooks, Fred, 35 Brooks's law, 40, 187 Brown, Jeremy, 53 Burgess, Mark, 49, 142 business as usual teams, 173­174 business domain bounded context, 115­116 business process management, 169
+boundaries, 39ï¿½47 domain limitations, 42ï¿½45 misplaced, 150ï¿½151 relative domain complexity, 41ï¿½42 responsibility restriction, 39ï¿½41 software boundary size, 45ï¿½47 team-first, 111ï¿½126
+bounded context, 115ï¿½116, 187 Brain of the Firm (Beer), 103 Brooks, Fred, 35 Brooks's law, 40, 187 Brown, Jeremy, 53 Burgess, Mark, 49, 142 business as usual teams, 173ï¿½174 business domain bounded context, 115ï¿½116 business process management, 169
 C capabilities
-missing, 150­151 self-service, 69 capability gaps, 184­185 "Capturing the Complexity in Advanced Technology Use: Adaptive Structuration Theory" (DeSanctis and
+missing, 150ï¿½151 self-service, 69 capability gaps, 184ï¿½185 "Capturing the Complexity in Advanced Technology Use: Adaptive Structuration Theory" (DeSanctis and
 Poole), xxi case studies
-complicated-subsystems teams, 94­95, 97­99 DevOps Topologies, 75­77 enabling teams, 88­90 fracture planes, 121­125 organizational sensing, 154­155, 157­159, 162­164 software boundaries, 121­125 static topologies, 75­77 stream-aligned teams, 82­83 team APIs, 50­52, 53­55 team interaction modes, 146­147 team types, 82­83, 88­90 team-first boundaries, 121­125 team-first thinking, 50­52, 53­55 CDL, 50­52 change cadence, 117 cloud teams, 69­70 cognitive load, 11­12, 39­47
+complicated-subsystems teams, 94ï¿½95, 97ï¿½99 DevOps Topologies, 75ï¿½77 enabling teams, 88ï¿½90 fracture planes, 121ï¿½125 organizational sensing, 154ï¿½155, 157ï¿½159, 162ï¿½164 software boundaries, 121ï¿½125 static topologies, 75ï¿½77 stream-aligned teams, 82ï¿½83 team APIs, 50ï¿½52, 53ï¿½55 team interaction modes, 146ï¿½147 team types, 82ï¿½83, 88ï¿½90 team-first boundaries, 121ï¿½125 team-first thinking, 50ï¿½52, 53ï¿½55 CDL, 50ï¿½52 change cadence, 117 cloud teams, 69ï¿½70 cognitive load, 11ï¿½12, 39ï¿½47
 
-defined, 187 domain identification, 43 domain limitations, 42­45 ecosystem tuning, 46 extraneous, 40, 187 "Eyes On, Hands Off," 46 germane, 40, 188 heuristics for domain assignment, 43 intrinsic, 40, 188 cognitive load (continued) relative domain complexity, 41­42 responsibility restriction, 39­41 software boundary size, 45­47 types of, 39­40 Cohn, Mike, 24 collaboration mode, 9, 133, 135­137, 153­155 defined, 187 and evolution of team topologies, 159­161 and reverse Conway maneuver, 147­148 right amount of collaboration, 153­154 team behaviors for, 142­143 and viable X-as-a-service interactions, 149 commodity systems, 18 communication focused, 24­26 inter-team, 25­26, 27 paths, 17 structures, 4­8 tool choice and, 27 unnecessary, 24­26 communities of practice vs. enabling teams, 90 compatible support systems, 69 complicated-subsystems teams, 9, 28, 91­92 case study, 94­95, 97­99 defined, 187 expected behaviors, 94 platform composition, 96­97 component teams, 28, 105­106 continuous delivery (CD), 11 continuous integration (CI), 11 converting teams
+defined, 187 domain identification, 43 domain limitations, 42ï¿½45 ecosystem tuning, 46 extraneous, 40, 187 "Eyes On, Hands Off," 46 germane, 40, 188 heuristics for domain assignment, 43 intrinsic, 40, 188 cognitive load (continued) relative domain complexity, 41ï¿½42 responsibility restriction, 39ï¿½41 software boundary size, 45ï¿½47 types of, 39ï¿½40 Cohn, Mike, 24 collaboration mode, 9, 133, 135ï¿½137, 153ï¿½155 defined, 187 and evolution of team topologies, 159ï¿½161 and reverse Conway maneuver, 147ï¿½148 right amount of collaboration, 153ï¿½154 team behaviors for, 142ï¿½143 and viable X-as-a-service interactions, 149 commodity systems, 18 communication focused, 24ï¿½26 inter-team, 25ï¿½26, 27 paths, 17 structures, 4ï¿½8 tool choice and, 27 unnecessary, 24ï¿½26 communities of practice vs. enabling teams, 90 compatible support systems, 69 complicated-subsystems teams, 9, 28, 91ï¿½92 case study, 94ï¿½95, 97ï¿½99 defined, 187 expected behaviors, 94 platform composition, 96ï¿½97 component teams, 28, 105ï¿½106 continuous delivery (CD), 11 continuous integration (CI), 11 converting teams
 
-component teams to platform teams, 105­106 converting architecture and architects, 109 converting common to fundamental team topologies, 104­109 infrastructure teams to platform teams, 105 stream-aligned teams, 104 support teams, 107­109 tooling teams to enabling teams, 106­107 Conway, Mel, 9­10 Conway maneuver, inverse, 10, 18 Conway maneuver, reverse, 10, 18­21, 147­148, 188 Conway's law, xxii, 9­11, 15­29, 180­181 commodity systems, 18 communication paths, 17 complicated-subsystems teams, 28 component teams, 28 cross-team testing, 23 database administrator team, 18­19 defined, 187 focused communication, 24­26 high cohesion, 22 homomorphic force, 19­20 inter-team communication, 25­26, 27 inverse Conway maneuver, 10, 18 log-aggregation tools, 27­28 loose coupling, 22 modern version of, 17 monolithic shared databases, 16 naive uses of, 26­28 organization design, 16­17, 23­24 reorganizations, 28 reverse Conway maneuver, 10, 18­21, 147­148, 188 software architecture as flows of change, 23 team assignments, 22 team-scoped flow, 21­23 tool choice and communication, 27 understanding and using, 15­17 unnecessary communication, 24­26 version compatibility, 22 Cornago, Fernando, 16 coupled releases, 113 credit reference agencies, 76­77
+component teams to platform teams, 105ï¿½106 converting architecture and architects, 109 converting common to fundamental team topologies, 104ï¿½109 infrastructure teams to platform teams, 105 stream-aligned teams, 104 support teams, 107ï¿½109 tooling teams to enabling teams, 106ï¿½107 Conway, Mel, 9ï¿½10 Conway maneuver, inverse, 10, 18 Conway maneuver, reverse, 10, 18ï¿½21, 147ï¿½148, 188 Conway's law, xxii, 9ï¿½11, 15ï¿½29, 180ï¿½181 commodity systems, 18 communication paths, 17 complicated-subsystems teams, 28 component teams, 28 cross-team testing, 23 database administrator team, 18ï¿½19 defined, 187 focused communication, 24ï¿½26 high cohesion, 22 homomorphic force, 19ï¿½20 inter-team communication, 25ï¿½26, 27 inverse Conway maneuver, 10, 18 log-aggregation tools, 27ï¿½28 loose coupling, 22 modern version of, 17 monolithic shared databases, 16 naive uses of, 26ï¿½28 organization design, 16ï¿½17, 23ï¿½24 reorganizations, 28 reverse Conway maneuver, 10, 18ï¿½21, 147ï¿½148, 188 software architecture as flows of change, 23 team assignments, 22 team-scoped flow, 21ï¿½23 tool choice and communication, 27 understanding and using, 15ï¿½17 unnecessary communication, 24ï¿½26 version compatibility, 22 Cornago, Fernando, 16 coupled releases, 113 credit reference agencies, 76ï¿½77
 
 cross-team testing, 23 Cybernetics: Or Control and Communication in the Animal and the Machine (Wiener), xxi
-D Daly, Damien, 121­123 database administrator team, 18­19 DeMarco, Tom, 38 Deming, W. Edwards, 38 dependencies, 74­75 DeSanctis, Gerardine, xxi Designing Autonomous Teams and Services (Tune & Millett), 116 Designing Delivery (Sussna), 85, 172 "Developmental Sequence in Small Groups" (Tuckman), xxii DevOps for the Modern Enterprise (Hering), 120 The DevOps Handbook (Kim), 166, 172 DevOps Topologies, 75­77
-case study, 75­77 catalog, 66 credit reference agencies, 76­77 healthcare organizations, 75­76 DevOps Topologies catalog, 66 divergent thinking, 136, 138 diversity, 38 domain assignment, heuristics for, 43 domain complexity, xxi, 187 domain identification, 43 domain limitations, 42­45 Domain-Driven Design (Evans), 115 Doorley, Scott, 53 Drexler, Allan, xxii Drucker, Peter, 170 Dunbar, Robin, 32 Dunbar's number, 32, 187 Dynamic Reteaming (Helfand), 48, 118, 150
-E Eckstein, Jutta, 86, 92 ecosystem tuning, 46 enabling teams, 9, 86­90, 106­107
-case study, 88­90 vs. communities of practice, 90 defined, 187
+D Daly, Damien, 121ï¿½123 database administrator team, 18ï¿½19 DeMarco, Tom, 38 Deming, W. Edwards, 38 dependencies, 74ï¿½75 DeSanctis, Gerardine, xxi Designing Autonomous Teams and Services (Tune & Millett), 116 Designing Delivery (Sussna), 85, 172 "Developmental Sequence in Small Groups" (Tuckman), xxii DevOps for the Modern Enterprise (Hering), 120 The DevOps Handbook (Kim), 166, 172 DevOps Topologies, 75ï¿½77
+case study, 75ï¿½77 catalog, 66 credit reference agencies, 76ï¿½77 healthcare organizations, 75ï¿½76 DevOps Topologies catalog, 66 divergent thinking, 136, 138 diversity, 38 domain assignment, heuristics for, 43 domain complexity, xxi, 187 domain identification, 43 domain limitations, 42ï¿½45 Domain-Driven Design (Evans), 115 Doorley, Scott, 53 Drexler, Allan, xxii Drucker, Peter, 170 Dunbar, Robin, 32 Dunbar's number, 32, 187 Dynamic Reteaming (Helfand), 48, 118, 150
+E Eckstein, Jutta, 86, 92 ecosystem tuning, 46 enabling teams, 9, 86ï¿½90, 106ï¿½107
+case study, 88ï¿½90 vs. communities of practice, 90 defined, 187
 
-expected behaviors, 87­88 engineering maturity, 73­74 environment design, 50 environmental scanning, 171 Ericsson, 68 Evans, Eric, 115 evolution triggers, 162­164, 165­170
-delivery cadence slowing down, 166­167 multiple business services relying on one large set of underlying services, 167­169 software too large for one team, 165­166 expected behaviors complicated-subsystems teams, 94 enabling teams, 87­88 stream-aligned teams, 85­86 "Eyes On, Hands Off," 46
-F facilitating mode, 9, 134, 140­144
-defined, 187 and reverse Conway maneuver, 147­148 team behaviors for, 143­144 feature teams, 67­68 The Five Dysfunctions of a Team: A Leadership Fable (Lencioni), xx flow, enhancing, 148­151 flow of change, 12, 63­64, 187 focused communication, 24­26 Forrester, Russ, xxii Forsgren, Nicole, 18, 64, 86 four team types, 178­179 Fowler, Martin, 115­116 fracture planes, 115­123 business domain bounded context, 115­116 case study, 121­125 change cadence, 117 defined, 187 natural, 121 performance isolation, 119 regulatory compliance, 116­117 risk, 118­119 team location, 118 technology, 120 user personas, 120­121
+expected behaviors, 87ï¿½88 engineering maturity, 73ï¿½74 environment design, 50 environmental scanning, 171 Ericsson, 68 Evans, Eric, 115 evolution triggers, 162ï¿½164, 165ï¿½170
+delivery cadence slowing down, 166ï¿½167 multiple business services relying on one large set of underlying services, 167ï¿½169 software too large for one team, 165ï¿½166 expected behaviors complicated-subsystems teams, 94 enabling teams, 87ï¿½88 stream-aligned teams, 85ï¿½86 "Eyes On, Hands Off," 46
+F facilitating mode, 9, 134, 140ï¿½144
+defined, 187 and reverse Conway maneuver, 147ï¿½148 team behaviors for, 143ï¿½144 feature teams, 67ï¿½68 The Five Dysfunctions of a Team: A Leadership Fable (Lencioni), xx flow, enhancing, 148ï¿½151 flow of change, 12, 63ï¿½64, 187 focused communication, 24ï¿½26 Forrester, Russ, xxii Forsgren, Nicole, 18, 64, 86 four team types, 178ï¿½179 Fowler, Martin, 115ï¿½116 fracture planes, 115ï¿½123 business domain bounded context, 115ï¿½116 case study, 121ï¿½125 change cadence, 117 defined, 187 natural, 121 performance isolation, 119 regulatory compliance, 116ï¿½117 risk, 118ï¿½119 team location, 118 technology, 120 user personas, 120ï¿½121
 
 Fried, Jason, 55
-G germane, 40 Google, 70 Google Cloud, 72 group chat prefixes, 55­56 Guide to Organisation Design (Stanford), 38 guilds, 49
-H Hansson, David Heinemeir, 55 Harvard Business School, 16 healthcare organizations, 75­76 Helfand, Heidi, 48, 118, 150 Hering, Mirco, 120 heuristics for domain assignment, 43 hidden monoliths, 112­114 high cohesion, 22 high-trust organizations, 32 homomorphic force, 10, 19­20 Horizons, 36 Hotchkiss, Dave, 157­159 "How Do Committees Invent?" (Conway), 9­10 Humble, Jez, 18, 36, 64, 86 Humphrey, Andy, 53­55, 97­99
-I IBM, 146­147 IBM 8086 processor, 101 Ikea, 47 influences for book, xxi­xxii infrastructure automation, 11 infrastructure teams, 105 ING Netherlands, 53 Ingles, Paul, 155 interaction mode key, xx interaction modes, 179, 185 intermittent collaboration, 133 Internet of Things (IoT), 84, 101, 123­125, 156­157, 171 inter-team communication, 25­26, 27 Ivarsson, Anders, 50
+G germane, 40 Google, 70 Google Cloud, 72 group chat prefixes, 55ï¿½56 Guide to Organisation Design (Stanford), 38 guilds, 49
+H Hansson, David Heinemeir, 55 Harvard Business School, 16 healthcare organizations, 75ï¿½76 Helfand, Heidi, 48, 118, 150 Hering, Mirco, 120 heuristics for domain assignment, 43 hidden monoliths, 112ï¿½114 high cohesion, 22 high-trust organizations, 32 homomorphic force, 10, 19ï¿½20 Horizons, 36 Hotchkiss, Dave, 157ï¿½159 "How Do Committees Invent?" (Conway), 9ï¿½10 Humble, Jez, 18, 36, 64, 86 Humphrey, Andy, 53ï¿½55, 97ï¿½99
+I IBM, 146ï¿½147 IBM 8086 processor, 101 Ikea, 47 influences for book, xxiï¿½xxii infrastructure automation, 11 infrastructure teams, 105 ING Netherlands, 53 Ingles, Paul, 155 interaction mode key, xx interaction modes, 179, 185 intermittent collaboration, 133 Internet of Things (IoT), 84, 101, 123ï¿½125, 156ï¿½157, 171 inter-team communication, 25ï¿½26, 27 Ivarsson, Anders, 50
 J
 
 J Java Virtual Machine, 101 Jay, Graylin, 41 joined-at-the-database monolith, 113, 188
 K Kelly, Allan, 10, 24, 35, 101, 148 Kim, Gene, 18, 64, 86, 172 Kim, Kyung Hee, 136, 138 Kniberg, Henrik, 25, 50, 100 Knight, Pamela, xxii, 36 Kotte, Gustaf Nilsson, 47 Kotter, John, 161
-L Lambert, Michael, 50­52 "A Leader's Framework for Decision Making" (Snowden and Boone), xxi Lean Enterprise (Humble, Molesky, & O'Reilly), 36 Lencioni, Patrick, xxii Lewis, James, xxii, 10, 34 Linux, 101 Lister, Timothy, 38 log-aggregation tools, 27­28 loose coupling, 22 Luo, Jiao, 80
-M MacCormack, Alan, 16 Maibaum, Michael, 94­95, 162­164 Make Space (Doorley & Witthoft), 53 Malan, Ruth, xx, 17, 23, 148 McChrystal, Stanley, 31, 46 Microsoft, 69 Millett, Scott, 116 Minick, Eric, 146­147 misplaced boundaries, 150­151 missing capabilities, 150­151 "A Model for Team-Based Organization Performance" (Forrester and Drexler), xx The Modern Firm (Roberts), 23 Molesky, Joanne, 36 monolithic build, 188 monolithic model, 114, 188 monolithic rebuilds, 113
+L Lambert, Michael, 50ï¿½52 "A Leader's Framework for Decision Making" (Snowden and Boone), xxi Lean Enterprise (Humble, Molesky, & O'Reilly), 36 Lencioni, Patrick, xxii Lewis, James, xxii, 10, 34 Linux, 101 Lister, Timothy, 38 log-aggregation tools, 27ï¿½28 loose coupling, 22 Luo, Jiao, 80
+M MacCormack, Alan, 16 Maibaum, Michael, 94ï¿½95, 162ï¿½164 Make Space (Doorley & Witthoft), 53 Malan, Ruth, xx, 17, 23, 148 McChrystal, Stanley, 31, 46 Microsoft, 69 Millett, Scott, 116 Minick, Eric, 146ï¿½147 misplaced boundaries, 150ï¿½151 missing capabilities, 150ï¿½151 "A Model for Team-Based Organization Performance" (Forrester and Drexler), xx The Modern Firm (Roberts), 23 Molesky, Joanne, 36 monolithic build, 188 monolithic model, 114, 188 monolithic rebuilds, 113
 
-monolithic release, 113, 188 monolithic shared databases, 16 monolithic thinking, 114, 188 monolithic workplace, 114, 188 monoliths, 112­114
-application, 113, 187 hidden, 112­114 joined-at-the-database, 113, 188 multi-layer viable-systems model, 103 The Mythical Man-Month (Brooks), 35
-N Narayan, Sriram, 172, 173 .Net Framework, 101 Neumark, Peter, 92­93 The New Hacker's Dictionary (Raymond), 10 new practices, adoption of, 155­159 Nokia, 38­39 non-blocking dependencies, 68­69 Nygard, Michael, 22, 116
-O onion concept, 34 open-plan office, 114 Ops team, 80­81 O'Reilly, Barry, 36 org chart thinking, 3­14
-bottlenecks, 11­12 cognitive load, 11­12 collaboration mode, 9 communication structures, 4­8 complicated-subsystem teams, 9 Conway's law, 9­11 enabling teams, 9 facilitating mode, 9 platform teams, 9 problems with, 5­7 stream-aligned teams, 9 team interaction modes, 9 Team Topologies model, 9 team types, 9 thinking beyond, 7­8
+monolithic release, 113, 188 monolithic shared databases, 16 monolithic thinking, 114, 188 monolithic workplace, 114, 188 monoliths, 112ï¿½114
+application, 113, 187 hidden, 112ï¿½114 joined-at-the-database, 113, 188 multi-layer viable-systems model, 103 The Mythical Man-Month (Brooks), 35
+N Narayan, Sriram, 172, 173 .Net Framework, 101 Neumark, Peter, 92ï¿½93 The New Hacker's Dictionary (Raymond), 10 new practices, adoption of, 155ï¿½159 Nokia, 38ï¿½39 non-blocking dependencies, 68ï¿½69 Nygard, Michael, 22, 116
+O onion concept, 34 open-plan office, 114 Ops team, 80ï¿½81 O'Reilly, Barry, 36 org chart thinking, 3ï¿½14
+bottlenecks, 11ï¿½12 cognitive load, 11ï¿½12 collaboration mode, 9 communication structures, 4ï¿½8 complicated-subsystem teams, 9 Conway's law, 9ï¿½11 enabling teams, 9 facilitating mode, 9 platform teams, 9 problems with, 5ï¿½7 stream-aligned teams, 9 team interaction modes, 9 Team Topologies model, 9 team types, 9 thinking beyond, 7ï¿½8
 
-X-as-a-Service mode, 9 organization design, 16­17, 23­24 organization design evolution, 181 organization size, 73­74 organizational sensing, 64­65, 153­175
-adoption of new practices, 155­159 business as usual teams, 173­174 business process management, 169 case study, 154­155, 157­159, 162­164 collaboration mode, 153­155, 159­161 environmental scanning, 171 evolution triggers, 165­170 rapid learning, 155­159 self-steering design and development, 170­174 team topologies combination, 164­165 team topologies evolution, 159­164, 165­170 X-as-a-Service mode, 153­154, 161 Out of the Crisis (Deming), 38 OutSystems, 11, 42
-P Pais, Manuel, 66 Payment Card Industry Data Security Standard (PCI DSS), 117 Pearce, Jo, 40 Peopleware (DeMarco & Lister), 38 performance isolation, 119 The Phoenix Project, 166 Pierce, Robert A., 136, 138 Pink, Dan, 11 Pivotal, 149­150 Pivotal Cloud Foundry (PCF), 48­49, 101 platform composition, 96­99 platform teams, 9, 92­96, 105­106, 188 platforms, 100­104
-cognitive load reduction, 101­102 constraints, 102 managed as a live product or service, 103­104 multi-layer viable-systems model, 103 product development acceleration, 101­102 thinnest viable, 101, 184 underlying, 102­103 Poole, Marshall Scott, xix
+X-as-a-Service mode, 9 organization design, 16ï¿½17, 23ï¿½24 organization design evolution, 181 organization size, 73ï¿½74 organizational sensing, 64ï¿½65, 153ï¿½175
+adoption of new practices, 155ï¿½159 business as usual teams, 173ï¿½174 business process management, 169 case study, 154ï¿½155, 157ï¿½159, 162ï¿½164 collaboration mode, 153ï¿½155, 159ï¿½161 environmental scanning, 171 evolution triggers, 165ï¿½170 rapid learning, 155ï¿½159 self-steering design and development, 170ï¿½174 team topologies combination, 164ï¿½165 team topologies evolution, 159ï¿½164, 165ï¿½170 X-as-a-Service mode, 153ï¿½154, 161 Out of the Crisis (Deming), 38 OutSystems, 11, 42
+P Pais, Manuel, 66 Payment Card Industry Data Security Standard (PCI DSS), 117 Pearce, Jo, 40 Peopleware (DeMarco & Lister), 38 performance isolation, 119 The Phoenix Project, 166 Pierce, Robert A., 136, 138 Pink, Dan, 11 Pivotal, 149ï¿½150 Pivotal Cloud Foundry (PCF), 48ï¿½49, 101 platform composition, 96ï¿½99 platform teams, 9, 92ï¿½96, 105ï¿½106, 188 platforms, 100ï¿½104
+cognitive load reduction, 101ï¿½102 constraints, 102 managed as a live product or service, 103ï¿½104 multi-layer viable-systems model, 103 product development acceleration, 101ï¿½102 thinnest viable, 101, 184 underlying, 102ï¿½103 Poole, Marshall Scott, xix
 
-Poppulo, 121­123 Prezi, 92­93 principle of overlapping measurement, 143 The Principles of Product Development Flow (Reinertsen), 23, 143 product teams, 68­69 Project Myopia (Kelly), 35 promise theory, 142
-R rapid learning, 155­159 Rautert, Markus, 16 Raymond, Eric, 10 "Real Life Agile Scaling" (Kniberg), 25 rebuild everything, 113 Red Hat Open Innovation Labs, 53 regulatory compliance, 116­117 Reinertsen, Don, 23, 143 relative domain complexity, 41­42 Remote: Office Not Required (Fried & Hansson), 55 Rensin, Dave, 72 reorganizations, 28 responsibilities, splitting, 74 responsibility restriction, 39­41 risk, 118­119 Roberts, John, 23 Rother, Mike, 134 Rubio, Andy, 50­52
-S Schwartz, Mark, 4 self-service capabilities, 69 self-steering design and development, 170­174 Sheehan, Stephanie, 121­123 shuffling team members, 62 silo reduction, 74 single view of the world, 114 site reliability engineering (SRE), 70­72 Skelton, Matthew, 66 Sky Betting & Gaming, 94­95, 162­164 Snowden, Dave, xix software architecture as flows of change, 23 software boundaries, 115­123
+Poppulo, 121ï¿½123 Prezi, 92ï¿½93 principle of overlapping measurement, 143 The Principles of Product Development Flow (Reinertsen), 23, 143 product teams, 68ï¿½69 Project Myopia (Kelly), 35 promise theory, 142
+R rapid learning, 155ï¿½159 Rautert, Markus, 16 Raymond, Eric, 10 "Real Life Agile Scaling" (Kniberg), 25 rebuild everything, 113 Red Hat Open Innovation Labs, 53 regulatory compliance, 116ï¿½117 Reinertsen, Don, 23, 143 relative domain complexity, 41ï¿½42 Remote: Office Not Required (Fried & Hansson), 55 Rensin, Dave, 72 reorganizations, 28 responsibilities, splitting, 74 responsibility restriction, 39ï¿½41 risk, 118ï¿½119 Roberts, John, 23 Rother, Mike, 134 Rubio, Andy, 50ï¿½52
+S Schwartz, Mark, 4 self-service capabilities, 69 self-steering design and development, 170ï¿½174 Sheehan, Stephanie, 121ï¿½123 shuffling team members, 62 silo reduction, 74 single view of the world, 114 site reliability engineering (SRE), 70ï¿½72 Skelton, Matthew, 66 Sky Betting & Gaming, 94ï¿½95, 162ï¿½164 Snowden, Dave, xix software architecture as flows of change, 23 software boundaries, 115ï¿½123
 
-business domain bounded context, 115­116 case study, 121­125 change cadence, 117 defined, 187 natural, 121 performance isolation, 119 regulatory compliance, 116­117 risk, 118­119 team location, 118 technology, 120 user personas, 120­121 software boundary size, 45­47 software ownership, 36­37 software scale, 73­74 Sosa, Manuel, 24 Spotify, 49, 50, 75 squads, 50, 75 standardization, 114 Stanford, Naomi, 24, 38, 171 static topologies, 61­78 ad hoc team design, 62 anti-patterns, 62 case study, 75­77 cloud teams, 69­70 compatible support systems, 69 credit reference agencies, 76­77 dependencies, 74­75 DevOps, 65­67 DevOps Topologies, 66­67, 75­77 engineering maturity, 73­74 feature teams, 67­68 flow of change, designing for, 63­64 healthcare organizations, 75­76 non-blocking dependencies, 68­69 organization size, 73­74 organizational sensing, 64­65 product teams, 68­69 self-service capabilities, 69 shuffling team members, 62 silo reduction, 74 site reliability engineering, 70­72
+business domain bounded context, 115ï¿½116 case study, 121ï¿½125 change cadence, 117 defined, 187 natural, 121 performance isolation, 119 regulatory compliance, 116ï¿½117 risk, 118ï¿½119 team location, 118 technology, 120 user personas, 120ï¿½121 software boundary size, 45ï¿½47 software ownership, 36ï¿½37 software scale, 73ï¿½74 Sosa, Manuel, 24 Spotify, 49, 50, 75 squads, 50, 75 standardization, 114 Stanford, Naomi, 24, 38, 171 static topologies, 61ï¿½78 ad hoc team design, 62 anti-patterns, 62 case study, 75ï¿½77 cloud teams, 69ï¿½70 compatible support systems, 69 credit reference agencies, 76ï¿½77 dependencies, 74ï¿½75 DevOps, 65ï¿½67 DevOps Topologies, 66ï¿½67, 75ï¿½77 engineering maturity, 73ï¿½74 feature teams, 67ï¿½68 flow of change, designing for, 63ï¿½64 healthcare organizations, 75ï¿½76 non-blocking dependencies, 68ï¿½69 organization size, 73ï¿½74 organizational sensing, 64ï¿½65 product teams, 68ï¿½69 self-service capabilities, 69 shuffling team members, 62 silo reduction, 74 site reliability engineering, 70ï¿½72
 
-software scale, 73­74 splitting responsibilities, 74 team intercommunication, 64­65 team patterns, successful, 67­72 technical and cultural maturity, 72­73 topology choice considerations, 72­75 wait time between teams, 74­75 stream-aligned teams, 9, 81­86, 104, 188 capabilities within, 83­84 case study, 82­83 expected behaviors, 85­86 streams of change, suitable, 183­184 support teams, 80­81, 107­109 Sussna, Jeff, 85, 161, 172 Sweller, John, 39­40
-T team APIs, 47­56
-benched bay approach, 51 case study, 50­52, 53­55 defined, 48, 188 environment design, 50 group chat prefixes, 55­56 guilds, 49 squads, 50 team interactions, 49 virtual environment design, 53­56 workspace design, 50­56 team assignments, 22 team behaviors, 141­144 team habits, 134­135 team interaction modes, 9, 131­152 awkward team interactions, 150­151 basic team organization, 146­148 case study, 146­147 choosing suitable, 143­145 collaboration mode, 133, 135­137, 142­143, 147­148, 149 effective APIs, 148 enhancing flow, 148­151 facilitating mode, 134, 140­144, 147­148 intermittent collaboration, 133 misplaced boundaries, 150­151
+software scale, 73ï¿½74 splitting responsibilities, 74 team intercommunication, 64ï¿½65 team patterns, successful, 67ï¿½72 technical and cultural maturity, 72ï¿½73 topology choice considerations, 72ï¿½75 wait time between teams, 74ï¿½75 stream-aligned teams, 9, 81ï¿½86, 104, 188 capabilities within, 83ï¿½84 case study, 82ï¿½83 expected behaviors, 85ï¿½86 streams of change, suitable, 183ï¿½184 support teams, 80ï¿½81, 107ï¿½109 Sussna, Jeff, 85, 161, 172 Sweller, John, 39ï¿½40
+T team APIs, 47ï¿½56
+benched bay approach, 51 case study, 50ï¿½52, 53ï¿½55 defined, 48, 188 environment design, 50 group chat prefixes, 55ï¿½56 guilds, 49 squads, 50 team interactions, 49 virtual environment design, 53ï¿½56 workspace design, 50ï¿½56 team assignments, 22 team behaviors, 141ï¿½144 team habits, 134ï¿½135 team interaction modes, 9, 131ï¿½152 awkward team interactions, 150ï¿½151 basic team organization, 146ï¿½148 case study, 146ï¿½147 choosing suitable, 143ï¿½145 collaboration mode, 133, 135ï¿½137, 142ï¿½143, 147ï¿½148, 149 effective APIs, 148 enhancing flow, 148ï¿½151 facilitating mode, 134, 140ï¿½144, 147ï¿½148 intermittent collaboration, 133 misplaced boundaries, 150ï¿½151
 
-missing capabilities, 150­151 principle of overlapping measurement, 143 promise theory, 142 reducing uncertainty, 148­151 reverse Conway maneuver, 147­148 team behaviors for, 141­144 team habits, 134­135 temporary changes to, 149­150 well-defined team interactions, 132­133 X-as-a-Service mode, 133, 137­140, 143, 149 team interactions, 49, 132­133 team intercommunication, 64­65 team lifespans, 35­36 team location, 118 Team of Teams (McChrystal), 31, 46 team patterns, successful, 67­72 cloud teams, 69­70 compatible support systems, 69 feature teams, 67­68 non-blocking dependencies, 68­69 product teams, 68­69 self-service capabilities, 69 site reliability engineering, 70­72 team silos, 99­100 team size, 32 team topologies capability gaps, 184­185 combining, 164­165 component teams to platform teams, 105­106 converting architecture and architects, 109 converting common to fundamental team topologies, 104­109 Conway's law, 15­29, 180­181 defined, 188 evolving, 159­170 four fundamental. See team types four team types, 178­179 how to get started with, 183­185 infrastructure teams to platform teams, 105 interaction modes, sharing and practicing, 185 org chart thinking, 3­14 organization design evolution, 181
+missing capabilities, 150ï¿½151 principle of overlapping measurement, 143 promise theory, 142 reducing uncertainty, 148ï¿½151 reverse Conway maneuver, 147ï¿½148 team behaviors for, 141ï¿½144 team habits, 134ï¿½135 temporary changes to, 149ï¿½150 well-defined team interactions, 132ï¿½133 X-as-a-Service mode, 133, 137ï¿½140, 143, 149 team interactions, 49, 132ï¿½133 team intercommunication, 64ï¿½65 team lifespans, 35ï¿½36 team location, 118 Team of Teams (McChrystal), 31, 46 team patterns, successful, 67ï¿½72 cloud teams, 69ï¿½70 compatible support systems, 69 feature teams, 67ï¿½68 non-blocking dependencies, 68ï¿½69 product teams, 68ï¿½69 self-service capabilities, 69 site reliability engineering, 70ï¿½72 team silos, 99ï¿½100 team size, 32 team topologies capability gaps, 184ï¿½185 combining, 164ï¿½165 component teams to platform teams, 105ï¿½106 converting architecture and architects, 109 converting common to fundamental team topologies, 104ï¿½109 Conway's law, 15ï¿½29, 180ï¿½181 defined, 188 evolving, 159ï¿½170 four fundamental. See team types four team types, 178ï¿½179 how to get started with, 183ï¿½185 infrastructure teams to platform teams, 105 interaction modes, sharing and practicing, 185 org chart thinking, 3ï¿½14 organization design evolution, 181
 
-organizational sensing, 153­175 static, 61­78 stream-aligned teams, 104 suitable streams of change, 183­184 support teams, 107­109 team interaction modes, 131­152 team types, 79­110 team-first boundaries, 111­126 team-first thinking, 31­57, 179­180 thinnest viable platform, 184 three interaction modes, 179 tooling teams to enabling teams, 106­107 team topologies combination, 164­165 team topologies evolution, 159­170 adopting different interaction modes, 159­162 case study, 162­164 combining team topologies, 164­165 delivery cadence slowing down, 166­167 evolution triggers, 165­170 multiple business services relying on one large set of underlying services, 167­170 software too large for one team, 165­166 Team Topologies model, 9 team types, 9, 79­110 case study, 82­83, 88­90 complicated-subsystems teams, 91­92 converting common to fundamental team topologies, 104­109 enabling teams, 86­90 enabling teams vs. communities of practice, 90 four, 178­179 key, xx Ops team, 80­81 platform composition, 96­99 platform teams, 92­96 platforms, 100­104 stream-aligned teams, 81­86 support team, 80­81 team silos, 99­100 team-first boundaries, 111­126 application monolith, 113 business domain bounded context, 115­116 case study, 121­125
+organizational sensing, 153ï¿½175 static, 61ï¿½78 stream-aligned teams, 104 suitable streams of change, 183ï¿½184 support teams, 107ï¿½109 team interaction modes, 131ï¿½152 team types, 79ï¿½110 team-first boundaries, 111ï¿½126 team-first thinking, 31ï¿½57, 179ï¿½180 thinnest viable platform, 184 three interaction modes, 179 tooling teams to enabling teams, 106ï¿½107 team topologies combination, 164ï¿½165 team topologies evolution, 159ï¿½170 adopting different interaction modes, 159ï¿½162 case study, 162ï¿½164 combining team topologies, 164ï¿½165 delivery cadence slowing down, 166ï¿½167 evolution triggers, 165ï¿½170 multiple business services relying on one large set of underlying services, 167ï¿½170 software too large for one team, 165ï¿½166 Team Topologies model, 9 team types, 9, 79ï¿½110 case study, 82ï¿½83, 88ï¿½90 complicated-subsystems teams, 91ï¿½92 converting common to fundamental team topologies, 104ï¿½109 enabling teams, 86ï¿½90 enabling teams vs. communities of practice, 90 four, 178ï¿½179 key, xx Ops team, 80ï¿½81 platform composition, 96ï¿½99 platform teams, 92ï¿½96 platforms, 100ï¿½104 stream-aligned teams, 81ï¿½86 support team, 80ï¿½81 team silos, 99ï¿½100 team-first boundaries, 111ï¿½126 application monolith, 113 business domain bounded context, 115ï¿½116 case study, 121ï¿½125
 
-change cadence, 117 coupled releases, 113 distributed monolith, 112 fracture planes, 115­123 hidden monoliths, 112­114 joined-at-the-database monolith, 113 in manufacturing, 123­125 monolithic model, 114 monolithic rebuilds, 113 monolithic releases, 113 monolithic thinking, 114 monolithic workplace, 114 open-plan office, 114 performance isolation, 119 rebuild everything, 113 regulatory compliance, 116­117 risk, 118­119 single view of the world, 114 software boundaries, 115­123 standardization, 114 team location, 118 technology, 120 user personas, 120­121 team-first mindset, 37­38 team-first software architecture, 35 team-first thinking, 31­57, 179­180 benched bay approach, 51 boundaries, 39­47 case study, 50­52, 53­55 cognitive load, 39­47 diversity, 38 domain identification, 43 domain limitations, 42­45 Dunbar's number, 32 ecosystem tuning, 46 environment design, 50 extraneous, 40 "Eyes On, Hands Off," 46 germane, 40 group chat prefixes, 55­56 guilds, 49
+change cadence, 117 coupled releases, 113 distributed monolith, 112 fracture planes, 115ï¿½123 hidden monoliths, 112ï¿½114 joined-at-the-database monolith, 113 in manufacturing, 123ï¿½125 monolithic model, 114 monolithic rebuilds, 113 monolithic releases, 113 monolithic thinking, 114 monolithic workplace, 114 open-plan office, 114 performance isolation, 119 rebuild everything, 113 regulatory compliance, 116ï¿½117 risk, 118ï¿½119 single view of the world, 114 software boundaries, 115ï¿½123 standardization, 114 team location, 118 technology, 120 user personas, 120ï¿½121 team-first mindset, 37ï¿½38 team-first software architecture, 35 team-first thinking, 31ï¿½57, 179ï¿½180 benched bay approach, 51 boundaries, 39ï¿½47 case study, 50ï¿½52, 53ï¿½55 cognitive load, 39ï¿½47 diversity, 38 domain identification, 43 domain limitations, 42ï¿½45 Dunbar's number, 32 ecosystem tuning, 46 environment design, 50 extraneous, 40 "Eyes On, Hands Off," 46 germane, 40 group chat prefixes, 55ï¿½56 guilds, 49
 
-heuristics for domain assignment, 43 high-trust organizations, 32 horizons, 36 intrinsic, 40 onion concept, 34 relative domain complexity, 41­42 responsibility restriction, 39­41 small long-lived teams, 32­39 software boundary size, 45­47 software ownership, 36­37 squads, 50 team APIs, 47­56 team definition, 32 team interactions, 49 team lifespans, 35­36 team size, 32 team-first mindset, 37­38 team-first software architecture, 35 trust and team size, 33­35 Tuckman Teal Performance Model, 36 types of, 39­40 virtual environment design, 53­56 workspace design, 50­56 teams, small long-lived, 32­39 diversity, 38 Dunbar's number, 32 high-trust organizations, 32 horizons, 36 onion concept, 34 software ownership, 36­37 team definition, 32 team lifespans, 35­36 team size, 32 team-first mindset, 37­38 team-first software architecture, 35 trust and team size, 33­35 Tuckman Teal Performance Model, 36 team-scoped flow, 21­23 technical and cultural maturity, 72­73 "Technical Consulting Teams," 86 technology for team-first boundaries, 120
+heuristics for domain assignment, 43 high-trust organizations, 32 horizons, 36 intrinsic, 40 onion concept, 34 relative domain complexity, 41ï¿½42 responsibility restriction, 39ï¿½41 small long-lived teams, 32ï¿½39 software boundary size, 45ï¿½47 software ownership, 36ï¿½37 squads, 50 team APIs, 47ï¿½56 team definition, 32 team interactions, 49 team lifespans, 35ï¿½36 team size, 32 team-first mindset, 37ï¿½38 team-first software architecture, 35 trust and team size, 33ï¿½35 Tuckman Teal Performance Model, 36 types of, 39ï¿½40 virtual environment design, 53ï¿½56 workspace design, 50ï¿½56 teams, small long-lived, 32ï¿½39 diversity, 38 Dunbar's number, 32 high-trust organizations, 32 horizons, 36 onion concept, 34 software ownership, 36ï¿½37 team definition, 32 team lifespans, 35ï¿½36 team size, 32 team-first mindset, 37ï¿½38 team-first software architecture, 35 trust and team size, 33ï¿½35 Tuckman Teal Performance Model, 36 team-scoped flow, 21ï¿½23 technical and cultural maturity, 72ï¿½73 "Technical Consulting Teams," 86 technology for team-first boundaries, 120
 
-Thinking Environments, 4 thinnest viable platform (TVP), 101, 184, 188 Thoughtworks, 10 tool choice and communication, 27 tooling teams, 106­107 topology choice considerations, 72­75
-dependencies, 74­75 engineering maturity, 73­74 organization size, 73­74 silo reduction, 74 software scale, 73­74 splitting responsibilities, 74 technical and cultural maturity, 72­73 topology choice considerations, 72­75 wait time between teams, 74­75 Toyota, 134 TransUnion, 76­77, 157­159 Treynor, Ben, 70 tribes, 75 trust and team size, 33­35 Tuckman, Bruce, xx Tuckman Teal Performance Model, 36 Tune, Nick, 116
-U uncertainty, reducing, 148­151 unnecessary communication, 24­26 user personas, 120­121 uSwitch, 155
-V version compatibility, 22 virtual environment design, 53­56 Vogels, Werner, 83
-W wait time between teams, 74­75 Watson, Ian, 76­77 Weston, Robin, 88­90 Whyte, Dave, 53­55, 97­99 Wiener, Norbert, xix Wiley, Evan, 48­49, 149­150 Windows, 101
+Thinking Environments, 4 thinnest viable platform (TVP), 101, 184, 188 Thoughtworks, 10 tool choice and communication, 27 tooling teams, 106ï¿½107 topology choice considerations, 72ï¿½75
+dependencies, 74ï¿½75 engineering maturity, 73ï¿½74 organization size, 73ï¿½74 silo reduction, 74 software scale, 73ï¿½74 splitting responsibilities, 74 technical and cultural maturity, 72ï¿½73 topology choice considerations, 72ï¿½75 wait time between teams, 74ï¿½75 Toyota, 134 TransUnion, 76ï¿½77, 157ï¿½159 Treynor, Ben, 70 tribes, 75 trust and team size, 33ï¿½35 Tuckman, Bruce, xx Tuckman Teal Performance Model, 36 Tune, Nick, 116
+U uncertainty, reducing, 148ï¿½151 unnecessary communication, 24ï¿½26 user personas, 120ï¿½121 uSwitch, 155
+V version compatibility, 22 virtual environment design, 53ï¿½56 Vogels, Werner, 83
+W wait time between teams, 74ï¿½75 Watson, Ian, 76ï¿½77 Weston, Robin, 88ï¿½90 Whyte, Dave, 53ï¿½55, 97ï¿½99 Wiener, Norbert, xix Wiley, Evan, 48ï¿½49, 149ï¿½150 Windows, 101
 
-Witthoft, Scott, 53 workspace design, 50­56
-X X-as-a-Service mode, 9, 133, 137­140
-and collaboration mode, 149, 153­154 defined, 188 and delivery predictability, 160­161 and evolution of team topologies, 159­161 team behaviors for, 143
+Witthoft, Scott, 53 workspace design, 50ï¿½56
+X X-as-a-Service mode, 9, 133, 137ï¿½140
+and collaboration mode, 149, 153ï¿½154 defined, 188 and delivery predictability, 160ï¿½161 and evolution of team topologies, 159ï¿½161 team behaviors for, 143
 
 ACKNOWLEDGMENTS
 Writing a book is a collaborative task involving many people without whom the finished book wouldn't be impossible. We'd like to thank our peer reviewers for taking the time to give detailed feedback on the book: Charles T. Betz, Jeremy Brown, Joanne Molesky, Nick Tune, and Ruth Malan. We also want to thank the authors and originators of our case studies and industry examples: Albert Bertilsson, Anders Ivarsson, Andy Humphrey, Andy Rubio, Damien Daly, Dave Hotchkiss, Dave Whyte, Eric Minick, Fernando Cornago, Gustaf Nilsson Kotte, Henrik Kniberg, Ian Watson, Markus Rautert, Michael Lambert, Michael Maibaum, Miguel Antunes, Paul Ingles, Pulak Agrawal, Robin Weston, Stephanie Sheehan, and Wolfgang John.
@@ -2560,4 +2566,3 @@ ABOUT THE AUTHOR
 Matthew Skelton has been building, deploying, and operating commercial software systems since 1998, and has worked for organizations including London Stock Exchange, GlaxoSmithKline, FT.com, LexisNexis, and the UK government. Head of Consulting at Conflux (confluxdigital.net), Matthew is the co-author of the books Continuous Delivery with Windows and .NET (2016) and Team Guide to Software Operability (2016). Matthew holds a BSc in computer science and cybernetics from the University of Reading, an MSc in neuroscience from the University of Oxford, and an MA in music from the Open University; he is a chartered engineer (CEng) in the UK. In his free time, Matthew plays the trumpet, sings in choirs, writes music, and enjoys trail running. Manuel Pais is an independent DevOps and Continuous Delivery Consultant focused on team design, practices, and flow. He helps organizations define and adopt DevOps and Continuous Delivery (both from technical and human perspectives) via strategic assessments, practical workshops, and coaching. Manuel is the co-author of Team Guide to Software Releasability (2018).
 
 Matthew and Manuel have worked together on organization design for modern software systems with many clients around the world. Their training sessions on organization design for modern software systems have helped numerous organizations to rethink their approach to team intercommunication and software architecture, improving flow and the effectiveness of software delivery.
-

@@ -1,10 +1,12 @@
-![](markdown/inclusive-components-media/media/cover.png)
+# Inclusive Components
+
+> **Author(s):** Pickering · **Category:** 06_web_and_frontend · **Language:** English
+
+---
 
 <span id="cover.xhtml"></span>
 
 <div id="cover.xhtml_cover-image">
-
-![cover image](markdown/inclusive-components-media/media/cover.png)
 
 </div>
 

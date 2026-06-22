@@ -1,3 +1,9 @@
+# Growing Object-Oriented Software, Guided by Tests
+
+> **Author(s):** Freeman, Pryce Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 Praise for Growing Object-Oriented Software, Guided by Tests
 "The authors of this book have led a revolution in the craft of programming by controlling the environment in which software grows. Their Petri dish is the mock object, and their microscope is the unit test. This book can show you how these tools introduce a repeatability to your work that would be the envy of any scientist."
 --Ward Cunningham
@@ -15,13 +21,13 @@ Praise for Growing Object-Oriented Software, Guided by Tests
 
 Growing Object-Oriented Software, Guided by Tests
 Steve Freeman and Nat Pryce
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid
-Cape Town · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid
+Cape Town ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and the publisher was aware of a trademark claim, the designations have been printed with initial capital letters or in all capitals.
 The authors and publisher have taken care in the preparation of this book, but make no expressed or implied warranty of any kind and assume no responsibility for errors or omissions. No liability is assumed for incidental or consequential damages in connection with or arising out of the use of the information or programs contained herein.
 The publisher offers excellent discounts on this book when ordered in quantity for bulk purchases or special sales, which may include electronic versions and/or custom covers and content particular to your business, training goals, marketing focus, and branding interests. For more information, please contact:
-U.S. Corporate and Government Sales (800) 382­3419 corpsales@pearsontechgroup.com
+U.S. Corporate and Government Sales (800) 382ï¿½3419 corpsales@pearsontechgroup.com
 For sales outside the United States please contact:
 International Sales international@pearson.com
 Visit us on the Web: informit.com/aw
@@ -32,10 +38,10 @@ ISBN 978-0-321-50362-6 (pbk. : alk. paper) 1. Object-oriented programming (Compu
 QA76.64.F747 2010 005.1'17--dc22
 
 2009035239
-Copyright © 2010 Pearson Education, Inc.
+Copyright ï¿½ 2010 Pearson Education, Inc.
 All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 Pearson Education, Inc Rights and Contracts Department 501 Boylston Street, Suite 900 Boston, MA 02116 Fax (617) 671 3447
-ISBN-13: 978­0­321­50362-6 ISBN-10: 0­321­50362­7 Text printed in the United States on recycled paper at RR Donnelley in Crawfordsville, Indiana. First printing October 2009
+ISBN-13: 978ï¿½0ï¿½321ï¿½50362-6 ISBN-10: 0ï¿½321ï¿½50362ï¿½7 Text printed in the United States on recycled paper at RR Donnelley in Crawfordsville, Indiana. First printing October 2009
 
 To Paola, for all her support; to Philip, who sometimes missed out --Steve
 To Lamaan who put up with me spending time writing this book, and Oliver Tarek who did not --Nat
@@ -197,10 +203,10 @@ The cycle at the heart of TDD is: write a test; write some code to get it workin
 
 possible. Repeat. Figure 1.1 The fundamental TDD cycle
 As we develop the system, we use TDD to give us feedback on the quality of both its implementation ("Does it work?") and design ("Is it well structured?"). Developing test-first, we find we benefit twice from the effort. Writing tests:
-· makes us clarify the acceptance criteria for the next piece of work--we have to ask ourselves how we can tell when we're done (design);
-· encourages us to write loosely coupled components, so they can easily be tested in isolation and, at higher levels, combined together (design);
-· adds an executable description of what the code does (design); and, · adds to a complete regression suite (implementation); whereas running tests: · detects errors while the context is fresh in our mind (implementation);
-and, · lets us know when we've done enough, discouraging "gold plating" and
+ï¿½ makes us clarify the acceptance criteria for the next piece of work--we have to ask ourselves how we can tell when we're done (design);
+ï¿½ encourages us to write loosely coupled components, so they can easily be tested in isolation and, at higher levels, combined together (design);
+ï¿½ adds an executable description of what the code does (design); and, ï¿½ adds to a complete regression suite (implementation); whereas running tests: ï¿½ detects errors while the context is fresh in our mind (implementation);
+and, ï¿½ lets us know when we've done enough, discouraging "gold plating" and
 unnecessary features (design). This feedback cycle can be summed up by the Golden Rule of TDD:
 The Golden Rule of Test-Driven Development
 Never write new functionality without a failing test.
@@ -321,7 +327,7 @@ and then check them, and implement any stub behavior we need to get through the 
 Figure 2.6 Testing an object with mock objects
 We use the term mockery2 for the object that holds the context of a test, creates mock objects, and manages expectations and stubbing for the test. We'll show the practice throughout Part III, so we'll just touch on the basics here. The essential structure of a test is:
 2. This is a pun by Ivan Moore that we adopted in a fit of whimsy.
-· Create any required mock objects. · Create any real objects, including the target object. · Specify how you expect the mock objects to be called by the target object. · Call the triggering method(s) on the target object. · Assert that any resulting values are valid and that all the expected calls
+ï¿½ Create any required mock objects. ï¿½ Create any real objects, including the target object. ï¿½ Specify how you expect the mock objects to be called by the target object. ï¿½ Call the triggering method(s) on the target object. ï¿½ Assert that any resulting values are valid and that all the expected calls
 have been made.
 The unit test makes explicit the relationship between the target object and its environment. It creates all the objects in the cluster and makes assertions about the interactions between the target object and its collaborators. We can code this infrastructure by hand or, these days, use one of the multiple mock object frameworks that are available in many languages. The important point, as we stress repeatedly throughout this book, is to make clear the intention of every test, distinguishing between the tested functionality, the supporting infrastructure, and the object structure.
 
@@ -378,11 +384,11 @@ The @RunWith(JMock.class) annotation tells JUnit to use the jMock test runner, w
 test. The test uses the mockery to create a mock AuctionEventListener that will stand in for a real listener implementation during this test. The test instantiates the object under test, an , AuctionMessageTranslator passing the mock listener to its constructor. The AuctionMessageTranslator does not distinguish between a real and a mock listener: It communicates through the AuctionEventListener interface and does not care how that interface is implemented. The test sets up further objects that will be used in the test. The test then tells the mockery how the translator should invoke its neighbors during the test by defining a block of expectations. The Java syntax we use to do this is obscure, so if you can bear with us for now we explain it in more detail in Appendix A. This is the significant line in the test, its one expectation. It says that, during the action, we expect the listener's auctionClosed() method to be called exactly once. Our definition of success is that the translator will notify its listener that an auctionClosed() event has happened whenever it receives a raw Close message. This is the call to the object under test, the outside event that triggers the behavior we want to test. It passes a raw Close message to the translator which, the test says, should make the translator call auctionClosed() once on the listener. The mockery will check that the mock objects are invoked as expected while the test runs and fail the test immediately if they are invoked unexpectedly. Note that the test does not require any assertions. This is quite common in mock object tests.
 Expectations
 The example above specifies one very simple expectation. jMock's expectation API is very expressive. It lets you precisely specify:
-· The minimum and maximum number of times an invocation is expected; · Whether an invocation is expected (the test should fail if it is not received)
-or merely allowed to happen (the test should pass if it is not received); · The parameter values, either given literally or constrained by Hamcrest
-matchers; · The ordering constraints with respect to other expectations; and,
+ï¿½ The minimum and maximum number of times an invocation is expected; ï¿½ Whether an invocation is expected (the test should fail if it is not received)
+or merely allowed to happen (the test should pass if it is not received); ï¿½ The parameter values, either given literally or constrained by Hamcrest
+matchers; ï¿½ The ordering constraints with respect to other expectations; and,
 
-· What should happen when the method is invoked--a value to return, an exception to throw, or any other behavior.
+ï¿½ What should happen when the method is invoked--a value to return, an exception to throw, or any other behavior.
 An expectation block is designed to stand out from the test code that surrounds it, making an obvious separation between the code that describes how neighboring objects should be invoked and the code that actually invokes objects and tests the results. The code within an expectation block acts as a little declarative language that describes the expectations; we'll return to this idea in "Building Up to Higher-Level Programming" (page 65).
 There's more to the jMock API which we don't have space for in this chapter; we'll describe more of its features in examples in the rest of the book, and there's a summary in Appendix A. What really matters, however, is not the implementation we happened to come up with, but its underlying concepts and motivations. We will do our best to make them clear.
 
@@ -602,9 +608,9 @@ The effect of the "context independence" rule on a system of objects is to make 
 Context independence guides us towards coherent objects that can be applied in different contexts, and towards systems that we can change by reconfiguring how their objects are composed.
 Hiding the Right Information
 Encapsulation is almost always a good thing to do, but sometimes information can be hidden in the wrong place. This makes the code difficult to understand, to integrate, or to build behavior from by composing objects. The best defense is to be clear about the difference between the two concepts when discussing a design. For example, we might say:
-· "Encapsulate the data structure for the cache in the CachingAuctionLoader class."
-· "Encapsulate the name of the application's log file in the PricingPolicy class."
-These sound reasonable until we recast them in terms of information hiding: · "Hide the data structure used for the cache in the CachingAuctionLoader class." · "Hide the name of the application's log file in the PricingPolicy class."
+ï¿½ "Encapsulate the data structure for the cache in the CachingAuctionLoader class."
+ï¿½ "Encapsulate the name of the application's log file in the PricingPolicy class."
+These sound reasonable until we recast them in terms of information hiding: ï¿½ "Hide the data structure used for the cache in the CachingAuctionLoader class." ï¿½ "Hide the name of the application's log file in the PricingPolicy class."
 Context independence tells us that we have no business hiding details of the log file in the PricingPolicy class--they're concepts from different levels in the "Russian doll" structure of nested domains. If the log file name is necessary, it should be packaged up and passed in from a level that understands external configuration.
 An Opinionated View
 
@@ -752,9 +758,9 @@ In which we are commissioned to build an application that automatically bids in 
 We're a development team for Markup and Gouge, a company that buys antiques on the professional market to sell to clients "with the best possible taste." Markup and Gouge has been following the industry and now does a lot of its buying online, largely from Southabee's, a venerable auction house that is keen to grow online. The trouble is that our buyers are spending a lot of their time manually checking the state of an auction to decide whether or not to bid, and even missed a couple of attractive items because they could not respond quickly enough.
 After intense discussion, the management decides to commission an Auction Sniper, an application that watches online auctions and automatically bids slightly higher whenever the price changes, until it reaches a stop-price or the auction closes. The buyers are keen to have this new application and some of them agree to help us clarify what to build.
 We start by talking through their ideas with the buyers' group and find that, to avoid confusion, we need to agree on some basic terms:
-· Item is something that can be identified and bought. · Bidder is a person or organization that is interested in buying an item. · Bid is a statement that a bidder will pay a given price for an item. · Current price is the current highest bid for the item. · Stop price is the most a bidder is prepared to pay for an item. · Auction is a process for managing bids for an item.
+ï¿½ Item is something that can be identified and bought. ï¿½ Bidder is a person or organization that is interested in buying an item. ï¿½ Bid is a statement that a bidder will pay a given price for an item. ï¿½ Current price is the current highest bid for the item. ï¿½ Stop price is the most a bidder is prepared to pay for an item. ï¿½ Auction is a process for managing bids for an item.
 
-· Auction house is an institution that hosts auctions.
+ï¿½ Auction house is an institution that hosts auctions.
 The discussions generate a long list of requirements, such as being able to bid for related groups of items. There's no way anyone could deliver everything within a useful time, so we talk through the options and the buyers reluctantly agree that they'd rather get a basic application working first. Once that's in place, we can make it more powerful.
 It turns out that in the online system there's an auction for every item, so we decide to use an item's identifier to refer to its auction. In practice, it also turns out that the Sniper application doesn't have to concern itself with managing any items we've bought, since other systems will handle payment and delivery.
 We decide to build the Auction Sniper as a Java Swing application. It will run on a desktop and allow the user to bid for multiple items at a time. It will show the identifier, stop price, and the current auction price and status for each item it's sniping. Buyers will be able to add new items for sniping through the user interface, and the display values will change in response to events arriving from the auction house. The buyers are still working with our usability people, but we've agreed a rough version that looks like Figure 9.1.
@@ -799,9 +805,9 @@ Figure 9.4 The initial plan
 This Isn't Real
 
 By now you may be raising objections about all the practicalities we've skipped over. We saw them too. We've taken shortcuts with the process and design to give you a feel of how a real project works while remaining within the limits of a book. In particular:
-· This isn't a realistic architecture: XMPP is neither reliable nor secure, and so is unsuitable for transactions. Ensuring any of those qualities is outside our scope. That said, the fundamental techniques that we describe still apply whatever the underlying architecture may be. (In our defense, we see that major systems have been built on a protocol as inappropriate as HTTP, so perhaps we're not as unrealistic as we fear.)
-· This isn't Agile Planning: We rushed through the planning of the project to produce a single to-do list. In a real project, we'd likely have a view of the whole deliverable (a release plan) before jumping in. There are good descriptions of how to do agile planning in other books, such as [Shore07] and [Cohn05].
-· This isn't realistic usability design: Good user experience design investigates what the end user is really trying to achieve and uses that to create a consistent experience. The User Experience community has been engaging with the Agile Development community for some time on how to do this iteratively. This project is simple enough that we can draft a vision of what we want to achieve and work towards it.
+ï¿½ This isn't a realistic architecture: XMPP is neither reliable nor secure, and so is unsuitable for transactions. Ensuring any of those qualities is outside our scope. That said, the fundamental techniques that we describe still apply whatever the underlying architecture may be. (In our defense, we see that major systems have been built on a protocol as inappropriate as HTTP, so perhaps we're not as unrealistic as we fear.)
+ï¿½ This isn't Agile Planning: We rushed through the planning of the project to produce a single to-do list. In a real project, we'd likely have a view of the whole deliverable (a release plan) before jumping in. There are good descriptions of how to do agile planning in other books, such as [Shore07] and [Cohn05].
+ï¿½ This isn't realistic usability design: Good user experience design investigates what the end user is really trying to achieve and uses that to create a consistent experience. The User Experience community has been engaging with the Agile Development community for some time on how to do this iteratively. This project is simple enough that we can draft a vision of what we want to achieve and work towards it.
 
 Chapter 10. The Walking Skeleton
 In which we set up our development environment and write our first end-toend test. We make some infrastructure choices that allow us to get started, and construct a build. We're surprised, yet again, at how much effort this takes.
@@ -959,8 +965,8 @@ Chapter 12. Getting Ready to Bid
 In which we write an end-to-end test so that we can make the Sniper bid in an auction. We start to interpret the messages in the auction protocol and discover some new classes in the process. We write our first unit tests and then refactor out a helper class. We describe every last detail of this effort to show what we were thinking at the time.
 An Introduction to the Market
 Now, to continue with the skeleton metaphor, we start to flesh out the application. The core behavior of a Sniper is that it makes a higher bid on an item in an auction when there's a change in price. Going back to our to-do list, we revisit the next couple of items:
-· Single item: join, bid, and lose. When a price comes in, send a bid raised by the minimum increment defined by the auction. This amount will be included in the price update information.
-· Single item: join, bid, and win. Distinguish which bidder is currently winning the auction and don't bid against ourselves.
+ï¿½ Single item: join, bid, and lose. When a price comes in, send a bid raised by the minimum increment defined by the auction. This amount will be included in the price update information.
+ï¿½ Single item: join, bid, and win. Distinguish which bidder is currently winning the auction and don't bid against ourselves.
 We know there'll be more coming, but this is a coherent slice of functionality that will allow us to explore the design and show concrete progress.
 In any distributed system similar to this one there are lots of interesting failure and timing issues, but our application only has to deal with the client side of the protocol. We rely on the underlying XMPP protocol to deal with many common distributed programming problems; in particular, we expect it to ensure that messages between a bidder and an auction arrive in the same order in which they were sent.
 As we described in Chapter 5, we start the next feature with an acceptance test. We used our first test in the previous chapter to help flush out the structure of
@@ -1746,9 +1752,9 @@ Logging Is a Feature
 We have a more contentious example of working with objects that are hard to replace: logging. Take a look at these two lines of code:
 log.error("Lost touch with Reality after " + timeout + "seconds"); log.trace("Distance traveled in the wilderness: " + distance);
 These are two separate features that happen to share an implementation. Let us explain.
-· Support logging (errors and info) is part of the user interface of the application. These messages are intended to be tracked by support staff, as well as perhaps system administrators and operators, to diagnose a failure or monitor the progress of the running system.
+ï¿½ Support logging (errors and info) is part of the user interface of the application. These messages are intended to be tracked by support staff, as well as perhaps system administrators and operators, to diagnose a failure or monitor the progress of the running system.
 
-· Diagnostic logging (debug and trace) is infrastructure for programmers. These messages should not be turned on in production because they're intended to help the programmers understand what's going on inside the system they're developing.
+ï¿½ Diagnostic logging (debug and trace) is infrastructure for programmers. These messages should not be turned on in production because they're intended to help the programmers understand what's going on inside the system they're developing.
 Given this distinction, we should consider using different techniques for these two type of logging. Support logging should be test-driven from somebody's requirements, such as auditing or failure recovery. The tests will make sure we've thought about what each message is for and made sure it works. The tests will also protect us from breaking any tools and scripts that other people write to analyze these log messages. Diagnostic logging, on the other hand, is driven by the programmers' need for fine-grained tracking of what's happening in the system. It's scaffolding--so it probably doesn't need to be test-driven and the messages might not need to be as consistent as those for support logs. After all, didn't we just agree that these messages are not to be used in production?
 Notification Rather Than Logging
 To get back to the point of the chapter, writing unit tests against static global objects, including loggers, is clumsy. We have to either read from the file system or manage an extra appender object for testing; we have to remember to clean up afterwards so that tests don't interfere with each other and set the right level on the right logger. The noise in the test reminds us that our code is working at two levels: our domain and the logging infrastructure. Here's a common example of code with logging:
@@ -1843,10 +1849,10 @@ In this chapter, we'll describe some practices that we've found helpful to keep 
 Could Do Better1
 1. This is (or was) a common phrase in UK school reports for children whose schoolwork isn't as good as it could be.
 We've seen many unit test suites that could be much more effective given a little extra attention. They have too many "test smells" of the kind cataloged in [Meszaros07], as well as in our own Chapters 20 and 24. When cleaning up tests, or just trying to write new ones, the readability problems we watch out for are:
-· Test names that do not clearly describe the point of each test case and its differences from the other test cases;
-· Single test cases that seem to be exercising multiple features; · Tests with different structure, so the reader cannot skim-read them to
-understand their intention; · Tests with lots of code for setting up and handling exceptions, which
-buries their essential logic; and, · Tests that use literal values ("magic numbers") but are not clear
+ï¿½ Test names that do not clearly describe the point of each test case and its differences from the other test cases;
+ï¿½ Single test cases that seem to be exercising multiple features; ï¿½ Tests with different structure, so the reader cannot skim-read them to
+understand their intention; ï¿½ Tests with lots of code for setting up and handling exceptions, which
+buries their essential logic; and, ï¿½ Tests that use literal values ("magic numbers") but are not clear
 about what, if anything, is significant about those values.
 Test Names Describe Features
 The name of the test should be the first clue for a developer to understand what is being tested and how the target object is supposed to behave.
@@ -1854,7 +1860,7 @@ Not every team we've worked with follows this principle. Some naive developers u
 
 We don't see many of these nowadays; the world has moved on. A common approach is to name a test after the method it's exercising:
 perhaps with multiple tests for different paths through the same method. At best, such names duplicate the information a developer could get just by looking at the target class; they break the "Don't Repeat Yourself" principle [Hunt99]. We don't need to know that TargetObject has a choose() method--we need to know what the object does in different situations, what the method is for. A better alternative is to name tests in terms of the features that the target object provides. We use a TestDox convention (invented by Chris Stevenson) where each test name reads like a sentence, with the target class as the implicit subject. For example,
-· A List holds items in the order they were added. · A List can hold multiple references to the same item. · A List throws an exception when removing an item it doesn't hold. We can translate these directly to method names:
+ï¿½ A List holds items in the order they were added. ï¿½ A List can hold multiple references to the same item. ï¿½ A List throws an exception when removing an item it doesn't hold. We can translate these directly to method names:
 These names can be as long as we like because they're only called through reflection--we never have to type them in to call them. The point of the convention is to encourage the developer to think in terms of what the target object does, not what it is. It's also very compatible with our incremental approach of adding a feature at a time to an existing codebase. It gives us a consistent style of naming all the way from user stories, through tasks and acceptance tests, to unit tests--as you saw in Part III. As a matter of style, the test name should say something about the expected
 
 result, the action on the object, and the motivation for the scenario. For example, if we were testing a ConnectionMonitor class, then
@@ -2051,9 +2057,9 @@ Introduction
 --Lao Tzu (c.604--531 B.C.)
 
 As the system and its associated test suite grows, maintaining the tests can become a burden if they have not been written carefully. We've described how we can reduce the ongoing cost of tests by making them easy to read and generating helpful diagnostics on failure. We also want to make sure that each test fails only when its relevant code is broken. Otherwise, we end up with brittle tests that slow down development and inhibit refactoring. Common causes of test brittleness include:
-· The tests are too tightly coupled to unrelated parts of the system or unrelated behavior of the object(s) they're testing;
-· The tests overspecify the expected behavior of the target code, constraining it more than necessary; and,
-· There is duplication when multiple tests exercise the same production code behavior.
+ï¿½ The tests are too tightly coupled to unrelated parts of the system or unrelated behavior of the object(s) they're testing;
+ï¿½ The tests overspecify the expected behavior of the target code, constraining it more than necessary; and,
+ï¿½ There is duplication when multiple tests exercise the same production code behavior.
 Test brittleness is not just an attribute of how the tests are written; it's also related to the design of the system. If an object is difficult to decouple from its environment because it has many dependencies or its dependencies are hidden, its tests will fail when distant parts of the system change. It will be hard to judge the knock-on effects of altering the code. So, we can use test brittleness as a valuable source of feedback about design quality.
 
 There's a virtuous relationship with test readability and resilience. A test that is focused, has clean set-up, and has minimal duplication is easier to name and is more obvious about its purpose. This chapter expands on some of the techniques we discussed in Chapter 21. Actually, the whole chapter can be collapsed into a single rule:
@@ -2279,10 +2285,10 @@ Here is an implementation of PersistentCustomerBase that passes the test:
 This implementation looks trivial--it's so much shorter than its test--but it relies on a lot of XML configuration that we haven't included and on a thirdparty framework that implements the 's EntityManager simple API.
 On Patterns and Type Names
 The CustomerBase interface and PersistentCustomerBase class implement the repository or data access object pattern (often abbreviated to DAO). We have not used the terms "Repository," "DataAccessObject," or "DAO" in the name of the interface or class that implements it because:
-· Using such terms leaks knowledge about the underlying technology layers (persistence) into the application domain, and so breaks the "ports and adapters" architecture. The objects that use a CustomerBase are persistence-agnostic: they do not care whether the Customer objects they interact with are written to disk or not. The Customer objects are also persistence-agnostic: a program does not need to have a database to create and use Customer objects. Only PersistentCustomerBase knows how it maps Customer objects in and out of
+ï¿½ Using such terms leaks knowledge about the underlying technology layers (persistence) into the application domain, and so breaks the "ports and adapters" architecture. The objects that use a CustomerBase are persistence-agnostic: they do not care whether the Customer objects they interact with are written to disk or not. The Customer objects are also persistence-agnostic: a program does not need to have a database to create and use Customer objects. Only PersistentCustomerBase knows how it maps Customer objects in and out of
 
-persistent storage. · We prefer not to name classes or interfaces after patterns; what
-matters to us is their relationship to other classes in the system. The clients of CustomerBase do not care what patterns it uses. As the system evolves, we might make the CustomerBase class work in some other way and the name would then be misleading. · We avoid generic words like "data," "object," or "access" in type names. We try to give each class a name that identifies a concept within its domain or expresses how it bridges between the application and technical domains.
+persistent storage. ï¿½ We prefer not to name classes or interfaces after patterns; what
+matters to us is their relationship to other classes in the system. The clients of CustomerBase do not care what patterns it uses. As the system evolves, we might make the CustomerBase class work in some other way and the name would then be misleading. ï¿½ We avoid generic words like "data," "object," or "access" in type names. We try to give each class a name that identifies a concept within its domain or expresses how it bridges between the application and technical domains.
 Testing That Objects Can Be Persisted
 The PersistentCustomerBase relies on so much configuration and underlying thirdparty code that the error messages from its test can be difficult to diagnose. A test failure could be caused by a defect in a query, the mapping of the Customer class, the mapping of any of the classes that it uses, the configuration of the ORM, invalid database connection parameters, or a misconfiguration of the database itself.
 We can write more tests to help us pinpoint the cause of a persistence failure when it occurs. A useful test is to "round-trip" instances of all persistent entity types through the database to check that the mappings are configured correctly for each class.
@@ -2315,11 +2321,11 @@ Introduction
 There's no getting away from it: concurrency complicates matters. It is a challenge when doing test-driven development. Unit tests cannot give you as much confidence in system quality because concurrency and synchronization are systemwide concerns. When writing tests, you have to worry about getting the synchronization right within the system and between the test and the system. Test failures are harder to diagnose because exceptions may be swallowed by background threads or tests may just time out with no clear explanation.
 It's hard to diagnose and correct synchronization problems in existing code, so it's worth thinking about the system's concurrency architecture ahead of time. You don't need to design it in great detail, just decide on a broad-brush architecture and principles by which the system will cope with concurrency.
 This design is often prescribed by the frameworks or libraries that an application uses. For example:
-· Swing dispatches user events on its own thread. If an event handler runs for a long time, the user interface becomes unresponsive because Swing does not process user input while the event handler is running. Event call-backs must spawn "worker" threads to perform long-running tasks, and those worker threads must synchronize with the event dispatch thread to update the user interface.
-· A servlet container has a pool of threads that receive HTTP requests and pass them to servlets for processing. Many threads can be active in the
+ï¿½ Swing dispatches user events on its own thread. If an event handler runs for a long time, the user interface becomes unresponsive because Swing does not process user input while the event handler is running. Event call-backs must spawn "worker" threads to perform long-running tasks, and those worker threads must synchronize with the event dispatch thread to update the user interface.
+ï¿½ A servlet container has a pool of threads that receive HTTP requests and pass them to servlets for processing. Many threads can be active in the
 
-same servlet instance at once. · Java EE containers manage all the threading in the application. The
-container guarantees that only one thread will call into a component at a time. Components cannot start their own threads. · The Smack library used by the Auction Sniper application starts a daemon thread to receive XMPP messages. It will deliver messages on a single thread, but the application must synchronize the Smack thread and the Swing thread to avoid the GUI components being corrupted.
+same servlet instance at once. ï¿½ Java EE containers manage all the threading in the application. The
+container guarantees that only one thread will call into a component at a time. Components cannot start their own threads. ï¿½ The Smack library used by the Auction Sniper application starts a daemon thread to receive XMPP messages. It will deliver messages on a single thread, but the application must synchronize the Smack thread and the Swing thread to avoid the GUI components being corrupted.
 When you must design a system's concurrency architecture from scratch, you can use modeling tools to prove your design free of certain classes of synchronization errors, such as deadlock, livelock, or starvation. Design tools that help you model concurrency are becoming increasingly easy to use. The book Concurrency: State Models & Java Programs [Magee06] is an introduction to concurrent programming that stresses a combination of formal modeling and implementation and describes how to do the formal modeling with the LTSA analysis tool.
 Even with a proven design, however, we have to cross the chasm between design and implementation. We need to ensure that our components conform to the architectural constraints of the system. Testing can help at this point. Once we've designed how the system will manage concurrency, we can test-drive the objects that will fit into that architecture. Unit tests give us confidence that an object performs its synchronization responsibilities, such as locking its state or blocking and waking threads. Coarser-grained tests, such as system tests, give us confidence that the entire system manages concurrency correctly.
 Separating Functionality and Concurrency Policy
@@ -2351,10 +2357,10 @@ Unit-Testing Synchronization
 Separating the functional and synchronization concerns has let us test-drive the functional behavior of our AuctionSearch in isolation. Now it's time to test-drive the synchronization. We will do this by writing stress-tests that run multiple threads through the AuctionSearch implementation to cause synchronization errors. Without precise control over the thread scheduler, we can't guarantee that our tests will find synchronization errors. The best we can do is run the same code enough times on enough threads to give our tests a reasonable likelihood of detecting the errors.
 One approach to designing stress tests is to think about the aspects of an object's observable behavior that are independent of the number of threads calling into the object. These are the object's observable invariants with respect to concurrency.1 By focusing on these invariants, we can tune the number of threads in a test without having to change its assertions. This gives us a process for writing stress tests:
 1. This differs from the use of invariants in "design by contract" and formal methods of modeling concurrency. These define invariants over the object's state.
-· Specify one of the object's observable invariants with respect to concurrency;
-· Write a stress test for the invariant that exercises the object multiple times from multiple threads;
-· Watch the test fail, and tune the stress test until it reliably fails on every test run; and,
-· Make the test pass by adding synchronization.
+ï¿½ Specify one of the object's observable invariants with respect to concurrency;
+ï¿½ Write a stress test for the invariant that exercises the object multiple times from multiple threads;
+ï¿½ Watch the test fail, and tune the stress test until it reliably fails on every test run; and,
+ï¿½ Make the test pass by adding synchronization.
 
 We'll demonstrate this with an example.
 Safety First
@@ -2370,7 +2376,7 @@ This says that AuctionSearch has called auctionFinished() once too often. Fixing
 We haven't synchronized access to . runningSearchCount If we use an AtomicInteger
 
 from the Java concurrency libraries instead of a plain int, the threads should be able to decrement it without interfering with each other.
-We try this and, in spite of our use of an , AtomicInteger our test still fails! We haven't got our synchronization right after all. We look again at the failure and see that now the AuctionSearch is reporting that the search has finished more than once per search. Previously, the unsafe concurrent access to runningSearchCount resulted in fewer auctionSearchFinshed() notifications than expected, because AuctionSearch was losing updates to the field. Something else must be wrong. As an eagle-eyed reader, you'll have noticed a race condition in the way AuctionSearch increments and decrements . runningSearchCount It increments the count before starting a task thread. Once the main thread has started creating task threads, the thread scheduler can preëmpt it and start running whatever task threads are ready--while the main thread still has search tasks left to create. If all these started task threads complete before the scheduler resumes the main thread, they will decrement the count to and the last one will send an auctionSearchFinshed() notification. When the main thread finally resumes, it will
+We try this and, in spite of our use of an , AtomicInteger our test still fails! We haven't got our synchronization right after all. We look again at the failure and see that now the AuctionSearch is reporting that the search has finished more than once per search. Previously, the unsafe concurrent access to runningSearchCount resulted in fewer auctionSearchFinshed() notifications than expected, because AuctionSearch was losing updates to the field. Something else must be wrong. As an eagle-eyed reader, you'll have noticed a race condition in the way AuctionSearch increments and decrements . runningSearchCount It increments the count before starting a task thread. Once the main thread has started creating task threads, the thread scheduler can preï¿½mpt it and start running whatever task threads are ready--while the main thread still has search tasks left to create. If all these started task threads complete before the scheduler resumes the main thread, they will decrement the count to and the last one will send an auctionSearchFinshed() notification. When the main thread finally resumes, it will
 
 continue by starting its remaining searches, which will eventually trigger another notification. This sort of error shows why we need to write stress tests, to make sure that we see them fail, and to understand the failure messages--it's also a good motivation for us to write comprehensible failure reports. This example also highlights the benefits of splitting tests of "raw" functionality from threaded tests. With the single-threaded version stable, we know we can concentrate on looking for race conditions in the stress tests. We fix the code by setting runningSearchCount to the expected number of searches before starting any threads:
 Stress-Testing Passive Objects
@@ -2665,7 +2671,7 @@ queryColor() call is not included in the states, and so can be called at any tim
 Appendix B. Writing a Hamcrest Matcher
 Introduction
 Although Hamcrest 1.2 comes with a large library of matchers, sometimes these do not let you specify an assertion or expectation accurately enough to convey what you mean or to keep your tests flexible. In such cases, you can easily define a new matcher that seamlessly extends the JUnit and jMock APIs. A matcher is an object that implements the org.hamcrest.Matcher interface:
-A matcher does two things: · Reports whether a parameter value meets the constraint (the matches() method); · Generates a readable description to be included in test failure messages (the describeTo() method inherited from the SelfDescribing interface and the describeMismatch() method).
+A matcher does two things: ï¿½ Reports whether a parameter value meets the constraint (the matches() method); ï¿½ Generates a readable description to be included in test failure messages (the describeTo() method inherited from the SelfDescribing interface and the describeMismatch() method).
 A New Matcher Type
 As an example, we will write a new matcher that tests whether a string starts with a given prefix. It can be used in tests as shown below. Note that the matcher seamlessly extends the assertion: there is no visible difference between built-in and third-party matchers at the point of use.
 
@@ -2701,7 +2707,7 @@ Wesley, 2002, ISBN 978-0321146530.
 
 Graduates in Their First Software Development Job." In: SIGCSE
 
-Bulletin, 40, no. 1 (March 2008): 226­230, ACM, ISSN 0097-8418.
+Bulletin, 40, no. 1 (March 2008): 226ï¿½230, ACM, ISSN 0097-8418.
 
 [Cockburn04] Cockburn, Alistair. Crystal Clear: A Human-Powered
 
@@ -2719,7 +2725,7 @@ http://alistair.cockburn.us/Hexagonal+architecture.
 
 ISBN 978-0131479418.
 
-[Demeyer03] Demeyer, Serge, Stéphane Ducasse, and Oscar Nierstrasz.
+[Demeyer03] Demeyer, Serge, Stï¿½phane Ducasse, and Oscar Nierstrasz.
 
 Object-Oriented
 
@@ -2761,9 +2767,9 @@ http://portal.acm.org/citation.cfm?doid=1028664.1028765.
 [Kay98] Kay, Alan. Email Message Sent to the Squeak Mailing List. October 10, 1998, http://lists.squeakfoundation.org/pipermail/squeakdev/1998-October/017019.html.
 [Kerievsky04] Kerievsky, Joshua. Refactoring to Patterns. AddisonWesley, 2004, ISBN 978-0321213358.
 [Kernighan76] Kernighan, Brian and P. J. Plauger. Software Tools. Addison-Wesley, 1976, ISBN 978-0201036695.
-[Lieberherr88] Lieberherr, Karl, Ian Holland, and Arthur Riel. "ObjectOriented Programming: An Objective Sense of Style." In: OOPSLA, 23, no. 11 (1988): 323­334.
+[Lieberherr88] Lieberherr, Karl, Ian Holland, and Arthur Riel. "ObjectOriented Programming: An Objective Sense of Style." In: OOPSLA, 23, no. 11 (1988): 323ï¿½334.
 [LIFT] Framework for Literate Functional Testing. https://lift.dev.java.net/. [Mackinnon00] Mackinnon, Tim, Steve Freeman, and Philip Craig. "Endo-
-Testing: Unit Testing with Mock Objects." In: Giancarlo Succi and Michele Marchesi, Extreme Programming Examined, AddisonWesley, 2001, pp. 287­301, ISBN 978-0201710403. [Magee06] Magee, Jeff and Jeff Kramer. Concurrency: State Models & Java Programs. Wiley, 2006, ISBN 978-0470093559. [Martin02] Martin, Robert C. Agile Software Development, Principles, Patterns, and Practices. Prentice Hall, 2002, ISBN 978-0135974445. [Meszaros07] Meszaros, Gerard. xUnit Test Patterns: Refactoring Test Code. Addison-Wesley, 2007, ISBN 978-0131495050. [Meyer91] Meyer, Betrand. Eiffel: The Language. Prentice Hall, 1991, ISBN 978-0132479257.
+Testing: Unit Testing with Mock Objects." In: Giancarlo Succi and Michele Marchesi, Extreme Programming Examined, AddisonWesley, 2001, pp. 287ï¿½301, ISBN 978-0201710403. [Magee06] Magee, Jeff and Jeff Kramer. Concurrency: State Models & Java Programs. Wiley, 2006, ISBN 978-0470093559. [Martin02] Martin, Robert C. Agile Software Development, Principles, Patterns, and Practices. Prentice Hall, 2002, ISBN 978-0135974445. [Meszaros07] Meszaros, Gerard. xUnit Test Patterns: Refactoring Test Code. Addison-Wesley, 2007, ISBN 978-0131495050. [Meyer91] Meyer, Betrand. Eiffel: The Language. Prentice Hall, 1991, ISBN 978-0132479257.
 
 [Mugridge05] Mugridge, Rick and Ward Cunningham. Fit for Developing
 
@@ -2809,135 +2815,134 @@ Design. Prentice Hall, 1979, ISBN 978-0138544713.
 
 Index
 A
-a(), jMock, 340 AbstractTableModel class, 152 acceptance tests, 4, 7­10
-failing, 6­7, 39­40, 42, 271 for changed requirements, 40 for completed features, 40 for degenerate cases, 41 for new features, 6, 39­40, 105, 225 readability of, 42 Action interface, 341, 344 ActionListener interface, 185, 187 ActiveDirectory, 232 adapters, 48, 70­71, 284, 297 , addSniper() 180 , 187 addUserRequestListenerFor() adjustments, 52­53, 238 mocking, 58 @After annotation, 23, 96 @AfterClass annotation, 223 Agile Development, 35, 47, 81, 83, 205, 329 aliasing, 50 , allOf() Hamcrest, 340 allowances, 146, 277­279 , allowing() jMock, 145­146, 181, 211, 243, 278, 278, 339 an(), jMock, 340 , announce() jMock, 187 , announceClosed() 106­107, 176 Announcer class, 187, 192 , aNonNull() jMock, 340
+a(), jMock, 340 AbstractTableModel class, 152 acceptance tests, 4, 7ï¿½10
+failing, 6ï¿½7, 39ï¿½40, 42, 271 for changed requirements, 40 for completed features, 40 for degenerate cases, 41 for new features, 6, 39ï¿½40, 105, 225 readability of, 42 Action interface, 341, 344 ActionListener interface, 185, 187 ActiveDirectory, 232 adapters, 48, 70ï¿½71, 284, 297 , addSniper() 180 , 187 addUserRequestListenerFor() adjustments, 52ï¿½53, 238 mocking, 58 @After annotation, 23, 96 @AfterClass annotation, 223 Agile Development, 35, 47, 81, 83, 205, 329 aliasing, 50 , allOf() Hamcrest, 340 allowances, 146, 277ï¿½279 , allowing() jMock, 145ï¿½146, 181, 211, 243, 278, 278, 339 an(), jMock, 340 , announce() jMock, 187 , announceClosed() 106ï¿½107, 176 Announcer class, 187, 192 , aNonNull() jMock, 340
 
-ant build tool, 95 , aNull() jMock, 340 , any() Hamcrest, 340 , anyOf() Hamcrest, 340 Apache Commons IO library, 221 application model, 48 ApplicationRunner class, 85, 89­92, 106­107, 140, 153, 168, 175­177, 183, 207, 254 , aRowChangedEvent() 157, 162 , 217 ArrayIndexOutOfBoundsException , aSniperThatIs() 161­162, 278 , 157 assertColumnEquals() , assertEquals() JUnit, 21­22, 276 , assertEventually() 321­323, 326 , assertFalse() JUnit, 24, 255 assertions, 22, 254­255
-extending, 343­345 failing, 24, 268 messages for, 268 naming, 86 narrowness of, 255, 275­276 quantity of, 252 vs. synchronizations, 326 vs. test setup, 211 , assertIsSatisfied() JUnit, 271 , assertNull() JUnit, 21­22 , 180 assertRowMatchesSnapshot() , assertThat() JUnit, 24­25, 253­255, 268, 276 , assertTrue() JUnit, 21­22, 24, 255 asynchrony, 87, 180, 216, 262 testing, 315­327 , atLeast() jMock, 127, 278, 339 , atMost() jMock, 339 AtomicBigCounter class, 311­312 AtomicInteger class, 309­310 , attachModelListener() Swing, 156­157 Auction interface, 62, 126­131, 136, 155, 193, 203 Auction Sniper, 75­226 bidding, 79, 84, 105­121, 126­131, 162
+ant build tool, 95 , aNull() jMock, 340 , any() Hamcrest, 340 , anyOf() Hamcrest, 340 Apache Commons IO library, 221 application model, 48 ApplicationRunner class, 85, 89ï¿½92, 106ï¿½107, 140, 153, 168, 175ï¿½177, 183, 207, 254 , aRowChangedEvent() 157, 162 , 217 ArrayIndexOutOfBoundsException , aSniperThatIs() 161ï¿½162, 278 , 157 assertColumnEquals() , assertEquals() JUnit, 21ï¿½22, 276 , assertEventually() 321ï¿½323, 326 , assertFalse() JUnit, 24, 255 assertions, 22, 254ï¿½255
+extending, 343ï¿½345 failing, 24, 268 messages for, 268 naming, 86 narrowness of, 255, 275ï¿½276 quantity of, 252 vs. synchronizations, 326 vs. test setup, 211 , assertIsSatisfied() JUnit, 271 , assertNull() JUnit, 21ï¿½22 , 180 assertRowMatchesSnapshot() , assertThat() JUnit, 24ï¿½25, 253ï¿½255, 268, 276 , assertTrue() JUnit, 21ï¿½22, 24, 255 asynchrony, 87, 180, 216, 262 testing, 315ï¿½327 , atLeast() jMock, 127, 278, 339 , atMost() jMock, 339 AtomicBigCounter class, 311ï¿½312 AtomicInteger class, 309ï¿½310 , attachModelListener() Swing, 156ï¿½157 Auction interface, 62, 126ï¿½131, 136, 155, 193, 203 Auction Sniper, 75ï¿½226 bidding, 79, 84, 105ï¿½121, 126ï¿½131, 162
 
-for multiple items, 175 stopping, 79, 205­213 connecting, 108, 111, 179, 183 disconnecting, 219­220 displaying state of, 97­98, 128, 144­146, 152­155, 159­160, 171, 323 failing, 215­217 joining auctions, 79, 84, 91, 94, 98­100, 179­181, 184­186, 197­199 losing, 79, 84, 91, 100­102, 125, 130, 164, 205­206 portfolio of, 199 refactoring, 191­203 synchronizing, 106, 301 table model for, 149­152, 156­160, 166 translating messages from auction, 112­118, 139­142, 217 updating current price, 118­121 user interface of, 79, 84, 96­97, 149­173, 183­188, 207­208, 212, 316 walking skeleton for, 79, 83­88 when an auction is closed, 84, 94 winning, 79, 139­148, 162­164 , auctionClosed() 25, 58, 116­117, 119­120, 123­125 AuctionEvent class, 134­136 AuctionEventListener interface, 19, 26, 61, 113, 117, 120, 123­124, 141, 192­193, 217­220 , auctionFailed() 217­220 AuctionHouse interface, 196, 210 AuctionLogDriver class, 221, 224 AuctionMessageTranslator class, 25­27, 61, 112­118, 134­136, 154, 192, 195, 217­ 219, 222, 224, 226 AuctionMessageTranslatorTest class, 141 AuctionSearchStressTests class, 307­309 AuctionSniper class, 62, 123­134, 154­155, 172­173, 192, 198­199, 208, 210­212 AuctionSniperDriver class, 91, 153, 168, 184, 207, 254 AuctionSniperEndToEndTest class, 85, 152, 183 AuctionSniperTest class, 218
+for multiple items, 175 stopping, 79, 205ï¿½213 connecting, 108, 111, 179, 183 disconnecting, 219ï¿½220 displaying state of, 97ï¿½98, 128, 144ï¿½146, 152ï¿½155, 159ï¿½160, 171, 323 failing, 215ï¿½217 joining auctions, 79, 84, 91, 94, 98ï¿½100, 179ï¿½181, 184ï¿½186, 197ï¿½199 losing, 79, 84, 91, 100ï¿½102, 125, 130, 164, 205ï¿½206 portfolio of, 199 refactoring, 191ï¿½203 synchronizing, 106, 301 table model for, 149ï¿½152, 156ï¿½160, 166 translating messages from auction, 112ï¿½118, 139ï¿½142, 217 updating current price, 118ï¿½121 user interface of, 79, 84, 96ï¿½97, 149ï¿½173, 183ï¿½188, 207ï¿½208, 212, 316 walking skeleton for, 79, 83ï¿½88 when an auction is closed, 84, 94 winning, 79, 139ï¿½148, 162ï¿½164 , auctionClosed() 25, 58, 116ï¿½117, 119ï¿½120, 123ï¿½125 AuctionEvent class, 134ï¿½136 AuctionEventListener interface, 19, 26, 61, 113, 117, 120, 123ï¿½124, 141, 192ï¿½193, 217ï¿½220 , auctionFailed() 217ï¿½220 AuctionHouse interface, 196, 210 AuctionLogDriver class, 221, 224 AuctionMessageTranslator class, 25ï¿½27, 61, 112ï¿½118, 134ï¿½136, 154, 192, 195, 217ï¿½ 219, 222, 224, 226 AuctionMessageTranslatorTest class, 141 AuctionSearchStressTests class, 307ï¿½309 AuctionSniper class, 62, 123ï¿½134, 154ï¿½155, 172ï¿½173, 192, 198ï¿½199, 208, 210ï¿½212 AuctionSniperDriver class, 91, 153, 168, 184, 207, 254 AuctionSniperEndToEndTest class, 85, 152, 183 AuctionSniperTest class, 218
 B
 @Before annotation, 23 , between() jMock, 339
 
-, 127, 143 bidsHigherAndReportsBiddingWhenNewPriceArrives() "Big Design Up Front," 35 BlockingQueue class, 93 breaking out technique, 59­61, 136 budding off technique, 59, 61­62, 209 build
-automated, 9, 36­37, 95 features included in, 8 from the start of a project, 31 , build() 258­261 Builder pattern, 66, 337 builders. See test data builders, 254 bundling up technique, 59­60, 62, 154
+, 127, 143 bidsHigherAndReportsBiddingWhenNewPriceArrives() "Big Design Up Front," 35 BlockingQueue class, 93 breaking out technique, 59ï¿½61, 136 budding off technique, 59, 61ï¿½62, 209 build
+automated, 9, 36ï¿½37, 95 features included in, 8 from the start of a project, 31 , build() 258ï¿½261 Builder pattern, 66, 337 builders. See test data builders, 254 bundling up technique, 59ï¿½60, 62, 154
 C
-C# programming language, 225 , cannotTranslateMessage() 222­223 CatalogTest class, 21, 23 Chat class, 112, 115, 129­130, 185, 192, 219
-encapsulating, 193­195 , chatDisconnectorFor() 220, 226 ChatManager class, 101, 129 ChatManagerListener interface, 92 , check() WindowLicker, 187 , checking() jMock, 210, 337 classes, 14
-coherent, 12 context-independent, 55 encapsulating collections into, 136 helper, 93 hierarchy of, 16, 67 internal features of, 237 loosely coupled, 11­12 mocking, 223­224, 235­237 naming, 63, 159­160, 238, 285, 297 tightly coupled, 12 Clock interface, 230­232
+C# programming language, 225 , cannotTranslateMessage() 222ï¿½223 CatalogTest class, 21, 23 Chat class, 112, 115, 129ï¿½130, 185, 192, 219
+encapsulating, 193ï¿½195 , chatDisconnectorFor() 220, 226 ChatManager class, 101, 129 ChatManagerListener interface, 92 , check() WindowLicker, 187 , checking() jMock, 210, 337 classes, 14
+coherent, 12 context-independent, 55 encapsulating collections into, 136 helper, 93 hierarchy of, 16, 67 internal features of, 237 loosely coupled, 11ï¿½12 mocking, 223ï¿½224, 235ï¿½237 naming, 63, 159ï¿½160, 238, 285, 297 tightly coupled, 12 Clock interface, 230ï¿½232
 
-code adapting, 172 assumptions about, 42 cleaning up, 60, 118, 125, 131, 137, 245, 262­264 compiling, 136 declarative layer of, 65 difficult to test, 44, 229 external quality of, 10­11 implementation layer of, 65 internal quality of, 10­11, 60 loosely coupled, 11­12 maintenance of, 12, 125 readability of, 51, 162, 173, 226, 247 reimplementing, 60 tightly coupled, 12
-code smells, 63, 181 cohesion, 11­12 collaborators, 16, 279 collections
-encapsulating, 136 vs. domain types, 213 commands, 78, 278 , commit() 279 communication patterns, 14, 58 communication protocols, 58, 63 ComponentDriver, 90 "composite simpler than the sum of its parts," 53­54, 60, 62 concurrency, 301­306, 309, 313­316 , connect() Smack, 100 , connection() 100 Connextra, 330­332 constants, 255 constructors bloated, 238­242 real behavior in, 195 container-managed transactions, 293 , 264 containsTotalSalesFor() context independence, 54­57, 233, 305 CountDownLatch class, 194
+code adapting, 172 assumptions about, 42 cleaning up, 60, 118, 125, 131, 137, 245, 262ï¿½264 compiling, 136 declarative layer of, 65 difficult to test, 44, 229 external quality of, 10ï¿½11 implementation layer of, 65 internal quality of, 10ï¿½11, 60 loosely coupled, 11ï¿½12 maintenance of, 12, 125 readability of, 51, 162, 173, 226, 247 reimplementing, 60 tightly coupled, 12
+code smells, 63, 181 cohesion, 11ï¿½12 collaborators, 16, 279 collections
+encapsulating, 136 vs. domain types, 213 commands, 78, 278 , commit() 279 communication patterns, 14, 58 communication protocols, 58, 63 ComponentDriver, 90 "composite simpler than the sum of its parts," 53ï¿½54, 60, 62 concurrency, 301ï¿½306, 309, 313ï¿½316 , connect() Smack, 100 , connection() 100 Connextra, 330ï¿½332 constants, 255 constructors bloated, 238ï¿½242 real behavior in, 195 container-managed transactions, 293 , 264 containsTotalSalesFor() context independence, 54ï¿½57, 233, 305 CountDownLatch class, 194
 
-coupling, 11­12 CRC cards, 16, 186, 333 , createChat() Smack, 129 Crystal Clear, 1 , currentPrice() 118­120, 123, 141, 162­163 , , 230 currentTimeMillis() java.lang.System customer tests. See acceptance tests
+coupling, 11ï¿½12 CRC cards, 16, 186, 333 , createChat() Smack, 129 Crystal Clear, 1 , currentPrice() 118ï¿½120, 123, 141, 162ï¿½163 , , 230 currentTimeMillis() java.lang.System customer tests. See acceptance tests
 D
-DAO (Data Access Object), 297 database tests. See persistence tests DatabaseCleaner class, 291­292 databases
-cleaning up before testing, 290­292 operations with active transactions in, 300 data-driven tests, 24 date manipulation, 230­233 "debug hell," 267 Decorator pattern, 168, 300 Defect exception, 165 dependencies, 52­53, 126 breaking in unit tests, 233 explicit, 14 hidden, 273 implicit, 57, 232­233 knowing about, 231 loops of, 117, 129, 192 mocking, 58 on user interface components, 113 quantity of, 57, 241­242, 273 scoping, 62 using compiler for navigating, 225 dependency injections, 330 deployment, 4, 9 automated, 35­37 from the start of a project, 31 importance for testing, 32
+DAO (Data Access Object), 297 database tests. See persistence tests DatabaseCleaner class, 291ï¿½292 databases
+cleaning up before testing, 290ï¿½292 operations with active transactions in, 300 data-driven tests, 24 date manipulation, 230ï¿½233 "debug hell," 267 Decorator pattern, 168, 300 Defect exception, 165 dependencies, 52ï¿½53, 126 breaking in unit tests, 233 explicit, 14 hidden, 273 implicit, 57, 232ï¿½233 knowing about, 231 loops of, 117, 129, 192 mocking, 58 on user interface components, 113 quantity of, 57, 241ï¿½242, 273 scoping, 62 using compiler for navigating, 225 dependency injections, 330 deployment, 4, 9 automated, 35ï¿½37 from the start of a project, 31 importance for testing, 32
 
-, describeMismatch() Hamcrest, 343­345 , describeTo() Hamcrest, 343­345 design
-changing, 172 clarifying, 235 feedback on, 6 quality of, 273 DeterministicExecutor class, 303­304 development from inputs to outputs, 43, 61 incremental, 4, 36, 73, 79, 136, 201, 303 iterative, 4 of user interface, 183 working compromises during, 90, 95 , disconnect() Smack, 111 , disconnectWhenUICloses() 111, 179 domain model, 15, 48, 59, 71, 290 domain types, 213, 262, 269 domain-specific language, embedded in Java, 332 "Don't Repeat Yourself" principle, 248 duplication, 262­264, 273, 275 Dynamock library, 332
+, describeMismatch() Hamcrest, 343ï¿½345 , describeTo() Hamcrest, 343ï¿½345 design
+changing, 172 clarifying, 235 feedback on, 6 quality of, 273 DeterministicExecutor class, 303ï¿½304 development from inputs to outputs, 43, 61 incremental, 4, 36, 73, 79, 136, 201, 303 iterative, 4 of user interface, 183 working compromises during, 90, 95 , disconnect() Smack, 111 , disconnectWhenUICloses() 111, 179 domain model, 15, 48, 59, 71, 290 domain types, 213, 262, 269 domain-specific language, embedded in Java, 332 "Don't Repeat Yourself" principle, 248 duplication, 262ï¿½264, 273, 275 Dynamock library, 332
 E
-Eclipse development environment, 119 encapsulation, 49­50, 55 end-to-end tests, 8­10
-asynchronous, 87 brittleness of, 87 early, 32­33 failing, 87 for event-based systems, 87 for existing systems, 33, 37 on synchronization, 313 running, 11 simulating input and output events, 43 slowness of, 87, 300
+Eclipse development environment, 119 encapsulation, 49ï¿½50, 55 end-to-end tests, 8ï¿½10
+asynchronous, 87 brittleness of, 87 early, 32ï¿½33 failing, 87 for event-based systems, 87 for existing systems, 33, 37 on synchronization, 313 running, 11 simulating input and output events, 43 slowness of, 87, 300
 
-EntityManager class, 279, 297, 299 EntityManagerFactory class, 279 EntityTransaction class, 279 , equal() jMock, 340 , equals() , java.lang.Object 154 , equalTo() Hamcrest, 322 error messages. See failure messages event-based systems, 86­87 events, 78
-external, 71, 326­327 listening for, 316­317, 323­325 processed in sequence, 325­326 , exactly() jMock, 338 exceptions, 22 catching, 253­254 on hidden threads, 302 runtime, 165 with helpful messages, 330 Executor interface, 303, 305 "Expect Unexpected Changes" principle, 45 Expectation jMock class, 64 ExpectationCounter jMock class, 330 expectations, 18, 27, 64­66, 146, 254­255, 277­279, 338 blocks of, 337, 339 checking after test's body, 271 clear descriptions of, 25 narrowness of, 255, 277­283 order of, 128, 282, 341­342 quantity of, 242­244, 252 specifying actions to perform, 341 Expectations jMock class, 66, 337, 340 ExpectationSet jMock class, 330 ExpectationValue jMock class, 330 , 222 expectFailureWithMessage() , expectSniperToFailWhenItIs() 219, 253
+EntityManager class, 279, 297, 299 EntityManagerFactory class, 279 EntityTransaction class, 279 , equal() jMock, 340 , equals() , java.lang.Object 154 , equalTo() Hamcrest, 322 error messages. See failure messages event-based systems, 86ï¿½87 events, 78
+external, 71, 326ï¿½327 listening for, 316ï¿½317, 323ï¿½325 processed in sequence, 325ï¿½326 , exactly() jMock, 338 exceptions, 22 catching, 253ï¿½254 on hidden threads, 302 runtime, 165 with helpful messages, 330 Executor interface, 303, 305 "Expect Unexpected Changes" principle, 45 Expectation jMock class, 64 ExpectationCounter jMock class, 330 expectations, 18, 27, 64ï¿½66, 146, 254ï¿½255, 277ï¿½279, 338 blocks of, 337, 339 checking after test's body, 271 clear descriptions of, 25 narrowness of, 255, 277ï¿½283 order of, 128, 282, 341ï¿½342 quantity of, 242ï¿½244, 252 specifying actions to perform, 341 Expectations jMock class, 66, 337, 340 ExpectationSet jMock class, 330 ExpectationValue jMock class, 330 , 222 expectFailureWithMessage() , expectSniperToFailWhenItIs() 219, 253
 F
 
-, failed() 219 failure messages, 268­269, 276
-clearness of, 42 self-explanatory, 24­25, 343 failures, 41 detecting, 217­218 diagnostics for, 267­273, 297, 302­307, 332 displaying, 218­219 handling, 215­226 messages about, 255 recording, 221­225, 291 writing down while developing, 41 FakeAuctionServer class, 86, 89, 92­95, 107­110, 120, 176, 194, 254, 276 FeatureMatcher Hamcrest class, 162, 178 feedback, 4, 229, 233 from automated deployment, 35­36 incremental, 300 loops of, 4­5, 8, 40 on design, 6, 299 on failure cases, 41 on implementations, 6 rapid, 317 Findbugs, 313 fixtures, 23 functional tests. See acceptance tests
+, failed() 219 failure messages, 268ï¿½269, 276
+clearness of, 42 self-explanatory, 24ï¿½25, 343 failures, 41 detecting, 217ï¿½218 diagnostics for, 267ï¿½273, 297, 302ï¿½307, 332 displaying, 218ï¿½219 handling, 215ï¿½226 messages about, 255 recording, 221ï¿½225, 291 writing down while developing, 41 FakeAuctionServer class, 86, 89, 92ï¿½95, 107ï¿½110, 120, 176, 194, 254, 276 FeatureMatcher Hamcrest class, 162, 178 feedback, 4, 229, 233 from automated deployment, 35ï¿½36 incremental, 300 loops of, 4ï¿½5, 8, 40 on design, 6, 299 on failure cases, 41 on implementations, 6 rapid, 317 Findbugs, 313 fixtures, 23 functional tests. See acceptance tests
 G
-garbage collection, 23, 91, 101, 192­194 , getBody() Smack, 222 , getColumnCount() Swing, 158 , getValueAt() Swing, 158
+garbage collection, 23, 91, 101, 192ï¿½194 , getBody() Smack, 222 , getColumnCount() Swing, 158 , getValueAt() Swing, 158
 H
-Hamcrest library, 21, 24­25, 95, 268, 274, 296, 322, 333, 340, 343­345 , hasColumnTitles() 169
+Hamcrest library, 21, 24ï¿½25, 95, 268, 274, 296, 322, 333, 340, 343ï¿½345 , hasColumnTitles() 169
 
-, hasEnoughColumns() 156­157 , , 154 hashCode() java.lang.Object , hasProperty() Hamcrest, 178 , hasReceivedBid() 106­107 , hasReceivedJoinRequestFrom() 109, 176 , hasReceivedJoinRequestFromSniper() 106­108 , 323 hasShownSniperHasWon() , hasShownSniperIsBidding() 106, 110 , hasShownSniperIsLosing() 206­207 , hasShownSniperIsWinning() 140, 176, 323 , hasTitle() 169 helper methods, 7, 51, 66, 162, 166, 210, 226, 253, 263, 280
+, hasEnoughColumns() 156ï¿½157 , , 154 hashCode() java.lang.Object , hasProperty() Hamcrest, 178 , hasReceivedBid() 106ï¿½107 , hasReceivedJoinRequestFrom() 109, 176 , hasReceivedJoinRequestFromSniper() 106ï¿½108 , 323 hasShownSniperHasWon() , hasShownSniperIsBidding() 106, 110 , hasShownSniperIsLosing() 206ï¿½207 , hasShownSniperIsWinning() 140, 176, 323 , hasTitle() 169 helper methods, 7, 51, 66, 162, 166, 210, 226, 253, 263, 280
 naming, 51, 162 Hibernate, 48, 289, 294 HTTP (HyperText Transfer Protocol), 81
 I
 IDEs filling in missing methods on request, 119 navigation in, 114
-IETF (Internet Engineering Task Force), 77 , ignoring() jMock, 145, 278­279, 339 , ignoringAuction() 219 , 22 IllegalArgumentException implementations
-feedback on, 6 independent of context, 244 null, 130, 136, 180, 218 index cards for technical tasks to be addressed, 41 for to-do lists, 80­81, 103, 120­121, 130­131, 148, 171, 182, 201, 211­ 212, 225 information hiding, 49, 55­56 initializers, 23 , inSequence() jMock, 338, 341 instanses, 237­238 integration tests, 9­10, 186­188
+IETF (Internet Engineering Task Force), 77 , ignoring() jMock, 145, 278ï¿½279, 339 , ignoringAuction() 219 , 22 IllegalArgumentException implementations
+feedback on, 6 independent of context, 244 null, 130, 136, 180, 218 index cards for technical tasks to be addressed, 41 for to-do lists, 80ï¿½81, 103, 120ï¿½121, 130ï¿½131, 148, 171, 182, 201, 211ï¿½ 212, 225 information hiding, 49, 55ï¿½56 initializers, 23 , inSequence() jMock, 338, 341 instanses, 237ï¿½238 integration tests, 9ï¿½10, 186ï¿½188
 
-and threads, 71 difficult to code, 44 for adapters, 70 for persistence implementations, 300 passing, 40 speed of, 300 IntelliJ IDEA, 119, 250 interface discovery, 19 interfaces, 14, 58, 61 callback, 71 implementing, 63­64 mocking, 235 naming, 63­64, 237, 297 narrowness of, 63 pulling, 61, 63 refactoring, 63­64 relationships with, 63 segregating, 236 invocations allowed, 27, 146 constrained, 342 counting, 338­339 expected, 27, 146 number of, 27 order of, 279­282, 341 , invokeAndWait() Swing, 100, 180 , invokeLater() Swing, 100 , isForSameItemAs() 181 , isSatisfied() WindowLicker, 320­321 Item class, 209­211, 213 iteration zero, 83, 102
+and threads, 71 difficult to code, 44 for adapters, 70 for persistence implementations, 300 passing, 40 speed of, 300 IntelliJ IDEA, 119, 250 interface discovery, 19 interfaces, 14, 58, 61 callback, 71 implementing, 63ï¿½64 mocking, 235 naming, 63ï¿½64, 237, 297 narrowness of, 63 pulling, 61, 63 refactoring, 63ï¿½64 relationships with, 63 segregating, 236 invocations allowed, 27, 146 constrained, 342 counting, 338ï¿½339 expected, 27, 146 number of, 27 order of, 279ï¿½282, 341 , invokeAndWait() Swing, 100, 180 , invokeLater() Swing, 100 , isForSameItemAs() 181 , isSatisfied() WindowLicker, 320ï¿½321 Item class, 209ï¿½211, 213 iteration zero, 83, 102
 J
 Jabber. See XMPP Java programming language, 21
 arrays in, 177 collections in, 179
 
-logging framework in, 223 method overloading in, 261 package loops in, 191 synchronization errors in, 313 syntax noise of, 253 using compiler to navigate dependencies, 225 Java EE (Java Platform, Enterprise Edition), 293­294, 301 Java Servlet API, 330 JAXB (Java API for XML Binding), 289 JButton Swing component, 185 JDBC (Java Database Connectivity), 294 JDO (Java Data Objects), 289 JFormattedTextField Swing component, 208 JFrame Swing component, 96 JFrameDriver WindowLicker class, 91 JIDs (Jabber IDs), 77, 197 JLabel Swing component, 150 jMock library, 24­27, 274, 332 allowances in, 146 double braces in, 337 expectations in, 25, 64­66, 146 extensions to, 162 generating messages in, 345 states in, 145 using for stress tests, 307 verifying mock objects in, 24 version 2, 21, 25­27, 333, 335­342 JMS (Java Messaging Service), 292 JMSTransactor class, 292 , joinAuction() 100, 131­132, 142, 180­182, 187­188, 192, 208 JPA (Java Persistence API), 279, 289, 294 persistence identifiers in, 295 JTA (Java Transaction API), 292 JTable Swing component, 52, 149­157, 170 JTATransactor class, 292­293 JTextField Swing component, 185 JUnit library, 84, 274, 332­333 generating messages in, 345 new instances for each test in, 22, 117
+logging framework in, 223 method overloading in, 261 package loops in, 191 synchronization errors in, 313 syntax noise of, 253 using compiler to navigate dependencies, 225 Java EE (Java Platform, Enterprise Edition), 293ï¿½294, 301 Java Servlet API, 330 JAXB (Java API for XML Binding), 289 JButton Swing component, 185 JDBC (Java Database Connectivity), 294 JDO (Java Data Objects), 289 JFormattedTextField Swing component, 208 JFrame Swing component, 96 JFrameDriver WindowLicker class, 91 JIDs (Jabber IDs), 77, 197 JLabel Swing component, 150 jMock library, 24ï¿½27, 274, 332 allowances in, 146 double braces in, 337 expectations in, 25, 64ï¿½66, 146 extensions to, 162 generating messages in, 345 states in, 145 using for stress tests, 307 verifying mock objects in, 24 version 2, 21, 25ï¿½27, 333, 335ï¿½342 JMS (Java Messaging Service), 292 JMSTransactor class, 292 , joinAuction() 100, 131ï¿½132, 142, 180ï¿½182, 187ï¿½188, 192, 208 JPA (Java Persistence API), 279, 289, 294 persistence identifiers in, 295 JTA (Java Transaction API), 292 JTable Swing component, 52, 149ï¿½157, 170 JTATransactor class, 292ï¿½293 JTextField Swing component, 185 JUnit library, 84, 274, 332ï¿½333 generating messages in, 345 new instances for each test in, 22, 117
 
 version 4.5, 24 version 4.6, 21, 335 JUnit4Mockery jMock class, 336
 L
-Law of Demeter. See "Tell, Don't Ask" principle Lisp programming language, 66 literals. See values locks, 302, 318 log files, 221­225, 291
-cleaning up before testing, 221 generating, 223 Logger class, 223­224, 237 logging, 233­235 amount of, 235 diagnostic, 233­235 isolated in a separate class, 226 LoggingXMPPFailureReporter class, 223­224 LTSA tool, 302, 313
+Law of Demeter. See "Tell, Don't Ask" principle Lisp programming language, 66 literals. See values locks, 302, 318 log files, 221ï¿½225, 291
+cleaning up before testing, 221 generating, 223 Logger class, 223ï¿½224, 237 logging, 233ï¿½235 amount of, 235 diagnostic, 233ï¿½235 isolated in a separate class, 226 LoggingXMPPFailureReporter class, 223ï¿½224 LTSA tool, 302, 313
 M
-Main class, 91, 101, 108, 117­118, 123, 126, 132­134, 142, 168, 178­180, 183, 185, 188­203
-matchmaker role of, 191 , main() 91, 96 MainWindow class, 96, 100, 113, 134, 151, 156, 166­167, 185­187, 199, 208­209 MainWindowTest class, 186, 209 , makeControls() 184­185 Mars Climate Orbiter disaster, 59 Matcher interface, 25, 268, 343­345 matchers, 24­25, 95, 155, 157, 276, 322, 339­340
-combining, 24 custom, 25, 178, 296, 340, 343­345 reversing, 24 stateless, 344
+Main class, 91, 101, 108, 117ï¿½118, 123, 126, 132ï¿½134, 142, 168, 178ï¿½180, 183, 185, 188ï¿½203
+matchmaker role of, 191 , main() 91, 96 MainWindow class, 96, 100, 113, 134, 151, 156, 166ï¿½167, 185ï¿½187, 199, 208ï¿½209 MainWindowTest class, 186, 209 , makeControls() 184ï¿½185 Mars Climate Orbiter disaster, 59 Matcher interface, 25, 268, 343ï¿½345 matchers, 24ï¿½25, 95, 155, 157, 276, 322, 339ï¿½340
+combining, 24 custom, 25, 178, 296, 340, 343ï¿½345 reversing, 24 stateless, 344
 
-Matchers Hamcrest class, 340 , matches() Hamcrest, 343 meetings, 4 MessageHandler class, 217 MessageListener interface, 93­94, 99, 112­115, 129, 219 messages, 13, 17
-between objects, 50, 58 creating and checking in the same construct, 109 parsing, 118­120 See also failure messages methods, 13 calling, 65 order of, 128 expected, 339­340 factory, 257­258, 260­261 getter, 329­330 grouping together, 176 ignoring, 279 naming, 86, 173, 250 overloading, 261 side effects of, 51 "sugar," 65­66 testing, 43 See also helper methods , 218 MissingValueException mock objects, 18­20, 25­27 creating, 336 for third-party code, 69­71, 157, 300 history of, 329­333 invocation order of, 279­282 naming, 336 to visualize protocols, 58, 61 mockery, 20, 25 Mockery jMock class, 26, 64, 66, 307, 336 mocking adjustments, 58 classes, 223­224, 235­237 dependencies, 58 interfaces, 235 notifications, 58 peers, 58
+Matchers Hamcrest class, 340 , matches() Hamcrest, 343 meetings, 4 MessageHandler class, 217 MessageListener interface, 93ï¿½94, 99, 112ï¿½115, 129, 219 messages, 13, 17
+between objects, 50, 58 creating and checking in the same construct, 109 parsing, 118ï¿½120 See also failure messages methods, 13 calling, 65 order of, 128 expected, 339ï¿½340 factory, 257ï¿½258, 260ï¿½261 getter, 329ï¿½330 grouping together, 176 ignoring, 279 naming, 86, 173, 250 overloading, 261 side effects of, 51 "sugar," 65ï¿½66 testing, 43 See also helper methods , 218 MissingValueException mock objects, 18ï¿½20, 25ï¿½27 creating, 336 for third-party code, 69ï¿½71, 157, 300 history of, 329ï¿½333 invocation order of, 279ï¿½282 naming, 336 to visualize protocols, 58, 61 mockery, 20, 25 Mockery jMock class, 26, 64, 66, 307, 336 mocking adjustments, 58 classes, 223ï¿½224, 235ï¿½237 dependencies, 58 interfaces, 235 notifications, 58 peers, 58
 
-returned types, 279 third-party code, 237 values, 237­238 Moon program, 41 multithreading. See threads
+returned types, 279 third-party code, 237 values, 237ï¿½238 Moon program, 41 multithreading. See threads
 N
-.Net, 22, 232 "Never Pass Null between Objects" principle, 274 , never() jMock, 339 NMock library, 332 , not() Hamcrest, 24, 340 notifications, 52­53, 126, 192
-capturing, 318­320 mocking, 58 order of, 280 recording, 324 , 114 notifiesAuctionClosedWhenCloseMessageReceived() , 217 notifiesAuctionFailedWhenBadMessageReceived() , 218 notifiesAuctionFailedWhenEventTypeMissing() , 141 notifiesBidDetailsWhenCurrentPriceMessageReceivedFromOtherBidder() , 141 notifiesBidDetailsWhenCurrentPriceMessageReceivedFromSniper() notToBeGCd field, 101, 179, 197, 200, 203 , NullPointerException 53, 274 NUnit library, 22, 117, 332
+.Net, 22, 232 "Never Pass Null between Objects" principle, 274 , never() jMock, 339 NMock library, 332 , not() Hamcrest, 24, 340 notifications, 52ï¿½53, 126, 192
+capturing, 318ï¿½320 mocking, 58 order of, 280 recording, 324 , 114 notifiesAuctionClosedWhenCloseMessageReceived() , 217 notifiesAuctionFailedWhenBadMessageReceived() , 218 notifiesAuctionFailedWhenEventTypeMissing() , 141 notifiesBidDetailsWhenCurrentPriceMessageReceivedFromOtherBidder() , 141 notifiesBidDetailsWhenCurrentPriceMessageReceivedFromSniper() notToBeGCd field, 101, 179, 197, 200, 203 , NullPointerException 53, 274 NUnit library, 22, 117, 332
 O
-object mother pattern, 257­258 object-oriented programming, 13, 329 objects
-abstraction level of, 57 bringing out relationships between, 236 collaborating, 18­20, 52­53, 58, 60­62, 186 communicating, 13­14, 50, 58, 244­245 composite, 53­54
+object mother pattern, 257ï¿½258 object-oriented programming, 13, 329 objects
+abstraction level of, 57 bringing out relationships between, 236 collaborating, 18ï¿½20, 52ï¿½53, 58, 60ï¿½62, 186 communicating, 13ï¿½14, 50, 58, 244ï¿½245 composite, 53ï¿½54
 
-context-independent, 54­55, 233 created by builders, 259­260 difficult to decouple, 273 mutable, 14 sharing references to, 50 naming, 62, 244 null, 22, 115, 130, 242 observable invariants with respect to concurrency of, 306 passive, 311­312 persistent, 298­299 simplifying, 55 single responsibility of, 51­52 states of, 13, 59, 145­146, 281­283, 299, 306, 342 subordinate, 254, 291­292, 311 tracer, 270­271 validity of, 53 vs. values, 13­14, 51, 59 web of, 13, 64­65 , oneOf() jMock, 278, 337­338 Openfire, 86, 89, 95 ORM (Object/Relational Mapping), 289, 297, 299
+context-independent, 54ï¿½55, 233 created by builders, 259ï¿½260 difficult to decouple, 273 mutable, 14 sharing references to, 50 naming, 62, 244 null, 22, 115, 130, 242 observable invariants with respect to concurrency of, 306 passive, 311ï¿½312 persistent, 298ï¿½299 simplifying, 55 single responsibility of, 51ï¿½52 states of, 13, 59, 145ï¿½146, 281ï¿½283, 299, 306, 342 subordinate, 254, 291ï¿½292, 311 tracer, 270ï¿½271 validity of, 53 vs. values, 13ï¿½14, 51, 59 web of, 13, 64ï¿½65 , oneOf() jMock, 278, 337ï¿½338 Openfire, 86, 89, 95 ORM (Object/Relational Mapping), 289, 297, 299
 P
 packages loops of, 191 single responsibility of, 52
 pair programming, 4 patterns, naming after, 297 peers, 50
-mocking, 58 types of, 52­53 persistence tests, 289­300 and transactions, 292­294 cleaning up at the start, 291 failure diagnostics in, 297 isolating from one another, 290­292 round-trip, 297­300
+mocking, 58 types of, 52ï¿½53 persistence tests, 289ï¿½300 and transactions, 292ï¿½294 cleaning up at the start, 291 failure diagnostics in, 297 isolating from one another, 290ï¿½292 round-trip, 297ï¿½300
 
-slowness of, 300 Poller class, 320­321 polling for changes, 317, 320­321, 323­325 PortfolioListener interface, 199 ports, 48 "ports and adapters" architecture, 48, 201, 284, 297 PriceSource enumeration, 141, 148 Probe interface, 320­322 probing a system, 315, 320­322 , processMessage() Smack, 114­115, 135­136, 217, 219 production environment, 95 programming styles, 51 progress measuring, 4, 40 PropertyMatcher Hamcrest class, 178
+slowness of, 300 Poller class, 320ï¿½321 polling for changes, 317, 320ï¿½321, 323ï¿½325 PortfolioListener interface, 199 ports, 48 "ports and adapters" architecture, 48, 201, 284, 297 PriceSource enumeration, 141, 148 Probe interface, 320ï¿½322 probing a system, 315, 320ï¿½322 , processMessage() Smack, 114ï¿½115, 135ï¿½136, 217, 219 production environment, 95 programming styles, 51 progress measuring, 4, 40 PropertyMatcher Hamcrest class, 178
 Q
 queries, 278
 R
-, 108 receivesAMessageMatching() redesign, 7 refactoring, 5­7
-code difficult to test, 44­45 importance of, during TDD, 225­226 incremental, 202 writing down while developing, 41 reference types, 269 regression suites, 6, 40 regression tests, 5 releases, 4, 9 planning, 81 to a production system, 35 , removeMessageListener() Smack, 220 , reportPrice() 106­107, 176 , reportsInvalidMessage() 216, 221
+, 108 receivesAMessageMatching() redesign, 7 refactoring, 5ï¿½7
+code difficult to test, 44ï¿½45 importance of, during TDD, 225ï¿½226 incremental, 202 writing down while developing, 41 reference types, 269 regression suites, 6, 40 regression tests, 5 releases, 4, 9 planning, 81 to a production system, 35 , removeMessageListener() Smack, 220 , reportPrice() 106ï¿½107, 176 , reportsInvalidMessage() 216, 221
 
 , 145 reportsLostIfAuctionClosesImmediately() , 146 reportsLostIfAuctionClosesWhenBidding() repository pattern, 297 , resetLogging() 223 responsibilities, 16, 171, 220, 222
-quantity of, 61, 240­241, 332 See also "single responsibility" principle reverting changes, 267 rock climbing, 202 roles, 16 , rollback() 279 rolling back, 267 Ruby programming language, 331 Rule annotation, 24 , RuntimeException 255, 277 , runUntilIdle() 304 @RunWith annotation, 23, 26, 336
+quantity of, 61, 240ï¿½241, 332 See also "single responsibility" principle reverting changes, 267 rock climbing, 202 roles, 16 , rollback() 279 rolling back, 267 Ruby programming language, 331 Rule annotation, 24 , RuntimeException 255, 277 , runUntilIdle() 304 @RunWith annotation, 23, 26, 336
 S
-, safelyAddItemToModel() 180, 188 , same() jMock, 340 , sample() WindowLicker, 320­321 scheduled activities, 326­327 Scrum projects, 1 SelfDescribing interface, 343 , 216 sendInvalidMessageContaining() Sequence jMock class, 341­342 sequences, 279­282, 341­342 servlets, 301, 311 , setImposteriser() jMock, 223 , setStatusText() 166 [Setup] methods, 22 , 216 showsSniperHasFailed() , showsSniperHasWonAuction() 140, 176 , showsSniperStatus() 91­92 "single responsibility" principle, 51­52, 113, 123, 125, 220, 222 SingleMessageListener class, 93­94, 107­108 singleton pattern, 50, 230
+, safelyAddItemToModel() 180, 188 , same() jMock, 340 , sample() WindowLicker, 320ï¿½321 scheduled activities, 326ï¿½327 Scrum projects, 1 SelfDescribing interface, 343 , 216 sendInvalidMessageContaining() Sequence jMock class, 341ï¿½342 sequences, 279ï¿½282, 341ï¿½342 servlets, 301, 311 , setImposteriser() jMock, 223 , setStatusText() 166 [Setup] methods, 22 , 216 showsSniperHasFailed() , showsSniperHasWonAuction() 140, 176 , showsSniperStatus() 91ï¿½92 "single responsibility" principle, 51ï¿½52, 113, 123, 125, 220, 222 SingleMessageListener class, 93ï¿½94, 107ï¿½108 singleton pattern, 50, 230
 
 Smack library, 86 exceptions in, 217 threads in, 93, 301
 Smalltalk programming language cascade, 258, 330, 332 programming style compared to Java, 330
-Sniper application. See Auction Sniper Sniper class, 62 , sniperAdded() 203 , sniperBidding() 126­128, 155, 160­162 SniperCollector class, 62, 198­199, 245 , sniperForItem() 198 SniperLauncher class, 62, 197­199, 210 SniperListener interface, 124­126, 133, 154­155, 163­164, 168 , sniperLost() 125, 147, 164 , 139 sniperMakesAHigherBidButLoses() SniperPortfolio class, 199­203 , 216 sniperReportsInvalidAuctionMessageAndStopsRespondingToEvents() SniperSnapshot class, 159­164, 173, 180­181, 198­199, 211, 219, 278 SnipersTableModel class, 149, 151­152, 156, 166, 168, 170­171, 180­182, 185, 197­201, 207 SniperState class, 155, 158­161, 207, 216, 278 , sniperStateChanged() 156­164, 278 SniperStateDisplayer class, 133, 147, 155, 167­168 , sniperWinning() 143, 162­163 , 139 sniperWinsAnAuctionByBiddingHigher() , sniperWon() 147, 164 Spring, 294 , startBiddingFor() 184 , startBiddingIn() 177 , startBiddingWithStopPrice() 206­207 , startSellingItem() 92, 176 , startSniper() 183­184 , startsWith() Hamcrest, 343­345 state machines, 279­282, 342 state transition diagrams, 212 States jMock class, 146, 198, 281­283 static analysis tools, 313 stop price, 80, 205­213
+Sniper application. See Auction Sniper Sniper class, 62 , sniperAdded() 203 , sniperBidding() 126ï¿½128, 155, 160ï¿½162 SniperCollector class, 62, 198ï¿½199, 245 , sniperForItem() 198 SniperLauncher class, 62, 197ï¿½199, 210 SniperListener interface, 124ï¿½126, 133, 154ï¿½155, 163ï¿½164, 168 , sniperLost() 125, 147, 164 , 139 sniperMakesAHigherBidButLoses() SniperPortfolio class, 199ï¿½203 , 216 sniperReportsInvalidAuctionMessageAndStopsRespondingToEvents() SniperSnapshot class, 159ï¿½164, 173, 180ï¿½181, 198ï¿½199, 211, 219, 278 SnipersTableModel class, 149, 151ï¿½152, 156, 166, 168, 170ï¿½171, 180ï¿½182, 185, 197ï¿½201, 207 SniperState class, 155, 158ï¿½161, 207, 216, 278 , sniperStateChanged() 156ï¿½164, 278 SniperStateDisplayer class, 133, 147, 155, 167ï¿½168 , sniperWinning() 143, 162ï¿½163 , 139 sniperWinsAnAuctionByBiddingHigher() , sniperWon() 147, 164 Spring, 294 , startBiddingFor() 184 , startBiddingIn() 177 , startBiddingWithStopPrice() 206ï¿½207 , startSellingItem() 92, 176 , startSniper() 183ï¿½184 , startsWith() Hamcrest, 343ï¿½345 state machines, 279ï¿½282, 342 state transition diagrams, 212 States jMock class, 146, 198, 281ï¿½283 static analysis tools, 313 stop price, 80, 205ï¿½213
 
-stress tests, 306­313 failing, 308­309, 313 on event processing order, 326 on passive objects, 311­312 running in different environments, 313
-strings checking if starts with a given prefix, 343­345 comparing, 14 vs. domain types, 213, 262, 269
+stress tests, 306ï¿½313 failing, 308ï¿½309, 313 on event processing order, 326 on passive objects, 311ï¿½312 running in different environments, 313
+strings checking if starts with a given prefix, 343ï¿½345 comparing, 14 vs. domain types, 213, 262, 269
 StringStartsWithMatcher Hamcrest class, 345 stubs, 84, 243, 277, 339 success cases, 41 Swing
-manipulating features in, 90 testing, 86­87 threads in, 123, 133, 180, 301 SwingThreadSniperListener interface, 168, 197, 199 Synchroniser jMock class, 307­308, 312­313 synchronizations, 301­314 errors in, 302 testing, 302, 306­310, 313 vs. assertions, 326 system application model of, 48 changing behavior of, 48, 55 concurrency architecture of, 301­302 maintainability of, 47 public drawings of, during development, 34 returning to initial state after a test, 323 simplifying, 112 system tests. See acceptance tests
+manipulating features in, 90 testing, 86ï¿½87 threads in, 123, 133, 180, 301 SwingThreadSniperListener interface, 168, 197, 199 Synchroniser jMock class, 307ï¿½308, 312ï¿½313 synchronizations, 301ï¿½314 errors in, 302 testing, 302, 306ï¿½310, 313 vs. assertions, 326 system application model of, 48 changing behavior of, 48, 55 concurrency architecture of, 301ï¿½302 maintainability of, 47 public drawings of, during development, 34 returning to initial state after a test, 323 simplifying, 112 system tests. See acceptance tests
 T
-, tableChanged() Swing, 157, 181 TableModel class, 149, 168­171 TableModelEvent class, 157, 180­181 TableModelListener class, 156­157
+, tableChanged() Swing, 157, 181 TableModel class, 149, 168ï¿½171 TableModelEvent class, 157, 180ï¿½181 TableModelListener class, 156ï¿½157
 
 task runners, 303 TDD (Test-Driven Development), 1, 5, 229
-cycle of, 6, 39­45, 271­272 for existing systems, 37 golden rule of, 6 kick-starting, 31­37 sustainable, 227­285 [TearDown] methods, 22 "Tell, Don't Ask" principle, 17, 54, 245 template methods, 344 test data builders, 238, 258­259 calling within transactions, 300 combining, 261, 300 creating similar objects with, 259­260 lists of, 298­299 removing duplication with, 262­264 wrapping up in factory methods, 261 test runner, 23­24 JMock, 26 , Parameterized 24 "test smells," 229, 235, 248 benefits of listening to, 244­246 @Test annotation, 22 TestDox convention, 249­250 Test-Driven Development. See TDD tests against fake services, 84, 88, 93 against real services, 32, 88, 93 asynchronous, 315­327 at the beginning of a project, 36, 41 brittleness of, 229, 255, 257, 273 cleaning up, 245, 248, 273 decoupling from tested objects, 278 dependencies in, 275 explicit constraints in, 280 failing, 267­273 flexibility of, 273­285 flickering, 317 focused, 273, 277, 279, 279
+cycle of, 6, 39ï¿½45, 271ï¿½272 for existing systems, 37 golden rule of, 6 kick-starting, 31ï¿½37 sustainable, 227ï¿½285 [TearDown] methods, 22 "Tell, Don't Ask" principle, 17, 54, 245 template methods, 344 test data builders, 238, 258ï¿½259 calling within transactions, 300 combining, 261, 300 creating similar objects with, 259ï¿½260 lists of, 298ï¿½299 removing duplication with, 262ï¿½264 wrapping up in factory methods, 261 test runner, 23ï¿½24 JMock, 26 , Parameterized 24 "test smells," 229, 235, 248 benefits of listening to, 244ï¿½246 @Test annotation, 22 TestDox convention, 249ï¿½250 Test-Driven Development. See TDD tests against fake services, 84, 88, 93 against real services, 32, 88, 93 asynchronous, 315ï¿½327 at the beginning of a project, 36, 41 brittleness of, 229, 255, 257, 273 cleaning up, 245, 248, 273 decoupling from tested objects, 278 dependencies in, 275 explicit constraints in, 280 failing, 267ï¿½273 flexibility of, 273ï¿½285 flickering, 317 focused, 273, 277, 279, 279
 
-for late integration, 36 hierarchy of, 9­10 maintaining, 247, 273­274 naming, 44, 248­250, 252, 264, 268, 326 readability of, 247­257, 273, 280 repeatability of, 23 runaway, 322­323 running, 6 sampling, 316­317, 320­325 self-explanatory, 274­275 separate packages for, 114 size of, 45, 268 states of, 283 synchronizing, 301­314, 317 with background threads, 312­313 tightly coupled, 273 triggering detectable behavior, 325 writing, 6 backwards, 252 in a standard form, 251­252 See also acceptance tests, end-to-end tests, integration tests, persistence tests, unit tests , textFor() 166 "the simplest thing that could possibly work," 41 , then() jMock, 281­282, 338, 342 third-party code, 69­72 abstractions over, 10 mocking, 69­71, 157, 237, 300 patching, 69 testing integration with, 186­188, 289 value types from, 71 Thor Automagic, 12 threads, 71, 301­315 scheduling, 313 three-point contact, 202 time boxes, 4 Timeout class, 318, 322 timeouts, 230, 312­313, 316­318 timestamps, 276 , , 154 toString() java.lang.Object
+for late integration, 36 hierarchy of, 9ï¿½10 maintaining, 247, 273ï¿½274 naming, 44, 248ï¿½250, 252, 264, 268, 326 readability of, 247ï¿½257, 273, 280 repeatability of, 23 runaway, 322ï¿½323 running, 6 sampling, 316ï¿½317, 320ï¿½325 self-explanatory, 274ï¿½275 separate packages for, 114 size of, 45, 268 states of, 283 synchronizing, 301ï¿½314, 317 with background threads, 312ï¿½313 tightly coupled, 273 triggering detectable behavior, 325 writing, 6 backwards, 252 in a standard form, 251ï¿½252 See also acceptance tests, end-to-end tests, integration tests, persistence tests, unit tests , textFor() 166 "the simplest thing that could possibly work," 41 , then() jMock, 281ï¿½282, 338, 342 third-party code, 69ï¿½72 abstractions over, 10 mocking, 69ï¿½71, 157, 237, 300 patching, 69 testing integration with, 186ï¿½188, 289 value types from, 71 Thor Automagic, 12 threads, 71, 301ï¿½315 scheduling, 313 three-point contact, 202 time boxes, 4 Timeout class, 318, 322 timeouts, 230, 312ï¿½313, 316ï¿½318 timestamps, 276 , , 154 toString() java.lang.Object
 
-tracer object, 270­271 "train wreck" code, 17, 50­51, 65 transaction management, 294 transactors, 292­293 , translate() 217 , translatorFor() 220, 226, 253 TypeSafeMatcher<String> Hamcrest class, 344
+tracer object, 270ï¿½271 "train wreck" code, 17, 50ï¿½51, 65 transaction management, 294 transactors, 292ï¿½293 , translate() 217 , translatorFor() 220, 226, 253 TypeSafeMatcher<String> Hamcrest class, 344
 U
-unit tests, 4, 9 against static global objects, 234 and threads, 301­314 at the beginning of a project, 43 breaking dependencies in, 233 brittleness of, 245 difficult to code, 44 failing, 8 isolating from each other, 22, 117 length of, 245­246 limiting scope of, 57 naming, 114, 141 on behavior, not methods, 43 on collaborating objects, 18­20 on synchronization, 302, 306­310, 313 passing, 40 readability of, 245­246 simplifying, 62 speed of, 300, 312 structure of, 335­342 writing, 11
+unit tests, 4, 9 against static global objects, 234 and threads, 301ï¿½314 at the beginning of a project, 43 breaking dependencies in, 233 brittleness of, 245 difficult to code, 44 failing, 8 isolating from each other, 22, 117 length of, 245ï¿½246 limiting scope of, 57 naming, 114, 141 on behavior, not methods, 43 on collaborating objects, 18ï¿½20 on synchronization, 302, 306ï¿½310, 313 passing, 40 readability of, 245ï¿½246 simplifying, 62 speed of, 300, 312 structure of, 335ï¿½342 writing, 11
 Unix, 66 User Experience community, 81, 212 user interface
 configuring through, 242 dependencies on, 113 handling user requests, 186 support logging in, 233
 
-working on parallel to development, 183, 212 UserRequestListener interface, 186­188, 208­209, 213
+working on parallel to development, 183, 212 UserRequestListener interface, 186ï¿½188, 208ï¿½209, 213
 V
-value types, 59­60, 141 from third-party code, 71 helper, 59 naming, 173 placeholder, 59, 209 public final fields in, 154 vs. values, 59 with generics, 136
-, valueIn() 166­167 ValueMatcherProbe WindowLicker class, 187 values, 255­256
-comparing, 22 expected, 127 immutable, 50, 59 mocking, 237­238 mutable, 50 obviously canned, 270 self-describing, 269, 285 side effects of, 51 vs. objects, 13­14, 51, 59 variables, 255­256 global, 50 naming, 209, 330
+value types, 59ï¿½60, 141 from third-party code, 71 helper, 59 naming, 173 placeholder, 59, 209 public final fields in, 154 vs. values, 59 with generics, 136
+, valueIn() 166ï¿½167 ValueMatcherProbe WindowLicker class, 187 values, 255ï¿½256
+comparing, 22 expected, 127 immutable, 50, 59 mocking, 237ï¿½238 mutable, 50 obviously canned, 270 self-describing, 269, 285 side effects of, 51 vs. objects, 13ï¿½14, 51, 59 variables, 255ï¿½256 global, 50 naming, 209, 330
 W
-, 216 waitForAnotherAuctionEvent() , waitUntil() 326 walking skeleton, 32­37
-for Auction Sniper, 79, 83­88 , when() jMock, 281­282, 338, 342 , whenAuctionClosed() 164­165
+, 216 waitForAnotherAuctionEvent() , waitUntil() 326 walking skeleton, 32ï¿½37
+for Auction Sniper, 79, 83ï¿½88 , when() jMock, 281ï¿½282, 338, 342 , whenAuctionClosed() 164ï¿½165
 
-, will() jMock, 338, 341 WindowAdapter class, 134 WindowLicker library, 24, 86­87, 186­187, 254, 316
-controlling Swing components in, 90­91 error messages in, 96 , with() jMock, 339­340 overloaded, 261
+, will() jMock, 338, 341 WindowAdapter class, 134 WindowLicker library, 24, 86ï¿½87, 186ï¿½187, 254, 316
+controlling Swing components in, 90ï¿½91 error messages in, 96 , with() jMock, 339ï¿½340 overloaded, 261
 X
-XmlMarshaller class, 284­285 XmlMarshallerTest class, 284 XMPP (eXtensible Messaging and Presence Protocol), 76­77, 105, 203
-messages in, 301 reliability of, 81 security of, 81 XMPP message brokers, 84, 86, 95 XMPPAuction class, 62, 131­132, 192­197, 203, 224 , 224 XMPPAuctionException XMPPAuctionHouse class, 62, 196­197, 203, 224 XMPPConnection class, 195­197 , XMPPException 130 XMPPFailureReporter class, 222­223, 226 XP (Extreme Programming), 1, 41, 331 XStream, 289 XTC (London Extreme Tuesday Club), 331
-
+XmlMarshaller class, 284ï¿½285 XmlMarshallerTest class, 284 XMPP (eXtensible Messaging and Presence Protocol), 76ï¿½77, 105, 203
+messages in, 301 reliability of, 81 security of, 81 XMPP message brokers, 84, 86, 95 XMPPAuction class, 62, 131ï¿½132, 192ï¿½197, 203, 224 , 224 XMPPAuctionException XMPPAuctionHouse class, 62, 196ï¿½197, 203, 224 XMPPConnection class, 195ï¿½197 , XMPPException 130 XMPPFailureReporter class, 222ï¿½223, 226 XP (Extreme Programming), 1, 41, 331 XStream, 289 XTC (London Extreme Tuesday Club), 331

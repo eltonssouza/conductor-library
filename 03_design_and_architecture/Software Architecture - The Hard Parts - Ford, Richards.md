@@ -1,3 +1,9 @@
+# Software Architecture - The Hard Parts
+
+> **Author(s):** Ford, Richards Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Software Architecture: The Hard Parts
 Modern Trade-Off Analyses for Distributed Architectures
 Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani
@@ -17,7 +23,7 @@ Managing Partner & Cofounder, Infuze Consulting
 
 "I loved reading this comprehensive body of work on distributed architectures! A great mix of solid discussions on fundamental concepts, together with tons of practical advice."
 --David Kloet, Independent Software Architect
-"Splitting a big ball of mud is no easy work. Starting from the code and getting to the data, this book will help you see the services that should be extracted and the services that should remain together." --Rubén Díaz-Martínez, Software Developer at Codesai
+"Splitting a big ball of mud is no easy work. Starting from the code and getting to the data, this book will help you see the services that should be extracted and the services that should remain together." --Rubï¿½n Dï¿½az-Martï¿½nez, Software Developer at Codesai
 "This book will equip you with the theoretical background and with a practical framework to help answer the most difficult questions faced in modern software architecture." --James Lewis, Technical Director, Thoughtworks
 
 Software Architecture: The Hard Parts
@@ -28,7 +34,7 @@ Beijing Boston Farnham Sebastopol Tokyo
 Software Architecture: The Hard Parts
 by Neal Ford, Mark Richards, Pramod Sadalage, and Zhamak Dehghani
 
-Copyright © 2022 Neal Ford, Mark Richards, Pramod Sadalage, and Zhamak Dehghani. All rights reserved.
+Copyright ï¿½ 2022 Neal Ford, Mark Richards, Pramod Sadalage, and Zhamak Dehghani. All rights reserved.
 
 Printed in the United States of America.
 
@@ -36,7 +42,7 @@ Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, C
 
 O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://oreilly.com). For more information, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com.
 
-Acquisitions Editor: Melissa Duffield Development Editor: Nicole Taché Production Editor: Christopher Faucher Copyeditor: Sonia Saruba Proofreader: Sharon Wilkey
+Acquisitions Editor: Melissa Duffield Development Editor: Nicole Tachï¿½ Production Editor: Christopher Faucher Copyeditor: Sonia Saruba Proofreader: Sharon Wilkey
 
 Indexer: Sue Klefstad Interior Designer: David Futato Cover Designer: Karen Montgomery Illustrator: O'Reilly Media, Inc.
 
@@ -1100,4 +1106,3 @@ Even though both static and dynamic coupling seem similar, architects must disti
 Independently Deployable
 Independently deployable implies several aspects of an architecture quantum--each quantum represents a separate deployable unit within a particular architecture. Thus, a monolithic architecture--one that is deployed as a single unit--is by definition a single architecture quantum. Within a distributed architecture such as microservices, developers tend toward the ability to deploy services independently, often in a highly automated way. Thus, from an independently deployable standpoint, a service within a microservices architecture represents an architecture quantum (contingent on cou- pling--as discussed next). Making each architecture quantum represent a deployable asset within the architec- ture serves several useful purposes. First, the boundary represented by an architec- ture quantum serves as a useful common language among architects, developers, and operations. Each understands the common scope under question: architects under- stand the coupling characteristics, developers understand the scope of behavior, and the operations team understands the deployable characteristics. Second, the architecture quantum represents one of the forces (static coupling) archi- tects must consider when striving for proper granularity of services within a dis- tributed architecture. Often, in microservices architectures, developers face the difficult question of what service granularity offers the optimum set of trade-offs. Some of those trade-offs revolve around deployability: what release cadence does this service require, what other services might be affected, what engineering practices are involved, and so on. Architects benefit from a firm understanding of exactly where
 Architecture (Quantum | Quanta) | 29
-

@@ -1,3 +1,9 @@
+# Ontologies for Privacy Requirements Engineering (paper)
+
+> **Author(s):** Gharib Â· **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
 Ontologies for Privacy Requirements Engineering: A Systematic Literature Review
 Mohamad Gharib1, Paolo Giorgini2, and John Mylopoulos2
 1 University of Florence - DiMaI, Viale Morgagni 65, Florence, Italy mohamad.gharib@unifi.it
@@ -14,7 +20,7 @@ On the other hand, privacy is an elusive and vague concept [213,214,130]. Althou
 Ontologies have been proven to be a key success factor for eliciting highquality requirements, and it can facilitate and improve the job of requirements engineers [217,128,65], since it can reduce the conceptual vagueness and terminological confusion by providing a shared understanding of the related concepts between designers and stakeholders [238].
 In addition, the ontology should capture privacy requirements in their social and organizational context. Since most complex systems these days (e.g., healthcare systems, smart cities, etc.) are socio-technical systems [75], which consist not only of technical components but also of humans along with their interrelations, where different kinds of vulnerabilities might manifest themselves [155,99]. Focusing on the technical aspects and leaving the social and organizational aspects outside the system's boundary leaves the system open to different kinds of vulnerabilities that might manifest themselves in the social interactions and/or the organizational structure of the system [155]. The Flash Crash [215] and the Allied Irish Bank scandal [166] are good examples, where problems were not caused by mere technical failures, but it were also due to several socio-technical related vulnerabilities of the system.
 This paper applies systematic review techniques to survey available literature to identify the most mature studies that propose privacy ontologies/concepts. In addition, we further analyze the selected privacy related concepts/relations to identify the main ones in order to propose a novel ontology that can be used to capture privacy requirements. This paper is therefore intended to be a starting point to address the problem of identifying a core privacy ontology.
-The rest of the paper is organized as follows; Section (§2) describes the review process and the protocol underlining this systematic review. We present and discuss the review results and findings in Section (§3). In Section (§4) we propose a novel ontology for privacy requirements engineering. We discuss threats to validity in Section (§5). Related work is presented in Section (§6), and we conclude and discuss future work in Section (§7).
+The rest of the paper is organized as follows; Section (ï¿½2) describes the review process and the protocol underlining this systematic review. We present and discuss the review results and findings in Section (ï¿½3). In Section (ï¿½4) we propose a novel ontology for privacy requirements engineering. We discuss threats to validity in Section (ï¿½5). Related work is presented in Section (ï¿½6), and we conclude and discuss future work in Section (ï¿½7).
 
 2 Review Process
 A systematic review can be defined as a systematic process for defining research questions, searching the literature for the best available resources to answer such questions, and collecting available data from the resources for answering the research questions. Following [139,136], the review process (depicted in Figure 1) consists of three main phases:
@@ -151,7 +157,7 @@ Quality assessment questions Q1 Are the objectives of the proposed work clearly 
 been justified by appropriate examples? Q5 Does the work add value to the state-of-the-art1? 1Evaluated based on the number of citations taking into consideration the year of publication
 
     
-¡¢¢¡ ¡¢¢£ ¡¢¢¤ ¡¢¢¥ ¡¢¢¦ ¡¢¢§ ¡¢¢¨ ¡¢¢© ¡¢¢ ¡¢ ¡¢¡ ¡¢£ ¡¢¤
+ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 Fig. 3: Number of papers by year of publication
 RQ1: What are the privacy concepts/relations that have been used to capture privacy concerns? The review has identified 34 studies that provide concepts and relations that can be used for capturing privacy requirements. The list of the selected studies that answers our first research question (RQ1 ) is presented in Table 3, where each paper is described by its identifier, title, author(s), publication year and number of citation. In what follows, we present a summary of the contributions of each selected study.
 ACM 03 [240], "Elaborating Security Requirements by Construction of Intentional Anti-Models". Lamsweerde [240] proposed a goal-oriented approach that extends the KAOS framework for modeling and analyzing security requirements. The framework focus on generating and resolving obstacles/anti-
@@ -278,7 +284,7 @@ Braber et al. Elahi et al.
 
 Spgr 13 04 [123] UMLsec: Extending UML for secure systems development
 
-J. Ju¨rjens 2002 583
+J. Juï¿½rjens 2002 583
 
 Spgr 13 05 [167] Adapting Secure Tropos for security risk management in the early Matulevicius 2008 60
 
@@ -286,7 +292,7 @@ phases of information systems development
 
 et al.
 
-Spgr 13 07 [199] An extended misuse case notation: Including vulnerabilities and the L. Røstad 2006 46 insider threat
+Spgr 13 07 [199] An extended misuse case notation: Including vulnerabilities and the L. Rï¿½stad 2006 46 insider threat
 
 Spgr 08 01 [169] Model-based management of information system security risk
 
@@ -339,11 +345,11 @@ specialization of Situation and is adopted from the Security domain. While a thr
 
 that come into play when addressing the dependability and security of computing and communication systems. The three top-level dimensions of this taxonomy are: attribute, threat, and means. The concept of attribute is analyzed in terms of: availability; reliability; safety; confidentiality; integrity; and maintainability. The concept of threat is further refined in terms of fault, error, and failure. While the concept of means is used to attain the various attributes of dependability and security, where these means can be grouped into four main categories: fault prevention; fault tolerance; fault removal ; and fault forecasting. Spgr 07 02 [263], "A Requirements Engineering Methodology for Trust, Security, and Privacy". Zannone [263] introduces the Secure i* (SI*) methodology that adopts from Secure Tropos the concepts of actors, goals, resources, along with their different relations and social dependencies, and it proposes new relation among roles, namely supervision. In SI*, an actor is defined along with a set of objectives, capabilities, and entitlements, which can be modeled through relations between actors and services (goals, tasks, and resources), namely: (1) require indicates that an actor intends to achieve a service, (2) be entitled indicates that an actor is the legitimate owner of a service, and (3) provide indicates that the actor has the capability to achieve a service. The delegation concept is refined in SI* into: (1) Delegation of execution (De), and (2) Delegation of permission (De). In addition, the trust concept is refined to cope with the refinement of delegation they propose into: (1) Trust of execution (Te), and (2) Trust of permission (Tp). Spgr 07 03 [152], "Introducing Abuse Frames for Analysing Security Requirements". Lin et al. [152] develop an approach using Problem Frames to analyze security problems in order to determine security vulnerabilities. In particular, they introduce the notion of an anti-requirement as the requirement of a malicious user that can subvert an existing requirement, and they incorporate anti-requirements into abuse frames to represent the notion of a security threat that is imposed by malicious users in a particular problem context. Spgr 08 01 [169], "Model-based Management of Information System Security Risk ". Mayer [169] proposes ISSRM (Information System Security Risk Management), a security risk management model. The ISSRM reference model addresses risk management at three different levels, combining together asset, risk, and risk treatment views, and it proposes concepts that are ordered in three main groups: (i) Asset-related concepts describe what assets are important to protect, and what criteria guarantee asset security; (ii) Risk-related concepts present how the risk itself is defined. A risk is the combination of a threat with one or more vulnerabilities leading to a negative impact harming the assets; and (iii) Risk treatment-related concepts describe what decisions, requirements and controls should be defined and implemented in order to mitigate possible risks. Spgr 08 03 [63], "A Knowledge-based Approach to Security Requirements for E-health Applications". Dritsas et al. [63] propose an ontology that includes the main security related concepts, and use the ontology for designing and
 
-developing a set of security patterns that address a subset of these requirements for applications that provide e-health services. The concepts used in the proposed ontology includes: stakeholder, objective, threat, countermeasure, asset, vulnerability, deliberate attack, security pattern and security pattern context. A security pattern provides a specific set of countermeasures, and a security pattern context is defined as a set of asset, vulnerability, and deliberate attack triplets. Therefore, one can start from the generic security objectives, find the security pattern contexts that match them and choose specific security pattern, which ensures that the high level security objectives can be fulfilled by implementing the respective countermeasures. Spgr 13 01 [15], "Risk as Dependability Metrics for the Evaluation of Business Solutions: a Model-driven Approach". Asnar et al. [15] adopt and extend the Tropos Goal Model [14,13] by considering also the interdependency among the actors within an organization. Through this extension analysts can assess the risk perceived by each actor, taking into account the organizational environment where the actor acts. Based on such analysis, we have provided a method to assist analysts in determining the treatments to be introduced in order to make risks be acceptable by all actors. Spgr 13 02 [59], "The CORAS Methodology: Model-based Risk Assessment Using UML and UP ". Braber [59] introduces the CORAS methodology in which the Unified Modeling Language (UML) and Unified Process (UP) are combined to support a model-based risk assessment of security-critical systems. The CORAS ontology propose several concepts, such as context that influences the target, which contains assets and has its security requirements. Security requirements lead to security policies, which protect assets by reducing its related vulnerabilities that can be exploited by threats, which might reduce the value of the asset. A Risk contains an unwanted incident that has a certain consequence and frequency of occurrence. Spgr 13 03 [72], "A Vulnerability-centric Requirements Engineering Framework: Analyzing Security Attacks, Countermeasures, and Requirements based on Vulnerabilities. Elahi et al. [72] adopt and extend their previous work [71] by proposing an agent- and goal-oriented framework for eliciting and analyzing security requirements. They refined the goal model evaluation method that helps analysts verifying whether top goals are satisfied with the risk of vulnerabilities and attacks and assess the efficacy of security countermeasures against such risks. More specifically, the evaluation does not only specify if the goals are satisfied, but also makes it possible to understand why and how the goals are satisfied (or denied) by tracing back the evaluation to vulnerabilities, attacks, and countermeasures. Spgr 13 04 [123], "UMLsec: Extending UML for Secure Systems Development". Ju¨rjens [123] proposes UMLsec that is an extension to UML modeling language, which allows for integrating security requirements modeling and analysis within the system development process. UMLsec is able to model security related features such as secrecy, integrity, access control, etc. It represents security feature on UML diagrams by providing several extension mechanisms, namely: (1) stereotypes: a new types of modeling elements that
+developing a set of security patterns that address a subset of these requirements for applications that provide e-health services. The concepts used in the proposed ontology includes: stakeholder, objective, threat, countermeasure, asset, vulnerability, deliberate attack, security pattern and security pattern context. A security pattern provides a specific set of countermeasures, and a security pattern context is defined as a set of asset, vulnerability, and deliberate attack triplets. Therefore, one can start from the generic security objectives, find the security pattern contexts that match them and choose specific security pattern, which ensures that the high level security objectives can be fulfilled by implementing the respective countermeasures. Spgr 13 01 [15], "Risk as Dependability Metrics for the Evaluation of Business Solutions: a Model-driven Approach". Asnar et al. [15] adopt and extend the Tropos Goal Model [14,13] by considering also the interdependency among the actors within an organization. Through this extension analysts can assess the risk perceived by each actor, taking into account the organizational environment where the actor acts. Based on such analysis, we have provided a method to assist analysts in determining the treatments to be introduced in order to make risks be acceptable by all actors. Spgr 13 02 [59], "The CORAS Methodology: Model-based Risk Assessment Using UML and UP ". Braber [59] introduces the CORAS methodology in which the Unified Modeling Language (UML) and Unified Process (UP) are combined to support a model-based risk assessment of security-critical systems. The CORAS ontology propose several concepts, such as context that influences the target, which contains assets and has its security requirements. Security requirements lead to security policies, which protect assets by reducing its related vulnerabilities that can be exploited by threats, which might reduce the value of the asset. A Risk contains an unwanted incident that has a certain consequence and frequency of occurrence. Spgr 13 03 [72], "A Vulnerability-centric Requirements Engineering Framework: Analyzing Security Attacks, Countermeasures, and Requirements based on Vulnerabilities. Elahi et al. [72] adopt and extend their previous work [71] by proposing an agent- and goal-oriented framework for eliciting and analyzing security requirements. They refined the goal model evaluation method that helps analysts verifying whether top goals are satisfied with the risk of vulnerabilities and attacks and assess the efficacy of security countermeasures against such risks. More specifically, the evaluation does not only specify if the goals are satisfied, but also makes it possible to understand why and how the goals are satisfied (or denied) by tracing back the evaluation to vulnerabilities, attacks, and countermeasures. Spgr 13 04 [123], "UMLsec: Extending UML for Secure Systems Development". Juï¿½rjens [123] proposes UMLsec that is an extension to UML modeling language, which allows for integrating security requirements modeling and analysis within the system development process. UMLsec is able to model security related features such as secrecy, integrity, access control, etc. It represents security feature on UML diagrams by providing several extension mechanisms, namely: (1) stereotypes: a new types of modeling elements that
 
 extends the semantics of existing types in the UML meta-model; (2) tagged values: that is used to associate data with model elements and (3) constraints: that are used to define criteria to determine whether requirements are met or not by the system design. In UMLsec, integrity is modeled as a constraint, which can restrict unwanted modification (e.g., insert), but information quality can be affected in several other ways that cannot be captured by this approach.
 Spgr 13 05 [167], "Adapting Secure Tropos for Security Risk Management in the Early Phases of Information Systems Development". Matulevicius et al. [167] have analyzed how Secure Tropos can be applied to analyze security risks at the early IS development phases. Their analysis suggested a number of improvements for Secure Tropos in order to deal better with security risk management activities. In particular, Secure Tropos could be improved with additional constructs adopted from existing security risk management models (e.g., ISSRM (Information System Security Risk Management)) such as risk, risk treatment, and control. More specifically, among the suggested risk-related concepts is a risk that presents how the risk itself is defined, what are the major principles that should be taken into account when defining the possible risks. The risk is described by the cause of the risk, and the impact of the risk captures the potential negative consequence of the risk, which can be represented by a negative contribution link between the attack and the related security constraint, i.e., the impact negates the security criteria.
-Spgr 13 07 [199], "An Extended Misuse Case Notation: Including Vulnerabilities". Røstad [199] proposes an extended misuse case notation that includes the ability to represent vulnerabilities and the insider threat. In particular, beside the main concepts of misuse case notation (e.g., actors, use cases, misuse cases, misusers, etc.). Røstad introduce the insider concept to capture inside attackers, since the misuser concept in misuse cases was mainly proposed to address outside attackers. More specifically, an insider is a misusers that is also member of an authorized group for the entity being attacked. In addition, she introduce the vulnerability concept that is a weakness in the system, which can be exploited by the insider.
+Spgr 13 07 [199], "An Extended Misuse Case Notation: Including Vulnerabilities". Rï¿½stad [199] proposes an extended misuse case notation that includes the ability to represent vulnerabilities and the insider threat. In particular, beside the main concepts of misuse case notation (e.g., actors, use cases, misuse cases, misusers, etc.). Rï¿½stad introduce the insider concept to capture inside attackers, since the misuser concept in misuse cases was mainly proposed to address outside attackers. More specifically, an insider is a misusers that is also member of an authorized group for the entity being attacked. In addition, she introduce the vulnerability concept that is a weakness in the system, which can be exploited by the insider.
 Spgr 18 03 [81], "Formalizing Information Security Knowledge". Fenz and Ekelhar [81] introduce security ontology for information security domain knowledge. In their ontology, a vulnerability is the absence of a proper safeguard,which could be exploited by a threat. A threat might threaten an asset, and it can be exploited by predefined threat, and mitigation is achieved by the implementation of one or more control. In addition, the severity of each vulnerability is rated by a three-point scale (high, medium, and low). A threat has a source, and a related security objectives. An asset is categorized either as a tangible or an intangible asset. While the data concept comprises metadata on the knowledge of an organization. The person concept is used to model physical persons in the ontology, and the organization concept comprises organizations in the broadest sense and assigns roles to them. A role is a physical person or organization relevant to the organization. Finally, a
 
 location is used to relate location and threat information in order to assign a priori threat probabilities.
@@ -916,10 +922,10 @@ Spgr 02 02 [14] 2/17 0/9 1/5 0/7 3/38 SCH 24 02 [114] 2/17 3/9 0/5 3/7 8/38
 
 SCH 28 01 [186] 15/17 1/9 1/5 5/7 22/38 SCH 43 01 [239] 5/17 0/9 0/5 5/7 10/38
 
-Group 1, contains studies that do not appropriately cover the organizational concepts. In this group, we have identified 25 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], IEEE 12 Souag et al. [221], IEEE 15 Tsoumas and Gritzalis [235], IEEE 57 Kang and Liang [132], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 04 Ju¨rjens [123], Spgr 13 07 Røstad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 43 01 Blarkom et al. [239].
-Group 2, contains studies that do not appropriately cover risk concepts. In this group, we have identified 22 studies out of the 34 selected ones, including: ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], CIT 07 Lasheras et al. [241], IEEE 50 Giorgini et al. [100], IEEE 57 Kang and Liang [132], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 28 Mouratidis and Giorgini [179], SCH 41 Solove [214], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 04 Ju¨rjens [123], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 28 01 Paja et al. [186], SCH 43 01 Blarkom et al. [239].
-Group 3, contains studies that do not appropriately cover treatment concepts. In this group, we have identified 31 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], IEEE 12 Souag et al. [221], IEEE 50 Giorgini et al. [100], IEEE 57 Kang and Liang [132], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 41 Solove [214], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 03 Elahi et al. [72], Spgr 13 04 Ju¨rjens [123], Spgr 13 05 Matulevicius et al. [167], Spgr 13 07 Røstad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 28 01 Paja et al. [186], SCH 43 01 Blarkom et al. [239].
-Group 4, contains studies that do not appropriately cover the privacy concepts. In this group, we have identified 31 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], CIT 33 Liu et al. [155], IEEE 12 Souag et al. [221], IEEE 15 Tsoumas and Gritzalis [235], IEEE 50 Giorgini et al. [100], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 28 Mouratidis and Giorgini [179], SCH 41 Solove [214], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 03 Elahi et al. [72], Spgr 13 04 Ju¨rjens [123], Spgr 13 05 Matulevicius et al. [167], Spgr 13 07 Røstad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114].
+Group 1, contains studies that do not appropriately cover the organizational concepts. In this group, we have identified 25 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], IEEE 12 Souag et al. [221], IEEE 15 Tsoumas and Gritzalis [235], IEEE 57 Kang and Liang [132], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 04 Juï¿½rjens [123], Spgr 13 07 Rï¿½stad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 43 01 Blarkom et al. [239].
+Group 2, contains studies that do not appropriately cover risk concepts. In this group, we have identified 22 studies out of the 34 selected ones, including: ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], CIT 07 Lasheras et al. [241], IEEE 50 Giorgini et al. [100], IEEE 57 Kang and Liang [132], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 28 Mouratidis and Giorgini [179], SCH 41 Solove [214], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 04 Juï¿½rjens [123], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 28 01 Paja et al. [186], SCH 43 01 Blarkom et al. [239].
+Group 3, contains studies that do not appropriately cover treatment concepts. In this group, we have identified 31 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], IEEE 12 Souag et al. [221], IEEE 50 Giorgini et al. [100], IEEE 57 Kang and Liang [132], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 41 Solove [214], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 03 Elahi et al. [72], Spgr 13 04 Juï¿½rjens [123], Spgr 13 05 Matulevicius et al. [167], Spgr 13 07 Rï¿½stad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114], SCH 28 01 Paja et al. [186], SCH 43 01 Blarkom et al. [239].
+Group 4, contains studies that do not appropriately cover the privacy concepts. In this group, we have identified 31 studies out of the 34 selected ones, including: ACM 03 Lamsweerde [240], ACM 14 Labda et al. [144], ACM 16 Braghin et al. [28], ACM 35 Singhal and Wijesekera [211], ACM 40 Wang and Guo [248], CIT 07 Lasheras et al. [241], CIT 33 Liu et al. [155], IEEE 12 Souag et al. [221], IEEE 15 Tsoumas and Gritzalis [235], IEEE 50 Giorgini et al. [100], Spgr 7 Massacci et al. [162], Spgr 13 Elahi et al. [71], SCH 18 Sindre and Opdahl [208], SCH 24 Kalloniatis et al. [130], SCH 28 Mouratidis and Giorgini [179], SCH 41 Solove [214], Spgr 18 03 Fenz and Ekelhart [81], Spgr 13 01 Asnar et al. [15], Spgr 13 02 Braber et al. [59], Spgr 13 03 Elahi et al. [72], Spgr 13 04 Juï¿½rjens [123], Spgr 13 05 Matulevicius et al. [167], Spgr 13 07 Rï¿½stad [199], Spgr 08 01 Mayer [169], Spgr 08 03 Dritsas et al. [63], Spgr 07 02 Zannone [263], Spgr 07 03 Lin et al. [152], Spgr 03 01 Avizienis et al. [16], Spgr 02 01 Asnar et al. [13], Spgr 02 02 Asnar et al. [14], SCH 24 02 Hong et al. [114].
 
 Based on the previous categories, we have 15 studies that do not appropriately cover all the four concepts categories, and 13 studies that do not appropriately cover three categories. 5 studies do not appropriately cover two categories, and one study does not appropriately cover only one categories. A detailed description of the concepts and relations that each of these studies does not cover can be obtained from Table 4.
 Note that most of these studies have not been developed to address privacy related issues. Therefore, it is not a negative thing when they do not cover privacy related concepts. RQ4 has been considered in this study to assist authors of selected studies, if they aim to extend their frameworks and approaches to cover privacy concerns.
@@ -1147,225 +1153,225 @@ Completeness: it is almost impossible to capture all related studies, yet our re
 There are few systematic reviews concerning privacy/securities ontologies. For instance, Souag et al. [219] performed a systematic review that proposes an analysis and a typology of existing security ontologies. While Blanco et al. [24] conducted a systematic review with a main aim for identifying, extracting and analyzing the main proposals for security ontologies. Fabian et al. [78] present a conceptual framework for security requirements engineering by mapping the diverse terminologies of different security requirements engineering methods to that framework. Moreover, a security ontology
 
 for capturing security requirements have been presented in [220]. However, the focus of all the previously mentioned studies was security ontology.
-On the other hand, Blanco et al. [23] conduct a systematic review for extracting the key requirements that an integrated and unified security ontology should have. While Mellado et al. [172] carried out a systematic review of the existing literature concerning security requirements engineering in order to summarize the current contributions and to provide a road map for future research in this area. Iankoulova and Daneva [117] performed a systematic review concerning the security requirements of cloud computing. In particular, they have classified the main identified security requirements under nine sub-areas: access control, attack/harm detection, non-repudiation, integrity, security auditing, physical protection, privacy, recovery, and prosecution. Li [150] conducted a systematic review concerning online information privacy concerns, consequences, and moderating effects. Based on the review outcome, he proposed a framework to illustrate the relationships between the previously mentioned factors and to highlight opportunities for further improvement. Finally, Ferna´ndez-Alema´n et al. [83] performed systematic literature review for identifying and analyzing critical privacy and security aspects of the electronic health record systems.
+On the other hand, Blanco et al. [23] conduct a systematic review for extracting the key requirements that an integrated and unified security ontology should have. While Mellado et al. [172] carried out a systematic review of the existing literature concerning security requirements engineering in order to summarize the current contributions and to provide a road map for future research in this area. Iankoulova and Daneva [117] performed a systematic review concerning the security requirements of cloud computing. In particular, they have classified the main identified security requirements under nine sub-areas: access control, attack/harm detection, non-repudiation, integrity, security auditing, physical protection, privacy, recovery, and prosecution. Li [150] conducted a systematic review concerning online information privacy concerns, consequences, and moderating effects. Based on the review outcome, he proposed a framework to illustrate the relationships between the previously mentioned factors and to highlight opportunities for further improvement. Finally, Fernaï¿½ndez-Alemaï¿½n et al. [83] performed systematic literature review for identifying and analyzing critical privacy and security aspects of the electronic health record systems.
 7 Conclusions and Future Work
 In this paper, we argued that many wrong design decisions might be made due to the insufficient knowledge about the privacy-related concepts, and we advocate that a welldefined privacy ontology that captures the privacy related concepts along with their interrelations can solve this problem. Therefore, we conduct a systematic review concerning the existing privacy/security literature with a main purpose of identifying the main concepts along with their interrelation for capturing privacy requirements. The objectives of the research were considered to have been achieved since the research questions posed have been answered. Moreover, we used the identified concepts/relations for proposing a privacy ontology to be used by software engineers while dealing with privacy requirements.
 For future work, we aim to develop core privacy ontology to be used by software/security engineers when dealing with privacy requirements. To achieve that, we are planning to contact the authors of the selected studies to get their feedback concerning the proposed privacy ontology. In addition, we will conduct a controlled experiment with software/security engineers to evaluate the usability of the ontology. Finally, we plan to evaluate the completeness and validity of the ontology by deploying it to capture the privacy requirements for two real case studies that belong to different domains (e.g., medical sector and public administration).
 References
-1. Abulaish, M., Nabi, S. I., Alghathbar, K., and Chikh, A. Simont: A security information management ontology framework. In Secure and Trust Computing, Data Management and Applications. Springer, 2011, pp. 201­208.
+1. Abulaish, M., Nabi, S. I., Alghathbar, K., and Chikh, A. Simont: A security information management ontology framework. In Secure and Trust Computing, Data Management and Applications. Springer, 2011, pp. 201ï¿½208.
 2. Acquisti, A., Friedman, A., and Telang, R. Is there a cost to privacy breaches? an event study. ICIS 2006 Proceedings (2006), 94.
-3. Ahamed, S. I., Monjur, M., and Islam, M. S. CCTB: Context correlation for trust bootstrapping in pervasive environment. In 4th International Conference on Intelligent Environments (IET) (2008), IET, pp. 1­8.
+3. Ahamed, S. I., Monjur, M., and Islam, M. S. CCTB: Context correlation for trust bootstrapping in pervasive environment. In 4th International Conference on Intelligent Environments (IET) (2008), IET, pp. 1ï¿½8.
 
-4. Akmayeva, G., and Shoniregun, C. Ontology of e-learning security. In Information Society (i-Society), 2010 International Conference on (2010), IEEE, pp. 652­655.
-5. Alam, M. Model driven security engineering for the realization of dynamic security requirements in collaborative systems. In Models in Software Engineering. Springer, 2006, pp. 278­287.
-6. Albers, M., Jonker, C. M., Karami, M., and Treur, J. Agent models and different user ontologies for an electronic market place. Knowledge and Information Systems 6, 1 (2004), 1­41.
+4. Akmayeva, G., and Shoniregun, C. Ontology of e-learning security. In Information Society (i-Society), 2010 International Conference on (2010), IEEE, pp. 652ï¿½655.
+5. Alam, M. Model driven security engineering for the realization of dynamic security requirements in collaborative systems. In Models in Software Engineering. Springer, 2006, pp. 278ï¿½287.
+6. Albers, M., Jonker, C. M., Karami, M., and Treur, J. Agent models and different user ontologies for an electronic market place. Knowledge and Information Systems 6, 1 (2004), 1ï¿½41.
 7. Alliance, S. C. Hipaa compliance and smart cards: Solutions to privacy and security requirements. Online at http://www. datakey. com/resources/HIPAA Compliance and Smart Cards FINAL. pdf (2003).
-8. Amagasa, T., Zhang, F., Sakuma, J., and Kitagawa, H. A scheme for privacy-preserving ontology mapping. In Proceedings of the 18th International Database Engineering & Applications Symposium (2014), ACM, pp. 87­95.
-9. Analyti, A., Antoniou, G., Dama´sio, C. V., and Pachoulakis, I. A framework for modular erdf ontologies. Annals of mathematics and artificial intelligence 67, 3-4 (2013), 189­249.
-10. Anto´n, A. I., Earp, J. B., and Reese, A. Analyzing website privacy requirements using a privacy goal taxonomy. In Requirements Engineering, 2002. Proceedings. IEEE Joint International Conference on (2002), IEEE, pp. 23­31.
+8. Amagasa, T., Zhang, F., Sakuma, J., and Kitagawa, H. A scheme for privacy-preserving ontology mapping. In Proceedings of the 18th International Database Engineering & Applications Symposium (2014), ACM, pp. 87ï¿½95.
+9. Analyti, A., Antoniou, G., Damaï¿½sio, C. V., and Pachoulakis, I. A framework for modular erdf ontologies. Annals of mathematics and artificial intelligence 67, 3-4 (2013), 189ï¿½249.
+10. Antoï¿½n, A. I., Earp, J. B., and Reese, A. Analyzing website privacy requirements using a privacy goal taxonomy. In Requirements Engineering, 2002. Proceedings. IEEE Joint International Conference on (2002), IEEE, pp. 23ï¿½31.
 11. Ashburner, M., Ball, C. A., Blake, J. A., Botstein, D., Butler, H.,
 Cherry, J. M., Davis, A. P., Dolinski, K., Dwight, S. S., Eppig, J. T.,
-et al. Gene ontology: tool for the unification of biology. Nature genetics 25, 1 (2000), 25­29. 12. Asim, M., Petkovic´, M., Qu, M., and Wang, C. An interoperable security framework for connected healthcare. In Consumer Communications and Networking Conference (CCNC), 2011 IEEE (2011), IEEE, pp. 116­120. 13. Asnar, Y., Giorgini, P., Massacci, F., and Zannone, N. From trust to dependability through risk analysis. In The Second InternationalConference on Availability, Reliability and Security, ARES'07. (2007), IEEE, pp. 19­26. 14. Asnar, Y., Giorgini, P., and Mylopoulos, J. Risk modelling and reasoning in goal models, technical report DIT-06-008. Tech. rep., Universit´a degli studi di Trento, 2006. 15. Asnar, Y., Moretti, R., Sebastianis, M., and Zannone, N. Risk as dependability metrics for the evaluation of business solutions: a model-driven approach. In Third Conference on Availability, Reliability and Security, ARES08 (2008), IEEE, pp. 1240­1247. 16. Avizienis, A., Laprie, J.-C., Randell, B., and Landwehr, C. Basic concepts and taxonomy of dependable and secure computing. Dependable and Secure Computing, IEEE Transactions on 1, 1 (2004), 11­33. 17. Balopoulos, T., Gymnopoulos, L., Karyda, M., Kokolakis, S., Gritzalis, S., and Katsikas, S. A framework for exploiting security expertise in application development. In Trust and Privacy in Digital Business. Springer, 2006, pp. 62­70. 18. Bao, J., Slutzki, G., and Honavar, V. Privacy-preserving reasoning on the semanticweb. In International Conference on Web Intelligence, IEEE/WIC/ACM (2007), IEEE, pp. 791­797. 19. Beckers, K., Eicker, S., Faßbender, S., Heisel, M., Schmidt, H., and Schwittek, W. Ontology-based identification of research gaps and immature research areas. In Multidisciplinary Research and Practice for Information Systems. Springer, 2012, pp. 1­16.
+et al. Gene ontology: tool for the unification of biology. Nature genetics 25, 1 (2000), 25ï¿½29. 12. Asim, M., Petkovicï¿½, M., Qu, M., and Wang, C. An interoperable security framework for connected healthcare. In Consumer Communications and Networking Conference (CCNC), 2011 IEEE (2011), IEEE, pp. 116ï¿½120. 13. Asnar, Y., Giorgini, P., Massacci, F., and Zannone, N. From trust to dependability through risk analysis. In The Second InternationalConference on Availability, Reliability and Security, ARES'07. (2007), IEEE, pp. 19ï¿½26. 14. Asnar, Y., Giorgini, P., and Mylopoulos, J. Risk modelling and reasoning in goal models, technical report DIT-06-008. Tech. rep., Universitï¿½a degli studi di Trento, 2006. 15. Asnar, Y., Moretti, R., Sebastianis, M., and Zannone, N. Risk as dependability metrics for the evaluation of business solutions: a model-driven approach. In Third Conference on Availability, Reliability and Security, ARES08 (2008), IEEE, pp. 1240ï¿½1247. 16. Avizienis, A., Laprie, J.-C., Randell, B., and Landwehr, C. Basic concepts and taxonomy of dependable and secure computing. Dependable and Secure Computing, IEEE Transactions on 1, 1 (2004), 11ï¿½33. 17. Balopoulos, T., Gymnopoulos, L., Karyda, M., Kokolakis, S., Gritzalis, S., and Katsikas, S. A framework for exploiting security expertise in application development. In Trust and Privacy in Digital Business. Springer, 2006, pp. 62ï¿½70. 18. Bao, J., Slutzki, G., and Honavar, V. Privacy-preserving reasoning on the semanticweb. In International Conference on Web Intelligence, IEEE/WIC/ACM (2007), IEEE, pp. 791ï¿½797. 19. Beckers, K., Eicker, S., Faï¿½bender, S., Heisel, M., Schmidt, H., and Schwittek, W. Ontology-based identification of research gaps and immature research areas. In Multidisciplinary Research and Practice for Information Systems. Springer, 2012, pp. 1ï¿½16.
 
-20. Ben Brahim, M., Chaari, T., Ben Jemaa, M., and Jmaiel, M. Semantic matching of web services security policies. In Risk and Security of Internet and Systems (CRiSIS), 2012 7th International Conference on (2012), IEEE, pp. 1­8.
-21. Bishop, M. What is computer security? Security & Privacy, IEEE 1, 1 (2003), 67­69.
+20. Ben Brahim, M., Chaari, T., Ben Jemaa, M., and Jmaiel, M. Semantic matching of web services security policies. In Risk and Security of Internet and Systems (CRiSIS), 2012 7th International Conference on (2012), IEEE, pp. 1ï¿½8.
+21. Bishop, M. What is computer security? Security & Privacy, IEEE 1, 1 (2003), 67ï¿½69.
 22. Blackwell, C. A security ontology for incident analysis. In Proceedings of the Sixth Annual Workshop on Cyber Security and Information Intelligence Research (2010), ACM, p. 46.
-23. Blanco, C., Lasheras, J., Ferna´ndez-Medina, E., Valencia-Garc´ia, R., and Toval, A. Basis for an integrated security ontology according to a systematic review of existing proposals. Computer Standards & Interfaces 33, 4 (2011), 372­ 388.
-24. Blanco, C., Lasheras, J., Valencia-Garc´ia, R., Ferna´ndez-Medina, E., Toval, A., and Piattini, M. A systematic review and comparison of security ontologies. In 3rd Conference on Availability, Reliability and Security, ARES '08 (2008), IEEE, pp. 813­820.
-25. Blanquer, I., Herna´ndez, V., Segrelles, D., and Torres, E. Enhancing privacy and authorization control scalability in the grid through ontologies. Information Technology in Biomedicine, IEEE Transactions on 13, 1 (2009), 16­24.
+23. Blanco, C., Lasheras, J., Fernaï¿½ndez-Medina, E., Valencia-Garcï¿½ia, R., and Toval, A. Basis for an integrated security ontology according to a systematic review of existing proposals. Computer Standards & Interfaces 33, 4 (2011), 372ï¿½ 388.
+24. Blanco, C., Lasheras, J., Valencia-Garcï¿½ia, R., Fernaï¿½ndez-Medina, E., Toval, A., and Piattini, M. A systematic review and comparison of security ontologies. In 3rd Conference on Availability, Reliability and Security, ARES '08 (2008), IEEE, pp. 813ï¿½820.
+25. Blanquer, I., Hernaï¿½ndez, V., Segrelles, D., and Torres, E. Enhancing privacy and authorization control scalability in the grid through ontologies. Information Technology in Biomedicine, IEEE Transactions on 13, 1 (2009), 16ï¿½24.
 26. Blobel, B. Intelligent security and privacy solutions for enabling personalized telepathology. Diagnostic pathology 6, Suppl 1 (2011), S4.
-27. Bouna, B. A., Chbeir, R., and Gabillon, A. The image protector-a flexible security rule specification toolkit. In Security and Cryptography (SECRYPT), 2011 Proceedings of the International Conference on (2011), IEEE, pp. 345­350.
-28. Braghin, S., Coen-Porisini, A., Colombo, P., Sicari, S., and Trombetta, A. Introducing privacy in a hospital information system. In Proceedings of the fourth international workshop on Software engineering for secure systems (2008), ACM, pp. 9­16.
+27. Bouna, B. A., Chbeir, R., and Gabillon, A. The image protector-a flexible security rule specification toolkit. In Security and Cryptography (SECRYPT), 2011 Proceedings of the International Conference on (2011), IEEE, pp. 345ï¿½350.
+28. Braghin, S., Coen-Porisini, A., Colombo, P., Sicari, S., and Trombetta, A. Introducing privacy in a hospital information system. In Proceedings of the fourth international workshop on Software engineering for secure systems (2008), ACM, pp. 9ï¿½16.
 29. Brar, A., and Kay, J. Privacy and security in ubiquitous personalized applications. School of Information Technologies, University of Sydney, 2004.
-30. Breaux, T. D., and Anto´n, A. I. Analyzing regulatory rules for privacy and security requirements. Software Engineering, IEEE Transactions on 34, 1 (2008), 5­20.
-31. Breaux, T. D., Hibshi, H., and Rao, A. Eddy, a formal language for specifying and analyzing data flow specifications for conflicting privacy requirements. Requirements Engineering 19, 3 (2014), 281­307.
-32. Bresciani, P., Perini, A., Giorgini, P., Giunchiglia, F., and Mylopoulos, J. Tropos: An agent-oriented software development methodology. Autonomous Agents and Multi-Agent Systems 8, 3 (2004), 203­236.
-33. Camp, L. J. Designing for trust. In Trust, reputation, and security: Theories and practice. Springer, 2002, pp. 15­29.
-34. Campbell, K., Gordon, L. A., Loeb, M. P., and Zhou, L. The economic cost of publicly announced information security breaches: empirical evidence from the stock market. Journal of Computer Security 11, 3 (2003), 431­448.
-35. Carminati, B., Ferrari, E., and Hung, P. C. Security conscious web service composition. In International Conference on Web Services ICWS'06 (2006), IEEE, pp. 489­496.
+30. Breaux, T. D., and Antoï¿½n, A. I. Analyzing regulatory rules for privacy and security requirements. Software Engineering, IEEE Transactions on 34, 1 (2008), 5ï¿½20.
+31. Breaux, T. D., Hibshi, H., and Rao, A. Eddy, a formal language for specifying and analyzing data flow specifications for conflicting privacy requirements. Requirements Engineering 19, 3 (2014), 281ï¿½307.
+32. Bresciani, P., Perini, A., Giorgini, P., Giunchiglia, F., and Mylopoulos, J. Tropos: An agent-oriented software development methodology. Autonomous Agents and Multi-Agent Systems 8, 3 (2004), 203ï¿½236.
+33. Camp, L. J. Designing for trust. In Trust, reputation, and security: Theories and practice. Springer, 2002, pp. 15ï¿½29.
+34. Campbell, K., Gordon, L. A., Loeb, M. P., and Zhou, L. The economic cost of publicly announced information security breaches: empirical evidence from the stock market. Journal of Computer Security 11, 3 (2003), 431ï¿½448.
+35. Carminati, B., Ferrari, E., and Hung, P. C. Security conscious web service composition. In International Conference on Web Services ICWS'06 (2006), IEEE, pp. 489ï¿½496.
 36. Cavoukian, A. Privacy by design: Origins, meaning, and prospects. Privacy Protection Measures and Technologies in Business Organizations: Aspects and Standards: Aspects and Standards (2011), 170.
 
 37. Cavoukian, A., et al. Privacy by design: The 7 foundational principles. Information and Privacy Commissioner of Ontario, Canada (2009).
-38. Ceravolo, P. Managing identities via interactions between ontologies. In On The Move to Meaningful Internet Systems OTM Workshops (2003), Springer, pp. 732­740.
-39. Chandramouli, K., Fernandez Arguedas, V., and Izquierdo, E. Knowledge modeling for privacy-by-design in smart surveillance solution. In Advanced Video and Signal Based Surveillance (AVSS), 2013 10th IEEE International Conference on (2013), IEEE, pp. 171­176.
-40. Chase, M., and Chow, S. S. Improving privacy and security in multi-authority attribute-based encryption. In Proceedings of the 16th ACM conference on Computer and communications security (2009), ACM, pp. 121­130.
-41. Chen, H., Finin, T., and Joshi, A. An ontology for context-aware pervasive computing environments. The Knowledge Engineering Review 18, 03 (2003), 197­ 207.
-42. Chen, H., Finin, T., and Joshi, A. The SOUPA ontology for pervasive computing. In Ontologies for agents: Theory and experiences. Springer, 2005, pp. 233­258.
-43. Chen, H., Finin, T., Joshi, A., Kagal, L., Perich, F., and Chakraborty, D. Intelligent agents meet the semantic web in smart spaces. Internet Computing, IEEE 8, 6 (2004), 69­79.
-44. Chen, H., Perich, F., Finin, T., and Joshi, A. Soupa: Standard ontology for ubiquitous and pervasive applications. In Mobile and Ubiquitous Systems: Networking and Services, 2004. MOBIQUITOUS 2004. The First Annual International Conference on (2004), IEEE, pp. 258­267.
-45. Chen, S., and Williams, M.-A. An ontological study of data purpose for privacy policy enforcement. In Privacy, Security, Risk and Trust (PASSAT) and Third Inernational Conference on Social Computing (SocialCom) (2011), IEEE, pp. 1208­1213.
-46. Chen, S.-W., Tseng, Y.-T., and Lai, T.-Y. The design of an ontology-based service-oriented architecture framework for traditional chinese medicine healthcare. In 14th International Conference on e-Health Networking, Applications and Services (Healthcom) (2012), IEEE, pp. 353­356.
-47. Chopra, K., and Wallace, W. Trust in electronic environments. In System Sciences, 2003. Proceedings of the 36th Annual Hawaii International Conference on (2003), Ieee, pp. 10­pp.
-48. Chor, B., Kushilevitz, E., Goldreich, O., and Sudan, M. Private information retrieval. Journal of the ACM (JACM) 45, 6 (1998), 965­981.
-49. Chowdhury, M. M., Chamizo, J., Noll, J., and Go´mez, J. M. Capturing semantics for information security and privacy assurance. In Ubiquitous Intelligence and Computing. Springer, 2008, pp. 105­118.
-50. Chowdhury, M. M., Noll, J., and Gomez, J. M. Enabling access control and privacy through ontology. In Innovations in Information Technology, 2007. IIT'07. 4th International Conference on (2007), IEEE, pp. 168­172.
-51. Ciuciu, I., Claerhout, B., Schilders, L., and Meersman, R. Ontology-based matching of security attributes for personal data access in e-health. In On the Move to Meaningful Internet Systems: OTM 2011. Springer, 2011, pp. 605­616.
-52. Coma, C., Cuppens-Boulahia, N., Cuppens, F., and Cavalli, A. R. Context ontology for secure interoperability. In Availability, Reliability and Security, 2008. ARES 08. Third International Conference on (2008), IEEE, pp. 821­827.
+38. Ceravolo, P. Managing identities via interactions between ontologies. In On The Move to Meaningful Internet Systems OTM Workshops (2003), Springer, pp. 732ï¿½740.
+39. Chandramouli, K., Fernandez Arguedas, V., and Izquierdo, E. Knowledge modeling for privacy-by-design in smart surveillance solution. In Advanced Video and Signal Based Surveillance (AVSS), 2013 10th IEEE International Conference on (2013), IEEE, pp. 171ï¿½176.
+40. Chase, M., and Chow, S. S. Improving privacy and security in multi-authority attribute-based encryption. In Proceedings of the 16th ACM conference on Computer and communications security (2009), ACM, pp. 121ï¿½130.
+41. Chen, H., Finin, T., and Joshi, A. An ontology for context-aware pervasive computing environments. The Knowledge Engineering Review 18, 03 (2003), 197ï¿½ 207.
+42. Chen, H., Finin, T., and Joshi, A. The SOUPA ontology for pervasive computing. In Ontologies for agents: Theory and experiences. Springer, 2005, pp. 233ï¿½258.
+43. Chen, H., Finin, T., Joshi, A., Kagal, L., Perich, F., and Chakraborty, D. Intelligent agents meet the semantic web in smart spaces. Internet Computing, IEEE 8, 6 (2004), 69ï¿½79.
+44. Chen, H., Perich, F., Finin, T., and Joshi, A. Soupa: Standard ontology for ubiquitous and pervasive applications. In Mobile and Ubiquitous Systems: Networking and Services, 2004. MOBIQUITOUS 2004. The First Annual International Conference on (2004), IEEE, pp. 258ï¿½267.
+45. Chen, S., and Williams, M.-A. An ontological study of data purpose for privacy policy enforcement. In Privacy, Security, Risk and Trust (PASSAT) and Third Inernational Conference on Social Computing (SocialCom) (2011), IEEE, pp. 1208ï¿½1213.
+46. Chen, S.-W., Tseng, Y.-T., and Lai, T.-Y. The design of an ontology-based service-oriented architecture framework for traditional chinese medicine healthcare. In 14th International Conference on e-Health Networking, Applications and Services (Healthcom) (2012), IEEE, pp. 353ï¿½356.
+47. Chopra, K., and Wallace, W. Trust in electronic environments. In System Sciences, 2003. Proceedings of the 36th Annual Hawaii International Conference on (2003), Ieee, pp. 10ï¿½pp.
+48. Chor, B., Kushilevitz, E., Goldreich, O., and Sudan, M. Private information retrieval. Journal of the ACM (JACM) 45, 6 (1998), 965ï¿½981.
+49. Chowdhury, M. M., Chamizo, J., Noll, J., and Goï¿½mez, J. M. Capturing semantics for information security and privacy assurance. In Ubiquitous Intelligence and Computing. Springer, 2008, pp. 105ï¿½118.
+50. Chowdhury, M. M., Noll, J., and Gomez, J. M. Enabling access control and privacy through ontology. In Innovations in Information Technology, 2007. IIT'07. 4th International Conference on (2007), IEEE, pp. 168ï¿½172.
+51. Ciuciu, I., Claerhout, B., Schilders, L., and Meersman, R. Ontology-based matching of security attributes for personal data access in e-health. In On the Move to Meaningful Internet Systems: OTM 2011. Springer, 2011, pp. 605ï¿½616.
+52. Coma, C., Cuppens-Boulahia, N., Cuppens, F., and Cavalli, A. R. Context ontology for secure interoperability. In Availability, Reliability and Security, 2008. ARES 08. Third International Conference on (2008), IEEE, pp. 821ï¿½827.
 
-53. Compagna, L., Khoury, P. E., Massacci, F., Thomas, R., and Zannone, N. How to capture, model, and verify the knowledge of legal, security, and privacy experts: a pattern-based approach. In Proceedings of the 11th international conference on Artificial intelligence and law (2007), ACM, pp. 149­153.
-54. Da Silva, G., Rademaker, A., Vasconcelos, D., Amaral, F., Baz´ilio, C., Costa, V., and Haeusler, E. Dealing with the formal analysis of information security policies through ontologies: A case study. In Proceedings of the Third Australasian Workshop on Advances in Ontologies-Volume 85 (2007), Australian Computer Society, Inc., pp. 55­60.
-55. D'Agostini, S., Di Giacomo, V., Pandolfo, C., and Presenza, D. An ontology for run-time verification of security certificates for soa. In 7th International Conference on Availability, Reliability and Security (ARES) (2012), IEEE, pp. 525­533.
-56. Daramola, O., Sindre, G., and Stalhane, T. Pattern-based security requirements specification using ontologies and boilerplates. In Requirements Patterns (RePa), 2012 IEEE Second International Workshop on (2012), IEEE, pp. 54­59.
+53. Compagna, L., Khoury, P. E., Massacci, F., Thomas, R., and Zannone, N. How to capture, model, and verify the knowledge of legal, security, and privacy experts: a pattern-based approach. In Proceedings of the 11th international conference on Artificial intelligence and law (2007), ACM, pp. 149ï¿½153.
+54. Da Silva, G., Rademaker, A., Vasconcelos, D., Amaral, F., Bazï¿½ilio, C., Costa, V., and Haeusler, E. Dealing with the formal analysis of information security policies through ontologies: A case study. In Proceedings of the Third Australasian Workshop on Advances in Ontologies-Volume 85 (2007), Australian Computer Society, Inc., pp. 55ï¿½60.
+55. D'Agostini, S., Di Giacomo, V., Pandolfo, C., and Presenza, D. An ontology for run-time verification of security certificates for soa. In 7th International Conference on Availability, Reliability and Security (ARES) (2012), IEEE, pp. 525ï¿½533.
+56. Daramola, O., Sindre, G., and Stalhane, T. Pattern-based security requirements specification using ontologies and boilerplates. In Requirements Patterns (RePa), 2012 IEEE Second International Workshop on (2012), IEEE, pp. 54ï¿½59.
 57. de Azevedo, R. R., Freitas, F., de Almeida, S. C., Almeida, M. J. S., de Barros C Filho, E. C., and Veras, W. C. Coresec: an ontology of security aplied to the business process of management. In Proceedings of the 2008 Euro American Conference on Telematics and Information Systems (2008), ACM, p. 13.
-58. Delgado, J., Gallego, I., Llorente, S., and Garc´ia, R. Regulatory ontologies: An intellectual property rights approach. In On The Move to Meaningful Internet Systems 2003: OTM 2003 Workshops (2003), Springer, pp. 621­634.
-59. den Braber, F., Dimitrakos, T., Gran, B. A., Lund, M. S., Stølen, K., and Aagedal, J. Ø. The CORAS methodology: model-based risk assessment using UML and up. UML and the Unified Process (2003), 332­357.
-60. Denker, G., Kagal, L., Finin, T., Paolucci, M., and Sycara, K. Security for daml web services: Annotation and matchmaking. In The Semantic WebISWC. Springer, 2003, pp. 335­350.
+58. Delgado, J., Gallego, I., Llorente, S., and Garcï¿½ia, R. Regulatory ontologies: An intellectual property rights approach. In On The Move to Meaningful Internet Systems 2003: OTM 2003 Workshops (2003), Springer, pp. 621ï¿½634.
+59. den Braber, F., Dimitrakos, T., Gran, B. A., Lund, M. S., Stï¿½len, K., and Aagedal, J. ï¿½. The CORAS methodology: model-based risk assessment using UML and up. UML and the Unified Process (2003), 332ï¿½357.
+60. Denker, G., Kagal, L., Finin, T., Paolucci, M., and Sycara, K. Security for daml web services: Annotation and matchmaking. In The Semantic WebISWC. Springer, 2003, pp. 335ï¿½350.
 61. Dhiah el Diehn, I., and Berlik, S. An ontology-based approach for managing and maintaining privacy in information systems. Springer, 2006.
-62. Donner, M. Toward a security ontology. IEEE Security & Privacy 1, 3 (2003), 0006­7.
+62. Donner, M. Toward a security ontology. IEEE Security & Privacy 1, 3 (2003), 0006ï¿½7.
 63. Dritsas, S., Gymnopoulos, L., Karyda, M., Balopoulos, T., Kokolakis, S., Lambrinoudakis, C., and Katsikas, S. A knowledge-based approach to security requirements for e-health applications. Electronic Journal for E-Commerce Tools and Applications (2006).
-64. Du¨rbeck, S., Schillinger, R., and Kolter, J. Security requirements for a semantic service-oriented architecture. In Availability, Reliability and Security, 2007. ARES 2007. The Second International Conference on (2007), IEEE, pp. 366­373.
-65. Dzung, D. V., and Ohnishi, A. Ontology-based reasoning in requirements elicitation. In Software Engineering and Formal Methods, 2009 Seventh IEEE International Conference on (2009), IEEE, pp. 263­272.
-66. Eiter, T., Ianni, G., Polleres, A., Schindlauer, R., and Tompits, H. Reasoning with rules and ontologies. In Reasoning web. Springer, 2006, pp. 93­127.
-67. Ekclhart, A., Fenz, S., Goluch, G., and Weippl, E. Ontological mapping of common criterias security assurance requirements. In New Approaches for Security, Privacy and Trust in Complex Environments. Springer, 2007, pp. 85­ 95.
+64. Duï¿½rbeck, S., Schillinger, R., and Kolter, J. Security requirements for a semantic service-oriented architecture. In Availability, Reliability and Security, 2007. ARES 2007. The Second International Conference on (2007), IEEE, pp. 366ï¿½373.
+65. Dzung, D. V., and Ohnishi, A. Ontology-based reasoning in requirements elicitation. In Software Engineering and Formal Methods, 2009 Seventh IEEE International Conference on (2009), IEEE, pp. 263ï¿½272.
+66. Eiter, T., Ianni, G., Polleres, A., Schindlauer, R., and Tompits, H. Reasoning with rules and ontologies. In Reasoning web. Springer, 2006, pp. 93ï¿½127.
+67. Ekclhart, A., Fenz, S., Goluch, G., and Weippl, E. Ontological mapping of common criterias security assurance requirements. In New Approaches for Security, Privacy and Trust in Complex Environments. Springer, 2007, pp. 85ï¿½ 95.
 
-68. Ekelhart, A., Fenz, S., Klemen, M., and Weippl, E. Security ontologies: Improving quantitative risk analysis. In System Sciences, 2007. HICSS 2007. 40th Annual Hawaii International Conference on (2007), IEEE, pp. 156a­156a.
-69. Ekelhart, A., Fenz, S., Klemen, M. D., and Weippl, E. R. Security ontology: Simulating threats to corporate assets. In International Conference on Information Systems Security (2006), Springer, pp. 249­259.
-70. El-Khatib, K., Korba, L., Xu, Y., and Yee, G. Privacy and security in elearning. International Journal of Distance Education Technologies (IJDET) 1, 4 (2003), 1­19.
-71. Elahi, G., Yu, E., and Zannone, N. A modeling ontology for integrating vulnerabilities into security requirements conceptual foundations. In ER 2009. Springer, 2009, pp. 99­114.
-72. Elahi, G., Yu, E., and Zannone, N. A vulnerability-centric requirements engineering framework: analyzing security attacks, countermeasures, and requirements based on vulnerabilities. Requirements engineering 15, 1 (2010), 41­62.
-73. Elahi, N., Chowdhury, M. M., and Noll, J. Semantic access control in web based communities. In Computing in the Global Information Technology, 2008. ICCGI'08. The Third International Multi-Conference on (2008), IEEE, pp. 131­ 136.
-74. Elc¸i, A. Isn't the time ripe for a standard ontology on security of information and networks? In Proceedings of the 7th International Conference on Security of Information and Networks (2014), ACM, p. 1.
+68. Ekelhart, A., Fenz, S., Klemen, M., and Weippl, E. Security ontologies: Improving quantitative risk analysis. In System Sciences, 2007. HICSS 2007. 40th Annual Hawaii International Conference on (2007), IEEE, pp. 156aï¿½156a.
+69. Ekelhart, A., Fenz, S., Klemen, M. D., and Weippl, E. R. Security ontology: Simulating threats to corporate assets. In International Conference on Information Systems Security (2006), Springer, pp. 249ï¿½259.
+70. El-Khatib, K., Korba, L., Xu, Y., and Yee, G. Privacy and security in elearning. International Journal of Distance Education Technologies (IJDET) 1, 4 (2003), 1ï¿½19.
+71. Elahi, G., Yu, E., and Zannone, N. A modeling ontology for integrating vulnerabilities into security requirements conceptual foundations. In ER 2009. Springer, 2009, pp. 99ï¿½114.
+72. Elahi, G., Yu, E., and Zannone, N. A vulnerability-centric requirements engineering framework: analyzing security attacks, countermeasures, and requirements based on vulnerabilities. Requirements engineering 15, 1 (2010), 41ï¿½62.
+73. Elahi, N., Chowdhury, M. M., and Noll, J. Semantic access control in web based communities. In Computing in the Global Information Technology, 2008. ICCGI'08. The Third International Multi-Conference on (2008), IEEE, pp. 131ï¿½ 136.
+74. Elcï¿½i, A. Isn't the time ripe for a standard ontology on security of information and networks? In Proceedings of the 7th International Conference on Security of Information and Networks (2014), ACM, p. 1.
 75. Emery, F., and Trist, E. Socio-technical systems. management sciences, models and techniques. churchman cw et al, 1960.
-76. Evesti, A., and Ovaska, E. Ontology-based security adaptation at run-time. In 4th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO) (2010), IEEE, pp. 204­212.
-77. Evfimievski, A., Gehrke, J., and Srikant, R. Limiting privacy breaches in privacy preserving data mining. In Proceedings of the twenty-second ACM SIGMOD-SIGACT-SIGART symposium on Principles of database systems (2003), ACM, pp. 211­222.
-78. Fabian, B., Gu¨rses, S., Heisel, M., Santen, T., and Schmidt, H. A comparison of security requirements engineering methods. Requirements engineering 15, 1 (2010), 7­40.
+76. Evesti, A., and Ovaska, E. Ontology-based security adaptation at run-time. In 4th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO) (2010), IEEE, pp. 204ï¿½212.
+77. Evfimievski, A., Gehrke, J., and Srikant, R. Limiting privacy breaches in privacy preserving data mining. In Proceedings of the twenty-second ACM SIGMOD-SIGACT-SIGART symposium on Principles of database systems (2003), ACM, pp. 211ï¿½222.
+78. Fabian, B., Guï¿½rses, S., Heisel, M., Santen, T., and Schmidt, H. A comparison of security requirements engineering methods. Requirements engineering 15, 1 (2010), 7ï¿½40.
 79. Fensel, D. Ontologies: A silver bullet for knowledge management and electroniccommerce (2000). Berlin: Spring-Verlag.
-80. Fenz, S. Ontology-based generation of it-security metrics. In Proceedings of the 2010 ACM Symposium on Applied Computing (2010), ACM, pp. 1833­1839.
-81. Fenz, S., and Ekelhart, A. Formalizing information security knowledge. In Proceedings of the 4th international Symposium on information, Computer, and Communications Security (2009), ACM, pp. 183­194.
-82. Fenz, S., Goluch, G., Ekelhart, A., Riedl, B., and Weippl, E. Information security fortification by ontological mapping of the iso/iec 27001 standard. In Dependable Computing, 2007. PRDC 2007. 13th Pacific Rim International Symposium on (2007), IEEE, pp. 381­388.
-83. Ferna´ndez-Alema´n, J. L., Sen~or, I. C., Lozoya, P. A´ . O., and Toval, A. Security and privacy in electronic health records: A systematic literature review. Journal of biomedical informatics 46, 3 (2013), 541­562.
+80. Fenz, S. Ontology-based generation of it-security metrics. In Proceedings of the 2010 ACM Symposium on Applied Computing (2010), ACM, pp. 1833ï¿½1839.
+81. Fenz, S., and Ekelhart, A. Formalizing information security knowledge. In Proceedings of the 4th international Symposium on information, Computer, and Communications Security (2009), ACM, pp. 183ï¿½194.
+82. Fenz, S., Goluch, G., Ekelhart, A., Riedl, B., and Weippl, E. Information security fortification by ontological mapping of the iso/iec 27001 standard. In Dependable Computing, 2007. PRDC 2007. 13th Pacific Rim International Symposium on (2007), IEEE, pp. 381ï¿½388.
+83. Fernaï¿½ndez-Alemaï¿½n, J. L., Sen~or, I. C., Lozoya, P. Aï¿½ . O., and Toval, A. Security and privacy in electronic health records: A systematic literature review. Journal of biomedical informatics 46, 3 (2013), 541ï¿½562.
 84. Fernandez Arguedas, V., Izquierdo, E., and Chandramouli, K. Surveillance ontology for legal, ethical and privacy protection based on skos. In Digital
 
-Signal Processing (DSP), 2013 18th International Conference on (2013), IEEE, pp. 1­5. 85. Ferrari, E., and Thuraisingham, B. Security and privacy for web databases and services. In Advances in Database Technology-EDBT 2004. Springer, 2004, pp. 17­28. 86. Firesmith, D. Engineering safety and security related requirements for software intensive systems. In ICSE Companion (2007), p. 169. 87. Firesmith, D. G. Security use cases. Journal of object technology 2, 3 (2003). 88. Firesmith, D. G. A taxonomy of security-related requirements. In International Workshop on High Assurance Systems (RHAS'05) (2005), Citeseer. 89. Floridi, L. The ontological interpretation of informational privacy. Ethics and Information Technology 7, 4 (2005), 185­200. 90. Foster, I., Kesselman, C., Tsudik, G., and Tuecke, S. A security architecture for computational grids. In Proceedings of the 5th ACM conference on Computer and communications security (1998), ACM, pp. 83­92. 91. Gandhi, R., and Lee, S.-W. Ontology guided risk analysis: From informal specifications to formal metrics. In Advances in Information and Intelligent Systems. Springer, 2009, pp. 227­249. 92. Gandhi, R. A., and Lee, S. W. Discovering multidimensional correlations among regulatory requirements to understand risk. ACM Transactions on Software Engineering and Methodology (TOSEM) 20, 4 (2011), 16. 93. Gandon, F. L., and Sadeh, N. M. Semantic web technologies to reconcile privacy and context awareness. Web Semantics: Science, Services and Agents on the World Wide Web 1, 3 (2004), 241­260. 94. Gans, G., Jarke, M., Kethers, S., and Lakemeyer, G. Modeling the impact of trust and distrust in agent networks. In Proc. of AOIS'01 (2001), pp. 45­58. 95. Gao, F., He, J., Peng, S., Wu, X., and Liu, X. An approach for privacy protection based-on ontology. In Networks Security Wireless Communications
-and Trusted Computing (NSWCTC), 2010 Second International Conference on (2010), vol. 2, IEEE, pp. 397­400. 96. Garcia, D., Toledo, M. B. F., Capretz, M. A., Allison, D. S., Blair, G. S., Grace, P., and Flores, C. Towards a base ontology for privacy protection in service-oriented architecture. In Service-Oriented Computing and Applications (SOCA), 2009 IEEE International Conference on (2009), IEEE, pp. 1­8. 97. Gellman, R. Privacy, consumers, and costs: How the lack of privacy costs consumers and why business studies of privacy costs are biased and incomplete. In Ford Foundation (2002). 98. Gharib, M., and Giorgini, P. Analyzing trust requirements in socio-technical systems: A belief-based approach. In IFIP Working Conference on The Practice of Enterprise Modeling (2015), Springer, pp. 254­270. 99. Gharib, M., Salnitri, M., Paja, E., Giorgini, P., Mouratidis, H., Pavlidis, M., Ruizz, J. F., Fernandez, S., and Della Siria, A. Privacy requirements: Findings and lessons learned in developing a privacy platform. In 24nd International Requirements Engineering Conference (RE), to appear (2016), IEEE. 100. Giorgini, P., Massacci, F., Mylopoulos, J., and Zannone, N. Modeling security requirements through ownership, permission and delegation. In 13th International Conference on Requirements Engineering (2005), IEEE, pp. 167­ 176. 101. Guan, H., Wang, X., and Yang, H. A framework for security driven software evolution. In Automation and Computing (ICAC), 2014 20th International Conference on (2014), IEEE, pp. 194­199.
+Signal Processing (DSP), 2013 18th International Conference on (2013), IEEE, pp. 1ï¿½5. 85. Ferrari, E., and Thuraisingham, B. Security and privacy for web databases and services. In Advances in Database Technology-EDBT 2004. Springer, 2004, pp. 17ï¿½28. 86. Firesmith, D. Engineering safety and security related requirements for software intensive systems. In ICSE Companion (2007), p. 169. 87. Firesmith, D. G. Security use cases. Journal of object technology 2, 3 (2003). 88. Firesmith, D. G. A taxonomy of security-related requirements. In International Workshop on High Assurance Systems (RHAS'05) (2005), Citeseer. 89. Floridi, L. The ontological interpretation of informational privacy. Ethics and Information Technology 7, 4 (2005), 185ï¿½200. 90. Foster, I., Kesselman, C., Tsudik, G., and Tuecke, S. A security architecture for computational grids. In Proceedings of the 5th ACM conference on Computer and communications security (1998), ACM, pp. 83ï¿½92. 91. Gandhi, R., and Lee, S.-W. Ontology guided risk analysis: From informal specifications to formal metrics. In Advances in Information and Intelligent Systems. Springer, 2009, pp. 227ï¿½249. 92. Gandhi, R. A., and Lee, S. W. Discovering multidimensional correlations among regulatory requirements to understand risk. ACM Transactions on Software Engineering and Methodology (TOSEM) 20, 4 (2011), 16. 93. Gandon, F. L., and Sadeh, N. M. Semantic web technologies to reconcile privacy and context awareness. Web Semantics: Science, Services and Agents on the World Wide Web 1, 3 (2004), 241ï¿½260. 94. Gans, G., Jarke, M., Kethers, S., and Lakemeyer, G. Modeling the impact of trust and distrust in agent networks. In Proc. of AOIS'01 (2001), pp. 45ï¿½58. 95. Gao, F., He, J., Peng, S., Wu, X., and Liu, X. An approach for privacy protection based-on ontology. In Networks Security Wireless Communications
+and Trusted Computing (NSWCTC), 2010 Second International Conference on (2010), vol. 2, IEEE, pp. 397ï¿½400. 96. Garcia, D., Toledo, M. B. F., Capretz, M. A., Allison, D. S., Blair, G. S., Grace, P., and Flores, C. Towards a base ontology for privacy protection in service-oriented architecture. In Service-Oriented Computing and Applications (SOCA), 2009 IEEE International Conference on (2009), IEEE, pp. 1ï¿½8. 97. Gellman, R. Privacy, consumers, and costs: How the lack of privacy costs consumers and why business studies of privacy costs are biased and incomplete. In Ford Foundation (2002). 98. Gharib, M., and Giorgini, P. Analyzing trust requirements in socio-technical systems: A belief-based approach. In IFIP Working Conference on The Practice of Enterprise Modeling (2015), Springer, pp. 254ï¿½270. 99. Gharib, M., Salnitri, M., Paja, E., Giorgini, P., Mouratidis, H., Pavlidis, M., Ruizz, J. F., Fernandez, S., and Della Siria, A. Privacy requirements: Findings and lessons learned in developing a privacy platform. In 24nd International Requirements Engineering Conference (RE), to appear (2016), IEEE. 100. Giorgini, P., Massacci, F., Mylopoulos, J., and Zannone, N. Modeling security requirements through ownership, permission and delegation. In 13th International Conference on Requirements Engineering (2005), IEEE, pp. 167ï¿½ 176. 101. Guan, H., Wang, X., and Yang, H. A framework for security driven software evolution. In Automation and Computing (ICAC), 2014 20th International Conference on (2014), IEEE, pp. 194ï¿½199.
 
 102. Guarino, N. Formal ontology in information systems: Proceedings of the first international conference (FOIS'98), June 6-8, Trento, Italy, vol. 46. IOS press, 1998.
-103. Guessoum, Z., Ziane, M., and Faci, N. Monitoring and organizational-level adaptation of multi-agent systems. In Proceedings of the Third International Joint Conference on Autonomous Agents and Multiagent Systems-Volume 2 (2004), IEEE Computer Society, pp. 514­521.
-104. Gu¨rses, S., Troncoso, C., and Diaz, C. Engineering privacy by design. Computers, Privacy & Data Protection 14 (2011).
-105. Hadzic, M., Dillon, T., and Chang, E. Use of ontology technology for standardization of medical records and dealing with associated privacy issues. In Industrial Technology, 2006. ICIT 2006. IEEE International Conference on (2006), IEEE, pp. 2839­2845.
-106. Hadzic, M., Wongthongtham, P., Dillon, T., and Chang, E. Case study I: Ontology-based multi-agent system for human disease studies. In Ontology-Based Multi-Agent Systems. Springer, 2009, pp. 179­216.
-107. Haley, C. B., Laney, R., Moffett, J. D., and Nuseibeh, B. Security requirements engineering: A framework for representation and analysis. Software Engineering, IEEE Transactions on 34, 1 (2008), 133­153.
-108. He, Q., Anto´n, A. I., et al. A framework for modeling privacy requirements in role engineering. In Proc. of REFSQ (2003), vol. 3, pp. 137­146.
-109. Hecker, M., and Dillon, T. Privacy support and evaluation on an ontological basis. In 23rd International Conference on Data Engineering Workshop (2007), IEEE, pp. 221­227.
-110. Hecker, M., Dillon, T. S., and Chang, E. Privacy ontology support for e-commerce. Internet Computing, IEEE 12, 2 (2008), 54­61.
+103. Guessoum, Z., Ziane, M., and Faci, N. Monitoring and organizational-level adaptation of multi-agent systems. In Proceedings of the Third International Joint Conference on Autonomous Agents and Multiagent Systems-Volume 2 (2004), IEEE Computer Society, pp. 514ï¿½521.
+104. Guï¿½rses, S., Troncoso, C., and Diaz, C. Engineering privacy by design. Computers, Privacy & Data Protection 14 (2011).
+105. Hadzic, M., Dillon, T., and Chang, E. Use of ontology technology for standardization of medical records and dealing with associated privacy issues. In Industrial Technology, 2006. ICIT 2006. IEEE International Conference on (2006), IEEE, pp. 2839ï¿½2845.
+106. Hadzic, M., Wongthongtham, P., Dillon, T., and Chang, E. Case study I: Ontology-based multi-agent system for human disease studies. In Ontology-Based Multi-Agent Systems. Springer, 2009, pp. 179ï¿½216.
+107. Haley, C. B., Laney, R., Moffett, J. D., and Nuseibeh, B. Security requirements engineering: A framework for representation and analysis. Software Engineering, IEEE Transactions on 34, 1 (2008), 133ï¿½153.
+108. He, Q., Antoï¿½n, A. I., et al. A framework for modeling privacy requirements in role engineering. In Proc. of REFSQ (2003), vol. 3, pp. 137ï¿½146.
+109. Hecker, M., and Dillon, T. Privacy support and evaluation on an ontological basis. In 23rd International Conference on Data Engineering Workshop (2007), IEEE, pp. 221ï¿½227.
+110. Hecker, M., Dillon, T. S., and Chang, E. Privacy ontology support for e-commerce. Internet Computing, IEEE 12, 2 (2008), 54ï¿½61.
 111. Hentea, M. Multi-agent security service architecture for mobile learning. In
-Information Technology: Research and Education, 2004. ITRE 2004. 2nd International Conference on (2004), IEEE, pp. 91­95. 112. Heupel, M., Fischer, L., Bourimi, M., and Scerri, S. Ontology-enabled access control and privacy recommendations. In Mining, Modeling, and Recommending'Things' in Social Media. Springer, 2015, pp. 35­54. 113. Hinze, A., Sachs, K., and Buchmann, A. Event-based applications and enabling technologies. In Proceedings of the Third ACM International Conference on Distributed Event-Based Systems (2009), ACM, p. 1. 114. Hong, J. I., Ng, J. D., Lederer, S., and Landay, J. A. Privacy risk models for designing privacy-sensitive ubiquitous computing systems. In Proceedings of
-the 5th conference on Designing interactive systems: processes, practices, methods, and techniques (2004), ACM, pp. 91­100. 115. Hoss, A. M., and Carver, D. L. Towards combining ontologies and model weaving for the evolution of requirements models. In Innovations for requirement analysis. From stakeholders needs to formal designs. Springer, 2007, pp. 85­102. 116. Hsieh, C.-F., Huang, Y.-F., and Chen, R.-C. A light-weight ranger intrusion detection system on wireless sensor networks. In Fifth International Conference on Genetic and Evolutionary Computing (ICGEC) (2011), IEEE, pp. 49­52. 117. Iankoulova, I., and Daneva, M. Cloud computing security requirements: A systematic review. In 2012 Sixth International Conference on Research Challenges in Information Science (RCIS) (2012), IEEE, pp. 1­7. 118. Ionita, C. M., and Osborn, S. L. Specifying an access control model for ontologies for the semantic web. In Secure Data Management. Springer, 2005, pp. 73­85.
+Information Technology: Research and Education, 2004. ITRE 2004. 2nd International Conference on (2004), IEEE, pp. 91ï¿½95. 112. Heupel, M., Fischer, L., Bourimi, M., and Scerri, S. Ontology-enabled access control and privacy recommendations. In Mining, Modeling, and Recommending'Things' in Social Media. Springer, 2015, pp. 35ï¿½54. 113. Hinze, A., Sachs, K., and Buchmann, A. Event-based applications and enabling technologies. In Proceedings of the Third ACM International Conference on Distributed Event-Based Systems (2009), ACM, p. 1. 114. Hong, J. I., Ng, J. D., Lederer, S., and Landay, J. A. Privacy risk models for designing privacy-sensitive ubiquitous computing systems. In Proceedings of
+the 5th conference on Designing interactive systems: processes, practices, methods, and techniques (2004), ACM, pp. 91ï¿½100. 115. Hoss, A. M., and Carver, D. L. Towards combining ontologies and model weaving for the evolution of requirements models. In Innovations for requirement analysis. From stakeholders needs to formal designs. Springer, 2007, pp. 85ï¿½102. 116. Hsieh, C.-F., Huang, Y.-F., and Chen, R.-C. A light-weight ranger intrusion detection system on wireless sensor networks. In Fifth International Conference on Genetic and Evolutionary Computing (ICGEC) (2011), IEEE, pp. 49ï¿½52. 117. Iankoulova, I., and Daneva, M. Cloud computing security requirements: A systematic review. In 2012 Sixth International Conference on Research Challenges in Information Science (RCIS) (2012), IEEE, pp. 1ï¿½7. 118. Ionita, C. M., and Osborn, S. L. Specifying an access control model for ontologies for the semantic web. In Secure Data Management. Springer, 2005, pp. 73ï¿½85.
 
-119. Isaza, G., Castillo, A., Lo´pez, M., Castillo, L., and Lo´pez, M. Intrusion correlation using ontologies and multi-agent systems. In Information Security and Assurance. Springer, 2010, pp. 51­63.
-120. Iwaihara, M., Murakami, K., Ahn, G.-J., and Yoshikawa, M. Risk evaluation for personal identity management based on privacy attribute ontology. In Conceptual Modeling-ER 2008. Springer, 2008, pp. 183­198.
+119. Isaza, G., Castillo, A., Loï¿½pez, M., Castillo, L., and Loï¿½pez, M. Intrusion correlation using ontologies and multi-agent systems. In Information Security and Assurance. Springer, 2010, pp. 51ï¿½63.
+120. Iwaihara, M., Murakami, K., Ahn, G.-J., and Yoshikawa, M. Risk evaluation for personal identity management based on privacy attribute ontology. In Conceptual Modeling-ER 2008. Springer, 2008, pp. 183ï¿½198.
 121. Jansen, W., Grance, T., et al. Guidelines on security and privacy in public cloud computing. NIST special publication 800 (2011), 144.
-122. Juan-Verdejo, A., and Baars, H. Decision support for partially moving applications to the cloud: the example of business intelligence. In Proceedings of the 2013 international workshop on Hot topics in cloud services (2013), ACM, pp. 35­42.
-123. Ju¨rjens, J. Umlsec: Extending UML for secure systems development. In UML The Unified Modeling Language. Springer, 2002, pp. 412­425.
-124. Kabilan, V., Johannesson, P., Ruohomaa, S., Moen, P., Herrmann, A., °Ahlfeldt, R.-M., and Weigand, H. Introducing the common non-functional ontology. In Enterprise Interoperability II. Springer, 2007, pp. 633­645.
-125. Kabir, M. A., Han, J., Yu, J., and Colman, A. User-centric social context information management: an ontology-based approach and platform. Personal and Ubiquitous Computing 18, 5 (2014), 1061­1083.
-126. Kagal, L., Finin, T., Joshi, A., and Greenspan, S. Security and privacy challenges in open and dynamic environments. Computer 39, 6 (2006), 89­91.
-127. Kagal, L., Finin, T., Paolucci, M., Srinivasan, N., Sycara, K., and Denker, G. Authorization and privacy for semantic web services. Intelligent Systems, IEEE 19, 4 (2004), 50­56.
-128. Kaiya, H., and Saeki, M. Using domain ontology as domain knowledge for requirements elicitation. In Requirements Engineering, 14th IEEE International Conference (2006), IEEE, pp. 189­198.
-129. Kalloniatis, C., Kavakli, E., and Gritzalis, S. Dealing with privacy issues during the system design process. In Signal Processing and Information Technology, 2005. Proceedings of the Fifth IEEE International Symposium on (2005), IEEE, pp. 546­551.
-130. Kalloniatis, C., Kavakli, E., and Gritzalis, S. Addressing privacy requirements in system design: the PriS method. Requirements Engineering 13, 3 (2008), 241­255.
-131. Kanbe, M., and Yamamoto, S. Ontology alignment in rfid privacy protection. In Complex, Intelligent and Software Intensive Systems, 2009. CISIS'09. International Conference on (2009), IEEE, pp. 718­723.
-132. Kang, W., and Liang, Y. A security ontology with mda for software development. In Cyber-Enabled Distributed Computing and Knowledge Discovery (CyberC), 2013 International Conference on (2013), IEEE, pp. 67­74.
-133. Karyda, M., Balopoulos, T., Dritsas, S., Gymnopoulos, L., Kokolakis, S., Lambrinoudakis, C., and Gritzalis, S. An ontology for secure egovernment applications. In Availability, Reliability and Security, 2006. ARES 2006. The First International Conference on (2006), IEEE, pp. 5­pp.
-134. Kayes, A., Han, J., and Colman, A. An ontology-based approach to context-aware access control for software services. In Web Information Systems Engineering­WISE 2013. Springer, 2013, pp. 410­420.
+122. Juan-Verdejo, A., and Baars, H. Decision support for partially moving applications to the cloud: the example of business intelligence. In Proceedings of the 2013 international workshop on Hot topics in cloud services (2013), ACM, pp. 35ï¿½42.
+123. Juï¿½rjens, J. Umlsec: Extending UML for secure systems development. In UML The Unified Modeling Language. Springer, 2002, pp. 412ï¿½425.
+124. Kabilan, V., Johannesson, P., Ruohomaa, S., Moen, P., Herrmann, A., ï¿½Ahlfeldt, R.-M., and Weigand, H. Introducing the common non-functional ontology. In Enterprise Interoperability II. Springer, 2007, pp. 633ï¿½645.
+125. Kabir, M. A., Han, J., Yu, J., and Colman, A. User-centric social context information management: an ontology-based approach and platform. Personal and Ubiquitous Computing 18, 5 (2014), 1061ï¿½1083.
+126. Kagal, L., Finin, T., Joshi, A., and Greenspan, S. Security and privacy challenges in open and dynamic environments. Computer 39, 6 (2006), 89ï¿½91.
+127. Kagal, L., Finin, T., Paolucci, M., Srinivasan, N., Sycara, K., and Denker, G. Authorization and privacy for semantic web services. Intelligent Systems, IEEE 19, 4 (2004), 50ï¿½56.
+128. Kaiya, H., and Saeki, M. Using domain ontology as domain knowledge for requirements elicitation. In Requirements Engineering, 14th IEEE International Conference (2006), IEEE, pp. 189ï¿½198.
+129. Kalloniatis, C., Kavakli, E., and Gritzalis, S. Dealing with privacy issues during the system design process. In Signal Processing and Information Technology, 2005. Proceedings of the Fifth IEEE International Symposium on (2005), IEEE, pp. 546ï¿½551.
+130. Kalloniatis, C., Kavakli, E., and Gritzalis, S. Addressing privacy requirements in system design: the PriS method. Requirements Engineering 13, 3 (2008), 241ï¿½255.
+131. Kanbe, M., and Yamamoto, S. Ontology alignment in rfid privacy protection. In Complex, Intelligent and Software Intensive Systems, 2009. CISIS'09. International Conference on (2009), IEEE, pp. 718ï¿½723.
+132. Kang, W., and Liang, Y. A security ontology with mda for software development. In Cyber-Enabled Distributed Computing and Knowledge Discovery (CyberC), 2013 International Conference on (2013), IEEE, pp. 67ï¿½74.
+133. Karyda, M., Balopoulos, T., Dritsas, S., Gymnopoulos, L., Kokolakis, S., Lambrinoudakis, C., and Gritzalis, S. An ontology for secure egovernment applications. In Availability, Reliability and Security, 2006. ARES 2006. The First International Conference on (2006), IEEE, pp. 5ï¿½pp.
+134. Kayes, A., Han, J., and Colman, A. An ontology-based approach to context-aware access control for software services. In Web Information Systems Engineeringï¿½WISE 2013. Springer, 2013, pp. 410ï¿½420.
 135. Kayes, A., Han, J., and Colman, A. A semantic policy framework for contextaware access control applications. In 12th International Conference on Trust,
 
-Security and Privacy in Computing and Communications (TrustCom) (2013), IEEE, pp. 753­762. 136. Keele University. Guidelines for performing systematic literature reviews in software engineering. Tech. rep., Keele University, 2007. 137. Khan, K. M., Erradi, A., Alhazbi, S., and Han, J. Security oriented service composition: A framework. In Innovations in Information Technology (IIT), 2012 International Conference on (2012), IEEE, pp. 48­53. 138. Kim, A., Luo, J., and Kang, M. Security ontology for annotating resources. In OTM Confederated International Conferences" On the Move to Meaningful Internet Systems" (2005), Springer, pp. 1483­1499. 139. Kitchenham, B. Procedures for performing systematic reviews. Keele, UK, Keele University 33, 2004 (2004), 1­26. 140. Koinig, U., Tjoa, S., and Ryoo, J. Contrology-an ontology-based cloud assurance approach. In 4th International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE) (2015), IEEE, pp. 105­ 107. 141. Kost, M., and Freytag, J. C. Privacy analysis using ontologies. In Proceedings
-of the second ACM conference on Data and Application Security and Privacy (2012), ACM, pp. 205­216. 142. Kost, M., Freytag, J.-C., Kargl, F., and Kung, A. Privacy verification using ontologies. In Availability, Reliability and Security (ARES), 2011 Sixth International Conference on (2011), IEEE, pp. 627­632. 143. Kumari, P., and Pretschner, A. Deriving implementation-level policies for usage control enforcement. In Proceedings of the second ACM conference on Data and Application Security and Privacy (2012), ACM, pp. 83­94. 144. Labda, W., Mehandjiev, N., and Sampaio, P. Modeling of privacy-aware business processes in bpmn to protect personal data. In Proceedings of the 29th Annual ACM Symposium on Applied Computing (2014), ACM, pp. 1399­1405. 145. Lammari, N., Bucumi, J.-S., Akoka, J., and Comyn-Wattiau, I. A conceptual meta-model for secured information systems. In Proceedings of the 7th International Workshop on Software Engineering for Secure Systems (2011), ACM, pp. 22­28. 146. Langheinrich, M. Privacy by designprinciples of privacy-aware ubiquitous systems. In Ubicomp 2001: Ubiquitous Computing (2001), Springer, pp. 273­291. 147. Lee, C.-Y., Kavi, K. M., Paul, R. A., and Gomathisankaran, M. Ontology of secure service level agreement. In High Assurance Systems Engineering (HASE), 2015 IEEE 16th International Symposium on (2015), IEEE, pp. 166­ 172. 148. Lee, S.-W., Gandhi, R., Muthurajan, D., Yavagal, D., and Ahn, G.-J. Building problem domain ontology from security requirements in regulatory documents. In Proceedings of the 2006 international workshop on Software engineering for secure systems (2006), ACM, pp. 43­50. 149. Li, M., Lou, W., and Ren, K. Data security and privacy in wireless body area networks. Wireless Communications, IEEE 17, 1 (2010), 51­58. 150. Li, Y. Empirical studies on online information privacy concerns: literature review and an integrative framework. Communications of the Association for Information Systems 28, 1 (2011), 453­496. 151. Liccardo, L., Rak, M., Di Modica, G., and Tomarchio, O. Ontologybased negotiation of security requirements in cloud. In Computational Aspects of Social Networks (CASoN), 2012 Fourth International Conference on (2012), IEEE, pp. 192­197.
+Security and Privacy in Computing and Communications (TrustCom) (2013), IEEE, pp. 753ï¿½762. 136. Keele University. Guidelines for performing systematic literature reviews in software engineering. Tech. rep., Keele University, 2007. 137. Khan, K. M., Erradi, A., Alhazbi, S., and Han, J. Security oriented service composition: A framework. In Innovations in Information Technology (IIT), 2012 International Conference on (2012), IEEE, pp. 48ï¿½53. 138. Kim, A., Luo, J., and Kang, M. Security ontology for annotating resources. In OTM Confederated International Conferences" On the Move to Meaningful Internet Systems" (2005), Springer, pp. 1483ï¿½1499. 139. Kitchenham, B. Procedures for performing systematic reviews. Keele, UK, Keele University 33, 2004 (2004), 1ï¿½26. 140. Koinig, U., Tjoa, S., and Ryoo, J. Contrology-an ontology-based cloud assurance approach. In 4th International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE) (2015), IEEE, pp. 105ï¿½ 107. 141. Kost, M., and Freytag, J. C. Privacy analysis using ontologies. In Proceedings
+of the second ACM conference on Data and Application Security and Privacy (2012), ACM, pp. 205ï¿½216. 142. Kost, M., Freytag, J.-C., Kargl, F., and Kung, A. Privacy verification using ontologies. In Availability, Reliability and Security (ARES), 2011 Sixth International Conference on (2011), IEEE, pp. 627ï¿½632. 143. Kumari, P., and Pretschner, A. Deriving implementation-level policies for usage control enforcement. In Proceedings of the second ACM conference on Data and Application Security and Privacy (2012), ACM, pp. 83ï¿½94. 144. Labda, W., Mehandjiev, N., and Sampaio, P. Modeling of privacy-aware business processes in bpmn to protect personal data. In Proceedings of the 29th Annual ACM Symposium on Applied Computing (2014), ACM, pp. 1399ï¿½1405. 145. Lammari, N., Bucumi, J.-S., Akoka, J., and Comyn-Wattiau, I. A conceptual meta-model for secured information systems. In Proceedings of the 7th International Workshop on Software Engineering for Secure Systems (2011), ACM, pp. 22ï¿½28. 146. Langheinrich, M. Privacy by designprinciples of privacy-aware ubiquitous systems. In Ubicomp 2001: Ubiquitous Computing (2001), Springer, pp. 273ï¿½291. 147. Lee, C.-Y., Kavi, K. M., Paul, R. A., and Gomathisankaran, M. Ontology of secure service level agreement. In High Assurance Systems Engineering (HASE), 2015 IEEE 16th International Symposium on (2015), IEEE, pp. 166ï¿½ 172. 148. Lee, S.-W., Gandhi, R., Muthurajan, D., Yavagal, D., and Ahn, G.-J. Building problem domain ontology from security requirements in regulatory documents. In Proceedings of the 2006 international workshop on Software engineering for secure systems (2006), ACM, pp. 43ï¿½50. 149. Li, M., Lou, W., and Ren, K. Data security and privacy in wireless body area networks. Wireless Communications, IEEE 17, 1 (2010), 51ï¿½58. 150. Li, Y. Empirical studies on online information privacy concerns: literature review and an integrative framework. Communications of the Association for Information Systems 28, 1 (2011), 453ï¿½496. 151. Liccardo, L., Rak, M., Di Modica, G., and Tomarchio, O. Ontologybased negotiation of security requirements in cloud. In Computational Aspects of Social Networks (CASoN), 2012 Fourth International Conference on (2012), IEEE, pp. 192ï¿½197.
 
-152. Lin, L., Nuseibeh, B., Ince, D., Jackson, M., and Moffett, J. Introducing abuse frames for analysing security requirements. In 11th Requirements Engineering International Conference (2003), IEEE, pp. 371­372.
-153. Lioudakis, G. V., Koutsoloukas, E. A., Dellas, N., Kapellaki, S., Prezerakos, G. N., Kaklamani, D. I., and Venieris, I. S. A proxy for privacy: the discreet box. In The International Conference on Computer as a Tool, EUROCON (2007), IEEE, pp. 966­973.
-154. Liu, C.-L. Ontology-based requirements conflicts analysis in activity diagrams. In Computational Science and Its Applications­ICCSA 2009. Springer, 2009, pp. 1­ 12.
-155. Liu, L., Yu, E., and Mylopoulos, J. Security and privacy requirements analysis within a social setting. In 11th International Requirements Engineering Conference (2003), IEEE, pp. 151­161.
-156. Loucopoulos, P., and Kavakli, V. Enterprise knowledge management and conceptual modelling. In Conceptual Modeling. Springer, 1999, pp. 123­143.
+152. Lin, L., Nuseibeh, B., Ince, D., Jackson, M., and Moffett, J. Introducing abuse frames for analysing security requirements. In 11th Requirements Engineering International Conference (2003), IEEE, pp. 371ï¿½372.
+153. Lioudakis, G. V., Koutsoloukas, E. A., Dellas, N., Kapellaki, S., Prezerakos, G. N., Kaklamani, D. I., and Venieris, I. S. A proxy for privacy: the discreet box. In The International Conference on Computer as a Tool, EUROCON (2007), IEEE, pp. 966ï¿½973.
+154. Liu, C.-L. Ontology-based requirements conflicts analysis in activity diagrams. In Computational Science and Its Applicationsï¿½ICCSA 2009. Springer, 2009, pp. 1ï¿½ 12.
+155. Liu, L., Yu, E., and Mylopoulos, J. Security and privacy requirements analysis within a social setting. In 11th International Requirements Engineering Conference (2003), IEEE, pp. 151ï¿½161.
+156. Loucopoulos, P., and Kavakli, V. Enterprise knowledge management and conceptual modelling. In Conceptual Modeling. Springer, 1999, pp. 123ï¿½143.
 157. Mace, J. C., Parkin, S., and van Moorsel, A. A collaborative ontology development tool for information security managers. In Proceedings of the 4th Symposium on Computer Human Interaction for the Management of Information Technology (2010), ACM, p. 5.
-158. MacKenzie, S. B. The dangers of poor construct conceptualization. Journal of the Academy of Marketing Science 31, 3 (2003), 323­326.
+158. MacKenzie, S. B. The dangers of poor construct conceptualization. Journal of the Academy of Marketing Science 31, 3 (2003), 323ï¿½326.
 159. MAGERIT, P. Methodology for information systems risk analysis and management, 2006.
-160. Maisonnasse, J., Gourier, N., Brdiczka, O., Reignier, P., and Crowley, J. L. Detecting privacy in attention aware system. In Intelligent Environments, 2006. IE 06. 2nd IET International Conference on (2006), vol. 2, IET, pp. 231­ 239.
-161. Man, J., Yang, A., and Sun, X. Retracted: shared ontology for pervasive computing. In Advances in Computer Science­ASIAN 2005. Data Management on the Web. Springer, 2005, pp. 64­78.
-162. Massacci, F., Mylopoulos, J., Paci, F., Tun, T. T., and Yu, Y. An extended ontology for security requirements. In Advanced Information Systems Engineering Workshops (2011), Springer, pp. 622­636.
-163. Massacci, F., Mylopoulos, J., and Zannone, N. Computer-aided support for secure tropos. Automated Software Engineering 14, 3 (2007), 341­364.
+160. Maisonnasse, J., Gourier, N., Brdiczka, O., Reignier, P., and Crowley, J. L. Detecting privacy in attention aware system. In Intelligent Environments, 2006. IE 06. 2nd IET International Conference on (2006), vol. 2, IET, pp. 231ï¿½ 239.
+161. Man, J., Yang, A., and Sun, X. Retracted: shared ontology for pervasive computing. In Advances in Computer Scienceï¿½ASIAN 2005. Data Management on the Web. Springer, 2005, pp. 64ï¿½78.
+162. Massacci, F., Mylopoulos, J., Paci, F., Tun, T. T., and Yu, Y. An extended ontology for security requirements. In Advanced Information Systems Engineering Workshops (2011), Springer, pp. 622ï¿½636.
+163. Massacci, F., Mylopoulos, J., and Zannone, N. Computer-aided support for secure tropos. Automated Software Engineering 14, 3 (2007), 341ï¿½364.
 164. Massacci, F., Mylopoulos, J., and Zannone, N. An ontology for secure socio-technical systems. Handbook of ontologies for business interaction 1 (2007), 469.
-165. Massacci, F., Prest, M., and Zannone, N. Using a security requirements engineering methodology in practice: the compliance with the italian data protection legislation. Computer Standards & Interfaces 27, 5 (2005), 445­455.
+165. Massacci, F., Prest, M., and Zannone, N. Using a security requirements engineering methodology in practice: the compliance with the italian data protection legislation. Computer Standards & Interfaces 27, 5 (2005), 445ï¿½455.
 166. Massacci, F., and Zannone, N. Detecting conflicts between functional and security requirements with secure tropos: John rusnak and the allied irish bank. Social Modeling for Requirements Engineering. MIT Press, Cambridge (2008).
-167. Matulevicius, R., Mayer, N., Mouratidis, H., Dubois, E., Heymans, P., and Genon, N. Adapting Secure Tropos for security risk management in the early phases of information systems development. In Advanced Information Systems Engineering (2008), Springer, pp. 541­555.
-168. Maxwell, J. C., and Anto´n, A. I. The production rule framework: developing a canonical set of software requirements for compliance with law. In proceedings of
+167. Matulevicius, R., Mayer, N., Mouratidis, H., Dubois, E., Heymans, P., and Genon, N. Adapting Secure Tropos for security risk management in the early phases of information systems development. In Advanced Information Systems Engineering (2008), Springer, pp. 541ï¿½555.
+168. Maxwell, J. C., and Antoï¿½n, A. I. The production rule framework: developing a canonical set of software requirements for compliance with law. In proceedings of
 
-the 1st ACM International Health Informatics Symposium (2010), ACM, pp. 629­ 636. 169. Mayer, N. Model-based management of information system security risk. PhD thesis, University of Namur, 2009. 170. Mayer, N., Rifaut, A., Dubois, E., et al. Towards a risk-based security requirements engineering framework. In Workshop on Requirements Engineering for Software Quality. In Proc. of REFSQ (2005), vol. 5. 171. McGrath, R. E., Ranganathan, A., Campbell, R. H., and Mickunas, M. D. Use of ontologies in pervasive computing environments. Report number: UIUCDCS (2003). 172. Mellado, D., Blanco, C., Sa´nchez, L. E., and Ferna´ndez-Medina, E. A systematic review of security requirements engineering. Computer Standards & Interfaces 32, 4 (2010), 153­165. 173. Mezga´r, I., and Kincses, Z. Development of an ontology-based smart card system reference architecture. In Ontologies. Springer, 2007, pp. 841­863. 174. Milicevic, D., and Goeken, M. Ontology-based evaluation of iso 27001. In I3E (2010), Springer, pp. 93­102. 175. Mitra, P., Liu, P., and Pan, C.-C. Privacy-preserving ontology matching. In AAAI Workshop on Context and Ontologies (2005). 176. Mitra, P., Pan, C.-C., Liu, P., and Atluri, V. Privacy-preserving semantic interoperation and access control of heterogeneous databases. In Proceedings of the 2006 ACM Symposium on Information, computer and communications security (2006), ACM, pp. 66­77. 177. Mitre, H. A., Gonza´lez-Tablas, A. I., Ramos, B., and Ribagorda, A. A legal ontology to support privacy preservation in location-based services. In On the Move to Meaningful Internet Systems: OTM Workshops (2006), Springer, pp. 1755­1764. 178. Modica, G. D., and Tomarchio, O. Semantic annotations for security policy matching in ws-policy. In Security and Cryptography (SECRYPT), 2011 Proceedings of the International Conference on (2011), IEEE, pp. 443­449. 179. Mouratidis, H., and Giorgini, P. Secure Tropos: A security-oriented extension of the Tropos methodology. Journal of Software Engineering and Knowledge Engineering 17, 2 (2007), 285­309. 180. Mouratidis, H., Giorgini, P., and Manson, G. An ontology for modelling security: The tropos approach. In Knowledge-Based Intelligent Information and Engineering Systems (2003), Springer, pp. 1387­1394. 181. Mun~oz, J. C., Tamura, G., Villegas, N. M., and Mu¨ller, H. A. Surprise: user-controlled granular privacy and security for personal data in smartercontext. In Proceedings of the 2012 Conference of the Center for Advanced Studies on Collaborative Research (2012), IBM Corp., pp. 131­145. 182. Nissan, E. Accounting for social, spatial, and textual interconnections. In Computer Applications for Handling Legal Evidence, Police Investigation and Case Argumentation. Springer, 2012, pp. 483­765. 183. Ohkubo, M., Suzuki, K., Kinoshita, S., et al. Cryptographic approach to privacy-friendly tags. In RFID privacy workshop (2003), vol. 82, Cambridge, USA. 184. Oladimeji, E. A., Chung, L., Jung, H. T., and Kim, J. Managing security and privacy in ubiquitous ehealth information interchange. In Proceedings of the 5th International Conference on Ubiquitous Information Management and Communication (2011), ACM, p. 26.
+the 1st ACM International Health Informatics Symposium (2010), ACM, pp. 629ï¿½ 636. 169. Mayer, N. Model-based management of information system security risk. PhD thesis, University of Namur, 2009. 170. Mayer, N., Rifaut, A., Dubois, E., et al. Towards a risk-based security requirements engineering framework. In Workshop on Requirements Engineering for Software Quality. In Proc. of REFSQ (2005), vol. 5. 171. McGrath, R. E., Ranganathan, A., Campbell, R. H., and Mickunas, M. D. Use of ontologies in pervasive computing environments. Report number: UIUCDCS (2003). 172. Mellado, D., Blanco, C., Saï¿½nchez, L. E., and Fernaï¿½ndez-Medina, E. A systematic review of security requirements engineering. Computer Standards & Interfaces 32, 4 (2010), 153ï¿½165. 173. Mezgaï¿½r, I., and Kincses, Z. Development of an ontology-based smart card system reference architecture. In Ontologies. Springer, 2007, pp. 841ï¿½863. 174. Milicevic, D., and Goeken, M. Ontology-based evaluation of iso 27001. In I3E (2010), Springer, pp. 93ï¿½102. 175. Mitra, P., Liu, P., and Pan, C.-C. Privacy-preserving ontology matching. In AAAI Workshop on Context and Ontologies (2005). 176. Mitra, P., Pan, C.-C., Liu, P., and Atluri, V. Privacy-preserving semantic interoperation and access control of heterogeneous databases. In Proceedings of the 2006 ACM Symposium on Information, computer and communications security (2006), ACM, pp. 66ï¿½77. 177. Mitre, H. A., Gonzaï¿½lez-Tablas, A. I., Ramos, B., and Ribagorda, A. A legal ontology to support privacy preservation in location-based services. In On the Move to Meaningful Internet Systems: OTM Workshops (2006), Springer, pp. 1755ï¿½1764. 178. Modica, G. D., and Tomarchio, O. Semantic annotations for security policy matching in ws-policy. In Security and Cryptography (SECRYPT), 2011 Proceedings of the International Conference on (2011), IEEE, pp. 443ï¿½449. 179. Mouratidis, H., and Giorgini, P. Secure Tropos: A security-oriented extension of the Tropos methodology. Journal of Software Engineering and Knowledge Engineering 17, 2 (2007), 285ï¿½309. 180. Mouratidis, H., Giorgini, P., and Manson, G. An ontology for modelling security: The tropos approach. In Knowledge-Based Intelligent Information and Engineering Systems (2003), Springer, pp. 1387ï¿½1394. 181. Mun~oz, J. C., Tamura, G., Villegas, N. M., and Muï¿½ller, H. A. Surprise: user-controlled granular privacy and security for personal data in smartercontext. In Proceedings of the 2012 Conference of the Center for Advanced Studies on Collaborative Research (2012), IBM Corp., pp. 131ï¿½145. 182. Nissan, E. Accounting for social, spatial, and textual interconnections. In Computer Applications for Handling Legal Evidence, Police Investigation and Case Argumentation. Springer, 2012, pp. 483ï¿½765. 183. Ohkubo, M., Suzuki, K., Kinoshita, S., et al. Cryptographic approach to privacy-friendly tags. In RFID privacy workshop (2003), vol. 82, Cambridge, USA. 184. Oladimeji, E. A., Chung, L., Jung, H. T., and Kim, J. Managing security and privacy in ubiquitous ehealth information interchange. In Proceedings of the 5th International Conference on Ubiquitous Information Management and Communication (2011), ACM, p. 26.
 
-185. Olivier, M. S. Database privacy: balancing confidentiality, integrity and availability. ACM SIGKDD Explorations Newsletter 4, 2 (2002), 20­27.
-186. Paja, E., Dalpiaz, F., and Giorgini, P. STS-tool: Security requirements engineering for socio-technical systems. In Engineering Secure Future Internet Services and Systems. Springer, 2014, pp. 65­96.
+185. Olivier, M. S. Database privacy: balancing confidentiality, integrity and availability. ACM SIGKDD Explorations Newsletter 4, 2 (2002), 20ï¿½27.
+186. Paja, E., Dalpiaz, F., and Giorgini, P. STS-tool: Security requirements engineering for socio-technical systems. In Engineering Secure Future Internet Services and Systems. Springer, 2014, pp. 65ï¿½96.
 187. Panetto, H., Dillon, T., Eder, J., Bellahsene, Z., Ritter, N., and De Leenheer, P. Efficient projection of ontologies.
-188. Papagiannakopoulou, E. I., Koukovini, M. N., Lioudakis, G. V., Dellas, N., Garcia-Alfaro, J., Kaklamani, D. I., Venieris, I. S., CuppensBoulahia, N., and Cuppens, F. Leveraging ontologies upon a holistic privacyaware access control model. In Foundations and Practice of Security. Springer, 2014, pp. 209­226.
-189. Parkin, S. E., van Moorsel, A., and Coles, R. An information security ontology incorporating human-behavioural implications. In Proceedings of the 2nd International Conference on Security of Information and Networks (2009), ACM, pp. 46­55.
-190. Pereira, T., and Santos, H. An ontology based approach to information security. In Metadata and Semantic Research. Springer, 2009, pp. 183­192.
-191. Perrig, A., Szewczyk, R., Tygar, J. D., Wen, V., and Culler, D. E. Spins: Security protocols for sensor networks. Wireless networks 8, 5 (2002), 521­534.
+188. Papagiannakopoulou, E. I., Koukovini, M. N., Lioudakis, G. V., Dellas, N., Garcia-Alfaro, J., Kaklamani, D. I., Venieris, I. S., CuppensBoulahia, N., and Cuppens, F. Leveraging ontologies upon a holistic privacyaware access control model. In Foundations and Practice of Security. Springer, 2014, pp. 209ï¿½226.
+189. Parkin, S. E., van Moorsel, A., and Coles, R. An information security ontology incorporating human-behavioural implications. In Proceedings of the 2nd International Conference on Security of Information and Networks (2009), ACM, pp. 46ï¿½55.
+190. Pereira, T., and Santos, H. An ontology based approach to information security. In Metadata and Semantic Research. Springer, 2009, pp. 183ï¿½192.
+191. Perrig, A., Szewczyk, R., Tygar, J. D., Wen, V., and Culler, D. E. Spins: Security protocols for sensor networks. Wireless networks 8, 5 (2002), 521ï¿½534.
 192. Poritz, J., Schunter, M., Van Herreweghen, E., and Waidner, M. Property attestationscalable and privacy-friendly security assessment of peer computers.
-193. Rahmouni, H. B., Solomonides, T., Mont, M. C., and Shiu, S. Privacy compliance in european healthgrid domains: An ontology-based approach. In Computer-Based Medical Systems, 2009. CBMS 2009. 22nd IEEE International Symposium on (2009), IEEE, pp. 1­8.
-194. Rajugan, R., Chang, E., and Dillon, T. S. Ontology views: a theoretical perspective. In On the Move to Meaningful Internet Systems 2006: OTM 2006 Workshops (2006), Springer, pp. 1814­1824.
+193. Rahmouni, H. B., Solomonides, T., Mont, M. C., and Shiu, S. Privacy compliance in european healthgrid domains: An ontology-based approach. In Computer-Based Medical Systems, 2009. CBMS 2009. 22nd IEEE International Symposium on (2009), IEEE, pp. 1ï¿½8.
+194. Rajugan, R., Chang, E., and Dillon, T. S. Ontology views: a theoretical perspective. In On the Move to Meaningful Internet Systems 2006: OTM 2006 Workshops (2006), Springer, pp. 1814ï¿½1824.
 195. Ranganathan, A., McGrath, R. E., Campbell, R. H., and Mickunas, M. D. Ontologies in a pervasive computing environment. In Workshop on Ontologies in Distributed Systems at IJCAI, Acapulco, Mexico (2003), Citeseer.
-196. Raskin, V., Hempelmann, C. F., Triezenberg, K. E., and Nirenburg, S. Ontology in information security: a useful theoretical foundation and methodological tool. In Proceedings of the 2001 workshop on New security paradigms (2001), ACM, pp. 53­59.
-197. Rezgui, A., Ouzzani, M., Bouguettaya, A., and Medjahed, B. Preserving privacy in web services. In Proceedings of the 4th international workshop on Web information and data management (2002), ACM, pp. 56­62.
-198. Rodr´iguez, N. D., Cue´llar, M. P., Lilius, J., and Calvo-Flores, M. D. A survey on ontologies for human behavior recognition. ACM Computing Surveys (CSUR) 46, 4 (2014), 43.
-199. Røstad, L. An extended misuse case notation: Including vulnerabilities and the insider threat. In International Working Conference on Requirements Engineering: Foundation for Software Quality (2006), Springer, pp. 33­34.
-200. Runeson, P., and Ho¨st, M. Guidelines for conducting and reporting case study research in software engineering. Empirical software engineering 14, 2 (2009), 131­164.
+196. Raskin, V., Hempelmann, C. F., Triezenberg, K. E., and Nirenburg, S. Ontology in information security: a useful theoretical foundation and methodological tool. In Proceedings of the 2001 workshop on New security paradigms (2001), ACM, pp. 53ï¿½59.
+197. Rezgui, A., Ouzzani, M., Bouguettaya, A., and Medjahed, B. Preserving privacy in web services. In Proceedings of the 4th international workshop on Web information and data management (2002), ACM, pp. 56ï¿½62.
+198. Rodrï¿½iguez, N. D., Cueï¿½llar, M. P., Lilius, J., and Calvo-Flores, M. D. A survey on ontologies for human behavior recognition. ACM Computing Surveys (CSUR) 46, 4 (2014), 43.
+199. Rï¿½stad, L. An extended misuse case notation: Including vulnerabilities and the insider threat. In International Working Conference on Requirements Engineering: Foundation for Software Quality (2006), Springer, pp. 33ï¿½34.
+200. Runeson, P., and Hoï¿½st, M. Guidelines for conducting and reporting case study research in software engineering. Empirical software engineering 14, 2 (2009), 131ï¿½164.
 
-201. Ryan, H., Spyns, P., De Leenheer, P., and Leary, R. Ontology-based platform for trusted regulatory compliance services. In On The Move to Meaningful Internet Systems Workshops OTM (2003), Springer, pp. 675­689.
+201. Ryan, H., Spyns, P., De Leenheer, P., and Leary, R. Ontology-based platform for trusted regulatory compliance services. In On The Move to Meaningful Internet Systems Workshops OTM (2003), Springer, pp. 675ï¿½689.
 202. Sacco, O., and Passant, A. A privacy preference ontology (ppo) for linked data. In LDOW (2011), Citeseer.
-203. Sandhu, R. S., Coynek, E. J., Feinsteink, H. L., and Youmank, C. E. Role-based access control models yz. IEEE computer 29, 2 (1996), 38­47.
-204. Sardis, E., Gogouvitis, S. V., Bouras, T., Gouvas, P., and Varvarigou, T. Secure enterprise interoperability ontology for semantic integration of business to business applications. In P2P, Parallel, Grid, Cloud and Internet Computing (3PGCIC), 2013 Eighth International Conference on (2013), IEEE, pp. 68­75.
-205. Saripalle, R. K., De La Rosa Algarin, A., and Ziminski, T. B. Towards knowledge level privacy and security using rdf/rdfs and rbac. In Semantic Computing (ICSC), 2015 IEEE International Conference on (2015), IEEE, pp. 264­ 267.
-206. Schaefer, R. The epistemology of computer security. ACM SIGSOFT Software Engineering Notes 34, 6 (2009), 8­10.
-207. Sicilia, M.-A., Garc´ia-Barriocanal, E., Bermejo-Higuera, J., and Sa´nchez-Alonso, S. What are information security ontologies useful for? In Metadata and Semantics Research. Springer, 2015, pp. 51­61.
-208. Sindre, G., and Opdahl, A. L. Eliciting security requirements with misuse cases. Requirements engineering 10, 1 (2005), 34­44.
-209. Singh, V., and Pandey, S. A comparative study of cloud security ontologies. In Reliability, Infocom Technologies and Optimization (ICRITO)(Trends and Future Directions), 2014 3rd International Conference on (2014), IEEE, pp. 1­6.
+203. Sandhu, R. S., Coynek, E. J., Feinsteink, H. L., and Youmank, C. E. Role-based access control models yz. IEEE computer 29, 2 (1996), 38ï¿½47.
+204. Sardis, E., Gogouvitis, S. V., Bouras, T., Gouvas, P., and Varvarigou, T. Secure enterprise interoperability ontology for semantic integration of business to business applications. In P2P, Parallel, Grid, Cloud and Internet Computing (3PGCIC), 2013 Eighth International Conference on (2013), IEEE, pp. 68ï¿½75.
+205. Saripalle, R. K., De La Rosa Algarin, A., and Ziminski, T. B. Towards knowledge level privacy and security using rdf/rdfs and rbac. In Semantic Computing (ICSC), 2015 IEEE International Conference on (2015), IEEE, pp. 264ï¿½ 267.
+206. Schaefer, R. The epistemology of computer security. ACM SIGSOFT Software Engineering Notes 34, 6 (2009), 8ï¿½10.
+207. Sicilia, M.-A., Garcï¿½ia-Barriocanal, E., Bermejo-Higuera, J., and Saï¿½nchez-Alonso, S. What are information security ontologies useful for? In Metadata and Semantics Research. Springer, 2015, pp. 51ï¿½61.
+208. Sindre, G., and Opdahl, A. L. Eliciting security requirements with misuse cases. Requirements engineering 10, 1 (2005), 34ï¿½44.
+209. Singh, V., and Pandey, S. A comparative study of cloud security ontologies. In Reliability, Infocom Technologies and Optimization (ICRITO)(Trends and Future Directions), 2014 3rd International Conference on (2014), IEEE, pp. 1ï¿½6.
 210. Singh, V., and Pandey, S. Revisiting security ontologies. IETE Technical Review Journal, Taylor & Francis Online, submitted (2014).
 211. Singhal, A., and Wijesekera, D. Ontologies for modeling enterprise level security metrics. In Proceedings of the Sixth Annual Workshop on Cyber Security and Information Intelligence Research (2010), ACM, p. 58.
-212. Skinner, G., Han, S., and Chang, E. An information privacy taxonomy for collaborative environments. Information management & computer security 14, 4 (2006), 382­394.
-213. Solove, D. J. Conceptualizing privacy. California Law Review (2002), 1087­ 1155.
-214. Solove, D. J. A taxonomy of privacy. University of Pennsylvania law review (2006), 477­564.
-215. Sommerville, I., Cliff, D., Calinescu, R., Keen, J., Kelly, T., Kwiatkowska, M., Mcdermid, J., and Paige, R. Large-scale complex IT systems. Communications of the ACM 55, 7 (2012), 71­77.
-216. Sorli, M., and Stokic, D. Ict tools and systems supporting innovation in product/process development. Innovating in Product/Process Development: Gaining Pace in New Product Development (2009), 113­152.
-217. Souag, A. Towards a new generation of security requirements definition methodology using ontologies. In 24th International Conference on Advanced Information Systems Engineering (CAiSE'12) (2012), pp. 1­8.
-218. Souag, A., Mazo, R., Salinesi, C., and Comyn-Wattiau, I. Reusable knowledge in security requirements engineering: a systematic mapping study. Requirements Engineering (2015), 1­33.
+212. Skinner, G., Han, S., and Chang, E. An information privacy taxonomy for collaborative environments. Information management & computer security 14, 4 (2006), 382ï¿½394.
+213. Solove, D. J. Conceptualizing privacy. California Law Review (2002), 1087ï¿½ 1155.
+214. Solove, D. J. A taxonomy of privacy. University of Pennsylvania law review (2006), 477ï¿½564.
+215. Sommerville, I., Cliff, D., Calinescu, R., Keen, J., Kelly, T., Kwiatkowska, M., Mcdermid, J., and Paige, R. Large-scale complex IT systems. Communications of the ACM 55, 7 (2012), 71ï¿½77.
+216. Sorli, M., and Stokic, D. Ict tools and systems supporting innovation in product/process development. Innovating in Product/Process Development: Gaining Pace in New Product Development (2009), 113ï¿½152.
+217. Souag, A. Towards a new generation of security requirements definition methodology using ontologies. In 24th International Conference on Advanced Information Systems Engineering (CAiSE'12) (2012), pp. 1ï¿½8.
+218. Souag, A., Mazo, R., Salinesi, C., and Comyn-Wattiau, I. Reusable knowledge in security requirements engineering: a systematic mapping study. Requirements Engineering (2015), 1ï¿½33.
 
-219. Souag, A., Salinesi, C., and Comyn-Wattiau, I. Ontologies for security requirements: A literature survey and classification. In Advanced Information Systems Engineering Workshops (2012), Springer, pp. 61­69.
-220. Souag, A., Salinesi, C., Mazo, R., and Comyn-Wattiau, I. A security ontology for security requirements elicitation. In Engineering Secure Software and Systems. Springer, 2015, pp. 157­177.
-221. Souag, A., Salinesi, C., Wattiau, I., and Mouratidis, H. Using security and domain ontologies for security requirements analysis. In Computer Software and Applications Conference Workshops (COMPSACW), 2013 IEEE 37th Annual (2013), IEEE, pp. 101­107.
-222. Spyns, P. Evaluating automatically a text miner for ontologies: a catch-22 situation? In On the Move to Meaningful Internet Systems: OTM 2008. Springer, 2008, pp. 1404­1422.
-223. Squicciarini, A. C., Bertino, E., Ferrari, E., and Ray, I. Achieving privacy in trust negotiations with an ontology-based approach. Dependable and Secure Computing, IEEE Transactions on 3, 1 (2006), 13­30.
-224. Srinivasan, A., Wu, J., and Zhu, W. Safe: Secure and big data-adaptive framework for efficient cross-domain communication. In Proceedings of the First International Workshop on Privacy and Secuirty of Big Data (2014), ACM, pp. 19­28.
-225. Stoica, A., and Farkas, C. Ontology guided xml security engine. Journal of Intelligent Information Systems 23, 3 (2004), 209­223.
-226. Studer, T. Privacy preserving modules for ontologies. In Perspectives of Systems Informatics. Springer, 2009, pp. 380­387.
-227. Sullivan, K., Clarke, J., and Mulcahy, B. P. Trust-terms ontology for defining security requirements and metrics. In Proceedings of the Fourth European Conference on Software Architecture: Companion Volume (2010), ACM, pp. 175­ 180.
-228. Sure, Y., and Haller, J. Towards cross-domain security properties supported by ontologies. In Web Information Systems (WISE) Workshops (2004), Springer, pp. 58­69.
-229. Takabi, H., Joshi, J. B., and Ahn, G.-J. Security and privacy challenges in cloud computing environments. IEEE Security & Privacy, 6 (2010), 24­31.
-230. Tan, V., Groth, P., Miles, S., Jiang, S., Munroe, S., Tsasakou, S., and Moreau, L. Security issues in a soa-based provenance system. In Provenance and Annotation of Data. Springer, 2006, pp. 203­211.
-231. Torrellas, G. A. S. A framework for multi-agent system engineering using ontology domain modelling for security architecture risk assessment in e-commerce security services. In 3rd IEEE International Symposium on Network Computing and Applications(NCA) (2004), IEEE, pp. 409­412.
-232. Torres-Urquidy, M. H., Powell, V. J., Din, F. M., Diehl, M., BertaudGounot, V., Klein, W. T., Mishra, S., Geist, S.-M. R. Y., Chaudhari, M., and Allen, M. Hit considerations: Informatics and technology needs and considerations. In Integration of Medical and Dental Care and Patient Data. Springer, 2012, pp. 25­137.
+219. Souag, A., Salinesi, C., and Comyn-Wattiau, I. Ontologies for security requirements: A literature survey and classification. In Advanced Information Systems Engineering Workshops (2012), Springer, pp. 61ï¿½69.
+220. Souag, A., Salinesi, C., Mazo, R., and Comyn-Wattiau, I. A security ontology for security requirements elicitation. In Engineering Secure Software and Systems. Springer, 2015, pp. 157ï¿½177.
+221. Souag, A., Salinesi, C., Wattiau, I., and Mouratidis, H. Using security and domain ontologies for security requirements analysis. In Computer Software and Applications Conference Workshops (COMPSACW), 2013 IEEE 37th Annual (2013), IEEE, pp. 101ï¿½107.
+222. Spyns, P. Evaluating automatically a text miner for ontologies: a catch-22 situation? In On the Move to Meaningful Internet Systems: OTM 2008. Springer, 2008, pp. 1404ï¿½1422.
+223. Squicciarini, A. C., Bertino, E., Ferrari, E., and Ray, I. Achieving privacy in trust negotiations with an ontology-based approach. Dependable and Secure Computing, IEEE Transactions on 3, 1 (2006), 13ï¿½30.
+224. Srinivasan, A., Wu, J., and Zhu, W. Safe: Secure and big data-adaptive framework for efficient cross-domain communication. In Proceedings of the First International Workshop on Privacy and Secuirty of Big Data (2014), ACM, pp. 19ï¿½28.
+225. Stoica, A., and Farkas, C. Ontology guided xml security engine. Journal of Intelligent Information Systems 23, 3 (2004), 209ï¿½223.
+226. Studer, T. Privacy preserving modules for ontologies. In Perspectives of Systems Informatics. Springer, 2009, pp. 380ï¿½387.
+227. Sullivan, K., Clarke, J., and Mulcahy, B. P. Trust-terms ontology for defining security requirements and metrics. In Proceedings of the Fourth European Conference on Software Architecture: Companion Volume (2010), ACM, pp. 175ï¿½ 180.
+228. Sure, Y., and Haller, J. Towards cross-domain security properties supported by ontologies. In Web Information Systems (WISE) Workshops (2004), Springer, pp. 58ï¿½69.
+229. Takabi, H., Joshi, J. B., and Ahn, G.-J. Security and privacy challenges in cloud computing environments. IEEE Security & Privacy, 6 (2010), 24ï¿½31.
+230. Tan, V., Groth, P., Miles, S., Jiang, S., Munroe, S., Tsasakou, S., and Moreau, L. Security issues in a soa-based provenance system. In Provenance and Annotation of Data. Springer, 2006, pp. 203ï¿½211.
+231. Torrellas, G. A. S. A framework for multi-agent system engineering using ontology domain modelling for security architecture risk assessment in e-commerce security services. In 3rd IEEE International Symposium on Network Computing and Applications(NCA) (2004), IEEE, pp. 409ï¿½412.
+232. Torres-Urquidy, M. H., Powell, V. J., Din, F. M., Diehl, M., BertaudGounot, V., Klein, W. T., Mishra, S., Geist, S.-M. R. Y., Chaudhari, M., and Allen, M. Hit considerations: Informatics and technology needs and considerations. In Integration of Medical and Dental Care and Patient Data. Springer, 2012, pp. 25ï¿½137.
 233. Trochim, W., and Donnelly, J. The Research Methods Knowledge Base. Cengage Learning, 2006.
-234. Tropea, G., Lioudakis, G. V., Blefari-Melazzi, N., Kaklamani, D. I., and Venieris, I. S. Introducing privacy awareness in network monitoring ontologies. In Trustworthy Internet. Springer, 2011, pp. 317­331.
+234. Tropea, G., Lioudakis, G. V., Blefari-Melazzi, N., Kaklamani, D. I., and Venieris, I. S. Introducing privacy awareness in network monitoring ontologies. In Trustworthy Internet. Springer, 2011, pp. 317ï¿½331.
 
-235. Tsoumas, B., and Gritzalis, D. Towards an ontology-based security management. In 20th International Conference on Advanced Information Networking and Applications (AINA) (2006), vol. 1, IEEE, pp. 985­992.
-236. Tsoumas, B., Papagiannakopoulos, P., Dritsas, S., and Gritzalis, D. Security-by-ontology: A knowledge-centric approach. In Security and Privacy in Dynamic Environments. Springer, 2006, pp. 99­110.
-237. Undercoffer, J., Joshi, A., and Pinkston, J. Modeling computer attacks: An ontology for intrusion detection. In Recent Advances in Intrusion Detection (2003), Springer, pp. 113­135.
-238. Uschold, M., and Gruninger, M. Ontologies: Principles, methods and applications. The knowledge engineering review 11, 02 (1996), 93­136.
+235. Tsoumas, B., and Gritzalis, D. Towards an ontology-based security management. In 20th International Conference on Advanced Information Networking and Applications (AINA) (2006), vol. 1, IEEE, pp. 985ï¿½992.
+236. Tsoumas, B., Papagiannakopoulos, P., Dritsas, S., and Gritzalis, D. Security-by-ontology: A knowledge-centric approach. In Security and Privacy in Dynamic Environments. Springer, 2006, pp. 99ï¿½110.
+237. Undercoffer, J., Joshi, A., and Pinkston, J. Modeling computer attacks: An ontology for intrusion detection. In Recent Advances in Intrusion Detection (2003), Springer, pp. 113ï¿½135.
+238. Uschold, M., and Gruninger, M. Ontologies: Principles, methods and applications. The knowledge engineering review 11, 02 (1996), 93ï¿½136.
 239. Van Blarkom, G., Borking, J., and Olk, J. Handbook of privacy and privacyenhancing technologies. Privacy Incorporated Software Agent (PISA) Consortium, The Hague (2003).
-240. Van Lamsweerde, A. Elaborating security requirements by construction of intentional anti-models. In Proceedings of the 26th International Conference on Software Engineering (2004), IEEE Computer Society, pp. 148­157.
-241. Velasco, J. L., Valencia-Garc´ia, R., Ferna´ndez-Breis, J. T., Toval, A., et al. Modelling reusable security requirements based on an ontology framework. Journal of Research and Practice in Information Technology 41, 2 (2009), 119.
-242. Vincent, J., Porquet, C., Borsali, M., and Leboulanger, H. Privacy protection for smartphones: an ontology-based firewall. In Information Security Theory and Practice. Security and Privacy of Mobile Devices in Wireless Communication. Springer, 2011, pp. 371­380.
+240. Van Lamsweerde, A. Elaborating security requirements by construction of intentional anti-models. In Proceedings of the 26th International Conference on Software Engineering (2004), IEEE Computer Society, pp. 148ï¿½157.
+241. Velasco, J. L., Valencia-Garcï¿½ia, R., Fernaï¿½ndez-Breis, J. T., Toval, A., et al. Modelling reusable security requirements based on an ontology framework. Journal of Research and Practice in Information Technology 41, 2 (2009), 119.
+242. Vincent, J., Porquet, C., Borsali, M., and Leboulanger, H. Privacy protection for smartphones: an ontology-based firewall. In Information Security Theory and Practice. Security and Privacy of Mobile Devices in Wireless Communication. Springer, 2011, pp. 371ï¿½380.
 243. Vorobiev, A., and Bekmamedova, N. An ontological approach applied to information security and trust. ACIS 2007 Proceedings (2007), 114.
-244. Vorobiev, A., and Han, J. Security attack ontology for web services. In Semantics, Knowledge and Grid, 2006. SKG'06. Second International Conference on (2006), IEEE, pp. 42­42.
-245. Vorobiev, A., and Han, J. Specifying dynamic security properties of web service based systems. In Semantics, Knowledge and Grid, 2006. SKG'06. Second International Conference on (2006), IEEE, pp. 34­34.
-246. Vorobiev, A., Han, J., and Bekmamedova, N. An ontology framework for managing security attacks and defences in component based software systems. In Software Engineering, 2008. ASWEC 2008. 19th Australian Conference on (2008), IEEE, pp. 552­561.
-247. Vorobiev, V. I., Fedorchenko, L. N., Zabolotsky, V. P., and Lyubimov, A. V. Ontology-based analysis of information security standards and capabilities for their harmonization. In Proceedings of the 3rd international conference on Security of information and networks (2010), ACM, pp. 137­141.
+244. Vorobiev, A., and Han, J. Security attack ontology for web services. In Semantics, Knowledge and Grid, 2006. SKG'06. Second International Conference on (2006), IEEE, pp. 42ï¿½42.
+245. Vorobiev, A., and Han, J. Specifying dynamic security properties of web service based systems. In Semantics, Knowledge and Grid, 2006. SKG'06. Second International Conference on (2006), IEEE, pp. 34ï¿½34.
+246. Vorobiev, A., Han, J., and Bekmamedova, N. An ontology framework for managing security attacks and defences in component based software systems. In Software Engineering, 2008. ASWEC 2008. 19th Australian Conference on (2008), IEEE, pp. 552ï¿½561.
+247. Vorobiev, V. I., Fedorchenko, L. N., Zabolotsky, V. P., and Lyubimov, A. V. Ontology-based analysis of information security standards and capabilities for their harmonization. In Proceedings of the 3rd international conference on Security of information and networks (2010), ACM, pp. 137ï¿½141.
 248. Wang, J. A., and Guo, M. OVM: an ontology for vulnerability management. In Proceedings of the 5th Annual Workshop on Cyber Security and Information Intelligence Research (2009), ACM, p. 34.
-249. Wang, J. A., Guo, M., Wang, H., Xia, M., and Zhou, L. Environmental metrics for software security based on a vulnerability ontology. In Secure Software Integration and Reliability Improvement, 2009. SSIRI 2009. Third IEEE International Conference on (2009), IEEE, pp. 159­168.
-250. Wang, P., Chao, K.-M., Lo, C.-C., and Wang, Y.-S. Using ontologies to perform threat analysis and develop defensive strategies for mobile security. Information Technology and Management, 1­25.
+249. Wang, J. A., Guo, M., Wang, H., Xia, M., and Zhou, L. Environmental metrics for software security based on a vulnerability ontology. In Secure Software Integration and Reliability Improvement, 2009. SSIRI 2009. Third IEEE International Conference on (2009), IEEE, pp. 159ï¿½168.
+250. Wang, P., Chao, K.-M., Lo, C.-C., and Wang, Y.-S. Using ontologies to perform threat analysis and develop defensive strategies for mobile security. Information Technology and Management, 1ï¿½25.
 
 251. Ware, W. H. A taxonomy for privacy. Tech. rep., DTIC Document, 1981. 252. Weber, R. H. Internet of things - new security and privacy challenges. Computer
-Law & Security Review 26, 1 (2010), 23­30. 253. Weber-Jahnke, J. H., and Onabajo, A. Mining and analysing security goal
-models in health information systems. In Software Engineering in Health Care, 2009. SEHC'09. ICSE Workshop on (2009), IEEE, pp. 42­52. 254. Wei, C., Chen, G., and Ge, Q. Research on semantic-based security services model of soa. In E-Business and Information System Security, 2009. EBISS'09. International Conference on (2009), IEEE, pp. 1­4. 255. Wei, W., and Yu, T. The design and enforcement of a rule-based constraint policy language for service composition. In Social Computing (SocialCom), 2010 IEEE Second International Conference on (2010), IEEE, pp. 873­880. 256. Weippl, E. R., Schatten, A., Karim, S., and Tjoa, A. M. SemanticLIFE Collaboration: Security Requirements and solutions­security aspects of semantic knowledge management. Springer, 2004. 257. Yan, P., Zhao, Y., and Sanxing, C. Ontology-based information content security analysis. In Fuzzy Systems and Knowledge Discovery, 2008. FSKD'08. Fifth International Conference on (2008), vol. 5, IEEE, pp. 479­483. 258. Yau, S. S., and Chen, Z. A framework for specifying and managing security requirements in collaborative systems. In Autonomic and Trusted Computing. Springer, 2006, pp. 500­510. 259. Yau, S. S., and Liu, J. Hierarchical situation modeling and reasoning for pervasive computing. In Software Technologies for Future Embedded and Ubiquitous Systems, 2006 and the 2006 Second International Workshop on Collaborative Computing, Integration, and Assurance. SEUS 2006/WCCIA 2006. The Fourth IEEE Workshop on (2006), IEEE, pp. 6­pp. 260. Yau, S. S., Yao, Y., Chen, Z., and Zhu, L. An adaptable security framework for service-based systems. In 10th International Workshop on Object-Oriented Real-Time Dependable Systems (WORDS) (2005), IEEE, pp. 28­35. 261. Yu, E., and Cysneiros, L. Designing for privacy and other competing requirements. In 2nd Symposium on Requirements Engineering for Information Security (SREIS02), Raleigh, North Carolina (2002), Citeseer, pp. 15­16. 262. Yu, Y., Kaiya, H., Washizaki, H., Xiong, Y., Hu, Z., and Yoshioka, N. Enforcing a security pattern in stakeholder goal models. In Proceedings of the 4th ACM Workshop on Quality of Protection (2008), ACM, pp. 9­14. 263. Zannone, N. A requirements engineering methodology for trust, security, and privacy. PhD thesis, University of Trento, 2006. 264. Zhang, N., and Todd, C. Developing a privacy ontology for privacy control in context-aware systems. Tech. rep., 2006.
+Law & Security Review 26, 1 (2010), 23ï¿½30. 253. Weber-Jahnke, J. H., and Onabajo, A. Mining and analysing security goal
+models in health information systems. In Software Engineering in Health Care, 2009. SEHC'09. ICSE Workshop on (2009), IEEE, pp. 42ï¿½52. 254. Wei, C., Chen, G., and Ge, Q. Research on semantic-based security services model of soa. In E-Business and Information System Security, 2009. EBISS'09. International Conference on (2009), IEEE, pp. 1ï¿½4. 255. Wei, W., and Yu, T. The design and enforcement of a rule-based constraint policy language for service composition. In Social Computing (SocialCom), 2010 IEEE Second International Conference on (2010), IEEE, pp. 873ï¿½880. 256. Weippl, E. R., Schatten, A., Karim, S., and Tjoa, A. M. SemanticLIFE Collaboration: Security Requirements and solutionsï¿½security aspects of semantic knowledge management. Springer, 2004. 257. Yan, P., Zhao, Y., and Sanxing, C. Ontology-based information content security analysis. In Fuzzy Systems and Knowledge Discovery, 2008. FSKD'08. Fifth International Conference on (2008), vol. 5, IEEE, pp. 479ï¿½483. 258. Yau, S. S., and Chen, Z. A framework for specifying and managing security requirements in collaborative systems. In Autonomic and Trusted Computing. Springer, 2006, pp. 500ï¿½510. 259. Yau, S. S., and Liu, J. Hierarchical situation modeling and reasoning for pervasive computing. In Software Technologies for Future Embedded and Ubiquitous Systems, 2006 and the 2006 Second International Workshop on Collaborative Computing, Integration, and Assurance. SEUS 2006/WCCIA 2006. The Fourth IEEE Workshop on (2006), IEEE, pp. 6ï¿½pp. 260. Yau, S. S., Yao, Y., Chen, Z., and Zhu, L. An adaptable security framework for service-based systems. In 10th International Workshop on Object-Oriented Real-Time Dependable Systems (WORDS) (2005), IEEE, pp. 28ï¿½35. 261. Yu, E., and Cysneiros, L. Designing for privacy and other competing requirements. In 2nd Symposium on Requirements Engineering for Information Security (SREIS02), Raleigh, North Carolina (2002), Citeseer, pp. 15ï¿½16. 262. Yu, Y., Kaiya, H., Washizaki, H., Xiong, Y., Hu, Z., and Yoshioka, N. Enforcing a security pattern in stakeholder goal models. In Proceedings of the 4th ACM Workshop on Quality of Protection (2008), ACM, pp. 9ï¿½14. 263. Zannone, N. A requirements engineering methodology for trust, security, and privacy. PhD thesis, University of Trento, 2006. 264. Zhang, N., and Todd, C. Developing a privacy ontology for privacy control in context-aware systems. Tech. rep., 2006.
 
 Appendix A: Quality assessment application
 
@@ -1877,7 +1883,7 @@ for personal data gas, and Hausi
 
 in Smarter Context
 
-A. Mu¨ller
+A. Muï¿½ller
 
 014 ACM 14
 
@@ -1979,7 +1985,7 @@ Yoshioka Nobukazu
 
 rule framework:
 
-Annie I. Ant´on
+Annie I. Antï¿½on
 
 developing a canon-
 
@@ -2114,11 +2120,11 @@ stage 2
 
 029 ACM 29
 
-A Survey on Rodr´iguez, Natalia 2014 17 Excluded
+A Survey on Rodrï¿½iguez, Natalia 2014 17 Excluded
 
 [198]
 
-Ontologies for D´iaz and Cu´ellar,
+Ontologies for Dï¿½iaz and Cuï¿½ellar,
 
 stage 1
 
@@ -2146,7 +2152,7 @@ laborative systems
 
 031 ACM 31 Isn't the Time Ripe
 
-Atilla Elc¸i
+Atilla Elcï¿½i
 
 2014 3 Excluded
 
@@ -2252,7 +2258,7 @@ Security policies
 
 D. R., Amaral,
 
-through ontologies: F. N., Baz´ilio,
+through ontologies: F. N., Bazï¿½ilio,
 
 a case study
 
@@ -2424,7 +2430,7 @@ Tomarchio
 
 Architectures
 
-048 IEEE 08 Security Require- Stefan Du¨rbeck, 2007 14 Excluded
+048 IEEE 08 Security Require- Stefan Duï¿½rbeck, 2007 14 Excluded
 
 [64] ments for a Seman- Rolf Schillinger,
 
@@ -2746,7 +2752,7 @@ Maisonnasse, 2006 4 Excluded
 
 in attention
 
-J´ero´me, Nicolas
+Jï¿½eroï¿½me, Nicolas
 
 stage 2
 
@@ -3101,11 +3107,11 @@ Yamamoto
 
 [25]
 
-and Authorization Hern´andez Vicente,
+and Authorization Hernï¿½andez Vicente,
 
 stage 2
 
-Control Scalability Segrelles Damia´,
+Control Scalability Segrelles Damiaï¿½,
 
 in the Grid
 
@@ -3281,17 +3287,17 @@ Johann-
 
 Christoph Freytag
 
-109 CIT 07 Modeling Reusable Joaqu´in Lasheras,
+109 CIT 07 Modeling Reusable Joaquï¿½in Lasheras,
 
 [241]
 
 Security Require- Rafael Valencia-
 
-ments Based on an Garc´ia, Jesu-
+ments Based on an Garcï¿½ia, Jesu-
 
-Ontology Framework aldo Tom´as
+Ontology Framework aldo Tomï¿½as
 
-Fern´andez-Breis
+Fernï¿½andez-Breis
 
 110 CIT 08 [90] A Security Archi- Ian Foster, Carl
 
@@ -3309,7 +3315,7 @@ Steven Tuecke
 
 rules for privacy
 
-Annie Ant´on
+Annie Antï¿½on
 
 and security
 
@@ -3770,7 +3776,7 @@ Tun, Yijun Yu
 
 stage 2
 
-ments Elicitation Rau´l Mazo, Isabelle
+ments Elicitation Rauï¿½l Mazo, Isabelle
 
 - Survey
 
@@ -3786,7 +3792,7 @@ A Literature Survey Isabelle Wattiau
 
 and Classification
 
-147 Spgr 10 Reusable knowl- Amina Souag, Rau´l 2015 1 Excluded
+147 Spgr 10 Reusable knowl- Amina Souag, Rauï¿½l 2015 1 Excluded
 
 [218]
 
@@ -3876,7 +3882,7 @@ Dimitris Gritzalis
 
 [207]
 
-tion Security On- Angel Garc´ia-
+tion Security On- Angel Garcï¿½ia-
 
 stage 1
 
@@ -3886,7 +3892,7 @@ Javier Bermejo-
 
 Higuera, Salvador
 
-S´anchez-Alonso
+Sï¿½anchez-Alonso
 
 153 Spgr 16 Leveraging Ontolo- Eugenia I Papagian- 2014 4 Excluded
 
@@ -3910,7 +3916,7 @@ S Venieris, Nora
 
 Cuppens-Boulahia,
 
-Fr´ed´eric Cuppens
+Frï¿½edï¿½eric Cuppens
 
 154 Spgr 17 Towards Cross-
 
@@ -4242,7 +4248,7 @@ Javier Chamizo,
 
 Privacy Assurance Josef Noll, Juan
 
-Miguel Go´mez
+Miguel Goï¿½mez
 
 173 Spgr 36
 
@@ -4256,7 +4262,7 @@ stage 2
 
 Information Security
 
-174 Spgr 37 Efficient Projection Julius K¨opke, 2013 1 Excluded
+174 Spgr 37 Efficient Projection Julius Kï¿½opke, 2013 1 Excluded
 
 [187]
 
@@ -4360,7 +4366,7 @@ stage 1
 
 ERDF ontologies
 
-and Dam´asio,
+and Damï¿½asio,
 
 Carlos Viegas,
 
@@ -4386,13 +4392,13 @@ Software Services
 
 181 Spgr 44 Development of
 
-Istva´n Mezga´r, 2007 0 Excluded
+Istvaï¿½n Mezgaï¿½r, 2007 0 Excluded
 
 [173]
 
 an Ontology-
 
-Zolt´an Kincses
+Zoltï¿½an Kincses
 
 stage 1
 
@@ -4444,17 +4450,17 @@ Gustavo Isaza, 2010 6 Excluded
 
 relation Using
 
-Andr´es Castillo,
+Andrï¿½es Castillo,
 
 stage 1
 
 Ontologies and
 
-Marcelo L´opez,
+Marcelo Lï¿½opez,
 
 Multi-agent Systems Luis Castillo,
 
-Manuel L´opez
+Manuel Lï¿½opez
 
 185 Spgr 48 [6] Agent Models
 
@@ -4542,7 +4548,7 @@ Stefan Eicker,
 
 stage 1
 
-Research Gaps Stephan Faßbender,
+Research Gaps Stephan Faï¿½bender,
 
 and Immature
 
@@ -4648,7 +4654,7 @@ conflicting privacy
 
 rules for privacy
 
-Annie Ant´on
+Annie Antï¿½on
 
 and security
 
@@ -4905,7 +4911,7 @@ Tim Finin,
 
 pervasive computing Anupam Joshi
 
-217 SCH 20 Analyzing website Annie Ant´on, 2002 105 Excluded
+217 SCH 20 Analyzing website Annie Antï¿½on, 2002 105 Excluded
 
 [10] privacy requirements Julia B. Earp,
 
@@ -5029,7 +5035,7 @@ Qingfeng He,
 
 [108]
 
-modeling privacy Annie I. Ant´on
+modeling privacy Annie I. Antï¿½on
 
 requirements in
 
@@ -5346,7 +5352,7 @@ ments based on
 
 vulnerabilities
 
-247 Spgr 13 04 UMLsec: Extending Ju¨rjens, Jan
+247 Spgr 13 04 UMLsec: Extending Juï¿½rjens, Jan
 
 [123]
 
@@ -5382,7 +5388,7 @@ Nicolas Mayer,
 
 [170]
 
-based security Andr´e Rifaut, Eric
+based security Andrï¿½e Rifaut, Eric
 
 requirements engi- Dubois, and others
 
@@ -5420,7 +5426,7 @@ of information
 
 system security risk
 
-Lillian Røstad,
+Lillian Rï¿½stad,
 Vaishali Singh, SK Pandey
 Nicolas Mayer
 
@@ -5441,11 +5447,11 @@ Spgr 08 01 46 Selected
 
 security require- Lasheras Valencia-
 
-ments based on an Garc´ia, Rafael
+ments based on an Garcï¿½ia, Rafael
 
-ontology framework Fern´andez-Breis,
+ontology framework Fernï¿½andez-Breis,
 
-Tom´as Jesualdo,
+Tomï¿½as Jesualdo,
 
 Ambrosio Toval,
 
@@ -5475,9 +5481,9 @@ and comparison of Lasheras, Joaquin
 
 security ontologies and Valencia-
 
-Garc´ia, Rafael and
+Garcï¿½ia, Rafael and
 
-Ferna´ndez-Medina,
+Fernaï¿½ndez-Medina,
 
 Eduardo and Toval,
 
@@ -5636,4 +5642,3 @@ privacy-enhancing
 JGE Olk
 
 technologies
-

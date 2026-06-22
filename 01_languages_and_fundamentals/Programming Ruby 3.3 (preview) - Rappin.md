@@ -1,3 +1,9 @@
+# Programming Ruby 3.3 (preview)
+
+> **Author(s):** Rappin Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 Early Praise for Programming Ruby 3.3: The Pragmatic Programmers' Guide
 The book has such breadth and depth, making it a useful long-term companion. I'd say this is a big win for the Ruby community.  Stefan Magnuson
 Software Developer
@@ -51,7 +57,7 @@ For sales, volume licensing, and support, please contact support@pragprog.com.
 
 For international rights, please contact rights@pragprog.com.
 
-Copyright © 2024 The Pragmatic Programmers, LLC.
+Copyright ï¿½ 2024 The Pragmatic Programmers, LLC.
 All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher.
 ISBN-13: 978-1-68050-982-3 Encoded using the finest acid-free high-entropy binary digits. Book version: P1.0--January 2024
 
@@ -163,7 +169,7 @@ What's Next
 
 51
 
-Contents · vi
+Contents ï¿½ vi
 
 4. Collections, Blocks, and Iterators . . . . . . . . . . 53
 
@@ -321,7 +327,7 @@ What Is an I/O Object?
 
 179
 
-Contents · vii
+Contents ï¿½ vii
 
 Opening and Closing Files
 
@@ -475,7 +481,7 @@ What's Next
 
 288
 
-Contents · viii
+Contents ï¿½ viii
 
 17. Debugging Ruby . . . . . . . . . . . . . 289
 
@@ -631,7 +637,7 @@ What's Next
 
 408
 
-Contents · ix
+Contents ï¿½ ix
 
 23. Reflection and Object Space . . . . . . . . . . 409
 
@@ -749,7 +755,7 @@ Kernel
 
 541
 
-Contents · x
+Contents ï¿½ x
 
 Method
 
@@ -909,7 +915,7 @@ Folders, Directories, and Navigation
 
 645
 
-Contents · xi
+Contents ï¿½ xi
 
 A4. Ruby Runtimes . . . . . . . . . . . . . 649
 
@@ -995,9 +1001,9 @@ That belief is even stronger today. More than thirty years after Ruby's first re
 A Word about Ruby Versions
 This edition of The Pickaxe Book documents Ruby up to and including Ruby 3.3. New Ruby version releases come out annually on December 25. The book's code was developed against Ruby 3.3, preview 2, but we don't expect substantial changes in the released version of Ruby 3.3.
 In this book, we don't typically note what version of Ruby introduced a new feature, but you can find a brief list of the largest changes in Appendix 5, Ruby Changes, on page 655. We recommend referring to the Ruby Evolution page by Victor Shepelev at https://rubyreferences.github.io/rubychanges/evolution.html for a full listing of the changes implemented since Ruby 2.0.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Preface · xiv
+Preface ï¿½ xiv
 
 Exactly what version of Ruby did we use to write this book? Let's ask Ruby:
 
@@ -1030,9 +1036,9 @@ a=1 a+2
 
 If the program produces more complex output, we show it after the program code:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Road Map · xv
+Road Map ï¿½ xv
 3.times { puts "Hello!" }
 produces: Hello! Hello! Hello!
 In some of the library documentation, we wanted to show where spaces appear in the output. You'll see these spaces as  characters.
@@ -1048,13 +1054,13 @@ Part III, Ruby Crystallized, contains more advanced material. Here you'll find a
 Part IV, Ruby Language Reference, includes more complete notes on syntax and fuller documentation of language features discussed in the first three parts.
 Part V, Ruby Library Reference, isn't a complete reference of the entire Ruby library--that's much more readily available at https://docs.ruby-lang.org/en--but it's a map to the most commonly used and most useful features of the library.
 1. https://github.com/testdouble/standard
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Preface · xvi
+Preface ï¿½ xvi
 How should you read this book? Well, depending on your level of expertise with programming in general and object-oriented programming in particular, you may initially want to read just a few portions of the book. Here are our recommendations. If you're a beginner, you may want to start with the tutorial material in Part I. Keep the library reference close at hand as you start to write programs. Get familiar with the basic classes such as Array, Hash, and String. As you become more comfortable in the environment, you may want to investigate some of the more advanced topics in Part III. If you're already comfortable with JavaScript, Python, or Java, then we suggest reading Chapter 1, Getting Started, on page 3, which talks about installing and running Ruby, followed by the introduction in Chapter 2, Ruby.new, on page 17. From there, you may want to take the slower approach and keep going with the tutorial that follows, or you can skip ahead to the details starting in Part III, followed by the language reference in Part IV and the library reference in Part V. Experts, gurus, and "I-don't-need-no-stinking-tutorial" types can dive straight into the language reference in Chapter 24, Language Reference: Literal Types and Expressions, on page 429, skim through the library reference, and then use the book as a (rather attractive) coffee coaster. Of course, nothing is wrong with starting at the beginning and working your way through page by page. And don't forget: if you run into a problem that you can't figure out, help is available. For more information, see Appendix 1, Troubleshooting Ruby, on page 637.
 Resources
 Visit the Ruby website at http://www.ruby-lang.org to see what's new. You can find a list of community resources, including the official mailing list and Discord server, at https://www.rubylang.org/en/community. And we'd certainly appreciate hearing from you. Comments, suggestions, errors in the text, and problems in the examples are all welcome. Email us at rubybook@pragprog.com. If you find errors in the book, you can add them to the errata page at https://devtalk.com/books/ programming-ruby-3-2-5th-edition/errata. If you're reading the PDF version of the book, you can also report an erratum by clicking the link in the page footers. You'll find links to the source code for almost all of the book's code examples at https://www.pragprog.com/titles/ruby5. With all that out of the way, let's start learning about Ruby.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Acknowledgments
 In January 2001, I bought myself a programming book as a birthday present. It had a pickaxe on the cover, and it was written by the two people who wrote The Pragmatic Programmer. It was about this new programming language from Japan that I had heard about on the Extreme Programming mailing list, and which sounded very interesting.
@@ -1065,7 +1071,7 @@ Mark Guzdial was my graduate advisor and the person who encouraged me to write a
 This is somehow the seventh title I've worked on with Katharine Dvorak as the editor. As always, she makes working on the book easier and helps structure the book into its most coherent form. Dave Rankin at The Pragmatic Bookshelf was the person who agreed to let me work on this book. Thanks so much for the opportunity and the vote of confidence.
 The following people reviewed all or part of the book, and their feedback and knowledge have made this a better and more accurate book: Jean Boussier, Avdi Grimm, Chris Houhoulis, Gabi Jack, Bernard Kaiflin, Brian Lesperance, Stefan Magnuson, Kevin Murphy, Ryan Prinz, Nishant Roy, Victor Shepelev, and Brandon Weaver.
 Everything in my life is better because of my family. Thanks to my children, Amit and Elliot, who have enriched my life in so many ways. And something beyond thanks to my wife Erin, these small sentences can't express how much I love you and how much your love and support mean to me.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 Part I
 Facets of Ruby
@@ -1082,9 +1088,9 @@ You can install Ruby in a variety of different ways, so providing general instal
 That said, Ruby does run on Windows. The process for managing a Ruby installation on Windows is different, and we'll cover it in full detail later in this chapter.
 Please note that the tooling for Ruby's installation does change frequently, and some of the specific instructions might be out of date or replaced by newer tools.
 1. https://docs.microsoft.com/en-us/windows/wsl/install 2. https://www.docker.com 3. https://replit.com
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 4
+Chapter 1. Getting Started ï¿½ 4
 Opting Out of Installation If you don't want to install anything on your computer for some reason, you can take advantage of cloud-based development environments such as Replit or GitHub Codespaces. These environments enable you to write your code in a browser and run it against a cloud-based virtual machine.
 Installing Ruby with the rbenv Version Manager
 To facilitate our installation of Ruby, we'll use a version manager, which is a tool that allows you to install and switch between multiple Ruby versions on the same machine. There are many reasons to use a version manager to handle your Ruby installation. Being able to easily switch between multiple versions of Ruby gives you the flexibility to work with multiple projects that might have been written at different times. In addition, the version managers have been created for easy installation, so installing multiple Ruby versions with a version manager is easier than installing a single version by itself. More powerful and easier to use is a hard combination to beat. If you're interested in downloading only one version of Ruby, you can find system-by-system instructions at https://www.ruby-lang.org/en/ documentation/installation. The tool we'll use in this book is called rbenv.4 Rbenv isn't the only Ruby version manager, but it's probably the most commonly used these days. Other commonly used version managers are RVM5 and chruby.6 (And yes, having competing tools named "RVM" and "rbenv" is confusing.) If you're using version management for multiple languages, you might want to look at a project called asdf, which unifies different languages' version managers,7 and is rapidly becoming more popular within Ruby.
@@ -1095,15 +1101,15 @@ Curl is a command-line tool for accessing URLs and doing something useful with t
 This script will install rbenv using the appropriate package manager for your system, and will also install a helper program called ruby-build that will manage the download and installation of different Ruby versions.
 The installation command might produce a lot of output--especially if you're on a MacOS system that uses the Homebrew package manager. On a Mac, it should end with the following (a Windows user under WSL might see something different):
 4. https://github.com/rbenv/rbenv 5. https://rvm.io 6. https://github.com/postmodern/chruby 7. https://asdf-vm.com
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Installing Ruby · 5
+Installing Ruby ï¿½ 5
 All done! Note that this installer does NOT edit your shell configuration files: 1. Run `rbenv init' to view instructions on how to configure rbenv for your shell. 2. Launch a new terminal window after editing shell configuration files.
 Following instructions, run rbenv init. This is the output on a Mac running zshell (your instructions may be different):
 $ rbenv init # Load rbenv automatically by appending # the following to ~/.zshrc:
 eval "$(rbenv init - zsh)"
 No matter what your setup is, what you should get in this instruction is:
-· The file that contains the shell configuration you need to update · The text you need to put at the end of the file
+ï¿½ The file that contains the shell configuration you need to update ï¿½ The text you need to put at the end of the file
 You need to put the suggested line of text at the end of your configuration file and open a new terminal window. The change only takes effect when a window is loaded, so the easiest way to get rbenv started is to open a new terminal window. If you have any questions about how to use the terminal, see Appendix 3, Command-Line Basics, on page 645.
 Now, let's install a specific Ruby version.
 Installing Rubies with rbenv Rbenv allows you to see a list of the Ruby versions you'll most likely want to install with the command rbenv install -l. Here's the current list (as I write this, 3.3.0 is not fully released):
@@ -1112,9 +1118,9 @@ Only latest stable releases for each Ruby implementation are shown. Use 'rbenv i
 This list has the most up-to-date patch versions of various Ruby implementations. You can see the current minor versions for the major Ruby versions 2.7, 3.0, 3.1, 3.2, and 3.3. (When talking about different Ruby implementations, the main one is sometimes called CRuby and other times called MRI, for "Matz's Ruby Interpreter.") There are also other versions we're not going to talk about much here. JRuby8 is a Ruby version that runs on the Java Virtual Machine. Mruby is a special limited build of Ruby for running on embedded hardware. TruffleRuby9 is an implementation of the language that is focused on high performance.
 Our interest right now is Ruby 3.3.0, which we can install with the command rbenv install 3.3.0. (If Ruby 3.3.0 isn't out as you read this, you can use 3.2.2 or 3.3.0-dev.) If you don't see
 8. https://www.jruby.org 9. https://github.com/oracle/truffleruby
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 6
+Chapter 1. Getting Started ï¿½ 6
 the most current version of Ruby on the list, and you've installed rbenv previously, you may get instructions on how to update ruby-build to get newer Ruby versions in your list. Note that none of the rbenv commands require us to have superuser access or to use sudo. One of the joys of the Ruby version managers, including rbenv, is that they do everything inside your home directory--you don't have any special system privileges to install or use new Ruby versions.
 $ rbenv install 3.3.0 To follow progress, use 'tail -f <REDACTED>' or pass --verbose Installing openssl-3.1.0... Installed openssl-3.1.0 to /Users/noel/.rbenv/versions/3.3.0 Installing ruby-3.3.0... ruby-build: using readline from homebrew ruby-build: using gmp from homebrew Installed ruby-3.3.0 to /Users/noel/.rbenv/versions/3.3.0
 Your output may be slightly different, depending on the exact version number and whether you're re-installing the Ruby version. We can verify that the Ruby version has been installed with rbenv versions, for example:
@@ -1124,9 +1130,9 @@ The system here is the pre-defined Ruby for the operating system if such a thing
 Switching Rubies with rbenv This is where we start to see the payoff. Once different Ruby versions are installed, rbenv allows us multiple ways to switch the Ruby version we're using. The command rbenv local <version> changes the Ruby version for the directory you're in:
 $ ruby --version ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin22] $ rbenv local 3.3.0 $ ruby --version ruby 3.3.0 (2023-11-02T22:34:58Z master ac8ec004e5) [arm64-darwin23]
 If the new Ruby you think you've installed doesn't seem to be available, you may need to run the command rbenv rehash. This command produces no output, but it does enable rbenv to use the newly installed Ruby. This setting for the directory persists even if you leave the directory and come back. (If you don't want the change to persist beyond the current session, you can use rbenv shell <VERSION> instead of rbenv local.)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Installing Ruby for Windows · 7
+Installing Ruby for Windows ï¿½ 7
 $ cd .. $ cd test $ ruby --version ruby 3.3.0 (2023-11-02T22:34:58Z master ac8ec004e5) [arm64-darwin23]
 Rbenv accomplishes this by putting a file in the directory called .ruby-version, which only contains the version number of the Ruby you've set for that directory.
 % cat .ruby-version 3.3.0
@@ -1135,9 +1141,9 @@ What Is rbenv Actually Doing?
 Rbenv attempts to provide its dynamic behavior with as little change to your regular terminal environment as possible. A Unix terminal uses a global environment variable called PATH to determine what directories it looks in for executable programs when you type a command. If you look in your configuration file for your terminal, you'll likely see the PATH variable being modified. When the rbenv init command is executed as part of your terminal setup, it inserts a directory at the front of your PATH, so that your operating system will look in the rbenv directory before looking anyplace else. That directory has a set of what rbenv calls shims--small programs that match all the executable commands in all your Ruby versions. (The reason why you may need to run rbenv rehash after installing a new Ruby is to refresh this directory.) When you call a Ruby command like ruby or (as you'll see in a minute) irb, the rbenv shim is encountered first, and it dynamically chooses which Ruby is active, usually based on the presence of a .ruby-version file. Then the command is handed off to the actual executable program in that current version. You can see these actual versions, they live in your home directory at ~/.rbenv/versions.
 Installing Ruby for Windows
 Ruby isn't available as a default option in Windows the way it's in Unix distributions or MacOS, but it can be installed and used and can interact with the underlying environment to automate Windows-specific resources.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 8
+Chapter 1. Getting Started ï¿½ 8
 We're going to focus on two ways to install Ruby on Windows: using the Windows Subsystem for Linux (WSL)10, which allows you to run a Linux command-line terminal in your Windows system, and using RubyInstaller11 to install a Windows application that lets you execute Ruby programs.
 The two different kinds of Ruby can both be installed on the same machine and have different purposes. Using WSL gives you a command shell that's effectively a Linux distribution, allowing you to seamlessly use any of the other Ruby tooling in this book. Using RubyInstaller gives you access to Ruby from within a regular Windows PowerShell prompt, allowing you to execute Ruby programs from File Explorer, and giving you access to Windows-specific libraries.
 No matter which way you want to run Ruby, you should also install Windows Terminal so that you have a fully-featured terminal program available. You can download Windows Terminal at https://docs.microsoft.com/en-us/windows/terminal/install, where you'll also find instructions on how to make it your default terminal program. From Windows Terminal, you can set up new command-line sessions using either Microsoft's PowerShell or the WSL shell. (You can also use Visual Studio Code's terminal to run either kind of command line.)
@@ -1149,9 +1155,9 @@ Installing WSL The first step in using Ruby with WSL is installing WSL itself. A
 You need to open an administrator Windows command terminal--it doesn't matter whether it's PowerShell or the regular terminal, but it does have to be an administrator shell. In Windows 11, the easiest way to get an admin shell is to right-click on the start menu and select the "Windows Terminal (Administrator)" option, which will open Windows Terminal in an admin shell. Depending on your Windows version, you may get prompted to say whether you'll allow the program to make changes to your system. Say yes.
 From the admin shell, type the command wsl --install. This will give us the default Linux installation, which is Ubuntu. The session looks like this when it's through, but it may take a little time to get through the download and installation process.
 10. https://docs.microsoft.com/en-us/windows/wsl 11. https://rubyinstaller.org 12. https://docs.microsoft.com/en-us/windows/wsl
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Installing Ruby for Windows · 9
+Installing Ruby for Windows ï¿½ 9
 PS C: \Users\noelr> wsl --install Installing: Virtual Machine Platform Virtual Machine Platform has been installed. Installing: Windows Subsystem for Linux Windows Subsystem for Linux has been installed. Downloading: WSL Kernel Installing: WSL Kernel WSL Kernel has been installed. Downloading: GUI App Support Installing: GUI App Support GUI App Support has been installed. Downloading: Ubuntu The requested operation is successful. Changes will not be effective until the system is rebooted
 Reboot the system. This may take some time.
 When the system comes back up, open Windows Terminal. The pull-down menu in the tab bar should now give you the option of an Ubuntu prompt. You may get prompted to do a sudo apt-get update to update programs in the Ubuntu distribution.
@@ -1162,9 +1168,9 @@ At this point, you can use Windows Terminal to open a WSL terminal by clicking t
 Installing Ruby under WSL We're partway there, but the default Ubuntu installation doesn't include Ruby or a version manager. These instructions are adapted from https://gorails.com/setup/windows/10#linux-subsystem.
 The Ubuntu distribution uses a package manager called apt-get to distribute its applications. We need to install some dependencies:
 $ sudo apt-get update $ sudo apt-get install git-core curl $ sudo apt-get install zlib1g-dev build-essential libssl-dev $ sudo apt-get install libreadline-dev libyaml-dev libsqlite3-dev sqlite3 $ sudo apt-get install libxml2-dev libxslt1-dev libcurl4-openssl-dev $ sudo apt-get install software-properties-common libffi-dev
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 10
+Chapter 1. Getting Started ï¿½ 10
 The first line updates apt-get itself so you can get the most current version of everything, and the following lines install the packages that Ruby will need. Note that you can do all those installs on a single line (we're splitting it up here for page-width purposes).
 At this point, you should be able to install the rbenv version manager using the instructions in Installing Ruby with the rbenv Version Manager, on page 4. The GoRails site mentioned before has slightly different rbenv instructions, they should both work.
 Using WSL and Ruby You should be good to go, as you can confirm by opening up a new WSL terminal and typing irb. Within WSL, you can use any of the Unix tools that we've described elsewhere in this book.
@@ -1179,9 +1185,9 @@ Installing Ruby with RubyInstaller You can download RubyInstaller from https://r
 
 13. https://rubyinstaller.org
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Running Ruby · 11
+Running Ruby ï¿½ 11
 have native C-language extensions to be compiled. A couple of prominent Ruby gems have extensions, so we recommend the Devkit version.
 Once the installer has downloaded, run it and you'll get a standard Windows installer. You'll have options to "Add Ruby executables to your PATH" and "Associate .rb and .rbw files with this Ruby installation," both of which we recommend. You'll then have the option to install "Ruby RI and HTML documentation" and the "MSYS2 development toolchain," which again, we recommend. At the end, you'll be asked to run "ridk install" to set up the development toolchain. Doing so will give you a pop-up window that will ask you which MSYS2 components to install and to confirm the defaults are what you want (which they are, so keep them). Press ENTER to start the MSYS2 installation. After the installation finishes that phase, it'll prompt you again. If the brackets in the prompt are empty, pressing ENTER will finish the installation.
 Using Ruby with RubyInstaller At this point, from a regular Windows terminal, you can run ruby and irb with the same options as we'll discuss in Chapter 14, Ruby from the Command Line, on page 231, and Chapter 16, Interactive Ruby, on page 277.
@@ -1193,9 +1199,9 @@ Now that Ruby is installed, you'd probably like to run some programs. Unlike com
 $ ruby --version ruby 3.3.0dev (2023-11-01T17:47:26Z master 909afcb4fc) [arm64-darwin23]
 Technically, you can run Ruby interactively by typing ruby at the shell prompt. You'll get a blank line in response, and you can type your Ruby code there.
 $ ruby puts "Hello, world!" ^D Hello, world!
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 12
+Chapter 1. Getting Started ï¿½ 12
 In this example, we typed in a single line of Ruby. That line consists of two parts. The first part, puts, is the name of a method. A method is a pre-defined chunk of code. In this case, the puts method is one of several methods defined for us by Ruby. The second part, "Hello, world!", is text surrounded by double quotes, which is called a string. Combining the two, the Ruby code puts "Hello, world!" calls the method puts with the argument "Hello, world!". The puts method then outputs that argument back to the terminal--puts is short for "outPUT String".
 On the next line, we typed an end-of-file character (Ctrl+D on our system), which exited the program and caused what we typed to be evaluated. Using Ruby like this works, but it only shows responses if you explicitly print them out. Also, it's painful if you make a typo, and you can't see what's going on as you type.
 Happily, there's a better way to interact with Ruby.
@@ -1207,9 +1213,9 @@ If you try this in Ruby 3.1 or higher, you'll notice that irb attempts to offer 
 We recommend that you get familiar with irb--it's a great way to explore Ruby concepts and debug your code, and it'll make your experience with Ruby more fun.
 Creating Ruby Programs
 The most common way to write Ruby programs is to put the Ruby code in one or more text files. You'll use a text editor or an Integrated Development Environment (IDE) to create and maintain these files--many popular editors, including Visual Studio Code, vim, Sublime Text, and RubyMine, feature Ruby support. You'll then run the files either from within the
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Creating Ruby Programs · 13
+Creating Ruby Programs ï¿½ 13
 What about Docker?
 If you're using Ruby on a larger project or with a larger team, there's a good chance that Docker is part of your development environment. Docker is a tool that allows you to define and run containers. A container is a way to package all the dependencies needed to run code--it's a virtual operating system inside your computer. Using Docker, you can simulate a Linux environment no matter what operating system you're running. A full description of Docker is out of this book's scope. But, if you're already familiar with Docker in general, it's worth mentioning that Docker maintains images with different Ruby versions pre-installed. You can always get to the latest released version with ruby:latest, and you can go straight to a Dockerized irb prompt with docker run -it ruby irb. Running external Ruby files in the Docker container is doable as well but requires a little more Docker knowledge.
 editor or from the command line. Both techniques are useful. You might run single-file programs from within the editor and more complex programs from the command line. Let's create a short Ruby program and run it. Open a terminal window and create an empty directory somewhere, perhaps you could call it pickaxe. Then, using your editor of choice, create the file myprog.rb, containing the following text:
@@ -1221,18 +1227,18 @@ On Unix systems, you can use the "shebang" notation as the first line of the pro
 If you make this source file executable (using, for instance, chmod +x myprog.rb), Unix lets you run the file as a program:
 $ ./myprog.rb Hello, Ruby Programmer It is now 2023-11-02 17:15:44 -0500
 You can do something similar under Microsoft Windows using file associations, and you can run Ruby GUI applications by double-clicking their names in Windows Explorer.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 1. Getting Started · 14
+Chapter 1. Getting Started ï¿½ 14
 Getting More Information about Ruby
 As the volume of the Ruby libraries has grown, it has become impossible to document them all in one book; the standard library that comes with Ruby now contains more than 9,000 methods. The official Ruby documentation is at https://docs.ruby-lang.org, with official pages for the different versions of the core and standard library located there. irb will also give you documentation of standard method names as you type. Much of this documentation is generated from comments in the source code using a tool called RubyDoc, which we'll look at in Chapter 19, Documenting Ruby, on page 313. The RubyDoc site at https://www.rubydoc.info contains documentation for Ruby projects that use RubyDoc. Third-party libraries in the Ruby world are called gems, and the official listing of Ruby gems is at https://rubygems.org. We'll talk lots more about gems in Chapter 15, Ruby Gems, on page 251. There is also a command-line tool for the Ruby core documentation called ri. To find the documentation for a class, type ri <classname>. For example, the following is the beginning of the summary information for the String class. If you type ri with no arguments, you get a prompt asking you for a class.
 = String < Object -----------------------------------------------------------------------= Includes: Comparable (from ruby core) (from ruby core) -----------------------------------------------------------------------A String object has an arbitrary sequence of bytes, typically representing text or binary data. A String object may be created using String::new or as literals. String objects differ from Symbol objects in that Symbol objects are designed to be used as identifiers, instead of text or data.
 It goes on to list all the methods of String. You can also try a method name:
 $ ri strip = .strip (from ruby core) === Implementation from String ------------------------------------------------------------------------
 str.strip -> new_str -----------------------------------------------------------------------Returns a copy of the receiver with leading and trailing whitespace removed.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-What's Next · 15
+What's Next ï¿½ 15
 
 Whitespace is defined as any of the following characters: null, horizontal tab, line feed, vertical tab, form feed, carriage return, space.
 
@@ -1252,7 +1258,7 @@ What's Next
 
 Now that you're up and running, it's time to learn how Ruby works. First, we'll do a quick overview of the main features of the language.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 2
 Ruby.new
@@ -1265,9 +1271,9 @@ Ruby Is an Object-Oriented Language
 Let's say it again. Ruby is an object-oriented language. In programming terms, an object is a thing that combines data with the logic that manipulates that data, and a language is "objectoriented" if it provides language constructs that make it easy to create objects. Typically, object-oriented languages allow their objects to define what their data is, define their functionality, and provide a common syntax to allow other objects to access that functionality.
 Many languages claim to be object-oriented, and those languages often have a different interpretation of what object-oriented means and a different terminology for the concepts they employ. Unlike other object-oriented languages such as Java, JavaScript, and Python, all Ruby types are objects, and there are no non-object basic types that behave differently.
 Before we get too far into the details, let's briefly look at the terms and notations that we'll be using to talk about Ruby.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 18
+Chapter 2. Ruby.new ï¿½ 18
 
 When you write object-oriented programs, you're looking to model concepts from the outside world or from your logical domain. During this modeling process, you'll discover categories of related data and behavior that need to be represented in code. In a system representing a jukebox, the concept of a "song" could be such a category. A song might combine state (for example, the name of the song) and methods that use that state (perhaps a method to play the song). In Ruby, you'd define a class called Song to represent the general case of what songs do.
 Once you have these classes, you'll typically want to create a number of separate instances of each. For the jukebox system containing a class called Song, you'd have separate instances for popular hits with different names such as "Ruby Tuesday," "Enveloped in Python," "String of Pearls," "Small Talk," and so on. Each of these instances has its own state but shares the common behavior of the class. The word object is often used interchangeably with instance.
@@ -1289,9 +1295,9 @@ intro/puts_examples.rb "gin joint".length "Rick".index("c") 42.even? sam.play(so
 
 Each line shows a method being called. The item before the dot is called the receiver of the method, and what comes after the period is the name of the method to be invoked. The first example asks the string "gin joint" for its length. The second asks a different string to find the index within it of the letter c. The third line asks the number 42 if it's even (the question mark is part of the method name even?). Finally, we ask an object called sam to play us a song
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Some Basic Ruby · 19
+Some Basic Ruby ï¿½ 19
 
 (assuming there's an existing variable called sam that references an appropriate object which we've defined elsewhere).
 
@@ -1327,9 +1333,9 @@ I don't know why you say goodbye, John, I say hello I don't know why you say goo
 
 As the example shows, Ruby syntax is uncluttered. You don't need semicolons at the ends of statements as long as you put each statement on a separate line. Ruby comments start with a # character and run to the end of the line. Code layout is up to you; indentation isn't
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 20
+Chapter 2. Ruby.new ï¿½ 20
 significant. That said, two-character indentation--spaces, not tabs--is the overwhelming choice of the Ruby community.
 Methods are defined with the keyword def, followed by the method name--in this case, the name is say_hello_goodbye--and then the method's parameters between parentheses. (In fact, the parentheses are optional, but we recommend you use them.) Ruby doesn't use braces to delimit the bodies of compound statements and definitions. Instead, you finish the body with the keyword end. Our method's body is pretty short. The first line concatenates the literal string "I don't know why you say goodbye, " and the parameter name and the literal string ", I say hello" and assigns the result to the local variable result. The next line returns that result to the caller. Note that we didn't have to declare the variable result; it sprang into existence when we assigned a value to it.
 Having defined the method, we invoke it twice. In both cases, we pass the result to the method puts, which simply outputs its argument followed by a newline (moving on to the next line of output):
@@ -1341,9 +1347,9 @@ This example also shows Ruby string objects. Ruby has many ways to create a stri
 In the double-quoted case, Ruby does more work. First, it looks for substitution sequences that start with a backslash character and replaces them with some binary value. The most common of these substitutions is \n, which is replaced with a newline character. When a string containing a newline is output, that newline becomes a line break:
 puts "Hello and goodbye to you,\nGeorge"
 produces: Hello and goodbye to you, George
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Some Basic Ruby · 21
+Some Basic Ruby ï¿½ 21
 
 The second thing that Ruby does with double-quoted strings is expression interpolation. Within the string, the sequence #{EXPRESSION} is replaced by the value of EXPRESSION. We could use this to rewrite our previous method:
 
@@ -1373,9 +1379,9 @@ This version is considered more idiomatic, by which we mean that it's more in li
 We promised that this section would be brief. We have one more topic to cover: Ruby names. For brevity, we'll be using some terms (such as class variable) that we aren't going to define here. But, by talking about the rules now, you'll be ahead of the game when we actually come to discuss class variables and the like later.
 Ruby uses a convention that may seem strange at first: the first characters of a name indicate how broadly the variable is visible. Local variables, method parameters, and method names
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 22
+Chapter 2. Ruby.new ï¿½ 22
 should all start with a lowercase letter or an underscore (Ruby itself has a couple of methods that start with a capital letter, but in general this isn't something to do in your own code).
 Global variables are prefixed with a dollar sign, $, and instance variables begin with an "at" sign, @. Class variables start with two "at" signs, @@. Although we talk about global and class variables here for completeness, you'll find they are rarely used in Ruby programs. There's a lot of evidence that global variables make programs harder to maintain. Class variables aren't as dangerous as global variables, but they are still tricky to use safely--people tend not to use them much because they often use easier ways to get similar functionality. Finally, class names, module names, and other constants must start with an uppercase letter. Samples of different names are given in Table 1, Example variable, class, and constant names, on page 23.
 Following this initial character, a name can contain any combination of letters, digits, and underscores, with the exception that the character following an @ sign may not be a digit. But, by convention, multiword instance variables are written with underscores between the words, like first_name or zip_code, and multiword class names are written in MixedCase (sometimes called CamelCase) with each word capitalized, like FirstName or ZipCode. Constant names are written in all caps, with words separated by underscores, like FIRST_NAME or ZIP_CODE. Method names may end with the characters ?, !, and =.
@@ -1386,9 +1392,9 @@ a = [1, 'cat', 3.14] # array with three elements puts "The first element is #{a[
 # set the third element a[2] = nil puts "The array is now #{a.inspect}"
 produces: The first element is 1 The array is now [1, "cat", nil]
 You may have noticed that we used the special value nil in this example. In many languages, the concept of nil (or null) means "no object." In Ruby, that's not the case; nil is an object, just like any other. It's an object that represents the concept of nothing. Anyway, let's get back to arrays and hashes.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Arrays and Hashes · 23
+Arrays and Hashes ï¿½ 23
 
 Local Variable: Instance Variable: Class Variable: Global Variable: Class Name: Constant Name:
 
@@ -1416,9 +1422,9 @@ Sometimes you'll want to change this default behavior. For example, if you're us
 
 histogram = Hash.new(0) # The default value is zero histogram["ruby"] # => 0 histogram["ruby"] = histogram["ruby"] + 1 histogram["ruby"] # => 1
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 24
+Chapter 2. Ruby.new ï¿½ 24
 Symbols
 Often, when programming, you need to use the same string over and over. Perhaps the string is a key in a Hash, or maybe the string is the name of a method. In that case, you'd probably want the access to that string to be immutable so its value can't change, and you'd also want accessing the string to be as fast and use as little memory as possible.
 This brings us to Ruby's symbols. Symbols aren't exactly optimized strings, but for most purposes, you can think of them as special strings that are immutable, are only created once, and are fast to look up. Symbols are meant to be used as keys and identifiers, while strings are meant to be used for data.
@@ -1433,9 +1439,9 @@ intro/hash_with_symbol_keys.rb instrument_section = {
 :cello => "string", :clarinet => "woodwind", :drum => "percussion", :oboe => "woodwind", :trumpet => "brass", :violin => "string" } instrument_section[:oboe] # => "woodwind" instrument_section[:cello] # => "string" # Note that strings aren"t the same as symbols... instrument_section["cello"] # => nil
 Note from the last line that a symbol key is different from a string key, and access via one won't result in a value associated with the other.
 Symbols are so frequently used as hash keys that Ruby has a shortcut syntax. You can use name: value pairs to create a hash instead of name => value if the key is a symbol:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Control Structures · 25
+Control Structures ï¿½ 25
 intro/hash_with_symbol_keys_19.rb instrument_section = {
 cello: "string", clarinet: "woodwind", drum: "percussion", oboe: "woodwind", trumpet: "brass", violin: "string" } puts "An oboe is a #{instrument_section[:oboe]} instrument"
 produces: An oboe is a woodwind instrument
@@ -1453,9 +1459,9 @@ Similarly, while statements are terminated with end and loop as long as the cond
 num_pallets = 0 weight = 0 while weight < 100 && num_pallets <= 5
 pallet = next_pallet() weight += pallet.weight num_pallets += 1 end
 Most lines that look like statements in Ruby are actually expressions that return a value, which means you can use those expressions as conditions. For example, the Kernel method gets returns the next line from the standard input stream or nil when the end of the file is
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 26
+Chapter 2. Ruby.new ï¿½ 26
 reached. Because Ruby treats nil as a false value in conditions, you could write the following to process the lines in a file:
 while (line = gets) puts line.downcase
 end
@@ -1475,9 +1481,9 @@ Regular Expressions
 Most of Ruby's built-in types will be familiar to all programmers. A majority of languages have strings, integers, floats, arrays, and so on. But not all languages have built-in support for regular expressions the way that Ruby or JavaScript do. This is a shame because regular expressions, although cryptic, are a powerful tool for working with text. And having them built in rather than tacked on through a library interface, makes a big difference.
 Entire books have been written about regular expressions (for example, Mastering Regular Expressions by Jeffrey Friedl), so we won't try to cover everything in this short section. Instead, we'll look at a few examples of regular expressions in action. You'll find more coverage of regular expressions in Chapter 8, Regular Expressions, on page 129.
 A regular expression is a way of specifying a pattern of characters to be matched in a string. In Ruby, you typically create a regular expression by writing a pattern between slash
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Regular Expressions · 27
+Regular Expressions ï¿½ 27
 
 characters (/pattern/). And, Ruby being Ruby, regular expressions are objects and can be manipulated as such.
 For example, you could write a pattern that matches a string containing the text Ruby or the text Rust using the following regular expression:
@@ -1531,9 +1537,9 @@ puts "Scripting language mentioned: #{line}" end
 
 The match? form is probably more common in modern Ruby.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 28
+Chapter 2. Ruby.new ï¿½ 28
 
 The part of a string matched by a regular expression can be replaced with different text using one of Ruby's substitution methods:
 
@@ -1572,9 +1578,9 @@ verbose_greet("Dave", "loyal customer") { puts "Hi" }
 
 A method can then invoke an associated block one or more times using the Ruby yield statement. The yield statement invokes the block that was passed to the method, passing control to the code inside the block.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Blocks · 29
+Blocks ï¿½ 29
 The following example shows a block call in action. We define a method that calls yield twice. We then call this method, putting a block on the same line after the call, and after any arguments to the method. You can think of the association of a block with a method as a kind of argument passing. This works on one level, but it isn't really the whole story. The block is effectively an entire other method that can be invoked or passed forward as an argument to another method. For example:
 intro/block_example.rb def call_block
 puts "Start of method" yield yield puts "End of method" end
@@ -1589,9 +1595,9 @@ produces: Dave says hello Andy says goodbye
 You can use code blocks to package code to implement a later callback. Code blocks can be used to pass around chunks of code. They are used throughout the Ruby standard library to allow methods to perform an action on successive elements from a collection such as an array. The act of doing something similar to all objects in a collection is called enumeration in Ruby; other languages call this iteration.
 animals = ["ant", "bee", "cat", "dog"] # create an array animals.each { |animal| puts animal } # iterate over the contents
 produces: ant bee cat dog
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 2. Ruby.new · 30
+Chapter 2. Ruby.new ï¿½ 30
 Many of the looping constructs that are built into languages such as Java and JavaScript are method calls in Ruby, with the methods invoking an associated block zero or more times:
 ["cat", "dog", "horse"].each { |name| print name, " " } 5.times { print "*" } 3.upto(6) { |i| print i } ("a".."e").each { |char| print char } ("a".."e").each { print _1 }
 produces: cat dog horse *****3456abcdeabcde
@@ -1607,9 +1613,9 @@ In Chapter 11, Basic Input and Output, on page 179, we'll talk more about how to
 Command-Line Arguments
 When you run a Ruby program from the command line, you can pass in arguments. These are accessible from your Ruby code in two different ways.
 First, the global array ARGV contains each of the arguments passed to the running program. Create a file called cmd_line.rb that contains the following:
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Commenting Ruby · 31
+Commenting Ruby ï¿½ 31
 puts "You gave #{ARGV.size} arguments" p ARGV
 When we run it with arguments, we can see that they get passed in:
 $ ruby cmd_line.rb ant bee cat dog You gave 4 arguments ["ant", "bee", "cat", "dog"]
@@ -1618,7 +1624,7 @@ Commenting Ruby
 Ruby has two ways of adding comments to source code, one of which you'll use, and the other you'll almost certainly not use. The common one is the # symbol--anything after that symbol until the end of the line is a comment and is ignored by the interpreter. If the next line continues the comment, it needs its own # symbol. Ruby also has a rarely used multiline comment, where the first line starts with =begin and everything is a comment until the code reaches =end. Both the =begin and =end must be at the very beginning of the line, they cannot be indented. While we did just say that Ruby ignores comments, Ruby uses a small number of "magic comments" for configuration options on a per-file basis. These comments have the form of # directive: value and must appear in the file before the first line of the actual Ruby code. The most commonly used magic comment is # frozen_string_literal: true. If this directive is true, then every string literal that doesn't have an interpolation inside it'll automatically be frozen, as though freeze was called on it. You might also see an # encoding: VALUE directive, which specifies the encoding for string and regular expression literals inside that particular file. Ruby also has a # warn_indent: BOOLEAN flag that will throw code warnings if a file's indentation is mismatched. There's an experimental directive called # sharable_constant_value: which affects how values are shared using the Ractor multithreading tools.
 What's Next
 We finished our lightning-fast tour of some of the basic features of Ruby. We took a look at objects, methods, strings, containers, and regular expressions. We saw some simple control structures and looked at some rather nifty iterators. We hope this chapter has given you enough ammunition to be able to attack the rest of this book. It's time to move on and move up--up to a higher level. Next, we'll be looking at classes and objects, things that are at the same time both the highest-level constructs in Ruby and the essential underpinnings of the entire language.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 3
 Classes, Objects, and Variables
@@ -1627,9 +1633,9 @@ Defining Classes
 Let's give ourselves a simple problem to solve. Suppose we're running a secondhand bookstore. Every week, we do stock control. A gang of clerks uses portable bar-code scanners to record every book on our shelves. Each scanner generates a comma-separated value (CSV) file containing one row for each book scanned. The row contains (among other things) the book's ISBN and price. An extract from one of these files looks something like this:
 tut_classes/stock_stats/data.csv "Date","ISBN","Price" "2013-04-12","978-1-9343561-0-4",39.45 "2013-04-13","978-1-9343561-6-6",45.67 "2013-04-14","978-1-9343560-7-4",36.95
 Our job is to take all the CSV files and work out how many of each title we have, as well as the total list price of the books in stock. Whenever you're designing an Object-Oriented system, a good first step is to identify the domain concepts you're dealing with. Typically the domain concepts--which could represent a physical object, a process, or some other kind of entity--become classes in your final program, and then individual examples of those concepts are instances of these classes. It seems pretty clear that we'll need something to represent each data reading captured by the scanners. Each instance of this class will represent a particular row of data, and the collection of all of these objects will represent all the data we've captured.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 34
+Chapter 3. Classes, Objects, and Variables ï¿½ 34
 Let's call this class BookInStock. (Remember, class names start with an uppercase letter, and method names normally start with a lowercase letter.) Here's how we declare that class in Ruby using the keyword class:
 class BookInStock end
 As we saw in the previous chapter, we can create new instances of this class using the method `new`:
@@ -1643,9 +1649,9 @@ The initialize method is special in Ruby programs. When you call BookInStock.new
 For class BookInStock, the initialize method takes two parameters. These parameters act like local variables within the method, so they follow the local variable naming convention of starting with a lowercase letter. But, as local variables, they'd just evaporate once the initialize method returns, so we need to transfer them into instance variables. This is common behavior in an initialize method--the intent is to have our object set up and usable by the time initialize returns.
 This method also illustrates something that often trips up newcomers to Ruby. Notice how we say @isbn = isbn. It's easy to imagine that the two variables here, @isbn and isbn, are somehow related. It looks like they have the same name, but they don't. The former is an instance variable, and the "at" sign is actually part of its name.
 Finally, this code illustrates a basic piece of validation. The Float method takes its argument and converts it to a floating-point number, terminating the program with an error if that conversion fails. Later in the book, we'll see other, more resilient, ways to handle these exceptional situations. (We know that we shouldn't be holding prices in inexact old floats.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Defining Classes · 35
+Defining Classes ï¿½ 35
 Ruby has classes that hold fixed-point values exactly, but we want to look at classes, not arithmetic, in this section.)
 What we're doing here is saying that we want to accept any object for the price parameter as long as that parameter can be converted to a float. We can pass in a float, an integer, or even a string containing the representation of a float, and it'll work. Let's try this now. We'll create three objects, each with a different initial state. The p method prints out an internal representation of an object. Using it, we can see that in each case our parameters got transferred into the object's state, ending up as instance variables:
 tut_classes/stock_stats/book_in_stock_1.rb class BookInStock
@@ -1664,9 +1670,9 @@ b2 = BookInStock.new("isbn2", 3.14) puts b2
 b3 = BookInStock.new("isbn3", "5.67") puts b3
 produces: #<BookInStock:0x0000000104739628> #<BookInStock:0x0000000104739150> #<BookInStock:0x0000000104738fe8>
 Remember, puts writes strings to your program's standard output. When you pass it an object based on a class you wrote, it doesn't know what to do with the object yet, so it uses a simple
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 36
+Chapter 3. Classes, Objects, and Variables ï¿½ 36
 expedient: it writes the name of the object's class, followed by a colon and the object's unique object identifier, which is a hexadecimal number. It puts the whole lot inside #<...>.
 Our experience tells us that during development we'll be printing out the contents of a BookInStock object many times, and the default formatting leaves something to be desired. Fortunately, Ruby has a standard message, to_s, that it sends to any object it wants to render as a string. The default behavior of to_s, defined in the Object class, is the ClassName, then the colon, and then the object ID behavior we just described. So, when we pass one of our BookInStock objects to puts, the puts method calls to_s in that object to get its string representation.
 If we want a different behavior, we can override the default implementation of to_s to give us a better rendering of our objects (we'll talk more about how this works in Chapter 6, Sharing Functionality: Inheritance, Modules, and Mixins, on page 101):
@@ -1681,9 +1687,9 @@ The p method actually has a different method it calls on objects, and that metho
 Something's going on here that's both trivial and profound. See how the values we set into the instance variables @isbn and @price in the initialize method are subsequently available in the to_s method? That shows how instance variables work--they're stored with each object and available to all the instance methods of those objects.
 Objects and Attributes
 The BookInStock objects we've created so far have an internal state (the ISBN and price). That state is private to those objects--no other object can access an object's instance variables. In general, this is a Good Thing. It means that the object is solely responsible for maintaining its own consistency. (We feel obligated to note here that there's no such thing as
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Attributes · 37
+Objects and Attributes ï¿½ 37
 perfect privacy in Ruby, and you shouldn't depend on Ruby's language privacy for security purposes.)
 A totally secretive object is pretty useless--you can create it, but then you can't do anything with it. You'll normally define methods that let you access and manipulate the state of an object, allowing the outside world to interact with the object. These externally visible facets of an object are called its attributes.
 For our BookInStock objects, the first thing we may need is the ability to find out the ISBN and price (so we can count each distinct book and perform price calculations). One way of doing that is to write accessor methods:
@@ -1703,9 +1709,9 @@ The method attr_reader creates these attribute reader methods for you:
 tut_classes/stock_stats/book_in_stock_4.rb class BookInStock
 attr_reader :isbn, :price
 def initialize(isbn, price)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 38
+Chapter 3. Classes, Objects, and Variables ï¿½ 38
 @isbn = isbn @price = Float(price) end
 # .. end
 book = BookInStock.new("isbn1", 12.34) puts "ISBN = #{book.isbn}" puts "Price = #{book.price}"
@@ -1720,9 +1726,9 @@ private double _price; public double getPrice() {
 return _price; } public void setPrice(double newPrice) {
 _price = newPrice; } } b = new JavaBookInStock(....); b.setPrice(calculate_discount(b.getPrice()));
 In Ruby, the attributes of an object can be accessed via the getter method, and that access looks the same as any other method. We saw this earlier with phrases such as book.isbn. So, it seems natural that setting an attribute's value looks like a normal variable assignment
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Attributes · 39
+Objects and Attributes ï¿½ 39
 
 such as book.isbn = "new isbn". You enable that assignment by creating a Ruby method whose name ends with an equals sign. A method so named can be used as the target of assignments:
 
@@ -1784,9 +1790,9 @@ puts "Price
 
 = #{book.price}"
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 40
+Chapter 3. Classes, Objects, and Variables ï¿½ 40
 
 book.price = book.price * 0.75 puts "New price = #{book.price}"
 
@@ -1841,9 +1847,9 @@ We can take this even further and create a writing method parallel to the reader
 tut_classes/stock_stats/book_in_stock_8.rb class BookInStock
 attr_reader :isbn attr_accessor :price
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Objects and Attributes · 41
+Objects and Attributes ï¿½ 41
 
 def initialize(isbn, price) @isbn = isbn @price = Float(price)
 end
@@ -1891,9 +1897,9 @@ Attributes, Instance Variables, and Methods
 The previous section's description of attributes may leave you thinking that they're nothing more than methods--why'd we need to invent a fancy name for them? In a way, that's absolutely right. An attribute is just a method. Sometimes an attribute simply returns the value of an instance variable. Sometimes an attribute returns the result of a calculation. And sometimes those funky methods with equals signs at the end of their names are used to update the state of an object. So, the question is, where do attributes stop and regular methods begin? What makes something an attribute and not just a plain old method? Ultimately, that's one of those "how many angels can fit on the head of a pin" questions. Here's a personal take.
 When you design a class, you decide what internal state it has and also how that state is to appear on the outside to users of your class. The internal state is held in instance variables. The external state is exposed through methods we're calling attributes. And the other actions
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 42
+Chapter 3. Classes, Objects, and Variables ï¿½ 42
 
 your class can perform are just regular methods. It isn't a crucially important distinction, but by calling the external state of an object its attributes, you're helping clue people in on how they should view the class you've written.
 
@@ -1932,9 +1938,9 @@ tut_classes/stock_stats/csv_reader.rb class CsvReader
 def initialize @books_in_stock = []
 end
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Classes Working with Other Classes · 43
+Classes Working with Other Classes ï¿½ 43
 def read_in_csv_data(csv_file_name) CSV.foreach(csv_file_name, headers: true) do |row| @books_in_stock << BookInStock.new(row["ISBN"], row["Price"]) end
 end end
 Because you're probably wondering what's going on, let's dissect that read_in_csv_data method. On the first line, we tell the CSV library to open the file with the given name. The headers: true option tells the library to do two things. One is to parse the first line of the file as the names of the columns. The other is to parse each row into a hash with the column names as the keys and the row values as the values.
@@ -1951,9 +1957,9 @@ end end
 We're keeping the price_in_cents method so we can do money arithmetic without accumulating floating-point errors.
 Here's the csv_reader.rb file. The CsvReader class has two external dependencies, which are the standard CSV library and the BookInStock class that's in the file book_in_stock.rb. Ruby has a couple of helper methods that let us load external files.
 tut_classes/stock_stats/csv_reader.rb require "csv" require_relative "book_in_stock"
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 44
+Chapter 3. Classes, Objects, and Variables ï¿½ 44
 class CsvReader def initialize @books_in_stock = [] end
 def read_in_csv_data(csv_file_name) CSV.foreach(csv_file_name, headers: true) do |row| @books_in_stock << BookInStock.new(row["ISBN"], row["Price"]) end
 end
@@ -1973,24 +1979,24 @@ Again, this file uses require_relative to bring in the library it needs (in this
 We can run this program using the CSV data that we used in the code on page 33:
 $ ruby stock_stats.rb data.csv Processing data.csv Total value = 122.07
 Do we need three source files for this? Not necessarily. But as your programs grow (and almost all programs grow over time), you'll find that large files start to get cumbersome. You'll also find it harder to write automated tests against the code if it's in a monolithic chunk. Finally, you won't be able to reuse classes if they're all bundled into the final program. As a result, it's fairly common to only have one Ruby class per individual file.
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Specifying Access Control · 45
+Specifying Access Control ï¿½ 45
 Let's get back to our discussion of classes.
 Specifying Access Control
 When designing the interface for a class, it's important to consider how much of your class you'll expose to the outside world. Allow too much access into your class, and you risk increasing the amount that different classes depend on each other's internal implementation, which is called coupling. Users of your class will be tempted to rely on details of your class's implementation rather than on its logical interface. The good news is that the only easy way to change an object's state in Ruby is by calling one of its methods. If you control access to the methods, you control access to the object. A good rule of thumb is never to expose methods that could leave an object in an invalid state.
 Ruby gives you three levels of access control:
-· Public methods can be called by anyone--no access control is enforced. Methods are public by default (except for initialize, which is always private).
-· Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family. We'll talk more about subclasses in Chapter 6, Sharing Functionality: Inheritance, Modules, and Mixins, on page 101.
-· Private methods cannot be called with an explicit receiver--the receiver is always the current object, also known as self. This means that private methods can be called only in the context of the current object, and with self as the explicit receiver or with the implicit receiver. You can't invoke another object's private methods with normal dot syntax. (But there are ways around this using metaprogramming tools that we'll discuss in Chapter 22, The Ruby Object Model and Metaprogramming, on page 371)
+ï¿½ Public methods can be called by anyone--no access control is enforced. Methods are public by default (except for initialize, which is always private).
+ï¿½ Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family. We'll talk more about subclasses in Chapter 6, Sharing Functionality: Inheritance, Modules, and Mixins, on page 101.
+ï¿½ Private methods cannot be called with an explicit receiver--the receiver is always the current object, also known as self. This means that private methods can be called only in the context of the current object, and with self as the explicit receiver or with the implicit receiver. You can't invoke another object's private methods with normal dot syntax. (But there are ways around this using metaprogramming tools that we'll discuss in Chapter 22, The Ruby Object Model and Metaprogramming, on page 371)
 The difference between "protected" and "private" is fairly subtle and is different in Ruby than in other common object-oriented languages. If a method is protected, it may be called by any instance of the defining class or its subclasses. If a method is private, it may be called only within the context of the calling object--it's never possible to access another object's private methods directly, even if the object is of the same class as the caller. In practice, it's somewhat rare to see "protected" in use.
 Access control in Ruby is determined dynamically, as the program runs, not statically when the program is compiled or interpreted. You'll get an access violation only when the code attempts to execute the restricted method.
 You specify access levels to methods within the class or module definitions using one or more of the three access methods: public, protected, and private. You can use each function in three different ways.
 If called with no arguments, the three functions set the default access control of subsequently defined methods. This is probably familiar behavior if you're a C# or Java programmer, where you'd use keywords such as public to achieve the same effect. Although this usage looks like a keyword, in Ruby, the access control is actually a method.
 class MyClass # default is "public" def method1 # This method is public end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 46
+Chapter 3. Classes, Objects, and Variables ï¿½ 46
 protected # subsequent methods will be "protected" def method2
 # This method is protected end
 private # subsequent methods will be private" def method3
@@ -2008,9 +2014,9 @@ We've mentioned that most statements in Ruby return a value. In particular, defi
 class MyClass def method1 # This method is public end
 protected def method2 # This method is protected
 end
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Specifying Access Control · 47
+Specifying Access Control ï¿½ 47
 private def method3 # This method is private
 end
 public def method4 # This method is public
@@ -2030,9 +2036,9 @@ private def credit(account, amount) account.balance += amount
 end end
 savings = Account.new(100) checking = Account.new(200)
 transaction = Transaction.new(checking, savings) transaction.transfer(50)
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 48
+Chapter 3. Classes, Objects, and Variables ï¿½ 48
 Protected access is used when objects need to access the internal state of other objects of the same class. For example, we may want to allow two individual Account objects to compare their balances directly but to hide those balances from the rest of the world (perhaps because we present them in a different form):
 class Account protected attr_reader :balance # accessor method 'balance' but make it protected
 def greater_balance_than?(other) @balance > other.balance
@@ -2049,13 +2055,13 @@ puts "person1 is #{person1}" puts "person2 is #{person2}"
 produces: person1 is Jim person2 is Jim
 What happened here? We changed the first character of person1 (Ruby strings are mutable, unlike Java's), but both person1 and person2 changed from Tim to Jim.
 It all comes back to the fact that variables hold references to objects, not the objects themselves. Assigning person1 to person2 doesn't create any new objects; it simply copies person1's object reference to person2 so that both person1 and person2 refer to the same object, as shown in the illustration on page 49.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 person1 = "Tim"
 
 person1
 
-Reopening Classes · 49
+Reopening Classes ï¿½ 49
 String
 Tim
 
@@ -2097,9 +2103,9 @@ Reopening Classes
 While we're talking about classes in Ruby, we feel like we should at least mention one of the most unique features of Ruby's class structure: the ability to reopen a class definition and add new methods or variables to it at any time, even classes that are part of the thirdparty tools or the standard library.
 In other words, if you have something like this in Ruby:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 3. Classes, Objects, and Variables · 50
+Chapter 3. Classes, Objects, and Variables ï¿½ 50
 
 class Book attr_accessor :title
 # and a bunch of other stuff end
@@ -2135,13 +2141,13 @@ Which you would then call with StringUtilities.squish(str).
 This example shows the advantage of allowing classes to reopen--the ability to add and easily use utility methods is convenient. It's nice to not have to know which methods are defined by Rails and which of the many possible utility classes a method might be in.
 That said, this is something to be done with caution--many teams don't allow it in their own code without a clear reason. And you should be wary of using monkey-patching to change the behavior of existing methods, rather than adding new methods as we did here.
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-What's Next · 51
+What's Next ï¿½ 51
 Monkey-patching can make the behavior of code unpredictable. It can be hard to tell where behavior is defined, and these changes are global, meaning that if two files define the same method, the last defined one will win, leading to potentially hard-to-find bugs. Later in Chapter 22, The Ruby Object Model and Metaprogramming, on page 371, we'll talk about refinements, a Ruby feature that gives you the benefit of reopening classes, but also limits the scope of your changes.
 What's Next
 There's more to say about classes and objects in Ruby. We still have to look at class methods and concepts such as mixins and inheritance. We'll do that in Chapter 6, Sharing Functionality: Inheritance, Modules, and Mixins, on page 101. But, for now, know that everything you manipulate in Ruby is an object and that objects start their lives as instances of classes. And one of the most common things we do with objects is to create collections of them. But that's the subject of our next chapter.
-report erratum · discuss
+report erratum ï¿½ discuss
 
 CHAPTER 4
 Collections, Blocks, and Iterators
@@ -2191,9 +2197,9 @@ b
 
 # => ["second", "array"]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Collections, Blocks, and Iterators · 54
+Chapter 4. Collections, Blocks, and Iterators ï¿½ 54
 
 As the example shows, array indices start at zero. Index an array with a non-negative integer, and it returns the object at that position, or it returns nil if nothing is there. Index an array with a negative integer, and it counts from the end, with -1 being the last element of the array.
 
@@ -2274,9 +2280,9 @@ a = [1, 3, 5, 7, 9] a[1, 3] # => [3, 5, 7] a[3, 1] # => [7] a[-3, 2] # => [5, 7]
 You can also index arrays using ranges, in which the start and end positions are separated by two or three dots. The two-dot form includes the end position; the three-dot form doesn't. We'll talk more about ranges in Chapter 7, Basic Types: Numbers, Strings, and Ranges, on page 117.
 a = [1, 3, 5, 7, 9] a[1..3] # => [3, 5, 7] a[1...3] # => [3, 5] a[3..3] # => [7] a[-3..-1] # => [5, 7, 9]
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Arrays · 55
+Arrays ï¿½ 55
 
 The [] operator has a corresponding []= operator, which lets you set elements in the array. If used with a single integer index, the element at that position is replaced by whatever is on the right side of the assignment. Any gaps that result will be filled with nil:
 
@@ -2322,9 +2328,9 @@ You can use any character after %w as the delimiter. If it's something with a pa
 
 If you want an array of symbols instead of strings, Ruby has a similar %i shortcut:
 
-report erratum · discuss
+report erratum ï¿½ discuss
 
-Chapter 4. Collections, Blocks, and Iterators · 56
+Chapter 4. Collections, Blocks, and Iterators ï¿½ 56
 
 a = %i[ant bee cat dog elk]
 
@@ -2386,5 +2392,4 @@ Hashes
 
 Hashes (sometimes known as associative arrays, maps, or dictionaries) are similar to arrays in that they are indexed collections of object references. But, while you index arrays with integers, you index a hash with objects of any type, most often symbols and strings but also regular expressions or anything else in Ruby. When you store a value in a hash, you actually supply two objects: the index, which is called the key, and the value, or entry, to be stored with that key. You can subsequently retrieve the entry by indexing the hash with the same key value that you used to store it.
 
-report erratum · discuss
-
+report erratum ï¿½ discuss

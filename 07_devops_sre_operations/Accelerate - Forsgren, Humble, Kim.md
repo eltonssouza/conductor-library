@@ -1,3 +1,9 @@
+# Accelerate
+
+> **Author(s):** Forsgren, Humble, Kim Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 1
 
 Praise for Accelerate
@@ -37,7 +43,7 @@ ACCELERATE
 
 25 NW 23rd Pl, Suite 6314 Portland, OR 97210
 
-Copyright © 2018 by Nicole Forsgren, Jez Humble, and Gene Kim. Chapter 16 Copyright © 2018 by Karen Whitley Bell and Steve Bell,
+Copyright ï¿½ 2018 by Nicole Forsgren, Jez Humble, and Gene Kim. Chapter 16 Copyright ï¿½ 2018 by Karen Whitley Bell and Steve Bell,
 Lean IT Strategies, LLC. All rights reserved, for information about permission to reproduce selections from this book, write to Permissions, IT Revolution Press, LLC, 25 NW 23rd Pl, Suite 6314, Portland, OR
 97210
 
@@ -1193,14 +1199,14 @@ We measured transformational leadership using survey questions adapted from Raff
 My leader or manager:
 158
 
-(Vision) ­ Has a clear understanding of where we are going. ­ Has a clear sense of where he/she wants our team to be
-in five years. ­ Has a clear idea of where the organization is going. (Inspirational communication) ­ Says things that make employees proud to be a part of
-this organization. ­ Says positive things about the work unit. ­ Encourages people to see changing environments as
-situations full of opportunities. (Intellectual stimulation) ­ Challenges me to think about old problems in new ways. ­ Has ideas that have forced me to rethink some things
-that I have never questioned before. ­ Has challenged me to rethink some of my basic
-assumptions about my work. (Supportive leadership) ­ Considers my personal feelings before acting. ­ Behaves in a manner which is thoughtful of my personal
-needs. ­ Sees that the interests of employees are given due
-consideration. (Personal recognition) ­ Commends me when I do a better than average job. ­ Acknowledges improvement in my quality of work. ­ Personally compliments me when I do outstanding
+(Vision) ï¿½ Has a clear understanding of where we are going. ï¿½ Has a clear sense of where he/she wants our team to be
+in five years. ï¿½ Has a clear idea of where the organization is going. (Inspirational communication) ï¿½ Says things that make employees proud to be a part of
+this organization. ï¿½ Says positive things about the work unit. ï¿½ Encourages people to see changing environments as
+situations full of opportunities. (Intellectual stimulation) ï¿½ Challenges me to think about old problems in new ways. ï¿½ Has ideas that have forced me to rethink some things
+that I have never questioned before. ï¿½ Has challenged me to rethink some of my basic
+assumptions about my work. (Supportive leadership) ï¿½ Considers my personal feelings before acting. ï¿½ Behaves in a manner which is thoughtful of my personal
+needs. ï¿½ Sees that the interests of employees are given due
+consideration. (Personal recognition) ï¿½ Commends me when I do a better than average job. ï¿½ Acknowledges improvement in my quality of work. ï¿½ Personally compliments me when I do outstanding
 work.
 159
 
@@ -1702,8 +1708,8 @@ Figure 16.4: High-Performance Team, Management, and Leadership Behaviors and Pra
 practices)
 237
 
-Develop and maintain the right mindset. This is about learning and how to create an environment for shared organizational learning-not about just doing the practices, and certainly not about employing tools. Make it your own. This means three things: ­ Don't look to copy other enterprises on their methods
-and practices, or to implement an expert-designed model. Study and learn from them, but then experiment and adapt to what works for you and your culture. ­ Don't contract it out to a large consulting firm to expediently transform your organization or to implement new methodologies or practices for you. Your teams will feel that these methodologies (Lean, Agile, whatever) are being done to them. While your current processes may temporarily improve, your teams will not develop the confidence or capability to sustain, continue to improve, or to adapt and develop new processes and behaviors on their own. ­ Do develop your own coaches. Initially you may need to hire outside coaching to establish a solid foundation, but you must ultimately be the agent of your own change. Coaching depth is a key lever for sustaining and scaling. You, too, need to change your way of work. Whether you are a senior leader, manager, or team member, lead by example. A generative culture starts with demonstrating new behaviors, not delegating them. Practice discipline. It was not easy for Jannes' management
+Develop and maintain the right mindset. This is about learning and how to create an environment for shared organizational learning-not about just doing the practices, and certainly not about employing tools. Make it your own. This means three things: ï¿½ Don't look to copy other enterprises on their methods
+and practices, or to implement an expert-designed model. Study and learn from them, but then experiment and adapt to what works for you and your culture. ï¿½ Don't contract it out to a large consulting firm to expediently transform your organization or to implement new methodologies or practices for you. Your teams will feel that these methodologies (Lean, Agile, whatever) are being done to them. While your current processes may temporarily improve, your teams will not develop the confidence or capability to sustain, continue to improve, or to adapt and develop new processes and behaviors on their own. ï¿½ Do develop your own coaches. Initially you may need to hire outside coaching to establish a solid foundation, but you must ultimately be the agent of your own change. Coaching depth is a key lever for sustaining and scaling. You, too, need to change your way of work. Whether you are a senior leader, manager, or team member, lead by example. A generative culture starts with demonstrating new behaviors, not delegating them. Practice discipline. It was not easy for Jannes' management
 238
 
 team to record and reflect on how they spent their time or try new things they weren't initially comfortable with in front of the people who reported to them. Change takes discipline and courage. Practice patience. Your current way of work took decades to entrench. It's going to take time to change actions and thought patterns until they become new habits and, eventually, your new culture. Practice practice. You just have to try it: learn, succeed, fail, learn, adjust, repeat. Rhythm and routine, rhythm and routine, rhythm and routine . . .
@@ -1794,7 +1800,7 @@ As a reminder: Correlation looks at how closely two variables move together (or 
 
 profits to fit into control groups defined by the research team. Analysis methods used to test prediction include simple linear regression and partial least squares regression, described in Appendix C.
 ORGANIZATIONAL PERFORMANCE
-High performers are twice as likely to exceed organizational performance goals as low performers: profitability, productivity, market share, number of customers. High performers are twice as likely to exceed noncommercial performance goals as low performers: quantity of products/ services, operating efficiency, customer satisfaction, quality of products/services, achieving organizational/mission goals. In a follow-up survey to the initial 2014 data collection effort, we gathered stock ticker data and performed additional analysis on responses from just over 1,000 respondents across 355 companies who volunteered the organization they worked for. For those who worked for publicly traded companies, we found the following (this analysis was not replicated in later years because our dataset was not large enough): ­ High performers had 50% higher market capitalization
+High performers are twice as likely to exceed organizational performance goals as low performers: profitability, productivity, market share, number of customers. High performers are twice as likely to exceed noncommercial performance goals as low performers: quantity of products/ services, operating efficiency, customer satisfaction, quality of products/services, achieving organizational/mission goals. In a follow-up survey to the initial 2014 data collection effort, we gathered stock ticker data and performed additional analysis on responses from just over 1,000 respondents across 355 companies who volunteered the organization they worked for. For those who worked for publicly traded companies, we found the following (this analysis was not replicated in later years because our dataset was not large enough): ï¿½ High performers had 50% higher market capitalization
 growth over three years compared to low performers.
 253
 
@@ -1804,10 +1810,10 @@ The four measures of software delivery performance (deploy frequency, lead time,
 
 the poorer the software delivery performance and culture.
 QUALITY
-Unplanned work and rework: ­ High performers reported spending 49% of their time
-on new work and 21% on unplanned work or rework. ­ Low performers spend 38% of their time on new work
-and 27% on unplanned work or rework. ­ There is evidence of the J-curve in our rework data.
-Medium performers spend more time on unplanned rework than low performers, with 32% of their time spent on unplanned work or rework. Manual work: ­ High performers report the lowest amount of manual work across all practices (configuration management, testing, deployments, change approval process) at statistically significant levels. ­ There is evidence of the J-curve again. Medium performers do more manual work than low performers when it comes to deployment and change approval processes, and these differences are statistically significant. ­ See Table B.1 for manual work percentages in high, medium, and low performers.
+Unplanned work and rework: ï¿½ High performers reported spending 49% of their time
+on new work and 21% on unplanned work or rework. ï¿½ Low performers spend 38% of their time on new work
+and 27% on unplanned work or rework. ï¿½ There is evidence of the J-curve in our rework data.
+Medium performers spend more time on unplanned rework than low performers, with 32% of their time spent on unplanned work or rework. Manual work: ï¿½ High performers report the lowest amount of manual work across all practices (configuration management, testing, deployments, change approval process) at statistically significant levels. ï¿½ There is evidence of the J-curve again. Medium performers do more manual work than low performers when it comes to deployment and change approval processes, and these differences are statistically significant. ï¿½ See Table B.1 for manual work percentages in high, medium, and low performers.
 Table B.1 Manual Work Percentages
 255
 
@@ -1833,55 +1839,55 @@ BURNOUT AND DEPLOYMENT PAIN
 Deployment pain is negatively correlated with software delivery performance and Westrum organizational culture. The five factors most highly correlated with burnout are Westrum organizational culture (negative), leaders (negative), organizational investment (negative), organizational performance (negative), and deployment pain (positive).
 
 TECHNICAL CAPABILITIES
-(Architecture capabilities are in their own section, below.) Trunk-based development: ­ High performers have the shortest integration times and branch lifetimes, with branch life and integration
+(Architecture capabilities are in their own section, below.) Trunk-based development: ï¿½ High performers have the shortest integration times and branch lifetimes, with branch life and integration
 256
 
-typically lasting hours or a day. ­ Low performers have the longest integration times and
+typically lasting hours or a day. ï¿½ Low performers have the longest integration times and
 branch lifetimes, with branch life and integration typically lasting days or weeks. Technical practices predict continuous delivery, Westrum organizational culture, identity, job satisfaction, software delivery performance, less burnout, less deployment pain, and less time spent on rework. High performers spend 50% less time remediating security issues than low performers.
 ARCHITECTURE CAPABILITIES
 There was no correlation between a particular type of system (e.g., system of engagement or system of record) and software delivery performance. Low performers were more likely to say that the software they were building--or the set of services they had to interact with--was "custom software developed by another company (e.g., an outsourcing partner)." Low performers were more likely to be working on mainframe systems. Having to integrate against mainframe systems was not a statistically significant indicator of performance. Medium and high performers have no significant correlation between system type and software delivery performance.
 257
 
-A loosely coupled, well-encapsulated architecture drives IT performance. In the 2017 dataset, this was the biggest contributor to continuous delivery. Among those who deploy at least once per day, as the number of developers on the team increases we found: ­ Low performers deploy with decreasing frequency. ­ Medium performers deploy at a constant frequency. ­ High performers deploy at a significantly increasing
-frequency. High-performing teams were more likely to respond positively to the following statements: ­ We can do most of our testing without requiring an
-integrated environment. ­ We can and do deploy/release our applications
-independently of other applications/services they depend on. ­ It is custom software that uses a microservices architecture. We found no significant differences according to which type of architecture teams were building or integrating against.
+A loosely coupled, well-encapsulated architecture drives IT performance. In the 2017 dataset, this was the biggest contributor to continuous delivery. Among those who deploy at least once per day, as the number of developers on the team increases we found: ï¿½ Low performers deploy with decreasing frequency. ï¿½ Medium performers deploy at a constant frequency. ï¿½ High performers deploy at a significantly increasing
+frequency. High-performing teams were more likely to respond positively to the following statements: ï¿½ We can do most of our testing without requiring an
+integrated environment. ï¿½ We can and do deploy/release our applications
+independently of other applications/services they depend on. ï¿½ It is custom software that uses a microservices architecture. We found no significant differences according to which type of architecture teams were building or integrating against.
 LEAN MANAGEMENT CAPABILITIES
 Lean management capabilities predict Westrum organizational culture, job satisfaction, software delivery performance, and less burnout. Change approvals:
 258
 
-­ Change advisory boards are negatively correlated with software delivery performance.
-­ Approval only for high-risk changes was not correlated with software delivery performance.
-­ Teams that reported no approval process or used peer review achieved higher software delivery performance.
-­ A lightweight change approval process predicts software delivery performance.
+ï¿½ Change advisory boards are negatively correlated with software delivery performance.
+ï¿½ Approval only for high-risk changes was not correlated with software delivery performance.
+ï¿½ Teams that reported no approval process or used peer review achieved higher software delivery performance.
+ï¿½ A lightweight change approval process predicts software delivery performance.
 LEAN PRODUCT MANAGEMENT CAPABILITIES
 The ability to take an experimental approach to product development is highly correlated with the technical practices that contribute to continuous delivery. Lean product development capabilities predict Westrum organizational culture, software delivery performance, organizational performance, and less burnout.
 ORGANIZATIONAL CULTURE CAPABILITIES
-These measures are strongly correlated to culture: ­ Organizational investment in DevOps ­ The experience and effectiveness of team leaders ­ Continuous delivery capabilities ­ The ability of development, operations, and infosec
-teams to achieve win-win outcomes ­ Organizational performance
+These measures are strongly correlated to culture: ï¿½ Organizational investment in DevOps ï¿½ The experience and effectiveness of team leaders ï¿½ Continuous delivery capabilities ï¿½ The ability of development, operations, and infosec
+teams to achieve win-win outcomes ï¿½ Organizational performance
 259
 
-­ Deployment pain ­ Lean management practices Westrum organizational culture predicts software delivery performance, organizational performance, and job satisfaction. Westrum organizational culture is negatively correlated with deployment pain. The more painful code deployments are, the poorer the culture.
+ï¿½ Deployment pain ï¿½ Lean management practices Westrum organizational culture predicts software delivery performance, organizational performance, and job satisfaction. Westrum organizational culture is negatively correlated with deployment pain. The more painful code deployments are, the poorer the culture.
 IDENTITY, EMPLOYEE NET PROMOTER SCORE (ENPS), AND JOB SATISFACTION
-Identity predicts organizational performance. High performers have better employee loyalty, as measured by employee Net Promoter Score (eNPS). Employees in high-performing organizations were 2.2 times more likely to recommend their organization as a great place to work. eNPS was significantly correlated with: ­ The extent to which the organization collects customer
-feedback and uses it to inform the design of products and features ­ The ability of teams to visualize and understand the flow of products or features through development all the way to the customer ­ The extent to which employees identify with their organization's values and goals, and the effort they are willing to put in to make the organization successful
+Identity predicts organizational performance. High performers have better employee loyalty, as measured by employee Net Promoter Score (eNPS). Employees in high-performing organizations were 2.2 times more likely to recommend their organization as a great place to work. eNPS was significantly correlated with: ï¿½ The extent to which the organization collects customer
+feedback and uses it to inform the design of products and features ï¿½ The ability of teams to visualize and understand the flow of products or features through development all the way to the customer ï¿½ The extent to which employees identify with their organization's values and goals, and the effort they are willing to put in to make the organization successful
 260
 
 Employees in high-performing teams are 2.2 times more likely to recommend their organization as a great place to work. Employees in high-performing teams are 1.8 times more likely to recommend their team as a great place to work. Job satisfaction predicts organizational performance.
 LEADERSHIP
-We observed significant differences in leadership characteristics among high-, medium-, and low-performing teams. ­ High-performing teams reported having leaders with
-the strongest behaviors across all dimensions: vision, inspirational communication, intellectual stimulation, supportive leadership, and personal recognition. ­ Low-performing teams reported the lowest levels of all five leadership characteristics. ­ These differences were all at statistically significant levels. Characteristics of transformational leadership are highly correlated with software delivery performance. Transformational leadership is highly correlated with employee Net Promoter Score (eNPS). Teams with the top 10% of reported transformational leadership characteristics were equally or even less likely to be high performers, compared to the entire population of
+We observed significant differences in leadership characteristics among high-, medium-, and low-performing teams. ï¿½ High-performing teams reported having leaders with
+the strongest behaviors across all dimensions: vision, inspirational communication, intellectual stimulation, supportive leadership, and personal recognition. ï¿½ Low-performing teams reported the lowest levels of all five leadership characteristics. ï¿½ These differences were all at statistically significant levels. Characteristics of transformational leadership are highly correlated with software delivery performance. Transformational leadership is highly correlated with employee Net Promoter Score (eNPS). Teams with the top 10% of reported transformational leadership characteristics were equally or even less likely to be high performers, compared to the entire population of
 261
 
 teams represented in survey results. Leadership is predictive of Lean product development capabilities (working in small batches, team experimentation, gathering and implementing customer feedback) and technical practices (test automation, deployment automation, trunk-based development, shift left on security, loosely coupled architecture, empowered teams, continuous integration).
 DIVERSITY
-Of the total respondents, 5% self-identified as women in 2015, 6% in 2016, and 6.5% in 2017. 33% of our respondents report working on teams with no women. 56% of our respondents report working on teams that are less than 10% female. 81% of our respondents report working on teams that are less than 25% female. Gender ­ 91% Male ­ 6% Female ­ 3% Non-binary or other Underrepresented ­ 77% responded no, I do not identify as
-underrepresented. ­ 12% responded yes, I identify as underrepresented.
+Of the total respondents, 5% self-identified as women in 2015, 6% in 2016, and 6.5% in 2017. 33% of our respondents report working on teams with no women. 56% of our respondents report working on teams that are less than 10% female. 81% of our respondents report working on teams that are less than 25% female. Gender ï¿½ 91% Male ï¿½ 6% Female ï¿½ 3% Non-binary or other Underrepresented ï¿½ 77% responded no, I do not identify as
+underrepresented. ï¿½ 12% responded yes, I identify as underrepresented.
 262
 
-­ 11% responded that they preferred not to respond or NA.
+ï¿½ 11% responded that they preferred not to respond or NA.
 OTHER
-Investment in DevOps was highly correlated to software delivery performance. Percentage of people reporting working in DevOps teams has grown over the last four years: ­ 16% in 2014 ­ 19% in 2015 ­ 22% in 2016 ­ 27% in 2017 DevOps is happening across all operating systems. We first started asking about this in 2015. ­ 78% of respondents are widely deployed on 1-4
+Investment in DevOps was highly correlated to software delivery performance. Percentage of people reporting working in DevOps teams has grown over the last four years: ï¿½ 16% in 2014 ï¿½ 19% in 2015 ï¿½ 22% in 2016 ï¿½ 27% in 2017 DevOps is happening across all operating systems. We first started asking about this in 2015. ï¿½ 78% of respondents are widely deployed on 1-4
 different operating systems, the most popular being: Enterprise Linux, Windows 2012, Windows 2008, Debian/Ubuntu Linux. Figure B.1 shows the Firmographics from the 2017 data. We note that high, medium, and low performers see representation from all groups. That is, there are large enterprises in the high-, medium-, and low-performing groups. We also see startups in high-, medium-, and lowperforming groups. Highly regulated industries (including financial, healthcare, telecommunications, etc.) are also found in the high-, medium-, and low-performing groups.
 263
 
@@ -1905,8 +1911,8 @@ Armed with our research design and survey questions, we set out to collect data.
 We collected data using snowball sampling, a nonprobabilistic technique. Details on why this is an appropriate technique, how we collected our sample, and strategies we used to counteract limitations of the technique are given in Chapter 15.
 TESTS FOR BIAS
 Once we have our data, we start by testing for bias.
-Chi-square tests. A test for differences. This is used to check for significant differences in variables that can only take on categorical values (for example, gender). T-tests. A test for differences. This is used to check for significant differences in variables that can take on scale values (for example, Likert values). We used this to check for differences between early and late responders. Common method bias (CMB) or common method variance (CMV). This involves conducting two tests: ­ Harman's single-factor test (Podsakoff and Dalton
-1987). This checks to see if a single factor features significant loading for all items. ­ The marker variable test (Lindell and Whitney 2001). This checks to see if all originally significant correlations remain significant after adjusting for the
+Chi-square tests. A test for differences. This is used to check for significant differences in variables that can only take on categorical values (for example, gender). T-tests. A test for differences. This is used to check for significant differences in variables that can take on scale values (for example, Likert values). We used this to check for differences between early and late responders. Common method bias (CMB) or common method variance (CMV). This involves conducting two tests: ï¿½ Harman's single-factor test (Podsakoff and Dalton
+1987). This checks to see if a single factor features significant loading for all items. ï¿½ The marker variable test (Lindell and Whitney 2001). This checks to see if all originally significant correlations remain significant after adjusting for the
 267
 
 second-lowest positive correlation among the constructs.
@@ -1914,30 +1920,30 @@ We did not see bias between early and late responders. Common-method bias does n
 TESTING FOR RELATIONSHIPS
 Consistent with best practices and accepted research, we conducted our analysis in two stages (Gefen and Straub 2005). In the first step, we conduct analyses on the measures to validate and form our latent constructs (see Chapter 13). This allows us to determine which constructs can be included in the second stage of our research.
 TESTS OF THE MEASUREMENT MODEL
-Principal components analysis (PCA). A test to help confirm convergent validity. This method is used to help explain the variance-covariance structure of a set of variables. ­ Principal components analysis was conducted with
-varimax rotation, with separate analyses for independent and dependent variables (Straub et al. 2004). ­ There are two types of PCA that can be done: confirmatory factor analysis (CFA) and exploratory
+Principal components analysis (PCA). A test to help confirm convergent validity. This method is used to help explain the variance-covariance structure of a set of variables. ï¿½ Principal components analysis was conducted with
+varimax rotation, with separate analyses for independent and dependent variables (Straub et al. 2004). ï¿½ There are two types of PCA that can be done: confirmatory factor analysis (CFA) and exploratory
 268
 
-factor analysis (EFA). In almost all cases, we performed EFA. We chose this method because it is a stricter test used to uncover the underlying structure of the variables without imposing or suggesting a structure a priori. (One notable exception was when we used CFA to confirm the validity for transformational leadership; this was selected because the items are well-established in the literature.) Items should load on their respective constructs higher than 0.60 and should not cross-load. Average variance extracted (AVE). A test to help confirm both convergent and discriminant validity. AVE is a measure of the amount of variance that is captured by a construct in relation to the amount of variance due to measurement error. ­ AVE must be greater than 0.50 to indicate convergent validity. ­ The square root of the AVE must be greater than any cross-diagonal correlations of the constructs (when you place the square root of the AVE on the diagonal of a correlation table) to indicate divergent validity. Correlation. This test helps confirm divergent validity when correlations between constructs are below 0.85 (Brown 2006). Pearson correlations were used (see below for details). Reliability ­ Cronbach's alpha: A measure of internal consistency. The acceptable cutoff for CR is 0.70 (Nunnally 1978); all constructs met either this cutoff or CR (listed next).
+factor analysis (EFA). In almost all cases, we performed EFA. We chose this method because it is a stricter test used to uncover the underlying structure of the variables without imposing or suggesting a structure a priori. (One notable exception was when we used CFA to confirm the validity for transformational leadership; this was selected because the items are well-established in the literature.) Items should load on their respective constructs higher than 0.60 and should not cross-load. Average variance extracted (AVE). A test to help confirm both convergent and discriminant validity. AVE is a measure of the amount of variance that is captured by a construct in relation to the amount of variance due to measurement error. ï¿½ AVE must be greater than 0.50 to indicate convergent validity. ï¿½ The square root of the AVE must be greater than any cross-diagonal correlations of the constructs (when you place the square root of the AVE on the diagonal of a correlation table) to indicate divergent validity. Correlation. This test helps confirm divergent validity when correlations between constructs are below 0.85 (Brown 2006). Pearson correlations were used (see below for details). Reliability ï¿½ Cronbach's alpha: A measure of internal consistency. The acceptable cutoff for CR is 0.70 (Nunnally 1978); all constructs met either this cutoff or CR (listed next).
 269
 
-Note that Cronbach's alpha is known to be biased against small scales (i.e., constructs with a low number of items), so both Cronbach's alpha and composite reliability were run to confirm reliability. ­ Composite reliability (CR): A measure of internal consistency and convergent validity. The acceptable cutoff for CR is 0.70 (Chin et al. 2003); all constructs either met this cutoff or Cronbach's alpha (listed above).
+Note that Cronbach's alpha is known to be biased against small scales (i.e., constructs with a low number of items), so both Cronbach's alpha and composite reliability were run to confirm reliability. ï¿½ Composite reliability (CR): A measure of internal consistency and convergent validity. The acceptable cutoff for CR is 0.70 (Chin et al. 2003); all constructs either met this cutoff or Cronbach's alpha (listed above).
 All of the above tests must pass for a construct to be considered suitable for use in further analysis. We say that a construct "exhibits good psychometric properties" if this is the case, and proceed. All constructs used in our research passed these tests.
 TESTS FOR RELATIONSHIPS (CORRELATION AND PREDICTION) AND CLASSIFICATION
 In the second step, we take the measures that have passed the first step of measurement validation and test our hypotheses. These are the statistical tests that are used in this phase of the research. As outlined in Chapter 12, in this research design we test for inferential prediction, which means all tested hypotheses are supported by additional theories and literature. If no supporting theories exist to suggest that a predictive relationship exists, we only report correlations.
 Correlation. Signifies a mutual relationship or connection between two or more constructs. We use Pearson
 270
 
-correlation in this research, which is the correlation most often used in business contexts today. Pearson correlation measures the strength of a linear relationship between two variables, called Pearson's r. It is often referred to as just correlation and takes a value between -1 and 1. If two variables have a perfect linear correlation, i.e., move together exactly, r = 1. If they move in exactly opposite directions, r = -1. If they are not correlated at all, r = 0. Regression. This is used to test predictive relationships. There are several kinds of regression. We used two types of linear regression in this research, as described below. ­ Partial least squares regression (PLS). This was
+correlation in this research, which is the correlation most often used in business contexts today. Pearson correlation measures the strength of a linear relationship between two variables, called Pearson's r. It is often referred to as just correlation and takes a value between -1 and 1. If two variables have a perfect linear correlation, i.e., move together exactly, r = 1. If they move in exactly opposite directions, r = -1. If they are not correlated at all, r = 0. Regression. This is used to test predictive relationships. There are several kinds of regression. We used two types of linear regression in this research, as described below. ï¿½ Partial least squares regression (PLS). This was
 used to test predictive relationships in years 2015 through 2017. PLS is a correlation-based regression method that was selected for our analysis for a few reasons (Chin 2010):  This method optimizes for prediction of the
-outcome variable. As we wanted our results to be beneficial to the practitioners in the industry, this was important to us.  PLS does not require assumptions of multivariate normality. Said another way, this method doesn't require that our data be normally distributed.  PLS is a great choice for exploratory research--and that's exactly what our research program is! ­ Linear regression. This was used to test predictive relationships in our 2014 research.
+outcome variable. As we wanted our results to be beneficial to the practitioners in the industry, this was important to us.  PLS does not require assumptions of multivariate normality. Said another way, this method doesn't require that our data be normally distributed.  PLS is a great choice for exploratory research--and that's exactly what our research program is! ï¿½ Linear regression. This was used to test predictive relationships in our 2014 research.
 271
 
 TESTS FOR CLASSIFICATION
 These tests could be done at any time, because they don't rely on constructs.
-Cluster analysis. This was used to develop a data-driven classification of software delivery performance, giving us high, medium, and low performers. In cluster analysis, each measurement is put on a separate dimension, and the clustering algorithm attempts to minimize the distance between all cluster members and maximize the distance among clusters. Cluster analysis was conducted using five methods: Ward's (1963), between-groups linkage, withingroups linkage, centroid, and median. The results for cluster solutions were compared in terms of: (a) change in fusion coefficients, (b) number of individuals in each cluster (solutions including clusters with few individuals were excluded), and (c) univariate F-statistics (Ulrich and McKelvey 1990). Based on these criteria, the solution using Ward's method performed best and was selected. We used the hierarchical cluster analysis method because: ­ It has strong explanatory power (letting us understand
-parent-child relationships in the clusters). ­ We did not have any industry or theoretical reasons to
-have a predetermined number of clusters. That is, we wanted the data to determine the number of clusters we should have. ­ Our dataset was not too big. (Hierarchical clustering is
+Cluster analysis. This was used to develop a data-driven classification of software delivery performance, giving us high, medium, and low performers. In cluster analysis, each measurement is put on a separate dimension, and the clustering algorithm attempts to minimize the distance between all cluster members and maximize the distance among clusters. Cluster analysis was conducted using five methods: Ward's (1963), between-groups linkage, withingroups linkage, centroid, and median. The results for cluster solutions were compared in terms of: (a) change in fusion coefficients, (b) number of individuals in each cluster (solutions including clusters with few individuals were excluded), and (c) univariate F-statistics (Ulrich and McKelvey 1990). Based on these criteria, the solution using Ward's method performed best and was selected. We used the hierarchical cluster analysis method because: ï¿½ It has strong explanatory power (letting us understand
+parent-child relationships in the clusters). ï¿½ We did not have any industry or theoretical reasons to
+have a predetermined number of clusters. That is, we wanted the data to determine the number of clusters we should have. ï¿½ Our dataset was not too big. (Hierarchical clustering is
 272
 
 not suitable for extremely large datasets.) Analysis of variance (ANOVA). To interpret the clusters, post hoc comparisons of the means of the software delivery performance outcomes (deploy frequency, lead time, MTTR, and change fail rate) were conducted using Tukey's test. Tukey's was selected because it does not require normality; Duncan's multiple range test was also run to test for significant differences and in all cases the results were the same (Hair et al. 2006). Pairwise comparisons were done across clusters using each software delivery performance variable, and significant differences sorted the clusters into groups wherein that variable's mean value does not significantly differ across clusters within a group, but differs at a statistically significant level (p < 0.10 in our research) across clusters in different groups. In all years except 2016 (see Chapter 2 callout for the Surprise), high performers saw the best performance on all variables, low performers saw the worst performance on all variables, and medium performers saw the middle performance on all variables--all at statistically significant levels.
@@ -2537,4 +2543,3 @@ About the Authors
 313
 
 315
-

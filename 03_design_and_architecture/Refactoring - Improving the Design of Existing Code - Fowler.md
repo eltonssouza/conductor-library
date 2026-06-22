@@ -1,3 +1,9 @@
+# Refactoring - Improving the Design of Existing Code
+
+> **Author(s):** Fowler Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Refactoring: Improving the Design of Existing Code
 by Martin Fowler, Kent Beck (Contributor), John Brant (Contributor), William Opdyke, don Roberts
 Another stupid release 2002J For all the people which doesn't have money to buy a good book
@@ -66,10 +72,10 @@ Who Should Read This Book?
 This book is aimed at a professional programmer, someone who writes software for a living. The examples and discussion include a lot of code to read and understand. The examples are all in Java. I chose Java because it is an increasingly well-known language that can be easily understood by anyone with a background in C. It is also an object-oriented language, and objectoriented mechanisms are a great help in refactoring.
 Although it is focused on the code, refactoring has a large impact on the design of system. It is vital for senior designers and architects to understand the principles of refactoring and to use them in their projects. Refactoring is best introduced by a respected and experienced developer. Such a developer can best understand the principles behind refactoring and adapt those principles to the specific workplace. This is particularly true when you are using a language other than Java, because you have to adapt the examples I've given to other languages.
 Here's how to get the most from this book without reading all of it.
-· If you want to understand what refactoring is, read Chapter 1; the example should make the process clear.
-· If you want to understand why you should refactor, read the first two chapters. They will tell you what refactoring is and why you should do it.
-· If you want to find where you should refactor, read Chapter 3. It tells you the signs that suggest the need for refactoring.
-· If you want to actually do refactoring, read the first four chapters completely. Then skip-read the catalog. Read enough of the catalog to know roughly what is in there. You don't have to understand all the details. When you actually need to carry out a refactoring, read the refactoring in detail and use it to help you. The catalog is a reference section, so you probably won't want to read it in one go. You should also read the guest chapters, especially Chapter 15.
+ï¿½ If you want to understand what refactoring is, read Chapter 1; the example should make the process clear.
+ï¿½ If you want to understand why you should refactor, read the first two chapters. They will tell you what refactoring is and why you should do it.
+ï¿½ If you want to find where you should refactor, read Chapter 3. It tells you the signs that suggest the need for refactoring.
+ï¿½ If you want to actually do refactoring, read the first four chapters completely. Then skip-read the catalog. Read enough of the catalog to know roughly what is in there. You don't have to understand all the details. When you actually need to carry out a refactoring, read the refactoring in detail and use it to help you. The catalog is a reference section, so you probably won't want to read it in one go. You should also read the guest chapters, especially Chapter 15.
 Building on the Foundations Laid by Others
 10
 
@@ -80,7 +86,7 @@ Acknowledgments
 Even with all that research to draw on, I still needed a lot of help to write this book. First and foremost, Kent Beck was a huge help. The first seeds were planted in a bar in Detroit when Kent told me about a paper he was writing for the Smalltalk Report [Beck, hanoi]. It not only provided many ideas for me to steal for Chapter 1 but also started me off in taking notes of refactorings. Kent helped in other places too. He came up with the idea of code smells, encouraged me at various sticky points, and generally worked with me to make this book work. I can't help thinking he could have written this book much better himself, but I had the time and can only hope I did the subject justice.
 As I've written this, I wanted to share much of this expertise directly with you, so I'm very grateful that many of these people have spent some time adding some material to this book. Kent Beck, John Brant, William Opdyke, and Don Roberts have all written or co-written chapters. In addition, Rich Garzaniti and Ron Jeffries have added useful sidebars.
 Any author will tell you that technical reviewers do a great deal to help in a book like this. As usual, Carter Shanklin and his team at Addison-Wesley put together a great panel of hard-nosed reviewers. These were
-· Ken Auer, Rolemodel Software, Inc. · Joshua Bloch, Sun Microsystems, Java Software · John Brant, University of Illinois at Urbana-Champaign · Scott Corley, High Voltage Software, Inc. · Ward Cunningham, Cunningham & Cunningham, Inc. · Stéphane Ducasse · Erich Gamma, Object Technology International, Inc. · Ron Jeffries · Ralph Johnson, University of Illinois · Joshua Kerievsky, Industrial Logic, Inc. · Doug Lea, SUNY Oswego · Sander Tichelaar
+ï¿½ Ken Auer, Rolemodel Software, Inc. ï¿½ Joshua Bloch, Sun Microsystems, Java Software ï¿½ John Brant, University of Illinois at Urbana-Champaign ï¿½ Scott Corley, High Voltage Software, Inc. ï¿½ Ward Cunningham, Cunningham & Cunningham, Inc. ï¿½ Stï¿½phane Ducasse ï¿½ Erich Gamma, Object Technology International, Inc. ï¿½ Ron Jeffries ï¿½ Ralph Johnson, University of Illinois ï¿½ Joshua Kerievsky, Industrial Logic, Inc. ï¿½ Doug Lea, SUNY Oswego ï¿½ Sander Tichelaar
 They all added a great deal to the readability and accuracy of this book, and removed at least some of the errors that can lurk in any manuscript. I'd like to highlight a couple of very visible suggestions that made a difference to the look of the book. Ward and Ron got me to do Chapter
 11
 
@@ -619,8 +625,8 @@ You can't program long without realizing that what the system does today is only
 I know enough to do today's work. I don't know enough to do tomorrow's. But if I only work for today, I won't be able to work tomorrow at all.
 Refactoring is one way out of the bind. When you find that yesterday's decision doesn't make sense today, you change the decision. Now you can do today's work. Tomorrow, some of your understanding as of today will seem naive, so you'll change that, too.
 What is it that makes programs hard to work with? Four things I can think of as I am typing this are as follows:
-· Programs that are hard to read are hard to modify. · Programs that have duplicated logic are hard to modify. · Programs that require additional behavior that requires you to
-change running code are hard to modify. · Programs with complex conditional logic are hard to modify.
+ï¿½ Programs that are hard to read are hard to modify. ï¿½ Programs that have duplicated logic are hard to modify. ï¿½ Programs that require additional behavior that requires you to
+change running code are hard to modify. ï¿½ Programs with complex conditional logic are hard to modify.
 So, we want programs that are easy to read, that have all logic specified in one and only one place, that do not allow changes to endanger existing behavior, and that allow conditional logic to be expressed as simply as possible.
 Refactoring is the process of taking a running program and adding to its value, not by changing its behavior but by giving it more of these qualities that enable us to continue developing at speed.
 51
@@ -635,15 +641,15 @@ Computer Science is the discipline that believes all problems can be solved with
 Given software engineers'infatuation with indirection, it may not surprise you to learn that most refactoring introduces more indirection into a program. Refactoring tends to break big objects into several smaller ones and big methods into several smaller ones.
 Indirection is a two-edged sword, however. Every time you break one thing into two pieces, you have more things to manage. It also can make a program harder to read as an object delegates to an object delegating to an object. So you'd like to minimize indirection.
 Not so fast, buddy. Indirection can pay for itself. Here are some of the ways.
-· To enable sharing of logic.
+ï¿½ To enable sharing of logic.
 For example, a submethod invoked in two different places or a method in a superclass shared by all subclasses.
-· To explain intention and implementation separately.
+ï¿½ To explain intention and implementation separately.
 52
 
 Choosing the name of each class and the name of each method gives you an opportunity to explain what you intend. The internals of the class or method explain how the intention is realized. If the internals also are written in terms of intention in yet smaller pieces, you can write code that communicates most of the important information about its own structure.
-· To isolate change.
+ï¿½ To isolate change.
 I use an object in two different places. I want to change the behavior in one of the two cases. If I change the object, I risk changing both. So I first make a subclass and refer to it in the case that is changing. Now I can modify the subclass without risking an inadvertent change to the other case.
-· To encode conditional logic.
+ï¿½ To encode conditional logic.
 Objects have a fabulous mechanism, polymorphic messages, to flexibly but clearly express conditional logic. By changing explicit conditionals to messages, you can often reduce duplication, add clarity, and increase flexibility all at the same time.
 Here is the refactoring game: Maintaining the current behavior of the system, how can you make your system more valuable, either by increasing its quality or by reducing its cost?
 The most common variant of the game is to look at your program. Identify a place where it is missing one or more of the benefits of indirection. Put in that indirection without changing the existing behavior. Now you have a more valuable program because it has more qualities that we will appreciate tomorrow.
@@ -733,7 +739,7 @@ Bill Opdyke was one of Ralph's doctoral students and is particularly interested 
 60
 
 refactoring from a tool builder's perspective. Bill investigated the refactorings that would be useful for C++ framework development and researched the necessary semantics-preserving refactorings, how to prove they were semantics preserving, and how a tool could implement these ideas. Bill's doctoral thesis [Opdyke] is the most substantial work on refactoring to date. He also contributes Chapter 13 to this book.
-I remember meeting Bill at the OOPSLA conference in 1992. We sat in a café and discussed some of the work I'd done in building a conceptual framework for healthcare. Bill told me about his research, and I remember thinking, "Interesting, but not really that important." Boy was I wrong!
+I remember meeting Bill at the OOPSLA conference in 1992. We sat in a cafï¿½ and discussed some of the work I'd done in building a conceptual framework for healthcare. Bill told me about his research, and I remember thinking, "Interesting, but not really that important." Boy was I wrong!
 John Brant and Don Roberts have taken the tool ideas in refactoring much further to produce the Refactoring Browser, a refactoring tool for Smalltalk. They contribute Chapter 14 to this book, which further describes refactoring tools.
 And me? I'd always been inclined to clean code, but I'd never considered it to be that important. Then I worked on a project with Kent and saw the way he used refactoring. I saw the difference it made in productivity and quality. That experience convinced me that refactoring was a very important technique. I was frustrated, however, because there was no book that I could give to a working programmer, and none of the experts above had any plans to write such a book. So, with their help, I did.
 Optimizing a Payroll System
@@ -1121,11 +1127,11 @@ Chapter 5. Toward a Catalog of Refactorings
 Chapters 5 to 12 form an initial catalog of refactorings. They've grown from the notes I've made in refactoring over the last few years. This catalog is by no means comprehensive or watertight, but it should provide a solid starting point for your own refactoring work.
 Format of the Refactorings
 As I describe the refactorings in this and other chapters, I use a standard format. Each refactoring has five parts, as follows:
-· I begin with a name. The name is important to building a vocabulary of refactorings. This is the name I use elsewhere in the book.
-· I follow the name with a short summary of the situation in which you need the refactoring and a summary of what the refactoring does. This helps you find a refactoring more quickly.
-· The motivation describes why the refactoring should be done and describes circumstances in which it shouldn't be done.
-· The mechanics are a concise, step-by-step description of how to carry out the refactoring.
-· The examples show a very simple use of the refactoring to illustrate how it works.
+ï¿½ I begin with a name. The name is important to building a vocabulary of refactorings. This is the name I use elsewhere in the book.
+ï¿½ I follow the name with a short summary of the situation in which you need the refactoring and a summary of what the refactoring does. This helps you find a refactoring more quickly.
+ï¿½ The motivation describes why the refactoring should be done and describes circumstances in which it shouldn't be done.
+ï¿½ The mechanics are a concise, step-by-step description of how to carry out the refactoring.
+ï¿½ The examples show a very simple use of the refactoring to illustrate how it works.
 The summary includes a short statement of the problem that the refactoring helps you with, a short description of what you do, and a sketch that shows you a simple before and after example. Sometimes I use code for the sketch and sometimes Unified Modeling Language (UML), depending on which seems to best convey the essence of the refactoring. (All UML diagrams in this book are drawn from the implementation perspective [Fowler, UML].) If you've seen the refactoring before, the sketch should give you a good idea what the refactoring is about. If not you'll probably need to work through the example to get a better idea.
 The mechanics come from my own notes to remember how to do the refactoring when I haven't done it for a while. As such they are somewhat terse, usually without explanations of why the steps are done that way. I give more expansive explanations in the example. This way the mechanics are short notes you can refer to easily when you know the refactoring but need to look up the steps (at least this is how I use them). You'll probably need to read the example when you first do the refactoring.
 I've written the mechanics in such a way that each step of each refactoring is as small as possible. I emphasize the safe way of doing the refactoring, which is to take very small steps and test after every one. At work I usually take larger steps than some of the baby steps described, but if I run into a bug, I back out the step and take the smaller steps. The steps include a number of references to special cases. The steps thus also function as a checklist; I often forget these things myself.
@@ -1183,16 +1189,16 @@ Extract Method is one of the most common refactorings I do. I look at a method t
 I prefer short, well-named methods for several reasons. First, it increases the chances that other methods can use a method when the method is finely grained. Second, it allows the higher-level methods to read more like a series of comments. Overriding also is easier when the methods are finely grained.
 It does take a little getting used to if you are used to seeing larger methods. And small methods really work only when you have good names, so you need to pay attention to naming. People sometimes ask me what length I look for in a method. To me length is not the issue. The key is the semantic distance between the method name and the method body. If extracting improves clarity, do it, even if the name is longer than the code you have extracted.
 Mechanics
-· Create a new method, and name it after the intention of the method (name it by what it does, not by how it does it).
+ï¿½ Create a new method, and name it after the intention of the method (name it by what it does, not by how it does it).
 ? If the code you want to extract is very simple, such as a single message or function call, you should extract it if the name of the new method will reveal the intention of the code in a better way. If you can't come up with a more meaningful name, don't extract the code.
-· Copy the extracted code from the source method into the new target method. · Scan the extracted code for references to any variables that are local in scope to the
-source method. These are local variables and parameters to the method. · See whether any temporary variables are used only within this extracted code. If so,
-declare them in the target method as temporary variables. · Look to see whether any of these local-scope variables are modified by the extracted
-code. If one variable is modified, see whether you can treat the extracted code as a query and assign the result to the variable concerned. If this is awkward, or if there is more than one such variable, you can't extract the method as it stands. You may need to use Split Temporary Variable and try again. You can eliminate temporary variables with Replace Temp with Query (see the discussion in the examples). · Pass into the target method as parameters local-scope variables that are read from the extracted code. · Compile when you have dealt with all the locally-scoped variables. · Replace the extracted code in the source method with a call to the target method.
+ï¿½ Copy the extracted code from the source method into the new target method. ï¿½ Scan the extracted code for references to any variables that are local in scope to the
+source method. These are local variables and parameters to the method. ï¿½ See whether any temporary variables are used only within this extracted code. If so,
+declare them in the target method as temporary variables. ï¿½ Look to see whether any of these local-scope variables are modified by the extracted
+code. If one variable is modified, see whether you can treat the extracted code as a query and assign the result to the variable concerned. If this is awkward, or if there is more than one such variable, you can't extract the method as it stands. You may need to use Split Temporary Variable and try again. You can eliminate temporary variables with Replace Temp with Query (see the discussion in the examples). ï¿½ Pass into the target method as parameters local-scope variables that are read from the extracted code. ï¿½ Compile when you have dealt with all the locally-scoped variables. ï¿½ Replace the extracted code in the source method with a call to the target method.
 ? If you have moved any temporary variables over to the target method, look to see whether they were declared outside of the extracted code. If so, you can now remove the declaration.
 90
 
-· Compile and test.
+ï¿½ Compile and test.
 Example: No Local Variables
 In the simplest case, Extract Method is trivially easy. Take the following method:
 void printOwing() {
@@ -1289,9 +1295,9 @@ A theme of this book is to use short methods named to show their intention, beca
 Another time to use Inline Method is when you have a group of methods that seem badly factored. You can inline them all into one big method and then reextract the methods. Kent Beck finds it is often good to do this before using Replace Method with Method Object. You inline the various calls made by the method that have behavior you want to have in the method object. It's easier to move one method than to move the method and its called methods.
 I commonly use Inline Method when someone is using too much indirection and it seems that every method does simple delegation to another method, and I get lost in all the delegation. In these cases some of the indirection is worthwhile, but not all of it. By trying to inline I can flush out the useful ones and eliminate the rest.
 Mechanics
-· Check that the method is not polymorphic.
+ï¿½ Check that the method is not polymorphic.
 ? Don't inline if subclasses override the method; they cannot override a method that isn't there.
-· Find all calls to the method. · Replace each call with the method body. · Compile and test. · Remove the method definition.
+ï¿½ Find all calls to the method. ï¿½ Replace each call with the method body. ï¿½ Compile and test. ï¿½ Remove the method definition.
 Written this way, Inline Method is simple. In general it isn't. I could write pages on how to handle recursion, multiple return points, inlining into another object when you don't have accessors, and the like. The reason I don't is that if you encounter these complexities, you shouldn't do this refactoring.
 Inline Temp
 96
@@ -1302,9 +1308,9 @@ return (anOrder.basePrice() > 1000)
 Motivation
 Most of the time Inline Temp is used as part of Replace Temp with Query, so the real motivation is there. The only time Inline Temp is used on its own is when you find a temp that is assigned the value of a method call. Often this temp isn't doing any harm and you can safely leave it there. If the temp is getting in the way of other refactorings, such as Ext ract Method, it's time to inline it.
 Mechanics
-· Declare the temp as final if it isn't already, and compile. ? This checks that the temp is really only assigned to once.
-· Find all references to the temp and replace them with the right-hand side of the assignment.
-· Compile and test after each change. · Remove the declaration and the assignment of the temp. · Compile and test.
+ï¿½ Declare the temp as final if it isn't already, and compile. ? This checks that the temp is really only assigned to once.
+ï¿½ Find all references to the temp and replace them with the right-hand side of the assignment.
+ï¿½ Compile and test after each change. ï¿½ Remove the declaration and the assignment of the temp. ï¿½ Compile and test.
 Replace Temp with Query
 You are using a temporary variable to hold the result of an expression. Extract the expression into a method. Replace all references to the temp with the expression. The new method can then be used in other methods.
 double basePrice = _quantity * _itemPrice; if (basePrice > 1000)
@@ -1321,16 +1327,16 @@ Replace Temp with Query often is a vital step before Extract Method. Local varia
 The straightforward cases of this refactoring are those in which temps are assigned only to once and those in which the expression that generates the assignment is free of side effects. Other cases are trickier but possible. You may need to use Split Temporary Variable or Separate Query from Modifier first to make things easier. If the temp is used to collect a result (such as summing over a loop), you need to copy some logic into the query method.
 Mechanics
 Here is the simple case:
-· Look for a temporary variable that is assigned to once.
+ï¿½ Look for a temporary variable that is assigned to once.
 ? If a temp is set more than once consider Split Temporary Variable.
-· Declare the temp as final. · Compile.
+ï¿½ Declare the temp as final. ï¿½ Compile.
 ? This will ensure that the temp is only assigned to once.
-· Extract the right-hand side of the assignment into a method.
+ï¿½ Extract the right-hand side of the assignment into a method.
 ? Initially mark the method as private. You may find more use for it later, but you can easily relax the protection later.
 ? Ensure the extracted method is free of side effects, that is, it does not modify any object. If it is not free of side effects, use Separate Query from Modifier.
 98
 
-· Compile and test. · Use Replace Temp with Query on the temp.
+ï¿½ Compile and test. ï¿½ Use Replace Temp with Query on the temp.
 Temps often are used to store summary information in loops. The entire loop can be extracted into a method; this removes several lines of noisy code. Sometimes a loop may be used to sum up multiple values, as in the example on page 26. In this case, duplicate the loop for each temp so that you can replace each temp with a query. The loop should be very simple, so there is little danger in duplicating the code.
 You may be concerned about performance in this case. As with other performance issues, let it slide for the moment. Nine times out of ten, it won't matter. When it does matter, you will fix the problem during optimization. With your code better factored, you will often find more powerful optimizations, which you would have missed without refactoring. If worse comes to worse, it's very easy to put the temp back.
 Example
@@ -1396,10 +1402,10 @@ Introduce Explaining Variable is a very common refactoring, but I confess I don'
 
 however, when local variables make it difficult to use Extract Method. That's when I use Introduce Explaining Variable.
 Mechanics
-· Declare a final temporary variable, and set it to the result of part of the complex expression.
-· Replace the result part of the expression with the value of the temp.
+ï¿½ Declare a final temporary variable, and set it to the result of part of the complex expression.
+ï¿½ Replace the result part of the expression with the value of the temp.
 ? If the result part of the expression is repeated, you can replace the repeats one at a time.
-· Compile and test. · Repeat for other parts of the expression.
+ï¿½ Compile and test. ï¿½ Repeat for other parts of the expression.
 Example
 I start with a simple calculation:
 double price() { // price is base price - quantity discount + shipping return _quantity * _itemPrice -
@@ -1453,9 +1459,9 @@ Motivation
 Temporary variables are made for various uses. Some of these uses naturally lead to the temp's being assigned to several times. Loop variables [Beck] change for each run around a loop (such as the i in for (int i=0; i<10; i++). Collecting temporary variables [Beck] collect together some value that is built up during the method.
 Many other temporaries are used to hold the result of a long-winded bit of code for easy reference later. These kinds of variables should be set only once. That they are set more than once is a sign that they have more than one responsibility within the method. Any variable with more than one responsibility should be replaced with a temp for each responsibility. Using a temp for two different things is very confusing for the reader.
 Mechanics
-· Change the name of a temp at its declaration and its first assignment.
+ï¿½ Change the name of a temp at its declaration and its first assignment.
 ? If the later assignments are of the form i = i + some expression, that indicates that it is a collecting temporary variable, so don't split it. The operator for a collecting temporary variable usually is addition, string concatenation, writing to a stream, or adding to a collection.
-· Declare the new temp as final. · Change all references of the temp up to its second assignment. · Declare the temp at its second assignment. · Compile and test. · Repeat in stages, each stage renaming at the declaration, and changing references until
+ï¿½ Declare the new temp as final. ï¿½ Change all references of the temp up to its second assignment. ï¿½ Declare the temp at its second assignment. ï¿½ Compile and test. ï¿½ Repeat in stages, each stage renaming at the declaration, and changing references until
 the next assignment.
 Example
 For this example I compute the distance traveled by a haggis. From a standing start, a haggis experiences an initial force. After a delayed period a secondary force kicks in to further accelerate the haggis. Using the common laws of motion, I can compute the distance traveled as follows:
@@ -1503,8 +1509,8 @@ The other area of confusion is within the body of the code itself. It is much cl
 In Java, don't assign to parameters, and if you see code that does, apply Remove Assignments to Parameters.
 Of course this rule does not necessarily apply to other languages that use output parameters, although even with these languages I prefer to use output parameters as little as possible.
 Mechanics
-· Create a temporary variable for the parameter. · Replace all references to the parameter, made after the assignment, to the temporary
-variable. · Change the assignment to assign to the temporary variable. · Compile and test.
+ï¿½ Create a temporary variable for the parameter. ï¿½ Replace all references to the parameter, made after the assignment, to the temporary
+variable. ï¿½ Change the assignment to assign to the temporary variable. ï¿½ Compile and test.
 ? If the semantics are call by reference, look in the calling method to see whether the parameter is used again afterward. Also see how many call by reference parameters are assigned to and used afterward in this method. Try to pass a single value back as the return value. If there is more than one, see whether you can turn the data clump into an object, or create separate methods.
 Example
 I start with the following simple routine:
@@ -1553,9 +1559,9 @@ The difficulty in decomposing a method lies in local variables. If they are ramp
 Applying Replace Method with Method Object turns all these local variables into fields on the method object. You can then use Extract Method on this new object to create additional methods that break down the original method.
 Mechanics
 Stolen shamelessly from Beck [Beck].
-· Create a new class, name it after the method. · Give the new class a final field for the object that hosted the original method (the source
-object) and a field for each temporary variable and each parameter in the method. · Give the new class a constructor that takes the source object and each parameter. · Give the new class a method named "compute." · Copy the body of the original method into compute. Use the source object field for any
-invocations of methods on the original object. · Compile. · Replace the old method with one that creates the new object and calls compute.
+ï¿½ Create a new class, name it after the method. ï¿½ Give the new class a final field for the object that hosted the original method (the source
+object) and a field for each temporary variable and each parameter in the method. ï¿½ Give the new class a constructor that takes the source object and each parameter. ï¿½ Give the new class a method named "compute." ï¿½ Copy the body of the original method into compute. Use the source object field for any
+invocations of methods on the original object. ï¿½ Compile. ï¿½ Replace the old method with one that creates the new object and calls compute.
 Now comes the fun part. Because all the local variables are now fields, you can freely decompose the method without having to pass any parameters.
 111
 
@@ -1597,7 +1603,7 @@ I've never tried to skin a cat. I'm told there are several ways to do it. I'm su
 Sometimes when you want to change the algorithm to do something slightly different, it is easier to subtitute the algorithm first into something easier for the change you need to make.
 When you have to take this step, make sure you have decomposed the method as much as you can. Substituting a large, complex algorithm is very difficult; only by making it simple can you make the substitution tractable.
 Mechanics
-· Prepare your alternative algorithm. Get it so that it compiles. · Run the new algorithm against your tests. If the results are the same, you're finished. · If the results aren't the same, use the old algorithm for comparison in testing and
+ï¿½ Prepare your alternative algorithm. Get it so that it compiles. ï¿½ Run the new algorithm against your tests. If the results are the same, you're finished. ï¿½ If the results aren't the same, use the old algorithm for comparison in testing and
 debugging.
 ? Run each test case with old and new algorithms and watch both results. That will help you see which test cases are causing trouble, and how.
 114
@@ -1614,24 +1620,24 @@ moving methods around, I can make the classes simpler and they end up being a mo
 I usually look through the methods on a class to find a method that seems to reference another object more than the object it lives on. A good time to do this is after I have moved some fields. Once I see a likely method to move, I take a look at the methods that call it, the methods it calls, and any redefining methods in the hierarchy. I assess whether to go ahead on the basis of the object with which the method seems to have more interaction.
 It's not always an easy decision to make. If I am not sure whether to move a method, I go on to look at other methods. Moving other methods often makes the decision easier. Sometimes the decision still is hard to make. Actually it is then no big deal. If it is difficult to make the decision, it probably does not matter that much. Then I choose according to instinct; after all, I can always change it again later.
 Mechanics
-· Examine all features used by the source method that are defined on the source class. Consider whether they also should be moved.
+ï¿½ Examine all features used by the source method that are defined on the source class. Consider whether they also should be moved.
 ?rarr; If a feature is used only by the method you are about to move, you might as well move it, too. If the feature is used by other methods, consider moving them as well. Sometimes it is easier to move a clutch of methods than to move them one at a time.
-· Check the sub- and superclasses of the source class for other declarations of the method.
+ï¿½ Check the sub- and superclasses of the source class for other declarations of the method.
 ?rarr; If there are any other declarations, you may not be able to make the move, unless the polymorphism can also be expressed on the target.
-· Declare the method in the target class.
+ï¿½ Declare the method in the target class.
 ?rarr; You may choose to use a different name, one that makes more sense in the target class.
-· Copy the code from the source method to the target. Adjust the method to make it work in its new home.
+ï¿½ Copy the code from the source method to the target. Adjust the method to make it work in its new home.
 ?rarr; If the method uses its source, you need to determine how to reference the source object from the target method. If there is no mechanism in the target class, pass the source object reference to the new method as a parameter.
 ?rarr; If the method includes exception handlers, decide which class should logically handle the exception. If the source class should be responsible, leave the handlers behind.
-· Compile the target class. · Determine how to reference the correct target object from the source.
+ï¿½ Compile the target class. ï¿½ Determine how to reference the correct target object from the source.
 116
 
 ?rarr; There may be an existing field or method that will give you the target. If not, see whether you can easily create a method that will do so. Failing that, you need to create a new field in the source that can store the target. This may be a permanent change, but you can also make it temporarily until you have refactored enough to remove it.
-· Turn the source method into a delegating method. · Compile and test. · Decide whether to remove the source method or retain it as a delegating method.
+ï¿½ Turn the source method into a delegating method. ï¿½ Compile and test. ï¿½ Decide whether to remove the source method or retain it as a delegating method.
 ?rarr; Leaving the source as a delegating method is easier if you have many references.
-· If you remove the source method, replace all the references with references to the target method.
+ï¿½ If you remove the source method, replace all the references with references to the target method.
 ?rarr; You can compile and test after changing each reference, although it is usually easier to change all references with one search and replace.
-· Compile and test.
+ï¿½ Compile and test.
 Example
 An account class illustrates this refactoring:
 class Account... double overdraftCharge() { if (_type.isPremium()) { double result = 10; if (_daysOverdrawn > 7) result += (_daysOverdrawn - 7) *
@@ -1665,17 +1671,17 @@ A field is, or will be, used by another class more than the class on which it is
 Motivation
 Moving state and behavior between classes is the very essence of refactoring. As the system develops, you find the need for new classes and the need to shuffle responsibilities around. A design decision that is reasonable and correct one week can become incorrect in another. That is not a problem; the only problem is not to do something about it. I consider moving a field if I see more methods on another class using the field than the class itself. This usage may be indirect, through getting and setting methods. I may choose to move the methods; this decision based on interface. But if the methods seem sensible where they are, I move the field. Another reason for field moving is when doing Extract Class. In that case the fields go first and then the methods.
 Mechanics
-· If the field is public, use Encapsulate Field.
+ï¿½ If the field is public, use Encapsulate Field.
 119
 
 ?rarr; If you are likely to be moving the methods that access it frequently or if a lot of methods access the field, you may find it useful to use Self Encapsulate Field
-· Compile and test. · Create a field in the target class with getting and setting methods. · Compile the target class. · Determine how to reference the target object from the source.
+ï¿½ Compile and test. ï¿½ Create a field in the target class with getting and setting methods. ï¿½ Compile the target class. ï¿½ Determine how to reference the target object from the source.
 ?rarr; An existing field or method may give you the target. If not, see whether you can easily create a method that will do so. Failing that, you need to create a new field in the source that can store the target. This may be a permanent change, but you can also do it temporarily until you have refactored enough to remove it.
-· Remove the field on the source class. · Replace all references to the source field with references to the appropriate method on
+ï¿½ Remove the field on the source class. ï¿½ Replace all references to the source field with references to the appropriate method on
 the target.
 ?rarr; For accesses to the variable, replace the reference with a call to the target object's getting method; for assignments, replace the reference with a call to the setting method.
 ?rarr; If the field is not private, look in all the subclasses of the source for references.
-· Compile and test.
+ï¿½ Compile and test.
 Example
 Here is part of an account class:
 class Account... private AccountType _type; private double _interestRate;
@@ -1721,16 +1727,16 @@ You've probably heard that a class should be a crisp abstraction, handle a few c
 Such a class is one with many methods and quite a lot of data. A class that is too big to understand easily. You need to consider where it can be split, and you split it. A good sign is that a subset of the data and a subset of the methods seem to go together. Other good signs are subsets of data that usually change together or are particularly dependent on each other. A useful test is to ask yourself what would happen if you removed a piece of data or a method. What other fields and methods would become nonsense?
 One sign that often crops up later in development is the way the class is subtyped. You may find that subtyping affects only a few features or that some features need to be subtyped one way and other features a different way.
 Mechanics
-· Decide how to split the responsibilities of the class. · Create a new class to express the split-off responsibilities.
+ï¿½ Decide how to split the responsibilities of the class. ï¿½ Create a new class to express the split-off responsibilities.
 ?rarr; If the responsibilities of the old class no longer match its name, rename the old class.
-· Make a link from the old to the new class.
+ï¿½ Make a link from the old to the new class.
 ?rarr; You may need a two-way link. But don't make the back link until you find you need it.
 122
 
-· Use Move Field on each field you wish to move. · Compile and test after each move. · Use Move Method to move methods over from old to new. Start with lower-level
-methods (called rather than calling) and build to the higher level. · Compile and test after each move. · Review and reduce the interfaces of each class.
+ï¿½ Use Move Field on each field you wish to move. ï¿½ Compile and test after each move. ï¿½ Use Move Method to move methods over from old to new. Start with lower-level
+methods (called rather than calling) and build to the higher level. ï¿½ Compile and test after each move. ï¿½ Review and reduce the interfaces of each class.
 ?rarr; If you did have a two-way link, examine to see whether it can be made one way.
-· Decide whether to expose the new class. If you do expose the class, decide whether to expose it as a reference object or as an immutable value object.
+ï¿½ Decide whether to expose the new class. If you do expose the class, decide whether to expose it as a reference object or as an immutable value object.
 Example
 I start with a simple person class:
 class Person... public String getName() { return _name; } public String getTelephoneNumber() { return ("(" + _officeAreaCode + ") " + _officeNumber); } String getOfficeAreaCode() { return _officeAreaCode; } void setOfficeAreaCode(String arg) { _officeAreaCode = arg; } String getOfficeNumber() { return _officeNumber; } void setOfficeNumber(String arg) { _officeNumber = arg; }
@@ -1775,12 +1781,12 @@ Inline Class is the reverse of Extract Class. I use Inline Class if a class is n
 125
 
 Mechanics
-· Declare the public protocol of the source class onto the absorbing class. Delegate all these methods to the source class.
+ï¿½ Declare the public protocol of the source class onto the absorbing class. Delegate all these methods to the source class.
 ?rarr; If a separate interface makes sense for the source class methods, use Extract Interface before inlining.
-· Change all references from the source class to the absorbing class.
+ï¿½ Change all references from the source class to the absorbing class.
 ?rarr; Declare the source class private to remove out-of-package references. Also change the name of the source class so the compiler catches any dangling references to the source class.
-· Compile and test. · Use Move Method and Move Field to move features from the source class to the
-absorbing class until there is nothing left. · Hold a short, simple funeral service.
+ï¿½ Compile and test. ï¿½ Use Move Method and Move Field to move features from the source class to the
+absorbing class until there is nothing left. ï¿½ Hold a short, simple funeral service.
 Example
 Because I made a class out of telephone number, I now inline it back into person. I start with separate classes:
 class Person... public String getName() { return _name; } public String getTelephoneNumber(){ return _officeTelephone.getTelephoneNumber(); } TelephoneNumber getOfficeTelephone() { return _officeTelephone; }
@@ -1802,13 +1808,13 @@ One of the keys, if not the key, to objects is encapsulation. Encapsulation mean
 Figure 7.1. Simple delegation
 You may find it is worthwhile to use Extract Class for some clients of the server or all clients. If you hide from all clients, you can remove all mention of the delegate from the interface of the server.
 Mechanics
-· For each method on the delegate, create a simple delegating method on the server.
+ï¿½ For each method on the delegate, create a simple delegating method on the server.
 128
 
-· Adjust the client to call the server.
+ï¿½ Adjust the client to call the server.
 ?rarr; If the client is not in the same package as the server, consider changing the delegate method's access to package visibility.
-· Compile and test after adjusting each method. · If no client needs to access the delegate anymore, remove the server's accessor for the
-delegate. · Compile and test.
+ï¿½ Compile and test after adjusting each method. ï¿½ If no client needs to access the delegate anymore, remove the server's accessor for the
+delegate. ï¿½ Compile and test.
 Example
 I start with a person and a department:
 class Person { Department _department;
@@ -1834,8 +1840,8 @@ A class is doing too much simple delegation. Get the client to call the delegate
 Motivation
 In the motivation for Hide Delegate, I talked about the advantages of encapsulating the use of a delegated object. There is a price for this. The price is that every time the client wants to use a new feature of the delegate, you have to add a simple delegating method to the server. After adding features for a while, it becomes painful. The server class is just a middle man, and perhaps it's time for the client to call the delegate directly. It's hard to figure out what the right amount of hiding is. Fortunately, with Hide Delegate and Remove Middle Man it does not matter so much. You can adjust your system as time goes on. As the system changes, the basis for how much you hide also changes. A good encapsulation six months ago may be awkward now. Refactoring means you never have to say you're sorry--you just fix it.
 Mechanics
-· Create an accessor for the delegate. · For each client use of a delegate method, remove the method from the server and
-replace the call in the client to call method on the delegate. · Compile and test after each method.
+ï¿½ Create an accessor for the delegate. ï¿½ For each client use of a delegate method, remove the method from the server and
+replace the call in the client to call method on the delegate. ï¿½ Compile and test after each method.
 Example
 130
 
@@ -1865,9 +1871,9 @@ If you use the method only once in the client class then the extra coding is no 
 If you find yourself creating many foreign methods on a server class, or you find many of your classes need the same foreign method, you should use Introduce Local Extension instead.
 Don't forget that foreign methods are a work-around. If you can, try to get the methods moved to their proper homes. If code ownership is the issue, send the foreign method to the owner of the server class and ask the owner to implement the method for you.
 Mechanics
-· Create a method in the client class that does what you need.
+ï¿½ Create a method in the client class that does what you need.
 ?rarr; The method should not access any of the features of the client class. If it needs a value, send it in as a parameter.
-· Make an instance of the server class the first parameter. · Comment the method as "foreign method; should be in server."
+ï¿½ Make an instance of the server class the first parameter. ï¿½ Comment the method as "foreign method; should be in server."
 ?rarr; This way you can use a text search to find foreign methods later if you get the chance to move the method.
 Example
 I have some code that needs to roll over a billing period. The original code looks like this:
@@ -1886,9 +1892,9 @@ Authors of classes sadly are not omniscient, and they fail to provi de useful me
 
 problem; I can safely take a copy. But if the original can change, there is a problem, because changes in one object won't change the other and I have to use a wrapper. That way changes made through the local extension affect the original object and vice versa.
 Mechanics
-· Create an extension class either as a subclass or a wrapper of the original. · Add converting constructors to the extension.
+ï¿½ Create an extension class either as a subclass or a wrapper of the original. ï¿½ Add converting constructors to the extension.
 ?rarr; A constructor takes the original as an argument. The subclass version calls an appropriate superclass constructor; the wrapper version sets the delegate field to the argument.
-· Add new features to the extension. · Replace the original with the extension where needed. · Move any foreign methods defined for this class onto the extension.
+ï¿½ Add new features to the extension. ï¿½ Replace the original with the extension where needed. ï¿½ Move any foreign methods defined for this class onto the extension.
 Examples
 I had to do this kind of thing quite a bit with Java 1.0.1 and the date class. The calendar class in 1.1 gave me a lot of the behavior I wanted, but before it arrived, it gave me quite a few opportunities to use extension. I use it as an example here.
 The first thing to decide is whether to use a subclass or a wrapper. Subclassing is the more obvious way:
@@ -1986,12 +1992,12 @@ The advantage of direct variable access is that the code is easier to read. You 
 I'm always of two minds with this choice. I'm usually happy to do what the rest of the team wants to do. Left to myself, though, I like to use direct variable access as a first resort, until it gets in the way. Once things start becoming awkward, I switch to indirect variable access. Refactoring gives you the freedom to change your mind.
 The most important time to use Self Encapsulate Field is when you are accessing a field in a superclass but you want to override this variable access with a computed value in the subclass. Self-encapsulating the field is the first step. After that you can override the getting and setting methods as you need to.
 Mechanics
-· Create a getting and setting method for the field. · Find all references to the field and replace them with a getting or setting method.
+ï¿½ Create a getting and setting method for the field. ï¿½ Find all references to the field and replace them with a getting or setting method.
 ?rarr; Replace accesses to the field with a call to the getting method; replace assignments with a call to the setting method.
 ?rarr; You can get the compiler to help you check by temporarily renaming the field.
 139
 
-· Make the field private. · Double check that you have caught all references. · Compile and test.
+ï¿½ Make the field private. ï¿½ Double check that you have caught all references. ï¿½ Compile and test.
 Example
 This seems almost too simple for an example, but, hey, at least it is quick to write:
 class IntRange {
@@ -2034,9 +2040,9 @@ Turn the data item into an object.
 Motivation
 Often in early stages of development you make decisions about representing simple facts as simple data items. As development proceeds you realize that those simple items aren't so simple anymore. A telephone number may be represented as a string for a while, but later you realize that the telephone needs special behavior for formatting, extracting the area code, and the like. For one or two items you may put the methods in the owning object, but quickly the code smells of duplication and feature envy. When the smell begins, turn the data value into an object.
 Mechanics
-· Create the class for the value. Give it a final field of the same type as the value in the source class. Add a getter and a constructor that takes the field as an argument.
-· Compile. · Change the type of the field in the source class to the new class. · Change the getter in the source class to call the getter in the new class. · If the field is mentioned in the source class constructor, assign the field using the
-constructor of the new class. · Change the getting method to create a new instance of the new class. · Compile and test. · You may now need to use Change Value to Reference on the new object.
+ï¿½ Create the class for the value. Give it a final field of the same type as the value in the source class. Add a getter and a constructor that takes the field as an argument.
+ï¿½ Compile. ï¿½ Change the type of the field in the source class to the new class. ï¿½ Change the getter in the source class to call the getter in the new class. ï¿½ If the field is mentioned in the source class constructor, assign the field using the
+constructor of the new class. ï¿½ Change the getting method to create a new instance of the new class. ï¿½ Compile and test. ï¿½ You may now need to use Change Value to Reference on the new object.
 Example
 I start with an order class that has stored the customer of the order as a string and wants to turn the customer into an object. This way I have somewhere to store data, such as an address or credit rating, and useful behavior that uses this information.
 class Order... public Order (String customer) { _customer = customer;
@@ -2074,17 +2080,17 @@ Motivation
 You can make a useful classification of objects in many systems: reference objects and value objects. Reference objects are things like customer or account. Each object stands for one object in the real world, and you use the object identity to test whether they are equal. Value objects are things like date or money. They are defined entirely through their data values. You don't mind that copies exist; you may have hundreds of "1/1/2000" objects around your system. You do need to tell whether two of the objects are equal, so you need to override the equals method (and the hashCode method too).
 The decision between reference and value is not always clear. Sometimes you start with a simple value with a small amount of immutable data. Then you want to give it some changeable data and ensure that the changes ripple to everyone referring to the object. At this point you need to turn it into a reference object.
 Mechanics
-· Use Replace Constructor with Factory Method. · Compile and test. · Decide what object is responsible for providing access to the objects.
+ï¿½ Use Replace Constructor with Factory Method. ï¿½ Compile and test. ï¿½ Decide what object is responsible for providing access to the objects.
 ?rarr; This may be a static dictionary or a registry object.
 ?rarr; You may have more than one object that acts as an access point for the new object.
-· Decide whether the objects are precreated or created on the fly.
+ï¿½ Decide whether the objects are precreated or created on the fly.
 ?rarr; If the objects are precreated and you are retrieving them from memory, you need to ensure they are loaded before they are needed.
-· Alter the factory method to return the reference object.
+ï¿½ Alter the factory method to return the reference object.
 145
 
 ?rarr; If the objects are precomputed, you need to decide how to handle errors if someone asks for an object that does not exist.
 ?rarr; You may want to use Rename Method on the factory to convey that it returns an existing object.
-· Compile and test.
+ï¿½ Compile and test.
 Example
 I start where I left off in the example for Replace Data Value with Object. I have the following customer class:
 class Customer { public Customer (String name) { _name = name; } public String getName() { return _name; } private final String _name;
@@ -2124,10 +2130,10 @@ As with Change Value to Reference, the decision between a reference and a value 
 object also updates all the other objects that represent the same thing. That's so much of a pain that the easiest thing to do is to make it a reference object.
 It's important to be clear on what immutable means. If you have a money class with a currency and a value, that's usually an immutable value object. That does not mean your salary cannot change. It means that to change your salary, you need to replace the existing money object with a new money object rather than changing the amount on an exisiting money object. Your relationship can change, but the money object itself does not.
 Mechanics
-· Check that the candidate object is immutable or can become immutable.
+ï¿½ Check that the candidate object is immutable or can become immutable.
 ?rarr; If the object isn't currently immutable, use Remove Setting Method until it is.
 ?rarr; If the candidate cannot become immutable, you should abandon this refactoring.
-· Create an equals method and a hash method. · Compile and test. · Consider removing any factory method and making a constructor public.
+ï¿½ Create an equals method and a hash method. ï¿½ Compile and test. ï¿½ Consider removing any factory method and making a constructor public.
 Example
 I begin with a currency class:
 class Currency... private String _code;
@@ -2160,9 +2166,9 @@ Arrays are a common structure for organizing data. However, they should be used 
 150
 
 Mechanics
-· Create a new class to represent the information in the array. Give it a public field for the array.
-· Change all users of the array to use the new class. · Compile and test. · One by one, add getters and setters for each element of the array. Name the accessors
-after the purpose of the array element. Change the clients to use the accessors. Compile and test after each change. · When all array accesses are replaced by methods, make the array private. · Compile. · For each element of the array, create a field in the class and change the accessors to use the field. · Compile and test after each element is changed. · When all elements have been replaced with fields, delete the array.
+ï¿½ Create a new class to represent the information in the array. Give it a public field for the array.
+ï¿½ Change all users of the array to use the new class. ï¿½ Compile and test. ï¿½ One by one, add getters and setters for each element of the array. Name the accessors
+after the purpose of the array element. Change the clients to use the accessors. Compile and test after each change. ï¿½ When all array accesses are replaced by methods, make the array private. ï¿½ Compile. ï¿½ For each element of the array, create a field in the class and change the accessors to use the field. ï¿½ Compile and test after each element is changed. ï¿½ When all elements have been replaced with fields, delete the array.
 Example
 I start with an array that's used to hold the name, wins, and losses of a sports team. It would be declared as follows:
 String[] row = new String[3];
@@ -2204,19 +2210,19 @@ A well-layered system separates code that handles the user interface from code t
 
 If you come across code that has been developed with a two-tiered approach in which business logic is embedded into the user interface, you need to separate the behaviors. Much of this is about decomposing and moving methods. For the data, however, you cannot just move the data, you have to duplicate it and provide the synchronization mechanism.
 Mechanics
-· Make the presentation class an observer of the domain class [Gang of Four].
+ï¿½ Make the presentation class an observer of the domain class [Gang of Four].
 ?rarr; If there is no domain class yet, create one.
 ?rarr; If there is no link from the presentation class to the domain class, put the domain class in a field of the presentation class.
-· Use Self Encapsulate Field on the domain data within the GUI class. · Compile and test. · Add a call to the setting method in the event handler to update the component with its
+ï¿½ Use Self Encapsulate Field on the domain data within the GUI class. ï¿½ Compile and test. ï¿½ Add a call to the setting method in the event handler to update the component with its
 current value using direct access.
 ?rarr; Put a method in the event handler that updates the value of the component on the basis of its current value. Of course this is completely unnecessary; you are just setting the value to its current value, but by using the setting method, you allow any behavior there to execute.
 ?rarr; When you make this change, don't use the getting method for the component; use direct access to the component. Later the getting method will pull the value from the domain, which does not change until the setting method executes.
 ?rarr; Make sure the event-handling mechanism is triggered by the test code.
-· Compile and test. · Define the data and accessor methods in the domain class.
+ï¿½ Compile and test. ï¿½ Define the data and accessor methods in the domain class.
 ?rarr; Make sure the setting method on the domain triggers the notify mechanism in the observer pattern.
 ?rarr; Use the same data type in the domain as is on the presentation (usually a string). Convert the data type in a later refactoring.
-· Redirect the accessors to write to the domain field. · Modify the observer's update method to copy the data from the domain field to the GUI
-control. · Compile and test.
+ï¿½ Redirect the accessors to write to the domain field. ï¿½ Modify the observer's update method to copy the data from the domain field to the GUI
+control. ï¿½ Compile and test.
 Example
 I start with the window in Figure 8.1. The behavior is very simple. Whenever you change the value in one of the text fields, the other ones update. If you change the start or end fields, the length is calculated; if you change the length field, the end is calculated.
 154
@@ -2301,8 +2307,8 @@ Add back pointers, and change modifiers to update both sets
 Motivation
 You may find that you have initially set up two classes so that one class refers to the other. Over time you may find that a client of the referred class needs to get to the objects that refer to it. This effectively means navigating backward along the pointer. Pointers are one-way links, so you can't do this. Often you can get around this problem by finding another route. This may cost in computation but is reasonable, and you can have a method on the referred class that uses this behavior. Sometimes, however, this is not easy, and you need to set up a two-way reference, sometimes called a back pointer. If you aren't used to back pointers, it's easy to become tangled up using them. Once you get used to the idiom, however, it is not too complicated. The idiom is awkward enough that you should have tests, at least until you are comfortable with the idiom. Because I usually don't bother testing accessors (the risk is not high enough), this is the rare case of a refactoring that adds a test. This refactoring uses back pointers to implement bidirectionality. Other techniques, such as link objects, require other refactorings.
 Mechanics
-· Add a field for the back pointer. · Decide which class will control the association. · Create a helper method on the noncontrolling side of the association. Name this method
-to clearly indicate its restricted use. · If the existing modifier is on the controlling side, modify it to update the back pointers. · If the existing modifier is on the controlled side, create a controlling method on the
+ï¿½ Add a field for the back pointer. ï¿½ Decide which class will control the association. ï¿½ Create a helper method on the noncontrolling side of the association. Name this method
+to clearly indicate its restricted use. ï¿½ If the existing modifier is on the controlling side, modify it to update the back pointers. ï¿½ If the existing modifier is on the controlled side, create a controlling method on the
 controlling side and call it from the existing modifier.
 Example
 A simple program has an order that refers to a customer:
@@ -2337,17 +2343,17 @@ Lots of two-way links also make it easy for mistakes to lead to zombies: objects
 Bidirectional associations force an interdependency between the two classes. Any change to one class may cause a change to another. If the classes are in separate packages, you get an interdependency between the packages. Many interdependencies lead to a highly coupled system, in which any little change leads to lots of unpredictable ramifications.
 You should use bidirectional associations when you need to but not when you don't. As soon as you see a bidirectional association is no longer pulling its weight, drop the unnecessary end.
 Mechanics
-· Examine all the readers of the field that holds the pointer that you wish to remove to see whether the removal is feasible.
+ï¿½ Examine all the readers of the field that holds the pointer that you wish to remove to see whether the removal is feasible.
 ?rarr; Look at direct readers and further methods that call the methods.
 ?rarr; Consider whether it is possible to determine the other object without using the pointer. If so you will be able to use Substitute Algorithm on the getter to allow clients to use the getting method even if there is no pointer.
 ?rarr; Consider adding the object as an argument to all methods that use the field.
 163
 
-· If clients need to use the getter, use Self Encapsulate Field, carry out Substitute Algorithm on the getter, compile, and test.
-· If clients don't need the getter, change each user of the field so that it gets the object in the field another way. Compile and test after each change.
-· When no reader is left in the field, remove all updates to the field, and remove the field.
+ï¿½ If clients need to use the getter, use Self Encapsulate Field, carry out Substitute Algorithm on the getter, compile, and test.
+ï¿½ If clients don't need the getter, change each user of the field so that it gets the object in the field another way. Compile and test after each change.
+ï¿½ When no reader is left in the field, remove all updates to the field, and remove the field.
 ?rarr; If there are many places that assign the field, use Self Encapsulate Field so that they all use a single setter. Compile and test. Change the setter to have an empty body. Compile and test. If that works, remove the field, the setter, and all calls to the setter.
-· Compile and test.
+ï¿½ Compile and test.
 Example
 I start from where I ended up from the example in Change Unidirectional Association to Bidirectional. I have a customer and order with a bidirectional link:
 class Order... Customer getCustomer() { return _customer; } void setCustomer (Customer arg) { if (_customer != null) _customer.friendOrders().remove(this); _customer = arg; if (_customer != null) _customer.friendOrders().add(this); } private Customer _customer;
@@ -2388,8 +2394,8 @@ Magic numbers are one of oldest ills in computing. They are numbers with special
 Many languages allow you to declare a constant. There is no cost in performance and there is a great improvement in readability.
 Before you do this refactoring, you should always look for an alternative. Look at how the magic number is used. Often you can find a better way to use it. If the magic number is a type code, consider Replace Type Code with Class. If the magic number is the length of an array, use anArray.length instead when you are looping through the array.
 Mechanics
-· Declare a constant and set it to the value of the magic number. · Find all occurrences of the magic number. · See whether the magic number matches the usage of the constant; if it does, change the
-magic number to use the constant. · Compile. · When all magic numbers are changed, compile and test. At this point all should work as if
+ï¿½ Declare a constant and set it to the value of the magic number. ï¿½ Find all occurrences of the magic number. ï¿½ See whether the magic number matches the usage of the constant; if it does, change the
+magic number to use the constant. ï¿½ Compile. ï¿½ When all magic numbers are changed, compile and test. At this point all should work as if
 nothing has been changed.
 166
 
@@ -2404,10 +2410,10 @@ One of the principal tenets of object orientation is encapsulation, or data hidi
 This is seen as a bad thing because it reduces the modularity of the program. When the data and behavior that uses it are clustered together, it is easier to change the code, because the changed code is in one place rather than scattered all over the program.
 Encapsulate Field begins the process by hiding the data and adding accessors. But this is only the first step. A class with only accessors is a dumb class that doesn't really take advantage of the opportunities of objects, and an object is terrible thing to waste. Once I've done Encapsulate Field I look for methods that use the new methods to see whether they fancy packing their bags and moving to the new object with a quick Move Method.
 Mechanics
-· Create getting and setting methods for the field. · Find all clients outside the class that reference the field. If the client uses the value,
+ï¿½ Create getting and setting methods for the field. ï¿½ Find all clients outside the class that reference the field. If the client uses the value,
 replace the reference with a call to the getting method. If the client changes the value, replace the reference with a call to the setting method.
 ?rarr; If the field is an object and the client invokes a modifier on the object, that is a use. Only use the setting method to replace an assignment.
-· Compile and test after each change. · Once all clients are changed, declare the field as private. · Compile and test.
+ï¿½ Compile and test after each change. ï¿½ Once all clients are changed, declare the field as private. ï¿½ Compile and test.
 167
 
 Encapsulate Collection
@@ -2419,23 +2425,23 @@ However, collections should use a protocol slightly different from that for othe
 In addition there should not be a setter for collection: rather there should be operations to add and remove elements. This gives the owning object control over adding and removing elements from the collection.
 With this protocol the collection is properly encapsulated, which reduces the coupling of the owning class to its clients.
 Mechanics
-· Add an add and remove method for the collection. · Initialize the field to an empty collection. · Compile. · Find callers of the setting method. Either modify the setting method to use the add and
+ï¿½ Add an add and remove method for the collection. ï¿½ Initialize the field to an empty collection. ï¿½ Compile. ï¿½ Find callers of the setting method. Either modify the setting method to use the add and
 remove operations or have the clients call those operations instead.
 ?rarr; Setters are used in two cases: when the collection is empty and when the setter is replacing a nonempty collection.
 ?rarr; You may wish to use Rename Method to rename the setter. Change it from set to initialize or replace.
-· Compile and test. · Find all users of the getter that modify the collection. Change them to use the add and
+ï¿½ Compile and test. ï¿½ Find all users of the getter that modify the collection. Change them to use the add and
 remove methods. Compile and test after each change.
 168
 
-· When all uses of the getter that modify have been changed, modify the getter to return a read-only view of the collection.
+ï¿½ When all uses of the getter that modify have been changed, modify the getter to return a read-only view of the collection.
 ?rarr; In Java 2, this is the appropriate unmodifiable collection view.
 ?rarr; In Java 1.1, you should return a copy of the collection.
 Compile and test.
-· Find the users of the getter. Look for code that should be on the host object. Use Extract Method and Move Method to move the code to the host object.
+ï¿½ Find the users of the getter. Look for code that should be on the host object. Use Extract Method and Move Method to move the code to the host object.
 For Java 2, you are done with that. For Java 1.1, however, clients may prefer to use an enumeration. To provide the enumeration:
-· Change the name of the current getter and add a new getter to return an enumeration. Find users of the old getter and change them to use one of the new methods.
+ï¿½ Change the name of the current getter and add a new getter to return an enumeration. Find users of the old getter and change them to use one of the new methods.
 ?rarr; If this is too big a jump, use Rename Method on the old getter, create a new method that returns an enumeration, and change callers to use the new method.
-· Compile and test.
+ï¿½ Compile and test.
 Examples
 Java 2 added a whole new group of classes to handle collections. It not only added new classes but also altered the style of using collections. As a result the way you encapsulate a collection is different depending on whether you use the Java 2 collections or the Java 1.1 collections. I discuss the Java 2 approach first, because I expect the more functional Java 2 collections to displace the Java 1.1 collections during the lifetime of this book.
 Example: Java 2
@@ -2569,7 +2575,7 @@ Make a dumb data object for the record.
 Motivation
 Record structures are a common feature of programming environments. There are various reasons for bringing them into an object-oriented program. You could be copying a legacy program, or you could be communicating a structured record with a traditional programming API, or a database record. In these cases it is useful to create an interfacing class to deal with this external element. It is simplest to make the class look like the external record. You move other fields and methods into the class later. A less obvious but very compelling case is an array in which the element in each index has a special meaning. In this case you use Replace Array with Object.
 Mechanics
-· Create a class to represent the record. · Give the class a private field with a getting method and a setting method for each data
+ï¿½ Create a class to represent the record. ï¿½ Give the class a private field with a getting method and a setting method for each data
 item. You now have a dumb data object. It has no behavior yet but further refactoring will explore that issue.
 Replace Type Code with Class
 A class has a numeric type code that does not affect its behavior. Replace the number with a new class.
@@ -2582,20 +2588,20 @@ If you replace the number with a class, the compiler can type check on the class
 Before you do Replace Type Code with Class, however, you need to consider the other type code replacements. Replace the type code with a class only if the type code is pure data, that is, it does not cause different behavior inside a switch statement. For a start Java can only switch on an integer, not an arbitrary class, so the replacement will fail. More important than that, any switch has to be removed with Replace Conditional with Polymorphism. In order for that refactoring, the type code first has to be handled with Replace Type Code with Subclasses or Replace Type Code with State/Strategy.
 Even if a type code does not cause different behavior depending on its value, there might be behavior that is better placed in the type code class, so be alert to the value of a Move Method or two.
 Mechanics
-· Create a new class for the type code.
+ï¿½ Create a new class for the type code.
 ?rarr; The class needs a code field that matches the type code and a getting method for this value. It should have static variables for the allowable instances of the class and a static method that returns the appropriate instance from an argument based on the original code.
-· Modify the implementation of the source class to use the new class.
+ï¿½ Modify the implementation of the source class to use the new class.
 ?rarr; Maintain the old code-based interface, but change the static fields to use new class to generate the codes. Alter the other code-based methods to get the code numbers from the new class.
-· Compile and test.
+ï¿½ Compile and test.
 ?rarr; At this point the new class can do run-time checking of the codes.
-· For each method on the source class that uses the code, create a new method that uses the new class instead.
+ï¿½ For each method on the source class that uses the code, create a new method that uses the new class instead.
 ?rarr; Methods that use the code as an argument need new methods that use an instance of the new class as an argument. Methods that return a code need a new method that returns the code. It is often wise to use Rename Method on an old accessor before creating a new one to make the program clearer when it is using an old code.
-· One by one, change the clients of the source class so that they use the new interface. · Compile and test after each client is updated.
+ï¿½ One by one, change the clients of the source class so that they use the new interface. ï¿½ Compile and test after each client is updated.
 177
 
 ?rarr; You may need to alter several methods before you have enough consistency to compile and test.
-· Remove the old interface that uses the codes, and remove the static declarations of the codes.
-· Compile and test.
+ï¿½ Remove the old interface that uses the codes, and remove the static declarations of the codes.
+ï¿½ Compile and test.
 Example
 A person has a blood group modeled with a type code:
 class Person {
@@ -2672,12 +2678,12 @@ Replace Type Code with Subclasses is primarily a scaffolding move that enables R
 Another reason to Replace Type Code with Subclasses is the presence of features that are relevant only to objects with certain type codes. Once you've done this refactoring, you can use Push Down Method and Push Down Field to clarify that these features are relevant only in certain cases.
 The advantage of Replace Type Code with Subclasses is that it moves knowledge of the variant behavior from clients of the class to the class itself. If I add new variants, all I need to do is add a subclass. Without polymorphism I have to find all the conditionals and change those. So this refactoring is particularly valuable when variants keep changing.
 Mechanics
-· Self-encapsulate the type code.
+ï¿½ Self-encapsulate the type code.
 ?rarr; If the type code is passed into the constructor, you need to replace the constructor with a factory method.
-· For each value of the type code, create a subclass. Override the getting method of the type code in the subclass to return the relevant value.
+ï¿½ For each value of the type code, create a subclass. Override the getting method of the type code in the subclass to return the relevant value.
 ?rarr; This value is hard coded into the return (e.g., return 1). This looks messy, but it is a temporary measure until all case statements have been replaced.
-· Compile and test after replacing each type code value with a subclass. · Remove the type code field from the superclass. Declare the accessors for the type code
-as abstract. · Compile and test.
+ï¿½ Compile and test after replacing each type code value with a subclass. ï¿½ Remove the type code field from the superclass. Declare the accessors for the type code
+as abstract. ï¿½ Compile and test.
 Example
 I use the boring and unrealistic example of employee payment:
 class Employee... private int _type; static final int ENGINEER = 0; static final int SALESMAN = 1; static final int MANAGER = 2;
@@ -2722,15 +2728,15 @@ Motivation
 This is similar to Replace Type Code with Subclasses, but can be used if the type code changes during the life of the object or if another reason prevents subclassing. It uses either the state or strategy pattern [Gang of Four].
 State and strategy are very similar, so the refactoring is the same whichever you use, and it doesn't really matter. Choose the pattern that better fits the specific circumstances. If you are trying to simplify a single algorithm with Replace Conditional with Polymorphism, strategy is the better term. If you are going to move state-specific data and you think of the object as changing state, use the state pattern.
 Mechanics
-· Self-encapsulate the type code. · Create a new class, and name it after the purpose of the type code. This is the state
-object. · Add subclasses of the state object, one for each type code.
+ï¿½ Self-encapsulate the type code. ï¿½ Create a new class, and name it after the purpose of the type code. This is the state
+object. ï¿½ Add subclasses of the state object, one for each type code.
 ?rarr; It is easier to add the subclasses all at once, rather than one at a time.
-· Create an abstract query in the state object to return the type code. Create overriding queries of each state object subclass to return the correct type code.
-· Compile.
+ï¿½ Create an abstract query in the state object to return the type code. Create overriding queries of each state object subclass to return the correct type code.
+ï¿½ Compile.
 184
 
-· Create a field in the old class for the new state object. · Adjust the type code query on the original class to delegate to the state object. · Adjust the type code setting methods on the original class to assign an instance of the
-appropriate state object subclass. · Compile and test.
+ï¿½ Create a field in the old class for the new state object. ï¿½ Adjust the type code query on the original class to delegate to the state object. ï¿½ Adjust the type code setting methods on the original class to assign an instance of the
+appropriate state object subclass. ï¿½ Compile and test.
 Example
 I again use the tiresome and brainless example of employee payment:
 class Employee {
@@ -2790,9 +2796,9 @@ You create subclasses to add features or allow behavior to vary. One form of var
 Mechanics
 188
 
-· Use Replace Constructor with Factory Method on the subclasses. · If any code refers to the subclasses, replace the reference with one to the superclass. · Declare final fields for each constant method on the superclass. · Declare a protected superclass constructor to initialize the fields. · Add or modify subclass constructors to call the new superclass constructor. · Compile and test. · Implement each constant method in the superclass to return the field and remove the
-method from the subclasses. · Compile and test after each removal. · When all the subclass methods have been removed, use Inline Method to inline the
-constructor into the factory method of the superclass. · Compile and test. · Remove the subclass. · Compile and test. · Repeat inlining the constructor and elminating each subclass until they are all gone.
+ï¿½ Use Replace Constructor with Factory Method on the subclasses. ï¿½ If any code refers to the subclasses, replace the reference with one to the superclass. ï¿½ Declare final fields for each constant method on the superclass. ï¿½ Declare a protected superclass constructor to initialize the fields. ï¿½ Add or modify subclass constructors to call the new superclass constructor. ï¿½ Compile and test. ï¿½ Implement each constant method in the superclass to return the field and remove the
+method from the subclasses. ï¿½ Compile and test after each removal. ï¿½ When all the subclass methods have been removed, use Inline Method to inline the
+constructor into the factory method of the superclass. ï¿½ Compile and test. ï¿½ Remove the subclass. ï¿½ Compile and test. ï¿½ Repeat inlining the constructor and elminating each subclass until they are all gone.
 Example
 I begin with a person and sex-oriented subclasses:
 abstract class Person {
@@ -2849,7 +2855,7 @@ One of the most common areas of complexity in a program lies in complex conditio
 
 As with any large block of code, you can make your intention clearer by decomposing it and replacing chunks of code with a method call named after the intention of that block of code. With conditions you can receive further benefit by doing this for the conditional part and each of the alternatives. This way you highlight the condition and make it clearly what you are branching on. You also highlight the reason for the branching.
 Mechanics
-· Extract the condition into its own method. · Extract the then part and the else part into their own methods.
+ï¿½ Extract the condition into its own method. ï¿½ Extract the then part and the else part into their own methods.
 If I find a nested conditional, I usually first look to see whether I should use Replace Nested Conditional with Guard Clauses. If that does not make sense, I decompose each of the conditionals.
 Example
 Suppose I'm calculating the charge for something that has separate rates for winter and summer:
@@ -2878,10 +2884,10 @@ Sometimes you see a series of conditional checks in which each check is differen
 Consolidating the conditional code is important for two reasons. First, it makes the check clearer by showing that you are really making a single check that's oring the other checks together. The sequence has the same effect, but it communicates carrying out a sequence of separate checks that just happen to be done together. The second reason for this refactoring is that it often sets you up for Extract Method. Extracting a condition is one of the most useful things you can do to clarify your code. It replaces a statement of what you are doing with why you are doing it.
 The reasons in favor of consolidating conditionals also point to reasons for not doing it. If you think the checks are really independent and shouldn't be thought of as a single check, don't do the refactoring. Your code already communicates your intention.
 Mechanics
-· Check that none of the conditionals has side effects.
+ï¿½ Check that none of the conditionals has side effects.
 ?rarr; If there are side effects, you won't be able to do this refactoring.
-· Replace the string of conditionals with a single conditional statement using logical operators.
-· Compile and test. · Consider using Extract Method on the condition.
+ï¿½ Replace the string of conditionals with a single conditional statement using logical operators.
+ï¿½ Compile and test. ï¿½ Consider using Extract Method on the condition.
 Example: Ors
 The state of the code is along the lines of the following:
 194
@@ -2920,8 +2926,8 @@ send();
 Motivation
 Sometimes you find the same code executed in all legs of a conditional. In that case you should move the code to outside the conditional. This makes clearer what varies and what stays the same.
 Mechanics
-· Identify code that is executed the same way regardless of the condition. · If the common code is at the beginning, move it to before the conditional. · If the common code is at the end, move it to after the conditional. · If the common code is in the middle, look to see whether the code before or after it
-changes anything. If it does, you can move the common code forward or backward to the ends. You can then move it as described for code at the end or the beginning. · If there is more than a single statement, you should extract that code into a method.
+ï¿½ Identify code that is executed the same way regardless of the condition. ï¿½ If the common code is at the beginning, move it to before the conditional. ï¿½ If the common code is at the end, move it to after the conditional. ï¿½ If the common code is in the middle, look to see whether the code before or after it
+changes anything. If it does, you can move the common code forward or backward to the ends. You can then move it as described for code at the end or the beginning. ï¿½ If there is more than a single statement, you should extract that code into a method.
 196
 
 Example
@@ -2947,9 +2953,9 @@ Such control flags are more trouble than they are worth. They come from rules of
 
 Mechanics
 The obvious way to deal with control flags is to use the break or continue statements present in Java.
-· Find the value of the control flag that gets you out of the logic statement. · Replace assignments of the break-out value with a break or continue statement. · Compile and test after each replacement.
+ï¿½ Find the value of the control flag that gets you out of the logic statement. ï¿½ Replace assignments of the break-out value with a break or continue statement. ï¿½ Compile and test after each replacement.
 Another approach, also usable in languages without break and continue, is as follows:
-· Extract the logic into a method. · Find the value of the control flag that gets you out of the logic statement. · Replace assignments of the break-out value with a return. · Compile and test after each replacement.
+ï¿½ Extract the logic into a method. ï¿½ Find the value of the control flag that gets you out of the logic statement. ï¿½ Replace assignments of the break-out value with a return. ï¿½ Compile and test after each replacement.
 Even in languages with a break or continue, I usually prefer use of an extraction and of a return. The return clearly signals that no more code in the method is executed. If you have that kind of code, you often need to extract that piece anyway.
 Keep an eye on whether the control flag also indicates result information. If it does, you still need the control flag if you use the break, or you can return the value if you have extracted a method.
 Example: Simple Control Flag Replaced with Break
@@ -3006,9 +3012,9 @@ These kinds of conditionals have different intentions, and these intentions shou
 The key point about Replace Nested Conditional with Guard Clauses is one of emphasis. If you are using an if-then-else construct you are giving equal weight to the if leg and the else leg. This communicates to the reader that the legs are equally likely and important. Instead the guard clause says, "This is rare, and if it happens, do something and get out."
 I often find I use Replace Nested Conditional with Guard Clauses when I'm working with a programmer who has been taught to have only one entry point and one exit point from a method. One entry point is enforced by modern languages, and one exit point is really not a useful rule. Clarity is the key principle: if the method is clearer with one exit point, use one exit point; otherwise don't.
 Mechanics
-· For each check put in the guard clause.
+ï¿½ For each check put in the guard clause.
 ?rarr; The guard clause either returns, or throws an exception.
-· Compile and test after each check is replaced with a guard clause.
+ï¿½ Compile and test after each check is replaced with a guard clause.
 ?rarr; If all guard clauses yield the same result, use Consolidate Conditional Expressions.
 Example
 Imagine a run of a payroll system in which you have special rules for dead, separated, and retired employees. Such cases are unusual, but they do happen from time to time.
@@ -3069,13 +3075,13 @@ Mechanics
 Before you can begin with Replace Conditional with Polymorphism you need to have the necessary inheritance structure. You may already have this structure from previous refactorings. If you don't have the structure, you need to create it.
 To create the inheritance structure you have two options: Replace Type Code with Subclasses and Replace Type Code with State/Strategy. Subclasses are the simplest option, so you should use them if you can. If you update the type code after the object is created, however, you cannot use subclassing and have to use the state/strategy pattern. You also need to use the state/strategy pattern if you are already subclassing this class for another reason. Remember that if several case statements are switching on the same type code, you only need to create one inheritance structure for that type code.
 You can now attack the conditional. The code you target may be a switch (case) statement or an if statement.
-· If the conditional statement is one part of a larger method, take apart the conditional statement and use Extract Method.
-· If necessary use Move Method to place the conditional at the top of the inheritance structure.
+ï¿½ If the conditional statement is one part of a larger method, take apart the conditional statement and use Extract Method.
+ï¿½ If necessary use Move Method to place the conditional at the top of the inheritance structure.
 206
 
-· Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit. ?rarr; You may need to make some private members of the superclass protected in order to do this.
-· Compile and test. · Remove the copied leg of the conditional statement. · Compile and test. · Repeat with each leg of the conditional statement until all legs are turned into subclass
-methods. · Make the superclass method abstract.
+ï¿½ Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit. ?rarr; You may need to make some private members of the superclass protected in order to do this.
+ï¿½ Compile and test. ï¿½ Remove the copied leg of the conditional statement. ï¿½ Compile and test. ï¿½ Repeat with each leg of the conditional statement until all legs are turned into subclass
+methods. ï¿½ Make the superclass method abstract.
 Example
 I use the tedious and simplistic example of employee payment. I'm using the classes after using Replace Type Code with State/Strategy so the objects look like Figure 9.1 (see the example in Chapter 8 for how we got here).
 Figure 9.1. _The inheritance structure
@@ -3125,19 +3131,19 @@ An interesting characteristic of using null objects is that things almost never 
 Remember, null objects are always constant: nothing about them ever changes. Accordingly, we implement them using the Singleton pattern [Gang of Four]. Whenever you ask, for example, for a missing person, you always get the single instance of that class.
 You can find more details about the null object pattern in Woolf [Woolf].
 Mechanics
-· Create a subclass of the source class to act as a null version of the class. Create an isNull operation on the source class and the null class. For the source class it should return false, for the null class it should return true.
+ï¿½ Create a subclass of the source class to act as a null version of the class. Create an isNull operation on the source class and the null class. For the source class it should return false, for the null class it should return true.
 ?rarr; You may find it useful to create an explicitly nullable interface for the isNull method.
 ?rarr; As an alternative you can use a testing interface to test for nullness.
 211
 
-· Compile. · Find all places that can give out a null when asked for a source object. Replace them to
+ï¿½ Compile. ï¿½ Find all places that can give out a null when asked for a source object. Replace them to
 give out a null object instead.
-· Find all places that compare a variable of the source type with null and replace them with a call isNull.
+ï¿½ Find all places that compare a variable of the source type with null and replace them with a call isNull.
 ?rarr; You may be able to do this by replacing one source and its clients at a time and compiling and testing between working on sources.
 ?rarr; A few assertions that check for null in places where you should no longer see it can be useful.
-· Compile and test. · Look for cases in which clients invoke an operation if not null and do some alternative
-behavior if null. · For each of these cases override the operation in the null class with the alternative
-behavior. · Remove the condition check for those that use the overriden behavior, compile, and test.
+ï¿½ Compile and test. ï¿½ Look for cases in which clients invoke an operation if not null and do some alternative
+behavior if null. ï¿½ For each of these cases override the operation in the null class with the alternative
+behavior. ï¿½ Remove the condition check for those that use the overriden behavior, compile, and test.
 Example
 A utility company knows about sites: the houses and apartments that use the utility's services. At any time a site has a customer.
 class Site... Customer getCustomer() { return _customer; } Customer _customer;
@@ -3224,7 +3230,7 @@ An assertion is a conditional statement that is assumed to be always true. Failu
 Assertions act as communication and debugging aids. In communication they help the reader understand the assumptions the code is making. In debugging, assertions can help catch bugs closer to their origin. I've noticed the debugging help is less important when I write self-testing code, but I still appreciate the value of assertions in communciation.
 Mechanics
 Because assertions should not affect the running of a system, adding one is always behavior preserving.
-· When you see that a condition is assumed to be true, add an assertion to state it.
+ï¿½ When you see that a condition is assumed to be true, add an assertion to state it.
 ?rarr; Have an assert class that you can use for assertion behavior.
 Beware of overusing assertions. Don't use assertions to check everything that you think is true for a section of code. Use assertions only to check things that need to be true. Overusing assertions can lead to duplicate logic that is awkward to maintain. Logic that covers an assumption is good because it forces you to rethink the section of the code. If the code works without the assertion, the assertion is confusing rather than helpful and may hinder modification in the future.
 217
@@ -3272,14 +3278,14 @@ Motivation
 An important part of the code style I am advocating is small methods to factor complex processes. Done badly, this can lead you on a merry dance to find out what all the little methods do. The key to avoiding this merry dance is naming the methods. Methods should be named in a way that communicates their intention. A good way to do this is to think what the comment for the method would be and turn that comment into the name of the method.
 Life being what it is, you won't get your names right the first time. In this situation you may well be tempted to leave it--after all it's only a name. That is the work of the evil demon Obfuscatis; don't listen to him. If you see a badly named method, it is imperative that you change it. Remember your code is for a human first and a computer second. Humans need good names. Take note of when you have spent ages trying to do something that would have been easier if a couple of methods had been better named. Good naming is a skill that requires practice; improving this skill is the key to being a truly skillful programmer. The same applies to other aspects of the signature. If reordering parameters clarifies matters, do it (see Add Parameter and Remove Parameter).
 Mechanics
-· Check to see whether the method signature is implemented by a superclass or subclass. If it is, perform these steps for each implementation.
-· Declare a new method with the new name. Copy the old body of code over to the new name and make any alterations to fit.
-· Compile. · Change the body of the old method so that it calls the new one.
+ï¿½ Check to see whether the method signature is implemented by a superclass or subclass. If it is, perform these steps for each implementation.
+ï¿½ Declare a new method with the new name. Copy the old body of code over to the new name and make any alterations to fit.
+ï¿½ Compile. ï¿½ Change the body of the old method so that it calls the new one.
 ?rarr; If you only have a few references, you can reasonably skip this step.
-· Compile and test. · Find all references to the old method name and change them to refer to the new one.
-Compile and test after each change. · Remove the old method.
+ï¿½ Compile and test. ï¿½ Find all references to the old method name and change them to refer to the new one.
+Compile and test after each change. ï¿½ Remove the old method.
 ?rarr; If the old method is part of the interface and you cannot remove it, leave it in place and mark it as deprecated.
-· Compile and test.
+ï¿½ Compile and test.
 221
 
 Example
@@ -3302,16 +3308,16 @@ Look at the existing parameters. Can you ask one of those objects for the inform
 I'm not saying that you should never add parameters; I do it frequently, but you need to be aware of the alternatives.
 Mechanics
 The mechanics of Add Parameter are very similar to those of Rename Method.
-· Check to see whether this method signature is implemented by a superclass or subclass. If it is, carry out these steps for each implementation.
-· Declare a new method with the added parameter. Copy the old body of code over to the new method.
+ï¿½ Check to see whether this method signature is implemented by a superclass or subclass. If it is, carry out these steps for each implementation.
+ï¿½ Declare a new method with the added parameter. Copy the old body of code over to the new method.
 ?rarr; If you need to add more than one parameter, it is easier to add them at the same time.
-· Compile. · Change the body of the old method so that it calls the new one.
+ï¿½ Compile. ï¿½ Change the body of the old method so that it calls the new one.
 ?rarr; If you only have a few references, you can reasonably skip this step.
 ?rarr; You can supply any value for the parameter, but usually you use null for object parameter and a clearly odd value for built-in types. It's often a good idea to use something other than zero for numbers so you can spot this case more easily.
-· Compile and test. · Find all references to the old method and change them to refer to the new one. Compile
-and test after each change. · Remove the old method.
+ï¿½ Compile and test. ï¿½ Find all references to the old method and change them to refer to the new one. Compile
+and test after each change. ï¿½ Remove the old method.
 ?rarr; If the old method is part of the interface and you cannot remove it, leave it in place and mark it as deprecated.
-· Compile and test.
+ï¿½ Compile and test.
 Remove Parameter
 A parameter is no longer used by the method body.
 Remove it.
@@ -3323,29 +3329,29 @@ This is the demon Obfuscatis speaking; purge him from your soul! A parameter ind
 The case to be wary of here is a polymorphic method. In this case you may well find that other implementations of the method do use the parameter. In this case you shouldn't remove the parameter. You might choose to add a separate method that can be used in those cases, but you need to examine how your callers use the method to see whether it is worth doing that. If some callers already know they are dealing with a certain subclass and doing extra work to find the parameter or are using knowledge of the class hierarchy to know they can get away with a null, add an extra method without the parameter. If they do not need to know about which class has which method, the callers should be left in blissful ignorance.
 Mechanics
 The mechanics of Remove Parameter are very similar to those of Rename Method and Add Parameter.
-· Check to see whether this method signature is implemented by a superclass or subclass. Check to see whether the class or superclass uses the parameter. If it does, don't do this refactoring.
-· Declare a new method without the parameter. Copy the old body of code to the new method.
+ï¿½ Check to see whether this method signature is implemented by a superclass or subclass. Check to see whether the class or superclass uses the parameter. If it does, don't do this refactoring.
+ï¿½ Declare a new method without the parameter. Copy the old body of code to the new method.
 ?rarr; If you need to remove more than one parameter, it is easier to remove them together.
-· Compile. · Change the body of the old method so that it calls the new one.
+ï¿½ Compile. ï¿½ Change the body of the old method so that it calls the new one.
 ?rarr; If you only have a few references, you can reasonably skip this step.
-· Compile and test. · Find all references to the old method and change them to refer to the new one. Compile
-and test after each change. · Remove the old method.
+ï¿½ Compile and test. ï¿½ Find all references to the old method and change them to refer to the new one. Compile
+and test after each change. ï¿½ Remove the old method.
 224
 
-?rarr; If the old method is part of the interface and you cannot remove it, leave it in place and mark it as deprecated. · Compile and test. Because I'm pretty comfortable with adding and removing parameters, I often do a batch in one go.
+?rarr; If the old method is part of the interface and you cannot remove it, leave it in place and mark it as deprecated. ï¿½ Compile and test. Because I'm pretty comfortable with adding and removing parameters, I often do a batch in one go.
 Separate Query from Modifier
 You have a method that returns a value but also changes the state of an object. Create two methods, one for the query and one for the modification.
 Motivation
 When you have a function that gives you a value and has no observable side effects, you have a very valuable thing. You can call this function as often as you like. You can move the call to other places in the method. In short, you have a lot less to worry about. It is a good idea to clearly signal the difference between methods with side effects and those without. A good rule to follow is to say that any method that returns a value should not have observable side effects. Some programmers treat this as an absolute rule [Meyer]. I'm not 100 percent pure on this (as on anything), but I try to follow it most of the time, and it has served me well. If you come across a method that returns a value but also has side effects, you should try to separate the query from the modifier. You'll note I use the phrase observable side effects. A common optimization is to cache the value of a query in a field so that repeated calls go quicker. Although this changes the state of the object with the cache, the change is not observable. Any sequence of queries will always return the same results for each query [Meyer].
 Mechanics
-· Create a query that returns the same value as the original method. ?rarr; Look in the original method to see what is returned. If the returned value is a temporary, look at the location of the temp assignment.
-· Modify the original method so that it returns the result of a call to the query.
+ï¿½ Create a query that returns the same value as the original method. ?rarr; Look in the original method to see what is returned. If the returned value is a temporary, look at the location of the temp assignment.
+ï¿½ Modify the original method so that it returns the result of a call to the query.
 225
 
 ?rarr; Every return in the original method should say return newQuery() instead of returning anything else.
 ?rarr; If the method used a temp to with a single assignment to capture the return value, you should be able to remove it.
-· Compile and test. · For each call, replace the single call to the original method with a call to the query. Add a
-call to the original method before the line that calls the query. Compile and test after each change to a calling method. · Make the original method have a void return type and remove the return expressions.
+ï¿½ Compile and test. ï¿½ For each call, replace the single call to the original method with a call to the query. Add a
+call to the original method before the line that calls the query. Compile and test after each change to a calling method. ï¿½ Make the original method have a void return type and remove the return expressions.
 Example
 Here is a function that tells me the name of a miscreant for a security system and sends an alert. The rule is that only one alert is sent even if there is more than one miscreant:
 String foundMiscreant(String[] people){ for (int i = 0; i < people.length; i++) { if (people[i].equals ("Don")){ sendAlert(); return "Don"; } if (people[i].equals ("John")){ sendAlert(); return "John"; } } return "";
@@ -3387,7 +3393,7 @@ You may see a couple of methods that do similar things but vary depending on a f
 Mechanics
 228
 
-· Create a parameterized method that can be substituted for each repetitive method. · Compile. · Replace one old method with a call to the new method. · Compile and test. · Repeat for all the methods, testing after each one.
+ï¿½ Create a parameterized method that can be substituted for each repetitive method. ï¿½ Compile. ï¿½ Replace one old method with a call to the new method. ï¿½ Compile and test. ï¿½ Repeat for all the methods, testing after each one.
 You may find that you cannot do this for the whole method, but you can for a fragment of a method. In this case first extract the fragment into a method, then parameterize that method.
 Example
 The simplest case is methods along the following lines:
@@ -3426,7 +3432,7 @@ The clarity of the explicit interface can be worthwhile even when the compile ti
 
 You shouldn't use Replace Parameter with Explicit Methods when the parameter values are likely to change a lot. If this happens and you are just setting a field to the passed in parameter, use a simple setter. If you need conditional behavior, you need Replace Conditional with Polymorphism.
 Mechanics
-· Create an explicit method for each value of the parameter. · For each leg of the conditional, call the appropriate new method. · Compile and test after changing each leg. · Replace each caller of the conditional method with a call to the appropriate new method. · Compile and test. · When all callers are changed, remove the conditional method.
+ï¿½ Create an explicit method for each value of the parameter. ï¿½ For each leg of the conditional, call the appropriate new method. ï¿½ Compile and test after changing each leg. ï¿½ Replace each caller of the conditional method with a call to the appropriate new method. ï¿½ Compile and test. ï¿½ When all callers are changed, remove the conditional method.
 Example
 I want to create a subclass of employee on the basis of a passed in parameter, often the result of Replace Constructor with Factory Method:
 static final int ENGINEER = 0; static final int SALESMAN = 1; static final int MANAGER = 2;
@@ -3470,13 +3476,13 @@ That a called method uses lots of values from another object is a signal that th
 You may not already have the whole object defined. In this case you need Introduce Parameter Object.
 A common case is that a calling object passes several of its own data values as parameters. In this case you can make the call and pass in this instead of these values, if you have the appropriate getting methods and you don't mind the dependency.
 Mechanics
-· Create a new parameter for the whole object from which the data comes. · Compile and test. · Determine which parameters should be obtained from the whole object. · Take one parameter and replace references to it within the method body by invoking an
-appropriate method on the whole object parameter. · Delete the parameter. · Compile and test. · Repeat for each parameter that can be got from the whole object.
+ï¿½ Create a new parameter for the whole object from which the data comes. ï¿½ Compile and test. ï¿½ Determine which parameters should be obtained from the whole object. ï¿½ Take one parameter and replace references to it within the method body by invoking an
+appropriate method on the whole object parameter. ï¿½ Delete the parameter. ï¿½ Compile and test. ï¿½ Repeat for each parameter that can be got from the whole object.
 233
 
-· Remove the code in the calling method that obtains the deleted parameters.
+ï¿½ Remove the code in the calling method that obtains the deleted parameters.
 ?rarr; Unless, of course, the code is using these parameters somewhere else.
-· Compile and test.
+ï¿½ Compile and test.
 Example
 Consider a room object that records high and low temperatures during the day. It needs to compare this range with a range in a predefined heating plan:
 class Room... boolean withinPlan(HeatingPlan plan) { int low = daysTempRange().getLow(); int high = daysTempRange().getHigh(); return plan.withinRange(low, high); }
@@ -3514,7 +3520,7 @@ One way of reducing parameter lists is to look to see whether the receiving meth
 You can't remove the parameter if the calculation relies on a parameter of the calling method, because that parameter may change with each call (unless, of course, that parameter can be replaced with a method). You also can't remove the parameter if the receiver does not have a reference to the sender, and you don't want to give it one.
 In some cases the parameter may be there for a future parameterization of the method. In this case I would still get rid of it. Deal with the parameterization when you need it; you may find out that you don't have the right parameter anyway. I would make an exception to this rule only when the resulting change in the interface would have painful consequences around the whole program, such as a long build or changing of a lot of embedded code. If this worries you, look into how painful such a change would really be. You should also look to see whether you can reduce the dependencies that cause the change to be so painful. Stable interfaces are good, but freezing a poor interface is a problem.
 Mechanics
-· If necessary, extract the calculation of the parameter into a method. · Replace references to the parameter in method bodies with references to the method. · Compile and test after each replacement. · Use Remove Parameter on the parameter.
+ï¿½ If necessary, extract the calculation of the parameter into a method. ï¿½ Replace references to the parameter in method bodies with references to the method. ï¿½ Compile and test after each replacement. ï¿½ Use Remove Parameter on the parameter.
 Example
 Another unlikely variation on discounting orders is as follows:
 public double getPrice() { int basePrice = _quantity * _itemPrice; int discountLevel; if (_quantity > 100) discountLevel = 2; else discountLevel = 1; double finalPrice = discountedPrice (basePrice, discountLevel); return finalPrice;
@@ -3557,12 +3563,12 @@ You get a deeper benefit, however, because once you have clumped together the pa
 Mechanics
 238
 
-· Create a new class to represent the group of parameters you are replacing. Make the class immutable.
-· Compile. · Use Add Parameter for the new data clump. Use a null for this parameter in all the
+ï¿½ Create a new class to represent the group of parameters you are replacing. Make the class immutable.
+ï¿½ Compile. ï¿½ Use Add Parameter for the new data clump. Use a null for this parameter in all the
 callers.
 ?rarr; If you have many callers, you can retain the old signature and let it call the new method. Apply the refactoring on the old method first. You can then move the callers over one by one and remove the old method when you're done.
-· For each parameter in the data clump, remove the parameter from the signature. Modify the callers and method body to use the parameter object for that value.
-· Compile and test after you remove each parameter. · When you have removed the parameters, look for behavior that you can move into the
+ï¿½ For each parameter in the data clump, remove the parameter from the signature. Modify the callers and method body to use the parameter object for that value.
+ï¿½ Compile and test after you remove each parameter. ï¿½ When you have removed the parameters, look for behavior that you can move into the
 parameter object with Move Method.
 ?rarr; This may be a whole method or part of a method. If it is part of a method, use Extract Method first and then move the new method over.
 Example
@@ -3614,10 +3620,10 @@ This situation often occurs when programmers blindly use indirect variable acces
 Mechanics
 242
 
-· Compile and test. · Check that the setting method is called only in the constructor, or in a method called by
-the constructor. · Modify the constructor to access the variables directly.
+ï¿½ Compile and test. ï¿½ Check that the setting method is called only in the constructor, or in a method called by
+the constructor. ï¿½ Modify the constructor to access the variables directly.
 ?rarr; You cannot do this if you have a subclass setting the private fields of a superclass. In this case you should try to provide a protected superclass method (ideally a constructor) to set these values. Whatever you do, don't give the superclass method a name that will confuse it with a setting method.
-· Compile and test. · Remove the setting method and make the field final. · Compile.
+ï¿½ Compile and test. ï¿½ Remove the setting method and make the field final. ï¿½ Compile.
 Example
 A simple example is as follows:
 class Account {
@@ -3669,10 +3675,10 @@ Motivation
 Refactoring often causes you to change decisions about the visibility of methods. It is easy to spot cases in which you need to make a method more visible: another class needs it and you thus relax the visibility. It is somewhat more difficult to tell when a method is too visible. Ideally a tool should check all methods to see whether they can be hidden. If it doesn't, you should make this check at regular intervals.
 A particularly common case is hiding getting and setting methods as you work up a richer interface that provides more behavior. This case is most common when you are starting with a class that is little more than an encapsulated data holder. As more behavior is built into the class, you may find that many of the getting and setting methods are no longer needed publicly, in which case they can be hidden. If you make a getting or setting method private and you are using direct variable access, you can remove the method.
 Mechanics
-· Check regularly for opportunities to make a method more private.
+ï¿½ Check regularly for opportunities to make a method more private.
 ?rarr; Use a lint-style tool, do manual checks every so often, and check when you remove a call to a method in another class.
 ?rarr; Particularly look for cases such as this with setting methods.
-· Make each method as private as you can. · Compile after doing a group of hidings.
+ï¿½ Make each method as private as you can. ï¿½ Compile after doing a group of hidings.
 245
 
 ?rarr; The compiler checks this naturally, so you don't need to compile with each change. If one goes wrong, it is easy to spot.
@@ -3687,7 +3693,7 @@ Motivation
 The most obvious motivation for Replace Constructor with Factory Method comes with replacing a type code with subclassing. You have an object that often is created with a type code but now needs subclasses. The exact subclass is based on the type code. However, constructors can only return an instance of the object that is asked for. So you need to replace the constructor with a factory method [Gang of Four].
 You can use factory methods for other situations in which constructors are too limited. Factory methods are essential for Change Value to Reference. They also can be used to signal different creation behavior that goes beyond the number and types of parameters.
 Mechanics
-· Create a factory method. Make its body a call to the current constructor. · Replace all calls to the constructor with calls to the factory method. · Compile and test after each replacement. · Declare the constructor private. · Compile.
+ï¿½ Create a factory method. Make its body a call to the current constructor. ï¿½ Replace all calls to the constructor with calls to the factory method. ï¿½ Compile and test after each replacement. ï¿½ Declare the constructor private. ï¿½ Compile.
 Example
 A quick but wearisome and belabored example is the employee payment system. I have the following employee:
 class Employee {
@@ -3734,7 +3740,7 @@ I can then replace calls of the form
 Person kent = new Male();
 with
 Person kent = Person.createMale();
-This leaves the superclass knowing about the subclasses. If you want to avoid this, you need a more complex scheme, such as a product trader [Bäumer and Riehle]. Most of the time, however, that complexity isn't needed, and this approach works nicely.
+This leaves the superclass knowing about the subclasses. If you want to avoid this, you need a more complex scheme, such as a product trader [Bï¿½umer and Riehle]. Most of the time, however, that complexity isn't needed, and this approach works nicely.
 Encapsulate Downcast
 A method returns an object that needs to be downcasted by its callers.
 Move the downcast to within the method.
@@ -3749,9 +3755,9 @@ Downcasting is one of the most annoying things you have to do with strongly type
 Downcasting may be a necessary evil, but you should do it as little as possible. If you return a value from a method, and you know the type of what is returned is more specialized than what the method signature says, you are putting unnecessary work on your clients. Rather than forcing them to do the downcasting, you should always provide them with the most specific type you can.
 Often you find this situation with methods that return an iterator or collection. Look instead to see what people are using the iterator for and provide the method for that.
 Mechanics
-· Look for cases in which you have to downcast the result from calling a method.
+ï¿½ Look for cases in which you have to downcast the result from calling a method.
 ?rarr; These cases often appear with methods that return a collection or iterator.
-· Move the downcast into the method.
+ï¿½ Move the downcast into the method.
 ?rarr; With methods that return collections, use Encapsulate Collection.
 Example
 I have a method called lastReading, which returns the last reading from a vector of readings:
@@ -3781,18 +3787,18 @@ In computers, as in life, things go wrong occasionally. When things go wrong, yo
 The problem is that the part of a program that spots an error isn't always the part that can figure out what to do about it. When such a routine finds an error, it needs to let its caller know, and the caller may pass the error up the chain. In many languages a special output is used to indicate error. Unix and C-based systems traditionally use a return code to signal success or failure of a routine.
 Java has a better way: exceptions. Exceptions are better because they clearly separate normal processing from error processing. This makes programs easier to understand, and as I hope you now believe, understandability is next to godliness.
 Mechanics
-· Decide whether the exception should be checked or unchecked.
+ï¿½ Decide whether the exception should be checked or unchecked.
 ?rarr; If the caller is responsible for testing the condition before calling, make the exception unchecked.
 251
 
 ?rarr; If the exception is checked, either create a new exception or use an existing one.
-· Find all the callers and adjust them to use the exception.
+ï¿½ Find all the callers and adjust them to use the exception.
 ?rarr; If the exception is unchecked, adjust the callers to make the appropriate check before calling the method. Compile and test after each such change.
 ?rarr; If the exception is checked, adjust the callers to call the method in a try block.
-· Change the signature of the method to reflect the new usage.
+ï¿½ Change the signature of the method to reflect the new usage.
 If you have many callers, this can be too big a change. You can make it more gradual with the following steps:
-· Decide whether the exception should be checked or unchecked. · Create a new method that uses the exception. · Modify the body of the old method to call the new method. · Compile and test. · Adjust each caller of the old method to call the new method. Compile and test after each
-change. · Delete the old method.
+ï¿½ Decide whether the exception should be checked or unchecked. ï¿½ Create a new method that uses the exception. ï¿½ Modify the body of the old method to call the new method. ï¿½ Compile and test. ï¿½ Adjust each caller of the old method to call the new method. Compile and test after each
+change. ï¿½ Delete the old method.
 Example
 Isn't it strange that computer textbooks often assume you can't withdraw more than your balance from an account, although in real life you often can?
 class Account... int withdraw(int amount) { if (amount > _balance) return -1; else { _balance -= amount; return 0; } } private int _balance;
@@ -3857,8 +3863,8 @@ Exceptions are an important advance in programming languages. They allow us to a
 255
 
 Mechanics
-· Put a test up front and copy the code from the catch block into the appropriate leg of the if statement.
-· Add an assertion to the catch block to notify you whether the catch block is executed. · Compile and test. · Remove the catch block and the try block if there are no other catch blocks. · Compile and test.
+ï¿½ Put a test up front and copy the code from the catch block into the appropriate leg of the if statement.
+ï¿½ Add an assertion to the catch block to notify you whether the catch block is executed. ï¿½ Compile and test. ï¿½ Remove the catch block and the try block if there are no other catch blocks. ï¿½ Compile and test.
 Example
 For this example I use an object that manages resources that are expensive to create but can be reused. Database connections are a good example of this. Such a manager has two pools of resources, one that is available for use and one that is allocated. When a client wants a resource, the pool hands it out and transfers it from the available pool to the allocated pool. When a client releases a resource, the manager passes it back. If a client requests a resource and none is available, the manager creates a new one.
 The method for giving out resources might look like this:
@@ -3902,9 +3908,9 @@ If subclasses are developed independently, or combined through refactoring, you 
 259
 
 Mechanics
-· Inspect all uses of the candidate fields to ensure they are used in the same way. · If the fields do not have the same name, rename the fields so that they have the name
-you want to use for the superclass field. · Compile and test. · Create a new field in the superclass.
-?rarr; If the fields are private, you will need to protect the superclass field so that the subclasses can refer to it. · Delete the subclass fields. · Compile and test. · Consider using Self Encapsulate Field on the new field.
+ï¿½ Inspect all uses of the candidate fields to ensure they are used in the same way. ï¿½ If the fields do not have the same name, rename the fields so that they have the name
+you want to use for the superclass field. ï¿½ Compile and test. ï¿½ Create a new field in the superclass.
+?rarr; If the fields are private, you will need to protect the superclass field so that the subclasses can refer to it. ï¿½ Delete the subclass fields. ï¿½ Compile and test. ï¿½ Consider using Self Encapsulate Field on the new field.
 Pull Up Method
 You have methods with identical results on subclasses. Move them to the superclass.
 Motivation
@@ -3915,12 +3921,12 @@ A special case of the need for Pull Up Method occurs when you have a subclass me
 The most awkward element of Pull Up Method is that the body of the methods may refer to features that are on the subclass but not on the superclass. If the feature is a method, you can either generalize the other method or create an abstract method in the superclass. You may need to change a method's signature or create a delegating method to get this to work.
 If you have two methods that are similar but not the same, you may be able to use Form Template Method.
 Mechanics
-· Inspect the methods to ensure they are identical. ?rarr; If the methods look like they do the same thing but are not identical, use algorithm substitution on one of them to make them identical.
-· If the methods have different signatures, change the signatures to the one you want to use in the superclass.
-· Create a new method in the superclass, copy the body of one of the methods to it, adjust, and compile.
+ï¿½ Inspect the methods to ensure they are identical. ?rarr; If the methods look like they do the same thing but are not identical, use algorithm substitution on one of them to make them identical.
+ï¿½ If the methods have different signatures, change the signatures to the one you want to use in the superclass.
+ï¿½ Create a new method in the superclass, copy the body of one of the methods to it, adjust, and compile.
 ?rarr; If you are in a strongly typed language and the method calls another method that is present on both subclasses but not the superclass, declare an abstract method on the superclass.
 ?rarr; If the method uses a subclass field, use Pull Up Field or Self Encapsulate Field and declare and use an abstract getting method.
-· Delete one subclass method. · Compile and test. · Keep deleting subclass methods and testing until only the superclass method remains. · Take a look at the callers of this method to see whether you can change a required type
+ï¿½ Delete one subclass method. ï¿½ Compile and test. ï¿½ Keep deleting subclass methods and testing until only the superclass method remains. ï¿½ Take a look at the callers of this method to see whether you can change a required type
 to the superclass.
 Example
 Consider a customer with two subclasses: regular customer and preferred customer.
@@ -3944,12 +3950,12 @@ Constructors are tricky things. They aren't quite normal methods, so you are mor
 If you see subclass methods with common behavior, your first thought is to extract the common behavior into a method and pull it up into the superclass. With a constructor, however, the common behavior is often the construction. In this case you need a superclass constructor that is called by subclasses. In many cases this is the whole body of the constructor. You can't use Pull Up Method here, because you can't inherit constructors (don't you just hate that?).
 If refactoring becomes complex, you might want to consider Replace Constructor with Factory Method instead.
 Mechanics
-· Define a superclass constructor. · Move the common code at the beginning from the subclass to the superclass constructor.
+ï¿½ Define a superclass constructor. ï¿½ Move the common code at the beginning from the subclass to the superclass constructor.
 ?rarr; This may be all the code.
 ?rarr; Try to move common code to the beginning of the constructor.
-· Call the superclass constructor as the first step in the subclass constructor.
+ï¿½ Call the superclass constructor as the first step in the subclass constructor.
 ?rarr; If all the code is common, this will be the only line of the subclass constructor.
-· Compile and test.
+ï¿½ Compile and test.
 ?rarr; If there is any common code later, use Extract Method to factor out common code and use Pull Up Method to pull it up.
 Example
 Here are a manager and an employee:
@@ -3975,9 +3981,9 @@ Behavior on a superclass is relevant only for some of its subclasses. Move it to
 Motivation
 Pull Down Method is the opposite of Pull Up Method. I use it when I need to move behavior from a superclass to a specific subclass, usually because it makes sense only there. You often do this when you use Extract Subclass.
 Mechanics
-· Declare a method in all subclasses and copy the body into each subclass. ?rarr; You may need to declare fields as protected for the method to access them. Usually you do this if you intend to push down the field later. Otherwise use an accessor on the superclass. If this accessor is not public, you need to declare it as protected.
-· Remove method from superclass. ?rarr; You may have to change callers to use the subclass in variable and parameter declarations. ?rarr; If it makes sense to access the method through a superclass variable, you don't intend to remove the method from any subclasses, and the superclass is abstract, you can declare the method as abstract, in the superclass.
-· Compile and test. · Remove the method from each subclass that does not need it. · Compile and test.
+ï¿½ Declare a method in all subclasses and copy the body into each subclass. ?rarr; You may need to declare fields as protected for the method to access them. Usually you do this if you intend to push down the field later. Otherwise use an accessor on the superclass. If this accessor is not public, you need to declare it as protected.
+ï¿½ Remove method from superclass. ?rarr; You may have to change callers to use the subclass in variable and parameter declarations. ?rarr; If it makes sense to access the method through a superclass variable, you don't intend to remove the method from any subclasses, and the superclass is abstract, you can declare the method as abstract, in the superclass.
+ï¿½ Compile and test. ï¿½ Remove the method from each subclass that does not need it. ï¿½ Compile and test.
 Push Down Field
 A field is used only by some subclasses.
 266
@@ -3986,7 +3992,7 @@ Move the field to those subclasses.
 Motivation
 Push Down Field is the opposite of Pull Up Field. Use it when you don't need a field in the superclass but only in a subclass.
 Mechanics
-· Declare the field in all subclasses. · Remove the field from the superclass. · Compile and test. · Remove the field from all subclasses that don't need it. · Compile and test.
+ï¿½ Declare the field in all subclasses. ï¿½ Remove the field from the superclass. ï¿½ Compile and test. ï¿½ Remove the field from all subclasses that don't need it. ï¿½ Compile and test.
 Extract Subclass
 A class has features that are used only in some instances. Create a subclass for that subset of features.
 Motivation
@@ -3995,20 +4001,20 @@ Motivation
 The main trigger for use of Extract Subclass is the realization that a class has behavior used for some instances of the class and not for others. Sometimes this is signaled by a type code, in which case you can use Replace Type Code with Subclasses or Replace Type Code with State/Strategy. But you don't have to have a type code to suggest the use for a subclass.
 The main alternative to Extract Subclass is Extract Class. This is a choice between delegation and inheritance. Extract Subclass is usually simpler to do, but it has limitations. You can't change the class-based behavior of an object once the object is created. You can change the class-based behavior with Extract Class simply by plugging in different components. You can also use only subclasses to represent one set of variations. If you want the class to vary in several different ways, you have to use delegation for all but one of them.
 Mechanics
-· Define a new subclass of the source class. · Provide constructors for the new subclass.
+ï¿½ Define a new subclass of the source class. ï¿½ Provide constructors for the new subclass.
 ?rarr; In the simple cases, copy the arguments of the superclass and call the superclass constructor with super .
 ?rarr; If you want to hide the use of the subclass from clients, you can use Replace Constructor with Factory Method.
-· Find all calls to constructors of the superclass. If they need the subclass, replace with a call to the new constructor.
+ï¿½ Find all calls to constructors of the superclass. If they need the subclass, replace with a call to the new constructor.
 ?rarr; If the subclass constructor needs different arguments, use Rename Method to change it. If some of the constructor parameters of the superclass are no longer needed, use Rename Method on that too.
 ?rarr; If the superclass can no longer be directly instantiated, declare it abstract.
-· One by one use Push Down Method and Push Down Field to move features onto the subclass.
+ï¿½ One by one use Push Down Method and Push Down Field to move features onto the subclass.
 ?rarr; Unlike Extract Class it usually is easier to work with the methods first and the data last.
 ?rarr; When a public method is pushed, you may need to redefine a caller's variable or parameter type to call the new method. The compiler will catch these cases.
-· Look for any field that designates information now indicated by the hierarchy (usually a boolean or type code). Eliminate it by using Self Encapsulate Field and replacing the getter with polymorphic constant methods. All users of this field should be refactored with Replace Conditional with Polymorphism.
+ï¿½ Look for any field that designates information now indicated by the hierarchy (usually a boolean or type code). Eliminate it by using Self Encapsulate Field and replacing the getter with polymorphic constant methods. All users of this field should be refactored with Replace Conditional with Polymorphism.
 ?rarr; For any methods outside the class that use an accessor, consider using Move Method to move the method into this class; then use Replace Conditional with Polymorphism.
 268
 
-· Compile and test after each push down.
+ï¿½ Compile and test after each push down.
 Example
 I'll start with a job item class that determines prices for items of work at a local garage:
 class JobItem ... public JobItem (int unitPrice, int quantity, boolean isLabor,
@@ -4078,17 +4084,17 @@ Duplicate code is one of the principal bad things in systems. If you say things 
 One form of duplicate code is two classes that do similar things in the same way or similar things in different ways. Objects provide a built-in mechanism to simplify this situation with inheritance. However, you often don't notice the commonalities until you have created some classes, in which case you need to create the inheritance structure later.
 An alternative is Extract Class. The choice is essentially between inheritance and delegation. Inheritance is the simpler choice if the two classes share interface as well as behavior. If you make the wrong choice, you can always use Replace Inheritance with Delegation later.
 Mechanics
-· Create a blank abstract superclass; make the original classes subclasses of this superclass.
-· One by one, use Pull Up Field, Pull Up Method, and Pull Up Constructor Body to move common elements to the superclass.
+ï¿½ Create a blank abstract superclass; make the original classes subclasses of this superclass.
+ï¿½ One by one, use Pull Up Field, Pull Up Method, and Pull Up Constructor Body to move common elements to the superclass.
 ?rarr; It's usually easier to move the fields first.
 ?rarr; If you have subclass methods that have different signatures but the same purpose, use Rename Method to get them to the same name and then use Pull Up Method.
 ?rarr; If you have methods with the same signature but different bodies, declare the common signature as an abstract method on the superclass.
 ?rarr; If you have methods with different bodies that do the same thing, you may try using Substitute Algorithm to copy one body into the other. If this works, you can then use Pull Up Method.
-· Compile and test after each pull.
+ï¿½ Compile and test after each pull.
 273
 
-· Examine the methods left on the subclasses. See if there are common parts, if there are you can use Extract Method followed by Pull Up Method on the common parts. If the overall flow is similar, you may be able to use Form Template Method.
-· After pulling up all the common elements, check each client of the subclasses. If they use only the common interface you can change the required type to the superclass.
+ï¿½ Examine the methods left on the subclasses. See if there are common parts, if there are you can use Extract Method followed by Pull Up Method on the common parts. If the overall flow is similar, you may be able to use Form Template Method.
+ï¿½ After pulling up all the common elements, check each client of the subclasses. If they use only the common interface you can change the required type to the superclass.
 Example
 For this case I have an employee and a department:
 class Employee... public Employee (String name, String id, int annualCost) { _name = name; _id = id; _annualCost = annualCost; } public int getAnnualCost() { return _annualCost; } public String getId(){ return _id; } public String getName() { return _name; } private String _name; private int _annualCost; private String _id;
@@ -4128,7 +4134,7 @@ Classes use each other in several ways. Use of a class often means ranging over 
 There is some similarity between Extract Superclass and Extract Interface. Extract Interface can only bring out common interfaces, not common code. Using Extract Interface can lead to smelly duplicate code. You can reduce this problem by using Extract Class to put the behavior into a component and delegating to it. If there is substantial common behavior Extract Superclass is simpler, but you do only get to have one superclass.
 Interfaces are good to use whenever a class has distinct roles in different situations. Use Extract Interface for each role. Another useful case is that in which you want to describe the outbound interface of a class, that is, the operations the class makes on its server. If you want to allow other kinds of servers in the future, all they need do is implement the interface.
 Mechanics
-· Create an empty interface. · Declare the common operations in the interface. · Declare the relevant class(es) as implementing the interface. · Adjust client type declarations to use the interface.
+ï¿½ Create an empty interface. ï¿½ Declare the common operations in the interface. ï¿½ Declare the relevant class(es) as implementing the interface. ï¿½ Adjust client type declarations to use the interface.
 Example
 A timesheet class generates charges for employees. In order to do this the timesheet needs to know the employee's rate and whether the employee has a special skill:
 double charge(Employee emp, int days) { int base = emp.getRate() * days; if (emp.hasSpecialSkill()) return base * 1.05; else return base;
@@ -4149,12 +4155,12 @@ A superclass and subclass are not very different. Merge them together.
 Motivation
 If you have been working for a while with a class hierarchy, it can easily become too tangled for its own good. Refactoring the hierarchy often involves pushing methods and fields up and down the hierarchy. After you've done this you can well find you have a subclass that isn't adding any value, so you need to merge the classes together.
 Mechanics
-· Choose which class is going to be removed: the superclass or the subclasses.
+ï¿½ Choose which class is going to be removed: the superclass or the subclasses.
 279
 
-· Use Pull Up Field and Pull Up Method or Push Down Method and Push Down Field to move all the behavior and data of the removed class to the class with which it is being merged.
-· Compile and test with each move. · Adjust references to the class that will be removed to use the merged class. This will
-affect variable declarations, parameter types, and constructors. · Remove the empty class. · Compile and test.
+ï¿½ Use Pull Up Field and Pull Up Method or Push Down Method and Push Down Field to move all the behavior and data of the removed class to the class with which it is being merged.
+ï¿½ Compile and test with each move. ï¿½ Adjust references to the class that will be removed to use the merged class. This will
+affect variable declarations, parameter types, and constructors. ï¿½ Remove the empty class. ï¿½ Compile and test.
 Form Template Method
 You have two methods in subclasses that perform similar steps in the same order, yet the steps are different. Get the steps into methods with the same signature, so that the original methods become the same. Then you can pull them up.
 280
@@ -4163,12 +4169,12 @@ Motivation
 Inheritance is a powerful tool for eliminating duplicate behavior. Whenever we see two similar methods in a subclass, we want to bring them together in a superclass. But what if they are not exactly the same? What do we do then? We still need to eliminate all the duplication we can but keep the essential differences.
 A common case is two methods that seem to carry out broadly similar steps in the same sequence, but the steps are not the same. In this case we can move the sequence to the superclass and allow polymorphism to play its role in ensuring the different steps do their things differently. This kind of method is called a template method [Gang of Four].
 Mechanics
-· Decompose the methods so that all the extracted methods are either identical or completely different.
-· Use Pull Up Method to pull the identical methods into the superclass. · For the different methods use Rename Method so the signatures for all the methods at
+ï¿½ Decompose the methods so that all the extracted methods are either identical or completely different.
+ï¿½ Use Pull Up Method to pull the identical methods into the superclass. ï¿½ For the different methods use Rename Method so the signatures for all the methods at
 each step are the same.
 ?rarr; This makes the original methods the same in that they all issue the same set of method calls, but the subclasses handle the calls differently.
-· Compile and test after each signature change. · Use Pull Up Method on one of the original methods. Define the signatures of the
-different methods as abstract methods on the superclass. · Compile and test. · Remove the other methods, compile, and test after each removal.
+ï¿½ Compile and test after each signature change. ï¿½ Use Pull Up Method on one of the original methods. Define the signatures of the
+different methods as abstract methods on the superclass. ï¿½ Compile and test. ï¿½ Remove the other methods, compile, and test after each removal.
 Example
 I finish where I left off in Chapter 1. I had a customer class with two methods for printing statements. The statement method prints statements in ASCII:
 public String statement() { Enumeration rentals = _rentals.elements(); String result = "Rental Record for " + getName() + "\n"; while (rentals.hasMoreElements()) { Rental each = (Rental) rentals.nextElement(); //show figures for this rental result += "\t" + each.getMovie().getTitle()+ "\t" + String.valueOf(each.getCharge()) + "\n"; } //add footer lines result += "Amount owed is " + String.valueOf(getTotalCharge())
@@ -4249,11 +4255,11 @@ you may find that you are inheriting a whole load of data that is not appropriat
 You can live with the situation and use convention to say that although it is a subclass, it's using only part of the superclass function. But that results in code that says one thing when your intention is something else--a confusion you should remove.
 By using delegation instead, you make it clear that you are making only partial use of the delegated class. You control which aspects of the interface to take and which to ignore. The cost is extra delegating methods that are boring to write but are too simple to go wrong.
 Mechanics
-· Create a field in the subclass that refers to an instance of the superclass. Initialize it to this.
-· Change each method defined in the subclass to use the delegate field. Compile and test after changing each method.
+ï¿½ Create a field in the subclass that refers to an instance of the superclass. Initialize it to this.
+ï¿½ Change each method defined in the subclass to use the delegate field. Compile and test after changing each method.
 ?rarr; You won't be able to replace any methods that invoke a method on super that is defined on the subclass, or they may get into an infinite recurse. These methods can be replaced only after you have broken the inheritance.
-· Remove the subclass declaration and replace the delegate assignment with an assignment to a new object.
-· For each superclass method used by a client, add a simple delegating method. · Compile and test.
+ï¿½ Remove the subclass declaration and replace the delegate assignment with an assignment to a new object.
+ï¿½ For each superclass method used by a client, add a simple delegating method. ï¿½ Compile and test.
 Example
 One of the classic examples of inappropriate inheritance is making a stack a subclass of vector. Java 1.1 does this in its utilities (naughty boys!), but in this case I use a simplified form of stack:
 class MyStack extends Vector {
@@ -4288,9 +4294,9 @@ This is the flip side of Replace Delegation with Inheritance. If you find yourse
 There are a couple of caveats to bear in mind. If you aren't using all the methods of the class to which you are delegating, you shouldn't use Replace Delegation with Inheritance, because a subclass should always follow the interface of the superclass. If the delegating methods are tiresome, you have other options. You can let the clients call the delegate themselves with Remove Middle Man. You can use Extract Superclass to separate the common interface and then inherit from the new class. You can use Extract Interface in a similar way.
 Another situation to beware of is that in which the delegate is shared by more than one object and is mutable. In this case you can't replace the delegate with inheritance because you'll no longer share the data. Data sharing is a responsibility that cannot be transferred back to inheritance. When the object is immutable, data sharing is not a problem, because you can just copy and nobody can tell.
 Mechanics
-· Make the delegating object a subclass of the delegate. · Compile.
+ï¿½ Make the delegating object a subclass of the delegate. ï¿½ Compile.
 ?rarr; You may get some method clashes at this point; methods may have the same name but vary in return type, exceptions, or visibility. Use Rename Method to fix these.
-· Set the delegate field to be the object itself. · Remove the simple delegation methods. · Compile and test. · Replace all other delegations with calls to the object itself. · Remove the delegate field.
+ï¿½ Set the delegate field to be the object itself. ï¿½ Remove the simple delegation methods. ï¿½ Compile and test. ï¿½ Replace all other delegations with calls to the object itself. ï¿½ Remove the delegate field.
 Example
 290
 
@@ -4345,12 +4351,12 @@ Tangled inheritance is a problem because it leads to code duplication, the bane 
 
 You can easily spot a single inheritance hierarchy that is doing two jobs. If every class at a certain level in the hierarchy has subclasses that begin with the same adjective, you probably are doing two jobs with one hierarchy.
 Mechanics
-· Identify the different jobs being done by the hierarchy. Create a two-dimensional grid (or three- or four-dimensional, if your hierarchy is a real mess and you have some really cool graph paper) and label the axes with the different jobs. We assume two or more dimensions require repeated applications of this refactoring (one at a time, of course).
-· Decide which job is more important and is to be retained in the current hierarchy and which is to be moved to another hierarchy.
-· Use Extract Class (Chapter 6) at the common superclass to create an object for the subsidiary job and add an instance variable to hold this object.
-· Create subclasses of the extracted object for each of the subclasses in the original hierarchy. Initialize the instance variable created in the previous step to an instance of this subclass.
-· Use Move Method (Chapter 7) in each of the subclasses to move the behavior in the subclass to the extracted object.
-· When the subclass has no more code, eliminate it. · Continue until all the subclasses are gone. Look at the new hierarchy for possible further
+ï¿½ Identify the different jobs being done by the hierarchy. Create a two-dimensional grid (or three- or four-dimensional, if your hierarchy is a real mess and you have some really cool graph paper) and label the axes with the different jobs. We assume two or more dimensions require repeated applications of this refactoring (one at a time, of course).
+ï¿½ Decide which job is more important and is to be retained in the current hierarchy and which is to be moved to another hierarchy.
+ï¿½ Use Extract Class (Chapter 6) at the common superclass to create an object for the subsidiary job and add an instance variable to hold this object.
+ï¿½ Create subclasses of the extracted object for each of the subclasses in the original hierarchy. Initialize the instance variable created in the previous step to an instance of this subclass.
+ï¿½ Use Move Method (Chapter 7) in each of the subclasses to move the behavior in the subclass to the extracted object.
+ï¿½ When the subclass has no more code, eliminate it. ï¿½ Continue until all the subclasses are gone. Look at the new hierarchy for possible further
 refactorings such as Pull Up Method or Pull Up Field (Chapter 11).
 Examples
 Let's take the example of a tangled hierarchy (Figure 12.1). Figure 12.1. A tangled hierarchy
@@ -4392,13 +4398,13 @@ A client of ours once started a project with two absolute principles the develop
 We may laugh, but although Java is an object-oriented language, there is more to using objects than calling a constructor. Using objects well takes time to learn. Often you're faced with the problem of procedure-like code that has to be more object oriented. The typical situation is long procedural methods on a class with little data and dumb data objects with nothing more than accessors. If you are converting from a purely procedural program, you may not even have this, but it's a good place to start.
 We are not saying that you should never have objects with behavior and little or no data. We often use small strategy objects when we need to vary behavior. However, such procedural objects usually are small and are used when we have a particular need for flexibility.
 Mechanics
-· Take each record type and turn it into a dumb data object with accessors.
+ï¿½ Take each record type and turn it into a dumb data object with accessors.
 ?rarr; If you have a relational database, take each table and turn it into a dumb data object.
 301
 
-· Take all the procedural code and put it into a single class. ?rarr; You can either make the class a singleton (for ease of reinitialization) or make the methods static.
-· Take each long procedure and apply Extract Method and the related refactorings to break it down. As you break down the procedures, use Move Method to move each one to the appropriate dumb data class.
-· Continue until you've removed all the behavior away from the original class. If the original class was a purely procedural class, it's very gratifying to delete it.
+ï¿½ Take all the procedural code and put it into a single class. ?rarr; You can either make the class a singleton (for ease of reinitialization) or make the methods static.
+ï¿½ Take each long procedure and apply Extract Method and the related refactorings to break it down. As you break down the procedures, use Move Method to move each one to the appropriate dumb data class.
+ï¿½ Continue until you've removed all the behavior away from the original class. If the original class was a purely procedural class, it's very gratifying to delete it.
 Example
 The example in Chapter 1 is a good example of the need for Convert Procedural Design to Objects, particularly the first stage, in which the statement method is broken up and distributed. When you're finished, you can work on now-intelligent data objects with other refactorings.
 Separate Domain from Presentation
@@ -4411,9 +4417,9 @@ The gold at the heart of MVC is the separation between the user interface code (
 But this is not how most people who work with GUIs do their design. Most environments with client-server GUIs use a logical two-tier design: the data sits in the database and the logic sits in the presentation classes. The environment often forces you toward this style of design, making it hard for you to put the logic anywhere else.
 Java is a proper object-oriented environment, so you can create nonvisual domain objects that contain business logic. However, you'll often come across code written in the two-tier style.
 Mechanics
-· Create a domain class for each window. · If you have a grid, create a class to represent the rows on the grid. Use a collection on
-the domain class for the window to hold the row domain objects. · Examine the data on the window. If it is used only for user interface purposes, leave it on
-the window. If it is used within the domain logic but is not actually displayed on the window, use Move Method to move it to the domain object. If it is used by both the user interface and the domain logic, use Duplicate Observed Data so that it is in both places and kept in sync. · Examine the logic in the presentation class. Use Extract Method to separate logic about the presentation from domain logic. As you isolate the domain logic, use Move Method to move it to the domain object. · When you are finished, you will have presentation classes that handle the GUI and domain objects that contain all the business logic. The domain objects will not be well factored, but further refactorings will deal with that.
+ï¿½ Create a domain class for each window. ï¿½ If you have a grid, create a class to represent the rows on the grid. Use a collection on
+the domain class for the window to hold the row domain objects. ï¿½ Examine the data on the window. If it is used only for user interface purposes, leave it on
+the window. If it is used within the domain logic but is not actually displayed on the window, use Move Method to move it to the domain object. If it is used by both the user interface and the domain logic, use Duplicate Observed Data so that it is in both places and kept in sync. ï¿½ Examine the logic in the presentation class. Use Extract Method to separate logic about the presentation from domain logic. As you isolate the domain logic, use Move Method to move it to the domain object. ï¿½ When you are finished, you will have presentation classes that handle the GUI and domain objects that contain all the business logic. The domain objects will not be well factored, but further refactorings will deal with that.
 Example
 A program that allows users to enter and price orders. The GUI looks like Figure 12.7. The presentation class interacts with a relational database laid out like Figure 12.8.
 Figure 12.7. The user interface for a starting program
@@ -4442,18 +4448,18 @@ Mechanics
 307
 
 We've put in two sets of mechanics. In the first case you aren't sure what the variations should be. In this case you want to take one step at a time, as follows:
-· Identify a variation.
+ï¿½ Identify a variation.
 ?rarr; If the variations can change during the life of the object, use Extract Class to pull that aspect into a separate class.
-· Create a subclass for that special case and use Replace Constructor with Factory Method on the original. Alter the factory method to return an instance of the subclass where appropriate.
-· One at a time, copy methods that contain conditional logic to the subclass, then simplify the methods given what you can say for certain about instances of the subclass that you can't say about instances of the superclass.
+ï¿½ Create a subclass for that special case and use Replace Constructor with Factory Method on the original. Alter the factory method to return an instance of the subclass where appropriate.
+ï¿½ One at a time, copy methods that contain conditional logic to the subclass, then simplify the methods given what you can say for certain about instances of the subclass that you can't say about instances of the superclass.
 ?rarr; Use Extract Method in the superclass if necessary to isolate the conditional parts of methods from the unconditional parts.
-· Continue isolating special cases until you can declare the superclass abstract. · Delete the bodies of methods in the superclass that are overridden in all subclasses and
+ï¿½ Continue isolating special cases until you can declare the superclass abstract. ï¿½ Delete the bodies of methods in the superclass that are overridden in all subclasses and
 make the superclass declarations abstract.
 When the variations are very clear from the outset, you can use a different strategy, as follows:
-· Create a subclass for each variation. · Use Replace Constructor with Factory Method to return the appropriate subclass for
+ï¿½ Create a subclass for each variation. ï¿½ Use Replace Constructor with Factory Method to return the appropriate subclass for
 each variation.
 ?rarr; If the variations are marked with a type code, use Replace Type Code with Subclasses. If the variations can change within the life of the class, use Replace Type Code with State/Strategy.
-· Take methods that have conditional logic and apply Replace Conditional with Polymorphism. If the whole method does not vary, isolate the varying part with Extract Method.
+ï¿½ Take methods that have conditional logic and apply Replace Conditional with Polymorphism. If the whole method does not vary, isolate the varying part with Extract Method.
 Example
 The example is a nonobvious case. You can follow the refactorings for Replace Type Code with Subclasses, Replace Type Code with State/Strategy, and Replace Conditional with Polymorphism to see how the obvious case works.
 We start with a program that calculates an electricity bill. The initial objects look like Figure 12.11.
@@ -4568,9 +4574,9 @@ Several people I've met are role models with respect to fitness and refactoring.
 Refactoring can achieve near-term benefits and make the software easier to modify and maintain. Refactoring is a means rather than an end. It is part of a broader context of how programmers or programming teams develop and maintain their software.[3]
 Reducing the Overhead of Refactoring
 "Refactoring is an overhead activity. I'm paid to write new, revenue-generating features." My response, in summary, is this:
-· Tools and technologies are available to allow refactoring to be done quickly and relatively painlessly.
-· Experiences reported by some object-oriented programmers suggest that the overhead of refactoring is more than compensated by reduced efforts and intervals in other phases of program development.
-· Although refactoring may seem a bit awkward and an overhead item at first, as it becomes part of a software development regimen, it stops feeling like overhead and starts feeling like an essential.
+ï¿½ Tools and technologies are available to allow refactoring to be done quickly and relatively painlessly.
+ï¿½ Experiences reported by some object-oriented programmers suggest that the overhead of refactoring is more than compensated by reduced efforts and intervals in other phases of program development.
+ï¿½ Although refactoring may seem a bit awkward and an overhead item at first, as it becomes part of a software development regimen, it stops feeling like overhead and starts feeling like an essential.
 Perhaps the most mature tool for automated refactoring has been developed for Smalltalk by the Software Refactory team at the University of Illinois (see Chapter 14). It is freely available at their Web site (http://st-www.cs.vivc.edu). Although refactoring tools for other languages are not so readily available, many of the techniques described in our papers and in this book can be applied in a relatively straightforward manner with a text editor or, better yet, a browser. Software development environments and browsers have progressed substantially in recent years. We hope to see a growing set of refactoring tools available in the future.
 Kent Beck and Ward Cunningham, both experienced Smalltalk programmers, have reported at OOPSLA conferences and other forums that refactoring has enabled them to develop software rapidly in domains such as bond trading. I have heard similar testimonials from C++ and CLOS developers. In this book, Martin describes the benefits of refactoring with respect to Java programs. We expect to hear more testimonials from those who read this book and apply these principles.
 My experience suggests that as refactoring becomes part of a routine, it stops feeling like overhead. This statement is easy to make but difficult to substantiate. To the skeptics among you, my advice is just do it, then decide for yourself. Give it time, though.
@@ -4582,12 +4588,12 @@ In this section, I discuss approaches to safe refactoring. I focus on an approac
 
 Safety is a difficult concept to define. An intuitive definition is that a safe refactoring is one that doesn't break a program. Because a refactoring is intended to restructure a program without changing its behavior, a program should perform the same way after a refactoring as it does before.
 How does one safely refactor? There are several options:
-· Trust your coding abilities. · Trust that your compiler will catch errors that you miss. · Trust that your test suite will catch errors that you and your compiler miss. · Trust that code review will catch errors that you, your compiler, and your test suite miss.
+ï¿½ Trust your coding abilities. ï¿½ Trust that your compiler will catch errors that you miss. ï¿½ Trust that your test suite will catch errors that you and your compiler miss. ï¿½ Trust that code review will catch errors that you, your compiler, and your test suite miss.
 Martin focuses on the first three options in his refactoring. Mid-to-large-size organizations often supplement these steps with code reviews.
 Whereas compilers, test suites, code reviews, and disciplined coding styles all are valuable, there are limits to all of these approaches, as follows:
-· Programmers are fallible, even you (I know I am). · There are subtle and not-so-subtle errors that compilers can't catch, especially scoping
-errors related to inheritance.[1] · Perry and Kaiser[16] and others have shown that although it is or at least used to be
-common wisdom that the testing task is simplified when inheritance is used as an implementation technique, in reality an extensive set of tests often is needed to cover all the cases in which operations that used to be requested on an instance of class are now requested on instances of its subclasses. Unless your test designer is omniscient or pays great attention to detail, there are likely to be cases your test suite won't cover. Testing all possible execution paths in a program is a computationally undecidable problem. In other words, you can't be guaranteed to have caught all of the cases with your test suite. · Code reviewers, like programmers, are fallible. Furthermore, reviewers may be too busy with their main job to thoroughly review someone else's code.
+ï¿½ Programmers are fallible, even you (I know I am). ï¿½ There are subtle and not-so-subtle errors that compilers can't catch, especially scoping
+errors related to inheritance.[1] ï¿½ Perry and Kaiser[16] and others have shown that although it is or at least used to be
+common wisdom that the testing task is simplified when inheritance is used as an implementation technique, in reality an extensive set of tests often is needed to cover all the cases in which operations that used to be requested on an instance of class are now requested on instances of its subclasses. Unless your test designer is omniscient or pays great attention to detail, there are likely to be cases your test suite won't cover. Testing all possible execution paths in a program is a computationally undecidable problem. In other words, you can't be guaranteed to have caught all of the cases with your test suite. ï¿½ Code reviewers, like programmers, are fallible. Furthermore, reviewers may be too busy with their main job to thoroughly review someone else's code.
 Another approach, which I took in my research, is to define and prototype a refactoring tool to check whether a refactoring can be safely applied to a program and, if it is, refactor the program. This avoids many of the bugs that may be introduced through human error.
 Herein I provide a high-level description of my approach to safe refactoring. This may be the most valuable part of this chapter. For more details, see my dissertation [1] and other references at the end of this chapter; also see Chapter 14. If you find this section to be overly technical, skim ahead to the last several paragraphs of this section.
 Part of my refactoring tool is a program analyzer, which is a program that analyzes the structure of another program (in this case, a C++ program to which a refactoring might be applied). The tool can answer a series of questions regarding scoping, typing, and program semantics (the meaning or intended operations of a program). Scoping issues related to inheritance make this analysis more complex than with many non-object-oriented programs, but for C++, language features such as static typing make the analysis easier than for, say, Smalltalk.
@@ -4609,12 +4615,12 @@ refactorings not only clean up code but also make a program run more quickly. Sp
 Safety approaches are intended to guarantee that refactoring does not introduce new errors into a program. These approaches don't detect or fix bugs that were in the program before it was refactored. However, refactoring may make it easier to spot such bugs and correct them.
 A Reality Check (Revisited)
 Making refactoring real requires addressing the real-world concerns of software professionals. Four commonly expressed concerns are as follows:
-· The programmers might not understand how to refactor. · If the benefits are long-term, why exert the effort now? In the long term, you might not be
-with the project to reap the benefits. · Refactoring code is an overhead activity; programmers are paid to write new features. · Refactoring might break the existing program.
+ï¿½ The programmers might not understand how to refactor. ï¿½ If the benefits are long-term, why exert the effort now? In the long term, you might not be
+with the project to reap the benefits. ï¿½ Refactoring code is an overhead activity; programmers are paid to write new features. ï¿½ Refactoring might break the existing program.
 In this chapter, I briefly address each of these concerns and provide pointers for those who want to delve further into these topics.
 The following issues are of concern to some projects:
-· What if the code to be refactored is collectively owned by several programmers? In some cases, many of the traditional change management mechanisms are relevant. In other cases, if the software has been well designed and refactored, subsystems will be sufficiently decoupled that many refactorings will affect only a small subset of the code base.
-· What if there are multiple versions or lines of code from a code base? In some cases, refactoring may be relevant for all of the versions, in which case all need to be checked for safety before the refactoring is applied. In other cases, the refactorings may be relevant for only some versions, which simplifies the process of checking and refactoring the code. Managing changes to multiple versions often requires applying many of the traditional version-management techniques. Refactoring can be useful in merging variants or versions into an updated code base, which may simplify version management downstream.
+ï¿½ What if the code to be refactored is collectively owned by several programmers? In some cases, many of the traditional change management mechanisms are relevant. In other cases, if the software has been well designed and refactored, subsystems will be sufficiently decoupled that many refactorings will affect only a small subset of the code base.
+ï¿½ What if there are multiple versions or lines of code from a code base? In some cases, refactoring may be relevant for all of the versions, in which case all need to be checked for safety before the refactoring is applied. In other cases, the refactorings may be relevant for only some versions, which simplifies the process of checking and refactoring the code. Managing changes to multiple versions often requires applying many of the traditional version-management techniques. Refactoring can be useful in merging variants or versions into an updated code base, which may simplify version management downstream.
 In summary, persuading software professionals of the practical value of refactoring is quite different from persuading a doctoral committee that refactoring research is worthy of a Ph.D. It took me some time after completing my graduate studies to fully appreciate these differences.
 Resources and References for Refactoring
 By this point in the book, I hope you are planning to apply refactoring techniques in your work and are encouraging others in your organization to do so. If you are still undecided, you may want to refer to the references I have provided or contact Martin (Fowler@acm.org), me, or others who are experienced in refactoring.
@@ -4625,9 +4631,9 @@ Implications Regarding Software Reuse and Technology Transfer
 The real-world concerns addressed earlier don't apply to refactoring alone. They apply more broadly to software evolution and reuse.
 For much of the past several years, I have focused on issues related to software reuse, platforms, frameworks, patterns, and the evolution of legacy systems, often involving software that was not object oriented. In addition to working with projects within Lucent and Bell Labs, I have participated in forums with staff at other organizations who have been grappling with similar issues.[19], [20], [21], [22]
 The real-world concerns regarding a reuse program are similar to those related to refactoring.
-· Technical staff may not understand what to reuse or how to reuse it. · Technical staff may not be motivated to apply a reuse approach unless short-term
-benefits can be achieved. · Overhead, learning curve, and discovery cost issues must be addressed for a reuse
-approach to be successfully adopted. · Adopting a reuse approach should not be disruptive to a project; there may be strong
+ï¿½ Technical staff may not understand what to reuse or how to reuse it. ï¿½ Technical staff may not be motivated to apply a reuse approach unless short-term
+benefits can be achieved. ï¿½ Overhead, learning curve, and discovery cost issues must be addressed for a reuse
+approach to be successfully adopted. ï¿½ Adopting a reuse approach should not be disruptive to a project; there may be strong
 pressures to leverage existing assets or implementation albeit with legacy constraints. New implementations should interwork or be backward compatible with existing systems.
 Geoffrey Moore[23] described the technology adoption process in terms of a bell-shaped curve in which the front tail includes innovators and early adopters, the large middle hump includes early majority and late majority, and the trailing tail includes laggards. For an idea and product to succeed, they must ultimately be adopted by the early and late majorities. Put another way, many ideas that appeal to the innovators and early adopters ultimately fail because they never make it across the chasm to the early and late majorities. The disconnect lies mainly in the differing motivators of these customer groups. Innovators and early adopters are attracted by new technologies, visions of paradigm shifts and breakthroughs. The early and late majorities are concerned primarily with maturity, cost, support, and seeing whether the new idea or product has been successfully applied by others with needs similar to theirs.
 Software development professionals are impressed and convinced in very different ways than are software researchers. Software researchers are most often what Moore refers to as innovators. Software developers and especially software managers often are part of the early and late
@@ -4690,7 +4696,7 @@ Program Database
 One of the first requirements recognized was the ability to search for various program entities across the entire program, such as with a particular method, finding all calls that can potentially refer to the method in question, or with a particular instance variable, finding all of the methods that read or write it. In tightly integrated environments such as Smalltalk, this information is maintained constantly in a searchable form. This is not a database as traditionally understood, but it is a searchable repository. The programmer can perform a search to find cross references to any program element, mainly because of the dynamic compilation of the code. As soon as a change is made to any class, the change is immediately compiled into bytecodes, and the "database" is updated. In more static environments such as Java, programmers enter the code in text files. Updates to the database must be performed by running a program to process these files and extract the relevant information. These updates are similar to compilation of the Java code itself. Some of the more modern environments, such as IBM VisualAge for Java, mimic Smalltalk's dynamic update of the program database.
 329
 
-A naïve approach is to use textual tools such as grep to do the search. This approach breaks down quickly because it cannot differentiate between a variable named foo and a function named foo. Creating a database requires using semantic analysis (parsing) to determine the "part of speech" of every token in the program. This must done at both the class definition level, to determine instance variable and method definitions, and at the method level, to determine instance variable and method references.
+A naï¿½ve approach is to use textual tools such as grep to do the search. This approach breaks down quickly because it cannot differentiate between a variable named foo and a function named foo. Creating a database requires using semantic analysis (parsing) to determine the "part of speech" of every token in the program. This must done at both the class definition level, to determine instance variable and method definitions, and at the method level, to determine instance variable and method references.
 Parse Trees
 Most refactorings have to manipulate portions of the system below the method level. These are usually references to program elements that are being changed. For example, if an instance variable is renamed (simply a definition change), all references within the methods of that class and its subclasses must be updated. Other refactorings are entirely below the method level, such as extracting a portion of a method into its own, stand-alone method. Any update to a method has to be able to manipulate the structure of the method. To do this requires parse trees. A parse tree is a data structure that represents the internal structure of the method itself. As a simple example, consider the following method:
 public void hello( ){ System.out.println("Hello World");
@@ -4753,7 +4759,7 @@ refactoring there is an absolute premium on quiet confidence. Your partner is th
 Bibliography
 References
 [Auer] Ken. Auer "Reusability through Self-Encapsulation." In Pattern Languages of Program Design 1, Coplien J.O. Schmidt.D.C. Reading, Mass.: Addison-Wesley, 1995. Patterns paper on the concept of self-encapsulation.
-[Bäumer and Riehle] Bäumer, Riehle and Riehle. Dirk "Product Trader." In Pattern Languages of Program Design 3, R. Martin F. Buschmann D. Riehle. Reading, Mass.: Addison-Wesley, 1998. A pattern for flexibly creating objects without knowing in what class they should be.
+[Bï¿½umer and Riehle] Bï¿½umer, Riehle and Riehle. Dirk "Product Trader." In Pattern Languages of Program Design 3, R. Martin F. Buschmann D. Riehle. Reading, Mass.: Addison-Wesley, 1998. A pattern for flexibly creating objects without knowing in what class they should be.
 [Beck] Kent.Beck Smalltalk Best Practice Patterns. Upper Saddle River, N.J.: Prentice Hall, 1997a. An essential book for any Smalltalker, and a damn useful book for any object-oriented developer. Rumors of a Java version abound.
 [Beck, hanoi] Kent.Beck "Make it Run, Make it Right: Design Through Refactoring."The Smalltalk Report, 6: (1997b): 19-24. The first published writing that really gets the sense of how the process of refactoring works. The source of many ideas for Chapter 1.
 [Beck, XP] Kent.Beck eXtreme Programming eXplained: Embrace Change. Reading, Mass.: Addison-Wesley, 2000.
@@ -4769,4 +4775,3 @@ A concise guide to the Unified Modeling Language used for various diagrams in th
 
 [McConnell] Steve. McConnell, Code Complete: A Practical Handbook of Software Construction. Redmond, Wash.: Microsoft Press, 1993. An excellent guide to programming style and software construction. Written before Java, but almost all of its advice applies. [Meyer] Bertrand. Meyer, Object Oriented Software Construction. 2 ed. Upper Saddle River, N.J.: Prentice Hall, 1997. A very good, if very large, book on object-oriented design. Includes a thorough discussion of design by contract. [Opdyke] William F. Opdyke, Ph.D. diss., "Refactoring Object-Oriented Frameworks. " University of Illinois at Urbana-Champaign, 1992. See ftp://st.cs.uiuc.edu/pub/papers/refactoring/opdyke-thesis.ps.Z. The first decent-length writing on refactoring. Tackles it from a somewhat academic and tools-oriented angle (after all it is a dissertation) but is well worth reading for those who want more on the theory of refactoring. [Refactoring Browser] Brant, John, and Don Roberts. Refactoring Browser Tool, http://stwww.cs.uiuc.edu/~brant/RefactoringBrowser. The future of software development tools. [Woolf] Bobby. Woolf, "Null Object." In Pattern Languages of Program Design 3, Martin, R. Riehle. D. Buschmann F. Reading, Mass.: Addison-Wesley, 1998. A discussion on the null object pattern.
 337
-

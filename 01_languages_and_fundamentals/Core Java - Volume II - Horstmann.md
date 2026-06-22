@@ -1,3 +1,9 @@
+# Core Java - Volume II
+
+> **Author(s):** Horstmann Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 About This eBook
 ePUB is an open, industry-standard format for eBooks. However, support of ePUB and its many features varies across reading devices and applications. Use your device or app settings to customize the presentation to your liking. Settings that you can customize often include font, font size, single or double column, landscape or portrait mode, and figures that you can click or tap to enlarge. For additional information about the settings and features on your reading device or app, visit the device manufacturer's Web site.
 Many titles include programming code or configuration examples. To optimize the presentation of these elements, view the eBook in single-column, landscape mode and adjust the font size to the smallest setting.
@@ -17,13 +23,13 @@ For information about buying this title in bulk quantities, or for special sales
 For government sales inquiries, please contact governmentsales@pearsoned.com. For questions about sales outside the U.S., please contact intlcs@pearson.com.
 Please contact us with concerns about any potential bias at pearson.com/reportbias.html.
 Visit us on the Web: informit.com/aw
-Copyright © 2024 Pearson Education, Inc.
-Portions copyright © 1996-2013 Oracle and/or its affiliates. All Rights Reserved.
+Copyright ï¿½ 2024 Pearson Education, Inc.
+Portions copyright ï¿½ 1996-2013 Oracle and/or its affiliates. All Rights Reserved.
 Oracle America Inc. does not make any representations or warranties as to the accuracy, adequacy or completeness of any information contained in this work, and is not responsible for any errors or omissions.
 Microsoft and/or its respective suppliers make no representations about the suitability of the information contained in the documents and related graphics published as part of the services for any purpose. All such documents and related graphics are provided "as is" without warranty of any kind. Microsoft and/or its respective suppliers hereby disclaim all warranties and conditions with regard to this information, including all
 
 warranties and conditions of merchantability, whether express, implied or statutory, fitness for a particular purpose, title and non-infringement. In no event shall Microsoft and/or its respective suppliers be liable for any special, indirect or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of information available from the services. The documents and related graphics contained herein could include technical inaccuracies or typographical errors. Changes are periodically added to the information herein. Microsoft and/or its respective suppliers may make improvements and/or changes in the product(s) and/or the program(s) described herein at any time. Partial screen shots may be viewed in full within the software version specified.
-Microsoft® Windows®, and Microsoft Office® are registered trademarks of the Microsoft Corporation in the U.S.A. and other countries. This book is not sponsored or endorsed by or affiliated with the Microsoft Corporation.
+Microsoftï¿½ Windowsï¿½, and Microsoft Officeï¿½ are registered trademarks of the Microsoft Corporation in the U.S.A. and other countries. This book is not sponsored or endorsed by or affiliated with the Microsoft Corporation.
 All rights reserved. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, request forms and the appropriate contacts within the Pearson Education Global Rights & Permissions Department, please visit www.pearson.com/permissions.
 ISBN-13: 978-0-13-537174-9 ISBN-10: 0-13-537174-0
 
@@ -108,10 +114,10 @@ Writing a book is always a monumental effort, and rewriting doesn't seem to be m
 A large number of individuals at Pearson provided valuable assistance but managed to stay behind the scenes. I'd like them all to know how much I appreciate their efforts. As always, my warm thanks go to my editor, Greg Doench, for steering the book through the writing and production process, and for allowing me to be blissfully unaware of the existence of all those folks behind the scenes. I am very grateful to Julie Nahil for production support, to Dmitry Kirsanov and Alina Kirsanova for copyediting the manuscript, and to Clovis L. Tondo for reviewing the final content. I wrote the book using HTML and CSS, and Prince (https://princexml.com) turned it into PDF--a workflow that I highly recommend. My thanks also to my coauthor of earlier editions, Gary Cornell, who has since moved on to other ventures.
 Thanks to the many readers of earlier editions who reported embarrassing errors and made lots of thoughtful suggestions for improvement. I am particularly grateful to the excellent reviewing team that went over the manuscript with an amazing eye for detail and saved me from many more embarrassing errors.
 
-Reviewers of this and earlier editions include Chuck Allison (Utah Valley University), Lance Andersen (Oracle), Gail Anderson (Anderson Software Group), Paul Anderson (Anderson Software Group), Alec Beaton (IBM), Cliff Berg, Andrew Binstock (Oracle), Joshua Bloch, David Brown, Corky Cartwright, Frank Cohen (PushToTest), Chris Crane (devXsolution), Dr. Nicholas J. De Lillo (Manhattan College), Rakesh Dhoopar (Oracle), Ahmad R. Elkomey, Robert Evans (Senior Staff, The Johns Hopkins University Applied Physics Lab), David Geary (Clarity Training), Jim Gish (Oracle), Brian Goetz (Oracle), Angela Gordon, Dan Gordon (Electric Cloud), Rob Gordon, John Gray (University of Hartford), Cameron Gregory (olabs.com), Andrzej Grzesik, Marty Hall (coreservlets.com, Inc.), Vincent Hardy (Adobe Systems), Dan Harkey (San Jose State University), Steve Haines, William Higgins (IBM), Marc Hoffmann (mtrail), Vladimir Ivanovic (PointBase), Jerry Jackson (CA Technologies), Heinz Kabutz (Java Specialists), Stepan V. Kalinin (I-Teco/Servionica LTD), Tim Kimmet (Walmart), John Kostaras, Jerzy Krolak, Chris Laffra, Charlie Lai (Apple), Angelika Langer, Jeff Langr (Langr Software Solutions), Doug Langston, Hang Lau (McGill University), Mark Lawrence, Doug Lea (SUNY Oswego), Gregory Longshore, Bob Lynch (Lynch Associates), Philip Milne (consultant), Mark Morrissey (The Oregon Graduate Institute), Mahesh Neelakanta (Florida Atlantic University), José Paumard (Oracle), Hao Pham, Paul Philion, Blake Ragsdell, Ylber Ramadani (Ryerson University), Stuart Reges (University of Arizona), Simon Ritter (Azul Systems), Rich Rosen (Interactive Data Corporation), Peter Sanders (ESSI University, Nice, France), Dr. Paul Sanghera (San Jose State University and Brooks College), Paul Sevinc (Teamup AG), Devang Shah (Sun Microsystems), Yoshiki Shibata, Richard Slywczak (NASA/Glenn Research Center), Bradley A. Smith, Steven Stelting (Oracle), Christopher Taylor, Luke Taylor (Valtech), George Thiruvathukal, Kim
+Reviewers of this and earlier editions include Chuck Allison (Utah Valley University), Lance Andersen (Oracle), Gail Anderson (Anderson Software Group), Paul Anderson (Anderson Software Group), Alec Beaton (IBM), Cliff Berg, Andrew Binstock (Oracle), Joshua Bloch, David Brown, Corky Cartwright, Frank Cohen (PushToTest), Chris Crane (devXsolution), Dr. Nicholas J. De Lillo (Manhattan College), Rakesh Dhoopar (Oracle), Ahmad R. Elkomey, Robert Evans (Senior Staff, The Johns Hopkins University Applied Physics Lab), David Geary (Clarity Training), Jim Gish (Oracle), Brian Goetz (Oracle), Angela Gordon, Dan Gordon (Electric Cloud), Rob Gordon, John Gray (University of Hartford), Cameron Gregory (olabs.com), Andrzej Grzesik, Marty Hall (coreservlets.com, Inc.), Vincent Hardy (Adobe Systems), Dan Harkey (San Jose State University), Steve Haines, William Higgins (IBM), Marc Hoffmann (mtrail), Vladimir Ivanovic (PointBase), Jerry Jackson (CA Technologies), Heinz Kabutz (Java Specialists), Stepan V. Kalinin (I-Teco/Servionica LTD), Tim Kimmet (Walmart), John Kostaras, Jerzy Krolak, Chris Laffra, Charlie Lai (Apple), Angelika Langer, Jeff Langr (Langr Software Solutions), Doug Langston, Hang Lau (McGill University), Mark Lawrence, Doug Lea (SUNY Oswego), Gregory Longshore, Bob Lynch (Lynch Associates), Philip Milne (consultant), Mark Morrissey (The Oregon Graduate Institute), Mahesh Neelakanta (Florida Atlantic University), Josï¿½ Paumard (Oracle), Hao Pham, Paul Philion, Blake Ragsdell, Ylber Ramadani (Ryerson University), Stuart Reges (University of Arizona), Simon Ritter (Azul Systems), Rich Rosen (Interactive Data Corporation), Peter Sanders (ESSI University, Nice, France), Dr. Paul Sanghera (San Jose State University and Brooks College), Paul Sevinc (Teamup AG), Devang Shah (Sun Microsystems), Yoshiki Shibata, Richard Slywczak (NASA/Glenn Research Center), Bradley A. Smith, Steven Stelting (Oracle), Christopher Taylor, Luke Taylor (Valtech), George Thiruvathukal, Kim
 
 Topley (StreamingEdge), Janet Traub, Paul Tyma (consultant), Christian Ullenboom, Peter van der Linden, Joe Wang (Oracle), Sven Woltmann, Burt Walsh, Dan Xu (Oracle), and John Zavgren (Oracle).
-Cay Horstmann Düsseldorf, Germany October 2023
+Cay Horstmann Dï¿½sseldorf, Germany October 2023
 
 Chapter 1  Streams
 Compared to collections, streams provide a view of data that lets you specify computations at a higher conceptual level. With a stream, you specify what you want to have done, not how to do it. You leave the scheduling of operations to the implementation. For example, suppose you want to compute the average of a certain property. You specify the source of data and the property, and the stream library can then optimize the computation, for example by using multiple threads for computing sums and counts and combining the results.
@@ -2593,9 +2599,9 @@ java.io.PushbackInputStream 1.0
 PushbackInputStream(InputStream in) PushbackInputStream(InputStream in, int size) construct an input stream with one-byte lookahead or a pushback buffer of specified size. void unread(int b) pushes back a byte, which is retrieved again by the next call to read.
 2.1.4. Text Input and Output
 When saving data, you have the choice between binary and text formats. For example, if the integer 1234 is saved in binary, it is written as the sequence of bytes 00 00 04 D2 (in hexadecimal notation). In text format, it is saved as the string "1234". Although binary I/O is fast and efficient, it is not easily readable by humans. We first discuss text I/O and cover binary I/O in Section 2.2.
-When saving text strings, you need to consider the character encoding. In the UTF-16 encoding that Java uses internally, the string "José" is encoded as 00 4A 00 6F 00 73 00 E9 (in hex). However, many programs expect that text files use a different encoding. In UTF-8, the encoding most commonly used on the Internet, the string would be written as 4A 6F 73 C3 A9, without
+When saving text strings, you need to consider the character encoding. In the UTF-16 encoding that Java uses internally, the string "Josï¿½" is encoded as 00 4A 00 6F 00 73 00 E9 (in hex). However, many programs expect that text files use a different encoding. In UTF-8, the encoding most commonly used on the Internet, the string would be written as 4A 6F 73 C3 A9, without
 
-the zero bytes for the first three letters and with two bytes for the é character.
+the zero bytes for the first three letters and with two bytes for the ï¿½ character.
 The OutputStreamWriter class turns an output stream of Unicode code units into a stream of bytes. Conversely, the InputStreamReader class turns an input stream that contains bytes (specifying characters in some character encoding) into a reader that emits Unicode code units.
 Since Java 18, these classes use the UTF-8 encoding by default. Before Java 18, or if you need to support an archaic encoding, specify the encoding in the constructor, for example:
 var in = new InputStreamReader(new FileInputStream("data.txt"), StandardCharsets.UTF_8);
@@ -3125,7 +3131,7 @@ writeFloat writeDouble writeChar writeBoolean writeUTF
 For example, writeInt always writes an integer as a 4-byte binary quantity regardless of the number of digits, and
 writeDouble always writes a double as an 8-byte binary quantity. The resulting output is not human-readable, but it will use the same space for each value of a given type and reading it back in will be faster than parsing text.
 
-Note: There are two different methods of storing integers and floating-point numbers in memory, depending on the processor you are using. Suppose, for example, you are working with a 4-byte int, such as the decimal number 1234, or 4D2 in hexadecimal (1234 = 4 × 256 + 13 × 16 + 2). This value can be stored in such a way that the first of the four bytes in memory holds the most significant byte (MSB) of the value: 00 00 04 D2. This is the so-called big-endian method. Or, we can start with the least significant byte (LSB) first: D2 04 00 00. This is called, naturally enough, the little-endian method. For example, the SPARC uses big-endian; Intel processors, littleendian. This can lead to problems. When a file is saved from a C or C++ file, the data are saved exactly as the processor stores them. That makes it challenging to move even the simplest data files from one platform to another. In Java, all values are written in the big-endian fashion, regardless of the processor. That makes Java data files platform-independent.
+Note: There are two different methods of storing integers and floating-point numbers in memory, depending on the processor you are using. Suppose, for example, you are working with a 4-byte int, such as the decimal number 1234, or 4D2 in hexadecimal (1234 = 4 ï¿½ 256 + 13 ï¿½ 16 + 2). This value can be stored in such a way that the first of the four bytes in memory holds the most significant byte (MSB) of the value: 00 00 04 D2. This is the so-called big-endian method. Or, we can start with the least significant byte (LSB) first: D2 04 00 00. This is called, naturally enough, the little-endian method. For example, the SPARC uses big-endian; Intel processors, littleendian. This can lead to problems. When a file is saved from a C or C++ file, the data are saved exactly as the processor stores them. That makes it challenging to move even the simplest data files from one platform to another. In Java, all values are written in the big-endian fashion, regardless of the processor. That makes Java data files platform-independent.
 The writeUTF method writes string data using a modified version of the 8-bit Unicode Transformation Format. Instead of simply using the standard UTF-8 encoding, sequences of Unicode code units are first represented in UTF-16, and then the result is encoded using the UTF-8 rules. This modified encoding is different for characters with codes higher than 0xFFFF. It is used for backward compatibility with virtual machines that were built when Unicode had not yet grown beyond 16 bits.
 Since nobody else uses this modification of UTF-8, you should only use the writeUTF method to write strings intended for a Java virtual machine--for example, in a program that generates bytecodes. Use the writeChars method for other purposes.
 
@@ -5364,7 +5370,7 @@ These values fulfill the condition 0  mark  position  limit  capacity
 The principal purpose of a buffer is a sequence of "fill, then consume" cycles. At the outset, the buffer's position is 0 and the limit is the capacity. Keep filling the buffer by calling put or by reading from a channel.
 
 When you run out of data or reach the capacity, it is time to switch to consuming the contents. Call flip to set the limit to the current position and the position to 0.
-Now keep consuming, by calling get or writing to a channel, while the remaining method (which computes limit ­ position) yields a positive value.
+Now keep consuming, by calling get or writing to a channel, while the remaining method (which computes limit ï¿½ position) yields a positive value.
 When you have consumed all values in the buffer, call compact to prepare the buffer for filling it again. Any unconsumed data is copied to the beginning of the buffer. The position is set to follow the copied data, and the limit is set to the capacity.
 If you want to reread the buffer, use rewind or mark/reset (see the API notes for details).
 To obtain a buffer, call a static method such as ByteBuffer.allocate or ByteBuffer.wrap.
@@ -6524,7 +6530,7 @@ String regex = "(?iU:expression)";
 Here are the flags:
 Pattern.CASE_INSENSITIVE or i: Match characters independently of the letter case. By default, this flag takes only US ASCII characters into account. Pattern.UNICODE_CASE or u: When used in combination with CASE_INSENSITIVE, use Unicode letter case for matching. Pattern.UNICODE_CHARACTER_CLASS or U: Select Unicode character classes instead of POSIX. Implies UNICODE_CASE. Pattern.MULTILINE or m: Make ^ and $ match the beginning and end of a line, not the entire input.
 
-Pattern.UNIX_LINES or d: Only '\n' is a line terminator when matching ^ and $ in multiline mode. Pattern.DOTALL or s: Make the . symbol match all characters, including line terminators. Pattern.COMMENTS or x: Whitespace and comments (from # to the end of a line) are ignored. Pattern.LITERAL: The pattern is taken literally and must be matched exactly, except possibly for letter case. Pattern.CANON_EQ: Take canonical equivalence of Unicode characters into account. For example, u followed by ¨ (diaeresis) matches ü.
+Pattern.UNIX_LINES or d: Only '\n' is a line terminator when matching ^ and $ in multiline mode. Pattern.DOTALL or s: Make the . symbol match all characters, including line terminators. Pattern.COMMENTS or x: Whitespace and comments (from # to the end of a line) are ignored. Pattern.LITERAL: The pattern is taken literally and must be matched exactly, except possibly for letter case. Pattern.CANON_EQ: Take canonical equivalence of Unicode characters into account. For example, u followed by ï¿½ (diaeresis) matches ï¿½.
 The last two flags cannot be specified inside a regular expression.
 java.util.regex.Pattern 1.4
 static Pattern compile(String expression) static Pattern compile(String expression, int flags) compile the regular expression string into a pattern object for fast processing of matches. The flags parameter has one or more of the bits CASE_INSENSITIVE, UNICODE_CASE, MULTILINE, UNIX_LINES, DOTALL, and CANON_EQ set. Matcher matcher(CharSequence input) returns a matcher object that you can use to locate the matches of the pattern in the input. String[] split(CharSequence input) String[] split(CharSequence input, int limit) String[] splitWithDelimiters(CharSequence input, int limit) Stream<String> splitAsStream(CharSequence input) 8 split the input string into tokens, with the pattern specifying the form of the delimiters. Return an array or stream of tokens. The delimiters are not part of the tokens. The second form has a parameter limit denoting the maximum number of strings to produce. If limit - 1
@@ -6608,7 +6614,7 @@ consider the hyperlink
 <a href="http://java.sun.com">Java Technology</a>
 The string Java Technology is displayed on the web page, but the URL of the link is not a part of the displayed page. However, the rule isn't all that helpful for most XML files because the data in an XML file aren't normally meant to be viewed by humans.
 Elements and text are the "bread and butter" of XML documents. Here are a few other markup instructions that you might encounter:
-Character references have the form &#decimalValue; or &#xhexValue;. For example, the é character can be denoted with either of the following:
+Character references have the form &#decimalValue; or &#xhexValue;. For example, the ï¿½ character can be denoted with either of the following:
 &#233; &#xE9;
 Entity references have the form &name;. The entity references
 &lt; &gt; &amp; &quot; &apos;
@@ -7133,9 +7139,9 @@ NamedNodeMap getAttributes() returns a node map that contains Attr nodes that de
 org.w3c.dom.CharacterData 1.4
 String getData() returns the text stored in this node.
 org.w3c.dom.NodeList 1.4
-int getLength() returns the number of nodes in this list. Node item(int index) returns the node with the given index. The index is between 0 and getLength() ­ 1.
+int getLength() returns the number of nodes in this list. Node item(int index) returns the node with the given index. The index is between 0 and getLength() ï¿½ 1.
 org.w3c.dom.NamedNodeMap 1.4
-int getLength() returns the number of nodes in this map. Node item(int index) returns the node with the given index. The index is between 0 and getLength() ­ 1.
+int getLength() returns the number of nodes in this map. Node item(int index) returns the node with the given index. The index is between 0 and getLength() ï¿½ 1.
 3.4. Validating XML Documents
 In the previous section, you saw how to traverse the tree structure of a DOM document. However, with that approach, you'll have to do quite a bit of tedious programming and error checking. It's not just having to
 
@@ -12144,7 +12150,7 @@ java.net.HttpURLConnection 1.0
 InputStream getErrorStream() returns a stream from which you can read web server error messages.
 
 java.net.URLEncoder 1.0
-static String encode(String s, String encoding) 1.4 returns the URL-encoded form of the string s, using the given character encoding scheme. (The recommended scheme is "UTF-8".) In URL encoding, the characters A­Z, a­z, 0­9, - _ . ~ are left unchanged. Space is encoded into +, and all other characters are encoded into sequences of encoded bytes of the form %XY, where 0xXY is the hexadecimal value of the byte.
+static String encode(String s, String encoding) 1.4 returns the URL-encoded form of the string s, using the given character encoding scheme. (The recommended scheme is "UTF-8".) In URL encoding, the characters Aï¿½Z, aï¿½z, 0ï¿½9, - _ . ~ are left unchanged. Space is encoded into +, and all other characters are encoded into sequences of encoded bytes of the form %XY, where 0xXY is the hexadecimal value of the byte.
 java.net.URLDecoder 1.2
 static string decode(String s, String encoding) 1.4 returns the decoding of the URL encoded string s under the given character encoding scheme.
 4.4. The HTTP Client
@@ -13509,7 +13515,7 @@ SELECT Title FROM Books WHERE Title LIKE '%''%'
 reports all titles that contain a single quote.
 You can select data from multiple tables:
 SELECT * FROM Books, Publishers
-Without a WHERE clause, this query is not very interesting. It lists all combinations of rows from both tables. In our case, where Books has 20 rows and Publishers has 8 rows, the result is a set of rows with 20 × 8 entries and lots of duplications. We really want to constrain the query to say that we are only interested in matching books with their publishers:
+Without a WHERE clause, this query is not very interesting. It lists all combinations of rows from both tables. In our case, where Books has 20 rows and Publishers has 8 rows, the result is a set of rows with 20 ï¿½ 8 entries and lots of duplications. We really want to constrain the query to say that we are only interested in matching books with their publishers:
 SELECT * FROM Books, Publishers WHERE Books.Publisher_Id = Publishers.Publisher_Id
 This query result has 20 rows, one for each book, because each book has one publisher in the Publisher table.
 Whenever you have multiple tables in a query, the same column name can occur in two different places. That happened in our example. There is a column called Publisher_Id in both the Books and the Publishers tables. When an ambiguity would otherwise result, you must prefix each column name with the name of the table to which it belongs, such as Books.Publisher_Id.
@@ -16218,9 +16224,9 @@ You have now learned about the JDBC fundamentals and know enough to implement si
 In this chapter, you have learned how to work with relational databases in Java. The next chapter covers the date and time library.
 
 Chapter 6  The Date and Time API
-Time flies like an arrow, and we can easily set a starting point and count forward and backward in seconds. So why is it so hard to deal with time? The problem is humans. All would be easy if we could just tell each other: "Meet me at 1523793600, and don't be late!" But we want time to relate to daylight and the seasons. That's where things get complicated. Java 1.0 had a Date class that was, in hindsight, naïve, and had most of its methods deprecated in Java 1.1 when a Calendar class was introduced. Its API wasn't stellar, its instances were mutable, and it didn't deal with issues such as leap seconds. The third time is a charm, and the java.time API introduced in Java 8 has remedied the flaws of the past and should serve us for quite some time. In this chapter, you will learn what makes time computations so vexing, and how the Date and Time API solves these issues.
+Time flies like an arrow, and we can easily set a starting point and count forward and backward in seconds. So why is it so hard to deal with time? The problem is humans. All would be easy if we could just tell each other: "Meet me at 1523793600, and don't be late!" But we want time to relate to daylight and the seasons. That's where things get complicated. Java 1.0 had a Date class that was, in hindsight, naï¿½ve, and had most of its methods deprecated in Java 1.1 when a Calendar class was introduced. Its API wasn't stellar, its instances were mutable, and it didn't deal with issues such as leap seconds. The third time is a charm, and the java.time API introduced in Java 8 has remedied the flaws of the past and should serve us for quite some time. In this chapter, you will learn what makes time computations so vexing, and how the Date and Time API solves these issues.
 6.1. The Time Line
-Historically, the fundamental time unit--the second--was derived from Earth's rotation around its axis. There are 24 hours or 24 × 60 × 60 = 86400 seconds in a full revolution, so it seems just a question of astronomical measurements to precisely define a second. Unfortunately, Earth wobbles slightly, and a more precise definition was needed. In 1967, a new precise definition of a second, matching the historical definition, was derived from an intrinsic property of atoms of caesium-133. Since then, a network of atomic clocks keeps the official time.
+Historically, the fundamental time unit--the second--was derived from Earth's rotation around its axis. There are 24 hours or 24 ï¿½ 60 ï¿½ 60 = 86400 seconds in a full revolution, so it seems just a question of astronomical measurements to precisely define a second. Unfortunately, Earth wobbles slightly, and a more precise definition was needed. In 1967, a new precise definition of a second, matching the historical definition, was derived from an intrinsic property of atoms of caesium-133. Since then, a network of atomic clocks keeps the official time.
 Ever so often, the official time keepers synchronize the absolute time with the rotation of Earth. At first, the official seconds were slightly adjusted, but starting in 1972, "leap seconds" were occasionally inserted. (In theory, a second might need to be removed once in a while, but that has not yet happened.) There is talk of changing the system again. Clearly, leap seconds are a pain, and many computer systems instead use "smoothing" where time is artificially slowed down or sped up just before the leap second, keeping 86,400 seconds per day. This works because the local time on a computer isn't all that precise, and computers are used to synchronizing themselves with an external time service.
 The Java Date and Time API specification requires that Java uses a time scale that
 Has 86,400 seconds per day Exactly matches the official time at noon each day Closely matches it elsewhere, in a precisely defined way
@@ -16241,7 +16247,7 @@ This is just to show the syntax. Since the algorithms aren't going to run for hu
 boolean overTenTimesFaster = timeElapsed.toNanos() * 10 < timeElapsed2.toNanos();
 Note: The Instant and Duration classes are immutable, and all methods, such as multipliedBy or minus, return a new instance.
 The example program in Listing 6.1 uses the Instant and Duration classes for timing two algorithms.
-Note: The approach of the example program is too naïve in practice, since it does not deal with issues such as the "warming up" of the just-in-time compiler in the
+Note: The approach of the example program is too naï¿½ve in practice, since it does not deal with issues such as the "warming up" of the just-in-time compiler in the
 
 JVM. If you need to compare algorithms, you should use a dedicated benchmarking tool such as the Java Microbenchmark Harness (JMH). The article at
 https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html gives useful advice.
@@ -16438,12 +16444,12 @@ java.time.Instant 8
 static Instant now() gets the current instant from the best available system clock. Instant plus(TemporalAmount amountToAdd) Instant minus(TemporalAmount amountToSubtract) yield an instant that is the given amount away from this Instant. The classes Duration and Period (see Section 6.2) implement the TemporalAmount interface. Instant (plus|minus)(Nanos|Millis|Seconds)(long number) yields an Instant that is the given number of nanoseconds, milliseconds, or seconds away from this Instant.
 
 java.time.Duration 8
-static Duration of(Nanos|Millis|Seconds|Minutes|Hours|Days)(long number) yields a duration of the given number of time units. static Duration between(Temporal startInclusive, Temporal endExclusive) yields a duration between the given points in time. The Temporal interface is implemented by the Instant class as well as LocalDate/LocalDateTime/LocalTime (see Section 6.4) and ZonedDateTime (see Section 6.5). long toNanos() long toMillis() long toSeconds() 9 long toMinutes() long toHours() long toDays() get the number of the time units in the method name for this Duration. int to(Nanos|Millis|Seconds|Minutes|Hours)Part() 9 long toDaysPart() 9 yield the part of the given time unit in this Duration. For example, in a duration of 100 seconds, the minutes part is 1 and the seconds part is 40. Duration plus(TemporalAmount amountToAdd) Duration minus(TemporalAmount amountToSubtract) yield a duration that is the given amount away from this Duration. The classes Duration and Period (see Section 6.2) implement the TemporalAmount interface. Duration multipliedBy(long multiplicand) Duration dividedBy(long divisor) Duration negated() yield a duration that is obtained by multiplying or dividing this Duration by the given amount, or by ­1. boolean isZero() boolean isNegative() return true if this Duration is zero or negative.
+static Duration of(Nanos|Millis|Seconds|Minutes|Hours|Days)(long number) yields a duration of the given number of time units. static Duration between(Temporal startInclusive, Temporal endExclusive) yields a duration between the given points in time. The Temporal interface is implemented by the Instant class as well as LocalDate/LocalDateTime/LocalTime (see Section 6.4) and ZonedDateTime (see Section 6.5). long toNanos() long toMillis() long toSeconds() 9 long toMinutes() long toHours() long toDays() get the number of the time units in the method name for this Duration. int to(Nanos|Millis|Seconds|Minutes|Hours)Part() 9 long toDaysPart() 9 yield the part of the given time unit in this Duration. For example, in a duration of 100 seconds, the minutes part is 1 and the seconds part is 40. Duration plus(TemporalAmount amountToAdd) Duration minus(TemporalAmount amountToSubtract) yield a duration that is the given amount away from this Duration. The classes Duration and Period (see Section 6.2) implement the TemporalAmount interface. Duration multipliedBy(long multiplicand) Duration dividedBy(long divisor) Duration negated() yield a duration that is obtained by multiplying or dividing this Duration by the given amount, or by ï¿½1. boolean isZero() boolean isNegative() return true if this Duration is zero or negative.
 
 Duration (plus|minus)(Nanos|Millis|Seconds|Minutes|Hours|Days)(long number) yields a Duration obtained by adding or subtracting the given number of time units.
 6.2. Local Dates
 Now let us turn from absolute time to human time. There are two kinds of human time in the Java API, local date/time and zoned time. Local date/time has a date and/or time of day, but no associated time zone information. An example of a local date is June 14, 1903 (the day on which Alonzo Church, inventor of the lambda calculus, was born). Since that date has neither a time of day nor time zone information, it does not correspond to a precise instant of time. In contrast, July 16, 1969, 09:32:00 EDT (the launch of Apollo 11) is a zoned date/time, representing a precise instant on the time line.
-There are many calculations where time zones are not required, and in some cases they can even be a hindrance. Suppose you schedule a meeting every week at 10:00. If you add 7 days (that is, 7 × 24 × 60 × 60 seconds) to the last zoned time, and you happen to cross the daylight savings time boundary, the meeting will be an hour too early or too late!
+There are many calculations where time zones are not required, and in some cases they can even be a hindrance. Suppose you schedule a meeting every week at 10:00. If you add 7 days (that is, 7 ï¿½ 24 ï¿½ 60 ï¿½ 60 seconds) to the last zoned time, and you happen to cross the daylight savings time boundary, the meeting will be an hour too early or too late!
 For that reason, the API designers recommend that you do not use zoned time unless you really want to represent absolute time instances. Birthdays, holidays, schedule times, and so on are usually best represented as local dates or times.
 A LocalDate is a date with a year, month, and day of the month. To construct one, you can use the now or of static methods:
 LocalDate today = LocalDate.now(); // Today's date LocalDate alonzosBirthday = LocalDate.of(1903, 6, 14); alonzosBirthday = LocalDate.of(1903, Month.JUNE, 14);
@@ -16617,7 +16623,7 @@ System.out.println("firstDaysInMonth: "
 java.time.LocalDate 8
 static LocalDate now() gets the current LocalDate. static LocalDate of(int year, int month, int dayOfMonth) static LocalDate of(int year, Month month, int dayOfMonth) yield a local date with the given year, month (as integer between 1 and 12 or a value of the Month enumeration), and day of the month (between 1 and 31). LocalDate (plus|minus)(Days|Weeks|Months|Years)(long number) yields a LocalDate obtained by adding or subtracting the given number of time units. LocalDate plus(TemporalAmount amountToAdd) LocalDate minus(TemporalAmount amountToSubtract) yield a LocalDate that is the given amount away from this LocalDate. The classes Duration and Period implement the TemporalAmount interface.
 
-LocalDate withDayOfMonth(int dayOfMonth) LocalDate withDayOfYear(int dayOfYear) LocalDate withMonth(int month) LocalDate withYear(int year) return a new LocalDate with the day of month, day of year, month, or year changed to the given value. int getDayOfMonth() gets the day of the month (between 1 and 31). int getDayOfYear() gets the day of the year (between 1 and 366). DayOfWeek getDayOfWeek() gets the day of the week, returning a value of the DayOfWeek enumeration. Month getMonth() int getMonthValue() get the month as a value of the Month enumeration, or as a number between 1 and 12. int getYear() gets the year, between ­999,999,999 and 999,999,999. Period until(ChronoLocalDate endDateExclusive) gets the period until the given end date. The ChronoLocalDate interface is implemented by LocalDate and date classes for non-Gregorian calendars. boolean isBefore(ChronoLocalDate other) boolean isAfter(ChronoLocalDate other) return true if this date is before or after the given date. boolean isLeapYear() returns true if the year is a leap year--that is, if it is divisible by 4 but not by 100, or divisible by 400. The algorithm is applied for all past years, even though that is historically inaccurate. (Leap years were invented in the year ­46, and the rules involving divisibility by 100 and 400 were introduced in the Gregorian calendar reform of 1582. The reform took over 300 years to become universal.) Stream<LocalDate> datesUntil(LocalDate endExclusive) 9 Stream<LocalDate> datesUntil(LocalDate endExclusive, Period step) 9 yield a stream of dates from this LocalDate until the end, with step size 1 or the given period.
+LocalDate withDayOfMonth(int dayOfMonth) LocalDate withDayOfYear(int dayOfYear) LocalDate withMonth(int month) LocalDate withYear(int year) return a new LocalDate with the day of month, day of year, month, or year changed to the given value. int getDayOfMonth() gets the day of the month (between 1 and 31). int getDayOfYear() gets the day of the year (between 1 and 366). DayOfWeek getDayOfWeek() gets the day of the week, returning a value of the DayOfWeek enumeration. Month getMonth() int getMonthValue() get the month as a value of the Month enumeration, or as a number between 1 and 12. int getYear() gets the year, between ï¿½999,999,999 and 999,999,999. Period until(ChronoLocalDate endDateExclusive) gets the period until the given end date. The ChronoLocalDate interface is implemented by LocalDate and date classes for non-Gregorian calendars. boolean isBefore(ChronoLocalDate other) boolean isAfter(ChronoLocalDate other) return true if this date is before or after the given date. boolean isLeapYear() returns true if the year is a leap year--that is, if it is divisible by 4 but not by 100, or divisible by 400. The algorithm is applied for all past years, even though that is historically inaccurate. (Leap years were invented in the year ï¿½46, and the rules involving divisibility by 100 and 400 were introduced in the Gregorian calendar reform of 1582. The reform took over 300 years to become universal.) Stream<LocalDate> datesUntil(LocalDate endExclusive) 9 Stream<LocalDate> datesUntil(LocalDate endExclusive, Period step) 9 yield a stream of dates from this LocalDate until the end, with step size 1 or the given period.
 java.time.Period 8
 static Period of(int years, int months, int days) Period of(Days|Weeks|Months|Years)(int number) yield a Period with the given number of time units. int get(Days|Months|Years)() gets the days, months, or years of this Period. Period (plus|minus)(Days|Months|Years)(long number) yields a Period obtained by adding or subtracting the given number of time units. Period plus(TemporalAmount amountToAdd) Period minus(TemporalAmount amountToSubtract) yield an instant that is the given amount away from this Instant. The classes Duration and Period implement the TemporalAmount interface.
 
@@ -16655,7 +16661,7 @@ Each time zone has an ID, such as America/New_York or Europe/Berlin. To find out
 Given a time zone ID, the static method ZoneId.of(id) yields a ZoneId object. You can use that object to turn a LocalDateTime object into a ZonedDateTime object by calling local.atZone(zoneId), or you can construct a ZonedDateTime by calling the static method ZonedDateTime.of(year, month, day, hour, minute, second, nano, zoneId). For example,
 ZonedDateTime apollo11launch = ZonedDateTime.of(1969, 7, 16, 9, 32, 0, 0, ZoneId.of("America/New_York")); // 1969-07-16T09:32-04:00[America/New_York]
 This is a specific instant in time. Call apollo11launch.toInstant to get the Instant. Conversely, if you have an instant in time, call instant.atZone(ZoneId.of("UTC")) to get the ZonedDateTime at the Greenwich Royal Observatory, or use another ZoneId to get it elsewhere on the planet.
-Note: UTC stands for "Coordinated Universal Time," and the acronym is a compromise between the aforementioned English and the French "Temps Universel Coordiné," having the distinction of being incorrect in either language. UTC is the time at the Greenwich Royal Observatory, without daylight savings time.
+Note: UTC stands for "Coordinated Universal Time," and the acronym is a compromise between the aforementioned English and the French "Temps Universel Coordinï¿½," having the distinction of being incorrect in either language. UTC is the time at the Greenwich Royal Observatory, without daylight savings time.
 Many of the methods of ZonedDateTime are the same as those of LocalDateTime (see the API notes at the end of this section). Most are straightforward, but daylight savings time introduces some complications.
 When daylight savings time starts, clocks advance by an hour. What happens when you construct a time that falls into the skipped hour? For example, in 2013, Central Europe switched to daylight savings time on March 31 at 2:00. If you try to construct nonexistent time March 31 2:30, you actually get 3:30.
 ZonedDateTime skipped = ZonedDateTime.of( LocalDate.of(2013, 3, 31), LocalTime.of(2, 30), ZoneId.of("Europe/Berlin")); // Constructs March 31 3:30
@@ -16827,9 +16833,9 @@ System.out.println("nextMeeting: " + nextMeeting);
 46 }
 
 java.time.ZonedDateTime 8
-static ZonedDateTime now() gets the current ZonedDateTime. static ZonedDateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone) static ZonedDateTime of(LocalDate date, LocalTime time, ZoneId zone) static ZonedDateTime of(LocalDateTime localDateTime, ZoneId zone) static ZonedDateTime ofInstant(Instant instant, ZoneId zone) yield a ZonedDateTime with the given parameters and time zone. ZonedDateTime (plus|minus)(Days|Weeks|Months|Years|Hours|Minutes|Seconds|Nanos)(long number) yields a ZonedDateTime obtained by adding or subtracting the given number of time units. ZonedDateTime plus(TemporalAmount amountToAdd) ZonedDateTime minus(TemporalAmount amountToSubtract) yield a ZonedDateTime that is the given amount away from this ZonedDateTime. ZonedDateTime with(DayOfMonth|DayOfYear|Month|Year|Hour|Minute|Second|Nano)(int value) returns a new ZonedDateTime with the given temporal unit replaced by the given value. ZonedDateTime withZoneSameInstant(ZoneId zone) ZonedDateTime withZoneSameLocal(ZoneId zone) return a new ZonedDateTime in the given time zone, either representing the same instant or the same local time. int getDayOfMonth() gets the day of the month (between 1 and 31). int getDayOfYear() gets the day of the year (between 1 and 366). DayOfWeek getDayOfWeek() gets the day of the week, returning a value of the DayOfWeek enumeration. Month getMonth() int getMonthValue() get the month as a value of the Month enumeration, or as a number between 1 and 12. int getYear() gets the year, between ­999,999,999 and 999,999,999. int getHour() gets the hour (between 0 and 23). int getMinute() int getSecond() get the minute or second (between 0 and 59).
+static ZonedDateTime now() gets the current ZonedDateTime. static ZonedDateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone) static ZonedDateTime of(LocalDate date, LocalTime time, ZoneId zone) static ZonedDateTime of(LocalDateTime localDateTime, ZoneId zone) static ZonedDateTime ofInstant(Instant instant, ZoneId zone) yield a ZonedDateTime with the given parameters and time zone. ZonedDateTime (plus|minus)(Days|Weeks|Months|Years|Hours|Minutes|Seconds|Nanos)(long number) yields a ZonedDateTime obtained by adding or subtracting the given number of time units. ZonedDateTime plus(TemporalAmount amountToAdd) ZonedDateTime minus(TemporalAmount amountToSubtract) yield a ZonedDateTime that is the given amount away from this ZonedDateTime. ZonedDateTime with(DayOfMonth|DayOfYear|Month|Year|Hour|Minute|Second|Nano)(int value) returns a new ZonedDateTime with the given temporal unit replaced by the given value. ZonedDateTime withZoneSameInstant(ZoneId zone) ZonedDateTime withZoneSameLocal(ZoneId zone) return a new ZonedDateTime in the given time zone, either representing the same instant or the same local time. int getDayOfMonth() gets the day of the month (between 1 and 31). int getDayOfYear() gets the day of the year (between 1 and 366). DayOfWeek getDayOfWeek() gets the day of the week, returning a value of the DayOfWeek enumeration. Month getMonth() int getMonthValue() get the month as a value of the Month enumeration, or as a number between 1 and 12. int getYear() gets the year, between ï¿½999,999,999 and 999,999,999. int getHour() gets the hour (between 0 and 23). int getMinute() int getSecond() get the minute or second (between 0 and 59).
 
-int getNano() gets the nanoseconds (between 0 and 999,999,999). public ZoneOffset getOffset() gets the offset from UTC. Offsets can vary from ­12:00 to +14:00. Some time zones have fractional offsets. Offsets change with daylight savings time. LocalDate toLocalDate() LocalTime toLocalTime() LocalDateTime toLocalDateTime() Instant toInstant() yield the local date, time, or date/time, or the corresponding instant. boolean isBefore(ChronoZonedDateTime other) boolean isAfter(ChronoZonedDateTime other) return true if this zoned date/time is before or after the given zoned date/time.
+int getNano() gets the nanoseconds (between 0 and 999,999,999). public ZoneOffset getOffset() gets the offset from UTC. Offsets can vary from ï¿½12:00 to +14:00. Some time zones have fractional offsets. Offsets change with daylight savings time. LocalDate toLocalDate() LocalTime toLocalTime() LocalDateTime toLocalDateTime() Instant toInstant() yield the local date, time, or date/time, or the corresponding instant. boolean isBefore(ChronoZonedDateTime other) boolean isAfter(ChronoZonedDateTime other) return true if this zoned date/time is before or after the given zoned date/time.
 
 6.6. Formatting and Parsing
 
@@ -17249,7 +17255,7 @@ to a German user. Of course, if the month names are written out explicitly, the 
 March 22, 1961
 
 should be presented as
-22. März 1961
+22. Mï¿½rz 1961
 in German, or
    1961 3 22
 in Chinese.
@@ -17685,7 +17691,7 @@ The pattern describes the number of required and optional digits, and the prefix
 Consider this example:
 var formatter = new DecimalFormat("0.00;(#)");
 The semicolon separates the positive and the optional negative part. From the positive part, we see that there must be at least one digit in the integer part and at least two digits in the fractional part. This holds for all numbers, regardless of sign. Negative numbers use the accounting format--a prefix ( and a suffix ).
-The prefix or suffix may contain a ¤ currency sign (U+00A4) to denote where the currency symbol should go.
+The prefix or suffix may contain a ï¿½ currency sign (U+00A4) to denote where the currency symbol should go.
 
 If you need to insert a special character into the prefix or suffix, precede it with a single quote. For example, a prefix '# is a literal hash sign, and o''clock has one quotation mark.
 Table 7.3: DecimalFormat Properties
@@ -17773,7 +17779,7 @@ Description
 
 String
 
-A string such as "$" or "EUR" to use where the prefix or suffix has a ¤ currency sign
+A string such as "$" or "EUR" to use where the prefix or suffix has a ï¿½ currency sign
 
 char
 
@@ -18146,11 +18152,11 @@ static Xxx parse(CharSequence text, DateTimeFormatter formatter) parses the give
 7.4. Collation and Normalization
 
 Most programmers know how to compare strings with the compareTo method of the String class. Unfortunately, when interacting with human users, this method is not very useful. The compareTo method uses the values of the UTF-16 encoding of the string, which leads to absurd results, even in English. For example, the following five strings are ordered according to the compareTo method:
-America Zulu able zebra Ångström
+America Zulu able zebra ï¿½ngstrï¿½m
 For dictionary ordering, you would want to consider upper case and lower case to be equivalent. To an English speaker, the sample list of words would be ordered as
-able America Ångström zebra Zulu
-However, that order would not be acceptable to a Swedish user. In Swedish, the letter Å is different from the letter A, and it is collated after the letter Z! That is, a Swedish user would want the words to be sorted as
-able America zebra Zulu Ångström
+able America ï¿½ngstrï¿½m zebra Zulu
+However, that order would not be acceptable to a Swedish user. In Swedish, the letter ï¿½ is different from the letter A, and it is collated after the letter Z! That is, a Swedish user would want the words to be sorted as
+able America zebra Zulu ï¿½ngstrï¿½m
 To obtain a locale-sensitive comparator, call the static Collator.getInstance method:
 
 Collator coll = Collator.getInstance(locale); words.sort(coll); // Collator implements Comparator<Object>
@@ -18158,25 +18164,25 @@ Collator coll = Collator.getInstance(locale); words.sort(coll); // Collator impl
 Note: Since Java 21, you can specify unusual collators with an extension. For example, the locale with language tag svu-co-trad uses traditional Swedish collation, which does not distinguish between "v" and "w".
 
 Since the Collator class implements the Comparator interface, you can pass a Collator object to the List.sort(Comparator) method to sort a list of strings.
-There are a couple of advanced settings for collators. You can set a collator's strength to adjust how selective it should be. Character differences are classified as primary, secondary, or tertiary. For example, in English, the difference between "A" and "Z" is considered primary, the difference between "A" and "Å" is secondary, and between "A" and "a" is tertiary.
+There are a couple of advanced settings for collators. You can set a collator's strength to adjust how selective it should be. Character differences are classified as primary, secondary, or tertiary. For example, in English, the difference between "A" and "Z" is considered primary, the difference between "A" and "ï¿½" is secondary, and between "A" and "a" is tertiary.
 By setting the strength of the collator to Collator.PRIMARY, you tell it to pay attention only to primary differences. By setting the strength to Collator.SECONDARY, you instruct the collator to take secondary differences into account. That is, two strings will be more likely to be considered different when the strength is set to "secondary" or "tertiary," as shown in Table 7.8.
 Table 7.8: Collations with Different Strengths (English Locale)
 
 Primary
-Angstrom = Ångström
+Angstrom = ï¿½ngstrï¿½m
 Able = able
 
 Secondary
-Angstrom  Ångström
+Angstrom  ï¿½ngstrï¿½m
 Able = able
 
 Tertiary
-Angstrom  Ångström
+Angstrom  ï¿½ngstrï¿½m
 Able  able
 
 When the strength has been set to Collator.IDENTICAL, no differences are allowed. This setting is mainly useful in conjunction with a rather technical collator setting, the decomposition mode, which we take up next.
-Occasionally, a character or sequence of characters can be described in more than one way in Unicode. For example, an "Å" can be Unicode character U+00C5, or it can be expressed as a plain "A" (U+0065) followed by a "°" ("combining ring above"; U+030A). Perhaps more surprisingly, the letter sequence "ffi" can be described with a single character "Latin small ligature ffi" with code U+FB03. (One could argue that this is a presentation issue that should not have resulted in different Unicode characters, but we don't make the rules.)
-The Unicode standard defines four normalization forms (D, KD, C, and KC) for strings. See https://www.unicode.org/unicode/reports/tr15/tr15-23.html for the details. In the normalization form C, accented characters are always composed. For example, a sequence of "A" and a combining ring above "°" is combined into a single character "Å". In form D, accented characters are always decomposed into their base letters and combining accents: "Å" is turned into "A" followed by "°". Forms KC and KD also decompose characters such as ligatures or the trademark symbol.
+Occasionally, a character or sequence of characters can be described in more than one way in Unicode. For example, an "ï¿½" can be Unicode character U+00C5, or it can be expressed as a plain "A" (U+0065) followed by a "ï¿½" ("combining ring above"; U+030A). Perhaps more surprisingly, the letter sequence "ffi" can be described with a single character "Latin small ligature ffi" with code U+FB03. (One could argue that this is a presentation issue that should not have resulted in different Unicode characters, but we don't make the rules.)
+The Unicode standard defines four normalization forms (D, KD, C, and KC) for strings. See https://www.unicode.org/unicode/reports/tr15/tr15-23.html for the details. In the normalization form C, accented characters are always composed. For example, a sequence of "A" and a combining ring above "ï¿½" is combined into a single character "ï¿½". In form D, accented characters are always decomposed into their base letters and combining accents: "ï¿½" is turned into "A" followed by "ï¿½". Forms KC and KD also decompose characters such as ligatures or the trademark symbol.
 You can choose the degree of normalization that you want a collator to use. The value Collator.NO_DECOMPOSITION does not normalize strings at all. This option is faster, but it might not be appropriate for texts that express characters in multiple forms. The default, Collator.CANONICAL_DECOMPOSITION, uses the normalization form D. This is useful for texts that contain accents but not ligatures. Finally, "full decomposition" uses normalization form KD. See Table 7.9 for examples.
 Table 7.9: Differences between Decomposition Modes
 
@@ -18188,19 +18194,19 @@ Decomposition Decomposition
 
 Full Decomposition
 
-No Decomposition Å  A° TM  TM
+No Decomposition ï¿½  Aï¿½ TM  TM
 
-Canonical Decomposition Å = A° TM  TM
+Canonical Decomposition ï¿½ = Aï¿½ TM  TM
 
-Full Decomposition Å = A° TM = TM
+Full Decomposition ï¿½ = Aï¿½ TM = TM
 
 It is wasteful to have the collator decompose a string many times. If one string is compared against other strings many times, you can save the decomposition in a collation key object. The getCollationKey method returns a CollationKey object that you can use for further, faster comparisons. Here is an example:
 String a = . . .; CollationKey aKey = coll.getCollationKey(a); if(aKey.compareTo(coll.getCollationKey(b)) == 0) // fast comparison
 ...
 Finally, you might want to convert strings into their normalized forms even if you don't do collation--for example, to store strings in a database or communicate with another program. The java.text.Normalizer class carries out the normalization process. Here is an example:
-String name = "Ångström"; String normalized = Normalizer.normalize(name, Normalizer.Form.NFD);
+String name = "ï¿½ngstrï¿½m"; String normalized = Normalizer.normalize(name, Normalizer.Form.NFD);
 // uses normalization form D
-The normalized string contains ten characters. The "Å" and "ö" are replaced by "A°" and "o¨" sequences.
+The normalized string contains ten characters. The "ï¿½" and "ï¿½" are replaced by "Aï¿½" and "oï¿½" sequences.
 However, that is not usually the best form for storage and transmission. Normalization form C first applies decomposition and then combines the accents back in a standardized order. According to the W3C, this is the recommended mode for transferring data over the Internet.
 
 The program in Listing 7.3 lets you experiment with collation order. The book companion code also has a GUI version. Type a word into the text field and click the Add button to add it to the list of words. Each time you add another word, or change the locale, strength, or decomposition mode, the list of words is sorted again. An = sign indicates words that are considered identical (see Figure 7.3).
@@ -18424,7 +18430,7 @@ On January 1, 1999, a earthquake destroyed . . .
 What we really want to do is integrate the article "a" into the placeholder:
 "On {2}, {0} destroyed {1} houses and caused {3} of damage."
 The {0} would then be replaced with "a hurricane" or "an earthquake". That is especially appropriate if this message needs to be translated into a language where the gender of a word affects the article. For example, in German, the pattern would be
-"{0} zerstörte am {2} {1} Häuser und richtete einen Schaden von {3} an."
+"{0} zerstï¿½rte am {2} {1} Hï¿½user und richtete einen Schaden von {3} an."
 The placeholder would then be replaced with the grammatically correct combination of article and noun, such as "Ein Wirbelsturm" or "Eine Naturkatastrophe".
 Now let us turn to the {1} parameter. If the disaster wasn't all that catastrophic, {1} might be replaced with the number 1, and the message would read:
 On January 1, 1999, a mudslide destroyed 1 houses and . . .
@@ -18457,7 +18463,7 @@ Note: This example shows that the designer of the choice format was a bit muddle
 The syntax would have been a lot clearer if the designer of this class realized that the limits belong between the choices, such as
 no houses|1|one house|2|{1} houses // not the actual format
 You can use the < symbol to denote that a choice should be selected if the lower bound is strictly less than the value.
-You can also use the  symbol (U+2264) as a synonym for #. If you like, you can even use the infinity symbol (U+221E) to specify a lower bound of ­ for the first value.
+You can also use the  symbol (U+2264) as a synonym for #. If you like, you can even use the infinity symbol (U+221E) to specify a lower bound of ï¿½ for the first value.
 For example,
 <no houses|0<one house|2
 {1} houses
@@ -18466,7 +18472,7 @@ String pattern = """ On {2,date,long}, {0} destroyed {1,choice,0#no houses|1#one
 
 and caused {3,number,currency} of damage. """;
 Or, in German,
-String pattern = """ {0} zerstörte am {2,date,long} {1,choice,0#kein Haus|1#ein Haus|2#{1} Häuser} \ und richtete einen Schaden von {3,number,currency} an. """;
+String pattern = """ {0} zerstï¿½rte am {2,date,long} {1,choice,0#kein Haus|1#ein Haus|2#{1} Hï¿½user} \ und richtete einen Schaden von {3,number,currency} an. """;
 Note that the ordering of the words is different in German, but the array of objects you pass to the format method is the same. The order of the placeholders in the format string takes care of the changes in the word ordering.
 7.6. Text Boundaries
 The BreakIterator class segments text into characters, words, sentences, or lines. The iteration protocol is not very pretty:
@@ -18549,7 +18555,7 @@ Tip: You need not place all resources for your application into a single bundle.
 labels, one for error messages, and so on.
 7.8.2. Property Files
 Internationalizing strings is quite straightforward. You place all your strings into a property file such as MyProgramStrings.properties. This is simply a text file with one key/value pair per line. A typical file would look like this:
-computeButton=Rechnen colorName=black defaultPaperSize=210×297
+computeButton=Rechnen colorName=black defaultPaperSize=210ï¿½297
 Then you name your property files as described in the preceding section, for example:
 MyProgramStrings.properties MyProgramStrings_en.properties MyProgramStrings_de_DE.properties
 You can load the bundle simply as
@@ -18557,7 +18563,7 @@ ResourceBundle bundle = ResourceBundle.getBundle("MyProgramStrings", locale);
 To look up a specific string, call
 String computeButtonLabel = bundle.getString("computeButton");
 Property files are encoded as UTF-8.
-Caution: Before Java 9, files for storing properties had to be ASCII files, and non-ASCII characters had to be encoded using the \uxxxx notation. For example, "colorName=Grün" had to be specified as:
+Caution: Before Java 9, files for storing properties had to be ASCII files, and non-ASCII characters had to be encoded using the \uxxxx notation. For example, "colorName=Grï¿½n" had to be specified as:
 colorName=Gr\u00FCn
 
 7.8.3. Bundle Classes
@@ -20200,7 +20206,7 @@ Variables are initialized before they are used. Method calls match the types of 
 
 Rules for accessing private data and methods are not violated. Local variable accesses fall within the runtime stack. The runtime stack does not overflow.
 If any of these checks fails, the class is considered corrupted and will not be loaded.
-Note: If you are familiar with Gödel's theorem, you might wonder how the verifier can prove that a class file is free from type mismatches, uninitialized variables, and stack overflows. Gödel's theorem states that it is impossible to design algorithms that process a program and decide whether it has a particular property (such as being free from stack overflows). Is this a conflict between the public relations department at Oracle and the laws of logic? No--in fact, the verifier is not a decision algorithm in the sense of Gödel. If the verifier accepts a program, it is indeed safe. However, the verifier might reject virtual machine instructions even though they would actually be safe. (You might have run into this issue when you were forced to initialize a variable with a dummy value because the verifier couldn't see that it was going to be properly initialized.)
+Note: If you are familiar with Gï¿½del's theorem, you might wonder how the verifier can prove that a class file is free from type mismatches, uninitialized variables, and stack overflows. Gï¿½del's theorem states that it is impossible to design algorithms that process a program and decide whether it has a particular property (such as being free from stack overflows). Is this a conflict between the public relations department at Oracle and the laws of logic? No--in fact, the verifier is not a decision algorithm in the sense of Gï¿½del. If the verifier accepts a program, it is indeed safe. However, the verifier might reject virtual machine instructions even though they would actually be safe. (You might have run into this issue when you were forced to initialize a variable with a dummy value because the verifier couldn't see that it was going to be properly initialized.)
 This strict verification is an important security consideration. Accidental errors, such as uninitialized variables, can easily wreak havoc if they are not caught. More importantly, in the wide open world of the Internet, you must be protected against malicious programmers who create evil effects on purpose. For example, by modifying values on the runtime stack or by writing to the private
 
 instance fields of platform objects, a program can break through the security system of a browser.
@@ -21515,7 +21521,7 @@ Figure 9.6: Authentication through a trusted intermediary's signature
 When you get the public key file, you verify the signature of your friend, and because you trust him, you are confident that he did check the stranger's credentials before applying his signature.
 
 However, you might not have a common acquaintance. Some trust models assume that there is always a "chain of trust"--a chain of mutual acquaintances--so that you trust every member of that chain. In practice, of course, that isn't always true. You might trust your friend, Alice, and you know that Alice trusts Bob, but you don't know Bob and aren't sure that you trust him. Other trust models assume that there is a benevolent big brother--a company in which we all trust. Companies with confidence-inspiring names such as DigiCert, GlobalSign, and Entrust provide verification services.
-You will often encounter digital signatures signed by one or more entities who will vouch for the authenticity, and you will need to evaluate to what degree you trust the authenticators. You might place a great deal of trust in a particular certificate authority, perhaps because you saw their logo on many web pages or because you heard that they require multiple people with black attaché cases to come together into a secure chamber whenever new master keys are to be minted.
+You will often encounter digital signatures signed by one or more entities who will vouch for the authenticity, and you will need to evaluate to what degree you trust the authenticators. You might place a great deal of trust in a particular certificate authority, perhaps because you saw their logo on many web pages or because you heard that they require multiple people with black attachï¿½ cases to come together into a secure chamber whenever new master keys are to be minted.
 However, you should have realistic expectations about what is actually being authenticated. You can get a "class 1" ID simply by filling out a web form and paying a small fee. The key is mailed to the e-mail address included in the certificate. Thus, you can be reasonably assured that the email address is genuine, but the requestor could have filled in any name and organization. There are more stringent classes of IDs. For example, with a "class 3" ID, the certificate authority will require an individual requestor to appear before a notary public, and it will check the financial rating of a corporate requestor. Other authenticators will have different procedures. Thus, when you receive an authenticated message, it is important that you understand what, in fact, is being authenticated.
 
 9.3.5. Certificate Signing
@@ -22402,7 +22408,7 @@ Let's work through this program, line by line.
 
 The Swing classes are placed in the javax.swing package. The package name javax indicates a Java extension package, not a core package. For historical reasons, Swing is considered an extension. However, it is present in every Java implementation since version 1.2.
 
-By default, a frame has a rather useless size of 0×0 pixels. We define a subclass SimpleFrame whose constructor sets the size to 300×200 pixels. This is the only difference between a SimpleFrame and a JFrame.
+By default, a frame has a rather useless size of 0ï¿½0 pixels. We define a subclass SimpleFrame whose constructor sets the size to 300ï¿½200 pixels. This is the only difference between a SimpleFrame and a JFrame.
 In the main method of the SimpleFrameTest class, we construct a SimpleFrame object and make it visible.
 There are two technical issues that we need to address in every Swing program.
 First, all Swing components must be configured from the event dispatch thread, the thread of control that passes events such as mouse clicks and keystrokes to the user interface components. The following code fragment is used to execute statements in the event dispatch thread:
@@ -25163,7 +25169,7 @@ Labels can be positioned inside a container like any other component. This means
 javax.swing.JLabel 1.2
 JLabel(String text) JLabel(Icon icon) JLabel(String text, int align) JLabel(String text, Icon icon, int align) construct a label. The align parameter is one of the SwingConstants constants LEFT (default), CENTER, or RIGHT. String getText() void setText(String text) get or set the text of this label. Icon getIcon() void setIcon(Icon icon) get or set the icon of this label.
 11.3.3. Password Fields
-Password fields are a special kind of text fields. To prevent nosy bystanders from seeing your password, the characters that the user enters are not actually displayed. Instead, each typed character is represented by an echo character, such as a bullet (·). Swing supplies a JPasswordField class that implements such a text field.
+Password fields are a special kind of text fields. To prevent nosy bystanders from seeing your password, the characters that the user enters are not actually displayed. Instead, each typed character is represented by an echo character, such as a bullet (ï¿½). Swing supplies a JPasswordField class that implements such a text field.
 
 The password field is another example of the power of the model-view-controller architecture pattern. The password field uses the same model to store the data as a regular text field, but its view has been changed to display all characters as echo characters.
 javax.swing.JPasswordField 1.2
@@ -31592,7 +31598,7 @@ When you run the program, the tree first looks as in Figure 12.15. Only the root
 
 subtrees. The line sticking out from the handle icon points to the right when the subtree is collapsed and down when the subtree is expanded (see Figure 12.16). We don't know what the designers of the Metal look-and-feel had in mind, but we think of the icon as a door handle. You push down on the handle to open the subtree.
 Figure 12.15: The initial tree display
-Figure 12.16: Collapsed and expanded subtrees Note: Of course, the display of the tree depends on the selected look-and-feel. We just described the Metal look-and-feel. In the Windows look-and-feel, the handles have the more familiar look--a "­" or "+" in a box (see Figure 12.17).
+Figure 12.16: Collapsed and expanded subtrees Note: Of course, the display of the tree depends on the selected look-and-feel. We just described the Metal look-and-feel. In the Windows look-and-feel, the handles have the more familiar look--a "ï¿½" or "+" in a box (see Figure 12.17).
 
 Figure 12.17: A tree with the Windows look-and-feel You can use the following magic incantation to turn off the lines joining parents and children (see Figure 12.18):
 tree.putClientProperty("JTree.lineStyle", "None");
@@ -32080,7 +32086,7 @@ TreePath getSelectionPath() gets the path to the currently selected node, or the
 javax.swing.tree.TreePath 1.2
 Object getLastPathComponent() gets the last object on this path--that is, the node object that the path represents.
 javax.swing.tree.TreeNode 1.2
-TreeNode getParent() returns the parent node of this node. TreeNode getChildAt(int index) looks up the child node at the given index. The index must be between 0 and getChildCount() ­ 1. int getChildCount() returns the number of children of this node. Enumeration children() returns an enumeration object that iterates through all children of this node.
+TreeNode getParent() returns the parent node of this node. TreeNode getChildAt(int index) looks up the child node at the given index. The index must be between 0 and getChildCount() ï¿½ 1. int getChildCount() returns the number of children of this node. Enumeration children() returns an enumeration object that iterates through all children of this node.
 javax.swing.tree.DefaultTreeModel 1.2
 void insertNodeInto(MutableTreeNode newChild, MutableTreeNode parent, int index) inserts newChild as a new child node of parent at the given index and notifies the tree model listeners. void removeNodeFromParent(MutableTreeNode node) removes node from this model and notifies the tree model listeners. void nodeChanged(TreeNode node) notifies the tree model listeners that node has changed. void nodesChanged(TreeNode parent, int[] changedChildIndexes) notifies the tree model listeners that all child nodes of parent with the given indexes have changed.
 
@@ -33701,7 +33707,7 @@ Figure 12.38: A cubic curve
 To construct quadratic and cubic curves, give the coordinates of the end points and the control points. For example,
 var q = new QuadCurve2D.Double(startX, startY, controlX, controlY, endX, endY); var c = new CubicCurve2D.Double(startX, startY, control1X, control1Y,
 control2X, control2Y, endX, endY);
-Quadratic curves are not very flexible, and they are not commonly used in practice. Cubic curves (such as the Bézier curves drawn by the CubicCurve2D class) are, however, very common. By combining many cubic curves so that the slopes at the connection points match, you can create complex, smooth-looking curved shapes. For more information, refer to Computer Graphics: Principles and Practice, Third Edition, by John F. Hughes et al.
+Quadratic curves are not very flexible, and they are not commonly used in practice. Cubic curves (such as the Bï¿½zier curves drawn by the CubicCurve2D class) are, however, very common. By combining many cubic curves so that the slopes at the connection points match, you can create complex, smooth-looking curved shapes. For more information, refer to Computer Graphics: Principles and Practice, Third Edition, by John F. Hughes et al.
 You can build arbitrary sequences of line segments, quadratic curves, and cubic curves, and store them in a GeneralPath object. Specify the first coordinate of the path with the moveTo method, for example:
 var path = new GeneralPath(); path.moveTo(10, 20);
 You can then extend the path by calling one of the methods lineTo, quadTo, or curveTo. These methods extend the path by a line, a quadratic curve, or a cubic curve. To call lineTo, supply the end point. For the two curve methods, supply the control points, then the end point. For example,
@@ -35933,10 +35939,10 @@ In the Java 2D API, transparency is described by an alpha channel. Each pixel ha
 new Color(0.7F, 0.7F, 0.0F, 0.5F); Now let us look at what happens if you superimpose two shapes. You need to blend or compose the colors and alpha values of the source and destination pixels. Porter and Duff, two researchers in the field of computer graphics, have formulated 12 possible composition rules for this blending process. The Java 2D API implements all of these rules. Before going any further, I'd like to point out that only two of these rules have practical significance. If you find the rules arcane or confusing, just use the SRC_OVER rule. It is the default rule for a Graphics2D object, and it gives the most intuitive results. Here is the theory behind the rules. Suppose you have a source pixel with alpha value aS. In the image, there is already a destination pixel with alpha value aD. You want to compose the two. The diagram in Figure 12.52 shows how to design a composition rule.
 
 Figure 12.52: Designing a composition rule
-Porter and Duff consider the alpha value as the probability that the pixel color should be used. From the perspective of the source, there is a probability aS that it wants to use the source color and a probability of 1 ­ aS that it doesn't care. The same holds for the destination. When composing the colors, let us assume that the probabilities are independent. Then there are four cases, as shown in Figure 12.52. If the source wants to use the source color and the destination doesn't care, then it seems reasonable to let the source have its way. That's why the upper right corner of the diagram is labeled "S". The probability for that event is aS · (1 ­ aD). Similarly, the lower left corner is labeled "D". What should one do if both destination and source would like to select their color? That's where the Porter­Duff rules come in. If we decide that the source is more important, we label the lower right corner with an "S" as well. That rule is called SRC_OVER. In that rule, you combine the source colors with a weight of aS and the destination colors with a weight of (1 ­ aS) · aD.
+Porter and Duff consider the alpha value as the probability that the pixel color should be used. From the perspective of the source, there is a probability aS that it wants to use the source color and a probability of 1 ï¿½ aS that it doesn't care. The same holds for the destination. When composing the colors, let us assume that the probabilities are independent. Then there are four cases, as shown in Figure 12.52. If the source wants to use the source color and the destination doesn't care, then it seems reasonable to let the source have its way. That's why the upper right corner of the diagram is labeled "S". The probability for that event is aS ï¿½ (1 ï¿½ aD). Similarly, the lower left corner is labeled "D". What should one do if both destination and source would like to select their color? That's where the Porterï¿½Duff rules come in. If we decide that the source is more important, we label the lower right corner with an "S" as well. That rule is called SRC_OVER. In that rule, you combine the source colors with a weight of aS and the destination colors with a weight of (1 ï¿½ aS) ï¿½ aD.
 The visual effect is a blending of the source and destination, with preference given to the source. In particular, if aS is 1, then the destination color is not taken into account at all. If aS is 0, then the source pixel is completely transparent and the destination color is unchanged.
 The other rules depend on what letters you put in the boxes of the probability diagram. Table 12.3 and Figure 12.53 show all rules that are supported by the Java 2D API. The images in the figure show the results of the rules when a rectangular source region with an alpha of 0.75 is combined with an elliptical destination region with an alpha of 1.0.
-Table 12.3: The Porter­Duff Composition Rules
+Table 12.3: The Porterï¿½Duff Composition Rules
 
 Rule
 
@@ -35976,16 +35982,16 @@ XOR
 
 overwrites empty pixels.
 
-Figure 12.53: Porter­Duff composition rules
+Figure 12.53: Porterï¿½Duff composition rules
 As you can see, most of the rules aren't very useful. Consider, as an extreme case, the DST_IN rule. It doesn't take the source color into account at all, but uses the alpha of the source to affect the destination. The SRC rule is potentially useful--it forces the source color to be used, turning off blending with the destination.
-Use the setComposite method of the Graphics2D class to install an object of a class that implements the Composite interface. The Java 2D API supplies one such class, AlphaComposite, that implements all the Porter­Duff rules in Figure 12.53.
+Use the setComposite method of the Graphics2D class to install an object of a class that implements the Composite interface. The Java 2D API supplies one such class, AlphaComposite, that implements all the Porterï¿½Duff rules in Figure 12.53.
 The factory method getInstance of the AlphaComposite class yields an AlphaComposite object. You supply the rule and the alpha value to be used for source pixels. For example, consider the following code:
 int rule = AlphaComposite.SRC_OVER; float alpha = 0.5f; g2.setComposite(AlphaComposite.getInstance(rule, alpha)); g2.setPaint(Color.blue); g2.fill(rectangle);
 
 The rectangle is then painted with blue color and an alpha value of 0.5. Since the composition rule is SRC_OVER, it is transparently overlaid on the existing image.
 The program in Listing 12.17 lets you explore these composition rules. Pick a rule from the combo box and use the slider to set the alpha value of the AlphaComposite object.
 Furthermore, the program displays a verbal description of each rule. Note that the descriptions are computed from the composition rule diagrams. For example, a "DS" in the second row stands for "blends with destination."
-The program has one important twist. There is no guarantee that the graphics context that corresponds to the screen has an alpha channel. (In fact, it generally does not.) When pixels are deposited to a destination without an alpha channel, the pixel colors are multiplied with the alpha value and the alpha value is discarded. Now, several of the Porter­Duff rules use the alpha values of the destination, which means a destination alpha channel is important. For that reason, we use a buffered image with the ARGB color model to compose the shapes. After the images have been composed, we draw the resulting image to the screen.
+The program has one important twist. There is no guarantee that the graphics context that corresponds to the screen has an alpha channel. (In fact, it generally does not.) When pixels are deposited to a destination without an alpha channel, the pixel colors are multiplied with the alpha value and the alpha value is discarded. Now, several of the Porterï¿½Duff rules use the alpha values of the destination, which means a destination alpha channel is important. For that reason, we use a buffered image with the ARGB color model to compose the shapes. After the images have been composed, we draw the resulting image to the screen.
 var image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB); Graphics2D gImage = image.createGraphics(); // now draw to gImage g2.drawImage(image, null, 0, 0);
 Listing 12.17 shows the frame class. The component class is in Listing 12.18. The Rule class in Listing 12.19 provides a brief explanation for each rule--see Figure 12.54. As you run the program, move the alpha slider from left to right to see the effect on the composed shapes. In particular, note that the only difference between the DST_IN and DST_OUT rules is how the destination (!) color changes when you change the source alpha.
 
@@ -37256,7 +37262,7 @@ xnew
 2
 x
 
-­
+ï¿½
 
 2
 y
@@ -37265,7 +37271,7 @@ y
 
 a
 
-ynew = 2 · x · y + b
+ynew = 2 ï¿½ x ï¿½ y + b
 
 It turns out that if x or y ever gets larger than 2, then the sequence escapes to infinity. Only the pixels that correspond to points (a, b) leading to a bounded sequence are colored. (The formulas for the number sequences come ultimately from the mathematics of complex numbers; we'll just take them for granted.)
 
@@ -37539,9 +37545,9 @@ var op = new AffineTransformOp(transform, interpolation); op.filter(image, filte
 
 The AffineTransformOp constructor requires an affine transform and an interpolation strategy. Interpolation is necessary to determine the target image pixels if the source pixels are transformed somewhere between target pixels. For example, if you rotate source pixels, they will generally not fall exactly onto target pixels. There are three interpolation strategies: AffineTransformOp.TYPE_BICUBIC, AffineTransformOp.TYPE_BILINEAR, and AffineTransformOp.TYPE_NEAREST_NEIGHBOR. Bicubic interpolation takes a bit longer but looks better than the other two. The program in Listing 12.22 lets you rotate an image by 5 degrees (see Figure 12.57).
 Figure 12.57: A rotated image
-The RescaleOp carries out a rescaling operation xnew = a · x + b
+The RescaleOp carries out a rescaling operation xnew = a ï¿½ x + b
 for each of the color components in the image. (Alpha components are not affected.) The effect of rescaling with a > 1 is to brighten the image. Construct the RescaleOp by specifying the scaling parameters and optional rendering hints. In Listing 12.22, we use:
-float a = 1.1f; float b = 20.0f; var op = new RescaleOp(a, b, null); You can also supply separate scaling values for each color component--see the API notes. The LookupOp operation lets you specify an arbitrary mapping of sample values. Supply a table that specifies how each value should be mapped. In the example program, we compute the negative of all colors, changing the color c to 255 ­ c.
+float a = 1.1f; float b = 20.0f; var op = new RescaleOp(a, b, null); You can also supply separate scaling values for each color component--see the API notes. The LookupOp operation lets you specify an arbitrary mapping of sample values. Supply a table that specifies how each value should be mapped. In the example program, we compute the negative of all colors, changing the color c to 255 ï¿½ c.
 
 The LookupOp constructor requires an object of type LookupTable and a map of optional hints. The LookupTable class is abstract, with two concrete subclasses: ByteLookupTable and ShortLookupTable. Since RGB color values are bytes, a ByteLookupTable should suffice. However, because of the bug described in https://bugs.java.com/bugdatabase/view_bug.do?bug_id=6183251, we will use a ShortLookupTable instead. Here is how we construct the LookupOp for the example program:
 var negative = new short[256]; for (int i = 0; i < 256; i++) negative[i] = (short) (255 - i); var table = new ShortLookupTable(0, negative); var op = new LookupOp(table, null); The lookup is applied to each color component separately, but not to the alpha component. You can also supply different lookup tables for each color component-- see the API notes.
@@ -38182,7 +38188,7 @@ destination image is returned.
 java.awt.image.AffineTransformOp 1.2
 AffineTransformOp(AffineTransform t, int interpolationType) constructs an affine transform operator. The interpolation type is one of TYPE_BILINEAR, TYPE_BICUBIC, or TYPE_NEAREST_NEIGHBOR.
 java.awt.image.RescaleOp 1.2
-RescaleOp(float a, float b, RenderingHints hints) RescaleOp(float[] as, float[] bs, RenderingHints hints) construct a rescale operator that carries out the scaling operation xnew = a · x + b. When using the first constructor, all color components (but not the alpha component) are scaled with the same coefficients. When using the second constructor, you supply either the values for each color component, in which case the alpha component is unaffected, or the values for both alpha and color components.
+RescaleOp(float a, float b, RenderingHints hints) RescaleOp(float[] as, float[] bs, RenderingHints hints) construct a rescale operator that carries out the scaling operation xnew = a ï¿½ x + b. When using the first constructor, all color components (but not the alpha component) are scaled with the same coefficients. When using the second constructor, you supply either the values for each color component, in which case the alpha component is unaffected, or the values for both alpha and color components.
 java.awt.image.LookupOp 1.2
 LookupOp(LookupTable table, RenderingHints hints) constructs a lookup operator for the given lookup table.
 java.awt.image.ByteLookupTable 1.2
@@ -38226,7 +38232,7 @@ If the print job needs the Printable object to print a band, it sets the clip ar
 
 operations are clipped against the band rectangle, and only those drawing elements that show up in the band are rendered. Your print method need not be aware of that process, with one caveat: It should not interfere with the clip area.
 Caution: The Graphics object that your print method gets is also clipped against the page margins. If you replace the clip area, you can draw outside the margins. Especially in a printer graphics context, the clipping area must be respected. Call clip, not setClip, to further restrict the clipping area. If you must remove a clip area, make sure to call getClip at the beginning of your print method and restore that clip area.
-The PageFormat parameter of the print method contains information about the printed page. The methods getWidth and getHeight return the paper size, measured in points. (One point is 1/72 of an inch; an inch equals 25.4 millimeters.) For example, A4 paper is approximately 595 × 842 points, and US Letter paper is 612 × 792 points.
+The PageFormat parameter of the print method contains information about the printed page. The methods getWidth and getHeight return the paper size, measured in points. (One point is 1/72 of an inch; an inch equals 25.4 millimeters.) For example, A4 paper is approximately 595 ï¿½ 842 points, and US Letter paper is 612 ï¿½ 792 points.
 Points are a common measurement in the printing trade in the United States. Much to the chagrin of the rest of the world, the printing package uses point units. There are two purposes for that: paper sizes and paper margins are measured in points, and points are the default unit for all print graphics contexts. You can verify that in the example program at the end of this section. The program prints two lines of text that are 72 units apart. Run the example program and measure the distance between the baselines; they are exactly 1 inch or 25.4 millimeters apart.
 The getWidth and getHeight methods of the PageFormat class give you the complete paper size. Not all of the paper area is printable. Users typically select margins, and even if they don't, printers need to somehow grip the sheets of paper on which they print and therefore have a small unprintable area around the edges.
 The methods getImageableWidth and getImageableHeight tell you the dimensions of the area that you can actually fill. However, the margins need not be symmetrical, so you must also know the top left corner of the imageable area (see Figure 12.61), which you obtain by the methods getImageableX and getImageableY.
@@ -40460,7 +40466,6 @@ JobHoldUntil JobImpressions JobImpressionsCompleted JobKOctets JobKOctetsProcess
 
 NONE, STAPLE, EDGE_STITCH, BIND, SADDLE_STITCH, COVER, ... DateTimeSyntax IntegerSyntax IntegerSyntax IntegerSyntax IntegerSyntax IntegerSyntax IntegerSyntax TextSyntax
 
-
        
 
 Attribute JobName JobOriginatingUserName JobPriority JobSheets JobState
@@ -40477,21 +40482,13 @@ DJ RS
 
 TextSyntax
 
-
-
 IntegerSyntax
 
-
-
 STANDARD, NONE
-
-
 
 ABORTED, CANCELED, COMPLETED, PENDING,
 
 PENDING_HELD, PROCESSING,
-
-
 
 PROCESSING_STOPPED
 
@@ -40499,39 +40496,23 @@ ABORTED_BY_SYSTEM, DOCUMENT_FORMAT_ERROR, many others
 
 HashSet
 
-
-
 ISO_A4_WHITE, ISO_A4_TRANSPARENT, NA_LETTER_WHITE, NA_LETTER_TRANSPARENT
 
+ISO.A0ï¿½ISO.A10, ISO.B0ï¿½ISO.B10,
+ISO.C0ï¿½ISO.C10, NA.LETTER, NA.LEGAL, various other paper and envelope sizes
 
-
-ISO.A0­ISO.A10, ISO.B0­ISO.B10,
-ISO.C0­ISO.C10, NA.LETTER, NA.LEGAL, various other paper and envelope sizes
-
-ISO_A0­ISO_A10, ISO_B0­ISO_B10,
-ISO_C0­ISO_C10, NA_LETTER, NA_LEGAL, various other paper and envelope size names
-
-
+ISO_A0ï¿½ISO_A10, ISO_B0ï¿½ISO_B10,
+ISO_C0ï¿½ISO_C10, NA_LETTER, NA_LEGAL, various other paper and envelope size names
 
 TOP, MIDDLE, BOTTOM, SIDE, ENVELOPE, LARGE_CAPACITY, MAIN, MANUAL
 
-
-
 SINGLE_DOCUMENT, SINGLE_DOCUMENT_NEW_SHEET, SEPARATE_DOCUMENTS_COLLATED_COPIES, SEPARATE_DOCUMENTS_UNCOLLATED_COPIES
 
-
+IntegerSyntax
 
 IntegerSyntax
 
-
-
 IntegerSyntax
-
-
-
-IntegerSyntax
-
-
 
 Attribute
 
@@ -41044,9 +41025,9 @@ Finally, the GetStringUTFLength function returns the number of characters needed
 
 Note: You can find the JNI API at https://docs.oracle.com/javase/8/docs/technotes/guides/ jni.
 Accessing Java Strings from C Code
-jstring NewStringUTF(JNIEnv* env, const char bytes[]) returns a new Java string object from a zero byteterminated "modified UTF-8" byte sequence, or NULL if the string cannot be constructed. jsize GetStringUTFLength(JNIEnv* env, jstring string) returns the number of bytes required for the "modified UTF-8" encoding (not counting the zero byte terminator). const jbyte* GetStringUTFChars(JNIEnv* env, jstring string, jboolean* isCopy) returns a pointer to the "modified UTF-8" encoding of a string, or NULL if the character array cannot be constructed. The pointer is valid until ReleaseStringUTFChars is called. isCopy points to a jboolean filled with JNI_TRUE if a copy is made, or with JNI_FALSE otherwise. void ReleaseStringUTFChars(JNIEnv* env, jstring string, const jbyte bytes[]) informs the virtual machine that the native code no longer needs access to the Java string through bytes (a pointer returned by GetStringUTFChars). void GetStringRegion(JNIEnv *env, jstring string, jsize start, jsize length, jchar *buffer) copies a sequence of UTF-16 double bytes from a string to a user-supplied buffer of size at least 2 ×
+jstring NewStringUTF(JNIEnv* env, const char bytes[]) returns a new Java string object from a zero byteterminated "modified UTF-8" byte sequence, or NULL if the string cannot be constructed. jsize GetStringUTFLength(JNIEnv* env, jstring string) returns the number of bytes required for the "modified UTF-8" encoding (not counting the zero byte terminator). const jbyte* GetStringUTFChars(JNIEnv* env, jstring string, jboolean* isCopy) returns a pointer to the "modified UTF-8" encoding of a string, or NULL if the character array cannot be constructed. The pointer is valid until ReleaseStringUTFChars is called. isCopy points to a jboolean filled with JNI_TRUE if a copy is made, or with JNI_FALSE otherwise. void ReleaseStringUTFChars(JNIEnv* env, jstring string, const jbyte bytes[]) informs the virtual machine that the native code no longer needs access to the Java string through bytes (a pointer returned by GetStringUTFChars). void GetStringRegion(JNIEnv *env, jstring string, jsize start, jsize length, jchar *buffer) copies a sequence of UTF-16 double bytes from a string to a user-supplied buffer of size at least 2 ï¿½
 
-length. void GetStringUTFRegion(JNIEnv *env, jstring string, jsize start, jsize length, jbyte *buffer) copies a sequence of "modified UTF-8" bytes from a string to a user-supplied buffer. The buffer must be long enough to hold the bytes. In the worst case, 3 × length bytes are copied. jstring NewString(JNIEnv* env, const jchar chars[], jsize length) returns a new Java string object from a Unicode string, or NULL if the string cannot be constructed. jsize GetStringLength(JNIEnv* env, jstring string) returns the number of characters in the string. const jchar* GetStringChars(JNIEnv* env, jstring string, jboolean* isCopy) returns a pointer to the Unicode encoding of a string, or NULL if the character array cannot be constructed. The pointer is valid until ReleaseStringChars is called. isCopy is either NULL or points to a jboolean filled with JNI_TRUE if a copy is made, or with JNI_FALSE otherwise. void ReleaseStringChars(JNIEnv* env, jstring string, const jchar chars[]) informs the virtual machine that the native code no longer needs access to the Java string through chars (a pointer returned by GetStringChars).
+length. void GetStringUTFRegion(JNIEnv *env, jstring string, jsize start, jsize length, jbyte *buffer) copies a sequence of "modified UTF-8" bytes from a string to a user-supplied buffer. The buffer must be long enough to hold the bytes. In the worst case, 3 ï¿½ length bytes are copied. jstring NewString(JNIEnv* env, const jchar chars[], jsize length) returns a new Java string object from a Unicode string, or NULL if the string cannot be constructed. jsize GetStringLength(JNIEnv* env, jstring string) returns the number of characters in the string. const jchar* GetStringChars(JNIEnv* env, jstring string, jboolean* isCopy) returns a pointer to the Unicode encoding of a string, or NULL if the character array cannot be constructed. The pointer is valid until ReleaseStringChars is called. isCopy is either NULL or points to a jboolean filled with JNI_TRUE if a copy is made, or with JNI_FALSE otherwise. void ReleaseStringChars(JNIEnv* env, jstring string, const jchar chars[]) informs the virtual machine that the native code no longer needs access to the Java string through chars (a pointer returned by GetStringChars).
 Let us put these functions to work and write a class that calls the C function sprintf. We would like to call the function as shown in Listing 13.8.
 
 Listing 13.8 printf2/Printf2Test.java
@@ -42940,7 +42921,7 @@ Here is the Java class that encapsulates a registry key:
 public class Win32RegKey {
 public Win32RegKey(int theRoot, String thePath) { . . . }
 public Enumeration names() { . . . } public native Object getValue(String name); public native void setValue(String name, Object value);
-public static final int HKEY_CLASSES_ROOT = 0×80000000; public static final int HKEY_CURRENT_USER = 0×80000001; public static final int HKEY_LOCAL_MACHINE = 0×80000002; ... }
+public static final int HKEY_CLASSES_ROOT = 0ï¿½80000000; public static final int HKEY_CURRENT_USER = 0ï¿½80000001; public static final int HKEY_LOCAL_MACHINE = 0ï¿½80000002; ... }
 The names method returns an enumeration that holds all the names stored with the key. You can get at them with the familiar hasMoreElements/nextElement methods. The getValue method returns an object that is either a string, an Integer object, or a byte array. The value parameter of the setValue method must also be of one of these three types.
 13.10.3. Implementation of Registry Access Functions as Native Methods
 We need to implement three actions:
@@ -44957,7 +44938,7 @@ in DOCTYPE declaration 3.4.1 in glob patterns 2.4.7 in regular expressions 2.7.1
 \n (newline character literal) as line feed 2.1.6, 3.3, 4.6, 7.7.2 in regular expressions 2.7.1, 2.7.7
 
 \p, \P, in regular expressions 2.7.1 \Q 2.7.1 \r (carriage return character
-literal) 2.1.6, 3.3, 7.7.2 in e-mails 4.6 \r, \R, in regular expressions 2.7.1 \s, \S, in regular expressions 2.7.1 \t (tab character literal) 2.7.1 \u (Unicode character literal) 2.7.1 \v, \V, in regular expressions 2.7.1 \w, \W, in regular expressions 2.7.1 \x, in regular expressions 2.7.1 \z, \Z, in regular expressions 2.7.1 ^ (caret) 2.7.1, 2.7.7 _ (underscore) in native method names 13.1 in SQL 5.2, 5.5.3 in URLs 4.3.3 {. . .} (braces) in glob patterns 2.4.7 in message formatting 7.5.1, 7.5.2 in regular expressions 2.7.1, 2.7.6 | operator in DTDs 3.4.1 in message formatting 7.5.2 in regular expressions 2.7.1 in text files 2.1.7 ~ (tilde), in URLs 4.3.3 ¤ (currency sign) 7.2.2  7.2.3, 7.7.3  operator 7.5.2
+literal) 2.1.6, 3.3, 7.7.2 in e-mails 4.6 \r, \R, in regular expressions 2.7.1 \s, \S, in regular expressions 2.7.1 \t (tab character literal) 2.7.1 \u (Unicode character literal) 2.7.1 \v, \V, in regular expressions 2.7.1 \w, \W, in regular expressions 2.7.1 \x, in regular expressions 2.7.1 \z, \Z, in regular expressions 2.7.1 ^ (caret) 2.7.1, 2.7.7 _ (underscore) in native method names 13.1 in SQL 5.2, 5.5.3 in URLs 4.3.3 {. . .} (braces) in glob patterns 2.4.7 in message formatting 7.5.1, 7.5.2 in regular expressions 2.7.1, 2.7.6 | operator in DTDs 3.4.1 in message formatting 7.5.2 in regular expressions 2.7.1 in text files 2.1.7 ~ (tilde), in URLs 4.3.3 ï¿½ (currency sign) 7.2.2  7.2.3, 7.7.3  operator 7.5.2
 A
 abort method of LoginModule 9.2.2
 absolute method 5.6.2 of ResultSet 5.6.1
@@ -45145,7 +45126,7 @@ ByteLookupTable class 12.6.5 constructor 12.6.5
 ByteOrder class
 BIG_ENDIAN, LITTLE_ENDIAN constants 2.5.1
 
-Bytes, reading/writing 2.1.1 Bézier curves 12.5.3
+Bytes, reading/writing 2.1.1 Bï¿½zier curves 12.5.3
 C
 C array types in 13.7 calling from Java programs 13.1 Java methods from 13.6.1, 13.6.4 database access in 5.1 embedding JVM into 13.9 FILE* type in 2.1.2 pointers in 13 strings in 13.3 types, vs. Java types 13.2
 C (char), type code 2.3.2, 13.5 C++
@@ -45601,7 +45582,7 @@ Graphics class 12.5, 12.5.1 drawXxx, fillXxx methods 12.5.2 get/setClip methods 
 Graphics editor applications 10.4.6 Graphics2D class 10.3.1, 12.5.1
 clip method 12.5.1, 12.5.8, 12.7.1 draw method 10.3.1, 12.5.1, 12.5.2, 12.5.4, 12.5.5 drawString method 10.3.3 fill method 10.3.2, 12.5.1, 12.5.4 getFontRenderContext method 10.3.3, 12.5.8 getPaint method 10.3.2 rotate method 12.5.7 scale method 12.5.7 setComposite method 12.5.1, 12.5.9 setPaint method 10.3.2, 12.5.1, 12.5.6 setRenderingHint, setRenderingHints methods 12.5.1 setStroke method 12.5.1, 12.5.5 setTransform method 12.5.7 shear method 12.5.7 transform method 12.5.1, 12.5.7 translate method 12.5.7, 12.7.2 GraphicsEnvironment class 10.3.3 Greenwich Royal Observatory 6.1, 6.5 Gregorian calendar reform 6.2 GregorianCalendar class toZonedDateTime method 6.7 Grid bag layout 11.6, 11.6.8 Grid layout 11.2.3 GridBagConstraints class 11.6.1 anchor, fill parameters 11.6.4, 11.6.8 gridx/y, gridwidth/height parameters 11.6.2, 11.6.8 helper class for 11.6.8 insets parameter 11.6.5, 11.6.8
 
-ipadx/y parameters 11.6.8 weightx/y parameters 11.6.3, 11.6.8 GridLayout class 11.2.1, 11.2.3 Groovy 8.2, 8.2.1 group method of MatchResult 2.7.7 Group layout 11.6 Grouping 1.10 classifier functions of 1.10 reducing to numbers 1.11 groupingBy method 1.10, 1.11 groupingByConcurrent method 1.10, 1.14 GUI. See Graphical User Interface Gödel's theorem 9.1.5
+ipadx/y parameters 11.6.8 weightx/y parameters 11.6.3, 11.6.8 GridLayout class 11.2.1, 11.2.3 Groovy 8.2, 8.2.1 group method of MatchResult 2.7.7 Group layout 11.6 Grouping 1.10 classifier functions of 1.10 reducing to numbers 1.11 groupingBy method 1.10, 1.11 groupingByConcurrent method 1.10, 1.14 GUI. See Graphical User Interface Gï¿½del's theorem 9.1.5
 H
 Half-closing connections 4.2.3
 Handbook of Applied Cryptography, The (Menezes et al.) 9.3.2
@@ -46396,7 +46377,7 @@ Point2D class 10.3.1, 12.5.2
 Point2D.Double class 2.3.4, 10.3.1, 12.5.2
 Point2D.Float class 10.3.1, 12.5.2 Points, in typography 12.7.1 Policy files 9.3.7 Polygons 12.5.2, 12.5.3 Pools, for parallel streams 1.14 Pop-up menus 11.5.4
 populate method 5.7.2
-of CachedRowSet 5.7.2 Porter­Duff rules 12.5.9 Portrait orientation 12.7.1 Ports 4.1.1
+of CachedRowSet 5.7.2 Porterï¿½Duff rules 12.5.9 Portrait orientation 12.7.1 Ports 4.1.1
 blocking 4.1.1 in URIs 4.3.1
 position function (XPath) 3.9 POSIX-compliant file systems 2.4.5
 PosixFileAttributes interface 2.4.5 POST 4.3.3
@@ -47029,4 +47010,3 @@ Z
 Z (boolean), type code 2.3.2, 13.5 ZIP archives 2.2.3
 
 reading 2.1.3, 2.2.3 writing 2.2.3 Zip code lookup 4.3.3 ZIP file systems 2.4.8 ZipEntry class constructor 2.2.3 getXxx methods 2.2.3 isDirectory method 2.2.3 setXxx methods 2.2.3 ZipFile class constructor 2.2.3 entries method 2.2.3 getXxx methods 2.2.3 ZipInputStream class 2.1.2, 2.2.3 closeEntry method 2.2.3 closeEntry methods 2.2.3 constructor 2.2.3 getNextEntry method 2.2.3 read method 2.2.3 ZipOutputStream class 2.1.2, 2.2.3 closeEntry method 2.2.3 constructor 2.2.3 putNextEntry method 2.2.3 setLevel, setMethod methods 2.2.3 ZonedDateTime class 6.5 format method 7.3 from method 6.7 getXxx methods 6.5 isAfter, isBefore methods 6.5 legacy classes and 6.7 minus, minusXxx methods 6.5 now method 6.5 of, ofInstant methods 6.5 parse method 6.6, 7.3 plus, plusXxx methods 6.5 toInstant method 6.5 toLocalXxx methods 6.5 withXxx methods 6.5 ZoneId class 6.7 getAvailableZoneIds method 6.5 of method 6.5
-

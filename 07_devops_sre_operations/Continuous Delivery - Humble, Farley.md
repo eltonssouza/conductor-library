@@ -1,3 +1,9 @@
+# Continuous Delivery
+
+> **Author(s):** Humble, Farley Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 Praise for Continuous Delivery
 "If you need to deploy software more frequently, this book is for you. Applying it will help you reduce risk, eliminate tedious work, and increase confidence. I'll be using the principles and practices here on all my current projects."
 --Kent Beck, Three Rivers Institute
@@ -22,12 +28,12 @@ Continuous Delivery
 
 Continuous Delivery
 Jez Humble and David Farley
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid Cape Town · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid Cape Town ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and the publisher was aware of a trademark claim, the designations have been printed with initial capital letters or in all capitals.
 The authors and publisher have taken care in the preparation of this book, but make no expressed or implied warranty of any kind and assume no responsibility for errors or omissions. No liability is assumed for incidental or consequential damages in connection with or arising out of the use of the information or programs contained herein.
 The publisher offers excellent discounts on this book when ordered in quantity for bulk purchases or special sales, which may include electronic versions and/or custom covers and content particular to your business, training goals, marketing focus, and branding interests. For more information, please contact:
-U.S. Corporate and Government Sales (800) 382­3419 corpsales@pearsontechgroup.com
+U.S. Corporate and Government Sales (800) 382ï¿½3419 corpsales@pearsontechgroup.com
 For sales outside the United States please contact:
 International Sales international@pearson.com
 Visit us on the Web: informit.com/aw
@@ -36,10 +42,10 @@ Humble, Jez. Continuous delivery : reliable software releases through build, tes
 / Jez Humble, David Farley. p. cm.
 Includes bibliographical references and index. ISBN 978-0-321-60191-9 (hardback : alk. paper) 1. Computer software--Development. 2. Computer software--Reliability. 3. Computer software--Testing. I. Farley, David, 1959II. Title. QA76.76.D47H843 2010 005.1--dc22
 2010022186
-Copyright © 2011 Pearson Education, Inc.
+Copyright ï¿½ 2011 Pearson Education, Inc.
 All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 Pearson Education, Inc Rights and Contracts Department 501 Boylston Street, Suite 900 Boston, MA 02116 Fax (617) 671 3447
-ISBN-13: 978­0­321­60191­9 ISBN-10: 0­321­60191­2 Text printed in the United States on recycled paper at RR Donnelley in Crawfordsville, Indiana. First printing August 2010
+ISBN-13: 978ï¿½0ï¿½321ï¿½60191ï¿½9 ISBN-10: 0ï¿½321ï¿½60191ï¿½2 Text printed in the United States on recycled paper at RR Donnelley in Crawfordsville, Indiana. First printing August 2010
 
 This book is dedicated to my dad, who has always given me his unconditional love and support. --Jez
 This book is dedicated to my dad, who always showed me the right direction. --Dave
@@ -329,14 +335,14 @@ Before that, let's be clear about the kinds of process failures that we are tryi
 Antipattern: Deploying Software Manually
 Most modern applications of any size are complex to deploy, involving many moving parts. Many organizations release software manually. By this we mean that the steps required to deploy such an application are treated as separate and atomic, each performed by an individual or team. Judgments must be made within these steps, leaving them prone to human error. Even if this is not the case, differences in the ordering and timing of these steps can lead to different outcomes. These differences are rarely good.
 The signs of this antipattern are:
-· The production of extensive, detailed documentation that describes the steps to be taken and the ways in which the steps may go wrong
-· Reliance on manual testing to confirm that the application is running correctly
-· Frequent calls to the development team to explain why a deployment is going wrong on a release day
-· Frequent corrections to the release process during the course of a release
-· Environments in a cluster that differ in their configuration, for example application servers with different connection pool settings, filesystems with different layouts, etc.
-· Releases that take more than a few minutes to perform
-· Releases that are unpredictable in their outcome, that often have to be rolled back or run into unforeseen problems
-· Sitting bleary-eyed in front of a monitor at 2 A.M. the day after the release day, trying to figure out how to make it work
+ï¿½ The production of extensive, detailed documentation that describes the steps to be taken and the ways in which the steps may go wrong
+ï¿½ Reliance on manual testing to confirm that the application is running correctly
+ï¿½ Frequent calls to the development team to explain why a deployment is going wrong on a release day
+ï¿½ Frequent corrections to the release process during the course of a release
+ï¿½ Environments in a cluster that differ in their configuration, for example application servers with different connection pool settings, filesystems with different layouts, etc.
+ï¿½ Releases that take more than a few minutes to perform
+ï¿½ Releases that are unpredictable in their outcome, that often have to be rolled back or run into unforeseen problems
+ï¿½ Sitting bleary-eyed in front of a monitor at 2 A.M. the day after the release day, trying to figure out how to make it work
 Instead . . . Over time, deployments should tend towards being fully automated. There should be two tasks for a human being to perform to deploy software into a development,
 
 6
@@ -345,14 +351,14 @@ Chapter 1 The Problem of Delivering Software
 
 test, or production environment: to pick the version and environment and to press the "deploy" button. Releasing packaged software should involve a single automated process that creates the installer.
 We discuss automation a lot in the course of this book, and we know that some people aren't totally sold on the idea. Let us explain why we see automated deployment as an indispensable goal.
-· When deployments aren't fully automated, errors will occur every time they are performed. The only question is whether or not the errors are significant. Even with excellent deployment tests, bugs can be hard to track down.
-· When the deployment process is not automated, it is not repeatable or reliable, leading to time wasted on debugging deployment errors.
-· A manual deployment process has to be documented. Maintaining the documentation is a complex and time-consuming task involving collaboration between several people, so the documentation is generally incomplete or out-of-date at any given time. A set of automated deployment scripts serves as documentation, and it will always be up-to-date and complete, or the deployment will not work.
-· Automated deployments encourage collaboration, because everything is explicit in a script. Documentation has to make assumptions about the level of knowledge of the reader and in reality is usually written as an aidememoire for the person performing the deployment, making it opaque to others.
-· A corollary of the above: Manual deployments depend on the deployment expert. If he or she is on vacation or quits work, you are in trouble.
-· Performing manual deployments is boring and repetitive and yet needs significant degree of expertise. Asking experts to do boring and repetitive, and yet technically demanding tasks is the most certain way of ensuring human error that we can think of, short of sleep deprivation, or inebriation. Automating deployments frees your expensive, highly skilled, overworked staff to work on higher-value activities.
-· The only way to test a manual deployment process is to do it. This is often time-consuming and expensive. An automated deployment process is cheap and easy to test.
-· We have heard it said that a manual process is more auditable than an automated one. We are completely baffled by this statement. With a manual process, there is no guarantee that the documentation has been followed. Only an automated process is fully auditable. What is more auditable than a working deployment script?
+ï¿½ When deployments aren't fully automated, errors will occur every time they are performed. The only question is whether or not the errors are significant. Even with excellent deployment tests, bugs can be hard to track down.
+ï¿½ When the deployment process is not automated, it is not repeatable or reliable, leading to time wasted on debugging deployment errors.
+ï¿½ A manual deployment process has to be documented. Maintaining the documentation is a complex and time-consuming task involving collaboration between several people, so the documentation is generally incomplete or out-of-date at any given time. A set of automated deployment scripts serves as documentation, and it will always be up-to-date and complete, or the deployment will not work.
+ï¿½ Automated deployments encourage collaboration, because everything is explicit in a script. Documentation has to make assumptions about the level of knowledge of the reader and in reality is usually written as an aidememoire for the person performing the deployment, making it opaque to others.
+ï¿½ A corollary of the above: Manual deployments depend on the deployment expert. If he or she is on vacation or quits work, you are in trouble.
+ï¿½ Performing manual deployments is boring and repetitive and yet needs significant degree of expertise. Asking experts to do boring and repetitive, and yet technically demanding tasks is the most certain way of ensuring human error that we can think of, short of sleep deprivation, or inebriation. Automating deployments frees your expensive, highly skilled, overworked staff to work on higher-value activities.
+ï¿½ The only way to test a manual deployment process is to do it. This is often time-consuming and expensive. An automated deployment process is cheap and easy to test.
+ï¿½ We have heard it said that a manual process is more auditable than an automated one. We are completely baffled by this statement. With a manual process, there is no guarantee that the documentation has been followed. Only an automated process is fully auditable. What is more auditable than a working deployment script?
 
 Some Common Release Antipatterns
 
@@ -363,11 +369,11 @@ We are certain that, occasionally, manually intensive releases work smoothly. We
 Antipattern: Deploying to a Production-like Environment Only after Development Is Complete
 In this pattern, the first time the software is deployed to a production-like environment (for example, staging) is once most of the development work is done--at least, "done" as defined by the development team.
 The pattern looks a bit like this.
-· If testers have been involved in the process up to this point, they have tested the system on development machines.
-· Releasing into staging is the first time that operations people interact with the new release. In some organizations, separate operations teams are used to deploy the software into staging and production. In this case, the first time an operations person sees the software is the day it is released into production.
-· Either a production-like environment is expensive enough that access to it is strictly controlled, or it is not in place on time, or nobody bothered to create one.
-· The development team assembles the correct installers, configuration files, database migrations, and deployment documentation to pass to the people who perform the actual deployment--all of it untested in an environment that looks like production or staging.
-· There is little, if any, collaboration between the development team and the people who actually perform deployments to create this collateral.
+ï¿½ If testers have been involved in the process up to this point, they have tested the system on development machines.
+ï¿½ Releasing into staging is the first time that operations people interact with the new release. In some organizations, separate operations teams are used to deploy the software into staging and production. In this case, the first time an operations person sees the software is the day it is released into production.
+ï¿½ Either a production-like environment is expensive enough that access to it is strictly controlled, or it is not in place on time, or nobody bothered to create one.
+ï¿½ The development team assembles the correct installers, configuration files, database migrations, and deployment documentation to pass to the people who perform the actual deployment--all of it untested in an environment that looks like production or staging.
+ï¿½ There is little, if any, collaboration between the development team and the people who actually perform deployments to create this collateral.
 
 8
 
@@ -378,33 +384,33 @@ Often the poor collaboration that causes so many problems in deployment to stagi
 In the process of performing the deployment, it is not uncommon to find that incorrect assumptions about the production environment have been baked into the design of the system. For example, one application we had a hand in deploying used the filesystem to cache data. This worked fine on a developer workstation, but less well in a clustered environment. Solving problems like this one can take a long time, and the application cannot be said to have been deployed until they are resolved.
 Once the application is deployed into staging, it is common for new bugs to be found. Unfortunately, there is often no time to fix them all because the deadline is fast approaching and, at this stage of the project, deferring the release date is unacceptable. So the most critical bugs are hurriedly patched up, and a list of known defects is stored by the project manager for safekeeping, to be deprioritized when work begins on the next release.
 Sometimes it can be even worse than this. Here are a few things that can exacerbate the problems associated with a release.
-· When working on a new application, the first deployment to staging is likely to be the most troublesome.
-· The longer the release cycle, the longer the development team has to make incorrect assumptions before the deployment occurs, and the longer it will take to fix them.
-· In large organizations where the delivery process is divided between different groups such as development, DBA, operations, testing, etc., the cost of coordination between these silos can be enormous, sometimes stalling the release process in ticketing hell. In this scenario, developers, testers, and operations personnel are constantly raising tickets (or sending emails) to
+ï¿½ When working on a new application, the first deployment to staging is likely to be the most troublesome.
+ï¿½ The longer the release cycle, the longer the development team has to make incorrect assumptions before the deployment occurs, and the longer it will take to fix them.
+ï¿½ In large organizations where the delivery process is divided between different groups such as development, DBA, operations, testing, etc., the cost of coordination between these silos can be enormous, sometimes stalling the release process in ticketing hell. In this scenario, developers, testers, and operations personnel are constantly raising tickets (or sending emails) to
 
 Some Common Release Antipatterns
 
 9
 
 each other to perform any given deployment--and worse, to resolve problems that arise during deployment.
-· The bigger the difference between development and production environments, the less realistic are the assumptions that have to be made during development. This can be difficult to quantify, but it's a good bet that if you're developing on a Windows machine and deploying to a Solaris cluster, you are in for some surprises.
-· If your application is installed by users or contains components that are, you may not have much control over their environments, especially outside of a corporate setting. In this case, a great deal of extra testing will be required.
+ï¿½ The bigger the difference between development and production environments, the less realistic are the assumptions that have to be made during development. This can be difficult to quantify, but it's a good bet that if you're developing on a Windows machine and deploying to a Solaris cluster, you are in for some surprises.
+ï¿½ If your application is installed by users or contains components that are, you may not have much control over their environments, especially outside of a corporate setting. In this case, a great deal of extra testing will be required.
 Instead . . . The remedy is to integrate the testing, deployment, and release activities into the development process. Make them a normal and ongoing part of development so that by the time you are ready to release your system into production there is little to no risk, because you have rehearsed it on many different occasions in a progressively more production-like sequence of test environments. Make sure everybody involved in the software delivery process, from the build and release team to testers to developers, work together from the start of the project.
 We are test addicts, and the extensive use of continuous integration and continuous deployment, as a means of testing both our software and our deployment process, is a cornerstone of the approach that we describe.
 Antipattern: Manual Configuration Management of Production Environments
 Many organizations manage the configuration of their production environments through a team of operations people. If a change is needed, such as a change to database connection setting or an increase in the number of threads in a thread pool on an application server, then it is carried out manually on the production servers. If a record is kept of such a change, it is probably an entry in a change management database.
 Signs of this antipattern are:
-· Having deployed successfully many times to staging, the deployment into production fails.
-· Different members of a cluster behave differently--for example, one node sustaining less load or taking longer to process requests than another.
-· The operations team take a long time to prepare an environment for a release.
+ï¿½ Having deployed successfully many times to staging, the deployment into production fails.
+ï¿½ Different members of a cluster behave differently--for example, one node sustaining less load or taking longer to process requests than another.
+ï¿½ The operations team take a long time to prepare an environment for a release.
 
 10
 
 Chapter 1 The Problem of Delivering Software
 
-· You cannot step back to an earlier configuration of your system, which may include operating system, application server, web server, RDBMS, or other infrastructural settings.
-· Servers in clusters have, unintentionally, different versions of operating systems, third-party infrastructure, libraries, or patch levels.
-· Configuration of the system is carried out by modifying the configuration directly on production systems.
+ï¿½ You cannot step back to an earlier configuration of your system, which may include operating system, application server, web server, RDBMS, or other infrastructural settings.
+ï¿½ Servers in clusters have, unintentionally, different versions of operating systems, third-party infrastructure, libraries, or patch levels.
+ï¿½ Configuration of the system is carried out by modifying the configuration directly on production systems.
 Instead . . .
 All aspects of each of your testing, staging, and production environments, specifically the configuration of any third-party elements of your system, should be applied from version control through an automated process.
 One of the key practices that we describe in this book is configuration management, part of which means being able to repeatably re-create every piece of infrastructure used by your application. That means operating systems, patch levels, OS configuration, your application stack, its configuration, infrastructure configuration, and so forth should all be managed. You should be able to recreate your production environment exactly, preferably in an automated fashion. Virtualization can help you get started with this.
@@ -440,12 +446,12 @@ Delivering fast is also important because it allows you to verify whether your f
 An important part of usefulness is quality. Our software should be fit for its purpose. Quality does not equal perfection--as Voltaire said, "The perfect is the enemy of the good,"--but our goal should always be to deliver software of sufficient quality to bring value to its users. So while it is important to deliver our software as quickly as possible, it is essential to maintain an appropriate level of quality.
 So, to slightly refine our goal, we want to find ways to deliver high-quality, valuable software in an efficient, fast, and reliable manner.
 We, and our fellow practitioners, have discovered that in order to achieve these goals--low cycle time and high quality--we need to make frequent, automated releases of our software. Why is this?
-· Automated. If the build, deploy, test, and release process is not automated, it is not repeatable. Every time it is done, it will be different, because of changes in the software, the configuration of the system, the environments, and the release process. Since the steps are manual, they are error-prone, and there is no way to review exactly what was done. This means there is no way to gain control over the release process, and hence to ensure high quality. Releasing software is too often an art; it should be an engineering discipline.
-· Frequent. If releases are frequent, the delta between releases will be small. This significantly reduces the risk associated with releasing and makes it much easier to roll back. Frequent releases also lead to faster feedback--indeed, they require it. Much of this book concentrates on getting feedback on changes to your application and its associated configuration (including its environment, deployment process, and data) as quickly as possible.
+ï¿½ Automated. If the build, deploy, test, and release process is not automated, it is not repeatable. Every time it is done, it will be different, because of changes in the software, the configuration of the system, the environments, and the release process. Since the steps are manual, they are error-prone, and there is no way to review exactly what was done. This means there is no way to gain control over the release process, and hence to ensure high quality. Releasing software is too often an art; it should be an engineering discipline.
+ï¿½ Frequent. If releases are frequent, the delta between releases will be small. This significantly reduces the risk associated with releasing and makes it much easier to roll back. Frequent releases also lead to faster feedback--indeed, they require it. Much of this book concentrates on getting feedback on changes to your application and its associated configuration (including its environment, deployment process, and data) as quickly as possible.
 Feedback is essential to frequent, automated releases. There are three criteria for feedback to be useful.
-· Any change, of whatever kind, needs to trigger the feedback process.
-· The feedback must be delivered as soon as possible.
-· The delivery team must receive feedback and then act on it.
+ï¿½ Any change, of whatever kind, needs to trigger the feedback process.
+ï¿½ The feedback must be delivered as soon as possible.
+ï¿½ The delivery team must receive feedback and then act on it.
 
 How Do We Achieve Our Goal?
 
@@ -460,35 +466,35 @@ Anything that changes between environments should be captured as configuration i
 If the environments the application is to be deployed into change, the whole system should be tested with the changes to the environment. This includes changes in the operating system configuration, the software stack that supports the application, the network configuration, and any infrastructure and external systems. Chapter 11 deals with managing infrastructure and environments, including automation of the creation and maintenance of testing and production environments.
 Finally, if the structure of the data changes, this change must also be tested. We discuss data management in Chapter 12.
 What is the feedback process? It involves testing every change in a fully automated fashion, as far as possible. The tests will vary depending on the system, but they will usually include at least the following checks.
-· The process of creating the executable code must work. This verifies that the syntax of your source code is valid.
-· The software's unit tests must pass. This checks that your application's code behaves as expected.
+ï¿½ The process of creating the executable code must work. This verifies that the syntax of your source code is valid.
+ï¿½ The software's unit tests must pass. This checks that your application's code behaves as expected.
 
 14
 
 Chapter 1 The Problem of Delivering Software
 
-· The software should fulfill certain quality criteria such as test coverage and other technology-specific metrics.
-· The software's functional acceptance tests must pass. This checks that your application conforms to its business acceptance criteria--that it delivers the business value that was intended.
-· The software's nonfunctional tests must pass. This checks that the application performs sufficiently well in terms of capacity, availability, security, and so on to meet its users' needs.
-· The software must go through exploratory testing and a demonstration to the customer and a selection of users. This is typically done from a manual testing environment. In this part of the process, the product owner might decide that there are missing features, or we might find bugs that require fixing and automated tests that need creating to prevent regressions.
+ï¿½ The software should fulfill certain quality criteria such as test coverage and other technology-specific metrics.
+ï¿½ The software's functional acceptance tests must pass. This checks that your application conforms to its business acceptance criteria--that it delivers the business value that was intended.
+ï¿½ The software's nonfunctional tests must pass. This checks that the application performs sufficiently well in terms of capacity, availability, security, and so on to meet its users' needs.
+ï¿½ The software must go through exploratory testing and a demonstration to the customer and a selection of users. This is typically done from a manual testing environment. In this part of the process, the product owner might decide that there are missing features, or we might find bugs that require fixing and automated tests that need creating to prevent regressions.
 The environments these tests run in must be as similar as possible to production, to verify that any changes to our environments have not affected the application's ability to work.
 The Feedback Must Be Received as Soon as Possible
 The key to fast feedback is automation. With fully automated processes, your only constraint is the amount of hardware that you are able to throw at the problem. If you have manual processes, you are dependent on people to get the job done. People take longer, they introduce errors, and they are not auditable. Moreover, performing manual build, test, and deployment processes is boring and repetitive--far from the best use of people. People are expensive and valuable, and they should be focused on producing software that delights its users and then delivering those delights as fast as possible--not on boring, errorprone tasks like regression testing, virtual server provisioning, and deployment, which are best done by machines.
 However, implementing a deployment pipeline is resource-intensive, especially once you have a comprehensive automated test suite. One of its key objectives is to optimize for human resource usage: We want to free people to do the interesting work and leave repetition to machines.
 We can characterize the tests in the commit stage of the pipeline (Figure 1.1) as follows.
-· They run fast.
-· They are as comprehensive as possible--that is to say, they cover more than 75% or so of the codebase, so that when they pass, we have a good level of confidence that the application works.
+ï¿½ They run fast.
+ï¿½ They are as comprehensive as possible--that is to say, they cover more than 75% or so of the codebase, so that when they pass, we have a good level of confidence that the application works.
 
 How Do We Achieve Our Goal?
 
 15
 
-· If any of them fails, it means our application has a critical fault and should not be released under any circumstances. That means that a test to check the color of a UI element should not be included in this set of tests.
-· They are as environment-neutral as possible--that is, the environment does not have to be an exact replica of production, which means it can be simpler and cheaper.
+ï¿½ If any of them fails, it means our application has a critical fault and should not be released under any circumstances. That means that a test to check the color of a UI element should not be included in this set of tests.
+ï¿½ They are as environment-neutral as possible--that is, the environment does not have to be an exact replica of production, which means it can be simpler and cheaper.
 On the other hand, the tests in the later stages have the following general characteristics.
-· They run more slowly and therefore are candidates for parallelization.
-· Some of them may fail, and we may still choose to release the application under some circumstances (perhaps there is a critical fix in the release candidate that causes the performance to drop below a predefined threshold--but we might make the decision to release anyway).
-· They should run on an environment that is as similar as possible to production, so in addition to the direct focus of the test they also test the deployment process and any changes to the production environment.
+ï¿½ They run more slowly and therefore are candidates for parallelization.
+ï¿½ Some of them may fail, and we may still choose to release the application under some circumstances (perhaps there is a critical fix in the release candidate that causes the performance to drop below a predefined threshold--but we might make the decision to release anyway).
+ï¿½ They should run on an environment that is as similar as possible to production, so in addition to the direct focus of the test they also test the deployment process and any changes to the production environment.
 This organization of the testing process means that we have a high level of confidence in the software after the first set of tests, which run fastest on the cheapest hardware. If these tests fail, the release candidate does not progress to later stages. This ensures optimal use of resources. There is much more on pipelining in Chapter 5, "Anatomy of the Deployment Pipeline," and the later Chapters 7, 8, and 9 which describe the commit testing stage, automated acceptance testing, and testing nonfunctional requirements.
 One of the fundamentals of our approach is the need for fast feedback. Ensuring fast feedback on changes requires us to pay attention to the process of developing software--in particular, to how we use version control and how we organize our code. Developers should commit changes to their version control system frequently, and split code into separate components as a way of managing large or distributed teams. Branching should, in most circumstances, be avoided. We discuss incremental delivery and the use of components in Chapter 13, "Managing Components and Dependencies," and branching and merging in Chapter 14, "Advanced Version Control."
 The Delivery Team Must Receive Feedback and Then Act on It
@@ -517,10 +523,10 @@ Beyond that there are many other benefits, some of which we would have predicted
 Empowering Teams
 One of the key principles of the deployment pipeline is that it is a pull system--it allows testers, operations or support personnel to self-service the version of the application they want into the environment of their choice. In our experience, a major contributor to cycle time is people involved in the delivery process waiting to get a "good build" of the application. Often getting a good build requires endless emails being sent, tickets being raised, or other inefficient forms of communication. When the teams involved in delivery are distributed, this becomes a major source of inefficiency. With a deployment pipeline implementation, this problem is completely removed--everybody should have the ability to see which builds are available to be deployed into the environments they care about and be able to perform a deployment at the push of a button.
 What we often see as a result of this is several different versions in play in various environments, as different members of the team go about their work. The ability to easily deploy any version of the software into any environment has many advantages.
-· Testers can select older versions of an application to verify changes in behavior in newer versions.
-· Support staff can deploy a released version of the application into an environment to reproduce a defect.
-· Operations staff can select a known good build to deploy to production as part of a disaster recovery exercise.
-· Releases can be performed at the push of a button.
+ï¿½ Testers can select older versions of an application to verify changes in behavior in newer versions.
+ï¿½ Support staff can deploy a released version of the application into an environment to reproduce a defect.
+ï¿½ Operations staff can select a known good build to deploy to production as part of a disaster recovery exercise.
+ï¿½ Releases can be performed at the push of a button.
 The flexibility that our deployment tools offer to them changes the way that they work--for the better. Overall, team members are more in control of their
 
 18
@@ -571,7 +577,7 @@ Deployment Flexibility
 It should be a simple task to start your application in a new environment--ideally just a matter of commissioning the machines or virtual images and creating some configuration information that describes the environment's unique properties. Then you should be able to use your automated deployment process to prepare the new environment for deployment and deploy the chosen version of your application to it.
 
 Running Enterprise Software on a Laptop
-We were working on a project recently that had its business case invalidated by an unexpected change in government legislation. The project was intended to create the core enterprise system for a new business. The business was to be distributed across international boundaries, and the software was designed to run on a large heterogeneous collection of expensive computers. Naturally everyone was somewhat deflated by the news that the project's raison d'étre had just vanished out of the window.
+We were working on a project recently that had its business case invalidated by an unexpected change in government legislation. The project was intended to create the core enterprise system for a new business. The business was to be distributed across international boundaries, and the software was designed to run on a large heterogeneous collection of expensive computers. Naturally everyone was somewhat deflated by the news that the project's raison d'ï¿½tre had just vanished out of the window.
 There was one small high point for us though. The organization for whom we were developing the software did a downsizing analysis. "What is the minimum hardware footprint of the new system, how could we limit our capital costs?" they asked. "Well, it runs on this laptop," we answered. They were surprised, since this was a sophisticated multiuser system. "How do you know it works?" they asked after thinking it through. "Well, we can run all of the acceptance tests like this . . . ," and we showed them. "What load would it have to take?" we asked them. They told us the load, we made a single-line change to the scaling parameters for our performance tests and ran them. We showed that the laptop was too slow, but not by all that much. A single decently configured server would meet their needs, and
 
 22
@@ -627,9 +633,9 @@ Principles of Software Delivery
 25
 
 Deploying software ultimately involves three things:
-· Provisioning and managing the environment in which your application will run (hardware configuration, software, infrastructure, and external services).
-· Installing the correct version of your application into it.
-· Configuring your application, including any data or state it requires.
+ï¿½ Provisioning and managing the environment in which your application will run (hardware configuration, software, infrastructure, and external services).
+ï¿½ Installing the correct version of your application into it.
+ï¿½ Configuring your application, including any data or state it requires.
 The deployment of your application can be implemented using a fully automated process from version control. Application configuration can also be a fully automated process, with the necessary scripts and state kept in version control or databases. Clearly, hardware cannot be kept in version control; but, particularly with the advent of cheap virtualization technology and tools like Puppet, the provisioning process can also be fully automated.
 The rest of this book essentially describes strategies for realizing this principle.
 Automate Almost Everything
@@ -700,17 +706,17 @@ Configuration Management
 Introduction
 Configuration management is a term that is widely used, often as a synonym for version control. It is worth setting the context for this chapter with our own informal definition:
 Configuration management refers to the process by which all artifacts relevant to your project, and the relationships between them, are stored, retrieved, uniquely identified, and modified. Your configuration management strategy will determine how you manage all of the changes that happen within your project. It thus records the evolution of your systems and applications. It will also govern how your team collaborates--a vital but sometimes overlooked consequence of any configuration management strategy. Although version control systems are the most obvious tool in configuration management, the decision to use one (and every team should use one, no matter how small) is just the first step in developing a configuration management strategy. Ultimately, if you have a good configuration management strategy, you should be able to answer "yes" to all of the following questions:
-· Can I exactly reproduce any of my environments, including the version of the operating system, its patch level, the network configuration, the software stack, the applications deployed into it, and their configuration?
-· Can I easily make an incremental change to any of these individual items and deploy the change to any, and all, of my environments?
-· Can I easily see each change that occurred to a particular environment and trace it back to see exactly what the change was, who made it, and when they made it?
-· Can I satisfy all of the compliance regulations that I am subject to?
+ï¿½ Can I exactly reproduce any of my environments, including the version of the operating system, its patch level, the network configuration, the software stack, the applications deployed into it, and their configuration?
+ï¿½ Can I easily make an incremental change to any of these individual items and deploy the change to any, and all, of my environments?
+ï¿½ Can I easily see each change that occurred to a particular environment and trace it back to see exactly what the change was, who made it, and when they made it?
+ï¿½ Can I satisfy all of the compliance regulations that I am subject to?
 31
 
 32
 
 Chapter 2 Configuration Management
 
-· Is it easy for every member of the team to get the information they need, and to make the changes they need to make? Or does the strategy get in the way of efficient delivery, leading to increased cycle time and reduced feedback?
+ï¿½ Is it easy for every member of the team to get the information they need, and to make the changes they need to make? Or does the strategy get in the way of efficient delivery, leading to increased cycle time and reduced feedback?
 The last point is important, as we all too often encounter configuration management strategies which address the first four points but put all kinds of barriers in the way of collaboration between teams. This is unnecessary--with sufficient care, this last constraint does not need to be antithetical to the others. We don't tell you how to answer all of these questions in this chapter, although we do address them all through the course of this book. In this chapter, we divide the problem into three:
 1. Getting the prerequisites in place to manage your application's build, deploy, test, and release process. We tackle this in two parts: getting everything into version control and managing dependencies.
 2. Managing an application's configuration.
@@ -727,8 +733,8 @@ Using Version Control
 
 data stored--to be attached to single files or collections of files. Second, it allows teams that may be distributed across space and time to collaborate.
 Why would you want to do this? There are a few reasons, but ultimately it's about being able to answer these questions:
-· What constitutes a particular version of your software? How can you reproduce a particular state of the software's binaries and configuration that existed in the production environment?
-· What was done when, by whom, and for what reason? Not only is this useful to know when things go wrong, but it also tells the story of your application.
+ï¿½ What constitutes a particular version of your software? How can you reproduce a particular state of the software's binaries and configuration that existed in the production environment?
+ï¿½ What was done when, by whom, and for what reason? Not only is this useful to know when things go wrong, but it also tells the story of your application.
 These are the fundamentals of version control. Most projects use version control. If yours doesn't yet, read the next few sections, then put this book aside and add it immediately. The following few sections are our advice on how to make the most effective use of version control.
 Keep Absolutely Everything in Version Control
 One reason that we use the term version control in preference to source control is that version control isn't just for source code. Every single artifact related to the creation of your software should be under version control. Developers should use it for source code, of course, but also for tests, database scripts, build and deployment scripts, documentation, libraries and configuration files for your application, your compiler and collection of tools, and so on--so that a new member of your team can start working from scratch.
@@ -771,10 +777,10 @@ of working on a complex part of the system, they won't want to commit their code
 In some teams, this can lead to days or even weeks between check-ins, which is problematic. The benefits of version control are enhanced when you commit regularly. In particular, it is impossible to safely refactor an application unless everybody commits frequently to mainline--the merges become too complex. If you commit frequently, your changes are available for other people to see and interact with, you get a clear indication that your changes haven't broken the application, and merges are always small and manageable.
 A solution that some people use to resolve this dilemma is to create a separate branch within the version control system for new functionality. At some point, when the changes are deemed satisfactory, they will be merged into the main development branch. This is a bit like a two-stage check-in; in fact, some version control systems work naturally in this way.
 However, we are opposed to this practice (with three exceptions, discussed in Chapter 14). This is a controversial viewpoint, especially to users of tools like ClearCase. There are a few problems with this approach.
-· It is antithetical to continuous integration, since the creation of a branch defers the integration of new functionality, and integration problems are only found when the branch is merged.
-· If several developers create branches, the problem increases exponentially, and the merge process can become absurdly complex.
-· Although there are some great tools for automated merging, these don't solve semantic conflicts, such as somebody renaming a method in one branch while somebody else adds a new call to that method in another branch.
-· It becomes very hard to refactor the codebase, since branches tend to touch many files which makes merging even more difficult.
+ï¿½ It is antithetical to continuous integration, since the creation of a branch defers the integration of new functionality, and integration problems are only found when the branch is merged.
+ï¿½ If several developers create branches, the problem increases exponentially, and the merge process can become absurdly complex.
+ï¿½ Although there are some great tools for automated merging, these don't solve semantic conflicts, such as somebody renaming a method in one branch while somebody else adds a new call to that method in another branch.
+ï¿½ It becomes very hard to refactor the codebase, since branches tend to touch many files which makes merging even more difficult.
 We will discuss the complexities of branching and merging in more detail in Chapter 14, "Advanced Version Control."
 A much better answer is to develop new features incrementally and to commit them to the trunk in version control on a regular and frequent basis. This keeps the software working and integrated at all times. It means that your software is always tested because your automated tests are run on trunk by the continuous integration (CI) server every time you check in. It reduces the possibility of large merge conflicts caused by refactoring, ensures that integration problems are caught immediately when they are cheap to fix, and results in higher-quality software. We discuss techniques to avoid branching in more detail in Chapter 13, "Managing Components and Dependencies."
 To ensure you aren't going to break the application when you check in, two practices are useful. One is to run your commit test suite before the check-in.
@@ -836,8 +842,8 @@ The desire to achieve flexibility may lead to the common antipattern of "ultimat
 Any time, you change the behavior of an application you are programming. The language in which you are programming the changes may be more or less constrained, but it is programming nevertheless. The more configurability you intend to offer users, by definition, the fewer constraints you can afford to place on the configuration of the system, and so the more sophisticated the programming environment needs to become.
 In our experience, it is an enduring myth that configuration information is somehow less risky to change than source code. Our bet is that, given access to both, we can stop your system at least as easily by changing the configuration as by changing the source code. If we change the source code, there are a variety of ways in which we are protected from ourselves; the compiler will rule out nonsense, and automated tests should catch most other errors. On the other hand, most configuration information is free-form and untested. In most systems there is nothing to prevent us from changing a URI from "http://www.asciimation.co.nz/" to "this is not a valid URI." Most systems won't catch a change like this until run time--at which point, instead of enjoying the ASCII version of Star Wars, your users are presented with a nasty exception report because the URI class can't parse "this is not a valid URI."
 There are many significant pitfalls on the road to highly configurable software, but perhaps the worst are the following.
-· It frequently leads to analysis paralysis, in which the problem seems so big and so intractable that the team spends all of their time thinking about how to solve it and none of their time actually solving anything.
-· The system becomes so complex to configure that many of the benefits of its flexibility are lost, to the extent where the effort involved in its configuration is comparable to the cost of custom development.
+ï¿½ It frequently leads to analysis paralysis, in which the problem seems so big and so intractable that the team spends all of their time thinking about how to solve it and none of their time actually solving anything.
+ï¿½ The system becomes so complex to configure that many of the benefits of its flexibility are lost, to the extent where the effort involved in its configuration is comparable to the cost of custom development.
 
 Managing Software Configuration
 
@@ -850,10 +856,10 @@ Configurable software is not always the cheaper solution it appears to be. It's 
 Don't misunderstand us: Configuration is not inherently evil. But it needs to be managed carefully and consistently. Modern computer languages have evolved all sorts of characteristics and techniques to help them reduce errors. In most cases, these protections do not exist for configuration information, and more often than not there are not even any tests in place to verify that your software has been configured correctly in testing and production environments. Deployment smoke tests, as described in the "Smoke-Test Your Deployments" section on page 117, are one way to mitigate this problem and should always be used.
 Types of Configuration
 Configuration information can be injected into your application at several points in your build, deploy, test, and release process, and it's usual for it to be included at more than one point.
-· Your build scripts can pull configuration in and incorporate it into your binaries at build time.
-· Your packaging software can inject configuration at packaging time, such as when creating assemblies, ears, or gems.
-· Your deployment scripts or installers can fetch the necessary information or ask the user for it and pass it to your application at deployment time as part of the installation process.
-· Your application itself can fetch configuration at startup time or run time.
+ï¿½ Your build scripts can pull configuration in and incorporate it into your binaries at build time.
+ï¿½ Your packaging software can inject configuration at packaging time, such as when creating assemblies, ears, or gems.
+ï¿½ Your deployment scripts or installers can fetch the necessary information or ask the user for it and pass it to your application at deployment time as part of the installation process.
+ï¿½ Your application itself can fetch configuration at startup time or run time.
 Generally, we consider it bad practice to inject configuration information at build or packaging time. This follows from the principle that you should be able
 
 42
@@ -906,25 +912,25 @@ Managing Software Configuration
 45
 
 scripts fetch the appropriate configuration from the configuration service and make it available to the application, perhaps as a file on the filesystem.
-Whatever the nature of the configuration information store, we recommend that you insulate the detail of the technology from your application with a simple façade class providing a
+Whatever the nature of the configuration information store, we recommend that you insulate the detail of the technology from your application with a simple faï¿½ade class providing a
 getThisProperty() getThatProperty()
 style of interface, so you can fake it in tests and change the storage mechanism when you need to.
 Modeling Configuration Each configuration setting can be modeled as a tuple, so the configuration for an application consists of a set of tuples. However, the set of the tuples available and their values typically depend on three things:
-· The application
-· The version of the application
-· The environment it runs in (for example, development, UAT, performance, staging, or production)
+ï¿½ The application
+ï¿½ The version of the application
+ï¿½ The environment it runs in (for example, development, UAT, performance, staging, or production)
 So, for example, version 1.0 of your reporting application will have a set of tuples different from version 2.2, or from version 1.0 of your portfolio management application. The values of those tuples will, in turn, vary depending on the environment they are deployed into. For example, the database server used by the application in UAT will typically be different from that used in production and may even vary between developer machines. The same applies to packaged software or external integration points--an update service used by your application will be different when running integration tests from when it is accessed from a customer's desktop.
 Whatever you use to represent and serve configuration information--XML files in source control or a RESTful web service--should be able to handle these various dimensions. Here are some use cases to consider when modeling configuration information.
-· Adding a new environment (a new developer workstation perhaps, or a capacity testing environment). In this case you'd need to be able to specify a new set of values for applications deployed into this new environment.
-· Creating a new version of the application. Often, this will introduce new configuration settings and get rid of some old ones. You should ensure that when you deploy this new version to production, it can get its new settings, but if you have to roll back to an older version it will use the old ones.
+ï¿½ Adding a new environment (a new developer workstation perhaps, or a capacity testing environment). In this case you'd need to be able to specify a new set of values for applications deployed into this new environment.
+ï¿½ Creating a new version of the application. Often, this will introduce new configuration settings and get rid of some old ones. You should ensure that when you deploy this new version to production, it can get its new settings, but if you have to roll back to an older version it will use the old ones.
 
 46
 
 Chapter 2 Configuration Management
 
-· Promoting a new version of your application from one environment to another. You should ensure that any new settings are available in the new environment, but that the appropriate values are set for this new environment.
-· Relocating a database server. You should be able to update, very simply, every configuration setting that references this database to make it point to the new one.
-· Managing environments using virtualization. You should be able to use your virtualization management tool to create a new instance of a particular environment that has all the VMs configured correctly. You may want to include this information as part of the configuration settings for the particular version of the application deployed into that environment.
+ï¿½ Promoting a new version of your application from one environment to another. You should ensure that any new settings are available in the new environment, but that the appropriate values are set for this new environment.
+ï¿½ Relocating a database server. You should be able to update, very simply, every configuration setting that references this database to make it point to the new one.
+ï¿½ Managing environments using virtualization. You should be able to use your virtualization management tool to create a new instance of a particular environment that has all the VMs configured correctly. You may want to include this information as part of the configuration settings for the particular version of the application deployed into that environment.
 One approach to managing configuration across environments is to make the expected production configuration the default and to override this default in other environments as appropriate (ensure you have firewalls in place so that production systems don't get hit by mistake). This means that any environmentspecific tailoring is reduced to only those configuration properties that must be changed for the software to work in that particular environment. This simplifies the picture of what needs to be configured where. However, it also depends on whether or not your application's production configuration is privileged--some organizations expect the production configuration to be kept in a separate repository from that of other environments.
 Testing System Configuration
 In the same way that your application and build scripts need testing, so do your configuration settings. There are two parts to testing configuration.
@@ -943,22 +949,22 @@ It is especially important to have access to this information on a real-time bas
 Configuration management of every application should be planned as part of project inception. Consider how other applications in your ecosystem manage their configuration and use the same method, if possible. Too often, decisions on how to manage configuration are done on an ad-hoc basis, and as a result every application packages its configuration in a different place and uses a different mechanism for accessing it. This makes it unnecessarily hard to determine the configuration of your environments.
 Principles of Managing Application Configuration
 Treat your application's configuration the same way you treat your code. Manage it properly, and test it. Here is a list of principles to consider when creating an application configuration system:
-· Consider where in your application's lifecycle it makes sense to inject a particular piece of configuration--at the point of assembly where you are
+ï¿½ Consider where in your application's lifecycle it makes sense to inject a particular piece of configuration--at the point of assembly where you are
 
 48
 
 Chapter 2 Configuration Management
 
 packaging your release candidate, at deployment or installation time, at startup time, or at run time. Speak to the operations and support team to work out what their needs are.
-· Keep the available configuration options for your application in the same repository as its source code, but keep the values somewhere else. Configuration settings have a lifecycle completely different from that of code, while passwords and other sensitive information should not be checked in to version control at all.
-· Configuration should always be performed by automated processes using values taken from your configuration repository, so that you can always identify the configuration of every application in every environment.
-· Your configuration system should be able to provide different values to your application (including its packaging, installation, and deployment scripts) based on the application, its version, and the environment it is being deployed into. It should be easy for anyone to see what configuration options are available for a particular version of an application across all environments it will be deployed into.
-· Use clear naming conventions for your configuration options. Avoid obscure or cryptic names. Try to imagine someone reading the configuration file without a manual--it should be possible to understand what the configuration properties are.
-· Ensure that your configuration information is modular and encapsulated so that changes in one place don't have knock-on effects for other, apparently unrelated, pieces of configuration.
-· Use the DRY (don't repeat yourself) principle. Define the elements of your configuration so that each concept has only one representation in the set of configuration information.
-· Be minimalist: Keep the configuration information as simple and as focused as possible. Avoid creating configuration options except where there is a requirement or where it makes sense to do so.
-· Avoid overengineering the configuration system. Keep it as simple as you can.
-· Ensure that you have tests for your configuration that are run at deployment or installation time. Check that the services your application depends upon are available, and use smoke tests to assert that any functionality depending on your configuration settings works as it should.
+ï¿½ Keep the available configuration options for your application in the same repository as its source code, but keep the values somewhere else. Configuration settings have a lifecycle completely different from that of code, while passwords and other sensitive information should not be checked in to version control at all.
+ï¿½ Configuration should always be performed by automated processes using values taken from your configuration repository, so that you can always identify the configuration of every application in every environment.
+ï¿½ Your configuration system should be able to provide different values to your application (including its packaging, installation, and deployment scripts) based on the application, its version, and the environment it is being deployed into. It should be easy for anyone to see what configuration options are available for a particular version of an application across all environments it will be deployed into.
+ï¿½ Use clear naming conventions for your configuration options. Avoid obscure or cryptic names. Try to imagine someone reading the configuration file without a manual--it should be possible to understand what the configuration properties are.
+ï¿½ Ensure that your configuration information is modular and encapsulated so that changes in one place don't have knock-on effects for other, apparently unrelated, pieces of configuration.
+ï¿½ Use the DRY (don't repeat yourself) principle. Define the elements of your configuration so that each concept has only one representation in the set of configuration information.
+ï¿½ Be minimalist: Keep the configuration information as simple and as focused as possible. Avoid creating configuration options except where there is a requirement or where it makes sense to do so.
+ï¿½ Avoid overengineering the configuration system. Keep it as simple as you can.
+ï¿½ Ensure that you have tests for your configuration that are run at deployment or installation time. Check that the services your application depends upon are available, and use smoke tests to assert that any functionality depending on your configuration settings works as it should.
 
 Managing Your Environments
 
@@ -968,11 +974,11 @@ Managing Your Environments
 No application is an island. Every application depends on hardware, software, infrastructure, and external systems in order to work. We refer to this, throughout this book, as your application's environment. We deal, at some length, with the topic of environment management in Chapter 11, "Managing Infrastructure and Environments," but the topic deserves some discussion in the context of configuration management, so we will introduce it here.
 The principle to bear in mind when managing the environment that your application runs in is that the configuration of that environment is as important as the configuration of the application. If, for example, your application depends on a messaging bus, the bus needs to be configured correctly or the application will not work. Your operating system's configuration is also important. For example, you may have an application that relies on a large number of file descriptors being available. If the operating system defaults to a lower limit for the number of file descriptors, your application won't work.
 The worst approach to managing configuration information is to deal with it on an ad-hoc basis. This means installing the requisite pieces of software by hand and editing the relevant configuration files. This is the most common strategy that we encounter. Although seemingly simple, this strategy has several common problems that arise in all but the most trivial of systems. The most obvious pitfall is that if, for any reason, the new configuration doesn't work, it's difficult to return to a known good state with any certainty since there is no record of the previous configuration. The problem can be summed up as follows:
-· The collection of configuration information is very large.
-· One small change can break the whole application or severely degrade its performance.
-· Once it is broken, finding the problem and fixing it takes an indeterminate amount of time and requires senior personnel.
-· It is extremely difficult to precisely reproduce manually configured environments for testing purposes.
-· It is difficult to maintain such environments without the configuration, and hence behavior, of different nodes drifting apart.
+ï¿½ The collection of configuration information is very large.
+ï¿½ One small change can break the whole application or severely degrade its performance.
+ï¿½ Once it is broken, finding the problem and fixing it takes an indeterminate amount of time and requires senior personnel.
+ï¿½ It is extremely difficult to precisely reproduce manually configured environments for testing purposes.
+ï¿½ It is difficult to maintain such environments without the configuration, and hence behavior, of different nodes drifting apart.
 In The Visible Ops Handbook the authors refer to manually configured environments as "works of art." In order to reduce the cost and risk of managing environments, it is essential to turn our environments into mass-produced objects whose creation is repeatable and takes a predictable amount of time. We have
 
 50
@@ -981,15 +987,15 @@ Chapter 2 Configuration Management
 
 been involved in too many projects where poor configuration management has meant significant expense--paying for teams of people to work on this aspect of the system alone. It also acts as a continual drag on the productivity of the development process, making deployments to test environments, development environments, and into production much more complex and costly than they need to be.
 The key to managing environments is to make their creation a fully automated process. It should always be cheaper to create a new environment than to repair an old one. Being able to reproduce your environments is essential for several reasons.
-· It removes the problem of having random pieces of infrastructure around whose configuration is only understood by somebody who has left the organization and cannot be reached. When such things stop working, you can usually assume a significant downtime. This is a large and unnecessary risk.
-· Fixing one of your environments can take many hours. It is always better to be able to rebuild it in a predictable amount of time so as to get back to a known good state.
-· It is essential to be able to create copies of production environments for testing purposes. In terms of software configuration, testing environments should be exact replicas of the production ones, so configuration problems can be found early.
+ï¿½ It removes the problem of having random pieces of infrastructure around whose configuration is only understood by somebody who has left the organization and cannot be reached. When such things stop working, you can usually assume a significant downtime. This is a large and unnecessary risk.
+ï¿½ Fixing one of your environments can take many hours. It is always better to be able to rebuild it in a predictable amount of time so as to get back to a known good state.
+ï¿½ It is essential to be able to create copies of production environments for testing purposes. In terms of software configuration, testing environments should be exact replicas of the production ones, so configuration problems can be found early.
 The kinds of environment configuration information you should be concerned about are:
-· The various operating systems in your environment, including their versions, patch levels, and configuration settings
-· The additional software packages that need to be installed on each environment to support your application, including their versions and configuration
-· The networking topology required for your application to work
-· Any external services that your application depends upon, including their versions and configuration
-· Any data or other state that is present in them (for example, production databases)
+ï¿½ The various operating systems in your environment, including their versions, patch levels, and configuration settings
+ï¿½ The additional software packages that need to be installed on each environment to support your application, including their versions and configuration
+ï¿½ The networking topology required for your application to work
+ï¿½ Any external services that your application depends upon, including their versions and configuration
+ï¿½ Any data or other state that is present in them (for example, production databases)
 There are two principles that, as we have found, form the basis of an effective configuration management strategy: Keep binary files independent
 
 Managing Your Environments
@@ -999,9 +1005,9 @@ Managing Your Environments
 from configuration information, and keep all configuration information in one place. Applying these fundamentals to every part of your system will pave the way to the point where creating new environments, upgrading parts of your system, and rolling out new configurations without making your system unavailable becomes a simple, automated process.
 All of these things need to be considered. Although it's obviously unreasonable to check your operating system into version control, it's certainly not unreasonable to version-control its configuration. A combination of remote installation systems and environment management tools such as Puppet and CfEngine make centralized management and configuration of operating systems straightforward. This topic is covered in detail in Chapter 11, "Managing Infrastructure and Environments."
 For most applications, it is even more important to apply this principle to the third-party software stack that they depend on. Good software has installers that can be run from the command line without any user intervention. It has configuration that can be managed in version control and does not require manual intervention. If your third-party software dependencies don't meet these criteria, you should find alternatives--these criteria for third-party software selection are of such importance that they should be at the core of every software evaluation exercise. When evaluating third-party products and services, start by asking the following questions:
-· Can we deploy it?
-· Can we version its configuration effectively?
-· How will it fit into our automated deployment strategy?
+ï¿½ Can we deploy it?
+ï¿½ Can we version its configuration effectively?
+ï¿½ How will it fit into our automated deployment strategy?
 If the answer to any of these questions is in any way negative, there are various possible responses--we discuss them at greater length in Chapter 11.
 An environment that is in a properly deployed state is known as a baseline in configuration management terminology. Your automated environment provisioning system should be able to establish, or reestablish, any given baseline that has existed in the recent history of your project. Any time you change any aspect of the host environment of your applications, you should store the change, creating a new version of the baseline and associating that version of the application with the new version of the baseline. This ensures that the next time that you deploy the application or create a new environment, it will include the change.
 Essentially, you should treat your environment the same way you treat your code--changing it incrementally and checking the changes into version control. Every change should be tested to ensure that it doesn't break any of the applications that run in the new version of the environment.
@@ -1039,15 +1045,15 @@ repeating that your test environments should closely resemble your production en
 Summary
 Configuration management is the foundation of everything else in this book. It is impossible to do continuous integration, release management, and deployment pipelining without it. It also makes a huge positive impact on collaboration within delivery teams. As we hope we have made clear, it is not just a question of choosing and implementing a tool, although that is important; it is also, crucially, a question of putting good practices into place.
 If your configuration management process is sound, you should be able to answer "yes" to the following questions:
-· Could you completely re-create your production system, excluding production data, from scratch from the version-controlled assets that you store?
-· Could you regress to an earlier, known good state of your application?
-· Can you be sure that each deployed environment in production, in staging, and in test is set up in precisely the same way?
+ï¿½ Could you completely re-create your production system, excluding production data, from scratch from the version-controlled assets that you store?
+ï¿½ Could you regress to an earlier, known good state of your application?
+ï¿½ Can you be sure that each deployed environment in production, in staging, and in test is set up in precisely the same way?
 If not, then your organization is at risk. In particular, we recommend having a strategy for storing baselines and controlling changes to:
-· Your applications' source code, build scripts, tests, documentation, requirements, database scripts, libraries, and configuration files
-· Your development, testing, and operations toolchains
-· All environments used in development, testing, and production
-· The entire application stack associated with your applications--both binaries and configuration
-· The configuration associated with every application in every environment it runs in, across the entire application lifecycle (building, deployment, testing, operation)
+ï¿½ Your applications' source code, build scripts, tests, documentation, requirements, database scripts, libraries, and configuration files
+ï¿½ Your development, testing, and operations toolchains
+ï¿½ All environments used in development, testing, and production
+ï¿½ The entire application stack associated with your applications--both binaries and configuration
+ï¿½ The configuration associated with every application in every environment it runs in, across the entire application lifecycle (building, deployment, testing, operation)
 
 Chapter 3
 Continuous Integration
@@ -1082,9 +1088,9 @@ without it. When we write code on our own, for our own needs on our own computer
 We describe the choice and use of revision control systems in more detail in the "Using Version Control" section on page 32 and in Chapter 14, "Advanced Version Control."
 2. An Automated Build You must be able to start your build from the command line. You can start off with a command-line program that tells your IDE to build your software and then runs your tests, or it can be a complex collection of multistage build scripts that call one another. Whatever the mechanism, it must be possible for either a person or a computer to run your build, test, and deployment process in an automated fashion via the command line.
 IDEs and continuous integration tools have become pretty sophisticated these days, and you can usually build your software and run tests without going anywhere near the command line. However, we think that you should still have build scripts that can be run via the command line without your IDE. This might seem controversial, but there are several reasons for this:
-· You need to be able to run your build process in an automated way from your continuous integration environment so that it can be audited when things go wrong.
-· Your build scripts should be treated like your codebase. They should be tested and constantly refactored so that they are tidy and easy to understand. It's impossible to do this with an IDE-generated build process. This gets more and more important the more complex the project becomes.
-· It makes understanding, maintaining, and debugging the build easier, and allows for better collaboration with operations people.
+ï¿½ You need to be able to run your build process in an automated way from your continuous integration environment so that it can be audited when things go wrong.
+ï¿½ Your build scripts should be treated like your codebase. They should be tested and constantly refactored so that they are tidy and easy to understand. It's impossible to do this with an IDE-generated build process. This gets more and more important the more complex the project becomes.
+ï¿½ It makes understanding, maintaining, and debugging the build easier, and allows for better collaboration with operations people.
 3. Agreement of the Team Continuous integration is a practice, not a tool. It requires a degree of commitment and discipline from your development team. You need everyone to check in small incremental changes frequently to mainline and agree that the highest priority task on the project is to fix any change that breaks the application. If people don't adopt the discipline necessary for it to work, your attempts at continuous integration will not lead to the improvement in quality that you hope for.
 A Basic Continuous Integration System
 You don't need a continuous integration software in order to do continuous integration--as we say, it is a practice, not a tool. James Shore describes the
@@ -1132,9 +1138,9 @@ Acceptance tests test that the application meets the acceptance criteria decided
 These three sets of tests, combined, should provide an extremely high level of confidence that any introduced change has not broken existing functionality.
 Keep the Build and Test Process Short
 If it takes too long to build the code and run the unit tests, you will run into the following problems:
-· People will stop doing a full build and running the tests before they check in. You will start to get more failing builds.
-· The continuous integration process will take so long that multiple commits will have taken place by the time you can run the build again, so you won't know which check-in broke the build.
-· People will check in less often because they have to sit around for ages waiting for the software to build and the tests to run.
+ï¿½ People will stop doing a full build and running the tests before they check in. You will start to get more failing builds.
+ï¿½ The continuous integration process will take so long that multiple commits will have taken place by the time you can run the build again, so you won't know which check-in broke the build.
+ï¿½ People will check in less often because they have to sit around for ages waiting for the software to build and the tests to run.
 
 Prerequisites for Continuous Integration
 
@@ -1309,10 +1315,10 @@ Chapter 3 Continuous Integration
 
 bit draconian in some circumstances, but as a way to enforce good practice it is effective.
 You can strengthen this technique as much as you wish by adding checks for specific or general coding lapses. We have used one of the many open source code-quality tools with some success:
-· Simian is a tool that identifies duplication in most popular languages (including plain text).
-· JDepend for Java, and its commercial .NET cousin NDepend, generate a wealth of useful (and some less useful) design quality metrics.
-· CheckStyle can test for bad coding practices, such as public constructors in utility classes, nested blocks, and long lines. It can also catch common sources of bugs and security holes. It can easily be extended. FxCop is its .NET cousin.
-· FindBugs is a Java-based system providing an alternative to CheckStyle, including a similar set of validations.
+ï¿½ Simian is a tool that identifies duplication in most popular languages (including plain text).
+ï¿½ JDepend for Java, and its commercial .NET cousin NDepend, generate a wealth of useful (and some less useful) design quality metrics.
+ï¿½ CheckStyle can test for bad coding practices, such as public constructors in utility classes, nested blocks, and long lines. It can also catch common sources of bugs and security holes. It can easily be extended. FxCop is its .NET cousin.
+ï¿½ FindBugs is a Java-based system providing an alternative to CheckStyle, including a similar set of validations.
 As we have said, for some projects failing the build on any warning may sound too draconian. One approach that we have used to introduce this practice gradually is ratcheting. This means comparing the number of things like warnings or TODOs with the number in the previous check-in. If the number increases, we fail the build. Using this approach, you can easily enforce a policy that every commit should reduce the number of warnings or TODOs at least by one.
 
 CheckStyle: The Nagging Is Worth It after All
@@ -1401,9 +1407,9 @@ Distributed Version Control Systems
 merged with the main repository, and whether the result would be a working version of the application. Interestingly, Figure 3.2 shows that the main repository's build is currently broken, but the Dimagi fork not only merges successfully with it, but also fixes the broken tests (and possibly adds some additional functionality of its own).
 At one more step away from continuous integration is what Martin Fowler calls "promiscuous integration" [bBjxbS]. In this model, contributors pull changes not just between forks and the central repository, but also between forks. This pattern is common in larger projects that use GitHub, when some developers are working on what are effectively long-lived feature branches and pull changes from other repositories that are forked off the feature branch. Indeed in this model there need not even be one privileged repository. A particular release of the software could come from any of the forks, provided it passed all the tests and was accepted by the project leaders. This model takes the possibilities of DVCS to their logical conclusion.
 These alternatives to continuous integration can create high-quality, working software. However, this is only possible under the following conditions:
-· A small and very experienced team of committers who manage pulling patches, tend the automated tests, and ensure the quality of the software.
-· Regular pulling from forks, so as to avoid large amounts of hard-to-merge inventory accumulating on them. This condition is especially important if there is a strict release schedule, because the temptation is to leave merging till near the release, at which point it becomes extremely painful--the exact problem that continuous integration is designed to solve.
-· A relatively small set of core developers, perhaps supplemented by a larger community which contributes at a relatively slow pace. This is what makes the merges tractable.
+ï¿½ A small and very experienced team of committers who manage pulling patches, tend the automated tests, and ensure the quality of the software.
+ï¿½ Regular pulling from forks, so as to avoid large amounts of hard-to-merge inventory accumulating on them. This condition is especially important if there is a strict release schedule, because the temptation is to leave merging till near the release, at which point it becomes extremely painful--the exact problem that continuous integration is designed to solve.
+ï¿½ A relatively small set of core developers, perhaps supplemented by a larger community which contributes at a relatively slow pace. This is what makes the merges tractable.
 These conditions hold for most open source projects, and for small teams in general. However, they very rarely hold for medium or large teams of full-time developers.
 To summarize: In general, distributed version control systems are a great advance and provide powerful tools for collaboration, whether or not you are working on a distributed project. DVCSs can be extremely effective as part of a traditional continuous integration system, in which there is a designated central repository to which everybody regularly pushes their changes (at least once a day). They can also be used in other patterns that do not allow for continuous integration, but may still be effective patterns for delivering software. However, we caution against using these patterns when the right conditions, listed above, are not satisfied. Chapter 14, "Advanced Version Control," contains a full discussion of these and other patterns and the conditions under which they are effective.
 
@@ -1417,10 +1423,10 @@ To implement continuous integration is to create a paradigm shift in your team. 
 Implementing CI forces you to follow two other important practices: good configuration management and the creation and maintenance of an automated build and test process. For some teams, that will seem like a lot to bite off, but they can be achieved incrementally. We discussed the steps to good configuration management in the previous chapter. There is more on build automation in Chapter 6, "Build and Deployment Scripting." We cover testing in more detail in the next chapter.
 It should be clear that CI requires good team discipline--but then, any process requires this. What is different about continuous integration is that you have a simple indicator of whether or not discipline is being followed: The build stays green. If you discover that the build is green but there is insufficient discipline, for example poor unit test coverage, you can easily add checks to your CI system to enforce better behavior.
 This brings us to our final point. An established CI system is a foundation on which you can build more infrastructure:
-· Big visible displays which aggregate information from your build system to provide high-quality feedback
-· A system of reference for reports and installers for your testing team
-· A provider of data on the quality of the application for project managers
-· A system that can be extended out to production, using the deployment pipeline, which provides testers and operations staff with push-button deployments
+ï¿½ Big visible displays which aggregate information from your build system to provide high-quality feedback
+ï¿½ A system of reference for reports and installers for your testing team
+ï¿½ A provider of data on the quality of the application for project managers
+ï¿½ A system that can be extended out to production, using the deployment pipeline, which provides testers and operations staff with push-button deployments
 
 Chapter 4
 Implementing a Testing Strategy
@@ -1487,11 +1493,11 @@ However, any use case will, in all but the simplest of systems, allow for variat
 Acceptance tests should be run when your system is in a production-like mode. Manual acceptance testing is typically done by putting an application in a user acceptance testing (UAT) environment which is as similar as possible to production both in configuration and in terms of the state of the application--although it might use mock versions of any external services. The tester uses the application's standard user interface in order to perform testing. Automated acceptance tests should similarly be run in a production-like environment, with the test harness interacting with the application the same way that a user would.
 Automating Acceptance Tests
 Automated acceptance tests have a number of valuable properties:
-· They make the feedback loop faster--developers can run automated tests to find out if they have completed a particular requirement without having to go to testers.
-· They reduce the workload on testers.
-· They free testers to concentrate on exploratory testing and higher-value activities instead of boring repetitive tasks.
-· Your acceptance tests represent a powerful regression test suite. This is particularly important when writing large applications or working in large teams where frameworks or many modules are being used and changes to one part of the application are likely to affect other features.
-· By using human-readable test and test suite names, as advocated by behavior-driven development, it is possible to autogenerate requirements documentation from your tests. Indeed, tools like Cucumber and Twist are designed to allow analysts to write requirements as executable test scripts. The benefit of this approach is that your requirements documentation is never out-of-date--it can be generated automatically with every build.
+ï¿½ They make the feedback loop faster--developers can run automated tests to find out if they have completed a particular requirement without having to go to testers.
+ï¿½ They reduce the workload on testers.
+ï¿½ They free testers to concentrate on exploratory testing and higher-value activities instead of boring repetitive tasks.
+ï¿½ Your acceptance tests represent a powerful regression test suite. This is particularly important when writing large applications or working in large teams where frameworks or many modules are being used and changes to one part of the application are likely to affect other features.
+ï¿½ By using human-readable test and test suite names, as advocated by behavior-driven development, it is possible to autogenerate requirements documentation from your tests. Indeed, tools like Cucumber and Twist are designed to allow analysts to write requirements as executable test scripts. The benefit of this approach is that your requirements documentation is never out-of-date--it can be generated automatically with every build.
 
 Types of Tests
 
@@ -1559,11 +1565,11 @@ A key part of automated testing involves replacing part of a system at run time 
 Chapter 4 Implementing a Testing Strategy
 
 Martin Fowler [aobjRH]. Meszaros coined the generic term "test doubles" and distinguishes further between the various types of test doubles as follows:
-· Dummy objects are passed around but never actually used. Usually they are just used to fill parameter lists.
-· Fake objects actually have working implementations, but usually take some shortcut that makes them not suitable for production. A good example of this is the in-memory database.
-· Stubs provide canned answers to the calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
-· Spies are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.
-· Mocks are preprogrammed with expectations that form a specification of the calls they are expected to receive. They can throw an exception if they receive a call they don't expect and are checked during verification to ensure they got all the calls they were expecting.
+ï¿½ Dummy objects are passed around but never actually used. Usually they are just used to fill parameter lists.
+ï¿½ Fake objects actually have working implementations, but usually take some shortcut that makes them not suitable for production. A good example of this is the in-memory database.
+ï¿½ Stubs provide canned answers to the calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
+ï¿½ Spies are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.
+ï¿½ Mocks are preprogrammed with expectations that form a specification of the calls they are expected to receive. They can throw an exception if they receive a call they don't expect and are checked during verification to ensure they got all the calls they were expecting.
 Mocks are an especially abused form of test doubles. It's very easy to misuse mocks by writing tests that are both pointless and fragile, using them simply to assert the specific details of the workings of some code rather than its interactions with collaborators. Such usage is fragile because if the implementation changes, the test breaks. Examining the distinction between mocks and stubs goes beyond the scope of this book, but you'll find more detail in Chapter 8, "Automated Acceptance Testing." Probably the most comprehensive paper laying out how to use mocks correctly is "Mock Roles, Not Objects" [duZRWb]. Martin Fowler also gives some pointers in his article "Mocks Aren't Stubs" [dmXRSC].
 Real-Life Situations and Strategies
 Here are some typical scenarios faced by teams who have decided to automate their tests.
@@ -1574,14 +1580,14 @@ Real-Life Situations and Strategies
 
 93
 
-· To choose a technology platform and testing tools.
-· To set up a simple, automated build.
-· To work out stories that follow the INVEST principles [ddVMFH] (they should be Independent, Negotiable, Valuable, Estimable, Small, and Testable), with acceptance criteria.
+ï¿½ To choose a technology platform and testing tools.
+ï¿½ To set up a simple, automated build.
+ï¿½ To work out stories that follow the INVEST principles [ddVMFH] (they should be Independent, Negotiable, Valuable, Estimable, Small, and Testable), with acceptance criteria.
 You can then implement a strict process:
-· Customers, analysts, and testers define acceptance criteria.
-· Testers work with developers to automate acceptance tests based on the acceptance criteria.
-· Developers code behavior to fulfill the acceptance criteria.
-· If any automated tests fail (whether unit, component, or acceptance tests), developers make it a priority to fix them.
+ï¿½ Customers, analysts, and testers define acceptance criteria.
+ï¿½ Testers work with developers to automate acceptance tests based on the acceptance criteria.
+ï¿½ Developers code behavior to fulfill the acceptance criteria.
+ï¿½ If any automated tests fail (whether unit, component, or acceptance tests), developers make it a priority to fix them.
 It is much simpler to adopt this process at the start of a project than decide a few iterations later that you need acceptance tests. At these later stages, not only will you have to try and to come up with ways to implement the acceptance tests, since support for them won't already exist in your framework--you'll also have to convince skeptical developers of the need to follow the process assiduously. Getting a team addicted to automated testing is simpler to achieve if you start at the beginning of a project.
 However, it is also essential that everybody on the team, including customers and project managers, are bought in to these benefits. We have seen projects cancelled because the customer felt that too much time was spent working on automated acceptance tests. If the customer really would rather sacrifice the quality of their automated acceptance test suite in order to get it to market quickly, they are entitled to make that decision--but the consequences should be made quite clear.
 Finally, it is important to make sure that your acceptance criteria are carefully written so that they express the business value that the story delivers from the point of view of the user. Blindly automating badly written acceptance criteria is one of the major causes of unmaintainable acceptance test suites. For each acceptance criterion you write, it should be possible to write an automated acceptance test proving that the value described is delivered to the user. This means that testers should be involved in writing requirements from the start, ensuring that a coherent, maintainable automated acceptance test suite is supported throughout the evolution of the system.
@@ -1624,24 +1630,24 @@ Integration Testing
 If your application is conversing with a variety of external systems through a series of different protocols, or if your application itself consists of a series of loosely coupled modules with complex interactions between them, then integration tests become very important. The line between integration testing and component testing is blurry (not least because integration testing is a somewhat overloaded term). We use the term integration testing to refer to tests which ensure that each independent part of your application works correctly with the services it depends on.
 Integration tests can be written in the same way as you write normal acceptance tests. Normally, integration tests should run in two contexts: firstly with the system under test running against the real external systems it depends on, or against their replicas controlled by the service provider, and secondly against a test harness which you create as part of your codebase.
 It is essential to ensure that you don't hit a real external system unless you are in production, or you have some way of telling the service that you are sending it dummy transactions for testing purposes. There are two common ways to ensure that you can safely test your application without hitting a real external system, and generally you will need to employ both of them:
-· Isolate access to the external system in your testing environment with a firewall, which you probably want to do in any case early on in your development process. This is also a useful technique to test the behavior of your application when the external service is unavailable.
+ï¿½ Isolate access to the external system in your testing environment with a firewall, which you probably want to do in any case early on in your development process. This is also a useful technique to test the behavior of your application when the external service is unavailable.
 
 Real-Life Situations and Strategies
 
 97
 
-· Have a configuration setting in your application that makes it talk to a simulated version of the external system.
+ï¿½ Have a configuration setting in your application that makes it talk to a simulated version of the external system.
 In an ideal situation, the service provider will have a replica test service that behaves exactly like the production service, except in terms of its performance characteristics. You can develop your tests against this. However, in the real world, you will often need to develop a test harness of your own. This is the case when:
-· The external system is under development but the interface has been defined ahead of time (in these situations, be prepared for the interface to change).
-· The external system is developed already but you don't have a test instance of that system available for your testing, or the test system is too slow or buggy to act as a service for regular automated test runs.
-· The test system exists, but responses are not deterministic, and so make validation of tests results impossible for automated tests (for example, a stock market feed).
-· The external system takes the form of another application that is difficult to install or requires manual intervention via a UI.
-· You need to write standard automated acceptance tests for functionality involving external services. These should almost always run against test doubles.
-· The load that your automated continuous integration system imposes, and the service level that it requires, overwhelms the lightweight test environment that is only set up to cope with a few manual exploratory interactions.
+ï¿½ The external system is under development but the interface has been defined ahead of time (in these situations, be prepared for the interface to change).
+ï¿½ The external system is developed already but you don't have a test instance of that system available for your testing, or the test system is too slow or buggy to act as a service for regular automated test runs.
+ï¿½ The test system exists, but responses are not deterministic, and so make validation of tests results impossible for automated tests (for example, a stock market feed).
+ï¿½ The external system takes the form of another application that is difficult to install or requires manual intervention via a UI.
+ï¿½ You need to write standard automated acceptance tests for functionality involving external services. These should almost always run against test doubles.
+ï¿½ The load that your automated continuous integration system imposes, and the service level that it requires, overwhelms the lightweight test environment that is only set up to cope with a few manual exploratory interactions.
 Test harnesses can be quite sophisticated, depending, in particular, on whether the service it doubles up for remembers state or not. If the external system remembers state, your harness will behave differently according to the requests that you send. The highest-value tests that you can write in this situation are black box tests, in which you consider all the possible responses your external system can give and write a test for each of these responses. Your mock external system needs some way of identifying your request and sending back the appropriate response, or an exception if it gets a request it's not expecting.
 It is essential that your test harness replicates not only the expected responses to service calls, but also unexpected ones. In Release It!, Michael Nygard discusses creating a test harness which simulates the kinds of pernicious behavior you can expect from remote systems that go wrong or from infrastructural problems.3
 
-3. Section 5.7, pp. 136­140.
+3. Section 5.7, pp. 136ï¿½140.
 
 98
 
@@ -1651,12 +1657,12 @@ These behaviors could be due to network transport problems, network protocol pro
 You should test your application against as many pathological situations as you can simulate to make sure it can handle them. That other patterns the Nygard describes, such as Circuit Breaker and Bulkheads, can then be used to harden your application against the kinds of unexpected events that are bound to occur in production.
 Automated integration tests can be reused as smoke tests during deployment of your system into production. They can also be used as diagnostics to monitor the production system. If you identify integration problems as a risk during development, which they almost inevitably are, developing automated integration tests should be an early priority.
 It is essential to incorporate activities concerning integration into your release plan. Integrating with external services is complex and requires time and planning. Every time you have to integrate with an external system, you add risks to your project:
-· Will a test service be available, and will it perform well?
-· Do the providers of the service have bandwidth to answer questions, fix bugs, and add custom functionality?
-· Will I have access to a production version of the system that I can test against to diagnose capacity or availability problems?
-· Is the service API accessible easily using the technology my application is developed with, or will we need specialist skills on the team?
-· Are we going to have to write and maintain our own test service?
-· How will my application perform when the external service doesn't behave as expected?
+ï¿½ Will a test service be available, and will it perform well?
+ï¿½ Do the providers of the service have bandwidth to answer questions, fix bugs, and add custom functionality?
+ï¿½ Will I have access to a production version of the system that I can test against to diagnose capacity or availability problems?
+ï¿½ Is the service API accessible easily using the technology my application is developed with, or will we need specialist skills on the team?
+ï¿½ Are we going to have to write and maintain our own test service?
+ï¿½ How will my application perform when the external service doesn't behave as expected?
 In addition, you will have to add scope for building and maintaining the integration layer and the associated runtime configuration, as well as any test services required and testing strategies such as capacity testing.
 
 Process
@@ -1706,8 +1712,8 @@ Anatomy of the Deployment Pipeline
 Introduction
 Continuous integration is an enormous step forward in productivity and quality for most projects that adopt it. It ensures that teams working together to create large and complex systems can do so with a higher level of confidence and control than is achievable without it. CI ensures that the code that we create, as a team, works by providing us with rapid feedback on any problems that we may introduce with the changes we commit. It is primarily focused on asserting that the code compiles successfully and passes a body of unit and acceptance tests. However, CI is not enough.
 CI mainly focuses on development teams. The output of the CI system normally forms the input to the manual testing process and thence to the rest of the release process. Much of the waste in releasing software comes from the progress of software through testing and operations. For example, it is common to see
-· Build and operations teams waiting for documentation or fixes · Testers waiting for "good" builds of the software · Development teams receiving bug reports weeks after the team has moved
-on to new functionality · Discovering, towards the end of the development process, that the applica-
+ï¿½ Build and operations teams waiting for documentation or fixes ï¿½ Testers waiting for "good" builds of the software ï¿½ Development teams receiving bug reports weeks after the team has moved
+on to new functionality ï¿½ Discovering, towards the end of the development process, that the applica-
 tion's architecture will not support the system's nonfunctional requirements
 This leads to software that is undeployable because it has taken so long to get it into a production-like environment, and buggy because the feedback cycle between the development team and the testing and operations team is so long.
 There are various incremental improvements to the way software is delivered which will yield immediate benefits, such as teaching developers to write production-ready software, running CI on production-like systems, and instituting cross-functional teams. However, while practices like these will certainly improve
@@ -1871,10 +1877,10 @@ Faster feedback
 
 Figure 5.3 Trade-offs in the deployment pipeline
 
-· The commit stage asserts that the system works at the technical level. It compiles, passes a suite of (primarily unit-level) automated tests, and runs code analysis.
-· Automated acceptance test stages assert that the system works at the functional and nonfunctional level, that behaviorally it meets the needs of its users and the specifications of the customer.
-· Manual test stages assert that the system is usable and fulfills its requirements, detect any defects not caught by automated tests, and verify that it provides value to its users. These stages might typically include exploratory testing environments, integration environments, and UAT (user acceptance testing).
-· Release stage delivers the system to users, either as packaged software or by deploying it into a production or staging environment (a staging environment is a testing environment identical to the production environment).
+ï¿½ The commit stage asserts that the system works at the technical level. It compiles, passes a suite of (primarily unit-level) automated tests, and runs code analysis.
+ï¿½ Automated acceptance test stages assert that the system works at the functional and nonfunctional level, that behaviorally it meets the needs of its users and the specifications of the customer.
+ï¿½ Manual test stages assert that the system is usable and fulfills its requirements, detect any defects not caught by automated tests, and verify that it provides value to its users. These stages might typically include exploratory testing environments, integration environments, and UAT (user acceptance testing).
+ï¿½ Release stage delivers the system to users, either as packaged software or by deploying it into a production or staging environment (a staging environment is a testing environment identical to the production environment).
 We refer to these stages, and any additional ones that may be required to model your process for delivering software, as a deployment pipeline. It is also sometimes referred to as a continuous integration pipeline, a build pipeline, a deployment production line, or a living build. Whatever it is called, this is, fundamentally, an automated software delivery process. This is not intended to imply that there is no human interaction with the system through this release process; rather, it ensures that error-prone and complex steps are automated, reliable, and repeatable in execution. In fact, human interaction is increased: The ability to deploy the system at all stages of its development by pressing a button encourages its frequent use by testers, analysts, developers, and (most importantly) users.
 
 What Is a Deployment Pipeline?
@@ -1998,9 +2004,9 @@ Deployment Pipeline Practices
 117
 
 This principle is really another application of the rule that you should separate what changes from what doesn't. If your deployment script is different for different environments, you have no way of knowing that what you're testing will actually work when you go live. Instead, if you use the same process to deploy everywhere, when a deployment doesn't work to a particular environment you can narrow it down to one of three causes:
-· A setting in your application's environment-specific configuration file
-· A problem with your infrastructure or one of the services on which your application depends
-· The configuration of your environment
+ï¿½ A setting in your application's environment-specific configuration file
+ï¿½ A problem with your infrastructure or one of the services on which your application depends
+ï¿½ The configuration of your environment
 Establishing which of these is the underlying cause is the subject of the next two practices.
 Smoke-Test Your Deployments
 When you deploy your application, you should have an automated script that does a smoke test to make sure that it is up and running. This could be as simple as launching the application and checking to make sure that the main screen comes up with the expected content. Your smoke test should also check that any services your application depends on are up and running--such as a database, messaging bus, or external service.
@@ -2013,10 +2019,10 @@ Ideally, if your production environment is simple or you have a sufficiently lar
 
 Chapter 5 Anatomy of the Deployment Pipeline
 
-· Your infrastructure, such as network topology and firewall configuration, is the same.
-· Your operating system configuration, including patches, is the same.
-· Your application stack is the same.
-· Your application's data is in a known, valid state. Migrating data when performing upgrades can be a major source of pain in deployments. We deal more with this topic in Chapter 12, "Managing Data."
+ï¿½ Your infrastructure, such as network topology and firewall configuration, is the same.
+ï¿½ Your operating system configuration, including patches, is the same.
+ï¿½ Your application stack is the same.
+ï¿½ Your application's data is in a known, valid state. Migrating data when performing upgrades can be a major source of pain in deployments. We deal more with this topic in Chapter 12, "Managing Data."
 You can use such practices as disk imaging and virtualization, and tools like Puppet and InstallShield along with a version control repository, to manage your environments' configuration. We discuss this in detail in Chapter 11, "Managing Infrastructure and Environments."
 Each Change Should Propagate through the Pipeline Instantly
 Before continuous integration was introduced, many projects ran various parts of their process off a schedule--for example, builds might run hourly, acceptance tests nightly, and capacity tests over the weekend. The deployment pipeline takes a different approach: The first stage should be triggered upon every check-in, and each stage should trigger the next one immediately upon successful completion. Of course this is not always possible when developers (especially on large teams) are checking in very frequently, given that the stages in your process can take a not insignificant amount of time. The problem is shown in Figure 5.6.
@@ -2092,11 +2098,11 @@ entire deployment pipeline. If a deployment to an environment fails, the whole t
 The Commit Stage
 A new instance of your deployment pipeline is created upon every check-in and, if the first stage passes, results in the creation of a release candidate. The aim of the first stage in the pipeline is to eliminate builds that are unfit for production and signal the team that the application is broken as quickly as possible. We want to expend a minimum of time and effort on a version of the application that is obviously broken. So, when a developer commits a change to the version control system, we want to evaluate the latest version of the application quickly. The developer who checked in then waits for the results before moving on to the next task.
 There are a few things we want to do as part of our commit stage. Typically, these tasks are run as a set of jobs on a build grid (a facility provided by most CI servers) so the stage completes in a reasonable length of time. The commit stage should ideally take less than five minutes to run, and certainly no more than ten minutes. The commit stage typically includes the following steps:
-· Compile the code (if necessary).
-· Run a set of commit tests.
-· Create binaries for use by later stages.
-· Perform analysis of the code to check its health.
-· Prepare artifacts, such as test databases, for use by later stages.
+ï¿½ Compile the code (if necessary).
+ï¿½ Run a set of commit tests.
+ï¿½ Create binaries for use by later stages.
+ï¿½ Perform analysis of the code to check its health.
+ï¿½ Prepare artifacts, such as test databases, for use by later stages.
 The first step is to compile the latest version of the source code and notify the developers who committed changes since the last successful check-in if there is an error in compilation. If this step fails, we can fail the commit stage immediately and eliminate this instance of the pipeline from further consideration.
 Next, a suite of tests is run, optimized to execute very quickly. We refer to this suite of tests as commit stage tests rather than unit tests because, although the vast majority of them are indeed unit tests, it is useful to include a small selection of tests of other types at this stage in order to get a higher level of confidence that the application is really working if the commit stage passes. These are the same tests that developers run before they check in their code (or, if they have the facility to do so, through a pretested commit on the build grid).
 Begin the design of your commit test suite by running all unit tests. Later, as you learn more about what types of failure are common in acceptance test runs and other later stages in the pipeline, you should add specific tests to your commit test suite to try and find them early on. This is an ongoing process optimization
@@ -2107,12 +2113,12 @@ The Commit Stage
 
 that is important if you are to avoid the higher costs of finding and fixing bugs in later pipeline stages.
 Establishing that your code compiles and passes tests is great, but it doesn't tell you a lot about the nonfunctional characteristics of your application. Testing nonfunctional characteristics such as capacity can be hard, but you can run analysis tools giving you feedback on such characteristics of your code base as test coverage, maintainability, and security breaches. Failure of your code to meet preset thresholds for these metrics should fail the commit stage the same way that a failing test does. Useful metrics include:
-· Test coverage (if your commit tests only cover 5% of your codebase, they're pretty useless)
-· Amount of duplicated code
-· Cyclomatic complexity
-· Afferent and efferent coupling
-· Number of warnings
-· Code style
+ï¿½ Test coverage (if your commit tests only cover 5% of your codebase, they're pretty useless)
+ï¿½ Amount of duplicated code
+ï¿½ Cyclomatic complexity
+ï¿½ Afferent and efferent coupling
+ï¿½ Number of warnings
+ï¿½ Code style
 The final step in the commit stage, following successful execution of everything up to this point, is the creation of a deployable assembly of your code ready for deployment into any subsequent environment. This, too, must succeed for the commit stage to be considered a success as a whole. Treating the creation of the executable code as a success criteria in its own right is a simple way of ensuring that our build process itself is also under constant evaluation and review by our continuous integration system.
 Commit Stage Best Practices
 Most of the practices described in Chapter 3, "Continuous Integration," apply to the commit stage. Developers are expected to wait until the commit stage of the deployment pipeline succeeds. If it fails, they should either quickly fix the problem, or back their changes out from version control. In the ideal world--a world of infinite processor power and unlimited network bandwidth--we would like our developers to wait for all tests to pass, even the manual ones, so that they could fix any problem immediately. In reality, this is not practical, as the later stages in the deployment pipeline (automated acceptance testing, capacity testing, and manual acceptance testing) are lengthy activities. This is the reason for pipelining your test process--it's important to get feedback as quickly as possible, when problems are cheap to fix, but not at the expense of getting more comprehensive feedback when it becomes available.
@@ -2212,11 +2218,11 @@ Preparing to Release
 
 plan in place, it may leave the business without mission-critical resources because they had to be decommissioned as part of the release of the new system.
 The mitigation of these problems is very simple when we view the release step as a natural outcome of our deployment pipeline. Fundamentally, we want to
-· Have a release plan that is created and maintained by everybody involved in delivering the software, including developers and testers, as well as operations, infrastructure, and support personnel
-· Minimize the effect of people making mistakes by automating as much of the process as possible, starting with the most error-prone stages
-· Rehearse the procedure often in production-like environments, so you can debug the process and the technology supporting it
-· Have the ability to back out a release if things don't go according to plan
-· Have a strategy for migrating configuration and production data as part of the upgrade and rollback processes
+ï¿½ Have a release plan that is created and maintained by everybody involved in delivering the software, including developers and testers, as well as operations, infrastructure, and support personnel
+ï¿½ Minimize the effect of people making mistakes by automating as much of the process as possible, starting with the most error-prone stages
+ï¿½ Rehearse the procedure often in production-like environments, so you can debug the process and the technology supporting it
+ï¿½ Have the ability to back out a release if things don't go according to plan
+ï¿½ Have a strategy for migrating configuration and production data as part of the upgrade and rollback processes
 Our goal is a completely automated release process. Releasing should be as simple as choosing a version of the application to release and pressing a button. Backing out should be just as simple. There is a great deal more information on these topics in Chapter 10, "Deploying and Releasing Applications."
 Automating Deployment and Release
 The less control we have over the environment in which our code executes, the more potential there is for unexpected behaviors. Thus, whenever we release a software system, we want to be in control of every single bit that is deployed. There are two factors that may work against this ideal. The first is that for many applications, you simply don't have full control of the operational environment of the software that you create. This is especially true of products and applications that are installed by users, such as games or office applications. This problem is generally mitigated by selecting a representative sample of target environments and running your automated acceptance test suite on each of these sample environments in parallel. You can then mine the data produced to work out which tests fail on which platforms.
@@ -2252,13 +2258,13 @@ The next best option is to redeploy the previous good version of your appliation
 On no account should you have a different process for backing out than you do for deploying, or perform incremental deployments or rollbacks. These processes will be rarely tested and therefore unreliable. They will also not start from a known-good baseline, and therefore will be brittle. Always roll back either by keeping an old version of the application deployed or by completely redeploying a previous known-good version.
 Building on Success
 By the time a release candidate is available for deployment into production, we will know with certainty that the following assertions about it are true:
-· The code can compile.
-· The code does what our developers think it should because it passed its unit tests.
-· The system does what our analysts or users think it should because it passed all of the acceptance tests.
-· Configuration of infrastructure and baseline environments is managed appropriately, because the application has been tested in an analog of production.
-· The code has all of the right components in place because it was deployable.
-· The deployment system works because, at a minimum, it will have been used on this release candidate at least once in a development environment, once in the acceptance test stage, and once in a testing environment before the candidate could have been promoted to this stage.
-· The version control system holds everything we need to deploy, without the need for manual intervention, because we have already deployed the system several times.
+ï¿½ The code can compile.
+ï¿½ The code does what our developers think it should because it passed its unit tests.
+ï¿½ The system does what our analysts or users think it should because it passed all of the acceptance tests.
+ï¿½ Configuration of infrastructure and baseline environments is managed appropriately, because the application has been tested in an analog of production.
+ï¿½ The code has all of the right components in place because it was deployable.
+ï¿½ The deployment system works because, at a minimum, it will have been used on this release candidate at least once in a development environment, once in the acceptance test stage, and once in a testing environment before the candidate could have been promoted to this stage.
+ï¿½ The version control system holds everything we need to deploy, without the need for manual intervention, because we have already deployed the system several times.
 
 Implementing a Deployment Pipeline
 
@@ -2350,14 +2356,14 @@ keep on growing. Instead, have your developers work just hard enough to keep the
 4. Elevate the constraint. If your cycle time is still too long (in other words, steps 2 and 3 haven't helped enough), you need to increase the resources available--hire more testers, or perhaps invest more effort in automated testing.
 5. Rinse and repeat. Find the next constraint on your system and go back to step 1.
 While cycle time is the most important metric in software delivery, there are a number of other diagnostics that can warn you of problems. These include
-· Automated test coverage
-· Properties of the codebase such as the amount of duplication, cyclomatic complexity, efferent and afferent coupling, style problems, and so on
-· Number of defects
-· Velocity, the rate at which your team delivers working, tested, ready for use code
-· Number of commits to the version control system per day
-· Number of builds per day
-· Number of build failures per day
-· Duration of build, including automated tests
+ï¿½ Automated test coverage
+ï¿½ Properties of the codebase such as the amount of duplication, cyclomatic complexity, efferent and afferent coupling, style problems, and so on
+ï¿½ Number of defects
+ï¿½ Velocity, the rate at which your team delivers working, tested, ready for use code
+ï¿½ Number of commits to the version control system per day
+ï¿½ Number of builds per day
+ï¿½ Number of build failures per day
+ï¿½ Duration of build, including automated tests
 It is worth considering how these metrics are presented. The reports described above produce a huge amount of data, and interpreting this data is an art. Program managers, for example, might expect to see this data analyzed and aggregated into a single "health" metric that is represented in the form of a traffic light that shows red, amber, or green. A team's technical lead will want much more detail, but even they will not want to wade through pages and pages of reports. Our colleague, Julias Shaw, created a project called Panopticode that runs a series of these reports against Java code and produces rich, dense visualizations (such as Figure 5.8) that let you see at a glance whether there is a problem with your codebase and where it lies. The key is to create visualizations that aggregate the data and present them in such a form that the human brain can use its unparalleled pattern-matching skills most effectively to identify problems with your process or codebase.
 
 140
@@ -2456,11 +2462,11 @@ However, Ant suffers from several shortcomings:
 
 Chapter 6 Build and Deployment Scripting
 
-· You need to write your build scripts in XML, which is neither succinct nor pleasant for humans to read.
-· Ant has an anaemic domain model. There are no real domain concepts over and above a task, which means you have to spend a great deal of time writing boilerplate to compile, create JARs, run tests, and so forth.
-· Ant is a declarative language, not an imperative one. However, there are just enough imperative-style tags (such as the dreaded <antcall>) to allow users to mix their metaphors and create unpleasantness and confusion all round.
-· You cannot easily ask questions about Ant tasks, such as "How many tests ran?" and "How long did they take?" All you can do is have a tool print this information out to the command line so you can parse it, or hook into Ant's internals by writing custom Java code to instrument it.
-· While Ant supports reuse through the import and macrodef tasks, these are poorly understood by novice users.
+ï¿½ You need to write your build scripts in XML, which is neither succinct nor pleasant for humans to read.
+ï¿½ Ant has an anaemic domain model. There are no real domain concepts over and above a task, which means you have to spend a great deal of time writing boilerplate to compile, create JARs, run tests, and so forth.
+ï¿½ Ant is a declarative language, not an imperative one. However, there are just enough imperative-style tags (such as the dreaded <antcall>) to allow users to mix their metaphors and create unpleasantness and confusion all round.
+ï¿½ You cannot easily ask questions about Ant tasks, such as "How many tests ran?" and "How long did they take?" All you can do is have a tool print this information out to the command line so you can parse it, or hook into Ant's internals by writing custom Java code to instrument it.
+ï¿½ While Ant supports reuse through the import and macrodef tasks, these are poorly understood by novice users.
 As a result of these limitations, Ant files tend to be long and poorly factored--it is not unusual for Ant files to be thousands of lines long. An invaluable resource when working with Ant files is Julian Simpson's article "Refactoring Ant Build Files," in The ThoughtWorks Anthology.
 NAnt and MSBuild
 When Microsoft first introduced the .NET framework, it had many features in common with the Java language and environment. Java developers who worked on this new platform quickly ported some of their favorite open source Java tools. So instead of JUnit and JMock we have NUnit and NMock--and, rather predictably, NAnt. NAnt uses essentially the same syntax as Ant, with only a few differences.
@@ -2502,7 +2508,7 @@ The simplicity and power of Rake makes a compelling case that build scripts shou
 Buildr is built on top of Rake, so everything you can do in Rake you can continue to do in Buildr. However, Buildr is also a drop-in replacement for Maven--it uses the same conventions that Maven does, including filesystem layout, artifact specifications, and repositories. It also lets you use Ant tasks (including any custom ones) with zero configuration. It leverages Rake's product-oriented framework to do incremental builds. Astonishingly, it is also faster than Maven. However, unlike Maven, it is extremely simple to customize tasks and create new ones of your own.
 If you're starting a new Java project, or looking for a replacement for Ant or Maven, we strongly suggest you consider Buildr, or Gradle if you prefer your DSLs in Groovy.
 Psake
-Windows users need not miss out on the new wave of internal DSL build tools. Pronounced "saké," Psake is an internal DSL written in PowerShell, which provides task-oriented dependency networks.
+Windows users need not miss out on the new wave of internal DSL build tools. Pronounced "sakï¿½," Psake is an internal DSL written in PowerShell, which provides task-oriented dependency networks.
 
 152
 
@@ -2647,17 +2653,17 @@ Deployment Scripting
 scripted deployments. First of all, if your system will run on a single box, you can write a script that will do everything that needs to be done locally on that box.
 However, most of the time deployment requires some level of orchestration--that is, running scripts on different computers in order to perform a deployment. In this case, you need to have a set of deployment scripts--one for each independent part of the deployment process--and run them on all the necessary servers. It doesn't follow that there will be one script per server--for example, there might be one script to upgrade your database, one script to deploy a new binary to each of your application servers, and a third script to upgrade a service your application depends on.
 You have three options for deploying onto remote machines. The first is to write a script that logs into each box and runs the appropriate commands. The second is to write a script that runs locally, and have agents that run the script on each of the remote machines. The third option is to package your application up using your platform's appropriate packaging technology and have an infrastructure management or deployment tool push out new versions, running any necessary tools to initialize your middleware. The third option is the most powerful, for the following reasons:
-· Deployment tools like ControlTier and BMC BladeLogic, and infrastructure management tools like Marionette Collective, CfEngine, and Puppet, are declarative and idempotent, ensuring that the right version of the packages is installed on all necessary boxes even if some of them are down at the time the deployment is scheduled, or if you add a new machine or VM to your environment. See Chapter 11, "Managing Infrastructure and Environments," for more on these tools.
-· You can use the same set of tools for both managing application deployment and managing your infrastructure. Since it's the same people--the operations team--that are responsible for both of these things, and the two go hand-in-hand, it makes sense to use a single tool for both purposes.
+ï¿½ Deployment tools like ControlTier and BMC BladeLogic, and infrastructure management tools like Marionette Collective, CfEngine, and Puppet, are declarative and idempotent, ensuring that the right version of the packages is installed on all necessary boxes even if some of them are down at the time the deployment is scheduled, or if you add a new machine or VM to your environment. See Chapter 11, "Managing Infrastructure and Environments," for more on these tools.
+ï¿½ You can use the same set of tools for both managing application deployment and managing your infrastructure. Since it's the same people--the operations team--that are responsible for both of these things, and the two go hand-in-hand, it makes sense to use a single tool for both purposes.
 If this option is not possible, continuous integration servers that have an agent model (that is to say, almost all of them) make it very easy to go with the second option. This approach has several benefits:
-· You have to do less work: Just write the scripts as if they were being executed locally, check them into version control, and have your CI server run them on the specified remote machines.
-· The CI server provides all the infrastructure for managing jobs, such as rerunning them in the event of a failure, showing console output, and providing a dashboard where you can see the status of your deployments and which versions of your application are currently deployed to each of your environments.
+ï¿½ You have to do less work: Just write the scripts as if they were being executed locally, check them into version control, and have your CI server run them on the specified remote machines.
+ï¿½ The CI server provides all the infrastructure for managing jobs, such as rerunning them in the event of a failure, showing console output, and providing a dashboard where you can see the status of your deployments and which versions of your application are currently deployed to each of your environments.
 
 162
 
 Chapter 6 Build and Deployment Scripting
 
-· Depending on your security requirements, it may make sense to have the CI agents on your boxes call into the CI server to get everything they need, without allowing scripts to access testing and production envionments remotely.
+ï¿½ Depending on your security requirements, it may make sense to have the CI agents on your boxes call into the CI server to get everything they need, without allowing scripts to access testing and production envionments remotely.
 Finally, if there is some reason you can't use any of the tools described above, you can script your own deployments. If your remote machines are UNIX, you can use plain old Scp or Rsync to copy over binaries and data, and Ssh to execute the relevant commands to perform deployments. If you're using Windows, there are options for you too: PsExec and PowerShell. There are also higher-level tools such as Fabric, Func, and Capistrano that take care of the nuts and bolts for you, making scripting your own depoyments pretty straightforward.
 However, neither using your CI system nor scripting your own deployments will deal with error conditions, such as partially completed deployments, or with the case where a new node is added to the grid and needs to be provisioned and deployed to. For this reason, using a proper deployment tool is preferable.
 The tools available in this field are continuously evolving. There are examples of using some of these tools, and updates on newer tools as they come out, at this book's website [dzMeNE].
@@ -2726,10 +2732,10 @@ Figure 6.3 Deployment testing layers
 test
 
 The infrastructure smoke tests that you write will be unique for any given system. But the intention of the tests is consistent: to prove that the environment's configuration matches our expectations. There is more on infrastructure monitoring in the "Monitoring Infrastructure and Applications" section on page 317. To give you a sense of what we have in mind, here are some examples of tests that we found useful in the past:
-· Confirm that we can retrieve a record from our database.
-· Confirm that we can contact the website.
-· Assert that our message broker has the correct set of messages registered in it.
-· Send several "pings" through our firewall to prove that it allows our traffic and provides a round-robin load distribution between our servers.
+ï¿½ Confirm that we can retrieve a record from our database.
+ï¿½ Confirm that we can contact the website.
+ï¿½ Assert that our message broker has the correct set of messages registered in it.
+ï¿½ Send several "pings" through our firewall to prove that it allows our traffic and provides a round-robin load distribution between our servers.
 
 164
 
@@ -2808,7 +2814,7 @@ It is the vital first step. Using a commit stage ensures that your project will 
 The commit stage is also the point at which you should begin the construction of your deployment pipeline.
 We have already briefly described the commit stage in earlier chapters, "Continuous Integration" and "Anatomy of the Deployment Pipeline." In this chapter, we expand upon that material by describing in more detail how to create an effective commit stage and efficient commit tests. This will primarily be of interest to developers, who are the main consumers of feedback from the commit stage. The commit stage is shown in Figure 7.1.
 To refresh your memory, the commit stage works as follows. Somebody checks a change into mainline (trunk) in version control. Your continuous integration server detects the change, checks out the source code, and performs a series of tasks, including
-· Compiling (if necessary) and running the commit tests against the integrated source code
+ï¿½ Compiling (if necessary) and running the commit tests against the integrated source code
 169
 
 170
@@ -2823,9 +2829,9 @@ reports binaries metadata
 Artifact repository
 
 Figure 7.1 The commit stage
-· Creating binaries that can be deployed into any environment (this will include compiling and assembling if you're using a compiled language)
-· Performing any analysis necessary to check the health of the codebase
-· Creating any other artifacts (such as database migrations or test data) that will be used later in the deployment pipeline
+ï¿½ Creating binaries that can be deployed into any environment (this will include compiling and assembling if you're using a compiled language)
+ï¿½ Performing any analysis necessary to check the health of the codebase
+ï¿½ Creating any other artifacts (such as database migrations or test data) that will be used later in the deployment pipeline
 These tasks are orchestrated by build scripts that are run by your continuous integration server. You can read more about build scripting in Chapter 6, "Build and Deployment Scripting." The binaries (if the stage succeeds) and reports are then stored into your central artifact repository for use by your delivery team and by later stages in the pipeline.
 For developers, the commit stage is the most important feedback cycle in the development process. It provides rapid feedback on the most common errors that they, as developers, introduce to the system. The result of the commit stage represents a significant event in the life of every release candidate. Success at this stage is the only way to enter the deployment pipeline and thus initiate the software delivery process.
 Commit Stage Principles and Practices
@@ -2891,9 +2897,9 @@ The Results of the Commit Stage
 commit stage are precisely the same ones that will be reused throughout the pipeline, and potentially released to users.
 The Artifact Repository
 The outputs of the commit stage, your reports and binaries, need to be stored somewhere for reuse in the later stages of your pipeline, and for your team to be able to get hold of them. The obvious place might appear to be your version control system. There are several reasons why this is not the right thing to do, apart from the incidental facts that in this way you're likely to work through disk space fast, and that some version control systems won't support such behavior.
-· The artifact repository is an unusual kind of version control system, in that it only needs to keep some versions. Once a release candidate has failed some stage in the deployment pipeline, we are no longer interested in it. So we can, if we wish, purge the binaries and reports from the artifact repository.
-· It is essential to be able to trace back from your released software to the revisions in version control that were used to create it. In order to do this, an instance of a pipeline should be correlated with the revisions in your version control system that triggered it. Checking anything into source control as part of your pipeline makes this process significantly more complex by introducing further revisions associated with your pipeline.
-· One of the acceptance criteria for a good configuration management strategy is that the binary creation process should be repeatable. That is, if I delete the binaries and then rerun the commit stage from the same revision that originally triggered it, I should get exactly the same binaries again. Binaries are second-class citizens in the world of configuration management, although it is worth keeping hashes of your binaries in permanent storage to verify that you can re-create exactly the same thing and to audit back from production to the commit stage.
+ï¿½ The artifact repository is an unusual kind of version control system, in that it only needs to keep some versions. Once a release candidate has failed some stage in the deployment pipeline, we are no longer interested in it. So we can, if we wish, purge the binaries and reports from the artifact repository.
+ï¿½ It is essential to be able to trace back from your released software to the revisions in version control that were used to create it. In order to do this, an instance of a pipeline should be correlated with the revisions in your version control system that triggered it. Checking anything into source control as part of your pipeline makes this process significantly more complex by introducing further revisions associated with your pipeline.
+ï¿½ One of the acceptance criteria for a good configuration management strategy is that the binary creation process should be repeatable. That is, if I delete the binaries and then rerun the commit stage from the same revision that originally triggered it, I should get exactly the same binaries again. Binaries are second-class citizens in the world of configuration management, although it is worth keeping hashes of your binaries in permanent storage to verify that you can re-create exactly the same thing and to audit back from production to the commit stage.
 Most modern continuous integration servers provide an artifact repository, including settings which allow unwanted artifacts to be purged after some length of time. They generally provide a mechanism to specify declaratively which artifacts you want to store in the repository following any jobs that they run, and provide a web interface to allow your team to access the reports and binaries. Alternatively, you could use a dedicated artifact repository like Nexus, or some other Maven-style repository manager, to handle binaries (these are not generally suitable for storing reports). Repository managers make it much easier to access binaries from development machines without having to integrate with your CI server.
 
 176
@@ -3271,10 +3277,10 @@ And the order for 4 of bond at 10 dollars each is successful # features/step_def
 Then I have 10 dollars left in my account # features/step_definitions/placing_an_order_steps.rb:33
 1 scenario (1 passed) 7 steps (7 passed) 0m0.016s
 This approach to creating executable specifications is the essence of behavior-driven design. To recap, this is the process:
-· Discuss acceptance criteria for your story with your customer.
-· Write them down in the executable format described above.
-· Write an implementation for the test which uses only the domain language, accessing the application driver layer.
-· Create an application driver layer which talks to the system under test.
+ï¿½ Discuss acceptance criteria for your story with your customer.
+ï¿½ Write them down in the executable format described above.
+ï¿½ Write an implementation for the test which uses only the domain language, accessing the application driver layer.
+ï¿½ Create an application driver layer which talks to the system under test.
 Using this approach represents a significant advance over the traditional method of keeping acceptance criteria in Word documents or tracking tools and using record-and-playback to create acceptance tests. The executable specifications form the system of record for tests--they really are executable specifications. There is no more need for testers and analysts to write Word documents that are thrown
 
 198
@@ -3307,23 +3313,23 @@ One key characteristic of these tests is the use of aliases to represent key val
 This has two benefits. First, it makes acceptance tests completely independent of each other. Thus you can easily run acceptance tests in parallel without worrying that they will step on each other's data. Second, it allows you to create test data with a few simple high-level commands, freeing you from the need to maintain complex seed data for collections of tests.
 In the style of DSL shown above, each operation (placeOrder, confirmOrderSuccess, and so on) is defined with multiple string parameters. Some parameters are required, but most are optional with simple defaults. For example, the login operation allows us to specify, in addition to the alias for a user, a specific password and a product code. If our test doesn't care about these details, the DSL will supply defaults that work.
 To give you an indication of the level of defaulting going on here, the full set of parameters for our createUser instruction are:
-· name (required)
-· password (defaults to password)
+ï¿½ name (required)
+ï¿½ password (defaults to password)
 
 200
 
 Chapter 8 Automated Acceptance Testing
 
-· productType (defaults to DEMO)
-· balance (defaults to 15000.00)
-· currency (defaults to USD)
-· fxRate (defaults to 1)
-· firstName (defaults to Firstname)
-· lastName (defaults to Surname)
-· emailAddress (defaults to test@somemail.com)
-· homeTelephone (defaults to 02012345678)
-· securityQuestion1 (defaults to Favourite Colour?)
-· securityAnswer1 (defaults to Blue)
+ï¿½ productType (defaults to DEMO)
+ï¿½ balance (defaults to 15000.00)
+ï¿½ currency (defaults to USD)
+ï¿½ fxRate (defaults to 1)
+ï¿½ firstName (defaults to Firstname)
+ï¿½ lastName (defaults to Surname)
+ï¿½ emailAddress (defaults to test@somemail.com)
+ï¿½ homeTelephone (defaults to 02012345678)
+ï¿½ securityQuestion1 (defaults to Favourite Colour?)
+ï¿½ securityAnswer1 (defaults to Blue)
 One of the consequences of a well-designed application driver layer is improved test reliability. The system this example is taken from is in reality highly asynchronous, meaning that our tests often have to wait for results before progressing to the next step. This can lead to intermittent or fragile tests that are sensitive to slight changes in the timing of things. Because of the high degree of reuse that is implicit in the use of a DSL, complex interactions and operations can be written once and used in many tests. If intermittent problems appear when the tests are run as part of your acceptance test suite, they will be fixed in a single place, that ensuring future tests that reuse these features will be equally reliable.
 We start the construction of an application driver layer very simply--by establishing a few cases and building some simple tests. From then on, the team works on requirements and adds to the layer whenever they find that it is lacking some feature a particular test requires. Over a relatively short time, the application driver layer, along with the DSL represented by its API, tends to become quite extensive.
 How to Express Your Acceptance Criteria
@@ -3689,12 +3695,12 @@ testing encourages within a development team is a powerful ingredient of success
 Adopting the discipline to reject any release candidate that is unable to pass the acceptance test gate is another practice that in our opinion represents a significant step forward in the quality of the output of a delivery team.
 Our experience of the software industry is that manual testing is the norm and often represents the only form of testing adopted by a team. We have found that manual testing is both prohibitively expensive and rarely good enough on its own to ensure a high-quality result. Manual testing, of course, has its place: exploratory testing, usability testing, user acceptance testing, showcasing. But human beings are simply not equipped to work effectively at the mundane, repetitive but complex tasks that manual regression testing requires of them--at least without feeling miserable. Poor-quality software is the inevitable outcome of such a poor-quality process.
 In recent years, an increased focus on unit testing has helped raise the game for some teams. This is a significant step beyond reliance on only manual testing, but in our experience it can still result in code that doesn't do what the users wanted it to do. Unit testing is not business-focused. We believe that the adoption of tests driven by acceptance criteria represents a further step forward, by
-· Increasing confidence that the software is fit for purpose
-· Providing protection against large-scale changes to the system
-· Significantly improving quality through comprehensive automated regression testing
-· Providing fast and reliable feedback whenever a defect occurs so that it can be fixed immediately
-· Freeing up testers to devise testing strategies, develop executable specifications, and perform exploratory and usability testing
-· Reducing cycle time and enabling continuous deployment
+ï¿½ Increasing confidence that the software is fit for purpose
+ï¿½ Providing protection against large-scale changes to the system
+ï¿½ Significantly improving quality through comprehensive automated regression testing
+ï¿½ Providing fast and reliable feedback whenever a defect occurs so that it can be fixed immediately
+ï¿½ Freeing up testers to devise testing strategies, develop executable specifications, and perform exploratory and usability testing
+ï¿½ Reducing cycle time and enabling continuous deployment
 
 This page intentionally left blank
 
@@ -3785,10 +3791,10 @@ says, "The blocked threads antipattern is the proximate cause of most failures .
 
 Measuring Capacity
 Measuring capacity involves investigating a broad spectrum of characteristics of an application. Here are some types of measurements that can be performed:
-· Scalability testing. How do the response time of an individual request and the number of possible simultaneous users change as we add more servers, services, or threads?
-· Longevity testing. This involves running the system for a long time to see if the performance changes over a protracted period of operation. This type of testing can catch memory leaks or stability problems.
-· Throughput testing. How many transactions, or messages, or page hits per second can the system handle?
-· Load testing. What happens to capacity when the load on the application increases to production-like proportions and beyond? This is perhaps the most common class of capacity testing.
+ï¿½ Scalability testing. How do the response time of an individual request and the number of possible simultaneous users change as we add more servers, services, or threads?
+ï¿½ Longevity testing. This involves running the system for a long time to see if the performance changes over a protracted period of operation. This type of testing can catch memory leaks or stability problems.
+ï¿½ Throughput testing. How many transactions, or messages, or page hits per second can the system handle?
+ï¿½ Load testing. What happens to capacity when the load on the application increases to production-like proportions and beyond? This is perhaps the most common class of capacity testing.
 All of these represent interesting and valid measurements of the behavior of the system, but can require different approaches. The first two types of testing are fundamentally different from the other two in that they imply relative measurements: How does the performance profile of the system change as we change attributes of the system? The second group, though, are only useful as absolute measures.
 In our view, an important aspect of capacity testing is the ability to simulate realistic use scenarios for a given application. The alternative to this approach is to benchmark specific technical interactions in the system: "How many transactions per second can the database store?", "How many messages per second
 
@@ -3891,12 +3897,12 @@ Automating Capacity Testing
 On projects in the past, we have mistakenly treated capacity testing as a wholly separate exercise: a phase of the delivery process in its own right. This approach was a reaction to the cost of developing and running those tests. Ignoring costs for a moment, when capacity is a specific issue for a project, it is as important to know that you have introduced a change affecting the system's capacity as it is to know that you have introduced a functional problem. You need to know about a reduction in capacity as soon as possible after the corresponding change was introduced, so you can fix it quickly and efficiently. This argues for adding capacity testing as a stage to the deployment pipeline.
 If we're adding capacity testing to the pipeline, an automated capacity test suite should be created and run against every change to the system that passes the commit stage and (optionally) the acceptance test stage. This can be difficult because, even more than other types of acceptance tests, capacity tests may be fragile, complex things, easily broken with minor changes to the software--not with the useful breaks indicative of a capacity problem, but those resulting from a change in the interface that the capacity tests interact with.
 Capacity tests should
-· Test specific real-world scenarios, so we don't miss important bugs in real-world use through overly abstract testing
-· Have a predefined threshold for success, so we can tell that they have passed
-· Be of short duration, so that capacity testing can take place in a reasonable length of time
-· Be robust in the face of change, to avoid constant rework to keep up with changes to the application
-· Be composable into larger-scale complex scenarios, so that we can simulate real-world patterns of use
-· Be repeatable, capable of running sequentially and in parallel, so that we can both build suites of tests to apply load and run longevity tests
+ï¿½ Test specific real-world scenarios, so we don't miss important bugs in real-world use through overly abstract testing
+ï¿½ Have a predefined threshold for success, so we can tell that they have passed
+ï¿½ Be of short duration, so that capacity testing can take place in a reasonable length of time
+ï¿½ Be robust in the face of change, to avoid constant rework to keep up with changes to the application
+ï¿½ Be composable into larger-scale complex scenarios, so that we can simulate real-world patterns of use
+ï¿½ Be repeatable, capable of running sequentially and in parallel, so that we can both build suites of tests to apply load and run longevity tests
 Achieving all of these goals in a manner that does not cripple development progress with over-engineered testing is not easy. A good strategy is to take some existing acceptance tests and adapt them to become capacity tests. If your acceptance tests are effective, they will represent realistic scenarios of interaction with your system, and will be robust in the face of change in the application. The properties that they lack are: the ability to scale up so you can apply serious load to the application, and a specification of a measure of success.
 In most other respects, the advice that we have given in previous chapters about writing and managing effective acceptance tests means that they will, to a
 
@@ -4073,15 +4079,15 @@ As ever, our goal with any testing is to fail as quickly as possible after a cha
 If you are lucky enough to be able to prove that your application meets its performance goals within a few seconds, add your capacity tests to the commit testing stage so you can get immediate feedback on any problems. However, in this case beware of any technology that relies on runtime optimizing compilers. The runtime optimizations in .NET and Java take many iterations to stabilize, and sensible results can only be gathered after several minutes of "warm-up."
 A similar strategy can be useful for protecting known performance hot spots from getting worse over time as the code develops. When such a hot spot is identified, create a "guard test" that runs very quickly as part of you commit test cycle. Such tests act as a kind of performance smoke test--they aren't going to tell you that your application meets all of its performance criteria, but they may highlight trends in the wrong direction and let you tackle them before they become a problem. However, watch out that you don't introduce untrustworthy tests that fail intermittently with this strategy.
 Most capacity tests, though, aren't candidates for the commit stage of your deployment pipeline. They usually take too long and require too many resources to run. Adding capacity tests to the acceptance stage is feasible if the capacity tests remain fairly simple and don't take too long to run. On the whole, though, we don't recommend adding capacity tests to the acceptance test stage of your deployment pipeline. There are several reasons:
-· To be really effective, capacity tests need to be run in their own special environment. Trying to figure out why the latest release candidate failed its capacity requirements so badly can be quite costly if the real reason was that some other automated tests were running simultaneously on the same environment. Some CI systems allow you to specify target environments for tests. You can use this feature to partition capacity tests and run them in parallel with acceptance tests.
-· Some types of capacity test can take a very long time to run, resulting in an untenable delay before getting an acceptance test result.
+ï¿½ To be really effective, capacity tests need to be run in their own special environment. Trying to figure out why the latest release candidate failed its capacity requirements so badly can be quite costly if the real reason was that some other automated tests were running simultaneously on the same environment. Some CI systems allow you to specify target environments for tests. You can use this feature to partition capacity tests and run them in parallel with acceptance tests.
+ï¿½ Some types of capacity test can take a very long time to run, resulting in an untenable delay before getting an acceptance test result.
 
 246
 
 Chapter 9 Testing Nonfunctional Requirements
 
-· Many activities downstream from acceptance testing can be done in parallel with capacity testing, such as demonstrating the latest working software, manual testing, integration testing, and so forth. Gating these on a successful capacity test run is unnecessary and, for many projects, inefficient.
-· For some projects, it does not make sense to run capacity tests as frequently as acceptance tests.
+ï¿½ Many activities downstream from acceptance testing can be done in parallel with capacity testing, such as demonstrating the latest working software, manual testing, integration testing, and so forth. Gating these on a successful capacity test run is unnecessary and, for many projects, inefficient.
+ï¿½ For some projects, it does not make sense to run capacity tests as frequently as acceptance tests.
 In general, apart from the performance smoke tests we have described, we prefer to add automated capacity testing as a wholly separate stage in our deployment pipeline.
 How this capacity stage of the pipeline is treated differs somewhat from project to project. For some projects, it makes sense to treat it in a way similar to the acceptance test stage--as a fully automated deployment gate. That is, unless the tests in the capacity test stage all pass, you can't deploy the application without a manual override. This is most appropriate for high-performance or large-scale applications that are simply not fit for purpose if they do not meet a well-understood threshold of capacity. This is the most rigorous model for capacity testing that, on the face of it, seems optimal to most projects. However, this is not always the case.
 If there are real issues of throughput or latency, or information that is only relevant or accurate for specific windows of time, automated tests can act very effectively as executable specifications that can assert that the requirement is met.
@@ -4108,21 +4114,21 @@ Additional Benefits of a Capacity Test System
 The capacity test system is usually the closest analog to your expected production system. As such, it is a very valuable resource. Further, if you follow our advice and design your capacity tests as a series of composable, scenario-based tests, what you really have is a sophisticated simulation of your production system.
 This is an invaluable resource for a whole variety of reasons. We have discussed already why scenario-based capacity testing is of importance, but given the much more common approach of benchmarking specific, technically focused interactions, it is worth reiterating. Scenario-based testing provides a simulation of real interactions with the system. By organizing collections of these scenarios into complex composites, you can effectively carry out experiments with as much diagnostic instrumentation as you wish in a production-like system.
 We have used this facility to help us perform a wide variety of activities:
-· Reproducing complex production defects
-· Detecting and debugging memory leaks
-· Longevity testing
-· Evaluating the impact of garbage collection
-· Tuning garbage collection
-· Tuning application configuration parameters
-· Tuning third-party application configuration, such as operating system, application server, and database configuration
-· Simulating pathological, worst-day scenarios
-· Evaluating different solutions to complex problems
-· Simulating integration failures
-· Measuring the scalability of the application over a series of runs with different hardware configurations
-· Load-testing communications with external systems, even though our capacity tests were originally intended to run against stubbed interfaces
-· Rehearsing rollback from complex deployments.
-· Selectively failing parts or the application to evaluate graceful degradation of service
-· Performing real-world capacity benchmarks in temporarily available production hardware so that we could calculate more accurate scaling factors for a longer-term, lower-specification capacity test environment
+ï¿½ Reproducing complex production defects
+ï¿½ Detecting and debugging memory leaks
+ï¿½ Longevity testing
+ï¿½ Evaluating the impact of garbage collection
+ï¿½ Tuning garbage collection
+ï¿½ Tuning application configuration parameters
+ï¿½ Tuning third-party application configuration, such as operating system, application server, and database configuration
+ï¿½ Simulating pathological, worst-day scenarios
+ï¿½ Evaluating different solutions to complex problems
+ï¿½ Simulating integration failures
+ï¿½ Measuring the scalability of the application over a series of runs with different hardware configurations
+ï¿½ Load-testing communications with external systems, even though our capacity tests were originally intended to run against stubbed interfaces
+ï¿½ Rehearsing rollback from complex deployments.
+ï¿½ Selectively failing parts or the application to evaluate graceful degradation of service
+ï¿½ Performing real-world capacity benchmarks in temporarily available production hardware so that we could calculate more accurate scaling factors for a longer-term, lower-specification capacity test environment
 
 248
 
@@ -4153,62 +4159,62 @@ principles will apply to user-installed software. In particular, we discuss rele
 Creating a Release Strategy
 The most important part of creating a release strategy is for the application's stakeholders to meet up during the project planning process. The point of their discussions should be working out a common understanding concerning the deployment and maintenance of the application throughout its lifecycle. This shared understanding is then captured as the release strategy. This document will be updated and maintained by the stakeholders throughout the application's life.
 When creating the first version of your release strategy at the beginning of the project, you should consider including the following:
-· Parties in charge of deployments to each environment, as well as in charge of the release.
-· An asset and configuration management strategy.
-· A description of the technology used for deployment. This should be agreed upon by both the operations and development teams.
-· A plan for implementing the deployment pipeline.
-· An enumeration of the environments available for acceptance, capacity, integration, and user acceptance testing, and the process by which builds will be moved through these environments.
-· A description of the processes to be followed for deployment into testing and production environments, such as change requests to be opened and approvals that need to be granted.
-· Requirements for monitoring the application, including any APIs or services the application should use to notify the operations team of its state.
-· A discussion of the method by which the application's deploy-time and runtime configuration will be managed, and how this relates to the automated deployment process.
-· Description of the integration with any external systems. At what stage and how are they tested as part of a release? How do the operations personnel communicate with the provider in the event of a problem?
-· Details of logging so that operations personnel can determine the application's state and identify any error conditions.
-· A disaster recovery plan so that the application's state can be recovered following a disaster.
+ï¿½ Parties in charge of deployments to each environment, as well as in charge of the release.
+ï¿½ An asset and configuration management strategy.
+ï¿½ A description of the technology used for deployment. This should be agreed upon by both the operations and development teams.
+ï¿½ A plan for implementing the deployment pipeline.
+ï¿½ An enumeration of the environments available for acceptance, capacity, integration, and user acceptance testing, and the process by which builds will be moved through these environments.
+ï¿½ A description of the processes to be followed for deployment into testing and production environments, such as change requests to be opened and approvals that need to be granted.
+ï¿½ Requirements for monitoring the application, including any APIs or services the application should use to notify the operations team of its state.
+ï¿½ A discussion of the method by which the application's deploy-time and runtime configuration will be managed, and how this relates to the automated deployment process.
+ï¿½ Description of the integration with any external systems. At what stage and how are they tested as part of a release? How do the operations personnel communicate with the provider in the event of a problem?
+ï¿½ Details of logging so that operations personnel can determine the application's state and identify any error conditions.
+ï¿½ A disaster recovery plan so that the application's state can be recovered following a disaster.
 
 Creating a Release Strategy
 
 251
 
-· The service-level agreements for the software, which will determine whether the application will require techniques like failover and other high-availability strategies.
-· Production sizing and capacity planning: How much data will your live application create? How many log files or databases will you need? How much bandwidth and disk space will you need? What latency are clients expecting?
-· An archiving strategy so that production data that is no longer needed can be kept for auditing or support purposes.
-· How the initial deployment to production works.
-· How fixing defects and applying patches to the production environment will be handled.
-· How upgrades to the production environment will be handled, including data migration.
-· How application support will be managed.
+ï¿½ The service-level agreements for the software, which will determine whether the application will require techniques like failover and other high-availability strategies.
+ï¿½ Production sizing and capacity planning: How much data will your live application create? How many log files or databases will you need? How much bandwidth and disk space will you need? What latency are clients expecting?
+ï¿½ An archiving strategy so that production data that is no longer needed can be kept for auditing or support purposes.
+ï¿½ How the initial deployment to production works.
+ï¿½ How fixing defects and applying patches to the production environment will be handled.
+ï¿½ How upgrades to the production environment will be handled, including data migration.
+ï¿½ How application support will be managed.
 The act of creating a release strategy is useful: It will usually be a source of both functional and nonfunctional requirements for both software development and for the design, configuration, and commissioning of hardware environments. These requirements should be recognized as such and added to the development plan as they are discovered.
 Creating the strategy is of course just the beginning; it will be added to and changed as the project progresses.
 A vital component of the release strategy is the release plan describing how releases are performed.
 The Release Plan
 The first release is usually the one that carries the highest risk; it needs careful planning. The results of this planning may be automated scripts, documentation, or other procedures needed to reliably and repeatedly deploy the application into the production environment. In addition to the material in the release strategy, it should include
-· The steps required to deploy the application for the first time
-· How to smoke-test the application and any services it uses as part of the deployment process
-· The steps required to back out the deployment should it go wrong
-· The steps required to back up and restore the application's state
+ï¿½ The steps required to deploy the application for the first time
+ï¿½ How to smoke-test the application and any services it uses as part of the deployment process
+ï¿½ The steps required to back out the deployment should it go wrong
+ï¿½ The steps required to back up and restore the application's state
 
 252
 
 Chapter 10 Deploying and Releasing Applications
 
-· The steps required to upgrade the application without destroying the application's state
-· The steps to restart or redeploy the application should it fail
-· The location of the logs and a description of the information they contain
-· The methods of monitoring the application
-· The steps to perform any data migrations that are necessary as part of the release
-· An issue log of problems from previous deployments, and their solutions
+ï¿½ The steps required to upgrade the application without destroying the application's state
+ï¿½ The steps to restart or redeploy the application should it fail
+ï¿½ The location of the logs and a description of the information they contain
+ï¿½ The methods of monitoring the application
+ï¿½ The steps to perform any data migrations that are necessary as part of the release
+ï¿½ An issue log of problems from previous deployments, and their solutions
 There are sometimes other considerations to add. For example, if your new software is taking over from a legacy system, you should document the steps to transfer users to the new system and decommission the old system, not forgetting a rollback process if things go wrong.
 Again, this plan will need to be maintained as the project progresses and new insights are gained.
 Releasing Products
 The strategies and plans listed above are fairly generic. They are worth considering for all projects, even if, after some consideration, you decide to only use a few of the sections.
 One class of software projects where you must consider other issues is software destined to be released as a commercial product. Here's a list of additional deliverables that should be considered if the output of your project is a software product:
-· Pricing model
-· Licensing strategy
-· Copyright issues around third-party technologies used
-· Packaging
-· Marketing materials--print, web-based, podcasts, blogs, press releases, conferences, etc.
-· Product documentation
-· Installers
-· Preparing sales and support teams
+ï¿½ Pricing model
+ï¿½ Licensing strategy
+ï¿½ Copyright issues around third-party technologies used
+ï¿½ Packaging
+ï¿½ Marketing materials--print, web-based, podcasts, blogs, press releases, conferences, etc.
+ï¿½ Product documentation
+ï¿½ Installers
+ï¿½ Preparing sales and support teams
 
 Deploying and Promoting Your Application
 
@@ -4219,10 +4225,10 @@ The key to deploying any application in a reliable, consistent manner is constan
 The First Deployment
 The first deployment of any application should happen in the first iteration when you showcase your first stories or requirements to the customer. Choose one or two stories or requirements that are of high priority but very simple to deliver in your first iteration (assuming your iterations are one or two weeks and you have a small team--you should choose more if these conditions do not apply). Use this showcase as a reason to make the application deployable to a productionlike showcase environment (UAT). In our minds, one of the principal goals of the first iteration of a project is to get the early stages of our deployment pipeline running and to be able to deploy and demonstrate something, no matter how small, at the end. This is one of the very few situations where we recommend prioritizing technical value over business value. You can think of this strategy as priming the pump of your development process.
 At the end of this pump-priming iteration, you should have the following in place:
-· Your deployment pipeline's commit stage
-· A production-like environment to deploy to
-· An automated process that takes the binaries created by your commit stage and deploys them into the environment
-· A simple smoke test that verifies that the deployment worked and the application is running
+ï¿½ Your deployment pipeline's commit stage
+ï¿½ A production-like environment to deploy to
+ï¿½ An automated process that takes the binaries created by your commit stage and deploys them into the environment
+ï¿½ A simple smoke test that verifies that the deployment worked and the application is running
 This shouldn't be too much trouble for an application that has only been under active development for a few days. The tricky bit here is working out how production-like the environment should be. Your deployment target does not need to be a clone of the eventual production environment, but there are some aspects of the production environment that are more important than others.
 A good question to ask is, "How different is the production environment from my development environment?" If the production environment runs on a different operating system, you should use the same operating system that will be used in production for your UAT environment. If your production environment is a cluster, you should build a small, limited cluster for your staging environment. If your production environment is a distributed one with many different nodes,
 
@@ -4233,15 +4239,15 @@ Chapter 10 Deploying and Releasing Applications
 make sure your production-like test environment has at least one separate process to represent each class of process boundary.
 Virtualization and chicken-counting (0, 1, many) are your friends here. Virtualization makes it easy to create an environment that represents the important aspects of your production environment, while being able to run on a single physical machine. Chicken-counting means that if your production site has 250 web servers, 2 should be enough to represent the significant process boundaries. Later on, as development progresses, you can get more sophisticated.
 In general, a production-like environment has the following characteristics.
-· It should run the same operating system as the production system will.
-· It should have the same software installed as the production system will--and in particular, none of the development toolchain (such as compilers or IDEs) should be installed on it.
-· This environment should, as far as is reasonable, be managed the same way as the production environment, using the techniques described in Chapter 11, "Managing Infrastructure and Environments."
-· In the case of client-installed software, your UAT environment should be representative of your clients' hardware statistics, or at least someone else's real-world statistics.1
+ï¿½ It should run the same operating system as the production system will.
+ï¿½ It should have the same software installed as the production system will--and in particular, none of the development toolchain (such as compilers or IDEs) should be installed on it.
+ï¿½ This environment should, as far as is reasonable, be managed the same way as the production environment, using the techniques described in Chapter 11, "Managing Infrastructure and Environments."
+ï¿½ In the case of client-installed software, your UAT environment should be representative of your clients' hardware statistics, or at least someone else's real-world statistics.1
 Modeling Your Release Process and Promoting Builds
 As your application grows and becomes more complex, so will your deployment pipeline implementation. Since your deployment pipeline should model your test and release process, you need first to work out what this process is. While this is often expressed in terms of promoting builds between environments, there are more details that we care about. In particular, it is important to capture
-· What stages a build has to go through in order to be released (for example, integration testing, QA acceptance testing, user acceptance testing, staging, production)
-· What the required gates or approval are
-· For each gate, who has the authority to approve a build passing through that gate
+ï¿½ What stages a build has to go through in order to be released (for example, integration testing, QA acceptance testing, user acceptance testing, staging, production)
+ï¿½ What the required gates or approval are
+ï¿½ For each gate, who has the authority to approve a build passing through that gate
 At the end of this exercise, you might end up with a diagram similar to Figure 10.1. Of course, your process may be more or less complex than this. Creating a diagram like this is, in fact, the first step to creating a value stream
 
 1. The Unity 3D web player software publishes statistics on its site [cFI7XI].
@@ -4322,19 +4328,19 @@ Second, the applications sharing the environment may depend on each other. This 
 Deployments to Staging Environments
 Before you let your application loose on unsuspecting users, you should perform some final tests in a staging environment that is very similar to production. If you managed to get a capacity testing environment that is a close replica of production, it may sometimes make sense to skip the staging step: You can employ the capacity testing environment for both capacity testing and staging. In general, though, we would recommend against this for anything other than simple systems. If your application includes any integration with external systems, staging is the point where you get a final confirmation that all aspects of integration work between the intended production versions of each system.
 You should have started to put your staging environment together at the beginning of your project. If you have the hardware for production and it is not being used for anything else, use it as a staging environment until you perform your first release. Here are some things to plan from the beginning of the project:
-· Ensure your production, capacity testing, and staging environments are commissioned. In particular, on a green field project, have your production environment ready some time before the release, and deploy to it as part of your pipeline.
-· Have an automated process for configuring your environment, including networks, external services, and infrastructure.
+ï¿½ Ensure your production, capacity testing, and staging environments are commissioned. In particular, on a green field project, have your production environment ready some time before the release, and deploy to it as part of your pipeline.
+ï¿½ Have an automated process for configuring your environment, including networks, external services, and infrastructure.
 
 Rolling Back Deployments and Zero-Downtime Releases
 
 259
 
-· Ensure the deployment process is adequately smoke-tested.
-· Measure the warm-up period for your application. This is especially applicable if your application uses caching. Incorporate this into your deployment plan.
-· Test integration with external systems. You don't want your application's release to be the first time you run against the real external systems.
-· If possible, get your application into its production environment well before release. If "release" can be as simple as reconfiguring some router to direct traffic from a holding page to your production environment, so much the better. This technique, known as blue-green deployment, is described a little later in this chapter.
-· If possible, try rolling your system out to a small group of users before you roll it out to everybody. This technique is known as canary releasing, and is also described later in this chapter.
-· Deploy every change that passes acceptance tests to your staging environment (although not necessarily to production).
+ï¿½ Ensure the deployment process is adequately smoke-tested.
+ï¿½ Measure the warm-up period for your application. This is especially applicable if your application uses caching. Incorporate this into your deployment plan.
+ï¿½ Test integration with external systems. You don't want your application's release to be the first time you run against the real external systems.
+ï¿½ If possible, get your application into its production environment well before release. If "release" can be as simple as reconfiguring some router to direct traffic from a holding page to your production environment, so much the better. This technique, known as blue-green deployment, is described a little later in this chapter.
+ï¿½ If possible, try rolling your system out to a small group of users before you roll it out to everybody. This technique is known as canary releasing, and is also described later in this chapter.
+ï¿½ Deploy every change that passes acceptance tests to your staging environment (although not necessarily to production).
 
 Rolling Back Deployments and Zero-Downtime Releases
 It is essential to be able to roll back a deployment in case it goes wrong. Debugging problems in a running production environment is almost certain to result in late nights, mistakes with unfortunate consequences, and angry users. You need to have a way to restore service to your users when things go wrong, so you can debug the failure in the comfort of normal working hours. There are several methods of performing a rollback that we will discuss here. The more advanced techniques--blue-green deployments and canary releasing--can also be used to perform zero-downtime releases and rollbacks.
@@ -4348,12 +4354,12 @@ Chapter 10 Deploying and Releasing Applications
 Rolling Back by Redeploying the Previous Good Version
 This is often the simplest way to roll back. If you have an automated process for deploying your application, the simplest way to get back to a good state is to redeploy the previous good version from scratch. This will also include reconfiguring the environment it runs on, so it becomes configured precisely the same way that it was before. This is one of the reasons it is so important to be able to re-create environments from scratch.
 Why create the environment and do the deployment from scratch? There are a few good reasons:
-· If you do not have an automated rollback process but you do have an automated deployment process, then redeploying the last version is a fixedtime operation that poses a lower risk (because there is less to go wrong).
-· It is the same process you have tested (hopefully) hundreds of times before. Rollbacks are performed much less frequently, and therefore are more likely to contain bugs.
+ï¿½ If you do not have an automated rollback process but you do have an automated deployment process, then redeploying the last version is a fixedtime operation that poses a lower risk (because there is less to go wrong).
+ï¿½ It is the same process you have tested (hopefully) hundreds of times before. Rollbacks are performed much less frequently, and therefore are more likely to contain bugs.
 We can't think of any situations where this will not work. However, there are some disadvantages:
-· Even though the time it takes to redeploy the old version is fixed, it is nonzero. It will thus lead to a downtime.
-· It makes it harder to debug what went wrong. Redeploying the old version often overwrites the new version, thereby removing the opportunity to work out what happened. This can be mitigated if your production environment is virtual, which we describe later on. With relatively simple applications, it's often easy to keep the old version around by deploying each version to a new directory and using symbolic links to point to the current version.
-· If you restore from the database backup you took before deploying the latest version, you will lose any data created following the deployment. This may not be a big deal if you roll back reasonably quickly, but in some situations this is not acceptable.
+ï¿½ Even though the time it takes to redeploy the old version is fixed, it is nonzero. It will thus lead to a downtime.
+ï¿½ It makes it harder to debug what went wrong. Redeploying the old version often overwrites the new version, thereby removing the opportunity to work out what happened. This can be mitigated if your production environment is virtual, which we describe later on. With relatively simple applications, it's often easy to keep the old version around by deploying each version to a new directory and using symbolic links to point to the current version.
+ï¿½ If you restore from the database backup you took before deploying the latest version, you will lose any data created following the deployment. This may not be a big deal if you roll back reasonably quickly, but in some situations this is not acceptable.
 Zero-Downtime Releases
 A zero-downtime release, also known as hot deployment, is one in which the actual process of switching users from one release to another happens nearly instantaneously. Crucially, it must also be possible to back users out to the previous version nearly instantaneously too, if something goes wrong.
 
@@ -4457,11 +4463,11 @@ The moral of the story is: Run every emergency fix through your standard deploym
 Sometimes it is not actually worth fixing a defect through an emergency fix. You should always consider how many people the defect affects, how often it occurs, and how severe the defect is in terms of its impact on users. If the defect affects few people, occurs infrequently, and has a low impact, it may not make sense to fix it immediately if the risks associated with deploying a new version are relatively high. Of course this is a great argument for reducing the risks associated with deployment through effective configuration management and an automated deployment process.
 One alternative to making an emergency fix is to roll back to the previous known good version, as described earlier.
 Here are some considerations to take into account when dealing with a defect in production:
-· Never do them late at night, and always pair with somebody else.
-· Make sure you have tested your emergency fix process.
-· Only under extreme circumstances circumvent the usual process for making changes to your application.
-· Make sure you have tested making an emergency fix using your staging environment.
-· Sometimes it's better to roll back to the previous version than to deploy a fix. Do some analysis to work out what the best solution is. Consider what happens if you lose data or face integration or orchestration problems.
+ï¿½ Never do them late at night, and always pair with somebody else.
+ï¿½ Make sure you have tested your emergency fix process.
+ï¿½ Only under extreme circumstances circumvent the usual process for making changes to your application.
+ï¿½ Make sure you have tested making an emergency fix using your staging environment.
+ï¿½ Sometimes it's better to roll back to the previous version than to deploy a fix. Do some analysis to work out what the best solution is. Consider what happens if you lose data or face integration or orchestration problems.
 
 Continuous Deployment
 Following the motto of Extreme Programming--if it hurts, do it more often--the logical extreme is to deploy every change that passes your automated tests to production. This technique is known as continuous deployment, a term popularized by Timothy Fitz [aJA8lN]. Of course it's not just continuous deployment (I can continuously deploy to UAT all I like: no big deal). The crucial point is that it is continuous deployment to production.
@@ -4483,10 +4489,10 @@ Releasing a new version of your application to a production environment you cont
 
 Chapter 10 Deploying and Releasing Applications
 
-· Managing the upgrade experience
-· Migrating binaries, data, and configuration
-· Testing the upgrade process
-· Getting crash reports from users
+ï¿½ Managing the upgrade experience
+ï¿½ Migrating binaries, data, and configuration
+ï¿½ Testing the upgrade process
+ï¿½ Getting crash reports from users
 A serious issue with client-installed software is managing the large number of versions of your software that, over time, end up in the wild. This can cause a support nightmare: In order to debug any problems, you have to revert your source to the correct version and cast your mind back to the peculiarities of the application at that point in time, along with any known issues. Ideally, you want everyone to use the same version of your software: the latest stable version. In order to achieve this, it is essential to make the upgrade experience as painless as possible.
 There are several ways in which clients can handle the upgrade process:
 1. Have your software check for new versions and prompt the user to download and upgrade to the latest version. This is the easiest to implement, but the most painful to use. Nobody wants to watch a download progress bar.
@@ -4586,12 +4592,12 @@ Chapter 11
 Managing Infrastructure and Environments
 Introduction
 As we describe in Chapter 1, there are three steps to deploying software:
-· Creating and managing the infrastructure in which your application will run (hardware, networking, middleware, and external services)
-· Installing the correct version of your application into it · Configuring the application, including any data or state that it requires
+ï¿½ Creating and managing the infrastructure in which your application will run (hardware, networking, middleware, and external services)
+ï¿½ Installing the correct version of your application into it ï¿½ Configuring the application, including any data or state that it requires
 This chapter deals with the first of these steps. Since our goal is that all testing environments (including continuous integration environments) should be production-like, particularly in the way they are managed, this chapter will also, by extension, cover the management of testing environments.
 Let's start by defining what we mean by environment in this context. An environment is all of the resources that your application needs to work and their configuration. The following attributes describe the environment:
-· The hardware configuration of the servers that form the environment (such as the number and type of CPUs, amount of memory, spindles, NICs, and so on) and the networking infrastructure that connects them
-· The configuration of the operating system and middleware (such as messaging systems, application and web servers, database servers) required to support the applications that will run within it
+ï¿½ The hardware configuration of the servers that form the environment (such as the number and type of CPUs, amount of memory, spindles, NICs, and so on) and the networking infrastructure that connects them
+ï¿½ The configuration of the operating system and middleware (such as messaging systems, application and web servers, database servers) required to support the applications that will run within it
 The general term infrastructure represents all environments in your organization, along with the services that support them, such as DNS servers, firewalls, routers, version control repositories, storage, monitoring applications, mail servers, and so on. Indeed, the boundary between an application's environment and the rest of your organization's infrastructure can vary from very clearly defined (in the case of embedded software, for example) to extremely fuzzy (in
 277
 
@@ -4601,17 +4607,17 @@ Chapter 11 Managing Infrastructure and Environments
 
 the case of service-oriented architectures, in which much infrastructure is shared and relied upon by applications).
 The process of preparing environments for deployment and managing them after deployment is the main focus of this chapter. However what enables this is a holistic approach to managing all infrastructure, based upon the following principles.1
-· The desired state of your infrastructure should be specified through version-controlled configuration.
-· Infrastructure should be autonomic--that is, it should correct itself to the desired state automatically.
-· You should always know the actual state of your infrastructure through instrumentation and monitoring.
+ï¿½ The desired state of your infrastructure should be specified through version-controlled configuration.
+ï¿½ Infrastructure should be autonomic--that is, it should correct itself to the desired state automatically.
+ï¿½ You should always know the actual state of your infrastructure through instrumentation and monitoring.
 While infrastructure should be autonomic, it is also essential that it should be simple to re-create, so that, in the case of a hardware failure for example, you can quickly reestablish a new known-good configuration. This means that infrastructure provisioning should also be an automated process. This combination of automated provisioning and autonomic maintenance ensures that infrastructure can be rebuilt in a predictable amount of time in the event of failure.
 There are several things that need to be managed carefully to reduce the risk of deployment to any production-like environment:
-· The operating system and its configuration, for both testing and production environments
-· The middleware software stack and its configuration, including application servers, messaging systems, and databases
-· Infrastructural software, such as version control repositories, directory services, and monitoring systems
-· External integration points, such as external systems and services
-· Network infrastructure, including routers, firewalls, switches, DNS, DHCP, and so on
-· The relationship between the application development team and the infrastructure management team
+ï¿½ The operating system and its configuration, for both testing and production environments
+ï¿½ The middleware software stack and its configuration, including application servers, messaging systems, and databases
+ï¿½ Infrastructural software, such as version control repositories, directory services, and monitoring systems
+ï¿½ External integration points, such as external systems and services
+ï¿½ Network infrastructure, including routers, firewalls, switches, DNS, DHCP, and so on
+ï¿½ The relationship between the application development team and the infrastructure management team
 We shall start with the last item in the list. It may seem out of context in this otherwise technical enumeration. However, everything else becomes a great deal easier if these two teams work closely together to solve problems. They should
 
 1. Some of these are inspired by James White [9QRI77].
@@ -4732,38 +4738,38 @@ Hardware
 
 Figure 11.1 Types of servers and their configuration
 
-· How will we provision our infrastructure?
-· How will we deploy and configure the various bits of software that form part of our infrastructure?
-· How do we manage our infrastructure once it is provisioned and configured?
+ï¿½ How will we provision our infrastructure?
+ï¿½ How will we deploy and configure the various bits of software that form part of our infrastructure?
+ï¿½ How do we manage our infrastructure once it is provisioned and configured?
 A modern operating system has thousands of ways in which one installation may differ from another: different device drivers, different system configuration settings, and a vast array of parameters that will influence the way in which your software will run. Some software systems are much more tolerant than others to differences at this level. Most commercial off-the-shelf software (COTS) is expected to run in a wide variety of software and hardware configurations, and so should not care too much about differences at this level--although you should always check the system requirements of your COTS as part of the procurement or upgrade process. However, a very high-performance web application may be sensitive to even tiny changes, such as variations in packet sizes or filesystem configuration.
 For most multiuser applications that run on servers, it is not appropriate to simply accept the default settings of operating systems and middleware. Operating systems will need to have access control, firewalls, and other hardening measures (such as disabling nonessential services) configured. Databases will need to be configured and have users set up with the correct permissions, application servers will need to have components deployed, message brokers will need to have messages defined and subscriptions registered, and so on.
 As with every other aspect of your delivery process, you should keep everything you need to create and maintain your infrastructure under version control. At the least, that means
-· Operating system install definitions (such as those used by Debian Preseed, RedHat Kickstart, and Solaris Jumpstart)
-· Configuration for data center automation tools like Puppet or CfEngine
+ï¿½ Operating system install definitions (such as those used by Debian Preseed, RedHat Kickstart, and Solaris Jumpstart)
+ï¿½ Configuration for data center automation tools like Puppet or CfEngine
 
 Modeling and Managing Infrastructure
 
 285
 
-· General infrastructure configuration, such as DNS zone files, DHCP and SMTP server configuration files, firewall configuration files, and so forth
-· Any scripts you use for managing your infrastructure
+ï¿½ General infrastructure configuration, such as DNS zone files, DHCP and SMTP server configuration files, firewall configuration files, and so forth
+ï¿½ Any scripts you use for managing your infrastructure
 These files in version control form inputs to the deployment pipeline the same way the source code does. The job of the deployment pipeline in the case of infrastructural changes is threefold. First, it should verify that all applications will work with any infrastructural changes before they get pushed out to production environments, ensuring that every affected application's functional and nonfunctional tests pass against the new version of the infrastructure. Second, it should be used to push changes out to operations-managed testing and production environments. Finally, the pipeline should perform deployment tests to ensure that the new infrastructure configuration has been deployed successfully.
 Referring back to Figure 11.1, it is worth observing that the scripts and tools used to deploy and configure applications, services, and components are often distinct from those used to provision and manage the rest of the infrastructure. Sometimes, the process created for deploying applications also performs the task of deploying and configuring middleware as well. These deployment processes are generally created by the development teams responsible for the application in question, but they of course have an implicit dependency on the rest of the infrastructure being in place and in the correct state.
 An important consideration when dealing with infrastructure is the extent to which it is shared. If a particular piece of infrastructural configuration is relevant only to a particular application, then it should be part of the deployment pipeline of the application and have no separate lifecycle of its own. However, if some infrastructure is shared between applications, then you are faced with a problem of managing dependencies between applications and the versions of infrastructure they depend on. That means recording which version of the infrastructure each version of the application requires in order to work. You then need to set up a separate pipeline to push out infrastructural changes, ensuring that changes affecting multiple applications move through the delivery process in a way that obeys the dependency rules.
 Controlling Access to Your Infrastructure
 If your organization is small or new, you have the luxury of devising a strategy for the configuration management of all of your infrastructure. If you have an existing system that is not under good control, you'll need to work out how to get it under control. There are three parts to this:
-· Controlling access to prevent anyone from making a change without approval
+ï¿½ Controlling access to prevent anyone from making a change without approval
 
 286
 
 Chapter 11 Managing Infrastructure and Environments
 
-· Defining an automated process for making changes to your infrastructure
-· Monitoring your infrastructure to detect any issues as soon as they occur
+ï¿½ Defining an automated process for making changes to your infrastructure
+ï¿½ Monitoring your infrastructure to detect any issues as soon as they occur
 While in general we are not fans of locking things down and establishing approval processes, when it comes to your production infrastructure it is essential. As a corollary of that, since we believe that you should treat your testing environments the same way you treat your production environments, the same process should apply to both.
 It is essential to lock down the production environments to prevent unauthorized access not only from people outside your organization, but also from people within it--even operations staff. Otherwise it is just too tempting, when something goes wrong, to log into the environment in question and poke around to resolve problems (a process sometimes politely called a problem-solving heuristic). This is almost always a terrible idea for two reasons. First, it usually leads to service disruptions (people tend to try rebooting or applying service packs at random). Second, if something goes wrong later, there is no record of who did what when, which means it's impossible to work out the cause of whatever problem you're facing. In this situation, you may as well re-create the environment from scratch so it is in a known state.
 If your infrastructure is not capable of being re-created from scratch via an automated process, the first thing to do is implement access control so that changes cannot be made to any infrastructure without going through an approval process. The Visible Ops Handbook calls this "stabilizing the patient." This will undoubtedly cause much annoyance, but it is a prerequisite for the next step: creating an automated process for managing infrastructure. Without turning off access, operations staff end up spending all of their time firefighting because unplanned changes break things all the time. A good way to set the expectations of when work will be done and enforce access control is to create maintenance windows.
-Requests to make changes to your production and testing environments should go through a change management process. This need not be bureaucratic: As is pointed out in The Visible Ops Handbook, many organizations which perform best in terms of the MTBF (mean time between failures) and MTTR (mean time to repair) "were doing 1000­1500 changes per week, with a change success rate of over 99%."
+Requests to make changes to your production and testing environments should go through a change management process. This need not be bureaucratic: As is pointed out in The Visible Ops Handbook, many organizations which perform best in terms of the MTBF (mean time between failures) and MTTR (mean time to repair) "were doing 1000ï¿½1500 changes per week, with a change success rate of over 99%."
 However, the approval for changes to your testing environments should of course be easier to get than the approval to change production. Often, changes to production environments have to be approved by heads of departments or your CTO (depending on the size of your organization and its regulatory environment). Most CTOs, however, would be upset if asked to approve changes to the UAT environment. The important point is that you are going through the same process for your testing environments as you do for production.
 
 Modeling and Managing Infrastructure
@@ -4772,13 +4778,13 @@ Modeling and Managing Infrastructure
 
 Making Changes to Infrastructure
 Of course sometimes it is necessary to make changes to infrastructure. There are several essential characteristics of an effective change management process.
-· Every change, whether it's updating firewall rules or deploying a new version of your flagship service, should go through the same change management process.
-· This process should be managed using a single ticketing system that everybody can log into and which generates useful metrics such as average cycle time per change.
-· The exact change that is made should be logged so it can be easily audited later.
-· It should be possible to see a history of changes made to every environment, including deployments.
-· The change you want to make should first have been tested on one of your production-like testing environments, and automated tests should be run to ensure that it doesn't break any of the applications that use the environment.
-· The change should be made to version control and then applied through your automated process for deploying infrastructural changes.
-· There should be a test to verify that the change has worked.
+ï¿½ Every change, whether it's updating firewall rules or deploying a new version of your flagship service, should go through the same change management process.
+ï¿½ This process should be managed using a single ticketing system that everybody can log into and which generates useful metrics such as average cycle time per change.
+ï¿½ The exact change that is made should be logged so it can be easily audited later.
+ï¿½ It should be possible to see a history of changes made to every environment, including deployments.
+ï¿½ The change you want to make should first have been tested on one of your production-like testing environments, and automated tests should be run to ensure that it doesn't break any of the applications that use the environment.
+ï¿½ The change should be made to version control and then applied through your automated process for deploying infrastructural changes.
+ï¿½ There should be a test to verify that the change has worked.
 Creating an automated process for deploying infrastructural changes from version control is at the core of good change management. The most effective way to do this is to require all changes to be made to your environments via a central system. Use a testing environment to work out the change you want to make, test it in a fresh, production-like staging environment, put it into configuration management so that future rebuilds incorporate it, have it approved, and then have the automated system roll out the change. Many organizations have built their own solutions to this problem, but if you do not have one, you can use a data center automation tool like Puppet, CfEngine, BladeLogic, Tivoli, or HP Operations Center.
 The best way to enforce auditability is to have all changes made by automated scripts which can be referenced later in case anybody needs to find out exactly what was done. In general, we prefer automation over documentation for this reason. Written documentation is never a guarantee that the documented change was performed correctly, and the differences between what somebody claims they did and what they actually did are sufficient to cause a problem that may take hours or days to track down.
 
@@ -4808,13 +4814,13 @@ IPMI/LOM IPMI/LOM
 Figure 11.2 Automated provisioning and configuration of servers
 
 Provisioning Servers
-There are several ways to create operating system baselines: · A fully manual process · Automated remote installation
+There are several ways to create operating system baselines: ï¿½ A fully manual process ï¿½ Automated remote installation
 
 Managing Server Provisioning and Configuration
 
 289
 
-· Virtualization
+ï¿½ Virtualization
 We won't consider the fully manual process, except to note that it is not reliably repeatable and therefore doesn't scale. However, this is how development teams often manage their environments. It is often the case that developer workstations and even continuous integration environments managed by development teams are works of art that have accumulated cruft over long periods of time. These environments bear no relation to the environment your application will actually live in. This in itself can be a huge source of inefficiency. Really, these systems should be managed the same way you manage testing and production environments.
 Virtualization as a way of creating operating system baselines and managing environments will be considered later, in the "Virtualization" section on page 303.
 Automated remote installation is the best option to take a new physical machine and get it up and running (even if you plan to later use it as a virtual host). The best place to start with this is PXE (Preboot eXecution Environment) or Windows Deployment Services.
@@ -4833,9 +4839,9 @@ Ongoing Management of Servers
 Once you have got the operating system installed, you will need to ensure that its configuration doesn't change in an uncontrolled manner. That means ensuring, first, that nobody is able to log into the boxes except the operations team, and second, that any changes are performed using an automated system. That includes applying OS service packs, upgrades, installing new software, changing settings, or performing deployments.
 The goal of your configuration management process is to ensure that configuration management is declarative and idempotent--which means you configure the desired state of your infrastructure and a system ensures that this configuration is applied so that, whatever the initial state of the infrastructure, the end result is the same, even if the same configuration is reapplied. This is possible in both the Windows and UNIX worlds.
 Once this system is in place, it becomes possible to manage all the testing and production environments within your infrastructure from a central, versioned configuration management system. You can then reap the following benefits:
-· You can ensure consistency across all environments.
-· You can easily provision new environments that match the configuration of existing ones, for example to create staging environments that match production.
-· If you have a hardware failure on one of your boxes, you can put in a new box and have it configured the same way as the old one using a fully automated process.
+ï¿½ You can ensure consistency across all environments.
+ï¿½ You can easily provision new environments that match the configuration of existing ones, for example to create staging environments that match production.
+ï¿½ If you have a hardware failure on one of your boxes, you can put in a new box and have it configured the same way as the old one using a fully automated process.
 
 Managing Server Provisioning and Configuration
 
@@ -4980,17 +4986,17 @@ Managing Infrastructure Services
 It is extremely common for problems with infrastructure services--such as routers, DNS, and directory services--to break software in production environments that worked perfectly all through the deployment pipeline. Michael Nygard wrote an article for InfoQ in which he tells the story of a system which died mysteriously at the same time every day [bhc2vR]. The problem turned out to be a firewall which dropped inactive TCP connections after one hour. As the system was idle at night, when activity started in the morning, the TCP packets from the pooled database connections would be dropped silently by the firewall.
 Problems like this will happen to you, and when they do, they will be maddeningly difficult to diagnose. Although networking has a long history, very few people really understand the ins and outs of the entire TCP/IP stack (and how some infrastructure, such as firewalls, can break the rules), especially when several different implementations coexist on the same network. This is the usual situation in production environments.
 We have several pieces of advice for you.
-· Every part of your networking infrastructure's configuration, from DNS zone files to DHCP to firewall and router configurations to SMTP and other services your applications rely on, should be version-controlled. Use a tool like Puppet to push configuration out from version control to your
+ï¿½ Every part of your networking infrastructure's configuration, from DNS zone files to DHCP to firewall and router configurations to SMTP and other services your applications rely on, should be version-controlled. Use a tool like Puppet to push configuration out from version control to your
 
 Managing Infrastructure Services
 
 301
 
 systems so that they are autonomic, and you know that there is no other way to introduce changes except via changing a configuration file in version control.
-· Install a good network monitoring system such as Nagios, OpenNMS, HP Operations Manager, or one of their brethren. Make sure that you know when network connectivity is broken, and monitor every port on every route that your application uses. Monitoring is discussed at more length in the "Monitoring Infrastructure and Applications" section on page 317.
-· Logging is your friend. Your applications should log at WARNING level every time a network connection times out or is found to be unexpectedly closed. You should log at INFO or, if the logs are too verbose, DEBUG level every time you close a connection. You should log at DEBUG level every connection that you open, including as much information as possible on the endpoint of the connection.
-· Make sure that your smoke tests check all of the connections at deployment time to flush out any routing or connectivity problems.
-· Make your integration testing environment's network topology as similar as possible to production, including using the same pieces of hardware with the same physical connections between them (down to the level of using exactly the same sockets and the same part number of cable). An environment so constructed can usefully serve as a backup environment should a hardware failure occur. Indeed, many enterprises have an environment known as staging which serves the dual purpose of both exactly replicating production, so that the production deployment can be tested, and acting as a failover. The blue-green deployment pattern, described in the "Blue-Green Deployments" section on page 261, allows you to do this even if you have only one physical environment.
+ï¿½ Install a good network monitoring system such as Nagios, OpenNMS, HP Operations Manager, or one of their brethren. Make sure that you know when network connectivity is broken, and monitor every port on every route that your application uses. Monitoring is discussed at more length in the "Monitoring Infrastructure and Applications" section on page 317.
+ï¿½ Logging is your friend. Your applications should log at WARNING level every time a network connection times out or is found to be unexpectedly closed. You should log at INFO or, if the logs are too verbose, DEBUG level every time you close a connection. You should log at DEBUG level every connection that you open, including as much information as possible on the endpoint of the connection.
+ï¿½ Make sure that your smoke tests check all of the connections at deployment time to flush out any routing or connectivity problems.
+ï¿½ Make your integration testing environment's network topology as similar as possible to production, including using the same pieces of hardware with the same physical connections between them (down to the level of using exactly the same sockets and the same part number of cable). An environment so constructed can usefully serve as a backup environment should a hardware failure occur. Indeed, many enterprises have an environment known as staging which serves the dual purpose of both exactly replicating production, so that the production deployment can be tested, and acting as a failover. The blue-green deployment pattern, described in the "Blue-Green Deployments" section on page 261, allows you to do this even if you have only one physical environment.
 Finally, when something does go wrong, have forensic tools available. Wireshark and Tcpdump are both fantastically useful tools that make it easy to see packets flying past, and filter them so you can isolate exactly the packets you're looking for. The UNIX tool Lsof and its Windows cousins Handle and TCPView (part of the Sysinternals suite) also come in very handy to see what files and sockets are open on your machine.
 Multihomed Systems
 One important piece of hardening on production systems is the use of multiple, isolated networks for different types of traffic, in conjunction with multihomed servers. Multihomed servers have multiple network interfaces, each of which talks to a different network. At a minimum, you might have a network for
@@ -5045,21 +5051,21 @@ Virtualization was originally developed by IBM in the 1960s as an alternative to
 
 Here we will describe the use of environment virtualization to help provide a controlled, fully repeatable deployment and release process. Virtualization can help reduce the time it takes to deploy software, and the risks associated with it, in a variety of ways. The use of virtual machines in deployment is an enormous aid to achieving effective configuration management across the breadth and depth of your systems.
 In particular, virtualization provides the following benefits:
-· Fast response to changing requirements. Need a new testing environment? A new virtual machine can be provisioned in seconds at no cost, versus
+ï¿½ Fast response to changing requirements. Need a new testing environment? A new virtual machine can be provisioned in seconds at no cost, versus
 
 304
 
 Chapter 11 Managing Infrastructure and Environments
 
 days or weeks to obtain a new physical environment. Obviously, you cannot run an infinite number of VMs on a single host--but using virtualization can in some situations decouple the need to buy new hardware from the lifecycle of the environments that they run.
-· Consolidation. When organizations are relatively immature, each team will often have its own CI servers and testing environments sitting on physical boxes under their desks. Virtualization makes it easy to consolidate CI and testing infrastructure so it can be offered as a service to delivery teams. It is also more efficient in terms of hardware usage.
-· Standardizing hardware. Functional differences between components and subsystems of your application no longer force you to maintain distinct hardware configurations, each with its own specification. Virtualization allows you to standardize on a single hardware configuration for physical environments but run a variety of heterogeneous environments and platforms virtually.
-· Easier-to-maintain baselines. You can maintain a library of baseline images--operating system plus application stacks--or even environments, and push them out to a cluster at the click of a button.
+ï¿½ Consolidation. When organizations are relatively immature, each team will often have its own CI servers and testing environments sitting on physical boxes under their desks. Virtualization makes it easy to consolidate CI and testing infrastructure so it can be offered as a service to delivery teams. It is also more efficient in terms of hardware usage.
+ï¿½ Standardizing hardware. Functional differences between components and subsystems of your application no longer force you to maintain distinct hardware configurations, each with its own specification. Virtualization allows you to standardize on a single hardware configuration for physical environments but run a variety of heterogeneous environments and platforms virtually.
+ï¿½ Easier-to-maintain baselines. You can maintain a library of baseline images--operating system plus application stacks--or even environments, and push them out to a cluster at the click of a button.
 It is the simplicity of maintaining and provisioning new environments that is most useful when applied to the deployment pipeline.
-· Virtualization provides a simple mechanism to create a baseline for the environments in which your systems operate. You can create and tune the environments that host your applications as virtual servers, and once you are happy with the result, you can save the images and configuration and then go on to create as many copies as you wish, knowing that what you're getting are faithful clones of the original.
-· Since the server images from which your hosts are built are stored in a library and can be associated with a particular build of your application, it is simple to revert any environment back to a previous state--not just the application but every aspect of the software that you deploy.
-· The use of virtual servers to baseline host environments makes it simple to create copies of production environments, even where a production environment consists of several servers, and to reproduce them for testing purposes. Modern virtualization software offers a significant degree of flexibility, allowing some aspects of the system, like network topology, to be controlled programmatically.
-· It is the last missing piece that allows for true push-button deployments of any build of your application. If you need a new environment to demonstrate
+ï¿½ Virtualization provides a simple mechanism to create a baseline for the environments in which your systems operate. You can create and tune the environments that host your applications as virtual servers, and once you are happy with the result, you can save the images and configuration and then go on to create as many copies as you wish, knowing that what you're getting are faithful clones of the original.
+ï¿½ Since the server images from which your hosts are built are stored in a library and can be associated with a particular build of your application, it is simple to revert any environment back to a previous state--not just the application but every aspect of the software that you deploy.
+ï¿½ The use of virtual servers to baseline host environments makes it simple to create copies of production environments, even where a production environment consists of several servers, and to reproduce them for testing purposes. Modern virtualization software offers a significant degree of flexibility, allowing some aspects of the system, like network topology, to be controlled programmatically.
+ï¿½ It is the last missing piece that allows for true push-button deployments of any build of your application. If you need a new environment to demonstrate
 
 Virtualization
 
@@ -5067,8 +5073,8 @@ Virtualization
 
 the latest features for a potential customer, you can create the new environment in the morning, run the demonstration at lunchtime, and delete it in the afternoon.
 Virtualization also improves our ability to test both functional and nonfunctional requirements.
-· VMMs provide programmatic control of features of your system, such as network connectivity. This makes the testing of nonfunctional requirements, such as availability, much easier and capable of automation. For example, it is relatively straightforward to test the behavior of a cluster of servers by disconnecting one or more of the nodes programmatically and observing the effect on system.
-· Virtualization also provides the capability to significantly speed up longrunning tests. Instead of running them on a single box, you can run them in parallel on a build grid of virtual machines. We routinely do this on our projects. On one of our larger ones, it reduced the time to run our tests from 13 hours to 45 minutes.
+ï¿½ VMMs provide programmatic control of features of your system, such as network connectivity. This makes the testing of nonfunctional requirements, such as availability, much easier and capable of automation. For example, it is relatively straightforward to test the behavior of a cluster of servers by disconnecting one or more of the nodes programmatically and observing the effect on system.
+ï¿½ Virtualization also provides the capability to significantly speed up longrunning tests. Instead of running them on a single box, you can run them in parallel on a build grid of virtual machines. We routinely do this on our projects. On one of our larger ones, it reduced the time to run our tests from 13 hours to 45 minutes.
 Managing Virtual Environments
 One of the most important characteristics of VMMs is that a virtual machine image is a single file. Such a file is called a disk image. The useful thing about disk images is that you can copy them and version them (probably not in version control, unless your VCS can handle lots of very large binary files). You can then use them as templates, or baselines (in configuration management terminology). Some VMMs treat templates as something different from disk images, but ultimately they're the same thing. Many VMMs even allow you to create templates from running VMs. You can then create as many running instances as you want from these templates in seconds.
 Another useful tool some VMM vendors provide is taking a snapshot of a physical box and turning it into a disk image. This is incredibly useful, because it means you can take a copy of the boxes in your production environment, save them as templates, and fire up copies of your production environment to do continuous integration and testing on.
@@ -5159,15 +5165,15 @@ Release
 Figure 11.6 A simple pipeline
 
 There are some features of the pipeline approach that are worth revisiting to consider how to use them in the context of virtualization.
-· Each instance of a pipeline is associated with a change in version control that triggered it.
-· Every stage of the pipeline subsequent to the commit stage should be run in a production-like environment.
-· Exactly the same deployment process using exactly the same binaries should be run in every environment--differences between environments should be captured as configuration information.
+ï¿½ Each instance of a pipeline is associated with a change in version control that triggered it.
+ï¿½ Every stage of the pipeline subsequent to the commit stage should be run in a production-like environment.
+ï¿½ Exactly the same deployment process using exactly the same binaries should be run in every environment--differences between environments should be captured as configuration information.
 It can be seen that what is being tested in the pipeline is not just the application. Indeed when there is a test failure in the pipeline, the first thing that happens is triage to determine the cause of the failure. The five most likely causes of a failure are
-· A bug in the application's code
-· A bug or invalid expectation in a test
-· A problem with the application's configuration
-· A problem with the deployment process
-· A problem with the environment
+ï¿½ A bug in the application's code
+ï¿½ A bug or invalid expectation in a test
+ï¿½ A problem with the application's configuration
+ï¿½ A problem with the deployment process
+ï¿½ A problem with the environment
 Thus the configuration of the environment represents one of the degrees of freedom in configuration space. It follows that a known-good version of your application is not just correlated with the revision numbers in the version control system that were the source of the binary code, automated tests, deployment scripts, and configuration. A known-good version of your application is also correlated with the configuration of the environment that the pipeline instance
 
 Virtualization
@@ -5279,9 +5285,9 @@ Compliance is often mentioned as a constraint on using cloud computing. However,
 Service levels are particularly important when your entire infrastructure is outsourced. As with security, you'll need to do some research to ensure that your provider can meet your requirements. This is particularly the case when it comes to performance. Amazon offers services at different levels of performance depending upon your needs--but even the highest level they offer is no match for highperformance servers. If you need to run an RDBMS with a large dataset and a high load, you probably don't want to put it in a virtualized environment.
 Platforms in the Cloud
 Examples of platforms in the cloud include services, such as Google App Engine and Force.com, where the service provider gives you a standardized application stack to use. In return for your using their stack, they take care of things like scaling the application and infrastructure. Essentially, you sacrifice flexibility so that the provider can easily take care of nonfunctional requirements such as capacity and availability. The advantages of platforms in the cloud are the following:
-· You get all the same benefits of infrastructure in the cloud in terms of cost structure and flexibility of provisioning.
-· The service provider will take care of nonfunctional requirements such as scalability, availability, and (to some extent) security.
-· You deploy to a completely standardized stack, which means there is no need to worry about configuring or maintaining testing, staging, or production environments, and no messing around with virtual machine images.
+ï¿½ You get all the same benefits of infrastructure in the cloud in terms of cost structure and flexibility of provisioning.
+ï¿½ The service provider will take care of nonfunctional requirements such as scalability, availability, and (to some extent) security.
+ï¿½ You deploy to a completely standardized stack, which means there is no need to worry about configuring or maintaining testing, staging, or production environments, and no messing around with virtual machine images.
 The last point is especially revolutionary. We spend a good chunk of this book discussing how to automate your deploy, test, and release process and how to
 
 Cloud Computing
@@ -5322,10 +5328,10 @@ There is a detailed discussion on the pros and cons of cloud computing, includin
 Monitoring Infrastructure and Applications
 It is essential to have insight into what is going on in your production environments for three reasons. First, businesses can get feedback on their strategies much faster if they have real-time business intelligence, such as how much revenue they are generating and where that revenue is coming from. Second, when something goes wrong, the operations team needs to be informed immediately that there is an incident, and have the necessary tools to track down the root cause of the incident and fix it. Finally, historical data is essential for planning purposes. If you don't have detailed data on how your systems behaved when there was an unexpected spike in demand, or when new servers were added, it's impossible to plan evolving your infrastructure to meet your business requirements.
 There are four areas to consider when creating a monitoring strategy:
-· Instrumenting your applications and your infrastructure so you can collect the data you need
-· Storing the data so it can easily be retrieved for analysis
-· Creating dashboards which aggregate the data and present it in a format suitable for operations and for the business
-· Setting up notifications so that people can find out about the events they care about
+ï¿½ Instrumenting your applications and your infrastructure so you can collect the data you need
+ï¿½ Storing the data so it can easily be retrieved for analysis
+ï¿½ Creating dashboards which aggregate the data and present it in a format suitable for operations and for the business
+ï¿½ Setting up notifications so that people can find out about the events they care about
 
 318
 
@@ -5333,10 +5339,10 @@ Chapter 11 Managing Infrastructure and Environments
 
 Collecting Data
 First, it is important to decide what data you want to gather. Monitoring data can come from the following sources:
-· Your hardware, via out-of-band management (also known as lights-out management or LOM). Almost all modern server hardware implements the Intelligent Platform Management Interface (IPMI) which lets you monitor voltages, temperatures, system fan speeds, peripheral health, and so forth, as well as perform actions such as power cycling or lighting an identification light on the front panel, even if the box is powered off.
-· The operating system on the servers comprising your infrastructure. All operating systems provide interfaces to get performance information such as memory usage, swap usage, disk space, I/O bandwidth (per disk and NIC), CPU usage, and so forth. It's also useful to monitor the process table to work out the resources each process is consuming. On UNIX, Collectd is the standard way to gather this data. On Windows, it's done using a system called performance counters, which can also be used by other providers of performance data.
-· Your middleware. This can provide information on the usage of resources such as memory, database connection pools, and thread pools, as well as information on the number of connections, response time, and so forth.
-· Your applications. Applications should be written so that they have hooks to monitor things that both operations and business users care about, such as the number of business transactions, their value, conversion rate, and so forth. Applications should also make it easy to analyze user demographics and behavior. They should record the status of connections to external systems that they rely on. Finally, they should be able to report their version number and the versions of their internal components, if applicable.
+ï¿½ Your hardware, via out-of-band management (also known as lights-out management or LOM). Almost all modern server hardware implements the Intelligent Platform Management Interface (IPMI) which lets you monitor voltages, temperatures, system fan speeds, peripheral health, and so forth, as well as perform actions such as power cycling or lighting an identification light on the front panel, even if the box is powered off.
+ï¿½ The operating system on the servers comprising your infrastructure. All operating systems provide interfaces to get performance information such as memory usage, swap usage, disk space, I/O bandwidth (per disk and NIC), CPU usage, and so forth. It's also useful to monitor the process table to work out the resources each process is consuming. On UNIX, Collectd is the standard way to gather this data. On Windows, it's done using a system called performance counters, which can also be used by other providers of performance data.
+ï¿½ Your middleware. This can provide information on the usage of resources such as memory, database connection pools, and thread pools, as well as information on the number of connections, response time, and so forth.
+ï¿½ Your applications. Applications should be written so that they have hooks to monitor things that both operations and business users care about, such as the number of business transactions, their value, conversion rate, and so forth. Applications should also make it easy to analyze user demographics and behavior. They should record the status of connections to external systems that they rely on. Finally, they should be able to report their version number and the versions of their internal components, if applicable.
 There are various ways data can be gathered. First of all, there are many tools--both commercial and open source--that will gather everything described above across your whole data center, store it, produce reports, graphs, and dashboards, and provide notification mechanisms. The leading open source tools include Nagios, OpenNMS, Flapjack, and Zenoss, although there are many more [dcgsxa]. The leading commercial players are IBM with Tivoli, HP with Operations Manager, BMC, and CA. A relatively new commercial entrant to the field is Splunk.
 
 Monitoring Infrastructure and Applications
@@ -5399,20 +5405,20 @@ Chapter 11 Managing Infrastructure and Environments
 There are potentially thousands of things that you could monitor, and it is essential to plan ahead so your operations dashboard isn't drowned in noise. Come up with a list of risks, categorized by probability and impact. Your list might include generic risks, like running out of disk space or unauthorized access to your environments, as well as specific risks to your business, such as transactions that couldn't be completed. You then need to work out what to actually monitor, and how to display that information.
 In terms of aggregating data, the red-amber-green traffic light aggregation is well understood and commonly used. First of all, you need to work out which entities to aggregate up to. You could create traffic lights for environments, for applications, or for business functions. Different entities will be appropriate for different target audiences. Once you've done this, you need to set thresholds for the traffic lights. Nygard provides the following guidelines (Nygard, 2007, p. 273).
 Green means all of the following are true:
-· All expected events have occurred.
-· No abnormal events have occurred.
-· All metrics are nominal (within two standard deviations for this time period).
-· All states are fully operational.
+ï¿½ All expected events have occurred.
+ï¿½ No abnormal events have occurred.
+ï¿½ All metrics are nominal (within two standard deviations for this time period).
+ï¿½ All states are fully operational.
 Amber means at least one of the following is true:
-· An expected event has not occurred.
-· At least one abnormal event, with a medium severity, has occurred.
-· One or more parameters are above or below the nominal values.
-· A noncritical state is not fully operational (for example, a circuit breaker has cut off a noncritical feature).
+ï¿½ An expected event has not occurred.
+ï¿½ At least one abnormal event, with a medium severity, has occurred.
+ï¿½ One or more parameters are above or below the nominal values.
+ï¿½ A noncritical state is not fully operational (for example, a circuit breaker has cut off a noncritical feature).
 Red means at least one of the following is true:
-· A required event has not occurred.
-· At least one abnormal event, with a high severity, has occurred.
-· One or more parameters are far above or below the nominal values.
-· A critical state is not fully operational (for example, "accepting requests" is false where it should be true).
+ï¿½ A required event has not occurred.
+ï¿½ At least one abnormal event, with a high severity, has occurred.
+ï¿½ One or more parameters are far above or below the nominal values.
+ï¿½ A critical state is not fully operational (for example, "accepting requests" is false where it should be true).
 
 Summary
 
@@ -5469,9 +5475,9 @@ This aspect of database deployment is the simplest to get right and to maintain 
 This script, along with all other scripts involved in maintaining the database, should of course be stored in version control along with your code.
 For a few simple projects, this can be enough. For projects where the operational dataset is in some manner transient--or where it is predefined, such as systems that use a database as a read-only resource at run time--simply erasing the previous version and replacing it with a fresh new copy, re-created from versioned storage, is a simple and effective strategy. If you can get away with it, do this!
 At its simplest, then, the process for deploying a database afresh is as follows:
-· Erase what was there before.
-· Create the database structure, database instances, schemas, etc.
-· Load the database with data.
+ï¿½ Erase what was there before.
+ï¿½ Create the database structure, database instances, schemas, etc.
+ï¿½ Load the database with data.
 Most projects use databases in more sophisticated ways than this. We will need to consider the more complex, but more common, case where we are making a change after a period of use. In this case, there is existing data that has to be migrated as part of the deployment process.
 Incremental Change
 Continuous integration demands that we are able to keep the application working after every change made to it. This includes changes to the structure or content of our data. Continuous delivery demands that we must be able to deploy any successful release candidate of our application, including the changes to the database, into production (the same is also true for user-installed software that contains a database). For all but the simplest of systems, that means having to update an operational database while retaining the valuable data that is held in it. Finally, due to the constraint that the data in the database must be retained
@@ -5532,16 +5538,16 @@ Once you have roll-forward and roll-back scripts for each version of your applic
 However, there is a special case: deployment to production. There are two common requirements which impose extra constraints on a deployment to production: the ability to roll back without losing transactions that have been performed since the upgrade, and the necessity to keep the application available according to a demanding SLA, known as hot deployment or zero-downtime releases.
 Rolling Back without Losing Data
 In the case of a rollback, your roll-back scripts (as described in the previous section) can usually be designed to preserve any transactions that occur after the upgrade took place. In particular, there should be no problem if your roll-back scripts satisfy the following criteria:
-· They involve schema changes that do not lose any data (such as a normalization or denormalization, or moving a column between tables, for example). In this case, you simply run the roll-back scripts.
-· They delete some data that only the new system understands, but it is not critical if this data is lost. In this case, again, simply run the roll-back scripts.
+ï¿½ They involve schema changes that do not lose any data (such as a normalization or denormalization, or moving a column between tables, for example). In this case, you simply run the roll-back scripts.
+ï¿½ They delete some data that only the new system understands, but it is not critical if this data is lost. In this case, again, simply run the roll-back scripts.
 
 332
 
 Chapter 12 Managing Data
 
 However, there are some circumstances in which just running the roll-back scripts will not be possible.
-· Rolling back involves adding back in data from temporary tables. In this case, integrity constraints could be violated by the new records that have been added since the upgrade.
-· Rolling back involves deleting data from new transactions that it is unacceptable for the system to lose.
+ï¿½ Rolling back involves adding back in data from temporary tables. In this case, integrity constraints could be violated by the new records that have been added since the upgrade.
+ï¿½ Rolling back involves deleting data from new transactions that it is unacceptable for the system to lose.
 In this case, there are a few solutions that can be used to roll back to a previous version of the application.
 One solution is to cache transactions that you do not want to lose, and provide a way to replay them. When you upgrade your database and application to the new version, ensure you take a copy of each transaction that goes into the new system. This can be done by recording the events that come through the user interface, by intercepting the more coarse-grained messages that pass between the components of your system (relatively easy if your application uses an eventdriven paradigm), or by actually copying each database transaction that occurs from the transaction log. These events can be played back once the application has been successfully redeployed. Of course this approach requires careful design and testing to work, but that can be an acceptable tradeoff if you really need to ensure there is no data loss in the event of a rollback.
 A second solution can be employed if you are using blue-green deployments (see Chapter 10, "Deploying and Releasing Applications"). To refresh your memory, in blue-green deployments both the old and the new versions of your application are run side by side, one in the blue environment, the other in the green environment. "Releasing" simply means switching user requests from the old version to the new version, and "rolling back" means switching them back to the old version.
@@ -5633,9 +5639,9 @@ Managing the Coupling between Tests and Data
 When it comes to test data, it is important that each individual test in a test suite has some state on which it can depend. In the "given, when, then" format for writing acceptance criteria, the initial state when the test starts is the "when." Only when the starting state is known can you compare it against the state after the test has finished, and thus verify the behavior under test.
 This is simple for a single test, but requires some thought to achieve for suites of tests, particularly for tests that rely upon a database.
 Broadly, there are three approaches to managing state for tests.
-· Test isolation: Organize tests so that each test's data is only visible to that test.
-· Adaptive tests: Each test is designed to evaluate its data environment and adapt its behavior to suit the data it sees.
-· Test sequencing: Tests are designed to run in a known sequence, each depending, for inputs, on the outputs of its predecessors.
+ï¿½ Test isolation: Organize tests so that each test's data is only visible to that test.
+ï¿½ Adaptive tests: Each test is designed to evaluate its data environment and adapt its behavior to suit the data it sees.
+ï¿½ Test sequencing: Tests are designed to run in a known sequence, each depending, for inputs, on the outputs of its predecessors.
 In general, we strongly recommend the first of these approaches. Isolating tests from one another makes them more flexible as well as, importantly, capable of being run in parallel to optimize test suite performance.
 Both of the other approaches are possible but, in our experience, don't scale up well. As the suite of tests becomes larger and the interactions it embodies more complex, both of these strategies tend to result in failures that are very hard to detect and correct. Interactions between tests become increasingly obscure, and the cost of maintaining a working suite of tests begins to grow.
 
@@ -5701,15 +5707,15 @@ This categorization is not rigorous. Often, the boundaries between classes of da
 Fundamentally, it is a mistake to make tests too dependent on the "universe" of data that represents the entire application. It is important to be able to consider each test with some degree of isolation, or the entire test suite becomes too brittle and will fail constantly with every small change in data.
 However, unlike commit tests, we do not recommend using application code or database dumps to put the application into the correct initial state for the test. Instead, in keeping with the system-level nature of the tests, we recommend using the application's API to put it into the correct state.
 This has several advantages:
-· Using the application code, or any other mechanism that bypasses the application's business logic, can put the system into an inconsistent state.
+ï¿½ Using the application code, or any other mechanism that bypasses the application's business logic, can put the system into an inconsistent state.
 
 Data Management and the Deployment Pipeline
 
 341
 
 Using the application's API ensures that the application is never in an inconsistent state during acceptance tests.
-· Refactorings of the database or the application itself will have no effect on the acceptance tests since, by definition, refactorings do not alter the behavior of the application's public API. This will make your acceptance tests significantly less brittle.
-· Your acceptance tests will also serve as tests of your application's API.
+ï¿½ Refactorings of the database or the application itself will have no effect on the acceptance tests since, by definition, refactorings do not alter the behavior of the application's public API. This will make your acceptance tests significantly less brittle.
+ï¿½ Your acceptance tests will also serve as tests of your application's API.
 
 Types of Test Data: An Example
 Consider testing a financial trading application. If a specific test is focused on confirming that a user's position is correctly updated when a trade is made, the starting position and finishing position are of prime importance to this test.
@@ -5753,12 +5759,12 @@ Chapter 12 Managing Data
 
 there are few circumstances in which a dump of the production database is the best starting point. Testers should create and manage smaller datasets for their own purposes.
 Here are some of the more important principles and practices from this chapter:
-· Version your database and use a tool like DbDeploy to manage migrations automatically.
-· Strive to retain both forward and backward compatibility with schema changes so that you can separate data deployment and migration issues from application deployment issues.
-· Make sure tests create the data they rely on as part of the setup process, and that data is partitioned to ensure it does not affect other tests that might be running at the same time.
-· Reserve the sharing of setup between tests only for data required to have the application start, and perhaps some very general reference data.
-· Try to use the application's public API to set up the correct state for tests wherever possible.
-· In most cases, don't use dumps of the production dataset for testing purposes. Create custom datasets by carefully selecting a smaller subset of production data, or from acceptance or capacity test runs.
+ï¿½ Version your database and use a tool like DbDeploy to manage migrations automatically.
+ï¿½ Strive to retain both forward and backward compatibility with schema changes so that you can separate data deployment and migration issues from application deployment issues.
+ï¿½ Make sure tests create the data they rely on as part of the setup process, and that data is partitioned to ensure it does not affect other tests that might be running at the same time.
+ï¿½ Reserve the sharing of setup between tests only for data required to have the application start, and perhaps some very general reference data.
+ï¿½ Try to use the application's public API to set up the correct state for tests wherever possible.
+ï¿½ In most cases, don't use dumps of the production dataset for testing purposes. Create custom datasets by carefully selecting a smaller subset of production data, or from acceptance or capacity test runs.
 Of course, these principles will need to be adapted to your situation. However, if they are used as the default approach, they will help any software project to minimize the effects of the most common problems and issues associated with data management in automated testing and production environments.
 
 Chapter 13
@@ -5790,10 +5796,10 @@ Keeping Your Application Releasable
 In the course of development, teams are continually adding features, and sometimes need to make major architectural changes. During these activities the application is not releasable, although it will still pass the commit stage of continuous integration. Usually, before release, teams will stop developing new functionality and enter a stabilization phase during which only bugfixing takes place. When the application is released, a release branch is created in version control, and new development begins again on trunk. However, this process generally results in weeks or months between releases. The aim of continuous delivery is for the application to always be in a releasable state. How can we achieve this?
 One approach is to create branches in version control that are merged when work is complete, so that mainline is always releasable. We examine this approach at length in the next chapter, "Advanced Version Control." However, we believe that this approach is suboptimal, since the application is not being continuously integrated if work happens on branches. Instead, we advocate that everybody checks in on mainline. How is it possible to have everybody working on mainline, and still keep your application in a releasable state at all times?
 There are four strategies to employ in order to keep your application releasable in the face of change:
-· Hide new functionality until it is finished.
-· Make all changes incrementally as a series of small changes, each of which is releasable.
-· Use branch by abstraction to make large-scale changes to the codebase.
-· Use components to decouple parts of your application that change at different rates.
+ï¿½ Hide new functionality until it is finished.
+ï¿½ Make all changes incrementally as a series of small changes, each of which is releasable.
+ï¿½ Use branch by abstraction to make large-scale changes to the codebase.
+ï¿½ Use components to decouple parts of your application that change at different rates.
 We'll discuss the first three strategies here. These three strategies should suffice on small projects. On larger projects, you will need to think about using components, which we cover in the rest of the chapter.
 Hide New Functionality Until It Is Finished
 One common problem with continuous deployment of applications is that a feature, or a set of features, can take a long time to develop. If it doesn't make sense to release a set of features incrementally, it is often tempting to start new development on a branch in version control, and integrate when the functionality is ready, so as not to interrupt the work being done on the rest of a system, which might prevent it being released.
@@ -5849,7 +5855,7 @@ to the current implementation. You then develop the new implementation alongside
 
 You can do branch by abstraction at a very high level, such as swapping out an entire persistence layer.You can also do it at a very low level--swapping out a class for another one using the strategy pattern, for example. Dependency injection is another mechanism that enables branch by abstraction. The trick is finding or creating the seams that allow you to insert an abstraction layer.
 
-This is also an excellent pattern to use as part of a strategy for turning a monolithic codebase that uses the ball of mud "pattern" into a more modular, better structured form. Take part of the codebase that you want to separate out as a component or rewrite. Provided you can manage the entry points to this part of the codebase, perhaps using the façade pattern, you can localize the mess and use branch by abstraction to keep the application running with the old code while you create a new, modularized version of the same functionality. This strategy is sometimes known as "sweeping it under the rug" or "Potemkin village" [ayTS3J].
+This is also an excellent pattern to use as part of a strategy for turning a monolithic codebase that uses the ball of mud "pattern" into a more modular, better structured form. Take part of the codebase that you want to separate out as a component or rewrite. Provided you can manage the entry points to this part of the codebase, perhaps using the faï¿½ade pattern, you can localize the mess and use branch by abstraction to keep the application running with the old code while you create a new, modularized version of the same functionality. This strategy is sometimes known as "sweeping it under the rug" or "Potemkin village" [ayTS3J].
 The two most difficult parts of branching by abstraction are isolating the entry points to the part of the codebase in question and managing any changes that need to be made to the functionality that is under development, perhaps as part of bug-fixing. However, these problems are considerably easier to manage than they are with branching. Nevertheless, sometimes it is just too hard to find a good seam in your codebase, and branching is the only solution. Use the branch to get your codebase to a state where you can then perform branch by abstraction.
 Making large-scale changes to your application, whether through branching by abstraction or any other technique, benefits enormously from a comprehensive automated acceptance test suite. Unit and component tests are simply not coarsegrained enough to protect your business functionality when big chunks of your application are being changed.
 Dependencies
@@ -5954,7 +5960,7 @@ Using components doesn't mandate the use of an n-tier architecture. It means sep
 At the other end of the spectrum, if components don't automatically imply layering, layering should not automatically define components. If you use layered architectures, don't create a component per layer.You should almost always have several components within a layer, and indeed there may be components that are used by multiple layers. Component-based design is orthogonal to layering.
 Finally, it's worth noting Conway's Law, which states that "organizations which design systems . . . are constrained to produce designs which are copies of the communication structures of these organizations."4 So, for example, open source projects where developers communicate only by email tend to be very modular with few interfaces. A product developed by a small, colocated team
 
-4. Melvin E. Conway, How Do Committees Invent, Datamation 14:5:28­31.
+4. Melvin E. Conway, How Do Committees Invent, Datamation 14:5:28ï¿½31.
 
 360
 
@@ -5965,12 +5971,12 @@ If your codebase is already large and monolithic, one way to start decomposing i
 Pipelining Components
 Even when your application is comprised of several components, it doesn't mean that you need to have a separate build for each one. Indeed the simplest approach, and one that scales up to a surprising degree, is to have a single pipeline for your entire application. Every time a change is committed, everything is built and tested. In most cases, we would recommend building your system as a single entity until the process of getting feedback becomes too slow. As we have said, if you follow our advice in this book, you will likely find that you can build surprisingly large and complex systems this way. This approach has the advantage that it is very easy to trace which line of code broke the build.
 However, realistically there are many circumstances that benefit from splitting your system into several different pipelines. Here are a few examples of circumstances where it makes sense to have separate pipelines:
-· Parts of your application that have a different lifecycle (perhaps you build your own version of an OS kernel as part of your application, but you only need to do this once every few weeks).
-· Functionally separate areas of your application that are worked on by different (perhaps distributed) teams may have components specific to those teams.
-· Components that use different technologies or build processes.
-· Shared components that are used by several other projects.
-· Components that are relatively stable and do not change frequently.
-· It takes too long to build your application, and creating builds for each component will be faster (but beware, the point at which this becomes true is much later than most people think).
+ï¿½ Parts of your application that have a different lifecycle (perhaps you build your own version of an OS kernel as part of your application, but you only need to do this once every few weeks).
+ï¿½ Functionally separate areas of your application that are worked on by different (perhaps distributed) teams may have components specific to those teams.
+ï¿½ Components that use different technologies or build processes.
+ï¿½ Shared components that are used by several other projects.
+ï¿½ Components that are relatively stable and do not change frequently.
+ï¿½ It takes too long to build your application, and creating builds for each component will be faster (but beware, the point at which this becomes true is much later than most people think).
 The important thing from the perspective of the build and deployment process is that there is always some additional overhead to the management of a component-based build. In order to turn a single build into several, you need to
 
 5. MacCormack, Rusnak, Baldwin, Exploring the Duality between Product and Organizational Architectures: A Test of the Mirroring Hypothesis, Harvard Business School [8XYofQ].
@@ -5980,11 +5986,11 @@ Components
 361
 
 create a build system for each. This means a new directory structure and build file for each separate deployment pipeline, each of which should follow the same pattern as that for an entire system. That means the directory structure for each build should include unit tests, acceptance tests, the libraries it depends on, build scripts, configuration information, and anything else you would normally put into version control for a project. The build for each component or set of components should have its own pipeline to prove that it is fit for release. This pipeline will perform the following steps:
-· Compile the code, if necessary.
-· Assemble one or more binaries that are capable of deployment to any environment.
-· Run unit tests.
-· Run acceptance tests.
-· Support manual testing, where appropriate.
+ï¿½ Compile the code, if necessary.
+ï¿½ Assemble one or more binaries that are capable of deployment to any environment.
+ï¿½ Run unit tests.
+ï¿½ Run acceptance tests.
+ï¿½ Support manual testing, where appropriate.
 The process, as for a whole system, ensures that you get feedback as early as possible, asserting the viability of each change.
 Once the binaries have passed through their own mini release process, they are ready for promotion to an integration build (more on this in the next section). You will need to publish the binaries to an artifact repository, along with some metadata to identify the version of the source that was used to create the binary. A modern CI server should be able to do this for you, although if you want to do it yourself it can be as simple as storing the binaries in a directory with the name of the pipeline label that produced it. Another alternative is to use Artifactory, Nexus, or some other artifact repository software.
 Please note that we are emphatically not saying that you should create a pipeline for every DLL or JAR. That's why we've been careful to say "component or set of components" repeatedly above. A component may consist of several binaries. In general, the guiding principle should be to minimize the number of builds that you operate. One is better than two, two better than three, and so on. Keep optimizing the build and making it more efficient for as long as possible before moving to a parallel pipeline approach.
@@ -6291,10 +6297,10 @@ If you don't want to use a shared drive for your artifact repository, you can ad
 How Your Deployment Pipeline Should Interact with the Artifact Repository
 Your deployment pipeline implementation needs to do two things: Store artifacts generated by the build process into the artifact repository, and then retrieve them for later use.
 Consider a pipeline with the following stages: compile, unit test, acceptance test, manual acceptance test, and production.
-· The compile stage will create binaries that need to be put into the artifact repository.
-· The unit test and acceptance test stages will retrieve these binaries, run unit tests against them, and store reports generated by the unit tests in the artifact repository so that developers can see the results.
-· The user acceptance test stage will take the binaries and deploy them to the UAT environment for manual testing.
-· The release stage will take the binaries and release them to users or deploy them to production.
+ï¿½ The compile stage will create binaries that need to be put into the artifact repository.
+ï¿½ The unit test and acceptance test stages will retrieve these binaries, run unit tests against them, and store reports generated by the unit tests in the artifact repository so that developers can see the results.
+ï¿½ The user acceptance test stage will take the binaries and deploy them to the UAT environment for manual testing.
+ï¿½ The release stage will take the binaries and release them to users or deploy them to production.
 
 Managing Dependencies with Maven
 
@@ -6373,7 +6379,7 @@ The grand-daddy of all version control systems was SCCS, written in 1972 by Marc
 The evolution of revision control systems has not slowed, and currently there is an interesting movement toward distributed version control systems. DVCSs were created to support the working patterns of large open source teams, such as the Linux kernel development team. We'll look at distributed version control systems in a later section.2
 Since SCCS and RCS are so rarely used today, we won't discuss them here; dedicated VCS junkies can find plenty of information online.
 CVS
-CVS stands for Concurrent Versions System. "Concurrent" in this context means that multiple developers can work at the same time on the same repository. CVS is an open source wrapper implemented on top of RCS,3 which provides extra features such as a client-server architecture and more powerful branching and tagging facilities. Originally written in 1984­1985 by Dick Grune and made publicly available in 1986 as a set of shell scripts, it was ported to C in 1988 by Brian Berliner. For many years, CVS was the best known and most popular version control system in the world, mainly because it was the only free VCS.
+CVS stands for Concurrent Versions System. "Concurrent" in this context means that multiple developers can work at the same time on the same repository. CVS is an open source wrapper implemented on top of RCS,3 which provides extra features such as a client-server architecture and more powerful branching and tagging facilities. Originally written in 1984ï¿½1985 by Dick Grune and made publicly available in 1986 as a set of shell scripts, it was ported to C in 1988 by Brian Berliner. For many years, CVS was the best known and most popular version control system in the world, mainly because it was the only free VCS.
 CVS brought a number of innovations both to versioning and to the software development process. Probably the most important of these is that the default
 1. While the distinction between open source and commercial systems is important for your freedoms as a consumer, it is worth noting that Subversion is maintained by a commercial organization, Collabnet, which provides paid support.
 2. For a humorous look at the major open source version control systems, see [bnb6MF]. 3. RCS, like SCCS, only works on local filesystems.
@@ -6384,13 +6390,13 @@ A Brief History of Revision Control
 
 behavior of CVS is not to lock files (hence "concurrent")--in fact, this was the principal motivation for CVS' development.
 Despite its innovations, CVS has many problems, some of which are due to its inheriting a per-file change tracking system from RCS.
-· Branching in CVS involves copying every file into a new copy of the repository. This can take a long time and use a lot of disk space if you have a big repository.
-· Since branches are copies, merging from one branch into another can give you lots of phantom conflicts, and does not automatically merge newly added files from one branch into another. There are workarounds, but they are time-consuming, error-prone, and altogether thoroughly unpleasant.
-· Tagging in CVS involves touching every file in the repository--another time-consuming process in large repositories.
-· Check-ins to CVS are not atomic. This means that if your check-in process gets interrupted, your repository will be left in an intermediate state. Similarly, if two people try to check in at the same time, the changes from both sources may be interleaved. This makes it hard to see who changed what, or to roll back one set of changes.
-· Renaming a file is not a first-class operation: You have to delete the old file and add a new one, losing the revision history in the process.
-· Setting up and maintaining a repository is hard work.
-· Binary files are just blobs in CVS. It makes no attempt to manage changes to binary files, so disk usage is inefficient.
+ï¿½ Branching in CVS involves copying every file into a new copy of the repository. This can take a long time and use a lot of disk space if you have a big repository.
+ï¿½ Since branches are copies, merging from one branch into another can give you lots of phantom conflicts, and does not automatically merge newly added files from one branch into another. There are workarounds, but they are time-consuming, error-prone, and altogether thoroughly unpleasant.
+ï¿½ Tagging in CVS involves touching every file in the repository--another time-consuming process in large repositories.
+ï¿½ Check-ins to CVS are not atomic. This means that if your check-in process gets interrupted, your repository will be left in an intermediate state. Similarly, if two people try to check in at the same time, the changes from both sources may be interleaved. This makes it hard to see who changed what, or to roll back one set of changes.
+ï¿½ Renaming a file is not a first-class operation: You have to delete the old file and add a new one, losing the revision history in the process.
+ï¿½ Setting up and maintaining a repository is hard work.
+ï¿½ Binary files are just blobs in CVS. It makes no attempt to manage changes to binary files, so disk usage is inefficient.
 Subversion
 Subversion (SVN) was designed to be "a better CVS." It fixes many of CVS' problems, and in general can be used as a superior replacement to CVS in any situation. It was designed to be familiar to users of CVS, and retains essentially the same command structure. This familiarity has helped Subversion rapidly replace CVS in application software development.
 Many of the good qualities of SVN derive from abandoning the format common to SCCS, RCS, and their derivatives. In SCCS and RCS, files are the unit of versioning: There is a file in the repository for every file checked in. In SVN, the unit of versioning is the revision, which comprises a set of changes to the files in a set of directories.4 You can think of each revision as containing a snapshot of all the files in the repository at that time. In addition to describing changes to files,
@@ -6414,22 +6420,22 @@ A Brief History of Revision Control
 
 385
 
-· You can only commit changes while online. This might sound obvious, but one of the main advantages of distributed version control systems lies in the fact that checking in is an operation separate from sending your changes to another repository.
-· The data that SVN uses to track changes on local clients is stored in .svn directories in each folder in the repository. It is possible to update different directories on your local system to different revisions, and even to different tags or branches. While this may be desirable, in some cases it can lead to confusion and even errors.
-· While server operations are atomic, client-side operations are not. If a clientside update is interrupted, the working copy can end up in an inconsistent state. Generally, this is fairly easy to fix, but in some cases it is necessary to delete whole subtrees and check them out again.
-· Revision numbers are unique in a given repository, but not globally unique across different repositories. This means, for example, that if a repository is broken into smaller repositories for some reason, the revision numbers in the new repositories will not bear any relationship to the old ones. While this may sound like a small thing, it means that SVN repositories cannot support some features of distributed version control systems.
+ï¿½ You can only commit changes while online. This might sound obvious, but one of the main advantages of distributed version control systems lies in the fact that checking in is an operation separate from sending your changes to another repository.
+ï¿½ The data that SVN uses to track changes on local clients is stored in .svn directories in each folder in the repository. It is possible to update different directories on your local system to different revisions, and even to different tags or branches. While this may be desirable, in some cases it can lead to confusion and even errors.
+ï¿½ While server operations are atomic, client-side operations are not. If a clientside update is interrupted, the working copy can end up in an inconsistent state. Generally, this is fairly easy to fix, but in some cases it is necessary to delete whole subtrees and check them out again.
+ï¿½ Revision numbers are unique in a given repository, but not globally unique across different repositories. This means, for example, that if a repository is broken into smaller repositories for some reason, the revision numbers in the new repositories will not bear any relationship to the old ones. While this may sound like a small thing, it means that SVN repositories cannot support some features of distributed version control systems.
 Subversion certainly represents a great advance over CVS. More recent versions of Subversion have features such as merge tracking which make it approach commercial tools like Perforce in feature-richness, if not in performance and scalability. However, when compared to the new crop of distributed version control systems such as Git and Mercurial, it begins to show the limitations imposed by its original inspiration to be "a better CVS." As Linus Torvalds notably said, "There is no way to do CVS right" [9yLX5I].
 Nevertheless, if you are comfortable with the limitations of a centralized version control system, Subversion may be good enough for you.
 Commercial Version Control Systems
 The world of software tools moves fast, so this section is likely to go out of date. Check http://continuousdelivery.com for the most up-to-date information. At the time of writing, the only commercial VCSs that we are able to wholeheartedly recommend are:
-· Perforce. Superior performance, scalability, and excellent tool support. Perforce is used in some truly huge software development organizations.
-· AccuRev. Offers ClearCase-like ability to do stream-based development without the crippling administrative overhead and poor performance associated with ClearCase.
+ï¿½ Perforce. Superior performance, scalability, and excellent tool support. Perforce is used in some truly huge software development organizations.
+ï¿½ AccuRev. Offers ClearCase-like ability to do stream-based development without the crippling administrative overhead and poor performance associated with ClearCase.
 
 386
 
 Chapter 14 Advanced Version Control
 
-· BitKeeper. The first truly distributed version control system, and still the only commercial one.
+ï¿½ BitKeeper. The first truly distributed version control system, and still the only commercial one.
 Microsoft's Team Foundation Server (TFS) may be your default choice if you use Visual Studio--its tight integration is perhaps its only distinction. Otherwise, there is no good reason to use its source control offering, since it is essentially an inferior knock-off of Perforce. Subversion wins over TFS hands down. We strongly suggest that you avoid ClearCase, StarTeam, and PVCS wherever possible. Anybody still using Visual SourceSafe should immediately migrate to a tool which doesn't corrupt its database (a big no-no in a version control system) in quite so many situations5 [c5uyOn]. For an easy migration path, we'd suggest SourceGear's excellent product Vault (TFS also offers an easy migration path, but we cannot recommend it).
 Switch Off Pessimistic Locking
 If your version control system supports optimistic locking, in which editing a file in your local working copy doesn't prevent others from editing it in theirs, you should use it. Pessimistic locking, in which you must obtain an exclusive lock on a file in order to edit it, may seem like a good way to prevent merge conflicts. However, in practice it reduces the efficiency of the development process, especially in larger teams.
@@ -6458,11 +6464,11 @@ Chapter 14 Advanced Version Control
 
 Branching and Merging
 The ability to create branches, or streams, in a codebase is a first-class feature of every version control system. This operation creates a replica of the chosen baseline within the version control system. This replica can then be manipulated in the same way as (but independently from) the original, allowing the two to diverge. The main purpose of branches is to facilitate parallel development: the ability to work on two or more work streams at the same time without one affecting the other. For example, it is common to branch on release, allowing for ongoing development on mainline and bugfixing in the release branch. There are several other reasons why teams may choose to branch their code.6
-· Physical: branching of the system's physical configuration--branches are created for files, components, and subsystems.
-· Functional: branching of the system's functional configuration--branches are created for features, logical changes, both bugfixes and enhancements, and other significant units of deliverable functionality (e.g., patches, releases, and products).
-· Environmental: branching of the system's operating environment--branches are created for various aspects of the build and runtime platforms (compilers, windowing systems, libraries, hardware, operating systems, etc.) and/or for the entire platform.
-· Organizational: branching of the team's work efforts--branches are created for activities/tasks, subprojects, roles, and groups.
-· Procedural: branching of the team's work behaviors--branches are created to support various policies, processes, and states.
+ï¿½ Physical: branching of the system's physical configuration--branches are created for files, components, and subsystems.
+ï¿½ Functional: branching of the system's functional configuration--branches are created for features, logical changes, both bugfixes and enhancements, and other significant units of deliverable functionality (e.g., patches, releases, and products).
+ï¿½ Environmental: branching of the system's operating environment--branches are created for various aspects of the build and runtime platforms (compilers, windowing systems, libraries, hardware, operating systems, etc.) and/or for the entire platform.
+ï¿½ Organizational: branching of the team's work efforts--branches are created for activities/tasks, subprojects, roles, and groups.
+ï¿½ Procedural: branching of the team's work behaviors--branches are created to support various policies, processes, and states.
 These categories aren't mutually exclusive, but they provide an insight into the reasons why people branch. Of course, you could create branches across several dimensions at the same time; this is fine if the branches never have to interact with each other. However, this is normally not the case--usually we have to take a set of changes from one branch and copy it to another branch in a process known as merging.
 Before we get on to merging, it is worth thinking about the problems that branching creates. In most cases where you branch, your entire codebase is going to evolve separately in each branch--including test cases, configuration, database scripts, and so forth. First of all, it highlights the imperative of keeping absolutely everything in version control. Before you start branching your codebase, make sure that you're ready--ensure you have absolutely everything you need to build your software in version control.
 
@@ -6473,9 +6479,9 @@ Branching and Merging
 389
 
 Version Control Horror Stories: #1
-By far the most common reason to branch is functional. However, creating branches for a release is just the beginning. One large network infrastructure provider we worked with had branches for every major customer of their product. They also had subbranches for each bugfix and new feature. Version numbers for their software went w.x.y.z where w was a major version, x was a release, y was a customer identifier, and z was a build. We were called in because it took them 12­24 months to make a major release. One of the first problems we spotted was that their tests were in a separate version control repository from their code. As a result, they had a really hard time working out which tests applied to which build. This, in turn, prevented them from adding more tests to their codebase.
+By far the most common reason to branch is functional. However, creating branches for a release is just the beginning. One large network infrastructure provider we worked with had branches for every major customer of their product. They also had subbranches for each bugfix and new feature. Version numbers for their software went w.x.y.z where w was a major version, x was a release, y was a customer identifier, and z was a build. We were called in because it took them 12ï¿½24 months to make a major release. One of the first problems we spotted was that their tests were in a separate version control repository from their code. As a result, they had a really hard time working out which tests applied to which build. This, in turn, prevented them from adding more tests to their codebase.
 Branching and streaming may seem like a great way to solve many problems affecting the process of software development on large teams. However, the requirement to merge branches means it's important to think carefully before branching and to make sure you have a sensible process to support it. In particular, you need to define a policy for each branch describing its role in the delivery process and prescribing who is allowed to check into it and under what circumstances. For example, a small team might have a mainline which all developers can check into and a release branch that only the testing team is able to approve changes to. The testing team would then be responsible for merging bugfixes into the release branch.
-In a larger and more heavily regulated organization, each component or product might have a mainline that developers check into, and integration branches, release branches, and maintenance branches that only operations personnel are authorized to make changes to. Getting changes into these branches might require creating change requests and having the code pass a set of tests (manual or automated). There will be a promotion process defined, so that, for example, changes must go from mainline to the integration branch before they can be promoted to the release branch. Code line policies are discussed in more detail in Berczuk (2003), pp. 117­127.
+In a larger and more heavily regulated organization, each component or product might have a mainline that developers check into, and integration branches, release branches, and maintenance branches that only operations personnel are authorized to make changes to. Getting changes into these branches might require creating change requests and having the code pass a set of tests (manual or automated). There will be a promotion process defined, so that, for example, changes must go from mainline to the integration branch before they can be promoted to the release branch. Code line policies are discussed in more detail in Berczuk (2003), pp. 117ï¿½127.
 Merging
 Branches are like the infinitude of universes postulated by the many-worlds interpretation of quantum mechanics. Each one is completely independent and exists in blissful ignorance of the others. However, in real life, unless you are branching for releases or for spikes, you will reach a point where you need to take the changes you have made in one branch and apply them to another. Doing this can be very time-consuming, although pretty much every VCS on the market has some functionality to make it easier, and distributed VCSs make merging branches with no conflicts relatively straightforward.
 
@@ -6486,8 +6492,8 @@ Chapter 14 Advanced Version Control
 The real problem arises when two different and conflicting changes have been made in the two branches that you want to merge. Where changes literally overlap each other, your revision control system will detect them and warn you. However, your conflicts may just be differences in intent which are missed by the revision control system and "merged" automatically. When a long time passes between merges, merge conflicts are often symptoms of conflicting implementations of functionality, leading to rewrites of large chunks of the code in order to harmonize the changes that have occurred in the two branches. It is impossible to merge such changes without knowing what the authors of the code intended--so conversations have to happen, perhaps weeks after the code being merged was originally written.
 Semantic conflicts that are not caught by your version control system can be some of the most pernicious. For example, if Kate perform a refactoring that renames a class in one of her changes, and Dave introduces a new reference to the class in one of his changes, their merge will work just fine. In a statically typed language, this problem will be found when somebody tries to compile the code. In a dynamic language, it won't be found until run time. Much more subtle semantic conflicts can be introduced through merges, and without a comprehensive body of automated tests, you may not even catch them until a defect occurs.
 The longer you leave things before merging the branches, and the more people you have working on them, the more unpleasant your merge is going to be. There are ways of minimizing this pain:
-· You could create more branches to reduce the number of changes made to a given branch. For example, you could create a branch every time you start working on a feature; this is an example of "early branching." However, this means more work to keep track of all the branches, and you're just delaying the pain of having to do more merges.
-· You could be parsimonious about creating branches, perhaps creating a branch per release. This is an example of "deferred branching." To minimize the pain of merging, you could merge often, which means the merges will be less unpleasant. However, you have to remember to do it at regular intervals--every day, for example.
+ï¿½ You could create more branches to reduce the number of changes made to a given branch. For example, you could create a branch every time you start working on a feature; this is an example of "early branching." However, this means more work to keep track of all the branches, and you're just delaying the pain of having to do more merges.
+ï¿½ You could be parsimonious about creating branches, perhaps creating a branch per release. This is an example of "deferred branching." To minimize the pain of merging, you could merge often, which means the merges will be less unpleasant. However, you have to remember to do it at regular intervals--every day, for example.
 In fact, there are many possible branching patterns, each with their own policies, advantages, and disadvantages. We'll explore some possible branching styles later on in this chapter.
 Branches, Streams, and Continuous Integration
 Keen readers will notice that there is a tension between using branches and continuous integration. If different members of the team are working on separate branches or streams, then by definition they're not continuously integrating. Perhaps the most important practice that makes continuous integration possible
@@ -6587,22 +6593,22 @@ Distributed Version Control Systems
 In the last few years, distributed version control systems (DVCSs) have become increasingly popular. Several powerful open source DVCSs exist, such as Git [9Xc3HA] and Mercurial. In this section, we'll examine what is special about DVCSs and how to use them.
 What Is a Distributed Version Control System?
 The fundamental design principle behind a DVCS is that each user keeps a selfcontained, first-class repository on their computer. There is no need for a privileged "master" repository, although most teams designate one by convention (otherwise it is impossible to do continuous integration). From this design principle, many interesting characteristics follow.
-· You can start using a DVCS in a few seconds--just install it, and commit your changes into a local repository.
-· You can pull updates individually from other users without them having to check their changes into a central repository.
+ï¿½ You can start using a DVCS in a few seconds--just install it, and commit your changes into a local repository.
+ï¿½ You can pull updates individually from other users without them having to check their changes into a central repository.
 
 394
 
 Chapter 14 Advanced Version Control
 
-· You can push updates to a selected group of users without everyone being forced to take them.
-· Patches can effectively propagate through networks of users, making it much easier to approve or reject individual patches (a practice known as cherry-picking.
-· You can check your changes into source control while you are working offline.
-· You can commit incomplete functionality regularly to your local repository to check point without affecting other users.
-· You can easily modify, reorder, or batch up your commits locally before you send changes to anybody else (this is known as rebasing).
-· It's easy to try out ideas in a local repository without the need to create a branch in a central repository.
-· Due to the ability to batch check-ins locally, the central repository doesn't get hit so often, making DCVSs more scalable.
-· Local proxy repositories are easily established and synchronized, making it easy to provide high availability.
-· Since there are many copies of the full repository, DCVSs are more fault-tolerant, although master repositories should still be backed up.
+ï¿½ You can push updates to a selected group of users without everyone being forced to take them.
+ï¿½ Patches can effectively propagate through networks of users, making it much easier to approve or reject individual patches (a practice known as cherry-picking.
+ï¿½ You can check your changes into source control while you are working offline.
+ï¿½ You can commit incomplete functionality regularly to your local repository to check point without affecting other users.
+ï¿½ You can easily modify, reorder, or batch up your commits locally before you send changes to anybody else (this is known as rebasing).
+ï¿½ It's easy to try out ideas in a local repository without the need to create a branch in a central repository.
+ï¿½ Due to the ability to batch check-ins locally, the central repository doesn't get hit so often, making DCVSs more scalable.
+ï¿½ Local proxy repositories are easily established and synchronized, making it easy to provide high availability.
+ï¿½ Since there are many copies of the full repository, DCVSs are more fault-tolerant, although master repositories should still be backed up.
 If you think that using a DVCS sounds rather like everyone having their own SCCS or RCS, you are right. Where distributed version control systems differ from the approaches in the previous section is in the way they handle multiple users, or concurrency. Instead of using a central server with a version control system on it to ensure that several people can work on the same branch of the codebase at the same time, it takes the opposite approach: Every local repository is effectively a branch in its own right, and there is no "mainline" (Figure 14.3).
 Much of the work that goes into the design of a DVCS is spent on making it easy for users to share their changes with each other. As Mark Shuttleworth, founder of Ubuntu's parent company Canonical, notes, "The beauty of distributed version control comes in the form of spontaneous team formation, as people with a common interest in a bug or feature start to work on it, bouncing that work between them by publishing branches and merging from one another. These teams form more easily when the cost of branching and merging is lowered, and taking this to the extreme suggests that it's very worthwhile investing in the merge experience for developers."
 This phenomenon is especially visible with the advent of GitHub, BitBucket, and Google Code. Using these sites, it's easy for developers to make a copy of an existing project's repository, make a change, and then make their changes easily available to other users who might be interested in them. The maintainers
@@ -6627,9 +6633,9 @@ BitKeeper was the first widely used distributed version control system, and it w
 Following BitKeeper, a number of open source DVCS projects started. The first of these was Arch, begun by Tom Lord in 2001. Arch is no longer maintained, and has been superseded by Bazaar. Today there are many competing open source DVCSs. The most popular and feature-rich of these are Git (created by Linus Torvalds to maintain the Linux kernel and used by many other projects), Mercurial (used by the Mozilla Foundation, OpenSolaris, and OpenJDK), and Bazaar (used by Ubuntu). Other open source DVCSs under active development include Darcs and Monotone.
 Distributed Version Control Systems in Corporate Environments
 At the time of writing, commercial organizations had been slow to adopt DVCSs. Apart from general conservatism, there are three obvious objections to the use of DVCSs in companies.
-· Unlike centralized version control systems, which only store a single version of the repository on the user's computer, anyone who makes a copy of the local repository of a DVCS has its entire history.
-· Auditing and workflow are more slippery concepts in the realm of DVCS. Centralized version control systems require users to check all their changes into a central repository. DVCSs allow users to send changes to each other, and even to change history in their local repository, without these changes being tracked in the central system.
-· Git actually does allow you to change history. This may well be a red line in corporate environments subject to regulatory regimes, who will have to back up their repository regularly in order to keep a record of everything that has happened.
+ï¿½ Unlike centralized version control systems, which only store a single version of the repository on the user's computer, anyone who makes a copy of the local repository of a DVCS has its entire history.
+ï¿½ Auditing and workflow are more slippery concepts in the realm of DVCS. Centralized version control systems require users to check all their changes into a central repository. DVCSs allow users to send changes to each other, and even to change history in their local repository, without these changes being tracked in the central system.
+ï¿½ Git actually does allow you to change history. This may well be a red line in corporate environments subject to regulatory regimes, who will have to back up their repository regularly in order to keep a record of everything that has happened.
 In practice, these considerations should not provide a barrier to corporate adoption in many cases. While users could, in theory, avoid checking in to the designated central repository, it makes little sense to do so because, given a continuous integration system, it is impossible to get builds based on your code without pushing changes. Pushing changes to your colleagues without checking in centrally is often more trouble than it's worth--except of course in the case
 
 Distributed Version Control Systems
@@ -6671,7 +6677,7 @@ Stream-Based Version Control Systems
 399
 
 The merge process is a little safer than the Subversion equivalent because of step 4. This extra check-in step ensures that even if the merge is bad, you can step back to where you were before merging and try again. It also means that you have recorded a change representing just the merge, so that you can see precisely what the merge did and (assuming you haven't yet pushed your changes) undo it if you decide later that it was a poor one.
-You can repeat steps 1­8 as many times as you like before executing step 9 to send your changes to the continuous integration build. You can even use a great feature available in Mercurial and Git known as rebasing. This lets you change the history of your local repository, so you can (for example) roll up all your changes into one single commit. This way you can continue to check in to save your changes, merge changes others have made, and of course run your commit suite locally without affecting other users. When the functionality that you are working on is complete, you can rebase and send all of your changes to the master repository as a single commit.
+You can repeat steps 1ï¿½8 as many times as you like before executing step 9 to send your changes to the continuous integration build. You can even use a great feature available in Mercurial and Git known as rebasing. This lets you change the history of your local repository, so you can (for example) roll up all your changes into one single commit. This way you can continue to check in to save your changes, merge changes others have made, and of course run your commit suite locally without affecting other users. When the functionality that you are working on is complete, you can rebase and send all of your changes to the master repository as a single commit.
 As for continuous integration, it works exactly the same with a DVCS as it would with a centralized version control system. You can still have a central repository, and it will still have your deployment pipeline implementation triggering off it. However, a DVCS gives you the option to try out several other possible workflows if you prefer. We discuss these in detail in the "Distributed Version Control Systems" section on page 79.
 
 Until you commit changes from your local repository to the central repository that feeds your deployment pipeline, your changes aren't integrated. Committing changes frequently is a fundamental practice of continuous integration. For integration to take place, you must push changes to the central repository at least once a day, and ideally much more frequently than that. So, some of the benefits of DVCS can compromise the effectiveness of CI if misused.
@@ -6724,9 +6730,9 @@ Thus, medium and large teams can work on multiple pieces of functionality at the
 Chapter 14 Advanced Version Control
 
 Of course, in real life things are never quite so simple. Features are never really independent of one another and, especially if your team refactors as vigorously as it should, merge problems occur frequently as you promote large chunks of code between streams. So it is no surprise that integration issues are common as a result of:
-· Complex merges, as different teams change shared code in different ways.
-· Dependency management problems, when new features depend on code introduced in other features that haven't been promoted.
-· Integration issues, as integration and regression tests break on the release stream because the code is in a new configuration.
+ï¿½ Complex merges, as different teams change shared code in different ways.
+ï¿½ Dependency management problems, when new features depend on code introduced in other features that haven't been promoted.
+ï¿½ Integration issues, as integration and regression tests break on the release stream because the code is in a new configuration.
 These problems are made worse when you have more teams or more layers. This effect is often multiplicative, because a common reaction to having more teams is to create more layers. The intention is to isolate the impact of the teams on each other. One large company reported having five levels of streams: team level, domain level, architecture level, system level, and finally production level. Each change had to move through every level before getting to production. Needless to say, they faced significant problems getting releases out of the door as these issues regularly occurred upon every promotion.
 
 ClearCase and the Rebuilding-from-Source Antipattern
@@ -6765,9 +6771,9 @@ Develop on Mainline
 Develop on Mainline
 In this and the following sections, we'll look at various patterns for branching and merging, their various advantages and disadvantages, and the circumstances under which they are appropriate. We'll begin with developing on mainline, because this method of development is often overlooked. In fact, it is an extremely effective way of developing, and the only one which enables you to perform continuous integration.
 In this pattern, developers almost always check in to mainline. Branches are used only rarely. The benefits of developing on mainline include
-· Ensuring that all code is continuously integrated
-· Ensuring developers pick up each others' changes immediately
-· Avoiding "merge hell" and "integration hell" at the end of the project
+ï¿½ Ensuring that all code is continuously integrated
+ï¿½ Ensuring developers pick up each others' changes immediately
+ï¿½ Avoiding "merge hell" and "integration hell" at the end of the project
 In this pattern, in normal development, developers work on mainline, committing code at least once a day. When faced with the need to make a complex change, be it developing new functionality, refactoring part of the system, making far-reaching capacity improvements, or rearchitecting layers of the system, branches are not used by default. Instead, changes are planned and implemented as a set of small, incremental steps that keep tests passing and so do not break existing functionality. This is described at length in the "Keeping Your Application Releasable" section on page 346.
 Mainline development does not preclude branching. Rather, it means "that all ongoing development activities end up on a single codeline at some time" (Berczuk, 2003, p. 54). However, branches should only be created when they won't have to be merged back to mainline, such as when performing a release or spiking out a change. Berczuk (idem) quotes Wingerd and Seiward on the advantages of mainline development: "90% of SCM `process' is enforcing codeline promotion to compensate for lack of a mainline" (Wingerd, 1998).
 One of the consequences of mainline development is that not every check-in to mainline will be releasable. This may appear to be a knock-down refutation of the mainline development practice if you are used to branching for feature development or using stream-based development to promote changes up through several levels to a release stream. How do you manage large teams of developers working on multiple releases if you check every change in to mainline? The answer to this is good componentization of your software, incremental development, and feature hiding. This requires more care in architecture and development, but the benefits of not having an unpredictably long integration phase, where work from multiple streams has to be merged to create a viable release branch, far outweighs this effort.
@@ -6822,15 +6828,15 @@ Branch for Release
 The one situation when it's always acceptable to create a branch is shortly before a release. Once the branch is created, testing and validation of the release is done from code on the branch, while new development is performed on mainline.
 Creating a branch for release replaces the evil practice of the code freeze, in which checking in to version control is entirely switched off for days and sometimes weeks. By creating a release branch, developers can keep checking in to mainline, while changes to the release branch are made for critical bugfixes only. Branching by release is shown in Figure 14.2.
 In this pattern:
-· Features are always developed on mainline.
-· A branch is created when your code is feature-complete for a particular release and you want to start working on new features.
+ï¿½ Features are always developed on mainline.
+ï¿½ A branch is created when your code is feature-complete for a particular release and you want to start working on new features.
 
 Branch for Release
 
 409
 
-· Only fixes for critical defects are committed on branches, and they are merged into mainline immediately.
-· When you perform an actual release, this branch is optionally tagged (this step is mandatory if your version control system only manages changes on a per-file basis, like CVS, StarTeam, or ClearCase).
+ï¿½ Only fixes for critical defects are committed on branches, and they are merged into mainline immediately.
+ï¿½ When you perform an actual release, this branch is optionally tagged (this step is mandatory if your version control system only manages changes on a per-file basis, like CVS, StarTeam, or ClearCase).
 The scenario which motivates branching for release is as follows. The development team needs to start working on new features while the current release is being tested and prepared for deployment, and the testing team wants to be able to fix defects for the current release without affecting ongoing new feature development. In this scenario, it makes sense to logically separate work on new features from bugfixing on the branch. It is important to remember that bugfixes must ultimately be merged back into trunk; in general, it is wise to do this immediately after a bugfix is committed to a branch.
 In product development, maintenance releases are needed to address issues that must be fixed before the next version is ready. For example, security problems need to be fixed in point releases. Sometimes the line between features and bugfixes can be hard to see, leading to quite complex development on a branch. Paying customers still using earlier releases of the software may not be willing (or able) to upgrade to the newest version, and will need some features to be implemented on the older branch. Teams should always aim to minimize this as much as possible.
 This style of branching doesn't work very well on really large projects because it's hard for large teams or multiple teams to finish work on a release simultaneously. In this case, the ideal approach is to have a componentized architecture with a release branch for each component, so that teams can branch and move ahead on new work for their component while other teams are finishing their components. If this isn't possible, take a look at the branch by team pattern later on in this chapter and see if it makes more sense to apply that pattern. If you need to be able to cherry-pick features, take a look at the next pattern, branch by feature.
@@ -6845,12 +6851,12 @@ Branch by Feature
 This pattern is designed to make it easier for large teams to work simultaneously on features while keeping mainline in a releasable state. Every story or feature is developed on a separate branch. Only after a story is accepted by testers, it is merged to mainline so as to ensure that mainline is always releasable.
 This pattern is generally motivated by the desire to keep the trunk always releasable, and therefore do all of the development on a branch so you don't interfere with other developers or teams. Many developers don't like to have their work exposed and publicly available until they are completely done. In addition, it makes version control history more semantically rich if each commit represent a complete feature or a complete bugfix.
 There are some prerequisites for this pattern to work at all, let alone well.
-· Any changes from mainline must be merged onto every branch on a daily basis.
-· Branches must be short-lived, ideally less than a few days, never more than an iteration.
-· The number of active branches that exist at any time must be limited to the number of stories in play. Nobody should start a new branch unless the branch representing their previous story is merged back to mainline.
-· Consider having testers accept stories before they are merged. Only allow developers to merge to trunk once a story has been accepted.
-· Refactorings must be merged immediately to minimize merge conflicts. This constraint is important but can be painful, and further limits the utility of this pattern.
-· Part of the technical lead's role is to be responsible for keeping the trunk releasable. The tech lead should review all merges, perhaps in patch form. The tech lead has the right to reject patches that may potentially break the trunk.
+ï¿½ Any changes from mainline must be merged onto every branch on a daily basis.
+ï¿½ Branches must be short-lived, ideally less than a few days, never more than an iteration.
+ï¿½ The number of active branches that exist at any time must be limited to the number of stories in play. Nobody should start a new branch unless the branch representing their previous story is merged back to mainline.
+ï¿½ Consider having testers accept stories before they are merged. Only allow developers to merge to trunk once a story has been accepted.
+ï¿½ Refactorings must be merged immediately to minimize merge conflicts. This constraint is important but can be painful, and further limits the utility of this pattern.
+ï¿½ Part of the technical lead's role is to be responsible for keeping the trunk releasable. The tech lead should review all merges, perhaps in patch form. The tech lead has the right to reject patches that may potentially break the trunk.
 Having many long-lived branches is bad because of the combinatorial problem of merging. If you have four branches, each of them will only be merging from mainline, not with each other. All four branches are diverging. It only takes two branches performing a refactoring in a tightly coupled codebase to bring the entire team to a halt when one of them merges. It bears repeating that branching is fundamentally antithetical to continuous integration. Even if you perform continuous integration on every branch, it doesn't actually address the problem of integration, since you're not in fact integrating your branch. The nearest you can get to true continuous integration is to have your CI system merge every branch into a hypothetical "trunk" that represents what the trunk would look like if everybody were to merge, and run all automated tests against that. This is a practice we
 
 Branch by Feature
@@ -6864,8 +6870,8 @@ Branch by feature is often mentioned in the literature on the "feature crews" pa
 Our criticisms of branch by feature should not be interpreted as an attack on feature crews or the kanban development process--we have seen both of these development processes working extremely effectively.
 
 Distributed version control systems (DVCSs) are designed with exactly this kind of pattern in mind, and make it absurdly easy to merge to and from trunk and create patches against head. Open source projects that use GitHub (for example) can achieve large gains in development speed by making it easy for users to branch a repository to add a feature and then make the branch available to a committer to pull from. However, there are some key attributes of open source projects that make them especially suitable for this pattern.
-· Although many people can contribute to them, they are managed by a relatively small team of experienced developers who have the ultimate power to accept or reject patches.
-· Release dates are relatively flexible, allowing the committers of open source projects a wide degree of latitude in rejecting suboptimal patches. While this can also be true of commercial products, it is not the norm.
+ï¿½ Although many people can contribute to them, they are managed by a relatively small team of experienced developers who have the ultimate power to accept or reject patches.
+ï¿½ Release dates are relatively flexible, allowing the committers of open source projects a wide degree of latitude in rejecting suboptimal patches. While this can also be true of commercial products, it is not the norm.
 Therefore, in the open source world this pattern can be very effective. It can also work for commercial projects where the core development team is small and experienced. It can work in larger projects, but only where the following conditions apply: The codebase is modular and well factored; the delivery team is split into several small teams, each with experienced leaders; the whole team is committed to checking in and integrating with mainline frequently; and the delivery team is not subject to undue pressure to release which might lead to suboptimal decision making.
 We are cautious about recommending this pattern because it is so closely related to one of the most common antipatterns of commercial software development. In this evil, but extremely common, mirror universe, developers branch to create features. This branch stays isolated for a long time. Meanwhile, other developers
 
@@ -7027,7 +7033,7 @@ for releases.
 
 Level 1 - Consistent: Automated processes applied across whole
 application lifecycle
-Level 0 ­ Repeatable: Process documented and
+Level 0 ï¿½ Repeatable: Process documented and
 partly automated
 
 Automated build and test cycle every time a change
@@ -7060,7 +7066,7 @@ process. Version control in use for
 everything required to recreate software: source code, configuration, build and deploy scripts, data
 migrations.
 
-Level -1 ­ Regressive: processes unrepeatable,
+Level -1 ï¿½ Regressive: processes unrepeatable,
 poorly controlled, and reactive
 
 Manual processes for building software. No management of artifacts
@@ -7080,17 +7086,17 @@ Figure 15.1 Maturity model
 
 How to Use the Maturity Model
 The ultimate aim is for your organization to improve. The outcomes you want are:
-· Reduced cycle time, so that you can deliver value to your organization faster and increase profitability.
-· Reduced defects, so that you can improve your efficiency and spend less on support.
-· Increased predictability of your software delivery lifecycle to make planning more effective.
+ï¿½ Reduced cycle time, so that you can deliver value to your organization faster and increase profitability.
+ï¿½ Reduced defects, so that you can improve your efficiency and spend less on support.
+ï¿½ Increased predictability of your software delivery lifecycle to make planning more effective.
 
 420
 
 Chapter 15 Managing Continuous Delivery
 
-· The ability to adopt and maintain an attitude of compliance to any regulatory regime that you are subject to.
-· The ability to determine and manage the risks associated with software delivery effectively.
-· Reduced costs due to better risk management and fewer issues delivering software.
+ï¿½ The ability to adopt and maintain an attitude of compliance to any regulatory regime that you are subject to.
+ï¿½ The ability to determine and manage the risks associated with software delivery effectively.
+ï¿½ Reduced costs due to better risk management and fewer issues delivering software.
 We believe that this maturity model can act as a guide to help you achieve all of these outcomes. We recommend, as ever, that you apply the Deming cycle--plan, do, check, act.
 1. Use the model to classify your organization's configuration and release management maturity. You may find that different parts of your organization achieve different levels in each of the different categories.
 2. Choose an area to focus on where your immaturity is especially painful. Value stream mapping will help you identify areas that need improvement. This book will help you understand what each improvement brings to the table and how to implement it. You should decide which improvements make sense for your organization, estimate their costs and benefits, and prioritize. You should define acceptance criteria to specify the results that you expect and how they will be measured, so that you can decide if the changes were successful.
@@ -7133,15 +7139,15 @@ Project Lifecycle
 Inception
 This is most simply described as the phase before any production code is written. Typically, requirements are gathered and analyzed during this time, and the project is loosely scoped and planned. It can be tempting to dismiss this phase as being of low value, but even your hardcore agilista authors have learned from bitter experience that this phase needs to be carefully planned and executed for a software project to be successful.
 There are many deliverables from an inception, some of which will vary depending on methodology and the type of project. However, most inceptions should include the following:
-· A business case, including the estimated value of the project.
-· A list of high-level functional and nonfunctional requirements (addressing in particular capacity, availability, service continuity, and security) with just enough detail to be able to estimate the work involved and plan the project.
-· A release plan which includes a schedule of work and the cost associated with the project. In order to get this information, it is usual to estimate the relative size of the requirements, coding effort required, risk associated with each requirement, and a staffing plan.
-· A testing strategy.
-· A release strategy (more on this later).
-· An architectural evaluation, leading to a decision on the platform and frameworks to use.
-· A risk and issue log.
-· A description of the development lifecycle.
-· A description of the plan to execute this list.
+ï¿½ A business case, including the estimated value of the project.
+ï¿½ A list of high-level functional and nonfunctional requirements (addressing in particular capacity, availability, service continuity, and security) with just enough detail to be able to estimate the work involved and plan the project.
+ï¿½ A release plan which includes a schedule of work and the cost associated with the project. In order to get this information, it is usual to estimate the relative size of the requirements, coding effort required, risk associated with each requirement, and a staffing plan.
+ï¿½ A testing strategy.
+ï¿½ A release strategy (more on this later).
+ï¿½ An architectural evaluation, leading to a decision on the platform and frameworks to use.
+ï¿½ A risk and issue log.
+ï¿½ A description of the development lifecycle.
+ï¿½ A description of the plan to execute this list.
 These deliverables should contain enough detail that work can begin on the project, with the aim of having something delivered in a few months at most, and much less if possible. A reasonable maximum project horizon, in our experience, is about three to six months--with a preference for the lower limit. A go/no-go decision should be made following the inception process as to whether the project should go ahead, based on the estimated value of the project, estimated costs, and the predicted risks.
 The most important part of an inception--the bit that ensures that the project has a chance of success--is getting all the stakeholders together face-to-face. That means developers, customers, operations people, and management. The conversations between these people, leading to a shared understanding of the problem
 
@@ -7154,29 +7160,29 @@ These deliverables should be written down, but since they are living documents, 
 One word of warning: Every decision you make at this stage of a project is based on speculation, and will change. What you produce is a best guess, based on the small amount of information you have. Expending too much effort at this stage of the project--the stage when you know the least that you will ever know about it--is a mistake. These are essential planning discussions and direction setting, but expect to refine and redefine many of them as you go. Successful projects cope with change successfully. Those that attempt to avoid it often fail. Detailed planning, estimation, or design at this stage of a project are wasted time and money. Broad-based decisions are the only kind of decisions durable at this stage.
 Initiation
 Following inception, you should establish initial project infrastructure. This is the initiation phase that will typically last one or two weeks. The following list describes typical initiation stage activities.
-· Making sure that the team (analysts and managers, as well as developers) has the hardware and software that they need to begin work
-· Making sure that basic infrastructure is in place--such as an Internet connection, a whiteboard, paper and pens, a printer, food, and drinks
-· Creating email accounts and assigning people permissions to access resources
-· Setting up version control
-· Setting up a basic continuous integration environment
-· Agreeing upon roles, responsibilities, working hours, and meeting times (for example, stand-ups, planning meetings, and showcases)
-· Preparing the work for the first week and agreeing on targets (not deadlines)
-· Creating a simple test environment and test data
-· A slightly more detailed look at the intended system design: exploring the possibilities is really the aim at this stage
+ï¿½ Making sure that the team (analysts and managers, as well as developers) has the hardware and software that they need to begin work
+ï¿½ Making sure that basic infrastructure is in place--such as an Internet connection, a whiteboard, paper and pens, a printer, food, and drinks
+ï¿½ Creating email accounts and assigning people permissions to access resources
+ï¿½ Setting up version control
+ï¿½ Setting up a basic continuous integration environment
+ï¿½ Agreeing upon roles, responsibilities, working hours, and meeting times (for example, stand-ups, planning meetings, and showcases)
+ï¿½ Preparing the work for the first week and agreeing on targets (not deadlines)
+ï¿½ Creating a simple test environment and test data
+ï¿½ A slightly more detailed look at the intended system design: exploring the possibilities is really the aim at this stage
 
 Project Lifecycle
 
 425
 
-· Identify and mitigate any analysis, development, and testing risks by doing spikes (throwaway implementations of a particular requirement designed as a proof of concept)
-· Developing the story or requirement backlog
-· Setting up the project structure and using the simplest possible story, the architectural equivalent of a "hello world," including a build script and some tests to get continuous integration under way
+ï¿½ Identify and mitigate any analysis, development, and testing risks by doing spikes (throwaway implementations of a particular requirement designed as a proof of concept)
+ï¿½ Developing the story or requirement backlog
+ï¿½ Setting up the project structure and using the simplest possible story, the architectural equivalent of a "hello world," including a build script and some tests to get continuous integration under way
 It is vitally important to assign enough time to comfortably complete these tasks. It is unproductive and demoralizing to attempt to start work if nobody has acceptance criteria for the initial requirements being developed, and if team members are using poorly provisioned computers with bad tools and flaky Internet access.
 While this stage in the project is really targeted at getting the basic project infrastructure in place, and should not be treated as a true development iteration, it is extremely useful to use a real-world problem to get things working. Building a test environment when there is nothing to test, or setting up a version control system when there is nothing to store, is a sterile and inefficient way to start. Pick the simplest possible requirement that you can find that is, nevertheless, solving a real problem and establishing some initial directions in terms of design. Use this story to make sure that you can version-control the results properly, that you can run your tests in your CI environment, and that you can deploy the results to a manual test environment. The target is to get this story complete and demonstrable, and establish all of the supporting infrastructure, by the end of the initiation phase.
 Once you're done, you can get started on actual development.
 Develop and Release
 Naturally, we would recommend an iterative and incremental process for developing and releasing software. The only time this might not be applicable is when you are working on a large defense project involving many parties--but even the space shuttle software was implemented using an iterative process.1 Although many people agree on the benefits of an iterative process, we have often seen teams that claim to be doing iterative development but actually aren't. So it's worth reiterating what we consider to be the essential, basic conditions for an iterative process.
-· Your software is always working, as demonstrated by an automated test suite including unit, component, and end-to-end acceptance tests that run every time you check in.
+ï¿½ Your software is always working, as demonstrated by an automated test suite including unit, component, and end-to-end acceptance tests that run every time you check in.
 
 1. ACM, 1984, vol. 27 issue 9.
 
@@ -7184,14 +7190,14 @@ Naturally, we would recommend an iterative and incremental process for developin
 
 Chapter 15 Managing Continuous Delivery
 
-· You deploy working software, at every iteration, into a production-like environment to showcase it to users (this is what makes the process incremental in addition to being iterative).
-· Iterations are no longer than two weeks.
+ï¿½ You deploy working software, at every iteration, into a production-like environment to showcase it to users (this is what makes the process incremental in addition to being iterative).
+ï¿½ Iterations are no longer than two weeks.
 There are several reasons for using an iterative process:
-· If you prioritize features with high business value, you may find that your software starts being useful long before the end of your project. There are often good reasons not to launch new software the moment that it has useful functionality--but there is no better way to turn worrying over the project's eventual success into excitement over the new features than a working system that people can use.
-· You get regular feedback from your customer or sponsor on what works and what requirements need clarifying or changing, which in turn means that what you are doing is considerably more likely to be useful. Nobody knows what they really want at the beginning of a project.
-· Things are only really done when the customer signs them off. Having regular showcases where this happens is the only remotely reliable way to track progress.
-· Having your software working at all times (because you have to showcase it) instills discipline in your team that prevents problems such as long integration phases, refactoring exercises that break everything, and experiments that lose focus and go nowhere.
-· Perhaps most importantly, iterative methods place an emphasis on having production-ready code at the end of each iteration. This is the only really useful measure of progress in software projects, and one that only iterative methods provide.
+ï¿½ If you prioritize features with high business value, you may find that your software starts being useful long before the end of your project. There are often good reasons not to launch new software the moment that it has useful functionality--but there is no better way to turn worrying over the project's eventual success into excitement over the new features than a working system that people can use.
+ï¿½ You get regular feedback from your customer or sponsor on what works and what requirements need clarifying or changing, which in turn means that what you are doing is considerably more likely to be useful. Nobody knows what they really want at the beginning of a project.
+ï¿½ Things are only really done when the customer signs them off. Having regular showcases where this happens is the only remotely reliable way to track progress.
+ï¿½ Having your software working at all times (because you have to showcase it) instills discipline in your team that prevents problems such as long integration phases, refactoring exercises that break everything, and experiments that lose focus and go nowhere.
+ï¿½ Perhaps most importantly, iterative methods place an emphasis on having production-ready code at the end of each iteration. This is the only really useful measure of progress in software projects, and one that only iterative methods provide.
 An often-cited reason not to do iterative development is when the project as a whole won't deliver any value until some huge quantity of features is complete. While this threshold may be real for many projects, the last point in our list above is especially applicable in this situation. When managing large projects that aren't developed iteratively, all measures of progress are subjective, and there is no way to quantify the project's actual progress. The nice charts you see in noniterative methods are based on estimations of time remaining and guesses at the risks and costs of later integration, deployment, and testing. Iterative development provides objective measures of the rate of progress based on the rate at which development teams produce working software that users agree is fit for purpose. Only working code that is production-ready, code that you can interact with, even if only in a UAT environment, provides any guarantee that any given feature is really finished.
 
 Project Lifecycle
@@ -7201,9 +7207,9 @@ Project Lifecycle
 Crucially, production-readiness also means that the software has had its nonfunctional requirements tested on a production-like environment with a production-sized data set. Any nonfunctional characteristics you care about, such as capacity, availability, security, and so forth, should be tested using a realistic load and usage pattern. These tests should be automated and run against every build of the software that passes the acceptance tests so that you know your software is always fit for use. We cover this in more detail in Chapter 9, "Testing Nonfunctional Requirements."
 The keys to an iterative development process are prioritization and parallelization. Work is prioritized so that analysts can begin analyzing the most valuable features, feed work to developers, and thence to testers and on to a showcase to real users or their proxies. Using techniques from lean manufacturing, this work can be parallelized and the number of people working on each task altered to remove bottlenecks. This leads to a very efficient development process.
 There are many approaches to iterative and incremental development. One of the most popular is Scrum, an agile development process. We have seen Scrum succeed on many projects, but we have also seen it fail. Here are the three most common reasons for failure:
-· Lack of commitment. The transition to Scrum can be a scary process, especially for project leadership. Make sure that everybody meets regularly to discuss what is going on, and establish regular retrospective meetings to analyze performance and seek improvements. Agile processes rely on transparency, collaboration, discipline, and continuous improvement. The sudden wealth of useful information that appears when agile processes are implemented can thrust inconvenient truths, previously hidden, into the spotlight. The key is to realize that these issues were there all along. Now that you know about them, you can fix them.
-· Ignoring good engineering. Martin Fowler, amongst others, has described what happens if people following Scrum think that you can ignore technical practices like test-driven development, refactoring, and continuous integration [99QFUz]. A codebase mangled by junior developers won't be automatically fixed by any development process alone.
-· Adapting until the process is no longer an agile one. It is common for people to "adapt" agile processes into something they think will work better in their particular organization. Agile processes are designed to be tailored to meet the needs of individual projects, after all. However, the elements of agile processes often interact in subtle ways, and it is very easy to misunderstand where the value lies, particularly for people with no background in these iterative processes. We can't emphasize enough how important it is to start by assuming that what is written is correct, and first follow the process as written. Only then, once you have seen how it works, should you start adapting it to your organization.
+ï¿½ Lack of commitment. The transition to Scrum can be a scary process, especially for project leadership. Make sure that everybody meets regularly to discuss what is going on, and establish regular retrospective meetings to analyze performance and seek improvements. Agile processes rely on transparency, collaboration, discipline, and continuous improvement. The sudden wealth of useful information that appears when agile processes are implemented can thrust inconvenient truths, previously hidden, into the spotlight. The key is to realize that these issues were there all along. Now that you know about them, you can fix them.
+ï¿½ Ignoring good engineering. Martin Fowler, amongst others, has described what happens if people following Scrum think that you can ignore technical practices like test-driven development, refactoring, and continuous integration [99QFUz]. A codebase mangled by junior developers won't be automatically fixed by any development process alone.
+ï¿½ Adapting until the process is no longer an agile one. It is common for people to "adapt" agile processes into something they think will work better in their particular organization. Agile processes are designed to be tailored to meet the needs of individual projects, after all. However, the elements of agile processes often interact in subtle ways, and it is very easy to misunderstand where the value lies, particularly for people with no background in these iterative processes. We can't emphasize enough how important it is to start by assuming that what is written is correct, and first follow the process as written. Only then, once you have seen how it works, should you start adapting it to your organization.
 
 428
 
@@ -7211,14 +7217,14 @@ Chapter 15 Managing Continuous Delivery
 
 This last point was so troubling to Nokia that they created a test to evaluate whether their teams were really doing Scrum. It is divided into two parts.
 Are you doing iterative development?
-· Iterations must be time-boxed to less than four weeks.2
-· Software features must be tested and working at the end of each iteration.
-· The iteration must start before the specification is complete.
+ï¿½ Iterations must be time-boxed to less than four weeks.2
+ï¿½ Software features must be tested and working at the end of each iteration.
+ï¿½ The iteration must start before the specification is complete.
 Are you doing Scrum?
-· Do you know who the product owner is?
-· Is the product backlog prioritized by business value?
-· Does the product backlog have estimates created by the team?
-· Are there project managers (or others) disrupting the work of the team?
+ï¿½ Do you know who the product owner is?
+ï¿½ Is the product backlog prioritized by business value?
+ï¿½ Does the product backlog have estimates created by the team?
+ï¿½ Are there project managers (or others) disrupting the work of the team?
 To clarify the last point, we believe project managers can play a useful role by managing risks, removing roadblocks such as a lack of resources, and facilitating efficient delivery. But there are some project managers who do none of these things.
 Operation
 Typically, the first release is not the last. What happens next very much depends on the project. The development and release phase may continue at full tilt, or the team might be reduced in size. If the project is a pilot, the opposite may happen and the team may grow.
@@ -7234,14 +7240,14 @@ A Risk Management Process
 best feedback you will get is that from real users; the key here is to release your software for real use as soon as you can. Then you can react to any problems or feedback about the usability and utility of your software as quickly as possible. Despite this, there are some differences to consider between the phases of the project before and after the system has been released for general use. Change management, particularly that concerned with data generated by the application and its public interfaces, becomes a significant issue once the first public release has occurred (see Chapter 12, "Managing Data").
 A Risk Management Process
 Risk management is the process of making sure that:
-· The main project risks have been identified.
-· Appropriate mitigating strategies have been put in place to manage them.
-· Risks continue to be identified and managed throughout the course of the project.
+ï¿½ The main project risks have been identified.
+ï¿½ Appropriate mitigating strategies have been put in place to manage them.
+ï¿½ Risks continue to be identified and managed throughout the course of the project.
 There are several key characteristics that a risk management process should have:
-· A standard structure for project teams to report status
-· Regular updates, following the standard, from the project team on their progress
-· A dashboard where program managers can track current status and trends across all projects
-· Regular audits by someone outside the project to ensure that risks are being managed effectively
+ï¿½ A standard structure for project teams to report status
+ï¿½ Regular updates, following the standard, from the project team on their progress
+ï¿½ A dashboard where program managers can track current status and trends across all projects
+ï¿½ Regular audits by someone outside the project to ensure that risks are being managed effectively
 Risk Management 101
 It is important to note that not all risks need to have a mitigating strategy put in place. Some events are so catastrophic that, should they occur, nothing could be done to mitigate them. A huge asteroid destroying all life on the planet is an extreme example, but you take our point. There are often real-life project-specific risks that would lead to the project being cancelled, such as legislative or economic changes, changes to the management structure of an organization, or the removal of a key project sponsor. There is little point planning a mitigation strategy that would be too costly or time-consuming to be worth putting in place--for example, a multisite multinode backup system for a small company's time and expenses application.
 
@@ -7264,9 +7270,9 @@ A Risk Management Process
 thought possible. We have all experienced or heard horror stories about projects that deliver no code until past the deployment date, or systems that deployed but failed instantly because of capacity problems. Throughout this phase, the question that you need to ask yourself is, "What can possibly go wrong?" because if you don't ask yourself the question, you won't have any answers ready when things do go wrong.
 In many ways the real value of risk management is that it establishes a context for development, and so engenders a thoughtful, risk-aware approach to development activities. The act of considering, as a team, what may go wrong can be a source of concrete requirements that may otherwise have been missed, but it also allows us to pay enough attention to a risk to avert it before it becomes an issue. If you think that a third-party supplier may slip their deadline, you will monitor their progress ahead of time, and thus have time to plan for and accommodate the slip before the deadline arrives.
 In this phase you are aiming to identify, track, and manage any manageable risks that you can think of. There are several ways of identifying risks:
-· Look at the deployment plan.
-· Have regular project miniretrospectives after every showcase and get the team to brainstorm risks during this meeting.
-· Make risk identification part of your daily stand up meeting.
+ï¿½ Look at the deployment plan.
+ï¿½ Have regular project miniretrospectives after every showcase and get the team to brainstorm risks during this meeting.
+ï¿½ Make risk identification part of your daily stand up meeting.
 There are several common build-related and deployment-related risks to look out for--we'll cover these in the next section.
 How to Do a Risk-Management Exercise
 It's important not to disturb a team that is regularly delivering working software on schedule with few defects. However, it is important to discover quickly if there is a project that appears to be doing fine from the outside but is actually going to fail. Fortunately, one of the great benefits of iterative methods is that it is relatively simple to discover if this is the case. If you are doing iterative development, you should be showcasing working software at the end of every iteration from a production-like environment. This is possibly the best demonstration of tangible progress. The rate at which your team produces real working code, good enough for real users to use, and deploys it into a production-like host environment--velocity--doesn't lie, even if estimates do.
@@ -7278,20 +7284,20 @@ Chapter 15 Managing Continuous Delivery
 
 validate your results against reality, which is an extremely hard and unreliable process, as anybody who has tried to do it can verify.
 A good starting point to analyze any project is to pose these questions (this list has worked well for us on several projects):
-· How are you tracking progress?
-· How are you preventing defects?
-· How are you discovering defects?
-· How are you tracking defects?
-· How do you know a story is finished?
-· How are you managing your environments?
-· How are you managing configuration, such as test cases, deployment scripts, environment and application configuration, database scripts, and external libraries?
-· How often do you showcase working features?
-· How often do you do retrospectives?
-· How often do you run your automated tests?
-· How are you deploying your software?
-· How are you building your software?
-· How are you ensuring that your release plan is workable and acceptable to the operations team?
-· How are you ensuring that your risk-and-issue log is up-to-date?
+ï¿½ How are you tracking progress?
+ï¿½ How are you preventing defects?
+ï¿½ How are you discovering defects?
+ï¿½ How are you tracking defects?
+ï¿½ How do you know a story is finished?
+ï¿½ How are you managing your environments?
+ï¿½ How are you managing configuration, such as test cases, deployment scripts, environment and application configuration, database scripts, and external libraries?
+ï¿½ How often do you showcase working features?
+ï¿½ How often do you do retrospectives?
+ï¿½ How often do you run your automated tests?
+ï¿½ How are you deploying your software?
+ï¿½ How are you building your software?
+ï¿½ How are you ensuring that your release plan is workable and acceptable to the operations team?
+ï¿½ How are you ensuring that your risk-and-issue log is up-to-date?
 These questions are not prescriptive, which is important because every team needs to have a certain amount of flexibility to choose the most suitable process for their specific needs. Instead, they are open-ended, ensuring that you can get as much information as possible on the project's context and approach. However, they focus on the outcome, so you can validate that the team will actually be able to deliver, and you will be able to spot any warning signs.
 Common Delivery Problems--Their Symptoms and Causes
 In this section we describe a few common problems that arise during the process of building, deploying, testing, and releasing software. Although almost anything could go wrong with your project, some things are more likely to go wrong than others. It is usually quite hard to work out what is actually going wrong with your project--all you have is symptoms. When things do go wrong, work out
@@ -7306,62 +7312,62 @@ Once you know the root cause, you have to actually fix it. However this is beyon
 Infrequent or Buggy Deployments
 Problem It takes a long time to deploy the build, and the deployment process is brittle.
 Symptoms
-· It takes a long time for bugs to be closed by testers. Note that this symptom may not be exclusively caused by infrequent deployments, but it is one possible root cause.
-· It takes a long time for stories to be tested or signed off by the customer.
-· Testers are finding bugs that developers fixed a long time ago.
-· Nobody trusts the UAT, performance, or CI environments, and people are skeptical as to when a release will be available.
-· Showcases rarely happen.
-· The application can rarely be demonstrated to be working.
-· The team's velocity (rate of progress) is slower than expected.
+ï¿½ It takes a long time for bugs to be closed by testers. Note that this symptom may not be exclusively caused by infrequent deployments, but it is one possible root cause.
+ï¿½ It takes a long time for stories to be tested or signed off by the customer.
+ï¿½ Testers are finding bugs that developers fixed a long time ago.
+ï¿½ Nobody trusts the UAT, performance, or CI environments, and people are skeptical as to when a release will be available.
+ï¿½ Showcases rarely happen.
+ï¿½ The application can rarely be demonstrated to be working.
+ï¿½ The team's velocity (rate of progress) is slower than expected.
 Possible causes There are many possible reasons. Here are a few of the commonest causes:
-· The deployment process is not automated.
-· There is not enough hardware available.
-· The hardware and operating system's configuration are not managed correctly.
-· The deployment process depends on systems outside the team's control.
+ï¿½ The deployment process is not automated.
+ï¿½ There is not enough hardware available.
+ï¿½ The hardware and operating system's configuration are not managed correctly.
+ï¿½ The deployment process depends on systems outside the team's control.
 
 434
 
 Chapter 15 Managing Continuous Delivery
 
-· Not enough people understand the build and deployment process.
-· Testers, developers, analysts, and operations personnel are not collaborating sufficiently during development.
-· Developers are not being disciplined about keeping the application working by making small, incremental changes, and so frequently break existing functionality.
+ï¿½ Not enough people understand the build and deployment process.
+ï¿½ Testers, developers, analysts, and operations personnel are not collaborating sufficiently during development.
+ï¿½ Developers are not being disciplined about keeping the application working by making small, incremental changes, and so frequently break existing functionality.
 Poor Application Quality
 Problem Delivery teams are failing to implement an effective testing strategy.
 Symptoms
-· Regression bugs keep popping up.
-· The number of defects keeps increasing even when your team spends most of its time fixing them (of course this symptom will only be manifested if you have an effective testing process).
-· Customers complain of a poor-quality product.
-· Developers groan and look horrified whenever a new feature request arrives.
-· Developers complain about the maintainability of the code, but nothing ever gets better.
-· It takes an ever-increasing amount of time to implement new functionality, and the team starts falling behind.
+ï¿½ Regression bugs keep popping up.
+ï¿½ The number of defects keeps increasing even when your team spends most of its time fixing them (of course this symptom will only be manifested if you have an effective testing process).
+ï¿½ Customers complain of a poor-quality product.
+ï¿½ Developers groan and look horrified whenever a new feature request arrives.
+ï¿½ Developers complain about the maintainability of the code, but nothing ever gets better.
+ï¿½ It takes an ever-increasing amount of time to implement new functionality, and the team starts falling behind.
 Possible causes There are essentially two sources of this problem: ineffective collaboration between testers and the rest of the delivery team, and poorly implemented or inadequate automated tests.
-· Testers do not collaborate with developers during development of features.
-· Stories or features are marked as "done" without comprehensive automated tests written, without being signed off by testers, or without being showcased to users from a production-like environment.
-· Defects are routinely entered into a backlog without being fixed on the spot with an automated test to detect regression problems.
-· The developers or testers don't have sufficient experience developing automated test suites.
+ï¿½ Testers do not collaborate with developers during development of features.
+ï¿½ Stories or features are marked as "done" without comprehensive automated tests written, without being signed off by testers, or without being showcased to users from a production-like environment.
+ï¿½ Defects are routinely entered into a backlog without being fixed on the spot with an automated test to detect regression problems.
+ï¿½ The developers or testers don't have sufficient experience developing automated test suites.
 
 Common Delivery Problems--Their Symptoms and Causes
 
 435
 
-· The team does not understand the most effective types of tests to write for the technology or platform that they are working on.
-· The developers are working without sufficient test coverage, perhaps because their project management doesn't allow them time to implement automated testing.
-· The system is a prototype that will be discarded (though we have come across a few important production systems that were originally developed as prototypes but were never discarded).
+ï¿½ The team does not understand the most effective types of tests to write for the technology or platform that they are working on.
+ï¿½ The developers are working without sufficient test coverage, perhaps because their project management doesn't allow them time to implement automated testing.
+ï¿½ The system is a prototype that will be discarded (though we have come across a few important production systems that were originally developed as prototypes but were never discarded).
 Please note that it is, of course, possible to go over the top with automated tests--we know of one project where the entire team spent several weeks writing nothing but tests. When the customer discovered that there was no working software, the team was fired. However, this cautionary tale should be taken in context: The most common failure mode, by far, is that there is too little automated testing, not too much.
 Poorly Managed Continuous Integration Process
 Problem The build process is not properly managed.
 Symptoms
-· Developers don't check in often enough (at least once a day).
-· The commit stage is permanently broken.
-· There is a high number of defects.
-· There is a long integration phase before each release.
+ï¿½ Developers don't check in often enough (at least once a day).
+ï¿½ The commit stage is permanently broken.
+ï¿½ There is a high number of defects.
+ï¿½ There is a long integration phase before each release.
 Possible causes
-· The automated tests take too long to run.
-· The commit stage takes too long to run (less than five minutes is ideal, more than ten minutes is unacceptable).
-· The automated tests fail intermittently, giving false positives.
-· Nobody is empowered to revert check-ins.
-· Not enough people understand, and can make changes to, the CI process.
+ï¿½ The automated tests take too long to run.
+ï¿½ The commit stage takes too long to run (less than five minutes is ideal, more than ten minutes is unacceptable).
+ï¿½ The automated tests fail intermittently, giving false positives.
+ï¿½ Nobody is empowered to revert check-ins.
+ï¿½ Not enough people understand, and can make changes to, the CI process.
 
 436
 
@@ -7370,12 +7376,12 @@ Chapter 15 Managing Continuous Delivery
 Poor Configuration Management
 Problem Environments can't be commissioned, and applications installed reliably, using an automated process.
 Symptoms
-· Mysterious failures in production environments. · New deployments are tense, scary events. · Large teams are dedicated to environment configuration and management. · Deployments to production often have to be rolled back or patched. · Unacceptable downtime of production environment.
+ï¿½ Mysterious failures in production environments. ï¿½ New deployments are tense, scary events. ï¿½ Large teams are dedicated to environment configuration and management. ï¿½ Deployments to production often have to be rolled back or patched. ï¿½ Unacceptable downtime of production environment.
 Possible causes
-· UAT and production environments are different. · A poor or badly enforced change management process for making changes
-to production and staging environments. · Insufficient collaboration between operations, data management teams,
-and delivery teams. · Ineffective monitoring of production and staging environments to detect
-incidents. · Insufficient instrumentation and logging built into applications. · Insufficient testing of the nonfunctional requirements of applications.
+ï¿½ UAT and production environments are different. ï¿½ A poor or badly enforced change management process for making changes
+to production and staging environments. ï¿½ Insufficient collaboration between operations, data management teams,
+and delivery teams. ï¿½ Ineffective monitoring of production and staging environments to detect
+incidents. ï¿½ Insufficient instrumentation and logging built into applications. ï¿½ Insufficient testing of the nonfunctional requirements of applications.
 
 Compliance and Auditing
 Many large companies are required to comply with legally binding regulations that govern their industry. For example, all US registered public companies are required to comply with the Sarbanes-Oxley Act of 2002 (often abbreviated to Sarbox or SOX). US health care companies have to comply with the provisions of HIPAA. Systems that deal with credit card information must conform to the PCI DSS standard. Pretty much every field is regulated in one way or another, and IT systems frequently have to be designed with some regulations in mind.
@@ -7387,12 +7393,12 @@ Compliance and Auditing
 
 in environments that define close controls on the software release process. Many such regulatory regimes require audit trails that make it possible to identify, for every change in a production environment, what were the lines of code that it came from, who touched them, and who approved the steps in the process. Such regulations are common in many industries from finance to health care.
 Here are some common strategies we have seen employed for enforcing these kinds of regulations:
-· Locking down who is able to access "privileged" environments.
-· Creating and maintaining an effective and efficient change management process for making changes to privileged environments.
-· Requiring approvals from management before deployments can be performed.
-· Requiring every process, from building to release, to be documented.
-· Creating authorization barriers to ensure that the people who create the software are not able to deploy it into production environments, as a protection against potential malicious interventions.
-· Requiring every deployment to be audited to see exactly what changes are being made.
+ï¿½ Locking down who is able to access "privileged" environments.
+ï¿½ Creating and maintaining an effective and efficient change management process for making changes to privileged environments.
+ï¿½ Requiring approvals from management before deployments can be performed.
+ï¿½ Requiring every process, from building to release, to be documented.
+ï¿½ Creating authorization barriers to ensure that the people who create the software are not able to deploy it into production environments, as a protection against potential malicious interventions.
+ï¿½ Requiring every deployment to be audited to see exactly what changes are being made.
 Strategies like these are essential in organizations subject to regulation, and can lead to drastic reductions in downtime and defect counts. Nonetheless they have a bad reputation because it is all too easy to implement them in ways that make change more difficult. However, the deployment pipeline makes it possible to enforce these strategies fairly easily while enabling an efficient delivery process. In this section, we present some principles and practices to ensure compliance with such regulatory regimes while maintaining short cycle times.
 Automation over Documentation
 Many companies insist that documentation is central to auditing. We beg to differ. A piece of paper that says you did something in a certain way is no guarantee that you actually did that thing. The world of consultancy abounds in tales of people passing (for example) ISO 9001 audits by supplying a bunch of documents which "proved" they had implemented them and coaching their staff on how to give the correct answers when questioned by inspectors.
@@ -7407,8 +7413,8 @@ Developer: "Oh, we changed the way deployment works. You need to copy this new s
 Automation solves all of these problems. Automated scripts are the documentation of your processes that must work. By enforcing their use, you ensure both that they are up-to-date and that the process has been performed precisely as you intend.
 Enforcing Traceability
 It is often necessary to be able to trace the history of changes, from what is in production to the source control versions that produced it. There are two practices that help with this process that we want to emphasize.
-· Only create binaries once, and deploy the same binaries into production that you created in the first stage of your build process. You can ensure that the binaries are the same by taking a hash of them (using MD5 or SHA1, for example), and storing them in a secure database. Many tools will do this for you automatically.
-· Use a fully automated process to take your binaries through the deployment, test, and release process which records who did what when. Again, there are several tools on the market that can help with this.
+ï¿½ Only create binaries once, and deploy the same binaries into production that you created in the first stage of your build process. You can ensure that the binaries are the same by taking a hash of them (using MD5 or SHA1, for example), and storing them in a secure database. Many tools will do this for you automatically.
+ï¿½ Use a fully automated process to take your binaries through the deployment, test, and release process which records who did what when. Again, there are several tools on the market that can help with this.
 Even with these precautions, there is a window when unauthorized changes can be introduced: when the binaries are first created from source code. All it takes is somebody gaining access to the box where this is done and inserting files into the filesystem during the compile or assembly process for this to happen. One way to solve this problem is to create binaries in a single step, using an automated process which executes on a box which is access-controlled. In this case it is essential to be able to provision and manage this environment automatically so that it is possible to debug any problems with the creation process.
 
 Access Control and Enforcing Traceability
@@ -7424,37 +7430,37 @@ Working in Silos
 It is often the case that large organizations have separate departments for different functions. Many organizations have independent teams for development, testing, operations, configuration management, data management, and architecture. In much of this book we have promoted open and free communication and collaboration between and within teams, so there are some dangers to creating barriers between the parts of your organization responsible for different aspects of software creation and release. However, there are some responsibilities that should clearly belong in one group and not another. In regulated environments, many important activities are subject to review by auditors and security teams, whose job it is to ensure that the organization is not exposed to legal risks or security breaches of any kind.
 Such separation of responsibilities, at the right point and managed in the right way, need not be a bad thing. In theory, everybody who works for an organization will keep the best interests of that organization at heart, which means that they will cooperate effectively with other departments. However, this is often not the case. Almost without exception, such a lack of collaboration results from poor communication between groups. We believe very strongly that the most effective teams develop software in cross-functional groups that are composed of people from all of the different disciplines required to define, develop, test, and release software. These groups should sit together--when they don't, they don't benefit from each other's knowledge.
 Some regulatory regimes make such cross-functional teams difficult to establish. If you are in a more siloed organization, the processes and techniques described throughout this book--in particular, implementing a deployment pipeline--help to prevent these silos from making the delivery process inefficient. However, the most important solution is communication between silos from the beginning of a project. This should take several forms:
-· Everybody involved in the delivery of a project, including somebody from each of the silos, should meet at the beginning of every project. We'll call this group of people the release working group, because their job is to keep the release process working. Their task should be to put together a release strategy for the project, as detailed in Chapter 10, "Deploying and Releasing Applications."
+ï¿½ Everybody involved in the delivery of a project, including somebody from each of the silos, should meet at the beginning of every project. We'll call this group of people the release working group, because their job is to keep the release process working. Their task should be to put together a release strategy for the project, as detailed in Chapter 10, "Deploying and Releasing Applications."
 
 440
 
 Chapter 15 Managing Continuous Delivery
 
-· The release working group should meet regularly throughout the project. They should run a retrospective on the project since the last time they met, plan how to improve things, and execute the plan. Use the Deming cycle: plan, do, check, act.
-· Even if it has no users yet, the software should be released as often as possible--this means at least every iteration--to a production-like environment. Some teams practice continuous deployment, which means releasing every change that passes all the stages in your pipeline. This is an application of the principle: "If it hurts, do it more frequently." We can't stress enough how important this practice is.
-· Project status, including the dashboard we mentioned in the "A Risk Management Process" section on page 431, should be available to everyone involved in the build, deploy, test, and release process, preferably on big monitors that everybody can see.
+ï¿½ The release working group should meet regularly throughout the project. They should run a retrospective on the project since the last time they met, plan how to improve things, and execute the plan. Use the Deming cycle: plan, do, check, act.
+ï¿½ Even if it has no users yet, the software should be released as often as possible--this means at least every iteration--to a production-like environment. Some teams practice continuous deployment, which means releasing every change that passes all the stages in your pipeline. This is an application of the principle: "If it hurts, do it more frequently." We can't stress enough how important this practice is.
+ï¿½ Project status, including the dashboard we mentioned in the "A Risk Management Process" section on page 431, should be available to everyone involved in the build, deploy, test, and release process, preferably on big monitors that everybody can see.
 Change Management
 In regulated environments, it is often essential for parts of the build, deploy, test, and release process to require approval. In particular, manual testing environments, staging, and production should always be under strict access control so that changes to them can only be made through the organization's change management process. This may seem unnecessarily bureaucratic, but in fact research has demonstrated that organizations which do this have lower mean time between failures (MTBF) and mean time to repair (MTTR) (see The Visible Ops Handbook, p. 13).
 If your organization has a problem meeting its service levels due to uncontrolled changes to testing and production environments, we suggest the following process for managing approvals:
-· Create a Change Advisory Board with representatives from your development team, operations team, security team, change management team, and the business.
-· Decide which environments fall under the purview of the change management process. Ensure that these environments are access-controlled so that changes can only be made through this process.
-· Establish an automated change request management system that can be used to raise a change request and manage approvals. Anyone should be able to see the status of each change request and who has approved it.
-· Any time anybody wants to make a change to an environment, whether deploying a new version of an application, creating a new virtual
+ï¿½ Create a Change Advisory Board with representatives from your development team, operations team, security team, change management team, and the business.
+ï¿½ Decide which environments fall under the purview of the change management process. Ensure that these environments are access-controlled so that changes can only be made through this process.
+ï¿½ Establish an automated change request management system that can be used to raise a change request and manage approvals. Anyone should be able to see the status of each change request and who has approved it.
+ï¿½ Any time anybody wants to make a change to an environment, whether deploying a new version of an application, creating a new virtual
 
 Compliance and Auditing
 
 441
 
 environment, or making a configuration change, it must be done through a change request.
-· Require a remediation strategy, such as the ability to back out, for every change.
-· Have acceptance criteria for the success of a change. Ideally, create an automated test that now fails but will pass once the change is successful. Put an indicator on your operations management dashboard with the status of the test (see the "Behavior-Driven Monitoring" section on page 323).
-· Have an automated process for applying changes, so that whenever the change is approved, it can be performed by pressing a button (or clicking a link, or whatever).
+ï¿½ Require a remediation strategy, such as the ability to back out, for every change.
+ï¿½ Have acceptance criteria for the success of a change. Ideally, create an automated test that now fails but will pass once the change is successful. Put an indicator on your operations management dashboard with the status of the test (see the "Behavior-Driven Monitoring" section on page 323).
+ï¿½ Have an automated process for applying changes, so that whenever the change is approved, it can be performed by pressing a button (or clicking a link, or whatever).
 The last part sounds difficult, but we hope that by now it also sounds familiar, since it has been the primary focus of this book. The mechanism for deploying a change that is audited and authorized to a production environment is the same as deploying the same change to any other environment, with the addition of the authorization: Adding access control to a deployment pipeline is a trivial exercise. It is so simple that it often makes sense to extend the auditing and authorization further: All changes are approved by whoever owns the environment. This means that you can use the same automation you created for your testing environments to make changes to environments that fall under the change management process. It also means you have already tested the automated processes you created.
 How does the CAB decide whether a change should be executed? This is simply a matter of risk management. What is the risk of making the change? What is the benefit? If the risks outweigh the benefits, the change should not be made, or another less risky change should be made. The CAB should also be able to make comments on tickets, request more information, or suggest modifications. All these processes should be able to be managed through the automated ticketing system.
 Finally, there are three more principles that should be followed when implementing and managing a change approval process:
-· Keep metrics on the system and make them visible. How long does it take for a change to be approved? How many changes are waiting for approval? What proportion of changes are denied?
-· Keep metrics that validate the success of the system and make them visible. What's the MTBF and MTTR? What is the cycle time for a change? There is a more complete list of metrics defined in the ITIL literature.
-· Hold regular retrospectives on the system, inviting representatives from each of your organization's units, and work to improve the system based on feedback from these retrospectives.
+ï¿½ Keep metrics on the system and make them visible. How long does it take for a change to be approved? How many changes are waiting for approval? What proportion of changes are denied?
+ï¿½ Keep metrics that validate the success of the system and make them visible. What's the MTBF and MTTR? What is the cycle time for a change? There is a more complete list of metrics defined in the ITIL literature.
+ï¿½ Hold regular retrospectives on the system, inviting representatives from each of your organization's units, and work to improve the system based on feedback from these retrospectives.
 
 442
 
@@ -7503,32 +7509,32 @@ Index
 
 A
 A/B testing, 264 Aardvarks, 218 Absolute paths in build scripts, 164 Abstraction layer
-for acceptance tests, 198­204 for database access, 335 for testing against UI, 88, 201 in branch by abstraction, 349 Acceptance criteria and nonfunctional requirements, 227­228 and test data, 336 as executable specifications, 195­198 for acceptance tests, 85, 89 for automated tests, 93 for change management, 441 for organizational change, 420 managing, 197 round-tripping, 200 Acceptance test stage and test data, 339­341 as part of deployment pipeline, 110 workflow of, 187 Acceptance tests against UI, 88 and analysis, 190 and asynchronicity, 200, 207­210 and cloud computing, 220­222, 313 and external systems, 210 and team size, 214 and test doubles, 210­212 and the delivery process, 99­101 and the deployment pipeline, 213­218 and timeouts, 207­210 and virtualization, 310 application driver layer, 198­204 as part of:
-CI, 61 commit stage, 120 integration pipeline, 362 automating, 86­88, 136 back doors in, 206
+for acceptance tests, 198ï¿½204 for database access, 335 for testing against UI, 88, 201 in branch by abstraction, 349 Acceptance criteria and nonfunctional requirements, 227ï¿½228 and test data, 336 as executable specifications, 195ï¿½198 for acceptance tests, 85, 89 for automated tests, 93 for change management, 441 for organizational change, 420 managing, 197 round-tripping, 200 Acceptance test stage and test data, 339ï¿½341 as part of deployment pipeline, 110 workflow of, 187 Acceptance tests against UI, 88 and analysis, 190 and asynchronicity, 200, 207ï¿½210 and cloud computing, 220ï¿½222, 313 and external systems, 210 and team size, 214 and test doubles, 210ï¿½212 and the delivery process, 99ï¿½101 and the deployment pipeline, 213ï¿½218 and timeouts, 207ï¿½210 and virtualization, 310 application driver layer, 198ï¿½204 as part of:
+CI, 61 commit stage, 120 integration pipeline, 362 automating, 86ï¿½88, 136 back doors in, 206
 
-definition of, 85 deployment pipeline gate of, 122­126 encapsulating, 206­207 failing, 124 fragility of, 88, 125, 200, 205 functional, 124 isolation in, 205, 220 layering, 191 maintainability of, 190­192 manual, 86, 189 parallel executing, 199, 220, 336 performance of, 218­222 record-and-playback for, 191, 197 reliability of, 200, 219 running on development machines, 62,
-190 screen recording for, 136, 213­214 shared resources for, 219­220 test data managing in, 336, 339­341 testing against UI, 192­193 turning into capacity tests, 238 UI coupling, 125, 192, 201 use cases for, 86 validating, 192 value proposition for, 188­193, 351 vs. unit tests, 188 who owns them, 125, 215 window driver pattern of, 201­204 Access control, 284, 438­439 for infrastructure, 285­286 AccuRev, 385, 399, 403 ActiveDirectory, 290 ActiveRecord migrations, 328 Actor model, 359 Adapting agile processes, 427 Adaptive tests, 336, 338 Agile development, 427 frequent releases in, 131 refactorings in, 330 showcases during, 90 AgileDox, 201 Albacore, 151
+definition of, 85 deployment pipeline gate of, 122ï¿½126 encapsulating, 206ï¿½207 failing, 124 fragility of, 88, 125, 200, 205 functional, 124 isolation in, 205, 220 layering, 191 maintainability of, 190ï¿½192 manual, 86, 189 parallel executing, 199, 220, 336 performance of, 218ï¿½222 record-and-playback for, 191, 197 reliability of, 200, 219 running on development machines, 62,
+190 screen recording for, 136, 213ï¿½214 shared resources for, 219ï¿½220 test data managing in, 336, 339ï¿½341 testing against UI, 192ï¿½193 turning into capacity tests, 238 UI coupling, 125, 192, 201 use cases for, 86 validating, 192 value proposition for, 188ï¿½193, 351 vs. unit tests, 188 who owns them, 125, 215 window driver pattern of, 201ï¿½204 Access control, 284, 438ï¿½439 for infrastructure, 285ï¿½286 AccuRev, 385, 399, 403 ActiveDirectory, 290 ActiveRecord migrations, 328 Actor model, 359 Adapting agile processes, 427 Adaptive tests, 336, 338 Agile development, 427 frequent releases in, 131 refactorings in, 330 showcases during, 90 AgileDox, 201 Albacore, 151
 
 445
 
 446
 
 Index
-Alerts, 281­282 Algorithms and application performance,
-230 Alternate path, 86 Amazon, 316 Amazon EC2, 221, 261, 312 Amazon Web Services (AWS), 261, 312­315 Analysis, 193­195
-and acceptance tests, 190 and incremental development, 349 and nonfunctional requirements, 226­228 Analysts, 193 Ant, 147­148 AntHill Pro, 58, 126, 255, 373 Antipatterns deploying after development, 7­9 deploying software manually, 5­7 long-lived branches, 411 manual configuration management, 9­10 of nonfunctional requirements, 230 solved by the deployment pipeline, 105 Apache, 320 API (Application Programming Interface),
+Alerts, 281ï¿½282 Algorithms and application performance,
+230 Alternate path, 86 Amazon, 316 Amazon EC2, 221, 261, 312 Amazon Web Services (AWS), 261, 312ï¿½315 Analysis, 193ï¿½195
+and acceptance tests, 190 and incremental development, 349 and nonfunctional requirements, 226ï¿½228 Analysts, 193 Ant, 147ï¿½148 AntHill Pro, 58, 126, 255, 373 Antipatterns deploying after development, 7ï¿½9 deploying software manually, 5ï¿½7 long-lived branches, 411 manual configuration management, 9ï¿½10 of nonfunctional requirements, 230 solved by the deployment pipeline, 105 Apache, 320 API (Application Programming Interface),
 340, 357, 367, 369 Application configuration
-and testing, 46 management of, 39 Application driver, 191 Application driver pattern, 198­204 Application lifecycle and the release strategy, 250 phases of, 421­429 Application servers, 296 Approval process, 112, 250, 254, 267, 285,
+and testing, 46 management of, 39 Application driver, 191 Application driver pattern, 198ï¿½204 Application lifecycle and the release strategy, 250 phases of, 421ï¿½429 Application servers, 296 Approval process, 112, 250, 254, 267, 285,
 437 APT repository, 294 Aptitude, 294 Arch, 396 Architecture
 and components, 346 and Conway's Law, 360 and nonfunctional requirements, 105,
-226­228 as part of inception, 423 Archiving as a requirement of operations, 282 as part of the release strategy, 251 Artifact repository and deployment, 256 and pipelining dependencies, 366
+226ï¿½228 as part of inception, 423 Archiving as a requirement of operations, 282 as part of the release strategy, 251 Artifact repository and deployment, 256 and pipelining dependencies, 366
 
-and the deployment pipeline, 175­177, 374­375
-auditing, 373 implementing in a shared filesystem, 375 managing, 373­375 organization-specific, 355 purging, 175 vs. version control, 166 Artifactory, 111, 355, 361, 373, 375 Artifacts, 111 Assemblies and dependency management, 353 and labels, 374 and traceability, 166 Asynchrony and acceptance testing, 200, 207­210 and capacity testing, 239 and unit testing, 180 ATAM (Architectural Tradeoff Analysis
-Method), 227 Atomic commits, 383­384 Atomic tests, 205, 337 Auditing
+and the deployment pipeline, 175ï¿½177, 374ï¿½375
+auditing, 373 implementing in a shared filesystem, 375 managing, 373ï¿½375 organization-specific, 355 purging, 175 vs. version control, 166 Artifactory, 111, 355, 361, 373, 375 Artifacts, 111 Assemblies and dependency management, 353 and labels, 374 and traceability, 166 Asynchrony and acceptance testing, 200, 207ï¿½210 and capacity testing, 239 and unit testing, 180 ATAM (Architectural Tradeoff Analysis
+Method), 227 Atomic commits, 383ï¿½384 Atomic tests, 205, 337 Auditing
 and acceptance criteria, 198 and data archiving, 282 and deployment, 273 and distributed version control, 396 and environment management, 129 and locking down infrastructure, 286 and poor tools, 300 and rebuilding binaries, 114 and the deployment pipeline, 418 as a nonfunctional requirement, 227 as a requirement of IT operations,
-280­281 as part of:
-delivery, 429 release strategy, 251 management of, 436­441 of artifact repositories, 373 of infrastructure changes, 287 of manual processes, 6 Automated tests and continuous deployment, 266 and runtime configuration, 348 and stream-based version control, 403 as part of project initiation, 430 as prerequisite for: CI, 59­60 merging, 390 quality, 434
+280ï¿½281 as part of:
+delivery, 429 release strategy, 251 management of, 436ï¿½441 of artifact repositories, 373 of infrastructure changes, 287 of manual processes, 6 Automated tests and continuous deployment, 266 and runtime configuration, 348 and stream-based version control, 403 as part of project initiation, 430 as prerequisite for: CI, 59ï¿½60 merging, 390 quality, 434
 
 Index
 
@@ -7536,107 +7542,107 @@ Index
 
 failing, commenting out, 70 for infrastructure, 323 See also Acceptance tests, Capacity tests,
 Unit tests Automation
-as a principle of continuous delivery, 25 benefits of, 5­7 effect on feedback, 14 for risk reducing, 418 importance of, 12 of database initialization, 326­327 of database migration, 327­331, 340 of deployment, 152­153 vs. documentation, 287, 437­438 Autonomic infrastructure, 278, 292, 301 Availability, 91, 314, 423 Azure, 313, 317
+as a principle of continuous delivery, 25 benefits of, 5ï¿½7 effect on feedback, 14 for risk reducing, 418 importance of, 12 of database initialization, 326ï¿½327 of database migration, 327ï¿½331, 340 of deployment, 152ï¿½153 vs. documentation, 287, 437ï¿½438 Autonomic infrastructure, 278, 292, 301 Availability, 91, 314, 423 Azure, 313, 317
 B
 Back doors in acceptance tests, 206 Backing out
-planning, 129, 251, 441 ways of, 131­132 Backlogs defect, 99­101 requirement, 425 as part of:
-release plan, 251 service continuity planning, 282 network, 302 Backwards compatibility, 371 Ball of mud, 351, 359 Baseline and version control, 166 and virtualization, 305 environments, 51, 155 Bash, 282 Batch processing, 167 Bazaar, 396 Bcfg2, 291 Behavior-driven development, 195, 204, 323 Behavior-driven monitoring, 322­323 Bench, 243 Beta testing, 90 Big, visible displays. See Dashboards BigTable, 315 Binaries and packaging, 154 and pessimistic locking, 387 and version control, 35, 373
+planning, 129, 251, 441 ways of, 131ï¿½132 Backlogs defect, 99ï¿½101 requirement, 425 as part of:
+release plan, 251 service continuity planning, 282 network, 302 Backwards compatibility, 371 Ball of mud, 351, 359 Baseline and version control, 166 and virtualization, 305 environments, 51, 155 Bash, 282 Batch processing, 167 Bazaar, 396 Bcfg2, 291 Behavior-driven development, 195, 204, 323 Behavior-driven monitoring, 322ï¿½323 Bench, 243 Beta testing, 90 Big, visible displays. See Dashboards BigTable, 315 Binaries and packaging, 154 and pessimistic locking, 387 and version control, 35, 373
 
-building, 438 only once, 113­115
-definition of, 134 environment-specific, 115 in CVS, 383 managing, 373­375 re-creatability from version control, 33,
-175, 354, 363, 373 separating out configuration from, 50 shared filesystem for, 166 Binary file formats, 300 BitBucket, 394 BitKeeper, 386, 395 BizTalk, 311 BladeLogic, 161, 287, 289, 291, 296 Blue-green deployments, 261­262, 301,
-332­333 BMC, 156, 161, 289, 291, 318 Bootstrapping problem, 372 Bottlenecks, 106, 138 Boundary value analysis, 86 Branch by abstraction, 334­335, 349­351,
+building, 438 only once, 113ï¿½115
+definition of, 134 environment-specific, 115 in CVS, 383 managing, 373ï¿½375 re-creatability from version control, 33,
+175, 354, 363, 373 separating out configuration from, 50 shared filesystem for, 166 Binary file formats, 300 BitBucket, 394 BitKeeper, 386, 395 BizTalk, 311 BladeLogic, 161, 287, 289, 291, 296 Blue-green deployments, 261ï¿½262, 301,
+332ï¿½333 BMC, 156, 161, 289, 291, 318 Bootstrapping problem, 372 Bottlenecks, 106, 138 Boundary value analysis, 86 Branch by abstraction, 334ï¿½335, 349ï¿½351,
 360, 415 Branches
-integrating, 389 maintenance, 389 release, 389 Branching and CI, 59, 390­393 branch by feature, 36, 81, 349, 405,
-410­412 branch by team, 412­415 branch for release, 346, 367 deferred, 390 definition of, 388­393 early, 390 environmental, 388 functional, 388 in CVS, 383 in Subversion, 384 organizational, 388 physical, 388 policies of, 389 procedural, 388 reasons of, 381 Brittle tests, 125, 191 BSD (Berkeley Software Distribution), 355 BSD ports, 294 Bug queue. See Backlogs, defect
+integrating, 389 maintenance, 389 release, 389 Branching and CI, 59, 390ï¿½393 branch by feature, 36, 81, 349, 405,
+410ï¿½412 branch by team, 412ï¿½415 branch for release, 346, 367 deferred, 390 definition of, 388ï¿½393 early, 390 environmental, 388 functional, 388 in CVS, 383 in Subversion, 384 organizational, 388 physical, 388 policies of, 389 procedural, 388 reasons of, 381 Brittle tests, 125, 191 BSD (Berkeley Software Distribution), 355 BSD ports, 294 Bug queue. See Backlogs, defect
 
 448
 
 Index
-Build and components, 360 and test targets, 166­167 automating as prerequisite for CI, 57 broken: and checking in, 66 going home when, 68­69 responsibility for fixing, 70­71, 174 reverting, 69 continuous, 65 failing for slow tests, 73 optimizing, 361 promoting, 108 scheduling, 65, 118­119, 127 tools for, 145 triggering, 369­370
-Build grid, 111, 185 Build ladder, 372 Build lights, 63 Build master, 174 Build pipeline, 110 Build quality in, 26­27, 83 BuildForge, 58 Buildr, 151 Bulkhead pattern, 98 Business analysts. See Analysts Business case, 422 Business governance. See Governance Business intelligence, 317 Business sponsor, 422 Business value
+Build and components, 360 and test targets, 166ï¿½167 automating as prerequisite for CI, 57 broken: and checking in, 66 going home when, 68ï¿½69 responsibility for fixing, 70ï¿½71, 174 reverting, 69 continuous, 65 failing for slow tests, 73 optimizing, 361 promoting, 108 scheduling, 65, 118ï¿½119, 127 tools for, 145 triggering, 369ï¿½370
+Build grid, 111, 185 Build ladder, 372 Build lights, 63 Build master, 174 Build pipeline, 110 Build quality in, 26ï¿½27, 83 BuildForge, 58 Buildr, 151 Bulkhead pattern, 98 Business analysts. See Analysts Business case, 422 Business governance. See Governance Business intelligence, 317 Business sponsor, 422 Business value
 and analysis, 193 and nonfunctional requirements, 226 protecting by acceptance tests, 189
 C
 C/C++ building with Make and SCons, 147 compiling, 146
-C#, 282 CA, 318 CAB (Change Advisory Board), 280, 440 Canary releasing, 235, 262­265
-and continuous deployment, 267 and database migration, 333 Capacity and cloud computing, 314 as a cause of project failure, 431 definition of, 225 designing for, 230 measuring, 232­234
+C#, 282 CA, 318 CAB (Change Advisory Board), 280, 440 Canary releasing, 235, 262ï¿½265
+and continuous deployment, 267 and database migration, 333 Capacity and cloud computing, 314 as a cause of project failure, 431 definition of, 225 designing for, 230 measuring, 232ï¿½234
 
 planning, 251, 317, 423 Capacity testing
-and canary releasing, 264 and cloud computing, 313 and virtualization, 310 as part of a testing strategy, 91 automating, 238­244 environment for, 234­237 extrapolating, 234 in the deployment pipeline, 112, 244­246 interaction templates in, 241­244 measurements for, 232­234 of distributed systems, 240 performance of, 238 scenarios in, 238 simulations for, 239 test data managing in, 341­342 thresholds in, 238 through a service layer, 239 through the API, 239 through the UI, 240­241 warm-up periods in, 245 Capistrano, 162 Cautious optimism, 370­371 CCTV (Closed-circuit television), 273 CfEngine, 51, 53, 155, 161, 284, 287, 291 Change management, 9, 53­54, 280, 287,
-421, 429, 436­437, 440­441 Change request, 440 Changeset. See Revision Check point, 394 Checking in
+and canary releasing, 264 and cloud computing, 313 and virtualization, 310 as part of a testing strategy, 91 automating, 238ï¿½244 environment for, 234ï¿½237 extrapolating, 234 in the deployment pipeline, 112, 244ï¿½246 interaction templates in, 241ï¿½244 measurements for, 232ï¿½234 of distributed systems, 240 performance of, 238 scenarios in, 238 simulations for, 239 test data managing in, 341ï¿½342 thresholds in, 238 through a service layer, 239 through the API, 239 through the UI, 240ï¿½241 warm-up periods in, 245 Capistrano, 162 Cautious optimism, 370ï¿½371 CCTV (Closed-circuit television), 273 CfEngine, 51, 53, 155, 161, 284, 287, 291 Change management, 9, 53ï¿½54, 280, 287,
+421, 429, 436ï¿½437, 440ï¿½441 Change request, 440 Changeset. See Revision Check point, 394 Checking in
 and duration of commit tests, 185 frequency, 435 on a broken build, 66 CheckStyle, 74, 158 Chef, 291 Cherry picking, 394, 409, 414 Chicken-counting, 254 CIM (Common Information Model), 319 CIMA (Chartered Institute of Management
-Accountants), 417 Circuit Breaker pattern, 98, 211 Circular dependencies, 371­373 Classloader, 354 ClearCase, 385­386, 399, 404, 409 Cloud computing
+Accountants), 417 Circuit Breaker pattern, 98, 211 Circular dependencies, 371ï¿½373 Classloader, 354 ClearCase, 385ï¿½386, 399, 404, 409 Cloud computing
 and architecture, 313, 315 and compliance, 314 and nonfunctional requirements, 314 and performance, 314
 
-and security, 313 and service-level agreements, 314 and vendor lock-in, 315 criticisms of, 316­317 definition of, 312 for acceptance tests, 220­222 infrastructure in the Cloud, 313­314 platforms in the Cloud, 314­315 CMS (configuration management system),
+and security, 313 and service-level agreements, 314 and vendor lock-in, 315 criticisms of, 316ï¿½317 definition of, 312 for acceptance tests, 220ï¿½222 infrastructure in the Cloud, 313ï¿½314 platforms in the Cloud, 314ï¿½315 CMS (configuration management system),
 290 Cobbler, 289 Code analysis, 120, 135 Code coverage, 135, 172 Code duplication, 121 Code freeze, 408 Code style, 121 Collaboration
 ad-hoc, 8 and acceptance tests, 99, 190 and distributed version control, 395 and the deployment pipeline, 107 as a goal of:
 components, 346 version control, 32, 381 between teams involved in delivery, 18,
 434, 434, 436 in siloed organizations, 439 COM (Component Object Model), 353 Commercial, off-the-shelf software. See
-COTS Commit messages, 37­38 Commit stage
-and incremental development, 347 and test data, 338­339 as part of:
-CI, 61 deployment pipeline, 110, 120­122 scripting, 152 workflow, 169 Commit tests characteristics of, 14 failing, 73, 171 principles and practices of, 177­185 running before checking in, 66­67 speed of, 60­62, 73, 435 test data managing in, 338­339 See also Unit tests Compatibility testing, 342 Compilation as part of commit stage, 120 incremental, 146
+COTS Commit messages, 37ï¿½38 Commit stage
+and incremental development, 347 and test data, 338ï¿½339 as part of:
+CI, 61 deployment pipeline, 110, 120ï¿½122 scripting, 152 workflow, 169 Commit tests characteristics of, 14 failing, 73, 171 principles and practices of, 177ï¿½185 running before checking in, 66ï¿½67 speed of, 60ï¿½62, 73, 435 test data managing in, 338ï¿½339 See also Unit tests Compatibility testing, 342 Compilation as part of commit stage, 120 incremental, 146
 
 Index
 
 449
 
-optimizing, 146 static, 353 warnings, 74 Compliance and cloud computing, 314 and continuous delivery, 267 and library management, 160 and organizational maturity, 420 as a goal of version control, 31 managing, 436­441 Component tests, 89 and CI, 60 Components and deployment, 156 and project structure, 160 and the deployment pipeline, 360­361 configuration management of, 39,
-356­360, 363 creating, 356­360 definition of, 345 dependency management of, 39, 375 for branch by release, 409 vs. libraries, 352 Concordion, 85, 191, 196 Configuration management and deployment, 154 and deployment scripting, 155 and emergency fixes, 266 and infrastructure, 283­287, 290­295 and service asset, 421 as part of release strategy, 250 bad, 435­436 definition of, 31 for deployment time, 42 importance of, 18­20 manual configuration management
-antipattern, 9­10 maturity model of, 419­421 migrating, 129 of binaries, 373 of databases, 328­329 of environments, 277, 288, 308 of middleware, 295­300 of servers, 288­295 of software, 39 of virtual environments, 305­307 promoting, 257 runtime, 42, 348, 351 version control practices for. See Version
+optimizing, 146 static, 353 warnings, 74 Compliance and cloud computing, 314 and continuous delivery, 267 and library management, 160 and organizational maturity, 420 as a goal of version control, 31 managing, 436ï¿½441 Component tests, 89 and CI, 60 Components and deployment, 156 and project structure, 160 and the deployment pipeline, 360ï¿½361 configuration management of, 39,
+356ï¿½360, 363 creating, 356ï¿½360 definition of, 345 dependency management of, 39, 375 for branch by release, 409 vs. libraries, 352 Concordion, 85, 191, 196 Configuration management and deployment, 154 and deployment scripting, 155 and emergency fixes, 266 and infrastructure, 283ï¿½287, 290ï¿½295 and service asset, 421 as part of release strategy, 250 bad, 435ï¿½436 definition of, 31 for deployment time, 42 importance of, 18ï¿½20 manual configuration management
+antipattern, 9ï¿½10 maturity model of, 419ï¿½421 migrating, 129 of binaries, 373 of databases, 328ï¿½329 of environments, 277, 288, 308 of middleware, 295ï¿½300 of servers, 288ï¿½295 of software, 39 of virtual environments, 305ï¿½307 promoting, 257 runtime, 42, 348, 351 version control practices for. See Version
 control practices Configuration management system. See CMS
 
 450
 
 Index
 Conformance, 417 Consistency, 290 Console output, 171 Consolidation
-providing CI as a central service, 76 through virtualization, 304 Contextual enquiry, 90 Continuous deployment, 126, 266­270, 279,
-440 Continuous improvement, 15, 28­29, 441 Continuous integation pipeline, 110 Continuous integration (CI)
-and branching, 36, 390­393, 410, 414 and database scripting, 326­327 and mainline development, 405 and test data management, 339 as a centralized service, 75­76 as part of project initiation, 424, 430 as prerequisite for quality, 427 bad, 435 basic practices of, 57­59 definition of, 55 essential practices of, 66­71 feedback mechanisms in, 63­65 managing environments in, 289 with stream-based version control,
-403­404 ControlTier, 161 Conway's Law, 359 Coordinates in Maven, 375 Corporate governance. See Governance Cost-benefit analysis, 420 COTS (Commercial, off-the-shelf software),
+providing CI as a central service, 76 through virtualization, 304 Contextual enquiry, 90 Continuous deployment, 126, 266ï¿½270, 279,
+440 Continuous improvement, 15, 28ï¿½29, 441 Continuous integation pipeline, 110 Continuous integration (CI)
+and branching, 36, 390ï¿½393, 410, 414 and database scripting, 326ï¿½327 and mainline development, 405 and test data management, 339 as a centralized service, 75ï¿½76 as part of project initiation, 424, 430 as prerequisite for quality, 427 bad, 435 basic practices of, 57ï¿½59 definition of, 55 essential practices of, 66ï¿½71 feedback mechanisms in, 63ï¿½65 managing environments in, 289 with stream-based version control,
+403ï¿½404 ControlTier, 161 Conway's Law, 359 Coordinates in Maven, 375 Corporate governance. See Governance Cost-benefit analysis, 420 COTS (Commercial, off-the-shelf software),
 284, 295, 307 Coupling
 analysis of, 121, 135, 139, 174 and loosely coupled architecture, 315 and mainline development, 392 database migrations to application
-changes, 329, 333­334 external systems to acceptance tests, 211 in capacity tests, 242 tests to data, 336 UI to acceptance tests, 125, 192, 201 within the release process, 261, 325 CPAN (Comprehensive Perl Archive
-Network), 155 Crash reports, 267­270 Crontab, 294 Crosscutting concerns, 227 Cross-functional requirements, 226
+changes, 329, 333ï¿½334 external systems to acceptance tests, 211 in capacity tests, 242 tests to data, 336 UI to acceptance tests, 125, 192, 201 within the release process, 261, 325 CPAN (Comprehensive Perl Archive
+Network), 155 Crash reports, 267ï¿½270 Crontab, 294 Crosscutting concerns, 227 Cross-functional requirements, 226
 
 Cross-functional teams, 105, 358 Cross-functional tests. See Nonfunctional
-tests CruiseControl family, 58, 127 Cucumber, 85­86, 191, 196, 200, 323 Cucumber-Nagios, 323 Customer, 422 CVS (Concurrent Versions System), 32,
-382­383, 409 Cycle time
+tests CruiseControl family, 58, 127 Cucumber, 85ï¿½86, 191, 196, 200, 323 Cucumber-Nagios, 323 Customer, 422 CVS (Concurrent Versions System), 32,
+382ï¿½383, 409 Cycle time
 and canary releasing, 263 and compliance, 437 and emergency fixes, 266 and organizational maturity, 419 for changes to infrastructure, 287, 441 importance of, 11, 138 measuring, 137 Cyclomatic complexity, 121, 135, 139, 174
 D
 DAG (directed acyclic graph), 363, 400 Darcs (Darcs Advanced Revision Control
 System), 396 Darwin Ports, 294 Dashboards
-and CI, 82 for operations, 320­322 for tracking delivery status, 429, 440 importance of, 16 Data and rollback, 259 archiving in production, 282, 343 in acceptance tests, 204 lifecycle of, 325 Data center automation tools, 284 Data center management, 290­295 Data migration, 118, 129, 262, 264 as part of testing, 257 as part of the release plan, 252 Data structures and application performance, 230 and tests, 184 Database administrators, 326, 329 Databases and orchestration, 329­331, 333 and test atomicity, 205 and unit testing, 179­180, 335­336 for middleware configuration, 299 forward and backward compatibility of,
-334 incremental changing, 327­331
+and CI, 82 for operations, 320ï¿½322 for tracking delivery status, 429, 440 importance of, 16 Data and rollback, 259 archiving in production, 282, 343 in acceptance tests, 204 lifecycle of, 325 Data center automation tools, 284 Data center management, 290ï¿½295 Data migration, 118, 129, 262, 264 as part of testing, 257 as part of the release plan, 252 Data structures and application performance, 230 and tests, 184 Database administrators, 326, 329 Databases and orchestration, 329ï¿½331, 333 and test atomicity, 205 and unit testing, 179ï¿½180, 335ï¿½336 for middleware configuration, 299 forward and backward compatibility of,
+334 incremental changing, 327ï¿½331
 
 Index
 
 451
 
-initializing, 326­327 in-memory, 154 migrating, 327­334 monitoring, 318 normalization and denormalization, 331 primary keys in, 329 refactoring, 334, 341 referential constraints, 329 rolling back, 328, 331­334 rolling forward, 328 schemas in, 327 temporary tables in, 329, 332 transaction record-and-playback in, 332 upgrading, 261 versioning, 328­329 DbDeploy, 328, 331, 344 DbDeploy.NET, 328 DbDiff, 328 Dbmigrate, 328 Deadlock, 136 Debian, 154, 283­284, 353 Declarative deployment tools, 161 Declarative infrastructure management, 290 Declarative programming, 147­148 See also Ant, Make Defects and the release strategy, 251 as a symptom of poor CI, 435 critical, 131, 265­266, 409 in backlogs, 99­101 measuring, 138 reproducing, 247 zero, 100 Deming cycle, 28, 420, 440 Deming, W. Edwards, 27, 83 Dependencies analyzing with Maven, 378 and integration, 370 and traceability, 363 between branches, 391 build time, 352 circular, 371­373 downstream, 364 fluid, 370 guarded, 370 in build tools, 146 in software, 351­356 in the project plan, 348 managing with Maven, 375­378 refactoring, 377 runtime, 352
+initializing, 326ï¿½327 in-memory, 154 migrating, 327ï¿½334 monitoring, 318 normalization and denormalization, 331 primary keys in, 329 refactoring, 334, 341 referential constraints, 329 rolling back, 328, 331ï¿½334 rolling forward, 328 schemas in, 327 temporary tables in, 329, 332 transaction record-and-playback in, 332 upgrading, 261 versioning, 328ï¿½329 DbDeploy, 328, 331, 344 DbDeploy.NET, 328 DbDiff, 328 Dbmigrate, 328 Deadlock, 136 Debian, 154, 283ï¿½284, 353 Declarative deployment tools, 161 Declarative infrastructure management, 290 Declarative programming, 147ï¿½148 See also Ant, Make Defects and the release strategy, 251 as a symptom of poor CI, 435 critical, 131, 265ï¿½266, 409 in backlogs, 99ï¿½101 measuring, 138 reproducing, 247 zero, 100 Deming cycle, 28, 420, 440 Deming, W. Edwards, 27, 83 Dependencies analyzing with Maven, 378 and integration, 370 and traceability, 363 between branches, 391 build time, 352 circular, 371ï¿½373 downstream, 364 fluid, 370 guarded, 370 in build tools, 146 in software, 351ï¿½356 in the project plan, 348 managing with Maven, 375ï¿½378 refactoring, 377 runtime, 352
 
-static, 370 transitive, 355 upstream, 364 Dependency graphs keeping shallow, 371 managing, 355, 363­373 modeling with the deployment pipeline,
-365­369 Dependency hell, 352­354, 365 Dependency injection
-and branch by abstraction, 351 and faking time, 184 and Maven, 149 and unit testing, 179­180 Dependency management, 38­39, 149, 353 and trust, 369 between applications and infrastructure,
+static, 370 transitive, 355 upstream, 364 Dependency graphs keeping shallow, 371 managing, 355, 363ï¿½373 modeling with the deployment pipeline,
+365ï¿½369 Dependency hell, 352ï¿½354, 365 Dependency injection
+and branch by abstraction, 351 and faking time, 184 and Maven, 149 and unit testing, 179ï¿½180 Dependency management, 38ï¿½39, 149, 353 and trust, 369 between applications and infrastructure,
 285 Dependency networks and build tools, 144 Deployment
-and components, 357 and idempotence, 155­156 automating, 152­153 blue-green. See Blue-green deployment definition of, 25 deploy everything from scratch, 156 deploy everything together, 156 fail fast, 272­273 failures of, 117 incremental implementation of, 156­157 late deployment antipattern, 7­9 logging, 270­271 managing, 421 manual, 5­7, 116, 165 orchestrating, 161 planning and implementing, 253­254 scripting, 160­164 scripting upgrades, 153 smoke-testing, 117, 163 testing through automation, 130, 153 to remote machines, 161 use the same process for every
-environment, 22, 115­117, 153­154, 253, 279, 283, 286, 308, 438 validating environments, 155 Deployment pipeline acceptance test stage, 213­218 and artifact repositories, 374­375 and branch for release, 409 and capacity tests, 244­246 and compliance, 437
+and components, 357 and idempotence, 155ï¿½156 automating, 152ï¿½153 blue-green. See Blue-green deployment definition of, 25 deploy everything from scratch, 156 deploy everything together, 156 fail fast, 272ï¿½273 failures of, 117 incremental implementation of, 156ï¿½157 late deployment antipattern, 7ï¿½9 logging, 270ï¿½271 managing, 421 manual, 5ï¿½7, 116, 165 orchestrating, 161 planning and implementing, 253ï¿½254 scripting, 160ï¿½164 scripting upgrades, 153 smoke-testing, 117, 163 testing through automation, 130, 153 to remote machines, 161 use the same process for every
+environment, 22, 115ï¿½117, 153ï¿½154, 253, 279, 283, 286, 308, 438 validating environments, 155 Deployment pipeline acceptance test stage, 213ï¿½218 and artifact repositories, 374ï¿½375 and branch for release, 409 and capacity tests, 244ï¿½246 and compliance, 437
 
 452
 
 Index
-Deployment pipeline (continued) and components, 360­361, 361­363 and continuous deployment, 267 and databases, 326 and dependency graphs, 365­369 and emergency fixes, 266 and governance, 418, 442 and integration tests, 212 and mainline development, 405 and test data, 338­343 and version control, 404, 416 and virtualization, 304, 307­310 and VM templates, 309 as part of project initiation, 430 definition of, 106­113 evolution of, 136­137 failing, 119­120 implementing, 133­137 in siloed organizations, 439 origin of term, 122 scripting, 152
-Deployment production line, 110 Deployment tests, 89, 216­218, 285 Develop and release, 425­428 Development environments
+Deployment pipeline (continued) and components, 360ï¿½361, 361ï¿½363 and continuous deployment, 267 and databases, 326 and dependency graphs, 365ï¿½369 and emergency fixes, 266 and governance, 418, 442 and integration tests, 212 and mainline development, 405 and test data, 338ï¿½343 and version control, 404, 416 and virtualization, 304, 307ï¿½310 and VM templates, 309 as part of project initiation, 430 definition of, 106ï¿½113 evolution of, 136ï¿½137 failing, 119ï¿½120 implementing, 133ï¿½137 in siloed organizations, 439 origin of term, 122 scripting, 152
+Deployment production line, 110 Deployment tests, 89, 216ï¿½218, 285 Develop and release, 425ï¿½428 Development environments
 and acceptance tests, 125 and deployment scripts, 154 and test data, 343 configuration management of, 33, 50, 289 managing as part of development, 62 Device drivers for GUI testing, 202 DevOps, 28 and agile infrastructure, 279 creating the deployment process, 270 ownership of the build system, 174 See also Operations DHCP (Dynamic Host Configuration
 Protocol), 285, 289 Diagnostics, 139 Diamond dependencies, 354, 365 Directed acyclic graph. See DAG Directory services, 300 Disaster recovery, 250, 282 Discipline
 and acceptance tests, 214 and CI, 57 and incremental development, 349, 392,
 426, 434 Disk images, 305 Displays. See Dashboards Distributed development
 
-and CI, 75­78 and pipelining components, 360 and version control, 78 communication in, 75 Distributed teams, 143 Distributed version control, 79­81, 393­399,
+and CI, 75ï¿½78 and pipelining components, 360 and version control, 78 communication in, 75 Distributed teams, 143 Distributed version control, 79ï¿½81, 393ï¿½399,
 411, 414 DLL (Dynamic-Link Library), 352, 356 DLL hell, 352 DNS, 300 DNS zone files, 285 Documentation
 and self-documenting infrastructure, 292 as a requirement of IT operations,
-280­281 as part of:
-compliance and auditing, 437 release plan, 252 generating from acceptance tests, 86 vs. automation, 287, 437­438 Domain language, 198 Domain-driven design, 152 Domain-specific languages (DSLs) build tools for, 144­151 definition of, 198 in acceptance testing, 198­204 See also Puppet Don't repeat yourself, 358 Done and acceptance tests, 85 and testing, 101 definition of, 27­28 signoff as part of project lifecycle, 426,
+280ï¿½281 as part of:
+compliance and auditing, 437 release plan, 252 generating from acceptance tests, 86 vs. automation, 287, 437ï¿½438 Domain language, 198 Domain-driven design, 152 Domain-specific languages (DSLs) build tools for, 144ï¿½151 definition of, 198 in acceptance testing, 198ï¿½204 See also Puppet Don't repeat yourself, 358 Done and acceptance tests, 85 and testing, 101 definition of, 27ï¿½28 signoff as part of project lifecycle, 426,
 434 Downtime, 260, 436 Dpkg, 294 Dummy objects, 92
 See also Test doubles Duplication, 139 Dynamic linking, 357 Dynamic views, 403
 E
@@ -7646,17 +7652,17 @@ Index
 
 453
 
-Embedded software, 256, 277 Emergency fixes, 265­266 Encapsulation
-and components, 358 and mainline development, 392 and monolithic systems, 345 and unit testing, 180 in acceptance tests, 206­207 End-to-end testing acceptance tests, 205 capacity tests, 241 Enterprise governance. See Governance Environments as part of release strategy, 250 baselines, 51, 155 capacity testing, 234­237, 258 definition of, 277 managing, 49­54, 130, 277, 288­295, 308 production-like, 107, 117, 129, 254, 308 provisioning, 288­290 re-creatability from version control, 33 shared, 258 staging, 258­259, 330 systems integration testing (SIT), 330 Equivalence partitioning, 86 Escape, 44, 47, 257 Estimates, 428 Eucalyptus, 312, 316 Event-driven systems and components, 359 capacity testing, 241 Executable specifications, 195­198, 246,
+Embedded software, 256, 277 Emergency fixes, 265ï¿½266 Encapsulation
+and components, 358 and mainline development, 392 and monolithic systems, 345 and unit testing, 180 in acceptance tests, 206ï¿½207 End-to-end testing acceptance tests, 205 capacity tests, 241 Enterprise governance. See Governance Environments as part of release strategy, 250 baselines, 51, 155 capacity testing, 234ï¿½237, 258 definition of, 277 managing, 49ï¿½54, 130, 277, 288ï¿½295, 308 production-like, 107, 117, 129, 254, 308 provisioning, 288ï¿½290 re-creatability from version control, 33 shared, 258 staging, 258ï¿½259, 330 systems integration testing (SIT), 330 Equivalence partitioning, 86 Escape, 44, 47, 257 Estimates, 428 Eucalyptus, 312, 316 Event-driven systems and components, 359 capacity testing, 241 Executable specifications, 195ï¿½198, 246,
 339, 342 Exploratory testing, 87, 90, 128, 255, 343 External systems
-and acceptance tests, 125, 210 and integration testing, 96­98 and logging, 320 and the release strategy, 250 configuration of, 50 upgrading, 261 Externals (SVN), 384 Extrapolation in capacity testing, 234 Extreme programming, 26, 266 and CI, 55, 71
+and acceptance tests, 125, 210 and integration testing, 96ï¿½98 and logging, 320 and the release strategy, 250 configuration of, 50 upgrading, 261 Externals (SVN), 384 Extrapolation in capacity testing, 234 Extreme programming, 26, 266 and CI, 55, 71
 F
-Fabric, 162 Façade pattern, 351 Facter, 291
+Fabric, 162 Faï¿½ade pattern, 351 Facter, 291
 
-Fail fast commit stage, 171 deployments, 272­273
+Fail fast commit stage, 171 deployments, 272ï¿½273
 Failover, as part of the release strategy, 251 Fake objects, 92 Feature branches. See Version control
 practices Feature crews, 411 Feedback
-and automated acceptance tests, 86 and canary releasing, 263 and dependency management, 369­370 and metrics, 137­140 and monitoring, 317 and the integration pipeline, 362 as part of project lifecycle, 426 created by deployment pipeline, 106 importance of, 12­16
+and automated acceptance tests, 86 and canary releasing, 263 and dependency management, 369ï¿½370 and metrics, 137ï¿½140 and monitoring, 317 and the integration pipeline, 362 as part of project lifecycle, 426 created by deployment pipeline, 106 importance of, 12ï¿½16
 during commit stage, 120 improving through virtualization, 310 when modeling dependencies, 365 when pipelining components, 360 Filesystem Hierarchy Standard, 165 Filesystem, shared for storing binaries, 166 FindBugs, 74, 158 Firefighting, 286 Firewalls and cloud computing, 313 and integration testing, 96 configuration of, 118, 284, 300 Fit, 201 Fit for purpose, 421, 426, 442 Fit for use, 421, 427 FitNesse, 191, 196, 201 Flapjack, 318 Flex, 192 Force.com, 314 Forensic tools, 301 Forking. See Version control practices Forward compatibility, 334 Fragility. See Acceptance tests Func, 162 Functional tests. See Acceptance tests FxCop, 74
 G
 Gantt, 151 Gantt charts, 280 Garbage collection, 247 Gate. See Approval process
@@ -7664,24 +7670,24 @@ Gantt, 151 Gantt charts, 280 Garbage collection, 247 Gate. See Approval process
 454
 
 Index
-GAV, 375 Gems, 155 Gentoo, 353 Git, 32, 79­81, 374, 393, 396, 403 GitHub, 79, 394, 411 Given, when, then, 86, 195, 336 Global assembly cache, 353 Global optimization, 138 Gmail, 313 Go, 58, 113, 126, 255, 373 Go/no-go, 423 Google App Engine, 314­315, 317 Google Code, 394 Governance
-business, 417 corporate, 417 enterprise, 417 good, 442 GPG (GNU Privacy Guard), 294 GPL (General Public License), 355 Gradle, 151 Greenfield projects, 92­94 Guard tests, 245 GUI (Graphical user interface) and acceptance tests, 192­193 for deployment, 165 layering, 192 See also UI Gump, 371
+GAV, 375 Gems, 155 Gentoo, 353 Git, 32, 79ï¿½81, 374, 393, 396, 403 GitHub, 79, 394, 411 Given, when, then, 86, 195, 336 Global assembly cache, 353 Global optimization, 138 Gmail, 313 Go, 58, 113, 126, 255, 373 Go/no-go, 423 Google App Engine, 314ï¿½315, 317 Google Code, 394 Governance
+business, 417 corporate, 417 enterprise, 417 good, 442 GPG (GNU Privacy Guard), 294 GPL (General Public License), 355 Gradle, 151 Greenfield projects, 92ï¿½94 Guard tests, 245 GUI (Graphical user interface) and acceptance tests, 192ï¿½193 for deployment, 165 layering, 192 See also UI Gump, 371
 H
-H2, 336 Handle, 301 Happy path, 85, 87­88, 94 Hardening, 284 Hardware
-and capacity testing, 236 virtualization for standardization, 304 Hashing, 114, 166, 175, 373, 438 Hawthorne effect, 137 Hibernate, 159 Hiding functionality, 347­349 High availability and business continuity planning, 282 and multihomed servers, 302 as part of the release strategy, 251 HIPAA, 314, 436 Hot deployment. See Zero-downtime releases HP (Hewlett-Packard), 156, 291, 318 HP Operations Center, 287, 296 Hudson, 58, 63, 127, 289
+H2, 336 Handle, 301 Happy path, 85, 87ï¿½88, 94 Hardening, 284 Hardware
+and capacity testing, 236 virtualization for standardization, 304 Hashing, 114, 166, 175, 373, 438 Hawthorne effect, 137 Hibernate, 159 Hiding functionality, 347ï¿½349 High availability and business continuity planning, 282 and multihomed servers, 302 as part of the release strategy, 251 HIPAA, 314, 436 Hot deployment. See Zero-downtime releases HP (Hewlett-Packard), 156, 291, 318 HP Operations Center, 287, 296 Hudson, 58, 63, 127, 289
 
 Hyperactive builds, 370 Hyper-V, 290
 I
 IANA (Internet Assigned Numbers Authority), 320
 IBM, 156, 291, 303, 316, 318 IDE (Integrated Development Environment),
 57, 143, 160 Idempotence
-and deployment tools, 161 and infrastructure management, 290­291,
-295 of application deployment, 155­156 Identification, 422 IIS (Internet Information Services), 299 Impact, 430 Inception, 283, 422­424 Incremental compilation, 146 Incremental delivery, 331, 346­351, 418,
-420, 442 Incremental development, 36, 326, 346­351,
-367, 405­406, 425, 434 Informed pessimism, 371 Infrastructure
-as part of project initiation, 424 auditability of, 287 definition of, 277 evolution of, 317 managing, 283­287 testing changes in, 287 Infrastructure in the Cloud, 313­314 Initiation, 424­425 In-memory database, 154, 180, 336 Installers, 51 InstallShield, 118 Instant messenger, 75 Integrated Development Environment. See
+and deployment tools, 161 and infrastructure management, 290ï¿½291,
+295 of application deployment, 155ï¿½156 Identification, 422 IIS (Internet Information Services), 299 Impact, 430 Inception, 283, 422ï¿½424 Incremental compilation, 146 Incremental delivery, 331, 346ï¿½351, 418,
+420, 442 Incremental development, 36, 326, 346ï¿½351,
+367, 405ï¿½406, 425, 434 Informed pessimism, 371 Infrastructure
+as part of project initiation, 424 auditability of, 287 definition of, 277 evolution of, 317 managing, 283ï¿½287 testing changes in, 287 Infrastructure in the Cloud, 313ï¿½314 Initiation, 424ï¿½425 In-memory database, 154, 180, 336 Installers, 51 InstallShield, 118 Instant messenger, 75 Integrated Development Environment. See
 IDE Integration
-and acceptance tests, 210 and databases, 329 and dependencies, 369­370 and infrastructure management, 301 Integration phase, 55, 348, 405, 426, 435 Integration pipeline, 361­363 Integration team, 358 Integration tests, 96­98 Intentional programming, 198 Interaction templates, 241­244, 342
+and acceptance tests, 210 and databases, 329 and dependencies, 369ï¿½370 and infrastructure management, 301 Integration phase, 55, 348, 405, 426, 435 Integration pipeline, 361ï¿½363 Integration team, 358 Integration tests, 96ï¿½98 Intentional programming, 198 Interaction templates, 241ï¿½244, 342
 
 Index
 
@@ -7691,12 +7697,12 @@ Intermittent failures in acceptance tests, 200, 207 in capacity tests, 233, 245
 Interoperability, 316 Inventory, 391, 418 Inversion of control. See Dependency
 injection INVEST principles, 93, 190 IPMI (Intelligent Platform Management
 Interface), 288, 318 ISO 9001, 437 Isolation in acceptance tests, 205, 220 Issue, 431 Iteration one, 253 Iteration zero, 134 Iterative delivery, 442
-and analysis, 193­195 Iterative development, 425 ITIL (Information Technology Infrastructure
-Library), 421­422 Ivy, 150, 154, 160, 166, 355, 375
+and analysis, 193ï¿½195 Iterative development, 425 ITIL (Information Technology Infrastructure
+Library), 421ï¿½422 Ivy, 150, 154, 160, 166, 355, 375
 J
 J2EE (Java 2 Platform, Enterprise Edition), 359
 JARs, 159, 356, 374 Java
-building with Ant, 147 classloader in, 354 components in, 345 database migration in, 328 naming conventions in, 158 project structure in, 157­160 runtime dependencies in, 354 Javac, 146 JavaDB, 336 Javadoc, 149 JBehave, 85, 191, 196 JDepend, 74 Jikes, 146 JMeter, 243 JMock, 181 JMX, 319 JRuby, 151 Jumpstart, 284, 289 Just-in-time compiler, 146
+building with Ant, 147 classloader in, 354 components in, 345 database migration in, 328 naming conventions in, 158 project structure in, 157ï¿½160 runtime dependencies in, 354 Javac, 146 JavaDB, 336 Javadoc, 149 JBehave, 85, 191, 196 JDepend, 74 Jikes, 146 JMeter, 243 JMock, 181 JMX, 319 JRuby, 151 Jumpstart, 284, 289 Just-in-time compiler, 146
 K
 Kaizen. See Continuous improvement Kanban, 411 Kick-off meetings, 194
 
@@ -7706,47 +7712,47 @@ Label, 374 Large teams
 and mainline development, 392, 405 branch by team, 412 branch for release, 409 collaboration through components in, 346 See also Team size Law of Demeter, 345, 358, 406 Layers in acceptance tests, 190 in software, 359 LCFG, 291 LDAP (Lightweight Directory Access
 Protocol), 44, 291 Lean
 and project management, 427 as a principle of continuous delivery, 27 influence on this book, 16 the cost of not delivering continuously,
-418 Legacy systems, 95­96, 306 Libraries
-configuration management of, 38­39, 354­356, 363
-definition of, 352 dependency management of, 375 managing as part of development, 62 Licensing as part of the release plan, 252 of middleware, 300 Lifecycle, 421­429 Likelihood, 430 Lines of code, 137 Linux, 154, 310, 395 Live-live releases. See Blue-green
+418 Legacy systems, 95ï¿½96, 306 Libraries
+configuration management of, 38ï¿½39, 354ï¿½356, 363
+definition of, 352 dependency management of, 375 managing as part of development, 62 Licensing as part of the release plan, 252 of middleware, 300 Lifecycle, 421ï¿½429 Likelihood, 430 Lines of code, 137 Linux, 154, 310, 395 Live-live releases. See Blue-green
 deployments Living build, 110 Load testing, 231 Locking. See Version control practices Logging
-and infrastructure management, 301 and the release strategy, 250 as a requirement of operations team, 281 importance of, 436 of deployment, 270­271 of infrastructure changes, 287 LOM (Lights Out Management), 288, 318
+and infrastructure management, 301 and the release strategy, 250 as a requirement of operations team, 281 importance of, 436 of deployment, 270ï¿½271 of infrastructure changes, 287 LOM (Lights Out Management), 288, 318
 
 456
 
 Index
 Longevity tests, 231, 238 Lsof, 301
 M
-Mac OS, 310 Mainline development, 35­37, 59, 346­351,
-392, 405­408 Maintainability
-and mainline development, 406 and quality, 434 of acceptance tests, 190­192 of capacity tests, 240 Maintenance as part of release strategy, 250, 409 of the build system, 174 Make, 144, 146­147 Makefile, 146 Managed devices, 319 Management information base, 320 Manifests and traceability, 166 of hardware, 271 Manual testing, 110, 126, 189, 223, 343 Marathon, 243 Marick, Brian, 84 Marimba, 155 Marionette Collective, 161, 291 Marketing, 252 Maturity model, 419­421 Maven, 38, 148­150, 154, 157, 160, 166,
-355, 375­378 analyzing dependencies with, 378 compared to Buildr, 151 coordinates in, 375 repository of, 375 snapshots in, 377 subprojects in, 158 Maven Standard Directory Layout, 157 McCarthy, John, 312 Mean time between failures. See MTBF Mean time to repair. See MTTR Measurement, 264, 420 Memory leaks, 247 Mercurial, 32, 79­81, 374, 393, 396, 398,
+Mac OS, 310 Mainline development, 35ï¿½37, 59, 346ï¿½351,
+392, 405ï¿½408 Maintainability
+and mainline development, 406 and quality, 434 of acceptance tests, 190ï¿½192 of capacity tests, 240 Maintenance as part of release strategy, 250, 409 of the build system, 174 Make, 144, 146ï¿½147 Makefile, 146 Managed devices, 319 Management information base, 320 Manifests and traceability, 166 of hardware, 271 Manual testing, 110, 126, 189, 223, 343 Marathon, 243 Marick, Brian, 84 Marimba, 155 Marionette Collective, 161, 291 Marketing, 252 Maturity model, 419ï¿½421 Maven, 38, 148ï¿½150, 154, 157, 160, 166,
+355, 375ï¿½378 analyzing dependencies with, 378 compared to Buildr, 151 coordinates in, 375 repository of, 375 snapshots in, 377 subprojects in, 158 Maven Standard Directory Layout, 157 McCarthy, John, 312 Mean time between failures. See MTBF Mean time to repair. See MTTR Measurement, 264, 420 Memory leaks, 247 Mercurial, 32, 79ï¿½81, 374, 393, 396, 398,
 403 Merge conflicts, 386, 390, 415 Merge team, 407 Merging
-definition of, 389­390 in branch by feature, 349, 410 in branch by team, 413
+definition of, 389ï¿½390 in branch by feature, 349, 410 in branch by team, 413
 
-in ClearCase, 404 in stream-based systems, 402 in the integration phase, 406 tracking, 385 with distributed version control, 399 with optimistic locking, 386 Message queues as an API, 357 capacity testing, 241 configuration management of, 296 Metabase, 299 Metrics, 106, 172, 287, 441 as part of deployment pipeline, 137­140 Microsoft, 316, 359 Middleware and application deployment, 155 configuration management of, 295­300 managing, 130, 284 monitoring, 318 Mitigation, 430 Mocha, 181 Mockito, 181 Mocks, 92, 178 See also Test doubles Monitoring and business intelligence, 317 applications, 318 as part of the release strategy, 250 importance of, 436 infrastructure and environments, 317­323 middleware, 318 network for, 302 operating systems, 318 requirements for, 281­282 user behavior, 318 Monolithic architecture, 345, 357 Monotone, 396 MSBuild, 148 MTBF (mean time between failures), 280,
+in ClearCase, 404 in stream-based systems, 402 in the integration phase, 406 tracking, 385 with distributed version control, 399 with optimistic locking, 386 Message queues as an API, 357 capacity testing, 241 configuration management of, 296 Metabase, 299 Metrics, 106, 172, 287, 441 as part of deployment pipeline, 137ï¿½140 Microsoft, 316, 359 Middleware and application deployment, 155 configuration management of, 295ï¿½300 managing, 130, 284 monitoring, 318 Mitigation, 430 Mocha, 181 Mockito, 181 Mocks, 92, 178 See also Test doubles Monitoring and business intelligence, 317 applications, 318 as part of the release strategy, 250 importance of, 436 infrastructure and environments, 317ï¿½323 middleware, 318 network for, 302 operating systems, 318 requirements for, 281ï¿½282 user behavior, 318 Monolithic architecture, 345, 357 Monotone, 396 MSBuild, 148 MTBF (mean time between failures), 280,
 286, 440 MTTR (mean time to repair), 278, 280, 286,
-440 Multihomed systems, 301­303 Mythical hero, 108
+440 Multihomed systems, 301ï¿½303 Mythical hero, 108
 N
 Nabaztag, 63 Nagios, 257, 281, 301, 318, 321 Nant, 148 NDepend, 74
 
-.NET acceptance tests in, 197 and dependency hell, 353 database migration in, 328 project structure in, 157­160 tips and tricks for, 167
+.NET acceptance tests in, 197 and dependency hell, 353 database migration in, 328 project structure in, 157ï¿½160 tips and tricks for, 167
 Network boot, 289 Network management system, 319 Networks
-administration of, 302 and nonfunctional requirements, 229 configuration management of, 300 topology of, 118 virtual, 311 Nexus, 111, 166, 175, 355, 361, 373, 375 NICs (Network Interface Cards), 302 Nightly build, 65, 127 NMock, 181 Nonfunctional requirements analysis of, 226­228 and acceptance criteria, 227­228 and cloud computing, 314 and the deployment pipeline, 136 logging, 320 managing, 226­228, 436 release strategy as a source of, 251 trade-offs for, 227 virtualization for testing, 305 Nonfunctional tests definition of, 91 in the deployment pipeline, 128 NoSQL, 326 Notification and CI, 63­65 as part of monitoring, 317 N-tier architecture and components, 359 and deployment, 155 smoke-testing, 164
+administration of, 302 and nonfunctional requirements, 229 configuration management of, 300 topology of, 118 virtual, 311 Nexus, 111, 166, 175, 355, 361, 373, 375 NICs (Network Interface Cards), 302 Nightly build, 65, 127 NMock, 181 Nonfunctional requirements analysis of, 226ï¿½228 and acceptance criteria, 227ï¿½228 and cloud computing, 314 and the deployment pipeline, 136 logging, 320 managing, 226ï¿½228, 436 release strategy as a source of, 251 trade-offs for, 227 virtualization for testing, 305 Nonfunctional tests definition of, 91 in the deployment pipeline, 128 NoSQL, 326 Notification and CI, 63ï¿½65 as part of monitoring, 317 N-tier architecture and components, 359 and deployment, 155 smoke-testing, 164
 O
 Object-oriented design, 350 Open source, 143
-and distributed version control, 81 and Maven, 375 OpenNMS, 281, 301, 318 Operating systems configuration of, 118 monitoring, 318 Operations, 105, 279­283, 428­429 See also DevOps
+and distributed version control, 81 and Maven, 375 OpenNMS, 281, 301, 318 Operating systems configuration of, 118 monitoring, 318 Operations, 105, 279ï¿½283, 428ï¿½429 See also DevOps
 
 Index
 
 457
 
-Operations Center, 291 Operations Manager, 281, 301, 318 Opportunity cost, 300 Optimistic locking, 386­387 Oracle, 154, 320 Orchestration, 257­258, 329­331, 333 Organizational change, 419 OSGi, 350, 354­356 Out-of-band management, 288, 318 Overdesign, 228
+Operations Center, 291 Operations Manager, 281, 301, 318 Opportunity cost, 300 Optimistic locking, 386ï¿½387 Oracle, 154, 320 Orchestration, 257ï¿½258, 329ï¿½331, 333 Organizational change, 419 OSGi, 350, 354ï¿½356 Out-of-band management, 288, 318 Overdesign, 228
 P
-Packaging, 296 and configuration, 41 as part of: deployment pipeline, 135, 283 integration, 361 tools for, 154­155
+Packaging, 296 and configuration, 41 as part of: deployment pipeline, 135, 283 integration, 361 tools for, 154ï¿½155
 Panopticode, 139 Passwords. See Security Patches, 251 Patterns and nonfunctional requirements,
 230 PCI DSS, 314, 436 Peak demand, 244 Perforce, 385 Performance
-and governance, 417 definition of, 225 of acceptance tests, 218­222 tuning, 247 Perl, 155, 283, 356 Pessimistic locking, 386­387 Pilot projects, 428 Plan, do, check, act. See Deming cycle Platforms in the Cloud, 314­315 POM, 375 Postfix, 293 Potemkin village, 351 PowerBuilder, 271 PowerShell, 162, 282, 299 Preconditions in acceptance tests, 206 Predictability, 419 Premature optimization, 228 Preseed, 284, 289 Pretested commit, 37, 67, 120, 171 Pricing, 252 Primary keys, 329 Prioritization as part of project lifecycle, 427 of defects, 101
+and governance, 417 definition of, 225 of acceptance tests, 218ï¿½222 tuning, 247 Perl, 155, 283, 356 Pessimistic locking, 386ï¿½387 Pilot projects, 428 Plan, do, check, act. See Deming cycle Platforms in the Cloud, 314ï¿½315 POM, 375 Postfix, 293 Potemkin village, 351 PowerBuilder, 271 PowerShell, 162, 282, 299 Preconditions in acceptance tests, 206 Predictability, 419 Premature optimization, 228 Preseed, 284, 289 Pretested commit, 37, 67, 120, 171 Pricing, 252 Primary keys, 329 Prioritization as part of project lifecycle, 427 of defects, 101
 
 458
 
@@ -7754,47 +7760,47 @@ Index
 Prioritization (continued) of nonfunctional requirements, 226 of requirements, 422
 Process boundaries and acceptance tests, 206 and nonfunctional requirements, 229
 Process modeling, 133 Procurement, 283 Product owner, 422 Production environments
-and uncontrolled changes, 273 logging in to, 160 Production readiness, 346­351, 426 Production sizing, 251 Production-like environments, 107, 117,
+and uncontrolled changes, 273 logging in to, 160 Production readiness, 346ï¿½351, 426 Production sizing, 251 Production-like environments, 107, 117,
 129, 308 characteristics of, 254 Productivity, 50, 82, 173 Product-oriented build tools, 145 Profiling tools, 231 Profitability, 419 Project horizon, 423 Project managers, 428 Project structure for JVM and .NET projects,
-157­160 Promiscuous integration, 81 Promotion, 46, 254­257, 402, 406 Proof of concept, 420 Provisioning, 288, 290­295, 303 Psake, 151 PsExec, 162 Pull system, 17, 106, 255 Pulse, 58 Puppet, 51, 53, 118, 155­156, 161, 284,
-287­288, 290­296, 300, 306, 323 Push-button deployment, 17, 112, 126, 135,
+157ï¿½160 Promiscuous integration, 81 Promotion, 46, 254ï¿½257, 402, 406 Proof of concept, 420 Provisioning, 288, 290ï¿½295, 303 Psake, 151 PsExec, 162 Pull system, 17, 106, 255 Pulse, 58 Puppet, 51, 53, 118, 155ï¿½156, 161, 284,
+287ï¿½288, 290ï¿½296, 300, 306, 323 Push-button deployment, 17, 112, 126, 135,
 157, 255, 315 PVCS (Polytron Version Control System),
 386 PXE (Preboot eXecution Environment),
-288­290 Python, 147, 155, 283
+288ï¿½290 Python, 147, 155, 283
 Q
-Quality, 12, 62, 418, 422, 434­435 attributes of, 227
+Quality, 12, 62, 418, 422, 434ï¿½435 attributes of, 227
 Quality analysts. See Testers Quantifiers, 376
 
 R
-Race condition, 136 RAID, 374 Rake, 150, 150­151 rBuilder, 305 RCS (Revision Control System), 32, 382 RDBMS (Relational Database Management
+Race condition, 136 RAID, 374 Rake, 150, 150ï¿½151 rBuilder, 305 RCS (Revision Control System), 32, 382 RDBMS (Relational Database Management
 System), 314, 326 Rebasing, 394, 414 Record-and-playback
 for acceptance testing, 191, 197 for capacity testing, 239, 241 of database transactions, 332 Recovery point objective, 282 Recovery time objective, 282 Redeployment as a way of backing out, 132,
-259­260 RedHat Linux, 154, 284 Refactoring
-acceptance tests, 192, 218­219 and branch by abstraction, 350 and branch by team, 415 and CI, 72 and mainline development, 406 and version control, 36 as part of project lifecycle, 426 as prerequisite for quality, 427 enabled by regression tests, 87 Referential constraints, 329 Regression bugs and continuous delivery, 349 as a symptom of poor application quality,
-434 caused by uncontrolled changes, 265 on legacy systems, 96 Regression tests, 87, 124, 128, 189 Relative paths in build scripts, 164 Release as part of deployment pipeline, 110 automating, 129 maintenance of, 409 managing, 107, 419­421 modeling the process of, 254­257 zero-downtime, 260­261 Release branches. See Version control
+259ï¿½260 RedHat Linux, 154, 284 Refactoring
+acceptance tests, 192, 218ï¿½219 and branch by abstraction, 350 and branch by team, 415 and CI, 72 and mainline development, 406 and version control, 36 as part of project lifecycle, 426 as prerequisite for quality, 427 enabled by regression tests, 87 Referential constraints, 329 Regression bugs and continuous delivery, 349 as a symptom of poor application quality,
+434 caused by uncontrolled changes, 265 on legacy systems, 96 Regression tests, 87, 124, 128, 189 Relative paths in build scripts, 164 Release as part of deployment pipeline, 110 automating, 129 maintenance of, 409 managing, 107, 419ï¿½421 modeling the process of, 254ï¿½257 zero-downtime, 260ï¿½261 Release branches. See Version control
 practices Release candidate
-and acceptance test gate, 124 and manual test stages, 127 definition of, 22­24 lifecycle of, 132
+and acceptance test gate, 124 and manual test stages, 127 definition of, 22ï¿½24 lifecycle of, 132
 
 Index
 
 459
 
-Release plan, 129, 251­252, 281, 283, 423 Release strategy, 250­252, 423, 430 Remediation, 441 Remote installation, 288 Repeatability, 354 Reporting status, 429 Repository pattern, 335 Reproduceability, 373 Requirements
-of the operations team, 279­283 release strategy as a source of, 251 Resilience, 316 Resources condition, 136 Responsibility for deployment, 271 for fixing the build, 70­71, 174 of developers to understand operations,
+Release plan, 129, 251ï¿½252, 281, 283, 423 Release strategy, 250ï¿½252, 423, 430 Remediation, 441 Remote installation, 288 Repeatability, 354 Reporting status, 429 Repository pattern, 335 Reproduceability, 373 Requirements
+of the operations team, 279ï¿½283 release strategy as a source of, 251 Resilience, 316 Resources condition, 136 Responsibility for deployment, 271 for fixing the build, 70ï¿½71, 174 of developers to understand operations,
 281 Rest, 197 Retrospectives, 16
 as part of: continuous improvement, 28, 420, 441 risk management, 431
-to enable collaboration, 440 Revenue, 264, 316­317 Reverse proxy, 271 Reverse-engineering, 299 Reverting, 435
+to enable collaboration, 440 Revenue, 264, 316ï¿½317 Reverse proxy, 271 Reverse-engineering, 299 Reverting, 435
 when the build is broken, 69 Revision control. See Version control Revision, of binaries, 166 Rhino, 181 Risk
-and canary releasing, 263 and issue log, 423 and nonfunctional requirements, 225 and organizational maturity, 420 management of, 417, 429­432, 442 of deployment, 278 of development, 430­431 of releases, 4­11, 279 reducing:
+and canary releasing, 263 and issue log, 423 and nonfunctional requirements, 225 and organizational maturity, 420 management of, 417, 429ï¿½432, 442 of deployment, 278 of development, 430ï¿½431 of releases, 4ï¿½11, 279 reducing:
 through continuous delivery, 279 through continuous deployment, 267 through retrospectives, 431 through virtualization, 303 Roles, 424 Roll back and artifacts, 373 and legacy systems, 252 automating, 10
 
 frequent, and poor configuration management, 436
-of databases, 328, 331­334 reducing risk of releasing with, 109 strategies of, 132, 259­265 vs. emergency fixes, 266 Roll forward of databases, 328 Rolling builds, 65 Root cause analysis, 433 Routers, 263 and blue-green deployments, 261 configuration management of, 300 rPath, 305 RPM, 294, 299 RSA, 273 Rsync, 156, 162 Ruby, 155, 283 Ruby Gems, 355 Ruby on Rails, 328, 354 RubyGems, 38, 151, 294 Runtime optimisation, 245
+of databases, 328, 331ï¿½334 reducing risk of releasing with, 109 strategies of, 132, 259ï¿½265 vs. emergency fixes, 266 Roll forward of databases, 328 Rolling builds, 65 Root cause analysis, 433 Routers, 263 and blue-green deployments, 261 configuration management of, 300 rPath, 305 RPM, 294, 299 RSA, 273 Rsync, 156, 162 Ruby, 155, 283 Ruby Gems, 355 Ruby on Rails, 328, 354 RubyGems, 38, 151, 294 Runtime optimisation, 245
 S
 Sad path, 88 Sahi, 134, 197 SalesForce, 313 SAN, 374 Sarbanes-Oxley. See SOX Scalability testing, 231 Scaling
 for capacity testing, 236 through cloud computing, 313 SCCS (Source Code Control System), 32,
-382 Scenarios, in capacity testing, 238 SCons, 147 Scp, 162 Screen recording, 136, 213­214 Scripting and the deployment pipeline, 152 Scrum, 422, 427 Seams, 350 Security
-and cloud computing, 313 and configuration management, 43 and monitoring, 322 and network routing, 303 as a nonfunctional requirement, 423 as part of a testing strategy, 91 holes in, 131 of infrastructure, 285­286 Selenium, 197
+382 Scenarios, in capacity testing, 238 SCons, 147 Scp, 162 Screen recording, 136, 213ï¿½214 Scripting and the deployment pipeline, 152 Scrum, 422, 427 Seams, 350 Security
+and cloud computing, 313 and configuration management, 43 and monitoring, 322 and network routing, 303 as a nonfunctional requirement, 423 as part of a testing strategy, 91 holes in, 131 of infrastructure, 285ï¿½286 Selenium, 197
 
 460
 
@@ -7804,7 +7810,7 @@ Selenium Grid, 221, 310 Selenium Remoting, 221 Self-service deployments, 112, 25
 and databases, 329 and deployment, 156, 258 and environments, 278 capacity testing, 239, 241 promoting, 257 SETI@Home, 313 Severity, 430 Sevice continuity planning, 423 Shadow domains. See Blue-green
 deployments Shared filesystems as artifact repositories,
 375 Shared library, 352 Shared resources, 261 Shared understanding, 423 Shared-nothing architectures, 264, 313 Showcases, 128, 426
-as a form of manual testing, 90 as a risk mitigation strategy, 433 Shuttleworth, Mark, 394 Side-by-side deployment, 262 Silos and components, 358 and deployment, 8 development and operations, 279 managing delivery, 439­440 Simian, 74 Simplicity and nonfunctional requirements,
+as a form of manual testing, 90 as a risk mitigation strategy, 433 Shuttleworth, Mark, 394 Side-by-side deployment, 262 Silos and components, 358 and deployment, 8 development and operations, 279 managing delivery, 439ï¿½440 Simian, 74 Simplicity and nonfunctional requirements,
 229 Simulation for capacity testing, 239 Skype, 75 SLA (service-level agreements), 128, 251,
 280, 314, 331 Slow tests
 failing the build, 73 unit tests and test doubles, 89
@@ -7814,44 +7820,44 @@ SMTP (Simple Mail Transfer Protocol), 285, 300
 Snapshots in Maven, 377 of virtual machines, 305
 SNMP (Simple Network Management Protocol), 302, 319
 Software Engineering Institute, 227 Solaris, 284 Source control. See Version control SOX (Sarbanes-Oxley), 280, 436 Specifications. See Acceptance criteria Spies, 92
-See also Test doubles Spikes, 382, 425 Splunk, 318 SqlLite, 336 Ssh, 162, 302 Stability, 230, 369 Stabilization phase, 347 Stabilizing the patient, 129, 286 Staging environment, 258­259, 290 Stakeholders, 422 Stallman, Richard, 316 StarTeam, 386, 409 State
-in acceptance tests, 204­206 in middleware, 298­299 in unit tests, 179, 183 Static analysis, 331 Static compilation, 353 Static linking, 357 Static views, 403 Stop the line, 119­120 Stored procedures, 334 Stories and acceptance criteria, 195 and acceptance tests, 85, 99, 188, 193 and components, 358
+See also Test doubles Spikes, 382, 425 Splunk, 318 SqlLite, 336 Ssh, 162, 302 Stability, 230, 369 Stabilization phase, 347 Stabilizing the patient, 129, 286 Staging environment, 258ï¿½259, 290 Stakeholders, 422 Stallman, Richard, 316 StarTeam, 386, 409 State
+in acceptance tests, 204ï¿½206 in middleware, 298ï¿½299 in unit tests, 179, 183 Static analysis, 331 Static compilation, 353 Static linking, 357 Static views, 403 Stop the line, 119ï¿½120 Stored procedures, 334 Stories and acceptance criteria, 195 and acceptance tests, 85, 99, 188, 193 and components, 358
 
 Index
 
 461
 
-and defects, 101 and legacy systems, 95 and nonfunctional requirements, 227­228 and throughput, 138 INVEST, 93 Strategy pattern, 351 Streaming video, 315 Stubs, 92, 178 for developing capacity tests, 244 See also Test doubles Subversion, 32, 383­385, 397 Sun, 294, 359 Sunk cost, 300, 349 Support and data archiving, 282 as part of:
+and defects, 101 and legacy systems, 95 and nonfunctional requirements, 227ï¿½228 and throughput, 138 INVEST, 93 Strategy pattern, 351 Streaming video, 315 Stubs, 92, 178 for developing capacity tests, 244 See also Test doubles Subversion, 32, 383ï¿½385, 397 Sun, 294, 359 Sunk cost, 300, 349 Support and data archiving, 282 as part of:
 release plan, 252 release strategy, 251 reducing cost, 419 SuSE Linux, 154 Sweeping it under the rug, 351 Symbolic links, 260, 269, 271, 294 Sysinternals, 301 System Center Configuration Manager, 291, 296 System characteristics, 226 System of record, 381, 418
 T
 Tagging and releases, 409 in ClearCase, 404 in CVS, 383 in Subversion, 384 See also Version control practices
 Tarantino, 328 Task-oriented build tools, 145 TC3, 314 TCP/IP, 300 Tcpdump, 301 TCPView, 301 Team Foundation Server, 386 Team size
-and acceptance testing, 214 and components, 357 does continuous delivery scale?, 16 using a build master, 174 See also Large teams TeamCity, 58 Technical debt, 330, 406 Templates, 305, 309­310
+and acceptance testing, 214 and components, 357 does continuous delivery scale?, 16 using a build master, 174 See also Large teams TeamCity, 58 Technical debt, 330, 406 Templates, 305, 309ï¿½310
 
 Temporary tables, 329, 332 Test automation pyramid, 178 Test coverage, 87, 121, 174, 435 Test data
-and database dumps, 340, 343 application reference data, 340, 343 decoupling from tests, 336 functional partitioning, 337 in acceptance tests, 339­341 in capacity tests, 243, 341­342 in commit tests, 338­339 managing, 334­338 test reference, 340, 343 test-specific, 340 Test doubles, 89, 91, 178 and acceptance tests, 210­212 and unit tests, 180­183, 335 speed of, 89 Test performance and databases, 335­336 faking time for, 184 increasing through virtualization, 305, 310 Test sequencing, 336 Test-driven development, 71, 178, 427 See also Behavior-driven development Testers, 193 Testing quadrant diagram, 84, 178 Testing strategies as part of inception, 423 greenfield projects, 92­94 importance of, 434 legacy systems, 95­96 midproject, 94­95 Tests, 105 adaptive, 336, 338 failing, 308 isolation of, 336­337 manual, 126, 128, 138, 189, 223, 343 sequencing, 336 setup and tear down, 337, 340 types of, 84 See also Automated tests, Manual testing TFTP (Trivial File Transfer Protocol), 289 Theory of Constraints, 138 Thread pools, 318 Threading and application performance, 230 catching problems with acceptance tests,
+and database dumps, 340, 343 application reference data, 340, 343 decoupling from tests, 336 functional partitioning, 337 in acceptance tests, 339ï¿½341 in capacity tests, 243, 341ï¿½342 in commit tests, 338ï¿½339 managing, 334ï¿½338 test reference, 340, 343 test-specific, 340 Test doubles, 89, 91, 178 and acceptance tests, 210ï¿½212 and unit tests, 180ï¿½183, 335 speed of, 89 Test performance and databases, 335ï¿½336 faking time for, 184 increasing through virtualization, 305, 310 Test sequencing, 336 Test-driven development, 71, 178, 427 See also Behavior-driven development Testers, 193 Testing quadrant diagram, 84, 178 Testing strategies as part of inception, 423 greenfield projects, 92ï¿½94 importance of, 434 legacy systems, 95ï¿½96 midproject, 94ï¿½95 Tests, 105 adaptive, 336, 338 failing, 308 isolation of, 336ï¿½337 manual, 126, 128, 138, 189, 223, 343 sequencing, 336 setup and tear down, 337, 340 types of, 84 See also Automated tests, Manual testing TFTP (Trivial File Transfer Protocol), 289 Theory of Constraints, 138 Thread pools, 318 Threading and application performance, 230 catching problems with acceptance tests,
 189 Thresholds in capacity tests, 238 Throughput, 225, 231
 
 462
 
 Index
-Time in unit tests, 184 Time-boxed iterations, 428 Timeouts and acceptance testing, 207­210 Tivoli, 287, 291, 318 TODOs, 74 Toolchain
-and testing environments, 254 and the deployment pipeline, 114 version controlling, 34, 355 Torvalds, Linus, 385, 395 Touch screen, 204 Traceability and artifact repository, 373 and dependencies, 363 and the deployment pipeline, 114 and the integration pipeline, 362 from binaries to version control, 165­166,
-418 managing and enforcing, 438­439 when pipelining components, 360, 366 Trade-offs for nonfunctional requirements,
-227 Traffic lights, 172, 322 Transactions for managing test state, 337 Trunk. See Mainline development Trust and dependency management, 369 Tuple, 43 Turing completeness, 198 Twist, 85­86, 191, 196 Two-phase authentication, 273
+Time in unit tests, 184 Time-boxed iterations, 428 Timeouts and acceptance testing, 207ï¿½210 Tivoli, 287, 291, 318 TODOs, 74 Toolchain
+and testing environments, 254 and the deployment pipeline, 114 version controlling, 34, 355 Torvalds, Linus, 385, 395 Touch screen, 204 Traceability and artifact repository, 373 and dependencies, 363 and the deployment pipeline, 114 and the integration pipeline, 362 from binaries to version control, 165ï¿½166,
+418 managing and enforcing, 438ï¿½439 when pipelining components, 360, 366 Trade-offs for nonfunctional requirements,
+227 Traffic lights, 172, 322 Transactions for managing test state, 337 Trunk. See Mainline development Trust and dependency management, 369 Tuple, 43 Turing completeness, 198 Twist, 85ï¿½86, 191, 196 Two-phase authentication, 273
 U
 Ubiquitous language, 125 Ubuntu, 154, 353, 394 UI (User Interface)
-and capacity testing, 240­241 and unit testing, 178­179 See also GUI Uncontrolled changes, 20, 265, 273, 288,
+and capacity testing, 240ï¿½241 and unit testing, 178ï¿½179 See also GUI Uncontrolled changes, 20, 265, 273, 288,
 290, 306 Undeployable software, 105, 391 Union filesystem, 400 Unit tests, 89
-and asynchrony, 180 and CI, 60 and databases, 179­180, 335­336 and dependency injection, 179 and state, 183 and test doubles, 180­183 and UI, 178­179 as part of commit stage, 120
+and asynchrony, 180 and CI, 60 and databases, 179ï¿½180, 335ï¿½336 and dependency injection, 179 and state, 183 and test doubles, 180ï¿½183 and UI, 178ï¿½179 as part of commit stage, 120
 
-automating, 135 faking time for, 184 principles and practices of, 177­185 speed of, 89, 177 vs. acceptance tests, 188 See also Commit tests Upgrading, 261 and deployment scripting, 153 and user-installed software, 267­270 as part of:
-release plan, 252 release strategy, 251 Usability and nonfunctional requirements, 228 testing, 87, 90, 128, 255 Use cases and acceptance tests, 86 User acceptance testing, 86, 135 and test data, 343 in the deployment pipeline, 112 User-installed software and acceptance testing, 125 and canary releasing, 264 and continuous delivery, 267­270 and deployment automation, 129 crash reports, 267­270 testing using virtualization, 310 upgrading, 267­270 Utility, 421 Utility computing, 312, 316
+automating, 135 faking time for, 184 principles and practices of, 177ï¿½185 speed of, 89, 177 vs. acceptance tests, 188 See also Commit tests Upgrading, 261 and deployment scripting, 153 and user-installed software, 267ï¿½270 as part of:
+release plan, 252 release strategy, 251 Usability and nonfunctional requirements, 228 testing, 87, 90, 128, 255 Use cases and acceptance tests, 86 User acceptance testing, 86, 135 and test data, 343 in the deployment pipeline, 112 User-installed software and acceptance testing, 125 and canary releasing, 264 and continuous delivery, 267ï¿½270 and deployment automation, 129 crash reports, 267ï¿½270 testing using virtualization, 310 upgrading, 267ï¿½270 Utility, 421 Utility computing, 312, 316
 V
-Value creation, 417, 419, 442 Value stream, 106­113, 133, 254, 420 Velocity, 139, 431, 433 Vendor lock-in, 315, 317 Version control
+Value creation, 417, 419, 442 Value stream, 106ï¿½113, 133, 254, 420 Velocity, 139, 431, 433 Vendor lock-in, 315, 317 Version control
 and middleware configuration, 296, 298, 301
-as a principle of continuous delivery, 25­26
-as part of project initiation, 424 as prerequisite for CI, 56­57 definition of, 32 distributed. See Distributed version control for database scripts, 327 for libraries, 38, 354 stream-based, 388, 399­404 Version control practices branching. See Branching control everything, 33­35 forking, 81
+as a principle of continuous delivery, 25ï¿½26
+as part of project initiation, 424 as prerequisite for CI, 56ï¿½57 definition of, 32 distributed. See Distributed version control for database scripts, 327 for libraries, 38, 354 stream-based, 388, 399ï¿½404 Version control practices branching. See Branching control everything, 33ï¿½35 forking, 81
 
 Index
 
@@ -7859,18 +7865,17 @@ Index
 
 importance of regular check-ins for, 36, 59, 405
 locking, 383 mainline. See Mainline development merging. See Merging stream-based development, 405 Views, 334, 403 Virtualization and blue-green deployments, 262 and deployment scripting, 155 and orchestration, 258 and provisioning servers, 303 and the deployment pipeline, 304,
-307­310 baselines, 53, 305 definition of, 303 for acceptance tests, 217, 220 for creating testing environments, 254 for environment management, 118 for infrastructure consolidation, 304 for managing legacy systems, 306 for speeding up tests, 305, 310 for testing nonfunctional requirements,
-305 for testing user-installed software, 310 managing virtual environments, 305­307 of networks, 311 reducing risk of delivery through, 303 Snapshot, 305 templates for, 305 Visibility, 4, 113, 362 Visual Basic, 271, 345 Visual SourceSafe, 386 Visualizations, 140, 366 Vnc2swf, 136, 213
+307ï¿½310 baselines, 53, 305 definition of, 303 for acceptance tests, 217, 220 for creating testing environments, 254 for environment management, 118 for infrastructure consolidation, 304 for managing legacy systems, 306 for speeding up tests, 305, 310 for testing nonfunctional requirements,
+305 for testing user-installed software, 310 managing virtual environments, 305ï¿½307 of networks, 311 reducing risk of delivery through, 303 Snapshot, 305 templates for, 305 Visibility, 4, 113, 362 Visual Basic, 271, 345 Visual SourceSafe, 386 Visualizations, 140, 366 Vnc2swf, 136, 213
 W
 Walking skeleton, 134 Warm-up period, 245, 259, 261, 272 Warranty, 421 WARs, 159 Waste, 105, 391 Web servers, 296 Web services
 as an API, 357 capacity testing, 241 WebDriver, 134, 197 WebLogic, 320 WebSphere, 153 White, 197 Whole team, 124
 
-and acceptance tests, 125 and delivery, 28 and deployment, 271 and the commit stage, 172 Wikipedia, 313 Window driver pattern, 201­204 Windows, 154, 310, 352 Windows Deployment Services, 288­290 Windows Preinstallation Environment, 290 Wireshark, 301 WiX, 283 WordPress, 313 Workflow and distributed version control, 396 and the deployment pipeline, 111 of acceptance testing stage, 187 Working software, 56, 425 Works of art, 49, 288­289, 306 Works on my machine syndrome, 116 Workspace management, 62 WPKG, 291 Wsadmin, 153
+and acceptance tests, 125 and delivery, 28 and deployment, 271 and the commit stage, 172 Wikipedia, 313 Window driver pattern, 201ï¿½204 Windows, 154, 310, 352 Windows Deployment Services, 288ï¿½290 Windows Preinstallation Environment, 290 Wireshark, 301 WiX, 283 WordPress, 313 Workflow and distributed version control, 396 and the deployment pipeline, 111 of acceptance testing stage, 187 Working software, 56, 425 Works of art, 49, 288ï¿½289, 306 Works on my machine syndrome, 116 Workspace management, 62 WPKG, 291 Wsadmin, 153
 X
 Xcopy deployment, 353 XDoclet, 158 XML (Extensible Markup Language), 43,
 147, 297 XUnit, 135, 191, 200
 Y
 YAGNI (You ain't gonna need it!), 245 YAML, 43 Yum, 294
 Z
-Zenoss, 318 Zero defects, 100 Zero-downtime releases, 260­261, 331­334 zone files, 300
-
+Zenoss, 318 Zero defects, 100 Zero-downtime releases, 260ï¿½261, 331ï¿½334 zone files, 300

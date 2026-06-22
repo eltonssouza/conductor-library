@@ -1,3 +1,9 @@
+# SQL Performance Explained
+
+> **Author(s):** Winand Â· **Category:** 05_databases Â· **Language:** English
+
+---
+
 SQL
 
 MAJORCSOQVLEDRASTAABLALSES
@@ -18,7 +24,7 @@ This copy is licensed to: GHEORGHE GABRIEL SICHIM <gabriel.sichim@gmail.com>
 
 Publisher: Markus Winand
 Maderspergerstasse 1-3/9/11 1160 Wien AUSTRIA <office@winand.at>
-Copyright © 2012 Markus Winand
+Copyright ï¿½ 2012 Markus Winand
 All rights reserved. No part of this publication may be reproduced, stored, or transmitted in any form or by any means --electronic, mechanical, photocopying, recording, or otherwise -- without the prior consent of the publisher.
 Many of the names used by manufacturers and sellers to distinguish their products are trademarked. Wherever such designations appear in this book, and we were aware of a trademark claim, the names have been printed in all caps or initial caps.
 While every precaution has been taken in the preparation of this book, the publisher and author assume no responsibility for errors and omissions, or for damages resulting from the use of the information contained herein.
@@ -63,7 +69,7 @@ vi
 Preface: Developers Need to Index
 the access path -- is not very accessible to database administrators (DBAs) or external consultants. Quite some time is needed to gather this information through reverse engineering of the application: development, on the other hand, has that information anyway.
 This book covers everything developers need to know about indexes -- and nothing more. To be more precise, the book covers the most important index type only: the B-tree index.
-The B-tree index works almost identically in many databases. The book only uses the terminology of the Oracle® database, but the principles apply to other databases as well. Side notes provide relevant information for MySQL, PostgreSQL and SQL Server®.
+The B-tree index works almost identically in many databases. The book only uses the terminology of the Oracleï¿½ database, but the principles apply to other databases as well. Side notes provide relevant information for MySQL, PostgreSQL and SQL Serverï¿½.
 The structure of the book is tailor-made for developers; most chapters correspond to a particular part of an SQL statement.
 CHAPTER 1 - Anatomy of an Index The first chapter is the only one that doesn't cover SQL specifically; it is about the fundamental structure of an index. An understanding of the index structure is essential to following the later chapters -- don't skip this!
 Although the chapter is rather short --only about eight pages -- after working through the chapter you will already understand the phenomenon of slow indexes.
@@ -4530,10 +4536,10 @@ y est er d ay today Re su l t
 Filt er
 
 SQL Row Values
-Besides regular scalar values, the SQL standard also defines the socalled row value constructors. They "Specify an ordered set of values to be constructed into a row or partial row" [SQL:92, §7.1: <row value constructor>]. Syntactically, row values are lists in brackets. This syntax is best known for its use in the insert statement.
+Besides regular scalar values, the SQL standard also defines the socalled row value constructors. They "Specify an ordered set of values to be constructed into a row or partial row" [SQL:92, ï¿½7.1: <row value constructor>]. Syntactically, row values are lists in brackets. This syntax is best known for its use in the insert statement.
 Using row value constructors in the where clause is, however, less well-known but still perfectly valid. The SQL standard actually defines all comparison operators for row value constructors. The definition for the less than operations is, for example, as follows:
 "Rx < Ry" is true if and only if RXi = RYi for all i < n and RXn < RYn for some n.
---SQL:92, §8.2.7.2
+--SQL:92, ï¿½8.2.7.2
 Where i and n reflect positional indexes in the lists. That means a row value RX is less than RY if any value RXn is smaller than the corresponding RYn and all preceding value pairs are equal (RXi = RYi; for i<n).
 This definition makes the expression RX < RY synonymous to "RX sorts before RY" which is exactly the logic we need for the seek method.
 
@@ -5513,14 +5519,14 @@ SQL Performance explained helps developers to improve database performance. The 
 Starting with the basics of indexing and the where clause, SQL Performance explained guides developers through all parts of an SQL statement and explains the pitfalls of object-relational mapping (orm) tools like Hibernate.
 
 Topics covered include:
-» Using multi-column indexes » correctly applying SQL functions » eicient use of LIKE queries » optimizing join operations » clustering data to improve performance » Pipelined execution of order by and group by » Getting the best performance for pagination queries » Understanding the scalability of databases
+ï¿½ Using multi-column indexes ï¿½ correctly applying SQL functions ï¿½ eicient use of LIKE queries ï¿½ optimizing join operations ï¿½ clustering data to improve performance ï¿½ Pipelined execution of order by and group by ï¿½ Getting the best performance for pagination queries ï¿½ Understanding the scalability of databases
 
 Its systematic structure makes SQL Performance explained both a textbook and a reference manual that should be on every developer's bookshelf.
 
 covers
-oracle® Database
+oracleï¿½ Database
 
-SQL Server®
+SQL Serverï¿½
 
 mySQL
 
@@ -5532,4 +5538,3 @@ markus Winand has been developing SQL applications since 1998. His main interest
 ISbN 978-3-9503078-2-5
 
 eUr 29.95 GbP 26.99 9 783950 307825
-

@@ -1,9 +1,15 @@
+# Don't Make Me Think (3rd Ed)
+
+> **Author(s):** Krug Â· **Edition:** 3rd Ed Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 Don't Make Me Think, Revisited
 A Common Sense Approach to Web Usability
 Steve Krug
 
 Don't Make Me Think, Revisited A Common Sense Approach to Web Usability
-Copyright © 2014 Steve Krug
+Copyright ï¿½ 2014 Steve Krug
 New Riders www.newriders.com To report errors, please send a note to errata@peachpit.com New Riders is an imprint of Peachpit, a division of Pearson Education.
 Editor: Elisabeth Bayle Project Editor: Nancy Davis Production Editor: Lisa Brazieal Copy Editor: Barbara Flanagan Interior Design and Composition: Romney Lange Illustrations by Mark Matcho and Mimi Heft Farnham fonts provided by The Font Bureau, Inc. (www.fontbureau.com)
 Notice of Rights
@@ -124,7 +130,7 @@ Fortunately, much of what I do is just common sense, and anyone with some intere
 3 ...which is one reason why my consulting business is called Advanced Common Sense. "It's not rocket surgery" is my corporate motto.
 I spend a lot of my time telling people things they already know, so don't be surprised if you find yourself thinking "I knew that" a lot in the pages ahead.
 
-© 2013. The New Yorker Collection from cartoonbank.com All Rights Reserved.
+ï¿½ 2013. The New Yorker Collection from cartoonbank.com All Rights Reserved.
 It's a thin book
 More good news: I've worked hard to keep this book short--hopefully short enough so you can read it on a long plane ride. I did this for two reasons:
 If it's short, it's more likely to actually be used.4 I'm writing for the people who are in the trenches--the designers, the developers, the site producers, the project managers, the marketing people, and the people who sign the checks--and for the one-man-bands who are doing it all themselves.
@@ -398,7 +404,7 @@ When we factor this decision in, the process looks something like this:
 Note that even if you start looking on your own, if things don't pan out there's a good chance that eventually you'll end up asking someone for directions anyway.
 Web Navigation 101
 In many ways, you go through the same process when you enter a Web site. You're usually trying to find something. In the "real" world it might be the emergency room or a family-size bottle of ketchup. On the Web, it might be a pair of headphones or the name of the actor in Casablanca who played the headwaiter at Rick's.1
-1 S. Z. "Cuddles" Sakall, born Eugene Sakall in Budapest in 1884. Ironically, most of the character actors who played the Nazi-hating denizens of Rick's Café were actually famous European stage and screen actors who landed in Hollywood after fleeing the Nazis.
+1 S. Z. "Cuddles" Sakall, born Eugene Sakall in Budapest in 1884. Ironically, most of the character actors who played the Nazi-hating denizens of Rick's Cafï¿½ were actually famous European stage and screen actors who landed in Hollywood after fleeing the Nazis.
 You decide whether to ask first or browse first. The difference is that on a Web site there's no
 
 one standing around who can tell you where things are. The Web equivalent of asking directions is searching--typing a description of what you're looking for in a search box and getting back a list of links to places where it might be.
@@ -501,7 +507,7 @@ Of course, sometimes you have to compromise, usually because of space limitation
 "You are here"
 One of the ways navigation can counteract the Web's inherent "lost in space" feeling is by showing me where I am in the scheme of things, the same way that a "You are here" indicator does on the map in a shopping mall--or a National Park.
 
-©2000. The New Yorker Collection from cartoonbank.com. All Rights Reserved.
+ï¿½2000. The New Yorker Collection from cartoonbank.com. All Rights Reserved.
 On the Web, this is accomplished by highlighting my current location in whatever navigation bars, lists, or menus appear on the page.
 In this example, the current section (Bedroom) and subsection (Lighting) have both been "marked." There are a number of ways to make the current location stand out:
 The most common failing of "You are here" indicators is that they're too subtle. They need to stand out; if they don't, they lose their value as visual cues and end up just adding more noise to the page. One way to ensure that they stand out is to apply more than one visual distinction--for instance, a different color and bold text. Too-subtle visual cues are actually a very common problem. Designers love subtle cues, because subtlety is one of the traits of sophisticated design. But Web users are generally in such a hurry that they routinely miss subtle cues. In general, if you're a designer and you think a visual cue is sticking out like a sore thumb, it probably means you need to make it twice as prominent.
@@ -619,7 +625,7 @@ The worst of these behaviors, of course, is the tendency to try to promote every
 The problem is, the rewards and the costs of adding more things to the Home page aren't shared equally. The section that's being promoted gets a huge gain in traffic, while the overall loss in effectiveness of the Home page as it gets more cluttered is shared by all sections. It's a perfect example of the tragedy of the commons.4 The premise is simple:
 4 The concept, originated by nineteenth-century amateur mathematician William Forster Lloyd, was popularized in a classic essay on overpopulation by biologist Garrett Hardin ("The Tragedy of the Commons," Science, December 1968).
 Any shared resource (a "commons") will inevitably be destroyed by overuse.
-Take a town pasture, for example. For each animal a herdsman adds to the common pasture, he receives all proceeds from the sale of the animal--a positive benefit of +1. But the negative impact of adding an animal--its contribution to overgrazing--is shared by all, so the impact on the individual herdsman is less than ­1.
+Take a town pasture, for example. For each animal a herdsman adds to the common pasture, he receives all proceeds from the sale of the animal--a positive benefit of +1. But the negative impact of adding an animal--its contribution to overgrazing--is shared by all, so the impact on the individual herdsman is less than ï¿½1.
 The only sensible course for each herdsman is to add another animal to the herd. And another, and another--preferably before someone else does. And since each rational herdsman will reach the same conclusion, the commons is doomed. Preserving the Home page from promotional overload requires constant vigilance, since it usually happens gradually, with the slow, inexorable addition of just...one...more...thing. All the stakeholders need to be educated about the danger of overgrazing the Home page and offered other methods of driving traffic, like cross-promoting from other popular pages or taking turns using the same space on the Home page.
 
 Making Sure You Got them Right
@@ -894,7 +900,7 @@ As a result, many useful interface features that depended on hover are no longer
 Flat design: Friend or foe?
 Affordances require visual distinctions. But the recent trend in interface design (which may have waned by the time you read this) has moved in exactly the opposite direction: removing visual distinctions and "flattening" the appearance of interface elements. It looks darned good (to some people, anyway), and it can make screens less cluttered-looking. But at what price? In this case the tradeoff is between a clean, uncluttered look on one hand and providing sufficient visual information so people can perceive affordances on the other. Unfortunately, Flat design has a tendency to take along with it not just the potentially distracting decoration but also the useful information that the more textured elements were conveying.
 The distinctions required to draw attention to an affordance often need to be multi-dimensional: It's the position of something (e.g., in the navigation bar) and its formatting (e.g., reversed type, all caps) that tell you it's a menu item. By removing a number of these distinctions from the design palette, Flat design makes it harder to differentiate things. Flat design has sucked the air out of the room. It reminds me of the pre-color world in my favorite Calvin and Hobbes cartoon/comic/comic strip. (The rest of the cartoon is at the end of Chapter 13.)
-CALVIN AND HOBBES © 1989 Watterson. Reprinted with permission of UNIVERSAL UCLICK. All rights reserved.
+CALVIN AND HOBBES ï¿½ 1989 Watterson. Reprinted with permission of UNIVERSAL UCLICK. All rights reserved.
 You can do all the Flat design you want (you may have to, it may be forced on you), but make sure you're using all of the remaining dimensions to compensate for what you lose.
 You actually can be too rich or too thin
 ...but computers can never be too fast. Particularly on mobile devices, speed just makes everything feel better. Slow performance equals frustration for users and loss of goodwill for publishers.
@@ -1171,7 +1177,7 @@ But above all, be of good cheer. As I said at the beginning, building a great We
 And please don't take anything I've said as being against breaking "the rules"--or at least bending them. I know there are even sites where you do want the interface to make people think, to puzzle or challenge them. Just be sure you know which rules you're bending and that you at least think you have a good reason for bending them.
 Oh, by the way, here's the rest of Calvin and Hobbes.
 
-CALVIN AND HOBBES © 1989 Watterson. Reprinted with permission of UNIVERSAL UCLICK. All rights reserved.
+CALVIN AND HOBBES ï¿½ 1989 Watterson. Reprinted with permission of UNIVERSAL UCLICK. All rights reserved.
 
 Acknowledgments
 ...AND ALL I GOT WAS THIS LOUSY T-SHIRT
@@ -1189,67 +1195,66 @@ If you'd like your life to be good, marry well.
 Index
 $25,000 Pyramid, 36
 A
-accessibility, 173­81 affordances, 151­53 Agile development, 4, 118 Animal, Vegetable, or Mineral?, 42­47 Apple, 143 apps, mobile, 155-59 average user, 9
+accessibility, 173ï¿½81 affordances, 151ï¿½53 Agile development, 4, 118 Animal, Vegetable, or Mineral?, 42ï¿½47 Apple, 143 apps, mobile, 155-59 average user, 9
 myth of the, 18, 108
 B
-Beat the Clock, 85 Big Bang Theory of Web Design, 89 big honking report, 4, 117 Breadcrumbs, 79­80 Brin, Sergey, 26 browse-dominant users, 59 browser
-what users say it is, 26 browsing, 60­62 Brundlefly, 162 Burma-Shave, 29
+Beat the Clock, 85 Big Bang Theory of Web Design, 89 big honking report, 4, 117 Breadcrumbs, 79ï¿½80 Brin, Sergey, 26 browse-dominant users, 59 browser
+what users say it is, 26 browsing, 60ï¿½62 Brundlefly, 162 Burma-Shave, 29
 C
 Calvin and Hobbes, 153, 191 Camtasia, 122, 163 Cascading Style Sheets (CSS)
-and accessibility, 181 earliest use of, 37 and usability, 171 clickability, 15, 37 Collyer, Bud, 85 conventions, 29­33, 64 culture clash, 107 cursor, 37, 152
-D­E
-delight, 155­56
+and accessibility, 181 earliest use of, 37 and usability, 171 clickability, 15, 37 Collyer, Bud, 85 conventions, 29ï¿½33, 64 culture clash, 107 cursor, 37, 152
+Dï¿½E
+delight, 155ï¿½56
 
-designing conventions and, 29­33 Home page, 84 navigation, 54 and satisficing, 24­25 Web sites, intention vs. reality, 21, 23
+designing conventions and, 29ï¿½33 Home page, 84 navigation, 54 and satisficing, 24ï¿½25 Web sites, intention vs. reality, 21, 23
 do-it-yourself usability testing, 115 Elements of Style, The, 49 expert usability review, 3
 F
-FAQ list, 165, 171 "Farmer and the Cowman Should Be Friends, The," 102 Flat design, 152­53 focus groups, 112­13 font size, in browser, 173 forms, 46­47, 67
+FAQ list, 165, 171 "Farmer and the Cowman Should Be Friends, The," 102 Flat design, 152ï¿½53 focus groups, 112ï¿½13 font size, in browser, 173 forms, 46ï¿½47, 67
 G
-golden goose, temptation to kill, 99­100 goodwill reservoir, 166­71
+golden goose, temptation to kill, 99ï¿½100 goodwill reservoir, 166ï¿½71
 H
 Hansel and Gretel, 79 happy talk, eliminating, 50 Hatch, Sen. Orrin, Web site, viii Holmes, Sherlock, 7 Home page
 cluttered, 39 designing, 84 happy talk on, 50 link to, 70 hover, 152
-I­K
-instructions, eliminating, 51­52 Ive, Jonathan, x, 184 Jarrett, Caroline, 40, 46, 194 Jobs, Steve, x, 184 "kayak" problems, 139 Klein, Gary, 24­25 Kleiner, Art, 107 Krug's laws of usability, 10­11, 43, 49
+Iï¿½K
+instructions, eliminating, 51ï¿½52 Ive, Jonathan, x, 184 Jarrett, Caroline, 40, 46, 194 Jobs, Steve, x, 184 "kayak" problems, 139 Klein, Gary, 24ï¿½25 Kleiner, Art, 107 Krug's laws of usability, 10ï¿½11, 43, 49
 
 L
 Larson, Gary, 23 Lean startup, 4, 114 Lincoln, Abraham, 145 link-dominant users, 59 links, visited vs. unvisited, 190 logo. See Site ID
 M
-memorability, 159 mensch, 164 mindless choices, 42­47 mirroring, 161 mission statement, 95 mobile
-apps, 155 usability testing, 160 Mobile First, 147­49 muddling through, 25­27
+memorability, 159 mensch, 164 mindless choices, 42ï¿½47 mirroring, 161 mission statement, 95 mobile
+apps, 155 usability testing, 160 Mobile First, 147ï¿½49 muddling through, 25ï¿½27
 N
 names, importance of, 14 navigation
-conventions, 64 designing, 58 lower-level, 72 persistent, 66 revealing content, 63 needless words, omitting, 48­52 new feature requests, 139 Nielsen, Jakob, xi, 54, 58­59, 96, 115, 121 noise. See visual noise Norman, Don, 151
+conventions, 64 designing, 58 lower-level, 72 persistent, 66 revealing content, 63 needless words, omitting, 48ï¿½52 new feature requests, 139 Nielsen, Jakob, xi, 54, 58ï¿½59, 96, 115, 121 noise. See visual noise Norman, Don, 151
 P
-page name importance of, 74­76 matching what user clicked, 76 position on page, 75
+page name importance of, 74ï¿½76 matching what user clicked, 76 position on page, 75
 persistent navigation, 66 primary navigation. See Sections Prince and the Pauper, The, 26
 
 printer-friendly pages, 171 promos
-content promos, 86 feature promos, 86 pull-down menus, limitations of, 108­09
+content promos, 86 feature promos, 86 pull-down menus, limitations of, 108ï¿½09
 R
-recruiting test participants, 120­21 Redish, Janice (Ginny), 40, 41, 46, 179, 194 registration, 87, 99 reinventing the wheel, 31 religious debates, 103, 104, 109 reservoir of goodwill, 166­71 responsive design, 149, 150 "right" way to design Web sites, 7 Rosenfeld, Louis, 194
+recruiting test participants, 120ï¿½21 Redish, Janice (Ginny), 40, 41, 46, 179, 194 registration, 87, 99 reinventing the wheel, 31 religious debates, 103, 104, 109 reservoir of goodwill, 166ï¿½71 responsive design, 149, 150 "right" way to design Web sites, 7 Rosenfeld, Louis, 194
 S
-satisficing, 24­25 scanning pages, 22­23 scent of information, 43, script for usability test, 125, 127­36 search box, 16­17, 30, 58, 71­72, 86, 99
-on Home page, 86 options, 71 wording, 71 search-dominant users, 58 secondary navigation. See subsections section fronts, 50 Sections, 69­70 signifiers, 151 Site ID, 67­68 sizzle, 169 slow-loading pages, 59 stop signs, 29 street signs, 64, 74 subsections, 68­69
+satisficing, 24ï¿½25 scanning pages, 22ï¿½23 scent of information, 43, script for usability test, 125, 127ï¿½36 search box, 16ï¿½17, 30, 58, 71ï¿½72, 86, 99
+on Home page, 86 options, 71 wording, 71 search-dominant users, 58 secondary navigation. See subsections section fronts, 50 Sections, 69ï¿½70 signifiers, 151 Site ID, 67ï¿½68 sizzle, 169 slow-loading pages, 59 stop signs, 29 street signs, 64, 74 subsections, 68ï¿½69
 T
-tabs, 80­81 color coding, 81 importance of drawing correctly, 81
-tagline, 93, 95­98
+tabs, 80ï¿½81 color coding, 81 importance of drawing correctly, 81
+tagline, 93, 95ï¿½98
 
-Talking Heads, 55 teleportation, 62, 67, 92 Theofanos, Mary, 179 tradeoffs, 145­47 tragedy of the commons, 100 trunk test, 82­83
+Talking Heads, 55 teleportation, 62, 67, 92 Theofanos, Mary, 179 tradeoffs, 145ï¿½47 tragedy of the commons, 100 trunk test, 82ï¿½83
 U
 usability attributes of, 155 defined, 9
 usability lab, 115 usability testing, 3, 110
-do-it-yourself, 115 vs. focus groups, 112­13 of mobile devices, 160­63 number of users to test, 119 observers, 124 recruiting participants, 120­21 remote, 140 reviewing results, 137­39 sample session, 127 unmoderated, 140 value of starting early, 115 what to test, 124 User Experience Design (UXD, UX), x, 183 UserTesting.com, 140 Utilities, 65, 69­70
-V­Z
-validator, accessibility, 177 visual hierarchy, 33­36 visual noise, 38 Welcome blurb, 93 White, E. B., 49 xkcd, 194 Zuckerberg, Mark, 26
+do-it-yourself, 115 vs. focus groups, 112ï¿½13 of mobile devices, 160ï¿½63 number of users to test, 119 observers, 124 recruiting participants, 120ï¿½21 remote, 140 reviewing results, 137ï¿½39 sample session, 127 unmoderated, 140 value of starting early, 115 what to test, 124 User Experience Design (UXD, UX), x, 183 UserTesting.com, 140 Utilities, 65, 69ï¿½70
+Vï¿½Z
+validator, accessibility, 177 visual hierarchy, 33ï¿½36 visual noise, 38 Welcome blurb, 93 White, E. B., 49 xkcd, 194 Zuckerberg, Mark, 26
 
 Also Available
 It's been known for years that usability testing can dramatically improve products. But with a typical price tag of $5,000 to $10,000 for a usability consultant to conduct each round of tests, it rarely happens. In this how-to companion to Don't Make Me Think: A Common Sense Approach to Web Usability, Steve Krug spells out a streamlined approach to usability testing that anyone can easily apply to their own Web site, application, or other product. (As he said in Don't Make Me Think, "It's not rocket surgery".)
-Using practical advice, plenty of illustrations, and his trademark humor, Steve explains how to: · Test any design, from a sketch on a napkin to a fully functioning Web site or application · Keep your focus on finding the most important problems (because no one has the time or resources to fix them all) · Fix the problems that you find, using his "The least you can do" approach
+Using practical advice, plenty of illustrations, and his trademark humor, Steve explains how to: ï¿½ Test any design, from a sketch on a napkin to a fully functioning Web site or application ï¿½ Keep your focus on finding the most important problems (because no one has the time or resources to fix them all) ï¿½ Fix the problems that you find, using his "The least you can do" approach
 By paring the process of testing and fixing products down to its essentials ("A morning a month, that's all we ask"), Rocket Surgery makes it realistic for teams to test early and often, catching problems while it's still easy to fix them. Rocket Surgery Made Easy uses the same proven mix of clear writing, before-
 
 and-after examples, witty illustrations, and practical advice that made Don't Make Me Think an instant classic.
 Steve Krug (pronounced "kroog") is best known as the author of Don't Make Me Think: A Common Sense Approach to Web Usability, now in its third edition with over 350,000 copies in print. Ten years later, he finally gathered enough energy to write another one: the usability testing handbook Rocket Surgery Made Easy. The books were based on the 20+ years he's spent as a usability consultant for a wide variety of clients like Apple, Bloomberg.com, Lexus.com, NPR, the International Monetary Fund, and many others.
 His consulting firm, Advanced Common Sense is based in Chestnut Hill, MA. Steve currently spends most of his time teaching usability workshops, consulting, and watching black-and-white movies from the '30s and '40s.
 Rocket Surgery Made Easy: The Do-It-Yourself Guide to Finding and Fixing Usability Problems Steve Krug, ISBN: 9780321657299 www.newriders.com
-

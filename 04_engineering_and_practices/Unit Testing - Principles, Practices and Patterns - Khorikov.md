@@ -1,3 +1,9 @@
+# Unit Testing - Principles, Practices and Patterns
+
+> **Author(s):** Khorikov Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 Principles, Practices, and Patterns
 Vladimir Khorikov
 MANNING
@@ -94,7 +100,7 @@ SHELTER ISLAND
 
 For online information and ordering of this and other Manning books, please visit www.manning.com. The publisher offers discounts on this book when ordered in quantity. For more information, please contact
 Special Sales Department Manning Publications Co. 20 Baldwin Road PO Box 761 Shelter Island, NY 11964 Email: orders@manning.com
-©2020 by Manning Publications Co. All rights reserved.
+ï¿½2020 by Manning Publications Co. All rights reserved.
 No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by means electronic, mechanical, photocopying, or otherwise, without prior written permission of the publisher.
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in the book, and Manning Publications was aware of a trademark claim, the designations have been printed in initial caps or all caps.
 Recognizing the importance of preserving what has been written, it is Manning's policy to have the books we publish printed on acid-free paper, and we exert our best efforts to that end. Recognizing also our responsibility to conserve the resources of our planet, Manning books are printed on paper that is at least 15 percent recycled and processed without the use of elemental chlorine.
@@ -102,7 +108,7 @@ Recognizing the importance of preserving what has been written, it is Manning's 
 Manning Publications Co. 20 Baldwin Road PO Box 761 Shelter Island, NY 11964
 
 Acquisitions editor: Mike Stephens Development editor: Marina Michaels Technical development editor: Sam Zaydel
-Review editor: Aleksandar Dragosavljevic´ Production editor: Anthony Calcara
+Review editor: Aleksandar Dragosavljevicï¿½ Production editor: Anthony Calcara
 Copy editor: Tiffany Taylor ESL copyeditor: Frances Buran
 Proofreader: Keri Hales Technical proofreader: Alessandro Campeis
 Typesetter: Dennis Dalinnik Cover designer: Marija Tudor
@@ -317,7 +323,7 @@ VLADIMIR KHORIKOV is a software engineer, Microsoft MVP, and Pluralsight author.
 xix
 
 about the cover illustration
-The figure on the cover of Unit Testing: Principles, Practices, and Patterns is captioned "Esthinienne." The illustration is taken from a collection of dress costumes from various countries by Jacques Grasset de Saint-Sauveur (1757­1810), titled Costumes Civils Actuels de Tous les Peuples Connus, published in France in 1788. Each illustration is finely drawn and colored by hand. The rich variety of Grasset de Saint-Sauveur's collection reminds us vividly of how culturally apart the world's towns and regions were just 200 years ago. Isolated from each other, people spoke different dialects and languages. In the streets or in the countryside, it was easy to identify where they lived and what their trade or station in life was just by their dress.
+The figure on the cover of Unit Testing: Principles, Practices, and Patterns is captioned "Esthinienne." The illustration is taken from a collection of dress costumes from various countries by Jacques Grasset de Saint-Sauveur (1757ï¿½1810), titled Costumes Civils Actuels de Tous les Peuples Connus, published in France in 1788. Each illustration is finely drawn and colored by hand. The rich variety of Grasset de Saint-Sauveur's collection reminds us vividly of how culturally apart the world's towns and regions were just 200 years ago. Isolated from each other, people spoke different dialects and languages. In the streets or in the countryside, it was easy to identify where they lived and what their trade or station in life was just by their dress.
 The way we dress has changed since then and the diversity by region, so rich at the time, has faded away. It is now hard to tell apart the inhabitants of different continents, let alone different towns, regions, or countries. Perhaps we have traded cultural diversity for a more varied personal life--certainly for a more varied and fast-paced technological life.
 At a time when it is hard to tell one computer book from another, Manning celebrates the inventiveness and initiative of the computer business with book covers based on the rich diversity of regional life of two centuries ago, brought back to life by Grasset de Saint-Sauveur's pictures.
 xx
@@ -689,7 +695,7 @@ You can view it as the difference between recognizing a good song and being able
 
 1.5 What you will learn in this book
 This book teaches a frame of reference that you can use to analyze any test in your test suite. This frame of reference is foundational. After learning it, you'll be able to look at many of your tests in a new light and see which of them contribute to the project and which must be refactored or gotten rid of altogether.
-After setting this stage (chapter 4), the book analyzes the existing unit testing techniques and practices (chapters 4­6, and part of 7). It doesn't matter whether you're familiar with those techniques and practices. If you are familiar with them, you'll see them from a new angle. Most likely, you already get them at the intuitive level. This book can help you articulate why the techniques and best practices you've been using all along are so helpful.
+After setting this stage (chapter 4), the book analyzes the existing unit testing techniques and practices (chapters 4ï¿½6, and part of 7). It doesn't matter whether you're familiar with those techniques and practices. If you are familiar with them, you'll see them from a new angle. Most likely, you already get them at the intuitive level. This book can help you articulate why the techniques and best practices you've been using all along are so helpful.
 Don't underestimate this skill. The ability to clearly communicate your ideas to colleagues is priceless. A software developer--even a great one--rarely gets full credit for a design decision if they can't explain why, exactly, that decision was made. This book can help you transform your knowledge from the realm of the unconscious to something you are able to talk about with anyone.
 
 18
@@ -713,7 +719,7 @@ Summary
 
 19
 
-account the presence of assertions, and it can't account for code paths in thirdparty libraries that your code base uses.  Imposing a particular coverage number creates a perverse incentive. It's good to have a high level of coverage in core parts of your system, but it's bad to make this high level a requirement.  A successful test suite exhibits the following attributes: ­ It is integrated into the development cycle. ­ It targets only the most important parts of your code base. ­ It provides maximum value with minimum maintenance costs.  The only way to achieve the goal of unit testing (that is, enabling sustainable project growth) is to ­ Learn how to differentiate between a good and a bad test. ­ Be able to refactor a test to make it more valuable.
+account the presence of assertions, and it can't account for code paths in thirdparty libraries that your code base uses.  Imposing a particular coverage number creates a perverse incentive. It's good to have a high level of coverage in core parts of your system, but it's bad to make this high level a requirement.  A successful test suite exhibits the following attributes: ï¿½ It is integrated into the development cycle. ï¿½ It targets only the most important parts of your code base. ï¿½ It provides maximum value with minimum maintenance costs.  The only way to achieve the goal of unit testing (that is, enabling sustainable project growth) is to ï¿½ Learn how to differentiate between a good and a bad test. ï¿½ Be able to refactor a test to make it more valuable.
 
 What is a unit test?
 This chapter covers
@@ -1159,13 +1165,13 @@ and thus can easily bring them to the required state in tests, whereas you don't
 Since end-to-end tests are the most expensive in terms of maintenance, it's better to run them late in the build process, after all the unit and integration tests have passed. You may possibly even run them only on the build server, not on individual developers' machines.
 Keep in mind that even with end-to-end tests, you might not be able to tackle all of the out-of-process dependencies. There may be no test version of some dependencies, or it may be impossible to bring those dependencies to the required state automatically. So you may still need to use a test double, reinforcing the fact that there isn't a distinct line between integration and end-to-end tests.
 Summary
- Throughout this chapter, I've refined the definition of a unit test: ­ A unit test verifies a single unit of behavior, ­ Does it quickly, ­ And does it in isolation from other tests.
+ Throughout this chapter, I've refined the definition of a unit test: ï¿½ A unit test verifies a single unit of behavior, ï¿½ Does it quickly, ï¿½ And does it in isolation from other tests.
 
 40
 
 CHAPTER 2 What is a unit test?
 
- The isolation issue is disputed the most. The dispute led to the formation of two schools of unit testing: the classical (Detroit) school, and the London (mockist) school. This difference of opinion affects the view of what constitutes a unit and the treatment of the system under test's (SUT's) dependencies. ­ The London school states that the units under test should be isolated from each other. A unit under test is a unit of code, usually a class. All of its dependencies, except immutable dependencies, should be replaced with test doubles in tests. ­ The classical school states that the unit tests need to be isolated from each other, not units. Also, a unit under test is a unit of behavior, not a unit of code. Thus, only shared dependencies should be replaced with test doubles. Shared dependencies are dependencies that provide means for tests to affect each other's execution flow.
+ The isolation issue is disputed the most. The dispute led to the formation of two schools of unit testing: the classical (Detroit) school, and the London (mockist) school. This difference of opinion affects the view of what constitutes a unit and the treatment of the system under test's (SUT's) dependencies. ï¿½ The London school states that the units under test should be isolated from each other. A unit under test is a unit of code, usually a class. All of its dependencies, except immutable dependencies, should be replaced with test doubles in tests. ï¿½ The classical school states that the unit tests need to be isolated from each other, not units. Also, a unit under test is a unit of behavior, not a unit of code. Thus, only shared dependencies should be replaced with test doubles. Shared dependencies are dependencies that provide means for tests to affect each other's execution flow.
  The London school provides the benefits of better granularity, the ease of testing large graphs of interconnected classes, and the ease of finding which functionality contains a bug after a test failure.
  The benefits of the London school look appealing at first. However, they introduce several issues. First, the focus on classes under test is misplaced: tests should verify units of behavior, not units of code. Furthermore, the inability to unit test a piece of code is a strong sign of a problem with the code design. The use of test doubles doesn't fix this problem, but rather only hides it. And finally, while the ease of determining which functionality contains a bug after a test failure is helpful, it's not that big a deal because you often know what caused the bug anyway--it's what you edited last.
  The biggest issue with the London school of unit testing is the problem of overspecification--coupling tests to the SUT's implementation details.
@@ -1812,7 +1818,7 @@ This chapter covers
 Now we are getting to the heart of the matter. In chapter 1, you saw the properties of a good unit test suite:
  It is integrated into the development cycle. You only get value from tests that you actively use; there's no point in writing them otherwise.
  It targets only the most important parts of your code base. Not all production code deserves equal attention. It's important to differentiate the heart of the application (its domain model) from everything else. This topic is tackled in chapter 7.
- It provides maximum value with minimum maintenance costs. To achieve this last attribute, you need to be able to ­ Recognize a valuable test (and, by extension, a test of low value) ­ Write a valuable test
+ It provides maximum value with minimum maintenance costs. To achieve this last attribute, you need to be able to ï¿½ Recognize a valuable test (and, by extension, a test of low value) ï¿½ Write a valuable test
 67
 
 68
@@ -2381,22 +2387,22 @@ Resistance to refactoring Bad Good
 As you may remember from section 4.4.5, you can't compromise on resistance to refactoring: a test either possesses resistance to refactoring or it doesn't. Therefore, choose blackbox testing over white-box testing by default. Make all tests--be they unit, integration, or end-to-end--view the system as a black box and verify behavior meaningful to the problem domain. If you can't trace a test back to a business requirement, it's an indication of the test's brittleness. Either restructure or delete this test; don't let it into the suite as-is. The only exception is when the test covers utility code with high algorithmic complexity (more on this in chapter 7).
 Note that even though black-box testing is preferable when writing tests, you can still use the white-box method when analyzing the tests. Use code coverage tools to see which code branches are not exercised, but then turn around and test them as if you know nothing about the code's internal structure. Such a combination of the white-box and black-box methods works best.
 Summary
- A good unit test has four foundational attributes that you can use to analyze any automated test, whether unit, integration, or end-to-end: ­ Protection against regressions ­ Resistance to refactoring ­ Fast feedback ­ Maintainability
+ A good unit test has four foundational attributes that you can use to analyze any automated test, whether unit, integration, or end-to-end: ï¿½ Protection against regressions ï¿½ Resistance to refactoring ï¿½ Fast feedback ï¿½ Maintainability
  Protection against regressions is a measure of how good the test is at indicating the presence of bugs (regressions). The more code the test executes (both your code and the code of libraries and frameworks used in the project), the higher the chance this test will reveal a bug.
  Resistance to refactoring is the degree to which a test can sustain application code refactoring without producing a false positive.
- A false positive is a false alarm--a result indicating that the test fails, whereas the functionality it covers works as intended. False positives can have a devastating effect on the test suite: ­ They dilute your ability and willingness to react to problems in code, because you get accustomed to false alarms and stop paying attention to them.
+ A false positive is a false alarm--a result indicating that the test fails, whereas the functionality it covers works as intended. False positives can have a devastating effect on the test suite: ï¿½ They dilute your ability and willingness to react to problems in code, because you get accustomed to false alarms and stop paying attention to them.
 
 Summary
 
 91
 
-­ They diminish your perception of tests as a reliable safety net and lead to losing trust in the test suite.
+ï¿½ They diminish your perception of tests as a reliable safety net and lead to losing trust in the test suite.
  False positives are a result of tight coupling between tests and the internal implementation details of the system under test. To avoid such coupling, the test must verify the end result the SUT produces, not the steps it took to do that.
  Protection against regressions and resistance to refactoring contribute to test accuracy. A test is accurate insofar as it generates a strong signal (is capable of finding bugs, the sphere of protection against regressions) with as little noise (false positives) as possible (the sphere of resistance to refactoring).
  False positives don't have as much of a negative effect in the beginning of the project, but they become increasingly important as the project grows: as important as false negatives (unnoticed bugs).
  Fast feedback is a measure of how quickly the test executes.  Maintainability consists of two components:
-­ How hard it is to understand the test. The smaller the test, the more readable it is.
-­ How hard it is to run the test. The fewer out-of-process dependencies the test reaches out to, the easier it is to keep them operational.
+ï¿½ How hard it is to understand the test. The smaller the test, the more readable it is.
+ï¿½ How hard it is to run the test. The fewer out-of-process dependencies the test reaches out to, the easier it is to keep them operational.
  A test's value estimate is the product of scores the test gets in each of the four attributes. If the test gets zero in one of the attributes, its value turns to zero as well.
  It's impossible to create a test that gets the maximum score in all four attributes, because the first three--protection against regressions, resistance to refactoring, and fast feedback --are mutually exclusive. The test can only maximize two out of the three.
  Resistance to refactoring is non-negotiable because whether a test possess this attribute is mostly a binary choice: the test either has resistance to refactoring or it doesn't. The trade-off between the attributes comes down to the choice between protection against regressions and fast feedback.
@@ -2935,7 +2941,7 @@ The use of mocks is beneficial when verifying the communication pattern between 
 Intra-system vs. inter-system communications: An example
 To illustrate the difference between intra-system and inter-system communications, I'll expand on the example with the Customer and Store classes that I used in chapter 2 and earlier in this chapter. Imagine the following business use case:
  A customer tries to purchase a product from a store.  If the amount of the product in the store is sufficient, then
-­ The inventory is removed from the store. ­ An email receipt is sent to the customer. ­ A confirmation is returned.
+ï¿½ The inventory is removed from the store. ï¿½ An email receipt is sent to the customer. ï¿½ A confirmation is returned.
 Let's also assume that the application is an API with no user interface. In the following listing, the CustomerController class is an application service that
 orchestrates the work between domain classes (Customer, Product, Store) and the external application (EmailGateway, which is a proxy to an SMTP service).
 
@@ -3080,11 +3086,11 @@ Summary
 
 117
 
-emulate incoming interactions: calls the SUT makes to its dependencies to get input data.  A mock (the tool) is a class from a mocking library that you can use to create a mock (the test double) or a stub.  Asserting interactions with stubs leads to fragile tests. Such an interaction doesn't correspond to the end result; it's an intermediate step on the way to that result, an implementation detail.  The command query separation (CQS) principle states that every method should be either a command or a query but not both. Test doubles that substitute commands are mocks. Test doubles that substitute queries are stubs.  All production code can be categorized along two dimensions: public API versus private API, and observable behavior versus implementation details. Code publicity is controlled by access modifiers, such as private, public, and internal keywords. Code is part of observable behavior when it meets one of the following requirements (any other code is an implementation detail): ­ It exposes an operation that helps the client achieve one of its goals. An oper-
-ation is a method that performs a calculation or incurs a side effect. ­ It exposes a state that helps the client achieve one of its goals. State is the cur-
+emulate incoming interactions: calls the SUT makes to its dependencies to get input data.  A mock (the tool) is a class from a mocking library that you can use to create a mock (the test double) or a stub.  Asserting interactions with stubs leads to fragile tests. Such an interaction doesn't correspond to the end result; it's an intermediate step on the way to that result, an implementation detail.  The command query separation (CQS) principle states that every method should be either a command or a query but not both. Test doubles that substitute commands are mocks. Test doubles that substitute queries are stubs.  All production code can be categorized along two dimensions: public API versus private API, and observable behavior versus implementation details. Code publicity is controlled by access modifiers, such as private, public, and internal keywords. Code is part of observable behavior when it meets one of the following requirements (any other code is an implementation detail): ï¿½ It exposes an operation that helps the client achieve one of its goals. An oper-
+ation is a method that performs a calculation or incurs a side effect. ï¿½ It exposes a state that helps the client achieve one of its goals. State is the cur-
 rent condition of the system.  Well-designed code is code whose observable behavior coincides with the public
-API and whose implementation details are hidden behind the private API. A code leaks implementation details when its public API extends beyond the observable behavior.  Encapsulation is the act of protecting your code against invariant violations. Exposing implementation details often entails a breach in encapsulation because clients can use implementation details to bypass the code's invariants.  Hexagonal architecture is a set of interacting applications represented as hexagons. Each hexagon consists of two layers: domain and application services.  Hexagonal architecture emphasizes three important aspects: ­ Separation of concerns between the domain and application services layers.
-The domain layer should be responsible for the business logic, while the application services should orchestrate the work between the domain layer and external applications. ­ A one-way flow of dependencies from the application services layer to the domain layer. Classes inside the domain layer should only depend on each other; they should not depend on classes from the application services layer. ­ External applications connect to your application through a common interface maintained by the application services layer. No one has a direct access to the domain layer.  Each layer in a hexagon exhibits observable behavior and contains its own set of implementation details.
+API and whose implementation details are hidden behind the private API. A code leaks implementation details when its public API extends beyond the observable behavior.  Encapsulation is the act of protecting your code against invariant violations. Exposing implementation details often entails a breach in encapsulation because clients can use implementation details to bypass the code's invariants.  Hexagonal architecture is a set of interacting applications represented as hexagons. Each hexagon consists of two layers: domain and application services.  Hexagonal architecture emphasizes three important aspects: ï¿½ Separation of concerns between the domain and application services layers.
+The domain layer should be responsible for the business logic, while the application services should orchestrate the work between the domain layer and external applications. ï¿½ A one-way flow of dependencies from the application services layer to the domain layer. Classes inside the domain layer should only depend on each other; they should not depend on classes from the application services layer. ï¿½ External applications connect to your application through a common interface maintained by the application services layer. No one has a direct access to the domain layer.  Each layer in a hexagon exhibits observable behavior and contains its own set of implementation details.
 
 118
 
@@ -3978,7 +3984,7 @@ communication-based tests is worse compared to output-based and state-based test
 Refactoring toward valuable unit tests
 This chapter covers
  Recognizing the four types of code  Understanding the Humble Object pattern  Writing valuable tests
-In chapter 1, I defined the properties of a good unit test suite:  It is integrated into the development cycle.  It targets only the most important parts of your code base.  It provides maximum value with minimum maintenance costs. To achieve this last attribute, you need to be able to: ­ Recognize a valuable test (and, by extension, a test of low value). ­ Write a valuable test.
+In chapter 1, I defined the properties of a good unit test suite:  It is integrated into the development cycle.  It targets only the most important parts of your code base.  It provides maximum value with minimum maintenance costs. To achieve this last attribute, you need to be able to: ï¿½ Recognize a valuable test (and, by extension, a test of low value). ï¿½ Write a valuable test.
 Chapter 4 covered the topic of recognizing a valuable test using the four attributes: protection against regressions, resistance to refactoring, fast feedback, and maintainability. And chapter 5 expanded on the most important one of the four: resistance to refactoring.
 As I mentioned earlier, it's not enough to recognize valuable tests, you should also be able to write such tests. The latter skill requires the former, but it also requires
 151
@@ -4835,29 +4841,29 @@ Summary
  Domain significance shows how significant the code is for the problem domain of your project. Complex code often has high domain significance and vice versa, but not in 100% of all cases.
  Complex code and code that has domain significance benefit from unit testing the most because the corresponding tests have greater protection against regressions.
  Unit tests that cover code with a large number of collaborators have high maintenance costs. Such tests require a lot of space to bring collaborators to an expected condition and then check their state or interactions with them afterward.
- All production code can be categorized into four types of code by its complexity or domain significance and the number of collaborators: ­ Domain model and algorithms (high complexity or domain significance, few collaborators) provide the best return on unit testing efforts. ­ Trivial code (low complexity and domain significance, few collaborators) isn't worth testing at all.
+ All production code can be categorized into four types of code by its complexity or domain significance and the number of collaborators: ï¿½ Domain model and algorithms (high complexity or domain significance, few collaborators) provide the best return on unit testing efforts. ï¿½ Trivial code (low complexity and domain significance, few collaborators) isn't worth testing at all.
 
 Summary
 
 181
 
-­ Controllers (low complexity and domain significance, large number of collaborators) should be tested briefly by integration tests.
-­ Overcomplicated code (high complexity or domain significance, large number of collaborators) should be split into controllers and complex code.
+ï¿½ Controllers (low complexity and domain significance, large number of collaborators) should be tested briefly by integration tests.
+ï¿½ Overcomplicated code (high complexity or domain significance, large number of collaborators) should be split into controllers and complex code.
  The more important or complex the code is, the fewer collaborators it should have.
  The Humble Object pattern helps make overcomplicated code testable by extracting business logic out of that code into a separate class. As a result, the remaining code becomes a controller--a thin, humble wrapper around the business logic.
  The hexagonal and functional architectures implement the Humble Object pattern. Hexagonal architecture advocates for the separation of business logic and communications with out-of-process dependencies. Functional architecture separates business logic from communications with all collaborators, not just out-ofprocess ones.
  Think of the business logic and orchestration responsibilities in terms of code depth versus code width. Your code can be either deep (complex or important) or wide (work with many collaborators), but never both.
  Test preconditions if they have a domain significance; don't test them otherwise.  There are three important attributes when it comes to separating business logic
-from orchestration: ­ Domain model testability--A function of the number and the type of collabora-
-tors in domain classes ­ Controller simplicity--Depends on the presence of decision-making points in
-the controller ­ Performance--Defined by the number of calls to out-of-process dependencies  You can have a maximum of two of these three attributes at any given moment: ­ Pushing all external reads and writes to the edges of a business operation--Preserves
-controller simplicity and keeps the domain model testability, but concedes performance ­ Injecting out-of-process dependencies into the domain model--Keeps performance and the controller's simplicity, but damages domain model testability ­ Splitting the decision-making process into more granular steps--Preserves performance and domain model testability, but gives up controller simplicity  Splitting the decision-making process into more granular steps--Is a trade-off with the best set of pros and cons. You can mitigate the growth of controller complexity using the following two patterns: ­ The CanExecute/Execute pattern introduces a CanDo() for each Do() method and makes its successful execution a precondition for Do(). This pattern essentially eliminates the controller's decision-making because there's no option not to call CanDo() before Do().
+from orchestration: ï¿½ Domain model testability--A function of the number and the type of collabora-
+tors in domain classes ï¿½ Controller simplicity--Depends on the presence of decision-making points in
+the controller ï¿½ Performance--Defined by the number of calls to out-of-process dependencies  You can have a maximum of two of these three attributes at any given moment: ï¿½ Pushing all external reads and writes to the edges of a business operation--Preserves
+controller simplicity and keeps the domain model testability, but concedes performance ï¿½ Injecting out-of-process dependencies into the domain model--Keeps performance and the controller's simplicity, but damages domain model testability ï¿½ Splitting the decision-making process into more granular steps--Preserves performance and domain model testability, but gives up controller simplicity  Splitting the decision-making process into more granular steps--Is a trade-off with the best set of pros and cons. You can mitigate the growth of controller complexity using the following two patterns: ï¿½ The CanExecute/Execute pattern introduces a CanDo() for each Do() method and makes its successful execution a precondition for Do(). This pattern essentially eliminates the controller's decision-making because there's no option not to call CanDo() before Do().
 
 182
 
 CHAPTER 7 Refactoring toward valuable unit tests
 
-­ Domain events help track important changes in the domain model, and then convert those changes to calls to out-of-process dependencies. This pattern removes the tracking responsibility from the controller.
+ï¿½ Domain events help track important changes in the domain model, and then convert those changes to calls to out-of-process dependencies. This pattern removes the tracking responsibility from the controller.
  It's easier to test abstractions than the things they abstract. Domain events are abstractions on top of upcoming calls to out-of-process dependencies. Changes in domain classes are abstractions on top of upcoming modifications in the data storage.
 
 Part 3
@@ -5722,14 +5728,14 @@ logger.Info($"Email is changed for user {UserId}"); }
 View communications with all out-of-process dependencies through the lens of whether this communication is part of the application's observable behavior or an implementation detail. The log storage isn't any different in that regard. Mock logging functionality if the logs are observable by non-programmers; don't test it otherwise. In the next chapter, we'll dive deeper into the topic of mocking and best practices related to it.
 
 Summary
- An integration test is any test that is not a unit test. Integration tests verify how your system works in integration with out-of-process dependencies: ­ Integration tests cover controllers; unit tests cover algorithms and the domain model. ­ Integration tests provide better protection against regressions and resistance to refactoring; unit tests have better maintainability and feedback speed.
- The bar for integration tests is higher than for unit tests: the score they have in the metrics of protection against regressions and resistance to refactoring must be higher than that of a unit test to offset the worse maintainability and feedback speed. The Test Pyramid represents this trade-off: the majority of tests should be fast and cheap unit tests, with a smaller number of slow and more expensive integration tests that check correctness of the system as a whole: ­ Check as many of the business scenario's edge cases as possible with unit tests. Use integration tests to cover one happy path, as well as any edge cases that can't be covered by unit tests.
+ An integration test is any test that is not a unit test. Integration tests verify how your system works in integration with out-of-process dependencies: ï¿½ Integration tests cover controllers; unit tests cover algorithms and the domain model. ï¿½ Integration tests provide better protection against regressions and resistance to refactoring; unit tests have better maintainability and feedback speed.
+ The bar for integration tests is higher than for unit tests: the score they have in the metrics of protection against regressions and resistance to refactoring must be higher than that of a unit test to offset the worse maintainability and feedback speed. The Test Pyramid represents this trade-off: the majority of tests should be fast and cheap unit tests, with a smaller number of slow and more expensive integration tests that check correctness of the system as a whole: ï¿½ Check as many of the business scenario's edge cases as possible with unit tests. Use integration tests to cover one happy path, as well as any edge cases that can't be covered by unit tests.
 
 214
 
 CHAPTER 8 Why integration testing?
 
-­ The shape of the Test Pyramid depends on the project's complexity. Simple projects have little code in the domain model and thus can have an equal number of unit and integration tests. In the most trivial cases, there might be no unit tests.
+ï¿½ The shape of the Test Pyramid depends on the project's complexity. Simple projects have little code in the domain model and thus can have an equal number of unit and integration tests. In the most trivial cases, there might be no unit tests.
  The Fail Fast principle advocates for making bugs manifest themselves quickly and is a viable alternative to integration testing.
  Managed dependencies are out-of-process dependencies that are only accessible through your application. Interactions with managed dependencies aren't observable externally. A typical example is the application database.
  Unmanaged dependencies are out-of-process dependencies that other applications have access to. Interactions with unmanaged dependencies are observable externally. Typical examples include an SMTP server and a message bus.
@@ -6865,7 +6871,7 @@ Summary
 CHAPTER 10 Testing the database
 
  Avoid in-memory databases such as SQLite. You'll never gain good protection if your tests run against a database from a different vendor. Use the same database management system in tests as in production.
- Shorten tests by extracting non-essential parts into private methods or helper classes: ­ For the arrange section, choose Object Mother over Test Data Builder. ­ For act, create decorator methods. ­ For assert, introduce a fluent interface.
+ Shorten tests by extracting non-essential parts into private methods or helper classes: ï¿½ For the arrange section, choose Object Mother over Test Data Builder. ï¿½ For act, create decorator methods. ï¿½ For assert, introduce a fluent interface.
  The threshold for testing reads should be higher than that for writes. Test only the most complex or important read operations; disregard the rest.
  Don't test repositories directly, but only as part of the overarching integration test suite. Tests on repositories introduce too high maintenance costs for too few additional gains in protection against regressions.
 
@@ -7354,22 +7360,22 @@ CHAPTER 11 Unit testing anti-patterns
 index
 
 A
-AAA (arrange, act, and assert) pattern 42­49 avoiding if statements 44­45 avoiding multiple AAA sections 43­44 differentiating system under test 47­48 dropping AAA comments 48­49 overview 42­43 reusing code in test sections 246­252 in act sections 249­250 in arrange sections 246­249 in assert sections 250 section size 45­47 arrange section 45 number of assertions in assert section 47 sections larger than a single line 45­47 teardown phase 47
+AAA (arrange, act, and assert) pattern 42ï¿½49 avoiding if statements 44ï¿½45 avoiding multiple AAA sections 43ï¿½44 differentiating system under test 47ï¿½48 dropping AAA comments 48ï¿½49 overview 42ï¿½43 reusing code in test sections 246ï¿½252 in act sections 249ï¿½250 in arrange sections 246ï¿½249 in assert sections 250 section size 45ï¿½47 arrange section 45 number of assertions in assert section 47 sections larger than a single line 45ï¿½47 teardown phase 47
 abstractions 198, 260 Active Record pattern 159 adapters 227 aggregates 157 ambient context 212 anti-patterns 212
-code pollution 266­268 exposing private state 263­264 leaking domain knowledge to tests
-264­266 mocking concrete classes 268­271 private methods 260­263
-acceptability of testing 261­263 insufficient coverage 260­261 test fragility 260 time 271­273 as ambient context 271­272 as explicit dependency 272­273
+code pollution 266ï¿½268 exposing private state 263ï¿½264 leaking domain knowledge to tests
+264ï¿½266 mocking concrete classes 268ï¿½271 private methods 260ï¿½263
+acceptability of testing 261ï¿½263 insufficient coverage 260ï¿½261 test fragility 260 time 271ï¿½273 as ambient context 271ï¿½272 as explicit dependency 272ï¿½273
 
 API (application programming interface) 104, 111, 133, 191, 195, 227, 264
-missing abstractions 260 public vs. private 99 well-designed 100­101, 105, 108, 262 application behavior 57 application services layer 133­134 arrange, act, and assert pattern. See AAA
+missing abstractions 260 public vs. private 99 well-designed 100ï¿½101, 105, 108, 262 application behavior 57 application services layer 133ï¿½134 arrange, act, and assert pattern. See AAA
 pattern assertion libraries, using to improve test
-readability 62­63 assertion-free testing 12­13 asynchronous communications 191 atomic updates 236 automation concepts 87­90
-black-box vs. white-box testing 89­90 Test Pyramid 87­89
+readability 62ï¿½63 assertion-free testing 12ï¿½13 asynchronous communications 191 atomic updates 236 automation concepts 87ï¿½90
+black-box vs. white-box testing 89ï¿½90 Test Pyramid 87ï¿½89
 B
-backward migration 233 bad tests 189 black-box testing 68, 89­90 Boolean switches 266­268 branch coverage metric 10­11 brittle tests 83­84, 116, 216 brittleness 86, 125 bugs 68, 79, 104, 175, 189 business logic 106­107, 156, 169,
+backward migration 233 bad tests 189 black-box testing 68, 89ï¿½90 Boolean switches 266ï¿½268 branch coverage metric 10ï¿½11 brittle tests 83ï¿½84, 116, 216 brittleness 86, 125 bugs 68, 79, 104, 175, 189 business logic 106ï¿½107, 156, 169,
 179
 C
-CanExecute/Execute pattern 172, 174 CAP theorem 86­87 captured data 208
+CanExecute/Execute pattern 172, 174 CAP theorem 86ï¿½87 captured data 208
 
 275
 
@@ -7377,208 +7383,208 @@ CanExecute/Execute pattern 172, 174 CAP theorem 86­87 captured data 208
 
 INDEX
 
-circular dependencies 203 defined 202 eliminating 202­204
-classical school of unit testing 30­37 dependencies 30­34 end-to-end tests 38­39 integration tests 37­39 isolation issue 27­30 mocks 114­116
-mocking out out-of-process dependencies 115­116
-using mocks to verify behavior 116 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34­35 cleanup phase 244 clusters, grouping into aggregates 157 code complexity 104, 152 code coverage metric 9­10 code coverage tools 90 code depth 157 code pollution 127, 266­268, 272 code width 157 collaborators 32, 148, 153
-command query separation. See CQS principle commands 97 communication-based testing 122­123, 128
+circular dependencies 203 defined 202 eliminating 202ï¿½204
+classical school of unit testing 30ï¿½37 dependencies 30ï¿½34 end-to-end tests 38ï¿½39 integration tests 37ï¿½39 isolation issue 27ï¿½30 mocks 114ï¿½116
+mocking out out-of-process dependencies 115ï¿½116
+using mocks to verify behavior 116 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34ï¿½35 cleanup phase 244 clusters, grouping into aggregates 157 code complexity 104, 152 code coverage metric 9ï¿½10 code coverage tools 90 code depth 157 code pollution 127, 266ï¿½268, 272 code width 157 collaborators 32, 148, 153
+command query separation. See CQS principle commands 97 communication-based testing 122ï¿½123, 128
 feedback speed 124 maintainability 127 overuse of 124
 protection against regressions and feedback speed 124
-resistance to refactoring 124­125 vulnerability to false alarms 124
+resistance to refactoring 124ï¿½125 vulnerability to false alarms 124
 communications between applications 107, 110 between classes in application 110, 116
-conditional logic 169­180 CanExecute/Execute pattern 172­174
-domain events for tracking changes in the domain model 175­178
+conditional logic 169ï¿½180 CanExecute/Execute pattern 172ï¿½174
+domain events for tracking changes in the domain model 175ï¿½178
 constructors, reusing test fixtures between tests 52
 containers 244 controllers 153, 225
 simplicity 171
-coverage metrics, measuring test suite quality with 8­15
-aiming for particular coverage number 15 branch coverage metric 10­11 code coverage metric 9­10 problems with 12­15
-code paths in external libraries 14­15
-impossible to verify all possible outcomes 12­13
+coverage metrics, measuring test suite quality with 8ï¿½15
+aiming for particular coverage number 15 branch coverage metric 10ï¿½11 code coverage metric 9ï¿½10 problems with 12ï¿½15
+code paths in external libraries 14ï¿½15
+impossible to verify all possible outcomes 12ï¿½13
 
-CQS (command query separation) principle 97­98
+CQS (command query separation) principle 97ï¿½98
 CRUD (create, read, update, and delete) operations 89
-CSV files 208­209 cyclic dependency 202 cyclomatic complexity 152
+CSV files 208ï¿½209 cyclic dependency 202 cyclomatic complexity 152
 D
 data inconsistencies 241 data mapping 254 data motion 234 data, bundling 104 database backup, restoring 244 database management system (DBMS) 246 database testing
-common questions 252­255 testing reads 252­253 testing repositories 253­254
-database transaction management 234­243 in integration tests 242­243 in production code 235­242
-prerequisites for 230­234 keeping database in source control system 230­231 reference data as part of database schema 231 separate instances for every developer 232 state-based vs. migration-based database delivery 232­234
-reusing code in test sections 246­252 creating too many database transactions 251­252 in act sections 249­250 in arrange sections 246­249 in assert sections 250
-test data life cycle 243­246 avoiding in-memory databases 246 clearing data between test runs 244­245 parallel vs. sequential test execution 243­244
-database transaction management 234­243 in integration tests 242­243 in production code 235­242 separating connections from transactions 236­239 upgrading transaction to unit of work 239­242
+common questions 252ï¿½255 testing reads 252ï¿½253 testing repositories 253ï¿½254
+database transaction management 234ï¿½243 in integration tests 242ï¿½243 in production code 235ï¿½242
+prerequisites for 230ï¿½234 keeping database in source control system 230ï¿½231 reference data as part of database schema 231 separate instances for every developer 232 state-based vs. migration-based database delivery 232ï¿½234
+reusing code in test sections 246ï¿½252 creating too many database transactions 251ï¿½252 in act sections 249ï¿½250 in arrange sections 246ï¿½249 in assert sections 250
+test data life cycle 243ï¿½246 avoiding in-memory databases 246 clearing data between test runs 244ï¿½245 parallel vs. sequential test execution 243ï¿½244
+database transaction management 234ï¿½243 in integration tests 242ï¿½243 in production code 235ï¿½242 separating connections from transactions 236ï¿½239 upgrading transaction to unit of work 239ï¿½242
 database transactions 244 daysFromNow parameter 60 DBMS (database management system) 246 dead code 260 deliveryDate parameter 62
 
 INDEX
 
 277
 
-dependencies 28­29, 35 classical school of unit testing 30­34 London school of unit testing 30­34 out-of-process 161, 190 shared 29, 31 types of 115
+dependencies 28ï¿½29, 35 classical school of unit testing 30ï¿½34 London school of unit testing 30ï¿½34 out-of-process 161, 190 shared 29, 31 types of 115
 Detroit approach, unit testing 21 diagnostic logging 206, 212 discovered abstractions 198 Docker container 28 domain events, tracking changes in domain
-model 175­178 domain layers 106­107, 109, 133­134 domain model 16, 153, 225
-connecting with external applications 111 testability 171 domain significance 153 dummy test double 93­94
+model 175ï¿½178 domain layers 106ï¿½107, 109, 133ï¿½134 domain model 16, 153, 225
+connecting with external applications 111 testability 171 domain significance 153 dummy test double 93ï¿½94
 E
-EasyMock 25 edge cases 187, 189, 194 encapsulation 46, 252 end-to-end tests 88­89, 195­196, 205, 222
-classical school of unit testing 38­39 London school of unit testing 38­39 possibility of creating ideal tests 81 enterprise applications 5 Entity Framework 240­242, 255 entropy 6 error handling 146 exceptions 130 expected parameter 62 explicit inputs and outputs 130 external libraries 81 external reads 170­171, 173 external state 130 external writes 170­171, 173
+EasyMock 25 edge cases 187, 189, 194 encapsulation 46, 252 end-to-end tests 88ï¿½89, 195ï¿½196, 205, 222
+classical school of unit testing 38ï¿½39 London school of unit testing 38ï¿½39 possibility of creating ideal tests 81 enterprise applications 5 Entity Framework 240ï¿½242, 255 entropy 6 error handling 146 exceptions 130 expected parameter 62 explicit inputs and outputs 130 external libraries 81 external reads 170ï¿½171, 173 external state 130 external writes 170ï¿½171, 173
 F
-Fail Fast principle 185, 189 failing preconditions 190 fake dependencies 93 fake test double 93­94 false negatives 76­77 false positives 69­70, 77, 82, 86, 96, 99, 124
-causes of 71­74 importance of 78­79 fast feedback 81­86, 88, 99, 123, 252, 260 fat controllers 154 feedback loop, shortening 189 feedback speed 79­80, 124 fixed state 50
+Fail Fast principle 185, 189 failing preconditions 190 fake dependencies 93 fake test double 93ï¿½94 false negatives 76ï¿½77 false positives 69ï¿½70, 77, 82, 86, 96, 99, 124
+causes of 71ï¿½74 importance of 78ï¿½79 fast feedback 81ï¿½86, 88, 99, 123, 252, 260 fat controllers 154 feedback loop, shortening 189 feedback speed 79ï¿½80, 124 fixed state 50
 
-Fluent Assertions 62 fragile tests 96, 113 frameworks 81 functional architecture 128­134
-defined 132­133 drawbacks of 146­149
-applicability of 147­148 code base size increases 149 performance drawbacks 148 functional programming 128­131 hexagonal architecture 133­134 transitioning to output-based testing 135­146 audit system 135­137 refactoring toward functional
-architecture 140­145 using mocks to decouple tests from
-filesystem 137­140 functional core 132­133, 143­144, 156 functional programming 121 functional testing 38, 121, 128
+Fluent Assertions 62 fragile tests 96, 113 frameworks 81 functional architecture 128ï¿½134
+defined 132ï¿½133 drawbacks of 146ï¿½149
+applicability of 147ï¿½148 code base size increases 149 performance drawbacks 148 functional programming 128ï¿½131 hexagonal architecture 133ï¿½134 transitioning to output-based testing 135ï¿½146 audit system 135ï¿½137 refactoring toward functional
+architecture 140ï¿½145 using mocks to decouple tests from
+filesystem 137ï¿½140 functional core 132ï¿½133, 143ï¿½144, 156 functional programming 121 functional testing 38, 121, 128
 G
-Git 230­231 Given-When-Then pattern 43 GUI (graphical user interface) tests 38
+Git 230ï¿½231 Given-When-Then pattern 43 GUI (graphical user interface) tests 38
 H
-handwritten mocks 94, 222 happy paths 187, 194, 239 helper methods 126­127 hexagonal architecture 106­107, 128, 156
-defining 106­110 functional architecture 133­134 purpose of 107 hexagons 106, 108, 134 hidden outputs 131 high coupling, reusing test fixtures between
-tests 52 HTML tags 72 humble controller 160 Humble Object pattern 155, 157­158, 167, 271 humble objects 157 humble wrappers 155
+handwritten mocks 94, 222 happy paths 187, 194, 239 helper methods 126ï¿½127 hexagonal architecture 106ï¿½107, 128, 156
+defining 106ï¿½110 functional architecture 133ï¿½134 purpose of 107 hexagons 106, 108, 134 hidden outputs 131 high coupling, reusing test fixtures between
+tests 52 HTML tags 72 humble controller 160 Humble Object pattern 155, 157ï¿½158, 167, 271 humble objects 157 humble wrappers 155
 I
-ideal tests 80­87 brittle tests 83­84 end-to-end tests 81 possibility of creating 81 trivial tests 82­83
-if statements 10­11, 44­45, 143, 152, 173­174 immutability 133
+ideal tests 80ï¿½87 brittle tests 83ï¿½84 end-to-end tests 81 possibility of creating 81 trivial tests 82ï¿½83
+if statements 10ï¿½11, 44ï¿½45, 143, 152, 173ï¿½174 immutability 133
 
 278
 
 INDEX
 
-immutable classes 133 immutable core 132, 134 immutable events 176 immutable objects 30, 132 implementation details 99­105 incoming interactions 94­95 infrastructure code 16 infrastructure layer 202 in-memory databases 246 in-process dependencies 199­200 INSERT statements 231 integer type 14
-integration testing best practices 200­205
-eliminating circular dependencies 202­204
+immutable classes 133 immutable core 132, 134 immutable events 176 immutable objects 30, 132 implementation details 99ï¿½105 incoming interactions 94ï¿½95 infrastructure code 16 infrastructure layer 202 in-memory databases 246 in-process dependencies 199ï¿½200 INSERT statements 231 integer type 14
+integration testing best practices 200ï¿½205
+eliminating circular dependencies 202ï¿½204
 making domain model boundaries explicit 200
-multiple act sections 204­205 reducing number of layers 200­202 classical school of unit testing 37­39
-database transaction management in 242­243
-defined 186­190 example of 193­197
-categorizing database and message bus 195 end-to-end testing 195­196 first version 196­197 scenarios 194 failing fast 188­190
-interfaces for abstracting dependencies 197­200
-in-process dependencies 199­200 loose coupling and 198 out-of-process dependencies 199 logging functionality 205­213 amount of logging 212
-introducing wrapper on top of ILogger 207­208
-passing around logger instances 212­213 structured logging 208­209 whether to test or not 205­206
-writing tests for support and diagnostic logging 209­211
-London school of unit testing 37­39 out-of-process dependencies 190­193
-types of 190­191
-when real databases are unavailable 192­193
-working with both 191­192 role of 186­187 Test Pyramid 187 interconnected classes 34 internal keyword 99 invariant violations 46, 103
+multiple act sections 204ï¿½205 reducing number of layers 200ï¿½202 classical school of unit testing 37ï¿½39
+database transaction management in 242ï¿½243
+defined 186ï¿½190 example of 193ï¿½197
+categorizing database and message bus 195 end-to-end testing 195ï¿½196 first version 196ï¿½197 scenarios 194 failing fast 188ï¿½190
+interfaces for abstracting dependencies 197ï¿½200
+in-process dependencies 199ï¿½200 loose coupling and 198 out-of-process dependencies 199 logging functionality 205ï¿½213 amount of logging 212
+introducing wrapper on top of ILogger 207ï¿½208
+passing around logger instances 212ï¿½213 structured logging 208ï¿½209 whether to test or not 205ï¿½206
+writing tests for support and diagnostic logging 209ï¿½211
+London school of unit testing 37ï¿½39 out-of-process dependencies 190ï¿½193
+types of 190ï¿½191
+when real databases are unavailable 192ï¿½193
+working with both 191ï¿½192 role of 186ï¿½187 Test Pyramid 187 interconnected classes 34 internal keyword 99 invariant violations 46, 103
 
 invariants 100, 103 isolation issue
-classical school of unit testing 27­30 London school of unit testing 21­27 isSuccess flag 113
+classical school of unit testing 27ï¿½30 London school of unit testing 21ï¿½27 isSuccess flag 113
 J
-JMock 25 JSON files 208­209
+JMock 25 JSON files 208ï¿½209
 L
-logging functionality testing 205­213 amount of logging 212 introducing wrapper on top of ILogger 207­208 passing around logger instances 212­213 structured logging 208­209 whether to test or not 205­206 writing tests for support and diagnostic logging 209­211
-London school of unit testing 30­37 dependencies 30­34 end-to-end tests 38­39 integration tests 37­39 isolation issue 21­27 mocks 114­116 mocking out out-of-process dependencies 115­116 using mocks to verify behavior 116 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34­35
+logging functionality testing 205ï¿½213 amount of logging 212 introducing wrapper on top of ILogger 207ï¿½208 passing around logger instances 212ï¿½213 structured logging 208ï¿½209 whether to test or not 205ï¿½206 writing tests for support and diagnostic logging 209ï¿½211
+London school of unit testing 30ï¿½37 dependencies 30ï¿½34 end-to-end tests 38ï¿½39 integration tests 37ï¿½39 isolation issue 21ï¿½27 mocks 114ï¿½116 mocking out out-of-process dependencies 115ï¿½116 using mocks to verify behavior 116 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34ï¿½35
 loose coupling, interfaces for abstracting dependencies and 198
 M
-maintainability 79­80, 85, 88, 99, 137, 148, 252, 260
-comparing testing styles 125­127 communication-based tests 127 output-based tests 125 state-based tests 125­127
-managed dependencies 190, 192, 246 mathematical functions 128­131 merging domain events 177 message bus 190­192, 199, 220, 224 method signatures 128 method under test (MUT) 25 Microsoft MSTest 49 migration-based database delivery 232­234 missing abstractions 260 mock chains 127
+maintainability 79ï¿½80, 85, 88, 99, 137, 148, 252, 260
+comparing testing styles 125ï¿½127 communication-based tests 127 output-based tests 125 state-based tests 125ï¿½127
+managed dependencies 190, 192, 246 mathematical functions 128ï¿½131 merging domain events 177 message bus 190ï¿½192, 199, 220, 224 method signatures 128 method under test (MUT) 25 Microsoft MSTest 49 migration-based database delivery 232ï¿½234 missing abstractions 260 mock chains 127
 
 INDEX
 
 279
 
 mocking frameworks 25 mockist style, unit testing 21 Mockito 25 mocks 25, 254
-best practices 225­227 for integration tests only 225 not just one mock per test 225­226 only mock types that you own 227 verifying number of calls 226
-decoupling tests from filesystem 137­140 defined 25 London school vs. classical school 114­116
-mocking out out-of-process dependencies 115­116
-using mocks to verify behavior 116 maximizing value of 217­225
-IDomainLogger 224­225 replacing mocks with spies 222­224 verifying interactions at system edges
-219­222 mocking concrete classes 268­271 observable behavior vs. implementation
-details 99­105 leaking implementation details 100­105 observable behavior vs. public API 99­100 well-designed API and encapsulation
-103­104 stubs 93­98
-asserting interactions with stubs 96­97 commands and queries 97­98 mock (tool) vs. mock (test double) 94­95 types of test doubles 93­94 using mocks and stubs together 97 test doubles 25 test fragility 106­114 defining hexagonal architecture 106­110 intra-system vs. inter-system
-communications 110­114 model database 230 Model-View-Controller (MVC) pattern 157 Moq 25, 95, 226 MSTest 49 MUT (method under test) 25 mutable objects 132 mutable shell 132­133, 143­144 MVC (Model-View-Controller) pattern 157
+best practices 225ï¿½227 for integration tests only 225 not just one mock per test 225ï¿½226 only mock types that you own 227 verifying number of calls 226
+decoupling tests from filesystem 137ï¿½140 defined 25 London school vs. classical school 114ï¿½116
+mocking out out-of-process dependencies 115ï¿½116
+using mocks to verify behavior 116 maximizing value of 217ï¿½225
+IDomainLogger 224ï¿½225 replacing mocks with spies 222ï¿½224 verifying interactions at system edges
+219ï¿½222 mocking concrete classes 268ï¿½271 observable behavior vs. implementation
+details 99ï¿½105 leaking implementation details 100ï¿½105 observable behavior vs. public API 99ï¿½100 well-designed API and encapsulation
+103ï¿½104 stubs 93ï¿½98
+asserting interactions with stubs 96ï¿½97 commands and queries 97ï¿½98 mock (tool) vs. mock (test double) 94ï¿½95 types of test doubles 93ï¿½94 using mocks and stubs together 97 test doubles 25 test fragility 106ï¿½114 defining hexagonal architecture 106ï¿½110 intra-system vs. inter-system
+communications 110ï¿½114 model database 230 Model-View-Controller (MVC) pattern 157 Moq 25, 95, 226 MSTest 49 MUT (method under test) 25 mutable objects 132 mutable shell 132ï¿½133, 143ï¿½144 MVC (Model-View-Controller) pattern 157
 N
-naming tests 54­58 guidelines for 56 renaming tests to meet guidelines 56­58
+naming tests 54ï¿½58 guidelines for 56 renaming tests to meet guidelines 56ï¿½58
 NHibernate 240 noise, reducing 78 NSubstitute 25
 
 NuGet package 49 NUnit 49, 51
 O
-object graphs 22­23 Object Mother 248 object-oriented programming (OOP) 63, 133 object-relational mapping (ORM) 163, 177,
-227, 240, 243, 254­255, 263 observable behavior 99, 105, 108, 115, 263
-leaking implementation details 100­105 public API 99­100 well-designed API and encapsulation 103­104 OCP (Open-Closed principle) 198 OOP (object-oriented programming) 63, 133 Open-Closed principle (OCP) 198 operations 99, 104 orchestration, separating business logic from
+object graphs 22ï¿½23 Object Mother 248 object-oriented programming (OOP) 63, 133 object-relational mapping (ORM) 163, 177,
+227, 240, 243, 254ï¿½255, 263 observable behavior 99, 105, 108, 115, 263
+leaking implementation details 100ï¿½105 public API 99ï¿½100 well-designed API and encapsulation 103ï¿½104 OCP (Open-Closed principle) 198 OOP (object-oriented programming) 63, 133 Open-Closed principle (OCP) 198 operations 99, 104 orchestration, separating business logic from
 169, 179 ORM (object-relational mapping) 163, 177,
-227, 240, 243, 254­255, 263 outcoming interactions 94­95 out-of-process collaborators 159­160 out-of-process dependencies 28, 33, 38­39,
-115, 125, 148, 160­161, 167, 170, 176, 186, 200, 229 integration testing 190­193 interfaces for abstracting dependencies 199 types of 190­191 when real databases are unavailable
-192­193 working with both 191­192 output value 121 output-based testing 120­121, 124, 128 feedback speed 124 maintainability 125 protection against regressions and feedback
-speed 124 resistance to refactoring 124­125 transitioning to functional architecture
-and 135­146 audit system 135­137 refactoring toward functional
-architecture 140­145 using mocks to decouple tests from
-filesystem 137­140 overcomplicated code 154 overspecification 96
+227, 240, 243, 254ï¿½255, 263 outcoming interactions 94ï¿½95 out-of-process collaborators 159ï¿½160 out-of-process dependencies 28, 33, 38ï¿½39,
+115, 125, 148, 160ï¿½161, 167, 170, 176, 186, 200, 229 integration testing 190ï¿½193 interfaces for abstracting dependencies 199 types of 190ï¿½191 when real databases are unavailable
+192ï¿½193 working with both 191ï¿½192 output value 121 output-based testing 120ï¿½121, 124, 128 feedback speed 124 maintainability 125 protection against regressions and feedback
+speed 124 resistance to refactoring 124ï¿½125 transitioning to functional architecture
+and 135ï¿½146 audit system 135ï¿½137 refactoring toward functional
+architecture 140ï¿½145 using mocks to decouple tests from
+filesystem 137ï¿½140 overcomplicated code 154 overspecification 96
 P
-parallel test execution 243­244 parameterized tests 59, 61 partition tolerance 86
+parallel test execution 243ï¿½244 parameterized tests 59, 61 partition tolerance 86
 
 280
 
 INDEX
 
-performance 171 persistence state 189 preconditions 190 private APIs 99 private constructors 263 private dependencies 28­29, 31, 115 private keyword 99 private methods 260­263
-acceptability of testing 261­263 insufficient coverage and 260­261 reusing test fixtures between tests 52­54 test fragility and 260 Product array 129 production code 8 protection against regressions 68­69, 81, 84­86,
+performance 171 persistence state 189 preconditions 190 private APIs 99 private constructors 263 private dependencies 28ï¿½29, 31, 115 private keyword 99 private methods 260ï¿½263
+acceptability of testing 261ï¿½263 insufficient coverage and 260ï¿½261 reusing test fixtures between tests 52ï¿½54 test fragility and 260 Product array 129 production code 8 protection against regressions 68ï¿½69, 81, 84ï¿½86,
 88, 99, 260 comparing testing styles 124 importance of false positives and false
-negatives 78­79 maximizing test accuracy 76­78 Public API 99, 109 pure functions 128
+negatives 78ï¿½79 maximizing test accuracy 76ï¿½78 Public API 99, 109 pure functions 128
 Q
 queries 97
 R
 random number generators 29 read operations 252 readability 53 read-decide-act approach 148 refactoring 165
-analysis of optimal test coverage 167­169 testing domain layer and utility code 167­168 testing from other three quadrants 168 testing preconditions 169
-conditional logic in controllers 169­180 CanExecute/Execute pattern 172­174 domain events for tracking changes in the domain model 175­178
-identifying code to refactor 152­158 four types of code 152­155 Humble Object pattern for splitting overcomplicated code 155­158
-resistance to 69­71 comparing testing styles 124­125 importance of false positives and false negatives 78­79 maximizing test accuracy 76­78
-to parameterized tests general discussion 58­62 generating data for parameterized tests 60­62
+analysis of optimal test coverage 167ï¿½169 testing domain layer and utility code 167ï¿½168 testing from other three quadrants 168 testing preconditions 169
+conditional logic in controllers 169ï¿½180 CanExecute/Execute pattern 172ï¿½174 domain events for tracking changes in the domain model 175ï¿½178
+identifying code to refactor 152ï¿½158 four types of code 152ï¿½155 Humble Object pattern for splitting overcomplicated code 155ï¿½158
+resistance to 69ï¿½71 comparing testing styles 124ï¿½125 importance of false positives and false negatives 78ï¿½79 maximizing test accuracy 76ï¿½78
+to parameterized tests general discussion 58ï¿½62 generating data for parameterized tests 60ï¿½62
 
-toward valuable unit tests 158­167 application services layer 160­162 Company class 164­167 customer management system 158­160 making implicit dependencies explicit 160 removing complexity from application service 163­164
-reference data 231, 234, 245 referential transparency 130 regression errors 8, 69, 82 regressions 7, 229 repositories 236­237, 241, 253 resistance to refactoring 69­71, 79­81, 83­85,
-88­90, 92­93, 99, 123, 260, 265 comparing testing styles 124­125 importance of false positives and false
-negatives 78­79 maximizing test accuracy 76­78 return statement 10 return true statement 10 reusability 53
+toward valuable unit tests 158ï¿½167 application services layer 160ï¿½162 Company class 164ï¿½167 customer management system 158ï¿½160 making implicit dependencies explicit 160 removing complexity from application service 163ï¿½164
+reference data 231, 234, 245 referential transparency 130 regression errors 8, 69, 82 regressions 7, 229 repositories 236ï¿½237, 241, 253 resistance to refactoring 69ï¿½71, 79ï¿½81, 83ï¿½85,
+88ï¿½90, 92ï¿½93, 99, 123, 260, 265 comparing testing styles 124ï¿½125 importance of false positives and false
+negatives 78ï¿½79 maximizing test accuracy 76ï¿½78 return statement 10 return true statement 10 reusability 53
 S
-scalability 7 sequential test execution 243­244 shallowness 124­125 shared dependencies 28­29, 31, 33, 115, 148, 246 side effects 130­134, 190 signal-to-noise ratio 212 Single Responsibility principle 157, 268, 270 single-line act section 45 SMTP service 110, 112­115, 134, 190 software bugs 7, 68 software entropy 6 source of truth 231 spies 94, 222­224 spy test double 93 SQL scripts 231­232, 240, 245 SQLite 246 state 99, 101 state verification 125 state-based database delivery 232 state-based testing 120­122, 124, 128, 135
-feedback speed 124 maintainability 125­127 protection against regressions and feedback
-speed 124 resistance to refactoring 124­125 stubs, mocks 93­98 asserting interactions with stubs 96­97 commands and queries 97­98 mock (tool) vs. mock (test double) 94­95 types of test doubles 93­94 using mocks and stubs together 97
+scalability 7 sequential test execution 243ï¿½244 shallowness 124ï¿½125 shared dependencies 28ï¿½29, 31, 33, 115, 148, 246 side effects 130ï¿½134, 190 signal-to-noise ratio 212 Single Responsibility principle 157, 268, 270 single-line act section 45 SMTP service 110, 112ï¿½115, 134, 190 software bugs 7, 68 software entropy 6 source of truth 231 spies 94, 222ï¿½224 spy test double 93 SQL scripts 231ï¿½232, 240, 245 SQLite 246 state 99, 101 state verification 125 state-based database delivery 232 state-based testing 120ï¿½122, 124, 128, 135
+feedback speed 124 maintainability 125ï¿½127 protection against regressions and feedback
+speed 124 resistance to refactoring 124ï¿½125 stubs, mocks 93ï¿½98 asserting interactions with stubs 96ï¿½97 commands and queries 97ï¿½98 mock (tool) vs. mock (test double) 94ï¿½95 types of test doubles 93ï¿½94 using mocks and stubs together 97
 
 INDEX
 
 281
 
-sub-renderers collection 105 support logging 206, 212 sustainability 7 sustainable growth 6 SUT (system under test) 24­25, 29, 36­37, 43,
-45, 47­48, 57, 71, 73­75, 84, 93­94, 96­97, 120­121, 123, 153, 244, 264, 266 switch statement 10 synchronous communications 191 system leaks 100
+sub-renderers collection 105 support logging 206, 212 sustainability 7 sustainable growth 6 SUT (system under test) 24ï¿½25, 29, 36ï¿½37, 43,
+45, 47ï¿½48, 57, 71, 73ï¿½75, 84, 93ï¿½94, 96ï¿½97, 120ï¿½121, 123, 153, 244, 264, 266 switch statement 10 synchronous communications 191 system leaks 100
 T
-tables 191 tautology tests 82 TDD (test-driven development) 36, 43 tell-don't-ask principle 104 test code 8 test coverage 9 Test Data Builder 248 test data life cycle 243­246
-avoiding in-memory databases 246 clearing data between test runs 244­245 parallel vs. sequential test execution
-243­244 test doubles 22­23, 25, 28, 93­94, 98, 199 test fixtures 248
+tables 191 tautology tests 82 TDD (test-driven development) 36, 43 tell-don't-ask principle 104 test code 8 test coverage 9 Test Data Builder 248 test data life cycle 243ï¿½246
+avoiding in-memory databases 246 clearing data between test runs 244ï¿½245 parallel vs. sequential test execution
+243ï¿½244 test doubles 22ï¿½23, 25, 28, 93ï¿½94, 98, 199 test fixtures 248
 defined 50 reusing between tests
-constructors 52 high coupling 52 private factory methods 52­54 reusing between tests 50­54 test fragility, mocks and 106­114 defining hexagonal architecture 106­110 intra-system vs. inter-system
-communications 110­114 test isolation 115 Test Pyramid
-general discussion 87­89 integration testing 187 test suites characteristics of successful suites 15­17
+constructors 52 high coupling 52 private factory methods 52ï¿½54 reusing between tests 50ï¿½54 test fragility, mocks and 106ï¿½114 defining hexagonal architecture 106ï¿½110 intra-system vs. inter-system
+communications 110ï¿½114 test isolation 115 Test Pyramid
+general discussion 87ï¿½89 integration testing 187 test suites characteristics of successful suites 15ï¿½17
 integration into development cycle 16 maximum value with minimum maintenance
 costs 17 targeting most important parts of code
-base 16­17 coverage metrics, measuring test suite quality
-with 8­15 aiming for particular coverage number 15 branch coverage metric 10­11 code coverage metric 9­10 problems with 12­15 third-party applications 81, 112
+base 16ï¿½17 coverage metrics, measuring test suite quality
+with 8ï¿½15 aiming for particular coverage number 15 branch coverage metric 10ï¿½11 code coverage metric 9ï¿½10 problems with 12ï¿½15 third-party applications 81, 112
 
-tight coupling 5 time 271­273
-as ambient context 271­272 as explicit dependency 272­273 trivial code 153­154 trivial tests 82­83 true negative 76 true positive 76 two-line act section 46
+tight coupling 5 time 271ï¿½273
+as ambient context 271ï¿½272 as explicit dependency 272ï¿½273 trivial code 153ï¿½154 trivial tests 82ï¿½83 true negative 76 true positive 76 two-line act section 46
 U
 UI (user interface) tests 38 unit of behavior 56, 225 unit of work 239, 242 unit testing
-anatomy of 41­63 AAA pattern 42­49 assertion libraries, using to improve test readability 62­63 naming tests 54­58 refactoring to parameterized tests 58­62 reusing test fixtures between tests 50­54 xUnit testing framework 49­50
-automation concepts 87­90 black-box vs. white-box testing 89­90 Test Pyramid 87­89
-characteristics of successful test suites 15­17 integration into development cycle 16 maximum value with minimum maintenance costs 17 targeting most important parts of code base 16­17
-classical school of 30­37 dependencies 30­34 end-to-end tests 38­39 integration tests 37­39 isolation issue 27­30 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34­35
-coverage metrics, measuring test suite quality with 8­15
-aiming for particular coverage number 15 branch coverage metric 10­11 code coverage metric 9­10 problems with 12­15 current state of 4­5 defined 21­30 four pillars of 68­80 feedback speed 79­80 maintainability 79­80 protection against regressions 68­69 resistance to refactoring 69­71
+anatomy of 41ï¿½63 AAA pattern 42ï¿½49 assertion libraries, using to improve test readability 62ï¿½63 naming tests 54ï¿½58 refactoring to parameterized tests 58ï¿½62 reusing test fixtures between tests 50ï¿½54 xUnit testing framework 49ï¿½50
+automation concepts 87ï¿½90 black-box vs. white-box testing 89ï¿½90 Test Pyramid 87ï¿½89
+characteristics of successful test suites 15ï¿½17 integration into development cycle 16 maximum value with minimum maintenance costs 17 targeting most important parts of code base 16ï¿½17
+classical school of 30ï¿½37 dependencies 30ï¿½34 end-to-end tests 38ï¿½39 integration tests 37ï¿½39 isolation issue 27ï¿½30 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34ï¿½35
+coverage metrics, measuring test suite quality with 8ï¿½15
+aiming for particular coverage number 15 branch coverage metric 10ï¿½11 code coverage metric 9ï¿½10 problems with 12ï¿½15 current state of 4ï¿½5 defined 21ï¿½30 four pillars of 68ï¿½80 feedback speed 79ï¿½80 maintainability 79ï¿½80 protection against regressions 68ï¿½69 resistance to refactoring 69ï¿½71
 
 282
-unit testing (continued) functional architecture 128­134 defined 132­133 drawbacks of 146­149 functional programming 128­131 hexagonal architecture 133­134 transitioning to output-based testing 135­146 goal of 5­8 good vs. bad tests 7­8 ideal tests 80­87 brittle tests 83­84 end-to-end tests 81 possibility of creating 81 trivial tests 82­83 London school of 30­37 dependencies 30­34 end-to-end tests 38­39 integration tests 37­39 isolation issue 21­27 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34­35 styles of 120­123 communication-based testing 122­123 comparing 123­128
+unit testing (continued) functional architecture 128ï¿½134 defined 132ï¿½133 drawbacks of 146ï¿½149 functional programming 128ï¿½131 hexagonal architecture 133ï¿½134 transitioning to output-based testing 135ï¿½146 goal of 5ï¿½8 good vs. bad tests 7ï¿½8 ideal tests 80ï¿½87 brittle tests 83ï¿½84 end-to-end tests 81 possibility of creating 81 trivial tests 82ï¿½83 London school of 30ï¿½37 dependencies 30ï¿½34 end-to-end tests 38ï¿½39 integration tests 37ï¿½39 isolation issue 21ï¿½27 precise bug location 36 testing large graph of interconnected classes 35 testing one class at a time 34ï¿½35 styles of 120ï¿½123 communication-based testing 122ï¿½123 comparing 123ï¿½128
 
 INDEX
-output-based testing 120­121 state-based testing 121­122 units of behavior 34 units of code 21, 27­29, 34, 47, 225 unmanaged dependencies 190, 199, 211, 216, 218, 220, 222, 226, 254 user controller 193 user interface (UI) tests 38
+output-based testing 120ï¿½121 state-based testing 121ï¿½122 units of behavior 34 units of code 21, 27ï¿½29, 34, 47, 225 unmanaged dependencies 190, 199, 211, 216, 218, 220, 222, 226, 254 user controller 193 user interface (UI) tests 38
 V
-value objects 31, 126­127 void type 97 volatile dependencies 29
+value objects 31, 126ï¿½127 void type 97 volatile dependencies 29
 W
-white-box testing 89­90 write operation 252
+white-box testing 89ï¿½90 write operation 252
 X
-xUnit testing framework 49­50
+xUnit testing framework 49ï¿½50
 Y
-YAGNI (You aren't gonna need it) principle 198­199
+YAGNI (You aren't gonna need it) principle 198ï¿½199
 
 TESTING/SOFTWARE DEVELOPMENT
 Unit Testing Principles, Practices, and Patterns
@@ -7610,4 +7616,3 @@ To download their free eBook in PDF, ePub, and Kindle formats, owners of this bo
 ISBN-13: 978-1-61729-627-7 ISBN-10: 1-61729-627-9
 
 M A N N I N G $49.99 / Can $65.99 [INCLUDING eBOOK]
-

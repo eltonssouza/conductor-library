@@ -1,3 +1,9 @@
+# Why Reactive
+
+> **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Why Reactive?
 Foundational Principles for Enterprise Adoption
 Konrad Malawski
@@ -6,7 +12,7 @@ Beijing Boston Farnham Sebastopol Tokyo
 Why Reactive?
 by Konrad Malawski
 
-Copyright © 2017 Konrad Malawski. All rights reserved.
+Copyright ï¿½ 2017 Konrad Malawski. All rights reserved.
 
 Printed in the United States of America.
 
@@ -97,17 +103,17 @@ It's increasingly obvious that the old, linear, three-tier architecture model is
 While the term reactive has been around for a long time, only recently has it been recognized by the industry as the de facto way forward in system design and hit mainstream adoption. In 2014 Gartner wrote that the three-tier architecture that used to be so pop- ular was beginning to show its age. The goal of this report is to take a step back from the hype and analyze what reactive really is, when to adopt it, and how to go about doing so. The report aims to stay mostly technology agnostic, focusing on the underlying principles of reactive application and system design. Obviously, certain modern technologies, such as the Lightbend or Netflix stacks, are far better suited for development of Reactive Systems than others. However, instead of giving blank recommendations, this report will arm you with the necessary background and understanding so you can make the right decisions on your own. This report is aimed at CTOs, architects, and team leaders or man- agers with technical backgrounds who are looking to see what reac- tive is all about. Some of the chapters will be a deep dive into the technical aspects. In Chapter 2, which covers reactive on the appli-
 1 Gartner Summits, Gartner Application Architecture, Development & Integration Summit 2014 (Sydney, 2014), http://www.gartner.com/imagesrv/summits/docs/apac/applicationdevelopment/AADI-APAC-2014-Brochure.pdf. 1
 
-cation level, we will need to understand the technical differences around this programming paradigm and its impact on resource uti- lization. The following chapter, about reactive on the system level, takes a step back a bit and looks at the architectural as well as organ- izational impact of distributed reactive applications. Finally, we wrap up the report with some closing thoughts and suggest a few building blocks, and how to spot really good fits for reactive architecture among all the marketing hype around the subject. So, what does reactive really mean? Its core meaning has been some- what formalized with the creation of the Reactive Manifesto2 in 2013, when Jonas Bonér3 collected some of the brightest minds in the distributed and high-performance computing industry--namely, in alphabetical order, Dave Farley, Roland Kuhn, and Martin Thompson--to collaborate and solidify what the core principles were for building reactive applications and systems. The goal was to clarify some of the confusion that around reactive, as well as to build a strong basis for what would become a viable development style. While we won't be diving very deep into the manifesto itself in this report, we strongly recommend giving it a read. Much of the vocabulary that is used in systems design nowadays (such as the dif- ference between errors and failures) has been well defined in it. Much like the Reactive Manifesto set out to clarify some of the con- fusion around terminology, our aim in this report is to solidify a common understanding of what it means to be reactive.
+cation level, we will need to understand the technical differences around this programming paradigm and its impact on resource uti- lization. The following chapter, about reactive on the system level, takes a step back a bit and looks at the architectural as well as organ- izational impact of distributed reactive applications. Finally, we wrap up the report with some closing thoughts and suggest a few building blocks, and how to spot really good fits for reactive architecture among all the marketing hype around the subject. So, what does reactive really mean? Its core meaning has been some- what formalized with the creation of the Reactive Manifesto2 in 2013, when Jonas Bonï¿½r3 collected some of the brightest minds in the distributed and high-performance computing industry--namely, in alphabetical order, Dave Farley, Roland Kuhn, and Martin Thompson--to collaborate and solidify what the core principles were for building reactive applications and systems. The goal was to clarify some of the confusion that around reactive, as well as to build a strong basis for what would become a viable development style. While we won't be diving very deep into the manifesto itself in this report, we strongly recommend giving it a read. Much of the vocabulary that is used in systems design nowadays (such as the dif- ference between errors and failures) has been well defined in it. Much like the Reactive Manifesto set out to clarify some of the con- fusion around terminology, our aim in this report is to solidify a common understanding of what it means to be reactive.
 Why Build Reactive Systems?
 It's no use going back to yesterday, because I was a different person then.
 --Lewis Carroll
 Before we plunge into the technical aspects of Reactive Systems and architecture, we should ask ourselves, "Why build Reactive Sys- tems?"
-2 Jonas Bonér et al., "The Reactive Manifesto," September 16, 2014, http://www.reactive manifesto.org.
-3 Jonas Bonér, Founder and CTO of Lightbend (previously known as Typesafe) in 2011, and Scalable Solutions in 2009, http://jonasboner.com.
+2 Jonas Bonï¿½r et al., "The Reactive Manifesto," September 16, 2014, http://www.reactive manifesto.org.
+3 Jonas Bonï¿½r, Founder and CTO of Lightbend (previously known as Typesafe) in 2011, and Scalable Solutions in 2009, http://jonasboner.com.
 2 | Chapter 1: Introduction
 
 Why would we be interested in changing the ways we've been build- ing our applications for years? Or even better, we can start the debate by asking, "What benefit are we trying to provide to the users of our software?" Out of many possible answers, here are some that would typically lead someone to start looking into Reactive Systems design. Let's say that our system should:
-· Be responsive to interactions with its users · Handle failure and remain available during outages · Strive under varying load conditions · Be able to send, receive, and route messages in varying network
+ï¿½ Be responsive to interactions with its users ï¿½ Handle failure and remain available during outages ï¿½ Strive under varying load conditions ï¿½ Be able to send, receive, and route messages in varying network
 conditions These answers actually convey the core reactive traits as defined in the manifesto. Responsiveness is achieved by controlling our appli- cations' hardware utilization, for which many reactive techniques are excellent tools. We look at a few in Chapter 2, when we start looking at reactive on the application level. Meanwhile, a good way to make a system easy to scale is to decouple parts of it, such that they can be scaled independently. If we combine these methods with avoiding synchronous communication between systems, we now also make the system more resilient. By using asynchronous com- munication when possible, we can avoid binding our lifecycle strictly to the request's target host lifecycle. For example, if the life- cycle is running slowly, we should not be affected by it. We'll exam- ine this issue, along with others, in Chapter 3, when we zoom out and focus on reactive on the system level, comparing synchronous request-response communication patterns with asynchronous mes- sage passing. Finally, in Chapter 4 we list the various tools in our toolbox and talk about how and when to use each of them. We also discuss how to introduce reactive in existing code bases as we acknowledge that the real world is full of existing, and valuable, systems that we want to integrate with.
 Why Build Reactive Systems? | 3
 
@@ -261,4 +267,3 @@ Reactive, an Architectural Style for Present and Future | 31
 
 About the Author
 Konrad Malawski is senior developer in the Akka team at Light- bend, a distributed systems toolkit for the JVM. Before joining Lightbend (previously Typesafe), he worked at eBay on a content delivery platform in London. He is a leading contributor to the cur- rent Reactive Streams TCK, and other open source projects. He has founded and helps run multiple user groups, including the GeeCON conference in Poland. When he's not coding, Konrad spreads the joy of computer science by organizing a white paper reading club. He was named a JavaOne RockStar in 2015.
-

@@ -1,3 +1,9 @@
+# Working Effectively with Legacy Code
+
+> **Author(s):** Feathers Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 From the Library of Brian Watterson
 
 Working Effectively with Legacy Code
@@ -17,7 +23,7 @@ From the Library of Brian Watterson
 The authors and publisher have taken care in the preparation of this book, but make no expressed or implied warranty of any kind and assume no responsibility for errors or omissions. No liability is assumed for incidental or consequential damages in connection with or arising out of the use of the information or programs contained herein.
 Publisher: John Wait Editor in Chief: Don O'Hagan Acquisitions Editor: Paul Petralia Editorial Assistant: Michelle Vincenti Marketing Manager: Chris Guzikowski Publicist: Kerry Guiliano Cover Designer: Sandra Schroeder Managing Editor: Gina Kanouse Senior Project Editor: Lori Lyons Copy Editor: Krista Hansing Indexer: Lisa Stumpf Compositor: Karen Kennedy Proofreader: Debbie Williams Manufacturing Buyer: Dan Uhrig Prentice Hall offers excellent discounts on this book when ordered in quantity for bulk purchases or special sales, which may include electronic versions and/or custom covers and content particular to your business, training goals, marketing focus, and branding interests. For more information, please contact:
 U. S. Corporate and Government Sales 1-800-382-3419 corpsales@pearsontechgroup.com For sales outside the U. S., please contact: International Sales 1-317-428-3341 international@pearsontechgroup.com
-Visit us on the web: www.phptr.com Library of Congress Cataloging-in-Publication Data: 2004108115 Copyright © 2005 Pearson Education, Inc. Publishing as Prentice Hall PTR All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
+Visit us on the web: www.phptr.com Library of Congress Cataloging-in-Publication Data: 2004108115 Copyright ï¿½ 2005 Pearson Education, Inc. Publishing as Prentice Hall PTR All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 Pearson Education, Inc. Rights and Contracts Department One Lake Street Upper Saddle River, NJ 07458 Other product or company names mentioned herein are the trademarks or registered trademarks of their respective owners. ISBN 0-13-117705-2
 Text printed in the United States on recycled paper at Phoenix Book Tech. First printing, September 2004
 From the Library of Brian Watterson
@@ -162,7 +168,7 @@ PREFACE
 
 which we are used to ease; we expect it and actively attempt to make code change easier. When we can sustain that sense on a team, design gets better.
 The techniques I describe are ones that I've discovered and learned with coworkers and clients over the course of years working with clients to try to establish control over unruly code bases. I got into this legacy code emphasis accidentally. When I first started working with Object Mentor, the bulk of my work involved helping teams with serious problems develop their skills and interactions to the point that they could regularly deliver quality code. We often used Extreme Programming practices to help teams take control of their work, collaborate intensively, and deliver. I often feel that Extreme Programming is less a way to develop software than it is a way to make a well-jelled work team that just happens to deliver great software every two weeks.
-From the beginning, though, there was a problem. Many of the first XP projects were "greenfield" projects. The clients I was seeing had significantly large code bases, and they were in trouble. They needed some way to get control of their work and start to deliver. Over time, I found that I was doing the same things over and over again with clients. This sense culminated in some work I was doing with a team in the financial industry. Before I'd arrived, they'd realized that unit testing was a great thing, but the tests that they were executing were full scenario tests that made multiple trips to a database and exercised large chunks of code. The tests were hard to write, and the team didn't run them very often because they took so long to run. As I sat down with them to break dependencies and get smaller chunks of code under test, I had a terrible sense of déjà vu. It seemed that I was doing this sort of work with every team I met, and it was the sort of thing that no one really wanted to think about. It was just the grunge work that you do when you want to start working with your code in a controlled way, if you know how to do it. I decided then that it was worth really reflecting on how we were solving these problems and writing them down so that teams could get a leg up and start to make their code bases easier to live in.
+From the beginning, though, there was a problem. Many of the first XP projects were "greenfield" projects. The clients I was seeing had significantly large code bases, and they were in trouble. They needed some way to get control of their work and start to deliver. Over time, I found that I was doing the same things over and over again with clients. This sense culminated in some work I was doing with a team in the financial industry. Before I'd arrived, they'd realized that unit testing was a great thing, but the tests that they were executing were full scenario tests that made multiple trips to a database and exercised large chunks of code. The tests were hard to write, and the team didn't run them very often because they took so long to run. As I sat down with them to break dependencies and get smaller chunks of code under test, I had a terrible sense of dï¿½jï¿½ vu. It seemed that I was doing this sort of work with every team I met, and it was the sort of thing that no one really wanted to think about. It was just the grunge work that you do when you want to start working with your code in a controlled way, if you know how to do it. I decided then that it was worth really reflecting on how we were solving these problems and writing them down so that teams could get a leg up and start to make their code bases easier to live in.
 A note about the examples: I've used examples in several different programming languages. The bulk of the examples are written in Java, C++, and C. I picked Java because it is a very common language, and I included C++ because it presents some special challenges in a legacy environment. I picked C because it highlights many of the problems that come up in procedural legacy code. Among them, these languages cover much of the spectrum of concerns that arise in legacy code. However, if the languages you use are not covered in the examples, take a look at them anyway. Many of the techniques that I cover can be used in other languages, such as Delphi, Visual Basic, COBOL, and FORTRAN.
 
 From the Library of Brian Watterson
@@ -414,8 +420,8 @@ Test Harnesses
 In this book, I use the term test harness as a generic term for the testing code that we write to exercise some piece of software and the code that is needed to run it. We can use many different kinds of test harnesses to work with our code. In Chapter 5, Tools, I discuss the xUnit testing framework and the FIT framework. Both of them can be used to do the testing I describe in this book.
 Can we ever test only one function or one class? In procedural systems, it is often hard to test functions in isolation. Top-level functions call other functions, which call other functions, all the way down to the machine level. In object-oriented systems, it is a little easier to test classes in isolation, but the fact is, classes don't generally live in isolation. Think about all of the classes you've ever written that don't use other classes. They are pretty rare, aren't they? Usually they are little data classes or data structure classes such as stacks and queues (and even these might use other classes).
 Testing in isolation is an important part of the definition of a unit test, but why is it important? After all, many errors are possible when pieces of software are integrated. Shouldn't large tests that cover broad functional areas of code be more important? Well, they are important, I won't deny that, but there are a few problems with large tests:
-· Error localization--As tests get further from what they test, it is harder to determine what a test failure means. Often it takes considerable work to pinpoint the source of a test failure. You have to look at the test inputs, look at the failure, and determine where along the path from inputs to outputs the failure occurred. Yes, we have to do that for unit tests also, but often the work is trivial.
-· Execution time--Larger tests tend to take longer to execute. This tends to make test runs rather frustrating. Tests that take too long to run end up not being run.
+ï¿½ Error localization--As tests get further from what they test, it is harder to determine what a test failure means. Often it takes considerable work to pinpoint the source of a test failure. You have to look at the test inputs, look at the failure, and determine where along the path from inputs to outputs the failure occurred. Yes, we have to do that for unit tests also, but often the work is trivial.
+ï¿½ Execution time--Larger tests tend to take longer to execute. This tends to make test runs rather frustrating. Tests that take too long to run end up not being run.
 
 From the Library of Brian Watterson
 
@@ -423,7 +429,7 @@ WHAT IS UNIT TESTING?
 
 13
 
-· Coverage--It is hard to see the connection between a piece of code and the values that exercise it. We can usually find out whether a piece of code is exercised by a test using coverage tools, but when we add new code, we might have to do considerable work to create high-level tests that exercise the new code.
+ï¿½ Coverage--It is hard to see the connection between a piece of code and the values that exercise it. We can usually find out whether a piece of code is exercised by a test using coverage tools, but when we add new code, we might have to do considerable work to create high-level tests that exercise the new code.
 One of the most frustrating things about larger tests is that we can have error localization if we run our tests more often, but it is very hard to achieve. If we run our tests and they pass, and then we make a small change and they fail, we know precisely where the problem was triggered. It was something we did in that last small change. We can roll back the change and try again. But if our tests are large, execution time can be too long; our tendency will be to avoid running the tests often enough to really localize errors.
 Unit tests fill in gaps that larger tests can't. We can test pieces of code independently; we can group tests so that we can run some under some conditions and others under other conditions. With them we can localize errors quickly. If we think there is an error in some particular piece of code and we can use it in a test harness, we can usually code up a test quickly to see if the error really is there.
 Here are qualities of good unit tests:
@@ -483,7 +489,7 @@ InvoiceUpdateResponder
 + InvoiceUpdateResponder( DBConnection, InvoiceUpdateServlet,
 + update() + getResponseText () : String
 
-«creates»
+ï¿½createsï¿½
 Invoice + customer : String + date : Date
 * + durationOfService : int
 + Invoice() + getValue() : int
@@ -517,7 +523,7 @@ InvoiceUpdateServlet
 # execute(HttpServletRequest, HttpServletResponse)
 # buildUpdate()
 
-«interface» IDBConnection
+ï¿½interfaceï¿½ IDBConnection
 + getInvoices(Criteria) : List
 
 Test Coverings
@@ -673,7 +679,7 @@ public void scan(String barcode) { ... String itemLine = item.name() + " " + ite
 
 Sale + scan(barcode : String)
 
-«interface» Display
+ï¿½interfaceï¿½ Display
 + showLine(line : String)
 
 ArtR56Display + showLine(line : String)
@@ -1187,9 +1193,9 @@ Unit-Testing Harnesses
 Unit-Testing Harnesses
 Testing tools have a long and varied history. Not a year goes by that I don't run into four or five teams that have bought some expensive license-per-seat testing tool that ends up not living up to its price. In fairness to tool vendors, testing is a tough problem, and people are often seduced by the idea that they can test through a GUI or web interface without having to do anything special to their application. It can be done, but it is usually more work than anyone on a team is prepared to admit. In addition, a user interface often isn't the best place to write tests. UIs are often volatile and too far from the functionality being tested. When UI-based tests fail, it can be hard to figure out why. Regardless, people often spend considerable money trying to do all of their testing with those sorts of tools.
 The most effective testing tools I've run across have been free. The first one is the xUnit testing framework. Originally written in Smalltalk by Kent Beck and then ported to Java by Kent Beck and Erich Gamma, xUnit is a small, powerful design for a unit-testing framework. Here are its key features:
-· It lets programmers write tests in the language they are developing in.
-· All tests run in isolation.
-· Tests can be grouped into suites so that they can be run and rerun on demand.
+ï¿½ It lets programmers write tests in the language they are developing in.
+ï¿½ All tests run in isolation.
+ï¿½ Tests can be grouped into suites so that they can be run and rerun on demand.
 
 The xUnit framework has been ported to most major languages and quite a few small, quirky ones.
 The most revolutionary thing about xUnit's design is its simplicity and focus. It allows us to write tests with little muss and fuss. Although it was originally designed for unit testing, you can use it to write larger tests because xUnit really doesn't care how large or small a test is. If the test can be written in the language you are using, xUnit can run it.
@@ -1792,7 +1798,7 @@ AddOpportunityFormHandler + AddOpportunityFormHandler(ConsultantSchedulerDB)
 
 AddOpportunity XMLGenerator
 
-«creates»
+ï¿½createsï¿½
 
 ConsultantSchedulerDB
 
@@ -1815,9 +1821,9 @@ AddOpportunityFormHandler + AddOpportunityFormHandler(ConsultantSchedulerDB)
 
 AddOpportunity XMLGenerator
 
-«interface» ConsultantSchedulerDB
+ï¿½interfaceï¿½ ConsultantSchedulerDB
 
-«creates»
+ï¿½createsï¿½
 
 ConsultantSchedulerDBImpl
 
@@ -1839,11 +1845,11 @@ AddOpportunityFormHandler + AddOpportunityFormHandler(ConsultantSchedulerDB)
 
 AddOpportunity XMLGenerator
 
-«interface» ConsultantSchedulerDB
+ï¿½interfaceï¿½ ConsultantSchedulerDB
 
-«interface» OpportunityItem
+ï¿½interfaceï¿½ OpportunityItem
 
-«creates»
+ï¿½createsï¿½
 
 ConsultantSchedulerDBImpl
 
@@ -2017,10 +2023,10 @@ To get it to compile, we have to add a definition for secondMomentAbout. We can 
 This line in firstMoment:
 numerator += element - point;
 has to become this in the case of the second moment:
-numerator += Math.pow(element ­ point, 2.0);
+numerator += Math.pow(element ï¿½ point, 2.0);
 And there is a general pattern for this sort of thing. The nth statistic moment is calculated using this expression:
-numerator += Math.pow(element ­ point, N);
-The code in firstMomentAbout works because element ­ point is the same as Math.pow(element ­ point, 1.0).
+numerator += Math.pow(element ï¿½ point, N);
+The code in firstMomentAbout works because element ï¿½ point is the same as Math.pow(element ï¿½ point, 1.0).
 At this point, we have a couple of choices. We can notice the generality and write a general method that accepts an "about" point and a value for N. Then we can replace every use of firstMomentAbout(double) with a call to that general method. We can do that, but it would burden the callers with the need to supply an N value, and we don't want to allow clients to supply an arbitrary value for N. It seems like we are getting lost in thought here. We should put this on hold and finish what we've started so far. Our only job right now is to make it compile. We can generalize later if we find that we still want to.
 To make it compile, we can make a copy of the firstMomentAbout method and rename it so that it is now called secondMomentAbout:
 
@@ -2045,7 +2051,7 @@ This code fails the test. When it fails, we can go back and make it pass by chan
 public double secondMomentAbout(double point) throws InvalidBasisException {
 if (elements.size() == 0) throw new InvalidBasisException("no elements");
 double numerator = 0.0; for (Iterator it = elements.iterator(); it.hasNext(); ) {
-double element = ((Double)(it.next())).doubleValue(); numerator += Math.pow(element ­ point, 2.0); } return numerator / elements.size(); }
+double element = ((Double)(it.next())).doubleValue(); numerator += Math.pow(element ï¿½ point, 2.0); } return numerator / elements.size(); }
 You might be shocked by the cut/copy/paste we just did, but we're going to remove duplication in a second. This code that we are writing is fresh code. But the trick of just copying the code that we need and modifying it in a new method is pretty powerful in the context of legacy code. Often when we want to add features to particularly awful code, it's easier to understand our modifications if we put them in some new place and can see them side by side with the old code. We can remove duplication later to fold the new code into the class in a nicer way, or we can just get rid of the modification and try it in a different way, knowing that we still have the old code to look at and learn from.
 
 From the Library of Brian Watterson
@@ -2062,7 +2068,7 @@ return nthMomentAbout(point, 2.0); }
 private double nthMomentAbout(double point, double n) throws InvalidBasisException {
 if (elements.size() == 0) throw new InvalidBasisException("no elements");
 double numerator = 0.0; for (Iterator it = elements.iterator(); it.hasNext(); ) {
-double element = ((Double)(it.next())).doubleValue(); numerator += Math.pow(element ­ point, n); } return numerator / elements.size();
+double element = ((Double)(it.next())).doubleValue(); numerator += Math.pow(element ï¿½ point, n); } return numerator / elements.size();
 }
 If we run our tests now, we'll see that they pass. We can go back to firstMomentAbout and replace its body with a call to nthMomentAbout:
 public double firstMomentAbout(double point) throws InvalidBasisException {
@@ -2412,7 +2418,7 @@ void testNoSuccess() throws Exception { CreditMaster master = new CreditMaster("
 Certificate result = validator.validateCustomer(new Customer(...));
 assertEquals(Certificate.VALID, result.getStatus()); }
 
-«interface» IRGHConnection + connect() + disconnect() + RGDIReportFor(id : int) : RFDIReport +ACTIOReportFor(customerID : int) : ACTIOReport
+ï¿½interfaceï¿½ IRGHConnection + connect() + disconnect() + RGDIReportFor(id : int) : RFDIReport +ACTIOReportFor(customerID : int) : ACTIOReport
 RGHConnection + RGHConnection(port, name, passward) +connect() +disconnect() +RFDIReportFor(id : int) : RFDIReport +ACTIOReportFor(customerID : int) ACTIOReport - retry() - formPacket() : RFPacket
 Figure 9.2 RGHConnection after extracting an interface
 
@@ -2921,7 +2927,7 @@ From the Library of Brian Watterson
 
 I CAN'T GET THIS CLASS INTO A TEST HARNESS
 
-«interface» SchedulingTask
+ï¿½interfaceï¿½ SchedulingTask
 + run()
 
 SerialTask + run()
@@ -3031,10 +3037,10 @@ I Can't Run This Method in a Test Harness
 Getting tests in place to make changes can be a bit of a problem. If you can instantiate your class separately in a test harness, consider yourself lucky. Many people can't. If you're having trouble, take a look at Chapter 9, I Can't Get This Class into a Test Harness.
 Instantiating a class is often only the first part of the battle. The second part is writing tests for the methods we need to change. Sometimes we can do this without instantiating the class at all. If the method doesn't use much instance data, we can use Expose Static Method (345) to get access to the code. If the method is pretty long and difficult to deal with, we can use Break Out Method Object (330) to move the code to a class that we can instantiate more easily.
 Fortunately, in most cases, the amount of work that we have to do to write tests for methods isn't as drastic. Here are some of the problems that we can run into.
-· The method might not be accessible to the test. It could be private or have some other accessibility problem.
-· It might be hard to call the method because it is hard to construct the parameters we need to call it.
-· The method might have bad side effects (modifying a database, launching a cruise missile, and so on), so it is impossible to run in a test harness.
-· We might need to sense through some object that the method uses.
+ï¿½ The method might not be accessible to the test. It could be private or have some other accessibility problem.
+ï¿½ It might be hard to call the method because it is hard to construct the parameters we need to call it.
+ï¿½ The method might have bad side effects (modifying a database, launching a cruise missile, and so on), so it is impossible to run in a test harness.
+ï¿½ We might need to sense through some object that the method uses.
 The rest of this chapter contains a set of scenarios that show different ways of getting past them and some of the trade-offs involved.
 
 I Can't Run This Method in a Test Harness
@@ -4389,10 +4395,10 @@ My Application Is All API Calls
 MailReceiver
 + checkForMail() - processMessages(Message[] messages)
 
-«interface» MessageProcessor
+ï¿½interfaceï¿½ MessageProcessor
 + processMessages(Message)
 
-«interface» MailService + sendMessage(Message)
+ï¿½interfaceï¿½ MailService + sendMessage(Message)
 MailSender + sendMessage(Message)
 
 MailForwarder
@@ -4445,8 +4451,8 @@ private Session getSMTPSession () { Properties props = new Properties (); props.
 } }
 How do we choose between Skin and Wrap the API and ResponsibilityBased Extraction? Here are the trade-offs:
 Skin and Wrap the API is good in these circumstances:
-· The API is relatively small.
-· You want to completely separate out dependencies on a third-party library.
+ï¿½ The API is relatively small.
+ï¿½ You want to completely separate out dependencies on a third-party library.
 
 From the Library of Brian Watterson
 
@@ -4454,11 +4460,11 @@ MY APPLICATION IS ALL API CALLS
 
 207
 
-· You don't have tests, and you can't write them because you can't test through the API.
+ï¿½ You don't have tests, and you can't write them because you can't test through the API.
 When we skin and wrap an API, we have the chance to get all of our code under test except for a thin layer of delegation from the wrapper to the real API classes.
 Responsibility-Based Extraction is good in these circumstances:
-· The API is more complicated.
-· You have a tool that provides a safe extract method support, or you feel confident that you can do the extractions safely by hand.
+ï¿½ The API is more complicated.
+ï¿½ You have a tool that provides a safe extract method support, or you feel confident that you can do the extractions safely by hand.
 Balancing the advantages and disadvantages of these techniques is kind of tricky. Skin and Wrap the API is more work, but it can be very useful when we want to isolate ourselves from third-party libraries, and that need comes up often. See Chapter 14, Dependencies on Libraries Are Killing Me, for details. When we use Responsibility-Based Extraction, we might end up extracting some of our own logic with the API code just so that we can extract a method with a higher-level name. If we do, our code can depend on higher-level interfaces rather than low-level API calls, but we might not be able to get the code we've extracted under test.
 Many teams use both techniques: a thin wrapper for testing and a higherlevel wrapper to present a better interface to their application.
 
@@ -4574,9 +4580,9 @@ My Application Has No Structure
 Long-lived applications tend to sprawl. They might have started out with a well-thought-out architecture, but over the years, under schedule pressure, they can get to the point at which nobody really understands the complete structure. People can work for years on a project and not have any idea where new features are intended to go; they just know the hacks that have been placed in the system recently. When they add new features, they go to the "hack points" because those are the areas that they know best.
 There is no easy remedy for this sort of thing, and the urgency of the situation varies widely. In some cases, programmers run up against a wall. It's difficult to add new features, and that brings the entire organization into crisis mode. People are charged with the task of figuring out whether it would be better to rearchitect or rewrite the system. In other organizations, the system limps along for years. Yes, it takes longer than it should to add new features, but that is just considered the price of doing business. Nobody knows how much better it could be or how much money is being lost because of poor structure.
 When teams aren't aware of their architecture, it tends to degrade. What gets in the way of this awareness?
-· The system can be so complex that it takes a long time to get the big picture.
-· The system can be so complex that there is no big picture.
-· The team is in a very reactive mode, dealing with emergency after emergency so much that they lose sight of the big picture.
+ï¿½ The system can be so complex that it takes a long time to get the big picture.
+ï¿½ The system can be so complex that there is no big picture.
+ï¿½ The team is in a very reactive mode, dealing with emergency after emergency so much that they lose sight of the big picture.
 Traditionally, many organizations have used the role of architect to solve these problems. Architects are usually charged with the task of working out the big picture and making decisions that preserve the big picture for the team. That can work, but there is one strong caveat. An architect has to be out in the
 
 My Application Has No Structure
@@ -4775,14 +4781,14 @@ Test Location
 
 word Testing. If classes in a package or directory are listed alphabetically, all of the testing subclasses are grouped together.
 Here is an example listing of a directory for a small accounting package:
-· CheckingAccount
-· CheckingAccountTest
-· FakeAccountOwner
-· FakeTransaction
-· SavingsAccount
-· SavingsAccountTest
-· TestingCheckingAccount
-· TestingSavingsAccount
+ï¿½ CheckingAccount
+ï¿½ CheckingAccountTest
+ï¿½ FakeAccountOwner
+ï¿½ FakeTransaction
+ï¿½ SavingsAccount
+ï¿½ SavingsAccountTest
+ï¿½ TestingCheckingAccount
+ï¿½ TestingSavingsAccount
 Notice that each production class is next to its test class. The fakes group together and the testing subclasses group together.
 I'm not dogmatic about this arrangement. It works in many cases, but there are lots of variations and reasons to vary it. The key thing to remember is that ergonomics is important. It's important to consider how easy it will be to navigate back and forth between your classes and your tests.
 
@@ -4990,9 +4996,9 @@ This technique isn't C specific. It can be used in most languages that support f
 
 Taking Advantage of Object Orientation
 In object-oriented languages, we have object seams (40) available. They have some nice properties:
-· They are easy to notice in the code.
-· They can be used to break code down into smaller, more understandable pieces.
-· They provide more flexibility. Seams that you introduce for testing might be useful when you have to extend your software.
+ï¿½ They are easy to notice in the code.
+ï¿½ They can be used to break code down into smaller, more understandable pieces.
+ï¿½ They provide more flexibility. Seams that you introduce for testing might be useful when you have to extend your software.
 Unfortunately, not all software can be easily migrated to objects, but, in some cases, it is far easier than others. Many procedural languages have evolved into object-oriented languages. Microsoft's Visual Basic language only recently became fully object oriented, there are OO extensions to COBOL and Fortran, and most C compilers give you capability to compile C++, too.
 When your language gives you the option to move toward object orientation, you have more options. The first step is usually to use Encapsulate Global References (339) to get the pieces you are changing under test. We can use it to get out of the bad dependency situation we had in the scan_packets function earlier in the chapter. Remember that the problem we had was with the ksr_notify function: We didn't want it to really notify whenever we ran our tests.
 int scan_packets(struct rnode_packet *packet, int flag) {
@@ -5152,7 +5158,7 @@ The first issue to confront when we have big classes is this: How can we work wi
 The key remedy for big classes is refactoring. It helps to break down classes into sets of smaller classes. But the biggest issue is figuring out what the smaller classes should look like. Fortunately, we have some guidance.
 Single-Responsibility Principle (SRP)
 Every class should have a single responsibility: It should have a single purpose in the system, and there should be only one reason to change it.
-The single-responsibility principle is kind of hard to describe because the idea of a responsibility is kind of nebulous. If we look at it in a very naïve way, we might say, "Oh, that means that every class should have only a single method, right?" Well, methods can be seen as responsibilities. A Task is responsible for running using its run method, for telling us how many subtasks it has with taskCount method, and so on. But what we mean by a responsibility really comes into focus when we talk about main purpose. Figure 20.1 shows an example.
+The single-responsibility principle is kind of hard to describe because the idea of a responsibility is kind of nebulous. If we look at it in a very naï¿½ve way, we might say, "Oh, that means that every class should have only a single method, right?" Well, methods can be seen as responsibilities. A Task is responsible for running using its run method, for telling us how many subtasks it has with taskCount method, and so on. But what we mean by a responsibility really comes into focus when we talk about main purpose. Figure 20.1 shows an example.
 
 From the Library of Brian Watterson
 
@@ -5190,10 +5196,10 @@ THIS CLASS IS TOO BIG AND I DON'T WANT IT TO GET ANY BIGGER
 
 methods that end with the Expression suffix are kind of the same. Not only are they named similarly, but they all accept Nodes as arguments and return an int that indicates the value of a subexpression. The nextTerm and hasMoreTerms methods are similar, too. They seem to be about some special form of tokenization for terms. As we said earlier, the addVariable method is concerned with variable management.
 To summarize, it seems that Parser has the following responsibilities:
-· Parsing
-· Expression evaluation
-· Term tokenization
-· Variable management
+ï¿½ Parsing
+ï¿½ Expression evaluation
+ï¿½ Term tokenization
+ï¿½ Variable management
 If we had to come up with a design from scratch that separated all of these responsibilities, it might look something like Figure 20.2.
 Is this overkill? It could be. Often people who write little language interpreters merge parsing and expression evaluation; they just evaluate as they parse. But although that can be convenient, often it doesn't scale well as a language grows. Another responsibility that is kind of meager is that of SymbolTable. If the only responsibility of SymbolTable is to map variable names to integers, the class isn't giving us much advantage over just using a hash table or a list. Nice design, but guess what? It is pretty hypothetical. Unless we are choosing to rewrite this part of the system, our little multiclass design is a castle in the sky.
 
@@ -5204,12 +5210,12 @@ SymbolTable + addVariable(string, int)
 
 RuleParser + parse(string) : Expression
 
-«creates»
+ï¿½createsï¿½
 
 TermTokenizer
 + nextTerm () : String + hasMoreTerms() : boolean
 
-«parameter»
+ï¿½parameterï¿½
 
 {abstract} Expression
 + evaluateWith(SymbolTable)
@@ -5384,7 +5390,7 @@ duration dailyRate date
 
 extend extendForWeek
 
-«» «»
+ï¿½ï¿½ ï¿½ï¿½
 
 getPrincipalFee
 
@@ -5531,7 +5537,7 @@ SEEING RESPONSIBILITIES
 
 263
 
-«interface» JobController
+ï¿½interfaceï¿½ JobController
 + run() + pause() + resume() + isRunning()
 
 ScheduledJob
@@ -5552,7 +5558,7 @@ From the Library of Brian Watterson
 
 THIS CLASS IS TOO BIG AND I DON'T WANT IT TO GET ANY BIGGER
 
-«interface» JobController + run() + pause() + resume() + isRunning()
+ï¿½interfaceï¿½ JobController + run() + pause() + resume() + isRunning()
 StandardJobController + StandardJobController(ScheduledJob) + run() + pause() + resume() + isRunning()
 
 ScheduledJob
@@ -6830,7 +6836,7 @@ point p = *it; ... pointRenderer->drawPoint(p.x,p.y,colors[n]); } ...
 }
 Figure 25.1 shows what it looks like in UML.
 
-«interface» PointRenderer
+ï¿½interfaceï¿½ PointRenderer
 + drawPoint(x : int, y : int, color :COLOR)
 
 GDIBrush
@@ -7326,8 +7332,8 @@ Extract Implementer
 Extract Implementer
 
 Extract Interface (362) is a handy technique, but one part of it is hard: naming. I often run into cases where I want to extract an interface but the name I want to use is already the name of the class. If I am working in an IDE that has support for renaming classes and Extract Interface, this is easy to take care of. When I don't, I have a few choices:
-· I can make up a foolish name.
-· I can look at the methods I need and see if they are a subset of the public methods on the class. If they are, they might suggest another name for the new interface.
+ï¿½ I can make up a foolish name.
+ï¿½ I can look at the methods I need and see if they are a subset of the public methods on the class. If they are, they might suggest another name for the new interface.
 One thing that I usually stop short of is putting an "I" prefix on the name of the class to make a name for the new interface, unless it is already the convention in the code base. There is nothing worse than working in an unfamiliar area of code in which half the type names start with I and half don't. Half of the time that you type the name of a type, you'll be wrong. You'll either have missed the needed I or not.
 
 Naming is a key part of design. If you choose good names, you reinforce understanding in a system and make it easier to work with. If you choose poor names, you undermine understanding and make life hellish for the programmers who follow you.
@@ -7463,7 +7469,7 @@ that can be converted into an interface. Afterward, you have an interface and a 
 Here's what we can do in this situation. We can perform Extract Implementer on the Node class, placing the ProductionNode class below Node in the inheritance hierarchy. We also change the inheritance relationship so that ModelNode inherits ProductionNode rather than Node. Figure 25.3 shows what the design looks like afterward.
 Next, we do Extract Implementer on ModelNode. Because ModelNode already has a subclass, we introduce a ProductionModelNode into the hierarchy between ModelNode and LinkageNode. When we've done that, we can make the ModelNode interface extend Node as shown in Figure 25.4.
 
-«interface» Node
+ï¿½interfaceï¿½ Node
 
 ProductionNode
 
@@ -7477,11 +7483,11 @@ EXTRACT IMPLEMENTER
 
 361
 
-«interface» Node
+ï¿½interfaceï¿½ Node
 
 ProductionNode
 
-«interface» ModelNode
+ï¿½interfaceï¿½ ModelNode
 + addExteriorNode(Node) + addInteriorNode(Node) + colorize()
 
 ProductionModelNode
@@ -9123,4 +9129,3 @@ Apply and get started!
 It's quick and easy to apply. To learn more go to: http://www.informit.com/affiliates/
 *Valid for all books, eBooks and video sales at www.informit.com
 From the Library of Brian Watterson
-

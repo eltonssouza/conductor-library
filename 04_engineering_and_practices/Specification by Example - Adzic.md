@@ -1,3 +1,9 @@
+# Specification by Example
+
+> **Author(s):** Adzic · **Category:** 04_engineering_and_practices · **Language:** English
+
+---
+
 1
 Specification by Example By Gojko Adzic
 uSwitch illustrates how a company working in a Waterfall process with separate development and testing teams on a problematic legacy environment can still transition to a much better way of delivering quality software. In this article from chapter 12 of Specification by Example, author Gojko Adzic shows how uSwitch completely overhauled their software delivery process over the course of three years.
@@ -83,7 +89,7 @@ The realization that testing was a bottleneck and that QTP was too expensive and
 Another big lesson from this story is that change, though initially driven by a tool, is mostly cultural. uSwitch removed the division between the testers and the developers and dropped the tester role, making all team members understand that an issue with quality is everyone's problem. They started focusing on delivering business value instead of implementing technical tasks, which allowed them to increase the involvement of the business users during the development process. Without such close involvement of the business users, it would have been impossible to decide what to build, agree on it, implement it, and verify it within such a short turnaround.
 More involvement from the business users meant that they started to understand and trust the development team a lot more, and the developers learned more about the domain. Formal specification workshops were an important step to building this knowledge. Once communication was improved and developers had learned a lot more about the domain, formal workshops became unnecessary. This is an example of how the process can be optimized once team knowledge has built up.
 In my mind, the most controversial step taken by uSwitch was the decision to disable less important tests after the functionality was implemented. I've seen and heard most of the other ideas with other teams, but they're the only ones who don't run all the tests from their living documentation system frequently. Executable specifications for them are truly executable--there's a potential to execute them but not an obligation. The team found that there's a lot of value in executing them while they develop a feature but that slower feedback as the result of an ever-growing test suite costs more in the long term than protection against functional regression in less-risky areas. This is perhaps because they have other means to protect against problems in production, in particular the continuous user experience monitoring system.
-1 See http://skillsmatter.com/podcast/agile-testing/how-we-build-quality-software-at-uswitch. com and http://gojko.net/2009/10/29/upgrading-agile-development-at-uswitch-com-from�concept-to-production-in-four-days 2 www.slideshare.net/markdurrand/spa2010-uswitch
+1 See http://skillsmatter.com/podcast/agile-testing/how-we-build-quality-software-at-uswitch. com and http://gojko.net/2009/10/29/upgrading-agile-development-at-uswitch-com-from�concept-to-production-in-four-days 2 www.slideshare.net/markdurrand/spa2010-uswitch
 For source code, sample chapters, the Online Author Forum, and other resources, go to http://www.manning.com/adzic/
 
 7
@@ -96,4 +102,3 @@ Practical Multithreading
 Anthony Williams
 Last updated: September 27, 2011
 For source code, sample chapters, the Online Author Forum, and other resources, go to http://www.manning.com/adzic/
-

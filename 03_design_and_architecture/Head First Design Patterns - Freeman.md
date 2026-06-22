@@ -1,3 +1,9 @@
+# Head First Design Patterns
+
+> **Author(s):** Freeman Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Download at WoweBook.Com
 
 Praise for Head First Design Patterns
@@ -20,7 +26,7 @@ Download at WoweBook.Com
 More Praise for Head First Design Patterns
 "Great code design is, first and foremost, great information design. A code designer is teaching a computer how to do something, and it is no surprise that a great teacher of computers should turn out to be a great teacher of programmers. This book's admirable clarity, humor and substantial doses of clever make it the sort of book that helps even non-programmers think well about problem-solving."
 -- Cory Doctorow, co-editor of Boing Boing and author of "Down and Out in the Magic Kingdom" and "Someone Comes to Town, Someone Leaves Town"
-"There's an old saying in the computer and videogame business ­ well, it can't be that old because the discipline is not all that old ­ and it goes something like this: Design is Life. What's particularly curious about this phrase is that even today almost no one who works at the craft of creating electronic games can agree on what it means to "design" a game. Is the designer a software engineer? An art director? A storyteller? An architect or a builder? A pitch person or a visionary? Can an individual indeed be in part all of these? And most importantly, who the %$!#&* cares? It has been said that the "designed by" credit in interactive entertainment is akin to the "directed by" credit in filmmaking, which in fact allows it to share DNA with perhaps the single most controversial, overstated, and too often entirely lacking in humility credit grab ever propagated on commercial art. Good company, eh? Yet if Design is Life, then perhaps it is time we spent some quality cycles thinking about what it is. Eric and Elisabeth Freeman have intrepidly volunteered to look behind the code curtain for us in "Head First Design Patterns." I'm not sure either of them cares all that much about the PlayStation or X-Box, nor should they. Yet they do address the notion of design at a significantly honest level such that anyone looking for ego reinforcement of his or her own brilliant auteurship is best advised not to go digging here where truth is stunningly revealed. Sophists and circus barkers need not apply. Next generation literati please come equipped with a pencil."
+"There's an old saying in the computer and videogame business ï¿½ well, it can't be that old because the discipline is not all that old ï¿½ and it goes something like this: Design is Life. What's particularly curious about this phrase is that even today almost no one who works at the craft of creating electronic games can agree on what it means to "design" a game. Is the designer a software engineer? An art director? A storyteller? An architect or a builder? A pitch person or a visionary? Can an individual indeed be in part all of these? And most importantly, who the %$!#&* cares? It has been said that the "designed by" credit in interactive entertainment is akin to the "directed by" credit in filmmaking, which in fact allows it to share DNA with perhaps the single most controversial, overstated, and too often entirely lacking in humility credit grab ever propagated on commercial art. Good company, eh? Yet if Design is Life, then perhaps it is time we spent some quality cycles thinking about what it is. Eric and Elisabeth Freeman have intrepidly volunteered to look behind the code curtain for us in "Head First Design Patterns." I'm not sure either of them cares all that much about the PlayStation or X-Box, nor should they. Yet they do address the notion of design at a significantly honest level such that anyone looking for ego reinforcement of his or her own brilliant auteurship is best advised not to go digging here where truth is stunningly revealed. Sophists and circus barkers need not apply. Next generation literati please come equipped with a pencil."
 -- Ken Goldstein, Executive Vice President & Managing Director, Disney Online
 "Just the right tone for the geeked-out, casual-cool guru coder in all of us. The right reference for practical development strategies--gets my brain going without having to slog through a bunch of tired, stale professor-speak."
 -- Travis Kalanick, Founder of Scour and Red Swoosh Member of the MIT TR100
@@ -29,7 +35,7 @@ More Praise for Head First Design Patterns
 Download at WoweBook.Com
 
 More Praise for Head First Design Patterns
-"If there's one subject that needs to be taught better, needs to be more fun to learn, it's design patterns. Thank goodness for Head First Design Patterns. From the awesome Head First Java folks, this book uses every conceivable trick to help you understand and remember. Not just loads of pictures: pictures of humans, which tend to interest other humans. Surprises everywhere. Stories, because humans love narrative. (Stories about things like pizza and chocolate. Need we say more?) Plus, it's darned funny. It also covers an enormous swath of concepts and techniques, including nearly all the patterns you'll use most (observer, decorator, factory, singleton, command, adapter, façade, template method, iterator, composite, state, proxy). Read it, and those won't be `just words': they'll be memories that tickle you, and tools you own."
+"If there's one subject that needs to be taught better, needs to be more fun to learn, it's design patterns. Thank goodness for Head First Design Patterns. From the awesome Head First Java folks, this book uses every conceivable trick to help you understand and remember. Not just loads of pictures: pictures of humans, which tend to interest other humans. Surprises everywhere. Stories, because humans love narrative. (Stories about things like pizza and chocolate. Need we say more?) Plus, it's darned funny. It also covers an enormous swath of concepts and techniques, including nearly all the patterns you'll use most (observer, decorator, factory, singleton, command, adapter, faï¿½ade, template method, iterator, composite, state, proxy). Read it, and those won't be `just words': they'll be memories that tickle you, and tools you own."
 -- Bill Camarda, READ ONLY
 "After using Head First Java to teach our freshman how to start programming, I was eagerly waiting to see the next book in the series. Head First Design Patterns is that book and I am delighted. I am sure it will quickly become the standard first design patterns book to read, and is already the book I am recommending to students."
 -- Ben Bederson, Associate Professor of Computer Science & Director of the Human-Computer Interaction Lab, University of Maryland
@@ -56,15 +62,15 @@ Eric Freeman Elisabeth Freeman
 with Kathy Sierra
 Bert Bates
 
-Beijing · Cambridge · Köln · Paris · Sebastopol · Taipei · Tokyo Download at WoweBook.Com
+Beijing ï¿½ Cambridge ï¿½ Kï¿½ln ï¿½ Paris ï¿½ Sebastopol ï¿½ Taipei ï¿½ Tokyo Download at WoweBook.Com
 
 +HDG)LUVW'HVLJQ3DWWHUQV
 Ja-ZQK.ZMMUIV-TQ[IJM\P.ZMMUIV3I\Pa;QMZZIIVL*MZ\*I\M[
 
-+WXaZQOP\7¼:MQTTa5MLQI1VK)TTZQOP\[ZM[MZ^ML
++WXaZQOP\7ï¿½:MQTTa5MLQI1VK)TTZQOP\[ZM[MZ^ML
 8ZQV\MLQV\PM=VQ\ML;\I\M[WN )UMZQKI
-8]JTQ[PMLJa7¼:MQTTa5MLQI1VK/ZI^MV[\MQV0QOP_Ia6WZ\P;MJI[\WXWT+)!
-7¼:MQTTa5MLQIJWWS[UIaJMX]ZKPI[MLNWZML]KI\QWVITJ][QVM[[WZ[ITM[XZWUW\QWVIT][M7VTQVMMLQ\QWV[IZM IT[WI^IQTIJTMNWZUW[\\Q\TM[[INIZQWZMQTTaKWU.WZUWZMQVNWZUI\QWVKWV\IK\W]ZKWZXWZI\MQV[\Q\]\QWVIT[ITM[ LMXIZ\UMV\" !! !! WZKWZXWZI\M(WZMQTTaKWU
+8]JTQ[PMLJa7ï¿½:MQTTa5MLQI1VK/ZI^MV[\MQV0QOP_Ia6WZ\P;MJI[\WXWT+)!
+7ï¿½:MQTTa5MLQIJWWS[UIaJMX]ZKPI[MLNWZML]KI\QWVITJ][QVM[[WZ[ITM[XZWUW\QWVIT][M7VTQVMMLQ\QWV[IZM IT[WI^IQTIJTMNWZUW[\\Q\TM[[INIZQWZMQTTaKWU.WZUWZMQVNWZUI\QWVKWV\IK\W]ZKWZXWZI\MQV[\Q\]\QWVIT[ITM[ LMXIZ\UMV\" !! !! WZKWZXWZI\M(WZMQTTaKWU
 
 (GLWRU &RYHU'HVLJQHU 3DWWHUQ:UDQJOHUV )DFDGH'HFRUDWLRQ 6WUDWHJ\ 2EVHUYHU
 
@@ -72,11 +78,11 @@ Ja-ZQK.ZMMUIV-TQ[IJM\P.ZMMUIV3I\Pa;QMZZIIVL*MZ\*I\M[
 
 3ULQWLQJ+LVWRU\ 7K\WJMZ".QZ[\-LQ\QWV
 
-<PM7¼:MQTTaTWOWQ[IZMOQ[\MZML\ZILMUIZSWN 7¼:MQTTa5MLQI1VK2I^IIVLITT2I^IJI[ML\ZILMUIZS[IVLTWOW[ IZM\ZILMUIZS[WZZMOQ[\MZML\ZILMUIZS[WN ;]V5QKZW[a[\MU[1VKQV\PM=VQ\ML;\I\M[IVLW\PMZKW]V\ZQM[ 7¼:MQTTa5MLQI1VKQ[QVLMXMVLMV\WN ;]V5QKZW[a[\MU[
+<PM7ï¿½:MQTTaTWOWQ[IZMOQ[\MZML\ZILMUIZSWN 7ï¿½:MQTTa5MLQI1VK2I^IIVLITT2I^IJI[ML\ZILMUIZS[IVLTWOW[ IZM\ZILMUIZS[WZZMOQ[\MZML\ZILMUIZS[WN ;]V5QKZW[a[\MU[1VKQV\PM=VQ\ML;\I\M[IVLW\PMZKW]V\ZQM[ 7ï¿½:MQTTa5MLQI1VKQ[QVLMXMVLMV\WN ;]V5QKZW[a[\MU[
 5IVaWN \PMLM[QOVI\QWV[][MLJaUIV]NIK\]ZMZ[IVL[MTTMZ[\WLQ[\QVO]Q[P\PMQZXZWL]K\[IZMKTIQUMLI[ \ZILMUIZS[
-?PMZM\PW[MLM[QOVI\QWV[IXXMIZQV\PQ[JWWSIVL7¼:MQTTa5MLQI1VK_I[I_IZMWN I\ZILMUIZSKTIQU\PM LM[QOVI\QWV[PI^MJMMVXZQV\MLQVKIX[WZQVQ\QITKIX[
+?PMZM\PW[MLM[QOVI\QWV[IXXMIZQV\PQ[JWWSIVL7ï¿½:MQTTa5MLQI1VK_I[I_IZMWN I\ZILMUIZSKTIQU\PM LM[QOVI\QWV[PI^MJMMVXZQV\MLQVKIX[WZQVQ\QITKIX[
 ?PQTMM^MZaXZMKI]\QWVPI[JMMV\ISMVQV\PMXZMXIZI\QWVWN \PQ[JWWS\PMX]JTQ[PMZIVL\PMI]\PWZ[I[[]UMVW ZM[XWV[QJQTQ\aNWZMZZWZ[WZWUQ[[QWV[WZNWZLIUIOM[ZM[]T\QVONZWU\PM][MWN \PMQVNWZUI\QWVKWV\IQVMLPMZMQV
-1VW\PMZ_WZL[QN aW]][MIVa\PQVOQV0MIL.QZ[\,M[QOV8I\\MZV[\W[IaZ]VIV]KTMIZXW_MZXTIV\aW]¼ZMWVaW]Z W_V?MLWPW_M^MZMVKW]ZIOMaW]\W][M\PM,2>QM_IXX
+1VW\PMZ_WZL[QN aW]][MIVa\PQVOQV0MIL.QZ[\,M[QOV8I\\MZV[\W[IaZ]VIV]KTMIZXW_MZXTIV\aW]ï¿½ZMWVaW]Z W_V?MLWPW_M^MZMVKW]ZIOMaW]\W][M\PM,2>QM_IXX
 6WL]KS[_MZMPIZUMLQV\PMUISQVOWN \PQ[JWWS
 <PMWZQOQVIT/W.IOZMML\WPI^M\PMQZXPW\W[QV\PQ[JWWSAM[\PMaZMITTaIZM\PI\OWWLTWWSQVO
 
@@ -96,16 +102,16 @@ WKHDXWKRUV
 (ULF)UHHPDQ
 
 -TQ[IJM\PQ[IVI]\PWZ[WN\_IZMLM^MTWXMZIVL
-LQOQ\ITIZ\Q[\;PM¼[JMMVQV^WT^ML_Q\P\PM1V\MZVM\ [QVKM\PMMIZTaLIa[PI^QVOKWNW]VLML<PM)LI 8ZWRMK\<)8IVI_IZL_QVVQVO_MJ[Q\MNWZ_WUMV QVKWUX]\QVOVW_ILWX\MLJa\PM)+55WZM ZMKMV\Ta-TQ[IJM\PTMILZM[MIZKPIVLLM^MTWXUMV\ MNNWZ\[QVLQOQ\ITUMLQII\\PM?IT\,Q[VMa+WUXIVa _PMZM[PMKWQV^MV\ML5W\QWVIKWV\MV\[a[\MU\PI\ LMTQ^MZ[\MZIJa\M[WN ^QLMWM^MZaLIa\W,Q[VMa-;86 IVL5W^QM[KWU][MZ[
--TQ[IJM\PQ[IKWUX]\MZ[KQMV\Q[\I\PMIZ\IVLPWTL[ OZIL]I\MLMOZMM[QV+WUX]\MZ;KQMVKMNZWUAITM =VQ^MZ[Q\aIVL1VLQIVI=VQ^MZ[Q\a;PM¼[_WZSMLQV I^IZQM\aWN IZMI[QVKT]LQVO^Q[]ITTIVO]IOM[:;; [aVLQKI\QWVIVL1V\MZVM\[a[\MU[;PM¼[IT[WJMMVIV IK\Q^MIL^WKI\MNWZ_WUMVQVKWUX]\QVOLM^MTWXQVO XZWOZIU[\PI\MVKW]ZIOM_WUIV\WMV\MZ\PMÅMTL <PM[MLIa[aW]¼TTÅVLPMZ[QXXQVO[WUM2I^IWZ+WKWI WVPMZ5IKIT\PW]OP[PMLZMIU[WN ILIa_PMV\PM _PWTM_WZTLQ[][QVO;KPMUM
--TQ[IJM\PPI[TW^MLPQSQVOIVL\PMW]\LWWZ[[QVKMPMZ LIa[OZW_QVO]XQV;KW\TIVL?PMV[PM¼[W]\LWWZ[ PMZKIUMZIQ[VM^MZNIZ;PM¼[IT[WIVI^QLKaKTQ[\ ^MOM\IZQIVIVLIVQUITTW^MZ
+LQOQ\ITIZ\Q[\;PMï¿½[JMMVQV^WT^ML_Q\P\PM1V\MZVM\ [QVKM\PMMIZTaLIa[PI^QVOKWNW]VLML<PM)LI 8ZWRMK\<)8IVI_IZL_QVVQVO_MJ[Q\MNWZ_WUMV QVKWUX]\QVOVW_ILWX\MLJa\PM)+55WZM ZMKMV\Ta-TQ[IJM\PTMILZM[MIZKPIVLLM^MTWXUMV\ MNNWZ\[QVLQOQ\ITUMLQII\\PM?IT\,Q[VMa+WUXIVa _PMZM[PMKWQV^MV\ML5W\QWVIKWV\MV\[a[\MU\PI\ LMTQ^MZ[\MZIJa\M[WN ^QLMWM^MZaLIa\W,Q[VMa-;86 IVL5W^QM[KWU][MZ[
+-TQ[IJM\PQ[IKWUX]\MZ[KQMV\Q[\I\PMIZ\IVLPWTL[ OZIL]I\MLMOZMM[QV+WUX]\MZ;KQMVKMNZWUAITM =VQ^MZ[Q\aIVL1VLQIVI=VQ^MZ[Q\a;PMï¿½[_WZSMLQV I^IZQM\aWN IZMI[QVKT]LQVO^Q[]ITTIVO]IOM[:;; [aVLQKI\QWVIVL1V\MZVM\[a[\MU[;PMï¿½[IT[WJMMVIV IK\Q^MIL^WKI\MNWZ_WUMVQVKWUX]\QVOLM^MTWXQVO XZWOZIU[\PI\MVKW]ZIOM_WUIV\WMV\MZ\PMï¿½MTL <PM[MLIa[aW]ï¿½TTï¿½VLPMZ[QXXQVO[WUM2I^IWZ+WKWI WVPMZ5IKIT\PW]OP[PMLZMIU[WN ILIa_PMV\PM _PWTM_WZTLQ[][QVO;KPMUM
+-TQ[IJM\PPI[TW^MLPQSQVOIVL\PMW]\LWWZ[[QVKMPMZ LIa[OZW_QVO]XQV;KW\TIVL?PMV[PMï¿½[W]\LWWZ[ PMZKIUMZIQ[VM^MZNIZ;PMï¿½[IT[WIVI^QLKaKTQ[\ ^MOM\IZQIVIVLIVQUITTW^MZ
 AW]KIV[MVLPMZMUIQTI\JM\P(_QKSMLTa[UIZ\KWU
 
 -ZQKQ[IKWUX]\MZ[KQMV\Q[\_Q\PIXI[[QWVNWZUMLQIIVL
-[WN\_IZMIZKPQ\MK\]ZM[0MR][\_ZIXXML]XNW]ZaMIZ[I\ ILZMIURWJ·LQZMK\QVO1V\MZVM\JZWILJIVLIVL_QZMTM[[ MNNWZ\[I\,Q[VMa·IVLQ[VW_JIKS\W_ZQ\QVOKZMI\QVOKWWT [WN\_IZMIVLPIKSQVO2I^IIVL5IK[
--ZQK[XMV\ITW\WN \PM»![_WZSQVOWVIT\MZVI\Q^M[\W\PM LM[S\WXUM\IXPWZ_Q\P,I^QL/MTMZV\MZIVL\PMa¼ZM JW\P[\QTTI[SQVO\PMY]M[\QWV¹_PaLW1PI^M\WOQ^MIÅTM IVIUM'º*I[MLWV\PQ[_WZS-ZQKTIVLMLI8P,I\ AITM=VQ^MZ[Q\aQV»!0MIT[WKWNW]VLML5QZZWZ?WZTL[ <MKPVWTWOQM[VW_IKY]QZML\WKZMI\MIKWUUMZKQIT ^MZ[QWVWN PQ[\PM[Q[_WZS4QNM[\ZMIU[
-1VIXZM^QW][TQNM-ZQKJ]QT\[WN\_IZMNWZVM\_WZS[IVL []XMZKWUX]\MZ[AW]UQOP\SVW_PQUNZWU[]KPJWWS[I[ 2I^I;XIKM[8ZQVKQXTM[8I\\MZV[IVL8ZIK\QKM-ZQKPI[NWVL UMUWZQM[WN QUXTMUMV\QVO\]XTM[XIKM[a[\MU[WV <PQVSQVO5IKPQVM+5[IVLKZMI\QVO[WUMWN \PMÅZ[\ 1V\MZVM\QVNWZUI\QWV[a[\MU[NWZ6);)QV\PMTI\M [
--ZQKQ[K]ZZMV\TaTQ^QVOQV\PMPQOPLM[MZ\VMIZ;IV\I .M?PMVPM¼[VW\_ZQ\QVO\M`\WZKWLMaW]¼TTÅVLPQU [XMVLQVOUWZM\QUM\_MISQVO\PIV_I\KPQVOPQ[PWUM \PMI\MZIVL\ZaQVO\WZM[\WZQVOIKQZKI! [,ZIOWV¼[4IQZ ^QLMWOIUM0MIT[W_W]TLV¼\UQVLUWWVTQOP\QVOI[IV MTMK\ZWVQKI,2
+[WN\_IZMIZKPQ\MK\]ZM[0MR][\_ZIXXML]XNW]ZaMIZ[I\ ILZMIURWJï¿½LQZMK\QVO1V\MZVM\JZWILJIVLIVL_QZMTM[[ MNNWZ\[I\,Q[VMaï¿½IVLQ[VW_JIKS\W_ZQ\QVOKZMI\QVOKWWT [WN\_IZMIVLPIKSQVO2I^IIVL5IK[
+-ZQK[XMV\ITW\WN \PMï¿½![_WZSQVOWVIT\MZVI\Q^M[\W\PM LM[S\WXUM\IXPWZ_Q\P,I^QL/MTMZV\MZIVL\PMaï¿½ZM JW\P[\QTTI[SQVO\PMY]M[\QWVï¿½_PaLW1PI^M\WOQ^MIï¿½TM IVIUM'ï¿½*I[MLWV\PQ[_WZS-ZQKTIVLMLI8P,I\ AITM=VQ^MZ[Q\aQVï¿½!0MIT[WKWNW]VLML5QZZWZ?WZTL[ <MKPVWTWOQM[VW_IKY]QZML\WKZMI\MIKWUUMZKQIT ^MZ[QWVWN PQ[\PM[Q[_WZS4QNM[\ZMIU[
+1VIXZM^QW][TQNM-ZQKJ]QT\[WN\_IZMNWZVM\_WZS[IVL []XMZKWUX]\MZ[AW]UQOP\SVW_PQUNZWU[]KPJWWS[I[ 2I^I;XIKM[8ZQVKQXTM[8I\\MZV[IVL8ZIK\QKM-ZQKPI[NWVL UMUWZQM[WN QUXTMUMV\QVO\]XTM[XIKM[a[\MU[WV <PQVSQVO5IKPQVM+5[IVLKZMI\QVO[WUMWN \PMï¿½Z[\ 1V\MZVM\QVNWZUI\QWV[a[\MU[NWZ6);)QV\PMTI\M [
+-ZQKQ[K]ZZMV\TaTQ^QVOQV\PMPQOPLM[MZ\VMIZ;IV\I .M?PMVPMï¿½[VW\_ZQ\QVO\M`\WZKWLMaW]ï¿½TTï¿½VLPQU [XMVLQVOUWZM\QUM\_MISQVO\PIV_I\KPQVOPQ[PWUM \PMI\MZIVL\ZaQVO\WZM[\WZQVOIKQZKI! [,ZIOWVï¿½[4IQZ ^QLMWOIUM0MIT[W_W]TLVï¿½\UQVLUWWVTQOP\QVOI[IV MTMK\ZWVQKI,2
 ?ZQ\M\WPQUI\MZQK(_QKSMLTa[UIZ\KWUWZ^Q[Q\PQ[JTWO I\P\\X"___MZQKNZMMUIVKWU
 
 YLLL
@@ -971,7 +977,7 @@ Diner Menu
 
 Array
 
-Café Menu
+Cafï¿½ Menu
 
 key
 
@@ -1285,7 +1291,7 @@ little more complex out there than they are here in Objectville. Come along, we'
 
 a nice guide to help you through the transition...
 
-TheBOettbejrecLtviilvleinGg uwiidthe tDo esign Patterns Pwloearlbsdeb.abIbc"LcbnDeDbgptebhAaeteLitbisrsHosSbinvocgugeBoonenratuKoivehemderihweLP.dentraWuthtTeevhahansetehaohteyelptaodotlctriooorneayweetduasunwrombeipnwngfostnruwtboc.udnhiow.leo"ciaiaieldknofbvitlrnrtt:remeedeyrhyaeracst.opimiDohtnsnfahsmegpomtneyientaepdpronsetusiaaumntegieenri&ttngrptiflisneDohdacPurfsbeotnettunoinaernsensistrctrcciiiistnenfsgcekeynpl­sgnrsadt'nowifsteaPotofsvhCrjnirtueiDfiaehtslaslectoietctvraatpeoeaifmtbtnroesfilonfioororggeyossnugesnt.wtbsshtmteyPietawarthihibnngihoaemlduduepetdtrrspaelwbeeuirrtkGfioshontte;nehovyariakearitnnneyysitosgagZotabndhiuoynneeeoflooyjnoutfFwuuhnspamrrrtegaoopqha.rutnauetasregatitvrcetilensetkrir.smtrnoeusevs.eearled.
+TheBOettbejrecLtviilvleinGg uwiidthe tDo esign Patterns Pwloearlbsdeb.abIbc"LcbnDeDbgptebhAaeteLitbisrsHosSbinvocgugeBoonenratuKoivehemderihweLP.dentraWuthtTeevhahansetehaohteyelptaodotlctriooorneayweetduasunwrombeipnwngfostnruwtboc.udnhiow.leo"ciaiaieldknofbvitlrnrtt:remeedeyrhyaeracst.opimiDohtnsnfahsmegpomtneyientaepdpronsetusiaaumntegieenri&ttngrptiflisneDohdacPurfsbeotnettunoinaernsensistrctrcciiiistnenfsgcekeynplï¿½sgnrsadt'nowifsteaPotofsvhCrjnirtueiDfiaehtslaslectoietctvraatpeoeaifmtbtnroesfilonfioororggeyossnugesnt.wtbsshtmteyPietawarthihibnngihoaemlduduepetdtrrspaelwbeeuirrtkGfioshontte;nehovyariakearitnnneyysitosgagZotabndhiuoynneeeoflooyjnoutfFwuuhnspamrrrtegaoopqha.rutnauetasregatitvrcetilensetkrir.smtrnoeusevs.eearled.
 
 Richard Helm
 
@@ -1732,7 +1738,7 @@ Even more people*
 From Eric and Elisabeth Writing a Head First book is a wild ride with two amazing tour guides: Kathy Sierra and Bert Bates. With Kathy and Bert you throw out all book writing convention and enter a world
 full of storytelling, learning theory, cognitive science, and pop culture, where the reader always rules. Thanks to both of you for letting us enter your amazing world; we hope we've done Head First justice. Seriously, this has been amazing. Thanks for all your careful guidance, for pushing us to go forward and most of all, for trusting us (with your baby). You're both certainly "wickedly smart" and you're also the hippest 29 year olds we know. So... what's next?
 A big thank you to Mike Loukides and Mike Hendrickson. Mike L. was with us every step of the way. Mike, your insightful feedback helped shape the book and your encouragement kept us moving ahead. Mike H., thanks for your persistence over five years in trying to get us to write a patterns book; we finally did it and we're glad we waited for Head First.
-A very special thanks to Erich Gamma, who went far beyond the call of duty in reviewing this book (he even took a draft with him on vacation). Erich, your interest in this book inspired us and your thorough technical review improved it immeasurably. Thanks as well to the entire Gang of Four for their support & interest, and for making a special appearance in Objectville. We are also indebted to Ward Cunningham and the patterns community who created the Portland Pattern Repository ­ an indespensible resource for us in writing this book.
+A very special thanks to Erich Gamma, who went far beyond the call of duty in reviewing this book (he even took a draft with him on vacation). Erich, your interest in this book inspired us and your thorough technical review improved it immeasurably. Thanks as well to the entire Gang of Four for their support & interest, and for making a special appearance in Objectville. We are also indebted to Ward Cunningham and the patterns community who created the Portland Pattern Repository ï¿½ an indespensible resource for us in writing this book.
 It takes a village to write a technical book: Bill Pugh and Ken Arnold gave us expert advice on Singleton. Joshua Marinacci provided rockin' Swing tips and advice. John Brewer's "Why a Duck?" paper inspired SimUDuck (and we're glad he likes ducks too). Dan Friedman inspired the Little Singleton example. Daniel Steinberg acted as our "technical liason" and our emotional support network. And thanks to Apple's James Dempsey for allowing us to use his MVC song.
 Last, a personal thank you to the Javaranch review team for their top-notch reviews and warm support. There's more of you in this book than you know.
 From Kathy and Bert
@@ -2011,7 +2017,7 @@ Program to an interface, not an implementation.
 
 From now on, the Duck behaviors will live in a separate class--a class that implements a particular behavior interface.
 
-We'll use an interface to represent each behavior ­ for instance, FlyBehavior and QuackBehavior ­ and each implementation of a behavior will implement one of those interfaces.
+We'll use an interface to represent each behavior ï¿½ for instance, FlyBehavior and QuackBehavior ï¿½ and each implementation of a behavior will implement one of those interfaces.
 So this time it won't be the Duck classes that will implement the flying and quacking interfaces. Instead, we'll make a set of classes whose entire reason for living is to represent a behavior (for example, "squeaking"), and it's the behavior class, rather than the Duck class, that will implement the behavior interface.
 This is in contrast to the way we were doing things before, where a behavior either came from a concrete implementation in the superclass Duck, or by providing a specialized implementation in the subclass itself. In both cases we were relying on an implementation. We were locked into using that specific implementation and there was no room for changing out the behavior (other than writing more code).
 With our new design, the Duck subclasses will use a behavior represented by an interface (FlyBehavior and QuackBehavior), so that the actual implementation of the behavior (in other words, the specific concrete behavior coded in the class that implements the FlyBehavior or QuackBehavior) won't be locked into the Duck subclass.
@@ -2052,7 +2058,7 @@ makeSound() { meow();
 "Program to an interface" really means "Program to a supertype."
 The word interface is overloaded here. There's the concept of interface, but there's also the Java construct interface. You can program to an interface, without having to actually use a Java interface. The point is to exploit polymorphism by programming to a supertype so that the actual runtime object isn't locked into the code. And we could rephrase "program to a supertype" as "the declared type of the variables should be a supertype, usually an abstract class or interface, so that the objects assigned to those variables can be of any concrete implementation of the supertype, which means the class declaring them doesn't have to know about the actual object types!"
 
-This is probably old news to you, but just to make sure we're all saying the same thing, here's a simple example of using a polymorphic type ­ imagine an abstract class Animal, with two concrete implementations, Dog and Cat. Programming to an implementation would be:
+This is probably old news to you, but just to make sure we're all saying the same thing, here's a simple example of using a polymorphic type ï¿½ imagine an abstract class Animal, with two concrete implementations, Dog and Cat. Programming to an implementation would be:
 
 Dog d = new d.bark();
 
@@ -2837,25 +2843,25 @@ on OO basics and principles.
 One down, many to go!
 
 BULLET POINTS
-ß Knowing the OO basics
+ï¿½ Knowing the OO basics
 does not make you a good OO designer.
-ß Good OO designs are
+ï¿½ Good OO designs are
 reusable, extensible and maintainable.
-ß Patterns show you how to
+ï¿½ Patterns show you how to
 build systems with good OO design qualities.
-ß Patterns are proven object-
+ï¿½ Patterns are proven object-
 oriented experience.
-ß Patterns don't give you
+ï¿½ Patterns don't give you
 code, they give you general solutions to design problems. You apply them to your specific application.
-ß Patterns aren't invented,
+ï¿½ Patterns aren't invented,
 they are discovered.
-ß Most patterns and
+ï¿½ Most patterns and
 principles address issues of change in software.
-ß Most patterns allow some
+ï¿½ Most patterns allow some
 part of a system to vary independently of all other parts.
-ß We often try to take what
+ï¿½ We often try to take what
 varies in a system and encapsulate it.
-ß Patterns provide a
+ï¿½ Patterns provide a
 shared language that can maximize the value of your communication with other developers.
 
 32
@@ -2866,70 +2872,13 @@ Download at WoweBook.Com
 
 intro to Design Patterns
 
-
-
 Let's give your right brain something to do.
-
-
-
-
 
 It's your standard crossword; all of the solution words
 
 are from this chapter.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
 
 Across
 
@@ -3042,209 +2991,31 @@ Which of the following are disadvantages of using subclassing to provide specifi
 
  C. Hard to gain knowledge of all duck behaviors.  D. Ducks can't fly and quack at the same time.  E. Changes can unintentionally affect other ducks.
 
-
-
-
-
-
-
-
   
 
-
-
-
-
-
  
 
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    
 
  
 
-
-
-
-
-
   
-
-
-
-
 
 Sharpen your pencil     Whatare some factorsthatdrivechangeinyourapplications?You might have a very different list,but here'safewofours.Lookfa miliar?
 
      
 
-
-
-
-
-
-
-
-
-
-
 Mycustomerso r users decide they want som ething else,or they want new functionality.
-
-
 
     
 
@@ -3253,10 +3024,6 @@ Mycompany decided it is going with anotherdatabasevendorand it is also purchasin
 from another supplier that uses a different data format. Argh!  
 
  
-
-
-
-
 
 Well,technologychangesandwe've got to update our code to make  use of protocols. 
 
@@ -3320,7 +3087,7 @@ pulls data
 displays
 
 Current Conditions
-Temp: 72° Humidity: 60 Pressure:
+Temp: 72ï¿½ Humidity: 60 Pressure:
 
 Temperature sensor device
 
@@ -3364,7 +3131,7 @@ ORNemEemofbetrh, rteheisdCifufrerreennttCdoinspdliatyiosncsriesenjus.st
 WeatherData.java
 
 Current Conditions
-Temp: 72° Humidity: 60 Pressure:
+Temp: 72ï¿½ Humidity: 60 Pressure:
 
 Our job is to implement measurementsChanged() so that it updates the three displays for current conditions, weather stats, and forecast.
 
@@ -3390,10 +3157,10 @@ the observer pattern
 getTemperature() getHumidity() getPressure()
 measurementsChanged()
 
-Current Conditions Temp: 72° Humidity: 60 Pressure:
+Current Conditions Temp: 72ï¿½ Humidity: 60 Pressure:
 Display One
 
-Weather Stats Avg. temp: 62° Min. temp: 50° Max. temp: 78°
+Weather Stats Avg. temp: 62ï¿½ Min. temp: 50ï¿½ Max. temp: 78ï¿½
 Display Two
 Forecast
 TTT
@@ -4619,25 +4386,25 @@ A new pattern for communicating state to a set of objects in a loosely coupled m
 Download at WoweBook.Com
 
 BULLET POINTS
-ß The Observer Pattern defines
+ï¿½ The Observer Pattern defines
 a one-to-many relationship between objects.
-ß Subjects, or as we also know
+ï¿½ Subjects, or as we also know
 them, Observables, update Observers using a common interface.
-ß Observers are loosely coupled
+ï¿½ Observers are loosely coupled
 in that the Observable knows nothing about them, other than that they implement the Observer Interface.
-ß You can push or pull data from
+ï¿½ You can push or pull data from
 the Observable when using the pattern (pull is considered more "correct").
-ß Don't depend on a specific
+ï¿½ Don't depend on a specific
 order of notification for your Observers.
-ß Java has several
+ï¿½ Java has several
 implementations of the Observer Pattern, including the general purpose java.util. Observable.
-ß Watch out for issues with
+ï¿½ Watch out for issues with
 the java.util.Observable implementation.
-ß Don't be afraid to create
+ï¿½ Don't be afraid to create
 your own Observable implementation if needed.
-ß Swing makes heavy use of the
+ï¿½ Swing makes heavy use of the
 Observer Pattern, as do many GUI frameworks.
-ß You'll also find the pattern in
+ï¿½ You'll also find the pattern in
 many other places, including JavaBeans and RMI.
 
 Exercise
@@ -4663,26 +4430,8 @@ crossword puzzle
 
 Time to give your right brain something to do again! This time all of the solution words are from chapter 2.
 
-
-
-
-
-
-
-
-
  
  
-
-
-
- 
-
- 
-
-
- 
-
 
  
 
@@ -4690,6 +4439,11 @@ Time to give your right brain something to do again! This time all of the soluti
 
  
 
+ 
+
+ 
+
+ 
 
    
 
@@ -4704,10 +4458,6 @@ Time to give your right brain something to do again! This time all of the soluti
  
 
  
-
-
-
-
 
                              
 
@@ -4742,8 +4492,6 @@ Time to give your right brain something to do again! This time all of the soluti
     
 
        
-
-
 
        
 
@@ -4833,174 +4581,25 @@ vdoiisdpldaiyspcloadye()he{re
 
 }
 
-
-
-
-
    
-
 
       
 
-
-
    
 
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
 
     
 
@@ -5008,11 +4607,9 @@ vdoiisdpldaiyspcloadye()he{re
 
 Chapter 2
 
-
                  
 Download at WoweBook.Com
                
-
 
                                    
 
@@ -5344,7 +4941,7 @@ Meet the Decorator Pattern
 Okay, enough of the "Object Oriented Design Club." We have real problems here! Remember us? Starbuzz Coffee? Do you think you could use
 some of those design principles to actually help us?
 
-Okay, we've seen that representing our beverage plus condiment pricing scheme with inheritance has not worked out very well ­ we get class explosions, rigid designs, or we add functionality to the base class that isn't appropriate for some of the subclasses.
+Okay, we've seen that representing our beverage plus condiment pricing scheme with inheritance has not worked out very well ï¿½ we get class explosions, rigid designs, or we add functionality to the base class that isn't appropriate for some of the subclasses.
 So, here's what we'll do instead: we'll start with a beverage and "decorate" it with the condiments at runtime. For example, if the customer wants a Dark Roast with Mocha and Whip, then we'll:
 
 1 Take a DarkRoast object
@@ -5461,20 +5058,20 @@ the new total, $1.19.
 
 Okay, here's what we know so far...
 
-ß Decorators have the same supertype as the objects they decorate.
+ï¿½ Decorators have the same supertype as the objects they decorate.
 
-ß You can use one or more decorators to wrap an object.
+ï¿½ You can use one or more decorators to wrap an object.
 
-ß Given that the decorator has the same supertype as the object it decorates, we can pass
+ï¿½ Given that the decorator has the same supertype as the object it decorates, we can pass
 
 around a decorated object in place of the original (wrapped) object.
-ß The decorator adds its own behavior either before and/or after delegating to the object it
+ï¿½ The decorator adds its own behavior either before and/or after delegating to the object it
 
 Key Point!
 
 decorates to do the rest of the job.
 
-ß Objects can be decorated at any time, so we can decorate objects dynamically at runtime
+ï¿½ Objects can be decorated at any time, so we can decorate objects dynamically at runtime
 with as many decorators as we like.
 
 Now let's see how this all really works by looking at the Decorator Pattern definition and writing some code.
@@ -5769,7 +5366,7 @@ Fnneieneeaddllytt,oowwreeotnreruerydnattbhoouectpormaidpcduetinoegftianhnecEocno
 public class HouseBlend extends Beverage { public HouseBlend() { description = "House Blend Coffee"; }
 public double cost() { return .89;
 } }
-Okay, here's another Beverage. All we do is set the appropriate description, "House Blend Coffee," and then return the correct cost: 89¢.
+Okay, here's another Beverage. All we do is set the appropriate description, "House Blend Coffee," and then return the correct cost: 89ï¿½.
 
 You can create the other two Beverage classses (DarkRoast and Decaf) in exactly the same way.
 
@@ -5882,7 +5479,7 @@ the decorator pattern
 DtuhemrebareQnouestions
 
 Q: I'm a little worried about code
-that might test for a specfic concrete component ­ say, HouseBlend ­ and do something, like issue a discount. Once I've wrapped the HouseBlend with decorators, this isn't going to work anymore.
+that might test for a specfic concrete component ï¿½ say, HouseBlend ï¿½ and do something, like issue a discount. Once I've wrapped the HouseBlend with decorators, this isn't going to work anymore.
 A: That is exactly right. If you have
 code that relies on the concrete component's type, decorators will break that code. As long as you only write code against the abstract component type, the use of decorators will remain transparent to your code. However, once you start writing code against concrete components, you'll want to rethink your application design and your use of decorators.
 
@@ -5897,7 +5494,7 @@ A: Decorators are meant to add
 behavior to the object they wrap. When you need to peek at multiple layers into the decorator chain, you are starting to push the decorator beyond its true intent. Nevertheless, such things are possible. Imagine a CondimentPrettyPrint decorator that parses the final decription and can print "Mocha, Whip, Mocha" as "Whip, Double Mocha." Note that getDecription() could return an ArrayList of descriptions to make this easier.
 
 Sharpen your pencil
-Our friends at Starbuzz have introduced sizes to their menu. You can now order a coffee in tall, grande, and venti sizes (translation: small, medium, and large). Starbuzz saw this as an intrinsic part of the coffee class, so they've added two methods to the Beverage class: setSize() and getSize(). They'd also like for the condiments to be charged according to size, so for instance, Soy costs 10¢, 15¢ and 20¢ respectively for tall, grande, and venti coffees.
+Our friends at Starbuzz have introduced sizes to their menu. You can now order a coffee in tall, grande, and venti sizes (translation: small, medium, and large). Starbuzz saw this as an intrinsic part of the coffee class, so they've added two methods to the Beverage class: setSize() and getSize(). They'd also like for the condiments to be charged according to size, so for instance, Soy costs 10ï¿½, 15ï¿½ and 20ï¿½ respectively for tall, grande, and venti coffees.
 How would you alter the decorator classes to handle this change in requirements?
 
 Download at WoweBook.Com
@@ -6071,7 +5668,7 @@ you are here 4 103
 decorator interview
 Patterns Exposed
 This week's interview: Confessions of a Decorator
-HeadFirst: Welcome Decorator Pattern. We've heard that you've been a bit down on yourself lately? Decorator: Yes, I know the world sees me as the glamorous design pattern, but you know, I've got my share of problems just like everyone. HeadFirst: Can you perhaps share some of your troubles with us? Decorator: Sure. Well, you know I've got the power to add flexibility to designs, that much is for sure, but I also have a dark side. You see, I can sometimes add a lot of small classes to a design and this occasionally results in a design that's less than straightforward for others to understand. HeadFirst: Can you give us an example? Decorator: Take the Java I/O libraries. These are notoriously difficult for people to understand at first. But if they just saw the classes as a set of wrappers around an InputStream, life would be much easier. HeadFirst: That doesn't sound so bad. You're still a great pattern, and improving this is just a matter of public education, right? Decorator: There's more, I'm afraid. I've got typing problems: you see, people sometimes take a piece of client code that relies on specific types and introduce decorators without thinking through everything. Now, one great thing about me is that you can usually insert decorators transparently and the client never has to know it's dealing with a decorator. But like I said, some code is dependent on specific types and when you start introducing decorators, boom! Bad things happen. HeadFirst: Well, I think everyone understands that you have to be careful when inserting decorators, I don't think this is a reason to be too down on yourself. Decorator: I know, I try not to be. I also have the problem that introducing decorators can increase the complexity of the code needed to instantiate the component. Once you've got decorators, you've got to not only instantiate the component, but also wrap it with who knows how many decorators. HeadFirst: I'll be interviewing the Factory and Builder patterns next week ­ I hear they can be very helpful with this? Decorator: That's true; I should talk to those guys more often. HeadFirst: Well, we all think you're a great pattern for creating flexible designs and staying true to the Open-Closed Principle, so keep your chin up and think positively! Decorator: I'll do my best, thank you.
+HeadFirst: Welcome Decorator Pattern. We've heard that you've been a bit down on yourself lately? Decorator: Yes, I know the world sees me as the glamorous design pattern, but you know, I've got my share of problems just like everyone. HeadFirst: Can you perhaps share some of your troubles with us? Decorator: Sure. Well, you know I've got the power to add flexibility to designs, that much is for sure, but I also have a dark side. You see, I can sometimes add a lot of small classes to a design and this occasionally results in a design that's less than straightforward for others to understand. HeadFirst: Can you give us an example? Decorator: Take the Java I/O libraries. These are notoriously difficult for people to understand at first. But if they just saw the classes as a set of wrappers around an InputStream, life would be much easier. HeadFirst: That doesn't sound so bad. You're still a great pattern, and improving this is just a matter of public education, right? Decorator: There's more, I'm afraid. I've got typing problems: you see, people sometimes take a piece of client code that relies on specific types and introduce decorators without thinking through everything. Now, one great thing about me is that you can usually insert decorators transparently and the client never has to know it's dealing with a decorator. But like I said, some code is dependent on specific types and when you start introducing decorators, boom! Bad things happen. HeadFirst: Well, I think everyone understands that you have to be careful when inserting decorators, I don't think this is a reason to be too down on yourself. Decorator: I know, I try not to be. I also have the problem that introducing decorators can increase the complexity of the code needed to instantiate the component. Once you've got decorators, you've got to not only instantiate the component, but also wrap it with who knows how many decorators. HeadFirst: I'll be interviewing the Factory and Builder patterns next week ï¿½ I hear they can be very helpful with this? Decorator: That's true; I should talk to those guys more often. HeadFirst: Well, we all think you're a great pattern for creating flexible designs and staying true to the Open-Closed Principle, so keep your chin up and think positively! Decorator: I'll do my best, thank you.
 104 Chapter 3
 Download at WoweBook.Com
 
@@ -6081,17 +5678,17 @@ Tools for your Design Toolbox
 
 You've got another chapter under
 
-ß
+ï¿½
 
 your belt and a new principle and
 
 pattern in the toolbox.
 
-ß
+ï¿½
 
 OO Basics
 
-ß
+ï¿½
 
 OO Principles Abstraction
 
@@ -6101,17 +5698,17 @@ EFnPiacmSrvbaotpCoepeglrrmtselxriaumwvoactlseaemeodsetenmefinnteftsposaooiriowtc
 
 WPtsisooreoilntsantchtoirapewitdlveehtfatthrvoeoeomgcdtulehoiodsseuieegrdOnunpspoee.auwnrr-WteCssexyl'tsoartesreeenedmgsiooinnsg.
 
-ß ß ß
+ï¿½ ï¿½ ï¿½
 
-ß
+ï¿½
 
 OO Patterns SeitnvnactrraeayprtscOuiedhnwlgdaadebahynteepusgeeppet-eenseDenaornrDendbdmdaoeafdlveeelenseecatufenpnec.ehctnetnicorooncirlotSoynceyrrtnntbss-aeiabifrajlbto,aaelaterdtynioartcotlifeanirvmeetotwafdelsgimriyenticecnmptielosylhile-ryaneoet.asoknttionAteovfssofagsusibitdteebajtatohtsedecnlhhnegacleaseaoacatmaottr-shlnbsiasgfttudijotnlsasheoreeoemgdciu-xt,stidpttimhf,abdim.htoladlalearinytotiyntneeadsaxmltiecnadlliyn.g
 
-ß ß
+ï¿½ ï¿½
 
 Atrunhesdaaetdllhysetarthtehai'estsfoffyuiorrtlslhtofew?irsOstItpsehpntias-htepCtrrleeionrscnaeindpfoleotPrhraeiscnrrcweippeaalltetl?i.tnegOrdnrewwsieag'nsvseit
 
-ß
+ï¿½
 
 BULLET POINTS Inheritance is one form of extension, but not necessarily the best way to achieve flexibility in our designs.
 In our designs we should allow behavior to be extended without the need to modify existing code.
@@ -6136,14 +5733,14 @@ SXEOLFGRXEOHFRVW^
 GRXEOHFRQGLPHQW&RVW  LIKDV0LON^ FRQGLPHQW&RVW PLON&RVW ` LIKDV6R\^ FRQGLPHQW&RVW VR\&RVW ` LIKDV0RFKD^ FRQGLPHQW&RVW PRFKD&RVW ` LIKDV:KLS^ FRQGLPHQW&RVW ZKLS&RVW ` UHWXUQFRQGLPHQW&RVW ` `
 
 SXEOLFFODVV'DUN5RDVWH[WHQGV%HYHUDJH^
-SXEOLF'DUN5RDVW^ GHVFULSWLRQ ´0RVW([FHOOHQW'DUN5RDVWµ `
+SXEOLF'DUN5RDVW^ GHVFULSWLRQ ï¿½0RVW([FHOOHQW'DUN5RDVWï¿½ `
 SXEOLFGRXEOHFRVW^
 UHWXUQVXSHUFRVW
 ` `
 
 6M _J I Z Q[ \ I\ ZIQ VQ VO
 
-´GRXEOHPRFKDVR\ODWWHZLWKZKLSµ
+ï¿½GRXEOHPRFKDVR\ODWWHZLWKZKLSï¿½
 
 VCTDW
 
@@ -6157,44 +5754,33 @@ VCTDW
 
  1H[W0RFKDFDOOVFRVWRQ6R\
 
-
-
 /DVWWRSSLQJ6R\FDOOV FRVWRQ+RXVH%OHQG
 
 \\%
 
-
 QHHGG
-
-
 
 FRVW FRVW FRVW FRVW FRVW
 
-
-
 :KLS  0RFKD0RFKD6R\ +RXVH%OHQG
 
-
-
-+RXVH%OHQG·VFRVW PHWKRGUHWXUQV
++RXVH%OHQGï¿½VFRVW PHWKRGUHWXUQV
 
 FHQWVDQGSRSVRII
 
 WKHVWDFN
 
-
-
-6R\·VFRVWPHWKRG DGGVDQGUHWXUQV
+6R\ï¿½VFRVWPHWKRG DGGVDQGUHWXUQV
 
 WKHUHVXOWDQGSRSV
 
 RIIWKHVWDFN
 
-7KHVHFRQG0RFKD·V FRVWPHWKRGDGGV DQGUHWXUQVWKHUHVXOW DQGSRSVRIIWKHVWDFN
+7KHVHFRQG0RFKDï¿½V FRVWPHWKRGDGGV DQGUHWXUQVWKHUHVXOW DQGSRSVRIIWKHVWDFN
 
- )LQDOO\WKHUHVXOWUHWXUQVWR :KLS·VFRVWZKLFKDGGVDQG ZHKDYHDÀQDOFRVWRI
+ )LQDOO\WKHUHVXOWUHWXUQVWR :KLSï¿½VFRVWZKLFKDGGVDQG ZHKDYHDï¿½QDOFRVWRI
 
-! 7DGKGHVÀUVW0DQRGFKUHDW·VXUFQRVVWWKHPUHHWVKXROWG DQGSRSVRIIWKHVWDFN
+! 7DGKGHVï¿½UVW0DQRGFKUHDWï¿½VXUFQRVVWWKHPUHHWVKXROWG DQGSRSVRIIWKHVWDFN
 
  &KDSWHU
 
@@ -6204,7 +5790,7 @@ Exercise solutions
 
 the decorator pattern
 
-Our friends at Starbuzz have introduced sizes to their menu. You can now order a coffee in tall, grande, and venti sizes (for us normal folk: small, medium, and large). Starbuzz saw this as an intrinsic part of the coffee class, so they've added two methods to the Beverage class: setSize() and getSize(). They'd also like for the condiments to be charged according to size, so for instance, Soy costs 10¢, 15¢, and 20¢ respectively for tall, grande, and venti coffees.
+Our friends at Starbuzz have introduced sizes to their menu. You can now order a coffee in tall, grande, and venti sizes (for us normal folk: small, medium, and large). Starbuzz saw this as an intrinsic part of the coffee class, so they've added two methods to the Beverage class: setSize() and getSize(). They'd also like for the condiments to be charged according to size, so for instance, Soy costs 10ï¿½, 15ï¿½, and 20ï¿½ respectively for tall, grande, and venti coffees.
 How would you alter the decorator classes to handle this change in requirements?
 
 public class Soy extends CondimentDecorator {
@@ -6657,7 +6243,7 @@ the factory pattern
 Allowing the subclasses to decide
 
 Remember, the PizzaStore already has a well-honed order system in the orderPizza() method and you want to ensure that it's consistent across all franchises.
-What varies among the regional PizzaStores is the style of pizzas they make ­ New York Pizza has thin crust, Chicago Pizza has thick, and so on ­ and we are going to push all these variations into the createPizza() method and make it responsible for creating the right kind of pizza. The way we do this is by letting each subclass of PizzaStore define what the createPizza() method looks like. So, we will have a number of concrete subclasses of PizzaStore, each with its own pizza variations, all fitting within the PizzaStore framework and still making use of the well-tuned orderPizza() method.
+What varies among the regional PizzaStores is the style of pizzas they make ï¿½ New York Pizza has thin crust, Chicago Pizza has thick, and so on ï¿½ and we are going to push all these variations into the createPizza() method and make it responsible for creating the right kind of pizza. The way we do this is by letting each subclass of PizzaStore define what the createPizza() method looks like. So, we will have a number of concrete subclasses of PizzaStore, each with its own pizza variations, all fitting within the PizzaStore framework and still making use of the well-tuned orderPizza() method.
 
 PizzaStore
 createPizza() orderPizza()
@@ -6717,7 +6303,7 @@ NYStylePizzaStore createPizza()
 
 ChicagoStylePizzaStore createPizza()
 
-So, is there a real-time decision that subclasses make? No, but from the perspective of orderPizza(), if you chose a NYStylePizzaStore, that subclass gets to determine which pizza is made. So the subclasses aren't really "deciding" ­ it was you who decided by choosing which store you wanted ­ but they do determine which kind of pizza gets made.
+So, is there a real-time decision that subclasses make? No, but from the perspective of orderPizza(), if you chose a NYStylePizzaStore, that subclass gets to determine which pizza is made. So the subclasses aren't really "deciding" ï¿½ it was you who decided by choosing which store you wanted ï¿½ but they do determine which kind of pizza gets made.
 
 Download at WoweBook.Com
 
@@ -7443,17 +7029,17 @@ the factory pattern
 A few guidelines to help you follow the Principle...
 
 The following guidelines can help you avoid OO designs that violate the Dependency Inversion Principle:
-ß No variable should hold a reference to a concrete class.
+ï¿½ No variable should hold a reference to a concrete class.
 
 If you use new, a reference to Use a factory
 
 ytaoouc'gollentcbreaerthooeuldncdilnagstsh. at!
 
-ß No class should derive from a concrete class.
+ï¿½ No class should derive from a concrete class.
 
 IyDifnoteuyr'eroirveufeaddfceeerproeiovmnredaifannnrgoaaombbnsstatarrcacaococntntcicorrcneelt,atseleisk.cecllaaassnss,.
 
-ß No method should override an implemented method of any of its base classes.
+ï¿½ No method should override an implemented method of any of its base classes.
 
 mmatIebfehastetnyhntrooayudtcosootuviriombenrebpraltesisdhmoeaeesrcntaeltaandesrsditbmwyipwnalaeisttlmnlhh'ety.enotrubTeeraadhslsoeluymsbececaltalnashssosdae,sr.e
 
@@ -7710,7 +7296,7 @@ you are here 4 149
 
 decoupling ingredients
 Reworking the pizzas, continued...
-Now that you've got an abstract Pizza to work from, it's time to create the New York and Chicago style Pizzas ­ only this time around they will get their ingredients straight from the factory. The franchisees' days of skimping on ingredients are over!
+Now that you've got an abstract Pizza to work from, it's time to create the New York and Chicago style Pizzas ï¿½ only this time around they will get their ingredients straight from the factory. The franchisees' days of skimping on ingredients are over!
 When we wrote the Factory Method code, we had a NYCheesePizza and a ChicagoCheesePizza class. If you look at the two classes, the only thing that differs is the use of regional ingredients. The pizzas are made just the same (dough + sauce + cheese). The same goes for the other pizzas: Veggie, Clam, and so on. They all follow the same preparation steps; they just have different ingredients.
 So, what you'll see is that we really don't need two classes for each pizza; the ingredient factory is going to handle the regional differences for us. Here's the Cheese Pizza:
 
@@ -7815,7 +7401,7 @@ the factory pattern
 
 That was quite a series of code changes; what exactly did we do?
 We provided a means of creating a family of ingredients for pizzas by introducing a new type of factory called an Abstract Factory.
-An Abstract Factory gives us an interface for creating a family of products. By writing code that uses this interface, we decouple our code from the actual factory that creates the products. That allows us to implement a variety of factories that produce products meant for different contexts ­ such as different regions, different operating systems, or different look and feels.
+An Abstract Factory gives us an interface for creating a family of products. By writing code that uses this interface, we decouple our code from the actual factory that creates the products. That allows us to implement a variety of factories that produce products meant for different contexts ï¿½ such as different regions, different operating systems, or different look and feels.
 Because our code is decoupled from the actual products, we can substitute different factories to get different behaviors (like getting marinara instead of plum tomatoes).
 
 An Abstract Factory provides an interface for a family of products. What's a family? In our case it's all the things we need to make a pizza: dough, sauce, cheese, meats and veggies.
@@ -8016,7 +7602,7 @@ Download at WoweBook.Com
 the factory pattern
 
 HeadFirst: Can you explain more about that, Factory Method?
-Factory Method: Sure. Both Abstract Factory and I create objects ­ that's our jobs. But I do it through inheritance...
+Factory Method: Sure. Both Abstract Factory and I create objects ï¿½ that's our jobs. But I do it through inheritance...
 Abstract Factory: ...and I do it through object composition.
 Factory Method: Right. So that means, to create objects using Factory Method, you need to extend a class and override a factory method.
 HeadFirst: And that factory method does what?
@@ -8142,7 +7728,7 @@ Tools for your Design Toolbox
 In this chapter, we added two more tools to your toolbox: Factory Method and Abstract Factory. Both patterns encapsulate object creation and allow you to decouple your code from concrete types.
 
 . BULLET POINTS
-ß All factories encapsulate object
+ï¿½ All factories encapsulate object
 creation.
 
 OO Basics
@@ -8151,24 +7737,24 @@ EFnPiacmSrbvaopCtoepbglrDrtlseudariuwmtveesaclesaeppemoceetneemfslnnnteotpoddsas
 
 We have a new principle that guides us to keep things abstract whenever possible.
 
-ß Simple Factory, while not a bona
+ï¿½ Simple Factory, while not a bona
 fide design pattern, is a simple way to decouple your clients from concrete classes.
-ß Factory Method relies on
+ï¿½ Factory Method relies on
 inheritance: object creation is delegated to subclasses which implement the factory method to create objects.
-ß Abstract Factory relies on object
+ï¿½ Abstract Factory relies on object
 composition: object creation is implemented in methods exposed in the factory interface.
-ß All factory patterns promote
+ï¿½ All factory patterns promote
 loose coupling by reducing the dependency of your application on concrete classes.
 
 OO Patterns SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseentouyntpecrcnAdgnmoeepioodovrn-eescnersnabraetenneprtensetbalddnceseiariaaalbitoeetroyectctctftnni.ofbhis-alierftiabirvjnaoltdloaSyelelaseeydcyirnirtcistteceenepotfretsyw,afgt-rraof.aetniotcfntnodeAmeovshoaFedrgnhuitFematdsiybceplanimnaiitceofleiclaanetanilgrysartebeaclidseuceeknaatecjtcoootcbrestedsseasthlfabnsonfsscufacottseniojntblsaattnlaattireah-tescncrnclhgsdhecasgxyiorgltedeaysatdotdasebmiafetortbsoeefi-ltfjsu-itogsdle,fteMu.aeeepoorit.msyhcPeoamrsdremhtncrinlraeetailFadalsislaconxtahtt,iimtieelrvyanm.tstwechisesicseddsciietatotndoaestaodhfde.lnilraoinyntywnug.-githaMaDitcnieheotofnchbinlotjaeedoscsattlent,htoebsutBeafnonlctedaxhpliebsoualfeldattdtheeoesoisgmebnjosner.ecewtdcperacetoatutpeilroennds,
 
-ß The intent of Factory Method
+ï¿½ The intent of Factory Method
 is to allow a class to defer instantiation to its subclasses.
-ß The intent of Abstract Factory
+ï¿½ The intent of Abstract Factory
 is to create families of related objects without having to depend on their concrete classes.
-ß The Dependency Inversion
+ï¿½ The Dependency Inversion
 Principle guides us to avoid dependencies on concrete types and to strive for abstractions.
-ß Factories are a powerful
+ï¿½ Factories are a powerful
 technique for coding to abstractions, not concrete classes
 
 162 Chapter 4
@@ -8178,32 +7764,9 @@ Download at WoweBook.Com
 the factory pattern
 It's been a long chapter. Grab a slice of Pizza and relax while doing this crossword; all of the solution words are from this chapter.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
-
-
-
-
                                                                                    
-
 
                                
 
@@ -8398,154 +7961,47 @@ you are here 4 167
 crossword puzzle solution
 Puzzle Solution
 
-
         
 
-
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
 
   
 
     
-
-
-
-
-
-
-
-
-
-
 
           
 
-
-
-
-
-
-
-
-
-
-
        
 
-
-
-
-
-
-
-
-
          
 
-
-
-
-
-
-
-
-
-
-
-
-
          
-
-
-
-
-
-
-
-
-
-
 
  
 
-
-
     
-
-
-
-
-
-
-
-
 
   
 
 168
 
-
-
-
-
-
-
      
 
   
-
-
-
-
-
-
 
    
 
      
 
-
-
-
-
  
-
-
 
           
 
-
-
        
-
-
 
     
 
 Chapter 4
-
-
 
   Download at WoweBook.Com
 
@@ -8721,7 +8177,7 @@ you are here 4 173
 interview with singleton
 Patterns Exposed
 This week's interview: Confessions of a Singleton
-HeadFirst: Today we are pleased to bring you an interview with a Singleton object. Why don't you begin by telling us a bit about yourself. Singleton: Well, I'm totally unique; there is just one of me! HeadFirst: One? Singleton: Yes, one. I'm based on the Singleton Pattern, which assures that at any one time there is only one instance of me. HeadFirst: Isn't that sort of a waste? Someone took the time to develop a full-blown class and now all we can get is one object out of it? Singleton: Not at all! There is power in ONE. Let's say you have an object that contains registry settings. You don't want multiple copies of that object and its values running around ­ that would lead to chaos. By using an object like me you can assure that every object in your application is making use of the same global resource. HeadFirst: Tell us more... Singleton: Oh, I'm good for all kinds of things. Being single sometimes has its advantages you know. I'm often used to manage pools of resources, like connection or thread pools. HeadFirst: Still, only one of your kind? That sounds lonely. Singleton: Because there's only one of me, I do keep busy, but it would be nice if more developers knew me ­ many developers run into bugs because they have multiple copies of objects floating around they're not even aware of. HeadFirst: So, if we may ask, how do you know there is only one of you? Can't anyone with a new operator create a "new you"? Singleton: Nope! I'm truly unique. HeadFirst: Well, do developers swear an oath not to instantiate you more than once? Singleton: Of course not. The truth be told... well, this is getting kind of personal but... I have no public constructor. HeadFirst: NO PUBLIC CONSTRUCTOR! Oh, sorry, no public constructor? Singleton: That's right. My constructor is declared private. HeadFirst: How does that work? How do you EVER get instantiated? Singleton: You see, to get a hold of a Singleton object, you don't instantiate one, you just ask for an instance. So my class has a static method called getInstance(). Call that, and I'll show up at once, ready to work. In fact, I may already be helping other objects when you request me. HeadFirst: Well, Mr. Singleton, there seems to be a lot under your covers to make all this work. Thanks for revealing yourself and we hope to speak with you again soon!
+HeadFirst: Today we are pleased to bring you an interview with a Singleton object. Why don't you begin by telling us a bit about yourself. Singleton: Well, I'm totally unique; there is just one of me! HeadFirst: One? Singleton: Yes, one. I'm based on the Singleton Pattern, which assures that at any one time there is only one instance of me. HeadFirst: Isn't that sort of a waste? Someone took the time to develop a full-blown class and now all we can get is one object out of it? Singleton: Not at all! There is power in ONE. Let's say you have an object that contains registry settings. You don't want multiple copies of that object and its values running around ï¿½ that would lead to chaos. By using an object like me you can assure that every object in your application is making use of the same global resource. HeadFirst: Tell us more... Singleton: Oh, I'm good for all kinds of things. Being single sometimes has its advantages you know. I'm often used to manage pools of resources, like connection or thread pools. HeadFirst: Still, only one of your kind? That sounds lonely. Singleton: Because there's only one of me, I do keep busy, but it would be nice if more developers knew me ï¿½ many developers run into bugs because they have multiple copies of objects floating around they're not even aware of. HeadFirst: So, if we may ask, how do you know there is only one of you? Can't anyone with a new operator create a "new you"? Singleton: Nope! I'm truly unique. HeadFirst: Well, do developers swear an oath not to instantiate you more than once? Singleton: Of course not. The truth be told... well, this is getting kind of personal but... I have no public constructor. HeadFirst: NO PUBLIC CONSTRUCTOR! Oh, sorry, no public constructor? Singleton: That's right. My constructor is declared private. HeadFirst: How does that work? How do you EVER get instantiated? Singleton: You see, to get a hold of a Singleton object, you don't instantiate one, you just ask for an instance. So my class has a static method called getInstance(). Call that, and I'll show up at once, ready to work. In fact, I may already be helping other objects when you request me. HeadFirst: Well, Mr. Singleton, there seems to be a lot under your covers to make all this work. Thanks for revealing yourself and we hope to speak with you again soon!
 174 Chapter 5
 Download at WoweBook.Com
 
@@ -8794,9 +8250,9 @@ The Singleton Pattern ensures a class has only one instance, and provides a glob
 the singleton pattern
 
 No big surprises there. But, let's break it down a bit more:
-ß What's really going on here? We're taking a class and letting it manage a
+ï¿½ What's really going on here? We're taking a class and letting it manage a
 single instance of itself. We're also preventing any other class from creating a new instance on its own. To get an instance, you've got to go through the class itself.
-ß We're also providing a global access point to the instance: whenever you
+ï¿½ We're also providing a global access point to the instance: whenever you
 need an instance, just query the class and it will hand you back the single instance. As you've seen, we can implement this so that the Singleton is created in a lazy manner, which is especially important for resource intensive objects.
 
 Okay, let's check out the class diagram:
@@ -9046,26 +8502,26 @@ you are here 4 185
 your design toolbox
 
 Tools for your Design Toolbox
-You've now added another pattern to your toolbox. Singleton gives you another method of creating objects ­ in this case, unique objects.
+You've now added another pattern to your toolbox. Singleton gives you another method of creating objects ï¿½ in this case, unique objects.
 OO Basics
 OO Principles Abstraction
 EFnPiacmSrvaboptCopebglrrDstleurdauimwtvacseleeaseeomppectenmeefslnetnnotpoaddssooworehtsbdhoooiiilnotjoaunnetniflotocdseacsont.erbovrbslfansoyetrcmatvirrccehooeaeeroapsdtcsu.tei,itepfnnnliiihoecncofednltataorstes.ridrtisoeeaaeDnsscnxi..tgcotn.eeEs.nnPoInsnoticohlnayepmrsioutrlaapnthciioesmnWortnuhulneyrnnnihnyatgovoueatrnohoeneueendSdinitnsygotolaeuentrncoseanupr.opefliycaoautciloans,s
 OO Patterns SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseenAtouyntpiecrcndrngnmoeeposodovb-eetescnerpnaFraelnnertieenseseatlbnaddcireicatraaatalntbioeeoyestfcicseftrfSnneiuc.obhso-alatcitdoibrabivyajstnonilclaloafSfelelcusaenieydecyeirnninoortcblsttsaegeeapgtttfrresatcriscywf,afs-lnraicole.syeaadtoeatndisotccfenFntteArmsethoevheeofasedsgnueaifteMp.smatodesoaycbc.sniaieemnsirtrofrlencclcanirdlgyaetebaelieFdtecceeknaataco-jtoooiesteorndsasenothafbnscshsfnetccsiEnitsreijttacntttnlaaottdedh-ney.otrgnalhgsdhoecagdexstebedniartotudpnfsmi-atftjotrywbrroegileaeu-itogidelo,thucPa-empoMritamvsyhtitocardraeciminhnDilnsladileeothaaloiaasianxctevethot,snwemtilyislmc.thstbfedaiaeilotetjdscsoiaesendnsohafs.gcedsaollotltloinuyenant,bht.tlngoaeybsluhtpaosint
 
 BULLET POINTS
-ß The Singleton Pattern ensures
+ï¿½ The Singleton Pattern ensures
 you have at most one instance of a class in your application.
-ß The Singleton Pattern also
+ï¿½ The Singleton Pattern also
 provides a global access point to that instance.
-ß Java's implementation of the
+ï¿½ Java's implementation of the
 Singleton Pattern makes use of a private constructor, a static method combined with a static variable.
-ß Examine your performance
+ï¿½ Examine your performance
 and resource constraints and carefully choose an appropriate Singleton implementation for multithreaded applications (and we should consider all applications multithreaded!).
-ß Beware of the double-checked
+ï¿½ Beware of the double-checked
 locking implementation; it is not thread-safe in versions before Java 2, version 5.
-ß Be careful if you are using
+ï¿½ Be careful if you are using
 multiple class loaders; this could defeat the Singleton implementation and result in multiple instances.
-ß If you are using a JVM earlier
+ï¿½ If you are using a JVM earlier
 than 1.2, you'll need to create a registry of Singletons to defeat the garbage collector.
 
 As you've seen, despite its involved in the Singleton's though, you are ready to
@@ -9080,26 +8536,8 @@ the singleton pattern
 
 Sit back, open that case of chocolate that you were sent for solving the multithreading problem, and have some downtime working on this little crossword puzzle; all of the solution words are from this chapter.
 
-
  
  
-
-
- 
-
-
- 
-
-
- 
-
-
-
-
-
-
-
-
 
  
 
@@ -9113,15 +8551,15 @@ Sit back, open that case of chocolate that you were sent for solving the multith
 
  
 
+ 
 
+ 
 
-
+ 
 
   
 
  
-
-
 
       
 
@@ -9239,216 +8677,39 @@ you are here 4 189
 crossword puzzle solution
 Exercise solutions
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  
 
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       
 
-
-
-
-
-
-
-
-
-
    
-
-
-
-
 
        
 
      
 
-
-
-
-
          
 
  
 
    
 
-
-
-
-
-
-
      
-
-
 
  
 
  190 Chapter5
 
          
-
-
-
-
 
   
 
@@ -9687,7 +8948,7 @@ Think of the Order Slip as an object, an object that acts as a request to prepar
 
 publicccovooookik.dm.maoakrkedeBeSruhUragpke(er)(()){;;
 
-passed around ­ from the Waitress to the order counter, or to the
+passed around ï¿½ from the Waitress to the order counter, or to the
 
 }
 
@@ -10423,7 +9684,7 @@ the customer asked for? LIKE THE UNDO BUTTON!!!!
 Whoops! We almost forgot... luckily, once we have our basic Command classes, undo is easy to add. Let's step through adding undo to our commands and to the remote control...
 
 What are we doing?
-Okay, we need to add functionality to support the undo button on the remote. It works like this: say the Living Room Light is off and you press the on button on the remote. Obviously the light turns on. Now if you press the undo button then the last action will be reversed ­ in this case the light will turn off. Before we get into more complex examples, let's get the light working with the undo button:
+Okay, we need to add functionality to support the undo button on the remote. It works like this: say the Living Room Light is off and you press the on button on the remote. Obviously the light turns on. Now if you press the undo button then the last action will be reversed ï¿½ in this case the light will turn off. Before we get into more complex examples, let's get the light working with the undo button:
 
 1 When commands support undo, they have an undo() method that mirrors the execute() method. Whatever execute() last did, undo() reverses. So, before we can add undo to our
 commands, we need to add an undo() method to the Command interface:
@@ -11205,21 +10466,21 @@ EFnPiacmSrvaboptCopeeglmrrstexlDruiadmwvoactleseeaeeomdespptenmiefenenetftpnsnos
 OO Patterns SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseenAtouyntpiecrcndrngnmoeeposodovb-eetescnerpnaFraelnnertieenseseatlbnaddcireicatraaatalntbioeeoyestfcicseftrfSnneiuc.obhso-alatcitdoibrabivyajstnonilclaloafSfelelcusaenieydecyeirnninoortcblsttsaegeeapgtttfrresatcriscywf,afs-lnraicoleC.syeaadtoeatnadisotccfepnFntteArmesthroesvheeofaossaedsgnueaifeteMp.sumatodesoaryamcbc.qsniaipeemnsirtraonfrlencclcuanirdlpgyametembaelieeFdtoecceeknaatoaco-jtoosoieresteorndasasenbothtafbntscsthsfnetccsiEjnnitssreijtetacnetttnlaaott,dedh-dnery.ucotrgnalhgsdhoecagdeqxsinttebedniarztotudpnufsmdi-at-ftjo,trywbrreoegeileaoeu-itogidetlo,tuhucPaE-empaoMrcitamvsyhehtitocardrbaencliminhneDilinsladileeolthcaoealoiarasieanxctevethaotn,rsnweemtilyislmc.thstpbtfeodabiaeillotestjdsspcsoyiaeosuendnsoheafs.gglcwedsarlolaloetltloiianurtyenatntt,bhtte.telnghtoaeybqissoiluundnahtepgisasfo.rtsyifensoqe,turuaeennsdtt
 
 BULLET POINTS
-ß The Command Pattern
+ï¿½ The Command Pattern
 decouples an object, making a request from the one that knows how to perform it.
-ß A Command object is at the
+ï¿½ A Command object is at the
 center of this decoupling and encapsulates a receiver with an action (or set of actions) .
-ß An invoker makes a request of
+ï¿½ An invoker makes a request of
 a Command object by calling its execute() method, which invokes those actions on the receiver.
-ß Invokers can be parameterized
+ï¿½ Invokers can be parameterized
 with Commands, even dynamically at runtime.
-ß Commands may support undo
+ï¿½ Commands may support undo
 by implementing an undo method that restores the object to its previous state before the execute() method was last called.
-ß Macro Commands are a simple
+ï¿½ Macro Commands are a simple
 extension of Command that allow multiple commands to be invoked. Likewise, Macro Commands can easily support undo().
-ß In practice, it is not uncommon
+ï¿½ In practice, it is not uncommon
 for "smart" Command objects to implement the request themselves rather than delegating to a receiver.
-ß Commands may also be used
+ï¿½ Commands may also be used
 to implement logging and transactional systems.
 
 230 Chapter 6
@@ -11231,27 +10492,15 @@ the command pattern
 Time to take a breather and let it all sink in.
 It's another crossword; all of the solution words are from this chapter.
 
-
- 
-
-
  
 
  
 
  
 
-
  
 
-
-
-
-
-
-
-
-
+ 
 
  
 
@@ -11265,14 +10514,12 @@ It's another crossword; all of the solution words are from this chapter.
  
  
  
-
 
     
                   
  
                          
     
-
 
        
               
@@ -11347,153 +10594,27 @@ Sharpen your pencil We will also need commands for the off button. Write the cod
 
 LightOffCommand lightOff = new LightOffCommand(light); StereoOffCommand stereoOff = new StereoOffCommand(stereo); TVOffCommand tvOff = new TVOffCommand(tv); HottubOffCommand hottubOff = new HottubOffCommand(hottub);
 
-
-
-
-
-
-
-
-
-
-
   
 
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
 
          
 
-
-
-
-
-
-
-
-
-
-
-
-
      
-
-
-
-
-
-
-
-
-
-
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
 
  
 
-
-
-
-
-
-
-
     
-
-
-
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 you are here 4
 
-
-
-
-
 DownloadatWoweBook.Com
-
-
-
-
 
 233
 
@@ -11539,7 +10660,7 @@ The US laptop expects another interface.
 The adapter converts one interface into another.
 
 You know what the adapter does: it sits in between the plug of your laptop and the European AC outlet; its job is to adapt the European outlet so that you can plug your laptop into it and receive power. Or look at it this way: the adapter changes the interface of the outlet into one that your laptop expects.
-Some AC adapters are simple ­ they only change the shape of the outlet so that it matches your plug, and they pass the AC current straight through ­ but other adapters are more complex internally and may need to step the power up or down to match your devices' needs.
+Some AC adapters are simple ï¿½ they only change the shape of the outlet so that it matches your plug, and they pass the AC current straight through ï¿½ but other adapters are more complex internally and may need to step the power up or down to match your devices' needs.
 
 Haodwapmtaenrys octanheyroruetahl iwnkoroldf?
 
@@ -11754,7 +10875,7 @@ Here's how the Client uses the Adapter
 2 The adapter translates the request into one or more calls on the adaptee using the adaptee interface.
 3 The client receives the results of the call and never knows there is an adapter doing the translation.
 
-Naarobetoeudtetchtoahutepltoethdhe­eCr.nlieeintthearndknAowdas ptee
+Naarobetoeudtetchtoahutepltoethdheï¿½eCr.nlieeintthearndknAowdas ptee
 
 Download at WoweBook.Com
 
@@ -11837,7 +10958,7 @@ Target request()
 Adaptee specificRequest()
 
 Adapter request()
-Look familiar? That's right ­ the only difference is that with class adapter we subclass the Target and the Adaptee, while with object adapter we use composition to pass requests to an Adaptee.
+Look familiar? That's right ï¿½ the only difference is that with class adapter we subclass the Target and the Adaptee, while with object adapter we use composition to pass requests to an Adaptee.
 
 IApsanousndbstdaicteplatiatodhsenseeeot,sfTottahuahresdeginaAegAptdtdcacaopltmpathts-eesereesn. ow
 
@@ -12075,7 +11196,7 @@ While Java has gone in the direction of the Iterator, there is nevertheless a lo
 Write an Adapter that adapts an Iterator to an Enumeration. You can test your code by adapting an ArrayList. The ArrayList class supports the Iterator interface but doesn't support Enumerations (well, not yet anyway).
 
 Abrain power
-Some AC adapters do more than just change the interface ­ they add other features like surge protection, indicator lights and other bells and whistles. If you were going to implement these kinds of features, what pattern would you use?
+Some AC adapters do more than just change the interface ï¿½ they add other features like surge protection, indicator lights and other bells and whistles. If you were going to implement these kinds of features, what pattern would you use?
 
 Download at WoweBook.Com
 
@@ -12085,7 +11206,7 @@ fireside chats: decorator and adapter
 
 Tonight's talk: The Decorator Pattern and the Adapter Pattern discuss their differences.
 
-Decorator I'm important. My job is all about responsibility ­ you know that when a Decorator is involved there's going to be some new responsibilities or behaviors added to your design.
+Decorator I'm important. My job is all about responsibility ï¿½ you know that when a Decorator is involved there's going to be some new responsibilities or behaviors added to your design.
 That may be true, but don't think we don't work hard. When we have to decorate a big interface, whoa, that can take a lot of code.
 Cute. Don't think we get all the glory; sometimes I'm just one decorator that is being wrapped by who knows how many other decorators. When a method call gets delegated to you, you have no idea how many other decorators have already dealt with it and you don't know that you'll ever get noticed for your efforts servicing the request.
 
@@ -12101,7 +11222,7 @@ Download at WoweBook.Com
 the adapter pattern
 
 Decorator
-Well us decorators do that as well, only we allow new behavior to be added to classes without altering existing code. I still say that adapters are just fancy decorators ­ I mean, just like us, you wrap an object.
+Well us decorators do that as well, only we allow new behavior to be added to classes without altering existing code. I still say that adapters are just fancy decorators ï¿½ I mean, just like us, you wrap an object.
 Uh, no. Our job in life is to extend the behaviors or responsibilities of the objects we wrap, we aren't a simple pass through.
 Maybe we should agree to disagree. We seem to look somewhat similar on paper, but clearly we are miles apart in our intent.
 
@@ -12165,7 +11286,7 @@ tasks to watch a movie
 
 Watching a movie (the hard way)
 
-Pick out a DVD, relax, and get ready for movie magic. Oh, there's just one thing ­ to watch the movie, you need to perform a few tasks:
+Pick out a DVD, relax, and get ready for movie magic. Oh, there's just one thing ï¿½ to watch the movie, you need to perform a few tasks:
 
 1 Turn on the popcorn popper
 2 Start the popper popping 3 Dim the lights 4 Put the screen down 5 Turn the projector on 6 Set the projector input to DVD 7 Put the projector on wide-screen mode 8 Turn the sound amplifier on 9 Set the amplifier to DVD input 10 Set the amplifier to surround sound 11 Set the amplifier volume to medium (5) 12 Turn the DVD Player on 13 Start the DVD Player playing
@@ -12214,9 +11335,9 @@ volume to 5...
 TanudrnFoInNAthLeLDYV, Dplapylatyheer.m.. ovie!
 
 But there's more...
-ß When the movie is over, how do you turn everything off ?
+ï¿½ When the movie is over, how do you turn everything off ?
 Wouldn't you have to do all of this over again, in reverse?
-ß Wouldn't it be as complex to listen to a CD or the radio? ß If you decide to upgrade your system, you're probably going
+ï¿½ Wouldn't it be as complex to listen to a CD or the radio? ï¿½ If you decide to upgrade your system, you're probably going
 to have to learn a slightly different procedure.
 So what to do? The complexity of using your home theater is becoming apparent! Let's see how the Facade Pattern can get us out of this mess so we can enjoy the movie...
 
@@ -12478,7 +11599,7 @@ principle of least knowledge
 How NOT to Win Friends and Influence Objects
 
 Okay, but how do you keep from doing this? The principle provides some guidelines: take any object; now from any method in that object, the principle tells us that we should only invoke methods that belong to:
-ß The object itself ß Objects passed in as a parameter to the method ß Any object the method creates or instantiates ß Any components of the object
+ï¿½ The object itself ï¿½ Objects passed in as a parameter to the method ï¿½ Any object the method creates or instantiates ï¿½ Any components of the object
 This sounds kind of stringent doesn't it? What's the harm in calling the method of an object we get back from another call? Well, if we were to do that, then we'd be making a request of another object's subpart (and increasing the number of objects we directly know). In such cases, the principle forces us to ask the object to make the request for us; that way we don't have to know about its component objects (and we keep our circle of friends small). For example:
 
 Ntrooettcicuaerllntemhdeattfhrotodhmsescoeanlgloiunbigdjeeoclittnhesestrthmealtel tuwhsoenrdoest!! Trwehofirnedkrseontfcheaidnk"bcoyofmaptnohniinsesntatas"nacaesHAvaanSry-iaoAbbljere.eclItanttoiothnahstehripis.
@@ -12642,7 +11763,7 @@ chapter we've added a couple of patterns that
 
 allow us to alter interfaces and reduce coupling between clients and the systems they use.
 
-ß When you need to use an
+ï¿½ When you need to use an
 existing class and its interface
 
 OO Basics
@@ -12650,20 +11771,20 @@ OO Principles Abstraction
 EFnPiacmSrvbaotpCoepbglrrDtlseurdaiumOwvtasecelesaemnepopectenlemefyslntnenotpodadssotorowhetasbdoohoiiillnjotounknaetnlioftdcoseatcsotnerboovrbslfsnayoetycmartvrorccieohoeaueeorpadsrctsueti,tipifnnofilniihonenrcofdnestaitoerste.rnidrtidoDeaeasnscxnoitgctnenEePsonIntsnociholaynepmrsioutrlaapnthciioesmn Wfo(oeffrrerhcmimaeoevnauemdipnsblati)en.ar.gn.i,eniwitnnagotlkuearcolhondnwleiyqsiultgeeonvesy.l our
 
 is not the one you need, use an adapter.
-ß When you need to simplify
+ï¿½ When you need to simplify
 and unify a large interface or complex set of interfaces, use a facade.
-ß An adapter changes an
+ï¿½ An adapter changes an
 interface into one a client expects.
-ß A facade decouples a client
+ï¿½ A facade decouples a client
 from a complex subsystem.
-ß Implementing an adapter may
+ï¿½ Implementing an adapter may
 require little work or a great deal of work depending on the size and complexity of the target interface.
-ß Implementing a facade requires
+ï¿½ Implementing a facade requires
 
 OO Patterns AaeStediixtnvcnnhapctlrcaOaadraeewaotpydpsrcebaDtmhsscrtetpDuuiecsehapnepel.ftigoeeenaadnlaseenAtouynutpierctrtcndrngLnmoleeposooddoivb-eetescnerpbn-aFeraelnnnertieenselseaatlbntadde'cireicatraaCtatanlntbioseeoyetfcicoseftrifSnneiuco.obhso-nalatcicottdoibrabnivyajstnontilclltaloafShfelelcuvsaenaieydecyeiernninohortceeblsttsaseCgeearpgatttfreresrtrscriscywpf,affs-rlnrsaerictolosea.syeaadtoeatndiesositawccufsennrFanmtteArmsethoqevcpheeofasiedatwnsgnueaifttesuMep.spmatodesoamymcebec.snioeasiheeomnsirtroofrelnrc.clscreanirdlergyaaebtebbaeftlieFkdtttecceeknaatjaeco-jntsoooaiieesteorndesasennocth,aftbncdsrcshsufnectcstiEanitsreieqojtintacntttnlaaottuezdedh-ngeuy.dot-rgnalh,gsdhosrecacgdeexsetebeedoniarftoltudtpnutfsmiE-atiftjoatrycwbreraoeehgilehoaeu-ibtogindlelno,ctehucPafe-iempoMrlcioetatmvsyehrteitrocardraecanriminhnseDilnsladileeothapotaloioabasianxctevethlot,sfsnwespmtyoilyislmuc.thstbFfedaegitaeilwotetjdFsrlcsoaietsoeendnasoihaafrts.gahttcedsaoltecleaocatlhttloinuqyiseaanantt,obihtu.stnldngdodnaeyebegsmeisltsufe.rhtatypdfeaoksoo-eqe,sfeuifrunsaPeetiinnrntnsdetotthsveeirdasfeuhasbicsgaeyhsseutrin.ne.E-tia.afmahalnanieneedcdvedsdheauatlssbTidciinhsiemnahytWertpspaeteOltftrnireffgoeamfearnycau.sceasctewdeaeo.enpctaiontonttveueernrrfinftasyc. e,
 
-ß
-ß ß
+ï¿½
+ï¿½ ï¿½
 
 that we compose the facade with its subsystem and use delegation to perform the work of the facade.
 There are two forms of the Adapter Pattern: object and class adapters. Class adapters require multiple inheritance.
@@ -12680,41 +11801,11 @@ Download at WoweBook.Com
 
 the adapter pattern Yes, it's another crossword. All of the solution words are from this chapter.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
-
-
  
-
 
                                                                              
-
 
                                                                       
 
@@ -12808,208 +11899,33 @@ you are here 4 273
 crossword puzzle solution
 Exercise solutions
 
-
-
-
-
    
 
-
-
-
-
-
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
               
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
 
-
-
-
-
-
-
-
-
     
 
-
-
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
 
          
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
  
-
-
 
        
 
-
-
         
 
-
-
-
-
  
-
-
-
-
-
-
 
        
 
@@ -13019,19 +11935,7 @@ Exercise solutions
 
 7
 
-
-
-
-
-
-
-
-
    
-
-
-
-
 
 Download at WoweBook.Com    
 
@@ -14102,7 +13006,7 @@ DtuhemrebareQnouestions
 Q: Is this really the Template
 Method Pattern, or are you trying too hard?
 A: The pattern calls for implementing
-an algorithm and letting subclasses supply the implementation of the steps ­ and the Arrays sort is clearly not doing that! But, as we know, patterns in the wild aren't always just like the textbook patterns. They have to be modified to fit the context and implementation constraints.
+an algorithm and letting subclasses supply the implementation of the steps ï¿½ and the Arrays sort is clearly not doing that! But, as we know, patterns in the wild aren't always just like the textbook patterns. They have to be modified to fit the context and implementation constraints.
 The designers of the Arrays sort() method had a few constraints. In general, you can't subclass a Java array and they wanted the sort to be used on all arrays (and each array is a different class). So they defined a static method and deferred the comparison part of
 
 the algorithm to the items being sorted.
@@ -14110,7 +13014,7 @@ So, while it's not a textbook template method, this implementation is still in t
 Q: This implementation of sorting
 actually seems more like the Strategy Pattern than the Template Method Pattern. Why do we consider it Template Method?
 A: You're probably thinking that
-because the Strategy Pattern uses object composition. You're right in a way ­ we're
+because the Strategy Pattern uses object composition. You're right in a way ï¿½ we're
 
 using the Arrays object to sort our array, so that's similar to Strategy. But remember, in Strategy, the class that you compose with implements the entire algorithm. The algorithm that Arrays implements for sort is incomplete; it needs a class to fill in the missing compareTo() method. So, in that way, it's more like Template Method.
 Q: Are there other examples of
@@ -14238,7 +13142,7 @@ You might want to remind the reader what you're all about, since it's been so lo
 Hey, that does sound a lot like what I do. But my intent's a little different from yours; my job is to define the outline of an algorithm, but let my subclasses do some of the work. That way, I can have different implementations of an algorithm's individual steps, but keep control over the algorithm's structure. Seems like you have to give up control of your algorithms.
 308 Chapter 8
 
-Nope, it's me, although be careful ­ you and Factory Method are related, aren't you?
+Nope, it's me, although be careful ï¿½ you and Factory Method are related, aren't you?
 I'd heard you were on the final draft of your chapter and I thought I'd swing by to see how it was going. We have a lot in common, so I thought I might be able to help...
 I don't know, since Chapter 1, people have been stopping me in the street saying, "Aren't you that pattern..." So I think they know who I am. But for your sake: I define a family of algorithms and make them interchangeable. Since each algorithm is encapsulated, the client can use different algorithms easily.
 I'm not sure I'd put it quite like that... and anyway, I'm not stuck using inheritance for algorithm implementations. I offer clients a choice of algorithm implementation through object composition.
@@ -14270,49 +13174,11 @@ crossword puzzle
 
 It's that time again....
 
-
-
-
-
-
-
-
-
-
-
  
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
- 
-
-
-
-
-
-
-
-
 
  
 
@@ -14320,7 +13186,7 @@ It's that time again....
 
  
 
-
+ 
 
              
 
@@ -14341,8 +13207,6 @@ It's that time again....
   
 
    
-
-
 
              
 
@@ -14375,25 +13239,25 @@ OO Patterns SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseenAtouynt
 Download at WoweBook.Com
 
 BULLET POINTS
-ß A "template method" defines
+ï¿½ A "template method" defines
 the steps of an algorithm, deferring to subclasses for the implementation of those steps.
-ß The Template Method
+ï¿½ The Template Method
 Pattern gives us an important technique for code reuse.
-ß The template method's
+ï¿½ The template method's
 abstract class may define concrete methods, abstract methods and hooks.
-ß Abstract methods are
+ï¿½ Abstract methods are
 implemented by subclasses.
-ß Hooks are methods that do
+ï¿½ Hooks are methods that do
 nothing or default behavior in the abstract class, but may be overridden in the subclass.
-ß To prevent subclasses from
+ï¿½ To prevent subclasses from
 changing the algorithm in the template method, declare the template method as final.
-ß The Hollywood Principle guides
+ï¿½ The Hollywood Principle guides
 us to put decision-making in high-level modules that can decide how and when to call low level modules.
-ß You'll see lots of uses of the
+ï¿½ You'll see lots of uses of the
 Template Method Pattern in real world code, but don't expect it all (like any pattern) to be designed "by the book."
-ß The Strategy and Template
+ï¿½ The Strategy and Template
 Method Patterns both encapsulate algorithms, one by inheritance and one by composition.
-ß The Factory Method is a
+ï¿½ The Factory Method is a
 specialization of Template Method.
 you are here 4 311
 
@@ -14432,164 +13296,35 @@ Exercise solutions
 
 the template method pattern
 
-
-
-
-
        
-
-
-
-
-
-
-
-
 
  
 
-
-
    
 
-
-
-
-
-
-
-
-
        
-
-
-
-
-
-
-
-
-
-
-
-
 
  
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
        
-
-
-
-
-
-
-
 
      
 
-
-
-
-
-
-
-
-
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      
 
     
-
-
-
-
-
-
 
       
 
  
 
     
-
-
-
-
-
-
 
        
 
@@ -14813,7 +13548,7 @@ Download at WoweBook.Com
 
 java enabled waitress
 What's the problem with having t wo different menu representations?
-To see why having two different menu representations complicates things, let's try implementing a client that uses the two menus. Imagine you have been hired by the new company formed by the merger of the Diner and the Pancake House to create a Java-enabled waitress (this is Objectville, after all). The spec for the Java-enabled waitress specifies that she can print a custom menu for customers on demand, and even tell you if a menu item is vegetarian without having to ask the cook ­ now that's an innovation!
+To see why having two different menu representations complicates things, let's try implementing a client that uses the two menus. Imagine you have been hired by the new company formed by the merger of the Diner and the Pancake House to create a Java-enabled waitress (this is Objectville, after all). The spec for the Java-enabled waitress specifies that she can print a custom menu for customers on demand, and even tell you if a menu item is vegetarian without having to ask the cook ï¿½ now that's an innovation!
 Let's check out the spec, and then step through what it might take to implement her...
 
 TgheettWinagitJraevssa-isenabled.
@@ -15359,7 +14094,7 @@ improve the iterator
 Making some improvements...
 
 Okay, we know the interfaces of PancakeHouseMenu and DinerMenu are exactly the same and yet we haven't defined a common interface for them. So, we're going to do that and clean up the Waitress a little more.
-You may be wondering why we're not using the Java Iterator interface ­ we did that so you could see how to build an iterator from scratch. Now that we've done that, we're going to switch to using the Java Iterator interface, because we'll get a lot of leverage by implementing that instead of our home grown Iterator interface. What kind of leverage? You'll soon see.
+You may be wondering why we're not using the Java Iterator interface ï¿½ we did that so you could see how to build an iterator from scratch. Now that we've done that, we're going to switch to using the Java Iterator interface, because we'll get a lot of leverage by implementing that instead of our home grown Iterator interface. What kind of leverage? You'll soon see.
 First, let's check out the java.util.Iterator interface:
 
 <<interface>> Iterator
@@ -15518,7 +14253,7 @@ iterator pattern defined
 Iterator Pattern defined
 You've already seen how to implement the Iterator Pattern with your very own iterator. You've also seen how Java supports iterators in some of its collection oriented classes (the ArrayList). Now it's time to check out the official definition of the pattern:
 The Iterator Pattern provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
-This makes a lot of sense: the pattern gives you a way to step through the elements of an aggregate without having to know how things are represented under the covers. You've seen that with the two implementations of Menus. But the effect of using iterators in your design is just as important: once you have a uniform way of accessing the elements of all your aggregate objects, you can write polymorphic code that works with any of these aggregates ­ just like the printMenu() method, which doesn't care if the menu items are held in an Array or ArrayList (or anything else that can create an Iterator), as long as it can get hold of an Iterator.
+This makes a lot of sense: the pattern gives you a way to step through the elements of an aggregate without having to know how things are represented under the covers. You've seen that with the two implementations of Menus. But the effect of using iterators in your design is just as important: once you have a uniform way of accessing the elements of all your aggregate objects, you can write polymorphic code that works with any of these aggregates ï¿½ just like the printMenu() method, which doesn't care if the menu items are held in an Array or ArrayList (or anything else that can create an Iterator), as long as it can get hold of an Iterator.
 The other important impact on your design is that the Iterator Pattern takes the responsibility of traversing elements and gives that responsibility to the iterator object, not the aggregate object. This not only keeps the aggregate interface and implementation simpler, it removes the responsibility for iteration from the aggregate and keeps the aggregate focused on the things it should be focused on (managing a collection of objects), not on iteration.
 Let's check out the class diagram to put all the pieces in context...
 
@@ -15606,7 +14341,7 @@ Every responsibility of a class is an area of potential change. More than one re
 This principle guides us to keep each class to a single responsibility.
 
 Design Principle A class should have only one reason to change.
-We know we want to avoid change in a class like the plague ­ modifying code provides all sorts of opportunities for problems to creep in. Having two ways to change increases the probability the class will change in the future, and when it does, it's going to affect two aspects of your design.
+We know we want to avoid change in a class like the plague ï¿½ modifying code provides all sorts of opportunities for problems to creep in. Having two ways to change increases the probability the class will change in the future, and when it does, it's going to affect two aspects of your design.
 The solution? The principle guides us to assign each responsibility to one class, and only one class.
 That's right, it's as easy as that, and then again it's not: separating responsibility in design is one of the most difficult things to do. Our brains are just too good at seeing a set of behaviors and grouping them together even when there are actually two or more responsibilities. The only way to succeed is to be diligent in examining your designs and to watch out for signals that a class is changing in more than one way as your system grows.
 
@@ -15659,7 +14394,7 @@ Player getHighScore() getName()
 Download at WoweBook.Com
 
 the iterator and composite patterns
-Good thing you're learning about the Iterator pattern because I just heard that Objectville Mergers and Acquisitions has done another deal... we're merging with Objectville Café and adopting their
+Good thing you're learning about the Iterator pattern because I just heard that Objectville Mergers and Acquisitions has done another deal... we're merging with Objectville Cafï¿½ and adopting their
 dinner menu.
 
 Wow, and we thought things were already complicated.
@@ -15673,9 +14408,9 @@ Download at WoweBook.Com
 you are here 4 341
 
 a new menu
-Taking a look at the Café Menu
+Taking a look at the Cafï¿½ Menu
 
-Here's the Café Menu. It doesn't look like too much trouble to integrate the
+Here's the Cafï¿½ Menu. It doesn't look like too much trouble to integrate the
 
 Cafe Menu into our framework... let's check it out.
 
@@ -15687,7 +14422,7 @@ public class CafeMenu {implements Menu {
 
 Hashtable menuItems = new Hashtable();
 
-Menu TDhoeesCtahfaétissusptpoorrintgIttehreairtomre?nuWitee'lml sseien
+Menu TDhoeesCtahfaï¿½tissusptpoorrintgIttehreairtomre?nuWitee'lml sseien
 
 a Hashtable. shortly...
 
@@ -15751,7 +14486,7 @@ Before looking at the next page, quickly jot down the three things we have to do
 
 Download at WoweBook.Com
 
-Reworking the Café Menu code
+Reworking the Cafï¿½ Menu code
 
 the iterator and composite patterns
 
@@ -15815,14 +14550,14 @@ Download at WoweBook.Com
 you are here 4 343
 
 test drive the new menu
-Adding the Café Menu to the Waitress
+Adding the Cafï¿½ Menu to the Waitress
 That was easy; how about modifying the Waitress to support our new Menu? Now that the Waitress expects Iterators, that should be easy too.
 
 public class Waitress { Menu pancakeHouseMenu; Menu dinerMenu; Menu cafeMenu;
 
 The the
 
-Café menu is passed into the Waitress constructor with the other menus, and
+Cafï¿½ menu is passed into the Waitress constructor with the other menus, and
 
 in we
 
@@ -15839,7 +14574,7 @@ Iterator dinerIterator = dinerMenu.createIterator();
 
 Iterator cafeIterator = cafeMenu.createIterator(); System.out.println("MENU\n----\nBREAKFAST"); printMenu(pancakeIterator); System.out.println("\nLUNCH"); printMenu(dinerIterator);
 
-We're using the Café's menu for our dinner menu. All we have to do to print it is create the iterator,
+We're using the Cafï¿½'s menu for our dinner menu. All we have to do to print it is create the iterator,
 
 System.out.println("\nDINNER");
 
@@ -15885,7 +14620,7 @@ waitress.printMenu();
 
 Now, when we print we should see all three menus.
 
-Here's the test run; check out the new dinner menu from the Café!
+Here's the test run; check out the new dinner menu from the Cafï¿½!
 
 File Edit Window Help Kathy&BertLikePancakes
 
@@ -15937,7 +14672,7 @@ lettuce, tomato, and fries
 the soup of the day, with a side salad with whole pinto beans, salsa, guacamole
 -- Veggie burger on a whole wheat bun,
 
-new café menu, all with the same iteration
+new cafï¿½ menu, all with the same iteration
 
 %
 
@@ -16247,7 +14982,7 @@ Three calls to printMenu.
 
 Everytime we add or remove a menu we're going to have to open this code up for changes.
 
-It's not the Waitress' fault. We have done a great job of decoupling the menu implementation and extracting the iteration into an iterator. But we still are handling the menus with separate, independent objects ­ we need a way to manage them together.
+It's not the Waitress' fault. We have done a great job of decoupling the menu implementation and extracting the iteration into an iterator. But we still are handling the menus with separate, independent objects ï¿½ we need a way to manage them together.
 
 Abrain power
 The Waitress still needs to make three calls to printMenu(), one for each menu. Can you think of a way to combine the menus so that only one call needs to be made? Or perhaps so that one Iterator is passed to the Waitress to iterate over all the menus?
@@ -16348,7 +15083,7 @@ MenuItem
 
 Array
 
-Café Menu
+Cafï¿½ Menu
 
 key
 
@@ -16382,11 +15117,11 @@ What do we need?
 The time has come to make an executive decision to rework the chef 's implementation into something that is general enough to work over all the menus (and now sub menus). That's right, we're going to tell the chefs that the time as come for us to reimplement their menus.
 The reality is that we've reached a level of complexity such that if we don't rework the design now, we're never going to have a design that can accommodate further acquisitions or submenus.
 So, what is it we really need out of our new design?
-ß We need some kind of a tree shaped structure that
+ï¿½ We need some kind of a tree shaped structure that
 will accommodate menus, submenus and menu items.
-ß We need to make sure we maintain a way to
+ï¿½ We need to make sure we maintain a way to
 traverse the items in each menu that is at least as convenient as what we are doing now with iterators.
-ß We may need to be able to traverse the items in
+ï¿½ We may need to be able to traverse the items in
 a more flexible manner. For instance, we might need to iterate over only the Diner's dessert menu, or we might need to iterate over the Diner's entire menu, including the dessert submenu.
 
 There comes a time when we must refactor our code in order for it to grow. To not do so would leave us with rigid, inflexible code that has
@@ -16518,7 +15253,7 @@ you are here 4 355
 composite pattern defined
 The Composite Pattern defined
 
-That's right, we're going to introduce another pattern to solve this problem. We didn't give up on Iterator ­ it will still be part of our solution ­ however, the problem of managing menus has taken on a new dimension that Iterator doesn't solve. So, we're going to step back and solve it with the Composite Pattern.
+That's right, we're going to introduce another pattern to solve this problem. We didn't give up on Iterator ï¿½ it will still be part of our solution ï¿½ however, the problem of managing menus has taken on a new dimension that Iterator doesn't solve. So, we're going to step back and solve it with the Composite Pattern.
 We're not going to beat around the bush on this pattern, we're going to go ahead and roll out the official definition now:
 The Composite Pattern allows you to compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
@@ -16535,8 +15270,8 @@ Leaf
 
 Elements without children are called leaves.
 
-Let's think about this in terms of our menus: this pattern gives us a way to create a tree structure that can handle a nested group of menus and menu items in the same structure. By putting menus and items in the same structure we create a part-whole hierarchy; that is, a tree of objects that is made of parts (menus and menu items) but that can be treated as a whole, like one big über menu.
-Once we have our über menu, we can use this pattern to treat "individual objects and compositions uniformly." What does that mean? It means if we have a tree structure of menus, submenus, and perhaps subsubmenus along with menu items, then any menu is a "composition" because it can contain both other menus and menu items. The individual objects are just the menu items ­ they don't hold other objects. As you'll see, using a design that follows the Composite Pattern is going to allow us to write some simple code that can apply the same operation (like printing!) over the entire menu structure.
+Let's think about this in terms of our menus: this pattern gives us a way to create a tree structure that can handle a nested group of menus and menu items in the same structure. By putting menus and items in the same structure we create a part-whole hierarchy; that is, a tree of objects that is made of parts (menus and menu items) but that can be treated as a whole, like one big ï¿½ber menu.
+Once we have our ï¿½ber menu, we can use this pattern to treat "individual objects and compositions uniformly." What does that mean? It means if we have a tree structure of menus, submenus, and perhaps subsubmenus along with menu items, then any menu is a "composition" because it can contain both other menus and menu items. The individual objects are just the menu items ï¿½ they don't hold other objects. As you'll see, using a design that follows the Composite Pattern is going to allow us to write some simple code that can apply the same operation (like printing!) over the entire menu structure.
 
 We can represent our Menu and MenuItems in a tree structure.
 MenuIt
@@ -16872,7 +15607,7 @@ Okay, let's give the MenuItem class a shot. Remember, this is the leaf class in 
 
 the iterator and composite patterns
 I'm glad we're going in this direction, I'm thinking this is going to give me the flexibility I need
-to implement that crêpe menu I've always wanted.
+to implement that crï¿½pe menu I've always wanted.
 
 public class MenuItem extends MenuComponent { String name; String description; boolean vegetarian; double price;
 
@@ -17018,7 +15753,7 @@ Download at WoweBook.Com
 test drive the menu composite
 Getting ready for a test drive...
 
-It's about time we took this code for a test drive, but we need to update the Waitress code before we do ­ after all she's the main client of this code:
+It's about time we took this code for a test drive, but we need to update the Waitress code before we do ï¿½ after all she's the main client of this code:
 
 public class Waitress { MenuComponent allMenus;
 public Waitress(MenuComponent allMenus) { this.allMenus = allMenus;
@@ -17555,7 +16290,7 @@ HeadFirst: That implies that every object has the same interface. What if you ha
 Composite: Well, in order for the composite to work transparently to the client, you must implement the same interface for all objects in the composite, otherwise, the client has to worry about which interface each object is implementing, which kind of defeats the purpose. Obviously that means that at times you'll have objects for which some of the method calls don't make sense.
 HeadFirst: So how do you handle that?
 
-Composite: Well there's a couple of ways to handle it; sometimes you can just do nothing, or return null or false ­ whatever makes sense in your application. Other times you'll want to be more proactive and throw an exception. Of course, then the client has to be willing to do a little work and make sure that the method call didn't do something unexpected.
+Composite: Well there's a couple of ways to handle it; sometimes you can just do nothing, or return null or false ï¿½ whatever makes sense in your application. Other times you'll want to be more proactive and throw an exception. Of course, then the client has to be willing to do a little work and make sure that the method call didn't do something unexpected.
 HeadFirst: But if the client doesn't know which kind of object they're dealing with, how would they ever know which calls to make without checking the type?
 Composite: If you're a little creative you can structure your methods so that the default implementations do something that does make sense. For instance, if the client is calling getChild(), on the composite this makes sense. And it makes sense on a leaf too, if you think of the leaf as an object with no children.
 HeadFirst: Ah... smart. But, I've heard some clients are so worried about this issue, that they require separate interfaces for different objects so they aren't allowed to make nonsensical method calls. Is that still the Composite Pattern?
@@ -17580,41 +16315,9 @@ crossword puzzle
 
 It's that time again....
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
-
                                                                                   
-
 
                                                               
 
@@ -17643,7 +16346,7 @@ you are here 4 379
 your design toolbox
 
 Tools for your Design Toolbox
-Two new patterns for your toolbox ­ two great ways to deal with collections of objects.
+Two new patterns for your toolbox ï¿½ two great ways to deal with collections of objects.
 
 OO Principles OO Basics EFnPiamScrbvatopoepgrltresriwuvmacleeaeomentmfntetopaoorowtbsiliihjnotoeatnoictossetn.ervslfyaotarvchceieoearsust,pinlinehnodettredirteaascnitgcn.es.
 
@@ -17660,23 +16363,23 @@ OO Patterns SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftIgeenaadtlseenAttos
 Download at WoweBook.Com
 
 BULLET POINTS
-ß An Iterator allows access to an
+ï¿½ An Iterator allows access to an
 aggregate's elements without exposing its internal structure.
-ß An Iterator takes the job of
+ï¿½ An Iterator takes the job of
 iterating over an aggregate and encapsulates it in another object.
-ß When using an Iterator, we
+ï¿½ When using an Iterator, we
 relieve the aggregate of the responsibility of supporting operations for traversing its data.
-ß An Iterator provides a common
+ï¿½ An Iterator provides a common
 interface for traversing the items of an aggregate, allowing you to use polymorphism when writing code that makes use of the items of the aggregate.
-ß We should strive to assign
+ï¿½ We should strive to assign
 only one responsibility to each class.
-ß The Composite Pattern
+ï¿½ The Composite Pattern
 provides a structure to hold both individual objects and composites.
-ß The Composite Pattern allows
+ï¿½ The Composite Pattern allows
 clients to treat composites and individual objects uniformly.
-ß A Component is any object
+ï¿½ A Component is any object
 in a Composite structure. Components may be other composites or leaf nodes.
-ß There are many design
+ï¿½ There are many design
 tradeoffs in implementing Composite. You need to balance transparency and safety with your needs.
 
 the iterator and composite patterns
@@ -17774,219 +16477,39 @@ you are here 4 383
 crossword puzzle solution
 Exercise solutions
 
-
-
-
-
       
-
-
-
-
-
-
-
-
 
     
 
-
-
-
-
      
-
-
-
-
-
-
-
-
-
-
-
-
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                
 
-
-
-
-
-
-
-
-
-
-
   
 
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    
 
-
-
-
-
-
-
-
-
-
-
  
 
-
-
-
-
-
-
-
-
-
-
-
-
         
-
-
-
-
 
     
 
  
 
-
-
-
-
  
 
    
 
-
-
-
-
-
-
-
-
-
-
-
-
 384Chapter 9         
-
-
-
-
 
 Download at WoweBook.Com
 
@@ -18008,7 +16531,7 @@ Jawv a Bre ak e rs
 Java toasters are so `90s. Today people are building Java into real devices, like gumball machines. That's right, gumball machines have gone high tech; the major manufacturers have found that by putting CPUs into their machines, they can increase sales, monitor inventory over the network and measure customer satisfaction more accurately.
 But these manufacturers are gumball machine experts, not software developers, and they've asked for your help:
 
-Atctthimroinlocekfraaeistn1t8hdeex0tyach0iatjw'tusians'syttg.ettgchoohetnimrobalosoktgreyoerdtayhnwed­iirtnwhjeeoetbdhseed
+Atctthimroinlocekfraaeistn1t8hdeex0tyach0iatjw'tusians'syttg.ettgchoohetnimrobalosoktgreyoerdtayhnwedï¿½iirtnwhjeeoetbdhseed
 
 Mighty Gumball, Inc.
 Where the Gumball Machine is Never Half Empty
@@ -18616,7 +17139,7 @@ you are here 4 401
 
 state objects in the gumball machine
 Reworking the Gumball Machine
-Before we finish the State classes, we're going to rework the Gumball Machine ­ that way you can see how it all fits together. We'll start with the state-related instance variables and switch the code from using integers to using state objects:
+Before we finish the State classes, we're going to rework the Gumball Machine ï¿½ that way you can see how it all fits together. We'll start with the state-related instance variables and switch the code from using integers to using state objects:
 
 public class GumballMachine {
 final static int SOLD_OUT = 0; final static int NO_QUARTER = 1; final static int HAS_QUARTER = 2; final static int SOLD = 3;
@@ -18660,7 +17183,7 @@ State state = soldOutState;
 
 The count the count machine is
 
-oeinmfsptgtauynm.cbealvlas r­iabinleitihaolllydsthe
+oeinmfsptgtauynm.cbealvlas rï¿½iabinleitihaolllydsthe
 
 int count = 0;
 public GumballMachine(int numberGumballs) { soldOutState = new SoldOutState(this); noQuarterState = new NoQuarterState(this); hasQuarterState = new HasQuarterState(this); soldState = new SoldState(this);
@@ -18827,9 +17350,9 @@ Let's take a look at what we've done so far...
 the state pattern
 
 For starters, you now have a Gumball Machine implementation that is structurally quite different from your first version, and yet functionally it is exactly the same. By structurally changing the implemention you've:
-ß Localized the behavior of each state into its own class. ß Removed all the troublesome if statements that would have been difficult to maintain. ß Closed each state for modification, and yet left the Gumball Machine open to extension by
+ï¿½ Localized the behavior of each state into its own class. ï¿½ Removed all the troublesome if statements that would have been difficult to maintain. ï¿½ Closed each state for modification, and yet left the Gumball Machine open to extension by
 adding new state classes (and we'll do this in a second).
-ß Created a code base and class structure that maps much more closely to the Mighty Gumball
+ï¿½ Created a code base and class structure that maps much more closely to the Mighty Gumball
 diagram and is easier to read and understand.
 Now let's look a little more at the functional aspect of what we did:
 
@@ -19026,7 +17549,7 @@ A: No, not always. The alternative is to let the Context
 decide on the flow of state transitions.
 As a general guideline, when the state transitions are fixed they are appropriate for putting in the Context; however, when the transitions are more dynamic, they are typically placed in the state classes themselves (for instance, in the GumballMachine the choice of the transition to NoQuarter or SoldOut depended on the runtime count of gumballs).
 The disadvantage of having state transitions in the state classes is that we create dependencies between the state classes. In our implementation of the GumballMachine we tried to minimize this by using getter methods on the Context, rather than hardcoding explicit concrete state classes.
-Notice that by making this decision, you are making a decision as to which classes are closed for modification ­ the Context or the state classes ­ as the system evolves.
+Notice that by making this decision, you are making a decision as to which classes are closed for modification ï¿½ the Context or the state classes ï¿½ as the system evolves.
 Q: Do clients ever interact directly with the
 states?
 A: No. The states are used by the Context to
@@ -19217,13 +17740,13 @@ Sanity check...
 
 Yes, the CEO of Mighty Gumball probably needs a sanity check, but that's not what we're talking about here. Let's think through some aspects of the GumballMachine that we might want to shore up before we ship the gold version:
 
-ß We've got a lot of duplicate code in the Sold and Winning
+ï¿½ We've got a lot of duplicate code in the Sold and Winning
 states and we might want to clean those up. How would we do it? We could make State into an abstract class and build in some default behavior for the methods; after all, error messages like, "You already inserted a quarter," aren't going to be seen by the customer. So all "error response" behavior could be generic and inherited from the abstract State class.
-ß The dispense() method always gets called, even if the crank is
+ï¿½ The dispense() method always gets called, even if the crank is
 turned when there is no quarter. While the machine operates correctly and doesn't dispense unless it's in the right state, we could easily fix this by having turnCrank() return a boolean, or by introducing exceptions. Which do you think is a better solution?
-ß All of the intelligence for the state transitions is in the State
+ï¿½ All of the intelligence for the state transitions is in the State
 classes. What problems might this cause? Would we want to move that logic into the Gumball Machine? What would be the advantages and disadvantages of that?
-ß Will you be instantiating a lot of GumballMachine objects?
+ï¿½ Will you be instantiating a lot of GumballMachine objects?
 If so, you may want to move the state instances into static instance variables and share them. What changes would this require to the GumballMachine and the States?
 
 DI'mamamgitumJbimal,l machine, not
@@ -19242,7 +17765,7 @@ Tonight: A Strategy and State Pattern Reunion.
 
 Strategy
 Hey bro. Did you hear I was in Chapter 1?
-I was just over giving the Template Method guys a hand ­ they needed me to help them finish off their chapter. So, anyway, what is my noble brother up to?
+I was just over giving the Template Method guys a hand ï¿½ they needed me to help them finish off their chapter. So, anyway, what is my noble brother up to?
 I don't know, you always sound like you've just copied what I do and you're using different words to describe it. Think about it: I allow objects to incorporate different behaviors or algorithms through composition and delegation. You're just copying me.
 Oh yeah? How so? I don't get it.
 Yeah, that was some fine work... and I'm sure you can see how that's more powerful than inheriting your behavior, right?
@@ -19250,7 +17773,7 @@ Sorry, you're going to have to explain that.
 
 State
 Yeah, word is definitely getting around.
-Same as always ­ helping classes to exhibit different behaviors in different states.
+Same as always ï¿½ helping classes to exhibit different behaviors in different states.
 I admit that what we do is definitely related, but my intent is totally different than yours. And, the way I teach my clients to use composition and delegation is totally different.
 Well if you spent a little more time thinking about something other than yourself, you might. Anyway, think about how you work: you have a class you're instantiating and you usually give it a strategy object that implements some behavior. Like, in Chapter 1 you were handing out quack behaviors, right? Real ducks got a real quack, rubber ducks got a quack that squeaked.
 Yes, of course. Now, think about how I work; it's totally different.
@@ -19269,7 +17792,7 @@ That's my brother, always the dreamer.
 
 State
 Okay, when my Context objects get created, I may tell them the state to start in, but then they change their own state over time.
-Sure you can, but the way I work is built around discrete states; my Context objects change state over time according to some well defined state transitions. In other words, changing behavior is built in to my scheme ­ it's how I work!
+Sure you can, but the way I work is built around discrete states; my Context objects change state over time according to some well defined state transitions. In other words, changing behavior is built in to my scheme ï¿½ it's how I work!
 Look, we've already said we're alike in structure, but what we do is quite different in intent. Face it, the world has uses for both of us.
 Are you kidding? This is a Head First book and Head First readers rock. Of course they're going to get to Chapter 10!
 
@@ -19355,25 +17878,25 @@ SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseenAtouyntpiecrcndrngn
 a technique for encapsulating that state.
 
 BULLET POINTS
-ß The State Pattern allows an
+ï¿½ The State Pattern allows an
 object to have many different behaviors that are based on its internal state.
-ß Unlike a procedural state
+ï¿½ Unlike a procedural state
 machine, the State Pattern represents state as a full-blown class.
-ß The Context gets its behavior
+ï¿½ The Context gets its behavior
 by delegating to the current state object it is composed with.
-ß By encapsulating each state
+ï¿½ By encapsulating each state
 into a class, we localize any changes that will need to be made.
-ß The State and Strategy
+ï¿½ The State and Strategy
 Patterns have the same class diagram, but they differ in intent.
-ß Strategy Pattern typically
+ï¿½ Strategy Pattern typically
 configures Context classes with a behavior or algorithm.
-ß State Pattern allows a Context
+ï¿½ State Pattern allows a Context
 to change its behavior as the state of the Context changes.
-ß State transitions can be
+ï¿½ State transitions can be
 controlled by the State classes or by the Context classes.
-ß Using the State Pattern will
+ï¿½ Using the State Pattern will
 typically result in a greater number of classes in your design.
-ß State classes may be shared
+ï¿½ State classes may be shared
 among Context instances.
 
 Download at WoweBook.Com
@@ -20028,7 +18551,7 @@ Client object Client helper
 Service helpe Service objec
 
 Now let's go through all the steps needed to make an object into a service that can accept remote calls and also the steps needed to allow a client to make remote calls.
-You might want to make sure your seat belt is fastened; there are a lot of steps and a few bumps and curves ­ but nothing to be too worried about.
+You might want to make sure your seat belt is fastened; there are a lot of steps and a few bumps and curves ï¿½ but nothing to be too worried about.
 
 r t
 
@@ -20933,11 +19456,11 @@ The Proxy Pattern defined
 We've already put a lot of pages behind us in this chapter; as you can see, explaining the Remote Proxy is quite involved. Despite that, you'll see that the definition and class diagram for the Proxy Pattern is actually fairly straightforward. Note that Remote Proxy is one implementation of the general Proxy Pattern; there are actually quite a few variations of the pattern, and we'll talk about them later. For now, let's get the details of the general pattern down. Here's the Proxy Pattern definition:
 The Proxy Pattern provides a surrogate or placeholder for another object to control access to it.
 Well, we've seen how the Proxy Pattern provides a surrogate or placeholder for another object. We've also described the proxy as a "representative" for another object. But what about a proxy controlling access? That sounds a little strange. No worries. In the case of the gumball machine, just think of the proxy controlling access to the remote object. The proxy needed to control access because our client, the monitor, didn't know how to talk to a remote object. So in some sense the remote proxy controlled access so that it could handle the network details for us. As we just discussed, there are many variations of the Proxy Pattern, and the variations typically revolve around the way the proxy "controls access." We're going to talk more about this later, but for now here are a few ways proxies control access:
-ß As we know, a remote proxy controls access to a
+ï¿½ As we know, a remote proxy controls access to a
 remote object.
-ß A virtual proxy controls access to a resource that is
+ï¿½ A virtual proxy controls access to a resource that is
 expensive to create.
-ß A protection proxy controls access to a resource
+ï¿½ A protection proxy controls access to a resource
 based on access rights.
 Now that you've got the gist of the general pattern, check out the class diagram...
 
@@ -21477,7 +20000,7 @@ Because Java creates the Proxy class for you, you need a way to tell the Proxy c
 Download at WoweBook.Com
 
 Matchmaking in Object ville
-Every town needs a matchmaking service, right? You've risen to the task and implemented a dating service for Objectville. You've also tried to be innovative by including a "Hot or Not" feature in the service where participants can rate each other ­ you figure this keeps your customers engaged and looking through possible matches; it also makes things a lot more fun. Your service revolves around a Person bean that allows you to set and get information about a person:
+Every town needs a matchmaking service, right? You've risen to the task and implemented a dating service for Objectville. You've also tried to be innovative by including a "Hot or Not" feature in the service where participants can rate each other ï¿½ you figure this keeps your customers engaged and looking through possible matches; it also makes things a lot more fun. Your service revolves around a Person bean that allows you to set and get information about a person:
 
 the proxy pattern Not
 Hot
@@ -21898,7 +20421,7 @@ method called isProxyClass(). Calling this method with a class will return true 
 Q: Are there any restrictions on
 the types of interfaces I can pass into newProxyInstance()?
 A: Yes, there are a few. First, it is
-worth pointing out that we always pass newProxyInstance() an array of interfaces ­ only interfaces are allowed, no classes. The major restrictions are that all non-public interfaces need to be from the same package. You also can't have interfaces with clashing method names (that is, two interfaces with a method with the same signature). There are a few other minor nuances as well, so at some point you should take a look at the fine print on dynamic proxies in the javadoc.
+worth pointing out that we always pass newProxyInstance() an array of interfaces ï¿½ only interfaces are allowed, no classes. The major restrictions are that all non-public interfaces need to be from the same package. You also can't have interfaces with clashing method names (that is, two interfaces with a method with the same signature). There are a few other minor nuances as well, so at some point you should take a look at the fine print on dynamic proxies in the javadoc.
 Q: Why are you using skeletons?
 I thought we got rid of those back in Java 1.2.
 
@@ -21980,20 +20503,8 @@ crossword puzzle
 
 It's been a LONG chapter. Why not unwind by doing a crossword puzzle before it ends?
 
-
-
-
-
-
-
-
-
  
  
-
- 
-
-
 
  
 
@@ -22001,9 +20512,9 @@ It's been a LONG chapter. Why not unwind by doing a crossword puzzle before it e
 
  
 
+ 
 
                                                                                                    
-
 
                                                 
 
@@ -22029,23 +20540,23 @@ SeitnvnactrOdraewaydprebaDthscrepDuuiesehanepelftgeenaadlseenAtouyntpiecrcndrngn
 A Proxy acts as a representative for another object.
 
 BULLET POINTS
-ß The Proxy Pattern provides
+ï¿½ The Proxy Pattern provides
 a representative for another object in order to control the client's access to it. There are a number of ways it can manage that access.
-ß A Remote Proxy manages
+ï¿½ A Remote Proxy manages
 interaction between a client and a remote object.
-ß A Virtual Proxy controls access
+ï¿½ A Virtual Proxy controls access
 to an object that is expensive to instantiate.
-ß A Protection Proxy controls
+ï¿½ A Protection Proxy controls
 access to the methods of an object based on the caller.
-ß Many other variants of
+ï¿½ Many other variants of
 the Proxy Pattern exist including caching proxies, synchronization proxies, firewall proxies, copy-on-write proxies, and so on.
-ß Proxy is structurally similar to
+ï¿½ Proxy is structurally similar to
 Decorator, but the two differ in their purpose.
-ß The Decorator Pattern adds
+ï¿½ The Decorator Pattern adds
 behavior to an object, while a Proxy controls access.
-ß Java's built-in support for Proxy
+ï¿½ Java's built-in support for Proxy
 can build a dynamic proxy class on demand and dispatch all calls on it to a handler of your choosing.
-ß Like any wrapper, proxies will
+ï¿½ Like any wrapper, proxies will
 increase the number of classes and objects in your designs.
 
 Download at WoweBook.Com
@@ -22094,161 +20605,31 @@ PersonBean getNonOwnerProxy(PersonBean person) {
 return (PersonBean) Proxy.newProxyInstance( person.getClass().getClassLoader(), person.getClass().getInterfaces(), new NonOwnerInvocationHandler(person));
 }
 
-
-
-
-
       
-
-
-
 
   
 
-
-
-
-
    
-
-
-
-
-
-
-
-
 
        
 
-
-
-
-
-
-
-
-
-
-
-
-
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       
-
-
-
-
-
-
-
-
-
-
-
 
    
 
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     
 
-
-
-
-
-
-
-
-
   
-
-
-
-
 
 you are here 4 493
 
 Download at WoweBook.Com
-
-
-
-
 
 ready-bake code: cd cover viewer
 Ready-bake Code
@@ -22351,7 +20732,7 @@ Download at WoweBook.Com
 compound patterns
 Duck reunion
 As you've already heard, we're going to get to work with the ducks again. This time the ducks are going to show you how patterns can coexist and even cooperate within the same solution. We're going to rebuild our duck simulator from scratch and give it some interesting capabilities by using a bunch of patterns. Okay, let's get started...
-1 First, we'll create a Quackable interface. Like we said, we're starting from scratch. This time around, the Ducks are going to implement a Quackable interface. That way we'll know what things in the simulator can quack() ­ like Mallard Ducks, Redhead Ducks, Duck Calls, and we might even see the Rubber Duck sneak back in.
+1 First, we'll create a Quackable interface. Like we said, we're starting from scratch. This time around, the Ducks are going to implement a Quackable interface. That way we'll know what things in the simulator can quack() ï¿½ like Mallard Ducks, Redhead Ducks, Duck Calls, and we might even see the Rubber Duck sneak back in.
 
 public interface Quackable { public void quack();
 }
@@ -22941,7 +21322,7 @@ compound patterns
 Safety versus transparency
 
 You might remember that in the Composite Pattern chapter the composites (the Menus) and the leaf nodes (the MenuItems) had the same exact set of methods, including the add() method. Because they had the same set of methods, we could call methods on MenuItems that didn't really make sense (like trying to add something to a MenuItem by calling add()). The benefit of this was that the distinction between leaves and composites was transparent: the client didn't have to know whether it was dealing with a leaf or a composite; it just called the same methods on both.
-Here, we've decided to keep the composite's child maintenance methods separate from the leaf nodes: that is, only Flocks have the add() method. We know it doesn't make sense to try to add something to a Duck, and in this implementation, you can't. You can only add() to a Flock. So this design is safer ­ you can't call methods that don't make sense on components ­ but it's less transparent. Now the client has to know that a Quackable is a Flock in order to add Quackables to it.
+Here, we've decided to keep the composite's child maintenance methods separate from the leaf nodes: that is, only Flocks have the add() method. We know it doesn't make sense to try to add something to a Duck, and in this implementation, you can't. You can only add() to a Flock. So this design is safer ï¿½ you can't call methods that don't make sense on components ï¿½ but it's less transparent. Now the client has to know that a Quackable is a Flock in order to add Quackables to it.
 As always, there are trade-offs when you do OO design and you need to consider them as you create your own composites.
 
 Download at WoweBook.Com
@@ -23282,7 +21663,7 @@ MVC's a paradigm for factoring your code into functional segments, so your brain
 View CCroenatmryoller
 Model
 Model View, it's got three layers like Oreos do Model View Controller Model View, Model View, Model View Controller
-Model objects represent your application's raison d'être Custom objects that contain data, logic, and et cetera You create custom classes, in your app's problem domain you can choose to reuse them with all the views but the model objects stay the same.
+Model objects represent your application's raison d'ï¿½tre Custom objects that contain data, logic, and et cetera You create custom classes, in your app's problem domain you can choose to reuse them with all the views but the model objects stay the same.
 526 Chapter 12
 
 You can model a throttle and a manifold Model the toddle of a two year old Model a bottle of fine Chardonnay Model all the glottal stops people say Model the coddling of boiling eggs You can model the waddle in Hexley's legs
@@ -23342,7 +21723,7 @@ Cute song, but is that really supposed to teach me what Model-
 View-Controller is? I've tried learning MVC before and it made my
 brain hurt.
 No. Design Patterns are your key to the MVC.
-We were just trying to whet your appetite. Tell you what, after you finish reading this chapter, go back and listen to the song again ­ you'll have even more fun.
+We were just trying to whet your appetite. Tell you what, after you finish reading this chapter, go back and listen to the song again ï¿½ you'll have even more fun.
 It sounds like you've had a bad run in with MVC before? Most of us have. You've probably had other developers tell you it's changed their lives and could possibly create world peace. It's a powerful compound pattern, for sure, and while we can't claim it will create world peace, it will save you hours of writing code once you know it.
 But first you have to learn it, right? Well, there's going to be a big difference this time around because now you know patterns!
 That's right, patterns are the key to MVC. Learning MVC from the top down is difficult; not many developers succeed. Here's the secret to learning MVC: it's just a few patterns put together. When you approach learning MVC by looking at the patterns, all of the sudden it starts to make sense.
@@ -23789,7 +22170,7 @@ you are here 4 539
 
 the dj view
 Implementing the View
-The two parts of the view ­ the view of the model, and the view with the user interface controls ­ are displayed in two windows, but live together in one Java class. We'll first show you just the code that creates the view of the model, which displays the current BPM and the beat bar. Then we'll come back on the next page and show you just the code that creates the user interface controls, which displays the BPM text entry field, and the buttons.
+The two parts of the view ï¿½ the view of the model, and the view with the user interface controls ï¿½ are displayed in two windows, but live together in one Java class. We'll first show you just the code that creates the view of the model, which displays the current BPM and the beat bar. Then we'll come back on the next page and show you just the code that creates the user interface controls, which displays the BPM text entry field, and the buttons.
 
 .
 Watch it!
@@ -24035,7 +22416,7 @@ Things to do
 Download at WoweBook.Com
 
 Exploring Strategy
-Let's take the Strategy Pattern just a little further to get a better feel for how it is used in MVC. We're going to see another friendly pattern pop up too ­ a pattern you'll often see hanging around the MVC trio: the Adapter Pattern.
+Let's take the Strategy Pattern just a little further to get a better feel for how it is used in MVC. We're going to see another friendly pattern pop up too ï¿½ a pattern you'll often see hanging around the MVC trio: the Adapter Pattern.
 Think for a second about what the DJ View does: it displays a beat rate and a pulse. Does that sound like something else? How about a heartbeat? It just so happens we happen to have a heart monitor class; here's the class diagram:
 
 compound patterns
@@ -24208,7 +22589,7 @@ You don't even want to know what life was like before Model 2 came on the scene.
 ugly.
 
 Model 2 is more than just a clean design.
-The benefits of the separation of the view, model and controller are pretty clear to you now. But you need to know the "rest of the story" with Model 2 ­ that it saved many web shops from sinking into chaos.
+The benefits of the separation of the view, model and controller are pretty clear to you now. But you need to know the "rest of the story" with Model 2 ï¿½ that it saved many web shops from sinking into chaos.
 How? Well, Model 2 not only provides a separation of components in terms of design, it also provides a separation in production responsibilities. Let's face it, in the old days, anyone with access to your JSPs could get in and write any Java code they wanted, right? And that included a lot of people who didn't know a jar file from a jar of peanut butter. The reality is that most web producers know about content and HTML, not software.
 Luckily Model 2 came to the rescue. With Model 2 we can leave the developer jobs to the guys & girls who know their Servlets and let the web producers loose on simple Model 2 style JSPs where all the producers have access to is HTML and simple JavaBeans.
 
@@ -24510,21 +22891,21 @@ OO Patterns SeitnvnactrODdraewarAydpDrebaFtiaehsifcrnepelunsuilseseehibnttpueaal
 We have a new category! MVC and Model 2 are compound patterns.
 
 BULLET POINTS
-ß The Model View Controller
+ï¿½ The Model View Controller
 Pattern (MVC) is a compound pattern consisting of the Observer, Strategy and Composite patterns.
-ß The model makes use of the
+ï¿½ The model makes use of the
 Observer Pattern so that it can keep observers updated yet stay decoupled from them.
-ß The controller is the strategy
+ï¿½ The controller is the strategy
 for the view. The view can use different implementations of the controller to get different behavior.
-ß The view uses the Composite
+ï¿½ The view uses the Composite
 Pattern to implement the user interface, which usually consists of nested components like panels, frames and buttons.
-ß These patterns work together
+ï¿½ These patterns work together
 to decouple the three players in the MVC model, which keeps designs clear and flexible.
-ß The Adapter Pattern can be
+ï¿½ The Adapter Pattern can be
 used to adapt a new model to an existing view and controller.
-ß Model 2 is an adaptation of
+ï¿½ Model 2 is an adaptation of
 MVC for web applications.
-ß In Model 2, the controller is
+ï¿½ In Model 2, the controller is
 implemented as a servlet and JSP & HTML implement the view.
 
 560 Chapter 12
@@ -24924,7 +23305,7 @@ hg
 Worldg
 
 Ahhhh, now you're ready for a bright new world filled with Design Patterns. But, before you go opening all those new doors of opportunity, we
-need to cover a few details that you'll encounter out in the real world ­ that's right, things get a little more complex than they are here in Objectville. Come along, we've got a nice guide to help you through the transition on the next page...
+need to cover a few details that you'll encounter out in the real world ï¿½ that's right, things get a little more complex than they are here in Objectville. Come along, we've got a nice guide to help you through the transition on the next page...
 
 Download at WoweBook.Com
 
@@ -24932,7 +23313,7 @@ this is a new chapter 577
 
 what you'll learn from the guide
 
-TheBOettbejrecLtviilvleinGg uwidithe tDo esign Patterns Pwloearlbsdeb.abIbc"LcbnDeDbgptebhAaeteLitbisrsHosSbinvocgugeBoonenratuKoivehemderihweLP.dentraWuthtTeevhahansetehaohteyelptaodotlctriooorneayweetduasunwrombeipnwngfostnruwtboc.udnhiow.leo"ciaiaieldknofbvitlrnrtt:remeedeyrhyaeracst.wpimiDohtnsnahismegptomnehyentaedpronsettuiaaumntiegipeenrittngrptisflisnemohdac&Purfsbeotnietnunoinansensdtrctrctiiistnentsrceelynpili­sgrcakdt'nkowiesteaotsfsvhCrjaniuteifDfiethoslasecZoretcraatpoeaflmtbetoesifilovnfioororgeyiosnungenstm.tbsshgtteyPeatawarwhsbingihaoetimltuedeuethdrtrrpse.wbeeuprrGfioshonta;nhovyatiakerittnneyeysitogargotanbndhuoyneseoflooyjoiufnwuFunsparrrtgtaoohpqh.tuneautaregitrvrctieenestkairsmtrnloeusevs.eearled.
+TheBOettbejrecLtviilvleinGg uwidithe tDo esign Patterns Pwloearlbsdeb.abIbc"LcbnDeDbgptebhAaeteLitbisrsHosSbinvocgugeBoonenratuKoivehemderihweLP.dentraWuthtTeevhahansetehaohteyelptaodotlctriooorneayweetduasunwrombeipnwngfostnruwtboc.udnhiow.leo"ciaiaieldknofbvitlrnrtt:remeedeyrhyaeracst.wpimiDohtnsnahismegptomnehyentaedpronsettuiaaumntiegipeenrittngrptisflisnemohdac&Purfsbeotnietnunoinansensdtrctrctiiistnentsrceelynpiliï¿½sgrcakdt'nkowiesteaotsfsvhCrjaniuteifDfiethoslasecZoretcraatpoeaflmtbetoesifilovnfioororgeyiosnungenstm.tbsshgtteyPeatawarwhsbingihaoetimltuedeuethdrtrrpse.wbeeuprrGfioshonta;nhovyatiakerittnneyeysitogargotanbndhuoyneseoflooyjoiufnwuFunsparrrtgtaoohpqh.tuneautaregitrvrctieenestkairsmtrnloeusevs.eearled.
 
 578 Chapter 13
 
@@ -25002,7 +23383,7 @@ Q: Is it okay to slightly alter a
 pattern's structure to fit my design? Or am I going to have to go by the strict definition?
 A: Of course you can alter it. Like
 design principles, patterns are not meant to be laws or rules; they are guidelines that you can alter to fit your needs. As you've seen, a lot of real-world examples don't fit the classic pattern designs.
-However, when you adapt patterns, it never hurts to document how your pattern differs from the classic design ­ that way, other developers can quickly recognize the patterns you're using and any differences between your pattern and the classic pattern.
+However, when you adapt patterns, it never hurts to document how your pattern differs from the classic design ï¿½ that way, other developers can quickly recognize the patterns you're using and any differences between your pattern and the classic pattern.
 
 Q: Where can I get a patterns
 catalog?
@@ -25038,7 +23419,7 @@ you are here 4 583
 
 using a pattern catalog
 
-Frank: Wow, that's earth-shattering ­ a name! Imagine that.
+Frank: Wow, that's earth-shattering ï¿½ a name! Imagine that.
 Jim: Hold on Frank; actually, the name is really important. When we have a name for a pattern, it gives us a way to talk about the pattern; you know, that whole shared vocabulary thing.
 Frank: Okay, okay. I was just kidding. Go on, what else is there?
 Jim: Well, like I was saying, every pattern follows a template. For each pattern we have a name and a few sections that tell us more about the pattern. For instance, there is an Intent section that describes what the pattern is, kind of like a definition. Then there are Motivation and Applicability sections that describe when and where the pattern might be used.
@@ -25092,7 +23473,7 @@ Participants
 
 dieDdriaioautl,mfoiescruoneninpuomsilnetpauuidgnltlnogeulamoetpfrneeiaiputtdiiilsssoaismnlooirosremesesmaoeelctdia,ttigevganendciriobcbmnhihuaeeelngnlruniistaimetwnwiqistisusiiiaEpstsceeetlcemetmseeoeqdatuod, ilssomulrsueactgivlnaeladanataedlsluieqmtcutlieuinmpbctliaaninmtcgpierbeta,laatc.mcoDonnduuoilellabroonlrasdpoarereuertcemimliitn
 
-ß
+ï¿½
 
 A dolore dolore et, verci enis enit nonullu tpatiss ismodignibh er
 
@@ -25118,7 +23499,7 @@ autem
 
 diam
 
-­
+ï¿½
 
 A feuis nos alit feuipit ing enit
 
@@ -25140,11 +23521,11 @@ min
 
 ea
 
-­ Ad magnim quate modolore vent lut luptat prat. Dui blaore min ea feuipit ing enit
+ï¿½ Ad magnim quate modolore vent lut luptat prat. Dui blaore min ea feuipit ing enit
 
 Collaborations
 
-ß
+ï¿½
 
 Feuipit ing enit laore irit, conse dolore.
 
@@ -25225,7 +23606,7 @@ Q: Is it possible to create your own Design
 Patterns? Or is that something you have to be a "patterns guru" to do?
 A: First, remember that patterns are discovered,
 not created. So, anyone can discover a Design Pattern and then author its description; however, it's not easy and doesn't happen quickly, nor often. Being a "patterns writer" takes commitment.
-You should first think about why you'd want to ­ the majority of people don't author patterns; they just use them. However, you might work in a specialized domain for which you think new patterns would be helpful, or you might have come across a solution to what you think is a recurring problem, or you may just want to get involved in the patterns community and contribute to the growing body of work.
+You should first think about why you'd want to ï¿½ the majority of people don't author patterns; they just use them. However, you might work in a specialized domain for which you think new patterns would be helpful, or you might have come across a solution to what you think is a recurring problem, or you may just want to get involved in the patterns community and contribute to the growing body of work.
 Q: I'm game; how do I get started?
 A: Like any discipline, the more you know the
 better. Studying existing patterns, what they do and how they relate to other patterns is crucial. Not only does it make you familiar with how patterns are crafted, it prevents you from reinventing the wheel. From there you'll want to start writing your patterns on paper, so you can communicate them to other developers; we're going to talk more about how to communicate your patterns in a bit. If you're really interested, you'll want to read the section that follows these Q&As.
@@ -25242,7 +23623,7 @@ Download at WoweBook.Com
 
 So you wanna be a Design Patterns writer
 Do your homework. You need to be well versed in the existing patterns before you can create a new one. Most patterns that appear to be new, are, in fact, just variants of existing patterns. By studying patterns, you become better at recognizing them, and you learn to relate them to other patterns.
-Take time to reflect, evaluate. Your experience ­ the problems you've encountered, and the solutions you've used ­ are where ideas for patterns are born. So take some time to reflect on your experiences and comb them for novel designs that recur. Remember that most designs are variations on existing patterns and not new patterns. And when you do find what looks like a new pattern, its applicability may be too narrow to qualify as a real pattern.
+Take time to reflect, evaluate. Your experience ï¿½ the problems you've encountered, and the solutions you've used ï¿½ are where ideas for patterns are born. So take some time to reflect on your experiences and comb them for novel designs that recur. Remember that most designs are variations on existing patterns and not new patterns. And when you do find what looks like a new pattern, its applicability may be too narrow to qualify as a real pattern.
 Get your ideas down on paper in a way others can understand. Locating new patterns isn't of much use if others can't make use of your find; you need to document your pattern candidates so that others can read, understand, and apply them to their own solution and then supply you with feedback. Luckily, you don't need to invent your own method of documenting your patterns. As you've already seen with the GoF template, a lot of thought has already gone into how to describe patterns and their characteristics.
 Have others try your patterns; then refine and refine some more. Don't expect to get your pattern right the first time. Think of your pattern as a work in progress that will improve over time. Have other developers review your candidate pattern, try it out, and give you feedback. Incorporate that feedback into your description and try again. Your description will never be perfect, but at some point it should be solid enough that other developers can read and understand it.
 Don't forget the rule of three. Remember, unless your pattern has been successfully applied in three real-world solutions, it can't qualify as a pattern. That's another good reason to get your pattern into the hands of others so they can try it, give feedback, and allow you to converge on a working pattern.
@@ -25616,7 +23997,7 @@ Don't let us discourage you, though. When a Design Pattern is the right tool for
 Download at WoweBook.Com
 
 Don't forget the power of the shared vocabulary
-We've spent so much time in this book discussing OO nuts and bolts that it's easy to forget the human side of Design Patterns ­ they don't just help load your brain with solutions, they also give you a shared vocabulary with other developers. Don't underestimate the power of a shared vocabulary, it's one of the biggest benefits of Design Patterns.
+We've spent so much time in this book discussing OO nuts and bolts that it's easy to forget the human side of Design Patterns ï¿½ they don't just help load your brain with solutions, they also give you a shared vocabulary with other developers. Don't underestimate the power of a shared vocabulary, it's one of the biggest benefits of Design Patterns.
 Just think, something has changed since the last time we talked about shared vocabularies; you've now started to build up quite a vocabulary of your own! Not to mention, you have also learned a full set of OO design principles from which you can easily understand the motivation and workings of any new patterns you encounter.
 Now that you've got the Design Pattern basics down, it's time for you to go out and spread the word to others. Why? Because when your fellow developers know patterns and use a shared vocabulary as well, it leads to better designs, better communication and, best of all, it'll save you a lot of time that you can spend on cooler things.
 
@@ -25684,10 +24065,10 @@ you are here 4 601
 patterns resources
 Your journey has just begun...
 Now that you're on top of Design Patterns and ready to dig deeper, we've got three definitive texts that you need to add to your bookshelf...
-The definitive Design Patterns text This is the book that kicked off the entire field of Design Patterns when it was released in 1995. You'll find all the fundamental patterns here. In fact, this book is the basis for the set of patterns we used in Head First Design Patterns. You won't find this book to be the last word on Design Patterns ­ the field has grown substantially since its publication ­ but it is the first and most definitive. Picking up a copy of Design Patterns is a great way to start exploring patterns after Head First.
+The definitive Design Patterns text This is the book that kicked off the entire field of Design Patterns when it was released in 1995. You'll find all the fundamental patterns here. In fact, this book is the basis for the set of patterns we used in Head First Design Patterns. You won't find this book to be the last word on Design Patterns ï¿½ the field has grown substantially since its publication ï¿½ but it is the first and most definitive. Picking up a copy of Design Patterns is a great way to start exploring patterns after Head First.
 TaofhrefGeacoutFtiohfnooarrts eoslhfyokrDnteo.swignnaPsatthteer"nGsaangreof Four"
 Christopher Alexander invented patterns, which inspired applying similar solutions to software.
-The definitive Patterns texts Patterns didn't start with the GoF; they started with Christopher Alexander, a Professor of Architecture at Berkeley ­ that's right, Alexander is an architect, not a computer scientist. Alexander invented patterns for building living architectures (like houses, towns and cities). The next time you're in the mood for some deep, engaging reading, pick up The Timeless Way of Building and A Pattern Language. You'll see the true beginnings of Design Patterns and recognize the direct analogies between creating "living architecture" and flexible, extensible software. So grab a cup of Starbuzz Coffee, sit back, and enjoy...
+The definitive Patterns texts Patterns didn't start with the GoF; they started with Christopher Alexander, a Professor of Architecture at Berkeley ï¿½ that's right, Alexander is an architect, not a computer scientist. Alexander invented patterns for building living architectures (like houses, towns and cities). The next time you're in the mood for some deep, engaging reading, pick up The Timeless Way of Building and A Pattern Language. You'll see the true beginnings of Design Patterns and recognize the direct analogies between creating "living architecture" and flexible, extensible software. So grab a cup of Starbuzz Coffee, sit back, and enjoy...
 
 602 Chapter 13
 
@@ -25702,10 +24083,6 @@ http://c2.com/cgi/wiki?WelcomeVisitors
 The Hillside Group fosters common programming and design practices and provides a central resource for patterns work. The site includes information on many patterns-related resources such as articles, books, mailing lists and tools.
 http://hillside.net/
 
-
-
-
-
           
 
             
@@ -25715,10 +24092,7 @@ http://hillside.net/
 
                   
 
-
  
-
-
 
  
        
@@ -25727,7 +24101,6 @@ http://hillside.net/
   
 
     
-
 
  
 
@@ -25745,8 +24118,6 @@ http://hillside.net/
  
 
     
-
-
 
 Conferences and Workshops
 And if you'd like to get some face-to-face time with the patterns community, be sure to check out the many patterns related conferences and workshops. The Hillside site maintains a complete list. At the least you'll want to check out OOPSLA, the ACM Conference on Object-Oriented Systems, Languages and Applications.
@@ -25834,10 +24205,10 @@ Name: Golden Hammer
 Problem: You need to choose technologies for your development and you believe that exactly one technology must dominate the architecture.
 Context: You need to develop some new system or piece of software that doesn't fit well with the technology that the development team is familiar with.
 Forces:
-· The development team is committed to the technology they know.
-· The development team is not familiar with other technologies.
-· Unfamiliar technologies are seen as risky.
-· It is easy to plan and estimate for development using the familiar technology.
+ï¿½ The development team is committed to the technology they know.
+ï¿½ The development team is not familiar with other technologies.
+ï¿½ Unfamiliar technologies are seen as risky.
+ï¿½ It is easy to plan and estimate for development using the familiar technology.
 Supposed Solution: Use the familiar technology anyway. The technology is applied obsessively to many problems, including places where it is clearly inappropriate.
 Refactored Solution: Expanding the knowledge of developers through education, training, and book study groups that expose developers to new solutions.
 Examples:
@@ -25869,23 +24240,23 @@ Check out the Appendix, we'll give you a heads up on some more
 foundational patterns you'll probably want to have a look at.
 
 BULLET POINTS
-ß Let Design Patterns emerge in
+ï¿½ Let Design Patterns emerge in
 your designs, don't force them in just for the sake of using a pattern.
-ß Design Patterns aren't set in
+ï¿½ Design Patterns aren't set in
 stone; adapt and tweak them to meet your needs.
-ß Always use the simplest
+ï¿½ Always use the simplest
 solution that meets your needs, even if it doesn't include a pattern.
-ß Study Design Pattern catalogs
+ï¿½ Study Design Pattern catalogs
 to familiarize yourself with patterns and the relationships among them.
-ß Pattern classifications (or
+ï¿½ Pattern classifications (or
 categories) provide groupings for patterns. When they help, use them.
-ß You need to be committed to
+ï¿½ You need to be committed to
 be a patterns writer: it takes time and patience, and you have to be willing to do lots of refinement.
-ß Remember, most patterns you
+ï¿½ Remember, most patterns you
 encounter will be adaptations of existing patterns, not new patterns.
-ß Build your team's shared
+ï¿½ Build your team's shared
 vocabulary. This is one of the most powerful benefits of using patterns.
-ß Like any community, the
+ï¿½ Like any community, the
 patterns community has its own lingo. Don't let that hold you back. Having read this book, you now know most of it.
 
 608 Chapter 13
@@ -25897,7 +24268,7 @@ Leaving Object ville...
 better living with patterns
 
 Boy, it's been great having you in Object ville.
-We're going to miss you, for sure. But don't worry ­ before you know it, the next Head First book will be out and you can visit again. What's the next book, you ask? Hmmm, good question! Why don't you help us decide? Send email to booksuggestions@wickedlysmart.com.
+We're going to miss you, for sure. But don't worry ï¿½ before you know it, the next Head First book will be out and you can visit again. What's the next book, you ask? Hmmm, good question! Why don't you help us decide? Send email to booksuggestions@wickedlysmart.com.
 
 Download at WoweBook.Com
 
@@ -25949,7 +24320,7 @@ Bridge
 
 Use the Bridge Pattern to vary not only your implementations, but also your abstractions.
 
-A scenario Imagine you're going to revolutionize "extreme lounging." You're writing the code for a new ergonomic and user-friendly remote control for TVs. You already know that you've got to use good OO techniques because while the remote is based on the same abstraction, there will be lots of implementations ­ one for each model of TV.
+A scenario Imagine you're going to revolutionize "extreme lounging." You're writing the code for a new ergonomic and user-friendly remote control for TVs. You already know that you've got to use good OO techniques because while the remote is based on the same abstraction, there will be lots of implementations ï¿½ one for each model of TV.
 
 Tanhisintiserafnaacbestorraacntioanb.stItraccotulcdlabsse.
 
@@ -26016,18 +24387,18 @@ Concrete subclasses are implemented in terms of the abstraction, not the impleme
 Now you have two hierarchies, one for the remotes and a separate one for platform specific TV implementations. The bridge allows you to vary either side of the two hierarchies independently.
 
 Bridge Benefits
-ß Decouples an implementation so that it is not bound
+ï¿½ Decouples an implementation so that it is not bound
 permanently to an interface.
-ß Abstraction and implementation can be extended
+ï¿½ Abstraction and implementation can be extended
 independently.
-ß Changes to the concrete abstraction classes don't
+ï¿½ Changes to the concrete abstraction classes don't
 affect the client.
 
-Bridge Uses and Drawbacks ß Useful in graphic and windowing systems that need to
+Bridge Uses and Drawbacks ï¿½ Useful in graphic and windowing systems that need to
 run over multiple platforms.
-ß Useful any time you need to vary an interface and an
+ï¿½ Useful any time you need to vary an interface and an
 implementation in different ways.
-ß Increases complexity.
+ï¿½ Increases complexity.
 
 Download at WoweBook.Com
 
@@ -26102,13 +24473,13 @@ builder
 
 TttmhhheeeetnpChloclaidaenlnnltsteortdhriinereteagcretinetsuvVmetabhtceeahrtebiouocfinlodPmseltparelneptntsoeerac(on)rbdejaetcet.
 Builder Benefits
-ß Encapsulates the way a complex object is
+ï¿½ Encapsulates the way a complex object is
 constructed.
-ß Allows objects to be constructed in a multistep and
+ï¿½ Allows objects to be constructed in a multistep and
 varying process (as opposed to one step factories).
-ß Hides the internal representation of the product from
+ï¿½ Hides the internal representation of the product from
 the client.
-ß Product implementations can be swapped in and out
+ï¿½ Product implementations can be swapped in and out
 because the client only sees an abstract interface.
 
 AbstractBuilder
@@ -26119,7 +24490,7 @@ buildDay() addHotel() addReservation() addSpecialEvent() addTickets() getVacatio
 Tcaicnrhnoeedmtachtpsoeteonsosvcirtarreeecesaatslttetihproberunmuocidtlduuecrrte.s
 
 Builder Uses and Drawbacks
-ß Often used for building composite structures. ß Constructing objects requires more domain
+ï¿½ Often used for building composite structures. ï¿½ Constructing objects requires more domain
 knowledge of the client than when using a Factory.
 
 Download at WoweBook.Com
@@ -26174,19 +24545,19 @@ Complaint Handler
 NewLoc Handler
 
 Chain of Responsibility Benefits
-ß Decouples the sender of the request and its
+ï¿½ Decouples the sender of the request and its
 receivers.
-ß Simplifies your object because it doesn't have to
+ï¿½ Simplifies your object because it doesn't have to
 know the chain's structure and keep direct references to its members.
-ß Allows you to add or remove responsibilities
+ï¿½ Allows you to add or remove responsibilities
 dynamically by changing the members or order of the chain.
 
 Chain of Responsibility Uses and Drawbacks
-ß Commonly used in windows systems to handle
+ï¿½ Commonly used in windows systems to handle
 events like mouse clicks and keyboard events.
-ß Execution of the request isn't guaranteed; it may fall
+ï¿½ Execution of the request isn't guaranteed; it may fall
 off the end of the chain if no object handles it (this can be an advantage or a disadvantage).
-ß Can be hard to observe the runtime characteristics
+ï¿½ Can be hard to observe the runtime characteristics
 and debug.
 
 Download at WoweBook.Com
@@ -26244,15 +24615,15 @@ Tree
 display(x, y, age) { // use X-Y coords // & complex age // related calcs }
 
 Flyweight Benefits
-ß Reduces the number of object instances at runtime,
+ï¿½ Reduces the number of object instances at runtime,
 saving memory.
-ß Centralizes state for many "virtual" objects into a
+ï¿½ Centralizes state for many "virtual" objects into a
 single location.
 
 Flyweight Uses and Drawbacks
-ß The Flyweight is used when a class has many
+ï¿½ The Flyweight is used when a class has many
 instances, and they can all be controlled identically.
-ß A drawback of the Flyweight pattern is that once
+ï¿½ A drawback of the Flyweight pattern is that once
 you've implemented it, single, logical instances of the class will not be able to behave independently from the other instances.
 
 Download at WoweBook.Com
@@ -26327,22 +24698,22 @@ RightCommand interpret(context)
 
 FlyCommand interpret(context)
 
-To interpret the language, call the interpret() method on each expression type. This method is passed a context ­ which contains the input stream of the program we're parsing ­ and matches the input and evaluates it.
+To interpret the language, call the interpret() method on each expression type. This method is passed a context ï¿½ which contains the input stream of the program we're parsing ï¿½ and matches the input and evaluates it.
 
 Interpreter Benefits
-ß Representing each grammar rule in a class makes
+ï¿½ Representing each grammar rule in a class makes
 the language easy to implement.
-ß Because the grammar is represented by classes, you
+ï¿½ Because the grammar is represented by classes, you
 can easily change or extend the language.
-ß By adding additional methods to the class structure,
+ï¿½ By adding additional methods to the class structure,
 you can add new behaviors beyond interpretation, like pretty printing and more sophisticated program validation.
 
 Interpreter Uses and Drawbacks
-ß Use interpreter when you need to implement a
+ï¿½ Use interpreter when you need to implement a
 simple language.
-ß Appropriate when you have a simple grammar and
+ï¿½ Appropriate when you have a simple grammar and
 simplicity is more important than efficiency.
-ß Used for scripting and programming languages. ß This pattern can become cumbersome when the
+ï¿½ Used for scripting and programming languages. ï¿½ This pattern can become cumbersome when the
 number of grammar rules is large. In these cases a parser/compiler generator may be more appropriate.
 
 Download at WoweBook.Com
@@ -26384,9 +24755,9 @@ Download at WoweBook.Com
 
 Mediator in action...
 With a Mediator added to the system, all of the appliance objects can be greatly simplified:
-ß They tell the Mediator when their state
+ï¿½ They tell the Mediator when their state
 changes.
-ß They respond to requests from the
+ï¿½ They respond to requests from the
 Mediator.
 Before adding the Mediator, all of the appliance objects needed to know about each other... they were all tightly coupled. With the Mediator in place, the appliance objects are all completely decoupled from each other.
 The Mediator contains all of the control logic for the entire system. When an existing appliance needs a new rule, or a new appliance is added to the system, you'll know that all of the necessary logic will be added to the Mediator.
@@ -26409,17 +24780,17 @@ Mediator
 if(alarmEvent){ checkCalendar() checkShower() checkTemp() } if(weekend) { checkWeather() // do more stuff } if(trashDay) { resetAlarm() // do more stuff }
 
 Mediator Benefits
-ß Increases the reusability of the objects supported by
+ï¿½ Increases the reusability of the objects supported by
 the Mediator by decoupling them from the system.
-ß Simplifies maintenance of the system by centralizing
+ï¿½ Simplifies maintenance of the system by centralizing
 control logic.
-ß Simplifies and reduces the variety of messages sent
+ï¿½ Simplifies and reduces the variety of messages sent
 between objects in the system.
 
 Mediator Uses and Drawbacks
-ß The Mediator is commonly used to coordinate related
+ï¿½ The Mediator is commonly used to coordinate related
 GUI components.
-ß A drawback of the Mediator pattern is that without
+ï¿½ A drawback of the Mediator pattern is that without
 proper design, the Mediator object itself can become overly complex.
 
 Download at WoweBook.Com
@@ -26439,7 +24810,7 @@ Download at WoweBook.Com
 
 The Memento at work
 The Memento has two goals:
-ß Saving the important state of a system's key object. ß Maintaining the key object's encapsulation.
+ï¿½ Saving the important state of a system's key object. ï¿½ Maintaining the key object's encapsulation.
 Keeping the single responsibility principle in mind, it's also a good idea to keep the state that you're saving separate from the key object. This separate object that holds the state is known as the Memento object.
 
 leftover patterns
@@ -26461,14 +24832,14 @@ restoreState(Object savedState) { // restore state
 // do other game stuff
 
 Memento Benefits
-ß Keeping the saved state external from the key object
+ï¿½ Keeping the saved state external from the key object
 helps to maintain cohesion.
-ß Keeps the key object's data encapsulated. ß Provides easy-to-implement recovery capability.
+ï¿½ Keeps the key object's data encapsulated. ï¿½ Provides easy-to-implement recovery capability.
 
 Memento Uses and Drawbacks
-ß The Memento is used to save state. ß A drawback to using Memento is that saving and
+ï¿½ The Memento is used to save state. ï¿½ A drawback to using Memento is that saving and
 restoring state can be time consuming.
-ß In Java systems, consider using Serialization to save
+ï¿½ In Java systems, consider using Serialization to save
 a system's state.
 
 Download at WoweBook.Com
@@ -26510,17 +24881,17 @@ Monster getMonster() { // find the correct monster return correctMonster.clone()
 Taswiphthpeuaratcotlpikieroininnatd.t(enoTeftehodemstochanliseetnnceetuwrrwhrmoeeonnn'gttsettkesnr.)ow cTalpohpnereorpoerfgiiasittter, yamnfodinnsrdtesetrtu,rhmnesaktehseaclone.
 
 Prototype Benefits
-ß Hides the complexities of making new instances from
+ï¿½ Hides the complexities of making new instances from
 the client.
-ß Provides the option for the client to generate objects
+ï¿½ Provides the option for the client to generate objects
 whose type is not known.
-ß In some circumstances, copying an object can be
+ï¿½ In some circumstances, copying an object can be
 more efficient than creating a new object.
 
 Prototype Uses and Drawbacks
-ß Prototype should be considered when a system must
+ï¿½ Prototype should be considered when a system must
 create new objects of many types in a complex class hierarchy.
-ß A drawback to using the Prototype is that making a
+ï¿½ A drawback to using the Prototype is that making a
 copy of an object can sometimes be complicated.
 
 Download at WoweBook.Com
@@ -26597,15 +24968,15 @@ Ingredient
 Ingredient
 
 Visitor Benefits
-ß Allows you to add operations to a Composite
+ï¿½ Allows you to add operations to a Composite
 structure without changing the structure itself.
-ß Adding new operations is relatively easy. ß The code for operations performed by the Visitor is
+ï¿½ Adding new operations is relatively easy. ï¿½ The code for operations performed by the Visitor is
 centralized.
 
 Visitor Drawbacks
-ß The Composite classes' encapsulation is broken
+ï¿½ The Composite classes' encapsulation is broken
 when the Visitor is used.
-ß Because the traversal function is involved, changes to
+ï¿½ Because the traversal function is involved, changes to
 the Composite structure are more difficult.
 
 Download at WoweBook.Com
@@ -26618,15 +24989,15 @@ h g Index g
 
 A
 Abstract Factory Pattern 156. See also Factory Pattern Adapter Pattern
-advantages 242 class adapters 244 class diagram 243 combining patterns 504 defined 243 duck magnets 245 Enumeration Iterator Adapter 248 exercise 251 explained 241 fireside chat 247, 252­253 introduction 237 object adapters 244 Alexander, Christopher 602 annihilating evil 606 Anti-Patterns 606­607 Golden Hammer 607 application patterns 604 architectural patterns 604
+advantages 242 class adapters 244 class diagram 243 combining patterns 504 defined 243 duck magnets 245 Enumeration Iterator Adapter 248 exercise 251 explained 241 fireside chat 247, 252ï¿½253 introduction 237 object adapters 244 Alexander, Christopher 602 annihilating evil 606 Anti-Patterns 606ï¿½607 Golden Hammer 607 application patterns 604 architectural patterns 604
 B
-Bridge Pattern 612­613 Builder Pattern 614­615 bullet points 32, 74, 105, 162, 186, 230, 270, 311, 380,
+Bridge Pattern 612ï¿½613 Builder Pattern 614ï¿½615 bullet points 32, 74, 105, 162, 186, 230, 270, 311, 380,
 423, 491, 560, 608
 
 business process patterns 605
 C
-CD Cover Viewer 463 Chain of Responsibility Pattern 616­617 change 339
-anticipating 14 constant in software development 8 identifying 53 Choc-O-Holic, Inc. 175 class explosion 81 code magnets 69, 179, 245, 350 cohesion 339­340 Combining Patterns 500 Abstract Factory Pattern 508 Adapter Pattern 504 class diagram 524 Composite Pattern 513 Decorator Pattern 506 Observer Pattern 516 Command Pattern class diagram 207 command object 203 defined 206­207 introduction 196 loading the Invoker 201
+CD Cover Viewer 463 Chain of Responsibility Pattern 616ï¿½617 change 339
+anticipating 14 constant in software development 8 identifying 53 Choc-O-Holic, Inc. 175 class explosion 81 code magnets 69, 179, 245, 350 cohesion 339ï¿½340 Combining Patterns 500 Abstract Factory Pattern 508 Adapter Pattern 504 class diagram 524 Composite Pattern 513 Decorator Pattern 506 Observer Pattern 516 Command Pattern class diagram 207 command object 203 defined 206ï¿½207 introduction 196 loading the Invoker 201
 
 Download at WoweBook.Com
 
@@ -26637,29 +25008,29 @@ this is the index
 D-G
 
 Command Pattern, continued logging requests 229 macro command 224 Null Object 214 queuing requests 228 undo 216, 220, 227
-Composite Pattern and Iterator Pattern 368 class diagram 358 combining patterns 513 composite behavior 363 default behavior 360 defined 356 interview 376­377 safety 367 safety versus transparency 515 transparency 367, 375
+Composite Pattern and Iterator Pattern 368 class diagram 358 combining patterns 513 composite behavior 363 default behavior 360 defined 356 interview 376ï¿½377 safety 367 safety versus transparency 515 transparency 367, 375
 composition 23, 85, 93, 247, 309 compound pattern 500, 522 controlling access 460. See also Proxy Pattern creating objects 134 crossword puzzle 33, 76, 163, 187, 231, 271, 310, 378,
 490 cubicle conversation 55, 93, 195, 208, 387, 397, 433,
-583­584
+583ï¿½584
 D
-Decorator Pattern and Proxy Pattern 472­473 class diagram 91 combining patterns 506 cubicle conversation 93 defined 91 disadvantages 101, 104
+Decorator Pattern and Proxy Pattern 472ï¿½473 class diagram 91 combining patterns 506 cubicle conversation 93 defined 91 disadvantages 101, 104
 632 index
 
-fireside chat 252­253 interview 104 introduction 88 in Java I/O 100­101 structural pattern 591 Dependency Inversion Principle 139­143 and the Hollywood Principle 298 Design Patterns Abstract Factory Pattern 156 Adapter Pattern 243 benefits 599 Bridge Pattern 612­613 Builder Pattern 614­615 categories 589, 592­593 Chain of Responsibility Pattern 616­617 class patterns 591 Command Pattern 206 Composite Pattern 356 Decorator Pattern 91 defined 579, 581 discover your own 586­587 Facade Pattern 264 Factory Method Pattern 134 Flyweight Pattern 618­619 Interpreter Pattern 620­621 Iterator Pattern 336 Mediator Pattern 622­623 Memento Pattern 624­625 Null Object 214 object patterns 591 Observer Pattern 51 organizing 589 Prototype Pattern 626­627 Proxy Pattern 460
+fireside chat 252ï¿½253 interview 104 introduction 88 in Java I/O 100ï¿½101 structural pattern 591 Dependency Inversion Principle 139ï¿½143 and the Hollywood Principle 298 Design Patterns Abstract Factory Pattern 156 Adapter Pattern 243 benefits 599 Bridge Pattern 612ï¿½613 Builder Pattern 614ï¿½615 categories 589, 592ï¿½593 Chain of Responsibility Pattern 616ï¿½617 class patterns 591 Command Pattern 206 Composite Pattern 356 Decorator Pattern 91 defined 579, 581 discover your own 586ï¿½587 Facade Pattern 264 Factory Method Pattern 134 Flyweight Pattern 618ï¿½619 Interpreter Pattern 620ï¿½621 Iterator Pattern 336 Mediator Pattern 622ï¿½623 Memento Pattern 624ï¿½625 Null Object 214 object patterns 591 Observer Pattern 51 organizing 589 Prototype Pattern 626ï¿½627 Proxy Pattern 460
 
 Download at WoweBook.Com
 
 the index
 
-Simple Factory 114 Singleton Pattern 177 State Pattern 410 Strategy Pattern 24 Template Method Pattern 289 use 29 versus frameworks 29 versus libraries 29 Visitor Pattern 628­629 Design Principles. See Object Oriented Design Principles Design Puzzle 25, 133, 279, 395, 468, 542 Design Toolbox 32, 74, 105, 162, 186, 230, 270, 311,
+Simple Factory 114 Singleton Pattern 177 State Pattern 410 Strategy Pattern 24 Template Method Pattern 289 use 29 versus frameworks 29 versus libraries 29 Visitor Pattern 628ï¿½629 Design Principles. See Object Oriented Design Principles Design Puzzle 25, 133, 279, 395, 468, 542 Design Toolbox 32, 74, 105, 162, 186, 230, 270, 311,
 380, 423, 491, 560, 608 DJ View 534 domain specific patterns 604
 E
-Elvis 526 encapsulate what varies 8­9, 75, 136, 397, 612 encapsulating algorithms 286, 289 encapsulating behavior 11 encapsulating iteration 323 encapsulating method invocation 206 encapsulating object construction 614­615 encapsulating object creation 114, 136 encapsulating requests 206 encapsulating state 399
+Elvis 526 encapsulate what varies 8ï¿½9, 75, 136, 397, 612 encapsulating algorithms 286, 289 encapsulating behavior 11 encapsulating iteration 323 encapsulating method invocation 206 encapsulating object construction 614ï¿½615 encapsulating object creation 114, 136 encapsulating requests 206 encapsulating state 399
 F
 Facade Pattern advantages 260 and Principle of Least Knowledge 269 class diagram 264
 
 defined 264 introduction 258 Factory Method Pattern 134. See also Factory Pattern Factory Pattern Abstract Factory
-and Factory Method 158­159, 160­161 class diagram 156­157 combining patterns 508 defined 156 interview 158­159 introduction 153 Factory Method advantages 135 and Abstract Factory 160­161 class diagram 134 defined 134 interview 158­159 introduction 120, 131­132 up close 125 Simple Factory defined 117 introduction 114 family of algorithms. See Strategy Pattern family of products 145 favor composition over inheritance 23, 75 fireside chat 62, 247, 252, 308, 418, 472­473 Five minute drama 48, 478 Flyweight Pattern 618­619 forces 582 Friedman, Dan 171
+and Factory Method 158ï¿½159, 160ï¿½161 class diagram 156ï¿½157 combining patterns 508 defined 156 interview 158ï¿½159 introduction 153 Factory Method advantages 135 and Abstract Factory 160ï¿½161 class diagram 134 defined 134 interview 158ï¿½159 introduction 120, 131ï¿½132 up close 125 Simple Factory defined 117 introduction 114 family of algorithms. See Strategy Pattern family of products 145 favor composition over inheritance 23, 75 fireside chat 62, 247, 252, 308, 418, 472ï¿½473 Five minute drama 48, 478 Flyweight Pattern 618ï¿½619 forces 582 Friedman, Dan 171
 G
 Gamma, Erich 601
 
@@ -26675,12 +25046,12 @@ H
 HAS-A 23 Head First learning principles xxx Helm, Richard 601 Hillside Group 603 Hollywood Principle, The 296
 and the Dependency Inversion Principle 298 Home Automation or Bust, Inc. 192 Home Sweet Home Theater 255 Hot or Not 475
 I
-inheritance disadvantages 5 for reuse 5­6 versus composition 93
-interface 12 Interpreter Pattern 620­621 inversion 141­142 IS-A 23 Iterator Pattern
+inheritance disadvantages 5 for reuse 5ï¿½6 versus composition 93
+interface 12 Interpreter Pattern 620ï¿½621 inversion 141ï¿½142 IS-A 23 Iterator Pattern
 advantages 330
 634 index
 
-and collections 347­349 and Composite Pattern 368 and Enumeration 338 and Hashtable 343, 348 class diagram 337 code magnets 350 defined 336 exercise 327 external iterator 338 for/in 349 internal iterator 338 introduction 325 java.util.Iterator 332 Null Iterator 372 polymorphic iteration 338 removing objects 332
+and collections 347ï¿½349 and Composite Pattern 368 and Enumeration 338 and Hashtable 343, 348 class diagram 337 code magnets 350 defined 336 exercise 327 external iterator 338 for/in 349 internal iterator 338 introduction 325 java.util.Iterator 332 Null Iterator 372 polymorphic iteration 338 removing objects 332
 J
 Johnson, Ralph 601
 K
@@ -26694,30 +25065,30 @@ Download at WoweBook.Com
 
 the index
 
-Mediator Pattern 622­623 Memento Pattern 624­625 middleman 237 Mighty Gumball, Inc. 386 Model-View-Controller
-Adapter Pattern 546 and design patterns 532 and the Web 549 Composite Pattern 532, 559 introduction 529 Mediator Pattern 559 Observer Pattern 532 ready-bake code 564­576 song 526 Strategy Pattern 532, 545 up close 530 Model 2 549. See also Model-View-Controller and design patterns 557­558 MVC. See Model-View-Controller
+Mediator Pattern 622ï¿½623 Memento Pattern 624ï¿½625 middleman 237 Mighty Gumball, Inc. 386 Model-View-Controller
+Adapter Pattern 546 and design patterns 532 and the Web 549 Composite Pattern 532, 559 introduction 529 Mediator Pattern 559 Observer Pattern 532 ready-bake code 564ï¿½576 song 526 Strategy Pattern 532, 545 up close 530 Model 2 549. See also Model-View-Controller and design patterns 557ï¿½558 MVC. See Model-View-Controller
 N
 Null Object 214, 372
 O
-Objectville Diner 26, 197, 316, 628 Objectville Pancake House 316, 628 Object Oriented Design Principles 9, 30­31
-Dependency Inversion Principle 139­143 encapsulate what varies 9, 111 favor composition over inheritance 23, 243, 397 Hollywood Principle 296 one class, one responsibility 185, 336, 339, 367 Open-Closed Principle 86­87, 407
+Objectville Diner 26, 197, 316, 628 Objectville Pancake House 316, 628 Object Oriented Design Principles 9, 30ï¿½31
+Dependency Inversion Principle 139ï¿½143 encapsulate what varies 9, 111 favor composition over inheritance 23, 243, 397 Hollywood Principle 296 one class, one responsibility 185, 336, 339, 367 Open-Closed Principle 86ï¿½87, 407
 
 Principle of Least Knowledge 265 program to an interface, not an implementation 11,
 243, 335 strive for loosely coupled designs between objects that
 interact 53 Observable 64, 71 Observer Pattern
-class diagram 52 code magnets 69 combining patterns 516 cubicle conversation 55 defined 51­52 fireside chat 62 Five minute drama 48 introduction 44 in Swing 72­73 Java support 64 pull 63 push 63 one-to-many relationship 51­52 OOPSLA 603 Open-Closed Principle 86­87 oreo cookie 526 organizational patterns 605
+class diagram 52 code magnets 69 combining patterns 516 cubicle conversation 55 defined 51ï¿½52 fireside chat 62 Five minute drama 48 introduction 44 in Swing 72ï¿½73 Java support 64 pull 63 push 63 one-to-many relationship 51ï¿½52 OOPSLA 603 Open-Closed Principle 86ï¿½87 oreo cookie 526 organizational patterns 605
 P
-part-whole hierarchy 356. See also Composite Pattern patterns catalog 581, 583, 585 Patterns Exposed 104, 158, 174, 377­378 patterns in the wild 299, 488­489 patterns zoo 604 Pattern Honorable Mention 117, 214 Pizza shop 112 Portland Patterns Repository 603
+part-whole hierarchy 356. See also Composite Pattern patterns catalog 581, 583, 585 Patterns Exposed 104, 158, 174, 377ï¿½378 patterns in the wild 299, 488ï¿½489 patterns zoo 604 Pattern Honorable Mention 117, 214 Pizza shop 112 Portland Patterns Repository 603
 you are here 4 635
 
 Download at WoweBook.Com
 
 Q-Y
 
-Principle of Least Knowledge 265­268 disadvantages 267
-program to an implementation 12, 17, 71 program to an interface 12 program to an interface, not an implementation 11, 75 Prototype Pattern 626­627 Proxy Pattern
-and Adapter Pattern 471 and Decorator Pattern 471, 472­473 Caching Proxy 471 class diagram 461 defined 460 Dynamic Proxy 474, 479, 486
-and RMI 486 exercise 482 fireside chat 472­473 java.lang.reflect.Proxy 474 Protection Proxy 474, 477 Proxy Zoo 488­489 ready-bake code 494 Remote Proxy 434 variants 471 Virtual Proxy 462
+Principle of Least Knowledge 265ï¿½268 disadvantages 267
+program to an implementation 12, 17, 71 program to an interface 12 program to an interface, not an implementation 11, 75 Prototype Pattern 626ï¿½627 Proxy Pattern
+and Adapter Pattern 471 and Decorator Pattern 471, 472ï¿½473 Caching Proxy 471 class diagram 461 defined 460 Dynamic Proxy 474, 479, 486
+and RMI 486 exercise 482 fireside chat 472ï¿½473 java.lang.reflect.Proxy 474 Protection Proxy 474, 477 Proxy Zoo 488ï¿½489 ready-bake code 494 Remote Proxy 434 variants 471 Virtual Proxy 462
 image proxy 464 publisher/subscriber 45
 Q
 Quality, The. See Quality without a name Quality without a name. See Quality, The
@@ -26727,24 +25098,24 @@ refactoring 354, 595 remote control 193, 209
 
 Remote Method Invocation. See RMI remote proxy 434. See also Proxy Pattern reuse 13, 23, 85 RMI 436
 S
-shared vocabulary 26­28, 599­600 sharpen your pencil 5, 42, 54, 61, 94, 97, 99, 124, 137,
-148, 176, 183, 205, 225, 242, 268, 284, 322, 342, 396, 400, 406, 409, 421, 483, 511, 518, 520, 589 Simple Factory 117 SimUDuck 2, 500 Singleton Pattern advantages 170, 184 and garbage collection 184 and global variables 185 and multithreading 180­182 class diagram 177 defined 177 disadvantages 184 double-checked locking 182 interview 174 up close 173 Single Responsibility Principle 339. See also Object Oriented Design Principles: one class, one responsibility skeleton 440 Starbuzz Coffee 80, 276 state machines 388­389 State Pattern and Strategy Pattern 411, 418­419 class diagram 410 defined 410
+shared vocabulary 26ï¿½28, 599ï¿½600 sharpen your pencil 5, 42, 54, 61, 94, 97, 99, 124, 137,
+148, 176, 183, 205, 225, 242, 268, 284, 322, 342, 396, 400, 406, 409, 421, 483, 511, 518, 520, 589 Simple Factory 117 SimUDuck 2, 500 Singleton Pattern advantages 170, 184 and garbage collection 184 and global variables 185 and multithreading 180ï¿½182 class diagram 177 defined 177 disadvantages 184 double-checked locking 182 interview 174 up close 173 Single Responsibility Principle 339. See also Object Oriented Design Principles: one class, one responsibility skeleton 440 Starbuzz Coffee 80, 276 state machines 388ï¿½389 State Pattern and Strategy Pattern 411, 418ï¿½419 class diagram 410 defined 410
 
 Download at WoweBook.Com
 
 the index
 
-disadvantages 412, 417 introduction 398 sharing state 412 static factory 115 Strategy Pattern 24 and State Pattern 411, 418­419 and Template Method Pattern 308­309 encapsulating behavior 22 family of algorithms 22 fireside chat 308 stub 440
+disadvantages 412, 417 introduction 398 sharing state 412 static factory 115 Strategy Pattern 24 and State Pattern 411, 418ï¿½419 and Template Method Pattern 308ï¿½309 encapsulating behavior 22 family of algorithms 22 fireside chat 308 stub 440
 T
-Template Method Pattern advantages 288 and Applet 307 and java.util.Arrays 300 and Strategy Pattern 305, 308­309 and Swing 306 and the Hollywood Principle 297 class diagram 289 defined 289 fireside chat 308­309 hook 292, 295 introduction 286 up close 290­291
-The Little Lisper 171 thinking in patterns 594­595 tightly coupled 53
+Template Method Pattern advantages 288 and Applet 307 and java.util.Arrays 300 and Strategy Pattern 305, 308ï¿½309 and Swing 306 and the Hollywood Principle 297 class diagram 289 defined 289 fireside chat 308ï¿½309 hook 292, 295 introduction 286 up close 290ï¿½291
+The Little Lisper 171 thinking in patterns 594ï¿½595 tightly coupled 53
 U
 undo 216, 227 user interface design patterns 605
 
 V
-varies. See encapsulate what varies Visitor Pattern 628­629 Vlissides, John 601
+varies. See encapsulate what varies Visitor Pattern 628ï¿½629 Vlissides, John 601
 W
-Weather-O-Rama 38 when not to use patterns 596­598 Who Does What? 202, 254, 298, 379, 422, 487, 588 Why a duck? 500 wrapping objects 88, 242, 252, 260, 473, 508. See
+Weather-O-Rama 38 when not to use patterns 596ï¿½598 Who Does What? 202, 254, 298, 379, 422, 487, 588 Why a duck? 500 wrapping objects 88, 242, 252, 260, 473, 508. See
 also Adapter Pattern, Decorator Pattern, Facade Pattern, Proxy Pattern
 Y
 your mind on patterns 597
@@ -26757,7 +25128,7 @@ g Colophon g
 
 All interior layouts were designed by Eric Freeman, Elisabeth Freeman, Kathy Sierra and Bert Bates. Kathy and Bert created the look & feel of the Head First series.
 The book was produced using Adobe InDesign CS (an unbelievably cool design tool that we can't get enough of) and Adobe Photoshop CS. The book was typeset using Uncle Stinky, Mister Frisky (you think we're kidding), Ann Satellite, Baskerville, Comic Sans, Myriad Pro, Skippy Sharp, Savoye LET, Jokerman LET, Courier New and Woodrow typefaces.
-Interior design and production all happened exclusively on Apple Macintoshes­at Head First we're all about "Think Different" (even if it isn't grammatical). All Java code was created using James Gosling's favorite IDE, vi, although we really should try Erich Gamma's Eclipse.
+Interior design and production all happened exclusively on Apple Macintoshesï¿½at Head First we're all about "Think Different" (even if it isn't grammatical). All Java code was created using James Gosling's favorite IDE, vi, although we really should try Erich Gamma's Eclipse.
 Long days of writing were powered by the caffeine fuel of Honest Tea and Tejava, the clean Santa Fe air, and the grooving sounds of Banco de Gaia, Cocteau Twins, Buddha Bar I-VI, Delerium, Enigma, Mike Oldfield, Olive, Orb, Orbital, LTJ Bukem, Massive Attack, Steve Roach, Sasha and Digweed, Thievery Corporation, Zero 7 and Neil Finn (in all his incarnations) along with a heck of a lot of acid trance and more 80s music that you'd care to know about.
 
 638 index
@@ -26766,7 +25137,7 @@ Download at WoweBook.Com
 
 the index
 And now, a final word from Head First Labs...
-Our world class researchers are working day and night in a mad race to uncover the mysteries of Life, the Universe and Everything­before it's too late. Never before has a research team with such noble and daunting goals been assembled. Currently, we are focusing our collective energy and brain power on creating the ultimate learning machine. Once perfected, you and others will join us in our quest! You're fortunate to be holding one of our first protoypes in your hands. But only through constant refinement can our goal be achieved. We ask you, a pioneer user of the technology, to send us periodic field reports of your progress, at fieldreports@headfirstlabs.com
+Our world class researchers are working day and night in a mad race to uncover the mysteries of Life, the Universe and Everythingï¿½before it's too late. Never before has a research team with such noble and daunting goals been assembled. Currently, we are focusing our collective energy and brain power on creating the ultimate learning machine. Once perfected, you and others will join us in our quest! You're fortunate to be holding one of our first protoypes in your hands. But only through constant refinement can our goal be achieved. We ask you, a pioneer user of the technology, to send us periodic field reports of your progress, at fieldreports@headfirstlabs.com
 And next time you're in Objectville, drop by and take one of our behind
 the scenes laboratory tours.
 
@@ -26777,17 +25148,17 @@ you are here 4 639
 Now that you've applied the Head First approach to Design Patterns, why not apply it to the rest of your life?
 Come join us at the Head First Labs Web site, our virtual hangout where you'll find Head First resources including podcasts, forums, code and more.
 But you won't just be a spectator; we also encourage you to join the fun by participating in discussions and brainstorming.
-Whats in it for you? ß Get the latest news about what's
+Whats in it for you? ï¿½ Get the latest news about what's
 happening in the Head First World.
-ß Participate in our upcoming books and
+ï¿½ Participate in our upcoming books and
 technologies.
-ß Learn how to tackle those tough
+ï¿½ Learn how to tackle those tough
 technical topics (say that three times fast) in as little time as possible.
-ß Look behind the scenes at how Head
+ï¿½ Look behind the scenes at how Head
 First books are created.
-ß Meet the Head First authors and the
+ï¿½ Meet the Head First authors and the
 support team who keep everything running smoothly.
-ß Why not audition to be a Head First
+ï¿½ Why not audition to be a Head First
 author yourself ?
 
 OuaWrrehwyseVtwbiasasnitiedtn?rinovegwr!bsy.
@@ -26826,7 +25197,7 @@ Java & XML Data Binding Java & XML Java Cookbook, 2nd Edition Java Data Objects 
 
 Java Servlet Programming, 2nd Edition Java Swing, 2nd Edition Java Web Services in a Nutshell Learning Java, 2nd Edition Mac OS X for Java Geeks Programming Jakarta Struts 2nd Edition Tomcat: The Definitive Guide WebLogic: The Definitive Guide
 
-Our books are available at most retail and online bookstores. To order direct: 1-800-998-9938 · order@oreilly.com · www.oreilly.com Online editions of most O'Reilly titles are available by subscription at safari.oreilly.com
+Our books are available at most retail and online bookstores. To order direct: 1-800-998-9938 ï¿½ order@oreilly.com ï¿½ www.oreilly.com Online editions of most O'Reilly titles are available by subscription at safari.oreilly.com
 Download at WoweBook.Com
 
 Keep in touch with O'Reilly
@@ -26834,15 +25205,15 @@ Keep in touch with O'Reilly
 1. Download examples from our books
 To find example files for a book, go to: www.oreilly.com/catalog select the book, and follow the "Examples" link.
 2. Register your O'Reilly books
-Register your book at register.oreilly.com Why register your books? Once you've registered your O'Reilly books you can: · Win O'Reilly books, T-shirts or discount
-coupons in our monthly drawing. · Get special offers available only to registered
-O'Reilly customers. · Get catalogs announcing new books
-(US and UK only). · Get email notification of new editions of the
+Register your book at register.oreilly.com Why register your books? Once you've registered your O'Reilly books you can: ï¿½ Win O'Reilly books, T-shirts or discount
+coupons in our monthly drawing. ï¿½ Get special offers available only to registered
+O'Reilly customers. ï¿½ Get catalogs announcing new books
+(US and UK only). ï¿½ Get email notification of new editions of the
 O'Reilly books you own.
 3. Join our email lists
 Sign up to get topic-specific email announcements of new books and conferences, special offers, and O'Reilly Network technology newsletters at: elists.oreilly.com It's easy to customize your free elists subscription so you'll get exactly the O'Reilly news you want.
 4. Get the latest news, tips, and tools
-www.oreilly.com · "Top 100 Sites on the Web"--PC Magazine · CIO Magazine's Web Business 50 Awards Our web site contains a library of comprehensive product information (including book excerpts and tables of contents), downloadable software, background articles, interviews with technology leaders, links to relevant sites, book cover art, and more.
+www.oreilly.com ï¿½ "Top 100 Sites on the Web"--PC Magazine ï¿½ CIO Magazine's Web Business 50 Awards Our web site contains a library of comprehensive product information (including book excerpts and tables of contents), downloadable software, background articles, interviews with technology leaders, links to relevant sites, book cover art, and more.
 5. Work for O'Reilly
 Check out our web site for current employment opportunities: jobs.oreilly.com
 
@@ -26861,6 +25232,5 @@ international.oreilly.com/distributors.html
 adoption@oreilly.com For information about academic use of O'Reilly books, visit:
 academic.oreilly.com
 
-Our books are available at most retail and online bookstores. To order direct: 1-800-998-9938 · order@oreilly.com · www.oreilly.com Online editions of most O'Reilly titles are available by subscription at safari.oreilly.com
+Our books are available at most retail and online bookstores. To order direct: 1-800-998-9938 ï¿½ order@oreilly.com ï¿½ www.oreilly.com Online editions of most O'Reilly titles are available by subscription at safari.oreilly.com
 Download at WoweBook.Com
-

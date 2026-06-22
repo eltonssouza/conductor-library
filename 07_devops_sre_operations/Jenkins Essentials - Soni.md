@@ -1,10 +1,16 @@
+# Jenkins Essentials
+
+> **Author(s):** Soni Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 Jenkins Essentials
-Continuous Integration ­ setting up the stage for a DevOps culture
+Continuous Integration ï¿½ setting up the stage for a DevOps culture
 Mitesh Soni
 BIRMINGHAM - MUMBAI
 
 Jenkins Essentials
-Copyright © 2015 Packt Publishing
+Copyright ï¿½ 2015 Packt Publishing
 All rights reserved. No part of this book may be reproduced, stored in a retrieval system, or transmitted in any form or by any means, without the prior written permission of the publisher, except in the case of brief quotations embedded in critical articles or reviews. Every effort has been made in the preparation of this book to ensure the accuracy of the information presented. However, the information contained in this book is sold without warranty, either express or implied. Neither the author, nor Packt Publishing, and its dealers and distributors will be held liable for any damages caused or alleged to be caused directly or indirectly by this book. Packt Publishing has endeavored to provide trademark information about all of the companies and products mentioned in this book by the appropriate use of capitals. However, Packt Publishing cannot guarantee the accuracy of this information.
 First published: July 2015
 Production reference: 1220715
@@ -18,7 +24,7 @@ Project Coordinator Bijal Patel
 
 Reviewers Anthony Dahanne Michael Peacock Devin Young
 Commissioning Editor Nadeem N. Bagban
-Acquisition Editors Indrajit Das Rebecca Youé
+Acquisition Editors Indrajit Das Rebecca Youï¿½
 Content Development Editor Shubhangi Dhamgaye
 
 Proofreader Safis Editing
@@ -56,7 +62,7 @@ For support files and downloads related to your book, please visit www.PacktPub.
 TM
 https://www2.packtpub.com/books/subscription/packtlib Do you need instant solutions to your IT questions? PacktLib is Packt's online digital book library. Here, you can search, access, and read Packt's entire library of books.
 Why subscribe?
-· Fully searchable across every book published by Packt · Copy and paste, print, and bookmark content · On demand and accessible via a web browser
+ï¿½ Fully searchable across every book published by Packt ï¿½ Copy and paste, print, and bookmark content ï¿½ On demand and accessible via a web browser
 Free access for Packt account holders
 If you have an account with Packt at www.PacktPub.com, you can use this to access PacktLib today and view 9 entirely free books. Simply use your login credentials for immediate access.
 
@@ -258,7 +264,7 @@ Exploring Jenkins in OpenShift PaaS
 
 80
 
-Exploring Jenkins in the Cloud ­ CloudBees
+Exploring Jenkins in the Cloud ï¿½ CloudBees
 
 84
 
@@ -317,7 +323,7 @@ Chapter 6: Managing Code Quality and Notifications
 Integration with Sonar Exploring Static Code Analysis Plugins
 Checkstyle Plugin FindBugs Plugin Compiler Warnings Plugin DRY Plugin PMD Plugin Task Scanner Plugin CCM Plugin Android Lint Plugin OWASP Dependency-Check Plugin E-mail notifications on build status Self-test questions Summary
 Chapter 7: Managing and Monitoring Jenkins
-Managing Jenkins master and slave nodes Jenkins monitoring with JavaMelody Managing disk usage Build monitoring with Build Monitor Plugin Managing access control and authorization Maintaining roles and project-based security Audit Trail Plugin ­ an overview and usage Self-test questions Summary
+Managing Jenkins master and slave nodes Jenkins monitoring with JavaMelody Managing disk usage Build monitoring with Build Monitor Plugin Managing access control and authorization Maintaining roles and project-based security Audit Trail Plugin ï¿½ an overview and usage Self-test questions Summary
 
 Table of Contents
 97
@@ -332,7 +338,7 @@ Table of Contents
 
 Table of Contents
 
-Chapter 8: Beyond Basics of Jenkins ­ Leveraging
+Chapter 8: Beyond Basics of Jenkins ï¿½ Leveraging
 
 "Must-have" Plugins
 
@@ -385,9 +391,9 @@ Preface
 There are a number of ways to install Jenkins, and it can be used across different platforms such as Windows and Linux. Jenkins is available in the form of native packages of Windows, FreeBSD, OpenBSD, Red Hat, Fedora, CentOS, Ubuntu, Debian, Mac OS X, openSUSE, Solaris, OpenIndiana, Gentoo, or in the form of WAR file. The quickest and easiest way to use Jenkins is to use the WAR file. It can be easily customized with the use of plugins. There are different kinds of plugins available to customize Jenkins based on specific needs. Categories of plugins include source code management (that is, Git Plugin, CVS Plugin, and Bazaar Plugin), build triggers (that is, Accelerated Build Now Plugin and Build Flow Plugin), build reports (that is, CodeScanner Plugin and Disk Usage Plugin), authentication and user management (that is, Active Directory Plugin and Github OAuth Plugin), cluster management and distributed build (that is, Amazon EC2 Plugin and Azure Slave Plugin), and so on.
 Jenkins is very popular among its users as it allows them to manage and control phases such as build, test, package, and static code analysis. It has won InfoWorld Bossies Award, 2011; O'Reilly Open Source Award, 2011; ALM&SCM; and so on. The main users of Jenkins are NASA, Linkedin, eBay, and Mozilla Foundation.
 The following are some features that make Jenkins very popular:
-· An open source tool with a web-based GUI. · A Java-based continuous build system--easy to write plugins. · Highly configurable tool--a plugin-based architecture that provides support
-to many technology, repositories, build tools, and test tools. · The Jenkins user community is large and active. It has more than 1,000 open
-source plugins. · This supports CI for .Net, iOS, Android, and Ruby development. · This supports common SCM systems such as SVN, CVS, Git, and so on. · This supports common test frameworks such as Junit, Selenium, and so on.
+ï¿½ An open source tool with a web-based GUI. ï¿½ A Java-based continuous build system--easy to write plugins. ï¿½ Highly configurable tool--a plugin-based architecture that provides support
+to many technology, repositories, build tools, and test tools. ï¿½ The Jenkins user community is large and active. It has more than 1,000 open
+source plugins. ï¿½ This supports CI for .Net, iOS, Android, and Ruby development. ï¿½ This supports common SCM systems such as SVN, CVS, Git, and so on. ï¿½ This supports common test frameworks such as Junit, Selenium, and so on.
 Jenkins speeds up the application development process through automation across different phases such as build, test, code analysis, and so on. It also enables users to achieve end-to-end automation for an application delivery life cycle.
 [ vi ]
 
@@ -403,7 +409,7 @@ Chapter 6, Managing Code Quality and Notifications, covers how to integrate stat
 
 Preface
 Chapter 7, Managing and Monitoring Jenkins, gives an insight into management of Jenkins nodes and monitoring them with Java Melody to provide details on utilization of resources. It also covers how to monitor build jobs configured for Java applications and managing those configurations by keeping its backup. This chapter discusses the basic security configuration that is available in Jenkins for better access control and authorization.
-Chapter 8, Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins, covers the advanced usage of Jenkins that are extremely useful in specific scenarios. Scenario-based use cases and usage of specific plugins that help development and operations teams are covered here for better utilization of Jenkins.
+Chapter 8, Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins, covers the advanced usage of Jenkins that are extremely useful in specific scenarios. Scenario-based use cases and usage of specific plugins that help development and operations teams are covered here for better utilization of Jenkins.
 What you need for this book
 This book assumes that you are familiar with at least Java programming language. Knowledge of core Java and JEE is essential. Having a strong understanding of program logic will provide you with the background to be productive with Jenkins while using plugins of writing commands for shell.
 As an application development life cycle will cover lots of tools in general, it is essential to have some knowledge of repositories such as SVN, Git, and so on; IDE tools such as Eclipse; and build tools such as Ant and Maven.
@@ -416,7 +422,7 @@ Preface
 Who this book is for
 This book targets developers and system administrators who are involved in the application development life cycle and are looking to automate it. Developers, technical leads, testers, and operational professionals are the target readers to jump-start Jenkins. Readers are aware of the issues faced by the development and operations team as they are stakeholders in the application life cycle management process. The reasons to jump-start Jenkins are to understand the importance of contribution in continuous integration, automated test case execution, and continuous delivery for an effective application life cycle management.
 Conventions
-In this book, you will find a number of styles of text that distinguish between different kinds of information. Here are some examples of these styles, and an explanation of their meaning. Code words in text, database table names, folder names, filenames, file extensions, pathnames, dummy URLs, user input, and Twitter handles are shown as follows: "Commit by executing git commit -m "Initial Commit" ­a." Any command-line input or output is written as follows:
+In this book, you will find a number of styles of text that distinguish between different kinds of information. Here are some examples of these styles, and an explanation of their meaning. Code words in text, database table names, folder names, filenames, file extensions, pathnames, dummy URLs, user input, and Twitter handles are shown as follows: "Commit by executing git commit -m "Initial Commit" ï¿½a." Any command-line input or output is written as follows:
 [root@localhost testmit]# service httpd restart Stopping httpd: [ OK ]
 New terms and important words are shown in bold. Words that you see on the screen, in menus or dialog boxes for example, appear in the text like this: "Once the build has succeeded, verify Workspace in the build job."
 Warnings or important notes appear in a box like this.
@@ -446,7 +452,7 @@ You can contact us at questions@packtpub.com if you are having a problem with an
 Exploring Jenkins
 "Continuous effort--not strength or intelligence--is the key to unlocking our potential."
 --Winston Churchill Jenkins is an open source application written in Java. It is one of the most popular continuous integration (CI) tools used to build and test different kinds of projects. In this chapter, we will have a quick overview of Jenkins, essential features, and its impact on DevOps culture. Before we can start using Jenkins, we need to install it. In this chapter, we have provided a step-by-step guide to install Jenkins. Installing Jenkins is a very easy task and is different from the OS flavors. We will also learn the basic configuration of Jenkins. We will take a quick tour of some key sections of the Jenkins UI and plugin installations as well. This chapter will also cover the DevOps pipeline and how the rest of the chapters will cover implementing it. To be precise, we will discuss the following topics in this chapter:
-· Introduction to Jenkins and its features · Installation of Jenkins on Windows and the CentOS operating system · A jump-start tour of the Jenkins dashboard · How to change configuration settings in Jenkins · What is the deployment pipeline On your mark, get set, go!
+ï¿½ Introduction to Jenkins and its features ï¿½ Installation of Jenkins on Windows and the CentOS operating system ï¿½ A jump-start tour of the Jenkins dashboard ï¿½ How to change configuration settings in Jenkins ï¿½ What is the deployment pipeline On your mark, get set, go!
 [1]
 
 Exploring Jenkins
@@ -459,11 +465,11 @@ Chapter 1
 To learn more about all plugins, visit https://wiki.jenkins-ci. org/x/GIAL. To learn how to create a new plugin, visit https://wiki.jenkinsci.org/x/TYAL. To download different versions of plugins, visit https://updates. jenkins-ci.org/download/plugins/.
 Features
 Jenkins is one of the most popular CI servers in the market. The reasons for its popularity are as follows:
-· Easy installation on different operating systems. · Easy upgrades--Jenkins has very speedy release cycles. · Simple and easy-to-use user interface. · Easily extensible with the use of third-party plugins--over 400 plugins. · Easy to configure the setup environment in the user interface. It is also
-possible to customize the user interface based on likings. · The master slave architecture supports distributed builds to reduce loads on
-the CI server. · Jenkins is available with test harness built around JUnit; test results are
-available in graphical and tabular forms. · Build scheduling based on the cron expression (to know more about cron,
-visit http://en.wikipedia.org/wiki/Cron). · Shell and Windows command execution in prebuild steps. · Notification support related to the build status.
+ï¿½ Easy installation on different operating systems. ï¿½ Easy upgrades--Jenkins has very speedy release cycles. ï¿½ Simple and easy-to-use user interface. ï¿½ Easily extensible with the use of third-party plugins--over 400 plugins. ï¿½ Easy to configure the setup environment in the user interface. It is also
+possible to customize the user interface based on likings. ï¿½ The master slave architecture supports distributed builds to reduce loads on
+the CI server. ï¿½ Jenkins is available with test harness built around JUnit; test results are
+available in graphical and tabular forms. ï¿½ Build scheduling based on the cron expression (to know more about cron,
+visit http://en.wikipedia.org/wiki/Cron). ï¿½ Shell and Windows command execution in prebuild steps. ï¿½ Notification support related to the build status.
 [3]
 
 Exploring Jenkins
@@ -505,7 +511,7 @@ Installation of Jenkins as a web application
 [9]
 
 Exploring Jenkins
-3. Open Command Prompt and execute the java ­jar Jenkins.war command. Verify the Jenkins installation on the system by opening the http://<ip_address>:8080 URL on the system where you have installed Jenkins.
+3. Open Command Prompt and execute the java ï¿½jar Jenkins.war command. Verify the Jenkins installation on the system by opening the http://<ip_address>:8080 URL on the system where you have installed Jenkins.
 A jump-start tour of the Jenkins dashboard
 1. On the Jenkins dashboard, click on Create new jobs or on New Item to create Freestyle- or Maven-based projects for CI.
 [ 10 ]
@@ -541,7 +547,7 @@ To read more, visit http://martinfowler.com/bliki/ DeploymentPipeline.html and h
 Self-test questions
 Q1. What is Jenkins? 1. A continuous integration product 2. A continuous delivery product
 Q2. What makes Jenkins extensible? 1. Plugins 2. Open Source Distribution
-Q3. Which command is used to run the Jenkins installation file in the war format? 1. java ­jar Jenkins.war 2. java ­j Jenkins.war
+Q3. Which command is used to run the Jenkins installation file in the war format? 1. java ï¿½jar Jenkins.war 2. java ï¿½j Jenkins.war
 Q4. How do we get system information on the Jenkins dashboard? 1. Visit http://<ip_address>:8080/manage 2. Visit http://<ip_address>:8080/systeminfo
 Q5. How do we change global settings for configuration on the Jenkins dashboard? 1. Click on the Manage Jenkins link on the dashboard 2. Click on the Credentials link on the dashboard
 Q6. What is the deployment pipeline? 1. Continuous Integration Practices 2. Continuous Delivery Practices 3. Demonstration of automation involved in the application development life cycle 4. None of the above
@@ -560,10 +566,10 @@ Now that we are able to use our CI server, Jenkins, we can begin creating a job 
 
 Installation and Configuration of Code Repository and Build Tools
 "Life is really simple, but we insist on making it complicated"
-­ Confucius
+ï¿½ Confucius
 We looked at the deployment pipeline in the last chapter in which the source code repository and automated build form a significant part. SVN, Git, CVS, and StarTeam are some of the popular code repositories that manage changes to code, artifacts, or documents, while Ant and Maven are popular build automation tools for Java applications.
 This chapter describes in detail how to prepare a runtime environment for life cycle management with a Java application and configure it with Jenkins. It will cover how to integrate Eclipse and code repositories such as SVN to create a base for continuous integration. The following is the list of topics covered in this chapter:
-· Overview of a build in Jenkins and its requirements · Installing Java and configuring environment variables · SVN installation, configuration, and operations on CentOS and Windows · Installing Ant · Configuring Ant, Maven, and JDK in Jenkins · Integrating Eclipse with code repositories · Installing and configuring Git · Creating a new build job in Jenkins with Git
+ï¿½ Overview of a build in Jenkins and its requirements ï¿½ Installing Java and configuring environment variables ï¿½ SVN installation, configuration, and operations on CentOS and Windows ï¿½ Installing Ant ï¿½ Configuring Ant, Maven, and JDK in Jenkins ï¿½ Integrating Eclipse with code repositories ï¿½ Installing and configuring Git ï¿½ Creating a new build job in Jenkins with Git
 [ 19 ]
 
 Installation and Configuration of Code Repository and Build Tools
@@ -576,7 +582,7 @@ If Java is not already installed in the system then you can install it as follow
 [ 20 ]
 
 Chapter 2
-. . ant-javamail.x86_64 : Optional javamail tasks for ant eclipse-mylyn-java.x86_64 : Mylyn Bridge: Java Development . . java-1.5.0-gcj.x86_64 : JPackage runtime compatibility layer for GCJ java-1.5.0-gcj-devel.x86_64 : JPackage development compatibility layer for GCJ java-1.5.0-gcj-javadoc.x86_64 : API documentation for libgcj java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment jcommon-serializer.x86_64 : JFree Java General Serialization Framework . . Install the identified package java-1.7.0-openjdk.x86_64 [root@localhost ~]# yum install java-1.7.0-openjdk.x86_64 Loaded plugins: fastestmirror, refresh-packagekit, security No such command: in. Please use /usr/bin/yum ­help
+. . ant-javamail.x86_64 : Optional javamail tasks for ant eclipse-mylyn-java.x86_64 : Mylyn Bridge: Java Development . . java-1.5.0-gcj.x86_64 : JPackage runtime compatibility layer for GCJ java-1.5.0-gcj-devel.x86_64 : JPackage development compatibility layer for GCJ java-1.5.0-gcj-javadoc.x86_64 : API documentation for libgcj java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment jcommon-serializer.x86_64 : JFree Java General Serialization Framework . . Install the identified package java-1.7.0-openjdk.x86_64 [root@localhost ~]# yum install java-1.7.0-openjdk.x86_64 Loaded plugins: fastestmirror, refresh-packagekit, security No such command: in. Please use /usr/bin/yum ï¿½help
 Now install Java package available in the local repositories by executing yum install command as follows:
 [root@localhost ~]# yum install java-1.7.0-openjdk.x86_64 Loaded plugins: fastestmirror, refresh-packagekit, security Loading mirror speeds from cached hostfile Setting up Install Process Resolving Dependencies --> Running transaction check ---> Package java-1.7.0-openjdk.x86_64 1:1.7.0.3-2.1.el6.7 will be installed --> Finished Dependency Resolution
 
@@ -641,7 +647,7 @@ mod_dav_svn.x86_64 0:1.6.11-7.el6 subversion.x86_64 0:1.6.11-7.el6
 Dependency Installed: perl-URI.noarch 0:1.40-2.el6
 Complete! [root@localhost ~]#
 Configuring SVN
-Create the password file using the htpasswd command. Initially use the -cm arguments. This creates the file and also encrypts the password with MD5. If you need to add users, make sure you simply use the -m flag, and not the ­c, after the initial creation.
+Create the password file using the htpasswd command. Initially use the -cm arguments. This creates the file and also encrypts the password with MD5. If you need to add users, make sure you simply use the -m flag, and not the ï¿½c, after the initial creation.
 [root@localhost conf.d]# htpasswd -cm /etc/svn-auth-conf yourusername New password: Re-type new password: Adding password for user yourusername [root@localhost conf.d]#
 [root@localhost conf.d]# htpasswd -cm /etc/svn-auth-conf mitesh New password: Re-type new password: Adding password for user mitesh [root@localhost conf.d]#
 [ 24 ]
@@ -840,7 +846,7 @@ Installation and Configuration of Code Repository and Build Tools
 directory and then create a subdirectory inside of that called development. Use mkdir -p ~/git/development ; cd ~/git/development in the terminal. 6. Copy the AntExample1 directory into the development folder. 7. Convert an existing project into a workspace environment by using the git init command. 8. Once the repository is initialized, add files and folders.
 [ 42 ]
 
-9. Commit by executing git commit -m "Initial Commit" ­a.
+9. Commit by executing git commit -m "Initial Commit" ï¿½a.
 
 Chapter 2
 
@@ -885,9 +891,9 @@ Hooray! We have reached the end of this chapter. We have covered how to prepare 
 [ 48 ]
 
 Integration of Jenkins, SVN, and Build Tools
-"The barrier to change is not too little caring; it is too much complexity" ­ Bill Gates
+"The barrier to change is not too little caring; it is too much complexity" ï¿½ Bill Gates
 We have seen how to set up an environment to use Jenkins for continuous integration, and we have also configured build tools in Jenkins. The integration of Eclipse with SVN will help developers to easily perform operations on repositories. Now we are ready to create our first build job for continuous integration. This chapter describes in detail how to create and configure build jobs for Java applications using build tools such as Ant and Maven; how to run build jobs, unit test cases. It covers all aspects of running a build to create a distribution file or war file for deployment, as well as a Dashboard View plugin to provide a customized display of build jobs and test results based on preferences. The following are the main points which are covered in this chapter:
-· Creating and configuring a build job for a Java application with Ant · Creating and configuring a build job for a Java application with Maven · Build execution with test cases
+ï¿½ Creating and configuring a build job for a Java application with Ant ï¿½ Creating and configuring a build job for a Java application with Maven ï¿½ Build execution with test cases
 [ 49 ]
 
 Integration of Jenkins, SVN, and Build Tools
@@ -986,9 +992,9 @@ In the next chapter, we will deploy the application to application server direct
 [ 66 ]
 
 Implementing Automated Deployment
-"Simplicity is prerequisite for reliability" ­ Edsger Dijkstra
+"Simplicity is prerequisite for reliability" ï¿½ Edsger Dijkstra
 We have covered the concept of continuous integration, and we also know how to implement it using Jenkins. Now is the time to move to the next step in the application deployment pipeline, that is automated deployment. We will first understand the concept of continuous delivery and continuous deployment, before automated deployment into a Tomcat application server. This chapter will take one step forward in the deployment pipeline by deploying artifacts in a local or remote application server. It will give an insight into the automated deployment and continuous delivery process.
-· Overview of continuous delivery and continuous deployment · Deploying a file from Jenkins to a Tomcat server
+ï¿½ Overview of continuous delivery and continuous deployment ï¿½ Deploying a file from Jenkins to a Tomcat server
 [ 67 ]
 
 Implementing Automated Deployment
@@ -1010,7 +1016,7 @@ Chapter 4
 Implementing Automated Deployment
 Deploying a war file from Jenkins to Tomcat
 We will use the Deploy plugin available at https://wiki.jenkins-ci.org/x/ CAAjAQ to deploy a war file into a specific container. The Deploy plugin takes the war/ear file, and deploys it to a running local or remote application server at the end of a build. It supports the following containers:
-· Tomcat: 4.x/5.x/6.x/7.x · JBoss: 3.x/4.x · Glassfish: 2.x/3.x To deploy a war file in a Websphere container, use the Deploy WebSphere plugin available at https://wiki.jenkins-ci.org/x/UgCkAg. To deploy a war file in a Weblogic container, use the WebLogic Deployer plugin available at https://wiki.jenkins-ci.org/x/q4ahAw. 1. On the Jenkins dashboard, go to the Manage Jenkins link and then click on
+ï¿½ Tomcat: 4.x/5.x/6.x/7.x ï¿½ JBoss: 3.x/4.x ï¿½ Glassfish: 2.x/3.x To deploy a war file in a Websphere container, use the Deploy WebSphere plugin available at https://wiki.jenkins-ci.org/x/UgCkAg. To deploy a war file in a Weblogic container, use the WebLogic Deployer plugin available at https://wiki.jenkins-ci.org/x/q4ahAw. 1. On the Jenkins dashboard, go to the Manage Jenkins link and then click on
 Manage Plugins and install Deploy plugin.
 [ 70 ]
 
@@ -1059,9 +1065,9 @@ Well done! We are at the end of the chapter; let's summarize what we have covere
 [ 77 ]
 
 Hosted Jenkins
-"Productivity is being able to do things that you were never able to do before" ­Franz Kafka
+"Productivity is being able to do things that you were never able to do before" ï¿½Franz Kafka
 We have understood the concepts of continuous delivery and continuous deployment. We have also seen how to deploy the war file from Jenkins to the Tomcat server. Now, we will see how hosted Jenkins can be leveraged. Different service providers offer Jenkins as a service. We will see how OpenShift and CloudBees provide Jenkins to users. This chapter describes details on how to use hosted Jenkins, which is provided by popular PaaS providers, such as Red Hat OpenShift and CloudBees. This chapter also covers details on how various customers are using Jenkins based on their requirements. This chapter will explore details on how to use Cloud-related plugins in Jenkins for effective usage of Jenkins. We will cover the following topics in this chapter:
-· Exploring Jenkins in OpenShift PaaS · Exploring Jenkins in the Cloud ­ CloudBees · An overview of CloudBees Enterprise Plugins · Jenkins case studies from CloudBees
+ï¿½ Exploring Jenkins in OpenShift PaaS ï¿½ Exploring Jenkins in the Cloud ï¿½ CloudBees ï¿½ An overview of CloudBees Enterprise Plugins ï¿½ Jenkins case studies from CloudBees
 [ 79 ]
 
 Hosted Jenkins
@@ -1091,7 +1097,7 @@ Chapter 5
 
 Hosted Jenkins
 9. The following is the screenshot of the Jenkins dashboard:
-Exploring Jenkins in the Cloud ­ CloudBees
+Exploring Jenkins in the Cloud ï¿½ CloudBees
 DEV@cloud is a hosted Jenkins service in a secure, multi-tenanted environment managed by CloudBees. It runs a specific version of Jenkins, along with a selected version of plugins which are well supported with that version. All updates and patches are managed by CloudBees, and limited customization is available.
 1. Go to https://www.cloudbees.com/products/dev and subscribe.
 [ 84 ]
@@ -1158,7 +1164,7 @@ Chapter 5
 To read more on this, visit https://www.cloudbees.com/products/jenkinsenterprise/plugins/checkpoints-plugin.
 Role-based Access Control Plugin
 Authentication and authorization plays a significant role in the security aspect. The authorization strategy can help to control access to Jenkins jobs effectively. It is also essential to set permissions at the project level and visibility. The Role-based Access Control (RBAC) plugin provided by CloudBees provides the following features:
-· To define various security roles · To assign rules to groups · To assign roles globally or at an object level · To delegate management of groups for specific objects to users
+ï¿½ To define various security roles ï¿½ To assign rules to groups ï¿½ To assign roles globally or at an object level ï¿½ To delegate management of groups for specific objects to users
 To read more about the Role-based Access Control Plugin, visit https://www. cloudbees.com/products/jenkins-enterprise/plugins/role-based-accesscontrol-plugin.
 High Availability Plugin
 The downtime of Jenkins master caused by software or hardware affects the entire product team. It is vital to bring Jenkins master up in quick time, and this will take many hours. The High Availability plugin eliminates downtime due to master failures, by keeping multiple masters as backups. A backup master automatically boots up when the failure of the master is detected. This plugin makes failure detection and recovery an automatic process and not manual.
@@ -1169,7 +1175,7 @@ Let's consider a scenario where you need multiple slaves for Jenkins running in 
 
 Hosted Jenkins
 The following actions are allowed on VMs:
-· Power on · Power off/suspend · Revert to the last snapshot
+ï¿½ Power on ï¿½ Power off/suspend ï¿½ Revert to the last snapshot
 To read more, visit https://www.cloudbees.com/products/jenkinsenterprise/plugins/vmware-esxivsphere-auto-scaling-plugin.
 To find details on all plugins provided by CloudBees, visit https://www. cloudbees.com/products/jenkins-enterprise/plugins.
 Jenkins case studies from CloudBees
@@ -1184,8 +1190,8 @@ The jclouds team explored PaaS offerings available in the market and considered 
 
 Chapter 5
 Benefits
-· 100% focus on software development, by eliminating activities such as server reboots, server sizing, software updates, and patches, as they are automatically performed from within the CloudBees service
-· 33% increase in developer productivity · Technical support from CloudBees for Jenkins CI issues
+ï¿½ 100% focus on software development, by eliminating activities such as server reboots, server sizing, software updates, and patches, as they are automatically performed from within the CloudBees service
+ï¿½ 33% increase in developer productivity ï¿½ Technical support from CloudBees for Jenkins CI issues
 To read more about this case study, visit https://www.cloudbees.com/casestudy/ jclouds.
 Global Bank
 Global Bank is one of the top Global Financial Institutions. It offers corporate and investment banking services, private banking services, credit card services and investment management. It has a substantial international presence.
@@ -1197,9 +1203,9 @@ To overcome existing challenges, Global Bank evaluated and selected CloudBees Je
 
 Hosted Jenkins
 Benefits
-· RBAC Plugin provides security and additional enterprise-level functionality. The Folders plugin offers version control and ensures that only approved software versions are shared.
-· Half a day of development time is saved per application, by eliminating the need of monitoring the local instance of the build for each application.
-· Availability of technical support capabilities.
+ï¿½ RBAC Plugin provides security and additional enterprise-level functionality. The Folders plugin offers version control and ensures that only approved software versions are shared.
+ï¿½ Half a day of development time is saved per application, by eliminating the need of monitoring the local instance of the build for each application.
+ï¿½ Availability of technical support capabilities.
 To read more, visit https://www.cloudbees.com/casestudy/global-bank.
 Service-Flow
 Service-Flow provides online integration services, to connect the disparate IT service management tools used by organizations and various stakeholders. It provides features to create ticket automatically, ticket information exchange, and ticket routing. It has adapters for many ITSM tools such as ServiceNow and BMC, as well as Microsoft Service Manager Fujitsu, Atos, Efecte, and Tieto.
@@ -1208,8 +1214,8 @@ Service-Flow wanted to build its own service without using any of the generic in
 Solution
 Service-Flow used the CloudBees platform to build and deploy its ITSM integration service. DEV@cloud has been utilized by establishing the version control repository, coding first Java classes, setting up some basic Jenkins jobs, running unit tests, executing integration tests, and other quality checks. The Service-Flow service is in the cloud with a rapidly growing customer base by adding new features using the CloudBees platform.
 Benefits
-· Development time reduced by 50 percent with production release in three months
-· Updates deployed multiple times a week without service downtime · Availability of 99.999 percent achieved in production
+ï¿½ Development time reduced by 50 percent with production release in three months
+ï¿½ Updates deployed multiple times a week without service downtime ï¿½ Availability of 99.999 percent achieved in production
 [ 98 ]
 
 Chapter 5
@@ -1225,10 +1231,10 @@ The interesting thing about the ending of a chapter is: each chapter that is end
 
 Managing Code Quality and Notifications
 "Limit your burden by making very small incremental changes"
-­Anonymous
+ï¿½Anonymous
 We saw how various customers are using Jenkins on Cloud, based on their requirements. We also saw cloud-based offerings from Red Hat OpenShift and CloudBees, and case studies to understand how Jenkins is used effectively. Now, it is time to know about additional aspects of code quality inspection and notification on build failure.
 This chapter will teach you how to integrate static code analysis behavior into Jenkins. Code quality is an extremely vital feature that impacts application's effectiveness and by integrating it with sonar, Checkstyle, FindBugs, and other tools, the user gets an insight into problematic portions of code.
-· Integration with Sonar · Exploring Static code analysis Plugins · E-mail Notifications on Build status
+ï¿½ Integration with Sonar ï¿½ Exploring Static code analysis Plugins ï¿½ E-mail Notifications on Build status
 Integration with Sonar
 Quality of code is one of the important facets of DevOps culture. It provides quality checks that highlight the level of reliability, security, efficiency, portability, manageability, and so on. It helps to find bugs or possibility of bugs in the source code and sets culture to align with coding standards in the organization.
 [ 101 ]
@@ -1354,10 +1360,10 @@ Here again, we are at the end of another chapter. We need to remember that every
 
 Managing and Monitoring Jenkins
 "Fall in the beginning + Fall often + Learn to recover quickly = Faster time to market"
-­ Anonymous
+ï¿½ Anonymous
 We learned Sonar integration with Jenkins, an overview of static code analysis plugins, and notification of build status in the last chapter. Now, it's time to focus on management and monitoring of Jenkins.
 This chapter gives insight into management of Jenkins nodes and monitoring of them with Java Melody to provide details on utilization of resources. It also covers how to manage and monitor build jobs. This chapter describes basic security configuration in detail that is available in Jenkins for a better access control and authorization. The following is the list of topics that we will cover in this chapter:
-· Managing Jenkins master and slave nodes · Jenkins monitoring with JavaMelody · Managing disk usage · Build job-specific monitoring with the Build Monitor plugin · Managing access control and authorization · Maintaining role and project-based security · Managing an admin account · Audit Trail Plugin--an overview and usage
+ï¿½ Managing Jenkins master and slave nodes ï¿½ Jenkins monitoring with JavaMelody ï¿½ Managing disk usage ï¿½ Build job-specific monitoring with the Build Monitor plugin ï¿½ Managing access control and authorization ï¿½ Maintaining role and project-based security ï¿½ Managing an admin account ï¿½ Audit Trail Plugin--an overview and usage
 [ 117 ]
 
 Managing and Monitoring Jenkins
@@ -1482,7 +1488,7 @@ Managing and Monitoring Jenkins
 
 Chapter 7
 We've covered basics of security configuration in Jenkins. Explore more on the other options as an exercise. In case, authorization is not correctly set, then it can be corrected by editing config.xml. Consider it as self-study.
-Audit Trail Plugin ­ an overview and usage
+Audit Trail Plugin ï¿½ an overview and usage
 Audit Trail Plugin keeps a log of users who performed particular Jenkins operations, such as configuring jobs. This plugin adds an Audit Trail section in the main Jenkins configuration page. Install the Audit Trail Plugin.
 [ 137 ]
 
@@ -1508,17 +1514,17 @@ In the next chapter, we will cover some important plugins that add a significant
 
 [ 139 ]
 
-Beyond Basics of Jenkins ­ Leveraging
+Beyond Basics of Jenkins ï¿½ Leveraging
 "Must-have" Plugins
 "Strength and growth come only through continuous effort and struggle." - Napoleon Hill
 In the last chapter, we covered management and monitoring along with security aspects in Jenkins. In security, we understood how authentication and authorization works. Now, it is time to recognize the value added by some important plugins. This chapter covers advanced usage of Jenkins, which is extremely useful in specific scenarios. Scenario-based usage of specific plugins that help development and operations teams are covered here for better utilization of Jenkins. Some of these plugins are extremely useful in the case of notifications scenario. The following are the main topics that we will cover in this chapter:
-· Extended E-mail Plugin · Workspace cleanup Plugin · Pre-scm-buildstep Plugin · Conditional BuildStep Plugin · EnvInject Plugin · Build Pipeline Plugin
+ï¿½ Extended E-mail Plugin ï¿½ Workspace cleanup Plugin ï¿½ Pre-scm-buildstep Plugin ï¿½ Conditional BuildStep Plugin ï¿½ EnvInject Plugin ï¿½ Build Pipeline Plugin
 [ 141 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 Extended Email Plugin
 Email-ext plugin extends functionality of e-mail notifications provided by Jenkins. It gives more customization in terms of conditions that cause mail notifications and content generation. You can install this plugin from the Jenkin's dashboard.
-Customization is available in three areas: · Triggers: We can select the conditions that cause an e-mail notification to be sent · Content: We can specify the content of each triggered email's subject and body; we can use default environment variables within content · Recipients: We can specify who should receive an e-mail when it is triggered
+Customization is available in three areas: ï¿½ Triggers: We can select the conditions that cause an e-mail notification to be sent ï¿½ Content: We can specify the content of each triggered email's subject and body; we can use default environment variables within content ï¿½ Recipients: We can specify who should receive an e-mail when it is triggered
 In the Jenkins dashboard, click on Manage Jenkins and then click on Configure System. Go to the Extended E-mail Notification section and configure global email-ext properties that should match the settings for your SMTP mail server.
 [ 142 ]
 
@@ -1526,7 +1532,7 @@ Chapter 8
 We can also customize the subject, maximum attachment size, default content, and so on.
 [ 143 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 To configure Email-ext specific to build job, enable it in the project configuration page. Select the checkbox labeled Editable Email Notification in the Post-build Actions. Configure the comma- (or whitespace-) separated list of global recipients, subject, and content. In advanced configuration, we can configure pre-send script, triggers, email tokens, and so on.
 The pre-send script feature allows us to write a script that can modify the MimeMessage object prior to sending the message. Triggers allow us to configure conditions that must be met to send an e-mail. The Email-ext plugin uses tokens to allow dynamic data to be inserted into the recipient list, e-mail subject line, or the body. For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/ Email-ext+plugin.
 Workspace cleanup Plugin
@@ -1541,7 +1547,7 @@ We can apply patterns for files to be deleted based on the status of the build j
 For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/ Workspace+Cleanup+Plugin.
 [ 145 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 Pre-scm-buildstep Plugin
 The Pre-scm-buildstep plugin allows a specific build step to run before SCM checkouts in case we need to perform any build step action on the workspace considering any special requirements such as adding a file with some settings for the SCM, executing some command to create some file, cleanup, or call other scripts that need to be run before checking out. You can install this plugin from the Jenkins dashboard.
 Select conditional steps from the list, as shown in the following screenshot:
@@ -1552,22 +1558,22 @@ Select the conditional steps based on requirement and provide a list of commands
 For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/prescm-buildstep.
 [ 147 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 Conditional BuildStep Plugin
 The Buildstep plugin allows us to wrap any number of other build steps, controlling their execution based on a defined condition. You can install this plugin from the Jenkins' dashboard.
-This plugin defines a few core run conditions such as: · Always/Never: To disable a build step from the job configuration · Boolean condition: To execute the step if a token expands to a representation of true · Current status: To execute the build step if the current build status is within the configured/specific range · File exists/Files match: To execute the step if a file exists, or matches a pattern · Strings match: To execute the step if the two strings are same · Numerical comparison: To execute the build step depending on the result of comparing two numbers · Regular expression match: This provides a regular expression and a label, to execute the build step if the expression matches the label
+This plugin defines a few core run conditions such as: ï¿½ Always/Never: To disable a build step from the job configuration ï¿½ Boolean condition: To execute the step if a token expands to a representation of true ï¿½ Current status: To execute the build step if the current build status is within the configured/specific range ï¿½ File exists/Files match: To execute the step if a file exists, or matches a pattern ï¿½ Strings match: To execute the step if the two strings are same ï¿½ Numerical comparison: To execute the build step depending on the result of comparing two numbers ï¿½ Regular expression match: This provides a regular expression and a label, to execute the build step if the expression matches the label
 [ 148 ]
 
 Chapter 8
-· Time/Day of week: To execute the build job during a specified period of the day or day of the week
-· And/Or/Not: Logical operations to enable the combining and sense inversion of run conditions
-· Build cause: To execute the build step depending on the cause of the build, for example, triggered by timer, user, scm-change, and so on
-· Script condition: Utilize shell script to decide whether a step should be skipped
-· Windows Batch condition: Utilize windows batch to decide whether a step should be skipped
+ï¿½ Time/Day of week: To execute the build job during a specified period of the day or day of the week
+ï¿½ And/Or/Not: Logical operations to enable the combining and sense inversion of run conditions
+ï¿½ Build cause: To execute the build step depending on the cause of the build, for example, triggered by timer, user, scm-change, and so on
+ï¿½ Script condition: Utilize shell script to decide whether a step should be skipped
+ï¿½ Windows Batch condition: Utilize windows batch to decide whether a step should be skipped
 Select the Conditional step (single) from the Add build step.
 [ 149 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 Select the Conditional steps (multiple) from the Add build step. We can add multiple steps to condition in this conditional step.
 For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/ Conditional+BuildStep+Plugin.
 EnvInject Plugin
@@ -1579,7 +1585,7 @@ The EnvInject plugin provides the facility to have an isolated environment for d
 For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/ EnvInject+Plugin.
 [ 151 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 Build Pipeline Plugin
 Continuous Integration has become a popular practice for application development. The Build Pipeline plugin provides a pipeline view of upstream and downstream connected jobs that typically form a build pipeline with the ability to define manual triggers or approval process. We can create a chain of jobs by orchestrating version promotion through different quality gates before we deploy it in production. Install this plugin from the Jenkins dashboard.
 We have already installed the Dashboard View plugin. We will create a pipeline for four build jobs. Let's assume we have four build jobs, as shown in the following diagram, where the objective of each build job is mentioned:
@@ -1594,7 +1600,7 @@ Chapter 8
 
 [ 153 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 4. In a configuration of the build pipeline, select job to trigger parameterized build as settle-build job in Post-build Actions. It will be the first build job in the pipeline.
 5. In a settle-build job, trigger the parameterized build on the settle-awsprovisioning job in Post-build Actions.
 [ 154 ]
@@ -1607,7 +1613,7 @@ Chapter 8
 
 [ 155 ]
 
-Beyond Basics of Jenkins ­ Leveraging "Must-have" Plugins
+Beyond Basics of Jenkins ï¿½ Leveraging "Must-have" Plugins
 8. Go to the dashboard view, which we created earlier, and verify the pipeline created after our configuration in build jobs in the previous section. The new build pipeline will be created as shown in the following diagram:
 For more details, visit https://wiki.jenkins-ci.org/display/JENKINS/ Build+Pipeline+Plugin.
 Self-test questions
@@ -1793,4 +1799,3 @@ Use the Force.com platform to design and develop real-world, cutting-edge cloud 
 3. Discover the tools that will help you develop and deploy your application.
 
 Please check www.PacktPub.com for information on our titles
-

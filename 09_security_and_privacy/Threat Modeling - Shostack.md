@@ -1,3 +1,9 @@
+# Threat Modeling
+
+> **Author(s):** Shostack Â· **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
 Threat Modeling
 Designing for Security
 Adam Shostack
@@ -5,7 +11,7 @@ Adam Shostack
 Threat Modeling: Designing for Security
 Published by John Wiley & Sons, Inc. 10475 Crosspoint BoulevardIndianapolis, IN 46256
 www.wiley.com
-Copyright © 2014 by Adam Shostack
+Copyright ï¿½ 2014 by Adam Shostack
 Published by John Wiley & Sons, Inc., Indianapolis, Indiana Published simultaneously in Canada
 ISBN: 978-1-118-80999-0 ISBN: 978-1-118-82269-2 (ebk) ISBN: 978-1-118-81005-7 (ebk)
 Manufactured in the United States of America
@@ -1223,7 +1229,7 @@ Intel TARA
 479
 
 Personas and Archetypes Aucsmith's Attacker Personas Background and Definitions Personas
-David "Ne0phyate" Bradley ­ Vandal JoLynn "NightLily" Dobney ­ Trespasser Sean "Keech" Purcell ­ Defacer Bryan "CrossFyre" Walton ­ Author Lorrin Smith-Bates ­ Insider Douglas Hite ­ Thief Mr. Smith ­ Terrorist Mr. Jones ­ Spy
+David "Ne0phyate" Bradley ï¿½ Vandal JoLynn "NightLily" Dobney ï¿½ Trespasser Sean "Keech" Purcell ï¿½ Defacer Bryan "CrossFyre" Walton ï¿½ Author Lorrin Smith-Bates ï¿½ Insider Douglas Hite ï¿½ Thief Mr. Smith ï¿½ Terrorist Mr. Jones ï¿½ Spy
 
 Appendix D Elevation of Privilege: The Cards Spoofi ng Tampering Repudiation Information Disclosure Denial of Service Elevation of Privilege (EoP)
 
@@ -1422,7 +1428,7 @@ You begin threat modeling by focusing on four key questions:
 4. Did you do a decent job of analysis?
 In addressing these questions, you start and end with tasks that all technologists should be familiar with: drawing on a whiteboard and managing bugs. In between, this chapter will introduce a variety of new techniques you can use to think about threats. If you get confused, just come back to these four questions.
 Everything in this chapter is designed to help you answer one of these questions. You're going to first walk through these questions using a three-tier web app as an example, and after you've read that, you should walk through the steps again with something of your own to threat model. It could be software you're building or deploying, or software you're considering acquiring. If you're feeling uncertain about what to model, you can use one of the sample systems in this chapter or an exercise found in Appendix E, "Case Studies."
-The second time you work through this chapter, you'll need a copy of the Elevation of Privilege threat-modeling game. The game uses a deck of cards that you can download free from http://www.microsoft.com/security/sdl/ adopt/eop.aspx. You should get two­four friends or colleagues together for the game part.
+The second time you work through this chapter, you'll need a copy of the Elevation of Privilege threat-modeling game. The game uses a deck of cards that you can download free from http://www.microsoft.com/security/sdl/ adopt/eop.aspx. You should get twoï¿½four friends or colleagues together for the game part.
 You start with building a diagram, which is the first of four major activities involved in threat modeling and is explained in the next section. The other three include finding threats, addressing them, and then checking your work.
 
 Chapter 1  Dive In and Threat Model! 5
@@ -1635,7 +1641,7 @@ Documenting log design early in the development process
 Chapter 1  Dive In and Threat Model! 17
  Logs come under attack: Attackers will do things to prevent your logs from being useful, including filling up the log to make it hard to find the attack or forcing logs to "roll over." They may also do things to set off so many alarms that the real attack is lost in a sea of troubles. Perhaps obviously, sending logs over a network exposes them to other threats that you'll need to handle.
  Logs as a channel for attack: By design, you're collecting data from sources outside your control, and delivering that data to people and systems with security privileges. An example of such an attack might be sending mail addressed to "</html> haha@example.com", causing trouble for web-based tools that don't expect inline HTML.
-You can make it easier to write secure code to process your logs by clearly communicating what your logs can't contain, such as "Our logs are all plaintext, and attackers can insert all sorts of things," or "Fields 1­5 of our logs are tightly controlled by our software, fields 6­9 are easy to inject data into. Field 1 is time in GMT. Fields 2 and 3 are IP addresses (v4 or 6)..." Unless you have incredibly strict control, documenting what your logs can contain will likely miss things. (For example, can your logs contain Unicode double-wide characters?)
+You can make it easier to write secure code to process your logs by clearly communicating what your logs can't contain, such as "Our logs are all plaintext, and attackers can insert all sorts of things," or "Fields 1ï¿½5 of our logs are tightly controlled by our software, fields 6ï¿½9 are easy to inject data into. Field 1 is time in GMT. Fields 2 and 3 are IP addresses (v4 or 6)..." Unless you have incredibly strict control, documenting what your logs can contain will likely miss things. (For example, can your logs contain Unicode double-wide characters?)
 Addressing Information Disclosure
 Table 1-4 and the list which follows show targets of information disclosure, mitigation strategies that address information disclosure, and techniques to implement those mitigations.
 Table 1-4: Addressing Information Disclosure Threats
@@ -3134,7 +3140,7 @@ Representing a Tree
 Trees can be represented in two ways: as a free-form (human-viewable) model without any technical structure, or as a structured representation with variable types and/or metadata to facilitate programmatic analysis.
 Human-Viewable Representations
 Attack trees can be drawn graphically or shown in outline form. Graphical representations are a bit more work to create but have more potential to focus attention. In either case, if your nodes are not all related by the same logic (AND/OR), you'll need to decide on a way to represent the relationship and communicate that decision. If your tree is being shown graphically, you'll also want to decide if you use a distinct shape for a terminal node: The labels in a node should be carefully chosen to be rich in information, especially if you're using a graphical tree. Words such as "attack" or "via" can distract from the key information. Choose "modify file" over "attack via modifying file." Words such as "weak" are more helpful when other nodes say "no." So "weak cryptography" is a good contrast to "no cryptography."
-As always, care should be taken to ensure that the graphics are actually information-rich and communicative. For instance, consider the three representations of a tree shown in Figure 4­1.
+As always, care should be taken to ensure that the graphics are actually information-rich and communicative. For instance, consider the three representations of a tree shown in Figure 4ï¿½1.
 
 Asset/Revenue Overstatement
 
@@ -3152,12 +3158,12 @@ Fictitious Revenue
 
 Fictitious Revenue
 
-Figure 4­1: Three representations of a tree
+Figure 4ï¿½1: Three representations of a tree
 
 Fictitious Revenue
 
 The left tree shows an example of a real tree that simply uses boxes. This representation does not clearly distinguish hierarchy, making it hard to tell which nodes are at the same level of the tree. Compare that to the center tree, which uses a tree to show the equivalence of the leaf nodes. The rightmost tree adds the "OR gate" symbol from circuit design to show that any of the leaf nodes lead to the parent condition.
-Additionally, tree layout should make considered use of space. In the very small tree in Figure 4­2, note the pleasant grid that helps your eye follow the layout. In contrast, consider the layout of Figure 4­3, which feels jumbled. To focus your attention on the layout, both are shown too small to read.
+Additionally, tree layout should make considered use of space. In the very small tree in Figure 4ï¿½2, note the pleasant grid that helps your eye follow the layout. In contrast, consider the layout of Figure 4ï¿½3, which feels jumbled. To focus your attention on the layout, both are shown too small to read.
 
 92 Part II  Finding Threats
 
@@ -3267,7 +3273,7 @@ Register Disbursements
 False Voids
 False Refunds
 
-Figure 4­2: A tree drawn on a grid
+Figure 4ï¿½2: A tree drawn on a grid
 
 Asset Req. & Transfers
 Fake Sales & Shipping
@@ -3301,7 +3307,7 @@ data
 
 Tampering threats
 against logs
-Figure 4­3: A tree drawn without a grid
+Figure 4ï¿½3: A tree drawn without a grid
 
 Chapter 4  Attack Trees 93
 N O T E In Writing Secure Code 2 (Microsoft Press, 2003), Michael Howard and David LeBlanc suggest the use of dotted lines for unlikely threats, solid lines for likely threats, and circles to show mitigations, although including mitigations may make the trees too complex.
@@ -3333,7 +3339,7 @@ A variety of real attack trees have been published. These trees may be helpful t
 Each of these trees has the nice property of being available now, either as an extended example, as a model for you to build from, or (if you're working around fraud, elections, or SSL), to use directly in analyzing a system which matters to you.
 The fraud tree is designed for you to use. In contrast, the election trees were developed to help the team think through their threats and organize the possibilities.
 Fraud Attack Tree
-An attack tree from the Association of Certified Fraud Examiners is shown with their gracious permission in Figure 4­4, and it has a number of good qualities. First, it's derived from actual experience in finding and exposing fraud. Second, it has a structure put together by subject matter experts, so it's not a random collection of threats. Finally, it has an associated set of mitigations, which are discussed at great length in Joseph Wells' Corporate Fraud Handbook (Wiley, 2011).
+An attack tree from the Association of Certified Fraud Examiners is shown with their gracious permission in Figure 4ï¿½4, and it has a number of good qualities. First, it's derived from actual experience in finding and exposing fraud. Second, it has a structure put together by subject matter experts, so it's not a random collection of threats. Finally, it has an associated set of mitigations, which are discussed at great length in Joseph Wells' Corporate Fraud Handbook (Wiley, 2011).
 Election Operations Assessment Threat Trees
 The largest publicly accessible set of threat trees was created for the Elections Assistance Commission by a team centered at the University of Southern Alabama. There are six high-level trees. They are useful both as an example and for you to use directly, and there are some process lessons you can learn.
 N O T E This model covers a wider scope of attacks than typical for software threat models, but is scoped like many operational threat models.
@@ -3436,7 +3442,7 @@ Falsified Wages
 
 Multiple Reimbursements
 
-Figure 4­4: The ACFE fraud tree
+Figure 4ï¿½4: The ACFE fraud tree
 
 Check Tampering
 Forged Maker
@@ -3458,7 +3464,7 @@ Unconcealed Larceny
 If your system is vulnerable to threats such as equipment attack, insider attack, process subversion or disruption, these attack trees may work well to help you find threats against those systems.
 The team created these trees to organize their thinking around what might go wrong. They described their process as having found a very large set of issues via literature review, brainstorming, and original research. They then broke the threats into high-level sets, and had individuals organize them into trees. An attempt to sort the sets into a tree in a facilitated group process did not work (Yanisac, 2012). The organization of trees may require a single person or a very close-knit team; you should be cautious about trying for consensus trees.
 Mind Maps
-Application security specialist Ivan Ristic (Ristic´, 2009) conducted an interesting experiment using a mind map for what he calls an SSL threat model, as shown in Figure 4­5.
+Application security specialist Ivan Ristic (Risticï¿½, 2009) conducted an interesting experiment using a mind map for what he calls an SSL threat model, as shown in Figure 4ï¿½5.
 This is an interesting way to present a tree. There are very few mind-map trees out there. This tree, like the election trees, shows a set of editorial decisions and those who use mind maps may find the following perspective on this mind map helpful:
  The distinction between "Protocols/Implementation bugs" and "End points/Client side/secure implementation" is unclear.
  There's "End points/Client side/secure implementation" but no "server side" counterpart to that.
@@ -3540,7 +3546,7 @@ Client Configuration Secure Implementation Lack of revocation checking
 
 Client Side
 
-Figure 4­5: Ristic's SSL mind map
+Figure 4ï¿½5: Ristic's SSL mind map
 
 SSL Threat Model
 
@@ -3658,7 +3664,7 @@ Each of these groups contains a sub-enumeration, which is available via MITRE (2
 106 Part II  Finding Threats
 An example CAPEC is shown in Figure 5-2. You can use this very structured set of information for threat modeling in a few ways. For instance, you could review a system being built against either each CAPEC entry or the 15 CAPEC categories. Reviewing against the individual entries is a large task, however; if a reviewer averages five minutes for each of the 475 entries, that's a full 40 hours of work. Another way to use this information is to train people about the breadth of threats. Using this approach, it would be possible to create a training class, probably taking a day or more.
 Exit Criteria
-The appropriate exit criteria for using CAPEC depend on the mode in which you're using it. If you are performing a category review, then you should have at least one issue per categories 1­11 (Data Leakage, Resource Depletion, Injection, Spoofing, Time and State, Abuse of Functionality, Probabilistic Techniques, Exploitation of Authentication, Exploitation of Privilege/Trust, Data Structure Attacks, and Resource Manipulation) and possibly one for categories 12­15 (Network Reconnaissance, Social Engineering, Physical Security, Supply Chain).
+The appropriate exit criteria for using CAPEC depend on the mode in which you're using it. If you are performing a category review, then you should have at least one issue per categories 1ï¿½11 (Data Leakage, Resource Depletion, Injection, Spoofing, Time and State, Abuse of Functionality, Probabilistic Techniques, Exploitation of Authentication, Exploitation of Privilege/Trust, Data Structure Attacks, and Resource Manipulation) and possibly one for categories 12ï¿½15 (Network Reconnaissance, Social Engineering, Physical Security, Supply Chain).
 Perspective on CAPEC
 Each CAPEC entry includes an assessment of its completion, which is a nice touch. CAPECs include a variety of sections, and its scope differs from STRIDE in ways that can be challenging to unravel. (This is neither a criticism of CAPEC, which existed before this book, nor a suggestion that CAPEC change.)
 The impressive size and scope of CAPEC may make it intimidating for people to jump in. At the same time, that specificity may make it easier to use for someone who's just getting started in security, where specificity helps to identify attacks. For those who are more experienced, the specificity and apparent completeness of CAPEC may result in less creative thinking. I personally find that CAPEC's impressive size and scope make it hard for me to wrap my head around it.
@@ -4320,7 +4326,7 @@ Some of those factors might include engineers not knowing when to reach for such
 
 160 Part III  Managing and Addressing Threats
 Standard Deployments
-In many larger organizations, an operations group will have a standard way to deploy systems, or possibly several standard ways, depending on the data's sensitivity. In these cases, the operations group can document what sorts of threats their standard deployment mitigates, and provide that document as part of their "on-boarding" process. For example, a standard data center at an organization might include defenses against DDoS, or state that "network information disclosure is an accepted risk for risk categories 1­3."
+In many larger organizations, an operations group will have a standard way to deploy systems, or possibly several standard ways, depending on the data's sensitivity. In these cases, the operations group can document what sorts of threats their standard deployment mitigates, and provide that document as part of their "on-boarding" process. For example, a standard data center at an organization might include defenses against DDoS, or state that "network information disclosure is an accepted risk for risk categories 1ï¿½3."
 Addressing CAPEC Threats
 CAPEC (MITRE's Common Attack Pattern Enumeration and Classification) is primarily a collection of attack patterns, but most CAPEC threat patterns include defenses. This chapter has primarily organized threats according to STRIDE. If you are using CAPEC, each CAPEC pattern includes advice about how to address it in its "Solutions and Mitigations" section. The CAPEC website is the authoritative source for such data.
 Mitigating Privacy Threats
@@ -4736,7 +4742,7 @@ Even if the product comes with an architecture diagram, it may not suffice for t
  Administrative interfaces:  Documented  Account recovery  Service personnel accounts
  Web and database implementation  Technical dependencies and platform information:
  Changes to OS (for appliances/virtual machines)  Firewall rule changes  Permission changes  Auto-updater status  Unpatched vulnerabilities
-If the software is delivered in binary form, you can use unix tools like ps, netstat, find (with the ­newer option), or their equivalents on your platform to find listeners and processes. Similarly, the operating system can show you new accounts and start-up processes. Tools like Sysinternals' Autoruns on Windows can walk through the many possible ways to start a program on boot. Administrative interfaces are probably documented, although it's unfortunately
+If the software is delivered in binary form, you can use unix tools like ps, netstat, find (with the ï¿½newer option), or their equivalents on your platform to find listeners and processes. Similarly, the operating system can show you new accounts and start-up processes. Tools like Sysinternals' Autoruns on Windows can walk through the many possible ways to start a program on boot. Administrative interfaces are probably documented, although it's unfortunately
 
 194 Part III  Managing and Addressing Threats
 common to have backdoors for service or recovery, so you can look into how you'd get in "if you forget your password."
@@ -4786,7 +4792,7 @@ It's a valid URL, in accordance with RFC 1738. It uses a domain that is nominall
 
 198 Part III  Managing and Addressing Threats
 For example, the e-mail address adam+threat@example.org is valid (see RFC 822), but just try convincing many web forms of that. Many filter out the plus sign to make SQL injection attacks harder to carry out, along with the single quote character ('), which annoys a great many Irish people with names like O'Malley or O'Leary. Therefore, data can only be validated for a particular purpose or, better, to comply with certain rules.
-The other approach to data is to filter and transform it. For example, if you have a system that is taking input that will be displayed on a website, you can do so more safely by ensuring it is ASCII, eliminating everything but a known good set and transforming bracketed strings into approved HTML strings. Your known good set could be A­Z, 0­9 and some set of punctuation. The advantage to a filter and transform approach is safety by design. By filtering out everything but known good, and then transforming them into something that includes "dangerous" input, attack code will need to pass through multiple bugs to succeed.
+The other approach to data is to filter and transform it. For example, if you have a system that is taking input that will be displayed on a website, you can do so more safely by ensuring it is ASCII, eliminating everything but a known good set and transforming bracketed strings into approved HTML strings. Your known good set could be Aï¿½Z, 0ï¿½9 and some set of punctuation. The advantage to a filter and transform approach is safety by design. By filtering out everything but known good, and then transforming them into something that includes "dangerous" input, attack code will need to pass through multiple bugs to succeed.
 Document Assumptions as You Go
 As you threat model, you'll find yourself saying, "I assume that ..." You should write those things down, and testers should test the assumptions. How to do that will vary according to the assumption. Generally, you can test the assumptions by asking, "Could it ever not be true?" and "What can I break if this is false, incomplete, or an overgeneralization?"
 This differs in a subtle but important way from the common prescription to "document all assumptions." That advice leads people to try to document all assumptions as they start threat modeling, but what assumptions? When do you stop? Do you assume that no one will find a new solution to the factoring problem that underlies many public key cryptography schemes? It's usually a reasonable assumption, but documenting that in advance often feels like an exercise in pedantry. In contrast, documenting as you go is easier, constrained, and helps those who review the threat models.
@@ -5074,7 +5080,7 @@ Chapter 11  Threat Modeling Tools 213
 evaluation version. Newer versions of the tool may become available (after this book goes to press) with different dependencies.
 Tools That Don't Exist Yet
 There are two categories of features that people often ask for that are worth a brief discussion: automated model creation and automated threat identification. A great many people want tools that can take a piece of software that's already been written and extract a data flow or other architectural diagram. This is an attractive goal, and one that might be feasible for programs written in strongly typed languages. Marwan Abi-Antoun has done some work showing how to extract data flow diagrams for Java (Abi-Antoun, 2009). (The system with open code and published DFDs he found to use for testing was only 3,000 lines of code.) If technology to do this is further developed, it will present great value to threat modeling, but also create a temptation to not perform any threat modeling or analysis until late in a project. Threat modeling after the code has been completed limits options for addressing issues. This is discussed further in Chapter 7, "Processing and Managing Threats" and Chapter 17, "Bringing Threat Modeling to Your Organization."
-Similarly, tools that can take a diagram or other model and produce lists of threats would be lovely. A Spanish graduate student, Guifré Ruiz, and colleagues have created a first version of such a tool (Ruiz, 2012). However, these tools carry a risk that security analysis will focus only on known threats from an attack library. Such tools cannot (currently) analogize from closely related threats the way an experienced person can. Threat analysis that could reliably extend that knowledge to prevent new systems from making mistakes others have made would be a useful step forward. As more such tools are developed, it will be important to consider the balance between human and automated security design analysis. After all, to the extent that you need software engineers to create new functionality, that new functionality and the new combinations that result may expose new threats. It's not impossible to imagine a tool that would find threats against code not yet written, but it's hard to imagine one that would do so as comprehensively as an expert threat modeler.
+Similarly, tools that can take a diagram or other model and produce lists of threats would be lovely. A Spanish graduate student, Guifrï¿½ Ruiz, and colleagues have created a first version of such a tool (Ruiz, 2012). However, these tools carry a risk that security analysis will focus only on known threats from an attack library. Such tools cannot (currently) analogize from closely related threats the way an experienced person can. Threat analysis that could reliably extend that knowledge to prevent new systems from making mistakes others have made would be a useful step forward. As more such tools are developed, it will be important to consider the balance between human and automated security design analysis. After all, to the extent that you need software engineers to create new functionality, that new functionality and the new combinations that result may expose new threats. It's not impossible to imagine a tool that would find threats against code not yet written, but it's hard to imagine one that would do so as comprehensively as an expert threat modeler.
 Summary
 A wide variety of tools are available for threat modeling. General-purpose tools such as whiteboards and bug-tracking systems can be very helpful, and tools such as word processors, spreadsheets, and diagramming tools can be used to
 
@@ -5087,7 +5093,7 @@ Threat Modeling in Technologies and Tricky Areas
 Part IV is where this book moves away from threat modeling as a generic approach, and focuses on threat modeling of specific technologies and tricky areas. In other words, this part moves from a focus on technique to a focus on the repertoire you'll need to address these tricky areas.
 All of these technologies and areas (except requirements) share three properties that make it worth discussing them in depth:
  Systems will have similar threats.  Those threats and the approaches to mitigating them have been extensively
-worked through, so there's no need to start from scratch.  Naïve mitigations fall victim to worked-through attacks. Therefore, you
+worked through, so there's no need to start from scratch.  Naï¿½ve mitigations fall victim to worked-through attacks. Therefore, you
 can abstract what's been done in these areas into models, and you can learn the current practical state of the art in handling each. The following chapters are included in this part:  Chapter 12: Requirements Cookbook lays out a set of security requirements so that you don't have to start your requirements from a blank slate, but can borrow and adapt. Much like the other chapters in this part, requirements are a tricky area where specific advice can help you.  Chapter 13: Web and Cloud Threats are the most like other threat modeling, but with a few recurring threats to consider. (That is, while an awful
 
 216 Part IV  Threat Modeling in Technologies and Tricky Areas
@@ -5113,7 +5119,7 @@ Most of these starting points are grouped with several related starting points. 
 
 Chapter 12  Requirements Cookbook 219
 The Interplay of Requirements, Threats, and Mitigations
-The same sort of task interplay as discussed in the previous section takes place on a broader scale between threats, requirements, and mitigations. As threats are discovered, some of them will violate explicit requirements. Others will violate implicit requirements, offering an opportunity to improve the requirements list. Other threats may lead to discussion of whether they violate a requirement or not, again leading to possible clarification. Thus, finding threats helps you identify requirements. Discussion of threats may also lead to a discussion about the difficulty of addressing a given threat. Such discussion can also feed back into requirements when a threat can't be mitigated. Mitigations drive requirements far more often than requirements drive mitigations. (In fact, I can't think of a case where a requirement drives a mitigation without a threat, except perhaps it's a fine definition of compliance, and that may be why so many security professionals resent compliance work.) This interplay is shown visually in Figure 12­1.
+The same sort of task interplay as discussed in the previous section takes place on a broader scale between threats, requirements, and mitigations. As threats are discovered, some of them will violate explicit requirements. Others will violate implicit requirements, offering an opportunity to improve the requirements list. Other threats may lead to discussion of whether they violate a requirement or not, again leading to possible clarification. Thus, finding threats helps you identify requirements. Discussion of threats may also lead to a discussion about the difficulty of addressing a given threat. Such discussion can also feed back into requirements when a threat can't be mitigated. Mitigations drive requirements far more often than requirements drive mitigations. (In fact, I can't think of a case where a requirement drives a mitigation without a threat, except perhaps it's a fine definition of compliance, and that may be why so many security professionals resent compliance work.) This interplay is shown visually in Figure 12ï¿½1.
 
 Requirements
 
@@ -5195,7 +5201,7 @@ It is important to track the components on which you depend and their security u
 1. We will only discover security issues when they're important enough for the media to talk about.
 2. Each group will maintain its own list of dependencies. 3. We will maintain a single list of dependencies to track for software updates. 4. We will ensure that we track dependencies, and have a person assigned
 to reading the updates and generating action as appropriate. 5. Our dependency-tracking SLA will be no more than four hours from
-announcement to bug filed, 24 × 365. a. The response will be a risk assessment and possibly an action plan. b. The response will be to test and roll all patches of severity X without
+announcement to bug filed, 24 ï¿½ 365. a. The response will be a risk assessment and possibly an action plan. b. The response will be to test and roll all patches of severity X without
 bothering with risk assessment. c. The response will be to deploy all patches and believe in our rollback
 practices. 6. We will maintain a testbed to roll out new patches before putting them
 into production. 7. We will use virtual machines taken from production to test new patches
@@ -5222,7 +5228,7 @@ Incident response teams often use an approach that mirrors the one suggested by 
 In operational threat modeling for response, there is a much longer set of requirements from which you can build:
 1. We will have an incident response plan. 2. We will have an incident response plan in a binder on a shelf somewhere. 3. We will have an incident response plan and run annual/quarterly/monthly
 drills to ensure we know how to operate. 4. Our intrusion-detection SLA will be no more than four hours from detec-
-tion to incident response execution, 24 × 365. 5. Our intrusion-detection SLA will be no more than eight business hours
+tion to incident response execution, 24 ï¿½ 365. 5. Our intrusion-detection SLA will be no more than eight business hours
 from detection to incident response execution during normal business hours. 6. Our incident response plan will [not] be designed to preserve court-quality evidence. 7. The senior administrators will be trained in our incident response plan. 8. All administrators will be trained in our incident response plan. 9. All administrators will have a wallet card with first response steps and contact information. 10. All incidents will have a lessons learned document produced. 11. All incidents will have a lessons learned document produced, appropriate to the scale of the incident. 12. Lessons learned documents will be shared with the appropriate people. 13. Lessons learned documents will be shared with all employees. 14. Lessons learned documents will be shared with all employees and partners. 15. Lessons learned documents will be published when we are required to report a breach so others can learn from our mistakes. 16. Lessons learned documents will be published so others can learn from our mistakes.
 The act of publishing lessons learned documents may seem unusual, but it is increasingly common practice, and the transparency has been beneficial to business. For example, after a major outage at Amazon, they published a root cause analysis, and Netflix announced that they had used the information to improve their own service (Netflix, 2011).
 C R O S S  R E F E R E N C E See also the earlier section "Vulnerability Management."
@@ -5260,10 +5266,10 @@ The first document maps controls into a set of domains, including governance and
 The CSA also has a Cloud Control Matrix of 98 control areas, with mappings that show their applicability to architectural areas (physical, network, compute,
 
 230 Part IV  Threat Modeling in Technologies and Tricky Areas
-storage, application, and data), to corporate governance, to cloud service delivery models (SaaS/PaaS/IaaS), and to service providers versus tenants. Each control area is also mapped to COBIT, HIPAA/HITECH, ISO/IEC 27001­2005, NIST SP800­53, FedRAMP, PCI DSS, BITS Shared Assessments SIG v6 & AUP v5, GAAP, Jericho Forum, and the NERC CIP.
+storage, application, and data), to corporate governance, to cloud service delivery models (SaaS/PaaS/IaaS), and to service providers versus tenants. Each control area is also mapped to COBIT, HIPAA/HITECH, ISO/IEC 27001ï¿½2005, NIST SP800ï¿½53, FedRAMP, PCI DSS, BITS Shared Assessments SIG v6 & AUP v5, GAAP, Jericho Forum, and the NERC CIP.
 The requirements documented in the Cloud Controls Matrix are designed to be used as a basis for cloud operational security. Some of the requirements are most relevant to cloud services, but it's a fine resource to start with, with the advantages of being both freely available and already mapped to a large set of other sets of controls.
 NIST Publication 200
-Requirements in this publication are a mixed set, ranging from planning and risk assessment to physical environment protection and technical requirements, such as authorization and system integrity. Federal agencies are required to "develop and promulgate formal, documented policies and procedures . . . and ensure their effective implementation" (NIST, 2006). US Government agencies must also meet the controls laid out in NIST Special Publication 800­53. Items marked with a star align to one or more STRIDE threats, so you might crosscheck the section "The STRIDE Requirements" later in this chapter.
+Requirements in this publication are a mixed set, ranging from planning and risk assessment to physical environment protection and technical requirements, such as authorization and system integrity. Federal agencies are required to "develop and promulgate formal, documented policies and procedures . . . and ensure their effective implementation" (NIST, 2006). US Government agencies must also meet the controls laid out in NIST Special Publication 800ï¿½53. Items marked with a star align to one or more STRIDE threats, so you might crosscheck the section "The STRIDE Requirements" later in this chapter.
 For each item in this list, consider if there's a need to address the issue in your product requirements:
  Access control, including authorization*
  Awareness and training
@@ -5304,7 +5310,7 @@ Privacy by Design is a set of principles created by the Ontario Privacy Commissi
 Chapter 12  Requirements Cookbook 233
 6. Visibility/Transparency
 7. Respect for Users
-Privacy by Design has been criticized as "vague" and leaving "many open questions about their application when engineering systems" (Gürses, 2011).
+Privacy by Design has been criticized as "vague" and leaving "many open questions about their application when engineering systems" (Gï¿½rses, 2011).
 The Seven Laws of Identity
 Kim Cameron of Microsoft has put forward a set of seven principles he calls the Laws of Identity for digital identity systems (Cameron, 2005). They are not overall privacy requirements, but a great deal of privacy relates to how a system treats "identity," a concept further discussed in Chapter 14 "Accounts and Identity." They may be an interesting complement to contextual integrity (discussed in Chapter 6 "Privacy Tools"). These are extracted from a document that describes and contextualizes each law:
 1. User Control and Consent: Technical identity systems must only reveal information identifying a user with the user's consent.
@@ -5324,13 +5330,13 @@ The difference between these privacy standards and the more principle-oriented a
 Which of these privacy requirements frameworks will best inform your technology depends on what you're building, and for whom. FIPs or Privacy by Design may spark valuable discussion of your designs or goals. If your system is focused on people, the "Seven Laws" can help. If you lack privacy expertise, the MPSD will help (but it is not intended to replace professional advice).
 
 The STRIDE Requirements
-You may recall that STRIDE is the opposite of properties that you want in a system, so properly this section ought to be called "The AINCAA Requirements," but that's just not very catchy. The relationship between STRIDE and the desired properties is shown in Table 12­1.
+You may recall that STRIDE is the opposite of properties that you want in a system, so properly this section ought to be called "The AINCAA Requirements," but that's just not very catchy. The relationship between STRIDE and the desired properties is shown in Table 12ï¿½1.
 
-Table 12­1: STRIDE and AINCAA THREAT Spoofing Tampering Repudiation Information Disclosure Denial of Service Elevation of Privilege
+Table 12ï¿½1: STRIDE and AINCAA THREAT Spoofing Tampering Repudiation Information Disclosure Denial of Service Elevation of Privilege
 
 DESIRABLE PROPERTY Authentication Integrity Non-Repudiation Confidentiality Availability Authorization
 
-The following subsections are organized according to the desirable property shown in Table 12­1.
+The following subsections are organized according to the desirable property shown in Table 12ï¿½1.
 
 Chapter 12  Requirements Cookbook 235
 Authentication
@@ -5380,7 +5386,7 @@ to a remote system.
 Confidentiality
 Sample confidentiality requirements include: 1. Data in file/database will be available only to these authorized users. 2. Data in file/database will be available only to these authorized users, even if computers/disks/tapes are stolen. 3. Data in file/database will be available only to these authorized users, even if computers are stolen while turned on. 4. The name/existence of this datastore will only be exposed to these authorized users. 5. The content of communication between Alice and Bob will only be exposed to these authorized users. 6. The topic of communication between Alice and Bob will only be exposed to these authorized users. 7. The existence of communication between Alice and Bob will only be exposed to these authorized users.
 Availability
-Sample availability requirements include: 1. The system shall be available 99 percent of the time. 2. The system shall be available 100 percent of the time. 3. The system shall be available 100 percent of the time, and we will pay our customers if it's not. 4. The system shall be available for N percent of the time, including planned maintenance. 5. Only authenticated users will be able to cause the system to spend 10× more CPU than they have spent. 6. The system will be able to resist a simple DoS such as synflooding by a 50,000-host botnet.
+Sample availability requirements include: 1. The system shall be available 99 percent of the time. 2. The system shall be available 100 percent of the time. 3. The system shall be available 100 percent of the time, and we will pay our customers if it's not. 4. The system shall be available for N percent of the time, including planned maintenance. 5. Only authenticated users will be able to cause the system to spend 10ï¿½ more CPU than they have spent. 6. The system will be able to resist a simple DoS such as synflooding by a 50,000-host botnet.
 
 Chapter 12  Requirements Cookbook 239
 7. The system will be able to resist a simple DoS such as HTTPS connection initiation by a 50,000-host botnet.
@@ -5432,7 +5438,7 @@ Web and Cloud Threats
 In many ways, threat modeling for the web and cloud are very much like threat modeling for anything else, but these unique environments have some recurring threats, which are covered in this chapter.
 This chapter is organized into web threats, cloud threats, cloud provider threats, and mobile threats. Web threats are broken into website threats, web browser, and plugin threats. Many of the cloud threats are expressed with respect to infrastructure as a service (IaaS) and platform as a service (PaaS). It closes with a section on mobile threats.
 Web Threats
-The web is composed of a simple and powerful set of protocols and languages. It has become a cliché to say that it has changed everything. It's easy to forget that the web is software like other software. Although you might assume that you need to threat model it in some new ways, the truth is that it's like most other software, so techniques such as STRIDE and attack trees work well for web technologies.
+The web is composed of a simple and powerful set of protocols and languages. It has become a clichï¿½ to say that it has changed everything. It's easy to forget that the web is software like other software. Although you might assume that you need to threat model it in some new ways, the truth is that it's like most other software, so techniques such as STRIDE and attack trees work well for web technologies.
 243
 
 244 Part IV  Threat Modeling in Technologies and Tricky Areas
@@ -5549,7 +5555,7 @@ Accounts are often created based on an account elsewhere, such as a Facebook or 
 256 Part IV  Threat Modeling in Technologies and Tricky Areas
 somewhat seamlessly. While federation reduces the burden on individuals who want to create new accounts, it exposes risk in that a breached federated system may be a stepping-stone to your system (depending on where and how authentication tokens are stored). It may pose privacy threats by requiring the linkage of accounts. It may also increase the impact of threats by making the federated account a more valuable target. Lastly, users are often forgetful about where they've federated, and leave federation in place even after they no longer use it.
 Creating Accounts That Don't Correspond to a Person
-We often want to think "one account for one person." Security experts advise against shared accounts for good reasons of (ahem) accountability. There are many reasons why that advice is violated. Some accounts are set up for more than one person--for example, a married couple may have a joint bank account. Often times, they will share a single login/password combination, even if you've made it easy to set up several (computer) accounts to connect to a single bank account. Similarly, many people might share one work account. It is important to think about what happens when one or more participants in such a shared account are no longer authorized to use it. For the married couple with a joint bank account, what's the right system? That both spouses have a (system) account that is authorized to access the (bank) account? Similarly, a traditional landline phone is an account for a family. If you call 867­5309, you might get someone in Jenny's family.
+We often want to think "one account for one person." Security experts advise against shared accounts for good reasons of (ahem) accountability. There are many reasons why that advice is violated. Some accounts are set up for more than one person--for example, a married couple may have a joint bank account. Often times, they will share a single login/password combination, even if you've made it easy to set up several (computer) accounts to connect to a single bank account. Similarly, many people might share one work account. It is important to think about what happens when one or more participants in such a shared account are no longer authorized to use it. For the married couple with a joint bank account, what's the right system? That both spouses have a (system) account that is authorized to access the (bank) account? Similarly, a traditional landline phone is an account for a family. If you call 867ï¿½5309, you might get someone in Jenny's family.
 Andrew Adams and Shirley Williams have been exploring these issues and have a short, readable paper "What's Yours Is Mine, and What's Mine Is My Own" (Adams, 2012). Taking a cue from the world of law, they suggest considering several types of joint accounts: several, shared, subordinate, and nominee. Several accounts are those that reflect the intersection of individuals where each has complete authority over the account. Shared accounts are those for which all members of a group can see information, but some subset of users can control what others can change. For example, members of an LLC could all see the financials, but only the treasurer can issue payments. Subordinate accounts might be created by a parent or guardian, and allow one or more supervisory accounts to see some, but perhaps not all, of the child's activity. (For example, parents might be able to see correspondent e-mail addresses, but not contents.) Finally, nominee accounts might allow access to the account after some circumstance, such as death. (Nominee accounts in this sense relate closely to Schechter, Egelman, and Reeder's trustees, covered later in the section "Active Social Authentication.") In any or all of these sorts of systems, there might be one login account that is used by everyone who has access to the joint account, or one login per person--it depends primarily on your development decisions and the usability of a joint account system.
 
 Chapter 14  Accounts and Identity 257
@@ -5667,18 +5673,18 @@ Insufficient Authentication
 As the many inadequacies of passwords become increasingly apparent, services are choosing to look at more data available at login time to make an authentication decision. With a classical web browser, this will frequently include checking the IP address, a geolocation based on that IP, browser version information, cookies,
 
 Chapter 14  Accounts and Identity 263
-and so on. If you are going to create such a system, note that there's a threat. The specific version is cookie managers. You should plan for 20 percent­50 percent of your real customers to regularly delete their cookies (Nguyen, 2011; Young, 2011). Tell people if cookie deletion will affect the need for account recovery.
+and so on. If you are going to create such a system, note that there's a threat. The specific version is cookie managers. You should plan for 20 percentï¿½50 percent of your real customers to regularly delete their cookies (Nguyen, 2011; Young, 2011). Tell people if cookie deletion will affect the need for account recovery.
 This can be generalized to a mismatch between expectations and your system. If other events will trigger account recovery, you should strongly consider setting people's expectations. Be very clear about what information you expect would be difficult for an attacker to determine about your algorithms. That's not to say you should reveal the information. Joseph Bonneau makes the claim that obscurity is an essential part of doing authentication well (Bonneau, 2012a). His arguments are solid, but they resolve the tension between limiting attacker information and usability in a way that leads to frustration for the real account owners. Of course, the frustration of your having a bank account drained is also very real. For more on obscurity, see the section "Secret Systems: Kerckhoffs and His Principles" in Chapter 16 "Threats to Cryptosystems."
 Account Lockout
 When a login attempt fails, you can choose to lock the account for some length of time--ranging from a few seconds to forever. The forever end of the spectrum requires some form of reset management, an exercise left to the reader. If you select shorter lengths of time, you can use fixed or increasing delays (also called backoff). You can apply delays to accounts or endpoints, such as an IP address or an address range, or both.
-If the number of failures is represented as f, something like (f-3) × 10 or (f-5)2 seconds offers a reasonable mix of increasing security with each failure while not annoying people with unreasonable delays. (Of course, (f-5)2 is sort of pathological if you don't handle the small integers well.) The system designer can either expose the backoff or hide it. Hiding it (by telling the person that their attempt to log in failed) may result in people incorrectly believing that they've lost their password, and thus driving the need for backup authentication that works faster.
+If the number of failures is represented as f, something like (f-3) ï¿½ 10 or (f-5)2 seconds offers a reasonable mix of increasing security with each failure while not annoying people with unreasonable delays. (Of course, (f-5)2 is sort of pathological if you don't handle the small integers well.) The system designer can either expose the backoff or hide it. Hiding it (by telling the person that their attempt to log in failed) may result in people incorrectly believing that they've lost their password, and thus driving the need for backup authentication that works faster.
 Requirements for scenarios of keyboard login attempts versus network login attempts may be different. It might be reasonable to allow more logins via a physical keyboard. Of course, a physical keyboard is sometimes a slippery concept, easily subject to spoofing over USB or Bluetooth.
 Threats to "What You Have"
 Using the authentication categories of what you have, what you are, and what you know, "what you have" includes things such as identity cards or cryptographic hardware tokens. The main threats to these are theft, loss, and destruction.
 
 264 Part IV  Threat Modeling in Technologies and Tricky Areas
 The threat of theft is in many ways the most worrisome of the threats to "what you have." Some of these authenticators, such as proximity cards to unlock doors do not require anything else. (That is, you don't login to most doors with your handprint.) In most organizations, there is not a strong norm ensuring that the card is worn such that the face is easily visible, and an attacker who steals a card can simply put it in their wallet. Even with a "visible face" norm, matching photo to face tends to be challenging (see the next section for more discussion about this).
-Other authenticator devices are often carried in bags, so someone who steals a laptop bag will obtain both the laptop and the authentication token. Some of these tokens only have a display, while others also have an input function, so using the token is a matter of what you have and what you know. The displayonly tokens are cheaper, easier to use, and less secure. The appropriate trade-off is likely a matter of "chess playing." If you use the display-only tokens, is that still what an attacker would go after, or does it make it hard enough that the attacker will attack somewhere else? As of 2012 or so, a number of companies are making authenticators that are the same size and thickness as credit cards and which have both input buttons and e-ink displays. These are more likely to be carried in a wallet than the older "credit card­size" tokens, which were very thick compared to a credit card.
+Other authenticator devices are often carried in bags, so someone who steals a laptop bag will obtain both the laptop and the authentication token. Some of these tokens only have a display, while others also have an input function, so using the token is a matter of what you have and what you know. The displayonly tokens are cheaper, easier to use, and less secure. The appropriate trade-off is likely a matter of "chess playing." If you use the display-only tokens, is that still what an attacker would go after, or does it make it hard enough that the attacker will attack somewhere else? As of 2012 or so, a number of companies are making authenticators that are the same size and thickness as credit cards and which have both input buttons and e-ink displays. These are more likely to be carried in a wallet than the older "credit cardï¿½size" tokens, which were very thick compared to a credit card.
 The threats of loss and destruction are relatively similar. In each case, the authorized person becomes unable to authenticate. In the case of destruction or damage, there's more certainty that the authentication token wasn't stolen.
 Threats to "What You Are"
 Measuring "what you are" is a tremendously attractive category of authentication. There's an intuitive desire to have ways to authenticate people as people, rather than authenticate something they can loan, lose, or forget. Unfortunately, it turns out that the desire and the technical reality are different. All biometric systems involve some sort of sensors, which take measurements of a physical feature. These sensors and their properties are an important part of the threat model. The data that is stored must be stored in a way which the sensor can reliably generate. The form into which sensor data is converted is called a template. All of this is shown in Figure 14-3, which looks remarkably similar to 14-1. Clever readers may notice that neither figure contains trust boundaries. Different systems place the trust boundaries in different places. For example, if you log in to your bank over the Internet using a fingerprint reader, there's a different trust boundary than if that reader is located in their branch office. Many of the threats against biometrics can be quickly derived from a model like the one shown in Figure 14-3.
@@ -5783,7 +5789,7 @@ The person driving an account recovery process might be the authorized account h
 Time also plays into account recovery in terms of what happens after the instant of getting into the account. Some system designers think they're done when a new password has been set. If the password was changed by an attacker, how does your customer recover his or her account? Perhaps after account recovery (but not normal password changes) the old password could work for some time period? However, then an attacker with the password is not locked out. There is no single obvious answer, and the right answer will differ for accounts associated with close relationships (work, banks, etc.) versus casual accounts.
 Time is also a threat to account recovery systems. Over time, information that people have given you will decay. Their credit cards will become invalid, and their e-mail addresses, billing addresses, and phone numbers will likely change. If you rely on such information, consider allowing it to decay over time, being revalidated or removed from the system's recovery options.
 E-mail for Account Recovery
-If you have an e-mail address for your customer, you can send mail to it. That mail can contain a password or a token of some form. If you e-mail the customer a password, you should e-mail a new, randomly generated password. In fact, that should be all you can do, because you should take the preceding advice and not be able to e-mail them their old password. However, e-mailing them a password exposes the password to information disclosure threats on a variety of network connections and in storage at the other end. Some people will argue that it's better to not expose the password, but instead use a one-use token that allows the person to reset their password. The token should be a large random number, say 128­1,024 bits. You can send this either as a string they copy and paste into a browser form or as a URL. Hopefully it is obvious that the code which actually resets the password must confirm that the account actually requested a password reset, that the e-mail didn't bounce, and that the token is the one that was sent.
+If you have an e-mail address for your customer, you can send mail to it. That mail can contain a password or a token of some form. If you e-mail the customer a password, you should e-mail a new, randomly generated password. In fact, that should be all you can do, because you should take the preceding advice and not be able to e-mail them their old password. However, e-mailing them a password exposes the password to information disclosure threats on a variety of network connections and in storage at the other end. Some people will argue that it's better to not expose the password, but instead use a one-use token that allows the person to reset their password. The token should be a large random number, say 128ï¿½1,024 bits. You can send this either as a string they copy and paste into a browser form or as a URL. Hopefully it is obvious that the code which actually resets the password must confirm that the account actually requested a password reset, that the e-mail didn't bounce, and that the token is the one that was sent.
 Either approach is vulnerable to information disclosure attacks. These attacks rely on either network sniffing or access to the backup e-mail address. You can
 
 274 Part IV  Threat Modeling in Technologies and Tricky Areas
@@ -5947,7 +5953,7 @@ In short, looking at ID cards may be a helpful step, but it would reflect poor t
 Social Security Numbers and Other National Identity Numbers
 This section reviews risks associated with the United States social security number (SSN). Over the last five to ten years, the use of SSNs has declined substantially as a result of new laws. As of this writing, it is illegal to deny someone goods or services because they will not give you their SSN in Alaska, Kansas, Maine, New Mexico, and Rhode Island (Hillebrand, 2008). A large number of state laws also restrict their use, too numerous to list here (Bovbjerg, 2005). The first problem is that many developers are unaware of these laws, and their lack of awareness may put their employers at risk. The second problem with SSNs is that some organizations use them as identifiers, while others use them for authenticators. (Recall that an identifier is a label for a person or other entity. An authenticator is how you prove that claim.) A few remarkable organizations manage to use them for both, but that's not a model you want to emulate.
 SSNs Are Poor Identifiers
-Social security numbers make poor identifiers even if all your customers are American citizens who happen to be willing to give you their SSN. Not every American has an SSN, and not everyone legally residing in the United States is a citizen. For example, many teachers participate in the Teacher Retirement System, which does not use SSNs. Many legal residents are not able to get an SSN. Second, SSNs lack a check digit, so it's easy to accidentally transpose or mistype digits. When you do, you have a roughly one-in-three chance of getting someone else's SSN. (Roughly 300­400 million SSNs have been issued, and the number space is nine digits.) Third, except for those who work at the Social Security Administration, the identifiers are outside your control.
+Social security numbers make poor identifiers even if all your customers are American citizens who happen to be willing to give you their SSN. Not every American has an SSN, and not everyone legally residing in the United States is a citizen. For example, many teachers participate in the Teacher Retirement System, which does not use SSNs. Many legal residents are not able to get an SSN. Second, SSNs lack a check digit, so it's easy to accidentally transpose or mistype digits. When you do, you have a roughly one-in-three chance of getting someone else's SSN. (Roughly 300ï¿½400 million SSNs have been issued, and the number space is nine digits.) Third, except for those who work at the Social Security Administration, the identifiers are outside your control.
 
 Chapter 14  Accounts and Identity 287
 SSNs Are Poor Database Keys
@@ -6622,9 +6628,9 @@ Cryptographic Primitives
 There are only a few basic cryptographic primitives: symmetric and asymmetric encryption, hash functions, and pseudo-random number generators (PRNGs). Understanding them will help you avoid mistakes in their use. This section also covers a set of techniques that are useful for preserving privacy--that is, preventing certain types of information disclosure attacks. Lastly, you'll look at a few important modern constructions that you should be familiar with.
 
 Basic Primitives
-The primitives just mentioned are at the very heart of cryptography. If you don't understand them, they're easy to confuse, and confusing them will leave you or your customers insecure. This section uses some standard conventions and terminology: Alice and Bob are typically the people who want to communicate. They do this by sending messages, which are also called plaintext. The cryptosystems they've agreed to use often have ciphers and sometimes keys. A cipher has various functions, such as encrypt and decrypt. The following sections begin with the category of system you're most likely familiar with, symmetric cryptosystems. The others are shown in table 16­1.
+The primitives just mentioned are at the very heart of cryptography. If you don't understand them, they're easy to confuse, and confusing them will leave you or your customers insecure. This section uses some standard conventions and terminology: Alice and Bob are typically the people who want to communicate. They do this by sending messages, which are also called plaintext. The cryptosystems they've agreed to use often have ciphers and sometimes keys. A cipher has various functions, such as encrypt and decrypt. The following sections begin with the category of system you're most likely familiar with, symmetric cryptosystems. The others are shown in table 16ï¿½1.
 
-Table 16­1: Cryptographic Primitives
+Table 16ï¿½1: Cryptographic Primitives
 
 PRIMITIVE
 
@@ -6897,17 +6903,17 @@ Find Threats
 
 Address Threats
 
-· Create · Update
+ï¿½ Create ï¿½ Update
 
-· Against System
-· Against Mitigations
+ï¿½ Against System
+ï¿½ Against Mitigations
 
-· Redesign · Mitigate
+ï¿½ Redesign ï¿½ Mitigate
 
 Figure 17-1: A four-stage approach with feedback
 
 Validate
-· Models · Mitigations
+ï¿½ Models ï¿½ Mitigations
 
 It's also possible to develop an organization's capabilities around the interplay of requirements, threats, and mitigations, as discussed in Chapter 12, "Requirements
 
@@ -7149,7 +7155,7 @@ In any organization, it is helpful to be able to measure the quality of a produc
 Chapter 17  Bringing Threat Modeling to Your Organization 371
 
 modeling, and you can measure the threat model documents themselves. When you measure the models themselves, two approaches can be used: pass or fail, and additive scoring.
-Either approach can start from a checklist. For example, in the Microsoft SDL Threat Modeling Tool, there's a four-element checklist per threat. (Does the threat have text? Does the mitigation have text? Is the threat marked "complete"? Is there a bug?) At the end, each threat has either a score of 0­4 or a pass (at 4). You could apply similar logic to a data flow diagram. Is there at least one process and one external entity? Is there a trust boundary? Is it labeled? You can assess the model as a whole. In The Security Development Lifecycle, Howard and Lipner present the scoring system shown as Table 17-3 (Microsoft Press, 2006).
+Either approach can start from a checklist. For example, in the Microsoft SDL Threat Modeling Tool, there's a four-element checklist per threat. (Does the threat have text? Does the mitigation have text? Is the threat marked "complete"? Is there a bug?) At the end, each threat has either a score of 0ï¿½4 or a pass (at 4). You could apply similar logic to a data flow diagram. Is there at least one process and one external entity? Is there a trust boundary? Is it labeled? You can assess the model as a whole. In The Security Development Lifecycle, Howard and Lipner present the scoring system shown as Table 17-3 (Microsoft Press, 2006).
 
 Table 17-3: Measuring Threat Models
 
@@ -7157,15 +7163,15 @@ RATING
 
 COMMENTS
 
-0 ­ No threat model 1 ­ Not acceptable
+0 ï¿½ No threat model 1 ï¿½ Not acceptable
 
 No TM in place, unacceptable Out of date indicated by design changes or document age
 
-2 ­ OK
+2 ï¿½ OK
 
 DFD with "assets" (processes, data stores, data flows), users, trust boundaries At least one threat per asset Mitigations for threats above a certain risk level Current
 
-3 ­ Good 4 ­ Excellent
+3 ï¿½ Good 4 ï¿½ Excellent
 
 Meets the OK bar, plus: Anon, authenticated local and remote users shown S,T,I,E threats all accepted or mitigated
 Meets the good bar, plus: All STRIDE threats identified, mitigated, plus external security notes and dependencies identified Mitigations for all threats "External security notes" include plan for customer-facing documentation
@@ -7177,7 +7183,7 @@ You might also use a combination of pass/fail and additive. For example, if you 
 MEASURING THE WRONG THING
 People focus their energy on the things that are measured by those who reward them. People also expect that if you're measuring something, there's a pass bar that indicates what is good enough. Both of these behaviors are risks for threat modeling for the same reason that few organizations measure lines of code or bugs as a measure of software productivity: Measurements can drive the wrong behavior. (There's a classic Dilbert on wrong behaviors, with the punch line, "I'm gonna write me a new minivan this afternoon!" [Adams, 1995])
 Therefore, measuring threat modeling might be counterproductive. It may be that measuring is a useful way to help people develop threat modeling muscles. You might be able to use people's instinct to "game" the scoring system by awarding points for reporting (good) bugs in the threat modeling approach .
-One other possible issue with a measurement scale is that it's likely to stop too early. The Howard­Lipner scoring system described earlier stops at "excellent," reducing the incentive to strive beyond that point. What if it had an "awesome" level, which was awarded at the discretion of the scorer?
+One other possible issue with a measurement scale is that it's likely to stop too early. The Howardï¿½Lipner scoring system described earlier stops at "excellent," reducing the incentive to strive beyond that point. What if it had an "awesome" level, which was awarded at the discretion of the scorer?
 When to Complete Threat Modeling Activities
 The tasks discussed in this section relate closely to the section "Iteration" in Chapter 7, "Digging Deeper into Mitigations." The difference is that as threat modeling moves from an individual activity (as discussed in Chapter 7 to an activity situated within an organization (as discussed in this chapter), the organization may want some degree of consistency.
 Two organizational factors affect when to complete threat modeling:
@@ -7741,7 +7747,7 @@ Flow is the state of full immersion and participation in an activity. It reflect
 407
 
 408 Part V  Taking it to the Next Level
-effective performance by experts in many fields. In his book Finding Flow, Mihaly Csíkszentmihályi (Basic Books, 1997) describes how "the person is fully immersed in what he or she is doing, characterized by a feeling of energized focus, full involvement, and success." Many structured approaches to threat modeling actively inhibit flow in both beginners and experts, and few allow it to emerge. The documented and common elements of flow include the following:
+effective performance by experts in many fields. In his book Finding Flow, Mihaly Csï¿½kszentmihï¿½lyi (Basic Books, 1997) describes how "the person is fully immersed in what he or she is doing, characterized by a feeling of energized focus, full involvement, and success." Many structured approaches to threat modeling actively inhibit flow in both beginners and experts, and few allow it to emerge. The documented and common elements of flow include the following:
 1. The activity is intrinsically rewarding
 2. People become absorbed in the activity*
 3. A loss of the feeling of self-consciousness*
@@ -7979,12 +7985,12 @@ Appendix B  Threat Trees 431
 Table B-0: STRIDE-per-Element
 
 THREAT TYPE
-S ­ Spoofing
-T ­ Tampering
-R ­ Repudiation
-I ­ Information Disclosure
-D ­ Denial of Service
-E ­ Elevation of Privilege
+S ï¿½ Spoofing
+T ï¿½ Tampering
+R ï¿½ Repudiation
+I ï¿½ Information Disclosure
+D ï¿½ Denial of Service
+E ï¿½ Elevation of Privilege
 
 MITIGATION Authentication Integrity Non-repudiation
 Confidentiality
@@ -9724,7 +9730,7 @@ When applied to the FBI data, these motivation and skill categories yield eight,
 
 484 Appendix C  Attacker Lists
 Personas
-David "Ne0phyate" Bradley ­ Vandal
+David "Ne0phyate" Bradley ï¿½ Vandal
 
 Overview
 MOTIVATION SKILL AND EDUCATION SPAN OF INFLUENCE
@@ -9754,7 +9760,7 @@ Scope of Attacks
  Popular websites  His school's network
 
 486 Appendix C  Attacker Lists  Friends' computers  Computers on his cable modem network segment (e.g., his neighbors)
-JoLynn "NightLily" Dobney ­ Trespasser
+JoLynn "NightLily" Dobney ï¿½ Trespasser
 
 Overview
 
@@ -9787,9 +9793,8 @@ Span of Influence
  None, depends highly on others
 Scope of Attacks
 
-
 488 Appendix C  Attacker Lists
-Sean "Keech" Purcell ­ Defacer
+Sean "Keech" Purcell ï¿½ Defacer
 
 Overview
 
@@ -9815,9 +9820,8 @@ Span of Influence
 
 Scope of Attacks
 
-
 490 Appendix C  Attacker Lists
-Bryan "CrossFyre" Walton ­ Author
+Bryan "CrossFyre" Walton ï¿½ Author
 
 Overview
 
@@ -9849,9 +9853,8 @@ Span of Influence
  Highly influential
 Scope of Attacks
 
-
 492 Appendix C  Attacker Lists
-Lorrin Smith-Bates ­ Insider
+Lorrin Smith-Bates ï¿½ Insider
 
 Overview
 
@@ -9875,7 +9878,7 @@ Span of Influence  Very limited  Does not actively participate in the undergroun
 Scope of Attacks  Limited to her current employer
 
 494 Appendix C  Attacker Lists
-Douglas Hite ­ Thief
+Douglas Hite ï¿½ Thief
 
 Overview
 
@@ -9911,9 +9914,8 @@ Span of Influence
 
 Scope of Attacks
 
-
 496 Appendix C  Attacker Lists
-Mr. Smith ­ Terrorist
+Mr. Smith ï¿½ Terrorist
 
 Overview
 
@@ -9939,7 +9941,7 @@ Span of Influence  Limited to his ideological organization  Quiet and does seek 
 Scope of Attacks  Worldwide
 
 498 Appendix C  Attacker Lists
-Mr. Jones ­ Spy
+Mr. Jones ï¿½ Spy
 
 Overview
 
@@ -10040,7 +10042,7 @@ Jack of Information Disclosure. An attacker can discover the fixed key being use
 Queen of Information Disclosure. An attacker can read the entire channel because the channel (for example, HTTP or SMTP) isn't encrypted. As more and more data passes over untrustworthy networks, the need for encryption will continue to increase.
 King of Information Disclosure. An attacker can read network information because there's no cryptography used.
 Denial of Service
-Threats 3­10 are constructed from three properties, shown in parentheses after the text description:
+Threats 3ï¿½10 are constructed from three properties, shown in parentheses after the text description:
  Is the threat to a client or a server? Threats to servers likely affect more people.
  Is the attacker authenticated or anonymous? Threats in which an attacker needs credentials have a smaller pool of attackers (or require a preliminary step of acquiring credentials), and it may be possible to retaliate in some way, acting as a deterrent.
  Does the impact go away when the attacker does (temporary versus persistent)? Persistent issues that require manual intervention or destroy data are worse than threats that will clear up when the attacker leaves.
@@ -10060,7 +10062,7 @@ Jack of Denial of Service. An attacker can cause the logging subsystem to stop w
 Queen of Denial of Service. An attacker can amplify a denial-of-service attack through this component with amplification on the order of 10:1. Amplification refers to the defender's resource consumption versus the attacker's. An attacker who just sends you a lot of data is consuming bandwidth at a ratio of 1:1. An attacker who sends a DNS request for a public key is sending dozens of bytes and receiving hundreds, so there's an amplification of 10:1 or so.
 King of Denial of Service. An attacker can amplify a denial-of-service attack through this component with amplification on the order of 100:1. As per the Queen, but tenfold worse.
 Elevation of Privilege (EoP)
-2­4 of Elevation of Privilege. There are no cards for the 2, 3, or 4 of Elevation of Privilege, as we were unable to find EoP threats we thought would be common enough to warrant cards. Suggestions are welcome.
+2ï¿½4 of Elevation of Privilege. There are no cards for the 2, 3, or 4 of Elevation of Privilege, as we were unable to find EoP threats we thought would be common enough to warrant cards. Suggestions are welcome.
 5 of Elevation of Privilege. An attacker can force data through different validation paths which give different results. If you have different code performing similar validation, then it's hard for your other functions to know what will be checked. This is a great opportunity to refactor.
 
 Appendix D  Elevation of Privilege: The Cards 509
@@ -10582,8 +10584,8 @@ YAGNI (You Ain't Gonna Need It) -- This saying comes from the extreme programmin
 
 Bibliography
 37 Signals. "Aggressive, spiky button vs. rounded corner button," Signal vs. Noise, April 5, 2010, https://37signals.com/ svn/posts/2255-aggressive-spiky-button-vs-rounded-corner-button.
-Abi-Antoun, Marwan, and Jonathan Aldrich. "Static Extraction and Conformance Analysis of Hierarchical Runtime Architectural Structure Using Annotations." In ACM SIGPLAN Notices, vol. 44, no. 10, pp. 321­40 (ACM, 2009).
-Abi-Antoun, Marwan, and Jeffrey M. Barnes. "Analyzing Security Architectures," Proceedings of the IEEE/ACM International Conference on Automated Software Engineering, pp. 3­12 (ACM, 2010).
+Abi-Antoun, Marwan, and Jonathan Aldrich. "Static Extraction and Conformance Analysis of Hierarchical Runtime Architectural Structure Using Annotations." In ACM SIGPLAN Notices, vol. 44, no. 10, pp. 321ï¿½40 (ACM, 2009).
+Abi-Antoun, Marwan, and Jeffrey M. Barnes. "Analyzing Security Architectures," Proceedings of the IEEE/ACM International Conference on Automated Software Engineering, pp. 3ï¿½12 (ACM, 2010).
 Acquisti, Alessandro, Ralph Gross, and Fred Stutzman. "Faces of Facebook: Or, How the Largest Real ID Database in the World Came to Be." BlackHat USA, August, 2011. Draft available online at http://www.heinz.cmu
 .edu/~acquisti/face-recognition-study-FAQ/
 acquisti-faces-BLACKHAT-draft.pdf. Adams, A. A., and S. A. Williams, "What's Yours Is Mine and What's Mine's
@@ -10592,7 +10594,7 @@ My Own," unpublished draft, May 8, 2012, http://opendepot.org/ id/eprint/1096. A
 
 544 Bibliography
 Adida, Ben, et al. "CALEA II: Risks of Wiretap Modifications to Endpoints," Center for Democracy and Technology, May 17 2013, https://www.cdt .org/files/pdfs/CALEAII-techreport.pdf.
-Adler, Andy. "Images Can Be Regenerated from Quantized Biometric Match Score Data," Electrical and Computer Engineering, Canadian Conference on, vol. 1, pp. 469­72 (IEEE, 2004).
+Adler, Andy. "Images Can Be Regenerated from Quantized Biometric Match Score Data," Electrical and Computer Engineering, Canadian Conference on, vol. 1, pp. 469ï¿½72 (IEEE, 2004).
 Akhawe, Devdatta, Warren He, Zhiwei Li, Reza Moazzezi, and Dawn Song. "Clickjacking Revisited: A Perceptual View of UI Security," BlackHat USA, August, 2013, http://www.cs.berkeley.edu/~devdatta/clickjacking.pdf.
 Alexander, Christopher, Sara Ishikawa, and Murray Silverstein. A Pattern Language (New York: Oxford University Press, 1977).
 Anderson, Ross. Security Engineering: A Guide to Building Dependable Distributed Systems (Indianapolis: Wiley, 2008).
@@ -10601,27 +10603,27 @@ Anderson, Ross. Security Engineering: A Guide to Building Dependable Distributed
 ANSI Z535. "Brief Description of all Six Standards and Safety Color Chart," accessed October 15, 2013, http://www.nema.org/Standards/z535/
 Pages/ANSI-Z535-Brief-Description-of-all-Six-Standards-and
 -Safety-Color-Chart.aspx.
-Asadollahi, Yahya, Vahid Rafe, Samaneh Asadollahi, and Somayeh Asadollahi. "A Formal Framework to Model and Validate Event-Based Software Architecture," Procedia Computer Science 3 (2011): 961­66 and http://asmeta.sourceforge.net/.
-Asadollahi, Yahya, Vahid Rafe, Samaneh Asadollahi, and Somayeh Asadollahi. "A Formal Framework to Model and Validate Event-Based Software Architecture," Procedia Computer Science 3 (2011): 961­66 and http://asmeta.sourceforge.net/.
+Asadollahi, Yahya, Vahid Rafe, Samaneh Asadollahi, and Somayeh Asadollahi. "A Formal Framework to Model and Validate Event-Based Software Architecture," Procedia Computer Science 3 (2011): 961ï¿½66 and http://asmeta.sourceforge.net/.
+Asadollahi, Yahya, Vahid Rafe, Samaneh Asadollahi, and Somayeh Asadollahi. "A Formal Framework to Model and Validate Event-Based Software Architecture," Procedia Computer Science 3 (2011): 961ï¿½66 and http://asmeta.sourceforge.net/.
 Aucsmith, David, Brendon Dixon and Robin Martin-Emerson, "Threat Personas", Microsoft internal document, version 0.9, 2003.
 Barnard, R.L. Intrusion Detection Systems (Buttersworth, 1988) as cited in Anderson (2008), supra.
 Beautement, Adam, M. Angela Sasse, and Mike Wonham. "The compliance budget: managing security behaviour in organisations," In Proceedings of the 2008 workshop on New security paradigms, pp. 47-58. ACM, 2009.
-Beckert, Bernhard, and Gerd Beuster. "A Method for Formalizing, Analyzing, and Verifying Secure User Interfaces." In Formal Methods and Software Engineering, pp. 55­73 (Berlin: Springer, 2006).
+Beckert, Bernhard, and Gerd Beuster. "A Method for Formalizing, Analyzing, and Verifying Secure User Interfaces." In Formal Methods and Software Engineering, pp. 55ï¿½73 (Berlin: Springer, 2006).
 
 Bibliography 545
 Bell, D. Elliott, and Leonard J. LaPadula. "Secure Computer Systems: Mathematical Foundations," MTR-2547 (Bedford: The MITRE Corporation, 1973).
-Bella, Giampaolo, and Lizzie Coles-Kemp. "Seeing the Full Picture: The Case for Extending Security Ceremony Analysis," Proceedings of the 9th Australian Information Security Management Conference, Edith Cowan University, Perth Western Australia, 5­7 December, 2011.
+Bella, Giampaolo, and Lizzie Coles-Kemp. "Seeing the Full Picture: The Case for Extending Security Ceremony Analysis," Proceedings of the 9th Australian Information Security Management Conference, Edith Cowan University, Perth Western Australia, 5ï¿½7 December, 2011.
 Biba, K. J. "Integrity Considerations for Secure Computer Systems." MTR-3153. (Bedford: The MITRE Corporation, 1977).
 Biham, Eli, Alex Biryukov, and Adi Shamir. "Cryptanalysis of Skipjack reduced to 31 rounds using impossible differentials." In Advances in Cryptology --Eurocrypt'99, pp. 12-23 (Berlin Heidelberg: Springer, 1999).
 Bonneau, Joseph. "Authentication Is Machine Learning," Light Blue Touchpaper blog, December 14, 2012 (see in particular comment 2 by Bonneau), http://www.lightbluetouchpaper.org/2012/12/14 /authentication-is-machine-learning/.
 . "Authenticating Humans to Computers: What I Expect for the Next Ten Years," streamed live on November 29, 2012, https://www.youtube. com/watch?v=_bnj5Qa_9iU&feature=plcp.
 Bonneau, Joseph, Cormac Herley, Paul C. Van Oorschot, and Frank Stajano. "The Quest to Replace Passwords: A Framework for Comparative Evaluation of Web Authentication Schemes." In Security and Privacy (SP), 2012 IEEE Symposium on, pp. 553-67 (IEEE, 2012).
-Bonneau, Joseph, Mike Just, and Greg Matthews. "What's in a Name?" In Financial Cryptography and Data Security, pp. 98­113 (Berlin, Heidelberg: Springer, 2010).
+Bonneau, Joseph, Mike Just, and Greg Matthews. "What's in a Name?" In Financial Cryptography and Data Security, pp. 98ï¿½113 (Berlin, Heidelberg: Springer, 2010).
 Bovbjerg, Barbara D. "Federal and State Laws Restrict Use of SSNs, Yet Gaps Remain," U.S. GAO, GAO-05-1016T, September 15, 2005, http://www.gao.gov/new.items/d051016t.pdf.
-Bowers, Kevin D., Marten van Dijk, Robert Griffin, Ari Juels, Alina Oprea, Ronald L. Rivest, and Nikos Triandopoulos. "Defending Against the Unknown Enemy: Applying FLIPIT to System Security." In Decision and Game Theory for Security, pp. 248­63 (Berlin: Springer, 2012), http://www.emc.com/ emc-plus/rsa-labs/presentations/flipit-gamesec.pdf.
+Bowers, Kevin D., Marten van Dijk, Robert Griffin, Ari Juels, Alina Oprea, Ronald L. Rivest, and Nikos Triandopoulos. "Defending Against the Unknown Enemy: Applying FLIPIT to System Security." In Decision and Game Theory for Security, pp. 248ï¿½63 (Berlin: Springer, 2012), http://www.emc.com/ emc-plus/rsa-labs/presentations/flipit-gamesec.pdf.
 Bowker, Geoffrey C., and Susan Leigh Star. Sorting things out: Classification and its consequences, (Cambridge: The MIT Press, 2000).
 Boyd, Colin, and Anish Mathuria. Protocols for Authentication and Key Establishment (Berlin: Springer, 2003).
-Brainard, John, Ari Juels, Ronald L. Rivest, Michael Szydlo, and Moti Yung. "Fourth-Factor Authentication: Somebody You Know," In 2006 ACM Conference on Computer and Communications Security, pp. 168­78.
+Brainard, John, Ari Juels, Ronald L. Rivest, Michael Szydlo, and Moti Yung. "Fourth-Factor Authentication: Somebody You Know," In 2006 ACM Conference on Computer and Communications Security, pp. 168ï¿½78.
 
 546 Bibliography
 Brenner Center for Justice. "Voter ID," last updated October 15, 2012, http://www.brennancenter.org/content/section/category/voter_id.
@@ -10633,7 +10635,7 @@ Celis, David. "Stop Validating E-mail Addresses with Complicated Regular Express
 Chandler, Raymond. Trouble Is My Business: A Novel. Random House Digital, Inc., 2002, http://books.google.com/books?id=TrGxX4kZNLIC
 Chen, Raymond. "It rather involved being on the other side of this airtight hatchway. . ." The Old New Thing blog, May 8, 2006, http://blogs.msdn .com/b/oldnewthing/archive/2006/05/08/592350.aspx.
 Chosunilbo. "Real-Name Online Registration to Be Scrapped," The Chosunilbo, last revised December 30, 2011, http://english.chosun.com/site/ data/html_dir/2011/12/30/2011123001526.html.
-Clarke, Roger. "An Evaluation of Privacy Impact Assessment Guidance Documents," International Data Privacy Law 1, no. 2 (2011): 111­20, http://
+Clarke, Roger. "An Evaluation of Privacy Impact Assessment Guidance Documents," International Data Privacy Law 1, no. 2 (2011): 111ï¿½20, http://
 idpl.oxfordjournals.org/content/early/2011/02/15/idpl.ipr002
 .full.pdf, http://idpl.oxfordjournals.org/content/1/2/111.abstract.
 . "Privacy Impact Assessment," May 26, 2003, http:// www.rogerclarke.com/DV/PIA.html.
@@ -10648,11 +10650,11 @@ Bibliography 547
 Cooper, Alan, and Paul Saffo. The Inmates Are Running the Asylum (Indianapolis: SAMS, 1999).
 Cooper, A., H. Tschofenig, B. Aboda, J. Peterson, J. Morris, M. Hansen, R. Smith. "Privacy Considerations for Internet Protocols," RFC 6973, July 2013, http://www.rfc-editor.org/rfc/rfc6973.txt.
 Cooper, Alan, Robert Reimann, and David Cronin. About Face 3: The Essentials of Interaction Design (Indianapolis: John Wiley & Sons, 2012).
-Cranor, Lorrie Faith. "A Framework for Reasoning About the Human in the Loop," UPSEC 8 (2008): 1­15.
+Cranor, Lorrie Faith. "A Framework for Reasoning About the Human in the Loop," UPSEC 8 (2008): 1ï¿½15.
 Csikszentmihalyi, Mihaly. Finding flow: The psychology of engagement with everyday life. (New York: Basic Books, 1997). . Flow: The psychology of optimal experience. (New York: Harpercollins, 1990).
 Culp, Scott, and Angela Gunn. "Ten Immutable Laws of Security (Version 2.0)," accessed October 16, 2013, http://technet.microsoft.com/ en-us/library/hh278941.aspx.
 CyberSource. "2012 Online Fraud Report," CyberSource, Fourteenth Annual Industry Report, accessed October 16, 2013, http://forms.cybersource .com/forms/NAFRDQ12012whitepaperFraudReport2012CYBSwww2012.
-Dalek, Calum T, "Fingerprinting," Wired, vol. 4, no. 9, page 47, September 1996, http://www.wired.com/wired/archive/4.09/eword.html. . "Covert Communications Despite Traffic Data Retention." In Security Protocols XVI, pp. 198­214 (Berlin: Springer, 2011).
+Dalek, Calum T, "Fingerprinting," Wired, vol. 4, no. 9, page 47, September 1996, http://www.wired.com/wired/archive/4.09/eword.html. . "Covert Communications Despite Traffic Data Retention." In Security Protocols XVI, pp. 198ï¿½214 (Berlin: Springer, 2011).
 Danezis, George. Personal communication, 2011. Debian Project. "Debian Security Advisory DSA-1571-1 openssl -- Predictable
 Random Number Generator," published May 13, 2008, http://www.debian .org/security/2008/dsa-1571., https://wiki.debian.org/
 SSLkeys#Technical_Summary
@@ -10666,7 +10668,7 @@ www.eac.gov/assets/1/Page/Election%20Operations%20Assessment%20
 548 Bibliography
 Threat%20Trees%20and%20Matrices%20and%20Threat%20Instance%20
 Risk%20Analyzer%20%28TIRA%29.pdf. Ellison, Carl M. "Ceremony Design and Analysis," IACR Cryptology ePrint
-Archive (2007): 399. https://eprint.iacr.org/2007/399.pdf. Ericsson, K. Anders, Ralf T. Krampe, and Clemens Tesch-Römer. "The role of
+Archive (2007): 399. https://eprint.iacr.org/2007/399.pdf. Ericsson, K. Anders, Ralf T. Krampe, and Clemens Tesch-Rï¿½mer. "The role of
 deliberate practice in the acquisition of expert performance." Psychological review 100, no. 3 (1993): 363. Espenschied, Jonathan, and Angela Gunn. "Threat Genomics," MetriCon 7, August 7, 2012, http://www.securitymetrics.org/blog/2012/08/ 19/metricon-7/?page=Metricon7.0. Essers, Loek. "German Privacy Regulator Orders Facebook to End Its Real Name Policy," ITworld, December 17, 2012, http://www.itworld.com/ print/328387. Ferguson, Niels, Bruce Schneier, and Tadayoshi Kohno. Cryptography Engineering (Indianapolis: Wiley, 2012). Ferriss, Timothy. The 4-Hour Chef: The Simple Path to Cooking Like a Pro, Learning Anything, and Living the Good Life, as cited in "Cheat Sheets for Everything." Boing Boing, November 21, 2012, http://boingboing.net/2012/11/ 21/timothy-ferriss-cheat-sheets.html. Feynman, Richard P. "Surely You're Joking, Mr. Feynman!": Adventures of a Curious Character (New York: W.W. Norton & Company, 2010). FIPS. "Data Encryption Standard," Federal Information Processing Standards Publication 46-2, supersedes FPS PUB 46-1, January 22, 1988, http://www .itl.nist.gov/fipspubs/fip46-2.htm. Fisher, Dennis. "Inside Facebook's Social Authentication System," ThreatPost blog, March 8, 2012, h t t p : / / t h r e a t p o s t .com/inside-facebooks-social-authentication-system-030812/76300. Fontana, John. "VeriSign Issues Fraudulent Microsoft Code-Signing Certificates," Network World Fusion, March 22, 2001, http://www.networkworld.com /news/2001/0322vsign.html. Friedberg, Jeffrey, et al. "Privacy Guidelines for Developing Software Products and Services," version 3.1, September, 2008. Garfinkel, Simson, personal communication, November 2012. Gawande, Atul. The Checklist Manifesto (Penguin Books: 2010). Gellman, Robert. "Fair Information Practices: A basic History," version 2.02 of November 11, 2013, http://bobgellman.com/rg-docs/rg-FIPShistory.pdf. Green, Robert Lane. You Are What You Speak (New York: Random House, 2011). Giesen, Florian, Florian Kohlar, and Douglas Stebila. "On the Security of TLS Renegotiation," 2013, http://eprint.iacr.org/2012/630.pdf. Goldberg, Ian Avrum. "A Pseudonymous Communications Infrastructure for the Internet." Ph.D diss., University of California, 2000.
 
 Bibliography 549
@@ -10674,15 +10676,15 @@ Goldberg, Ian A., Matthew D. Van Gundy, Berkant Ustaoglu, and Hao Chen. "Multi-P
 Goodin, Dan "'We cannot trust' Intel and Via's chip-based crypto, FreeBSD developers say" December 10, 2013 http://arstechnica.com/
 security/2013/12/we-cannot-trust-intel-and-vias-chip-bas\ ed-
 crypto-freebsd-developers-say/
-Gordon, Lawrence A., and Martin P. Loeb. "The Economics of Information Security Investment," ACM Transactions on Information and System Security (TISSEC) 5, no. 4 (2002): 438­57. . Managing Cybersecurity Resources: A Cost-Benefit Analysis (New York: McGraw-Hill, 2006).
-Gürses, Seda, Carmela Troncoso, and Claudia Diaz. "Engineering Privacy By Design," COSIC 2011, last accessed October 16, 2013, http://www.cosic .esat.kuleuven.be/publications/article-1542.pdf.
-Haber, Jeb. "SmartScreen® Application Reputation in IE9," IEBlog, May 17, 2011, http://blogs.msdn.com/b/ie/archive/2011/05/17/ smartscreen-174-application-reputation-in-ie9.aspx.
+Gordon, Lawrence A., and Martin P. Loeb. "The Economics of Information Security Investment," ACM Transactions on Information and System Security (TISSEC) 5, no. 4 (2002): 438ï¿½57. . Managing Cybersecurity Resources: A Cost-Benefit Analysis (New York: McGraw-Hill, 2006).
+Gï¿½rses, Seda, Carmela Troncoso, and Claudia Diaz. "Engineering Privacy By Design," COSIC 2011, last accessed October 16, 2013, http://www.cosic .esat.kuleuven.be/publications/article-1542.pdf.
+Haber, Jeb. "SmartScreenï¿½ Application Reputation in IE9," IEBlog, May 17, 2011, http://blogs.msdn.com/b/ie/archive/2011/05/17/ smartscreen-174-application-reputation-in-ie9.aspx.
 Hall, Joseph M., and M. Eric Johnson. "When Should a Process Be Art," Harvard Business Review, March 2009.
 Hashcat, Hashcat advanced password recovery product page, http://hashcat .net/oclhashcat/, visited December 7, 2013.
 Hazen, John. "Delivering Reliable and Trustworthy Metro Style Apps," Building Windows 8, May 17, 2012, http://blogs.msdn.com/b/b8/
 archive/2012/05/17/delivering-reliable-and-trustworthy-metro-
 style-apps.aspx. Heckman, Rocky. "Application Threat Modeling v2," TechRepublic
-/U.S., March 7, 2006, h t t p : / / w w w . t e c h r e p u b l i c . c o m / article/application-threat-modeling-v2/6310491. Heitgerd, Janet L., et al. "Community Health Status Indicators: Adding a Geospatial Component," accessed October 15, 2013, Preventing Chronic Disease 2008;5(3). http://www.cdc.gov/pcd/issues/2008/jul/07_0077.htm. Heninger, Nadia, Zakir Durumeric, Eric Wustrow, and J. Alex Halderman. "Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices," In Proceedings of the 21st USENIX Security Symposium, August 2012. Herley, Cormac. "So Long, and No Thanks for the Externalities: The Rational Rejection of Security Advice By Users," In Proceedings of the 2009 Workshop on New Security Paradigms Workshop, pp. 133­44 (ACM, 2009). Hill, Sad. "Caution Sign Has Sharp Edges Do Not Touch," Sad Hill News, November 9, 2010, http://sadhillnews.com/2010/11/09/
+/U.S., March 7, 2006, h t t p : / / w w w . t e c h r e p u b l i c . c o m / article/application-threat-modeling-v2/6310491. Heitgerd, Janet L., et al. "Community Health Status Indicators: Adding a Geospatial Component," accessed October 15, 2013, Preventing Chronic Disease 2008;5(3). http://www.cdc.gov/pcd/issues/2008/jul/07_0077.htm. Heninger, Nadia, Zakir Durumeric, Eric Wustrow, and J. Alex Halderman. "Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices," In Proceedings of the 21st USENIX Security Symposium, August 2012. Herley, Cormac. "So Long, and No Thanks for the Externalities: The Rational Rejection of Security Advice By Users," In Proceedings of the 2009 Workshop on New Security Paradigms Workshop, pp. 133ï¿½44 (ACM, 2009). Hill, Sad. "Caution Sign Has Sharp Edges Do Not Touch," Sad Hill News, November 9, 2010, http://sadhillnews.com/2010/11/09/
 us-bans-toner-travel-and-font-usage-unknown-missile-launches/
 caution-sign-has-sharp-edges-do-not-touch-sad-hill-news.
 
@@ -10693,7 +10695,7 @@ Honan, Mat. "How Apple and Amazon Security Flaws Led to My Epic Hacking," Wired,
 Howard, Michael. "Secure Coding Secrets," Microsoft Security Development Lifecycle blog, November 18, 2008, http://blogs.msdn.com/b/ sdl/archive/2008/11/18/secure-coding-secrets.aspx.
 Howard, Michael, and David LeBlanc. Writing Secure Code (Redmond: Microsoft Press, 2002) and also 2nd edition, 2009.
 Howard, Michael, and Steve Lipner, The Security Development Lifecycle, (Redmond: Microsoft Press, 2006)
-Huang, Ling, Anthony D. Joseph, Blaine Nelson, Benjamin I.P. Rubinstein, and J. D. Tygar. "Adversarial Machine Learning," In Proceedings of the 4th ACM Workshop on Security and Artificial Intelligence, pp. 43­58. ACM, 2011, http://blaine-nelson.com/research/pubs/Huang-Joseph-AISec-2011.
+Huang, Ling, Anthony D. Joseph, Blaine Nelson, Benjamin I.P. Rubinstein, and J. D. Tygar. "Adversarial Machine Learning," In Proceedings of the 4th ACM Workshop on Security and Artificial Intelligence, pp. 43ï¿½58. ACM, 2011, http://blaine-nelson.com/research/pubs/Huang-Joseph-AISec-2011.
 Hutchins, Eric M., Michael J. Cloppert, and Rohan M. Amin. "IntelligenceDriven Computer Network Defense Informed By Analysis of Adversary Campaigns and Intrusion Kill Chains," Leading Issues in Information Warfare and Security Research 1 (2011): 80; http://www.lockheedmartin.com/
 content/dam/lockheed/data/corporate/documents/
 LM-White-Paper-Intel-Driven-Defense.pdf.
@@ -10702,24 +10704,24 @@ Ingoldsby, Terrance R. "Attack Tree-Based Threat Risk Analysis," Amenaza Technol
 http://www.screencast.com/users/Amenaza/folders/Default/media/
 a18cb16a-f88f-4161-b1a4-124e5f06376d.
 Jacobs, Jay. "A Call to Arms: It Is Time to Learn Like Experts," ISSA Journal, November 2011, http://beechplane.files.wordpress.com/2011/11/ a-call-to-arms_issa1111.pdf.
-Jakobsson, Markus, Erik Stolterman, Susanne Wetzel, and Liu Yang. "Love and Authentication," Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 197­200 (ACM, 2008).
+Jakobsson, Markus, Erik Stolterman, Susanne Wetzel, and Liu Yang. "Love and Authentication," Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 197ï¿½200 (ACM, 2008).
 Johnson, Steven. The Ghost Map: The Story of London's Most Terrifying Epidemic and How It Changed Science, Cities, and the Modern World (New York: Penguin, 2006).
 
 Bibliography 551
 Jones, J. "An introduction to factor analysis of information risk (fair)," Norwich Journal of Information Assurance 2, no. 1 (2006): 67, riskmanagementinsight.com/media/documents/FAIR_Introduction.pdf.
-Just, Mike. "Designing and Evaluating Challenge-Question Systems," Security and Privacy, IEEE 2, no. 5 (2004): 32­39.
+Just, Mike. "Designing and Evaluating Challenge-Question Systems," Security and Privacy, IEEE 2, no. 5 (2004): 32ï¿½39.
 Kahn, David. The Codebreakers (New York: Scribner, 1996). Kahneman, Daniel. Thinking, Fast and Slow (New York: Farrar, Straus and Giroux,
 2011). Kahney, Leander, "Twist a pen, open a lock," Wired.com, Sep 17 2004, http://
 www.wired.com/culture/lifestyle/news/2004/09/64987. Karlof, Chris, J. Doug Tygar, and David Wagner. "Conditioned-Safe Ceremonies
 and a User Study of an Application to Web Authentication," SOUPS, 2009. Kelsey, John. Comment on "Think Like an Attacker?" Emergent Chaos blog,
-September 19, 2008, http://emergentchaos.com/archives/2008/ 09/think-like-an-attacker.html. Kent, Jonathan. "Malaysia Car Thieves Steal Finger," BBC News online, March 31 2005, http://news.bbc.co.uk/2/hi/asia-pacific/4396831.stm. Kerckhoffs, Auguste. "La cryptographie militaire," Journal des sciences militaires, vol. IX, pp. 5­38, Jan. 1883, pp. 161­191, Feb. 1883. Kim, Gene, Kurt Milne, and Dan Phelps. "Prioritizing IT Controls for Effective Measurable Security," IT Process Institute (2006). Kim, Gene H., and Eugene H. Spafford. "The Design and Implementation of Tripwire: A File System Integrity Checker," In Proceedings of the Second ACM Conference on Computer and Communications Security, pp. 18­29. ACM, 1994, http://dl.acm.org/citation.cfm?id=191183. Klien, Gary, Sources of Power (Cambridge: MIT Press, 1999). Koblitz, Neal, and Alfred J. Menezes. "Another look at `provable security'," Journal of Cryptology 20, no. 1 (2007): 3­37. And generally, http://anotherlook.ca. Kocher, Paul, "Surviving Moore's Law: Security, AI, and Last Mover Advantage," Usenix Security 2006, h t t p s : / / w w w
+September 19, 2008, http://emergentchaos.com/archives/2008/ 09/think-like-an-attacker.html. Kent, Jonathan. "Malaysia Car Thieves Steal Finger," BBC News online, March 31 2005, http://news.bbc.co.uk/2/hi/asia-pacific/4396831.stm. Kerckhoffs, Auguste. "La cryptographie militaire," Journal des sciences militaires, vol. IX, pp. 5ï¿½38, Jan. 1883, pp. 161ï¿½191, Feb. 1883. Kim, Gene, Kurt Milne, and Dan Phelps. "Prioritizing IT Controls for Effective Measurable Security," IT Process Institute (2006). Kim, Gene H., and Eugene H. Spafford. "The Design and Implementation of Tripwire: A File System Integrity Checker," In Proceedings of the Second ACM Conference on Computer and Communications Security, pp. 18ï¿½29. ACM, 1994, http://dl.acm.org/citation.cfm?id=191183. Klien, Gary, Sources of Power (Cambridge: MIT Press, 1999). Koblitz, Neal, and Alfred J. Menezes. "Another look at `provable security'," Journal of Cryptology 20, no. 1 (2007): 3ï¿½37. And generally, http://anotherlook.ca. Kocher, Paul, "Surviving Moore's Law: Security, AI, and Last Mover Advantage," Usenix Security 2006, h t t p s : / / w w w
 .usenix.org/conference/15th-usenix-security-symposium/
 surviving-moores-law-security-ai-and-last-mover-advantage.
 Kohnfelder, Loren, and Praerit Garg, The threats to our products, Microsoft Interface, April 1, 1999. Available at http://blogs.msdn.com/sdl/ attachment/9887486.ashx.
 Komanduri, Saranga, Richard Shay, Patrick Gage Kelley, Michelle L. Mazurek, Lujo Bauer, Nicolas Christin, Lorrie Faith Cranor, and Serge Egelman. "Of Passwords and People: Measuring the Effect of Password-Composition Policies," In Proceedings of the SIGCHI Conference on Human Factors in
 
 552 Bibliography
-Computing Systems, pp. 2595­2604. ACM, 2011, http://www.pdl.cmu .edu/PDL-FTP/Storage/mazurek-chi11_abs.shtml.
+Computing Systems, pp. 2595ï¿½2604. ACM, 2011, http://www.pdl.cmu .edu/PDL-FTP/Storage/mazurek-chi11_abs.shtml.
 Krebs, Brian, "Data Broker Giants Hacked by ID Theft Service," September 25, 2013, http://krebsonsecurity.com/2013/09/ data-broker-giants-hacked-by-id-theft-service/.
 Lang, Keith. "The Science of Aesthetics," UXAustralia 2009, http://vimeo .com/6527897, and comments https://twitter.com/songcarver/ status/283070446990151681.
 Laser Software. http://laser.cs.umass.edu/release/.
@@ -10729,7 +10731,7 @@ http://blogs.msdn.com/b/david_leblanc/archive/2007/07/27/
 practical-windows-sandboxing-part-1.aspx.
 Levien, Raph. "Snowflakes As Visual Hashes," post to "Best of Security" mailing list, May 17, 1996, http://marc.info/?l=best-of-security&m=96843702220490&w=2.
 Lightstone, Sam. Making It Big in Software: Get the Job. Work the Org. Become Great (Boston: Pearson, 2010).
-Lindstrom, Peter. "A Modest Proposal to Eliminate the SSN Façade," Spire Security Viewpoint blog, April 11, 2006, http://spiresecurity .typepad.com/spire_security_viewpoint/2006/04/a_modest_propos.html.
+Lindstrom, Peter. "A Modest Proposal to Eliminate the SSN Faï¿½ade," Spire Security Viewpoint blog, April 11, 2006, http://spiresecurity .typepad.com/spire_security_viewpoint/2006/04/a_modest_propos.html.
 Lipner, Steve. Personal communication, 2008.
 Lyn, Tan Ee. "Cancer Patient Held at Airport for Missing Fingerprint," Reuters, May 27, 2009, http://www.reuters.com/article/2009/05/27/
 us-fingerprints-idUSTRE54Q42P20090527?feedType=RSS&feedName=od
@@ -10780,7 +10782,7 @@ Narayanan, Arvind, and Vitaly Shmatikov. "Robust de-anonymization of large spars
 
 Bibliography 555
 Nather, Wendy. "All about `cheeseburger risk'," 415 Security Blog, January 15, 2013, http://informationsecurity.451research.com/?p=4851.
-National Bureau of Standards. "Guidelines for Automatic Data Processing Physical Security and Risk Management," FIPS Pub 31, 1974, pp. 12­14.
+National Bureau of Standards. "Guidelines for Automatic Data Processing Physical Security and Risk Management," FIPS Pub 31, 1974, pp. 12ï¿½14.
 Neighly, Madeline, and Maruice Emsellem. "Wanted: Accurate FBI Background Checks for Employment," National Employment Law Project, July 2013, http://www.nelp.org/page/-/SCLP/2013/ Report-Wanted-Accurate-FBI-Background-Checks-Employment.pdf.
 Neilsen Hayden, Patrick. "Please Enter a Valid Last Name," Making Light blog, December 11, 2012, http://nielsenhayden.com/ makinglight/archives/014624.html.
 Netflix. "Lessons Netflix Learned from the AWS Outage," Netflix, April 29, 2011, http://techblog.netflix.com/2011/04/ lessons-netflix-learned-from-aws-outage.html.
@@ -10827,8 +10829,8 @@ Power, Richard. "There Is an Elephant in the Room; and Everyone's Social Securit
 Provos, Niels, and David Mazieres. "A Future-Adaptable Password Scheme," In USENIX Annual Technical Conference, FREENIX Track, pp. 81-91. 1999.
 Ptacek, Thomas. "Applied Cryptography Engineering," Sockpuppet. org blog, July 22, 2013, http://sockpuppet.org/blog/2013/07/22/ applied-practical-cryptography/.
 Ptacek, Thomas H., and Timothy N. Newsham. "Insertion, evasion, and denial of service: Eluding network intrusion detection," Secure Networks Inc., Calgary, Alberta Canada, 1998.
-Rabkin, Ariel. "Personal Knowledge Questions for Fallback Authentication: Security Questions in the Era of Facebook," In Proceedings of the Fourth Symposium on Usable Privacy and Security, pp. 13­23. ACM, SOUPS, July 23­25, 2008, Pittsburgh, PA.
-Radke, Kenneth, Colin Boyd, Juan Gonzalez Nieto, and Margot Brereton. "Ceremony Analysis: Strengths and Weaknesses," In Future Challenges in Security and Privacy for Academia and Industry, pp. 104­15 (Berlin: Springer, 2011).
+Rabkin, Ariel. "Personal Knowledge Questions for Fallback Authentication: Security Questions in the Era of Facebook," In Proceedings of the Fourth Symposium on Usable Privacy and Security, pp. 13ï¿½23. ACM, SOUPS, July 23ï¿½25, 2008, Pittsburgh, PA.
+Radke, Kenneth, Colin Boyd, Juan Gonzalez Nieto, and Margot Brereton. "Ceremony Analysis: Strengths and Weaknesses," In Future Challenges in Security and Privacy for Academia and Industry, pp. 104ï¿½15 (Berlin: Springer, 2011).
 Rains, Tim. "Software Vulnerability Management at Microsoft," post to Microsoft Security Blog, June 30, 2013, http://blogs.technet.com/b/security/
 archive/2013/07/01/software-vulnerability-management-
 at-microsoft.aspx and linked white paper of the same name, July 2010.
@@ -10839,7 +10841,7 @@ Reeder, R. W. "Expandable Grids: A User Interface Visualization Technique and a 
 558 Bibliography
 Reeder, Rob, E. Kowalczyk, and Adam Shostack. "Helping engineers design NEAT security warnings," In Proceedings of the Symposium On Usable Privacy and Security (SOUPS), Pittsburgh, PA. 2011.
 Reeder, Robert W. "Measuring Trust User Experiences," Microsoft internal document, March 10, 2008.
-Reeder, Robert W., Lujo Bauer, Lorrie F. Cranor, Michael K. Reiter, and Kami Vaniea. "More Than Skin Deep: Measuring Effects of the Underlying Model on Access-Control System Usability," In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 2065­74. ACM, 2011, http://www.ece.cmu.edu/~lbauer/papers/2011/chi2011-semantics.pdf.
+Reeder, Robert W., Lujo Bauer, Lorrie F. Cranor, Michael K. Reiter, and Kami Vaniea. "More Than Skin Deep: Measuring Effects of the Underlying Model on Access-Control System Usability," In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 2065ï¿½74. ACM, 2011, http://www.ece.cmu.edu/~lbauer/papers/2011/chi2011-semantics.pdf.
 Reiger, Frank, "Chaos Computer Club breaks Apple TouchID," Blog post 21 September, 2013, http://www.ccc.de/en/updates/ 2013/ccc-breaks-apple-touchid.
 Reiner, Rob. The Princess Bride. Buttercup Films, Ltd. 1987. (DVD)
 Remes, Wim. "wow. . . Hotwire removes stored CC information from account upon password reset. That's actually awesome," Twitter, July 20, 2013, https://twitter.com/wimremes/status/358709749585416193.
@@ -10859,16 +10861,16 @@ leaky-web-sites-provide-trail-clues-about-corporate-executives.
 Rosenquist, Matt, "Prioritizing Information Security Risks With Threat Agent Risk Assessment," Intel Corporation White Paper, December 2009.
 
 Bibliography 559
-Ross, Arun A., Jidnya Shah, and Anil K. Jain. "Toward Reconstructing Fingerprints from Minutiae Points," In SPIE Proceedings Vol. 5779, pp. 68­80. International Society for Optics and Photonics, 2005.
+Ross, Arun A., Jidnya Shah, and Anil K. Jain. "Toward Reconstructing Fingerprints from Minutiae Points," In SPIE Proceedings Vol. 5779, pp. 68ï¿½80. International Society for Optics and Photonics, 2005.
 Rubin, Jeffrey, and Dana Chisnell. Handbook of Usability Testing: How to Plan, Design, and Conduct Effective Tests, 2nd Edition (Indianapolis: Wiley, 2008).
 Ruderman, Jesse. "Race Conditions in Security Dialogs," SquareFree .com, July 1, 2004, http://www.squarefree.com/2004/07/01/ race-conditions-in-security-dialogs/.
-Ruiz, Guifré, Elisa Heymann, Eduardo César, and Barton P. Miller. "Automating Threat Modeling Through the Software Development Life-Cycle," XXIII Jornadas de Paralelismo (JP2012), Elche, Spain, September 2012. http:// www.jornadassarteco.org/js2012/papers/paper_92.pdf.
-. "Detecting Cognitive Causes of Confidentiality Leaks," Electronic Notes in Theoretical Computer Science 183 (2007): 21­38.
-Ruksenas, Rimvydas, Paul Curzon, and Ann Blandford. "Modelling and Analysing Cognitive Causes of Security Breaches," Innovations in Systems and Software Engineering 4, no. 2 (2008): 143­60, http://www.eecs.qmul.ac.uk/~pc/ publications/2008/rrpcabISSE2008preprint.pdf.
+Ruiz, Guifrï¿½, Elisa Heymann, Eduardo Cï¿½sar, and Barton P. Miller. "Automating Threat Modeling Through the Software Development Life-Cycle," XXIII Jornadas de Paralelismo (JP2012), Elche, Spain, September 2012. http:// www.jornadassarteco.org/js2012/papers/paper_92.pdf.
+. "Detecting Cognitive Causes of Confidentiality Leaks," Electronic Notes in Theoretical Computer Science 183 (2007): 21ï¿½38.
+Ruksenas, Rimvydas, Paul Curzon, and Ann Blandford. "Modelling and Analysing Cognitive Causes of Security Breaches," Innovations in Systems and Software Engineering 4, no. 2 (2008): 143ï¿½60, http://www.eecs.qmul.ac.uk/~pc/ publications/2008/rrpcabISSE2008preprint.pdf.
 Ryan, Peter. Modeling and Analysis of Security Protocols (Boston: Addison Wesley, 2000).
 Saitta, Paul, Brenda Larcom, and Michael Eddington. "Trike v. 1 methodology document [draft]," July 13, 2005, http://dymaxion.org/trike/Trike_
 v1_Methodology_Documentdraft.pdf.
-Salter, Chris, O. Sami Saydjari, Bruce Schneier, and Jim Wallner. "Toward a Secure System Engineering Methodology," In Proceedings of the 1998 workshop on New Security Paradigms, pp. 2­10 (ACM, 1998), http://www .schneier.com/paper-secure-methodology.html.
+Salter, Chris, O. Sami Saydjari, Bruce Schneier, and Jim Wallner. "Toward a Secure System Engineering Methodology," In Proceedings of the 1998 workshop on New Security Paradigms, pp. 2ï¿½10 (ACM, 1998), http://www .schneier.com/paper-secure-methodology.html.
 Sassaman, Len, Meredith L. Patterson, Sergey Bratus, and Michael E. Locasto. "Security Applications of Formal Language Theory," IEEE Systems Journal 7(3): 489-500 (2013).
 Sasse, Angela. Personal communication, 2012.
 SC Magazine. "Amenaza Technologies Ltd. SecurITree" review, February 1, 2007,
@@ -10879,7 +10881,7 @@ Schechter, Stuart. "Common Pitfalls in Writing About Security and Privacy Human 
 560 Bibliography
 January 15, 2013, MSR-TR-2013-5, http://research.microsoft.com/ apps/pubs/default.aspx?id=179980.
 Schechter, Stuart, A. J. Bernheim Brush, and Serge Egleman. "It's No Secret: Measuring the Security and Reliability of Authentication via `Secret' Questions," Microsoft Research, May 17, 2009, http://research .microsoft.com/apps/pubs/default.aspx?id=79594.
-Schechter, Stuart, Serge Egelman, and Robert W. Reeder. "It's Not What You Know, But Who You Know: A Social Approach to Last-Resort Authentication," In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 1983­92 (ACM, 2009), http://research.microsoft.com/ apps/pubs/default.aspx?id=79349.
+Schechter, Stuart, Serge Egelman, and Robert W. Reeder. "It's Not What You Know, But Who You Know: A Social Approach to Last-Resort Authentication," In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, pp. 1983ï¿½92 (ACM, 2009), http://research.microsoft.com/ apps/pubs/default.aspx?id=79349.
 Schmid, Joachim. "AsmGofer," last updated 2009, http://www.tydo.de/ doktorarbeit.html.
 Schnieier, Bruce. "Announcing: Movie Plot Threat Contest," Blog post, April 1, 2006, https://www.schneier.com/blog/archives/2006/04/ announcing_movi.html.
 . "Attack Trees," Dr. Dobb's Journal, December 1999, Schneier blog, http://www.schneier.com/paper-attacktrees-ddj-ft.html.
@@ -10924,7 +10926,7 @@ Stack Overflow. "Using a regular expression to validate an email address," Stack
 questions/201323/using-a-regular-expression-to-validate-an-email-
 address.
 Stajano, Frank, and Paul Wilson. "Understanding Scam Victims: Seven Principles for Systems Security," Communications of the ACM, March 2011, vol. 54, no. 3.
-Star, Susan Leigh, and James R. Griesemer. "Institutional Ecology, Translations and Boundary Objects: Amateurs and Professionals in Berkeley's Museum of Vertebrate Zoology, 1907­39." Social Studies of Science 19, no. 3 (1989): 387­420.
+Star, Susan Leigh, and James R. Griesemer. "Institutional Ecology, Translations and Boundary Objects: Amateurs and Professionals in Berkeley's Museum of Vertebrate Zoology, 1907ï¿½39." Social Studies of Science 19, no. 3 (1989): 387ï¿½420.
 Stevens, James F., Richard A. Caralli, and Bradford J. Willke. "Information Asset Profiling," Technical Note CMU/SEI-2005-TN-021. Carnegie-Mellon University, Pittsburgh, PA Software Engineering, 2005.
 
 Bibliography 563
@@ -10949,9 +10951,9 @@ Ur, B. P.G. Kelley, S. Komanduri, J. Lee, M. Maass, M. Mazurek, T. Passaro, R. S
 password measure up? The effect of strength meters on password creation." USENIX Security 2012.
 US-CERT. "Risks of Using the Intelligent Platform Management Interface," US-CERT Alert TA13-207A, July 26, 2013, http://www.us-cert. gov/ncas/alerts/TA13-207A.
 . "State-Based Firewalls Fail to Effectively Manage Session Table Resource Exhaustion," CERT Vulnerability Note VU#539363, October 15, 2002, last revised January 6, 2003, http://www.kb.cert.org/vuls/id/539363.
-Van Dijk, Marten, Ari Juels, Alina Oprea, and Ronald L. Rivest. "FlipIt: The Game of `Stealthy Takeover'," Journal of Cryptology (2012): 1­59.
+Van Dijk, Marten, Ari Juels, Alina Oprea, and Ronald L. Rivest. "FlipIt: The Game of `Stealthy Takeover'," Journal of Cryptology (2012): 1ï¿½59.
 Van Duyne, Douglas K., James A. Landay, and Jason I. Hong. The Design of Sites: Patterns for Creating Winning Web Sites (Boston: Pearson, 2007).
-VeriSign. "VeriSign® NetDiscovery Lawful Intercept Compliance Solutions," White paper 00017651, November 28, 2007, http://www.verisign. com/static/001927.pdf.
+VeriSign. "VeriSignï¿½ NetDiscovery Lawful Intercept Compliance Solutions," White paper 00017651, November 28, 2007, http://www.verisign. com/static/001927.pdf.
 Verizon. "2013 Data Breach Investigations Report," Verizon, 2013, http://www .verizonenterprise.com/DBIR/2013/.
 Visual Paradigm. "Data Flow Diagram," VisualParadigm.com, December 4, 2006, http://www.visual-paradigm.com/highlight/highlightdfd.jsp.
 Von Neumann, John. "Various techniques used in connection with random digits," Applied Math Series 12, no. 36-38 (1951): 1.
@@ -10972,14 +10974,14 @@ Bibliography 565
 . "GOMS (Goals, Operators, Methods, and Selection rules)," Wikipedia. com, last updated August 7, 2013, http://en.wikipedia.org/wiki/GOMS.
 . "Kerkhoffs Principle," Wikipedia.com, last update October 12, 2013, http://en.wikipedia.org/wiki/Kerckhoffs%27s_principle.
 . "Responsibility Assignment Matrix (RAM)," Wikipedia.com, last modified October 15, 2013, http://en.wikipedia.org/wiki/ Responsibility_assignment_matrix.
-. "Syn Flood," Wikipedia.com, last modified September 16, 2013, http:// en.wikipedia.org/wiki/SYN_flood. Williams, Laurie, Michael Gegick, and Andrew Meneely. "Protection Poker: Structuring Software Security Risk Assessment and Knowledge Transfer," In Engineering Secure Software and Systems, pp. 122­34. (Berlin: Springer, 2009).
+. "Syn Flood," Wikipedia.com, last modified September 16, 2013, http:// en.wikipedia.org/wiki/SYN_flood. Williams, Laurie, Michael Gegick, and Andrew Meneely. "Protection Poker: Structuring Software Security Risk Assessment and Knowledge Transfer," In Engineering Secure Software and Systems, pp. 122ï¿½34. (Berlin: Springer, 2009).
 "Windows 8 Integration," Mozilla Wiki, last modified on July 29, 2012, https:// wiki.mozilla.org/Windows_8_Integration.
 Yanisac, Alex, Harold Purdue, and Jeff Landry. Personal communication, 2012.
 Young, Rupert. "How Often Do Users Reset or Delete Their Cookies?"; comment on thread, http://www.quora.com/ How-often-do-users-reset-or-delete-their-cookies, Jan 26, 2011.
 Yu, Persis S., and Shanon M. Dietrich. "Broken Records: How errors by criminal background checking companies harm workers and businesses," April 2012, available at http://www.nclc.org/issues/broken-records.html.
 Zalewski, Michal. "Add a Security Delay to the Main Action of Popup Notifications (Bug #583175)," Bug report and discussion, July 29, 2010, https:// bugzilla.mozilla.org/show_bug.cgi?id=583175.
 . The Tangled Web: A Guide to Securing Modern Web Applications (San Francisco: No Starch Press, 2011).
-Zhang, Yinqian, Fabian Monrose, and Michael K. Reiter. "The Security of Modern Password Expiration: An Algorithmic Framework and Empirical Analysis," Proceedings of the Seventeenth ACM Conference on Computer and communications security, pp. 176­86 (ACM, 2010).
+Zhang, Yinqian, Fabian Monrose, and Michael K. Reiter. "The Security of Modern Password Expiration: An Algorithmic Framework and Empirical Analysis," Proceedings of the Seventeenth ACM Conference on Computer and communications security, pp. 176ï¿½86 (ACM, 2010).
 Zooko. "Names: Decentralized, Secure, Human-Meaningful: Choose Two," Zooko.com, last updated January 30, 2006, http://web.archive.org/ web/20120125033658/http://zooko.com/distnames.html.
 
 Index
@@ -10987,11 +10989,11 @@ Index
 A
 Abi-Antoun, Marwan, 213 ability, challenge and, 410 About Face 3: The Essentials
 of Interaction Design (Cooper), 480 abstraction versus detail, attack libraries, 102 ACCE. See authenticated and confidential channel establishment accept risks business acceptance,
-184­185 described, 13, 169 user acceptance, 185 accepting threats, 13 account names, 283­284 account recovery,
-271­282 attacker-driven analysis,
-280 checklist, 281­282 e-mail authentication,
-273­274 knowledge-based
-authentication, 274­278 multi-channel authentication, 281 social authentication, 278­280 time factor, 272­273 types, 271­272
+184ï¿½185 described, 13, 169 user acceptance, 185 accepting threats, 13 account names, 283ï¿½284 account recovery,
+271ï¿½282 attacker-driven analysis,
+280 checklist, 281ï¿½282 e-mail authentication,
+273ï¿½274 knowledge-based
+authentication, 274ï¿½278 multi-channel authentication, 281 social authentication, 278ï¿½280 time factor, 272ï¿½273 types, 271ï¿½272
 
 account takeover subtree, ACFE. See Association
 
@@ -11003,43 +11005,43 @@ account trustees, 256,
 
 Examiners
 
-279­280
+279ï¿½280
 
 ACLs, 14, 15, 16, 17, 18, 19
 
-accounts, 253­291
+accounts, 253ï¿½291
 
 Acme's operational network,
 
-authentication, 259­271
+authentication, 259ï¿½271
 
-519­525
+519ï¿½525
 
 authentication checklist, 271 denial of service, 525
 
-close relationship, 254­255, diagram, 46­47, 520­521
+close relationship, 254ï¿½255, diagram, 46ï¿½47, 520ï¿½521
 
 273
 
 elevation of privilege, 525
 
-creation, 254­257
+creation, 254ï¿½257
 
-e-mail system, 172­173
+e-mail system, 172ï¿½173
 
 factory, 255
 
 information disclosure,
 
-federated, 255­256
+federated, 255ï¿½256
 
-524­525
+524ï¿½525
 
 free, 255
 
 repudiation, 524
 
-identity versus, 253­254
+identity versus, 253ï¿½254
 
 security requirements,
 
@@ -11049,57 +11051,57 @@ incorrect account or
 
 password, 262
 
-spoofing, 521­522
+spoofing, 521ï¿½522
 
-life cycles, 236, 254­259
+life cycles, 236, 254ï¿½259
 
-tampering, 523­524
+tampering, 523ï¿½524
 
 life-cycle checklist,
 
-threats, 521­525
+threats, 521ï¿½525
 
-258­259
+258ï¿½259
 
 Acme/SQL database,
 
-login process, 260­263
+login process, 260ï¿½263
 
-512­519
+512ï¿½519
 
 account lockout, 263
 
 core database threats,
 
-failures, 262­263
+failures, 262ï¿½263
 
-515­516
+515ï¿½516
 
 server spoofing,
 
-data flow diagram, 35­36
+data flow diagram, 35ï¿½36
 
-261­262
+261ï¿½262
 
 data stores, 516
 
-maintenance, 257­258
+maintenance, 257ï¿½258
 
 DB Admin module, 517
 
 nominee, 256
 
-denial of service, 75­76, 77,
+denial of service, 75ï¿½76, 77,
 
 overview, 216
 
-176, 514­518
+176, 514ï¿½518
 
 several, 256
 
 elevation of privilege, 76,
 
-shared, 256­257
+shared, 256ï¿½257
 
 78, 176
 
@@ -11107,17 +11109,17 @@ subordinate, 256
 
 entry points, 54
 
-summary, 290­291
+summary, 290ï¿½291
 
-front ends threats, 514­515
+front ends threats, 514ï¿½515
 
 termination, 258
 
 information disclosure, 75,
 
-threats, 263­271
+threats, 263ï¿½271
 
-77, 176, 514­518
+77, 176, 514ï¿½518
 
 UIDs, 6, 27, 50, 141
 
@@ -11125,717 +11127,717 @@ logs threats, 518
 
 567
 
-568 Index  A­A
+568 Index  Aï¿½A
 
 movie plotting, 33 repudiation, 75, 77, 176,
-514­518 security requirements, 512 software model, 512­513 spoofing, 74, 77, 176,
-514­518 STRIDE threats, 74­78 tampering, 75, 77, 176,
-514­518 threats, 513­519 trust boundaries, 5­7 acoustic cryptanalysis, 345 acquired control, threat
-genomics, 390­391 acquired target, 391 acquisition requirements/
-development requirements, 228 Acquisti, Alessandro, 287 Active Directory Federation Services, 255­256 active social authentication, 278­280 Adams, Andrew, 256 adaptive chosen ciphertext attacks, 343 Address Space Layout Randomization. See ASLR addressing risks described, 168 threat-specific
-prioritization approaches, 178­184 addressing threats, 12­24. See also risk management denial of service, 18­20 elevation of privilege, 20­22 information disclosure, 17­18 repudiation, 16­17 security patterns, 159­160 spoofing, 13­14 developer ways, 147 operational ways, 147 tampering, 15­16 trade-offs, 167­187 Admin console, iNTegrity tool, 530 adoption of threat modeling. See organizational adoption Advanced Encryption Standard. See AES
+514ï¿½518 security requirements, 512 software model, 512ï¿½513 spoofing, 74, 77, 176,
+514ï¿½518 STRIDE threats, 74ï¿½78 tampering, 75, 77, 176,
+514ï¿½518 threats, 513ï¿½519 trust boundaries, 5ï¿½7 acoustic cryptanalysis, 345 acquired control, threat
+genomics, 390ï¿½391 acquired target, 391 acquisition requirements/
+development requirements, 228 Acquisti, Alessandro, 287 Active Directory Federation Services, 255ï¿½256 active social authentication, 278ï¿½280 Adams, Andrew, 256 adaptive chosen ciphertext attacks, 343 Address Space Layout Randomization. See ASLR addressing risks described, 168 threat-specific
+prioritization approaches, 178ï¿½184 addressing threats, 12ï¿½24. See also risk management denial of service, 18ï¿½20 elevation of privilege, 20ï¿½22 information disclosure, 17ï¿½18 repudiation, 16ï¿½17 security patterns, 159ï¿½160 spoofing, 13ï¿½14 developer ways, 147 operational ways, 147 tampering, 15ï¿½16 trade-offs, 167ï¿½187 Admin console, iNTegrity tool, 530 adoption of threat modeling. See organizational adoption Advanced Encryption Standard. See AES
 
-adversarial machine learning, 398­399
+adversarial machine learning, 398ï¿½399
 AES (Advanced Encryption Standard), 336
 aggregation, 113, 116 agile methodology
 test-driven development, 190, 369
-threat modeling, 368­369
+threat modeling, 368ï¿½369
 YAGNI, 217, 358, 360, 368, 369, 380
 AINCAA, 234. See also authentication; authorization; availability; confidentiality; integrity; non-repudiation; STRIDE
 Akamai, 470 AKE. See authenticated key
 exchange Alexander, Christopher, 159 Alice and Bob, threat actors,
 341, 342, 343, 344, 345 Amazon issues, 226, 277, 436 Analyze Model screen, SDL
-Threat Modeling Tool, 210, 212 anchoring effects, 298 AND attack trees, 88, 89 Anderson, Ross, 34, 267, 276, 477, 478 anomaly attack detection, 179 anti-pattern, network isolation, 15, 16 anti-users. See Aucsmith's attacker personas API callers, external security notes, 137­138 API threat models, 141­142 AppContainer, 21, 141 applicability, usability problem, 275 appropriate security, 184 Approver, RACI matrix, 364 archetypes, 40, 480­481 architecting for success, 407­420 artistry, 418­419 best is enemy of good,
-415­416 boundary objects, 414­415 closing perspectives,
-416­417 flow, 407­413
+Threat Modeling Tool, 210, 212 anchoring effects, 298 AND attack trees, 88, 89 Anderson, Ross, 34, 267, 276, 477, 478 anomaly attack detection, 179 anti-pattern, network isolation, 15, 16 anti-users. See Aucsmith's attacker personas API callers, external security notes, 137ï¿½138 API threat models, 141ï¿½142 AppContainer, 21, 141 applicability, usability problem, 275 appropriate security, 184 Approver, RACI matrix, 364 archetypes, 40, 480ï¿½481 architecting for success, 407ï¿½420 artistry, 418ï¿½419 best is enemy of good,
+415ï¿½416 boundary objects, 414ï¿½415 closing perspectives,
+416ï¿½417 flow, 407ï¿½413
 
-asset-centered modeling, 412­413
-attacker-centric approaches, 412­413
-channel, 409 cognitive load, 411­412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling
-alignment with flow, 409­411 knowledge of participants, 413­414 overview, 353 SDL Threat Modeling Tool, 414­415 summary, 419­420 threat model has changed, 417­418 threat modeling experts, 413­414 architectural patterns, 159 arms races, 175, 185­186 Armstrong, Louis, 418 artistry, 418­419 ASLR (Address Space Layout Randomization), 22, 70, 71 asset-centered threat modeling, 34­35, 36­39, 56, 412­413 asset/entry approach, 53­54 assets computers, 425­426 intangible, 427 overlapping definitions, 37­38, 56 people, 426 processes, 426 protecting, 38, 403­404 stepping-stone, 38­39, 427 Association of Certified Fraud Examiners (ACFE), 96, 97 astroturfing, 257 asymmetric encryption (public key encryption), 334, 335, 336­337 asymmetric key systems, 346­347 attack libraries, 101­109 checklists, 103 literature review, 103­104 properties, 101­104 summary, 108­109
+asset-centered modeling, 412ï¿½413
+attacker-centric approaches, 412ï¿½413
+channel, 409 cognitive load, 411ï¿½412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling
+alignment with flow, 409ï¿½411 knowledge of participants, 413ï¿½414 overview, 353 SDL Threat Modeling Tool, 414ï¿½415 summary, 419ï¿½420 threat model has changed, 417ï¿½418 threat modeling experts, 413ï¿½414 architectural patterns, 159 arms races, 175, 185ï¿½186 Armstrong, Louis, 418 artistry, 418ï¿½419 ASLR (Address Space Layout Randomization), 22, 70, 71 asset-centered threat modeling, 34ï¿½35, 36ï¿½39, 56, 412ï¿½413 asset/entry approach, 53ï¿½54 assets computers, 425ï¿½426 intangible, 427 overlapping definitions, 37ï¿½38, 56 people, 426 processes, 426 protecting, 38, 403ï¿½404 stepping-stone, 38ï¿½39, 427 Association of Certified Fraud Examiners (ACFE), 96, 97 astroturfing, 257 asymmetric encryption (public key encryption), 334, 335, 336ï¿½337 asymmetric key systems, 346ï¿½347 attack libraries, 101ï¿½109 checklists, 103 literature review, 103ï¿½104 properties, 101ï¿½104 summary, 108ï¿½109
 
-Index  B­B 569
+Index  Bï¿½B 569
 
 attack surfaces. See also trust boundaries
 defined, 6 trust boundaries versus, 6 "An Attack Tree for
-the Border Gateway Protocol," 94 attack trees, 87­100 AND, 88, 89 OR, 88, 89, 94­95 completeness, 90, 100 election operations
-assessment threat trees, 96, 98 example, 94­95 fraud, 96, 97 grids, 92 human-viewable representations, 91­94 mind maps, 98, 99 perspective, 98, 100 real, 96­98 root nodes, 89 Schneier on, 87, 100 structured representations, 94 subnodes, 89­90 summary, 100 using, 87­90 attacker lists, 477­499 archetypes, 40, 480­481 Aucsmith's attacker personas, 481­499 background and
-definitions, 481­483 attacker-centric threat
-modeling, 34­35, 40­41, 412­413 attacker-driven analysis, account recovery, 280 attacking storage subtree, 435 attacks. See also denial of service command injection, 21, 22,
+the Border Gateway Protocol," 94 attack trees, 87ï¿½100 AND, 88, 89 OR, 88, 89, 94ï¿½95 completeness, 90, 100 election operations
+assessment threat trees, 96, 98 example, 94ï¿½95 fraud, 96, 97 grids, 92 human-viewable representations, 91ï¿½94 mind maps, 98, 99 perspective, 98, 100 real, 96ï¿½98 root nodes, 89 Schneier on, 87, 100 structured representations, 94 subnodes, 89ï¿½90 summary, 100 using, 87ï¿½90 attacker lists, 477ï¿½499 archetypes, 40, 480ï¿½481 Aucsmith's attacker personas, 481ï¿½499 background and
+definitions, 481ï¿½483 attacker-centric threat
+modeling, 34ï¿½35, 40ï¿½41, 412ï¿½413 attacker-driven analysis, account recovery, 280 attacking storage subtree, 435 attacks. See also denial of service command injection, 21, 22,
 509, 525 control flow/memory
-corruption, 20, 21­22 CRSF, 10, 108, 525 against cryptosystems,
-342­345 logs, 69 man-in-the-middle, 15, 66,
-343­344, 347, 441 network attackers, 421­422 non-sentient attackers, 424
+corruption, 20, 21ï¿½22 CRSF, 10, 108, 525 against cryptosystems,
+342ï¿½345 logs, 69 man-in-the-middle, 15, 66,
+343ï¿½344, 347, 441 network attackers, 421ï¿½422 non-sentient attackers, 424
 
-out-of-scope, 31­32, 75, 449, 476
+out-of-scope, 31ï¿½32, 75, 449, 476
 against people, 423 physical attackers, 422 privacy attackers, 424 via social programs, threat
-tree, 474­476 SQL injections, 22, 26, 34,
-189, 192, 198, 244, 251, 495, 515, 516 supply chain attackers, 423 think like an attacker, 402­403 with tricky filenames, 476 XSS, 108, 191, 192, 509, 525 attention grabbing patterns, 325­327 Aucsmith, Dave, 481 Aucsmith's attacker personas, 481­499 background and definitions, 481­483 audience, attack libraries, 102 augmented contextual integrity decision heuristic, 119 authenticated and confidential channel establishment (ACCE), 340 authenticated key exchange (AKE), 340 authentication. See also authorization; spoofing account recovery, 271­282 attacker-driven analysis,
-280 checklist, 281­282 e-mail authentication,
-273­274 knowledge-based
-authentication, 274­278 multi-channel authentication, 281 social authentication, 278­280 time factor, 272­273 types, 271­272 accounts, 259­271 AINCAA, 234 authorization compared to, 146
+tree, 474ï¿½476 SQL injections, 22, 26, 34,
+189, 192, 198, 244, 251, 495, 515, 516 supply chain attackers, 423 think like an attacker, 402ï¿½403 with tricky filenames, 476 XSS, 108, 191, 192, 509, 525 attention grabbing patterns, 325ï¿½327 Aucsmith, Dave, 481 Aucsmith's attacker personas, 481ï¿½499 background and definitions, 481ï¿½483 audience, attack libraries, 102 augmented contextual integrity decision heuristic, 119 authenticated and confidential channel establishment (ACCE), 340 authenticated key exchange (AKE), 340 authentication. See also authorization; spoofing account recovery, 271ï¿½282 attacker-driven analysis,
+280 checklist, 281ï¿½282 e-mail authentication,
+273ï¿½274 knowledge-based
+authentication, 274ï¿½278 multi-channel authentication, 281 social authentication, 278ï¿½280 time factor, 272ï¿½273 types, 271ï¿½272 accounts, 259ï¿½271 AINCAA, 234 authorization compared to, 146
 
-chained authentication failures, 277­278
-checklist, 271 decryption, 348 defined, 259 described, 259­271 factors, 260 insufficient, 262­263 login process, 260­263
-account lockout, 263 failures, 262­263 server spoofing, 261­262 model of process, 259 OTTs, 525­528 requirements, 235­236 social, 260, 278­280 software-centered models,
-305­306 SSNs, 287­288 tactics, 146­147 technologies, 148, 165 authentication UI subtree,
-437 authorization, 157­159.
+chained authentication failures, 277ï¿½278
+checklist, 271 decryption, 348 defined, 259 described, 259ï¿½271 factors, 260 insufficient, 262ï¿½263 login process, 260ï¿½263
+account lockout, 263 failures, 262ï¿½263 server spoofing, 261ï¿½262 model of process, 259 OTTs, 525ï¿½528 requirements, 235ï¿½236 social, 260, 278ï¿½280 software-centered models,
+305ï¿½306 SSNs, 287ï¿½288 tactics, 146ï¿½147 technologies, 148, 165 authentication UI subtree,
+437 authorization, 157ï¿½159.
 See also authentication; elevation of privilege AINCAA, 234 authentication compared
-to, 146 implementing, 158 operational assurance, 158 requirements, 239­240 tactics, 157 technologies, 158­159 AutoPlay, 393 AutoRun feature, 193, 394,
-396, 397 auto-update, plugins, 246 availability, 155­157. See also
+to, 146 implementing, 158 operational assurance, 158 requirements, 239ï¿½240 tactics, 157 technologies, 158ï¿½159 AutoPlay, 393 AutoRun feature, 193, 394,
+396, 397 auto-update, plugins, 246 availability, 155ï¿½157. See also
 denial of service AINCAA, 234 implementing, 156 operational assurance,
-156­157 tactics, 155­156 "Avoid Common Pitfalls in
+156ï¿½157 tactics, 155ï¿½156 "Avoid Common Pitfalls in
 Greasemonkey," 245 avoid risks, 168 avoid urgency, 319
 B
 backoff, 263 backup authentication
 subtree, 436 bag of tricks, 186
 
-570 Index  C­C
+570 Index  Cï¿½C
 
 balance, between ability and challenge, 410
 barack.obama37@example. com, 451
 Barnard, Robert, 478 Barnard's attacker list, 478 baseline questions,
-organizational adoption of threat modeling, 359­360 basic cryptographic primitives, 334­339 bcrypt, 269 bear metaphor, 132­133 behaviorist models of people, 295­297 Bespoke Software Project?, Broad Street Taxonomy, 397 best is enemy of good, 415­416 Bic pens, Kryptonite bike locks, 181 biometrics, 14, 257, 264­267 birds, boundary objects, 414 birthday attacks, 344­345 blinding, 163­164, 339 blindness, creator, 412 block ciphers, 335, 348 bottom-up threat modeling, 50, 129 boundaries. See trust boundaries boundary objects, 414­415 Bowker, G. C., 104 brainstorming human factors, 311 limitations, 34 literature review, 33­34 movie plotting, 33 normal, 31­32 pre-mortems, 32­33 scenario-specific, 32 Broad Street Taxonomy, 392­398 browsers plugin threats, 244­245 privacy model, 245 security model, 245 threats, 244­245 bug bars, 180­181, 364, 513 bugs checking, 196 filing, 23­24 SDL Threat Modeling Tool,
-414­415
+organizational adoption of threat modeling, 359ï¿½360 basic cryptographic primitives, 334ï¿½339 bcrypt, 269 bear metaphor, 132ï¿½133 behaviorist models of people, 295ï¿½297 Bespoke Software Project?, Broad Street Taxonomy, 397 best is enemy of good, 415ï¿½416 Bic pens, Kryptonite bike locks, 181 biometrics, 14, 257, 264ï¿½267 birds, boundary objects, 414 birthday attacks, 344ï¿½345 blinding, 163ï¿½164, 339 blindness, creator, 412 block ciphers, 335, 348 bottom-up threat modeling, 50, 129 boundaries. See trust boundaries boundary objects, 414ï¿½415 Bowker, G. C., 104 brainstorming human factors, 311 limitations, 34 literature review, 33ï¿½34 movie plotting, 33 normal, 31ï¿½32 pre-mortems, 32ï¿½33 scenario-specific, 32 Broad Street Taxonomy, 392ï¿½398 browsers plugin threats, 244ï¿½245 privacy model, 245 security model, 245 threats, 244ï¿½245 bug bars, 180ï¿½181, 364, 513 bugs checking, 196 filing, 23ï¿½24 SDL Threat Modeling Tool,
+414ï¿½415
 
-bug-tracking systems, 204­205
-business acceptance, mitigation via, 184­185
-business requirements, 220­221
-business risk acceptance, 184­185
+bug-tracking systems, 204ï¿½205
+business acceptance, mitigation via, 184ï¿½185
+business requirements, 220ï¿½221
+business risk acceptance, 184ï¿½185
 bypassing protection rules subtree, 448
-bypassing protection subtree, 460­461
+bypassing protection subtree, 460ï¿½461
 bypassing protection systems subtree, 449
 C
 CAD (Ctrl+Alt+Delete), 260, 432, 437
 Caesar cipher, 335 call chain subtree, 443 Cameron, Kim, 233 capacity failures subtree,
-449­450 CAPEC (Common Attack
-Pattern Enumeration and Classification) described, 104­107 patterns, 160 sample entry, 107 ThreatModeler, 208 cargo culting, 402 case studies, 511­531. See also Acme's operational network; Acme/SQL database iNTegrity tool, 529­531 phones and OTTs, 525­528 CBC (cipher block chaining), 336, 346 ceremonies analysis heuristics, 312­315 CSC, 318­319 defined, 294 described, 311­312 distracting information,
-312­313 fuzzy comparison, 314, 332 missing information, 312 perspective, 329­331 underspecified elements,
-313 ceremonies model, 297 certificate pinning, 347 certificates, 340­341 chained authentication
-failures, 277­278
+449ï¿½450 CAPEC (Common Attack
+Pattern Enumeration and Classification) described, 104ï¿½107 patterns, 160 sample entry, 107 ThreatModeler, 208 cargo culting, 402 case studies, 511ï¿½531. See also Acme's operational network; Acme/SQL database iNTegrity tool, 529ï¿½531 phones and OTTs, 525ï¿½528 CBC (cipher block chaining), 336, 346 ceremonies analysis heuristics, 312ï¿½315 CSC, 318ï¿½319 defined, 294 described, 311ï¿½312 distracting information,
+312ï¿½313 fuzzy comparison, 314, 332 missing information, 312 perspective, 329ï¿½331 underspecified elements,
+313 ceremonies model, 297 certificate pinning, 347 certificates, 340ï¿½341 chained authentication
+failures, 277ï¿½278
 
 challenge, ability and, 410 change detection, 179 changed situation, threat
-model has changed, 417­418 channel, flow, 409 channel integrity structure, 445­446 channel subtree, 458, 465­466 checking code, 192­195 Checklist Manifesto (Gawande), 103 checklists account life-cycle
-checklist, 258­259 account recovery, 281­282 account recovery checklist,
-281­282 API threat modeling,
-141­142 attack libraries, 103 authentication checklist,
+model has changed, 417ï¿½418 channel, flow, 409 channel integrity structure, 445ï¿½446 channel subtree, 458, 465ï¿½466 checking code, 192ï¿½195 Checklist Manifesto (Gawande), 103 checklists account life-cycle
+checklist, 258ï¿½259 account recovery, 281ï¿½282 account recovery checklist,
+281ï¿½282 API threat modeling,
+141ï¿½142 attack libraries, 103 authentication checklist,
 271 diagramming checklist,
-27­28 names-IDs-SSNs checklist,
-290 threats checklist, 28 usability testing, 328­329 validate threats checklist,
+27ï¿½28 names-IDs-SSNs checklist,
+290 threats checklist, 28 usability testing, 328ï¿½329 validate threats checklist,
 28 cheeseburger approach, 178,
-179 chess analogy, 131­132 chess master attacks, 344 chosen ciphertext attacks,
+179 chess analogy, 131ï¿½132 chess master attacks, 344 chosen ciphertext attacks,
 343 chosen plaintext attacks, 343 cipher block chaining. See
 CBC ciphers. See symmetric
-encryption ciphertext attacks, 343 Clarke, Roger, 114, 115 clicking, delay, 326­327 client spoofing, 262 close relationship accounts,
-254­255, 273 cloud computing
+encryption ciphertext attacks, 343 Clarke, Roger, 114, 115 clicking, delay, 326ï¿½327 client spoofing, 262 close relationship accounts,
+254ï¿½255, 273 cloud computing
 IaaS, 230, 243, 247, 251, 521 PaaS, 230, 243, 247, 248, 251 SaaS, 230, 248, 249, 251 threats
-overview, 215­216 provider threats, 249­250
+overview, 215ï¿½216 provider threats, 249ï¿½250
 
-Index  C­C 571
+Index  Cï¿½C 571
 
-summary, 251 tenant threats, 246­249 Cloud Control Matrix, 229­230 Cloud Security Alliance (CSA), 229­230 code checking, 192­195 coercion, persuasion model, 423 cognitive load, 411­412 cognitive science models of people, 297­302 color, in diagrams, 53 command and control phase, LM kill chains, 389­390 command injection attacks, 21, 22, 509, 525 commencement, threat genomics, 390­391 commercial threat modeling tools, 208­213 Common Attack Pattern Enumeration and Classification. See CAPEC Common Vulnerabilities and Exposures list. See CVE comparative design, 170­174 completeness, attack trees, 90, 100 completing threat modeling activities, 372­373 complex diagrams, 52­53 compliance cloud tenant threats,
-247­248 compliance-driven
-requirements, 229­231 policy and compliance
-LINDDUN, 112, 120­121, 151
-privacy threats, 164 compliance budget, 303­304 computers, assets, 425­426 conceal and maintain, threat
+summary, 251 tenant threats, 246ï¿½249 Cloud Control Matrix, 229ï¿½230 Cloud Security Alliance (CSA), 229ï¿½230 code checking, 192ï¿½195 coercion, persuasion model, 423 cognitive load, 411ï¿½412 cognitive science models of people, 297ï¿½302 color, in diagrams, 53 command and control phase, LM kill chains, 389ï¿½390 command injection attacks, 21, 22, 509, 525 commencement, threat genomics, 390ï¿½391 commercial threat modeling tools, 208ï¿½213 Common Attack Pattern Enumeration and Classification. See CAPEC Common Vulnerabilities and Exposures list. See CVE comparative design, 170ï¿½174 completeness, attack trees, 90, 100 completing threat modeling activities, 372ï¿½373 complex diagrams, 52ï¿½53 compliance cloud tenant threats,
+247ï¿½248 compliance-driven
+requirements, 229ï¿½231 policy and compliance
+LINDDUN, 112, 120ï¿½121, 151
+privacy threats, 164 compliance budget, 303ï¿½304 computers, assets, 425ï¿½426 conceal and maintain, threat
 genomics, 391 conditioned-safe ceremonies
-(CSC), 318­319 conditioning, habituation
-and, 295­296 confidentiality, 153­155.
+(CSC), 318ï¿½319 conditioning, habituation
+and, 295ï¿½296 confidentiality, 153ï¿½155.
 See also information disclosure AINCAA, 234
 
 implementing, 154 operational assurance, 154 requirements, 238 tactics, 154 technologies, 155 configuration software-centered models,
-306­307 user interface tools,
-322­323 configuration available?,
-Broad Street Taxonomy, 396­397 confirmation bias, 303 consistent experience across context, 233 Constantine, Larry, 44 Consulted, RACI matrix, 364 container subtree, 467­468 content unawareness, LINDDUN, 112, 120­121, 151 contextual integrity, 117­120 Contoso.exe, 80­84 control flow/memory corruption attacks, 20, 21­22 convergence system, 347 Convery, S., 94 cookbook approach. See requirements Cooper, Alan, 114, 118, 480, 481 Corporate Fraud Handbook (Wells), 96, 151 Corporate Threat Modeler, 208­209 corrupt messages subtree, 465 corrupt state subtree, 443 cost estimation approaches, 181­184 co-tenant threats, clouds, 247 Cranor, Laurie, 297, 299­301, 328­329, 331 Cranor model, 299­301 creation, accounts, 254­257 creator blindness, 412 cross-site request forgery (CRSF), 10, 108, 525 cross-site scripting attacks (XSS), 108, 191, 192, 509, 525 CRSF. See cross-site request forgery
+306ï¿½307 user interface tools,
+322ï¿½323 configuration available?,
+Broad Street Taxonomy, 396ï¿½397 confirmation bias, 303 consistent experience across context, 233 Constantine, Larry, 44 Consulted, RACI matrix, 364 container subtree, 467ï¿½468 content unawareness, LINDDUN, 112, 120ï¿½121, 151 contextual integrity, 117ï¿½120 Contoso.exe, 80ï¿½84 control flow/memory corruption attacks, 20, 21ï¿½22 convergence system, 347 Convery, S., 94 cookbook approach. See requirements Cooper, Alan, 114, 118, 480, 481 Corporate Fraud Handbook (Wells), 96, 151 Corporate Threat Modeler, 208ï¿½209 corrupt messages subtree, 465 corrupt state subtree, 443 cost estimation approaches, 181ï¿½184 co-tenant threats, clouds, 247 Cranor, Laurie, 297, 299ï¿½301, 328ï¿½329, 331 Cranor model, 299ï¿½301 creation, accounts, 254ï¿½257 creator blindness, 412 cross-site request forgery (CRSF), 10, 108, 525 cross-site scripting attacks (XSS), 108, 191, 192, 509, 525 CRSF. See cross-site request forgery
 
 cryptanalysis acoustic, 345 differential, 343 linear, 343 rubber hose, 345, 423 World War II, 343
-crypto (cryptography), 333­351
-advice, 348­349 attacks, 342­345 blinding, 163­164, 339 building
+crypto (cryptography), 333ï¿½351
+advice, 348ï¿½349 attacks, 342ï¿½345 blinding, 163ï¿½164, 339 building
 making choices, 346 upgrades, 346 differential privacy,
-162­163 encryption, 161­162 information disclosure,
-EoP game, 506­507 introduction, 333­334 magic security dust, 349 mixes, 163, 339 mix-like systems, 163, 339 phones and OTTs case
+162ï¿½163 encryption, 161ï¿½162 information disclosure,
+EoP game, 506ï¿½507 introduction, 333ï¿½334 magic security dust, 349 mixes, 163, 339 mix-like systems, 163, 339 phones and OTTs case
 study, 528 Predator drone system, 416 privacy threats mitigation,
-161­164 private information
+161ï¿½164 private information
 retrieval, 162 professionals, 348 reference material, 333 RSA, 260, 337, 341, 388 split-key systems, 162 steganography, 154, 155,
-339, 461 summary, 351 threat actors, 341­345 trust, 342, 351 Cryptographic Doom
+339, 461 summary, 351 threat actors, 341ï¿½345 trust, 342, 351 Cryptographic Doom
 Principle, 348 cryptographic primitives
 AKE, 340 asymmetric encryption,
-334, 335, 336­337 basic, 334­339 certificates, 340­341 hashes
-described, 161­162, 334, 335, 337­338
-hash trees, 153 visual hash, 314 modern, 339­341 PFS, 339 PKI, 340­341 privacy primitives, 339
+334, 335, 336ï¿½337 basic, 334ï¿½339 certificates, 340ï¿½341 hashes
+described, 161ï¿½162, 334, 335, 337ï¿½338
+hash trees, 153 visual hash, 314 modern, 339ï¿½341 PFS, 339 PKI, 340ï¿½341 privacy primitives, 339
 
-572 Index  D­D
+572 Index  Dï¿½D
 
-PRNGs, 334, 335, 338­339 proven cryptosystems, 340 random oracles, 340 symmetric encryption,
-334, 335­336 Cryptography Engineering (
+PRNGs, 334, 335, 338ï¿½339 proven cryptosystems, 340 random oracles, 340 symmetric encryption,
+334, 335ï¿½336 Cryptography Engineering (
 Ferguson, et al.), 334, 336 cryptosystems. See crypto CSA. See Cloud Security
 Alliance CSC. See conditioned-safe
-ceremonies Csíkszentmihályi, Mihaly,
+ceremonies Csï¿½kszentmihï¿½lyi, Mihaly,
 408, 409 CTR mode, 336, 346 Ctrl+Alt+Delete (CAD), 260,
 432, 437 curiosity, Aucsmith's
-attacker personas, 481, 484 custom mitigations, 176­177 customers, external security notes, 136 customer/vendor trust boundary, 139 CVE (Common Vulnerabilities and Exposures), 395­396
+attacker personas, 481, 484 custom mitigations, 176ï¿½177 customers, external security notes, 136 customer/vendor trust boundary, 139 CVE (Common Vulnerabilities and Exposures), 395ï¿½396
 D
-Dali, Salvador, 418­419 DANE, 347 dangerous approaches, to
-threat modeling, 402­404 dangerous choices, hiding,
-325­326 dangerous deliverables,
-400­401 data brokers, privacy
+Dali, Salvador, 418ï¿½419 DANE, 347 dangerous approaches, to
+threat modeling, 402ï¿½404 dangerous choices, hiding,
+325ï¿½326 dangerous deliverables,
+400ï¿½401 data brokers, privacy
 attackers, 424 data flow diagrams (DFDs).
 See also flow; trust boundaries Acme/SQL database,
-35­36 checklist, 27­28 color, 53 complex, 52­53 described, 44­47 entry points, 53­54 iNTegrity tool, 530­531 intersystem review,
-386­387 labels, 53 operational network
-model, 46­47
+35ï¿½36 checklist, 27ï¿½28 color, 53 complex, 52ï¿½53 described, 44ï¿½47 entry points, 53ï¿½54 iNTegrity tool, 530ï¿½531 intersystem review,
+386ï¿½387 labels, 53 operational network
+model, 46ï¿½47
 
-threat model diagrams, 44 validating, 54­56 what to include, 52 data flows denial of service against
-data flows: STRIDE threat tree, 463­466 channel subtree,
-465­466 corrupt messages
+threat model diagrams, 44 validating, 54ï¿½56 what to include, 52 data flows denial of service against
+data flows: STRIDE threat tree, 463ï¿½466 channel subtree,
+465ï¿½466 corrupt messages
 subtree, 465 diagram, 464 preplay subtree, 465 STRIDE-per-Element
 diagram, 431 information disclosure
-from data flows: STRIDE threat tree, 456­458 channel subtree, 458 diagram, 457 disclosure threats
+from data flows: STRIDE threat tree, 456ï¿½458 channel subtree, 458 diagram, 457 disclosure threats
 subtree, 458 message subtree, 458 STRIDE-per-Element
 diagram, 431 spoofing data flows:
 STRIDE threat tree diagram, 440 forge keys subtree, 441 spoof packets subtree,
 441 steal keys subtree, 440 STRIDE-per-Element
 diagram, 431 weak authentication
 subtree, 441 tampering with data flows:
-STRIDE threat tree, 444­446 channel integrity
-structure, 445­446 diagram, 444 message subtree, 445 STRIDE-per-Element
+STRIDE threat tree, 444ï¿½446 channel integrity
+structure, 445ï¿½446 diagram, 444 message subtree, 445 STRIDE-per-Element
 diagram, 431 time or ordering subtree,
 446 upstream insertion
 subtree, 446 data store subtree, 448 data stores
 Acme/SQL database, 516 denial of service against
-data stores: STRIDE threat tree, 466­468
+data stores: STRIDE threat tree, 466ï¿½468
 
-container subtree, 467­468
+container subtree, 467ï¿½468
 diagram, 466 squatting subtree, 467 STRIDE-per-Element
 diagram, 431 information disclosure
-from data stores: STRIDE threat tree, 459­462 bypassing protection
-subtree, 460­461 diagram, 459 metadata and side
-channels subtree, 461 storage attacks subtree, 462 STRIDE-per-Element diagram, 431 surprise subtree, 461 repudiation, data stores: STRIDE threat tree diagram, 452 logs subtree, 453 STRIDE-per-Element diagram, 431 transaction repudiation subtree, 453 tampering with data stores: STRIDE threat tree, 446­450 bypassing protection rules subtree, 448 bypassing protection systems subtree, 449 capacity failures subtree, 449­450 data store subtree, 448 diagram, 447 STRIDE-per-Element diagram, 431 data stores, information disclosure, 70, 71­72 database keys, SSNs, 287 data/code confusion, 20, 21 DB Admin module, Acme/ SQL database, 517 deception?, Broad Street Taxonomy, 395 decision heuristic, contextual integrity, 118­119 decision models, organizational adoption of threat modeling, 364­365
+from data stores: STRIDE threat tree, 459ï¿½462 bypassing protection
+subtree, 460ï¿½461 diagram, 459 metadata and side
+channels subtree, 461 storage attacks subtree, 462 STRIDE-per-Element diagram, 431 surprise subtree, 461 repudiation, data stores: STRIDE threat tree diagram, 452 logs subtree, 453 STRIDE-per-Element diagram, 431 transaction repudiation subtree, 453 tampering with data stores: STRIDE threat tree, 446ï¿½450 bypassing protection rules subtree, 448 bypassing protection systems subtree, 449 capacity failures subtree, 449ï¿½450 data store subtree, 448 diagram, 447 STRIDE-per-Element diagram, 431 data stores, information disclosure, 70, 71ï¿½72 database keys, SSNs, 287 data/code confusion, 20, 21 DB Admin module, Acme/ SQL database, 517 deception?, Broad Street Taxonomy, 395 decision heuristic, contextual integrity, 118ï¿½119 decision models, organizational adoption of threat modeling, 364ï¿½365
 
-Index  D­D 573
+Index  Dï¿½D 573
 
 decisional interference, 113 decryption
 authentication, 348 defined, 334 defense in depth, 158, 220 defensive tactics and
-technologies. See tactics; technologies delay to click, 326­327 deliberate practice, 410 deliverables dangerous, 400­401 organizational adoption
-of threat modeling, 360­362 Dell web server, trust boundaries, 51 Deng, Mina, 120. See also LINDDUN denial of service. See also STRIDE Acme's operational network, 525 Acme/SQL database, 75­76, 77, 176, 514­518 addressing, 18­20 availability, 155­157 AINCAA, 234 implementing, 156 operational assurance,
-156­157 tactics, 155­156 defined, 10, 72 denial of service against
-data flows: STRIDE threat tree, 463­466 channel subtree, 465­466 corrupt messages
+technologies. See tactics; technologies delay to click, 326ï¿½327 deliberate practice, 410 deliverables dangerous, 400ï¿½401 organizational adoption
+of threat modeling, 360ï¿½362 Dell web server, trust boundaries, 51 Deng, Mina, 120. See also LINDDUN denial of service. See also STRIDE Acme's operational network, 525 Acme/SQL database, 75ï¿½76, 77, 176, 514ï¿½518 addressing, 18ï¿½20 availability, 155ï¿½157 AINCAA, 234 implementing, 156 operational assurance,
+156ï¿½157 tactics, 155ï¿½156 defined, 10, 72 denial of service against
+data flows: STRIDE threat tree, 463ï¿½466 channel subtree, 465ï¿½466 corrupt messages
 subtree, 465 diagram, 464 preplay subtree, 465 STRIDE-per-Element
 diagram, 431 denial of service against
-data stores: STRIDE threat tree, 466­468 container subtree,
-467­468 diagram, 466 squatting subtree, 467 STRIDE-per-Element
+data stores: STRIDE threat tree, 466ï¿½468 container subtree,
+467ï¿½468 diagram, 466 squatting subtree, 467 STRIDE-per-Element
 diagram, 431 denial of service against
 processes: STRIDE threat tree diagram, 462
 
 STRIDE-per-Element diagram, 431
-table, 463 DESIST, 85, 86 EoP card game, 507­508 examples, 11, 72­73 mitigation strategies/
-techniques, 18­20, 155­157 Describe Environment screen, SDL Threat Modeling Tool, 210 deserves a CVE?, Broad Street Taxonomy, 395­396 design design changes, risk management, 170­174 design patterns, human factors, 317­322 DESIST, 85, 86 details detail versus abstraction, attack libraries, 102 diagrams, 25 detectability, LINDDUN, 112, 120­121, 151 detection. See also requirements requirements, 225 types, 178­179 developer-implemented mitigations, 174­175 development life cycle, threat modeling in, 367­378 development requirements/ acquisition requirements, 228 DevOps requirements, 239­240 DFDs. See data flow diagrams diagrams. See also STRIDE threat trees; trust boundaries checklist, 27­28 color, 53 complex, 52­53 details, 25 DFDs Acme/SQL database,
-35­36 checklist, 27­28 color, 53 complex, 52­53 described, 44­47
+table, 463 DESIST, 85, 86 EoP card game, 507ï¿½508 examples, 11, 72ï¿½73 mitigation strategies/
+techniques, 18ï¿½20, 155ï¿½157 Describe Environment screen, SDL Threat Modeling Tool, 210 deserves a CVE?, Broad Street Taxonomy, 395ï¿½396 design design changes, risk management, 170ï¿½174 design patterns, human factors, 317ï¿½322 DESIST, 85, 86 details detail versus abstraction, attack libraries, 102 diagrams, 25 detectability, LINDDUN, 112, 120ï¿½121, 151 detection. See also requirements requirements, 225 types, 178ï¿½179 developer-implemented mitigations, 174ï¿½175 development life cycle, threat modeling in, 367ï¿½378 development requirements/ acquisition requirements, 228 DevOps requirements, 239ï¿½240 DFDs. See data flow diagrams diagrams. See also STRIDE threat trees; trust boundaries checklist, 27ï¿½28 color, 53 complex, 52ï¿½53 details, 25 DFDs Acme/SQL database,
+35ï¿½36 checklist, 27ï¿½28 color, 53 complex, 52ï¿½53 described, 44ï¿½47
 
-entry points, 53­54 intersystem review,
-386­387 labels, 53 operational network
-model, 46­47 threat model diagrams,
-44 validating, 54­56 what to include, 52 labels, 53 SDL Threat Modeling Tool,
-414­415 state machines, 44, 49,
-308­309 swim lanes, 44, 48, 118,
-307­308, 411 types, 44 UML, 47­48, 411 updating, 24­25 validating, 54­56 what to include, 52 differential cryptanalysis,
+entry points, 53ï¿½54 intersystem review,
+386ï¿½387 labels, 53 operational network
+model, 46ï¿½47 threat model diagrams,
+44 validating, 54ï¿½56 what to include, 52 labels, 53 SDL Threat Modeling Tool,
+414ï¿½415 state machines, 44, 49,
+308ï¿½309 swim lanes, 44, 48, 118,
+307ï¿½308, 411 types, 44 UML, 47ï¿½48, 411 updating, 24ï¿½25 validating, 54ï¿½56 what to include, 52 differential cryptanalysis,
 343 differential privacy,
-162­163 Diffie-Hellman, 337 digital signatures, 14, 15,
-148, 150, 152, 153, 336, 338, 451, 505 directed identity, 233 disasters, non-sentient attackers, 424 discipline, threat modeling as, 376­378 disclosure of information. See information disclosure disclosure threats subtree, 458 dispute, DESIST, 85, 86 distracting information, ceremony analysis heuristics, 312­313 diversity in threat modeling teams, 367 DNSSEC, 14, 147, 148, 162, 347 document assumptions as you go, 198 Douglas, Eric, 316 downgrade attacks, 344 Draw Diagrams screen, SDL Threat Modeling Tool, 210­212 drawing trust boundaries, 50
+162ï¿½163 Diffie-Hellman, 337 digital signatures, 14, 15,
+148, 150, 152, 153, 336, 338, 451, 505 directed identity, 233 disasters, non-sentient attackers, 424 discipline, threat modeling as, 376ï¿½378 disclosure of information. See information disclosure disclosure threats subtree, 458 dispute, DESIST, 85, 86 distracting information, ceremony analysis heuristics, 312ï¿½313 diversity in threat modeling teams, 367 DNSSEC, 14, 147, 148, 162, 347 document assumptions as you go, 198 Douglas, Eric, 316 downgrade attacks, 344 Draw Diagrams screen, SDL Threat Modeling Tool, 210ï¿½212 drawing trust boundaries, 50
 
-574 Index  E­E
+574 Index  Eï¿½E
 
 DREAD, 180 Duarte, Nancy, 359 dynamic corruption subtree,
 469
 E
 early web threat model, 140 easy fixes first, 180 easy path to safety, 320 ECB mode, 336 ecological validity problem,
 328 effective meetings, project
-management, 365­367 Egelman, Serge, 256, 279 ego, persuasion model, 423 election operations
-assessment threat trees, 96, 98 electronic social engineering attacks, 309­310 elevation of privilege. See also authorization; STRIDE Acme's operational
+management, 365ï¿½367 Egelman, Serge, 256, 279 ego, persuasion model, 423 election operations
+assessment threat trees, 96, 98 electronic social engineering attacks, 309ï¿½310 elevation of privilege. See also authorization; STRIDE Acme's operational
 network, 525 Acme/SQL database, 76,
-78, 176, 514­518 addressing, 20­22 authorization, 157­159
+78, 176, 514ï¿½518 addressing, 20ï¿½22 authorization, 157ï¿½159
 AINCAA, 234 authentication compared
 to, 146 implementing, 158 operational assurance,
 158 requirements,
-239­240 tactics, 157 technologies, 158­159 defined, 10, 73 DESIST, 85, 86 elevation of privilege
-against processes: STRIDE threat tree, 468­470 diagram, 469 dynamic corruption
+239ï¿½240 tactics, 157 technologies, 158ï¿½159 defined, 10, 73 DESIST, 85, 86 elevation of privilege
+against processes: STRIDE threat tree, 468ï¿½470 diagram, 469 dynamic corruption
 subtree, 469 insufficient authorization
-to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 EoP card game, 508­509
+to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 EoP card game, 508ï¿½509
 
-examples, 11, 73­74 mitigation strategies/
-techniques, 20­22, 157­159 Elevation of Privilege card game (EoP game), 501­ 509. See also STRIDE denial of service, 507­508 download, 7 elevation of privilege, 508­509 how to play, 8­9 introduction, 206­208 organizational adoption of threat modeling, 355, 356, 357, 360, 369, 375 repudiation, 504­506 spoofing, 501­503 tampering, 503­504 eliminate threats, 12­13 Ellison, Carl, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 e-mail Acme's operational network, 172­173 authentication, 273­274 electronic social engineering attacks, 310 encrypt, 334 encryption, 161­162 asymmetric, 334, 335, 336­337 symmetric block ciphers, 335, 348 CBC, 336, 346 described, 334, 335­336 stream ciphers, 335 encrypt-then-MAC, 348 entry, threat genomics, 390­391 entry points, 53­54 enumerate all assumptions, 400­401 enumerating threats. See brainstorming environments kind, 296, 316, 318, 320­322, 332 wicked, 295­296, 318, 320, 321, 322, 331 EoP game. See Elevation of Privilege card game epic hacking, 277, 436 Epp, Dana, 85
+examples, 11, 73ï¿½74 mitigation strategies/
+techniques, 20ï¿½22, 157ï¿½159 Elevation of Privilege card game (EoP game), 501ï¿½ 509. See also STRIDE denial of service, 507ï¿½508 download, 7 elevation of privilege, 508ï¿½509 how to play, 8ï¿½9 introduction, 206ï¿½208 organizational adoption of threat modeling, 355, 356, 357, 360, 369, 375 repudiation, 504ï¿½506 spoofing, 501ï¿½503 tampering, 503ï¿½504 eliminate threats, 12ï¿½13 Ellison, Carl, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 e-mail Acme's operational network, 172ï¿½173 authentication, 273ï¿½274 electronic social engineering attacks, 310 encrypt, 334 encryption, 161ï¿½162 asymmetric, 334, 335, 336ï¿½337 symmetric block ciphers, 335, 348 CBC, 336, 346 described, 334, 335ï¿½336 stream ciphers, 335 encrypt-then-MAC, 348 entry, threat genomics, 390ï¿½391 entry points, 53ï¿½54 enumerate all assumptions, 400ï¿½401 enumerating threats. See brainstorming environments kind, 296, 316, 318, 320ï¿½322, 332 wicked, 295ï¿½296, 318, 320, 321, 322, 331 EoP game. See Elevation of Privilege card game epic hacking, 277, 436 Epp, Dana, 85
 
 Erector sets, 29, 35, 389 escape threats, 140, 249 "An Evaluation of Privacy
-Impact Assessment Guidance Document," 114­115 Eve, threat actor, 341­342, 343, 344, 345 evolved web threat model, 140 exclusion, 113 exec, 194 execute/implement, threat genomics, 391 exercises, iNTegrity tool, 531 exhaustible resources, 19 exit criteria CAPEC, 106 STRIDE, 85 experimental threat modeling approaches, 385­406 adversarial machine
-learning, 398­399 Broad Street Taxonomy,
-392­398 dangerous approaches,
-402­404 dangerous deliverables,
-400­401 enumerate all
-assumptions, 400­401 FlipIT, 388, 405 how to experiment, 404­405 intersystem review, 386­387, 515 kill chains, 388­390 OCTAVE Allegro, 399­400 operational threat models, 387­392 overview, 353 software seams, 386­387, 405 summary, 405­406 threat genomics, 390­392 threat model reports, 401 threat modeling businesses, 399­400 experts Aucsmith's attacker personas, 482 expert witness, 477 threat modeling, 413­414
+Impact Assessment Guidance Document," 114ï¿½115 Eve, threat actor, 341ï¿½342, 343, 344, 345 evolved web threat model, 140 exclusion, 113 exec, 194 execute/implement, threat genomics, 391 exercises, iNTegrity tool, 531 exhaustible resources, 19 exit criteria CAPEC, 106 STRIDE, 85 experimental threat modeling approaches, 385ï¿½406 adversarial machine
+learning, 398ï¿½399 Broad Street Taxonomy,
+392ï¿½398 dangerous approaches,
+402ï¿½404 dangerous deliverables,
+400ï¿½401 enumerate all
+assumptions, 400ï¿½401 FlipIT, 388, 405 how to experiment, 404ï¿½405 intersystem review, 386ï¿½387, 515 kill chains, 388ï¿½390 OCTAVE Allegro, 399ï¿½400 operational threat models, 387ï¿½392 overview, 353 software seams, 386ï¿½387, 405 summary, 405ï¿½406 threat genomics, 390ï¿½392 threat model reports, 401 threat modeling businesses, 399ï¿½400 experts Aucsmith's attacker personas, 482 expert witness, 477 threat modeling, 413ï¿½414
 
-Index  F­H 575
+Index  Fï¿½H 575
 
 explicit warnings. See warnings
 external code, vulnerability, 224
-external entities spoofing external entity: STRIDE threat tree, 432­438 attacking storage subtree, 435 authentication UI subtree, 437 backup authentication subtree, 436 insufficient authentication subtree, 437­438 obtaining existing credentials subtree, 434 STRIDE-per-Element diagram, 431 threats identification, 11­12
-external fraud prevention, 151­152
-external security notes, tracking, 136­138
+external entities spoofing external entity: STRIDE threat tree, 432ï¿½438 attacking storage subtree, 435 authentication UI subtree, 437 backup authentication subtree, 436 insufficient authentication subtree, 437ï¿½438 obtaining existing credentials subtree, 434 STRIDE-per-Element diagram, 431 threats identification, 11ï¿½12
+external fraud prevention, 151ï¿½152
+external security notes, tracking, 136ï¿½138
 F
-Fabrikam.dll, 80­83 facial recognition systems,
+Fabrikam.dll, 80ï¿½83 facial recognition systems,
 181, 265, 266, 287 factors, authentication, 260 factory accounts, 255 facts versus preferences,
 usability problem, 275 failures
-chained authentication failures, 277­278
-login, 262­263 threat modeling
-approaches, 400­404 FAIR (Factor Analysis
-of Information Risk), 182­184 Fair Information Practices. See FIPs "Falsehoods Programmers Believe About Names," 283 feasible threats, 12 features, working through, 126­127 federated accounts, 255­256 feedback
+chained authentication failures, 277ï¿½278
+login, 262ï¿½263 threat modeling
+approaches, 400ï¿½404 FAIR (Factor Analysis
+of Information Risk), 182ï¿½184 Fair Information Practices. See FIPs "Falsehoods Programmers Believe About Names," 283 feasible threats, 12 features, working through, 126ï¿½127 federated accounts, 255ï¿½256 feedback
 
 feedback loops, 373 threat modeling alignment
-with flow, 409­410 femtocells, 171, 526, 527 Ferguson, Niels, 334, 336 Feynman, Richard, 402 fi les
-spoofing, 14, 65­66 tampering, 15, 68 filing bugs, 23­24 filter and transform
+with flow, 409ï¿½410 femtocells, 171, 526, 527 Ferguson, Niels, 334, 336 Feynman, Richard, 402 fi les
+spoofing, 14, 65ï¿½66 tampering, 15, 68 filing bugs, 23ï¿½24 filter and transform
 approach, 198 Finding Flow
-(Csíkszentmihályi), 408 finding threats, 59. See also
-attack libraries; attack trees; STRIDE fingerprints, 181, 265, 335 FIPs (Fair Information Practices), 232, 234 fitness for purpose, 184, 185 FlipIT, 388, 405 flow, 407­413. See also data flow diagrams asset-centered modeling,
-412­413 attacker-centric
-approaches, 412­413 channel, 409 cognitive load, 411­412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling alignment
-with flow, 409­411 foothold, threat genomics,
-390­391 forcing functions, 319 forensic response, cloud
+(Csï¿½kszentmihï¿½lyi), 408 finding threats, 59. See also
+attack libraries; attack trees; STRIDE fingerprints, 181, 265, 335 FIPs (Fair Information Practices), 232, 234 fitness for purpose, 184, 185 FlipIT, 388, 405 flow, 407ï¿½413. See also data flow diagrams asset-centered modeling,
+412ï¿½413 attacker-centric
+approaches, 412ï¿½413 channel, 409 cognitive load, 411ï¿½412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling alignment
+with flow, 409ï¿½411 foothold, threat genomics,
+390ï¿½391 forcing functions, 319 forensic response, cloud
 tenant threats, 248, 251 forge keys subtree, 441 Forget the Parachute: Let Me
-Fly the Plane (Murray), 130 fork, 194 four-step framework for threat modeling. See also mitigations; validation attack trees, 100 checking code, 192­195 LINDDUN, 120 managing threats, 123 PIAs, 115 SDL Threat Modeling Tool
+Fly the Plane (Murray), 130 fork, 194 four-step framework for threat modeling. See also mitigations; validation attack trees, 100 checking code, 192ï¿½195 LINDDUN, 120 managing threats, 123 PIAs, 115 SDL Threat Modeling Tool
 v3, 210 TRIKE, 206
 
-usability integration, 315­316
+usability integration, 315ï¿½316
 validation, 123, 124 frame, 217. See also specific
 frames framework, 217. See also
 specific frameworks fraud
 attack trees, 96, 97 Corporate Fraud Handbook,
 96, 151 external fraud prevention,
-151­152 by impersonation, 289 free accounts, 255 functional milestones, 368 future threat modeling
-tools, 213 fuzzing, 177­178, 186 fuzzy comparison,
+151ï¿½152 by impersonation, 289 free accounts, 255 functional milestones, 368 future threat modeling
+tools, 213 fuzzing, 177ï¿½178, 186 fuzzy comparison,
 ceremony analysis heuristics, 314, 332
 G
 Garg, Praerit, 61 gates, 368 Gawande, Atul, 103 Generate Reports, SDL
-Threat Modeling Tool, 210 The Ghost Map (Johnson, S.), 392 goal orientation, 302 gold bar pattern, 324­325 Goldberg, Ian, 115­116, 151 good, best is enemy of good, 415­416 grids, attack trees, 92 Gross, Ralph, 287 group interaction, organizational adoption of threat modeling, 363­367
+Threat Modeling Tool, 210 The Ghost Map (Johnson, S.), 392 goal orientation, 302 gold bar pattern, 324ï¿½325 Goldberg, Ian, 115ï¿½116, 151 good, best is enemy of good, 415ï¿½416 grids, attack trees, 92 Gross, Ralph, 287 group interaction, organizational adoption of threat modeling, 363ï¿½367
 H
-habituation, conditioning and, 295­296
-hacking, epic, 277, 436 Hall, Joseph, 419 Hansen, Robert, 191 harms, privacy, 112­113 hashes (one-way functions)
-described, 161­162, 334, 335, 337­338
+habituation, conditioning and, 295ï¿½296
+hacking, epic, 277, 436 Hall, Joseph, 419 Hansen, Robert, 191 harms, privacy, 112ï¿½113 hashes (one-way functions)
+described, 161ï¿½162, 334, 335, 337ï¿½338
 hash trees, 153 visual hash, 314
 
-576 Index  I­I
+576 Index  Iï¿½I
 
 herd principle, 315 heuristic models of people,
-302­304 hiding dangerous choices,
-325­326 HIPAA, 230, 247 host component, iNTegrity
+302ï¿½304 hiding dangerous choices,
+325ï¿½326 HIPAA, 230, 247 host component, iNTegrity
 tool, 530 how framework,
 configuration system, 307 how long update available?,
-Broad Street Taxonomy, 398 how to experiment, 404­405 "How to Present to Senior Executives," 359 Howard, Michael, 52, 93, 371, 372, 430, 529 human factors. See also people brainstorming, 311 defined, 294 models electronic social
-engineering attacks, 309­310 software-centered, 304­309 myths, 317 overview, 216 summary, 331­332 testing, 327­329 threat elicitation techniques, 311­316 tools and techniques, 316­322 usability defined, 294 four-stage framework, 315­316 knowledge-based authentication systems, 275­276 overview, 216 perspective, 329­331 summary, 331­332 testing, 327­329 human integration, Seven Laws of Identity, 233 humans, 294 The Human Contribution (Reason), 299, 331 human-viewable representations, attack trees, 91­94 Hutchins, Eric, 388
+Broad Street Taxonomy, 398 how to experiment, 404ï¿½405 "How to Present to Senior Executives," 359 Howard, Michael, 52, 93, 371, 372, 430, 529 human factors. See also people brainstorming, 311 defined, 294 models electronic social
+engineering attacks, 309ï¿½310 software-centered, 304ï¿½309 myths, 317 overview, 216 summary, 331ï¿½332 testing, 327ï¿½329 threat elicitation techniques, 311ï¿½316 tools and techniques, 316ï¿½322 usability defined, 294 four-stage framework, 315ï¿½316 knowledge-based authentication systems, 275ï¿½276 overview, 216 perspective, 329ï¿½331 summary, 331ï¿½332 testing, 327ï¿½329 human integration, Seven Laws of Identity, 233 humans, 294 The Human Contribution (Reason), 299, 331 human-viewable representations, attack trees, 91ï¿½94 Hutchins, Eric, 388
 
 I
 IaaS (Infrastructure as a Service), 230, 243, 247, 251, 521
 ICANN, 347 identification, 113, 114, 116.
 See also LINDDUN identifier creation, 113 identifiers, SSNs, 286 identity. See also accounts
-accounts versus, 253­254 directed, 233 IDs
-meaningful, 284­285 names-IDs-SSNs
-checklist, 290 issuance, 254 meanings, 253­254 names
-account, 283­284 names-IDs-SSNs
-checklist, 290 real, 282­283 overview, 216 Seven Laws of Identity,
-233­234 SSNs, 286­289
-authentication issues, 287­288
+accounts versus, 253ï¿½254 directed, 233 IDs
+meaningful, 284ï¿½285 names-IDs-SSNs
+checklist, 290 issuance, 254 meanings, 253ï¿½254 names
+account, 283ï¿½284 names-IDs-SSNs
+checklist, 290 real, 282ï¿½283 overview, 216 Seven Laws of Identity,
+233ï¿½234 SSNs, 286ï¿½289
+authentication issues, 287ï¿½288
 database keys, 287 identifiers, 286 names-IDs-SSNs
 checklist, 290 national identity
-schemes, 288­289 publishing list, 288 identity documents. See IDs identity theft described, 289 privacy attackers, 424 ideology, persuasion model, 423 IDs (identity documents) meaningful, 284­285 names-IDs-SSNs checklist,
+schemes, 288ï¿½289 publishing list, 288 identity documents. See IDs identity theft described, 289 privacy attackers, 424 ideology, persuasion model, 423 IDs (identity documents) meaningful, 284ï¿½285 names-IDs-SSNs checklist,
 290 summary, 291 IETF. See Internet
-Engineering Task Force ignore risks, 169­170 IM (instant messages)
+Engineering Task Force ignore risks, 169ï¿½170 IM (instant messages)
 electronic social engineering attacks, 310
 impact detection, 179
 
-impact/probability assessments, 181­182
+impact/probability assessments, 181ï¿½182
 impersonation, fraud by, 289
 implement/execute, threat genomics, 391
 incorrect account or password, 262
-individual roles and responsibilities, 362­363. See also organizational adoption, of threat modeling
+individual roles and responsibilities, 362ï¿½363. See also organizational adoption, of threat modeling
 industry-specific requirements, 220
 information disclosure. See also crypto; STRIDE
-Acme's operational network, 524­525
-Acme/SQL database, 75, 77, 176, 514­518
-addressing, 17­18 confidentiality, 153­155
+Acme's operational network, 524ï¿½525
+Acme/SQL database, 75, 77, 176, 514ï¿½518
+addressing, 17ï¿½18 confidentiality, 153ï¿½155
 AINCAA, 234 implementing, 154 operational assurance,
-154 requirements, 238 tactics, 154 technologies, 155 data stores, 70, 71­72 defined, 10, 70 DESIST, 85, 86 EoP card game, 506­507 examples, 11, 70­71 information disclosure
-from data flows: STRIDE threat tree, 456­458 channel subtree, 458 diagram, 457 disclosure threats
+154 requirements, 238 tactics, 154 technologies, 155 data stores, 70, 71ï¿½72 defined, 10, 70 DESIST, 85, 86 EoP card game, 506ï¿½507 examples, 11, 70ï¿½71 information disclosure
+from data flows: STRIDE threat tree, 456ï¿½458 channel subtree, 458 diagram, 457 disclosure threats
 subtree, 458 message subtree, 458 STRIDE-per-Element
 diagram, 431 information disclosure
-from data stores: STRIDE threat tree, 459­462 bypassing protection
-subtree, 460­461 diagram, 459 metadata and side
+from data stores: STRIDE threat tree, 459ï¿½462 bypassing protection
+subtree, 460ï¿½461 diagram, 459 metadata and side
 channels subtree, 461
 
-Index  J­L 577
+Index  Jï¿½L 577
 
 storage attacks subtree, 462
 STRIDE-per-Element diagram, 431
 surprise subtree, 461 information disclosure
-from processes: STRIDE threat tree, 454­456 diagram, 454 protocol subtree, 456 side channels subtree,
+from processes: STRIDE threat tree, 454ï¿½456 diagram, 454 protocol subtree, 456 side channels subtree,
 455 STRIDE-per-Element
-diagram, 431 LINDDUN, 112, 120­121,
+diagram, 431 LINDDUN, 112, 120ï¿½121,
 151 mitigation strategies/
-techniques, 17­18, 153­155 phones and OTTs case study, 528 processes, 70, 71 sources data stores, 70,
-71­72 processes, 70, 71 information dissemination threats, 113 Informed, RACI matrix, 364 Infrastructure as a Service. See IaaS initialization vector, 335 The Inmates are Running the Asylum (Cooper), 480 insecurity, 113 insider threats, cloud tenants, 246­247 installation phase, LM kill chains, 389­390 instant messages. See IM insufficient authentication, 262­263 insufficient authentication subtree, 437­438 insufficient authorization to elevate privileges subtree, 470 insult rates, 266 intangible assets, 427 integrity, 148­150. See also tampering AINCAA, 234 implementing, 149­150 operational assurance, 150 requirements, 236­237
+techniques, 17ï¿½18, 153ï¿½155 phones and OTTs case study, 528 processes, 70, 71 sources data stores, 70,
+71ï¿½72 processes, 70, 71 information dissemination threats, 113 Informed, RACI matrix, 364 Infrastructure as a Service. See IaaS initialization vector, 335 The Inmates are Running the Asylum (Cooper), 480 insecurity, 113 insider threats, cloud tenants, 246ï¿½247 installation phase, LM kill chains, 389ï¿½390 instant messages. See IM insufficient authentication, 262ï¿½263 insufficient authentication subtree, 437ï¿½438 insufficient authorization to elevate privileges subtree, 470 insult rates, 266 intangible assets, 427 integrity, 148ï¿½150. See also tampering AINCAA, 234 implementing, 149ï¿½150 operational assurance, 150 requirements, 236ï¿½237
 
-tactics, 149 technologies, 150 iNTegrity tool, 529­531 Intel TARA, 479­480 Intelligent Platform
+tactics, 149 technologies, 150 iNTegrity tool, 529ï¿½531 Intel TARA, 479ï¿½480 Intelligent Platform
 Management Interface, 249 interaction group interaction,
-organizational adoption of threat modeling, 363­367 STRIDE-per-interaction, 80­85 threats-mitigationsrequirements, 219, 362 user interaction?, Broad Street Taxonomy, 395 internationalization, 276, 380 Internet protocols, privacy considerations, 114 Snowden's revelations, 417, 424 threat model, 424­425 Internet Engineering Task Force (IETF), 112, 114, 121, 136, 138, 378, 424, 425 interplay, threatsmitigationsrequirements, 219, 362 intersystem review, 386­387, 515 interviewing, for threat modeling, 375­376 intra-page threats, 140 "An Introduction to FAIR" document, 182 intrusion, 113, 114 Intrusion Detection Systems (Barnard), 478 IPsec, 14, 15, 17, 148, 150, 154, 434, 504 isolated network, 15, 16 issuance, identity, 254 iterate across threat modeling, 129­130 iterative design, 170­171
+organizational adoption of threat modeling, 363ï¿½367 STRIDE-per-interaction, 80ï¿½85 threats-mitigationsrequirements, 219, 362 user interaction?, Broad Street Taxonomy, 395 internationalization, 276, 380 Internet protocols, privacy considerations, 114 Snowden's revelations, 417, 424 threat model, 424ï¿½425 Internet Engineering Task Force (IETF), 112, 114, 121, 136, 138, 378, 424, 425 interplay, threatsmitigationsrequirements, 219, 362 intersystem review, 386ï¿½387, 515 interviewing, for threat modeling, 375ï¿½376 intra-page threats, 140 "An Introduction to FAIR" document, 182 intrusion, 113, 114 Intrusion Detection Systems (Barnard), 478 IPsec, 14, 15, 17, 148, 150, 154, 434, 504 isolated network, 15, 16 issuance, identity, 254 iterate across threat modeling, 129ï¿½130 iterative design, 170ï¿½171
 J
 Jacobs, Jay, 296, 318 job ladders, modifying, 375 Johnson, M. Eric, 419
 
 Johnson, Steven, 392 Jones, Jack, 182 Juels, Ari, 388 justifiable parties, 233
 K
-Kahneman, Daniel, 297­298, 303, 315, 331
-Kahneman model, 297­299 Kerberos, 146, 346 Kerckchoff's Principle,
-349­350 key management, 346­347,
-349 keyloggers, 201, 268, 422 kill chains, 388­390 kind learning
-environments, 296, 316, 318, 320­322, 332 kitchen sink approach, 402 Klein, Gary, 32 knowledge of participants, 413­414 knowledge-based authentication, 274­278 known ciphertext attacks, 343 Kocher, Paul, 186 Kohnfelder, Loren, 61 Kohno, Yoshi, 334, 336 Kryptonite bike locks, 181
+Kahneman, Daniel, 297ï¿½298, 303, 315, 331
+Kahneman model, 297ï¿½299 Kerberos, 146, 346 Kerckchoff's Principle,
+349ï¿½350 key management, 346ï¿½347,
+349 keyloggers, 201, 268, 422 kill chains, 388ï¿½390 kind learning
+environments, 296, 316, 318, 320ï¿½322, 332 kitchen sink approach, 402 Klein, Gary, 32 knowledge of participants, 413ï¿½414 knowledge-based authentication, 274ï¿½278 known ciphertext attacks, 343 Kocher, Paul, 186 Kohnfelder, Loren, 61 Kohno, Yoshi, 334, 336 Kryptonite bike locks, 181
 L
 labels, in diagrams, 53 last-mover advantage, 186,
 187 lateral movement, threat
-genomics, 390­391 Laws of Identity, 233­234 layered defense, 158 learning environments
-kind, 296, 316, 318, 320­322, 332
-wicked, 295­296, 318, 320, 321, 322, 331
+genomics, 390ï¿½391 Laws of Identity, 233ï¿½234 layered defense, 158 learning environments
+kind, 296, 316, 318, 320ï¿½322, 332
+wicked, 295ï¿½296, 318, 320, 321, 322, 331
 least privilege, 158, 184, 222
 LeBlanc, David, 52, 55, 93, 158
 legal threats, cloud tenants, 248
 Lego building blocks, 29, 35, 44, 125, 385, 389, 420
 length extension attacks, 345
 
-578 Index  M­M
+578 Index  Mï¿½M
 
-leveraging operating systems, 14, 17, 19, 20, 22­23
+leveraging operating systems, 14, 17, 19, 20, 22ï¿½23
 "Library of Malware Traffic Patterns," 102
-life cycles, accounts, 236, 254­259
-Lightstone, Sam, 355 Lincoln Log sets, 35, 393 LINDDUN, 112, 120­121, 151 linear cryptanalysis, 343 linkability, 116­117, 120. See
+life cycles, accounts, 236, 254ï¿½259
+Lightstone, Sam, 355 Lincoln Log sets, 35, 393 LINDDUN, 112, 120ï¿½121, 151 linear cryptanalysis, 343 linkability, 116ï¿½117, 120. See
 also LINDDUN listen, 194 lists. See also checklists
 SSN, 288 tracking with tables and
-lists, 133­138 literature review
-attack libraries, 103­104 described, 33­34 Little-JIL, 209 LM kill chains, 389­390 lockout, account, 263 log analysis tools, 153 login process, 260­263 account lockout, 263 failures, 262­263 server spoofing, 261­262 logs Acme/SQL database, 518 attacking, 69 non-repudiation
+lists, 133ï¿½138 literature review
+attack libraries, 103ï¿½104 described, 33ï¿½34 Little-JIL, 209 LM kill chains, 389ï¿½390 lockout, account, 263 log analysis tools, 153 login process, 260ï¿½263 account lockout, 263 failures, 262ï¿½263 server spoofing, 261ï¿½262 logs Acme/SQL database, 518 attacking, 69 non-repudiation
 technology, 153 secured log storage, 153 logs subtree, 453 look for exhaustible
 resources, 19 Lounsberry, Brian, 316
 M
 MAC (media access control), 503
-machine learning, adversarial, 389­399
+machine learning, adversarial, 389ï¿½399
 MacIver, Douglas, 80 MACs (message
-authentication codes), 338, 348, 505 magic security dust, crypto, 349 maintain and conceal, threat genomics, 391 maintenance, account, 257­258
+authentication codes), 338, 348, 505 magic security dust, crypto, 349 maintain and conceal, threat genomics, 391 maintenance, account, 257ï¿½258
 
 Making It Big in Software (Lightstone), 355
 Mallory, threat actor, 342, 343, 344, 345
 malware defense, 241 keyloggers, 201, 268, 422 "Library of Malware Traffic Patterns," 102 Trojans, 65, 395, 432, 437, 478, 487
-management, threat modeling adoption, 358­359
-managing and processing threats, 125­143
-man-in-the-middle attack (MITM), 15, 66, 343­344, 347, 441
+management, threat modeling adoption, 358ï¿½359
+managing and processing threats, 125ï¿½143
+man-in-the-middle attack (MITM), 15, 66, 343ï¿½344, 347, 441
 marketers, privacy attackers, 424
-Marlinspike, Moxie, 347, 348 Marshall, Andrew, 386 McKenzie, Patrick, 283 meaningful IDs, 284­285 measuring threat modeling,
-370­372, 404­405 media access control. See
+Marlinspike, Moxie, 347, 348 Marshall, Andrew, 386 McKenzie, Patrick, 283 meaningful IDs, 284ï¿½285 measuring threat modeling,
+370ï¿½372, 404ï¿½405 media access control. See
 MAC memorability, usability
 problem, 275 memory, tampering, 68 message authentication
 codes. See MACs message digests. See hashes message repudiation
 subtree, 451 message subtree, 445, 458 metadata and side channels
 subtree, 461 Metasploit, 194 Microsoft Office, 204, 397 Microsoft Office
-Isolated Conversion Environment. See MOICE Microsoft Privacy Standards for Development (MPSD), 234 Microsoft's "10 Immutable Laws of Security," 241­242 mind maps, 98, 99 minimal disclosure for constrained use, 233 minimization
+Isolated Conversion Environment. See MOICE Microsoft Privacy Standards for Development (MPSD), 234 Microsoft's "10 Immutable Laws of Security," 241ï¿½242 mind maps, 98, 99 minimal disclosure for constrained use, 233 minimization
 
-human factor design pattern, 317­318
-privacy threats, 160­161 mirror of STRIDE,
-LINDDUN, 112, 120­121, 151 missing information, ceremony analysis heuristics, 312 mitigations. See also testing Acme/SQL database,
-513­519 analysis, 130­133 arms races, 175, 185­186 chess analogy, 131­132 custom, 176­177 developer-implemented,
-174­175 fuzzing compared to,
-177­178, 186 operational, 175­176 order, 131 overview, 12 platform-provided, 174 prioritizing, 132 privacy threats, 160­164 requirements-threats-
-mitigations interplay, 219, 362 via risk acceptance, 184­185 selecting, for risk management, 170­178 techniques and strategies denial of service, 18­20,
-155­157 elevation of privilege,
-20­22, 157­159 information disclosure,
-17­18, 153­155 repudiation, 16­17,
-150­153 spoofing, 13­14, 146­148 tampering, 15­16,
-148­150 MITM. See man-in-the-
+human factor design pattern, 317ï¿½318
+privacy threats, 160ï¿½161 mirror of STRIDE,
+LINDDUN, 112, 120ï¿½121, 151 missing information, ceremony analysis heuristics, 312 mitigations. See also testing Acme/SQL database,
+513ï¿½519 analysis, 130ï¿½133 arms races, 175, 185ï¿½186 chess analogy, 131ï¿½132 custom, 176ï¿½177 developer-implemented,
+174ï¿½175 fuzzing compared to,
+177ï¿½178, 186 operational, 175ï¿½176 order, 131 overview, 12 platform-provided, 174 prioritizing, 132 privacy threats, 160ï¿½164 requirements-threats-
+mitigations interplay, 219, 362 via risk acceptance, 184ï¿½185 selecting, for risk management, 170ï¿½178 techniques and strategies denial of service, 18ï¿½20,
+155ï¿½157 elevation of privilege,
+20ï¿½22, 157ï¿½159 information disclosure,
+17ï¿½18, 153ï¿½155 repudiation, 16ï¿½17,
+150ï¿½153 spoofing, 13ï¿½14, 146ï¿½148 tampering, 15ï¿½16,
+148ï¿½150 MITM. See man-in-the-
 middle attack MITRE CAPEC. See CAPEC mix networks, 339 mixes, 163, 339 mix-like systems, 163 mnemonics. See also
 STRIDE AINCAA, 234 CAPEC, 106 DESIST, 85, 86
 
-Index  N­O 579
+Index  Nï¿½O 579
 
-LINDDUN, 112, 120­121, 151
+LINDDUN, 112, 120ï¿½121, 151
 MOICE, 21, 158 NEAT, 324 RACI matrix, 364 SPRUCE, 324 usefulness, 85 YAGNI, 217, 358, 360, 368,
 369, 380 mobile devices
-running code on, 474 threats, 250­252 modal dialogs, 326 models. See also threat
+running code on, 474 threats, 250ï¿½252 modal dialogs, 326 models. See also threat
 modeling all models are wrong,
 some models are useful, 25, 52, 253, 295, 379 human factors electronic social
-engineering attacks, 309­310 software-centered, 304­309 model/reality conformance, 195­196 people behaviorist, 295­297 cognitive science, 297­302 Cranor, 297, 299­301, 328­329, 331 Ellison, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 heuristic, 302­304 Kahneman, 297­298, 303, 315, 331 Sasse, 297, 301­302, 303, 318, 331 visual perception, 304 modern cryptographic primitives, 339­341 modifying job ladders, 375 modulo p, 163, 336 MOICE (Microsoft Office Isolated Conversion Environment), 21, 158 money, persuasion model, 423 movie plotting, 33 MPSD. See Microsoft Privacy Standards for Development
+engineering attacks, 309ï¿½310 software-centered, 304ï¿½309 model/reality conformance, 195ï¿½196 people behaviorist, 295ï¿½297 cognitive science, 297ï¿½302 Cranor, 297, 299ï¿½301, 328ï¿½329, 331 Ellison, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 heuristic, 302ï¿½304 Kahneman, 297ï¿½298, 303, 315, 331 Sasse, 297, 301ï¿½302, 303, 318, 331 visual perception, 304 modern cryptographic primitives, 339ï¿½341 modifying job ladders, 375 modulo p, 163, 336 MOICE (Microsoft Office Isolated Conversion Environment), 21, 158 money, persuasion model, 423 movie plotting, 33 MPSD. See Microsoft Privacy Standards for Development
 
 multi-channel authentication, 281
 Murray, Mike, 130 musical instrument analogy,
-3­4, 11, 26 myths, human factors, 317
+3ï¿½4, 11, 26 myths, human factors, 317
 N
-names account, 283­284 names-IDs-SSNs checklist, 290 real, 282­283 summary, 290­291
-national identity schemes, 288­289. See also SSNs
+names account, 283ï¿½284 names-IDs-SSNs checklist, 290 real, 282ï¿½283 summary, 290ï¿½291
+national identity schemes, 288ï¿½289. See also SSNs
 national interests, Aucsmith's attacker personas, 482, 488, 496, 498
 National Security Agency. See NSA
 natural disasters, 424 NEAT, 324 netstat, 193 network address, spoofing,
-14 network attackers, 421­422 network flooding, 19 network isolation anti-
+14 network attackers, 421ï¿½422 network flooding, 19 network isolation anti-
 pattern, 15, 16 network packet, tampering,
-15 network tampering, 68 new technologies, 139­140 Nigerian Anti-Fraud Group,
-62, 64, 65 Nissenbaum, Helen, 117­120 NIST Publication 200,
-230­231 nominee accounts, 256 non-repudiation, 150­153.
-See also repudiation AINCAA, 234 implementing, 152­153 LINDDUN, 112, 120­121,
-151 operational assurance, 153 tactics, 151 technologies, 153 non-requirements, 240­242 non-security code, 177 non-sentient attackers, 424 norms, contextual integrity,
-117­118
+15 network tampering, 68 new technologies, 139ï¿½140 Nigerian Anti-Fraud Group,
+62, 64, 65 Nissenbaum, Helen, 117ï¿½120 NIST Publication 200,
+230ï¿½231 nominee accounts, 256 non-repudiation, 150ï¿½153.
+See also repudiation AINCAA, 234 implementing, 152ï¿½153 LINDDUN, 112, 120ï¿½121,
+151 operational assurance, 153 tactics, 151 technologies, 153 non-requirements, 240ï¿½242 non-security code, 177 non-sentient attackers, 424 norms, contextual integrity,
+117ï¿½118
 
 NSA (National Security Agency), 416, 422, 424, 482
-nymity slider, 115­117
+nymity slider, 115ï¿½117
 O
 O (own), threat modeling tasks, 365
 Obama, Barack barack.obama37@example. com, 451 spoofing, 62, 64
-objections to threat modeling, 379­382
-objections to plan, 381­382
-resource objections, 379­380
-value objections, 380­381 obtaining existing
-credentials subtree, 434 OCTAVE Allegro, 399­400 "Offender Tagging"
+objections to threat modeling, 379ï¿½382
+objections to plan, 381ï¿½382
+resource objections, 379ï¿½380
+value objections, 380ï¿½381 obtaining existing
+credentials subtree, 434 OCTAVE Allegro, 399ï¿½400 "Offender Tagging"
 (Anderson), 477 office suites, 204 OmniGraffle, 7 one-time tokens. See OTTs one-way functions. See
 hashes onion routing, 339 open, 194 Open Web Application
-Security Project. See OWASP open-source threat modeling tools, 206­208 operating systems (OS) leveraging, 14, 17, 19, 20,
-22­23 trusting, 14, 17, 19, 20,
-22­23 operational assurance
-authorization, 158 availability, 156­157 confidentiality, 154 integrity, 150 non-repudiation, 153 operational mitigations,
-175­176 operational non-
-requirements, 240­241 operational threat models,
-387­392 operations planning,
-369­370
+Security Project. See OWASP open-source threat modeling tools, 206ï¿½208 operating systems (OS) leveraging, 14, 17, 19, 20,
+22ï¿½23 trusting, 14, 17, 19, 20,
+22ï¿½23 operational assurance
+authorization, 158 availability, 156ï¿½157 confidentiality, 154 integrity, 150 non-repudiation, 153 operational mitigations,
+175ï¿½176 operational non-
+requirements, 240ï¿½241 operational threat models,
+387ï¿½392 operations planning,
+369ï¿½370
 
-580 Index  P­P
+580 Index  Pï¿½P
 
-operators, pluralism of, 233 optimistic assumptions, 304 OR attack trees, 88, 89, 94­95 order, of mitigations, 131 ordering or time subtree,
+operators, pluralism of, 233 optimistic assumptions, 304 OR attack trees, 88, 89, 94ï¿½95 order, of mitigations, 131 ordering or time subtree,
 446 organizational adoption, of
-threat modeling, 355­383 convincing, 356­359
-individual contributors, 357­358
-management, 358­359 development life cycle,
-367­378 development process
-issues, 368­373 agile methodology,
-368­369 completing threat
-modeling activities, 372­373 measuring threat modeling, 370­372 operations planning, 369­370 postmortems and feedback loops, 373 testing, 370 waterfalls and gates, 368 EoP game, 355, 356, 357, 360, 369, 375 objections to threat modeling, 379­382 objections to plan, 381­382 resource objections, 379­380 value objections, 380­381 organizational issues, 373­378 customizing processes, 378 interviewing for threat modeling, 375­376 job ladders, 375 threat modeling as discipline, 376­378 training, 374­375 who leads?, 373­374 overview, 353 project management issues, 359­367 baseline questions, 359­360 decision models, 364­365
+threat modeling, 355ï¿½383 convincing, 356ï¿½359
+individual contributors, 357ï¿½358
+management, 358ï¿½359 development life cycle,
+367ï¿½378 development process
+issues, 368ï¿½373 agile methodology,
+368ï¿½369 completing threat
+modeling activities, 372ï¿½373 measuring threat modeling, 370ï¿½372 operations planning, 369ï¿½370 postmortems and feedback loops, 373 testing, 370 waterfalls and gates, 368 EoP game, 355, 356, 357, 360, 369, 375 objections to threat modeling, 379ï¿½382 objections to plan, 381ï¿½382 resource objections, 379ï¿½380 value objections, 380ï¿½381 organizational issues, 373ï¿½378 customizing processes, 378 interviewing for threat modeling, 375ï¿½376 job ladders, 375 threat modeling as discipline, 376ï¿½378 training, 374ï¿½375 who leads?, 373ï¿½374 overview, 353 project management issues, 359ï¿½367 baseline questions, 359ï¿½360 decision models, 364ï¿½365
 
-deliverables, 360­362 diversity in teams, 367 effective meetings,
-365­367 group interaction,
-363­367 individual roles and
-responsibilities, 362­363 prerequisites, 360 summary, 383 OS. See operating systems Osterman, Larry, 80, 411 ostrich approach, 179 OTTs (one-time tokens), 171, 525­528 out-of-scope attacks, 31­32, 75, 449, 476 OWASP (Open Web Application Security Project) attacker list, 478­479 Top Ten Risks list, 108 own. See O
+deliverables, 360ï¿½362 diversity in teams, 367 effective meetings,
+365ï¿½367 group interaction,
+363ï¿½367 individual roles and
+responsibilities, 362ï¿½363 prerequisites, 360 summary, 383 OS. See operating systems Osterman, Larry, 80, 411 ostrich approach, 179 OTTs (one-time tokens), 171, 525ï¿½528 out-of-scope attacks, 31ï¿½32, 75, 449, 476 OWASP (Open Web Application Security Project) attacker list, 478ï¿½479 Top Ten Risks list, 108 own. See O
 P
 P (participate), threat modeling tasks, 365
 PaaS (Platform as a Service), 230, 243, 247, 248, 251
-packets subtree, 441 Palin, Sarah, 272 parsing, fuzzing, 177­178,
+packets subtree, 441 Palin, Sarah, 272 parsing, fuzzing, 177ï¿½178,
 186 participants, knowledge of,
-413­414 participate. See P passive social
+413ï¿½414 participate. See P passive social
 authentication, 278 passwords
-account recovery, 271­282 attacker-driven analysis, 280 checklist, 281­282 e-mail authentication, 273­274 knowledge-based authentication, 274­278 multi-channel authentication, 281 social authentication, 278­280 time factor, 272­273 types, 271­272
+account recovery, 271ï¿½282 attacker-driven analysis, 280 checklist, 281ï¿½282 e-mail authentication, 273ï¿½274 knowledge-based authentication, 274ï¿½278 multi-channel authentication, 281 social authentication, 278ï¿½280 time factor, 272ï¿½273 types, 271ï¿½272
 
 incorrect account or password, 262
-insufficient authentication, 262­263
-Kerckchoff's Principle, 349­350
-threats to "what you know," 267­271
+insufficient authentication, 262ï¿½263
+Kerckchoff's Principle, 349ï¿½350
+threats to "what you know," 267ï¿½271
 A Pattern Language (Alexander), 159
 patterns. See also specific patterns
-attention grabbing, 325­327
+attention grabbing, 325ï¿½327
 CAPEC, 160 defined, 159, 165 design patterns, human
-factors, 317­322 gold bar, 324­325 MOICE, 21, 158 security, 159­160 Payment Card Industry
-Data Security Standard. See PCI-DSS PBKDF2, 270 PCI-DSS (Payment Card Industry Data Security Standard), 229, 230, 231 penetration testing, 179, 191­192, 222, 245 people assets, 426 attacks against people, 423 defined, 294 human factors brainstorming, 311 defined, 294 electronic social
-engineering attacks, 309­310 myths, 317 overview, 216 software-centered models, 304­309 summary, 331­332 testing, 327­329 threat elicitation techniques, 311­316 tools and techniques, 316­322 knowledge of participants, 413­414 learning environments
+factors, 317ï¿½322 gold bar, 324ï¿½325 MOICE, 21, 158 security, 159ï¿½160 Payment Card Industry
+Data Security Standard. See PCI-DSS PBKDF2, 270 PCI-DSS (Payment Card Industry Data Security Standard), 229, 230, 231 penetration testing, 179, 191ï¿½192, 222, 245 people assets, 426 attacks against people, 423 defined, 294 human factors brainstorming, 311 defined, 294 electronic social
+engineering attacks, 309ï¿½310 myths, 317 overview, 216 software-centered models, 304ï¿½309 summary, 331ï¿½332 testing, 327ï¿½329 threat elicitation techniques, 311ï¿½316 tools and techniques, 316ï¿½322 knowledge of participants, 413ï¿½414 learning environments
 
-Index  P­P 581
+Index  Pï¿½P 581
 
-kind, 296, 316, 318, 320­322, 332
-wicked, 295­296, 318, 320, 321, 322, 331
-models behaviorist, 295­297 cognitive science, 297­302 Cranor, 297, 299­301, 328­329, 331 Ellison, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 heuristic, 302­304 Kahneman, 297­298, 303, 315, 331 Sasse, 297, 301­302, 303, 318, 331 visual perception, 304
-process/technology/ people frame, 227­228
-real person notification, account maintenance, 257­258
-security requirements, 227­228
+kind, 296, 316, 318, 320ï¿½322, 332
+wicked, 295ï¿½296, 318, 320, 321, 322, 331
+models behaviorist, 295ï¿½297 cognitive science, 297ï¿½302 Cranor, 297, 299ï¿½301, 328ï¿½329, 331 Ellison, 48, 284, 297, 299, 300, 307, 308, 309, 311, 312, 313, 330 heuristic, 302ï¿½304 Kahneman, 297ï¿½298, 303, 315, 331 Sasse, 297, 301ï¿½302, 303, 318, 331 visual perception, 304
+process/technology/ people frame, 227ï¿½228
+real person notification, account maintenance, 257ï¿½258
+security requirements, 227ï¿½228
 spoofing, 14, 65, 66 stymied, 411 usability
 defined, 294 four-stage framework,
-315­316 knowledge-based
-authentication systems, 275­276 overview, 216 perspective, 329­331 summary, 331­332 testing, 327­329 user experience consistent experience across context, 233 defined, 294 user interface tools and techniques, 322­327 attention grabbing patterns, 325­327 configuration, 322­323 warnings, 323­325 perfect forward secrecy. See PFS persistence, 347 personal fame, 481, 486, 490
+315ï¿½316 knowledge-based
+authentication systems, 275ï¿½276 overview, 216 perspective, 329ï¿½331 summary, 331ï¿½332 testing, 327ï¿½329 user experience consistent experience across context, 233 defined, 294 user interface tools and techniques, 322ï¿½327 attention grabbing patterns, 325ï¿½327 configuration, 322ï¿½323 warnings, 323ï¿½325 perfect forward secrecy. See PFS persistence, 347 personal fame, 481, 486, 490
 
 personal gain, 482, 492, 494 personas. See Aucsmith's
 attacker personas Perspectives system, 348 Peterson, Gunnar, 85 PFS (perfect forward
 secrecy), 339 PGP, 17, 174, 329, 347, 458 phishing attacks, 66 phones and OTTs,
-525­528 physical attackers, 422 physical channel, electronic
-social engineering attacks, 310 PIAs. See privacy impact assessments Pilgrim, Mark, 245 PKI, 340­341 plaintext chosen plaintext attacks,
+525ï¿½528 physical attackers, 422 physical channel, electronic
+social engineering attacks, 310 PIAs. See privacy impact assessments Pilgrim, Mark, 245 PKI, 340ï¿½341 plaintext chosen plaintext attacks,
 343 defined, 334 Platform as a Service. See
 PaaS platform-provided
-mitigations, 174 plugin threats, 244­246 pluralism of operators and
+mitigations, 174 plugin threats, 244ï¿½246 pluralism of operators and
 technologies, 233 policy and compliance
-LINDDUN, 112, 120­121, 151
+LINDDUN, 112, 120ï¿½121, 151
 privacy threats, 164 political interests,
-Aucsmith's attacker personas, 482, 488, 496, 498 postmortems, 373 practice deliberate, 410 threat modeling, 3­4, 11,
+Aucsmith's attacker personas, 482, 488, 496, 498 postmortems, 373 practice deliberate, 410 threat modeling, 3ï¿½4, 11,
 26 Predator drone system, 416 preferences versus facts,
-usability problem, 275 pre-mortems, 32­33 preplay subtree, 465 prerequisites,
-organizational adoption of threat modeling, 360 prevent/detect/respond frame, 221­226 prevention requirements, 221­224
+usability problem, 275 pre-mortems, 32ï¿½33 preplay subtree, 465 prerequisites,
+organizational adoption of threat modeling, 360 prevent/detect/respond frame, 221ï¿½226 prevention requirements, 221ï¿½224
 
 primitives. See cryptographic primitives
-prioritization mitigations, 132 threat-specific prioritization approaches, 187­184 bug bar, 180­181 cost estimation approaches, 181­184 easy fixes first, 180 wait and see, 178­180
-privacy attackers, 424 browser privacy model, 245 cryptographic primitives, 339 differential, 162­163 ratchet, 115 security requirements, 231­234 tools, 111­121 contextual integrity, 117­120 Internet protocols, 114 LINDDUN approach, 112, 120­121, 151 nymity slider, 115­117 PIAs, 114­116 Solove's taxonomy of privacy harms, 112­113 summary, 121 usability problem, 276
-Privacy by Design, 232­233, 234
-privacy impact assessments (PIAs), 114­115
+prioritization mitigations, 132 threat-specific prioritization approaches, 187ï¿½184 bug bar, 180ï¿½181 cost estimation approaches, 181ï¿½184 easy fixes first, 180 wait and see, 178ï¿½180
+privacy attackers, 424 browser privacy model, 245 cryptographic primitives, 339 differential, 162ï¿½163 ratchet, 115 security requirements, 231ï¿½234 tools, 111ï¿½121 contextual integrity, 117ï¿½120 Internet protocols, 114 LINDDUN approach, 112, 120ï¿½121, 151 nymity slider, 115ï¿½117 PIAs, 114ï¿½116 Solove's taxonomy of privacy harms, 112ï¿½113 summary, 121 usability problem, 276
+Privacy by Design, 232ï¿½233, 234
+privacy impact assessments (PIAs), 114ï¿½115
 privacy primitives, 339 privacy threats. See also
-crypto compliance and policy, 164 minimization, 160­161 mitigation, 160­164 private information
+crypto compliance and policy, 164 minimization, 160ï¿½161 mitigation, 160ï¿½164 private information
 retrieval, 162 private key systems. See
 symmetric encryption PRNGs (pseudo-random
-number generators), 334, 335, 338­339 probability/impact assessments, 181­182 problem defining, 404
+number generators), 334, 335, 338ï¿½339 probability/impact assessments, 181ï¿½182 problem defining, 404
 
-582 Index  R­R
+582 Index  Rï¿½R
 
-processes as assets, 426 denial of service against processes: STRIDE threat tree diagram, 462 STRIDE-per-Element diagram, 431 table, 463 elevation of privilege against processes: STRIDE threat tree, 468­470 diagram, 469 dynamic corruption subtree, 469 insufficient authorization to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 information disclosure from processes: STRIDE threat tree, 454­456 diagram, 454 protocol subtree, 456 side channels subtree, 455 STRIDE-per-Element diagram, 431 information disclosures, 70, 71 people/process/ technology frame, 227­228 repudiation against processes: STRIDE threat tree, 450­453 account takeover subtree, 451 diagram, 450 message repudiation subtree, 451 STRIDE-per-Element diagram, 431 security requirements, 228 spoofing processes: STRIDE threat tree diagram, 438 STRIDE-per-Element diagram, 431 table, 439 tampering with processes: STRIDE threat tree call chain subtree, 443
+processes as assets, 426 denial of service against processes: STRIDE threat tree diagram, 462 STRIDE-per-Element diagram, 431 table, 463 elevation of privilege against processes: STRIDE threat tree, 468ï¿½470 diagram, 469 dynamic corruption subtree, 469 insufficient authorization to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 information disclosure from processes: STRIDE threat tree, 454ï¿½456 diagram, 454 protocol subtree, 456 side channels subtree, 455 STRIDE-per-Element diagram, 431 information disclosures, 70, 71 people/process/ technology frame, 227ï¿½228 repudiation against processes: STRIDE threat tree, 450ï¿½453 account takeover subtree, 451 diagram, 450 message repudiation subtree, 451 STRIDE-per-Element diagram, 431 security requirements, 228 spoofing processes: STRIDE threat tree diagram, 438 STRIDE-per-Element diagram, 431 table, 439 tampering with processes: STRIDE threat tree call chain subtree, 443
 
 corrupt state subtree, 443 diagram, 442 STRIDE-per-Element
 diagram, 431 testing process integration,
-190­191 processing and managing
-threats, 125­143 product, 386­387 product group, 386, 387, 413 professionals, crypto and,
+190ï¿½191 processing and managing
+threats, 125ï¿½143 product, 386ï¿½387 product group, 386, 387, 413 professionals, crypto and,
 348 programs, spoofing, 14 project management
-issues, 359­367. See also organizational adoption, of threat modeling baseline questions, 359­360 decision models, 364­365 deliverables, 360­362 diversity in teams, 367 effective meetings, 365­367 group interaction, 363­367 individual roles and
-responsibilities, 362­363 prerequisites, 360 prompts, non-requirements, 241 protecting assets, 38, 403­404 protocols Internet, privacy considerations, 114 protocol subtree, 456 proven cryptosystems, 340 provider threats, cloud, 249­250 pruning, attack trees, 90 ps, 193 pseudo-random number generators. See PRNGs public health disasters, 424 public key encryption. See asymmetric encryption
+issues, 359ï¿½367. See also organizational adoption, of threat modeling baseline questions, 359ï¿½360 decision models, 364ï¿½365 deliverables, 360ï¿½362 diversity in teams, 367 effective meetings, 365ï¿½367 group interaction, 363ï¿½367 individual roles and
+responsibilities, 362ï¿½363 prerequisites, 360 prompts, non-requirements, 241 protecting assets, 38, 403ï¿½404 protocols Internet, privacy considerations, 114 protocol subtree, 456 proven cryptosystems, 340 provider threats, cloud, 249ï¿½250 pruning, attack trees, 90 ps, 193 pseudo-random number generators. See PRNGs public health disasters, 424 public key encryption. See asymmetric encryption
 R
 race conditions, 14 RACI matrix (Responsible,
-Approver, Consulted, Informed), 364 rainbow tables, 268, 269 random number generators, 334, 335, 338­339 random oracles, 340
+Approver, Consulted, Informed), 364 rainbow tables, 268, 269 random number generators, 334, 335, 338ï¿½339 random oracles, 340
 
-Raymond, Eric, 412 read, 194 real attack trees, 96­98 real names, 282­283 real person notification,
-account maintenance, 257­258 reality/model conformance, 195­196 Reason, James, 297, 299, 300, 315, 330­331 reconnaissance LM kill chains, 389­390 threat genomics, 390­392 red flag, validation, 197, 202 redesigns, phones and OTTs case study, 528 Reeder, Rob, 265, 272, 279, 305, 307, 316, 320, 323, 324 reflection attacks, 344 relay attacks, 344 repeatability, usability problem, 275 replay attacks, 344 reports, threat model, 401 representations, attack trees, 91­94 repudiation. See also STRIDE Acme's operational
+Raymond, Eric, 412 read, 194 real attack trees, 96ï¿½98 real names, 282ï¿½283 real person notification,
+account maintenance, 257ï¿½258 reality/model conformance, 195ï¿½196 Reason, James, 297, 299, 300, 315, 330ï¿½331 reconnaissance LM kill chains, 389ï¿½390 threat genomics, 390ï¿½392 red flag, validation, 197, 202 redesigns, phones and OTTs case study, 528 Reeder, Rob, 265, 272, 279, 305, 307, 316, 320, 323, 324 reflection attacks, 344 relay attacks, 344 repeatability, usability problem, 275 replay attacks, 344 reports, threat model, 401 representations, attack trees, 91ï¿½94 repudiation. See also STRIDE Acme's operational
 network, 524 Acme/SQL database, 75,
-77, 176, 514­518 actions, 70 addressing, 16­17 defined, 10, 68­69 EoP card game, 504­506 examples, 11 log attacks, 69 mitigation strategies/
-techniques, 16­17, 150­153 non-repudiation, 150­153 AINCAA, 234 implementing, 152­153 LINDDUN, 112, 120­121,
+77, 176, 514ï¿½518 actions, 70 addressing, 16ï¿½17 defined, 10, 68ï¿½69 EoP card game, 504ï¿½506 examples, 11 log attacks, 69 mitigation strategies/
+techniques, 16ï¿½17, 150ï¿½153 non-repudiation, 150ï¿½153 AINCAA, 234 implementing, 152ï¿½153 LINDDUN, 112, 120ï¿½121,
 151 operational assurance,
 153 tactics, 151 technologies, 153 repudiation, data stores:
 STRIDE threat tree diagram, 452 logs subtree, 453
 
-Index  S­S 583
+Index  Sï¿½S 583
 
 STRIDE-per-Element diagram, 431
 transaction repudiation subtree, 453
-repudiation against processes: STRIDE threat tree, 450­453
+repudiation against processes: STRIDE threat tree, 450ï¿½453
 account takeover subtree, 451
 diagram, 450 message repudiation
 subtree, 451 STRIDE-per-Element
 diagram, 431 requirements (security
-requirements), 217­242 Acme's operational
-network, 519 Acme/SQL database, 512 acquisition, 228 authentication, 235­236 authorization, 239­240 business, 220­221 compliance-driven,
-229­231 confidentiality, 238 cookbook approach,
-217­218 detection, 225 development, 228 DevOps, 239­240 integrity, 236­237 non-repudiation, 237­238 non-requirements,
-240­242 overview, 215, 217­218 people, 227­228 people/process/
-technology frame, 227­258 prevent/detect/respond frame, 221­226 prevention, 221­224 privacy, 231­234 processes, 228 response, 225­226 STRIDE, 234­240 summary, 242 technologies, 228 threats-mitigationsrequirements interplay, 219, 362 resource objections, to threat modeling, 379­380
+requirements), 217ï¿½242 Acme's operational
+network, 519 Acme/SQL database, 512 acquisition, 228 authentication, 235ï¿½236 authorization, 239ï¿½240 business, 220ï¿½221 compliance-driven,
+229ï¿½231 confidentiality, 238 cookbook approach,
+217ï¿½218 detection, 225 development, 228 DevOps, 239ï¿½240 integrity, 236ï¿½237 non-repudiation, 237ï¿½238 non-requirements,
+240ï¿½242 overview, 215, 217ï¿½218 people, 227ï¿½228 people/process/
+technology frame, 227ï¿½258 prevent/detect/respond frame, 221ï¿½226 prevention, 221ï¿½224 privacy, 231ï¿½234 processes, 228 response, 225ï¿½226 STRIDE, 234ï¿½240 summary, 242 technologies, 228 threats-mitigationsrequirements interplay, 219, 362 resource objections, to threat modeling, 379ï¿½380
 
-response requirements, 225­226
-responsibilities and roles, 362­363. See also organizational adoption, of threat modeling
+response requirements, 225ï¿½226
+responsibilities and roles, 362ï¿½363. See also organizational adoption, of threat modeling
 Responsible, RACI matrix, 364
-review intersystem, 386­387, 515 literature, 33­34
+review intersystem, 386ï¿½387, 515 literature, 33ï¿½34
 RFC security considerations, 138
-risk acceptance, mitigations via, 184­185
+risk acceptance, mitigations via, 184ï¿½185
 risk decomposition, FAIR, 183
-risk management, 167­187 accept risks, 169 addressing risks, 168 avoid risks, 168 ignore risks, 169­170 mitigation selection, 170­178 changing designs, 170­174 risk approach tracking table, 167 summary, 186­187 transfer risks, 169
+risk management, 167ï¿½187 accept risks, 169 addressing risks, 168 avoid risks, 168 ignore risks, 169ï¿½170 mitigation selection, 170ï¿½178 changing designs, 170ï¿½174 risk approach tracking table, 167 summary, 186ï¿½187 transfer risks, 169
 Ristic, Ivan, 100 Rivest, Ron, 388 roles. See also organizational
 adoption, of threat modeling roles and responsibilities,
-362­363 spoofing, 65 root nodes, attack trees, 89 RSA, 260, 337, 341, 388 rubber hose cryptanalysis,
-345, 423 Ruiz, Guifré, 213 run code on client, 472­473 run code on mobile device,
-474 run code on server, 471­472 running code on client,
-427­474 running code on mobile
+362ï¿½363 spoofing, 65 root nodes, attack trees, 89 RSA, 260, 337, 341, 388 rubber hose cryptanalysis,
+345, 423 Ruiz, Guifrï¿½, 213 run code on client, 472ï¿½473 run code on mobile device,
+474 run code on server, 471ï¿½472 running code on client,
+427ï¿½474 running code on mobile
 devices, 474 running code on server,
-threat tree, 417­472 running from bear
-metaphor, 132­133
+threat tree, 417ï¿½472 running from bear
+metaphor, 132ï¿½133
 
 S
 SaaS (Software as a Service), 230, 248, 249, 251
 SafeStr*, 137 safety, easy path to, 320 salt, 269, 337 sandboxes, 21, 22, 23, 141,
-154, 157, 158, 165, 249, 302, 325, 443, 469, 525 sanitization, validation and, 21, 22 Sasse, Angela, 297, 301­302, 303, 318, 331 Sasse's model, 301­302 satisfice, 298­299, 314 scamicry, 258, 320­321, 332 scenario-driven requirements, 221 scenario-specific brainstorming, 32 scenario-specific elements, threat modeling, 138­142 Schechter, Stuart, 256, 275, 279, 280, 327 Schneier, Bruce, 33, 87, 100, 334, 336 scope attack libraries, 102 RFC security
+154, 157, 158, 165, 249, 302, 325, 443, 469, 525 sanitization, validation and, 21, 22 Sasse, Angela, 297, 301ï¿½302, 303, 318, 331 Sasse's model, 301ï¿½302 satisfice, 298ï¿½299, 314 scamicry, 258, 320ï¿½321, 332 scenario-driven requirements, 221 scenario-specific brainstorming, 32 scenario-specific elements, threat modeling, 138ï¿½142 Schechter, Stuart, 256, 275, 279, 280, 327 Schneier, Bruce, 33, 87, 100, 334, 336 scope attack libraries, 102 RFC security
 considerations, 138 script kiddie, 482 scrypt, 269 SDL Threat Modeling Tool,
-209­213, 371, 410, 414­415 SeaMonster, 206 seams, software, 386­387,
+209ï¿½213, 371, 410, 414ï¿½415 SeaMonster, 206 seams, software, 386ï¿½387,
 405 secondary use, 113, 114 secret key systems. See
 symmetric encryption security. See also
 requirements appropriate, 184 best is enemy of good,
-415­416 browser security model,
+415ï¿½416 browser security model,
 245 knowledge-based
-authentication systems, 274­275 Microsoft's "10 Immutable Laws of Security," 241­242 patterns, 159­160 secure time stamps, 153
+authentication systems, 274ï¿½275 Microsoft's "10 Immutable Laws of Security," 241ï¿½242 patterns, 159ï¿½160 secure time stamps, 153
 
-584 Index  S­S
+584 Index  Sï¿½S
 
 secured log storage, 153 testers-security people
-overlap, 197, 202 testing, 189­190 Security Engineering, 2nd
-Edition (Anderson), 34, 267, 478 security notes, external, 136­138 Secur/Tree, 209 server spoofing, 261­262 service denial. See denial of service Seven Laws of Identity, 233­234 several accounts, 256 shared accounts, 256­257 shell coding, 191 side channel attacks, 345 side channels subtree, 455 SIDS, 6 signature attack detection, 179 SIPRNet, 16 Snow, John, 392 Snowden, Edward, 417, 424 social authentication, 260, 278­280 social networks, electronic social engineering attacks, 310 social programs, attack via, 474­476 social security numbers. See SSNs socket, 194 sockpuppets, 257, 315 Software as a Service. See SaaS software models. See also data flow diagrams; diagrams Acme/SQL database,
-512­513 construction, 193­194 human factors, 304­309
-authentication, 305­306 configuration, 306­307 warnings, 305 using, 194­195 software seams, 386­387, 405 software-centric threat modeling, 34­35, 41­43 Solove, Daniel, 112­113
+overlap, 197, 202 testing, 189ï¿½190 Security Engineering, 2nd
+Edition (Anderson), 34, 267, 478 security notes, external, 136ï¿½138 Secur/Tree, 209 server spoofing, 261ï¿½262 service denial. See denial of service Seven Laws of Identity, 233ï¿½234 several accounts, 256 shared accounts, 256ï¿½257 shell coding, 191 side channel attacks, 345 side channels subtree, 455 SIDS, 6 signature attack detection, 179 SIPRNet, 16 Snow, John, 392 Snowden, Edward, 417, 424 social authentication, 260, 278ï¿½280 social networks, electronic social engineering attacks, 310 social programs, attack via, 474ï¿½476 social security numbers. See SSNs socket, 194 sockpuppets, 257, 315 Software as a Service. See SaaS software models. See also data flow diagrams; diagrams Acme/SQL database,
+512ï¿½513 construction, 193ï¿½194 human factors, 304ï¿½309
+authentication, 305ï¿½306 configuration, 306ï¿½307 warnings, 305 using, 194ï¿½195 software seams, 386ï¿½387, 405 software-centric threat modeling, 34ï¿½35, 41ï¿½43 Solove, Daniel, 112ï¿½113
 
-Solove's taxonomy of privacy harms, 112­113
+Solove's taxonomy of privacy harms, 112ï¿½113
 Sorting Things Out: Classification and Its Consequences (Bowker), 104
 specialist, Aucsmith's attacker personas, 483
 Spencer, Henry, 400 spiky buttons, 326 split-key systems, 162 sploit, 394, 395, 396 spoofing. See also
 authentication; phishing attacks; STRIDE Acme's operational
-network, 521­522 Acme/SQL database, 74,
-77, 176, 514­518 addressing, 13­14
+network, 521ï¿½522 Acme/SQL database, 74,
+77, 176, 514ï¿½518 addressing, 13ï¿½14
 developer ways, 147 operational ways, 147 clients, 262 defined, 9, 64 electronic social
-engineering attacks, 309­310 EoP card game, 501­503 examples, 10, 62, 64­65 files, 14, 65­66 machines, 65, 66 mitigation strategies/ techniques, 13­14, 146­148 network address, 14 Obama, 62, 64 people, 14, 65, 66 phones and OTTs case study, 527 processes, 65­66 programs, 14 roles, 65 servers, 261­262 spoofing data flows: STRIDE threat tree diagram, 440 forge keys subtree, 441 spoof packets subtree,
+engineering attacks, 309ï¿½310 EoP card game, 501ï¿½503 examples, 10, 62, 64ï¿½65 files, 14, 65ï¿½66 machines, 65, 66 mitigation strategies/ techniques, 13ï¿½14, 146ï¿½148 network address, 14 Obama, 62, 64 people, 14, 65, 66 phones and OTTs case study, 527 processes, 65ï¿½66 programs, 14 roles, 65 servers, 261ï¿½262 spoofing data flows: STRIDE threat tree diagram, 440 forge keys subtree, 441 spoof packets subtree,
 441 steal keys subtree, 440 STRIDE-per-Element
 diagram, 431 weak authentication
 subtree, 441
 
-spoofing external entity: STRIDE threat tree, 432­438
+spoofing external entity: STRIDE threat tree, 432ï¿½438
 attacking storage subtree, 435
 authentication UI subtree, 437
 backup authentication subtree, 436
-insufficient authentication subtree, 437­438
+insufficient authentication subtree, 437ï¿½438
 obtaining existing credentials subtree, 434
 STRIDE-per-Element diagram, 431
 spoofing processes: STRIDE threat tree
 diagram, 438 STRIDE-per-Element
-diagram, 431 table, 439 SPRUCE, 324 SQL database. See Acme/ SQL database SQL injections, 22, 26, 34, 189, 192, 198, 244, 251, 495, 515, 516 squatting subtree, 467 SSH, 145, 147, 148, 150, 154, 195, 205, 347, 434, 502, 504, 517 ssh-agent, 270 sshd, 65 SSL, 10, 14, 15, 16, 17, 18, 24, 55, 96, 98, 99, 100, 515, 517 SSL mind map, 98, 99 SSNs (social security numbers), 286­289 authentication issues,
-287­288 database keys, 287 identifiers, 286 names-IDs-SSNs checklist,
+diagram, 431 table, 439 SPRUCE, 324 SQL database. See Acme/ SQL database SQL injections, 22, 26, 34, 189, 192, 198, 244, 251, 495, 515, 516 squatting subtree, 467 SSH, 145, 147, 148, 150, 154, 195, 205, 347, 434, 502, 504, 517 ssh-agent, 270 sshd, 65 SSL, 10, 14, 15, 16, 17, 18, 24, 55, 96, 98, 99, 100, 515, 517 SSL mind map, 98, 99 SSNs (social security numbers), 286ï¿½289 authentication issues,
+287ï¿½288 database keys, 287 identifiers, 286 names-IDs-SSNs checklist,
 290 national identity schemes,
-288­289 publishing list, 288 summary, 291 Stajano, Frank, 257, 315, 321 Stajano-Wilson model, 315 stalkers, privacy attackers,
+288ï¿½289 publishing list, 288 summary, 291 Stajano, Frank, 257, 315, 321 Stajano-Wilson model, 315 stalkers, privacy attackers,
 424
 
-Index  S­S 585
+Index  Sï¿½S 585
 
-starting threat model project, 126­130
-state diagrams, 44, 49, 308­309
+starting threat model project, 126ï¿½130
+state diagrams, 44, 49, 308ï¿½309
 steal keys subtree, 440 steganography, 154, 155, 339,
-461 stepping-stone assets, 38­39,
+461 stepping-stone assets, 38ï¿½39,
 427 storage attacks subtree, 462 strategies for threat
 modeling. See also diagrams; threat modeling asset-centered threat
-modeling, 34­35, 36­39, 56, 412­413 attacker-centric threat modeling, 34­35, 40­41, 412­413 brainstorming human factors, 311 limitations, 34 literature review, 33­34 movie plotting, 33 normal, 31­32 pre-mortems, 32­33 scenario-specific, 32 software-centric threat modeling, 34­35, 41­43 "what's your threat model?", 30­31, 421­425 strcpy, 137 stream ciphers, 335 STRIDE (spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege), 61­86. See also Elevation of Privilege card game Acme/SQL database, 74­78 AINCAA, 234 exit criteria, 85 goal, 64 intersystem review, 386­387 introduction to use, 9­11 mirror, LINDDUN approach, 112, 120­121, 151 requirements, 234­240 summary, 85­86
+modeling, 34ï¿½35, 36ï¿½39, 56, 412ï¿½413 attacker-centric threat modeling, 34ï¿½35, 40ï¿½41, 412ï¿½413 brainstorming human factors, 311 limitations, 34 literature review, 33ï¿½34 movie plotting, 33 normal, 31ï¿½32 pre-mortems, 32ï¿½33 scenario-specific, 32 software-centric threat modeling, 34ï¿½35, 41ï¿½43 "what's your threat model?", 30ï¿½31, 421ï¿½425 strcpy, 137 stream ciphers, 335 STRIDE (spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege), 61ï¿½86. See also Elevation of Privilege card game Acme/SQL database, 74ï¿½78 AINCAA, 234 exit criteria, 85 goal, 64 intersystem review, 386ï¿½387 introduction to use, 9ï¿½11 mirror, LINDDUN approach, 112, 120ï¿½121, 151 requirements, 234ï¿½240 summary, 85ï¿½86
 
-understanding, 62­64 usefulness, 62­64 variants
-DESIST, 85, 86 purpose, 85­86 victims, 62­63 weaknesses, 78 STRIDE threat trees, 430­470 denial of service against
-data flows, 463­466 channel subtree, 465­466 corrupt messages
+understanding, 62ï¿½64 usefulness, 62ï¿½64 variants
+DESIST, 85, 86 purpose, 85ï¿½86 victims, 62ï¿½63 weaknesses, 78 STRIDE threat trees, 430ï¿½470 denial of service against
+data flows, 463ï¿½466 channel subtree, 465ï¿½466 corrupt messages
 subtree, 465 diagram, 464 preplay subtree, 465 STRIDE-per-Element
 diagram, 431 denial of service against
-data stores, 466­468 container subtree,
-467­468 diagram, 466 squatting subtree, 467 STRIDE-per-Element
+data stores, 466ï¿½468 container subtree,
+467ï¿½468 diagram, 466 squatting subtree, 467 STRIDE-per-Element
 diagram, 431 denial of service against
 processes diagram, 462 STRIDE-per-Element
 diagram, 431 table, 463 elevation of privilege
-against processes, 468­470 diagram, 469 dynamic corruption
+against processes, 468ï¿½470 diagram, 469 dynamic corruption
 subtree, 469 insufficient authorization
-to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 information disclosure from data flows, 456­458 channel subtree, 458 diagram, 457 disclosure threats subtree, 458 message subtree, 458 STRIDE-per-Element diagram, 431 information disclosure from data stores, 459­462
+to elevate privileges subtree, 470 STRIDE-per-Element diagram, 431 information disclosure from data flows, 456ï¿½458 channel subtree, 458 diagram, 457 disclosure threats subtree, 458 message subtree, 458 STRIDE-per-Element diagram, 431 information disclosure from data stores, 459ï¿½462
 
-bypassing protection subtree, 460­461
+bypassing protection subtree, 460ï¿½461
 diagram, 459 metadata and side
-channels subtree, 461 storage attacks subtree, 462 STRIDE-per-Element diagram, 431 surprise subtree, 461 information disclosure from processes, 454­456 diagram, 454 protocol subtree, 456 side channels subtree, 455 STRIDE-per-Element diagram, 431 overview, 430­432 repudiation, data stores diagram, 452 logs subtree, 453 STRIDE-per-Element diagram, 431 transaction repudiation subtree, 453 repudiation against processes, 450­453 account takeover subtree, 451 diagram, 450 message repudiation subtree, 451 STRIDE-per-Element diagram, 431 spoofing data flows diagram, 440 forge keys subtree, 441 spoof packets subtree, 441 steal keys subtree, 440 STRIDE-per-Element diagram, 431 weak authentication subtree, 441 spoofing external entity, 432­438 attacking storage subtree, 435 authentication UI subtree, 437 backup authentication subtree, 436
+channels subtree, 461 storage attacks subtree, 462 STRIDE-per-Element diagram, 431 surprise subtree, 461 information disclosure from processes, 454ï¿½456 diagram, 454 protocol subtree, 456 side channels subtree, 455 STRIDE-per-Element diagram, 431 overview, 430ï¿½432 repudiation, data stores diagram, 452 logs subtree, 453 STRIDE-per-Element diagram, 431 transaction repudiation subtree, 453 repudiation against processes, 450ï¿½453 account takeover subtree, 451 diagram, 450 message repudiation subtree, 451 STRIDE-per-Element diagram, 431 spoofing data flows diagram, 440 forge keys subtree, 441 spoof packets subtree, 441 steal keys subtree, 440 STRIDE-per-Element diagram, 431 weak authentication subtree, 441 spoofing external entity, 432ï¿½438 attacking storage subtree, 435 authentication UI subtree, 437 backup authentication subtree, 436
 
-586 Index  S­S
+586 Index  Sï¿½S
 
-insufficient authentication subtree, 437­438
+insufficient authentication subtree, 437ï¿½438
 obtaining existing credentials subtree, 434
 STRIDE-per-Element diagram, 431
 spoofing processes diagram, 438 STRIDE-per-Element diagram, 431 table, 439
-tampering with data flows, 444­446
-channel integrity structure, 445­446
+tampering with data flows, 444ï¿½446
+channel integrity structure, 445ï¿½446
 diagram, 444 message subtree, 445 STRIDE-per-Element
 diagram, 431 time or ordering subtree,
 446 upstream insertion
 subtree, 446 tampering with data
-stores, 446­450 bypassing protection
+stores, 446ï¿½450 bypassing protection
 rules subtree, 448 bypassing protection
 systems subtree, 449 capacity failures subtree,
-449­450 data store subtree, 448 diagram, 447 STRIDE-per-Element
+449ï¿½450 data store subtree, 448 diagram, 447 STRIDE-per-Element
 diagram, 431 tampering with processes
 call chain subtree, 443 corrupt state subtree, 443 diagram, 442 STRIDE-per-Element
-diagram, 431 STRIDE-per-element, 78­80.
-See also STRIDE threat trees STRIDE-per-interaction, 80­85 strL*, 137 strong habit intrusions, 299 structured representations, attack trees, 94 stymied people, 411 subnodes, attack trees, 89­90
+diagram, 431 STRIDE-per-element, 78ï¿½80.
+See also STRIDE threat trees STRIDE-per-interaction, 80ï¿½85 strL*, 137 strong habit intrusions, 299 structured representations, attack trees, 94 stymied people, 411 subnodes, attack trees, 89ï¿½90
 
 subordinate accounts, 256 subtrees. See also STRIDE
 threat trees account takeover subtree,
@@ -11844,15 +11846,15 @@ threat trees account takeover subtree,
 437 backup authentication
 subtree, 436 bypassing protection rules
 subtree, 448 bypassing protection
-subtree, 460­461 bypassing protection
+subtree, 460ï¿½461 bypassing protection
 systems subtree, 449 call chain subtree, 443 capacity failures subtree,
-449­450 channel integrity
-structure, 445­446 channel subtree, 458,
-465­466 container subtree, 467­468 corrupt messages subtree,
+449ï¿½450 channel integrity
+structure, 445ï¿½446 channel subtree, 458,
+465ï¿½466 container subtree, 467ï¿½468 corrupt messages subtree,
 465 corrupt state subtree, 443 data store subtree, 448 disclosure threats subtree,
 458 dynamic corruption
 subtree, 469 forge keys subtree, 441 insufficient authentication
-subtree, 437­438 insufficient authorization
+subtree, 437ï¿½438 insufficient authorization
 to elevate privileges subtree, 470 logs subtree, 453 message repudiation subtree, 451 message subtree, 445, 458 metadata and side channels subtree, 461 obtaining existing credentials subtree, 434 packets subtree, 441 preplay subtree, 465 protocol subtree, 456 side channels subtree, 455 squatting subtree, 467 steal keys subtree, 440 storage attacks subtree, 462
 
 surprise subtree, 461 time or ordering subtree,
@@ -11860,171 +11862,171 @@ surprise subtree, 461 time or ordering subtree,
 subtree, 453 upstream insertion
 subtree, 446 weak authentication
 subtree, 441 successful threat modeling
-(architecting for success), 407­420 artistry, 418­419 best is enemy of good,
-415­416 boundary objects,
-414­415 closing perspectives,
-416­417 flow, 407­413
-asset-centered modeling, 412­413
-attacker-centric approaches, 412­413
+(architecting for success), 407ï¿½420 artistry, 418ï¿½419 best is enemy of good,
+415ï¿½416 boundary objects,
+414ï¿½415 closing perspectives,
+416ï¿½417 flow, 407ï¿½413
+asset-centered modeling, 412ï¿½413
+attacker-centric approaches, 412ï¿½413
 channel, 409 cognitive load,
-411­412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling
-alignment with flow, 409­411 knowledge of participants, 413­414 overview, 353 SDL Threat Modeling Tool, 414­415 summary, 419­420 threat model has changed, 417­418 threat modeling experts, 413­414 supply chain attackers, 423 Surely You're Joking, Mr. Feynman! (Feynman), 402 surprise subtree, 461 surveillance blinding, 163­164, 339 harms, 113 Internet protocols, 114 Sweeney, Latanya, 117 swim lane diagrams, 44, 48, 118, 307­308, 411 Sybyls, 257, 315
+411ï¿½412 creator blindness, 412 elements, 408 stymied people, 411 threat modeling
+alignment with flow, 409ï¿½411 knowledge of participants, 413ï¿½414 overview, 353 SDL Threat Modeling Tool, 414ï¿½415 summary, 419ï¿½420 threat model has changed, 417ï¿½418 threat modeling experts, 413ï¿½414 supply chain attackers, 423 Surely You're Joking, Mr. Feynman! (Feynman), 402 surprise subtree, 461 surveillance blinding, 163ï¿½164, 339 harms, 113 Internet protocols, 114 Sweeney, Latanya, 117 swim lane diagrams, 44, 48, 118, 307ï¿½308, 411 Sybyls, 257, 315
 
-Index  T­T 587
+Index  Tï¿½T 587
 
 symmetric encryption (ciphers, private key systems)
-block ciphers, 335, 348 CBC, 336, 346 described, 334, 335­336 stream ciphers, 335 symmetric key systems,
-346­347 syslog, 36 syslog over TCP/SSL, 16 syslog over UDP, 16 System 1 versus System 2,
+block ciphers, 335, 348 CBC, 336, 346 described, 334, 335ï¿½336 stream ciphers, 335 symmetric key systems,
+346ï¿½347 syslog, 36 syslog over TCP/SSL, 16 syslog over UDP, 16 System 1 versus System 2,
 298 Syverson, Paul, 415
 T
 tables. See also STRIDE threat trees
 risk approach tracking table, 167
 tracking bugs and fixing, 199
-tracking with tables and lists, 133­138
+tracking with tables and lists, 133ï¿½138
 tactics, defensive. See also technologies
-authentication, 146­147 authorization, 157 availability, 155­156 confidentiality, 154 integrity, 149 non-repudiation, 151 traps, 159 tampering. See also integrity;
+authentication, 146ï¿½147 authorization, 157 availability, 155ï¿½156 confidentiality, 154 integrity, 149 non-repudiation, 151 traps, 159 tampering. See also integrity;
 STRIDE Acme's operational
-network, 523­524 Acme/SQL database, 75,
-77, 176, 514­518 addressing, 15­16 defined, 10, 67 DESIST, 85, 86 EoP card game, 503­504 examples, 11, 67­68 files, 15, 68 integrity, 148­150
-AINCAA, 234 implementing, 149­150 operational assurance,
-150 requirements, 236­237 tactics, 149 technologies, 150
+network, 523ï¿½524 Acme/SQL database, 75,
+77, 176, 514ï¿½518 addressing, 15ï¿½16 defined, 10, 67 DESIST, 85, 86 EoP card game, 503ï¿½504 examples, 11, 67ï¿½68 files, 15, 68 integrity, 148ï¿½150
+AINCAA, 234 implementing, 149ï¿½150 operational assurance,
+150 requirements, 236ï¿½237 tactics, 149 technologies, 150
 
 memory, 68 mitigation strategies/
-techniques, 15­16, 148­150 network packet, 15 networks, 68 phones and OTTs case study, 527 tampering with data flows: STRIDE threat tree, 444­446 channel integrity
-structure, 445­446 diagram, 444 message subtree, 445 STRIDE-per-Element
+techniques, 15ï¿½16, 148ï¿½150 network packet, 15 networks, 68 phones and OTTs case study, 527 tampering with data flows: STRIDE threat tree, 444ï¿½446 channel integrity
+structure, 445ï¿½446 diagram, 444 message subtree, 445 STRIDE-per-Element
 diagram, 431 time or ordering subtree,
 446 upstream insertion
 subtree, 446 tampering with data
-stores: STRIDE threat tree, 446­450 bypassing protection
+stores: STRIDE threat tree, 446ï¿½450 bypassing protection
 rules subtree, 448 bypassing protection
 systems subtree, 449 capacity failures subtree,
-449­450 data store subtree, 448 diagram, 447 STRIDE-per-Element
+449ï¿½450 data store subtree, 448 diagram, 447 STRIDE-per-Element
 diagram, 431 tampering with processes:
 STRIDE threat tree call chain subtree, 443 corrupt state subtree, 443 diagram, 442 STRIDE-per-Element
 diagram, 431 The Tangled Web (Zalewski) TARA (Threat Agent Risk
-Assessment), 479­480 TCP/SSL, 16 Technical Spoofing column,
+Assessment), 479ï¿½480 TCP/SSL, 16 Technical Spoofing column,
 310 technologies
-defensive authentication, 148, 165 authorization, 158­159 confidentiality, 155 integrity, 150 non-repudiation, 153 traps, 159
+defensive authentication, 148, 165 authorization, 158ï¿½159 confidentiality, 155 integrity, 150 non-repudiation, 153 traps, 159
 
-new, 139­140 people/process/
-technology frame, 227­228 pluralism of operators and technologies, 233 security requirements, 228 threat modeling, 215­216 templates, 264­265 "10 Immutable Laws of Security," Microsoft, 241­242 tenant threats, clouds, 246­249 tentacles, 257, 315 termination, account, 258 test-driven development, 190, 369 testing (threat-modeldriven-testing), 189­202 checking code, 192­195 document assumptions as you go, 198 human factors, 327­329 penetration tests, 179, 191­192, 222, 245 security people-testers overlap, 197, 202 security testing, 189­190 threat modeling, 195­196, 370 usability, 327­329 testing for human factors, 327­329 Thing Spoofed column, 310 think like an attacker, 402­403 Thinking Fast and Slow (Kahneman), 297­298 third parties, trusted, 153 threat actors, cryptography, 341­345 Threat Agent Risk Assessment. See TARA threat elicitation techniques, 311­316 threat genomics, 390­392 threat model diagrams, 44. See also data flow diagrams threat model has changed, 417­418 threat model reports, 401
+new, 139ï¿½140 people/process/
+technology frame, 227ï¿½228 pluralism of operators and technologies, 233 security requirements, 228 threat modeling, 215ï¿½216 templates, 264ï¿½265 "10 Immutable Laws of Security," Microsoft, 241ï¿½242 tenant threats, clouds, 246ï¿½249 tentacles, 257, 315 termination, account, 258 test-driven development, 190, 369 testing (threat-modeldriven-testing), 189ï¿½202 checking code, 192ï¿½195 document assumptions as you go, 198 human factors, 327ï¿½329 penetration tests, 179, 191ï¿½192, 222, 245 security people-testers overlap, 197, 202 security testing, 189ï¿½190 threat modeling, 195ï¿½196, 370 usability, 327ï¿½329 testing for human factors, 327ï¿½329 Thing Spoofed column, 310 think like an attacker, 402ï¿½403 Thinking Fast and Slow (Kahneman), 297ï¿½298 third parties, trusted, 153 threat actors, cryptography, 341ï¿½345 Threat Agent Risk Assessment. See TARA threat elicitation techniques, 311ï¿½316 threat genomics, 390ï¿½392 threat model diagrams, 44. See also data flow diagrams threat model has changed, 417ï¿½418 threat model reports, 401
 
-588 Index  T­T
+588 Index  Tï¿½T
 
 threat modeling. See also models; strategies for threat modeling
 all models are wrong, some models are useful, 25, 52, 253, 295, 379
-APIs, 141­142 asset-centered, 34­35,
-36­39, 56, 412­413 attacker-centric, 34­35,
-40­41, 412­413 bottom-up, 50, 129 businesses, 399­400 dangerous approaches,
-402­404 as discipline, 376­378 experimental approaches,
-385­406 adversarial machine
-learning, 398­399 Broad Street Taxonomy,
-392­398 dangerous approaches,
-402­404 dangerous deliverables,
-400­401 enumerate all
-assumptions, 400­ 401 FlipIT, 388, 405 how to experiment, 404­405 intersystem review, 386­387, 515 kill chains, 388­390 OCTAVE Allegro, 399­400 operational threat models, 387­392 overview, 353 software seams, 386­387, 405 summary, 405­406 threat genomics, 390­392 threat model reports, 401 threat modeling businesses, 399­400 failures, 400­404 four-step framework attack trees, 100 checking code, 192­195 LINDDUN, 120 managing threats, 123 PIAs, 115
+APIs, 141ï¿½142 asset-centered, 34ï¿½35,
+36ï¿½39, 56, 412ï¿½413 attacker-centric, 34ï¿½35,
+40ï¿½41, 412ï¿½413 bottom-up, 50, 129 businesses, 399ï¿½400 dangerous approaches,
+402ï¿½404 as discipline, 376ï¿½378 experimental approaches,
+385ï¿½406 adversarial machine
+learning, 398ï¿½399 Broad Street Taxonomy,
+392ï¿½398 dangerous approaches,
+402ï¿½404 dangerous deliverables,
+400ï¿½401 enumerate all
+assumptions, 400ï¿½ 401 FlipIT, 388, 405 how to experiment, 404ï¿½405 intersystem review, 386ï¿½387, 515 kill chains, 388ï¿½390 OCTAVE Allegro, 399ï¿½400 operational threat models, 387ï¿½392 overview, 353 software seams, 386ï¿½387, 405 summary, 405ï¿½406 threat genomics, 390ï¿½392 threat model reports, 401 threat modeling businesses, 399ï¿½400 failures, 400ï¿½404 four-step framework attack trees, 100 checking code, 192ï¿½195 LINDDUN, 120 managing threats, 123 PIAs, 115
 
 SDL Threat Modeling Tool v3, 210
 TRIKE, 206 usability integration,
-315­316 validation, 123, 124 introduction, 3­28 iterate across, 129­130 measuring, 370­372,
-404­405 model/reality
-conformance, 195­196 operational, 387­392 organizational adoption, 355­383 agile methodology,
-368­369 baseline questions,
-359­360 completing threat
-modeling activities, 372­373 convincing personnel, 356­359 customizing processes, 378 decision models, 364­365 deliverables, 360­362 development life cycle, 367­378 development process issues, 368­373 diversity in teams, 367 effective meetings, 365­367 EoP game, 355, 356, 357, 360, 369, 375 group interaction, 363­367 individual roles and responsibilities, 362­363 interviewing for threat modeling, 375­376 job ladders, 375 measuring threat modeling, 370­372 objections to threat modeling, 379­382 operations planning, 369­370 organizational issues, 373­378 overview, 353
+315ï¿½316 validation, 123, 124 introduction, 3ï¿½28 iterate across, 129ï¿½130 measuring, 370ï¿½372,
+404ï¿½405 model/reality
+conformance, 195ï¿½196 operational, 387ï¿½392 organizational adoption, 355ï¿½383 agile methodology,
+368ï¿½369 baseline questions,
+359ï¿½360 completing threat
+modeling activities, 372ï¿½373 convincing personnel, 356ï¿½359 customizing processes, 378 decision models, 364ï¿½365 deliverables, 360ï¿½362 development life cycle, 367ï¿½378 development process issues, 368ï¿½373 diversity in teams, 367 effective meetings, 365ï¿½367 EoP game, 355, 356, 357, 360, 369, 375 group interaction, 363ï¿½367 individual roles and responsibilities, 362ï¿½363 interviewing for threat modeling, 375ï¿½376 job ladders, 375 measuring threat modeling, 370ï¿½372 objections to threat modeling, 379ï¿½382 operations planning, 369ï¿½370 organizational issues, 373ï¿½378 overview, 353
 
 postmortems and feedback loops, 373
 prerequisites, 360 project management
-issues, 359­367 summary, 383 testing, 370 threat modeling as
-discipline, 376­378 training, 374­375 waterfalls and gates, 368 who leads?, 373­374 practicing, 3­4, 11, 26 running from bear
-metaphor, 132­133 scenario-specific elements,
-138­142 software-centric, 34­35,
-41­43 starting project, 126­130
-time management, 127­128
-working through features, 126­127
-successful, 407­420 technologies, 215­216 testing, 195­196, 370 top-down, 129, 143 tricky areas, 215­216 when to threat model,
-126­128 threat modeling experts,
-413­414 threat modeling tools. See
+issues, 359ï¿½367 summary, 383 testing, 370 threat modeling as
+discipline, 376ï¿½378 training, 374ï¿½375 waterfalls and gates, 368 who leads?, 373ï¿½374 practicing, 3ï¿½4, 11, 26 running from bear
+metaphor, 132ï¿½133 scenario-specific elements,
+138ï¿½142 software-centric, 34ï¿½35,
+41ï¿½43 starting project, 126ï¿½130
+time management, 127ï¿½128
+working through features, 126ï¿½127
+successful, 407ï¿½420 technologies, 215ï¿½216 testing, 195ï¿½196, 370 top-down, 129, 143 tricky areas, 215ï¿½216 when to threat model,
+126ï¿½128 threat modeling experts,
+413ï¿½414 threat modeling tools. See
 also Elevation of Privilege card game bug-tracking systems,
-204­205 commercial, 208­213 Corporate Threat Modeler,
-208­209 future, 213 introduction, 203 Little-JIL, 209 office suites, 204 open-source, 206­208 SDL Threat Modeling
-Tool, 209­213, 371, 410, 414­415 SeaMonster, 206 Secur/Tree, 209 summary, 213­214 ThreatModeler, 208 TRIKE, 206 white boards, 204
+204ï¿½205 commercial, 208ï¿½213 Corporate Threat Modeler,
+208ï¿½209 future, 213 introduction, 203 Little-JIL, 209 office suites, 204 open-source, 206ï¿½208 SDL Threat Modeling
+Tool, 209ï¿½213, 371, 410, 414ï¿½415 SeaMonster, 206 Secur/Tree, 209 summary, 213ï¿½214 ThreatModeler, 208 TRIKE, 206 white boards, 204
 
-Index  U­U 589
+Index  Uï¿½U 589
 
-threat sequences, 390­391 threat trees, 470­476. See also
+threat sequences, 390ï¿½391 threat trees, 470ï¿½476. See also
 STRIDE threat trees attack via social programs,
-474­476 attack with tricky
+474ï¿½476 attack with tricky
 filenames, 476 running code on client,
-472­474 running code on server,
-471­472 threat-model-driven testing.
+472ï¿½474 running code on server,
+471ï¿½472 threat-model-driven testing.
 See testing ThreatModeler, 208 threats. See also accept risks;
-mitigations; specific threats accepting, 13 accounts "what you are," 264­267 "what you have," 263­264 "what you know,"
-267­271 Acme's operational
-network, 521­525 Acme/SQL database,
-513­519 checklist, 28 eliminating, 12­13 feasible, 12 processing and managing,
-125­143 requirements-threats-
-mitigations interplay, 219, 362 tracking, 133­135 transfer, 13 threat-specific prioritization approaches, 187­184 bug bar, 180­181 cost estimation approaches, 181­184 easy fixes first, 180 wait and see, 178­180 time factor, account recovery, 272­273 time management, threat modeling, 127­128 time or ordering subtree, 446 time stamps, secure, 153 timing attacks, 345 tmtest, 190, 196 TOFU (trust on first use), 347, 502
+mitigations; specific threats accepting, 13 accounts "what you are," 264ï¿½267 "what you have," 263ï¿½264 "what you know,"
+267ï¿½271 Acme's operational
+network, 521ï¿½525 Acme/SQL database,
+513ï¿½519 checklist, 28 eliminating, 12ï¿½13 feasible, 12 processing and managing,
+125ï¿½143 requirements-threats-
+mitigations interplay, 219, 362 tracking, 133ï¿½135 transfer, 13 threat-specific prioritization approaches, 187ï¿½184 bug bar, 180ï¿½181 cost estimation approaches, 181ï¿½184 easy fixes first, 180 wait and see, 178ï¿½180 time factor, account recovery, 272ï¿½273 time management, threat modeling, 127ï¿½128 time or ordering subtree, 446 time stamps, secure, 153 timing attacks, 345 tmtest, 190, 196 TOFU (trust on first use), 347, 502
 
-tools assets, 425­427 threat modeling, 203­214 "what's your threat model?" answers, 421­425
+tools assets, 425ï¿½427 threat modeling, 203ï¿½214 "what's your threat model?" answers, 421ï¿½425
 top-down threat modeling, 129, 143
 Tor, 163, 339 Torr, Peter, 53 tracking
-assumptions, 135­136 external security notes,
-136­138 threats, 133­135 trade-offs when addressing
-threats, 167­187. See also risk management traffic analysis attacks, 345 traitors, Alice or Bob, 342 transaction repudiation subtree, 453 transfer risks, 169 transfer threats, 13 transformation/validation, 197­198. See also validation traps, defensive tactics/ technologies, 159 Trent, trusted third party, 342 tricks, bag of, 186 tricky areas, threat modeling, 215­216 tricky filenames, attack with, 476 TRIKE, 206 Trojans, 65, 395, 432, 437, 478, 487 trust cryptosystems, 342, 351 TOFU, 347, 502 web of trust, 347 trust boundaries. See also attack surfaces Acme/SQL database, 5­7 attack surfaces versus, 6 customer/vendor, 139 defined, 5­6, 50 drawing, 50 new technologies, 139­140 using, 51 whiteboard diagrams, 6­7 trust on first use. See TOFU trusted bootloaders, 16
+assumptions, 135ï¿½136 external security notes,
+136ï¿½138 threats, 133ï¿½135 trade-offs when addressing
+threats, 167ï¿½187. See also risk management traffic analysis attacks, 345 traitors, Alice or Bob, 342 transaction repudiation subtree, 453 transfer risks, 169 transfer threats, 13 transformation/validation, 197ï¿½198. See also validation traps, defensive tactics/ technologies, 159 Trent, trusted third party, 342 tricks, bag of, 186 tricky areas, threat modeling, 215ï¿½216 tricky filenames, attack with, 476 TRIKE, 206 Trojans, 65, 395, 432, 437, 478, 487 trust cryptosystems, 342, 351 TOFU, 347, 502 web of trust, 347 trust boundaries. See also attack surfaces Acme/SQL database, 5ï¿½7 attack surfaces versus, 6 customer/vendor, 139 defined, 5ï¿½6, 50 drawing, 50 new technologies, 139ï¿½140 using, 51 whiteboard diagrams, 6ï¿½7 trust on first use. See TOFU trusted bootloaders, 16
 
 trusted third parties, 153 trusted third party, 342 trustees, account, 256,
-279­280 trusting operating systems,
-14, 17, 19, 20, 22­23 type-safe language, 20, 22,
+279ï¿½280 trusting operating systems,
+14, 17, 19, 20, 22ï¿½23 type-safe language, 20, 22,
 178
 U
 UIDs, 6, 27, 50, 141 UML (Unified Modeling
-Language), 47­48, 411 undergraduate, Aucsmith's
+Language), 47ï¿½48, 411 undergraduate, Aucsmith's
 attacker personas, 482 underspecified elements,
-ceremony analysis heuristics, 313 Understanding People (Solove), 112 "Understanding Scam Victims---", 257, 321 Unified Modeling Language. See UML Unix, 400 updating diagrams, 24­25 upstream insertion subtree, 446 urgency, avoiding, 319 US National Vulnerability Database, 194 usability. See also human factors defined, 294 four-stage framework,
-315­316 knowledge-based
-authentication systems, 275­276 overview, 216 perspective, 329­331 summary, 331­332 testing, 327­329 used sploit?, Broad Street Taxonomy, 395­396 user acceptance, mitigation via, 185 user control and consent, 233 user experience. See also ceremonies consistent experience across context, 233 defined, 294
+ceremony analysis heuristics, 313 Understanding People (Solove), 112 "Understanding Scam Victims---", 257, 321 Unified Modeling Language. See UML Unix, 400 updating diagrams, 24ï¿½25 upstream insertion subtree, 446 urgency, avoiding, 319 US National Vulnerability Database, 194 usability. See also human factors defined, 294 four-stage framework,
+315ï¿½316 knowledge-based
+authentication systems, 275ï¿½276 overview, 216 perspective, 329ï¿½331 summary, 331ï¿½332 testing, 327ï¿½329 used sploit?, Broad Street Taxonomy, 395ï¿½396 user acceptance, mitigation via, 185 user control and consent, 233 user experience. See also ceremonies consistent experience across context, 233 defined, 294
 
-590 Index  V­Z
+590 Index  Vï¿½Z
 
 user intent to run (software)?, Broad Street Taxonomy, 395
 user interaction?, Broad Street Taxonomy, 395
-user interface tools and techniques, 322­327
-attention grabbing patterns, 325­327
-configuration, 322­323
-warnings, 323­325 users
+user interface tools and techniques, 322ï¿½327
+attention grabbing patterns, 325ï¿½327
+configuration, 322ï¿½323
+warnings, 323ï¿½325 users
 defined, 294 risk acceptance, 185 user control and consent,
 Seven Laws of Identity, 233
 V
 V (validate), threat modeling tasks, 365
-validation. See also testing checklist, 28 described, 189­202 diagrams, 54­56 introduction, 24­26 red flag, 197, 202 sanitization, 21, 22 summary, 202 transformation/validation, 197­198
+validation. See also testing checklist, 28 described, 189ï¿½202 diagrams, 54ï¿½56 introduction, 24ï¿½26 red flag, 197, 202 sanitization, 21, 22 summary, 202 transformation/validation, 197ï¿½198
 validation for purpose, 141, 469
-value objections, to threat modeling, 380­381
+value objections, to threat modeling, 380ï¿½381
 vendor/customer trust boundary, 139
-VeriSign, 347, 441 Verizon's attacker lists, 478 victims, STRIDE, 62­63 Victor, trusted third party,
+VeriSign, 347, 441 Verizon's attacker lists, 478 victims, STRIDE, 62ï¿½63 Victor, trusted third party,
 342 virtual whiteboarding, 204 Visio, 7, 47, 204, 210, 212 visual hash, 314 visual perception, models,
 304 von Neumann, John, 338
 
 voting, election operations assessment threat trees, 96, 98
-vulnerability external code, 224 management, 222­223 reports, 223­224 vulnerability known?, Broad Street Taxonomy, 397­398
+vulnerability external code, 224 management, 222ï¿½223 reports, 223ï¿½224 vulnerability known?, Broad Street Taxonomy, 397ï¿½398
 W
-wait and see, 178­180 warnings
+wait and see, 178ï¿½180 warnings
 non-requirements, 241 user interface tools,
-323­325 waterfalls, 368 weak authentication
+323ï¿½325 waterfalls, 368 weak authentication
 subtree, 441 weaponization phase, LM
-kill chains, 389­390 web browsers. See
-browsers web of trust, 347 web threats, 243­246
-overview, 215­216 summary, 251 websites electronic social
-engineering attacks, 310 threats, 244 Wells, Joseph, 96, 151 what are you building?, 5­7 "what are your assets?". See assets what can go wrong?, 4 what framework, configuration system, 306 "what you are," threats, 264­267 "what you have," threats, 263­264 "what you know," threats, 267­271 What You See Is All There Is, 298 "what's your threat model?", 30­31, 421­425
+kill chains, 389ï¿½390 web browsers. See
+browsers web of trust, 347 web threats, 243ï¿½246
+overview, 215ï¿½216 summary, 251 websites electronic social
+engineering attacks, 310 threats, 244 Wells, Joseph, 96, 151 what are you building?, 5ï¿½7 "what are your assets?". See assets what can go wrong?, 4 what framework, configuration system, 306 "what you are," threats, 264ï¿½267 "what you have," threats, 263ï¿½264 "what you know," threats, 267ï¿½271 What You See Is All There Is, 298 "what's your threat model?", 30ï¿½31, 421ï¿½425
 
 "What's Yours Is Mine, and What's Mine Is My Own," 256
 when framework, configuration system, 306
 where framework, configuration system, 307
-whiteboard diagrams defined, 5 effectiveness, 43 trust boundaries, 6­7
+whiteboard diagrams defined, 5 effectiveness, 43 trust boundaries, 6ï¿½7
 whiteboards, 204 Whitehouse, Ollie, 192 who framework,
 configuration system, 306 why framework,
 configuration system, 306 wicked learning
-environments, 296­297, 318, 320, 321, 322, 331 Williams, Shirley, 256 Wilson, Paul, 257, 315, 321 winsock.dll, 64, 439 withdraw, threat genomics, 391 witness, expert, 477 World War II cryptanalysis, 343 Writing Secure Code, Second Edition (Howard & LeBlanc), 52, 55, 93
+environments, 296ï¿½297, 318, 320, 321, 322, 331 Williams, Shirley, 256 Wilson, Paul, 257, 315, 321 winsock.dll, 64, 439 withdraw, threat genomics, 391 witness, expert, 477 World War II cryptanalysis, 343 Writing Secure Code, Second Edition (Howard & LeBlanc), 52, 55, 93
 X
 XSS (cross-site scripting attacks), 108, 191, 192, 509, 525
 XSS Cheat Sheet Calculator, 191
@@ -12032,7 +12034,6 @@ Y
 YAGNI (you ain't gonna need it), 217, 358, 360, 368, 369, 380
 Z
 Zalewski, Michal, 245 Zero-Knowledge Systems,
-30­31 Zimmerman, Phil, 174 Zooko's Triangle, 284­285
+30ï¿½31 Zimmerman, Phil, 174 Zooko's Triangle, 284ï¿½285
 
 Uploaded by [StormRG]
-

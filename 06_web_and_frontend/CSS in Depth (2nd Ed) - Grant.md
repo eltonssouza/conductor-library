@@ -1,3 +1,9 @@
+# CSS in Depth (2nd Ed)
+
+> **Author(s):** Grant Â· **Edition:** 2nd Ed Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 Praise for the first edition
 "An incredible way to learn beyond the basic aspects of CSS."
 --Andres Sacco, technical leader at TraveleX
@@ -23,7 +29,7 @@ Manning Publications Co.
 PO Box 761
 Shelter Island, NY 11964
 Email: orders@manning.com
-©2024 by Manning Publications Co. All rights reserved.
+ï¿½2024 by Manning Publications Co. All rights reserved.
 No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by means electronic, mechanical, photocopying, or otherwise, without prior written permission of the publisher.
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in the book, and Manning Publications was aware of a trademark claim, the designations have been printed in initial caps or all caps.
@@ -123,7 +129,7 @@ Part 4 Visual enhancements
 Part 5 Adding motion
 15 Transitions
 15.1 From here to there 15.2 Timing functions
-15.2.1 Custom Bézier curves 15.2.2 Steps 15.3 Non-animatable properties 15.3.1 Properties that cannot be animated 15.3.2 Fading in and out 15.4 Transitioning to auto height 15.5 Transitioning custom properties
+15.2.1 Custom Bï¿½zier curves 15.2.2 Steps 15.3 Non-animatable properties 15.3.1 Properties that cannot be animated 15.3.2 Fading in and out 15.4 Transitioning to auto height 15.5 Transitioning custom properties
 16 Transforms
 16.1 Rotate, translate, scale, and skew 16.1.1 Changing the transform origin
 
@@ -144,7 +150,7 @@ index
 
 foreword
 "A minute to learn, lifetime to master." That phrase might feel a little trite these days, but I still like it. It was popularized in modern times by being the tagline for the board game Othello. In Othello, players take turns placing white or black pieces onto a grid. If, for example, a white piece is played trapping a row of black pieces between two white, all the black pieces are flipped, and the row becomes entirely white.
-Like Othello, it isn't particularly hard to learn the rules of CSS. You write a selector that attempts to match elements; then you write key­value pairs that style those elements. Even folks just starting out don't have much trouble figuring out that basic syntax. The trick to getting good at CSS, as in Othello, is knowing exactly when to do what.
+Like Othello, it isn't particularly hard to learn the rules of CSS. You write a selector that attempts to match elements; then you write keyï¿½value pairs that style those elements. Even folks just starting out don't have much trouble figuring out that basic syntax. The trick to getting good at CSS, as in Othello, is knowing exactly when to do what.
 CSS is one of the languages of the web, but it isn't quite in the same wheelhouse as programming. CSS has little in the way of logic and loops. Math is limited to just a few functions. Only recently have variables become a possibility. Rarely do you need to consider security. CSS is closer to painting than Python. You're free to do what you like with CSS. It won't spit out any errors at you or fail to compile.
 The journey to getting good at CSS involves learning everything CSS is capable of. The more you know, the more natural it starts to feel. The more you practice, the more easily your brain will reach for that perfect layout and spacing method. The more you read, the more confident you'll feel in tackling any design.
 
@@ -172,7 +178,7 @@ acknowledgments
 It takes an incredible amount of work to produce a book. I believe this is a great book--and hope you'll agree--but it wouldn't be nearly as strong as it is without the help of a few people along the way.
 First and foremost, I'd like to thank my wife, Courtney. You have been supportive and encouraging through the entire process. You have carried the burden of this book with me. You even provided editorial support in a number of key places. I could not have done this without you.
 The excellent staff at Manning worked hard with me to make this the best book it can be. Thanks go to Manning's publisher, Marjan Bace, who saw the potential in this idea and the need for an updated edition. I thank my editors Toni Arritola and Sarah Harter for their commitment to quality. This is a much better book because of their input. Thanks go to my technical editor, Chris Chinchilla, for his insight throughout the writing process, and to Doyle Turner for a meticulous technical proofread of the final manuscript and all the code listings.
-I'd also like to thank the technical reviewers and friends who took the time to read through my drafts at various stages and offer feedback: Al Pezewski, Andres Sacco, Becky Huett, Craig Sharkie, Darek Kazik, Esref Durna, Harrison Maseko, Holger Voges, Joe Cuevas, Marlen Waaijer, Mikael Byström, Patrick Regan, Paulo Vieira, Rick Bunnell, Rodney Weis, Santosh Joseph, Sara Wallén, Scott Ling, Seth MacPherson, Simon Verhoeven, Stephan Max, Sudheer Kumar Reddy Gowrigari, and Yves Dorfsman. Your
+I'd also like to thank the technical reviewers and friends who took the time to read through my drafts at various stages and offer feedback: Al Pezewski, Andres Sacco, Becky Huett, Craig Sharkie, Darek Kazik, Esref Durna, Harrison Maseko, Holger Voges, Joe Cuevas, Marlen Waaijer, Mikael Bystrï¿½m, Patrick Regan, Paulo Vieira, Rick Bunnell, Rodney Weis, Santosh Joseph, Sara Wallï¿½n, Scott Ling, Seth MacPherson, Simon Verhoeven, Stephan Max, Sudheer Kumar Reddy Gowrigari, and Yves Dorfsman. Your
 
 feedback offered valuable early insight into how the book would be received by developers of all skill levels.
 Finally, I feel enormous gratitude to the good people on the W3C CSS Working Group for your work on the CSS specifications. You work through a lot of really tough problems so that we developers don't have to. Thanks for your continued efforts to make CSS, and the web as a whole, better. Keep up the good work!
@@ -1242,14 +1248,14 @@ When working with lengths, developers, even experienced CSS developers, often di
 seem unpredictable and less clear-cut than an absolute unit, such as the pixel. In this chapter, I'll remove the mystery surrounding relative units. First, I'll explain the unique value they bring to CSS; then, I'll help you make sense of them. I'll explain how they work, and I'll show you how to tame their seemingly unpredictable nature. You can make relative values work for you; wielded correctly, they'll make your code simpler, more versatile, and easier to work with.
 2.1 The power of relative units
 CSS brings a late binding of styles to the web page: the content and its styles aren't pulled together until after the authoring of both is complete. This adds a level of complexity to the design process that doesn't exist in other types of graphic design, but it also provides more power: one stylesheet can be applied to hundreds, even thousands, of pages. Furthermore, the final rendering of the page can be altered directly by the user who can, for example, change the default font size or resize the browser window.
-In early computer application development (as well as in traditional publishing), developers (or publishers) knew the exact constraints of their medium. A particular program window might be 800 px wide by 500 px tall, or a page could be 4 in. wide by 6½ in. tall. Consequently, when developers set about laying out the application's buttons and text, they knew exactly how big they could make those elements and exactly how much space that would leave them to work with for other items on the screen. On the web, this is not the case.
+In early computer application development (as well as in traditional publishing), developers (or publishers) knew the exact constraints of their medium. A particular program window might be 800 px wide by 500 px tall, or a page could be 4 in. wide by 6ï¿½ in. tall. Consequently, when developers set about laying out the application's buttons and text, they knew exactly how big they could make those elements and exactly how much space that would leave them to work with for other items on the screen. On the web, this is not the case.
 2.1.1 The rise of responsive design
 
 In the web environment, the user can set their browser window to any number of sizes, and the CSS has to apply to them. Furthermore, users can resize the page after it's opened, and the CSS needs to adjust to new constraints. This means that styles can't be applied when you create your page; the browser must calculate those when the page is rendered on screen.
 This adds a layer of abstraction to CSS. You can't style an element according to an ideal context; you need to specify rules that'll work in any context where that element could be placed. With today's web, your page will need to render on a 4-in. phone screen as well as on a 30-in. monitor.
 
 PIXELS, POINTS, AND PICAS
-CSS supports several absolute length units, the most common of which, and the most basic, is the pixel (px). Less common absolute units are mm (millimeter), cm (centimeter), Q (quarter-millimeter), in. (inch), pt (point-- a typographic term for 1/72nd of an inch), and pc (pica--a typographic term for 12 points). Any of these units can be translated directly to another if you want to work out the math: 1 in. = 25.4 mm = 101.6 Q = 2.54 cm = 6 pc = 72 pt = 96 px. Therefore, 16 px is the same as 12 pt (16 / 96 × 72). Print designers are often more familiar with the use of points, whereas developers are more accustomed to pixels, so you may have to do some translation between the two when communicating with a designer.
+CSS supports several absolute length units, the most common of which, and the most basic, is the pixel (px). Less common absolute units are mm (millimeter), cm (centimeter), Q (quarter-millimeter), in. (inch), pt (point-- a typographic term for 1/72nd of an inch), and pc (pica--a typographic term for 12 points). Any of these units can be translated directly to another if you want to work out the math: 1 in. = 25.4 mm = 101.6 Q = 2.54 cm = 6 pc = 72 pt = 96 px. Therefore, 16 px is the same as 12 pt (16 / 96 ï¿½ 72). Print designers are often more familiar with the use of points, whereas developers are more accustomed to pixels, so you may have to do some translation between the two when communicating with a designer.
 Pixel is a slightly misleading name--a CSS pixel does not strictly equate to a monitor's pixel. This is notably in the case of high-resolution ("retina") displays. Although the CSS measurements can be scaled a bit, depending on the browser, the operating system, and the hardware, 96 px is usually in the ballpark of 1 physical inch on screen. However, this can vary on certain devices or with a user's resolution settings.
 With such a varied array of user devices and screen sizes, we have to constantly be aware of responsive design. If you give an element a width of 800 px, how will that look in a smaller window? How will a horizontal menu look if it doesn't all fit on one line? As you write your CSS, you need to be able to think simultaneously in specifics as well as in generalities. When you have multiple ways to solve a particular problem, you'll need to favor the solution that
 
@@ -1313,7 +1319,7 @@ font-size: 1.2em; #1
 
 #1 Calculates to 1.2 times the element's inherited font size
 
-The slogan's specified font size is 1.2 em. To determine the calculated pixel value, you'll need to refer to the inherited font size of 16 px: 16 × 1.2 = 19.2, so the calculated font size is 19.2 px.
+The slogan's specified font size is 1.2 em. To determine the calculated pixel value, you'll need to refer to the inherited font size of 16 px: 16 ï¿½ 1.2 = 19.2, so the calculated font size is 19.2 px.
 
 Tip If you know the pixel-based font size you'd like but want to specify the declaration in ems, here's a simple formula: divide the desired pixel size by the parent (inherited) pixel size. For example, if you want a 10 px font and your element is inheriting a 12 px font, 10 / 12 = 0.8333 em. If you want a 16 px font and the parent font is 12 px, 16 / 12 = 1.3333 em. We'll do this calculation several times throughout this chapter.
 
@@ -1395,7 +1401,7 @@ Listing 2.6 Nested lists
 
 #1 This list is nested inside the first one, inheriting its font size. #2 This one is nested inside of that, inheriting the second list's font size. #3 And so on
 
-Each list has a font size 0.8 times that of its parent. This means the first list has a font size of 12.8 px, but the next one down is 10.24 px (12.8 px × 0.8), the third level is 8.192 px, and so on. Similarly, if you specified a size larger than 1 em, the text would continually grow instead. What you want is to specify the font at the top level and then maintain the same font size all the way down, as in figure 2.6.
+Each list has a font size 0.8 times that of its parent. This means the first list has a font size of 12.8 px, but the next one down is 10.24 px (12.8 px ï¿½ 0.8), the third level is 8.192 px, and so on. Similarly, if you specified a size larger than 1 em, the text would continually grow instead. What you want is to specify the font at the top level and then maintain the same font size all the way down, as in figure 2.6.
 
 Figure 2.6 Using a font size of 1 em for nested lists keeps the text size consistent.
 
@@ -1452,7 +1458,7 @@ This way, font sizes are predictable, but you'll still get the power of ems scal
 Tip When in doubt, use rems for font size, pixels for borders, and either ems or rems for most other properties.
 
 ACCESSIBILITY: USING RELATIVE UNITS FOR FONT SIZE
-Some browsers provide two ways for the user to customize the size of text: zoom and a default font size. By pressing Ctrl-plus (+) or Ctrl-minus (­)--or Cmd-plus/minus on a Mac--the user can zoom the page up or down. This visually scales all fonts and images and generally makes everything on the page larger or smaller. In some browsers, this change is only applied to the current tab and is temporary, meaning it doesn't get carried over to new tabs.
+Some browsers provide two ways for the user to customize the size of text: zoom and a default font size. By pressing Ctrl-plus (+) or Ctrl-minus (ï¿½)--or Cmd-plus/minus on a Mac--the user can zoom the page up or down. This visually scales all fonts and images and generally makes everything on the page larger or smaller. In some browsers, this change is only applied to the current tab and is temporary, meaning it doesn't get carried over to new tabs.
 Setting a default font size is a bit different. This is usually set in the browser's settings page, but changes at this level persist until the user changes the value again. The catch is that this setting does not resize fonts defined using pixels or other absolute units. Because a default font size is vital to some users, particularly those who are vision impaired, you should always specify font sizes with relative units or percentages.
 Working with pixels is initially easier to understand, but if you take the time to become familiar with rems, you will have a broader range of tools at your disposal, and you can produce more accessible pages at the same time.
 2.3 Stop thinking in pixels
@@ -1523,7 +1529,7 @@ text-transform: uppercase; #4
 
 This code puts a thin border around the panel and styles the heading. I opted for a header that is smaller but bold and all caps. (You can make this larger or a different typeface if your design calls for it.)
 
-The > in the second selector is a direct descendant combinator; it indicates a direct parent­child relationship between two elements in the selector. In this case, the selector targets any h2 that's a child element of a .panel element. (See appendix A for a complete reference of selectors and combinators.)
+The > in the second selector is a direct descendant combinator; it indicates a direct parentï¿½child relationship between two elements in the selector. In this case, the selector targets any h2 that's a child element of a .panel element. (See appendix A for a complete reference of selectors and combinators.)
 
 In listing 2.10, I added a panel-body class to the main body of the panel for clarity, but you'll notice you didn't need to use it in your CSS. Because this element already inherits the root font size, it already appears the way you want it to look.
 
@@ -1692,7 +1698,7 @@ Unfortunately, 24 px is a bit too large on a big screen. And worse, it scales al
 
 iPhone SE. What would be nice is this scaling effect but with the extremes a little less severe. You can achieve this with either CSS's calc() or clamp() functions.
 GETTING RESPONSIVE WITH THE CALC() FUNCTION
-The calc() function lets you do basic arithmetic with two or more values. This is particularly useful for combining values that are measured in different units. This function supports addition (+), subtraction (­), multiplication (*), and division (/). The addition and subtraction operators must be surrounded by whitespace, so I suggest getting in the habit of always adding a space before and after each operator; for example, calc(1em + 10px).
+The calc() function lets you do basic arithmetic with two or more values. This is particularly useful for combining values that are measured in different units. This function supports addition (+), subtraction (ï¿½), multiplication (*), and division (/). The addition and subtraction operators must be surrounded by whitespace, so I suggest getting in the habit of always adding a space before and after each operator; for example, calc(1em + 10px).
 You'll use calc() in the next step to combine ems with svw units. Remove the previous base font size (and the related media queries) from your stylesheet. Add the following in its place:
 :root { font-size: calc(0.5em + 1svw);
 }
@@ -1719,7 +1725,7 @@ Listing 2.15 Inherited line-height markup
 You'll specify a line height for the body element and allow it to be inherited by the rest of the document. This will work as expected, no matter what you do to the font sizes on the page (figure 2.12).
 
 Figure 2.12 Unitless line height is recalculated for each descendant element, generally producing well-spaced lines of text.
-Add listing 2.16 to your stylesheet for these styles. The paragraph inherits a line height of 1.2. Because the font size is 32 px (2 em × 16 px, the browser's default), the line height is calculated locally to 38.4 px (32 px × 1.2). This will leave an appropriate amount of space between lines of text.
+Add listing 2.16 to your stylesheet for these styles. The paragraph inherits a line height of 1.2. Because the font size is 32 px (2 em ï¿½ 16 px, the browser's default), the line height is calculated locally to 38.4 px (32 px ï¿½ 1.2). This will leave an appropriate amount of space between lines of text.
 Listing 2.16 Line height with a unitless number
 body { line-height: 1.2; #1
 }
@@ -2250,7 +2256,7 @@ When top and/or bottom margins are adjoining, they overlap, combining to form a 
 The main reason for collapsed margins has to do with the spacing of blocks of text. Paragraphs (<p>), by default, have a 1 em top margin and a 1 em bottom margin. This is applied by the user-agent stylesheet. But when you stack two paragraphs, one after the other, their margins don't add up to a gap of 2 em. Instead, they collapse, overlapping to produce only 1 em of space between the two paragraphs.
 You can see this sort of collapsed margin inside the <main> section on your page. The title (Come join us!) in an <h2> has a bottom margin of 0.83 em, which collapses with the top margin of the following paragraph. The margins of each are illustrated in figure 3.16. Note how the margins of each element occupy the same space on the page.
 Figure 3.16 Outlined margins of the heading (left) and paragraph (right)
-The size of the collapsed margin is equal to the largest of the joined margins. In this case, the heading has a bottom margin of 19.92 px (24 px font size × 0.83 em), and the paragraph has a top margin of 16 px (16 px font size × 1 em margin). The larger of these, 19.92 px, is the amount of space rendered between the two elements.
+The size of the collapsed margin is equal to the largest of the joined margins. In this case, the heading has a bottom margin of 19.92 px (24 px font size ï¿½ 0.83 em), and the paragraph has a top margin of 16 px (16 px font size ï¿½ 1 em margin). The larger of these, 19.92 px, is the amount of space rendered between the two elements.
 
 3.5.2 Collapsing multiple margins
 
@@ -3190,7 +3196,7 @@ This property controls a flex item's alignment along its container's cross axis.
 There is also a place-self property, which is shorthand for align-self and justify-self. Note that justify-self is only used in grid layout (chapter 5) and is ignored on flex containers.
 ORDER PROPERTY
 Normally, flex items are laid out in the order they appear in the HTML source. They are stacked along the main axis, beginning at the start of the axis. By using the order property, you can change the order in which the items are stacked. You may specify any integer, positive or negative. If multiple flex items have the same value, they'll appear according to source order.
-Initially, all flex items have an order of 0. Specifying a value of ­1 to one item will move it to the beginning of the list, and a value of 1 will move it to the end. You can specify
+Initially, all flex items have an order of 0. Specifying a value of ï¿½1 to one item will move it to the beginning of the list, and a value of 1 will move it to the end. You can specify
 
 order values for each item to rearrange them however you wish. The numbers don't necessarily need to be consecutive.
 Warning Be careful with the use of order. Making the visual layout order on the screen drastically different from the source order can harm the accessibility of your site. Navigation using the Tab key will still follow the source order in most browsers, which can be confusing. Screen-reading software for visually impaired users will also follow the source order in most cases.
@@ -4340,7 +4346,7 @@ Grid defines a row- and column-based layout for your page so that items can be p
 Grid works in conjunction with flexbox to provide a complete layout system.
 Placement of grid items can be done using one of three syntaxes: numbered grid lines, named grid lines, and named grid areas. In any given situation, you can use whichever is the most intuitive for you and the needs of the layout.
 auto-fill/auto-fit and implicit grid placement work well when laying out a large or unknown number of grid items.
-Subgrid can align more deeply nested elements than a simple set of parent­child elements.
+Subgrid can align more deeply nested elements than a simple set of parentï¿½child elements.
 The same alignment properties from flexbox apply to a grid.
 
 6 Positioning and stacking contexts
@@ -4645,15 +4651,15 @@ Note If none of the element's ancestors are positioned, then the absolutely posi
 
 6.2.2 Positioning a pseudo-element
 
-You've positioned the Close button where you want it, but it's rather Spartan. For a Close button such as this, users typically expect to see some graphical indication such as an ×, as in figure 6.3.
+You've positioned the Close button where you want it, but it's rather Spartan. For a Close button such as this, users typically expect to see some graphical indication such as an ï¿½, as in figure 6.3.
 
-Figure 6.3 Close button replaced with an ×
+Figure 6.3 Close button replaced with an ï¿½
 
-Your first temptation may be to remove the word close from your markup and replace it with an ×, but this would introduce an accessibility problem: assistive screen readers read the text of the button, so it should give some meaningful indication of the button's purpose. The HTML must make sense on its own before the CSS is applied.
-Instead, you can use CSS to hide the word close and display an ×. You'll accomplish this by doing two things. First, you'll push the button's text outside the button and hide the overflow. Second, you'll use the content property to add the × to the button's ::after pseudo-element and absolute positioning to center it within the button. Update your button's styles to match listing 6.4.
+Your first temptation may be to remove the word close from your markup and replace it with an ï¿½, but this would introduce an accessibility problem: assistive screen readers read the text of the button, so it should give some meaningful indication of the button's purpose. The HTML must make sense on its own before the CSS is applied.
+Instead, you can use CSS to hide the word close and display an ï¿½. You'll accomplish this by doing two things. First, you'll push the button's text outside the button and hide the overflow. Second, you'll use the content property to add the ï¿½ to the button's ::after pseudo-element and absolute positioning to center it within the button. Update your button's styles to match listing 6.4.
 Tip Instead of the letter x, I recommend the unicode character for the multiplication sign. It's more symmetric and usually more aesthetically pleasing for this purpose. The HTML character &times; will render as this character, but in the CSS content property, you must use the escaped unicode number: \00D7.
 
-Listing 6.6 Replacing the Close button with an ×
+Listing 6.6 Replacing the Close button with an ï¿½
 
 .modal-close {
 
@@ -4693,7 +4699,7 @@ background-color: transparent;
 }
 #1 Makes the button a small square #2 Forces the text to overflow the element and hides it #3 Adds the unicode character U+00D7 (multiplication sign)
 
-This listing explicitly sets the button size to 1 em square. The text-indent property then pushes the text to the right, outside the element. The exact value doesn't matter as long as it's more than the width of the button. Then, because text-indent is an inherited property, you reset it to 0 on the pseudo-class so the × isn't also indented.
+This listing explicitly sets the button size to 1 em square. The text-indent property then pushes the text to the right, outside the element. The exact value doesn't matter as long as it's more than the width of the button. Then, because text-indent is an inherited property, you reset it to 0 on the pseudo-class so the ï¿½ isn't also indented.
 
 The pseudo-class is now absolutely positioned. It behaves like a child element of the button, so the button being positioned becomes the containing block for its pseudoelement. The short line-height keeps the pseudo-element from being too tall, and the top and left properties position it in the center of the button. I arrived at the exact values here through some trial and error; I encourage you to experiment with those values in your browser's DevTools to see how they affect the positioning.
 
@@ -8001,7 +8007,7 @@ Listing 10.3 Adding container queries
 .media__image { align-self: start; margin-inline: revert;
 } } }
 #1 Makes each column a container #2 Queries the width of the layout container
-Resize the browser to see these changes (or use the responsive design mode in your browser's DevTools). Now the media module effectively has four breakpoints. It's stacked in a narrow window, horizontal from 450­800 px wide, stacked again until about 1530 px (while the sidebar is
+Resize the browser to see these changes (or use the responsive design mode in your browser's DevTools). Now the media module effectively has four breakpoints. It's stacked in a narrow window, horizontal from 450ï¿½800 px wide, stacked again until about 1530 px (while the sidebar is
 
 narrow), and, finally, horizontal at viewports wider than that.
 More importantly, the code for the sidebar isn't tangled up with the code for the media module. You can make changes to either one and the browser will automatically determine which layout is correct for the module in any given context.
@@ -8753,7 +8759,7 @@ Many newer notations aren't yet quite as well supported: hwb(), lab(), lch(), ok
 Each of these notations corresponds to a particular color space. Together, these provide an overwhelming number of options. I'll briefly explain how each of these notations works and how they relate to one another. At the end, I'll show several examples of these notations side by side.
 My preferred notations are hsl()--for the best browser compatibility today--and oklch()--the most intuitive notation that will be my go-to in the near future, once browser support is sufficient.
 RGB AND HEX COLOR
-Hex color notation indicates red, green, and blue values, each as a two-digit hexadecimal value ranging from 00 to FF. Hexadecimal is a base-16 number system, using the letters A­F to represent values ten through fifteen. The color #80c090 means 80 red, c0 green, and 90 blue (equal to the decimal values 128 red, 192 green, and 144 blue).
+Hex color notation indicates red, green, and blue values, each as a two-digit hexadecimal value ranging from 00 to FF. Hexadecimal is a base-16 number system, using the letters Aï¿½F to represent values ten through fifteen. The color #80c090 means 80 red, c0 green, and 90 blue (equal to the decimal values 128 red, 192 green, and 144 blue).
 A newer eight-digit hex notation includes two additional digits to indicate an alpha channel to indicate transparency. This value ranges from 00 (fully transparent) to FF (fully opaque). So #80c09088 is a semitransparent version of #80c090.
 
 Note Hex notation can be shortened to a three-digit notation, where each of the three digits is doubled. #c90, for instance, is equal to #cc9900. There is also a corresponding four-digit notation that expands to the eight-digit notation with an alpha value.
@@ -8785,7 +8791,7 @@ Two of these notations, LAB and LCH, were created first, but their specification
 LAB AND OKLAB COLOR
 LAB color and its successor OKLAB are both defined with three values: lightness, A axis, and B axis. The syntax for these looks like lab(58% -19 -35) or oklab(65% -0.06 -0.1). While the numerical values for the two are different, they each work conceptually the same way.
 The first value, lightness, is a percentage from 0% (black) to 100% (white). In LAB, this can also be represented with a number between 0 and 100, and in OKLAB it can be a number between 0 and 1.0--but this discrepancy can be confusing, so I suggest sticking with percent.
-The A axis is a range from red to green, and the B axis is a range from blue to yellow. In OKLAB, these values each range from ­0.4 to 0.4, or you can use percentages between ­100% and 100% to indicate them. In LAB, these values range from ­125 to 125.
+The A axis is a range from red to green, and the B axis is a range from blue to yellow. In OKLAB, these values each range from ï¿½0.4 to 0.4, or you can use percentages between ï¿½100% and 100% to indicate them. In LAB, these values range from ï¿½125 to 125.
 These are rectangular color spaces, akin to wide gamut versions of RGB, but, similar to RGB, it's not a very intuitive color space to use.
 LCH AND OKLCH COLOR
 LCH and OKLCH are cylindrical color spaces like that of HSL. They are defined with three values for Lightness, Chroma, and Hue. The syntax for these looks like lch(58% 39.8 241.5deg) and oklch(64% 0.12 233deg).
@@ -8800,9 +8806,9 @@ There is a color() function that allows you to specify a gamut and color values.
 I find this less practical than the previous notations for general use, as it uses an RGB-based paradigm, not to mention it is rather verbose. And because wide gamut notations such as OKLAB and OKLCH can be used to specify any color in the visible spectrum, they should be future proof if displays expand to support even wider gamuts in the future.
 However, the color() function supports more obscure gamuts beyond sRGB, Display p3, and Rec2020, so it may be useful if you have a particular need to work within a specific gamut. See https://mng.bz/lMQ6 for more on using this function.
 In summary, each color notation is defined by these parameters:
-RGB--Red, green, blue (each 0­255) HSL--Hue (angle), saturation (percent), luminescence (percent) HWB--Hue (angle), whiteness (percent), blackness (percent) LAB--Lightness (percent), A axis (­125 red to 125 green), B axis (­125 blue to 125 yellow)
+RGB--Red, green, blue (each 0ï¿½255) HSL--Hue (angle), saturation (percent), luminescence (percent) HWB--Hue (angle), whiteness (percent), blackness (percent) LAB--Lightness (percent), A axis (ï¿½125 red to 125 green), B axis (ï¿½125 blue to 125 yellow)
 
-OKLAB--Lightness (percent), A axis (­0.4 red to 0.4 green), B axis (­0.4 blue to 0.4 yellow) LCH--Lightness (percent), chroma (0­230), hue (angle) OKLCH--Lightness (percent), chroma (0­0.5), hue (angle)
+OKLAB--Lightness (percent), A axis (ï¿½0.4 red to 0.4 green), B axis (ï¿½0.4 blue to 0.4 yellow) LCH--Lightness (percent), chroma (0ï¿½230), hue (angle) OKLCH--Lightness (percent), chroma (0ï¿½0.5), hue (angle)
 Most of these notations also support the none keyword in place of one of their arguments. This can be helpful when one parameter is irrelevant. For example, oklch(100% 0 0deg) is white, so the hue value is essentially meaningless. This can instead be expressed as oklch(100% 0 none) or even oklch(100% none none). Figure 11.12 shows a side-by-side comparison of several colors and their various representations in several color spaces; I have rounded some values slightly.
 Figure 11.12 Comparison of equivalent color values
 These particular colors can also be referenced by the name given (blue, lavender, lightgray, etc). There are about 150 such named colors that are valid CSS values. See https://mng.bz/NRoN for a complete list of named colors. For an even deeper dive into gamuts and color spaces, I recommend the High Definition CSS Color Guide by Adam Argyle at https://mng.bz/Dd0n.
@@ -8866,7 +8872,7 @@ Our stylesheet has a placeholder for an active link color. Traditionally, active
 11.3.4 Deriving colors from others on the page
 The simplest way to find a color that works well with another is to find its complement. This is the color on the opposite side of the color wheel: the complement of blue is yellow; the complement of green is magenta (or purple); and the complement of red is cyan.
 With OKLCH or HSL colors, finding a complementary color is easy: add or subtract 180 to the chroma value--but be prepared to adjust this. The 360 degrees of hue in these two systems are spaced a little differently, and often other tools like Adobe's online palette generator (https://color.adobe.com/create/color-wheel) will give you yet another result as a complementary color.
-Your primary brand green has an OKLCH hue of 165. Adding 180 to this gets us a hue of 345, which is red bordering on magenta. You can also subtract 180 to find its complement, which results in a hue of ­15. This is equivalent to hue 345, so oklch(45% 0.09 -15deg) will render the same as oklch(45% 0.09 345deg). But I prefer to keep my values between 0 and 360 so they are in more familiar territory.
+Your primary brand green has an OKLCH hue of 165. Adding 180 to this gets us a hue of 345, which is red bordering on magenta. You can also subtract 180 to find its complement, which results in a hue of ï¿½15. This is equivalent to hue 345, so oklch(45% 0.09 -15deg) will render the same as oklch(45% 0.09 345deg). But I prefer to keep my values between 0 and 360 so they are in more familiar territory.
 Now that you have a hue, you need a chroma and lightness. The page's regular link color is medium green--oklch(74% 0.15 166.4deg)--so you can start there and adjust things until they look good. The hue of 345 is a little too magenta for my taste, so I'll change it to 10deg. After testing this, it feels a little light to me, so I'll reduce the lightness by about 10%. This gives a color of oklch(64% 0.15 10deg).
 I arrived at this color purely by trial and error in my browser DevTools, after adding code similar to listing 11.8 and
 
@@ -9075,7 +9081,7 @@ On your page, you have a line height of 1.4. This is applied to the <body> eleme
 
 Note Print designers are accustomed to working with leading, which is a measure of the space between lines of text. In CSS, this space is controlled by line height, which is not directly analogous to leading.
 
-A designer won't usually fuss over a 1 or 2 pixel discrepancy, but an extra 6½ pixels might bother them. The difference will be even larger if you have a bigger line height or if one of the elements has a larger font size.
+A designer won't usually fuss over a 1 or 2 pixel discrepancy, but an extra 6ï¿½ pixels might bother them. The difference will be even larger if you have a bigger line height or if one of the elements has a larger font size.
 
 The way to fix this discrepancy is to account for the extra space and subtract it from the margin. Instead of a 30 px margin, subtract the extra 6 pixels and aim for 24 px. Divide by 16, and this gets us an em value of 1.5. Add the spacings from the following listing to the relevant portions of your stylesheet.
 
@@ -9548,7 +9554,7 @@ The font-variation-setting property references a special fourcharacter string 'w
 axes from among five registered axes. These axes are each mapped to a corresponding font property as follows:
 font-weight is controlled with the 'wght' axes, ranging from 0 to 999. As shown previously, font-weight: 400 is equivalent to font-variation-setting: 'wght' 400.
 font-style: italic is controlled with the 'ital' axes. It can be set to either 0 for normal font or 1 for italics. Thus, font-variation-setting: 'ital' 1 is equivalent to font-style: italic.
-font-style: oblique is controlled with the 'slnt' axes. This controls the angle of the letterforms. This is typically a value between 0 (normal) and around 20 degrees of slant, but any value between ­90 and 90 may be valid. Applying font-variation-setting: 'slnt' 15 is equivalent to font-style: oblique 15deg. The slant value differs from italics in that it changes the angle of the letterforms but does not replace the letterforms with a different character altogether as italics typically do.
+font-style: oblique is controlled with the 'slnt' axes. This controls the angle of the letterforms. This is typically a value between 0 (normal) and around 20 degrees of slant, but any value between ï¿½90 and 90 may be valid. Applying font-variation-setting: 'slnt' 15 is equivalent to font-style: oblique 15deg. The slant value differs from italics in that it changes the angle of the letterforms but does not replace the letterforms with a different character altogether as italics typically do.
 font-stretch compresses or expands the width of letterforms (called condensed or expanded in typographic terms). This is controlled with the 'wdth' axes. These values are expressed indicating a percentage above or below 100% (normal). Applying font-variation-setting: 'wdth' 75 is equivalent to font-stretch: 75%.
 A new property, font-optical-sizing is controlled with the 'opsz' axis. In many typefaces, vertical and horizontal lines are drawn with different thicknesses. However, when displayed at smaller font sizes, the thin lines (usually the horizontal portion of a letterform) can become difficult to see. Optical sizing is used to correct this by reducing the difference between wide and narrow lines at smaller font sizes. font-optical-sizing can be set to none or auto. However, fonts that support this axis allow
 
@@ -9612,7 +9618,7 @@ doubt, don't overdo it. The point isn't to draw attention to the spacing; in fac
 CONVERTING LEADING AND TRACKING TO CSS
 In the design world, the spacing between lines of text is called leading (rhymes with bedding). This originates from strips of lead that were added between rows in a letterpress. Spacing between characters is called tracking. If you work with a designer, they may specify leading and tracking for the design, but these values might look nothing like the line-height and letter-spacing CSS properties.
 Leading is often expressed in points, such as 18 pt, measuring a line of text plus the space between it and the next line of text. This is effectively the same as the CSS line-height, but it's not expressed as a unitless number. You must first convert it to pixels so it's the same as your font, then to a unitless number.
-To convert from pt to px, multiply the point value by 1.333 (that's 96 px per inch and 72 pt per inch, so 96 / 72 = 1.333): 18 pt × 1.333 = 24 px. Then divide this by your font size to find the unitless line height: 24 px / 16 px = 1.5.
+To convert from pt to px, multiply the point value by 1.333 (that's 96 px per inch and 72 pt per inch, so 96 / 72 = 1.333): 18 pt ï¿½ 1.333 = 24 px. Then divide this by your font size to find the unitless line height: 24 px / 16 px = 1.5.
 Tracking is usually given as a number, such as 100. This number represents thousandths of an em, so to convert it to ems, divide by a 1000: 100 / 1000 = 0.1 em.
 12.6.2 Headings, small elements, and spacing
 
@@ -11160,34 +11166,34 @@ Warning This demo illustrates an element moving across the screen by absolutely 
 Now edit the transition property to see how different timing functions behave. Try ease-in (transition: all 1s ease-in) and
 
 ease-out (transition: all 1s ease-out). These keywords get the job done, but sometimes you'll want more control. You can do this by defining your own timing functions. Let's look at how to do this.
-15.2.1 Custom Bézier curves
-Timing functions are based on mathematically defined Bézier curves. The browser uses these curves to calculate a property's value as a function of change over time. The Bézier curves for several timing functions are shown in figure 15.4, as well as all the keyword values that can be used as a timing function.
-Figure 15.4 The Bézier curves of timing functions illustrate how the value changes over time.
+15.2.1 Custom Bï¿½zier curves
+Timing functions are based on mathematically defined Bï¿½zier curves. The browser uses these curves to calculate a property's value as a function of change over time. The Bï¿½zier curves for several timing functions are shown in figure 15.4, as well as all the keyword values that can be used as a timing function.
+Figure 15.4 The Bï¿½zier curves of timing functions illustrate how the value changes over time.
 These curves begin at the bottom left and proceed to the top right. Time will progress to the right, and the curve represents how the value changes during that progression before arriving at the final value. The linear timing function is a steady progression throughout the duration of the transition--a straight line. The other values curve, representing acceleration and deceleration.
-You're not limited to these five keyword values, however. You can define your own cubic Bézier curve for more gentle or more drastic transitions. You can even add a bit of a "bounce" effect. Let's explore this.
+You're not limited to these five keyword values, however. You can define your own cubic Bï¿½zier curve for more gentle or more drastic transitions. You can even add a bit of a "bounce" effect. Let's explore this.
 
 In the page you just created, open your DevTools and inspect the green box element. You should see a small symbol beside the timing function in the Styles pane (Chrome) or Rules pane (Firefox). Click that symbol and a small popup opens, allowing you to modify the timing function's curve (figure 15.5).
-Figure 15.5 Editing a Bézier curve in the Chrome DevTools
+Figure 15.5 Editing a Bï¿½zier curve in the Chrome DevTools
 On the left of the popup, this interface provides a series of premade curves to choose from. Firefox displays more than
 
-Chrome, though Chrome allows you to cycle through additional options with the small left and right arrows near the bottom. You can click one of the curves to select it. On the right, the selected Bézier curve is shown at a larger scale.
+Chrome, though Chrome allows you to cycle through additional options with the small left and right arrows near the bottom. You can click one of the curves to select it. On the right, the selected Bï¿½zier curve is shown at a larger scale.
 At each end of the curve is a short, straight line with circles on the end (handles). These are the control points. Click and drag one of these handles to manipulate the shape of the curve. Notice how the length and direction of the handle "pulls" the curve.
 Click outside of this popup to close it, and you'll see that the timing function has been updated. Instead of a keyword like ease-out, it'll now be something like cubic-bezier(0.45, 0.05, 0.55, 0.95). This cubic-bezier() function and the four values within define the custom timing function.
 
 SELECTING A TIMING FUNCTION
-Whether you use keyword timing functions or custom Bézier curves, it's helpful to know when to use which. Each site or application should have a decelerating curve, an accelerating curve, as well as the linear keyword. It's best to reuse the same few curves to provide a more consistent user experience.
+Whether you use keyword timing functions or custom Bï¿½zier curves, it's helpful to know when to use which. Each site or application should have a decelerating curve, an accelerating curve, as well as the linear keyword. It's best to reuse the same few curves to provide a more consistent user experience.
 You can use each of the three functions in the following scenarios:
 Linear--Color changes and fade-in/-out effects. Decelerating--User-initiated changes. When the user clicks a button or hovers over an element, use easeout or something similar. This way, the user will see a fast, instant response to their input, easing out as the element comes to a stop. Accelerating--System-initiated changes. When content finishes loading or a timeout event triggers, use easein or something similar. This way, the element will ease in at first to draw the user's attention before the element speeds up and completes its motion.
 These are soft rules. They provide a good starting place, but don't be afraid to break them if something doesn't "feel" right. Occasionally, you'll also want a fourth curve for larger or more playful motions: use either an ease-inout (accelerate then decelerate) or a bounce effect (see chapter 16 for an example of a bounce).
 Let's take a closer look at how cubic-bezier() works. Another example curve is shown in figure 15.6, which shows a
 
-custom Bézier curve. This curve accelerates at the beginning, proceeds the fastest in the middle (the steepest part of the curve), then decelerates at the end. The curve exists on a Cartesian grid. It begins at point (0, 0) and ends at point (1, 1).
-Figure 15.6 A Bézier curve representing a timing function
+custom Bï¿½zier curve. This curve accelerates at the beginning, proceeds the fastest in the middle (the steepest part of the curve), then decelerates at the end. The curve exists on a Cartesian grid. It begins at point (0, 0) and ends at point (1, 1).
+Figure 15.6 A Bï¿½zier curve representing a timing function
 Because the two end points are fixed, the positions of the two handles are all you need to define the curve. In CSS, this curve can be defined as cubic-bezier(0.45, 0.05, 0.55,
 
-0.95). The four values represent the x- and y-coordinates of the two handles' control points. Curves are hard to visualize from these numbers alone. Editing them via a GUI is much more intuitive, so I like to edit and test a transition in the browser before copying the resulting cubic Bézier to my stylesheet. I prefer using the DevTools for this, but you can also use an online resource such as https://cubic-bezier.com.
+0.95). The four values represent the x- and y-coordinates of the two handles' control points. Curves are hard to visualize from these numbers alone. Editing them via a GUI is much more intuitive, so I like to edit and test a transition in the browser before copying the resulting cubic Bï¿½zier to my stylesheet. I prefer using the DevTools for this, but you can also use an online resource such as https://cubic-bezier.com.
 15.2.2 Steps
-One final type of timing function uses the steps() function. Instead of providing a fluid, Bézier-based transition from one value to the next, this moves it in discrete, instant "steps." The function takes two parameters: the number of steps and a keyword (either start or end), indicating whether each change should take place at the start or end of each step. Some step functions are illustrated in figure 15.7.
+One final type of timing function uses the steps() function. Instead of providing a fluid, Bï¿½zier-based transition from one value to the next, this moves it in discrete, instant "steps." The function takes two parameters: the number of steps and a keyword (either start or end), indicating whether each change should take place at the start or end of each step. Some step functions are illustrated in figure 15.7.
 Figure 15.7 The step() function changes the value incrementally.
 Note that end is the default value for the second parameter, so steps(3) can be used in place of steps(3, end). To see steps in action, edit your stylesheet to match the following listing.
 
@@ -11677,7 +11683,7 @@ Finally, you can also define a universal syntax with an asterisk. Thus syntax: "
 You aren't done with transitions just yet. They'll be useful in conjunction with transforms in the next chapter.
 
 Summary
-A transition causes one or more properties of an element to interpolate and animate smoothly between values when the properties change dynamically. A cubic Bézier curve defines the timing function used when transitioning property values. This can be linear, accelerating, or decelerating. Accelerating transitions are best for attracting the user's attention.
+A transition causes one or more properties of an element to interpolate and animate smoothly between values when the properties change dynamically. A cubic Bï¿½zier curve defines the timing function used when transitioning property values. This can be linear, accelerating, or decelerating. Accelerating transitions are best for attracting the user's attention.
 Decelerating transitions are best for indicating to the user that their action has taken effect. Some properties have discrete values that cannot be changed smoothly with a transition. JavaScript is sometimes necessary to coordinate transitions using class name changes when CSS alone cannot do what you need. The @property at-rule defines specific characteristics of a custom property. This enables transitions of the property and provides type safety for your code.
 
 16 Transforms
@@ -12279,7 +12285,7 @@ This menu occupies a small portion of the screen's real estate, but there's a lo
 Notice how the :hover and :focus-within pseudo-classes are on the top-level nav-links element. This way, the labels all appear as soon as the menu is moused over or the user focuses on one of the menu items using the Tab key on the keyboard.
 
 When hidden, the label is shifted 1 em to the left using translate. Then, as it fades in, it transitions back to its actual position. I've omitted the second parameter to the translate function here and specified only the x value, which controls horizontal translation. Because you don't need to translate the element up and down, this is fine. The custom cubic-bezier() function is worth looking at as well. This produces a bounce effect: the label moves right beyond the ending location before settling back where it stops. This curve is illustrated in figure 16.10.
-Figure 16.10 A Bézier curve with a bounce at the end
+Figure 16.10 A Bï¿½zier curve with a bounce at the end
 
 Notice that the curve extends outside the top of the box, meaning the value exceeds the value at the end of the transition. In transition from a translate: -1em to translate: 0, the label's transform will momentarily reach a value about 0.15 em beyond the final position before easing back. You can also similarly create a bounce at the beginning of the timing function by moving the first control handle below the bottom of the box. You cannot, however, extend outside the left and right edges as this would produce an illogical transition curve.
 Load the page in your browser and watch how this transition behaves. The bounce is subtle, so you may need to slow down the transition time to consciously see it, but it adds a bit of weight and momentum to the label, making the motion feel a little more natural.
@@ -12627,7 +12633,7 @@ The animation property is a shorthand for several properties. In this demo, you'
 
 animation-name (over-and-back)--Indicates the name of the animation as defined by the @keyframes rule.
 animation-duration (1.5s)--Indicates how long the animation lasts; in this case, 1.5 seconds.
-animation-timing-function (linear)--Indicates a timing function describing how the animation accelerates and/or decelerates. This can be a Bézier curve or a keyword value, like a transition timing function (ease-in, ease-out, and so on).
+animation-timing-function (linear)--Indicates a timing function describing how the animation accelerates and/or decelerates. This can be a Bï¿½zier curve or a keyword value, like a transition timing function (ease-in, ease-out, and so on).
 
 animation-iteration-count (3)--Indicates the number of times the animation repeats. If omitted, the initial value of 1 is used.
 Reload the page to watch the animation play again. Let's observe a couple of things about the way the animation behaves.
@@ -13512,7 +13518,7 @@ which matches the specified string value. Example:
 
 a[rel~="author"].
 
-[attr|="value"]--Targets by attribute and value, where the value either matches the specified string value or begins with it and is immediately followed by a hyphen (­). This is useful for the language attribute, which may or may not specify a language subcode (for example, Mexican Spanish, es-MX, or Spanish in general, es). Example: [lang|="es"].
+[attr|="value"]--Targets by attribute and value, where the value either matches the specified string value or begins with it and is immediately followed by a hyphen (ï¿½). This is useful for the language attribute, which may or may not specify a language subcode (for example, Mexican Spanish, es-MX, or Spanish in general, es). Example: [lang|="es"].
 
 These use square brackets in their syntax, which can seem odd when you first encounter them. These are still normal selectors, like any listed previously. The following ruleset is an example built using an attribute selector. This selects any <input type="password"> element and gives it a blue border:
 input[type="password"] { border: 2px solid blue;
@@ -13911,7 +13917,7 @@ Listing B.12 Iterating over a series of values
 
 #2
 
-transition-delay: (0.1s * $index) ­ 0.1s;
+transition-delay: (0.1s * $index) ï¿½ 0.1s;
 
 #3
 
@@ -14060,7 +14066,7 @@ flexbox and fly-in labels modules layer mask-image property, 2nd margin property
 media types max-width property mm unit modal dialog box
 creating with fixed positioning, 2nd preventing screen from scrolling while open max-height property margins collapsed, 2nd Media module, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th modules composing into larger structures, 2nd decoupling from containers defined naming modules overview of simple module variations of, 2nd, 3rd with multiple elements, 2nd, 3rd
 
-margin-box value mask-origin property Marcotte, Ethan, 2nd Matuzovic´, Manuel mask-clip property magic numbers, 2nd min-width media feature mask-mode property, 2nd mix blend modes
+margin-box value mask-origin property Marcotte, Ethan, 2nd Matuzovicï¿½, Manuel mask-clip property magic numbers, 2nd min-width media feature mask-mode property, 2nd mix blend modes
 N
 normal document flow, 2nd, 3rd centering content horizontally logical properties, 2nd
 not keyword naming, 2nd nav-menu class, 2nd nav-links element, 2nd nonnested declarations nav element, 2nd
@@ -14120,7 +14126,7 @@ defining, 2nd floating, 2nd overview of scoping limit, 2nd serif typeface Sulliv
 
 small viewport units shape-margin property, 2nd style attribute sprite sheet stacking order, 2nd
 T
-timing functions, 2nd custom Bézier curves, 2nd steps
+timing functions, 2nd custom Bï¿½zier curves, 2nd steps
 timelines, scroll-based, 2nd transition property two column layout, 2nd, 3rd, 4th, 5th type safety text-shadow property type selector, 2nd, 3rd three column layout, 2nd, 3rd, 4th, 5th, 6th text-indent property translateZ() function, 2nd top property, 2nd
 
 transform property, 2nd, 3rd, 4th, 5th tables, fluid layouts transition-* properties triangle, CSS only, 2nd TRouBLe mnemonic top-nav module transition shorthand property transform-style (preserve-3D) property table-cell display translate() function turn unit text-transform property theme layer, 2nd tile-row module tile class, 2nd tag names, avoiding generic in module selectors typography transition-property property typeface
@@ -14145,4 +14151,3 @@ Z
 z-index property, 2nd manipulating stacking order with
 
 rendering process and stacking order stacking contexts, 2nd
-

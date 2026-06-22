@@ -1,210 +1,172 @@
-# Convenções de Arquivos e Pastas / File & Folder Conventions
+# File & Folder Conventions
 
-> Este documento explica o padrão de organização, **nomenclatura** e **formatação interna** dos arquivos `.md` da pasta `to-brain`. Serve de guia para manter a consistência ao adicionar novos arquivos.
+> This document defines the **universal standard** every file in this library follows: folder layout, file **naming**, and the **internal format** of each `.md` book and reading-list file. Use it as the single source of truth when adding or editing files.
 >
-> This document explains the organization, **naming** and **internal formatting** standard of the `.md` files in the `to-brain` folder. Use it as a guide to keep things consistent when adding new files.
+> Three rules are absolute and apply to **every** file:
+>
+> 1. **English only.** No Portuguese (or any other language). Titles, metadata, descriptions, and body text are in English.
+> 2. **No images.** No book covers, figures, or embedded image references. (Literal `<img>` text that appears *inside* a book's prose or code examples — e.g. an HTML/JavaScript book teaching the `<img>` tag — is content, not an image, and is kept.)
+> 3. **Standard header.** Every file opens with the standard metadata header (section 4), then `---`, then content.
 
 ---
 
-## 1. Estrutura geral
+## 1. Folder structure
 
-A pasta é dividida em dois grandes blocos, separados por um prefixo numérico de dois dígitos no nome de cada subpasta:
+The library is a single corpus, split into topic folders. Each folder name is prefixed with a two-digit number that fixes its display order.
 
 ```
-to-brain/
-├── 00_academic_curriculum/      ← bloco ACADÊMICO (listas de leitura bilíngues)
-├── 01_languages_and_fundamentals/ ┐
-├── 02_algorithms_and_data_structures/  │
+.
+├── 00_academic_curriculum/         ← academic reading lists (one file per discipline)
+├── 01_languages_and_fundamentals/  ┐
+├── 02_algorithms_and_data_structures/ │
 ├── 03_design_and_architecture/     │
-├── 04_engineering_and_practices/    │
-├── 05_databases/          │  bloco PROFISSIONAL
-├── 06_web_and_frontend/           │  (livros completos por tema)
-├── 07_devops_sre_operations/     │
-├── 08_distributed_systems/    │
-├── 09_security_and_privacy/  │
-├── 10_ai_and_llm/                 │
+├── 04_engineering_and_practices/   │
+├── 05_databases/                   │
+├── 06_web_and_frontend/            │  professional books
+├── 07_devops_sre_operations/       │  (one full book per file)
+├── 08_distributed_systems/         │
+├── 09_security_and_privacy/        │
+├── 10_ai_and_llm/                  │
 ├── 11_management_product_process/  │
-├── 12_design_ux/                ┘
-├── README.md                    ← índice navegável de todo o acervo
-├── FILE_CONVENTIONS.md    ← este arquivo
-├── ROLES_AND_ACRONYMS.md       ← glossário de cargos
-└── AGENTS_AND_SKILLS_BY_ROLE.md ← prompts de Agent + Skill por cargo
+├── 12_design_ux/                   │
+├── 13_automation_and_integration/  ┘
+├── README.md                       ← navigable index of the whole corpus
+├── FILE_CONVENTIONS.md             ← this file (the standard)
+├── ROLES_AND_ACRONYMS.md           ← tech roles glossary
+└── AGENTS_AND_SKILLS_BY_ROLE.md    ← Agent prompt + Skill per role
 ```
 
-**Regra do prefixo `NN_`:** toda subpasta começa com dois dígitos seguidos de `_`. O número define a ordem de exibição. O bloco acadêmico ocupa o `00_`; os blocos profissionais vão de `01_` a `12_`, agrupados por tema (na ordem aproximada de uma formação em Engenharia da Computação: linguagens → algoritmos → design → engenharia → dados → web → operações → segurança → IA → gestão → design).
+**Folder-name rule:** `NN_words_separated_by_underscore` — lowercase, English, no spaces, no accents. The number defines ordering (roughly a Computer Engineering track: languages → algorithms → design → engineering → data → web → operations → security → AI → management → design → automation).
 
-**Nome das pastas:** `NN_palavras_separadas_por_underscore`, em português, minúsculas, sem acento e sem espaços.
+There are two kinds of content file, and both obey the three absolute rules above.
 
 ---
 
-## 2. Pasta `00_academic_curriculum/` — arquivos BILÍNGUES
+## 2. Academic reading lists — `00_academic_curriculum/`
 
-São listas de leitura por disciplina (de um currículo de Ciência/Engenharia da Computação). **Cada arquivo contém os dois idiomas no mesmo documento.**
+Each file is the reading list for one discipline. **One language: English.** (These files were previously bilingual; the Portuguese sections have been removed.)
 
-### Nomenclatura
+### Naming
+
 ```
-NN_slug_em_ingles.md
-```
-- `NN` = número da disciplina no currículo (mantém a numeração original; por isso há saltos, ex.: 01, 02, 03, 05, … 34).
-- `slug_em_ingles` = identificador curto em inglês, minúsculas, com underscore (ex.: `digital_circuits`, `theory_of_computation`).
-
-Exemplos: `01_digital_circuits.md`, `18_database.md`, `31_theory_of_computation.md`.
-
-### Estrutura interna (formato bilíngue)
-```markdown
-# NN — Título em Português / English Title
-
-> **Arquivo bilíngue (PT-BR / EN)** — lista de leitura da disciplina.
-> **Bilingual file (PT-BR / EN)** — course reading list.
-
----
-
-## 🇧🇷 Português — Título em Português
-
-<conteúdo completo em português>
-
----
-
-## 🇺🇸 English — English Title
-
-<full content in English>
+NN_slug_in_english.md
 ```
 
-Regras:
-- O **H1** traz o número + título nos dois idiomas, separados por ` / `.
-- Duas seções **H2**, uma por idioma, marcadas com a bandeira (`🇧🇷` / `🇺🇸`), separadas por `---`.
-- O conteúdo de cada idioma preserva a formatação original (tabelas de metadados do livro, imagens, etc.).
+- `NN` = the discipline number from the source curriculum (gaps are expected, e.g. 01, 02, 03, 05, … 34).
+- `slug_in_english` = short English identifier, lowercase, underscores (e.g. `digital_circuits`, `theory_of_computation`).
 
-### Anatomia de cada entrada de livro (dentro de cada seção de idioma)
+Examples: `01_digital_circuits.md`, `18_database.md`, `31_theory_of_computation.md`.
 
-Cada disciplina lista vários livros recomendados. **Cada livro é uma entrada** que segue sempre o mesmo template:
+### File structure
 
 ```markdown
-<hr>
+# NN — Discipline Title
 
-## <Nome do Livro>
-
-<p align="center">
-  <img src="<url da capa>" width="550px">
-</p>
-
-<table align="center">
-    <tr><th>Título</th><td>...</td></tr>
-    <tr><th>Autores</th><td>...</td></tr>
-    <tr><th>Ano de Publicação</th><td>...</td></tr>
-    <tr><th>Edição</th><td>...</td></tr>
-    <tr><th>ISBN</th><td>...</td></tr>
-</table>
-
-### Descrição
-
-<p align="justify">
-<texto descritivo do livro>
-</p>
-```
-
-Elementos fixos da entrada, na ordem:
-1. **`<hr>`** — separador que abre cada entrada de livro.
-2. **`## <Nome>`** — título do livro como H2.
-3. **Capa centralizada** — `<p align="center">` com `<img ... width="550px">`.
-4. **Tabela de metadados** — `<table align="center">` com exatamente estes campos (rótulo em `<th>`, valor em `<td>`):
-
-   | 🇧🇷 Português | 🇺🇸 English |
-   |--------------|------------|
-   | Título | Title |
-   | Autores | Authors |
-   | Ano de Publicação | Publication Year |
-   | Edição | Edition |
-   | ISBN | ISBN |
-5. **`### Descrição` / `### Description`** — seguido de um `<p align="justify">` com o resumo do livro.
-
-> Observação: os rótulos da tabela e o título da descrição mudam de idioma conforme a seção (`🇧🇷` usa "Título/Autores/.../Descrição"; `🇺🇸` usa "Title/Authors/.../Description"). O `<hr>`, a imagem centralizada e a tabela são idênticos em estrutura nos dois idiomas.
+> Reading list for this discipline.
 
 ---
 
-## 3. Pastas `01_*` a `12_*` — livros completos PROFISSIONAIS
+## <Book Title>
 
-São extrações de livros completos, agrupados por tema. **Por padrão, o conteúdo está em inglês** (idioma original da maioria).
+| Field | Value |
+|-------|-------|
+| Authors | … |
+| Publication Year | … |
+| Edition | … |
+| ISBN | … |
 
-### Nomenclatura
+### Description
+
+<one descriptive paragraph about the book>
+
+---
+
+## <Next Book Title>
+…
 ```
-Título do Livro - Sobrenome do(s) Autor(es).md
-```
-Padrão "Título - Autor", legível por humanos, com maiúsculas e espaços normais. Regras:
-- Título limpo e reconhecível (remova ruído de nomes de download: ISBNs, `z-lib`, `_compress`, códigos de editora).
-- Edição entre parênteses quando relevante: `(2nd Ed)`, `(3rd Ed)`, `(7th Ed)`.
-- Autor(es) pelo sobrenome após ` - `; vários autores separados por vírgula.
 
-Exemplos:
+Rules for each book entry:
+
+1. **`## <Title>`** — the book title as an `H2`. (No cover image precedes it — covers are removed.)
+2. **Metadata table** — a markdown table with exactly these fields: `Authors`, `Publication Year`, `Edition`, `ISBN`. Omit a row only if the value is genuinely unknown.
+3. **`### Description`** — followed by a single English paragraph.
+4. Entries are separated by `---`.
+
+---
+
+## 3. Professional books — `01_*` to `13_*`
+
+Each file is the full text of one book, extracted from EPUB/PDF and converted to `.md`, grouped by topic.
+
+### Naming
+
+```
+Title (Edition) - Author(s).md
+```
+
+Human-readable "Title - Author", normal capitalization and spaces. Rules:
+
+- Clean, recognizable title — strip download noise (ISBNs, `z-lib`, `_compress`, publisher codes).
+- Edition in parentheses when relevant: `(2nd Ed)`, `(3rd Ed)`, `(7th Ed)`.
+- Author(s) by surname after ` - `; multiple authors separated by commas.
+
+Examples:
+
 - `Clean Architecture - Martin.md`
 - `Designing Data-Intensive Applications - Kleppmann.md`
 - `CSS in Depth (2nd Ed) - Grant.md`
 - `REST in Practice - Webber, Parastatidis, Robinson.md`
 
-### Formatação interna do arquivo original (livro completo)
+### Internal format
 
-Diferente do bloco acadêmico, **os arquivos de livro original NÃO seguem um template rígido**. São o **texto integral extraído** do livro (de EPUB/PDF) e convertido para `.md`. Características esperadas:
-- O conteúdo segue a estrutura natural do livro: front matter (copyright, sumário), capítulos e seções.
-- A marcação markdown é **mínima e irregular** — pode haver títulos (`#`, `##`), mas grande parte é texto corrido em parágrafos.
-- Podem aparecer **artefatos de extração**: caracteres estranhos (ex.: `�`), espaçamento anormal entre letras, quebras de linha herdadas do PDF, imagens não preservadas. Isso é esperado e não deve ser "consertado" manualmente sem necessidade.
-- **Regra de ouro:** o arquivo original em inglês é mantido **intacto** como fonte. Toda padronização/limpeza acontece na versão traduzida.
+The **body** of a professional book is the **full extracted text**, kept close to the source — it is *not* re-typeset into a rigid template. Expect natural book structure (front matter, chapters, sections), minimal/irregular markdown, and occasional extraction artifacts (stray characters, odd spacing, inherited line breaks). That is acceptable and is **not** "fixed" by hand without reason — the extracted text is the RAG source.
 
-### Versões traduzidas (bilíngue por arquivos separados)
-A tradução para português **não** é embutida no arquivo original. Ela vai em um **arquivo irmão** na mesma pasta, com o sufixo ` (PT-BR)`:
-```
-Learning GraphQL - Porcello, Banks.md         ← original em inglês (intacto)
-Learning GraphQL - Porcello, Banks (PT-BR).md ← tradução em português
-```
-Esse é o modelo de "bilíngue" adotado para os livros: **um arquivo por idioma**, lado a lado.
+What the standard **does** enforce on every professional file:
 
-**Template interno do arquivo `(PT-BR)`** — diferente do original, a tradução é markdown limpo e padronizado:
+- The file **opens with the standard header** (section 4), then `---`, then the extracted body.
+- **No image references** anywhere — cover blocks (`<p align="center"><img …></p>`) and figure embeds (`![](…)`) are removed. (Again: `<img>` written as part of prose or a code example is content and stays.)
+- **English only.** Portuguese translations are **not** kept (the previous "sibling `(PT-BR)` file" model is retired).
+
+---
+
+## 4. The standard header (every file)
+
+Every content file begins with this block, derived from the filename and folder:
+
 ```markdown
-# <Título do Livro em Português>
-### <Subtítulo em Português>
-**<Autores>**
+# <Title>
 
-> **Tradução em português (PT-BR).** O arquivo original em inglês está em
-> `<nome do arquivo original>.md`, na mesma pasta. Tradução em andamento — esta é a parcela N.
-
-*<linha de copyright/edição do original>*
+> **Author(s):** <names> · **Edition:** <edition> · **Year:** <year> · **ISBN:** <isbn>
+> **Category:** <NN_folder_name> · **Language:** English
 
 ---
-
-## <Capítulo / Seção>
-
-<texto traduzido em parágrafos limpos; blocos de código preservados em ``` ```; termos técnicos mantidos quando convém>
-
----
-
-> ⏳ **Continuação pendente** — A tradução segue a partir de "<próxima seção>".
 ```
 
-Regras da tradução:
-- **H1** = título do livro em português; subtítulo em **H3**; autores em **negrito**.
-- Um **blockquote de cabeçalho** identifica que é tradução e aponta para o arquivo original.
-- Blocos de **código, comandos e identificadores** são preservados como no original (não traduzir código).
-- Quando a tradução é feita em partes, termina com um **marcador de continuação** (`⏳ Continuação pendente`) indicando o ponto de retomada.
+- Drop any field whose value is unknown (e.g. omit `Year`/`ISBN` for raw extractions that do not state them).
+- For academic reading-list files the `# <Title>` is `NN — Discipline Title` and the per-book metadata lives in each entry's table (section 2) rather than the header.
 
 ---
 
-## 4. Arquivos na raiz
+## 5. Root support files
 
-Documentos de apoio que descrevem ou indexam o acervo. Nome em `MAIUSCULAS_COM_UNDERSCORE.md` (exceto `README.md`):
-- `README.md` — índice navegável de todas as pastas e arquivos.
-- `FILE_CONVENTIONS.md` — este guia de padrões.
-- `ROLES_AND_ACRONYMS.md` — glossário de cargos de tecnologia (sigla + nome).
-- `AGENTS_AND_SKILLS_BY_ROLE.md` — prompt de Agent + Skill para cada cargo.
+Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md` (except `README.md`), all in English:
+
+- `README.md` — navigable index of every folder and file.
+- `FILE_CONVENTIONS.md` — this standard.
+- `ROLES_AND_ACRONYMS.md` — tech roles glossary (acronym + name).
+- `AGENTS_AND_SKILLS_BY_ROLE.md` — Agent prompt + Skill per role.
 
 ---
 
-## 5. Resumo rápido (regras)
+## 6. Quick reference
 
-| Item | Padrão |
-|------|--------|
-| Pasta | `NN_palavras_minusculas_sem_acento` |
-| Disciplina acadêmica | `NN_slug_ingles.md`, **bilíngue no mesmo arquivo** (seções 🇧🇷/🇺🇸) |
-| Livro profissional | `Título (Edição) - Autor.md`, em inglês |
-| Tradução de livro | arquivo irmão com sufixo ` (PT-BR)` |
-| Doc de apoio (raiz) | `MAIUSCULAS_COM_UNDERSCORE.md` |
-| Acentos/espaços em nome de pasta | não usar |
-| Ordem | definida pelo prefixo numérico `NN_` |
+| Item | Standard |
+|------|----------|
+| Language | **English only**, every file |
+| Images | **None** — covers and figure embeds removed (literal `<img>` in prose/code is kept) |
+| Folder | `NN_lowercase_words` (English, no accents/spaces) |
+| Academic file | `NN_slug.md`, English, one entry per book (table + description, no cover) |
+| Professional book | `Title (Edition) - Author.md`, English, raw body + standard header |
+| Header | standard metadata block (section 4) at the top of every file |
+| Support docs (root) | `UPPERCASE_WITH_UNDERSCORE.md` |
+| Ordering | by the numeric `NN_` prefix |

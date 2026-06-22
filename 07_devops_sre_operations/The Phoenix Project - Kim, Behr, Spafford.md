@@ -1,3 +1,9 @@
+# The Phoenix Project
+
+> **Author(s):** Kim, Behr, Spafford Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 Contents
 Cover Cast Prologue Chapter 1 Chapter 2 Chapter 3 Chapter 4 Chapter 5 Chapter 6 Chapter 7 Chapter 8 Chapter 9 Chapter 10 Chapter 11 Chapter 12 Chapter 13 Chapter 14 Chapter 15 Chapter 16 Chapter 17 Chapter 18 Chapter 19 Chapter 20 Chapter 21 Chapter 22 Chapter 23 Chapter 24 Chapter 25 Chapter 26 Chapter 27 Chapter 28 Chapter 29 Chapter 30
 
@@ -26,7 +32,7 @@ According to our sources, the board has given Strauss and Masters six months to 
 ###
 
 Chapter 1
-· Tuesday, September 2
+ï¿½ Tuesday, September 2
 "Bill Palmer here," I say, answering my cell phone on the first ring. I'm late, so I'm driving ten miles per hour over the speed limit, instead
 of my usual five. I spent the morning at the doctor's office with my threeyear-old son, trying to keep the other toddlers from coughing on us, constantly being interrupted by my vibrating phone.
 The problem of the day is intermittent network outages. As the Director of Midrange Technology Operations, I'm responsible for the availability and smooth functioning of a relatively small IT group at Parts Unlimited, a $4 billion per year manufacturing and retail company based in Elkhart Grove.
@@ -123,7 +129,7 @@ payment could screw up our credit rating even more, which we spent years repairi
 "You want me to jump on this and manage the incident to conclusion?" Steve nods, giving me the thumbs-up. "Keep me posted on the progress, please." His expression turns grave. "Every responsible company takes care of its employees. Many of our factory workers live from paycheck to paycheck. Do not create hardship for their families, you hear? This could get us in trouble with the union, maybe even triggering a work-stoppage, creating some very bad press for us." I nod automatically. "Restore critical business operations and keep us out of the front-page news. Got it. Thanks." Why, exactly, I'm thanking him is not clear.
 
 Chapter 2
-· Tuesday, September 2
+ï¿½ Tuesday, September 2
 "How'd it go in there?" Stacy asks kindly, looking up from her keyboard. I just shake my head. "I can't believe it. He just talked me into taking a
 new job I don't want. How did that happen?" "He can be very persuasive," she says. "For what it's worth, he's one-of-
 a-kind. I've worked for him for nearly ten years, and I'll follow him anywhere. Anything I can help with to make your job easier?"
@@ -217,7 +223,7 @@ Patty and I both nod. It's a good idea. We need to establish an accurate timelin
 That doesn't work for solving crimes, and it definitely doesn't work for solving outages.
 
 Chapter 3
-· Tuesday, September 2
+ï¿½ Tuesday, September 2
 I follow Patty and Wes as they walk past the NOC, into the sea of cubicles. We end up in a giant workspace created by combining six cubicles. A large table sits against one wall with a keyboard and four LCD monitors, like a Wall Street trading desk. There are piles of servers everywhere, all with blinking lights. Each portion of the desk is covered by more monitors, showing graphs, login windows, code editors, Word documents, and countless applications I don't recognize.
 Brent types away in a window, oblivious to everything around him. From his phone, I hear the NOC conference line. He obviously doesn't seem worried that the loud speakerphone might bother his neighbors.
 "Hey, Brent. You got a minute?" Wes asks loudly, putting a hand on his shoulder.
@@ -313,7 +319,7 @@ Too tired to do anything more, I turn off the lights, making a mental note to my
 An hour later I'm still staring at the ceiling, very much awake.
 
 Chapter 4
-· Wednesday, September 3
+ï¿½ Wednesday, September 3
 I drink my coffee as I open up my laptop at 7:30 a.m., hoping to get through my e-mails and voicemails before my 8 a.m. meeting. I stare at the screen. In the twenty-two hours since I was promoted, 526 new e-mails have arrived in my inbox.
 Holy crap. I skip all the messages about yesterday's failure and am startled by all the congratulatory notes from vendors, wanting to meet for lunch. How did they find out? I'm pretty sure most of my organization still doesn't know. I read an e-mail from Ellen, my former boss' assistant, who is now assigned to support me, congratulating me and asking when we can meet. I reply, telling her I'd like to take her out for coffee this morning. I send a note to the IT service desk, requesting that Ellen be granted access to my calendar. A blinking red light on my desk phone catches my attention. It reads, "7:50 a.m. 62 new voicemails." My jaw drops. It would take an hour I don't have just to listen to them. I e-mail Ellen again, asking her to go through all my voicemails, transcribing any that require action. Before I hit send, I quickly add, "If there are any messages from Steve or Dick, please call me right away on my cell phone." Grabbing my clipboard, I hurry toward my first meeting when my phone vibrates. It's an urgent e-mail:
 
@@ -450,7 +456,7 @@ audit finding around and went to Luke, our old CIO. And just like you did, Luke 
 Interesting. "I hear you," I say. "We can't repeat that, but we also can't have another payroll disaster. Wes, I need you there, and I need you to help create the solution. Otherwise, you're part of the problem. Can I count on you?" I hear him sigh loudly. "Yeah, sure. But you can also count on me calling `bullshit' if I see Patty trying to create some sort of bureaucracy that sucks out everybody's will to live." I sigh. Before, I was merely worried that IT Operations was under attack by Development, Information Security, Audit, and the business. Now, I'm starting to realize that my primary managers seem to be at war with each other, as well. What will it take for us to all get along?
 
 Chapter 5
-· Thursday, September 4
+ï¿½ Thursday, September 4
 I wake up with a jolt when the alarm clock goes off at 6:15 a.m.. My jaw still hurts from clenching it all night. The dismal prospects of the upcoming Phoenix launch were never far from my mind.
 As usual, before climbing out of bed, I quickly scan my phone for any bad news. Usually, I would spend about ten minutes replying to e-mails--it always feels good to lob a couple of balls off my side of the court.
 I see something that makes me bolt upright so abruptly that I wake up Paige. "Oh, my God. What, what?" she asks frantically, not fully awake.
@@ -558,7 +564,7 @@ I stand up. "Great thinking, guys. Get a meeting set up for us to go over what y
 She gives me the thumbs-up. Now we're getting somewhere.
 
 Chapter 6
-· Friday, September 5
+ï¿½ Friday, September 5
 In another one of the endless Phoenix status meetings, I realize that the developers are even more behind than we feared. As Wes had predicted, more and more work is being deferred to the next release, including almost all of the testing.
 This means that we'll be the ones finding the problems when they blow up in production, instead of the Quality Assurance (QA) Department.
 Great. During a lull in the discussion, I look down at my phone and see an email from Patty. She wants to meet about resourcing, promising some eyeopening surprises. I open the attached spreadsheet, seeing an encouraging level of detail, but on my minuscule phone screen, I can't make heads or tails of it. I reply to Patty that I'm on the way and ask her to have Wes meet me there. When I arrive, I'm surprised to see that Wes has set up a projector, displaying a spreadsheet on the wall. I'm excited that we're meeting to analyze the situation, instead of just reacting to the daily fires. I grab a seat. "Okay, whatcha got for me?" Wes starts. "Patty did a great job putting this together. What we found was--well, it was interesting." Patty explains, "We did our interviews, collected the data, and then did our analysis. Right now, these numbers are only for our key resources. We're already seeing something troubling."
@@ -641,7 +647,7 @@ I can hear Patty typing over the phone. "Got it. I'll probably need to have some
 So am I. "Excellent," I say, leaving my concerns unvoiced.
 
 Chapter 7
-· Friday, September 5
+ï¿½ Friday, September 5
 When I get back to my desk, I'm looking for the Advil I usually keep on my desk when my cell phone rings. "Palmer here," I say, rummaging through my drawers.
 "Hi, Bill. It's Stacy--Steve's assistant. I'm glad I caught you. There's a potential new board member in town named Erik Reid who needs to talk with all the IT executives. He's wondering if you're available for an hour right now."
 "Hang on a sec while I pull up my calendar," I reply. The screen resolution on this old laptop is so low that the weekly view is unusable. I switch to the daily view, and the screen goes blank as the laptop chatters and whirs. I give up waiting and say earnestly, "Look, I know this is important, but can't this wait until Monday? You would not believe the day I'm having." She replies quickly, "I wish it could wait, but he's only in town today. And from what I've seen, Bob Strauss, you know, the new company chairman, and Steve are in a tizzy because they're worried that Erik may not accept our offer to join the board. He's apparently some technology hotshot, and Bob and Steve managed to get him in town to woo him. He insists on meeting the IT leadership team before he leaves." "Okay, I'm in," I say, suppressing a sigh. "Good. We have him set up in the conference room right by me. Come on over--there's a great coffee and doughnut spread here."
@@ -725,7 +731,7 @@ tape keeps it attached. I grab a letter opener, finally managing to slash the ta
 The laptop finally goes silent.
 
 Chapter 8
-· Monday, September 8
+ï¿½ Monday, September 8
 I spent all weekend working on a PowerPoint slide deck for my meeting with Steve this morning. Despite all that work, I wish I could have done more to prepare.
 I force myself to relax, visualizing having a healthy and vigorous business discussion with him, walking out with everything I ask for. I keep reminding myself how important this is for the company and my organization. Everyone worked so hard to prepare for this and now success or failure depends on how well I can communicate it all to Steve.
 Stacy smiles when I arrive and says warmly, "Go on in. I'm sorry we could only get you thirty minutes."
@@ -821,7 +827,7 @@ I nod. "No doubt that this isn't sustainable in its current form. But let's get 
 The meeting winds down and we all leave smiling. That's a first for my team.
 
 Chapter 9
-· Tuesday, September 9
+ï¿½ Tuesday, September 9
 I'm in the most ruthless budget meeting I've ever attended. Dick sits in the back of the room, listening attentively and occasionally officiating. We all defer to him, as he'll create the first cut of the annual plan. Sarah sits next to him, tapping away on her iPhone.
 I finally pick up the phone. It must be a genuine emergency. It's been vibrating almost nonstop for the past minute.
 I read, "Sev 1 incident: credit card processing systems down. All stores impacted."
@@ -883,7 +889,7 @@ Thinking for a moment, I decide there's value in knowing that changes represent 
 I've now identified three of the four categories of work. For a brief moment, I wonder what the fourth category of work is.
 
 Chapter 10
-· Thursday, September 11
+ï¿½ Thursday, September 11
 The next morning, bright and early, I'm back in the Phoenix war room. Kirsten gives us a rundown of the most critical Phoenix project tasks at the beginning of each day. Because the stakes are so high, committed tasks are usually reported by the responsible manager as "completed."
 No one wants to get on Kirsten's bad side. Or Steve's, for that matter. The bad news of the day comes from William Mason, Director of Quality Assurance, who works for Chris. Apparently, they're still finding twice as many broken features as are getting fixed. It's never a good sign when pieces are falling off the car as it moves down the assembly line. No wonder all of us are dreading the deployment date. I'm pondering how we can mitigate some of this risk when I hear Kirsten call Brent's name for the third time. And for the third time, Wes is having to explain why something didn't get done. Sarah says from the back of the room, "Wes, once again we're getting bottlenecked by your people. Are there some personnel issues here that you need to be addressing?" Wes turns bright red and is about to respond, when I quickly interject, "Kirsten, how many other tasks have been assigned to Brent?" Kirsten quickly replies, "As of today, there are five outstanding tasks. Three were assigned last Wednesday, and two were assigned last Friday." "Okay, I'm on it," I say. "As soon as we're done here, I'll look into what's going on. Expect a status report by noon today along with revised
 
@@ -948,7 +954,7 @@ make him take a week off, completely free of any escalation duties?" Wes suggest
 "Make it so, guys," I say, smiling as I imagine that scene. Before I forget, I add, "Wes, I want a timesheet from Brent every day, and I want every escalation Brent works in the ticketing system. We need that documented so we can analyze it later. Anyone using Brent's time will need to justify it to me. If it's not justified, I'll escalate it to Steve, and that person and his manager will have to explain to Steve why they think their project or task is so important." "This is amazing," Patty says. "We've gotten more change, incident, and escalation processes going in the last week than we have in the last five years!" "It's probably just in the nick of time," Wes says, sounding relieved. "Do me a favor, and don't tell anyone I said that. I've got a reputation to protect."
 
 Chapter 11
-· Thursday, September 11
+ï¿½ Thursday, September 11
 Later that day during lunch, I curse loudly. I was trying to use my precious few unscheduled minutes during my break to get caught up on e-mails but forgot that my crappy laptop crashes if I turn it on while it's in the docking station. It's the third time I've done it this week.
 I'm already eating late and half my lunch break will be gone by the time I can log on.
 Looking around, I find a blank Post-it note on my desk and write in large letters, "DO NOT INSERT LAPTOP UNTIL POWERED ON!!!" and put it on the docking station to avert my next act of time-wasting stupidity.
@@ -991,7 +997,7 @@ I nod and smile. She types away on her laptop. "Okay, I've got it. I'm not sure 
 I look over at Wes, "You look concerned--anything you want to share?" "Uh..." Wes says eventually. "There's not much to share, really. Except that this is a very different way of working than anything I've seen in IT. No offense, but did you switch medication recently?" I smile wanly, "No, but I did have a conversation with a raving madman on a catwalk overlooking the manufacturing plant floor." But if Erik was right about WIP in IT Operations, what else was he right about?
 
 Chapter 12
-· Friday, September 12
+ï¿½ Friday, September 12
 It's 7:30 p.m. on Friday, two hours after the Phoenix deployment was scheduled to start. And things are not going well. I'm starting to associate the smell of pizza with the futility of a death march.
 The entire IT Operations team was assembled in preparation for the deployment at 4 p.m. But there was nothing to do because we hadn't received anything from Chris' team; they were still making last minute changes.
 It's not a good sign when they're still attaching parts to the space shuttle at liftoff time.
@@ -1114,7 +1120,7 @@ I hear her sigh disapprovingly. "You've been there for over ten years and you've
 "You and me both, honey..." I say.
 
 Chapter 13
-· Monday, September 15
+ï¿½ Monday, September 15
 By Monday, the Phoenix crisis is a public fiasco. We made it onto the frontpage news of all the technology sites. There are rumors that someone from The Wall Street Journal was trying to get Steve for an on-the-record interview.
 I start with a jolt when I think I hear Steve mention my name. Completely disoriented, I look around and realize that I'm at work and that I must have fallen asleep while waiting for the Phoenix status meeting to start. I sneak a peek at my watch. 11:04 a.m. I have to look at my phone to figure out that it's Monday. For a moment, I wonder where my Sunday went, but seeing Steve redfaced, and addressing the entire room makes me pay attention. "--don't care a goddamned bit whose fault this is. You can bet your ass that this won't ever happen again on my watch. But right now, I don't give two shits about the future--we are massively screwing our customers and shareholders. All I want to hear about is how we're going to dig ourselves out of this hole and restore normal business operations." He turns and points at Sarah saying, "And you are not off the hook until every one of your store managers says that they can transact normally. Manual card swipes? What are we, in some Third World country?" Sarah replies calmly, "I totally understand how unacceptable this is. I'm making sure my entire staff knows that they are accountable and responsible."
 
@@ -1174,7 +1180,7 @@ He signs off, and I consider the potential stroke of good fortune that someone c
 I then wonder if the fatigue is getting to me. Something is really screwy in the world when I'm finding reasons to thank Development and Security in the same day.
 
 Chapter 14
-· Tuesday, September 16
+ï¿½ Tuesday, September 16
 By late Monday night, we had stabilized the situation. Working with Chris' team, the stores finally had working cash registers again, but everyone knows it's only a temporary fix. At least we don't need to keep sensitive cardholder data anymore, much to John's relief.
 It's 10:37 a.m., and I'm standing outside of Steve's office with Chris. He's leaning against the wall, looking pensively at the floor. Ann, John, and Kirsten are also here, waiting for their turn, like penitent students waiting outside the principal's office in elementary school.
 The door to Steve's office opens and Sarah walks out. She looks ashen faced and on the verge of tears. She was the first to go in, and her session didn't even take the whole ten minutes.
@@ -1246,7 +1252,7 @@ Still, I think it's important that we get our guys to drop by the party. In orde
 I grit my teeth and call Wes. As Spock once said, "Only Nixon could go to China." And I guess I'm Nixon.
 
 Chapter 15
-· Wednesday, September 17
+ï¿½ Wednesday, September 17
 Even though I can't take the entire day off, I take Paige out for breakfast. She's been holding things down on the home front single-handedly while I have spent every waking hour at work.
 We're at Mother's, one of our favorite breakfast restaurants. We were here on their opening day almost eight years ago. The owner has since hit the big time. Not only has her restaurant become a local favorite, but she's written a cookbook, and we saw her all over TV during her book tour.
 We are so happy to see her success. And I know Paige loves it when the owner recognizes us, even when it's crowded.
@@ -1354,7 +1360,7 @@ Then, for the next ten minutes, I capture as much as I can remember on my clipbo
 When I'm done, I head inside to call Wes and Patty. I know exactly what I need to do and am excited to get started.
 
 Chapter 16
-· Thursday, September 18
+ï¿½ Thursday, September 18
 I'm at my desk, tying up some loose ends when Ellen runs up to me, holding an e-mail printout. It's from Dick, raising the alarm with all company executives that something has gone terribly wrong with the company invoicing systems. Earlier today, one of the clerks discovered that no customers had been invoiced for three days. Among other things, this means that customers haven't been paying on time, which means the company will have less cash in the bank at the end of the quarter than projected, which will raise all sorts of uncomfortable questions when the company earnings are announced.
 It's clear from Dick's string of e-mails that he's livid, and apparently, his whole accounts receivable staff and controller have been chain smoking and doing damage control at all levels.
 From: Dick Landry To: Steve Masters Cc: Bill Palmer Date: September 18, 3:11 PM Priority: Highest Subject: ACTION NEEDED: Potential $50MM cash shortfall due to IT failure
@@ -1414,7 +1420,7 @@ I wipe the sweat off my forehead, and look up from my phone to see my wife Paige
 I turn the ringer off on my phone and put it back in my pocket, saying, "Honey, I'm not sure how much of that conversation you heard, but let me explain..."
 
 Chapter 17
-· Monday, September 22
+ï¿½ Monday, September 22
 In the four days since quitting, Paige has been fretting endlessly. On the other hand, I'm amazed at how much better I'm sleeping at night, as if some huge, hidden weight has been lifted from my shoulders.
 Uninterrupted by e-mails or emergency pages, the weekend was incredibly peaceful. I was still receiving them on Thursday, but I just deleted the e-mail accounts and blocked the text messages.
 It felt great. I tell Paige not to take Grant to her mother's. Instead, I'm taking him on an adventure. Paige reacts with a bemused smile and helps me pack his Thomas the Tank Engine backpack. By 8 a.m., we're out of the house and heading happily to the train station, where, for months, I've been promising to take him. For an hour we watch trains go by, and I'm continually amazed at Grant's unabashed joy. Despite the uncertainty around what I'll be doing next, I feel blessed that I can share this moment with Grant. As I'm taking pictures of Grant screaming with delight and pointing at the diesel trains going by, I realize how few pictures I've taken of either of my kids in the last month. We're still watching the trains when my phone rings. It's Wes. I let it roll to voicemail. He calls several more times, and each time he leaves another voicemail. Then Patty calls, which I let roll to voicemail, too. After three more calls, I mutter in exasperation, "For chrissakes, guys..."
@@ -1451,7 +1457,7 @@ Remembering my promise to Paige, I choose my words carefully. "You've been prett
 Forty-five minutes later, after Steve continually tries to woo me back, I hang up the phone and go back into the kitchen where Paige is waiting to hear what happened.
 
 Chapter 18
-· Tuesday, September 23
+ï¿½ Tuesday, September 23
 The next morning, I'm driving into work at 6:30 a.m. for Steve's IT leadership off-site. He's calling it an off-site, even though the meeting is in Building 2.
 Earlier this morning, I padded softly into Grant and Parker's rooms to say goodbye. Watching Parker sleep, I kissed him and whispered softly, "Sorry that daddy couldn't take you on an adventure today. It was your turn, but Daddy has to go back to work. This weekend, I promise."
 This better be worth it, Steve. The meeting is in the corporate boardroom. Walking onto the fifteenth floor, I still can't believe how different it is than all the other buildings. Chris, Wes, and Patty are already here, all holding coffee cups and plates full of pastries. Patty barely acknowledges my presence. Wes greets me loudly, saying sarcastically, "Hey, Bill. Nice to see you. I hope you don't quit again today." Thanks, Wes. Chris acknowledges me with an understanding smile, rolling his eyes and making the motions of getting a beer. I nod and smile, and turn to the back of the room. My mood brightens when I see the Vandal Doughnuts in back, and I start loading up my paper plate. As I'm trying to decide whether having six doughnuts on my plate is a breach of social protocol, I feel a hand clap me on my shoulder.
@@ -1497,7 +1503,7 @@ Steve looks around the table. I see that everyone is looking back at him with ra
 The silence lengthens uncomfortably. Chris is the first to speak. "I'm in. Working in a screwed up team sucks, so if you're offering to help fix it, I'm all for it." I see Patty and Wes also nodding, and then everyone turns to look at me.
 
 Chapter 19
-· Tuesday, September 23
+ï¿½ Tuesday, September 23
 At last, I nod, too. Patty says, "You know, Bill, I think you've done a fantastic job in the
 past couple of weeks. And I'm sorry for how I reacted when you quit. I've seen such a difference in how the entire IT organization works. This is an organization that has resisted adopting any sort of process and had real problems with trust between departments. It's amazing to see, and I give most of the credit to you."
 "I'm with her. I suppose I'm glad you're back, too, you big quitter," Wes laughs loudly. "Whatever I might have said on that first day, I don't want your job. We need you here."
@@ -1599,7 +1605,7 @@ Trying to keep the disbelief out of my voice, I say, "Yes." It's astonishing wha
 There are no requests, so we adjourn. As we all get up to leave, Erik says loudly, "Great work, Bill. Couldn't have done it better myself."
 
 Chapter 20
-· Friday, September 26
+ï¿½ Friday, September 26
 Three days later, I'm at my desk, trying to read a report on Phoenix progress from Kirsten on my laptop. As it whirs and wheezes, I wonder how many weeks it's been since John's security patch bricked my laptop.
 Getting replacement laptops is like a lottery. It's tempting to bribe one of the service desk people, as one of the Marketing managers suggested, but I refuse to jump the queue. I have to keep playing by the rules since I'm the person responsible for making and enforcing them. I make a note to talk with Patty about our urgent need to reduce lead times on these laptop replacements.
 Finally, the e-mail comes up:
@@ -1706,7 +1712,7 @@ He asks deadpan, "So, genius: Do Jimmy's projects sound like a good use of time 
 As I start to answer, he just opens the exit door and walks through it. Apparently, it was a rhetorical question.
 
 Chapter 21
-· Friday, September 26
+ï¿½ Friday, September 26
 Despite breaking every speed limit on the way, I'm twenty minutes late to the audit meeting in Building 2. When I step into the conference room, I'm stunned at how packed it is.
 It's immediately obvious that this is a high-stakes meeting, fraught with political nuance. Dick and our corporate counsel are at the head of the table.
 Opposite them are the external auditors who are legally liable for finding financial reporting errors and fraud, and yet they still want to keep us as clients.
@@ -1763,7 +1769,7 @@ Erik's expression brightens slightly and he adds, "And please convey my regards 
 With that, he walks out the door. John looks at me, "What the hell?" Pulling myself out of my chair, I say, "Don't let it get to you. He says similar things to me. I'm exhausted and I'm going home. I suggest you do the same." John stands up wordlessly. With the calm expression remaining on his face, he pushes the three-ring binder off the table. It hits the ground with a large thump, all the contents scattering everywhere. Hundreds of pages are now strewn across the floor. He looks at me with a humorless smile and says, "I will. Go home, that is. I don't know if I'll be in tomorrow--or ever. What's the point, really?" He then walks out of the room. I stare at John's binder, not quite believing he discarded it so carelessly. He's been carrying it around for over two years. In front of where he was sitting is a single piece of paper, almost blank with a few lines scribbled on it. Wondering if it's a suicide note or a resignation letter, I sneak a quick peek at what appears to be a poem. A haiku? Here I sit, hands tied Room angry, I could save them If only they knew
 
 Chapter 22
-· Monday, September 29
+ï¿½ Monday, September 29
 The Monday following the audit meeting, John disappeared. There is a betting pool in the NOC speculating whether he suffered a nervous breakdown, was fired, is just hiding, or worse.
 I see Wes and some of his engineers, all laughing loudly, presumably at John's expense.
 I clear my throat to get Wes' attention. When he walks over, I turn around so that my back is to the NOC, shielding everyone from hearing what I'm telling Wes. "Do me a favor? Don't fan the rumor mill about John. Remember what Steve was trying to impress upon us at the off-site? We need to build a mutually respectful and trusted working relationship with him."
@@ -1849,7 +1855,7 @@ We've corrected it in the work instructions, and we seem to be batting one hundr
 "Great work, Patty!" I say, excitedly. "Go ahead and start publishing the schedule. I want to start showing this off!"
 
 Chapter 23
-· Tuesday, October 7
+ï¿½ Tuesday, October 7
 As I drive into work the following Tuesday morning, I get an urgent phone call from Kirsten. Apparently, Brent is now almost a week late delivering on another Phoenix task--allegedly something that Brent said would only take an hour to do. Once again, the entire Phoenix testing schedule is in jeopardy.
 On top of that, several other of my group's critical tasks are late, putting even more pressure on the deadline. This is genuinely dispiriting to hear. I thought all our recent breakthroughs would solve these due-date performance issues.
 How can we unfreeze more work if we can't even keep up now? I leave Patty a voicemail. To my surprise, it takes her three hours to call me back. She tells me that something is going terribly wrong with our scheduling estimates and that we need to meet right away. Once again, I'm in a conference room, with Patty at the whiteboard, and Wes scrutinizing the printouts she's taped up. "Here's what I've learned so far," Patty says, pointing at one of the sheets of paper. "The task that Kirsten called about is delivering a test environment to QA. As she said, Brent estimated that it would take only forty-five minutes." "Sounds about right," Wes says. "You just need to create a new virtualized server and then install the OS and a couple of packages on it. He probably even doubled the time estimate to be safe."
@@ -1890,7 +1896,7 @@ She will also figure out how to better manage and control tasks when they are qu
 Wes and I don't dare doubt her.
 
 Chapter 24
-· Saturday, October 11
+ï¿½ Saturday, October 11
 The following Saturday was relatively peaceful. In fact, it's the most relaxing weekend my family has had since I took my new job. With Halloween a few weeks away, Paige insisted that we take the whole family out to the pumpkin patch.
 It was a chilly Saturday morning, so we were exhausted just bundling up the kids and getting them in the car. When we arrived at the nearby farm, Paige and I laughed uncontrollably at Parker, who looked like a giant, angry sausage stuffed into his blue parka. She couldn't resist taking pictures while Grant orbited us in excitement, taking pictures with his own camera.
 Afterward, we went to a local microbrewery, enjoying lunch on the patio in the warm afternoon sun.
@@ -1959,7 +1965,7 @@ In my head, I immediately envision John asking or saying something stupid, compl
 Yet I find myself saying, "Okay, I'll be there."
 
 Chapter 25
-· Tuesday, October 14
+ï¿½ Tuesday, October 14
 The next morning at 7:50 a.m., I'm heading toward Dick's office. As I round the corner, I see John already chatting amiably with Dick's assistant. My jaw drops. John's physical appearance has completely changed.
 He's obviously showered and cleaned up. He's also shaved his head and appears to have lost fifteen pounds. He's wearing what I can only describe as a European styled shirt and a vest. Unlike the slightly baggy shirts he usually wears, the pink shirt he's wearing fits tightly on him. Combined with the vest, he looks like a...fashion model? London clubber? Las Vegas card dealer?
 With the shaved head, his calm friendly smile and perfect posture, he looks like some sort of enlightened monk.
@@ -2040,7 +2046,7 @@ Obviously enjoying himself, he keeps explaining, "Our organizational key perform
 And with that, he says, "In fact, feel free to invite me to that meeting. I want to see Dick's face when you present what you learn," and he hangs up the phone.
 
 Chapter 26
-· Friday, October 17
+ï¿½ Friday, October 17
 When Patty enters the conference room, she gasps loudly when she sees John's transformed appearance. "Oh my God, John. You look fantastic!"
 Surprisingly, when Wes arrives, he doesn't seem to notice anything different.
 When everyone is here, I quickly share what I had learned from Erik. We decide that Patty and I will start the business process-owner interviews for "understanding customer needs and wants," "product portfolio," "time to market," and "sales pipeline," while John will research the business SOX404 control environment, as directed by Erik.
@@ -2119,7 +2125,7 @@ beyond just IT Operations. This may change how we prioritize and develop our app
 As she leaves, I look at my Phoenix calculations again. We've spent over $20 million on Phoenix over three years. With all that WIP and capital locked inside the project, it will likely never clear the ten percent internal hurdle rate. In other words, Phoenix should not have been approved.
 
 Chapter 27
-· Tuesday, October 21
+ï¿½ Tuesday, October 21
 
 I'm in a conference room with Patty, Wes, Chris, and John to share the
 
@@ -2248,7 +2254,7 @@ We quickly agree to pair up people in Wes' and Chris' group with John's team, so
 John thanks everyone, indicating that we've covered everything on his agenda. I look at my watch. We're done thirty minutes early. This must be a new world record for the shortest time required to agree on anything security-related.
 
 Chapter 28
-· Monday, October 27
+ï¿½ Monday, October 27
 On my drive into work, I have to turn on my seat heaters months earlier than usual.
 I hope this winter won't be as awful as last year. Paige's relatives, the most skeptical people I've ever met, have started wondering whether there actually might be something to this global climate change thing, after all.
 When I get to my office, I take my laptop out of my bag, smiling at how quickly it powers on. As I write up a report for Steve on how far we've come in the last six weeks, I don't put in anything about my new laptop, but I want to.
@@ -2302,7 +2308,7 @@ John says awkwardly, "Umm, you don't think there's anything between them, do you
 
 I raise my eyebrows. I wondered about that, too. Patty just bursts out laughing. "I'm a pretty good judge of people. Both my parents were psychologists. I'd eat both of their diplomas if that were true." Seeing the expression on my face, she laughs even harder. "Look, not even Wes believes that, and there's no one better at manufacturing drama than him. Sarah's scared to death of Steve! You ever notice that when someone is talking, Sarah is always still looking at Steve, trying to gauge his reaction? It's freakish, actually." She continues, "Steve has a blind spot for Sarah's shortcomings, because she has something he needs and admires, which is the ability to come up with creative strategies, regardless of whether the strategy is good or bad. On the other hand, because Sarah is so insecure, she'll do whatever it takes to not look bad. "She simply doesn't care about the body count she leaves in her wake, because she wants to be the next CEO of Parts Unlimited." Patty says. "And apparently, Steve does too. He's been grooming her as his successor for years." "What? She could be our next CEO?" I exclaim in shock, quickly wiping up the coffee I spit out onto John's conference table. "Wow, boss. You don't hang out at the water cooler much, do you?" Patty says.
 It's Phoenix deployment day, and I've missed Halloween with my kids. It's already 11:40 p.m. As we're standing once again around the NOC
-conference table, I have an unsettling feeling of déjà vu. I count fifteen people here, including Chris and William.
+conference table, I have an unsettling feeling of dï¿½jï¿½ vu. I count fifteen people here, including Chris and William.
 
 Most people are tensely huddled around the table with laptops open, pizza boxes and candy wrappers piled behind them. Several other people are at the whiteboard, pointing at checklists or diagrams.
 It took three hours longer than scheduled to migrate Phoenix into the QA test environment and get all the tests to pass. Although this is much better than the previous deployment, I thought we'd have fewer problems, given how hard we worked on improving the deployment process,
@@ -2325,10 +2331,10 @@ call to provide early life support. Basically, we're all on standby to support t
 With Wes and Patty handling the on-call schedule, I say "good job" to everyone and pack up my things. On my drive home, I wrack my brain, trying to think of how we can keep each Phoenix deployment from causing an emergency.
 
 Chapter 29
-· Monday, November 3
+ï¿½ Monday, November 3
 At 7:10 a.m. the following Monday, Chris, Wes, Patty, and John are again all seated with me in the boardroom. While we're waiting for Steve, we talk about the aftermath of the second Phoenix deployment.
 Erik is in the back of the room. In front of him is a bowl, an emptied instant oatmeal packet, and a French press full of greenish water, with leaves floating in it.
-Seeing my puzzled expression, he says, "Yerba maté. My favorite drink from South America. I never travel without it."
+Seeing my puzzled expression, he says, "Yerba matï¿½. My favorite drink from South America. I never travel without it."
 Steve walks through the door, still talking on his cell phone. "Look, Ron, for the last time, no! No more discounts--even if they were our last remaining customer. We've got to hold the line somewhere. Got it?"
 He hangs up, exasperated, and finally sits down at the head of the table, muttering, "Sorry I'm late." He opens up his folder, taking a moment to study something inside it.
 "Despite how the Phoenix deployment went over the weekend, I'm extremely proud of everything you've have done over the last couple of weeks. Many people have told me about how pleased they are with IT. Even Dick," he says incredulously. "He's told me about how you're helping to improve our key company performance measures, and he thinks it will be a game changer."
@@ -2384,7 +2390,7 @@ happen, but the features to really increase sales are still bogged down. We need
 Chris, Wes, and Patty dive in to discuss this further, while John looks dubious. Eventually Wes says, "You know, this just may work." When everyone nods, including John, I feel there's a sense of excitement and possibility that was missing just minutes ago.
 
 Chapter 30
-· Monday, November 3
+ï¿½ Monday, November 3
 An hour after the meeting with Steve adjourned, I'm still mulling over Erik's cryptic comments. I feel like we're on the verge of something big, but I have too many questions. I finally decide to call him.
 "Yeah?" he answers. "Bill here," I say. "I need some more clues about what the hell we're supposed to be doing..." "Meet me outside the building," he says, hanging up. When I get outside, the wind is gusty and fierce. I look around for a couple of moments, when I hear a horn honk. Erik is in an expensivelooking red BMW convertible, with the top down. "Come on in. Hurry!" "Nice ride," I say, climbing into the passenger seat. "Thanks," he says. "My friend insisted that I borrow this while I'm in town." As he floors the accelerator, I grab the armrest and hurriedly buckle my seatbelt. I see a purse on the floor, and immediately wonder who this "friend" is. "We're heading back to MRP-8," he says. When I ask him to raise the convertible top, he looks over at me and says, "I thought there was no such thing as an `ex-Marine.' Maybe they made you guys softer than in my day." "You were in the service?" I ask, trying to hide my chattering teeth. He laughs. "Over twenty years." "You retired as an officer, I suppose?" I asked.
 
@@ -2423,7 +2429,7 @@ in Development," he says, "you need to create what Humble and Farley called a de
 "You think IT Operations is rocket-science compared to manufacturing. What absolute baloney," he says dismissively. "From where I'm sitting, the people in this building have been far more creative and courageous than anything I've seen come from you IT guys so far."
 
 Chapter 31
-· Monday, November 3
+ï¿½ Monday, November 3
 It's 12:13 p.m. when I walk into the SWAT team kick-off meeting. My hair is dripping wet and my shirt is soaked from my ride back in Erik's convertible. Chris is talking. "--and so Steve has authorized this small team to deliver the promotion functionality and do whatever it takes to make a positive impact on the holiday shopping season."
 Chris turns to me and points to the back of the room. "I went ahead and ordered lunch for everyone to kick this off. Go ahead and--Jesus--what happened to you?"
 I wave away his question. Looking at where he's pointing, I'm pleasantly surprised to see a turkey sandwich lunch box still at the back. Grabbing it, I take a seat and try to gauge the temperature of everyone in the room, especially Brent.
@@ -2483,7 +2489,7 @@ Suddenly, Patty looks up and says, "Wait a second. This entire Phoenix module de
 We all look at one another, agreeing that he needs to be involved. And once again, I marvel at how much we've changed as an organization.
 
 Chapter 32
-· Monday, November 10
+ï¿½ Monday, November 10
 The next two weeks fly by with the SWAT team activities taking up much of my time, as well as Wes' and Patty's.
 It's been over a decade since I've had daily interactions with developers. I had forgotten how quirky they can be. To me, they seem more like indie musicians than engineers.
 In my day, developers wore pocket protectors--not vintage T-shirts and sandals--and carried slide rules, not skateboards.
@@ -2535,7 +2541,7 @@ I relay to Steve what Wes told me, which mirrored my own thinking. "Brent is ver
 Steve leans back in his chair, saying nothing. Finally he says, "Get Brent back here. I'll handle the rest."
 
 Chapter 33
-· Tuesday , November 11
+ï¿½ Tuesday , November 11
 By the next day, Brent is back on Unicorn, and one of the level 3 engineers has joined Dick's team somewhere in the snowy Midwest. Within hours, I get copied on an e-mail from Sarah:
 From: Sarah Moulton To: Bob Strauss Cc: Dick Landry, Steve Masters, Bill Palmer Date: November 11, 7:24 AM Subject: Someone is undermining Project Talon
 Bob, I've discovered that Bill Palmer, the acting VP of IT Operations, stole the critical resource for Project Talon.
@@ -2567,7 +2573,7 @@ When I shake my head, she merely says, "Read the e-mail that Maggie just sent ou
 I flip open my laptop and read:
 From: Maggie Lee To: Chris Allers, Bill Palmer Cc: Steve Masters, Wes Davis, Sarah Moulton Date: November 24, 7:47 AM Subject: First Unicorn promotion campaign: UNBELIEVABLE!
 The Marketing team burned the midnight oil over the weekend and we were able to do a test campaign to one percent of our customers.
-The results were STELLAR! Over twenty percent of the respondents went to our website, and over six percent purchased. These are incredibly high conversion rates--probably over 5× higher than any campaign we've done before.
+The results were STELLAR! Over twenty percent of the respondents went to our website, and over six percent purchased. These are incredibly high conversion rates--probably over 5ï¿½ higher than any campaign we've done before.
 We recommend doing a Unicorn promotion to all our customers on Thanksgiving Day. I'm working to get a dashboard up so everyone can see real-time results of the Unicorn campaigns.
 Also, remember that all the items being promoted are high margin items, so the effects on our bottom line will be excellent.
 PS: Bill, based on the results, we expect a huge surge in web traffic. Can we make sure the website won't fall over?
@@ -2595,7 +2601,7 @@ We had a genuine showstopper when QA discovered that we were recommending items 
 It's 6 p.m. and I pack up my stuff, looking forward to the long weekend. We've all earned it.
 
 Chapter 34
-· Friday, November 28
+ï¿½ Friday, November 28
 By midday Thursday, right in the middle of Thanksgiving, we knew we were in trouble. The overnight Unicorn e-mail promotion was an incredible success. The response rate was unprecedentedly high, with traffic to our website surging to record levels, which kept bringing down our e-commerce systems.
 We initiated an emergency Sev 1 call, putting in all sorts of emergency measures to maintain our ability to take orders, including putting more servers into rotation and turning off computationally-intensive features.
 Ironically, one of the developers suggested turning off all the real-time recommendations, which we had worked so hard to build. Why recommend more products to buy, he argued, if customers can't even complete a transaction?
@@ -2665,7 +2671,7 @@ He asks us if there's anything else we need. When there isn't, he excuses everyo
 As we leave, I sneak a peek behind us. Sarah is sitting down where I previously sat, nervously watching everyone file out. Catching her eye, I smile at her and close the door.
 
 Chapter 35
-· Friday, January 9
+ï¿½ Friday, January 9
 I grip the steering wheel nervously as I drive to Steve's house. He's throwing a party for everyone who has worked so hard on Phoenix and Unicorn, inviting people from both the business and IT. The roads are uncharacteristically icy, with no melting even after weeks of sunshine. It was treacherous enough that Paige and I decided to stay at home for New Year's Eve instead of celebrating with her family as we usually do.
 It's been over a month since that last meeting with Steve and Sarah. We haven't seen much of Sarah since then.
 As I'm driving, I contemplate how quiet it's been. I keep expecting someone to call in another Sev 1 incident. Instead, my phone just sits in the cup holder, completely silent--like yesterday--and the day before that.
@@ -2717,7 +2723,7 @@ they're right, but I trust my instincts. I don't know how this is going to shape
 Steve's vision takes my breath away. He's right. Everything my team has learned, as well as what Chris and John have learned, shows that when IT fails, the business fails. It stands to reason that if IT is organized so that it can win, the business wins, too.
 And Steve wants to put me on the vanguard of this movement. Me. A technology operations guy. Suddenly, I think of how one of Erik's higher ups decided to mustang him from a senior NCO to a lowly lieutenant, forcing him to climb the ladder again from the very bottom of the officer ranks. Obviously, Erik had the courage to do it, and the rewards for him (and his family, if he has one) seem pretty evident. He's living a life that seems to have transcended our mortal plane of existence. As if Steve knows what I'm thinking, he says, "You know, when Erik and I first met, many months ago, he said that the relationship between IT and the business is like a dysfunctional marriage--both feel powerless and held hostage by the other. I've thought about this for months, and I finally figured something out.
 
-"A dysfunctional marriage assumes that the business and IT are two separate entities. IT should either be embedded into business operations or into the business. Voilà! There you go. No tension. No marriage, and maybe no IT Department, either."
+"A dysfunctional marriage assumes that the business and IT are two separate entities. IT should either be embedded into business operations or into the business. Voilï¿½! There you go. No tension. No marriage, and maybe no IT Department, either."
 I just stare at Steve. In some Erik-like way, something about what he says seems inescapably true.
 In that moment, I decide. I'll still have to talk with Paige, but I know with certainty that the journey Steve wants to send me on is important-- both for me and my family and for my entire profession.
 "I'll think about it," I say, solemnly. Steve smiles broadly and stands up. When I grasp his outstretched hand, he clasps my shoulder firmly. "Good. This is going to be fun." Just then, the doorbell rings, and within a few minutes, the whole gang is here--Wes, Patty, John, and Chris--so are Maggie, Brent, Ann, and, holy crap, even Dick and Ron. As the party starts to get louder and louder, each of them congratulate me, drinks in hand. It's obvious that they knew everything already, including Steve's startling offer to go on a three-year training plan to become the next COO. Dick approaches me, holding a glass of scotch. "Congratulations, Bill. I'm looking forward to working closely with you in the years to come." Shortly, I find myself laughing with a bunch of other people, accepting their congratulations, and trading stories about the amazing journey we've been on. Wes claps me on the shoulder. "Now that you're being promoted," he says, even more loudly and brashly than normal, "We all thought we should give you something that celebrates what we've accomplished. Something
@@ -2776,10 +2782,9 @@ The journey from Visible Ops to When IT Fails further cemented my utmost respect
 Gentlemen, thank you very much! Most importantly, thank you for the unwavering love, motivation, support, and patience of my better half, Rowena. Thank you to my children, Paolo, Alyssa, and Erika, who all unselfishly put up with my chaotic and time-consuming schedule, even when on vacation. To my parents, Carroll and Alpha, thank you for instilling in me a love of learning. You have been an instrumental part in my continued quest to keep improving in all aspects of my life. George Spafford Saint Joseph, MI, June 1, 2012
 
 The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win
-© 2013 Gene Kim, Kevin Behr & George Spafford
+ï¿½ 2013 Gene Kim, Kevin Behr & George Spafford
 All rights reserved.
 ISBN13: 978-0-9882625-7-7
 IT Revolution Press Portland, Oregon info@itrevolution.net
 For ordering copies of this book: orders@itrevolution.net
 Cover design by Joy Stauber Cover illustration by eboy Interior design by Abbey Gaterud Ebook conversion and design by Digital Bindery
-

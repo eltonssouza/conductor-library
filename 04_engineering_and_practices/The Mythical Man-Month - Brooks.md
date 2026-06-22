@@ -1,3 +1,9 @@
+# The Mythical Man-Month
+
+> **Author(s):** Brooks Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 \
 
 the
@@ -31,12 +37,12 @@ The Mythical Man-Month
 Essays on Software Engineering
 Frederick P. Brooks, Jr. University of North Carolina, Chapel Hill
 ADDISON-WESLEY PUBLISHING COMPANY
-Reading, Massachusetts · Menlo Park, California London · Amsterdam · Don Mills, Ontario · Sydney
+Reading, Massachusetts ï¿½ Menlo Park, California London ï¿½ Amsterdam ï¿½ Don Mills, Ontario ï¿½ Sydney
 
 Cover drawing: C. R. Knight, Mural of La Brea Tar Pits. Courtesy of the
 Photography Section of the Natural History Museum of Los Angeles
 County.
-Copyright © 1975 by Addison-Wesley Publishing Company, Inc. Philippines copyright 1975 by Addison-Wesley Publishing Company, Inc. Copyright © 1972
+Copyright ï¿½ 1975 by Addison-Wesley Publishing Company, Inc. Philippines copyright 1975 by Addison-Wesley Publishing Company, Inc. Copyright ï¿½ 1972
 by Frederick P. Brooks, Jr.
 All rights reserved. No part of this publication may be reproduced, stored in a
 retrieval system, or transmitted, in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior written permission of the publisher. Printed in the United States of America. Published simultaneously in Canada. Library of Congress Catalog Card No. 74-4714.
@@ -791,7 +797,7 @@ Figure 2.5
 
 Regenerative Schedule Disaster 23
 
-^'·- "
+^'ï¿½- "
 4-
 3 r_-_
 "
@@ -1141,21 +1147,21 @@ two, we will examine the consequences of this theme for program-
 
 ming system design:
 
-How ·
+How ï¿½
 
 is conceptual integrity to be achieved?
 
-· Does not this argument imply an elite, or aristocracy of architects, and a horde of plebeian implementers whose creative talents and ideas are suppressed?
+ï¿½ Does not this argument imply an elite, or aristocracy of architects, and a horde of plebeian implementers whose creative talents and ideas are suppressed?
 
 Achieving Conceptual Integrity 43
 
-How ·
+How ï¿½
 
 does one keep the architects from drifting off into the
 
 blue with unimplementable or costly specifications?
 
-How ·
+How ï¿½
 
 does one ensure that every trifling detail of an architec-
 
@@ -1257,11 +1263,11 @@ Many factors, of course, entered into that mistaken decision;
 but the overwhelming one was schedule time and the appeal of putting all those 150 implementers to work. It is this siren song
 whose deadly hazards I would now make visible. When it is proposed that a small architecture team in fact
 write all the external specifications for a computer or a programming system, the implementers raise three objections:
-· The specifications will be too rich in function and will not
+ï¿½ The specifications will be too rich in function and will not
 reflect practical cost considerations.
-· The architects will get all the creative fun and shut out the
+ï¿½ The architects will get all the creative fun and shut out the
 inventiveness of the implementers.
-· The many implementers will have to sit idly by while the specifications come through the narrow funnel that is the
+ï¿½ The many implementers will have to sit idly by while the specifications come through the narrow funnel that is the
 architecture team.
 The first of these is a real danger, and it will be treated in the next chapter. The other two are illusions, pure and simple. As we have seen above, implementation is also a creative activity of the first order. The opportunity to be creative and inventive in implementation is not significantly diminished by working within a given external specification, and the order of creativity may even be enhanced by that discipline. The total product will surely be.
 A The last objection is one of timing and phasing. quick an-
@@ -1296,7 +1302,7 @@ The Second-System Effect
 
 1
 
-.·I^Crf
+.ï¿½I^Crf
 
 m.
 
@@ -1353,17 +1359,17 @@ or lower his estimates to reflect his pleasure with the design. In practice, ear
 The architect has two possible answers when confronted with
 an estimate that is too high: cut the design or challenge the estimate by suggesting cheaper implementations. This latter is inher-
 ently an emotion-generating activity. The architect is now challenging the builder's way of doing the builder's job. For it to
-be successful, the architect must · remember that the builder has the inventive and creative responsibility for the implementation; so the architect suggests,
+be successful, the architect must ï¿½ remember that the builder has the inventive and creative responsibility for the implementation; so the architect suggests,
 not dictates;
 
 -- Self-Discipline The Second-System Effect
 
 55
 
-· always be prepared to suggest a way of implementing anything he specifies, and be prepared to accept any other way
+ï¿½ always be prepared to suggest a way of implementing anything he specifies, and be prepared to accept any other way
 that meets the objectives as well;
-· deal quietly and privately in such suggestions;
-· be ready to forego credit for suggested improvements.
+ï¿½ deal quietly and privately in such suggestions;
+ï¿½ be ready to forego credit for suggested improvements.
 Normally the builder will counter by suggesting changes to
 -- the architecture. Often he is right some minor feature may have
 unexpectedly large costs when the implementation is worked out.
@@ -1509,7 +1515,7 @@ M ^ 0'
 (C
 pw^m'^
 
-Q O- m^ «:.
+Q O- m^ ï¿½:.
 
 :^
 
@@ -1579,7 +1585,7 @@ Naur Form is familiar for language definition, and it is amply discussed in the 
 Iverson's APL has been used to describe machines, most notably the IBM 7090^ and System/360.^
 Bell and Newell have proposed new notations for describing
 both configurations and machine architectures, and they have il-
-lustrated these with several machines, including the DEC PDP-8,®
+lustrated these with several machines, including the DEC PDP-8,ï¿½
 the 7090,^ and System/360.''
 Almost all formal definitions turn out to embody or describe an implementation of the hardware or software system whose
 externals they are prescribing. Syntax can be described without this, but semantics are usually defined by giving a program that carries out the defined operation. This is of course an implementation, and as such it over-prescribes the architecture. So one must take care to indicate that the formal definition applies only to externals, and one must say what these are.
@@ -1746,12 +1752,12 @@ For example, the implementer of a program-overlaying func-
 tion may run into problems and reduce speed, relying on statistics that show how rarely this function will arise in application programs. Meanwhile, back at the ranch, his neighbor may be design-
 ing a major part of the supervisor so that it critically depends upon the speed of this function. This change in speed itself becomes a major specification change, and it needs to be proclaimed abroad and weighed from a system point of view.
 How, then, shall teams communicate with one another? In as many ways as possible.
-· Informally. Good telephone service and a clear definition of
+ï¿½ Informally. Good telephone service and a clear definition of
 intergroup dependencies will encourage the hundreds of calls
 upon which common interpretation of written documents de-
-pends. · Meetings. Regular project meetings, with one team after an-
+pends. ï¿½ Meetings. Regular project meetings, with one team after an-
 other giving technical briefings, are invaluable. Hundreds of minor misunderstandings get smoked out this way.
-· Workbook. A formal project workbook must be started at the
+ï¿½ Workbook. A formal project workbook must be started at the
 beginning. This deserves a section by itself.
 The Project Workbook
 What. The project workbook is not so much a separate docu-
@@ -2061,9 +2067,9 @@ f
 1,000
 
 y^ y/. <>^y^
-·
+ï¿½
 
-A · ,··,
+A ï¿½ ,ï¿½ï¿½,
 
 1
 
@@ -2098,7 +2104,7 @@ My number of technical work hours per man-year.
 
 own experi-
 
-ence quite confirms his conclusion.®
+ence quite confirms his conclusion.ï¿½
 
 Aron's Data
 Joel Aron, manager of Systems Technology at IBM in Gaithersburg, Maryland, has studied programmer productivity when
@@ -2120,7 +2126,7 @@ by a factor of two to cover system test, they closely match Hair's
 data.
 
 Harr's Data
-John Harr, manager of programming for the Bell Telephone Laboratories' Electronic Switching System, reported his and others' experience in a paper at the 1969 Spring Joint Computer Conference.® These data are shown in Figs. 8.2, 8.3, and 8.4.
+John Harr, manager of programming for the Bell Telephone Laboratories' Electronic Switching System, reported his and others' experience in a paper at the 1969 Spring Joint Computer Conference.ï¿½ These data are shown in Figs. 8.2, 8.3, and 8.4.
 Of these. Fig. 8.2 is the most detailed and the most useful. The first two jobs are basically control programs; the second two are
 basically language translators. Productivity is stated in terms of
 debugged words per man-year. This includes programming, com-
@@ -2398,7 +2404,7 @@ learned quickly and shared widely, perhaps with special prizes or
 praises for new techniques. The second is to recognize that programming has a technol-
 ogy, and components need to be fabricated. Every project needs a notebook full of good subroutines or macros for queuing, searching, hashing, and sorting. For each such function the notebook should have at least two programs, the quick and the squeezed. The development of such technology is an important realization task that can be done in parallel with system architecture.
 Representation Is the Essence of Programming
-Beyond craftsmanship lies invention, and it is here that lean, spare, fast programs are born. Almost always these are the result of stategic breakthrough rather than tactical cleverness. Sometimes the strategic breakthrough will be a new algorithm, such as the Cooley-Tukey Fast Fourier Transform or the substitution of an n log n sort for an «^ set of comparisons.
+Beyond craftsmanship lies invention, and it is here that lean, spare, fast programs are born. Almost always these are the result of stategic breakthrough rather than tactical cleverness. Sometimes the strategic breakthrough will be a new algorithm, such as the Cooley-Tukey Fast Fourier Transform or the substitution of an n log n sort for an ï¿½^ set of comparisons.
 Much more often, strategic breakthrough will come from
 redoing the representation of the data or tables. This is where the
 heart of a program lies. Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables,
@@ -2978,7 +2984,7 @@ to five percent of a compiler-generated program by handwritten
 substitute after the former is fully debugged.^
 What high-level language should one use for system program-
 
-ming? The only reasonable candidate today is PL/I.® It has a very
+ming? The only reasonable candidate today is PL/I.ï¿½ It has a very
 
 136 Sharp Tools
 
@@ -3024,7 +3030,7 @@ Fig. 12.2 Comparative productivity under batch and conversational programming
 
 High-Level Language and Interactive Programming 137
 Further, we hear good testimonies from many who have built little systems or parts of systems in this way. The only numbers
-I have seen for effects on programming of large systems were reported by John Harr of Bell Labs. They are shown in Fig. 12.2. These numbers are for writing, assembling, and debugging programs. The first program is mostly control program; the other three are language translators, editors, and such. Harr's data suggest that an interactive facihty at least doubles productivity in system programming.®
+I have seen for effects on programming of large systems were reported by John Harr of Bell Labs. They are shown in Fig. 12.2. These numbers are for writing, assembling, and debugging programs. The first program is mostly control program; the other three are language translators, editors, and such. Harr's data suggest that an interactive facihty at least doubles productivity in system programming.ï¿½
 The effective use of most interactive tools requires that the work be done in a high-level language, for teletype and typewriter terminals cannot be used to debug by dumping memory. With a high-level language, source can be easily edited and selective printouts easily done. Together they make a pair of sharp tools
 indeed.
 
@@ -3037,7 +3043,7 @@ I can call spirits from the vasty deep.
 Why so can 1, or so can any man; hut will they come
 when you do call for them?
 SHAKESPEARE, KING HENRY IV, PART I
-© Walt Disney Productions
+ï¿½ Walt Disney Productions
 141
 
 142 The Whole and the Parts
@@ -3162,7 +3168,7 @@ ing became impractical. So people developed techniques for selec-
 tive dumping, selective tracing, and for inserting snapshots into
 programs. The OS/360 TESTRAN is an end-of-the-line in this
 direction, allowing one to insert snapshots into a program without reassembly or recompilation.
-Interactive debugging. In 1959 Codd and his coworkers^ and Strachey® each reported work aimed at time-shared debugging, a way of achieving both the instant turnaround of on-machine debugging and the efficient machine use of batch debugging. The computer would have multiple programs in memory, ready for
+Interactive debugging. In 1959 Codd and his coworkers^ and Stracheyï¿½ each reported work aimed at time-shared debugging, a way of achieving both the instant turnaround of on-machine debugging and the efficient machine use of batch debugging. The computer would have multiple programs in memory, ready for
 A execution. terminal, controlled only by program, would be asso-
 ciated with each program being debugged. Debugging would be
 under control of a supervisory program. When the programmer at
@@ -3175,13 +3181,13 @@ Return to the instant-turnaround capability of on-machine debugging has not yet 
 Nevertheless, Gold's interesting experimental results show that three times as much progress in interactive debugging is made on the first interaction of each session as on subsequent interac-
 
 System Debugging 147
-tions.® This strongly suggests that we are not realizing the potential of interaction due to lack of session planning. The time has
+tions.ï¿½ This strongly suggests that we are not realizing the potential of interaction due to lack of session planning. The time has
 come to dust off the old on-machine techniques. I find that proper use of a good terminal system requires two
 hours at the desk for each two-hour session on the terminal. Half of this time is spent in sweeping up after the last session: updating
 my debugging log, filing updated program listings in my system
 notebook, explaining strange phenomena. The other half is spent in preparation: planning changes and improvements and designing detailed tests for next time. Without such planning, it is hard to stay productive for as much as two hours. Without the postsession sweep-up, it is hard to keep the succession of terminal sessions systematic and forward-moving.
 Test cases. As for the design of actual debugging procedures and test cases, Gruenberger has an especially good treatment,^ and
-there are shorter treatments in other standard texts. ^°'^^
+there are shorter treatments in other standard texts. ^ï¿½'^^
 System Debugging
 The unexpectedly hard part of building a programming system is system test. 1 have already discussed some of the reasons for both the difficulty and its unexpectedness. From all of that, one should be convinced of two things: system debugging will take longer than one expects, and its difficulty justifies a thoroughly system-
 atic and planned approach. Let us now see what such an approach
@@ -3288,11 +3294,11 @@ mented form.
 
 14 Hatching a Catastrophe
 
-^··^wma^^ IMiiii
+^ï¿½ï¿½^wma^^ IMiiii
 
 MiMMMtmmM^tmmtt
 
-\MMMMMMiMmi«mm
+\MMMMMMiMmiï¿½mm
 
 14 Hatching a Catastrophe
 
@@ -3462,9 +3468,9 @@ inifl
 vv iflin
 Sr)
 
-»vso-
+ï¿½vso-
 
-»>v-V o-
+ï¿½>v-V o-
 
 N.S
 (o^--
@@ -3477,21 +3483,21 @@ w-- o
 (fllfl
 Vv
 -<o oro
-»vvo-
+ï¿½vvo-
 
 iflin
-VxON. on v»vo-
+VxON. on vï¿½vo-
 
 .0^
 vv
-wo·anO
+woï¿½anO
 noion
 
 inifl
 VV
 o-- no
 
-«<Q
+ï¿½<Q
 -ovvon
 
 vv vv
@@ -3525,10 +3531,10 @@ ininu
 aza<az
 Ol-O
 
->«
-H3(mu--·
-·< om
-« m>
+>ï¿½
+H3(mu--ï¿½
+ï¿½< om
+ï¿½ m>
 vaa
 cro<
 zma
@@ -3536,14 +3542,14 @@ zuico 3UUJ mou.
 or
 oau. o lO
 szro<owm< KUIU3 WZ
->·« W_l
-O «
+>ï¿½ï¿½ W_l
+O ï¿½
 
 UJ
 <> cDUi
 _IO
 --
-«a_i><<<aa
+ï¿½a_i><<<aa
 UJ
 -lo
 m<u>j uu)--_iao uaj><aa
@@ -3567,13 +3573,13 @@ oo oo oo -- -- t\j
 
 (\j M(M
 
-«u< o< u< ** *«
+ï¿½u< o< u< ** *ï¿½
 
 SV n--O--J
 
 --NS*N--
 
-NS N--«o0
+NS N--ï¿½o0
 
 s-s-
 -- ""
@@ -3583,7 +3589,7 @@ m--s-sm
 ss ---<--m
 
 om
-nss« ---- os-s-o
+nssï¿½ ---- os-s-o
 
 um
 ss M-- MM so--os--
@@ -3594,7 +3600,7 @@ ss
 o-<
 --
 
-SuS(c«MoSSu·Nc(*oSS\ai
+SuS(cï¿½MoSSuï¿½Nc(*oSS\ai
 
 mNmS
 
@@ -3614,17 +3620,17 @@ VSV
 
 -- oo
 
-u< S«Sm o(M-B ss
+u< Sï¿½Sm o(M-B ss
 <m-
 --o
 
-u< *« SooS w-srs-t ---
+u< *ï¿½ SooS w-srs-t ---
 
 u*<
-MSSO --n s-s« ----
+MSSO --n s-sï¿½ ----
 
 u
-·«*
+ï¿½ï¿½*
 SN (-MnO --ss---
 
 mu<
@@ -3632,15 +3638,15 @@ osnmso ss oa-o-
 
 uu
 
-«m ss
+ï¿½m ss
 o>--
 s-o"s----
 
-«m ss o---- oss--
+ï¿½m ss o---- oss--
 
 -o -<o
 
-uSS<»uSS«uSS*uSS* (aMo(«VaI(oMa(>M
+uSS<ï¿½uSSï¿½uSS*uSS* (aMo(ï¿½VaI(oMa(>M
 
 msms msmv
 miM mcM
@@ -3678,9 +3684,9 @@ ss
 
 mo s-- s<m o--o
 
-oooo« sns-- --o
+ooooï¿½ sns-- --o
 
-uuuuu ««'««« SSSSSSSSSS (eoVeJoNeNoOmOm
+uuuuu ï¿½ï¿½'ï¿½ï¿½ï¿½ SSSSSSSSSS (eoVeJoNeNoOmOm
 
 msms
 
@@ -3696,20 +3702,20 @@ Nsonso
 
 s N O
 
-ONss«O
+ONssï¿½O
 
-u«
+uï¿½
 
 -sns --
-u s«iso «-- -- so--os--
-uu S«<Nf ss <ooo
+u sï¿½iso ï¿½-- -- so--os--
+uu Sï¿½<Nf ss <ooo
 (\J(\J
 
-«m «m m *«
+ï¿½m ï¿½m m *ï¿½
 
-m -0 o «<0 ««
+m -0 o ï¿½<0 ï¿½ï¿½
 
-«« N
+ï¿½ï¿½ N
 
 ss
 
@@ -3726,7 +3732,7 @@ n 1 ss
 
 ss o~ *<\J
 
-O«s mMs
+Oï¿½s mMs
 
 ss
 <OfOO
@@ -3734,15 +3740,15 @@ ss
 ss N
 
 o 1
-ss oo «f <0
+ss oo ï¿½f <0
 
 s1 sn oon
 
 onos ons
 
-o«s o»s
+oï¿½s oï¿½s
 
-o 1 s1 sn s1 sn o«o« o*on
+o 1 s1 sn s1 sn oï¿½oï¿½ o*on
 
 11)
 
@@ -3770,7 +3776,7 @@ D--
 
 O>UJJ
 
-£^
+ï¿½^
 
 0.2
 
@@ -3971,7 +3977,7 @@ INIT2
 M0DE2 STACKER MESSAGE
 1
 
-/-J^^«8»&^^fe,.
+/-J^^ï¿½8ï¿½&^^fe,.
 M0DE3
 
 |Node
@@ -4129,15 +4135,15 @@ documentation makes possible new techniques. The time has
 
 --o
 
-,»
+,ï¿½
 
 9-
 9...
 
-» -- -- «^--
-»Z .«T.~X>.> .T
+ï¿½ -- -- ï¿½^--
+ï¿½Z .ï¿½T.~X>.> .T
 
---_Z»Z-- >>wa--r
+--_Zï¿½Z-- >>wa--r
 
 ff-
 
@@ -4155,9 +4161,9 @@ ocooKO
 
 ^
 
-l«J
+lï¿½J
 
-·J
+ï¿½J
 
 Kl
 
@@ -4200,14 +4206,14 @@ Fig. 15.3 A self-documenting program.
 
 (2)qLTSRT7: procedure (V) :
 
-«^**«*^**4>*** «·«**··*««
-® /*A SORT SUBROUTINE FOR 2500 6 -BYTE FIELDS, PASSED AS THE VECTOR V. A /SEPARATELY COMPILED, NOT-MAI N PROCEDURE, WHICH MUST USE AUTOnATIC CORE
+ï¿½^**ï¿½*^**4>*** ï¿½ï¿½ï¿½**ï¿½ï¿½*ï¿½ï¿½
+ï¿½ /*A SORT SUBROUTINE FOR 2500 6 -BYTE FIELDS, PASSED AS THE VECTOR V. A /SEPARATELY COMPILED, NOT-MAI N PROCEDURE, WHICH MUST USE AUTOnATIC CORE
 
 //ALLOCATION.
 
-® /THE SORT AL30BITHfl FOLLOHS B ROOKS AND IVERSON, AUTOMATIC DATA PROCESSING,
+ï¿½ /THE SORT AL30BITHfl FOLLOHS B ROOKS AND IVERSON, AUTOMATIC DATA PROCESSING,
 
-®
+ï¿½
 
 /PROGRAM 7.23, P. 350. THAT ALGORITHM IS REVISED A3 FOLLOWS:
 / STEPS 2-12 ARE SIMPLIFIED FOR M=2. / STEP 18 IS EXPANDED TO HAN DLE EXPLICIT INDEXING OF THE OUTPUT VECTOR. / THE WHOLE FIELD IS USED AS THE SORT KEY. / MINUS INFINirif IS REPrfESEN TED BY ZEROS. / PLUS INFINITY IS REPRESENT ED BY ONES.
@@ -4223,7 +4229,7 @@ Fig. 15.3 A self-documenting program.
 /A MORE GENERAL VERSION MOULD PARAMETERIZE THE DIMENSION OF V.
 
 /*
-^*«*««*4>^^**«4c //T·H*E*P·A·SS*ED**IN*P*UT**VE*CT·O*R *I*S ·R EPLACED BY THE REORDERED OUTPUT VECTOR.
+^*ï¿½*ï¿½ï¿½*4>^^**ï¿½4c //Tï¿½H*E*Pï¿½Aï¿½SS*ED**IN*P*UT**VE*CTï¿½O*R *I*S ï¿½R EPLACED BY THE REORDERED OUTPUT VECTOR.
 
 (?)/ LEGEND (ZERO-ORIGIN INDEXING)
 
@@ -4233,7 +4239,7 @@ K) BINARY
 
 FIXED,
 
-/I»<DEX FOR INITIALIZING T /INDEX OF ITEM TO BE REPLACED /INITIAL INDEX OF BRANCHES FROM NODE I /INDEX IN OUTPUT VECTOR
+/Iï¿½<DEX FOR INITIALIZING T /INDEX OF ITEM TO BE REPLACED /INITIAL INDEX OF BRANCHES FROM NODE I /INDEX IN OUTPUT VECTOR
 
 (MINF, PINF) BIT (U8),
 
@@ -4241,7 +4247,7 @@ FIXED,
 
 V ()
 
-IT (»
+IT (ï¿½
 
 /PASSED VECTOR TO BE SORTED AMD RETURNED
 
@@ -4249,7 +4255,7 @@ T (0:8190) BIT (48); /WORKSPACE CONSISTING OF VECTOR TO BE SORTED, FILLED^/
 / /OUT WITH INFINITIES, PRECEDED BY LOWER LEVELS / /FILLED UP WITH MINUS INFINITIES
 
 /* NOH INITIALIZATION TO FILL DUMMY LEVELS, TOP LEVEL, AND UNUSED PART OF TOP*/ /* LEVEL AS REQUIRED.
-® INIT: MINF= (48) PINF= (48)
+ï¿½ INIT: MINF= (48) PINF= (48)
 
 DO L=
 
@@ -4265,7 +4271,7 @@ T(L) = MINF: T(L+4095) = V(L) ; T(L) = PINF;
 
 END; END; END;
 
-®
+ï¿½
 
 K=
 
@@ -4300,18 +4306,18 @@ IF T (J) <= T(Jf1) /PICK SMALLER BRANCH
 K11: K13:
 
 TH EN
-@ DO; ® T(I) = T(J)
+@ DO; ï¿½ T(I) = T(J)
 
 /*
 /*
 /REPLACE
 
-/ IF T(I) = PINF THEN 30 TO K16: /IF INFINITY, REPLACEMENT * °° IS FINISHED
+/ IF T(I) = PINF THEN 30 TO K16: /IF INFINITY, REPLACEMENT * ï¿½ï¿½ IS FINISHED
 
-/»/
+/ï¿½/
 1
 1
-/·/
+/ï¿½/
 1
 H1
 */
@@ -4339,27 +4345,27 @@ I = J+1: END;
 
 IF 2^1 < 8191 THEM GO TO K3; /GO BACK IF NOT ON TOP LEVEL
 
-/·/
+/ï¿½/
 1
 
 1
 
 <
 
-/ f" 1 1 ·/
+/ f" 1 1 ï¿½/
 
 1
 
 + oo
 
-/·/
+/ï¿½/
 1
 
 J
 
 11
 
-·/
+ï¿½/
 / 1
 
 <
@@ -4382,7 +4388,7 @@ K16: IF T(0) = PINF THEN RETURN;
 
 <
 
-/·/
+/ï¿½/
 1
 
 1
@@ -4400,14 +4406,14 @@ K18: K = K+l;
 
 /STEP STORAGE INDEX
 
-·/
+ï¿½/
 1
 
 V(K) = T(0) : GO TO Kl; (g)
 
 /STORE OUTPUT ITEM
 
-·/
+ï¿½/
 1
 
 END QLTSR T7:
@@ -5057,7 +5063,6 @@ In the essays, the author blends facts on software engineering with his own pers
 Although formulated as separate essays, the book expresses a central argument. Brooks believes that large programming projects suffer management problems different in kind from small ones due to the division of labor. For this reason he feels that the critical need is for conceptual integrity of the product itself, and in essay form he explores both the difficulties of achieving this unity and the methods for achieving it.
 
 ADDISON-WESLEY PUBLISHING COMPANY
-Reading, Massachusetts · Menio Park, California London · Amsterdam · Don Mills, Ontario · Sydney
+Reading, Massachusetts ï¿½ Menio Park, California London ï¿½ Amsterdam ï¿½ Don Mills, Ontario ï¿½ Sydney
 
 026 3215
-

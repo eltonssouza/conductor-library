@@ -1,3 +1,9 @@
+# The Mom Test
+
+> **Author(s):** Fitzpatrick Â· **Category:** 11_management_product_process Â· **Language:** English
+
+---
+
 The Mom Test by @robfitz
 
 1
@@ -311,8 +317,8 @@ The Mom Test by @robfitz
 20
 
 "How are you dealing with it now?"
-Good question. Beyond workflow information, this gives you a price anchor. If they're paying £100/month for a duct-tape workaround, you know which ballpark you're playing in. On the other hand, they may have spent £120,000 this year on agency fees to maintain a site you're replacing. If that's the case, you don't want to be having the £100 conversation.
-Sometimes, both of the above will be happening simultaneously and you get to choose how you present yourself. Do you want to be a replacement for the web app at a yearly value of £1.2k or for the agency at 100x that?
+Good question. Beyond workflow information, this gives you a price anchor. If they're paying ï¿½100/month for a duct-tape workaround, you know which ballpark you're playing in. On the other hand, they may have spent ï¿½120,000 this year on agency fees to maintain a site you're replacing. If that's the case, you don't want to be having the ï¿½100 conversation.
+Sometimes, both of the above will be happening simultaneously and you get to choose how you present yourself. Do you want to be a replacement for the web app at a yearly value of ï¿½1.2k or for the agency at 100x that?
 Rule of thumb: While it's rare for someone to tell you precisely what they'll pay you, they'll often show you what it's worth to them.
 "Where does the money come from?"
 Good question. This isn't something you would necessarily ask a consumer (though you might), but in a B2B context it's a must-ask. It leads to a conversation about whose budget the purchase will come from and who else within their company holds the power to torpedo the deal.
@@ -421,9 +427,9 @@ You can always be happy with a conversation like the above. You saw through the 
 Did you notice that in the conversations above, practically every response contains a sneaky compliment? They are pervasive, constantly trying to trick us into thinking the conversation "went well".
 Ignoring compliments should be easy, but it's not. We so desperately want to hear them that we are often tricked into registering them as positive data points instead of vacuous fibs. Sometimes it's easier to spot the symptoms than to notice the original compliment.
 Symptoms (in the meeting):
-· "Thanks!" · "I'm glad you like it."
+ï¿½ "Thanks!" ï¿½ "I'm glad you like it."
 Symptoms (back at the office):
-· "That meeting went really well." · "We're getting a lot of positive feedback." · "Everybody I've talked to loves the idea."
+ï¿½ "That meeting went really well." ï¿½ "We're getting a lot of positive feedback." ï¿½ "Everybody I've talked to loves the idea."
 All of these are warning signs. If you catch yourself or your teammates saying something like this, try to get specific. Why did that person like the idea? How much money would it save him? How would it fit into his life? What else has he tried which failed to solve his problem? If you don't know, then you've got a compliment instead of real data.
 Rule of thumb: Compliments are the fool's gold of customer learning: shiny,
 momtestbook.com / foundercentric.com
@@ -436,20 +442,20 @@ distracting, and entirely worthless.
 
 Anchor fluff
 Fluff comes in 3 cuddly shapes:
-· Generic claims ("I usually", "I always", "I never") · Future-tense promises ("I would", "I will") · Hypothetical maybes ("I might", "I could")
+ï¿½ Generic claims ("I usually", "I always", "I never") ï¿½ Future-tense promises ("I would", "I will") ï¿½ Hypothetical maybes ("I might", "I could")
 When someone starts talking about what they "always" or "usually" or "never" or "would" do, they are giving you generic and hypothetical fluff. Just follow The Mom Test and bring them back to specifics in the past. Ask when it last happened, for them to talk you through it, how they solved it, and what else they tried.
 The world's most deadly fluff is: "I would definitely buy that."
 It just sounds so concrete. As a founder, you desperately want to believe it's money in the bank. But folks are wildly optimistic about what they would do in the future. They're always more positive, excited, and willing to pay in the imagined future than they are once it arrives.
 The first startup I worked at fell for the "I would definitely buy that" trap and subsequently lost about 10 million bucks. They mistook fluffy future promises and excited compliments for commitment, wrongly believed they had proven themselves right, and wildly over-invested.
 The worst type of fluff-inducing question you can ask is, "Would you ever?" Of course they might. Someday. That doesn't mean they will. Fluff-inducing questions include:
-· "Do you ever..."
+ï¿½ "Do you ever..."
 momtestbook.com / foundercentric.com
 
 The Mom Test by @robfitz
 
 29
 
-· "Would you ever..." · "What do you usually..." · "Do you think you..." · "Might you..." · "Could you see yourself..."
+ï¿½ "Would you ever..." ï¿½ "What do you usually..." ï¿½ "Do you think you..." ï¿½ "Might you..." ï¿½ "Could you see yourself..."
 You don't need to avoid these questions 100% of the time. They aren't exactly toxic. It's just that the responses to them are useless. The mistake is in valuing the answers, not in asking the questions. In fact, sometimes these questions can help the tempo when you're transitioning into more concrete questioning. Here's an example.
 Transitioning from a fluffy question to a concrete one:
 You: "Do you ever X?" A fluff-inducing question.
@@ -564,10 +570,10 @@ The Mom Test by @robfitz
 You should dig in the same way around emotional signals to understand where they're coming from. Just like feature requests, any strong emotion is worth exploring. Is someone angry? Dig. Embarrassed? Dig. Overjoyed? Dig!
 I once overheard a founder interviewing someone at a cafe table next to me. The founder mentioned a problem and the guy responded, "Yeah, that's pretty much the worst part of my day." The founder jotted something down in his notebook, and then moved on to the next question. What!? It's the worst part of his day and you're not going to figure out why? That's insane. You've got to dig.
 Questions to dig into feature requests:
-· "Why do you want that?" · "What would that let you do?" · "How are you coping without it?" · "Do you think we should push back the launch add that feature, or is it
-something we could add later?" · How would that fit into your day?
+ï¿½ "Why do you want that?" ï¿½ "What would that let you do?" ï¿½ "How are you coping without it?" ï¿½ "Do you think we should push back the launch add that feature, or is it
+something we could add later?" ï¿½ How would that fit into your day?
 Questions to dig into emotional signals:
-· "Tell me more about that." · "That seems to really bug you -- I bet there's a story here." · "What makes it so awful?" · "Why haven't you been able to fix this already?" · "You seem pretty excited about that -- it's a big deal?" · "Why so happy?" · "Go on."
+ï¿½ "Tell me more about that." ï¿½ "That seems to really bug you -- I bet there's a story here." ï¿½ "What makes it so awful?" ï¿½ "Why haven't you been able to fix this already?" ï¿½ "You seem pretty excited about that -- it's a big deal?" ï¿½ "Why so happy?" ï¿½ "Go on."
 These nudges don't need to be complicated. People love talking about their opinions and emotions. Digging into a signal is basically just giving them permission to do a brain dump.
 Rule of thumb: Ideas and feature requests should be understood, but not obeyed.
 
@@ -581,11 +587,11 @@ Stop seeking approval
 As we've seen, compliments are dangerous and sneaky. So if we can nip them in the bud before they bloom, so much the better. The main source of compliment-creation is seeking approval, either intentionally or inadvertently.
 Doing it intentionally is fishing for compliments. You aren't looking for contradictory information. You've already made up your mind, but need someone's blessing take the leap.
 Symptoms of Fishing For Compliments:
-· "I'm thinking of starting a business... so, do you think it will work?" · "I had an awesome idea for an app -- do you like it?"
+ï¿½ "I'm thinking of starting a business... so, do you think it will work?" ï¿½ "I had an awesome idea for an app -- do you like it?"
 Accidental approval-seeking is what I call "The Pathos Problem." It happens when you expose your ego, leading people to feel they ought to protect you by saying nice things.
 This comes up when you tell someone about an idea you obviously care about (which is pretty much always, since otherwise you wouldn't be asking). Even if you give folks permission to be honest and ask for criticism, they're still going to pull their punches.
 Symptoms of The Pathos Problem:
-· "So here's that top-secret project I quit my job for... what do you think?" · "I can take it -- be honest and tell me what you really think!"
+ï¿½ "So here's that top-secret project I quit my job for... what do you think?" ï¿½ "I can take it -- be honest and tell me what you really think!"
 To deal with The Pathos Problem, keep the conversation focused on the other person and ask about specific, concrete cases and examples. Once someone detects that your ego is on the line, they'll give you fluffy mis-truths and extra compliments. Disregard that data and use The Mom Test to re-focus on the person, their life, and their goals. People rarely lie about specific stuff that's
 momtestbook.com / foundercentric.com
 
@@ -602,7 +608,7 @@ Cut off pitches
 Being pitchy is the dark side of the "seeking approval" coin. Instead of inviting compliments by being vulnerable, you're demanding them by being annoying. It's when you hold someone hostage and won't let them leave until they've said they like your idea. Normally, compliments are well-intentioned. In this case, they're just trying to get you out of their office.
 "Won't-take-no-for-an-answer" is generally a good quality for a founder to have. But when it creeps into a conversation that's meant to be about learning, it works against you.
 Symptoms:
-· "No no, I don't think you get it..." · "Yes, but it also does this!"
+ï¿½ "No no, I don't think you get it..." ï¿½ "Yes, but it also does this!"
 If you slip into pitch mode, just apologise. You're excited about your idea.
 momtestbook.com / foundercentric.com
 
@@ -774,7 +780,7 @@ The Mom Test by @robfitz
 more of a hobby than a business, really."
 At this point, you might be suspicious about how much I actually care about my blog, despite going out of my way to mention it twice (hint hint: thestartuptoolkit.com). When it's not clear whether a problem is a must-solveright-now (e.g. you're selling a painkiller) or a nice-to-have (you're selling a vitamin), you can get some clarity by asking cost/value questions like the following.
 "Does-this-problem-matter" questions:
-· "How seriously do you take your blog?" · "Do you make money from it?" · "Have you tried making more money from it?" · "How much time do you spend on it each week?" · "Do you have any major aspirations for your blog?" · "Which tools and services do you use for it?" · "What are you already doing to improve this?" · "What are the 3 big things you're trying to fix or improve right now?"
+ï¿½ "How seriously do you take your blog?" ï¿½ "Do you make money from it?" ï¿½ "Have you tried making more money from it?" ï¿½ "How much time do you spend on it each week?" ï¿½ "Do you have any major aspirations for your blog?" ï¿½ "Which tools and services do you use for it?" ï¿½ "What are you already doing to improve this?" ï¿½ "What are the 3 big things you're trying to fix or improve right now?"
 Some of these questions are generic, but give us signals that we can anchor on and dig around. The bulk of them are about finding out whether the person we're talking to is taking this space seriously. Are they spending money or making money? Is it in their top 3? Are they actively looking for solutions?
 When you fall into a premature zoom, you can waste a ton of time figuring out the minutia of a trivial problem. Even if you learn everything there is to know about that particular problem, you still haven't got a business.
 Rule of thumb: Start broad and don't zoom in until you've found a strong signal, both with your whole business and with every conversation.
@@ -820,7 +826,7 @@ able to do that? It remains to be seen.
 This situation is easier to spot in the online advertising industry. Imagine running customer conversations with an advertiser to try to understand their pains so you can convince them to advertise on your site. They'd sort of look at you blankly and say, "Listen, if you can get enough page views, we'll pay you for them." In fact, it's such a well established would-pay-to-solve-problem that you don't even need to talk to them to set it up. You just plug in an ad network and you're done.
 Similarly with affiliate commissions. If you sell a company's products, you get a cut. That's just how it works. You don't need to explore or validate or understand their problems. The risk resides in your ability to get lots of traffic and sell lots of products. If you can, they'll pay you.
 In all of these examples, the risk is in your product, not in the market or the customer. The customer will pay if your product gets big enough.
-· Product risk -- Can I build it? Can I grow it? Will they keep using it? · Market risk -- Do they want it? Will they pay? Are there enough of
+ï¿½ Product risk -- Can I build it? Can I grow it? Will they keep using it? ï¿½ Market risk -- Do they want it? Will they pay? Are there enough of
 them?
 You don't want to overlook one or the other. I met a founder who had wasted 3 months on worthless customer conversations. He wanted to start a company building gadgets to track the fertility of farm animals, ultimately boosting birthrates and thus revenue. When he talked to farmers, he asked questions like, "Would you switch trackers if something cheaper and more effective was available?" That's the same as asking someone whether they would like more money. The answer is always "Yes." The farmers responded along the lines of, "If you can build what you say you can build, I'll equip my whole herd." The problem is, he couldn't build it. The risk was in the product.
 I've also seen this strike several of the recent companies who want to use mobile/realtime deals to drive foot traffic to bars and clubs. They run customer conversations with bar owners who confirm that: yes, they would like more customers on the slow nights; and yes, they would pay you if you could send
@@ -896,8 +902,8 @@ The Mom Test by @robfitz
 59
 
 Symptoms of formality:
-· "So, first off, thanks for agreeing to this interview. I just have a few questions for you and then I'll let you get back to your day..."
-· "On a scale of 1 to 5, how much would you say you..."
+ï¿½ "So, first off, thanks for agreeing to this interview. I just have a few questions for you and then I'll let you get back to your day..."
+ï¿½ "On a scale of 1 to 5, how much would you say you..."
 Learning from customers doesn't mean you have to be wearing a suit and drinking boardroom coffee. Asking the right questions is fast and touches on topics people find quite interesting. You can talk anywhere and save yourself the formal meetings until you have something concrete to show.
 At their best, these conversations are a pleasure for both parties. You're probably the first person in a long time to be truly interested in the petty annoyances of their day.
 Rule of thumb: If it feels like they're doing you a favour by talking to you, it's probably too formal.
@@ -954,10 +960,10 @@ The Mom Test by @robfitz
 identify the real leads.
 As always, you're not trying to convince every person to like what you're doing. When you've got the information you came for (even if it's that they don't care), you can leave. But at some point, you do need to put them to a decision in order to get it.
 Symptoms:
-· A pipeline of zombie leads · Ending product meetings with a compliment · Ending product meetings with no clear next steps · Meetings which "went well" · They haven't given up anything of value
+ï¿½ A pipeline of zombie leads ï¿½ Ending product meetings with a compliment ï¿½ Ending product meetings with no clear next steps ï¿½ Meetings which "went well" ï¿½ They haven't given up anything of value
 As I use them in a customer learning context, commitment and advancement are separate concepts which overlap quite a lot and tend to appear together.
-· Commitment -- They are showing they're serious by giving up something they value such as time, reputation, or money.
-· Advancement -- They are moving to the next step of your real-world funnel and getting closer to a sale.
+ï¿½ Commitment -- They are showing they're serious by giving up something they value such as time, reputation, or money.
+ï¿½ Advancement -- They are moving to the next step of your real-world funnel and getting closer to a sale.
 Commitment and advancement often arrive hand-in-hand. For example, to move to the next step (advancement), you might need an introduction to your contact's boss (reputation commitment). As such, they are functionally equivalent for our purposes and I'm going to blur them into one concept for the following sections.
 Rule of thumb: "Customers" who keep being friendly but aren't ever going to buy are a particularly dangerous source of mixed signals.
 
@@ -987,11 +993,11 @@ The Mom Test by @robfitz
 The currencies of conversation
 Commitment can be cash, but doesn't have to be. Think of it in terms of currency--what are they giving up for you? A compliment costs them nothing, so it's worth nothing and carries no data. The major currencies are time, reputation risk, and cash.
 A time commitment could include:
-· Clear next meeting with known goals · Sitting down to give feedback on wireframes · Using a trial themselves for a non-trivial period
+ï¿½ Clear next meeting with known goals ï¿½ Sitting down to give feedback on wireframes ï¿½ Using a trial themselves for a non-trivial period
 Reputation risk commitments might be:
-· Intro to peers or team · Intro to a decision maker (boss, spouse, lawyer) · Giving a public testimonial or case study
+ï¿½ Intro to peers or team ï¿½ Intro to a decision maker (boss, spouse, lawyer) ï¿½ Giving a public testimonial or case study
 Financial commitments are easier to imagine and include:
-· Letter of intent (non-legal but gentlemanly agreement to purchase) · Pre-order · Deposit
+ï¿½ Letter of intent (non-legal but gentlemanly agreement to purchase) ï¿½ Pre-order ï¿½ Deposit
 Sometimes, strong commitments combine multiple currencies, such as someone agreeing to run a paid trial with their whole team, thus risking their time, money, and reputation.
 Just like compliments aren't data when you're trying to learn about a problem, they also aren't progress when you're trying to validate a product. Hearing a
 momtestbook.com / foundercentric.com
@@ -1100,7 +1106,7 @@ It's pretty weird that anybody buys anything from young startups. In all likelih
 First customers are crazy. Crazy in a good way. They really, really want what you're making. They want it so badly that they're willing to be the crazy person who tries it first.
 Keep an eye out for the people who get emotional about what you're doing. There is a significant difference between: "Yeah, that's a problem" and "THAT IS THE WORST PART OF MY LIFE AND I WILL PAY YOU RIGHT NOW TO FIX IT."
 Steve Blank calls them earlyvangelists (early evangelists). In the enterprise software world, they are the people who:
-· Have the problem · Know they have the problem · Have the budget to solve the problem · Have already cobbled together their own makeshift solution
+ï¿½ Have the problem ï¿½ Know they have the problem ï¿½ Have the budget to solve the problem ï¿½ Have already cobbled together their own makeshift solution
 They're the company who will commit way before it makes rational sense to do so. It's the guy who will give you cash right now from his discretionary budget to run a trial. Or who will fight for you against his boss and lawyers when they're saying the tech is unproven.
 In the consumer space, it's the fan who wants your product to succeed so badly that they'll front you the money as a pre-order when all you've got is a duct-tape prototype. They're the one who will tell all their friends to chip in as well. They're the person reading your blog and searching for workarounds.
 We've got 2 takeaways.
@@ -1262,7 +1268,7 @@ The Mom Test by @robfitz
 
 If you don't know why you're there, it becomes a sales meeting by default, which is bad for 3 reasons. First, the customer closes up about some important topics like pricing. Second, attention shifts to you instead of them. And finally, it's going to be the worst sales meeting ever because you aren't ready.
 Symptoms:
-· "Um. So...." · "How's it going?"
+ï¿½ "Um. So...." ï¿½ "How's it going?"
 There are a lot of bad ways to frame the meeting, both when first asking for it and once it begins.
 Questions like, "Can I interview you" or "Thanks for agreeing to this interview" both set set off alarm bells that this meeting is going to be super boring. I don't want to be interviewed; I want to talk and help!
 The common, "Can I get your opinion on what we're doing?" sets expectations of neediness and that you want compliments or approval.
@@ -1430,10 +1436,10 @@ The Mom Test by @robfitz
 segment by seeing who likes it and focusing on that group. The other approach is to just make a best-guess. In both cases, you're ending up with a specific idea of who you're serving so you can really make the features and language resonate for them.
 You'll want even more specific segmentation for your conversations than for your whole business. Going out and talking to people is that it takes time. If you talk to five people who each have different goals, you're going to get mixed signals which don't give you the confidence you need to move forward.
 This drilling down into ever more specific groups is called Customer Slicing. You take a segment and then keep slicing off better and better sub-sets of it until you've got a tangible sense of who you can go talk to and where you can find them. Start with a broad segment and ask:
-· Within this group, which type of this person would want it most? · Would everyone within this group buy/use it, or only some of them? · Why do they want it? (e.g. What is their problem or goal) · Does everyone in the group have that motivation or only some of them? · What additional motivations are there? · Which other types of people have these motivations?
+ï¿½ Within this group, which type of this person would want it most? ï¿½ Would everyone within this group buy/use it, or only some of them? ï¿½ Why do they want it? (e.g. What is their problem or goal) ï¿½ Does everyone in the group have that motivation or only some of them? ï¿½ What additional motivations are there? ï¿½ Which other types of people have these motivations?
 We now have a two groups of segments: the first is a collection of quite specific demographic groups and the second is a series of motivations. When we look at them, some will be more generic than others. Go back through the generic ones and keep slicing. Just repeat the questions above. Within that sub-group, who wants it most? Next we're going to look at our groups' behaviours and figure out where to find them.
-· What are these people already doing to achieve their goal or survive their problem?
-· Where can we find our demographic groups? · Where can we find people doing the above workaround behaviours?
+ï¿½ What are these people already doing to achieve their goal or survive their problem?
+ï¿½ Where can we find our demographic groups? ï¿½ Where can we find people doing the above workaround behaviours?
 Are any of these groups un-findable? If so, go back up the list and slice them into finer pieces until you know where to find them. A customer segment isn't
 momtestbook.com / foundercentric.com
 
@@ -1508,7 +1514,7 @@ The Mom Test by @robfitz
 crappy notes which you don't review with your team. At that point, your head has become the ultimate repository of customer truth and everyone just has to do what you say.
 In my case, I bottlenecked so hard that our CTO quit while saying, "We're never going to succeed if you keep changing what we're doing." In my defence, the stuff I'd learned was true (at least, I think it was). But it didn't matter anyway since I hadn't properly communicated it to the rest of the team.
 Symptoms of a learning bottleneck:
-· "You just worry about the product. I'll learn what we need to know." · "Because the customers told me so!" · "I don't have time to talk to people -- I need to be coding!"
+ï¿½ "You just worry about the product. I'll learn what we need to know." ï¿½ "Because the customers told me so!" ï¿½ "I don't have time to talk to people -- I need to be coding!"
 Avoiding bottlenecks has three parts: prepping, reviewing, and taking good notes.
 
 Prepping
@@ -1528,7 +1534,7 @@ Sit down with your whole founding team when you prep. You want both business and
 Some founders react with hostility to the whole idea. They'll say something along the lines of, "We need to be building the gosh derned product, not fuffing around talking to people." On the surface, it appears to be a refusal to face the reality that there might be something wrong with the product's foundations. But having seen it in several teams now, I think it's actually the desire for speed, where speed is measured by building features instead of by de-risking and validating the business.
 Beyond asking a grumpy cofounder to "humour me", there are 2 questions to help tease out hidden product risks. The first is asking, "If this company fails, what is most likely to have killed it?" If we had asked that about my very first product (a user-generated cartoon community), we would have answered that either nobody wants to create cartoons or that their cartoons will be so bad that nobody wants to watch them. This gives us a good starting point to begin exploring with a combination of technical and conversational tools.
 Prep questions to unearth hidden risks:
-· If this company were to fail, why would it have happened? · What would have to be true for this to be a huge success?
+ï¿½ If this company were to fail, why would it have happened? ï¿½ What would have to be true for this to be a huge success?
 The second question is a flipped version of the first, from Lafley/Martin's
 momtestbook.com / foundercentric.com
 
@@ -1604,7 +1610,7 @@ Put a big star on items to follow-up on after the meeting, especially next steps
 
 Where to write it down
 You want to take your customer notes so that they are:
-· Able to be sorted, mixed, and re-arranged · Able to be combined with the notes of the rest of your team · Permanent and retrievable · Not mixed in with other random noise like todo lists and ideas
+ï¿½ Able to be sorted, mixed, and re-arranged ï¿½ Able to be combined with the notes of the rest of your team ï¿½ Permanent and retrievable ï¿½ Not mixed in with other random noise like todo lists and ideas
 In practice, I've found that taking notes in my primary notebook is practically useless. Over the course of several months' sprawl, you set an insurmountable search and retrieval task for yourself. If you won't look at your notes, they aren't much good.
 If you do end up taking notes in non-ideal places, you just need to spend a little extra post-meeting time moving them over into your permanent format. Otherwise you'll be kicking yourself when you remember that amazing quote
 momtestbook.com / foundercentric.com
@@ -1634,29 +1640,29 @@ The process
 Talking to customers is a tool, not an obligation. If it's not going to help or you don't want to do it for whatever reason, just skip it. I'm sure you've been on the receiving end of a half-assed survey sent out by some new startup to tick the box marked "learn from customers" on their startup todo list. There are better ways to waste your time.
 Without figuring out what actually matters to your company and how to deal with it effectively, you're just going through the motions. When it comes to conversations, it looks like this:
 Signs that you're just going through the motions:
-· You're talking more than they are
+ï¿½ You're talking more than they are
 momtestbook.com / foundercentric.com
 
 The Mom Test by @robfitz
 
 109
 
-· They are complimenting you or your idea · You told them about your idea and don't know what's happening next · You don't have notes · You haven't looked through your notes with your team · You got an unexpected answer and it didn't change your idea · You weren't scared of any of the questions you asked · You aren't sure which big question you're trying to answer by doing this
+ï¿½ They are complimenting you or your idea ï¿½ You told them about your idea and don't know what's happening next ï¿½ You don't have notes ï¿½ You haven't looked through your notes with your team ï¿½ You got an unexpected answer and it didn't change your idea ï¿½ You weren't scared of any of the questions you asked ï¿½ You aren't sure which big question you're trying to answer by doing this
 The persistent presence of any of these problems suggests that you're doing something wrong and wasting your time.
 Here are the steps I go through to keep on track. Feel free to ignore or tweak as needed given your situation and company. It's as light-weight as I've been able to get it and should reduce rather than increase the amount of time you need to spend on conversations.
 Before a batch of conversations:
-· If you haven't yet, choose a focused, findable segment · With your team, decide your big 3 learning goals · If relevant, decide on ideal next steps and commitments · If conversations are the right tool, figure out who to talk to · Create a series of best guesses about what the person cares about · If a question could be answered via desk research, do that first
+ï¿½ If you haven't yet, choose a focused, findable segment ï¿½ With your team, decide your big 3 learning goals ï¿½ If relevant, decide on ideal next steps and commitments ï¿½ If conversations are the right tool, figure out who to talk to ï¿½ Create a series of best guesses about what the person cares about ï¿½ If a question could be answered via desk research, do that first
 During the conversation:
-· Frame the conversation · Keep it casual · Ask good questions which pass The Mom Test · Deflect compliments, anchor fluff, and dig beneath signals · Take good notes · If relevant, press for commitment and next steps
+ï¿½ Frame the conversation ï¿½ Keep it casual ï¿½ Ask good questions which pass The Mom Test ï¿½ Deflect compliments, anchor fluff, and dig beneath signals ï¿½ Take good notes ï¿½ If relevant, press for commitment and next steps
 After a batch of conversations:
-· With your team, review your notes and key customer quotes
+ï¿½ With your team, review your notes and key customer quotes
 momtestbook.com / foundercentric.com
 
 The Mom Test by @robfitz
 
 110
 
-· If relevant, transfer notes into permanent storage · Update your beliefs and plans · Decide on the next 3 big questions
+ï¿½ If relevant, transfer notes into permanent storage ï¿½ Update your beliefs and plans ï¿½ Decide on the next 3 big questions
 The goal of this process is twofold. Firstly, to make sure you're spending your time well by attacking the questions which really matter and using the whole founding team's brains. Secondly, to spread any new learning through your team as quickly and completely as possible.
 There you go. Now you know everything I do about how to learn from conversations. Combine this process with The Mom Test, Keeping it Casual, and Advancement for maximum learning in minimum time. But even if it goes wrong, don't worry so much. Eternity will forgive.
 
@@ -1728,12 +1734,12 @@ The Mom Test by @robfitz
 Cheatsheet
 Just in case you like lists.
 Key skills
-· Asking good questions (Chapters 1 & 3) · Avoiding bad data (Chapter 2) · Keeping it casual (Chapter 4) · Pushing for commitment & advancement (Chapter 5) · Framing the meeting (Chapter 6) · Customer segmentation (Chapter 7) · Prepping & reviewing (Chapter 8) · Taking notes (Chapter 8)
+ï¿½ Asking good questions (Chapters 1 & 3) ï¿½ Avoiding bad data (Chapter 2) ï¿½ Keeping it casual (Chapter 4) ï¿½ Pushing for commitment & advancement (Chapter 5) ï¿½ Framing the meeting (Chapter 6) ï¿½ Customer segmentation (Chapter 7) ï¿½ Prepping & reviewing (Chapter 8) ï¿½ Taking notes (Chapter 8)
 The Mom Test:
 1. Talk about their life instead of your idea 2. Ask about specifics in the past instead of generics or opinions about the
 future 3. Talk less and listen more
 Getting back on track (avoiding bad data)
-· Deflect compliments · Anchor fluff · Dig beneath opinions, ideas, requests, and emotions
+ï¿½ Deflect compliments ï¿½ Anchor fluff ï¿½ Dig beneath opinions, ideas, requests, and emotions
 Mistakes and symptoms
 1. Fishing for compliments
 "I'm thinking of starting a business... so, do you think it will work?" "I had an awesome idea for an app -- do you like it?"
@@ -1754,36 +1760,36 @@ The Mom Test by @robfitz
 7. Collecting compliments instead of facts and commitments
 "We're getting a lot of positive feedback." "Everybody I've talked to loves the idea."
 The process: before, during and after the meeting
-· If you haven't yet, choose a focused, findable segment · With your team, decide your big 3 learning goals · If relevant, decide on ideal next steps and commitments · If conversations are the right tool, figure out who to talk to · Create a series of best guesses about what the person cares about · If a question could be answered via desk research, do that first
+ï¿½ If you haven't yet, choose a focused, findable segment ï¿½ With your team, decide your big 3 learning goals ï¿½ If relevant, decide on ideal next steps and commitments ï¿½ If conversations are the right tool, figure out who to talk to ï¿½ Create a series of best guesses about what the person cares about ï¿½ If a question could be answered via desk research, do that first
 momtestbook.com / foundercentric.com
 
 The Mom Test by @robfitz
 
 117
 
-· Frame the conversation · Keep it casual · Ask good questions which pass The Mom Test · Deflect compliments, anchor fluff, and dig beneath signals · Take good notes · If relevant, press for commitment and next steps
-· With your team, review your notes and key customer quotes · If relevant, transfer notes into permanent storage · Update your beliefs and plans · Decide on the next 3 big questions
+ï¿½ Frame the conversation ï¿½ Keep it casual ï¿½ Ask good questions which pass The Mom Test ï¿½ Deflect compliments, anchor fluff, and dig beneath signals ï¿½ Take good notes ï¿½ If relevant, press for commitment and next steps
+ï¿½ With your team, review your notes and key customer quotes ï¿½ If relevant, transfer notes into permanent storage ï¿½ Update your beliefs and plans ï¿½ Decide on the next 3 big questions
 Results of a good meeting
-· Facts -- concrete, specific facts about what they do and why they do it (as opposed to the bad data of compliments, fluff, and opinions)
-· Commitment -- They are showing they're serious by giving up something they value such as time, reputation, or money.
-· Advancement -- They are moving to the next step of your real-world funnel and getting closer to a sale.
+ï¿½ Facts -- concrete, specific facts about what they do and why they do it (as opposed to the bad data of compliments, fluff, and opinions)
+ï¿½ Commitment -- They are showing they're serious by giving up something they value such as time, reputation, or money.
+ï¿½ Advancement -- They are moving to the next step of your real-world funnel and getting closer to a sale.
 Signs that you're just going through the motions:
-· You're talking more than they are · They are complimenting you or your idea · You told them about your idea and don't know what's happening next · You don't have notes · You haven't looked through your notes with your team · You got an unexpected answer and it didn't change your idea · You weren't scared of any of the questions you asked · You aren't sure which big question you're trying to answer by doing this · You aren't sure why you're having the meeting
+ï¿½ You're talking more than they are ï¿½ They are complimenting you or your idea ï¿½ You told them about your idea and don't know what's happening next ï¿½ You don't have notes ï¿½ You haven't looked through your notes with your team ï¿½ You got an unexpected answer and it didn't change your idea ï¿½ You weren't scared of any of the questions you asked ï¿½ You aren't sure which big question you're trying to answer by doing this ï¿½ You aren't sure why you're having the meeting
 Signs you aren't pushing for commitment and advancement
-· A pipeline of zombie leads
+ï¿½ A pipeline of zombie leads
 momtestbook.com / foundercentric.com
 
 The Mom Test by @robfitz
 
 118
 
-· Ending product meetings with a compliment · Ending product meetings with no clear next steps · Meetings which "went well" · They haven't given up anything of value
+ï¿½ Ending product meetings with a compliment ï¿½ Ending product meetings with no clear next steps ï¿½ Meetings which "went well" ï¿½ They haven't given up anything of value
 Writing it down -- signal symbols
 :) Excited :( Angry :| Embarrassed  Pain or problem (symbol is a lightning bolt)  Goal or job-to-be-done (symbol is a soccer/football goal)  Obstacle  Workaround ^ Background or context (symbol is a distant mountain)  Feature request or purchasing criteria  Money or budgets or purchasing process  Mentioned a specific person or company  Follow-up task
 Asking for and framing the meeting
-· Vision -- half-sentence version of how you're making the world better · Framing -- where you're at and what you're looking for · Weakness -- show how you can be helped · Pedestal -- show that they, in particular, can provide that help · Ask -- ask for help
+ï¿½ Vision -- half-sentence version of how you're making the world better ï¿½ Framing -- where you're at and what you're looking for ï¿½ Weakness -- show how you can be helped ï¿½ Pedestal -- show that they, in particular, can provide that help ï¿½ Ask -- ask for help
 The big prep question
-· "What do we want to learn from these guys?"
+ï¿½ "What do we want to learn from these guys?"
 
 momtestbook.com / foundercentric.com
 
@@ -1806,4 +1812,3 @@ The Mom Test by @robfitz
 insane startup and/or shipwreck stories. Love you!
 
 momtestbook.com / foundercentric.com
-

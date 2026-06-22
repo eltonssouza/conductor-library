@@ -1,8 +1,14 @@
+# Learning GraphQL
+
+> **Author(s):** Porcello, Banks Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 Learning GraphQL
 Declarative Data Fetching for Modern Web Apps
 Eve Porcello and Alex Banks
 
-Learning GraphQL by Eve Porcello and Alex Banks Copyright © 2018 Moon Highway, LLC. All rights reserved. Printed in the United States of America. Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://oreilly.com). For more information, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com.
+Learning GraphQL by Eve Porcello and Alex Banks Copyright ï¿½ 2018 Moon Highway, LLC. All rights reserved. Printed in the United States of America. Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://oreilly.com). For more information, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com.
 Acquisitions Editor: Mary Treseler
 Development Editor: Alicia Young
 Production Editor: Justin Billing
@@ -108,7 +114,7 @@ In the 1960s, remote procedure call (RPC) was invented. An RPC was initiated by 
 Simple Object Access Protocol
 In the late 1990s, Simple Object Access Protocol (SOAP) emerged at Microsoft. SOAP used XML to encode a message and HTTP as a transport. SOAP also used a type system and introduced the concept of resourceoriented calls for data. SOAP offered fairly predictable results but caused frustration because SOAP implementations were fairly complicated.
 REST
-The API paradigm that you're probably most familiar with today is REST. REST was defined in 2000 in Roy Fielding's doctoral dissertation at University of California­Irvine. He described a resource-oriented architecture in which users would progress through web resources by performing operations such as GET, PUT, POST, and DELETE. The network of resources can be thought of as a virtual state machine, and the actions (GET, PUT, POST, DELETE) are state changes within the machine. We might take it for granted today, but this was pretty huge. (Oh, and Fielding did get his Ph.D.)
+The API paradigm that you're probably most familiar with today is REST. REST was defined in 2000 in Roy Fielding's doctoral dissertation at University of Californiaï¿½Irvine. He described a resource-oriented architecture in which users would progress through web resources by performing operations such as GET, PUT, POST, and DELETE. The network of resources can be thought of as a virtual state machine, and the actions (GET, PUT, POST, DELETE) are state changes within the machine. We might take it for granted today, but this was pretty huge. (Oh, and Fielding did get his Ph.D.)
 In a RESTful architecture, routes represent information. For example,
 
 requesting information from each of these routes will yield a specific response:
@@ -227,15 +233,15 @@ To traverse the graph, you'd need to start travel at node 4 and visit each node 
 
 physical travel is how these graph theory concepts emerged.
 History of Graph Theory
-We can trace the study of graph theory back to the town of Königsberg, Prussia in 1735. Situated on the Pregel River, the town was a shipping hub that had two large islands connected by seven bridges to the four main landmasses, as Figure 2-10 shows.
-Figure 2-10. The Königsberg bridges
-Königsberg was a gorgeous town, and the people of the town loved to spend their Sundays getting fresh air and walking the bridges. Over time, the townspeople became obsessed with trying to solve a puzzle: how could they cross over each of the seven bridges once without ever crossing back across the same bridge? They walked the town trying to visit each island and cross every bridge without repeating bridges but found themselves stuck. Hoping to get some help with the problem, they called upon Leonhard Euler. Euler was a prolific Swiss mathematician who published more than 500 books and
+We can trace the study of graph theory back to the town of Kï¿½nigsberg, Prussia in 1735. Situated on the Pregel River, the town was a shipping hub that had two large islands connected by seven bridges to the four main landmasses, as Figure 2-10 shows.
+Figure 2-10. The Kï¿½nigsberg bridges
+Kï¿½nigsberg was a gorgeous town, and the people of the town loved to spend their Sundays getting fresh air and walking the bridges. Over time, the townspeople became obsessed with trying to solve a puzzle: how could they cross over each of the seven bridges once without ever crossing back across the same bridge? They walked the town trying to visit each island and cross every bridge without repeating bridges but found themselves stuck. Hoping to get some help with the problem, they called upon Leonhard Euler. Euler was a prolific Swiss mathematician who published more than 500 books and
 
 papers during his lifetime. Busy being a genius, Euler didn't care about what seemed like a trivial problem. But after giving it a bit more thought, Euler grew as interested as the residents of the town and tried feverishly to figure it out. Instead of writing down every possible path, Euler decided it would be simpler to look at the links (bridges) between the landmasses, as Figure 2-11 shows.
-Figure 2-11. The Königsberg bridges numbered
+Figure 2-11. The Kï¿½nigsberg bridges numbered
 He then simplified this, drawing the bridges and landmasses as what came to be known as a graph diagram. It looked like Figure 2-12:
 
-Figure 2-12. The Königsberg bridges as a diagram
+Figure 2-12. The Kï¿½nigsberg bridges as a diagram
 In Figure 2-12, A and B are adjacent because they are connected by an edge. Using these edge connections, we can calculate the degree for each node. The degree of a node is equal to the number of edges that are attached to that node. If we look at the nodes in the Bridge Problem, we'll find that each of the degrees are odd.
 A: five edges to adjacent nodes (odd)
 B: three edges to adjacent nodes (odd)
@@ -249,8 +255,8 @@ Figure 2-13. A Eulerian path
 Another idea associated with Euler is a circuit or Eulerian cycle. In this case, the starting node is the same as the ending node. Each edge is visited only once, but the start and end node is repeated (Figure 2-14).
 
 Figure 2-14. A Eulerian cycle
-The Königsberg Bridge Problem became the first theorem of graph theory. In addition to being considered the originator of graph theory, Euler is known for creating the constant e and the imaginary unit i. Even the mathematical function syntax f(x), a function f applied to the variable x, can be traced back to Leonhard Euler.2
-The Königsberg Bridge Problem stated that a bridge could not be crossed more than once. There was never a rule that the journey must start or end at a specific node. This means that trying to solve the problem was an exercise in undirected graph traversal. What if you wanted to try to solve the bridge problem, but you had to start at a particular node?
+The Kï¿½nigsberg Bridge Problem became the first theorem of graph theory. In addition to being considered the originator of graph theory, Euler is known for creating the constant e and the imaginary unit i. Even the mathematical function syntax f(x), a function f applied to the variable x, can be traced back to Leonhard Euler.2
+The Kï¿½nigsberg Bridge Problem stated that a bridge could not be crossed more than once. There was never a rule that the journey must start or end at a specific node. This means that trying to solve the problem was an exercise in undirected graph traversal. What if you wanted to try to solve the bridge problem, but you had to start at a particular node?
 If you live on island B, that's where you'd always have to start your traversal journey. In that case, you'd be dealing with a directed graph, more commonly called a tree.
 Trees are Graphs
 
@@ -392,7 +398,7 @@ Following is the response:
 }
 Now we get the data back in the same shape, but we have renamed several fields in our response. A way to filter the results of a GraphQL query is to
 
-pass in query arguments. Arguments are a key­value pair (or pairs) associated with a query field. If we want only the names of the closed chairlifts, we can send an argument that will filter our response:
+pass in query arguments. Arguments are a keyï¿½value pair (or pairs) associated with a query field. If we want only the names of the closed chairlifts, we can send an argument that will filter our response:
 query closedLifts { allLifts(status: "CLOSED" sortBy: "name") { name status }
 }
 You also can use arguments to select data. For instance, suppose that we want to query the status of an individual chairlift. We can select that chairlift by its unique identifier:
@@ -2203,7 +2209,7 @@ id
 
 # total complexity 1433
 
-By default, graphql-validation-complexity assigns each field a value. It multiplies that value by a factor of 10 for any list. In this example, totalUsers represents a single integer field and is assigned a complexity of 1. Querying fields in a single photo have the same value. Notice that the fields queried in the allUsers list are assigned a value of 10. This is because they are within a list. Every list field is multiplied by 10. So a list within a list is assigned a value of 100. Because taggedUsers is a list within the inPhotos list, which is within the allUsers list, the values of taggedUser fields is 10 × 10 × 10, or 1000.
+By default, graphql-validation-complexity assigns each field a value. It multiplies that value by a factor of 10 for any list. In this example, totalUsers represents a single integer field and is assigned a complexity of 1. Querying fields in a single photo have the same value. Notice that the fields queried in the allUsers list are assigned a value of 10. This is because they are within a list. Every list field is multiplied by 10. So a list within a list is assigned a value of 100. Because taggedUsers is a list within the inPhotos list, which is within the allUsers list, the values of taggedUser fields is 10 ï¿½ 10 ï¿½ 10, or 1000.
 
 We can prevent this particular query from executing by setting an overall query complexity limit of 1000:
 const { createComplexityLimitRule } = require('graphql-validation-complexity')
@@ -2344,7 +2350,7 @@ I incremental migration, Incremental Migration inline fragments, Union types
 input types with resolvers, Using Inputs and Enums-Using Inputs and Enums with schemas, Input Types-Input Types
 input variables, Using Query Variables interfaces, Interfaces, Interfaces introspection, Introspection
 J JSON (JavaScript Object Notation), origins of, REST
-K Königsberg bridge problem, History of Graph Theory-History of Graph Theory
+K Kï¿½nigsberg bridge problem, History of Graph Theory-History of Graph Theory
 L lexical analysis (lexing), Abstract Syntax Trees lists
 and interfaces, Interfaces of different types, Lists of Different Types-Interfaces schemas and, Connections and Lists-Interfaces union types, Union types, Union types
 M many-to-many connections, Many-to-Many Connections, Many-to-manyMany-to-many
@@ -2407,4 +2413,3 @@ The animal on the cover of Learning GraphQL is Bonelli's Eagle (Aquila fasciata)
 Usually silent outside of the nest, this stealthy hunter feeds primarily on other birds, up to and including other raptors, but is also known to eat small mammals and reptiles. Despite a propensity to eat other birds of prey, adult nesting pairs are known for their affection for chicks regardless of lineage, and have been observed to foster eggs and hatchlings in abandoned nests, both of Aquila fasciata and other raptor species in which lethal aggression is not displayed between siblings.
 Many of the animals on O'Reilly covers are endangered; all of them are important to the world. To learn more about how you can help, go to animals.oreilly.com.
 The cover image is from Brehms Tierleben. The cover fonts are URW Typewriter and Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad Condensed; and the code font is Dalton Maag's Ubuntu Mono.
-

@@ -1,3 +1,9 @@
+# REST in Practice
+
+> **Author(s):** Webber, Parastatidis, Robinson Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 Advance Praise for REST in Practice
 "Jim, Savas, and Ian manage to make the notoriously abstract concepts behind RESTful integration useful and applicable in day-to-day work, as well as easy to understand. If you're looking into how to do web-based integration simply and effectively, this is where you should start."
 --Mark Nottingham Principal Technical Yahoo!, Yahoo
@@ -13,10 +19,10 @@ Advance Praise for REST in Practice
 --Colin Jack Senior Software Developer
 
 REST in Practice
-Jim Webber, Savas Parastatidis, and Ian Robinson Beijing·Cambridge·Farnham·Köln·Sebastopol·Tokyo
+Jim Webber, Savas Parastatidis, and Ian Robinson Beijingï¿½Cambridgeï¿½Farnhamï¿½Kï¿½lnï¿½Sebastopolï¿½Tokyo
 
 REST in Practice by Jim Webber, Savas Parastatidis, and Ian Robinson
-Copyright © 2010 Jim Webber, Savas Parastatidis, and Ian Robinson. All rights reserved. Printed in the United States of America.
+Copyright ï¿½ 2010 Jim Webber, Savas Parastatidis, and Ian Robinson. All rights reserved. Printed in the United States of America.
 Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472.
 O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://my.safaribooksonline.com). For more information, contact our corporate/institutional sales department: (800) 998-9938 or corporate@oreilly.com.
 
@@ -394,11 +400,11 @@ For more information about our books, conferences, Resource Centers, and the O'R
 http://www.oreilly.com
 xiv Preface
 
-Safari® Books Online
+Safariï¿½ Books Online
 Safari Books Online is an on-demand digital library that lets you easily search over 7,500 technology and creative reference books and videos to find the answers you need quickly.
 With a subscription, you can read any page and watch any video from our library online. Read books on your cell phone and mobile devices. Access new titles before they are available for print, and get exclusive access to manuscripts in d evelopment and post feedback for the authors. Copy and paste code samples, organize your favorites, download chapters, bookmark key sections, create notes, print out pages, and benefit from tons of other time-saving features. O'Reilly Media has uploaded this book to the Safari Books Online service. To have full digital access to this book and others on similar topics from O'Reilly and other publishers, sign up for free at http://my.safaribooksonline.com.
 Acknowledgments
-We would like to thank all our community reviewers for their feedback and advice over the course of this book project. They all volunteered their time to help us write this book over several years: Solomon Duskis, Rafael de F. Ferreira, Glen Ford, Martin Fowler, Colin Jack, Ken Kolchier, Sriram Narayan, Eric Newcomer, Barry Norton, Chris Read, Ryan Riley, Guilherme Silveira, Halvard Skogsrud, Nigel Small, Monika Solanki, Stefan Tilkov, Jon Tirsen, Spiros Tzavellas, Steve Vinoski, Lasse WesthNielsen, and Herbjörn Wilhelmsen. Our O'Reilly reviewers also deserve to be called out for their very useful and prompt feedback: William Martínez Pomares and Zach Kessin. Our great appreciation and warm thanks go to our editor, Simon St.Laurent. Special thanks to Mark Baker, who inspired us to write this book, educated us along the way, and never gave up on us. This book wouldn't have been possible without the constant love and support of our families and friends. Special thanks go to Kath, Mary, Lottie, Tiger, and Elliot. It's been a long road. Our deepest thanks to you all.
+We would like to thank all our community reviewers for their feedback and advice over the course of this book project. They all volunteered their time to help us write this book over several years: Solomon Duskis, Rafael de F. Ferreira, Glen Ford, Martin Fowler, Colin Jack, Ken Kolchier, Sriram Narayan, Eric Newcomer, Barry Norton, Chris Read, Ryan Riley, Guilherme Silveira, Halvard Skogsrud, Nigel Small, Monika Solanki, Stefan Tilkov, Jon Tirsen, Spiros Tzavellas, Steve Vinoski, Lasse WesthNielsen, and Herbjï¿½rn Wilhelmsen. Our O'Reilly reviewers also deserve to be called out for their very useful and prompt feedback: William Martï¿½nez Pomares and Zach Kessin. Our great appreciation and warm thanks go to our editor, Simon St.Laurent. Special thanks to Mark Baker, who inspired us to write this book, educated us along the way, and never gave up on us. This book wouldn't have been possible without the constant love and support of our families and friends. Special thanks go to Kath, Mary, Lottie, Tiger, and Elliot. It's been a long road. Our deepest thanks to you all.
 PREFACE xv
 
 Chapter one
@@ -526,7 +532,7 @@ performance characteristics than HTTP's text-based, synchronous, request-respons
 Note As developers ourselves, we understand how we can believe that asynchronous message-centric solutions are the most scalable and highest-performing options. However, existing high-performance and highly available services on the Web are proof that a synchronous, text-based request-response protocol can provide good performance and massive scalability when used correctly. The Web combines a widely shared vision for how to use HTTP efficiently and how to federate load through a network. It may sound incredible, but through the remainder of this book, we hope to demonstrate this paradox beyond doubt.
 Loose Coupling
 The Web is loosely coupled, and correspondingly scalable. The Web does not try to incorporate in its architecture and technology stack any of the traditional qualityof-service guarantees, such as data consistency, transactionality, referential integrity, statefulness, and so on. This deliberate lack of guarantees means that browsers sometimes try to retrieve nonexistent pages, mashups can't always access information, and business applications can't always make immediate progress. Such failures are part of our everyday lives, and the Web is no different. Just like us, the Web needs to know how to cope with unintended outcomes or outright failures.
-A software agent may be given the URI of a resource on the Web, or it might retrieve it from the list of hypermedia links inside an HTML document, or find it after a businessto-business XML message interaction. But a request to retrieve the representation of that resource is never guaranteed to be successful. Unlike other contemporary distributed systems architectures, the Web's blueprints do not provide any explicit mechanisms to support information integrity. For example, if a service on the Web decides that a URI is no longer going to be associated with a particular resource, there is no way to notify all those consumers that depend on the old URI­resource association.
+A software agent may be given the URI of a resource on the Web, or it might retrieve it from the list of hypermedia links inside an HTML document, or find it after a businessto-business XML message interaction. But a request to retrieve the representation of that resource is never guaranteed to be successful. Unlike other contemporary distributed systems architectures, the Web's blueprints do not provide any explicit mechanisms to support information integrity. For example, if a service on the Web decides that a URI is no longer going to be associated with a particular resource, there is no way to notify all those consumers that depend on the old URIï¿½resource association.
 This is an unusual stance, but it does not mean that the Web is neglectful--far from it. HTTP defines response codes that can be used by service providers to indicate what has happened. To communicate that "the resource is now associated with a new URI," a service can use the status code 301 Moved Permanently or 303 See Other. The Web always tries to help move us toward a successful conclusion, but without introducing tight coupling.
 16 CHAPTER 1: the web as a platform for building distributed systems
 
@@ -591,7 +597,7 @@ Figure 2-1. XML-based exchange between a customer and a waiter
 
 As in real life, things won't always go according to plan in Restbucks. Coffee machines may break, demand may peak, or the shop may have supply chain difficulties. Given the importance of scaling, fault reporting, and error handling in integration scenarios, we will identify relevant web technologies and patterns that we can use to cope with such problems.
 Boundaries
-In Restbucks, we draw boundaries around the actors involved in the system to encapsulate implementation details and emphasize the interactions between systems. When we order a coffee, we don't usually care about the mechanics of the supply chain or the details of the shop's internal coffee-making processes. Composition of functionality and the introduction of façades with which we can interact are common practices in system design, and web-based systems are no different in that respect. For example, in Figure 2-2 the customer doesn't need to know about the waiter­cashier and cashier­ barista interactions when he orders a cup of coffee from the waiter.
+In Restbucks, we draw boundaries around the actors involved in the system to encapsulate implementation details and emphasize the interactions between systems. When we order a coffee, we don't usually care about the mechanics of the supply chain or the details of the shop's internal coffee-making processes. Composition of functionality and the introduction of faï¿½ades with which we can interact are common practices in system design, and web-based systems are no different in that respect. For example, in Figure 2-2 the customer doesn't need to know about the waiterï¿½cashier and cashierï¿½ barista interactions when he orders a cup of coffee from the waiter.
 Figure 2-2. Boundaries help decompose groups of interactions The Web's principles, technologies, and patterns can be used to model and implement business processes whether they are exposed across the boundaries of the Restbucks service or used for internal functionality. That is, the Web pervades Restbucks' infrastructure, providing connectivity to both external partners and customers and internal systems!
 The Menu
 Restbucks prides itself on the variety of products it serves and allows customers to customize their coffee with several options. Table 2-1 shows some of the products and
@@ -609,7 +615,7 @@ Milk: skim, semi, whole Size: small, medium, large Whipped cream: yes, no Kind: 
 
 Sample Interactions
 Let's set the scene for the remainder of the book by examining some of the typical interactions between the main actors. Subsequent chapters build on these scenarios, expand them further, and introduce new ones.
-Customer­Barista
+Customerï¿½Barista
 Restbucks takes its first steps as a small, neighborhood coffee shop. A barista is responsible for everything: taking orders, preparing the coffee, receiving payment, and giving receipts. Figure 2-3 shows the interaction between a customer and a barista.
 
 Figure 2-3. A simple interaction between a customer and a barista
@@ -620,9 +626,9 @@ We need mechanisms for sending notification. For example, we need to be able to 
 Figure 2-4. Customers will have to wait
 Restbucks: A Little Coffee Shop with Global Ambitions 25
 
-Customer­Cashier­Barista
+Customerï¿½Cashierï¿½Barista
 Although Restbucks stems from modest roots, its coffee quality and increasingly positive reputation help it to continue to grow. To help scale the business, Restbucks decides to hire a cashier to speed things up. With a cashier busy handling the financial aspects of the operation, the barista can concentrate on making coffee. The customer's interactions aren't affected, but Restbucks now needs to coordinate the cashier's and barista's tasks with a low-ceremony approach using sticky notes. The interactions (or protocol) between the cashier and the barista remain hidden from customers. Now that we've got two moving parts in our coffee shop, we need to think about how to encapsulate them, which leads to the scenario shown in Figure 2-5.
-Figure 2-5. A cashier helps the barista By implementing this scheme, Restbucks decouples ordering and payment from the coffee preparation. In turn, it is possible for Restbucks to abstract the inner workings of the shop through a façade. While the customer gets the same good coffee, Restbucks is free to innovate and evolve its implementation behind the scenes.
+Figure 2-5. A cashier helps the barista By implementing this scheme, Restbucks decouples ordering and payment from the coffee preparation. In turn, it is possible for Restbucks to abstract the inner workings of the shop through a faï¿½ade. While the customer gets the same good coffee, Restbucks is free to innovate and evolve its implementation behind the scenes.
 26 CHAPTER 2: introducing restbucks: how to get a coffee, web style
 
 Decoupling payments and drink preparation allows Restbucks to optimize available resources. The barista can now look at the queue of orders and make decisions for the optimal preparation sequence. Furthermore, decoupling tasks allows Restbucks to scale operations by adding more cashiers and baristas independently as demand increases. We will see that the Web makes adding capacity straightforward.
@@ -687,20 +693,20 @@ Choosing integration points is not difficult; we look for appropriate modules in
 
 Figure 3-1. Customers from other companies interact with Restbucks employees
 Note Integration-friendly interfaces tend to be at the edges of the system (or at least on the periphery of major modules), rather than deep inside the domain model or data access tiers. In that spirit, we should look for interfaces that encapsulate recognizable concepts from the problem domain with reasonably coarse granularity.
-We've learned from building service-oriented systems that good integration points tend to encapsulate business-meaningful processes or workflows. Generally, we don't want to expose any technical or implementation details. It's often worth writing façades (adapting Fowler's Remote Façade pattern*) to support this idiom if no existing
+We've learned from building service-oriented systems that good integration points tend to encapsulate business-meaningful processes or workflows. Generally, we don't want to expose any technical or implementation details. It's often worth writing faï¿½ades (adapting Fowler's Remote Faï¿½ade pattern*) to support this idiom if no existing
 
 * http://martinfowler.com/eaaCatalog/remoteFacade.html
 
 A Simple Coffee Ordering System 33
 
 interfaces or integration points are suitable. For Restbucks services, we will look for the following kinds of integration points:
-· Methods that encapsulate some (coarse-grained) business concept rather than low-level technical detail
-· Methods that support existing presentation logic, such as controllers in the ModelView-Controller* pattern
-· Scripts or workflows that orchestrate interactions with a domain model Conversely, we avoid integration points such as:
-· Data access methods, especially those that are transactional · Properties/getters and setters · Anything that binds to an existing presentation tier such as reusing view logic or
+ï¿½ Methods that encapsulate some (coarse-grained) business concept rather than low-level technical detail
+ï¿½ Methods that support existing presentation logic, such as controllers in the ModelView-Controller* pattern
+ï¿½ Scripts or workflows that orchestrate interactions with a domain model Conversely, we avoid integration points such as:
+ï¿½ Data access methods, especially those that are transactional ï¿½ Properties/getters and setters ï¿½ Anything that binds to an existing presentation tier such as reusing view logic or
 screen scraping These aren't hard-and-fast rules, and you may find solutions where this guidance doesn't apply. In those cases, be pragmatic and do the simplest thing that will work without compromising the solution.
 A Simple Service Architecture
-We'll be using HTTP requests and responses to transfer information between the customers and Restbucks. To keep things simple from a client programming point of view, we'll abstract the remote behavior of the cashier behind a local-looking façade that we've termed the client-side cashier dispatcher.
+We'll be using HTTP requests and responses to transfer information between the customers and Restbucks. To keep things simple from a client programming point of view, we'll abstract the remote behavior of the cashier behind a local-looking faï¿½ade that we've termed the client-side cashier dispatcher.
 Note Hiding remote behavior from a consuming application is known to be a poor idea. Still, we've deliberately written examples in this chapter to highlight that HTTP is all too often abused for remote procedure calls. Hiding remote activity is usually a poor design choice that may have surprisingly harsh consequences at runtime when an operation that appears local malfunctions because of hidden remote activity over the network.
 In Figure 3-2, network code that customer objects use is encapsulated behind the dispatcher's interface (a waiter in real life), which gives a necessary clean separation of concerns between plumbing code and our application-level objects. On the server side,
 * http://en.wikipedia.org/wiki/Model-view-controller  Waldo et al. argue in their seminal paper, "A Note on Distributed Computing," that abstracting away
@@ -948,11 +954,11 @@ In the preceding chapter, we saw how GET and POST can be used to tunnel informat
 note From here onward, we consider the network and HTTP as an integral part of our distributed application, not just as a means of transporting bytes over the wire. Through CRUD, we'll take our first steps along the path to enlightenment using HTTP as an application protocol instead of a transport protocol, and see how the Web is really a big framework for building distributed systems.
 Modeling Orders As Resources
 In Restbucks, orders are core business entities, and as such, their life cycles are of real interest to us from a CRUD perspective. For the ordering parts of the Restbucks business process, we want to create, read, update, and delete order resources like so:
-· Orders are created when a customer makes a purchase. · Orders are frequently read, particularly when their preparation status is inquired.
+ï¿½ Orders are created when a customer makes a purchase. ï¿½ Orders are frequently read, particularly when their preparation status is inquired.
 55
 
-· Under certain conditions, it may be possible for orders to be updated (e.g., in cases where customers change their minds or add specialties to their drinks).
-· Finally, if an order is still pending, a customer may be allowed to cancel it (or delete it).
+ï¿½ Under certain conditions, it may be possible for orders to be updated (e.g., in cases where customers change their minds or add specialties to their drinks).
+ï¿½ Finally, if an order is still pending, a customer may be allowed to cancel it (or delete it).
 Within the ordering service, these actions (which collectively constitute a protocol) move orders through specific life-cycle phases, as shown in Figure 4-1.
 Figure 4-1. Possible states for an order Each operation on an order can be mapped onto one of the HTTP verbs. For example, we use POST for creating a new order, GET for retrieving its details, PUT for updating it, and DELETE for, well, deleting it. When mixed with appropriate status codes and some commonsense patterns, HTTP can provide a good platform for CRUD domains, resulting in really simple architectures, as shown in Figure 4-2.
 Figure 4-2. CRUD ordering service high-level architecture While Figure 4-2 exemplifies a very simple architectural style, it actually marks a significant rite of passage toward embracing the Web's architecture. In particular, it highlights the use of URIs to identify and address orders at Restbucks, and in turn it supports HTTP-based interactions between the customers and their orders.
@@ -1008,7 +1014,7 @@ HTTP/1.1 201 Created Content-Length: 267 Content-Type: application/xml Date: Wed
 </order>
 The Location header that identifies the URI of the newly created order resource is important. Once the client has the URI of its order resource, it can then interact with it via HTTP using GET, PUT, and DELETE. While a 201 Created response is the normal outcome when creating orders, things may not always go according to plan. As with any computing system--especially distributed systems--things can and do go wrong. As service providers, we have to be able to deal with problems and convey helpful information back to the consumer in a structured manner so that the consumer can make forward (or backward) progress. Similarly, as consumers of the ordering service, we have to be ready to act on those problematic responses.
 Fortunately, HTTP offers a choice of response codes, allowing services to inform their consumers about a range of different error conditions that may arise during processing. The Restbucks ordering service has elected to support two error responses when a request to create a coffee order fails:
-· 400 Bad Request, when the client sends a malformed request to the service · 500 Internal Server Error, for those rare cases where the server faults and cannot
+ï¿½ 400 Bad Request, when the client sends a malformed request to the service ï¿½ 500 Internal Server Error, for those rare cases where the server faults and cannot
 recover internally
 60 CHAPTER 4: crud web services
 
@@ -1088,9 +1094,9 @@ try { Order order = OrderDatabase.getOrder(orderId); if (order != null) { // Use
 } catch (Exception e) { throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
 } } // Remainder of implementation omitted for brevity }
 In Example 4-12, the root path where our service will be hosted is declared using the @Path annotation, which in turn yields the /order part of the URI. The getOrder(...) method is annotated with @GET, @Produces, and @Path annotations that provide the following behaviors:
-· @GET declares that the getOrder(...) method responds to HTTP GET requests.
-· @Produces declares the media type that the method generates as its return value. In turn, this is mapped onto the HTTP Content-Type header in the response. Since the ordering service uses XML for order resource representations, we use application/ xml here.
-· @Path declares the final part of the URI where the method is registered, using the URI template {/orderId}. By combining this with the root path declared at the class level, the service is registered at the URI /order/{orderId}.
+ï¿½ @GET declares that the getOrder(...) method responds to HTTP GET requests.
+ï¿½ @Produces declares the media type that the method generates as its return value. In turn, this is mapped onto the HTTP Content-Type header in the response. Since the ordering service uses XML for order resource representations, we use application/ xml here.
+ï¿½ @Path declares the final part of the URI where the method is registered, using the URI template {/orderId}. By combining this with the root path declared at the class level, the service is registered at the URI /order/{orderId}.
 * Oracle Corp. website. "JAX-RS (JSR 311): The Java API for RESTful Web Services"; see http://jcp.org/ en/jsr/detail?id=311.
 Building CRUD Services 67
 
@@ -1099,9 +1105,9 @@ Inside the getOrder(...) method, we try to retrieve order information from the d
 note It's interesting that the JAX-RS implementation for GET in Example 4-10 deals with a substantial amount of plumbing code on our behalf when compared to the bare servlet implementation in Example 4-3. However, it's also important to note that we don't have to use frameworks such as JAX-RS to build CRUD services, since servlets (and other HTTP libraries) can work just as well.
 Updating a Resource with PUT
 For the uninitiated, HTTP can be a strange protocol, not least because it offers two ways of transmitting information from client to server with the POST and PUT verbs. In their landmark book, Richardson and Ruby established a convention for determining when to use PUT and when to use POST to resolve the ambiguity:
-· Use POST to create a resource identified by a service-generated URI.
-· Use POST to append a resource to a collection identified by a service-generated URI.
-· Use PUT to create or overwrite a resource identified by a URI computed by the client.
+ï¿½ Use POST to create a resource identified by a service-generated URI.
+ï¿½ Use POST to append a resource to a collection identified by a service-generated URI.
+ï¿½ Use PUT to create or overwrite a resource identified by a URI computed by the client.
 This convention has become widely accepted, and the Restbucks ordering service embraces it by generating URIs for orders when they're created by POSTing to the wellknown entry point: http://restbucks.com/order. Conversely, when updating orders via PUT, consumers specify the URIs. Figure 4-6 shows how using different verbs disambiguates the two different cases and simplifies the protocol.
 * http://xstream.codehaus.org/  RESTful Web Services (http://oreilly.com/catalog/9780596529260/), published by O'Reilly.
 68 CHAPTER 4: crud web services
@@ -1400,10 +1406,10 @@ A hypermedia system is characterized by the transfer of links in the resource re
 For example, in a consumer-service interaction, the consumer submits an initial request to the entry point of the service. The service handles the request and responds with a resource representation populated with links. The consumer chooses one of these links to transition to the next step in the interaction. Over the course of several such interactions, the consumer progresses toward its goal. In other words, the distributed application's state changes. Transformation of application state is the result of the systemic behavior of the whole: the service, the consumer, the exchange of hypermedia-enabled resource representations, and the advertisement and selection of links.
 On each interaction, the service and consumer exchange representations of resource state, not application state. A transferred representation includes links that reflect the state of the application. These links advertise legitimate application state transitions. But the application state isn't recorded explicitly in the representation received by the consumer; it's inferred by the consumer based on the state of all the resources--potentially distributed across many services--with which the consumer is currently interacting.
 The current state of a resource is a combination of:
-· The values of information items belonging to that resource
-· Links to related resources
-· Links that represent a transition to a possible future state of the current resource
-· The results of evaluating any business rules that relate the resource to other local resources
+ï¿½ The values of information items belonging to that resource
+ï¿½ Links to related resources
+ï¿½ Links that represent a transition to a possible future state of the current resource
+ï¿½ The results of evaluating any business rules that relate the resource to other local resources
 This last point emphasizes the fact that the state of a resource is partly dependent on the state of other local resources. The state of a sales order, for example, is partly a function of the state of a local copy of an associated purchase order; changes to the purchase order will affect the state of the sales order the next time the business rules governing the state of the sales order are evaluated (i.e., the next time a representation of the sales order is generated).
 Importantly, the rules that control the state of a resource are internal to the service that governs the resource: they're not made available to consumers. In other words, resource
 94 CHAPTER 5: hypermedia services
@@ -1582,8 +1588,8 @@ Figure 5-4. Possible HTTP requests for the Restbucks ordering service The permit
 112 CHAPTER 5: hypermedia services
 
 by the service.* Modeling Restbucks' business processes as a DAP and then representing that protocol as a state machine in this manner is a useful way of capturing a business process at design time. Moving from design to implementation, we need to think about the protocol in a slightly different way. In a resource-oriented distributed application, an application protocol can be thought of as a function of one or more resource life cycles and the business rules that connect these resources. Because of its resource-centric nature, the Restbucks service does not host an application protocol state machine. In other words, there's no workflow or business logic for the application protocol as such. Rather, the service governs the life cycles of the orders and payments participating in the application protocol. Any workflows in the service implementation relate to resource life cycles, not the application protocol life cycle. While we've been explicit in modeling the business process as an application protocol state machine, we've been diligent in implementing it wholly in terms of resource state machines. Figure 5-5 shows the resource state machine for an order as implemented in the service. From this diagram and Figure 5-4, we can derive the DAP:
-· POST creates an order. · Any number of POSTs updates the order. · A single DELETE cancels the order, or a single PUT to a payment resource pays for
-the order. · And finally, a single DELETE confirms that the order has been received.
+ï¿½ POST creates an order. ï¿½ Any number of POSTs updates the order. ï¿½ A single DELETE cancels the order, or a single PUT to a payment resource pays for
+the order. ï¿½ And finally, a single DELETE confirms that the order has been received.
 Figure 5-5. State transitions for the order resource from Figure 5-4 The state machine diagram in Figure 5-5 is a useful design artifact, but it isn't a good representation format for sharing protocols over the Web. For that, we use hypermedia, which starts with a single, well-known entry point URI.
 * GET requests are also associated with business logic, but don't cause any state transitions for which the consumer can be held accountable by the service. This is consistent with the use of GET on the Web, and as we will see in later chapters, it is one of the key enablers for massive scalability.
 Hypermedia Protocols 113
@@ -1603,9 +1609,9 @@ Hypermedia Protocols 115
 
 note The protocol parts of the payload direct customers through the ordering process, but the service can't assume that every customer will follow these directions. Because we can't control the development of consumer applications, we need to make sure the service can process any incoming request--even an out-of-order or invalid request--and return the appropriate response codes.
 The semantics of the links in the order representation must be communicated to, and understood by, Restbucks' customers. This is the purpose of the Restbucks media type.* By accepting HTTP responses with the Content-Type header set to application/vnd. restbucks+xml, consumers enter into a contract that requires them to understand Restbucks' representation format and link relation values if they wish to make forward progress. As per the media type description, Restbucks leverages a reusable <link> element to convey business protocol information. We separate the <link> element and its attributes from the rest of the Restbucks representation format elements and we define it in its own http://schemas.restbucks.com/dap namespace:
-· <link> elements have a uri attribute whose value indicates a resource with which the consumer can interact to progress the application protocol.
-· <link> elements have a rel attribute containing semantic markup. The definitions of the markup values imply which HTTP verb to use when following the link, as well as required HTTP headers, and the structure of the payload.
-· If a request requires an entity body, the <link> element will contain a mediaType attribute that declares the format of the request payload. If a request does not require an entity body, the mediaType attribute will be absent.
+ï¿½ <link> elements have a uri attribute whose value indicates a resource with which the consumer can interact to progress the application protocol.
+ï¿½ <link> elements have a rel attribute containing semantic markup. The definitions of the markup values imply which HTTP verb to use when following the link, as well as required HTTP headers, and the structure of the payload.
+ï¿½ If a request requires an entity body, the <link> element will contain a mediaType attribute that declares the format of the request payload. If a request does not require an entity body, the mediaType attribute will be absent.
 With the <dap:link> hypermedia control at our disposal, let's see an example order representation. Example 5-6 shows a response representation generated immediately after an order has been accepted.
 Example 5-6. Hypermedia order representation
 <order xmlns=http://schemas.restbucks.com xmlns:dap=http://schemas.restbucks.com/dap> <dap:link mediaType=application/vnd.restbucks+xml uri=http://restbucks.com/order/1234 rel=http://relations.restbucks.com/cancel/> <dap:link mediaType=application/vnd.restbucks+xml uri=http://restbucks.com/payment/1234 rel=http://relations.restbucks.com/payment/> <dap:link mediaType=application/vnd.restbucks+xml uri=http://restbucks.com/order/1234
@@ -1908,13 +1914,13 @@ Final State Delivered End Final State Cancelled End
 The state machine description in Example 5-26 consists of a declaration of a set of global properties and a series of states through which the order resource may transition. The first state lexically is considered to be the initial resource state.
 Building the Ordering Service in .NET 143
 
-· The UriTemplate property at the top of the DSL identifies the resource whose life cycle is managed by state machine instances based on this program. To keep things simple, we've assumed that the UriTemplate has a specific structure, with the resource identifier at the end being the only variable part of the URI. The service implementation does not expose the URI template to consumers. Outside the boundaries of the ordering service, there is no way to determine which part of the URI is actually used as the internal order identifier.
-· The Namespace property defines the .NET namespace in which any unqualified method and exception names will reside.
-· The MediaType property defines the media type that will be used in all HTTP requests and responses based on this DSL.
-· The RelationsIn property defines the URI prefix for all the relations in the Links sections of the DSL.
+ï¿½ The UriTemplate property at the top of the DSL identifies the resource whose life cycle is managed by state machine instances based on this program. To keep things simple, we've assumed that the UriTemplate has a specific structure, with the resource identifier at the end being the only variable part of the URI. The service implementation does not expose the URI template to consumers. Outside the boundaries of the ordering service, there is no way to determine which part of the URI is actually used as the internal order identifier.
+ï¿½ The Namespace property defines the .NET namespace in which any unqualified method and exception names will reside.
+ï¿½ The MediaType property defines the media type that will be used in all HTTP requests and responses based on this DSL.
+ï¿½ The RelationsIn property defines the URI prefix for all the relations in the Links sections of the DSL.
 There are two different subconstructs in each state of Example 5-26:
-· The HTTPVerb is used to identify valid incoming HTTP requests, given the current state of a resource and what action should be performed upon receipt of such requests. The MethodName specifies the .NET method to dispatch followed by the HTTP status code of the response should that method complete normally. An optional => StateName identifies the state to which the resource should automatically transition after successful processing of the incoming request. The optional When conjunction allows us to deal with exceptions that the business logic from the invoked .NET method might generate, and the HTTP status code of the response in such a case.
-· The Links section declares the <dap:link> elements that should be included in the payload of the responses to consumers when the resource is at that particular state. The links can point to other resources hosted by Restbucks, or any other resources on the Web.
+ï¿½ The HTTPVerb is used to identify valid incoming HTTP requests, given the current state of a resource and what action should be performed upon receipt of such requests. The MethodName specifies the .NET method to dispatch followed by the HTTP status code of the response should that method complete normally. An optional => StateName identifies the state to which the resource should automatically transition after successful processing of the incoming request. The optional When conjunction allows us to deal with exceptions that the business logic from the invoked .NET method might generate, and the HTTP status code of the response in such a case.
+ï¿½ The Links section declares the <dap:link> elements that should be included in the payload of the responses to consumers when the resource is at that particular state. The links can point to other resources hosted by Restbucks, or any other resources on the Web.
 Using a declarative description of resource state transitions, such as the one shown in Example 5-26, we can modify and evolve a DAP without having to radically change our service's implementation. Most importantly, however, we can rapidly develop and deploy new DAPs.
 Implementation Considerations for .NET
 When the Restbucks service receives an HTTP request, it routes it to the hypermedia framework dispatcher, which in turn delivers it to the appropriate state machine instance. The dispatcher checks the request's URI against each state machine's URI template to determine which state machine should deal with the request.
@@ -2071,12 +2077,12 @@ Caching helps mitigate the consequences of applying the statelessness constraint
 Note In fact, polling is what allows the Web to scale. By repeatedly polling a cacheable resource, a consumer "warms" all of the caches between it and the origin server, pulling data from the origin server into the network where other consumers can rapidly access it. Furthermore, once the caches are warm, any requests they can satisfy mean less traffic to the origin server, no matter how hard a consumer polls. This is the classic latency/scalability trade-off that the Web provides. By making representations cacheable, we get massive scale, but introduce latency between the resource changing and those changes becoming visible to consumers. Of course, individual caches can themselves become overloaded by requests; in such circumstances, we may have to consider clustered or hierarchical caching topologies.
 Reasons for Not Caching
 We've discussed several of the benefits of caching. But there are at least four situations in which we might not want to cache data:
-· When GET requests generate server-side side effects that have a business impact on the service. Remember, GET is safe, but it can still generate side effects for which the consumer cannot be held responsible. These effects may range from simply logging traffic (which is then used to generate business metrics) to incrementing a counter that determines whether a particular class of customer is within a certain usage threshold for the service to which the request is being directed. If these kinds of internal side effects are important, we may want to prevent or limit caching.
-· When consumers cannot tolerate any discrepancy between the state of a resource as conveyed in a response and the actual state of that resource at the moment the request was satisfied. As we discuss later in this chapter, caching exacerbates the weak consistency of the Web; the longer a representation of a volatile resource is cached, the more likely it is that a response returned from a cache no longer reflects the state of the resource at the origin server. This is particularly problematic when two or more overlapping resources manipulate the same underlying domain entity. Consider, for example, a service that exposes order and completion resources, where both an order and a completion are associated with the same underlying order domain entity. POSTing a completion changes the state of an order entity. Because of this change, cached order representations no longer reflect the state of the underlying domain entity. Consumers that act on these cached order representations may commit themselves to business transactions that are no longer valid.
-· When a response contains sensitive or personal data particular to a consumer. Security and caching can coexist to a certain extent: first, local and proxy caches can sometimes cache encrypted responses; second, as we show later, it is possible to cache responses in a way that requires the cache to authorize them with the origin server with every request. But in many circumstances, regulatory or organizational requirements will dictate that responses must not be cached.
+ï¿½ When GET requests generate server-side side effects that have a business impact on the service. Remember, GET is safe, but it can still generate side effects for which the consumer cannot be held responsible. These effects may range from simply logging traffic (which is then used to generate business metrics) to incrementing a counter that determines whether a particular class of customer is within a certain usage threshold for the service to which the request is being directed. If these kinds of internal side effects are important, we may want to prevent or limit caching.
+ï¿½ When consumers cannot tolerate any discrepancy between the state of a resource as conveyed in a response and the actual state of that resource at the moment the request was satisfied. As we discuss later in this chapter, caching exacerbates the weak consistency of the Web; the longer a representation of a volatile resource is cached, the more likely it is that a response returned from a cache no longer reflects the state of the resource at the origin server. This is particularly problematic when two or more overlapping resources manipulate the same underlying domain entity. Consider, for example, a service that exposes order and completion resources, where both an order and a completion are associated with the same underlying order domain entity. POSTing a completion changes the state of an order entity. Because of this change, cached order representations no longer reflect the state of the underlying domain entity. Consumers that act on these cached order representations may commit themselves to business transactions that are no longer valid.
+ï¿½ When a response contains sensitive or personal data particular to a consumer. Security and caching can coexist to a certain extent: first, local and proxy caches can sometimes cache encrypted responses; second, as we show later, it is possible to cache responses in a way that requires the cache to authorize them with the origin server with every request. But in many circumstances, regulatory or organizational requirements will dictate that responses must not be cached.
 Caching 159
 
-· When the data changes so frequently that caching and revalidating a response adds more overhead than the origin server simply generating a fresh response with each request.
+ï¿½ When the data changes so frequently that caching and revalidating a response adds more overhead than the origin server simply generating a fresh response with each request.
 Types of Caches
 A whole ecosystem of proxy servers has grown up around GET and its safe and idempotent semantics. Proxy servers are common intermediaries between consumers and origin servers, which we recognize from our human use of the Web. While they can perform various operations on HTTP requests and responses, such as information filtering and security checks, they are most commonly used for caching.
 Many of us are familiar with application caches and database caches--two types of caches that can reside behind service boundaries. Nowadays, many systems also explicitly route requests through distributed in-memory caches. But the kinds of caches we're talking about here are those that are already part of the installed infrastructure of the Web:
@@ -2290,8 +2296,8 @@ Response: HTTP/1.1 200 OK Cache-Control: max-age=3600, channel=http://internal.r
 <product xmlns=http://schemas.restbucks.com/product> <name>Fairtrade Roma Coffee Beans</name> <size>1kg</size> <price>10</price>
 </product>
 The max-age directive specifies that this representation will remain fresh for up to an hour, after which it must be revalidated with the origin server. But any cache on the response path that understands the channel and group extensions can continue to extend the freshness lifetime of this representation as long as two conditions hold:
-· The cache continues to poll the channel at least as often as a precision value specified by the channel itself.
-· The channel doesn't issue a "stale" event for either the URI of the cached representation or the group URI with which the representation is associated.
+ï¿½ The cache continues to poll the channel at least as often as a precision value specified by the channel itself.
+ï¿½ The channel doesn't issue a "stale" event for either the URI of the cached representation or the group URI with which the representation is associated.
 180 CHAPTER 6: scaling out
 
 If a cache performs a GET on the channel specified in the channel extension, it receives the cache channel feed shown in Example 6-17.
@@ -2355,19 +2361,19 @@ Note While entries are typically contained inside feeds, they can also be treate
 Feeds, like entries, have metadata associated with them. Feed metadata allows us to provide friendly descriptions of content, links to other services or resources, and, most importantly, a means of navigating to other feeds--all in a standard manner.
 Atom doesn't attach any significance to the order of entries in a feed. A feed will often be sorted by the <atom:updated> or <atom:published> value of its constituent entries, but it can as easily be sorted by other elements--by category, or author, or title, for instance. In our example, we've organized the feed based on when coffee orders were placed, with the most recent order appearing at the top of the feed.
 Our orders feed is typical of how Atom is used in a computer-to-computer scenario. The feed's metadata sets the context for the enclosed coffee orders, allowing consumers to reason about the list's origin, its purpose, and its timeliness. This feed metadata includes the following elements:
-· <atom:id> is a permanent, universally unique identifier for the feed.
-· <atom:title> provides a human-readable name for the feed.
-· <atom:updated> indicates when the feed last changed.
+ï¿½ <atom:id> is a permanent, universally unique identifier for the feed.
+ï¿½ <atom:title> provides a human-readable name for the feed.
+ï¿½ <atom:updated> indicates when the feed last changed.
 The Format 187
 
-· <atom:generated> identifies the software agent that created the feed, which in this case is the ordering service.
-· <atom:link> contains the canonical URI for retrieving the feed.
+ï¿½ <atom:generated> identifies the software agent that created the feed, which in this case is the ordering service.
+ï¿½ <atom:link> contains the canonical URI for retrieving the feed.
 The ordering service feed in Example 7-1 contains two <atom:entry> elements, each representing an order (of course, there could have been more). Each entry is a mixture of Atom metadata markup and application-specific XML content. The following elements are included in the <atom:entry> metadata:
-· <atom:id> is a unique identifier for the entry.
-· <atom:title> provides a human-readable title for the entry.
-· <atom:updated> is a timestamp indicating when the entry last changed, which in this instance is the time the order was accepted by the system.
-· <atom:author> identifies who created the entry, which in our example is the cashier who took the order.
-· <atom:link> contains the URI for addressing this entry as a standalone document.
+ï¿½ <atom:id> is a unique identifier for the entry.
+ï¿½ <atom:title> provides a human-readable title for the entry.
+ï¿½ <atom:updated> is a timestamp indicating when the entry last changed, which in this instance is the time the order was accepted by the system.
+ï¿½ <atom:author> identifies who created the entry, which in our example is the cashier who took the order.
+ï¿½ <atom:link> contains the URI for addressing this entry as a standalone document.
 Each entry also contains an <atom:content> element. <atom:content> elements can contain arbitrary foreign elements, including elements that share the default namespace. Here, the content includes a piece of Restbucks XML representing an order's details. The <atom:content> element's type attribute contains a media type value (application/vnd. restbucks+xml) so that the consumers of an entry know how to process the payload.
 Common Uses for Atom
 In Restbucks, we use Atom feeds to move business information between providers and consumers of coffee operations, exactly as we would using other enterprise integration techniques. This is just one use of Atom in the enterprise; other uses include:
@@ -2425,9 +2431,9 @@ Link Relations
 Because we've split the notifications feed into a series of linked feeds, we need to help stores navigate them. In other words, we need to both link feeds together and describe how they relate to each other. We do this using Atom's <atom:link> element.
 The <link> element is Atom's primary hypermedia control. As we discussed in Chapter 5, connecting resources is an important part of building web-friendly systems. Hypermedia controls allow services to connect and clients to access and manipulate resources by sending and receiving resource representations using a uniform set of operations.
 To use a hypermedia control successfully, a client must first understand the control's semantic context. The client must then be able to identify and address the resource with which the control is associated. Finally, it must know which media type to send or what representation formats it can expect to receive when it makes use of the control. These requirements are satisfied by the <atom:link> element's rel, href, and type attributes, respectively:
-· A rel attribute's value describes the link relation or semantic context for the link.
-· The href attribute value is the URI of the linked resource.
-· The type attribute describes a linked resource's likely media type.
+ï¿½ A rel attribute's value describes the link relation or semantic context for the link.
+ï¿½ The href attribute value is the URI of the linked resource.
+ï¿½ The type attribute describes a linked resource's likely media type.
 note The <link> element captures most of the connectedness characteristics we want to include in our resource representations. This fact, coupled with the growing popularity of Atom as a syndication format and the corresponding rise in Atom clients, leads us to suggest making atom:link a common building block of webfriendly distributed systems.
 Using Atom for Event-Driven Systems 195
 
@@ -2552,10 +2558,10 @@ At a feed level, links with link relation values of self, alternate, next-archiv
 206 CHAPTER 7: the atom syndication format
 
 The Restbucks product catalog uses many other Atom elements besides links to create an entire processing context for a list of domain-specific representations. In other words, Restbucks uses Atom to implement hypermedia-driven event handlers. To build this processing context, stores use:
-· <atom:id> and <atom:updated> to identify the oldest entry requiring processing
-· Categories to further refine a list of entries to be processed
-· related links to correlate entries with domain-specific resources
-· An entry's <atom:content> element's type attribute value to determine the processing model to be applied to the enclosed domain-specific representation
+ï¿½ <atom:id> and <atom:updated> to identify the oldest entry requiring processing
+ï¿½ Categories to further refine a list of entries to be processed
+ï¿½ related links to correlate entries with domain-specific resources
+ï¿½ An entry's <atom:content> element's type attribute value to determine the processing model to be applied to the enclosed domain-specific representation
 Atom helps us separate protocol and processing context from business payload using media type composition. Because the processing context for an event is conveyed solely at the Atom document level, the event-handling protocol itself can be implemented by domain-agnostic client code--that is, by generic Atom clients. The split between event context and business resource state snapshot allows stores to use Atom processors to determine which events to process, and allows domain- or applicationspecific media type processors to act on an entry's business payload.
 Building an Atom Service in Java
 For Java solutions, on the server side our basic tools are a web server, an HTTP library, and a feed generator. On the client side, we need only an HTTP library and a feed parser. For our Java implementation, we've chosen Jersey* (a JAX-RS implementation) to provide the HTTP plumbing for the service and its consumers, and ROME for generating and consuming Atom feeds. For development purposes, we've chosen to use the Grizzly web server because it works nicely with Jersey.
@@ -2671,9 +2677,9 @@ for(Event e : events) { final Entry entry = new Entry(); entry.setId(e.getTagUri
 }
 return entries; }
 The events provided to the createEntries(...) method are supplied from the underlying event store. For each event, the following metadata is extracted and pushed directly into the entry:
-· An identifier from the event's stable, long-lived tag URI*
-· The event type, being a product or promotion event
-· The timestamp for when the event was generated
+ï¿½ An identifier from the event's stable, long-lived tag URI*
+ï¿½ The event type, being a product or promotion event
+ï¿½ The timestamp for when the event was generated
 Following on from the metadata, we add two links, self and related, to the entry. The self link contains the entry's URI; the related link correlates the entry with the underlying product or promotion's URI in the product catalog service.
 * Tag URIs are a way of creating a nonaddressable identifier from an addressable URI scheme such as HTTP. We use them here because events only have to be identifiable, whereas entries have to be addressable. See http://diveintomark.org/archives/2004/05/28/howto-atom-id for more information.
 Building an Atom Service in Java 215
@@ -2789,9 +2795,9 @@ return new Entry(item, new Id(evnt.Id).CreateFileName()); }
 Building an Atom Service in .NET 225
 
 FeedBuilder exposes three more public methods:
-· LoadRecentEventsFeed(...)
-· CreateNextRecentEventsFeed(...)
-· CreateArchiveFeed(...)
+ï¿½ LoadRecentEventsFeed(...)
+ï¿½ CreateNextRecentEventsFeed(...)
+ï¿½ CreateArchiveFeed(...)
 The first of these, LoadRecentEventsFeed(...), uses an IFileSystem implementation to load a feed from the current directory, as shown in Example 7-24. With the file contents loaded into a syndication feed, the method parses out the resource ID from the feed's via link and uses this to create a new feed mapping. It then uses the new mapping to initialize a new RecentEventsFeed. This ensures that the returned feed retains the loaded feed's resource ID, but is given a new temporary filename.
 Example 7-24. Loading a feed from the filesystem
 public RecentEventsFeed LoadRecentEventsFeed(IFileSystem fileSystem, FileName fileName)
@@ -2971,10 +2977,10 @@ AtomPub services also host service and category documents, which together help c
 Atom Publishing Protocol 239
 
 Taken together with the Atom format specification, AtomPub is an excellent example of a hypermedia-driven application protocol. AtomPub's processing model defines four things that are key to building hypermedia applications:
-· Resource representation formats
-· Hypermedia control markup
-· The HTTP idioms clients can use to manipulate resources
-· The link relations servers use to advertise legitimate state transitions
+ï¿½ Resource representation formats
+ï¿½ Hypermedia control markup
+ï¿½ The HTTP idioms clients can use to manipulate resources
+ï¿½ The link relations servers use to advertise legitimate state transitions
 A good RESTful protocol can be described in terms of resources, representation formats, methods, and status codes.* Atom Publishing Protocol is described in exactly these terms. Its moving parts include four resources--members, collections, service documents, and category documents--and their representation formats. Members and collections are abstract names for the things targeted by publishing activities. A member encapsulates a representation of a published web resource, or a representation of a resource that is in a draft state, waiting to be published. A collection is a set of members. In AtomPub, a member is represented as an Atom entry, a collection as an Atom feed. The activities used to manipulate these resources are described in terms of HTTP methods, headers, and status codes.
 Example 8-1 shows an AtomPub collection with three members.
 Example 8-1. An AtomPub collection with three members
@@ -2999,8 +3005,8 @@ The first member in the collection in Example 8-1 has been edited more recently 
 Now that we have an overall understanding of AtomPub, we'll examine in more detail AtomPub's resources, their representation formats, and the HTTP idioms used to manipulate them.
 Collections
 Collections are defined in service documents. The protocol doesn't specify how they are created or deleted. Collections support the following operations:
-· To list a collection's members, a client sends a GET to the collection's URI.
-· To create a new member, a client POSTs a representation of the prospective member to a collection's URI. Different collections support different media types. The set of acceptable media types supported by a collection is typically specified in a service document (described later in this section).
+ï¿½ To list a collection's members, a client sends a GET to the collection's URI.
+ï¿½ To create a new member, a client POSTs a representation of the prospective member to a collection's URI. Different collections support different media types. The set of acceptable media types supported by a collection is typically specified in a service document (described later in this section).
 Upon successful creation of a member resource, a service responds with a 201 Created status code and a Location header containing the URI of the newly created member. This URI is called the member URI. The body of the response contains an Atom entry representing the new member resource. The new resource's member URI also appears as the value of an edit link in this member's entry in a collection.
 Although AtomPub establishes the conventions for creating and modifying web resources, the server always determines whether an interaction is permitted. The server mints URIs and controls the URI space and the members identified by these URIs. Clients can create their own ID for a new member, but the server is entitled to modify the member and its representation, and even assign a new ID, as it sees fit.
 * We describe media link entries in more detail later on.
@@ -3009,8 +3015,8 @@ Although AtomPub establishes the conventions for creating and modifying web reso
 Servers will not, however, modify any IDs the client assigns to the underlying web resources--that is, the server won't touch the contents of member representations. The entity body in the response to a POST reflects whatever actions the server has applied to a member in the course of handling a request.
 Members
 Members in a collection are time-ordered based on the value of their <app:edited> elements (we provide details of this new element shortly), with the most recently edited member appearing first. Members support the following operations:
-· To get a representation of a member resource, a client sends a GET to the resource's member URI.
-· To update a member resource, a client sends a PUT request to its member URI. · To delete a resource, a client sends a DELETE request to its member URI.
+ï¿½ To get a representation of a member resource, a client sends a GET to the resource's member URI.
+ï¿½ To update a member resource, a client sends a PUT request to its member URI. ï¿½ To delete a resource, a client sends a DELETE request to its member URI.
 Text-based resource representations can be included directly in a member's <atom:content> element. Images, videos, and executables, on the other hand, can't be included directly. To cover these different situations, AtomPub breaks members down into a couple of subtypes. Members that can be represented using Atom entries are called entry resources. Members whose representations can't be included directly in an Atom entry are called media resources. Entry resources can be included directly in a collection feed; media resources can't. In place of a media resource, a proxy resource, known as a media link entry, is inserted in a collection feed. This media link entry contains the media resource's metadata, plus a link to the media resource itself.
 Category and service documents
 Whereas collections and members transport representations of web resources, category and service documents describe the overall protocol. In particular, they group collections into workspaces, describe each collection's capabilities, describe which categories and media types belong to each collection, and provide discovery mechanisms based on well-known entry points to collections. AtomPub provides simple XML vocabularies for service and category documents, borrowing elements from the Atom format wherever possible.
@@ -3036,9 +3042,9 @@ Atom Publishing Protocol 245
 
 AtomPub Extensions to Atom
 AtomPub extends Atom in a number of ways:
-· It uses Atom extensibility to add three new entry elements: <app:edited>, <app:control>, and <app:draft>. These elements belong to the AtomPub namespace.
-· It adds two new link-relation values, edit and edit-media, to the IANA Link Relations registry.
-· It adds a type parameter to the Atom media type.
+ï¿½ It uses Atom extensibility to add three new entry elements: <app:edited>, <app:control>, and <app:draft>. These elements belong to the AtomPub namespace.
+ï¿½ It adds two new link-relation values, edit and edit-media, to the IANA Link Relations registry.
+ï¿½ It adds a type parameter to the Atom media type.
 AtomPub also introduces a new HTTP header, Slug. Clients can include a Slug header when creating a new member. The Slug header represents a request that the server include the header value (or a modified version of the header value) in the URI, ID, or title of a new member. A client might use a Slug header to encourage the server to create pretty or human-readable URIs for a particular member.
 app:edited
 The <app:edited> element indicates when a member was created or last edited. Every member in a collection must contain exactly one <app:edited> element. Members in an AtomPub collection are ordered by <app:edited>, with the most recently created or updated members appearing first in the collection. The server changes the value of <app:edited> every time the member's metadata or content changes. <atom:updated>, on the other hand, only needs to be updated when a "significant" change occurs, typically in the member content. As we suggested in Chapter 7, in some circumstances we might give clients control of the <atom:updated> value. Clients, after all, are best placed to determine which changes are significant. <app:edited>, on the other hand, is always under the server's control.
@@ -3075,11 +3081,11 @@ Implementing Order Fulfillment Using AtomPub
 Following its shambolic first few days in business, when fickle customers exposed the flaws in its order fulfillment process (as described in the "lost update" anecdote in the preceding section), Restbucks took a long, hard look at the ad hoc coordination mechanisms behind the counter and decided to implement a more robust process-- one designed to guarantee that customers got what they wanted, no matter how many times they changed their minds. In the following sections, we're going to show how Restbucks now implements order fulfillment using AtomPub.
 Overview
 Before we dive into the details, let's review the steps in the fulfillment sequence:
-· A cashier takes an order from a customer.
-· The cashier adds the order to a list of orders awaiting fulfillment and takes payment from the customer.
-· The store's baristas work their way through the list of unfulfilled orders, usually but not always picking up the oldest first.
-· When a barista finishes making all the drinks in an order, he hands them over to the customer.
-· Prior to the drinks being prepared, the order can be modified or canceled.
+ï¿½ A cashier takes an order from a customer.
+ï¿½ The cashier adds the order to a list of orders awaiting fulfillment and takes payment from the customer.
+ï¿½ The store's baristas work their way through the list of unfulfilled orders, usually but not always picking up the oldest first.
+ï¿½ When a barista finishes making all the drinks in an order, he hands them over to the customer.
+ï¿½ Prior to the drinks being prepared, the order can be modified or canceled.
 What we're facing here, from an application integration point of view, is a case of competing consumers. In the competing consumer pattern, multiple receivers--baristas in this case--process messages (orders) from a single point-to-point channel.* The success of the pattern relies on there being no temporal dependencies between messages. That is, message B can be successfully processed before message A, even though it arrived after A.
 * Enterprise Integration Patterns by Gregor Hohpe and Bobby Woolf (Addison-Wesley, 2003).
 Implementing Order Fulfillment Using AtomPub 249
@@ -3284,7 +3290,7 @@ In this section, we show how Restbucks has implemented a simple version of the f
 268 CHAPTER 8: atom publishing protocol
 
 to concentrate on the overall design of our service. Since we tend to work in a rapid, test-driven manner, we've decoupled our service implementation from the WCF runtime. This enables us to deliver functionality quickly by specifying and testing specific HTTP interactions without having to start and stop a service instance.
-Because the fulfillment protocol is built on top of AtomPub, our solution needs to implement AtomPub collection and member protocol resources. We'll start by describing how we've built these collections and members using some of the .NET Framework's syndication classes. After that, we'll look at how to add domain logic that instantiates these classes in line with the fulfillment protocol. Next, we'll look at the simple Test Driven Development­centric framework we use to decouple our service implementation from the WCF runtime. Last, we'll examine the commands that we use to handle requests.
+Because the fulfillment protocol is built on top of AtomPub, our solution needs to implement AtomPub collection and member protocol resources. We'll start by describing how we've built these collections and members using some of the .NET Framework's syndication classes. After that, we'll look at how to add domain logic that instantiates these classes in line with the fulfillment protocol. Next, we'll look at the simple Test Driven Developmentï¿½centric framework we use to decouple our service implementation from the WCF runtime. Last, we'll examine the commands that we use to handle requests.
 Implementing AtomPub Collections and Members
 As we mentioned in Chapter 7, the .NET Framework's System.ServiceModel.Syndication namespace contains a number of classes that can be used to implement feeds and entries. For example, by adding a list of SyndicationItem objects to a SyndicationFeed and then outputting that feed using an Atom10FeedFormatter, we can easily generate an Atom feed.
 AtomPub, as we've seen, adds several extension elements to Atom's basic feed format. Our fulfillment service uses a member's <app:edited> element and its <app:control> and <app:draft> extension elements to coordinate the fulfillment of coffee orders. In addition, the fulfillment collection itself exposes an <app:collection> element that advertises which media types a cashier can use to initiate the fulfillment process. To use these elements in our solution, we must extend the framework classes.
@@ -3675,7 +3681,7 @@ Example 9-12. Restbucks creates a shared secret with the OpenID provider using D
 POST /jim HTTP/1.1 Host: provider.example.org Content-Length: 344 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=associate& openid.session_type=DH-SHA256&openid.assoc_type=HMACSHA256&openid.dh_consumer_public=ALs6VTbE6ZrffuOwB1ht%2F5D2XmugZAqCEQtsqLA5GHik9YF2 vx7UU0jWj47zGsqRvK3%2BAcoEWBaE4LNiqutj673UvX98XYCuQ3hjEpeiOg%2BHtXAScMd5f7NwMlEw2kB Xht88dFDo8Fsm2EV9dDYyix%2BI%2BYdEwwDZimbMNPcXQ4li
 The OpenID provider responds to Restbucks' request, as shown in Example 9-13. The provider's response contains the provider's public key and an encrypted MAC. Using the provider's public key together with its own public key, Restbucks can now determine the shared secret key encoded in the MAC.
-* http://en.wikipedia.org/wiki/Diffie­Hellman_key_exchange  OpenID association allows key exchange without encryption. Our preference is to secure the repre-
+* http://en.wikipedia.org/wiki/Diffieï¿½Hellman_key_exchange  OpenID association allows key exchange without encryption. Our preference is to secure the repre-
 sentations that services and consumers exchange, irrespective of the underlying channel.
 Identity and the OpenID Protocol 299
 
@@ -3819,10 +3825,10 @@ To OpenID-enable the Restbucks ordering service, we need to support four activit
 * http://code.google.com/p/webdriver
 310 CHAPTER 9: web security
 
-· Accept OpenID URIs identifying customers.
-· Create associations with OpenID providers.
-· Undertake indirect communication with the OpenID provider through the consumer.
-· Finally, if the consumer authenticates, accredit its order against its loyalty card.
+ï¿½ Accept OpenID URIs identifying customers.
+ï¿½ Create associations with OpenID providers.
+ï¿½ Undertake indirect communication with the OpenID provider through the consumer.
+ï¿½ Finally, if the consumer authenticates, accredit its order against its loyalty card.
 Accepting an OpenID is an easy task for Restbucks: we simply expose an XHTML form to the consumer and ask for OpenID URI. The code for this is a JAX-RS method that returns a login form. The method is triggered by a GET request for a URI matching the template /login/{orderId}, as shown in Example 9-29.
 Example 9-29. Exposing an OpenID login form to consumers
 @GET @Produces(MediaType.APPLICATION_XHTML_XML) @Path(LOGIN_PATH + /{orderId}) public Response openIDLogin(@PathParam(orderId) String orderId) {
@@ -4046,8 +4052,8 @@ if(voucher == null) { return Response.status(Status.NOT_FOUND).build();
 return Response.ok().entity(voucher.toLink(uriInfo.getRequestUri())).build(); }
 // Other methods elided for brevity }
 There are a couple of guards in place to prevent malicious parties from circumventing authorization or subverting the OAuth protocol:
-· To obtain a set of temporary credentials, one first needs a shared consumer secret with which to sign requests.
-· To obtain a set of token credentials, requests must be signed with the secret from the temporary credentials.
+ï¿½ To obtain a set of temporary credentials, one first needs a shared consumer secret with which to sign requests.
+ï¿½ To obtain a set of token credentials, requests must be signed with the secret from the temporary credentials.
 To implement these guards in Jersey, we use the @ResourceFilters annotation to declare preconditions on the execution of various methods within the resource classes. Example 9-51 shows how we've protected the useVoucher(...) method. The @ResourceFilters annotation declares that the OAuth Authorization header (OAuthAuthorizationRequiredFilter), plus a set of token credentials (OAuthAccessTokenRequiredFilter), plus a valid nonce (OAuthNonceRequiredFilter) must be present to trigger dispatch to the useVoucher(...) method. In general, in our implementation, each resource has zero or more filters associated with it, depending on the protocol preconditions that must be met before the resource can be manipulated. The filters for each resource are shown in Figure 9-16.
 Figure 9-16. Filters are used to enforce the protocol at runtime
 330 CHAPTER 9: web security
@@ -4236,14 +4242,14 @@ Example 9-60. A representation containing a malicious value
 344 CHAPTER 9: web security
 
 <milk>whole</milk> <size>small</size> </item> ... </order>
-Although an order of just over 216 café lattes would be quite lucrative if true, in all probability this payload is meant to disrupt the ordering service by causing an integer overflow. In this case, the attacker intends to create an order with a negative number of coffees (due to wraparound), hoping to cause unexpected exceptions, which it can then exploit.
+Although an order of just over 216 cafï¿½ lattes would be quite lucrative if true, in all probability this payload is meant to disrupt the ordering service by causing an integer overflow. In this case, the attacker intends to create an order with a negative number of coffees (due to wraparound), hoping to cause unexpected exceptions, which it can then exploit.
 Annoying as it is, this attack can be easily prevented with a simple business rule that constrains the valid quantity of coffees to something reasonable (for retail), such as greater than 0 but less than 50.
 Representations aren't the only attack vector that attackers might exploit. URIs themselves can present vulnerabilities if we haven't built services defensively. For example, attackers might wish to access our service's configuration files, or worse, the line-ofbusiness databases that support it (which is especially true of the Restbucks payment service). In Example 9-61, we see a GET request that has been crafted to steal the password file from a service hosted on a Unix server.
 Example 9-61. Probing the service with relative URIs
 GET /order/../../../../etc/passwd HTTP/1.1 Host: restbucks.com
 The attack in Example 9-61 will succeed if we are lax on two fronts:
-· The service does not validate URI paths, constraining them to legal URIs for resources in the service implementation.
-· The user under which the service runs has read access to the file being targeted by the attacker (in this instance, the password file).
+ï¿½ The service does not validate URI paths, constraining them to legal URIs for resources in the service implementation.
+ï¿½ The user under which the service runs has read access to the file being targeted by the attacker (in this instance, the password file).
 This attack is easily thwarted, yet in a pressurized environment, where software must be delivered and deployed rapidly, such obvious security measures are easily missed.
 Another attack that uses carefully crafted URIs is one designed to cause a denial of service rather than obtain information.* Imagine that an attacker figures out the relative path of the root directory on a Unix system and issues a GET request such as the one shown in Example 9-62.
 * See http://code.google.com/edu/submissions/web_security/listing.html for a fascinating discussion of this technique.
@@ -4318,12 +4324,12 @@ Structure and Representation of Information 353
 
 Structure
 As it happens, the string in Example 10-1 represents a Restbucks order:
-· The order is to be taken away (ta).
-· The first item ordered is a latte with the following details:
+ï¿½ The order is to be taken away (ta).
+ï¿½ The first item ordered is a latte with the following details:
 ----Quantity: 1 (q1)
 ----Milk: whole (m1)
 ----Size: 12oz (s12)
-· The second item is a cookie with the following details:
+ï¿½ The second item is a cookie with the following details:
 ----Quantity: 2 (q2)
 ----Kind: chocolate chip (k1)
 It's clear that there is a lot of context not explicitly recorded in the order's representation. The set of rules needed to extract information from the string is encoded externally by that representation's specification. If a Restbucks consumer is to meaningfully interact with a Restbucks barista software agent, a common understanding of those rules needs to be in place. Otherwise, any attempt to engage in a meaningful exchange would be unsuccessful.
@@ -4334,9 +4340,9 @@ Example 10-2. A Restbucks order in XML
 354 CHAPTER 10: semantics
 
 The XML document of Example 10-2 encodes exactly the same data as the string of Example 10-1, but using more characters (because XML is verbose). However, the move to XML brings a shared understanding about how the data is structured. Since we know this is an XML document, we can infer information by simply examining it within that context:
-· The <item> tags are contained by (children of) the <order> tag.
-· The <quantity>, <size>, and <milk> tags are also children of the <item> tag.
-· And so on....
+ï¿½ The <item> tags are contained by (children of) the <order> tag.
+ï¿½ The <quantity>, <size>, and <milk> tags are also children of the <item> tag.
+ï¿½ And so on....
 The XML specification does not dictate how an application should take advantage of structure; nor does it determine how to interpret the data. However, because there is a shared understanding of how XML documents look, we can leverage commodity tools to process the order. We can copy, query, or transform the XML document without having to interpret or reason over the information it conveys. XML allows us to maintain a separation between the structured data and the represented information.
 note In building distributed systems on the Web, we often use XML processing libraries without really having to interpret the contents of the XML documents in the infrastructure layers of our applications (e.g., digital signatures, structure validation, query frameworks, etc.). The interpretation and processing of the data are left to the business layer of our application.
 Interpretation
@@ -4364,7 +4370,7 @@ Machines become capable of analyzing all the data on the Web--the content, links
 Semantic Web technologies attempt to standardize the mechanics of information sharing so that it can be more easily supported in software. It should come as no surprise that resources and URIs are the building blocks on top of which the Semantic Web is built.
 note We make a distinction between the general approach of computing based on semantic technologies (machine learning, ontologies, inference, etc.), and the Semantic Web, which is the term used to refer to a specific ecosystem of technologies such as RDF and OWL. The Semantic Web has gained a lot of attention; however, we consider the Semantic Web technologies to be just some of the many tools at our disposal when we build semantically aware solutions.
 * Tim Berners-Lee, "Weaving the Web," http://www.w3.org/People/Berners-Lee/Weaving/.  Berners-Lee, T., J.A. Hendler, and O. Lasilla. "The Semantic Web." Scientific American, May 2001.  Shadbolt, N., T. Berners-Lee, and W. Hall."The Semantic Web Revisited." IEEE Intelligent Systems
-21(3):2006, p. 96­101.
+21(3):2006, p. 96ï¿½101.
 The Semantic Web 357
 
 The Semantic Web community has produced many technologies (and an equal number of acronyms) over the past decade--acronyms such as RDF, RDFS, RDFa, OWL, SPARQL, and GRDDL.* While we won't cover all of these technologies in depth, we will look at how Restbucks can utilize RDF and OWL (and, in subsequent sections, SPARQL and RDFa) to offer some additional functionality.
@@ -4404,11 +4410,11 @@ Figure 10-3. Adding more information to the Restbucks order graph
 * We could have reused an existing vocabulary to describe the currency node. For example, Good Relations (http://www.heppnetz.de/ontologies/goodrelations/v1) includes terms to describe the cost of products and the requested currency. In general, the reuse of vocabularies is recommended. The Semantic Web 361
 
 note The RDF processing model includes more constructs than we can cover here. It provides ways to describe collections of items as bags, sequences, and sets of alternatives. It offers a mechanism, called reification, for making statements about statements, such as "Berlin has been the capital of Germany since 1991," or "Jim likes his latte to be hot." Finally, through the use of RDF Schema, it is possible to describe simple vocabularies, such as the one that we have been using for Restbucks orders.
-RDF makes it simple to combine information from different graphs, as long as matching URIs are used. This allows software libraries to bring together the known statements about a resource. For example, consider the RDF of Example 10-6, which states that customer http://restbucks.com/customer/123 has placed the order http://restbucks.com/ order/1. The document also states that the URI representing the choice "latte" is associated with the "latte" label in English and the "une crème" label in French (using the SKOS* vocabulary); that its origin is Italy (using GeoNames); and that its milk is hot (using a proprietary coffee vocabulary). Finally, given that Restbucks wishes to be transparent about the ingredients it uses, it declares that its coffee beans come from Brazil.
+RDF makes it simple to combine information from different graphs, as long as matching URIs are used. This allows software libraries to bring together the known statements about a resource. For example, consider the RDF of Example 10-6, which states that customer http://restbucks.com/customer/123 has placed the order http://restbucks.com/ order/1. The document also states that the URI representing the choice "latte" is associated with the "latte" label in English and the "une crï¿½me" label in French (using the SKOS* vocabulary); that its origin is Italy (using GeoNames); and that its milk is hot (using a proprietary coffee vocabulary). Finally, given that Restbucks wishes to be transparent about the ingredients it uses, it declares that its coffee beans come from Brazil.
 Example 10-6. Additional RDF graphs can be combined with a Restbucks order
 <rdf:Description rdf:about=http://restbucks.com/customer/123> <restbucks:order rdf:resource=http://restbucks.com/order/1 />
 </rdf:Description
-<rdf:Description rdf:about=http://restbucks.com/vocab#latte> <skos:prefLabel xml:lang=en>latte</skos:prefLabel> <skos:prefLabel xml:lang=fr>une crème</skos:prefLabel> <coffee-vocab:origin rdf:resource=http://www.geonames.org/countries/#IT /> <coffee-vocab:milk rdf:resource=http://coffee.org/milk#hot /> <coffee-vocab:beans-origin rdf:resource=http://www.geonames.org/countries/#BR/>
+<rdf:Description rdf:about=http://restbucks.com/vocab#latte> <skos:prefLabel xml:lang=en>latte</skos:prefLabel> <skos:prefLabel xml:lang=fr>une crï¿½me</skos:prefLabel> <coffee-vocab:origin rdf:resource=http://www.geonames.org/countries/#IT /> <coffee-vocab:milk rdf:resource=http://coffee.org/milk#hot /> <coffee-vocab:beans-origin rdf:resource=http://www.geonames.org/countries/#BR/>
 </rdf:Description>
 RDF defines a set of basic rules and constructs that software agents can use as the building blocks for constructing the documents they exchange. However, these building blocks are not enough for all our scenarios. They can be used as the basis for developing vocabularies of concepts, such as "order," "cost," and "drink," which we can then use in our application domains. Due to the absence of a widely used coffee industry vocabulary, Restbucks has defined its own. The Semantic Web community refers to such vocabularies as ontologies.
 * SKOS Simple Knowledge Organization System: http://www.w3.org/2004/02/skos/.  http://www.geonames.org/ontology/
@@ -4474,7 +4480,7 @@ What if a consuming application wanted to determine whether this order contains 
 A reasoner can use the set of classes and individuals that we have declared in order to determine the answer to our question. Of course, we need to express our question in OWL first (see Example 10-12).
 Example 10-12. The ContainingDairy class
 Class: <ContainingDairy> EquivalentTo: <Order> and (<containsItem> some ( (<containsIngredient> some <Dairy>) or (<hasMilk> some <Dairy>)))
-Example 10-12 shows the declaration of the ContainingDairy class, which can be read as "ContainingDairy is a class that is an Order and contains an item with some dairy as an ingredient or some dairy milk." In addition to checking whether a coffee contains dairy milk, the declaration also checks to see if an ingredient used is dairy or not. Indeed, using the Hermit OWL reasoner* (used as a plug-in to Protégé), we can determine that MyDairyOrder is indeed of type ContainingDairy. An order that included only
+Example 10-12 shows the declaration of the ContainingDairy class, which can be read as "ContainingDairy is a class that is an Order and contains an item with some dairy as an ingredient or some dairy milk." In addition to checking whether a coffee contains dairy milk, the declaration also checks to see if an ingredient used is dairy or not. Indeed, using the Hermit OWL reasoner* (used as a plug-in to Protï¿½gï¿½), we can determine that MyDairyOrder is indeed of type ContainingDairy. An order that included only
 
 * http://hermit-reasoner.com/  http://protege.stanford.edu/
 
@@ -4548,7 +4554,7 @@ Example 10-20. A recipe in an XHTML document as a microformat
 <li class=ingredient> <span class=value>2.25</span> <span class=type>cups</span> flour.
 </li> <li class=ingredient>
 <span class=value>1</span> <span class=type>teaspoon</span> baking soda. </li> <li class=ingredient>
-<span class=value>1</span> <span class=type>teaspoon</span> salt. </li> <!-- More ingredients --> </ul> <h2>Preparation instructions</h2> <ul class=instructions> <li>Preheat oven to 375° F.</li> <li>Combine flour, baking soda, and salt in small bowl... </li> <!-- More instructions --> </ul> </div>
+<span class=value>1</span> <span class=type>teaspoon</span> salt. </li> <!-- More ingredients --> </ul> <h2>Preparation instructions</h2> <ul class=instructions> <li>Preheat oven to 375ï¿½ F.</li> <li>Combine flour, baking soda, and salt in small bowl... </li> <!-- More instructions --> </ul> </div>
 As you can see from Example 10-20, microformats use existing HTML attributes--the class attribute in particular--to transport machine-readable semantic information. It's this thrifty attitude toward reusing existing HTML presentation attributes, rather than adding new elements and attributes as RDFa does, together with a narrow focus on representing everyday domain entities, such as contact details and calendar events, that makes the microformat movement so appealing to those wanting to add semantic annotations to their representations.
 Microformats and RDFa are alike in that they separate semantics from document structure. With plain XML, semantics are bolted to a document's structure: we understand that the value of an <email> element contained within a <user> element signifies a user's email address as a result of our correlating an out-of-band description of the semantics with a part of the document schema. Microformats and RDFa, on the other hand, can insert the very same semantics into many different document structures. An hCard parser, for example, is more interested in identifying any element with a class attribute value of tel, indicating the presence of a telephone number, than it is in navigating a specific XML or HTML structure.
 Despite being widely used on the Web today, microformats may soon lose out to RDFa, which will likely be included in future HTML standards. However, it is definitely worth keeping them in mind when designing distributed applications.
@@ -4657,10 +4663,10 @@ Figure 11-1. Unintentional RPC with Web Services We don't have to create tightly
 WSDL: Just Another Object IDL 383
 
 Figure 11-2. Decoupling domain model from WSDL contract
-Following the approach in Figure 11-2, we have an extra tier to build compared to the naïve tool-generated approach, but the benefits of creating the service model tier are manifold:
-· We explicitly decouple our external contract and internal domain model.
-· We explicitly code for messages and so take time to understand the latencies and failure modes so that we can handle them gracefully and produce a robust service.
-· Proper separation of concerns makes the codebase maintainable for the long term.
+Following the approach in Figure 11-2, we have an extra tier to build compared to the naï¿½ve tool-generated approach, but the benefits of creating the service model tier are manifold:
+ï¿½ We explicitly decouple our external contract and internal domain model.
+ï¿½ We explicitly code for messages and so take time to understand the latencies and failure modes so that we can handle them gracefully and produce a robust service.
+ï¿½ Proper separation of concerns makes the codebase maintainable for the long term.
 Once we've decoupled the domain model from the SOAP messages, WSDL interface changes become significantly more straightforward. Changes to the domain model will not affect service consumers because they are instead bound to the service model. Similarly, changes to the outwardly facing WSDL contract of the service may not require changes to our domain model since our contract and domain model are decoupled via the service model. In short, we have sensible separation of concerns.
 Unfortunately, mainstream WSDL tooling promotes poor practices that discourage the design philosophy outlined earlier--SOAP messaging and the SOAP processing model are simply not well supported.*
 To make matters a little more confusing, WSDL allows for a number of different encoding styles for the payloads of operations. Confusingly, these styles share overloaded names with other concepts in distributed computing. For example, the serialization styles Document/Literal and RPC/Encoded in WSDL are easily confused with Remote Procedure Call (RPC).
@@ -4669,7 +4675,7 @@ To make matters a little more confusing, WSDL allows for a number of different e
 
 warning Some practitioners misguidedly claim that their Web Services aren't RPC because they've chosen Document/Literal as their encoding mechanism!
 Encoding messages with your own schema (Literal) and placing the resultant XML directly in the SOAP body (Document) or encoding your content with the SOAP schema* (Encoded) and wrapping it with a parent element before placing it in the SOAP body (RPC) merely changes how the XML looks on the wire. The underlying convention is still request-response plus fault that--in the presence of poor tooling-- promotes brittle RPC that has dogged Web Services since their inception.
-Both the Web and the explicit messaging model supported by SOAP with WS-Addressing embrace the idiosyncrasies of distributed systems, without trying to hide them. Unfortunately, WSDL's conceptual model and the naïve tooling based around it attempt to hide distribution as though programmers need to be protected from it. In hiding the remote aspects of a distributed system, we hide necessary complexity to the extent that we can't build services that are tolerant of their inherent latencies, failure characteristics, and ownership boundaries.
+Both the Web and the explicit messaging model supported by SOAP with WS-Addressing embrace the idiosyncrasies of distributed systems, without trying to hide them. Unfortunately, WSDL's conceptual model and the naï¿½ve tooling based around it attempt to hide distribution as though programmers need to be protected from it. In hiding the remote aspects of a distributed system, we hide necessary complexity to the extent that we can't build services that are tolerant of their inherent latencies, failure characteristics, and ownership boundaries.
 Let's call it out, explicitly, just in case you're in any doubt.
 warning WSDL is the single most damaging technology in the Web Services space today, not only because it is complex and unwieldy, but also because it supports an inherently unsuitable model for Internet-scale systems. WSDL-based toolkits make choosing inappropriate engineering decisions easy, which substantially increases technical risk when using the WS-* stack.
 As if being an RPC description format wasn't bad enough, it turns out that WSDL is metadata-poor in many other respects. Even though WSDL can support interactions up to a single request and a response (or fault), more sophisticated message exchange patterns are beyond its capabilities. This means WSDL is unable to cope with the typical use case where services exchange messages in arbitrary ways to match the problem at hand, and move beyond trivial request-response plus faults.
@@ -4690,10 +4696,10 @@ note WADL isn't the only game in town for describing HTTP-centric services. In f
 386 CHAPTER 11: the web and ws-*
 
 WADL was created with the best of intentions: to make building and consuming webbased services accessible to a wide community of programmers. However, it falls foul of many of the same problems as WSDL, in addition to some of its own making, specifically:
-· WADL takes a static view of the web application by presenting the available resources, schemas, operations, and faults upfront, where the Web uses media types and links for contracts.
-· WADL tooling promotes tight coupling of client and service-side abstractions. Resources advertised from the service become the client's domain model with frightening ease, allowing service-side changes to readily ripple through all client applications, leading to fragile, brittle systems just as WSDL-based tooling does in the WS-* world.
-· WADL offers no clues about ordering of interactions with resources it advertises. A consumer of a WADL description doesn't know from WADL alone how the service expects interactions to occur. On the Web, we use hypermedia for this.
-· WADL often duplicates the metadata that is available from the resources themselves (e.g., via OPTIONS, HEAD). Thus, WADL introduces an opportunity for inconsistency where resource metadata and WADL are different.
+ï¿½ WADL takes a static view of the web application by presenting the available resources, schemas, operations, and faults upfront, where the Web uses media types and links for contracts.
+ï¿½ WADL tooling promotes tight coupling of client and service-side abstractions. Resources advertised from the service become the client's domain model with frightening ease, allowing service-side changes to readily ripple through all client applications, leading to fragile, brittle systems just as WSDL-based tooling does in the WS-* world.
+ï¿½ WADL offers no clues about ordering of interactions with resources it advertises. A consumer of a WADL description doesn't know from WADL alone how the service expects interactions to occur. On the Web, we use hypermedia for this.
+ï¿½ WADL often duplicates the metadata that is available from the resources themselves (e.g., via OPTIONS, HEAD). Thus, WADL introduces an opportunity for inconsistency where resource metadata and WADL are different.
 Perhaps the saving grace for web-based services is that there is comparatively little tooling based around WADL at the moment, and so it doesn't have the same momentum in the web space that WSDL enjoys in the Web Services space. The truth of the matter is that the Web has its transgressions just like Web Services--WADL being a case in point. But just like Web Services, the Web can handle sophisticated distributed computing scenarios including security, reliability, and transactions, but without resorting to unsustainable architectural patterns.
 Secure, Reliable, Transacted
 We can forgive the Web Services stack some of its transgressions (like WSDL) providing the stack can deliver some value that the Web cannot. Security, reliability, and transactions were values deeply enshrined in the Web Services psyche early on by some of its more influential corporate backers* to make interactions between Web Services as robust as traditional enterprise middleware.
@@ -4777,11 +4783,11 @@ Figure 11-7. WS-ReliableMessaging in action Figure 11-7 shows a typical use case
 
 Reliability on the Web
 The Web is quite different from Web Services when it comes to reliable transfer between clients and servers. Not only are operations such as GET and PUT idempotent and therefore safe to retry in failure cases, but the stateless, synchronous requestresponse interaction model of the Web ensures ordering by default--there just isn't any asynchrony to mess things up. In fact, the Web deals with many of the same requirements as WS-ReliableMessaging, but does so using HTTP verbs, headers, and status codes to coordinate interactions and implement retries. To recap, we are specifically interested in the following interaction patterns:
-· In order
-· At least once
-· At most once
-· Exactly once
-The first of these, in order, is actually baked right into the web model--the Web is inherently synchronous. Only if the HTTP status code of an interaction suggests it was successful would we go ahead with the next interaction. If a status code indicates a failure, we might try again or divert to another strategy to make forward progress. The Web embraces distribution rather than trying to hide it beneath an RPC façade.
+ï¿½ In order
+ï¿½ At least once
+ï¿½ At most once
+ï¿½ Exactly once
+The first of these, in order, is actually baked right into the web model--the Web is inherently synchronous. Only if the HTTP status code of an interaction suggests it was successful would we go ahead with the next interaction. If a status code indicates a failure, we might try again or divert to another strategy to make forward progress. The Web embraces distribution rather than trying to hide it beneath an RPC faï¿½ade.
 note When building web-based systems, we need to know the results of a prior interaction with a resource, because they contextualize future interactions. For example, if we get a 500 or 404, we may take different actions compared to receiving a 200 or 201. Understanding HTTP and the implicit coordination it provides is a prerequisite for building reliable web-based systems. HTTP does in fact allow asynchrony in the form of pipelined requests. Pipelining allows a client to send multiple requests over a persistent connection without waiting for each response. By convention, however, pipelined requests should only include safe requests. If an error occurs during a sequence of safe pipelined requests, the entire sequence can be retried.
 The other three requirements (at most, at least, and exactly once) are just as easily handled by the Web, and actually collapse down to a single exactly once case. If we PUT a representation, it's safe to retry the operation until we get a 200 or 201 response. If we get something like a 409 Conflict, we know to take appropriate recovery action.* The other idempotent verbs, such as GET and DELETE, follow a similar scheme.
 * Which is to GET the latest state of any resources involved in the computation and compute whether forward progress can be made, or whether some kind of compensation will be required.
@@ -4950,47 +4956,47 @@ aligning resource state, 80, 82 concurrency control, 248, 249 413 Request Entity
 500 Internal Server Error status code about, 60 implementing hypermedia service, 134 reading resource state, 66, 68 updating resources, 75
 A
 absolute URIs, 156 Accept-Encoding header, 173 Accept header (HTTP), 298, 323 ACID semantics, 400 addresses
-archive feed and, 199 defined, 7 advertising protocols with hypermedia dynamically extending, 121­125 usage example, 114­121 Age response header, 157 annotations JAXB, 134, 135, 136 JAX-RS, 134 OAuth, 330 Apache Commons, 50, 83 Apache Traffic Server, 160 application state, 93­96 application/xml media type, 103, 104­106 Atom feeds atom:author element, 188 atom:category element, 200 atom:content element about, 188, 207 content extensibility and, 235 order fulfillment example, 253, 256,
+archive feed and, 199 defined, 7 advertising protocols with hypermedia dynamically extending, 121ï¿½125 usage example, 114ï¿½121 Age response header, 157 annotations JAXB, 134, 135, 136 JAX-RS, 134 OAuth, 330 Apache Commons, 50, 83 Apache Traffic Server, 160 application state, 93ï¿½96 application/xml media type, 103, 104ï¿½106 Atom feeds atom:author element, 188 atom:category element, 200 atom:content element about, 188, 207 content extensibility and, 235 order fulfillment example, 253, 256,
 261 atom:entry element, 188 atom:generated element, 188 atom:id element about, 187, 188 atom:updated element and, 194, 207 atom:link element about, 188 attributes supported, 30, 195
 
-building Atom service, 213 link relations, 195 modeling protocols and, 29 order fulfillment example, 266 polling for recent events, 199 atom:published element, 187 atom:title element, 187, 188 atom:updated element about, 187, 188 atom:id element and, 195, 207 navigating archive, 200 order fulfillment example, 259 building in Java, 207­218 building in .NET, 219­234 caching, 202­206 common uses for, 188 default namespace, 242 for event-driven systems, 189­207 format overview, 185­188 security considerations, 294 voucher payment system, 318 writing to files, 219 Atom Publishing Protocol about, 110, 238 anatomy of, 239­245 app:collection element, 252 app:control element, 246, 256 app:draft element about, 246 order fulfillment example, 252, 253,
+building Atom service, 213 link relations, 195 modeling protocols and, 29 order fulfillment example, 266 polling for recent events, 199 atom:published element, 187 atom:title element, 187, 188 atom:updated element about, 187, 188 atom:id element and, 195, 207 navigating archive, 200 order fulfillment example, 259 building in Java, 207ï¿½218 building in .NET, 219ï¿½234 caching, 202ï¿½206 common uses for, 188 default namespace, 242 for event-driven systems, 189ï¿½207 format overview, 185ï¿½188 security considerations, 294 voucher payment system, 318 writing to files, 219 Atom Publishing Protocol about, 110, 238 anatomy of, 239ï¿½245 app:collection element, 252 app:control element, 246, 256 app:draft element about, 246 order fulfillment example, 252, 253,
 256 syndication classes and, 269 app:edited element about, 246 order fulfillment example, 253, 255,
-261 syndication classes and, 269 concurrency control, 247­249 edit link relation value, 246 edit-media link relation value, 246 extensions to, 246 implementing in .NET, 268­283
+261 syndication classes and, 269 concurrency control, 247ï¿½249 edit link relation value, 246 edit-media link relation value, 246 extensions to, 246 implementing in .NET, 268ï¿½283
 
 416 Index
 
-implementing order fulfillment, 249­ 268
+implementing order fulfillment, 249ï¿½ 268
 usage recommendations, 239 Atom Syndication Format
-building service in Java, 207­218 building service in .NET, 219­234 common uses, 188 entry resources, 243 event-driven systems and, 189­207 format overview, 185­188 link relations and, 110, 196­197 usage considerations, 234­236 authentication federated, 394 HTTP support, 286­290 Kerberos, 391 OpenID and, 301, 315, 394 web security and, 394 authorization HTTP support, 286­290 OAuth protocol and, 315­339, 395 passwords and, 315 Authorization header (HTTP) about, 286­290 caching directives and, 167 OAuth and, 320, 321, 335
+building service in Java, 207ï¿½218 building service in .NET, 219ï¿½234 common uses, 188 entry resources, 243 event-driven systems and, 189ï¿½207 format overview, 185ï¿½188 link relations and, 110, 196ï¿½197 usage considerations, 234ï¿½236 authentication federated, 394 HTTP support, 286ï¿½290 Kerberos, 391 OpenID and, 301, 315, 394 web security and, 394 authorization HTTP support, 286ï¿½290 OAuth protocol and, 315ï¿½339, 395 passwords and, 315 Authorization header (HTTP) about, 286ï¿½290 caching directives and, 167 OAuth and, 320, 321, 335
 B
-Basic authentication, 287­290, 394 Berners-Lee, Tim, 2, 374 brownfield service development, 404 Business Transaction Protocol, 399
+Basic authentication, 287ï¿½290, 394 Berners-Lee, Tim, 2, 374 brownfield service development, 404 Business Transaction Protocol, 399
 C
 CA (certificate authority), 291 cache channels
-about, 179­183 cc:lifetime element, 181 cc:precision element, 181 Cache-Control header (HTTP) cache channels and, 180 cache directives and, 163, 164­172, 177
+about, 179ï¿½183 cc:lifetime element, 181 cc:precision element, 181 Cache-Control header (HTTP) cache channels and, 180 cache directives and, 163, 164ï¿½172, 177
 
-caching and, 162­164, 170, 173, 176 polling for recent events, 199 cache directives building Atom service, 210 controlling expiration, 177 in response headers, 163, 164­172 caching about, 157 Atom feeds, 202­206 benefits of, 158 design considerations, 128 freshness and, 157, 179­183 HTTP response headers, 162­164 HTTP verbs and, 16, 17, 155­157 implementing in .NET, 167­171 making content cacheable, 161­167 reasons for not, 159­160 secure channels and, 293 stale-if-error directive, 166 stale-while-revalidate directive, 166 statelessness constraint and, 158­159 structural hypermedia and, 126 types of, 160 category documents, 239, 243 CDNs (content delivery networks), 219 certificate authority (CA), 291 Certificate message, 291 chunked transfer encoding, 341 CI (continuous integration), 410 ClientKeyExchange message, 292 coffee shop scenario about, 21, 22 actors and conversations, 22 boundaries, 23 sample interactions, 24­26 sample menu, 23 toolbox support, 27­30 coffee voucher system. See voucher
+caching and, 162ï¿½164, 170, 173, 176 polling for recent events, 199 cache directives building Atom service, 210 controlling expiration, 177 in response headers, 163, 164ï¿½172 caching about, 157 Atom feeds, 202ï¿½206 benefits of, 158 design considerations, 128 freshness and, 157, 179ï¿½183 HTTP response headers, 162ï¿½164 HTTP verbs and, 16, 17, 155ï¿½157 implementing in .NET, 167ï¿½171 making content cacheable, 161ï¿½167 reasons for not, 159ï¿½160 secure channels and, 293 stale-if-error directive, 166 stale-while-revalidate directive, 166 statelessness constraint and, 158ï¿½159 structural hypermedia and, 126 types of, 160 category documents, 239, 243 CDNs (content delivery networks), 219 certificate authority (CA), 291 Certificate message, 291 chunked transfer encoding, 341 CI (continuous integration), 410 ClientKeyExchange message, 292 coffee shop scenario about, 21, 22 actors and conversations, 22 boundaries, 23 sample interactions, 24ï¿½26 sample menu, 23 toolbox support, 27ï¿½30 coffee voucher system. See voucher
 payment system collections
-AtomPub support, 240­242 defined, 240 implementing, 269­272
+AtomPub support, 240ï¿½242 defined, 240 implementing, 269ï¿½272
 
 Index 417
 
-collections (continued) operations supported, 242 order fulfillment example, 264­268, 272­274 service documents and, 242
-concurrency control (AtomPub), 247­249 conditional GETs
-implementing, 228, 231­233 race condition and, 248 validation and, 173 conditional request headers, 79­83 confidentiality HTTP security and, 290­293 as security pillar, 285 consistency about, 171­172 expiration-based, 172, 177­178 invalidation and, 171, 178­179 validation and, 171, 172­176 content delivery networks (CDNs), 219 Content-Encoding header (HTTP), 291 content extensibility, 235 Content-Length header (HTTP) building CRUD services, 65 denial-of-service attacks and, 340 POX example, 45, 46 Content-Location header (HTTP), 178, 253 Content-Type header (HTTP) application/xml value, 103, 104­106 building Atom service, 211 building CRUD services, 65 consuming CRUD services, 85 link relations and, 196 media types and, 103, 104 POX example, 45, 46, 50 @Produces annotation and, 67 SOAP comparison, 378 continuous integration (CI), 410 contract definition languages, 351 contracts about, 108 extending with protocols, 110
+collections (continued) operations supported, 242 order fulfillment example, 264ï¿½268, 272ï¿½274 service documents and, 242
+concurrency control (AtomPub), 247ï¿½249 conditional GETs
+implementing, 228, 231ï¿½233 race condition and, 248 validation and, 173 conditional request headers, 79ï¿½83 confidentiality HTTP security and, 290ï¿½293 as security pillar, 285 consistency about, 171ï¿½172 expiration-based, 172, 177ï¿½178 invalidation and, 171, 178ï¿½179 validation and, 171, 172ï¿½176 content delivery networks (CDNs), 219 Content-Encoding header (HTTP), 291 content extensibility, 235 Content-Length header (HTTP) building CRUD services, 65 denial-of-service attacks and, 340 POX example, 45, 46 Content-Location header (HTTP), 178, 253 Content-Type header (HTTP) application/xml value, 103, 104ï¿½106 building Atom service, 211 building CRUD services, 65 consuming CRUD services, 85 link relations and, 196 media types and, 103, 104 POX example, 45, 46, 50 @Produces annotation and, 67 SOAP comparison, 378 continuous integration (CI), 410 contract definition languages, 351 contracts about, 108 extending with protocols, 110
 
-HTTP idioms, 110 hypermedia and, 29, 110 media types and, 109 runtime considerations, 111 WCF support, 383 CORBA technology, 35, 375 CRUD services about, 20 aligning resource state, 78­83 creating resources, 57, 58­63 Java-based, 83­84 modeling orders as resources, 55­57 .NET-based, 84 reading resource state, 57, 63­68 removing resources, 57, 75­78 Richardson maturity model, 57 safety and idempotency, 78 updating resources, 57, 68­75 WADL support, 86­90, 386 crumple zones, 412
+HTTP idioms, 110 hypermedia and, 29, 110 media types and, 109 runtime considerations, 111 WCF support, 383 CORBA technology, 35, 375 CRUD services about, 20 aligning resource state, 78ï¿½83 creating resources, 57, 58ï¿½63 Java-based, 83ï¿½84 modeling orders as resources, 55ï¿½57 .NET-based, 84 reading resource state, 57, 63ï¿½68 removing resources, 57, 75ï¿½78 Richardson maturity model, 57 safety and idempotency, 78 updating resources, 57, 68ï¿½75 WADL support, 86ï¿½90, 386 crumple zones, 412
 D
 DAP (domain application protocol). See also Atom Publishing Protocol
-about, 95, 112­113 dereferencing links, 127 dynamically extending, 121­125 implementing hypermedia service, 130 media types and, 103, 106 data, defined, 352 data modeling, 125­128 Date header (HTTP), 46 DCOM technology, 375 DELETE (HTTP) verb building CRUD services, 57, 75­78 idempotency and, 78 implementing hypermedia service, 131 invalidation and, 178­179 linked resources, 121 reliable transfers and, 397 web transactions, 402
+about, 95, 112ï¿½113 dereferencing links, 127 dynamically extending, 121ï¿½125 implementing hypermedia service, 130 media types and, 103, 106 data, defined, 352 data modeling, 125ï¿½128 Date header (HTTP), 46 DCOM technology, 375 DELETE (HTTP) verb building CRUD services, 57, 75ï¿½78 idempotency and, 78 implementing hypermedia service, 131 invalidation and, 178ï¿½179 linked resources, 121 reliable transfers and, 397 web transactions, 402
 
 418 Index
 
-demilitarized zone (DMZ), 388 denial-of-service attacks, 339­341 Diffie-Hellman key exchange, 299, 317 Digest authentication, 287­290, 394 DMZ (demilitarized zone), 388 DNS (Domain Name System), 6 documentation, URI templates as, 37 domain application protocol. See see DAP
-(domain application protocol) domain models, 382­383 Domain Name System (DNS), 6 DSL (Domain-Specific Language), 141­145
+demilitarized zone (DMZ), 388 denial-of-service attacks, 339ï¿½341 Diffie-Hellman key exchange, 299, 317 Digest authentication, 287ï¿½290, 394 DMZ (demilitarized zone), 388 DNS (Domain Name System), 6 documentation, URI templates as, 37 domain application protocol. See see DAP
+(domain application protocol) domain models, 382ï¿½383 Domain Name System (DNS), 6 DSL (Domain-Specific Language), 141ï¿½145
 E
 entity body strategies, 231 ETags
-aligning resource state, 79­83 caching and, 163­164, 173 polling for recent events, 199 timestamps in, 175 validation and, 174­176 event-driven systems anatomy of events, 192 Atoms feeds and, 189 caching feeds, 202­206 implementation considerations, 206­
-207 link relations, 195­197 navigating archive, 200 polling for events, 197­200 problem overview, 189 reference data, 190 update considerations, 191­192 exception handling, 262­263 expiration-based consistency, 172, 177­
+aligning resource state, 79ï¿½83 caching and, 163ï¿½164, 173 polling for recent events, 199 timestamps in, 175 validation and, 174ï¿½176 event-driven systems anatomy of events, 192 Atoms feeds and, 189 caching feeds, 202ï¿½206 implementation considerations, 206ï¿½
+207 link relations, 195ï¿½197 navigating archive, 200 polling for events, 197ï¿½200 problem overview, 189 reference data, 190 update considerations, 191ï¿½192 exception handling, 262ï¿½263 expiration-based consistency, 172, 177ï¿½
 178 Expires header (HTTP), 162, 173, 176
 F
 federated authentication, 394 federated identity, 392
@@ -5000,55 +5006,55 @@ Fielding, Roy, 12, 14, 20, 93 File Transfer Protocol (FTP), 6 FOAF (Friend of a 
 action attribute, 323 as hypermedia controls, 96 media types and, 103 freshness lifetime (caching), 157 Friend of a Friend (FOAF), 369 FTP (File Transfer Protocol), 6
 G
 GeoNames website, 362 GET (HTTP) verb
-advertising protocols, 122 building Atom service, 209 caching support, 16, 17, 155­157, 169 conditional, 173, 228, 231­233, 248 idempotency and, 38, 78 polling considerations, 120 reading resource state, 57, 63­68 reliable transfers and, 397 URI tunneling and, 38, 41­42 voucher payment system and, 324 web transactions, 402 GoodRelations website, 361
+advertising protocols, 122 building Atom service, 209 caching support, 16, 17, 155ï¿½157, 169 conditional, 173, 228, 231ï¿½233, 248 idempotency and, 38, 78 polling considerations, 120 reading resource state, 57, 63ï¿½68 reliable transfers and, 397 URI tunneling and, 38, 41ï¿½42 voucher payment system and, 324 web transactions, 402 GoodRelations website, 361
 H
-HATEOAS acronym, 93 hCard format, 29 headers. See HTTP headers HEAD (HTTP) verb, 156 HMAC-SHA-1 algorithm, 321 Hohpe, Gregor, 21 Host header (HTTP), 45 HTML, microformats and, 373 HTTP Basic authentication, 287­290, 394 HTTP Cache Channels Internet-Draft, 183 HttpClient class, 50, 83
+HATEOAS acronym, 93 hCard format, 29 headers. See HTTP headers HEAD (HTTP) verb, 156 HMAC-SHA-1 algorithm, 321 Hohpe, Gregor, 21 Host header (HTTP), 45 HTML, microformats and, 373 HTTP Basic authentication, 287ï¿½290, 394 HTTP Cache Channels Internet-Draft, 183 HttpClient class, 50, 83
 
 Index 419
 
-HTTP Digest authentication, 287­290, 394 HTTP headers. See specific headers HTTP (HyperText Transfer Protocol)
-AtomPub support, 238, 246 authentication support, 286­290 authorization support, 286­290 building CRUD services, 57 caching support, 16, 17, 155­157,
-162­164 envelope structure, 377 idempotency and, 38, 72, 78 network considerations, 293­294 performance considerations, 293­294 remote procedure calls, 43­44 Richardson maturity model, 19 security essentials, 286­294 transport-level considerations, 290­293 uniform interface and, 11, 110, 386 URI tunneling and, 39 web architecture and, 2 HttpListener class (.NET) caching and, 168 DELETE verb and, 77 handling requests, 227 hypermedia service and, 141 HTTP response/status codes. See specific
-response/status codes HTTPS protocol, 290­293, 393­395 HTTP Stale Controls Informational RFC,
+HTTP Digest authentication, 287ï¿½290, 394 HTTP headers. See specific headers HTTP (HyperText Transfer Protocol)
+AtomPub support, 238, 246 authentication support, 286ï¿½290 authorization support, 286ï¿½290 building CRUD services, 57 caching support, 16, 17, 155ï¿½157,
+162ï¿½164 envelope structure, 377 idempotency and, 38, 72, 78 network considerations, 293ï¿½294 performance considerations, 293ï¿½294 remote procedure calls, 43ï¿½44 Richardson maturity model, 19 security essentials, 286ï¿½294 transport-level considerations, 290ï¿½293 uniform interface and, 11, 110, 386 URI tunneling and, 39 web architecture and, 2 HttpListener class (.NET) caching and, 168 DELETE verb and, 77 handling requests, 227 hypermedia service and, 141 HTTP response/status codes. See specific
+response/status codes HTTPS protocol, 290ï¿½293, 393ï¿½395 HTTP Stale Controls Informational RFC,
 166 HTTP verbs. See specific verbs hypermedia controls
 atom:link element, 195 defined, 96 HTTP idioms and, 110 in hypermedia formats, 100, 101 implementing hypermedia service,
 130, 141 semantic context for, 352 XML and, 97, 105 hypermedia formats dead ends, 97 defined, 97
 
-domain-specific, 100­102 hypermedia controls in, 100, 101 processing, 102­109 selecting, 99­102 standard, 99­100 URI templates and coupling, 98 hypermedia protocols advertising, 114­121 AtomPub as, 240 binding contracts and, 29 DAP support, 112­113, 121­125 data modeling versus, 125­128 extending contracts with, 110 hypermedia services building in Java, 128­140 building in .NET, 140­152 consumer-side architecture, 137­140 contracts and, 29, 108­111 defined, 13 hypermedia formats, 97­108 hypermedia protocols, 112­128 implementing, 128 loose coupling and, 96­97 protocols and, 29, 110 Richardson maturity model, 20, 152 server-side architecture, 128­131 state machine illustration, 13 URI templates and, 35 HyperText Transfer Protocol. See HTTP
+domain-specific, 100ï¿½102 hypermedia controls in, 100, 101 processing, 102ï¿½109 selecting, 99ï¿½102 standard, 99ï¿½100 URI templates and coupling, 98 hypermedia protocols advertising, 114ï¿½121 AtomPub as, 240 binding contracts and, 29 DAP support, 112ï¿½113, 121ï¿½125 data modeling versus, 125ï¿½128 extending contracts with, 110 hypermedia services building in Java, 128ï¿½140 building in .NET, 140ï¿½152 consumer-side architecture, 137ï¿½140 contracts and, 29, 108ï¿½111 defined, 13 hypermedia formats, 97ï¿½108 hypermedia protocols, 112ï¿½128 implementing, 128 loose coupling and, 96ï¿½97 protocols and, 29, 110 Richardson maturity model, 20, 152 server-side architecture, 128ï¿½131 state machine illustration, 13 URI templates and, 35 HyperText Transfer Protocol. See HTTP
 (HyperText Transfer Protocol)
 I
 IANA Link Relations registry, 110, 196, 246
 idempotency HTTP verbs and, 38, 72, 78 reliable transfers and, 397
-identifiers, resources and, 5­7 identity
-federated, 392 HTTP security and, 286­290 OpenID protocol and, 295­315 as security pillar, 285
+identifiers, resources and, 5ï¿½7 identity
+federated, 392 HTTP security and, 286ï¿½290 OpenID protocol and, 295ï¿½315 as security pillar, 285
 
 420 Index
 
 IDLs (interface definition languages), 35, 351, 381
-If-Match header, 79­83, 110, 172 If-Modified-Since header
-ETag support, 83 validation support, 172, 173, 176 IfNoneMatch class, 232 If-None-Match header conditional GETs, 232 ETag support, 79­83, 110 validation support, 172, 174, 176 If-Unmodified-Since header, 83, 172 IIS (Internet Information Server), 141 information structure/representation,
-352­357 integrity, security and, 285, 290­293 interface definition languages (IDLs), 35,
-351, 381 International Resource Identifier (IRI), 7 Internet Information Server (IIS), 141 intuitive URIs, 36 invalidation, 171, 178­179 IRI (International Resource Identifier), 7
+If-Match header, 79ï¿½83, 110, 172 If-Modified-Since header
+ETag support, 83 validation support, 172, 173, 176 IfNoneMatch class, 232 If-None-Match header conditional GETs, 232 ETag support, 79ï¿½83, 110 validation support, 172, 174, 176 If-Unmodified-Since header, 83, 172 IIS (Internet Information Server), 141 information structure/representation,
+352ï¿½357 integrity, security and, 285, 290ï¿½293 interface definition languages (IDLs), 35,
+351, 381 International Resource Identifier (IRI), 7 Internet Information Server (IIS), 141 intuitive URIs, 36 invalidation, 171, 178ï¿½179 IRI (International Resource Identifier), 7
 J
-Java language building Atom service in, 207­218 building hypermedia services, 128­140 client-side POX implementation, 50­51 CRUD services and, 83­84 implementing OAuth in, 329­338 OpenID and, 305­315 server-side POX implementation, 47
+Java language building Atom service in, 207ï¿½218 building hypermedia services, 128ï¿½140 client-side POX implementation, 50ï¿½51 CRUD services and, 83ï¿½84 implementing OAuth in, 329ï¿½338 OpenID and, 305ï¿½315 server-side POX implementation, 47
 JAXB annotations, 134, 135, 136 JAX-RS
-building Atom service, 207­218 @Consumes annotation, 134 @GET annotation, 67 implementing hypermedia service,
-128, 129, 132­134
+building Atom service, 207ï¿½218 @Consumes annotation, 134 @GET annotation, 67 implementing hypermedia service,
+128, 129, 132ï¿½134
 
-OAuth and, 329 OpenID and, 311­313 @Path annotation, 67, 134, 210 @PathParam annotation, 68, 211 @POST annotation, 134 @Produces annotation, 67, 134 reading resource state, 67, 68 @ResourceFilters annotation, 330 Jersey (JAX-RS implementation) Atom service, 207, 209­211 hypermedia service, 128, 132 OAuth and, 329 OpenID and, 306 security considerations, 346 JSON representation, 196, 356
+OAuth and, 329 OpenID and, 311ï¿½313 @Path annotation, 67, 134, 210 @PathParam annotation, 68, 211 @POST annotation, 134 @Produces annotation, 67, 134 reading resource state, 67, 68 @ResourceFilters annotation, 330 Jersey (JAX-RS implementation) Atom service, 207, 209ï¿½211 hypermedia service, 128, 132 OAuth and, 329 OpenID and, 306 security considerations, 346 JSON representation, 196, 356
 K
 Kerberos authentication, 391 knowledge, defined, 353 knowledge representation languages, 363
 L
-Last-Modified header caching support, 162­164 timestamps and, 83, 175 validation support, 172, 173
+Last-Modified header caching support, 162ï¿½164 timestamps and, 83, 175 validation support, 172, 173
 Linked Data effort, 373 link element, 116 link relations
-AtomPub and, 110, 246 caching feeds and, 202­206 event-driven systems and, 195­197 local cache, 160, 166 Location header (HTTP), 59, 60, 178, 253 loose coupling consistency and, 171 event-driven systems and, 192 hypermedia and, 96­97 URI templates and, 98 lost update problem, 247
+AtomPub and, 110, 246 caching feeds and, 202ï¿½206 event-driven systems and, 195ï¿½197 local cache, 160, 166 Location header (HTTP), 59, 60, 178, 253 loose coupling consistency and, 171 event-driven systems and, 192 hypermedia and, 96ï¿½97 URI templates and, 98 lost update problem, 247
 
 Index 421
 
 M
 MAC (Message Authentication Code), 292, 299
 mailto URI scheme, 6 Manchester Syntax, 364 man-in-the-middle attacks, 289, 292 Mars Climate Orbiter, 355 max-age directive
-about, 164, 177 building Atom service, 210 cache channels and, 180 caching authorized responses, 166 usage example, 163 max-stale directive, 177 MD5 hash, 288 media link entries, 243 media resources, 243 media types application/xml value, 103, 104­106 category documents, 243 contracts and, 109 defined, 103 design/format considerations, 106 representation classes and, 134 service documents, 245 usage example, 104 members AtomPub support, 240­242 defined, 240, 243 implementing, 269­272 operations supported, 243 order fulfillment example, 272­274 member URI, 242 Message Authentication Code (MAC),
+about, 164, 177 building Atom service, 210 cache channels and, 180 caching authorized responses, 166 usage example, 163 max-stale directive, 177 MD5 hash, 288 media link entries, 243 media resources, 243 media types application/xml value, 103, 104ï¿½106 category documents, 243 contracts and, 109 defined, 103 design/format considerations, 106 representation classes and, 134 service documents, 245 usage example, 104 members AtomPub support, 240ï¿½242 defined, 240, 243 implementing, 269ï¿½272 operations supported, 243 order fulfillment example, 272ï¿½274 member URI, 242 Message Authentication Code (MAC),
 292, 299 metadata
 Atom feeds and, 185, 187, 188 AtomPub support, 239 building Atom service, 212 OAuth supported, 320 representation classes and, 134 resource representations and, 189
 
@@ -5056,67 +5062,67 @@ URI templates and, 35, 98 WADL support, 387 web security and, 394 WSDL limitatio
 N
 namespaces Atom feeds, 242 representation classes and, 134
 navigating archives, 200 .NET platform
-buiding hypermedia services, 140­152 building Atom service in, 219­234 CRUD services, 84 implementing AtomPub, 268­283 implementing caching in, 167­171 POX implementation in, 46­47, 49 SyndicationFeed class, 225 no-cache directive, 165, 166, 172, 177 no-store directive, 165, 177 Notation 3 format, 360 Nottingham, Mark, 398 Nygard, Michael, 412
+buiding hypermedia services, 140ï¿½152 building Atom service in, 219ï¿½234 CRUD services, 84 implementing AtomPub, 268ï¿½283 implementing caching in, 167ï¿½171 POX implementation in, 46ï¿½47, 49 SyndicationFeed class, 225 no-cache directive, 165, 166, 172, 177 no-store directive, 165, 177 Notation 3 format, 360 Nottingham, Mark, 398 Nygard, Michael, 412
 O
-OAuth protocol about, 316, 395 implementing in Java, 329­338 oauth_callback_confirmed parameter, 322 oauth_callback parameter, 321 oauth_consumer_key parameter, 321 oauth_nonce parameter, 321 oauth_signature_method parameter, 320 oauth_signature parameter, 320
+OAuth protocol about, 316, 395 implementing in Java, 329ï¿½338 oauth_callback_confirmed parameter, 322 oauth_callback parameter, 321 oauth_consumer_key parameter, 321 oauth_nonce parameter, 321 oauth_signature_method parameter, 320 oauth_signature parameter, 320
 
 422 Index
 
 oauth_timestamp parameter, 321 oauth_token parameter, 322 oauth_token_secret parameter, 322,
-326 oauth_version parameter, 321 practical considerations, 338 voucher payment system, 316­317,
-317­328 only-if-cached directive, 177 ontologies
-defined, 362 OWL support, 363­368 SPARQL support, 369 Ontology Web Language (OWL), 363­368 OpenID protocol about, 295, 394 Java support, 305­315 practical considerations, 315 protocol flow, 295­305 OPTIONS method, 111 order fulfillment adding orders to pipeline, 251­254 beginning, 254­261 collection/member usage for, 272­274 completing the protocol, 261 exception handling, 262­263 implementing complex protocols, 264­
-268 overview, 249­250 OWL (Ontology Web Language), 363­368 OWL/XML format, 364
+326 oauth_version parameter, 321 practical considerations, 338 voucher payment system, 316ï¿½317,
+317ï¿½328 only-if-cached directive, 177 ontologies
+defined, 362 OWL support, 363ï¿½368 SPARQL support, 369 Ontology Web Language (OWL), 363ï¿½368 OpenID protocol about, 295, 394 Java support, 305ï¿½315 practical considerations, 315 protocol flow, 295ï¿½305 OPTIONS method, 111 order fulfillment adding orders to pipeline, 251ï¿½254 beginning, 254ï¿½261 collection/member usage for, 272ï¿½274 completing the protocol, 261 exception handling, 262ï¿½263 implementing complex protocols, 264ï¿½
+268 overview, 249ï¿½250 OWL (Ontology Web Language), 363ï¿½368 OWL/XML format, 364
 P
 passwords authorization and, 315 security considerations, 302
 PATCH (HTTP) verb, 70, 114 pessimistic locking, 248 POJOs (Plain Old Java Objects), 132 polling
-event-driven systems, 192 for recent events, 197­200
+event-driven systems, 192 for recent events, 197ï¿½200
 
-GET considerations, 120 scaling and, 159 POST (HTTP) verb advertising protocols, 123­125 creating resources, 57, 58­63, 145­148 implementing hypermedia service, 131 invalidation and, 178­179 POX support, 45 PUT comparison, 114 reliable transfers and, 398 remote procedure calls, 43­44 URI tunneling and, 38 POX (Plain Old XML) about, 42­43 client-side implementation, 48­51 remote procedure calls, 43­44 Richardson maturity model, 53 server-side implementation, 44­48 XML-RPC and, 51­52 private directive, 165 protocols. See hypermedia protocols proxy cache, 160 proxy-revalidate directive, 165 proxy servers, 160 public directive, 165, 166 PUT (HTTP) verb building CRUD services, 57, 68­75 idempotency and, 78 implementing hypermedia service, 131 invalidation and, 178­179 POST comparison, 114 web transactions, 401
+GET considerations, 120 scaling and, 159 POST (HTTP) verb advertising protocols, 123ï¿½125 creating resources, 57, 58ï¿½63, 145ï¿½148 implementing hypermedia service, 131 invalidation and, 178ï¿½179 POX support, 45 PUT comparison, 114 reliable transfers and, 398 remote procedure calls, 43ï¿½44 URI tunneling and, 38 POX (Plain Old XML) about, 42ï¿½43 client-side implementation, 48ï¿½51 remote procedure calls, 43ï¿½44 Richardson maturity model, 53 server-side implementation, 44ï¿½48 XML-RPC and, 51ï¿½52 private directive, 165 protocols. See hypermedia protocols proxy cache, 160 proxy-revalidate directive, 165 proxy servers, 160 public directive, 165, 166 PUT (HTTP) verb building CRUD services, 57, 68ï¿½75 idempotency and, 78 implementing hypermedia service, 131 invalidation and, 178ï¿½179 POST comparison, 114 web transactions, 401
 Q
 Qualified Names (QNames), 360 query languages, 368, 369
 R
-Rails framework, 10 RDFa (RDF in attributes), 370­372 RDF (Resource Description Framework),
-358­362
+Rails framework, 10 RDFa (RDF in attributes), 370ï¿½372 RDF (Resource Description Framework),
+358ï¿½362
 
 Index 423
 
-RDF Schema (RDFS), 363 RDF/XML format, 360, 364 realm, defined, 286 reference data, 190 relative URIs, 155 reliable messaging, 395­398 Remote Façade pattern, 33 Remote Procedure Call (RPC)
-POX support, 43­44 WSDL and, 383, 384 representation formats coffee shop scenario, 27 content negotiation for, 11 importance of, 9 media types and, 104 proliferation of, 9 for RDF, 360 uniform interface and, 11 URIs and, 10 XHTML, 97 representations. See resource
+RDF Schema (RDFS), 363 RDF/XML format, 360, 364 realm, defined, 286 reference data, 190 relative URIs, 155 reliable messaging, 395ï¿½398 Remote Faï¿½ade pattern, 33 Remote Procedure Call (RPC)
+POX support, 43ï¿½44 WSDL and, 383, 384 representation formats coffee shop scenario, 27 content negotiation for, 11 importance of, 9 media types and, 104 proliferation of, 9 for RDF, 360 uniform interface and, 11 URIs and, 10 XHTML, 97 representations. See resource
 representations Resource Description Framework (RDF),
-358­362 resource representations
-about, 7­10 adding metadata, 189 caching considerations, 128, 166 computing hashes, 176 DAPs and, 104 freshness of, 157, 179­183 GET verb and, 155­157 hypermedia systems and, 94 implementing hypermedia service, 134­
-136 URIs and, 10 resources aligning state, 78­83 creating with POST, 57, 58­63, 145­148 defined, 4 identifiers and, 5­7 implementing hypermedia service,
-132­134
+358ï¿½362 resource representations
+about, 7ï¿½10 adding metadata, 189 caching considerations, 128, 166 computing hashes, 176 DAPs and, 104 freshness of, 157, 179ï¿½183 GET verb and, 155ï¿½157 hypermedia systems and, 94 implementing hypermedia service, 134ï¿½
+136 URIs and, 10 resources aligning state, 78ï¿½83 creating with POST, 57, 58ï¿½63, 145ï¿½148 defined, 4 identifiers and, 5ï¿½7 implementing hypermedia service,
+132ï¿½134
 
-modeling orders as, 55­57 reading with GET, 57, 63­68 removing with DELETE, 57, 75­78 resource representations and, 8 uniform interface and, 11 updating with PUT, 57, 68­75 web architecture and, 3 resource state about, 94 aligning, 78­83 caching and, 159 determining, 94 GET verb and, 157 implementing hypermedia service, 130 reading with GET, 63­68 retrieving, 156 transitioning, 95, 113, 141, 142 response/status codes. See specific
-response/status codes REST architectural style, 12­15 RETR (FTP) command, 6 reverse engineering, 342 reverse proxies, 160, 183 RFC 2141, 7 RFC 2611, 7 RFC 2616, 6, 38 RFC 4287, 186 RFC 5005, 235 RFC 5849, 339 Richardson, Leonard, 18 Richardson maturity model
-CRUD services, 57 hypermedia services, 20, 152 POX services and, 53 URI tunneling and, 41­43 web friendliness and, 18­20 Web Services and, 405 risk mitigation, 413 RMI technology, 375 rollback attack, 292 ROME library, 207, 211, 212 RPC (Remote Procedure Call) POX support, 43­44 WSDL and, 383, 384
+modeling orders as, 55ï¿½57 reading with GET, 57, 63ï¿½68 removing with DELETE, 57, 75ï¿½78 resource representations and, 8 uniform interface and, 11 updating with PUT, 57, 68ï¿½75 web architecture and, 3 resource state about, 94 aligning, 78ï¿½83 caching and, 159 determining, 94 GET verb and, 157 implementing hypermedia service, 130 reading with GET, 63ï¿½68 retrieving, 156 transitioning, 95, 113, 141, 142 response/status codes. See specific
+response/status codes REST architectural style, 12ï¿½15 RETR (FTP) command, 6 reverse engineering, 342 reverse proxies, 160, 183 RFC 2141, 7 RFC 2611, 7 RFC 2616, 6, 38 RFC 4287, 186 RFC 5005, 235 RFC 5849, 339 Richardson, Leonard, 18 Richardson maturity model
+CRUD services, 57 hypermedia services, 20, 152 POX services and, 53 URI tunneling and, 41ï¿½43 web friendliness and, 18ï¿½20 Web Services and, 405 risk mitigation, 413 RMI technology, 375 rollback attack, 292 ROME library, 207, 211, 212 RPC (Remote Procedure Call) POX support, 43ï¿½44 WSDL and, 383, 384
 
 424 Index
 
 S
-scalable systems caching and, 157­161, 161­167 caching in .NET, 167­171 consistency and, 171­179 design considerations, 128 extending freshness, 179­183 GET verb and, 155­157 web architecture and, 15
+scalable systems caching and, 157ï¿½161, 161ï¿½167 caching in .NET, 167ï¿½171 consistency and, 171ï¿½179 design considerations, 128 extending freshness, 179ï¿½183 GET verb and, 155ï¿½157 web architecture and, 15
 SCT (Security Context Token), 390 Secure Sockets Layer. See SSL (Secure
 Sockets Layer) security
-Atom feeds and, 294 caching and, 159 core pillars of, 285 HTTP and, 286­294 OAuth protocol and, 315­339 OpenID protocol and, 295­315 password considerations, 302 service hacks/defenses, 339­348 Web Services and, 387­395 Security Context Token (SCT), 390 Security Token Service (STS), 390, 391 semantic computing, 6 semantics ACID, 400 defined, 356 information structure/representation,
-352­357 microformats and, 372, 373 syntax versus, 351 Semantic Web about, 357 Linked Data effort and, 373 OWL and, 363­368 RDFa and, 369­374 RDF and, 358­362 SPARQL and, 368 serialization, XML, 134 Server header (HTTP), 46
+Atom feeds and, 294 caching and, 159 core pillars of, 285 HTTP and, 286ï¿½294 OAuth protocol and, 315ï¿½339 OpenID protocol and, 295ï¿½315 password considerations, 302 service hacks/defenses, 339ï¿½348 Web Services and, 387ï¿½395 Security Context Token (SCT), 390 Security Token Service (STS), 390, 391 semantic computing, 6 semantics ACID, 400 defined, 356 information structure/representation,
+352ï¿½357 microformats and, 372, 373 syntax versus, 351 Semantic Web about, 357 Linked Data effort and, 373 OWL and, 363ï¿½368 RDFa and, 369ï¿½374 RDF and, 358ï¿½362 SPARQL and, 368 serialization, XML, 134 Server header (HTTP), 46
 
-service documents about, 244­245 AtomPub hosting, 239 collections and, 242 media types, 245 order fulfillment example, 264
-service-level agreement (SLA), 410 service models, 383­384 service-oriented systems
-choosing integration points, 32­34 defined, 32 simple architecture for, 34­35 services. See specific services SHA-1 algorithm, 321 SHA-256 algorithm, 299 Simple Knowledge Organization System
+service documents about, 244ï¿½245 AtomPub hosting, 239 collections and, 242 media types, 245 order fulfillment example, 264
+service-level agreement (SLA), 410 service models, 383ï¿½384 service-oriented systems
+choosing integration points, 32ï¿½34 defined, 32 simple architecture for, 34ï¿½35 services. See specific services SHA-1 algorithm, 321 SHA-256 algorithm, 299 Simple Knowledge Organization System
 (SKOS), 362 SKOS (Simple Knowledge Organization
 System), 362 SLA (service-level agreement), 410 Slug header (HTTP), 246 s-maxage directive, 164 SOAP over HTTP, 386 SOAP specification
-envelope structure, 377­379 fault mechanism, 379­380 processing model, 376­377 reliable messaging and, 395 Section 5 encoding, 385 SPARQL (query language), 368 Spring Web Services, 383 Squid caching proxy, 160, 166 SSL (Secure Sockets Layer) ChangeCipherSpec message, 292, 293 HTTPS and, 290 security and, 347 TLS and, 290 statelessness constraint, 158­159 state machines/transitions modeling dynamically, 30 for resource state, 95, 113, 141, 142 status codes. See specific response/status
+envelope structure, 377ï¿½379 fault mechanism, 379ï¿½380 processing model, 376ï¿½377 reliable messaging and, 395 Section 5 encoding, 385 SPARQL (query language), 368 Spring Web Services, 383 Squid caching proxy, 160, 166 SSL (Secure Sockets Layer) ChangeCipherSpec message, 292, 293 HTTPS and, 290 security and, 347 TLS and, 290 statelessness constraint, 158ï¿½159 state machines/transitions modeling dynamically, 30 for resource state, 95, 113, 141, 142 status codes. See specific response/status
 codes
 
 Index 425
 
 structural hypermedia caching and, 126 scaling and, 155
-STS (Security Token Service), 390, 391 SyndicationFeed class, 225, 269 SyndicationItem class, 269­272 syntax versus semantics, 351
+STS (Security Token Service), 390, 391 SyndicationFeed class, 225, 269 SyndicationItem class, 269ï¿½272 syntax versus semantics, 351
 T
-temporal coupling, 190 Test/Behavior-Driven Development, 408 tight coupling, 382­383 TLS (Transport Layer Security), 290­293 transactions, Web Services and, 398­404 Transitive axiom, 368 Transport Layer Security (TLS), 290­293 triples, 358, 368 trust
-HTTP security and, 286­290 OpenID protocol and, 295 as security pillar, 285 TTL (Time to Live), 162, 172 Turtle documents, 364 type parameter (AtomPub), 247
+temporal coupling, 190 Test/Behavior-Driven Development, 408 tight coupling, 382ï¿½383 TLS (Transport Layer Security), 290ï¿½293 transactions, Web Services and, 398ï¿½404 Transitive axiom, 368 Transport Layer Security (TLS), 290ï¿½293 triples, 358, 368 trust
+HTTP security and, 286ï¿½290 OpenID protocol and, 295 as security pillar, 285 TTL (Time to Live), 162, 172 Turtle documents, 364 type parameter (AtomPub), 247
 U
 uniform interface defined, 11 HTTP idiioms and, 110 URI templates and, 386
 uniformity principle, 17 Uniform Resource Identifier. See URI
@@ -5124,11 +5130,11 @@ uniformity principle, 17 Uniform Resource Identifier. See URI
 176, 344 unreserved checkout strategy, 248 URI templates
 coupling and, 98 handling requests, 229
 
-hypermedia and, 35 intuitive URIs and, 36­37 major usage, 37 mapping method calls, 38 reducing dependency on, 96 reverse-engineered, 342 as static contracts, 98 web-based services and, 386 Web Services and, 35 URI tunneling about, 37­41 POX comparison, 42 Richardson maturity model and, 41­43 URI (Uniform Resource Identifier) calculating from URI templates, 36 defined, 5, 7 extracting business codes from, 39 GET request and, 155 mapping method calls to, 38 RDF support, 358 representation formats and, 10 representing hierarchies, 37 resource representations and, 10 resources and, 5 Richardson maturity model, 19 security considerations, 343, 345 typical form, 6 uniform interface and, 11 web architecture and, 3 URL (Uniform Resource Locator), 7 URN (Uniform Resource Name), 7 UUID (universally unique identifier),
+hypermedia and, 35 intuitive URIs and, 36ï¿½37 major usage, 37 mapping method calls, 38 reducing dependency on, 96 reverse-engineered, 342 as static contracts, 98 web-based services and, 386 Web Services and, 35 URI tunneling about, 37ï¿½41 POX comparison, 42 Richardson maturity model and, 41ï¿½43 URI (Uniform Resource Identifier) calculating from URI templates, 36 defined, 5, 7 extracting business codes from, 39 GET request and, 155 mapping method calls to, 38 RDF support, 358 representation formats and, 10 representing hierarchies, 37 resource representations and, 10 resources and, 5 Richardson maturity model, 19 security considerations, 343, 345 typical form, 6 uniform interface and, 11 web architecture and, 3 URL (Uniform Resource Locator), 7 URN (Uniform Resource Name), 7 UUID (universally unique identifier),
 176, 344
 V
-validation, 171, 172­176 Varnish HTTP accelerator, 160 Vary header, 173, 176 voucher payment system
-implementing in Java, 329­338 overview, 316­317 protocol example, 317­328
+validation, 171, 172ï¿½176 Varnish HTTP accelerator, 160 Vary header, 173, 176 voucher payment system
+implementing in Java, 329ï¿½338 overview, 316ï¿½317 protocol example, 317ï¿½328
 
 426 Index
 
@@ -5136,22 +5142,22 @@ W
 W3C (World Wide Web Consortium), 2, 13
 WADL2Java tool, 88 WADL (Web Application Description
 Language) about, 386 consuming services automatically,
-86­90 POX implementations and, 49 reducing dependency on, 96 as static contracts, 98 WCF (Windows Communication
-Foundation) implementing AtomPub, 268 implementing hypermedia service, 140 implementing services, 279­283 POX support, 46, 49 security considerations, 346 service and data contracts, 383 testing services, 274­279 updating resources, 72 Web Application Description Language.
-See WADL (Web Application Description Language) web-based services building/running, 407­409 cost considerations, 413 measurement considerations, 409­412 risk mitigation, 413 as silver bullets, 407 web friendliness about, 18­20 hypermedia formats, 100 link relations and, 195 URI tunneling and, 41 web integration coffee ordering system, 32­35 middleware solutions, 31­32 POX over HTTP, 42­54 URI templates, 35­37 URI tunneling, 37­42
+86ï¿½90 POX implementations and, 49 reducing dependency on, 96 as static contracts, 98 WCF (Windows Communication
+Foundation) implementing AtomPub, 268 implementing hypermedia service, 140 implementing services, 279ï¿½283 POX support, 46, 49 security considerations, 346 service and data contracts, 383 testing services, 274ï¿½279 updating resources, 72 Web Application Description Language.
+See WADL (Web Application Description Language) web-based services building/running, 407ï¿½409 cost considerations, 413 measurement considerations, 409ï¿½412 risk mitigation, 413 as silver bullets, 407 web friendliness about, 18ï¿½20 hypermedia formats, 100 link relations and, 195 URI tunneling and, 41 web integration coffee ordering system, 32ï¿½35 middleware solutions, 31ï¿½32 POX over HTTP, 42ï¿½54 URI templates, 35ï¿½37 URI tunneling, 37ï¿½42
 
 Web Services Description Language (WSDL)
-about, 380­386 metadata support, 35 as static contracts, 98 wildcards, headers and, 83 Windows Communication
-Foundation. See WCF (Windows Communication Foundation) WinINet cache, 167 working feed building Atom service, 209, 211 comparing archive feed and, 206 defined, 199 mutable nature of, 200 World Wide Web as application platform, 15­18 architectural style, 2­4, 12 as building platform, 1 business processes, 17 consistency and uniformity, 17 loose coupling, 9, 16 scalability and performance, 15 simplicity and reach, 18 technology support, 15 web friendliness and, 18­20 World Wide Web Consortium (W3C), 2, 13 WS-Addressing protocol, 376, 377, 385 WS-Addressing To header, 378 WS-AtomicTransaction protocol, 379 WS-BusinessActivity protocol, 379, 399 WS-CAF protocol, 399 WS-Choreography protocol, 386 WS-Coordination protocol, 379 WS-DeathStar, 376 WSDL (Web Services Description Language) about, 380­386 metadata support, 35 as static contracts, 98 WS-Federation protocol, 392 WS-ReliableMessaging protocol, 395, 396
+about, 380ï¿½386 metadata support, 35 as static contracts, 98 wildcards, headers and, 83 Windows Communication
+Foundation. See WCF (Windows Communication Foundation) WinINet cache, 167 working feed building Atom service, 209, 211 comparing archive feed and, 206 defined, 199 mutable nature of, 200 World Wide Web as application platform, 15ï¿½18 architectural style, 2ï¿½4, 12 as building platform, 1 business processes, 17 consistency and uniformity, 17 loose coupling, 9, 16 scalability and performance, 15 simplicity and reach, 18 technology support, 15 web friendliness and, 18ï¿½20 World Wide Web Consortium (W3C), 2, 13 WS-Addressing protocol, 376, 377, 385 WS-Addressing To header, 378 WS-AtomicTransaction protocol, 379 WS-BusinessActivity protocol, 379, 399 WS-CAF protocol, 399 WS-Choreography protocol, 386 WS-Coordination protocol, 379 WS-DeathStar, 376 WSDL (Web Services Description Language) about, 380ï¿½386 metadata support, 35 as static contracts, 98 WS-Federation protocol, 392 WS-ReliableMessaging protocol, 395, 396
 
 Index 427
 
 WS-RM protocol, 395 WS-SecureConversation protocol, 389 WS-SecurityPolicy protocol, 388 WS-Security protocol
-about, 388­393 HTTPS and, 393­395 side effects, 379 WS-Trust and, 391, 392, 394 WSSE scheme, 290 WS-Trust protocol SCT and, 390 Security Token Service, 390, 391 WS-Security and, 391, 392, 394 WS-* Web Services about, 375 future considerations, 405 reliable messaging and, 395­398 reliable transfers, 397­398 Richardson maturity model, 405 security considerations, 387­395 SOAP and, 376­380 transactions and, 398­404 WADL and, 386 WSDL and, 380­386 WWW-Authenticate header, 286, 320
+about, 388ï¿½393 HTTPS and, 393ï¿½395 side effects, 379 WS-Trust and, 391, 392, 394 WSSE scheme, 290 WS-Trust protocol SCT and, 390 Security Token Service, 390, 391 WS-Security and, 391, 392, 394 WS-* Web Services about, 375 future considerations, 405 reliable messaging and, 395ï¿½398 reliable transfers, 397ï¿½398 Richardson maturity model, 405 security considerations, 387ï¿½395 SOAP and, 376ï¿½380 transactions and, 398ï¿½404 WADL and, 386 WSDL and, 380ï¿½386 WWW-Authenticate header, 286, 320
 
 X
 X.509 certificate, 391 XHTML format
-about, 97, 99 HTTP idioms and, 110 hypermedia support, 99­100, 103 microformat example, 372 OpenID and, 298, 306­315 RDFa support, 370 XML format coffee shop representations, 27 hierarchical structure in, 354 hypermedia controls and, 97, 105 interpreting, 355 link relations and, 196 OWL support, 364 POX and, 42­54 RDF support, 360, 364 semantics and, 373 serialization support, 134 shared understanding, 356 XML-RPC, 51­52 XML Schema, 108 XStream library, 68, 84
+about, 97, 99 HTTP idioms and, 110 hypermedia support, 99ï¿½100, 103 microformat example, 372 OpenID and, 298, 306ï¿½315 RDFa support, 370 XML format coffee shop representations, 27 hierarchical structure in, 354 hypermedia controls and, 97, 105 interpreting, 355 link relations and, 196 OWL support, 364 POX and, 42ï¿½54 RDF support, 360, 364 semantics and, 373 serialization support, 134 shared understanding, 356 XML-RPC, 51ï¿½52 XML Schema, 108 XStream library, 68, 84
 
 428 Index
 
@@ -5162,4 +5168,3 @@ Colophon
 The cover fonts are Akzidenz Grotesk and Orator. The text font is Adobe's Meridien; the heading font is Akzidenz Grotesk; and the code font is LucasFont's TheSansMonoCondensed.
 
 Download from Wow! eBook <www.wowebook.com>
-

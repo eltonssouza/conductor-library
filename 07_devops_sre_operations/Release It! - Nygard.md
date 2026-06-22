@@ -1,3 +1,9 @@
+# Release It!
+
+> **Author(s):** Nygard Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 What readers are saying about Release It!
 Agile development emphasizes delivering production-ready code every iteration. This book finally lays out exactly what this really means for critical systems today. You have a winner here.
 Tom Poppendieck Poppendieck.LLC
@@ -14,7 +20,7 @@ Raleigh, North Carolina Dallas, Texas
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and The Pragmatic Programmers, LLC was aware of a trademark claim, the designations have been printed in initial capital letters or in all capitals. The Pragmatic Starter Kit, The Pragmatic Programmer, Pragmatic Programming, Pragmatic Bookshelf and the linking g device are trademarks of The Pragmatic Programmers, LLC. Every precaution was taken in the preparation of this book. However, the publisher assumes no responsibility for errors or omissions, or for damages that may result from the use of information (including program listings) contained herein. Our Pragmatic courses, workshops, and other products can help you and your team create better software and have more fun. For more information, as well as the latest Pragmatic titles, please visit us at
 http://www.pragmaticprogrammer.com
-Copyright © 2007 Michael T. Nygard. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher. Printed in the United States of America.
+Copyright ï¿½ 2007 Michael T. Nygard. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher. Printed in the United States of America.
 ISBN-10: 0-9787392-1-3 ISBN-13: 978-0-9787392-1-8 Printed on acid-free paper with 85% recycled, 30% post-consumer content. First printing, April 2007 Version: 2007-3-28
 
 Contents
@@ -496,12 +502,12 @@ POST -MORTEM
 
 My agenda was simple: conduct a post-mortem investigation, and answer some questions:
 
-· Did the database failover cause the outage? If not, what did?
+ï¿½ Did the database failover cause the outage? If not, what did?
 
-· Was the cluster configured correctly? · Did the operations team conduct the maintenance correctly?
+ï¿½ Was the cluster configured correctly? ï¿½ Did the operations team conduct the maintenance correctly?
 
-· How could the failure have been detected before it became an outage?
-· Most important, how do we make sure this never, ever happens again?
+ï¿½ How could the failure have been detected before it became an outage?
+ï¿½ Most important, how do we make sure this never, ever happens again?
 Of course, my presence there also served to demonstrate to the client that we were serious about responding to this outage. Not to mention, my investigation should also allay any fears about the local team whitewashing the incident. They would never do such a thing, of course, but managing perception after a major incident can be just as important as managing the incident itself.
 
 Manage perceptions
@@ -718,14 +724,14 @@ Underneath every system outage, there is a chain of events like this. One small 
 At each step in the chain of failure, the crack can be accelerated, slowed, or stopped. High levels of complexity provide more directions for the cracks to propagate in.
 Tight coupling accelerates cracks. For instance, the tight coupling of EJB calls allowed a resource exhaustion problem in CF to create larger problems in its callers. Coupling the request-handling threads to the external integration calls in those systems caused a remote problem to turn into downtime.
 One way to prepare for every possible failure is to look at every external call, every I/O, every use of resources, and every expected outcome and ask, "What are all the ways this can go wrong?" Think about the different types of impulse and stress that can be applied:
-· What if I can't make the initial connection? · What if it takes ten minutes to make the connection?
+ï¿½ What if I can't make the initial connection? ï¿½ What if it takes ten minutes to make the connection?
 
 PATTERNS AND ANTIPATTERNS
 
 42
 
-· What if I can make the connection and then it gets disconnected? · What if I can make the connection and I just can't get any response
-from the other end? · What if it takes two minutes to respond to my query? · What if 10,000 requests come in at the same time? · What if my disk is full when I try to log the error message about
+ï¿½ What if I can make the connection and then it gets disconnected? ï¿½ What if I can make the connection and I just can't get any response
+from the other end? ï¿½ What if it takes two minutes to respond to my query? ï¿½ What if 10,000 requests come in at the same time? ï¿½ What if my disk is full when I try to log the error message about
 the SQLException that happened because the network was bogged down with a worm?
 I'm getting tired already, and that's just the beginning of everything that can go wrong. So, the exhaustive brute-force approach is impractical for anything but life-critical systems or Mars rovers. What if you actually have to deliver in this decade? You need to look at some patterns that let you create shock absorbers to relieve those stresses.
 
@@ -850,7 +856,7 @@ In all cases, however, the main point to remember is that things will break. Don
 
 Antipatterns create, accelerate, or multiply cracks in the system.
 
-1. Inviting Disaster [Chi01], pages 37­63.
+1. Inviting Disaster [Chi01], pages 37ï¿½63.
 
 INTEGRATION POINTS
 
@@ -1455,7 +1461,7 @@ As often happens, adding complexity to solve one problem creates the risk of ent
 The majority of system failures I've dealt with do not involve outright crashes. The process runs and runs but does nothing because every thread available for processing transactions is blocked waiting on some impossible outcome.
 Blocked threads can happen anytime you check resources out of a connection pool, deal with caches or object registries, or make calls to external systems. If the code is structured properly, a thread will occasionally block whenever two (or more) threads try to access the same critical section at the same time. This is normal. Assuming that the code was written by someone sufficiently skilled in multithreaded programming, then you can always guarantee that the threads will eventually unblock and continue. If this describes you, then you are in a highly skilled minority.
 The problem has four parts:
-· Error conditions and exceptions create too many permutations to test exhaustively.
+ï¿½ Error conditions and exceptions create too many permutations to test exhaustively.
 
 13. The only book Java programmers actually need, however, is the excellent Concurrent Programming in Java [Lea00], by Doug Lea.
 
@@ -1468,9 +1474,9 @@ I've probably tried 100 times to explain the distinction between saying "The sys
 From the user's perspective, a system they can't use might as well be a smoking crater in the earth. The simple fact that the server process is running doesn't help the user get work done, books bought, flights found, and so on.
 That is why I advocate supplementing internal monitors (such as log file scraping, process monitoring, and port monitoring) with external monitoring. A mock client somewhere (not in the same data center) can run synthetic transactions on a regular basis. That client experiences the same view of the system that real users experience. When that client cannot process the synthetic transactions, then there is a problem, whether or not the server process is running.
 
-· Unexpected interactions can introduce problems in previously safe code.
-· Timing is crucial. The probability that the app will hang goes up with the number of concurrent requests.
-· Developers never hit their application with 10,000 concurrent requests.
+ï¿½ Unexpected interactions can introduce problems in previously safe code.
+ï¿½ Timing is crucial. The probability that the app will hang goes up with the number of concurrent requests.
+ï¿½ Developers never hit their application with 10,000 concurrent requests.
 Taken together, these conditions mean that it is very, very hard to find hangs during development. You cannot rely on "testing them out of the system." The best way to improve your chances is to carefully craft your code. Use a small set of primitives in known patterns. It's best if you download a well-crafted, proven library.14
 14. If you are using Java 5 and you are not using the primitives in java.util.concurrent, then shame on you. If you are not using Java 5, then download the util.concurrent library from http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html. It's the same library before adoption into the JCP.
 
@@ -1506,7 +1512,7 @@ BLOCKED THREADS
 85
 
 Part of the system needed to check the in-store availability of items by making expensive inventory availability queries to a remote system. These external calls took a few seconds to execute. The results were known to be valid for at least fifteen minutes because of the way the inventory system worked. Since nearly 25% of the inventory lookups were on the week's "hot items" and there could be as many as 4,000 (worst case) concurrent requests against the undersized, overworking inventory system, the developer decided to cache the resulting Availability object.
-The developer decided that the right metaphor was a read-through cache. On a hit, it would return the cached object. On a miss, it would do the query, cache the result, and then return it. Following good object orientation principles, the developer decided to create an extension of GlobalObjectCache, overriding the create( ) method to make the remote call. It was a textbook design. The new RemoteAvailabilityCache was a cache proxy, as described in Pattern Languages of Program Design 2 [VCK96], pages 111­112. It even had a time stamp on the cached entries so they could be expired when the data became too stale. This was an elegant design, but it wasn't enough.
+The developer decided that the right metaphor was a read-through cache. On a hit, it would return the cached object. On a miss, it would do the query, cache the result, and then return it. Following good object orientation principles, the developer decided to create an extension of GlobalObjectCache, overriding the create( ) method to make the remote call. It was a textbook design. The new RemoteAvailabilityCache was a cache proxy, as described in Pattern Languages of Program Design 2 [VCK96], pages 111ï¿½112. It even had a time stamp on the cached entries so they could be expired when the data became too stale. This was an elegant design, but it wasn't enough.
 The problem with this design had nothing to do with the functional behavior. Functionally, RemoteAvailabilityCache was a nice piece of work. In times of stress, however, it had a nasty failure mode. The inventory system was undersized (see Antipattern 4.8, Unbalanced Capacities, on page 96), so when the front end got busy, the back end would be flooded with requests. Eventually, it crashed. At that point, any thread calling RemoteAvailabilityCache.get( ) would block, because one single thread was inside the create( ) call, waiting for a response that would never come. There they sit, Estragon and Vladimir, waiting endlessly for Godot.
 This example shows how these antipatterns interact perniciously to accelerate the growth No one designed this of cracks. The conditions for failure were cre- failure mode in, but no ated by the blocking threads and unbalanced one designed capacities. The lack of timeouts in the inte- it out either. gration points caused the failure in one layer to become a cascading failure. Ultimately, this combination of forces brought down the entire site.
 Obviously, the business sponsors would laugh if you asked them, "Should the site crash if it can't check availability for in-store pickup?"
@@ -1616,7 +1622,7 @@ App n
 Production Environment
 Figure 4.11: Point-to-Point Communication in Production--Ouch!
 With point-to-point connections, each instance has to talk directly to every other instance, as in Figure 4.11. The total number of connections goes up as the square of the number of instances. Scale that up to a hundred instances, and the O(n2) scaling becomes quite painful. This is a multiplier effect driven by the number of application instances. Depending on the eventual size of your system, O(n2) scaling might be fine. Either way, you should know about this effect before your system hits production. Unfortunately, unless you are Microsoft or Google, it is unlikely that you can build a test farm the same size as your production environment. This type of defect cannot be tested out; it must be designed out. This is one of those times where there is no "best" choice, just a good choice for a particular set of circumstances. If the application will only ever have two servers, then point-to-point communication is perfectly fine.19 As the number of servers grows, then a different communication strategy is needed. Depending on your infrastructure, you can replace point-to-point communication with the following:
-· UDP broadcasts · TCP or UDP multicast · Publish/subscribe messaging
+ï¿½ UDP broadcasts ï¿½ TCP or UDP multicast ï¿½ Publish/subscribe messaging
 19. As long as the communication is written so it won't block when the other server dies! (See Antipattern 4.5, Blocked Threads, on page 81.)
 
 SCALING EFFECTS
@@ -1638,7 +1644,7 @@ App 6
 Common Service
 
 Figure 4.12: Many-to-One Dependencies
-· Message queues
+ï¿½ Message queues
 Broadcasts do the job but are not bandwidth efficient. They also cause some additional load on servers that are not interested in the messages, since the servers' NIC gets the broadcast and must notify the TCP/IP stack. Multicasts are more efficient, since they permit only the interested servers to receive the message. Publish/subscribe messaging is better still, since a server can pick up a message even if it wasn't listening at the precise moment the message was sent. Of course, publish/subscribe messaging often brings in some serious infrastructure cost. This is a great time to apply the XP principle that says, "Do the simplest thing that will work."
 Shared Resources Another scaling effect that can jeopardize stability is the "shared resource" effect. Commonly seen in the guise of a service-oriented architecture or "common services" project, the shared resource is some facility that all members of a horizontally scalable layer need to use. With some application servers, the shared resource will be a cluster manager or lock manager. When the shared resource gets overloaded, it will become a bottleneck limiting capacity (see Section 8.1, Defining Capacity, on page 161). Figure 4.12 should give you an idea of how the callers can put a hurting on the shared resource.
 When the shared resource is redundant and nonexclusive--meaning it can service several of its consumers at once--then there is no problem. If it saturates, you can add more, thus scaling the bottleneck.
@@ -2224,8 +2230,8 @@ STEADY STATE
 
 Between data in the database and log files on the disk, there are plenty of ways for persistent data to clog up your system. Like jingles from old commercials, sludge stuck in memory can clog up your application.
 In-Memory Caching Pattern 10.2, Use Caching Carefully, on page 208 has much more to say on the subject of caching. To a long-running server, memory is like oxygen. Cache, left untended, will suck up all the oxygen. Low memory conditions are a threat to both stability and capacity. Therefore, when building any sort of cache, it's vital to ask two questions:
-· Is the space of possible keys finite or infinite?
-· Do the cached items ever change?
+ï¿½ Is the space of possible keys finite or infinite?
+ï¿½ Do the cached items ever change?
 If there is no upper bound on the number of possible keys, then cache size limits must be enforced. Unless the key space is finite and the items are static, then the cache needs some form of cache invalidation. The simplest mechanism is a time-based cache flush. You can also investigate least recently used (LRU) or working-set algorithms, but nine times out of ten, a periodic flush will do.
 Improper use of caching is the major cause of memory leaks, which in turn lead to horrors like daily server restarts. Nothing gets administrators in the habit of being logged on to production like daily (or nightly) chores.
 Sludge buildup is a major cause of slow responses, so steady state helps avoid that antipattern. Steady state also encourages better operational discipline by limiting system administrators' need to log on to the production servers.
@@ -2319,19 +2325,19 @@ TEST HARNESS
 locations instead of the unitary enterprise-wide integration testing environment I described earlier.
 To do that, you can create test harnesses to emulate the remote system on the other end of each integration point. Hardware and mechanical engineers have used test harnesses for a long time. Software engineers have used test harnesses, but not as maliciously as they should. A good test harness should be devious. It should be as nasty and vicious as real-world systems will be. The test harness should leave scars on the system under test. Its job is to make the system under test cynical.
 Consider building a test harness that substitutes for the remote end of every web services call. Because the remote call uses the network, the socket connection is susceptible to the following failures:
-· It can be refused.
-· It can sit in a listen queue until the caller times out.
-· The remote end can reply with a SYN/ACK and then never send any data.
-· The remote end can send nothing but RESET packets.
-· The remote end can report a full receive window and never drain the data.
-· The connection can be established, but the remote end never sends a byte of data.
-· The connection can be established, but packets could be lost causing retransmit delays.
-· The connection can be established, but the remote end never acknowledges receiving a packet, causing endless retransmits.
-· The service can accept a request, send response headers (supposing HTTP), and never send the response body.
-· The service can send one byte of the response every thirty seconds.
-· The service can send a response of HTML instead of the expected XML.
-· The service can send megabytes when kilobytes are expected.
-· The service can refuse all authentication credentials.
+ï¿½ It can be refused.
+ï¿½ It can sit in a listen queue until the caller times out.
+ï¿½ The remote end can reply with a SYN/ACK and then never send any data.
+ï¿½ The remote end can send nothing but RESET packets.
+ï¿½ The remote end can report a full receive window and never drain the data.
+ï¿½ The connection can be established, but the remote end never sends a byte of data.
+ï¿½ The connection can be established, but packets could be lost causing retransmit delays.
+ï¿½ The connection can be established, but the remote end never acknowledges receiving a packet, causing endless retransmits.
+ï¿½ The service can accept a request, send response headers (supposing HTTP), and never send the response body.
+ï¿½ The service can send one byte of the response every thirty seconds.
+ï¿½ The service can send a response of HTML instead of the expected XML.
+ï¿½ The service can send megabytes when kilobytes are expected.
+ï¿½ The service can refuse all authentication credentials.
 
 TEST HARNESS
 
@@ -2920,7 +2926,7 @@ today's large enterprise. It begins with drives, but it does not end there.
 
 Disks might be local to a server. In that case, each server has to have space enough for the following:
 
-· The operating system · The applications · The local configurations or data · The log files · The temporary working space needed by the applications
+ï¿½ The operating system ï¿½ The applications ï¿½ The local configurations or data ï¿½ The log files ï¿½ The temporary working space needed by the applications
 
 MYTHS ABOUT CAPACITY
 
@@ -2970,13 +2976,13 @@ SUMMARY
 8.6 Summary
 Capacity management is an ongoing process of monitoring and optimization. It involves many dimensions and opposing dynamics. Software changes, traffic changes, and even marketing campaigns can all cause different forces to dominate your capacity. Working with capacity requires a big-picture view of the system as a whole. Overly simplistic or linear models for capacity will mislead you and can cost your company a great deal of money in excess spending or lost revenue.
 Capacity is fundamentally a measure of how much revenue the system can generate during a given period of time. Therefore, bad design choices that reduce capacity directly reduce the company's top-line revenue numbers. Offsetting those bad choices requires additional capital expenditure and ongoing operational expense. To get the most from your investments, you should always do the following:
-· Always look for the multiplier effects. These will dominate your costs.
-· Understand the effects that one layer has on another.
-· Improving nonconstraint metrics will not improve capacity.
-· Try to do the most work when nobody is waiting for it.
-· Place safety limits on everything: timeouts, maximum memory consumption, maximum number of connections, and so on.
-· Protect request-handling threads.
-· Monitor capacity continuously. Each application release can affect scalability and performance. Changes in user demand or traffic patterns change the system's workload.
+ï¿½ Always look for the multiplier effects. These will dominate your costs.
+ï¿½ Understand the effects that one layer has on another.
+ï¿½ Improving nonconstraint metrics will not improve capacity.
+ï¿½ Try to do the most work when nobody is waiting for it.
+ï¿½ Place safety limits on everything: timeouts, maximum memory consumption, maximum number of connections, and so on.
+ï¿½ Protect request-handling threads.
+ï¿½ Monitor capacity continuously. Each application release can affect scalability and performance. Changes in user demand or traffic patterns change the system's workload.
 
 Chapter 9
 Capacity Antipatterns
@@ -3080,7 +3086,7 @@ EXCESSIVE JSP FRAGMENTS
 180
 
 9.2 Excessive JSP Fragments
-In the Java realm, JSP is the standard page-templating language. JSP files are compiled in two passes. First, the application server generates a .java file with application server­specific servlet code. Second, the application server compiles that source file into bytecode. After the second compilation step, the new class file is loaded into the JVM. Like all Java classes, compiled JSPs are loaded into the JVMs permanent generation. The permanent generation is exactly what it says. The objects in the permanent generation are the actual class and method definitions.
+In the Java realm, JSP is the standard page-templating language. JSP files are compiled in two passes. First, the application server generates a .java file with application serverï¿½specific servlet code. Second, the application server compiles that source file into bytecode. After the second compilation step, the new class file is loaded into the JVM. Like all Java classes, compiled JSPs are loaded into the JVMs permanent generation. The permanent generation is exactly what it says. The objects in the permanent generation are the actual class and method definitions.
 J2EE application servers almost always come with start-up scripts that use the -noclassgc JVM argument. This option tells the JVM to not unload classes from the permanent generation. It's usually billed as a performance improvement, and sometimes it is. The problem arises when you have large numbers of JSP classes being loaded during one execution of the application server. In that situation, the default permanent generation size might not be large enough. If there is no limit to the number of JSPs that your JVM might have to load, then there is no upper bound on the permanent generation size you need. Because each JSP gets compiled and loaded into the permanent generation, without class garbage collection, the permanent generation will eventually fill up. When that is happening, enabling class garbage collection by removing the -noclassgc option will alleviate some of the pain. Essentially, you would move from a deteriorating performance that will eventually be indistinguishable from a crash to consistently lower, but not degeneration, performance.
 Remember This
 Don't use code for content Loading JSP classes into memory is a kind of caching. If you have enough JSP files, you will fill the permanent generation. Even if you don't, it's a waste of otherwise useful memory to keep a class in memory when it might not be accessed again before you restart the application server.
@@ -3791,22 +3797,22 @@ If a feature is functioning but takes twenty-seven-and-a-half minutes to respond
 
 Synthetic transaction: work submitted to a system that emulates a real user. You must have some way to indicate this is for monitoring-- such as a designated user ID--to avoid polluting the production data.
 
-· How often will the monitoring device execute its synthetic transaction?
+ï¿½ How often will the monitoring device execute its synthetic transaction?
 
-· What is the maximum acceptable response time for each step of the transaction?
+ï¿½ What is the maximum acceptable response time for each step of the transaction?
 
-· What response codes or text patterns indicate success?
+ï¿½ What response codes or text patterns indicate success?
 
-· What response codes or text patterns indicate failure?
+ï¿½ What response codes or text patterns indicate failure?
 
 LOAD BALANCING
 
 232
 
-· How frequently should the synthetic transaction be executed?
-· From how many locations?
-· Where will the data be recorded?
-· What formula will be used to compute the percentage availability? Based on time or number of samples?
+ï¿½ How frequently should the synthetic transaction be executed?
+ï¿½ From how many locations?
+ï¿½ Where will the data be recorded?
+ï¿½ What formula will be used to compute the percentage availability? Based on time or number of samples?
 When the fur flies, paper makes a thin shield, but having this definition might help focus attention on the data rather than making it a personal issue.
 
 13.3 Load Balancing
@@ -4021,10 +4027,10 @@ Long ago, programmers coded themselves a solution to the problem of lost files a
 Some do. In some more advanced shops, administrators use tools such as Subversion and cfengine to manage and deploy configurations. An increasing number of IT shops use system management suites such as HP OpenView, BladeLogic, and Opsware to control configurations.
 In many cases, though, administrators in IT operations haven't had the time to implement and roll out version control, or they are not aware of the concept. Some are aware of version control but have never thought of applying it to system configuration files. (I didn't say it would be a good reason.)
 In any case, I definitely recommend using version control for configuration files, with a few constraints:
-· Use a secure repository. These files have database passwords in them!
-· Link version control with a larger change control process. You should be able to see why a configuration change was made, not just that one happened.
-· Automate the deployment of authorized changes, directly from the repository.
-· Make an automated audit process. Files sometimes get changed during incident management to restore service in a crisis. They sometimes don't get updated in version control afterward. You need to be able to find the deltas without automatically overwriting them.
+ï¿½ Use a secure repository. These files have database passwords in them!
+ï¿½ Link version control with a larger change control process. You should be able to see why a configuration change was made, not just that one happened.
+ï¿½ Automate the deployment of authorized changes, directly from the repository.
+ï¿½ Make an automated audit process. Files sometimes get changed during incident management to restore service in a crisis. They sometimes don't get updated in version control afterward. You need to be able to find the deltas without automatically overwriting them.
 As an alternative, you could buy and deploy the twenty-seven products from BMC that do all of that for you.
 . See subversion.tigris.org. . See www.cfengine.org.
 
@@ -4166,8 +4172,8 @@ Online Store
 SiteScope San Francisco
 Figure 16.1: SiteScope Hits Front-End Store, Simulates Users
 Too much was on the line for our client to worry about interrupting a vacation day. Besides, I had told them not to hesitate to call me if I was needed. We knew a few things at this point, twenty minutes into the incident:
-· Session counts were very high, higher than the day before. · Network bandwidth usage was high but not hitting a limit. · Application server page latency (response time) was high. · Web, application, and database CPU usage were low--really low. · Search servers, our usual culprit, were responding well. System
-stats looked healthy. · Request-handling threads were almost all busy. Many of them had
+ï¿½ Session counts were very high, higher than the day before. ï¿½ Network bandwidth usage was high but not hitting a limit. ï¿½ Application server page latency (response time) was high. ï¿½ Web, application, and database CPU usage were low--really low. ï¿½ Search servers, our usual culprit, were responding well. System
+stats looked healthy. ï¿½ Request-handling threads were almost all busy. Many of them had
 been working on their requests for more than five seconds. In fact, the page latency wasn't just high. Because requests were timing out, it was effectively infinite. The statistics showed us only the average of requests that completed.
 
 DIAGNOSTIC TESTS
@@ -4244,9 +4250,9 @@ WINDING DOWN
 
 Recovery-Oriented Computing
 The Recovery-Oriented Computing (ROC) project is a joint Berkley and Stanford research project. The project's founding principles are as follows:
-· Failures are inevitable, in both hardware and software.
-· Modeling and analysis can never be sufficiently complete. A priori prediction of all failure modes is not possible.
-· Human action is a major source of system failures.
+ï¿½ Failures are inevitable, in both hardware and software.
+ï¿½ Modeling and analysis can never be sufficiently complete. A priori prediction of all failure modes is not possible.
+ï¿½ Human action is a major source of system failures.
 Their research runs contrary to most work in system reliability. Whereas most work focuses on eliminating the sources of failure, ROC accepts that failures will inevitably happen--a major theme in this book! Their investigations aim to improve survivability in the face of failures.
 Many of the concepts of ROC can be implemented in today's languages and platforms. Follow their focus on damage containment, automatic fault detection, and component-level restartability, and you'll derive great benefits.
 . See http://roc.cs.berkeley.edu/.
@@ -4277,7 +4283,7 @@ measurement and reporting. These are currently undergoing a wave of consolidatio
 17.1 Perspectives
 Different constituencies require different perspectives. These perspectives will not all be served by the same views into the systems. Just as the question, "How's the weather?" means very different things to a gardener, a pilot, and a meteorologist, the question, "How's it going?" means something decidedly distinct when coming from the CEO or the system administrator.
 Historical Trending History is a fairly plastic word. There aren't too many fields in which "last week" is a plausible definition of "history." That might be the only connection between the worlds of IT operations and high fashion.
-Still, even if myopic, we have to be concerned about historical views. Despite the Wall Street­style disclaimers,1 it is possible to predict tomorrow's system behavior by extrapolating yesterday's results. This applies to business metrics (customers, orders, conversion rate, revenue, cost of delivering service, and so on) as well as system metrics (free storage, average CPU utilization, network bandwidth, and number of errors logged).
+Still, even if myopic, we have to be concerned about historical views. Despite the Wall Streetï¿½style disclaimers,1 it is possible to predict tomorrow's system behavior by extrapolating yesterday's results. This applies to business metrics (customers, orders, conversion rate, revenue, cost of delivering service, and so on) as well as system metrics (free storage, average CPU utilization, network bandwidth, and number of errors logged).
 Obviously, historical records have to be stored somewhere for a period of time. The historical perspective is best served by a database. Section 17.2, Designing for Transparency, on page 275 refers to this as the OpsDB. The OpsDB can be used to investigate anomalies or trends. Because it contains system- and business-level metrics, it can be used to identify correlations in time and across layers.
 The historical perspective can be represented by spreadsheets, charts, Microsoft PowerPoint presentations, or analysis reports. It lacks the immediacy of the present and is usually not appropriate for a dashboard view.
 1. You know, "Past performance is no guarantee of future results."
@@ -4288,11 +4294,11 @@ PERSPECTIVES
 
 Because it can be used to discover new and interesting relationships, the historical data should be broadly available through tools such as Microsoft Access and Microsoft Excel. If your company has purchased a business intelligence (BI) or reporting tool, it should clearly be using the historical data. Just beware the temptation to have these tools directly access the production transactional database. (See Section 9.8, Historical Data, on page 197.)
 Some common questions indicate the historical perspective:
-· How many orders did we take yesterday?
-· How does that compare to this day last year?2
-· How much disk space did we consume during the first quarter?
-· The last time we had a spike in traffic, which system was the limiting factor?
-· How does the growth in customer traffic compare to the growth in CPU usage over the past three years?
+ï¿½ How many orders did we take yesterday?
+ï¿½ How does that compare to this day last year?2
+ï¿½ How much disk space did we consume during the first quarter?
+ï¿½ The last time we had a spike in traffic, which system was the limiting factor?
+ï¿½ How does the growth in customer traffic compare to the growth in CPU usage over the past three years?
 Predicting the Future In Planning Extreme Programming [BF01], Kent Beck and Martin Fowler popularized the expression "yesterday's weather." They relate an apocryphal story about a sophisticated weather prediction system beaten by a much simpler algorithm: a prediction that today's weather will be the same as yesterday's weather will be accurate about 70% of the time. However shaky the meteorological foundation might be, the concept nicely encapsulates the recognition that we can predict the future by extrapolating the past.
 In the case of our systems, the backward-facing historical information is also our crystal ball. Future predictions are almost always about correlations and linkages, rather than direct measurements. By far, the most common question is, "What's our capacity?" (See Section 8.1, Defining Capacity, on page 161 and Section 8.3, Interrelations, on page 165.) Although this appears to be a question about a single metric, the implied qualifier is "if the next N users have a proportional impact to the previous N users."
 
@@ -4307,9 +4313,9 @@ On the other hand, it's possible to develop "good enough" models by finding corr
 Projections into the future tend to be sensitive information. They also do not have the urgency of immediate data. Therefore, they should generally not be built into a dashboard.
 An application release can alter or invalidate the correlations on which the projections are built. Since these projections act like derivatives of the system's behavior, they must be reexamined after each application release to see whether they still apply. (Of course, you must wait for an adequate body of new measurements to build up before you can tell.) This also implies that anything based on these projections should include a reference to indicate which set of projections were used.4
 Here are some common questions that indicate the future perspective:
-· How many customers per day can we handle?
-· When do I have to buy more servers (or disk, bandwidth, or any other computing resource)?
-· Can we make it through this holiday season? (Notice that this requires a projection about a projection, which doesn't just double the possibility for error but squares it.)
+ï¿½ How many customers per day can we handle?
+ï¿½ When do I have to buy more servers (or disk, bandwidth, or any other computing resource)?
+ï¿½ Can we make it through this holiday season? (Notice that this requires a projection about a projection, which doesn't just double the possibility for error but squares it.)
 
 3. However, please note that Newton's Laws of Motion are applicable only within a certain domain...but that domain works well enough to get a spacecraft to Neptune after a twenty-year flight! 4. I know, spoken like an academic. I don't expect the business sponsors to be rigorous about their methodology, but I do hope that the developers and system engineers will be!
 
@@ -4358,13 +4364,13 @@ PERSPECTIVES
 
 Green
 
-All of the following must be true: · All expected events have occurred. · No abnormal events have occurred. · All metrics are nominal. · All states are fully operational.
+All of the following must be true: ï¿½ All expected events have occurred. ï¿½ No abnormal events have occurred. ï¿½ All metrics are nominal. ï¿½ All states are fully operational.
 
 Yellow
 
-At least one of the following is true: · An expected event has not occurred. · At least one abnormal event, with a medium severity, has occurred. · One or more parameters is above or below nominal. · A noncritical state is not fully operational. (For example, a circuit breaker has cut off a noncritical feature.)
+At least one of the following is true: ï¿½ An expected event has not occurred. ï¿½ At least one abnormal event, with a medium severity, has occurred. ï¿½ One or more parameters is above or below nominal. ï¿½ A noncritical state is not fully operational. (For example, a circuit breaker has cut off a noncritical feature.)
 
-Red At least one of the following is true: · A required event has not occurred. · At least one abnormal event, with high severity, has occurred. · One or more parameters is far above or below nominal. · A critical state is not at its expected value. (For example, "accepting requests" is false when it should be true.)
+Red At least one of the following is true: ï¿½ A required event has not occurred. ï¿½ At least one abnormal event, with high severity, has occurred. ï¿½ One or more parameters is far above or below nominal. ï¿½ A critical state is not at its expected value. (For example, "accepting requests" is false when it should be true.)
 
 Figure 17.1: Color Coding for Accuracy
 
@@ -4459,7 +4465,7 @@ LOGGING
 280
 
 Figure 17.2: Impossible to Scan
-Human Factors Above all else, log files are human-readable. That means they constitute a human-computer interface and should be examined in terms of human factors. This might sound trivial--even laughable--but in a stressful situation, such as a Severity 1 incident, human misinterpretation of status information can prolong or aggravate the problem. Operators in the Three Mile Island reactor misinterpreted the meaning of coolant pressure and temperature values, leading them to take exactly the wrong action at every turn. (See Inviting Disaster [Chi01], pages 49­63.) Although most of our systems will not vent radioactive steam when they break, they will take thousands of dollars with them. Therefore, it behooves us to ensure that log files convey clear, accurate, and actionable information to the humans who read them.
+Human Factors Above all else, log files are human-readable. That means they constitute a human-computer interface and should be examined in terms of human factors. This might sound trivial--even laughable--but in a stressful situation, such as a Severity 1 incident, human misinterpretation of status information can prolong or aggravate the problem. Operators in the Three Mile Island reactor misinterpreted the meaning of coolant pressure and temperature values, leading them to take exactly the wrong action at every turn. (See Inviting Disaster [Chi01], pages 49ï¿½63.) Although most of our systems will not vent radioactive steam when they break, they will take thousands of dollars with them. Therefore, it behooves us to ensure that log files convey clear, accurate, and actionable information to the humans who read them.
 If log files are a human interface, then they should also be written such that humans can recognize and interpret them as rapidly as possible. The format should be as readable as possible. The human visual system is a pattern-matching machine of unparalleled speed and sophistication. Why do so many vendors work so hard to defeat that ability? Figure 17.2, shows an example of a log format that was made for computers or perhaps Martians to read--not humans. This is from the start-up log of WebLogic 9.2. How rapidly can you spot the warning message?
 Figure 17.3, on the next page comes from WebSphere 6.1. It uses the same java.util.logging API that the previous example used, but it replaces
 
@@ -4906,10 +4912,10 @@ How many times have you seen this one: some reporting system generates a report 
 That report is an example of transparency without a closed-loop feedback process. It costs money to implement and operate but provides no value. It creates a false sense of security. The best data in the world can't help if nobody is looking. In this section, I will take a step back from the systems themselves to discuss the larger dynamic system: the organization that is creating and operating these computer systems.
 An effective feedback process can be described as "acting responsively to meaningful data." Transparency in the systems only provides access to the data. Humans in the loop still need to view and interpret the information.
 Various forms of feedback loops exist in different schools of process, such as the Deming Cycle's15 spiral through "Plan-Do-Check-Act" or John Boyd's nonlinear "O-O-D-A."16 Ultimately, they all boil down to some execution of each of the following:
-· Examine the system: current state, historical patterns, and future projections.
-· Interpret the data. This always occurs within the context of some person's mental model of the system.
-· Evaluate potential actions, including the costs of each and, perhaps, taking no action at all.
-· Decide on a course of action. · Implement the chosen course of action. · Observe the new state of the system.
+ï¿½ Examine the system: current state, historical patterns, and future projections.
+ï¿½ Interpret the data. This always occurs within the context of some person's mental model of the system.
+ï¿½ Evaluate potential actions, including the costs of each and, perhaps, taking no action at all.
+ï¿½ Decide on a course of action. ï¿½ Implement the chosen course of action. ï¿½ Observe the new state of the system.
 
 15. See Deming and Goldratt [LC99]. 16. See Certain to Win [Ric04].
 
@@ -4935,19 +4941,19 @@ Boyd called this getting "inside" the enemy's decision cycle: both anticipating 
 
 Keys to Observation
 First and foremost, observers should watch for both trends and outliers. Both provide insight. It helps to build an operational rhythm that makes improvement a routine occurrence rather than a spasmic effort. Here are a few helpful routines to aid observations:
-· Every week, review the past week's problem tickets. Look for recurring problems and those that consume the most time. Look for particular subsystems that cause a lot of problems or a development team (if there is more than one). Look for problems related to a particular third party or integration point.
-· Every month, look at the total volume of problems. Consider the distribution of problem types. The overall trend should be a decrease in severity as serious problems are corrected. There should also be an overall decrease in volume. (There will be a sawtooth pattern as new code releases introduce new problems.)
-· Either daily or weekly, look for exceptions and stack traces in log files. Correlate these to find the most common sources of exceptions. Consider whether these indicate serious problems or just gaps in the code's error handling.
-· Review help desk calls for common issues. The can point toward user interface improvements as well as places the system needs to be more robust.
-· If there are too many tickets and help desk calls to review thoroughly, look for the top categories. Also sample tickets randomly to find the things that make you go "hmmm."
+ï¿½ Every week, review the past week's problem tickets. Look for recurring problems and those that consume the most time. Look for particular subsystems that cause a lot of problems or a development team (if there is more than one). Look for problems related to a particular third party or integration point.
+ï¿½ Every month, look at the total volume of problems. Consider the distribution of problem types. The overall trend should be a decrease in severity as serious problems are corrected. There should also be an overall decrease in volume. (There will be a sawtooth pattern as new code releases introduce new problems.)
+ï¿½ Either daily or weekly, look for exceptions and stack traces in log files. Correlate these to find the most common sources of exceptions. Consider whether these indicate serious problems or just gaps in the code's error handling.
+ï¿½ Review help desk calls for common issues. The can point toward user interface improvements as well as places the system needs to be more robust.
+ï¿½ If there are too many tickets and help desk calls to review thoroughly, look for the top categories. Also sample tickets randomly to find the things that make you go "hmmm."
 
 SUPPORTING PROCESSES
 
 308
 
-· Every four to six months, recheck that old correlations still hold true.
-· At least monthly, look at data volumes and query statistics. · Check the database server for the most expensive queries. Have
-the query plans changed for any of these? Has a new query hit the most expensive list? Either of these changes could indicate an accumulation of data somewhere. Do any of the most common queries cause a table scan? That probably indicates a missing index. · Look at the daily and weekly envelope of demand (driving variables) and system metrics. Are traffic patterns changing? If you suddenly see that a popular time is dropping in popularity, it probably indicates that the system is too slow at those times. Is there a plateau in the driving variables? That indicates some limiting factor, probably responsiveness of the system.
+ï¿½ Every four to six months, recheck that old correlations still hold true.
+ï¿½ At least monthly, look at data volumes and query statistics. ï¿½ Check the database server for the most expensive queries. Have
+the query plans changed for any of these? Has a new query hit the most expensive list? Either of these changes could indicate an accumulation of data somewhere. Do any of the most common queries cause a table scan? That probably indicates a missing index. ï¿½ Look at the daily and weekly envelope of demand (driving variables) and system metrics. Are traffic patterns changing? If you suddenly see that a popular time is dropping in popularity, it probably indicates that the system is too slow at those times. Is there a plateau in the driving variables? That indicates some limiting factor, probably responsiveness of the system.
 Remember that the focus of interest will shift over time. In the early days, the issues will mainly be reactive. Ticket reviews, post-mortem reports from incidents, and recent trends will be of most interest. As root causes get corrected, as new code releases come out, and as traffic patterns change, the emphasis will shift from reactive to predictive analysis. What will happen next quarter? Where do you need to be this time next year? As this emphasis shifts, stop reviewing some old things, and start reviewing new trends. Once a metric stops producing useful information, stop reviewing it. The same reports you live by one month after launch will be worthless--or even misleading--two years later.
 For each metric being reviewed, consider each of the following. How does it compare to the historical norms? (This is easy if the OpsDb has enough data to start forming expectations.) If the metrics continues its recent trend, what happens to other correlated metrics? How long could the trend continue--what limiting factor will kick in? What will result from that limiting factor?
 For example, consider the relationship between "orders received" and "application server CPU utilization." On any kind of retail site, these metrics will be correlated to some degree. ("Orders received" is a derivative of "unique visits." The beta of "orders received" to "unique visits" is just what the marketers call conversion rate.) Therefore, if you see "orders received" increasing, you can ask, "How long can that continue to increase?" The answer to this question should motivate interpretation and decision. The decision might be to do nothing, to add
@@ -5458,16 +5464,16 @@ John M. Vlissides, James O. Coplien, and Norman L. Kerth. Pattern Languages of P
 Craig Wisneski, Hiroshi Ishii, Andrew Dahley, Matt Gorbet, Scott Brave, Brygg Ullmer, and Paul Yarin. Ambient displays: Turning architectural space into an interface between people and digital information. Lecture Notes in Computer Science, 1370:22, 1998. http://citeseer.ist.psu.edu/wisneski98ambient.html.
 
 A
-Adaptation, 310­312 and software design, 312­319 agile databases, 318­319 dependency injection, 312 object design, 314­315 XP coding practices, 316­317 enterprise architecture databases, 326­327 overview, 319­321 protocols, 324f, 325f, 323­325 system dependencies, 322f, 322­323 overview, 310­312 releases, 327­334, 335f
-Administration, 240­248 application separation, 242 command line vs. GUIs, 248 configuration files, 243­246 interfaces for, 248, 297 overview, 240­241 QA vs. production, 241­243 start-up and shutdown, 247 zero, one, many, 242
-Adolph, Steve, 307n AdventNet, 298 Agentless system monitoring, 285 Agents, 284 Agile databases, 318­319 Agile Software Development
+Adaptation, 310ï¿½312 and software design, 312ï¿½319 agile databases, 318ï¿½319 dependency injection, 312 object design, 314ï¿½315 XP coding practices, 316ï¿½317 enterprise architecture databases, 326ï¿½327 overview, 319ï¿½321 protocols, 324f, 325f, 323ï¿½325 system dependencies, 322f, 322ï¿½323 overview, 310ï¿½312 releases, 327ï¿½334, 335f
+Administration, 240ï¿½248 application separation, 242 command line vs. GUIs, 248 configuration files, 243ï¿½246 interfaces for, 248, 297 overview, 240ï¿½241 QA vs. production, 241ï¿½243 start-up and shutdown, 247 zero, one, many, 242
+Adolph, Steve, 307n AdventNet, 298 Agentless system monitoring, 285 Agents, 284 Agile databases, 318ï¿½319 Agile Software Development
 (Cockburn), 327 Airline case study, see Core Facilities
-case study AJAX Overkill, 182­184
+case study AJAX Overkill, 182ï¿½184
 interaction design, 183 and JSON, 184 request timing, 183 response formatting, 183 session thrashing, 183
 
 Index
 Akamai, 235 Ambient awareness, 288 Ambient Displays: Turning Architectural
-Space into an Interface between People and Digital Information (Wisneski et al), 288 Antipatterns AJAX Overkill, 182­184 Attacks of Self-Denial, 88­90 Blocked Threads, 81­87 Cascading Failures, 66f, 65­67 Chain Reactions, 62f, 64f, 61­64 Cookie Monsters, 201­203 Database Eutrophication, 196­198 defined, 45 Excessive JSP Fragments, 180 Handcrafted SQL, 193­195 Integration Point Latency, 199 Integration Points, 60 interaction with patterns, 43f Overstaying Sessions, 185­186 overview, 42­45 Reload button, 191 Resource Pool Contention, 177f, 178f, 176­179 Scaling Effects, 91f, 92f, 93f, 91­95 Slow Responses, 100­101 Unbalanced Capacities, 97f, 96­99 users, 68­80 Wasted Space in HTML, 187­190 Apache and DNS round-robin, 234 load-balancing module, 236 privilege separation, 227 reverse proxy servers, 235 Application crashes, 44 Applications connection pool, 247 CPU time, 168
+Space into an Interface between People and Digital Information (Wisneski et al), 288 Antipatterns AJAX Overkill, 182ï¿½184 Attacks of Self-Denial, 88ï¿½90 Blocked Threads, 81ï¿½87 Cascading Failures, 66f, 65ï¿½67 Chain Reactions, 62f, 64f, 61ï¿½64 Cookie Monsters, 201ï¿½203 Database Eutrophication, 196ï¿½198 defined, 45 Excessive JSP Fragments, 180 Handcrafted SQL, 193ï¿½195 Integration Point Latency, 199 Integration Points, 60 interaction with patterns, 43f Overstaying Sessions, 185ï¿½186 overview, 42ï¿½45 Reload button, 191 Resource Pool Contention, 177f, 178f, 176ï¿½179 Scaling Effects, 91f, 92f, 93f, 91ï¿½95 Slow Responses, 100ï¿½101 Unbalanced Capacities, 97f, 96ï¿½99 users, 68ï¿½80 Wasted Space in HTML, 187ï¿½190 Apache and DNS round-robin, 234 load-balancing module, 236 privilege separation, 227 reverse proxy servers, 235 Application crashes, 44 Applications connection pool, 247 CPU time, 168
 
 ARCHITECTURE
 
@@ -5475,24 +5481,24 @@ ARCHITECTURE
 
 CAPACITY
 
-data vs. function, 318 passwords, 227­228 principle of least privilege, 226­227 separation, 242 start-up and shutdown, 247 see also Releases Architecture "ivory tower" vs. pragmatic, 18­19 of Core Facilities plan, 22, 23f for enterprise systems, 65, 319­327 of project Frammitz, 103f service-oriented, 65 session, 184 shared nothing, 94 ARIN, 77, 156 Assuming positive intent, 329 Asynchronous JavaScript plus XML,
-see AJAX Overkill ATG site, 257 Attacks of Self-Denial, 88­90
-and unbalanced capacity, 98 Availability, 229­239
-clustering, 238­239 documenting requirements, 230­232 gathering requirements, 229­230 load balancing, 233f, 234f, 237f,
-232­237 overview, 229 zero downtime deployments,
-331­334, 335f
+data vs. function, 318 passwords, 227ï¿½228 principle of least privilege, 226ï¿½227 separation, 242 start-up and shutdown, 247 see also Releases Architecture "ivory tower" vs. pragmatic, 18ï¿½19 of Core Facilities plan, 22, 23f for enterprise systems, 65, 319ï¿½327 of project Frammitz, 103f service-oriented, 65 session, 184 shared nothing, 94 ARIN, 77, 156 Assuming positive intent, 329 Asynchronous JavaScript plus XML,
+see AJAX Overkill ATG site, 257 Attacks of Self-Denial, 88ï¿½90
+and unbalanced capacity, 98 Availability, 229ï¿½239
+clustering, 238ï¿½239 documenting requirements, 230ï¿½232 gathering requirements, 229ï¿½230 load balancing, 233f, 234f, 237f,
+232ï¿½237 overview, 229 zero downtime deployments,
+331ï¿½334, 335f
 B
-Bandwidth costs, 171­173 Beck, Kent, 268 Berners-Lee, Tim, 201 Black-box technology, 255, 276, 283 Blocked Threads, 81­87
+Bandwidth costs, 171ï¿½173 Beck, Kent, 268 Berners-Lee, Tim, 201 Black-box technology, 255, 276, 283 Blocked Threads, 81ï¿½87
 and Chain Reactions, 62 and Decoupling Middleware, 143 error conditions, 82 and internal monitors, 82 Liskov Substitution principle, 84 locating block in code, 83 overview, 81 and Resource Pool Contention, 179 synchronizing methods, 83 third-party libraries, 86, 87 Bonding interfaces, 220 Bots, 153, 159 Boyd, John, 305, 306 Brochureware, 210
 
 Budgeting, see Costs Bugs
-debug logs, 278 and longevity tests, 37, 38 timing and Chain Reactions, 64 see also Core Facilities case study Bulkheads, 119­123 background, 119 vs. capacity, 121 and Chain Reactions, 64 hidden linkages, 120f partitioned system, 120f vs. performance, 123 Business continuance volumes (BCVs),
+debug logs, 278 and longevity tests, 37, 38 timing and Chain Reactions, 64 see also Core Facilities case study Bulkheads, 119ï¿½123 background, 119 vs. capacity, 121 and Chain Reactions, 64 hidden linkages, 120f partitioned system, 120f vs. performance, 123 Business continuance volumes (BCVs),
 327
 C
-Caching, 129, 130, 208­209, 212 Calendars, 252 Capacity
-antipatterns, 175­203 AJAX Overkill, 182­184 Cookie Monsters, 201­203 database eutrophication, 196­198 Excessive JSP Fragments, 180 Handcrafted SQL, 193­195 Integration Point Latency, 199 Overstaying Sessions, 185­186 Reload button, 191 Resource Pool Contention, 177f, 178f, 176­179 Wasted Space in HTML, 187­190
-bandwidth costs, 171­173 vs. Bulkheads, 121 case study, 147­160 constraints, 163­164 CPU costs, 169f, 167­169, 170f defining, 161­162 interrelations, 165 myths about, 166 NAS vs. SAN, 172 optimization patterns, 204­217
-caching, 208­209 garbage collector tuning, 215f, 214­217 overview, 204­205, 217 pool connections, 206­207 precomputing content, 210­213 overview, 161, 174 and performance, 161 scalability, 166f, 165­166, 167f
+Caching, 129, 130, 208ï¿½209, 212 Calendars, 252 Capacity
+antipatterns, 175ï¿½203 AJAX Overkill, 182ï¿½184 Cookie Monsters, 201ï¿½203 database eutrophication, 196ï¿½198 Excessive JSP Fragments, 180 Handcrafted SQL, 193ï¿½195 Integration Point Latency, 199 Overstaying Sessions, 185ï¿½186 Reload button, 191 Resource Pool Contention, 177f, 178f, 176ï¿½179 Wasted Space in HTML, 187ï¿½190
+bandwidth costs, 171ï¿½173 vs. Bulkheads, 121 case study, 147ï¿½160 constraints, 163ï¿½164 CPU costs, 169f, 167ï¿½169, 170f defining, 161ï¿½162 interrelations, 165 myths about, 166 NAS vs. SAN, 172 optimization patterns, 204ï¿½217
+caching, 208ï¿½209 garbage collector tuning, 215f, 214ï¿½217 overview, 204ï¿½205, 217 pool connections, 206ï¿½207 precomputing content, 210ï¿½213 overview, 161, 174 and performance, 161 scalability, 166f, 165ï¿½166, 167f
 
 CAPACITY IMPROVEMENTS
 
@@ -5500,16 +5506,16 @@ CAPACITY IMPROVEMENTS
 
 COSTS
 
-and scalability, 162 storage costs, 169­172 and throughput, 162 unbalanced, 97f, 96­99 Capacity improvements, 214 Cascading Failures, 65­67 and Circuit Breaker, 117 commerce system layers, 66f and Decoupling Middleware, 143 and Fail Fast, 133 and Handshaking, 135 and Integration Points, 65 interrelations and, 165 and middleware, 142 and resource pool, 66 and Slow Responses, 100, 101 Cascading style sheets and formatting,
+and scalability, 162 storage costs, 169ï¿½172 and throughput, 162 unbalanced, 97f, 96ï¿½99 Capacity improvements, 214 Cascading Failures, 65ï¿½67 and Circuit Breaker, 117 commerce system layers, 66f and Decoupling Middleware, 143 and Fail Fast, 133 and Handshaking, 135 and Integration Points, 65 interrelations and, 165 and middleware, 142 and resource pool, 66 and Slow Responses, 100, 101 Cascading style sheets and formatting,
 189 Case studies
-airline, 21­34 online store, 252­263 retail online store, 147­160 Cash flow, 311 Certain to Win (Richards), 305 CF case study, see Core Facilities case
-study cfengine, 245 Chain of failure, 41­42 Chain Reactions, 61­64
-and Blocked Threads, 62 and Bulkheads, 123 causes of, 62 effects of, 62 eight-way cluster, former, 64f eight-way horizontal farm, 62f scalability, 61 Checkout costs, 152 Chiles, James R., 37 Circuit Breaker, 115­118 and Cascading Failures, 67 execution of, 115 and failure types, 117 metrics, 271 principle of, 115 state transitions, 116f and Timeouts, 114 and Unbalanced Capacities, 98 Cleanup, 334, 335f Clients and DNS round-robin, 233 responding to, 28
+airline, 21ï¿½34 online store, 252ï¿½263 retail online store, 147ï¿½160 Cash flow, 311 Certain to Win (Richards), 305 CF case study, see Core Facilities case
+study cfengine, 245 Chain of failure, 41ï¿½42 Chain Reactions, 61ï¿½64
+and Blocked Threads, 62 and Bulkheads, 123 causes of, 62 effects of, 62 eight-way cluster, former, 64f eight-way horizontal farm, 62f scalability, 61 Checkout costs, 152 Chiles, James R., 37 Circuit Breaker, 115ï¿½118 and Cascading Failures, 67 execution of, 115 and failure types, 117 metrics, 271 principle of, 115 state transitions, 116f and Timeouts, 114 and Unbalanced Capacities, 98 Cleanup, 334, 335f Clients and DNS round-robin, 233 responding to, 28
 
-and Timeouts, 113 and virtual IP addresses, 224 Cluster servers, 223 Clustering, 238­239 Cohesion, 314, 315 Collaborations, 316 Color coding, transparency, 273f Commercial monitoring systems, 286 Common Information Model (CIM),
-292­293 Communication, 90, 150 Competitive intelligence companies, 74 Concurrent Programming in Java (Lea),
-81n Concurrent users, 153 Configuration, 277 Configuration files, 243­246
-basic wiring of, 244 installation directory, 244 naming conventions, 243, 246 and version control, 245 Configured passwords, 227­228 Connection pool, 206­207, 247, 262 Constraints, 163­164 Content, precomputing, 210­213 vs. caching, 213 costs of, 212 example, 211 vs. personalization, 212 Conversion rates, 72, 73 Conway's law, 150 Conway, Melvin, 150 Cookie Monsters, 201­203 Cookies and session tracking, 75 Core Facilities case study, 21­34 consequences, 27 deployment architecture, 23f the error, 31­34 outage of, 22­25, 26f overview, 21­22, 34 post-mortem investigation, 27­31 preventing, 39­41 Costs of adaptation, 311 of bandwidth, 171­173 checkout, 152 of CPU capacity, 169f, 167­169, 170f of downtime, 229­230 image and reputation, 36 and middleware decisions, 142, 143
+and Timeouts, 113 and virtual IP addresses, 224 Cluster servers, 223 Clustering, 238ï¿½239 Cohesion, 314, 315 Collaborations, 316 Color coding, transparency, 273f Commercial monitoring systems, 286 Common Information Model (CIM),
+292ï¿½293 Communication, 90, 150 Competitive intelligence companies, 74 Concurrent Programming in Java (Lea),
+81n Concurrent users, 153 Configuration, 277 Configuration files, 243ï¿½246
+basic wiring of, 244 installation directory, 244 naming conventions, 243, 246 and version control, 245 Configured passwords, 227ï¿½228 Connection pool, 206ï¿½207, 247, 262 Constraints, 163ï¿½164 Content, precomputing, 210ï¿½213 vs. caching, 213 costs of, 212 example, 211 vs. personalization, 212 Conversion rates, 72, 73 Conway's law, 150 Conway, Melvin, 150 Cookie Monsters, 201ï¿½203 Cookies and session tracking, 75 Core Facilities case study, 21ï¿½34 consequences, 27 deployment architecture, 23f the error, 31ï¿½34 outage of, 22ï¿½25, 26f overview, 21ï¿½22, 34 post-mortem investigation, 27ï¿½31 preventing, 39ï¿½41 Costs of adaptation, 311 of bandwidth, 171ï¿½173 checkout, 152 of CPU capacity, 169f, 167ï¿½169, 170f of downtime, 229ï¿½230 image and reputation, 36 and middleware decisions, 142, 143
 
 COUPLING
 
@@ -5518,20 +5524,20 @@ COUPLING
 ENTERPRISE APPLICATION INTEGRATION
 
 of poorly performing code, 149, 160, 204
-and releases, 328­330 and software design, 17 spacer images, 189 and stability, 35, 36 of storage, 169­172 of whitespace, 188 Coupling and adaptation, 314­315 and Bulkheads, 119 clusters of objects, 322f, 322­323 and dependency injection, 312 and log files, 277 and middleware, 141, 142f, 142 between systems, 324f, 325f,
-323­325 transparency, 275 CPU binding, 122 CPU costs, 169f, 167­169, 170f Crashes, 44 Crossing the Chasm (Moore), 286 Crystalization, 315, 317
+and releases, 328ï¿½330 and software design, 17 spacer images, 189 and stability, 35, 36 of storage, 169ï¿½172 of whitespace, 188 Coupling and adaptation, 314ï¿½315 and Bulkheads, 119 clusters of objects, 322f, 322ï¿½323 and dependency injection, 312 and log files, 277 and middleware, 141, 142f, 142 between systems, 324f, 325f,
+323ï¿½325 transparency, 275 CPU binding, 122 CPU costs, 169f, 167ï¿½169, 170f Crashes, 44 Crossing the Chasm (Moore), 286 Crystalization, 315, 317
 D
-Dashboard, 273f, 272­273 Data growth, 38, 194, 197 Data purging, 124­126 Data, historical, 197 Database eutrophication, 196­198 Database failover, see Core Facilities
+Dashboard, 273f, 272ï¿½273 Data growth, 38, 194, 197 Data purging, 124ï¿½126 Data, historical, 197 Database eutrophication, 196ï¿½198 Database failover, see Core Facilities
 case study Databases
-agile, 318­319 connection pools, 270 dependencies, 326­327 indexing, 197 operations, 299f, 300f, 301f, 303f,
-299­304 relational, 193 revisions and releases, 333 Debug logs, 278 Decoupling Middleware, 141­143 costs, 142, 143 coupling, 142f dual purpose of, 141 Deming and Goldratt: The Theory of
+agile, 318ï¿½319 connection pools, 270 dependencies, 326ï¿½327 indexing, 197 operations, 299f, 300f, 301f, 303f,
+299ï¿½304 relational, 193 revisions and releases, 333 Debug logs, 278 Decoupling Middleware, 141ï¿½143 costs, 142, 143 coupling, 142f dual purpose of, 141 Deming and Goldratt: The Theory of
 Constraints and the System of Profound Knowledge (Lepore and Cohen), 305 Denial-of-service attacks, 106
 
-Dependencies between systems (databases), 326­327 between systems (protocols), 324f, 325f, 323­325 many-to-one-relationship, 93f and SLAs, 105 within a system, 322f, 322­323
+Dependencies between systems (databases), 326ï¿½327 between systems (protocols), 324f, 325f, 323ï¿½325 many-to-one-relationship, 93f and SLAs, 105 within a system, 322f, 322ï¿½323
 Dependency injection, 312 Design
-of adaptable software, 312­319 and HTML tables, 189 interaction, 183 for manufacturability, 15 for monitoring systems, 289 object-oriented, 314­315 partitioning, 197 patterns in, 316 for transparency, 275 and XP coding, 316­317 Design issues administration, 240­248 availability, 229­239 networking, 219­225 overview of, 249­250 security, 226­228 The Design of Everyday Things
+of adaptable software, 312ï¿½319 and HTML tables, 189 interaction, 183 for manufacturability, 15 for monitoring systems, 289 object-oriented, 314ï¿½315 partitioning, 197 patterns in, 316 for transparency, 275 and XP coding, 316ï¿½317 Design issues administration, 240ï¿½248 availability, 229ï¿½239 networking, 219ï¿½225 overview of, 249ï¿½250 security, 226ï¿½228 The Design of Everyday Things
 (Norman), 44, 201 Design Patterns: Elements of Reusable
-Object-Oriented Software (Gamma, et al), 316 Developers vs. administrators, 240 Diagnostic tests, 259 Distributed denial-of-service (DDoS) attacks, 73, 78 Distributed management task force (DMTF), 292 DNS round-robin, 232­234 Double-checked lock, 84n Downtime, 229­230, 243, 330 Driving variables, 163 Droplets, 211 Dynamo Request Protocol (DRP), 257
+Object-Oriented Software (Gamma, et al), 316 Developers vs. administrators, 240 Diagnostic tests, 259 Distributed denial-of-service (DDoS) attacks, 73, 78 Distributed management task force (DMTF), 292 DNS round-robin, 232ï¿½234 Double-checked lock, 84n Downtime, 229ï¿½230, 243, 330 Driving variables, 163 Droplets, 211 Dynamo Request Protocol (DRP), 257
 E
 Eclipse, 279 Eden space, 214 Eight-Way Horizontal Farm, 62f Enterprise application integration, see
 Middleware, decoupling
@@ -5543,25 +5549,25 @@ ENTERPRISE APPLICATION MANAGEMENT
 INTEGRATION POINTS
 
 Enterprise application management, 287
-Enterprise architecture adaptability, overview, 319­321 dependencies between systems, 324f, 325f, 323­327 dependencies within a system, 322f, 322­323 vs. websites, 149
+Enterprise architecture adaptability, overview, 319ï¿½321 dependencies between systems, 324f, 325f, 323ï¿½327 dependencies within a system, 322f, 322ï¿½323 vs. websites, 149
 Enterprise service bus (ESB), 320 The Evolution of Useful Things
 (Petroski), 311 Exceptions, 69
 in airline case study, 32 Excessive JSP Fragments, 180 Expansion, 335f Expectation, 303 Extract-transform-load (ETL) tools, 327 Extreme Programming Explained (Beck),
 327
 F
-Fail Fast, 101, 114, 131­133 Failovers
-and hardware load balancing, 236 and cluster servers, 224 Failure and Bulkheads, 121 chain of, 41­42 and decoupling, 143 and mock objects, 138 opportunities for, 103, 144 partitioning with Bulkheads, 119 resource unavailable, 131 of socket connections, 137 system vs. application, 132 and Unbalanced Capacities, 97 Failure modes, 37­39 False positives, 261, 304 Family Values: A Behavioral Notion of
+Fail Fast, 101, 114, 131ï¿½133 Failovers
+and hardware load balancing, 236 and cluster servers, 224 Failure and Bulkheads, 121 chain of, 41ï¿½42 and decoupling, 143 and mock objects, 138 opportunities for, 103, 144 partitioning with Bulkheads, 119 resource unavailable, 131 of socket connections, 137 system vs. application, 132 and Unbalanced Capacities, 97 Failure modes, 37ï¿½39 False positives, 261, 304 Family Values: A Behavioral Notion of
 Subtyping (Liskov and Wing), 84 Feature, 301, 302 Feedback process, 305 Feedback, O-O-D-A, 306 Fibre Channel (FC) networks, 172 The Fifth Discipline (Senge), 163 Finances, see Costs and Revenue Firewalls, 149, 243 Forklift upgrade, 166 Fowler, Martin, 268, 312, 313, 317 Fragments and connection pools, 207
 
 G
-Garbage collection, 215f, 214­217, 270 and errors, 107 example of, 211
+Garbage collection, 215f, 214ï¿½217, 270 and errors, 107 example of, 211
 GC, see Garbage collection The Goal (Goldratt), 163n, 324 Goal donors, 16 Gold owners, 16 GUIs, 248, 255
 H
-Handcrafted SQL, 193­195 Handshaking, 134­135
-and health checks, 135 and HTTP, 134 and TCP, 134 and Unbalanced Capacities, 98 and Unbounded Result Sets, 108 Hardware load balancer, 237f, 236­237 Heartbeats, 238, 285 Hidden linkages, 120f Historical data, 197 Historical trending, 267­268 Hoare, C.A.R., 204 Horizontal scaling defined, 61 and load balancing, 232 and scalability, 165, 166f single points of failure, 61 Host bus adapter (HBA), 172 HotSpot error, 107 HTML tables, 189 HTML wasted space, 187­190 HTTP cookies, 201 HTTP requests, timeouts, 40
+Handcrafted SQL, 193ï¿½195 Handshaking, 134ï¿½135
+and health checks, 135 and HTTP, 134 and TCP, 134 and Unbalanced Capacities, 98 and Unbounded Result Sets, 108 Hardware load balancer, 237f, 236ï¿½237 Heartbeats, 238, 285 Hidden linkages, 120f Historical data, 197 Historical trending, 267ï¿½268 Hoare, C.A.R., 204 Horizontal scaling defined, 61 and load balancing, 232 and scalability, 165, 166f single points of failure, 61 Host bus adapter (HBA), 172 HotSpot error, 107 HTML tables, 189 HTML wasted space, 187ï¿½190 HTTP cookies, 201 HTTP requests, timeouts, 40
 I
 Image and reputation, 36 Impulse, 232
-application of, 41 defined, 37 failure modes, 37­39 In-memory caching, 129, 130 Indexing, 196, 198 Instantaneous behavior, 273­275 Integration Point Latency, 199 Integration Points, 60 and Cascading Failures, 65 and Circuit Breaker, 117 and Decoupling Middleware, 143
+application of, 41 defined, 37 failure modes, 37ï¿½39 In-memory caching, 129, 130 Indexing, 196, 198 Instantaneous behavior, 273ï¿½275 Integration Point Latency, 199 Integration Points, 60 and Cascading Failures, 65 and Circuit Breaker, 117 and Decoupling Middleware, 143
 
 INTEGRATION TESTING
 
@@ -5571,23 +5577,23 @@ MIDDLEWARE
 
 and Fail Fast, 133 and firewalls, 243 metrics, 271 and Test Harness, 140 and Timeouts, 114 and users, 71 Integration testing, 136 Interaction design, 183 Interfaces for administration, 248, 297 Internet assigned numbers authority
 (IANA), 290 Interrelations, 165 Inversion of control, 313 Inviting Disaster: Lessons from the Edge
-of Technology (Chiles), 37, 44, 280, 304 IP addresses and DNS round-robin, 233 reverse proxy servers, 234­236 virtual, 223f, 223­225 IT Infrastructure Library (ITIL), 102 IT Service Management Framework (itSMF), 102 Ivory tower architecture, 18­19
+of Technology (Chiles), 37, 44, 280, 304 IP addresses and DNS round-robin, 233 reverse proxy servers, 234ï¿½236 virtual, 223f, 223ï¿½225 IT Infrastructure Library (ITIL), 102 IT Service Management Framework (itSMF), 102 Ivory tower architecture, 18ï¿½19
 J
 JAD, 32n Java Management Extensions (JMX),
-293­297 MBeans, 293f, 294, 295f prior to Java 5, 296 and SNMP, 298 vs. SNMP, 293 support for, 296 Java, decompiling, 32n JConsole Memory Tab, 215f JSON, 184 JSP fragments, 180 JSPs as content, 181 Jumphost, 254
+293ï¿½297 MBeans, 293f, 294, 295f prior to Java 5, 296 and SNMP, 298 vs. SNMP, 293 support for, 296 Java, decompiling, 32n JConsole Memory Tab, 215f JSON, 184 JSP fragments, 180 JSPs as content, 181 Jumphost, 254
 K
 Kristol, David, 201
 L
 Latency, 167 Lea, Doug, 81n Lean Software Development
 (Poppendieck and Poppendieck), 327
 
-Least privilege, 226­227 Liskov Substitution principle, 83, 84 Load balancing, 233f, 232­237
-and bandwidth, 171 DNS round-robin, 232­234 hardware, 237f hardware load balancer, 236­237 ports for, 227 reverse proxy, 234f, 234­236 Load testing, 38, 255 retail store case study, 152­155 Log files, 126­130, 276, 280 Logging, 276­283 catalog of messages, 278­279 configuration, 277 debug logs, 278 human factors, 280f, 281f, 282f,
-280­283 identifiers for, 283 levels, 277 state transitions, 283 Longevity dangers to, 38 defined, 37 Loose coupling, 312 Lord, Paul, 89
+Least privilege, 226ï¿½227 Liskov Substitution principle, 83, 84 Load balancing, 233f, 232ï¿½237
+and bandwidth, 171 DNS round-robin, 232ï¿½234 hardware, 237f hardware load balancer, 236ï¿½237 ports for, 227 reverse proxy, 234f, 234ï¿½236 Load testing, 38, 255 retail store case study, 152ï¿½155 Log files, 126ï¿½130, 276, 280 Logging, 276ï¿½283 catalog of messages, 278ï¿½279 configuration, 277 debug logs, 278 human factors, 280f, 281f, 282f,
+280ï¿½283 identifiers for, 283 levels, 277 state transitions, 283 Longevity dangers to, 38 defined, 37 Loose coupling, 312 Lord, Paul, 89
 M
-Malicious users, 78­80 Managed storage, 171 Management information bases (MIBs),
-290­292 Managing perceptions, 28 Many-to-few relationship, 91 Many-to-one relationship, 91, 93 MBeans, 293
-dynamic, 296 interface implemented, 295f as proxies, 293f sample interface, 295f Memory, 68, 79, 270 Memory dumps, and security, 228 Memory leaks, 38 and Chain Reactions, 62 and in-memory caching, 129 and Slow Responses, 101 Metrics, 267, 270, 271, 297 Middleware, decoupling, 141­143 costs, 142, 143 coupling, 142f dual purpose of, 141
+Malicious users, 78ï¿½80 Managed storage, 171 Management information bases (MIBs),
+290ï¿½292 Managing perceptions, 28 Many-to-few relationship, 91 Many-to-one relationship, 91, 93 MBeans, 293
+dynamic, 296 interface implemented, 295f as proxies, 293f sample interface, 295f Memory, 68, 79, 270 Memory dumps, and security, 228 Memory leaks, 38 and Chain Reactions, 62 and in-memory caching, 129 and Slow Responses, 101 Metrics, 267, 270, 271, 297 Middleware, decoupling, 141ï¿½143 costs, 142, 143 coupling, 142f dual purpose of, 141
 
 MIXED WORKLOAD
 
@@ -5595,25 +5601,25 @@ MIXED WORKLOAD
 
 PASSWORDS
 
-Mixed workload, 36 Mock objects, 138 Monitoring systems, 283­289
-agentless, 285 agents, 284 CIM, 292­293 commercial, 286 commercial, gaps in, 286­288 conceptual view of, 284f designing for, 289 enterprise application management,
-287 JMX, 293­297 JMX and SNMP together, 298 online store case study, 255 SNMP, 292f, 289­292 transparency, 297­298 Montulli, Lou, 201 Multicast notification, 209 Multihomed servers, 220f, 219­222 and bonding, 220 defined, 219 Multilevel caching, 208 Multipathing, 172 Multiple network interfaces, 220f Multithreaded server option (MTS), 163
+Mixed workload, 36 Mock objects, 138 Monitoring systems, 283ï¿½289
+agentless, 285 agents, 284 CIM, 292ï¿½293 commercial, 286 commercial, gaps in, 286ï¿½288 conceptual view of, 284f designing for, 289 enterprise application management,
+287 JMX, 293ï¿½297 JMX and SNMP together, 298 online store case study, 255 SNMP, 292f, 289ï¿½292 transparency, 297ï¿½298 Montulli, Lou, 201 Multicast notification, 209 Multihomed servers, 220f, 219ï¿½222 and bonding, 220 defined, 219 Multilevel caching, 208 Multipathing, 172 Multiple network interfaces, 220f Multithreaded server option (MTS), 163
 N
-Native code, 107 Network-attached storage (NAS), 172 Networking, 219­225
-multihomed servers, 220f, 219­222 overview, 219 routing, 222 and Timeouts, 111 virtual IP addresses, 223f, 223­225 News portal sites, 210 Nodes, 200, 322 Norman, Don, 44, 201
+Native code, 107 Network-attached storage (NAS), 172 Networking, 219ï¿½225
+multihomed servers, 220f, 219ï¿½222 overview, 219 routing, 222 and Timeouts, 111 virtual IP addresses, 223f, 223ï¿½225 News portal sites, 210 Nodes, 200, 322 Norman, Don, 44, 201
 O
 O-O-D-A loop, 306 Object pooling, 216 Observation, 302 Observations and transparency,
-306­309 Online store case study, 252­263
-back-end order management, 260f background, 252­253 Black Friday (problem), 256­257,
+306ï¿½309 Online store case study, 252ï¿½263
+back-end order management, 260f background, 252ï¿½253 Black Friday (problem), 256ï¿½257,
 258f
 
-comparing solutions, 262 diagnostic tests, 259 launch of, 253­254 load testing, 255, 256 order management and enterprise
+comparing solutions, 262 diagnostic tests, 259 launch of, 253ï¿½254 load testing, 255, 256 order management and enterprise
 scheduling, 261f recovery-oriented computing, 263 thread dumps, 259 vital signs, 259 see also Retail online store case
 study Online transaction processing (OLTP),
 198 Open Source Tripwire, 228 Operating system crashes, 44 Operations
-catalog of messages, 278­279 and Circuit Breaker, 117, 118 conflict/positive intent, 329 and downtime, 330 linking to business results, 287 and online store case study, 258­259 Operations database, 299­304 expectations, 303f high-level structure of, 301­302 observations, 301f role of, 300f suitability for transparency
-technologies, 299f using, 303­304 writing to, 302 OpsDB, 267, 301f, 303f Optimistic locking, 89 Optimization, 204­217 caching, 208­209 garbage collector tuning, 215f,
-214­217 overview, 204­205, 217 pool connections, 206­207 precomputing content, 210­213 ORM layers, 193 ORM tools, 196 Outsourcing, 102 Overstaying Sessions, 185­186
+catalog of messages, 278ï¿½279 and Circuit Breaker, 117, 118 conflict/positive intent, 329 and downtime, 330 linking to business results, 287 and online store case study, 258ï¿½259 Operations database, 299ï¿½304 expectations, 303f high-level structure of, 301ï¿½302 observations, 301f role of, 300f suitability for transparency
+technologies, 299f using, 303ï¿½304 writing to, 302 OpsDB, 267, 301f, 303f Optimistic locking, 89 Optimization, 204ï¿½217 caching, 208ï¿½209 garbage collector tuning, 215f,
+214ï¿½217 overview, 204ï¿½205, 217 pool connections, 206ï¿½207 precomputing content, 210ï¿½213 ORM layers, 193 ORM tools, 196 Outsourcing, 102 Overstaying Sessions, 185ï¿½186
 P
 Parameters, 270 Partitioned system, 120f Partitioning, 197 Password vaulting, 228 Passwords
 
@@ -5623,29 +5629,29 @@ PATTERN DETECTION
 
 REVENUE
 
-and configuration files, 244 configured, 227­228 Pattern detection, 255, 281 Pattern Languages of Program Design 2
+and configuration files, 244 configured, 227ï¿½228 Pattern detection, 255, 281 Pattern Languages of Program Design 2
 (Vlissides), 85, 116 Patterns
-interaction with antipatterns, 43f overview, 42­43, 110 Patterns of Enterprise Application
+interaction with antipatterns, 43f overview, 42ï¿½43, 110 Patterns of Enterprise Application
 Architecture (Fowler), 112 Payload Object, 71f Peep, 288n Per-fragment model, 207 Per-page model, 207 Performance, 123, 161 Performance problems, see
 Antipatterns Personalization, 159 Perspectives
-instantaneous behavior, 273­275 and operations databases, 299 Petroski, Henry, 311 Planning Extreme Programming (Beck
+instantaneous behavior, 273ï¿½275 and operations databases, 299 Petroski, Henry, 311 Planning Extreme Programming (Beck
 and Fowler), 268 Point-to-point communications, 91f,
 91, 92f, 92, 95 Point-to-point notification, 209 Pool connections, see Connection pool Pooling objects, 216 Post-mortem investigation
 airline case study, 27 Pragmatic AJAX: A Web 2.0 Primer
 (Almaer et al), 182 Pragmatic Project Automation (Clark),
-288 Precomputing content, 210­213
-vs. caching, 213 costs of, 212 example, 211 vs. personalization, 212 Predictions, 268­269 Present status, 270­272 Principle of least privilege, 226­227 Privilege separation, 227 Production and GUIs, 248 properties to change for, 151 testing a site in, 155 unit testing, 317 Programmers and XP coding, 316­317
+288 Precomputing content, 210ï¿½213
+vs. caching, 213 costs of, 212 example, 211 vs. personalization, 212 Predictions, 268ï¿½269 Present status, 270ï¿½272 Principle of least privilege, 226ï¿½227 Privilege separation, 227 Production and GUIs, 248 properties to change for, 151 testing a site in, 155 unit testing, 317 Programmers and XP coding, 316ï¿½317
 
 Project Frammitz (example), 102, 103, 104f
-Protocols, 324f, 325f, 323­325 SNMP, 290 types, 325
+Protocols, 324f, 325f, 323ï¿½325 SNMP, 290 types, 325
 Punch outs, 212
 Q
-QA retail store case study, 148­151 and Scaling Effects, 95 vs. production, 241­243
+QA retail store case study, 148ï¿½151 and Scaling Effects, 95 vs. production, 241ï¿½243
 R
 Recovery-oriented computing, 263 Refactoring (Fowler), 317 Releases
-and administrators, 240 cleanup, 334 expansion, 332­333 and garbage collectors, 215 naming revisions, 332 overview, 327­329 retail case study, 151 rollout, 334 timing of, 330 zero downtime, 331, 335 Reload button, 191 Remote method invocation (RMI) in airline case study, 31, 40 Request for comments (RFCs), 111 Request timing, 183 Resource pool, 66, 87, 178 Resource Pool Contention, 177f, 178f,
-176­179 Response formatting, 183 Restoring service, as priority, 24 Retail online store case study, 147­160
-background, 147­148 and Conway's law, 150 and issues to correct, 155­157 and load testing, 152­155 and QA process, 148­151 and resolution/solutions, 158­160 and testing issues, 157 Retailers and Attacks of Self-Denial, 88 calendar, 253 websites for, 210 Revenue cash flow, 311
+and administrators, 240 cleanup, 334 expansion, 332ï¿½333 and garbage collectors, 215 naming revisions, 332 overview, 327ï¿½329 retail case study, 151 rollout, 334 timing of, 330 zero downtime, 331, 335 Reload button, 191 Remote method invocation (RMI) in airline case study, 31, 40 Request for comments (RFCs), 111 Request timing, 183 Resource pool, 66, 87, 178 Resource Pool Contention, 177f, 178f,
+176ï¿½179 Response formatting, 183 Restoring service, as priority, 24 Retail online store case study, 147ï¿½160
+background, 147ï¿½148 and Conway's law, 150 and issues to correct, 155ï¿½157 and load testing, 152ï¿½155 and QA process, 148ï¿½151 and resolution/solutions, 158ï¿½160 and testing issues, 157 Retailers and Attacks of Self-Denial, 88 calendar, 253 websites for, 210 Revenue cash flow, 311
 
 REVERSE PROXY SERVER
 
@@ -5653,18 +5659,18 @@ REVERSE PROXY SERVER
 
 STABILITY
 
-loss, 17 see also Costs Reverse proxy server, 234f, 234­236 RFC 2109, 201 RMI, see Remore method invocation RMI communication, 200 Robots, 76, 77 robots.txt file, 76, 77 RollingFileAppender, 127 Rollout, 334, 335f Round-robin load balancing, 233f Routing, 222
+loss, 17 see also Costs Reverse proxy server, 234f, 234ï¿½236 RFC 2109, 201 RMI, see Remore method invocation RMI communication, 200 Robots, 76, 77 robots.txt file, 76, 77 RollingFileAppender, 127 Rollout, 334, 335f Round-robin load balancing, 233f Routing, 222
 S
 Sarbanes-Oxley (SOX) requirements, 128
-Scalability, 162, 166f, 165­166, 167f Scaling Effects, 91f, 92f, 93f, 91­95
+Scalability, 162, 166f, 165ï¿½166, 167f Scaling Effects, 91f, 92f, 93f, 91ï¿½95
 Point-to-point communications, 92 point-to-point communications, 91,
-95 shared nothing architecture, 94 shared resources, 93 and Unbalanced Capacities, 99 Script kiddie, 78 Secure sockets layer (SSL) defined, 236 and hardware load balancer, 237 Security, 226­228 configured passwords, 227­228 overview, 226 principle of least privilege, 226­227 spam cannon service, 222 and version control, 245 Self-denial attacks, 88­90, 98 Senge, Peter, 163 Serializing requests, 192 Servers application, 168 cluster, 223 clustering, 238­239 cost of, 169f and handshaking, 134 hardware load balancer, 236­237 and health checks, 135 and load balancers, 227 load balancing, 232­237 multihomed, 220f, 219­222 reverse proxy, 234­236 routing, 222 security, 226­228
+95 shared nothing architecture, 94 shared resources, 93 and Unbalanced Capacities, 99 Script kiddie, 78 Secure sockets layer (SSL) defined, 236 and hardware load balancer, 237 Security, 226ï¿½228 configured passwords, 227ï¿½228 overview, 226 principle of least privilege, 226ï¿½227 spam cannon service, 222 and version control, 245 Self-denial attacks, 88ï¿½90, 98 Senge, Peter, 163 Serializing requests, 192 Servers application, 168 cluster, 223 clustering, 238ï¿½239 cost of, 169f and handshaking, 134 hardware load balancer, 236ï¿½237 and health checks, 135 and load balancers, 227 load balancing, 232ï¿½237 multihomed, 220f, 219ï¿½222 reverse proxy, 234ï¿½236 routing, 222 security, 226ï¿½228
 
-Service-level agreement (SLA), 25 inversion, 103f, 104f, 102­105, 231 online store case study, 259 requirements, documenting, 230­232
-Session thrashing, 183 Session tracking, 75­76 Sessions, counting, 153, 155 Shared nothing architecture, 94 Shermer, Michael, 281 Shutdown and start-up, 247, 334 Signal-to-noise ratio, 127 Simple Network Management Protocol
-(SNMP), 289­292 communication structure, 292f competitor, 292 JMX connectors, 292, 298 variables in, 290 Single point of failure (SPOF), 61 SiteScope, see Online store case study SLA, see Service-level agreement (SLA) SLA Inversion, 103f, 104f, 102­105 Slow Responses, 100­101 and Circuit Breaker, 117 and Decoupling Middleware, 143 and Fail Fast, 133 and Handshaking, 135 and Unbounded Result Sets, 108 Sludge, see Data purging Socket connection susceptibility, 137 SoftReference, 70, 71 SoftReference, 70f, 72f Software cynical, 35 design for adaptability, 312­319 design needs for, 15 early-on decisions, 16 vulnerability of, 226 Software by Numbers (Denne and
-Cleland-Huang), 327 Source addresses, 192 Spacer images, 189 Spam cannon service, 222 Spiders, 77, 156 SQL, handcrafted, 193­195 SQLException, 32, 33 Squid, 234, 235 Stability
-airline case study, 21­34 consequences, 27 deployment architecture, 23f
+Service-level agreement (SLA), 25 inversion, 103f, 104f, 102ï¿½105, 231 online store case study, 259 requirements, documenting, 230ï¿½232
+Session thrashing, 183 Session tracking, 75ï¿½76 Sessions, counting, 153, 155 Shared nothing architecture, 94 Shermer, Michael, 281 Shutdown and start-up, 247, 334 Signal-to-noise ratio, 127 Simple Network Management Protocol
+(SNMP), 289ï¿½292 communication structure, 292f competitor, 292 JMX connectors, 292, 298 variables in, 290 Single point of failure (SPOF), 61 SiteScope, see Online store case study SLA, see Service-level agreement (SLA) SLA Inversion, 103f, 104f, 102ï¿½105 Slow Responses, 100ï¿½101 and Circuit Breaker, 117 and Decoupling Middleware, 143 and Fail Fast, 133 and Handshaking, 135 and Unbounded Result Sets, 108 Sludge, see Data purging Socket connection susceptibility, 137 SoftReference, 70, 71 SoftReference, 70f, 72f Software cynical, 35 design for adaptability, 312ï¿½319 design needs for, 15 early-on decisions, 16 vulnerability of, 226 Software by Numbers (Denne and
+Cleland-Huang), 327 Source addresses, 192 Spacer images, 189 Spam cannon service, 222 Spiders, 77, 156 SQL, handcrafted, 193ï¿½195 SQLException, 32, 33 Squid, 234, 235 Stability
+airline case study, 21ï¿½34 consequences, 27 deployment architecture, 23f
 
 STABILITY PATTERNS
 
@@ -5672,12 +5678,12 @@ STABILITY PATTERNS
 
 TIMEOUTS
 
-outage of, 22­25, 26f overview, 21­22, 34 post-mortem investigation, 27­31 preventing, 39­41 antipatterns Attacks of Self-Denial, 88­90 Blocked Threads, 81­87 Cascading Failures, 66f, 65­67 Chain Reactions, 62f, 64f, 61­64 Integration Points, 60 overview, 44­45 scaling, 91f, 92f, 93f, 91­95 SLA Inversion, 103f, 104f, 102­105 Slow Responses, 100­101 Unbalanced Capacities, 97f, 96­99 Unbounded Result Sets, 106­109 users, 68­80 chain of failure, 41­42 cost of, 35­36 defining, 36­39 airline case study the error, 31­34 failure modes, 37­39 patterns Bulkheads, 119­123 Circuit Breaker, 115­118 Decoupling Middleware, 141­143 Fail Fast, 131­133 Handshaking, 134­135 overview, 43f, 42­43, 144­145 Steady State, 124­130 Test Harness, 136­140 Timeouts, 111­114 Stability patterns Bulkheads, 120f Circuit Breaker, 116f overview, 110 Start-up and shutdown, 247, 334 Static content, 210 Steady State, 124­130 data purging, 124­126 in-memory caching, 129, 130 log files, 126­130 overview, 124 and Sarbanes-Oxley, 128 and Unbounded Result Sets, 108 Storage area networks (SANs), 172 Storage costs, 169­172 Strain
+outage of, 22ï¿½25, 26f overview, 21ï¿½22, 34 post-mortem investigation, 27ï¿½31 preventing, 39ï¿½41 antipatterns Attacks of Self-Denial, 88ï¿½90 Blocked Threads, 81ï¿½87 Cascading Failures, 66f, 65ï¿½67 Chain Reactions, 62f, 64f, 61ï¿½64 Integration Points, 60 overview, 44ï¿½45 scaling, 91f, 92f, 93f, 91ï¿½95 SLA Inversion, 103f, 104f, 102ï¿½105 Slow Responses, 100ï¿½101 Unbalanced Capacities, 97f, 96ï¿½99 Unbounded Result Sets, 106ï¿½109 users, 68ï¿½80 chain of failure, 41ï¿½42 cost of, 35ï¿½36 defining, 36ï¿½39 airline case study the error, 31ï¿½34 failure modes, 37ï¿½39 patterns Bulkheads, 119ï¿½123 Circuit Breaker, 115ï¿½118 Decoupling Middleware, 141ï¿½143 Fail Fast, 131ï¿½133 Handshaking, 134ï¿½135 overview, 43f, 42ï¿½43, 144ï¿½145 Steady State, 124ï¿½130 Test Harness, 136ï¿½140 Timeouts, 111ï¿½114 Stability patterns Bulkheads, 120f Circuit Breaker, 116f overview, 110 Start-up and shutdown, 247, 334 Static content, 210 Steady State, 124ï¿½130 data purging, 124ï¿½126 in-memory caching, 129, 130 log files, 126ï¿½130 overview, 124 and Sarbanes-Oxley, 128 and Unbounded Result Sets, 108 Storage area networks (SANs), 172 Storage costs, 169ï¿½172 Strain
 
-defined, 37 failure modes, 37­39 Stress application of, 41 defined, 37 Subnet addresses, 222 Subversion, 245 Synthetic transactions, 231, 232 System defined, 36 dependencies in, 322f, 322­323 with hidden linkages, 120f monitoring, 284f, 283­289 partitioned, 120f scalability, 165 and SLAs, 230
+defined, 37 failure modes, 37ï¿½39 Stress application of, 41 defined, 37 Subnet addresses, 222 Subversion, 245 Synthetic transactions, 231, 232 System defined, 36 dependencies in, 322f, 322ï¿½323 with hidden linkages, 120f monitoring, 284f, 283ï¿½289 partitioned, 120f scalability, 165 and SLAs, 230
 T
-Table scans, 194 Teaming interfaces, 220 Technologies, 276 Test Harness, 136­140
-and bad behavior, 139 and integration tests, 136 vs. mock objects, 138 Test-driven design (TDD), 317 Testing coding for, 149 harness, 136­140 load, 38, 152­155, 255 longevity, 37, 38 QA vs. production, 241­243 retail online store case study, 157 and Unbalanced Capacities, 98 unit, 317 see also QA Third-party libraries, 86, 87 Thread dumps, 259 airline case study, 29 example of, 30 getting, 30 online store case study, 259 Throughput, 162, 178f Tight coupling challenges of, 44 danger of, 41, 45 and middleware, 141, 142f, 142 Timeouts, 111­114, 207 benefits of, 111, 112, 114 and Blocked Threads, 87 dealing with, 112
+Table scans, 194 Teaming interfaces, 220 Technologies, 276 Test Harness, 136ï¿½140
+and bad behavior, 139 and integration tests, 136 vs. mock objects, 138 Test-driven design (TDD), 317 Testing coding for, 149 harness, 136ï¿½140 load, 38, 152ï¿½155, 255 longevity, 37, 38 QA vs. production, 241ï¿½243 retail online store case study, 157 and Unbalanced Capacities, 98 unit, 317 see also QA Third-party libraries, 86, 87 Thread dumps, 259 airline case study, 29 example of, 30 getting, 30 online store case study, 259 Throughput, 162, 178f Tight coupling challenges of, 44 danger of, 41, 45 and middleware, 141, 142f, 142 Timeouts, 111ï¿½114, 207 benefits of, 111, 112, 114 and Blocked Threads, 87 dealing with, 112
 
 TOPOLOGY
 
@@ -5685,22 +5691,22 @@ TOPOLOGY
 
 WEBSITES
 
-defined, 111 and retries, 113 setting, 185 Topology, 241, 242 Total conversion, 73 Traffic, 68­71 Traffic and multihomed servers,
-219­222 Transaction, 36 Transparency, 265­309
-color coding, 273f designing for, 275 logging, 276­283
-catalog of messages, 278­279 configuration, 277 human factors, 280f, 281f, 282f, 280­283 levels, 277 and logging, 128 monitoring systems, 297­298 and observations, 307­309 operations database, 299f, 300f, 301f, 303f, 299­304 overview, 265­267, 309 perspectives, 267­275 dashboard, status, 273f, 272­273 historical trending, 267­268 instantaneous behavior, 273­275 predictions, 268­269 present status, 270­272 supporting processes, 305­309 system monitoring, 284f, 283­289 technologies, 276 Traps, 291 Triggers, 333 Tripwire, 228
+defined, 111 and retries, 113 setting, 185 Topology, 241, 242 Total conversion, 73 Traffic, 68ï¿½71 Traffic and multihomed servers,
+219ï¿½222 Transaction, 36 Transparency, 265ï¿½309
+color coding, 273f designing for, 275 logging, 276ï¿½283
+catalog of messages, 278ï¿½279 configuration, 277 human factors, 280f, 281f, 282f, 280ï¿½283 levels, 277 and logging, 128 monitoring systems, 297ï¿½298 and observations, 307ï¿½309 operations database, 299f, 300f, 301f, 303f, 299ï¿½304 overview, 265ï¿½267, 309 perspectives, 267ï¿½275 dashboard, status, 273f, 272ï¿½273 historical trending, 267ï¿½268 instantaneous behavior, 273ï¿½275 predictions, 268ï¿½269 present status, 270ï¿½272 supporting processes, 305ï¿½309 system monitoring, 284f, 283ï¿½289 technologies, 276 Traps, 291 Triggers, 333 Tripwire, 228
 U
-Unbalanced Capacities, 97f, 96­99 and Circuit Breaker, 117 and Handshaking, 135
-Unbounded Result Sets, 106­109, 114 Unit testing
-and loose coupling, 312 and mock objects, 138 and refactoring, 317 Unwanted users, 72­78 Uptime demands, 17 User-Agent, 156 Users, 68­80 concurrent, 153
+Unbalanced Capacities, 97f, 96ï¿½99 and Circuit Breaker, 117 and Handshaking, 135
+Unbounded Result Sets, 106ï¿½109, 114 Unit testing
+and loose coupling, 312 and mock objects, 138 and refactoring, 317 Unwanted users, 72ï¿½78 Uptime demands, 17 User-Agent, 156 Users, 68ï¿½80 concurrent, 153
 
-and downtime, 330 expensive, 71 legal approaches to, 78 malicious, 78­80 metrics, 271 nonadministrative, 226­227 and payload objects, 70, 71f and performance, 162 and releases, 330 and session tracking, 75­76 and softly reachable objects, 72f and traffic, 68­71 unwanted, 72­78 Utility computing center, 96
+and downtime, 330 expensive, 71 legal approaches to, 78 malicious, 78ï¿½80 metrics, 271 nonadministrative, 226ï¿½227 and payload objects, 70, 71f and performance, 162 and releases, 330 and session tracking, 75ï¿½76 and softly reachable objects, 72f and traffic, 68ï¿½71 unwanted, 72ï¿½78 Utility computing center, 96
 V
 Variables, driving, 163 Version control, 245
 in Agile databases, 319 Vertical scaling
-defined, 61 and scalability, 165, 166, 167f Virtual IP addresses, 63, 223f, 223­225 clusters, 223 Virtualization, 121 Visibility, see Transparency VMware, 242
+defined, 61 and scalability, 165, 166, 167f Virtual IP addresses, 63, 223f, 223ï¿½225 clusters, 223 Virtualization, 121 Visibility, see Transparency VMware, 242
 W
-Wasted Space in HTML, 187­190 Web servers, see Servers Websites
+Wasted Space in HTML, 187ï¿½190 Web servers, see Servers Websites
 for AdventNet, 298 for ARIN, 77, 156n for ASN.1, 290n for ATG, 257n for cfengine, 245n for Conway's law, 150 for CSS and HTML designs, 190 for dependency injection article,
 312n for Distributed management task
 force, 292n for garbage collection tuning, 215n for Internet assigned numbers
@@ -5724,6 +5730,5 @@ see also Logging Whitespace, 188, 190 Why Does Software Cost So Much
 Y
 Young generation, 214
 Z
-Zero downtime deployments, 331­334, 335f
+Zero downtime deployments, 331ï¿½334, 335f
 Zero, one, many, 242
-

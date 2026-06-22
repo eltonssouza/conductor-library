@@ -1,3 +1,9 @@
+# Inspired
+
+> **Author(s):** Cagan · **Category:** 11_management_product_process · **Language:** English
+
+---
+
 INSPIRED
 
 PRODUCTS ,

@@ -1,5 +1,11 @@
+# Code Complete (2nd Ed)
+
+> **Author(s):** McConnell Â· **Edition:** 2nd Ed Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 PUBLISHED BY Microsoft Press A Division of Microsoft Corporation One Microsoft Way Redmond, Washington 98052-6399
-Copyright © 2004 by Steven C. McConnell
+Copyright ï¿½ 2004 by Steven C. McConnell
 All rights reserved. No part of the contents of this book may be reproduced or transmitted in any form or by any means without the written permission of the publisher.
 Library of Congress Cataloging-in-Publication Data McConnell, Steve
 Code Complete / Steve McConnell.--2nd ed. p. cm.
@@ -153,7 +159,7 @@ Part III Variables
 619670.fm Page iv Thursday, April 7, 2011 5:54 PM
 
 PUBLISHED BY Microsoft Press A Division of Microsoft Corporation One Microsoft Way Redmond, Washington 98052-6399
-Copyright © 2004 by Steven C. McConnell
+Copyright ï¿½ 2004 by Steven C. McConnell
 All rights reserved. No part of the contents of this book may be reproduced or transmitted in any form or by any means without the written permission of the publisher.
 Library of Congress Cataloging-in-Publication Data McConnell, Steve
 Code Complete / Steve McConnell.--2nd ed. p. cm.
@@ -390,7 +396,7 @@ mspinput@microsoft.com
 
 Acknowledgments
 A book is never really written by one person (at least none of my books are). A second edition is even more a collective undertaking.
-I'd like to thank the people who contributed review comments on significant portions of the book: Hákon Ágústsson, Scott Ambler, Will Barns, William D. Bartholomew, Lars Bergstrom, Ian Brockbank, Bruce Butler, Jay Cincotta, Alan Cooper, Bob Corrick, Al Corwin, Jerry Deville, Jon Eaves, Edward Estrada, Steve Gouldstone, Owain Griffiths, Matthew Harris, Michael Howard, Andy Hunt, Kevin Hutchison, Rob Jasper, Stephen Jenkins, Ralph Johnson and his Software Architecture Group at the University of Illinois, Marek Konopka, Jeff Langr, Andy Lester, Mitica Manu, Steve Mattingly, Gareth McCaughan, Robert McGovern, Scott Meyers, Gareth Morgan, Matt Peloquin, Bryan Pflug, Jeffrey Richter, Steve Rinn, Doug Rosenberg, Brian St. Pierre, Diomidis Spinellis, Matt Stephens, Dave Thomas, Andy Thomas-Cramer, John Vlissides, Pavel Vozenilek, Denny Williford, Jack Woolley, and Dee Zsombor.
+I'd like to thank the people who contributed review comments on significant portions of the book: Hï¿½kon ï¿½gï¿½stsson, Scott Ambler, Will Barns, William D. Bartholomew, Lars Bergstrom, Ian Brockbank, Bruce Butler, Jay Cincotta, Alan Cooper, Bob Corrick, Al Corwin, Jerry Deville, Jon Eaves, Edward Estrada, Steve Gouldstone, Owain Griffiths, Matthew Harris, Michael Howard, Andy Hunt, Kevin Hutchison, Rob Jasper, Stephen Jenkins, Ralph Johnson and his Software Architecture Group at the University of Illinois, Marek Konopka, Jeff Langr, Andy Lester, Mitica Manu, Steve Mattingly, Gareth McCaughan, Robert McGovern, Scott Meyers, Gareth Morgan, Matt Peloquin, Bryan Pflug, Jeffrey Richter, Steve Rinn, Doug Rosenberg, Brian St. Pierre, Diomidis Spinellis, Matt Stephens, Dave Thomas, Andy Thomas-Cramer, John Vlissides, Pavel Vozenilek, Denny Williford, Jack Woolley, and Dee Zsombor.
 Hundreds of readers sent comments about the first edition, and many more sent individual comments about the second edition. Thanks to everyone who took time to share their reactions to the book in its various forms.
 Special thanks to the Construx Software reviewers who formally inspected the entire manuscript: Jason Hills, Bradey Honsinger, Abdul Nizar, Tom Reed, and Pamela Perrott. I was truly amazed at how thorough their review was, especially considering how many eyes had scrutinized the book before they began working on it. Thanks also to Bradey, Jason, and Pamela for their contributions to the cc2e.com website.
 Working with Devon Musgrave, project editor for this book, has been a special treat. I've worked with numerous excellent editors on other projects, and Devon stands out as especially conscientious and easy to work with. Thanks, Devon! Thanks to Linda Engleman who championed the second edition; this book wouldn't have happened without her. Thanks also to the rest of the Microsoft Press staff, including Robin Van Steenburgh, Elden Nelson, Carl Diltz, Joel Panchot, Patricia Masserman, Bill Myers, Sandi Resnick, Barbara Norfleet, James Kramer, and Prescott Klassen.
@@ -502,7 +508,7 @@ Examples of using number-line ordering for boolean tests. 440
 Focusing on one external characteristic of software quality can affect other characteristics positively, adversely, or not at all. 466
 Neither the fastest nor the slowest development approach produces the software with the most defects. 475
 As the size of the project increases, developer testing consumes a smaller percentage of the total development time. The effects of program size are described in more detail in Chapter 27, "How Program Size Affects Construction." 502
-As the size of the project increases, the proportion of errors committed during construction decreases. Nevertheless, construction errors account for 45­75% of all errors on even the largest projects. 521
+As the size of the project increases, the proportion of errors committed during construction decreases. Nevertheless, construction errors account for 45ï¿½75% of all errors on even the largest projects. 521
 Try to reproduce an error several different ways to determine its exact cause. 545
 Small changes tend to be more error-prone than larger changes (Weinberg 1983). 581
 
@@ -734,13 +740,13 @@ Contents
  2.1 The Importance of Metaphors: page 9  2.2 How to Use Software Metaphors: page 11  2.3 Common Software Metaphors: page 13
 Related Topic
  Heuristics in design: "Design Is a Heuristic Process" in Section 5.1
-Computer science has some of the most colorful language of any field. In what other field can you walk into a sterile room, carefully controlled at 68°F, and find viruses, Trojan horses, worms, bugs, bombs, crashes, flames, twisted sex changers, and fatal errors?
+Computer science has some of the most colorful language of any field. In what other field can you walk into a sterile room, carefully controlled at 68ï¿½F, and find viruses, Trojan horses, worms, bugs, bombs, crashes, flames, twisted sex changers, and fatal errors?
 These graphic metaphors describe specific software phenomena. Equally vivid metaphors describe broader phenomena, and you can use them to improve your understanding of the software-development process.
 The rest of the book doesn't directly depend on the discussion of metaphors in this chapter. Skip it if you want to get to the practical suggestions. Read it if you want to think about software development more clearly.
 
 2.1 The Importance of Metaphors
 Important developments often arise out of analogies. By comparing a topic you understand poorly to something similar you understand better, you can come up with insights that result in a better understanding of the less-familiar topic. This use of metaphor is called "modeling."
-The history of science is full of discoveries based on exploiting the power of metaphors. The chemist Kekulé had a dream in which he saw a snake grasp its tail in its mouth. When he awoke, he realized that a molecular structure based on a similar ring shape would account for the properties of benzene. Further experimentation confirmed the hypothesis (Barbour 1966).
+The history of science is full of discoveries based on exploiting the power of metaphors. The chemist Kekulï¿½ had a dream in which he saw a snake grasp its tail in its mouth. When he awoke, he realized that a molecular structure based on a similar ring shape would account for the properties of benzene. Further experimentation confirmed the hypothesis (Barbour 1966).
 9
 
 10
@@ -795,7 +801,7 @@ to be avoided.
 
 it seems incredible that anyone ever believed it at all. More fantastically, people who
 
---Fernando J. Corbató believed the old theory thought the new theory was just as ridiculous then as you
+--Fernando J. Corbatï¿½ believed the old theory thought the new theory was just as ridiculous then as you
 
 think the old theory is now.
 
@@ -974,7 +980,7 @@ Making changes in the software brings up another parallel with building construc
 
 Finally, the construction analogy provides insight into extremely large software projects. Because the penalty for failure in an extremely large structure is severe, the structure has to be over-engineered. Builders make and inspect their plans carefully. They build in margins of safety; it's better to pay 10 percent more for stronger material than to have a skyscraper fall over. A great deal of attention is paid to timing. When the Empire State Building was built, each delivery truck had a 15-minute margin in which to make its delivery. If a truck wasn't in place at the right time, the whole project was delayed.
 
-Likewise, for extremely large software projects, planning of a higher order is needed than for projects that are merely large. Capers Jones reports that a software system with one million lines of code requires an average of 69 kinds of documentation (1998). The requirements specification for such a system would typically be about 4000­5000 pages long, and the design documentation can easily be two or three times as extensive as the requirements. It's unlikely that an individual would be able to understand the complete design for a project of this size--or even read it. A greater degree of preparation is appropriate.
+Likewise, for extremely large software projects, planning of a higher order is needed than for projects that are merely large. Capers Jones reports that a software system with one million lines of code requires an average of 69 kinds of documentation (1998). The requirements specification for such a system would typically be about 4000ï¿½5000 pages long, and the design documentation can easily be two or three times as extensive as the requirements. It's unlikely that an individual would be able to understand the complete design for a project of this size--or even read it. A greater degree of preparation is appropriate.
 
 We build software projects comparable in economic size to the Empire State Building, and technical and managerial controls of similar stature are needed.
 
@@ -1013,7 +1019,7 @@ Among general books on metaphors, models, and paradigms, the touchstone book is 
 
 Kuhn, Thomas S. The Structure of Scientific Revolutions, 3d ed. Chicago, IL: The University of Chicago Press, 1996. Kuhn's book on how scientific theories emerge, evolve, and succumb to other theories in a Darwinian cycle set the philosophy of science on its ear when it was first published in 1962. It's clear and short, and it's loaded with interesting examples of the rise and fall of metaphors, models, and paradigms in science.
 
-Floyd, Robert W. "The Paradigms of Programming." 1978 Turing Award Lecture. Communications of the ACM, August 1979, pp. 455­60. This is a fascinating discussion of models in software development, and Floyd applies Kuhn's ideas to the topic.
+Floyd, Robert W. "The Paradigms of Programming." 1978 Turing Award Lecture. Communications of the ACM, August 1979, pp. 455ï¿½60. This is a fascinating discussion of models in software development, and Floyd applies Kuhn's ideas to the topic.
 
 Key Points
 
@@ -1230,11 +1236,11 @@ Requirements 1 -- --
 
 Architecture 3 1 --
 
-Time Detected Construction 5­10 10 1
+Time Detected Construction 5ï¿½10 10 1
 
 System Test 10 15 10
 
-Post-Release 10­100 25­100 10­25
+Post-Release 10ï¿½100 25ï¿½100 10ï¿½25
 
 Source: Adapted from "Design and Code Inspections to Reduce Errors in Program Development" (Fagan 1976), Software Defect Removal (Dunn 1984), "Software Process Improvement at Hughes Aircraft" (Humphrey, Snyder, and Willis 1991), "Calculating the Return on Investment from More Effective Requirements Management" (Leffingwell 1997), "Hughes Aircraft's Widespread Deployment of a Continuously Improving Software Process" (Willis et al. 1998), "An Economic Release Decision Model: Insights into Software Project Management" (Grady 1999), "What We Have Learned About Fighting Defects" (Shull et al. 2002), and Balancing Agility and Discipline: A Guide for the Perplexed (Boehm and Turner 2004).
 
@@ -1696,7 +1702,7 @@ code and test cases affected by the requirement change and write new code and te
 3 2 1
 HARD DATA
 
-As Table 3-1 reported, data from numerous organizations indicates that on large projects an error in requirements detected during the architecture stage is typically 3 times as expensive to correct as it would be if it were detected during the requirements stage. If detected during coding, it's 5­10 times as expensive; during system test, 10 times; and post-release, a whopping 10­100 times as expensive as it would be if it were detected during requirements development. On smaller projects with lower administrative costs, the multiplier post-release is closer to 5­10 than 100 (Boehm and Turner 2004). In either case, it isn't money you'd want to have taken out of your salary.
+As Table 3-1 reported, data from numerous organizations indicates that on large projects an error in requirements detected during the architecture stage is typically 3 times as expensive to correct as it would be if it were detected during the requirements stage. If detected during coding, it's 5ï¿½10 times as expensive; during system test, 10 times; and post-release, a whopping 10ï¿½100 times as expensive as it would be if it were detected during requirements development. On smaller projects with lower administrative costs, the multiplier post-release is closer to 5ï¿½10 than 100 (Boehm and Turner 2004). In either case, it isn't money you'd want to have taken out of your salary.
 
 Specifying requirements adequately is a key to project success, perhaps even more important than effective construction techniques. (See Figure 3-6.) Many good books have been written about how to specify requirements well. Consequently, the next few sections don't tell you how to do a good job of specifying requirements, they tell you how to determine whether the requirements have been done well and how to make the best of the requirements you have.
 
@@ -2149,7 +2155,7 @@ gotten as new features or enhancements most likely are also the easiest to imple
 
 uses are added to a system. input or output formats, style of user interaction, or processing requirements, the
 
---Fernando J. Corbató architecture should show that the changes have all been anticipated and that the
+--Fernando J. Corbatï¿½ architecture should show that the changes have all been anticipated and that the
 
 effects of any single change will be limited to a small number of classes. The architec-
 
@@ -2541,7 +2547,7 @@ C#
 C# is a general-purpose, object-oriented language and programming environment developed by Microsoft with syntax similar to C, C++, and Java, and it provides extensive tools that aid development on Microsoft platforms.
 
 Cobol
-Cobol is an English-like programming language that was originally developed in 1959­1961 for use by the Department of Defense. Cobol is used primarily for business applications and is still one of the most widely used languages today, second only to Visual Basic in popularity (Feiman and Driver 2002). Cobol has been updated over the years to include mathematical functions and object-oriented capabilities. The acronym "Cobol" stands for COmmon Business-Oriented Language.
+Cobol is an English-like programming language that was originally developed in 1959ï¿½1961 for use by the Department of Defense. Cobol is used primarily for business applications and is still one of the most widely used languages today, second only to Visual Basic in popularity (Feiman and Driver 2002). Cobol has been updated over the years to include mathematical functions and object-oriented capabilities. The acronym "Cobol" stands for COmmon Business-Oriented Language.
 
 Fortran
 Fortran was the first high-level computer language, introducing the ideas of variables and high-level loops. "Fortran" stands for FORmula TRANslation. Fortran was originally developed in the 1950s and has seen several significant revisions, including Fortran 77 in 1977, which added block-structured if-then-else statements and characterstring manipulations. Fortran 90 added user-defined data types, pointers, classes, and a rich set of operations on arrays. Fortran is used mainly in scientific and engineering applications.
@@ -2628,7 +2634,7 @@ environments. As David Gries pointed out, your programming tools don't have to d
 Programmers who program "into" a language first decide what thoughts they want to express, and then they determine how to express those thoughts using the tools provided by their specific language.
 
 Example of Programming into a Language
-In the early days of Visual Basic, I was frustrated because I wanted to keep the business logic, the UI, and the database separate in the product I was developing, but there wasn't any built-in way to do that in the language. I knew that if I wasn't careful, over time some of my Visual Basic "forms" would end up containing business logic, some forms would contain database code, and some would contain neither--I would end up never being able to remember which code was located in which place. I had just completed a C++ project that had done a poor job of separating those issues, and I didn't want to experience déjà vu of those headaches in a different language.
+In the early days of Visual Basic, I was frustrated because I wanted to keep the business logic, the UI, and the database separate in the product I was developing, but there wasn't any built-in way to do that in the language. I knew that if I wasn't careful, over time some of my Visual Basic "forms" would end up containing business logic, some forms would contain database code, and some would contain neither--I would end up never being able to remember which code was located in which place. I had just completed a C++ project that had done a poor job of separating those issues, and I didn't want to experience dï¿½jï¿½ vu of those headaches in a different language.
 Consequently, I adopted a design convention that the .frm file (the form file) was allowed only to retrieve data from the database and store data back into the database. It wasn't allowed to communicate that data directly to other parts of the program. Each form supported an IsFormCompleted() routine, which was used by the calling routine to determine whether the form that had been activated had saved its data. IsFormCompleted() was the only public routine that forms were allowed to have. Forms also weren't allowed to contain any business logic. All other code had to be contained in an associated .bas file, including validity checks for entries in the form.
 Visual Basic did not encourage this kind of approach. It encouraged programmers to put as much code into the .frm file as possible, and it didn't make it easy for the .frm file to call back into an associated .bas file.
 This convention was pretty simple, but as I got deeper into my project, I found that it helped me avoid numerous cases in which I would have been writing convoluted code without the convention. I would have been loading forms but keeping them hidden so that I could call the data-validity-checking routines inside them, or I would have been copying code from the forms into other locations and then maintaining parallel code in multiple places. The IsFormCompleted() convention also kept things simple. Because every form worked exactly the same way, I never had to second-guess the semantics of IsFormCompleted()--it meant the same thing every time it was used.
@@ -4200,7 +4206,7 @@ Raymond, Eric S. The Art of UNIX Programming. Boston, MA: Addison-Wesley, 2004. 
 Larman, Craig. Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and the Unified Process, 2d ed. Englewood Cliffs, NJ: Prentice Hall, 2001. This book is a popular introduction to object-oriented design in the context of the Unified Process. It also discusses object-oriented analysis.
 
 Software Design Theory
-Parnas, David L., and Paul C. Clements. "A Rational Design Process: How and Why to Fake It." IEEE Transactions on Software Engineering SE-12, no. 2 (February 1986): 251­57. This classic article describes the gap between how programs are really designed and how you sometimes wish they were designed. The main point is that no one ever really goes through a rational, orderly design process but that aiming for it makes for better designs in the end.
+Parnas, David L., and Paul C. Clements. "A Rational Design Process: How and Why to Fake It." IEEE Transactions on Software Engineering SE-12, no. 2 (February 1986): 251ï¿½57. This classic article describes the gap between how programs are really designed and how you sometimes wish they were designed. The main point is that no one ever really goes through a rational, orderly design process but that aiming for it makes for better designs in the end.
 I'm not aware of any comprehensive treatment of information hiding. Most softwareengineering textbooks discuss it briefly, frequently in the context of object-oriented techniques. The three Parnas papers listed below are the seminal presentations of the idea and are probably still the best resources on information hiding.
 Parnas, David L. "On the Criteria to Be Used in Decomposing Systems into Modules." Communications of the ACM 5, no. 12 (December 1972): 1053-58.
 Parnas, David L. "Designing Software for Ease of Extension and Contraction." IEEE Transactions on Software Engineering SE-5, no. 2 (March 1979): 128-38.
@@ -4726,13 +4732,13 @@ Implement "has a" through containment One way of thinking of containment is as a
 
 Implement "has a" through private inheritance as a last resort In some instances you might find that you can't achieve containment through making one object a member of another. In that case, some experts suggest privately inheriting from the contained object (Meyers 1998, Sutter 2000). The main reason you would do that is to set up the containing class to access protected member functions or protected member data of the class that's contained. In practice, this approach creates an overly cozy relationship with the ancestor class and violates encapsulation. It tends to point to design errors that should be resolved some way other than through private inheritance.
 
-Be critical of classes that contain more than about seven data members The number "7±2" has been found to be a number of discrete items a person can remember while performing other tasks (Miller 1956). If a class contains more than about seven data
+Be critical of classes that contain more than about seven data members The number "7ï¿½2" has been found to be a number of discrete items a person can remember while performing other tasks (Miller 1956). If a class contains more than about seven data
 
 144
 
 Chapter 6: Working Classes
 
-members, consider whether the class should be decomposed into multiple smaller classes (Riel 1996). You might err more toward the high end of 7±2 if the data members are primitive data types like integers and strings, more toward the lower end of 7±2 if the data members are complex objects.
+members, consider whether the class should be decomposed into multiple smaller classes (Riel 1996). You might err more toward the high end of 7ï¿½2 if the data members are primitive data types like integers and strings, more toward the lower end of 7ï¿½2 if the data members are complex objects.
 
 Inheritance ("is a" Relationships)
 
@@ -4822,7 +4828,7 @@ The place to fix this problem is not in the base class, but in the original Cat 
 
 Avoid deep inheritance trees Object-oriented programming provides a large number of techniques for managing complexity. But every powerful tool has its hazards, and some object-oriented techniques have a tendency to increase complexity rather than reduce it.
 
-In his excellent book Object-Oriented Design Heuristics (1996), Arthur Riel suggests limiting inheritance hierarchies to a maximum of six levels. Riel bases his recommendation on the "magic number 7±2," but I think that's grossly optimistic. In my experience most people have trouble juggling more than two or three levels of inheritance in their brains at once. The "magic number 7±2" is probably better applied as a limit to the total number of subclasses of a base class rather than the number of levels in an inheritance tree.
+In his excellent book Object-Oriented Design Heuristics (1996), Arthur Riel suggests limiting inheritance hierarchies to a maximum of six levels. Riel bases his recommendation on the "magic number 7ï¿½2," but I think that's grossly optimistic. In my experience most people have trouble juggling more than two or three levels of inheritance in their brains at once. The "magic number 7ï¿½2" is probably better applied as a limit to the total number of subclasses of a base class rather than the number of levels in an inheritance tree.
 
 Deep inheritance trees have been found to be significantly associated with increased fault rates (Basili, Briand, and Melo 1996). Anyone who has ever tried to debug a complex inheritance hierarchy knows why. Deep inheritance trees increase complexity, which is exactly the opposite of what inheritance should be used to accomplish. Keep the primary technical mission in mind. Make sure you're using inheritance to avoid duplicating code and to minimize complexity.
 
@@ -5107,7 +5113,7 @@ Additional Resources
 cc2e.com/0679
 
 Classes in General
-Meyer, Bertrand. Object-Oriented Software Construction, 2d ed. New York, NY: Prentice Hall PTR, 1997. This book contains an in-depth discussion of abstract data types and explains how they form the basis for classes. Chapters 14­16 discuss inheritance in depth. Meyer provides an argument in favor of multiple inheritance in Chapter 15.
+Meyer, Bertrand. Object-Oriented Software Construction, 2d ed. New York, NY: Prentice Hall PTR, 1997. This book contains an in-depth discussion of abstract data types and explains how they form the basis for classes. Chapters 14ï¿½16 discuss inheritance in depth. Meyer provides an argument in favor of multiple inheritance in Chapter 15.
 Riel, Arthur J. Object-Oriented Design Heuristics. Reading, MA: Addison-Wesley, 1996. This book contains numerous suggestions for improving program design, mostly at the class level. I avoided the book for several years because it appeared to be too big--talk about people in glass houses! However, the body of the book is only about 200 pages long. Riel's writing is accessible and enjoyable. The content is focused and practical.
 
 cc2e.com/0686
@@ -5438,7 +5444,7 @@ Chapter 7: High-Quality Routines
  Another study found that code needed to be changed least when routines averaged 100 to 150 lines of code (Lind and Vairavan 1989).
  A study at IBM found that the most error-prone routines were those that were larger than 500 lines of code. Beyond 500 lines, the error rate tended to be proportional to the size of the routine (Jones 1986a).
 
-Where does all this leave the question of routine length in object-oriented programs? A large percentage of routines in object-oriented programs will be accessor routines, which will be very short. From time to time, a complex algorithm will lead to a longer routine, and in those circumstances, the routine should be allowed to grow organically up to 100­200 lines. (A line is a noncomment, nonblank line of source code.) Decades of evidence say that routines of such length are no more error prone than shorter routines. Let issues such as the routine's cohesion, depth of nesting, number of variables, number of decision points, number of comments needed to explain the routine, and other complexity-related considerations dictate the length of the routine rather than imposing a length restriction per se.
+Where does all this leave the question of routine length in object-oriented programs? A large percentage of routines in object-oriented programs will be accessor routines, which will be very short. From time to time, a complex algorithm will lead to a longer routine, and in those circumstances, the routine should be allowed to grow organically up to 100ï¿½200 lines. (A line is a noncomment, nonblank line of source code.) Decades of evidence say that routines of such length are no more error prone than shorter routines. Let issues such as the routine's cohesion, depth of nesting, number of variables, number of decision points, number of comments needed to explain the routine, and other complexity-related considerations dictate the length of the routine rather than imposing a length restriction per se.
 
 That said, if you want to write routines longer than about 200 lines, be careful. None of the studies that reported decreased cost, decreased error rates, or both with larger routines distinguished among sizes larger than 200 lines, and you're bound to run into an upper limit of understandability as you pass 200 lines of code.
 
@@ -5950,7 +5956,7 @@ If the variables latitude, longitude, and elevation were coming from an external
 Cross-Reference For more For highly robust code, assert and then handle the error anyway For any given on robustness, see "Robust- error condition, a routine will generally use either an assertion or error-handling code,
 ness vs. Correctness" in Sec-
 tion 8.3, later in this chapter. but not both. Some experts argue that only one kind is needed (Meyer 1997).
-But real-world programs and projects tend to be too messy to rely solely on assertions. On a large, long-lasting system, different parts might be designed by different designers over a period of 5­10 years or more. The designers will be separated in time, across numerous versions. Their designs will focus on different technologies at different points in the system's development. The designers will be separated geographically, especially if parts of the system are acquired from external sources. Programmers will have worked to different coding standards at different points in the system's lifetime. On a large development team, some programmers will inevitably be more conscientious than others and some parts of the code will be reviewed more rigorously than other parts of the code. Some programmers will unit test their code more thoroughly than others. With test teams working across different geographic regions and subject to business pressures that result in test coverage that varies with each release, you can't count on comprehensive, system-level regression testing, either.
+But real-world programs and projects tend to be too messy to rely solely on assertions. On a large, long-lasting system, different parts might be designed by different designers over a period of 5ï¿½10 years or more. The designers will be separated in time, across numerous versions. Their designs will focus on different technologies at different points in the system's development. The designers will be separated geographically, especially if parts of the system are acquired from external sources. Programmers will have worked to different coding standards at different points in the system's lifetime. On a large development team, some programmers will inevitably be more conscientious than others and some parts of the code will be reviewed more rigorously than other parts of the code. Some programmers will unit test their code more thoroughly than others. With test teams working across different geographic regions and subject to business pressures that result in test coverage that varies with each release, you can't count on comprehensive, system-level regression testing, either.
 In such circumstances, both assertions and error-handling code might be used to address the same error. In the source code for Microsoft Word, for example, conditions that should always be true are asserted, but such errors are also handled by error-handling code in case the assertion fails. For extremely large, complex, longlived applications like Word, assertions are valuable because they help to flush out as many development-time errors as possible. But the application is so complex (millions of lines of code) and has gone through so many generations of modification that it isn't realistic to assume that every conceivable error will be detected and corrected before the software ships, and so errors must be handled in the production version of the system as well.
 
 194
@@ -6214,7 +6220,7 @@ Standardize your project's use of exceptions To keep exception handling as intel
 
 Cross-Reference For numer- Consider alternatives to exceptions Several programming languages have sup-
 
-ous alternative error-han- ported exceptions for 5­10 years or more, but little conventional wisdom has emerged
+ous alternative error-han- ported exceptions for 5ï¿½10 years or more, but little conventional wisdom has emerged
 dling approaches, see
 Section 8.3, "Error-Handling about how to use them safely.
 
@@ -6552,11 +6558,11 @@ Key Points
 
 Stroustrup, Bjarne. The C++ Programming Language, 3d ed. Reading, MA: AddisonWesley, 1997. Chapter 14 contains a detailed discussion of exception handling in C++. Section 14.11 contains an excellent summary of 21 tips for handling C++ exceptions.
 
-Meyers, Scott. More Effective C++: 35 New Ways to Improve Your Programs and Designs. Reading, MA: Addison-Wesley, 1996. Items 9­15 describe numerous nuances of exception handling in C++.
+Meyers, Scott. More Effective C++: 35 New Ways to Improve Your Programs and Designs. Reading, MA: Addison-Wesley, 1996. Items 9ï¿½15 describe numerous nuances of exception handling in C++.
 
 Arnold, Ken, James Gosling, and David Holmes. The Java Programming Language, 3d ed. Boston, MA: Addison-Wesley, 2000. Chapter 8 contains a discussion of exception handling in Java.
 
-Bloch, Joshua. Effective Java Programming Language Guide. Boston, MA: Addison-Wesley, 2001. Items 39­47 describe nuances of exception handling in Java.
+Bloch, Joshua. Effective Java Programming Language Guide. Boston, MA: Addison-Wesley, 2001. Items 39ï¿½47 describe nuances of exception handling in Java.
 
 Foxall, James. Practical Standards for Microsoft Visual Basic .NET. Redmond, WA: Microsoft Press, 2003. Chapter 10 describes exception handling in Visual Basic.
 
@@ -7180,8 +7186,8 @@ ______ literal ______ local variable ______ lookup table ______ member data ____
 
 Here is how you can interpret the scores (loosely):
 
-0­14
-15­19 20­24 25­29 30­32
+0ï¿½14
+15ï¿½19 20ï¿½24 25ï¿½29 30ï¿½32
 
 You are a beginning programmer, probably in your first year of computer science in school or teaching yourself your first programming language. You can learn a lot by reading one of the books listed in the next subsection. Many of the descriptions of techniques in this part of the book are addressed to advanced programmers, and you'll get more out of them after you've read one of these books.
 You are an intermediate programmer or an experienced programmer who has forgotten a lot. Although many of the concepts will be familiar to you, you too can benefit from reading one of the books listed below.
@@ -8524,7 +8530,7 @@ Chapter 11: The Power of Variable Names
 
 KEY POINT
 
-The desire to use short variable names is in some ways a remnant of an earlier age of computing. Older languages like assembler, generic Basic, and Fortran limited variable names to 2­8 characters and forced programmers to create short names. Early computing was more closely linked to mathematics and its use of terms like i, j, and k as the variables in summations and other equations. In modern languages like C++, Java, and Visual Basic, you can create names of virtually any length; you have almost no reason to shorten meaningful names.
+The desire to use short variable names is in some ways a remnant of an earlier age of computing. Older languages like assembler, generic Basic, and Fortran limited variable names to 2ï¿½8 characters and forced programmers to create short names. Early computing was more closely linked to mathematics and its use of terms like i, j, and k as the variables in summations and other equations. In modern languages like C++, Java, and Visual Basic, you can create names of virtually any length; you have almost no reason to shorten meaningful names.
 
 If circumstances do require you to create short names, note that some methods of shortening names are better than others. You can create good short variable names by eliminating needless words, using short synonyms, and using any of several abbreviation strategies. It's a good idea to be familiar with multiple techniques for abbreviating because no single technique works well in all cases.
 
@@ -8611,7 +8617,7 @@ Possible Score Maximum
 
 C *****************************************************************
 
-You might think that this technique is outdated, but as recently as mid-2003 I worked with a client that had hundreds of thousands of lines of code written in RPG that was subject to a 6-character­variable-name limitation. These issues still come up from time to time.
+You might think that this technique is outdated, but as recently as mid-2003 I worked with a client that had hundreds of thousands of lines of code written in RPG that was subject to a 6-characterï¿½variable-name limitation. These issues still come up from time to time.
 Document all abbreviations in a project-level "Standard Abbreviations" document Abbreviations in code create two general risks:
  A reader of the code might not understand the abbreviation.
  Other programmers might use multiple abbreviations to refer to the same word, which creates needless confusion.
@@ -9252,13 +9258,13 @@ This is a simple example, but you can probably imagine a program in which the in
 
 At the time you create the program, the employees all live in one country, so you need only seven digits for their phone numbers. As the company expands and branches are established in different countries, you'll need longer phone numbers. If you have parameterized, you can make the change in only one place: in the definition of the named constant LOCAL_NUMBER_LENGTH.
 
-Further Reading For more details on the value of single-point control, see pages 57­60 of Software Conflict (Glass 1991).
+Further Reading For more details on the value of single-point control, see pages 57ï¿½60 of Software Conflict (Glass 1991).
 
 As you might expect, the use of named constants has been shown to greatly aid program maintenance. As a general rule, any technique that centralizes control over things that might change is a good technique for reducing maintenance efforts (Glass 1991).
 Avoid literals, even "safe" ones In the following loop, what do you think the 12 represents?
 
 Visual Basic Example of Unclear Code
-For i = 1 To 12 profit( i ) = revenue( i ) ­ expense( i )
+For i = 1 To 12 profit( i ) = revenue( i ) ï¿½ expense( i )
 Next
 
 12.7 Named Constants
@@ -9270,19 +9276,19 @@ Because of the specific nature of the code, it appears that the code is probably
 In this case, you don't need to use a named constant to support future flexibility: it's not very likely that the number of months in a year will change anytime soon. But if the way the code is written leaves any shadow of a doubt about its purpose, clarify it with a well-named constant, like this:
 
 Visual Basic Example of Clearer Code
-For i = 1 To NUM_MONTHS_IN_YEAR profit( i ) = revenue( i ) ­ expense( i )
+For i = 1 To NUM_MONTHS_IN_YEAR profit( i ) = revenue( i ) ï¿½ expense( i )
 Next
 
 This is better, but, to complete the example, the loop index should also be named something more informative:
 
 Visual Basic Example of Even Clearer Code
-For month = 1 To NUM_MONTHS_IN_YEAR profit( month ) = revenue( month ) ­ expense( month )
+For month = 1 To NUM_MONTHS_IN_YEAR profit( month ) = revenue( month ) ï¿½ expense( month )
 Next
 
 This example seems quite good, but we can push it even one step further by using an enumerated type:
 
 Visual Basic Example of Very Clear Code
-For month = Month_January To Month_December profit( month ) = revenue( month ) ­ expense( month )
+For month = Month_January To Month_December profit( month ) = revenue( month ) ï¿½ expense( month )
 Next
 
 With this final example, there can be no doubt about the purpose of the loop. Even if you think a literal is safe, use named constants instead. Be a fanatic about rooting out literals in your code. Use a text editor to search for 2, 3, 4, 5, 6, 7, 8, and 9 to make sure you haven't used them accidentally.
@@ -10562,7 +10568,7 @@ One option is to code the else clause--with a null statement if necessary--to sh
 
 Java Example of a Helpful, Commented else Clause
 // if color is valid if ( COLOR_MIN <= color && color <= COLOR_MAX ) {
-// do something ... } else { // else color is invalid // screen not written to ­- safely ignore command }
+// do something ... } else { // else color is invalid // screen not written to ï¿½- safely ignore command }
 
 Test the else clause for correctness When testing your code, you might think that the main clause, the if, is all that needs to be tested. If it's possible to test the else clause, however, be sure to do that.
 Check for reversal of the if and else clauses A common mistake in programming ifthens is to flip-flop the code that's supposed to follow the if clause and the code that's supposed to follow the else clause or to get the logic of the if test backward. Check your code for this common error.
@@ -11961,25 +11967,25 @@ gotos
 
 These articles contain the whole goto debate. It erupts from time to time in most workplaces, textbooks, and magazines, but you won't hear anything that wasn't fully explored 20 years ago.
 
-Dijkstra, Edsger. "Go To Statement Considered Harmful." Communications of the ACM 11, no. 3 (March 1968): 147­48, also available from www.cs.utexas.edu/users/EWD/. This is the famous letter in which Dijkstra put the match to the paper and ignited one of the longest-running controversies in software development.
+Dijkstra, Edsger. "Go To Statement Considered Harmful." Communications of the ACM 11, no. 3 (March 1968): 147ï¿½48, also available from www.cs.utexas.edu/users/EWD/. This is the famous letter in which Dijkstra put the match to the paper and ignited one of the longest-running controversies in software development.
 
-Wulf, W. A. "A Case Against the GOTO." Proceedings of the 25th National ACM Conference, August 1972: 791­97. This paper was another argument against the indiscriminate use of gotos. Wulf argued that if programming languages provided adequate control structures, gotos would become largely unnecessary. Since 1972, when the paper was written, languages such as C++, Java, and Visual Basic have proven Wulf correct.
+Wulf, W. A. "A Case Against the GOTO." Proceedings of the 25th National ACM Conference, August 1972: 791ï¿½97. This paper was another argument against the indiscriminate use of gotos. Wulf argued that if programming languages provided adequate control structures, gotos would become largely unnecessary. Since 1972, when the paper was written, languages such as C++, Java, and Visual Basic have proven Wulf correct.
 
 Knuth, Donald. "Structured Programming with go to Statements," 1974. In Classics in Software Engineering, edited by Edward Yourdon. Englewood Cliffs, NJ: Yourdon Press, 1979. This long paper isn't entirely about gotos, but it includes a horde of code examples that are made more efficient by eliminating gotos and another horde of code examples that are made more efficient by adding gotos.
 
-Rubin, Frank. "`GOTO Considered Harmful' Considered Harmful." Communications of the ACM 30, no. 3 (March 1987): 195­96. In this rather hotheaded letter to the editor, Rubin asserts that goto-less programming has cost businesses "hundreds of millions of dollars." He then offers a short code fragment that uses a goto and argues that it's superior to goto-less alternatives.
+Rubin, Frank. "`GOTO Considered Harmful' Considered Harmful." Communications of the ACM 30, no. 3 (March 1987): 195ï¿½96. In this rather hotheaded letter to the editor, Rubin asserts that goto-less programming has cost businesses "hundreds of millions of dollars." He then offers a short code fragment that uses a goto and argues that it's superior to goto-less alternatives.
 
 The response that Rubin's letter generated was more interesting than the letter itself. For five months, Communications of the ACM (CACM) published letters that offered different versions of Rubin's original seven-line program. The letters were evenly divided between those defending gotos and those castigating them. Readers suggested roughly 17 different rewrites, and the rewritten code fully covered the spectrum of approaches to avoiding gotos. The editor of CACM noted that the letter had generated more response by far than any other issue ever considered in the pages of CACM.
 
 For the follow-up letters, see
 
- Communications of the ACM 30, no. 5 (May 1987): 351­55.  Communications of the ACM 30, no. 6 (June 1987): 475­78.  Communications of the ACM 30, no. 7 (July 1987): 632­34.
+ Communications of the ACM 30, no. 5 (May 1987): 351ï¿½55.  Communications of the ACM 30, no. 6 (June 1987): 475ï¿½78.  Communications of the ACM 30, no. 7 (July 1987): 632ï¿½34.
 
 410
 
 Chapter 17: Unusual Control Structures
 
- Communications of the ACM 30, no. 8 (August 1987): 659­62.  Communications of the ACM 30, no. 12 (December 1987): 997, 1085.
+ Communications of the ACM 30, no. 8 (August 1987): 659ï¿½62.  Communications of the ACM 30, no. 12 (December 1987): 997, 1085.
 
 cc2e.com/1706
 
@@ -12459,7 +12465,7 @@ Dim grade() As String =
 
 { "F", "D", "C", "B", "A" }
 
-maxGradeLevel = grade.Length ­ 1
+maxGradeLevel = grade.Length ï¿½ 1
 
 ...
 
@@ -13317,7 +13323,7 @@ DoSomething ( index ) index = index + 1 Wend
 ' example of iteration using a loop-with-exit loop index = first Do
 If ( index > last ) Then Exit Do DoSomething ( index ) index = index + 1 Loop
 
-The core thesis of structured programming is that any control flow whatsoever can be created from these three constructs of sequence, selection, and iteration (Böhm Jacopini 1966). Programmers sometimes favor language structures that increase convenience, but programming seems to have advanced largely by restricting what we are allowed to do with our programming languages. Prior to structured programming, use of gotos provided the ultimate in control-flow convenience, but code written that way turned out to be incomprehensible and unmaintainable. My belief is that use of any control structure other than the three standard structured programming constructs--that is, the use of break, continue, return, throw-catch, and so on--should be viewed with a critical eye.
+The core thesis of structured programming is that any control flow whatsoever can be created from these three constructs of sequence, selection, and iteration (Bï¿½hm Jacopini 1966). Programmers sometimes favor language structures that increase convenience, but programming seems to have advanced largely by restricting what we are allowed to do with our programming languages. Prior to structured programming, use of gotos provided the ultimate in control-flow convenience, but code written that way turned out to be incomprehensible and unmaintainable. My belief is that use of any control structure other than the three standard structured programming constructs--that is, the use of break, continue, return, throw-catch, and so on--should be viewed with a critical eye.
 
 19.6 Control Structures and Complexity
 One reason so much attention has been paid to control structures is that they are a big contributor to overall program complexity. Poor use of control structures increases complexity; good use decreases it.
@@ -13380,7 +13386,7 @@ In this fragment, you count 1 to start, 2 for the if, 3 for the and, 4 for the o
 What to Do with Your Complexity Measurement
 After you have counted the decision points, you can use the number to analyze your routine's complexity:
 
-0­5 6­10 10+
+0ï¿½5 6ï¿½10 10+
 
 The routine is probably fine. Start to think about ways to simplify the routine. Break part of the routine into a second routine and call it from the first routine.
 
@@ -13679,7 +13685,7 @@ Source: Adapted from Programming Productivity (Jones 1986a), "Software Defect-Re
 3 2 1
 HARD DATA
 
-The most interesting facts that this data reveals is that the modal rates don't rise above 75 percent for any single technique and that the techniques average about 40 percent. Moreover, for the most common kinds of defect detection--unit testing and integration testing--the modal rates are only 30­35 percent. The typical organization uses a test-heavy defect-removal approach and achieves only about 85 percent defectremoval efficiency. Leading organizations use a wider variety of techniques and achieve defect-removal efficiencies of 95 percent or higher (Jones 2000).
+The most interesting facts that this data reveals is that the modal rates don't rise above 75 percent for any single technique and that the techniques average about 40 percent. Moreover, for the most common kinds of defect detection--unit testing and integration testing--the modal rates are only 30ï¿½35 percent. The typical organization uses a test-heavy defect-removal approach and achieves only about 85 percent defectremoval efficiency. Leading organizations use a wider variety of techniques and achieve defect-removal efficiencies of 95 percent or higher (Jones 2000).
 
 The strong implication is that if project developers are striving for a higher defectdetection rate, they need to use a combination of techniques. A classic study by Glenford Myers confirmed this implication (1978b). Myers studied a group of programmers with a minimum of 7 and an average of 11 years of professional experience. Using a program with 15 known errors, he had each programmer look for errors by using one of these techniques:
 
@@ -13695,7 +13701,7 @@ HARD DATA
 Myers found a huge variation in the number of defects detected in the program, ranging from 1.0 to 9.0 defects found. The average number found was 5.1, or about a third of those known.
 When used individually, no method had a statistically significant advantage over any of the others. The variety of errors people found was so great, however, that any combination of two methods--including having two independent groups using the same method--increased the total number of defects found by a factor of almost 2. Studies at NASA's Software Engineering Laboratory, Boeing, and other companies have reported that different people tend to find different defects. Only about 20 percent of the errors found by inspections were found by more than one inspector (Kouchakdjian, Green, and Basili 1989; Tripp, Struck, and Pflug 1991; Schneider, Martin, and Tsai 1992).
 
-Glenford Myers points out that human processes (inspections and walk-throughs, for instance) tend to be better than computer-based testing at finding certain kinds of errors and that the opposite is true for other kinds of errors (1979). This result was confirmed in a later study, which found that code reading detected more interface defects and functional testing detected more control defects (Basili, Selby, and Hutchens 1986). Test guru Boris Beizer reports that informal test approaches typically achieve only 50­60 percent test coverage unless you're using a coverage analyzer (Johnson 1994).
+Glenford Myers points out that human processes (inspections and walk-throughs, for instance) tend to be better than computer-based testing at finding certain kinds of errors and that the opposite is true for other kinds of errors (1979). This result was confirmed in a later study, which found that code reading detected more interface defects and functional testing detected more control defects (Basili, Selby, and Hutchens 1986). Test guru Boris Beizer reports that informal test approaches typically achieve only 50ï¿½60 percent test coverage unless you're using a coverage analyzer (Johnson 1994).
 
 KEY POINT
 
@@ -13738,7 +13744,7 @@ Some defect-detection practices cost more than others. The most economical pract
 3 2 1
 HARD DATA
 
-Most studies have found that inspections are cheaper than testing. A study at the Software Engineering Laboratory found that code reading detected about 80 percent more faults per hour than testing (Basili and Selby 1987). Another organization found that it cost six times as much to detect design defects by using testing as by using inspections (Ackerman, Buchwald, and Lewski 1989). A later study at IBM found that only 3.5 staff hours were needed to find each error when using code inspections, whereas 15­25 hours were needed to find each error through testing (Kaplan 1995).
+Most studies have found that inspections are cheaper than testing. A study at the Software Engineering Laboratory found that code reading detected about 80 percent more faults per hour than testing (Basili and Selby 1987). Another organization found that it cost six times as much to detect design defects by using testing as by using inspections (Ackerman, Buchwald, and Lewski 1989). A later study at IBM found that only 3.5 staff hours were needed to find each error when using code inspections, whereas 15ï¿½25 hours were needed to find each error through testing (Kaplan 1995).
 
 Cost of Fixing Defects
 
@@ -13958,7 +13964,7 @@ The primary purpose of collaborative construction is to improve software quality
 
 KEY POINT
 
-Early reports on pair programming suggest that it can achieve a code-quality level similar to formal inspections (Shull et al 2002). The cost of full-up pair programming is probably higher than the cost of solo development--on the order of 10­25 percent higher--but the reduction in development time appears to be on the order of 45 percent, which in some cases may be a decisive advantage over solo development (Boehm and Turner 2004), although not over inspections which have produced similar results.
+Early reports on pair programming suggest that it can achieve a code-quality level similar to formal inspections (Shull et al 2002). The cost of full-up pair programming is probably higher than the cost of solo development--on the order of 10ï¿½25 percent higher--but the reduction in development time appears to be on the order of 45 percent, which in some cases may be a decisive advantage over solo development (Boehm and Turner 2004), although not over inspections which have produced similar results.
 
 Technical reviews have been studied much longer than pair programming, and their results, as described in case studies and elsewhere, have been impressive:
 
@@ -14156,7 +14162,7 @@ HARD DATA
 
 Individual inspections typically catch about 60 percent of defects, which is higher than other techniques except prototyping and high-volume beta testing. These results have been confirmed numerous times at various organizations, including Harris BCSD, National Software Quality Experiment, Software Engineering Institute, Hewlett Packard, and so on (Shull et al 2002).
 
-The combination of design and code inspections usually removes 70­85 percent or more of the defects in a product (Jones 1996). Inspections identify error-prone classes early, and Capers Jones reports that they result in 20­30 percent fewer defects per 1000 lines of code than less formal review practices. Designers and coders learn to improve their work through participating in inspections, and inspections increase productivity by about 20 percent (Fagan 1976, Humphrey 1989, Gilb and Graham 1993, Wiegers 2002). On a project that uses inspections for design and code, the inspections will take up about 10­15 percent of project budget and will typically reduce overall project cost.
+The combination of design and code inspections usually removes 70ï¿½85 percent or more of the defects in a product (Jones 1996). Inspections identify error-prone classes early, and Capers Jones reports that they result in 20ï¿½30 percent fewer defects per 1000 lines of code than less formal review practices. Designers and coders learn to improve their work through participating in inspections, and inspections increase productivity by about 20 percent (Fagan 1976, Humphrey 1989, Gilb and Graham 1993, Wiegers 2002). On a project that uses inspections for design and code, the inspections will take up about 10ï¿½15 percent of project budget and will typically reduce overall project cost.
 
 486
 
@@ -14208,7 +14214,7 @@ An additional variation in inspection preparation is to assign each reviewer one
 
 Inspection Meeting The moderator chooses someone other than the author to paraphrase the design or read the code (Wiegers 2003). All logic is explained, including each branch of each logical structure. During this presentation, the scribe records errors as they are detected, but discussion of an error stops as soon as it's recognized as an error. The scribe notes the type and the severity of the error, and the inspection moves on. If you have problems keeping the discussions focused, the moderator might ring a bell to get the group's attention and put the discussion back on track.
 
-The rate at which the design or the code is considered should be neither too slow nor too fast. If it's too slow, attention can lag and the meeting won't be productive. If it's too fast, the group can overlook errors it would otherwise catch. Optimal inspection rates vary from environment to environment, just as preparation rates do. Keep records so that over time you can determine the optimal rate for your environment. Other organizations have found that for system code, an inspection rate of 90 lines of code per hour is optimal. For applications code, the inspection rate can be as rapid as 500 lines of code per hour (Humphrey 1989). An average of about 150­200 nonblank, noncomment source statements per hour is a good place to start (Wiegers 2002).
+The rate at which the design or the code is considered should be neither too slow nor too fast. If it's too slow, attention can lag and the meeting won't be productive. If it's too fast, the group can overlook errors it would otherwise catch. Optimal inspection rates vary from environment to environment, just as preparation rates do. Keep records so that over time you can determine the optimal rate for your environment. Other organizations have found that for system code, an inspection rate of 90 lines of code per hour is optimal. For applications code, the inspection rate can be as rapid as 500 lines of code per hour (Humphrey 1989). An average of about 150ï¿½200 nonblank, noncomment source statements per hour is a good place to start (Wiegers 2002).
 
 Don't discuss solutions during the meeting. The group should stay focused on identifying defects. Some inspection groups don't even allow discussion about whether a defect is really a defect. They assume that if someone is confused enough to think it's a defect, the design, code, or documentation needs to be clarified.
 
@@ -14422,18 +14428,18 @@ Useful for nonconstruction activities
 
 Possibly
 
-Typical percentage of defects 40­60% found
+Typical percentage of defects 40ï¿½60% found
 
 Formal Inspection Yes Yes
 Moderator Defect detection only Yes
 Yes Yes
 Yes Yes
-45­70%
+45ï¿½70%
 
 Informal Review (Walk-Throughs) No No Author, usually Varies
 No
 No Incidental
-No Yes 20­40%
+No Yes 20ï¿½40%
 
 496
 
@@ -14452,7 +14458,7 @@ Here are more resources concerning collaborative contruction:
 Pair Programming
 Williams, Laurie and Robert Kessler. Pair Programming Illuminated. Boston, MA: Addison Wesley, 2002. This book explains the detailed ins and outs of pair programming, including how to handle various personality matches (for example, expert and inexpert, introvert and extrovert) and other implementation issues.
 Beck, Kent. Extreme Programming Explained: Embrace Change. Reading, MA: Addison Wesley, 2000. This book touches on pair programming briefly and shows how it can be used in conjunction with other mutually supportive techniques, including coding standards, frequent integration, and regression testing.
-Reifer, Donald. "How to Get the Most Out of Extreme Programming/Agile Methods," Proceedings, XP/Agile Universe 2002. New York, NY: Springer; pp. 185­196. This paper summarizes industrial experience with Extreme Programming and agile methods and presents keys to success for pair programming.
+Reifer, Donald. "How to Get the Most Out of Extreme Programming/Agile Methods," Proceedings, XP/Agile Universe 2002. New York, NY: Springer; pp. 185ï¿½196. This paper summarizes industrial experience with Extreme Programming and agile methods and presents keys to success for pair programming.
 
 Inspections
 
@@ -14464,9 +14470,9 @@ Key Points
 
 Gilb, Tom and Dorothy Graham. Software Inspection. Wokingham, England: AddisonWesley, 1993. This contains a thorough discussion of inspections circa the early 1990s. It has a practical focus and includes case studies that describe experiences several organizations have had in setting up inspection programs.
 
-Fagan, Michael E. "Design and Code Inspections to Reduce Errors in Program Development." IBM Systems Journal 15, no. 3 (1976): 182­211.
+Fagan, Michael E. "Design and Code Inspections to Reduce Errors in Program Development." IBM Systems Journal 15, no. 3 (1976): 182ï¿½211.
 
-Fagan, Michael E. "Advances in Software Inspections." IEEE Transactions on Software Engineering, SE-12, no. 7 (July 1986): 744­51. These two articles were written by the developer of inspections. They contain the meat of what you need to know to run an inspection, including all the standard inspection forms.
+Fagan, Michael E. "Advances in Software Inspections." IEEE Transactions on Software Engineering, SE-12, no. 7 (July 1986): 744ï¿½51. These two articles were written by the developer of inspections. They contain the meat of what you need to know to run an inspection, including all the standard inspection forms.
 
 Relevant Standards
 IEEE Std 1028-1997, Standard for Software Reviews IEEE Std 730-2002, Standard for Software Quality Assurance Plans
@@ -14803,7 +14809,7 @@ companyRetirement, grossPay );
 
 30 withholding = ComputeWithholding( m_employee[ id ] );
 
-31 netPay = grossPay - withholding - companyRetirement - governmentRetirement ­
+31 netPay = grossPay - withholding - companyRetirement - governmentRetirement ï¿½
 
 32
 
@@ -14997,7 +15003,7 @@ You can base guesses on intuition or on past experience. Chapter 21, "Collaborat
 The next few sections describe specific kinds of errors that lend themselves to error guessing.
 
 Boundary Analysis
-One of the most fruitful areas for testing is boundary conditions--off-by-one errors. Saying num ­ 1 when you mean num and saying >= when you mean > are common mistakes.
+One of the most fruitful areas for testing is boundary conditions--off-by-one errors. Saying num ï¿½ 1 when you mean num and saying >= when you mean > are common mistakes.
 The idea of boundary analysis is to write test cases that exercise the boundary conditions. Pictorially, if you're testing for a range of values that are less than max, you have three possible conditions:
 
 Boundary
@@ -15012,7 +15018,7 @@ The code sample on page 507 contains a check for m_employee[ ID ].governmentReti
 Case 1
 
 Test Description
-Case 1 is defined so that the true condition for m_employee[ ID ].governmentRetirementWithheld < MAX_GOVT_RETIREMENT is the first case on the true side of the boundary. Thus, the Case 1 test case sets m_employee[ ID ].governmentRetirementWithheld to MAX_GOVT_RETIREMENT ­ 1. This test case was already generated.
+Case 1 is defined so that the true condition for m_employee[ ID ].governmentRetirementWithheld < MAX_GOVT_RETIREMENT is the first case on the true side of the boundary. Thus, the Case 1 test case sets m_employee[ ID ].governmentRetirementWithheld to MAX_GOVT_RETIREMENT ï¿½ 1. This test case was already generated.
 
 514
 
@@ -15246,7 +15252,7 @@ HARD DATA
 
  On small projects, construction defects make up the vast bulk of all errors. In one study of coding errors on a small project (1000 lines of code), 75% of defects resulted from coding, compared to 10% from requirements and 15% from design (Jones 1986a). This error breakdown appears to be representative of many small projects.
  Construction defects account for at least 35% of all defects regardless of project size. Although the proportion of construction defects is smaller on large projects, they still account for at least 35% of all defects (Beizer 1990, Jones 2000). Some researchers have reported proportions in the 75% range even on very large projects (Grady 1987). In general, the better the application area is understood, the better the overall architecture is. Errors then tend to be concentrated in detailed design and coding (Basili and Perricone 1984).
- Construction errors, although cheaper to fix than requirements and design errors, are still expensive. A study of two very large projects at Hewlett-Packard found that the average construction defect cost 25­50% as much to fix as the average design error (Grady 1987). When the greater number of construction defects was figured into the overall equation, the total cost to fix construction defects was one to two times as much as the cost attributed to design defects.
+ Construction errors, although cheaper to fix than requirements and design errors, are still expensive. A study of two very large projects at Hewlett-Packard found that the average construction defect cost 25ï¿½50% as much to fix as the average design error (Grady 1987). When the greater number of construction defects was figured into the overall equation, the total cost to fix construction defects was one to two times as much as the cost attributed to design defects.
 
 Figure 22-2 provides a rough idea of the relationship between project size and the source of errors.
 
@@ -15275,7 +15281,7 @@ Requirements
 
 Project Size in Lines of Code
 
-Figure 22-2 As the size of the project increases, the proportion of errors committed during construction decreases. Nevertheless, construction errors account for 45­75% of all errors on even the largest projects.
+Figure 22-2 As the size of the project increases, the proportion of errors committed during construction decreases. Nevertheless, construction errors account for 45ï¿½75% of all errors on even the largest projects.
 
 How Many Errors Should You Expect to Find?
 
@@ -15286,8 +15292,8 @@ HARD DATA
 3 2 1
 HARD DATA
 
- Industry average experience is about 1­25 errors per 1000 lines of code for delivered software. The software has usually been developed using a hodgepodge of techniques (Boehm 1981, Gremillion 1984, Yourdon 1989a, Jones 1998, Jones 2000, Weber 2003). Cases that have one-tenth as many errors as this are rare; cases that have 10 times more tend not to be reported. (They probably aren't ever completed!)
- The Applications Division at Microsoft experiences about 10­20 defects per 1000 lines of code during in-house testing and 0.5 defects per 1000 lines of code in released product (Moore 1992). The technique used to achieve this level is a combination of the code-reading techniques described in Section 21.4, "Other Kinds of Collaborative Development Practices," and independent testing.
+ Industry average experience is about 1ï¿½25 errors per 1000 lines of code for delivered software. The software has usually been developed using a hodgepodge of techniques (Boehm 1981, Gremillion 1984, Yourdon 1989a, Jones 1998, Jones 2000, Weber 2003). Cases that have one-tenth as many errors as this are rare; cases that have 10 times more tend not to be reported. (They probably aren't ever completed!)
+ The Applications Division at Microsoft experiences about 10ï¿½20 defects per 1000 lines of code during in-house testing and 0.5 defects per 1000 lines of code in released product (Moore 1992). The technique used to achieve this level is a combination of the code-reading techniques described in Section 21.4, "Other Kinds of Collaborative Development Practices," and independent testing.
  Harlan Mills pioneered "cleanroom development," a technique that has been able to achieve rates as low as 3 defects per 1000 lines of code during in-house testing and 0.1 defects per 1000 lines of code in released product (Cobb and Mills 1990). A few projects--for example, the space-shuttle software--have achieved a level of 0 defects in 500,000 lines of code by using a system of formal development methods, peer reviews, and statistical testing (Fishman 1996).
  Watts Humphrey reports that teams using the Team Software Process (TSP) have achieved defect levels of about 0.06 defects per 1000 lines of code. TSP focuses on training developers not to create defects in the first place (Weber 2003).
 
@@ -15295,7 +15301,7 @@ HARD DATA
 
 Chapter 22: Developer Testing
 
-The results of the TSP and cleanroom projects confirm another version of the General Principle of Software Quality: it's cheaper to build high-quality software than it is to build and fix low-quality software. Productivity for a fully checked-out, 80,000-line cleanroom project was 740 lines of code per work-month. The industry average rate for fully checked-out code is closer to 250­300 lines per work-month, including all noncoding overhead (Cusumano et al 2003). The cost savings and productivity come from the fact that virtually no time is devoted to debugging on TSP or cleanroom projects. No time spent on debugging? That is truly a worthy goal!
+The results of the TSP and cleanroom projects confirm another version of the General Principle of Software Quality: it's cheaper to build high-quality software than it is to build and fix low-quality software. Productivity for a fully checked-out, 80,000-line cleanroom project was 740 lines of code per work-month. The industry average rate for fully checked-out code is closer to 250ï¿½300 lines per work-month, including all noncoding overhead (Cusumano et al 2003). The cost savings and productivity come from the fact that virtually no time is devoted to debugging on TSP or cleanroom projects. No time spent on debugging? That is truly a worthy goal!
 
 Errors in Testing Itself
 
@@ -15412,7 +15418,7 @@ cc2e.com/2282
 3 2 1
 HARD DATA
 
-Karl Wiegers reports that testing done without measuring code coverage typically exercises only about 50­60% of the code (Wiegers 2002). A coverage monitor is a tool that keeps track of the code that's exercised and the code that isn't. A coverage monitor is especially useful for systematic testing because it tells you whether a set of test cases fully exercises the code. If you run your full set of test cases and the coverage monitor indicates that some code still hasn't been executed, you know that you need more tests.
+Karl Wiegers reports that testing done without measuring code coverage typically exercises only about 50ï¿½60% of the code (Wiegers 2002). A coverage monitor is a tool that keeps track of the code that's exercised and the code that isn't. A coverage monitor is especially useful for systematic testing because it tells you whether a set of test cases fully exercises the code. If you run your full set of test cases and the coverage monitor indicates that some code still hasn't been executed, you know that you need more tests.
 
 Data Recorder/Logging
 Some tools can monitor your program and collect information on the program's state in the event of a failure--similar to the "black box" that airplanes use to diagnose crash results. Strong logging aids error diagnosis and supports effective service after the software has been released.
@@ -15556,7 +15562,7 @@ Additional Resources
 
 Whittaker, James A. How to Break Software: A Practical Guide to Testing. Boston, MA: Addison-Wesley, 2002. This book lists 23 attacks testers can use to make software fail and presents examples for each attack using popular software packages. You can use this book as a primary source of information about testing or, because its approach is distinctive, you can use it to supplement other testing books.
 
-Whittaker, James A. "What Is Software Testing? And Why Is It So Hard?" IEEE Software, January 2000, pp. 70­79. This article is a good introduction to software testing issues and explains some of the challenges associated with effectively testing software.
+Whittaker, James A. "What Is Software Testing? And Why Is It So Hard?" IEEE Software, January 2000, pp. 70ï¿½79. This article is a good introduction to software testing issues and explains some of the challenges associated with effectively testing software.
 
 Myers, Glenford J. The Art of Software Testing. New York, NY: John Wiley, 1979. This is the classic book on software testing and is still in print (though quite expensive). The contents of the book are straightforward: A Self-Assessment Test; The Psychology and Economics of Program Testing; Program Inspections, Walkthroughs, and Reviews; Test-Case Design; Class Testing; Higher-Order Testing; Debugging; Test Tools and Other Techniques. It's short (177 pages) and readable. The quiz at the beginning gets you started thinking like a tester and demonstrates how many ways a piece of code can be broken.
 
@@ -16418,7 +16424,7 @@ Myth: a well-managed software project conducts methodical requirements developme
 3 2 1
 HARD DATA
 
-Reality: code evolves substantially during its initial development. Many of the changes seen during initial coding are at least as dramatic as changes seen during maintenance. Coding, debugging, and unit testing consume between 30 to 65 percent of the effort on a typical project, depending on the project's size. (See Chapter 27, "How Program Size Affects Construction," for details.) If coding and unit testing were straightforward processes, they would consume no more than 20­30 percent of the total effort on a project. Even on well-managed projects, however, requirements change by about one to four percent per month (Jones 2000). Requirements changes invariably cause corresponding code changes--sometimes substantial code changes.
+Reality: code evolves substantially during its initial development. Many of the changes seen during initial coding are at least as dramatic as changes seen during maintenance. Coding, debugging, and unit testing consume between 30 to 65 percent of the effort on a typical project, depending on the project's size. (See Chapter 27, "How Program Size Affects Construction," for details.) If coding and unit testing were straightforward processes, they would consume no more than 20ï¿½30 percent of the total effort on a project. Even on well-managed projects, however, requirements change by about one to four percent per month (Jones 2000). Requirements changes invariably cause corresponding code changes--sometimes substantial code changes.
 563
 
 564
@@ -17210,7 +17216,7 @@ compiler has different strengths and weaknesses, and some will be better suited 
 
 Optimizing compilers are better at optimizing straightforward code than they are at optimizing tricky code. If you do "clever" things like fooling around with loop indexes, your compiler has a harder time doing its job and your program suffers. See "Using Only One Statement Per Line" in Section 31.5 for an example in which a straightforward approach resulted in compiler-optimized code that was 11 percent faster than comparable "tricky" code.
 
-With a good optimizing compiler, your code speed can improve 40 percent or more across the board. Many of the techniques described in the next chapter produce gains of only 15­30 percent. Why not just write clear code and let the compiler do the work? Here are the results of a few tests to check how much an optimizer speeded up an insertion-sort routine:
+With a good optimizing compiler, your code speed can improve 40 percent or more across the board. Many of the techniques described in the next chapter produce gains of only 15ï¿½30 percent. Why not just write clear code and let the compiler do the work? Here are the results of a few tests to check how much an optimizer speeded up an insertion-sort routine:
 
 Language C++ compiler 1 C++ compiler 2 C++ compiler 3 C# compiler Visual Basic Java VM 1 Java VM 2 Java VM 3
 
@@ -17896,7 +17902,7 @@ but some of which will work very well indeed.
 
 Cross-Reference For other Much of programming consists of manipulating logic. This section describes how to
 
-details on using statement logic, see Chapters 14­19.
+details on using statement logic, see Chapters 14ï¿½19.
 
 manipulate logical expressions to your advantage.
 
@@ -18483,7 +18489,7 @@ Java Example of a Nested Loop That Can Be Improved
 for ( column = 0; column < 100; column++ ) { for ( row = 0; row < 5; row++ ) { sum = sum + table[ row ][ column ]; }
 }
 
-The key to improving the loop is that the outer loop executes much more often than the inner loop. Each time the loop executes, it has to initialize the loop index, increment it on each pass through the loop, and check it after each pass. The total number of loop executions is 100 for the outer loop and 100 * 5 = 500 for the inner loop, for a total of 600 iterations. By merely switching the inner and outer loops, you can change the total number of iterations to 5 for the outer loop and 5 * 100 = 500 for the inner loop, for a total of 505 iterations. Analytically, you'd expect to save about (600 ­ 505) / 600 = 16 percent by switching the loops. Here's the measured difference in performance:
+The key to improving the loop is that the outer loop executes much more often than the inner loop. Each time the loop executes, it has to initialize the loop index, increment it on each pass through the loop, and check it after each pass. The total number of loop executions is 100 for the outer loop and 100 * 5 = 500 for the inner loop, for a total of 600 iterations. By merely switching the inner and outer loops, you can change the total number of iterations to 5 for the outer loop and 5 * 100 = 500 for the inner loop, for a total of 505 iterations. Analytically, you'd expect to save about (600 ï¿½ 505) / 600 = 16 percent by switching the loops. Here's the measured difference in performance:
 
 Language C++ Java PHP Python
 
@@ -18952,7 +18958,7 @@ Time Savings 38% 28% 39%
 In this case, the educated guess about the relative importance of the division and type conversions and the estimate of 50 percent were pretty close. Considering the predictability of the results described in this chapter, the accuracy of my prediction in this case proves only that even a blind squirrel finds a nut occasionally.
 
 Be Wary of System Routines
-System routines are expensive and provide accuracy that's often wasted. Typical system math routines, for example, are designed to put an astronaut on the moon within ±2 feet of the target. If you don't need that degree of accuracy, you don't need to spend the time to compute it either.
+System routines are expensive and provide accuracy that's often wasted. Typical system math routines, for example, are designed to put an astronaut on the moon within ï¿½2 feet of the target. If you don't need that degree of accuracy, you don't need to spend the time to compute it either.
 In the previous example, the Log2() routine returned an integer value but used a floating-point log() routine to compute it. That was overkill for an integer result, so after my first attempt, I wrote a series of integer tests that were perfectly accurate for calculating an integer log2. Here's the code:
 
 C++ Example of a Log-Base-Two Routine Based on Integers
@@ -18992,7 +18998,7 @@ This routine takes about 350 percent longer than the longer version above, execu
 
 KEY POINT
 
-This example highlights the value of not stopping after one successful optimization. The first optimization earned a respectable 30­40 percent savings but had nowhere near the impact of the second or third optimizations.
+This example highlights the value of not stopping after one successful optimization. The first optimization earned a respectable 30ï¿½40 percent savings but had nowhere near the impact of the second or third optimizations.
 
 26.4 Expressions
 
@@ -19082,7 +19088,7 @@ You don't have to create a table to take advantage of the performance gains you 
 The following code would do something with payment here; for this example's point, it doesn't matter what.
 
 Java Example of a Second Complex Computation That Could Be Precomputed
-double ComputePayments( int months, double interestRate ){ for ( long loanAmount = MIN_LOAN_AMOUNT; loanAmount < MAX_LOAN_AMOUNT; loanAmount++ ) { payment = loanAmount / ( ( 1.0 ­ Math.pow( 1.0+(interestRate/12.0), - months ) ) / ( interestRate/12.0 ) ); ... }
+double ComputePayments( int months, double interestRate ){ for ( long loanAmount = MIN_LOAN_AMOUNT; loanAmount < MAX_LOAN_AMOUNT; loanAmount++ ) { payment = loanAmount / ( ( 1.0 ï¿½ Math.pow( 1.0+(interestRate/12.0), - months ) ) / ( interestRate/12.0 ) ); ... }
 }
 
 Even without precomputing a table, you can precompute the complicated part of the expression outside the loop and use it inside the loop. Here's how it would look:
@@ -19090,7 +19096,7 @@ Even without precomputing a table, you can precompute the complicated part of th
 Here's the part that's precomputed.
 
 Java Example of Precomputing the Second Complex Computation
-double ComputePayments( int months, double interestRate ){ long loanAmount; double divisor = ( 1.0 ­ Math.pow( 1.0+(interestRate/12.0). - months ) ) / ( interestRate/12.0 ); for ( long loanAmount = MIN_LOAN_AMOUNT; loanAmount <= MAX_LOAN_AMOUNT; loanAmount++ ) { payment = loanAmount / divisor; ... }
+double ComputePayments( int months, double interestRate ){ long loanAmount; double divisor = ( 1.0 ï¿½ Math.pow( 1.0+(interestRate/12.0). - months ) ) / ( interestRate/12.0 ); for ( long loanAmount = MIN_LOAN_AMOUNT; loanAmount <= MAX_LOAN_AMOUNT; loanAmount++ ) { payment = loanAmount / divisor; ... }
 }
 
 638
@@ -19123,7 +19129,7 @@ Eliminate Common Subexpressions
 If you find an expression that's repeated several times, assign it to a variable and refer to the variable rather than recomputing the expression in several places. The loan-calculation example has a common subexpression that you could eliminate. This is the original code:
 
 Java Example of a Common Subexpression
-payment = loanAmount / ( ( 1.0 ­ Math.pow( 1.0 + ( interestRate / 12.0 ), -months ) ) / ( interestRate / 12.0 )
+payment = loanAmount / ( ( 1.0 ï¿½ Math.pow( 1.0 + ( interestRate / 12.0 ), -months ) ) / ( interestRate / 12.0 )
 );
 
 26.5 Routines
@@ -19134,7 +19140,7 @@ In this sample, you can assign interestRate/12.0 to a variable that is then refe
 
 Java Example of Eliminating a Common Subexpression
 monthlyInterest = interestRate / 12.0; payment = loanAmount / (
-( 1.0 ­ Math.pow( 1.0 + monthlyInterest, -months ) ) / monthlyInterest );
+( 1.0 ï¿½ Math.pow( 1.0 + monthlyInterest, -months ) ) / monthlyInterest );
 
 The savings in this case don't seem impressive:
 
@@ -19396,19 +19402,19 @@ Team Size
 
 Approximate Percentage of Projects
 
-1­3
+1ï¿½3
 
 25%
 
-4­10
+4ï¿½10
 
 30%
 
-11­25
+11ï¿½25
 
 20%
 
-26­50
+26ï¿½50
 
 15%
 
@@ -19424,19 +19430,19 @@ Team Size
 
 Approximate Percentage of Programmers
 
-1­3
+1ï¿½3
 
 5%
 
-4­10
+4ï¿½10
 
 10%
 
-11­25
+11ï¿½25
 
 15%
 
-26­50
+26ï¿½50
 
 20%
 
@@ -19502,23 +19508,23 @@ Typical Error Density
 
 Smaller than 2K
 
-0­25 errors per thousand lines of code (KLOC)
+0ï¿½25 errors per thousand lines of code (KLOC)
 
-2K­16K
+2Kï¿½16K
 
-0­40 errors per KLOC
+0ï¿½40 errors per KLOC
 
-16K­64K
+16Kï¿½64K
 
-0.5­50 errors per KLOC
+0.5ï¿½50 errors per KLOC
 
-64K­512K
+64Kï¿½512K
 
-2­70 errors per KLOC
+2ï¿½70 errors per KLOC
 
 512K or more
 
-4­100 errors per KLOC
+4ï¿½100 errors per KLOC
 
 Sources: "Program Quality and Programmer Productivity" (Jones 1977), Estimating Software Costs (Jones 1998).
 
@@ -19559,28 +19565,28 @@ Lines of Code per Staff-Year (Cocomo II Nominal in Parentheses)
 
 1K
 
-2,500­25,000 (4,000)
+2,500ï¿½25,000 (4,000)
 
 10K
 
-2,000­25,000 (3,200)
+2,000ï¿½25,000 (3,200)
 
 100K
 
-1,000­20,000 (2,600)
+1,000ï¿½20,000 (2,600)
 
 1,000K
 
-700­10,000 (2,000)
+700ï¿½10,000 (2,000)
 
 10,000K
 
-300­5,000 (1,600)
+300ï¿½5,000 (1,600)
 
 Source: Derived from data in Measures for Excellence (Putnam and Meyers 1992), Industrial Strength Software (Putnam and Meyers 1997), Software Cost Estimation with Cocomo II (Boehm et al. 2000), and "Software Development Worldwide: The State of the Practice" (Cusumano et al. 2003).
 
 Productivity is substantially determined by the kind of software you're working on, personnel quality, programming language, methodology, product complexity, programming environment, tool support, how "lines of code" are counted, how nonprogrammer support effort is factored into the "lines of code per staff-year" figure, and many other factors, so the specific figures in Table 27-2 vary dramatically.
-Realize, however, that the general trend the numbers show is significant. Productivity on small projects can be 2­3 times as high as productivity on large projects, and productivity can vary by a factor of 5­10 from the smallest projects to the largest.
+Realize, however, that the general trend the numbers show is significant. Productivity on small projects can be 2ï¿½3 times as high as productivity on large projects, and productivity can vary by a factor of 5ï¿½10 from the smallest projects to the largest.
 
 654
 
@@ -19642,12 +19648,12 @@ Construction
 Size
 Figure 27-4 The amount of software construction work is a near-linear function of project size. Other kinds of work increase nonlinearly as project size increases.
 
-Projects that are close in size will perform similar activities, but as sizes diverge, the kinds of activities will diverge, too. As the introduction to this chapter described, when the Gigatron Deluxe comes out at 10 times the size of the original Gigatron, it will need 25 times more construction effort, 25­50 times the planning effort, 30 times the integration effort, and 40 times the architecture and system testing.
+Projects that are close in size will perform similar activities, but as sizes diverge, the kinds of activities will diverge, too. As the introduction to this chapter described, when the Gigatron Deluxe comes out at 10 times the size of the original Gigatron, it will need 25 times more construction effort, 25ï¿½50 times the planning effort, 30 times the integration effort, and 40 times the architecture and system testing.
 
 3 2 1
 HARD DATA
 
-Proportions of activities vary because different activities become critical at different project sizes. Barry Boehm and Richard Turner found that spending about five percent of total project costs on architecture and requirements produced the lowest cost for projects in the 10,000-lines-of-code range. But for projects in the 100,000-lines-ofcode range, spending 15­20 percent of project effort on architecture and requirements produced the best results (Boehm and Turner 2004).
+Proportions of activities vary because different activities become critical at different project sizes. Barry Boehm and Richard Turner found that spending about five percent of total project costs on architecture and requirements produced the lowest cost for projects in the 10,000-lines-of-code range. But for projects in the 100,000-lines-ofcode range, spending 15ï¿½20 percent of project effort on architecture and requirements produced the best results (Boehm and Turner 2004).
 
 Here's a list of activities that grow at a more-than-linear rate as project size increases:
 
@@ -19731,7 +19737,7 @@ Key Points
 
 DeGrace, Peter, and Leslie Stahl. Wicked Problems, Righteous Solutions: A Catalogue of Modern Software Engineering Paradigms. Englewood Cliffs, NJ: Yourdon Press, 1990. As the title suggests, this book catalogs approaches to developing software. As noted throughout this chapter, your approach needs to vary as the size of the project varies, and DeGrace and Stahl make that point clearly. The section titled "Attenuating and Truncating" in Chapter 5 discusses customizing software-development processes based on project size and formality. The book includes descriptions of models from NASA and the Department of Defense and a remarkable number of edifying illustrations.
 
-Jones, T. Capers. "Program Quality and Programmer Productivity." IBM Technical Report TR 02.764 (January 1977): 42­78. Also available in Jones's Tutorial: Programming Productivity: Issues for the Eighties, 2d ed. Los Angeles, CA: IEEE Computer Society Press, 1986. This paper contains the first in-depth analysis of the reasons large projects have different spending patterns than small ones. It's a thorough discussion of the differences between large and small projects, including requirements and quality-assurance measures. It's dated but still interesting.
+Jones, T. Capers. "Program Quality and Programmer Productivity." IBM Technical Report TR 02.764 (January 1977): 42ï¿½78. Also available in Jones's Tutorial: Programming Productivity: Issues for the Eighties, 2d ed. Los Angeles, CA: IEEE Computer Society Press, 1986. This paper contains the first in-depth analysis of the reasons large projects have different spending patterns than small ones. It's a thorough discussion of the differences between large and small projects, including requirements and quality-assurance measures. It's dated but still interesting.
 
 Key Points
 
@@ -20024,7 +20030,7 @@ SPMN. Little Book of Configuration Management. Arlington, VA: Software Program M
 
 Bays, Michael. Software Release Methodology. Englewood Cliffs, NJ: Prentice Hall, 1999. This book discusses software configuration management with an emphasis on releasing software into production.
 
-Bersoff, Edward H., and Alan M. Davis. "Impacts of Life Cycle Models on Software Configuration Management." Communications of the ACM 34, no. 8 (August 1991): 104­118. This article describes how SCM is affected by newer approaches to software development, especially prototyping approaches. The article is especially applicable in environments that are using agile development practices.
+Bersoff, Edward H., and Alan M. Davis. "Impacts of Life Cycle Models on Software Configuration Management." Communications of the ACM 34, no. 8 (August 1991): 104ï¿½118. This article describes how SCM is affected by newer approaches to software development, especially prototyping approaches. The article is especially applicable in environments that are using agile development practices.
 
 28.3 Estimating a Construction Schedule
 
@@ -20102,7 +20108,7 @@ and Again."
 
 ferent estimation techniques.
 
-No approach is best in all circumstances, and the differences among them can be illuminating. For example, for the first edition of this book, my original eyeball estimate for the length of the book was 250­300 pages. When I finally did an in-depth estimate, the estimate came out to 873 pages. "That can't be right," I thought. So I estimated it using a completely different technique. The second estimate came out to 828 pages. Considering that these estimates were within about five percent of each other, I concluded that the book was going to be much closer to 850 pages than to 250 pages, and I was able to adjust my writing plans accordingly.
+No approach is best in all circumstances, and the differences among them can be illuminating. For example, for the first edition of this book, my original eyeball estimate for the length of the book was 250ï¿½300 pages. When I finally did an in-depth estimate, the estimate came out to 873 pages. "That can't be right," I thought. So I estimated it using a completely different technique. The second estimate came out to 828 pages. Considering that these estimates were within about five percent of each other, I concluded that the book was going to be much closer to 850 pages than to 250 pages, and I was able to adjust my writing plans accordingly.
 
 Reestimate periodically Factors on a software project change after the initial estimate, so plan to update your estimates periodically. As Figure 28-2 illustrates, the accuracy of your estimates should improve as you move toward completing the project. From time to time, compare your actual results to your estimated results, and use that evaluation to refine estimates for the remainder of the project.
 
@@ -20741,7 +20747,7 @@ DeMarco, Tom and Timothy Lister. Peopleware: Productive Projects and Teams, 2d e
 
 cc2e.com/2820
 
-McCue, Gerald M. "IBM's Santa Teresa Laboratory--Architectural Design for Program Development," IBM Systems Journal 17, no. 1 (1978): 4­25. McCue describes the process that IBM used to create its Santa Teresa office complex. IBM studied programmer needs, created architectural guidelines, and designed the facility with programmers in mind. Programmers participated throughout. The result is that in annual opinion surveys each year, the physical facilities at the Santa Teresa facility are rated the highest in the company.
+McCue, Gerald M. "IBM's Santa Teresa Laboratory--Architectural Design for Program Development," IBM Systems Journal 17, no. 1 (1978): 4ï¿½25. McCue describes the process that IBM used to create its Santa Teresa office complex. IBM studied programmer needs, created architectural guidelines, and designed the facility with programmers in mind. Programmers participated throughout. The result is that in annual opinion surveys each year, the physical facilities at the Santa Teresa facility are rated the highest in the company.
 
 686
 
@@ -21247,7 +21253,7 @@ Some developers protest that it's impractical to build every day because their p
 3 2 1
 HARD DATA
 
-A review of 104 projects in the U.S., India, Japan, and Europe found that only 20­25 percent of projects used daily builds at either the beginning or middle of their projects (Cusumano et al. 2003), so this represents a significant opportunity for improvement.
+A review of 104 projects in the U.S., India, Japan, and Europe found that only 20ï¿½25 percent of projects used daily builds at either the beginning or middle of their projects (Cusumano et al. 2003), so this represents a significant opportunity for improvement.
 
 Continuous Integration
 
@@ -21299,7 +21305,7 @@ Myers, Glenford J. The Art of Software Testing. New York, NY: John Wiley & Sons,
 
 Incrementalism
 McConnell, Steve. Rapid Development. Redmond, WA: Microsoft Press, 1996. Chapter 7, "Lifecycle Planning," goes into much detail about the tradeoffs involved with moreflexible and less-flexible life-cycle models. Chapters 20, 21, 35, and 36 discuss specific life-cycle models that support various degrees of incrementalism. Chapter 19 describes "designing for change," a key activity needed to support iterative and incremental development models.
-Boehm, Barry W. "A Spiral Model of Software Development and Enhancement." Computer, May 1988: 61­72. In this paper, Boehm describes his "spiral model" of software development. He presents the model as an approach to managing risk in a software-development project, so the paper is about development generally rather than about integration specifically. Boehm is one of the world's foremost experts on the big-picture issues of software development, and the clarity of his explanations reflects the quality of his understanding.
+Boehm, Barry W. "A Spiral Model of Software Development and Enhancement." Computer, May 1988: 61ï¿½72. In this paper, Boehm describes his "spiral model" of software development. He presents the model as an approach to managing risk in a software-development project, so the paper is about development generally rather than about integration specifically. Boehm is one of the world's foremost experts on the big-picture issues of software development, and the clarity of his explanations reflects the quality of his understanding.
 Gilb, Tom. Principles of Software Engineering Management. Wokingham, England: Addison-Wesley, 1988. Chapters 7 and 15 contain thorough discussions of evolutionary delivery, one of the first incremental development approaches.
 Beck, Kent. Extreme Programming Explained: Embrace Change. Reading, MA: AddisonWesley, 2000. This book contains a more modern, more concise, and more evangelical presentation of many of the ideas in Gilb's book. I personally prefer the depth of analysis presented in Gilb's book, but some readers may find Beck's presentation more accessible or more directly applicable to the kind of project they're working on.
 
@@ -21381,7 +21387,7 @@ Multiple-File String Searching and Replacing
 If your editor doesn't support search-and-replace across multiple files, you can still find supplementary tools to do that job. These tools are useful for search for all occurrences of a class name or routine name. When you find an error in your code, you can use such tools to check for similar errors in other files.
 You can search for exact strings, similar strings (ignoring differences in capitalization), or regular expressions. Regular expressions are particularly powerful because they let you search for complex string patterns. If you wanted to find all the array references containing magic numbers (digits "0" through "9"), you could search for "[", followed by zero or more spaces, followed by one or more digits, followed by zero or more spaces, followed by "]". One widely available search tool is called "grep." A grep query for magic numbers would look like this:
 
-grep "\[ *[0­9]+ *\]" *.cpp
+grep "\[ *[0ï¿½9]+ *\]" *.cpp
 
 712
 
@@ -21461,7 +21467,7 @@ A refactoring program supports common code refactorings either on a standalone b
 
 Restructurers
 
-A restructurer will convert a plate of spaghetti code with gotos to a more nutritious entrée of better-structured code without gotos. Capers Jones reports that in maintenance environments code restructuring tools can have a 25­30 percent positive impact on maintenance productivity (Jones 2000). A restructurer has to make a lot of assumptions when it converts code, and if the logic is terrible in the original, it will still be terrible in the converted version. If you're doing a conversion manually, however, you can use a restructurer for the general case and hand-tune the hard cases. Alternatively, you can run the code through the restructurer and use it for inspiration for the hand conversion.
+A restructurer will convert a plate of spaghetti code with gotos to a more nutritious entrï¿½e of better-structured code without gotos. Capers Jones reports that in maintenance environments code restructuring tools can have a 25ï¿½30 percent positive impact on maintenance productivity (Jones 2000). A restructurer has to make a lot of assumptions when it converts code, and if the logic is terrible in the original, it will still be terrible in the converted version. If you're doing a conversion manually, however, you can use a restructurer for the general case and hand-tune the hard cases. Alternatively, you can run the code through the restructurer and use it for inspiration for the hand conversion.
 
 Code Translators
 Some tools translate code from one language to another. A translator is useful when you have a large code base that you're moving to another environment. The hazard in using a language translator is that if you start with bad code the translator simply translates the bad code into an unfamiliar language.
@@ -21706,7 +21712,7 @@ Hunt, Andrew and David Thomas. The Pragmatic Programmer. Boston, MA: AddisonWesl
 
 cc2e.com/3012
 
-Vaughn-Nichols, Steven. "Building Better Software with Better Tools," IEEE Computer, September 2003, pp. 12­14. This article surveys tool initiatives led by IBM, Microsoft Research, and Sun Research.
+Vaughn-Nichols, Steven. "Building Better Software with Better Tools," IEEE Computer, September 2003, pp. 12ï¿½14. This article surveys tool initiatives led by IBM, Microsoft Research, and Sun Research.
 
 Glass, Robert L. Software Conflict: Essays on the Art and Science of Software Engineering. Englewood Cliffs, NJ: Yourdon Press, 1991. The chapter titled "Recommended: A Minimum Standard Software Toolset" provides a thoughtful counterpoint to the moretools-is-better view. Glass argues for the identification of a minimum set of tools that should be available to all developers and proposes a starting kit.
 
@@ -22361,7 +22367,7 @@ These lines set up a cursor and should be separated from the preceding lines.
 window.dimensions = editWindow.dimensions; window.title = editWindow.title; window.backgroundColor = userPreferences.backgroundColor; window.foregroundColor = userPreferences.foregroundColor;
 cursor.start = startingScanLine; cursor.end = endingScanLine; cursor.blinkRate = editMode.blinkRate; SaveCursor( cursor ); SetCursor( cursor );
 
-The reorganized code shows that two things are happening. In the first example, the lack of statement organization and blank lines, and the old aligned­equals signs trick, make the statements look more related than they are.
+The reorganized code shows that two things are happening. In the first example, the lack of statement organization and blank lines, and the old alignedï¿½equals signs trick, make the statements look more related than they are.
 The second way in which using blank lines tends to improve code is that it opens up natural spaces for comments. In Listing 31-30, a comment above each block would nicely supplement the improved layout.
 Format single-statement blocks consistently A single-statement block is a single statement following a control structure, such as one statement following an if test. In such a case, begin and end aren't needed for correct compilation and you have the three style options shown in Listing 31-31:
 
@@ -23757,7 +23763,7 @@ int insertPos = 0;
 // position to insert elmt in sorted part of array
 
 Avoid using endline comments for maintenance notes Endline comments are sometimes used for recording modifications to code after its initial development. This kind of comment typically consists of a date and the programmer's initials, or possibly an error-report number. Here's an example:
-for i = 1 to maxElmts ­ 1 -- fixed error #A423 10/1/05 (scm)
+for i = 1 to maxElmts ï¿½ 1 -- fixed error #A423 10/1/05 (scm)
 Adding such a comment can be gratifying after a late-night debugging session on software that's in production, but such comments really have no place in production code. Such comments are handled better by version-control software. Comments should explain why the code works now, not why the code didn't work at some point in the past.
 
 32.5 Commenting Techniques
@@ -24563,7 +24569,7 @@ www.construx.com. This website (my company's website) contains numerous document
 
 cc2e.com/3236
 
-Post, Ed. "Real Programmers Don't Use Pascal," Datamation, July 1983, pp. 263­265. This tongue-in-cheek paper argues for a return to the "good old days" of Fortran programming when programmers didn't have to worry about pesky issues like readability.
+Post, Ed. "Real Programmers Don't Use Pascal," Datamation, July 1983, pp. 263ï¿½265. This tongue-in-cheek paper argues for a return to the "good old days" of Fortran programming when programmers didn't have to worry about pesky issues like readability.
 
 816
 
@@ -25022,7 +25028,7 @@ Following are additional resources on the human aspects of software development:
 
 cc2e.com/3334
 
-Dijkstra, Edsger. "The Humble Programmer." Turing Award Lecture. Communications of the ACM 15, no. 10 (October 1972): 859­66. This classic paper helped begin the inquiry into how much computer programming depends on the programmer's mental abilities. Dijkstra has persistently stressed the message that the essential task of programming is mastering the enormous complexity of computer science. He argues that programming is the only activity in which humans have to master nine orders of magnitude of difference between the lowest level of detail and the highest. This paper would be interesting reading solely for its historical value, but many of its themes sound fresh decades later. It also conveys a good sense of what it was like to be a programmer in the early days of computer science.
+Dijkstra, Edsger. "The Humble Programmer." Turing Award Lecture. Communications of the ACM 15, no. 10 (October 1972): 859ï¿½66. This classic paper helped begin the inquiry into how much computer programming depends on the programmer's mental abilities. Dijkstra has persistently stressed the message that the essential task of programming is mastering the enormous complexity of computer science. He argues that programming is the only activity in which humans have to master nine orders of magnitude of difference between the lowest level of detail and the highest. This paper would be interesting reading solely for its historical value, but many of its themes sound fresh decades later. It also conveys a good sense of what it was like to be a programmer in the early days of computer science.
 
 Weinberg, Gerald M. The Psychology of Computer Programming: Silver Anniversary Edition. New York, NY: Dorset House, 1998. This classic book contains a detailed exposition of the idea of egoless programming and of many other aspects of the human side of computer programming. It contains many entertaining anecdotes and is one of the most readable books yet written about software development.
 
@@ -25553,7 +25559,7 @@ tions are useful during construction regardless of whether a team is using Extre
 
 Programming or some other approach.
 
-A more specialized book is Steve Maguire's Writing Solid Code ­ Microsoft's Techniques for Developing Bug-Free C Software (Maguire 1993). It focuses on construction practices for commercial-quality software applications, mostly based on the author's experiences working on Microsoft's Office applications. It focuses on techniques applicable in C. It is largely oblivious to object-oriented programming issues, but most of the topics it addresses are relevant in any environment.
+A more specialized book is Steve Maguire's Writing Solid Code ï¿½ Microsoft's Techniques for Developing Bug-Free C Software (Maguire 1993). It focuses on construction practices for commercial-quality software applications, mostly based on the author's experiences working on Microsoft's Office applications. It focuses on techniques applicable in C. It is largely oblivious to object-oriented programming issues, but most of the topics it addresses are relevant in any environment.
 
 Another more specialized book is The Practice of Programming, by Brian Kernighan and Rob Pike (Kernighan and Pike 1999). This book focuses on nitty-gritty, practical aspects of programming, bridging the gap between academic computer-science knowledge and hands-on lessons. It includes discussions of programming style, design, debugging, and testing. It assumes familiarity with C/C++.
 
@@ -25746,28 +25752,28 @@ The original professional organization was the ACM, which publishes Communicatio
 
 Bibliography
 
-"A C Coding Standard." 1991. Unix Review 9, no. 9 (September): 42­43.
-Abdel-Hamid, Tarek K. 1989. "The Dynamics of Software Project Staffing: A System Dynamics Based Simulation Approach." IEEE Transactions on Software Engineering SE-15, no. 2 (February): 109­19.
+"A C Coding Standard." 1991. Unix Review 9, no. 9 (September): 42ï¿½43.
+Abdel-Hamid, Tarek K. 1989. "The Dynamics of Software Project Staffing: A System Dynamics Based Simulation Approach." IEEE Transactions on Software Engineering SE-15, no. 2 (February): 109ï¿½19.
 Abran, Alain, et al. 2001. Swebok: Guide to the Software Engineering Body of Knowledge: Trial Version 1.00-May 2001. Los Alamitos, CA: IEEE Computer Society Press.
-Abrash, Michael. 1992. "Flooring It: The Optimization Challenge." PC Techniques 2, no. 6 (February/March): 82­88.
-Ackerman, A. Frank, Lynne S. Buchwald, and Frank H. Lewski. 1989. "Software Inspections: An Effective Verification Process." IEEE Software, May/June 1989, 31­36.
+Abrash, Michael. 1992. "Flooring It: The Optimization Challenge." PC Techniques 2, no. 6 (February/March): 82ï¿½88.
+Ackerman, A. Frank, Lynne S. Buchwald, and Frank H. Lewski. 1989. "Software Inspections: An Effective Verification Process." IEEE Software, May/June 1989, 31ï¿½36.
 Adams, James L. 2001. Conceptual Blockbusting: A Guide to Better Ideas, 4th ed. Cambridge, MA: Perseus Publishing.
 Aho, Alfred V., Brian W. Kernighan, and Peter J. Weinberg. 1977. The AWK Programming Language. Reading, MA: Addison-Wesley.
 Aho, Alfred V., John E. Hopcroft, and Jeffrey D. Ullman. 1983. Data Structures and Algorithms. Reading, MA: AddisonWesley.
-Albrecht, Allan J. 1979. "Measuring Application Development Productivity." Proceedings of the Joint SHARE/GUIDE/IBM Application Development Symposium, October 1979: 83­92.
+Albrecht, Allan J. 1979. "Measuring Application Development Productivity." Proceedings of the Joint SHARE/GUIDE/IBM Application Development Symposium, October 1979: 83ï¿½92.
 Ambler, Scott. 2003. Agile Database Techniques. New York, NY: John Wiley & Sons.
-Anand, N. 1988. "Clarify Function!" ACM Sigplan Notices 23, no. 6 (June): 69­79.
+Anand, N. 1988. "Clarify Function!" ACM Sigplan Notices 23, no. 6 (June): 69ï¿½79.
 
 Aristotle. The Ethics of Aristotle: The Nicomachean Ethics. Trans. by J.A.K. Thomson. Rev. by Hugh Tredennick. Harmondsworth, Middlesex, England: Penguin, 1976.
-Armenise, Pasquale. 1989. "A Structured Approach to Program Optimization." IEEE Transactions on Software Engineering SE-15, no. 2 (February): 101­8.
+Armenise, Pasquale. 1989. "A Structured Approach to Program Optimization." IEEE Transactions on Software Engineering SE-15, no. 2 (February): 101ï¿½8.
 Arnold, Ken, James Gosling, and David Holmes. 2000. The Java Programming Language, 3d ed. Boston, MA: AddisonWesley.
 Arthur, Lowell J. 1988. Software Evolution: The Software Maintenance Challenge. New York, NY: John Wiley & Sons.
-Augustine, N. R. 1979. "Augustine's Laws and Major System Development Programs." Defense Systems Management Review: 50­76.
+Augustine, N. R. 1979. "Augustine's Laws and Major System Development Programs." Defense Systems Management Review: 50ï¿½76.
 Babich, W. 1986. Software Configuration Management. Reading, MA: AddisonWesley.
 Bachman, Charles W. 1973. "The Programmer as Navigator." Turing Award Lecture. Communications of the ACM 16, no. 11 (November): 653.
 Baecker, Ronald M., and Aaron Marcus. 1990. Human Factors and Typography for More Readable Programs. Reading, MA: Addison-Wesley.
 Bairdain, E. F. 1964. "Research Studies of Programmers and Programming." Unpublished studies reported in Boehm 1981.
-Baker, F. Terry, and Harlan D. Mills. 1973. "Chief Programmer Teams." Datamation 19, no. 12 (December): 58­61.
+Baker, F. Terry, and Harlan D. Mills. 1973. "Chief Programmer Teams." Datamation 19, no. 12 (December): 58ï¿½61.
 Barbour, Ian G. 1966. Issues in Science and Religion. New York, NY: Harper & Row.
 
 863
@@ -25778,27 +25784,27 @@ Bibliography
 
 Barbour, Ian G. 1974. Myths, Models, and Paradigms: A Comparative Study in Science and Religion. New York, NY: Harper & Row.
 Barwell, Fred, et al. 2002. Professional VB.NET, 2d ed. Birmingham, UK: Wrox.
-Basili, V. R., and B. T. Perricone. 1984. "Software Errors and Complexity: An Empirical Investigation." Communications of the ACM 27, no. 1 (January): 42­52.
-Basili, Victor R., and Albert J. Turner. 1975. "Iterative Enhancement: A Practical Technique for Software Development." IEEE Transactions on Software Engineering SE-1, no. 4 (December): 390­96.
-Basili, Victor R., and David M. Weiss. 1984. "A Methodology for Collecting Valid Software Engineering Data." IEEE Transactions on Software Engineering SE-10, no. 6 (November): 728­38.
-Basili, Victor R., and Richard W. Selby. 1987. "Comparing the Effectiveness of Software Testing Strategies." IEEE Transactions on Software Engineering SE-13, no. 12 (December): 1278­96.
+Basili, V. R., and B. T. Perricone. 1984. "Software Errors and Complexity: An Empirical Investigation." Communications of the ACM 27, no. 1 (January): 42ï¿½52.
+Basili, Victor R., and Albert J. Turner. 1975. "Iterative Enhancement: A Practical Technique for Software Development." IEEE Transactions on Software Engineering SE-1, no. 4 (December): 390ï¿½96.
+Basili, Victor R., and David M. Weiss. 1984. "A Methodology for Collecting Valid Software Engineering Data." IEEE Transactions on Software Engineering SE-10, no. 6 (November): 728ï¿½38.
+Basili, Victor R., and Richard W. Selby. 1987. "Comparing the Effectiveness of Software Testing Strategies." IEEE Transactions on Software Engineering SE-13, no. 12 (December): 1278ï¿½96.
 Basili, Victor R., et al. 2002. "Lessons learned from 25 years of process improvement: The Rise and Fall of the NASA Software Engineering Laboratory," Proceedings of the 24th International Conference on Software Engineering, Orlando, FL.
-Basili, Victor R., Richard W. Selby, and David H. Hutchens. 1986. "Experimentation in Software Engineering." IEEE Transactions on Software Engineering SE-12, no. 7 (July): 733­43.
-Basili, Victor, L. Briand, and W.L. Melo. 1996. "A Validation of Object-Oriented Design Metrics as Quality Indicators," IEEE Transactions on Software Engineering, October 1996, 751­761.
+Basili, Victor R., Richard W. Selby, and David H. Hutchens. 1986. "Experimentation in Software Engineering." IEEE Transactions on Software Engineering SE-12, no. 7 (July): 733ï¿½43.
+Basili, Victor, L. Briand, and W.L. Melo. 1996. "A Validation of Object-Oriented Design Metrics as Quality Indicators," IEEE Transactions on Software Engineering, October 1996, 751ï¿½761.
 Bass, Len, Paul Clements, and Rick Kazman. 2003. Software Architecture in Practice, 2d ed. Boston, MA: AddisonWesley.
 
-Bastani, Farokh, and Sitharama Iyengar. 1987. "The Effect of Data Structures on the Logical Complexity of Programs." Communications of the ACM 30, no. 3 (March): 250­59.
+Bastani, Farokh, and Sitharama Iyengar. 1987. "The Effect of Data Structures on the Logical Complexity of Programs." Communications of the ACM 30, no. 3 (March): 250ï¿½59.
 Bays, Michael. 1999. Software Release Methodology. Englewood Cliffs, NJ: Prentice Hall.
 Beck, Kent. 2000. Extreme Programming Explained: Embrace Change. Reading, MA: Addison-Wesley.
 Beck, Kent. 2003. Test-Driven Development: By Example. Boston, MA: Addison-Wesley.
-Beck, Kent. 1991. "Think Like An Object." Unix Review 9, no. 10 (October): 39­43.
-Beck, Leland L., and Thomas E. Perkins. 1983. "A Survey of Software Engineering Practice: Tools, Methods, and Results." IEEE Transactions on Software Engineering SE-9, no. 5 (September): 541­61.
+Beck, Kent. 1991. "Think Like An Object." Unix Review 9, no. 10 (October): 39ï¿½43.
+Beck, Leland L., and Thomas E. Perkins. 1983. "A Survey of Software Engineering Practice: Tools, Methods, and Results." IEEE Transactions on Software Engineering SE-9, no. 5 (September): 541ï¿½61.
 Beizer, Boris. 1990. Software Testing Techniques, 2d ed. New York, NY: Van Nostrand Reinhold.
-Bentley, Jon, and Donald Knuth. 1986. "Literate Programming." Communications of the ACM 29, no. 5 (May): 364­69.
-Bentley, Jon, Donald Knuth, and Doug McIlroy. 1986. "A Literate Program." Communications of the ACM 29, no. 5 (May): 471­83.
+Bentley, Jon, and Donald Knuth. 1986. "Literate Programming." Communications of the ACM 29, no. 5 (May): 364ï¿½69.
+Bentley, Jon, Donald Knuth, and Doug McIlroy. 1986. "A Literate Program." Communications of the ACM 29, no. 5 (May): 471ï¿½83.
 Bentley, Jon. 1982. Writing Efficient Programs. Englewood Cliffs, NJ: Prentice Hall.
 Bentley, Jon. 1988. More Programming Pearls: Confessions of a Coder. Reading, MA: Addison-Wesley.
-Bentley, Jon. 1991. "Software Exploratorium: Writing Efficient C Programs." Unix Review 9, no. 8 (August): 62­73.
+Bentley, Jon. 1991. "Software Exploratorium: Writing Efficient C Programs." Unix Review 9, no. 8 (August): 62ï¿½73.
 Bentley, Jon. 2000. Programming Pearls, 2d ed. Reading, MA: Addison-Wesley.
 
 Bibliography
@@ -25806,9 +25812,9 @@ Bibliography
 865
 
 Berczuk, Stephen P. and Brad Appleton. 2003. Software Configuration Management Patterns: Effective Teamwork, Practical Integration. Boston, MA: AddisonWesley.
-Berry, R. E., and B. A. E. Meekings. 1985. "A Style Analysis of C Programs." Communications of the ACM 28, no. 1 (January): 80­88.
-Bersoff, Edward H. 1984. "Elements of Software Configuration Management." IEEE Transactions on Software Engineering SE-10, no. 1 (January): 79­87.
-Bersoff, Edward H., and Alan M. Davis. 1991. "Impacts of Life Cycle Models on Software Configuration Management." Communications of the ACM 34, no. 8 (August): 104­18.
+Berry, R. E., and B. A. E. Meekings. 1985. "A Style Analysis of C Programs." Communications of the ACM 28, no. 1 (January): 80ï¿½88.
+Bersoff, Edward H. 1984. "Elements of Software Configuration Management." IEEE Transactions on Software Engineering SE-10, no. 1 (January): 79ï¿½87.
+Bersoff, Edward H., and Alan M. Davis. 1991. "Impacts of Life Cycle Models on Software Configuration Management." Communications of the ACM 34, no. 8 (August): 104ï¿½18.
 Bersoff, Edward H., et al. 1980. Software Configuration Management. Englewood Cliffs, NJ: Prentice Hall.
 Birrell, N. D., and M. A. Ould. 1985. A Practical Handbook for Software Development. Cambridge, England: Cambridge University Press.
 Bloch, Joshua. 2001. Effective Java Programming Language Guide. Boston, MA: Addison-Wesley.
@@ -25819,75 +25825,75 @@ Boddie, John. 1987. Crunch Mode. New York, NY: Yourdon Press.
 Boehm, Barry and Richard Turner. 2004. Balancing Agility and Discipline: A Guide for the Perplexed. Boston, MA: AddisonWesley.
 
 Boehm, Barry W. 1981. Software Engineering Economics. Englewood Cliffs, NJ: Prentice Hall.
-Boehm, Barry W. 1984. "Software Engineering Economics." IEEE Transactions on Software Engineering SE-10, no. 1 (January): 4­21.
-Boehm, Barry W. 1987a. "Improving Software Productivity." IEEE Computer, September, 43­57.
-Boehm, Barry W. 1987b. "Industrial Software Metrics Top 10 List." IEEE Software 4, no. 9 (September): 84­85.
-Boehm, Barry W. 1988. "A Spiral Model of Software Development and Enhancement." Computer, May, 61­72.
-Boehm, Barry W., and Philip N. Papaccio. 1988. "Understanding and Controlling Software Costs." IEEE Transactions on Software Engineering SE-14, no. 10 (October): 1462­77.
+Boehm, Barry W. 1984. "Software Engineering Economics." IEEE Transactions on Software Engineering SE-10, no. 1 (January): 4ï¿½21.
+Boehm, Barry W. 1987a. "Improving Software Productivity." IEEE Computer, September, 43ï¿½57.
+Boehm, Barry W. 1987b. "Industrial Software Metrics Top 10 List." IEEE Software 4, no. 9 (September): 84ï¿½85.
+Boehm, Barry W. 1988. "A Spiral Model of Software Development and Enhancement." Computer, May, 61ï¿½72.
+Boehm, Barry W., and Philip N. Papaccio. 1988. "Understanding and Controlling Software Costs." IEEE Transactions on Software Engineering SE-14, no. 10 (October): 1462ï¿½77.
 Boehm, Barry W., ed. 1989. Tutorial: Software Risk Management. Washington, DC: IEEE Computer Society Press.
 Boehm, Barry W., et al. 1978. Characteristics of Software Quality. New York, NY: North-Holland.
-Boehm, Barry W., et al. 1984. "A Software Development Environment for Improving Productivity." Computer, June, 30­ 44.
-Boehm, Barry W., T. E. Gray, and T. Seewaldt. 1984. "Prototyping Versus Specifying: A Multiproject Experiment." IEEE Transactions on Software Engineering SE10, no. 3 (May): 290­303. Also in Jones 1986b.
+Boehm, Barry W., et al. 1984. "A Software Development Environment for Improving Productivity." Computer, June, 30ï¿½ 44.
+Boehm, Barry W., T. E. Gray, and T. Seewaldt. 1984. "Prototyping Versus Specifying: A Multiproject Experiment." IEEE Transactions on Software Engineering SE10, no. 3 (May): 290ï¿½303. Also in Jones 1986b.
 Boehm, Barry, et al. 2000a. Software Cost Estimation with Cocomo II. Boston, MA: Addison-Wesley.
-Boehm, Barry. 2000b. "Unifying Software Engineering and Systems Engineering," IEEE Computer, March 2000, 114­116.
+Boehm, Barry. 2000b. "Unifying Software Engineering and Systems Engineering," IEEE Computer, March 2000, 114ï¿½116.
 
 866
 
 Bibliography
 
-Boehm-Davis, Deborah, Sylvia Sheppard, and John Bailey. 1987. "Program Design Languages: How Much Detail Should They Include?" International Journal of Man-Machine Studies 27, no. 4: 337­47.
-Böhm, C., and G. Jacopini. 1966. "Flow Diagrams, Turing Machines and Languages with Only Two Formation Rules." Communications of the ACM 9, no. 5 (May): 366­71.
+Boehm-Davis, Deborah, Sylvia Sheppard, and John Bailey. 1987. "Program Design Languages: How Much Detail Should They Include?" International Journal of Man-Machine Studies 27, no. 4: 337ï¿½47.
+Bï¿½hm, C., and G. Jacopini. 1966. "Flow Diagrams, Turing Machines and Languages with Only Two Formation Rules." Communications of the ACM 9, no. 5 (May): 366ï¿½71.
 Booch, Grady. 1987. Software Engineering with Ada, 2d ed. Menlo Park, CA: Benjamin/Cummings.
 Booch, Grady. 1994. Object Oriented Analysis and Design with Applications, 2d ed. Boston, MA: Addison-Wesley.
 Booth, Rick. 1997. Inner Loops : A Sourcebook for Fast 32-bit Software Development. Boston, MA: Addison-Wesley.
-Boundy, David. 1991. "A Taxonomy of Programmers." ACM SIGSOFT Software Engineering Notes 16, no. 4 (October): 23­ 30.
+Boundy, David. 1991. "A Taxonomy of Programmers." ACM SIGSOFT Software Engineering Notes 16, no. 4 (October): 23ï¿½ 30.
 Brand, Stewart. 1995. How Buildings Learn: What Happens After They're Built. Penguin USA.
-Branstad, Martha A., John C. Cherniavsky, and W. Richards Adrion. 1980. "Validation, Verification, and Testing for the Individual Programmer." Computer, December, 24­30.
+Branstad, Martha A., John C. Cherniavsky, and W. Richards Adrion. 1980. "Validation, Verification, and Testing for the Individual Programmer." Computer, December, 24ï¿½30.
 Brockmann, R. John. 1990. Writing Better Computer User Documentation: From Paper to Hypertext: Version 2.0. New York, NY: John Wiley & Sons.
-Brooks, Frederick P., Jr. 1987. "No Silver Bullets--Essence and Accidents of Software Engineering." Computer, April, 10­ 19.
+Brooks, Frederick P., Jr. 1987. "No Silver Bullets--Essence and Accidents of Software Engineering." Computer, April, 10ï¿½ 19.
 Brooks, Frederick P., Jr. 1995. The Mythical Man-Month: Essays on Software Engineering, Anniversary Edition (2d ed.). Reading, MA: Addison-Wesley.
 
-Brooks, Ruven. 1977. "Towards a Theory of the Cognitive Processes in Computer Programming." International Journal of Man-Machine Studies 9:737­51.
-Brooks, W. Douglas. 1981. "Software Technology Payoff--Some Statistical Evidence." The Journal of Systems and Software 2:3­9.
+Brooks, Ruven. 1977. "Towards a Theory of the Cognitive Processes in Computer Programming." International Journal of Man-Machine Studies 9:737ï¿½51.
+Brooks, W. Douglas. 1981. "Software Technology Payoff--Some Statistical Evidence." The Journal of Systems and Software 2:3ï¿½9.
 Brown, A. R., and W. A. Sampson. 1973. Program Debugging. New York, NY: American Elsevier.
 Buschman, Frank, et al. 1996. Pattern-Oriented Software Architecture, Volume 1: A System of Patterns. New York, NY: John Wiley & Sons.
 Bush, Marilyn, and John Kelly. 1989. "The Jet Propulsion Laboratory's Experience with Formal Inspections." Proceedings of the Fourteenth Annual Software Engineering Workshop, November 29, 1989. Greenbelt, MD: Goddard Space Flight Center. Document SEL-89-007.
-Caine, S. H., and E. K. Gordon. 1975. "PDL--A Tool for Software Design." AFIPS Proceedings of the 1975 National Computer Conference 44. Montvale, NJ: AFIPS Press, 271­76.
-Card, David N. 1987. "A Software Technology Evaluation Program." Information and Software Technology 29, no. 6 (July/ August): 291­300.
-Card, David N., Frank E. McGarry, and Gerald T. Page. 1987. "Evaluating Software Engineering Technologies." IEEE Transactions on Software Engineering SE-13, no. 7 (July): 845­51.
-Card, David N., Victor E. Church, and William W. Agresti. 1986. "An Empirical Study of Software Design Practices." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 264­71.
+Caine, S. H., and E. K. Gordon. 1975. "PDL--A Tool for Software Design." AFIPS Proceedings of the 1975 National Computer Conference 44. Montvale, NJ: AFIPS Press, 271ï¿½76.
+Card, David N. 1987. "A Software Technology Evaluation Program." Information and Software Technology 29, no. 6 (July/ August): 291ï¿½300.
+Card, David N., Frank E. McGarry, and Gerald T. Page. 1987. "Evaluating Software Engineering Technologies." IEEE Transactions on Software Engineering SE-13, no. 7 (July): 845ï¿½51.
+Card, David N., Victor E. Church, and William W. Agresti. 1986. "An Empirical Study of Software Design Practices." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 264ï¿½71.
 Card, David N., with Robert L. Glass. 1990. Measuring Software Design Quality. Englewood Cliffs, NJ: Prentice Hall.
 
 Bibliography
 
 867
 
-Card, David, Gerald Page, and Frank McGarry. 1985. "Criteria for Software Modularization." Proceedings of the 8th International Conference on Software Engineering. Washington, DC: IEEE Computer Society Press, 372­77.
+Card, David, Gerald Page, and Frank McGarry. 1985. "Criteria for Software Modularization." Proceedings of the 8th International Conference on Software Engineering. Washington, DC: IEEE Computer Society Press, 372ï¿½77.
 Carnegie, Dale. 1981. How to Win Friends and Influence People, Revised Edition. New York, NY: Pocket Books.
-Chase, William G., and Herbert A. Simon. 1973. "Perception in Chess." Cognitive Psychology 4:55­81.
+Chase, William G., and Herbert A. Simon. 1973. "Perception in Chess." Cognitive Psychology 4:55ï¿½81.
 Clark, R. Lawrence. 1973. "A Linguistic Contribution of GOTO-less Programming," Datamation, December 1973.
 Clements, Paul, ed. 2003. Documenting Software Architectures: Views and Beyond. Boston, MA: Addison-Wesley.
 Clements, Paul, Rick Kazman, and Mark Klein. 2002. Evaluating Software Architectures: Methods and Case Studies. Boston, MA: Addison-Wesley.
 Coad, Peter, and Edward Yourdon. 1991. Object-Oriented Design. Englewood Cliffs, NJ: Yourdon Press.
-Cobb, Richard H., and Harlan D. Mills. 1990. "Engineering Software Under Statistical Quality Control." IEEE Software 7, no. 6 (November): 45­54.
+Cobb, Richard H., and Harlan D. Mills. 1990. "Engineering Software Under Statistical Quality Control." IEEE Software 7, no. 6 (November): 45ï¿½54.
 Cockburn, Alistair. 2000. Writing Effective Use Cases. Boston, MA: Addison-Wesley.
 Cockburn, Alistair. 2002. Agile Software Development. Boston, MA: Addison-Wesley.
 Collofello, Jim, and Scott Woodfield. 1989. "Evaluating the Effectiveness of Reliability Assurance Techniques." Journal of Systems and Software 9, no. 3 (March).
-Comer, Douglas. 1981. "Principles of Program Design Induced from Experience with Small Public Programs." IEEE Transactions on Software Engineering SE7, no. 2 (March): 169­74.
+Comer, Douglas. 1981. "Principles of Program Design Induced from Experience with Small Public Programs." IEEE Transactions on Software Engineering SE7, no. 2 (March): 169ï¿½74.
 Constantine, Larry L. 1990a. "Comments on `On Criteria for Module Interfaces.'" IEEE Transactions on Software Engineering SE-16, no. 12 (December): 1440.
 
-Constantine, Larry L. 1990b. "Objects, Functions, and Program Extensibility." Computer Language, January, 34­56.
+Constantine, Larry L. 1990b. "Objects, Functions, and Program Extensibility." Computer Language, January, 34ï¿½56.
 Conte, S. D., H. E. Dunsmore, and V. Y. Shen. 1986. Software Engineering Metrics and Models. Menlo Park, CA: Benjamin/ Cummings.
 Cooper, Doug, and Michael Clancy. 1982. Oh! Pascal! 2d ed. New York, NY: Norton.
-Cooper, Kenneth G. and Thomas W. Mullen. 1993. "Swords and Plowshares: The Rework Cycles of Defense and Commercial Software Development Projects," American Programmer, May 1993, 41­51.
-Corbató, Fernando J. 1991. "On Building Systems That Will Fail." 1991 Turing Award Lecture. Communications of the ACM 34, no. 9 (September): 72­81.
+Cooper, Kenneth G. and Thomas W. Mullen. 1993. "Swords and Plowshares: The Rework Cycles of Defense and Commercial Software Development Projects," American Programmer, May 1993, 41ï¿½51.
+Corbatï¿½, Fernando J. 1991. "On Building Systems That Will Fail." 1991 Turing Award Lecture. Communications of the ACM 34, no. 9 (September): 72ï¿½81.
 Cornell, Gary and Jonathan Morrison. 2002. Programming VB .NET: A Guide for Experienced Programmers, Berkeley, CA: Apress.
 Corwin, Al. 1991. Private communication.
-CSTB 1990. "Scaling Up: A Research Agenda for Software Engineering." Excerpts from a report by the Computer Science and Technology Board. Communications of the ACM 33, no. 3 (March): 281­93.
+CSTB 1990. "Scaling Up: A Research Agenda for Software Engineering." Excerpts from a report by the Computer Science and Technology Board. Communications of the ACM 33, no. 3 (March): 281ï¿½93.
 Curtis, Bill, ed. 1985. Tutorial: Human Factors in Software Development. Los Angeles, CA: IEEE Computer Society Press.
-Curtis, Bill, et al. 1986. "Software Psychology: The Need for an Interdisciplinary Program." Proceedings of the IEEE 74, no. 8: 1092­1106.
-Curtis, Bill, et al. 1989. "Experimentation of Software Documentation Formats." Journal of Systems and Software 9, no. 2 (February): 167­207.
-Curtis, Bill, H. Krasner, and N. Iscoe. 1988. "A Field Study of the Software Design Process for Large Systems." Communications of the ACM 31, no. 11 (November): 1268­87.
+Curtis, Bill, et al. 1986. "Software Psychology: The Need for an Interdisciplinary Program." Proceedings of the IEEE 74, no. 8: 1092ï¿½1106.
+Curtis, Bill, et al. 1989. "Experimentation of Software Documentation Formats." Journal of Systems and Software 9, no. 2 (February): 167ï¿½207.
+Curtis, Bill, H. Krasner, and N. Iscoe. 1988. "A Field Study of the Software Design Process for Large Systems." Communications of the ACM 31, no. 11 (November): 1268ï¿½87.
 
 868
 
@@ -25895,58 +25901,58 @@ Bibliography
 
 Curtis, Bill. 1981. "Substantiating Programmer Variability." Proceedings of the IEEE 69, no. 7: 846.
 Cusumano, Michael and Richard W. Selby. 1995. Microsoft Secrets. New York, NY: The Free Press.
-Cusumano, Michael, et al. 2003. "Software Development Worldwide: The State of the Practice," IEEE Software, November/ December 2003, 28­34.
+Cusumano, Michael, et al. 2003. "Software Development Worldwide: The State of the Practice," IEEE Software, November/ December 2003, 28ï¿½34.
 Dahl, O. J., E. W. Dijkstra, and C. A. R. Hoare. 1972. Structured Programming. New York, NY: Academic Press.
 Date, Chris. 1977. An Introduction to Database Systems. Reading, MA: AddisonWesley.
-Davidson, Jack W., and Anne M. Holler. 1992. "Subprogram Inlining: A Study of Its Effects on Program Execution Time." IEEE Transactions on Software Engineering SE-18, no. 2 (February): 89­102.
-Davis, P. J. 1972. "Fidelity in Mathematical Discourse: Is One and One Really Two?" American Mathematical Monthly, March, 252­63.
+Davidson, Jack W., and Anne M. Holler. 1992. "Subprogram Inlining: A Study of Its Effects on Program Execution Time." IEEE Transactions on Software Engineering SE-18, no. 2 (February): 89ï¿½102.
+Davis, P. J. 1972. "Fidelity in Mathematical Discourse: Is One and One Really Two?" American Mathematical Monthly, March, 252ï¿½63.
 DeGrace, Peter, and Leslie Stahl. 1990. Wicked Problems, Righteous Solutions: A Catalogue of Modern Software Engineering Paradigms. Englewood Cliffs, NJ: Yourdon Press.
 DeMarco, Tom and Timothy Lister. 1999. Peopleware: Productive Projects and Teams, 2d ed. New York, NY: Dorset House.
-DeMarco, Tom, and Timothy Lister. 1985. "Programmer Performance and the Effects of the Workplace." Proceedings of the 8th International Conference on Software Engineering. Washington, DC: IEEE Computer Society Press, 268­72.
+DeMarco, Tom, and Timothy Lister. 1985. "Programmer Performance and the Effects of the Workplace." Proceedings of the 8th International Conference on Software Engineering. Washington, DC: IEEE Computer Society Press, 268ï¿½72.
 DeMarco, Tom. 1979. Structured Analysis and Systems Specification: Tools and Techniques. Englewood Cliffs, NJ: Prentice Hall.
 DeMarco, Tom. 1982. Controlling Software Projects. New York, NY: Yourdon Press.
 
-DeMillo, Richard A., Richard J. Lipton, and Alan J. Perlis. 1979. "Social Processes and Proofs of Theorems and Programs." Communications of the ACM 22, no. 5 (May): 271­80.
-Dijkstra, Edsger. 1965. "Programming Considered as a Human Activity." Proceedings of the 1965 IFIP Congress. Amsterdam: North-Holland, 213­17. Reprinted in Yourdon 1982.
-Dijkstra, Edsger. 1968. "Go To Statement Considered Harmful." Communications of the ACM 11, no. 3 (March): 147­48.
+DeMillo, Richard A., Richard J. Lipton, and Alan J. Perlis. 1979. "Social Processes and Proofs of Theorems and Programs." Communications of the ACM 22, no. 5 (May): 271ï¿½80.
+Dijkstra, Edsger. 1965. "Programming Considered as a Human Activity." Proceedings of the 1965 IFIP Congress. Amsterdam: North-Holland, 213ï¿½17. Reprinted in Yourdon 1982.
+Dijkstra, Edsger. 1968. "Go To Statement Considered Harmful." Communications of the ACM 11, no. 3 (March): 147ï¿½48.
 Dijkstra, Edsger. 1969. "Structured Programming." Reprinted in Yourdon 1979.
-Dijkstra, Edsger. 1972. "The Humble Programmer." Communications of the ACM 15, no. 10 (October): 859­66.
-Dijkstra, Edsger. 1985. "Fruits of Misunderstanding." Datamation, February 15, 86­87.
-Dijkstra, Edsger. 1989. "On the Cruelty of Really Teaching Computer Science." Communications of the ACM 32, no. 12 (December): 1397­1414.
+Dijkstra, Edsger. 1972. "The Humble Programmer." Communications of the ACM 15, no. 10 (October): 859ï¿½66.
+Dijkstra, Edsger. 1985. "Fruits of Misunderstanding." Datamation, February 15, 86ï¿½87.
+Dijkstra, Edsger. 1989. "On the Cruelty of Really Teaching Computer Science." Communications of the ACM 32, no. 12 (December): 1397ï¿½1414.
 Dunn, Robert H. 1984. Software Defect Removal. New York, NY: McGraw-Hill.
 Ellis, Margaret A., and Bjarne Stroustrup. 1990. The Annotated C++ Reference Manual. Boston, MA: Addison-Wesley.
 Elmasri, Ramez, and Shamkant B. Navathe. 1989. Fundamentals of Database Systems. Redwood City, CA: Benjamin/Cummings.
-Elshoff, James L. 1976. "An Analysis of Some Commercial PL/I Programs." IEEE Transactions on Software Engineering SE2, no. 2 (June): 113­20.
-Elshoff, James L. 1977. "The Influence of Structured Programming on PL/I Program Profiles." IEEE Transactions on Software Engineering SE-3, no. 5 (September): 364­68.
+Elshoff, James L. 1976. "An Analysis of Some Commercial PL/I Programs." IEEE Transactions on Software Engineering SE2, no. 2 (June): 113ï¿½20.
+Elshoff, James L. 1977. "The Influence of Structured Programming on PL/I Program Profiles." IEEE Transactions on Software Engineering SE-3, no. 5 (September): 364ï¿½68.
 
 Bibliography
 
 869
 
-Elshoff, James L., and Michael Marcotty. 1982. "Improving Computer Program Readability to Aid Modification." Communications of the ACM 25, no. 8 (August): 512­21.
-Endres, Albert. 1975. "An Analysis of Errors and Their Causes in System Programs." IEEE Transactions on Software Engineering SE-1, no. 2 (June): 140­49.
-Evangelist, Michael. 1984. "Program Complexity and Programming Style." Proceedings of the First International Conference on Data Engineering. New York, NY: IEEE Computer Society Press, 534­41.
-Fagan, Michael E. 1976. "Design and Code Inspections to Reduce Errors in Program Development." IBM Systems Journal 15, no. 3: 182­211.
-Fagan, Michael E. 1986. "Advances in Software Inspections." IEEE Transactions on Software Engineering SE-12, no. 7 (July): 744­51.
+Elshoff, James L., and Michael Marcotty. 1982. "Improving Computer Program Readability to Aid Modification." Communications of the ACM 25, no. 8 (August): 512ï¿½21.
+Endres, Albert. 1975. "An Analysis of Errors and Their Causes in System Programs." IEEE Transactions on Software Engineering SE-1, no. 2 (June): 140ï¿½49.
+Evangelist, Michael. 1984. "Program Complexity and Programming Style." Proceedings of the First International Conference on Data Engineering. New York, NY: IEEE Computer Society Press, 534ï¿½41.
+Fagan, Michael E. 1976. "Design and Code Inspections to Reduce Errors in Program Development." IBM Systems Journal 15, no. 3: 182ï¿½211.
+Fagan, Michael E. 1986. "Advances in Software Inspections." IEEE Transactions on Software Engineering SE-12, no. 7 (July): 744ï¿½51.
 Federal Software Management Support Center. 1986. Programmers Work-bench Handbook. Falls Church, VA: Office of Software Development and Information Technology.
 Feiman, J., and M. Driver. 2002. "Leading Programming Languages for IT Portfolio Planning," Gartner Research report SPA17-6636, September 27, 2002.
-Fetzer, James H. 1988. "Program Verification: The Very Idea." Communications of the ACM 31, no. 9 (September): 1048­ 63.
+Fetzer, James H. 1988. "Program Verification: The Very Idea." Communications of the ACM 31, no. 9 (September): 1048ï¿½ 63.
 FIPS PUB 38, Guidelines for Documentation of Computer Programs and Automated Data Systems. 1976. U.S. Department of Commerce. National Bureau of Standards. Washington, DC: U.S. Government Printing Office, Feb. 15.
 Fishman, Charles. 1996. "They Write the Right Stuff," Fast Company, December 1996.
 
-Fjelstad, R. K., and W. T. Hamlen. 1979. "Applications Program Maintenance Study: Report to our Respondents." Proceedings Guide 48, Philadelphia. Reprinted in Tutorial on Software Maintenance, G. Parikh and N. Zvegintzov, eds. Los Alamitos, CA: CS Press, 1983: 13­27.
-Floyd, Robert. 1979. "The Paradigms of Programming." Communications of the ACM 22, no. 8 (August): 455­60.
+Fjelstad, R. K., and W. T. Hamlen. 1979. "Applications Program Maintenance Study: Report to our Respondents." Proceedings Guide 48, Philadelphia. Reprinted in Tutorial on Software Maintenance, G. Parikh and N. Zvegintzov, eds. Los Alamitos, CA: CS Press, 1983: 13ï¿½27.
+Floyd, Robert. 1979. "The Paradigms of Programming." Communications of the ACM 22, no. 8 (August): 455ï¿½60.
 Fowler, Martin. 1999. Refactoring: Improving the Design of Existing Code. Reading, MA: Addison-Wesley.
 Fowler, Martin. 2002. Patterns of Enterprise Application Architecture. Boston, MA: Addison-Wesley.
 Fowler, Martin. 2003. UML Distilled: A Brief Guide to the Standard Object Modeling Language, 3d ed. Boston, MA: AddisonWesley.
 Fowler, Martin. 2004. UML Distilled, 3d ed. Boston, MA: Addison-Wesley.
-Fowler, Priscilla J. 1986. "In-Process Inspections of Work Products at AT&T." AT&T Technical Journal, March/April, 102­12.
+Fowler, Priscilla J. 1986. "In-Process Inspections of Work Products at AT&T." AT&T Technical Journal, March/April, 102ï¿½12.
 Foxall, James. 2003. Practical Standards for Microsoft Visual Basic .NET. Redmond, WA: Microsoft Press.
 Freedman, Daniel P., and Gerald M. Weinberg. 1990. Handbook of Walkthroughs, Inspections and Technical Reviews, 3d ed. New York, NY: Dorset House.
 Freeman, Peter, and Anthony I. Wasserman, eds. 1983. Tutorial on Software Design Techniques, 4th ed. Silver Spring, MD: IEEE Computer Society Press.
 Gamma, Erich, et al. 1995. Design Patterns. Reading, MA: Addison-Wesley.
 Gerber, Richard. 2002. Software Optimization Cookbook: High-Performance Recipes for the Intel Architecture. Intel Press.
-Gibson, Elizabeth. 1990. "Objects--Born and Bred." BYTE, October, 245­54.
+Gibson, Elizabeth. 1990. "Objects--Born and Bred." BYTE, October, 245ï¿½54.
 
 870
 
@@ -25961,34 +25967,34 @@ Glass, Robert L. 1982. Modern Programming Practices: A Report from Industry. Eng
 Glass, Robert L. 1988. Software Communication Skills. Englewood Cliffs, NJ: Prentice Hall.
 Glass, Robert L. 1991. Software Conflict: Essays on the Art and Science of Software Engineering. Englewood Cliffs, NJ: Yourdon Press.
 Glass, Robert L. 1995. Software Creativity. Reading, MA: Addison-Wesley.
-Glass, Robert L. 1999. "Inspections--Some Surprising Findings," Communications of the ACM, April 1999, 17­19.
-Glass, Robert L. 1999. "The realities of software technology payoffs," Communications of the ACM, February 1999, 74­79.
+Glass, Robert L. 1999. "Inspections--Some Surprising Findings," Communications of the ACM, April 1999, 17ï¿½19.
+Glass, Robert L. 1999. "The realities of software technology payoffs," Communications of the ACM, February 1999, 74ï¿½79.
 Glass, Robert L. 2003. Facts and Fallacies of Software Engineering. Boston, MA: Addison-Wesley.
 Glass, Robert L., and Ronald A. Noiseux. 1981. Software Maintenance Guidebook. Englewood Cliffs, NJ: Prentice Hall.
-Gordon, Ronald D. 1979. "Measuring Improvements in Program Clarity." IEEE Transactions on Software Engineering SE5, no. 2 (March): 79­90.
+Gordon, Ronald D. 1979. "Measuring Improvements in Program Clarity." IEEE Transactions on Software Engineering SE5, no. 2 (March): 79ï¿½90.
 
-Gordon, Scott V., and James M. Bieman. 1991. "Rapid Prototyping and Software Quality: Lessons from Industry." Ninth Annual Pacific Northwest Software Quality Conference, October 7­8. Oregon Convention Center, Portland, OR.
-Gorla, N., A. C. Benander, and B. A. Benander. 1990. "Debugging Effort Estimation Using Software Metrics." IEEE Transactions on Software Engineering SE16, no. 2 (February): 223­31.
-Gould, John D. 1975. "Some Psychological Evidence on How People Debug Computer Programs." International Journal of Man-Machine Studies 7:151­82.
-Grady, Robert B. 1987. "Measuring and Managing Software Maintenance." IEEE Software 4, no. 9 (September): 34­45.
-Grady, Robert B. 1993. "Practical Rules of Thumb for Software Managers." The Software Practitioner 3, no. 1 (January/February): 4­6.
-Grady, Robert B. 1999. "An Economic Release Decision Model: Insights into Software Project Management." In Proceedings of the Applications of Software Measurement Conference, 227­239. Orange Park, FL: Software Quality Engineering.
+Gordon, Scott V., and James M. Bieman. 1991. "Rapid Prototyping and Software Quality: Lessons from Industry." Ninth Annual Pacific Northwest Software Quality Conference, October 7ï¿½8. Oregon Convention Center, Portland, OR.
+Gorla, N., A. C. Benander, and B. A. Benander. 1990. "Debugging Effort Estimation Using Software Metrics." IEEE Transactions on Software Engineering SE16, no. 2 (February): 223ï¿½31.
+Gould, John D. 1975. "Some Psychological Evidence on How People Debug Computer Programs." International Journal of Man-Machine Studies 7:151ï¿½82.
+Grady, Robert B. 1987. "Measuring and Managing Software Maintenance." IEEE Software 4, no. 9 (September): 34ï¿½45.
+Grady, Robert B. 1993. "Practical Rules of Thumb for Software Managers." The Software Practitioner 3, no. 1 (January/February): 4ï¿½6.
+Grady, Robert B. 1999. "An Economic Release Decision Model: Insights into Software Project Management." In Proceedings of the Applications of Software Measurement Conference, 227ï¿½239. Orange Park, FL: Software Quality Engineering.
 Grady, Robert B., and Tom Van Slack. 1994. "Key Lessons in Achieving Widespread Inspection Use," IEEE Software, July 1994.
 Grady, Robert B. 1992. Practical Software Metrics For Project Management And Process Improvement. Englewood Cliffs, NJ: Prentice Hall.
 Grady, Robert B., and Deborah L. Caswell. 1987. Software Metrics: Establishing a Company-Wide Program. Englewood Cliffs, NJ: Prentice Hall.
-Green, Paul. 1987. "Human Factors in Computer Systems, Some Useful Readings." Sigchi Bulletin 19, no. 2: 15­20.
+Green, Paul. 1987. "Human Factors in Computer Systems, Some Useful Readings." Sigchi Bulletin 19, no. 2: 15ï¿½20.
 
 Bibliography
 
 871
 
-Gremillion, Lee L. 1984. "Determinants of Program Repair Maintenance Requirements." Communications of the ACM 27, no. 8 (August): 826­32.
+Gremillion, Lee L. 1984. "Determinants of Program Repair Maintenance Requirements." Communications of the ACM 27, no. 8 (August): 826ï¿½32.
 Gries, David. 1981. The Science of Programming. New York, NY: Springer-Verlag.
 Grove, Andrew S. 1983. High Output Management. New York, NY: Random House.
 Haley, Thomas J. 1996. "Software Process Improvement at Raytheon." IEEE Software, November 1996.
-Hansen, John C., and Roger Yim. 1987. "Indentation Styles in C." SIGSMALL/PC Notes 13, no. 3 (August): 20­23.
+Hansen, John C., and Roger Yim. 1987. "Indentation Styles in C." SIGSMALL/PC Notes 13, no. 3 (August): 20ï¿½23.
 Hanson, Dines. 1984. Up and Running. New York, NY: Yourdon Press.
-Harrison, Warren, and Curtis Cook. 1986. "Are Deeply Nested Conditionals Less Readable?" Journal of Systems and Software 6, no. 4 (November): 335­42.
+Harrison, Warren, and Curtis Cook. 1986. "Are Deeply Nested Conditionals Less Readable?" Journal of Systems and Software 6, no. 4 (November): 335ï¿½42.
 Hasan, Jeffrey and Kenneth Tu. 2003. Performance Tuning and Optimizing ASP.NET Applications. Apress.
 Hass, Anne Mette Jonassen. 2003. Configuration Management Principles and Practices, Boston, MA: Addison-Wesley.
 Hatley, Derek J., and Imtiaz A. Pirbhai. 1988. Strategies for Real-Time System Specification. New York, NY: Dorset House.
@@ -25996,20 +26002,20 @@ Hecht, Alan. 1990. "Cute Object-oriented Acronyms Considered FOOlish." Software 
 Heckel, Paul. 1994. The Elements of Friendly Software Design. Alameda, CA: Sybex.
 Hecker, Daniel E. 2001. "Occupational Employment Projections to 2010." Monthly Labor Review, November 2001.
 Hecker, Daniel E. 2004. "Occupational Employment Projections to 2012." Monthly Labor Review, February 2004, Vol. 127, No. 2, pp. 80-105.
-Henry, Sallie, and Dennis Kafura. 1984. "The Evaluation of Software Systems' Structure Using Quantitative Software Metrics." Software--Practice and Experience 14, no. 6 (June): 561­73.
+Henry, Sallie, and Dennis Kafura. 1984. "The Evaluation of Software Systems' Structure Using Quantitative Software Metrics." Software--Practice and Experience 14, no. 6 (June): 561ï¿½73.
 
 Hetzel, Bill. 1988. The Complete Guide to Software Testing, 2d ed. Wellesley, MA: QED Information Systems.
 Highsmith, James A., III. 2000. Adaptive Software Development: A Collaborative Approach to Managing Complex Systems. New York, NY: Dorset House.
 Highsmith, Jim. 2002. Agile Software Development Ecosystems. Boston, MA: Addison-Wesley.
-Hildebrand, J. D. 1989. "An Engineer's Approach." Computer Language, October, 5­7.
-Hoare, Charles Anthony Richard, 1981. "The Emperor's Old Clothes." Communications of the ACM, February 1981, 75­83.
+Hildebrand, J. D. 1989. "An Engineer's Approach." Computer Language, October, 5ï¿½7.
+Hoare, Charles Anthony Richard, 1981. "The Emperor's Old Clothes." Communications of the ACM, February 1981, 75ï¿½83.
 Hollocker, Charles P. 1990. Software Reviews and Audits Handbook. New York, NY: John Wiley & Sons.
-Houghton, Raymond C. 1990. "An Office Library for Software Engineering Professionals." Software Engineering: Tools, Techniques, Practice, May/June, 35­38.
+Houghton, Raymond C. 1990. "An Office Library for Software Engineering Professionals." Software Engineering: Tools, Techniques, Practice, May/June, 35ï¿½38.
 Howard, Michael, and David LeBlanc. 2003. Writing Secure Code, 2d ed. Redmond, WA: Microsoft Press.
 Hughes, Charles E., Charles P. Pfleeger, and Lawrence L. Rose. 1978. Advanced Programming Techniques: A Second Course in Programming Using Fortran. New York, NY: John Wiley & Sons.
 Humphrey, Watts S. 1989. Managing the Software Process. Reading, MA: AddisonWesley.
 Humphrey, Watts S. 1995. A Discipline for Software Engineering. Reading, MA: Addison-Wesley.
-Humphrey, Watts S., Terry R. Snyder, and Ronald R. Willis. 1991. "Software Process Improvement at Hughes Aircraft." IEEE Software 8, no. 4 (July): 11­23.
+Humphrey, Watts S., Terry R. Snyder, and Ronald R. Willis. 1991. "Software Process Improvement at Hughes Aircraft." IEEE Software 8, no. 4 (July): 11ï¿½23.
 Humphrey, Watts. 1997. Introduction to the Personal Software Process. Reading, MA: Addison-Wesley.
 
 872
@@ -26043,12 +26049,12 @@ IEEE Std 830-1998, Recommended Practice for Software Requirements Specifications
 IEEE Std 830-1998. IEEE Recommended Practice for Software Requirements Specifications. Los Alamitos, CA: IEEE Computer Society Press.
 IEEE, 1991. IEEE Software Engineering Standards Collection, Spring 1991 Edition. New York, NY: Institute of Electrical and Electronics Engineers.
 IEEE, 1992. "Rear Adm. Grace Hopper dies at 85." IEEE Computer, February, 84.
-Ingrassia, Frank S. 1976. "The Unit Development Folder (UDF): An Effective Management Tool for Software Development." TRW Technical Report TRW-SS76-11. Also reprinted in Reifer 1986, 366­79.
-Ingrassia, Frank S. 1987. "The Unit Development Folder (UDF): A Ten-Year Perspective." Tutorial: Software Engineering Project Management, ed. Richard H. Thayer. Los Alamitos, CA: IEEE Computer Society Press, 405­15.
+Ingrassia, Frank S. 1976. "The Unit Development Folder (UDF): An Effective Management Tool for Software Development." TRW Technical Report TRW-SS76-11. Also reprinted in Reifer 1986, 366ï¿½79.
+Ingrassia, Frank S. 1987. "The Unit Development Folder (UDF): A Ten-Year Perspective." Tutorial: Software Engineering Project Management, ed. Richard H. Thayer. Los Alamitos, CA: IEEE Computer Society Press, 405ï¿½15.
 Jackson, Michael A. 1975. Principles of Program Design. New York, NY: Academic Press.
 Jacobson, Ivar, Grady Booch, and James Rumbaugh. 1999. The Unified Software Development Process. Reading, MA: Addison-Wesley.
-Johnson, Jim. 1999. "Turning Chaos into Success," Software Magazine, December 1999, 30­39.
-Johnson, Mark. 1994a. "Dr. Boris Beizer on Software Testing: An Interview Part 1," The Software QA Quarterly, Spring 1994, 7­13.
+Johnson, Jim. 1999. "Turning Chaos into Success," Software Magazine, December 1999, 30ï¿½39.
+Johnson, Mark. 1994a. "Dr. Boris Beizer on Software Testing: An Interview Part 1," The Software QA Quarterly, Spring 1994, 7ï¿½13.
 
 V413HAV
 
@@ -26056,23 +26062,23 @@ Bibliography
 
 873
 
-Johnson, Mark. 1994b. "Dr. Boris Beizer on Software Testing: An Interview Part 2," The Software QA Quarterly, Summer 1994, 41­45.
-Johnson, Walter L. 1987. "Some Comments on Coding Practice." ACM SIGSOFT Software Engineering Notes 12, no. 2 (April): 32­35.
-Jones, T. Capers. 1977. "Program Quality and Programmer Productivity." IBM Technical Report TR 02.764, January, 42­ 78. Also in Jones 1986b.
+Johnson, Mark. 1994b. "Dr. Boris Beizer on Software Testing: An Interview Part 2," The Software QA Quarterly, Summer 1994, 41ï¿½45.
+Johnson, Walter L. 1987. "Some Comments on Coding Practice." ACM SIGSOFT Software Engineering Notes 12, no. 2 (April): 32ï¿½35.
+Jones, T. Capers. 1977. "Program Quality and Programmer Productivity." IBM Technical Report TR 02.764, January, 42ï¿½ 78. Also in Jones 1986b.
 Jones, Capers. 1986a. Programming Productivity. New York, NY: McGraw-Hill.
 Jones, T. Capers, ed. 1986b. Tutorial: Programming Productivity: Issues for the Eighties, 2d ed. Los Angeles, CA: IEEE Computer Society Press.
 Jones, Capers. 1996. "Software Defect-Removal Efficiency," IEEE Computer, April 1996.
 Jones, Capers. 1997. Applied Software Measurement: Assuring Productivity and Quality, 2d ed. New York, NY: McGraw-Hill.
 Jones, Capers. 1998. Estimating Software Costs. New York, NY: McGraw-Hill.
 Jones, Capers. 2000. Software Assessments, Benchmarks, and Best Practices. Reading, MA: Addison-Wesley.
-Jones, Capers. 2003. "Variations in Software Development Practices," IEEE Software, November/December 2003, 22­ 27.
-Jonsson, Dan. 1989. "Next: The Elimination of GoTo-Patches?" ACM Sigplan Notices 24, no. 3 (March): 85­92.
-Kaelbling, Michael. 1988. "Programming Languages Should NOT Have Comment Statements." ACM Sigplan Notices 23, no. 10 (October): 59­60.
+Jones, Capers. 2003. "Variations in Software Development Practices," IEEE Software, November/December 2003, 22ï¿½ 27.
+Jonsson, Dan. 1989. "Next: The Elimination of GoTo-Patches?" ACM Sigplan Notices 24, no. 3 (March): 85ï¿½92.
+Kaelbling, Michael. 1988. "Programming Languages Should NOT Have Comment Statements." ACM Sigplan Notices 23, no. 10 (October): 59ï¿½60.
 Kaner, Cem, Jack Falk, and Hung Q. Nguyen. 1999. Testing Computer Software, 2d ed. New York, NY: John Wiley & Sons.
 
 Kaner, Cem, James Bach, and Bret Pettichord. 2002. Lessons Learned in Software Testing. New York, NY: John Wiley & Sons.
-Keller, Daniel. 1990. "A Guide to Natural Naming." ACM Sigplan Notices 25, no. 5 (May): 95­102.
-Kelly, John C. 1987. "A Comparison of Four Design Methods for Real-Time Systems." Proceedings of the Ninth International Conference on Software Engineering. 238­52.
+Keller, Daniel. 1990. "A Guide to Natural Naming." ACM Sigplan Notices 25, no. 5 (May): 95ï¿½102.
+Kelly, John C. 1987. "A Comparison of Four Design Methods for Real-Time Systems." Proceedings of the Ninth International Conference on Software Engineering. 238ï¿½52.
 Kelly-Bootle, Stan. 1981. The Devil's DP Dictionary. New York, NY: McGraw-Hill.
 Kernighan, Brian W., and Rob Pike. 1999. The Practice of Programming. Reading, MA: Addison-Wesley.
 Kernighan, Brian W., and P. J. Plauger. 1976. Software Tools. Reading, MA: Addison-Wesley.
@@ -26081,7 +26087,7 @@ Kernighan, Brian W., and P. J. Plauger. 1981. Software Tools in Pascal. Reading,
 Kernighan, Brian W., and Dennis M. Ritchie. 1988. The C Programming Language, 2d ed. Englewood Cliffs, NJ: Prentice Hall.
 Killelea, Patrick. 2002. Web Performance Tuning, 2d ed. Sebastopol, CA: O'Reilly & Associates.
 King, David. 1988. Creating Effective Software: Computer Program Design Using the Jackson Methodology. New York, NY: Yourdon Press.
-Knuth, Donald. 1971. "An Empirical Study of FORTRAN programs," Software--Practice and Experience 1:105­33.
+Knuth, Donald. 1971. "An Empirical Study of FORTRAN programs," Software--Practice and Experience 1:105ï¿½33.
 Knuth, Donald. 1974. "Structured Programming with go to Statements." In Classics in Software Engineering, edited by Edward Yourdon. Englewood Cliffs, NJ: Yourdon Press, 1979.
 
 874
@@ -26093,16 +26099,16 @@ Knuth, Donald. 1997a. The Art of Computer Programming, vol. 1, Fundamental Algor
 Knuth, Donald. 1997b. The Art of Computer Programming, vol. 2, Seminumerical Algorithms, 3d ed. Reading, MA: AddisonWesley.
 Knuth, Donald. 1998. The Art of Computer Programming, vol. 3, Sorting and Searching, 2d ed. Reading, MA: Addison-Wesley.
 Knuth, Donald. 2001. Literate Programming. Cambridge University Press.
-Korson, Timothy D., and Vijay K. Vaishnavi. 1986. "An Empirical Study of Modularity on Program Modifiability." In Soloway and Iyengar 1986: 168­86.
+Korson, Timothy D., and Vijay K. Vaishnavi. 1986. "An Empirical Study of Modularity on Program Modifiability." In Soloway and Iyengar 1986: 168ï¿½86.
 Kouchakdjian, Ara, Scott Green, and Victor Basili. 1989. "Evaluation of the Cleanroom Methodology in the Software Engineering Laboratory." Proceedings of the Fourteenth Annual Software Engineering Workshop, November 29, 1989. Greenbelt, MD: Goddard Space Flight Center. Document SEL-89-007.
 Kovitz, Benjamin, L. 1998 Practical Software Requirements: A Manual of Content and Style, Manning Publications Company.
 Kreitzberg, C. B., and B. Shneiderman. 1972. The Elements of Fortran Style. New York, NY: Harcourt Brace Jovanovich.
-Kruchten, Philippe B. "The 4+1 View Model of Architecture." IEEE Software, pages 42­50, November 1995.
+Kruchten, Philippe B. "The 4+1 View Model of Architecture." IEEE Software, pages 42ï¿½50, November 1995.
 Kruchten, Philippe. 2000. The Rational Unified Process: An Introduction, 2d Ed., Reading, MA: Addison-Wesley.
 Kuhn, Thomas S. 1996. The Structure of Scientific Revolutions, 3d ed. Chicago: University of Chicago Press.
 Lammers, Susan. 1986. Programmers at Work. Redmond, WA: Microsoft Press.
 
-Lampson, Butler. 1984. "Hints for Computer System Design." IEEE Software 1, no. 1 (January): 11­28.
+Lampson, Butler. 1984. "Hints for Computer System Design." IEEE Software 1, no. 1 (January): 11ï¿½28.
 Larman, Craig and Rhett Guthrie. 2000. Java 2 Performance and Idiom Guide. Englewood Cliffs, NJ: Prentice Hall.
 Larman, Craig. 2001. Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and the Unified Process, 2d ed. Englewood Cliffs, NJ: Prentice Hall.
 Larman, Craig. 2004. Agile and Iterative Development: A Manager's Guide. Boston, MA: Addison-Wesley, 2004.
@@ -26111,9 +26117,9 @@ Laurel, Brenda, ed. 1990. The Art of HumanComputer Interface Design. Reading, MA
 Ledgard, Henry F., with John Tauer. 1987a. C With Excellence: Programming Proverbs. Indianapolis: Hayden Books.
 Ledgard, Henry F., with John Tauer. 1987b. Professional Software, vol. 2, Programming Practice. Indianapolis: Hayden Books.
 Ledgard, Henry, and Michael Marcotty. 1986. The Programming Language Landscape: Syntax, Semantics, and Implementation, 2d ed. Chicago: Science Research Associates.
-Ledgard, Henry. 1985. "Programmers: The Amateur vs. the Professional." Abacus 2, no. 4 (Summer): 29­35.
-Leffingwell, Dean. 1997. "Calculating the Return on Investment from More Effective Requirements Management," American Programmer, 10(4):13­16.
-Lewis, Daniel W. 1979. "A Review of Approaches to Teaching Fortran." IEEE Transactions on Education, E-22, no. 1: 23­25.
+Ledgard, Henry. 1985. "Programmers: The Amateur vs. the Professional." Abacus 2, no. 4 (Summer): 29ï¿½35.
+Leffingwell, Dean. 1997. "Calculating the Return on Investment from More Effective Requirements Management," American Programmer, 10(4):13ï¿½16.
+Lewis, Daniel W. 1979. "A Review of Approaches to Teaching Fortran." IEEE Transactions on Education, E-22, no. 1: 23ï¿½25.
 Lewis, William E. 2000. Software Testing and Continuous Quality Improvement, 2d ed. Auerbach Publishing.
 
 Bibliography
@@ -26122,24 +26128,24 @@ Bibliography
 
 Lieberherr, Karl J. and Ian Holland. 1989. "Assuring Good Style for Object-Oriented Programs." IEEE Software, September 1989, pp. 38f.
 Lientz, B. P., and E. B. Swanson. 1980. Software Maintenance Management. Reading, MA: Addison-Wesley.
-Lind, Randy K., and K. Vairavan. 1989. "An Experimental Investigation of Software Metrics and Their Relationship to Software Development Effort." IEEE Transactions on Software Engineering SE-15, no. 5 (May): 649­53.
+Lind, Randy K., and K. Vairavan. 1989. "An Experimental Investigation of Software Metrics and Their Relationship to Software Development Effort." IEEE Transactions on Software Engineering SE-15, no. 5 (May): 649ï¿½53.
 Linger, Richard C., Harlan D. Mills, and Bernard I. Witt. 1979. Structured Programming: Theory and Practice. Reading, MA: Addison-Wesley.
-Linn, Marcia C., and Michael J. Clancy. 1992. "The Case for Case Studies of Programming Problems." Communications of the ACM 35, no. 3 (March): 121­32.
-Liskov, Barbara, and Stephen Zilles. 1974. "Programming with Abstract Data Types." ACM Sigplan Notices 9, no. 4: 50­59.
+Linn, Marcia C., and Michael J. Clancy. 1992. "The Case for Case Studies of Programming Problems." Communications of the ACM 35, no. 3 (March): 121ï¿½32.
+Liskov, Barbara, and Stephen Zilles. 1974. "Programming with Abstract Data Types." ACM Sigplan Notices 9, no. 4: 50ï¿½59.
 Liskov, Barbara. "Data Abstraction and Hierarchy," ACM SIGPLAN Notices, May 1988.
-Littman, David C., et al. 1986. "Mental Models and Software Maintenance." In Soloway and Iyengar 1986: 80­98.
+Littman, David C., et al. 1986. "Mental Models and Software Maintenance." In Soloway and Iyengar 1986: 80ï¿½98.
 Longstreet, David H., ed. 1990. Software Maintenance and Computers. Los Alamitos, CA: IEEE Computer Society Press.
-Loy, Patrick H. 1990. "A Comparison of Object-Oriented and Structured Development Methods." Software Engineering Notes 15, no. 1 (January): 44­48.
+Loy, Patrick H. 1990. "A Comparison of Object-Oriented and Structured Development Methods." Software Engineering Notes 15, no. 1 (January): 44ï¿½48.
 Mackinnon, Tim, Steve Freeman, and Philip Craig. 2000. "Endo-Testing: Unit Testing with Mock Objects," eXtreme Programming and Flexible Processes Software Engineering - XP2000 Conference.
 Maguire, Steve. 1993. Writing Solid Code. Redmond, WA: Microsoft Press.
 
-Mannino, P. 1987. "A Presentation and Comparison of Four Information System Development Methodologies." Software Engineering Notes 12, no. 2 (April): 26­29.
+Mannino, P. 1987. "A Presentation and Comparison of Four Information System Development Methodologies." Software Engineering Notes 12, no. 2 (April): 26ï¿½29.
 Manzo, John. 2002. "Odyssey and Other Code Science Success Stories." Crosstalk, October 2002.
-Marca, David. 1981. "Some Pascal Style Guidelines." ACM Sigplan Notices 16, no. 4 (April): 70­80.
+Marca, David. 1981. "Some Pascal Style Guidelines." ACM Sigplan Notices 16, no. 4 (April): 70ï¿½80.
 March, Steve. 1999. "Learning from Pathfinder's Bumpy Start." Software Testing and Quality Engineering, September/October 1999, pp. 10f.
 Marcotty, Michael. 1991. Software Implementation. New York, NY: Prentice Hall.
 Martin, Robert C. 2003. Agile Software Development: Principles, Patterns, and Practices. Upper Saddle River, NJ: Pearson Education.
-McCabe, Tom. 1976. "A Complexity Measure." IEEE Transactions on Software Engineering, SE-2, no. 4 (December): 308­20.
+McCabe, Tom. 1976. "A Complexity Measure." IEEE Transactions on Software Engineering, SE-2, no. 4 (December): 308ï¿½20.
 McCarthy, Jim. 1995. Dynamics of Software Development. Redmond, WA: Microsoft Press.
 McConnell, Steve. 1996. Rapid Development. Redmond, WA: Microsoft Press.
 McConnell, Steve. 1997a. "The Programmer Writing," IEEE Software, July/August 1997.
@@ -26153,26 +26159,26 @@ McConnell, Steve. 1999. "Brooks Law Repealed?" IEEE Software, November/December 
 Bibliography
 
 McConnell, Steve. 2004. Professional Software Development. Boston, MA: AddisonWesley.
-McCue, Gerald M. 1978. "IBM's Santa Teresa Laboratory--Architectural Design for Program Development." IBM Systems Journal 17, no. 1:4­25.
-McGarry, Frank, and Rose Pajerski. 1990. "Towards Understanding Software--15 Years in the SEL." Proceedings of the Fifteenth Annual Software Engineering Workshop, November 28­29, 1990. Greenbelt, MD: Goddard Space Flight Center. Document SEL-90-006.
+McCue, Gerald M. 1978. "IBM's Santa Teresa Laboratory--Architectural Design for Program Development." IBM Systems Journal 17, no. 1:4ï¿½25.
+McGarry, Frank, and Rose Pajerski. 1990. "Towards Understanding Software--15 Years in the SEL." Proceedings of the Fifteenth Annual Software Engineering Workshop, November 28ï¿½29, 1990. Greenbelt, MD: Goddard Space Flight Center. Document SEL-90-006.
 McGarry, Frank, Sharon Waligora, and Tim McDermott. 1989. "Experiences in the Software Engineering Laboratory (SEL) Applying Software Measurement." Proceedings of the Fourteenth Annual Software Engineering Workshop, November 29, 1989. Greenbelt, MD: Goddard Space Flight Center. Document SEL-89-007.
 McGarry, John, et al. 2001. Practical Software Measurement: Objective Information for Decision Makers. Boston, MA: Addison-Wesley.
-McKeithen, Katherine B., et al. 1981. "Knowledge Organization and Skill Differences in Computer Programmers." Cognitive Psychology 13:307­25.
+McKeithen, Katherine B., et al. 1981. "Knowledge Organization and Skill Differences in Computer Programmers." Cognitive Psychology 13:307ï¿½25.
 Metzger, Philip W., and John Boddie. 1996. Managing a Programming Project: Processes and People, 3d ed. Englewood Cliffs, NJ: Prentice Hall, 1996.
 Meyer, Bertrand. 1997. Object-Oriented Software Construction, 2d ed. New York, NY: Prentice Hall.
 Meyers, Scott. 1996. More Effective C++: 35 New Ways to Improve Your Programs and Designs. Reading, MA: Addison-Wesley.
 Meyers, Scott. 1998. Effective C++: 50 Specific Ways to Improve Your Programs and Designs, 2d ed. Reading, MA: AddisonWesley.
 
-Miaria, Richard J., et al. 1983. "Program Indentation and Comprehensibility." Communications of the ACM 26, no. 11 (November): 861­67.
+Miaria, Richard J., et al. 1983. "Program Indentation and Comprehensibility." Communications of the ACM 26, no. 11 (November): 861ï¿½67.
 Michalewicz, Zbigniew, and David B. Fogel. 2000. How to Solve It: Modern Heuristics. Berlin: Springer-Verlag.
-Miller, G. A. 1956. "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information." The Psychological Review 63, no. 2 (March): 81­97.
+Miller, G. A. 1956. "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information." The Psychological Review 63, no. 2 (March): 81ï¿½97.
 Mills, Harlan D. 1983. Software Productivity. Boston, MA: Little, Brown.
-Mills, Harlan D. 1986. "Structured Programming: Retrospect and Prospect." IEEE Software, November, 58­66.
-Mills, Harlan D., and Richard C. Linger. 1986. "Data Structured Programming: Program Design Without Arrays and Pointers." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 192­97.
-Mills, Harlan D., Michael Dyer, and Richard C. Linger. 1987. "Cleanroom Software Engineering." IEEE Software, September, 19­25.
+Mills, Harlan D. 1986. "Structured Programming: Retrospect and Prospect." IEEE Software, November, 58ï¿½66.
+Mills, Harlan D., and Richard C. Linger. 1986. "Data Structured Programming: Program Design Without Arrays and Pointers." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 192ï¿½97.
+Mills, Harlan D., Michael Dyer, and Richard C. Linger. 1987. "Cleanroom Software Engineering." IEEE Software, September, 19ï¿½25.
 Misfeldt, Trevor, Greg Bumgardner, and Andrew Gray. 2004. The Elements of C++ Style. Cambridge University Press.
-Mitchell, Jeffrey, Joseph Urban, and Robert McDonald. 1987. "The Effect of Abstract Data Types on Program Development." IEEE Computer 20, no. 9 (September): 85­88.
-Mody, R. P. 1991. "C in Education and Software Engineering." SIGCSE Bulletin 23, no. 3 (September): 45­56.
+Mitchell, Jeffrey, Joseph Urban, and Robert McDonald. 1987. "The Effect of Abstract Data Types on Program Development." IEEE Computer 20, no. 9 (September): 85ï¿½88.
+Mody, R. P. 1991. "C in Education and Software Engineering." SIGCSE Bulletin 23, no. 3 (September): 45ï¿½56.
 Moore, Dave. 1992. Private communication.
 Moore, James W. 1997. Software Engineering Standards: A User's Road Map. Los Alamitos, CA: IEEE Computer Society Press.
 
@@ -26183,57 +26189,57 @@ Bibliography
 Morales, Alexandra Weber. 2003. "The Consummate Coach: Watts Humphrey, Father of Cmm and Author of Winning with Software, Explains How to Get Better at What You Do," SD Show Daily, September 16, 2003.
 Myers, Glenford J. 1976. Software Reliability. New York, NY: John Wiley & Sons.
 Myers, Glenford J. 1978a. Composite/Structural Design. New York, NY: Van Nostrand Reinhold.
-Myers, Glenford J. 1978b. "A Controlled Experiment in Program Testing and Code Walkthroughs/Inspections." Communications of the ACM 21, no. 9 (September): 760­68.
+Myers, Glenford J. 1978b. "A Controlled Experiment in Program Testing and Code Walkthroughs/Inspections." Communications of the ACM 21, no. 9 (September): 760ï¿½68.
 Myers, Glenford J. 1979. The Art of Software Testing. New York, NY: John Wiley & Sons.
-Myers, Ware. 1992. "Good Software Practices Pay Off--Or Do They?" IEEE Software, March, 96­97.
+Myers, Ware. 1992. "Good Software Practices Pay Off--Or Do They?" IEEE Software, March, 96ï¿½97.
 Naisbitt, John. 1982. Megatrends. New York, NY: Warner Books.
 NASA Software Engineering Laboratory, 1994. Software Measurement Guidebook, June 1995, NASA-GB-001-94. Available from http://sel.gsfc.nasa.gov/website /documents/online-doc/94-102.pdf.
 NCES 2002. National Center for Education Statistics, 2001 Digest of Educational Statistics, Document Number NCES 2002130, April 2002.
 Nevison, John M. 1978. The Little Book of BASIC Style. Reading, MA: Addison-Wesley.
 Newcomer, Joseph M. 2000. "Optimization: Your Worst Enemy," May 2000, www.flounder.com/optimization.htm.
-Norcio, A. F. 1982. "Indentation, Documentation and Programmer Comprehension." Proceedings: Human Factors in Computer Systems, March 15­17, 1982, Gaithersburg, MD: 118­20.
+Norcio, A. F. 1982. "Indentation, Documentation and Programmer Comprehension." Proceedings: Human Factors in Computer Systems, March 15ï¿½17, 1982, Gaithersburg, MD: 118ï¿½20.
 
 Norman, Donald A. 1988. The Psychology of Everyday Things. New York, NY: Basic Books. (Also published in paperback as The Design of Everyday Things. New York, NY: Doubleday, 1990.)
 Oman, Paul and Shari Lawrence Pfleeger, eds. 1996. Applying Software Metrics. Los Alamitos, CA: IEEE Computer Society Press.
-Oman, Paul W., and Curtis R. Cook. 1990a. "The Book Paradigm for Improved Maintenance." IEEE Software, January, 39­45.
-Oman, Paul W., and Curtis R. Cook. 1990b. "Typographic Style Is More Than Cosmetic." Communications of the ACM 33, no. 5 (May): 506­20.
-Ostrand, Thomas J., and Elaine J. Weyuker. 1984. "Collecting and Categorizing Software Error Data in an Industrial Environment." Journal of Systems and Software 4, no. 4 (November): 289­300.
+Oman, Paul W., and Curtis R. Cook. 1990a. "The Book Paradigm for Improved Maintenance." IEEE Software, January, 39ï¿½45.
+Oman, Paul W., and Curtis R. Cook. 1990b. "Typographic Style Is More Than Cosmetic." Communications of the ACM 33, no. 5 (May): 506ï¿½20.
+Ostrand, Thomas J., and Elaine J. Weyuker. 1984. "Collecting and Categorizing Software Error Data in an Industrial Environment." Journal of Systems and Software 4, no. 4 (November): 289ï¿½300.
 Page-Jones, Meilir. 2000. Fundamentals of Object-Oriented Design in UML. Boston, MA: Addison-Wesley.
 Page-Jones, Meilir. 1988. The Practical Guide to Structured Systems Design. Englewood Cliffs, NJ: Yourdon Press.
 Parikh, G., and N. Zvegintzov, eds. 1983. Tutorial on Software Maintenance. Los Alamitos, CA: IEEE Computer Society Press.
 Parikh, Girish. 1986. Handbook of Software Maintenance. New York, NY: John Wiley & Sons.
-Parnas, David L. 1972. "On the Criteria to Be Used in Decomposing Systems into Modules." Communications of the ACM 5, no. 12 (December): 1053­58.
-Parnas, David L. 1976. "On the Design and Development of Program Families." IEEE Transactions on Software Engineering SE-2, 1 (March): 1­9.
-Parnas, David L. 1979. "Designing Software for Ease of Extension and Contraction." IEEE Transactions on Software Engineering SE-5, no. 2 (March): 128­38.
+Parnas, David L. 1972. "On the Criteria to Be Used in Decomposing Systems into Modules." Communications of the ACM 5, no. 12 (December): 1053ï¿½58.
+Parnas, David L. 1976. "On the Design and Development of Program Families." IEEE Transactions on Software Engineering SE-2, 1 (March): 1ï¿½9.
+Parnas, David L. 1979. "Designing Software for Ease of Extension and Contraction." IEEE Transactions on Software Engineering SE-5, no. 2 (March): 128ï¿½38.
 
 878
 
 Bibliography
 
-Parnas, David L. 1999. ACM Fellow Profile: David Lorge Parnas," ACM Software Engineering Notes, May 1999, 10­14.
-Parnas, David L., and Paul C. Clements. 1986. "A Rational Design Process: How and Why to Fake It." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 251­57.
-Parnas, David L., Paul C. Clements, and D. M. Weiss. 1985. "The Modular Structure of Complex Systems." IEEE Transactions on Software Engineering SE-11, no. 3 (March): 259­66.
+Parnas, David L. 1999. ACM Fellow Profile: David Lorge Parnas," ACM Software Engineering Notes, May 1999, 10ï¿½14.
+Parnas, David L., and Paul C. Clements. 1986. "A Rational Design Process: How and Why to Fake It." IEEE Transactions on Software Engineering SE-12, no. 2 (February): 251ï¿½57.
+Parnas, David L., Paul C. Clements, and D. M. Weiss. 1985. "The Modular Structure of Complex Systems." IEEE Transactions on Software Engineering SE-11, no. 3 (March): 259ï¿½66.
 Perrott, Pamela. 2004. Private communication.
-Peters, L. J., and L. L. Tripp. 1976. "Is Software Design Wicked" Datamation, Vol. 22, No. 5 (May 1976), 127­136.
+Peters, L. J., and L. L. Tripp. 1976. "Is Software Design Wicked" Datamation, Vol. 22, No. 5 (May 1976), 127ï¿½136.
 Peters, Lawrence J. 1981. Handbook of Software Design: Methods and Techniques. New York, NY: Yourdon Press.
-Peters, Lawrence J., and Leonard L. Tripp. 1977. "Comparing Software Design Methodologies." Datamation, November, 89­94.
+Peters, Lawrence J., and Leonard L. Tripp. 1977. "Comparing Software Design Methodologies." Datamation, November, 89ï¿½94.
 Peters, Tom. 1987. Thriving on Chaos: Handbook for a Management Revolution. New York, NY: Knopf.
 Petroski, Henry. 1994. Design Paradigms: Case Histories of Error and Judgment in Engineering. Cambridge, U.K.: Cambridge University Press.
-Pietrasanta, Alfred M. 1990. "Alfred M. Pietrasanta on Improving the Software Process." Software Engineering: Tools, Techniques, Practices 1, no. 1 (May/ June): 29­34.
-Pietrasanta, Alfred M. 1991a. "A Strategy for Software Process Improvement." Ninth Annual Pacific Northwest Software Quality Conference, October 7­8, 1991. Oregon Convention Center, Portland, OR
+Pietrasanta, Alfred M. 1990. "Alfred M. Pietrasanta on Improving the Software Process." Software Engineering: Tools, Techniques, Practices 1, no. 1 (May/ June): 29ï¿½34.
+Pietrasanta, Alfred M. 1991a. "A Strategy for Software Process Improvement." Ninth Annual Pacific Northwest Software Quality Conference, October 7ï¿½8, 1991. Oregon Convention Center, Portland, OR
 
-Pietrasanta, Alfred M. 1991b. "Implementing Software Engineering in IBM." Keynote address. Ninth Annual Pacific Northwest Software Quality Conference, October 7­8, 1991. Oregon Convention Center, Portland, OR.
+Pietrasanta, Alfred M. 1991b. "Implementing Software Engineering in IBM." Keynote address. Ninth Annual Pacific Northwest Software Quality Conference, October 7ï¿½8, 1991. Oregon Convention Center, Portland, OR.
 Pigoski, Thomas M. 1997. Practical Software Maintenance. New York, NY: John Wiley & Sons.
 Pirsig, Robert M. 1974. Zen and the Art of Motorcycle Maintenance: An Inquiry into Values. William Morrow.
-Plauger, P. J. 1988. "A Designer's Bibliography." Computer Language, July, 17­22.
+Plauger, P. J. 1988. "A Designer's Bibliography." Computer Language, July, 17ï¿½22.
 Plauger, P. J. 1993. Programming on Purpose: Essays on Software Design. New York, NY: Prentice Hall.
 Plum, Thomas. 1984. C Programming Guidelines. Cardiff, NJ: Plum Hall.
 Polya, G. 1957. How to Solve It: A New Aspect of Mathematical Method, 2d ed. Princeton, NJ: Princeton University Press.
-Post, Ed. 1983. "Real Programmers Don't Use Pascal," Datamation, July 1983, 263­265.
-Prechelt, Lutz. 2000. "An Empirical Comparison of Seven Programming Languages," IEEE Computer, October 2000, 23­29.
+Post, Ed. 1983. "Real Programmers Don't Use Pascal," Datamation, July 1983, 263ï¿½265.
+Prechelt, Lutz. 2000. "An Empirical Comparison of Seven Programming Languages," IEEE Computer, October 2000, 23ï¿½29.
 Pressman, Roger S. 1987. Software Engineering: A Practitioner's Approach. New York, NY: McGraw-Hill.
 Pressman, Roger S. 1988. Making Software Engineering Happen: A Guide for Instituting the Technology. Englewood Cliffs, NJ: Prentice Hall.
-Putnam, Lawrence H. 2000. "Familiar Metric Management ­ Effort, Development Time, and Defects Interact." Downloadable from www.qsm.com.
+Putnam, Lawrence H. 2000. "Familiar Metric Management ï¿½ Effort, Development Time, and Defects Interact." Downloadable from www.qsm.com.
 Putnam, Lawrence H., and Ware Myers. 1992. Measures for Excellence: Reliable Software On Time, Within Budget. Englewood Cliffs, NJ: Yourdon Press, 1992.
 
 Bibliography
@@ -26242,24 +26248,24 @@ Bibliography
 
 Putnam, Lawrence H., and Ware Myers. 1997. Industrial Strength Software: Effective Management Using Measurement. Washington, DC: IEEE Computer Society Press.
 Putnam, Lawrence H., and Ware Myers. 2000. "What We Have Learned." Downloadable from www.qsm.com, June 2000.
-Raghavan, Sridhar A., and Donald R. Chand. 1989. "Diffusing Software-Engineering Methods." IEEE Software, July, 81­90.
-Ramsey, H. Rudy, Michael E. Atwood, and James R. Van Doren. 1983. "Flowcharts Versus Program Design Languages: An Experimental Comparison." Communications of the ACM 26, no. 6 (June): 445­49.
+Raghavan, Sridhar A., and Donald R. Chand. 1989. "Diffusing Software-Engineering Methods." IEEE Software, July, 81ï¿½90.
+Ramsey, H. Rudy, Michael E. Atwood, and James R. Van Doren. 1983. "Flowcharts Versus Program Design Languages: An Experimental Comparison." Communications of the ACM 26, no. 6 (June): 445ï¿½49.
 Ratliff, Wayne. 1987. Interview in Solution System.
 Raymond, E. S. 2000. "The Cathedral and the Bazaar," www.catb.org/~esr/writings /cathedral-bazaar.
 Raymond, Eric S. 2004. The Art of Unix Programming. Boston, MA: Addison-Wesley.
-Rees, Michael J. 1982. "Automatic Assessment Aids for Pascal Programs." ACM Sigplan Notices 17, no. 10 (October): 33­42.
-Reifer, Donald. 2002. "How to Get the Most Out of Extreme Programming/Agile Methods," Proceedings, XP/Agile Universe 2002. New York, NY: Springer; 185­196.
+Rees, Michael J. 1982. "Automatic Assessment Aids for Pascal Programs." ACM Sigplan Notices 17, no. 10 (October): 33ï¿½42.
+Reifer, Donald. 2002. "How to Get the Most Out of Extreme Programming/Agile Methods," Proceedings, XP/Agile Universe 2002. New York, NY: Springer; 185ï¿½196.
 Reingold, Edward M., and Wilfred J. Hansen. 1983. Data Structures. Boston, MA: Little, Brown.
-Rettig, Marc. 1991. "Testing Made Palatable." Communications of the ACM 34, no. 5 (May): 25­29.
+Rettig, Marc. 1991. "Testing Made Palatable." Communications of the ACM 34, no. 5 (May): 25ï¿½29.
 Riel, Arthur J. 1996. Object-Oriented Design Heuristics. Reading, MA: Addison-Wesley.
-Rittel, Horst, and Melvin Webber. 1973. "Dilemmas in a General Theory of Planning." Policy Sciences 4:155­69.
+Rittel, Horst, and Melvin Webber. 1973. "Dilemmas in a General Theory of Planning." Policy Sciences 4:155ï¿½69.
 Robertson, Suzanne, and James Robertson, 1999. Mastering the Requirements Process. Reading, MA: Addison-Wesley.
 
 Rogers, Everett M. 1995. Diffusion of Innovations, 4th ed. New York, NY: The Free Press.
-Rombach, H. Dieter. 1990. "Design Measurements: Some Lessons Learned." IEEE Software, March, 17­25.
-Rubin, Frank. 1987. "`GOTO Considered Harmful' Considered Harmful." Letter to the editor. Communications of the ACM 30, no. 3 (March): 195­96. Follow-up letters in 30, no. 5 (May 1987): 351­55; 30, no. 6 (June 1987): 475­78; 30, no. 7 (July 1987): 632­34; 30, no. 8 (August 1987): 659­62; 30, no. 12 (December 1987): 997, 1085.
-Sackman, H., W. J. Erikson, and E. E. Grant. 1968. "Exploratory Experimental Studies Comparing Online and Offline Programming Performance." Communications of the ACM 11, no. 1 (January): 3­11.
-Schneider, G. Michael, Johnny Martin, and W. T. Tsai. 1992. "An Experimental Study of Fault Detection in User Requirements Documents," ACM Transactions on Software Engineering and Methodology, vol 1, no. 2, 188­204.
+Rombach, H. Dieter. 1990. "Design Measurements: Some Lessons Learned." IEEE Software, March, 17ï¿½25.
+Rubin, Frank. 1987. "`GOTO Considered Harmful' Considered Harmful." Letter to the editor. Communications of the ACM 30, no. 3 (March): 195ï¿½96. Follow-up letters in 30, no. 5 (May 1987): 351ï¿½55; 30, no. 6 (June 1987): 475ï¿½78; 30, no. 7 (July 1987): 632ï¿½34; 30, no. 8 (August 1987): 659ï¿½62; 30, no. 12 (December 1987): 997, 1085.
+Sackman, H., W. J. Erikson, and E. E. Grant. 1968. "Exploratory Experimental Studies Comparing Online and Offline Programming Performance." Communications of the ACM 11, no. 1 (January): 3ï¿½11.
+Schneider, G. Michael, Johnny Martin, and W. T. Tsai. 1992. "An Experimental Study of Fault Detection in User Requirements Documents," ACM Transactions on Software Engineering and Methodology, vol 1, no. 2, 188ï¿½204.
 Schulmeyer, G. Gordon. 1990. Zero Defect Software. New York, NY: McGraw-Hill.
 Sedgewick, Robert. 1997. Algorithms in C, Parts 1-4, 3d ed. Boston, MA: AddisonWesley.
 Sedgewick, Robert. 2001. Algorithms in C, Part 5, 3d ed. Boston, MA: AddisonWesley.
@@ -26273,45 +26279,45 @@ Sedgewick, Robert. 2003. Algorithms in Java, Part 5, 3d ed. Boston, MA: AddisonW
 Bibliography
 
 SEI 1995. The Capability Maturity Model: Guidelines for Improving the Software Process, Software Engineering Institute, Reading, MA: Addison-Wesley, 1995.
-SEI, 2003. "Process Maturity Profile: Software CMM®, CBA IPI and SPA Appraisal Results: 2002 Year End Update," Software Engineering Institute, April 2003.
-Selby, Richard W., and Victor R. Basili. 1991. "Analyzing Error-Prone System Structure." IEEE Transactions on Software Engineering SE-17, no. 2 (February): 141­52.
-SEN 1990. "Subsection on Telephone Systems," Software Engineering Notes, April 1990, 11­14.
+SEI, 2003. "Process Maturity Profile: Software CMMï¿½, CBA IPI and SPA Appraisal Results: 2002 Year End Update," Software Engineering Institute, April 2003.
+Selby, Richard W., and Victor R. Basili. 1991. "Analyzing Error-Prone System Structure." IEEE Transactions on Software Engineering SE-17, no. 2 (February): 141ï¿½52.
+SEN 1990. "Subsection on Telephone Systems," Software Engineering Notes, April 1990, 11ï¿½14.
 Shalloway, Alan, and James R. Trott. 2002. Design Patterns Explained. Boston, MA: Addison-Wesley.
-Sheil, B. A. 1981. "The Psychological Study of Programming." Computing Surveys 13, no. 1 (March): 101­20.
-Shen, Vincent Y., et al. 1985. "Identifying Error-Prone Software--An Empirical Study." IEEE Transactions on Software Engineering SE-11, no. 4 (April): 317­24.
+Sheil, B. A. 1981. "The Psychological Study of Programming." Computing Surveys 13, no. 1 (March): 101ï¿½20.
+Shen, Vincent Y., et al. 1985. "Identifying Error-Prone Software--An Empirical Study." IEEE Transactions on Software Engineering SE-11, no. 4 (April): 317ï¿½24.
 Sheppard, S. B., et al. 1978. "Predicting Programmers' Ability to Modify Software." TR 78-388100-3, General Electric Company, May.
-Sheppard, S. B., et al. 1979. "Modern Coding Practices and Programmer Performance." IEEE Computer 12, no. 12 (December): 41­49.
-Shepperd, M., and D. Ince. 1989. "Metrics, Outlier Analysis and the Software Design Process." Information and Software Technology 31, no. 2 (March): 91­98.
+Sheppard, S. B., et al. 1979. "Modern Coding Practices and Programmer Performance." IEEE Computer 12, no. 12 (December): 41ï¿½49.
+Shepperd, M., and D. Ince. 1989. "Metrics, Outlier Analysis and the Software Design Process." Information and Software Technology 31, no. 2 (March): 91ï¿½98.
 Shirazi, Jack. 2000. Java Performance Tuning. Sebastopol, CA: O'Reilly & Associates.
 Shlaer, Sally, and Stephen J. Mellor. 1988. Object Oriented Systems Analysis--Modeling the World in Data. Englewood Cliffs, NJ: Prentice Hall.
 
-Shneiderman, Ben, and Richard Mayer. 1979. "Syntactic/Semantic Interactions in Programmer Behavior: A Model and Experimental Results." International Journal of Computer and Information Sciences 8, no. 3: 219­38.
-Shneiderman, Ben. 1976. "Exploratory Experiments in Programmer Behavior." International Journal of Computing and Information Science 5:123­43.
+Shneiderman, Ben, and Richard Mayer. 1979. "Syntactic/Semantic Interactions in Programmer Behavior: A Model and Experimental Results." International Journal of Computer and Information Sciences 8, no. 3: 219ï¿½38.
+Shneiderman, Ben. 1976. "Exploratory Experiments in Programmer Behavior." International Journal of Computing and Information Science 5:123ï¿½43.
 Shneiderman, Ben. 1980. Software Psychology: Human Factors in Computer and Information Systems. Cambridge, MA: Winthrop.
 Shneiderman, Ben. 1987. Designing the User Interface: Strategies for Effective HumanComputer Interaction. Reading, MA: Addison-Wesley.
-Shull, et al. 2002. "What We Have Learned About Fighting Defects," Proceedings, Metrics 2002. IEEE; 249­258.
+Shull, et al. 2002. "What We Have Learned About Fighting Defects," Proceedings, Metrics 2002. IEEE; 249ï¿½258.
 Simon, Herbert. 1996. The Sciences of the Artificial, 3d ed. Cambridge, MA: MIT Press.
 Simon, Herbert. The Shape of Automation for Men and Management. Harper and Row, 1965.
-Simonyi, Charles, and Martin Heller. 1991. "The Hungarian Revolution." BYTE, August, 131­38.
+Simonyi, Charles, and Martin Heller. 1991. "The Hungarian Revolution." BYTE, August, 131ï¿½38.
 Smith, Connie U., and Lloyd G. Williams. 2002. Performance Solutions: A Practical Guide to Creating Responsive, Scalable Software. Boston, MA: Addison-Wesley.
 Software Productivity Consortium. 1989. Ada Quality and Style: Guidelines for Professional Programmers. New York, NY: Van Nostrand Reinhold.
-Soloway, Elliot, and Kate Ehrlich. 1984. "Empirical Studies of Programming Knowledge." IEEE Transactions on Software Engineering SE-10, no. 5 (September): 595­609.
+Soloway, Elliot, and Kate Ehrlich. 1984. "Empirical Studies of Programming Knowledge." IEEE Transactions on Software Engineering SE-10, no. 5 (September): 595ï¿½609.
 Soloway, Elliot, and Sitharama Iyengar, eds. 1986. Empirical Studies of Programmers. Norwood, NJ: Ablex.
 
 Bibliography
 
 881
 
-Soloway, Elliot, Jeffrey Bonar, and Kate Ehrlich. 1983. "Cognitive Strategies and Looping Constructs: An Empirical Study." Communications of the ACM 26, no. 11 (November): 853­60.
+Soloway, Elliot, Jeffrey Bonar, and Kate Ehrlich. 1983. "Cognitive Strategies and Looping Constructs: An Empirical Study." Communications of the ACM 26, no. 11 (November): 853ï¿½60.
 Solution Systems. 1987. World-Class Programmers' Editing Techniques: Interviews with Seven Programmers. South Weymouth, MA: Solution Systems.
 Sommerville, Ian. 1989. Software Engineering, 3d ed. Reading, MA: Addison-Wesley.
-Spier, Michael J. 1976. "Software Malpractice--A Distasteful Experience." Software--Practice and Experience 6:293­99.
+Spier, Michael J. 1976. "Software Malpractice--A Distasteful Experience." Software--Practice and Experience 6:293ï¿½99.
 Spinellis, Diomidis. 2003. Code Reading: The Open Source Perspective. Boston, MA: Addison-Wesley.
 SPMN. 1998. Little Book of Configuration Management. Arlington, VA; Software Program Managers Network.
-Starr, Daniel. 2003. "What Supports the Roof?" Software Development. July 2003, 38­41.
+Starr, Daniel. 2003. "What Supports the Roof?" Software Development. July 2003, 38ï¿½41.
 Stephens, Matt. 2003. "Emergent Design vs. Early Prototyping," May 26, 2003, www.softwarereality.com/design/early_ prototyping.jsp.
-Stevens, Scott M. 1989. "Intelligent Interactive Video Simulation of a Code Inspection." Communications of the ACM 32, no. 7 (July): 832­43.
-Stevens, W., G. Myers, and L. Constantine. 1974. "Structured Design." IBM Systems Journal 13, no. 2 (May): 115­39.
+Stevens, Scott M. 1989. "Intelligent Interactive Video Simulation of a Code Inspection." Communications of the ACM 32, no. 7 (July): 832ï¿½43.
+Stevens, W., G. Myers, and L. Constantine. 1974. "Structured Design." IBM Systems Journal 13, no. 2 (May): 115ï¿½39.
 Stevens, Wayne. 1981. Using Structured Design. New York, NY: John Wiley & Sons.
 Stroustrup, Bjarne. 1997. The C++ Programming Language, 3d ed. Reading, MA: Addison-Wesley.
 Strunk, William, and E. B. White. 2000. Elements of Style, 4th ed. Pearson.
@@ -26320,43 +26326,43 @@ Sun Microsystems, Inc. 2000. "How to Write Doc Comments for the Javadoc Tool," 2
 Sutter, Herb. 2000. Exceptional C++: 47 Engineering Puzzles, Programming Problems, and Solutions. Boston, MA: AddisonWesley.
 Tackett, Buford D., III, and Buddy Van Doren. 1999. "Process Control for Error Free Software: A Software Success Story," IEEE Software, May 1999.
 Tenner, Edward. 1997. Why Things Bite Back: Technology and the Revenge of Unintended Consequences. Vintage Books.
-Tenny, Ted. 1988. "Program Readability: Procedures versus Comments." IEEE Transactions on Software Engineering SE14, no. 9 (September): 1271­79.
+Tenny, Ted. 1988. "Program Readability: Procedures versus Comments." IEEE Transactions on Software Engineering SE14, no. 9 (September): 1271ï¿½79.
 Thayer, Richard H., ed. 1990. Tutorial: Software Engineering Project Management. Los Alamitos, CA: IEEE Computer Society Press.
-Thimbleby, Harold. 1988. "Delaying Commitment." IEEE Software, May, 78­86.
+Thimbleby, Harold. 1988. "Delaying Commitment." IEEE Software, May, 78ï¿½86.
 Thomas, Dave, and Andy Hunt. 2002. "Mock Objects," IEEE Software, May/ June 2002.
-Thomas, Edward J., and Paul W. Oman. 1990. "A Bibliography of Programming Style." ACM Sigplan Notices 25, no. 2 (February): 7­16.
-Thomas, Richard A. 1984. "Using Comments to Aid Program Maintenance." BYTE, May, 415­22.
+Thomas, Edward J., and Paul W. Oman. 1990. "A Bibliography of Programming Style." ACM Sigplan Notices 25, no. 2 (February): 7ï¿½16.
+Thomas, Richard A. 1984. "Using Comments to Aid Program Maintenance." BYTE, May, 415ï¿½22.
 Tripp, Leonard L., William F. Struck, and Bryan K. Pflug. 1991. "The Application of Multiple Team Inspections on a Safety-Critical Software Standard," Proceedings of the 4th Software Engineering Standards Application Workshop, Los Alamitos, CA: IEEE Computer Society Press.
-U.S. Department of Labor. 1990. "The 1990­91 Job Outlook in Brief." Occupational Outlook Quarterly, Spring. U.S. Government Printing Office. Document 1990-282-086/20007.
+U.S. Department of Labor. 1990. "The 1990ï¿½91 Job Outlook in Brief." Occupational Outlook Quarterly, Spring. U.S. Government Printing Office. Document 1990-282-086/20007.
 
 882
 
 Bibliography
 
-Valett, J., and F. E. McGarry. 1989. "A Summary of Software Measurement Experiences in the Software Engineering Laboratory." Journal of Systems and Software 9, no. 2 (February): 137­48.
-Van Genuchten, Michiel. 1991. "Why Is Software Late? An Empirical Study of Reasons for Delay in Software Development." IEEE Transactions on Software Engineering SE-17, no. 6 (June): 582­90.
+Valett, J., and F. E. McGarry. 1989. "A Summary of Software Measurement Experiences in the Software Engineering Laboratory." Journal of Systems and Software 9, no. 2 (February): 137ï¿½48.
+Van Genuchten, Michiel. 1991. "Why Is Software Late? An Empirical Study of Reasons for Delay in Software Development." IEEE Transactions on Software Engineering SE-17, no. 6 (June): 582ï¿½90.
 Van Tassel, Dennie. 1978. Program Style, Design, Efficiency, Debugging, and Testing, 2d ed. Englewood Cliffs, NJ: Prentice Hall.
-Vaughn-Nichols, Steven. 2003. "Building Better Software with Better Tools," IEEE Computer, September 2003, 12­14.
+Vaughn-Nichols, Steven. 2003. "Building Better Software with Better Tools," IEEE Computer, September 2003, 12ï¿½14.
 Vermeulen, Allan, et al. 2000. The Elements of Java Style. Cambridge University Press.
-Vessey, Iris, Sirkka L. Jarvenpaa, and Noam Tractinsky. 1992. "Evaluation of Vendor Products: CASE Tools as Methodological Companions." Communications of the ACM 35, no. 4 (April): 91­105.
-Vessey, Iris. 1986. "Expertise in Debugging Computer Programs: An Analysis of the Content of Verbal Protocols." IEEE Transactions on Systems, Man, and Cybernetics SMC-16, no. 5 (September/October): 621­37.
-Votta, Lawrence G., et al. 1991. "Investigating the Application of Capture-Recapture Techniques to Requirements and Design Reviews." Proceedings of the Sixteenth Annual Software Engineering Workshop, December 4­5, 1991. Greenbelt, MD: Goddard Space Flight Center. Document SEL-91-006.
-Walston, C. E., and C. P. Felix. 1977. "A Method of Programming Measurement and Estimation." IBM Systems Journal 16, no. 1: 54­73.
+Vessey, Iris, Sirkka L. Jarvenpaa, and Noam Tractinsky. 1992. "Evaluation of Vendor Products: CASE Tools as Methodological Companions." Communications of the ACM 35, no. 4 (April): 91ï¿½105.
+Vessey, Iris. 1986. "Expertise in Debugging Computer Programs: An Analysis of the Content of Verbal Protocols." IEEE Transactions on Systems, Man, and Cybernetics SMC-16, no. 5 (September/October): 621ï¿½37.
+Votta, Lawrence G., et al. 1991. "Investigating the Application of Capture-Recapture Techniques to Requirements and Design Reviews." Proceedings of the Sixteenth Annual Software Engineering Workshop, December 4ï¿½5, 1991. Greenbelt, MD: Goddard Space Flight Center. Document SEL-91-006.
+Walston, C. E., and C. P. Felix. 1977. "A Method of Programming Measurement and Estimation." IBM Systems Journal 16, no. 1: 54ï¿½73.
 Ward, Robert. 1989. A Programmer's Introduction to Debugging C. Lawrence, KS: R & D Publications.
 
-Ward, William T. 1989. "Software Defect Prevention Using McCabe's Complexity Metric." Hewlett-Packard Journal, April, 64­68.
-Webster, Dallas E. 1988. "Mapping the Design Information Representation Terrain." IEEE Computer, December, 8­23.
-Weeks, Kevin. 1992. "Is Your Code Done Yet?" Computer Language, April, 63­72.
+Ward, William T. 1989. "Software Defect Prevention Using McCabe's Complexity Metric." Hewlett-Packard Journal, April, 64ï¿½68.
+Webster, Dallas E. 1988. "Mapping the Design Information Representation Terrain." IEEE Computer, December, 8ï¿½23.
+Weeks, Kevin. 1992. "Is Your Code Done Yet?" Computer Language, April, 63ï¿½72.
 Weiland, Richard J. 1983. The Programmer's Craft: Program Construction, Computer Architecture, and Data Management. Reston, VA: Reston Publishing.
-Weinberg, Gerald M. 1983. "Kill That Code!" Infosystems, August, 48­49.
+Weinberg, Gerald M. 1983. "Kill That Code!" Infosystems, August, 48ï¿½49.
 Weinberg, Gerald M. 1998. The Psychology of Computer Programming: Silver Anniversary Edition. New York, NY: Dorset House.
-Weinberg, Gerald M., and Edward L. Schulman. 1974. "Goals and Performance in Computer Programming." Human Factors 16, no. 1 (February): 70­77.
+Weinberg, Gerald M., and Edward L. Schulman. 1974. "Goals and Performance in Computer Programming." Human Factors 16, no. 1 (February): 70ï¿½77.
 Weinberg, Gerald. 1988. Rethinking Systems Analysis and Design. New York, NY: Dorset House.
 Weisfeld, Matt. 2004. The Object-Oriented Thought Process, 2d ed. SAMS, 2004.
-Weiss, David M. 1975. "Evaluating Software Development by Error Analysis: The Data from the Architecture Research Facility." Journal of Systems and Software 1, no. 2 (June): 57­70.
-Weiss, Eric A. 1972. "Review of The Psychology of Computer Programming, by Gerald M. Weinberg." ACM Computing Reviews 13, no. 4 (April): 175­76.
+Weiss, David M. 1975. "Evaluating Software Development by Error Analysis: The Data from the Architecture Research Facility." Journal of Systems and Software 1, no. 2 (June): 57ï¿½70.
+Weiss, Eric A. 1972. "Review of The Psychology of Computer Programming, by Gerald M. Weinberg." ACM Computing Reviews 13, no. 4 (April): 175ï¿½76.
 Wheeler, David, Bill Brykczynski, and Reginald Meeson. 1996. Software Inspection: An Industry Best Practice. Los Alamitos, CA: IEEE Computer Society Press.
-Whittaker, James A. 2000 "What Is Software Testing? And Why Is It So Hard?" IEEE Software, January 2000, 70­79.
+Whittaker, James A. 2000 "What Is Software Testing? And Why Is It So Hard?" IEEE Software, January 2000, 70ï¿½79.
 
 Bibliography
 
@@ -26370,13 +26376,13 @@ Williams, Laurie, and Robert Kessler. 2002. Pair Programming Illuminated. Boston
 Willis, Ron R., et al. 1998. "Hughes Aircraft's Widespread Deployment of a Continuously Improving Software Process," Software Engineering Institute/ Carnegie Mellon University, CMU/SEI98-TR-006, May 1998.
 Wilson, Steve, and Jeff Kesselman. 2000. Java Platform Performance: Strategies and Tactics. Boston, MA: Addison-Wesley.
 Wirth, Niklaus. 1995. "A Plea for Lean Software," IEEE Computer, February 1995.
-Wirth, Niklaus. 1971. "Program Development by Stepwise Refinement." Communications of the ACM 14, no. 4 (April): 221­27.
+Wirth, Niklaus. 1971. "Program Development by Stepwise Refinement." Communications of the ACM 14, no. 4 (April): 221ï¿½27.
 Wirth, Niklaus. 1986. Algorithms and Data Structures. Englewood Cliffs, NJ: Prentice Hall.
 Woodcock, Jim, and Martin Loomes. 1988. Software Engineering Mathematics. Reading, MA: Addison-Wesley.
-Woodfield, S. N., H. E. Dunsmore, and V. Y. Shen. 1981. "The Effect of Modularization and Comments on Program Comprehension." Proceedings of the Fifth International Conference on Software Engineering, March 1981, 215­23.
-Wulf, W. A. 1972. "A Case Against the GOTO." Proceedings of the 25th National ACM Conference, August 1972, 791­97.
+Woodfield, S. N., H. E. Dunsmore, and V. Y. Shen. 1981. "The Effect of Modularization and Comments on Program Comprehension." Proceedings of the Fifth International Conference on Software Engineering, March 1981, 215ï¿½23.
+Wulf, W. A. 1972. "A Case Against the GOTO." Proceedings of the 25th National ACM Conference, August 1972, 791ï¿½97.
 
-Youngs, Edward A. 1974. "Human Errors in Programming." International Journal of Man-Machine Studies 6:361­76.
+Youngs, Edward A. 1974. "Human Errors in Programming." International Journal of Man-Machine Studies 6:361ï¿½76.
 Yourdon, Edward, and Larry L. Constantine. 1979. Structured Design: Fundamentals of a Discipline of Computer Program and Systems Design. Englewood Cliffs, NJ: Yourdon Press.
 Yourdon, Edward, ed. 1979. Classics in Software Engineering. Englewood Cliffs, NJ: Yourdon Press.
 Yourdon, Edward, ed. 1982. Writings of the Revolution: Selected Readings on Software Engineering. New York, NY: Yourdon Press.
@@ -26387,47 +26393,47 @@ Yourdon, Edward. 1989a. Modern Structured Analysis. New York, NY: Yourdon Press.
 Yourdon, Edward. 1989b. Structured WalkThroughs, 4th ed. New York, NY: Yourdon Press.
 Yourdon, Edward. 1992. Decline & Fall of the American Programmer. Englewood Cliffs, NJ: Yourdon Press.
 Zachary, Pascal. 1994. Showstopper! The Free Press.
-Zahniser, Richard A. 1992. "A Massively Parallel Software Development Approach." American Programmer, January, 34­41.
+Zahniser, Richard A. 1992. "A Massively Parallel Software Development Approach." American Programmer, January, 34ï¿½41.
 
 Index
 
 Symbols and Numbers
-* (pointer declaration symbol), 332, 334­335, 763
-& (pointer reference symbol), 332 ­> (pointer symbol), 328 80/20 rule, 592
+* (pointer declaration symbol), 332, 334ï¿½335, 763
+& (pointer reference symbol), 332 ï¿½> (pointer symbol), 328 80/20 rule, 592
 A
-abbreviation of names, 283­285 abstract data types. See ADTs Abstract Factory pattern, 104 abstraction
-access routines for, 340­342 ADTs for. See ADTs air lock analogy, 136 checklist, 157 classes for, 152, 157 cohesion with, 138 complexity, for handling, 839 consistent level for class
-interfaces, 135­136 defined, 89 erosion under modification
-problem, 138 evaluating, 135 exactness goal, 136­137 forming consistently, 89­90 good example for class interfaces,
-133­134 guidelines for creating class
-interfaces, 135­138 high-level problem domain terms,
+abbreviation of names, 283ï¿½285 abstract data types. See ADTs Abstract Factory pattern, 104 abstraction
+access routines for, 340ï¿½342 ADTs for. See ADTs air lock analogy, 136 checklist, 157 classes for, 152, 157 cohesion with, 138 complexity, for handling, 839 consistent level for class
+interfaces, 135ï¿½136 defined, 89 erosion under modification
+problem, 138 evaluating, 135 exactness goal, 136ï¿½137 forming consistently, 89ï¿½90 good example for class interfaces,
+133ï¿½134 guidelines for creating class
+interfaces, 135ï¿½138 high-level problem domain terms,
 847 implementation structures,
-low-level, 846 inconsistent, 135­136, 138 interfaces, goals for, 133­138 levels of, 845­847 opposites, pairs of, 137 OS level, 846 patterns for, 103 placing items in inheritance trees,
+low-level, 846 inconsistent, 135ï¿½136, 138 interfaces, goals for, 133ï¿½138 levels of, 845ï¿½847 opposites, pairs of, 137 OS level, 846 patterns for, 103 placing items in inheritance trees,
 146 poor example for class interfaces,
-134­135 problem domain terms, low-level,
+134ï¿½135 problem domain terms, low-level,
 846 programming-language level, 846 routines for, 164
 
-access routines abstraction benefit, 340 abstraction, level of, 341­342 advantages of, 339­340 barricaded variables benefit, 339 centralized control from, 339 creating, 340 g_ prefix guideline, 340 information hiding benefit, 340 lack of support for, overcoming, 340­342 locking, 341 parallelism from, 342 requiring, 340
-accidental problems, 77­78 accreting a system metaphor, 15­16 accuracy, 464 Ada
-description of, 63 parameter order, 174­175 adaptability, 464 Adapter pattern, 104 addition, dangers of, 295 ADTs (abstract data types) abstraction with, 130 access routines, 339­342 benefits of, 126­129 changes not propagating benefit,
-128 classes based on, 133 cooling system example, 129­130 data, meaning of, 126 defined, 126 documentation benefit, 128 explicit instancing, 132 files as, 130 guidelines, 130­131 hiding information with, 127 instancing, 132 implicit instancing, 132 interfaces, making more
+access routines abstraction benefit, 340 abstraction, level of, 341ï¿½342 advantages of, 339ï¿½340 barricaded variables benefit, 339 centralized control from, 339 creating, 340 g_ prefix guideline, 340 information hiding benefit, 340 lack of support for, overcoming, 340ï¿½342 locking, 341 parallelism from, 342 requiring, 340
+accidental problems, 77ï¿½78 accreting a system metaphor, 15ï¿½16 accuracy, 464 Ada
+description of, 63 parameter order, 174ï¿½175 adaptability, 464 Adapter pattern, 104 addition, dangers of, 295 ADTs (abstract data types) abstraction with, 130 access routines, 339ï¿½342 benefits of, 126ï¿½129 changes not propagating benefit,
+128 classes based on, 133 cooling system example, 129ï¿½130 data, meaning of, 126 defined, 126 documentation benefit, 128 explicit instancing, 132 files as, 130 guidelines, 130ï¿½131 hiding information with, 127 instancing, 132 implicit instancing, 132 interfaces, making more
 informative, 128 low-level data types as, 130 media independence with, 131 multiple instances, handling,
-131­133 need for, example of, 126­127 non-object-oriented languages
-with, 131­133 objects as, 130
+131ï¿½133 need for, example of, 126ï¿½127 non-object-oriented languages
+with, 131ï¿½133 objects as, 130
 
-operations examples, table of, 129­130
+operations examples, table of, 129ï¿½130
 passing of data, minimization of, 128
 performance improvements with, 128
 purpose of, 126 real-world entities, working with,
-128­129 representation question, 130 simple items as, 131 verification of code benefit, 128 agile development, 58, 658 algebraic identities, 630 algorithms commenting, 809 heuristics compared to, 12 metaphors serving as, 11­12 resources on, 607 routines, planning for, 223 aliasing, 311-316 analysis skills development, 823 approaches to development agile development, 58, 658 bottom-up approaches, 112­113,
-697­698 Extreme Programming, 58,
-471­472, 482, 708, 856 importance of, 839­841 iterative approach. See iteration in
+128ï¿½129 representation question, 130 simple items as, 131 verification of code benefit, 128 agile development, 58, 658 algebraic identities, 630 algorithms commenting, 809 heuristics compared to, 12 metaphors serving as, 11ï¿½12 resources on, 607 routines, planning for, 223 aliasing, 311-316 analysis skills development, 823 approaches to development agile development, 58, 658 bottom-up approaches, 112ï¿½113,
+697ï¿½698 Extreme Programming, 58,
+471ï¿½472, 482, 708, 856 importance of, 839ï¿½841 iterative approach. See iteration in
 development premature optimization problem,
 840 quality control, 840. See also
-quality of software resources for, 58­59 sequential approach, 35­36 team processes, 839­840 top-down approaches, 111­113,
-694­696 architecture
+quality of software resources for, 58ï¿½59 sequential approach, 35ï¿½36 team processes, 839ï¿½840 top-down approaches, 111ï¿½113,
+694ï¿½696 architecture
 building block definition, 45 business rules, 46 buying vs. building components,
-51 changes, 44, 52 checklist for, 54­55 class design, 46 commitment delay strategy, 52 conceptual integrity of, 52
+51 changes, 44, 52 checklist for, 54ï¿½55 class design, 46 commitment delay strategy, 52 conceptual integrity of, 52
 
 885
 
@@ -26435,177 +26441,177 @@ building block definition, 45 business rules, 46 buying vs. building components,
 
 afirristthtmoept-ilceveexlperenstsryions
 
-architecture, continued data design, 46 defined, 43 error handling, 49­50 fault tolerance, 50 GUIs, 47 importance of, 44 input/output, 49 internationalization planning, 48 interoperability, 48 key point for, 60 localization planning, 48 machine independence, 53 overengineering, 51 percent of total activity, by size of project, 654­655 performance goals, 48 performance-oriented, 590 prerequisite nature of, 44 program organization, 45­46 quality, 52­53, 55 resource management, 47 resources on developing, 57 reuse decisions, 52 risky areas, identifying, 53 scalability, 48 security design, 47 technical feasibility, 51 time allowed for, 56 user interface design, 47 validation design, 50
-arithmetic expressions misleading precedence example, 733 magnitudes, greatly different, 295 multiplication, changing to addition, 623­624 rounding errors, 297
-arrays C language macro for, 311 checklist, 317 containers as an alternative, 310 costs of operations, 602 cross-talk, 311 defined, 310 dimensions, minimizing, 625­626 end points, checking, 310 foreach loops with, 372 indexes of, 310­311 layout of references, 754 loops with, 387­388 multidimensional, 310 naming conventions for, 280­281
+architecture, continued data design, 46 defined, 43 error handling, 49ï¿½50 fault tolerance, 50 GUIs, 47 importance of, 44 input/output, 49 internationalization planning, 48 interoperability, 48 key point for, 60 localization planning, 48 machine independence, 53 overengineering, 51 percent of total activity, by size of project, 654ï¿½655 performance goals, 48 performance-oriented, 590 prerequisite nature of, 44 program organization, 45ï¿½46 quality, 52ï¿½53, 55 resource management, 47 resources on developing, 57 reuse decisions, 52 risky areas, identifying, 53 scalability, 48 security design, 47 technical feasibility, 51 time allowed for, 56 user interface design, 47 validation design, 50
+arithmetic expressions misleading precedence example, 733 magnitudes, greatly different, 295 multiplication, changing to addition, 623ï¿½624 rounding errors, 297
+arrays C language macro for, 311 checklist, 317 containers as an alternative, 310 costs of operations, 602 cross-talk, 311 defined, 310 dimensions, minimizing, 625ï¿½626 end points, checking, 310 foreach loops with, 372 indexes of, 310ï¿½311 layout of references, 754 loops with, 387ï¿½388 multidimensional, 310 naming conventions for, 280ï¿½281
 
-performance tuning, 593­594, 603­604
-refactoring, 572 references, minimizing, 626­627 semantic prefixes for, 280­281 sentinel tests for loops, 621­623 sequential access guideline, 310 assembly language description of, 63 listing tools, 720 recoding to, 640­642 assertions aborting program recommended,
+performance tuning, 593ï¿½594, 603ï¿½604
+refactoring, 572 references, minimizing, 626ï¿½627 semantic prefixes for, 280ï¿½281 sentinel tests for loops, 621ï¿½623 sequential access guideline, 310 assembly language description of, 63 listing tools, 720 recoding to, 640ï¿½642 assertions aborting program recommended,
 206 arguments for, 189 assumptions to check, list of, 190 barricades, relation to, 205 benefits of, 189 building your own mechanism
-for, 191 C++ example, 191 dangerous use of example, 192 defined, 189 dependencies, checking for, 350 error handling with, 191, 193­194 executable code in, 191­192 guidelines for, 191­193 Java example of, 190 postcondition verification,
-192­193 precondition verification,
-192­193 removing from code, 190 resources for, 212 Visual Basic examples, 192­194 assignment statements, 249, 758 author role in inspections, 486 auto_ptrs, 333 automated testing, 528­529
+for, 191 C++ example, 191 dangerous use of example, 192 defined, 189 dependencies, checking for, 350 error handling with, 191, 193ï¿½194 executable code in, 191ï¿½192 guidelines for, 191ï¿½193 Java example of, 190 postcondition verification,
+192ï¿½193 precondition verification,
+192ï¿½193 removing from code, 190 resources for, 212 Visual Basic examples, 192ï¿½194 assignment statements, 249, 758 author role in inspections, 486 auto_ptrs, 333 automated testing, 528ï¿½529
 B
-backup plans, 669, 670 bad data, testing for, 514­515 barricades
+backup plans, 669, 670 bad data, testing for, 514ï¿½515 barricades
 assertions, relation to, 205 class-level, 204 input data conversions, 204 interfaces as boundaries, 203 operating room analogy, 204 purpose of, 203 base classes abstract overridable routines, 145 abstraction aspect of, 89 coupling, too tight, 143
 
-Liskov Substitution Principle, 144­145
-overridable vs. non-overridable routines, 145­146
+Liskov Substitution Principle, 144ï¿½145
+overridable vs. non-overridable routines, 145ï¿½146
 protected data, 143 routines overridden to do
-nothing, 146­147 single classes from, 146 Basic, 65. See also Visual Basic basis testing, structured, 503,
-505­509 BCD (binary coded decimal) type,
-297 BDUF (big design up front), 119 beauty, 80 begin-end pairs, 742­743 bibliographies, software, 858 big-bang integration, 691 big design up front (BDUF), 119 binary searches, 428 binding
-in code, 252 compile time, 252­253 heuristic design with, 107 just in time, 253 key point, 258 load time, 253 run time, 253 variables, timing of, 252­254 black-box testing, 500 blank lines for formatting, 747­748,
-765­766 blocks
-braces writing rule, 443 comments on, 795­796 conditionals, clarifying, 443 defined, 443 emulated pure layout style,
-740­743 pure, layout style, 738­740 single statements, 748­749 Book Paradigm, 812­813 boolean expressions 0, comparisons to, 441­442 0s and 1s as values, 432 breaking into partial tests, 433 C languages syntax, 442­443 characters, comparisons to zero,
+nothing, 146ï¿½147 single classes from, 146 Basic, 65. See also Visual Basic basis testing, structured, 503,
+505ï¿½509 BCD (binary coded decimal) type,
+297 BDUF (big design up front), 119 beauty, 80 begin-end pairs, 742ï¿½743 bibliographies, software, 858 big-bang integration, 691 big design up front (BDUF), 119 binary searches, 428 binding
+in code, 252 compile time, 252ï¿½253 heuristic design with, 107 just in time, 253 key point, 258 load time, 253 run time, 253 variables, timing of, 252ï¿½254 black-box testing, 500 blank lines for formatting, 747ï¿½748,
+765ï¿½766 blocks
+braces writing rule, 443 comments on, 795ï¿½796 conditionals, clarifying, 443 defined, 443 emulated pure layout style,
+740ï¿½743 pure, layout style, 738ï¿½740 single statements, 748ï¿½749 Book Paradigm, 812ï¿½813 boolean expressions 0, comparisons to, 441ï¿½442 0s and 1s as values, 432 breaking into partial tests, 433 C languages syntax, 442ï¿½443 characters, comparisons to zero,
 441 checklist for, 459 constants in comparisons,
-442­443 decision tables, moving to, 435 DeMorgan's Theorems, applying,
-436­437
+442ï¿½443 decision tables, moving to, 435 DeMorgan's Theorems, applying,
+436ï¿½437
 
 clahsatrtaocpte-rle, vpeelresonntrayl
 
 887
 
-evaluation guidelines, 438­440 functions, moving to, 434­435 identifiers for, 431­433 if statements, negatives in,
-435­436 implicit comparisons, 433 Java syntax, 439, 443 layout guidelines, 749­750 logical identities, 630 negatives in, 435­437 numeric, structuring, 440­441 parentheses for clarifying,
-437­438 pointers, comparisons with, 441 positive form recommended,
-435­437 refactoring, 572 short circuit evaluation, 438­440 simplifying, 433­435 variables in. See boolean variables zero, comparisons to, 441­442 boolean functions creating from expressions,
-434­435 if statements, used in, 359 boolean tests breaking into partial tests, 433 hiding with routines, 165 simplifying, 301­302 zero, comparisons to, 441­442 boolean variables 0s and 1s as values, 432 C, creating data type, 302­303 checklist, 317 documentation with, 301 enumerated types as alternative,
+evaluation guidelines, 438ï¿½440 functions, moving to, 434ï¿½435 identifiers for, 431ï¿½433 if statements, negatives in,
+435ï¿½436 implicit comparisons, 433 Java syntax, 439, 443 layout guidelines, 749ï¿½750 logical identities, 630 negatives in, 435ï¿½437 numeric, structuring, 440ï¿½441 parentheses for clarifying,
+437ï¿½438 pointers, comparisons with, 441 positive form recommended,
+435ï¿½437 refactoring, 572 short circuit evaluation, 438ï¿½440 simplifying, 433ï¿½435 variables in. See boolean variables zero, comparisons to, 441ï¿½442 boolean functions creating from expressions,
+434ï¿½435 if statements, used in, 359 boolean tests breaking into partial tests, 433 hiding with routines, 165 simplifying, 301ï¿½302 zero, comparisons to, 441ï¿½442 boolean variables 0s and 1s as values, 432 C, creating data type, 302ï¿½303 checklist, 317 documentation with, 301 enumerated types as alternative,
 304 expressions with. See boolean
-expressions identifiers for, 431­433 naming, 268­269 simplifying tests with, 301­302 zeros and ones as values, 432 boss readiness test on prerequisites,
-30­31 bottom-up approach to design,
-112­113 bottom-up integration, 697­698 boundary analysis, 513­514 braces
-block layout with, 740­743 styles compared, 734 break statements C++ loops, 371­372 caution about, 381 guidelines, 379­380
+expressions identifiers for, 431ï¿½433 naming, 268ï¿½269 simplifying tests with, 301ï¿½302 zeros and ones as values, 432 boss readiness test on prerequisites,
+30ï¿½31 bottom-up approach to design,
+112ï¿½113 bottom-up integration, 697ï¿½698 boundary analysis, 513ï¿½514 braces
+block layout with, 740ï¿½743 styles compared, 734 break statements C++ loops, 371ï¿½372 caution about, 381 guidelines, 379ï¿½380
 
 labeled, 381 multiple in one loop, 380 nested-if simplification with,
-446­447 while loops with, 379 bridge failure, Tacoma Narrows, 74 Bridge pattern, 104 brute-force debugging, 548­549 buffer overruns, 196 bugs. See debugging; defects in code;
-errors build tools, 716­717. See also
-compilers building metaphor, 16­19 building vs. buying components, 18 builds, daily. See daily build and
+446ï¿½447 while loops with, 379 bridge failure, Tacoma Narrows, 74 Bridge pattern, 104 brute-force debugging, 548ï¿½549 buffer overruns, 196 bugs. See debugging; defects in code;
+errors build tools, 716ï¿½717. See also
+compilers building metaphor, 16ï¿½19 building vs. buying components, 18 builds, daily. See daily build and
 smoke tests business rules
-architecture prerequisites, 46 change, identifying areas of, 98 good practices table for, 31­32 subsystem design, 85 buying components, 18, 51
+architecture prerequisites, 46 change, identifying areas of, 98 good practices table for, 31ï¿½32 subsystem design, 85 buying components, 18, 51
 C
-C language ADTs with, 131 boolean expression syntax, 442­443 description of, 64 naming conventions for, 275, 278 pointers, 334­335 string data types, 299­301, 317 string index errors, 299­300
+C language ADTs with, 131 boolean expression syntax, 442ï¿½443 description of, 64 naming conventions for, 275, 278 pointers, 334ï¿½335 string data types, 299ï¿½301, 317 string index errors, 299ï¿½300
 C#, 64 C++
 assertion example, 191 boolean expression syntax,
-442­443 debugging stubs with, 208­209 description of, 64 DoNothing() macros, 444­445 exceptions in, 198­199 inline routines, 184­185 interface considerations, 139­141 layout recommended, 745 macro routines, 182­184 naming conventions for, 275­277 null statements, 444­445 parameters, by reference vs. by
-value, 333 pointers, 325, 328­334, 763 preprocessors, excluding debug
-code, 207­208 resources for, 159
+442ï¿½443 debugging stubs with, 208ï¿½209 description of, 64 DoNothing() macros, 444ï¿½445 exceptions in, 198ï¿½199 inline routines, 184ï¿½185 interface considerations, 139ï¿½141 layout recommended, 745 macro routines, 182ï¿½184 naming conventions for, 275ï¿½277 null statements, 444ï¿½445 parameters, by reference vs. by
+value, 333 pointers, 325, 328ï¿½334, 763 preprocessors, excluding debug
+code, 207ï¿½208 resources for, 159
 
-side effects, 759­761 source files, layout in, 773 caching, code tuning with, 628­629 Capability Maturity Model (CMM),
-491 capturing design work, 117­118 Cardinal Rule of Software Evolution,
+side effects, 759ï¿½761 source files, layout in, 773 caching, code tuning with, 628ï¿½629 Capability Maturity Model (CMM),
+491 capturing design work, 117ï¿½118 Cardinal Rule of Software Evolution,
 565 CASE (computer-aided software
 engineering) tools, 710 case statements
-alpha ordering, 361 checklist, 365 debugging, 206 default clauses, 363 drop-throughs, 363­365 end of case statements, 363­365 endline layout, 751­752 error detection in, 363 frequency of execution ordering,
-361, 612­613 if statements, comparing
+alpha ordering, 361 checklist, 365 debugging, 206 default clauses, 363 drop-throughs, 363ï¿½365 end of case statements, 363ï¿½365 endline layout, 751ï¿½752 error detection in, 363 frequency of execution ordering,
+361, 612ï¿½613 if statements, comparing
 performance with, 614 key points, 366 language support for, 361 nested ifs, converting from,
-448­449, 451 normal case first rule, 361 numeric ordering, 361 ordering cases, 361 parallel modifications to, 566 phony variables, 361­362 polymorphism preferable to,
-147­148 redesigning, 453 refactoring, 566, 573 simple action guideline, 361 table-driven methods using,
-421­422 change control. See configuration
-management character arrays, 299­300. See also
+448ï¿½449, 451 normal case first rule, 361 numeric ordering, 361 ordering cases, 361 parallel modifications to, 566 phony variables, 361ï¿½362 polymorphism preferable to,
+147ï¿½148 redesigning, 453 refactoring, 566, 573 simple action guideline, 361 table-driven methods using,
+421ï¿½422 change control. See configuration
+management character arrays, 299ï¿½300. See also
 string data types character data types
-arrays vs. string pointers, 299 C language, 299­301 character sets, 298 checklist, 316­317 conversion strategies, 299 magic (literal) characters,
-297­298 Unicode, 298, 299 character, personal analysis skills, 823 communication skills, 828
+arrays vs. string pointers, 299 C language, 299ï¿½301 character sets, 298 checklist, 316ï¿½317 conversion strategies, 299 magic (literal) characters,
+297ï¿½298 Unicode, 298, 299 character, personal analysis skills, 823 communication skills, 828
 
 888
 
 cfihrsetctkolipst-slevel entry
 
-character, personal, continued compiler messages, treatment of, 826­827 computer-science graduates, 829 cooperation skills, 828 creativity, 829, 857 curiosity, 822­825 development process awareness, 822 discipline, 829 estimations, 827­828 experience, 831­832 experimentation, 822­823 gonzo programming, 832 habits, 833­834 humility, 821, 826, 834 importance of, 819­820 intellectual honesty, 826­828 intelligence, 821 judgment, 848 key points, 835 laziness, 830 mistakes, admitting to, 826 persistence, 831 practices compensating for weakness, 821 problem solving, 823 professional development, 824­825 reading, 824 religion in programming, harmful effects of, 851­853 resources on, 834­835 status reporting, 827 successful projects, learning from, 823­824
-checklists abstraction, 157 architecture, 54­55 arrays, 317 backups, 670 boolean expressions, 459 case statements, 365 character data types, 316­317 classes, 157­158, 233­234, 578­579, 774, 780 coding practices, 69 code tuning, 607­608, 642­643 comments, 774, 816­817 conditional statements, 365 configuration management, 669­670 constants, 317 construction practices, 69­70 control structures, 459, 773, 780
+character, personal, continued compiler messages, treatment of, 826ï¿½827 computer-science graduates, 829 cooperation skills, 828 creativity, 829, 857 curiosity, 822ï¿½825 development process awareness, 822 discipline, 829 estimations, 827ï¿½828 experience, 831ï¿½832 experimentation, 822ï¿½823 gonzo programming, 832 habits, 833ï¿½834 humility, 821, 826, 834 importance of, 819ï¿½820 intellectual honesty, 826ï¿½828 intelligence, 821 judgment, 848 key points, 835 laziness, 830 mistakes, admitting to, 826 persistence, 831 practices compensating for weakness, 821 problem solving, 823 professional development, 824ï¿½825 reading, 824 religion in programming, harmful effects of, 851ï¿½853 resources on, 834ï¿½835 status reporting, 827 successful projects, learning from, 823ï¿½824
+checklists abstraction, 157 architecture, 54ï¿½55 arrays, 317 backups, 670 boolean expressions, 459 case statements, 365 character data types, 316ï¿½317 classes, 157ï¿½158, 233ï¿½234, 578ï¿½579, 774, 780 coding practices, 69 code tuning, 607ï¿½608, 642ï¿½643 comments, 774, 816ï¿½817 conditional statements, 365 configuration management, 669ï¿½670 constants, 317 construction practices, 69ï¿½70 control structures, 459, 773, 780
 
-daily build and smoke tests, 707 data organization, 780 data types, 316­318 debugging, 559­561 defects, 489, 559­560 defensive programming, 211­212 design, 122­123, 781 documentation, 780­781,
-816­817 encapsulation, 158 enumerated types, 317 fixing defects, 560 formal inspections, 489, 491­492 formatting, 773­774 goto statements, 410 if statements, 365 inheritance, 158 initialization, 257 integration, 707 interfaces, 579 layout, 773­774 list of, xxix­xxx loops, 388­389 names, 288­289, 780 pair programming, 484 parameters, 185 performance tuning, 607­608 pointers, 344 prerequisites, 59 pseudocoding, 233­234 programming tools, 724­725 quality assurance, 42­43, 70, 476 refactoring, 570, 577­579, 584 requirements, 40, 42­43 routines, 185, 774, 780 speed, tuning for, 642­643 statements, 774 straight-line code, 353 strings, 316­317 structures, 343 table-driven methods, 429 testing, 503, 532 tools, 70 type creation, 318 variables, 257­258, 288­289,
-343­344 circular dependencies, 95 classes
-abstract data types. See ADTs abstract objects, modeling, 152 abstraction checklist, 157 alternates to PPP, 232­233 architecture prerequisites, 46 assumptions about users, 141 base. See base classes
+daily build and smoke tests, 707 data organization, 780 data types, 316ï¿½318 debugging, 559ï¿½561 defects, 489, 559ï¿½560 defensive programming, 211ï¿½212 design, 122ï¿½123, 781 documentation, 780ï¿½781,
+816ï¿½817 encapsulation, 158 enumerated types, 317 fixing defects, 560 formal inspections, 489, 491ï¿½492 formatting, 773ï¿½774 goto statements, 410 if statements, 365 inheritance, 158 initialization, 257 integration, 707 interfaces, 579 layout, 773ï¿½774 list of, xxixï¿½xxx loops, 388ï¿½389 names, 288ï¿½289, 780 pair programming, 484 parameters, 185 performance tuning, 607ï¿½608 pointers, 344 prerequisites, 59 pseudocoding, 233ï¿½234 programming tools, 724ï¿½725 quality assurance, 42ï¿½43, 70, 476 refactoring, 570, 577ï¿½579, 584 requirements, 40, 42ï¿½43 routines, 185, 774, 780 speed, tuning for, 642ï¿½643 statements, 774 straight-line code, 353 strings, 316ï¿½317 structures, 343 table-driven methods, 429 testing, 503, 532 tools, 70 type creation, 318 variables, 257ï¿½258, 288ï¿½289,
+343ï¿½344 circular dependencies, 95 classes
+abstract data types. See ADTs abstract objects, modeling, 152 abstraction checklist, 157 alternates to PPP, 232ï¿½233 architecture prerequisites, 46 assumptions about users, 141 base. See base classes
 
 bidirectional associations, 577 calls to, refactoring, 575 case statements vs. inheritance,
-147­148 centralizing control with, 153 changes, limiting effects of, 153 checklists, 157­158, 774, 780 coding routines from
-pseudocode, 225­229 cohesion as refactoring indicator,
-566 complexity issues, 152­153 constant values returned, 574 constructors, 151­152 containment, 143­144 coupling considerations,
-100­102, 142­143 data-free, 155 deep inheritance trees, 147 defined, 125 delegation vs. inheritance,
+147ï¿½148 centralizing control with, 153 changes, limiting effects of, 153 checklists, 157ï¿½158, 774, 780 coding routines from
+pseudocode, 225ï¿½229 cohesion as refactoring indicator,
+566 complexity issues, 152ï¿½153 constant values returned, 574 constructors, 151ï¿½152 containment, 143ï¿½144 coupling considerations,
+100ï¿½102, 142ï¿½143 data-free, 155 deep inheritance trees, 147 defined, 125 delegation vs. inheritance,
 refactoring, 576 descendants, refactoring indicator
-for, 567 designing, 86, 216, 220­225, 233 disallowing functions and
-operators, 150 documenting, 780, 810 encapsulation, 139­143, 158 extension, refactoring with, 576 factoring, benefit of, 154 files containing, 771­772 foreign routines, refactoring with,
+for, 567 designing, 86, 216, 220ï¿½225, 233 disallowing functions and
+operators, 150 documenting, 780, 810 encapsulation, 139ï¿½143, 158 extension, refactoring with, 576 factoring, benefit of, 154 files containing, 771ï¿½772 foreign routines, refactoring with,
 576 formalizing contracts for
-interfaces, 106 formatting, 768­771 friend, encapsulation violation
+interfaces, 106 formatting, 768ï¿½771 friend, encapsulation violation
 concern, 141 functions in. See functions;
 routines global data, hiding, 153 god classes, 155 hacking approach to, 233 hiding implementation details,
-153 implementation checklist, 158 indirect calls to other classes, 150 information hiding, 92­93 inheritance, 144­149, 158 initializing members, 243 integration, 691, 694, 697 irrelevant classes, 155 is a relationships, 144 key points for, 160, 234
+153 implementation checklist, 158 indirect calls to other classes, 150 information hiding, 92ï¿½93 inheritance, 144ï¿½149, 158 initializing members, 243 integration, 691, 694, 697 irrelevant classes, 155 is a relationships, 144 key points for, 160, 234
 
-language-specific issues, 156 layout of, 768­771 limiting collaboration, 150 Liskov Substitution Principle,
-144­145 member variables, naming, 273,
+language-specific issues, 156 layout of, 768ï¿½771 limiting collaboration, 150 Liskov Substitution Principle,
+144ï¿½145 member variables, naming, 273,
 279 methods of. See routines minimizing accessibility rule, 139 mixins, 149 modeling real-world objects, 152 multiple per file, layout of,
-769­770 naming, 277, 278 number of members, 143 number of routines, 150 object names, differentiating from,
-272­273 objects, contrasted with, 86 overformatting, 770 overriding routines, 145­146, 156 packages, 155­157 parallel modifications refactoring
+769ï¿½770 naming, 277, 278 number of members, 143 number of routines, 150 object names, differentiating from,
+272ï¿½273 objects, contrasted with, 86 overformatting, 770 overriding routines, 145ï¿½146, 156 packages, 155ï¿½157 parallel modifications refactoring
 indicator, 566 planning for program families,
 154 private vs. protected data, 148 private, declaring members as,
 150 procedures in. See routines protected data, 148 pseudocode for designing,
-232­234 public members, 139, 141, 576 read-time convenience rule, 141 reasons for creating, 152­156 refactoring, 155, 574­576,
-578­579, 582 resources, 159 reusability benefit of, 154 review and test step, 217 routine construction step, 217 routines in. See routines routines, unused, 146­147, 576 semantic violations of
-encapsulation, 141­142 Set() routines, unnecessary, 576 similar sub and superclasses, 576 single-instance, 146 singleton property, enforcing, 151 steps in creating, 216­217 streamlining parameter passing,
+232ï¿½234 public members, 139, 141, 576 read-time convenience rule, 141 reasons for creating, 152ï¿½156 refactoring, 155, 574ï¿½576,
+578ï¿½579, 582 resources, 159 reusability benefit of, 154 review and test step, 217 routine construction step, 217 routines in. See routines routines, unused, 146ï¿½147, 576 semantic violations of
+encapsulation, 141ï¿½142 Set() routines, unnecessary, 576 similar sub and superclasses, 576 single-instance, 146 singleton property, enforcing, 151 steps in creating, 216ï¿½217 streamlining parameter passing,
 153 subclasses, 165, 575
 
 superclasses for common code, 575
 test-first development, 233 testing with stub objects, 523 unidirectional associations, 577 visibility of, 93 warning signs for, 848, 849 class-hierarchy generators, 713 cleanup steps, PPP, 232 cleanroom development, 521 CMM (Capability Maturity Model),
-491 Cobol, 64 code coverage testing, 506 code libraries, 222, 717 code quality analysis tools, 713­714 code reading method, 494 code tuning
-80/20 rule, 592 advantages from, 591 algebraic identities, 630 appeal of, 591­592 arrays, 593­594, 603­604,
-625­627 assembler, listing tools, 720 assembler, recoding to, 640­642 bottleneck identification, 594 caching data, 628­629 checklists, 607­608, 642­643 comparing logic structures, 614 competing objectives dilemma,
+491 Cobol, 64 code coverage testing, 506 code libraries, 222, 717 code quality analysis tools, 713ï¿½714 code reading method, 494 code tuning
+80/20 rule, 592 advantages from, 591 algebraic identities, 630 appeal of, 591ï¿½592 arrays, 593ï¿½594, 603ï¿½604,
+625ï¿½627 assembler, listing tools, 720 assembler, recoding to, 640ï¿½642 bottleneck identification, 594 caching data, 628ï¿½629 checklists, 607ï¿½608, 642ï¿½643 comparing logic structures, 614 competing objectives dilemma,
 595 compiler considerations, 590,
-596­597 converting data types, 635 correctness, importance of,
-595­596 data transformations, 624­629 data type choices, 635 database indexing, 601 defects in code, 601 defined, 591 DES example, 605­606 design view, 589­590 disadvantages of, 591 disassemblers, 720 execution profiler tools, 720 expressions, 630­639 feature specific, 595 frequency, testing in order of,
-612­613 frequently used code spots, 592 hardware considerations, 591 improvements possible, 605 indexing data, 627­628
+596ï¿½597 converting data types, 635 correctness, importance of,
+595ï¿½596 data transformations, 624ï¿½629 data type choices, 635 database indexing, 601 defects in code, 601 defined, 591 DES example, 605ï¿½606 design view, 589ï¿½590 disadvantages of, 591 disassemblers, 720 execution profiler tools, 720 expressions, 630ï¿½639 feature specific, 595 frequency, testing in order of,
+612ï¿½613 frequently used code spots, 592 hardware considerations, 591 improvements possible, 605 indexing data, 627ï¿½628
 
 last topc-oledveetluennitnrgy
 
 889
 
-inefficiency, sources of, 598­601 initializing at compile time,
-632­633 inline routines, 639­640 input/output, 598­599 integers preferred to floating, 625 interpreted vs. compiled
-languages, 592, 600­601 iteration of, 608, 850 jamming loops, 617­618 key points, 608, 645 language specificity, 644 lazy evaluation, 615­616 lines of code, minimizing number
-of, 593­594 logic manipulation guidelines,
-610­616 lookup tables for, 614­615, 635 loops, 616­624 low-level language, recoding to,
-640­642 measurement to locate hot spots,
-603­604, 644 memory vs. file operations,
-598­599 minimizing work inside loops,
-620­621 multiplication, changing to
-addition, 623­624 nested loop order, 623 old wives' tales, 593­596 operating system considerations,
+inefficiency, sources of, 598ï¿½601 initializing at compile time,
+632ï¿½633 inline routines, 639ï¿½640 input/output, 598ï¿½599 integers preferred to floating, 625 interpreted vs. compiled
+languages, 592, 600ï¿½601 iteration of, 608, 850 jamming loops, 617ï¿½618 key points, 608, 645 language specificity, 644 lazy evaluation, 615ï¿½616 lines of code, minimizing number
+of, 593ï¿½594 logic manipulation guidelines,
+610ï¿½616 lookup tables for, 614ï¿½615, 635 loops, 616ï¿½624 low-level language, recoding to,
+640ï¿½642 measurement to locate hot spots,
+603ï¿½604, 644 memory vs. file operations,
+598ï¿½599 minimizing work inside loops,
+620ï¿½621 multiplication, changing to
+addition, 623ï¿½624 nested loop order, 623 old wives' tales, 593ï¿½596 operating system considerations,
 590 operation speeds, presumptions
 about, 594 operations, costs of common,
-601­603 optimizing as you go, 594­595 overview of, 643­644 paging operations, 599 Pareto Principle, 592 precomputing results, 635­638 program requirements view of,
-589 refactoring, compared to, 609 resource goals, 590 resources on, 606­607, 644­645 right shifting, 634 routines, 590, 639­640 sentinel tests for loops, 621­623 short-circuit evaluation, 610 speed, importance of, 595­596 strength reduction, 623­624,
-630­632
+601ï¿½603 optimizing as you go, 594ï¿½595 overview of, 643ï¿½644 paging operations, 599 Pareto Principle, 592 precomputing results, 635ï¿½638 program requirements view of,
+589 refactoring, compared to, 609 resource goals, 590 resources on, 606ï¿½607, 644ï¿½645 right shifting, 634 routines, 590, 639ï¿½640 sentinel tests for loops, 621ï¿½623 short-circuit evaluation, 610 speed, importance of, 595ï¿½596 strength reduction, 623ï¿½624,
+630ï¿½632
 
 890
 
 cfiorsdtet-ogpe-nlevraetlioentwryizards
 
-code tuning, continued subexpression elimination, 638­639 summary of approach for, 606 system calls, 599­600, 633­634 tools, 720 unrolling loops, 618­620 unswitching loops, 616­617 variations in environments for, 594 when to tune, 596
+code tuning, continued subexpression elimination, 638ï¿½639 summary of approach for, 606 system calls, 599ï¿½600, 633ï¿½634 tools, 720 unrolling loops, 618ï¿½620 unswitching loops, 616ï¿½617 variations in environments for, 594 when to tune, 596
 code-generation wizards, 718 coding. See also construction;
 software construction overview conventions. See conventions,
-coding practices checklist, 69 sequential. See straight-line code software construction as, 5 style. See layout cohesion interfaces, class, 138 routines, designing with, 168­171 strength reduction, 623­624,
-630­632 coincidental cohesion, 170 collaboration
+coding practices checklist, 69 sequential. See straight-line code software construction as, 5 style. See layout cohesion interfaces, class, 138 routines, designing with, 168ï¿½171 strength reduction, 623ï¿½624,
+630ï¿½632 coincidental cohesion, 170 collaboration
 code reading, 494 collective ownership benefits, 482 comparisons of techniques, table
-of, 495­496 cost advantage, 480­481 defined, 479, 480 design phase, 115 development time benefit, 480 dog-and-pony shows, 495 extending beyond construction,
+of, 495ï¿½496 cost advantage, 480ï¿½481 defined, 479, 480 design phase, 115 development time benefit, 480 dog-and-pony shows, 495 extending beyond construction,
 483 Extreme Programming method,
 482 formal inspections. See formal
 inspections General Principle of Software
 Quality, 481 inspections. See formal
 inspections key points, 497 mentoring aspect of, 482 pair programming. See pair
-programming purpose of, 480 standards, IEEE, 497 testing, compared to, 481 walk-throughs, 492­493 collections, refactoring, 572
+programming purpose of, 480 standards, IEEE, 497 testing, compared to, 481 walk-throughs, 492ï¿½493 collections, refactoring, 572
 
 collective ownership, 482. See also collaboration
-comments. See also documentation /* vs. //, 790 abbreviations in, 799 algorithms, 809 argument against, 782 authorship, 811 bad code, on, 568 blank lines around, 765­766 Book Paradigm for, 812­813 categories of, 786­788 checklists, 774, 816­817 classes, 810 coded meanings, 802­803 control structures, 804­805, 817 declarations with, 794, 802­803, 816 descriptions of code intent, 787 distance to code guideline, 806 efficient creation of, 788­791 endline comments, 793­795 errors, marking workarounds, 800 explanatory, 786 files, 810­811 flags, bit level, 803 global variables, 803, 809 indentation guidelines, 764­765 individual lines with, 792­795 input data, 803, 808 integrating into development, 791 interfaces, class, 810 interfaces, routine, 808 Javadoc, 807, 815 key points, 817 layout guidelines, 763­766 legal notices, 811 length of descriptions, 806 level of code intent, 795­796 loops, 804­805 maintenance of, 220, 788­791, 794 major vs. minor, 799­800 markers, 787 non-code essential information, 788 numerical data, 802 optimum density of, 792 output data, 808 paragraphs of code with, 795­801, 816 parameter declarations, 806­807 parts of programs, 809 performance considerations, 791
+comments. See also documentation /* vs. //, 790 abbreviations in, 799 algorithms, 809 argument against, 782 authorship, 811 bad code, on, 568 blank lines around, 765ï¿½766 Book Paradigm for, 812ï¿½813 categories of, 786ï¿½788 checklists, 774, 816ï¿½817 classes, 810 coded meanings, 802ï¿½803 control structures, 804ï¿½805, 817 declarations with, 794, 802ï¿½803, 816 descriptions of code intent, 787 distance to code guideline, 806 efficient creation of, 788ï¿½791 endline comments, 793ï¿½795 errors, marking workarounds, 800 explanatory, 786 files, 810ï¿½811 flags, bit level, 803 global variables, 803, 809 indentation guidelines, 764ï¿½765 individual lines with, 792ï¿½795 input data, 803, 808 integrating into development, 791 interfaces, class, 810 interfaces, routine, 808 Javadoc, 807, 815 key points, 817 layout guidelines, 763ï¿½766 legal notices, 811 length of descriptions, 806 level of code intent, 795ï¿½796 loops, 804ï¿½805 maintenance of, 220, 788ï¿½791, 794 major vs. minor, 799ï¿½800 markers, 787 non-code essential information, 788 numerical data, 802 optimum density of, 792 output data, 808 paragraphs of code with, 795ï¿½801, 816 parameter declarations, 806ï¿½807 parts of programs, 809 performance considerations, 791
 
 preceding code rule, 798 proportionality of, 806 pseudocode, deriving from, 220,
-784, 791 purpose of, 782 repeating code with, 786 resources on, 815 routines with, 805­809, 817 self-commenting code, 796­797 Socratic dialog about, 781­785 standards, IEEE, 813­814 style differences, managing, 683 style violations, 801 summaries of code, 787 surprises, 798 tricky code, 798, 801 undocumented features, 800 variables, 803 version control, 811 why vs. how, 797­798 workarounds, 800 commitment delay strategy, 52 communication skills, importance
+784, 791 purpose of, 782 repeating code with, 786 resources on, 815 routines with, 805ï¿½809, 817 self-commenting code, 796ï¿½797 Socratic dialog about, 781ï¿½785 standards, IEEE, 813ï¿½814 style differences, managing, 683 style violations, 801 summaries of code, 787 surprises, 798 tricky code, 798, 801 undocumented features, 800 variables, 803 version control, 811 why vs. how, 797ï¿½798 workarounds, 800 commitment delay strategy, 52 communication skills, importance
 of, 828 communicational cohesion, 169 communications, development
 team, 650 comparisons
-boolean. See boolean tests floating-point equality, 295­296 mixed data types, 293 compilers binding during compilation,
-252­253 broken builds, 703 data type warnings, 293 debugging tools, as, 557, 827 errors, finding in routines,
-230­231 line numbers, debugging with,
+boolean. See boolean tests floating-point equality, 295ï¿½296 mixed data types, 293 compilers binding during compilation,
+252ï¿½253 broken builds, 703 data type warnings, 293 debugging tools, as, 557, 827 errors, finding in routines,
+230ï¿½231 line numbers, debugging with,
 549 messages, treatment of, 549,
-826­827 multiple error messages, 550 optimizations by, 596­597 performance tuning
+826ï¿½827 multiple error messages, 550 optimizations by, 596ï¿½597 performance tuning
 considerations, 590 project-wide standards for, 557 speeds from optimization, table
 of, 597 tools for, 716 tricky code optimization, 597 validators with, 231 warnings, 293, 557
 
@@ -26617,123 +26623,123 @@ completeness of requirements checklist, 43
 complex data types. See structures complexity
 abstraction for handling, 839 classes for reducing, 152 coding conventions for reducing,
 839 control structure contributions to,
-456­459 conventions for managing,
-844­845 decision points, counting, 458 importance of, 457 isolation, classes for, 153 live time, 459 management, 77­79, 844­845 McCabe's metric, 457­458 mental objects held, measure of,
-457 methods for handling, 837­839 minimization goal, 80 patterns, reducing with, 103 problem domain, working at, 845 reliability correlated with, 457 routines for reducing, 164 size of projects, effect on,
-656­657 span, 459 component testing, 499 components, buying, 18, 51 Composite pattern, 104 compound boundaries, 514 compound statements. See blocks computed-value qualifiers of
-variable names, 263­264 computer-aided software
+456ï¿½459 conventions for managing,
+844ï¿½845 decision points, counting, 458 importance of, 457 isolation, classes for, 153 live time, 459 management, 77ï¿½79, 844ï¿½845 McCabe's metric, 457ï¿½458 mental objects held, measure of,
+457 methods for handling, 837ï¿½839 minimization goal, 80 patterns, reducing with, 103 problem domain, working at, 845 reliability correlated with, 457 routines for reducing, 164 size of projects, effect on,
+656ï¿½657 span, 459 component testing, 499 components, buying, 18, 51 Composite pattern, 104 compound boundaries, 514 compound statements. See blocks computed-value qualifiers of
+variable names, 263ï¿½264 computer-aided software
 engineering (CASE) tools, 710 conditional statements
 boolean function calls with, 359 boolean variables recommended,
-301­302 case statements. See case
+301ï¿½302 case statements. See case
 statements chained if-then-else statements,
-358­360 checklist, 365 common cases first guideline,
-359­360 comparing performance of, 614 covering all cases, 360 defined, 355 eliminating testing redundancy,
-610­611 else clauses, 358­360
+358ï¿½360 checklist, 365 common cases first guideline,
+359ï¿½360 comparing performance of, 614 covering all cases, 360 defined, 355 eliminating testing redundancy,
+610ï¿½611 else clauses, 358ï¿½360
 
 equality, branching on, 355 error processing examples,
-356­357 frequency, testing in order of,
-612­613 if statements. See if statements key points, 366 lookup tables, substituting,
-614­615 looping, conditional. See loops normal case first guideline,
-356­357 normal path first guideline, 355 null if clauses, 357 plain if-then statements, 355­357 refactoring, 573 short-circuit evaluation, 610 switch statements. See case
-statements confessional debugging, 547­548 configuration management
+356ï¿½357 frequency, testing in order of,
+612ï¿½613 if statements. See if statements key points, 366 lookup tables, substituting,
+614ï¿½615 looping, conditional. See loops normal case first guideline,
+356ï¿½357 normal path first guideline, 355 null if clauses, 357 plain if-then statements, 355ï¿½357 refactoring, 573 short-circuit evaluation, 610 switch statements. See case
+statements confessional debugging, 547ï¿½548 configuration management
 architectural anticipation of change, 52
-backup plans, 669, 670 boards, change-control, 667 bureaucratic considerations, 667 checklist, 669­670 code changes, 667­668 cost, estimating, 666 defined, 664 design changes, 666­667 estimating change costs, 666 grouping change requests, 666 high change volumes, 666 identifying areas of change, 97­99 machine configurations,
-reproducing, 668 purpose of, 664­665 requirements changes, 41, 664,
-666­667 resources on, 670 SCM, 665 tool version control, 668 version-control software, 668 const keyword, C++, 176, 177, 243,
+backup plans, 669, 670 boards, change-control, 667 bureaucratic considerations, 667 checklist, 669ï¿½670 code changes, 667ï¿½668 cost, estimating, 666 defined, 664 design changes, 666ï¿½667 estimating change costs, 666 grouping change requests, 666 high change volumes, 666 identifying areas of change, 97ï¿½99 machine configurations,
+reproducing, 668 purpose of, 664ï¿½665 requirements changes, 41, 664,
+666ï¿½667 resources on, 670 SCM, 665 tool version control, 668 version-control software, 668 const keyword, C++, 176, 177, 243,
 274, 333 constants
-checklist, 317 consistency rule, 309 declarations using, 308 defined, 307 emulation by global variables, 338 initializing, 243 literals, avoiding with, 308­309 naming, 270, 273, 277­279
+checklist, 317 consistency rule, 309 declarations using, 308 defined, 307 emulation by global variables, 338 initializing, 243 literals, avoiding with, 308ï¿½309 naming, 270, 273, 277ï¿½279
 
 purpose of, 307 refactoring, 571 simulating in languages lacking,
 309 construction. See also software
 construction overview collaborative. See collaboration decisions. See construction
 decisions guidelines, 66 managing. See managing
 construction percent of total activity, by size of
-project, 654­655 prerequisites. See prerequisites,
+project, 654ï¿½655 prerequisites. See prerequisites,
 upstream quality of. See quality of software resources on, 856 schedules, estimating. See
-construction schedules, estimating size of projects, effects on. See size of projects tools for. See programming tools construction decisions checklist of major construction practices, 69­70 coding practices checklist, 69 early-wave environments, 67 key points for, 70 major construction practices, selecting, 69­70 mature technology environments, 67 programming conventions, 66­66 programming into languages, 68­69 programming languages. See programming language choice quality assurance checklist, 70 teamwork checklist, 69 technology waves, determining your location in, 66­69 tools checklist, 70 construction schedules, estimating approaches to, list of, 671 catching up from behind, 675­676 controlling vs. estimating, 675 factors influencing, 674­675 level of detail for, 672 multiple techniques with comparisons, 672 objectives, establishing, 671 optimism, 675
+construction schedules, estimating size of projects, effects on. See size of projects tools for. See programming tools construction decisions checklist of major construction practices, 69ï¿½70 coding practices checklist, 69 early-wave environments, 67 key points for, 70 major construction practices, selecting, 69ï¿½70 mature technology environments, 67 programming conventions, 66ï¿½66 programming into languages, 68ï¿½69 programming languages. See programming language choice quality assurance checklist, 70 teamwork checklist, 69 technology waves, determining your location in, 66ï¿½69 tools checklist, 70 construction schedules, estimating approaches to, list of, 671 catching up from behind, 675ï¿½676 controlling vs. estimating, 675 factors influencing, 674ï¿½675 level of detail for, 672 multiple techniques with comparisons, 672 objectives, establishing, 671 optimism, 675
 
 892
 
 fciorsntstorupc-tloevrsel entry
 
 construction schedules, estimating, continued
-overview, 671 planning estimation time, 671 reduction of scope, 676 reestimating, 672 requirements specification, 672 resources for, 677 teams, expanding, 676 constructors deep vs. shallow copies, 151­152 exceptions with, 199 guidelines for, 151­152 initializing data members, 151 refactoring, 577 singleton property, enforcing, 151 container classes, 310 containment, 88, 143 continuation lines, 754­758 continue statements, 379, 380, 381 continuous integration, 706 control structures boolean expressions in. See
-boolean expressions case. See case statements checklists, 459, 773, 780 commenting, 804­805, 817 complexity, contributions to,
-456­459 compound statements, 443 conditional flow. See conditional
+overview, 671 planning estimation time, 671 reduction of scope, 676 reestimating, 672 requirements specification, 672 resources for, 677 teams, expanding, 676 constructors deep vs. shallow copies, 151ï¿½152 exceptions with, 199 guidelines for, 151ï¿½152 initializing data members, 151 refactoring, 577 singleton property, enforcing, 151 container classes, 310 containment, 88, 143 continuation lines, 754ï¿½758 continue statements, 379, 380, 381 continuous integration, 706 control structures boolean expressions in. See
+boolean expressions case. See case statements checklists, 459, 773, 780 commenting, 804ï¿½805, 817 complexity, contributions to,
+456ï¿½459 compound statements, 443 conditional flow. See conditional
 statements continuation lines in, 757 data types, relationship to,
-254­255 documentation, 780 double indented begin-end pairs,
-746­747 gotos. See goto statements if statements. See if statements iteration, 255, 456 key points, 460 layout styles, 745­752 loops. See loops multiple returns from routines,
-391­393 null statements, 444­445 recursive. See recursion reliability correlated with
+254ï¿½255 documentation, 780 double indented begin-end pairs,
+746ï¿½747 gotos. See goto statements if statements. See if statements iteration, 255, 456 key points, 460 layout styles, 745ï¿½752 loops. See loops multiple returns from routines,
+391ï¿½393 null statements, 444ï¿½445 recursive. See recursion reliability correlated with
 complexity, 457 returns as. See return statements selective data with, 254 sequential data with, 254 structured programming,
-454­455
+454ï¿½455
 
-unindented begin-end pairs, 746 unusual, overview of, 408 conventions, coding benefits of, 844­845 checklist, 69 formatting. See layout hazards, avoiding with, 844 predictability benefit, 844 converting data types, 635 cooperation skills, importance of,
+unindented begin-end pairs, 746 unusual, overview of, 408 conventions, coding benefits of, 844ï¿½845 checklist, 69 formatting. See layout hazards, avoiding with, 844 predictability benefit, 844 converting data types, 635 cooperation skills, importance of,
 828 correctness, 197, 463 costs. See also performance tuning
-change estimates, 666 collaboration benefits, 480­481 debugging, time consumed by,
-474­475 defects contributing to, 519­520 detection of defects, 472 error-prone routines, 518 estimating, 658, 828 fixing of defects, 472­473, 519 General Principle of Software
-Quality, 474­475, 522 pair programming vs. inspections,
-480­481 resources on, 658 counted loops. See for loops coupling base classes to derived classes,
-143 classes, too tightly, 142­143 design considerations, 100­102 flexibility of, 100­101 goals of, 100 loose, 80, 100­102 object-parameter type, 101 semantic type, 102 simple-data-parameter type, 101 simple-object type, 101 size of, 100 visibility of, 100 coverage monitoring tools, 526 structured basis testing, 505­509 CRC (Class, Responsibility,
-Collaboration) cards, 118 creativity, importance of, 829, 857 cross-reference tools, 713 curiosity, role in character, 822­825 Currency data types, 297 customization, building metaphor
+change estimates, 666 collaboration benefits, 480ï¿½481 debugging, time consumed by,
+474ï¿½475 defects contributing to, 519ï¿½520 detection of defects, 472 error-prone routines, 518 estimating, 658, 828 fixing of defects, 472ï¿½473, 519 General Principle of Software
+Quality, 474ï¿½475, 522 pair programming vs. inspections,
+480ï¿½481 resources on, 658 counted loops. See for loops coupling base classes to derived classes,
+143 classes, too tightly, 142ï¿½143 design considerations, 100ï¿½102 flexibility of, 100ï¿½101 goals of, 100 loose, 80, 100ï¿½102 object-parameter type, 101 semantic type, 102 simple-data-parameter type, 101 simple-object type, 101 size of, 100 visibility of, 100 coverage monitoring tools, 526 structured basis testing, 505ï¿½509 CRC (Class, Responsibility,
+Collaboration) cards, 118 creativity, importance of, 829, 857 cross-reference tools, 713 curiosity, role in character, 822ï¿½825 Currency data types, 297 customization, building metaphor
 for, 18
 
 D
-daily build and smoke tests automation of, 704 benefits of, 702 broken builds, 703, 705 build groups, 704 checklist, 707 defined, 702 diagnosis benefit, 702 holding area for additions, 704­705 importance of, 706 morning releases, 705 pressure, 706 pretest requirement, 704 revisions, 704 smoke tests, 703 unsurfaced work, 702
-data architecture prerequisites, 46 bad classes, testing for, 514­515 change, identifying areas of, 99 code tuning. See data transformations for code tuning combined states, 509­510 defined state, 509­510 defined-used paths, testing, 510­512 design, 46 entered state, 509 exited state, 509 good classes, testing, 515­516 killed state, 509­510 legacy, compatibility with, 516 nominal case errors, 515 test, generators for, 524­525 types. See data types used state, 509­510
-data dictionaries, 715 data flow testing, 509­512 data literacy test, 238­239 data recorder tools, 526 data structures. See structures data transformations for code
+daily build and smoke tests automation of, 704 benefits of, 702 broken builds, 703, 705 build groups, 704 checklist, 707 defined, 702 diagnosis benefit, 702 holding area for additions, 704ï¿½705 importance of, 706 morning releases, 705 pressure, 706 pretest requirement, 704 revisions, 704 smoke tests, 703 unsurfaced work, 702
+data architecture prerequisites, 46 bad classes, testing for, 514ï¿½515 change, identifying areas of, 99 code tuning. See data transformations for code tuning combined states, 509ï¿½510 defined state, 509ï¿½510 defined-used paths, testing, 510ï¿½512 design, 46 entered state, 509 exited state, 509 good classes, testing, 515ï¿½516 killed state, 509ï¿½510 legacy, compatibility with, 516 nominal case errors, 515 test, generators for, 524ï¿½525 types. See data types used state, 509ï¿½510
+data dictionaries, 715 data flow testing, 509ï¿½512 data literacy test, 238ï¿½239 data recorder tools, 526 data structures. See structures data transformations for code
 tuning array dimension minimization,
-625­626 array reference minimization,
-626­627 caching data, 628­629 floating point to integers, 625 indexing data, 627­628 purpose of, 624
+625ï¿½626 array reference minimization,
+626ï¿½627 caching data, 628ï¿½629 floating point to integers, 625 indexing data, 627ï¿½628 purpose of, 624
 
-data types "a" prefix convention, 272 abstract data types. See ADTs arrays. See arrays BCD, 297 boolean. See boolean variables change, identifying areas of, 99 characters. See character data types checklist, 316­318 complex. See structures control structures, relationship to, 254­255 creating. See type creation Currency, 297 definitions, 278 enumerated types. See enumerated types floating-point. See floating-point data types integers. See integer data types iterative data, 255 key points for, 318 naming, 273, 277, 278 numeric. See numeric data types overloaded primitives, 567 pointers. See pointers refactoring to classes, 567, 572 resources on, 239 selective data, 254 sequential data, 254 strings. See string data types structures. See structures t_ prefix convention, 272 user-defined. See type creation variables of, differentiating from, 272­273
+data types "a" prefix convention, 272 abstract data types. See ADTs arrays. See arrays BCD, 297 boolean. See boolean variables change, identifying areas of, 99 characters. See character data types checklist, 316ï¿½318 complex. See structures control structures, relationship to, 254ï¿½255 creating. See type creation Currency, 297 definitions, 278 enumerated types. See enumerated types floating-point. See floating-point data types integers. See integer data types iterative data, 255 key points for, 318 naming, 273, 277, 278 numeric. See numeric data types overloaded primitives, 567 pointers. See pointers refactoring to classes, 567, 572 resources on, 239 selective data, 254 sequential data, 254 strings. See string data types structures. See structures t_ prefix convention, 272 user-defined. See type creation variables of, differentiating from, 272ï¿½273
 databases performance issues, 601 SQL, 65 subsystem design, 85
-data-level refactoring, 571­572, 577 days-in-month, determining,
-413­414 deallocation
-goto statements for, 399 pointers, of, 326, 330, 332 Debug.Assert statements, 191­193 debugging aids to. See debugging aids binary searches of code, 546 blindness, sources of, 554­555 breakpoints, 558 breaks, taking, 548 brute-force, 548­549
+data-level refactoring, 571ï¿½572, 577 days-in-month, determining,
+413ï¿½414 deallocation
+goto statements for, 399 pointers, of, 326, 330, 332 Debug.Assert statements, 191ï¿½193 debugging aids to. See debugging aids binary searches of code, 546 blindness, sources of, 554ï¿½555 breakpoints, 558 breaks, taking, 548 brute-force, 548ï¿½549
 
 last dtoepfe-cletsveinl ecnotdrey
 
 893
 
-changes, recent, 547 checklist, 559­561 comments, misplaced, 550 common defects lists, 547 compilers as tools for, 549, 557 confessional debugging, 547­548 costs of, 29­30, 474­475 debugger tools, 526­527, 545,
-556­559, 719. See also debugging aids defects as opportunities, 537­538 defensive. See debugging aids defined, 535 Diff tool, 556 execution profilers for, 557­558 expanding suspicious regions, 547 experience of programmers, effects of, 537 finding defects, 540, 559­560 fixing defects, 550­554 guessing, 539 history of, 535­536 hypothesis testing, 543­544, 546 incremental approach, 547 ineffective approach to, 539­540 key points, 562 line numbers from compilers, 549 lint tool, 557 listing possibilities, 546 locating error sources, 543­544 logic checking tools, 557 multiple compiler messages, 550 narrowing code searches, 546 obvious fixes, 539 performance variations, 536­537 project-wide compilers settings, 557 psychological considerations, 554­556 quality of software, role in, 536 quotation marks, misplaced, 550 readability improvements, 538 recommended approach, 541 reexamining defect-prone code, 547 resources for, 561 Satan's helpers, 539­540 scaffolding for, 558 scientific method of, 540­544 self-knowledge from, 538 source-code comparators, 556 stabilizing errors, 542­543 superstitious approaches, 539­540
+changes, recent, 547 checklist, 559ï¿½561 comments, misplaced, 550 common defects lists, 547 compilers as tools for, 549, 557 confessional debugging, 547ï¿½548 costs of, 29ï¿½30, 474ï¿½475 debugger tools, 526ï¿½527, 545,
+556ï¿½559, 719. See also debugging aids defects as opportunities, 537ï¿½538 defensive. See debugging aids defined, 535 Diff tool, 556 execution profilers for, 557ï¿½558 expanding suspicious regions, 547 experience of programmers, effects of, 537 finding defects, 540, 559ï¿½560 fixing defects, 550ï¿½554 guessing, 539 history of, 535ï¿½536 hypothesis testing, 543ï¿½544, 546 incremental approach, 547 ineffective approach to, 539ï¿½540 key points, 562 line numbers from compilers, 549 lint tool, 557 listing possibilities, 546 locating error sources, 543ï¿½544 logic checking tools, 557 multiple compiler messages, 550 narrowing code searches, 546 obvious fixes, 539 performance variations, 536ï¿½537 project-wide compilers settings, 557 psychological considerations, 554ï¿½556 quality of software, role in, 536 quotation marks, misplaced, 550 readability improvements, 538 recommended approach, 541 reexamining defect-prone code, 547 resources for, 561 Satan's helpers, 539ï¿½540 scaffolding for, 558 scientific method of, 540ï¿½544 self-knowledge from, 538 source-code comparators, 556 stabilizing errors, 542ï¿½543 superstitious approaches, 539ï¿½540
 
-symbolic debuggers, 526­527 syntax checking, 549­550, 557,
-560 system debuggers, 558 test case creation, 544 testing, compared to, 500 time for, setting maximums, 549 tools for, 526­527, 545, 556­559,
-719. See also debugging aids understanding the problems, 539 unit tests, 545 varying test cases, 545 warnings, treating as errors, 557 debugging aids C++ preprocessors, 207­208 case statements, 206 early introduction recommended,
-206 offensive programming, 206 planning removal of, 206­209 pointers, checking, 208­209 preprocessors, 207­208 production constraints in
-development versions, 205 purpose of, 205 stubs, 208­209 version control tools, 207 decision tables. See table-driven
+symbolic debuggers, 526ï¿½527 syntax checking, 549ï¿½550, 557,
+560 system debuggers, 558 test case creation, 544 testing, compared to, 500 time for, setting maximums, 549 tools for, 526ï¿½527, 545, 556ï¿½559,
+719. See also debugging aids understanding the problems, 539 unit tests, 545 varying test cases, 545 warnings, treating as errors, 557 debugging aids C++ preprocessors, 207ï¿½208 case statements, 206 early introduction recommended,
+206 offensive programming, 206 planning removal of, 206ï¿½209 pointers, checking, 208ï¿½209 preprocessors, 207ï¿½208 production constraints in
+development versions, 205 purpose of, 205 stubs, 208ï¿½209 version control tools, 207 decision tables. See table-driven
 methods declarations
-commenting, 794, 802­803, 816 const recommended, 243 declare and define near first use
-rule, 242­243 define near first use rule,
-242­243 final recommended, 243 formatting, 761­763 implicit declarations, 239­240 multiple on one line, 761­762 naming. See naming conventions numerical data, commenting, 802 order of, 762 placement of, 762 pointers, 325­326, 763 using all declared, 257 Decorator pattern, 104 defects in code classes prone to error, 517­518 classifications of, 518­520 clerical errors (typos), 519 Code Complete example,
-490­491 construction, proportion
-resulting from, 520­521
+commenting, 794, 802ï¿½803, 816 const recommended, 243 declare and define near first use
+rule, 242ï¿½243 define near first use rule,
+242ï¿½243 final recommended, 243 formatting, 761ï¿½763 implicit declarations, 239ï¿½240 multiple on one line, 761ï¿½762 naming. See naming conventions numerical data, commenting, 802 order of, 762 placement of, 762 pointers, 325ï¿½326, 763 using all declared, 257 Decorator pattern, 104 defects in code classes prone to error, 517ï¿½518 classifications of, 518ï¿½520 clerical errors (typos), 519 Code Complete example,
+490ï¿½491 construction, proportion
+resulting from, 520ï¿½521
 
 894
 
 fdiersftentospiv-elepvreolgernatmryming
 
-defects in code, continued cost of detection, 472 cost of fixing, 472­473 databases of, 527 detection by various techniques, table of, 470 distribution of, 517­518 ease of fixing defects, 519 error checklists, 489 expected rate of, 521­522 finding, checklist, 559­560 fixing. See debugging; fixing defects formal inspections for detecting. See formal inspections intermittent, 542­543 misunderstood designs as sources for, 519 opportunities presented by, 537­538 outside of construction domain, 519 percentage of, measurement, 469­472 performance issues, 601 programmers at fault for, 519 readability improvements, 538 refactoring after fixing, 582 scope of, 519 self-knowledge from, 538 size of projects, effects on, 651­653 sources of, table, 518 stabilizing, 542­543
-defensive programming assertions, 189­194 assumptions to check, list of, 190 barricades, 203­205 checklist, 211­212 debugging aids, 205­209 defined, 187 error handling for, 194­197 exceptions, 198­203, 211 friendly messages guideline, 210 graceful crashing guideline, 210 guidelines for production code, 209­210 hard crash errors guideline, 209 important errors guideline, 209 key points for, 213 logging guideline, 210 problems caused by, 210 quality improvement techniques, other, 188 robustness vs. correctness, 197
+defects in code, continued cost of detection, 472 cost of fixing, 472ï¿½473 databases of, 527 detection by various techniques, table of, 470 distribution of, 517ï¿½518 ease of fixing defects, 519 error checklists, 489 expected rate of, 521ï¿½522 finding, checklist, 559ï¿½560 fixing. See debugging; fixing defects formal inspections for detecting. See formal inspections intermittent, 542ï¿½543 misunderstood designs as sources for, 519 opportunities presented by, 537ï¿½538 outside of construction domain, 519 percentage of, measurement, 469ï¿½472 performance issues, 601 programmers at fault for, 519 readability improvements, 538 refactoring after fixing, 582 scope of, 519 self-knowledge from, 538 size of projects, effects on, 651ï¿½653 sources of, table, 518 stabilizing, 542ï¿½543
+defensive programming assertions, 189ï¿½194 assumptions to check, list of, 190 barricades, 203ï¿½205 checklist, 211ï¿½212 debugging aids, 205ï¿½209 defined, 187 error handling for, 194ï¿½197 exceptions, 198ï¿½203, 211 friendly messages guideline, 210 graceful crashing guideline, 210 guidelines for production code, 209ï¿½210 hard crash errors guideline, 209 important errors guideline, 209 key points for, 213 logging guideline, 210 problems caused by, 210 quality improvement techniques, other, 188 robustness vs. correctness, 197
 
-security issues, 212 trivial errors guideline, 209 validating input, 188 defined data state, 509­510 defining variables. See declarations Delphi, recoding to assembler,
-640­642 DeMorgan's Theorems, applying,
-436­437 dependencies, code-ordering
-checker tools, 716 circular, 95 clarifying, 348­350 concept of, 347 documentation, 350 error checking, 350 hidden, 348 initialization order, 348 naming routines, 348­349 non-obvious, 348 organization of code, 348 parameters, effective, 349 design abstractions, forming consistent,
-89­90 accidental problems, 77­78 BDUF, 119 beauty, 80 bottom-up approach to design,
-112­113 business logic subsystem, 85 capturing work, 117­118 central points of control, 107 change, identifying areas of,
-97­99 changes, management of,
-666­667 characteristics of high quality,
-80­81 checklists, 122­123, 781 classes, division into, 86 collaboration, 115 communications among
-subsystems, 83­84 completion of, determining,
-115­117 complexity management, 77­80 construction activity, as, 73­74 contract, by, 233 coupling considerations, 100­102 database access subsystem, 85 defined, 74 diagrams, drawing, 107 discussion, summarizing, 117
+security issues, 212 trivial errors guideline, 209 validating input, 188 defined data state, 509ï¿½510 defining variables. See declarations Delphi, recoding to assembler,
+640ï¿½642 DeMorgan's Theorems, applying,
+436ï¿½437 dependencies, code-ordering
+checker tools, 716 circular, 95 clarifying, 348ï¿½350 concept of, 347 documentation, 350 error checking, 350 hidden, 348 initialization order, 348 naming routines, 348ï¿½349 non-obvious, 348 organization of code, 348 parameters, effective, 349 design abstractions, forming consistent,
+89ï¿½90 accidental problems, 77ï¿½78 BDUF, 119 beauty, 80 bottom-up approach to design,
+112ï¿½113 business logic subsystem, 85 capturing work, 117ï¿½118 central points of control, 107 change, identifying areas of,
+97ï¿½99 changes, management of,
+666ï¿½667 characteristics of high quality,
+80ï¿½81 checklists, 122ï¿½123, 781 classes, division into, 86 collaboration, 115 communications among
+subsystems, 83ï¿½84 completion of, determining,
+115ï¿½117 complexity management, 77ï¿½80 construction activity, as, 73ï¿½74 contract, by, 233 coupling considerations, 100ï¿½102 database access subsystem, 85 defined, 74 diagrams, drawing, 107 discussion, summarizing, 117
 
 divide and conquer technique, 111
-documentation, as, 781 documentation overkill, 117 emergent nature of, 76 encapsulation, 90­91 enough, determining, 118­119 essential problems, 77­78 extensibility goal, 80 formality of, determining,
-115­117 formalizing class contracts, 106 goals checklist, 122­123 good practices table for, 31­32 heuristic. See heuristic design hierarchies for, 105­106 high fan-in goal, 80 IEEE standards, 122 information hiding, 92­97, 120 inheritance, 91­92 iteration practice, 111­117 key points, 123 leanness goal, 81 level of detail needed, 115­117 levels of, 82­87 loose coupling goal, 80 low-to-medium fan-out goal, 81 maintenance goals, 80 mental limitations of humans, 79 metrics, warning signs from, 848 nondeterministic nature of, 76, 87 object-oriented, resource for, 119 objects, real world, finding, 87­89 packages level, 82­85 patterns, common. See patterns performance tuning
-considerations, 589­590 portability goal, 81 practice heuristics. See heuristic
-design practices, 110­118, 122 prioritizing during, 76 prototyping, 114­115 resources for, 119­121 restrictive nature of, 76 reusability goal, 80 routines, of, 86­87 sloppy process nature of, 75­76 software system level, 82 standard techniques goal, 81 standards, IEEE, 122 stratification goal, 81 strong cohesion, 105 subsystem level, 82­85
+documentation, as, 781 documentation overkill, 117 emergent nature of, 76 encapsulation, 90ï¿½91 enough, determining, 118ï¿½119 essential problems, 77ï¿½78 extensibility goal, 80 formality of, determining,
+115ï¿½117 formalizing class contracts, 106 goals checklist, 122ï¿½123 good practices table for, 31ï¿½32 heuristic. See heuristic design hierarchies for, 105ï¿½106 high fan-in goal, 80 IEEE standards, 122 information hiding, 92ï¿½97, 120 inheritance, 91ï¿½92 iteration practice, 111ï¿½117 key points, 123 leanness goal, 81 level of detail needed, 115ï¿½117 levels of, 82ï¿½87 loose coupling goal, 80 low-to-medium fan-out goal, 81 maintenance goals, 80 mental limitations of humans, 79 metrics, warning signs from, 848 nondeterministic nature of, 76, 87 object-oriented, resource for, 119 objects, real world, finding, 87ï¿½89 packages level, 82ï¿½85 patterns, common. See patterns performance tuning
+considerations, 589ï¿½590 portability goal, 81 practice heuristics. See heuristic
+design practices, 110ï¿½118, 122 prioritizing during, 76 prototyping, 114ï¿½115 resources for, 119ï¿½121 restrictive nature of, 76 reusability goal, 80 routines, of, 86ï¿½87 sloppy process nature of, 75ï¿½76 software system level, 82 standard techniques goal, 81 standards, IEEE, 122 stratification goal, 81 strong cohesion, 105 subsystem level, 82ï¿½85
 
 laesntutmope-rlaetveedl teynpterys
 
@@ -26742,207 +26748,207 @@ laesntutmope-rlaetveedl teynpterys
 Download from Wow! eBook <www.wowebook.com>
 
 system dependencies subsystem, 85
-testing for implementation, 503 tools for, 710 top-down approach, 111­113 tradeoffs, 76 UML diagrams, 118 user interface subsystem, 85 visual documentation of, 118 wicked problem nature of, 74­75 Wikis, capturing on, 117 destructors, exceptions with, 199 detailed-design documents, 778 developer testing. See testing development processes. See
+testing for implementation, 503 tools for, 710 top-down approach, 111ï¿½113 tradeoffs, 76 UML diagrams, 118 user interface subsystem, 85 visual documentation of, 118 wicked problem nature of, 74ï¿½75 Wikis, capturing on, 117 destructors, exceptions with, 199 detailed-design documents, 778 developer testing. See testing development processes. See
 approaches to development development standards, IEEE, 813 diagrams
 heuristic design use of, 107 UML, 118 Diff tools, 556, 712 direct access tables advantages of, 420 arrays for, 414 case statement approach,
-421­422 days-in-month example, 413­414 defined, 413 design method for, 420 flexible-message-format example,
-416­423 fudging keys for, 423­424 insurance rates example, 415­416 keys for, 423­424 object approach, 422­423 transforming keys, 424 disassemblers, 720 discipline, importance of, 829 discourse rules, 733 disposing of objects, 206 divide and conquer technique, 111 division, 292­293 Do loops, 369­370. See also loops documentation abbreviation of names, 284­285 ADTs for, 128 bad code, of, 568 Book Paradigm for, 812­813 capturing work, 117­118 checklists, 780­781, 816­817 classes, 780 comments. See comments control structures, 780 CRC cards for, 118 dependencies, clarifying, 350
+421ï¿½422 days-in-month example, 413ï¿½414 defined, 413 design method for, 420 flexible-message-format example,
+416ï¿½423 fudging keys for, 423ï¿½424 insurance rates example, 415ï¿½416 keys for, 423ï¿½424 object approach, 422ï¿½423 transforming keys, 424 disassemblers, 720 discipline, importance of, 829 discourse rules, 733 disposing of objects, 206 divide and conquer technique, 111 division, 292ï¿½293 Do loops, 369ï¿½370. See also loops documentation abbreviation of names, 284ï¿½285 ADTs for, 128 bad code, of, 568 Book Paradigm for, 812ï¿½813 capturing work, 117ï¿½118 checklists, 780ï¿½781, 816ï¿½817 classes, 780 comments. See comments control structures, 780 CRC cards for, 118 dependencies, clarifying, 350
 
-design as, 117, 781 detailed-design documents, 778 external, 777­778 Javadoc, 807, 815 key points, 817 names as, 284­285, 778­779,
+design as, 117, 781 detailed-design documents, 778 external, 777ï¿½778 Javadoc, 807, 815 key points, 817 names as, 284ï¿½285, 778ï¿½779,
 780 organization of data, 780 parameter assumptions, 178 pseudocode, deriving from, 220 resources on, 815 routine parameter assumptions,
-178 routines, 780 SDFs, 778 self-documenting code, 778­781 size of projects, effects of, 657 source code as, 7 standards, IEEE, 813­814 style differences, managing, 683 UDFs, 778 visual, of designs, 118 why vs. how, 797­798 dog-and-pony shows, 495 dog tag fields, 326­327 DoNothing() macros, 444­445 DRY (Don't Repeat Yourself)
+178 routines, 780 SDFs, 778 self-documenting code, 778ï¿½781 size of projects, effects of, 657 source code as, 7 standards, IEEE, 813ï¿½814 style differences, managing, 683 UDFs, 778 visual, of designs, 118 why vs. how, 797ï¿½798 dog-and-pony shows, 495 dog tag fields, 326ï¿½327 DoNothing() macros, 444ï¿½445 DRY (Don't Repeat Yourself)
 principle, 565 duplication
-avoiding with routines, 164­165 code as refactoring indicator, 565
+avoiding with routines, 164ï¿½165 code as refactoring indicator, 565
 E
-early-wave environments, 67 ease of maintenance design goal, 80 eclecticism, 851­852 editing tools
-beautifiers, 712 class-hierarchy generators, 713 cross-reference tools, 713 Diff tools, 712 grep, 711 IDEs, 710­711 interface documentation, 713 merge tools, 712 multiple-file string searches,
-711­712 templates, 713 efficiency, 464 eighty/twenty (80/20) rule, 592 else clauses boolean function calls with, 359 case statements instead of, 360 chains, in, 358­360
+early-wave environments, 67 ease of maintenance design goal, 80 eclecticism, 851ï¿½852 editing tools
+beautifiers, 712 class-hierarchy generators, 713 cross-reference tools, 713 Diff tools, 712 grep, 711 IDEs, 710ï¿½711 interface documentation, 713 merge tools, 712 multiple-file string searches,
+711ï¿½712 templates, 713 efficiency, 464 eighty/twenty (80/20) rule, 592 else clauses boolean function calls with, 359 case statements instead of, 360 chains, in, 358ï¿½360
 
-common cases first guideline, 359­360
-correctness testing, 358 default for covering all cases, 360 gotos with, 406­407 null, 358 embedded life-critical systems,
-31­32 emergent nature of design process,
+common cases first guideline, 359ï¿½360
+correctness testing, 358 default for covering all cases, 360 gotos with, 406ï¿½407 null, 358 embedded life-critical systems,
+31ï¿½32 emergent nature of design process,
 76 emulated pure blocks layout style,
-740­743 encapsulation
-assumptions about users, 141 checklist, 158 classes, role for, 139­143 coupling classes too tightly,
-142­143 downcast objects, 574 friend class concern, 141 heuristic design with, 90­91 minimizing accessibility, 139 private details in class interfaces,
-139­141 public data members, 567 public members of classes, 139 public routines in interfaces
-concern, 141 semantic violations of, 141­142 weak, 567 endless loops, 367, 374 endline comments, 793­795 endline layout, 743­745, 751­752,
+740ï¿½743 encapsulation
+assumptions about users, 141 checklist, 158 classes, role for, 139ï¿½143 coupling classes too tightly,
+142ï¿½143 downcast objects, 574 friend class concern, 141 heuristic design with, 90ï¿½91 minimizing accessibility, 139 private details in class interfaces,
+139ï¿½141 public data members, 567 public members of classes, 139 public routines in interfaces
+concern, 141 semantic violations of, 141ï¿½142 weak, 567 endless loops, 367, 374 endline comments, 793ï¿½795 endline layout, 743ï¿½745, 751ï¿½752,
 767 enumerated types
-benefits of, 303 booleans, alternative to, 304 C++, 303­304, 306 changes benefit, 304 checklist, 317 comments substituting for,
-802­803 creating for Java, 307 defined, 303 emulation by global variables, 338 explicit value pitfalls, 306 first entry invalid trick, 305­306 iterating through, 305 Java, creating for, 307 languages available in, 303 loop limits with, 305 naming, 269, 274, 277­279 parameters using, 303 readability from, 303 reliability benefit, 304
+benefits of, 303 booleans, alternative to, 304 C++, 303ï¿½304, 306 changes benefit, 304 checklist, 317 comments substituting for,
+802ï¿½803 creating for Java, 307 defined, 303 emulation by global variables, 338 explicit value pitfalls, 306 first entry invalid trick, 305ï¿½306 iterating through, 305 Java, creating for, 307 languages available in, 303 loop limits with, 305 naming, 269, 274, 277ï¿½279 parameters using, 303 readability from, 303 reliability benefit, 304
 
 896
 
 efiqrsutatloitpy-, lfelovealtienngt-rpyoint
 
-enumerated types, continued standard for, 306 validation with, 304­305 Visual Basic, 303­306
-equality, floating-point, 295­296 equivalence partitioning, 512 error codes, 195 error detection, doing early, 29­30 error guessing, 513 error handling. See also exceptions
-architecture prerequisites, 49­50 assertions, compared to, 191 barricades, 203­205 buffer overruns compromising,
+enumerated types, continued standard for, 306 validation with, 304ï¿½305 Visual Basic, 303ï¿½306
+equality, floating-point, 295ï¿½296 equivalence partitioning, 512 error codes, 195 error detection, doing early, 29ï¿½30 error guessing, 513 error handling. See also exceptions
+architecture prerequisites, 49ï¿½50 assertions, compared to, 191 barricades, 203ï¿½205 buffer overruns compromising,
 196 closest legal value, 195 defensive programming,
-techniques for, 194­197 error codes, returning, 195 error-processing routines, calling,
-196 high-level design implication, 197 local handling, 196 logging warning messages, 195 messages, 49, 195­196, 210 next valid data, returning, 195 previous answers, reusing, 195 propagation design, 49 refactoring, 577 returning neutral values, 194 robustness, 51, 197 routines, designing along with,
+techniques for, 194ï¿½197 error codes, returning, 195 error-processing routines, calling,
+196 high-level design implication, 197 local handling, 196 logging warning messages, 195 messages, 49, 195ï¿½196, 210 next valid data, returning, 195 previous answers, reusing, 195 propagation design, 49 refactoring, 577 returning neutral values, 194 robustness, 51, 197 routines, designing along with,
 222 shutting down, 196 validation design, 50 error messages codes, returning, 195 design, 49 displaying, 196 friendly messages guideline, 210 errors. See also defects in code;
-exceptions classifications of, 518­520 coding. See defects in code dog tag fields, 326­327 exceptions. See exceptions handling. See error handling goto statements for processing,
-401­402 sources of, table, 518 essential problems, 77­78 estimating schedules approaches to, list of, 671 change costs, 666 control, compared to, 675
+exceptions classifications of, 518ï¿½520 coding. See defects in code dog tag fields, 326ï¿½327 exceptions. See exceptions handling. See error handling goto statements for processing,
+401ï¿½402 sources of, table, 518 essential problems, 77ï¿½78 estimating schedules approaches to, list of, 671 change costs, 666 control, compared to, 675
 
-factors influencing, 674­675 level of detail for, 672 inaccuracy, character-based,
-827­828 multiple techniques with
+factors influencing, 674ï¿½675 level of detail for, 672 inaccuracy, character-based,
+827ï¿½828 multiple techniques with
 comparisons, 672 objectives, establishing, 671 optimism, 675 overview, 671 planning for estimation time, 671 redoing periodically, 672 reduction of scope, 676 requirements specification, 672 resources for, 677 teams, expanding, 676 event handlers, 170 evolution. See software evolution Evolutionary Delivery. See
-incremental development metaphor exceptions. See also error handling abstraction issues, 199­200 alternatives to, 203 base classes for, project specific, 203 C++, 198­199 centralized reporters, 201­202 constructors with, 199 defensive programming checklist, 211 destructors with, 199 empty catch blocks rule, 201 encapsulation, breaking, 200 full information rule, 200 Java, 198­201 languages, table comparing, 198­199 level of abstraction rule, 199­200 library code generation of, 201 local handling rule, 199 non-exceptional conditions, 199 purpose of, 198, 199 readability of code using, 199 refactoring, 577 resources for, 212­213 standardizing use of, 202­203 Visual Basic, 198­199, 202 execution profilers, 557­558, 720 executable-code tools build tools, 716­717 code libraries, 717 code-generation wizards, 718 compilers. See compilers installation tools, 718 linkers, 716
+incremental development metaphor exceptions. See also error handling abstraction issues, 199ï¿½200 alternatives to, 203 base classes for, project specific, 203 C++, 198ï¿½199 centralized reporters, 201ï¿½202 constructors with, 199 defensive programming checklist, 211 destructors with, 199 empty catch blocks rule, 201 encapsulation, breaking, 200 full information rule, 200 Java, 198ï¿½201 languages, table comparing, 198ï¿½199 level of abstraction rule, 199ï¿½200 library code generation of, 201 local handling rule, 199 non-exceptional conditions, 199 purpose of, 198, 199 readability of code using, 199 refactoring, 577 resources for, 212ï¿½213 standardizing use of, 202ï¿½203 Visual Basic, 198ï¿½199, 202 execution profilers, 557ï¿½558, 720 executable-code tools build tools, 716ï¿½717 code libraries, 717 code-generation wizards, 718 compilers. See compilers installation tools, 718 linkers, 716
 
-preprocessors, 718­719 setup tools, 718 Exit Function, 391. See also return
+preprocessors, 718ï¿½719 setup tools, 718 Exit Function, 391. See also return
 statements Exit statements. See break
-statements Exit Sub, 392­393. See also return
-statements exiting loops, 369­372, 377­381 experience, personal, 831­832 experimental prototyping, 114­115 experimentation as learning,
-822­823, 852­853 exponential expressions, 631­632 expressions
+statements Exit Sub, 392ï¿½393. See also return
+statements exiting loops, 369ï¿½372, 377ï¿½381 experience, personal, 831ï¿½832 experimental prototyping, 114ï¿½115 experimentation as learning,
+822ï¿½823, 852ï¿½853 exponential expressions, 631ï¿½632 expressions
 boolean. See boolean expressions constants, data types for, 635 initializing at compile time,
-632­633 layout guidelines, 749­750 precomputing results, 635­638 right shifting, 634 strength reduction, 630­632 subexpression elimination,
-638­639 system calls, performance of,
-633­634 extensibility design goal, 80 external audits, 467 external documentation, 777­778 Extreme Programming
-collaboration component of, 482 defect detection, 471­472 defined, 58 resources on, 708, 856
+632ï¿½633 layout guidelines, 749ï¿½750 precomputing results, 635ï¿½638 right shifting, 634 strength reduction, 630ï¿½632 subexpression elimination,
+638ï¿½639 system calls, performance of,
+633ï¿½634 extensibility design goal, 80 external audits, 467 external documentation, 777ï¿½778 Extreme Programming
+collaboration component of, 482 defect detection, 471ï¿½472 defined, 58 resources on, 708, 856
 F
-Facade pattern, 104 factorials, 397­398 factoring, 154. See also refactoring factory methods
-Factory Method pattern, 103­104 nested ifs refactoring example,
-452­453 refactoring to, 577 fan-in, 80 fan-out, 81 farming metaphor, 14­15 fault tolerance, 50 feature-oriented integration,
-700­701 Fibonacci numbers, 397­398 figures, list of, xxxiii
+Facade pattern, 104 factorials, 397ï¿½398 factoring, 154. See also refactoring factory methods
+Factory Method pattern, 103ï¿½104 nested ifs refactoring example,
+452ï¿½453 refactoring to, 577 fan-in, 80 fan-out, 81 farming metaphor, 14ï¿½15 fault tolerance, 50 feature-oriented integration,
+700ï¿½701 Fibonacci numbers, 397ï¿½398 figures, list of, xxxiii
 
 lasgt ototop-slteavteelmeenntrtys
 
 897
 
-files ADTs, treating as, 130 authorship records for, 811 C++ source file order, 773 deleting multiple example, 401­402 documenting, 810­811 layout within, 771­773 naming, 772, 811 routines in, 772
-final keyword, Java, 243 finally statements, 404­405 fixing defects
+files ADTs, treating as, 130 authorship records for, 811 C++ source file order, 773 deleting multiple example, 401ï¿½402 documenting, 810ï¿½811 layout within, 771ï¿½773 naming, 772, 811 routines in, 772
+final keyword, Java, 243 finally statements, 404ï¿½405 fixing defects
 checking fixes, 553 checklist, 560 diagnosis confirmation, 551 hurrying, impact of, 551 initialization defects, 553 maintenance issues, 553 one change at a time rule, 553 reasoning for changes, 553 saving unfixed code, 552 similar defects, looking for, 554 special cases, 553 symptoms, fixing instead of
-problems, 552­553 understand first guideline,
-550­551 unit tests for, 554 flags change, identifying areas of,
-98­99 comments for bit-level meanings,
-803 enumerated types for, 266­267 gotos, rewriting with, 403­404 names for, 266­267 semantic coupling with, 102 flexibility coupling criteria for, 100­101 defined, 464 floating-point data types accuracy limitations, 295 BCD, 297 checklist, 316 costs of operations, 602 equality comparisons, 295­296 magnitudes, greatly different,
-operations with, 295 rounding errors, 297 Visual Basic types, 297 for loops advantages of, 374 formatting, 732­733, 746­747 indexes, 377­378 purpose of, 372
+problems, 552ï¿½553 understand first guideline,
+550ï¿½551 unit tests for, 554 flags change, identifying areas of,
+98ï¿½99 comments for bit-level meanings,
+803 enumerated types for, 266ï¿½267 gotos, rewriting with, 403ï¿½404 names for, 266ï¿½267 semantic coupling with, 102 flexibility coupling criteria for, 100ï¿½101 defined, 464 floating-point data types accuracy limitations, 295 BCD, 297 checklist, 316 costs of operations, 602 equality comparisons, 295ï¿½296 magnitudes, greatly different,
+operations with, 295 rounding errors, 297 Visual Basic types, 297 for loops advantages of, 374 formatting, 732ï¿½733, 746ï¿½747 indexes, 377ï¿½378 purpose of, 372
 
 foreach loops, 367, 372 formal inspections
-author role, 486 benefit summary, 491 blame game, 490 checklist, 491­492 CMM, 491 Code Complete example,
-490­491 compared to other collaboration,
-495­496 defined, 485 egos in, 490 error checklists, 489 expected results from, 485­486 fine-tuning, 489 follow-up stage, 489 inspection meetings, 488 key points, 497 management role, 486­487 moderator role, 486 overview stage, 487 performance appraisals from, 487 planning stage, 487 preparation stage, 487­488 procedure for, 487­489 rate of code review, 488 reports, 488­489 resources for, 496­497 reviewer role, 486 reviews, compared to, 485 rework stage, 489 roles in, 486­487 scenarios approach, 488 scribe role, 486 stages of, 487­489 three-hour solutions meeting, 489 formal technical reviews, 467 formatting code. See layout Fortran, 64 functional cohesion, 168­169 functional specification. See
+author role, 486 benefit summary, 491 blame game, 490 checklist, 491ï¿½492 CMM, 491 Code Complete example,
+490ï¿½491 compared to other collaboration,
+495ï¿½496 defined, 485 egos in, 490 error checklists, 489 expected results from, 485ï¿½486 fine-tuning, 489 follow-up stage, 489 inspection meetings, 488 key points, 497 management role, 486ï¿½487 moderator role, 486 overview stage, 487 performance appraisals from, 487 planning stage, 487 preparation stage, 487ï¿½488 procedure for, 487ï¿½489 rate of code review, 488 reports, 488ï¿½489 resources for, 496ï¿½497 reviewer role, 486 reviews, compared to, 485 rework stage, 489 roles in, 486ï¿½487 scenarios approach, 488 scribe role, 486 stages of, 487ï¿½489 three-hour solutions meeting, 489 formal technical reviews, 467 formatting code. See layout Fortran, 64 functional cohesion, 168ï¿½169 functional specification. See
 requirements functions. See also routines
-calculations converted to example, 166­167
-defined, 181 disallowing, 150 key point for, 186 naming conventions for, 172, 181 private, overriding, 146 return values, setting, 182 status as return value, 181 when to use, 181­182 Fundamental Theorem of
+calculations converted to example, 166ï¿½167
+defined, 181 disallowing, 150 key point for, 186 naming conventions for, 172, 181 private, overriding, 146 return values, setting, 182 status as return value, 181 when to use, 181ï¿½182 Fundamental Theorem of
 Formatting, 732
 
 G
 General Principle of Software Quality
-collaboration effects, 481 costs, 522 debugging, 537 defined, 474­475 global variables access routines for. See access
-routines aliasing problems with, 336­337 alternatives to, 339­342 annotating, 343 changes to, inadvertent, 336 checklist for, 343­344 class variable alternatives, 339 code reuse problems, 337 commenting, 803, 809 enumerated types emulation by,
+collaboration effects, 481 costs, 522 debugging, 537 defined, 474ï¿½475 global variables access routines for. See access
+routines aliasing problems with, 336ï¿½337 alternatives to, 339ï¿½342 annotating, 343 changes to, inadvertent, 336 checklist for, 343ï¿½344 class variable alternatives, 339 code reuse problems, 337 commenting, 803, 809 enumerated types emulation by,
 338 g_ prefix guideline, 340 hiding implementation in classes,
 153 information hiding problems
-with, 95­96 initialization problems, 337 intermediate results, avoiding,
-343 key points, 344 local first guideline, 339 locking, 341 modularity damaged by, 337­338 named constants emulation by,
+with, 95ï¿½96 initialization problems, 337 intermediate results, avoiding,
+343 key points, 344 local first guideline, 339 locking, 341 modularity damaged by, 337ï¿½338 named constants emulation by,
 338 naming, 263, 273, 277, 278, 279,
-342 objects for, monster, 343 overview of, 335­336 persistence of, 251 preservation of values with, 338 re-entrant code problems, 337 refactoring, 568 risk reduction strategies, 342­343 routines using as parameters, 336 semantic coupling with, 102 streamlining data use with, 338 tramp data, eliminating with, 338 god classes, 155 gonzo programming, 832 good data, testing, 515­516 goto statements Ada, inclusion in, 399 advantages of, 399 alternatives compared with, 405 checklist, 410
+342 objects for, monster, 343 overview of, 335ï¿½336 persistence of, 251 preservation of values with, 338 re-entrant code problems, 337 refactoring, 568 risk reduction strategies, 342ï¿½343 routines using as parameters, 336 semantic coupling with, 102 streamlining data use with, 338 tramp data, eliminating with, 338 god classes, 155 gonzo programming, 832 good data, testing, 515ï¿½516 goto statements Ada, inclusion in, 399 advantages of, 399 alternatives compared with, 405 checklist, 410
 
 898
 
 fgirastpthoicpa-l edveesligenttroyols
 
-goto statements, continued deallocation with, 399 disadvantages of, 398­399 duplicate code, eliminating with, 399 else clauses with, 406­407 error processing with, 401­402 Fortran's use of, 399 forward direction guideline, 408 guidelines, 407­408 indentation problem with, 398 key points, 410 layout guidelines, 750­751 legitimate uses of, 407­408 optimization problem with, 398 phony debating about, 400­401 readability issue, 398 resources for, 409­410 rewritten with nested ifs, 402­403 rewritten with status variables, 403­404 rewritten with try-finally, 404­405 trivial rewrite example, 400­401 unused labels, 408
-graphical design tools, 710 grep, 711 growing a system metaphor, 14­15 GUIs (graphical user interfaces)
+goto statements, continued deallocation with, 399 disadvantages of, 398ï¿½399 duplicate code, eliminating with, 399 else clauses with, 406ï¿½407 error processing with, 401ï¿½402 Fortran's use of, 399 forward direction guideline, 408 guidelines, 407ï¿½408 indentation problem with, 398 key points, 410 layout guidelines, 750ï¿½751 legitimate uses of, 407ï¿½408 optimization problem with, 398 phony debating about, 400ï¿½401 readability issue, 398 resources for, 409ï¿½410 rewritten with nested ifs, 402ï¿½403 rewritten with status variables, 403ï¿½404 rewritten with try-finally, 404ï¿½405 trivial rewrite example, 400ï¿½401 unused labels, 408
+graphical design tools, 710 grep, 711 growing a system metaphor, 14ï¿½15 GUIs (graphical user interfaces)
 architecture prerequisites, 47 refactoring data from, 576 subsystem design, 85
 H
-habits of programmers, 833­834 hacking approach to design, 233 hardware
+habits of programmers, 833ï¿½834 hacking approach to design, 233 hardware
 dependencies, changing, 98 performance enhancement with,
 591 has a relationships, 143 heuristic design
-abstractions, forming consistent, 89­90
-alternatives from patterns, 103 avoiding failure, 106­107 binding time considerations, 107 bottom-up approach to design,
-112­113 brute force, 107 capturing work, 117­118 central points of control, 107
+abstractions, forming consistent, 89ï¿½90
+alternatives from patterns, 103 avoiding failure, 106ï¿½107 binding time considerations, 107 bottom-up approach to design,
+112ï¿½113 brute force, 107 capturing work, 117ï¿½118 central points of control, 107
 
-change, identifying areas of, 97­99
-checklist for, 122­123 collaboration, 115 communications benefit from
+change, identifying areas of, 97ï¿½99
+checklist for, 122ï¿½123 collaboration, 115 communications benefit from
 patterns, 104 completion of, determining,
-115­117 coupling considerations, 100­102 diagrams, drawing, 107 divide and conquer technique,
-111 encapsulation, 90­91 error reduction with patterns, 103 formality of, determining,
-115­117 formalizing class contracts, 106 goals checklist, 122­123 guidelines for using, 109­110 hierarchies for, 105­106 information hiding, 92­97, 120 inheritance, 91­92 interfaces, formalizing as
-contracts, 106 iteration practice, 111­117 key points, 123 level of detail needed, 115­117 modularity, 107 multiple approach suggestion,
-110 nature of design process, 76 nondeterministic basis for, 87 object-oriented, resource for, 119 objects, real world, finding, 87­89 patterns, 103­105, 120 practices, 110­118, 122 prototyping, 114­115 resources for, 121 responsibilities, assigning to
-objects, 106 strong cohesion, 105 summary list of rules, 108 testing, anticipating, 106 top-down approach, 111­112, 113 heuristics algorithms compared to, 12 design with. See heuristic design error guessing, 513 hiding. See information hiding hierarchies, benefits of, 105­106 high fan-in design goal, 80 human aspects of software
+115ï¿½117 coupling considerations, 100ï¿½102 diagrams, drawing, 107 divide and conquer technique,
+111 encapsulation, 90ï¿½91 error reduction with patterns, 103 formality of, determining,
+115ï¿½117 formalizing class contracts, 106 goals checklist, 122ï¿½123 guidelines for using, 109ï¿½110 hierarchies for, 105ï¿½106 information hiding, 92ï¿½97, 120 inheritance, 91ï¿½92 interfaces, formalizing as
+contracts, 106 iteration practice, 111ï¿½117 key points, 123 level of detail needed, 115ï¿½117 modularity, 107 multiple approach suggestion,
+110 nature of design process, 76 nondeterministic basis for, 87 object-oriented, resource for, 119 objects, real world, finding, 87ï¿½89 patterns, 103ï¿½105, 120 practices, 110ï¿½118, 122 prototyping, 114ï¿½115 resources for, 121 responsibilities, assigning to
+objects, 106 strong cohesion, 105 summary list of rules, 108 testing, anticipating, 106 top-down approach, 111ï¿½112, 113 heuristics algorithms compared to, 12 design with. See heuristic design error guessing, 513 hiding. See information hiding hierarchies, benefits of, 105ï¿½106 high fan-in design goal, 80 human aspects of software
 development. See character, personal
 
 humility, role in character, 821, 826, 834
 Hungarian naming convention, 279 hybrid coupling of variables,
-256­257
+256ï¿½257
 I
-I/O (input/output) architecture prerequisites, 49 change, identifying areas of, 98 performance considerations, 598­599
-IDEs (Integrated Development Environments), 710­711
+I/O (input/output) architecture prerequisites, 49 change, identifying areas of, 98 performance considerations, 598ï¿½599
+IDEs (Integrated Development Environments), 710ï¿½711
 IEEE (Institute for Electric and Electrical Engineers), 813
-if statements boolean function calls with, 359 break blocks, simplification with, 446­447 case statements, compared to, 360, 614 case statements, converting to, 448­449, 451 chains of, 358­360 checklist, 365 common cases first guideline, 359­360 continuation lines in, 757 covering all cases, 360 else clauses, 358­360, 406­407 equality, branching on, 355 error processing examples, 356­357 factoring to routines, 449­451 flipped, 358 frequency, testing in order of, 612­613 gotos rewritten with, 402­403, 406­407 if-then-else statements, converting to, 447­448 key points, 366 lookup tables, substituting, 614­615 multiple returns nested in, 392­393 negatives in, making positive, 435­436 nested. See nested if statements normal case first guideline, 356­357 normal path first guideline, 355 null if clauses, 357
+if statements boolean function calls with, 359 break blocks, simplification with, 446ï¿½447 case statements, compared to, 360, 614 case statements, converting to, 448ï¿½449, 451 chains of, 358ï¿½360 checklist, 365 common cases first guideline, 359ï¿½360 continuation lines in, 757 covering all cases, 360 else clauses, 358ï¿½360, 406ï¿½407 equality, branching on, 355 error processing examples, 356ï¿½357 factoring to routines, 449ï¿½451 flipped, 358 frequency, testing in order of, 612ï¿½613 gotos rewritten with, 402ï¿½403, 406ï¿½407 if-then-else statements, converting to, 447ï¿½448 key points, 366 lookup tables, substituting, 614ï¿½615 multiple returns nested in, 392ï¿½393 negatives in, making positive, 435ï¿½436 nested. See nested if statements normal case first guideline, 356ï¿½357 normal path first guideline, 355 null if clauses, 357
 
 last top-inletveeglreantitorny
 
 899
 
-plain if-then statements, 355­357 refactoring, 573 simplification, 445­447 single-statement layout, 748­749 tables, replacing with, 413­414 types of, 355 implicit declarations, 239­240 implicit instancing, 132 in keyword, creating, 175­176 incomplete preparation, causes of,
-25­27 incremental development metaphor,
-15­16 incremental integration
-benefits of, 693­694 bottom-up strategy, 697­698 classes, 694, 697 customer relations benefit, 694 defined, 692 disadvantages of top-down
-strategy, 695­696 errors, locating, 693 feature-oriented integration,
-700­701 interface specification, 695, 697 progress monitoring benefit, 693 resources on, 708 results, early, 693 risk-oriented integration, 699 sandwich strategy, 698­699 scheduling benefits, 694 slices approach, 698 steps in, 692 strategies for, overview, 694 stubs, 694, 696 summary of approaches, 702 test drivers, 697 top-down strategy for, 694­696 T-shaped integration, 701 vertical-slice approach, 696 indentation, 737, 764­768 indexed access tables, 425­426,
-428­429 indexes, supplementing data types
-with, 627­628 indexes, loop
-alterations, 377 checklist, 389 enumerated types for, 305 final values, 377­378 scope of, 383­384 variable names, 265 infinite loops, 367, 374 informal reviews, 467, 492­493
+plain if-then statements, 355ï¿½357 refactoring, 573 simplification, 445ï¿½447 single-statement layout, 748ï¿½749 tables, replacing with, 413ï¿½414 types of, 355 implicit declarations, 239ï¿½240 implicit instancing, 132 in keyword, creating, 175ï¿½176 incomplete preparation, causes of,
+25ï¿½27 incremental development metaphor,
+15ï¿½16 incremental integration
+benefits of, 693ï¿½694 bottom-up strategy, 697ï¿½698 classes, 694, 697 customer relations benefit, 694 defined, 692 disadvantages of top-down
+strategy, 695ï¿½696 errors, locating, 693 feature-oriented integration,
+700ï¿½701 interface specification, 695, 697 progress monitoring benefit, 693 resources on, 708 results, early, 693 risk-oriented integration, 699 sandwich strategy, 698ï¿½699 scheduling benefits, 694 slices approach, 698 steps in, 692 strategies for, overview, 694 stubs, 694, 696 summary of approaches, 702 test drivers, 697 top-down strategy for, 694ï¿½696 T-shaped integration, 701 vertical-slice approach, 696 indentation, 737, 764ï¿½768 indexed access tables, 425ï¿½426,
+428ï¿½429 indexes, supplementing data types
+with, 627ï¿½628 indexes, loop
+alterations, 377 checklist, 389 enumerated types for, 305 final values, 377ï¿½378 scope of, 383ï¿½384 variable names, 265 infinite loops, 367, 374 informal reviews, 467, 492ï¿½493
 
-information hiding access routines for, 340 ADTs for, 127 barriers to, 95­96 categories of secrets, 94 circular dependencies problem, 95 class data mistaken for global data, 95­96 class design considerations, 93 class implementation details, 153 example, 93­94 excessive distribution problem, 95 importance of, 92 interfaces, class, 93 performance issues, 96 privacy rights of classes, 92­93 resources for, 120 secrets concept, 92 type creation for, 313­314
-inheritance access privileges from, 148 case statements, 147­148 checklist, 158 containment compared to, 143 decisions involved in, 144 deep trees, 147 defined, 144 design rule for, 144 functions, private, overriding, 146 guidelines, list of, 149 heuristic design with, 91­92 identifying as a design step, 88 is a relationships, 144 key points for, 160 Liskov Substitution Principle, 144­145 main goal of, 136 mixins, 149 multiple, 148­149 overridable vs. non-overridable routines, 145­146 parallel modifications refactoring indicator, 566 placement of common items in tree, 146 private vs. protected data, 148 private, avoiding, 143 recommended bias against, 149 routines overridden to do nothing, 146­147 single-instance classes, 146 similar sub and super classes, 576
+information hiding access routines for, 340 ADTs for, 127 barriers to, 95ï¿½96 categories of secrets, 94 circular dependencies problem, 95 class data mistaken for global data, 95ï¿½96 class design considerations, 93 class implementation details, 153 example, 93ï¿½94 excessive distribution problem, 95 importance of, 92 interfaces, class, 93 performance issues, 96 privacy rights of classes, 92ï¿½93 resources for, 120 secrets concept, 92 type creation for, 313ï¿½314
+inheritance access privileges from, 148 case statements, 147ï¿½148 checklist, 158 containment compared to, 143 decisions involved in, 144 deep trees, 147 defined, 144 design rule for, 144 functions, private, overriding, 146 guidelines, list of, 149 heuristic design with, 91ï¿½92 identifying as a design step, 88 is a relationships, 144 key points for, 160 Liskov Substitution Principle, 144ï¿½145 main goal of, 136 mixins, 149 multiple, 148ï¿½149 overridable vs. non-overridable routines, 145ï¿½146 parallel modifications refactoring indicator, 566 placement of common items in tree, 146 private vs. protected data, 148 private, avoiding, 143 recommended bias against, 149 routines overridden to do nothing, 146ï¿½147 single-instance classes, 146 similar sub and super classes, 576
 
-initializing variables accumulators, 243 at declaration guideline, 241 C++ example, 241 checklist for, 257 class members, 243 compiler settings, 243 consequences of failing to, 240 const recommended, 243 constants, 243 counters, 243 declare and define near first use rule, 242­243 final recommended, 243 first use guideline, 241­242 fixing defects, 553 global variables, 337 importance of, 240­241 Java example, 242­243 key point, 258 loops, variables used in, 249 parameter validity, 244 pointer problems, 241, 244, 325­326 Principle of Proximity, 242 reinitialization, 243 strings, 300 system perturbers, testing with, 527 Visual Basic examples, 241­242
-initializing working memory, 244 inline routines, 184­185 input parameters, 274 input/output. See I/O inspections. See formal inspections installation tools, 718 instancing objects
-ADTs, 132 factory method, 103­104 singleton, 104, 151 integer data types checklist, 316 costs of operations, 602 division considerations, 293 overflows, 293­295 ranges of, 294 Integrated Development
-Environments (IDEs), 710­711 integration
-benefits of, 690­691, 693­694 big-bang, 691 bottom-up strategy, 697­698 broken builds, 703 checklist, 707
+initializing variables accumulators, 243 at declaration guideline, 241 C++ example, 241 checklist for, 257 class members, 243 compiler settings, 243 consequences of failing to, 240 const recommended, 243 constants, 243 counters, 243 declare and define near first use rule, 242ï¿½243 final recommended, 243 first use guideline, 241ï¿½242 fixing defects, 553 global variables, 337 importance of, 240ï¿½241 Java example, 242ï¿½243 key point, 258 loops, variables used in, 249 parameter validity, 244 pointer problems, 241, 244, 325ï¿½326 Principle of Proximity, 242 reinitialization, 243 strings, 300 system perturbers, testing with, 527 Visual Basic examples, 241ï¿½242
+initializing working memory, 244 inline routines, 184ï¿½185 input parameters, 274 input/output. See I/O inspections. See formal inspections installation tools, 718 instancing objects
+ADTs, 132 factory method, 103ï¿½104 singleton, 104, 151 integer data types checklist, 316 costs of operations, 602 division considerations, 293 overflows, 293ï¿½295 ranges of, 294 Integrated Development
+Environments (IDEs), 710ï¿½711 integration
+benefits of, 690ï¿½691, 693ï¿½694 big-bang, 691 bottom-up strategy, 697ï¿½698 broken builds, 703 checklist, 707
 
 900
 
 finirtsetgtroitpy-level entry
 
-integration, continued classes, 691, 694, 697 continuous, 706 customer relations, 694 daily build and smoke test, 702­706 defined, 689 disadvantages of top-down strategy, 695­696 errors, locating, 693 feature-oriented strategy, 700­701 importance of approach methods, 689­691 incremental. See incremental integration interface specification, 695, 697 key points, 708 monitoring, 693 phased, 691­692 resources on, 707­708 risk-oriented strategy, 699 sandwich strategy, 698­699 scheduling, 694 slices approach, 698 smoke tests, 703 strategies for, overview, 694 stubs, 694, 696 summary of approaches, 702 testing, 499, 697 top-down strategy for, 694­696 T-shaped integration, 701 unsurfaced work, 702 vertical-slice approach, 696
-integrity, 464 intellectual honesty, 826­828 intellectual toolbox approach, 20 intelligence, role in character, 821 interfaces, class
-abstraction aspect of, 89, 133­138, 566
+integration, continued classes, 691, 694, 697 continuous, 706 customer relations, 694 daily build and smoke test, 702ï¿½706 defined, 689 disadvantages of top-down strategy, 695ï¿½696 errors, locating, 693 feature-oriented strategy, 700ï¿½701 importance of approach methods, 689ï¿½691 incremental. See incremental integration interface specification, 695, 697 key points, 708 monitoring, 693 phased, 691ï¿½692 resources on, 707ï¿½708 risk-oriented strategy, 699 sandwich strategy, 698ï¿½699 scheduling, 694 slices approach, 698 smoke tests, 703 strategies for, overview, 694 stubs, 694, 696 summary of approaches, 702 testing, 499, 697 top-down strategy for, 694ï¿½696 T-shaped integration, 701 unsurfaced work, 702 vertical-slice approach, 696
+integrity, 464 intellectual honesty, 826ï¿½828 intellectual toolbox approach, 20 intelligence, role in character, 821 interfaces, class
+abstraction aspect of, 89, 133ï¿½138, 566
 calls to classes, refactoring, 575 cohesion, 138 consistent level of abstraction,
-135­136 delegation vs. inheritance,
+135ï¿½136 delegation vs. inheritance,
 refactoring, 576 documenting, 713, 810 erosion under modification
 problem, 138 evaluating abstraction of, 135 extension classes, refactoring
 with, 576 formalizing as contracts, 106 good abstraction example,
-133­134
+133ï¿½134
 
-guidelines for creating, 135­138 foreign routines, refactoring with,
+guidelines for creating, 135ï¿½138 foreign routines, refactoring with,
 576 inconsistency with members
 problem, 138 inconsistent abstraction, example
-of, 135­136 information hiding role, 93 integration, specification during,
+of, 135ï¿½136 information hiding role, 93 integration, specification during,
 695, 697 key points for, 160 layout of, 768 mixins, 149 objects, designing for, 89 opposites, pairs of, 137 poor abstraction example,
-134­135 private details in, 139­141 programmatic preferred to
+134ï¿½135 private details in, 139ï¿½141 programmatic preferred to
 semantic, 137 public routines in interfaces
-concern, 141 read-time convenience rule, 141 refactoring, 575­576, 579 routines, moving to refactor, 575 routines, unused, 576 semantic violations of
-encapsulation, 141­142 unrelated information, handling,
+concern, 141 read-time convenience rule, 141 refactoring, 575ï¿½576, 579 routines, moving to refactor, 575 routines, unused, 576 semantic violations of
+encapsulation, 141ï¿½142 unrelated information, handling,
 137 interfaces, graphic. See GUIs interfaces, routine. See also
 parameters of routines commenting, 808 foreign routines, refactoring with,
 576 pseudocode for, 226 public member variables, 576 routines, hiding, 576 routines, moving to refactor, 575 internationalization, 48 interoperability, 48 interpreted languages, performance
-of, 600­601 invalid input. See validation iteration, code. See also loops
+of, 600ï¿½601 invalid input. See validation iteration, code. See also loops
 foreach loops, 367, 372 iterative data, 255 iterator loops, defined, 367 Iterator pattern, 104 structured programming concept
 of, 456 iteration in development
-choosing, reasons for, 35­36 code tuning, 850
+choosing, reasons for, 35ï¿½36 code tuning, 850
 
-design practice, 111­117 Extreme Programming, 58 importance of, 850­851 prerequisites, 28, 33­34 sequential approach compared,
-33­34 pseudocode component of, 219
+design practice, 111ï¿½117 Extreme Programming, 58 importance of, 850ï¿½851 prerequisites, 28, 33ï¿½34 sequential approach compared,
+33ï¿½34 pseudocode component of, 219
 J
-jamming loops, 617­618 Java
-assertion example in, 190 boolean expression syntax, 443 description of, 65 exceptions, 198­201 layout recommended, 745 live time examples, 247­248 naming conventions for, 276, 277 parameters example, 176­177 persistence of variables, 251 resources for, 159 Javadoc, 807, 815 JavaScript, 65 JUnit, 531 just in time binding, 253
+jamming loops, 617ï¿½618 Java
+assertion example in, 190 boolean expression syntax, 443 description of, 65 exceptions, 198ï¿½201 layout recommended, 745 live time examples, 247ï¿½248 naming conventions for, 276, 277 parameters example, 176ï¿½177 persistence of variables, 251 resources for, 159 Javadoc, 807, 815 JavaScript, 65 JUnit, 531 just in time binding, 253
 K
 key construction decisions. See construction decisions
-killed data state, 509­510 kinds of software projects, 31­33
+killed data state, 509ï¿½510 kinds of software projects, 31ï¿½33
 L
 languages, programming. See programming language choice
 Law of Demeter, 150 layout
 array references, 754 assignment statement
-continuations, 758 begin-end pairs, 742­743 blank lines, 737, 747­748 block style, 738­743 brace styles, 734, 740­743 C++ side effects, 759­761 checklist, 773­774 classes, 768­771 closely related statement
-elements, 755­756 comments, 763­766 complicated expressions,
-749­750 consistency requirement, 735
+continuations, 758 begin-end pairs, 742ï¿½743 blank lines, 737, 747ï¿½748 block style, 738ï¿½743 brace styles, 734, 740ï¿½743 C++ side effects, 759ï¿½761 checklist, 773ï¿½774 classes, 768ï¿½771 closely related statement
+elements, 755ï¿½756 comments, 763ï¿½766 complicated expressions,
+749ï¿½750 consistency requirement, 735
 
 last top-level leonotprys
 
@@ -26950,80 +26956,80 @@ last top-level leonotprys
 
 Download from Wow! eBook <www.wowebook.com>
 
-continuing statements, 754­758 control statement continuations,
-757 control structure styles, 745­752 declarations, 761­763 discourse rules, 733 documentation in code, 763­766 double indented begin-end pairs,
-746­747 emulating pure blocks, 740­743 endline layout, 743­745, 751­752 ends of continuations, 756­757 files, within, 771­773 Fundamental Theorem of
-Formatting, 732 gotos, 750­751 incomplete statements, 754­755 indentation, 737 interfaces, 768 key points, 775 language-specific guidelines, 745 logical expressions, 753 logical structure, reflecting, 732,
-735 mediocre example, 731­732 misleading indentation example,
-732­733 misleading precedence, 733 modifications guideline, 736 multiple statements per line,
-758­761 negative examples, 730­731 objectives of, 735­736 parentheses for, 738 pointers, C++, 763 pure blocks style, 738­740 readability goal, 735 religious aspects of, 735 resources on, 774­775 routine arguments, 754 routine call continuations, 756 routine guidelines, 766­768 self-documenting code, 778­781 single-statement blocks, 748­749 statement continuation, 754­758 statement length, 753 structures, importance of,
-733­734 styles overview, 738 unindented begin-end pairs, 746 violations of, commenting, 801 Visual Basic blocking style, 738 white space, 732, 736­737,
-753­754 laziness, 830 lazy evaluation, 615­616
+continuing statements, 754ï¿½758 control statement continuations,
+757 control structure styles, 745ï¿½752 declarations, 761ï¿½763 discourse rules, 733 documentation in code, 763ï¿½766 double indented begin-end pairs,
+746ï¿½747 emulating pure blocks, 740ï¿½743 endline layout, 743ï¿½745, 751ï¿½752 ends of continuations, 756ï¿½757 files, within, 771ï¿½773 Fundamental Theorem of
+Formatting, 732 gotos, 750ï¿½751 incomplete statements, 754ï¿½755 indentation, 737 interfaces, 768 key points, 775 language-specific guidelines, 745 logical expressions, 753 logical structure, reflecting, 732,
+735 mediocre example, 731ï¿½732 misleading indentation example,
+732ï¿½733 misleading precedence, 733 modifications guideline, 736 multiple statements per line,
+758ï¿½761 negative examples, 730ï¿½731 objectives of, 735ï¿½736 parentheses for, 738 pointers, C++, 763 pure blocks style, 738ï¿½740 readability goal, 735 religious aspects of, 735 resources on, 774ï¿½775 routine arguments, 754 routine call continuations, 756 routine guidelines, 766ï¿½768 self-documenting code, 778ï¿½781 single-statement blocks, 748ï¿½749 statement continuation, 754ï¿½758 statement length, 753 structures, importance of,
+733ï¿½734 styles overview, 738 unindented begin-end pairs, 746 violations of, commenting, 801 Visual Basic blocking style, 738 white space, 732, 736ï¿½737,
+753ï¿½754 laziness, 830 lazy evaluation, 615ï¿½616
 
 leanness design goal, 81 legal notices, 811 length of variable names, optimum,
 262 levels of design
-business logic subsystem, 85 classes, divisions into, 86 database access subsystem, 85 overview of, 82 packages, 82­85 routines, 86­87 software system, 82 subsystems, 82­85 system dependencies subsystem,
+business logic subsystem, 85 classes, divisions into, 86 database access subsystem, 85 overview of, 82 packages, 82ï¿½85 routines, 86ï¿½87 software system, 82 subsystems, 82ï¿½85 system dependencies subsystem,
 85 user interface subsystem, 85 libraries, code purpose of, 717 using functionality from, 222 libraries, book. See software-
 development libraries life-cycle models
-good practices table for, 31­32 development standard, 813 linked lists deleting pointers, 330 node insertion, 327­329 pointers, isolating operations of,
+good practices table for, 31ï¿½32 development standard, 813 linked lists deleting pointers, 330 node insertion, 327ï¿½329 pointers, isolating operations of,
 325 linkers, 716 lint tool, 557 Liskov Substitution Principle (LSP),
-144­145 lists
-of checklists, xxix­xxx of figures, xxxiii of tables, xxxi­xxxii literal data, 297­298, 308­309 literate programs, 13 live time of variables, 246­248, 459 load time, binding during, 253 localization architecture prerequisites, 48 string data types, 298 locking global data, 341 logarithms, 632­634 logging defensive programming guideline,
+144ï¿½145 lists
+of checklists, xxixï¿½xxx of figures, xxxiii of tables, xxxiï¿½xxxii literal data, 297ï¿½298, 308ï¿½309 literate programs, 13 live time of variables, 246ï¿½248, 459 load time, binding during, 253 localization architecture prerequisites, 48 string data types, 298 locking global data, 341 logarithms, 632ï¿½634 logging defensive programming guideline,
 210 tools for testing, 526 logic coverage testing, 506 logical cohesion, 170 logical expressions. See also boolean
-expressions code tuning, 610­616 comparing performance of, 614
+expressions code tuning, 610ï¿½616 comparing performance of, 614
 
-eliminating testing redundancy, 610­611
-frequency, testing in order of, 612­613
-identities, 630 layout of, 753 lazy evaluation, 615­616 lookup tables, substituting,
-614­615 short-circuit evaluation, 610 loops abnormal, 371 arrays with, 387­388 bodies of, processing, 375­376,
-388 brackets recommended, 375 break statements, 371­372,
-379­380, 381 checklist, 388­389 code tuning, 616­624 commenting, 804­805 completion tests, location of, 368 compound, simplifying, 621­623 continuously evaluated loops,
+eliminating testing redundancy, 610ï¿½611
+frequency, testing in order of, 612ï¿½613
+identities, 630 layout of, 753 lazy evaluation, 615ï¿½616 lookup tables, substituting,
+614ï¿½615 short-circuit evaluation, 610 loops abnormal, 371 arrays with, 387ï¿½388 bodies of, processing, 375ï¿½376,
+388 brackets recommended, 375 break statements, 371ï¿½372,
+379ï¿½380, 381 checklist, 388ï¿½389 code tuning, 616ï¿½624 commenting, 804ï¿½805 completion tests, location of, 368 compound, simplifying, 621ï¿½623 continuously evaluated loops,
 367. See also while loops continuation lines in, 757 continue statements, 379, 380,
 381 counted loops, 367. See also for
-loops cross talk, 383 defined, 367 designing, process for, 385­387 do loops, 369­370 empty, avoiding, 375­376 endless loops, 367, 374 endpoint considerations,
-381­382 entering, guidelines for, 373­375,
-388 enumerated types for, 305 exit guidelines, 369­372,
-377­381, 389 for loops, 372, 374­378,
-732­733, 746­747 foreach loops, 367, 372 fusion of, 617­618 goto with, 371 housekeeping statements, 376 index alterations, 377 index checklist, 389 index final values, 377­378 index variable names, 265 index scope, 383-384 infinite loops, 367, 374
+loops cross talk, 383 defined, 367 designing, process for, 385ï¿½387 do loops, 369ï¿½370 empty, avoiding, 375ï¿½376 endless loops, 367, 374 endpoint considerations,
+381ï¿½382 entering, guidelines for, 373ï¿½375,
+388 enumerated types for, 305 exit guidelines, 369ï¿½372,
+377ï¿½381, 389 for loops, 372, 374ï¿½378,
+732ï¿½733, 746ï¿½747 foreach loops, 367, 372 fusion of, 617ï¿½618 goto with, 371 housekeeping statements, 376 index alterations, 377 index checklist, 389 index final values, 377ï¿½378 index variable names, 265 index scope, 383-384 infinite loops, 367, 374
 
 902
 
 floirostsetocpo-ulepvlienlgentry
 
-loops, continued initialization code for, 373, 374 iterative data structures with, 255 iterator loops, 367, 456 jamming, 617­618 key points, 389 kinds of, generalized, 367­368 labeled break statements, 381 language-specific, table of, 368 length of, 385 minimizing work inside, 620­621 multiple break statements, 380 naming variables, 382­383 nested, 382­383, 385, 623 null statements, rewriting, 445 off-by-one errors, 381­382 one-function guideline, 376 order of nesting, 623 performance considerations, 599 pointers inside, 620 problems with, overview of, 373 pseudocode method, 385­387 refactoring, 565, 573 repeat until clauses, 377 routines in, 385 safety counters with, 378­379 scope of indexes, 383­384 sentinel tests for, 621­623 size as refactoring indicator, 565 strength reduction, 623­624 switching, 616 termination, making obvious, 377 testing redundancy, eliminating, 610­611 unrolling, 618­620 unswitching, 616­617 variable guidelines, 382­384 variable initializations, 249 variables checklist, 389 verifying termination, 377 while loops, 368­369
-loose coupling design goal, as, 80 strategies for, 100­102
+loops, continued initialization code for, 373, 374 iterative data structures with, 255 iterator loops, 367, 456 jamming, 617ï¿½618 key points, 389 kinds of, generalized, 367ï¿½368 labeled break statements, 381 language-specific, table of, 368 length of, 385 minimizing work inside, 620ï¿½621 multiple break statements, 380 naming variables, 382ï¿½383 nested, 382ï¿½383, 385, 623 null statements, rewriting, 445 off-by-one errors, 381ï¿½382 one-function guideline, 376 order of nesting, 623 performance considerations, 599 pointers inside, 620 problems with, overview of, 373 pseudocode method, 385ï¿½387 refactoring, 565, 573 repeat until clauses, 377 routines in, 385 safety counters with, 378ï¿½379 scope of indexes, 383ï¿½384 sentinel tests for, 621ï¿½623 size as refactoring indicator, 565 strength reduction, 623ï¿½624 switching, 616 termination, making obvious, 377 testing redundancy, eliminating, 610ï¿½611 unrolling, 618ï¿½620 unswitching, 616ï¿½617 variable guidelines, 382ï¿½384 variable initializations, 249 variables checklist, 389 verifying termination, 377 while loops, 368ï¿½369
+loose coupling design goal, as, 80 strategies for, 100ï¿½102
 low-to-medium fan-out design goal, 81
-LSP (Liskov Substitution Principle), 144­145
+LSP (Liskov Substitution Principle), 144ï¿½145
 M
 Macintosh naming conventions, 275 macro routines. See also routines
 alternatives for, 184 limitations on, 184 multiple statements in, 183
 
-naming, 183, 277­278 parentheses with, 182­183 magazines on programming,
-859­860 magic variables, avoiding, 292,
-297­298, 308­309 maintenance
-comments requiring, 788­791 design goal for, 80 error-prone routines, prioritizing
+naming, 183, 277ï¿½278 parentheses with, 182ï¿½183 magazines on programming,
+859ï¿½860 magic variables, avoiding, 292,
+297ï¿½298, 308ï¿½309 maintenance
+comments requiring, 788ï¿½791 design goal for, 80 error-prone routines, prioritizing
 for, 518 fixing defects, problems from, 553 maintainability defined, 464 readability benefit for, 842 structures for reducing, 323 major construction practices
-checklist, 69­70 managing construction
+checklist, 69ï¿½70 managing construction
 approaches. See approaches to development
 change control. See configuration management
-code ownership attitudes, 663 complexity, 77­79 configuration management. See
+code ownership attitudes, 663 complexity, 77ï¿½79 configuration management. See
 configuration management good coding, encouraging,
-662­664 inspections, management role in,
-486­487 key points, 688 managers, 686 measurements, 677­680 programmers, treatment of,
-680­686 readability standard, 664 resources on, 687 reviewing all code, 663 rewarding good practices, 664 schedules, estimating, 671­677 signing off on code, 663 size of projects, effects of. See size
+662ï¿½664 inspections, management role in,
+486ï¿½487 key points, 688 managers, 686 measurements, 677ï¿½680 programmers, treatment of,
+680ï¿½686 readability standard, 664 resources on, 687 reviewing all code, 663 rewarding good practices, 664 schedules, estimating, 671ï¿½677 signing off on code, 663 size of projects, effects of. See size
 of projects standards, authority to set, 662 standards, IEEE, 687, 814 two-person teams, 662 markers, defects from, 787 matrices. See arrays mature technology environments,
 67 maximum normal configurations,
-515 maze recursion example, 394­396 McCabe's complexity metric, 457,
+515 maze recursion example, 394ï¿½396 McCabe's complexity metric, 457,
 458 measure twice, cut once, 23
 
-measurement advantages of, 677 arguing against, 678 goals for, 679 outlier identification, 679 resources for, 679­680 side effects of, 678 table of useful types of, 678­679
+measurement advantages of, 677 arguing against, 678 goals for, 679 outlier identification, 679 resources for, 679ï¿½680 side effects of, 678 table of useful types of, 678ï¿½679
 memory allocation, error detection for, 206 corruption by pointers, 325 fillers, 244 initializing working, 244 paging operation performance impact, 599 pointers, corruption by, 325 tools for, 527
 mentoring, 482 merge tools, 712 metaphors, software
-accreting a system, 15­16 algorithmic use of, 11, 12 building metaphor, 16­19 building vs. buying components,
+accreting a system, 15ï¿½16 algorithmic use of, 11, 12 building metaphor, 16ï¿½19 building vs. buying components,
 18 combining, 20 computer-centric vs. data-centric
-views, 11 customization, 18 discoveries based on, 9­10 earth centric vs. sun centric views,
-10­11 examples of, 13­20 farming, 14­15 growing a system, 14­15 heuristic use of, 12 importance of, 9­11 incremental development, 15­16 key points for, 21 modeling use for, 9 overextension of, 10 oyster farming, 15­16 pendulum example, 10 power of, 10 readability, 13 relative merits of, 10, 11 simple vs. complex structures,
-16­17 size of projects, 19 throwing one away, 13­14 toolbox approach, 20 using, 11­12 writing code example, 13­14 methodologies, 657­659. See also
+views, 11 customization, 18 discoveries based on, 9ï¿½10 earth centric vs. sun centric views,
+10ï¿½11 examples of, 13ï¿½20 farming, 14ï¿½15 growing a system, 14ï¿½15 heuristic use of, 12 importance of, 9ï¿½11 incremental development, 15ï¿½16 key points for, 21 modeling use for, 9 overextension of, 10 oyster farming, 15ï¿½16 pendulum example, 10 power of, 10 readability, 13 relative merits of, 10, 11 simple vs. complex structures,
+16ï¿½17 size of projects, 19 throwing one away, 13ï¿½14 toolbox approach, 20 using, 11ï¿½12 writing code example, 13ï¿½14 methodologies, 657ï¿½659. See also
 approaches to development methods. See routines
 
 last top-leveolbejnetcrtys
@@ -27031,44 +27037,44 @@ last top-leveolbejnetcrtys
 903
 
 metrics reporters, 714 minimum normal configurations,
-515 mission-critical systems, 31­32 mixed-language environments, 276 mixins, 149 mock objects, 523 modeling, metaphors as. See
+515 mission-critical systems, 31ï¿½32 mixed-language environments, 276 mixins, 149 mock objects, 523 modeling, metaphors as. See
 metaphors, software moderator role in inspections, 486 modularity
 design goal of, 107 global variables, damage from,
-337­338 modules, coupling considerations,
-100­102 multiple inheritance, 148­149 multiple returns from routines,
-391­393 multiple-file string search capability,
-711­712
+337ï¿½338 modules, coupling considerations,
+100ï¿½102 multiple inheritance, 148ï¿½149 multiple returns from routines,
+391ï¿½393 multiple-file string search capability,
+711ï¿½712
 N
 named constants. See constants naming conventions
-"a" prefix convention, 272 abbreviating names, 282­285 abbreviation guidelines, 282 arrays, 280­281 benefits of, 270­271 C language, 275, 278 C++, 275­277 capitalization, 274, 286 case-insensitive languages, 273 characters, hard to read, 287 checklist, 288­289, 780 class member variables, 273 class vs. object names, 272­273 common operations, for, 172­173 constants, 273­274 cross-project benefits, 270 descriptiveness guideline, 171 documentation, 284­285,
-778­780 enumerated types, 269, 274,
-277­279 formality, degrees of, 271 files, 811 function return values, 172 global variables, 273, 342 homonyms, 286 Hungarian, 279 informal, 272­279 input parameters, 274 Java, 276, 277
+"a" prefix convention, 272 abbreviating names, 282ï¿½285 abbreviation guidelines, 282 arrays, 280ï¿½281 benefits of, 270ï¿½271 C language, 275, 278 C++, 275ï¿½277 capitalization, 274, 286 case-insensitive languages, 273 characters, hard to read, 287 checklist, 288ï¿½289, 780 class member variables, 273 class vs. object names, 272ï¿½273 common operations, for, 172ï¿½173 constants, 273ï¿½274 cross-project benefits, 270 descriptiveness guideline, 171 documentation, 284ï¿½285,
+778ï¿½780 enumerated types, 269, 274,
+277ï¿½279 formality, degrees of, 271 files, 811 function return values, 172 global variables, 273, 342 homonyms, 286 Hungarian, 279 informal, 272ï¿½279 input parameters, 274 Java, 276, 277
 
 key points, 289 kinds of information in names,
 277 language-independence
-guidelines, 272­274 length, not limiting, 171 Macintosh, 275 meanings in names, too similar,
+guidelines, 272ï¿½274 length, not limiting, 171 Macintosh, 275 meanings in names, too similar,
 285 misleading names, 285 misspelled words, 286 mixed-language considerations,
 276 multiple natural languages, 287 numbers, differentiating solely by,
-171 numerals, 286 opposites, use of, 172 parameters, 178 phonic abbreviations, 283 prefix standardization, 279­281 procedure descriptions, 172 proliferation reduction benefit,
-270 pronunciation guideline, 283 purpose of, 270­271 readability, 274 relationships, emphasis of, 271 reserved names, 287 routines, 171­173, 222 semantic prefixes, 280­281 short names, 282­285, 288­289 similarity of names, too much,
+171 numerals, 286 opposites, use of, 172 parameters, 178 phonic abbreviations, 283 prefix standardization, 279ï¿½281 procedure descriptions, 172 proliferation reduction benefit,
+270 pronunciation guideline, 283 purpose of, 270ï¿½271 readability, 274 relationships, emphasis of, 271 reserved names, 287 routines, 171ï¿½173, 222 semantic prefixes, 280ï¿½281 short names, 282ï¿½285, 288ï¿½289 similarity of names, too much,
 285 spacing characters, 274 t_ prefix convention, 272 thesaurus, using, 283 types vs. variables names,
-272­273 UDT abbreviations, 279­280 variables, for. See variable names Visual Basic, 278­279 when to use, 271 nested if statements case statements, converting to,
-448­449, 451 converting to if-then-else
-statements, 447­448 factoring to routines, 449­451 factory method approach,
-converting to, 452­453 functional decomposition of,
-450­451 object-oriented approach,
-converting to, 452­453
+272ï¿½273 UDT abbreviations, 279ï¿½280 variables, for. See variable names Visual Basic, 278ï¿½279 when to use, 271 nested if statements case statements, converting to,
+448ï¿½449, 451 converting to if-then-else
+statements, 447ï¿½448 factoring to routines, 449ï¿½451 factory method approach,
+converting to, 452ï¿½453 functional decomposition of,
+450ï¿½451 object-oriented approach,
+converting to, 452ï¿½453
 
 redesigning, 453 simplification by retesting
-conditions, 445­446 simplification with break blocks,
-446­447 summary of techniques for
-reducing, 453­454 too many levels of, 445­454 nested loops designing, 382­383, 385 ordering for performance, 623 nondeterministic nature of design
-process, 76, 87 nonstandard language features, 98 null objects, refactoring, 573 null statements, 444­445 numbers, literal, 292 numeric data types
-BCD, 297 checklist, 316 compiler warnings, 293 comparisons, 440­442 conversions, showing, 293 costs of operations, 602 declarations, commenting, 802 floating-point types, 295­297,
-316, 602 hard coded 0s and 1s, 292 integers, 293­295 literal numbers, avoiding, 292 magic numbers, avoiding, 292 magnitudes, greatly different,
-operations with, 295 mixed-type comparisons, 293 overflows, 293­295 ranges of integers, 294 zero, dividing by, 292
+conditions, 445ï¿½446 simplification with break blocks,
+446ï¿½447 summary of techniques for
+reducing, 453ï¿½454 too many levels of, 445ï¿½454 nested loops designing, 382ï¿½383, 385 ordering for performance, 623 nondeterministic nature of design
+process, 76, 87 nonstandard language features, 98 null objects, refactoring, 573 null statements, 444ï¿½445 numbers, literal, 292 numeric data types
+BCD, 297 checklist, 316 compiler warnings, 293 comparisons, 440ï¿½442 conversions, showing, 293 costs of operations, 602 declarations, commenting, 802 floating-point types, 295ï¿½297,
+316, 602 hard coded 0s and 1s, 292 integers, 293ï¿½295 literal numbers, avoiding, 292 magic numbers, avoiding, 292 magnitudes, greatly different,
+operations with, 295 mixed-type comparisons, 293 overflows, 293ï¿½295 ranges of integers, 294 zero, dividing by, 292
 O
-objectives, software quality, 466, 468­469
+objectives, software quality, 466, 468ï¿½469
 object-oriented programming hiding information. See information hiding inheritance. See inheritance objects. See classes; objects polymorphism. See polymorphism resources for, 119, 159
 object-parameter coupling, 101 objects
 ADTs as, 130 attribute identification, 88
@@ -27077,199 +27083,199 @@ ADTs as, 130 attribute identification, 88
 
 Ofirbsstetrovpe-rlepvaettl eernntry
 
-objects, continued class names, differentiating from, 272­273 classes, contrasted to, 86 containment, identifying, 88 deleting objects, 206 factory methods, 103­104, 452­453, 577 identifying, 88 inheritance, identifying, 88. See also inheritance interfaces, designing, 89. See also interfaces, class operations, identifying, 88 parameters, using as, 179, 574 protected interfaces, designing, 89 public vs. private members, designing, 89 real world, finding, 87­89 refactoring, 574­576 reference objects, 574 responsibilities, assigning to, 106 singleton property, enforcing, 151 steps in designing, 87­89
+objects, continued class names, differentiating from, 272ï¿½273 classes, contrasted to, 86 containment, identifying, 88 deleting objects, 206 factory methods, 103ï¿½104, 452ï¿½453, 577 identifying, 88 inheritance, identifying, 88. See also inheritance interfaces, designing, 89. See also interfaces, class operations, identifying, 88 parameters, using as, 179, 574 protected interfaces, designing, 89 public vs. private members, designing, 89 real world, finding, 87ï¿½89 refactoring, 574ï¿½576 reference objects, 574 responsibilities, assigning to, 106 singleton property, enforcing, 151 steps in designing, 87ï¿½89
 Observer pattern, 104 off-by-one errors
-boundary analysis, 513­514 fixing, approaches to, 553 offensive programming, 206 one-in, one-out control constructs,
+boundary analysis, 513ï¿½514 fixing, approaches to, 553 offensive programming, 206 one-in, one-out control constructs,
 454 operating systems, 590 operations, costs of common,
-601­603 opposites for variable names, 264 optimization, premature, 840. See
-also performance tuning oracles, software, 851 out keyword creation, 175­176 overengineering, 51 overflows, integer, 293­295 overlay linkers, 716 overridable routines, 145­146, 156 oyster farming metaphor, 15­16
+601ï¿½603 opposites for variable names, 264 optimization, premature, 840. See
+also performance tuning oracles, software, 851 out keyword creation, 175ï¿½176 overengineering, 51 overflows, integer, 293ï¿½295 overlay linkers, 716 overridable routines, 145ï¿½146, 156 oyster farming metaphor, 15ï¿½16
 P
-packages, 156­157 paging operations, 599 pair programming
+packages, 156ï¿½157 paging operations, 599 pair programming
 benefits of, 484 checklist, 484 coding standards support for, 483 compared to other collaboration,
-495­496
+495ï¿½496
 
 defined, 483 inexperienced pairs, 484 key points, 497 pace, matching, 483 personality conflicts, 484 resources, 496 rotating pairs, 483 team leaders, 484 visibility of monitor, 484 watching, 483 when not to use, 483 parameters of routines abstraction and object
 parameters, 179 actual, matching to formal, 180 asterisk (*) rule for pointers,
-334­335 behavior dependence on, 574 by reference vs. by value, 333 checklist for, 185 C-library order, 175 commenting, 806­807 const prefix, 176, 177, 274 dependencies, clarifying, 349 documentation, 178 enumerated types for, 303 error variables, 176 formal, matching to actual, 180 global variables for, 336 guidelines for use in routines,
-174­180 in keyword creation, 175­176 input-modify-output order,
-174­175 Java, 176­177 list size as refactoring indicator,
+334ï¿½335 behavior dependence on, 574 by reference vs. by value, 333 checklist for, 185 C-library order, 175 commenting, 806ï¿½807 const prefix, 176, 177, 274 dependencies, clarifying, 349 documentation, 178 enumerated types for, 303 error variables, 176 formal, matching to actual, 180 global variables for, 336 guidelines for use in routines,
+174ï¿½180 in keyword creation, 175ï¿½176 input-modify-output order,
+174ï¿½175 Java, 176ï¿½177 list size as refactoring indicator,
 566 matching actual to formal, 180 naming, 178, 180, 274, 277, 278,
-279 number of, limiting, 178 objects, passing, 179 order for, 174­176 out keyword creation, 175­176 passing, types of, 333 refactoring, 571, 573 status, 176 structures as, 322 using all of rule, 176 variables, using as, 176­177 Visual Basic, 180 parentheses balancing technique, 437­438 layout with, 738 Pareto Principle, 592
+279 number of, limiting, 178 objects, passing, 179 order for, 174ï¿½176 out keyword creation, 175ï¿½176 passing, types of, 333 refactoring, 571, 573 status, 176 structures as, 322 using all of rule, 176 variables, using as, 176ï¿½177 Visual Basic, 180 parentheses balancing technique, 437ï¿½438 layout with, 738 Pareto Principle, 592
 
 passing parameters, 333 patterns
-advantages of, 103­104 alternatives suggested by, 103 communications benefit, 104 complexity reduction with, 103 disadvantages of, 105 error reduction benefit, 103 Factory Method, 103­104 resource for, 120 table of, 104 people first theme. See readability performance appraisals, 487 performance tuning algorithm choice, 590 architecture prerequisites, 48 arrays, 593­594, 603­604 checklist, 607­608 code tuning for. See code tuning comments, effects on, 791 competing objectives dilemma,
+advantages of, 103ï¿½104 alternatives suggested by, 103 communications benefit, 104 complexity reduction with, 103 disadvantages of, 105 error reduction benefit, 103 Factory Method, 103ï¿½104 resource for, 120 table of, 104 people first theme. See readability performance appraisals, 487 performance tuning algorithm choice, 590 architecture prerequisites, 48 arrays, 593ï¿½594, 603ï¿½604 checklist, 607ï¿½608 code tuning for. See code tuning comments, effects on, 791 competing objectives dilemma,
 595, 605 compiler considerations, 590,
-596­597 correctness, importance of,
-595­596 database indexing, 601 defects in code, 601 DES example, 605­606 design view, 589­590 feature specific, 595 hardware considerations, 591 inefficiency, sources of, 598­601 information hiding
-considerations of, 96 input/output, 598­599 interpreted vs. compiled
-languages, 600­601 key points, 608 lines of code, minimizing number
-of, 593­594 measurement of, 603­604 memory vs. file operations,
-598­599 old wives' tales, 593­596 operating system considerations,
+596ï¿½597 correctness, importance of,
+595ï¿½596 database indexing, 601 defects in code, 601 DES example, 605ï¿½606 design view, 589ï¿½590 feature specific, 595 hardware considerations, 591 inefficiency, sources of, 598ï¿½601 information hiding
+considerations of, 96 input/output, 598ï¿½599 interpreted vs. compiled
+languages, 600ï¿½601 key points, 608 lines of code, minimizing number
+of, 593ï¿½594 measurement of, 603ï¿½604 memory vs. file operations,
+598ï¿½599 old wives' tales, 593ï¿½596 operating system considerations,
 590 operations, costs of common,
-601­603 overview of, 643­644 paging operations, 599 premature optimization, 840 program requirements view of,
+601ï¿½603 overview of, 643ï¿½644 paging operations, 599 premature optimization, 840 program requirements view of,
 589 purpose of, 587
 
 prerelaqsutistiotpes-,leuvpeslterenatmry
 
 905
 
-quality of code, impact on, 588 resource goals, 590 resources, 606­607 routine design, 165, 222­223,
-590 speed, importance of, 595­596 summary of approach for, 606 system calls, 599­600 timing issues, 604 user view of coding, 588 when to tune, 596 periodicals on programming,
-859-860 Perl, 65 persistence of variables, 251­252,
+quality of code, impact on, 588 resource goals, 590 resources, 606ï¿½607 routine design, 165, 222ï¿½223,
+590 speed, importance of, 595ï¿½596 summary of approach for, 606 system calls, 599ï¿½600 timing issues, 604 user view of coding, 588 when to tune, 596 periodicals on programming,
+859-860 Perl, 65 persistence of variables, 251ï¿½252,
 831 personal character. See character,
-personal perturbers. See system perturbers phased integration, 691­692 phonic abbreviations of names, 283 PHP (PHP Hypertext Processor), 65,
+personal perturbers. See system perturbers phased integration, 691ï¿½692 phonic abbreviations of names, 283 PHP (PHP Hypertext Processor), 65,
 600 physical environment for
-programmers, 684­685 planning
-analogy argument for, 27­28 building metaphor for, 18­19 data arguing for, 28­30 good practices table for, 31­32 logical argument for, 27 pointers * (pointer declaration symbol),
-332, 334­335, 763 & (pointer reference symbol), 332 ­> (pointer symbol), 328 address of, 323, 326 allocation of, 326, 330, 331 alternatives to, 332 as function return values, 182 asterisk (*) rule, 334­335 auto_ptrs, 333 bounds checking tools, 527 C language, 334­335 C++ examples, 325, 328­334 C++ guidelines, 332­334 checking before using, 326, 331 checklist for, 344 comparisons with, 441 contents, interpretation of,
-324­325 cover routines for, 331­332 dangers of, 323, 325 data types pointed to, 324­325 deallocation of, 326, 330, 332
+programmers, 684ï¿½685 planning
+analogy argument for, 27ï¿½28 building metaphor for, 18ï¿½19 data arguing for, 28ï¿½30 good practices table for, 31ï¿½32 logical argument for, 27 pointers * (pointer declaration symbol),
+332, 334ï¿½335, 763 & (pointer reference symbol), 332 ï¿½> (pointer symbol), 328 address of, 323, 326 allocation of, 326, 330, 331 alternatives to, 332 as function return values, 182 asterisk (*) rule, 334ï¿½335 auto_ptrs, 333 bounds checking tools, 527 C language, 334ï¿½335 C++ examples, 325, 328ï¿½334 C++ guidelines, 332ï¿½334 checking before using, 326, 331 checklist for, 344 comparisons with, 441 contents, interpretation of,
+324ï¿½325 cover routines for, 331ï¿½332 dangers of, 323, 325 data types pointed to, 324ï¿½325 deallocation of, 326, 330, 332
 
-debugging aids, 208­209 declaring, 325­326, 763 deleting, 330­331, 332 diagramming, 329 dog tag fields, 326­327 explicit typing of, 334 explicitly redundant fields, 327 extra variables for clarity,
-327­329 hiding operations with routines,
-165 initializing, 241, 244, 325­326 interpretation of address
-contents, 324­325 isolating operations of, 325 key points, 344 languages not providing, 323 linked lists, deleting in, 330 location in memory, 323 memory corruption by, 325­327 memory parachutes, 330 null, setting to after deleting, 330 null, using as warnings, 849 overwriting memory with junk,
-330 parts of, 323 passing by reference, 333 references, C++, 332 resources for, 343 SAFE_ routines for, 331­332 simplifying complicated
+debugging aids, 208ï¿½209 declaring, 325ï¿½326, 763 deleting, 330ï¿½331, 332 diagramming, 329 dog tag fields, 326ï¿½327 explicit typing of, 334 explicitly redundant fields, 327 extra variables for clarity,
+327ï¿½329 hiding operations with routines,
+165 initializing, 241, 244, 325ï¿½326 interpretation of address
+contents, 324ï¿½325 isolating operations of, 325 key points, 344 languages not providing, 323 linked lists, deleting in, 330 location in memory, 323 memory corruption by, 325ï¿½327 memory parachutes, 330 null, setting to after deleting, 330 null, using as warnings, 849 overwriting memory with junk,
+330 parts of, 323 passing by reference, 333 references, C++, 332 resources for, 343 SAFE_ routines for, 331ï¿½332 simplifying complicated
 expressions, 329 sizeof(), 335 smart, 334 string operations in C, 299 type casting, avoiding, 334 variables referenced by, checking,
 326 polymorphism
-case statements, replacing with, 147­148
-defined, 92 language-specific rules, 156 nested ifs, converting to, 452­453 polynomial expressions, 631­632 portability data types, defining for, 315­316 defined, 464 routines for, 165 postconditions routine design with, 221 verification, 192­193 PPP (Pseudocode Programming
+case statements, replacing with, 147ï¿½148
+defined, 92 language-specific rules, 156 nested ifs, converting to, 452ï¿½453 polynomial expressions, 631ï¿½632 portability data types, defining for, 315ï¿½316 defined, 464 routines for, 165 postconditions routine design with, 221 verification, 192ï¿½193 PPP (Pseudocode Programming
 Process) algorithms, researching, 223
 
-alternates to, 232­233 checking for errors, 230­231 checklist for, 233­234 cleanup steps, 232 coding below comments,
-227­229 coding routines from, 225­229 data structure for routines, 224 declarations from, 226 defined, 218 designing routines, 220­225 error handling considerations,
+alternates to, 232ï¿½233 checking for errors, 230ï¿½231 checklist for, 233ï¿½234 cleanup steps, 232 coding below comments,
+227ï¿½229 coding routines from, 225ï¿½229 data structure for routines, 224 declarations from, 226 defined, 218 designing routines, 220ï¿½225 error handling considerations,
 222 example for routines, 224 functionality from libraries, 222 header comments for routines,
 223 high-level comments from,
-226­227 iterating, 225 key points for, 234 naming routines, 222 performance considerations,
-222­223 prerequisites, 221 problem definition, 221 refactoring, 229 removing errors, 231 repeating steps, 232 reviewing pseudocode, 224­225 stepping through code, 231 testing the code, 222, 231 writing pseudocode step,
-223­224 precedence, misleading, 733 preconditions
-routine design with, 221 verification, 192­193 prefixes, standardization of,
-279­281 premature optimization, 840 preparation. See prerequisites,
+226ï¿½227 iterating, 225 key points for, 234 naming routines, 222 performance considerations,
+222ï¿½223 prerequisites, 221 problem definition, 221 refactoring, 229 removing errors, 231 repeating steps, 232 reviewing pseudocode, 224ï¿½225 stepping through code, 231 testing the code, 222, 231 writing pseudocode step,
+223ï¿½224 precedence, misleading, 733 preconditions
+routine design with, 221 verification, 192ï¿½193 prefixes, standardization of,
+279ï¿½281 premature optimization, 840 preparation. See prerequisites,
 upstream preprocessors
-C++, 207­208 debugging aids, removing with,
-207­208 purpose of, 718­719 writing, 208 prerequisites, upstream analogy argument for, 27­28 architectural. See architecture boss readiness test, 30­31 checklist for, 59
+C++, 207ï¿½208 debugging aids, removing with,
+207ï¿½208 purpose of, 718ï¿½719 writing, 208 prerequisites, upstream analogy argument for, 27ï¿½28 architectural. See architecture boss readiness test, 30ï¿½31 checklist for, 59
 
 906
 
 Pfirisntctiopple-loevf ePlreonxitmryity
 
-prerequisites, upstream, continued choosing between iterative and sequential approaches, 35­36 coding too early mistake, 25 compelling argument for, 27­31 data arguing for, 28­30 error detection, doing early, 29­30 goal of, 25 good practices table for, 31­32 importance of, 24 incomplete preparation, causes of, 25­27 iterative and sequential mixes, 34­35 iterative methods with, 28, 33­34 key points for, 59­60 kinds of projects, 31­33 logical argument for, 27 manager ignorance problem, 26 problem definition, 36­38 requirements development. See requirements risk reduction goal, 25 skills required for success, 25 time allowed for, 55­56 WIMP syndrome, 26 WISCA syndrome, 26
+prerequisites, upstream, continued choosing between iterative and sequential approaches, 35ï¿½36 coding too early mistake, 25 compelling argument for, 27ï¿½31 data arguing for, 28ï¿½30 error detection, doing early, 29ï¿½30 goal of, 25 good practices table for, 31ï¿½32 importance of, 24 incomplete preparation, causes of, 25ï¿½27 iterative and sequential mixes, 34ï¿½35 iterative methods with, 28, 33ï¿½34 key points for, 59ï¿½60 kinds of projects, 31ï¿½33 logical argument for, 27 manager ignorance problem, 26 problem definition, 36ï¿½38 requirements development. See requirements risk reduction goal, 25 skills required for success, 25 time allowed for, 55ï¿½56 WIMP syndrome, 26 WISCA syndrome, 26
 Principle of Proximity, 242, 351 private data, 148 problem-definition prerequisites,
-36­38 problem domain, programming at,
-845­847 problem-solving skills development,
+36ï¿½38 problem domain, programming at,
+845ï¿½847 problem-solving skills development,
 823 procedural cohesion, 170 procedures. See also routines
-naming guidelines for, 172 when to use, 181­182 processes, development. See
+naming guidelines for, 172 when to use, 181ï¿½182 processes, development. See
 approaches to development productivity
 effects of good construction practice, 7
-industry average, 474 size of projects, effects on, 653 professional development, 824­825 professional organizations, 862 program flow control of. See control structures sequential. See straight-line code program organization prerequisite,
-45­46 program size. See size of projects
+industry average, 474 size of projects, effects on, 653 professional development, 824ï¿½825 professional organizations, 862 program flow control of. See control structures sequential. See straight-line code program organization prerequisite,
+45ï¿½46 program size. See size of projects
 
 programmers, character of. See character, personal
 programmers, treatment of. See also teams
-overview, 680 physical environment, 684­685 privacy of offices, 684 religious issues, 683­684 resources on, 685­686 style issues, 683­684 time allocations, 681 variations in performance,
-681­683 programming conventions
+overview, 680 physical environment, 684ï¿½685 privacy of offices, 684 religious issues, 683ï¿½684 resources on, 685ï¿½686 style issues, 683ï¿½684 time allocations, 681 variations in performance,
+681ï¿½683 programming conventions
 choosing, 66 coding practices checklist, 69 formatting rules. See layout programming into languages,
-68­69, 843 programming language choice
+68ï¿½69, 843 programming language choice
 Ada, 63 assembly language, 63 Basic, 65 C, 64 C#, 64 C++, 64 Cobol, 64 expressiveness of concepts, 63 familiar vs. unfamiliar languages,
 62 Fortran, 64 higher- vs. lower-level language
-productivity, 62 importance of, 61­63 Java, 65 JavaScript, 65 Perl, 65 PHP, 65 productivity from, 62 programming into languages,
-68­69, 843 Python, 65 ratio of statements compared to C
-code, table of, 62 SQL, 65 thinking, effects on, 63 Visual Basic, 65 programming tools assembler listing tools, 720 beautifiers, 712 build tools, 716­717 building your own, 721­722 CASE tools, 710 checklist, 724­725 class-hierarchy generators, 713
+productivity, 62 importance of, 61ï¿½63 Java, 65 JavaScript, 65 Perl, 65 PHP, 65 productivity from, 62 programming into languages,
+68ï¿½69, 843 Python, 65 ratio of statements compared to C
+code, table of, 62 SQL, 65 thinking, effects on, 63 Visual Basic, 65 programming tools assembler listing tools, 720 beautifiers, 712 build tools, 716ï¿½717 building your own, 721ï¿½722 CASE tools, 710 checklist, 724ï¿½725 class-hierarchy generators, 713
 
-code libraries, 717 code tuning, 720 code-generation wizards, 718 compilers, 716 cross-reference tools, 713 data dictionaries, 715 debugging tools, 526­527, 545,
-558­559, 719 dependency checkers, 716 design tools, 710 Diff tools, 712 disassemblers, 720 editing tools, 710­713 executable-code tools, 716­720 execution profiler tools, 720 fantasyland, 722­723 graphical design tools, 710 grep, 711 IDEs, 710­711 interface documentation, 713 key points, 725 linkers, 716 merge tools, 712 metrics reporters, 714 multiple-file string searches,
-711­712 preprocessors, 718­719 project-specific tools, 721­722 purpose of, 709 quality analysis, 713­714 refactoring tools, 714­715 resources on, 724 restructuring tools, 715 scripts, 722 semantics checkers, 713­714 source-code tools, 710­715 syntax checkers, 713­714 templates, 713 testing tools, 719 tool-oriented environments,
-720­721 translators, 715 version control tools, 715 project types, prerequisites
-corresponding to, 31­33 protected data, 148 prototyping, 114­115, 468 Proximity, Principle of, 242, 351 pseudocode
-algorithms, researching, 223 bad, example of, 218­219 benefits from, 219­220 changing, efficiency of, 220 checking for errors, 230­231 checklist for PPP, 233­234
+code libraries, 717 code tuning, 720 code-generation wizards, 718 compilers, 716 cross-reference tools, 713 data dictionaries, 715 debugging tools, 526ï¿½527, 545,
+558ï¿½559, 719 dependency checkers, 716 design tools, 710 Diff tools, 712 disassemblers, 720 editing tools, 710ï¿½713 executable-code tools, 716ï¿½720 execution profiler tools, 720 fantasyland, 722ï¿½723 graphical design tools, 710 grep, 711 IDEs, 710ï¿½711 interface documentation, 713 key points, 725 linkers, 716 merge tools, 712 metrics reporters, 714 multiple-file string searches,
+711ï¿½712 preprocessors, 718ï¿½719 project-specific tools, 721ï¿½722 purpose of, 709 quality analysis, 713ï¿½714 refactoring tools, 714ï¿½715 resources on, 724 restructuring tools, 715 scripts, 722 semantics checkers, 713ï¿½714 source-code tools, 710ï¿½715 syntax checkers, 713ï¿½714 templates, 713 testing tools, 719 tool-oriented environments,
+720ï¿½721 translators, 715 version control tools, 715 project types, prerequisites
+corresponding to, 31ï¿½33 protected data, 148 prototyping, 114ï¿½115, 468 Proximity, Principle of, 242, 351 pseudocode
+algorithms, researching, 223 bad, example of, 218ï¿½219 benefits from, 219ï¿½220 changing, efficiency of, 220 checking for errors, 230ï¿½231 checklist for PPP, 233ï¿½234
 
 last top-rleefvaecltoenritnrgy
 
 907
 
-classes, steps in creating, 216­217 coding below comments,
-227­229 coding from, 225­229 comments from, 220, 791 data structure for routines, 224 declarations from, 226 defined, 218 designing routines, 220­225 error handling considerations,
+classes, steps in creating, 216ï¿½217 coding below comments,
+227ï¿½229 coding from, 225ï¿½229 comments from, 220, 791 data structure for routines, 224 declarations from, 226 defined, 218 designing routines, 220ï¿½225 error handling considerations,
 222 example for routines, 224 functionality from libraries, 222 good, example of, 219 guidelines for effective use, 218 header comments for routines,
 223 high-level comments from,
-226­227 iterative refinement, 219, 225 key points for creating, 234 loop design, 385­387 naming routines, 222 performance considerations,
-222­223 PPP. See PPP prerequisites, 221 problem definition, 221 refactoring, 229 reviewing, 224­225 routines, steps in creating, 217,
-223­224 testing, planning for, 222 Pseudocode Programming Process.
-See PPP psychological distance, 556 psychological set, 554­555 psychological factors. See character,
-personal public data members, 567 pure blocks layout style, 738­740 Python
+226ï¿½227 iterative refinement, 219, 225 key points for creating, 234 loop design, 385ï¿½387 naming routines, 222 performance considerations,
+222ï¿½223 PPP. See PPP prerequisites, 221 problem definition, 221 refactoring, 229 reviewing, 224ï¿½225 routines, steps in creating, 217,
+223ï¿½224 testing, planning for, 222 Pseudocode Programming Process.
+See PPP psychological distance, 556 psychological set, 554ï¿½555 psychological factors. See character,
+personal public data members, 567 pure blocks layout style, 738ï¿½740 Python
 description of, 65 performance issues, 600
 Q
 quality assurance. See also quality of software
-checklist, 70 good practices table for, 31­32 prerequisites role in, 24 requirements checklist, 42­43 quality gates, 467
+checklist, 70 good practices table for, 31ï¿½32 prerequisites role in, 24 requirements checklist, 42ï¿½43 quality gates, 467
 
-quality of software accuracy, 464 adaptability, 464 change-control procedures, 468 checklist for, 476 collaborative construction. See collaboration correctness, 463 costs of finding defects, 472 costs of fixing defects, 472­473 debugging, role of, 474­475, 536 detection of defects by various techniques, table of, 470 development process assurance activities, 467­468 efficiency, 464 engineering guidelines, 467 explicit activity for, 466 external audits, 467 external characteristics of, 463­464 Extreme Programming, 471­472 flexibility, 464 gates, 467 General Principle of Software Quality, 474­475 integrity, 464 internal characteristics, 464­465 key points, 477 maintainability, 464 measurement of results, 468 multiple defect detection techniques recommended, 470­471 objectives, setting, 466, 468­469 optimization conflicts, 465­466 percentage of defects measurement, 469­472 portability, 464 programmer performance, objectives based, 468­469 prototyping, 468 readability, 464 recommended combination for, 473 relationships of characteristics, 465­466 reliability, 464 resources for, 476 reusability, 464 reviews, 467 robustness, 464 standards, IEEE, 477, 814 testing, 465, 467, 500­502
+quality of software accuracy, 464 adaptability, 464 change-control procedures, 468 checklist for, 476 collaborative construction. See collaboration correctness, 463 costs of finding defects, 472 costs of fixing defects, 472ï¿½473 debugging, role of, 474ï¿½475, 536 detection of defects by various techniques, table of, 470 development process assurance activities, 467ï¿½468 efficiency, 464 engineering guidelines, 467 explicit activity for, 466 external audits, 467 external characteristics of, 463ï¿½464 Extreme Programming, 471ï¿½472 flexibility, 464 gates, 467 General Principle of Software Quality, 474ï¿½475 integrity, 464 internal characteristics, 464ï¿½465 key points, 477 maintainability, 464 measurement of results, 468 multiple defect detection techniques recommended, 470ï¿½471 objectives, setting, 466, 468ï¿½469 optimization conflicts, 465ï¿½466 percentage of defects measurement, 469ï¿½472 portability, 464 programmer performance, objectives based, 468ï¿½469 prototyping, 468 readability, 464 recommended combination for, 473 relationships of characteristics, 465ï¿½466 reliability, 464 resources for, 476 reusability, 464 reviews, 467 robustness, 464 standards, IEEE, 477, 814 testing, 465, 467, 500ï¿½502
 
 understandability, 465 usability, 463 when to do assurance of, 473
 R
 random-data generators, 525 readability
-as management standard, 664 defects exposing lack of, 538 defined, 464 formatting for. See layout importance of, 13, 841­843 maintenance benefit from, 842 naming variables for. See naming
+as management standard, 664 defects exposing lack of, 538 defined, 464 formatting for. See layout importance of, 13, 841ï¿½843 maintenance benefit from, 842 naming variables for. See naming
 conventions; variable names positive effects from, 841 private vs. public programs, 842 professional development,
 importance to, 825 structures, importance of,
-733­734 warning sign, as a, 849 reading as a skill, 824 reading plan for software
-developers, 860­862 records, refactoring, 572 recursion
-alternatives to, 398 checklist, 410 defined, 393 factorials using, 397­398 Fibonacci numbers using,
-397­398 guidelines for, 394 key points, 410 maze example, 394­396 safety counters for, 396 single routine guideline, 396 sorting example, 393­394 stack space concerns, 397 terminating, 396 refactoring 80/20 rule, 582 adding routines, 582 algorithms, 573 arrays, 572 backing up old code, 579 bidirectional class associations,
-577 boolean expressions, 572 case statements, 573 checklists for, 570, 577­579 checkpoints for, 580
+733ï¿½734 warning sign, as a, 849 reading as a skill, 824 reading plan for software
+developers, 860ï¿½862 records, refactoring, 572 recursion
+alternatives to, 398 checklist, 410 defined, 393 factorials using, 397ï¿½398 Fibonacci numbers using,
+397ï¿½398 guidelines for, 394 key points, 410 maze example, 394ï¿½396 safety counters for, 396 single routine guideline, 396 sorting example, 393ï¿½394 stack space concerns, 397 terminating, 396 refactoring 80/20 rule, 582 adding routines, 582 algorithms, 573 arrays, 572 backing up old code, 579 bidirectional class associations,
+577 boolean expressions, 572 case statements, 573 checklists for, 570, 577ï¿½579 checkpoints for, 580
 
 908
 
 frierfsetrteonpc-elsev(&el),eCn+tr+y
 
-refactoring, continued class cohesion indicator, 566 class interfaces, 575­576 classes, 566­567, 574­576, 578­579, 582 code tuning, compared to, 609 collections, 572 comments on bad code, 568 complex modules, 583 conditional expressions, 573 constant values varying among subclass, 574 constructors to factory methods, 577 data from uncontrolled sources, 576 data sets, related, as indicator, 566 data types to classes, 572 data-level, 571­572, 577 defects, fixes of, 582 defined, 565 designing code for future needs, 569­570 Don't Repeat Yourself principle, 565 duplicate code indicator, 565 error-prone modules, 582 expressions, 571 global variables, 568 GUI data, 576 if statements, 573 interfaces, 566, 575­576, 579 key points, 585 listing planned steps, 580 literal constants, 571 loops, 565, 573 maintenance triggering, 583 middleman classes, 567 misuse of, 582 null objects, 573 objects, 574­576 one-at-a-time rule, 580 overloaded primitive data types, 567 parallel modifications required indicator, 566 parameters, 566, 571, 573 PPP coding step, 229 public data members, 567 queries, 574 reasons not to, 571 records, 572 redesigning instead of, 582 reference objects, 574 resources on, 585
+refactoring, continued class cohesion indicator, 566 class interfaces, 575ï¿½576 classes, 566ï¿½567, 574ï¿½576, 578ï¿½579, 582 code tuning, compared to, 609 collections, 572 comments on bad code, 568 complex modules, 583 conditional expressions, 573 constant values varying among subclass, 574 constructors to factory methods, 577 data from uncontrolled sources, 576 data sets, related, as indicator, 566 data types to classes, 572 data-level, 571ï¿½572, 577 defects, fixes of, 582 defined, 565 designing code for future needs, 569ï¿½570 Don't Repeat Yourself principle, 565 duplicate code indicator, 565 error-prone modules, 582 expressions, 571 global variables, 568 GUI data, 576 if statements, 573 interfaces, 566, 575ï¿½576, 579 key points, 585 listing planned steps, 580 literal constants, 571 loops, 565, 573 maintenance triggering, 583 middleman classes, 567 misuse of, 582 null objects, 573 objects, 574ï¿½576 one-at-a-time rule, 580 overloaded primitive data types, 567 parallel modifications required indicator, 566 parameters, 566, 571, 573 PPP coding step, 229 public data members, 567 queries, 574 reasons not to, 571 records, 572 redesigning instead of, 582 reference objects, 574 resources on, 585
 
-reviews of, 580­581 risk levels of, 581 routines, 565­567, 573­574, 578,
-582 safety guidelines, 579­581, 584 setup code, 568­569 size guideline, 580 statement-level, 572­573,
-577­578 strategies for, 582­584 subclasses, 567, 575 superclasses, 575 system-level, 576­577, 579 takedown code, 568­569 testing, 580 to do lists for, 580 tools for, 714­715 tramp data, 567 ugly code, interfaces to, 583­584 unidirectional class associations,
+reviews of, 580ï¿½581 risk levels of, 581 routines, 565ï¿½567, 573ï¿½574, 578,
+582 safety guidelines, 579ï¿½581, 584 setup code, 568ï¿½569 size guideline, 580 statement-level, 572ï¿½573,
+577ï¿½578 strategies for, 582ï¿½584 subclasses, 567, 575 superclasses, 575 system-level, 576ï¿½577, 579 takedown code, 568ï¿½569 testing, 580 to do lists for, 580 tools for, 714ï¿½715 tramp data, 567 ugly code, interfaces to, 583ï¿½584 unidirectional class associations,
 577 unit tests for, 580 variables, 571 warnings, compiler, 580 references (&), C++, 332 regression testing diff tools for, 524 defined, 500 purpose of, 528 reliability cohesive routines, 168 defined, 464 religious attitude toward
-programming eclecticism, 851­852 experimentation compared to,
-852­853 harmful effects of, 851­853 layout styles becoming, 735 managing people, 683­684 software oracles, 851 reports. See formal inspections requirements benefits of, 38­39 business cases for, 41 change-control procedures, 40­41 checklists for, 40, 42­43 coding without, 26 communicating changes in, 40­41 completeness, checklist, 43 configuration management of,
-664, 666­667 defined, 38 development approaches with, 41
+programming eclecticism, 851ï¿½852 experimentation compared to,
+852ï¿½853 harmful effects of, 851ï¿½853 layout styles becoming, 735 managing people, 683ï¿½684 software oracles, 851 reports. See formal inspections requirements benefits of, 38ï¿½39 business cases for, 41 change-control procedures, 40ï¿½41 checklists for, 40, 42ï¿½43 coding without, 26 communicating changes in, 40ï¿½41 completeness, checklist, 43 configuration management of,
+664, 666ï¿½667 defined, 38 development approaches with, 41
 
 development process effects on, 40
-dumping projects, 41 errors in, effects of, 38­39 functional, checklist, 42 good practices table for, 31­32 importance of, 38­39 key point for, 60 nonfunctional, checklist, 42 performance tuning, 589 quality, checklist, 42­43 rate of change, typical, 563 resources on developing, 56­57 stability of, 39­40, 840 testing for, 503 time allowed for, 55­56 resource management architecture for, 47 cleanup example, 401­402 restrictive nature of design, 76 restructuring tools, 715 retesting. See regression testing return statements checklist, 410 guard clauses, 392­393 key points, 410 multiple, from one routine,
-391­393 readability, 391­392 resources for, 408 reusability defined, 464 architecture prerequisites, 52 reviewer role in inspections, 486 reviews code reading, 494 dog-and-pony shows, 495 educational aspect of, 482 every line of code rule, 663 formal inspections, compared to,
+dumping projects, 41 errors in, effects of, 38ï¿½39 functional, checklist, 42 good practices table for, 31ï¿½32 importance of, 38ï¿½39 key point for, 60 nonfunctional, checklist, 42 performance tuning, 589 quality, checklist, 42ï¿½43 rate of change, typical, 563 resources on developing, 56ï¿½57 stability of, 39ï¿½40, 840 testing for, 503 time allowed for, 55ï¿½56 resource management architecture for, 47 cleanup example, 401ï¿½402 restrictive nature of design, 76 restructuring tools, 715 retesting. See regression testing return statements checklist, 410 guard clauses, 392ï¿½393 key points, 410 multiple, from one routine,
+391ï¿½393 readability, 391ï¿½392 resources for, 408 reusability defined, 464 architecture prerequisites, 52 reviewer role in inspections, 486 reviews code reading, 494 dog-and-pony shows, 495 educational aspect of, 482 every line of code rule, 663 formal inspections, compared to,
 485 formal, quality from, 467 informal, defined, 467 iteration process, place in, 850 refactoring conducting after,
-580­581 walk-throughs, 492­493 right shifting, 634 risk-oriented integration, 699 robustness architecture prerequisites, 51 assertions with error handling,
-193­194 correctness, balanced against, 197 defined, 197, 464
+580ï¿½581 walk-throughs, 492ï¿½493 right shifting, 634 risk-oriented integration, 699 robustness architecture prerequisites, 51 assertions with error handling,
+193ï¿½194 correctness, balanced against, 197 defined, 197, 464
 
 rounding errors, 297 routines
 abstract overridable, 145 abstraction benefit, 164 abstraction with object
-parameters, 179, 574 access. See access routines algorithm selection for, 223, 573 alternates to PPP, 232­233 black-box testing of, 502 blank lines in, 766 boolean test benefit, 165 calculation to function example,
-166­167 calls, costs of, 601 checking for errors, 230­231 checklists, 185, 774, 780 classes, converting to, criteria for,
-573 cleanup steps, 232 code tuning, 639­640 coding from pseudocode,
-225­229 cohesion, 168­171 coincidental cohesion, 170 commenting, 805­809, 817 communicational cohesion, 169 compiling for errors, 230­231 complexity metric, 458 complexity reduction benefit, 164 construction step for classes, 217 continuations in call lines, 756 coupling considerations, 100­102 data states, 509 data structures for, 224 declarations, 226 defined, 161 descriptiveness guideline for
-naming, 171 design by contract, 233 designing, 86, 220­225 documentation, 178, 780 downcast objects, 574 duplication benefit, 164­165 endline layout, 767 error handling considerations,
-222 errors in, relation to length of, 173 event handlers, 170 fields of objects, passing to, 574 files, layout in, 772 functional cohesion, 168­169 functionality from libraries, 222
+parameters, 179, 574 access. See access routines algorithm selection for, 223, 573 alternates to PPP, 232ï¿½233 black-box testing of, 502 blank lines in, 766 boolean test benefit, 165 calculation to function example,
+166ï¿½167 calls, costs of, 601 checking for errors, 230ï¿½231 checklists, 185, 774, 780 classes, converting to, criteria for,
+573 cleanup steps, 232 code tuning, 639ï¿½640 coding from pseudocode,
+225ï¿½229 cohesion, 168ï¿½171 coincidental cohesion, 170 commenting, 805ï¿½809, 817 communicational cohesion, 169 compiling for errors, 230ï¿½231 complexity metric, 458 complexity reduction benefit, 164 construction step for classes, 217 continuations in call lines, 756 coupling considerations, 100ï¿½102 data states, 509 data structures for, 224 declarations, 226 defined, 161 descriptiveness guideline for
+naming, 171 design by contract, 233 designing, 86, 220ï¿½225 documentation, 178, 780 downcast objects, 574 duplication benefit, 164ï¿½165 endline layout, 767 error handling considerations,
+222 errors in, relation to length of, 173 event handlers, 170 fields of objects, passing to, 574 files, layout in, 772 functional cohesion, 168ï¿½169 functionality from libraries, 222
 
 lassctotpoepo-lfevaerlieanbtlerys
 
 909
 
-functions, special considerations for, 181­182
+functions, special considerations for, 181ï¿½182
 hacking approach to, 233 header comments for, 223 high quality, counterexample,
-161­163 high-level comments from
-pseudocode, 226­227 importance of, 163 in keyword creation, 175­176 indentation of, 766­768 internal design, 87 inline, 184­185 input-modify-output parameter
-order, 174­175 interface statements, 226 iterating pseudocode, 225 key points for, 186, 234 layout of, 754, 766­768 length of, guideline for, 173­174 limitations, documenting, 808 logical cohesion, 170 low-quality example, 161­163 macro. See macro routines mentally checking for errors, 230 multiple returns from, 391­393 named parameters in, 180 naming, 171­173, 222, 277­278,
-567 nested deeply, 164 objects, passing to, 179, 574 out keyword creation, 175­176 overridable vs. non-overridable
-routines, 145­146 overridden to do nothing,
-146­147 overriding, 156 parameters. See parameters of
+161ï¿½163 high-level comments from
+pseudocode, 226ï¿½227 importance of, 163 in keyword creation, 175ï¿½176 indentation of, 766ï¿½768 internal design, 87 inline, 184ï¿½185 input-modify-output parameter
+order, 174ï¿½175 interface statements, 226 iterating pseudocode, 225 key points for, 186, 234 layout of, 754, 766ï¿½768 length of, guideline for, 173ï¿½174 limitations, documenting, 808 logical cohesion, 170 low-quality example, 161ï¿½163 macro. See macro routines mentally checking for errors, 230 multiple returns from, 391ï¿½393 named parameters in, 180 naming, 171ï¿½173, 222, 277ï¿½278,
+567 nested deeply, 164 objects, passing to, 179, 574 out keyword creation, 175ï¿½176 overridable vs. non-overridable
+routines, 145ï¿½146 overridden to do nothing,
+146ï¿½147 overriding, 156 parameters. See parameters of
 routines performance considerations, 165,
-222­223 pointer hiding benefit, 165 portability benefit, 165 postconditions, 221 PPP checklist for, 233­234 preconditions, 221 prerequisites, 221 problem definition, 221 procedural cohesion, 170 procedure naming guideline, 172 pseudocode writing step,
-223­224 public, using in interfaces
+222ï¿½223 pointer hiding benefit, 165 portability benefit, 165 postconditions, 221 PPP checklist for, 233ï¿½234 preconditions, 221 prerequisites, 221 problem definition, 221 procedural cohesion, 170 procedure naming guideline, 172 pseudocode writing step,
+223ï¿½224 public, using in interfaces
 concern, 141 queries, refactoring, 574
 
-reasons for creating, list of, 167 refactoring, 229, 573­575, 578,
-582 reliability from cohesiveness, 168 removing errors, 231 repeating steps, 232 returns from, multiple, 391­393 reviewing pseudocode, 224­225 sequence hiding benefit, 165 sequential cohesion, 168 setup code for, refactoring,
-568­569 similar parameters, order for, 176 similar, refactoring, 574 simple, usefulness of, 166­167 size as refactoring indicator,
-565­566 small vs. large, 166, 173­174 specification example, 221 stepping through code, 231 strength, 168 subclassing benefit, 165 temporal cohesion, 169 test-first development, 233 testing, 222, 231, 523 tramp data in, 567 unused, refactoring, 576 valid reasons for creating,
-164­167 variable names, differentiating
+reasons for creating, list of, 167 refactoring, 229, 573ï¿½575, 578,
+582 reliability from cohesiveness, 168 removing errors, 231 repeating steps, 232 returns from, multiple, 391ï¿½393 reviewing pseudocode, 224ï¿½225 sequence hiding benefit, 165 sequential cohesion, 168 setup code for, refactoring,
+568ï¿½569 similar parameters, order for, 176 similar, refactoring, 574 simple, usefulness of, 166ï¿½167 size as refactoring indicator,
+565ï¿½566 small vs. large, 166, 173ï¿½174 specification example, 221 stepping through code, 231 strength, 168 subclassing benefit, 165 temporal cohesion, 169 test-first development, 233 testing, 222, 231, 523 tramp data in, 567 unused, refactoring, 576 valid reasons for creating,
+164ï¿½167 variable names, differentiating
 from, 272 wrong class, indicator for, 566 run time, binding during, 253
 S
-safety counters in loops, 378­379 sandwich integration, 698­699 scaffolding
-debugging with, 558 testing, 523­524, 531 scalability, 48. See also size of
+safety counters in loops, 378ï¿½379 sandwich integration, 698ï¿½699 scaffolding
+debugging with, 558 testing, 523ï¿½524, 531 scalability, 48. See also size of
 projects scientific method, classic steps in,
 540 SCM (software configuration
 management), 665. See also configuration management schedules, estimating. See estimating schedules scope of variables convenience argument, 250 defined, 244 global scope, problems with, 251
@@ -27278,36 +27284,36 @@ management), 665. See also configuration management schedules, estimating. See e
 
 sficrrsitbteorpo-lleevinelinensptreyctions
 
-scope of variables, continued grouping related statements, 249­250 key point, 258 language differences, 244 live time, minimizing, 246­248 localizing references to variables, 245 loop initializations, 249 manageability argument, 251 minimizing, guidelines for, 249­251 restrict and expand tactic, 250 span of variables, 245 value assignments, 249 variable names, effects on, 262­263
+scope of variables, continued grouping related statements, 249ï¿½250 key point, 258 language differences, 244 live time, minimizing, 246ï¿½248 localizing references to variables, 245 loop initializations, 249 manageability argument, 251 minimizing, guidelines for, 249ï¿½251 restrict and expand tactic, 250 span of variables, 245 value assignments, 249 variable names, effects on, 262ï¿½263
 scribe role in inspections, 486 scripts
 programming tools, as, 722 slowness of, 600-601 SDFs (software development
-folders), 778 security, 47 selections, code, 455 selective data, 254 self-documenting code, 778­781,
-796­797 semantic coupling, 102 semantic prefixes, 280­281 semantics checkers, 713­714 sentinel tests for loops, 621­623 sequences, code. See also blocks
+folders), 778 security, 47 selections, code, 455 selective data, 254 self-documenting code, 778ï¿½781,
+796ï¿½797 semantic coupling, 102 semantic prefixes, 280ï¿½281 semantics checkers, 713ï¿½714 sentinel tests for loops, 621ï¿½623 sequences, code. See also blocks
 hiding with routines, 165 order of. See dependencies,
 code-ordering structured programming concept
-of, 454 sequential approach, 33­36 sequential cohesion, 168 Set() routines, 576 setup code, refactoring, 568­569 setup tools, 718 short-circuit evaluation, 438­440,
-610 side effects, C++, 759­761 signing off on code, 663 simple-data-parameter coupling, 101 simple-object coupling, 101 single points of control, 308 single-statement blocks, 748­749 singleton property, enforcing, 104,
+of, 454 sequential approach, 33ï¿½36 sequential cohesion, 168 Set() routines, 576 setup code, refactoring, 568ï¿½569 setup tools, 718 short-circuit evaluation, 438ï¿½440,
+610 side effects, C++, 759ï¿½761 signing off on code, 663 simple-data-parameter coupling, 101 simple-object coupling, 101 single points of control, 308 single-statement blocks, 748ï¿½749 singleton property, enforcing, 104,
 151
 
-size of projects activities, list of fastest growing, 655 activity types, effects on, 654­655 building metaphor for, 19 communications between people, 650 complexity, effect of, 656­657 defects created, effects on, 651­653 documentation requirements, 657 estimation errors, 656­657 formality requirements, 657 key points, 659 methodology considerations, 657­658 overview, 649 productivity, effects on, 653 ranges in, 651 resources on, 658­659 single product, multiple users, 656 single program, single user, 656 system products, 656 systems, 656
-sizeof(), 335 sloppy processes, 75­76 smart pointers, 334 smoke tests, 703 software accretion metaphor, 15­16 software construction overview
+size of projects activities, list of fastest growing, 655 activity types, effects on, 654ï¿½655 building metaphor for, 19 communications between people, 650 complexity, effect of, 656ï¿½657 defects created, effects on, 651ï¿½653 documentation requirements, 657 estimation errors, 656ï¿½657 formality requirements, 657 key points, 659 methodology considerations, 657ï¿½658 overview, 649 productivity, effects on, 653 ranges in, 651 resources on, 658ï¿½659 single product, multiple users, 656 single program, single user, 656 system products, 656 systems, 656
+sizeof(), 335 sloppy processes, 75ï¿½76 smart pointers, 334 smoke tests, 703 software accretion metaphor, 15ï¿½16 software construction overview
 activities excluded from, 6 activities in, list of, 3 centralness to development
-process, 7 defined, 3­6 documentation by source code, 7 guaranteed done nature of, 7 importance of, 6­7 key points for, 8 main activities of, 4 percent of total development
+process, 7 defined, 3ï¿½6 documentation by source code, 7 guaranteed done nature of, 7 importance of, 6ï¿½7 key points for, 8 main activities of, 4 percent of total development
 process, 7 productivity, importance in, 7 programming as, 5 programming vs., 4 source code as documentation, 7 tasks in, list of, 5 software design. See design software development folders
 (SDFs), 778 software engineering overview of
 resources, 858
 
-software evolution background for, 563­564 Cardinal Rule of, 565 construction vs. maintenance, 564 improving vs. degrading direction of, 564 philosophy of, 564­565
+software evolution background for, 563ï¿½564 Cardinal Rule of, 565 construction vs. maintenance, 564 improving vs. degrading direction of, 564 philosophy of, 564ï¿½565
 software metaphors. See metaphors, software
 software oracles, 851 software quality. See quality of
 software Software's Primary Technical
 Imperative, 92 software-development libraries
-bibliographies, 858 construction, 856 magazines, 859­860 overview, 855, 857­858 reading plan, 860­862 software engineering overviews,
+bibliographies, 858 construction, 856 magazines, 859ï¿½860 overview, 855, 857ï¿½858 reading plan, 860ï¿½862 software engineering overviews,
 858 software-engineering guidelines,
 467 sorting, recursive algorithm for,
-393­394 source code
-documentation aspect of, 7 resource for, 815 source-code tools analyzing quality, 713­714 beautifiers, 712 class-hierarchy generators, 713 comparators, 556 cross-reference tools, 713 data dictionaries, 715 Diff tools, 712 editing tools, 710­713 grep, 711 IDEs, 710­711 interface documentation, 713 merge tools, 712 metrics reporters, 714 multiple-file string searches,
-711­712 refactoring tools, 714­715 restructuring tools, 715 semantics checkers, 713­714 syntax checkers, 713­714 templates, 713 translators, 715 version control tools, 715 span, 245, 459
+393ï¿½394 source code
+documentation aspect of, 7 resource for, 815 source-code tools analyzing quality, 713ï¿½714 beautifiers, 712 class-hierarchy generators, 713 comparators, 556 cross-reference tools, 713 data dictionaries, 715 Diff tools, 712 editing tools, 710ï¿½713 grep, 711 IDEs, 710ï¿½711 interface documentation, 713 merge tools, 712 metrics reporters, 714 multiple-file string searches,
+711ï¿½712 refactoring tools, 714ï¿½715 restructuring tools, 715 semantics checkers, 713ï¿½714 syntax checkers, 713ï¿½714 templates, 713 translators, 715 version control tools, 715 span, 245, 459
 
 TeamlasStotfotwp-alreevePlroencetrsys
 
@@ -27316,28 +27322,28 @@ TeamlasStotfotwp-alreevePlroencetrsys
 specific functional requirements checklist, 42
 specific nonfunctional requirements checklist, 42
 specification. See requirements speed improvement checklist,
-642­643. See also code tuning; performance tuning SQL, 65 stabilizing errors, 542­543 stair-step access tables, 426­429 standards, overview of, 814 state variables. See status variables statements checklist, 774 closely-related elements, 755­756 continuation layout, 754­758 ends of continuations, 756­757 incomplete, 754­755 length of, 753 refactoring, 572­573, 577­578 sequential. See straight-line code status reporting, 827 status variables bit-level meanings, 803 change, identifying areas of, 98­99 enumerated types for, 266­267 gotos rewritten with, 403­404 names for, 266­267 semantic coupling of, 102 straight-line code checklist, 353 clarifying dependencies, 348­350 dependencies concept, 347 documentation, 350 error checking, 350 grouping related statements, 352­353 hidden dependencies, 348 initialization order, 348 naming routines, 348­349 non-obvious dependencies, 348 organization to show dependencies, 348 parameters, effective, 349 proximity principle, 351 specific order, required, 347­350 top to bottom readability guideline, 351­352 Strategy pattern, 104 stratification design goal, 81 strcpy(), 301 streams, 206 strength. See cohesion
+642ï¿½643. See also code tuning; performance tuning SQL, 65 stabilizing errors, 542ï¿½543 stair-step access tables, 426ï¿½429 standards, overview of, 814 state variables. See status variables statements checklist, 774 closely-related elements, 755ï¿½756 continuation layout, 754ï¿½758 ends of continuations, 756ï¿½757 incomplete, 754ï¿½755 length of, 753 refactoring, 572ï¿½573, 577ï¿½578 sequential. See straight-line code status reporting, 827 status variables bit-level meanings, 803 change, identifying areas of, 98ï¿½99 enumerated types for, 266ï¿½267 gotos rewritten with, 403ï¿½404 names for, 266ï¿½267 semantic coupling of, 102 straight-line code checklist, 353 clarifying dependencies, 348ï¿½350 dependencies concept, 347 documentation, 350 error checking, 350 grouping related statements, 352ï¿½353 hidden dependencies, 348 initialization order, 348 naming routines, 348ï¿½349 non-obvious dependencies, 348 organization to show dependencies, 348 parameters, effective, 349 proximity principle, 351 specific order, required, 347ï¿½350 top to bottom readability guideline, 351ï¿½352 Strategy pattern, 104 stratification design goal, 81 strcpy(), 301 streams, 206 strength. See cohesion
 
-string data types C language, 299­301 character sets, 298 checklist, 316­317 conversion strategies, 299 indexes, 298, 299­300, 627 initializing, 300 localization, 298 magic (literal) strings, 297­298 memory concerns, 298, 300 pointers vs. character arrays, 299 Unicode, 298, 299
+string data types C language, 299ï¿½301 character sets, 298 checklist, 316ï¿½317 conversion strategies, 299 indexes, 298, 299ï¿½300, 627 initializing, 300 localization, 298 magic (literal) strings, 297ï¿½298 memory concerns, 298, 300 pointers vs. character arrays, 299 Unicode, 298, 299
 string pointers, 299 strncpy(), 301 strong cohesion, 105 structs. See structures structured basis testing
-recommended, 503 theory of, 505­509 structured programming core thesis of, 456 iteration, 456 overview, 454 selections, 455 sequences, 454 structures blocks of data, operations on,
-320­322 checklist for, 343 clarifying data relationships with,
+recommended, 503 theory of, 505ï¿½509 structured programming core thesis of, 456 iteration, 456 overview, 454 selections, 455 sequences, 454 structures blocks of data, operations on,
+320ï¿½322 checklist for, 343 clarifying data relationships with,
 320 classes performing as, 319 defined, 319 key points, 344 maintenance reduction with, 323 overdoing, 322 parameter simplification with,
 322 relationships, clear example of,
 320 routine calls with, 322 simplifying data operations with,
-320­322 swapping data, 321­322 unstructured data example, 320 Visual Basic examples, 320­322 stub objects, testing with, 523 stubs as integration aids, 694, 696 stubs with debugging aids, 208­209 style issues formatting. See layout self-documenting code, 778­781 human aspects of, 683­684 sub procedures, 161. See also
+320ï¿½322 swapping data, 321ï¿½322 unstructured data example, 320 Visual Basic examples, 320ï¿½322 stub objects, testing with, 523 stubs as integration aids, 694, 696 stubs with debugging aids, 208ï¿½209 style issues formatting. See layout self-documenting code, 778ï¿½781 human aspects of, 683ï¿½684 sub procedures, 161. See also
 routines
 
-subsystem design level, 82­85 subtraction, 295 swapping data using structures,
-321­322 switch statements. See case
-statements symbolic debuggers, 526­527 syntax, errors in, 549­550, 560,
-713­714 system architecture. See architecture system calls
-code tuning, 633­634 performance issues, 599­600 system dependencies, 85 system perturbers, 527 system testing, 500 system-level refactoring, 576­577,
+subsystem design level, 82ï¿½85 subtraction, 295 swapping data using structures,
+321ï¿½322 switch statements. See case
+statements symbolic debuggers, 526ï¿½527 syntax, errors in, 549ï¿½550, 560,
+713ï¿½714 system architecture. See architecture system calls
+code tuning, 633ï¿½634 performance issues, 599ï¿½600 system dependencies, 85 system perturbers, 527 system testing, 500 system-level refactoring, 576ï¿½577,
 579
 T
-table-driven methods advantages of, 420 binary searches with, 428 case statement approach, 421­422 checklist, 429 code-tuning with, 614­615 creating from expressions, 435 days-in-month example, 413­414 defined, 411 design method, 420 direct access. See direct access tables endpoints of ranges, 428 flexible-message-format example, 416­423 fudging keys for, 423­424 indexed access tables, 425­426, 428­429 insurance rates example, 415­416 issues in, 412­413 key points, 430 keys for, 423­424 lookup issue, 412 miscellaneous examples, 429 object approach, 422­423 precomputing calculations, 635 purpose of, 411­412 stair-step access tables, 426­429 storage issue, 413 transforming keys, 424
+table-driven methods advantages of, 420 binary searches with, 428 case statement approach, 421ï¿½422 checklist, 429 code-tuning with, 614ï¿½615 creating from expressions, 435 days-in-month example, 413ï¿½414 defined, 411 design method, 420 direct access. See direct access tables endpoints of ranges, 428 flexible-message-format example, 416ï¿½423 fudging keys for, 423ï¿½424 indexed access tables, 425ï¿½426, 428ï¿½429 insurance rates example, 415ï¿½416 issues in, 412ï¿½413 key points, 430 keys for, 423ï¿½424 lookup issue, 412 miscellaneous examples, 429 object approach, 422ï¿½423 precomputing calculations, 635 purpose of, 411ï¿½412 stair-step access tables, 426ï¿½429 storage issue, 413 transforming keys, 424
 Tacoma Narrows bridge, 74 takedown code, refactoring,
-568­569 Team Software Process (TSP), 521
+568ï¿½569 Team Software Process (TSP), 521
 
 912
 
@@ -27347,80 +27353,80 @@ Download from Wow! eBook <www.wowebook.com>
 
 teams. See also managing construction
 build groups, 704 checklist, 69 development processes used by,
-840 expanding to meet schedules, 676 managers, 686 physical environment, 684­685 privacy of offices, 684 process, importance to, 839­840 religious issues, 683­684 resources on, 685­686 size of projects, effects of, 650­653 style issues, 683­684 time allocations, 681 variations in performance,
-681­683 technology waves, determining your
-location in, 66­69 Template Method pattern, 104 template tools, 713 temporal cohesion, 169 temporary variables, 267­268 testability
-defined, 465 strategies for, 467 test-data generators, 524­525 test-first development, 233 testing automated testing, 528­529 bad data classes, 514­515 black-box testing, 500 boundary analysis, 513­514 bounds checking tools, 527 cases, creating, 506­508,
-522­525, 532 characteristics of, troublesome,
-501 checklist, 532 classes prone to error, 517­518 classifications of errors, 518­520 clean test limitation, 504 clerical errors (typos), 519 code coverage testing, 506 component testing, 499 compound boundaries, 514 construction defects, proportion
-of, 520­521 coverage of code, 505­509, 526 data flow testing, 509­512 data generators for, 524­525 data recorder tools, 526 debuggers, 526­527 debugging, compared to, 500
+840 expanding to meet schedules, 676 managers, 686 physical environment, 684ï¿½685 privacy of offices, 684 process, importance to, 839ï¿½840 religious issues, 683ï¿½684 resources on, 685ï¿½686 size of projects, effects of, 650ï¿½653 style issues, 683ï¿½684 time allocations, 681 variations in performance,
+681ï¿½683 technology waves, determining your
+location in, 66ï¿½69 Template Method pattern, 104 template tools, 713 temporal cohesion, 169 temporary variables, 267ï¿½268 testability
+defined, 465 strategies for, 467 test-data generators, 524ï¿½525 test-first development, 233 testing automated testing, 528ï¿½529 bad data classes, 514ï¿½515 black-box testing, 500 boundary analysis, 513ï¿½514 bounds checking tools, 527 cases, creating, 506ï¿½508,
+522ï¿½525, 532 characteristics of, troublesome,
+501 checklist, 532 classes prone to error, 517ï¿½518 classifications of errors, 518ï¿½520 clean test limitation, 504 clerical errors (typos), 519 code coverage testing, 506 component testing, 499 compound boundaries, 514 construction defects, proportion
+of, 520ï¿½521 coverage of code, 505ï¿½509, 526 data flow testing, 509ï¿½512 data generators for, 524ï¿½525 data recorder tools, 526 debuggers, 526ï¿½527 debugging, compared to, 500
 
-defined-used data paths, 510­512 design concerns, 503 designs, misunderstanding, 519 developer-view limitations, 504 developing tests, 522 diff tools for, 524 driver routines, 523 dummy classes, 523 dummy files for, 524 during construction, 502­503 ease of fixing defects, 519 equivalence partitioning, 512 error checklists for, 503 error databases, 527 error guessing, 513 error presence assumption, 501 errors in testing itself, 522 expected defect rate, 521­522 first or last recommendation,
-503­504, 531 frameworks for, 522, 524 goals of, 501 good data classes, 515­516 integration testing, 499 JUnit for, 531 key points, 533 limitations on developer testing,
+defined-used data paths, 510ï¿½512 design concerns, 503 designs, misunderstanding, 519 developer-view limitations, 504 developing tests, 522 diff tools for, 524 driver routines, 523 dummy classes, 523 dummy files for, 524 during construction, 502ï¿½503 ease of fixing defects, 519 equivalence partitioning, 512 error checklists for, 503 error databases, 527 error guessing, 513 error presence assumption, 501 errors in testing itself, 522 expected defect rate, 521ï¿½522 first or last recommendation,
+503ï¿½504, 531 frameworks for, 522, 524 goals of, 501 good data classes, 515ï¿½516 integration testing, 499 JUnit for, 531 key points, 533 limitations on developer testing,
 504 logging tools for, 526 logic coverage testing, 506 maximum normal configurations,
 515 measurement of, 520, 529 memory tools, 527 minimum normal configurations,
 515 mock objects, 523 nominal case errors, 515 old data, compatibility with, 516 optimistic programmers
 limitation, 504 outside of construction domain
 defects, 519 planning for, 528 prioritizing coverage, 505 provability of correctness, 501,
 505 quality not affected by, 501 random-data generators, 525 recommended approach to,
-503­504 record keeping for, 529­530 regression testing, 500, 528 requirements, 503 resources for, 530­531
+503ï¿½504 record keeping for, 529ï¿½530 regression testing, 500, 528 requirements, 503 resources for, 530ï¿½531
 
 results, uses for, 502 role in software quality assurance,
-500­502 routines, black-box testing of, 502 scaffolding, 523­524, 531 scope of defects, 519 selecting cases for convenience,
+500ï¿½502 routines, black-box testing of, 502 scaffolding, 523ï¿½524, 531 scope of defects, 519 selecting cases for convenience,
 516 stabilizing errors, 542 standards, IEEE, 532 structured basis testing, 503,
-505­509 stub objects, 523 symbolic debuggers, 526­527 system perturbers, 527 system testing, 500 testability, 465, 467 test case errors, 522 time commitment to, 501­502 test-first development, 233 tools, list of, 719 unit testing, 499, 545 varying cases, 545 white-box testing, 500, 502 threading, 337 throwaway code, 114 throwing one away metaphor, 13­14 time allowances, 55­56 tool version control, 668 toolbox approach, 20 tools checklist, 70 debugging. See debugging editing. See editing tools programming. See programming
+505ï¿½509 stub objects, 523 symbolic debuggers, 526ï¿½527 system perturbers, 527 system testing, 500 testability, 465, 467 test case errors, 522 time commitment to, 501ï¿½502 test-first development, 233 tools, list of, 719 unit testing, 499, 545 varying cases, 545 white-box testing, 500, 502 threading, 337 throwaway code, 114 throwing one away metaphor, 13ï¿½14 time allowances, 55ï¿½56 tool version control, 668 toolbox approach, 20 tools checklist, 70 debugging. See debugging editing. See editing tools programming. See programming
 tools source code. See source-code tools top-down approach to design,
-111­113 top-down integration, 694­696 transcendental functions, 602, 634 translator tools, 715 try-finally statements, 404­405 T-shaped integration, 701 type casting, avoiding, 334 type creation
-C++, 312 centralization benefit, 314 checklist, 318 classes, compared to, 316 example of, 313­315 guidelines for, 315­316 information hiding aspect of,
-313­314
+111ï¿½113 top-down integration, 694ï¿½696 transcendental functions, 602, 634 translator tools, 715 try-finally statements, 404ï¿½405 T-shaped integration, 701 type casting, avoiding, 334 type creation
+C++, 312 centralization benefit, 314 checklist, 318 classes, compared to, 316 example of, 313ï¿½315 guidelines for, 315ï¿½316 information hiding aspect of,
+313ï¿½314
 
-languages with, evaluation of, 314­315
-modification benefit, 314 naming conventions, 315 Pascal example, 312­313 portability benefit, 315­316 predefined types, avoiding, 315 purpose of, 311­312 reasons for, 314 redefining predefined, 315 reliability benefit, 314 validation benefit, 314 type definitions, 278
+languages with, evaluation of, 314ï¿½315
+modification benefit, 314 naming conventions, 315 Pascal example, 312ï¿½313 portability benefit, 315ï¿½316 predefined types, avoiding, 315 purpose of, 311ï¿½312 reasons for, 314 redefining predefined, 315 reliability benefit, 314 validation benefit, 314 type definitions, 278
 U
 UDFs (unit development folders), 778
-UDT (user-defined type) abbreviations, 279­280
+UDT (user-defined type) abbreviations, 279ï¿½280
 UML diagrams, 118, 120 understandability, 465. See also
-readability Unicode, 288­299 unit development folders (UDFs),
+readability Unicode, 288ï¿½299 unit development folders (UDFs),
 778 unit testing, 499 UNIX programming environment,
-720 unrolling loops, 618­620 unswitching loops, 616­617 upstream prerequisites. See
-prerequisites, upstream usability, 463 used data state, 509­510 user-defined type (UDT)
-abbreviations, 279­280 user interfaces
+720 unrolling loops, 618ï¿½620 unswitching loops, 616ï¿½617 upstream prerequisites. See
+prerequisites, upstream usability, 463 used data state, 509ï¿½510 user-defined type (UDT)
+abbreviations, 279ï¿½280 user interfaces
 architecture prerequisites, 47 refactoring data from, 576 subsystem design, 85
 V
-validation assumptions to check, list of, 190 data types, suspicious, 188 enumerated types for, 304­305 external data sources rule, 188 input parameters rule, 188
+validation assumptions to check, list of, 190 data types, suspicious, 188 enumerated types for, 304ï¿½305 external data sources rule, 188 input parameters rule, 188
 variable names abbreviation guidelines, 282
 
-accurate description rule, 260­261
-bad names, examples of, 259­260, 261
-boolean variables, 268­269 C language, 275, 278 C++, 263, 275­277 capitalization, 286 characters, hard to read, 287 checklist, 288­289 class member variables, 273 computed-value qualifiers,
-263­264 constants, 270 enumerated types, 269 full description rule, 260­261 global, qualifiers for, 263 good names, examples of, 260,
+accurate description rule, 260ï¿½261
+bad names, examples of, 259ï¿½260, 261
+boolean variables, 268ï¿½269 C language, 275, 278 C++, 263, 275ï¿½277 capitalization, 286 characters, hard to read, 287 checklist, 288ï¿½289 class member variables, 273 computed-value qualifiers,
+263ï¿½264 constants, 270 enumerated types, 269 full description rule, 260ï¿½261 global, qualifiers for, 263 good names, examples of, 260,
 261 homonyms, 286 Java conventions, 277 key points, 289 kinds of information in, 277 length, optimum, 262 loop indexes, 265 misspelled words, 286 multiple natural languages, 287 namespaces, 263 numerals in, 286 opposite pairs for, 264 phonic abbreviations, 283 problem orientation rule, 261 psychological distance, 556 purpose of, 240 reserved names, 287 routine names, differentiating
-from, 272 scope, effects of, 262­263 similarity of names, too much,
-285 specificity rule, 261 status variables, 266­267 temporary variables, 267­268 type names, differentiating from,
-272­273 Visual Basic, 279 variables binding time for, 252­254 change, identifying areas of,
-98­99 checklist for using, 257­258 comments for, 803 counters, 243
+from, 272 scope, effects of, 262ï¿½263 similarity of names, too much,
+285 specificity rule, 261 status variables, 266ï¿½267 temporary variables, 267ï¿½268 type names, differentiating from,
+272ï¿½273 Visual Basic, 279 variables binding time for, 252ï¿½254 change, identifying areas of,
+98ï¿½99 checklist for using, 257ï¿½258 comments for, 803 counters, 243
 
 last topV-liesvueall eBnatsriyc
 
 913
 
-data literacy test, 238­239 data type relationship to control
-structures, 254­255 declaring. See declarations global. See global variables hidden meanings, avoiding,
-256­257 hybrid coupling, 256­257 implicit declarations, 239­240 initializing, 240­244, 257 iterative data, 255 key points, 258 live time, 246­248, 459 localizing references to, 245 looping, 382­384 naming. See variable names persistence of, 251­252 Principle of Proximity, 242 public class members, 576 refactoring, 571, 576 reusing, 255­257 scope of. See scope of variables selective data, 254 sequential data, 254 span of, 245 types of. See data types using all declared, 257 version control commenting, 811 debugging aid removal, 207 tools for, 668, 715 visibility. See also scope of variables coupling criteria for, 100 classes, of, 93 vision statement prerequisites. See
-problem definition prerequisites Visual Basic assertion examples, 192­194 blocking style, 738 case-insensitivity, 273 description of, 65 enumerated types, 303­306 exceptions in, 198­199, 202 implicit declarations, turning off, 240 layout recommended, 745 naming conventions for, 278­279 parameters example, 180 resources for, 159 structures, 320­322
+data literacy test, 238ï¿½239 data type relationship to control
+structures, 254ï¿½255 declaring. See declarations global. See global variables hidden meanings, avoiding,
+256ï¿½257 hybrid coupling, 256ï¿½257 implicit declarations, 239ï¿½240 initializing, 240ï¿½244, 257 iterative data, 255 key points, 258 live time, 246ï¿½248, 459 localizing references to, 245 looping, 382ï¿½384 naming. See variable names persistence of, 251ï¿½252 Principle of Proximity, 242 public class members, 576 refactoring, 571, 576 reusing, 255ï¿½257 scope of. See scope of variables selective data, 254 sequential data, 254 span of, 245 types of. See data types using all declared, 257 version control commenting, 811 debugging aid removal, 207 tools for, 668, 715 visibility. See also scope of variables coupling criteria for, 100 classes, of, 93 vision statement prerequisites. See
+problem definition prerequisites Visual Basic assertion examples, 192ï¿½194 blocking style, 738 case-insensitivity, 273 description of, 65 enumerated types, 303ï¿½306 exceptions in, 198ï¿½199, 202 implicit declarations, turning off, 240 layout recommended, 745 naming conventions for, 278ï¿½279 parameters example, 180 resources for, 159 structures, 320ï¿½322
 
 914
 
 fwirasltkt-othpr-oleuvgehlsentry
 
 W
-walk-throughs, 492­493, 495­496 warning signs, 848­850 while loops
-advantages of, 374­375 break statements, 379 do-while loops, 369 exits in, 369­372 infinite loops, 374 misconception of evaluation, 554 null statements with, 444
+walk-throughs, 492ï¿½493, 495ï¿½496 warning signs, 848ï¿½850 while loops
+advantages of, 374ï¿½375 break statements, 379 do-while loops, 369 exits in, 369ï¿½372 infinite loops, 374 misconception of evaluation, 554 null statements with, 444
 
-purpose of, 368 tests, position of, 369 white space blank lines, 737, 747­748 defined, 732 grouping with, 737 importance of, 736 indentation, 737 individual statements with,
-753­754 white-box testing, 500, 502
+purpose of, 368 tests, position of, 369 white space blank lines, 737, 747ï¿½748 defined, 732 grouping with, 737 importance of, 736 indentation, 737 individual statements with,
+753ï¿½754 white-box testing, 500, 502
 
-wicked problems, 74­75 Wikis, 117 WIMP syndrome, 26 WISCA syndrome, 26 workarounds, documenting, 800 writing metaphor for coding, 13­14
+wicked problems, 74ï¿½75 Wikis, 117 WIMP syndrome, 26 WISCA syndrome, 26 workarounds, documenting, 800 writing metaphor for coding, 13ï¿½14
 Z
 zero, dividing by, 292
 
@@ -27429,4 +27435,3 @@ Steve McConnell is Chief Software Engineer at Construx Software where he oversee
 Steve is the author of Rapid Development (1996), Software Project Survival Guide (1998), and Professional Software Development (2004). His books have twice won Software Development magazine's Jolt Excellence award for outstanding software development book of the year. Steve was also the lead developer of SPC Estimate Professional, winner of a Software Development Productivity award. In 1998, readers of Software Development magazine named Steve one of the three most influential people in the software industry, along with Bill Gates and Linus Torvalds.
 Steve earned a Bachelor's degree from Whitman College and a Master's degree in software engineering from Seattle University. He lives in Bellevue, Washington.
 If you have any comments or questions about this book, please contact Steve at stevemcc@construx.com or via www.stevemcconnell.com.
-

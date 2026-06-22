@@ -1,4 +1,8 @@
-![](pdfs/markdown/continuous-discovery-media/images/00032.jpeg)
+# Continuous Discovery Habits
+
+> **Author(s):** Torres · **Category:** 11_management_product_process · **Language:** English
+
+---
 
 <span id="titlepage.xhtml"></span>
 

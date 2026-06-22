@@ -1,3 +1,9 @@
+# Documenting Software Architectures
+
+> **Author(s):** Views and Beyond Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 DRAFT COPY FOR REVIEW: DO NOT COPY WITHOUT PERMISSION COPYRIGHT 2001, 2002 ADDISON WESLEY ALL RIGHTS RESERVED
 Documenting
 Software Architectures
@@ -14,7 +20,7 @@ Note to Reviewers
 
 This manuscript is fairly complete, but it is still a work in progress. In particular:
 
-·
+ï¿½
 
 We plan to include three running example applications throughout the book. The examples are a large
 
@@ -26,15 +32,15 @@ key points in place. The three running examples will for the most part complemen
 
 smaller examples as a way to lend continuity to the work.
 
-·
+ï¿½
 
 Several sections and sidebars have "tbd" marks, indicating areas that need completion.
 
-·
+ï¿½
 
 We will have all of the figures and illustrations re-drawn.
 
-·
+ï¿½
 
 We need to handle a number of details, such as nailing down internal cross-references, external
 
@@ -290,7 +296,7 @@ And documenting the architecture is the crowning step to crafting it. The most p
 
 The goal of this book is to help you decide what information about an architecture is important to capture, and then provides guidelines and notations (and gives examples) for capturing it. We intend this book to be a practitioner-oriented guide to the different kinds of information that constitute an architecture. We wanted to give practical guidance for choosing what information should be documented, and show (with examples in various notations, including but not limited to UML) how to describe that information in writing so that others can use it to carry out their architecture-based work: implementation, analysis, recovery, etc. Therefore, we cover:
 
-·
+ï¿½
 
 Uses of software architecture documentation. How one documents depends on how one wishes to use
 
@@ -298,7 +304,7 @@ the documentation. We lay out possible end goals for architecture documentation,
 
 documentation strategies for each.
 
-·
+ï¿½
 
 Architectural views. We hold that documenting software architecture is primarily about documenting the
 
@@ -310,7 +316,7 @@ three major families (which we call viewtypes) along with practical guidance abo
 
 down. Examples are included for each.
 
-·
+ï¿½
 
 Reviewing documentation. Once documentation has been created, it should be reviewed before
 
@@ -348,7 +354,7 @@ The book is organized into three parts.
 
 Part I: Setting the Stage. This part lays the groundwork for the book.
 
-·
+ï¿½
 
 Chapter 1: Software Architectures and Documentation. This chapter explains what software
 
@@ -358,7 +364,7 @@ presents seven rules for achieving high-quality software documentation in genera
 
 documentation in particular.
 
-·
+ï¿½
 
 Chapter 2: An Organization for Software Architecture Documentation. This chapter establishes
 
@@ -372,7 +378,7 @@ information chunking, refinement, context diagrams, and specifying interfaces. I
 
 of the package, a view catalog, capturing rationale, and mappings among views are described.
 
-·
+ï¿½
 
 Chapter 3: Documenting a Software Interface. A critical part of any architecture is the interfaces of
 
@@ -394,7 +400,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 Chapter 4: The Module Viewtype. A module is an implementation unit of software that provides a
 
@@ -404,7 +410,7 @@ chapter defines modules, and outlines the information required for documenting v
 
 are modules.
 
-·
+ï¿½
 
 Chapter 5: Styles of the Module Viewtype. This chapter introduces the prevalent styles in the module
 
@@ -414,7 +420,7 @@ layers. Each style is presented in terms of how it specializes the overall modul
 
 and relations.
 
-·
+ï¿½
 
 Chapter 6: The Component and Connector Viewtype. Components and connectors are used to
 
@@ -430,7 +436,7 @@ middleware frameworks, distributed communication channels, and process scheduler
 
 introduces components and connectors, and rules for documenting them.
 
-·
+ï¿½
 
 Chapter 7: Styles of the Component and Connector Viewtype. This chapter introduces the major
 
@@ -440,7 +446,7 @@ shared data, and publish-subscribe. For each, it describes how the style is a sp
 
 generic elements and relations of the viewtype, what the style is useful for, and how it is documented.
 
-·
+ï¿½
 
 Chapter 8: The Allocation Viewtype. Software architects are often obliged to document non-
 
@@ -452,7 +458,7 @@ developed, etc. This chapter introduces the allocation viewtype, which is used t
 
 of software elements to non-software structures.
 
-·
+ï¿½
 
 Chapter 9: Styles of the Allocation Viewtype. This chapter introduces the three major styles of the
 
@@ -466,27 +472,27 @@ organizational structure.
 
 Part III: Software Architecture Documentation in Practice. This part concentrates on the complete package of architecture documentation that is incumbent on a good architect to produce. It completes the picture painted by the first two parts.
 
-·
+ï¿½
 
 Chapter 10: Advanced Concepts. This chapter discusses concepts that cut across viewtypes and
 
 that are more advanced in nature. These concepts are:
 
-­ expressing variability of the architecture within the documentation such as for product lines;
+ï¿½ expressing variability of the architecture within the documentation such as for product lines;
 
-­ expressing the architecture of dynamic systems that change their basic structure while they are running.
+ï¿½ expressing the architecture of dynamic systems that change their basic structure while they are running.
 
-­ expressing views that combine other views. This common practice has some advantages in particular cases but there are also common pitfalls that occur in combined views.
+ï¿½ expressing views that combine other views. This common practice has some advantages in particular cases but there are also common pitfalls that occur in combined views.
 
-­ creating and documenting new styles.
+ï¿½ creating and documenting new styles.
 
-·
+ï¿½
 
 Chapter 11: Documenting Behavior. This chapter covers the techniques and notations available for
 
 expressing the behavior of components and the emergent system as it runs.
 
-·
+ï¿½
 
 Chapter 12: Choosing the Views. This chapter provides guidance for the selection of views, given the
 
@@ -500,7 +506,7 @@ Copyright 2001 Addison Wesley, all rights reserved
 
 Draft for review: Do not circulate without permission
 
-·
+ï¿½
 
 Chapter 13: Reviewing architecture documentation. This chapter presents the technique of active
 
@@ -508,7 +514,7 @@ design reviews as the best-of-breed review method for documentation, and gives e
 
 forms for the architectural views and styles we have presented earlier.
 
-·
+ï¿½
 
 Chapter 14: Related Work. This chapter ties related work to the prescriptions given in this book. It
 
@@ -579,19 +585,19 @@ Figure 2: Think of this book as a highway that conveys the main ideas in the mai
 
 At the end of each chapter, you can find
 
-·
+ï¿½
 
 a glossary, listing terms and their definitions introduced in that chapter
 
-·
+ï¿½
 
 a summary checklist, highlighting the main points and prescriptive guidance of the chapter
 
-·
+ï¿½
 
 a "For Further Reading" section, offering references for more in-depth treatment of related topics
 
-·
+ï¿½
 
 a set of discussion questions that can serve as the basis for classroom or brown-bag-lunch-group
 
@@ -603,7 +609,7 @@ We distinguish between a first-time reader of this book, and someone who has alr
 
 A first-time reader should concentrate on
 
-·
+ï¿½
 
 Chapter 1, to gain an appreciation for the necessity and uses of sound architecture documentation.
 
@@ -615,7 +621,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 Chapters 2, to become familiar with the organizational scheme for documenting an architecture by
 
@@ -623,11 +629,11 @@ means of views and documentation across views, as well as the foundational conce
 
 documentation such as refinement, context diagrams, and rationale capture.
 
-·
+ï¿½
 
 Chapter 3, to learn how to document interfaces.
 
-·
+ï¿½
 
 The introduction to Part II, to gain an understanding of viewtypes, styles and views, and to get a glimpse
 
@@ -635,37 +641,37 @@ of the three viewtypes and the myriad of styles discussed in this book.
 
 In addition, the first-time reader should
 
-·
+ï¿½
 
 browse the viewtype chapters in Part II (Chapters 4-9) to gain an overview of the views that are possible
 
 to include in a documentation package.
 
-·
+ï¿½
 
 read Chapter 10, "Advanced Concepts," to gain understanding about topics such as documenting
 
 variability and dynamism, combining views, and creating new styles.
 
-·
+ï¿½
 
 lightly read Chapter 11 to learn about documenting the behavior (as opposed to the structure) of a
 
 software system and its architectural elements.
 
-·
+ï¿½
 
 read Chapter 12, "Choosing the Views," to see how to select a view set for your system, and to learn
 
 about view sets chosen by others.
 
-·
+ï¿½
 
 lightly read Chapter 13, "Reviewing Software Architecture Documentation," to understand the approach
 
 taken to make sure documentation is of high quality.
 
-·
+ï¿½
 
 browse Chapter 14, "Related Work," to see how other people have approached the problem of
 
@@ -673,13 +679,13 @@ architecture documentation, and how the ideas in these book correspond.
 
 A reader wishing to use the book as a companion in a documentation effort should consider this strategy:
 
-·
+ï¿½
 
 To refresh your memory about the organization and structure of an architecture documentation
 
 package, re-visit Chapters 2 and 3.
 
-·
+ï¿½
 
 Use those two chapters plus Chapter 12, "Choosing the Views," as the basis for planning your
 
@@ -687,17 +693,17 @@ documentation package. Let it help you match the stakeholders you have and the u
 
 documentation will support with the kind of information you need to provide.
 
-·
+ï¿½
 
 For each view you have elected to document, use the chapter in Part II in which that view is discussed.
 
-·
+ï¿½
 
 To plan the review for your documentation, use Chapter 13, "Reviewing Software Architecture
 
 Documentation."
 
-·
+ï¿½
 
 To make sure your documentation complies with other prescriptive methods such as Rational's 4+1
 
@@ -760,31 +766,31 @@ Architecture is the where these engineering goals are met; architecture document
 
 For example:
 
-·
+ï¿½
 
 If you require high performance then you need to
 
-­ be concerned with the decomposition of the work into cooperating processes
+ï¿½ be concerned with the decomposition of the work into cooperating processes
 
-­ manage the inter-process communication volume and data access frequencies
+ï¿½ manage the inter-process communication volume and data access frequencies
 
-­ be able to estimate expected latencies and throughputs
+ï¿½ be able to estimate expected latencies and throughputs
 
-­ identify potential performance bottlenecks
+ï¿½ identify potential performance bottlenecks
 
-­ understand the ramifications of a network or processor fault.
+ï¿½ understand the ramifications of a network or processor fault.
 
-·
+ï¿½
 
 If your system needs high accuracy then you must pay attention to how the data flows among the parts
 
 of the system.
 
-·
+ï¿½
 
 If security is important then you need to
 
-­ legislate usage relationships and communication restrictions among the parts
+ï¿½ legislate usage relationships and communication restrictions among the parts
 
 Copyright 2001 Addison Wesley, all rights reserved 15
 
@@ -794,17 +800,17 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-­ pinpoint parts of the system that are vulnerable to external intrusions
+ï¿½ pinpoint parts of the system that are vulnerable to external intrusions
 
-­ possibly introduce special, trusted components.
+ï¿½ possibly introduce special, trusted components.
 
-·
+ï¿½
 
 If you need to support modifiability and portability then you must carefully separate concerns among
 
 the parts of the system.
 
-·
+ï¿½
 
 If you want to field the system incrementally, by releasing successively larger subsets, then you have
 
@@ -873,20 +879,20 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 Even if the future architect is the same person, he or she will use the documentation as a repository of thought, a storehouse of detailed design decisions too numerous and hopelessly intertwined to ever be reproducible from memory alone.
 " " "In our organization, a development group writes design documents to commu-
 nicate with other developers, external test organizations, performance analysts, the technical writers of manuals and product helps, the separate installation package developers, the usability team, and the people who manage translation testing for internationalization. Each of these groups has specific questions in mind that are very different from the ones that other groups ask:
-· What test cases will be needed to flush out functional errors? · Where is this design likely to break down? · Can the design be made easier to test? · How will this design affect the response of the system to heavy loads? · Are there aspects of this design that will affect its performance or ability to
+ï¿½ What test cases will be needed to flush out functional errors? ï¿½ Where is this design likely to break down? ï¿½ Can the design be made easier to test? ï¿½ How will this design affect the response of the system to heavy loads? ï¿½ Are there aspects of this design that will affect its performance or ability to
 scale to many users?
-· What information will users or administrators need to use this system, and
+ï¿½ What information will users or administrators need to use this system, and
 can I imagine writing it from the information in this design?
-· Does this design require users to answer configuration questions that they
+ï¿½ Does this design require users to answer configuration questions that they
 won't know how to answer?
-· Does it create restrictions that users will find onerous? · How much translatable text will this design require? · Does the design account for the problems of dealing with double-byte
+ï¿½ Does it create restrictions that users will find onerous? ï¿½ How much translatable text will this design require? ï¿½ Does the design account for the problems of dealing with double-byte
 character sets or bi-directional presentation? "
 -- Kathryn Heninger Britton, IBM
 || END SIDEBAR/CALLOUT (Britton quote)
 
 3. Architecture serves as the basis for system analysis. To support analysis, the architecture documentation must contain the information necessary for the particular analyses being performed. For example:
 
-·
+ï¿½
 
 For performance engineers, architecture provides the formal model that drives analytical tools such as
 
@@ -896,7 +902,7 @@ provers and model checking verifiers. These tools require information about reso
 
 scheduling policies, dependencies, and so forth.
 
-·
+ï¿½
 
 For those interested in the ability of the design to meet the system's other quality objectives, the
 
@@ -1020,7 +1026,7 @@ Advice
 
 Seemingly obvious but surprisingly seldom considered, this rule offers the following advantages:
 
-·
+ï¿½
 
 A document is written approximately once (a little more than that if you count the time for revisions) but
 
@@ -1038,7 +1044,7 @@ or two of confusion, then it's well worth the effort. Professor Dijkstra's consi
 
 reflects his classic old-world manners, which brings us to the second argument:
 
-·
+ï¿½
 
 Writing for the reader is just plain polite. A reader who feels like the document was written with him or
 
@@ -1046,7 +1052,7 @@ her in mind appreciates the effort, but more to the point, will come back to the
 
 again in the future. Which brings us to the third argument:
 
-·
+ï¿½
 
 Documents written for the reader will be read; documents written for the convenience of the writer will
 
@@ -1092,17 +1098,17 @@ Copyright 2001 Addison Wesley, all rights reserved 26
 
 Draft for review: Do not circulate without permission
 
-·
+ï¿½
 
 Don't be guilty of drawing one and claiming it's anything more than a start at an architectural
 
 description.
 
-·
+ï¿½
 
 If you draw one yourself, make sure you explain precisely what the boxes and lines mean.
 
-·
+ï¿½
 
 If you see one, ask its author what the boxes mean and what precisely the arrows connote. The result
 
@@ -1156,19 +1162,19 @@ Draft for review: Do not circulate without permission
 
 Establish a standard, planned organization scheme, make your documents adhere to it, and ensure that readers know about it. A standard organization offers many benefits:
 
-·
+ï¿½
 
 It helps the reader navigate the document and find specific information quickly (and so this is also
 
 related to the write-for-the-reader rule).
 
-·
+ï¿½
 
 It also helps the writer of the document. It helps plan and organize the contents, and it reveals instantly
 
 what work remains to be done by the number of sections that still contain "TBD" marks.
 
-·
+ï¿½
 
 It embodies completeness rules for the information; the sections of the document constitute the set of
 
@@ -1227,8 +1233,8 @@ Coming to Terms
 
 "Architectural views"
 
-As long ago as 1974, Parnas observed that software comprises many structures, which he defined as partial descriptions of a system showing it as a collection of parts and showing some relations between the parts [P74]. This definition largely survives in architecture papers today. Parnas identified several structures prevalent in software. A few were fairly specific to operating systems (such as the structure that defines what process owns what memory segment) but others are more generic and broadly applicable. These include the module structure (the units are work assignments, the relation is "is a part of" or "shares part of the same secret as"), the uses structure (the units are programs, and the relation is "depends on the correctness of"), and the process structure (the units are processes, and the relation is "gives computational work to"). More recently, Philippe Kruchten of the Rational Corporation wrote a very influential paper describing four main views of software architecture that can be used to great advantage in system-building, plus a distinguished fifth view that ties the other four together--the so-called "4+1" approach to architecture. [K95], which comprises the following: · The logical view primarily supports behavioral requirements--the services the system should provide to
-its end users. Designers decompose the system into a set of key abstractions, taken mainly from the problem domain. These abstractions are objects or object classes that exploit the principles of abstraction, encapsulation, and inheritance. In addition to aiding functional analysis, decomposition identifies mechanisms and design elements that are common across the system. · The process view addresses concurrency and distribution, system integrity, and fault-tolerance. The process view also specifies which thread of control executes each operation of each class identified in the logical view. The process view can be seen as a set of independently executing logical networks of communicating programs ("processes") that are distributed across a set of hardware resources, which in turn are connected by a bus or local area network or wide area network. · The development view focuses on the organization of the actual software modules in the software-development environment. The units of this view are small chunks of software--program libraries or subsystems--that can be developed by one or more developers. The development view supports the allocation of requirements and work to teams, and supports cost evaluation, planning, monitoring of project progress, and reasoning about software reuse, portability, and security. · The physical view takes into account the system's requirements such as system availability, reliability (fault-tolerance), performance (throughput), and scalability. This view maps the various elements identified in the logical, process, and development views--networks, processes, tasks, and objects--onto the processing nodes. Finally, Kruchten prescribes using a small subset of important scenarios--instances of use cases--to show that the elements of the four views work together seamlessly. This is the "plus one" view, redundant
+As long ago as 1974, Parnas observed that software comprises many structures, which he defined as partial descriptions of a system showing it as a collection of parts and showing some relations between the parts [P74]. This definition largely survives in architecture papers today. Parnas identified several structures prevalent in software. A few were fairly specific to operating systems (such as the structure that defines what process owns what memory segment) but others are more generic and broadly applicable. These include the module structure (the units are work assignments, the relation is "is a part of" or "shares part of the same secret as"), the uses structure (the units are programs, and the relation is "depends on the correctness of"), and the process structure (the units are processes, and the relation is "gives computational work to"). More recently, Philippe Kruchten of the Rational Corporation wrote a very influential paper describing four main views of software architecture that can be used to great advantage in system-building, plus a distinguished fifth view that ties the other four together--the so-called "4+1" approach to architecture. [K95], which comprises the following: ï¿½ The logical view primarily supports behavioral requirements--the services the system should provide to
+its end users. Designers decompose the system into a set of key abstractions, taken mainly from the problem domain. These abstractions are objects or object classes that exploit the principles of abstraction, encapsulation, and inheritance. In addition to aiding functional analysis, decomposition identifies mechanisms and design elements that are common across the system. ï¿½ The process view addresses concurrency and distribution, system integrity, and fault-tolerance. The process view also specifies which thread of control executes each operation of each class identified in the logical view. The process view can be seen as a set of independently executing logical networks of communicating programs ("processes") that are distributed across a set of hardware resources, which in turn are connected by a bus or local area network or wide area network. ï¿½ The development view focuses on the organization of the actual software modules in the software-development environment. The units of this view are small chunks of software--program libraries or subsystems--that can be developed by one or more developers. The development view supports the allocation of requirements and work to teams, and supports cost evaluation, planning, monitoring of project progress, and reasoning about software reuse, portability, and security. ï¿½ The physical view takes into account the system's requirements such as system availability, reliability (fault-tolerance), performance (throughput), and scalability. This view maps the various elements identified in the logical, process, and development views--networks, processes, tasks, and objects--onto the processing nodes. Finally, Kruchten prescribes using a small subset of important scenarios--instances of use cases--to show that the elements of the four views work together seamlessly. This is the "plus one" view, redundant
 
 Copyright 2001 Addison Wesley, all rights reserved 31
 
@@ -1243,16 +1249,16 @@ with the others but serving a distinct purpose. The 4+1 approach has since been 
 For more information...
 To see how the 4+1 views correspond to views described in this book, see "Rational Unified Process / Kruchten 4+1" on page 311.
 
-At about the same time, Dilip Soni, Robert Nord, and Christine Hofmeister of Siemens Corporate Research made a similar observation about views of architecture they observed in use in industrial practice [SNH95]. They wrote: · The conceptual view describes the system in terms of its major design elements and the relationships
-among them. · The module interconnection view encompasses two orthogonal structures: functional decomposition
-and layers. · The execution view describes the dynamic structure of a system. · The code view describes how the source code, binaries, and libraries are organized in the development
+At about the same time, Dilip Soni, Robert Nord, and Christine Hofmeister of Siemens Corporate Research made a similar observation about views of architecture they observed in use in industrial practice [SNH95]. They wrote: ï¿½ The conceptual view describes the system in terms of its major design elements and the relationships
+among them. ï¿½ The module interconnection view encompasses two orthogonal structures: functional decomposition
+and layers. ï¿½ The execution view describes the dynamic structure of a system. ï¿½ The code view describes how the source code, binaries, and libraries are organized in the development
 environment. These have now become known as the Siemens Four View model for architecture [ASA].
 
 For more information...
 To see how the Siemens Four View model corresponds to the views described in this book, see "Siemens Four Views" on page 314.
 
-Other "view sets" are emerging. In their 1999 book Business Component Factory, Peter Herzum and Oliver Sims prescribe these four as the most important for their business component factory approach: · The technical architecture, concerned with the component execution environment, the set of tools, the
-user interface framework, and any other technical services/facilities required to develop and run a component-based system. · The application architecture, concerned with the set of architectural decisions, patterns, guidelines, and standards requires to build a component-based system. · The project management architecture, comprising those elements needed to build a scalable large system with a large team. It includes the concepts, guidelines, principles, and management tools needed to carry out industrial-scale development. · The functional architecture, where the specification and implementation of the system reside. Like electrical and plumbing diagrams, each view of a software architecture is used for a different purpose, and often by different stakeholders. As such, they form the basic unit for documenting a software architecture.
+Other "view sets" are emerging. In their 1999 book Business Component Factory, Peter Herzum and Oliver Sims prescribe these four as the most important for their business component factory approach: ï¿½ The technical architecture, concerned with the component execution environment, the set of tools, the
+user interface framework, and any other technical services/facilities required to develop and run a component-based system. ï¿½ The application architecture, concerned with the set of architectural decisions, patterns, guidelines, and standards requires to build a component-based system. ï¿½ The project management architecture, comprising those elements needed to build a scalable large system with a large team. It includes the concepts, guidelines, principles, and management tools needed to carry out industrial-scale development. ï¿½ The functional architecture, where the specification and implementation of the system reside. Like electrical and plumbing diagrams, each view of a software architecture is used for a different purpose, and often by different stakeholders. As such, they form the basic unit for documenting a software architecture.
 || END SIDEBAR/CALLOUT on Views
 
 For our purposes, we define a view as follows:
@@ -1309,23 +1315,23 @@ its code structure. The code structure is frozen at compile-time; it consists of
 
 What does the documentation for a view contain? Briefly it contains
 
-·
+ï¿½
 
 a primary presentation (usually graphical) that depicts the primary elements and relations of the view
 
-·
+ï¿½
 
 an element catalog that explains and defines the elements shown in the view and gives their properties
 
-·
+ï¿½
 
 a specification of the elements' interfaces and their behavior
 
-·
+ï¿½
 
 a variability guide explaining any built-in mechanisms available for tailoring the architecture
 
-·
+ï¿½
 
 rationale and design information
 
@@ -1338,21 +1344,21 @@ Draft for review: Do not circulate without permission
 
 What is the documentation that applies across views? Briefly it contains
 
-·
+ï¿½
 
 an introduction to the entire package, including a reader's guide that helps a stakeholder find a desired
 
 piece of information quickly
 
-·
+ï¿½
 
 information describing how the views relate to each other, and to the system as a whole
 
-·
+ï¿½
 
 constraints and rationale for the overall architecture
 
-·
+ï¿½
 
 such management information as may be required to effectively maintain the whole package
 
@@ -1396,7 +1402,7 @@ Books that catalog architectural styles include... [tbd]
 
 No system is built exclusively from a single style. On the contrary, every system can be seen to be an amalgamation of many different styles. This amalgamation includes the styles we mentioned above that occur in every system, but systems usually also exhibit a combination of the so-called "chosen" styles as well. This amalgamation can occur in three ways:
 
-·
+ï¿½
 
 Different "areas" of the system might exhibit different styles. For example, a system might employ a
 
@@ -1411,7 +1417,7 @@ and a shared-data view that showed the other part.
 In a case like this, one or more elements must occur in both views and have properties of both kinds of elements. (Otherwise, the two parts of the system could not communicate with each other.) These "bridging elements" provide the continuity of understanding from one view to the next. They likely have multiple interfaces, each providing the mechanisms for letting the element work with other elements in
 each of the views to which it belongs.
 
-·
+ï¿½
 
 An element playing a part in one style may itself be composed of elements arranged in another style.
 
@@ -1421,7 +1427,7 @@ be implemented using a pipe-and-filter style. Documentation for this system woul
 
 server view showing the overall system, as well as a pipe-and-filter view documenting that server.
 
-·
+ï¿½
 
 Finally, the same system may simply be seen in different lights, as though you were looking at it through
 
@@ -1490,8 +1496,8 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-Clear on the difference? No? Well, same here. To complicate matters, both terms have come to be associated with movements in software engineering that share a great deal of overlap in their goals. Modules led the way. During the 1960's and 70's as software systems increased in size and were no longer able to be produced by one person, it became clear that new techniques were needed to manage software complexity and to partition work among programmers. To address such issues of "programming in the large" various criteria were introduced to help programmers decide how to partition their software. Encapsulation, information hiding, and abstract data types became the dominant design paradigms of the day, and they used module as the carrier of their meaning. The 1970's and 1980's saw the advent of "module interconnection languages" and features of new programming languages such as Modula modules, Smalltalk classes, and Ada packages. Today's dominant design paradigm, object oriented programming, has these module concepts at its heart. Components are currently in the limelight with component-based software engineering and the component-and-connector perspective in the software architecture field. These movements both aspire to achieve rapid system construction and evolution through the selection, assembly, and wholesale replacement of independent sub-pieces. What Eli Whitney and interchangeable parts did for rifles around 1810, modules and components aim to do for software. Both terms are about the decomposition of a whole software system into constituent parts, but beyond that they take on different shades of meaning: · A module tends to refer first and foremost to a design-time entity. Parnas's foundational work in module
-design used information-hiding as the criterion for allocating responsibility to a module. Information that was likely to change over the lifetime of a system, such as the choice of data structures or algorithms, was assigned to a module, which had an interface through which its facilities were accessed. · A component tends to refer to a run-time entity. Shaw and Garlan, for example, speak of an architecture of a system as a collection of "computational components -- or simply components" along with a description of their interactions [SG, p.20]. Szyperski says that a component "can be deployed independently and is subject to composition by third parties" [Szyperski 98]. Wallnau says components are "independently deployable (possibly commercially available) implementations" [Wallnau ref tbd -PACC slides; echoed in book?]. Herzum and Sims [Peter Herzum, Oliver Sims, Business Component Factory, John Wiley & Sons, Inc., New York, 1999] say it is "a self-contained piece of software with a well-defined interface or set of interfaces. We imply a clear run-time and deployment connotation; that is, the component has interfaces that are accessible at run-time, and at some point in its development life cycle, the component can be independently delivered and installed." The emphasis is clearly on the finished product, and not the design considerations that went into it. Indeed, the operative model is that a component is delivered in the form of an executable binary only -- nothing upstream from that is available to the system-builder at all. So a module suggests encapsulation properties, with less emphasis on the delivery medium and what goes on at run-time. Indeed, Parnas sometimes liked to point out that if a module's interface facilities were implemented by macro expansion then all traces of modules and module boundaries vanish in the code executing at run-time. No so with components. A delivered binary maintains its "separateness" throughout execution. A component suggests independently deployed units of software with no visibility into the development process. Of course there's overlap. How can something be independently deployable and replaceable without involving encapsulation? That is, how can components not be modular? But in fact, you could imagine a perfectly well designed module that isn't independently deployable because it requires all sorts of services from other modules. You could also imagine a component that didn't encapsulate very much, or encapsulated the wrong things. This is why "plug and play," the current mantra of component-based systems engineering, is more accurately rendered as "plug and pray." [Garlan's mismatch paper] was about the frustrations of trying to assemble a system from components that were built with subtly conflicting assumptions about their environments. The usage of the terms in this book reflects their pedigree. In the Module viewtype, you'll see styles that primarily reflect design-time considerations: decompositions that assign parts of the problem to units of design and implementation, layers that reflect what uses are allowed when software is being written, and classes that factor out commonality from a set of instances. Of course, all of these have run-time implications; that's the end game of software design, after all. In the Component-and-Connector viewtype, you'll see styles that focus on how processes interact and data travels around the system during execution. Of course, all of these run-time effects are the result of careful design-time activities.
+Clear on the difference? No? Well, same here. To complicate matters, both terms have come to be associated with movements in software engineering that share a great deal of overlap in their goals. Modules led the way. During the 1960's and 70's as software systems increased in size and were no longer able to be produced by one person, it became clear that new techniques were needed to manage software complexity and to partition work among programmers. To address such issues of "programming in the large" various criteria were introduced to help programmers decide how to partition their software. Encapsulation, information hiding, and abstract data types became the dominant design paradigms of the day, and they used module as the carrier of their meaning. The 1970's and 1980's saw the advent of "module interconnection languages" and features of new programming languages such as Modula modules, Smalltalk classes, and Ada packages. Today's dominant design paradigm, object oriented programming, has these module concepts at its heart. Components are currently in the limelight with component-based software engineering and the component-and-connector perspective in the software architecture field. These movements both aspire to achieve rapid system construction and evolution through the selection, assembly, and wholesale replacement of independent sub-pieces. What Eli Whitney and interchangeable parts did for rifles around 1810, modules and components aim to do for software. Both terms are about the decomposition of a whole software system into constituent parts, but beyond that they take on different shades of meaning: ï¿½ A module tends to refer first and foremost to a design-time entity. Parnas's foundational work in module
+design used information-hiding as the criterion for allocating responsibility to a module. Information that was likely to change over the lifetime of a system, such as the choice of data structures or algorithms, was assigned to a module, which had an interface through which its facilities were accessed. ï¿½ A component tends to refer to a run-time entity. Shaw and Garlan, for example, speak of an architecture of a system as a collection of "computational components -- or simply components" along with a description of their interactions [SG, p.20]. Szyperski says that a component "can be deployed independently and is subject to composition by third parties" [Szyperski 98]. Wallnau says components are "independently deployable (possibly commercially available) implementations" [Wallnau ref tbd -PACC slides; echoed in book?]. Herzum and Sims [Peter Herzum, Oliver Sims, Business Component Factory, John Wiley & Sons, Inc., New York, 1999] say it is "a self-contained piece of software with a well-defined interface or set of interfaces. We imply a clear run-time and deployment connotation; that is, the component has interfaces that are accessible at run-time, and at some point in its development life cycle, the component can be independently delivered and installed." The emphasis is clearly on the finished product, and not the design considerations that went into it. Indeed, the operative model is that a component is delivered in the form of an executable binary only -- nothing upstream from that is available to the system-builder at all. So a module suggests encapsulation properties, with less emphasis on the delivery medium and what goes on at run-time. Indeed, Parnas sometimes liked to point out that if a module's interface facilities were implemented by macro expansion then all traces of modules and module boundaries vanish in the code executing at run-time. No so with components. A delivered binary maintains its "separateness" throughout execution. A component suggests independently deployed units of software with no visibility into the development process. Of course there's overlap. How can something be independently deployable and replaceable without involving encapsulation? That is, how can components not be modular? But in fact, you could imagine a perfectly well designed module that isn't independently deployable because it requires all sorts of services from other modules. You could also imagine a component that didn't encapsulate very much, or encapsulated the wrong things. This is why "plug and play," the current mantra of component-based systems engineering, is more accurately rendered as "plug and pray." [Garlan's mismatch paper] was about the frustrations of trying to assemble a system from components that were built with subtly conflicting assumptions about their environments. The usage of the terms in this book reflects their pedigree. In the Module viewtype, you'll see styles that primarily reflect design-time considerations: decompositions that assign parts of the problem to units of design and implementation, layers that reflect what uses are allowed when software is being written, and classes that factor out commonality from a set of instances. Of course, all of these have run-time implications; that's the end game of software design, after all. In the Component-and-Connector viewtype, you'll see styles that focus on how processes interact and data travels around the system during execution. Of course, all of these run-time effects are the result of careful design-time activities.
 
 Copyright 2001 Addison Wesley, all rights reserved 40
 
@@ -1508,33 +1514,33 @@ Some architectures for highly reliable systems replicate the same software acros
 
 Glossary
 
-·
+ï¿½
 
 view
 
-·
+ï¿½
 
 viewtype
 
-·
+ï¿½
 
 style
 
-·
+ï¿½
 
 view: a view is a representation of the elements of a system and some of their relations
 
-·
+ï¿½
 
 element: an element of a system is the type of one of the organizational units of the system used in the
 
 documentation.
 
-·
+ï¿½
 
 relation: a relation is a pattern of interaction among two or more elements
 
-·
+ï¿½
 
 property: a property is an attribute of either an element or a relation.
 
@@ -1546,31 +1552,31 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 view catalog
 
-·
+ï¿½
 
 element catalog
 
-·
+ï¿½
 
 stakeholder -- someone who has a vested interest in the architecture. Stakeholders may include...
 
-·
+ï¿½
 
 software architecture
 
-·
+ï¿½
 
 quality attribute
 
-·
+ï¿½
 
 engineering goal
 
-·
+ï¿½
 
 more TBD
 
@@ -1741,21 +1747,21 @@ As such, it is unlikely that the documentation of any software architecture can 
 
 We will start out by considering the module viewtype in its most general form. In the next chapter we identify four common styles:
 
-·
+ï¿½
 
 The decomposition style is used to focus on "containment" relationships between modules.
 
-·
+ï¿½
 
 The uses style indicates functional dependency relationships between modules.
 
-·
+ï¿½
 
 The generalization style is used (among other things) to indicate specialization relationships between
 
 modules.
 
-·
+ï¿½
 
 The layers (or layered) style is used to indicate the "allowed to use" relation in a restricted fashion
 
@@ -1781,7 +1787,7 @@ The element of a module view is a module, which is a unit of functionality that 
 
 Relations shown in a module view will be some form of is part of, depends on, or is a.
 
-·
+ï¿½
 
 A is part of B defines a part-whole relation between the
 
@@ -1789,7 +1795,7 @@ submodule A (the part, or child) and the aggregate module B (the
 
 whole, or parent).
 
-·
+ï¿½
 
 A depends on B defines a dependency relation between A and
 
@@ -1797,7 +1803,7 @@ B. Specific module styles will elaborate what dependency is
 
 meant.
 
-·
+ï¿½
 
 A is a B defines a generalization relation between a more
 
@@ -1807,29 +1813,29 @@ parent B).
 
 Properties of a module include:
 
-·
+ï¿½
 
 name, which may have to comply to rules such being a member
 
 of a namespace
 
-·
+ï¿½
 
 responsibilities of the module
 
-·
+ï¿½
 
 visibility of the module's interface(s) [applies when the relation is
 
 a form of is part of]
 
-·
+ï¿½
 
 implementation information, such as the set of code units that
 
 implement the module
 
-·
+ï¿½
 
 the is part of relation may have a visibility property associated
 
@@ -1837,13 +1843,13 @@ with it that defines if a submodule is visible outside the aggregate
 
 module
 
-·
+ï¿½
 
 the depends on relation can have constraints assigned to specify
 
 in more detail what the dependency between two modules is.
 
-·
+ï¿½
 
 The is a relation may have an implementation property, denoting
 
@@ -1883,7 +1889,7 @@ Relations
 
 The relations of the module viewtype are:
 
-·
+ï¿½
 
 is part of. A is part of B defines a part-whole relation between the submodule A (the part) and the
 
@@ -1895,7 +1901,7 @@ many aggregates. There are, however, stronger forms of this relation. An example
 
 module decomposition style in Chapter 2, where this relation is refined to a decomposition relation.
 
-·
+ï¿½
 
 depends on. A depends on B defines a dependency relation between A and B. This relation is typically
 
@@ -1911,7 +1917,7 @@ calls. A call dependency may further be refined to sends data to, transfers cont
 
 on, and so forth.
 
-·
+ï¿½
 
 is a. A is a B defines a generalization relation between a more specific module (the child A) and a more
 
@@ -1930,7 +1936,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 1: The Module Viewtype
 
-·
+ï¿½
 
 Name. A module's name is, of course, the primary means to refer to it. A module's name often suggests
 
@@ -1942,7 +1948,7 @@ position in some decomposition hierarchy; e.g., a name such as A.B.C.D refers to
 
 a submodule of a module C, itself a submodule of B, etc.
 
-·
+ï¿½
 
 Responsibilities. The responsibility for a module is a way to identify its role in the overall system, and
 
@@ -1958,7 +1964,7 @@ A might be responsible for controlling a device during normal operation. But the
 For more information...
 In "Examples of the Decomposition Style" on page 64, we'll show an extended example of documenting a set of modules' responsibilities.
 
-·
+ï¿½
 
 Visibility of interface(s). An interface document for the module establishes the module's role in the
 
@@ -1977,7 +1983,7 @@ Modules A, B. (See Figure 4(b).).
 For more information...
 Interfaces are discussed in Chapter 11 ("Documenting Software Interfaces").
 
-·
+ï¿½
 
 Implementation information. Since modules are units of implementation, information related to their
 
@@ -2019,12 +2025,12 @@ Figure 4: (a): Module C provides its own interface, hiding the interfaces of mod
 
 Figure 4(b): Module C exposes a subset of the interfaces of modules A and B as its interface.
 
-­ Mapping to code units. This identifies the files that constitute the implementation of a module. For example, a module ALPHA, if implemented in C, might have several files that constitute its implementation: ALPHA.c, ALPHA.h, ALPHA.o (if pre-compiled versions are maintained), and perhaps ALPHA_t.h to define any data types provided by ALPHA.
+ï¿½ Mapping to code units. This identifies the files that constitute the implementation of a module. For example, a module ALPHA, if implemented in C, might have several files that constitute its implementation: ALPHA.c, ALPHA.h, ALPHA.o (if pre-compiled versions are maintained), and perhaps ALPHA_t.h to define any data types provided by ALPHA.
 For more information...
 In addition to identifying the code units, one also needs to identify where the code units reside in a project's filing scheme: a directory or folder in a file system, a URL in an intranet, a storage location in a software engineering environment or tool set, or a branch, node, and version in a configuration management system's tree space. This information is in the purview of the Implementation View, defined in Section 6.2.
-­ Test information. The the module's test plan, test cases, test scaffolding, test data, and test history are important to store.
-­ Management information. A manger may need the location of a module's predicted completion schedule and budget.
-­ Implementation constraints. In many cases, the architect will have a certain implementation strategy in mind for a module, or may know of constraints that the implementation must follow. This information is private to the module, and hence will not appear, for example, in the module's interface.
+ï¿½ Test information. The the module's test plan, test cases, test scaffolding, test data, and test history are important to store.
+ï¿½ Management information. A manger may need the location of a module's predicted completion schedule and budget.
+ï¿½ Implementation constraints. In many cases, the architect will have a certain implementation strategy in mind for a module, or may know of constraints that the implementation must follow. This information is private to the module, and hence will not appear, for example, in the module's interface.
 Styles in the module viewtype may have properties of their own in addition to these. In addition, you may find other properties useful that are not listed.
 
 Copyright 2001 Addison Wesley, all rights reserved 52
@@ -2037,13 +2043,13 @@ Chapter 1: The Module Viewtype
 
 Expect to use the module viewtype for:
 
-·
+ï¿½
 
 Construction: The module view can provide a blueprint for the source code. In this case there is often
 
 a close mapping between modules and physical structures, such as source code files and directories.
 
-·
+ï¿½
 
 Analysis: Two of the more important analysis techniques are requirements traceability and impact
 
@@ -2060,7 +2066,7 @@ missing requirements for the developers.
 Another form of analysis is impact analysis, which helps to predict what the effect of modifying the system will be. Context diagrams of modules that describe its relationships to other modules or the outside world build a good basis for impact analysis. Modules are affected by a problem report or change request. Please note that impact analysis requires a certain degree of design completeness and integrity of the module description. Especially dependency information has to be available and
 correct in order to create good results.
 
-·
+ï¿½
 
 Communication: A module view can be used to explain the system functionality to someone not
 
@@ -2220,19 +2226,19 @@ Chapter 2: Styles of the Module Viewtype
 
 We now look at four of the more common styles of the module viewtype:
 
-·
+ï¿½
 
 decomposition
 
-·
+ï¿½
 
 uses
 
-·
+ï¿½
 
 generalization
 
-·
+ï¿½
 
 layers
 
@@ -2248,7 +2254,7 @@ First, almost all architectures begin with it. Architects tend to attack a probl
 
 The criteria used for decomposing a module into smaller modules depend on what should be achieved by the decomposition. To name some:
 
-·
+ï¿½
 
 achievement of certain qualities: For example, to support modification of software the design principle
 
@@ -2262,7 +2268,7 @@ of different strategies, such as scheduling policy or judicious assignment to pr
 
 required performance throughout the various parts of the system.
 
-·
+ï¿½
 
 build versus buy. Some modules may be bought from the commercial marketplace (or reused intact
 
@@ -2270,7 +2276,7 @@ from a previous project) and therefore already have a set of functionality imple
 
 functionality then must be decomposed around those bought modules.
 
-·
+ï¿½
 
 product lines. To support the efficient implementation of products of a product family it is essential to
 
@@ -2302,9 +2308,9 @@ Properties of relations
 Topology
 
 As defined by the module viewtype
-· Visibility, the extent to which the existence of a module is known, and
+ï¿½ Visibility, the extent to which the existence of a module is known, and
 its facilities available, to those modules outside its parent.
-· No loops are allowed in the decomposition relation. · A module cannot be part of more than one module.
+ï¿½ No loops are allowed in the decomposition relation. ï¿½ A module cannot be part of more than one module.
 
 Elements of the decomposition style are modules, as described in Section 1.2 ("Elements, Relations, and Properties of the Module Viewtype"). Certain aggregations can be called subsystems (see "Coming to Terms: Subsystems"). The principal relation is the decomposition relation, which is a specialized form of the is-part-of relation. This relation has as its primary property the guarantee that an element can only be a part of at most one aggregate.
 The decomposition relation may have a visibility property that defines if the submodules are visible only to the aggregate module (the parent) or also to other modules. For a module to be visible means it can be used by other modules. With this property an architect has some control over the visibility of modules as illustrated in Figure 4. A decomposition relation in which no contained module is visible outside its parent is sometimes called a containment relation.
@@ -2321,7 +2327,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-When documenting a module view of a system, you may choose to identify certain aggregated modules as subsystems. A subsystem can be (like many concepts in this field) pretty much anything you want it to be, but it often describes a part of a system that (a) carries out some functionally cohesive subset of the overall system's mission; (b) can be executed independently; and (c) can be developed and deployed incrementally. An air traffic control system, for example, may be divided into several areas of capability: · interpreting radar data to display aircraft positions on screens · detecting aircraft that are about to violate separation constraints · running simulations for training · recording and playback for after-situation analysis and training · monitoring its own health and status Each of these might reasonably be called a subsystem. A subsystem, informally, refers to a portion of a system that can be usefully considered separately from the rest. But not just any portion of a system will do. At a minimum, a subsystem must exhibit some coherent useful functionality. More than that, however, the term also suggests a portion of the system that can execute more or less independently and directly supports the system's overall purpose. In our air traffic control application, for example, a math utilities library would certainly be a portion of a system, and an aggregation of modules. It even has coherent functionality. But it's unlikely that the library would be called a subsystem, because it lacks the ability to operate independently to do work that's recognizably part of the overall system's purpose. Subsystems do not partition a system into completely separate parts because some parts are used in more than one subsystem. For example, if the air traffic control system looks like this:
+When documenting a module view of a system, you may choose to identify certain aggregated modules as subsystems. A subsystem can be (like many concepts in this field) pretty much anything you want it to be, but it often describes a part of a system that (a) carries out some functionally cohesive subset of the overall system's mission; (b) can be executed independently; and (c) can be developed and deployed incrementally. An air traffic control system, for example, may be divided into several areas of capability: ï¿½ interpreting radar data to display aircraft positions on screens ï¿½ detecting aircraft that are about to violate separation constraints ï¿½ running simulations for training ï¿½ recording and playback for after-situation analysis and training ï¿½ monitoring its own health and status Each of these might reasonably be called a subsystem. A subsystem, informally, refers to a portion of a system that can be usefully considered separately from the rest. But not just any portion of a system will do. At a minimum, a subsystem must exhibit some coherent useful functionality. More than that, however, the term also suggests a portion of the system that can execute more or less independently and directly supports the system's overall purpose. In our air traffic control application, for example, a math utilities library would certainly be a portion of a system, and an aggregation of modules. It even has coherent functionality. But it's unlikely that the library would be called a subsystem, because it lacks the ability to operate independently to do work that's recognizably part of the overall system's purpose. Subsystems do not partition a system into completely separate parts because some parts are used in more than one subsystem. For example, if the air traffic control system looks like this:
 
 Position display
 
@@ -2379,17 +2385,17 @@ In UML, the subsystem construct (see Figure 73 on page 278) can be used to repre
 
 Aggregation is depicted in one of three ways in UML:
 
-·
+ï¿½
 
 Modules may be nested inside one another (see Figure 7(a)).
 
-·
+ï¿½
 
 A succession of two diagrams (possibly linked) can be shown, where the second is a depiction of the
 
 contents of a module shown in the first.
 
-·
+ï¿½
 
 An arc denoting composition is drawn between the parent and the children (see Figure 7(b)). In UML,
 
@@ -2476,15 +2482,15 @@ Chapter 2: Styles of the Module Viewtype
 
 Except for the modules' names, however, the figure shows none of the properties associated with this style. Supporting the figure is textual documentation that explains the decomposition criteria, and for each module lists
 
-·
+ï¿½
 
 its responsibilities
 
-·
+ï¿½
 
 its visibility to other modules outside its parent
 
-·
+ï¿½
 
 implementation information
 
@@ -2496,7 +2502,7 @@ This is how the A-7E module view documentation describes the responsibilities of
 
 begin some sort of typeset to indicate a quote:
 
-·
+ï¿½
 
 Hardware-hiding Module: The Hardware-Hiding Module includes the procedures that need to be
 
@@ -2510,7 +2516,7 @@ hardware/software interfaces. The secondary secrets of this module are the data 
 
 algorithms used to implement the virtual hardware.
 
-·
+ï¿½
 
 Behavior-hiding Module: The Behavior-Hiding Module includes procedures that need to be changed if
 
@@ -2520,7 +2526,7 @@ secret of this module. These procedures determine the values to be sent to the v
 
 provided by the Hardware-Hiding Module.
 
-·
+ï¿½
 
 Software Decision Module: The Software Decision Module hides software design decisions that are
 
@@ -2548,7 +2554,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 Application Data Type Module: The Application Data Type Module supplements the data types
 
@@ -2570,7 +2576,7 @@ radians) are part of the representation and are hidden. Where necessary, the mod
 
 conversion operators, which deliver or accept real values in specified units.
 
-·
+ï¿½
 
 Data Banker Module: Most data are produced by one module and consumed by another. In most
 
@@ -2595,7 +2601,7 @@ function of the values of input parameters given to the producing procedure (suc
 
 The choice among updating policies should be based on the consumers' accuracy requirements, how often consumers require the value, the maximum wait that consumers can accept, how rapidly the value changes, and the cost of producing a new value. This information is part of the specification given to the implementor of the Data Banker.
 
-·
+ï¿½
 
 Filter Behavior Module: The Filter Behavior Module contains digital models of physical filters. They can
 
@@ -2605,7 +2611,7 @@ models used for the estimation of values based on sample values and error estima
 
 secrets are the computer algorithms and data structures used to implement those models.
 
-·
+ï¿½
 
 Physical Models Module: The software requires estimates of quantities that cannot be measured
 
@@ -2615,7 +2621,7 @@ that a ballistic weapon will take to strike the ground. The primary secrets of t
 
 are the models; the secondary secrets are the computer implementations of those models.
 
-·
+ï¿½
 
 Software Utility Module: The Software Utility Module contains those utility routines that would otherwise
 
@@ -2627,7 +2633,7 @@ initialization. The secrets of the module are the data structures and algorithms
 
 procedures.
 
-·
+ï¿½
 
 System Generation Module: The primary secrets of the System Generation Module are decisions that
 
@@ -3006,7 +3012,7 @@ Coming to Terms
 
 "Uses"
 
-Two of the styles of the module viewtype that we present in this book (the uses style and the layered style) are based upon one of the most under-utilized relations in software engineering: uses. The uses relation is a special form of depends-on. A unit of software P1 is said to use another unit P2 if P1's correctness depends on P2 being correct as well. The uses relation resembles, but is decidedly not, the simple calls relation provided by most programming languages. Here's why: · A program P1 can use program P2 without calling it. P1 may assume, for example, that P2 has left a
+Two of the styles of the module viewtype that we present in this book (the uses style and the layered style) are based upon one of the most under-utilized relations in software engineering: uses. The uses relation is a special form of depends-on. A unit of software P1 is said to use another unit P2 if P1's correctness depends on P2 being correct as well. The uses relation resembles, but is decidedly not, the simple calls relation provided by most programming languages. Here's why: ï¿½ A program P1 can use program P2 without calling it. P1 may assume, for example, that P2 has left a
 shared device in a usable state when it finished with it. Or P1 may expect P2 to leave a computed result that it needs in a shared variable. Or P1 may be a process that sleeps until P2 signals an event to awaken it.
 
 Copyright 2001 Addison Wesley, all rights reserved 74
@@ -3015,7 +3021,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 2: Styles of the Module Viewtype
 
-· A program P1 might call program P2 but not use it. If P2 is an exception handler that P1 calls when it
+ï¿½ A program P1 might call program P2 but not use it. If P2 is an exception handler that P1 calls when it
 
 detects an error of some sort, P1 will usually not care in the least what P2 actually does. The figure below
 
@@ -3052,7 +3058,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-mental development is that you'd like to bring in a small number of programs to each new increment, and you'd like to be able to choose which ones you bring in, and not have them choose themselves. A technique for breaking loops in the uses relation is called sandwiching. It works by finding a program in the loop whose functionality is a good candidate for splitting in half. Say that program P4 is in a uses loop. We break program P4 into two new programs, P4A and P4B. We implement them in such a way so that · that they do not use each other directly · the programs that used to use P4 now use only P4A · P4A does not use any of the programs that the former P4 used, but P4B does. This breaks the loop, as Figure 11 illustrates.
+mental development is that you'd like to bring in a small number of programs to each new increment, and you'd like to be able to choose which ones you bring in, and not have them choose themselves. A technique for breaking loops in the uses relation is called sandwiching. It works by finding a program in the loop whose functionality is a good candidate for splitting in half. Say that program P4 is in a uses loop. We break program P4 into two new programs, P4A and P4B. We implement them in such a way so that ï¿½ that they do not use each other directly ï¿½ the programs that used to use P4 now use only P4A ï¿½ P4A does not use any of the programs that the former P4 used, but P4B does. This breaks the loop, as Figure 11 illustrates.
 
 P1
 
@@ -3122,9 +3128,9 @@ Properties of relations
 Topology
 
 The generalization relation can have a property that distinguishes between interface and implementation inheritance. In case a module is defined as an abstract module (the abstract property) then restricting the generalization relationship to implementation inheritance is not meaningful.
-· a module can have multiple parents, although multiple inheritance is
+ï¿½ a module can have multiple parents, although multiple inheritance is
 considered a dangerous design approach in many places.
-· Circles in the generalization relation are not allowed, that is any of the
+ï¿½ Circles in the generalization relation are not allowed, that is any of the
 child modules cannot be a generalization of one or more of its parent modules.
 
 The element of the module generalization style is the module as defined by the module viewtype. We define a specialization of the is a relation to be the generalization relation, where one module is a specialization of another module (and the second is a generalization of the first).
@@ -3145,13 +3151,13 @@ What the Generalization Style Is For and What It's Not For
 
 The module generalization style serves the following purposes:
 
-·
+ï¿½
 
 Object-oriented designs. The module generalization style is the predominant means for expressing
 
 an inheritance-based object-oriented design for a system.
 
-·
+ï¿½
 
 Extension and evolution. It is often easier to understand how one module differs from another well
 
@@ -3161,7 +3167,7 @@ generalization is a mechanism for producing incremental descriptions to form a f
 
 module.
 
-·
+ï¿½
 
 Local change or variation. One purpose of architecture is providing a stable global structure that
 
@@ -3169,7 +3175,7 @@ accommodates local change or variation. Generalization is one approach to define
 
 a higher level and define variations as children of this module.
 
-·
+ï¿½
 
 Reuse. Finding reusable modules is a by-product of the other purposes mentioned above. Suitable
 
@@ -3397,7 +3403,7 @@ Say that program Pa in A uses program Pb in B which uses program Pc in C. If Pc 
 
 Some other observations about layers:
 
-·
+ï¿½
 
 Layers cannot be derived by examining source code. The source code may disclose what actually uses
 
@@ -3405,11 +3411,11 @@ what, but the relation in layers is allowed to use. As a trivial example, you ca
 
 that a "double" operation was implemented using multiplication by 2, but you cannot tell from the code
 
-­ whether it would have been equally acceptable to implement double(x) by adding x to itself or by performing a binary left shift -- that is, what double(x) was allowed to use
+ï¿½ whether it would have been equally acceptable to implement double(x) by adding x to itself or by performing a binary left shift -- that is, what double(x) was allowed to use
 
-­ whether addition, double, and multiplication are in the same or different layers
+ï¿½ whether addition, double, and multiplication are in the same or different layers
 
-·
+ï¿½
 
 A layer may provide services that are not actually used by other modules. This occurs when the layer
 
@@ -3439,10 +3445,10 @@ Properties of relations Topology
 
 Layers.
 Allowed to use, which is a specialization of the module viewtype's generic "depends on" relation. P1 is said to use P2 if P1's correctness depends upon having a correct version of P2 present as well.
-· Name of layer · The units of software the layer contains · The software a layer is allowed to use: (software in next lower layer,
-software in any lower layer, exceptions to downward-only allowable usage) · The interface to the layer. · The cohesion of the layer -- a description of the virtual machine represented by the layer
-· The relation is transitive.
-· Every piece of software is allocated to exactly one layer.
+ï¿½ Name of layer ï¿½ The units of software the layer contains ï¿½ The software a layer is allowed to use: (software in next lower layer,
+software in any lower layer, exceptions to downward-only allowable usage) ï¿½ The interface to the layer. ï¿½ The cohesion of the layer -- a description of the virtual machine represented by the layer
+ï¿½ The relation is transitive.
+ï¿½ Every piece of software is allocated to exactly one layer.
 
 Elements
 The elements of a layered diagram are layers. A layer is a cohesive collection of modules each of which may be invoked or accessed. Each layer should represent a virtual machine. This definition admits many possibilities, from or classes, to assembly language subroutines, and shared data. A requirement is that the units have an interface by which their services can be triggered or initiated or accessed.
@@ -3461,11 +3467,11 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 Name: Each layer is given a name.
 
-·
+ï¿½
 
 Contents: The catalog for a layers view lists the software units contained by each layer. This document
 
@@ -3475,7 +3481,7 @@ assigns each module to exactly one layer. Layer diagrams will typically label th
 
 needed that lists the complete contents of every layer.
 
-·
+ï¿½
 
 The software a layer is allowed to use: Is a layer allowed to use only the layer below, any lower layer,
 
@@ -3489,11 +3495,11 @@ Exceptions may be upward (allowing something in a lower layer to use something a
 
 that "skips" intermediate layers normally required). Exceptions should be precisely described.
 
-·
+ï¿½
 
 The interface to the layer. If the interfaces are documented elsewhere, this can be a pointer.
 
-·
+ï¿½
 
 Cohesion: An explanation of how the layer provides a functionally cohesive virtual machine. A layer
 
@@ -3685,17 +3691,17 @@ Chapter 2: Styles of the Module Viewtype
 
 The allowed-to-use relation can be represented as a stereotype of the UML access dependency, one of the existing dependencies between packages. This dependency permits the elements of one package to reference the elements of another package. More precisely:
 
-·
+ï¿½
 
 An element within a package is allowed to access other elements within the package.
 
-·
+ï¿½
 
 If a package accesses another package, then all elements defined with public visibility in the accessed
 
 package are visible within the importing package.
 
-·
+ï¿½
 
 Access dependencies are not transitive. If package 1 can access package 2 and package 2 can access
 
@@ -3747,7 +3753,7 @@ Figure 18: Handling segmented layers in UML. If segments within a layer are allo
 
 Architects should be aware of the following problems when using UML packages to represent layers:
 
-·
+ï¿½
 
 Elements can only be owned by (that is, appear in) a single package. If an element needs to be a
 
@@ -3755,7 +3761,7 @@ member of a layer and a subsystem, for example, then packages cannot be used to 
 
 (and recall that UML represents subsystems with a stereotyped package).
 
-·
+ï¿½
 
 It is not clear how to represent callbacks with UML. Callbacks are a common method of interaction
 
@@ -3856,8 +3862,8 @@ Draft for review: Do not circulate without permission
 Chapter 2: Styles of the Module Viewtype
 
 2.5
-· · · · · · ·
-·
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½
+ï¿½
 
 Glossary
 application program interface (API) - A set of routines (functions, procedures, methods) and protocols. An API defines the boundary between layers.
@@ -3958,25 +3964,25 @@ But it also might have implications on administratability or concurrency (e.g., 
 
 Some things to notice about this figure are:
 
-·
+ï¿½
 
 It acts as a key to the associated supporting documentation (not shown).
 
-·
+ï¿½
 
 It is simple enough to comprehend in a single bite.
 
-·
+ï¿½
 
 It is explicit about its vocabulary of component and connector types.
 
-·
+ï¿½
 
 It provides a key to discussions about the number and kind of interfaces on its components and
 
 connectors.
 
-·
+ï¿½
 
 It uses abstractions for its components and also for its connectors that concentrate on application
 
@@ -3997,11 +4003,11 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 Table 8: Summary of the C&C Viewtype
 
-Elements · ·
+Elements ï¿½ ï¿½
 
 components: principal processing units and data stores connectors: interaction mechanisms
 
-Relations ·
+Relations ï¿½
 
 attachments: define system topology by indicating which component ports are associated with which connector roles
 
@@ -4009,21 +4015,21 @@ Properties of elements
 
 component
 
-·
+ï¿½
 
 name -- component name should hint at its functionality
 
-·
+ï¿½
 
 type -- defines general functionality, number and types of ports,
 
 required properties
 
-·
+ï¿½
 
 ports -- a list of ports and their types and/or properties
 
-·
+ï¿½
 
 other properties -- depend on type of component, but include things
 
@@ -4031,21 +4037,21 @@ such as performance and reliability values.
 
 connector
 
-·
+ï¿½
 
 name -- connector name should hint at the nature of its interactions
 
-·
+ï¿½
 
 type -- defines nature of interaction, number and types of roles,
 
 required properties
 
-·
+ï¿½
 
 roles -- a list of roles and their properties
 
-·
+ï¿½
 
 other properties -- depend on the type of connector, but include
 
@@ -4260,13 +4266,13 @@ Other properties are possible and they should be chosen to support the usage int
 
 Here are some examples of typical properties and their uses:
 
-·
+ï¿½
 
 Reliability: What is the likelihood of failure for a given component or connector? This might be used to
 
 help determine overall system reliability.
 
-·
+ï¿½
 
 Performance: What kinds of response time will the component provide and under what loads? What
 
@@ -4274,13 +4280,13 @@ kinds of latencies and throughputs can be expected for a given connector? This c
 
 properties) to determine system properties such as latencies, throughput, and buffering needs.
 
-·
+ï¿½
 
 Resource requirements: What are the processing and storage needs of a component or connector?
 
 This can be used to determine if a proposed hardware configuration will be adequate.
 
-·
+ï¿½
 
 Functionality: What functions does an element perform? This can be used to reason about overall
 
@@ -4292,7 +4298,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 3: The Component-and-Connector Viewtype
 
-·
+ï¿½
 
 Protocols: What patterns of events or actions can take place for an interaction represented by a
 
@@ -4302,7 +4308,7 @@ deadlock, whether specific components can legally participate in a given interac
 
 ordering constraints on an interaction, and how errors are handled.
 
-·
+ï¿½
 
 Security: Does a component or connector enforce or provide security features, such as encryption,
 
@@ -4314,35 +4320,35 @@ The C&C viewtype is used to reason about run-time system quality attributes, suc
 
 C&C views allow one to answer questions such as:
 
-·
+ï¿½
 
 What are the system's principal executing components and how do they interact?
 
-·
+ï¿½
 
 What are the major shared data stores?
 
-·
+ï¿½
 
 Which parts of the system are replicated, and how many times?
 
-·
+ï¿½
 
 How does data progress through a system as it executes?
 
-·
+ï¿½
 
 What protocols of interaction are used by communicating entities?
 
-·
+ï¿½
 
 What parts of the system run in parallel?
 
-·
+ï¿½
 
 How can the system's structure change as it executes?
 
-C&C views are not appropriate for representing design elements that do not have a run-time presence. For example, a class is not a component. A good rule of thumb is that if it doesn't make sense to characterize the interface(s) of an element, it probably isn't a component (although the inverse is clearly not necessarily true ­ there are many things with interfaces that are not components).
+C&C views are not appropriate for representing design elements that do not have a run-time presence. For example, a class is not a component. A good rule of thumb is that if it doesn't make sense to characterize the interface(s) of an element, it probably isn't a component (although the inverse is clearly not necessarily true ï¿½ there are many things with interfaces that are not components).
 
 Background
 
@@ -4385,7 +4391,7 @@ The most interesting relationship concerning C&C views is how they map to a syst
 
 3.6 Glossary
 
-·
+ï¿½
 
 tbd
 
@@ -4500,17 +4506,17 @@ Elements
 
 Component types:
 
-·
+ï¿½
 
 client: requires services of some other component
 
-·
+ï¿½
 
 server: provides services to other components.
 
 Connector types:
 
-·
+ï¿½
 
 request-reply: synchronous invocation of services from client to
 
@@ -4530,15 +4536,15 @@ Topology
 
 Possible restrictions:
 
-·
+ï¿½
 
 numbers of attachments to a given port or role
 
-·
+ï¿½
 
 allowed relationships among servers
 
-·
+ï¿½
 
 tiers
 
@@ -4718,11 +4724,11 @@ Between a non-process C&C view and Communicating Process views
 
 It is often of interest to know what communicating processes reside on what processors. Thus, a view in the communicating process style is a prime candidate for association with a view that shows processors. There are two ways to do this:
 
-·
+ï¿½
 
 Produce a mapping between the views.
 
-·
+ï¿½
 
 Produce a combined view from the constituent views.
 
@@ -4738,7 +4744,7 @@ Chapter 4: Styles of the C&C Viewtype
 Between C&C and Module views
 As we've noted earlier, the relationship between a C&C view and a module view of the same system may not be trivial. To illustrate some of the problems, consider the Figure NNN, which shows both a module and C&C view of the same system. The system illustrated here is a simple one that accepts a stream of characters as input, and produces a new stream of characters identical to the original, but with every other character in upper case, and the other in lower case.
 (NOTE: LOOK IN GARLAN AND SHAW BOOK FOR FIGURE -- 5/2/01 -- these are figures 8.14 and 8.15 on pages 206 and 207.)
-The module view represents a typical implementation that one might find in C under Unix. In this view the relation between modules is "may use the services of" as described in Section tbd. A main module is used to start things off. It invoke the facilities of four modules that do the main work: to-upper, to-lower, split, and merge. It determines how inputs from one are fed to others using a configuration module config. And all of the modules use a standard I/O library to carry out the communication. Note that from a code perspective the worker modules do not directly invoke services of each other ­ but only via the I/O library.
+The module view represents a typical implementation that one might find in C under Unix. In this view the relation between modules is "may use the services of" as described in Section tbd. A main module is used to start things off. It invoke the facilities of four modules that do the main work: to-upper, to-lower, split, and merge. It determines how inputs from one are fed to others using a configuration module config. And all of the modules use a standard I/O library to carry out the communication. Note that from a code perspective the worker modules do not directly invoke services of each other ï¿½ but only via the I/O library.
 In the C&C view, we have a system described in the Pipe-Filter style. Each of the components is a filter that transforms character streams. Pathways of communication between the components are explicit, indicating that during run time the pipe connectors will mediate communication of data streams among those components.
 It should be clear even with this simple example that the two descriptions differ wildly in what they include and how the partition the system into parts, and hence there is no simple mapping between them. For example, some of the modules in the module view do not even appear in the C&C view. Conversely, the pipe connector does not appear at all in the module view (although one might argue that it most closely is associated with the module stdio).
 Although this example doesn't illustrate it, the same code module might be mapped to several execution components: for example, if we used merge twice. Also the mapping of interfaces is not at all obvious. For example, the stream input/output interfaces on the filters have no clear mapping to the use of stdio, which implements the communication interface of the code module.
@@ -4810,7 +4816,7 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 Grep.pOut to GrepStream.src; MergeAndSort.pIn1 to GrepStream.snk; Splitter.pOut2 to SplitStream2.src; MergeAndSort.pIn2 to SplitStream2.snk; }; }; /* end system */
 Figure 25: Partial textual description of the simple PipeFilter System. (See Appendix A for the full description.)
-Connectors are first class entities in Acme: they have types (e.g., Pipe) and they may have non-trivial semantics, for example, as defined by a protocol of interaction. (The full description of the example in the Appendix contains a sample protocol for the Pipe type.) Moreover, connectors have "interfaces," which identify the roles in the interaction, and may associate semantics with those interfaces. (In the Appendix each role has an associated protocol that specifies the allowable behavior of the participant filling that role.). There are many instances of the Filter and Pipe types. Note that different instances of a component or connector type may have quite different behavior: here we have five components of type Filter, each performs very different kinds of computation. The Splitter filter has two output ports. Bindings serve to associate the input and output ports of the MergeAndSort filter with the input ports of Merge and the output port of Sort (respectively). The purpose of a binding is to provide a logical association ­ not a communication path ­ since a binding does not have any specific run-time behavior of its own.
+Connectors are first class entities in Acme: they have types (e.g., Pipe) and they may have non-trivial semantics, for example, as defined by a protocol of interaction. (The full description of the example in the Appendix contains a sample protocol for the Pipe type.) Moreover, connectors have "interfaces," which identify the roles in the interaction, and may associate semantics with those interfaces. (In the Appendix each role has an associated protocol that specifies the allowable behavior of the participant filling that role.). There are many instances of the Filter and Pipe types. Note that different instances of a component or connector type may have quite different behavior: here we have five components of type Filter, each performs very different kinds of computation. The Splitter filter has two output ports. Bindings serve to associate the input and output ports of the MergeAndSort filter with the input ports of Merge and the output port of Sort (respectively). The purpose of a binding is to provide a logical association ï¿½ not a communication path ï¿½ since a binding does not have any specific run-time behavior of its own.
 
 UML
 There is no single best way to document C&C views using UML. Instead, there are a multitude of alternatives, each with its own advantages and disadvantages. In this section, we present six strategies for modeling components and connectors using UML. We organize the presentations of alternatives around the choices for representing component types and instances, since the components are typically the central design elements of an architectural description. For each choice we consider sub-alternatives for the other architectural elements (connectors, styles, etc.). Of the six strategies, the first three consider ways to use classes and objects to model components. The fourth is based on UML components, the fifth on UML subsystems, and the sixth on the UML Real-Time Profile.
@@ -4829,7 +4835,7 @@ Chapter 4: Styles of the C&C Viewtype
 
 pects of architectural design needed to be represented. In restricted situations (for example, if there is only one type of connector) it may be preferable to use an incomplete, but visually appealing, encoding.
 
-Strategy 1: Classes & Objects ­ Types as Classes, Instances as Objects
+Strategy 1: Classes & Objects ï¿½ Types as Classes, Instances as Objects
 Perhaps the most natural candidate for representing component and connector types in UML is the class concept. Classes describe the conceptual vocabulary of a system just as component and connector types form the conceptual vocabulary of an architectural description in a particular style. Additionally, the relationship between classes and objects is similar to the relationship between architectural types and their instances. The mapping described for the C2 architectural style in [Medvidovic, N. and Rosenblum, S. Assessing the Suitability of a Standard Design Method for Modeling Software Architectures. Proc. of the TC2 1st Working IFIP Conf. on SW. Arch. (WICSA1), 1999.] is a variation on this approach.
 Figure 26 illustrates the general idea. Here we characterize the Filter architectural type as the UML class Filter. Instances of filters, such as Splitter are represented as corresponding objects in an object (instance) diagram. To provide a namespace boundary, we enclose the descriptions in packages. The representation of MergeAndSort, denoted Details, is shown as another package, and will be discussed in more detail later. We now take a closer look at this strategy by examining how the basic concepts can be described in UML.
 
@@ -4869,7 +4875,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-types. The semantics of an instance or type can also be elaborated by attaching one of the standard stereotypes (e.g., indicating that a component runs as a separate process with the «process» stereotype).
+types. The semantics of an instance or type can also be elaborated by attaching one of the standard stereotypes (e.g., indicating that a component runs as a separate process with the ï¿½processï¿½ stereotype).
 A few things to note about this example are:
 1. the relationship between MergeAndSort and its substructure is indicated using a dependency relation, this does not explicitly indicate substructure.
 2. the typical relationship between classes and instances in UML is not identical to that between architectural components and their instances, as illustrated above. A component instance might define additional ports not required by its type, or associate an implementation in the form of additional structure that is not part of its type's definition. In UML an object cannot include parts that its class does not also define.
@@ -4910,7 +4916,7 @@ Chapter 4: Styles of the C&C Viewtype
 
 You can represent ports as annotations. This approach provides a home for information about ports, although annotations have no semantic value in UML and hence cannot be used as a basis for analysis. Again, if the detailed properties of a port are not of concern this might be a reasonable approach.
 Ports Option 3: Ports as Class/Object Attributes.
-Ports can be treated as attributes of a class/object. In this approach ports are part of the formal structural model, but they can have only a very simple representation in a class diagram ­ essentially a name and type.
+Ports can be treated as attributes of a class/object. In this approach ports are part of the formal structural model, but they can have only a very simple representation in a class diagram ï¿½ essentially a name and type.
 Ports Option 4: Ports as Interfaces.
 Describing port types as UML interfaces has three advantages. First, the interface and port concepts have a similar intent: they both characterize aspects of the ways in which an entity can interact with its environment. Second, the UML "lollipop" notation provides a compact description of a port in a class diagram depicting a component type. In an instance diagram, a UML association role (corresponding to a port instance) qualified by the interface name (the port type) provides a compact way to designate that a component instance is interacting through a particular port instance. Finally, this approach provides visually distinct depictions of components and ports, in which ports can clearly be seen as subservient to components.
 However, while the interface and port concepts are similar, they are not identical. An interface exposes a set of operations that can be invoked by the environment of a component. In contrast, the description of a port in an ADL often includes both the services provided by the component, as well as those it requires from its environment. Furthermore, it is meaningful for a component type to have several instances of the same port type, while it is not meaningful to say that a class realizes several versions of the same. For example, there is no easy way to define a "splitter" filter type that has two output ports of the same "type" using this technique. Finally, unlike classes, interfaces do not have attributes or substructure.
@@ -4946,7 +4952,7 @@ Copyright 2001 Addison Wesley, all rights reserved 134
 Draft for review: Do not circulate without permission
 
 Chapter 4: Styles of the C&C Viewtype
-The primary mechanism in UML for grouping related elements is the package. In fact, UML defines a standard package stereotype, called «subsystem», to group UML models that represent a logical part of a system. The choice of subsystems is appropriate for any choice of mappings of components and connectors and works particularly well for grouping classes.
+The primary mechanism in UML for grouping related elements is the package. In fact, UML defines a standard package stereotype, called ï¿½subsystemï¿½, to group UML models that represent a logical part of a system. The choice of subsystems is appropriate for any choice of mappings of components and connectors and works particularly well for grouping classes.
 Unfortunately, subsystems have different semantics than systems in an architectural description. In a model, a package represents a set of elements that may be imported into another context, but not a structure per se. In contrast, a system in architectural design is a structure with sub-parts in the form of its components and connectors. Unlike classes, packages also lack attributes for defining system level properties.
 One of the problems with using subsystems, as defined in the current version of UML, is that although subsystems are both a classifier and a package, it is not entirely clear what this means. Some have argued that we should be able to treat a subsystem as an atomic class-like entity at certain stages in the development process, and later be able to refine it in terms of more detailed substructure. Having the ability to do this would make the subsystem construct more appropriate for modeling architectural components.
 Systems Option 2: Systems as Objects.
@@ -4987,9 +4993,9 @@ simple
 Details
 
 Figure 28: Systems as Collaborations.
-Figure 28 illustrates this approach. The Filter architectural type is represented as in the previous section. Instances of Filters and Pipes are represented as corresponding classifier roles (e.g. "/Splitter" indicates the Splitter role) and association roles, and the objects and links conforming to those roles are shown in the collaboration diagram at the instance level (indicated by underlines on the names). While this is a natural way to describe run-time structures, unfortunately this leaves no way to explicitly represent system-level properties. There is also a semantic mismatch ­ a Collaboration describes a representative interaction between objects that provides a partial description, whereas an architectural configuration is meant to capture a complete description at some level of abstraction.
+Figure 28 illustrates this approach. The Filter architectural type is represented as in the previous section. Instances of Filters and Pipes are represented as corresponding classifier roles (e.g. "/Splitter" indicates the Splitter role) and association roles, and the objects and links conforming to those roles are shown in the collaboration diagram at the instance level (indicated by underlines on the names). While this is a natural way to describe run-time structures, unfortunately this leaves no way to explicitly represent system-level properties. There is also a semantic mismatch ï¿½ a Collaboration describes a representative interaction between objects that provides a partial description, whereas an architectural configuration is meant to capture a complete description at some level of abstraction.
 There are of course many variations on Options 2 and 3, corresponding to the same variations on the use of classes, objects and stereotypes to describe components, which we described in the last section and in the next.
-Strategy 2: Classes & Objects ­ Types as Classes, Instances as Classes
+Strategy 2: Classes & Objects ï¿½ Types as Classes, Instances as Classes
 The second class-based approach is to represent component types as classes (like the first approach) and component instances as classes. By representing both component types and instances as classes, we have the full set of UML features to describe both component types and instances. We can also capture patterns at both the type (as part of a description of an architectural style) and instance level, supporting the description of a dynamic architecture whose structure evolves at run-time.
 
 Copyright 2001 Addison Wesley, all rights reserved 136
@@ -5078,7 +5084,7 @@ Figure 30: Semantic problems with instances as classes
 There are two viable options for relating a component type to its instances within this scheme: generalization and dependency. Generalization captures the structural relationship between a type and instance (namely, the instance "subclass" must be substitutable for the type) but it blurs the type-instance distinction. The other option is to represent this relationship as a (perhaps stereotyped) dependency, which is semantically weaker but carries less semantic baggage than the generalization relationship.
 Connectors, Systems, and Styles
 The options for representing connectors are similar to the options we had for representing connector types in the first approach. The options for representing systems and styles are similar to those in the first approach using (a) packages, or (b) classes and objects.
-Strategy 3: Classes & Objects ­ Types as Stereotypes, Instances as Classes
+Strategy 3: Classes & Objects ï¿½ Types as Stereotypes, Instances as Classes
 The third major alternative for modeling a component type in UML is to define a stereotype. In this way, we can describe the meaning of our architectural vocabulary in a way that distinguishes an architectural element type from the UML class concept. A component instance is then represented as a class with a stereotype. Using this approach, architectural concepts become distinct from the built-in UML concepts, and in principal, a UMLbased modeling environment can be extended to support the visualization and analysis of new architectural types within a style and enforce design constraints captured in OCL. This is essentially the approach taken in [Medvidovic, N., Oreizy, P., Robbins, J.E. and Taylor, R.N. (1996), Using object-oriented typing to support architectural design in the C2 style. Proceedings of ACM SIGSOFT'96: 4th Symp. on the Found. of Software Eng. (FSE4).].
 
 Copyright 2001 Addison Wesley, all rights reserved 138
@@ -5087,18 +5093,18 @@ Draft for review: Do not circulate without permission
 
 Chapter 4: Styles of the C&C Viewtype
 
-In Figure 31, the Filter Type is defined by a set of constraints expressed in OCL that are identified with the «Filter» Stereotype. Filter instances (e.g., Splitter) are represented as classes that bear the Filter stereotype. We now examine this approach in more detail.
+In Figure 31, the Filter Type is defined by a set of constraints expressed in OCL that are identified with the ï¿½Filterï¿½ Stereotype. Filter instances (e.g., Splitter) are represented as classes that bear the Filter stereotype. We now examine this approach in more detail.
 
 .PipeFilter Defns...
-Stereotype «Filter»:
+Stereotype ï¿½Filterï¿½:
 ... OCL Describing constraints for Filter...
 
 simple
-«Filter» Splitter
+ï¿½Filterï¿½ Splitter
 
-«Filter» Grep
+ï¿½Filterï¿½ Grep
 
-«Filter» MergeAndSort
+ï¿½Filterï¿½ MergeAndSort
 
 Details
 
@@ -5141,7 +5147,7 @@ Figure 32: Components as UML components.
 
 Components
 UML components are a natural candidate for representing architectural components. Components have interfaces, may be deployed on hardware, and commonly carry a stereotype and are depicted with a custom visualization. UML components are often used as part of diagrams that depict an overall topology, and just as it is natural to talk about mapping architectural components to hardware, components are assigned to nodes in UML deployment diagrams. For some architectural styles, the identification of abstract components with implementation-level components is a reasonable choice.
-Unfortunately, in UML components are defined as concrete "chunks" of implementation (e.g., executables, or dynamic link libraries) that realize abstract interfaces ­ unlike the more abstract notion of components found in ADLs, which frequently have only an indirect relationship to deployable piece of a system. Nonetheless, the concepts share more than a name. Components expose interfaces (as with classes) and can be used to represent the ports exposed by a component, just as they were used in the strategy based on classes and objects.
+Unfortunately, in UML components are defined as concrete "chunks" of implementation (e.g., executables, or dynamic link libraries) that realize abstract interfaces ï¿½ unlike the more abstract notion of components found in ADLs, which frequently have only an indirect relationship to deployable piece of a system. Nonetheless, the concepts share more than a name. Components expose interfaces (as with classes) and can be used to represent the ports exposed by a component, just as they were used in the strategy based on classes and objects.
 However, the rich set of class associations available to relate classes are not available for components, limiting how we can describe ports, represent patterns, and indicate connection. (Moreover, UML behavioral models cannot reference components.)
 Connectors
 There are two natural choices for representing connectors in this scheme: as dependencies between a component the ports/interfaces realized by a component (visually simple but lacking expressiveness), or as components themselves. If we represent connector instances as dependencies between components, we have the option of representing connector types as stereotypes, with consequences we addressed in previous sections. Unfortunately, although dependencies are visually appealing, the built-in dependency notion in UML does not
@@ -5176,7 +5182,7 @@ Details
 Figure 33: Components as subsystems.
 
 Components
-The subsystem construct is used in UML to group or encapsulate a set of model elements that describe some logical piece of a system, similar to components in architectural descriptions. Subsystems (indeed, any package) can include structures based on any of the UML models. This has an advantage over describing components and connectors as classes ­ by identifying a component or connector with a package, we can not only include structure as classes (or objects), we can also include behavioral models. There are many options for describing component or connector substructure. This approach also has a visual appeal ­ substructure can be depicted as "embedded" in the package. Component and Component types would be modeled in essentially the same way, although one could also take advantage of the UML template mechanism when defining a type.
+The subsystem construct is used in UML to group or encapsulate a set of model elements that describe some logical piece of a system, similar to components in architectural descriptions. Subsystems (indeed, any package) can include structures based on any of the UML models. This has an advantage over describing components and connectors as classes ï¿½ by identifying a component or connector with a package, we can not only include structure as classes (or objects), we can also include behavioral models. There are many options for describing component or connector substructure. This approach also has a visual appeal ï¿½ substructure can be depicted as "embedded" in the package. Component and Component types would be modeled in essentially the same way, although one could also take advantage of the UML template mechanism when defining a type.
 Although visually appealing, this approach suffers from a number of problems. In UML, a package is (semantically speaking) little more than a folder in which related models and elements can be stored. One does not talk about a package having interfaces; instead a package makes its elements (e.g., classes) available to other packages through export. Representing substructure (like ports) as elements contained by a package is also
 
 Copyright 2001 Addison Wesley, all rights reserved 141
@@ -5220,9 +5226,9 @@ Type
 System
 
 UML-RT
-«Capsule» instance «Capsule» class
-«Port» instance «ProtocolRole» class
-«Connector» (link) AssociationClass «Protocol» class
+ï¿½Capsuleï¿½ instance ï¿½Capsuleï¿½ class
+ï¿½Portï¿½ instance ï¿½ProtocolRoleï¿½ class
+ï¿½Connectorï¿½ (link) AssociationClass ï¿½Protocolï¿½ class
 No explicit mapping; implicit elements: LinkEnd AssociationEnd
 Collaboration
 
@@ -5241,10 +5247,10 @@ Documenting Software Architectures
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 sule class instead of a capsule role for a similar reason to convey a pattern of interaction for the internal capsules. Finally, the bindings from the external port to the internal port are shown as normal connectors.
-Since there is only one Filter type in the simple PipeFilter system, there is only one class in the class diagram shown in Figure 34. In UML-RT, all elements contained by a capsule are considered attributes of that capsule class, and all attributes have protected visibility except ports, which have public visibility (indicated by a `+' on the port attribute). Additionally, ports are listed in a separately named compartment. The «capsule»-stereotyped Filter class has four ports, two as sources, and two as sinks. This is because each Filter either has one or two ports of each type, so two are defined to accommodate all Filter instances, while only the used ports are shown in the collaboration diagram. The connectors in the collaboration diagram does not have a counterpart in the class diagram because the connectors associate the Ports, not the Filter.
+Since there is only one Filter type in the simple PipeFilter system, there is only one class in the class diagram shown in Figure 34. In UML-RT, all elements contained by a capsule are considered attributes of that capsule class, and all attributes have protected visibility except ports, which have public visibility (indicated by a `+' on the port attribute). Additionally, ports are listed in a separately named compartment. The ï¿½capsuleï¿½-stereotyped Filter class has four ports, two as sources, and two as sinks. This is because each Filter either has one or two ports of each type, so two are defined to accommodate all Filter instances, while only the used ports are shown in the collaboration diagram. The connectors in the collaboration diagram does not have a counterpart in the class diagram because the connectors associate the Ports, not the Filter.
 
 PipeFilter
-«capsule» Filter
+ï¿½capsuleï¿½ Filter
 ports + pIn1: ProtPipe~ + pIn2: ProtPipe~ + pOut1: ProtPipe + pOut2: ProtPipe
 
 simple
@@ -5271,12 +5277,12 @@ Draft for review: Do not circulate without permission
 
 Chapter 4: Styles of the C&C Viewtype
 Appendix to Section
-A complete description of the simple PipeFilter system appears below. The Pipe and Role protocols adapted from the example in []). The protocols in this description are defined by a CSP process expression that indicates sequencing of events (à), internal choice (|~|), and external events ([]). "tick" represents a successfully terminated process. Events preceded by an underscore represent "initiated" events; others represent "observed" events.
+A complete description of the simple PipeFilter system appears below. The Pipe and Role protocols adapted from the example in []). The protocols in this description are defined by a CSP process expression that indicates sequencing of events (ï¿½), internal choice (|~|), and external events ([]). "tick" represents a successfully terminated process. Events preceded by an underscore represent "initiated" events; others represent "observed" events.
 Style:
 Family PipeFilter = { Port Type OutputPort; Port Type InputPort;
 Role Type Source; Role Type Sink;
 Component Type Filter;
-Connector Type Pipe = { Role src : Source = new Source extended with { Properties { protocolInterface : String = "Source = (_read à data?x à Source) |~| (_close à tick)" } } Role snk : Sink = new Sink extended with { Properties { protocolInterface : String = "Sink = (_write à Sink) |~| (_close à tick)" } } Properties { protocolGlue : String = "Buf(<>) = Source.write?x à Buf(<x>) [] Source.close à Closed(<>) Buf(S<>) = Source.write?y à Buf(<y>S<x>) [] Source.close à Closed(S<x>) [] Sink.read à _Sink.data!x à Buf(S) [] Sink.close à Killed Closed(S<x>) = Sink.read à _Sink.data!x à Closed(S) [] Sink.close à tick Closed(<>) = Sink.close à tick Killed = Source.write à Killed [] Source.close à tick" }
+Connector Type Pipe = { Role src : Source = new Source extended with { Properties { protocolInterface : String = "Source = (_read ï¿½ data?x ï¿½ Source) |~| (_close ï¿½ tick)" } } Role snk : Sink = new Sink extended with { Properties { protocolInterface : String = "Sink = (_write ï¿½ Sink) |~| (_close ï¿½ tick)" } } Properties { protocolGlue : String = "Buf(<>) = Source.write?x ï¿½ Buf(<x>) [] Source.close ï¿½ Closed(<>) Buf(S<>) = Source.write?y ï¿½ Buf(<y>S<x>) [] Source.close ï¿½ Closed(S<x>) [] Sink.read ï¿½ _Sink.data!x ï¿½ Buf(S) [] Sink.close ï¿½ Killed Closed(S<x>) = Sink.read ï¿½ _Sink.data!x ï¿½ Closed(S) [] Sink.close ï¿½ tick Closed(<>) = Sink.close ï¿½ tick Killed = Source.write ï¿½ Killed [] Source.close ï¿½ tick" }
 }; };
 
 Copyright 2001 Addison Wesley, all rights reserved 145
@@ -5297,7 +5303,7 @@ Draft for review: Do not circulate without permission
 
 4.9 Glossary
 
-·
+ï¿½
 
 tbd
 
@@ -5314,23 +5320,23 @@ Selic, B. and Rumbaugh, J. Using UML for Modeling Complex Real-Time Systems. Whi
 
 The appendix has these references:
 
-·
+ï¿½
 
 The Pipe and Role protocols adapted from the example in [Monroe, R. T., Kompanek, A, Melton, R.
 
 and Garlan, D. Architectural Style, Design Patterns, and Objects. IEEE Software, January 1997.]).
 
-·
+ï¿½
 
 Wright: [Allen, R. J. and Garlan, D. Formalizing Architectural Connection. Proceedings of the 16th Intl.
 
 Conf. on SW Eng., 1994.]
 
-·
+ï¿½
 
 CSP [Hoare, C. A. R. Communicating Sequential Processes. Prentice Hall, 1985.].
 
-·
+ï¿½
 
 [Allen, R. J. A Formal Approach to Software Architecture, Ph.D. Thesis, published as Carnegie Mellon
 
@@ -5462,17 +5468,17 @@ Defining and maintaining environmental structures are usually not the responsibi
 
 We will start out by considering the allocation viewtype in its most general form. Then, in the next chapter, we identify three common styles:
 
-·
+ï¿½
 
 The Deployment style describes the implication of the hardware on which the software executes
 
-·
+ï¿½
 
 The Implementation style describes the mapping of modules on a configuration management scheme
 
 and helps the organization of the files that implement the modules
 
-·
+ï¿½
 
 The Work Assignment style describes the aggregation of modules according to the people, groups, or
 
@@ -5578,7 +5584,7 @@ The specific notations for styles of the allocation viewtype are style-specific 
 
 5.5 Glossary
 
-·
+ï¿½
 
 tbd
 
@@ -5618,13 +5624,13 @@ The software elements in this style are usually derived from elements in a C&C v
 
 The typical relation depicted in the deployment style is a special form of allocated to that shows on which physical units the software elements reside. If the relation is dynamic -- that is, if the allocation can change as the system executes -- then additional relations may be shown. These are:
 
-·
+ï¿½
 
 migrates to: A relation from a software element on one processor to the same software element on a
 
 different processor, this relation indicates that a software element can move from processor to another.
 
-·
+ï¿½
 
 copy migrates to: This relation is similar to the "migrates to" relation, except that the software element
 
@@ -5632,7 +5638,7 @@ sends a copy of itself to the new process element while retaining a copy on the 
 
 element.
 
-·
+ï¿½
 
 execution migrates to: Similar to the other two, this relation indicates that execution moves from
 
@@ -5652,7 +5658,7 @@ particular properties the elements of the style must possess. For example, if a 
 
 Example environment element properties relevant to physical units include:
 
-·
+ï¿½
 
 cpu properties: A set of properties relevant to the various processing elements may be specified:
 
@@ -5660,23 +5666,23 @@ processor clock speed, number of processors, memory capacity, bus speed, instruc
 
 speed.
 
-·
+ï¿½
 
 memory properties: A set of properties relevant to the memory stores specified. These include size and
 
 speed characteristics of the memory.
 
-·
+ï¿½
 
 disk (or other storage unit) capacity: Specifies the storage capacity and access speed of disk units
 
 (individual disk drives, disk farms, RAID units).
 
-·
+ï¿½
 
 bandwidth: Indicates the data transfer capacity of communication channels
 
-·
+ï¿½
 
 fault-tolerance: there may be multiple hardware units to perform the same function and these units have
 
@@ -5684,23 +5690,23 @@ a fail-over control mechanism.
 
 Properties that are relevant to software elements include (with examples):
 
-·
+ï¿½
 
 resource consumption: computation takes 32,123 instructions
 
-·
+ï¿½
 
 resource requirements and constraints that must be satisfied: software element must execute in 0.1
 
 second.
 
-·
+ï¿½
 
 safety critical: a software element must always be running.
 
 Properties that are relevant to the allocation include:
 
-·
+ï¿½
 
 migration trigger: If the allocation can change as the system executes, this property specifies what must
 
@@ -5757,7 +5763,7 @@ Views of the deployment style use the notation elements as discussed for the All
 If the deployment structure is simple, a table that lists the software units and the hardware element on which each executes may be adequate.
 UML
 [following language is taken verbatim from Rational's web page -- need to paraphrase or give credit]
-In UML, a deployment diagram is a graph of nodes connected by communication associations. Nodes may contain component instances; this indicates that the component lives or runs on the node. Components may contain objects; this indicates that the object is part of the component. Components are connected to other components by dashed-arrow dependencies (possibly through interfaces). This indicates that one component uses the services of another component; a stereotype may be used to indicate the precise dependency if needed. The deployment type diagram may also be used to show which components may run on which nodes, by using dashed arrows with the stereotype «supports».
+In UML, a deployment diagram is a graph of nodes connected by communication associations. Nodes may contain component instances; this indicates that the component lives or runs on the node. Components may contain objects; this indicates that the object is part of the component. Components are connected to other components by dashed-arrow dependencies (possibly through interfaces). This indicates that one component uses the services of another component; a stereotype may be used to indicate the precise dependency if needed. The deployment type diagram may also be used to show which components may run on which nodes, by using dashed arrows with the stereotype ï¿½supportsï¿½.
 
 Copyright 2001 Addison Wesley, all rights reserved 159
 
@@ -5767,7 +5773,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-Migration of components from node to node or objects from component to component may be shown using the «becomes» stereotype of the dependency relationship. In this case the component or object is resident on its node or component only part of the entire time.
+Migration of components from node to node or objects from component to component may be shown using the ï¿½becomesï¿½ stereotype of the dependency relationship. In this case the component or object is resident on its node or component only part of the entire time.
 A node is a run-time physical object that represents a processing resource, generally having at least a memory and often processing capability as well. Nodes include computing devices but also human resources or mechanical processing resources. Nodes may be represented as type and as instances. Run time computational instances, both objects and component instances, may reside on node instances. A node is shown as a figure that looks like a 3-dimensional view of a cube. A node type has a type name. A node instance has a name and a type name. The node may have an underlined name string in it or below it.
 Dashed-arrow dependency arrows show the capability of a node type to support a component type. A stereotype may be used to state the precise kind of dependency.
 Component instances and objects may be contained within node instance symbols. This indicates that the items reside on the node instances. Containment may also be shown by aggregation or composition association paths.
@@ -5838,7 +5844,7 @@ The software elements are modules of any style of module viewtype, such as funct
 
 Typically relations depicted in the implementation style include:
 
-·
+ï¿½
 
 allocated to: A relation between modules and configuration items. This relation connects a module with
 
@@ -5846,7 +5852,7 @@ the configuration item (e.g. a directory with a set of files) that implements th
 
 1-to-1 relationship, but the configuration item can be a complex item composed of multiple entities.
 
-·
+ï¿½
 
 containment: A relation between configuration items. This relation indicates that a configuration item
 
@@ -5946,7 +5952,7 @@ Elements, Relations, and Properties of the Work Assignment Style
 
 The elements of this style are:
 
-·
+ï¿½
 
 software modules whose production, acquisition, testing, and/or integration are the responsibility of an
 
@@ -5960,7 +5966,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 6: Styles of the Allocation Viewtype
 
-·
+ï¿½
 
 "people elements" which denote organizational units or specific teams of people or personnel roles.
 
@@ -6010,7 +6016,7 @@ Example of the Work Assignment Style Readers familiar with U.S. military softwar
 
 6.4 Glossary
 
-·
+ï¿½
 
 tbd
 
@@ -6051,7 +6057,7 @@ Chapter 6: Styles of the Allocation Viewtype
 
 Part I laid the foundations for software architecture documentation by providing a repertoire of styles from which to choose and build views for a system; Part II will present information to complete the picture and put the ideas into practice:
 
-·
+ï¿½
 
 Chapter 7 ("Advanced Concepts") explores advanced but invaluable techniques in documentation that
 
@@ -6059,13 +6065,13 @@ apply to many real systems: refinement and chunking of information, context diag
 
 documenting combined views, documenting variability and dynamism, and documenting a new style.
 
-·
+ï¿½
 
 Chapter 8 ("Documenting Behavior") explores another advanced but essential technique, that
 
 documenting the behavior of an element or ensemble of of elements.
 
-·
+ï¿½
 
 Chapter 9 ("Choosing the Views") provides detailed guidance for choosing the set of views to
 
@@ -6073,25 +6079,25 @@ incorporate into a documentation suite, explores examples of viewsets, and gives
 
 for deciding which views to use.
 
-·
+ï¿½
 
 Chapter 10 ("Building the Documentation Package") prescribes templates and detailed guidance for
 
 documenting views and documenting information that applies to more than one view.
 
-·
+ï¿½
 
 Chapter 11 ("Documenting Software Interfaces") tells how to document the interfaces to architectural
 
 elements.
 
-·
+ï¿½
 
 Chapter 12 ("Reviewing Software Architecture Documentation") gives a procedure for reviewing
 
 architecture documentation to make sure it is of high quality and serves its intended purpose.
 
-·
+ï¿½
 
 Finally, Chapter 13 ("Related Work") examines other well-known prescriptions of software architecture
 
@@ -6134,7 +6140,7 @@ Same-view view packets
 
 The view packets that constitute a view are related to each other in one of two ways:
 
-·
+ï¿½
 
 The view packets are siblings of each other, meaning that they document different parts of the same
 
@@ -6142,7 +6148,7 @@ system. Think of these view packets as forming a mosaic of the whole view, as if
 
 photograph taken by a camera that panned and tilted across the entire view.
 
-·
+ï¿½
 
 Some view packets are children of another, meaning that they document the same part of the system
 
@@ -6152,19 +6158,19 @@ zooms in on a part of the system.
 
 Thus, view packets are related to each other as the nodes of a tree structure; they document elements of the system that are siblings, or parents and children, of each other. To "move" from one view packet to another requires a series of pan and tilt, or zoom-in and zoom-out operations. View packets allow the architect to document a view (and a reader to understand a view) in
 
-·
+ï¿½
 
 depth-first order (that is, choosing an element, documenting its sub-structure, choosing a sub-element,
 
 documenting its sub-structure, etc.);
 
-·
+ï¿½
 
 breadth-first order (for all elements, document their sub-structures, then for all of those elements,
 
 document their sub-structures, etc.); or
 
-·
+ï¿½
 
 some combination of the two based on what the architect knows at the time.
 
@@ -6172,7 +6178,7 @@ View packets from different views
 
 Not only are view packets with a view related to each other, but view packets in different views may be related to each other. Back in the Prologue, when we were discussing styles, we made the point that no system is built from a single stye. We used the three examples repeated below; let's see how the concept of view packets lets us handle each one:
 
-·
+ï¿½
 
 Different "areas" of the system might exhibit different styles. For example, a system might employ a
 
@@ -6201,7 +6207,7 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 ple, neither top-level view packet shows the "whole" system, and each refers to the other as a cross-view sibling.
 
-·
+ï¿½
 
 An element playing a part in one style may itself be composed of elements arranged in another style.
 
@@ -6211,13 +6217,13 @@ be implemented using a pipe-and-filter style. Documentation for this system woul
 
 server view showing the overall system, as well as a pipe-and-filter view documenting that server.
 
-·
+ï¿½
 
 tbd: figure
 
 Here, one view packet in the client-server view will show the overall system; another view packet in the pipeand-filter view will document that server. And the two view packets will be related to each other much as a blowup of a city in an atlas is related to the map of the surrounding state or province. The pipe-and-filter view will not show the whole system, but just the part(s) to which it applies. The whole-system client-server view packet will refer to the server-as-pipe-and-filter view packet (and vice versa) as a cross-view child (parent).
 
-·
+ï¿½
 
 Finally, the same system may simply be seen in different lights, as though you were looking at it through
 
@@ -6229,7 +6235,7 @@ seen embodying a communicating process style. The glasses you choose will determ
 
 you "see." "
 
-·
+ï¿½
 
 tbd: figure [James working on example?]
 
@@ -6267,7 +6273,7 @@ Figure 40: (a) A hypothetical system consists of elements A, B, and C with some 
 Figure 40: (b) Element B in turn consists of elements B1, B2, B3, and B4. Element B1 has the responsibility for handling communication with the "outside" world, which here means outside of B.
 
 Using decomposition refinements in a view carries an obligation to maintain consistency with respect to the relation(s) native to that view. For example, suppose the relation shown in Figure 40(a) is "sends data to". Since element B is shown as receiving as well as sending data, then the refinement of B in Figure 40(b) must show where data can enter and leave B -- in this case, via B1. Section on descriptive completeness also applies.
-Another kind of refinement is called an implementation refinement. This shows the same system (or portion of the system) in which many or all of the elements and relations are replaced by new (typically more implementation-specific) ones. As an example of an implementation refinement, imagine two views of a publish-subscribe system. In one view, components are connected by a single event bus. In the refined view, the bus is replaced by a dispatcher to which the components make explicit calls to achieve their event announcements. Note that by replacing the connector we also have to change the interfaces of the components ­ hence we have implementation refinement. An implementation refinement is a case of a parent-child relation between view packets that belong to different views, where learning more detail about a system takes a reader from one view to another.
+Another kind of refinement is called an implementation refinement. This shows the same system (or portion of the system) in which many or all of the elements and relations are replaced by new (typically more implementation-specific) ones. As an example of an implementation refinement, imagine two views of a publish-subscribe system. In one view, components are connected by a single event bus. In the refined view, the bus is replaced by a dispatcher to which the components make explicit calls to achieve their event announcements. Note that by replacing the connector we also have to change the interfaces of the components ï¿½ hence we have implementation refinement. An implementation refinement is a case of a parent-child relation between view packets that belong to different views, where learning more detail about a system takes a reader from one view to another.
 Definition
 Refinement is the process of gradually disclosing information across a series of descriptions.
 Decomposition refinement is a refinement in which a single element is elaborated to reveal its internal structure, and then recursively refines each member of that internal structure.
@@ -6367,13 +6373,13 @@ What's in a context diagram?
 
 Context diagrams show:
 
-·
+ï¿½
 
 a depiction of the entity (the element or system) whose architecture is being defined, given with a clear
 
 delineation that distinguishes it from those entities external to it
 
-·
+ï¿½
 
 sources and destinations of data or stimuli or commands processed and produced by the entity, shown
 
@@ -6381,7 +6387,7 @@ outside the symbol for the entity being described and expressed in the vocabular
 
 the context diagram is a part.
 
-·
+ï¿½
 
 a key that explains the notation and symbology used in the context diagram, as is the case for all
 
@@ -6389,21 +6395,21 @@ graphical figures.
 
 In addition, a TLCD shows:
 
-·
+ï¿½
 
 an indication of the functions performed by the system
 
-·
+ï¿½
 
 other systems with which the system must interact
 
-·
+ï¿½
 
 each class of user, including end user, system administrator, etc., that interact with the system. For
 
 each class of user, the types of interaction that they have with the system should be shown.
 
-·
+ï¿½
 
 a mission statement (or a pointer to one), which is a short prose description of the problem that the
 
@@ -6415,7 +6421,7 @@ Context diagrams and the other supporting documentation
 
 Context diagrams are a part of the view packet's supporting documentation as defined in Section 10.2. As such, they impart some obligations on the other supporting documentation:
 
-·
+ï¿½
 
 The catalog must explain the entities shown in the diagram. The catalog should include the interfaces
 
@@ -6437,7 +6443,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 7: Advanced Concepts
 
-·
+ï¿½
 
 The view packet's variability guide should account for variability depicted in the context diagram.
 
@@ -6455,7 +6461,7 @@ someone else ("them"). This context diagram assigns some structure to the part w
 
 is beyond the scope of pure context, but often aids understanding and is a common variation.
 
-·
+ï¿½
 
 The view packet's rationale statement should explain the reasons for drawing the boundary where it is.
 
@@ -6545,13 +6551,13 @@ a primary presentation and a definition of the mapping among the constituent vie
 
 So now there are three means at an architect's disposal to establish a mapping between otherwise-stand-alone styles or views:
 
-·
+ï¿½
 
 Document a mapping between separate views. Do this as part of the documentation suite that applies
 
 across views.
 
-·
+ï¿½
 
 Create an overlay that combines the information in what would otherwise have been two separate
 
@@ -6559,7 +6565,7 @@ views. Do this if the relation between the two views is strong, the mapping from
 
 in the other is clear, and documenting them separately would result in too much redundant information.
 
-·
+ï¿½
 
 Create a hybrid style by combining two already-existing styles and creating a style guide that
 
@@ -6725,13 +6731,13 @@ Harry Potter and the Sorcerer's Stone by J. K. Rowling, Arthur A. Levine Books, 
 
 In some situations, decisions about some aspects of an architecture have not yet been made but the options still need to be represented. We distinguish two cases:
 
-·
+ï¿½
 
 Variability: the decisions that are yet to be made will be made by a human (a member of the
 
 development team), prior to system deployment.
 
-·
+ï¿½
 
 Dynamism: the decisions that are yet to be made will be made by the system, itself, during execution.
 
@@ -6739,19 +6745,19 @@ Variability
 
 Variability in an architecture can occur because:
 
-·
+ï¿½
 
 some set of decisions has not yet been made during the design process for a single system but options
 
 have been explored, or
 
-·
+ï¿½
 
 the architecture is the architecture for a family of systems and the option taken will depend on the
 
 specifics of the particular member of the family to be constructed.
 
-·
+ï¿½
 
 the architecture is a framework for a collection of systems and contains explicit places where
 
@@ -6830,8 +6836,8 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 I'm fairly sure my dog could have passed it. One of the questions was about signage. The question showed a sign like this:]
 
-and asked its meaning. The possible answers were (a) Road slippery when wet. (b) Dangerous curve. (c) Reduce speed. (d) Drunk driver ahead. The last choice made me laugh out loud. The attendants supervising the exam smiled, having no doubt which question I was on. But I was laughing because the concept of run-time versus compile-time was no longer a mystery: A slippery road is slippery every time it gets wet, but a drunk driver comes and goes and no static sign (which was installed before the road's "run-time") can be correct all the time. Since that time, I've learned that those two "times" are but a a few of the possible stages of a software system's life at which bindings occur that can affect its behavior. Others of importance include: · Program-write time. This is when most design decisions are frozen into code (including the decisions
-not to bind certain decisions, which are inserted into the code as points of variation to be bound at one of the later times below). · Compile time. This is where variation points that can be understood by a compiler are bound. Through macro facilities such as #ifdef alternate versions of the code can be selected. Parameters (often numbers) can be assigned their value. Compile-time parameters are used to achieve the effect of multiple copies of the source code that differ from each other in slight ways, but without having to maintain actual copies. · Link time. Here, the system build environment looks around for all of the files and external definitions it expects to have available at run-time. Some late-binding parameters are bound at link time, especially those having to do with versions of external files (components) with which the main program expects to interact. · Program start-up time. Often, programs take special actions the first time (or each time) they are powered up, and these actions may be made to vary. A large air traffic control system we know about reads a massive file of adaptation data each time it starts. The data is a rich compendium of directions to the software, telling it the displays and display formats chosen by its human users, what the geography is like where it's been installed, how to divide the local sky up into sectors, and a host of other tailoring information. A less happy example is the worm that, upon finding itself infiltrated into your computer, consults your address book to see where to send itself. · Run-time. Modern infrastructures provide ways to delay binding of many decisions until run-time. Browsers patiently wait while their users obtain necessary plug-ins on demand; middleware oversees the negotiation of compatible interfaces among components written in almost total ignorance of each other. And architectures that we call dynamic change their shape and connectivity. Why is all of this relevant? Because documenting when things can change is as important as documenting what things can change. Take care to consider all the possible times at which you want variabilities to be available, and specify the mechanisms by which the available choices are made. I'd like to discuss this subject further but -- you saw it coming -- I've run out of time.
+and asked its meaning. The possible answers were (a) Road slippery when wet. (b) Dangerous curve. (c) Reduce speed. (d) Drunk driver ahead. The last choice made me laugh out loud. The attendants supervising the exam smiled, having no doubt which question I was on. But I was laughing because the concept of run-time versus compile-time was no longer a mystery: A slippery road is slippery every time it gets wet, but a drunk driver comes and goes and no static sign (which was installed before the road's "run-time") can be correct all the time. Since that time, I've learned that those two "times" are but a a few of the possible stages of a software system's life at which bindings occur that can affect its behavior. Others of importance include: ï¿½ Program-write time. This is when most design decisions are frozen into code (including the decisions
+not to bind certain decisions, which are inserted into the code as points of variation to be bound at one of the later times below). ï¿½ Compile time. This is where variation points that can be understood by a compiler are bound. Through macro facilities such as #ifdef alternate versions of the code can be selected. Parameters (often numbers) can be assigned their value. Compile-time parameters are used to achieve the effect of multiple copies of the source code that differ from each other in slight ways, but without having to maintain actual copies. ï¿½ Link time. Here, the system build environment looks around for all of the files and external definitions it expects to have available at run-time. Some late-binding parameters are bound at link time, especially those having to do with versions of external files (components) with which the main program expects to interact. ï¿½ Program start-up time. Often, programs take special actions the first time (or each time) they are powered up, and these actions may be made to vary. A large air traffic control system we know about reads a massive file of adaptation data each time it starts. The data is a rich compendium of directions to the software, telling it the displays and display formats chosen by its human users, what the geography is like where it's been installed, how to divide the local sky up into sectors, and a host of other tailoring information. A less happy example is the worm that, upon finding itself infiltrated into your computer, consults your address book to see where to send itself. ï¿½ Run-time. Modern infrastructures provide ways to delay binding of many decisions until run-time. Browsers patiently wait while their users obtain necessary plug-ins on demand; middleware oversees the negotiation of compatible interfaces among components written in almost total ignorance of each other. And architectures that we call dynamic change their shape and connectivity. Why is all of this relevant? Because documenting when things can change is as important as documenting what things can change. Take care to consider all the possible times at which you want variabilities to be available, and specify the mechanisms by which the available choices are made. I'd like to discuss this subject further but -- you saw it coming -- I've run out of time.
 
 Copyright 2001 Addison Wesley, all rights reserved 196
 
@@ -6882,9 +6888,9 @@ Chapter 7: Advanced Concepts
 <insert interpreter pattern here>
 
 Figure 50: Interpreter pattern
-Documenting a style-pattern is similar to documenting a style, except that some of the elements may be placeholders, rather than true instances. Also, there may be variations in the number of certain elements. In the example above, there are four placeholders ­ namely the four components. The architect would have to provide descriptions of specific components to indicate how the style-pattern is instantiated. When documenting a style-pattern there are two important things to keep in mind. First, be sure to indicate that the description is a pattern, and not a specific style instance. While it may be obvious to the architect that the description requires instantiation, it may not be to others. Second, be sure to distinguish between the parts of a style-pattern that are variable, and those that are fixed. With a style-pattern there are also other forms of documentation that typically are included, such as assumed context of use, implementation strategies, problem solved by the style-pattern, etc. A number of books treat patterns in detail, and we would refer the reader to these for more information. [Gang of 4 book, Johnson's style book, refs tbd]
+Documenting a style-pattern is similar to documenting a style, except that some of the elements may be placeholders, rather than true instances. Also, there may be variations in the number of certain elements. In the example above, there are four placeholders ï¿½ namely the four components. The architect would have to provide descriptions of specific components to indicate how the style-pattern is instantiated. When documenting a style-pattern there are two important things to keep in mind. First, be sure to indicate that the description is a pattern, and not a specific style instance. While it may be obvious to the architect that the description requires instantiation, it may not be to others. Second, be sure to distinguish between the parts of a style-pattern that are variable, and those that are fixed. With a style-pattern there are also other forms of documentation that typically are included, such as assumed context of use, implementation strategies, problem solved by the style-pattern, etc. A number of books treat patterns in detail, and we would refer the reader to these for more information. [Gang of 4 book, Johnson's style book, refs tbd]
 7.6 Glossary
-· · ·
+ï¿½ ï¿½ ï¿½
 7.7 Summary checklist
 
 Copyright 2001 Addison Wesley, all rights reserved 199
@@ -6921,15 +6927,15 @@ Documentation of the behavioral aspects of a view requires that a "time line" of
 
 Some system attributes can be analyzed entirely using a system's structural description. For example, the existence of anomalies, such as required inputs for which there is no source available, can be detected in a manner similar to the def-use analysis performed by compilers. However, reasoning about properties such as a system's potential to deadlock or a system's ability to complete a task in the required amount of time requires that the architectural description contain information about both the behavior of the elements and constraints on the interactions among them. Behavioral description adds information that reveals:
 
-·
+ï¿½
 
 Ordering of interactions among the elements
 
-·
+ï¿½
 
 Opportunities for concurrency
 
-·
+ï¿½
 
 Time dependencies of interactions (at a specific time, after a period of time)
 
@@ -6949,21 +6955,21 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 Architects document behavior to show how an element behaves when stimulated in a particular way, or to show how an ensemble of elements (up to and including the whole system) react with each other. In an architectural documentation package, behavior can be shown in a number of places, depending on what exactly is being shown:
 
-·
+ï¿½
 
 In a view's supporting documentation:
 
-­ behavior has its own section in the element catalog. Here, the behavior of the element is documented.
+ï¿½ behavior has its own section in the element catalog. Here, the behavior of the element is documented.
 
-­ behavior can be part of an element's interface documentation. The semantics of a resource on an element's interface can include the element's (externally-visible) behavior that occurs as a result of invoking the resource. Or, in the usage guide section of an interface document, behavior can be
+ï¿½ behavior can be part of an element's interface documentation. The semantics of a resource on an element's interface can include the element's (externally-visible) behavior that occurs as a result of invoking the resource. Or, in the usage guide section of an interface document, behavior can be
 used to explain the effects of a particular usage, that is, a particular sequence of resources utilized. Finally, the architect may choose to specify behavior as part of the implementation notes for an interface, to constrain the developers to implement the interface in a particular fashion.
 
-­ behavior can be used to fill in the design background section, which includes results of analysis. Behavior is often a basis for analysis, and the behaviors that were used to analyze the system for correctness or other quality attributes can be recorded here.
+ï¿½ behavior can be used to fill in the design background section, which includes results of analysis. Behavior is often a basis for analysis, and the behaviors that were used to analyze the system for correctness or other quality attributes can be recorded here.
 
 For more information...
 Supporting documentation for a view is described in Section 10.1 ("Documenting a view"). Interface specifications, a particular kind of supporting documentation, are described in Chapter 11.
 
-·
+ï¿½
 
 In the documentation that applies across views, the rationale for why the architecture satisfies its
 
@@ -7055,15 +7061,15 @@ If there are activities that are specified to take place at specific times or af
 
 Any notation that supports documenting system behavior must include constructs for describing sequences of interactions. Since a sequence is an ordering in time it should be possible to show time-based dependencies. Sequences of interactions are displayed as a set of stimuli and the triggered activities ordered into a sequence by some means (e.g. a line, numbering, ordering) from top to bottom. Examples of stimuli are the passage of time and the arrival of an event. Examples, of activities are compute and wait. Notation that shows time as a point (e.g. time out) and time as an interval (e.g. wait for 10 sec) are normally also provided. As a description of behavior implicitly refers to structure and uses structure, the structural elements of a view are an essential part of the notation. Therefore, in most behavior documentation you can find representations of:
 
-·
+ï¿½
 
 Stimulus and activity
 
-·
+ï¿½
 
 Ordering of interactions
 
-·
+ï¿½
 
 Structural elements with some relationships the behavior maps to
 
@@ -7075,7 +7081,7 @@ Chapter 8: Documenting Behavior
 
 There are two different groups of behavioral documentation available, and the notations to support documentation of behavior tend to fall into one of two corresponding camps:
 
-·
+ï¿½
 
 Static views. One type of documentation, often state based, shows the complete behavior of a
 
@@ -7095,7 +7101,7 @@ description is required as is the case for performing a simulation or when apply
 
 techniques.
 
-·
+ï¿½
 
 Traces. Another type of documentation shows traces (e.g. interaction diagrams) through the structural
 
@@ -7250,7 +7256,7 @@ The developers of ROOM were particularly interested in providing a way to suppor
 All of this capability to create more precise descriptions requires more effort from the modeler and made it necessary to tradeoff some of the expressive power of statecharts.
 
 SDL
-Specification and description language (SDL) is an object-oriented, formal language defined by The International Telecommunications Union­Telecommunications Standardization Sector (ITU­T). The language is intended for the specification of complex, event-driven, real-time, and interactive applications involving many concurrent activities that communicate using discrete signals. The most common application is in the telephony area.
+Specification and description language (SDL) is an object-oriented, formal language defined by The International Telecommunications Unionï¿½Telecommunications Standardization Sector (ITUï¿½T). The language is intended for the specification of complex, event-driven, real-time, and interactive applications involving many concurrent activities that communicate using discrete signals. The most common application is in the telephony area.
 SDL is an accessible language that can be used in an environment that is constructed of tools that support documenting, analysis, and generation of systems. Its design was driven by the requirements of developing communication systems, thus is particularly useful to you if that is the type of system you are developing. The strength of SDL is in describing what happens within a system. If the focus is on interaction between systems, then a message-oriented representation such as message sequence charts is more suitable. SDL specifica-
 
 Copyright 2001 Addison Wesley, all rights reserved 211
@@ -7370,7 +7376,7 @@ Chapter 8: Documenting Behavior
 
 Different techniques emphasize different aspects of behavior:
 
-·
+ï¿½
 
 Message-oriented techniques focus on describing the message exchange between instances. They
 
@@ -7382,7 +7388,7 @@ element and what the reactions in terms of outgoing messages have to be. Interna
 
 element(s) are hidden.
 
-·
+ï¿½
 
 Component-oriented techniques focus on describing which behavioral features an element has to have
 
@@ -7392,7 +7398,7 @@ how the interfaces of the elements interact with each other in order to fulfill 
 
 Sequences of interactions can be shown. Internal features of the element(s) are hidden.
 
-·
+ï¿½
 
 Activity-oriented techniques focus on describing which activities have to be performed in order to
 
@@ -7406,7 +7412,7 @@ However, there is an assumption that there are some means outside this specific 
 
 technique that allows assigning the described activities to elements.
 
-·
+ï¿½
 
 Flow-oriented techniques focus on describing the sequencing of responsibilities of elements for a
 
@@ -7812,8 +7818,6 @@ State
 
 0
 
-
-
 Static Activity
 
 -
@@ -7958,59 +7962,59 @@ This list of pointers below is alphabetized by diagram type for quick reference.
 
 Collaboration Diagrams
 
-·
+ï¿½
 
 OMG web site: http://www.omg.org/uml/
 
 Message Sequence Charts
 
-·
+ï¿½
 
 International Telecommunication Union web site: http://www.itu.int
 
-·
+ï¿½
 
 SDL Forum Society's website: http://www.sdl-forum.org/
 
 MetaH
 
-·
+ï¿½
 
 Honeywell site for MetaH: http://www.htc.honeywell.com/metah/
 
-·
+ï¿½
 
 Honeywell site for ControlH and MetaH: http://www.htc.honeywell.com/projects/dssa/dssa_tools.html
 
 Rapide
 
-·
+ï¿½
 
 The Rapide site at Stanford University: http://pavg.stanford.edu/rapide/
 
-·
+ï¿½
 
 The Rapide on-line tutorial: http://pavg.stanford.edu/rapide/examples/teaching/dtp/index.html
 
 Sequence Diagrams
 
-·
+ï¿½
 
 OMG web site: http://www.omg.org/uml/
 
 SDL
 
-·
+ï¿½
 
 SDL Forum Society's website: http://www.sdl-forum.org/
 
-·
+ï¿½
 
 International Telecommunication Union web site: http://www.itu.int
 
 Statecharts
 
-·
+ï¿½
 
 International Telecommunication Union web site: http://www.itu.int
 
@@ -8020,11 +8024,11 @@ Use Case Maps website including manuscript of seminal book: http://www.usecasema
 
 Z:
 
-·
+ï¿½
 
 Mike Spivey's book: http://spivey.oriel.ox.ac.uk/~mike/zrm/
 
-·
+ï¿½
 
 A collection of pointers: http://archive.comlab.ox.ac.uk/z.html
 
@@ -8092,19 +8096,19 @@ The reality is that all projects make cost-benefit tradeoffs to pack all the wor
 
 Understanding which views to produce at what time and to what level of detail can only be answered in the concrete context of a project. Only if you know
 
-·
+ï¿½
 
 what people you will have (which skills are available)
 
-·
+ï¿½
 
 what budget is on hand
 
-·
+ï¿½
 
 what the schedule is, and
 
-·
+ï¿½
 
 who the important stakeholders are
 
@@ -8129,7 +8133,7 @@ Chapter 13 addresses the documentation review process.
 
 To choose the appropriate set of views means identifying the stakeholders and understanding each one's information needs. The set of stakeholders will be organization- and project-specific, but the following list will serve as a starting point for discussion.
 
-·
+ï¿½
 
 A project manager. This person will care about schedule, resource assignments, and perhaps
 
@@ -8151,18 +8155,18 @@ interested in monitoring it.
 
 A project manager, then, will likely be interested in:
 
-­ A top level context diagram
+ï¿½ A top level context diagram
 
-­ A uses or allowed-to-use view
-­ A decomposition or work assignment view
-­ A deployment view
+ï¿½ A uses or allowed-to-use view
+ï¿½ A decomposition or work assignment view
+ï¿½ A deployment view
 A member of the development team. For a developer, the architecture provides marching orders, laying down constraints on how that person does his or her job. Sometimes a developer is given responsibility for an element he or she did not implement -- for example, a commercial off-the-shelf product purchased on the open market. Someone still has to be responsible for that element, to make sure it performs as advertised, and to tailor it as necessary. This person will want to know the following:
 
-­ what the general idea is behind the system. While the best answer to this question lies in the realm of requirements and not architecture, a top-level context diagram can go a long way to answering that question.
+ï¿½ what the general idea is behind the system. While the best answer to this question lies in the realm of requirements and not architecture, a top-level context diagram can go a long way to answering that question.
 
-­ which piece the developer has been assigned (e.g., where should assigned functionality be implemented)
+ï¿½ which piece the developer has been assigned (e.g., where should assigned functionality be implemented)
 
-­ the details of the assignd piece ­ the pieces with which the assigned part interfaces, and what those interfaces are
+ï¿½ the details of the assignd piece ï¿½ the pieces with which the assigned part interfaces, and what those interfaces are
 
 Copyright 2001 Addison Wesley, all rights reserved 234
 
@@ -8170,29 +8174,29 @@ Draft for review: Do not circulate without permission
 
 Chapter 9: Choosing the Views
 
-­ the code assets the developer can make use of
+ï¿½ the code assets the developer can make use of
 
-­ the constraints (quality attributes, legacy systems/interfaces, budget, etc.) that must be met
+ï¿½ the constraints (quality attributes, legacy systems/interfaces, budget, etc.) that must be met
 
 A developer, then, is likely to want to see:
 
-­ a context diagram containing the module(s) he or she has been assigned
+ï¿½ a context diagram containing the module(s) he or she has been assigned
 
-­ an allowed-to-use or layered view
+ï¿½ an allowed-to-use or layered view
 
-­ a component-and-connector view showing the component(s) the developer is working on, and how they interact with other components at run-time.
+ï¿½ a component-and-connector view showing the component(s) the developer is working on, and how they interact with other components at run-time.
 
-­ a mapping between views showing the module(s) as components
+ï¿½ a mapping between views showing the module(s) as components
 
-­ the interface(s) of the developer's element(s) and the interfaces of those elements with which they interact
+ï¿½ the interface(s) of the developer's element(s) and the interfaces of those elements with which they interact
 
-­ an implementation view to find out where the assets he or she produces must go
+ï¿½ an implementation view to find out where the assets he or she produces must go
 
-­ a generalization view showing other classes and objects that exist which the developer can employ to accomplish his or her work assignment
+ï¿½ a generalization view showing other classes and objects that exist which the developer can employ to accomplish his or her work assignment
 
-­ the documentation that applies across views, which includes a system overview.
+ï¿½ the documentation that applies across views, which includes a system overview.
 
-·
+ï¿½
 
 Testers and integrators. For these stakeholders, the architecture specifies the correct black-box
 
@@ -8206,7 +8210,7 @@ to see collections of interfaces and usage guides, behavior specifications, and 
 
 work with incremental subsets.
 
-·
+ï¿½
 
 Designers of other systems with which this one must interoperate. For these people, the architecture
 
@@ -8214,11 +8218,11 @@ defines the set of operations provided and required, and the protocols for their
 
 stakeholders will want to see
 
-­ a top-level context diagram
+ï¿½ a top-level context diagram
 
-­ interface documents for those components with which their system will interact.
+ï¿½ interface documents for those components with which their system will interact.
 
-·
+ï¿½
 
 Maintainers. For maintainers, architecture is a starting point for maintenance activities, revealing the
 
@@ -8234,7 +8238,7 @@ change. They will also want to see design rationale that will give them the bene
 
 original thinking (and save them time by letting them see already-discarded design alternatives).
 
-·
+ï¿½
 
 Product line application builder. A software product line is a set of software-intensive systems
 
@@ -8252,7 +8256,7 @@ elements, to facilitate tailoring. After that, this person needs to see largely 
 
 integrator.
 
-·
+ï¿½
 
 The customer. If the development is a specially-commissioned project, the customer is the
 
@@ -8270,15 +8274,15 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 behavioral requirements. The customer will also have to support the environment in which the system will run, and will want to know that the system will interoperate with other systems in the customer's realm. The customer, therefore, may want to see:
 
-­ a work assignment view, no doubt filtered to preserve the development organization's confidential information
+ï¿½ a work assignment view, no doubt filtered to preserve the development organization's confidential information
 
-­ a deployment view
+ï¿½ a deployment view
 
-­ analysis results
+ï¿½ analysis results
 
-­ a top-level context diagram in one or more C&C views
+ï¿½ a top-level context diagram in one or more C&C views
 
-·
+ï¿½
 
 End users. In a very real sense, end users do not need to see the architecture; it is, after all, largely
 
@@ -8292,13 +8296,13 @@ discrepancies that would otherwise have gone unnoticed until deployment. To serv
 
 end user is likely to be interested in:
 
-­ a component-and-connector view emphasizing flow of control and transformation of data, to see how inputs are transformed into outputs
+ï¿½ a component-and-connector view emphasizing flow of control and transformation of data, to see how inputs are transformed into outputs
 
-­ a deployment view to understand how functionality is allocated to the platforms to which the users are exposed
+ï¿½ a deployment view to understand how functionality is allocated to the platforms to which the users are exposed
 
-­ analysis results that deal with properties of interest to them, such as performance or reliability.
+ï¿½ analysis results that deal with properties of interest to them, such as performance or reliability.
 
-·
+ï¿½
 
 Analyst. For those interested in the ability of the design to meet the system's quality objectives, the
 
@@ -8317,17 +8321,17 @@ information about resource consumption, scheduling policies, dependencies, and s
 Recently, architecture evaluation and analysis methods have emerged as repeatable, robust, low-cost ways to make sure that an architecture will deliver the required attributes before the project commits to
 implementation based on it. The Architecture Tradeoff Analysis Method (ATAM) exemplifies this new breed of methods. The method relies on suitable architecture documentation to do its work, and while it does not prescribe specific documents that are required, it does offer general guidelines. ATAM practitioners request
 
-­ a view in the module viewtype family,
+ï¿½ a view in the module viewtype family,
 
-­ a deployment view
+ï¿½ a deployment view
 
-­ a process view
+ï¿½ a process view
 
-­ views showing any architectural styles employed, which would map to component-and-connector views in our terminology.
+ï¿½ views showing any architectural styles employed, which would map to component-and-connector views in our terminology.
 
 In addition to generalized analysis, architectures can be evaluated for the following (and other) quality attributes, each of which suggests certain documentation obligations:
 
-­ Performance. To analyze for performance, performance engineers build models that calculate how
+ï¿½ Performance. To analyze for performance, performance engineers build models that calculate how
 long things take. Plan to provide a process view to support performance modeling. In addition, performance engineers are likely to want to see a deployment view, behavioral specifications, and those C&C views that help to track execution.
 
 Copyright 2001 Addison Wesley, all rights reserved 236
@@ -8336,22 +8340,22 @@ Draft for review: Do not circulate without permission
 
 Chapter 9: Choosing the Views
 
-­ Accuracy. Accuracy of the computed result is a critical quality in many applications, including numerical computations, the simulation of complex physical processes, and many embedded systems in which outputs are produced that cause actions to take place in the real world. To analyze
+ï¿½ Accuracy. Accuracy of the computed result is a critical quality in many applications, including numerical computations, the simulation of complex physical processes, and many embedded systems in which outputs are produced that cause actions to take place in the real world. To analyze
 for accuracy, a C&C view showing flow and transformation of data is often useful, because it shows the path that inputs take on their way to becoming outputs, and help identify places where numerical computations can degrade accuracy.
 
-­ Modifiability. To gage the impact of an expected change, a decomposition view is the most helpul. A uses view will show dependencies and will help with impact analysis. But to reason about the runtime effects of a proposed change requires a C&C view as well, such as a communicating process view to make sure that the change didn't introduce deadlock.
+ï¿½ Modifiability. To gage the impact of an expected change, a decomposition view is the most helpul. A uses view will show dependencies and will help with impact analysis. But to reason about the runtime effects of a proposed change requires a C&C view as well, such as a communicating process view to make sure that the change didn't introduce deadlock.
 
-­ Correct behavior. Behavior specifications, not surprisingly, are most helpful here.
+ï¿½ Correct behavior. Behavior specifications, not surprisingly, are most helpful here.
 
-­ Security. A deployment view is used to see outside connections, as are context diagrams. Expect to provide a C&C view showing data flow is used to track where information goes and is exposed, a module decomposition view to find where authentication and integrity concerns are handled, and a uses view to show how privileges are transferred. Denial of service has to do with performance,
+ï¿½ Security. A deployment view is used to see outside connections, as are context diagrams. Expect to provide a C&C view showing data flow is used to track where information goes and is exposed, a module decomposition view to find where authentication and integrity concerns are handled, and a uses view to show how privileges are transferred. Denial of service has to do with performance,
 and so the security analyst will want to see the same information as the performance analyst.
 
-­ Availability. A C&C process view will help analyze for deadlock, as well as synchronization and data
+ï¿½ Availability. A C&C process view will help analyze for deadlock, as well as synchronization and data
 consistency problems. In addition, C&C views in general show how redundancy, fail-over, and other availability mechanisms kick in as needed. A deployment view is used to show break points and back-ups. Reliability numbers for a module might be defined as a property in a module view, which is added to the mix.
 
-­ Usability. A decomposition view will enable anlysis of system state information presented to the uesr, help with determination of data reuse, assign responsibility for usability-related operations such cut-and-paste and undo, and other things. A C&C communicating process view will enable analysis of cancellation possibilities, failure recovery, etc.
+ï¿½ Usability. A decomposition view will enable anlysis of system state information presented to the uesr, help with determination of data reuse, assign responsibility for usability-related operations such cut-and-paste and undo, and other things. A C&C communicating process view will enable analysis of cancellation possibilities, failure recovery, etc.
 
-·
+ï¿½
 
 New stakeholder. Finally, you should plan to have documentation available for someone new to the
 
@@ -8363,7 +8367,7 @@ general they will want to see the same kind of information as their counterparts
 
 with the system, but they will want to see it in less detail.
 
-·
+ï¿½
 
 Future architect. Remember from the Prologue that the most avid reader of architectural
 
@@ -8510,8 +8514,8 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-These new scenarios are then prioritized via a facilitated voting process involving the entire stakeholder group. 8. Analyze architectural approaches. This step reiterates the activities of Step 6, but using the highly ranked scenarios from Step 7. This analysis may uncover additional architectural approaches, risks, sensitivity points, and tradeoff points which are then documented. 9. Present results. Finally, the collected information from the ATAM needs to be summarized and presented back to the stakeholders. This presentation typically takes the form of a verbal report accompanied by slides but might, in addition, be accompanied by a more complete written report delivered subsequent to the ATAM. In this presentation the evaluation leader recapitulates all the information collected in the steps of the method. ATAM outputs are: · the architectural approaches documented · the quality attribute utility tree, including the scenarios and their prioritization. · the set of attribute-based analysis questions · the mapping from approaches to achievement of quality attributes · the risks and non-risks discovered, and how the risks might undermine the architecture's business driv-
-ers · the sensitivity points and tradeoff points found A savvy architect can and should turn these outputs into part of the project's documentation legacy, which brings us full circle: The effort to prepare documentation to support an evaluation is paid back in full. Not only is the architecture validated (or weaknesses discovered in time for repair) but these outputs can be incorporated into the documentation as a superb part of the design rationale and analysis results.
+These new scenarios are then prioritized via a facilitated voting process involving the entire stakeholder group. 8. Analyze architectural approaches. This step reiterates the activities of Step 6, but using the highly ranked scenarios from Step 7. This analysis may uncover additional architectural approaches, risks, sensitivity points, and tradeoff points which are then documented. 9. Present results. Finally, the collected information from the ATAM needs to be summarized and presented back to the stakeholders. This presentation typically takes the form of a verbal report accompanied by slides but might, in addition, be accompanied by a more complete written report delivered subsequent to the ATAM. In this presentation the evaluation leader recapitulates all the information collected in the steps of the method. ATAM outputs are: ï¿½ the architectural approaches documented ï¿½ the quality attribute utility tree, including the scenarios and their prioritization. ï¿½ the set of attribute-based analysis questions ï¿½ the mapping from approaches to achievement of quality attributes ï¿½ the risks and non-risks discovered, and how the risks might undermine the architecture's business driv-
+ers ï¿½ the sensitivity points and tradeoff points found A savvy architect can and should turn these outputs into part of the project's documentation legacy, which brings us full circle: The effort to prepare documentation to support an evaluation is paid back in full. Not only is the architecture validated (or weaknesses discovered in time for repair) but these outputs can be incorporated into the documentation as a superb part of the design rationale and analysis results.
 || END SIDEBAR/CALLOUT on ATAM
 
 Advice
@@ -8562,7 +8566,7 @@ tell nasa story. Manager wanted arch rep that's "atam-able" and "cbam-able". The
 tbd
 
 9.5 Glossary
-· · ·
+ï¿½ ï¿½ ï¿½
 
 9.6 Summary checklist
 
@@ -8688,11 +8692,11 @@ Chapter 9 ("Choosing the Views") will present guidance for selecting the views o
 
 Observation
 "Presentation is also important"
-Throughout this book we focus on telling you what to document. We do not spend much, if any, time on how it should look. This is not because form is not important. Just as the best designed algorithm can be made to run slowly by insufficient attention to detail during coding, so the best designed documentation can be made difficult to read by insufficient attention to presentation details. By presentation details, I mean items such as style of writing, font types, types and consistency of visual emphasis and the segmenting of information. We have not spent time on these issues not because we do not think they are important. If you spent time at one of our writing meetings, you would think they are more important, sometimes, than the content. Presentation details are just not our field of expertise. Universities offer Master's degrees in Technical Communication, in Information Design and in other fields related to presentation of material. We have been busy being software engineers and architects and have never been trained in presentation issues. Having denied expertise, however, I am now free to give some rules of thumb that you may feel free to adopt or ignore. · Adopt a style guide for the documentation. The style guide will specify items such as fonts, numbering
-schemes, such as 1.1.1.1.1a, conventions with respect to acronyms, captions for figures, and other such details. The style guide should also describe how to use the visual conventions discussed in the next several points. · Use visually distinct forms for emphasis. Word processors offer many different techniques for empha-
+Throughout this book we focus on telling you what to document. We do not spend much, if any, time on how it should look. This is not because form is not important. Just as the best designed algorithm can be made to run slowly by insufficient attention to detail during coding, so the best designed documentation can be made difficult to read by insufficient attention to presentation details. By presentation details, I mean items such as style of writing, font types, types and consistency of visual emphasis and the segmenting of information. We have not spent time on these issues not because we do not think they are important. If you spent time at one of our writing meetings, you would think they are more important, sometimes, than the content. Presentation details are just not our field of expertise. Universities offer Master's degrees in Technical Communication, in Information Design and in other fields related to presentation of material. We have been busy being software engineers and architects and have never been trained in presentation issues. Having denied expertise, however, I am now free to give some rules of thumb that you may feel free to adopt or ignore. ï¿½ Adopt a style guide for the documentation. The style guide will specify items such as fonts, numbering
+schemes, such as 1.1.1.1.1a, conventions with respect to acronyms, captions for figures, and other such details. The style guide should also describe how to use the visual conventions discussed in the next several points. ï¿½ Use visually distinct forms for emphasis. Word processors offer many different techniques for empha-
 sis. Words can be bold, italic, large font, or underlined. Using these forms makes some words more
-important than others. · Be consistent in use of visual styles. Use one visual style for one purpose and do not mix purposes.
-That is, the first use of a word might be italicized, a critical thought might be expressed in bold but do not use the same style for both purposes and do not mix styles. · Do not go overboard with visuals. It is usually sufficient to use one form of visual emphasis without combing them. Is bold less arresting to you than underlined-bold? Probably not. · Separate different types of ideas with different visual backgrounds. In this book, we attempted to put the main thread in the body of the book with ancillary information as sidebars. We also made the sidebars visually distinct so that you would know at a glance whether what you were reading was in the main thread or an ancillary thread. The key ideas with respect to presentation are: · consistency. Use the same visual language to convey the same idea. · simplicity. Do not try to overwhelm the user with visuals. You are documenting a computer system not writing an interactive novel. The goal of the architectural documentation, as we have stressed during this book, is to communicate the basic concepts of the system clearly to the reader. Using simple and consistent visual and stylistic rules are an important aspect to achieving this goal.
+important than others. ï¿½ Be consistent in use of visual styles. Use one visual style for one purpose and do not mix purposes.
+That is, the first use of a word might be italicized, a critical thought might be expressed in bold but do not use the same style for both purposes and do not mix styles. ï¿½ Do not go overboard with visuals. It is usually sufficient to use one form of visual emphasis without combing them. Is bold less arresting to you than underlined-bold? Probably not. ï¿½ Separate different types of ideas with different visual backgrounds. In this book, we attempted to put the main thread in the body of the book with ancillary information as sidebars. We also made the sidebars visually distinct so that you would know at a glance whether what you were reading was in the main thread or an ancillary thread. The key ideas with respect to presentation are: ï¿½ consistency. Use the same visual language to convey the same idea. ï¿½ simplicity. Do not try to overwhelm the user with visuals. You are documenting a computer system not writing an interactive novel. The goal of the architectural documentation, as we have stressed during this book, is to communicate the basic concepts of the system clearly to the reader. Using simple and consistent visual and stylistic rules are an important aspect to achieving this goal.
 
 Copyright 2001 Addison Wesley, all rights reserved 248
 
@@ -8734,11 +8738,11 @@ Figure 65: Documenting information across views consists of how-what-why: how th
 
 Every suite of architecture documentation needs an introductory piece to explain its organization to a novice stakeholder, and to help that stakeholder access the information he or she is most interested in. There are two kinds of "how" information to help an architecture stakeholder:
 
-·
+ï¿½
 
 a view template
 
-·
+ï¿½
 
 a view catalog
 
@@ -8776,15 +8780,15 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 a list organized by property types
 
-·
+ï¿½
 
 a list organized by element types
 
-·
+ï¿½
 
 a list organized by relation types
 
@@ -8799,9 +8803,9 @@ element types: layers
 relation types: allowed to use
 property types: cohesion, partitioning
 3. What the view is for Stakeholders who might find this view useful:
-­ Member of development team ­ Tester, integrator ­ Maintainer ­ Product line application (family member) builder ­ Analyst ­ New stakeholder looking for familiarization ­ Future architect Questions answerable by information in this view:
-­ What elements is each particular element allowed to use? ­ What are the virtual machines provided for in the architecture? ­ What are the interfaces of each layer, and how do they relate to the interfaces
-of the elements they contain? ­ If an element is in a particular subset of the system, what other elements must
+ï¿½ Member of development team ï¿½ Tester, integrator ï¿½ Maintainer ï¿½ Product line application (family member) builder ï¿½ Analyst ï¿½ New stakeholder looking for familiarization ï¿½ Future architect Questions answerable by information in this view:
+ï¿½ What elements is each particular element allowed to use? ï¿½ What are the virtual machines provided for in the architecture? ï¿½ What are the interfaces of each layer, and how do they relate to the interfaces
+of the elements they contain? ï¿½ If an element is in a particular subset of the system, what other elements must
 also be in that subset? 4. Management information
 owner: Documentation master
 latest version: V5.4.2, 07january2002 11:45:07 AM
@@ -8824,7 +8828,7 @@ And as we discussed in Section 7.1 ("Chunking information: View Packets, Refinem
 
 Advice
 Documenting the mapping between views
-To document a mapping from one view to another, use a table that lists the elements of the first view in some convenient look-up order. For each element, · list the element or elements of the second view that correspond to it · indicate whether the correspondence is partial or complete
+To document a mapping from one view to another, use a table that lists the elements of the first view in some convenient look-up order. For each element, ï¿½ list the element or elements of the second view that correspond to it ï¿½ indicate whether the correspondence is partial or complete
 
 Copyright 2001 Addison Wesley, all rights reserved 253
 
@@ -8834,8 +8838,8 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-· if the element of the first view has a port or interface, list any port or interface or module in the second view that corresponds to it
-The table itself should be annotated or introduced with an explanation of the mapping that it depicts; that is, what is the correspondence that is being shown between the elements across the two views? Examples include "is implemented by" (for mapping from a component-and-connector view to a module view), "implements" (for mapping from a module view to a component-and-connector view), "included in" (for mapping from a decomposition view to a layers view), and many others. For which views should you provide a mapping? The answer, of course, is "it depends," but begin with these rules of thumb: · Insure at least one mapping between a module view and a component-and-connector view · If your system uses a layered view, make sure it is the target of at least one mapping. · If your system employs more than one module view, map them to each other. · If your system employs more than one component-and-connector view, map them to each other.
+ï¿½ if the element of the first view has a port or interface, list any port or interface or module in the second view that corresponds to it
+The table itself should be annotated or introduced with an explanation of the mapping that it depicts; that is, what is the correspondence that is being shown between the elements across the two views? Examples include "is implemented by" (for mapping from a component-and-connector view to a module view), "implements" (for mapping from a module view to a component-and-connector view), "included in" (for mapping from a decomposition view to a layers view), and many others. For which views should you provide a mapping? The answer, of course, is "it depends," but begin with these rules of thumb: ï¿½ Insure at least one mapping between a module view and a component-and-connector view ï¿½ If your system uses a layered view, make sure it is the target of at least one mapping. ï¿½ If your system employs more than one module view, map them to each other. ï¿½ If your system employs more than one component-and-connector view, map them to each other.
 || END SIDEBAR/CALLOUT Advice on documenting mapping
 
 Element list
@@ -8848,9 +8852,9 @@ Observation
 
 "A glossary would have helped"
 
-A colleague of mine told me recently about an architecture review he attended for a distributed military command-and-control system, a major function of which was the tracking of ships at sea. "A major topic of interest was how the common operational picture handled tracks" he wrote. "But it was clear that the word `track' was hopelessly overloaded. The person making the presentation caused some of this confusion by using the word track to mean the following: · the actual location of a target as determined by a single radar on a single mobile platform; · the actual location of a vessel as determined by fusing signals from multiple sensors on board a mobile
-platform; · the actual location of a vessel as determined by fusing tracks from different mobile platforms at a
-ground station; · the actual location of a vessel as determined by satellite observations; · the estimated location of a vessel that has recently moved out of sensor range; · other slightly different variations. The age, accuracy, and implicit history of each type of track mentioned above is different. The person making the presentation was knowledgeable and easily changed context to answer questions as necessary. But the result was that people left the meeting with different impressions of the details of the system's
+A colleague of mine told me recently about an architecture review he attended for a distributed military command-and-control system, a major function of which was the tracking of ships at sea. "A major topic of interest was how the common operational picture handled tracks" he wrote. "But it was clear that the word `track' was hopelessly overloaded. The person making the presentation caused some of this confusion by using the word track to mean the following: ï¿½ the actual location of a target as determined by a single radar on a single mobile platform; ï¿½ the actual location of a vessel as determined by fusing signals from multiple sensors on board a mobile
+platform; ï¿½ the actual location of a vessel as determined by fusing tracks from different mobile platforms at a
+ground station; ï¿½ the actual location of a vessel as determined by satellite observations; ï¿½ the estimated location of a vessel that has recently moved out of sensor range; ï¿½ other slightly different variations. The age, accuracy, and implicit history of each type of track mentioned above is different. The person making the presentation was knowledgeable and easily changed context to answer questions as necessary. But the result was that people left the meeting with different impressions of the details of the system's
 
 Copyright 2001 Addison Wesley, all rights reserved 254
 
@@ -8868,21 +8872,21 @@ Having three places in the documentation package for rationale does indeed signa
 
 Cross-view rationale explains how the overall architecture is in fact a solution to its requirements. One might use the rationale to explain:
 
-·
+ï¿½
 
 the implications of a design choice on meeting the requirements or satisfying constraints
 
-·
+ï¿½
 
 the implications on the architecture when adding a foreseen new requirement or changing an existing
 
 one
 
-·
+ï¿½
 
 the constraints on the developer in implementing the solution
 
-·
+ï¿½
 
 decisions alternatives that were rejected
 
@@ -8894,7 +8898,7 @@ Advice
 
 Document the rationale behind a design decision if:
 
-· the design team spent significant time evaluating options before making a decision
+ï¿½ the design team spent significant time evaluating options before making a decision
 
 Copyright 2001 Addison Wesley, all rights reserved 255
 
@@ -8904,8 +8908,8 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-· the decision is critical to the achievement of some requirement/goal · the decision seems to not make sense at first blush, but becomes clear when more context is consid-
-ered · when someone has asked, "Why did you do that?" on several occasions · the issue is confusing to new team members · the decision has a widespread affect that will be difficult to undo · you think it's cheaper to capture it now than not capturing it will be later
+ï¿½ the decision is critical to the achievement of some requirement/goal ï¿½ the decision seems to not make sense at first blush, but becomes clear when more context is consid-
+ered ï¿½ when someone has asked, "Why did you do that?" on several occasions ï¿½ the issue is confusing to new team members ï¿½ the decision has a widespread affect that will be difficult to undo ï¿½ you think it's cheaper to capture it now than not capturing it will be later
 || END SIDEBAR/CALLOUT advice on what decisions to explain with rationale
 
 To understand an architecture it is necessary to understand the constraints the architecture is under. One purpose of rationale is to explain those constraints, so that design decisions may be understood in their light.
@@ -8967,7 +8971,7 @@ Draft for review: Do not circulate without permission
 Chapter 10: Building the Documentation Package How strategies are used is documented in a table linking them to design decisions. Solutions are revisited and may change as issues are resolved. There will be conflicts among the issues and the resulting tradeoffs need to be made and documented. Linking factors to issues to design decisions in this way provides traceability and documents the rationale for the architecture design. -- RN Ref: C. Hofmeister, R. Nord, D. Soni. Applied Software Architecture, Addison-Wesley, 2000.
 || END SIDEBAR/CALLOUT "global analysis" sidebar
 10.3 Glossary
-· · ·
+ï¿½ ï¿½ ï¿½
 10.4 Summary checklist
 Advice
 10.5 For Further Reading
@@ -9018,11 +9022,11 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 All elements have interfaces. All elements interact with their environment in some way.
 
-·
+ï¿½
 
 An element's interface contains view-specific information. Since the same element can occur in
 
@@ -9040,7 +9044,7 @@ treatment is a packaging issue. An interface that transcends views can be docume
 
 of documentation that applies to more than one view.)
 
-·
+ï¿½
 
 Interfaces are two-way. When considering interfaces, most software engineers first think of a
 
@@ -9062,7 +9066,7 @@ elements with which it must interact. For example, an element could assume the p
 
 When we refer to an interface as including what is required, we're really focusing on what interactions an element requires from its environment to complete an interaction it provides.
 
-·
+ï¿½
 
 An element can have multiple interfaces. Each interface contains a separate collection of resources
 
@@ -9082,7 +9086,7 @@ Multiple interfaces also support evolution in open-market situations. If you pla
 
 Sometimes the multiple interfaces are identical to each other -- a component that merges two input streams might be designed with two separate-but-identical interfaces.
 
-·
+ï¿½
 
 An interface can have multiple actors. If there are include limits on the number of actors that can
 
@@ -9090,7 +9094,7 @@ interact with an element via a particular interface, those limits must be docume
 
 servers often restrict the number of simultaneously open HTTP connections.
 
-·
+ï¿½
 
 Sometimes it's useful to have interface types as well as interface instances. Like all types, an
 
@@ -9135,11 +9139,11 @@ This section suggests a standard organization for interface documentation. Like 
 2. Resources provided. The heart of an interface document will be the set of resources that the element provides its actors. Resources must be defined by giving their syntax, their semantics (what happens when they're used), and any restrictions on their usage.
 a. Resource syntax. This is the resource's signature. The signature includes any information that another program will need to write a syntactically correct program that uses the resource. The signature includes the name of the resource, names and logical data types of arguments (if any), and so forth.
 b. Resource semantics. What happens as a result of invoking this resource? Semantics come in a variety of guises, including:
-­ assignment of values to data that the actor invoking the resource can access. The value assignment might be as simple as setting the value of a return argument or as far-reaching as updating a central database.
-­ changes in the element's state brought about by using the resource.
-­ events that will be signaled or messages that will be sent as a result of the resource.
-­ how other resources will behave differently in the future as the result of using this resource. For example, if you ask a resource to destroy an object then trying to access that object in the future through other resources will produce quite a different outcome (an error) as a result.
-­ humanly-observable results. These are prevalent in embedded systems; for example, calling a program that turns on a display in a cockpit has a very observable effect: the display comes on.
+ï¿½ assignment of values to data that the actor invoking the resource can access. The value assignment might be as simple as setting the value of a return argument or as far-reaching as updating a central database.
+ï¿½ changes in the element's state brought about by using the resource.
+ï¿½ events that will be signaled or messages that will be sent as a result of the resource.
+ï¿½ how other resources will behave differently in the future as the result of using this resource. For example, if you ask a resource to destroy an object then trying to access that object in the future through other resources will produce quite a different outcome (an error) as a result.
+ï¿½ humanly-observable results. These are prevalent in embedded systems; for example, calling a program that turns on a display in a cockpit has a very observable effect: the display comes on.
 In addition, the statement of semantics should make it clear whether or not the execution of the resource will be atomic, or may be suspended or interrupted.
 
 Copyright 2001 Addison Wesley, all rights reserved 264
@@ -9199,9 +9203,9 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 Coming to Terms
 "Exceptions"
-When designing an interface, architects naturally concentrate on documenting how resources work in the nominal case, when everything goes according to plan. The real world, of course, is far from nominal and a well-designed system must take appropriate action in the face of undesired circumstances. What happens when a resource is called with parameters that make no sense? What happens when the resource requires more memory but the allocation request fails because there isn't any more? What happens when a resource never returns because it's fallen victim to a process deadlock? What happens when the software is supposed to read the value of a sensor, but the sensor has failed and either isn't responding or is responding with gibberish? Terminating the program on the spot seldom qualifies as "appropriate action." More desirable alternatives, depending on the situation, include various combinations of the following: · returning a status indicator: an integer code, or even a message, that gives a report of the resource's
-execution: what, if anything, went wrong and what the result was. · re-trying, if the offending condition is considered transient. The program might re-try indefinitely, or up
-to a pre-set number of times, at which point it returns a status indicator. · computing partial results or entering some degraded mode of operation. · attempting to correct the problem, perhaps by using default or fallback values or alternative resources. These are all reasonable actions that a resource can take in the presence of undesired circumstances. And if a resource is designed to take any of these actions, that should simply be documented as part of the effects of that resource: But many times, something else is appropriate. The resource can, in effect, throw up its hands and report that an error condition existed but that it was unable to do its job. This is where old-fashioned programs would print an error message and terminate. Today, they raise an exception, which allows execution to continue and perhaps accomplish useful work.
+When designing an interface, architects naturally concentrate on documenting how resources work in the nominal case, when everything goes according to plan. The real world, of course, is far from nominal and a well-designed system must take appropriate action in the face of undesired circumstances. What happens when a resource is called with parameters that make no sense? What happens when the resource requires more memory but the allocation request fails because there isn't any more? What happens when a resource never returns because it's fallen victim to a process deadlock? What happens when the software is supposed to read the value of a sensor, but the sensor has failed and either isn't responding or is responding with gibberish? Terminating the program on the spot seldom qualifies as "appropriate action." More desirable alternatives, depending on the situation, include various combinations of the following: ï¿½ returning a status indicator: an integer code, or even a message, that gives a report of the resource's
+execution: what, if anything, went wrong and what the result was. ï¿½ re-trying, if the offending condition is considered transient. The program might re-try indefinitely, or up
+to a pre-set number of times, at which point it returns a status indicator. ï¿½ computing partial results or entering some degraded mode of operation. ï¿½ attempting to correct the problem, perhaps by using default or fallback values or alternative resources. These are all reasonable actions that a resource can take in the presence of undesired circumstances. And if a resource is designed to take any of these actions, that should simply be documented as part of the effects of that resource: But many times, something else is appropriate. The resource can, in effect, throw up its hands and report that an error condition existed but that it was unable to do its job. This is where old-fashioned programs would print an error message and terminate. Today, they raise an exception, which allows execution to continue and perhaps accomplish useful work.
 Definition
 An exception is a condition that (if not detected) would result in an interaction with an element in a state outside the element's ability to operate correctly.
 Sometimes throwing up one's hands is the right thing to do. Re-trying might not be fruitful. Computing partial results or using default values might not be useful. Or trying to get around the problem might be masking a programming error on the part of the actor that committed the faux pas. Separation of concerns also dictates that the right place to fix a problem raised by a resource is usually the actor that invoked it, not in the resource itself. And so there is a strong distinction between detecting an exception and handling it. The resource detects it; the actor handles it. If we're in development, handling it might mean terminating with an error message so the bug can be tracked down and fixed. Perhaps the actor made the mistake because the one of its own resources was used incorrectly by another actor. In that case, the actor might handle the exception by raising an exception of its own and bubbling the responsibility back along the invocation chain until the actor ultimately responsible was notified. In the context of an element's interface, exception conditions are one of the following:
@@ -9213,10 +9217,10 @@ Draft for review: Do not circulate without permission
 
 Chapter 11: Documenting Software Interfaces
 a. The actor sent incorrect or illegal information to the resource. Calling a method with a parameter of the wrong type is an example of this. This error will be detected by the compiler for sure, and an exception is not necessary -- unless types can change dynamically, in which case things aren't so clear-cut. If your compiler does not generate code to do run-time type-checking, then associating an exception with the resource is the prudent thing to do. Other exceptions of this variety describe a parameter with an illegal or out-of-bounds value. Division by zero is the classic example of this, with array bounds violations a close runner-up. Other examples include:
-­ a string has the wrong syntax or length
-­ in a pair of parameters defining a range, the minimum exceeds the minimum
-­ an un-initialized variable was input
-­ a set contains a duplicate member
+ï¿½ a string has the wrong syntax or length
+ï¿½ in a pair of parameters defining a range, the minimum exceeds the minimum
+ï¿½ an un-initialized variable was input
+ï¿½ a set contains a duplicate member
 b. The element is in the wrong state for the requested operation, and the element's state was brought about by a previous action (or lack of a previous action) on the part of an actor. An example of the former is invoking a resource before the element's initialization method has been called.
 2. The occurrence of software or hardware events that result in a violation in the element's assumptions about its environment.
 a. A hardware or software error occurred that prevented the resource from successfully executing. Processor failures, inability to allocate more memory, and memory faults are examples of this kind of exception.
@@ -9259,7 +9263,7 @@ completion of operation
 
 Figure 69: A taxonomy of exceptions associated with a resource on an element's interface.
 
-The taxonomy helps an architect in two ways. First, it provides four questions the architect can ask when designing exceptions for a resource: 1. What constraints on input can the actor violate? 2. What constraints on the elements' state can the actor violate? 3. What hardware or software errors can occur during execution that will preclude successful operation? 4. What environmental events can occur during execution that will preclude successful operation? Second, the taxonomy provides a way to increase efficiency once the software has been thoroughly debugged (with the help of the exceptions). All exceptions impose an obligation on implementors to write code to detect the conditions corresponding to the exceptions, and then invoking the appropriate handler when the conditions arise. However, code to detect and handle Class 1 exceptions can be deleted from the system if the architect is under tight time or memory constraints, because exceptions consume both. That represents a clear tradeoff to gain efficiency at the cost of robustness, but under some circumstances that may be the right choice. Modern programming languages provide facilities for raising exceptions and assigning handlers. In C++, for instance, exceptions are objects. An element can throw an exception when it is detected, and a handling program is the one that is written to catch that exception. Many programs can catch the same exception, and C++ has a breathtakingly intricate block-based scheme to sort out who gets first crack at it. If the first handler can't patch things up, it can execute a throw and the next handler in line gets a turn. (Waiting at the end of the line is always the terminate() function.) Language reference manuals divide the world of exceptions differently, because they take a languageoriented view. The C++ programming language, for instance, has built-in exceptions classes dealing with memory allocation failure, process failure, tasking failures, and the like. Those are exceptions that the compiled program is likely to encounter from the operating system. But many other things can go wrong during execution of software, and it is incumbent upon the architect to say what they are. Exceptions and effects produce a three-way division of the state space for every resource on an interface: · First, effects promise what will happen in a certain portion of the state space, what Parnas has called
+The taxonomy helps an architect in two ways. First, it provides four questions the architect can ask when designing exceptions for a resource: 1. What constraints on input can the actor violate? 2. What constraints on the elements' state can the actor violate? 3. What hardware or software errors can occur during execution that will preclude successful operation? 4. What environmental events can occur during execution that will preclude successful operation? Second, the taxonomy provides a way to increase efficiency once the software has been thoroughly debugged (with the help of the exceptions). All exceptions impose an obligation on implementors to write code to detect the conditions corresponding to the exceptions, and then invoking the appropriate handler when the conditions arise. However, code to detect and handle Class 1 exceptions can be deleted from the system if the architect is under tight time or memory constraints, because exceptions consume both. That represents a clear tradeoff to gain efficiency at the cost of robustness, but under some circumstances that may be the right choice. Modern programming languages provide facilities for raising exceptions and assigning handlers. In C++, for instance, exceptions are objects. An element can throw an exception when it is detected, and a handling program is the one that is written to catch that exception. Many programs can catch the same exception, and C++ has a breathtakingly intricate block-based scheme to sort out who gets first crack at it. If the first handler can't patch things up, it can execute a throw and the next handler in line gets a turn. (Waiting at the end of the line is always the terminate() function.) Language reference manuals divide the world of exceptions differently, because they take a languageoriented view. The C++ programming language, for instance, has built-in exceptions classes dealing with memory allocation failure, process failure, tasking failures, and the like. Those are exceptions that the compiled program is likely to encounter from the operating system. But many other things can go wrong during execution of software, and it is incumbent upon the architect to say what they are. Exceptions and effects produce a three-way division of the state space for every resource on an interface: ï¿½ First, effects promise what will happen in a certain portion of the state space, what Parnas has called
 the competence set of the program -- that is, the set of states in which it is competent to carry out its
 
 Copyright 2001 Addison Wesley, all rights reserved 270
@@ -9268,7 +9272,7 @@ Draft for review: Do not circulate without permission
 
 Chapter 11: Documenting Software Interfaces
 
-function. If a resource is invoked in a state that is a member of its competence set, then it will execute as promised in the interface document. · Second, exceptions specify the semantics in a different region of the state space, corresponding to error conditions that the architect has had the foresight to detect. If a resource is invoked in a state corresponding to an exception, then the effects are simply that the exception is raised. (Remember, handling the exception is not in the purview of the resource, but the actor that invoked it. Raising the exception gives the actor the chance to do so.) We'll call this set of states the exception set. · Third, there is everything else. This is the region of the state space where what happens is completely undefined if a resource is invoked. The architect may not even know, and maybe even has never considered the possibility. We'll call this set of states the failure set; we could as well have called it the cross-your-fingers-and-hope-for-the-best set. The behavior may be unpredictable (and hence hard to re-create and therefore eliminate) or it may be depressingly predictable: a very ungraceful software crash.
+function. If a resource is invoked in a state that is a member of its competence set, then it will execute as promised in the interface document. ï¿½ Second, exceptions specify the semantics in a different region of the state space, corresponding to error conditions that the architect has had the foresight to detect. If a resource is invoked in a state corresponding to an exception, then the effects are simply that the exception is raised. (Remember, handling the exception is not in the purview of the resource, but the actor that invoked it. Raising the exception gives the actor the chance to do so.) We'll call this set of states the exception set. ï¿½ Third, there is everything else. This is the region of the state space where what happens is completely undefined if a resource is invoked. The architect may not even know, and maybe even has never considered the possibility. We'll call this set of states the failure set; we could as well have called it the cross-your-fingers-and-hope-for-the-best set. The behavior may be unpredictable (and hence hard to re-create and therefore eliminate) or it may be depressingly predictable: a very ungraceful software crash.
 " " "`Exceptional' does not mean `almost never happens' or `disastrous.' It is better
 to think of an exception as meaning `some part of the system couldn't do what it was asked to do.'" -- Bjarne Stroustrup, "The C++ Programming Language," 3rd edition. Addison-Wesley, 1997, p. 358.
 In a perfect world, the architect squeezes the failure set to nothingness; this is done by moving failure states to the competence set by expanding the statement of effects, or to the exception set by creating more exceptions. An equally valid approach is to make a convincing argument that the program cannot possibly get into a state in the failure set. For example, suppose that element E needs to have complete control of a shared device during the execution of resource R on interface I. If the architect wasn't sure this would always be the case when R was invoked, he or she would either (a) specify what the element would do if the device was already in use -return immediately with a failure code, re-try a set number of times, wait a set period, etc. -- or (b) define an exception for R that reported the condition back to the actor, and made it the actor's responsibility to sort out. But perhaps the architect is certain that the device will never be in use, because element E is the only element that uses it. So the architect doesn't define behavior for the resource to account for that condition, and doesn't define an exception for it either. This puts the condition in the resource's failure set, but the architect can make a convincing argument that doing so is safe. So:
@@ -9298,7 +9302,7 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 In the Prologue we talked about stakeholders who had special needs and expectations from an architecture. In Chapter 10 ("Building the Documentation Package") we used those stakeholders as the basis for organizing a system's architectural documentation. Interfaces are a microcosm of this general situation. There are a variety of different stakeholders for an interface document, each with different needs. Examples of some of the different stakeholders of interface documentation and what kind of information they require include:
 
-·
+ï¿½
 
 builder of an element: The builder of an element needs the most comprehensive documentation of
 
@@ -9308,7 +9312,7 @@ on), the builder needs to see so that he or she can make them true. A special ki
 
 maintainer, who will need to make assigned changes to the element.
 
-·
+ï¿½
 
 tester of an element: A tester will need to have detailed information about all the resources and
 
@@ -9322,7 +9326,7 @@ tester will also need information regarding what is required by an interface, so
 
 be built (if necessary) to mimic the resources required.
 
-·
+ï¿½
 
 developer of an element's actor elements. A developer building an actor will need detailed
 
@@ -9332,7 +9336,7 @@ information may be needed as to what the element requires, but only if the requi
 
 to interactions the actor will be using.
 
-·
+ï¿½
 
 analyst: What information an analyst will need depends on what types of analyses will be conducted.
 
@@ -9346,7 +9350,7 @@ properties of the element, then they need to be documented so that the analyst c
 
 be met.
 
-·
+ï¿½
 
 system builder: A system builder focuses on finding "provides" for each "requires" in the interfaces of
 
@@ -9358,7 +9362,7 @@ information that is not of interest to most other stakeholders of an interface d
 
 version of the Java string class an element uses).
 
-·
+ï¿½
 
 integrator: A system integrator also puts the system together from its constituent elements, but has a
 
@@ -9374,7 +9378,7 @@ Chapter 11: Documenting Software Interfaces
 
 the elements. A special kind of integrator is a product builder who exploits the variability available in the elements to produce different instantiations of them, which can then be assembled into a suite of similar but differing products.
 
-·
+ï¿½
 
 architect looking for assets to reuse in a new system: An architect looking for assets to reuse in a
 
@@ -9390,7 +9394,7 @@ interested in the precise semantics of the resources, their quality attributes, 
 
 element provides.
 
-·
+ï¿½
 
 managers: Managers often use interface documents for planning purposes. They can apply metrics to
 
@@ -9510,8 +9514,8 @@ Figure 11-2(b): By using the interface symbol, it's clear this element has one i
 
 Figure 11-2(c): ...and that this element has two interfaces.
 
-Second, if you have an element that needs to interact with more than one actor, there are at least three choices for how to handle it. Shown in Figure 71, they are: · Have all interactors operating via a single interface. This is depicted in Figure 71(a). This approach
-compels the code in element E to handle any interactions among the actors. What, for instance, shall the element do if two actors try to access its services simultaneously? Or what happens if one actor sets up a transaction with E (e.g., calls an init() method in a particular way unique to it) but before it can request the transaction it set up, the second actor carries out a setup operation? · Have a separate interface dedicated for the use of each actor. This is shown in Figure 71(b). · Have the mediation handled in the connector that ties element E to its interactors. Figure 71(c) shows this. Whereas Figure 71(a) and Figure 71(b) are view-neutral, Figure 71(c) is firmly rooted in the component-and-connector world, because it shows a connector that handles the mediation. Here, the connector is more than a relation, it is a first-class element (with computational semantics) of its own.
+Second, if you have an element that needs to interact with more than one actor, there are at least three choices for how to handle it. Shown in Figure 71, they are: ï¿½ Have all interactors operating via a single interface. This is depicted in Figure 71(a). This approach
+compels the code in element E to handle any interactions among the actors. What, for instance, shall the element do if two actors try to access its services simultaneously? Or what happens if one actor sets up a transaction with E (e.g., calls an init() method in a particular way unique to it) but before it can request the transaction it set up, the second actor carries out a setup operation? ï¿½ Have a separate interface dedicated for the use of each actor. This is shown in Figure 71(b). ï¿½ Have the mediation handled in the connector that ties element E to its interactors. Figure 71(c) shows this. Whereas Figure 71(a) and Figure 71(b) are view-neutral, Figure 71(c) is firmly rooted in the component-and-connector world, because it shows a connector that handles the mediation. Here, the connector is more than a relation, it is a first-class element (with computational semantics) of its own.
 
 Copyright 2001 Addison Wesley, all rights reserved 275
 
@@ -10389,19 +10393,19 @@ a. Resource syntax b. Resource semantics c. Resource usage restrictions 3. Local
 
 11.7 Glossary
 
-·
+ï¿½
 
 interface
 
-·
+ï¿½
 
 resource
 
-·
+ï¿½
 
 exception
 
-·
+ï¿½
 
 ...
 
@@ -10420,15 +10424,15 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 Interfaces:
 
-·
+ï¿½
 
 Refer to DIM paper in Parnas Papers as source for A-7E interface information.
 
-·
+ï¿½
 
 Refer to Parnas and Wuerges as a good background paper on exceptions (also in Parnas Papers).
 
-·
+ï¿½
 
 Mary Shaw has taken the observation that we can't ever have complete interfaces and made useful
 
@@ -10495,23 +10499,23 @@ Of course, active reviews have some difficulties as well. As with other review a
 
 The reviews in this chapter will help answer the questions
 
-·
+ï¿½
 
 Have the right stakeholders been identified and have their interests been served?
 
-·
+ï¿½
 
 Have the right views been chosen?
 
-·
+ï¿½
 
 Is the architectural information presented self-consistent?
 
-·
+ï¿½
 
 Does the documentation follow the given templates?
 
-·
+ï¿½
 
 Is the relationship of architectural decisions to constraints and context (including traceability to
 
@@ -10541,7 +10545,7 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 3. What views are provided? For each view, where is its view type definition supplied? Where are the conditions and rationale given? (conformance to view type, refinement, etc.) Where are consistencies and inconsistencies across views explained?
 4. Are cross-view relations identified and described? Are consistencies across the views identified? Are inconsistencies highlighted and justified?
 5. Where are cross-view relations identified and described? Where are the conditions and rationale for consistencies and inconsistencies given?
-4. Is every concern addressed by one or more view? Concerns are phrased as questions ­ can the question be answered by the architecture description? Which views address each concern from #1?
+4. Is every concern addressed by one or more view? Concerns are phrased as questions ï¿½ can the question be answered by the architecture description? Which views address each concern from #1?
 5. Are assertions identified as fact, heuristics, properties, requirements, non-binding decision, desire, range of possibilities, place holders, etc.?
 6. Are assertions identified as constraints, heuristics, properties, fact, (derived) requirement (binding on downstream developers), non-binding decisions, desires, range of possibilities, place holders, etc.? What is the primary architecture information for each view? What is your source? For each view, where are the constraints, heuristics, and properties behind the architecture information identified? For each view, where is the architecture information distinguished as fact, requirements, etc.? Architecture information = the information the architect puts in the documentation (e.g., stakeholder concerns, design decisions).
 6. Is the rationale adequately captured? For example, are areas of change explained? Are traces to requirements included?
@@ -10586,8 +10590,8 @@ step in the process), the template used for description needs to give guidelines
 
 Background
 "My architecture is better than your architecture!" [Do we want to keep this? It was one of our first sidebars, but I'm not sure it belongs anymore...]
-This chapter discusses what constitutes "good" software architecture documentation. Make sure you distinguish between this question and the question of what constitutes a "good" software architecture. In theory, the two have nothing to do with each other: It is possible to poorly document a terrific architecture, or flawlessly document an awful one. In practice, of course, there is often a correlation. Organizations that are adept at producing good architectures are typically more mature, and a hallmark of maturity is the ability to produce and maintain high-quality documentation. Conversely, what do you think the odds are of an organization producing a poor architecture, but meticulously documenting it? So what is a "good" software architecture? Briefly it is one that is fit for the purpose(s) intended. Hence, the question by itself is misleading. There is no absolute scale of goodness for an architecture in the absence of the context in which it was developed. What is a "suitable" architecture? It is one that · when taken through detailed design and implementation, will yield a system that will meet all of its be-
-havioral, performance, and other quality requirements. · is "buildable"; that is, can produce a system in the allotted time and with the available resources; and · meets the other, less tangible goals that often accompany architectures. It uses current technology; it
+This chapter discusses what constitutes "good" software architecture documentation. Make sure you distinguish between this question and the question of what constitutes a "good" software architecture. In theory, the two have nothing to do with each other: It is possible to poorly document a terrific architecture, or flawlessly document an awful one. In practice, of course, there is often a correlation. Organizations that are adept at producing good architectures are typically more mature, and a hallmark of maturity is the ability to produce and maintain high-quality documentation. Conversely, what do you think the odds are of an organization producing a poor architecture, but meticulously documenting it? So what is a "good" software architecture? Briefly it is one that is fit for the purpose(s) intended. Hence, the question by itself is misleading. There is no absolute scale of goodness for an architecture in the absence of the context in which it was developed. What is a "suitable" architecture? It is one that ï¿½ when taken through detailed design and implementation, will yield a system that will meet all of its be-
+havioral, performance, and other quality requirements. ï¿½ is "buildable"; that is, can produce a system in the allotted time and with the available resources; and ï¿½ meets the other, less tangible goals that often accompany architectures. It uses current technology; it
 makes the manager happy by making use of one of the company's otherwise-under-utilized programming units; it doesn't require a brand new tool suite or development environment; and so forth.
 
 Copyright 2001 Addison Wesley, all rights reserved 306
@@ -10611,7 +10615,7 @@ What the meaning of "is" is
 Documentation in general, and software architecture documentation in particular, contains many assertions. They include what components are covered, how a component works, and what relationships exist among components. There are also assertions about why a design satisfies its requirements, what will change in the future, and, for product line architectures, what must be changed to get a product-ready instance of the architecture. Furthermore, there are assertions about who wrote the documentation, when, and where you can find informa-tion. You can think of an architecture document as a package of undiluted assertions. In practice, however, not all assertions are created equal. Information coming into architect has various pedigrees. Some information represents a con-straint that the architecture is obliged to honor. Some represents a heuristic and some are simply properties. To this, the architect adds a touch of "assertive freedom." Some of what the architect writes are facts, such as properties. Some of what the architect writes are requirements or con-straints, and no deviation is allowed. Some are non-binding decisions; suggestions, if you will. Some are placeholders, which is a class unto itself. Some placeholders are clearly marked TBD, but others show desired or possible values. For example, the architect may want to use a particular vendor's component, but if the product is unavailable at the time of production, something else must be substituted. High-quality documentation should address this insidious ambiguity by clarifying the value and nature of each assertion. || END SIDEBAR/CALLOUT
 
 12.3 Glossary
-· · ·
+ï¿½ ï¿½ ï¿½
 12.4 Summary checklist
 
 Copyright 2001 Addison Wesley, all rights reserved 308
@@ -10656,15 +10660,15 @@ Suppose, for example, that you're mandated to follow the precepts of the Rationa
 
 This chapter will take a tour of some prominent related work in the field, with an eye toward reconciling our advice with their advice. Where there are gaps, they will be identified, with guidance about how to fill them in. We cover:
 
-·
+ï¿½
 
 Rational Unified Process / Kruchten 4+1
 
-·
+ï¿½
 
 Siemens Four Views
 
-·
+ï¿½
 
 C4ISR architecture framework
 
@@ -10674,27 +10678,27 @@ Draft for review: Do not circulate without permission
 
 Chapter 13: Related Work
 
-·
+ï¿½
 
 IEEE Standard 1471 for architecture documentation
 
-·
+ï¿½
 
 Hewlett Packard's architecture documentation framework
 
-·
+ï¿½
 
 Data flow and control flow views
 
-·
+ï¿½
 
 Enterprise architecture methods
 
-·
+ï¿½
 
 Zachman's Information Architecture
 
-·
+ï¿½
 
 RM-ODP
 
@@ -10704,27 +10708,27 @@ Note: Each section will have a figure in it to summarize what we've said. Each f
 
 The Rational Unified Process introduces a five-view approach to document software architectures, based on Kruchten's 4+1 approach mentioned in the beginning of this book. These views are:
 
-·
+ï¿½
 
 The logical view, which addresses the functional requirements of a system
 
-·
+ï¿½
 
 The process view, which addresses the concurrent aspects of a system at runtime
 
-·
+ï¿½
 
 The deployment view, which shows how run-time components are mapped to the underlying computing
 
 platforms
 
-·
+ï¿½
 
 The implementation view, which describes the organization of static software modules such as source
 
 code, data files, etc.
 
-·
+ï¿½
 
 The use-case view, which is used to drive the discovery and design of the architecture
 
@@ -11071,19 +11075,19 @@ under what rules and constraints. The C4ISR Framework is only concerned with thi
 
 The C4ISR Architecture Framework has the following main components:
 
-·
+ï¿½
 
 definition of common architectural views
 
-·
+ï¿½
 
 guidance for developing the architecture
 
-·
+ï¿½
 
 definition of common products
 
-·
+ï¿½
 
 relevant reference resources.
 
@@ -11100,7 +11104,7 @@ Common Products
 
 All the necessary C4ISR architecture representation products are defined by the framework which contains detailed descriptions of the product types that must be used to describe operational, systems, and technical architecture views. In many cases, representation formats, product templates and examples are also provided. The architecture products to be developed are classified into two categories:
 
-·
+ï¿½
 
 Essential Products: constitute the minimal set of products required to develop architectures that can be
 
@@ -11108,7 +11112,7 @@ commonly understood and integrated within and across DoD organizational boundari
 
 DoD and multi-national elements. These products must be developed for all architectures.
 
-·
+ï¿½
 
 Supporting Products: provide data that will be needed depending on the purpose and objectives of a
 
@@ -11168,7 +11172,7 @@ View
 
 Command Relationships Chart Activity Model Operational Activity Sequence and Timing Descriptions
 Operational Activity Sequence and Timing Descriptions -Operational State Transition Description
-Operational Activity Sequence and Timing Descriptions ­ Operational Event/Trace Description Logical Data Model Systems Communications Description
+Operational Activity Sequence and Timing Descriptions ï¿½ Operational Event/Trace Description Logical Data Model Systems Communications Description
 Systems2 Matrix Systems Functionality Description Operational Activity to System Function Traceability Matrix System Information Exchange Matrix System Performance Parameters Matrix System Evolution Description System Technology Forecast System Activity Sequence and Timing Descriptions
 Systems Activity Sequence and Timing Descriptions -Systems Rules Model
 Systems Activity Sequence and Timing Descriptions -Systems State Transition Description
@@ -11201,21 +11205,21 @@ The second option is to work the documentation for the software architecture int
 
 [This list is tbd]
 
-·
+ï¿½
 
 As part of the operational architecture view, include what is essentially a RUP use-case view of the
 
 software.
 
-·
+ï¿½
 
 As part of the system's system architecture view...
 
-·
+ï¿½
 
 As part of the system's technical architecture view...
 
-·
+ï¿½
 
 [make sure all our prescriptions -- interfaces, behavior, mappings, etc. -- are accounted for]
 
@@ -11329,15 +11333,15 @@ Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
 While this example might appear to be contrived, these lessons generalize. The authors have experienced similar situations in many different settings and with many different representation techniques and methods. The DFD notation is not the only one that suffers from these problems and misuses.
 They were all ready to start the walkthrough. Fred had been working on part of the sales accounting system: the problem of matching customers' payments to their outstanding invoices. He had produced a dataflow diagram, and was going to walk through it with Ann and Bill. Jane was there too, because she was new to the team and didn't know about dataflow diagrams. This was a good opportunity for her to learn about them. Fred had invited her, and the project manager said it was a good idea. `The diagram I'm going to show you,' said Fred, `expands a process bubble in the diagram at the next level up. Here's the bubble to be expanded.' He showed this viewgraph on the overhead projector:
-[figure] `The payments come in from customers ­ that's the arrow on the left. Basically, we have to send the payment details to the cashiers for banking ­ that's the arrow on the right ­ and put a payment record into the Receivables file on the top right. To do that, we must match the payments with invoices that we get from the Receivables file. If we can't match a payment we put it into the Untraced Payments file, and someone else deals with it. If the payment is not enough to cover the amount in the invoice we send the customer a request to pay in full ­ that's up at the top left. Oh, and we also send them requests to explain untraced payments. OK so far?' `I suppose you need the Customer file so you can put names and addresses on the payment and explanation requests,' said Ann. `Right,' said Fred. `Now here's the diagram I've done that expands the process bubble.' He put another viewgraph on the projector. It was this:
-[figure] `Looks good,' said Bill. `Let me see if I can walk through it. The Verify Payments process checks to see whether a payment has an invoice number. If it has, you find the invoice ­ that's the Find Invoice by No process at the top of the diagram ­ and send it with the payment to the Compare Amount process. If it hasn't, you have to search for the invoice by using the customer's name and the amount of the payment. If that doesn't work you have an untraced payment. Otherwise you send the invoice and payment details to the Compare Amount process as before. Am I on the right lines?' `Absolutely,' said Fred. `Right on.' `The Compare Amount process checks the amount paid against the invoice, and whether it's a full or a part payment you send the details to the cashier for banking and put a payment record in the Receivables file. If it's a part payment you also produce a full payment request. Am I right, or am I right?' `Terrific,' said Fred. `You just forgot to say that untraced payments go to the Produce Explanation Request process so we can send a request to the customer.' `Sounds good to me,' said Ann. `We could have an early lunch.' `Well, wait a minute,' said Jane. `I haven't really understood what's going on. You said that Verify Payments sends each payment either to Find Invoice by No, or to Search for Invoice, depending on whether it has an invoice number or not. Where does it say that in the diagram?' `Verify Payments has one input data flow and two outputs,' said Ann. `That's where it says it. It's just like the Search for Invoice process. That's got one input data flow of payments without invoice numbers, and two output flows, one for untraced payments, and one for payments with invoices.' `But the Create Payment Record process also has two output flows,' said Jane, `one for payment records for the Receivables file, and one for payment details for the bank. But it sends each full or part payment to both of those, not just to one.' `Ann's a bit confused,' said Bill. `A dataflow diagram doesn't show whether a process writes to one or more of its output flows for each input message. That's at a lower level, probably in the process specification. It's a top-down technique.' `I'm not at all confused,' said Ann. `It just depends on your conventions. And I know about top-down as well as you do.'
+[figure] `The payments come in from customers ï¿½ that's the arrow on the left. Basically, we have to send the payment details to the cashiers for banking ï¿½ that's the arrow on the right ï¿½ and put a payment record into the Receivables file on the top right. To do that, we must match the payments with invoices that we get from the Receivables file. If we can't match a payment we put it into the Untraced Payments file, and someone else deals with it. If the payment is not enough to cover the amount in the invoice we send the customer a request to pay in full ï¿½ that's up at the top left. Oh, and we also send them requests to explain untraced payments. OK so far?' `I suppose you need the Customer file so you can put names and addresses on the payment and explanation requests,' said Ann. `Right,' said Fred. `Now here's the diagram I've done that expands the process bubble.' He put another viewgraph on the projector. It was this:
+[figure] `Looks good,' said Bill. `Let me see if I can walk through it. The Verify Payments process checks to see whether a payment has an invoice number. If it has, you find the invoice ï¿½ that's the Find Invoice by No process at the top of the diagram ï¿½ and send it with the payment to the Compare Amount process. If it hasn't, you have to search for the invoice by using the customer's name and the amount of the payment. If that doesn't work you have an untraced payment. Otherwise you send the invoice and payment details to the Compare Amount process as before. Am I on the right lines?' `Absolutely,' said Fred. `Right on.' `The Compare Amount process checks the amount paid against the invoice, and whether it's a full or a part payment you send the details to the cashier for banking and put a payment record in the Receivables file. If it's a part payment you also produce a full payment request. Am I right, or am I right?' `Terrific,' said Fred. `You just forgot to say that untraced payments go to the Produce Explanation Request process so we can send a request to the customer.' `Sounds good to me,' said Ann. `We could have an early lunch.' `Well, wait a minute,' said Jane. `I haven't really understood what's going on. You said that Verify Payments sends each payment either to Find Invoice by No, or to Search for Invoice, depending on whether it has an invoice number or not. Where does it say that in the diagram?' `Verify Payments has one input data flow and two outputs,' said Ann. `That's where it says it. It's just like the Search for Invoice process. That's got one input data flow of payments without invoice numbers, and two output flows, one for untraced payments, and one for payments with invoices.' `But the Create Payment Record process also has two output flows,' said Jane, `one for payment records for the Receivables file, and one for payment details for the bank. But it sends each full or part payment to both of those, not just to one.' `Ann's a bit confused,' said Bill. `A dataflow diagram doesn't show whether a process writes to one or more of its output flows for each input message. That's at a lower level, probably in the process specification. It's a top-down technique.' `I'm not at all confused,' said Ann. `It just depends on your conventions. And I know about top-down as well as you do.'
 
 Copyright 2001 Addison Wesley, all rights reserved 328
 
 Draft for review: Do not circulate without permission
 
 Chapter 13: Related Work
-`All right,' said Jane. `So we're using Bill's convention. So how do you know that Verify Payments never writes on both its output data flows?' `That's a funny question,' said Fred. `It's obvious, because one flow is named Payment Quoting Invoice No and the other one is Payment Without Invoice No. You have to read the names. Names are very important in systems analysis.' `I am reading the names,' said Jane, `and I don't understand them at all. For example, does "Full Payment" mean the exactly right amount has been paid, or does it include overpayments? And does "Invoice and Payment Details" mean exactly one invoice and one payment? Don't customers sometimes send one payment to cover more than one invoice? And they could send two cheques to cover one invoice, I suppose, as well, couldn't they? And then, what's this Search for Invoice process doing? Suppose there are two invoices for the customer, both with the same amount as the payment? Or two invoices adding up to the amount of the payment? Does "Search for Invoice" mean it's only searching for one invoice? Or suppose it finds just one invoice, but it's less than the payment? I don't see how you can work out from the diagram whether these are real possibilities, and, if so, what's supposed to happen when they turn up.' `Look, Bill's already said it's top-down,' said Fred, `so you can't expect to answer all these detailed questions now. You'll have to come along to the next walkthrough when I'll have the next level of dataflow diagrams for the more complicated processes here ­ probably for Search for Invoice and Compare Amount ­ and process specifications for the rest.' `But I don't think these are detailed questions,' said Jane. `The problem is matching payments to invoices, and you're telling me that the diagram doesn't show whether the matching is one-to-one, one-to-many, many-to-one, or many-to-many. I'd have thought that was a fundamental question about a matching problem, not a detailed question. If the diagram doesn't show that, what does it show?' `Well,' said Bill, `it shows that the function of matching payments to invoices needs seven processes connected by the data flows you can see. That's what it shows.' `I don't understand,' said Jane. `It seems to me that it just shows that Fred thinks that seven processes connected like that would be useful. But to find out what the function is, or what the processes are, we have to wait till the next level. So the diagram shows that Fred thinks seven processes would be good for the function, but we don't know what function and we don't know what processes. That can't be right, surely?' `Hold on,' said Fred. `We're going way off track here. The questions Jane is asking about the matching problem are all good questions, and the whole point of the dataflow diagram is that it makes you think about the good questions ­ just like Jane is doing. She's got the idea pretty fast,' he said, ingratiatingly. `That's what a walkthrough's all about.' `Nice of you to say so,' said Jane, `but I'm still lost. Suppose we do discuss and think about these questions, would we be able to show the answers in the diagram? From what everyone's been saying, we wouldn't be able to. We'd have to wait till the next level. But I don't see how you'd do it at the next level either. Until you get down to the process specifications you keep talking about. I suppose you could tell from them what it's all about, but if there are lots of levels you might have to wait a long time. The dataflow diagrams in the levels above don't seem to be much use. They're just vague pictures suggesting what someone thinks might be the shape of a system to solve a problem, and no one's saying what the problem is.' `Jane, that's offensive,' said Bill. `Everyone uses dataflow diagrams here, and everyone knows that topdown is the right way to do things. There just isn't any other way. You have to start with the big picture and work your way down to the details.' `Perhaps,' said Jane, `but the big picture isn't much use if it doesn't say anything you can understand. You're all just guessing what Fred's diagram means. It wouldn't mean anything at all to you if you didn't already have a pretty good idea of what the problem is and how to solve it.' They went to lunch after that. It was a rather uncomfortable lunch. After lunch Bill and Fred were walking together back to the office they shared. `I don't understand Jane,' said Fred. `No,' said Bill. `I don't think we should invite her to the next walkthrough, do you?'
+`All right,' said Jane. `So we're using Bill's convention. So how do you know that Verify Payments never writes on both its output data flows?' `That's a funny question,' said Fred. `It's obvious, because one flow is named Payment Quoting Invoice No and the other one is Payment Without Invoice No. You have to read the names. Names are very important in systems analysis.' `I am reading the names,' said Jane, `and I don't understand them at all. For example, does "Full Payment" mean the exactly right amount has been paid, or does it include overpayments? And does "Invoice and Payment Details" mean exactly one invoice and one payment? Don't customers sometimes send one payment to cover more than one invoice? And they could send two cheques to cover one invoice, I suppose, as well, couldn't they? And then, what's this Search for Invoice process doing? Suppose there are two invoices for the customer, both with the same amount as the payment? Or two invoices adding up to the amount of the payment? Does "Search for Invoice" mean it's only searching for one invoice? Or suppose it finds just one invoice, but it's less than the payment? I don't see how you can work out from the diagram whether these are real possibilities, and, if so, what's supposed to happen when they turn up.' `Look, Bill's already said it's top-down,' said Fred, `so you can't expect to answer all these detailed questions now. You'll have to come along to the next walkthrough when I'll have the next level of dataflow diagrams for the more complicated processes here ï¿½ probably for Search for Invoice and Compare Amount ï¿½ and process specifications for the rest.' `But I don't think these are detailed questions,' said Jane. `The problem is matching payments to invoices, and you're telling me that the diagram doesn't show whether the matching is one-to-one, one-to-many, many-to-one, or many-to-many. I'd have thought that was a fundamental question about a matching problem, not a detailed question. If the diagram doesn't show that, what does it show?' `Well,' said Bill, `it shows that the function of matching payments to invoices needs seven processes connected by the data flows you can see. That's what it shows.' `I don't understand,' said Jane. `It seems to me that it just shows that Fred thinks that seven processes connected like that would be useful. But to find out what the function is, or what the processes are, we have to wait till the next level. So the diagram shows that Fred thinks seven processes would be good for the function, but we don't know what function and we don't know what processes. That can't be right, surely?' `Hold on,' said Fred. `We're going way off track here. The questions Jane is asking about the matching problem are all good questions, and the whole point of the dataflow diagram is that it makes you think about the good questions ï¿½ just like Jane is doing. She's got the idea pretty fast,' he said, ingratiatingly. `That's what a walkthrough's all about.' `Nice of you to say so,' said Jane, `but I'm still lost. Suppose we do discuss and think about these questions, would we be able to show the answers in the diagram? From what everyone's been saying, we wouldn't be able to. We'd have to wait till the next level. But I don't see how you'd do it at the next level either. Until you get down to the process specifications you keep talking about. I suppose you could tell from them what it's all about, but if there are lots of levels you might have to wait a long time. The dataflow diagrams in the levels above don't seem to be much use. They're just vague pictures suggesting what someone thinks might be the shape of a system to solve a problem, and no one's saying what the problem is.' `Jane, that's offensive,' said Bill. `Everyone uses dataflow diagrams here, and everyone knows that topdown is the right way to do things. There just isn't any other way. You have to start with the big picture and work your way down to the details.' `Perhaps,' said Jane, `but the big picture isn't much use if it doesn't say anything you can understand. You're all just guessing what Fred's diagram means. It wouldn't mean anything at all to you if you didn't already have a pretty good idea of what the problem is and how to solve it.' They went to lunch after that. It was a rather uncomfortable lunch. After lunch Bill and Fred were walking together back to the office they shared. `I don't understand Jane,' said Fred. `No,' said Bill. `I don't think we should invite her to the next walkthrough, do you?'
 
 Copyright 2001 Addison Wesley, all rights reserved 329
 
@@ -11416,7 +11420,7 @@ The detailed blow-by-blow flow chart... is an absolute nuisance, suitable only f
 -- F. P. Brooks, Jr. 1975
 
 13.8 Glossary
-· · ·
+ï¿½ ï¿½ ï¿½
 
 Copyright 2001 Addison Wesley, all rights reserved 331
 
@@ -11476,7 +11480,7 @@ Documenting Software Architectures
 
 Clements, Bachmann, Bass, Garlan, Ivers, LIttle, Nord, Stafford
 
-·
+ï¿½
 
 distributing it as appropriate across the view packets, in each case providing only the minimal amount
 
@@ -11486,7 +11490,7 @@ distributed to stakeholders independently; however, it may also result in duplic
 
 elements or glossary terms or rationale may apply to many view packets.
 
-·
+ï¿½
 
 by gathering it into one place for the entire view, and associating it with the "root" view packet for the
 
@@ -11494,7 +11498,7 @@ view. This approach minimizes duplication, but may also result in information ov
 
 who is interested only a small part of the view.
 
-·
+ï¿½
 
 a combination of the two. For example, some rationale might apply to the portion of a design captured
 
@@ -11508,4 +11512,3 @@ Deciding whether to bundle or distribute supporting documentation is a packaging
 Copyright 2001 Addison Wesley, all rights reserved 334
 
 Draft for review: Do not circulate without permission
-

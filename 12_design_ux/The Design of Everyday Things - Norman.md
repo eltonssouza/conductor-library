@@ -1,3 +1,9 @@
+# The Design of Everyday Things
+
+> **Author(s):** Norman · **Category:** 12_design_ux · **Language:** English
+
+---
+
 THE
 
 DESIGN
@@ -119,8 +125,6 @@ Index
 iii
 
 ---
-
-
 
 ---
 
@@ -478,8 +482,6 @@ preceded the book and the several years of writing.
 Preface xiii
 
 ---
-
-
 
 ---
 
@@ -10233,8 +10235,6 @@ sEVEN: User-Centered Design 217
 
 ---
 
-
-
 ---
 
 NOTES
@@ -11124,8 +11124,6 @@ worked. ,
 Notes: Chapter Seven/User Centered Design 235
 
 ---
-
-
 
 ---
 

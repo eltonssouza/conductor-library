@@ -1,3 +1,9 @@
+# Mastering Node.js
+
+> **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 Mastering Node
 Node is an exciting new platform developed by Ryan Dahl, allowing JavaScript developers to create extremely high performance servers by leveraging Google's V8 JavaScript engine, and asynchronous I/O. In Mastering Node we will discover how to write high concurrency web servers, utilizing the CommonJS module system, node's core libraries, third party modules, high level web development and more.
 
@@ -203,16 +209,16 @@ var hello = new Buffer('Hello');
 console.log(hello); // => <Buffer 48 65 6c 6c 6f>
 console.log(hello.toString()); // => "Hello"
 By default, the encoding is "utf8", but this can be overridden by passing a string as the second argument. For example, the ellipsis below will be printed to stdout as the "&" character when in "ascii" encoding.
-var buf = new Buffer('â--¦'); console.log(buf.toString()); // => â--¦
-var buf = new Buffer('â--¦', 'ascii'); console.log(buf.toString()); // => &
+var buf = new Buffer('ï¿½--ï¿½'); console.log(buf.toString()); // => ï¿½--ï¿½
+var buf = new Buffer('ï¿½--ï¿½', 'ascii'); console.log(buf.toString()); // => &
 An alternative (but in this case functionality equivalent) method is to pass an array of integers representing the octet stream.
 var hello = new Buffer([0x48, 0x65, 0x6c, 0x6c, 0x6f]);
 Buffers can also be created with an integer representing the number of bytes allocated, after which we can call the write() method, providing an optional offset and encoding. Below, we provide an offset of 2 bytes to our second call to write() (buffering "Hel") and then write another two bytes with an offset of 3 (completing "Hello").
 var buf = new Buffer(5); buf.write('He'); buf.write('l', 2); buf.write('lo', 3); console.log(buf.toString()); // => "Hello"
-The .length property of a buffer instance contains the byte length of the stream, as opposed to native strings, which simply return the number of characters. For example, the ellipsis character 'â--¦' consists of three bytes, so the buffer will respond with the byte length (3), and not the character length (1).
-var ellipsis = new Buffer('â--¦', 'utf8');
-console.log('â--¦ string length: %d', 'â--¦'.length); // => â--¦ string length: 1
-console.log('â--¦ byte length: %d', ellipsis.length); // => â--¦ byte length: 3
+The .length property of a buffer instance contains the byte length of the stream, as opposed to native strings, which simply return the number of characters. For example, the ellipsis character 'ï¿½--ï¿½' consists of three bytes, so the buffer will respond with the byte length (3), and not the character length (1).
+var ellipsis = new Buffer('ï¿½--ï¿½', 'utf8');
+console.log('ï¿½--ï¿½ string length: %d', 'ï¿½--ï¿½'.length); // => ï¿½--ï¿½ string length: 1
+console.log('ï¿½--ï¿½ byte length: %d', ellipsis.length); // => ï¿½--ï¿½ byte length: 3
 console.log(ellipsis);
 
 Buffers
@@ -346,4 +352,3 @@ Deployment
 Deployment
 
 20
-

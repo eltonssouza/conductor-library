@@ -1,3 +1,9 @@
+# Refactoring UI
+
+> **Author(s):** Wathan, Schoger Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 Contents
 
 Starting from Scratch
@@ -147,7 +153,7 @@ Start with a feature, not a layout
 Instead of starting with the shell, start with a piece of actual functionality.
 For example, say you're building a flight booking service. You could start with a feature like "searching for a flight".
 Your interface will need:
-· A field for the departure city · A field for the destination city · A field for the departure date · A field for the return date · A button to perform the search
+ï¿½ A field for the departure city ï¿½ A field for the destination city ï¿½ A field for the departure date ï¿½ A field for the return date ï¿½ A button to perform the search
 Start with that.
 
 Start with a feature, not a layout
@@ -330,13 +336,13 @@ This approach works for anything where you've defined a system. When you're limi
 Systematize everything
 The more systems you have in place, the faster you'll be able to work and the less you'll second guess your own decisions.
 You'll want systems for things like:
-· Font size · Font weight · Line height · Color · Margin · Padding · Width · Height · Box shadows
+ï¿½ Font size ï¿½ Font weight ï¿½ Line height ï¿½ Color ï¿½ Margin ï¿½ Padding ï¿½ Width ï¿½ Height ï¿½ Box shadows
 
 Limit your choices
 
 32
 
-· Border radius · Border width · Opacity
+ï¿½ Border radius ï¿½ Border width ï¿½ Opacity
 ...and anything else you run into where it feels like you're laboring over a lowlevel design decision.
 You don't have to define all of this stuff ahead of time, just make sure you're approaching design with a system-focused mindset. Look for opportunities to introduce new systems as you make new decisions, and try to avoid having to make the same minor decision twice.
 Designing with systems is going to be a recurring theme throughout this book, and in later chapters we'll talk about building a lot of these systems in finer detail.
@@ -373,10 +379,10 @@ Size isn't everything
 40
 
 Try and stick to two or three colors:
-· A dark color for primary content (like the headline of an article) · A grey for secondary content (like the date an article was published) · A lighter grey for tertiary content (maybe the copyright notice in a
+ï¿½ A dark color for primary content (like the headline of an article) ï¿½ A grey for secondary content (like the date an article was published) ï¿½ A lighter grey for tertiary content (maybe the copyright notice in a
 footer)
 Similarly, two font weights are usually enough for UI work:
-· A normal font weight (400 or 500 depending on the font) for most text · A heavier font weight (600 or 700) for text you want to emphasize
+ï¿½ A normal font weight (400 or 500 depending on the font) for most text ï¿½ A heavier font weight (600 or 700) for text you want to emphasize
 
 Stay away from font weights under 400 for UI work -- they can work for large headings but are too hard to read at smaller sizes. If you're considering
 
@@ -521,14 +527,14 @@ Making the border a bit heavier by increasing the width helps to emphasize it wi
 Semantics are secondary
 When there are multiple actions a user can take on a page, it's easy to fall into the trap of designing those actions based purely on semantics.
 Semantics are an important part of button design, but that doesn't mean you can forget about hierarchy. Every action on a page sits somewhere in a pyramid of importance. Most pages only have one true primary action, a couple of less important secondary actions, and a few seldom used tertiary actions. When designing these actions, it's important to communicate their place in the hierarchy.
-· Primary actions should be obvious. Solid, high contrast background colors work great here.
+ï¿½ Primary actions should be obvious. Solid, high contrast background colors work great here.
 
 61
 
 Semantics are secondary
 
-· Secondary actions should be clear but not prominent. Outline styles or lower contrast background colors are great options.
-· Tertiary actions should be discoverable but unobtrusive. Styling these actions like links is usually the best approach.
+ï¿½ Secondary actions should be clear but not prominent. Outline styles or lower contrast background colors are great options.
+ï¿½ Tertiary actions should be discoverable but unobtrusive. Styling these actions like links is usually the best approach.
 
 When you take a hierarchy-first approach to designing the actions on page, the result is a much less busy UI that communicates more clearly:
 
@@ -1059,7 +1065,7 @@ HSL fixes this by representing colors using attributes the human-eye intuitively
 
 Ditch hex for HSL
 
-Hue is measured in degrees, where 0° is red, 120° is green, and 240° is blue.
+Hue is measured in degrees, where 0ï¿½ is red, 120ï¿½ is green, and 240ï¿½ is blue.
 
 Saturation is how colorful or vivid a color looks. 0% saturation is grey (no color), and 100% saturation is vibrant and intense.
 Without saturation, hue is irrelevant -- rotating the hue when saturation is 0% doesn't actually change the color at all.
@@ -1209,13 +1215,13 @@ Don't let lightness kill your saturation
 Normally when you want to change how light a color looks, you adjust the lightness component:
 
 While this does work to lighten or darken a color, you often lose some of the color's intensity -- the color also looks closer to white or to black, not just lighter or darker.
-Since different hues have a different perceived brightness, another way you can change the brightness of a color is by rotating its hue. To make a color lighter, rotate the hue towards the nearest bright hue -- 60°, 180°, or 300°.
+Since different hues have a different perceived brightness, another way you can change the brightness of a color is by rotating its hue. To make a color lighter, rotate the hue towards the nearest bright hue -- 60ï¿½, 180ï¿½, or 300ï¿½.
 
 Don't let lightness kill your saturation
 
 156
 
-To make a color darker, rotate the hue towards the nearest dark hue -- 0°, 120°, or 240°.
+To make a color darker, rotate the hue towards the nearest dark hue -- 0ï¿½, 120ï¿½, or 240ï¿½.
 
 This can be really useful when trying to create a palette for a light color like yellow. By gradually rotating the hue towards more of an orange as you decrease the lightness, the darker shades will feel warm and rich instead of dull and brown:
 
@@ -1225,7 +1231,7 @@ You can of course combine these approaches too, getting some of the brightness b
 
 Don't let lightness kill your saturation
 
-While this is a great way to change a color's brightness without affecting its intensity, it works best in small doses. Don't rotate the hue more than 20-30° or it will look like a totally different color instead of just lighter or darker.
+While this is a great way to change a color's brightness without affecting its intensity, it works best in small doses. Don't rotate the hue more than 20-30ï¿½ or it will look like a totally different color instead of just lighter or darker.
 
 Greys don't have to be grey
 By definition, true grey has a saturation of 0% -- it doesn't have any actual color in it at all.
@@ -1573,7 +1579,7 @@ If you're designing something that could use some large icons (like maybe the "f
 
 Everything has an intended size
 
-While it's true that vector images won't degrade in quality when you increase their size, icons that were drawn at 16­24px are never going to look very professional when you blow them up to 3x or 4x their intended size. They lack detail, and always feel disproportionately "chunky".
+While it's true that vector images won't degrade in quality when you increase their size, icons that were drawn at 16ï¿½24px are never going to look very professional when you blow them up to 3x or 4x their intended size. They lack detail, and always feel disproportionately "chunky".
 
 If small icons are all you've got, try enclosing them inside another shape and giving the shape a background color:
 
@@ -1709,7 +1715,7 @@ Decorate your backgrounds
 
 This works great for emphasizing an individual panel, as well as for adding some distinction between entire page sections.
 
-For a more energetic look, you could even use a slight gradient: For best results, use two hues that are no more than about 30° apart.
+For a more energetic look, you could even use a slight gradient: For best results, use two hues that are no more than about 30ï¿½ apart.
 
 Decorate your backgrounds
 
@@ -1863,4 +1869,3 @@ When you're trying to figure out why your version looks different than the origi
 
 By continually studying the work that inspires you with a careful eye, you'll be picking up design tricks for years to come.
 -- Adam Wathan & Steve Schoger
-

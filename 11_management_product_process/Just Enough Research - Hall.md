@@ -1,3 +1,9 @@
+# Just Enough Research
+
+> **Author(s):** Hall Â· **Category:** 11_management_product_process Â· **Language:** English
+
+---
+
 Brief books for people who make websites
 
 No
@@ -20,7 +26,7 @@ Sass for Web Designers Dan Cederholm
 On Web Typography Jason Santa Maria
 Responsible Responsive Design Scott Jehl
 
-Copyright © 2013 Erika Hall All rights reserved
+Copyright ï¿½ 2013 Erika Hall All rights reserved
 Publisher: Jeffrey Zeldman Creative Director: Jason Santa Maria Editor-in-Chief: Mandy Brown Editor: Rose Fox Copyeditor: Krista Stevens Proofreader: Tina Lee Indexer: Sally Kerrigan Compositor: Rob Weychert Ebook Production: Nellie McKesson
 ISBN 978-1-9375571-1-9
 A Book Apart New York, New York http://abookapart.com
@@ -69,8 +75,8 @@ You work one pixel or line or phrase at a time, and every strategy shift or misc
 You may be on a team that sees enthusiasm as a substitute for knowledge, high-fiving your way along a primrose path of untested assumptions. (Some people call that religion.) Or maybe you are driven before the whip, no time to stop or even breathe. You might not be going the right way, but who cares because you need to get there fast. Or you might be in an organization where everything is done in response to marketing, sales, and the competition. Every day there's a new trend or buzzword to pay attention to.
 In these settings, research can be a very scary word. It sounds like money you don't have and time you can't spare, like some egghead is gathering wool in a lab or library when you could be moving forward and building something. Scariest of all, it means admitting you don't have all the answers. You may have a vague idea that research is a good thing, but the benefits are fuzzy while the costs are all too clear.
 This book is for you. Research is a tool--a periscope offering you a better view of your surroundings. It can be very powerful if applied thoughtfully. Rather than piling on the costs, research can save you and the rest of your team a ton of time and effort. You can use the techniques and methods I'll describe to:
-· Determine whether you're solving the right problem. · Figure out who in an organization is likely to tank your project. · Discover your best competitive advantages. · Learn how to convince your customers to care about the
-same things you do. · Identify small changes with a huge potential influence. · See where your own blind spots and biases are preventing
+ï¿½ Determine whether you're solving the right problem. ï¿½ Figure out who in an organization is likely to tank your project. ï¿½ Discover your best competitive advantages. ï¿½ Learn how to convince your customers to care about the
+same things you do. ï¿½ Identify small changes with a huge potential influence. ï¿½ See where your own blind spots and biases are preventing
 you from doing your best work.
 Enough Is Enough 3
 
@@ -193,9 +199,9 @@ little usability testing. Applying some critical thinking to your assumptions co
 The CEO is going to dictate what we do anyway You're going to fight to change that dictatorial culture. Reasonably accurate and well-documented research has been known to sway even the most magnificent and well-fed egos. And if the leadership really does have a "damn the facts, full speed ahead" attitude, get a different job.
 One research methodology is superior (qualitative vs. quantitative) What you need to find out determines the type of research you need to conduct. It's that simple.
 You need to be a scientist This isn't pure science we're talking about here. This is applied research. You just need to have (or develop) a few qualities in common with a good scientist:
-· Your desire to find out needs to be stronger than your desire to predict. Otherwise you'll be a mess of confirmation bias, looking for answers that confirm what you already assume.
-· You need to be able to depersonalize the work. There are no hurt feelings or bruised toes in research, only findings.
-· You need to be a good communicator and a good analytical thinker. Otherwise questions and reports get muddy, and results will be worse. This is just a set of skills that most people can develop if they have the right attitude.
+ï¿½ Your desire to find out needs to be stronger than your desire to predict. Otherwise you'll be a mess of confirmation bias, looking for answers that confirm what you already assume.
+ï¿½ You need to be able to depersonalize the work. There are no hurt feelings or bruised toes in research, only findings.
+ï¿½ You need to be a good communicator and a good analytical thinker. Otherwise questions and reports get muddy, and results will be worse. This is just a set of skills that most people can develop if they have the right attitude.
 You need infrastructure I suspect you own or can borrow a laptop and have access to the internet. That is all you need.
 T h e Ba s i c s 19
 
@@ -264,7 +270,7 @@ It might sound counterintuitive, but the most effective approach may be to decou
 Jeff Patton describes this continuous user research process in his article "Twelve Emerging Best Practices for Adding UX Work to Agile Development" (http://bkaprt.com/jer/2/). He offers a tidy three-point summary:
 26 J u s t E n o u g h R e s e a r c h
 
-· Aggressively prioritize the highest-value users. · Analyze and model data quickly and collaboratively. · Defer less urgent research and complete it while the software
+ï¿½ Aggressively prioritize the highest-value users. ï¿½ Analyze and model data quickly and collaboratively. ï¿½ Defer less urgent research and complete it while the software
 is being constructed.
 In other words, focus only on the essential user types, deal with your data as soon as you get it, involve your team in the analysis, and do the less important stuff later.
 This of course opens up the questions of who are the highestvalue users and what are the more or less urgent research activities. Prioritize those user types whose acceptance of the product is critical to success and those who least resemble the software developers on your team. Go learn about them.
@@ -311,8 +317,8 @@ T h e Ba s i c s 31
 Best practices
 There are many good reasons why people get master's degrees and PhDs and become professional analysts and researchers, and there are plenty of reasons why companies benefit from hiring those people. Specialized, educated, and trained researchers cultivate a deep curiosity, have a broad base of relevant knowledge, and gain academic and professional experience conducting ethical and methodical studies. As a designer or developer, you might have good reasons to avoid DIY and hire a trained professional.
 These include:
-· A large, complex project. · A large, complex organization. · Complex or sensitive subject matter. · A very specialized or challenging user base, such as children
-or neurosurgeons. · Heinous organizational politics. · Lack of team members with the time or inclination to acquire
+ï¿½ A large, complex project. ï¿½ A large, complex organization. ï¿½ Complex or sensitive subject matter. ï¿½ A very specialized or challenging user base, such as children
+or neurosurgeons. ï¿½ Heinous organizational politics. ï¿½ Lack of team members with the time or inclination to acquire
 additional skills and duties.
 Skilled, trained professional researchers have rigor. They can apply precise critical thinking in the face of common distractions and pressures, such as the enthusiasm of their team or their manager's personal preferences. The best researchers are like Mr. Spock, with just enough humor and humanity to temper their logical thought processes and allow them to roll with imperfect circumstances. You want rigorous, not rigid.
 In the absence of a trained professional, how do you ensure you are being sufficiently rigorous? You're an amateur attempting these stunts on the open road instead of a closed course; how do you make sure you and your work don't go up in flames?
@@ -340,9 +346,9 @@ To make the best use of your time and truly do just enough research, try to iden
 Ask this question: given our stated business goals, what potential costs do we incur--what bad thing will happen--if, six months from now, we realize:
 34 J u s t E n o u g h R e s e a r c h
 
-· We are solving the wrong problem. · We were wrong about how much organizational support we
-have for this project. · We don't have a particular competitive advantage we thought
-we had, or we didn't see a particular competitive advantage before our competitor copied us. · We were working on features that excited us but don't actually matter that much to our most important customers. · We failed to reflect what is actually most important to our users. · Our users don't really understand the labels we're using. · We missed a key aspect of our users' environments. · We were wrong about our prospective users' habits and preferences.
+ï¿½ We are solving the wrong problem. ï¿½ We were wrong about how much organizational support we
+have for this project. ï¿½ We don't have a particular competitive advantage we thought
+we had, or we didn't see a particular competitive advantage before our competitor copied us. ï¿½ We were working on features that excited us but don't actually matter that much to our most important customers. ï¿½ We failed to reflect what is actually most important to our users. ï¿½ Our users don't really understand the labels we're using. ï¿½ We missed a key aspect of our users' environments. ï¿½ We were wrong about our prospective users' habits and preferences.
 If there is no risk associated with an assumption--for example, if you are working on a technical proof of concept that really, truly doesn't have to satisfy any real-world users--then you don't need to spend time investigating that assumption.
 On the other hand, maybe the success of the new design for the Fantastic Science Center's online store depends on the assumption that many people who shop online value the ability to publicly share their transactions. You could conduct research to understand the social sharing practices and motivations of people who shop online before diving into design and development. Or you could go ahead and design based on an optimistic assumption, then see what happens. At risk are the time and money to design and build the functionality, as well as the organization's reputation. ("They just told everyone on the internet about the robot I bought my kid for her birthday. Not cool!")
 Better understanding of online shoppers mitigates the risk by validating the assumption and informing your design with real user priorities. In addition, you might uncover opportunities to provide something of even greater value to that same audience.
@@ -433,8 +439,8 @@ This is just the start. You can always add more details as they're helpful to yo
 Recruiting Recruiting is simply locating, attracting, screening, and acquiring research participants. There's no draft, so you have to recruit.
 Good recruiting puts the quality in your qualitative research. Since you'll probably be working with a small sample size, you need the individual participants to be as good as they can be. Participants are good to the extent they represent your target. If participants don't match your target, your study will be useless. You can learn valuable things by asking the right people the wrong questions. If you're talking to the wrong people, it doesn't matter what you ask. Bad participants can undermine everything you're trying to do.
 A good research participant:
-· Shares the concerns and goals of your target users. · Embodies key characteristics of your target users, such as
-age or role. · Can articulate their thoughts clearly. · Is as familiar with the relevant technology as your target
+ï¿½ Shares the concerns and goals of your target users. ï¿½ Embodies key characteristics of your target users, such as
+age or role. ï¿½ Can articulate their thoughts clearly. ï¿½ Is as familiar with the relevant technology as your target
 users.
 In theory, recruiting is just fishing. Decide what kind of fish you want. Make a net. Go to where the fish are. Drop some bait in the water. Collect the ones you want. It isn't actually that mysterious, and once you get the hang of it, you'll develop good instincts.
 T h e P r o c e s s 41
@@ -463,7 +469,7 @@ the other hand, if you're making an iPad app that helps mechanics work on cars, 
 Writing a screener is a good test of your empathy with your target users. To have reliable results, you need to screen in the right potential participants, screen out the bad matches, and prevent professional research participants from trying to read your mind to get the study incentive. Even a $25 Amazon gift certificate will attract wily dissemblers. Be vague about the contents of the actual test. If you recruit people from the site you are testing, then just refer to "an interview about this website."
 Asking age, gender, and location allows you to avoid certain biases, but you also need to get at differences in behavior patterns that may have implications for your design.
 For example, when recruiting for a usability study for the science and technology museum, you might ask the following question: how frequently do you engage in the following activities? (Answers could be: never or rarely; at least once a year; a few times per year; at least once a month; at least once a week.)
-· Go to the movies. · Go hiking. · Go to an amusement park. · Try a new restaurant. · Visit a museum. · See live music or go to a club. · See other local sights. · Go out of town for the weekend.
+ï¿½ Go to the movies. ï¿½ Go hiking. ï¿½ Go to an amusement park. ï¿½ Try a new restaurant. ï¿½ Visit a museum. ï¿½ See live music or go to a club. ï¿½ See other local sights. ï¿½ Go out of town for the weekend.
 This question serves two purposes: it gauges museum-visiting frequency without giving away the topic of the study, and it offers a way to assess general habits around getting out of the house.
 At the same time, you should make the screener as short as possible to make it less likely potential participants will bail before they get to the end.
 44 J u s t E n o u g h R e s e a r c h
@@ -501,18 +507,18 @@ T h e P r o c e s s 47
 What usability testing does
 If you have a thing, or even a rough facsimile of a thing, you can test it. If your competitor has a thing, you can test that to figure out what you need to do to create a more usable alternative. If you're about to start redesigning something, usability-testing the current version can provide some input into what works and what doesn't work about the current version. The test will tell you whether people understand the product or service and can use it without difficulty. This is really important, but not the whole story where a product is concerned. As philosophers would say, usability is necessary, but not sufficient.
 Usability testing can:
-· Uncover significant problems with labeling, structure, mental model, and flow, which will prevent your product from succeeding no matter how well it functions.
-· Let you know whether the interface language works for your audience.
-· Reveal how users think about the problems you purport to solve with your design.
-· Demonstrate to stakeholders whether the approved approach is likely to meet stated goals.
+ï¿½ Uncover significant problems with labeling, structure, mental model, and flow, which will prevent your product from succeeding no matter how well it functions.
+ï¿½ Let you know whether the interface language works for your audience.
+ï¿½ Reveal how users think about the problems you purport to solve with your design.
+ï¿½ Demonstrate to stakeholders whether the approved approach is likely to meet stated goals.
 What usability testing doesn't do
 Some people criticize usability testing because aiming for a usable product is tantamount to aiming for mediocrity. But remember, usability is absolutely necessary, even though it is in no way sufficient. If your product isn't usable then it will fail. However, usability testing won't absolve you of your responsibilities as a designer or developer of excellent products and services.
 Usability testing absolutely cannot:
-· Provide you with a story, a vision, or a breakthrough design. · Tell you whether your product will be successful in the
+ï¿½ Provide you with a story, a vision, or a breakthrough design. ï¿½ Tell you whether your product will be successful in the
 marketplace.
 48 J u s t E n o u g h R e s e a r c h
 
-· Tell you which user tasks are more important than others. · Substitute for QA-testing the final product.
+ï¿½ Tell you which user tasks are more important than others. ï¿½ Substitute for QA-testing the final product.
 If you approach usability testing with the right expectations and conduct it early and often, you will be more likely to launch a successful product, and your team will have fun testing along the way. A habit of usability goes hand-in-hand with a habit of creating high-quality products that people like.
 No labs, no masters
 We live in the future. There is no reason to test in anything called a "usability lab," unless there's a danger your experiment will escape and start wreaking havoc. A usability lab gives you the illusion of control when what you are trying to find out is how well your ideas work in the wild. You want unpredictability. You want screaming children in the background, you want glare and interruptions and distractions. We all have to deal with these things when we're trying to check our balances, book travel, buy shoes, and decide where to go for dinner--that is, when we use products and services like the one you're testing.
@@ -525,13 +531,13 @@ Recruiting and observing or interviewing people one at a time is incredibly valu
 Sources include pre-existing research done by your own company or your client, published by a research consultant or by a research organization. Often organizations that serve specific populations, such as journalists or senior citizens, sponsor research and make it publicly available.
 The Pew Research Center's Internet & American Life Project is a free and reputable source of data (http://bkaprt.com/jer/5/). As the name implies, the work focuses on Americans, but it's a terrific place to start. Their work is typically survey-based, and good for thinking about trends. (Also, their reports are a good model for communicating clearly about research.)
 You can use these studies in a few ways:
-· To inform your own general understanding of your target users and help you formulate better questions.
-· To validate general assumptions. · To complement your work.
+ï¿½ To inform your own general understanding of your target users and help you formulate better questions.
+ï¿½ To validate general assumptions. ï¿½ To complement your work.
 When working with third-party literature, take these grains of salt:
-· Note the questions they were asking and determine to what extent they align with your own.
-· Check the sample and note the extent to which it maps to your target user base.
-· Check the person or organization conducting and underwriting the study, so that you can note their biases.
-· Check the date to note whether anything significant has changed since the research was done, such as a new product launch or shift in the economy.
+ï¿½ Note the questions they were asking and determine to what extent they align with your own.
+ï¿½ Check the sample and note the extent to which it maps to your target user base.
+ï¿½ Check the person or organization conducting and underwriting the study, so that you can note their biases.
+ï¿½ Check the date to note whether anything significant has changed since the research was done, such as a new product launch or shift in the economy.
 50 J u s t E n o u g h R e s e a r c h
 
 5. Analyze the data
@@ -552,26 +558,26 @@ Even if the session includes only one interviewer and one notetaker, it's useful
 3. Describe how you gathered the data. 4. Describe the types of analysis you will be doing. 5. Pull out quotes and observations. 6. Group quotes and observations that typify a repeated pattern
 or idea into themes; for example "participants rely on pen and paper to aid memory," or "the opinions of other parents are trusted." 7. Summarize findings, including the patterns you noticed, the insights you gleaned from these patterns, and their implications for the design. 8. Document the analysis in a shareable format.
 This work can get a little intense. To proceed smoothly and stay focused, require everyone who participates to agree to the following ground rules. (Feel free to add house rules of your own.)
-· Acknowledge that the goal of this exercise is to better understand the context and needs of the user. Focus solely on that goal.
+ï¿½ Acknowledge that the goal of this exercise is to better understand the context and needs of the user. Focus solely on that goal.
 52 J u s t E n o u g h R e s e a r c h
 
-· Respect the structure of the session. Refrain from identifying larger patterns before you've gone through the data.
-· Clearly differentiate observations from interpretations (what happened versus what it means).
-· No solutions. It will be very tempting to propose solutions. Stick to insights and principles. Solutions come next.
+ï¿½ Respect the structure of the session. Refrain from identifying larger patterns before you've gone through the data.
+ï¿½ Clearly differentiate observations from interpretations (what happened versus what it means).
+ï¿½ No solutions. It will be very tempting to propose solutions. Stick to insights and principles. Solutions come next.
 What you'll need Sufficient time and willing colleagues are the most essential assets for solid analysis. If you have those, just gather a few more additional office supplies:
-· A big room with a lot of whiteboard wall space. · Sticky notes (in different colors if you want to get fancy). · Pens. · A camera so you can take pictures of the whiteboard, walls of
+ï¿½ A big room with a lot of whiteboard wall space. ï¿½ Sticky notes (in different colors if you want to get fancy). ï¿½ Pens. ï¿½ A camera so you can take pictures of the whiteboard, walls of
 notes, etc., rather than copy everything down. (Also, photos of the session are fun for project retrospectives and company stock photography. "Look, thinky collaborative work!")
 Feel free to group your observations in a number of different ways until your team reaches agreement on the best groupings. By user type, by task type, by importance for product success are just a few potential groups. The most useful groupings are based on patterns that emerge, rather than those imposed or defined at the start before beginning analysis. If necessary, assign a time limit and take a vote when time is up.
 What is the data? You are looking for quotes and observations that indicate:
-· Goals (what the participant wants to accomplish that your product or service is intended to help them with or otherwise relates to).
-· Priorities (what is most important to the participant). · Tasks (actions the participant takes to meet their goal).
+ï¿½ Goals (what the participant wants to accomplish that your product or service is intended to help them with or otherwise relates to).
+ï¿½ Priorities (what is most important to the participant). ï¿½ Tasks (actions the participant takes to meet their goal).
 T h e P r o c e s s 53
 
-· Motivators (the situation or event that starts the participant down the task path).
-· Barriers (the person, situation, or thing that prevents the participant from doing the task or accomplishing the goal).
-· Habits (things the participant does on a regular basis). · Relationships (the people the participant interacts with when
-doing the tasks). · Tools (the objects the participant interacts with while fulfill-
-ing the goals). · Environment (what else is present or going on that affects the
+ï¿½ Motivators (the situation or event that starts the participant down the task path).
+ï¿½ Barriers (the person, situation, or thing that prevents the participant from doing the task or accomplishing the goal).
+ï¿½ Habits (things the participant does on a regular basis). ï¿½ Relationships (the people the participant interacts with when
+doing the tasks). ï¿½ Tools (the objects the participant interacts with while fulfill-
+ing the goals). ï¿½ Environment (what else is present or going on that affects the
 participant's desire or ability to do the tasks that help them meet their goals).
 Outliers
 No matter how rigorous your screening, some outliers may have gotten through. You will know that a participant was an outlier if their behaviors and attributes would rule them out as a target user. If you have interviewed people who don't match your design target, note this fact and the circumstances for future recruiting and set the data aside.
@@ -688,54 +694,54 @@ The interviewer should be a calm and confident person, preferably someone who is
 Have someone else taking notes so that the interviewer can focus on the conversation. You can record the conversation, but this may make the interview subject more nervous about speaking freely. The most important thing is for them to feel comfortable talking honestly and openly.
 Put the participant at ease and demonstrate respect for their time. Send an agenda and the key questions ahead--not all the questions, but the ones the participant will benefit from knowing in advance. More complex topics might require some forethought. It's best to avoid making people feel ambushed or unprepared.
 The basic flow of a stakeholder interview is as follows:
-· Introduce yourself and restate the purpose of the meeting. It should be something like: "We're starting to work on a complete redesign of the Fantastic Science Center website and we want to get your input. We'll use your input to make sure that the design meets your needs as well as those of the visitors."
+ï¿½ Introduce yourself and restate the purpose of the meeting. It should be something like: "We're starting to work on a complete redesign of the Fantastic Science Center website and we want to get your input. We'll use your input to make sure that the design meets your needs as well as those of the visitors."
 66 J u s t E n o u g h R e s e a r c h
 
-· Explain to what extent the information will be shared, by role or business function. "Please feel free to be totally frank. Honest answers are essential to this process. We're talking to people throughout the organization, and will group answers together rather than focusing on what one person said. If we use a direct quote, we will not attribute it to you personally."
-· Like a good journalist, don't narc on your sources. Get something in writing from the person directing or approving this research, stating that people can speak freely without fear of reprisal.
+ï¿½ Explain to what extent the information will be shared, by role or business function. "Please feel free to be totally frank. Honest answers are essential to this process. We're talking to people throughout the organization, and will group answers together rather than focusing on what one person said. If we use a direct quote, we will not attribute it to you personally."
+ï¿½ Like a good journalist, don't narc on your sources. Get something in writing from the person directing or approving this research, stating that people can speak freely without fear of reprisal.
 Ask questions and let the conversation follow its natural course. It's very important to keep the interview feeling informal. It's not an interrogation.
 At the end of the interview restate how you'll use the information and verify the level of the participant's participation throughout the project. You definitely want to make sure that your expectations match. Make sure that it's OK to follow up if you need more information or clarification.
 In addition to name and title, these are the basic questions you'll want to ask:
-· How long have you been in this role? · What are your essential duties and responsibilities? · What does a typical day look like? · Who are the people and teams you work most closely with?
-How well is that relationship working? · Regarding the project we're working on, how would you de-
-fine success? From your perspective, what will have changed for the better once it's complete? · Do you have any concerns about this project? · What do you think the greatest challenges to success are? Internal and external? · How do you expect your interactions with other people inside or outside this organization will change based on the outcome of this project?
+ï¿½ How long have you been in this role? ï¿½ What are your essential duties and responsibilities? ï¿½ What does a typical day look like? ï¿½ Who are the people and teams you work most closely with?
+How well is that relationship working? ï¿½ Regarding the project we're working on, how would you de-
+fine success? From your perspective, what will have changed for the better once it's complete? ï¿½ Do you have any concerns about this project? ï¿½ What do you think the greatest challenges to success are? Internal and external? ï¿½ How do you expect your interactions with other people inside or outside this organization will change based on the outcome of this project?
 Or g a n i z at i o n a l R e s e a r c h 67
 
 Then, there are the more specific questions that depend on the project. Stakeholders may themselves be users, often of back-end systems or administrative functions:
-· What are your most common tasks with the system? · What problems have you noticed? · What kinds of work-arounds do you use? · Have you any concerns about this project? · Is there anyone else I should talk to?
+ï¿½ What are your most common tasks with the system? ï¿½ What problems have you noticed? ï¿½ What kinds of work-arounds do you use? ï¿½ Have you any concerns about this project? ï¿½ Is there anyone else I should talk to?
 Dealing with a hostile witness
 It's in the name. Stakeholders have a personal stake in the process or outcome of the project. They might be in competition for resources, or they might have a larger or smaller workload if the project is successful.
 Stakeholder interviews tend to be interesting when they go well. People enjoy being consulted and treated as experts. However, sometimes stakeholder interviews take a turn for the ugly. This can be very unpleasant, particularly when you're interviewing in person. The participant you're interviewing will turn the tables and start attacking the process, or you personally. They may start questioning the value of what you're doing or even say they don't understand the questions you're asking. If this happens, remain calm, take a deep breath, and attempt to get the interview back on track. Restate your goal, ask if that is clear, and then try asking a very general open-ended question about what the participant thinks is most important for you to know in the service of this goal. Depending on the reason for the hostility, you may just want to cut the interview short.
 Common reasons for stakeholder resistance or hostility:
-· The stakeholder wasn't sufficiently informed or prepared for the process and is suspicious of the motives, or just confused about why they were asked to participate.
-· It's a power move. This individual wants to establish dominance over you or, by extension, over the person who authorized the interview or the project as a whole.
+ï¿½ The stakeholder wasn't sufficiently informed or prepared for the process and is suspicious of the motives, or just confused about why they were asked to participate.
+ï¿½ It's a power move. This individual wants to establish dominance over you or, by extension, over the person who authorized the interview or the project as a whole.
 68 J u s t E n o u g h R e s e a r c h
 
-· The stakeholder is under pressure to perform in some other area and doesn't see a benefit from participating. This is common when interviewing salespeople who are wasting precious time when they could be selling and earning commissions. You have taken them "off the floor."
+ï¿½ The stakeholder is under pressure to perform in some other area and doesn't see a benefit from participating. This is common when interviewing salespeople who are wasting precious time when they could be selling and earning commissions. You have taken them "off the floor."
 Try to determine in advance whether any of the stakeholders you plan to interview are at risk for a hostile reaction. Make sure that they know why you're asking them to participate, how they need to prepare, how long it will take, and the reasons why their participation is essential to the process. Flattery usually goes a long way.
 Remaining calm and confident is essential. Never let anyone bully you when you're gathering information that's essential to your work. Make sure that you're prepared to clearly describe the process and justify its value.
 Do not let them take control of the interview from you. While listening to someone go on a rant about what isn't working can be interesting and useful, it's up to you to guide the conversation.
 Practice, practice, practice. If you're new to doing these sorts of interviews, practice with members of your team before doing it for real. Have them throw in some challenging or unproductive responses:
-· "Why are you asking me this?" · "I don't understand that question. It doesn't make any sense." · "I don't feel comfortable talking to you about that." · "No one pays attention to anything I have to say, so I don't
-know why I should bother talking to you." · "How much more time is this going to take?"
+ï¿½ "Why are you asking me this?" ï¿½ "I don't understand that question. It doesn't make any sense." ï¿½ "I don't feel comfortable talking to you about that." ï¿½ "No one pays attention to anything I have to say, so I don't
+know why I should bother talking to you." ï¿½ "How much more time is this going to take?"
 Documenting interviews
 For each stakeholder, note the following:
-· What's their general attitude toward this project? · What's the goal as they describe it?
+ï¿½ What's their general attitude toward this project? ï¿½ What's the goal as they describe it?
 Or g a n i z at i o n a l R e s e a r c h 69
 
-· To what extent are this person's incentives aligned with the project's success?
-· How much and what type of influence do they have? · Who else do they communicate with on a regular basis? · To what extent does this stakeholder need to participate
-throughout the project, and in which role? · Is what you heard in harmony or in conflict with what you've
+ï¿½ To what extent are this person's incentives aligned with the project's success?
+ï¿½ How much and what type of influence do they have? ï¿½ Who else do they communicate with on a regular basis? ï¿½ To what extent does this stakeholder need to participate
+throughout the project, and in which role? ï¿½ Is what you heard in harmony or in conflict with what you've
 heard from others throughout the organization?
 Just enough You've interviewed enough people when you feel confident that you know:
-· Who all the stakeholders are. · Their roles, attitudes, and perspectives. · Their levels of influence, interest, and availability over the
-course of the project. · How they stand to benefit or suffer with the success or failure
-of your work. · The likelihood that any of them have the power or potential
-to prevent project success. · All the ways that the workflow will have to change to make
-your project a success. · The resources you have available for your project process. · The resources required to support your project once it's
-complete. · All the business requirements and constraints. · Whether your team and core stakeholders agree on the goals
-and definition of success. · Whether the stated goals are the real shared goals, or whether
-anyone has a hidden agenda. · How people outside the project team view this project.
+ï¿½ Who all the stakeholders are. ï¿½ Their roles, attitudes, and perspectives. ï¿½ Their levels of influence, interest, and availability over the
+course of the project. ï¿½ How they stand to benefit or suffer with the success or failure
+of your work. ï¿½ The likelihood that any of them have the power or potential
+to prevent project success. ï¿½ All the ways that the workflow will have to change to make
+your project a success. ï¿½ The resources you have available for your project process. ï¿½ The resources required to support your project once it's
+complete. ï¿½ All the business requirements and constraints. ï¿½ Whether your team and core stakeholders agree on the goals
+and definition of success. ï¿½ Whether the stated goals are the real shared goals, or whether
+anyone has a hidden agenda. ï¿½ How people outside the project team view this project.
 70 J u s t E n o u g h R e s e a r c h
 
 What to do with stakeholder analysis
@@ -743,8 +749,8 @@ Stakeholder analysis can be pretty straightforward. If you're interviewing membe
 Create a clear statement of what you need to accomplish for the project to be considered a success by the organization. These are the business requirements. Design and development are how you satisfy the business requirements. It's best if everyone who cares about the project agrees.
 The goal of gathering and documenting business requirements is to ensure that all the stakeholders agree on the purpose and limitations of what you're doing. You want to increase your chance of success, connect what you're doing to the goals of the business, increase collaboration, and save costs, particularly those associated with changes. Note that business strategy must remain constant for the duration of a project.
 Requirements must be:
-· Cohesive. The requirements all refer to the same thing. · Complete. No missing information. No secret requirements
-that didn't make it onto the list. · Consistent. The requirements don't contradict each other. · Current. Nothing obsolete. · Unambiguous. No jargon. No acronyms. No opinions. · Feasible. Within the realm of possibility on this project. · Concise. Keeping them short and clear will increase the
+ï¿½ Cohesive. The requirements all refer to the same thing. ï¿½ Complete. No missing information. No secret requirements
+that didn't make it onto the list. ï¿½ Consistent. The requirements don't contradict each other. ï¿½ Current. Nothing obsolete. ï¿½ Unambiguous. No jargon. No acronyms. No opinions. ï¿½ Feasible. Within the realm of possibility on this project. ï¿½ Concise. Keeping them short and clear will increase the
 chances that they are read, understood, remembered, and used. Aim for no more than two to three pages.
 The document should not contain specific solutions or design requirements. The type of organization determines the level of detail required in the business requirements documentation. Depending on the political situation at the company for whom you're conducting the research, you may have one version for the core team and a more summarized (or polite) report for broader distribution.
 Or g a n i z at i o n a l R e s e a r c h 71
@@ -816,11 +822,11 @@ You do user research to identify patterns and develop empathy. From a designer's
 communicable condition: you get it from interacting with the people you're designing for.
 When we talk about user research as distinguished from usability testing, we're talking about ethnography, the study of humans in their culture. We want to learn about our target users as people existing in a cultural context. We want to understand how they behave and why. This is very different from gathering opinions. It isn't just surveying or polling. And it's definitely not focus groups.
 Ethnographic design research allows design teams to:
-· Understand the true needs and priorities of your customers/ readers/target audience/end users.
-· Understand the context in which your users will interact with what you're designing.
-· Replace assumptions about what people need and why with actual insight.
-· Create a mental model of how the users see the world. · Create design targets (personas) to represent the needs of the
-user in all decision-making. · Hear how real people use language to develop the voice of
+ï¿½ Understand the true needs and priorities of your customers/ readers/target audience/end users.
+ï¿½ Understand the context in which your users will interact with what you're designing.
+ï¿½ Replace assumptions about what people need and why with actual insight.
+ï¿½ Create a mental model of how the users see the world. ï¿½ Create design targets (personas) to represent the needs of the
+user in all decision-making. ï¿½ Hear how real people use language to develop the voice of
 the site/application.
 Everything in context
 For you to design and develop something that appeals to real people and reflects their priorities, you'll need to talk with or observe representative users directly in their context--their regular environment. This reduces your risk of making bad assumptions based on your own experiences, hopes, or subjective preferences. That context includes the physical environment, mental model, habits, and relationships.
@@ -869,7 +875,7 @@ U s er R e s e a r c h 81
 
 give knee-jerk answers before thinking the issue through.") or wouldn't tell you much about suitability for the job.
 The real question behind the question is, "Do you have any habits or behaviors that would interfere with your ability to perform this specific job?"--a question that would be even weirder to ask the candidate directly. To get the answer, the interviewer needs to get the candidate to tell stories about relevant situations without indicating that there's a right or wrong answer. Here are some much better interview questions:
-· Walk me through a typical day in your current job. · Tell me about a misunderstanding you had with a coworker. · Tell me about a situation at work where you had to deal with
+ï¿½ Walk me through a typical day in your current job. ï¿½ Tell me about a misunderstanding you had with a coworker. ï¿½ Tell me about a situation at work where you had to deal with
 something unexpected.
 Similarly, to create a good fit between what you're designing and what your target users need, you have to know about the aspects of their habits, behaviors, and environment that are relevant to your work, and then turn that knowledge into insights you can act on. These insights will allow you to design with more confidence and less guesswork.
 What is ethnography?
@@ -938,23 +944,23 @@ Avoid talking about yourself
 Sometimes, what starts as active listening turns into "Let me tell you about a similar experience I had...." The interview isn't about you or your opinions. This can be very hard to remember and takes practice to avoid. So, if you find that you've inserted yourself into their narrative, just stay relaxed and steer the conversation back on track.
 Handy checklist
 This checklist for effective user research was adapted from the Ethnography Field Guide produced by the Helsinki Design Lab, powered by Sitra, the Finnish Innovation Fund (http://bkaprt. com/jer/10/):
-· Create a welcoming atmosphere to make participants feel at ease.
-· Always listen more than you speak. · Take responsibility to accurately convey the thoughts and
-behaviors of the people you are studying. · Conduct your research in the natural context of the topic
-you're studying. · Start each interview with a general description of the goal,
-but be careful of focusing responses too narrowly. · Encourage participants to share their thoughts and go about
-their business. · Avoid leading questions and closed yes/no questions. Ask
+ï¿½ Create a welcoming atmosphere to make participants feel at ease.
+ï¿½ Always listen more than you speak. ï¿½ Take responsibility to accurately convey the thoughts and
+behaviors of the people you are studying. ï¿½ Conduct your research in the natural context of the topic
+you're studying. ï¿½ Start each interview with a general description of the goal,
+but be careful of focusing responses too narrowly. ï¿½ Encourage participants to share their thoughts and go about
+their business. ï¿½ Avoid leading questions and closed yes/no questions. Ask
 follow-up questions.
 88 J u s t E n o u g h R e s e a r c h
 
-· Prepare an outline of your interview questions in advance, but don't be afraid to stray from it.
-· Whenever possible, snap photos of interesting things and behaviors.
-· Also note the exact phrases and vocabulary that participants use. · Pay attention after you stop recording. You might get a valu-
+ï¿½ Prepare an outline of your interview questions in advance, but don't be afraid to stray from it.
+ï¿½ Whenever possible, snap photos of interesting things and behaviors.
+ï¿½ Also note the exact phrases and vocabulary that participants use. ï¿½ Pay attention after you stop recording. You might get a valu-
 able revelation.
 Try to be as conversational and natural as possible. If the user volunteers the information in the course of your conversation without you having to ask, that's terrific. Your questions are just prompts to help the participant tell you a story that reveals situations, attitudes, and behaviors you didn't even think to ask about. Offer enough information to set the scope for the conversation, but not so much that you influence the response.
 Here is a sample set of questions, based on our museum website design example, for you to modify to meet your needs:
-· Tell me about your job. · Walk me through a typical week in your life. · How often are you online? · What computers or devices do you use? · When do you use each of them? · Do you share any of them? · What do you typically do online? · What do you typically do on your days off? · How do you decide what to do? · Tell me about how your children use the internet. · How do you decide what to do on your days off with your kids? · What are your particular non-work interests? What do you
-read online besides the news? · How frequently do you visit museums in your town? Which ones? · What prompts you to go?
+ï¿½ Tell me about your job. ï¿½ Walk me through a typical week in your life. ï¿½ How often are you online? ï¿½ What computers or devices do you use? ï¿½ When do you use each of them? ï¿½ Do you share any of them? ï¿½ What do you typically do online? ï¿½ What do you typically do on your days off? ï¿½ How do you decide what to do? ï¿½ Tell me about how your children use the internet. ï¿½ How do you decide what to do on your days off with your kids? ï¿½ What are your particular non-work interests? What do you
+read online besides the news? ï¿½ How frequently do you visit museums in your town? Which ones? ï¿½ What prompts you to go?
 What to do with the data you collect
 The interview is the basic unit of ethnographic research. Once you've completed your interviews, analyze them all together to find themes, including user needs and priorities, behavior
 U s er R e s e a r c h 89
@@ -968,9 +974,9 @@ On behalf of a video game publisher, I've visited the homes of people who play v
 90 J u s t E n o u g h R e s e a r c h
 
 and displayed games in their homes that we could reflect in the design of the website. Most importantly, we heard the language actual customers used when talking about the company brand and the gaming experience as a whole.
-Things to keep in mind · Travel. Allow plenty of time to get to the site and set up. · Get situated. Find a comfortable spot that allows you to talk
-to the participant without interrupting their normal routine. · Interview. Establish trust and learn about what you will be
-observing. Find out when it will be least disruptive to interrupt and ask questions. · Observe. It's a show. You're watching. Note everything in as much detail as possible. The relevance will be apparent later. Pause to ask questions. Stay out of the way. · Summarize. Conclude by summarizing what you learned and asking the participant to verify whether your observations were correct. Note: even if the participant disagrees with your assessment, you might still be correct, and the contradictory description is a very interesting data point.
+Things to keep in mind ï¿½ Travel. Allow plenty of time to get to the site and set up. ï¿½ Get situated. Find a comfortable spot that allows you to talk
+to the participant without interrupting their normal routine. ï¿½ Interview. Establish trust and learn about what you will be
+observing. Find out when it will be least disruptive to interrupt and ask questions. ï¿½ Observe. It's a show. You're watching. Note everything in as much detail as possible. The relevance will be apparent later. Pause to ask questions. Stay out of the way. ï¿½ Summarize. Conclude by summarizing what you learned and asking the participant to verify whether your observations were correct. Note: even if the participant disagrees with your assessment, you might still be correct, and the contradictory description is a very interesting data point.
 Contextual inquiry can be very inspirational. You might observe problems and opportunities you had no idea existed and open the door to some innovative and interesting ideas. Be ready to learn that people don't need what you thought they need at all, but that they do need something totally different. Joyfully release all of your preconceived plans and notions.
 Focus groups: just say no
 A handful of "ordinary" people around a conference table engaged in a lively discussion about how various brands make them feel. A cheerful, yet authoritative moderator. Observers wielding clipboards behind a two-way mirror. Focus groups are synonymous with qualitative research in popular culture, and it isn't uncommon to hear all user research lumped as "focus groups."
@@ -1024,7 +1030,7 @@ Schools are cutting back on field trips.
 Fig 6.1: A SWOT analysis organized in a simple grid can help you grasp your competitive position.
 When you look at what your competitors are doing, you only see what is visible on the outside, unless you have a mole. That's what your users see as well, so user research won't help you here. It will take some deeper digging, critical thinking, and extrapolation to determine (or make a good guess at) why your competitor is doing things a certain way.
 SWOT analysis
-Albert S. Humphrey was a management consultant who devised something called SWOT analysis (http://bkaprt.com/jer/14/): strengths, weaknesses, opportunities, and threats. You arrange them in a handy 2 × 2 grid and use them to guide your strategy (Fig 6.1). Your work with your own organization (or the research
+Albert S. Humphrey was a management consultant who devised something called SWOT analysis (http://bkaprt.com/jer/14/): strengths, weaknesses, opportunities, and threats. You arrange them in a handy 2 ï¿½ 2 grid and use them to guide your strategy (Fig 6.1). Your work with your own organization (or the research
 
 96 J u s t E n o u g h R e s e a r c h
 
@@ -1035,15 +1041,15 @@ Competitive audit
 Once you have identified a set of competitors and a set of brand attributes, conduct an audit to see how you stack up. In addition to those organizations you think of as competitors, conduct a web search to see who else comes up. Add in any product or service that was mentioned repeatedly in user interviews and anyone you admire as a leader solving a similar type of problem. For example, in thinking about the Fantastic Science Center, you might also consider other public-facing science organizations or museums that do an excellent job of reaching or expanding their audience online.
 Once you've compiled this list, identify which aspects of their work are most relevant and accessible. This might include marketing websites, mobile applications, information kiosks on site at the actual location, Facebook groups, third-party storefronts, etc.
 For each competitor and each site, product, service, or touchpoint, answer the following:
-· How do they explicitly position themselves? What do they say they offer?
-· Who do they appear to be targeting? How does this overlap or differ from your target audience or users?
-· What are the key differentiators? The factors that make them uniquely valuable to their target market, if any?
+ï¿½ How do they explicitly position themselves? What do they say they offer?
+ï¿½ Who do they appear to be targeting? How does this overlap or differ from your target audience or users?
+ï¿½ What are the key differentiators? The factors that make them uniquely valuable to their target market, if any?
 C o m pe t i t i v e R e s e a r c h 97
 
-· To what extent do they embody each of your positive/negative attributes?
-· How do the user needs or wants they're serving overlap or differ from those that you're serving or desire to serve?
-· What do you notice that they're doing particularly well or badly?
-· Based on this assessment, where do you see emerging or established conventions in how they do things, opportunities to offer something clearly superior, or good practices you'll need to adopt or take into consideration to compete with them?
+ï¿½ To what extent do they embody each of your positive/negative attributes?
+ï¿½ How do the user needs or wants they're serving overlap or differ from those that you're serving or desire to serve?
+ï¿½ What do you notice that they're doing particularly well or badly?
+ï¿½ Based on this assessment, where do you see emerging or established conventions in how they do things, opportunities to offer something clearly superior, or good practices you'll need to adopt or take into consideration to compete with them?
 Brand audit
 In addition to looking at how your competitors position and differentiate themselves, take a good, hard look at your own brand. Is it doing the work it needs to and setting the right expectations for the overall experience? Do you need to do some work on it?
 Your brand is simply your reputation and those things that signify your identity and reputation to your current and potential customers. That reputation offers a promise of all the good things you do for your customers, most of which exist only in the customer's mind. The stronger the brand, the more awesome associations pop up in more people's minds. Coca-Cola is a phenomenal brand, producing positive emotional associations across the globe on a product that is fundamentally caffeinated sugar water. Tremendous continuous effort goes into brand marketing. You probably don't need that.
@@ -1092,18 +1098,18 @@ Heuristic analysis
 Despite the fancy name (which is from the Greek heuriskein, to find out), heuristic analysis is the most casual method of evaluating usability. "Heuristic" in English simply means "based on experience"; a heuristic is a qualitative guideline, an accepted principle of usability. The more you know about using and designing interactive systems, the better you'll be at heuristic analysis.
 Godfather of usability Jakob Nielsen and his colleague Rolf Molich came up with the idea for heuristic analysis way back in 1990 (http://bkaprt.com/jer/16/). The method is very simple: evaluators (at least two or three, ideally) individually go through a site or application with a checklist of principles in hand and score the site for each one.
 Nielsen's ten heuristics (http://bkaprt.com/jer/17/) are:
-· System status visibility. The system should provide appropriate feedback.
-· Match between system and real world. Use language familiar to the user and follow conventions.
-· User control and freedom. Provide emergency exits, undo, and redo.
-· Consistency and standards. Things that appear the same should behave the same.
-· Error prevention. Don't just let users escape from errors: help users avoid them.
-· Recognition rather than recall. Options should be visible. Instructions should be easy to find. Don't make the user have to remember information.
+ï¿½ System status visibility. The system should provide appropriate feedback.
+ï¿½ Match between system and real world. Use language familiar to the user and follow conventions.
+ï¿½ User control and freedom. Provide emergency exits, undo, and redo.
+ï¿½ Consistency and standards. Things that appear the same should behave the same.
+ï¿½ Error prevention. Don't just let users escape from errors: help users avoid them.
+ï¿½ Recognition rather than recall. Options should be visible. Instructions should be easy to find. Don't make the user have to remember information.
 E va luat i v e R e s e a r c h 103
 
-· Flexibility and efficiency of use. Support shortcuts for expert users.
-· Aesthetic and minimalist design. Avoid providing irrelevant information.
-· Help users recognize and recover from errors. Error messages should be helpful.
-· Help and documentation. Ideally, the system should be usable without documentation, but help should still be available and task oriented.
+ï¿½ Flexibility and efficiency of use. Support shortcuts for expert users.
+ï¿½ Aesthetic and minimalist design. Avoid providing irrelevant information.
+ï¿½ Help users recognize and recover from errors. Error messages should be helpful.
+ï¿½ Help and documentation. Ideally, the system should be usable without documentation, but help should still be available and task oriented.
 Several of these heuristics focus on error prevention and recovery, which remains the most neglected area of system design. Every time an application displays "Unknown Error" or an unhelpful error code number with no instruction, you know someone should have done a little heuristic evaluation.
 The advantage of heuristic analysis is that it's a quick and cheap way to identify potential issues. You don't need to recruit users. You can just get two colleagues to sit down and do it in an hour. It's a good way to deal with obvious issues in early prototypes before bringing in users.
 The downside is that it's very simplistic and might not catch all the issues that would come up in context. Less experienced evaluators may not see all the problems. Different evaluators will find different issues. Some expert evaluators may find issues that don't present a problem to actual users. It focuses on the system itself rather than the relationship between the user and the system. The advantages were greater back in the day when fewer people were familiar with technology and recruiting people was much more difficult.
@@ -1119,32 +1125,32 @@ The more complex a system is to design and build, the more work is required to e
 Don't make me drink
 Usability testing can save you from introducing unnecessary misery into the world--or having it associated with your brand.
 According to Nielsen (http://bkaprt.com/jer/18/), usability is a quality attribute defined by five components:
-· Learnability: how easy is it for users to accomplish basic tasks the first time they come across the design?
-· Efficiency: once users have learned the design, how quickly can they perform tasks?
-· Memorability: when users return to the design after a period of not using it, how easily can they reestablish proficiency?
+ï¿½ Learnability: how easy is it for users to accomplish basic tasks the first time they come across the design?
+ï¿½ Efficiency: once users have learned the design, how quickly can they perform tasks?
+ï¿½ Memorability: when users return to the design after a period of not using it, how easily can they reestablish proficiency?
 E va luat i v e R e s e a r c h 105
 
-· Errors: how many errors do users make, how severe are these errors, and how easily can they recover from the errors?
-· Satisfaction: how pleasant is it to use the design?
+ï¿½ Errors: how many errors do users make, how severe are these errors, and how easily can they recover from the errors?
+ï¿½ Satisfaction: how pleasant is it to use the design?
 Every aspect of a digital design that thwarts an intention it purported to fulfill might as well be a sharp ragged edge, a piece of broken glass, or a splinter. Would you offer a broken glass to a guest? All of your users are your guests. It is your job to make sure they don't cut themselves on the stuff you make.
 Cheap tests first, expensive tests later
 Usability testing can be more or less expensive. Don't use expensive testing--costly in money or time--to find out things you can find out with cheap tests. Find out everything you can with paper prototypes or quick sketches before you move to a prototype. Find out everything you can in the comfort of your own office before you move into the field. Test with a general audience before you test with specific audiences who take more time and effort to find.
 In fact, start even earlier than that. Test a competitor's product before you even put pencil to paper. Then you should test some sketches. And then test at every stage as much as you can allow.
 How often you test depends on how frequently significant design decisions are being made. You can test every two weeks in conjunction with development sprints, if that's how you roll. I'm not going to tell you when to do usability testing in your design and development cycle, but I will tell you when not to do it: right before you are about to launch. A good rule of thumb:
-· The second most expensive kind of usability testing is the kind that you put off until very late in the process, when you risk finding out that there are huge usability problems that will be very difficult to fix.
-· The most expensive of all is the kind your customers do for you after launch by way of customer service.
+ï¿½ The second most expensive kind of usability testing is the kind that you put off until very late in the process, when you risk finding out that there are huge usability problems that will be very difficult to fix.
+ï¿½ The most expensive of all is the kind your customers do for you after launch by way of customer service.
 Try to avoid these situations.
 106 J u s t E n o u g h R e s e a r c h
 
 Preparing for usability testing
 The most difficult part of usability testing is determining how it fits into your process as a decision-making input. There is no one way, but there are a few essential principles:
-· Build usability practices into your workflow from the start, the same way you account for internal reviews of work in progress.
-· Create a testing process and checklist that includes all of the information and equipment you need.
-· Always be recruiting. Maintain a database, even just a Google doc, of potential participants and their contact information.
-· Decide who's in charge of this stuff. A point person makes everything operate more smoothly.
+ï¿½ Build usability practices into your workflow from the start, the same way you account for internal reviews of work in progress.
+ï¿½ Create a testing process and checklist that includes all of the information and equipment you need.
+ï¿½ Always be recruiting. Maintain a database, even just a Google doc, of potential participants and their contact information.
+ï¿½ Decide who's in charge of this stuff. A point person makes everything operate more smoothly.
 What you will need
-· A plan. · A prototype or sketch. · Four to eight participants of each target user type based on
-personas (ideally) or marketing segments. · A facilitator. · An observer. · One or more methods of documentation. · A timer or watch.
+ï¿½ A plan. ï¿½ A prototype or sketch. ï¿½ Four to eight participants of each target user type based on
+personas (ideally) or marketing segments. ï¿½ A facilitator. ï¿½ An observer. ï¿½ One or more methods of documentation. ï¿½ A timer or watch.
 Usability test plans
 A usability test revolves around tasks. Ideally you have personas that you have been using throughout the design process and you can use them and their core tasks as a jumping off point for usability. The features you want to test should likewise have associated scenarios and tasks. For each feature, write a very brief story that offers background on how the user arrived there and what they are trying to accomplish.
 For example, if you wanted to test the new ticket purchase process design, you might use the following scenario: a scienceminded school friend is in town for the weekend and wants to
@@ -1155,8 +1161,8 @@ Not all tasks are created equal. When you go into a usability test, you should h
 The ur-example of a deal-breaker task is using an online shopping cart. If a user can do anything at all on your site, they need to be able to successfully give you money. For websites with the goal of marketing a physical location, such as the Fantastic Science Center, finding the address and operating hours is generally the most essential task.
 Once you have your tasks, make a checklist test plan that you use to run and document each round of testing. The test plan lays out what you're going to do, how you're going to conduct the test, which metrics you'll capture, the number of participants you're going to test, and which scenarios you'll use. Reducing the time you spend on planning will save your precious brain cells for analyzing and reacting to the results.
 Helpfully, the US Department of Health and Human Services maintains usability.gov, which is a resource for making useful and usable websites. (Even you libertarians out there should appreciate this.) All the materials are in the public domain, so have at it, no matter where you are. This checklist can be used for both planning the test and writing your report. Modify it to fit your needs:
-· Objectives. · Subject of the test: what are you testing and what state is it in? · Methodology. · Participants and recruiting. · Procedure. · Tasks. · Usability goals. · Completion rate (the percentage of tasks the user was able
-to complete). · Error-free rate (the percentage of tasks completed without
+ï¿½ Objectives. ï¿½ Subject of the test: what are you testing and what state is it in? ï¿½ Methodology. ï¿½ Participants and recruiting. ï¿½ Procedure. ï¿½ Tasks. ï¿½ Usability goals. ï¿½ Completion rate (the percentage of tasks the user was able
+to complete). ï¿½ Error-free rate (the percentage of tasks completed without
 errors or hiccups).
 108 J u s t E n o u g h R e s e a r c h
 
@@ -1183,7 +1189,7 @@ If you are testing a tricky device, such as a smartphone or ereader, you might h
 Usability testing applications on mobile devices is a free-forall right now, so it's a terrific place for innovation. There is a great need for evaluating the usability of mobile interfaces, particularly in their context of use (walking around outside, rather than seated in your conference room), but there is no one clear, comfortable way to both observe the user over the shoulder and capture the activity on the user's screen.
 MailChimp's solution to this conundrum, which they detail on their blog (http://bkaprt.com/jer/19/), is to have a user set up a video chat on a MacBook and then hug it from the back so the iSight camera catches video of their interaction on the phone and the audio through the microphone (Fig 7.1).
 The observer will need to note the following:
-· The participant's reaction to the task. · How long it takes to complete the task. · If the user failed to complete the task. · Any terminology that presented a stumbling block.
+ï¿½ The participant's reaction to the task. ï¿½ How long it takes to complete the task. ï¿½ If the user failed to complete the task. ï¿½ Any terminology that presented a stumbling block.
 The note-taker should work from a copy of the test script with space to insert annotations. The most important items to note are areas where the user exhibited nonverbal frustration, verbatim quotes, and any features that were particularly successful or unsuccessful. If the notetaker can manage an approximate time code, that will make analysis easy.
 E va luat i v e R e s e a r c h 111
 
@@ -1196,18 +1202,18 @@ Analyzing and presenting test data The aim of usability testing is to identify s
 How bad and how often?
 Rate each problem users encountered during the test on each of the following two scales: severity and frequency. You must look at both to ensure you're prioritizing real obstacles, rather than chasing a fluke.
 Severity:
-· High: an issue that prevents the user from completing the task at all.
-· Moderate: an issue that causes some difficulty, but the user can ultimately complete the task.
-· Low: a minor problem that doesn't affect the user's ability to complete the task.
+ï¿½ High: an issue that prevents the user from completing the task at all.
+ï¿½ Moderate: an issue that causes some difficulty, but the user can ultimately complete the task.
+ï¿½ Low: a minor problem that doesn't affect the user's ability to complete the task.
 Frequency:
-· High: 30% or more participants experience the problem. · Moderate: 11­29% of participants experience the problem. · Low: 10% or fewer of participants experience the problem.
+ï¿½ High: 30% or more participants experience the problem. ï¿½ Moderate: 11ï¿½29% of participants experience the problem. ï¿½ Low: 10% or fewer of participants experience the problem.
 It'll end in tiers
 Once you've conducted the tests, and rated the issues, sort them into three tiers. Each represents the combination of severity and frequency. Also take into account how core the related task is to your application (for example, confusion over changing a profile picture may be less core than obstacles to entering payment information). Rename the tiers if it will be more fun for you.
 E va luat i v e R e s e a r c h 113
 
-· Tier 1: high-impact problems that often prevent a user from completing a task. If you don't resolve these you have a high risk to the success of your product.
-· Tier 2: either moderate problems with low frequency or low problems with moderate frequency.
-· Tier 3: low-impact problems that affect a small number of users. There is a low risk to not resolving these.
+ï¿½ Tier 1: high-impact problems that often prevent a user from completing a task. If you don't resolve these you have a high risk to the success of your product.
+ï¿½ Tier 2: either moderate problems with low frequency or low problems with moderate frequency.
+ï¿½ Tier 3: low-impact problems that affect a small number of users. There is a low risk to not resolving these.
 Now, get to work
 As soon as you have usability test results, you can take action. Start with Tier 1 issues. Identify potential fixes with the lowest level of technical effort. Implement these fixes, then test again.
 Need to convince someone before you can make any changes? Watching actual users struggle with the system is more convincing than reading a report, and offers all the agitation of a suspense film. (Why doesn't he see the button? It's right there!) So if you're starting to see frequent repeated usability issues, try to schedule sessions when it's convenient for important people to observe. Verbatim quotes and video clips of failure presented in conjunction with a report can also be effective. Just make sure to connect the tasks you tested and the problems you found to high-priority business goals.
@@ -1224,9 +1230,9 @@ Any models or maps you create will simply serve as documentation of what everyon
 The process is actually pretty simple:
 A n a lys i s a n d M o d e l s 115
 
-· Closely review the notes. · Look for interesting behaviors, emotions, actions, and ver-
-batim quotes. · Write what you observed on a sticky note (coded to the
-source, the actual user, so you can trace it back). · Group the notes on the whiteboard. · Watch the patterns emerge. · Rearrange the notes as you continue to assess the patterns.
+ï¿½ Closely review the notes. ï¿½ Look for interesting behaviors, emotions, actions, and ver-
+batim quotes. ï¿½ Write what you observed on a sticky note (coded to the
+source, the actual user, so you can trace it back). ï¿½ Group the notes on the whiteboard. ï¿½ Watch the patterns emerge. ï¿½ Rearrange the notes as you continue to assess the patterns.
 You will end up with a visual representation of your research that you can apply toward your design work in a few different ways.
 Affinity diagram
 Your first pass--and if you don't have a lot of time, your only pass--should be to extract general design mandates from your interviews. Then you can prioritize those mandates based on business goals. This also requires the least diagramming skill.
@@ -1277,23 +1283,23 @@ Example observations:
 
 a n a lys I s a n d m o d E l s 117
 
-· "I reset my password every time I visit the website because I never remember it."
-· Participant's four-year-old daughter interrupted three times during the thirty-minute interview.
-· "I take care of the kids for the whole day every Saturday to give my partner some alone time."
-· Participant reports checking email on her phone every morning before getting out of bed.
+ï¿½ "I reset my password every time I visit the website because I never remember it."
+ï¿½ Participant's four-year-old daughter interrupted three times during the thirty-minute interview.
+ï¿½ "I take care of the kids for the whole day every Saturday to give my partner some alone time."
+ï¿½ Participant reports checking email on her phone every morning before getting out of bed.
 Example goals:
-· "I like to start the weekend with some good activities in mind." · "I want my kids to keep learning even when they're not
+ï¿½ "I like to start the weekend with some good activities in mind." ï¿½ "I want my kids to keep learning even when they're not
 in school."
 Create groups Start grouping the notes on a whiteboard. You should start seeing patterns pretty quickly. Name the pattern and identify the user need that emerges from it, such as "Needs reminders for organized activities."
-· "I see signs around town for events that look interesting, but I never remember before it's too late."
-· "The week rushes by and then I wake up on Saturday morning with no good ideas."
+ï¿½ "I see signs around town for events that look interesting, but I never remember before it's too late."
+ï¿½ "The week rushes by and then I wake up on Saturday morning with no good ideas."
 Identify next steps The final step of the analysis is to identify the actionable design mandate or principle.
-· When announcing a new exhibit, offer the ability to sign up for a reminder.
-· Allow members the option of digital access to all services (e.g., online member newsletter instead of print, email guest passes to their friends).
+ï¿½ When announcing a new exhibit, offer the ability to sign up for a reminder.
+ï¿½ Allow members the option of digital access to all services (e.g., online member newsletter instead of print, email guest passes to their friends).
 118 J u s t E n o u g h R e s e a r c h
 
-· Improve promotion of and navigation to activities and lesson plans.
-· Create a stronger voice for the museum based on the quality of its scholarship and expert status (e.g., offer the museum perspective alongside the feed of technology news).
+ï¿½ Improve promotion of and navigation to activities and lesson plans.
+ï¿½ Create a stronger voice for the museum based on the quality of its scholarship and expert status (e.g., offer the museum perspective alongside the feed of technology news).
 In addition to serving as a useful input to other tools, such as personas, and a nifty visual representation of your research and analysis, the affinity diagram helps you make decisions. You can decide which features and functionality to prioritize based on the patterns of needs you recognize. You can decide to do additional research based on the questions it raises. And it can serve as a common reference point for your team in discussing those decisions.
 Creating personas
 A persona is a fictional user archetype--a composite model you create from the data you've gathered by talking to real people-- that represents a group of needs and behaviors.
@@ -1358,16 +1364,16 @@ Scenarios
 If personas are your characters, scenarios are your plots. Each scenario is the story of how a persona interacts with your system to meet one (or more) of their goals. Running a persona through a scenario helps you think through your design from the user's point of view. You can use scenarios at several points in your process:
 124 J u s t E n o u g h R e s e a r c h
 
-· To flesh out requirements. · To explore potential solutions. · To validate proposed solutions. · As the basics for a usability test script.
+ï¿½ To flesh out requirements. ï¿½ To explore potential solutions. ï¿½ To validate proposed solutions. ï¿½ As the basics for a usability test script.
 As long as a scenario hews closely to actual data gathered in user research, you have a lot of flexibility in the actual format. You can start from a specific answer to an interview question, such as "I wake up at 8 a.m. on Saturday and read a local news website while the kids run around the house making noise." While personas should remain reasonably constant in their characteristics and priorities, scenarios can evolve and deepen over time and change as your understanding of the system changes. Your personas are the Simpsons, your scenarios are the couch gag.
 You can write a scenario as a short text narrative, a step-bystep flow, or even a set of comic panels--whatever is easy for your team to create and use to keep each persona represented in design and technology decision-making. If you find anyone on your team resenting the effort necessary to work with personas and scenarios, you're doing it wrong. Simply drawing out scenarios on a whiteboard can work.
 Scenarios are not themselves use cases or user stories, although they can influence each. A use case is a list of interactions between a system and a user, and is typically a way to capture functional requirements. Scenarios are from the perspective of the individual human user represented by the persona, not the perspective of the system or business process.
 For example: Diane and her family just moved into the area. Her job as an account manager is very demanding during the week, but weekends are family time.
-· Goal: she wants to find local activities that will be entertaining for her son and relaxing for her and her husband.
-· Motivation: when she was driving home from the office on Friday evening, she saw banners for the Fantastic Science Center's new exhibit on super storms. Sitting in her driveway, Diane Googles the science center on her iPhone.
+ï¿½ Goal: she wants to find local activities that will be entertaining for her son and relaxing for her and her husband.
+ï¿½ Motivation: when she was driving home from the office on Friday evening, she saw banners for the Fantastic Science Center's new exhibit on super storms. Sitting in her driveway, Diane Googles the science center on her iPhone.
 A n a lys i s a n d M o d e l s 125
 
-· Task: she needs to determine whether visiting the Fantastic Science Center will meet her needs.
+ï¿½ Task: she needs to determine whether visiting the Fantastic Science Center will meet her needs.
 Stay on target Developed with care, personas can be the most useful and lasting output of user research. They are the users in "user-centered" and an incredibly efficient and even fun distillation of your ethnographic work.
 You will know your personas are working when they become the first people you want to see any new idea. Rather than asking "Does this work for me?" or "Does this make my boss happy?" you can ask "Does this address Dana's concerns about privacy? Would Neven understand what to do? Would Anna find time for this in her busy schedule?"
 Mental models
@@ -1422,8 +1428,8 @@ Check own schedule
 Check destination event calendar
 
 Fig 8.3: mental model diagrams illustrate your users' thought processes in detail. this information helps you identify relevant and necessary content and functionality.
-How to create a mental model · Do user research. · Make an affinity diagram (see Fig 8.1). · Place affinity clusters in stacks representing the user's cog-
-nitive space to create the model. These groups will include actions, beliefs, and feelings. · Group the stacks around the tasks or goals they relate to (Fig 8.3).
+How to create a mental model ï¿½ Do user research. ï¿½ Make an affinity diagram (see Fig 8.1). ï¿½ Place affinity clusters in stacks representing the user's cog-
+nitive space to create the model. These groups will include actions, beliefs, and feelings. ï¿½ Group the stacks around the tasks or goals they relate to (Fig 8.3).
 Building on the towers
 Conceptual modeling/site mapping For a new website or service design, you can translate the mental model to a conceptual map that relates content and functionality according to the target user's view (Fig 8.4). The model will
 128 J u s t E n o u g h R E s E a R c h
@@ -1552,7 +1558,7 @@ Once you can measure your success in numerical terms, you can start tweaking. Th
 
 many knobs and levers you can manipulate to get to the level of success you'd envisioned, and beyond.
 Preaching to the converted
-The term for clicking the button--you know, the button--is conversion. A user is said to convert any time they take a measurable action you've defined as a goal of the site. For many websites there is an obvious primary raison d'être. On an application marketing website, conversion is clicking "sign up"; for ecommerce sites, "buy now"; on a hotel site, "make a reservation." The success of the design can be measured by how many people click that button and do the thing that makes the money.
+The term for clicking the button--you know, the button--is conversion. A user is said to convert any time they take a measurable action you've defined as a goal of the site. For many websites there is an obvious primary raison d'ï¿½tre. On an application marketing website, conversion is clicking "sign up"; for ecommerce sites, "buy now"; on a hotel site, "make a reservation." The success of the design can be measured by how many people click that button and do the thing that makes the money.
 Some websites are completely optimized for simple conversion, and it's easy to tell. The design centers on one clear call to action, a vivid lozenge labeled with a verb. The usual picture is a little more complex, with several different types of conversion. Which converts do you want the most?
 The Fantastic Science Center website might offer several potential actions with desirable outcomes: newsletter sign-up, advance ticket sales, shopping in an online store, becoming a member. Measuring the conversion rate for each of these will indicate the success of that particular path, but not how each type of conversion matters to the success of the organization itself. That is a business decision.
 Ease into analytics
@@ -1564,8 +1570,8 @@ where your website is not as effective as you'd like it to be. For example, anal
 If you would like more people to sign up for the newsletter from the homepage, you could try making the link to the newsletter sign-up more visually prominent, then check the analytics again.
 Over half of the world's websites have Google Analytics installed. It's an excellent place to start and will give you a variety of pleasing charts and graphs. After you sign up, you or a friendly developer will need to insert a snippet of JavaScript into the source code of the site you want to measure.
 Some of the basic stats to look at include:
-· Total number of visits. · Total number of pageviews. · Average number of pages per visit. · Bounce rate (the percentage of people who leave after view-
-ing one page). · Average time on site. · Percentage of new visitors.
+ï¿½ Total number of visits. ï¿½ Total number of pageviews. ï¿½ Average number of pages per visit. ï¿½ Bounce rate (the percentage of people who leave after view-
+ing one page). ï¿½ Average time on site. ï¿½ Percentage of new visitors.
 In general, you want to see the total number of visits and unique users go up over time as your site becomes more and more popular. The other items may be more open to interpretation depending on your audience and business goals. More pageviews could mean increased engagement, or it might mean that you have a highly motivated audience who can't find the information they're looking for right away. Bounce rate sounds fun, but it's not. A lower bounce rate means you offer something interesting enough for people to stick around, but if it's too low, that might mean that not enough people are discovering your site through search or other means. (Getting a lot of traffic through search is good, but visitors will bounce if your site wasn't quite what they were looking for.)
 136 J u s t E n o u g h R e s e a r c h
 
@@ -1587,8 +1593,8 @@ At last, SCIENCE. Bust out that lab coat, because you will be running experiment
 The general outline of events for split testing is as follows:
 138 J u s t E n o u g h R e s e a r c h
 
-· Select your goal. · Create variations. · Choose an appropriate start date. · Run the experiment until you've reached a ninety-five per-
-cent confidence level. · Review the data. · Decide what to do next: stick with the control, switch to the
+ï¿½ Select your goal. ï¿½ Create variations. ï¿½ Choose an appropriate start date. ï¿½ Run the experiment until you've reached a ninety-five per-
+cent confidence level. ï¿½ Review the data. ï¿½ Decide what to do next: stick with the control, switch to the
 variation, or run more tests.
 You will need a specific, quantifiable goal. This is a track race, not rhythmic gymnastics. No room for interpretation. You have to know the current conversion rate (or other metric) and how much you want to change it.
 For example, five percent of all site visitors click on "Buy tickets," and we want to increase the conversion rate to seven percent.
@@ -1599,7 +1605,7 @@ Q ua n t i tat i v e R e s e a r c h 139
 Perhaps the Fantastic Science Center received an unusual mention in the New York Times, and the website variation you're testing is particularly popular with Times readers but not with your typical population of site visitors. You need to let the test run long enough to counter these kinds of outliers.
 It's also important to keep in mind that if you want to test variations of a particular page against the current state, someone has to design those variations. Even if they're small changes, it's still work.
 If you're testing a landing page with one call to action--one button a user can click on--you can change any aspect of that page with regard to that one measurement, including:
-· The wording, size, color, and placement of the button. · Any piece of copy on the page and the total amount of copy. · The price or specific offer. · The image or type of image used (photo vs. illustration).
+ï¿½ The wording, size, color, and placement of the button. ï¿½ Any piece of copy on the page and the total amount of copy. ï¿½ The price or specific offer. ï¿½ The image or type of image used (photo vs. illustration).
 The winner is often counterintuitive, in a "Who would have thought that brown buttons would work the best with this audience?" sort of way. If there's agreement about which metric you're optimizing for and the math is sound, it's an opportunity to learn. After a number of tests you might see patterns begin to emerge that you can apply to your design work when solving for specific conversion goals. By the same token, remember that specific conversion goals are frequently just one aspect of the overall success of a website or a business.
 Cautions and considerations
 More precautions apply to split testing than to most other information-gathering approaches for a couple of reasons. Testing can be seductive because it seems to promise mathematical certitude and a set-it-and-forget-it level of automation, even though human decision-making is still necessary and the results remain open to interpretation within the larger context. The best response to a user interface question is not necessarily a test. Additionally, these are activities that affect the live site itself, so that presents a little risk.
@@ -1641,29 +1647,29 @@ C o n c lu s i o n 143
 Resources
 So, now that you're keen to get started here are some handy tools and guides, as well as places to turn for additional detail.
 Websites and blogs
-· Helsinki Design Lab: The government of Finland cares deeply about strategic design. This website is a trove of guides and templates, including an ethnography field guide (http:// bkaprt.com/jer/23/).
-· Service Design Toolkit: The Belgians, on the other hand, have focused on human-centered service design. Posters, guides, and workshop materials (http://bkaprt.com/jer/24/).
-· Service Design Tools: Roberta Tassi's thesis work in in the design department of the Politecnico di Milano resulted in this orderly collection of communication tools and methodologies (http://bkaprt.com/jer/25/).
-· Remote Research: From the genuinely nice people who created Ethnio, a site to help you conduct remote research and testing (http://bkaprt.com/jer/26/).
-· Design Staff: Google Ventures Design Studio publishes a fantastic blog full of smart and practical ideas for lightweight research, from recruiting to testing (http://bkaprt.com/jer/27/).
-· Userfocus: This London-based usability consultancy publishes articles and ebooks. While many are free, some will cost a few pounds. Enjoy Usability Test Moderation: The Comic (http://bkaprt.com/jer/28/).
-· Nielsen Norman Group: Jakob Nielsen's evidence-based usability pronouncements are legendary. They have probably started as many arguments as they've settled (http://bkaprt. com/jer/29/).
+ï¿½ Helsinki Design Lab: The government of Finland cares deeply about strategic design. This website is a trove of guides and templates, including an ethnography field guide (http:// bkaprt.com/jer/23/).
+ï¿½ Service Design Toolkit: The Belgians, on the other hand, have focused on human-centered service design. Posters, guides, and workshop materials (http://bkaprt.com/jer/24/).
+ï¿½ Service Design Tools: Roberta Tassi's thesis work in in the design department of the Politecnico di Milano resulted in this orderly collection of communication tools and methodologies (http://bkaprt.com/jer/25/).
+ï¿½ Remote Research: From the genuinely nice people who created Ethnio, a site to help you conduct remote research and testing (http://bkaprt.com/jer/26/).
+ï¿½ Design Staff: Google Ventures Design Studio publishes a fantastic blog full of smart and practical ideas for lightweight research, from recruiting to testing (http://bkaprt.com/jer/27/).
+ï¿½ Userfocus: This London-based usability consultancy publishes articles and ebooks. While many are free, some will cost a few pounds. Enjoy Usability Test Moderation: The Comic (http://bkaprt.com/jer/28/).
+ï¿½ Nielsen Norman Group: Jakob Nielsen's evidence-based usability pronouncements are legendary. They have probably started as many arguments as they've settled (http://bkaprt. com/jer/29/).
 A few specifics
-· Getting People to Talk: An Ethnography & Interviewing Primer: This video is handy because there are limits to how much you can glean about interviews from reading (http:// bkaprt.com/jer/30/).
+ï¿½ Getting People to Talk: An Ethnography & Interviewing Primer: This video is handy because there are limits to how much you can glean about interviews from reading (http:// bkaprt.com/jer/30/).
 144 J u s t E n o u g h R e s e a r c h
 
-· ICC/ESOMAR Code on Market and Social Research: Professional and ethical rules defined by the International Chamber of Commerce and an international organization for market researchers. Works just as well as a code for design research (http://bkaprt.com/jer/31/).
-· Human-Centered Design Considered Harmful: This critique of Human-Centered Design brings up several critical points about context (http://bkaprt.com/jer/32/).
-· An Ethnography Primer: AIGA and Cheskin put together a downloadable primer on design ethnography with concise text and pretty photos. Very handy for certain internal audiences (http://bkaprt.com/jer/33/).
-Further reading · Observing the User Experience (2nd Edition), Goodman,
-Kuniavsky, Moed. · Designing and Conducting Ethnographic Research, Margaret D.
-LeCompte and Jean Schensul. · Mental Models: Aligning Design Strategy with Human Behavior,
-Indi Young. · Interviewing Users: How to Uncover Compelling Insights, Steve
-Portigal. · Designing for the Digital Age: How to Create Human-Centered
+ï¿½ ICC/ESOMAR Code on Market and Social Research: Professional and ethical rules defined by the International Chamber of Commerce and an international organization for market researchers. Works just as well as a code for design research (http://bkaprt.com/jer/31/).
+ï¿½ Human-Centered Design Considered Harmful: This critique of Human-Centered Design brings up several critical points about context (http://bkaprt.com/jer/32/).
+ï¿½ An Ethnography Primer: AIGA and Cheskin put together a downloadable primer on design ethnography with concise text and pretty photos. Very handy for certain internal audiences (http://bkaprt.com/jer/33/).
+Further reading ï¿½ Observing the User Experience (2nd Edition), Goodman,
+Kuniavsky, Moed. ï¿½ Designing and Conducting Ethnographic Research, Margaret D.
+LeCompte and Jean Schensul. ï¿½ Mental Models: Aligning Design Strategy with Human Behavior,
+Indi Young. ï¿½ Interviewing Users: How to Uncover Compelling Insights, Steve
+Portigal. ï¿½ Designing for the Digital Age: How to Create Human-Centered
 Products, Kim Goodwin.
 Research tools
 Recruiting
-· Ethnio: An online recruiting tool from the guys who wrote the book on remote user research. It's the best thing to happen to ethnographic research since the clipboard. After you sign up, the app guides you through creating a screener (the survey that qualifies potential participants), then generates a line of JavaScript that displays a screener to your website visitors. If you have a high-traffic website, this is recruiting magic, like dropping a net into a stream full of big fat salmon.
+ï¿½ Ethnio: An online recruiting tool from the guys who wrote the book on remote user research. It's the best thing to happen to ethnographic research since the clipboard. After you sign up, the app guides you through creating a screener (the survey that qualifies potential participants), then generates a line of JavaScript that displays a screener to your website visitors. If you have a high-traffic website, this is recruiting magic, like dropping a net into a stream full of big fat salmon.
 R e s o u r c e s 145
 
 If your website doesn't have much traffic, or if you want to recruit people who have never visited the site, you can send a direct link to the screener in an email or on Twitter. The price varies with the amount of traffic and number of respondents. (Web)
@@ -1671,32 +1677,32 @@ Screeners
 A recruiting screener is just a particular type of survey, so you can use Google Docs or SurveyMonkey or any other similar tool to make one if you have some in-house survey-writing expertise. (Web)
 Audio, video, and screen recording
 Having recordings of interviews and test sessions for reference makes everything easier. Getting those recordings can be a little fiddly, though. Recording is easier when you make phone calls over VOIP. And always, always remember to get permission before you start recording.
-· Audio Hijack Pro: Record any audio on your Mac. Great for VOIP phone interviews. (Mac OS X)
-· Digital or analog (tape) recorder: For landline or not-smart cell phone calls, you'll need a device that connects to the phone itself. There are a great many makes and models; look for one that suits your needs.
-· iTalk Recorder: Dead simple. Press the big red button to record audio. Press it again to stop. (iOS, Android)
-· Ecamm Call Recorder for Skype: Save audio and video as QuickTime and easily convert to MP3. (Mac OS X)
-· Snapz Pro: This handy Mac application will record anything on your screen as a QuickTime movie or screenshot. (Mac OS X)
-· Camtasia: Camtasia allows you to record and edit screencasts. The two versions have slightly different features depending on the platform. (Mac OS X, Windows)
+ï¿½ Audio Hijack Pro: Record any audio on your Mac. Great for VOIP phone interviews. (Mac OS X)
+ï¿½ Digital or analog (tape) recorder: For landline or not-smart cell phone calls, you'll need a device that connects to the phone itself. There are a great many makes and models; look for one that suits your needs.
+ï¿½ iTalk Recorder: Dead simple. Press the big red button to record audio. Press it again to stop. (iOS, Android)
+ï¿½ Ecamm Call Recorder for Skype: Save audio and video as QuickTime and easily convert to MP3. (Mac OS X)
+ï¿½ Snapz Pro: This handy Mac application will record anything on your screen as a QuickTime movie or screenshot. (Mac OS X)
+ï¿½ Camtasia: Camtasia allows you to record and edit screencasts. The two versions have slightly different features depending on the platform. (Mac OS X, Windows)
 146 J u s t E n o u g h R e s e a r c h
 
-Usability testing · Silverback: Pretty nifty. Captures screen plus live video
-and audio. Eliminates setup for in-person usability testing. Exports everything to QuickTime. (Mac OS X) · Morae: Morae is a Windows-only remote usability software package that offers a lot of features at a steep price. (Windows)
-Remote research and testing · Skype: Video calling, conference calling, screensharing. (Web
-and many platforms) · GoToMeeting: Conference calling and screensharing.
+Usability testing ï¿½ Silverback: Pretty nifty. Captures screen plus live video
+and audio. Eliminates setup for in-person usability testing. Exports everything to QuickTime. (Mac OS X) ï¿½ Morae: Morae is a Windows-only remote usability software package that offers a lot of features at a steep price. (Windows)
+Remote research and testing ï¿½ Skype: Video calling, conference calling, screensharing. (Web
+and many platforms) ï¿½ GoToMeeting: Conference calling and screensharing.
 Promises screensharing from mobile devices in the near future. (Web and many platforms)
-File storage and sharing · Dropbox: All that data you generate, notes, photos, audio, and
+File storage and sharing ï¿½ Dropbox: All that data you generate, notes, photos, audio, and
 video start to take up a lot of room. Store them on Dropbox and your whole team will have access to them. (Web and many platforms)
 Analytics and split testing Split testing services cost between $0 (Google) and $300,000 (Accenture) per year depending on the vendor, level of service, and amount of traffic. If you already have Google Analytics set up, you can give Content Experiments (formerly Optimizer) a try. It's free and the documentation is clear and thorough. For not too much money, KISSmetrics is an analytics startup with reasonable, tiered pricing (starting at less than $50 per month), a refreshingly people-oriented philosophy, and a user-friendly interface.
 R e s o u r c e s 147
 
 Diagramming
 When you turn your research into models, you're going to need to make some diagrams. This is really an area to use what you're comfortable with. Some people like to diagram in PowerPoint. No judgment.
-· Mockingbird: A web-based tool to create and share wireframes. Great for super-fast "paper" prototyping and usability tests. Very wireframe specific, though. Not a general-purpose tool. Price goes up with the number of active projects. (Web)
-· Creately: This is a cloud-based diagramming tool that allows teams to collaborate on making charts and graphs. Price increases with the number of team members. (Web)
-· OmniGraffle: Terrific for mapping. Fast to use once you get the hang of it. Not cheap. Not built for collaboration. (Mac OS X, iPad)
+ï¿½ Mockingbird: A web-based tool to create and share wireframes. Great for super-fast "paper" prototyping and usability tests. Very wireframe specific, though. Not a general-purpose tool. Price goes up with the number of active projects. (Web)
+ï¿½ Creately: This is a cloud-based diagramming tool that allows teams to collaborate on making charts and graphs. Price increases with the number of team members. (Web)
+ï¿½ OmniGraffle: Terrific for mapping. Fast to use once you get the hang of it. Not cheap. Not built for collaboration. (Mac OS X, iPad)
 Physical objects
-· Sticky notes: Frequently seen as a visual metaphor for the qualitative research analysis, these little guys are invaluable. Stock up on a bale. They make it easy to jot down observations, quotes, and insights and arrange and rearrange into patterns. Very few people are intimidated by sticky notes, so hand out sticky notes and pens to encourage the whole team to get involved. Extra points for using different colors to code different types of data in your analysis sessions.
-· Whiteboards: It's sometimes shocking how little whiteboard space is available in offices where design and development are going on. Laptops are not conducive to collaborative thinking. You need a place to stick and rearrange all those notes. Ideally you will have a conference room with whiteboard walls. In a pinch, you can use mobile boards, apply whiteboard wallpaper, or have the team over to brainstorm in your shower.
+ï¿½ Sticky notes: Frequently seen as a visual metaphor for the qualitative research analysis, these little guys are invaluable. Stock up on a bale. They make it easy to jot down observations, quotes, and insights and arrange and rearrange into patterns. Very few people are intimidated by sticky notes, so hand out sticky notes and pens to encourage the whole team to get involved. Extra points for using different colors to code different types of data in your analysis sessions.
+ï¿½ Whiteboards: It's sometimes shocking how little whiteboard space is available in offices where design and development are going on. Laptops are not conducive to collaborative thinking. You need a place to stick and rearrange all those notes. Ideally you will have a conference room with whiteboard walls. In a pinch, you can use mobile boards, apply whiteboard wallpaper, or have the team over to brainstorm in your shower.
 148 J u s t E n o u g h R e s e a r c h
 
 references
@@ -1803,10 +1809,9 @@ Young, Indi, 127
 About A Book Apart
 We cover the emerging and essential topics in web design and development with style, clarity, and above all, brevity--because working designer-developers can't afford to waste time.
 colophon
-The text is set in FF Yoga and its companion, FF Yoga Sans, both by Xavier Dupré. Headlines and cover are set in Titling Gothic by David Berlow.
+The text is set in FF Yoga and its companion, FF Yoga Sans, both by Xavier Duprï¿½. Headlines and cover are set in Titling Gothic by David Berlow.
 This book was printed in the United States using FSC certified Finch papers.
 
 About the author
 Erika Hall has been working in web design and development since the late 20th century. In 2001, she cofounded Mule Design Studio where she directs the research, interaction design, and strategy practices. Erika speaks and writes frequently about cross-disciplinary collaboration and the importance of natural language in user interfaces. In her spare time, she battles empty corporate jargon at Unsuck It. She also co-hosts Running from the Law, a weekly podcast on business law and endurance fitness, and can probably outrun you.
 Photo by Mike Monteiro
-

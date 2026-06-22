@@ -1,3 +1,9 @@
+# The Tangled Web
+
+> **Author(s):** Zalewski Â· **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
 PRAISE FOR THE TANGLED WEB
 "Thorough and comprehensive coverage from one of the foremost experts in browser security." --TAVIS ORMANDY, GOOGLE INC.
 "A must-read for anyone who values their security and privacy online." --COLLIN JACKSON, RESEARCHER AT THE CARNEGIE MELLON WEB SECURITY GROUP
@@ -14,7 +20,7 @@ A Guide to Securing Modern Web Applications
 by Michal Zalewski
 San Francisco
 
-THE TANGLED WEB. Copyright © 2012 by Michal Zalewski.
+THE TANGLED WEB. Copyright ï¿½ 2012 by Michal Zalewski.
 
 All rights reserved. No part of this work may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage or retrieval system, without the prior written permission of the copyright owner and the publisher.
 
@@ -91,7 +97,7 @@ HYPERTEXT TRANSFER PROTOCOL
 
 Basic Syntax of HTTP Traffic ..................................................................................... 42 The Consequences of Supporting HTTP/0.9 .................................................. 44 Newline Handling Quirks............................................................................ 45 Proxy Requests........................................................................................... 46 Resolution of Duplicate or Conflicting Headers............................................... 47 Semicolon-Delimited Header Values.............................................................. 48 Header Character Set and Encoding Schemes ............................................... 49 Referer Header Behavior ............................................................................. 51
 HTTP Request Types ................................................................................................. 52 GET.......................................................................................................... 52 POST ........................................................................................................ 52 HEAD ....................................................................................................... 53 OPTIONS.................................................................................................. 53 PUT .......................................................................................................... 53 DELETE ..................................................................................................... 53 TRACE ...................................................................................................... 53 CONNECT ............................................................................................... 54 Other HTTP Methods .................................................................................. 54
-Server Response Codes............................................................................................ 54 200­299: Success ..................................................................................... 54 300­399: Redirection and Other Status Messages......................................... 55 400­499: Client-Side Error ......................................................................... 55 500­599: Server-Side Error ........................................................................ 56 Consistency of HTTP Code Signaling ............................................................ 56
+Server Response Codes............................................................................................ 54 200ï¿½299: Success ..................................................................................... 54 300ï¿½399: Redirection and Other Status Messages......................................... 55 400ï¿½499: Client-Side Error ......................................................................... 55 500ï¿½599: Server-Side Error ........................................................................ 56 Consistency of HTTP Code Signaling ............................................................ 56
 Keepalive Sessions .................................................................................................. 56 Chunked Data Transfers ........................................................................................... 57 Caching Behavior ................................................................................................... 58 HTTP Cookie Semantics............................................................................................ 60 HTTP Authentication................................................................................................. 62 Protocol-Level Encryption and Client Certificates .......................................................... 64
 Extended Validation Certificates................................................................... 65 Error-Handling Rules ................................................................................... 65 Security Engineering Cheat Sheet.............................................................................. 67 When Handling User-Controlled Filenames in Content-Disposition Headers ....... 67 When Putting User Data in HTTP Cookies...................................................... 67 When Sending User-Controlled Location Headers .......................................... 67 When Sending User-Controlled Redirect Headers........................................... 67 When Constructing Other Types of User-Controlled Requests or Responses........ 67
 
@@ -159,7 +165,7 @@ PART II: BROWSER SECURITY FEATURES
 
 Same-Origin Policy for the Document Object Model .................................................. 142 document.domain .................................................................................... 143 postMessage(...) ...................................................................................... 144 Interactions with Browser Credentials.......................................................... 145
 Same-Origin Policy for XMLHttpRequest ................................................................... 146 Same-Origin Policy for Web Storage ....................................................................... 148 Security Policy for Cookies ..................................................................................... 149
-Impact of Cookies on the Same-Origin Policy.............................................. 150 Problems with Domain Restrictions.............................................................. 151 The Unusual Danger of "localhost" ............................................................. 152 Cookies and "Legitimate" DNS Hijacking.................................................... 153 Plug-in Security Rules ............................................................................................. 153 Adobe Flash ............................................................................................ 154 Microsoft Silverlight .................................................................................. 157 Java ....................................................................................................... 157 Coping with Ambiguous or Unexpected Origins ....................................................... 158 IP Addresses ............................................................................................ 158 Hostnames with Extra Periods .................................................................... 159 Non­Fully Qualified Hostnames ................................................................. 159 Local Files ............................................................................................... 159 Pseudo-URLs ............................................................................................ 161 Browser Extensions and UI ........................................................................ 161 Other Uses of Origins ............................................................................................ 161 Security Engineering Cheat Sheet............................................................................ 162 Good Security Policy Hygiene for All Websites ............................................ 162 When Relying on HTTP Cookies for Authentication ....................................... 162 When Arranging Cross-Domain Communications in JavaScript ...................... 162 When Embedding Plug-in-Handled Active Content from Third Parties .............. 162 When Hosting Your Own Plug-in-Executed Content....................................... 163 When Writing Browser Extensions ............................................................. 163
+Impact of Cookies on the Same-Origin Policy.............................................. 150 Problems with Domain Restrictions.............................................................. 151 The Unusual Danger of "localhost" ............................................................. 152 Cookies and "Legitimate" DNS Hijacking.................................................... 153 Plug-in Security Rules ............................................................................................. 153 Adobe Flash ............................................................................................ 154 Microsoft Silverlight .................................................................................. 157 Java ....................................................................................................... 157 Coping with Ambiguous or Unexpected Origins ....................................................... 158 IP Addresses ............................................................................................ 158 Hostnames with Extra Periods .................................................................... 159 Nonï¿½Fully Qualified Hostnames ................................................................. 159 Local Files ............................................................................................... 159 Pseudo-URLs ............................................................................................ 161 Browser Extensions and UI ........................................................................ 161 Other Uses of Origins ............................................................................................ 161 Security Engineering Cheat Sheet............................................................................ 162 Good Security Policy Hygiene for All Websites ............................................ 162 When Relying on HTTP Cookies for Authentication ....................................... 162 When Arranging Cross-Domain Communications in JavaScript ...................... 162 When Embedding Plug-in-Handled Active Content from Third Parties .............. 162 When Hosting Your Own Plug-in-Executed Content....................................... 163 When Writing Browser Extensions ............................................................. 163
 
 10 ORIGIN INHERITANCE
 
@@ -319,7 +325,7 @@ Security in the World of Web Applications 5
 Enlightenment Through Taxonomy
 The two schools of thought discussed above share something in common: Both assume that it is possible to define security as a set of computable goals and that the resulting unified theory of a secure system or a model of acceptable risk would then elegantly trickle down, resulting in an optimal set of low-level actions needed to achieve perfection in application design.
 Some practitioners preach the opposite approach, which owes less to philosophy and more to the natural sciences. These practitioners argue that, much like Charles Darwin of the information age, by gathering sufficient amounts of low-level, experimental data, we will be able to observe, reconstruct, and document increasingly more sophisticated laws in order to arrive some sort of a unified model of secure computing.
-This latter worldview brings us projects like the Department of Homeland Security­funded Common Weakness Enumeration (CWE), the goal of which, in the organization's own words, is to develop a unified "Vulnerability Theory"; "improve the research, modeling, and classification of software flaws"; and "provide a common language of discourse for discussing, finding and dealing with the causes of software security vulnerabilities." A typical, delightfully baroque example of the resulting taxonomy may be this:
+This latter worldview brings us projects like the Department of Homeland Securityï¿½funded Common Weakness Enumeration (CWE), the goal of which, in the organization's own words, is to develop a unified "Vulnerability Theory"; "improve the research, modeling, and classification of software flaws"; and "provide a common language of discourse for discussing, finding and dealing with the causes of software security vulnerabilities." A typical, delightfully baroque example of the resulting taxonomy may be this:
 Improper Enforcement of Message or Data Structure
 Failure to Sanitize Data into a Different Plane
 Improper Control of Resource Identifiers
@@ -349,7 +355,7 @@ Our empire is built on shaky foundations--but why? Perhaps due to simple shortsi
 Unfortunately, while this explanation makes sense for truly ancient mechanisms such as SMTP or DNS, it does not quite hold water here: The Web is relatively young and took its current shape in a setting not that different from what we see today. Instead, the key to this riddle probably lies in the tumultuous and unusual way in which the associated technologies have evolved.
 So, pardon me another brief detour as we return to the roots. The prehistory of the Web is fairly mundane but still worth a closer look.
 Tales of the Stone Age: 1945 to 1994
-Computer historians frequently cite a hypothetical desk-sized device called the Memex as one of the earliest fossil records, postulated in 1945 by Vannevar Bush.3 Memex was meant to make it possible to create, annotate, and follow cross-document links in microfilm, using a technique that vaguely resembled modern-day bookmarks and hyperlinks. Bush boldly speculated that this simple capability would revolutionize the field of knowledge management and data retrieval (amusingly, a claim still occasionally ridiculed as uneducated and naïve until the early 1990s). Alas, any useful implementation of the design was out of reach at that time, so, beyond futuristic visions, nothing much happened until transistor-based computers took center stage.
+Computer historians frequently cite a hypothetical desk-sized device called the Memex as one of the earliest fossil records, postulated in 1945 by Vannevar Bush.3 Memex was meant to make it possible to create, annotate, and follow cross-document links in microfilm, using a technique that vaguely resembled modern-day bookmarks and hyperlinks. Bush boldly speculated that this simple capability would revolutionize the field of knowledge management and data retrieval (amusingly, a claim still occasionally ridiculed as uneducated and naï¿½ve until the early 1990s). Alas, any useful implementation of the design was out of reach at that time, so, beyond futuristic visions, nothing much happened until transistor-based computers took center stage.
 The next tangible milestone, in the 1960s, was the arrival of IBM's Generalized Markup Language (GML), which allowed for the annotation of documents with machine-readable directives indicating the function of each block of text, effectively saying "this is a header," "this is a numbered list of items," and so on. Over the next 20 years or so, GML (originally used by only
 8 Chapter 1
 
@@ -373,8 +379,8 @@ As the Web grew larger and more diverse, a sneaky disease spread across browser 
 In 1994, in order to mitigate the spread of engineering anarchy and govern the expansion of HTML, Tim Berners-Lee and a handful of corporate sponsors created the World Wide Web Consortium (W3C). Unfortunately for this organization, for a long while it could only watch helplessly as the format was randomly extended and tweaked. Initial W3C work on HTML 2.0 and HTML 3.2 merely tried to catch up with the status quo, resulting in halfbaked specs that were largely out-of-date by the time they were released to the public. The consortium also tried to work on some novel and fairly wellthought-out projects, such as Cascading Style Sheets, but had a hard time getting buy-in from the vendors.
 Other efforts to standardize or improve already implemented mechanisms, most notably HTTP and JavaScript, were driven by other auspices such as the European Computer Manufacturers Association (ECMA), the International Organization for Standardization (ISO), and the Internet Engineering Task Force (IETF). Sadly, the whole of these efforts was seldom in sync, and some discussions and design decisions were dominated by vendors or other stakeholders who did not care much about the long-term prospects of the technology. The results were a number of dead standards, contradictory advice, and several frightening examples of harmful cross-interactions between otherwise neatly designed protocols--a problem that will be particularly evident when we discuss a variety of content isolation mechanisms in Chapter 9.
 The Boring Period: 2000 to 2003
-As the efforts to wrangle the Web floundered, Microsoft's dominance grew as a result of its operating system­bundling strategy. By the beginning of the new decade, Netscape Navigator was on the way out, and Internet Explorer
-* For example, Microsoft did not want to deal with Sun to license a trademark for JavaScript (a language so named for promotional reasons and not because it had anything to do with Java), so it opted to name its almost-but-not-exactly-identical version "JScript." Microsoft's official documentation still refers to the software by this name.  Prime examples of misguided and ultimately lethal browser features are content and character set­sniffing mechanisms, both of which will be discussed in Chapter 13.
+As the efforts to wrangle the Web floundered, Microsoft's dominance grew as a result of its operating systemï¿½bundling strategy. By the beginning of the new decade, Netscape Navigator was on the way out, and Internet Explorer
+* For example, Microsoft did not want to deal with Sun to license a trademark for JavaScript (a language so named for promotional reasons and not because it had anything to do with Java), so it opted to name its almost-but-not-exactly-identical version "JScript." Microsoft's official documentation still refers to the software by this name.  Prime examples of misguided and ultimately lethal browser features are content and character setï¿½sniffing mechanisms, both of which will be discussed in Chapter 13.
 Security in the World of Web Applications 11
 
 12 Chapter 1
@@ -439,7 +445,7 @@ parties to follow its rules instead. The exploitability of these issues is great
 NOTE
 
 Especially in the case of such interactions, pinning the blame on any particular party is a fool's errand. In a recent case of a bug related to firefoxurl:, Microsoft and half of the information security community blamed Mozilla, while Mozilla and the other half of experts blamed Microsoft.7 It did not matter who was right: The result was still a very real mess.
-Another set of closely related problems (practically unheard of in the days before the Web) are the incompatibilities in superficially similar security mechanisms implemented in each browser. When the security models differ, a sound web application­engineering practice in one product may be inadequate and misguided in another. In fact, several classes of rudimentary tasks, such as serving a user-supplied plaintext file, cannot be safely implemented in certain browsers at all. This fact, however, will not be obvious to developers unless they are working in one of the affected browsers--and even then, they need to hit just the right spot.
+Another set of closely related problems (practically unheard of in the days before the Web) are the incompatibilities in superficially similar security mechanisms implemented in each browser. When the security models differ, a sound web applicationï¿½engineering practice in one product may be inadequate and misguided in another. In fact, several classes of rudimentary tasks, such as serving a user-supplied plaintext file, cannot be safely implemented in certain browsers at all. This fact, however, will not be obvious to developers unless they are working in one of the affected browsers--and even then, they need to hit just the right spot.
 In the end, all the characteristics outlined in this section contribute to a whole new class of security vulnerabilities that a taxonomy buff might call a failure to account for undocumented diversity. This class is very well populated today.
 
 The Breakdown of the Client-Server Divide
@@ -548,7 +554,7 @@ Although the RFC permits only canonical notations for IP addresses, standard C l
 
 * This is possibly out of the concern for FTP, which transmits user credentials without any encoding; in this protocol, a newline transmitted as is would be misinterpreted by the server as the beginning of a new FTP command. Other browsers may transmit FTP credentials in noncompliant percent-encoded form or simply strip any problematic characters later on.
 
-A similar laid-back approach can be seen with DNS names. Theoretically, DNS labels need to conform to a very narrow character set (specifically, alphanumerics, ".", and "-", as defined in RFC 10355), but many browsers will happily ask the underlying operating system resolver to look up almost anything, and the operating system will usually also not make a fuss. The exact set of characters accepted in the hostname and passed to the resolver varies from client to client. Safari is most rigorous, while Internet Explorer is the most permissive. Perhaps of note, several control characters in the 0x0A­0x0D and 0xA0­0xAD ranges are ignored by most browsers in this portion of the URL.
+A similar laid-back approach can be seen with DNS names. Theoretically, DNS labels need to conform to a very narrow character set (specifically, alphanumerics, ".", and "-", as defined in RFC 10355), but many browsers will happily ask the underlying operating system resolver to look up almost anything, and the operating system will usually also not make a fuss. The exact set of characters accepted in the hostname and passed to the resolver varies from client to client. Safari is most rigorous, while Internet Explorer is the most permissive. Perhaps of note, several control characters in the 0x0Aï¿½0x0D and 0xA0ï¿½0xAD ranges are ignored by most browsers in this portion of the URL.
 
 NOTE
 
@@ -562,7 +568,7 @@ NOTE
 An interesting and unintended side effect of this feature is that browsers can be tricked into sending attacker-supplied data to random network services that do not speak the protocol the browser expects them to. For example, one may point a browser to http:// mail.example.com:25/, where 25 is a port used by the Simple Mail Transfer Protocol (SMTP) service rather than HTTP. This fact has caused a range of security problems and prompted a number of imperfect workarounds, as discussed in more detail in Part II of this book.
 
 Hierarchical File Path
-The next portion of the URL, the hierarchical file path, is envisioned as a way to identify a specific resource to be retrieved from the server, such as /documents/2009/my_diary.txt. The specification quite openly builds on top of the Unix directory semantics, mandating the resolution of "/../" and "/./" segments in the path and providing a directory-based method for sorting out relative references in non­fully qualified URLs.
+The next portion of the URL, the hierarchical file path, is envisioned as a way to identify a specific resource to be retrieved from the server, such as /documents/2009/my_diary.txt. The specification quite openly builds on top of the Unix directory semantics, mandating the resolution of "/../" and "/./" segments in the path and providing a directory-based method for sorting out relative references in nonï¿½fully qualified URLs.
 Using the filesystem model must have seemed like a natural choice in the 1990s, when web servers acted as simple gateways to a collection of static files and the occasional executable script. But since then, many contemporary web application frameworks have severed any remaining ties with the filesystem, interfacing directly with database objects or registered locations in resident program code. Mapping these data structures to well-behaved URL
 It Starts with a URL 27
 
@@ -643,7 +649,7 @@ The incompatibility of these character maps made it difficult to exchange docume
 This unfortunate delay had some bearing on the handling of URLs that contain user input. Browsers needed to accommodate such use very early on, but when the developers turned to the relevant standards, they found no meaningful advice. Even years later, in 2005, the RFC 3986 had just this to say:
 In local or regional contexts and with improving technology, users might benefit from being able to use a wider range of characters; such use is not defined by this specification.
 Percent-encoded octets . . . may be used within a URI to represent characters outside the range of the US-ASCII coded character set if this representation is allowed by the scheme or by the protocol element in which the URI is referenced. Such a definition should specify the character encoding used to map those characters to octets prior to being percent-encoded for the URI.
-Alas, despite this wishful thinking, none of the remaining standards addressed this topic. It was always possible to put raw high-bit characters in a URL, but without knowing the code page they should be interpreted in, the server would not be able to tell if that %B1 was supposed to mean "±", "a", or some other squiggly character specific to the user's native script.
+Alas, despite this wishful thinking, none of the remaining standards addressed this topic. It was always possible to put raw high-bit characters in a URL, but without knowing the code page they should be interpreted in, the server would not be able to tell if that %B1 was supposed to mean "ï¿½", "a", or some other squiggly character specific to the user's native script.
 Sadly, browser vendors have not taken the initiative and come up with a consistent solution to this problem. Most browsers internally transcode URL path segments to UTF-8 (or ISO 8859-1, if sufficient), but then they generate the query string in the code page of the referring page instead. In certain cases, when URLs are entered manually or passed to certain specialized APIs, high-bit characters may be also downgraded to their 7-bit US-ASCII lookalikes, replaced with question marks, or even completely mangled due to implementation flaws.
 It Starts with a URL 33
 
@@ -653,7 +659,7 @@ This pursuit led to the formation of the Internationalized Domain Names in Appli
 xn--[US-ASCII part]-[encoded Unicode data]
 A compliant browser presented with a technically illegal URL that contained a literal non-US-ASCII character anywhere in the hostname was supposed to transform the name to Punycode before performing a DNS lookup. Consequently, when presented with Punycode in an existing URL, it should put a decoded, human-readable form of the string in the address bar.
 NOTE Combining all these incompatible encoding strategies can make for an amusing mix. Consider this example URL of a made-up Polish-language towel shop:
-Intent: http://www.rczniki.pl/rcznik?model=Ja#Zló_zamówienie Actual URL: http://www.xn--rczniki-98a.pl/r%C4%99cznik?model=Ja%B6 #Zló_zamówienie
+Intent: http://www.rczniki.pl/rcznik?model=Ja#Zlï¿½_zamï¿½wienie Actual URL: http://www.xn--rczniki-98a.pl/r%C4%99cznik?model=Ja%B6 #Zlï¿½_zamï¿½wienie
 
 34 Chapter 2
 
@@ -738,7 +744,7 @@ Two additional, obscure cases also deserve a brief mention: built-in support for
 Protocols Claimed by Third-Party Applications and Plug-ins
 For these schemes, matching URLs are simply dispatched to external, specialized applications that implement functionality such as media playback, document viewing, or IP telephony. At this point, the involvement of the browser (mostly) ends.
 Scores of external protocol handlers exist today, and it would take another thick book to cover them all. Some of the most common examples include the acrobat: scheme, predictably routed to Adobe Acrobat Reader; callto: and sip: schemes claimed by all sorts of instant messengers and telephony software; daap:, itpc:, and itms: schemes used by Apple iTunes; mailto:, news:, and nntp: protocols claimed by mail and Usenet clients; mmst:, mmsu:, msbd:, and rtsp: protocols for streaming media players; and so on. Browsers are sometimes also included on the list. The previously mentioned firefoxurl: scheme launches Firefox from within another browser, while cf: gives access to Chrome from Internet Explorer.
-For the most part, when these schemes appear in URLs, they usually have no impact on the security of the web applications that allow them to go through (although this is not guaranteed, especially in the case of plugin­supported content). It is worth noting that third-party protocol handlers tend to be notoriously buggy and are sometimes abused to compromise the
+For the most part, when these schemes appear in URLs, they usually have no impact on the security of the web applications that allow them to go through (although this is not guaranteed, especially in the case of pluginï¿½supported content). It is worth noting that third-party protocol handlers tend to be notoriously buggy and are sometimes abused to compromise the
 36 Chapter 2
 
 operating system. Therefore, restricting the ability to navigate to mystery protocols is a common courtesy to the user of any reasonably trustworthy website.
@@ -754,7 +760,7 @@ view-source:http://www.example.com/
 Other protocols that function similarly include jar:, which allows content to be extracted from ZIP files on the fly in Firefox; wyciwyg: and view-cache:, which give access to cached pages in Firefox and Chrome respectively; an oddball feed: scheme, which is meant to access news feeds in Safari;17 and a host of poorly documented protocols associated with the Windows help subsystem and other components of Microsoft Windows (hcp:, its:, mhtml:, mk:, ms-help:, ms-its:, and ms-itss:).
 It Starts with a URL 37
 
-The common property of many encapsulating protocols is that they allow the attacker to hide the actual URL that will be ultimately interpreted by the browser from naïve filters: view-source:javascript: (or even view-source:viewsource:javascript:) followed by malicious code is a simple way to accomplish this. Some security restrictions may be present to limit such trickery, but they should not be relied upon. Another significant problem, recurring especially with Microsoft's mhtml:, is that using the protocol may ignore some of the content directives provided by the server on HTTP level, possibly leading to widespread misery.18
+The common property of many encapsulating protocols is that they allow the attacker to hide the actual URL that will be ultimately interpreted by the browser from naï¿½ve filters: view-source:javascript: (or even view-source:viewsource:javascript:) followed by malicious code is a simple way to accomplish this. Some security restrictions may be present to limit such trickery, but they should not be relied upon. Another significant problem, recurring especially with Microsoft's mhtml:, is that using the protocol may ignore some of the content directives provided by the server on HTTP level, possibly leading to widespread misery.18
 Closing Note on Scheme Detection
 The sheer number of pseudo-protocols is the primary reason why web applications need to carefully screen user-supplied URLs. The wonky and browserspecific URL-parsing patterns, coupled with the open-ended nature of the list of supported schemes, means that it is unsafe to simply blacklist known bad schemes; for example, a check for javascript: may be circumvented if this keyword is spliced with a tab or a newline, replaced with vbscript:, or prefixed with another encapsulating scheme.
 Resolution of Relative URLs
@@ -961,7 +967,7 @@ In HTTP/1.1, clients may ask the server for any set of possibly noncontiguous or
 POST
 The POST method is meant for submitting information (chiefly HTML forms) to the server for processing. Because POST actions may have persistent side effects, many browsers ask the user to confirm before reloading any content retrieved with POST, but for the most part, GET and POST are used in a quasi-interchangeable manner.
 POST requests are commonly accompanied by a payload, the length of which is indicated by the Content-Length header. In the case of plain HTML, the payload may consist of URL-encoded or MIME-encoded form data (a format detailed in Chapter 4), although again, the syntax is not constrained at the HTTP level in any special way.
-* There is an anecdotal (and perhaps even true) tale of an unfortunate webmaster by the name of John Breckman. According to the story, John's website has been accidentally deleted by a search engine­indexing robot. The robot simply unwittingly discovered an unauthenticated, GET-based administrative interface that John had built for his site . . . and happily followed every "delete" link it could find.
+* There is an anecdotal (and perhaps even true) tale of an unfortunate webmaster by the name of John Breckman. According to the story, John's website has been accidentally deleted by a search engineï¿½indexing robot. The robot simply unwittingly discovered an unauthenticated, GET-based administrative interface that John had built for his site . . . and happily followed every "delete" link it could find.
 
 HEAD
 HEAD is a rarely used request type that is essentially identical to GET but that returns only the HTTP headers, and not the actual payload, for the requested content. Browsers generally do not issue HEAD requests on their own, but the method is sometimes employed by search engine bots and other automated tools, for example, to probe for the existence of a file or to check its modification time.
@@ -993,14 +999,14 @@ Further, the XMLHttpRequest API nominally allows client-side JavaScript to make 
 Server Response Codes
 Section 10 of RFC 2616 lists nearly 50 status codes that a server may choose from when constructing a response. About 15 of these are used in real life, and the rest are used to indicate increasingly bizarre or unlikely states, such as "402 Payment Required" or "415 Unsupported Media Type." Most of the RFC-listed states do not map cleanly to the behavior of modern web applications; the only reason for their existence is that somebody hoped they eventually would.
 A few codes are worth memorizing because they are common or carry special meaning, as discussed below.
-200­299: Success
+200ï¿½299: Success
 This range of status codes is used to indicate a successful completion of a request:
 200 OK This is a normal response to a successful GET or POST. The browser will display the subsequently returned payload to the user or will process it in some other context-specific way.
 204 No Content This code is sometimes used to indicate a successful request to which no verbose response is expected. A 204 response aborts navigation to the URL that triggered it and keeps the user on the originating page.
 206 Partial Content This code is like 200, except that it is returned by servers in response to range requests. The browser must already have a portion of the document (or it would not have issued a range request) and will normally inspect the Content-Range response header to reassemble the document before further processing it.
 54 Chapter 3
 
-300­399: Redirection and Other Status Messages
+300ï¿½399: Redirection and Other Status Messages
 These codes are used to communicate a variety of states that do not indicate an error but that require special handling on the browser end:
 
 301 Moved Permanently, 302 Found, 303 See Other This response instructs the browser to retry the request at a new location, specified in the Location response header. Despite the distinctions made in the RFC, when encountering any of these response codes, all modern browsers replace POST with GET, remove the payload, and then resubmit the request automatically.
@@ -1012,7 +1018,7 @@ Redirect messages may contain a payload, but if they do, this message will not b
 304 Not Modified This nonredirect response instructs the client that the requested document hasn't been modified in relation to the copy the client already has. This response is seen after conditional requests with headers such as If-Modified-Since, which are issued to revalidate the browser document cache. The response body is not shown to the user. (If the server responds this way to an unconditional request, the result will be browser-specific and may be hilarious; for example, Opera will pop up a nonfunctional download prompt.)
 307 Temporary Redirect Similar to 302, but unlike with other modes of redirection, browsers will not downgrade POST to GET when following a 307 redirect. This code is not commonly used in web applications, and some browsers do not behave very consistently when handling it.
 
-400­499: Client-Side Error
+400ï¿½499: Client-Side Error
 This range of codes is used to indicate error conditions caused by the behavior of the client:
 400 Bad Request (and related messages) The server is unable or unwilling to process the request for some unspecified reason. The response payload will usually explain the problem to some extent and will be typically handled by the browser just like a 200 response.
 More specific variants, such as "411 Length Required," "405 Method Not Allowed," or "414 Request-URI Too Long," also exist. It's anyone's guess as to why not specifying Content-Length when required has a dedicated 411 response code but not specifying Host deserves only a generic 400 one.
@@ -1021,7 +1027,7 @@ Hypertext Transfer Protocol 55
 
 403 Forbidden The requested URL exists but can't be accessed for reasons other than incorrect HTTP authentication. Reasons may involve insufficient filesystem permissions, a configuration rule that prevents this request from being processed, or insufficient credentials of some sort (e.g., invalid cookies or an unrecognized source IP address). The response will usually be shown to the user.
 404 Not Found The requested URL does not exist. The response body is typically shown to the user.
-500­599: Server-Side Error
+500ï¿½599: Server-Side Error
 This is a class of error messages returned in response to server-side problems:
 500 Internal Server Error, 503 Service Unavailable, and so on The server is experiencing a problem that prevents it from fulfilling the request. This may be a transient condition, a result of misconfiguration, or simply the effect of requesting an unexpected location. The response is normally shown to the user.
 Consistency of HTTP Code Signaling
@@ -1061,7 +1067,7 @@ When a response is cached, the implementation may opt to revalidate it before re
 NOTE
 
 The Date/If-Modified-Since and ETag/If-None-Match header pairs, when coupled with Cache-Control: private, offer a convenient and entirely unintended way for websites to store long-lived, unique tokens in the browser.14 The same can also be achieved by depositing a unique token inside a cacheable JavaScript file and returning "304 Not Modified" to all future conditional requests to the token-generating location. Unlike purpose-built mechanisms such as HTTP cookies (discussed in the next section), users have very little control over what information is stored in the browser cache, under what circumstances, and for how long.
-Implicit caching is highly problematic, and therefore, servers almost always should resort to using explicit HTTP-caching directives. To assist with this, HTTP/1.0 provides an Expires header that specifies the date by which the cached copy should be discarded; if this value is equal to the Date header provided by the server, the response is noncacheable. Beyond that simple rule, the connection between Expires and Date is unspecified: It is not clear whether Expires should be compared to the system clock on the caching system (which is problematic if the client and server clocks are not in sync) or evaluated based on the Expires ­ Date delta (which is more robust, but which may stop working if Date is accidentally omitted). Firefox and Opera use the latter interpretation, while other browsers prefer the former one. In most browsers, an invalid Expires value also inhibits caching, but depending on it is a risky bet.
+Implicit caching is highly problematic, and therefore, servers almost always should resort to using explicit HTTP-caching directives. To assist with this, HTTP/1.0 provides an Expires header that specifies the date by which the cached copy should be discarded; if this value is equal to the Date header provided by the server, the response is noncacheable. Beyond that simple rule, the connection between Expires and Date is unspecified: It is not clear whether Expires should be compared to the system clock on the caching system (which is problematic if the client and server clocks are not in sync) or evaluated based on the Expires ï¿½ Date delta (which is more robust, but which may stop working if Date is accidentally omitted). Firefox and Opera use the latter interpretation, while other browsers prefer the former one. In most browsers, an invalid Expires value also inhibits caching, but depending on it is a risky bet.
 HTTP/1.0 clients can also include a Pragma: no-cache request header, which may be interpreted by the proxy as an instruction to obtain a new copy of the requested resource, instead of returning an existing one. Some HTTP/1.0 proxies also recognize a nonstandard Pragma: no-cache response header as an instruction not to make a copy of the document.
 In contrast, HTTP/1.1 embraces a far more substantial approach to caching directives, introducing a new Cache-Control header. The header takes values such as public (the document is cacheable publicly), private (proxies are not permitted to cache), no-cache (which is a bit confusing--the response may be cached but should not be reused for future requests),* and no-store (absolutely no caching at all). Public and private caching directives may be accompanied with a qualifier such as max-age, specifying the maximum time an old copy should be kept, or must-revalidate, requesting a conditional request to be made before content reuse.
 
@@ -1148,10 +1154,10 @@ The language and appearance of SSL warnings has evolved through the years toward
 
 Security Engineering Cheat Sheet
 When Handling User-Controlled Filenames in Content-Disposition Headers
- If you do not need non-Latin characters: Strip or substitute any characters except for alphanumerics, ".", "-", and "_". To protect your users against potentially harmful or deceptive filenames, you may also want to confirm that at least the first character is alphanumeric and substitute all but the rightmost period with something else (e.g., an underscore). Keep in mind that allowing quotes, semicolons, backslashes, and control characters (0x00­0x1F) will introduce vulnerabilities.
- If you need non-Latin names: You must use RFC 2047, RFC 2231, or URL-style percent encoding in a browser-dependent manner. Make sure to filter out control characters (0x00­0x1F) and escape any semicolons, backslashes, and quotes.
+ If you do not need non-Latin characters: Strip or substitute any characters except for alphanumerics, ".", "-", and "_". To protect your users against potentially harmful or deceptive filenames, you may also want to confirm that at least the first character is alphanumeric and substitute all but the rightmost period with something else (e.g., an underscore). Keep in mind that allowing quotes, semicolons, backslashes, and control characters (0x00ï¿½0x1F) will introduce vulnerabilities.
+ If you need non-Latin names: You must use RFC 2047, RFC 2231, or URL-style percent encoding in a browser-dependent manner. Make sure to filter out control characters (0x00ï¿½0x1F) and escape any semicolons, backslashes, and quotes.
 When Putting User Data in HTTP Cookies
- Percent-encode everything except for alphanumerics. Better yet, use base64. Stray quote characters, control characters (0x00­0x1F), high-bit characters (0x80­0xFF), commas, semicolons, and backslashes may allow new cookie values to be injected or the meaning and scope of existing cookies to be altered.
+ Percent-encode everything except for alphanumerics. Better yet, use base64. Stray quote characters, control characters (0x00ï¿½0x1F), high-bit characters (0x80ï¿½0xFF), commas, semicolons, and backslashes may allow new cookie values to be injected or the meaning and scope of existing cookies to be altered.
 When Sending User-Controlled Location Headers
  Consult the cheat sheet in Chapter 2. Parse and normalize the URL, and confirm that the scheme is on a whitelist of permissible values and that you are comfortable redirecting to the specified host. Make sure that any control and high-bit characters are escaped properly. Use Punycode for hostnames and percent-encoding for the remainder of the URL.
 When Sending User-Controlled Redirect Headers
@@ -1218,7 +1224,7 @@ Understanding HTML Parser Behavior
 The fundamentals of HTML syntax outlined in the previous sections are usually enough to understand the meaning of well-formed HTML and XHTML documents. When the XHTML dialect is used, there is little more to the story: The minimal fault-tolerance of the parser means that anomalous syntax almost always leads simply to a parsing error. Alas, the picture is very different with traditional, laid-back HTML parsers, which aggressively secondguess the intent of the page developer even in very ambiguous or potentially harmful situations.
 Since an accurate understanding of user-supplied markup is essential to designing many types of security filters, let's have a quick look at some of these behaviors and quirks. To begin, consider the following reference snippet:
 <img src=image.jpg title="Hello world" class=examples>
-Web developers are usually surprised to learn that this syntax can be drastically altered without changing its significance to the browser. For example, Internet Explorer will allow an NUL character (0x00) to be inserted in the location marked at , a change that is likely to throw all naïve HTML filters off the trail. It is also not widely known that the whitespaces at  and  can
+Web developers are usually surprised to learn that this syntax can be drastically altered without changing its significance to the browser. For example, Internet Explorer will allow an NUL character (0x00) to be inserted in the location marked at , a change that is likely to throw all naï¿½ve HTML filters off the trail. It is also not widely known that the whitespaces at  and  can
 Hypertext Markup Language 73
 
 be substituted with uncommon vertical tab (0x0B) or form feed (0x0C) characters in all browsers and with a nonbreaking UTF-8 space (0xA0) in Opera.* Oh, and here's a really surprising bit: In Firefox, the whitespace at  can also be replaced with a single, regular slash--yet the one at  can't.
@@ -1247,7 +1253,7 @@ In fact, Firefox versions prior to version 4 engaged in far-fetched reparsing wh
 <title>This text will be interpreted as a title <i>This text will be shown as document body! [EOF]
 The last two parsing quirks have interesting security consequences in any scenario where the attacker may be able to interrupt page load prematurely. Even if the markup is otherwise fairly well sanitized, the meaning of the document may change in a very unexpected way.
 Explicit and Implicit Conditionals
-To further complicate the job of HTML parsing, some browsers exhibit behaviors that can be used to conditionally skip some of the markup in a document. For example, in an attempt to help novice users of Microsoft's Active Server Pages development platform, Internet Explorer treats <% ... %> blocks as a completely nonstandard comment, hiding any markup between these two character sequences. Another Internet Explorer­specific feature is explicit conditional expressions interpreted by the parser and smuggled inside standard HTML comment blocks:
+To further complicate the job of HTML parsing, some browsers exhibit behaviors that can be used to conditionally skip some of the markup in a document. For example, in an attempt to help novice users of Microsoft's Active Server Pages development platform, Internet Explorer treats <% ... %> blocks as a completely nonstandard comment, hiding any markup between these two character sequences. Another Internet Explorerï¿½specific feature is explicit conditional expressions interpreted by the parser and smuggled inside standard HTML comment blocks:
 <!--[if IE 6]> Markup that will be parsed only for Internet Explorer 6
 <![endif]-->
 Hypertext Markup Language 75
@@ -1357,7 +1363,7 @@ Erwin Rudolf Josef Alexander --random1234 Content-Disposition: form-data; name="
 * This has the potential for confusion, as the same parameter may appear both in the query string and in the POST payload. There is no consistency in how various server-side web applications frameworks resolve this conflict.  MIME (Multipurpose Internet Mail Extensions) is a data format intended for encapsulating and safely transmitting various types of documents in email messages. The format makes several unexpected appearances in the browser world. For example, Content-Type file format identifiers also have unambiguous MIME roots.
 Hypertext Markup Language 81
 
-Schrödinger --random1234 Content-Disposition: form-data; name="file"; filename="cat_names.txt" Content-Type: text/plain
+Schrï¿½dinger --random1234 Content-Disposition: form-data; name="file"; filename="cat_names.txt" Content-Type: text/plain
 (File contents follow) --random1234--
 Despite the seemingly open-ended syntax of the tag, other request methods and submission formats are not supported by any browser, and this is unlikely to change. For a short while, the HTML5 standard tried to introduce PUT and DELETE methods in forms, but this proposal was quickly shot down.
 Frames
@@ -1413,7 +1419,7 @@ When Writing a Markup Filter for User Content
 86 Chapter 4
 
 CASCADING STYLE SHEETS
-As the Web matured through the 1990s, website developers increasingly needed a consistent and flexible way to control the appearance of HTML documents; the collection of random, vendor-specific tag parameters available at the time simply would not do. After reviewing several competing proposals, W3C eventually settled on Cascading Style Sheets (CSS), a fairly simple textbased page appearance description language proposed by Håkon Wium Lie.
+As the Web matured through the 1990s, website developers increasingly needed a consistent and flexible way to control the appearance of HTML documents; the collection of random, vendor-specific tag parameters available at the time simply would not do. After reviewing several competing proposals, W3C eventually settled on Cascading Style Sheets (CSS), a fairly simple textbased page appearance description language proposed by Hï¿½kon Wium Lie.
 The initial CSS level 1 specification saw the light of day by the end of 1996,1 but further revisions of this document continued until 2008. The initial draft of CSS level 2 followed in December 1998 and has yet to be finalized as of 2011. The work on the most recent iteration, level 3, started in 2005 and also continues to this day. Although most of the individual features envisioned for CSS2 and CSS3 have been adopted by all modern browsers after years of trial and error, many subtle details vary significantly from one implementation to another, and the absence of a finalized standard likely contributes to this.
 
 Despite the differences from one browser to another, CSS is a very powerful tool. With only a couple of constraints, stylesheets permit almost every HTML tag to be scaled, positioned, and decorated nearly arbitrarily, thereby overcoming the constraints originally placed on it by the underlying markup language; in some implementations, JavaScript programs can be embedded in the CSS presentation directives as well. The job of placing user-controlled values inside stylesheets, or recoding any externally provided CSS, is therefore of great interest to web application security.
@@ -1469,7 +1475,7 @@ a{ $$$ This syntax makes absolutely no sense $$$ !(@*#)!!@ 123
 img { border: 1px solid red;
 }
 This unusual behavior creates an opportunity to exploit parser incompatibilities in an interesting way: If there is any way to derail a particular CSS implementation with inputs that seem valid to other parsers, the resynchronization logic may cause the attacked browser to resume parsing at an incorrect location, such as in the middle of an attacker-supplied string.
-A naïve illustration of this issue may be Internet Explorer's support for multiline string literals. In this browser, it is seemingly safe not to scrub CR and LF characters in user-supplied CSS strings, so some webmasters may allow it. Unfortunately, the same pattern will cause any other browser to resume at an unexpected offset and interpret the evil_rule ruleset:
+A naï¿½ve illustration of this issue may be Internet Explorer's support for multiline string literals. In this browser, it is seemingly safe not to scrub CR and LF characters in user-supplied CSS strings, so some webmasters may allow it. Unfortunately, the same pattern will cause any other browser to resume at an unexpected offset and interpret the evil_rule ruleset:
 some_benign_selector { content: 'Attacker-controlled text... } evil_rule { margin-left: -1000px; }';
 }
 The support for multiline strings is a Microsoft-specific extension, and the aforementioned problem is easily fixed by avoiding such noncompliant syntax to begin with. Unfortunately, other desynchronization risks are introduced by the standard itself. For example, recall complex selectors: This CSS3 syntax makes no sense to pre-CSS3 parsers. In the following example, an older implementation may bail out after encountering an unexpected angle bracket and resume parsing from the attacker-supplied evil_rule instead:
@@ -1494,7 +1500,7 @@ When Loading Remote Stylesheets
  You are linking the security of your site to the originating domain of the stylesheet. Even in browsers that do not support JavaScript expressions inside stylesheets, features such as conditional selectors and url(...) references can be used to exfiltrate portions of your site.4
  When in doubt, make a local copy of the data instead.  On HTTPS sites, require stylesheets to be served over HTTPS as well.
 When Putting Attacker-Controlled Values into CSS
- Strings and URLs inside stand-alone blocks. Always use quotes. Backslash-escape all control characters (0x00­0x1F), "\", "<", ">", "{", "}", and quotes using numerical codes. It is also preferable to escape high-bit characters. For URLs, consult the cheat sheet in Chapter 2 to avoid code injection vulnerabilities.
+ Strings and URLs inside stand-alone blocks. Always use quotes. Backslash-escape all control characters (0x00ï¿½0x1F), "\", "<", ">", "{", "}", and quotes using numerical codes. It is also preferable to escape high-bit characters. For URLs, consult the cheat sheet in Chapter 2 to avoid code injection vulnerabilities.
  Strings in style parameters. Multiple levels of escaping are involved. The process is error prone, so do not attempt it unless absolutely necessary. If it is unavoidable, apply the above CSS escaping rules first and then apply HTML parameter encoding to the resulting string.
  Nonstring attributes. Allow only whitelisted alphanumeric keywords and carefully validated numerical values. Do not attempt to reject known bad patterns instead.
 When Filtering User-Supplied CSS
@@ -1515,7 +1521,7 @@ in a famously confusing 1995 press release that introduced the language to the w
 Netscape and Sun Announce JavaScript, the Open, CrossPlatform Object Scripting Language for Enterprise Networks and the Internet
 [...]
 Netscape Navigator Gold 2.0 enables developers to create and edit JavaScript scripts, while Netscape LiveWire enables JavaScript programs to be installed, run and managed on Netscape servers, both within the enterprise and across the Internet. Netscape LiveWire Pro adds support for JavaScript connectivity to high-performance relational databases from Illustra, Informix, Microsoft, Oracle and Sybase. Java and JavaScript support are being built into all Netscape products to provide a unified, front-to-back, client/server/tool environment for building and deploying live online applications.
-Despite Netscape's misplaced affection for Java, the value of JavaScript for client-side programming seemed clear, including to the competition. In 1996 Microsoft responded by shipping a near-verbatim copy of JavaScript in Internet Explorer 3.0 along with a counterproposal of its own: a Visual Basic­ derived language dubbed VBScript. Perhaps because it was late to the party, and perhaps because of VBScript's clunkier syntax, Microsoft's alternative failed to gain prominence or even any cross-browser support. In the end, JavaScript secured its position in the market, and in part due to Microsoft's failure, no new scripting languages have been attempted in mainstream browsers since.
+Despite Netscape's misplaced affection for Java, the value of JavaScript for client-side programming seemed clear, including to the competition. In 1996 Microsoft responded by shipping a near-verbatim copy of JavaScript in Internet Explorer 3.0 along with a counterproposal of its own: a Visual Basicï¿½ derived language dubbed VBScript. Perhaps because it was late to the party, and perhaps because of VBScript's clunkier syntax, Microsoft's alternative failed to gain prominence or even any cross-browser support. In the end, JavaScript secured its position in the market, and in part due to Microsoft's failure, no new scripting languages have been attempted in mainstream browsers since.
 Encouraged by the popularity of the JavaScript language, Netscape handed over some of the responsibility for maintaining it to an independent body, the European Computer Manufacturers Association (ECMA). The new overseers successfully released ECMAScript, 3rd edition in 19992 but had substantially more difficulty moving forward from there. The 4th edition, an ambitious overhaul of the language, was eventually abandoned after several years of bickering between the vendors, and a scaled-down 5th edition,3 published in 2009, still enjoys only limited (albeit steadily improving) browser support. The work on a new iteration, called "Harmony," begun in 2008, still has not been finalized. Absent an evolving and widely embraced standard, vendor-specific extensions of the language are common, but they usually cause only pain.
 Basic Characteristics of JavaScript
 JavaScript is a fairly simple language meant to be interpreted at runtime. It has vaguely C-influenced syntax (save for pointer arithmetic); a straightforward classless object model, said to be inspired by a little-known programming language named Self; automatic garbage collection; and weak, dynamic typing.
@@ -1828,7 +1834,7 @@ As with CSS, you are linking the security of your site to the originating domain
 When Parsing JSON Received from the Server
 Rely on JSON.parse(...) where supported. Do not use eval(...) or the eval-based implementation provided in RFC 4627. Both are unsafe, especially when processing data from third parties. A later implementation from the author of RFC 4627, json2.js,9 is probably okay.
 When Putting User-Supplied Data Inside JavaScript Blocks
- Stand-alone strings in <script> blocks: Backslash-escape all control characters (0x00­0x1F), "\", "<", ">", and quotes using numerical codes. It is also preferable to escape high-bit characters. Do not rely on user-supplied strings to construct dynamic HTML. Always use safe DOM features such as innerText or createTextNode(...) instead. Do not use user-supplied strings to construct second-order scripts; avoid eval(...), setTimeout(...), and so on.
+ Stand-alone strings in <script> blocks: Backslash-escape all control characters (0x00ï¿½0x1F), "\", "<", ">", and quotes using numerical codes. It is also preferable to escape high-bit characters. Do not rely on user-supplied strings to construct dynamic HTML. Always use safe DOM features such as innerText or createTextNode(...) instead. Do not use user-supplied strings to construct second-order scripts; avoid eval(...), setTimeout(...), and so on.
  Stand-alone strings in separately served scripts: Follow the same rules as for <script> blocks. If your scripts contain any sensitive, user-specific information, be sure to account for cross-site script inclusion risks; use reliable parser-busting prefixes, such as ")}]'\n", near the beginning of a file or, at the very minimum, use a proper JSON serialization with no padding or other tweaks. Additionally, consult Chapter 13 for tips on how to prevent cross-site scripting in non-HTML content.
  Strings in inlined event handlers, javascript: URLs, and so on: Multiple levels of escaping are involved. Do not attempt this because it is error prone. If unavoidable, apply the above JS escaping rules first and then apply HTML or URL parameter encoding, as applicable, to the resulting string. Never use in conjunction with eval(...), setTimeout(...), innerHTML, and such.
  Nonstring content: Allow only whitelisted alphanumeric keywords and carefully validated numerical values. Do not attempt to reject known bad patterns instead.
@@ -2124,7 +2130,7 @@ Table 9-1: Outcomes of SOP Checks
 
 Originating document Accessed document
 
-Non­IE browser Internet Explorer
+Nonï¿½IE browser Internet Explorer
 
 http://example.com/a/ http://example.com/ http://example.com/ http://example.com:81/
 
@@ -2279,7 +2285,7 @@ Cookie set at foo.example.com, domain parameter is:
 
 Scope of the resulting cookie
 
-Non­IE browsers
+Nonï¿½IE browsers
 
 Internet Explorer
 
@@ -2439,7 +2445,7 @@ At their core, cookie-setting algorithms still depend on counting the number of 
 Unfortunately for this algorithm, it is often possible to put extra periods in a hostname and still have it resolve correctly. Noncanonical hostname representations with excess periods are usually honored by OS-level resolvers and, if honored, will confuse the browser. Although said browser would not automatically consider a domain such as www.example.com.pl. (with an extra trailing period) to be the same as the real www.example.com.pl, the subtle and seemingly harmless difference in the URL could escape even the most attentive users.
 In such a case, interacting with the URL with trailing period can be unsafe, as other documents sharing the *.com.pl. domain may be able to inject cross-domain cookies with relative ease.
 This period-counting problem was first noticed around 1998.19 About a decade later, many browser vendors decided to roll out basic mitigations by adding a yet another special case to the relevant code; as of this writing, Opera is still susceptible to this trick.
-Non­Fully Qualified Hostnames
+Nonï¿½Fully Qualified Hostnames
 Many users browse the Web with their DNS resolvers configured to append local suffixes to all found hostnames, often without knowing. Such settings are usually sanctioned by ISPs or employers through automatic network configuration data (Dynamic Host Configuration Protocol, DHCP).
 For any user browsing with such a setting, the resolution of DNS labels is ambiguous. For example, if the DNS search path includes coredump.cx, then www.example.com may resolve to the real www.example.com website or to www.example.com.coredump.cx if such a record exists. The outcomes are partly controlled by configuration settings and, to some extent, can be influenced by an attacker.
 To the browser, both locations appear to be the same, which may have some interesting side effects. Consider one particularly perverse case: Should http://com, which actually resolves to http://com.coredump.cx/, be able to set *.com cookies by simply omitting the domain parameter?
@@ -2489,7 +2495,7 @@ When Relying on HTTP Cookies for Authentication
  Use the httponly flag; design the application so that there is no need for JavaScript to access authentication cookies directly. Sensitive cookies should be scoped as tightly as possible, preferably by not specifying domain at all.
  If the application is meant to be HTTPS only, cookies must be marked as secure, and you must be prepared to handle cookie injection gracefully. (HTTP contexts may overwrite secure cookies, even though they can't read them.) Cryptographic cookie signing may help protect against unconstrained modification, but it does not defend against replacing a victim's cookies with another set of legitimately obtained credentials.
 When Arranging Cross-Domain Communications in JavaScript
- Do not use document.domain. Rely on postMessage(...) where possible and be sure to specify the destination origin correctly; then verify the sender's origin when receiving the data on the other end. Beware of naïve substring matches for domain names: msg.origin.indexOf(".example.com") is very insecure.
+ Do not use document.domain. Rely on postMessage(...) where possible and be sure to specify the destination origin correctly; then verify the sender's origin when receiving the data on the other end. Beware of naï¿½ve substring matches for domain names: msg.origin.indexOf(".example.com") is very insecure.
  Note that various pre-postMessage SOP bypass tricks, such as relying on window.name, are not tamper-proof and should not be used for exchanging sensitive data.
 When Embedding Plug-in-Handled Active Content from Third Parties
 Consult the cheat sheet in Chapter 8 first for general advice.  Flash: Do not specify allowScriptAccess=always unless you fully trust the owner of the origi-
@@ -2878,7 +2884,7 @@ This chapter offers a quick look at some of the most significant examples of the
 Navigation to Sensitive Schemes
 In the past, browser vendors reasoned that there was no harm in allowing any page on the Internet to navigate to a document stored on a user's hard drive using the file: protocol or to open a new window pointing to a privileged resource, such as the about:config page in Firefox. After all, they thought, the originating document and the destination would not be same-origin, and, therefore, any direct access to the sensitive data would be prevented.
 For many years, based on this rationale, browsers permitted such navigation to take place. Alas, this decision proved to be not only extremely confusing* but also dangerous. The danger comes from the fact that many programs, browsers included, tend to store various types of Internet-originating content in the filesystem; temporary files and cached documents are a common example. In many cases, an attacker could have some control over the creation and contents of such files, and, if the resources are created at a predictable location, subsequent navigation to the right file: URL could allow the attacker to execute his own payload in this coveted origin, with access to any other file on the disk and, perhaps, any other website on the Internet.
-Comparably disastrous consequences have been observed with a variety of privileged, internally handled URLs. The ability to navigate directly to locations such as about:config (Firefox) not only made it possible to exploit potential vulnerabilities in the privileged scripts (a transgression to which browser vendors are not immune) but also led to system compromise if, through a literal application of the same-origin policy, the browser naïvely deemed about:config and about:blank to come from the same origin.
+Comparably disastrous consequences have been observed with a variety of privileged, internally handled URLs. The ability to navigate directly to locations such as about:config (Firefox) not only made it possible to exploit potential vulnerabilities in the privileged scripts (a transgression to which browser vendors are not immune) but also led to system compromise if, through a literal application of the same-origin policy, the browser naï¿½vely deemed about:config and about:blank to come from the same origin.
 Having learned from a history of painful mishaps, modern browsers typically police navigation based on three tiers of URL schemes:
  Unrestricted This category includes virtually all true network protocols, such as HTTP, HTTPS, FTP; most encapsulating pseudo-protocols such as mhtml: or jar:; and all schemes registered to plug-ins and external applications. Navigation to these URLs is not constrained in any specific way.
  Partly restricted This category includes several security-sensitive schemes such as file: and special pseudo-URLs such as javascript: or vbscript:. Navigation to them is not completely denied, but it is subject to additional, scheme-specific security checks. For example, access to file: is usually permitted only from other file: documents, requiring the first one to be opened manually. (The rules for navigation to javascript: URLs were discussed in Chapter 10.)
@@ -2889,7 +2895,7 @@ Having learned from a history of painful mishaps, modern browsers typically poli
 Access to Internal Networks
 The trouble with accessing sensitive protocols is merely a prelude to a far more serious issue that somehow escaped the creators of the same-origin policy. The problem is that DNS-derived origins may have nothing to do with actual network-level boundaries--or with how these boundaries change over time. A malicious script may be granted same-origin access to intranet sites on the victim's local network, even if a firewall prevents the attacker from interacting with these destinations directly.
 There are at least three distinctive venues for such attacks.
-Origin Infiltration When a user visits a rogue network--such as an open wireless network at an airport or in a café--an attacker on that network may trick the victim's browser into opening a URL such as http://us-payroll/. When this happens, the attacker may provide his own, spoofed content for that site. Frighteningly, if the user then brings the same browser to a corporate network, the previously injected content will have same-origin access to the real version of http://us-payroll/, complete with the user's ambient credentials. The persistence of injected content may be achieved in a couple of ways. The most basic method is for an attacker simply to inject a hidden http://us-payroll/ frame onto every visited page in the hope that the user will suspend a portable computer with the browser still running and then take it to another network. Another technique is cache poisoning : creating long-lived, cached objects that the browser will use instead of retrieving a fresh copy from the destination site. Several other, more obscure approaches also exist.
+Origin Infiltration When a user visits a rogue network--such as an open wireless network at an airport or in a cafï¿½--an attacker on that network may trick the victim's browser into opening a URL such as http://us-payroll/. When this happens, the attacker may provide his own, spoofed content for that site. Frighteningly, if the user then brings the same browser to a corporate network, the previously injected content will have same-origin access to the real version of http://us-payroll/, complete with the user's ambient credentials. The persistence of injected content may be achieved in a couple of ways. The most basic method is for an attacker simply to inject a hidden http://us-payroll/ frame onto every visited page in the hope that the user will suspend a portable computer with the browser still running and then take it to another network. Another technique is cache poisoning : creating long-lived, cached objects that the browser will use instead of retrieving a fresh copy from the destination site. Several other, more obscure approaches also exist.
 DNS Rebinding This arguably less serious but more easily exploitable problem was mentioned in footnote 1 in Chapter 9. In short, since the same-origin policy looks just at the DNS name of a host, not at the IP address, an attacker who owns bunnyoutlet.com is free to respond initially to a DNS lookup from a user with a public IP such as 213.134.128.25 and then switch to an address reserved for private networks, such as 10.0.0.1. Documents loaded from both sources will be considered same-origin, giving the attacker the ability to interact with the victim's internal network. The mitigating factor is that this interaction will not involve proper ambient credentials that the victim normally has for the targeted site: As far as the browser is concerned, it is still talking to bunnyoutlet.com and not to, say, the aforementioned us-payroll site. Still, the prospect of the attacker examining the internal network and perhaps trying to brute-force the appropriate credentials or identify vulnerabilities is disconcerting.
 Other Security Boundari es 189
 
@@ -3023,7 +3029,7 @@ There are, of course, various protocol-specific exceptions to these rules. For e
 The current solution is flawed in several ways, the most important of which may be that both lists have numerous glaring omissions and, given the number of network protocols devised to date, simply have no chance of ever being exhaustive. For example, no rule would prevent the browser from talking to Internet Relay Chat (IRC) servers, which use a fault-tolerant, text-based protocol not entirely unlike SMTP.
 The lists are also not regularly updated to reflect the demise of nearly extinct network protocols or the introduction of new ones. Lastly, they can unfairly and unexpectedly penalize system administrators for picking nonstandard ports for certain services they want to hide from public view: Doing so means opting out of this browser-level protection mechanism.
 Limitations on Third-Party Cookies
-Since their inception, HTTP cookies have been misunderstood as the tool that enabled online advertisers to violate users' privacy to an unprecedented and previously unattainable extent. This sentiment has been echoed by the mainstream press in the years since. For example, in 2001, the New York Times published a lengthy exposé on the allegedly unique risks of HTTP cookies and even quoted Lawrence Lessig, a noted legal expert and a political activist:1
+Since their inception, HTTP cookies have been misunderstood as the tool that enabled online advertisers to violate users' privacy to an unprecedented and previously unattainable extent. This sentiment has been echoed by the mainstream press in the years since. For example, in 2001, the New York Times published a lengthy exposï¿½ on the allegedly unique risks of HTTP cookies and even quoted Lawrence Lessig, a noted legal expert and a political activist:1
 Before cookies, the Web was essentially private. After cookies, the Web becomes a space capable of extraordinary monitoring.
 The high-profile assault on a single HTTP header continued over the course of a decade, gradually shifting its focus toward third-party cookies in particular. Third-party cookies are the cookies set by domains other than the domain of the top-level document, and they are usually associated with the process of loading images, frames, or applets from third-party sites. The reason they have attracted attention is that operators of advertising networks have embraced such cookies as a convenient way to tag a user who sees their ad embedded on fuzzybunnies.com and then recognize that user through a similar embedded ad served on playboy.com.
 Because the clearly undesirable possibility of performing this type of cross-domain tracking has been erroneously conflated with the existence of third-party cookies, the pressure on browser vendors has continued to mount. In one instance, the Wall Street Journal flat out accused Microsoft of being in bed with advertisers for not eliminating third-party cookies in the company's product.2
@@ -3117,7 +3123,7 @@ NOTE
 
 In order to fully appreciate the risk of content sniffing on valid images, note that it is not particularly difficult to construct images that validate correctly but that carry attacker-selected ASCII strings--such as HTML markup--in the raw image data. In fact, it is relatively easy to construct images that, when scrubbed, rescaled, and recompressed using a known, deterministic algorithm, will have a nearly arbitrary string appear out of the blue in the resulting binary stream.
 To its credit, in Internet Explorer 8 and beyond, Microsoft decided to disallow most types of gratuitous content sniffing on known MIME types in the image/* category. It also disallowed HTML detection (but not XML detection) on image formats not recognized by the browser, such as image/ jp2 (JPEG2000).
-This single tweak aside, Microsoft has proven rather unwilling to make meaningful changes to its content-sniffing logic, and its engineers have publicly defended the need to maintain compatibility with broken websites.2 Microsoft probably wants to avoid the wrath of large institutional customers, many of whom rely on ancient and poorly designed intranet apps and depend on the quirks of the Internet Explorer­based monoculture on the client end.
+This single tweak aside, Microsoft has proven rather unwilling to make meaningful changes to its content-sniffing logic, and its engineers have publicly defended the need to maintain compatibility with broken websites.2 Microsoft probably wants to avoid the wrath of large institutional customers, many of whom rely on ancient and poorly designed intranet apps and depend on the quirks of the Internet Explorerï¿½based monoculture on the client end.
 In any case, due to the backlash that Internet Explorer faced over its text/ plain handling logic, newer versions offer a partial workaround: an optional
 
 * Naturally, path-based extension matching is essentially worthless for the reasons discussed in the previous section; but in the case of Internet Explorer 6, it gets even worse. In this browser, the extension can appear in the query portion of the URL. Nothing stops the attacker from simply appending ?foo=bar.html to the requested URL, effectively ensuring that this check is always satisfied.
@@ -3625,7 +3631,7 @@ NOTE
 Removing the ability to inspect values of password fields may seem like a simple way to improve the scheme, but it is not a very good one. The data could still be stolen by, say, waiting for password autocompletion, changing the data submission method from POST to GET, and then calling submit() on the login form. These steps would result in navigation to a page that has the password plainly visible in the location.search string. (Plus, many web applications have legitimate uses for reading back these fields on the client side, for example, to advise on password strength.)
 As should be clear, the most serious risk associated with password managers is the amplification of XSS bugs. In web applications that use httponly cookies, a successful exploitation of an XSS flaw may give the attacker only transient access to a user's account, but if the same vulnerability can be leveraged to steal a user's password, the consequences are more dire and longer-lived.
 
-* This data may be stored on disk as a plaintext representation, a naïvely obfuscated string, or a properly encrypted value protected with a "master" password that needs to be entered beforehand. All three methods are comparably vulnerable to determined attackers with access to the local system, but the plaintext approach is sometimes frowned upon, as it is more exposed to nosy but nontechnical users.
+* This data may be stored on disk as a plaintext representation, a naï¿½vely obfuscated string, or a properly encrypted value protected with a "master" password that needs to be entered beforehand. All three methods are comparably vulnerable to determined attackers with access to the local system, but the plaintext approach is sometimes frowned upon, as it is more exposed to nosy but nontechnical users.
  Despite the name, this stops the browser from recording the password and not just from autocompleting it.
  Such consequences may extend beyond the affected application: Even with password managers in place, password reuse is a common, unfortunate trend.
 
@@ -3638,7 +3644,7 @@ Internet Explorer's Zone Model
 Internet Explorer's zone model3 is a proprietary attempt to reconcile the different security requirements that users (or system administrators) may have for different types of web applications, for example, a banking page and an online game. Microsoft's approach is to establish several predefined classes of websites--known as zones--each with its own set of configurable security permissions. The five supported zones are these:
 
  My computer (aka local machine) This hidden zone is used for all local file: resources (with one exception--more about it soon). The user cannot add or remove any elements from this set and cannot change its security settings through the normal user interface. Administrators and developers can modify the registry or use urlmon.dll hooks to override settings, however.
- Local intranet This zone is meant to include trusted applications on a user's local network. By default, local intranet enjoys many problematic privileges, such as unrestricted access to the system clipboard, the ability to open windows without an address bar, or the ability to bypass the usual frame navigation security checks (the descendant policy, outlined in Chapter 11). Members of this set are detected automatically using several configurable heuristics, and they may include destinations with non­fully qualified hostnames, addresses on the HTTP proxy exemption list,* or remote file: URLs accessed over SMB. Manual inclusion of sites in this zone is also possible (in addition to or instead of the built-in heuristics).
+ Local intranet This zone is meant to include trusted applications on a user's local network. By default, local intranet enjoys many problematic privileges, such as unrestricted access to the system clipboard, the ability to open windows without an address bar, or the ability to bypass the usual frame navigation security checks (the descendant policy, outlined in Chapter 11). Members of this set are detected automatically using several configurable heuristics, and they may include destinations with nonï¿½fully qualified hostnames, addresses on the HTTP proxy exemption list,* or remote file: URLs accessed over SMB. Manual inclusion of sites in this zone is also possible (in addition to or instead of the built-in heuristics).
 
 NOTE
 
@@ -3667,7 +3673,7 @@ To maintain the integrity of the zone model on downloaded files, Internet Explor
 
 NOTE
 
-The inline nature of MotW is one of its flaws. Faux tags can be preinserted by rogue parties into HTML documents downloaded through non­Internet Explorer browsers, saved from email clients, or downloaded by Internet Explorer with a non-HTML extension (and then subjected to content sniffing). Though, to be fair, the privileges of file: documents saved without any MotW tags are significant enough to keep attackers relatively uninterested in hopping from the My Computer zone to, say, Local Intranet.
+The inline nature of MotW is one of its flaws. Faux tags can be preinserted by rogue parties into HTML documents downloaded through nonï¿½Internet Explorer browsers, saved from email clients, or downloaded by Internet Explorer with a non-HTML extension (and then subjected to content sniffing). Though, to be fair, the privileges of file: documents saved without any MotW tags are significant enough to keep attackers relatively uninterested in hopping from the My Computer zone to, say, Local Intranet.
 
  Alternate Data Stream (ADS) Zone Identifier This is a piece of NTFS metadata attached by Internet Explorer (and Chrome) to every downloaded file, indicating the numerical code of the zone the file was retrieved from.8 The Zone.Identifier mechanism is less portable than MotW, and the information is lost when files are saved to non-NTFS filesystems. However, it is also more versatile, as it can be applied to non-HTML documents. Zone.Identifier metadata is recognized by Internet Explorer itself, by the Windows GUI shell, and by some other Microsoft products, but thirdparty software almost universally ignores it. Where it is supported, it may result in a more restrictive security policy being applied to the document; more commonly, it just pops up a security warning about the unspecified risks of opening Internet-originating data.
 
@@ -3701,7 +3707,7 @@ Some of the most successful security enhancements proposed in the past few years
 Cross-Domain Requests
 Under the original constraints of the same-origin policy, scripts associated with one origin have no clean and secure way to communicate with clientside scripts executing in any other origin and no safe way to retrieve potentially useful data from a willing third-party server.
 Web developers have long complained about these constraints, and in recent years, browser vendors have begun to listen to their demands. As you recall, the more pressing task of arranging client-side communications between scripts was solved with postMessage(...). The client-to-server scenario was found to be less urgent and still awaits a canonical solution, but there has been some progress to report.
-The most successful attempt to create a method for retrieving documents from non-same-origin servers began in 2005. Under the auspices of W3C, several developers working on VoiceXML, an obscure document format for building Interactive Voice Response (IVR) systems, drafted a proposal for Cross-Origin Resource Sharing (CORS).1 Between 2007 and 2009, their awkward, XML-based design gradually morphed into a much simpler and more widely useful scheme, which relied on HTTP header­level signaling to communicate consent to cross-origin content retrieval using a natural extension of the XMLHttpRequest API.
+The most successful attempt to create a method for retrieving documents from non-same-origin servers began in 2005. Under the auspices of W3C, several developers working on VoiceXML, an obscure document format for building Interactive Voice Response (IVR) systems, drafted a proposal for Cross-Origin Resource Sharing (CORS).1 Between 2007 and 2009, their awkward, XML-based design gradually morphed into a much simpler and more widely useful scheme, which relied on HTTP headerï¿½level signaling to communicate consent to cross-origin content retrieval using a natural extension of the XMLHttpRequest API.
 CORS Request Types
 As specified today, CORS relies on differentiating between two types of calls to the XMLHttpRequest API. When the site attempts to load a cross-origin document through the API, the browser first needs to distinguish between simple requests, where the resulting HTTP traffic is deemed close enough to what
 * Malicious URL blacklists, a feature supported by (and usually enabled in) all modern browsers, are a prime example of this trend. The blacklist is a lightweight, crude substitute for an antivirus, which is, in turn, a poor substitute for up-to-date and well-designed software. Antimalware features do not make individual attacks any more difficult; they are simply meant to stop the largescale distribution of unsophisticated malware, based on the assumption that most users are not interesting enough to be specifically targeted or attacked with something clever.
@@ -3804,7 +3810,7 @@ N ew and Upcomi ng Security F eatures 243
 Many other possible extensions of the policy are being discussed as of this writing. These include a script-nonce directive that could be used to more securely embed inline scripts (every script block must begin with a policyspecified, unpredictable token, often making XSS exploitation harder) and a sandbox directive, which offers an alternative interface to another security mechanism, discussed in "Sandboxed Frames" on page 245.
 Policy Violations
 The policy specified according to these rules constrains the behavior of the underlying document. Violations normally result in a failed subresource load, the failure to execute an inline script, or the inhibition of page rendering (in the special case of frame-ancestors).
-Because CSP controls a wide range of content behaviors, and because the default failure mode is fairly brutal, the authors perceived a need to ease the worries of webmasters. To make CSP more user-friendly, and perhaps also in a naïve attempt to offer exploit detection, an optional feature of CSP allows the browser to report all policy violations immediately back to the owner of the site. This feature can be enabled through the report-uri keyword in the policy. To further simplify deployment, it is also possible to roll out any policy--or part thereof--in a "soft" mode, where violations result only in an HTTP notification but do not actually break the page. This is achieved by specifying the policy inside a header named X-Content-Security-Policy-Report-Only.*
+Because CSP controls a wide range of content behaviors, and because the default failure mode is fairly brutal, the authors perceived a need to ease the worries of webmasters. To make CSP more user-friendly, and perhaps also in a naï¿½ve attempt to offer exploit detection, an optional feature of CSP allows the browser to report all policy violations immediately back to the owner of the site. This feature can be enabled through the report-uri keyword in the policy. To further simplify deployment, it is also possible to roll out any policy--or part thereof--in a "soft" mode, where violations result only in an HTTP notification but do not actually break the page. This is achieved by specifying the policy inside a header named X-Content-Security-Policy-Report-Only.*
 Criticisms of CSP
 CSP is a remarkably sensible and consistent design compared to most of the one-off security features proposed or deployed in the browser world. Nevertheless, from its inception, the proposal has been haunted by recurring design and implementation concerns.
 Perhaps the most prosaic complaint about CSP is a nonsecurity one: In order to benefit from the XSS defenses offered by the framework, webmasters have to move all inline scripts on the page (often hundreds of individual snippets of code) to a separately requested document; in the new drafts of CSP, the same will be required for all stylesheets. The complexity of retrofitting existing pages to work with CSP and the performance penalty of an additional HTTP request are often prohibitive. (It may be possible to resolve this problem with the script-nonce extension proposed in the most recent drafts.)
@@ -3972,7 +3978,7 @@ Header injection (response splitting) Insufficient escaping of newlines (or equi
 Mixed content A catch-all name for loading non-HTTPS subresources on HTTPS pages. In the case of scripts and applets, this behavior makes the application trivially vulnerable to active attackers, particularly on open wireless
 262 Chapter 18
 
-networks (at cafés, airports, and so on), and undoes almost all benefits of HTTPS. The consequences of mixed content bugs with stylesheets, fonts, images, or frames are usually also fairly serious but more constrained.  See Chapters 4 and 8 for content-specific precautions on HTTPS sites.  See Chapter 11 for an overview of mixed-content handling rules.
+networks (at cafï¿½s, airports, and so on), and undoes almost all benefits of HTTPS. The consequences of mixed content bugs with stylesheets, fonts, images, or frames are usually also fairly serious but more constrained.  See Chapters 4 and 8 for content-specific precautions on HTTPS sites.  See Chapter 11 for an overview of mixed-content handling rules.
 Open redirection A term used to refer to applications that perform HTTP- or script-based requests to user-supplied URLs without constraining the possible destinations in any meaningful way. Open redirection is not advisable and may be exploitable in some scenarios, but it is typically not particularly dangerous by itself.  See Chapter 10 for cases where unconstrained redirection may lead to XSS.
 Referer leakage Accidental disclosure of a sensitive URL by embedding an off-site subresource or providing an off-site link. Any security- or privacy-relevant data encoded in the URL of the parent document will be leaked in the Referer header, with the exception of the fragment identifier.  See Chapter 3 for an overview of the Referer logic.
 Problems to Keep in Mind in Web Application Design
@@ -4053,7 +4059,7 @@ Chapter 2
 9. P. Faltstrom, P. Hoffman, and A. Costello, "Internationalizing Domain Names in Applications (IDNA)," IETF Request for Comments 3490 (2003), http://www.ietf.org/rfc/rfc3490.txt.
 10. A. Costello, "Punycode: A Bootstring Encoding of Unicode for Internationalized Domain Names in Applications (IDNA)," IETF Request for Comments 3492 (2003), http://www.ietf.org/rfc/rfc3492.txt.
 11. E. Gabrilovich and A. Gontmakher, "The Homograph Attack," Communications of the ACM (2002), http://www.cs.technion.ac.il/~gabr/papers/ homograph_full.pdf.
-270 Notes for P ages 17­35
+270 Notes for P ages 17ï¿½35
 
 12. E. Rescorla, "HTTP Over TLS," IETF Request for Comments 2818 (2000), http://www.ietf.org/rfc/rfc2818.txt.
 13. J. Postel and J. Reynolds, "File Transfer Protocol (FTP)," IETF Request for Comments 959 (1985), http://www.ietf.org/rfc/rfc959.txt.
@@ -4071,7 +4077,7 @@ Chapter 3
 6. S. Chen, Z. Mao, Y.M. Wang, and M. Zhang, "Pretty-Bad-Proxy: An Overlooked Adversary in Browsers' HTTPS Deployments," Microsoft Research (2009), http://research.microsoft.com/pubs/79323/pbp-final-withupdate.pdf.
 7. "Mozilla Cross-Reference mozilla1.8.0," Mozilla code repository, http:// mxr.mozilla.org/mozilla1.8.0/source/nsprpub/pr/src/misc/prtime.c#1045.
 8. K. Moore, "MIME (Multipurpose Internet Mail Extensions) Part Three: Message Header Extensions for Non-ASCII Text," IETF Request For Comments 2047 (1996), http://www.ietf.org/rfc/rfc2047.txt.
-N otes for Pages 36­50 271
+N otes for Pages 36ï¿½50 271
 
 9. N. Freed and K. Moore, "MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations," IETF Request for Comments 2231 (1997), http://www.ietf.org/rfc/rfc2231.txt.
 10. Mozilla Bug Tracking System, Mozilla bug #418394, https://bugzilla .mozilla.org/show_bug.cgi?id=418394.
@@ -4083,8 +4089,8 @@ Caches" (2000), http://sourcefrog.net/projects/meantime/. 15. L. Montulli, "Pers
 Request for Comments 2109 (1997), http://www.ietf.org/rfc/rfc2109.txt. 17. D. Kristol and L. Montulli, "HTTP State Management Mechanism," IETF
 Request for Comments 2965 (2000), http://tools.ietf.org/rfc/rfc2965.txt. 18. A. Barth, "HTTP State Management Mechanism," IETF Request for
 Comments 6265 (2011), http://www.ietf.org/rfc/rfc6265.txt. 19. J. Franks, P. Hallam-Baker, J. Hostetler, S. Lawrence, P. Leach, A.
-Luotonen, and L. Stewart, "HTTP Authentication: Basic and Digest Access Authentication," IETF Request for Comments 2617 (1999), http://www.ietf.org/rfc/rfc2617.txt. 20. R. Tschalär, "NTLM Authentication Scheme for HTTP" (2003), http:// www.innovation.ch/personal/ronald/ntlm.html . 21. E. Rescorla, "HTTP Over TLS," IETF Request for Comments 2818 (2000), http://www.ietf.org/rfc/rfc2818.txt. 22. P. Hallam-Baker, "The Recent RA Compromise," Comodo IT Security (blog) (March 23, 2011), http://blogs.comodo.com/it-security/data-security/ the-recent-ra-compromise/. 23. S. Chen, R. Wang, X. F. Wang, and K. Zhang, "Side-Channel Leaks in Web Applications: A Reality Today, a Challenge Tomorrow," Microsoft Research (2010), http://research.microsoft.com/pubs/119060/ WebAppSideChannel-final.pdf. 24. C. Evans, "Open Redirectors: Some Sanity," Security: Hacking Everything (blog) (June 25, 2010), http://scarybeastsecurity.blogspot.com/2010_06_01 _archive.html .
-272 Notes for P ages 50­66
+Luotonen, and L. Stewart, "HTTP Authentication: Basic and Digest Access Authentication," IETF Request for Comments 2617 (1999), http://www.ietf.org/rfc/rfc2617.txt. 20. R. Tschalï¿½r, "NTLM Authentication Scheme for HTTP" (2003), http:// www.innovation.ch/personal/ronald/ntlm.html . 21. E. Rescorla, "HTTP Over TLS," IETF Request for Comments 2818 (2000), http://www.ietf.org/rfc/rfc2818.txt. 22. P. Hallam-Baker, "The Recent RA Compromise," Comodo IT Security (blog) (March 23, 2011), http://blogs.comodo.com/it-security/data-security/ the-recent-ra-compromise/. 23. S. Chen, R. Wang, X. F. Wang, and K. Zhang, "Side-Channel Leaks in Web Applications: A Reality Today, a Challenge Tomorrow," Microsoft Research (2010), http://research.microsoft.com/pubs/119060/ WebAppSideChannel-final.pdf. 24. C. Evans, "Open Redirectors: Some Sanity," Security: Hacking Everything (blog) (June 25, 2010), http://scarybeastsecurity.blogspot.com/2010_06_01 _archive.html .
+272 Notes for P ages 50ï¿½66
 
 Chapter 4
 1. T. Berners-Lee, "HTML Tags," World Wide Web Consortium archives (1991), http://www.w3.org/History/19921103-hypertext/hypertext/WWW/ MarkUp/Tags.html.
@@ -4095,18 +4101,18 @@ Chapter 4
 6. G. Coldwind, "Too general charset = detection in meta," Mozilla bug 640529 (2011), https://bugzilla.mozilla.org/show_bug.cgi?id=640529.
 Chapter 5
 1. H. Wium Lie and B. Bos, "Cascading Style Sheets, Level 1," World WideWeb Consortium, (1996), http://www.w3.org/TR/CSS1/.
-2. T. Çelik, E.J. Etemad, D. Glazman, I. Hickson, P. Linss, and J. Williams, "Selectors Level 3: Selectors," World Wide Web Consortium (2009), http:// www.w3.org/TR/css3-selectors/#selectors.
+2. T. ï¿½elik, E.J. Etemad, D. Glazman, I. Hickson, P. Linss, and J. Williams, "Selectors Level 3: Selectors," World Wide Web Consortium (2009), http:// www.w3.org/TR/css3-selectors/#selectors.
 3. I. Hickson, "XML Binding Language (XBL) 2.0," World Wide Web Consortium (2007), http://www.w3.org/TR/xbl/.
 4. G. Heyes, D. Lindsay, and E.V. Nava, "The Sexy Assassin: Tactical Exploitation Using CSS" (2009), http://www.scribd.com/doc/54664700/ Tactical-Xploit-Css.
 Chapter 6
 1. Netscape Communications Corporation, "Netscape and Sun Announce JavaScript, the Open, Cross-Platform Object Scripting Language for Enterprise Networks and the Internet" (press release) (December 4, 1995), http://web.archive.org/web/20070916144913/http://wp.netscape.com/newsref/ pr/newsrelease67.html.
 2. ECMA International, "ECMA-262: ECMAScript Language Specification," 3rd ed. (1999), http://www.ecma-international.org/publications/files/ ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf.
 3. ECMA International, "ECMA-262: ECMAScript Language Specification," 5th ed. (2009), http://www.ecma-international.org/publications/files/ECMA-ST/ ECMA-262.pdf.
-N otes for Pages 69­96 273
+N otes for Pages 69ï¿½96 273
 
 4. D. Crockford, "The Application/JSON Media Type for JavaScript Object Notation (JSON)," IETF Request for Comments 4627 (2006), http:// www.ietf.org/rfc/rfc4627.txt.
 5. J. Schneider, R. Yu, and J. Dyer, eds., "Standard ECMA-357: ECMAScript for XML (E4X) Specification," 2nd ed., ECMA International (2005), http:// www.ecma-international.org/publications/standards/Ecma-357.htm.
-6. P. Le Hégaret, R. Whitmer, and L. Wood, "Document Object Model (DOM)," World Wide Web Consortium (2005), http://www.w3.org/DOM/.
+6. P. Le Hï¿½garet, R. Whitmer, and L. Wood, "Document Object Model (DOM)," World Wide Web Consortium (2005), http://www.w3.org/DOM/.
 7. E. Vela Nava, "Bug 38922--innerHTML decompilation issues in textarea" (WebKit bug-tracking system post) (2010), https://bugs.webkit.org/ show_bug.cgi?id=38922.
 8. "Windows Scripting 5.8: MsgBox Function," Microsoft Developer Network Platforms (2009), http://msdn.microsoft.com/en-us/library/ sfw6660x%28v=vs.85%29.aspx.
 9. D. Crockford, "JSON in JavaScript," GitHub Social Coding (blog) (March 5, 2011), https://github.com/douglascrockford/JSON-js/blob/master/json2.js.
@@ -4118,9 +4124,9 @@ Chapter 7
 5. RSS Advisory Board, "RSS 2.0 Specification version 2.0.11" (2009), http:// www.rssboard.org/rss-specification.
 6. M. Nottingham and R. Sayre, eds., "The Atom Syndication Format," IETF Request for Comments 4287 (2005), http://www.ietf.org/rfc/rfc4287.txt.
 Chapter 8
-1. E. Mills, "Security Labs Report: January­June 2010 Recap," M86 Security (2010), http://www.m86security.com/documents/pdfs/security_labs/m86_security _labs_report_1H2010.pdf.
+1. E. Mills, "Security Labs Report: Januaryï¿½June 2010 Recap," M86 Security (2010), http://www.m86security.com/documents/pdfs/security_labs/m86_security _labs_report_1H2010.pdf.
 2. B. Rios, "Sun Fixes GIFARs" (December 17, 2008), http://xs-sniper.com/ blog/2008/12/17/sun-fixes-gifars/.
-274 Notes for P ages 104­129
+274 Notes for P ages 104ï¿½129
 
 3. A.K. Sood, "PDF Silent HTTP Form Repurposing Attacks," SecNiche Security Labs (2009), http://secniche.org/papers/SNS_09_03_PDF_Silent _Form_Re_Purp_Attack.pdf.
 4. P.D. Petkov, "Universal PDF XSS Afterparty" (January 4, 2007), http:// www.gnucitizen.org/blog/universal-pdf-xss-after-party/.
@@ -4139,15 +4145,15 @@ Chapter 9
 1. A. Klein, "IE + Some Popular Forward Proxy Servers = XSS, Defacement (Browser Cache Poisoning)" (May 22, 2006), http://seclists.org/webappsec/ 2006/q2/352; M. Zalewski, "Web 2.0 Backdoors Made Easy with MSIE & XMLHttpRequest" (February 3, 2007), http://seclists.org/fulldisclosure/ 2007/Feb/81.
 2. A. van Kesteren, ed., "Cross-Origin Resource Sharing," working draft, World Wide Web Consortium (July 27, 2010), http://www.w3.org/TR/cors/.
 3. I. Hickson, "Web Storage," editor's draft, World Wide Web Consortium (July 28, 2011), http://dev.w3.org/html5/webstorage/.
-Notes for Pages 130­148 275
+Notes for Pages 130ï¿½148 275
 
 4. J. Stenback, "Make sessionStorage Use Principals Instead of String Domains," Mozilla bug #495337 (May 28, 2009), https://bugzilla.mozilla .org/show_bug.cgi?id=495337.
 5. T. Ormandy, "Common DNS Misconfiguration Can Lead to `Same Site' Scripting" (January 18, 2008), http://seclists.org/bugtraq/2008/Jan/270.
 6. R. Singel, "ISPs' Error Page Ads Let Hackers Hijack Entire Web, Researcher Discloses," Wired (April 19, 2008), http://www.wired.com/ threatlevel/2008/04/isps-error-page/.
 7. "APSB10-14 Security Update Available for Adobe Flash Player," Adobe Systems Incorporated (June 10, 2010), http://www.adobe.com/support/ security/bulletins/apsb10-14.html.
 8. "Understanding Flash Player 9 April 2008: Security Update Compatibility," Adobe Systems Incorporated (April 8, 2008), http://www.adobe.com/ devnet/flashplayer/articles/flash_player9_security_update.html .
-9. "ActionScript® 3.0 Reference for the Adobe® Flash® Platform: URLRequestHeader," Adobe Systems Incorporated, http://help.adobe.com/ en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequestHeader.html.
-10. "ActionScript® 3.0 Reference for the Adobe® Flash® Platform: Security," Adobe Systems Incorporated, http://livedocs.adobe.com/flash/9.0/ ActionScriptLangRefV3/flash/system/Security.html.
+9. "ActionScriptï¿½ 3.0 Reference for the Adobeï¿½ Flashï¿½ Platform: URLRequestHeader," Adobe Systems Incorporated, http://help.adobe.com/ en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequestHeader.html.
+10. "ActionScriptï¿½ 3.0 Reference for the Adobeï¿½ Flashï¿½ Platform: Security," Adobe Systems Incorporated, http://livedocs.adobe.com/flash/9.0/ ActionScriptLangRefV3/flash/system/Security.html.
 11. "Adobe Cross Domain Policy File Specification," version 2.0, Adobe Systems Incorporated (August 2, 2010), http://learn.adobe.com/wiki/download/ attachments/64389123/CrossDomain_PolicyFile_Specification.pdf?version=1.
 12. M. Zalewski, "[RAZOR] Linux Kernel IP Masquerading Vulnerability" (July 30, 2001), http://seclists.org/bugtraq/2001/Jul/733.
 13. "Silverlight: WebHeaderCollection Class," Microsoft, http://msdn.microsoft .com/en-us/library/system.net.webheadercollection%28v=VS.95%29.aspx.
@@ -4158,7 +4164,7 @@ Notes for Pages 130­148 275
 18. "Java-to-Javascript Communication: Common DOM API," Sun Microsystems/Oracle, http://download.oracle.com/javase/1.4.2/docs/guide/plugin/ developer_guide/java_js.html#common_dom.
 19. B. "Snowhare" Franz, "Triple Dot Cookies" (1998), http://snowhare .com/utilities/triple_dot/.
 20. "Adobe ActionScript 3.0: Security Sandboxes," Adobe Systems Incorporated, http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/ WS5b3ccc516d4fbf351e63e3d118a9b90204-7e3f.html.
-276 Notes for P ages 148­160
+276 Notes for P ages 148ï¿½160
 
 Chapter 10
 1. L. Masinter, "The `data' URL scheme," IETF Request for Comments 2397 (1998), http://www.ietf.org/rfc/rfc2397.txt.
@@ -4177,10 +4183,10 @@ Chapter 11
 11. C. Evans, "IE8 CSS-based forced tweeting," Security (blog) (September 29, 2010), http://scarybeastsecurity.blogspot.com/2010/09/ie8-css-based-forcedtweeting.html.
 12. I. Hickson, "HTML: 4.8.11 The canvas element," WHATWG (2011), http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvaselement.html.
 13. E.W. Felten and M.A. Schneider, "Timing Attacks on Web Privacy," Proceedings of the 7th ACM Conference on Computer and Communications Security (2000), http://sip.cs.princeton.edu/pub/webtiming.pdf.
-Notes for Pages 167­184 277
+Notes for Pages 167ï¿½184 277
 
 14. C. Evans, "Cross-domain search timing," Security (blog) (December 11, 2009), http://scarybeastsecurity.blogspot.com/2009/12/cross-domain-searchtiming.html.
-15. C. Wilson, P. Le Hégaret, and V. Apparao, "Document Object Model CSS: 2.2.1 Override and computed style sheet," World Wide Web Consortium (2000), http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSSOverrideAndComputed.
+15. C. Wilson, P. Le Hï¿½garet, and V. Apparao, "Document Object Model CSS: 2.2.1 Override and computed style sheet," World Wide Web Consortium (2000), http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSSOverrideAndComputed.
 16. "currentStyle Object," Microsoft Corporation MSDN Library, http:// msdn.microsoft.com/en-us/library/ms535231%28v=vs.85%29.aspx.
 17. A. Clover, "CSS visited pages disclosure" (February 20, 2002), http:// seclists.org/bugtraq/2002/Feb/271.
 18. Z. Weinberg, E.Y. Chen, P.R. Jayaraman, and C. Jackson, "I Still Know What You Visited Last Summer" (2011), http://websec.sv.cmu.edu/visited/ visited.pdf.
@@ -4194,7 +4200,7 @@ Chapter 13
 1. N. Freed and N. Borenstein, "Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types," IETF Request for Comments 2046 (1996), http://www.ietf.org/rfc/rfc2046.txt.
 2. V. Gupta, "IE Content-Type Logic," IEBlog (February 1, 2005), http:// blogs.msdn.com/b/ie/archive/2005/02/01/364581.aspx.
 3. SHODAN, "HTTP Header Survey" (2011), http://www.shodanhq.com/ research/infodisc/download_latest.
-278 Notes for P ages 184­203
+278 Notes for P ages 184ï¿½203
 
 4. R. Troost, S. Dorner, and K. Moore, "Communicating Presentation Information in Internet Messages: The Content-Disposition Header Field," IETF Request for Comments 2183 (1997), http://www.ietf.org/ rfc/rfc2183.txt.
 5. G. Heyes, "Inline UTF-7 E4X Javascript Hijacking," The Spanner (blog) (February 24, 2009), http://www.thespanner.co.uk/2009/02/24/inline-utf7-e4x-javascript-hijacking/.
@@ -4204,14 +4210,14 @@ Chapter 14
 3. M. Zalewski, "Bug 376473: File Action Dialog Controls Vulnerable to Refocus Race" (2007), https://bugzilla.mozilla.org/show_bug.cgi?id=376473.
 4. M. Zalewski, "Geolocation Spoofing and Other UI Woes," Bugtraq (mailing list) (August 17, 2010), http://seclists.org/bugtraq/2010/Aug/201.
 5. D. Simons and C. Chabris, "Selective Attention Test" (1999), http://www .youtube.com/watch?v=vJG698U2Mvo&feature=player_embedded.
-6. D.J. Simmons and C.F. Chabris, "Gorillas in our midst: Sustained inattentional blindness for dynamic events," Perception, 28, 1059­1074 (1999), http://www.cnbc.cmu.edu/~behrmann/dlpapers/Simons_Chabris.pdf.
+6. D.J. Simmons and C.F. Chabris, "Gorillas in our midst: Sustained inattentional blindness for dynamic events," Perception, 28, 1059ï¿½1074 (1999), http://www.cnbc.cmu.edu/~behrmann/dlpapers/Simons_Chabris.pdf.
 Chapter 15
 1. http://www.xssed.com/search?key=addons.mozilla.org 2. http://openid.net/ 3. "Internet Explorer: Security Zones," Microsoft, http://technet.microsoft
 .com/en-us/library/dd361896.aspx. 4. "Internet Explorer Binary Behaviors Security Setting," Microsoft, http://
 technet.microsoft.com/en-us/library/cc776248(WS.10).aspx. 5. Charles Schwab, "Technical Support," http://www.visualwebcaster.com/
 charles_schwab/support/ (accessed September 9, 2011). 6. Internal Revenue Service, "Streaming Media System Requirements &
 Troubleshooting Assistance," http://www.irsvideos.gov/sbv_1099webinar/ player/IRS_Webinar_Technical_Support.pdf (accessed September 9, 2011). 7. ".NET Framework 3.0: Mark of the Web," Microsoft, http://msdn.microsoft .com/en-us/library/ms537628%28VS.85%29.aspx. 8. "Persistent Zone Identifier Object," Microsoft, http://msdn.microsoft.com/ en-us/library/ms537029%28VS.85%29.aspx.
-Notes for Pages 203­231 279
+Notes for Pages 203ï¿½231 279
 
 Chapter 16
 1. A. van Kesteren, "Cross-Origin Resource Sharing," (working draft) World Wide Web Consortium (July 27, 2010), http://www.w3.org/TR/cors/.
@@ -4230,7 +4236,7 @@ Chapter 16
 14. ".NET Framework 3.0: toStaticHTML Method," Microsoft, http://msdn .microsoft.com/en-us/library/cc848922%28v=vs.85%29.aspx.
 15. D. Ross, "IE8 Security Part IV: The XSS Filter," IEBlog (2008), http://blogs .msdn.com/b/ie/archive/2008/07/02/ie8-security-part-iv-the-xss-filter.aspx.
 16. E. Vela Nava and D. Lindsay, "Abusing Internet Explorer 8's XSS Filters" (2009), http://p42.us/ie8xss/Abusing_IE8s_XSS_Filters.pdf.
-280 Notes for P ages 236­251
+280 Notes for P ages 236ï¿½251
 
 Chapter 17
 1. "navigator.registerProtocolHandler," Mozilla Developer Network, https:// developer.mozilla.org/en/DOM/window.navigator.registerProtocolHandler.
@@ -4248,7 +4254,7 @@ Chapter 17
 13. L. Cai and H. Chen, "TouchLogger: Inferring Keystrokes on Touch Screen from Smartphone Motion," Usenix HOTSEC (2011), http:// www.usenix.org/event/hotsec11/tech/final_files/Cai.pdf.
 14. "Web Developer's Guide to Prerendering in Chrome," Google code labs, http://code.google.com/chrome/whitepapers/prerender.html.
 15. Z. Wang, "Navigation Timing: Editor's Draft," World Wide Web Consortium (July 27, 2011), https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ NavigationTiming/Overview.html.
-Notes for Pages 256­259 281
+Notes for Pages 256ï¿½259 281
 
 16. J. Gregg, "Web Notifications Overview: W3C Editor's Draft," World Wide Web Consortium (October 12, 2010), http://dev.w3.org/2006/webapi/ WebNotifications/publish/.
 17. D.D. Tran, I. Oksanen, and I. Kliche, "The Media Capture API: W3C Working Draft," World Wide Web Consortium (September 28, 2010), http://www.w3.org/TR/media-capture-api/.
@@ -4258,20 +4264,20 @@ INDEX
 
 Symbols & Numbers
 & (ampersand), in HTML, 71 < > (angle brackets)
-browser interpretation, 74­75 in HTML, 71 <![CDATA[...]]> blocks, 72, 78, 250 <!DOCTYPE> directive, 71 <!ENTITY> directive, 76 <!-- and -->, for HTML comments, 72 <% ... %> blocks, Internet Explorer
-and, 75 @ directives, in CSS, 89­90 \ (backslashes) in URLs, browser accep-
+browser interpretation, 74ï¿½75 in HTML, 71 <![CDATA[...]]> blocks, 72, 78, 250 <!DOCTYPE> directive, 71 <!ENTITY> directive, 76 <!-- and -->, for HTML comments, 72 <% ... %> blocks, Internet Explorer
+and, 75 @ directives, in CSS, 89ï¿½90 \ (backslashes) in URLs, browser accep-
 tance of, 29 ` (backticks), as quote characters, 74, 111 !- directives, 76 // fixed string, in URLs, 25 % (percent sign), for character
 encoding, 31 . (period), hostnames with, and cookie-
 setting algorithms, 159 ?-directives, 76 <?xml-stylesheet href=... ?> directive, 88 ; (semicolon), as delimiter
-in HTTP headers, 48­49 in URLs, 29 200­299 status codes, 54 300­399 status codes, 55 400­499 status codes, 55­56 500­599 status codes, 56
+in HTTP headers, 48ï¿½49 in URLs, 29 200ï¿½299 status codes, 54 300ï¿½399 status codes, 55 400ï¿½499 status codes, 55ï¿½56 500ï¿½599 status codes, 56
 A
-<a href=...> tag (HTML), 79 target parameter, 174­175
-about:blank document, origin inheritance, 165, 166­167
+<a href=...> tag (HTML), 79 target parameter, 174ï¿½175
+about:blank document, origin inheritance, 165, 166ï¿½167
 about:config (Firefox), navigation risks, 188 absolute URLs, vs. relative, 25 Accept-Language request header, 43
 
 Accept request header, 43 Access-Control-Allow-Origin header,
-237­238, 240 acrobat: scheme, 36 action parameter, for <form> tag, 80 ActionScript, 132­134 Active Server Pages, 75 ActiveX, 129, 136­137 address bars, 220
-and EV SSL, 65 hiding, 221 manipulation, 256­257 Adobe Flash, 119, 130, 132­134 and cross-domain HTTP headers, 147n file handling without Content-Type, 199 HTML parser offered by plug-in, 133 policy file spoofing risks, 156­157 security rules, 154­157 Adobe Reader, 130 Adobe Shockwave Player, 132 ADS (Alternate Data Stream) Zone
+237ï¿½238, 240 acrobat: scheme, 36 action parameter, for <form> tag, 80 ActionScript, 132ï¿½134 Active Server Pages, 75 ActiveX, 129, 136ï¿½137 address bars, 220
+and EV SSL, 65 hiding, 221 manipulation, 256ï¿½257 Adobe Flash, 119, 130, 132ï¿½134 and cross-domain HTTP headers, 147n file handling without Content-Type, 199 HTML parser offered by plug-in, 133 policy file spoofing risks, 156ï¿½157 security rules, 154ï¿½157 Adobe Reader, 130 Adobe Shockwave Player, 132 ADS (Alternate Data Stream) Zone
 Identifier, 231 advertisements, new window for, 217 Akamai Download Manager, 137 Allow-forms keyword, for sandbox
 parameter, 246 AllowFullScreen parameter, for Flash, 155 AllowNetworking parameter, for Flash, 155 Allow-same-origin keyword, for sandbox
 parameter, 246 AllowScriptAccess parameter, for Flash, 154 Allow-scripts keyword, for sandbox
@@ -4282,82 +4288,82 @@ name of, 28
 
 284 INDEX
 
-angle brackets (< >) browser interpretation, 74­75 in HTML, 71
+angle brackets (< >) browser interpretation, 74ï¿½75 in HTML, 71
 anonymity, scripts and, 249 anonymous requests, in CORS, 239 anonymous windows, 175 antimalware, 236n Apache
 and Host headers, 47 PATH_INFO, 201 APNG file format, 83 Apple QuickTime, 119, 130, 132 Apple Safari. See Safari (Apple) <applet> tag (HTML), 83, 128, 135, 183 application/binary, 212 application/javascript document type, 118 application/json document type, 118, 202 application/mathml+xml document type, 119 application/octet-stream document type,
-200­201, 212 application/x-www-for-urlencoded, 81 Arce, Ivan, 2n Arya, Abhishek, 209 asynchronous XMLHttpRequest, 146 Atom, 123 <audio> tag (HTML), 84, 119 authentication, in HTTP, 62­63 authorization, vs. authentication, 62n Authorization header (HTTP), 63
+200ï¿½201, 212 application/x-www-for-urlencoded, 81 Arce, Ivan, 2n Arya, Abhishek, 209 asynchronous XMLHttpRequest, 146 Atom, 123 <audio> tag (HTML), 84, 119 authentication, in HTTP, 62ï¿½63 authorization, vs. authentication, 62n Authorization header (HTTP), 63
 B
 background parameter for HTML tags, 83 background processes, in JavaScript, 258 backslashes (\) in URLs, browser accep-
 tance of, 29 backticks (`), as quote characters, 74, 111 Bad Request status error (400), 55 bandwidth, and XML, 123n Barth, Adam, 16, 177, 240, 241, 246, 257 Base64 encoding, 50n basic credential-passing method, 63 Bell-La Padula security model, 2, 4 Berners-Lee, Tim, 9, 41, 69
-and semantic web, 72­73 World Wide Web browser, 9 World Wide Web Consortium, 11 <bgsound> tag (HTML), 84, 119 binary HTTP, 257 bitmap images, browser recognition of, 118 blacklists of HTTP headers in XMLHttpRequest, 147 malicious URLs, 236n _blank, as link target, 80
+and semantic web, 72ï¿½73 World Wide Web browser, 9 World Wide Web Consortium, 11 <bgsound> tag (HTML), 84, 119 binary HTTP, 257 bitmap images, browser recognition of, 118 blacklists of HTTP headers in XMLHttpRequest, 147 malicious URLs, 236n _blank, as link target, 80
 
 BMP file format, 83 <body> tag (HTML), 83 BOM (byte order marks), 208 Breckman, John, 52n browser cache
-information in, 59 poisoning, 60 browser extensions and UI, 161 browser-managed site permissions, 226­227 browser market share, May 2011, 19 browser-side scripts, 95­116 browser wars, 10­11, 233 buffer overflow, 265 bugs, preventing classes of, 7 Bush, Vannevar, 8 byte order marks (BOM), 208
+information in, 59 poisoning, 60 browser extensions and UI, 161 browser-managed site permissions, 226ï¿½227 browser market share, May 2011, 19 browser-side scripts, 95ï¿½116 browser wars, 10ï¿½11, 233 buffer overflow, 265 bugs, preventing classes of, 7 Bush, Vannevar, 8 byte order marks (BOM), 208
 C
-cache. See browser cache Cache-Control directive, 48, 59 cache manifests, 257 cache poisoning, 189, 263 caching behavior, in HTTP, 58­60 caching HTTP proxy, keepalive
-sessions and, 57 Caja, 116 Cake (proposal), 257 call stack, limiting size, 216 callto: scheme, 36 <canvas> tag (HTML5), 183 CAPTCHA, 184­185, 185n Cascading Style Sheets (CSS), 11, 12, 73,
-83, 87­93 basic syntax, 88­90 character encoding, 91­92 interaction with HTML, 90 opacity property, 179 parser resynchronization risks, 90­91 property definitions, 89 case of tags, HTML vs. XML, 72 <![CDATA[...]]> blocks, 72, 78, 250 certificate authorities, 64 certificates extended validation, 65 warning dialog example, 66 cf: scheme, 36 characters delimiting, in URLs, 29 encoding in CSS, 91­92 encoding in filenames, 49­51 encoding in HTML, 76­78 encoding in JavaScript, 112­113 encoding in URLs, 31­35 printable, browser treatment of, 32
+cache. See browser cache Cache-Control directive, 48, 59 cache manifests, 257 cache poisoning, 189, 263 caching behavior, in HTTP, 58ï¿½60 caching HTTP proxy, keepalive
+sessions and, 57 Caja, 116 Cake (proposal), 257 call stack, limiting size, 216 callto: scheme, 36 <canvas> tag (HTML5), 183 CAPTCHA, 184ï¿½185, 185n Cascading Style Sheets (CSS), 11, 12, 73,
+83, 87ï¿½93 basic syntax, 88ï¿½90 character encoding, 91ï¿½92 interaction with HTML, 90 opacity property, 179 parser resynchronization risks, 90ï¿½91 property definitions, 89 case of tags, HTML vs. XML, 72 <![CDATA[...]]> blocks, 72, 78, 250 certificate authorities, 64 certificates extended validation, 65 warning dialog example, 66 cf: scheme, 36 characters delimiting, in URLs, 29 encoding in CSS, 91ï¿½92 encoding in filenames, 49ï¿½51 encoding in HTML, 76ï¿½78 encoding in JavaScript, 112ï¿½113 encoding in URLs, 31ï¿½35 printable, browser treatment of, 32
 
-reserved, 31­35 unreserved, 32 character sets byte order marks and detection, 208 detection for non-HTTP files, 210­211 handling, 206­211 for headers, 49­51 inheritance and override, 209 markup-controlled, on subresources,
-209­210 sniffing, 264 in URLs, 33 @charset (CSS), 89 children objects in JavaScript, 108 Chrome autodetection of passive document
+reserved, 31ï¿½35 unreserved, 32 character sets byte order marks and detection, 208 detection for non-HTTP files, 210ï¿½211 handling, 206ï¿½211 for headers, 49ï¿½51 inheritance and override, 209 markup-controlled, on subresources,
+209ï¿½210 sniffing, 264 in URLs, 33 @charset (CSS), 89 children objects in JavaScript, 108 Chrome autodetection of passive document
 types, 205 cached pages in, 37 characters in URL scheme name
-ignored by, 25 deleting JavaScript function, 103 and file extensions in URLs, 130 local file access, 160 modal dialogs for prompts, 219 navigation timing, 259 prerendering page, 258­259 printable characters in, 32 privileged JavaScript in, 161 and realm string, 63 and RFC 2047 encoding, 50 stored password retrieval, 228 SWF file handling without
+ignored by, 25 deleting JavaScript function, 103 and file extensions in URLs, 130 local file access, 160 modal dialogs for prompts, 219 navigation timing, 259 prerendering page, 258ï¿½259 printable characters in, 32 privileged JavaScript in, 161 and realm string, 63 and RFC 2047 encoding, 50 stored password retrieval, 228 SWF file handling without
 Content-Type, 199 time limits on continuously executing
 scripts, 215 WebKit parsing engine, 70n window.open() function and, 218 Windows Presentation Foundation
-plug-ins, 136 chunked data transfers, 57­58 clickjacking, 179, 180­181, 263 click() method, 218 client certificates, 64­66 client-server architecture, 17­18 client-side data, 165 client-side databases, 258 client-side errors (400­499), 55­56 client-side scripts, restricting privileges of
-HTML generated by, 250­251 cloud, 15 Clover, Andrew, 184 command injection, 265 comments
+plug-ins, 136 chunked data transfers, 57ï¿½58 clickjacking, 179, 180ï¿½181, 263 click() method, 218 client certificates, 64ï¿½66 client-server architecture, 17ï¿½18 client-side data, 165 client-side databases, 258 client-side errors (400ï¿½499), 55ï¿½56 client-side scripts, restricting privileges of
+HTML generated by, 250ï¿½251 cloud, 15 Clover, Andrew, 184 command injection, 265 comments
 in CSS syntax, 89 in XHTML and HTML, 72
 
-Common UNIX Printing System (CUPS), 152­153
-Common Vulnerability Scoring System (CVSS), 6­7
+Common UNIX Printing System (CUPS), 152ï¿½153
+Common Vulnerability Scoring System (CVSS), 6ï¿½7
 Common Weakness Enumeration (CWE), 6 complex selectors, in CSS, 88 computer proficiency of user, 14 conditionals, explicit and implicit, in
-HTML, 75­76 conflicting headers, resolution of, 47­48 CONNECT requests, 46, 54 Connolly, Dan, 9 content directives, on subresources, 204 Content-Disposition directive, 48, 84, 122
-defensive uses, 203­204 NUL character and, 51 plug-in-executed code and, 204 user-controlled filenames in, 67 content inclusion in HTML hyperlinking and, 79­84 type-specific, 82­84 Content-Length header, 43, 52, 147 in keepalive sessions, 56­58 content recognition, 197­211 content rendering, plug-ins for, 127­138 Content Security Policy (CSP), 242­245,
-250, 253 criticisms of, 244­245 violations, 244 content sniffing, 197­198, 205, 264 Content-Type directive, 49, 71, 84 application/binary, 212 application/JavaScript, 118 application/json, 118, 202 application/mathml+xml, 119 application/octet-stream, 200­201, 212 charset parameter, 206, 208 image/jpeg, 118, 202, 205 image/svg+xml, 124 logic to handle absence, 198­199 plug-ins and, 128, 204 slash-delmited alphanumeric
-tokens in, 199 special values, 200­201 text/css, 118 text/html, 124 text/plain, 118, 156, 200­201, 204, 212 unrecognized, 202­203 and XML document parsing, 120 control characters, JavaScript shorthand
+HTML, 75ï¿½76 conflicting headers, resolution of, 47ï¿½48 CONNECT requests, 46, 54 Connolly, Dan, 9 content directives, on subresources, 204 Content-Disposition directive, 48, 84, 122
+defensive uses, 203ï¿½204 NUL character and, 51 plug-in-executed code and, 204 user-controlled filenames in, 67 content inclusion in HTML hyperlinking and, 79ï¿½84 type-specific, 82ï¿½84 Content-Length header, 43, 52, 147 in keepalive sessions, 56ï¿½58 content recognition, 197ï¿½211 content rendering, plug-ins for, 127ï¿½138 Content Security Policy (CSP), 242ï¿½245,
+250, 253 criticisms of, 244ï¿½245 violations, 244 content sniffing, 197ï¿½198, 205, 264 Content-Type directive, 49, 71, 84 application/binary, 212 application/JavaScript, 118 application/json, 118, 202 application/mathml+xml, 119 application/octet-stream, 200ï¿½201, 212 charset parameter, 206, 208 image/jpeg, 118, 202, 205 image/svg+xml, 124 logic to handle absence, 198ï¿½199 plug-ins and, 128, 204 slash-delmited alphanumeric
+tokens in, 199 special values, 200ï¿½201 text/css, 118 text/html, 124 text/plain, 118, 156, 200ï¿½201, 204, 212 unrecognized, 202ï¿½203 and XML document parsing, 120 control characters, JavaScript shorthand
 notation, 112 cookie-authenticated text, reading, 181 Cookie header. See cookies cookie injection, 264
 INDEX 285
 
 286 INDEX
 
-cookies, 11, 257 deleting, 62 and DNS hijacking, 153 forcing, 264 limitations on third-party, 192­194 and same-origin policy, 150­151 security policy for, 149­153 semantics, 60­62 user data in, 67
+cookies, 11, 257 deleting, 62 and DNS hijacking, 153 forcing, 264 limitations on third-party, 192ï¿½194 and same-origin policy, 150ï¿½151 security policy for, 149ï¿½153 semantics, 60ï¿½62 user data in, 67
 CORS. See Cross-Origin Resource Sharing (CORS)
 CR characters, stripping from HTTP headers, 45
-credential-passing methods, 63 credentials, in URLs, 26 CRLF (newline), 45 cross-browser interactions, 16­17 cross-document links, 8, 9 cross-domain communications, and frame
-descendant policy, 176­178 cross-domain content inclusion, 181­183 cross-domain policy files, 155­156 cross-domain requests, 236­239 Cross-Origin Resource Sharing (CORS),
-148, 236 current status, 239 non-simple requests and preflight, 238 request types, 236­237 security checks, 237­238 cross-origin subresources, 183 cross-site request forgery (XSRF, CSRF),
-84, 190, 262 exploitation of flaws, 190 login forms and, 145­146 cross-site script inclusion (XSSI), 104n, 262 cross-site scripting (XSS), 71, 262 bugs, and password managers, 228 exploitation of flaws, 190 filtering, 251­252, 253 crossdomain.xml file, 155, 162 CSP (Content Security Policy), 242­245,
+credential-passing methods, 63 credentials, in URLs, 26 CRLF (newline), 45 cross-browser interactions, 16ï¿½17 cross-document links, 8, 9 cross-domain communications, and frame
+descendant policy, 176ï¿½178 cross-domain content inclusion, 181ï¿½183 cross-domain policy files, 155ï¿½156 cross-domain requests, 236ï¿½239 Cross-Origin Resource Sharing (CORS),
+148, 236 current status, 239 non-simple requests and preflight, 238 request types, 236ï¿½237 security checks, 237ï¿½238 cross-origin subresources, 183 cross-site request forgery (XSRF, CSRF),
+84, 190, 262 exploitation of flaws, 190 login forms and, 145ï¿½146 cross-site script inclusion (XSSI), 104n, 262 cross-site scripting (XSS), 71, 262 bugs, and password managers, 228 exploitation of flaws, 190 filtering, 251ï¿½252, 253 crossdomain.xml file, 155, 162 CSP (Content Security Policy), 242ï¿½245,
 250, 253 CSRF (cross-site request forgery), 84,
-190, 262 exploitation of flaws, 190 login forms and, 145­146 CSS. See Cascading Style Sheets (CSS) CUPS (Common UNIX Printing System),
-152­153 currentStyle API, 184 CVSS (Common Vulnerability Scoring
-System), 6­7 CWE (Common Weakness Enumeration), 6 Cyrillic alphabet, homoglyphs in, 35
+190, 262 exploitation of flaws, 190 login forms and, 145ï¿½146 CSS. See Cascading Style Sheets (CSS) CUPS (Common UNIX Printing System),
+152ï¿½153 currentStyle API, 184 CVSS (Common Vulnerability Scoring
+System), 6ï¿½7 CWE (Common Weakness Enumeration), 6 Cyrillic alphabet, homoglyphs in, 35
 
 D
-daap: scheme, 36 data: scheme, 37, 167­168 data transfers, chunked, 57­58 Date/If-Modified-Since header pair, 59 deceptive framing, 180 dedicated workers, for background
+daap: scheme, 36 data: scheme, 37, 167ï¿½168 data transfers, chunked, 57ï¿½58 Date/If-Modified-Since header pair, 59 deceptive framing, 180 dedicated workers, for background
 processes, 258 default policy, CSP directive for, 243 default ports, for protocols, overriding, 27 DELETE method (HTTP), 53 deleting
-cookies, 62 JavaScript functions, 102­103 delimiting characters, in URLs, 29 denial-of-service (DoS) attacks, 214­219,
-248, 264 DeviceOrientation API, 258 dialog use restrictions, 218­219 digest credential-passing method, 63 Digital Rights Management (DRM), 131 directory traversal, 265 disable-xss-protection, 242n <div> tag (HTML), 73 DNS hijacking, and cookies, 153 DNS labels, security mechanisms
+cookies, 62 JavaScript functions, 102ï¿½103 delimiting characters, in URLs, 29 denial-of-service (DoS) attacks, 214ï¿½219,
+248, 264 DeviceOrientation API, 258 dialog use restrictions, 218ï¿½219 digest credential-passing method, 63 Digital Rights Management (DRM), 131 directory traversal, 265 disable-xss-protection, 242n <div> tag (HTML), 73 DNS hijacking, and cookies, 153 DNS labels, security mechanisms
 based on, 142n DNS names, in URLs, browser
 acceptance, 27 DNS pinning, 142n, 190 DNS rebinding, 142n, 189 DNT request header, 193 <!DOCTYPE> directive, 71 document.cookie API (JavaScript), 61 document.domain property (JavaScript),
-143­144 document-level scrollbar, 180 document namespace, mapping HTML
+143ï¿½144 document-level scrollbar, 180 document namespace, mapping HTML
 elements to, 110 document object (JavaScript), 108 Document Object Model, 12, 108,
-109­111, 142­146 document rendering helpers, 130­131 documents
-changing location of existing, 174­178 script access to other, 111­112 document type detection logic, 198­206 Domain parameter, for cookie, 61 domains hardcoded, 227 problems with restrictions, 151­152 DOMService mechanism, 158 DoS (denial-of-service) attacks, 214­219,
+109ï¿½111, 142ï¿½146 document rendering helpers, 130ï¿½131 documents
+changing location of existing, 174ï¿½178 script access to other, 111ï¿½112 document type detection logic, 198ï¿½206 Domain parameter, for cookie, 61 domains hardcoded, 227 problems with restrictions, 151ï¿½152 DOMService mechanism, 158 DoS (denial-of-service) attacks, 214ï¿½219,
 248, 264
 
-downloaded files, 205­206 drag-and-drop, 180 DRM (Digital Rights Management), 131 duplicate headers, resolution of, 47­48 Dutta, Sunava, 239
+downloaded files, 205ï¿½206 drag-and-drop, 180 DRM (Digital Rights Management), 131 duplicate headers, resolution of, 47ï¿½48 Dutta, Sunava, 239
 E
 E4X. See ECMAScript for XML (E4X) Earthlink, 153 ECMA (European Computer Manufac-
 turers Association), 11, 96 ECMAScript, 96
-escape codes, 112 strict mode, 104 ECMAScript for XML (E4X), 106­107 Eich, Brendan, 95 Electronic Frontier Foundation, 109 Eloquent JavaScript (Haverbeke), 97 <embed> tag (HTML), 83 mixed content, 183 src=..., 128 EMF file format, 83 encapsulating pseudo-protocols, 37­38 encoding schemes, for headers, 49­51 encryption, protocol-level, 64­66 enctype="text/plain", for <form> tag, 81 endless loop, 101, 215 ENQUIRE, 9, 10 <!ENTITY> directive, 76 entity encoding, in HTML, 76­78 error-handling rules, for certificates, 65­66 escaping reserved characters, in HTML, 71 escaping scheme, 91 Esser, Stefan, 209 ETag/If-None-Match header pair, 59 European Computer Manufacturers Asso-
+escape codes, 112 strict mode, 104 ECMAScript for XML (E4X), 106ï¿½107 Eich, Brendan, 95 Electronic Frontier Foundation, 109 Eloquent JavaScript (Haverbeke), 97 <embed> tag (HTML), 83 mixed content, 183 src=..., 128 EMF file format, 83 encapsulating pseudo-protocols, 37ï¿½38 encoding schemes, for headers, 49ï¿½51 encryption, protocol-level, 64ï¿½66 enctype="text/plain", for <form> tag, 81 endless loop, 101, 215 ENQUIRE, 9, 10 <!ENTITY> directive, 76 entity encoding, in HTML, 76ï¿½78 error-handling rules, for certificates, 65ï¿½66 escaping reserved characters, in HTML, 71 escaping scheme, 91 Esser, Stefan, 209 ETag/If-None-Match header pair, 59 European Computer Manufacturers Asso-
 ciation (ECMA), 11, 96 eval() function, 102 eval-script, 242n Evans, Chris, 181, 182 EV SSL (Extended Validation SSL), 65 exception
-for eval() function, 102 recovery in JavaScript, 100 execution time for scripts, 215­216 Expires directive, 48, 59 Expires parameter, for cookie, 61 explicit conditionals, in HTML, 75­76 expression(...) function (CSS), 89 Extended Validation SSL (EV SSL), 65 Extensible Application Markup Language
+for eval() function, 102 recovery in JavaScript, 100 execution time for scripts, 215ï¿½216 Expires directive, 48, 59 Expires parameter, for cookie, 61 explicit conditionals, in HTML, 75ï¿½76 expression(...) function (CSS), 89 Extended Validation SSL (EV SSL), 65 Extensible Application Markup Language
 (XAML), 134 extension matching, 202n
 
 ExternalInterface.call() API, 133 External XML Entity (XXE) attack, 76
 F
-false positives, risk in XSS filtering, 251­252 fault tolerance, 11 feeds, 123­124 feed: scheme, 37 Felten, Ed, 193 file extensions, browser response to, 205 file formats. See also plug-ins
-audio and video, 119 bitmap images, 118 HTML. See HTML non-renderable, 124 plaintext, 64, 85, 117­118 XML. See XML file inclusion, 265 file path, hierarchical, in URLs, 27­28 file: protocol, 159­160, 188 files, downloaded, 205­206 File Transfer Protocol (FTP), 26n, 205­206 filtering pop-up, 217­218 reserved characters, in HTML, 71 Firefox (Mozilla), 13, 17 and ActiveX, 137 cached pages in, 37 character set inheritance, 209 CORS in, 239 and credential portion of URLs, 26 data: URLs in, 168 DNT request header, 193 entity names, 77 external content directives, 90 Gecko parsing engine, 70n history.pushState() API, 256 javascript: URLs in, 169 local file access, 160 modal dialogs for prompts, 219 multiple cookies for, 62 printable characters in, 32 privileged JavaScript in, 161 prompt displayed when saving Content-
+false positives, risk in XSS filtering, 251ï¿½252 fault tolerance, 11 feeds, 123ï¿½124 feed: scheme, 37 Felten, Ed, 193 file extensions, browser response to, 205 file formats. See also plug-ins
+audio and video, 119 bitmap images, 118 HTML. See HTML non-renderable, 124 plaintext, 64, 85, 117ï¿½118 XML. See XML file inclusion, 265 file path, hierarchical, in URLs, 27ï¿½28 file: protocol, 159ï¿½160, 188 files, downloaded, 205ï¿½206 File Transfer Protocol (FTP), 26n, 205ï¿½206 filtering pop-up, 217ï¿½218 reserved characters, in HTML, 71 Firefox (Mozilla), 13, 17 and ActiveX, 137 cached pages in, 37 character set inheritance, 209 CORS in, 239 and credential portion of URLs, 26 data: URLs in, 168 DNT request header, 193 entity names, 77 external content directives, 90 Gecko parsing engine, 70n history.pushState() API, 256 javascript: URLs in, 169 local file access, 160 modal dialogs for prompts, 219 multiple cookies for, 62 printable characters in, 32 privileged JavaScript in, 161 prompt displayed when saving Content-
 Type: image/jpeg document, 205 redirects to about:blank, 166 and RFC 2047 encoding, 50 RSS and Atom renderers for, 124 same-origin policy loopholes, 185 stored password retrieval, 228 Strict Transport Security support, 248 SWF file handling without
 Content-Type, 199
 
@@ -4367,41 +4373,41 @@ INDEX 287
 
 Firefox (continued) time limits on continuously executing scripts, 215 UTF-8 text in, 50 Windows Presentation Foundation plug-ins, 136 Worker API, 258
 firefoxurl: protocol, 17, 36 Flash applets, 11 fonts
-CSP directive for, 243 Flash programs enumeration of, 132 Forbidden status code (403), 56 forecasting, statistical, 6 format-string vulnerability, 266 form-based password managers, 227­229 form feed character, in HTML tag, 74 forms, 80­82 Found status code (302), 55 fragment ID, in URLs, 28­29 frame-ancestors directive, 243 framebusting, 264 frame descendant policy, and cross-domain
-communications, 176­178 frames, 82
-disabling navigation descendant model, 230­231
-hijacking risks, 175­176 name attribute of, 175 sandboxed, 245­247 unsolicited, 178­181 and window interactions, 174­181 frame-src directive, 243 From-Origin header, 240 FTP (File Transfer Protocol), 26n, 205­206 ftp: scheme, 36 full-screen mode, proposals for, 259 fully qualified absolute URLs, 24 fully restricted URL scheme, 188 functional notation, in CSS, 89 functions JavaScript, overriding, 102­103 resolution for JavaScript, 98­99
+CSP directive for, 243 Flash programs enumeration of, 132 Forbidden status code (403), 56 forecasting, statistical, 6 format-string vulnerability, 266 form-based password managers, 227ï¿½229 form feed character, in HTML tag, 74 forms, 80ï¿½82 Found status code (302), 55 fragment ID, in URLs, 28ï¿½29 frame-ancestors directive, 243 framebusting, 264 frame descendant policy, and cross-domain
+communications, 176ï¿½178 frames, 82
+disabling navigation descendant model, 230ï¿½231
+hijacking risks, 175ï¿½176 name attribute of, 175 sandboxed, 245ï¿½247 unsolicited, 178ï¿½181 and window interactions, 174ï¿½181 frame-src directive, 243 From-Origin header, 240 FTP (File Transfer Protocol), 26n, 205ï¿½206 ftp: scheme, 36 full-screen mode, proposals for, 259 fully qualified absolute URLs, 24 fully restricted URL scheme, 188 functional notation, in CSS, 89 functions JavaScript, overriding, 102ï¿½103 resolution for JavaScript, 98ï¿½99
 G
 Gabrilovich, Evgeniy, 35 Gecko parsing engine, 70n Generalized Markup Language
-(GML), 8­9 geolocation data, 226 geolocation discovery, 258 geolocation-sharing prompts, 223 getComputedStyle API, 184 getElementById() function, 109
+(GML), 8ï¿½9 geolocation data, 226 geolocation discovery, 258 geolocation-sharing prompts, 223 getComputedStyle API, 184 getElementById() function, 109
 
-getElementsByTagName() function, 109 GET method (HTTP), 42, 52, 58, 80­81 GetRight download utility, 137 getters, in JavaScript, 103 getURL() function, 133 GIFAR vulnerability, 129 GIF file format, 83, 129 GML (Generalized Markup Language),
-8­9 Gontmakher, Alex, 35 Gonzalez, Albert, 5n gopher: scheme, 36 Gosling, James, 134 GPS data, 226n Grossman, Jeremiah, 179 Guninski, Georgi, 176
+getElementsByTagName() function, 109 GET method (HTTP), 42, 52, 58, 80ï¿½81 GetRight download utility, 137 getters, in JavaScript, 103 getURL() function, 133 GIFAR vulnerability, 129 GIF file format, 83, 129 GML (Generalized Markup Language),
+8ï¿½9 Gontmakher, Alex, 35 Gonzalez, Albert, 5n gopher: scheme, 36 Gosling, James, 134 GPS data, 226n Grossman, Jeremiah, 179 Guninski, Georgi, 176
 H
 Hansen, Robert, 179 hardcoded domains, 227 Haverbeke, Marijn, Eloquent JavaScript, 97 HDP file format, 83 header injection, 45, 239, 262 headers
-character set and encoding schemes, 49­51
+character set and encoding schemes, 49ï¿½51
 Content Security Policy encoded in, 242 in HTTP requests, 43 resolution of duplicate or conflicting,
-47­48 semicolon-delimited values, 48­49 HEAD request (HTTP), 53 hexadecimal notation, 77, 112 hierarchical file path, in URLs, 27­28 history object (JavaScript), 108 history.pushState() API, 256 Hodges, Jeff, 248 homoglyphs, in Cyrillic alphabet, 35 Host request header, 43 hostnames extra periods, and cookie-setting
+47ï¿½48 semicolon-delimited values, 48ï¿½49 HEAD request (HTTP), 53 hexadecimal notation, 77, 112 hierarchical file path, in URLs, 27ï¿½28 history object (JavaScript), 108 history.pushState() API, 256 Hodges, Jeff, 248 homoglyphs, in Cyrillic alphabet, 35 Host request header, 43 hostnames extra periods, and cookie-setting
 algorithms, 159 non-fully qualified, 159 HTML (Hypertext Markup Language), 9,
-69­86 basic concepts, 70­73 case of tags, 72 converting to plaintext, 85 CSS interaction with, 90 document misidentified as, 198 document parsing modes, 71­72 embedded in feed formats, 124 entity encoding, 76­78 explicit and implicit conditionals, 75­76
+69ï¿½86 basic concepts, 70ï¿½73 case of tags, 72 converting to plaintext, 85 CSS interaction with, 90 document misidentified as, 198 document parsing modes, 71ï¿½72 embedded in feed formats, 124 entity encoding, 76ï¿½78 explicit and implicit conditionals, 75ï¿½76
 
-HTTP integration semantics, 78­79 hyperlinking and content inclusion,
-79­84 in-browser sanitizers, 250­251 mapping elements to document
-namespace, 110 parser behavior, 73­76 tag interactions, 74­75 type-specific content inclusion, 82­84 version 4, 12 version 5, 70, 119, 131 HTTP (HyperText Transfer Protocol), 9,
-41­67 authentication, 62­63 basic syntax, 42­51 binary, 257 caching behavior, 58­60 cookie semantics, 60­62 downgrade, 264 history, 41­42 HTML integration semantics, 78­79 newline handling, 45 proxy requests, 46­47 request types, 52­54 semantics battle, 72­73 simultaneous connections, 216 version 0.9, 42­43, 44 version 1.0, 42, 43, 44, 48, 59 version 1.1, 42­43, 45, 48, 57, 198 httponly flag, for cookie, 61, 150 http: scheme, 36 HTTPS, 65 documents, 138n, 183 downgrade risks, 248 https: scheme, 36 hyperlinking, and content inclusion, 79­84 Hypertext Markup Language (HTML).
+HTTP integration semantics, 78ï¿½79 hyperlinking and content inclusion,
+79ï¿½84 in-browser sanitizers, 250ï¿½251 mapping elements to document
+namespace, 110 parser behavior, 73ï¿½76 tag interactions, 74ï¿½75 type-specific content inclusion, 82ï¿½84 version 4, 12 version 5, 70, 119, 131 HTTP (HyperText Transfer Protocol), 9,
+41ï¿½67 authentication, 62ï¿½63 basic syntax, 42ï¿½51 binary, 257 caching behavior, 58ï¿½60 cookie semantics, 60ï¿½62 downgrade, 264 history, 41ï¿½42 HTML integration semantics, 78ï¿½79 newline handling, 45 proxy requests, 46ï¿½47 request types, 52ï¿½54 semantics battle, 72ï¿½73 simultaneous connections, 216 version 0.9, 42ï¿½43, 44 version 1.0, 42, 43, 44, 48, 59 version 1.1, 42ï¿½43, 45, 48, 57, 198 httponly flag, for cookie, 61, 150 http: scheme, 36 HTTPS, 65 documents, 138n, 183 downgrade risks, 248 https: scheme, 36 hyperlinking, and content inclusion, 79ï¿½84 Hypertext Markup Language (HTML).
 See HTML (Hypertext Markup Language) HyperText Transfer Protocol (HTTP). See HTTP (HyperText Transfer Protocol)
 I
 IANA (Internet Assigned Numbers Authority), 24, 152
 ICO file format, 83 IDNA (Internationalized Domain Names
-in Applications), 34­35 IETF (Internet Engineering Task Force), 11 If-Modified-Since header, 59 If-None-Match header, 59 <iframe> tag (HTML), 82, 176, 209, 245­247 image/jpeg document type, 118, 202, 205
+in Applications), 34ï¿½35 IETF (Internet Engineering Task Force), 11 If-Modified-Since header, 59 If-None-Match header, 59 <iframe> tag (HTML), 82, 176, 209, 245ï¿½247 image/jpeg document type, 118, 202, 205
 
-images bitmap, 118 in HTML, 83 risk of content sniffing on, 202 Scalable Vector Graphics (SVG), 83, 121­122
+images bitmap, 118 in HTML, 83 risk of content sniffing on, 202 Scalable Vector Graphics (SVG), 83, 121ï¿½122
 image/svg+xml document type, 124 <img> tag (HTML), 83
-src parameter, 181 for SVG images, 122 implicit caching, 59 implicit conditionals, in HTML, 75­76 @import, in CSS, 89­90 IndexedDB design, 258 indicator of hierarchical URLs, 25­26 information security, 1­8 inheritance, for vbscript: scheme, 169­170 inline-script setting, 242n innerHTML property, 110­111 innerStaticHTML API, 251 integer overflow, 266 Interactive Voice Response (IVR)
-systems, 236 interconnected systems, losses in, 5 internal networks, access to, 189­190 Internal Revenue Service, 231 Internal Server Error (500), 56 International Organization for Standard-
+src parameter, 181 for SVG images, 122 implicit caching, 59 implicit conditionals, in HTML, 75ï¿½76 @import, in CSS, 89ï¿½90 IndexedDB design, 258 indicator of hierarchical URLs, 25ï¿½26 information security, 1ï¿½8 inheritance, for vbscript: scheme, 169ï¿½170 inline-script setting, 242n innerHTML property, 110ï¿½111 innerStaticHTML API, 251 integer overflow, 266 Interactive Voice Response (IVR)
+systems, 236 interconnected systems, losses in, 5 internal networks, access to, 189ï¿½190 Internal Revenue Service, 231 Internal Server Error (500), 56 International Organization for Standard-
 ization (ISO), 11 Internationalized Domain Names in
-Applications (IDNA), 34­35 Internet Assigned Numbers Authority
-(IANA), 24, 152 Internet Engineering Task Force (IETF), 11 Internet Explorer, 10, 11­12
+Applications (IDNA), 34ï¿½35 Internet Assigned Numbers Authority
+(IANA), 24, 152 Internet Engineering Task Force (IETF), 11 Internet Explorer, 10, 11ï¿½12
 ActiveX and, 137 and <% ... %> blocks, 75 \ (backslash) in URLs, 29 acceptance of backtick as quote, 74 characters in URL scheme name
 ignored by, 25 clickjacking, 182 content sniffing, 202 cookies, 149 data: URLs in, 168 delete attempt of JavaScript function, 103 extension matching, 202 fallback display, 118 and file extensions in URLs, 130 frames, 177 JavaScript in, 96 JSON.parse() function alternative, 104 local file access, 160 markup controlled charset on, 209
 
@@ -4409,7 +4415,7 @@ INDEX 289
 
 290 INDEX
 
-Internet Explorer (continued) and multiline headers, 45 multiline string literals support, 91 non-recognition of vertical tab, 112 NUL character and, 73, 74 origin check and port number, 142 printable characters in, 32 proprietary security-restricted parameter, 246 redirects to about:blank, 166­167 and RFC 2047 encoding, 50 same-origin policy and, 143n, 185 Silverlight and, 134 stored password retrieval, 228 SWF file handling without Content-Type, 199 text/plain document type, 200­201 third-party cookies blocking, 193 time limits on continuously executing scripts, 215 Trident parsing engine, 70n VBScript, 96, 114 window.open() function and, 218 Windows Presentation Foundation plug-ins, 136 XDomainRequest approach to, 148 XSS-detection logic, 251 Zone.Identifier metadata, 231 zone model, 229­231
+Internet Explorer (continued) and multiline headers, 45 multiline string literals support, 91 non-recognition of vertical tab, 112 NUL character and, 73, 74 origin check and port number, 142 printable characters in, 32 proprietary security-restricted parameter, 246 redirects to about:blank, 166ï¿½167 and RFC 2047 encoding, 50 same-origin policy and, 143n, 185 Silverlight and, 134 stored password retrieval, 228 SWF file handling without Content-Type, 199 text/plain document type, 200ï¿½201 third-party cookies blocking, 193 time limits on continuously executing scripts, 215 Trident parsing engine, 70n VBScript, 96, 114 window.open() function and, 218 Windows Presentation Foundation plug-ins, 136 XDomainRequest approach to, 148 XSS-detection logic, 251 Zone.Identifier metadata, 231 zone model, 229ï¿½231
 Internet Information Server, and Host headers, 47
 Internet service providers, 153 Internet zone, for Internet Explorer, 230 interstitials, 218 intrusions
 escalation of, 5 nonmonetary costs, 5 Invisible Gorilla experiment, 223 IP addresses, and cookies, 158 ISO (International Organization for Stan-
@@ -4417,22 +4423,22 @@ dardization), 11 ISO-8859-1 (Western European
 code page), 50 itms: scheme, 36 itpc: scheme, 36 IVR (Interactive Voice Response)
 systems, 236
 J
-Jackson, Collin, 16, 177, 184, 240 jar: scheme, 37 Java, 134­135, 157­158 Java Runtime Environment (JRE), 135
+Jackson, Collin, 16, 177, 184, 240 jar: scheme, 37 Java, 134ï¿½135, 157ï¿½158 Java Runtime Environment (JRE), 135
 
-JavaScript, 10, 11n, 83, 95­107 character encoding in, 112­113 code and object inspection capabilities, 101­102 code execution, 100 code inclusion modes and nesting risks, 113­114 document.domain property, 143­144 Document Object Model, 12, 108, 109­111 embedded in PDF documents, 130 execution order control, 100­101 labeled statements support, 105n MIME type, 118n Netscape and, 95­96 runtime environment for, 102­104 script processing model, 97­100 setters and getters, 103 standard object hierarchy, 107­112 variable declaration, 99 and WML Script (WMLS), 123
-JavaScript Object Notation (JSON), 104­106, 112
-javascript: scheme, 37, 169­170 Jobs, Steve, 131 JPEG file format, 83 JScript, 11n JScript.Encode, 113n JSObject mechanism, 158 JSON (JavaScript Object Notation),
-104­106, 112 JSONP (JSON with padding), 106n, 245 JSON.parse() function, alternatives, 104
+JavaScript, 10, 11n, 83, 95ï¿½107 character encoding in, 112ï¿½113 code and object inspection capabilities, 101ï¿½102 code execution, 100 code inclusion modes and nesting risks, 113ï¿½114 document.domain property, 143ï¿½144 Document Object Model, 12, 108, 109ï¿½111 embedded in PDF documents, 130 execution order control, 100ï¿½101 labeled statements support, 105n MIME type, 118n Netscape and, 95ï¿½96 runtime environment for, 102ï¿½104 script processing model, 97ï¿½100 setters and getters, 103 standard object hierarchy, 107ï¿½112 variable declaration, 99 and WML Script (WMLS), 123
+JavaScript Object Notation (JSON), 104ï¿½106, 112
+javascript: scheme, 37, 169ï¿½170 Jobs, Steve, 131 JPEG file format, 83 JScript, 11n JScript.Encode, 113n JSObject mechanism, 158 JSON (JavaScript Object Notation),
+104ï¿½106, 112 JSONP (JSON with padding), 106n, 245 JSON.parse() function, alternatives, 104
 K
-Kaminsky, Dan, 153 katakana, 33 keepalive sessions, 56­57, 216 keystroke redirection, 180 Kinugawa, Masato, 210
+Kaminsky, Dan, 153 katakana, 33 keepalive sessions, 56ï¿½57, 216 keystroke redirection, 180 Kinugawa, Masato, 210
 L
 language parameter, for <script> tag, 113n Lessig, Lawrence, 192 LF (newline), HTTP quirks in
-handling, 45 LFI (local file inclusion), 265 Lie, Wium, Håkon, 87 <link rel=stylesheet> directive, 88 <link rel=stylesheet href=...> tag, 181 LiveScript, 95 livescript: scheme, 37
+handling, 45 LFI (local file inclusion), 265 Lie, Wium, Hï¿½kon, 87 <link rel=stylesheet> directive, 88 <link rel=stylesheet href=...> tag, 181 LiveScript, 95 livescript: scheme, 37
 
-loadPolicyFile() method, 155­156 local file inclusion (LFI), 265 local files, access issues, 159­160 local intranet zone, for Internet
+loadPolicyFile() method, 155ï¿½156 local file inclusion (LFI), 265 local files, access issues, 159ï¿½160 local intranet zone, for Internet
 Explorer, 229 local machine zone, for Internet
-Explorer, 229 localhost, danger of, 152­153 localStorage object ( JavaScript), 148 location.hash, 256 location headers, sending user-
-controlled, 67 location.host property, 173 location object (JavaScript), 108, 153­154 location of documents, changing, 174­178 login forms, autocompletion by
+Explorer, 229 localhost, danger of, 152ï¿½153 localStorage object ( JavaScript), 148 location.hash, 256 location headers, sending user-
+controlled, 67 location.host property, 173 location object (JavaScript), 108, 153ï¿½154 location of documents, changing, 174ï¿½178 login forms, autocompletion by
 browsers, 228 lookup functions, in Document Object
 Model, 109 loopback interfaces, 152n Lynx, 10
 M
@@ -4440,20 +4446,20 @@ Macromedia Flash, 132 mailto: protocol, 25, 36, 256 mail user agent (MUA), 203n 
 block, 226 managed code, 134n Mark of the Web (MotW), 204, 231 markup filter for user content, 86 mashups, 176 MathML (Mathematical Markup Lan-
 guage), 72, 122 Math.random() function, 109 max-age parameter
 for cookie, 61 for STS record, 248 media capture, 259 Memex, 8 memory pointers, 266 memory use restrictions for scripts,
-215­216 <meta> directive, 206, 208 <meta http-equiv=> directive, 78­79 meta-policies, for Flash, 156­157 mhtml protocol, 38 Microsoft. See also Internet Explorer
+215ï¿½216 <meta> directive, 206, 208 <meta http-equiv=> directive, 78ï¿½79 meta-policies, for Flash, 156ï¿½157 mhtml protocol, 38 Microsoft. See also Internet Explorer
 descendant policy development, 177 .NET Framework with XPAB
 plug-ins, 136 objections to CORS, 239 Sun suit over Java virtual machine, 135n
 
 Threats Against and Protection of Microsoft's Internal Network, 5n
 Windows operating system, 10 Microsoft Office, 130 Microsoft Silverlight, 119, 134, 157 MIME (Multipurpose Internet Mail Exten-
 sions), 43n, 81n malformed types, 199 mapping types to plaintext, 118 for plug-ins, 128 specialized for content in sandboxed
-frame, 247 Mitchell, John C., 177, 240 mixed content, 183, 262­263 mmst: scheme, 36 mmsu: scheme, 36 Mocha language, 95 mocha: scheme, 37 modal behavior of dialogs, 218­219 Montulli, Lou, 60 Mosaic, 10. See also Netscape MotW (Mark of the Web), 204, 231 mouse cursors, redefining, 89n Moved Permanently status code (301), 55 Mozilla Firefox. See Firefox (Mozilla) Mozilla specification, 242 msbd: scheme, 36 MsgBox (VBScript), 114 MUA (mail user agent), 203n multiline headers, support for, 45 multiline string literals
+frame, 247 Mitchell, John C., 177, 240 mixed content, 183, 262ï¿½263 mmst: scheme, 36 mmsu: scheme, 36 Mocha language, 95 mocha: scheme, 37 modal behavior of dialogs, 218ï¿½219 Montulli, Lou, 60 Mosaic, 10. See also Netscape MotW (Mark of the Web), 204, 231 mouse cursors, redefining, 89n Moved Permanently status code (301), 55 Mozilla Firefox. See Firefox (Mozilla) Mozilla specification, 242 msbd: scheme, 36 MsgBox (VBScript), 114 MUA (mail user agent), 203n multiline headers, support for, 45 multiline string literals
 Internet Explorer support, 91 in JavaScript, 113 multimedia playback, 130 Multipurpose Internet Mail Extensions
 (MIME). See MIME (Multipurpose Internet Mail Extensions) My computer zone, for Internet Explorer, 229
 N
 name attribute, of frames, 175 named entities, 76 namespace in JavaScript, 107 name: value pairs, in HTTP requests, 43 name=value pairs
 cookies for storing, 60 for forms, 81 National Science Foundation, backbone
-network, 10 Naval Research Laboratory, 3­4 navigateToURL() function, 133
+network, 10 Naval Research Laboratory, 3ï¿½4 navigateToURL() function, 133
 
 INDEX 291
 
@@ -4462,7 +4468,7 @@ INDEX 291
 navigation to sensitive schemes, 188 timing, 259
 navigator.device.capture API, 259 navigator.geolocation.getCurrentPosition()
 API, 258 navigator object (JavaScript), 108 navigator:registerProtocolHandler() API, 256 Negotiate authentication method, 63 .NET runtime, 135 Netflix, 134 Netscape
-cookie specification, 151­152 and JavaScript, 95­96 and same-origin policy, 142 Netscape Navigator, 11 network fenceposts, 264 networking, HTTP-less, 257 New York Times, 192 newline, HTTP quirks in handling, 45 news: scheme, 36 NLS, 9 nntp: scheme, 36 no-cache value, for Cache-Control header, 59 No Content status code (204), 54 noncanonical encodings, 32n nonencapsulating pseudo-protocols, 37 non-HTTP resources character set detection for, 210­211 proxies allowing requests for, 46 non-renderable file types, 124 non-US-ASCII text, in URLs, 32­35 no-store value, for Cache-Control header, 59 Not Found status code (404), 56 Not Modified status code (304), 55, 59 Notification API, 259 NTLM authentication method, 63 NUL character, and HTTP headers, 51 NUL-containing strings,
+cookie specification, 151ï¿½152 and JavaScript, 95ï¿½96 and same-origin policy, 142 Netscape Navigator, 11 network fenceposts, 264 networking, HTTP-less, 257 New York Times, 192 newline, HTTP quirks in handling, 45 news: scheme, 36 NLS, 9 nntp: scheme, 36 no-cache value, for Cache-Control header, 59 No Content status code (204), 54 noncanonical encodings, 32n nonencapsulating pseudo-protocols, 37 non-HTTP resources character set detection for, 210ï¿½211 proxies allowing requests for, 46 non-renderable file types, 124 non-US-ASCII text, in URLs, 32ï¿½35 no-store value, for Cache-Control header, 59 Not Found status code (404), 56 Not Modified status code (304), 55, 59 Notification API, 259 NTLM authentication method, 63 NUL character, and HTTP headers, 51 NUL-containing strings,
 JavaScript and, 109
 O
 Object Linking and Embedding (OLE), 136
@@ -4475,64 +4481,64 @@ onerror handler, on <img> tag, 184 onerror parameter, 74 onkeydown event (JavaSc
 document, 184 onmousemove events, 222 opacity property (CSS2), and
 JavaScript code, 179 opener.window.focus() function, 217n OpenGL-based 3D graphics, 131n open redirection, 263 Opera, 10
 data: URLs in, 168 deleting JavaScript function, 103 and file extensions in URLs, 130 history.pushState() API, 256 local file access, 160 modal dialogs for prompts, 219 and multiline headers, 45 period-counting problem in, 159 Presto parsing engine, 70n printable characters in, 32 redirects to about:blank, 167 Refresh redirection to javascript:, 170 and RFC 2047 encoding, 50 RSS and Atom renderers for, 124 stored password retrieval, 228 SWF file handling without
-Content-Type, 199 Worker API, 258 OPTIONS method (HTTP), 53 Origin header, 240­241 origin inheritance, 165­171 about:blank document, 166­167 for javascript: scheme, 169­170 origins ambiguous or unexpected, 158­161 attempts to broaden, 143 Ormandy, Tavis, 152 outerHTML property, 110­111 overwriting cookie, 62
+Content-Type, 199 Worker API, 258 OPTIONS method (HTTP), 53 Origin header, 240ï¿½241 origin inheritance, 165ï¿½171 about:blank document, 166ï¿½167 for javascript: scheme, 169ï¿½170 origins ambiguous or unexpected, 158ï¿½161 attempts to broaden, 143 Ormandy, Tavis, 152 outerHTML property, 110ï¿½111 overwriting cookie, 62
 P
 P2P networking, 257 P3P (Platform for Privacy Preference), 193 Panopticlick, 109 parallel HTTP connection design, 216 <param> tag (HTML), for plug-ins, 128 _parent, as link target, 80 parsing
-behavior fundamentals, 73­76 JavaScript, 97­98 modes for HTML documents, 71­72 resynchronization risks, 90­91
+behavior fundamentals, 73ï¿½76 JavaScript, 97ï¿½98 modes for HTML documents, 71ï¿½72 resynchronization risks, 90ï¿½91
 
 parsing engines, for browsers, 70n Partial Content status code (206), 54 partly restricted URL scheme, 188 passive multimedia, CSP directive for, 243 password
-in credentials portion of URLs, 26 form-based managers, 227­229 methods for passing, 63 Path parameter, for cookie, 61 path value, for cookie, 149­150 payload inspection, by Internet
-Explorer, 202 PDF documents130­131 percent encoding, 31 percent sign (%), for character
+in credentials portion of URLs, 26 form-based managers, 227ï¿½229 methods for passing, 63 Path parameter, for cookie, 61 path value, for cookie, 149ï¿½150 payload inspection, by Internet
+Explorer, 202 PDF documents130ï¿½131 percent encoding, 31 percent sign (%), for character
 encoding, 31 per-host connection limit, 216 period (.), hostnames with, and cookie-
 setting algorithms, 159 permissions, browser- and plug-in-
-managed, 226­227 permitted-cross-domain-policies parameter,
+managed, 226ï¿½227 permitted-cross-domain-policies parameter,
 for crossdomain.xml file, 162 persistent workers, for background
 processes, 258 Petkov, Petko D., 131 phishing, 176n plaintext
-converting HTML to, 85 as file format, 117­118 for HTTP session information, 64 <plaintext> tag (HTML), 72 Platform for Privacy Preference (P3P), 193 plug-ins, 10­11 ActiveX, 129, 136­137 Adobe Flash. See Adobe Flash application frameworks as basis, 131­136 content, 83 for content rendering, 127­138 CSP directive for, 243 document rendering helpers, 130­131 invoking, 128­130 Microsoft Silverlight, 119, 134, 157 for PDF documents, 130­131 perils of content-type handling, 129­130 protocols claimed by, 36­37 security rules, 153­158 site permissions management, 226­227 Sun Java, 134­135, 157­158 XML browser applications (XBAP),
-135­136 PNG file format, 83 pointers, management vulnerabilities, 266 poisoned browser cache, on trusted
+converting HTML to, 85 as file format, 117ï¿½118 for HTTP session information, 64 <plaintext> tag (HTML), 72 Platform for Privacy Preference (P3P), 193 plug-ins, 10ï¿½11 ActiveX, 129, 136ï¿½137 Adobe Flash. See Adobe Flash application frameworks as basis, 131ï¿½136 content, 83 for content rendering, 127ï¿½138 CSP directive for, 243 document rendering helpers, 130ï¿½131 invoking, 128ï¿½130 Microsoft Silverlight, 119, 134, 157 for PDF documents, 130ï¿½131 perils of content-type handling, 129ï¿½130 protocols claimed by, 36ï¿½37 security rules, 153ï¿½158 site permissions management, 226ï¿½227 Sun Java, 134ï¿½135, 157ï¿½158 XML browser applications (XBAP),
+135ï¿½136 PNG file format, 83 pointers, management vulnerabilities, 266 poisoned browser cache, on trusted
 network, 60
 
-pop-under, 217 pop-up filtering, 217­218 ports
-default, for protocols, overriding, 27 prohibited, 190­192 positioning windows, 219­222 postMessage(...) API, 144­145, 258 POST method (HTTP), 52, 81 postponing JavaScript execution, 101 Pragma: no-cache request header, 59 prerendering web page, 258­259 presentation, HTML tags for, 73 PresentationHost.exe, 135 pressed key, examining code of, 180 Presto parsing engine, 70n printable characters, browser
-treatment of, 32 privacy-related side channels, 184­185 private browsing modes, 249, 253 private value, for Cache-Control header, 59 privileges, site, 225­234 prohibited ports, 190­192 properties, definitions in CSS, 89 proposals
-content-level, 258­259 I/O interfaces, 259 URL- and protocol-level, 256­257 protocol-host-port tuple, 142, 241 protocol-level information encryption, 64­66 preserving, 78 protocol-level proposals, 256­257 protocols claimed by third-party applications, 36­37 default ports for, overriding, 27 registration, 256 in URL scheme name, 24 proxy-originating error responses, browser
-processing, 47 proxy requests, 46­47 pseudo-functions (CSS), 89 pseudo-protocols
-encapsulating, 37­38 nonencapsulating, 37 pseudo-URLs, 23, 24, 165 restricted, 170­171 and same-origin policy, 161 public key cryptography, 64, 64n Public Suffix List, 159 public value, for Cache-Control header, 59 public Wi-Fi networks, and HTTP
+pop-under, 217 pop-up filtering, 217ï¿½218 ports
+default, for protocols, overriding, 27 prohibited, 190ï¿½192 positioning windows, 219ï¿½222 postMessage(...) API, 144ï¿½145, 258 POST method (HTTP), 52, 81 postponing JavaScript execution, 101 Pragma: no-cache request header, 59 prerendering web page, 258ï¿½259 presentation, HTML tags for, 73 PresentationHost.exe, 135 pressed key, examining code of, 180 Presto parsing engine, 70n printable characters, browser
+treatment of, 32 privacy-related side channels, 184ï¿½185 private browsing modes, 249, 253 private value, for Cache-Control header, 59 privileges, site, 225ï¿½234 prohibited ports, 190ï¿½192 properties, definitions in CSS, 89 proposals
+content-level, 258ï¿½259 I/O interfaces, 259 URL- and protocol-level, 256ï¿½257 protocol-host-port tuple, 142, 241 protocol-level information encryption, 64ï¿½66 preserving, 78 protocol-level proposals, 256ï¿½257 protocols claimed by third-party applications, 36ï¿½37 default ports for, overriding, 27 registration, 256 in URL scheme name, 24 proxy-originating error responses, browser
+processing, 47 proxy requests, 46ï¿½47 pseudo-functions (CSS), 89 pseudo-protocols
+encapsulating, 37ï¿½38 nonencapsulating, 37 pseudo-URLs, 23, 24, 165 restricted, 170ï¿½171 and same-origin policy, 161 public key cryptography, 64, 64n Public Suffix List, 159 public value, for Cache-Control header, 59 public Wi-Fi networks, and HTTP
 caching risk, 60 Punycode, 34 purging browser cache, 60 PUT request (HTTP), 53
 INDEX 293
 
 294 INDEX
 
 Q
-query string in URLs, 28 QuickTime (Apple), 119, 130, 132 quote characters, in HTML, 71, 74 quoted-printable encoding scheme, 50n quoted-string syntax, 48­49
+query string in URLs, 28 QuickTime (Apple), 119, 130, 132 quote characters, in HTML, 71, 74 quoted-printable encoding scheme, 50n quoted-string syntax, 48ï¿½49
 and cookies, 62 for CSS property values, 89
 R
 race conditions, in JavaScript, 101 raw text, for CSS property values, 89 Really Simple Syndication (RSS), 123 realm string, 62 RealNetworks RealPlayer, 130, 132 redirect headers, sending user-
-controlled, 67 Redirection status codes (300­399), 55 Referer header, 43, 51
-alternative to, 240 leakage, 263 relative URLs, 24 vs. absolute, 25 input filters, 40 resolution of, 38­39 remote file inclusion (RFI), 265 Request for Comments (RFC). See RFC
+controlled, 67 Redirection status codes (300ï¿½399), 55 Referer header, 43, 51
+alternative to, 240 leakage, 263 relative URLs, 24 vs. absolute, 25 input filters, 40 resolution of, 38ï¿½39 remote file inclusion (RFI), 265 Request for Comments (RFC). See RFC
 (Request for Comments) request headers, in HTTP, 43 request types
-form-triggered, 80­82 HTTP, 52­54 reserved characters, in HTML, 31­35, 71 resource exhaustion attacks, 214 response codes, server, 54­56 response splitting, 45 Restricted sites zone, for Internet
-Explorer, 229­230 revalidation, 59 RFC (Request for Comments)
-1630 on query string format, 28 on reference parser, 25­26
+form-triggered, 80ï¿½82 HTTP, 52ï¿½54 reserved characters, in HTML, 31ï¿½35, 71 resource exhaustion attacks, 214 response codes, server, 54ï¿½56 response splitting, 45 Restricted sites zone, for Internet
+Explorer, 229ï¿½230 revalidation, 59 RFC (Request for Comments)
+1630 on query string format, 28 on reference parser, 25ï¿½26
 1738, on URLs, 24, 25 1866, on HTML 2.0, 69 1945
 on HTTP, 42 and TEXT token, 50 2046, on application/octet-stream, 200 2047, for non-ISO-8859-1 string
 format, 50 2109, on cookies, 60, 61, 62 2183, on Content-Disposition header, 203 2368, on query string format, 28
 
 2616, 44 on GET requests, 58 on HTTP, 42 on resolving ambiguities, 47 status codes for server response, 54 on URLs, 24
 2617, on authentication, 62 2818, on encapsulation, 64 2965, on Cookie2, 60 3490, 34 3492, 34 3986, 24, 25, 33 4627, on JSON, 104 4918, on WebDAV, 54 6265, on cookies, 61 browser permissions to examine
-payload, 198 on HTTP, 48 RFI (remote file inclusion), 265 rgb(...) pseudo functions (CSS), 89 Riley, Chris John, 203 Rios, Billy, 129 risk management, 4­6 root object in JavaScript, 107 Ross, David, 251 rotate(...) pseudo functions (CSS), 89 RSS (Really Simple Syndication), 123 rtsp: scheme, 36 runtime environment, for JavaScript,
-102­104
+payload, 198 on HTTP, 48 RFI (remote file inclusion), 265 rgb(...) pseudo functions (CSS), 89 Riley, Chris John, 203 Rios, Billy, 129 risk management, 4ï¿½6 root object in JavaScript, 107 Ross, David, 251 rotate(...) pseudo functions (CSS), 89 RSS (Really Simple Syndication), 123 rtsp: scheme, 36 runtime environment, for JavaScript,
+102ï¿½104
 S
-Safari (Apple), 13 and credential portion of URLs, 26 deleting JavaScript function, 103 hiding address bar, 221 and multiline headers, 45 and realm string, 63 RSS and Atom renderers for, 124 SOP bypass flaws, 142n stored password retrieval, 228 SWF file handling without Content-Type, 199 text/plain document type, 200­201 third-party cookies, 193 time limits on continuously executing scripts, 215 WebKit parsing engine, 70n
+Safari (Apple), 13 and credential portion of URLs, 26 deleting JavaScript function, 103 hiding address bar, 221 and multiline headers, 45 and realm string, 63 RSS and Atom renderers for, 124 SOP bypass flaws, 142n stored password retrieval, 228 SWF file handling without Content-Type, 199 text/plain document type, 200ï¿½201 third-party cookies, 193 time limits on continuously executing scripts, 215 WebKit parsing engine, 70n
 safeInnerHTML API, 251 same-origin policy mechanism, 16
-cookies impact on, 150­151 for Document Object Model, 142­146 limitations, 173­186 loopholes, 185
+cookies impact on, 150ï¿½151 for Document Object Model, 142ï¿½146 limitations, 173ï¿½186 loopholes, 185
 
-and pseudo-URLs, 161 for web storage, 148 for XMLHttpRequest API, 146­148 sandbox directive, 244 sandboxed frames, 245­247, 250, 253 scripting, forms and navigation
-restrictions, 247 synthetic origins, 247 sanitization in-browser HTML, 250­251 of tags, 76 Scalable Vector Graphics (SVG), 83,
-121­122 scale(...) pseudo functions (CSS), 89 schemes
-current list of valid names, 24 input filters, 40 name in URLs, 24­25 navigation to sensitive, 188 Schwab, Charles, 230­231 screen object (JavaScript), 108 script-nonce directive, 244 scripts, 83 access to other documents, 111­112 browser-side, 95­116 connection limits, 216­217 dialog use restrictions, 218­219 execution time and memory use restric-
-tions, 215­216 pop-up filtering, 217­218 rogue, 213­224 specifying charset, 209 script-src directive (CSP), 242 <script> tag (HTML), 72 JSON and, 104­105 language parameter, 113n parsing and, 98 src parameter, 181 <script> tag (XHTML), 78 scrollbar, document-level, 180 Secure attribute, for cookie, 61 secure cookies, 150, 162 security actions subject to checks, 141 definition, 2­4 new and upcoming features, 235­253 practical approaches, 7­8 quality assurance, 7 Security.allowDomain(...) method, for
-Flash, 155 security dialogs, attacks on, 222­223 security engineering cheat sheet
+and pseudo-URLs, 161 for web storage, 148 for XMLHttpRequest API, 146ï¿½148 sandbox directive, 244 sandboxed frames, 245ï¿½247, 250, 253 scripting, forms and navigation
+restrictions, 247 synthetic origins, 247 sanitization in-browser HTML, 250ï¿½251 of tags, 76 Scalable Vector Graphics (SVG), 83,
+121ï¿½122 scale(...) pseudo functions (CSS), 89 schemes
+current list of valid names, 24 input filters, 40 name in URLs, 24ï¿½25 navigation to sensitive, 188 Schwab, Charles, 230ï¿½231 screen object (JavaScript), 108 script-nonce directive, 244 scripts, 83 access to other documents, 111ï¿½112 browser-side, 95ï¿½116 connection limits, 216ï¿½217 dialog use restrictions, 218ï¿½219 execution time and memory use restric-
+tions, 215ï¿½216 pop-up filtering, 217ï¿½218 rogue, 213ï¿½224 specifying charset, 209 script-src directive (CSP), 242 <script> tag (HTML), 72 JSON and, 104ï¿½105 language parameter, 113n parsing and, 98 src parameter, 181 <script> tag (XHTML), 78 scrollbar, document-level, 180 Secure attribute, for cookie, 61 secure cookies, 150, 162 security actions subject to checks, 141 definition, 2ï¿½4 new and upcoming features, 235ï¿½253 practical approaches, 7ï¿½8 quality assurance, 7 Security.allowDomain(...) method, for
+Flash, 155 security dialogs, attacks on, 222ï¿½223 security engineering cheat sheet
 building web applications on internal networks, 195
 Content Security Policy (CSP), 253
 
@@ -4565,51 +4571,51 @@ Content-Disposition headers, 67 user-controlled scripts, 116 user data in HTTP c
 markup, 93 user-supplied data inside JavaScript
 blocks, 115 writing browser extensions, 163 writing plug-ins or extensions recogniz-
 ing privileged origins, 232 XDomainRequest, 253 XSS filtering, 253 security model extension frameworks,
-236­241 cross-domain requests, 236­239 XDomainRequest, 239­240 security model restriction frameworks,
-241­249 See Other status code (303), 55 selector suffixes, in CSS, 88 _self, as link target, 80 self-closing tag syntax, 72 semantic web, 72­73 semicolon (;), as delimiter
-in HTTP headers, 48­49 in URLs, 29 server address, in URLs, 26­27 server port, in URLs, 27 server response codes, 54­56 server-side code, common problems
-unique to, 265­266 server-side errors (500­599), 56 Service Unavailable error (503), 56 sessionStorage object (JavaScript), 148 Set-Cookie headers, 61 setters, in JavaScript, 103 SGML (Standard Generalized Markup
+236ï¿½241 cross-domain requests, 236ï¿½239 XDomainRequest, 239ï¿½240 security model restriction frameworks,
+241ï¿½249 See Other status code (303), 55 selector suffixes, in CSS, 88 _self, as link target, 80 self-closing tag syntax, 72 semantic web, 72ï¿½73 semicolon (;), as delimiter
+in HTTP headers, 48ï¿½49 in URLs, 29 server address, in URLs, 26ï¿½27 server port, in URLs, 27 server response codes, 54ï¿½56 server-side code, common problems
+unique to, 265ï¿½266 server-side errors (500ï¿½599), 56 Service Unavailable error (503), 56 sessionStorage object (JavaScript), 148 Set-Cookie headers, 61 setters, in JavaScript, 103 SGML (Standard Generalized Markup
 Langauge), 9 shared workers, for background
 processes, 258 Shockwave Flash, 132 SHODAN, 203 showModalDialog() method, 217 shttp: scheme, 36 Simple Mail Transfer Protocol (SMTP),
 27, 44, 190 sip: scheme, 36 <site-control permitted-cross-domain-
 policies=.".."> parameter, 157
 
-site privileges, 225­234 browser- and plug-in-managed permissions, 226­227
+site privileges, 225ï¿½234 browser- and plug-in-managed permissions, 226ï¿½227
 skew(...) pseudo functions (CSS), 89 SMTP (Simple Mail Transfer Protocol),
 27, 44, 190 social engineering attacks, 32n software, difficulty analyzing behavior of, 3 <span> tag (HTML), 73 SPDY (Speedy), 257 Spyglass Mosaic, 10 SSL, warnings appearance, 66 Standard Generalized Markup Langauge
 (SGML), 9 statistical forecasting, 6 Sterne, Brandon, 242 Stone, Paul, 180 Strict Transport Security (STS),
-248­249, 253 strict XML mode, 72 stylesheets
-CSP directive for, 243 specifying charset, 209 <style> tag (HTML), 72 <style> tag (XHTML), 78 subframes, CSP directive for, 243 subresources cross-origin, 183 markup-controlled charset on, 209­210 Sun Java, 134­135, 157­158 Sun Microsystems, 129 SVG (Scalable Vector Graphics), 83,
-121­122 <svg> tag (HTML5), 122 synchronous XMLHttpRequest, 146 syntax-delimiting characters, in URLs, 31 "syntax error" message, retrieved file
+248ï¿½249, 253 strict XML mode, 72 stylesheets
+CSP directive for, 243 specifying charset, 209 <style> tag (HTML), 72 <style> tag (XHTML), 78 subframes, CSP directive for, 243 subresources cross-origin, 183 markup-controlled charset on, 209ï¿½210 Sun Java, 134ï¿½135, 157ï¿½158 Sun Microsystems, 129 SVG (Scalable Vector Graphics), 83,
+121ï¿½122 <svg> tag (HTML5), 122 synchronous XMLHttpRequest, 146 syntax-delimiting characters, in URLs, 31 "syntax error" message, retrieved file
 snippet in, 181
 T
 <table> tag (HTML), 83 tags, in HTML, 70
 handling those not closed before end of file, 75
-interactions, 74­75 sanitization, 76 target parameter, for <a href=...> tag
-(HTML), 79, 174­175 taxonomy, 6­7 TCP/IP, HTTP and, 42 TCP (Transmission Control Protocol), 42n
-connections via XMLSocket, 156 list of prohibited ports, 190­192 Temporary Redirect status code (307), 55
+interactions, 74ï¿½75 sanitization, 76 target parameter, for <a href=...> tag
+(HTML), 79, 174ï¿½175 taxonomy, 6ï¿½7 TCP/IP, HTTP and, 42 TCP (Transmission Control Protocol), 42n
+connections via XMLSocket, 156 list of prohibited ports, 190ï¿½192 Temporary Redirect status code (307), 55
 
 testing, for Internet Explorer use, 112 text/css document type, 118 text/csv document type, 198 text/html document type, 124 text message, sending to window with
 valid JavaScript handle, 144 text/plain document type, 118, 156,
-200­201, 204, 212 TEXT token, 50 <textarea> tag (HTML), 72, 111 third-party applications, protocols claimed
-by, 36­37 third-party cookies, limitations, 192­194 threat evolution, 14­18
-cloud, 15 nonconvergence of visions, 15­16 user as security flaw, 14­15 Threats Against and Protection of Microsoft's
-Internal Network (Microsoft), 5n three-step TCP handshake, 56 TIFF file format, 83 timer, in JavaScript, 101 timing attacks, on user interfaces, 222­223 TLS (Transport Layer Security), 64 _top, as link target, 80 top-level domains, 152 toSource() method (JavaScript), 101 toStaticHTML() API, 250­251, 253 toString() method (JavaScript), 101 TRACE method (HTTP), 53 tracking, unscrupulous online, 193 tragedy of the commons dilemma, 3 Transfer-Encoding: chunked scheme, 58 Transmission Control Protocol (TCP). See
+200ï¿½201, 204, 212 TEXT token, 50 <textarea> tag (HTML), 72, 111 third-party applications, protocols claimed
+by, 36ï¿½37 third-party cookies, limitations, 192ï¿½194 threat evolution, 14ï¿½18
+cloud, 15 nonconvergence of visions, 15ï¿½16 user as security flaw, 14ï¿½15 Threats Against and Protection of Microsoft's
+Internal Network (Microsoft), 5n three-step TCP handshake, 56 TIFF file format, 83 timer, in JavaScript, 101 timing attacks, on user interfaces, 222ï¿½223 TLS (Transport Layer Security), 64 _top, as link target, 80 top-level domains, 152 toSource() method (JavaScript), 101 toStaticHTML() API, 250ï¿½251, 253 toString() method (JavaScript), 101 TRACE method (HTTP), 53 tracking, unscrupulous online, 193 tragedy of the commons dilemma, 3 Transfer-Encoding: chunked scheme, 58 Transmission Control Protocol (TCP). See
 TCP (Transmission Control Protocol) Transport Layer Security (TLS), 64 Trident parsing engine, 70n Trusted sites zone, for Internet
 Explorer, 229 Turing, Alan, 3n type parameter, for plug-in tag, 128
 U
 UI spoofing attacks, and Flash, 132 unauthenticated requests, by browser, 62 Unauthorized status error (401), 55, 62 unhandled exception, in JavaScript, 100 Unicode, 33
 decimal &#number; notation for, 77 escaping method based on, 113 JavaScript support, 112 whitespace, 74n
 
-Uniform Messaging Policy, 240 Uniform Resource Locators (URLs), 23­40
-browser processing, 29­31 common schemes, 36­38 constructing based on user input, 40 encoding, 31 encoding data in fragment
-identifiers, 144n fully qualified absolute, 24 hiding with encapsulating protocols, 38 navigation based on tiers of schemes, 188 resolution of relative, 38­39 structure, 24­31
-credentials, 26 fragment ID, 28­29 hierarchical file path, 27­28 indicator of hierarchical URLs, 25­26 query string, 28 scheme name, 24­25 server address, 26­27 server port, 27 UniformRequest API, 240 University of Illinois, 10 Unix services, listener process, 216n unreserved characters, in HTML, 32 unrestricted URL scheme, 188 URLs (Uniform Resource Locators). See
-Uniform Resource Locators (URLs) URL-handling APIs, 133 URL-level proposals, 256­257 url(...) pseudo-functions (CSS), 89 user
+Uniform Messaging Policy, 240 Uniform Resource Locators (URLs), 23ï¿½40
+browser processing, 29ï¿½31 common schemes, 36ï¿½38 constructing based on user input, 40 encoding, 31 encoding data in fragment
+identifiers, 144n fully qualified absolute, 24 hiding with encapsulating protocols, 38 navigation based on tiers of schemes, 188 resolution of relative, 38ï¿½39 structure, 24ï¿½31
+credentials, 26 fragment ID, 28ï¿½29 hierarchical file path, 27ï¿½28 indicator of hierarchical URLs, 25ï¿½26 query string, 28 scheme name, 24ï¿½25 server address, 26ï¿½27 server port, 27 UniformRequest API, 240 University of Illinois, 10 Unix services, listener process, 216n unreserved characters, in HTML, 32 unrestricted URL scheme, 188 URLs (Uniform Resource Locators). See
+Uniform Resource Locators (URLs) URL-handling APIs, 133 URL-level proposals, 256ï¿½257 url(...) pseudo-functions (CSS), 89 user
 browsing habits, Referer header and, 51 collecting information about
-interaction, 184 as security flaw, 14­15 URL construction based on input, 40 User-Agent request header, 43 user content, markup filter for, 86 user-controlled filenames in Content-
+interaction, 184 as security flaw, 14ï¿½15 URL construction based on input, 40 User-Agent request header, 43 user content, markup filter for, 86 user-controlled filenames in Content-
 Disposition headers, 67 user data in HTTP cookies, 67 user interfaces
-browser extensions and, 161 notifications, 259 timing attacks on, 222­223 username, in credentials portion
+browser extensions and, 161 notifications, 259 timing attacks on, 222ï¿½223 username, in credentials portion
 of URLs, 26 UTF-7 charset, 78 UTF-8 charset, 33, 206
 in HTTP headers, 50 UTF-16 charset, 78, 206 UTF-32 charset, 78
 
@@ -4618,43 +4624,43 @@ INDEX 297
 298 INDEX
 
 V
-valid scheme names, current list, 24 variables, declaration in JavaScript, 99 VBScript, 96 vbscript: scheme, 37, 169­170 vertical tab, in HTML tag, 74 <video> tag (HTML5), 84, 119, 131 view-cache: scheme, 37 View > Encoding menu, 209 view-source: scheme, 37 Visual Basic, 10, 114, 130 VoiceXML, 236
+valid scheme names, current list, 24 variables, declaration in JavaScript, 99 VBScript, 96 vbscript: scheme, 37, 169ï¿½170 vertical tab, in HTML tag, 74 <video> tag (HTML5), 84, 119, 131 view-cache: scheme, 37 View > Encoding menu, 209 view-source: scheme, 37 Visual Basic, 10, 114, 130 VoiceXML, 236
 W
 W3C (World Wide Web Consortium), 12, 70
 w3m, 10 WAP (Wireless Application Protocol
-suite), 123 WBXML, 123n WDP file format, 83 Web, the. See World Wide Web web 2.0, 12­13 web applications
-design issues, 263­265 vulnerabilities specific to, 262­263 WebDAV, 54 WebGL, 131, 131n Web Hypertext Application Technology
+suite), 123 WBXML, 123n WDP file format, 83 Web, the. See World Wide Web web 2.0, 12ï¿½13 web applications
+design issues, 263ï¿½265 vulnerabilities specific to, 262ï¿½263 WebDAV, 54 WebGL, 131, 131n Web Hypertext Application Technology
 Working Group (WHATWG), 13 WebKit parsing engine, 70n, 242
-character set inheritance, 209 CORS in, 237, 239 data: URLs in, 168 history.pushState() API, 256 Refresh redirection to javascript:, 170 Strict Transport Security support, 248 Worker API, 258 XSS-detection logic, 251 web page, prerendering, 258­259 web storage, same-origin policy mecha-
+character set inheritance, 209 CORS in, 237, 239 data: URLs in, 168 history.pushState() API, 256 Refresh redirection to javascript:, 170 Strict Transport Security support, 248 Worker API, 258 XSS-detection logic, 251 web page, prerendering, 258ï¿½259 web storage, same-origin policy mecha-
 nism for, 148 WebRTC, 257 WebSocket API, 257 WebSQL API, 258 Western European code page
 (ISO-8859-1), 50 WHATWG (Web Hypertext Application
 Technology Working Group), 13 whitelists, 226 whitespace, 74, 92 window.alert() API, 218
 
-window.blur() function, 217n, 220 window.confirm() API, 218 window.createPopup() API, 222 window.focus() method, 220 window handles, 175 window.moveTo() method, 220 window.name property, of frames, 175 window.notifications API, 259 window.open() function, 111, 174­175, 217,
+window.blur() function, 217n, 220 window.confirm() API, 218 window.createPopup() API, 222 window.focus() method, 220 window handles, 175 window.moveTo() method, 220 window.name property, of frames, 175 window.notifications API, 259 window.open() function, 111, 174ï¿½175, 217,
 217n, 219, 222 window.print() API, 218 window.prompt() API, 218 window.resizeTo() method, 220 windows
-anonymous, 175 creating new in browser, 217 and frame interactions, 174­181 positioning, 219­222 window.showModalDialog() API, 217 Windows Media Player, 119, 130, 132 Windows operating system, 10, 13 window splicing, 220­221 Windows Presentation Foundation,
+anonymous, 175 creating new in browser, 217 and frame interactions, 174ï¿½181 positioning, 219ï¿½222 window.showModalDialog() API, 217 Windows Media Player, 119, 130, 132 Windows operating system, 10, 13 window splicing, 220ï¿½221 Windows Presentation Foundation,
 134, 136 Wireless Application Protocol
 suite (WAP), 123 Wireless Markup Language (WML), 123 WMF file format, 83 WML Script (WMLS), and JavaScript, 123 WML (Wireless Markup Language), 123 Worker API, 258 World Wide Web
-browser wars, 10­11, 233 history, 8­13 threat of hostile takeover, 131 World Wide Web Consortium (W3C),
+browser wars, 10ï¿½11, 233 history, 8ï¿½13 threat of hostile takeover, 131 World Wide Web Consortium (W3C),
 12, 70 creation of, 11 Microsoft and, 239 worms, 12 WWW-Authenticate header, 62, 63 wyciwyg: scheme, 37
 X
 XAML (Extensible Application Markup Language), 134
-Xanadu, 9 XBAP (XML browser applications), 135­136 XBL bindings, 89­90 X-Content-Type-Options header, 208 X-Content-Type-Options: nosniff header, 203 XDomainRequest API, 239­240, 253 X-Frame-Options header, 179­180, 243
+Xanadu, 9 XBAP (XML browser applications), 135ï¿½136 XBL bindings, 89ï¿½90 X-Content-Type-Options header, 208 X-Content-Type-Options: nosniff header, 203 XDomainRequest API, 239ï¿½240, 253 X-Frame-Options header, 179ï¿½180, 243
 
 XHTML, 12 and HTML entities, 78 minimal fault-tolerance of parser, 73 named entities, 76 syntax, 70
 XML (Extensible Markup Language) and bandwidth, 123n binary-only serialization, 123n case of tags, 72 <![CDATA[...]]> blocks, 72, 78, 250
 XML Binding Language files, 90 XML browser applications (XBAP),
-135­136 XML documents
-browser support, 119­124 generic view, 120­121 XMLHttpRequest API, 12, 54, 210, 236,
-237­238 httponly cookies and, 150 same-origin policy mechanism for,
-146­148 xmlns namespace, 72, 119 <?xml-stylesheet href=... ?> directive, 88 XML User Interface Language (XUL),
-122­123 XMLSocket, TCP connections via, 156 <xmp> tag (HTML), 72 XSRF (cross-site request forgery), 84,
-190, 262 exploitation of flaws, 190 login forms and, 145­146 XSS (cross-site scripting), 71, 262 bugs, and password managers, 228 exploitation of flaws, 190 filtering, 251­252, 253 XUL (XML User Interface Language),
-122­123 XXE (External XML Entity) attack, 76
+135ï¿½136 XML documents
+browser support, 119ï¿½124 generic view, 120ï¿½121 XMLHttpRequest API, 12, 54, 210, 236,
+237ï¿½238 httponly cookies and, 150 same-origin policy mechanism for,
+146ï¿½148 xmlns namespace, 72, 119 <?xml-stylesheet href=... ?> directive, 88 XML User Interface Language (XUL),
+122ï¿½123 XMLSocket, TCP connections via, 156 <xmp> tag (HTML), 72 XSRF (cross-site request forgery), 84,
+190, 262 exploitation of flaws, 190 login forms and, 145ï¿½146 XSS (cross-site scripting), 71, 262 bugs, and password managers, 228 exploitation of flaws, 190 filtering, 251ï¿½252, 253 XUL (XML User Interface Language),
+122ï¿½123 XXE (External XML Entity) attack, 76
 Z
 ZIP files, extracting content from, 37 Zone.Identifier metadata, Internet Explorer
 and, 231 zone model, for Internet Explorer,
-229­231
+229ï¿½231
 
 INDEX 299
 
@@ -4716,4 +4722,3 @@ THE FINEST IN GEEK ENTERTAINMENTTM w w w.nostarch.com
 $49.95 ($52.95 CDN)
 
 Shelve In: COMPUTERS/SECURITY
-

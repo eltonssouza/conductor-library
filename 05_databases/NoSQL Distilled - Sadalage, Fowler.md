@@ -1,21 +1,27 @@
+# NoSQL Distilled
+
+> **Author(s):** Sadalage, Fowler Â· **Category:** 05_databases Â· **Language:** English
+
+---
+
 NoSQL Distilled
 A Brief Guide to the Emerging World of Polyglot Persistence
 Pramod J. Sadalage Martin Fowler
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid
-Capetown · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid
+Capetown ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and the publisher was aware of a trademark claim, the designations have been printed with initial capital letters or in all capitals.
 The authors and publisher have taken care in the preparation of this book, but make no expressed or implied warranty of any kind and assume no responsibility for errors or omissions. No liability is assumed for incidental or consequential damages in connection with or arising out of the use of the information or programs contained herein.
 The publisher offers excellent discounts on this book when ordered in quantity for bulk purchases or special sales, which may include electronic versions and/or custom covers and content particular to your business, training goals, marketing focus, and branding interests. For more information, please contact:
-U.S. Corporate and Government Sales (800) 382­3419 corpsales@pearsontechgroup.com
+U.S. Corporate and Government Sales (800) 382ï¿½3419 corpsales@pearsontechgroup.com
 For sales outside the United States please contact:
 International Sales international@pearson.com
 Visit us on the Web: informit.com/aw
 Library of Congress Cataloging-in-Publication Data:
 Sadalage, Pramod J. NoSQL distilled : a brief guide to the emerging world of polyglot persistence / Pramod J Sadalage, Martin Fowler.
 p. cm. Includes bibliographical references and index. ISBN 978-0-321-82662-6 (pbk. : alk. paper) -- ISBN 0-321-82662-0 (pbk. : alk. paper) 1. Databases--Technological innovations. 2. Information storage and retrieval systems. I. Fowler, Martin, 1963- II. Title. QA76.9.D32S228 2013 005.74--dc23
-Copyright © 2013 Pearson Education, Inc.
-All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. To obtain permission to use material from this work, please submit a written request to Pearson Education, Inc., Permissions Department, One Lake Street, Upper Saddle River, New Jersey 07458, or you may fax your request to (201) 236­3290.
+Copyright ï¿½ 2013 Pearson Education, Inc.
+All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. To obtain permission to use material from this work, please submit a written request to Pearson Education, Inc., Permissions Department, One Lake Street, Upper Saddle River, New Jersey 07458, or you may fax your request to (201) 236ï¿½3290.
 ISBN-13: 978-0-321-82662-6 ISBN-10: 0-321-82662-0 Text printed in the United States on recycled paper at RR Donnelley in Crawfordsville, Indiana. First printing, August 2012
 
 For my teachers Gajanan Chinchwadkar, Dattatraya Mhaskar, and Arvind Parchure. You
@@ -61,9 +67,9 @@ Is this the first rattle of the death knell for relational databases, or yet ano
 This book seeks to give you enough information to answer the question of whether NoSQL databases are worth serious consideration for your future projects. Every project is different, and there's no way we can write a simple decision tree to choose the right data store. Instead, what we are attempting here is to provide you with enough background on how NoSQL databases work, so that you can make those judgments yourself without having to trawl the whole web. We've deliberately made this a small book, so you can get this overview pretty quickly. It won't answer your questions definitively, but it should narrow down the range of options you have to consider and help you understand what questions you need to ask.
 Why Are NoSQL Databases Interesting?
 We see two primary reasons why people consider using a NoSQL database.
-· Application development productivity. A lot of application development effort is spent on mapping data between in-memory data structures and a relational database. A NoSQL database may provide a data model that better fits the application's needs, thus simplifying that interaction and resulting in less code to write, debug, and evolve.
+ï¿½ Application development productivity. A lot of application development effort is spent on mapping data between in-memory data structures and a relational database. A NoSQL database may provide a data model that better fits the application's needs, thus simplifying that interaction and resulting in less code to write, debug, and evolve.
 
-· Large-scale data. Organizations are finding it valuable to capture more data and process it more quickly. They are finding it expensive, if even possible, to do so with relational databases. The primary reason is that a relational database is designed to run on a single machine, but it is usually more economic to run large data and computing loads on clusters of many smaller and cheaper machines. Many NoSQL databases are designed explicitly to run on clusters, so they make a better fit for big data scenarios.
+ï¿½ Large-scale data. Organizations are finding it valuable to capture more data and process it more quickly. They are finding it expensive, if even possible, to do so with relational databases. The primary reason is that a relational database is designed to run on a single machine, but it is usually more economic to run large data and computing loads on clusters of many smaller and cheaper machines. Many NoSQL databases are designed explicitly to run on clusters, so they make a better fit for big data scenarios.
 What's in the Book
 We've broken this book up into two parts. The first part concentrates on core concepts that we think you need to know in order to judge whether NoSQL databases are relevant for you and how they differ. In the second part we concentrate more on implementing systems with NoSQL databases.
 Chapter 1 begins by explaining why NoSQL has had such a rapid rise--the need to process larger data volumes led to a shift, in large systems, from scaling vertically to scaling horizontally on clusters. This explains an important feature of the data model of many NoSQL databases--the explicit storage of a rich structure of closely related data that is accessed as a unit. In this book we call this kind of structure an aggregate.
@@ -174,18 +180,18 @@ In order to make this polyglot world work, our view is that organizations also n
 In our account of the history of NoSQL development, we've concentrated on big data running on clusters. While we think this is the key thing that drove the opening up of the database world, it isn't the only reason we see project teams considering NoSQL databases. An equally important reason is the old frustration with the impedance mismatch problem. The big data concerns have created an opportunity for people to think freshly about their data storage needs, and some development teams see that using a NoSQL database can help their productivity by simplifying their database access even if they have no need to scale beyond a single machine.
 So, as you read the rest of this book, remember there are two primary reasons for considering NoSQL. One is to handle data access with sizes and performance that demand a cluster; the other is to improve the productivity of application development by using a more convenient data interaction style.
 1.6. Key Points
-· Relational databases have been a successful technology for twenty years, providing persistence, concurrency control, and an integration mechanism.
-· Application developers have been frustrated with the impedance mismatch between the relational model and the in-memory data structures.
-· There is a movement away from using databases as integration points towards encapsulating databases within applications and integrating through services.
-· The vital factor for a change in data storage was the need to support large volumes of data by running on clusters. Relational databases are not designed to run efficiently on clusters.
-· NoSQL is an accidental neologism. There is no prescriptive definition--all you can make is an observation of common characteristics.
-· The common characteristics of NoSQL databases are
-· Not using the relational model
-· Running well on clusters
-· Open-source
-· Built for the 21st century web estates
-· Schemaless
-· The most important result of the rise of NoSQL is Polyglot Persistence.
+ï¿½ Relational databases have been a successful technology for twenty years, providing persistence, concurrency control, and an integration mechanism.
+ï¿½ Application developers have been frustrated with the impedance mismatch between the relational model and the in-memory data structures.
+ï¿½ There is a movement away from using databases as integration points towards encapsulating databases within applications and integrating through services.
+ï¿½ The vital factor for a change in data storage was the need to support large volumes of data by running on clusters. Relational databases are not designed to run efficiently on clusters.
+ï¿½ NoSQL is an accidental neologism. There is no prescriptive definition--all you can make is an observation of common characteristics.
+ï¿½ The common characteristics of NoSQL databases are
+ï¿½ Not using the relational model
+ï¿½ Running well on clusters
+ï¿½ Open-source
+ï¿½ Built for the 21st century web estates
+ï¿½ Schemaless
+ï¿½ The most important result of the rise of NoSQL is Polyglot Persistence.
 
 Chapter 2. Aggregate Data Models
 A data model is the model through which we perceive and manipulate our data. For people using a database, the data model describes how we interact with the data in the database. This is distinct from a storage model, which describes how the database stores and manipulates the data internally. In an ideal world, we should be ignorant of the storage model, but in practice we need at least some inkling of it--primarily to achieve decent performance.
@@ -250,8 +256,8 @@ Bigtable and its offspring follow this notion of storing groups of columns (colu
 Perhaps the best way to think of the column-family model is as a two-level aggregate structure. As with key-value stores, the first key is often described as a row identifier, picking up the aggregate of interest. The difference with column-family structures is that this row aggregate is itself formed of a map of more detailed values. These second-level values are referred to as columns. As well as accessing the row as a whole, operations also allow picking out a particular column, so to get a particular customer's name from Figure 2.5 you could do something like get('1234', 'name').
 Figure 2.5. Representing customer information in a column-family structure Column-family databases organize their columns into column families. Each column has to be part of a single column family, and the column acts as unit for access, with the assumption that data for a particular column family will be usually accessed together. This also gives you a couple of ways to think about how the data is structured.
 
-· Row-oriented: Each row is an aggregate (for example, customer with the ID of 1234) with column families representing useful chunks of data (profile, order history) within that aggregate.
-· Column-oriented: Each column family defines a record type (e.g., customer profiles) with rows for each of the records. You then think of a row as the join of records in all column families.
+ï¿½ Row-oriented: Each row is an aggregate (for example, customer with the ID of 1234) with column families representing useful chunks of data (profile, order history) within that aggregate.
+ï¿½ Column-oriented: Each column family defines a record type (e.g., customer profiles) with rows for each of the records. You then think of a row as the join of records in all column families.
 This latter aspect reflects the columnar nature of column-family databases. Since the database knows about these common groupings of data, it can use this information for its storage and access behavior. Even though a document database declares some structure to the database, each document is still seen as a single unit. Column families give a two-dimensional quality to column-family databases.
 This terminology is as established by Google Bigtable and HBase, but Cassandra looks at things slightly differently. A row in Cassandra only occurs in one column family, but that column family may contain supercolumns--columns that contain nested columns. The supercolumns in Cassandra are the best equivalent to the classic Bigtable column families.
 It can still be confusing to think of column-families as tables. You can add any column to any row, and rows can have very different column keys. While new columns are added to rows during regular database access, defining new column families is much rarer and may involve stopping the database for it to happen.
@@ -269,9 +275,9 @@ Column-family models divide the aggregate into column families, allowing the dat
 2.5. Further Reading
 For more on the general concept of aggregates, which are often used with relational databases too, see [Evans]. The Domain-Driven Design community is the best source for further information about aggregates--recent information usually appears at http://domaindrivendesign.org.
 2.6. Key Points
-· An aggregate is a collection of data that we interact with as a unit. Aggregates form the boundaries for ACID operations with the database.
-· Key-value, document, and column-family databases can all be seen as forms of aggregateoriented database.
-· Aggregates make it easier for the database to manage data storage over clusters. · Aggregate-oriented databases work best when most data interaction is done with the same
+ï¿½ An aggregate is a collection of data that we interact with as a unit. Aggregates form the boundaries for ACID operations with the database.
+ï¿½ Key-value, document, and column-family databases can all be seen as forms of aggregateoriented database.
+ï¿½ Aggregates make it easier for the database to manage data storage over clusters. ï¿½ Aggregate-oriented databases work best when most data interaction is done with the same
 aggregate; aggregate-ignorant databases are better when interactions use data organized in many different formations.
 
 Chapter 3. More Details on Data Models
@@ -355,10 +361,10 @@ Each node has independent relationships with other nodes. These relationships ha
 
 Figure 3.5. Graph model of e-commerce data This type of relationship traversal is very easy with graph databases. It is especially convenient when you need to use the data to recommend products to users or to find patterns in actions taken by users.
 3.6. Key Points
-· Aggregate-oriented databases make inter-aggregate relationships more difficult to handle than intra-aggregate relationships.
-· Graph databases organize data into node and edge graphs; they work best for data that has complex relationship structures.
-· Schemaless databases allow you to freely add fields to records, but there is usually an implicit schema expected by users of the data.
-· Aggregate-oriented databases often compute materialized views to provide data organized differently from their primary aggregates. This is often done with map-reduce computations.
+ï¿½ Aggregate-oriented databases make inter-aggregate relationships more difficult to handle than intra-aggregate relationships.
+ï¿½ Graph databases organize data into node and edge graphs; they work best for data that has complex relationship structures.
+ï¿½ Schemaless databases allow you to freely add fields to records, but there is usually an implicit schema expected by users of the data.
+ï¿½ Aggregate-oriented databases often compute materialized views to provide data organized differently from their primary aggregates. This is often done with map-reduce computations.
 
 Chapter 4. Distribution Models
 The primary driver of interest in NoSQL has been its ability to run databases on a large cluster. As data volumes increase, it becomes more difficult and expensive to scale up--buy a bigger server to run the database on. A more appealing option is to scale out--run the database on a cluster of servers. Aggregate orientation fits well with scaling out because the aggregate is a natural unit to use for distribution.
@@ -412,12 +418,12 @@ Replication and sharding are strategies that can be combined. If we use both mas
 Figure 4.4. Using master-slave replication together with sharding Using peer-to-peer replication and sharding is a common strategy for column-family databases. In a scenario like this you might have tens or hundreds of nodes in a cluster with data sharded over them. A good starting point for peer-to-peer replication is to have a replication factor of 3, so each shard is present on three nodes. Should a node fail, then the shards on that node will be built on the other nodes (see Figure 4.5).
 Figure 4.5. Using peer-to-peer replication together with sharding
 4.6. Key Points
-· There are two styles of distributing data: · Sharding distributes different data across multiple servers, so each server acts as the single source for a subset of data. · Replication copies data across multiple servers, so each bit of data can be found in multiple places.
+ï¿½ There are two styles of distributing data: ï¿½ Sharding distributes different data across multiple servers, so each server acts as the single source for a subset of data. ï¿½ Replication copies data across multiple servers, so each bit of data can be found in multiple places.
 
 A system may use either or both techniques.
-· Replication comes in two forms:
-· Master-slave replication makes one node the authoritative copy that handles writes while slaves synchronize with the master and may handle reads.
-· Peer-to-peer replication allows writes to any node; the nodes coordinate to synchronize their copies of the data.
+ï¿½ Replication comes in two forms:
+ï¿½ Master-slave replication makes one node the authoritative copy that handles writes while slaves synchronize with the master and may handle reads.
+ï¿½ Peer-to-peer replication allows writes to any node; the nodes coordinate to synchronize their copies of the data.
 Master-slave replication reduces the chance of update conflicts but peer-to-peer replication avoids loading all writes onto a single point of failure.
 
 Chapter 5. Consistency
@@ -503,14 +509,14 @@ The point to all of this is that you have a range of options to work with and ca
 There are all sorts of interesting blog posts and papers on the Internet about consistency in distributed systems, but the most helpful source for us was [Tanenbaum and Van Steen]. It does an excellent job of organizing much of the fundamentals of distributed systems and is the best place to go if you'd like to delve deeper than we have in this chapter.
 As we were finishing this book, IEEE Computer had a special issue [IEEE Computer Feb 2012] on the growing influence of the CAP theorem, which is a helpful source of further clarification for this topic.
 5.7. Key Points
-· Write-write conflicts occur when two clients try to write the same data at the same time. Readwrite conflicts occur when one client reads inconsistent data in the middle of another client's write.
-· Pessimistic approaches lock data records to prevent conflicts. Optimistic approaches detect conflicts and fix them.
-· Distributed systems see read-write conflicts due to some nodes having received updates while other nodes have not. Eventual consistency means that at some point the system will become consistent once all the writes have propagated to all the nodes.
-· Clients usually want read-your-writes consistency, which means a client can write and then immediately read the new value. This can be difficult if the read and the write happen on different nodes.
-· To get good consistency, you need to involve many nodes in data operations, but this increases latency. So you often have to trade off consistency versus latency.
-· The CAP theorem states that if you get a network partition, you have to trade off availability of data versus consistency.
-· Durability can also be traded off against latency, particularly if you want to survive failures with replicated data.
-· You do not need to contact all replicants to preserve strong consistency with replication; you just need a large enough quorum.
+ï¿½ Write-write conflicts occur when two clients try to write the same data at the same time. Readwrite conflicts occur when one client reads inconsistent data in the middle of another client's write.
+ï¿½ Pessimistic approaches lock data records to prevent conflicts. Optimistic approaches detect conflicts and fix them.
+ï¿½ Distributed systems see read-write conflicts due to some nodes having received updates while other nodes have not. Eventual consistency means that at some point the system will become consistent once all the writes have propagated to all the nodes.
+ï¿½ Clients usually want read-your-writes consistency, which means a client can write and then immediately read the new value. This can be difficult if the read and the write happen on different nodes.
+ï¿½ To get good consistency, you need to involve many nodes in data operations, but this increases latency. So you often have to trade off consistency versus latency.
+ï¿½ The CAP theorem states that if you get a network partition, you have to trade off availability of data versus consistency.
+ï¿½ Durability can also be traded off against latency, particularly if you want to survive failures with replicated data.
+ï¿½ You do not need to contact all replicants to preserve strong consistency with replication; you just need a large enough quorum.
 
 Chapter 6. Version Stamps
 Many critics of NoSQL databases focus on the lack of support for transactions. Transactions are a useful tool that helps programmers support consistency. One reason why many NoSQL proponents worry less about a lack of transactions is that aggregate-oriented NoSQL databases do support atomic updates within an aggregate--and aggregates are designed so that their data forms a natural unit of update. That said, it's true that transactional needs are something to take into account when you decide what database to use.
@@ -542,9 +548,9 @@ By using this scheme you can tell if one version stamp is newer than another bec
 There may be missing values in the vector, in which case we use treat the missing value as 0. So [blue: 6, black: 2] would be treated as [blue: 6, green: 0, black: 2]. This allows you to easily add new nodes without invalidating the existing vector stamps.
 Vector stamps are a valuable tool that spots inconsistencies, but doesn't resolve them. Any conflict resolution will depend on the domain you are working in. This is part of the consistency/latency tradeoff. You either have to live with the fact that network partitions may make your system unavailable, or you have to detect and deal with inconsistencies.
 6.3. Key Points
-· Version stamps help you detect concurrency conflicts. When you read data, then update it, you can check the version stamp to ensure nobody updated the data between your read and write.
-· Version stamps can be implemented using counters, GUIDs, content hashes, timestamps, or a combination of these.
-· With distributed systems, a vector of version stamps allows you to detect when different nodes
+ï¿½ Version stamps help you detect concurrency conflicts. When you read data, then update it, you can check the version stamp to ensure nobody updated the data between your read and write.
+ï¿½ Version stamps can be implemented using counters, GUIDs, content hashes, timestamps, or a combination of these.
+ï¿½ With distributed systems, a vector of version stamps allows you to detect when different nodes
 
 have conflicting updates.
 
@@ -606,13 +612,13 @@ The map-reduce framework controls much of this, so you have to understand how a 
 7.4. Further Reading
 If you're going to use map-reduce calculations, your first port of call will be the documentation for the particular database you are using. Each database has its own approach, vocabulary, and quirks, and that's what you'll need to be familiar with. Beyond that, there is a need to capture more general information on how to structure map-reduce jobs to maximize maintainability and performance. We don't have any specific books to point to yet, but we suspect that a good though easily overlooked source are books on Hadoop. Although Hadoop is not a database, it's a tool that uses map-reduce heavily, so writing an effective map-reduce task with Hadoop is likely to be useful in other contexts (subject to the changes in detail between Hadoop and whatever systems you're using).
 7.5. Key Points
-· Map-reduce is a pattern to allow computations to be parallelized over a cluster.
-· The map task reads data from an aggregate and boils it down to relevant key-value pairs. Maps only read a single record at a time and can thus be parallelized and run on the node that stores the record.
-· Reduce tasks take many values for a single key output from map tasks and summarize them into a single output. Each reducer operates on the result of a single key, so it can be parallelized by key.
-· Reducers that have the same form for input and output can be combined into pipelines. This improves parallelism and reduces the amount of data to be transferred.
-· Map-reduce operations can be composed into pipelines where the output of one reduce is the input to another operation's map.
-· If the result of a map-reduce computation is widely used, it can be stored as a materialized view.
-· Materialized views can be updated through incremental map-reduce operations that only compute changes to the view instead of recomputing everything from scratch.
+ï¿½ Map-reduce is a pattern to allow computations to be parallelized over a cluster.
+ï¿½ The map task reads data from an aggregate and boils it down to relevant key-value pairs. Maps only read a single record at a time and can thus be parallelized and run on the node that stores the record.
+ï¿½ Reduce tasks take many values for a single key output from map tasks and summarize them into a single output. Each reducer operates on the result of a single key, so it can be parallelized by key.
+ï¿½ Reducers that have the same form for input and output can be combined into pipelines. This improves parallelism and reduces the amount of data to be transferred.
+ï¿½ Map-reduce operations can be composed into pipelines where the output of one reduce is the input to another operation's map.
+ï¿½ If the result of a map-reduce computation is widely used, it can be stored as a materialized view.
+ï¿½ Materialized views can be updated through incremental map-reduce operations that only compute changes to the view instead of recomputing everything from scratch.
 
 Part II: Implement
 
@@ -1152,11 +1158,11 @@ Code that runs in the background can read one aggregate at a time, make the nece
 12.4. Further Reading
 For more on migrations with relational databases, see [Ambler and Sadalage]. Although much of this content is specific to relational work, the general principles in migration will also apply to other databases.
 12.5. Key Points
-· Databases with strong schemas, such as relational databases, can be migrated by saving each schema change, plus its data migration, in a version-controlled sequence.
-· Schemaless databases still need careful migration due to the implicit schema in any code that accesses the data.
+ï¿½ Databases with strong schemas, such as relational databases, can be migrated by saving each schema change, plus its data migration, in a version-controlled sequence.
+ï¿½ Schemaless databases still need careful migration due to the implicit schema in any code that accesses the data.
 
-· Schemaless databases can use the same migration techniques as databases with strong schemas.
-· Schemaless databases can also read data in a way that's tolerant to changes in the data's implicit schema and use incremental migration to update data.
+ï¿½ Schemaless databases can use the same migration techniques as databases with strong schemas.
+ï¿½ Schemaless databases can also read data in a way that's tolerant to changes in the data's implicit schema and use incremental migration to update data.
 
 Chapter 13. Polyglot Persistence
 Different databases are designed to solve different problems. Using a single database engine for all of the requirements usually leads to non- performant solutions; storing transactional data, caching session information, traversing graph of customers and the products their friends bought are essentially different problems. Even in the RDBMS space, the requirements of an OLAP and OLTP system are very different--nonetheless, they are often forced into the same schema.
@@ -1201,10 +1207,10 @@ Every enterprise runs analytics of some sort. As the sheer volume of data that n
 13.7. Deployment Complexity
 Once we start down the path of using polyglot persistence in the application, deployment complexity needs careful consideration. The application now needs all databases in production at the same time. You will need to have these databases in your UAT, QA, and Dev environments. As most of the NoSQL products are open-source, there are few license cost ramifications. They also support automation of installation and configuration. For example, to install a database, all that needs to be done is download and unzip the archive, which can be automated using curl and unzip commands. These products also have sensible defaults and can be started with minimum configuration.
 13.8. Key Points
-· Polyglot persistence is about using different data storage technologies to handle varying data storage needs.
-· Polyglot persistence can apply across an enterprise or within a single application.
-· Encapsulating data access into services reduces the impact of data storage choices on other parts of a system.
-· Adding more data storage technologies increases complexity in programming and operations, so the advantages of a good data storage fit need to be weighed against this complexity.
+ï¿½ Polyglot persistence is about using different data storage technologies to handle varying data storage needs.
+ï¿½ Polyglot persistence can apply across an enterprise or within a single application.
+ï¿½ Encapsulating data access into services reduces the impact of data storage choices on other parts of a system.
+ï¿½ Adding more data storage technologies increases complexity in programming and operations, so the advantages of a good data storage fit need to be weighed against this complexity.
 
 Chapter 14. Beyond NoSQL
 The appearance of NoSQL databases has done a great deal to shake up and open up the world of databases, but we think the kind of NoSQL databases we have discussed here is only part of the picture of polyglot persistence. So it makes sense to spend some time discussing solutions that don't easily fit into the NoSQL bucket.
@@ -1251,7 +1257,7 @@ When object-oriented programming started its rise in popularity, there was a flu
 Object databases didn't take off. One reason was that the benefit of the close integration with the application meant you couldn't easily access data other than with that application. A shift from integration databases to application databases could well make object databases more viable in the future.
 An important issue with object databases is how to deal with migration as the data structures change. Here, the close linkage between the persistent storage and in-memory structures can become a problem. Some object databases include the ability to add migration functions to object definitions.
 14.7. Key Points
-· NoSQL is just one set of data storage technologies. As they increase comfort with polyglot persistence, we should consider other data storage technologies whether or not they bear the NoSQL label.
+ï¿½ NoSQL is just one set of data storage technologies. As they increase comfort with polyglot persistence, we should consider other data storage technologies whether or not they bear the NoSQL label.
 
 Chapter 15. Choosing Your Database
 At this point in the book, we've covered a lot of the general issues you need to be aware of to make decisions in the new world of polyglot persistence. It's now time to talk about choosing your databases for future development work. Naturally, we don't know your particular circumstances, so we can't give you your answer, nor can we reduce it to a simple set of rules to follow. Furthermore, it's still early days in the production use of NoSQL systems, so even what we do know is immature-- in a couple of years we may well think differently.
@@ -1292,12 +1298,12 @@ On the whole, our advice is to encapsulate as a default strategy, but pay attent
 This is another argument for decomposing the database layer into services that encapsulate data storage ("Service Usage over Direct Data Store Usage," p. 136). As well as reducing coupling between various services, this has the additional advantage of making it easier to replace a database should things not work out in the future. This is a plausible approach even if you end up using the same database everywhere--should things go badly, you can gradually swap it out, focusing on the most problematic services first.
 This design advice applies just as much if you prefer to stick with a relational option. By encapsulating segments of your database into services, you can replace parts of your data store with a NoSQL technology as it matures and the advantages become clearer.
 15.5. Key Points
-· The two main reasons to use NoSQL technology are:
-· To improve programmer productivity by using a database that better matches an application's needs.
-· To improve data access performance via some combination of handling larger data volumes, reducing latency, and improving throughput.
-· It's essential to test your expectations about programmer productivity and/or performance before committing to using a NoSQL technology.
-· Service encapsulation supports changing data storage technologies as needs and technology evolve. Separating parts of applications into services also allows you to introduce NoSQL into an existing application.
-· Most applications, particularly nonstrategic ones, should stick with relational technology--at least until the NoSQL ecosystem becomes more mature.
+ï¿½ The two main reasons to use NoSQL technology are:
+ï¿½ To improve programmer productivity by using a database that better matches an application's needs.
+ï¿½ To improve data access performance via some combination of handling larger data volumes, reducing latency, and improving throughput.
+ï¿½ It's essential to test your expectations about programmer productivity and/or performance before committing to using a NoSQL technology.
+ï¿½ Service encapsulation supports changing data storage technologies as needs and technology evolve. Separating parts of applications into services also allows you to introduce NoSQL into an existing application.
+ï¿½ Most applications, particularly nonstrategic ones, should stick with relational technology--at least until the NoSQL ecosystem becomes more mature.
 15.6. Final Thoughts
 We hope you've found this book enlightening. When we started writing it, we were frustrated by the lack of anything that would give us a broad survey of the NoSQL world. In writing this book we had to make that survey ourselves, and we've found it an enjoyable journey. We hope your journey through this material is considerably quicker but no less enjoyable.
 At this point you may be considering making use of a NoSQL technology. If so this book is only an early step in building your understanding. We urge you to download some databases and work with them, for we're of the firm conviction that you can only understand a technology properly by working with it--finding its strengths and the inevitable gotchas that never make it into the documentation.
@@ -1326,121 +1332,120 @@ www.allthingsdistributed.com/2008/12/eventually_consistent.html. [Webber Neo4J S
 
 Index
 A
-ACID (Atomic, Consistent, Isolated, and Durable) transactions, 19 in column-family databases, 109 in graph databases, 28, 50, 114­115 in relational databases, 10, 26 vs. BASE, 56
-ad banners, 108­109 aggregate-oriented databases, 14, 19­23, 147
-atomic updates in, 50, 61 disadvantages of, 30 no ACID transactions in, 50 performance of, 149 vs. graph databases, 28 aggregates, 14­23 changing structure of, 98, 132 modeling, 31 real-time analytics with, 33 updating, 26 agile methods, 123 Amazon, 9 See also DynamoDB, SimpleDB analytics counting website visitors for, 108 of historic information, 144 real-time, 33, 98 Apache Pig language, 76 Apache ZooKeeper library, 104, 115 application databases, 7, 146 updating materialized views in, 31 arcs (graph databases). See edges atomic cross-document operations, 98 atomic rebalancing, 58 atomic transactions, 92, 104 atomic updates, 50, 61 automated failovers, 94 automated merges, 48 automated rollbacks, 145 auto-sharding, 39
+ACID (Atomic, Consistent, Isolated, and Durable) transactions, 19 in column-family databases, 109 in graph databases, 28, 50, 114ï¿½115 in relational databases, 10, 26 vs. BASE, 56
+ad banners, 108ï¿½109 aggregate-oriented databases, 14, 19ï¿½23, 147
+atomic updates in, 50, 61 disadvantages of, 30 no ACID transactions in, 50 performance of, 149 vs. graph databases, 28 aggregates, 14ï¿½23 changing structure of, 98, 132 modeling, 31 real-time analytics with, 33 updating, 26 agile methods, 123 Amazon, 9 See also DynamoDB, SimpleDB analytics counting website visitors for, 108 of historic information, 144 real-time, 33, 98 Apache Pig language, 76 Apache ZooKeeper library, 104, 115 application databases, 7, 146 updating materialized views in, 31 arcs (graph databases). See edges atomic cross-document operations, 98 atomic rebalancing, 58 atomic transactions, 92, 104 atomic updates, 50, 61 automated failovers, 94 automated merges, 48 automated rollbacks, 145 auto-sharding, 39
 
-availability, 53 in column-family databases, 104­105 in document databases, 93 in graph databases, 115 vs. consistency, 54 See also CAP theorem
+availability, 53 in column-family databases, 104ï¿½105 in document databases, 93 in graph databases, 115 vs. consistency, 54 See also CAP theorem
 averages, calculating, 72
 B
-backward compatibility, 126, 131 BASE (Basically Available, Soft state, Eventual consistency), 56 Berkeley DB, 81 BigTable DB, 9, 21­22 bit-mapped indexes, 106 blogging, 108 Blueprints property graph, 115 Brewer, Eric, 53 Brewer's Conjecture. See CAP theorem buckets (Riak), 82
+backward compatibility, 126, 131 BASE (Basically Available, Soft state, Eventual consistency), 56 Berkeley DB, 81 BigTable DB, 9, 21ï¿½22 bit-mapped indexes, 106 blogging, 108 Blueprints property graph, 115 Brewer, Eric, 53 Brewer's Conjecture. See CAP theorem buckets (Riak), 82
 default values for consistency for, 84 domain, 83 storing all data together in, 82 business transactions, 61
 C
 caching performance of, 39, 137 stale data in, 50
-Cages library, 104 CAP (Consistency, Availability, and Partition tolerance) theorem, 53­56
-for document databases, 93 for Riak, 86 CAS (compare-and-set) operations, 62 Cassandra DB, 10, 21­22, 99­109 availability in, 104­105 column families in:
-commands for, 105­106 standard, 101 super, 101­102 columns in, 100 expiring, 108­109 indexing, 106­107
+Cages library, 104 CAP (Consistency, Availability, and Partition tolerance) theorem, 53ï¿½56
+for document databases, 93 for Riak, 86 CAS (compare-and-set) operations, 62 Cassandra DB, 10, 21ï¿½22, 99ï¿½109 availability in, 104ï¿½105 column families in:
+commands for, 105ï¿½106 standard, 101 super, 101ï¿½102 columns in, 100 expiring, 108ï¿½109 indexing, 106ï¿½107
 
-reading, 107 super, 101 compaction in, 103 consistency in, 103­104 ETL tools for, 139 hinted handoff in, 104 keyspaces in, 102­104 memtables in, 103 queries in, 105­107 repairs in, 103­104 replication factor in, 103 scaling in, 107 SSTables in, 103 timestamps in, 100 transactions in, 104 wide/skinny rows in, 23 clients, processing on, 67 Clojure language, 145 cloud computing, 149 clumping, 39 clusters, 8­10, 67­72, 76, 149 in file systems, 8 in Riak, 87 resiliency of, 8 column-family databases, 21­23, 99­109 ACID transactions in, 109 columns for materialized views in, 31 combining peer-to-peer replication and sharding in, 43­44 consistency in, 103­104 modeling for, 34 performance in, 103 schemalessness of, 28 vs. key-value databases, 21 wide/skinny rows in, 23 combinable reducers, 70­71 compaction (Cassandra), 103 compatibility, backward, 126, 131 concurrency, 145 in file systems, 141 in relational databases, 4 offline, 62
+reading, 107 super, 101 compaction in, 103 consistency in, 103ï¿½104 ETL tools for, 139 hinted handoff in, 104 keyspaces in, 102ï¿½104 memtables in, 103 queries in, 105ï¿½107 repairs in, 103ï¿½104 replication factor in, 103 scaling in, 107 SSTables in, 103 timestamps in, 100 transactions in, 104 wide/skinny rows in, 23 clients, processing on, 67 Clojure language, 145 cloud computing, 149 clumping, 39 clusters, 8ï¿½10, 67ï¿½72, 76, 149 in file systems, 8 in Riak, 87 resiliency of, 8 column-family databases, 21ï¿½23, 99ï¿½109 ACID transactions in, 109 columns for materialized views in, 31 combining peer-to-peer replication and sharding in, 43ï¿½44 consistency in, 103ï¿½104 modeling for, 34 performance in, 103 schemalessness of, 28 vs. key-value databases, 21 wide/skinny rows in, 23 combinable reducers, 70ï¿½71 compaction (Cassandra), 103 compatibility, backward, 126, 131 concurrency, 145 in file systems, 141 in relational databases, 4 offline, 62
 
-conditional updates, 48, 62­63 conflicts
-key, 82 read-write, 49­50 resolving, 64 write-write, 47­48, 64 consistency, 47­59 eventual, 50, 84 in column-family databases, 103­104 in graph databases, 114 in master-slave replication, 52 in MongoDB, 91 logical, 50 optimistic/pessimistic, 48 read, 49­52, 56 read-your-writes, 52 relaxing, 52­56 replication, 50 session, 52, 63 trading off, 57 update, 47, 56, 61 vs. availability, 54 write, 92 See also CAP theorem content hashes, 62­63 content management systems, 98, 108 CouchDB, 10, 91 conditional updates in, 63 replica sets in, 94 counters, for version stamps, 62­63 CQL (Cassandra Query Language), 10, 106 CQRS (Command Query Responsibility Segregation), 143 cross-document operations, 98 C-Store DB, 21 Cypher language, 115­119
+conditional updates, 48, 62ï¿½63 conflicts
+key, 82 read-write, 49ï¿½50 resolving, 64 write-write, 47ï¿½48, 64 consistency, 47ï¿½59 eventual, 50, 84 in column-family databases, 103ï¿½104 in graph databases, 114 in master-slave replication, 52 in MongoDB, 91 logical, 50 optimistic/pessimistic, 48 read, 49ï¿½52, 56 read-your-writes, 52 relaxing, 52ï¿½56 replication, 50 session, 52, 63 trading off, 57 update, 47, 56, 61 vs. availability, 54 write, 92 See also CAP theorem content hashes, 62ï¿½63 content management systems, 98, 108 CouchDB, 10, 91 conditional updates in, 63 replica sets in, 94 counters, for version stamps, 62ï¿½63 CQL (Cassandra Query Language), 10, 106 CQRS (Command Query Responsibility Segregation), 143 cross-document operations, 98 C-Store DB, 21 Cypher language, 115ï¿½119
 D
 Data Mapper and Repository pattern, 151 data models, 13, 25
-aggregate-oriented, 14­23, 30 document, 20 key-value, 20
+aggregate-oriented, 14ï¿½23, 30 document, 20 key-value, 20
 
-relational, 13­14 data redundancy, 94 databases
-choosing, 7, 147­152 deploying, 139 encapsulating in explicit layer, 151 NoSQL, definition of, 10­11 shared integration of, 4, 6 Datastax Ops Center, 139 DBDeploy framework, 125 DBMaintain tool, 126 deadlocks, 48 demo access, 108 Dependency Network pattern, 77 deployment complexity, 139 Dijkstra's algorithm, 118 disaster recovery, 94 distributed file systems, 76, 141 distributed version control systems, 48 version stamps in, 64 distribution models, 37­43 See also replications, sharding, single server approach document databases, 20, 23, 89­98 availability in, 93 embedding child documents into, 90 indexes in, 25 master-slave replication in, 93 performance in, 91 queries in, 25, 94­95 replica sets in, 94 scaling in, 95 schemalessness of, 28, 98 XML support in, 146 domain buckets (Riak), 83 Domain-Driven Design, 14 DTDs (Document Type Definitions), 146 durability, 56­57 DynamoDB, 9, 81, 100 shopping carts in, 55 Dynomite DB, 10
+relational, 13ï¿½14 data redundancy, 94 databases
+choosing, 7, 147ï¿½152 deploying, 139 encapsulating in explicit layer, 151 NoSQL, definition of, 10ï¿½11 shared integration of, 4, 6 Datastax Ops Center, 139 DBDeploy framework, 125 DBMaintain tool, 126 deadlocks, 48 demo access, 108 Dependency Network pattern, 77 deployment complexity, 139 Dijkstra's algorithm, 118 disaster recovery, 94 distributed file systems, 76, 141 distributed version control systems, 48 version stamps in, 64 distribution models, 37ï¿½43 See also replications, sharding, single server approach document databases, 20, 23, 89ï¿½98 availability in, 93 embedding child documents into, 90 indexes in, 25 master-slave replication in, 93 performance in, 91 queries in, 25, 94ï¿½95 replica sets in, 94 scaling in, 95 schemalessness of, 28, 98 XML support in, 146 domain buckets (Riak), 83 Domain-Driven Design, 14 DTDs (Document Type Definitions), 146 durability, 56ï¿½57 DynamoDB, 9, 81, 100 shopping carts in, 55 Dynomite DB, 10
 E
 
 early prototypes, 109 e-commerce
-data modeling for, 14 flexible schemas for, 98 polyglot persistence of, 133­138 shopping carts in, 55, 85, 87 edges (graph databases), 26, 111 eligibility rules, 26 enterprises commercial support of NoSQL for, 138­139 concurrency in, 4 DB as backing store for, 4 event logging in, 97 integration in, 4 polyglot persistence in, 138­139 security of data in, 139 error handling, 4, 145 etags, 62 ETL tools, 139 Evans, Eric, 10 event logging, 97, 107­108 event sourcing, 138, 142, 144 eventual consistency, 50 in Riak, 84 expiring usage, 108­109
+data modeling for, 14 flexible schemas for, 98 polyglot persistence of, 133ï¿½138 shopping carts in, 55, 85, 87 edges (graph databases), 26, 111 eligibility rules, 26 enterprises commercial support of NoSQL for, 138ï¿½139 concurrency in, 4 DB as backing store for, 4 event logging in, 97 integration in, 4 polyglot persistence in, 138ï¿½139 security of data in, 139 error handling, 4, 145 etags, 62 ETL tools, 139 Evans, Eric, 10 event logging, 97, 107ï¿½108 event sourcing, 138, 142, 144 eventual consistency, 50 in Riak, 84 expiring usage, 108ï¿½109
 F
 failovers, automated, 94 file systems, 141
 as backing store for RDBMS, 3 cluster-aware, 8 concurrency in, 141 distributed, 76, 141 performance of, 141 queries in, 141 FlockDB, 113 data model of, 27 node distribution in, 115
 G
 Gilbert, Seth, 53 Google, 9
 
-Google BigTable. See BigTable Google File System, 141 graph databases, 26­28, 111­121, 148 ACID transactions in, 28, 50, 114­115 aggregate-ignorance of, 19 availability in, 115 consistency in, 114 creating, 113 edges (arcs) in, 26, 111 held entirely in memory, 119 master-slave replication in, 115 migrations in, 131 modeling for, 35 nodes in, 26, 111­117 performance of, 149 properties in, 111 queries in, 115­119 relationships in, 111­121 scaling in, 119 schemalessness of, 28 single server configuration of, 38 traversing, 111­117 vs. aggregate databases, 28 vs. relational databases, 27, 112 wrapping into service, 136 Gremlin language, 115 GUID (Globally Unique Identifier), 62
+Google BigTable. See BigTable Google File System, 141 graph databases, 26ï¿½28, 111ï¿½121, 148 ACID transactions in, 28, 50, 114ï¿½115 aggregate-ignorance of, 19 availability in, 115 consistency in, 114 creating, 113 edges (arcs) in, 26, 111 held entirely in memory, 119 master-slave replication in, 115 migrations in, 131 modeling for, 35 nodes in, 26, 111ï¿½117 performance of, 149 properties in, 111 queries in, 115ï¿½119 relationships in, 111ï¿½121 scaling in, 119 schemalessness of, 28 single server configuration of, 38 traversing, 111ï¿½117 vs. aggregate databases, 28 vs. relational databases, 27, 112 wrapping into service, 136 Gremlin language, 115 GUID (Globally Unique Identifier), 62
 H
-Hadoop project, 67, 76, 141 HamsterDB, 81 hash tables, 62­63, 81 HBase DB, 10, 21­22, 99­100 Hector client, 105 Hibernate framework, 5, 147 hinted handoff, 104 hive DB, 76 hot backup, 40, 42 hotel booking, 4, 55 HTTP (Hypertext Transfer Protocol), 7
+Hadoop project, 67, 76, 141 HamsterDB, 81 hash tables, 62ï¿½63, 81 HBase DB, 10, 21ï¿½22, 99ï¿½100 Hector client, 105 Hibernate framework, 5, 147 hinted handoff, 104 hive DB, 76 hot backup, 40, 42 hotel booking, 4, 55 HTTP (Hypertext Transfer Protocol), 7
 interfaces based on, 85 updating with, 62
 
-Hypertable DB, 10, 99­100
+Hypertable DB, 10, 99ï¿½100
 I
 iBATIS, 5, 147 impedance mismatch, 5, 12 inconsistency
-in shopping carts, 55 of reads, 49 of updates, 56 window of, 50­51, 56 indexes bit-mapped, 106 in document databases, 25 stale data in, 138 updating, 138 Infinite Graph DB, 113 data model of, 27 node distribution in, 114­115 initial tech spikes, 109 integration databases, 6, 11 interoperability, 7
+in shopping carts, 55 of reads, 49 of updates, 56 window of, 50ï¿½51, 56 indexes bit-mapped, 106 in document databases, 25 stale data in, 138 updating, 138 Infinite Graph DB, 113 data model of, 27 node distribution in, 114ï¿½115 initial tech spikes, 109 integration databases, 6, 11 interoperability, 7
 J
-JSON (JavaScript Object Notation), 7, 94­95, 146
+JSON (JavaScript Object Notation), 7, 94ï¿½95, 146
 K
 keys (key-value databases) composite, 74 conflicts of, 82 designing, 85 expiring, 85 grouping into partitions, 70
-keyspaces (Cassandra), 102­104 key-value databases, 20, 23, 81­88
-consistency of, 83­84 modeling for, 31­33 no multiple key operations in, 88 schemalessness of, 28 sharding in, 86 structure of values in, 86 transactions in, 84, 88 vs. column-family databases, 21
+keyspaces (Cassandra), 102ï¿½104 key-value databases, 20, 23, 81ï¿½88
+consistency of, 83ï¿½84 modeling for, 31ï¿½33 no multiple key operations in, 88 schemalessness of, 28 sharding in, 86 structure of values in, 86 transactions in, 84, 88 vs. column-family databases, 21
 
 XML support in, 146
 L
 Liquibase tool, 126 location-based services, 120 locks
 dead, 48 offline, 52 lost updates, 47 Lotus DB, 91 Lucene library, 85, 88, 116 Lynch, Nancy, 53
 M
-MapReduce framework, 67 map-reduce pattern, 67­77
-calculations with, 72 incremental, 31, 76­77 maps in, 68 materialized views in, 76 partitions in, 70 reusing intermediate outputs in, 76 stages for, 73­76 master-slave replication, 40­42 appointing masters in, 41, 57 combining with sharding, 43 consistency of, 52 in document databases, 93 in graph databases, 115 version stamps in, 63 materialized views, 30 in map-reduce, 76 updating, 31 Memcached DB, 81, 87 memory images, 144­145 memtables (Cassandra), 103 merges, automated, 48 Microsoft SQL Server, 8 migrations, 123­132 during development, 124, 126 in graph databases, 131 in legacy projects, 126­128
+MapReduce framework, 67 map-reduce pattern, 67ï¿½77
+calculations with, 72 incremental, 31, 76ï¿½77 maps in, 68 materialized views in, 76 partitions in, 70 reusing intermediate outputs in, 76 stages for, 73ï¿½76 master-slave replication, 40ï¿½42 appointing masters in, 41, 57 combining with sharding, 43 consistency of, 52 in document databases, 93 in graph databases, 115 version stamps in, 63 materialized views, 30 in map-reduce, 76 updating, 31 Memcached DB, 81, 87 memory images, 144ï¿½145 memtables (Cassandra), 103 merges, automated, 48 Microsoft SQL Server, 8 migrations, 123ï¿½132 during development, 124, 126 in graph databases, 131 in legacy projects, 126ï¿½128
 
-in object-oriented databases, 146 in schemaless databases, 128­132 incremental, 130 transition phase of, 126­128 mobile apps, 131 MongoDB, 10, 91­97 collections in, 91 consistency in, 91 databases in, 91 ETL tools for, 139 queries in, 94­95 replica sets in, 91, 93, 96 schema migrations in, 128­131 sharding in, 96 slaveOk parameter in, 91­92, 96 terminology in, 89 WriteConcern parameter in, 92 MongoDB Monitoring Service, 139 MyBatis Migrator tool, 126 MySQL DB, 53, 119
+in object-oriented databases, 146 in schemaless databases, 128ï¿½132 incremental, 130 transition phase of, 126ï¿½128 mobile apps, 131 MongoDB, 10, 91ï¿½97 collections in, 91 consistency in, 91 databases in, 91 ETL tools for, 139 queries in, 94ï¿½95 replica sets in, 91, 93, 96 schema migrations in, 128ï¿½131 sharding in, 96 slaveOk parameter in, 91ï¿½92, 96 terminology in, 89 WriteConcern parameter in, 92 MongoDB Monitoring Service, 139 MyBatis Migrator tool, 126 MySQL DB, 53, 119
 N
-Neo4J DB, 113­118 ACID transactions in, 114­115 availability in, 115 creating graphs in, 113 data model of, 27 replicated slaves in, 115 service wrapping in, 136
-nodes (graph databases), 26, 111 distributed storage for, 114 finding paths between, 117 indexing properties of, 115­116
+Neo4J DB, 113ï¿½118 ACID transactions in, 114ï¿½115 availability in, 115 creating graphs in, 113 data model of, 27 replicated slaves in, 115 service wrapping in, 136
+nodes (graph databases), 26, 111 distributed storage for, 114 finding paths between, 117 indexing properties of, 115ï¿½116
 nonuniform data, 10, 28, 30 NoSQL databases
-advantages of, 12 definition of, 10­11 lack of support for transactions in, 10, 61 running of clusters, 10 schemalessness of, 10
+advantages of, 12 definition of, 10ï¿½11 lack of support for transactions in, 10, 61 running of clusters, 10 schemalessness of, 10
 O
 
 object-oriented databases, 5, 146 migrations in, 146 vs. relational databases, 6
 offline concurrency, 62 offline locks, 52 Optimistic Offline Lock, 62 Oracle DB
-redo log in, 104 terminology in, 81, 89 Oracle RAC DB, 8 OrientDB, 91, 113 ORM (Object-Relational Mapping) frameworks, 5­6, 147 Oskarsson, Johan, 9
+redo log in, 104 terminology in, 81, 89 Oracle RAC DB, 8 OrientDB, 91, 113 ORM (Object-Relational Mapping) frameworks, 5ï¿½6, 147 Oskarsson, Johan, 9
 P
-partition tolerance, 53­54 See also CAP theorem
-partitioning, 69­70 peer-to-peer replication, 42­43
-durability of, 58 inconsistency of, 43 version stamps in, 63­64 Pentaho tool, 139 performance and sharding, 39 and transactions, 53 binary protocols for, 7 caching for, 39, 137 data-access, 149­150 in aggregate-oriented databases, 149 in column-family databases, 103 in document databases, 91 in graph databases, 149 responsiveness of, 48 tests for, 149 pipes-and-filters approach, 73 polyglot persistence, 11, 133­139, 148 and deployment complexity, 139 in enterprises, 138­139 polyglot programming, 133­134 processing, on clients/servers, 67 programmer productivity, 147­149
+partition tolerance, 53ï¿½54 See also CAP theorem
+partitioning, 69ï¿½70 peer-to-peer replication, 42ï¿½43
+durability of, 58 inconsistency of, 43 version stamps in, 63ï¿½64 Pentaho tool, 139 performance and sharding, 39 and transactions, 53 binary protocols for, 7 caching for, 39, 137 data-access, 149ï¿½150 in aggregate-oriented databases, 149 in column-family databases, 103 in document databases, 91 in graph databases, 149 responsiveness of, 48 tests for, 149 pipes-and-filters approach, 73 polyglot persistence, 11, 133ï¿½139, 148 and deployment complexity, 139 in enterprises, 138ï¿½139 polyglot programming, 133ï¿½134 processing, on clients/servers, 67 programmer productivity, 147ï¿½149
 
 purchase orders, 25
 Q
-queries against varying aggregate structure, 98 by data, 88, 94 by key, 84­86 for files, 141 in column-family databases, 105­107 in document databases, 25, 94­95 in graph databases, 115­119 precomputed and cached, 31 via views, 94
+queries against varying aggregate structure, 98 by data, 88, 94 by key, 84ï¿½86 for files, 141 in column-family databases, 105ï¿½107 in document databases, 25, 94ï¿½95 in graph databases, 115ï¿½119 precomputed and cached, 31 via views, 94
 quorums, 57, 59 read, 58 write, 58, 84
 R
 Rails Active Record framework, 147 RavenDB, 91
-atomic cross-document operations in, 98 replica sets in, 94 transactions in, 92 RDBMS. See relational databases reads consistency of, 49­52, 56, 58 horizontal scaling for, 94, 96 inconsistent, 49 multiple nodes for, 143 performance of, 52 quorums of, 58 repairs of, 103 resilience of, 40­41 separating from writes, 41 stale, 56 read-write conflicts, 49­50 read-your-writes consistency, 52 Real Time Analytics, 33 Real Time BI, 33 rebalancing, atomic, 58 recommendation engines, 26, 35, 121, 138 Redis DB, 81­83
+atomic cross-document operations in, 98 replica sets in, 94 transactions in, 92 RDBMS. See relational databases reads consistency of, 49ï¿½52, 56, 58 horizontal scaling for, 94, 96 inconsistent, 49 multiple nodes for, 143 performance of, 52 quorums of, 58 repairs of, 103 resilience of, 40ï¿½41 separating from writes, 41 stale, 56 read-write conflicts, 49ï¿½50 read-your-writes consistency, 52 Real Time Analytics, 33 Real Time BI, 33 rebalancing, atomic, 58 recommendation engines, 26, 35, 121, 138 Redis DB, 81ï¿½83
 
 redo log, 104 reduce functions, 69
-combinable, 70­71 regions. See map-reduce pattern, partitions in Rekon browser for Riak, 139 relational databases (RDBMS), 13, 17
-advantages of, 3­5, 7­8, 150 aggregate-ignorance of, 19 backing store in, 3 clustered, 8 columns in, 13, 90 concurrency in, 4 defining schemas for, 28 impedance mismatch in, 5, 12 licensing costs of, 8 main memory in, 3 modifying multiple records at once in, 26 partitions in, 96 persistence in, 3 relations (tables) in, 5, 13 schemas for, 29­30, 123­128 security in, 7 sharding in, 8 simplicity of relationships in, 112 strong consistency of, 47 terminology in, 81, 89 transactions in, 4, 26, 92 tuples (rows) in, 5, 13­14 views in, 30 vs. graph databases, 27, 112 vs. object-oriented databases, 6 XML support in, 146 relationships, 25, 111­121 dangling, 114 direction of, 113, 116, 118 in RDBMS, 112 properties of, 113­115 traversing, 111­117 RelaxNG, 146 replica sets, 91, 93, 96 replication factor, 58
+combinable, 70ï¿½71 regions. See map-reduce pattern, partitions in Rekon browser for Riak, 139 relational databases (RDBMS), 13, 17
+advantages of, 3ï¿½5, 7ï¿½8, 150 aggregate-ignorance of, 19 backing store in, 3 clustered, 8 columns in, 13, 90 concurrency in, 4 defining schemas for, 28 impedance mismatch in, 5, 12 licensing costs of, 8 main memory in, 3 modifying multiple records at once in, 26 partitions in, 96 persistence in, 3 relations (tables) in, 5, 13 schemas for, 29ï¿½30, 123ï¿½128 security in, 7 sharding in, 8 simplicity of relationships in, 112 strong consistency of, 47 terminology in, 81, 89 transactions in, 4, 26, 92 tuples (rows) in, 5, 13ï¿½14 views in, 30 vs. graph databases, 27, 112 vs. object-oriented databases, 6 XML support in, 146 relationships, 25, 111ï¿½121 dangling, 114 direction of, 113, 116, 118 in RDBMS, 112 properties of, 113ï¿½115 traversing, 111ï¿½117 RelaxNG, 146 replica sets, 91, 93, 96 replication factor, 58
 
-in column-family databases, 103 in Riak, 84 replications, 37 combining with sharding, 43 consistency of, 42, 50 durability of, 57 over clusters, 149 performance of, 39 version stamps in, 63­64 See also master-slave replication, peer-to-peer replication resilience and sharding, 39 read, 40­41 responsiveness, 48 Riak DB, 81­83 clusters in, 87 controlling CAP in, 86 eventual consistency in, 84 HTTP-based interface of, 85 link-walking in, 25 partial retrieval in, 25 replication factor in, 84 service wrapping in, 136 terminology in, 81 transactions in, 84 write tolerance of, 84 Riak Search, 85, 88 rich domain model, 113 rollbacks, automated, 145 routing, 120 rows (RDBMS). See tuples
+in column-family databases, 103 in Riak, 84 replications, 37 combining with sharding, 43 consistency of, 42, 50 durability of, 57 over clusters, 149 performance of, 39 version stamps in, 63ï¿½64 See also master-slave replication, peer-to-peer replication resilience and sharding, 39 read, 40ï¿½41 responsiveness, 48 Riak DB, 81ï¿½83 clusters in, 87 controlling CAP in, 86 eventual consistency in, 84 HTTP-based interface of, 85 link-walking in, 25 partial retrieval in, 25 replication factor in, 84 service wrapping in, 136 terminology in, 81 transactions in, 84 write tolerance of, 84 Riak Search, 85, 88 rich domain model, 113 rollbacks, automated, 145 routing, 120 rows (RDBMS). See tuples
 S
 scaffolding code, 126 scaling, 95
 horizontal, 149 for reads, 94, 96 for writes, 96
 in column-family databases, 107 in document databases, 95 in graph databases, 119 vertical, 8
 
-Scatter-Gather pattern, 67 schemaless databases, 28­30, 148
-implicit schema of, 29 schema changes in, 128­132 schemas backward compatibility of, 126, 131 changing, 128­132 during development, 124, 126 implicit, 29 migrations of, 123­132 search engines, 138 security, 139 servers maintenance of, 94 processing on, 67 service-oriented architecture, 7 services, 136 and security, 139 decomposing database layer into, 151 decoupling between databases and, 7 over HTTP, 7 sessions affinity, 52 consistency of, 52, 63 expire keys for, 85 management of, 133 sticky, 52 storing, 57, 87 sharding, 37­38, 40, 149
+Scatter-Gather pattern, 67 schemaless databases, 28ï¿½30, 148
+implicit schema of, 29 schema changes in, 128ï¿½132 schemas backward compatibility of, 126, 131 changing, 128ï¿½132 during development, 124, 126 implicit, 29 migrations of, 123ï¿½132 search engines, 138 security, 139 servers maintenance of, 94 processing on, 67 service-oriented architecture, 7 services, 136 and security, 139 decomposing database layer into, 151 decoupling between databases and, 7 over HTTP, 7 sessions affinity, 52 consistency of, 52, 63 expire keys for, 85 management of, 133 sticky, 52 storing, 57, 87 sharding, 37ï¿½38, 40, 149
 and performance, 39 and resilience, 39 auto, 39 by customer location, 97 combining with replication, 43 in key-value databases, 86 in MongoDB, 96 in relational databases, 8 shared database integration, 4, 6 shopping carts expire keys for, 85 inconsistency in, 55
 
-persistence of, 133 storing, 87 shuffling, 70 SimpleDB, 99 inconsistency window of, 50 single server approach, 37­38 consistency of, 53 no partition tolerance in, 54 transactions in, 53 version stamps in, 63 single-threaded event processors, 145 snapshots, 142­143 social networks, 26, 120 relationships between nodes in, 117 Solr indexing engine, 88, 137, 141 split brain situation, 53 SQL (Structured Query Language), 5 SSTables (Cassandra), 103 stale data in cache, 50 in indexes/search engines, 138 reading, 56 standard column families (Cassandra), 101 sticky sessions, 52 storage models, 13 Strozzi, Carlo, 9 super column families (Cassandra), 101­102 super columns (Cassandra), 101 system transactions, 61
+persistence of, 133 storing, 87 shuffling, 70 SimpleDB, 99 inconsistency window of, 50 single server approach, 37ï¿½38 consistency of, 53 no partition tolerance in, 54 transactions in, 53 version stamps in, 63 single-threaded event processors, 145 snapshots, 142ï¿½143 social networks, 26, 120 relationships between nodes in, 117 Solr indexing engine, 88, 137, 141 split brain situation, 53 SQL (Structured Query Language), 5 SSTables (Cassandra), 103 stale data in cache, 50 in indexes/search engines, 138 reading, 56 standard column families (Cassandra), 101 sticky sessions, 52 storage models, 13 Strozzi, Carlo, 9 super column families (Cassandra), 101ï¿½102 super columns (Cassandra), 101 system transactions, 61
 T
 tables. See relational databases, relations in telemetric data from physical devices, 57 Terrastore DB, 91, 94 timestamps
-consistent notion of time for, 64 in column-family databases, 100 of last update, 63 transactional memory systems, 145 transactions, 50 ACID, 10, 19, 26, 28, 50, 56, 109, 114­115 across multiple operations, 92
+consistent notion of time for, 64 in column-family databases, 100 of last update, 63 transactional memory systems, 145 transactions, 50 ACID, 10, 19, 26, 28, 50, 56, 109, 114ï¿½115 across multiple operations, 92
 
-and performance, 53 atomic, 92, 104 business, 61 in graph databases, 28, 114­115 in key-value databases, 84, 88 in RDBMS, 4, 26, 92 in single server systems, 53 lack of support in NoSQL for, 10, 61 multioperation, 88 open during user interaction, 52 rolling back, 4 system, 61 tree structures, 117 triggers, 126 TTL (Time To Live), 108­109 tuples (RDBMS), 5, 13­14
+and performance, 53 atomic, 92, 104 business, 61 in graph databases, 28, 114ï¿½115 in key-value databases, 84, 88 in RDBMS, 4, 26, 92 in single server systems, 53 lack of support in NoSQL for, 10, 61 multioperation, 88 open during user interaction, 52 rolling back, 4 system, 61 tree structures, 117 triggers, 126 TTL (Time To Live), 108ï¿½109 tuples (RDBMS), 5, 13ï¿½14
 U
-updates atomic, 50, 61 conditional, 48, 62­63 consistency of, 47, 56, 61 lost, 47 merging, 48 timestamps of, 63­64
+updates atomic, 50, 61 conditional, 48, 62ï¿½63 consistency of, 47, 56, 61 lost, 47 merging, 48 timestamps of, 63ï¿½64
 user comments, 98 user preferences, 87 user profiles, 87, 98 user registrations, 98 user sessions, 57
 V
 vector clock, 64 version control systems, 126, 145
-distributed, 48, 64 version stamps, 52, 61­64 version vector, 64 views, 126 virtual columns, 126 Voldemort DB, 10, 82
+distributed, 48, 64 version stamps, 52, 61ï¿½64 version vector, 64 views, 126 virtual columns, 126 Voldemort DB, 10, 82
 W
 
 web services, 7 websites
-distributing pages for, 39 on large clusters, 149 publishing, 98 visitor counters for, 108 word processors, 3 write tolerance, 84 writes, 64 atomic, 104 conflicts of, 47­48 consistency of, 92 horizontal scaling for, 96 performance of, 91 quorums of, 58 separating from reads, 41 serializing, 47
+distributing pages for, 39 on large clusters, 149 publishing, 98 visitor counters for, 108 word processors, 3 write tolerance, 84 writes, 64 atomic, 104 conflicts of, 47ï¿½48 consistency of, 92 horizontal scaling for, 96 performance of, 91 quorums of, 58 separating from reads, 41 serializing, 47
 X
-XML (Extensible Markup Language), 7, 146 XML databases, 145­146 XML Schema language, 146 XPath language, 146 XQuery language, 146 XSLT (Extensible Stylesheet Language Transformations), 146
+XML (Extensible Markup Language), 7, 146 XML databases, 145ï¿½146 XML Schema language, 146 XPath language, 146 XQuery language, 146 XSLT (Extensible Stylesheet Language Transformations), 146
 Z
 ZooKeeper. See Apache ZooKeeper
-

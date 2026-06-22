@@ -1,3 +1,9 @@
+# Spec-Driven Development - The Complete Book
+
+> **Category:** 04_engineering_and_practices · **Language:** English
+
+---
+
 # Spec-Driven Development (SDD)
 
 ### The Complete Book: Specification-Guided Software Development in the Age of Artificial Intelligence

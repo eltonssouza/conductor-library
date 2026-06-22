@@ -1,3 +1,9 @@
+# An Elegant Puzzle
+
+> **Author(s):** Larson Â· **Category:** 11_management_product_process Â· **Language:** English
+
+---
+
 Summary
 There's a saying that people don't leave companies, they leave managers. Management is a key part of any organization, yet the discipline is often self-taught and unstructured. Getting to good solutions for complex management challenges can make the difference between fulfillment and frustration for teams, and, ultimately, between the success or failure of companies.
 Will Larson's An Elegant Puzzle orients around the particular challenges of engineering management--from sizing teams to managing technical debt to succession planning--and provides a path to the good solutions. Drawing from his experience at Digg, Uber, and Stripe, Will Larson has developed a thoughtful approach to engineering management that leaders of all levels at companies of all sizes can apply. An Elegant Puzzle balances structured principles and human-centric thinking to help any leader create more effective and rewarding organizations for engineers to thrive in.
@@ -8,7 +14,7 @@ He grew up in North Carolina, studied Computer Science at Centre College in Kent
 An Elegant Puzzle draws from the writing in his blog, Irrational Exuberance!, that he has been updating since graduating from college. It is currently, and will always be, a work in progress.
 @lethain www.lethain.com
 
-An Elegant Puzzle: Systems of Engineering Management © 2019 Will Larson
+An Elegant Puzzle: Systems of Engineering Management ï¿½ 2019 Will Larson
 All rights reserved. No part of this publication may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or any other information storage and retrieval system, without prior permission in writing from the publisher.
 First published in 2019 in hardcover in the United States of America by Stripe Press/Stripe Matter Inc.
 Stripe Press Ideas for progress San Francisco, California press.stripe.com
@@ -104,25 +110,25 @@ When I transitioned from supporting a team to supporting an organization, I star
 These questions were the gateway to the obscure art of organizational design. As I've gotten more exposure, I've come to believe that the fundamental challenge of organizational design is sizing teams. You'll find yourself sizing teams during reorganizations,1 to accommodate growth from hiring, and when considering how to support new projects. It'll be an unusual month that you won't consider some aspect of team design.
 While I'm skeptical that there exists a unified law of team sizing, I have iterated my requirements onto a useful framework that solves the majority of cases I encounter. That framework has in turn led to a standard playbook. Both are short, opinionated, and hopefully useful!
 The guiding principles I use for sizing teams are:
-· Managers should support six to eight
+ï¿½ Managers should support six to eight
 engineers
 
 This gives them enough time for active coaching, coordinating, and furthering their team's mission by writing strategies,2 leading change,3 and so on.
 Tech Lead Managers (TLMs). Managers supporting fewer than four engineers tend to function as TLMs, taking on a share of design and implementation work. For some folks this role can uniquely leverage their strengths, but it's a role with limited career opportunities. To progress as a manager, they'll want more time to focus on developing their management skills. Alternatively, to progress toward staff engineering roles, they'll find it difficult to spend enough time on the technical details.
 Coaches. Managers supporting more than eight or nine engineers typically act as coaches and safety nets for problems. They are too busy to actively invest in their team or their team's area of responsibility. It's reasonable to ask managers to support larger teams during the transition to a more stable configuration, but it is a bad status quo.
-· Managers-of-managers should support four
+ï¿½ Managers-of-managers should support four
 to six managers
 This gives them enough time to coach, to align with stakeholders, and to do a reasonable amount of investment in their organization. On the other hand, it will also keep them busy enough that they won't be tempted to create work for their team.
 Ramping up. Managers supporting fewer than four other managers should be in a period of active learning on either the
 
 problem domain or on transitioning from supporting engineers to supporting managers. In the steady state, this can lead to folks feeling underutilized, or being tempted to meddle in daily operations. Coaches. Similar to supporting a large team of engineers, supporting a large team of managers leaves you functioning purely as a problem-solving coach.
 Figure 2.2 A team composed of two working groups, an on-call rotation, and different tenured engineers.
-· On-call rotations want eight engineers
+ï¿½ On-call rotations want eight engineers
 For production on-call responsibilities,4 I've found that two-tier 24/7 support requires eight engineers. As teams holding their own pagers have become increasingly mainstream, this has become an
 
 important sizing constraint, and I try to ensure that every engineering team's steady state is eight people.
 Shared rotations. It is sometimes necessary to pool multiple teams together to reach the eight engineers necessary for a 24/7 on-call rotation. This is an effective intermediate step toward teams owning their own on-call rotations, but it is not a good longterm solution. Most folks find being on-call for components that they're unfamiliar with to be disproportionately stressful.
-· Small teams (fewer than four members) are
+ï¿½ Small teams (fewer than four members) are
 not teams
 I've sponsored quite a few teams of one or two people, and each time I've regretted it. To repeat: I have regretted it every single time. An important property of teams is that they abstract the complexities of the individuals that compose them. Teams with fewer than four individuals are a sufficiently leaky abstraction that they function indistinguishably from individuals. To reason about a small team's delivery, you'll have to know about each on-call shift, vacation, and interruption.
 They are also fragile, with one departure easily moving them from innovation back into toiling to maintain technical debt.
@@ -265,7 +271,7 @@ With that setup in place, create a rotation for people who are available to answ
 One specific tool that I've found extremely helpful here is an ownership registry, which allows you to look up who owns what, eliminating the frequent "Who owns X?" variety of question. You'll
 
 need this sort of thing to automate paging the right on-call rotation, so you might as well get two useful tools out of it!
-A similar variant of this is ad hoc meeting requests. The best tool that I've found for this is to block out a few large chunks of time each week to focus. This can range from telecommuting on Thursday, to blocking out Monday and Wednesday afternoons, to blocking out from 8­11 each morning. Experiment a bit and find something that works well for you.
+A similar variant of this is ad hoc meeting requests. The best tool that I've found for this is to block out a few large chunks of time each week to focus. This can range from telecommuting on Thursday, to blocking out Monday and Wednesday afternoons, to blocking out from 8ï¿½11 each morning. Experiment a bit and find something that works well for you.
 Finally, the one thing that I've found at companies with very few interruptions and have observed almost nowhere else: really great, consistently available documentation. It's probably even harder to bootstrap documentation into a non-documenting company than it is to bootstrap unit tests into a non-testing company, but the best solution to frequent interruptions I've seen is a culture of documentation, documentation reading, and a documentation search that actually works.
 There are a non-zero number of companies that do internal documentation well, but I'm less sure if there are a non-zero number of companies with more than 20 engineers that do this well. If you know any, please let me know so that I can pick their brains.
 In my opinion, probably the most important opportunity is designing your software to be flexible. I've described this as "fail open and layer policy"; the best system rewrite is the one that didn't happen, and if you can avoid baking in arbitrary policy decisions that will change frequently over time, then you are much more likely to be able to keep using a system for the long term.
@@ -478,7 +484,7 @@ However, if your team is struggling to align with stakeholders, or if you're str
 3.4 Metrics and baselines
 There is a moment in every company's growth when top-level planning shifts from discussing specific projects to talking about goals. This happens recursively across each scope of leadership, as areas of accountability become too broad or complex for their leaders to consistently understand every project's details.
 This can be a very empowering moment because goals decouple the "what" from the "how," but it can also be a confusing transition for everyone involved: writing clear goals takes a bit of practice.
-· Defining goals
+ï¿½ Defining goals
 Bad goals are indistinguishable from numbers. "Our p50 build time will be below two seconds," or "We'll finish eight large projects." You'll know a goal is just a number when you read it and aren't sure if it's ambitious or whether it matters.
 Good goals are a composition of four specific kinds of numbers:
 1. A target states where you want to reach.
@@ -488,7 +494,7 @@ Good goals are a composition of four specific kinds of numbers:
 
 Put these all together, and a well-structured goal takes the form of: "In Q3, we will reduce time to render our frontpage from 600ms (p95) to 300ms (p95). In Q2, render time increased from 500ms to 600ms."
 The two tests of an effective goal are whether someone who doesn't know much about an area can get a feel for a goal's degree of difficulty, and whether afterward they can evaluate if it was successfully achieved. If you define all four aspects, typically your goal will fulfill both criteria.
-· Investments and baselines
+ï¿½ Investments and baselines
 There are two particularly interesting kinds of goals: investments and baselines. Investments describe a future state that you want to reach, and baselines describe aspects of the present that you want to preserve.
 Imagine that you wanted to speed up your data pipeline. Your goal might be, "Core batch jobs should finish within three hours (p95) by the end of Q3. They currently take six hours (p95), and over the course of Q2 they got two hours slower." This is a well-structured goal, but it's also incomplete because you could likely reach that goal tomorrow by doubling the size of your cluster, which is probably not a desirable outcome.
 The best way to avoid such unintended outcomes is to pair your investment goals with baseline metrics, sometimes referred to as countervailing metrics. For the data pipeline example, a few of the baseline metrics might be:
@@ -497,7 +503,7 @@ Efficiency of running core batch jobs should not exceed current price of $0.05 p
 Core batch jobs should not increase alert load on teams operating or using the pipeline, which are currently alerting twice per week.
 Baseline metrics are useful for narrowing the solution space that you explore in order to accomplish your investment goals. They are also useful for identifying when you should pause pursuing your goals and instead invest in platform quality. For example, if you were making excellent progress toward launching a new feature but site stability has regressed below your baselines, this framework provides a structure to trigger rebalancing your priorities.
 Although your baselines will often be about preserving a current property, you can also decide to accept some degradation before you want to trigger reprioritization. Perhaps you're okay with costs increasing by 10 percent as long as your investment goals are accomplished. This kind of upfront clarity around trade-offs can be quite powerful.
-· Plans and contracts
+ï¿½ Plans and contracts
 The most common way to use goals is during a planning process. By agreeing on the mix of investment and baseline goals for each team, you're able to set clear expectations for a team while still giving them full ownership of how they'll satisfy the constraints. I've found that you should specify as few investment goals as
 
 possible, maybe three, and that those should be the focus of planning discussions.
@@ -546,17 +552,17 @@ Migrations are the only mechanism to effectively manage technical debt as your c
 The good news is that while migrations are hard, there is a pretty standard playbook that works remarkably well: de-risk, enable,
 
 then finish.
-· De-risk
+ï¿½ De-risk
 The first phase of a migration is de-risking it, and to do so as quickly and cheaply as possible. Write a design document and shop it with the teams that you believe will have the hardest time migrating. Iterate. Shop it with teams who have atypical patterns and edge cases. Iterate. Test it against the next six to twelve months of roadmap. Iterate.
 After you've evolved the design, the next step is to embed into the most challenging one or two teams, and work side by side with those teams to build, evolve, and migrate to the new system. Don't start with the easiest migrations, which can lead to a false sense of security.
 Effective de-risking is essential, because each team who endorses a migration is making a bet on you that you're going to get this damn thing done, and not leave them with a migration to an abandoned system that they have to revert to. If you leave one migration partially finished, people will be exceedingly suspicious of participating in the next.
-· Enable
+ï¿½ Enable
 Once you've validated the solution that solves the intended problem, it's time to start sharpening your tools. Many folks start migrations by generating tracking tickets for teams to implement,
 
 but it's better to slow down and build tooling to programmatically migrate the easy 90 percent.24 This radically reduces the migration's cost to the broader organization, which increases the organization's success rate and creates more future opportunities to migrate.
 Once you've handled as much of the migration programmatically as possible, figure out the self-service tooling and documentation that you can provide to allow teams to make the necessary changes without getting stuck. The best migration tools are incremental and reversible: folks should be able to immediately return to previous behavior if something goes wrong, and they should have the necessary expressiveness to de-risk their particular migration path.
 Documentation and self-service tooling are products, and they thrive under the same regime: sit down with some teams and watch them follow your instructions, then improve them. Find another team. Repeat. Spending an extra two days intentionally making your documentation clean and your tools intuitive can save years in large migrations. Do it!
-· Finish
+ï¿½ Finish
 The last phase of a migration is deprecating the legacy system that you've replaced. This requires getting to 100 percent adoption, and that can be quite challenging.
 Start by stopping the bleeding, which is ensuring that all newly written code uses the new approach. That can be installing a
 25
@@ -1517,27 +1523,27 @@ Figure 6.6 The phases of your recruiting pipeline.
 Most companies believe that they are constrained by funding, product-market fit, or hiring. Books have been written about each of those, and this will be a foray into hiring. In particular, it'll be a look at how to use the fundamental hiring diagnostic tool: the hiring funnel.
 6.4.1 Funnel fundamentals
 The hiring funnel consists of four major steps: identifying candidates, motivating them to apply, evaluating them for your company, and closing them on joining. Depending on your particular circumstances, any or all of these can be very challenging.
-· Identify
+ï¿½ Identify
 Candidates tend to come from three large buckets: inbound, sourced, and referrals. Slower-growing and early companies tend to rely heavily on referrals, whereas fast-growing companies tend to exhaust their supply of referrals and to rely more heavily on sourcing and inbound.
 Inbound are candidates who apply to you directly. These come from your jobs website, often administered using an applicant
 
 tracking system like Greenhouse or Lever, or from job postings on LinkedIn and other job sites. Inbound tends to be high volume and low quality. The exception is for companies with powerful external brands, typically the culmination of strong product, reputation, and outreach.
 Sourced are candidates whom you proactively find and engage. The most common approaches are using LinkedIn, visiting colleges, and networking at conferences and meetups.
 Referrals are candidates whom someone at your company already knows, typically previous coworkers or friends who attended college together. This tends to be the primary source of hires for smaller companies. At most companies, referrals are the most efficient source of candidates, sporting the highest rate of interviews that lead to job offers.
-· Motivate
+ï¿½ Motivate
 Once you've identified candidates you want to consider joining with your company, you need to motivate them to come interview! Some companies prefer to view this phase as a filter to weed out folks who are insufficiently passionate about their work, but I've not found that approach very effective. Rather, that approach seems to mostly filter for candidates willing to represent enthusiasm, as opposed to finding authentic passion. Instead, the formula that I've found most effective is pretty simple:
 Spend time. Have the people the candidate would work with spend time with them. Grab coffee with them, talk about the
 
 projects they're working on, and get them excited about learning from each other.
 Clearly define the role. Tell the candidate about what they'd be doing, being both very honest and a bit optimistic. That is to say, always give an accurate description of the work, but try to find the best frame for describing the work.
-· Evaluate
+ï¿½ Evaluate
 Once you're blessed with individuals who want to consider working with you, the next phase is to ensure that they'll be successful additions to your team. This phase is tricky because you're balancing quite a few objectives, some of which are in conflict:
 Certainty. You want to be as confident as possible that the candidate will be a success in your company. Letting employees go can be hard on morale, and it takes a great deal of time to do well.
 Candidate experience. You want candidates' motivation to join your company to increase as they're evaluated, not decrease. One of the worst possible outcomes of your hiring funnel is that you identify folks you want to join your company, but they're no longer interested in being part of it.
 Efficiency. You also want to minimize the amount of time invested by both your team and the candidate. How you think about this can lead to significant asymmetries, such as takehome assignments that require significant candidate time but
 
 little in-house time for evaluation (well, in principle anyway, since it seems like most folks find take-home assignments quite slow to review thoroughly).
-· Close
+ï¿½ Close
 This is similar to the motivate phase, but now instead of asking them to commit a day, you're asking them to commit a couple years of their life. Many, many factors come in to play, from compensation packages to benefits, to making them feel needed. Because this is the final step, doing well here is an especially important factor in your funnel efficiency.
 When you want to start operationalizing your hiring process, the first step is to craft a process for how candidates will flow through this funnel.
 6.4.2 Instrument and optimize
@@ -2270,4 +2276,3 @@ Chapter 7: Appendix; Papers I've found very useful
 StillAllonOneServer-PerforceatScale.pdf 29. https://ai.google/research/pubs/pub41342 30. http://www.stroustrup.com/sofsem10.pdf 31. https://static.googleusercontent.com/media/research.google.com/en/
 
 32. http://worrydream.com/refs/Brooks-NoSilverBullet.pdf 33. https://people.eecs.berkeley.edu/~brewer/cs262/unix.pdf
-

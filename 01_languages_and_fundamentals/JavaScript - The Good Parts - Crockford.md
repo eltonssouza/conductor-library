@@ -1,3 +1,9 @@
+# JavaScript - The Good Parts
+
+> **Author(s):** Crockford Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 JavaScript: The Good Parts
 
 Other resources from O'Reilly
@@ -22,10 +28,10 @@ Safari Bookshelf (safari.oreilly.com) is the premier online reference library fo
 
 JavaScript: The Good Parts
 Douglas Crockford
-Beijing · Cambridge · Farnham · Köln · Sebastopol · Taipei · Tokyo
+Beijing ï¿½ Cambridge ï¿½ Farnham ï¿½ Kï¿½ln ï¿½ Sebastopol ï¿½ Taipei ï¿½ Tokyo
 
 JavaScript: The Good Parts by Douglas Crockford
-Copyright © 2008 Yahoo! Inc. All rights reserved. Printed in the United States of America.
+Copyright ï¿½ 2008 Yahoo! Inc. All rights reserved. Printed in the United States of America.
 Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472.
 O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (safari.oreilly.com). For more information, contact our corporate/institutional sales department: (800) 998-9938 or corporate@oreilly.com.
 
@@ -291,8 +297,8 @@ Constant width bold
 Indicates commands or other text that should be typed literally by the user.
 Using Code Examples
 This book is here to help you get your job done. In general, you may use the code in this book in your programs and documentation. You do not need to contact us for permission. For example, writing a program that uses several chunks of code from this book does not require permission. Selling or distributing a CD-ROM of examples from O'Reilly books does require permission. Answering a question by citing this book and quoting example code does not require permission. Incorporating a significant amount of example code from this book into your product's documentation does require permission. We appreciate, but do not require, attribution. An attribution usually includes the title, author, publisher, and ISBN. For example: "JavaScript: The Good Parts by Douglas Crockford. Copyright 2008 Yahoo! Inc., 978-0-596-51774-8." If you feel your use of code examples falls outside fair use or the permission given here, feel free to contact us at permissions@oreilly.com.
-Safari® Books Online
-When you see a Safari® Books Online icon on the cover of your favorite technology book, that means the book is available online through the O'Reilly Network Safari Bookshelf. Safari offers a solution that's better than e-books. It's a virtual library that lets you easily search thousands of top tech books, cut and paste code samples, download chapters, and find quick answers when you need the most accurate, current information. Try it for free at http://safari.oreilly.com.
+Safariï¿½ Books Online
+When you see a Safariï¿½ Books Online icon on the cover of your favorite technology book, that means the book is available online through the O'Reilly Network Safari Bookshelf. Safari offers a solution that's better than e-books. It's a virtual library that lets you easily search thousands of top tech books, cut and paste code samples, download chapters, and find quick answers when you need the most accurate, current information. Try it for free at http://safari.oreilly.com.
 xii | Preface
 
 How to Contact Us
@@ -362,8 +368,8 @@ Grammar 2
 
 I know it well: I read it in the grammar long ago. --William Shakespeare, The Tragedy of Titus Andronicus
 This chapter introduces the grammar of the good parts of JavaScript, presenting a quick overview of how the language is structured. We will represent the grammar with railroad diagrams. The rules for interpreting these diagrams are simple:
-· You start on the left edge and follow the tracks to the right edge. · As you go, you will encounter literals in ovals, and rules or descriptions in
-rectangles. · Any sequence that can be made by following the tracks is legal. · Any sequence that cannot be made by following the tracks is not legal. · Railroad diagrams with one bar at each end allow whitespace to be inserted
+ï¿½ You start on the left edge and follow the tracks to the right edge. ï¿½ As you go, you will encounter literals in ovals, and rules or descriptions in
+rectangles. ï¿½ Any sequence that can be made by following the tracks is legal. ï¿½ Any sequence that cannot be made by following the tracks is not legal. ï¿½ Railroad diagrams with one bar at each end allow whitespace to be inserted
 between any pair of tokens. Railroad diagrams with two bars at each end do not. The grammar of the good parts presented in this chapter is significantly simpler than the grammar of the whole language.
 Whitespace
 Whitespace can take the form of formatting characters or comments. Whitespace is usually insignificant, but it is occasionally necessary to use whitespace to separate sequences of characters that would otherwise be combined into a single token. For example, in:
@@ -445,7 +451,7 @@ E
 -
 
 If a number literal has an exponent part, then the value of the literal is computed by multiplying the part before the e by 10 raised to the power of the part after the e. So 100 and 1e2 are the same number.
-Negative numbers can be formed by using the ­ prefix operator.
+Negative numbers can be formed by using the ï¿½ prefix operator.
 The value NaN is a number value that is the result of an operation that cannot produce a normal result. NaN is not equal to any value, including itself. You can detect NaN with the isNaN(number) function.
 The value Infinity represents all values greater than 1.79769313486231570e+308.
 Numbers have methods (see Chapter 8). JavaScript has a Math object that contains a set of methods that act on numbers. For example, the Math.floor(number) method can be used to convert a number into an integer.
@@ -567,11 +573,11 @@ else
 
 block
 
-Here are the falsy values: · false · null
+Here are the falsy values: ï¿½ false ï¿½ null
 
 Statements | 11
 
-· undefined · The empty string '' · The number 0 · The number NaN All other values are truthy, including true, the string 'false', and all objects.
+ï¿½ undefined ï¿½ The empty string '' ï¿½ The number 0 ï¿½ The number NaN All other values are truthy, including true, the string 'false', and all objects.
 
 switch statement
 
@@ -794,10 +800,10 @@ refinement
 expression expression expression
 
 The simplest expressions are a literal value (such as a string or number), a variable, a built-in value (true, false, null, undefined, NaN, or Infinity), an invocation expression preceded by new, a refinement expression preceded by delete, an expression wrapped in parentheses, an expression preceded by a prefix operator, or an expression followed by:
-· An infix operator and another expression
-· The ? ternary operator followed by another expression, then by :, and then by yet another expression
-· An invocation
-· A refinement
+ï¿½ An infix operator and another expression
+ï¿½ The ? ternary operator followed by another expression, then by :, and then by yet another expression
+ï¿½ An invocation
+ï¿½ A refinement
 The ? ternary operator takes three operands. If the first operand is truthy, it produces the value of the second operand. But if the first operand is falsy, it produces the value of the third operand.
 
 Expressions | 15
@@ -1319,7 +1325,7 @@ Now, instead of assigning a function to onclick, we define a function and immedi
 Closure | 39
 
 Callbacks
-Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server's response. The naïve way to write that would be:
+Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server's response. The naï¿½ve way to write that would be:
 request = prepare_the_request( ); response = send_request_synchronously(request); display(response);
 The problem with this approach is that a synchronous request over the network will leave the client in a frozen state. If either the network or the server is slow, the degradation in responsiveness will be unacceptable.
 A better approach is to make an asynchronous request, providing a callback function that will be invoked when the server's response is received. An asynchronous function returns immediately, so the client isn't blocked:
@@ -1456,7 +1462,7 @@ The new function object is given a prototype property whose value is an object c
 Function.method('new', function ( ) {
 // Create a new object that inherits from the // constructor's prototype.
 var that = Object.create(this.prototype);
-// Invoke the constructor, binding ­this- to // the new object.
+// Invoke the constructor, binding ï¿½this- to // the new object.
 var other = this.apply(that, arguments);
 // If its return value isn't an object, // substitute the new object.
 return (typeof other === 'object' && other) || that; });
@@ -1882,7 +1888,7 @@ It means repeat zero or one time. The (...) indicates a capturing group. A captu
 (\/{0,3})
 The next factor is capturing group 2. \/ indicates that a / (slash) character should be matched. It is escaped with \ (backslash) so that it is not misinterpreted as the end of the regular expression literal. The suffix {0,3} indicates that the / will be matched 0 or 1 or 2 or 3 times:
 ([0-9.\-A-Za-z]+)
-The next factor is capturing group 3. It will match a host name, which is made up of one or more digits, letters, or . or ­. The ­ was escaped as \- to prevent it from being confused with a range hyphen:
+The next factor is capturing group 3. It will match a host name, which is made up of one or more digits, letters, or . or ï¿½. The ï¿½ was escaped as \- to prevent it from being confused with a range hyphen:
 (?::(\d+))?
 The next factor optionally matches a port number, which is a sequence of one or more digits preceded by a :. \d represents a digit character. The series of one or more digits will be capturing group 4:
 (?:\/([^?#]*))?
@@ -2453,7 +2459,7 @@ The concat method makes a new string by concatenating other strings together. It
 var s = 'C'.concat('a', 't'); // s is 'Cat'
 
 string.indexOf(searchString, position)
-The indexOf method searches for a searchString within a string. If it is found, it returns the position of the first matched character; otherwise, it returns ­1. The optional position parameter causes the search to begin at some specified position in the string:
+The indexOf method searches for a searchString within a string. If it is found, it returns the position of the first matched character; otherwise, it returns ï¿½1. The optional position parameter causes the search to begin at some specified position in the string:
 
 88 | Chapter 8: Methods
 
@@ -2524,7 +2530,7 @@ var character = { '<' : '&lt;', '>' : '&gt;', '&' : '&amp;', '"' : '&quot;'
 return function ( ) { return this.replace(/[<>&"]/g, function (c) { return character[c]; });
 }; }( )); alert("<&>".entityify( )); // &lt;&amp;&gt;
 string.search(regexp)
-The search method is like the indexOf method, except that it takes a regular expression object instead of a string. It returns the position of the first character of the first match, if there is one, or ­1 if the search fails. The g flag is ignored. There is no position parameter:
+The search method is like the indexOf method, except that it takes a regular expression object instead of a string. It returns the position of the first character of the first match, if there is one, or ï¿½1 if the search fails. The g flag is ignored. There is no position parameter:
 var text = 'and in it he says "Any damn fool could'; var pos = text.search(/["']/); // pos is 18
 string.slice(start, end)
 The slice method makes a new string by copying a portion of another string. If the start parameter is negative, it adds string.length to it. The end parameter is optional, and its default value is string.length. If the end parameter is negative, then string.length is added to it. The end parameter is one greater than the position of the last character. To get n characters starting at position p, use string.slice(p, p + n). Also see string.substring and array.slice, later and earlier in this chapter, respectively.
@@ -3002,7 +3008,7 @@ switch Statement
 A common error in switch statements is to forget to place a break statement after each case, resulting in unintended fall-through. JSLint expects that the statement before the next case or default is one of these: break, return, or throw.
 var Statement
 JavaScript allows var definitions to occur anywhere within a function. JSLint is stricter. JSLint expects that:
-· A var will be declared only once, and that it will be declared before it is used. · A function will be declared before it is used. · Parameters will not also be declared as vars. JSLint does not expect: · The arguments array to be declared as a var. · That a variable will be declared in a block. This is because JavaScript blocks do
+ï¿½ A var will be declared only once, and that it will be declared before it is used. ï¿½ A function will be declared before it is used. ï¿½ Parameters will not also be declared as vars. JSLint does not expect: ï¿½ The arguments array to be declared as a var. ï¿½ That a variable will be declared in a block. This is because JavaScript blocks do
 not have block scope. This can have unexpected consequences, so define all variables at the top of the function body.
 120 | Appendix C: JSLint
 
@@ -3058,14 +3064,14 @@ Not Looked For | 123
 
 HTML
 JSLint is able to handle HTML text. It can inspect the JavaScript content contained within <script>...</script> tags and event handlers. It also inspects the HTML content, looking for problems that are known to interfere with JavaScript:
-· All tag names must be in lowercase. · All tags that can take a close tag (such as </p>) must have a close tag. · All tags are correctly nested. · The entity &lt; must be used for literal <. JSLint is less anal than the sycophantic conformity demanded by XHTML, but more strict than the popular browsers. JSLint also checks for the occurrence of </ in string literals. You should always write <\/ instead. The extra backslash is ignored by the JavaScript compiler, but not by the HTML parser. Tricks like this should not be necessary, and yet they are. There is an option that allows use of uppercase tag names. There is also an option that allows the use of inline HTML event handlers.
+ï¿½ All tag names must be in lowercase. ï¿½ All tags that can take a close tag (such as </p>) must have a close tag. ï¿½ All tags are correctly nested. ï¿½ The entity &lt; must be used for literal <. JSLint is less anal than the sycophantic conformity demanded by XHTML, but more strict than the popular browsers. JSLint also checks for the occurrence of </ in string literals. You should always write <\/ instead. The extra backslash is ignored by the JavaScript compiler, but not by the HTML parser. Tricks like this should not be necessary, and yet they are. There is an option that allows use of uppercase tag names. There is also an option that allows the use of inline HTML event handlers.
 JSON
 JSLint can also check that JSON data structures are well formed. If the first character JSLint sees is { or [, then it strictly enforces the JSON rules. See Appendix E.
 Report
 If JSLint is able to complete its scan, it generates a function report. It lists the following for each function:
-· The line number on which it starts. · Its name. In the case of anonymous functions, JSLint will "guess" the name. · The parameters. · Closure: the variables and parameters that are declared in the function that are
-used by its inner functions. · Variables: the variables declared in the function that are used only by the function. · Unused: the variables that are declared in the function that are not used. This
-may be an indication of an error. · Outer: variables used by this function that are declared in another function. · Global: global variables that are used by this function. · Label: statement labels that are used by this function. The report will also include a list of all of the member names that were used.
+ï¿½ The line number on which it starts. ï¿½ Its name. In the case of anonymous functions, JSLint will "guess" the name. ï¿½ The parameters. ï¿½ Closure: the variables and parameters that are declared in the function that are
+used by its inner functions. ï¿½ Variables: the variables declared in the function that are used only by the function. ï¿½ Unused: the variables that are declared in the function that are not used. This
+may be an indication of an error. ï¿½ Outer: variables used by this function that are declared in another function. ï¿½ Global: global variables that are used by this function. ï¿½ Label: statement labels that are used by this function. The report will also include a list of all of the member names that were used.
 124 | Appendix C: JSLint
 
 Appendix D
@@ -3895,7 +3901,7 @@ confusing pluses and minuses, 122 ++ increment operator, 112, 118, 122
 confusing pluses and minuses, 122 += operator, 15 << left shift, 112 = operator, 15, 121 == operator, 106, 109, 121 === operator, 15, 106, 109 >> signed right shift, 112 >>> unsigned right shift, 112 ? ternary operator, 15 [ ] postfix subscript operator, 59 \ escape character, 8 ^ xor, 112 | or, 112 || operator, 17, 21 ~ not, 112 / operator, 16 /* */ form of block comments, 6 // comments, 6
 
 A
-adsafe option (JSLint), 117 Apply Invocation Pattern, 30 arguments, 31 arguments array, 106 array literals, 18 array.concat( ) method, 78 array.join( ) method, 78 array.pop( ) method, 79 Array.prototype, 62 array.push( ) method, 79 array.reverse( ) method, 79 array.shift( ) method, 79 array.slice( ) method, 80 array.sort( ) method, 80­82 array.splice( ) method, 82­83 array.unshift( ) method, 83 arrays, 58­64, 105
+adsafe option (JSLint), 117 Apply Invocation Pattern, 30 arguments, 31 arguments array, 106 array literals, 18 array.concat( ) method, 78 array.join( ) method, 78 array.pop( ) method, 79 Array.prototype, 62 array.push( ) method, 79 array.reverse( ) method, 79 array.shift( ) method, 79 array.slice( ) method, 80 array.sort( ) method, 80ï¿½82 array.splice( ) method, 82ï¿½83 array.unshift( ) method, 83 arrays, 58ï¿½64, 105
 appending new elements, 60 arrays of arrays, 63 cells of an empty matrix, 64 confusion, 61 delete operator, 60 dimensions, 63 elements of, 59 enumeration, 60 length property, 59 literals, 58 methods, 62 Object.create method, 63 splice method, 60 typeof operator, 61 undefined value, 63 assignment, 121
 
 We'd like to hear your suggestions for improving our indexes. Send email to index@oreilly.com.
@@ -3904,9 +3910,9 @@ We'd like to hear your suggestions for improving our indexes. Send email to inde
 
 assignment statement, 121 augmenting types, 32
 B
-beautiful features, 98­100 bitwise operators, 112, 122 bitwise option (JSLint), 117 block comments, 6, 96 block scope, 36, 99 blockless statements, 111 blocks, 10, 119 booleans, 20 braces, 96 break statement, 12, 14, 122 browser option (JSLint), 117 built-in value, 15
+beautiful features, 98ï¿½100 bitwise operators, 112, 122 bitwise option (JSLint), 117 block comments, 6, 96 block scope, 36, 99 blockless statements, 111 blocks, 10, 119 booleans, 20 braces, 96 break statement, 12, 14, 122 browser option (JSLint), 117 built-in value, 15
 C
-callbacks, 40 cap option (JSLint), 117 cascades, 42 case clause, 12 casting, 46 catch clause, 13 character type, 8 closure, 37­39 code quality tool (see JSLint) comma operator, 119 comments, 6, 96 concatenation, 104 constructor functions, 123
+callbacks, 40 cap option (JSLint), 117 cascades, 42 case clause, 12 casting, 46 catch clause, 13 character type, 8 closure, 37ï¿½39 code quality tool (see JSLint) comma operator, 119 comments, 6, 96 concatenation, 104 constructor functions, 123
 hazards, 49 new prefix, forgetting to include, 49 Constructor Invocation Pattern, 29 constructor property, 47 constructors, 30 defining, 47 continue statement, 111, 122 curly braces, 10 curry method, 43
 D
 debug option (JSLint), 117 deentityify method, 40 delegation, 23 delete operator, 24, 60 differential inheritance, 51 do statement, 10, 13 Document Object Model (DOM), 34 durable object, 55
@@ -3914,19 +3920,19 @@ debug option (JSLint), 117 deentityify method, 40 delegation, 23 delete operator
 
 E
 ECMAScript Language Specification, 115 empty string, 12 enumeration, 24 eqeqeq option (JSLint), 117 equality operators, 109 escape character, 8 escape sequences, 9 eval function, 110, 122
-security problems, 139 evil option (JSLint), 117 exceptions, 32 executable statements, 10 expression statements, 120 expressions, 15­17
+security problems, 139 evil option (JSLint), 117 exceptions, 32 executable statements, 10 expression statements, 120 expressions, 15ï¿½17
 ? ternary operator, 15 built-in value, 15 infix operator, 15 invocation, 15 literal value, 15 operator precedence, 16 preceded by prefix operator, 15 refinement, 15 refinement expression preceded by
 delete, 15 variables, 15 wrapped in parentheses, 15
 F
 factorial, 35, 45 Fibonacci numbers, 44 floating-point numbers, 104 for in statement, 13, 120
 objects, 24 for statements, 10, 12, 119 forin option (JSLint), 117 fragment option (JSLint), 117 Function constructor, 47, 111 function invocation, 95 Function Invocation Pattern, 28 function object, when object is created, 47 function statement versus function
-expression, 113 function.apply( ) method, 84 functional pattern (inheritance), 52­55 functions, 19, 26­45, 116
+expression, 113 function.apply( ) method, 84 functional pattern (inheritance), 52ï¿½55 functions, 19, 26ï¿½45, 116
 arguments, 31 augmenting types, 32 callbacks, 40
 
-cascades, 42 closure, 37­39 curry method, 43 exceptions, 32 general pattern of a module, 41 invocation, 27­30
-Apply Invocation Pattern, 30 Constructor Invocation Pattern, 29 Function Invocation Pattern, 28 Method Invocation Pattern, 28 new prefix, 29 invocation operator, 28 invoked with constructor invocation, 47 literals, 27 memoization, 44 modules, 40­42 objects, 26 recursive, 34­36 Document Object Model (DOM), 34 Fibonacci numbers, 44 tail recursion optimization, 35 Towers of Hanoi puzzle, 34 return statement, 31 scope, 36 that produce objects, 52 var statements, 10
+cascades, 42 closure, 37ï¿½39 curry method, 43 exceptions, 32 general pattern of a module, 41 invocation, 27ï¿½30
+Apply Invocation Pattern, 30 Constructor Invocation Pattern, 29 Function Invocation Pattern, 28 Method Invocation Pattern, 28 new prefix, 29 invocation operator, 28 invoked with constructor invocation, 47 literals, 27 memoization, 44 modules, 40ï¿½42 objects, 26 recursive, 34ï¿½36 Document Object Model (DOM), 34 Fibonacci numbers, 44 tail recursion optimization, 35 Towers of Hanoi puzzle, 34 return statement, 31 scope, 36 that produce objects, 52 var statements, 10
 G
-global declarations, 116 global object, 140 global variables, 25, 97, 101, 116 glovar option (JSLint), 117 good style, 95 grammar, 5­19
+global declarations, 116 global object, 140 global variables, 25, 97, 101, 116 glovar option (JSLint), 117 good style, 95 grammar, 5ï¿½19
 expressions (see expressions) functions, 19 literals, 17 names, 6 numbers, 7
 methods, 8 negative, 8 object literals, 17 rules for interpreting diagrams, 5 statements (see statements) strings, 8 immutability, 9 length property, 9 whitespace, 5
 
@@ -3934,11 +3940,11 @@ H
 hasOwnProperty method, 23, 107, 108 HTML
 <script> tags (JSON), 137 innerHTML property, 140 JSLint, 124
 I
-if statements, 10, 119 implied global, 102 Infinity, 7, 8, 15 inheritance, 3, 46­57
-differential, 51 functional pattern, 52­55 object specifiers, 50 parts, 55­57 prototypal pattern (inheritance), 50 pseudoclassical pattern, 47­49, 54 inherits method, 49 innerHTML property, 140 instances, creating, 48 invocation operator, 17, 28 invocations, 95
+if statements, 10, 119 implied global, 102 Infinity, 7, 8, 15 inheritance, 3, 46ï¿½57
+differential, 51 functional pattern, 52ï¿½55 object specifiers, 50 parts, 55ï¿½57 prototypal pattern (inheritance), 50 pseudoclassical pattern, 47ï¿½49, 54 inherits method, 49 innerHTML property, 140 instances, creating, 48 invocation operator, 17, 28 invocations, 95
 J
-JavaScript analyzing, 3­4 standard, 4 why use, 2
-JavaScript Object Notation (see JSON) JSLint, 4, 115­124
+JavaScript analyzing, 3ï¿½4 standard, 4 why use, 2
+JavaScript Object Notation (see JSON) JSLint, 4, 115ï¿½124
 -- decrement operator, 122 confusing pluses and minuses, 122
 - operator, confusing pluses and minuses, 122
 != operator, 121 + operator, confusing pluses and
@@ -3949,7 +3955,7 @@ Index | 149
 
 JSLint (continued) continue statement, 122 eval function, 122 expression statements, 120 for in statement, 120 for statements, 119 function report, 124 functions, 116 global declarations, 116 global variables, 116 HTML, 124 if statements, 119 JSON, 124 labels, 122 line breaking, 118 members, 116 new prefix, 123 options, 117 regular expressions, 123 return statement, 122 semicolons, 118 switch statements, 120 throw statement, 122 var statements, 120 variables, 116 void, 123 where to find, 115 with statement, 121
 JSON, 124 JSON (JavaScript Object Notation), 3,
-136­140 / character, 137 array, 136 eval function, 139 HTML <script> tags, 137 innerHTML property, 140 JSLint, 124 numbers, 137 object, 136 string, 137 syntax, 136­139 text example, 138 using securely, 139 JSON.parse method, 139
+136ï¿½140 / character, 137 array, 136 eval function, 139 HTML <script> tags, 137 innerHTML property, 140 JSLint, 124 numbers, 137 object, 136 string, 137 syntax, 136ï¿½139 text example, 138 using securely, 139 JSON.parse method, 139
 K
 K&R style, 96 Kleene, Stephen, 65
 150 | Index
@@ -3957,44 +3963,44 @@ K&R style, 96 Kleene, Stephen, 65
 L
 labeled statement, 14 labels, 122 language, structure (see grammar) laxbreak option (JSLint), 117 length property (arrays), 59 line breaking, 118 line comments, 96 line-ending comments, 6 looping statement, 12, 14 loosely typed language, 46
 M
-Math object, 8 memoization, 44 message property, 14 Method Invocation Pattern, 28 method method, 49 methods, 78­93
-array.concat( ), 78 array.join( ), 78 array.pop( ), 79 array.push( ), 79 array.reverse( ), 79 array.shift( ), 79 array.slice( ), 80 array.sort( ), 80­82 array.splice( ), 82­83 array.unshift ( ), 83 arrays, 62 function.apply( ), 84 number.toExponential( ), 84 number.toFixed( ), 85 number.toPrecision( ), 85 number.toString( ), 85 object.hasOwnProperty( ), 86 regexp.exec( ), 65, 86 regexp.test( ), 65, 88 string.charAt( ), 88 string.charCodeAt( ), 88 string.concat( ), 88 String.fromCharCode( ), 93 string.indexOf( ), 88 string.lastIndexOf( ), 89 string.localeCompare( ), 89 string.match( ), 65, 89 string.replace( ), 65, 90 string.search( ), 65, 91 string.slice( ), 91 string.split( ), 65, 91
+Math object, 8 memoization, 44 message property, 14 Method Invocation Pattern, 28 method method, 49 methods, 78ï¿½93
+array.concat( ), 78 array.join( ), 78 array.pop( ), 79 array.push( ), 79 array.reverse( ), 79 array.shift( ), 79 array.slice( ), 80 array.sort( ), 80ï¿½82 array.splice( ), 82ï¿½83 array.unshift ( ), 83 arrays, 62 function.apply( ), 84 number.toExponential( ), 84 number.toFixed( ), 85 number.toPrecision( ), 85 number.toString( ), 85 object.hasOwnProperty( ), 86 regexp.exec( ), 65, 86 regexp.test( ), 65, 88 string.charAt( ), 88 string.charCodeAt( ), 88 string.concat( ), 88 String.fromCharCode( ), 93 string.indexOf( ), 88 string.lastIndexOf( ), 89 string.localeCompare( ), 89 string.match( ), 65, 89 string.replace( ), 65, 90 string.search( ), 65, 91 string.slice( ), 91 string.split( ), 65, 91
 
-string.substring( ), 92 string.toLocaleLowerCase( ), 92 string.toLocaleUpperCase( ), 92 string.toLowerCase( ), 92 string.toUpperCase( ), 93 that work with regular expressions, 65 modules, 40­42 general pattern, 41 multiple statements, 95 my object, 53
+string.substring( ), 92 string.toLocaleLowerCase( ), 92 string.toLocaleUpperCase( ), 92 string.toLowerCase( ), 92 string.toUpperCase( ), 93 that work with regular expressions, 65 modules, 40ï¿½42 general pattern, 41 multiple statements, 95 my object, 53
 N
 name property, 14 names, 6 NaN (not a number), 7, 8, 12, 15, 105 negative numbers, 8 new operator, 15, 47, 114, 123
 forgetting to include, 49 functions, 29 newline, 73 nomen option (JSLint), 117 null, 11, 15, 20, 106 number literal, 8 number.toExponential( ) method, 84 number.toFixed( ) method, 85 number.toPrecision( ) method, 85 number.toString( ) method, 85 numbers, 7, 20 methods, 8 negative, 8 numbers object, 59
 O
-object literals, 17, 59 object specifiers, 50 Object.create method, 53, 63 object.hasOwnProperty( ) method, 86 Object.prototype, 62 objects, 20­25, 107
+object literals, 17, 59 object specifiers, 50 Object.create method, 53, 63 object.hasOwnProperty( ) method, 86 Object.prototype, 62 objects, 20ï¿½25, 107
 || operator, 21 creating new, 22 defined, 20 delegation, 23 delete operator, 24 durable, 55 enumeration, 24 for in statement, 24 functions, 26 global variables, 25 hasOwnProperty method, 23
 
 literals, 20 properties, 21 property on prototype chain, 23 prototype, 22
 link, 23 reference, 22 reflection, 23 retrieving values, 21 undefined, 21, 23 updating values, 22 on option (JSLint), 117 operator precedence, 16
 P
-parseInt function, 104 passfail option (JSLint), 117 pi as simple constant, 99 plusplus option (JSLint), 117 Pratt, Vaughn, 98 private methods, 53 privileged methods, 53 problematic features of JavaScript, 101­114
+parseInt function, 104 passfail option (JSLint), 117 pi as simple constant, 99 plusplus option (JSLint), 117 Pratt, Vaughn, 98 private methods, 53 privileged methods, 53 problematic features of JavaScript, 101ï¿½114
 + operator, 104 arrays, 105 bitwise operators, 112 blockless statements, 111 continue statement, 111 equality operators, 109 eval function, 110 falsy values, 106 floating-point numbers, 104 function statement versus function
 expression, 113 global variables, 101 hasOwnProperty method, 107 increment and decrement operators, 112 NaN (not a number), 105 new operator, 114 objects, 107 parseInt function, 104 reserved words, 103 scope, 102 semicolons, 102 single statement form, 111 string argument form, 111 switch statement, 111 typed wrappers, 114 typeof operator, 103 Unicode, 103 void, 114 with statement, 110
 Index | 151
 
-prototypal inheritance, 3 prototypal inheritance language, 29 prototypal pattern, 50 prototype property, 47 prototypes of basic types, 33 pseudoclass, creating, 48 pseudoclassical pattern (inheritance), 47­49,
+prototypal inheritance, 3 prototypal inheritance language, 29 prototypal pattern, 50 prototype property, 47 prototypes of basic types, 33 pseudoclass, creating, 48 pseudoclassical pattern (inheritance), 47ï¿½49,
 54 punctuation characters or operators, 118
 R
-railroad diagrams, 67 recursion, 34­36
-Document Object Model (DOM), 34 Fibonacci numbers, 44 tail recursion optimization, 35 Towers of Hanoi puzzle, 34 reflection, 23 RegExp objects, properties, 72 regexp.exec( ) method, 65, 86 regexp.test( ) method, 65, 88 regular expressions, 65­77, 123 $ character, 69 (...), 68 (?! prefix, 75 (?: prefix, 75 (?:...)?, 70 (?= prefix, 75 ? character, 67 \1 character, 74 \b character, 73, 74 \d, 70 \D character, 73 \d character, 73 \f character, 73 \n character, 73 \r character, 73 \S character, 73 \s character, 73 \t character, 73 \u character, 73 \W character, 73 \w character, 73 ^ character, 67, 69 / character, 68 backslash character, 73­74 capturing group, 68, 74 carriage return character, 73 construction, 70­72
+railroad diagrams, 67 recursion, 34ï¿½36
+Document Object Model (DOM), 34 Fibonacci numbers, 44 tail recursion optimization, 35 Towers of Hanoi puzzle, 34 reflection, 23 RegExp objects, properties, 72 regexp.exec( ) method, 65, 86 regexp.test( ) method, 65, 88 regular expressions, 65ï¿½77, 123 $ character, 69 (...), 68 (?! prefix, 75 (?: prefix, 75 (?:...)?, 70 (?= prefix, 75 ? character, 67 \1 character, 74 \b character, 73, 74 \d, 70 \D character, 73 \d character, 73 \f character, 73 \n character, 73 \r character, 73 \S character, 73 \s character, 73 \t character, 73 \u character, 73 \W character, 73 \w character, 73 ^ character, 67, 69 / character, 68 backslash character, 73ï¿½74 capturing group, 68, 74 carriage return character, 73 construction, 70ï¿½72
 
-elements, 72­77 regexp choice, 72 regexp class, 75 regexp class escape, 76 regexp escape, 73­74 regexp factor, 73, 76 regexp group, 74 regexp quantifier, 76 regexp sequence, 72
-flags, 71 formfeed character, 73 matching digits, 70 matching URLs, 66­70 methods that work with, 65 negative lookahead group, 75 newline character, 73 noncapturing group, 67, 75 optional group, 68 optional noncapturing group, 70 positive lookahead group, 75 railroad diagrams, 67 repeat zero or one time, 68 simple letter class, 74 sloppy, 68 tab character, 73 Unicode characters, 73 reserved words, 7, 103 return statement, 14, 31, 122 rhino option (JSLint), 117
+elements, 72ï¿½77 regexp choice, 72 regexp class, 75 regexp class escape, 76 regexp escape, 73ï¿½74 regexp factor, 73, 76 regexp group, 74 regexp quantifier, 76 regexp sequence, 72
+flags, 71 formfeed character, 73 matching digits, 70 matching URLs, 66ï¿½70 methods that work with, 65 negative lookahead group, 75 newline character, 73 noncapturing group, 67, 75 optional group, 68 optional noncapturing group, 70 positive lookahead group, 75 railroad diagrams, 67 repeat zero or one time, 68 simple letter class, 74 sloppy, 68 tab character, 73 Unicode characters, 73 reserved words, 7, 103 return statement, 14, 31, 122 rhino option (JSLint), 117
 S
-says method, 53 scope, 10, 36, 102 semicolons, 102, 118 seqer object, 42 setInterval function, 111 setTimeout function, 111 Simplified JavaScript, 98 single statement form, 111 spec object, 52, 53 splice method (arrays), 60 statements, 10­15
+says method, 53 scope, 10, 36, 102 semicolons, 102, 118 seqer object, 42 setInterval function, 111 setTimeout function, 111 Simplified JavaScript, 98 single statement form, 111 spec object, 52, 53 splice method (arrays), 60 statements, 10ï¿½15
 blocks, 10 break, 12, 14 case clause, 12 catch clause, 13 do, 10, 13 executable, 10 execution order, 10
 
 152 | Index
 
 for, 10, 12 for in, 13 if, 10 labeled, 14 loop, 14 looping, 12 return, 14 switch, 10, 12, 14 then block, 10 throw, 14 try, 13 var, functions, 10 while, 10, 12 string argument form, 111 string literal, 8 String, augmenting with deentityify
 method, 40 string.charAt( ) method, 88 string.charCodeAt( ) method, 88 string.concat( ) method, 88 String.fromCharCode( ) method, 93 string.indexOf( ) method, 88 string.lastIndexOf( ) method, 89 string.localeCompare( ) method, 89 string.match( ) method, 65, 89 string.replace( ) method, 65, 90 string.search( ) method, 65, 91 string.slice( ) method, 91 string.split( ) method, 65, 91 string.substring( ) method, 92 string.toLocaleLowerCase( ) method, 92 string.toLocaleUpperCase( ) method, 92 string.toLowerCase( ) method, 92 string.toUpperCase( ) method, 93 strings, 8, 20
-empty, 12 immutability, 9 length property, 9 structure of language (see grammar) structured statements, 95 style, 94­97 block comments, 96 braces, 96 comments, 96 global variables, 97 good, 95 invocations, 95 K&R, 96 line comments, 96
+empty, 12 immutability, 9 length property, 9 structure of language (see grammar) structured statements, 95 style, 94ï¿½97 block comments, 96 braces, 96 comments, 96 global variables, 97 good, 95 invocations, 95 K&R, 96 line comments, 96
 
-multiple statements, 95 structured statements, 95 switch cases, 97 super methods, 49 superior method, 54 switch statement, 10, 12, 14, 97, 111, 120 syntax checker (see JSLint) syntax diagrams, 125­135
+multiple statements, 95 structured statements, 95 switch cases, 97 super methods, 49 superior method, 54 switch statement, 10, 12, 14, 97, 111, 120 syntax checker (see JSLint) syntax diagrams, 125ï¿½135
 T
 tail recursion optimization, 35 testing environment, 4 then block, 10 this keyword, 49 Thompson, Ken, 65 throw statement, 14, 122 Top Down Operator Precedence parser, 98 Towers of Hanoi puzzle, 34 trim method, 33 try statement, 13 typed wrappers, 114 TypeError exception, 21 typeof operator, 16, 61, 103, 106 types, 20
 prototypes of, 33
@@ -4017,4 +4023,3 @@ Its striking looks have been noted for millennia by scientists and artists. The 
 In response to Ford, Nabokov writes, "The unsophistication is all her own. She might have looked up John Abbot's prodigious representations of North American lepidoptera, 1797, or the splendid plates of 18th- and early-19th-century German lepidopterists. She might have traveled back some 33 centuries to the times of Tuthmosis IV or Amenophis III and, instead of the obvious scarab, found there frescoes with a marvelous Egyptian butterfly (subtly combining the pattern of our Painted Lady and the body of an African ally of the Monarch)."
 While the Plain Tiger's beauty is part of its charm, its looks can also be deadly. During its larval stages, the butterfly ingests alkaloids that are poisonous to birds-- its main predator--which are often attracted to the insect's markings. After ingesting the Plain Tiger, a bird will vomit repeatedly--occasionally fatally. If the bird lives, it will let other birds know to avoid the insect, which can also be recognized by its leisurely, meandering pattern of flying low to the earth.
 The cover image is from Dover's Animals. The cover font is Adobe ITC Garamond. The text font is Linotype Birka; the heading font is Adobe Myriad Condensed; and the code font is LucasFont's TheSans Mono Condensed.
-

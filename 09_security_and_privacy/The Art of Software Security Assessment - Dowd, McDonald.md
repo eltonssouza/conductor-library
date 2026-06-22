@@ -1,3 +1,9 @@
+# The Art of Software Security Assessment
+
+> **Author(s):** Dowd, McDonald Â· **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
 The Art of Software Security Assessment - Identifying and
 Preventing Software Vulnerabilities
 
@@ -45,7 +51,7 @@ Coverage includes
 6
 
 The Art of Software Security Assessment - Identifying and Preventing Software Vulnerabilities
-· Code auditing: theory, practice, proven methodologies, and secrets of the trade · Bridging the gap between secure software design and post-implementation review · Performing architectural assessment: design review, threat modeling, and operational review · Identifying vulnerabilities related to memory management, data types, and malformed data · UNIX/Linux assessment: privileges, files, and processes · Windows-specific issues, including objects and the filesystem · Auditing interprocess communication, synchronization, and state · Evaluating network software: IP stacks, firewalls, and common application protocols · Auditing Web applications and technologies This book is an unprecedented resource for everyone who must deliver secure software or assure the safety of existing software: consultants, security specialists, developers, QA staff, testers, and administrators alike. Contents ABOUT THE AUTHORS xv PREFACE xvii ACKNOWLEDGMENTS xxi I Introduction to Software Security Assessment 1 SOFTWARE VULNERABILITY FUNDAMENTALS 3 2 DESIGN REVIEW 25 3 OPERATIONAL REVIEW 67 4 APPLICATION REVIEW PROCESS 91 II Software Vulnerabilities
+ï¿½ Code auditing: theory, practice, proven methodologies, and secrets of the trade ï¿½ Bridging the gap between secure software design and post-implementation review ï¿½ Performing architectural assessment: design review, threat modeling, and operational review ï¿½ Identifying vulnerabilities related to memory management, data types, and malformed data ï¿½ UNIX/Linux assessment: privileges, files, and processes ï¿½ Windows-specific issues, including objects and the filesystem ï¿½ Auditing interprocess communication, synchronization, and state ï¿½ Evaluating network software: IP stacks, firewalls, and common application protocols ï¿½ Auditing Web applications and technologies This book is an unprecedented resource for everyone who must deliver secure software or assure the safety of existing software: consultants, security specialists, developers, QA staff, testers, and administrators alike. Contents ABOUT THE AUTHORS xv PREFACE xvii ACKNOWLEDGMENTS xxi I Introduction to Software Security Assessment 1 SOFTWARE VULNERABILITY FUNDAMENTALS 3 2 DESIGN REVIEW 25 3 OPERATIONAL REVIEW 67 4 APPLICATION REVIEW PROCESS 91 II Software Vulnerabilities
 7
 
 The Art of Software Security Assessment - Identifying and Preventing Software Vulnerabilities
@@ -81,7 +87,7 @@ U.S. Corporate and Government Sales (800) 382-3419 corpsales@pearsontechgroup.co
 For sales outside the United States please contact:
 International Sales international@pearsoned.com
 Visit us on the Web: www.awprofessional.com
-Copyright © 2007 Pearson Education, Inc.
+Copyright ï¿½ 2007 Pearson Education, Inc.
 All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 Pearson Education, Inc. Rights and Contracts Department 75 Arlington Street, Suite 300 Boston, MA 02116 Fax: (617) 848-7047
 Text printed in the United States on recycled paper at Edwards Brothers in Ann Arbor, Michigan. First printing, November 2006
@@ -13192,7 +13198,7 @@ The second member, named ServerDispatchTable in this example, contains a pointer
 2. Examine the first argument; it points to a single pointer that points to an RPC_SERVER_INTERFACE structure.
 3. Follow the InterpreterInfo structure member in the RPC_SERVER_INTERFACE structure.
 4. Follow the DispatchTable memory in the MIDL_SERVER_INFO structure to the table of server routines.
-Voilà! You're done. Notice all the interesting information you pick up along the way, such as whether a callback function is passed to RpcServerRegisterIfEx(), endpoints associated with the server interface, format string information, and so on.
+Voilï¿½! You're done. Notice all the interesting information you pick up along the way, such as whether a callback function is passed to RpcServerRegisterIfEx(), endpoints associated with the server interface, format string information, and so on.
 
 7.8.7 COM
 The Component Object Model (COM) and Distributed Component Object Model (DCOM) facilities in Windows provide a framework for developing language- and location-independent components. These components can be created and accessed from within a process, between different processes on the same computer, or remotely over a network.
@@ -19875,7 +19881,7 @@ cryptographic signature(? [????.]) hash functions(? [????.]) originator validati
 
 The Art of Software Security Assessment - Identifying and Preventing Software Vulnerabilities
 DCE (Distirbuted Computing Environment) RPCs(? [????.]) 2nd(? [????.]) DCE (Distributed Computing Environment) RPCs(? [????.]) 2nd(? [????.]) DCOM (Distributed Component Object Model)(? [????.]) 2nd(? [????.]) 3rd(? [????.])
-access controls(? [????.]) Active X security(? [????.]) application audits(? [????.]) application identity(? [????.]) application registration(? [????.]) ATL (Active Template Library)(? [????.]) automation objects, fuzz testing(? [????.]) DCOM Configuration utility(? [????.]) impersonation(? [????.]) interface audits(? [????.]) MIDL (Microsoft Interface Definition Language)(? [????.]) subsystem access permissions(? [????.]) DCOM Configuration utility(? [????.]) DDE (Dynamic Data Exchange)(? [????.]) Windows messaging(? [????.]) DDE Management Library (DDEML) API(? [????.]) de Weger, Benne(? [????.]) deadlocks concurrent programming(? [????.]) 2nd(? [????.]) threading(? [????.]) debuggers, code auditing(? [????.]) DecodePointer( ) function(? [????.]) DecodeSystemPointer( ) function(? [????.]) Decoding Incorrect Byte Values listing (8-28)(? [????.]) decoding routines, RPCs (Remote Procedure Calls), UNIX(? [????.]) decoding, Unicode(? [????.]) decomposition, software design(? [????.]) default argument promotions(? [????.]) 2nd(? [????.]) default settings, insecure defaults(? [????.]) default site installations, Web-based applications(? [????.]) Default Switch Case Omission Vulnerability listing (7-24)(? [????.]) default type conversions(? [????.]) defense in depth(? [????.]) definition files, RPCs (Remote Procedure Calls), UNIX(? [????.]) DELETE method(? [????.]) delete payloads, ISAKMP (Internet Security Association and Key Management Protocol)(? [????.]) delete_session( ) function(? [????.]) Delivering Signals for Fun and Profitî(? [????.]) demilitarized zones (DMZs)(? [????.]) denial-of-service (DoS) attacks [See DoS (denial-of-service) attacks(? [????.]).] dependency alnalysis, code audits(? [????.])
+access controls(? [????.]) Active X security(? [????.]) application audits(? [????.]) application identity(? [????.]) application registration(? [????.]) ATL (Active Template Library)(? [????.]) automation objects, fuzz testing(? [????.]) DCOM Configuration utility(? [????.]) impersonation(? [????.]) interface audits(? [????.]) MIDL (Microsoft Interface Definition Language)(? [????.]) subsystem access permissions(? [????.]) DCOM Configuration utility(? [????.]) DDE (Dynamic Data Exchange)(? [????.]) Windows messaging(? [????.]) DDE Management Library (DDEML) API(? [????.]) de Weger, Benne(? [????.]) deadlocks concurrent programming(? [????.]) 2nd(? [????.]) threading(? [????.]) debuggers, code auditing(? [????.]) DecodePointer( ) function(? [????.]) DecodeSystemPointer( ) function(? [????.]) Decoding Incorrect Byte Values listing (8-28)(? [????.]) decoding routines, RPCs (Remote Procedure Calls), UNIX(? [????.]) decoding, Unicode(? [????.]) decomposition, software design(? [????.]) default argument promotions(? [????.]) 2nd(? [????.]) default settings, insecure defaults(? [????.]) default site installations, Web-based applications(? [????.]) Default Switch Case Omission Vulnerability listing (7-24)(? [????.]) default type conversions(? [????.]) defense in depth(? [????.]) definition files, RPCs (Remote Procedure Calls), UNIX(? [????.]) DELETE method(? [????.]) delete payloads, ISAKMP (Internet Security Association and Key Management Protocol)(? [????.]) delete_session( ) function(? [????.]) Delivering Signals for Fun and Profitï¿½(? [????.]) demilitarized zones (DMZs)(? [????.]) denial-of-service (DoS) attacks [See DoS (denial-of-service) attacks(? [????.]).] dependency alnalysis, code audits(? [????.])
 1155
 
 The Art of Software Security Assessment - Identifying and Preventing Software Vulnerabilities
@@ -20446,4 +20452,3 @@ Index
 Index
 [SYMBOL(? [????.])] [A(? [????.])] [B(? [????.])] [C(? [????.])] [D(? [????.])] [E(? [????.])] [F(? [????.])] [G(? [????.])] [H(? [????.])] [I(? [????.])] [J(? [????.])] [K(? [????.])] [L(? [????.])] [M(? [????.])] [N(? [????.])] [O(? [????.])] [P(? [????.])] [Q(? [????.])] [R(? [????.])] [S(? [????.])] [T(? [????.])] [U(? [????.])] [V(? [????.])] [W(? [????.])] [X(? [????.])] [Y(? [????.])] [Z(? [????.])] Zalewski, Michael(? [????.]) 2nd(? [????.]) 3rd(? [????.]) 4th(? [????.]) 5th(? [????.]) 6th(? [????.]) zero extensions(? [????.]) Zero-Extension Example listing (6-15)(? [????.]) zero-length fragment(? [????.]) zones, DNS (Domain Name System)(? [????.])
 1244
-

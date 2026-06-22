@@ -1,3 +1,9 @@
+# Prompt Engineering - Principles, Patterns and Practice
+
+> **Category:** 10_ai_and_llm · **Language:** English
+
+---
+
 # Prompt Engineering: Principles, Patterns, and Practice for LLM Instruction Design
 
 *A Practitioner's Guide — 2026*

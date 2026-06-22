@@ -1,3 +1,9 @@
+# Agile Software Development
+
+> **Author(s):** Martin · **Category:** 04_engineering_and_practices · **Language:** English
+
+---
+
 “AGILESUFTWARE
 ) UENTQUENERR
 
@@ -1728,8 +1734,6 @@ Fi Private communication.
 
 ---
 
-
-
 ---
 
 Agile Practices
@@ -2089,8 +2093,6 @@ Bibliography
 House, 2000.
 
 ---
-
-
 
 ---
 
@@ -2493,8 +2495,6 @@ Extreme Programming Examined, Giancarlo Succi, Michele Marchesi. Addison-Wesley,
 9. Fowler, Martin. Refactoring: Improving the Design of Existing Code. Reading, MA: Addison-Wesley, 1999.
 
 ---
-
-
 
 ---
 
@@ -3070,8 +3070,6 @@ Addison-Wesley, 2001.
 2. Jeffries, Ron, et al., Extreme Programming Installed. Upper Saddle River, NJ: Addison—Wesley, 2001.
 
 ---
-
-
 
 ---
 
@@ -8075,8 +8073,6 @@ Bibliography
 
 ---
 
-
-
 ---
 
 10
@@ -8886,8 +8882,6 @@ Bibliography
 3. Liskov, Barbara. Data Abstraction and Hierarchy. SIGPLAN Notices, 23,5 (May 1988).
 
 ---
-
-
 
 ---
 
@@ -9911,8 +9905,6 @@ Bibliography
 
 ---
 
-
-
 ---
 
 SECTION 3
@@ -10627,8 +10619,6 @@ Bibliography
 of Program Design” (J. O. Coplien, J. Vlissides, and N. Kerth, eds.). Reading, MA: Addison-Wesley, 1996.
 
 ---
-
-
 
 ---
 
@@ -12197,8 +12187,6 @@ Cambridge, UK: Cambridge University Press, 2000, p. 223.
 
 ---
 
-
-
 ---
 
 17
@@ -12978,8 +12966,6 @@ Bibliography
 1. Jacobson, Ivar. Object-Oriented Software Engineering, A Use-Case-Driven Approach. Wokingham, England: Addison—Wesley, 1992.
 
 ---
-
-
 
 ---
 
@@ -15868,8 +15854,6 @@ system.
 
 ---
 
-
-
 ---
 
 20
@@ -17926,8 +17910,6 @@ weather station. The chapters leading up to the case study will describe those p
 
 ---
 
-
-
 ---
 
 23
@@ -18053,8 +18035,6 @@ advantages are significant. Instead of duplicating the list management and itera
 code appears only once in the composite class.
 
 ---
-
-
 
 ---
 
@@ -19803,8 +19783,6 @@ Bibliography
 1. Gamma, et al. Design Patterns, Reading, MA: Addison—Wesley, 1995.
 
 ---
-
-
 
 ---
 
@@ -23386,8 +23364,6 @@ Deliverable(s)
 
 ---
 
-
-
 ---
 
 SECTION 6
@@ -23411,8 +23387,6 @@ terns precede the case study.
 385
 
 ---
-
-
 
 ---
 
@@ -26878,8 +26852,6 @@ Bibliography
 
 ---
 
-
-
 ---
 
 30
@@ -29590,8 +29562,6 @@ Bibliography
 9. Gamma, et al. Design Patterns. Addison-Wesley, 1995.
 
 ---
-
-
 
 ---
 

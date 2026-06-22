@@ -1,10 +1,16 @@
-Paul Voigt · Axel von dem Bussche
+# The EU GDPR - A Practical Guide
+
+> **Author(s):** Voigt, von dem Bussche Â· **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
+Paul Voigt ï¿½ Axel von dem Bussche
 The EU General Data Protection Regulation (GDPR)
 A Practical Guide
 
 The EU General Data Protection Regulation (GDPR)
 
-Paul Voigt · Axel von dem Bussche
+Paul Voigt ï¿½ Axel von dem Bussche
 The EU General Data Protection Regulation (GDPR)
 A Practical Guide
 
@@ -46,7 +52,7 @@ Contents
 
 vii
 
-4.3 Data Transfers to Third Countries . . . . . . . . . . . . . . . . . . . . . . 116 4.3.1 Safe Third Countries . . . . . . . . . . . . . . . . . . . . . . . . . 117 4.3.2 Consent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118 4.3.3 Standard Contractual Clauses . . . . . . . . . . . . . . . . . . . 119 4.3.4 EU­U.S. Privacy Shield . . . . . . . . . . . . . . . . . . . . . . . 122 4.3.5 Binding Corporate Rules . . . . . . . . . . . . . . . . . . . . . . 125 4.3.6 Codes of Conduct, Certifications, Etc. . . . . . . . . . . . . . 129 4.3.7 Derogations for Specific Situations . . . . . . . . . . . . . . . 130 4.3.8 Appointment of a Representative by Non-EU Entities . . . 133
+4.3 Data Transfers to Third Countries . . . . . . . . . . . . . . . . . . . . . . 116 4.3.1 Safe Third Countries . . . . . . . . . . . . . . . . . . . . . . . . . 117 4.3.2 Consent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118 4.3.3 Standard Contractual Clauses . . . . . . . . . . . . . . . . . . . 119 4.3.4 EUï¿½U.S. Privacy Shield . . . . . . . . . . . . . . . . . . . . . . . 122 4.3.5 Binding Corporate Rules . . . . . . . . . . . . . . . . . . . . . . 125 4.3.6 Codes of Conduct, Certifications, Etc. . . . . . . . . . . . . . 129 4.3.7 Derogations for Specific Situations . . . . . . . . . . . . . . . 130 4.3.8 Appointment of a Representative by Non-EU Entities . . . 133
 4.4 Limited Privilege for Intra-Group Processing Activities . . . . . . 135 4.4.1 Separate Data Protection Responsibility of Each Group Member . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 136 4.4.2 Facilitations Regarding Material Requirements . . . . . . 137 4.4.3 Facilitation Regarding Organisational Requirements . . . 138
 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 138
 5 Rights of Data Subjects . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 141 5.1 Transparency and Modalities . . . . . . . . . . . . . . . . . . . . . . . . . . 141 5.1.1 The Manner of Communicating with the Data Subject . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 142 5.1.2 The Form of Communication . . . . . . . . . . . . . . . . . . . 143 5.2 Information Obligation of the Controller Prior to Processing . . . 143 5.2.1 Time of Information . . . . . . . . . . . . . . . . . . . . . . . . . . 144 5.2.2 Collection of the Data from the Data Subject . . . . . . . . 144 5.2.3 Obtainment of the Data from Another Source . . . . . . . 146 5.2.4 Practical Implications . . . . . . . . . . . . . . . . . . . . . . . . . 147 5.3 Response to Data Subjects' Requests . . . . . . . . . . . . . . . . . . . . 147 5.3.1 Manner of Response . . . . . . . . . . . . . . . . . . . . . . . . . . 147 5.3.2 Time of Response . . . . . . . . . . . . . . . . . . . . . . . . . . . 149 5.3.3 Information in Case of Inaction . . . . . . . . . . . . . . . . . 149 5.3.4 Verification of the Data Subject's Identity . . . . . . . . . . 150 5.4 Right to Access . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 150 5.4.1 Scope of the Right to Access . . . . . . . . . . . . . . . . . . . 150 5.4.2 Provision of Access to the Personal Data . . . . . . . . . . . 152 5.4.3 Practical Implications . . . . . . . . . . . . . . . . . . . . . . . . . 153 5.5 Rights to Erasure, Rectification and Restriction . . . . . . . . . . . . 154 5.5.1 Right to Rectification . . . . . . . . . . . . . . . . . . . . . . . . . 154 5.5.2 Right to Erasure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 156 5.5.3 Right to Restriction of Processing . . . . . . . . . . . . . . . . 164 5.5.4 Notification of Third Parties Regarding the Rights to Erasure, Rectification and Restriction, Art. 19 . . . . . . . 167 5.6 Right to Data Portability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 168 5.6.1 Scope and Exercise of the Right to Data Portability . . . 169 5.6.2 Technical Specifications . . . . . . . . . . . . . . . . . . . . . . . 174 5.6.3 Transmission of the Data . . . . . . . . . . . . . . . . . . . . . . 174
@@ -150,7 +156,7 @@ categories of personal data, as well as the legal conditions for processing them
 Involvement of a Processor Under the GDPR, the processor does not qualify as a third party. Thus, its involvement lies in the sole discretion of the controller and does not require a legal ground. It should be noted that the same goes for processors located in third countries. Nevertheless, the controller must make sure to choose a suitable processor that can guarantee for an appropriate level of data protection. In this regard, the processor is facing its own enforceable organisational obligations under the GDPR. Further details are available in Sect. 3.10.
 General Requirements for Third Country Data Transfers Where personal data shall be transferred to recipients located outside the EU, such transfer must be subject to specific safeguards in order to guarantee for an appropriate level of data protection. Entities must verify in a two-step approach (1) that this processing activity is covered by a legal justification (for details, see Sect. 4.2) and (2) that appropriate safeguards will be applied. The different safety measures are described in detail in Sect. 4.3. From a company perspective, the ones with the highest practical relevance are as follows.
 EU Standard Contractual Clauses The data exporter located inside the EU and the data importer located outside the EU can conclude a contract based on the EU Standard Contractual Clauses. These are sets of contractual clauses that are adopted by the European Commission or national Supervisory Authorities. If those clauses are used completely and unaltered, they serve as an appropriate safeguard for international data transfers. Section 4.3.3 provides for further details.
-EU­U.S. Privacy Shield Data transfers to the U.S., which often occur in corporate structures, might be based on the EU­U.S. Privacy Shield. This is a legal framework adopted by the European Commission, which allows U.S. entities to obtain a (self-)certification for an appropriate data protection level. The Privacy Shield principles as well as its mode of operation and an outlook on recent developments are available in Sect. 4.3.4.
+EUï¿½U.S. Privacy Shield Data transfers to the U.S., which often occur in corporate structures, might be based on the EUï¿½U.S. Privacy Shield. This is a legal framework adopted by the European Commission, which allows U.S. entities to obtain a (self-)certification for an appropriate data protection level. The Privacy Shield principles as well as its mode of operation and an outlook on recent developments are available in Sect. 4.3.4.
 Binding Corporate Rules Groups of undertakings or entities involved in a joint economic activity might adopt Binding Corporate Rules that define the group members' global privacy policy with regard to the international transfers of personal data to those group members located in third countries that do not provide an adequate level of protection. Their mode of operation, minimum content and adoption procedure are explained in detail in Sect. 4.3.5.
 
 References
@@ -160,7 +166,7 @@ References
 References
 Martini M (2017) Art. 25 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H. Beck, Munich
 Polenz S (2013) Rechtsquellen und Grundbegriffe des allgemeinen Datenschutzes. In: Kilian W, Heussen B (eds) Computerrechts-Handbuch, supplement 8/2013. C.H. Beck, Munich
-Reiners W (2015) Datenschutz in der Personal Data Economy ­ Eine Chance für Europa, ZD, pp 51­55
+Reiners W (2015) Datenschutz in der Personal Data Economy ï¿½ Eine Chance fï¿½r Europa, ZD, pp 51ï¿½55
 
 Scope of Application of the GDPR
 
@@ -169,7 +175,7 @@ Scope of Application of the GDPR
 Compliance with the GDPR might require entities to carry out a time- and moneyconsuming reviewing process of their current data protection standards. As a result, companies might need to adjust their data processing structures and processes. Thus, in a first step, companies should find out whether they will be affected by the entering into force of the GDPR.
 
 2.1 In Which Case Does the Regulation Apply?
-Article 2 ­ Material Scope
+Article 2 ï¿½ Material Scope
 1. This Regulation applies to the processing of personal data wholly or partly by automated means and to the processing other than by automated means of personal data which form part of a filing system or are intended to form part of a filing system.
 [. . .]
 To summarise its material scope, the GDPR applies to any processing of personal data. The Regulation will become relevant for companies as soon as any data processing takes place. The (material) scope is interpreted in a very broad manner in order to ensure a high level of protection.
@@ -191,17 +197,17 @@ DOI 10.1007/978-3-319-57959-7_2
 2 Scope of Application of the GDPR
 
 of circumvention and to make the scope of application independent from technological change.1 It includes processing carried out wholly as well as partially by automated means, the latter meaning any processing where certain steps are carried out by individuals, such as entering data into a computer system.2
-Example ­ personal data processing through the use of computers, smartphones,
-webcams, dashcams, camera drones ­ collection of personal data through wearables or other smart devices (such as
+Example ï¿½ personal data processing through the use of computers, smartphones,
+webcams, dashcams, camera drones ï¿½ collection of personal data through wearables or other smart devices (such as
 cars)3
 The wide definition of `processing' also includes a short-term use of small amounts of personal data.4
-Example ­ Personal data is intermediately being stored on an IT system, such as in the
-cache of a browser. ­ Personal data is displayed on a computer screen.
+Example ï¿½ Personal data is intermediately being stored on an IT system, such as in the
+cache of a browser. ï¿½ Personal data is displayed on a computer screen.
 Manual Processing By definition, manual processing of data is considered `processing' under the GDPR. In contrast to automatic processing through technology, manual processing is being entirely executed by humans without using tools or machines. By its very nature, this works much slower and less data can be processed. Therefore, manual processing only falls within the definition of `processing' under the GDPR if two conditions are being met:
-­ Said data must be contained or be intended to be contained in a filing system (Art. 2 Sec. 1 GDPR). Based on predefined structure rules, a filing system divides data into different groups that are systematically managed.
-­ Those files must be structured according to specific criteria.5 The Regulation does not specify any requirements for those specific criteria. Given prior legislation and the broad manner of interpretation of the GDPR, for example, chronically organised files, alphabetically organised files or files organised according to pre-determined categories should meet those conditions.6
+ï¿½ Said data must be contained or be intended to be contained in a filing system (Art. 2 Sec. 1 GDPR). Based on predefined structure rules, a filing system divides data into different groups that are systematically managed.
+ï¿½ Those files must be structured according to specific criteria.5 The Regulation does not specify any requirements for those specific criteria. Given prior legislation and the broad manner of interpretation of the GDPR, for example, chronically organised files, alphabetically organised files or files organised according to pre-determined categories should meet those conditions.6
 
-1Rec. 15 GDPR. 2Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 6. 3Examples drawn from Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), recs. 5­6. 4Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016) rec. 10, see also for the following examples. 5Rec.15 GDPR. 6Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec. 7.
+1Rec. 15 GDPR. 2Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 6. 3Examples drawn from Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), recs. 5ï¿½6. 4Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016) rec. 10, see also for the following examples. 5Rec.15 GDPR. 6Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec. 7.
 
 2.1 In Which Case Does the Regulation Apply?
 
@@ -213,11 +219,11 @@ In this example, the patient data is filed alphabetically based on different gro
 
 2.1.2 `Personal Data'
 As shown above, any systematic handling of data corresponds to the notion of `processing' under the material scope of the GDPR.7 Data means (electronically) stored information, signs or indications. However, data has to be `personal' in order to fall within said scope of application of the Regulation. Data is deemed personal if the information relates to an identified or identifiable individual, Art. 4 No. 1 GDPR. Data is therefore personal if the identification of a person is possible based on the available data, meaning if a person can be detected, directly or indirectly, by reference to an identifier. This is the case if the assignment to one or more characteristics that are the expression of a physical, physiological, psychological, genetic, economic, cultural or social identity is possible, for example:
-­ a person's name8; ­ identification numbers, such as a social insurance number, a personnel number
-or an ID number; ­ location data; ­ online identifiers (this may involve IP addresses or cookies9).
+ï¿½ a person's name8; ï¿½ identification numbers, such as a social insurance number, a personnel number
+or an ID number; ï¿½ location data; ï¿½ online identifiers (this may involve IP addresses or cookies9).
 The Regulation does not apply to personal data of a deceased person.10 However, at the same time, said data can be personal data of a relative or a descendant of the deceased.11 For example, such data could give information on hereditary diseases of a descendant.12
 
-7Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 7. 8Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 8. 9Rec. 30 GDPR. 10Rec. 27 GDPR. 11Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 6; Schild, in: Wolff/Brink, BeckOK, Art. 4 (2016), rec. 5; see also Dammann, in: Simitis, BDSG, § 3 (2014), rec. 17. 12See also Dammann, in: Simitis, BDSG, § 3 (2014), rec. 17.
+7Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 7. 8Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 8. 9Rec. 30 GDPR. 10Rec. 27 GDPR. 11Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 6; Schild, in: Wolff/Brink, BeckOK, Art. 4 (2016), rec. 5; see also Dammann, in: Simitis, BDSG, ï¿½ 3 (2014), rec. 17. 12See also Dammann, in: Simitis, BDSG, ï¿½ 3 (2014), rec. 17.
 
 12
 
@@ -226,15 +232,15 @@ The Regulation does not apply to personal data of a deceased person.10 However, 
 2.1.2.1 Identifiability of the Data Subject As aforementioned, an individual does not need to be identified already. The mere possibility of identification, `identifiability', will render data `personal' under the GDPR. Identification is made possible by combining different information that by themselves would not have traced back to the person but does so in combination. The wording of Art. 4 No. 1 GDPR does not state who needs to be able to identify the data subject, suggesting that the additional information does not necessarily have to be in possession of the data controller/processor.
 Relative Criteria Under the former Data Protection Directive, all means `likely reasonably' (Rec. 26 Data Protection Directive) to be used for acquiring additional information from whatever source had to be taken into account in order to determine identifiability. However, it has been controversially discussed whether relative or absolute criteria had to be used to establish reasonable likeliness of identifiability.13 Using absolute criteria would mean that the definition of `personal data' is being met as soon as anyone would have the possibility to connect the processed data to an individual.14 In October 2016, the ECJ ruled that the risk of identification appears insignificant in reality if it requires a disproportionate effort in terms of time, cost and manpower, the aforementioned being relative criteria.15 Thus, if the identification of the data subject would be possible for the controller/processor based on its chance to access additional information without disproportionate effort, the data is deemed `personal data'. Even though the ruling is based on the Data Protection Directive, there are indications within the GDPR that such relative criteria should continue to apply.16 Hence, a person can be considered as identifiable if the missing information that would allow identification is (easily) accessible, for instance, because it is published on the Internet or in a (commercial) information service. Also, the knowledge of third parties has to be considered as soon as there is a chance that the controller/processor receives access to such knowledge. Upon reversion, if there is no chance that the controller/processor could access the additional information, a person is not considered identifiable.
 
-13For sources on both opinions, see Voigt, MMR 2009, 377, 378 et seq.; Bergt, ZD 2015, 365, 365 et seq. 14See also Herbst, NVwZ 2016, 902, 904. 15ECJ, ruling of 19 October 2016, Breyer./.Federal Republic of Germany, C-582/14, rec. 46; Opinion of the Advocate General, 12 May 2016, C-582/14, rec. 68. 16Such as rec. 26 GDPR using the terms `all the means reasonably likely to be used' and `account should be taken of [. . .] factors, such as the costs of and the amount of time required for identification'; approvingly, see Piltz, K&R 2016, 557, 561; Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 9 et seq.; Schreiber, in: Plath, BDSG/DSGVO, Art. 4 (2016), rec. 9; disapprovingly see Buchner, DuD 2016, 155, 156.
+13For sources on both opinions, see Voigt, MMR 2009, 377, 378 et seq.; Bergt, ZD 2015, 365, 365 et seq. 14See also Herbst, NVwZ 2016, 902, 904. 15ECJ, ruling of 19 October 2016, Breyer./.Federal Republic of Germany, C-582/14, rec. 46; Opinion of the Advocate General, 12 May 2016, C-582/14, rec. 68. 16Such as rec. 26 GDPR using the terms `all the means reasonably likely to be used' and `account should be taken of [. . .] factors, such as the costs of and the amount of time required for identification'; approvingly, see Piltz, K&R 2016, 557, 561; Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 9 et seq.; Schreiber, in: Plath, BDSG/DSGVO, Art. 4 (2016), rec. 9; disapprovingly see Buchner, DuD 2016, 155, 156.
 
 2.1 In Which Case Does the Regulation Apply?
 
 13
 
 Circumstances of the Individual Case Furthermore, in order to affirm identifiability, the circumstances of the individual case have to be taken into account. This includes the following17:
-­ the costs and time required for identification; ­ the technology available at the time of the processing and technological
-developments; ­ the purpose of the processing.
+ï¿½ the costs and time required for identification; ï¿½ the technology available at the time of the processing and technological
+developments; ï¿½ the purpose of the processing.
 The requirement of taking into account technological developments might prove difficult in practice, as this means that data controllers/processors need to include foreseeable or likely technological developments in their decision-making processes.18 If the purpose of the processing can only be achieved upon knowledge of the data subjects' identity, it can be assumed that the data controller/processor has the means for identification.19 In short, the faster and easier an individual can be made out, the more likely it is an `identifiable individual'.
 
 2.1.2.2 Anonymisation and Pseudonymisation
@@ -257,7 +263,7 @@ Benefits of Anonymisation Anonymisation offers a number of benefits for the cont
 Practical Advice25 As the EU does not provide for a standard of successful anonymisation, a combination of randomisation and generalisation techniques should be considered for stronger privacy guarantees.
 As a risk factor is always inherent to anonymisation, this must be considered when assessing possible techniques corresponding to the severity and likelihood of the identified risk. As a consequence, the optimal solution needs to be determined on a case-by-case basis. This includes evaluating the context of the data processing
 
-24See also Dammann, in: Simitis, BDSG, § 3 (2014), rec. 201 et seq. 25See Art. 29 Data Protection Working Party, WP 216 (2014), pp. 6, 7, 12, 16, 23­25.
+24See also Dammann, in: Simitis, BDSG, ï¿½ 3 (2014), rec. 201 et seq. 25See Art. 29 Data Protection Working Party, WP 216 (2014), pp. 6, 7, 12, 16, 23ï¿½25.
 
 2.1 In Which Case Does the Regulation Apply?
 
@@ -268,14 +274,14 @@ When the optimal solution has been found, its implementation requires careful en
 Once implemented, the anonymisation technique requires constant monitoring in order to control the inherent risks, above all the identification potential of the non-anonymised part of the database.
 Pseudonymisation Pseudonymisation is a common tool to avoid the possibility to identify an individual through data. Pseudonymisation is defined as the processing of personal data in such a manner that the personal data can no longer be attributed to a specific data subject without the use of additional information, Art. 4 No. 5 GDPR. This could be achieved by replacing the name or other characteristics with certain indicators. The additional information potentially allowing identification must be kept separately. Also, pseudonymisation must be further ensured by additional technical and organisational measures. This could be achieved by encoding the information and sharing the key with only a few people.
 Please note that, unlike anonymous data, pseudonymised data still falls within the scope of application of the GDPR, as the risk of re-identification is higher with pseudonymised data than with anonymous data. However, pseudonymisation constitutes one possibility for processors and controllers to meet their data protection obligations under the GDPR as it can facilitate to prove compliance with the Regulation26:
-­ Pseudonymisation constitutes an appropriate measure for achieving data protection through technology (see Sect. 3.7).
-­ Pseudonymisation might diminish the risk potential of processing in such a way that the controller will not be obliged to notify a personal data breach regarding the pseudonymised data (see Sect. 3.8).
-­ Pseudonymisation could constitute a sufficient safeguard to justify a change of the data processing purpose (see Sect. 4.2.2.5).
-­ Successful pseudonymisation might be positively taken into account whenever the controller's interests are balanced against the data subject's interests, for example, where data processing shall legally be based on prevailing legitimate interests of the controller (see Sect. 4.2.2.2).
+ï¿½ Pseudonymisation constitutes an appropriate measure for achieving data protection through technology (see Sect. 3.7).
+ï¿½ Pseudonymisation might diminish the risk potential of processing in such a way that the controller will not be obliged to notify a personal data breach regarding the pseudonymised data (see Sect. 3.8).
+ï¿½ Pseudonymisation could constitute a sufficient safeguard to justify a change of the data processing purpose (see Sect. 4.2.2.5).
+ï¿½ Successful pseudonymisation might be positively taken into account whenever the controller's interests are balanced against the data subject's interests, for example, where data processing shall legally be based on prevailing legitimate interests of the controller (see Sect. 4.2.2.2).
 Example
 A group of undertakings consists of, inter alia, entities A and B. A is collecting personal data of the group's customers, while B receives the collected data for profiling (customer preferences and others). However, before the data is
 
-26Rec. 28 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 27, see the latter also for the following remarks.
+26Rec. 28 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 27, see the latter also for the following remarks.
 
 16
 
@@ -289,7 +295,7 @@ Successful pseudonymisation can guarantee data privacy. Upon reversion, if the a
 Article 2 Sec. 2 GDPR provides for four exceptions as to the material scope of application. Among others, the Regulation does not apply in the areas of security policy (lit. b) or criminal persecution (lit. d). The most important exception from an economic point of view is provided for in lit. c, according to which the `Regulation does not apply to the processing of personal data by an individual in the course of a purely personal or household activity'. This notion should be interpreted based on the general social opinion and includes personal data that is being processed for leisure activities, hobbies, vacation or entertainment purposes, for the use of a social network or data that is part of a personal collection of addresses, birthdays or other important dates, such as anniversaries.29
 It should be noted that if processing concerns both private and business information, the exception will not be applicable.30 The word `purely' implies such narrow interpretation of this exception.31 A business activity should include any economic
 
-27Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 30. 28Rec. 26 GDPR. 29Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 18; rec. 18 GDPR; Plath, in: Plath, BDSG/ DSGVO, Art. 2 (2016), rec. 13. 30Rec. 18 GDPR; Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec.13; Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 12. 31Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec. 14.
+27Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 30. 28Rec. 26 GDPR. 29Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 18; rec. 18 GDPR; Plath, in: Plath, BDSG/ DSGVO, Art. 2 (2016), rec. 13. 30Rec. 18 GDPR; Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec.13; Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 12. 31Plath, in: Plath, BDSG/DSGVO, Art. 2 (2016), rec. 14.
 
 2.2 To Whom Does the Regulation Apply?
 
@@ -304,7 +310,7 @@ The GDPR applies to anyone processing or controlling the processing of personal 
 
 2.2.1 `Controller'
 A `controller' is a natural or legal person, public authority, agency or other body that, alone or jointly with others, determines the purposes and means of the processing of personal data, Art. 4 No. 7 GDPR. The definition is identical with the one in the Data Protection Directive. Thus, the legal definition consists of three main components: (1) a natural or legal person, public authority, agency or other body (2) that alone or jointly with others (3) determines the purposes and means of data processing.
-32Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 19. 33ECJ, ruling of 11 December 2014, Frantisek Rynes./.U´ rad pro ochranu osobn´ich u´daju°, C-212/ 13, rec. 35. 34Rec. 18 GDPR.
+32Ernst, in: Paal/Pauly, DSGVO, Art. 2 (2017), rec. 19. 33ECJ, ruling of 11 December 2014, Frantisek Rynes./.Uï¿½ rad pro ochranu osobnï¿½ich uï¿½dajuï¿½, C-212/ 13, rec. 35. 34Rec. 18 GDPR.
 
 18
 
@@ -318,40 +324,40 @@ Nevertheless, it cannot be entirely excluded that the individuals taking decisio
 2.2.1.2 Alone or Jointly with Others. . . The legislator was aiming for a clear allocation of responsibilities and therefore introduced the concept of joint controllers in Art. 26 GDPR. If the purpose and means of the processing are determined by various entities together, those entities will share data protection obligations under the GDPR and have to cater for a clear allocation of responsibilities. Joint controllership may take different forms: the relevant entities might have a very close relationship (e.g., sharing all purposes and means of a processing) or a more lose relationship (e.g., partially sharing purposes).38 For detailed information and examples, see Sect. 3.2.2.
 In this context, it is important to differentiate between controllers and processors. As just shown, joint control can take a broad variety of forms and multiple parties may interact or be linked with each other when it comes to processing personal data.39 Until the creation of the GDPR, the concept of joint controllership was only mentioned but not defined by law and was therefore rarely used in practice. Faced with multiple actors, Supervisory Authorities, courts and academics would rather presume a case of commissioned data processing (in other words, one controller delegating tasks to one or several processors).40 This situation is very likely to change, given the legislative introduction of this concept.
 
-35See also Art. 29 Data Protection Working Party, WP 169 (2010), pp. 15­16. 36See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 15; Wybitul/SchultzeMelling, Datenschutz (2014), recs. 72­73. 37See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 16. 38See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 19. 39See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 19. 40Dovas, ZD 2016, 512, 514.
+35See also Art. 29 Data Protection Working Party, WP 169 (2010), pp. 15ï¿½16. 36See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 15; Wybitul/SchultzeMelling, Datenschutz (2014), recs. 72ï¿½73. 37See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 16. 38See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 19. 39See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 19. 40Dovas, ZD 2016, 512, 514.
 
 2.2 To Whom Does the Regulation Apply?
 
 19
 
 The following criteria can help to differentiate between controller and processor and suggest that the entity in question, carrying out the data processing on behalf of a contracting party, is a controller rather than a processor based on its influence on the purposes and/or means of processing41:
-­ freedom from instructions by the contracting entity that delegated the data processing to the processing entity in question;
-­ merging of the data received upon delegation with own databases; ­ use of the data for own purposes that may have not been agreed upon with the
-contracting entity; ­ processed data having been collected by way of a legal relationship between the
-processing entity and the data subjects; ­ responsibility of the processing entity for the lawfulness and accuracy of the data
+ï¿½ freedom from instructions by the contracting entity that delegated the data processing to the processing entity in question;
+ï¿½ merging of the data received upon delegation with own databases; ï¿½ use of the data for own purposes that may have not been agreed upon with the
+contracting entity; ï¿½ processed data having been collected by way of a legal relationship between the
+processing entity and the data subjects; ï¿½ responsibility of the processing entity for the lawfulness and accuracy of the data
 processing.
 
 2.2.1.3 Determines the Purposes and Means of the Processing of Personal Data. . .
 Controllership depends not upon the execution of data processing but upon decision-making power. The relevant questions are: why does the processing take place, and who initiated it?42 Whilst the controller is entitled to decide upon the purpose of processing and its essential elements, the technical and organisational means of processing can--at least partially--be delegated to someone else. In greater detail, this means that the controller has to choose, inter alia, which data shall be processed, for how long, who shall have access and what security measures need to be taken. Less crucial matters, such as the choice of the hard- or software, do not necessarily have to be specified by the controller.43
 Decision-making power as to data processing can result from an explicit or implicit legal responsibility or from an actual influence as to the purposes and means of processing44:
-­ Explicit legal responsibility arises for public authorities by way of legislation establishing their fields of competence (such as administrative law). Implicit legal responsibility stems from common legal provisions or established legal practice pertaining to different areas (civil law, commercial law, labour law, . . .),
+ï¿½ Explicit legal responsibility arises for public authorities by way of legislation establishing their fields of competence (such as administrative law). Implicit legal responsibility stems from common legal provisions or established legal practice pertaining to different areas (civil law, commercial law, labour law, . . .),
 
-41Criteria drawn from v.d.Bussche/Voigt, in: v.d.Bussche/Voigt, Konzerndatenschutz, Auftragsdatenverarbeitung (2014) recs. 22­26; Gola/Wronka, Arbeitnehmerdatenschutz (2013), rec. 277. 42See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 8. 43See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 14 et seq. 44Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), recs. 48­52; see also Art. 29 Data Protection Working Party, WP 169 (2010), pp. 10­12, 14.
+41Criteria drawn from v.d.Bussche/Voigt, in: v.d.Bussche/Voigt, Konzerndatenschutz, Auftragsdatenverarbeitung (2014) recs. 22ï¿½26; Gola/Wronka, Arbeitnehmerdatenschutz (2013), rec. 277. 42See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 8. 43See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 14 et seq. 44Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), recs. 48ï¿½52; see also Art. 29 Data Protection Working Party, WP 169 (2010), pp. 10ï¿½12, 14.
 
 20
 
 2 Scope of Application of the GDPR
 
-such as the employer in relation to data on its employees, the association in relation to data on its members or contributors. ­ Actual influence will usually be established by assessing the contractual relations between the different parties involved, which will allow for drawing external conclusions, assigning the role and responsibilities of controller to one or more parties.
+such as the employer in relation to data on its employees, the association in relation to data on its members or contributors. ï¿½ Actual influence will usually be established by assessing the contractual relations between the different parties involved, which will allow for drawing external conclusions, assigning the role and responsibilities of controller to one or more parties.
 
 2.2.2 `Processor'
 In addition to the controller, the Regulation imposes data protection obligations on the `processor'. The latter is defined as a natural or legal person, public authority, agency or other body that processes personal data on behalf of the controller, Art. 4 No. 8 GDPR. Thus, the existence of a processor depends on a decision taken by the controller, who can either process data within its organisation (e.g., through its own employees) or delegate all or part of the processing activities to an external organisation, rendering the latter a `processor'.45 Two conditions have to be met to qualify as a `processor':
-­ being a separate legal entity/individual with respect to the controller; and ­ processing personal data on behalf of the controller.46
+ï¿½ being a separate legal entity/individual with respect to the controller; and ï¿½ processing personal data on behalf of the controller.46
 For example, processors could be cloud computing suppliers or computing centres.47 As to its legal form, what has been said above concerning the controller also applies to the processor. Therefore, a broad variety of actors can be deemed processors. Also, several processors can be instructed to act at the same time. This, more and more often, happens in practice, whereas these processors may have a direct relationship with the data controller or be subcontractors to which the processors have delegated part of the processing activities entrusted to them.48 Note, however, that any processor exceeding his mission and acquiring a relevant role in determining the purposes or essential means of data processing turns into a (joint) controller (see remarks in Sects. 2.2.1.2 and 3.2.2).49
 
 2.2.3 Beneficiaries of Protection Under the GDPR
 While the norm addressees of the GDPR have been specified above, the beneficiaries of data protection still need to be determined. The Regulation lays
-45See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25. 46See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25. 47See also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 11 (2015), recs. 7­8. 48See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 27. 49Art. 26 Sec. 10 GDPR; see also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25.
+45See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25. 46See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25. 47See also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 11 (2015), recs. 7ï¿½8. 48See also Art. 29 Data Protection Working Party, WP 169 (2010), p. 27. 49Art. 26 Sec. 10 GDPR; see also Art. 29 Data Protection Working Party, WP 169 (2010), p. 25.
 
 2.3 Where Does the Regulation Apply?
 
@@ -362,10 +368,10 @@ Specific Protection for Minors Generally, all individuals regardless of their ag
 No Protection of Legal Persons Legal entities do not benefit from protection under the GDPR, regardless of their legal form.52 This is due to the fact that the legislator wanted to enforce the protection of individuals with regard to their fundamental rights under Art. 8 of the Charter of Fundamental Rights of the European Union and Art. 16 of the Treaty on the Functioning of the European Union (TFEU).53 However, the data of legal persons could be deemed personal data under the GDPR if it contains information on the individuals associated with the legal person, e.g., information on a persons' share or function in a company.54 Moreover, as regards legal persons, there is an exception: the one-man-owned entity is viewed as a natural person because it is not possible to separate personal and corporate data in this situation.55
 
 2.3 Where Does the Regulation Apply?
-Article 3 ­ Territorial scope
+Article 3 ï¿½ Territorial scope
 1. This Regulation applies to the processing of personal data in the context of the activities of an establishment of a controller or a processor in the Union, regardless of whether the processing takes place in the Union or not.
 2. This Regulation applies to the processing of personal data of data subjects who are in the Union by a controller or processor not established in the Union, where the processing activities are related to: (a) the offering of goods or services, irrespective of whether a payment of the data subject is required, to such data subjects in the Union; or
-50Rec. 14 GDPR. 51Rec. 38 GDPR. 52Rec. 14 Data Protection Directive. 53Rec. 1 GDPR. 54Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 5; see also Dammann, in: Simitis, BDSG, § 3 (2014), recs. 19, 44. 55Blume, EDPL 2015, 258, 258.
+50Rec. 14 GDPR. 51Rec. 38 GDPR. 52Rec. 14 Data Protection Directive. 53Rec. 1 GDPR. 54Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 5; see also Dammann, in: Simitis, BDSG, ï¿½ 3 (2014), recs. 19, 44. 55Blume, EDPL 2015, 258, 258.
 
 22
 
@@ -375,8 +381,8 @@ Article 3 ­ Territorial scope
 3. This Regulation applies to the processing of personal data by a controller not established in the Union, but in a place where Member State law applies by virtue of public international law.
 Although the GDPR is a European Regulation, its territorial scope does not stop at European boundaries. Given a global economy with multinational groups and cross-border data transfer, international aspects have been taken into consideration upon creation of the GDPR. Transnational application shall guarantee comprehensive privacy of individuals and fair competitive conditions on the EU internal market. Also, the phenomenon of forum shopping shall be prevented: due to the different data protection standards within the EU Member States, companies could choose their place of business according to the lowest national level of data protection standards (among other factors). Thus, EU legislation prescribes a particularly broad territorial scope.56
 From a territorial perspective, the GDPR does not differentiate between controller and processor and sets out the same territorial scope for both of them. Mainly, the GDPR applies in the following two situations57:
-­ the processing of personal data takes place in the context of the activities of an establishment of the controller or processor within the EU; or
-­ the processing of the data of individuals within the EU takes place by a controller or processor not established in the EU.
+ï¿½ the processing of personal data takes place in the context of the activities of an establishment of the controller or processor within the EU; or
+ï¿½ the processing of the data of individuals within the EU takes place by a controller or processor not established in the EU.
 
 2.3.1 Data Processing in the Context of the Activities of an EU Establishment
 According to Art. 3 Sec. 1 GDPR, the GDPR is applicable to processing of personal data in the context of the activities of an establishment of a controller or processor in the EU, regardless of whether the processing takes place in the EU or not. The provision applies the establishment principle, according to which the choice of law depends on where an entity is established. For the applicability of the GDPR, it is therefore not necessarily decisive where the data is being processed.
@@ -393,7 +399,7 @@ Example
 A non-EU entity has a bank account, a post office box and a representative in an EU Member State that serves as exclusive contact point for the customers in said EU Member State.68
 In this example, the human and material resources of the entity in the EU Member State should qualify as stable arrangements and, thus, an establishment.
 
-59Rec. 22 GDPR. 60ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 61ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 53. 62ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 63Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 16; ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 30. 64Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 8. 65ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 66Kartheuser/Schmitt, ZD 2016, 155, 158. 67ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 31 et seq. 68ECJ, ruling of 1 October 2015, Weltimmo, C-230/14.
+59Rec. 22 GDPR. 60ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 61ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 53. 62ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 63Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 16; ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 30. 64Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 8. 65ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 29. 66Kartheuser/Schmitt, ZD 2016, 155, 158. 67ECJ, ruling of 1 October 2015, Weltimmo, C-230/14, rec. 31 et seq. 68ECJ, ruling of 1 October 2015, Weltimmo, C-230/14.
 
 24
 
@@ -409,7 +415,7 @@ In this example, the entity's EU-located office develops customer relationships 
 Example An EU Entity Processes and Collects Personal Data Itself
 Entity A is a winemaker located in France that delivers its products to all EU Member States. For this purpose, A runs not only a local shop in Paris but also an online shop. Names and addresses of the customers are stored as contact information in order to carry out wine deliveries.
 
-69ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 52; Plath, in: Plath, Art. 3 (2016), rec. 9. 70ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 55; Plath, in: Plath, Art. 3 (2016), rec. 9. 71ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 52. 72Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 79, see also for the following example. 73ECJ, ruling of 13 May 2014, Google Spain, C 131/12.
+69ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 52; Plath, in: Plath, Art. 3 (2016), rec. 9. 70ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 55; Plath, in: Plath, Art. 3 (2016), rec. 9. 71ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 52. 72Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 79, see also for the following example. 73ECJ, ruling of 13 May 2014, Google Spain, C 131/12.
 
 2.3 Where Does the Regulation Apply?
 
@@ -425,7 +431,7 @@ In this example, B is a controller established in Italy. The processing is carri
 Example
 An EU Entity Carries Out Data Processing Through a Non-EU Entity Entity E is a German personnel service provider that assigns temporary
 employees to large automobile manufacturers throughout Europe. Due to its large and constantly changing pool of employees, E stores the data from the application processes in a cloud service operated by US entity F. The purpose and means of the processing are determined by E.
-In this example, E is a controller established in Germany. F is a processor operating in the US. The GDPR applies to E since E is a controller established within the EU and processing takes place in the context of its activities (¼ providing personnel services within Europe). As for F, the GDPR would only be applicable if F itself targets the European market with its activities (Art. 3 Sec. 2 GDPR). In any case, E needs to bind F by contract to adhere to the data protection standards of the GDPR in order to fulfil its own data protection obligations under the Regulation.
+In this example, E is a controller established in Germany. F is a processor operating in the US. The GDPR applies to E since E is a controller established within the EU and processing takes place in the context of its activities (ï¿½ providing personnel services within Europe). As for F, the GDPR would only be applicable if F itself targets the European market with its activities (Art. 3 Sec. 2 GDPR). In any case, E needs to bind F by contract to adhere to the data protection standards of the GDPR in order to fulfil its own data protection obligations under the Regulation.
 
 26
 
@@ -436,10 +442,10 @@ In this example, E is a controller established in Germany. F is a processor oper
 If neither controller nor processor is established within the EU, the GDPR can apply nevertheless. In order to ensure that individuals are not deprived of their data protection rights, the EU legislator extended the territorial scope of application of European data protection law by introducing the principle of lex loci solutionis in Art. 3 Sec. 2 GDPR. According to this principle, the applicable law depends on where the relevant contractual performance is being offered. Broadly speaking, it is decisive where the contractual offer occurs. Article 3 Sec. 2 GDPR will therefore affect entities that target consumers in the EU internal market. Companies should keep in mind that the nationality of their customers is irrelevant as long as they are located in the EU (as shown previously in Sect. 2.2.3). Furthermore, they might have to appoint an EU representative (see Sect. 4.3.8) as contact point for data subjects and Supervisory Authorities within the EU.
 
 2.3.2.1 Offering of Goods or Services to Data Subjects in the EU According to Art. 3 Sec. 2 lit. a GDPR, data processing that is related to the offering of goods or services in the EU, irrespective of whether a payment by the latter is required, falls within the territorial scope of application of the GDPR. This will primarily affect international corporations offering services via the Internet.74 In order to determine whether goods or services are targeted towards the internal market, it should be ascertained whether the controller or processor specifically envisages offering services in one or more EU Member States.75 For example, an Australian company does not necessarily address its goods or services to individuals in England or Scotland just because its website is available in English. The company in question must intend to address European consumers. The mere accessibility of a website, an email address or other contact details or the use of a language generally used in the third country where the company is established is insufficient to ascertain such intention.76 However, indices for targeting EU individuals could be as follows77:
-­ the use of a language generally used in one or more EU Member States; or ­ the accepted currencies (especially the Euro); or ­ the mentioning of customers or users from Europe; or ­ the possibility of delivery to one or more Member States; or ­ the domain name of the website referring to one or more EU Member State
+ï¿½ the use of a language generally used in one or more EU Member States; or ï¿½ the accepted currencies (especially the Euro); or ï¿½ the mentioning of customers or users from Europe; or ï¿½ the possibility of delivery to one or more Member States; or ï¿½ the domain name of the website referring to one or more EU Member State
 (s) (`xxx.com/de', `xxx. es', . . .).
 
-74Barlag, in: Roßnagel, DSGVO, Anwendungsbereich (2017), rec. 18. 75Rec. 23 GDPR. 76Rec. 23 GDPR. 77The following examples are (partially) drawn from rec. 23 GDPR; ECJ, ruling of 7 December 2010, Alpenhof, joined cases C-585/08 and C-144/09, recs. 80­84.
+74Barlag, in: Roï¿½nagel, DSGVO, Anwendungsbereich (2017), rec. 18. 75Rec. 23 GDPR. 76Rec. 23 GDPR. 77The following examples are (partially) drawn from rec. 23 GDPR; ECJ, ruling of 7 December 2010, Alpenhof, joined cases C-585/08 and C-144/09, recs. 80ï¿½84.
 
 2.3 Where Does the Regulation Apply?
 
@@ -468,7 +474,7 @@ Entity J is located in Hong Kong and sells trend-oriented furniture and home acc
 In this example, J is using web tracking to analyse the preferences of customers located in the EU. Therefore, the GDPR applies.
 
 2.3.2.3 Time of Stay of the Data Subject in the EU Given a global economy, characteristics like nationality or place of residence become less important for the scope of data protection and the place where a person stays becomes decisive. As Art. 3 Sec. 2 GDPR refers to data subjects `in the EU' or their behaviour taking place `within the EU', it needs to be clarified at what point in time the data subject must be present in the EU for the applicability of the GDPR. The wording of Art. 1 Sec. 1 GDPR does not provide for details as to which time is decisive for determining whether a person is staying in the EU and therefore merits protection under the GDPR. One option would be that the time of
-80Schantz, NJW 2016, 1841, 1842; Hornung, ZD 2012, 99, 102. 81Alich/Voigt, CR 2012, 344, 345. 82Alich/Voigt, CR 2012, 344, 346­347.
+80Schantz, NJW 2016, 1841, 1842; Hornung, ZD 2012, 99, 102. 81Alich/Voigt, CR 2012, 344, 345. 82Alich/Voigt, CR 2012, 344, 346ï¿½347.
 
 References
 
@@ -479,22 +485,22 @@ vacation to, e.g., the US would not benefit from protection under the GDPR for t
 to maximise data protection, it seems to be the more likely option that the time of the collection (in a broad sense) of the data is decisive.85 This way, all following steps of data processing will have to meet the standards set out by the GDPR.86
 
 References
-Albrecht JP (2016) Das neue EU-Datenschutzrecht ­ von der Richtlinie zur Verordnung. CR, pp 88­98
-Alich S, Voigt P (2012) Mitteilsame Browser ­ Datenschutzrechtliche Bewertung des Trackings mittels Browser-Fingerprints. CR, pp 344­348
+Albrecht JP (2016) Das neue EU-Datenschutzrecht ï¿½ von der Richtlinie zur Verordnung. CR, pp 88ï¿½98
+Alich S, Voigt P (2012) Mitteilsame Browser ï¿½ Datenschutzrechtliche Bewertung des Trackings mittels Browser-Fingerprints. CR, pp 344ï¿½348
 Art. 29 Data Protection Working Party (2007) Opinion 4/2007 on the concept of personal data, WP136
 Art. 29 Data Protection Working Party (2010) Opinion 5/2014 on Anonymisation Techniques, WP216
 Art. 29 Data Protection Working Party (2014) Opinion 1/2010 on the concepts of `controller' and `processor', WP 169
-Barlag C (2017) Anwendungsbereich der Datenschutz-Grundverordnung. In: Roßnagel A (ed) Europa¨ische Datenschutz-Grundverordnung, Vorrang des Unionsrechts ­ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden
-Bergt M (2015) Die Bestimmbarkeit als Grundproblem des Datenschutzrechts ­ U¨ berblick über den Theorienstreit und Losungsvorschlag, pp 365­371
-Blume P (2015) The data subject. EDPL 4:258­264 Buchner B (2016) Grundsa¨tze und Rechtma¨ßigkeit der Datenverarbeitung unter der DS-GVO.
-DuD, pp 155­161 Dammann U (2014) § 3 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos,
-Baden-Baden Dovas M-U (2016) Joint Controllership ­ Moglichkeiten oder Risiken der Datennutzung? ZD,
-pp 512­517 Ernst S (2017) Arts. 2, 4 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare
+Barlag C (2017) Anwendungsbereich der Datenschutz-Grundverordnung. In: Roï¿½nagel A (ed) Europaï¿½ische Datenschutz-Grundverordnung, Vorrang des Unionsrechts ï¿½ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden
+Bergt M (2015) Die Bestimmbarkeit als Grundproblem des Datenschutzrechts ï¿½ Uï¿½ berblick ï¿½ber den Theorienstreit und Losungsvorschlag, pp 365ï¿½371
+Blume P (2015) The data subject. EDPL 4:258ï¿½264 Buchner B (2016) Grundsaï¿½tze und Rechtmaï¿½ï¿½igkeit der Datenverarbeitung unter der DS-GVO.
+DuD, pp 155ï¿½161 Dammann U (2014) ï¿½ 3 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos,
+Baden-Baden Dovas M-U (2016) Joint Controllership ï¿½ Moglichkeiten oder Risiken der Datennutzung? ZD,
+pp 512ï¿½517 Ernst S (2017) Arts. 2, 4 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare
 Datenschutz-Grundverordnung, 1st edn. C.H. Beck, Munich Gola P, Wronka G (2013) Handbuch zum Arbeitnehmerdatenschutz, 6th edn. Frechen,
-DATAKONTEXT GmbH Gola P, Klug C, Korffer B (2015) § 11 BDSG. In: Gola P, Schomerus R (eds)
-Bundesdatenschutzgesetz Kommentar, 12th edn. C.H. Beck, Munich Herbst T (2016) Was sind personenbezogene Daten? NVwZ, pp 902­906 Hornung G (2012) Eine Datenschutz-Grundverordnung für Europa? ­ Licht und Schatten im
-Kommissionsentwurf vom 25.1.2012. ZD, pp 99­106 Kartheuser I, Schmitt F (2016) Der Niederlassungsbegriff und seine praktischen Auswirkungen.
-ZD, pp 155­159 Laue P, Nink J, Kremer S (eds) (2016) Einführung. In: Das neue Datenschutzrecht in der
+DATAKONTEXT GmbH Gola P, Klug C, Korffer B (2015) ï¿½ 11 BDSG. In: Gola P, Schomerus R (eds)
+Bundesdatenschutzgesetz Kommentar, 12th edn. C.H. Beck, Munich Herbst T (2016) Was sind personenbezogene Daten? NVwZ, pp 902ï¿½906 Hornung G (2012) Eine Datenschutz-Grundverordnung fï¿½r Europa? ï¿½ Licht und Schatten im
+Kommissionsentwurf vom 25.1.2012. ZD, pp 99ï¿½106 Kartheuser I, Schmitt F (2016) Der Niederlassungsbegriff und seine praktischen Auswirkungen.
+ZD, pp 155ï¿½159 Laue P, Nink J, Kremer S (eds) (2016) Einfï¿½hrung. In: Das neue Datenschutzrecht in der
 betrieblichen Praxis, 1st edn. Nomos, Baden-Baden
 83Albrecht, CR 2016 88, 90; Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 14. 84Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 14. 85Arguing in this direction is Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 14. 86Plath, in: Plath, BDSG/DSGVO, Art. 3 (2016), rec. 14.
 
@@ -502,11 +508,11 @@ betrieblichen Praxis, 1st edn. Nomos, Baden-Baden
 
 2 Scope of Application of the GDPR
 
-Piltz C (2016) Die Datenschutz-Grundverordnung. K&R, pp 557­567 Plath K-U (ed) (2016) Arts. 2, 3 DSGVO. In: BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt,
-Cologne Schantz P (2016) Die Datenschutz-Grundverordnung ­ Beginn einer neuen Zeitrechnung im
-Datenschutzrecht. NJW, pp 1841­1847 Schild HH (2016) Art. 4 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
+Piltz C (2016) Die Datenschutz-Grundverordnung. K&R, pp 557ï¿½567 Plath K-U (ed) (2016) Arts. 2, 3 DSGVO. In: BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt,
+Cologne Schantz P (2016) Die Datenschutz-Grundverordnung ï¿½ Beginn einer neuen Zeitrechnung im
+Datenschutzrecht. NJW, pp 1841ï¿½1847 Schild HH (2016) Art. 4 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
 Datenschutzrecht, 18th edn. C.H. Beck, Munich Schreiber L (2016) Art. 4 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto
-Schmidt, Cologne Voigt P (2009) Datenschutz bei Google. MMR, pp 377­382 von dem Bussche AF, Voigt P (eds) (2014) Auftragsdatenverarbeitung im Konzern. In:
+Schmidt, Cologne Voigt P (2009) Datenschutz bei Google. MMR, pp 377ï¿½382 von dem Bussche AF, Voigt P (eds) (2014) Auftragsdatenverarbeitung im Konzern. In:
 Konzerndatenschutz Rechtshandbuch, 1st edn. C.H. Beck, Munich Wybitul T, Schultze-Melling J (2014) Datenschutz im Unternehmen: Handbuch, 2nd edn.
 Fachmedien Recht und Wirtschaft, Frankfurt am Main
 
@@ -544,7 +550,7 @@ The accountability principle shall strengthen the controller's understanding of 
 Responsibility to Prove Compliance Upon request of Supervisory Authorities, controllers must be able to prove their compliance with the GDPR under the accountability principle. This obligation explicitly refers to the basic principles for processing under Art. 5 Sec. 1 GDPR, such as the lawfulness and transparency of processing or the principle of data minimisation (see Sect. 4.1 for details). However, as these principles are specified by the different material and organisational obligations under the GDPR, entities must be able to demonstrate compliance with all of them. In order to be able to fulfil their burden of proof, the controller's records of processing activities are likely to prove very helpful as details on the entity's data flows will be included in the records (see Sect. 3.4). Therefore, is it advisable to thoroughly maintain them. Upon request of the Supervisory Authorities, controllers/processors should be obliged to make them available to the requesting Supervisory Authority so that they might serve for monitoring the entity's processing operations.4 The same goes for a Data Protection Management System, where its implementation is proportionate, as it will allow monitoring and document ongoing processing activities (see Sect. 3.2.1). Moreover, where available, entities should benefit from the Data Protection Officer's expertise and seek its advice on how to best fulfil their obligation to prove compliance with the GDPR. Even though Art. 5 Sec. 2 GDPR does not provide for formal requirements on how to prove compliance with the GDPR, a written form is generally advisable.5 The controller should adopt internal policies and implement measures that will help to prove compliance with the GDPR.
 The capability to prove compliance is especially relevant for entities as regards the high impending fines for violations of the GDPR of up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover (see Sect. 7.3).
 
-1See also Art. 29 Data Protection Working Party, WP 173 (2010), p. 8. 2Schantz, in: BeckOK, Art. 5 (2017), rec. 38; Art. 29 Data Protection Working Party, WP 173 (2010), pp. 11, 12, 19. 3Rec. 78 GDPR; Art. 29 Data Protection Working Party, WP 173 (2010), pp. 3­4. 4Rec. 82 GDPR. 5Herbst, in: Kühling/Buchner, DSGVO, Art. 5 (2017), rec. 80.
+1See also Art. 29 Data Protection Working Party, WP 173 (2010), p. 8. 2Schantz, in: BeckOK, Art. 5 (2017), rec. 38; Art. 29 Data Protection Working Party, WP 173 (2010), pp. 11, 12, 19. 3Rec. 78 GDPR; Art. 29 Data Protection Working Party, WP 173 (2010), pp. 3ï¿½4. 4Rec. 82 GDPR. 5Herbst, in: Kï¿½hling/Buchner, DSGVO, Art. 5 (2017), rec. 80.
 
 3.2 General Obligations
 
@@ -558,7 +564,7 @@ The general organisational data protection obligations for controllers and proce
 Article 24 GDPR establishes, as a general rule, the responsibility and liability of the controller for any processing of personal data carried out by itself or on its behalf. As a consequence, it is obliged to implement appropriate technical and organizational measures to ensure and to be able to demonstrate that processing is performed in accordance with the Regulation, Art. 24 Sec. 1 GDPR. Said measures should take into account the nature, scope, context and purposes of the data processing and the risk to the rights and freedoms of individuals.6 A Data Protection Impact Assessment (see Sect. 3.5) will help to determine what reasonable efforts should be made in order to fulfil these obligations.
 Data Protection Management System According to Art. 24 Sec. 2 GDPR, the controller shall implement appropriate data protection policies where it is proportionate in relation to its processing activities. This could be achieved through the implementation of a risk-based Data Protection Management System (DPMS). A DPMS can help to successfully implement appropriate technical and organisational measures in compliance with data protection under the GDPR. Nevertheless, entities should assess whether its implementation is proportionate for them as it would require some effort.
 A DPMS is an internal compliance system monitoring the fulfilment of dataprotection-related and safety-related requirements within the company.7 Given the potential liability claims arising from the violation of data protection obligations, a thorough implementation of data protection standards is in the company's economic interest.8 A DPMS typically consists of an IT security concept that introduces and monitors the technical and organisational conduct of data processing activities, as well as documents these activities in order to achieve compliance with the GDPR.9 Structure-wise, a DPMS will basically not differ from any other
-6Rec. 74 GDPR. 7See also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 44. 8Wybitul, CCZ 2016, 194, 198. 9Laue/Nink/Kremer, Datenschutzrecht, Technischer Datenschutz (2016), rec. 30.
+6Rec. 74 GDPR. 7See also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 44. 8Wybitul, CCZ 2016, 194, 198. 9Laue/Nink/Kremer, Datenschutzrecht, Technischer Datenschutz (2016), rec. 30.
 
 34
 
@@ -597,22 +603,22 @@ Art. 26 Sec. 1 phrase 3 GDPR. This shall be achieved through the conclusion of a
 
 3.2.2.2 The Obligations of the Joint Controllers As each of the joint controllers qualifies as `controller' under the GDPR (see Sect. 2.2.1), each of them has to fulfil the data protection obligations under the GDPR. This means that each controller has to fulfil the organisational and material requirements (see this chapter and Chap. 4) under the Regulation and, also, that the data transfer between the joint controllers has to be lawful under the GDPR.
 Furthermore, joint controllers have to fulfil a number of additional obligations under the GDPR:
-­ As just shown, joint controllers need to draw up an arrangement to allocate responsibilities.
-­ Each joint controller needs to fulfil its obligations under the GDPR, as laid out by this Chapter, subsequent to the joint controllership arrangement.
-­ The key points of the arrangement between joint controllers must be made available to the data subject. This could, for instance, be achieved via access on the controllers' website.
+ï¿½ As just shown, joint controllers need to draw up an arrangement to allocate responsibilities.
+ï¿½ Each joint controller needs to fulfil its obligations under the GDPR, as laid out by this Chapter, subsequent to the joint controllership arrangement.
+ï¿½ The key points of the arrangement between joint controllers must be made available to the data subject. This could, for instance, be achieved via access on the controllers' website.
 The fulfilment of these obligations might require, if applicable, an elaborate Data Protection Impact Assessment (see Sect. 3.5), as well as, if proportionate, a careful implementation of the Data Protection Management System (see Sect. 3.2.1). It may be reasonable and economical for the Data Protection Impact Assessment to be broader where several controllers operate together.20 Please note that, despite the clear allocation of responsibilities between joint controllers, the data subject can choose to exercise its rights against each of the controllers, Art. 26 Sec. 3 GDPR.
 
 3.2.2.3 Obligation to Provide Information to the Data Subject Since `the essence of the arrangement' between the joint controllers shall be made available to the data subject, Art. 26 Sec. 2 phrase 2 GDPR, different aspects need to be considered when providing the key points of the arrangement to the data subjects21:
 
-19Plath, in: Plath, BDSG/DSGVO, Art. 26 (2016), rec. 5. 20Rec. 92 GDPR. 21Martini, in: Paal/Pauly, DSGVO, Art. 26 (2017), recs. 24­25.
+19Plath, in: Plath, BDSG/DSGVO, Art. 26 (2016), rec. 5. 20Rec. 92 GDPR. 21Martini, in: Paal/Pauly, DSGVO, Art. 26 (2017), recs. 24ï¿½25.
 
 3.2 General Obligations
 
 37
 
-­ Even though written form is not required by law, it makes sense to use it given the threat of fines and the availability of the agreement for the data subject.
-­ The notion of transparency under the GDPR should be kept in mind when drawing up the arrangement. Any information to the data subject should be concise, easily accessible and easy to understand through the use of clear and plain language and, where appropriate, visualisation.22
-­ Children merit specific protection under the GDPR. If the data processing will (mainly) affect children, the information needs to be drawn up in a manner that permits minors to understand what happens to their personal data.
+ï¿½ Even though written form is not required by law, it makes sense to use it given the threat of fines and the availability of the agreement for the data subject.
+ï¿½ The notion of transparency under the GDPR should be kept in mind when drawing up the arrangement. Any information to the data subject should be concise, easily accessible and easy to understand through the use of clear and plain language and, where appropriate, visualisation.22
+ï¿½ Children merit specific protection under the GDPR. If the data processing will (mainly) affect children, the information needs to be drawn up in a manner that permits minors to understand what happens to their personal data.
 
 3.2.3 Cooperation with Supervisory Authorities
 Article 31 GDPR stipulates the general obligation to cooperate with Supervisory Authorities. This obligation applies to the controller, processor and, if applicable, their respective representatives. This general obligation is specified by other stipulations of the GDPR enforcing cooperation with the Supervisory Authorities, such as Art. 30 Sec. 4 GDPR (making available of records of processing activities).
@@ -632,52 +638,52 @@ Technical and organisational measures (TOM) shall guarantee the safeguard of per
 
 3.3.1 Appropriate Data Protection Level
 Appropriate measures include any action in connection with the collection, processing or use of personal data that provides an adequate level of protection of said data under the GDPR.30 Article 32 GDPR does not limit the scope of appropriate measures. Based on this open definition, a large variety of measures is available. Examples include the following31:
-­ minimising the processing of personal data; ­ pseudonymisation (as soon as possible) (see Sect. 2.1.2.2); ­ enabling the data subject to monitor the data processing; ­ creating and improving security features; ­ the preventive concepts of Privacy by Design and Privacy by Default (see Sect.
+ï¿½ minimising the processing of personal data; ï¿½ pseudonymisation (as soon as possible) (see Sect. 2.1.2.2); ï¿½ enabling the data subject to monitor the data processing; ï¿½ creating and improving security features; ï¿½ the preventive concepts of Privacy by Design and Privacy by Default (see Sect.
 3.7);
-28For greater details see Martini, in: Paal/Pauly, DSGVO, Art. 31 (2017), recs. 10­11. 29Barlag, in: Roßnagel, DSGVO, Datenschutz durch Technik (2017), rec. 194. 30See also Ernestus, in: Simitis, BDSG, § 9 (2014), rec. 20. 31Examples drawn from rec. 78 GDPR; see also Ernestus, in: Simitis, BDSG, § 9 (2014), recs. 22, 155.
+28For greater details see Martini, in: Paal/Pauly, DSGVO, Art. 31 (2017), recs. 10ï¿½11. 29Barlag, in: Roï¿½nagel, DSGVO, Datenschutz durch Technik (2017), rec. 194. 30See also Ernestus, in: Simitis, BDSG, ï¿½ 9 (2014), rec. 20. 31Examples drawn from rec. 78 GDPR; see also Ernestus, in: Simitis, BDSG, ï¿½ 9 (2014), recs. 22, 155.
 
 3.3 Technical and Organisational Measures
 
 39
 
-­ construction measures to prevent unauthorised physical access to personal data, such as secured rooms, inspection bodies, access via password or employee identification, etc.;
-­ regular training of employees on data security; ­ encoded data transfer; ­ regular controls of the data security level and so forth.
+ï¿½ construction measures to prevent unauthorised physical access to personal data, such as secured rooms, inspection bodies, access via password or employee identification, etc.;
+ï¿½ regular training of employees on data security; ï¿½ encoded data transfer; ï¿½ regular controls of the data security level and so forth.
 Example
 The login to apps/websites could be achieved by way of a two-factor authentication that consists of a password and of, e.g., a QR code or a physical element in possession of the user (smart card, USB device, . . .).32 This increases data security as it is unlikelier that third parties obtain two authentication components than one.
 
 3.3.2 Minimum Requirements
 Article 32 Sec. 1 paraphrase 2 GDPR sets out minimum requirements for the level of data security. Those measures are particularly relevant for the safeguard of data protection. The statutory enumeration is not exhaustive.
-­ Article 32 Sec. 1 lit. a GDPR--pseudonymisation and encryption: these measures are deemed especially effective when it comes to data security and are therefore recommended by the legislator. As with pseudonymisation (for details, see Sect. 2.1.2.2), encrypted data can still be attributed to a specific data subject. However, the data is altered by cryptographic operation and, as a consequence, can no longer--especially when transmitted--be attributed without knowledge of the key for decryption.33
-­ Article 32 Sec. 1 lit. b GDPR--ability to ensure ongoing confidentiality, integrity, availability and resilience of processing: confidentiality, integrity, availability and resilience are the key elements of modern processing services.34 This security target sets a high bar for IT systems.35 As those targets shall be ensured `ongoing', they have to be set up carefully and in a durable manner.36
-­ Article 32 Sec. 1 lit. c GDPR--ability to restore availability and access to personal data in a timely manner in case of a physical/technical incident: given that data loss is one of the biggest risks of IT systems, controllers and processors need to prepare for this situation, for example, through the implementation of back-up systems or an emergency power supply.37 There is no
+ï¿½ Article 32 Sec. 1 lit. a GDPR--pseudonymisation and encryption: these measures are deemed especially effective when it comes to data security and are therefore recommended by the legislator. As with pseudonymisation (for details, see Sect. 2.1.2.2), encrypted data can still be attributed to a specific data subject. However, the data is altered by cryptographic operation and, as a consequence, can no longer--especially when transmitted--be attributed without knowledge of the key for decryption.33
+ï¿½ Article 32 Sec. 1 lit. b GDPR--ability to ensure ongoing confidentiality, integrity, availability and resilience of processing: confidentiality, integrity, availability and resilience are the key elements of modern processing services.34 This security target sets a high bar for IT systems.35 As those targets shall be ensured `ongoing', they have to be set up carefully and in a durable manner.36
+ï¿½ Article 32 Sec. 1 lit. c GDPR--ability to restore availability and access to personal data in a timely manner in case of a physical/technical incident: given that data loss is one of the biggest risks of IT systems, controllers and processors need to prepare for this situation, for example, through the implementation of back-up systems or an emergency power supply.37 There is no
 32See also Volkel, DSRITB 2015, 35, 46 et seq. 33Martini, in: Paal/Pauly, DSGVO, Art. 32 (2017), rec. 34. 34Martini, in: Paal/Pauly, DSGVO, Art. 32 (2017), rec. 35. 35Grages, in: Plath, BDSG/DSGVO, Art. 32 (2016), rec. 6. 36Martini, in: Paal/Pauly, DSGVO, Art. 32 (2017), rec. 40. 37Martini, in: Paal/Pauly, DSGVO, Art. 32 (2017), rec. 41.
 
 40
 
 3 Organisational Requirements
 
-clarification as to what is meant by `timely manner'. However, entities should be able to establish immediately whether a data breach occurred and its communication shall take place promptly.38 Therefore, the recovery of the data should happen as quickly as possible. ­ Article 32 Sec. 1 lit. d GDPR--process for regularly testing, assessing and evaluating effectiveness of technical and organizational measures: the permanent obligation to guarantee data security requires constant up-keeping and maintenance of the implemented technical and organisational measures. The DPMS (see Sect. 3.2.1) will serve to fulfil this obligation. The frequency of these assessments depends on the level of risk for data security (see the following sub-heading) and could require adaptations over time.39
+clarification as to what is meant by `timely manner'. However, entities should be able to establish immediately whether a data breach occurred and its communication shall take place promptly.38 Therefore, the recovery of the data should happen as quickly as possible. ï¿½ Article 32 Sec. 1 lit. d GDPR--process for regularly testing, assessing and evaluating effectiveness of technical and organizational measures: the permanent obligation to guarantee data security requires constant up-keeping and maintenance of the implemented technical and organisational measures. The DPMS (see Sect. 3.2.1) will serve to fulfil this obligation. The frequency of these assessments depends on the level of risk for data security (see the following sub-heading) and could require adaptations over time.39
 Adherence to an approved Code of Conduct or Certification mechanism (see Sect. 3.9) can be used to demonstrate compliance with requirements for data security, Art. 32 Sec. 3 GDPR.
 
 3.3.3 Risk-Based Approach Towards Data Security
 The GDPR introduces a risk-based approach for determining which technical and organisational measures are appropriate in the given situation. The required level of data security needs to be identified on a case-by-case basis through an objective risk assessment.40 The assessment should primarily focus on potential risks for data subjects, but the risks for or imposed by third parties and controllers/processors will have to be taken into account as well.
 Risks for Data Subjects Since data processing is putting the fundamental rights of data subjects at risk, account needs to be taken of their legitimate interest in data security. In particular, account should be taken of the risks presented from accidental or unlawful destruction, loss, alteration, unauthorised disclosure of or access to personal data, Art. 32 Sec. 2 GDPR.
 Additionally, a more significant risk can be identified where41
-­ discrimination, identity theft or fraud, financial loss, damage to the reputation or any other significant economic or social disadvantage is likely to arise;
-­ data subjects might be deprived from their rights or freedoms or prevented from exercising control over their personal data;
-­ special categories of personal data (see Art. 9 Sec. 1 GDPR) are involved;
+ï¿½ discrimination, identity theft or fraud, financial loss, damage to the reputation or any other significant economic or social disadvantage is likely to arise;
+ï¿½ data subjects might be deprived from their rights or freedoms or prevented from exercising control over their personal data;
+ï¿½ special categories of personal data (see Art. 9 Sec. 1 GDPR) are involved;
 38Rec. 87 GDPR. 39Grages, in: Plath, BDSG/DSGVO, Art. 32 (2016), rec. 7. 40Rec. 76 GDPR. 41Rec. 75 GDPR.
 
 3.3 Technical and Organisational Measures
 
 41
 
-­ personal aspects, such as preferences of the data subject, are evaluated; ­ personal data of children or other vulnerable persons are processed; ­ a large amount of data or a large number of persons are affected.
+ï¿½ personal aspects, such as preferences of the data subject, are evaluated; ï¿½ personal data of children or other vulnerable persons are processed; ï¿½ a large amount of data or a large number of persons are affected.
 Risks Imposed by Third Parties However, not only the interests of data subjects have to be taken into account for the risk evaluation. Identifiable risks imposed by third parties may be a factor for the evaluation as well, such as situations where governmental intervention might take place (e.g., telecommunications data, passenger name records from air traffic).42
 Risks for Controllers and Processors Furthermore, the impending risks for controllers and processors themselves need to be considered. Factors for developing appropriate measures are the costs of implementation and the nature, scope, context and purposes of the processing, Art. 32 Sec. 1 GDPR. The risks for controllers and processors often correspond with the risks for data subjects, for example43:
-­ legal risks resulting from non-compliance with data protection obligations (e.g., fines, punishments, . . .);
-­ financial risks (e.g., claims for damages, costs for the improvement of the DPMS, . . .);
-­ business risks (e.g., risks for the business reputation, failure to achieve business goals, overwhelming workload for the management, . . .).
+ï¿½ legal risks resulting from non-compliance with data protection obligations (e.g., fines, punishments, . . .);
+ï¿½ financial risks (e.g., claims for damages, costs for the improvement of the DPMS, . . .);
+ï¿½ business risks (e.g., risks for the business reputation, failure to achieve business goals, overwhelming workload for the management, . . .).
 However, even though the interests of controllers and processors play a role in risk evaluation, they cannot be used to justify an impairment of the data protection level established under the GDPR.
 Data Security Concept The balancing of interests shall only serve to achieve data security in a proportionate way. It permits a differentiation of obligations to find a reasonable balance between efforts to and benefits of data security measures for the Regulations' addressees.44
 The results of the risk evaluation shall serve as basis for developing an appropriate data security concept. For this purpose, it is useful to classify data processing activities according to their risk potential (very high risks/high risks/medium risks/ low risks, . . .) and develop a corresponding security concept for each of these classes.45 This will play a key role in the DPMS (see Sect. 3.2.1). The efforts for
@@ -701,7 +707,7 @@ A high level of data security and a high level of IT security are mutually depen
 
 43
 
-· Network and information systems50: those are electronic communication networks (cable, radio, Internet, optical, electromagnetic equipment, etc.) or devices that, pursuant to a program, perform automatic processing of digital data, as well as digital data processed for the purposes of their operation, used by ­ operators of essential services51: public or private entities providing IT- or network-system-based services that are essential for the maintenance of critical societal/economic activities and where an incident would have significant disruptive effects on the provision of those services, the latter being located in the sectors of energy (electricity, oil gas), transport services (air, rails, water and road transport), banking, financial market infrastructures, health, drinking water supply and distribution, as well as digital infrastructure; or ­ digital service providers52: the providers of online marketplaces, online search engines and cloud computing services. The NIS Directive also applies to digital service providers established outside the EU that are offering their services within the EU.53
+ï¿½ Network and information systems50: those are electronic communication networks (cable, radio, Internet, optical, electromagnetic equipment, etc.) or devices that, pursuant to a program, perform automatic processing of digital data, as well as digital data processed for the purposes of their operation, used by ï¿½ operators of essential services51: public or private entities providing IT- or network-system-based services that are essential for the maintenance of critical societal/economic activities and where an incident would have significant disruptive effects on the provision of those services, the latter being located in the sectors of energy (electricity, oil gas), transport services (air, rails, water and road transport), banking, financial market infrastructures, health, drinking water supply and distribution, as well as digital infrastructure; or ï¿½ digital service providers52: the providers of online marketplaces, online search engines and cloud computing services. The NIS Directive also applies to digital service providers established outside the EU that are offering their services within the EU.53
 
 3.3.4.3 IT Security Obligations and Sanctions The NIS Directive shall ensure a high level of network security, as well as a maximum of service availability for the users of digital services and essential services.54 Thus, the operators of essential services and digital service providers have to implement appropriate risk-based technical and organisational measures that correspond to the available state of the art; see Art. 14 Sec. 1, 16 Sec. 1 NIS Directive.
 Moreover, both categories of service providers have to notify incidents with a significant effect on service continuity to the competent (national) authorities, Art. 14 Secs. 2, 3; Art. 16 Secs. 2, 3 NIS Directive. Significance is to be determined, among other factors, based on the number of users affected, the duration of the incident and its geographic spread.
@@ -721,12 +727,12 @@ Article 30 GDPR obliges the controller and processor, or where applicable their 
 The requirements as to the content of the Records slightly differentiate between the ones for controllers and for processors. They shall contain the following information:
 The Table 3.1 shows that the records maintained by the controller have to be more extensive. This is due to the fact that the general responsibility for data protection under the GDPR lies with the controller, and the records shall demonstrate compliance with the Regulation.55 Records shall be maintained in writing, including electronic form, Art. 30 Sec. 3 GDPR.
 The records shall increase transparency of the data processing activities.56 Thorough maintaining of records is advisable as they:
-­ upon request have to be made available to the Supervisory Authorities to permit monitoring of the processing operations57;
-­ permit to prove compliance with the GDPR; and ­ help to fulfil the information requests of data subjects when they exercise their
+ï¿½ upon request have to be made available to the Supervisory Authorities to permit monitoring of the processing operations57;
+ï¿½ permit to prove compliance with the GDPR; and ï¿½ help to fulfil the information requests of data subjects when they exercise their
 rights under the GDPR (see Sect. 5.3).58
 Moreover, a breach of the obligation to maintain a record of processing activities can be fined with up to EUR 10,000,000.00 or 2% of the total worldwide annual turnover; see Art. 83 Sec. 4 GDPR. To collect the information necessary for maintaining the records, the entity's different departments dealing with personal data need to be audited.59 This could be carried out via questionnaires or via specialised software.60
 As the records kept by the controller shall contain the purposes of the data processing, it should consider how detailed it will describe/document said purposes. On the one hand, the records should allow for a cursory evaluation of
-55Rec. 82 GDPR. 56Marschall, in: Roßnagel, DSGVO, Dokumentation (2017), rec. 161; rec. 39 GDPR. 57Art. 30 Sec. 4 GDPR; rec. 82 GDPR. 58Marschall, in: Roßnagel, DSGVO, Dokumentation (2017), rec. 161; Hornung, ZD 2012, 99, 101. 59See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsübersicht (2014), rec. 4. 60See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsübersicht (2014), rec. 4.
+55Rec. 82 GDPR. 56Marschall, in: Roï¿½nagel, DSGVO, Dokumentation (2017), rec. 161; rec. 39 GDPR. 57Art. 30 Sec. 4 GDPR; rec. 82 GDPR. 58Marschall, in: Roï¿½nagel, DSGVO, Dokumentation (2017), rec. 161; Hornung, ZD 2012, 99, 101. 59See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsï¿½bersicht (2014), rec. 4. 60See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsï¿½bersicht (2014), rec. 4.
 
 3.4 Records of Processing Activities
 
@@ -743,9 +749,9 @@ Transfers of personal data to a third country/ international organisation and do
 Envisaged time limits for erasure of the different categories of data
 General description of the technical and organisational security measures
 
-Records by the processor, Art. 30 Sec. 2 GDPR Name and contact details of the processor (s) and (joint) controllers, the representative (s) and Data Protection Officer(s) Categories of processing ­
-­
-Transfers of personal data to a third country/ international organisation and documentation of suitable safeguards ­
+Records by the processor, Art. 30 Sec. 2 GDPR Name and contact details of the processor (s) and (joint) controllers, the representative (s) and Data Protection Officer(s) Categories of processing ï¿½
+ï¿½
+Transfers of personal data to a third country/ international organisation and documentation of suitable safeguards ï¿½
 General description of the technical and organisational security measures
 
 the lawfulness of the processing activities, and thus the purpose needs to be documented in a way that allows for this evaluation.61 On the other hand, the
@@ -755,7 +761,7 @@ Supervisory Authorities in future.
 
 3.4.2 Exemption from the Obligation to Maintain Records
 Since the maintaining of records will be time-consuming and (potentially) costly, not all entities are obliged to do so. Article 30 Sec. 5 GDPR provides for an exemption for any enterprise or organisation employing less than 250 persons. This exemption shall take account of the special situation of micro, small and medium-sized enterprises.63 They will, most likely, not have sufficient financial and human resources to fulfil the obligation. This exemption needs to be interpreted in connection with other EU legislation.64 As a consequence, regardless of the number
-61See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsübersicht (2014), rec. 7. 62See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsübersicht (2014), rec. 7. 63Rec. 13 GDPR. 64According to rec. 13 GDPR, especially in connection with the Commission Recommendation of 6 May 2003 concerning the definition of micro, small and medium-sized enterprises (C (2003) 1422).
+61See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsï¿½bersicht (2014), rec. 7. 62See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Verarbeitungsï¿½bersicht (2014), rec. 7. 63Rec. 13 GDPR. 64According to rec. 13 GDPR, especially in connection with the Commission Recommendation of 6 May 2003 concerning the definition of micro, small and medium-sized enterprises (C (2003) 1422).
 
 46
 
@@ -764,12 +770,12 @@ Since the maintaining of records will be time-consuming and (potentially) costly
 of employees, entities with an annual turnover exceeding EUR 50 million and/or an annual balance sheet total exceeding EUR 43 million do not benefit from this exemption.65
 Conditions for the Applicability of the Exemption Still, Art. 30 Sec. 5 GDPR provides for three conditions for the applicability of the exemption that significantly reduce the benefit of the exemption. If one of the conditions is met, even micro, small and medium-sized enterprises have to maintain records of their processing activities.
 The conditions are as follows:
-­ The processing is likely to result in a risk to the rights and freedoms of data subjects: as practically any processing will put a risk to the rights of data subjects, the legislator presumably intended to exclude only activities with minor risks from the obligation to maintain records.66 This applicability condition should be interpreted in a way that only processing activities that exceed the risk potential inherent to every data processing activity require the maintaining of records.67 However, since there is no legislative specification, this condition might give rise to a number of disputes in the future and will have to be specified by the courts.
-­ The processing is not occasional: data processing should be `occasional' if the processing in question only plays a subordinate role in the activity of the controller/processor and only occurs for a very short time period or once.68
-­ Special categories of personal data (Art. 9 Sec. 1 GDPR) or personal data relating to criminal convictions and offences are processed: please note that it might be sufficient if any of the processed data, no matter how much or little, fall within one of those categories.69 In this regard, most entities will not fulfil this condition for the applicability of the exemption, as the processing of HR data usually includes data on the health of the employees.
+ï¿½ The processing is likely to result in a risk to the rights and freedoms of data subjects: as practically any processing will put a risk to the rights of data subjects, the legislator presumably intended to exclude only activities with minor risks from the obligation to maintain records.66 This applicability condition should be interpreted in a way that only processing activities that exceed the risk potential inherent to every data processing activity require the maintaining of records.67 However, since there is no legislative specification, this condition might give rise to a number of disputes in the future and will have to be specified by the courts.
+ï¿½ The processing is not occasional: data processing should be `occasional' if the processing in question only plays a subordinate role in the activity of the controller/processor and only occurs for a very short time period or once.68
+ï¿½ Special categories of personal data (Art. 9 Sec. 1 GDPR) or personal data relating to criminal convictions and offences are processed: please note that it might be sufficient if any of the processed data, no matter how much or little, fall within one of those categories.69 In this regard, most entities will not fulfil this condition for the applicability of the exemption, as the processing of HR data usually includes data on the health of the employees.
 As just shown, the scope of these counter-exceptions remains very vague. In practice, entities will basically never benefit from the counter-exceptions. This is linked to the fact that, even if the first and third counter-exceptions do not apply, data processing is merely ever just `occasional' (second counter-exception). For example, every company needs to process HR data regularly for accounting
 
-65Art. 2 of the Annex to the Commission Recommendation of 6 May 2003 concerning the definition of micro, small and medium-sized enterprises (C(2003) 1422). 66Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), rec. 32. 67Spoerr, in: Wolff/Brink, BeckOK, Art. 30 (2016), rec. 21. 68Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), recs. 33­34. 69Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), rec. 35.
+65Art. 2 of the Annex to the Commission Recommendation of 6 May 2003 concerning the definition of micro, small and medium-sized enterprises (C(2003) 1422). 66Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), rec. 32. 67Spoerr, in: Wolff/Brink, BeckOK, Art. 30 (2016), rec. 21. 68Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), recs. 33ï¿½34. 69Martini, in: Paal/Pauly, DSGVO, Art. 30 (2017), rec. 35.
 
 3.5 Data Protection Impact Assessment
 
@@ -793,10 +799,10 @@ In accordance with the general risk-based approach of the GDPR, the controller n
 
 A single assessment may address a set of similar processing operations that present similar high risks, Art. 35 Sec. 1 phrase 2 GDPR. A wider scope of the assessment can be more reasonable and economical, for example, where several controllers plan to introduce a common application, platform or a processing environment across an industry sector.75
 Above all, the use of new technologies requires a careful assessment of the risks and impacts.76 The same goes for new kinds of processing operations and operations where no Data Protection Impact Assessment has been carried out before by the controller or where an assessment becomes necessary given the time that has elapsed since the initial processing.77
-Article 35 Sec. 3 lits. a­c GDPR contains examples for risk-prone data processing activities, thus cases requiring a Data Protection Impact Assessment:
-­ Systematic and extensive evaluation of personal data: an assessment is necessary where a systematic and extensive evaluation of personal aspects based on automated processing takes place that aims at taking decisions concerning data subjects that produce legal or similarly significant effects. This includes profiling.
-­ Processing of special categories of personal data: processing on a large scale of special categories of data (see Art. 9 Sec. 1 GDPR) or of personal data relating to criminal convictions and offences requires a prior Data Protection Impact Assessment.
-­ Monitoring of publicly accessible areas: an assessment is also required for systematic monitoring of publicly accessible areas on a large scale, especially when optic-electronic devices are being used.78 This takes into account the intimidating effect of public monitoring of individuals that could endanger their right to privacy.79
+Article 35 Sec. 3 lits. aï¿½c GDPR contains examples for risk-prone data processing activities, thus cases requiring a Data Protection Impact Assessment:
+ï¿½ Systematic and extensive evaluation of personal data: an assessment is necessary where a systematic and extensive evaluation of personal aspects based on automated processing takes place that aims at taking decisions concerning data subjects that produce legal or similarly significant effects. This includes profiling.
+ï¿½ Processing of special categories of personal data: processing on a large scale of special categories of data (see Art. 9 Sec. 1 GDPR) or of personal data relating to criminal convictions and offences requires a prior Data Protection Impact Assessment.
+ï¿½ Monitoring of publicly accessible areas: an assessment is also required for systematic monitoring of publicly accessible areas on a large scale, especially when optic-electronic devices are being used.78 This takes into account the intimidating effect of public monitoring of individuals that could endanger their right to privacy.79
 A lot of processing activities involving considerable amounts of data will require a Data Protection Impact Assessment. For example, this considers operations that aim to process considerable amounts of data at a regional, national or supranational level or when otherwise potentially affecting a large number of data subjects.80 Furthermore, high-risk processing operations regarding the rights and freedoms of data subjects, e.g. based on the sensitivity of the processed data or on the use of new technology, might require a Data Protection Impact Assessment, in particular where those operations render it more difficult for data subjects to exercise their rights.81
 
 75Rec. 92 GDPR. 76Art. 35 Sec. 1 GDPR. 77Rec. 89 GDPR. 78Rec. 91 GDPR. 79Martini, in: Paal/Pauly, DSGVO, Art. 35 (2017), rec. 31. 80Rec. 91 GDPR. 81Rec. 91 GDPR.
@@ -810,11 +816,11 @@ The previous remarks show that a Data Protection Impact Assessment might be nece
 3.5.2 Scope of the Assessment
 Following the preventive protection concept introduced by the GDPR, the scope of the assessment covers the processing operations from their preparation to their consequences.
 3.5.2.1 Minimum Requirements Article 35 Sec. 7 GDPR sets out minimum requirements for the scope of the Data Protection Impact Assessment. It shall contain the following:
-­ a systematic description of the purposes and envisaged processing operations and, where applicable, the legitimate interest pursued by the controller;
-­ an assessment of the necessity and proportionality of the processing in relation to the purpose;
-­ an assessment of the risks to the rights and freedoms of the data subjects; and ­ the measures envisaged to address the risks.
+ï¿½ a systematic description of the purposes and envisaged processing operations and, where applicable, the legitimate interest pursued by the controller;
+ï¿½ an assessment of the necessity and proportionality of the processing in relation to the purpose;
+ï¿½ an assessment of the risks to the rights and freedoms of the data subjects; and ï¿½ the measures envisaged to address the risks.
 When assessing the measures for mitigating security risks, the controller should include safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with the Regulation, Art. 35 Sec. 7 lit. d GDPR. Doing so, the controller needs to take into account the rights and legitimate interests of the data subjects and other persons concerned.82 The GDPR does not contain other criteria for the scope of assessment, thus leaving the legal requirements for its procedure very vague.83
-Example An entity wants to introduce a data loss prevention application to scan the entity's entire email traffic for possible leakage of trade secrets. As all emails, which qualify as personal data of the respective communication parties, are scanned, this might constitute a processing activity that involves a systematic and extensive evaluation of personal data by automated means (¼ the security application). Thus, a Data Protection Impact Assessment might have to be carried out.
+Example An entity wants to introduce a data loss prevention application to scan the entity's entire email traffic for possible leakage of trade secrets. As all emails, which qualify as personal data of the respective communication parties, are scanned, this might constitute a processing activity that involves a systematic and extensive evaluation of personal data by automated means (ï¿½ the security application). Thus, a Data Protection Impact Assessment might have to be carried out.
 82See Art. 35 Sec. 7 lit. d GDPR. 83von dem Bussche, in: Plath, BDSG/DSGVO, Art. 35 (2016), rec. 17.
 
 50
@@ -826,19 +832,19 @@ When there is a change of risk presented by ongoing processing activities, the c
 Furthermore, the controller shall to take into account its compliance with approved Codes of Conduct when assessing the impact of the processing operations (see Sect. 3.9.2), as well as, where appropriate, the views of data subjects and their representatives when assessing the envisaged processing activities.84
 
 3.5.2.2 Involvement of the Data Protection Officer If designated, the controller shall seek the advice of the Data Protection Officer (see Sect. 3.6) when carrying out the Data Protection Impact Assessment, Art. 35 Sec. 2 GDPR.85 Even though the Data Protection Impact Assessment is the task of the controller, the Data Protection Officer can play a very important and useful role in assisting the controller.86 Therefore, it is advisable for the controller to involve it, if designated, and, among others, seek advice on the following issues87:
-­ whether or not to carry out a Data Protection Impact Assessment; ­ what methodology to follow when carrying it out; ­ whether to carry it out internally or externally; ­ what safeguards (including technical and organisational measures) to apply to
-mitigate any risks to the rights of the data subjects; ­ whether or not the Data Protection Impact Assessment has been carried out
+ï¿½ whether or not to carry out a Data Protection Impact Assessment; ï¿½ what methodology to follow when carrying it out; ï¿½ whether to carry it out internally or externally; ï¿½ what safeguards (including technical and organisational measures) to apply to
+mitigate any risks to the rights of the data subjects; ï¿½ whether or not the Data Protection Impact Assessment has been carried out
 correctly and whether its conclusions are in compliance with the GDPR.
 
 3.5.2.3 Exemptions Article 35 Sec. 10 GDPR provides for an exemption from the duty to perform a Data Protection Impact Assessment if three conditions are being met:
-­ the controller is subject to a Member State or Union law that deems processing necessary for compliance with a legal obligation or for the performance of a task
+ï¿½ the controller is subject to a Member State or Union law that deems processing necessary for compliance with a legal obligation or for the performance of a task
 84Art. 35 Secs. 8, 9 GDPR. 85See also Art. 39 Sec. 1 lit. c GDPR for the Data Protection Officer. 86Art. 29 Data Protection Working Party, WP 243 (2016), p. 16. 87For greater detail, see Art. 29 Data Protection Working Party, WP 243 (2016), p. 16 et seq.
 
 3.5 Data Protection Impact Assessment
 
 51
 
-carried out in the public interest or in the exercise of official authority vested in the controller88; ­ said law regulates the specific processing operation(s); and ­ a general Data Protection Impact Assessment for the operation has already been carried out in the context of the adoption of the legal basis.
+carried out in the public interest or in the exercise of official authority vested in the controller88; ï¿½ said law regulates the specific processing operation(s); and ï¿½ a general Data Protection Impact Assessment for the operation has already been carried out in the context of the adoption of the legal basis.
 Furthermore, a Data Protection Impact Assessment is not mandatory if the processing of personal data concerns--no matter what amount of--data from patients or clients by an individual physician, other health care professionals or lawyer.89
 
 3.5.2.4 Role of the Supervisory Authority The Supervisory Authorities play a key role in the Data Protection Impact Assessment as they give advice to the controller on a case-by-case basis, as well as through general measures.
@@ -854,13 +860,13 @@ Entities should verify whether their envisaged processing activities have been i
 
 Protection Impact Assessment will be necessary or not and might, ultimately, save time and financial resources.
 Prior Consultation The controller has to consult the Supervisory Authority prior to processing if, Art. 36 Sec. 1 GDPR:
-­ the Data Protection Impact Assessment indicated a high risk of the envisaged processing activities (see Sect. 3.3.3); and
-­ said processing activities would result in a high risk in the absence of measures taken to mitigate the risk.94
+ï¿½ the Data Protection Impact Assessment indicated a high risk of the envisaged processing activities (see Sect. 3.3.3); and
+ï¿½ said processing activities would result in a high risk in the absence of measures taken to mitigate the risk.94
 This consultation is per se no approval procedure for the processing activities, and its absence alone does not render the data processing unlawful.95 However, the violation of this obligation is punishable (see Art. 83 Sec. 4 lit. a GDPR) with fines of up to EUR 10,000,000.00 or 2% of the total worldwide annual turnover. Given the impending fines, the consultation obligation might de facto act like an approval procedure.96
 The time frame for the consultation procedure is laid down in Art. 36 Sec. 2 GDPR: if the Supervisory Authority identifies an infringement of the GDPR, it shall provide written advice within 8 weeks upon receipt of the request, which might be extended further by 6 weeks. The period may be suspended until the Supervisory Authority has obtained the requested information by the controller for the purpose of the consultation.97 However, the absence of a reaction of the Supervisory Authority within that period should be without prejudice to any intervention of the Supervisory Authority in accordance with its tasks and powers laid down in the GDPR, above all the power to prohibit processing operations.98
 For the purpose of the consultation, the controller needs to provide information to the Supervisory Authority according to Art. 36 Sec. 3 GDPR:
-­ the respective responsibilities of the controller, joint controllers and processors involved;
-­ the purposes and means of the intended processing; ­ the measures and safeguards provided for data protection; ­ the contact details of the Data Protection Officer (if applicable);
+ï¿½ the respective responsibilities of the controller, joint controllers and processors involved;
+ï¿½ the purposes and means of the intended processing; ï¿½ the measures and safeguards provided for data protection; ï¿½ the contact details of the Data Protection Officer (if applicable);
 
 94Some argue that, given Recital 94 of the Regulation, a consultation only has to take place if the controller is of the opinion that it won't be able to mitigate the high risk by reasonable means in terms of the available technologies and costs of implementations. See: Hansen, in: Wolff/Brink, BeckOK, Art. 36 (2016), rec.3; Paal, in: Paal/Pauly, DSGVO, Art. 36 (2017), rec. 5. 95For greater details see von dem Bussche, in: Plath, BDSG/DSGVO, Art. 36 (2016), rec.1. 96von dem Bussche, in: Plath, BDSG/DSGVO, Art. 36 (2016), rec. 2. 97Art. 36 Sec. 2 phrase 3 GDPR. 98Rec. 94 GDPR.
 
@@ -868,7 +874,7 @@ For the purpose of the consultation, the controller needs to provide information
 
 53
 
-­ the Data Protection Impact Assessment (see above); and ­ any other information requested by the Supervisory Authority.
+ï¿½ the Data Protection Impact Assessment (see above); and ï¿½ any other information requested by the Supervisory Authority.
 Especially, the latter entitles the Supervisory Authority to a very large information right.99 However, in accordance with EU law, the Supervisory Authority shall only request information that is necessary for the consultation within reasonable limits.100
 According to Art. 36 Sec. 5 GDPR, EU Member State law may require a consultation of the Supervisory Authority by the controller for the performance of data processing activities carried out in public interest.
 
@@ -888,8 +894,8 @@ In line with the risk-based approach of the GDPR, the obligation to designate a 
 and not to quantitative characteristics of the controller/processor itself (e.g., number of employees).104
 Once the designation is complete, the controller/processor has to publish the contact details of the DPO and communicate them to the Supervisory Authority.105 Since the DPO shall serve as contact point for the data subjects, a permanent availability of the contact details, e.g. through the company's website, is advisable.106
 According to Art. 37 Sec. 1 lits. b, c GDPR, private entities107 are obliged to designate a DPO in any case where the following is present:
-­ regular and systematic monitoring: the core activities consist of processing that requires the regular and systematic monitoring of data subjects on a large scale, by virtue of their nature, scope and/or purposes; or
-­ special categories of personal data: the core activities consist of processing on a large scale of special categories of data (see Art. 9 Sec. 1 GDPR) and personal data relating to criminal convictions and offences.
+ï¿½ regular and systematic monitoring: the core activities consist of processing that requires the regular and systematic monitoring of data subjects on a large scale, by virtue of their nature, scope and/or purposes; or
+ï¿½ special categories of personal data: the core activities consist of processing on a large scale of special categories of data (see Art. 9 Sec. 1 GDPR) and personal data relating to criminal convictions and offences.
 The GDPR does not specify the notions of `core activity' or `on a large scale' (for the latter, see Sect. 3.5.1), and the scope of application of the designation duty therefore requires specification.
 
 3.6.1.1 Specific Core Activities of the Company `Core activity' shall only relate to the primary activities of an entity and not to the processing of data as ancillary activity.108 Core activities are business segments that are decisive for realising the company's business strategy and are not only routine administrative tasks.109 However, the legislator did not specify whether the core activity has to be determined in relation to the company's entire product portfolio.
@@ -897,7 +903,7 @@ Example
 Entity H runs an online shop for shoes. For this purpose, its customer data is being stored. H addresses EU customers located in Germany, France and Italy.
 In this example, H stores the customer data in order to successfully run its online shop as they are necessary to process and execute orders. The data processing is only an ancillary activity to H's core activity of selling shoes. As a consequence, H is likely not obliged to designate a DPO.
 
-104Marschall/Müller, ZD 2016, 415, 416. 105Art. 37 Sec. 7 GDPR. 106Paal, in: Paal/Pauly, DSGVO, Art. 37 (2017), rec. 17. 107Public entities are also obliged to designate a DPO, except for courts and independent judicial authorities, and several authorities/bodies are allowed to designate a single DPO, see Arts. 37 Sec. 1 lit. a, Sec. 3 GDPR. 108Rec. 97 GDPR. 109Jaspers/Reif, RdV 2016, 61, 62.
+104Marschall/Mï¿½ller, ZD 2016, 415, 416. 105Art. 37 Sec. 7 GDPR. 106Paal, in: Paal/Pauly, DSGVO, Art. 37 (2017), rec. 17. 107Public entities are also obliged to designate a DPO, except for courts and independent judicial authorities, and several authorities/bodies are allowed to designate a single DPO, see Arts. 37 Sec. 1 lit. a, Sec. 3 GDPR. 108Rec. 97 GDPR. 109Jaspers/Reif, RdV 2016, 61, 62.
 
 3.6 Data Protection Officer
 
@@ -913,7 +919,7 @@ In this example, E processes personal data in order to carry out its personnel s
 
 3.6.1.2 Group Data Protection Officer Article 37 Sec. 2 GDPR permits a group of undertakings to appoint a single DPO provided that the latter is easily accessible from each establishment. This helps to facilitate intra-group data processing to a certain extent (see also Sect. 4.4) because the same DPO only needs to be designated once for all/several group entities and does not have to be designated separately for each entity concerned.
 The legislator did not specify what `easily accessible' shall mean. This could, for example, relate to technical or actual availability of the DPO.111 Given its function to provide guidance and assistance for reaching compliance with the GDPR, accessibility should be determined according to whether the group entities know who the respective DPO is and how they can reach it for advice.112 It should be
-110For details see also Gierschmann, ZD 2016, 51, 52; CIPL, Project Paper (2016), p. 15. 111Marschall/Müller, ZD 2016, 415, 417. 112von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 8.
+110For details see also Gierschmann, ZD 2016, 51, 52; CIPL, Project Paper (2016), p. 15. 111Marschall/Mï¿½ller, ZD 2016, 415, 417. 112von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 8.
 
 56
 
@@ -929,10 +935,10 @@ However, entities should keep in mind that the voluntary DPO will have to comply
 3.6.2 Aspects Regarding the Designation of the Data Protection Officer
 Given the DPO's key role in data protection compliance, candidates for this position have to fulfil certain (statutory) requirements.
 3.6.2.1 Qualifications According to Art. 37 Sec. 5 GDPR, a DPO shall be designated based on the following:
-­ professional qualities; ­ expert knowledge of data protection law and practices; and ­ the ability to fulfil the statutory responsibilities.
+ï¿½ professional qualities; ï¿½ expert knowledge of data protection law and practices; and ï¿½ the ability to fulfil the statutory responsibilities.
 As its qualification is linked to the ability to fulfil the statutory responsibilities, a candidate needs to be rated in connection with the data processing activities of a
 
-113Marschall/ Müller, ZD 2016, 415, 417; Jaspers/Reif, RdV 2016, 61, 63. 114For greater details see also CIPL, Project Paper (2016), pp. 2, 6, 19.
+113Marschall/ Mï¿½ller, ZD 2016, 415, 417; Jaspers/Reif, RdV 2016, 61, 63. 114For greater details see also CIPL, Project Paper (2016), pp. 2, 6, 19.
 
 3.6 Data Protection Officer
 
@@ -951,7 +957,7 @@ exclude legal persons and external DPOs will often be organised in the form of a
 The internal DPO is an employee of the processor/controller. The external DPO will fulfil its tasks on the basis of a service contract. Which model meets the needs of the controller/processor best has to be determined according to concrete data processing activities of the entity, as well as its size and budget. Following up are some of the aspects to keep in mind when choosing between both options (Table 3.2)120:
 
 3.6.2.3 Appointment for an Unlimited or Limited Time Period The GDPR does not exclude the possibility to appoint a DPO for a limited time period. Service contracts between the controller/processor and the external DPO are, by their very nature, limited in time. As internal DPOs are employees, they will often be designated for unlimited time periods and the termination of their employment contract can only take place if certain conditions are being met. Of course, a fixed-term employment contract can be agreed upon or only the appointment as DPO could be limited in time. However, in order to maintain a consistent level of
-115von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 10. 116Rec. 97 GDPR. 117von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 11; see also von dem Bussche, in: Plath, BDSG/DSGVO, § 4f (2016), rec. 28; Simitis, in: Simitis, BDSG, § 4f (2014), rec. 84; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 4f (2015), rec. 20 et seq. 118Approvingly see also von dem Bussche, in: Plath, BDSG/DSGVO, § 4f (2016), rec. 26; Simitis, in: Simitis, BDSG, § 4f (2014), rec. 48; Scheja, in: Taeger/Gabel, BDSG, § 4f (2013), rec. 82; disapprovingly see also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 4f (2015), rec. 19; Schaffland/Wiltfang, in: Schaffland/Wiltfang, BDSG, § 4f (2016), rec. 45. 119See also von dem Bussche, in: Plath, BDSG/DSGVO, § 4f (2016), rec. 26. 120See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Der Datenschutzbeauftragte (2014), recs. 10­12.
+115von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 10. 116Rec. 97 GDPR. 117von dem Bussche, in: Plath, BDSG/DSGVO, Art. 37 (2016), rec. 11; see also von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4f (2016), rec. 28; Simitis, in: Simitis, BDSG, ï¿½ 4f (2014), rec. 84; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 4f (2015), rec. 20 et seq. 118Approvingly see also von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4f (2016), rec. 26; Simitis, in: Simitis, BDSG, ï¿½ 4f (2014), rec. 48; Scheja, in: Taeger/Gabel, BDSG, ï¿½ 4f (2013), rec. 82; disapprovingly see also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 4f (2015), rec. 19; Schaffland/Wiltfang, in: Schaffland/Wiltfang, BDSG, ï¿½ 4f (2016), rec. 45. 119See also von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4f (2016), rec. 26. 120See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Der Datenschutzbeauftragte (2014), recs. 10ï¿½12.
 
 58
 
@@ -973,21 +979,21 @@ Whereas the proposal of the GDPR provided for a designation period of at least 2
 
 3.6.3 Position
 Article 38 GDPR lays down the statutory position of the DPO within the entity. To be able to successfully perform its tasks, the controller/processor needs to
-­ ensure that the DPO is involved, properly and in a timely manner, in all issues related to data protection, Art. 38 Sec. 1 GDPR; and
-121Approvingly see Jaspers/Reif, RdV 2016, 61, 63; Paal, in: Paal/Paul, DSGVO, Art. 37 (2017), rec. 18; Marschall/Müller, ZD 2016, 415, 416. 122Art. 35 Sec. 7 Proposal of the European Commission for the GDPR (COM(2012) 11 final; 2012/ 0011 (COD)).
+ï¿½ ensure that the DPO is involved, properly and in a timely manner, in all issues related to data protection, Art. 38 Sec. 1 GDPR; and
+121Approvingly see Jaspers/Reif, RdV 2016, 61, 63; Paal, in: Paal/Paul, DSGVO, Art. 37 (2017), rec. 18; Marschall/Mï¿½ller, ZD 2016, 415, 416. 122Art. 35 Sec. 7 Proposal of the European Commission for the GDPR (COM(2012) 11 final; 2012/ 0011 (COD)).
 
 3.6 Data Protection Officer
 
 59
 
-­ provide resources necessary for the DPO to carry out its tasks, access to personal data and processing activities and to maintain its expert knowledge, Art. 38 Sec. 2 GDPR. This means providing, among others, a suitable work space, IT, financial resources, specialist literature, support staff and also sufficient time to fulfil its duties.123
+ï¿½ provide resources necessary for the DPO to carry out its tasks, access to personal data and processing activities and to maintain its expert knowledge, Art. 38 Sec. 2 GDPR. This means providing, among others, a suitable work space, IT, financial resources, specialist literature, support staff and also sufficient time to fulfil its duties.123
 The DPO shall be in a position to perform its duties and tasks in an independent manner.124 For this purpose, it shall not receive any instructions regarding the exercise of those tasks by the controller/processor, Art. 38 Sec. 3 phrase 1 GDPR. Accordingly, the DPO shall directly report to the highest management level of the controller/processor.125 However, it is not specified whether the DPO needs to report every routine matter to the highest management level. Given the practicality within corporate structures, the DPO should always be able to report to the highest management level but should only be obliged to do so when more significant data protection matters arise.126 The DPO's independence shall prevent conflicts of interests, as the controller/processor might negatively influence the goal of achieving data security.127
 
 3.6.3.1 Contact Point for Data Subjects and Supervisory Authorities The DPO shall serve as contact point for data subjects as they may contact them with regard to all issues related to processing of their personal data, Art. 38 Sec. 4 GDPR. This forces the DPO to maintain a neutral position within the controller/ processor entity as it shall advise both the data subjects affected by the ongoing processing activities and those carrying them out.128
 Additionally, the DPO shall serve as contact point for the Supervisory Authorities, Art. 39 Sec. 1 lit. e GDPR. This includes the prior consultation according to Art. 36 GDPR (see Sect. 3.5.2.4).
 
 3.6.3.2 Duty of Confidentiality The DPO shall be bound by secrecy or confidentiality concerning the performance of its tasks, according to EU or EU Member State law, Art. 38 Sec. 5 GDPR. Thus, the GDPR does not set up its own confidentiality rules but rather recurs to preexisting legislation. Please note that, as a consequence, the duty of confidentiality might be limited by EU Member State law.129
-123See also von dem Bussche, in: Plath, BDSG/DSGVO, § 4f (2016), rec. 45; Jaspers/Reif, RdV 2016, 61, 65. 124Rec. 97 GDPR. 125Art. 38 Sec. 3 phrase 3 GDPR. 126See also CIPL, Project Paper (2016), p. 9. 127Paal, in: Paal/Pauly, DSGVO, Art. 38 (2017), rec. 9. 128Marschall/Müller, ZD 2016, 415, 420. 129von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 6.
+123See also von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4f (2016), rec. 45; Jaspers/Reif, RdV 2016, 61, 65. 124Rec. 97 GDPR. 125Art. 38 Sec. 3 phrase 3 GDPR. 126See also CIPL, Project Paper (2016), p. 9. 127Paal, in: Paal/Pauly, DSGVO, Art. 38 (2017), rec. 9. 128Marschall/Mï¿½ller, ZD 2016, 415, 420. 129von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 6.
 
 60
 
@@ -1001,16 +1007,16 @@ advanced to dismiss or penalise a DPO for the performance of its tasks as this w
 
 3.6.4 Responsibilities
 Article 39 GDPR lays down the statutory tasks of the DPO, which mainly consist of information, cooperation and monitoring duties. According to Art. 39 Sec. 1 GDPR, its minimum set of tasks shall consist of the following:
-­ informing and advising the controller/processor/their employees on their data protection obligations;
-­ monitoring compliance with data protection law and the privacy policy of the controller/processor, including carrying out the related audits;
-­ the assignment of responsibilities, awareness raising and training of staff tasked with data processing;
-­ providing advice, where requested, regarding the Data Protection Impact Assessment and monitoring its performance (see Sect. 3.5.2.2);
-­ cooperation with the Supervisory Authority (this does not include the obligation to notify data breaches; see Sect. 3.8.2); and
-­ acting as contact point for the Supervisory Authority.
+ï¿½ informing and advising the controller/processor/their employees on their data protection obligations;
+ï¿½ monitoring compliance with data protection law and the privacy policy of the controller/processor, including carrying out the related audits;
+ï¿½ the assignment of responsibilities, awareness raising and training of staff tasked with data processing;
+ï¿½ providing advice, where requested, regarding the Data Protection Impact Assessment and monitoring its performance (see Sect. 3.5.2.2);
+ï¿½ cooperation with the Supervisory Authority (this does not include the obligation to notify data breaches; see Sect. 3.8.2); and
+ï¿½ acting as contact point for the Supervisory Authority.
 The DPO's statutory responsibilities show that it plays an important role within the entity to reach data protection compliance.
 3.6.4.1 Additional Tasks and Conflicts of Interests According to Art. 38 Sec. 6 GDPR, the DPO can be entrusted with additional tasks or duties as long as the controller/processor ensures that they do not result in a conflict of interests.
 In this regard, entities should bear in mind that an internal DPO might be obliged to assume other tasks within the entity based, for example, on its employment contract, which must be evaluated for compliance with its position as DPO.132 By its very function, the DPO cannot carry out tasks related to data processing. It would be a conflict of interests if the DPO would be responsible for determining the purposes and means of any data processing or ensuring the lawfulness of processing
-130von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 10. 131von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 10. 132See also Scheja, in: Taeger/Gabel, BDSG, § 4f (2013), rec. 72.
+130von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 10. 131von dem Bussche, in: Plath, BDSG/DSGVO, Art. 38 (2016), rec. 10. 132See also Scheja, in: Taeger/Gabel, BDSG, ï¿½ 4f (2013), rec. 72.
 
 3.6 Data Protection Officer
 
@@ -1019,21 +1025,21 @@ In this regard, entities should bear in mind that an internal DPO might be oblig
 activities itself as he cannot monitor his own compliance with the GDPR.133 Due to
 differences in the organisational structure of each entity, this has to be determined on a case-by-case basis.134 As a general rule, it will not be possible to appoint anyone assuming any of the following roles as DPO135:
 
-­ a senior management position (the managing director, chief executive, chief operating, chief financial or chief medical officer);
-­ the heads of the IT, marketing or HR departments; ­ other roles lower down in the organisational structure if they lead to the
+ï¿½ a senior management position (the managing director, chief executive, chief operating, chief financial or chief medical officer);
+ï¿½ the heads of the IT, marketing or HR departments; ï¿½ other roles lower down in the organisational structure if they lead to the
 determination of purposes and means of processing.
 
 3.6.4.2 Practical Advice If appointed, the DPO will often play a key role for the entity's data protection compliance.136 In addition to its minimum set of tasks under the GDPR, it can prove beneficial to entrust the DPO with further tasks in order to benefit from its expert knowledge on privacy. Keeping this in mind, it is very important to avoid conflicts of interests. Depending on the activities, size and structure of the entity, controllers/ processors should adopt the following approach to avoid a conflict of interests137:
-­ identify the positions within the entity that would be incompatible with the function of the DPO;
-­ draw up internal rules to this effect in order to avoid conflicts of interests; ­ include a more general explanation about conflicts of interests; ­ declare that the respective DPO has no conflict of interests with regard to its
-function as a DPO, as a way of raising awareness of this requirement; ­ include safeguards in the internal rules of the entity.
+ï¿½ identify the positions within the entity that would be incompatible with the function of the DPO;
+ï¿½ draw up internal rules to this effect in order to avoid conflicts of interests; ï¿½ include a more general explanation about conflicts of interests; ï¿½ declare that the respective DPO has no conflict of interests with regard to its
+function as a DPO, as a way of raising awareness of this requirement; ï¿½ include safeguards in the internal rules of the entity.
 Entities must ensure that the vacancy notice for the position of DPO or the service contract is sufficiently precise and detailed in order to avoid a conflict of interests. In this context, it should be kept in mind that said conflicts may take various forms depending on whether the DPO is recruited internally or externally.
 
 3.6.4.3 Sanctions and Liability
 The GDPR does not provide for rules on liability or sanctioning of the DPO. It is
 therefore unclear whether it can be subject to criminal, administrative or corporate liabilities.138 However, as controllers or processors are responsible for the data
 
-133Art. 29 Data Protection Working Party, WP 243 (2016), p. 15; Schefzig, ZD 2015, 503, 505. 134Art. 29 Data Protection Working Party, WP 243 (2016), p. 15. 135See also von dem Bussche, in: Plath, BDSG/DSGVO, § 4f (2016), rec. 31; Scheja, in: Taeger/ Gabel, BDSG, § 4f (2013), rec. 73; Art. 29 Data Protection Working Party, WP 243 (2016), p. 15 et seq. 136See Sect. 3.6 for further details. 137Remarks largely drawn from Art. 29 Data Protection Working Party, WP 243 (2016), p.16. 138CIPL, Project Paper (2016), p. 21.
+133Art. 29 Data Protection Working Party, WP 243 (2016), p. 15; Schefzig, ZD 2015, 503, 505. 134Art. 29 Data Protection Working Party, WP 243 (2016), p. 15. 135See also von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4f (2016), rec. 31; Scheja, in: Taeger/ Gabel, BDSG, ï¿½ 4f (2013), rec. 73; Art. 29 Data Protection Working Party, WP 243 (2016), p. 15 et seq. 136See Sect. 3.6 for further details. 137Remarks largely drawn from Art. 29 Data Protection Working Party, WP 243 (2016), p.16. 138CIPL, Project Paper (2016), p. 21.
 
 62
 
@@ -1050,7 +1056,7 @@ respective labour law.
 3.7 Privacy by Design and Privacy by Default
 Further concrete data protection instruments are being prescribed in Art. 25 GDPR: companies should use the concepts of Privacy by Design and Privacy by Default-- especially when it comes to digital data processing.142
 Privacy by Design The concept of Privacy by Design (Art. 25 Sec. 1 GDPR) is based on the realisation that the conditions for data processing are fundamentally being set by the soft- and hardware used for the task.143 The accelerating pace of technical progress turns data protection through technology into the regulatory approach of the future.144 Technological concepts for preventive protection shall serve as basis for minimally invasive data processing.145 When creating new technology, developers and producers shall be obliged to keep data minimisation in mind.146 Examples include IT systems directed towards data minimisation, as well as comprehensive and timely pseudonymisation of personal data.147 For example, questionnaires and other data collection forms could be drawn up in a way that limits the scope of collected data to the amount that is absolutely necessary to fulfil the purpose of the data processing.148
-139CIPL, Project Paper (2016), p. 21. 140For example, under German law, controllers could bring forward tort claims (under very narrow conditions) against the DPO. 141Paal, in: Paal/Pauly, DSGVO, Art. 39 (2017), rec. 12. 142Martini, in: Paal/Pauly, DSGVO, Art. 24 (2017) rec. 5. 143See also Conrad/Hausen, in: Auer-Reinsdorff/Conrad, Handbuch IT, Telemedien (2016), rec. 165. 144See also Conrad, in: Auer-Reinsdorff/Conrad, Handbuch IT, Compliance (2016) rec. 217. 145See also Conrad, in: Auer-Reinsdorff/Conrad, Handbuch IT, Compliance (2016) rec. 217. 146See also Schulz, CR 2012, 204, 204; rec. 78 GDPR; Barlag, in: Roßnagel, DSGVO, Datenschutz durch Technik (2017), rec. 227. 147Rec. 78 GDPR; Wybitul/Draf, BB 2016, 2101, 2104. 148Example drawn from Scholz, in: Simitis, BDSG, § 3a (2014), rec. 35.
+139CIPL, Project Paper (2016), p. 21. 140For example, under German law, controllers could bring forward tort claims (under very narrow conditions) against the DPO. 141Paal, in: Paal/Pauly, DSGVO, Art. 39 (2017), rec. 12. 142Martini, in: Paal/Pauly, DSGVO, Art. 24 (2017) rec. 5. 143See also Conrad/Hausen, in: Auer-Reinsdorff/Conrad, Handbuch IT, Telemedien (2016), rec. 165. 144See also Conrad, in: Auer-Reinsdorff/Conrad, Handbuch IT, Compliance (2016) rec. 217. 145See also Conrad, in: Auer-Reinsdorff/Conrad, Handbuch IT, Compliance (2016) rec. 217. 146See also Schulz, CR 2012, 204, 204; rec. 78 GDPR; Barlag, in: Roï¿½nagel, DSGVO, Datenschutz durch Technik (2017), rec. 227. 147Rec. 78 GDPR; Wybitul/Draf, BB 2016, 2101, 2104. 148Example drawn from Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 35.
 
 3.7 Privacy by Design and Privacy by Default
 
@@ -1063,7 +1069,7 @@ Privacy by Default The concept of Privacy by Default (Art. 25 Sec. 2 GDPR) shall
 Privacy-friendly default settings usually provide for a maximum of privacy in such a way that users do not have to change the settings of a service or product upon first use or access in order to protect themselves.153 Where users wish to change these settings, e.g. to allow further use of or share their personal data with more parties, they should have to opt in and amend the settings by themselves.154 The concept of Privacy by Default will, above all, help to protect individuals that do not have the technical knowledge or time to implement privacy-friendly settings themselves.155 Moreover, with the increasing complexity and variety of online services and data use, the assessment of the impact of technical settings on data protection becomes more and more difficult.
 The main case of application for Privacy by Default should be privacy-friendly technical default settings when obtaining data subject's consent for processing (see Sect. 4.2.1).156
 
-149See also Volkel, DSRITB 2015, 35, 47. 150Gierschmann, ZD 2016, 51, 53. 151Martini, in: Paal/Pauly, DSGVO, Art. 25 (2017), rec. 45. 152Gierschmann, ZD 2016, 51, 53. 153Plath, in: Plath, BDSG/DSGVO, Art. 25 (2016), rec. 9; see also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 40. 154See also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 40. 155See also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 40. 156Plath, in: Plath, BDSG/DSGVO, Art. 25 (2016), rec. 9.
+149See also Volkel, DSRITB 2015, 35, 47. 150Gierschmann, ZD 2016, 51, 53. 151Martini, in: Paal/Pauly, DSGVO, Art. 25 (2017), rec. 45. 152Gierschmann, ZD 2016, 51, 53. 153Plath, in: Plath, BDSG/DSGVO, Art. 25 (2016), rec. 9; see also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 40. 154See also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 40. 155See also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 40. 156Plath, in: Plath, BDSG/DSGVO, Art. 25 (2016), rec. 9.
 
 64
 
@@ -1075,7 +1081,7 @@ Implementation In order to identify the appropriate scope for implementing techn
 If applicable, entities should make use of the Data Protection Officer's expertise (see Sect. 3.6) and consult it as soon as possible, whenever and wherever appropriate, on potential technical data protection measures.160
 The concept of Privacy by Default can be technically implemented at any given moment throughout processing, which makes it is somewhat more practical and might lead to its preferential use in practice, such as by changing previously used technical settings of software, applications, devices or user accounts into privacyfriendly default settings.161 Nevertheless, also before offering new services or products on the market, the development process should try to include a privacyfriendly design approach.
 
-157Barlag, in: Roßnagel, DSGVO, Datenschutz durch Technik (2017), rec. 231; see also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 18a. 158Laue/Nink/Kremer, Datenschutzrecht, Technischer Datenschutz (2016), rec. 7. 159von dem Bussche/Zeiter, EDPL 2016, 576, 577. 160von dem Bussche/Zeiter, EDPL 2016, 576, 577; Gierschmann, ZD 2016, 51, 53. 161von dem Bussche/Zeiter, EDPL 2016, 576, 577.
+157Barlag, in: Roï¿½nagel, DSGVO, Datenschutz durch Technik (2017), rec. 231; see also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 18a. 158Laue/Nink/Kremer, Datenschutzrecht, Technischer Datenschutz (2016), rec. 7. 159von dem Bussche/Zeiter, EDPL 2016, 576, 577. 160von dem Bussche/Zeiter, EDPL 2016, 576, 577; Gierschmann, ZD 2016, 51, 53. 161von dem Bussche/Zeiter, EDPL 2016, 576, 577.
 
 3.8 Personal Data Breaches
 
@@ -1095,7 +1101,7 @@ It is not specified whether `unauthorised disclosure or access' requires that su
 
 3.8.2 Notification to the Supervisory Authority
 In case of a personal data breach, the controller shall notify the competent Supervisory Authority (see Art. 51 et seq. GDPR) without undue delay and, if possible, not
-162Gierschmann, ZD 2016, 51, 53. Germany, in theory, provided for such an obligation under § 42a BDSG but it did often not apply in practice due to its very limited scope of application. 163Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 10. 164Compare to Art. 32 Sec. 1 lit. c GDPR. 165Schreiber, in: Plath, BDSG/DSGVO, Art. 4 (2016), rec. 41. 166Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 95; Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 16. 167Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94. 168Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94. 169Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94.
+162Gierschmann, ZD 2016, 51, 53. Germany, in theory, provided for such an obligation under ï¿½ 42a BDSG but it did often not apply in practice due to its very limited scope of application. 163Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 10. 164Compare to Art. 32 Sec. 1 lit. c GDPR. 165Schreiber, in: Plath, BDSG/DSGVO, Art. 4 (2016), rec. 41. 166Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 95; Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 16. 167Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94. 168Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94. 169Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 94.
 
 66
 
@@ -1122,8 +1128,8 @@ Without Undue Delay/72-h Time Frame The controller shall notify the data breach 
 However, companies should try to avoid exceeding the time frame to prevent this additional work and the risks of fines. By way of the extremely short notification period, the GDPR de facto introduces an obligation for entities to constantly monitor their processing operations and data flows. In this regard, a Data Protection Management System, where feasible, can prove helpful (see Sect. 3.2.1).
 
 3.8.2.3 Formal Requirements Article 33 Sec. 3 GDPR sets out minimum requirements for the content of the notification. It must contain the following:
-­ the nature of the personal data breach (if possible, categories and approximate number of data subjects and data records concerned);
-­ the name and contact details of the Data Protection Officer/other contact point; ­ the likely consequences of the data breach; and ­ the measures (proposed to be) taken to address the data breach.
+ï¿½ the nature of the personal data breach (if possible, categories and approximate number of data subjects and data records concerned);
+ï¿½ the name and contact details of the Data Protection Officer/other contact point; ï¿½ the likely consequences of the data breach; and ï¿½ the measures (proposed to be) taken to address the data breach.
 173Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 33; Grages, in: Plath, BDSG/DSGVO, Art. 33 (2016), rec. 3. 174Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 18. 175von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1361; Gierschmann, ZD 2016, 51, 53. 176Rec. 87 GDPR. 177Grages, in: Plath, BDSG/DSGVO, Art. 33 (2016), rec. 4.
 
 68
@@ -1153,7 +1159,7 @@ In this example, the unauthorised disclosure of the customer data constitutes a 
 When identifying the likeliness of a high risk of the data breach to the rights and freedoms of individuals, the controller shall communicate the personal data breach to the involved data subjects without undue delay, Art. 34 Sec. 1 GDPR. The notification shall allow the data subjects to take the necessary precautions and should describe to them the nature of the personal data breach, as well as recommendations for the data subjects to mitigate potential adverse effects.186
 If, subsequent to its notification, the Supervisory Authority identifies the likeliness of a high risk, it can require the controller to communicate the data breach to the data subjects concerned.187
 According to Art. 34 Sec. 3 GDPR, a communication is not required if one of the following conditions is met:
-­ the controller has implemented appropriate technical and organizational measures, and they were applied to the affected personal data; or
+ï¿½ the controller has implemented appropriate technical and organizational measures, and they were applied to the affected personal data; or
 
 185Martini, in: Paal/Pauly, DSGVO, Art. 33 (2017), rec. 55. 186Rec. 86 GDPR; for details see Art. 34 Sec. 2 GDPR in connection with Art. 33 Sec. 3 GDPR. 187Art. 34 Sec. 4 GDPR.
 
@@ -1161,8 +1167,8 @@ According to Art. 34 Sec. 3 GDPR, a communication is not required if one of the 
 
 3 Organisational Requirements
 
-­ the controller has taken subsequent measures to ensure that the high risk to the rights and freedoms is no longer likely to materialise; or
-­ the communication would involve disproportionate effort (there shall instead be a public communication or similar information measure).
+ï¿½ the controller has taken subsequent measures to ensure that the high risk to the rights and freedoms is no longer likely to materialise; or
+ï¿½ the communication would involve disproportionate effort (there shall instead be a public communication or similar information measure).
 In order to avoid a communication of data breaches towards data subjects altogether, entities should consider encrypting any personal data where a data breach would entail a communication obligation towards the data subjects. This concerns high-risk processing activities, e.g., such as operations involving special categories of personal data (see Sect. 4.2.3).
 The communication procedure shall take place in close cooperation with the Supervisory Authority.188 The latter may also decide if one of the conditions of Art. 34 Sec. 3 GDPR is met and provide guidance on the communication with the data subjects.189
 Example
@@ -1178,7 +1184,7 @@ According to Art. 70 Sec. 1 lit. h GDPR, the European Data Protection Board (see
 
 3.9 Codes of Conduct, Certifications, Seals, Etc.
 
-Whereas self-regulation plays a key role in US data protection, it has been largely neglected in the EU and its EU Member States.191 Articles 40­43 GDPR implement self-regulation procedures that shall primarily help to reach compliance, inter alia, with the obligation to implement appropriate technical and organisational measures for data security (see Sect. 3.3).
+Whereas self-regulation plays a key role in US data protection, it has been largely neglected in the EU and its EU Member States.191 Articles 40ï¿½43 GDPR implement self-regulation procedures that shall primarily help to reach compliance, inter alia, with the obligation to implement appropriate technical and organisational measures for data security (see Sect. 3.3).
 
 3.9.1 Relationship Between Codes of Conduct and Certifications
 Used in the right way, Codes of Conduct and Certifications permit a faster and more flexible solution to data protection challenges and might help to increase the data subjects' trust in processing activities of their personal data.192 Both instruments could be combined or used separately in order to demonstrate compliance with the GDPR.
@@ -1186,7 +1192,7 @@ While Codes of Conducts as well as Certifications provide a way for entities to 
 Codes of Conduct shall specify the organisational and material requirements under the GDPR for a certain data processing context, a certain product or a certain sector.194 Thus, they permit entities to self-determine if and how their activities comply with the GDPR but cannot be used as proof of compliance with the Supervisory Authorities. Codes of Conduct shall give a practical interpretation of the abstract provisions of the GDPR. On the other hand, Certifications shall not specify legal requirements but rather prove compliance of particular processing activities with the Regulation vis-a`-vis the Supervisory Authorities.195 Thus, the relationship between these two instruments is complementary.
 Both instruments can play an important role for data transfers to third countries, as they help to prove an adequate level of data protection that is essential for the lawfulness of such transfers (for details, see Sect. 4.3.6).
 Entities have to decide on a case-by-case basis if and what self-regulation approach corresponds to their needs best. Following are some of the aspects to keep in mind when choosing between both options (Table 3.3)196:
-191Kranig/Peintinger, ZD 2014, 3, 3; von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 1. 192Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 1. 193Hunton & Williams, The proposed Regulation (2015), p. 36. 194von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8. 195Bergt, DSRITB 2016, 483, 496. 196von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8; von Braunmühl, in: Plath, BDSG/DSGVO, Art. 42 (2016), rec. 5.
+191Kranig/Peintinger, ZD 2014, 3, 3; von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 1. 192Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 1. 193Hunton & Williams, The proposed Regulation (2015), p. 36. 194von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8. 195Bergt, DSRITB 2016, 483, 496. 196von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8; von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 42 (2016), rec. 5.
 
 72
 
@@ -1195,15 +1201,15 @@ Entities have to decide on a case-by-case basis if and what self-regulation appr
 Table 3.3 Practical considerations for the choice between Codes of Conduct and Certifications
 
 Codes of Conduct, Arts. 40, 41
-An entity wants a practical interpretation of its obligations under the GDPR in relation to ­ a whole sector, ­ a specific data processing context, ­ a specific technology, ­ a certain product.
+An entity wants a practical interpretation of its obligations under the GDPR in relation to ï¿½ a whole sector, ï¿½ a specific data processing context, ï¿½ a specific technology, ï¿½ a certain product.
 Procedure
-­ After adhering to a Code of Conduct, the entity has to constantly self-monitor its compliance with the requirements of the Code of Conduct. ­ Monitoring bodies/Supervisory Authorities will carry out more or less non-routine controls for determining the ongoing compliance of the entity's activities with the Code of Conduct.
+ï¿½ After adhering to a Code of Conduct, the entity has to constantly self-monitor its compliance with the requirements of the Code of Conduct. ï¿½ Monitoring bodies/Supervisory Authorities will carry out more or less non-routine controls for determining the ongoing compliance of the entity's activities with the Code of Conduct.
 Recommendable if
-­ Entities want a self-control mechanism to determine the compliance of all/the majority of their processing activities with the GDPR. ­ Large(r) corporations want a self-regulation mechanism that corresponds to their specific sector- or product-related needs. ­ Entities want a fast and efficient self-control instrument that they can use as a guideline for reaching compliance with the GDPR regarding the bulk of their processing activities.
+ï¿½ Entities want a self-control mechanism to determine the compliance of all/the majority of their processing activities with the GDPR. ï¿½ Large(r) corporations want a self-regulation mechanism that corresponds to their specific sector- or product-related needs. ï¿½ Entities want a fast and efficient self-control instrument that they can use as a guideline for reaching compliance with the GDPR regarding the bulk of their processing activities.
 
-Certifications, Arts. 42, 43 An entity wants to prove compliance with the GDPR regarding ­ specific processing activities, ­ a certain kind of processing activity.
-Procedure ­ Obtaining a Certification will, beforehand, require a cost-incurring and comprehensive control of the processing activities that shall be certified by a certification body/a Supervisory Authority. ­ In case of a positive outcome of the control, the entity will get a Certification of the relevant processing activities.
-Recommendable if ­ Entities want a proof of compliance with the GDPR for selected data processing activities. ­ Entities have a need for legal certainty regarding the compliance of specific processing activities with the GDPR.
+Certifications, Arts. 42, 43 An entity wants to prove compliance with the GDPR regarding ï¿½ specific processing activities, ï¿½ a certain kind of processing activity.
+Procedure ï¿½ Obtaining a Certification will, beforehand, require a cost-incurring and comprehensive control of the processing activities that shall be certified by a certification body/a Supervisory Authority. ï¿½ In case of a positive outcome of the control, the entity will get a Certification of the relevant processing activities.
+Recommendable if ï¿½ Entities want a proof of compliance with the GDPR for selected data processing activities. ï¿½ Entities have a need for legal certainty regarding the compliance of specific processing activities with the GDPR.
 
 3.9.2 Codes of Conduct
 Under the GDPR, the EU Member States, the Supervisory Authorities, the European Data Protection Board (see Art. 68 et seq. GDPR) and the European Commission shall encourage the drawing up of Codes of Conduct (CoCs), taking into account the specific features of the various processing sectors and the specific needs of micro, small and medium-sized enterprises, Art. 40 Sec. 1 GDPR. In comparison to the Data Protection Directive,197 the Regulation sets out a lot more detailed rules on how and when to draw up CoCs and how they will be monitored and certified.198
@@ -1216,13 +1222,13 @@ Under the GDPR, the EU Member States, the Supervisory Authorities, the European 
 
 3.9.2.1 Purpose and Preparation Articles 40, 41 GDPR allow creating a framework of binding rules of conduct to ensure proper application of and reach compliance with the GDPR. Used in the right way, CoCs shall give a practical interpretation of the abstract legal data protection requirements under the GDPR.199 Thus, they shall specify undetermined legal notions, general requirements for compliance and/or help to fill out any margins of discretion as to the level of data protection.200
 CoCs can refer to any aspect of the GDPR. However, Art. 40 Sec. 2 GDPR lists a few examples of when they permit specifying the application of the GDPR (the enumeration is not conclusive):
-­ fair and transparent processing (see Sect. 4.1.1); ­ legitimate interests pursued by controllers in specific contexts; ­ collection of personal data; ­ pseudonymisation of personal data (see Sect. 2.1.2.2); ­ information provided to the public and to data subjects (see Sects. 5.1 and 5.2); ­ exercise of the rights of data subjects (see Chap. 5); ­ information to and protection of children; ­ appropriate technical and organisational measures to achieve data security (see
-Sect. 3.3); ­ communication of personal data breaches (see Sect. 3.8.3); ­ transfer of personal data to third countries/international organisations (see Sect.
-4.3); ­ out-of-court proceedings and other dispute resolution procedures.
+ï¿½ fair and transparent processing (see Sect. 4.1.1); ï¿½ legitimate interests pursued by controllers in specific contexts; ï¿½ collection of personal data; ï¿½ pseudonymisation of personal data (see Sect. 2.1.2.2); ï¿½ information provided to the public and to data subjects (see Sects. 5.1 and 5.2); ï¿½ exercise of the rights of data subjects (see Chap. 5); ï¿½ information to and protection of children; ï¿½ appropriate technical and organisational measures to achieve data security (see
+Sect. 3.3); ï¿½ communication of personal data breaches (see Sect. 3.8.3); ï¿½ transfer of personal data to third countries/international organisations (see Sect.
+4.3); ï¿½ out-of-court proceedings and other dispute resolution procedures.
 CoCs provide sector-related or technology-related solutions as they might, as mentioned above, relate to the appropriate application of the GDPR for a certain data processing context, a certain product or a certain sector.201
 According to Art. 40 Sec. 2 GDPR, they might be prepared, amended or extended by associations and other bodies representing categories of controllers/ processors. Associations could be professional or inter-trade associations, Chambers of Commerce and Industry, etc.202 `Other bodies' also includes groups of undertakings.203 When drawing up a CoC, these associations/bodies should consult relevant stakeholders, including data subjects where feasible, and have regard to submissions received and views expressed in response to such consultations.204
 
-199Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 6; see also Wronka, RdV 2014, 93, 94. 200Bergt, DSRITB 2016, 483, 485. 201Kranig/Peintinger, ZD 2014, 3, 3; von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8. 202Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 5. 203von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 10; Paal, in: Paal/Pauly, DSGVO, Art. 40 (2017) rec. 11. 204Rec. 99 GDPR.
+199Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 6; see also Wronka, RdV 2014, 93, 94. 200Bergt, DSRITB 2016, 483, 485. 201Kranig/Peintinger, ZD 2014, 3, 3; von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 8. 202Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 5. 203von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 10; Paal, in: Paal/Pauly, DSGVO, Art. 40 (2017) rec. 11. 204Rec. 99 GDPR.
 
 74
 
@@ -1245,10 +1251,10 @@ Validity in Several EU Member States For CoCs that address processing activities
 
 3.9.2.3 Monitoring Bodies Pursuant to Art. 41 Sec. 1 GDPR,212 the competent Supervisory Authority (see Arts. 51 et seq. GDPR) will accredit independent bodies to monitor compliance with CoCs.213 As mentioned above, a CoC needs to provide for mechanisms to enable carrying out the monitoring of compliance of controllers/processors with the CoC.214 The latter will be the task of the monitoring bodies. They will take appropriate actions in case of an infringement of the CoC, including suspension or exclusion of the concerned controller/processor from the CoC, and shall inform the competent Supervisory Authority of such actions, Art. 41 Secs. 4, 5 GDPR.
 A monitoring body may be accredited if it meets certain conditions under Art. 41 Sec. 2 GDPR215:
-­ There should be independence and expertise in relation to the subject matter of the CoC. Most likely, this should require sector or technology expertise depending on the respective CoC.
-­ The monitoring body established procedures that allow it to assess the eligibility of controllers/processors to apply the CoC, to monitor their compliance and to review the CoC's operation periodically. Said body might be obliged to submit an audit concept prior to accreditation that will guarantee a systematic way of monitoring in order to prove that it meets this condition.
-­ The monitoring body established procedures to handle complaints about infringements of the CoC.
-­ The tasks/duties of the monitoring body will not result in a conflict of interests. Such a conflict might occur if the monitoring body conducts directly or indirectly an operational business in the sector that is subject to the CoC.
+ï¿½ There should be independence and expertise in relation to the subject matter of the CoC. Most likely, this should require sector or technology expertise depending on the respective CoC.
+ï¿½ The monitoring body established procedures that allow it to assess the eligibility of controllers/processors to apply the CoC, to monitor their compliance and to review the CoC's operation periodically. Said body might be obliged to submit an audit concept prior to accreditation that will guarantee a systematic way of monitoring in order to prove that it meets this condition.
+ï¿½ The monitoring body established procedures to handle complaints about infringements of the CoC.
+ï¿½ The tasks/duties of the monitoring body will not result in a conflict of interests. Such a conflict might occur if the monitoring body conducts directly or indirectly an operational business in the sector that is subject to the CoC.
 Detailed criteria for accreditation will be defined by the competent Supervisory Authorities, Art. 41 Sec. 3 GDPR. An accreditation shall be revoked by the latter if a body does not meet or no longer meets the conditions for accreditation or where actions taken by the monitoring body infringe the GDPR.216 Even though the Supervisory Authorities are not legally obliged to accredit monitoring bodies, this will most likely happen in practice as it will permit the Supervisory Authorities to reduce their workload. While monitoring bodies will monitor an entity's
 
 212Art. 41 GDPR shall not apply to processing carried out by public authorities and bodies, Art. 41 Sec. 6 GDPR. 213Some authors consider this accreditation a duty of the Supervisory Authority, see Paal, in: Paal/ Pauly, DSGVO, Art. 41 (2017), rec. 5; others consider this an optional monitoring instrument, see Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 15. 214Art. 40 Sec. 4 GDPR. 215For further details see Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 16. 216Art. 41 Sec. 5 GDPR.
@@ -1262,13 +1268,13 @@ In case of a breach of its obligations under Art. 41 GDPR, a monitoring body is 
 
 3.9.2.4 Legal Consequences/Benefits CoCs do not have binding legal effects. Thus, the associations/bodies that submitted a CoC will have to promote adherence to the latter vis-a`-vis their members.217 CoCs cannot serve as proof of compliance with the GDPR towards the Supervisory Authorities. Nevertheless, entities that are self-monitoring their compliance with a CoC will establish a certain level of data protection under the CoC and, thus, ultimately, will have to make less effort for reaching compliance with the GDPR.
 Moreover, adherence to a CoC entails a number of advantages for the respective controller/processor, as it facilitates the burden of proof for compliance with certain obligations under the GDPR:
-­ Art. 24 Secs. 3, 5 GDPR: adherence to a CoC might be used by the controller (see Sect. 3.2.1) or by the processor (see Sect. 3.10) to demonstrate compliance with its organisational requirements under the GDPR.
-­ Art. 32 Sec. 3 GDPR: adherence to a CoC might be used by the controller/ processor to demonstrate compliance with the obligation to implement appropriate technical and organisational measures (see Sect. 3.3).
-­ Art. 35 Sec. 8 GDPR: adherence to a CoC shall be taken into account when assessing the risks of processing activities with the help of the Data Protection Impact Assessment (see Sect. 3.5).
-­ Art. 40 Sec. 3 GDPR: adherence to a CoC with general validity can be used to demonstrate appropriate safeguards for data transfers to third countries (see Sect. 4.3.6).
-­ Art. 83 Sec. 2 lit. j GDPR: adherence to a CoC shall be taken into account when deciding on the amount of administrative fines for breaches of obligations under the GDPR (see Sect. 7.3).
+ï¿½ Art. 24 Secs. 3, 5 GDPR: adherence to a CoC might be used by the controller (see Sect. 3.2.1) or by the processor (see Sect. 3.10) to demonstrate compliance with its organisational requirements under the GDPR.
+ï¿½ Art. 32 Sec. 3 GDPR: adherence to a CoC might be used by the controller/ processor to demonstrate compliance with the obligation to implement appropriate technical and organisational measures (see Sect. 3.3).
+ï¿½ Art. 35 Sec. 8 GDPR: adherence to a CoC shall be taken into account when assessing the risks of processing activities with the help of the Data Protection Impact Assessment (see Sect. 3.5).
+ï¿½ Art. 40 Sec. 3 GDPR: adherence to a CoC with general validity can be used to demonstrate appropriate safeguards for data transfers to third countries (see Sect. 4.3.6).
+ï¿½ Art. 83 Sec. 2 lit. j GDPR: adherence to a CoC shall be taken into account when deciding on the amount of administrative fines for breaches of obligations under the GDPR (see Sect. 7.3).
 Also, the Supervisory Authority that has approved the respective CoC will be bound to the extent that the rules of the CoC will have to be taken into consideration when interpreting the obligations of the respective controllers/processors under the GDPR.218 As a consequence, the Supervisory Authority cannot rightfully take a decision that contradicts the respective CoC.219
-217Kranig/Peintinger, ZD 2014, 3, 4; Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 19. 218Bergt, DSRITB 2016, 483, 491; von Braunmühl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 18. 219Bergt, DSRITB 2016, 483, 493.
+217Kranig/Peintinger, ZD 2014, 3, 4; Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 19. 218Bergt, DSRITB 2016, 483, 491; von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 40 (2016), rec. 18. 219Bergt, DSRITB 2016, 483, 493.
 
 3.9 Codes of Conduct, Certifications, Seals, Etc.
 
@@ -1285,7 +1291,7 @@ Even though these mechanisms shall permit to demonstrate compliance of processin
 3.9.3.2 Certification Procedure
 The GDPR does not set out detailed rules for the certification procedure but only provides for basic principles.226 Criteria for certification will be issued by the
 
-220Rec. 100 GDPR. 221Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 28; von Braunmühl, in: Plath, BDSG/DSGVO, Art. 42 (2016), rec. 8. 222Paal, in: Paal/Pauly, DSGVO, Art. 42 (2017), rec. 5. 223Bergt, DSRITB 2016, 483, 496. 224Art. 42 Sec. 4 GDPR. 225Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 41. 226Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 27.
+220Rec. 100 GDPR. 221Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 28; von Braunmï¿½hl, in: Plath, BDSG/DSGVO, Art. 42 (2016), rec. 8. 222Paal, in: Paal/Pauly, DSGVO, Art. 42 (2017), rec. 5. 223Bergt, DSRITB 2016, 483, 496. 224Art. 42 Sec. 4 GDPR. 225Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 41. 226Laue/Nink/Kremer, Datenschutzrecht, Selbstregulierung (2016), rec. 27.
 
 78
 
@@ -1322,7 +1328,7 @@ The processor is not a `third party' to the data processing under the GDPR. A th
 Please keep in mind, however, that third country data transfers to processors located outside the EU require additional safeguards (see Sect. 4.3).
 In order to maintain the level of data protection pursued by the GDPR, the privileged involvement of data processors is balanced out by their obligations laid down in Art. 28 GDPR.
 
-235Arguing in this way is Schmid/Kahl, ZD 2017, 54, 56­57; Plath, in: Plath, BDSG/DSGVO, Art. 28 (2016), rec. 3; see also Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 84; Koo´s/Englisch, ZD 2014, 276, 284; Martini, in: Paal/Pauly, DSGVO, Art. 28 (2017), recs. 8­10; Spoerr, in: Wolff/Brink, BeckOK, Art. 28 (2016), recs. 29­32; and based on the former legislative situation in Germany with similar wording: von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 73; Weber/ Voigt, ZD 2011, 74, 74; Scholz/Lutz, CR 2011,424, 424­425; disapprovingly see Ha¨rting, ITRB 2016, 137, 138; Hofmann, in: Roßnagel, DSGVO, Auftragsdatenverarbeitung (2017), rec. 251; Nebel/Richter, ZD 2012, 407, 411; Roßnagel/Richter/Nebel, ZD 2013, 103, 105. 236Schmid/Kahl, ZD 2017, 54, 56.
+235Arguing in this way is Schmid/Kahl, ZD 2017, 54, 56ï¿½57; Plath, in: Plath, BDSG/DSGVO, Art. 28 (2016), rec. 3; see also Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 84; Kooï¿½s/Englisch, ZD 2014, 276, 284; Martini, in: Paal/Pauly, DSGVO, Art. 28 (2017), recs. 8ï¿½10; Spoerr, in: Wolff/Brink, BeckOK, Art. 28 (2016), recs. 29ï¿½32; and based on the former legislative situation in Germany with similar wording: von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 73; Weber/ Voigt, ZD 2011, 74, 74; Scholz/Lutz, CR 2011,424, 424ï¿½425; disapprovingly see Haï¿½rting, ITRB 2016, 137, 138; Hofmann, in: Roï¿½nagel, DSGVO, Auftragsdatenverarbeitung (2017), rec. 251; Nebel/Richter, ZD 2012, 407, 411; Roï¿½nagel/Richter/Nebel, ZD 2013, 103, 105. 236Schmid/Kahl, ZD 2017, 54, 56.
 
 3.10 Data Processors
 
@@ -1335,10 +1341,10 @@ The controller is obliged to assess, prior to choosing a certain processor, whet
 
 Data Processing Agreement In order to commit the processor to meet the conditions drawn up by the controller, both parties need to conclude a contract or other legal act, Art. 28 Sec. 3 GDPR. The contract needs to be concluded in writing, including electronic form.239 Under the former Data Protection Directive, such agreement has been mandatory but, in practice, often included only very basic obligations. Under the GDPR, the relationship between controller and processor and their respective obligations must be agreed upon in greater detail. First and foremost, the contract must stipulate the following:
 
-­ the subject matter; ­ the duration of processing; ­ the nature and purpose of the processing; ­ the type of personal data; ­ the categories of data subjects involved; ­ the obligations and rights of the controller.
+ï¿½ the subject matter; ï¿½ the duration of processing; ï¿½ the nature and purpose of the processing; ï¿½ the type of personal data; ï¿½ the categories of data subjects involved; ï¿½ the obligations and rights of the controller.
 
 Apart from these basic stipulations, the data processing agreement must include details on different obligations of the processor:
-­ The contract must stipulate the obligation of the processor to only process data on documented instructions from the controller, Art. 28 Sec. 3 phrase 2 lit. a GDPR. This does not impose formal requirements on the instructions of the
+ï¿½ The contract must stipulate the obligation of the processor to only process data on documented instructions from the controller, Art. 28 Sec. 3 phrase 2 lit. a GDPR. This does not impose formal requirements on the instructions of the
 
 237Plath, in. Plath, BDSG/DSGVO, Art. 28 (2016), rec. 8; Martini, in: Paal/Pauly, DSGVO, Art. 28 (2017), rec. 21; Spoerr, in: Wolff/Brink, BeckOK, Art. 28 (2016), rec. 35. 238Martini, in: Paal/Pauly, DSGVO, Art. 28 (2017), rec. 21. 239See Art. 28 Sec. 9 GDPR.
 
@@ -1346,7 +1352,7 @@ Apart from these basic stipulations, the data processing agreement must include 
 
 3 Organisational Requirements
 
-controller but rather obliges the processor to document the instructions it receives from the controller.240 This obligation serves to facilitate the obligation of demonstrating compliance with the GDPR and, thus, is advantageous for both parties.241 Oral instructions, which might have been given in urgent cases, should at least be documented subsequently.242 The contract must contain, among others, an obligation to confidentiality. ­ It must contain an obligation of the processor to implement appropriate technical and organizational measures (see the list in Art. 28 Sec. 3 GDPR) (see Sect. 3.3). ­ The processor must assist the controller in responding to data subject's requests to exercise their rights under the GDPR. Data subjects cannot exercise their rights under the GDPR directly against the processor (see Sect. 5.3). ­ Pursuant to Art. 28 Sec. 3 phrase 2 lit. f GDPR, the contract between the controller and processor shall stipulate that the processor assists the controller in ensuring compliance with its data breach obligations (see Sect. 3.8). ­ The processor must assist the controller in carrying out preventive Data Protection Impact Assessments (see Sect. 3.5). ­ The processor must be obliged to delete all personal data after the end of its services for the controller unless it is obliged to retain the data by law. ­ The processor must be bound to provide the controller with any information necessary to demonstrate compliance with the latter's obligations regarding the lawfulness of the processor's involvement, including contributing to and allowing for audits, as well as inspections, conducted by the controller or another auditor mandated by the controller.
+controller but rather obliges the processor to document the instructions it receives from the controller.240 This obligation serves to facilitate the obligation of demonstrating compliance with the GDPR and, thus, is advantageous for both parties.241 Oral instructions, which might have been given in urgent cases, should at least be documented subsequently.242 The contract must contain, among others, an obligation to confidentiality. ï¿½ It must contain an obligation of the processor to implement appropriate technical and organizational measures (see the list in Art. 28 Sec. 3 GDPR) (see Sect. 3.3). ï¿½ The processor must assist the controller in responding to data subject's requests to exercise their rights under the GDPR. Data subjects cannot exercise their rights under the GDPR directly against the processor (see Sect. 5.3). ï¿½ Pursuant to Art. 28 Sec. 3 phrase 2 lit. f GDPR, the contract between the controller and processor shall stipulate that the processor assists the controller in ensuring compliance with its data breach obligations (see Sect. 3.8). ï¿½ The processor must assist the controller in carrying out preventive Data Protection Impact Assessments (see Sect. 3.5). ï¿½ The processor must be obliged to delete all personal data after the end of its services for the controller unless it is obliged to retain the data by law. ï¿½ The processor must be bound to provide the controller with any information necessary to demonstrate compliance with the latter's obligations regarding the lawfulness of the processor's involvement, including contributing to and allowing for audits, as well as inspections, conducted by the controller or another auditor mandated by the controller.
 As the GDPR requirements governing data processing agreements between controllers and processors go far beyond the requirements of the Data Protection Directive, existing contracts between controllers and processors should be reviewed for compliance with the GDPR.
 The GDPR provides in Art. 28 Secs. 7, 8 GDPR for the possibility of the European Commission and of the Supervisory Authorities to adopt Standard Contractual Clauses that may serve in the future, in whole or in part, as basis for the contract between the controller and processor.243 Please note that so far, no Standard Contractual Clauses under the GDPR have been adopted.
 
@@ -1360,10 +1366,10 @@ The GDPR provides in Art. 28 Secs. 7, 8 GDPR for the possibility of the European
 
 The processor has several obligations, partially arising from his contract with the controller. As aforementioned, in case of a breach of these obligations, the processor can be held liable and fined with up to EUR 10,000,000.00 or 2% of the total worldwide annual turnover; see Art. 83 Sec. 4 GDPR. The most important obligations are as follows:
 
-­ the obligation to implement technical and organizational measures; compliance could, inter alia, be demonstrated through adherence to an approved Code of Conduct or Certification Mechanism (see Sect. 3.9); processors will be subject to the same level of security obligations as controllers, including the use of pseudonymisation techniques, the obligation to ensure the confidentiality, integrity, availability and resilience of processing services, the ability to restore and recover access to lost data and a regular evaluation of its security measures (see Sect. 3.3);
-­ the obligation to appoint a representative within the EU according to Art. 27 GDPR, if the processor is located outside the EU;
-­ the obligation to maintain a record of processing activities, Art. 31 Sec. 2 GDPR (see Sect. 3.4); however, the content of these records is less comprehensive than of the one that must be maintained by the controller; such record must be made available to the Supervisory Authorities upon their request;
-­ the obligation to cooperate with the Supervisory Authorities, Art. 31 GDPR; and ­ the obligation to designate a Data Protection Officer under Arts. 37 et seq. GDPR,
+ï¿½ the obligation to implement technical and organizational measures; compliance could, inter alia, be demonstrated through adherence to an approved Code of Conduct or Certification Mechanism (see Sect. 3.9); processors will be subject to the same level of security obligations as controllers, including the use of pseudonymisation techniques, the obligation to ensure the confidentiality, integrity, availability and resilience of processing services, the ability to restore and recover access to lost data and a regular evaluation of its security measures (see Sect. 3.3);
+ï¿½ the obligation to appoint a representative within the EU according to Art. 27 GDPR, if the processor is located outside the EU;
+ï¿½ the obligation to maintain a record of processing activities, Art. 31 Sec. 2 GDPR (see Sect. 3.4); however, the content of these records is less comprehensive than of the one that must be maintained by the controller; such record must be made available to the Supervisory Authorities upon their request;
+ï¿½ the obligation to cooperate with the Supervisory Authorities, Art. 31 GDPR; and ï¿½ the obligation to designate a Data Protection Officer under Arts. 37 et seq. GDPR,
 if the statutory conditions for a designation obligation are fulfilled (see Sect. 3.6).
 
 In case of a breach of its obligations, data subjects will be able to claim compensation directly from the processor under Art. 82 GDPR for damages that they suffered based on such a breach (see Sect. 7.2).
@@ -1382,8 +1388,8 @@ Upon prior written authorisation of the controller, the processor can designate 
 References
 Art. 29 Data Protection Working Party (2010) Opinion 1/2010 on the concepts of `controller' and `processor', WP 169
 Art. 29 Data Protection Working Party (2010) Opinion 3/2010 on the principle of accountability, WP 173
-Art. 29 Data Protection Working Party (2016) Guidelines on Data Protection Officers, WP 243 Barlag C (2017) Datenschutz durch Technikgestaltung. In: Roßnagel A (ed) Europa¨ische
-Datenschutz-Grundverordnung, Vorrang des Unionsrechts ­ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Bergt M (2016) Die Bedeutung von Verhaltensregeln und Zertifizierungen nach der DatenschutzGrundverordnung, DSRITB, pp 483­500 CIPL (2016) GDPR Project DPO Paper from 17 November 2016. https://www.huntonprivacyblog. com/wp-content/uploads/sites/18/2016/11/final_cipl_gdpr_dpo_paper_17_november_2016. pdf. Accessed 19 Dec 2016 Conrad I (2016) Compliance, IT-Sicherheit, Ordnungsma¨ßigkeit der Datenverarbeitung. In: AuerReinsdorff A, Conrad I (eds) Handbuch IT- und Datenschutzrecht, 2nd edn. C.H.Beck, Munich Conrad I, Hausen D (2016) Datenschutz der Telemedien. In: Auer-Reinsdorff A, Conrad I (eds) Handbuch IT- und Datenschutzrecht, 2nd edn. C.H.Beck, Munich Dovas M-U (2016) Joint Controllership ­ Moglichkeiten oder Risiken der Datennutzung?, ZD, pp 512­517. Egle M, Zeller A (2014) Datenschutzmanagement im Konzern. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich Ernestus W (2014) § 9 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Ernst S (2017) Art. 4 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich EuGH Zula¨ssigkeit von Zwangsmaßnahmen und Durchsuchungen durch EG-Kommission (1989), NJW, pp 3080­3084 Gierschmann S (2016) Was "bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51­55 Gola P, Klug C, Korffer B (2015) § 4f BDSG. In: Gola P, Schomerus R (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich
+Art. 29 Data Protection Working Party (2016) Guidelines on Data Protection Officers, WP 243 Barlag C (2017) Datenschutz durch Technikgestaltung. In: Roï¿½nagel A (ed) Europaï¿½ische
+Datenschutz-Grundverordnung, Vorrang des Unionsrechts ï¿½ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Bergt M (2016) Die Bedeutung von Verhaltensregeln und Zertifizierungen nach der DatenschutzGrundverordnung, DSRITB, pp 483ï¿½500 CIPL (2016) GDPR Project DPO Paper from 17 November 2016. https://www.huntonprivacyblog. com/wp-content/uploads/sites/18/2016/11/final_cipl_gdpr_dpo_paper_17_november_2016. pdf. Accessed 19 Dec 2016 Conrad I (2016) Compliance, IT-Sicherheit, Ordnungsmaï¿½ï¿½igkeit der Datenverarbeitung. In: AuerReinsdorff A, Conrad I (eds) Handbuch IT- und Datenschutzrecht, 2nd edn. C.H.Beck, Munich Conrad I, Hausen D (2016) Datenschutz der Telemedien. In: Auer-Reinsdorff A, Conrad I (eds) Handbuch IT- und Datenschutzrecht, 2nd edn. C.H.Beck, Munich Dovas M-U (2016) Joint Controllership ï¿½ Moglichkeiten oder Risiken der Datennutzung?, ZD, pp 512ï¿½517. Egle M, Zeller A (2014) Datenschutzmanagement im Konzern. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich Ernestus W (2014) ï¿½ 9 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Ernst S (2017) Art. 4 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich EuGH Zulaï¿½ssigkeit von Zwangsmaï¿½nahmen und Durchsuchungen durch EG-Kommission (1989), NJW, pp 3080ï¿½3084 Gierschmann S (2016) Was "bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51ï¿½55 Gola P, Klug C, Korffer B (2015) ï¿½ 4f BDSG. In: Gola P, Schomerus R (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich
 246See Art. 28 Sec. 4 phrase 2 GDPR.
 
 References
@@ -1392,28 +1398,28 @@ References
 
 Grages J-M (2016) Arts. 32, 33, 34 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne
 Hansen M (2016) Art. 35, 36 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
-Ha¨rting N (2016) Auftragsverarbeitung nach der DSGVO, ITRB, pp 137­140 Herbst T (2017) Art. 5 DSGVO. In. Kühling J, Buchner B (eds) Datenschutz-Grundverordnung,
+Haï¿½rting N (2016) Auftragsverarbeitung nach der DSGVO, ITRB, pp 137ï¿½140 Herbst T (2017) Art. 5 DSGVO. In. Kï¿½hling J, Buchner B (eds) Datenschutz-Grundverordnung,
 1st edn. C.H.Beck, Munich Hoeren T (2012) Der betriebliche Datenschutzbeauftragte - Neuerungen durch die geplante
-DS-GVO, ZD, pp 355­358 Hofmann J (2017) Die Autragsverarbeitung (Cloud computing). In: Roßnagel A (ed) Europa¨ische
-Datenschutz-Grundverordnung, Vorrang des Unionsrechts ­ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Hornung G (2012) Eine Datenschutz-Grundverordnung für Europa? - Licht und Schatten im Kommissionsentwurf vom 25.1.2012, ZD, pp 99­106 Hullen N (2014) Ausblick auf die EU-Datenschutz-Grundverordnung. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich Hunton & Williams (2015) The proposed EU General Data Protection Regulation. https://www. huntonregulationtracker.com/files/Uploads/Documents/EU%20Data%20Protection%20Reg% 20Tracker/Hunton_Guide_to_the_EU_General_Data_Protection_Regulation.pdf. Accessed 19 Dec 2016 Jaspers A, Reif Y (2016) Der Datenschutzbeauftragte nach der Datenschutz-Grundverordnung: Bestellpflicht, Rechtsstellung und Aufgaben, RdV, pp 61­68 Kipker D-K (2016) The EU NIS Directive compared to the IT Security Act ­ Germany is well positioned for the new European Cybersecurity Space, ZD-Aktuell, 05363 Koo´s C, Englisch B (2014) Eine `neue' Auftragsdatenverarbeitung? - Gegenüberstellung der aktuellen Rechtslage und derDS-GVO in der Fassung des LIBE-Entwurfs, ZD, pp 276­285 Kranig T, Peintinger S (2014) Selbstregulierung im Datenschutzrecht - Rechtslage in Deutschland, Europa und den USA unter Berücksichtigung des Vorschlags zur DS-GVO, ZD, pp 3­9 Laue P, Nink J, Kremer S (eds) (2016) Selbstregulierung; Technischer und Organisatorischer Datenschutz; Verarbeitung durch Dritte und im Ausland. In: Das neue Datenschutzrecht in der betrieblichen Praxis. 1st edn. Nomos, Baden-Baden Marschall K (2015) Datenpannen ­ `neue' Meldepflicht nach der europa¨ischen DS-GVO?, DuD, pp 183­189 Marschall K (2017) Datenschutzfolgenabscha¨tzung und Dokumentation. In: Roßnagel A (ed) Europa¨ische Datenschutz-Grundverordnung, Vorrang des Unionsrechts ­ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Marschall K, Müller P (2016) Der Datenschutzbeauftragte im Unternehmen zwischen BDSG und DS-GVO - Bestellung, Rolle, Aufgaben und Anforderungen im Fokus europa¨ischer Vera¨nderungen, ZD, pp 415­420 Martini M (2017) Arts. 24, 25, 26, 28, 30, 31, 32, 33, 35 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO - Vergleich der deutschen Rechtslage mit dem Kommissionsentwurf, ZD, pp 407­413 Paal BP (2017) Arts. 36, 37, 38, 40, 41, 42 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Plath K-U (2016) Arts. 25, 26, 28 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Roßnagel A, Richter P, Nebel M (2013) Besserer Internetdatenschutz für Europa - Vorschla¨ge zur Spezifizierung der DS-GVO, ZD, pp 103­108 Schaffland H-J, Wiltfang N (2016) § 4f BDSG. In: Schaffland H-J, Wiltfang N (eds) Bundesdatenschutzgesetz, status as of June 2016. Erich Schmidt Verlag, Berlin Schantz P (2017) Art. 5 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 19th edn. C.H.Beck, Munich
+DS-GVO, ZD, pp 355ï¿½358 Hofmann J (2017) Die Autragsverarbeitung (Cloud computing). In: Roï¿½nagel A (ed) Europaï¿½ische
+Datenschutz-Grundverordnung, Vorrang des Unionsrechts ï¿½ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Hornung G (2012) Eine Datenschutz-Grundverordnung fï¿½r Europa? - Licht und Schatten im Kommissionsentwurf vom 25.1.2012, ZD, pp 99ï¿½106 Hullen N (2014) Ausblick auf die EU-Datenschutz-Grundverordnung. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich Hunton & Williams (2015) The proposed EU General Data Protection Regulation. https://www. huntonregulationtracker.com/files/Uploads/Documents/EU%20Data%20Protection%20Reg% 20Tracker/Hunton_Guide_to_the_EU_General_Data_Protection_Regulation.pdf. Accessed 19 Dec 2016 Jaspers A, Reif Y (2016) Der Datenschutzbeauftragte nach der Datenschutz-Grundverordnung: Bestellpflicht, Rechtsstellung und Aufgaben, RdV, pp 61ï¿½68 Kipker D-K (2016) The EU NIS Directive compared to the IT Security Act ï¿½ Germany is well positioned for the new European Cybersecurity Space, ZD-Aktuell, 05363 Kooï¿½s C, Englisch B (2014) Eine `neue' Auftragsdatenverarbeitung? - Gegenï¿½berstellung der aktuellen Rechtslage und derDS-GVO in der Fassung des LIBE-Entwurfs, ZD, pp 276ï¿½285 Kranig T, Peintinger S (2014) Selbstregulierung im Datenschutzrecht - Rechtslage in Deutschland, Europa und den USA unter Berï¿½cksichtigung des Vorschlags zur DS-GVO, ZD, pp 3ï¿½9 Laue P, Nink J, Kremer S (eds) (2016) Selbstregulierung; Technischer und Organisatorischer Datenschutz; Verarbeitung durch Dritte und im Ausland. In: Das neue Datenschutzrecht in der betrieblichen Praxis. 1st edn. Nomos, Baden-Baden Marschall K (2015) Datenpannen ï¿½ `neue' Meldepflicht nach der europaï¿½ischen DS-GVO?, DuD, pp 183ï¿½189 Marschall K (2017) Datenschutzfolgenabschaï¿½tzung und Dokumentation. In: Roï¿½nagel A (ed) Europaï¿½ische Datenschutz-Grundverordnung, Vorrang des Unionsrechts ï¿½ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Marschall K, Mï¿½ller P (2016) Der Datenschutzbeauftragte im Unternehmen zwischen BDSG und DS-GVO - Bestellung, Rolle, Aufgaben und Anforderungen im Fokus europaï¿½ischer Veraï¿½nderungen, ZD, pp 415ï¿½420 Martini M (2017) Arts. 24, 25, 26, 28, 30, 31, 32, 33, 35 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO - Vergleich der deutschen Rechtslage mit dem Kommissionsentwurf, ZD, pp 407ï¿½413 Paal BP (2017) Arts. 36, 37, 38, 40, 41, 42 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Plath K-U (2016) Arts. 25, 26, 28 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Roï¿½nagel A, Richter P, Nebel M (2013) Besserer Internetdatenschutz fï¿½r Europa - Vorschlaï¿½ge zur Spezifizierung der DS-GVO, ZD, pp 103ï¿½108 Schaffland H-J, Wiltfang N (2016) ï¿½ 4f BDSG. In: Schaffland H-J, Wiltfang N (eds) Bundesdatenschutzgesetz, status as of June 2016. Erich Schmidt Verlag, Berlin Schantz P (2017) Art. 5 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 19th edn. C.H.Beck, Munich
 
 86
 
 3 Organisational Requirements
 
-Schefzig J (2015) Der Datenschutzbeauftragte in der betrieblichen Datenschutzorganisation Konflikt zwischen Zuverla¨ssigkeit und datenschutzrechtlicher Verantwortung, ZD, pp 503­507
-Scheja G (2013) § 4f BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main
-Schmid G, Kahl T (2017) Verarbeitung `sensibler' Daten durch Cloud-Anbieter in Drittstaaten, ZD, pp 54­57
-Scholz P (2014) § 3a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
-Scholz M, Lutz H (2011) Standardvertragsklauseln für Auftragsverarbeiter und § 11 BDSG, CR, pp 424­428
+Schefzig J (2015) Der Datenschutzbeauftragte in der betrieblichen Datenschutzorganisation Konflikt zwischen Zuverlaï¿½ssigkeit und datenschutzrechtlicher Verantwortung, ZD, pp 503ï¿½507
+Scheja G (2013) ï¿½ 4f BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main
+Schmid G, Kahl T (2017) Verarbeitung `sensibler' Daten durch Cloud-Anbieter in Drittstaaten, ZD, pp 54ï¿½57
+Scholz P (2014) ï¿½ 3a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
+Scholz M, Lutz H (2011) Standardvertragsklauseln fï¿½r Auftragsverarbeiter und ï¿½ 11 BDSG, CR, pp 424ï¿½428
 Schreiber L (2016) Art. 4 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne
-Schulz S (2012) Privacy by design, CR, pp 204­208 Simitis S (2014) § 4f BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-
+Schulz S (2012) Privacy by design, CR, pp 204ï¿½208 Simitis S (2014) ï¿½ 4f BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-
 Baden Spoerr W (2016) Arts. 28, 30 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-
 Kommentar Datenschutzrecht, 18. C.H.Beck, Munich Thoma F (2013) Risiko im Datenschutz - Stellenwert eines systematischen Risikomanagements in
-BDSG und DS-GVO-E, ZD, pp 578­581 Veil W (2015) DS-GVO: Risikobasierter Ansatz statt rigides Verbotsprinzip - Eine erste
-Bestandsaufnahme, ZD, pp 347­353 Voigt P (2016) Dauerbrenner IT-Sicherheit ­ Nun macht Brüssel Druck, MMR, pp 429­430 Voigt P, Gehrmann M (2016) Die europa¨ische NIS-Richtlinie - Neue Vorgaben zur Netz- und
-IT-Sicherheit, ZD, pp 355­358 Volkel C (2015) Wearables und Gesundheitsdaten: Moglichkeiten und Grenzen zur cloudbasierten
-Nutzung durch Ärzte und Krankenversicherungen aus datenschutzrechtlicher Sicht, DSRITB, pp 35­52 von Braunmu¨hl P (2016) Arts. 40, 42 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF (2016) Arts. 35, 36, 37, 38 DSGVO; § 4f BDSG. In: Plath K-U (ed) BDSG/ DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF, Voigt P (2014) Der Datenschutzbeauftragte; Rechtliche Anforderungen an Datenverarbeitungen; Verarbeitungsu¨bersicht und Verfahrensverzeichnis. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich von dem Bussche AF, Zeiter A (2016) Practitioner's corner ­ implementing the EU general data protection regulation: a business perspective. EDPL (4):576­581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359­1365 Weber MP, Voigt P (2011) Internationale Auftragsdatenverarbeitung - Praxisempfehlungen für die Auslagerung von IT-Systemen in Drittstaaten mittels Standardvertragsklauseln, ZD, pp 74-78 Wichtermann M (2016) Einführung eines Datenschutz-Management-Systems im Unternehmen ­ Pflicht oder Kür? - Kurzüberblick über die Erweiterungen durch die DS-GVO, ZD, pp 421­422 Wronka G (2014) Anmerkungen zu den Verhaltensregeln der Deutschen Versicherungswirtschaft, RdV, pp 93­96 Wybitul T (2016) Welche Folgen hat die Datenschutz-Grundverordnung für Compliance?, CCZ, pp 194­198 Wybitul T, Draf O (2016) Projektplanung und Umsetzung der EU-Datenschutz-Grundverordnung im Unternehmen, BB, pp 2101­2107
+BDSG und DS-GVO-E, ZD, pp 578ï¿½581 Veil W (2015) DS-GVO: Risikobasierter Ansatz statt rigides Verbotsprinzip - Eine erste
+Bestandsaufnahme, ZD, pp 347ï¿½353 Voigt P (2016) Dauerbrenner IT-Sicherheit ï¿½ Nun macht Brï¿½ssel Druck, MMR, pp 429ï¿½430 Voigt P, Gehrmann M (2016) Die europaï¿½ische NIS-Richtlinie - Neue Vorgaben zur Netz- und
+IT-Sicherheit, ZD, pp 355ï¿½358 Volkel C (2015) Wearables und Gesundheitsdaten: Moglichkeiten und Grenzen zur cloudbasierten
+Nutzung durch ï¿½rzte und Krankenversicherungen aus datenschutzrechtlicher Sicht, DSRITB, pp 35ï¿½52 von Braunmuï¿½hl P (2016) Arts. 40, 42 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF (2016) Arts. 35, 36, 37, 38 DSGVO; ï¿½ 4f BDSG. In: Plath K-U (ed) BDSG/ DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF, Voigt P (2014) Der Datenschutzbeauftragte; Rechtliche Anforderungen an Datenverarbeitungen; Verarbeitungsuï¿½bersicht und Verfahrensverzeichnis. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich von dem Bussche AF, Zeiter A (2016) Practitioner's corner ï¿½ implementing the EU general data protection regulation: a business perspective. EDPL (4):576ï¿½581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359ï¿½1365 Weber MP, Voigt P (2011) Internationale Auftragsdatenverarbeitung - Praxisempfehlungen fï¿½r die Auslagerung von IT-Systemen in Drittstaaten mittels Standardvertragsklauseln, ZD, pp 74-78 Wichtermann M (2016) Einfï¿½hrung eines Datenschutz-Management-Systems im Unternehmen ï¿½ Pflicht oder Kï¿½r? - Kurzï¿½berblick ï¿½ber die Erweiterungen durch die DS-GVO, ZD, pp 421ï¿½422 Wronka G (2014) Anmerkungen zu den Verhaltensregeln der Deutschen Versicherungswirtschaft, RdV, pp 93ï¿½96 Wybitul T (2016) Welche Folgen hat die Datenschutz-Grundverordnung fï¿½r Compliance?, CCZ, pp 194ï¿½198 Wybitul T, Draf O (2016) Projektplanung und Umsetzung der EU-Datenschutz-Grundverordnung im Unternehmen, BB, pp 2101ï¿½2107
 
 Material Requirements
 
@@ -1442,10 +1448,10 @@ DOI 10.1007/978-3-319-57959-7_4
 
 Personal data shall be processed lawfully, fairly and in a transparent manner in relation to the data subject, Art. 5 Sec. 1 lit. a GDPR. Thus, data processing can only take place if covered by a legal permission or by the data subject's consent. Individuals need to be enabled to understand what is happening to their personal data. Therefore, it should be transparent to them that their personal data are collected, used, consulted or otherwise processed and to what extent those data are or will be used.4 The principle of transparency requires, in particular5:
 
-­ information for individuals on the identity of the controller; ­ information for individuals on the purposes of the processing; ­ further information in respect of the data subjects and their right to obtain
-confirmation and communication of processing activities performed on their personal data; ­ making individuals aware of the risks, rules, safeguards and rights in relation to the processing activities and how they can exercise those rights.
+ï¿½ information for individuals on the identity of the controller; ï¿½ information for individuals on the purposes of the processing; ï¿½ further information in respect of the data subjects and their right to obtain
+confirmation and communication of processing activities performed on their personal data; ï¿½ making individuals aware of the risks, rules, safeguards and rights in relation to the processing activities and how they can exercise those rights.
 
-These information rights of the data subjects are substantiated in Arts. 13­14
+These information rights of the data subjects are substantiated in Arts. 13ï¿½14
 GDPR (see Sect. 5.2). Moreover, the specific purposes of the processing should be
 explicit, legitimate and determined at the time of the collection of the personal data.6
 Any information and communication relating to the processing shall be easily
@@ -1470,9 +1476,9 @@ purpose might change over time, depending on scientific and technological develo
 
 4.1.2.2 Level of Detail of the Purpose When carrying out further processing activities, entities should verify that those operations are compatible with the initial purpose. Otherwise, the new processing activities will only be lawful by way of renewed consent or by way of a statutory justification in EU Member State law allowing for a change of the data processing purpose (see Sect. 4.2.2.5). The level of detail of the purpose that is communicated to data subjects may vary on a case-by-case basis as it is adapted based on the specific processing situation.15 When determining the level of detail of the purpose, entities need to take into account the overall processing context, in particular the reasonable expectations of the data subjects and the extent to which the parties concerned have a common understanding of the purpose.16
 Important aspects for determining the level of detail of the purposes are, among others17:
-­ The greater is the number of data subjects affected and the larger is the geographic area addressed, the clearer the purposes need to be determined as data subjects from very different age groups or cultural backgrounds might be affected.
-­ More detail is required where processing surpasses what is customary in a given context.
-­ Breaking down the purpose into several sub-purposes might help to increase comprehensibility for the data subjects.
+ï¿½ The greater is the number of data subjects affected and the larger is the geographic area addressed, the clearer the purposes need to be determined as data subjects from very different age groups or cultural backgrounds might be affected.
+ï¿½ More detail is required where processing surpasses what is customary in a given context.
+ï¿½ Breaking down the purpose into several sub-purposes might help to increase comprehensibility for the data subjects.
 
 11Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 23; Dammann, ZD 2016, 307, 311. 12Monreal, ZD 2016, 507, 509; see also Art. 29 Data Protection Working Party, WP 203 (2013), p. 20. 13See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 20. 14See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 20. 15See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 51. 16See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 51. 17See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 51 et seq.
 
@@ -1480,7 +1486,7 @@ Important aspects for determining the level of detail of the purposes are, among
 
 4 Material Requirements
 
-­ Moreover, layered privacy notices can be very helpful to increase the level of transparency of information for data subjects. This means that key information is provided to data subjects in a very concise and user-friendly manner while additional information (e.g., via a link to a more detailed description of the processing activities on another webpage) is provided for the benefit of those who require further clarification.18
+ï¿½ Moreover, layered privacy notices can be very helpful to increase the level of transparency of information for data subjects. This means that key information is provided to data subjects in a very concise and user-friendly manner while additional information (e.g., via a link to a more detailed description of the processing activities on another webpage) is provided for the benefit of those who require further clarification.18
 Example
 D is a large car producer and is structured as a group of undertakings. Its HR department recruits a new employee. The employment contract is concluded by said employee with the group entity in Germany (German-D). For this purpose, German-D uses the employee's personal data. However, the employee's immediate supervisor is employed in another group entity in the Netherlands (Netherlands-D). Thus, the personal data of this employee shall be transferred to Netherlands-D.
 In this example, D's processing of the employee's personal data within German-D is customary in the context of a recruitment process for ultimately concluding the employment contract. The involvement of the employee's future immediate supervisor in the recruitment process is generally a part of this procedure and should be covered by the purpose of processing personal data for recruitment purposes. However, the immediate supervisor is employed by another group entity. This surpasses what is customary in the recruitment context. Thus, D must inform the employee on the intended intra-group data transfer when communicating the purpose of the data processing activities to it.
@@ -1488,7 +1494,7 @@ In this example, D's processing of the employee's personal data within German-D 
 4.1.3 Data Minimisation
 Personal data shall be adequate, relevant and limited to what is necessary in relation to the purposes for which they are processed.19 It is not an obligation to minimise data processing to an absolute minimum but rather an obligation to minimise data collection to an adequate level regarding the purposes of processing.20 Thus, this requires an evaluation of the proportionality of the envisaged processing activities. Entities should ask themselves whether the collected data are necessary for reaching the purposes of processing.21 To sum up, data minimisation aims for a reduction of data collection to the lowest possible level for realising the processing purposes.22
 
-18See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 16. 19Rec. 39 GDPR. 20Plath, in: Plath, BDSG/DSGVO, Art. 5 (2016), recs. 10­11. 21Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 35. 22Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 34.
+18See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 16. 19Rec. 39 GDPR. 20Plath, in: Plath, BDSG/DSGVO, Art. 5 (2016), recs. 10ï¿½11. 21Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 35. 22Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 34.
 
 4.1 Basic Principles
 
@@ -1502,7 +1508,7 @@ In order to minimise data collection, D should determine what data is necessary 
 4.1.4 Accuracy
 According to Art. 5 Sec. 1 lit. d GDPR, personal data shall be accurate and, where necessary, kept up to date. Every reasonable step must be taken to ensure that data that is inaccurate, having regard to the purposes of the processing, is erased or rectified without delay.24 As data allows reconstructing a situation or the characteristics of an individual, they shall be accurate to permit this reconstruction as its usage might produce legal consequences.25 They shall, at any given time, reflect reality. This principle is substantiated by other provisions of the GDPR, such
 
-23Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), recs. 35­37. 24Art. 5 Sec. 1 lit. d GDPR. 25Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 39.
+23Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), recs. 35ï¿½37. 24Art. 5 Sec. 1 lit. d GDPR. 25Frenzel, in: Paal/Pauly, DSGVO, Art. 5 (2017), rec. 39.
 
 92
 
@@ -1518,7 +1524,7 @@ Personal data shall be processed in a manner that ensures appropriate security o
 
 4.2 Legal Justifications for Data Processing
 Data processing activities can only be lawful if they are covered by the data subject's consent or by a legal permission. Any data processing, irrespective of whether it takes place within the EU or outside the EU, is prohibited unless covered by a legal basis. Furthermore, data processing concerning children and/or highly
-26Please note that personal data might be stored for longer periods insofar as it will be processed solely for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Art. 89 Sec. 1 GDPR, see Art. 5 Sec. 1 lit. e GDPR. 27Rec. 39 GDPR. 28Rec. 39 GDPR. 29Grützner/Jakob, Compliance A­Z (2015).
+26Please note that personal data might be stored for longer periods insofar as it will be processed solely for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Art. 89 Sec. 1 GDPR, see Art. 5 Sec. 1 lit. e GDPR. 27Rec. 39 GDPR. 28Rec. 39 GDPR. 29Grï¿½tzner/Jakob, Compliance Aï¿½Z (2015).
 
 4.2 Legal Justifications for Data Processing
 
@@ -1543,22 +1549,22 @@ This way, the controller can prove to have obtained consent and that the data su
 4.2.1.2 Unambiguity (Formal Requirements) The GDPR does not provide for formal requirements as to the consent. Whereas under the former legislative situation some EU Member States' legislation laid down such requirements,35 consent under the GDPR could be given by oral or written statement, including by electronic means.36 Nevertheless, written form is advisable regarding the controller's burden of proof. Given its practicability, a lot of entities might opt for obtaining consent by electronic means in the future. In order to be able to demonstrate that valid consent has been obtained, entities will have to protocol the declared electronic consent.37
 Consent in the Context of a Written Declaration Also Concerning Other Matters However, if the consent is given in the context of a written declaration that also concerns other matters, the request for consent shall be presented in a manner that is clearly distinguishable from the other matters, in an intelligible and easily accessible form, using clear and plain language, Art. 7 Sec. 2 GDPR. It is advisable to graphically highlight the request for consent in the written declaration as this makes it clearly distinguishable and to explicitly use the word `consent'.38 Where consent has been obtained as part of a written declaration also concerning other matters, such as in the context of the standard business terms of the entity, only the part of that declaration that infringes the requirements for valid consent shall not be binding, Art. 7 Sec. 2 phrase 2 GDPR. Thus, the Regulation provides for the severability of the different parts of such agreement, meaning that the validity of the remaining clauses not relating to the consent for processing shall not be affected.39
 Clear Affirmative Act The aforementioned safeguards should ensure that the data subject is aware of the fact that and the extent to which consent is given40 and permit to ensure unambiguity. In practice, a clear affirmative act of the data subject is required, which could be as follows41:
-­ ticking an unticked box when visiting an Internet website; ­ choosing technical settings for information society services (such as technical
+ï¿½ ticking an unticked box when visiting an Internet website; ï¿½ choosing technical settings for information society services (such as technical
 settings of an Internet browser allowing for the use of cookies);
 
-35For example, German Data Protection Law required consent to be given in written form. 36Rec. 32 GDPR. 37Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), recs. 6­7. 38Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), rec. 8. 39Frenzel, in: Paal/Pauly, DSGVO, Art. 7 (2017) rec. 15; Stemmer, in: Wolff/Brink, BeckOK, Art. 7 (2017), recs. 65­68. 40Rec. 42 GDPR. 41Rec. 32 GDPR; von dem Bussche/Zeiter, EDPL 2016, 576, 580.
+35For example, German Data Protection Law required consent to be given in written form. 36Rec. 32 GDPR. 37Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), recs. 6ï¿½7. 38Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), rec. 8. 39Frenzel, in: Paal/Pauly, DSGVO, Art. 7 (2017) rec. 15; Stemmer, in: Wolff/Brink, BeckOK, Art. 7 (2017), recs. 65ï¿½68. 40Rec. 42 GDPR. 41Rec. 32 GDPR; von dem Bussche/Zeiter, EDPL 2016, 576, 580.
 
 4.2 Legal Justifications for Data Processing
 
 95
 
-­ any other statement or conduct that clearly indicates acceptance of the proposed processing.
+ï¿½ any other statement or conduct that clearly indicates acceptance of the proposed processing.
 On the contrary, silence, pre-ticked boxes or inactivity should not constitute consent.42 An opt-out model is therefore generally not permissible.43
 
 4.2.1.3 Voluntariness Consent has to be freely given. This will not be the case if the data subject has no genuine or free choice or is unable to refuse or withdraw consent without detriment.44
 Clear Imbalance In order to ensure its voluntariness, consent may not serve as legal basis for data processing where there is a clear imbalance between the data subject and the controller in a specific case.45 Imbalance is likely in a specific situation where the controller is a public authority.46 However, the legislator does not explicitly mention other cases of a clear imbalance. Thus, the notion will have to be specified in the future. The legislator deleted the reference to a clear imbalance in the context of an employment relationship as statutory example, which had been included in an earlier draft of the GDPR.47 Nevertheless, a clear imbalance might still be identified in this context. This will have to be identified on a case-by-case basis.
 Prohibition of Consent as Condition for the Performance of a Contract When assessing the voluntariness, account shall be taken of whether, inter alia, the performance of a contract, including the provision of a service, is conditional on consent to the processing of personal data that is not necessary for the performance of that contract, Art. 7 Sec. 4 GDPR. Thus, the Regulation prohibits depending a contractual performance upon consent despite such consent not being necessary for such performance.48 The extent of this prohibition remains unclear. Potentially, it might only outlaw such practice by providers holding a monopoly position.49 However, the wording of Art. 7 Sec. 4 GDPR and the corresponding recitals 42 and 43 do not provide for such a narrow interpretation. Therefore, a contractual
-42Rec. 32 GDPR. 43von dem Bussche/Zeiter, EDPL (2016) 576, 580; von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1362; Frenzel, in: Paal/Pauly, DSGVO, Art. 7 (2017), rec. 15; negatively see Piltz, K&R 2016, 557, 563. 44Rec. 42 GDPR. 45Rec. 43 GDPR. 46Rec. 43 GDPR. 47von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1363; Gierschmann, ZD 2016, 51, 54; Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 16. 48Rec. 43 GDPR. 49Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), recs. 14­15.
+42Rec. 32 GDPR. 43von dem Bussche/Zeiter, EDPL (2016) 576, 580; von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1362; Frenzel, in: Paal/Pauly, DSGVO, Art. 7 (2017), rec. 15; negatively see Piltz, K&R 2016, 557, 563. 44Rec. 42 GDPR. 45Rec. 43 GDPR. 46Rec. 43 GDPR. 47von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1363; Gierschmann, ZD 2016, 51, 54; Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 16. 48Rec. 43 GDPR. 49Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), recs. 14ï¿½15.
 
 96
 
@@ -1568,11 +1574,11 @@ performance can no longer be linked to consent for data processing that is not n
 This will largely affect online services offered in contribution to the input of personal data. Seemingly, the legislator wants to protect individuals against an exploitation of their personal data, as the latter have become a valuable asset for companies. The practical implications of this provision remain to be seen, but entities should limit the collection of `unnecessary' data in the future as a violation of Art. 7 Sec. 4 is punishable with fines of up to EUR 20,000,000.00 or up to 4% of the total annual worldwide turnover, Art. 83 Sec. 5 GDPR. Entities might be compelled to offer their services with the option for individuals to not contribute personal data.51
 
 4.2.1.4 Specific and Informed Consent According to Art. 4 Sec. 11 GDPR, consent requires a specific and informed affirmation by the data subject of the processing of its personal data. Thus, the data subject should be aware at least of the following:
-­ the identity of the controller; and ­ the purposes of the processing for which the personal data is intended.52
+ï¿½ the identity of the controller; and ï¿½ the purposes of the processing for which the personal data is intended.52
 The data subject needs to be informed of all purposes of the processing. Consequently, when the processing has multiple purposes, consent must be obtained for all of them.53 The data subject's consent must correspond to the specific data processing situation and cannot be given in the form of a general authorisation.54
 Separate Consent for Different Processing Operations Consent is presumed not to be freely given if the consent does not allow separate consent to be given to different personal data processing operations despite it being appropriate in the individual case.55 Whether such separate consent is appropriate depends on the specific data processing context. In case of different processing activities being part of a single service that cannot be separated without considerable effort, a separation should not be necessary.56
 
-50von dem Bussche/Zeiter/Brombach, DB 2016,1359, 1362; Dammann, ZD 2016, 307, 311; Gierschmann, ZD 2016, 51, 54; Schantz, NJW 2016, 1841, 1845. 51Gierschmann, ZD 2016, 51, 54; von dem Bussche/Zeiter/Brombach, DB 2016,1359, 1362; von dem Bussche/Zeiter, EDPL 2016, 576, 580. 52Rec. 42 GDPR. 53Rec. 32 GDPR. 54Piltz, K&R 2016, 557, 563. 55Rec. 43 GDPR. 56Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 18.
+50von dem Bussche/Zeiter/Brombach, DB 2016,1359, 1362; Dammann, ZD 2016, 307, 311; Gierschmann, ZD 2016, 51, 54; Schantz, NJW 2016, 1841, 1845. 51Gierschmann, ZD 2016, 51, 54; von dem Bussche/Zeiter/Brombach, DB 2016,1359, 1362; von dem Bussche/Zeiter, EDPL 2016, 576, 580. 52Rec. 42 GDPR. 53Rec. 32 GDPR. 54Piltz, K&R 2016, 557, 563. 55Rec. 43 GDPR. 56Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 18.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1580,12 +1586,12 @@ Separate Consent for Different Processing Operations Consent is presumed not to 
 
 Example
 Entity G runs a social network via the Internet. For this purpose, G collects and stores personal data. G sells advertising space on the social networks' webpage to third entities. These entities carry out behavioural advertising. When signing up with the social network, users have to consent to the use of their personal data for behavioural advertising in order to successfully register with the social network.
-In this example, G must inform its users of the different purposes of processing ( ¼ running a social network þ behavioural advertising) before obtaining their consent. G's users might feel obliged to consent to behavioural advertising in order to avoid the risk of being excluded from social interactions in the network. However, the users should be put in a position to give free and specific consent to receiving behavioural advertising, independently of their access to the social network. For this purpose, G could use a pop-up window that informs users of the intended processing operations and alternative options. Said pop-up window might offer users the possibility to select the use of data to which they consent and should inform them on the consequences of refusal of consent for certain kinds of processing activities, such as behavioural advertising.57
+In this example, G must inform its users of the different purposes of processing ( ï¿½ running a social network ï¿½ behavioural advertising) before obtaining their consent. G's users might feel obliged to consent to behavioural advertising in order to avoid the risk of being excluded from social interactions in the network. However, the users should be put in a position to give free and specific consent to receiving behavioural advertising, independently of their access to the social network. For this purpose, G could use a pop-up window that informs users of the intended processing operations and alternative options. Said pop-up window might offer users the possibility to select the use of data to which they consent and should inform them on the consequences of refusal of consent for certain kinds of processing activities, such as behavioural advertising.57
 
 4.2.1.5 Withdrawal Article 7 Sec. 3 GDPR explicitly provides for the data subject's right to withdraw its consent at any time. The withdrawal shall not affect the lawfulness of processing based on consent before its withdrawal.58 Thus, its exercise only produces effects for the future. Nevertheless, this data subject's right, which already existed under the Data Protection Directive, will make it more difficult for entities to obtain valid consent as they will have to be prepared for withdrawals at any given moment and, thus, would lose their legal justification for processing. It might be advisable to work around this issue by using another legal basis for processing in addition to the data subject's consent.
 The controller needs to inform the data subject of its right to withdraw prior to it giving consent, Arts. 7 Sec. 3 phrase 3, 13 Sec. 2 lit. c GDPR.59 Please note that a violation of the information obligation about the right to withdrawal is punishable with fines of up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover, Art. 83 Sec. 5 lit. b GDPR. Furthermore, it shall be as easy to withdraw as to give consent, Art. 7 Sec. 3 phrase 4 GDPR.
 
-57See also Art. 29 Data Protection Working Party, WP 187 (2011), pp. 18­19. 58Art. 7 Sec. 3 phrase 2 GDPR. 59Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), rec. 11.
+57See also Art. 29 Data Protection Working Party, WP 187 (2011), pp. 18ï¿½19. 58Art. 7 Sec. 3 phrase 2 GDPR. 59Plath, in: Plath, BDSG/DSGVO, Art. 7 (2016), rec. 11.
 
 98
 
@@ -1593,13 +1599,13 @@ The controller needs to inform the data subject of its right to withdraw prior t
 
 4.2.1.6 Children's Consent in Relation to Information Society Services As children merit specific protection,60 their consent has to meet stricter conditions in order to be lawful. Thus, Art. 8 GDPR introduces special conditions applicable to a child's consent in relation to information society services. Specific protection should, in particular, apply to the use of personal data of children for the purposes of marketing or creating personality or user profiles and the collection of their personal data when using services directly offered to a child.61
 Applicability of the Provision The provision is applicable if the following conditions are met:
-· The processing activity must be based on the data subject's consent pursuant to Art. 6 Sec. 1 phrase 1 lit. a GDPR;
-· The consent is to be given in relation to information society services. This means any services normally provided for remuneration, at a distance, by electronic means and at the individual request of a recipient of services, Art. 4 No. 25 GDPR in connection with Art. 1 Sec. 1 lit. b Directive (EU) 2015/1535: ­ at a distance: the service is provided without the parties being simultaneously present; ­ by electronic means: the service is sent initially and received at its destination by means of electronic equipment for the processing (including digital compression) and storage of data and entirely transmitted, conveyed and received by wire, by radio, by optical means or by other electromagnetic means; ­ at the individual request of a recipient of services: the service is provided through the transmission of data on individual request.
+ï¿½ The processing activity must be based on the data subject's consent pursuant to Art. 6 Sec. 1 phrase 1 lit. a GDPR;
+ï¿½ The consent is to be given in relation to information society services. This means any services normally provided for remuneration, at a distance, by electronic means and at the individual request of a recipient of services, Art. 4 No. 25 GDPR in connection with Art. 1 Sec. 1 lit. b Directive (EU) 2015/1535: ï¿½ at a distance: the service is provided without the parties being simultaneously present; ï¿½ by electronic means: the service is sent initially and received at its destination by means of electronic equipment for the processing (including digital compression) and storage of data and entirely transmitted, conveyed and received by wire, by radio, by optical means or by other electromagnetic means; ï¿½ at the individual request of a recipient of services: the service is provided through the transmission of data on individual request.
 
 Example online sales platforms of goods and services; online information services or the access, use and information from communication networks; online search services; streaming services; social networks . . .62
-· The service must be offered directly to a child. This is the case for services that are exclusively addressing young consumers or explicitly focussing on them. Indications are the use of child-oriented language, contents or illustrations.63 Article 8 GDPR is not applicable to services that are also used by children but are
+ï¿½ The service must be offered directly to a child. This is the case for services that are exclusively addressing young consumers or explicitly focussing on them. Indications are the use of child-oriented language, contents or illustrations.63 Article 8 GDPR is not applicable to services that are also used by children but are
 
-60Rec. 38 GDPR. 61Rec. 38 GDPR. 62Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 48; Gola/Schulz, ZD 2013, 475, 477; Nebel/Richter, ZD 2012, 407, 410. 63Gola/Schulz, ZD 2013, 475, 478; Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 49.
+60Rec. 38 GDPR. 61Rec. 38 GDPR. 62Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 48; Gola/Schulz, ZD 2013, 475, 477; Nebel/Richter, ZD 2012, 407, 410. 63Gola/Schulz, ZD 2013, 475, 478; Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 49.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1614,7 +1620,7 @@ For children below the age of 16, processing shall only be lawful if and to the 
 Pursuant to Art. 8 Sec. 2 GDPR, the controller shall make reasonable efforts to verify that consent is given or authorised by the holder of parental responsibility, taking into consideration available technology. Thus, the controller is obliged to document the valid obtainment of consent. However, it remains unclear what efforts are to be considered reasonable. Thus, Supervisory Authorities and courts will adopt a case-by-case approach and will have to specify this notion in the future. A violation of the verification and documentation duty is punishable with fines of up to EUR 10,000,000.00 or up to 2% of the total worldwide annual turnover, Art. 83 Sec. 4 lit. a GDPR.
 Please note that the provisions on a child's consent shall not affect the general contract law of EU Member States such as rules on validity, formation or effect of a
 
-64Gola/Schulz, ZD 2013, 475, 478; Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 49; negatively see Frenzel, in: Paal/Pauly, DSGVO, Art. 8 (2017), rec. 7. 65Please note that, according to rec. 38 GDPR, the consent of the holder of parental responsibility should not be necessary in the context of preventive or counselling services offered directly to a child. 66See Art. 8 Sec. 1 phrase 3 GDPR. It is very likely that EU Member States will make use of this opening clause as they might adapt the minimum age level to their legislation on legal capacity.
+64Gola/Schulz, ZD 2013, 475, 478; Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 49; negatively see Frenzel, in: Paal/Pauly, DSGVO, Art. 8 (2017), rec. 7. 65Please note that, according to rec. 38 GDPR, the consent of the holder of parental responsibility should not be necessary in the context of preventive or counselling services offered directly to a child. 66See Art. 8 Sec. 1 phrase 3 GDPR. It is very likely that EU Member States will make use of this opening clause as they might adapt the minimum age level to their legislation on legal capacity.
 
 100
 
@@ -1626,13 +1632,13 @@ of the data processing activity does not entail the lawfulness of the underlying
 4.2.1.7 Practical Consequences As the rules for consent differ from the former legal situation, entities will have to review their previous consent practice in due time for compliance with the GDPR.
 Especially, the prohibition to link a contractual performance to consent for data processing that is not necessary for offering it under Art. 7 Sec. 4 GDPR will entail difficulties for numerous companies (see above). Thus, entities should consider opting for alternative legal bases for their data processing activities in this field. This might permit them to avoid carrying out data processing based on consent. Entities could consider, where possible, using as legal basis Art. 6 Sec. 1 phrase 1 lit. b GDPR (see following sections for details) for the processing of data that is necessary for offering the contractual performance.68
 Given the burden of proof resting on the controller, the double opt-in procedure may be advisable for obtaining consent in various cases (see Sect. 4.2.1.1), in particular where data processing shall be based on a child's consent pursuant to Art. 8 GDPR. In the latter situation, the double opt-in procedure could consist of the following69:
-­ First, an online mask could be used that asks for the child's age and (if the child is under 16 years) the email address of a holder of parental responsibility (instead of the child's own email address);
-­ Second, the holder of parental responsibility will have to give its consent by following the personalised hyperlink in the confirmation email he/she received pursuant to the subscription in the online mask.
+ï¿½ First, an online mask could be used that asks for the child's age and (if the child is under 16 years) the email address of a holder of parental responsibility (instead of the child's own email address);
+ï¿½ Second, the holder of parental responsibility will have to give its consent by following the personalised hyperlink in the confirmation email he/she received pursuant to the subscription in the online mask.
 
 4.2.2 Processing Based on a Legal Permission
 If the data processing activity shall not be based on consent pursuant to Art. 6 Sec. 1 phrase 1 lit. a GDPR, the lawfulness might follow from another statutory permission under Art. 6 GDPR. Please note that these legal permissions are formulated in an abstract way and are partially open to specification by EU Member State legislation.70 As a consequence, their content and application or the
 
-67Frenzel, in: Paal/Pauly, DSGVO, Art. 8 (2017), rec. 15. 68Ha¨rting, DSGVO (2016), rec. 396. 69Gola/Schulz, ZD 2013, 475, 479; Düsseldorfer Kreis, Anwendungshinweise (2014), p. 11. 70Art. 6 Secs. 2, 3 GDPR enable EU Member States and the EU to adopt legislation in order to create or specify legal bases for data processing.
+67Frenzel, in: Paal/Pauly, DSGVO, Art. 8 (2017), rec. 15. 68Haï¿½rting, DSGVO (2016), rec. 396. 69Gola/Schulz, ZD 2013, 475, 479; Dï¿½sseldorfer Kreis, Anwendungshinweise (2014), p. 11. 70Art. 6 Secs. 2, 3 GDPR enable EU Member States and the EU to adopt legislation in order to create or specify legal bases for data processing.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1640,11 +1646,11 @@ If the data processing activity shall not be based on consent pursuant to Art. 6
 
 availability of additional legal permissions will vary between the different EU Member States and thus entail legal uncertainties in the future.71
 So far, in practice, entities often based their processing activities on several legal bases. For example, where an entity processed personal data based on their necessity for the performance of a contract, said entity would often also obtain the data subject's consent. This preventive approach aimed at securing the lawfulness of the processing operations in case one or several of the used legal bases would lose their legitimacy. This approach can be upheld under the GDPR. However, entities should choose a primary legal permission among the available options. This is advisable as, under the Regulation, the conditions for obtaining valid consent, as well as those regarding other legal bases for processing, have been specified and tightened. Therefore, entities should--prior to processing--evaluate which legal basis might be most suitable for their processing activities. Under the principle of accountability (see Sect. 3.1), entities must be able to prove that the legal bases they use are fulfilled, e.g., when processing personal data based on their prevailing legitimate interests, entities must be able to demonstrate their interests, as well as the legitimacy of the latter (see Sect. 4.2.2.2).
-Article 6 ­ Lawfulness of processing
+Article 6 ï¿½ Lawfulness of processing
 1. Processing shall be lawful only if and to the extent that at least one of the following applies: (a) the data subject has given consent to the processing of his or her personal data for one or more specific purposes; (b) processing is necessary for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract; (c) processing is necessary for compliance with a legal obligation to which the controller is subject; (d) processing is necessary in order to protect the vital interests of the data subject or of another natural person; (e) processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller; (f) processing is necessary for the purposes of the legitimate interests pursued by the controller or by a third party, except where such interests are overridden by the interests or fundamental rights and freedoms of the data subject which require protection of personal data, in particular where the data subject is a child.
 [. . .]
 
-71von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1363; Roßnagel/Nebel/Richter, ZD 2015, 455, 460.
+71von dem Bussche/Zeiter/Brombach, DB 2016, 1359, 1363; Roï¿½nagel/Nebel/Richter, ZD 2015, 455, 460.
 
 102
 
@@ -1656,7 +1662,7 @@ Example
 Entity X runs an online shop, and a customer purchases X's products. X is permitted to process the customer data based on Art. 6 Sec. 1 phrase 1 lit. b GDPR to the extent necessary for the performance of the contract with the customer.
 In this example, in order to deliver the products to the customer and, thus, fulfil its obligations under the purchase agreement, X has to process the name and address of the customer, the types and amount of articles purchased, the method of payment and shipping information. Based on the method of payment, X might have to process the bank account details of the customer. For example, if the customer will pay on a cash-on-delivery basis, X will not need the bank account details in order to make the delivery. Other personal data should not be necessary unless the purchased articles are subject to statutory distribution conditions (such as age restrictions, subsequent to which X has to process the customer's age).77
 
-72Art. 7 Sec. 1 lit. b Data Protection Directive: `Member States shall provide that personal data may be processed only if [. . .] processing is necessary for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract.' 73Rec. 44 GDPR. 74Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 26; Plath, in: Plath, BDSG/ DSGVO, Art. 6 (2016), rec. 9. 75Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 11; Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 14. 76Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 14. 77See also Taeger, in: Taeger/Gabel, BDSG, § 28 (2013), rec. 52.
+72Art. 7 Sec. 1 lit. b Data Protection Directive: `Member States shall provide that personal data may be processed only if [. . .] processing is necessary for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract.' 73Rec. 44 GDPR. 74Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 26; Plath, in: Plath, BDSG/ DSGVO, Art. 6 (2016), rec. 9. 75Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 11; Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 14. 76Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 14. 77See also Taeger, in: Taeger/Gabel, BDSG, ï¿½ 28 (2013), rec. 52.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1668,7 +1674,7 @@ Additionally, processing can be lawful under Art. 6 Sec. 1 phrase 1 lit. b GDPR 
 Legitimate Interests of the Controller/a Third Party The controller will carry the burden of proof for its legitimate interests. Such interests must be legitimate in consideration of the specific processing situation, and they might be of a legal, economical, idealistic or other nature.80 It may be any interest that is in accordance with the law and is, thus, interpreted in a very broad manner.81
 Direct Marketing Purposes The GDPR explicitly recognises that the processing of personal data for direct marketing purposes may be regarded as carried out for a legitimate interest.82 However, the notion of `direct marketing purposes' is not specified by law, which will raise legal uncertainties in the future. It should include (especially
 
-78Arguing this way Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 26; Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 11. 79According to Art. 6 Sec. 1 phrase 2 GDPR, this legal permission does not apply to processing carried out by public authorities in the performance of their tasks. 80See also Plath, in: Plath, BDSG/DSGVO, § 28 (2016), rec. 47. 81Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 21. 82Rec. 47 GDPR.
+78Arguing this way Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 26; Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 11. 79According to Art. 6 Sec. 1 phrase 2 GDPR, this legal permission does not apply to processing carried out by public authorities in the performance of their tasks. 80See also Plath, in: Plath, BDSG/DSGVO, ï¿½ 28 (2016), rec. 47. 81Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 21. 82Rec. 47 GDPR.
 
 104
 
@@ -1677,26 +1683,26 @@ Direct Marketing Purposes The GDPR explicitly recognises that the processing of 
 personalised) addressing of individuals with marketing material such as via email or through advertisements on websites or in apps.83 Nonetheless, marketing is only lawful where the balancing of interests results in favour of the controller. This might especially be the case where the data subject could foresee the use of its personal data for marketing purposes based on its relationship with the controller.84
 IT Security The GDPR also explicitly recognises as legitimate interest the processing of personal data strictly necessary for the purposes of preventing fraud, as well as for ensuring network and information security, i.e., the ability of a network or an IT system to resist, at a given level of confidence, accidental events or unlawful or malicious actions that compromise the availability, authenticity, integrity and confidentiality of stored or transmitted personal data, and the security of the related services.85 This could, for example, include preventing unauthorised access to electronic communication networks and malicious code distribution and stopping `denial of service' attacks and damage to computer and electronic communication systems.86
 Example
-­ video surveillance on private properties (e.g., department stores, gas stations, . . .) where it is reasonable and proportionate
-­ strategic analysis of customer data to improve the range of products/services or to preserve and attract customers
-­ screening employee data to fight against corruption ­ introduction of internal warning systems (whistleblowing) ­ employers monitoring the Internet use of their employees in case of a
-prohibition of use for private purposes ­ creditworthiness assessment of customers ­ storage of data for purposes of proof ­ disclosure of personal data (e.g., of key personnel) in the context of due
+ï¿½ video surveillance on private properties (e.g., department stores, gas stations, . . .) where it is reasonable and proportionate
+ï¿½ strategic analysis of customer data to improve the range of products/services or to preserve and attract customers
+ï¿½ screening employee data to fight against corruption ï¿½ introduction of internal warning systems (whistleblowing) ï¿½ employers monitoring the Internet use of their employees in case of a
+prohibition of use for private purposes ï¿½ creditworthiness assessment of customers ï¿½ storage of data for purposes of proof ï¿½ disclosure of personal data (e.g., of key personnel) in the context of due
 diligence87
 Third-Party Interests Furthermore, Art. 6 Sec. 1 phrase 1 lit. f GDPR might be used to justify processing activities that are carried out in the interest of a third party. This is of major
 
-83Piltz, K&R 2016, 557, 565. 84Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 21. 85Recs. 47, 49 GDPR. 86Rec. 49 GDPR. 87Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 31; Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 35; see also Plath, in: Plath, BDSG/DSGVO, § 28 (2016), recs. 55­74; Taeger, in: Taeger/Gabel, BDSG, § 28 (2013), recs. 66­79.
+83Piltz, K&R 2016, 557, 565. 84Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 21. 85Recs. 47, 49 GDPR. 86Rec. 49 GDPR. 87Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 31; Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 35; see also Plath, in: Plath, BDSG/DSGVO, ï¿½ 28 (2016), recs. 55ï¿½74; Taeger, in: Taeger/Gabel, BDSG, ï¿½ 28 (2013), recs. 66ï¿½79.
 
 4.2 Legal Justifications for Data Processing
 
 105
 
 importance for companies as they are often interested in processing personal data on behalf of others, such as their customers or clients.88
-Example ­ controller is a lawyer, tax consultant or auditor processing personal data on
-behalf of its clients ­ transfer of customer data of an entity to its successor entity ­ creditworthiness checks carried out by a credit agency89
+Example ï¿½ controller is a lawyer, tax consultant or auditor processing personal data on
+behalf of its clients ï¿½ transfer of customer data of an entity to its successor entity ï¿½ creditworthiness checks carried out by a credit agency89
 Joint Controllers Where joint controllers are processing personal data, data transfers between them should in a lot of cases be lawful pursuant to Art. 6 Sec. 1 phrase 1 lit. f GDPR.90
 Rights and Interests of the Data Subject The balancing of interests needs to evaluate the reasonable expectations of the data subject as to its rights and interest in the specific processing situation based on its relationship with the controller.91 In this regard, the controller should especially take into consideration possible interferences into the data subject's privacy.92 As for the controller, the rights and interests of the data subject could be of an idealistic, economic, social, professional, private or other nature.93 The specific nature of the personal data intended for processing will influence the balancing of interests; the impairment of the data subject's rights might be more severe where sensitive personal data are affected.
 Balancing of Interests The balancing of interests requires a careful assessment of the specific processing situation. The assessment requires identifying the relevant aspects, determining their scope and, as a last step, weighing them against each other.94 Three aspects need to be balanced out:
-­ the legitimate interests of the controller/a third party; ­ the necessity of the processing in the light of these legitimate interests; and
+ï¿½ the legitimate interests of the controller/a third party; ï¿½ the necessity of the processing in the light of these legitimate interests; and
 
 88Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 17; Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 18. 89Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 17; Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 18. 90Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 18. 91Rec. 47 GDPR. 92See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 35. 93See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 35. 94Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 31.
 
@@ -1704,7 +1710,7 @@ Balancing of Interests The balancing of interests requires a careful assessment 
 
 4 Material Requirements
 
-­ no overriding interests or rights of data subjects.
+ï¿½ no overriding interests or rights of data subjects.
 In order to establish whether the rights of the data subjects prevail or not, the consequences of processing for the data subject's rights and freedoms need to be assessed, as well as the degree of impairment of those rights that the specific processing situation might entail.95 Please keep in mind that the legitimate interests of children merit specific consideration.96
 The assessment shall take into consideration the reasonable expectations of data subjects based on their relationship with the controller.97 Depending on the specific nature of such a relationship (e.g., the data subject being a client of the controller or in its service), a data subject can reasonably expect at the time and in the context of the collection of its personal data that processing for a certain purpose may take place.98
 In contrast, in some types of relationships, data subjects do not reasonably expect further processing.99 Given the importance of the specific relationship between both parties, this legal permission might become especially relevant for data processing in the context of a contractual relationship that is not necessary for the contractual performance and, thus, cannot be lawful pursuant to Art. 6 Sec. 1 phrase 1 lit. b GDPR.100
@@ -1713,7 +1719,7 @@ Example
 Entity Y transfers personal data to Entity Z as part of due diligence. The latter is being carried out because Z wants to purchase a large share of Y. The personal data concerned is information on key personnel of Y. Said personnel is an important factor for Z's investment as these individuals largely make up the value of Y. Y and Z entered into a confidentiality agreement that provides for contractual penalties.
 In this example, the affected personal data is an important aspect for the success of the intended share deal as Z's decision whether or not to invest into Y depends upon the key personnel. For this reason, other less intrusive means such
 
-95See also Simitis, in: Simitis, BDSG, § 28 (2014), rec. 127. 96Art. 6 Sec. 1 lit. f GDPR. 97Rec. 47 GDPR. 98Rec. 47 GDPR. 99Rec. 47 GDPR. 100See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 32. 101Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 23.
+95See also Simitis, in: Simitis, BDSG, ï¿½ 28 (2014), rec. 127. 96Art. 6 Sec. 1 lit. f GDPR. 97Rec. 47 GDPR. 98Rec. 47 GDPR. 99Rec. 47 GDPR. 100See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Rechtliche Anforderungen (2014), rec. 32. 101Plath, in: Plath, BDSG/DSGVO, Art. 6 (2016), rec. 23.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1726,7 +1732,7 @@ Intra-Group Data Processing Apart from the previous examples, Art. 6 Sec. 1 phra
 4.2.2.3 Legal Obligation of the Controller and Processing in the Public Interest
 Processing shall be lawful if it is necessary for compliance with a legal obligation to which the controller is subject or it if is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller. The wording of Art. 6 Sec. 1 phrase 1 lits. c, e GDPR largely corresponds to the former legal permissions under the Data Protection Directive.106 The processing should have a basis in EU or EU Member State law and does not require
 
-102See also Taeger, in: Taeger/Gabel, BDSG, § 28 (2013), rec. 69. 103Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 27. 104Rec. 48 GDPR. 105Lachenmann, DSRITB 2016, 535, 541. 106Art. 7 Sec. 1 Data Protection Directive: `Member States shall provide that personal data may be processed only if' lit. c `processing is necessary for compliance with a legal obligation to which the controller is subject' or lit. e: `if [. . .]processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller or in a third party to whom the data are disclosed'.
+102See also Taeger, in: Taeger/Gabel, BDSG, ï¿½ 28 (2013), rec. 69. 103Frenzel, in: Paal/Pauly, DSGVO, Art. 6 (2017), rec. 27. 104Rec. 48 GDPR. 105Lachenmann, DSRITB 2016, 535, 541. 106Art. 7 Sec. 1 Data Protection Directive: `Member States shall provide that personal data may be processed only if' lit. c `processing is necessary for compliance with a legal obligation to which the controller is subject' or lit. e: `if [. . .]processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller or in a third party to whom the data are disclosed'.
 
 108
 
@@ -1742,21 +1748,21 @@ permission is subordinate as some types of processing may serve both important g
 
 4.2.2.5 Change of the Data Processing Purpose As purpose limitation is one of the basic principles of data processing under the GDPR (see Sect. 4.1.2), a change of the data processing purpose after the data has been collected is only permissible under certain conditions set out in Art. 6 Sec. 4 GDPR.
 The provision provides for three possibilities to establish the lawfulness of data processing subsequent to a change of purpose:
-­ obtain the consent of the data subject for processing for a purpose other than that for which the personal data has been collected; or
+ï¿½ obtain the consent of the data subject for processing for a purpose other than that for which the personal data has been collected; or
 107Recs. 41, 45 GDPR. Nevertheless, the legal basis should be clear and precise and its application should be foreseeable to persons subject to it. 108Rec. 45 GDPR. 109See Art. 6 Sec. 3 GDPR, rec. 45 GDPR for more details. 110Rec. 46 GDPR. 111Rec. 46 GDPR: This might be the case, for example, when processing is necessary for humanitarian purposes, including for monitoring epidemics and their spread or in situations of humanitarian emergencies, in particular in situations of natural and man-made disasters.
 
 4.2 Legal Justifications for Data Processing
 
 109
 
-­ the change of purpose is based on an EU or EU Member State law that constitutes a necessary and proportionate measure in a democratic society to safeguard the objectives laid down in Art. 23 GDPR (national security, defence, public security, . . .); or
-­ the processing for another purpose is compatible with the purpose for which the personal data is initially collected.
-Compatibility of the Purposes As the last one of the three possibilities requires specification, the legislator provides for different criteria to determine compatibility in Art. 6 Sec. 4 lits. a­ e GDPR (the list is not exhaustive):
-­ Any link between the purposes: the greater the distance between the purposes of collection and the purposes of further processing, the more problematic this would be for their compatibility.112 If the modified purpose has been more or less implied in the initial purposes or could be assumed as a logical next step, this would be an argument for assuming compatibility.113
-­ The context in which the personal data have been collected, in particular regarding the relationship between data subjects and the controller: it should be ascertained what a reasonable person in the data subject's situation would expect its data to be used for based on the context of the collection.114 Generally, the more negative or uncertain the impact of further processing might be, the more unlikely it is to be considered as compatible use.115
-­ The nature of the personal data: for example, as special categories of personal data (see Sect. 4.2.3) are highly sensitive, a change of the data processing purposes will only be possible in very limited cases.
-­ The possible consequences of the intended further processing for data subjects: both positive and negative consequences should be taken into consideration.116
-­ The existence of appropriate safeguards: this may include encryption or pseudonymisation. The implementation of additional technical and organisational measures may prove to be particularly important and vouch for compatibility.117
+ï¿½ the change of purpose is based on an EU or EU Member State law that constitutes a necessary and proportionate measure in a democratic society to safeguard the objectives laid down in Art. 23 GDPR (national security, defence, public security, . . .); or
+ï¿½ the processing for another purpose is compatible with the purpose for which the personal data is initially collected.
+Compatibility of the Purposes As the last one of the three possibilities requires specification, the legislator provides for different criteria to determine compatibility in Art. 6 Sec. 4 lits. aï¿½ e GDPR (the list is not exhaustive):
+ï¿½ Any link between the purposes: the greater the distance between the purposes of collection and the purposes of further processing, the more problematic this would be for their compatibility.112 If the modified purpose has been more or less implied in the initial purposes or could be assumed as a logical next step, this would be an argument for assuming compatibility.113
+ï¿½ The context in which the personal data have been collected, in particular regarding the relationship between data subjects and the controller: it should be ascertained what a reasonable person in the data subject's situation would expect its data to be used for based on the context of the collection.114 Generally, the more negative or uncertain the impact of further processing might be, the more unlikely it is to be considered as compatible use.115
+ï¿½ The nature of the personal data: for example, as special categories of personal data (see Sect. 4.2.3) are highly sensitive, a change of the data processing purposes will only be possible in very limited cases.
+ï¿½ The possible consequences of the intended further processing for data subjects: both positive and negative consequences should be taken into consideration.116
+ï¿½ The existence of appropriate safeguards: this may include encryption or pseudonymisation. The implementation of additional technical and organisational measures may prove to be particularly important and vouch for compatibility.117
 Given those criteria, the compatibility assessment will have to take place on a case-by-case basis and, thus, entail legal uncertainties in the future.118 In case of a
 
 112See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 24. 113See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 24. 114See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 24. 115See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 26. 116See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 25. 117See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 27. 118Gierschmann, ZD 2016, 51, 54; for numerous examples on the different aspects of the compatibility assessment see Art. 29 Data Protection Working Party, WP 203 (2013), p. 56 et seq.
@@ -1768,7 +1774,7 @@ Given those criteria, the compatibility assessment will have to take place on a 
 compatibility of the purposes, no legal basis separate from the one that allowed the collection and processing of the personal data in the first place is required.119
 Example
 Entity H runs an online shop for shoes. H collects the customers' name, shipping address and banking information. These data are processed by H in order to carry out deliveries to customers and in order to process payments.
-These processing activities comply with the principle of purpose limitation ( ¼ running an online shop for shoes) and require no further analysis.
+These processing activities comply with the principle of purpose limitation ( ï¿½ running an online shop for shoes) and require no further analysis.
 H wishes to use the customers' email address and purchase history to send them personalised offers and discount vouchers. Furthermore, H wishes to provide the customers' data, including their name, email address, phone number and purchase history to a business contact that has opened an online shop for fashion.
 In both cases, H cannot assume that the further use is compatible with the initial purpose, and an additional analysis is necessary.120
 
@@ -1777,22 +1783,22 @@ Personal data that is, by its very nature, particularly sensitive in relation to
 
 4.2.3.1 Special Categories of Personal Data Special categories of personal data are personal data revealing racial122 or ethnic origin, political opinions, religious or philosophical beliefs or trade union membership; data concerning health; or data concerning an individual's sex life or sexual orientation, as well as genetic data and biometric data for the purpose of uniquely identifying an individual, Art. 9 Sec. 1 GDPR. Both genetic data and biometric data were not explicitly provided for as protected categories under the former Data Protection Directive but have now been included into the Regulation.
 These categories of personal data merit specific protection as they allow conclusions about an individual that are linked to his fundamental rights and freedoms, and their processing might entail high risks for the latter:
-119Rec. 50 GDPR. 120See also Art. 29 Data Protection Working Party, WP 203 (2013), pp. 22­23. 121Rec. 51 GDPR. 122As pointed out by rec. 51 GDPR, the use of the term `racial origin' in the GDPR does not imply an acceptance by the EU of theories which attempt to determine the existence of separate human races.
+119Rec. 50 GDPR. 120See also Art. 29 Data Protection Working Party, WP 203 (2013), pp. 22ï¿½23. 121Rec. 51 GDPR. 122As pointed out by rec. 51 GDPR, the use of the term `racial origin' in the GDPR does not imply an acceptance by the EU of theories which attempt to determine the existence of separate human races.
 
 4.2 Legal Justifications for Data Processing
 
 111
 
-­ Data revealing racial or ethnic origin is highly sensitive as it might lead to a discrimination of an individual. Such data includes a person's first name and surname, his place of birth, his native language or the names of his parents that might, when combined, allow conclusions as to his origin.123
-­ Data revealing political opinions means, inter alia, information on an individual's membership in a political party, on the individual joining any petitions, on the participation in a demonstration, political reunion or similar event.124 This category includes data on the support of a certain political idea, as well as on its rejection.125
-­ Data revealing religious or philosophical beliefs relates to information allowing conclusions as to an individual's religious affiliation or lack thereof, whereas the provision generally aims to protect religious convictions, as well as the practice of religion.126
-­ Data revealing a trade union membership merits specific protection in order to safeguard the individual's freedom of collective bargaining and action under Art. 28 Charter of the Fundamental Rights of the EU and shall, above all, prevent the discrimination of individuals on the employment market based on their trade union activities.127
-­ Data concerning health covers personal data related to the physical or mental health of an individual, including the provision of health care services, which reveal information about the individual's health status.128
-­ Data concerning an individual's sex life or sexual orientation is deemed especially sensitive. This includes data on the exact identity of an individual's partner(s).129
-­ Genetic data means personal data relating to the inherited or acquired genetic characteristics of an individual that give unique information about the physiology or the health of that individual and that result, in particular, from an analysis of a biological sample from the individual in question.130
-­ Biometric data entails personal data resulting from specific technical processing relating to the physical, psychological or behavioural characteristics of an
+ï¿½ Data revealing racial or ethnic origin is highly sensitive as it might lead to a discrimination of an individual. Such data includes a person's first name and surname, his place of birth, his native language or the names of his parents that might, when combined, allow conclusions as to his origin.123
+ï¿½ Data revealing political opinions means, inter alia, information on an individual's membership in a political party, on the individual joining any petitions, on the participation in a demonstration, political reunion or similar event.124 This category includes data on the support of a certain political idea, as well as on its rejection.125
+ï¿½ Data revealing religious or philosophical beliefs relates to information allowing conclusions as to an individual's religious affiliation or lack thereof, whereas the provision generally aims to protect religious convictions, as well as the practice of religion.126
+ï¿½ Data revealing a trade union membership merits specific protection in order to safeguard the individual's freedom of collective bargaining and action under Art. 28 Charter of the Fundamental Rights of the EU and shall, above all, prevent the discrimination of individuals on the employment market based on their trade union activities.127
+ï¿½ Data concerning health covers personal data related to the physical or mental health of an individual, including the provision of health care services, which reveal information about the individual's health status.128
+ï¿½ Data concerning an individual's sex life or sexual orientation is deemed especially sensitive. This includes data on the exact identity of an individual's partner(s).129
+ï¿½ Genetic data means personal data relating to the inherited or acquired genetic characteristics of an individual that give unique information about the physiology or the health of that individual and that result, in particular, from an analysis of a biological sample from the individual in question.130
+ï¿½ Biometric data entails personal data resulting from specific technical processing relating to the physical, psychological or behavioural characteristics of an
 
-123Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 11. 124Weichert, in: Kühling/Buchner, DSGVO, Art. 9 (2017), rec. 27. 125Weichert, in: Kühling/Buchner, DSGVO, Art. 9 (2017), rec. 27; see also Simitis, in: Simitis, BDSG, § 3 (2014), rec. 260. 126Weichert, in: Kühling/Buchner, DSGVO, Art. 9 (2017), rec. 28. 127Weichert, in: Kühling/Buchner, DSGVO, Art. 9 (2017), rec. 30. 128Art. 4 No. 15 GDPR. 129Weichert, in: Kühling/Buchner, DSGVO, Art. 9 (2017), rec. 42; see also Meents/Hinzpeter, in: Taeger/Gabel, BDSG, § 35 (2013), rec. 22. 130Art. 4 No. 13 GDPR.
+123Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 11. 124Weichert, in: Kï¿½hling/Buchner, DSGVO, Art. 9 (2017), rec. 27. 125Weichert, in: Kï¿½hling/Buchner, DSGVO, Art. 9 (2017), rec. 27; see also Simitis, in: Simitis, BDSG, ï¿½ 3 (2014), rec. 260. 126Weichert, in: Kï¿½hling/Buchner, DSGVO, Art. 9 (2017), rec. 28. 127Weichert, in: Kï¿½hling/Buchner, DSGVO, Art. 9 (2017), rec. 30. 128Art. 4 No. 15 GDPR. 129Weichert, in: Kï¿½hling/Buchner, DSGVO, Art. 9 (2017), rec. 42; see also Meents/Hinzpeter, in: Taeger/Gabel, BDSG, ï¿½ 35 (2013), rec. 22. 130Art. 4 No. 13 GDPR.
 
 112
 
@@ -1804,7 +1810,7 @@ individual, which allow or confirm the unique identification of that individual,
 Article 9 Sec. 2 GDPR provides for several exceptions from the prohibition of processing special categories of personal data.132 The enumeration is exhaustive:
 1. Consent of the data subject: the data subject can explicitly consent to the processing of special categories of personal data for one or more specified purposes. Such affirmative act not only has to fulfil the general conditions for valid consent under Arts. 7, 8 GDPR (see Sect. 4.2.1 for details) but also has to explicitly refer to the special categories of personal data concerned by the intended processing.133 Pursuant to Art. 9 Sec. 2 lit. a GDPR, EU or EU Member State law can provide that the prohibition to process special categories of personal data cannot be lifted by the data subject's consent. It is unlikely that such prohibition will be created at EU level as the EU only has limited areas of competence to create legislation.134 As regards EU Member States, it is in their discretion if and to what extent they will limit the possibility to consent. Nevertheless, as such prohibition touches on the fundamental right to privacy of the data subjects, it will only be legitimate in particular cases.135
 2. Employment and social security: the processing is necessary for carrying out obligations and exercising specific rights of the controller/data subject in the field of employment, social security and social protection law in so far as it is authorised by EU or EU Member State law or a collective agreement pursuant to EU Member State law providing for appropriate safeguards for the fundamental rights and interests of the data subject. This provision takes into account that, above all, employers regularly need to process special categories of personal data, such as health data, within the employment relationship.136 Yet the legislation that provides for safeguards must correspond to the high level of data protection that is required for special categories of personal data and will have to be measured to this.137
-131Art. 4 No. 14 GDPR. According to rec. 51 GDPR, the processing of photographs should not systematically be considered to be processing of special categories of personal data as they are only covered by the definition of biometric data when processed through a specific technical means allowing the unique identification or authentication of a natural person. 132See Art. 9 Sec. 2 lits. a-j GDPR. 133Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 62. 134Pursuant to the principle of conferral, the EU can only act within the competences conferred to it by its Member States. Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 22. 135Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 23. 136Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 26. 137Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 15; Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), recs. 27­28.
+131Art. 4 No. 14 GDPR. According to rec. 51 GDPR, the processing of photographs should not systematically be considered to be processing of special categories of personal data as they are only covered by the definition of biometric data when processed through a specific technical means allowing the unique identification or authentication of a natural person. 132See Art. 9 Sec. 2 lits. a-j GDPR. 133Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 62. 134Pursuant to the principle of conferral, the EU can only act within the competences conferred to it by its Member States. Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 22. 135Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 23. 136Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 26. 137Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 15; Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), recs. 27ï¿½28.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1815,7 +1821,7 @@ Article 9 Sec. 2 GDPR provides for several exceptions from the prohibition of pr
 5. Manifestly made public data: the processing relates to personal data that is manifestly made public by the data subject. The publication must result from a free decision of the data subject.143 This may concern data from publicly accessible registers, websites, lists, forums or even from a profile in a social network that is accessible without a user account.144
 6. Assertion of legal claims: the processing is necessary for the establishment, exercise or defence of legal claims or whenever courts are acting in their judicial capacity. This includes the assertion of claims in court proceedings and in administrative or out-of-court procedures.145 The sensitive nature of personal data under Art. 9 GDPR requires a particularly thorough balancing of interests under this statutory exception.
 
-138See also Plath, in: Plath, BDSG/DSGVO, § 28 (2016), rec. 210. 139Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 29; see also Taeger, in: Taeger/Gabel, BDSG, § 28 (2013), rec. 227. 140See also Plath, in: Plath, BDSG/DSGVO, § 28 (2016), rec. 219. 141See also Simitis, in: Simitis, BDSG, § 28 (2014), rec. 330; Taeger, in: Taeger/Gabel, BDSG, § 28 (2013), rec. 240. 142Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 18. 143Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 19; see also Plath, in: Plath, BDSG/ DSGVO, § 28 (2016), rec. 211; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 28 (2015), rec. 77; Simitis, in: Simitis, BDSG, § 28 (2014), rec. 303. 144Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit (2016), rec. 60; see also Simitis, in: Simitis, BDSG, § 28 (2014), rec. 303; Plath, in: Plath, BDSG/DSGVO, § 28 (2016), rec. 211. 145Rec. 52 GDPR.
+138See also Plath, in: Plath, BDSG/DSGVO, ï¿½ 28 (2016), rec. 210. 139Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 29; see also Taeger, in: Taeger/Gabel, BDSG, ï¿½ 28 (2013), rec. 227. 140See also Plath, in: Plath, BDSG/DSGVO, ï¿½ 28 (2016), rec. 219. 141See also Simitis, in: Simitis, BDSG, ï¿½ 28 (2014), rec. 330; Taeger, in: Taeger/Gabel, BDSG, ï¿½ 28 (2013), rec. 240. 142Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 18. 143Plath, in: Plath, BDSG/DSGVO, Art. 9 (2016), rec. 19; see also Plath, in: Plath, BDSG/ DSGVO, ï¿½ 28 (2016), rec. 211; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 28 (2015), rec. 77; Simitis, in: Simitis, BDSG, ï¿½ 28 (2014), rec. 303. 144Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit (2016), rec. 60; see also Simitis, in: Simitis, BDSG, ï¿½ 28 (2014), rec. 303; Plath, in: Plath, BDSG/DSGVO, ï¿½ 28 (2016), rec. 211. 145Rec. 52 GDPR.
 
 114
 
@@ -1829,7 +1835,7 @@ In this example, the medical record reveals data on A's health and, thus, merits
 9. Public health issues: the processing is necessary for reasons of public interest in the area of public health and takes place on the basis of EU or EU Member State law. Viable reasons could be the protection against serious cross-border threats to health or ensuring high standards of quality and safety of health care, medical products or medical devices.147
 10. Research purposes: the processing is necessary for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes and takes place based on EU or EU Member State law. These activities are in the public interest and, thus, shall benefit from such exception. Nevertheless, processing carried out under this provision must be subject to appropriate safeguards that guarantee that technical and organisational measures are in
 
-146Rec. 52 GDPR; see also Heckmann, in: Taeger/Gabel, BDSG, § 13 (2013), rec. 63. 147See rec. 54 GDPR for details.
+146Rec. 52 GDPR; see also Heckmann, in: Taeger/Gabel, BDSG, ï¿½ 13 (2013), rec. 63. 147See rec. 54 GDPR for details.
 
 4.2 Legal Justifications for Data Processing
 
@@ -1839,21 +1845,21 @@ place in order to ensure, in particular, the principle of data minimisation (see
 Additionally, Art. 9 Sec. 4 GDPR provides for the possibility for EU Member States to maintain or introduce further conditions with regard to the processing of genetic or biometric data or data concerning health.
 
 4.2.3.3 Personal Data Relating to Criminal Convictions and Offences Processing of personal data relating to criminal convictions and offences or related security measures149 based on a legal permission under Art. 6 Sec. 1 GDPR (see Sect. 4.2.2 for details; permissions could be, among others, consent, a contractual necessity of processing or even prevailing legitimate interests of the controller) shall be carried out only in any of the following cases:
-­ under the control of official authority; the extent of such control is unclear, but legislation on its procedure and organisation is in the competence of the EU Member States150; or
-­ when it is authorised by EU or EU Member State law providing for appropriate safeguards for the rights and freedoms of individuals.
+ï¿½ under the control of official authority; the extent of such control is unclear, but legislation on its procedure and organisation is in the competence of the EU Member States150; or
+ï¿½ when it is authorised by EU or EU Member State law providing for appropriate safeguards for the rights and freedoms of individuals.
 These intensified requirements for processing correspond to the high level of sensitivity of these data. Criminal convictions might stigmatise the individuals concerned for a long term.151 Thus, in contrast to special categories of personal data under Art. 9 GDPR, there are no exceptional situations of processing (comparable to Art. 9 Sec. 2 GDPR) that permit entities to deviate from the requirements of Art. 10 GDPR.152
 However, EU Member State law might introduce exceptions as regards processing in the employment context, such as in order to obtain and process data from a job applicant's police clearance certificate before assigning it with positions of trust.153
 
-148Rec. 156 GDPR; Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 46. 149According to Art. 10 phrase 2 GDPR, any comprehensive register of criminal convictions shall be kept only under the control of official authority. 150Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 6. 151Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 1. 152Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 1. 153The possibility of such processing activities has been disputed under the former data protection legislation in Germany, see Gola/Wronka, Arbeitnehmerdatenschutz (2013), rec. 561; Simitis, in: Simitis, BDSG, § 32 (2014), rec. 46.
+148Rec. 156 GDPR; Frenzel, in: Paal/Pauly, DSGVO, Art. 9 (2017), rec. 46. 149According to Art. 10 phrase 2 GDPR, any comprehensive register of criminal convictions shall be kept only under the control of official authority. 150Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 6. 151Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 1. 152Frenzel, in: Paal/Pauly, DSGVO, Art. 10 (2017), rec. 1. 153The possibility of such processing activities has been disputed under the former data protection legislation in Germany, see Gola/Wronka, Arbeitnehmerdatenschutz (2013), rec. 561; Simitis, in: Simitis, BDSG, ï¿½ 32 (2014), rec. 46.
 
 116
 
 4 Material Requirements
 
 4.2.3.4 Organisational Requirements for Processing of Sensitive Data Because the processing of special categories of personal data under Arts. 9, 10 GDPR is very risk-prone as regards the rights and freedoms of individuals, the GDPR sets out special requirements for processing. This corresponds to the riskbased approach of the GDPR (see Sect. 3.3.3). Thus, the processing of special categories of personal data on a large scale will require the following:
-­ the carrying out of a Data Protection Impact Assessment pursuant to Art. 35 Sec. 3 lit. b GDPR (see Sect. 3.5); and
-­ the designation of a Data Protection Officer pursuant to Art. 37 Sec. 1 lit. c GDPR if said processing constitutes the core activity of the controller/processor (see Sect. 3.6); as well as
-­ the implementation of appropriate technical and organisational measures based on the high-risk potential of the processing situation (see Sect. 3.3).
+ï¿½ the carrying out of a Data Protection Impact Assessment pursuant to Art. 35 Sec. 3 lit. b GDPR (see Sect. 3.5); and
+ï¿½ the designation of a Data Protection Officer pursuant to Art. 37 Sec. 1 lit. c GDPR if said processing constitutes the core activity of the controller/processor (see Sect. 3.6); as well as
+ï¿½ the implementation of appropriate technical and organisational measures based on the high-risk potential of the processing situation (see Sect. 3.3).
 
 4.3 Data Transfers to Third Countries
 For multinational entities and corporations, cross-border data transfers are indispensable in the course of their business activities. This will often involve a transfer to third countries, the latter meaning any country that is not an EU Member State.154 Ensuring an adequate level of privacy in these processing situations is one of the most complex issues of data protection law.155
@@ -1865,7 +1871,7 @@ The legal requirements for cross-border data transfers under the Regulation are 
 
 117
 
-in connection with cross-border data transfers is also highlighted by the vast fines for violations of Arts. 44­49 GDPR, which amount up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover, Art. 83 Sec. 5 lit. c GDPR.
+in connection with cross-border data transfers is also highlighted by the vast fines for violations of Arts. 44ï¿½49 GDPR, which amount up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover, Art. 83 Sec. 5 lit. c GDPR.
 The two-step approach for justifying data transfers to third countries applicable under the Data Protection Directive has not been altered under the GDPR:
 1. In a first step, the transfer has to correspond to the requirements for data processing within the EU (see Sect. 4.2) and, thus, be based on the data subject's consent or another statutory permission.
 2. In a second step, the transfer has to additionally comply with the conditions laid down in Art. 44 et seq. GDPR in order to ensure an adequate level of data protection. Where such safeguards are not provided for, the transfer cannot take place irrespective of whether there is a legal basis for processing under step 1.
@@ -1886,7 +1892,7 @@ replaced or repealed, Art. 45 Sec. 9 GDPR.
 The European Commission has so far recognised Andorra, Argentina, Canada
 (commercial organisations), Faeroe Islands, Guernsey, Israel, Isle of Man, Jersey,
 New Zealand, Switzerland, the USA with respect to the Privacy Shield-certified
-companies (see Sect. 4.3.4 on the EU­US Privacy Shield) and Uruguay as providing an adequate level of data protection.162 Pursuant to the ECJ's Safe Harbor decision,163 the European Commission has updated the pre-existing adequacy decisions with an implementing decision of 16 December 2016164 in order to remove any illicit restriction of the powers of the Supervisory Authorities.165
+companies (see Sect. 4.3.4 on the EUï¿½US Privacy Shield) and Uruguay as providing an adequate level of data protection.162 Pursuant to the ECJ's Safe Harbor decision,163 the European Commission has updated the pre-existing adequacy decisions with an implementing decision of 16 December 2016164 in order to remove any illicit restriction of the powers of the Supervisory Authorities.165
 
 4.3.2 Consent
 A transfer of personal data to a third country can take place, irrespective of the level of data protection guaranteed in that country, if the data subject has explicitly consented to the proposed transfer, Art. 49 Sec. 1 lit. a GDPR.166 This corresponds to the right to privacy of individuals, which gives them the possibility to decide on the treatment of their personal data as they see fit.167
@@ -1905,15 +1911,15 @@ Apart from these requirements for obtaining valid consent, data subjects have th
 Even if a third country cannot provide for an appropriate level of data protection regarding the standards of the GDPR, entities may still be interested in transferring data to such country. In order to compensate for the lack of data protection, the datatransferring party and the receiving party can use EU Standard Contractual Clauses (SCC) pursuant to Art. 46 Sec. 2 lits. c, d GDPR.171 So far, under the Data Protection Directive, they constituted a popular instrument in practice for crossborder data transfers.172
 Where contractual parties use SCC, an adequate level of data protection is only guaranteed by the data importer that is party to the contract and located in a third country but will not qualify the entire third country as a safe country for data transfers from the EU. This is due to the fact that SCC contractually commit only a specific non-EU entity to guarantee for a level of data protection comparable to the one in the EU.
 4.3.3.1 Adoption and Procedural Innovations Compared to the Data Protection Directive, the GDPR introduces some procedural innovations:
-­ So far, some EU Member States imposed more extensive legal requirements to international data transfers: apart from using SCC, some EU Member States' entities had to undergo an additional authorisation procedure for their data
+ï¿½ So far, some EU Member States imposed more extensive legal requirements to international data transfers: apart from using SCC, some EU Member States' entities had to undergo an additional authorisation procedure for their data
 
-170von dem Bussche, in: Plath, BDSG/DSGVO, Art. 49 (2016), rec. 2. 171Pauly, in: Paal/Pauly, DSGVO, Art. 46 (2017), rec. 1. 172See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenübermittlungen (2014), rec. 27.
+170von dem Bussche, in: Plath, BDSG/DSGVO, Art. 49 (2016), rec. 2. 171Pauly, in: Paal/Pauly, DSGVO, Art. 46 (2017), rec. 1. 172See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenï¿½bermittlungen (2014), rec. 27.
 
 120
 
 4 Material Requirements
 
-transfers173 that was carried out by the respective Supervisory Authorities.174 Given the wording of Art. 46 Sec. 2 GDPR (i.e, `without requiring any specific authorisation from a Supervisory Authority'), this is no longer permissible under the GDPR. If a data transfer fulfils the conditions of Art. 44 et seq. GDPR, it does not have to undergo any additional authorisation procedure.175 ­ So far, only the European Commission was competent for adopting SCC. Under The GDPR, national Supervisory Authorities will, in addition to the European Commission, also have the competence to adopt SCC, Art. 46 Sec. 2 lit. d GDPR. However, these SCC have to be approved by the European Commission pursuant to an examination procedure.
+transfers173 that was carried out by the respective Supervisory Authorities.174 Given the wording of Art. 46 Sec. 2 GDPR (i.e, `without requiring any specific authorisation from a Supervisory Authority'), this is no longer permissible under the GDPR. If a data transfer fulfils the conditions of Art. 44 et seq. GDPR, it does not have to undergo any additional authorisation procedure.175 ï¿½ So far, only the European Commission was competent for adopting SCC. Under The GDPR, national Supervisory Authorities will, in addition to the European Commission, also have the competence to adopt SCC, Art. 46 Sec. 2 lit. d GDPR. However, these SCC have to be approved by the European Commission pursuant to an examination procedure.
 
 4.3.3.2 Mode of Operation
 The data-transferring entity located inside the EU and the data-receiving entity
@@ -1933,47 +1939,47 @@ controllers and one of them for data transfers from EU controllers to non-EU pro
 
 121
 
-· Controller-to-Controller SCC: the two sets of Controller-to-Controller SCC can be used alternatively and a combination of clauses of both sets is not permissible.181 ­ Set I, Decision 2001/497/EC: most significantly, under Set I, both parties enter into a joint and several liability for the data protection obligations. ­ Set II, Decision 2004/915/EC: Set II is generally regarded as more businessfriendly as it was developed in cooperation with different trade associations.182 Under this Set, data protection obligations are clearly allocated between the parties and each party assumes liability for its respective obligations.
-· Controller-to-Processor SCC, Decision 2010/87/EU: these SCC permit outsourcing activities to a sub-processor if it can provide for an appropriate level of data protection.
+ï¿½ Controller-to-Controller SCC: the two sets of Controller-to-Controller SCC can be used alternatively and a combination of clauses of both sets is not permissible.181 ï¿½ Set I, Decision 2001/497/EC: most significantly, under Set I, both parties enter into a joint and several liability for the data protection obligations. ï¿½ Set II, Decision 2004/915/EC: Set II is generally regarded as more businessfriendly as it was developed in cooperation with different trade associations.182 Under this Set, data protection obligations are clearly allocated between the parties and each party assumes liability for its respective obligations.
+ï¿½ Controller-to-Processor SCC, Decision 2010/87/EU: these SCC permit outsourcing activities to a sub-processor if it can provide for an appropriate level of data protection.
 Following the ECJ's Safe Harbor decision,183 some Supervisory Authorities expressed their concern with the lawfulness of SCC.184 Thus, with implementing decision of 16 December 2016,185 the European Commission amended Set I of the Controller-to-Controller SCC and the Controller-to-Processor SCC with the desire to remove any illicit restriction of the powers of the Supervisory Authorities, while, apart from that, the SCC's text remains unchanged.186 It remains to be seen whether the current SCC will hold up with the ECJ's requirements regarding adequacy decisions and whether the European Commission (or any national Supervisory Authorities) will adopt new SCC in the future.187 It should be noted that the Irish Data Protection Commissioner has brought an action before the Irish courts and, ultimately, intends a referral to the ECJ to determine the legal status of data transfers under SCC.188
 
 4.3.3.3 Practical Considerations In practice, the use of SCC entails advantages, as well as disadvantages, that have to be considered prior to opting for this legal basis.
 
-181See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenübermittlungen (2014), rec. 13. 182See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenübermittlungen (2014), rec. 14; von dem Bussche, in: Plath, BDSG/DSGVO, § 4c (2016), rec. 30. 183ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/14. 184Laue/Nink/Kremer, Datenschutzrecht, Verarbeitung durch Dritte (2016), rec. 53; Jensen, ZD-Aktuell (2016), 05204. 185European Commission, Implementing Decision (EU) 2016/2297 of 16 December 2016 (2016). 186Squire Patton Boggs (US) LLP, Data Privacy (2017). 187Hunton & Williams, European Commission proposes (2016). 188For information on the pending proceedings, see https://www.dataprotection.ie/docs/28-92016-Explanatory-memo-on-litigation-involving-Facebook-and-Maximilian-Schrems/1598.htm, accessed 29 Mar 2017.
+181See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenï¿½bermittlungen (2014), rec. 13. 182See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenï¿½bermittlungen (2014), rec. 14; von dem Bussche, in: Plath, BDSG/DSGVO, ï¿½ 4c (2016), rec. 30. 183ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/14. 184Laue/Nink/Kremer, Datenschutzrecht, Verarbeitung durch Dritte (2016), rec. 53; Jensen, ZD-Aktuell (2016), 05204. 185European Commission, Implementing Decision (EU) 2016/2297 of 16 December 2016 (2016). 186Squire Patton Boggs (US) LLP, Data Privacy (2017). 187Hunton & Williams, European Commission proposes (2016). 188For information on the pending proceedings, see https://www.dataprotection.ie/docs/28-92016-Explanatory-memo-on-litigation-involving-Facebook-and-Maximilian-Schrems/1598.htm, accessed 29 Mar 2017.
 
 122
 
 4 Material Requirements
 
 Advantages include the following:
-­ Their use is faster and requires less effort than negotiating an individual contract or than adopting Binding Corporate Rules (see Sect. 4.3.5).
-­ SCC contain data protection rules that comply with the law and, as SCC have to be adopted completely and unaltered, the lawful data protection standard cannot be influenced negatively in the course of negotiations between the parties.189
-­ They can serve as contractual basis for transfers between data-exporting controllers and data-importing controllers/processors irrespective of their individual relationship; thus, there is no limitation to, for example, intra-group processing activities.
-­ SCC can be used in situations where more than two parties are involved.190
+ï¿½ Their use is faster and requires less effort than negotiating an individual contract or than adopting Binding Corporate Rules (see Sect. 4.3.5).
+ï¿½ SCC contain data protection rules that comply with the law and, as SCC have to be adopted completely and unaltered, the lawful data protection standard cannot be influenced negatively in the course of negotiations between the parties.189
+ï¿½ They can serve as contractual basis for transfers between data-exporting controllers and data-importing controllers/processors irrespective of their individual relationship; thus, there is no limitation to, for example, intra-group processing activities.
+ï¿½ SCC can be used in situations where more than two parties are involved.190
 Disadvantages include the following:
-­ their lack of individuality and flexibility for the specific needs of different entities that is inherent to any form of model contract; and
-­ their use for intra-group processing activities might require an increased administrative burden in comparison to Binding Corporate Rules (see Sect. 4.3.5), as they have to be agreed upon separately between all of the group members.191
+ï¿½ their lack of individuality and flexibility for the specific needs of different entities that is inherent to any form of model contract; and
+ï¿½ their use for intra-group processing activities might require an increased administrative burden in comparison to Binding Corporate Rules (see Sect. 4.3.5), as they have to be agreed upon separately between all of the group members.191
 
-4.3.4 EU­U.S. Privacy Shield
-The most controversial and well-known example of a current adequacy decision adopted under the Data Protection Directive is the EU­U.S. Privacy Shield pursuant to which U.S. entities can be certified as safe third-country recipients.192 Pursuant to Art. 45 Sec. 9 GDPR, it will most likely remain in force under the GDPR and will be amended to comply with its provisions in the medium term. Moreover, its practical application is reviewed on a yearly basis. It constitutes the successor of the Safe Harbor adequacy decision from 2000, which was declared invalid by the ECJ on 6 October 2015.193 The ECJ criticised Safe Harbor mainly for not containing any findings on the existence in the USA of rules to limit any interference with the fundamental rights of data subjects or rules on effective legal protection.194
-189See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenübermittlungen (2014), rec. 3. 190See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenübermittlungen (2014), rec. 6. 191Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 64. 192For legal framework and further information, please visit http://ec.europa.eu/justice/data-pro tection/international-transfers/eu-us-privacy-shield/index_en.htm, accessed 18 Jan 2016. 193ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/14. 194ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/ 14, recs. 88­89.
+4.3.4 EUï¿½U.S. Privacy Shield
+The most controversial and well-known example of a current adequacy decision adopted under the Data Protection Directive is the EUï¿½U.S. Privacy Shield pursuant to which U.S. entities can be certified as safe third-country recipients.192 Pursuant to Art. 45 Sec. 9 GDPR, it will most likely remain in force under the GDPR and will be amended to comply with its provisions in the medium term. Moreover, its practical application is reviewed on a yearly basis. It constitutes the successor of the Safe Harbor adequacy decision from 2000, which was declared invalid by the ECJ on 6 October 2015.193 The ECJ criticised Safe Harbor mainly for not containing any findings on the existence in the USA of rules to limit any interference with the fundamental rights of data subjects or rules on effective legal protection.194
+189See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenï¿½bermittlungen (2014), rec. 3. 190See also von dem Bussche/Voigt, in: von dem Bussche/Voigt, Konzerndatenschutz, Datenï¿½bermittlungen (2014), rec. 6. 191Hullen, in: von dem Bussche/Voigt, Konzerndatenschutz, Ausblick (2014), rec. 64. 192For legal framework and further information, please visit http://ec.europa.eu/justice/data-pro tection/international-transfers/eu-us-privacy-shield/index_en.htm, accessed 18 Jan 2016. 193ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/14. 194ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/ 14, recs. 88ï¿½89.
 
 4.3 Data Transfers to Third Countries
 
 123
 
-Soon afterwards, the European Commission and the U.S. Department of Commerce started negotiations on the EU­U.S. Privacy Shield as the new framework for transatlantic data transfers. Subsequently, it was adopted in an adequacy decision by the European Commission to implement the requirements laid down by the ECJ's Safe Harbor ruling.
+Soon afterwards, the European Commission and the U.S. Department of Commerce started negotiations on the EUï¿½U.S. Privacy Shield as the new framework for transatlantic data transfers. Subsequently, it was adopted in an adequacy decision by the European Commission to implement the requirements laid down by the ECJ's Safe Harbor ruling.
 
-4.3.4.1 Mode of Operation Since 1 August 2016, the EU­U.S. Privacy Shield has been in operation. Like its predecessor, Safe Harbor, it provides for a self-certification mechanism. Entities wanting to adhere to the Privacy Shield have to sign up to the framework with the U.S. Department of Commerce, the latter being responsible for managing the Privacy Shield and monitoring compliance of the registered entities with its requirements. In order to be able to certify, entities must have a privacy policy in line with the provisions of the EU­U.S. Privacy Shield. Certified entities complying with the Privacy Shield's standards are deemed to provide for an adequate level of data protection and can therefore receive personal data from the EU.
+4.3.4.1 Mode of Operation Since 1 August 2016, the EUï¿½U.S. Privacy Shield has been in operation. Like its predecessor, Safe Harbor, it provides for a self-certification mechanism. Entities wanting to adhere to the Privacy Shield have to sign up to the framework with the U.S. Department of Commerce, the latter being responsible for managing the Privacy Shield and monitoring compliance of the registered entities with its requirements. In order to be able to certify, entities must have a privacy policy in line with the provisions of the EUï¿½U.S. Privacy Shield. Certified entities complying with the Privacy Shield's standards are deemed to provide for an adequate level of data protection and can therefore receive personal data from the EU.
 Certified entities have to renew their certification on an annual basis by submitting their (updated) privacy policy to the U.S. Department of Commerce, or they can no longer receive personal data from the EU on this legal basis.
-On an annual basis, the European Commission and the U.S. Department of Commerce shall review the functioning of the EU­U.S. Privacy Shield and, if necessary, renegotiate the legal framework.195
+On an annual basis, the European Commission and the U.S. Department of Commerce shall review the functioning of the EUï¿½U.S. Privacy Shield and, if necessary, renegotiate the legal framework.195
 
-4.3.4.2 EU­U.S. Privacy Shield Principles The EU­U.S. Privacy Shield (in its Annex II196) contains seven privacy principles that were already provided for in Safe Harbor but have been enhanced to comply with the ECJ's requirements for adequacy decisions. The EU and the U.S. tried to improve the protection of fundamental rights and provide for effective legal protection of data subjects. As part of their self-certification under the EU­U.S. Privacy Shield, entities have to commit to comply with these principles:
+4.3.4.2 EUï¿½U.S. Privacy Shield Principles The EUï¿½U.S. Privacy Shield (in its Annex II196) contains seven privacy principles that were already provided for in Safe Harbor but have been enhanced to comply with the ECJ's requirements for adequacy decisions. The EU and the U.S. tried to improve the protection of fundamental rights and provide for effective legal protection of data subjects. As part of their self-certification under the EUï¿½U.S. Privacy Shield, entities have to commit to comply with these principles:
 1. Notice principle: while Safe Harbor only obliged entities to provide rather superficial information on data processing to the data subjects, the Privacy Shield obliges them to provide information on key elements of their processing activities (e.g., type of data collected, purpose of processing, right of access and choice, conditions for onward transfers and liability).
 2. Data integrity and purpose limitation principle: the processed personal data must be limited to what is relevant for and compatible with the purpose of the processing, reliable for its intended use, accurate, complete and current. This must be warranted for as long as the entity retains the personal data, no matter whether its certification under the Privacy Shield ends or not.
 
 195European Commission, European Commission launches Privacy Shield (2016).
-196http://eur-lex.europa.eu/legal-content/EN/TXT/?uri¼uriserv:OJ.L_.2016.207.01.0001.01. ENG&toc¼OJ:L:2016:207:FULL#ntr19-L_2016207EN.01000101-E0019, accessed 19 Jan 2017.
+196http://eur-lex.europa.eu/legal-content/EN/TXT/?uriï¿½uriserv:OJ.L_.2016.207.01.0001.01. ENG&tocï¿½OJ:L:2016:207:FULL#ntr19-L_2016207EN.01000101-E0019, accessed 19 Jan 2017.
 
 124
 
@@ -1983,17 +1989,17 @@ On an annual basis, the European Commission and the U.S. Department of Commerce 
 4. Accountability for onward transfer principle: under this principle, entities must conclude contracts for data transfers to third-party recipients that oblige the latter to provide a level of data protection adequate to the one warranted by the Privacy Shield principles and to process the received data only for limited and specified purposes.
 5. Security principle: certified entities have to take reasonable and appropriate measures to protect personal data from loss, misuse and unauthorised access, disclosure, alteration and destruction, taking into due account the risks involved in the processing and the nature of the personal data.
 6. Access principle: data subjects must have access to personal data about them that an entity holds and be able to correct, amend or delete that data where it is inaccurate or has been processed in violation of the privacy principles, except where the burden or expense of providing access would be disproportionate to the violation.
-7. Recourse, enforcement and liability: given the ECJ's criticism of a lack of effective legal protection under Safe Harbor,197 the respective obligations have been enhanced under the Privacy Shield. Individuals must have access to readily available independent recourse mechanisms by which each individuals' complaints and disputes are investigated and expeditiously resolved at no cost to the individual. For this purpose, certified entities have to submit themselves to a voluntarily chosen dispute resolution body. Further details on the complex recourse mechanism are specified in Annex 1 to Annex II of the EU­U.S. Privacy Shield.
-Even though privacy standards under the EU­U.S. Privacy Shield have been enhanced, they only partially seem to improve protection when compared to Safe Harbor.198 The Art. 29 Data Protection Working Party particularly criticised the recourse mechanisms under the Privacy Shield as they may prove to be too complex in practice.199 Given the various available recourse procedures and the fact that the principles and guarantees afforded by the Privacy Shield are set out in both the adequacy decision and in its annexes makes the information, according to the Art. 29 Data Protection Working Party, both difficult to find and, at times, inconsistent.200
+7. Recourse, enforcement and liability: given the ECJ's criticism of a lack of effective legal protection under Safe Harbor,197 the respective obligations have been enhanced under the Privacy Shield. Individuals must have access to readily available independent recourse mechanisms by which each individuals' complaints and disputes are investigated and expeditiously resolved at no cost to the individual. For this purpose, certified entities have to submit themselves to a voluntarily chosen dispute resolution body. Further details on the complex recourse mechanism are specified in Annex 1 to Annex II of the EUï¿½U.S. Privacy Shield.
+Even though privacy standards under the EUï¿½U.S. Privacy Shield have been enhanced, they only partially seem to improve protection when compared to Safe Harbor.198 The Art. 29 Data Protection Working Party particularly criticised the recourse mechanisms under the Privacy Shield as they may prove to be too complex in practice.199 Given the various available recourse procedures and the fact that the principles and guarantees afforded by the Privacy Shield are set out in both the adequacy decision and in its annexes makes the information, according to the Art. 29 Data Protection Working Party, both difficult to find and, at times, inconsistent.200
 
-197ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/ 14, rec. 89. 198Criticised by many, for example Galetzka, DSRITB 2016, 217, 227; Weichert, ZD 2016, 209, 209 et seq. 199Art. 29 Data Protection Working Party, WP 238 (2016), pp. 3­4. 200Art. 29 Data Protection Working Party, WP 238 (2016), pp. 2­4.
+197ECJ, ruling of 6 October 2015, Maximilian Schrems./.Data Protection Commissioner, C-362/ 14, rec. 89. 198Criticised by many, for example Galetzka, DSRITB 2016, 217, 227; Weichert, ZD 2016, 209, 209 et seq. 199Art. 29 Data Protection Working Party, WP 238 (2016), pp. 3ï¿½4. 200Art. 29 Data Protection Working Party, WP 238 (2016), pp. 2ï¿½4.
 
 4.3 Data Transfers to Third Countries
 
 125
 
-4.3.4.3 Outlook Until April 2017, more than 1800 entities have already certified themselves under the EU­U.S. Privacy Shield.201 However, its outcome remains to be seen as some stakeholders produce arguments against its lawfulness.202 Allegations focus on a lack of change of U.S. data protection legislation since the ECJ's Safe Harbor decision and on the complexity and opacity of the Privacy Shield's legal framework. As parts of this legal framework consist of U.S. legislation, its provisions might be unilaterally amended in the future, for example, by executive orders of the U.S. President.
-On 16 September 2016, Digital Rights Ireland Ltd brought an action before the ECJ to annul the EU­U.S. Privacy Shield for lack of an adequate level of data protection.203
+4.3.4.3 Outlook Until April 2017, more than 1800 entities have already certified themselves under the EUï¿½U.S. Privacy Shield.201 However, its outcome remains to be seen as some stakeholders produce arguments against its lawfulness.202 Allegations focus on a lack of change of U.S. data protection legislation since the ECJ's Safe Harbor decision and on the complexity and opacity of the Privacy Shield's legal framework. As parts of this legal framework consist of U.S. legislation, its provisions might be unilaterally amended in the future, for example, by executive orders of the U.S. President.
+On 16 September 2016, Digital Rights Ireland Ltd brought an action before the ECJ to annul the EUï¿½U.S. Privacy Shield for lack of an adequate level of data protection.203
 
 4.3.5 Binding Corporate Rules
 In order to compensate for a lack of data protection in a third country that has not been declared as safe under Art. 45 GDPR, entities can adopt binding corporate rules (BCR) pursuant to Arts. 46 Sec. 2 lit. b and 47 GDPR. They constitute an adequate safeguard for international data transfers. Nevertheless, so far, they have been reluctantly used in practice.204 Less than 100 company groups have gone through the procedure of adopting BCR.205
@@ -2005,27 +2011,27 @@ The Data Protection Directive did not provide for specific provisions on BCR as 
 
 4 Material Requirements
 
-­ multinational groups of undertakings that consist of a controlling undertaking and its controlled undertakings (see Sect. 4.4)207; or
-­ groups of enterprises engaged in a joint economic activity: in contrast to a group of undertakings, these group members are legally independent entities and, due to their independence, do not constitute a group of undertakings.208 For a `joint economic activity' under Art. 47 GDPR, their cooperation must be consolidated in such a way that they can jointly reach compliance with data protection law.209
+ï¿½ multinational groups of undertakings that consist of a controlling undertaking and its controlled undertakings (see Sect. 4.4)207; or
+ï¿½ groups of enterprises engaged in a joint economic activity: in contrast to a group of undertakings, these group members are legally independent entities and, due to their independence, do not constitute a group of undertakings.208 For a `joint economic activity' under Art. 47 GDPR, their cooperation must be consolidated in such a way that they can jointly reach compliance with data protection law.209
 BCR will define the group members' global privacy policy with regard to the international transfers of personal data to those group members located in third countries that do not provide an adequate level of protection under Art. 45 GDPR.210 This instrument shall correspond to the interest of groups of undertakings or economically affiliated enterprises to make personal data available to all involved entities, irrespective of whether they are located inside or outside the EU.
 The framework created through the adoption of BCR allows data transfers to entities located in third countries, irrespective of whether the country can provide for an adequate level of data protection or not, on the condition that said entity is bound by the BCR. BCR create an intra-group data protection standard that guarantees an adequate level of data security corresponding to EU legal standards. This instrument should become especially relevant as the GDPR does not provide for an intra-group privilege (see Sect. 4.4).
 Cases of Application BCR cannot be used as a justification for international data transfers to entities that are not part of the relevant group of undertakings or group of enterprises engaged in a joint economic activity.211 Moreover, group entities must bear in mind that BCR will only prove an adequate level of data protection within the group but cannot serve as legal basis for processing (see Sect. 4.3). Thus, the group entities must ensure that such legal basis is fulfilled. Nevertheless, BCR may prove to be useful in different scenarios:
-­ A controller wishes to transfer data to non-EU members of its group of undertakings, and thus the group adopts BCR.212
+ï¿½ A controller wishes to transfer data to non-EU members of its group of undertakings, and thus the group adopts BCR.212
 
-207According to Art. 4 No. 19 GDPR, a group of undertakings is defined as a controlling undertaking and its controlled undertakings. 208Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 130. 209Pauly, in: Paal/Pauly, DSGVO, Art. 47 (2017), rec. 4. 210For details, see also http://ec.europa.eu/justice/data-protection/international-transfers/bindingcorporate-rules/index_en.htm, accessed 19 Jan 2017. 211Rec. 110 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Verarbeitung durch Dritte (2016), rec. 46. 212See also Art. 29 Data Protection Working Party, WP 204 (2013), pp. 4­5.
+207According to Art. 4 No. 19 GDPR, a group of undertakings is defined as a controlling undertaking and its controlled undertakings. 208Ernst, in: Paal/Pauly, DSGVO, Art. 4 (2017), rec. 130. 209Pauly, in: Paal/Pauly, DSGVO, Art. 47 (2017), rec. 4. 210For details, see also http://ec.europa.eu/justice/data-protection/international-transfers/bindingcorporate-rules/index_en.htm, accessed 19 Jan 2017. 211Rec. 110 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Verarbeitung durch Dritte (2016), rec. 46. 212See also Art. 29 Data Protection Working Party, WP 204 (2013), pp. 4ï¿½5.
 
 4.3 Data Transfers to Third Countries
 
 127
 
-­ A controller and a processor enter into a service agreement on data processing. They attach the processor's BCR to said agreement. On this basis, sub-processing by entities that are part of the processor's groups of undertakings will be subject to appropriate safeguards and may take place based on specific or general consent of the controller. This strategy provides for the advantage that the processing entity that has implemented BCR in its group does not need to sign contracts to frame transfers with each of the sub-processors that are part of its group.213 However, BCR for processors do not apply to transfers to external sub-processors (outside of the group), so that adequate protection for transfers must be achieved through other legal safeguards.214
+ï¿½ A controller and a processor enter into a service agreement on data processing. They attach the processor's BCR to said agreement. On this basis, sub-processing by entities that are part of the processor's groups of undertakings will be subject to appropriate safeguards and may take place based on specific or general consent of the controller. This strategy provides for the advantage that the processing entity that has implemented BCR in its group does not need to sign contracts to frame transfers with each of the sub-processors that are part of its group.213 However, BCR for processors do not apply to transfers to external sub-processors (outside of the group), so that adequate protection for transfers must be achieved through other legal safeguards.214
 So far, it is unclear whether and to what extent there will be different requirements for BCR adopted by controllers or processors under the GDPR.215 As the legal requirements for BCR under Art. 47 GDPR do not differentiate between those two cases, this should not be the case but, ultimately, remains to be seen upon the establishment of a common approval practice by the Supervisory Authorities.216
 
 4.3.5.2 Minimum Content A group of undertakings or enterprises engaged in a joint economic activity should be able to make use of approved BCR for its international data transfers provided that such corporate rules include all essential principles and enforceable rights to ensure appropriate safeguards for transfers of personal data.217 Thus, Art. 47 Secs. 1, 2 GDPR sets out minimum requirements as to the content of BCR.
 Pursuant to Art. 47 Secs, 1, 2 GDPR, BCR have to
-· be legally binding and apply to and be enforced by every member concerned of the group, including enforceability towards their employees; and
-· expressly confer enforceable rights on data subjects with regard to the processing of their personal data; and
-· specify at least ­ the structure and contact details of the group of undertakings/enterprises and each of its members; ­ the data transfers, including categories of personal data, the type of processing, its purposes, the data subjects affected and the third country in question; ­ their legally binding nature, both internally and externally;
+ï¿½ be legally binding and apply to and be enforced by every member concerned of the group, including enforceability towards their employees; and
+ï¿½ expressly confer enforceable rights on data subjects with regard to the processing of their personal data; and
+ï¿½ specify at least ï¿½ the structure and contact details of the group of undertakings/enterprises and each of its members; ï¿½ the data transfers, including categories of personal data, the type of processing, its purposes, the data subjects affected and the third country in question; ï¿½ their legally binding nature, both internally and externally;
 
 213For details see Art. 29 Data Protection Working Party, WP 204 (2013), p. 6 et seq. 214See also Art. 29 Data Protection Working Party, WP 204 (2013), p. 7. 215Pauly, in: Paal/Pauly, DSGVO, Art. 47 (2017), rec. 8. 216Pauly, in: Paal/Pauly, DSGVO, Art. 47 (2017), rec. 8. 217Rec. 110 GDPR.
 
@@ -2033,12 +2039,12 @@ Pursuant to Art. 47 Secs, 1, 2 GDPR, BCR have to
 
 4 Material Requirements
 
-­ the application of the general data protection principles, in particular purpose limitation, data minimisation, limited storage periods, data quality, data protection by design and by default, legal basis for processing, processing of special categories of personal data, measures to ensure data security and the requirements in respect of onward transfers to bodies not bound by the BCR;
-­ the rights of data subjects in regard to processing and the means to exercise those rights;
-­ the acceptance by the controller/processor established within the EU of liability for any breaches of the BCR by any member concerned not established in the EU;
-­ how the information on BCR is provided to the data subjects; ­ the tasks of the DPO/another person in charge of monitoring compliance with
-the BCR within the group structure; ­ the complaint procedures; ­ the mechanisms within the group for ensuring the verification of compliance
-with the BCR, including data protection audits and methods for correcting actions; ­ the mechanisms for recording changes to the BCR and reporting them to the Supervisory Authorities; ­ the cooperation mechanism with the Supervisory Authorities; ­ the mechanisms for reporting to the competent Supervisory Authority any legal requirements to which a group member is subject in a third country that are likely to have a substantial adverse effect on the guarantees provided by the BCR; ­ the appropriate data protection training to personnel having permanent or regular access to personal data.
+ï¿½ the application of the general data protection principles, in particular purpose limitation, data minimisation, limited storage periods, data quality, data protection by design and by default, legal basis for processing, processing of special categories of personal data, measures to ensure data security and the requirements in respect of onward transfers to bodies not bound by the BCR;
+ï¿½ the rights of data subjects in regard to processing and the means to exercise those rights;
+ï¿½ the acceptance by the controller/processor established within the EU of liability for any breaches of the BCR by any member concerned not established in the EU;
+ï¿½ how the information on BCR is provided to the data subjects; ï¿½ the tasks of the DPO/another person in charge of monitoring compliance with
+the BCR within the group structure; ï¿½ the complaint procedures; ï¿½ the mechanisms within the group for ensuring the verification of compliance
+with the BCR, including data protection audits and methods for correcting actions; ï¿½ the mechanisms for recording changes to the BCR and reporting them to the Supervisory Authorities; ï¿½ the cooperation mechanism with the Supervisory Authorities; ï¿½ the mechanisms for reporting to the competent Supervisory Authority any legal requirements to which a group member is subject in a third country that are likely to have a substantial adverse effect on the guarantees provided by the BCR; ï¿½ the appropriate data protection training to personnel having permanent or regular access to personal data.
 As these legal requirements largely correspond to the requirements set out by the Art. 29 Data Protection Working Party in its previous Working Papers,218 the latter can serve as guidance for drawing up BCR.219
 Pursuant to Art. 46 Sec. 5 GDPR, pre-existing BCR that have been approved under the Data Protection Directive remain valid under the GDPR until amended, replaced or repealed by the respective Supervisory Authority.
 
@@ -2051,13 +2057,13 @@ Pursuant to Art. 46 Sec. 5 GDPR, pre-existing BCR that have been approved under 
 
 4.3.5.4 Practical Considerations Compared to the Data Protection Directive, the approval procedure for BCR has been considerably simplified. Thus, their practical use might largely increase in the future. The use of BCR entails advantages, as well as disadvantages, that entities should consider before opting for their adoption of BCR.
 Disadvantages include that
-­ their implementation requires an elaborate examination of intra-group data flows in order to identify which third countries are affected by ongoing data transfers and what level of data protection they offer220;
-­ their use is limited to intra-group data transfers221; ­ the necessity of their approval by the competent Supervisory Authority will
+ï¿½ their implementation requires an elaborate examination of intra-group data flows in order to identify which third countries are affected by ongoing data transfers and what level of data protection they offer220;
+ï¿½ their use is limited to intra-group data transfers221; ï¿½ the necessity of their approval by the competent Supervisory Authority will
 require significant efforts by the group in order to be able to implement BCR.
 Advantages include that
-­ BCR implement data protection standards in a way that corresponds best to the corporate group's specific needs222;
-­ compared to SCC, they are a more individual and flexible solution for international data transfers (see Sect. 4.3.3);
-­ the more elaborate implementation process that entails an exact identification of ongoing data flows can be helpful for fulfilling other obligations under the GDPR, such as the ones linked to the data subjects' rights to information and access (see Chap. 5).223
+ï¿½ BCR implement data protection standards in a way that corresponds best to the corporate group's specific needs222;
+ï¿½ compared to SCC, they are a more individual and flexible solution for international data transfers (see Sect. 4.3.3);
+ï¿½ the more elaborate implementation process that entails an exact identification of ongoing data flows can be helpful for fulfilling other obligations under the GDPR, such as the ones linked to the data subjects' rights to information and access (see Chap. 5).223
 When using BCR, entities do not have to conclude a contract or use another legal basis for each cross-border transfer of personal data covered by the BCR.
 
 4.3.6 Codes of Conduct, Certifications, Etc.
@@ -2085,8 +2091,8 @@ Please note that this exception cannot serve as legal basis for groups of undert
 
 of an employment contract as there is no direct and objective link between the contractual performance and such a transfer.228
 Example The exemption would be an acceptable legal basis for cases that present a direct link between the data transfer and the contractual performance:
-­ the transfer by travel agents of customer data to hotels or other commercial partners for the organisation of their clients' stay,
-­ the transfer of personal data for e-commerce purchases in order to make deliveries or process payments.
+ï¿½ the transfer by travel agents of customer data to hotels or other commercial partners for the organisation of their clients' stay,
+ï¿½ the transfer of personal data for e-commerce purchases in order to make deliveries or process payments.
 In these cases, the transfer is necessary in order to fulfil the contractual purposes (organisation of a vacation/delivery of goods or services). Thus, Art. 49 Sec. 1 lit. b GDPR can serve as a legal basis for the transfers.229
 The exception cannot serve as a legal basis for transfers of additional information that is not necessary for the purpose of the transfer or for transfers for a purpose other than the performance of a contract.230
 
@@ -2107,9 +2113,9 @@ Article 49 Sec. 5 GDPR contains an opening clause with high practical relevance.
 4.3.7.4 Protection of Vital Interests A third-country data transfer that is necessary in order to protect the vital interests of the data subject or other persons, where the data subject is physically or legally incapable of giving consent, is lawful pursuant to Art. 49 Sec. 1 lit. f GDPR.
 
 4.3.7.5 Prevailing Legitimate Interests of the Controller Article 49 Sec. 1 sub-paragraph 2 GDPR introduces a new type of exception.235 According to said provision, a third-country data transfer may take place in limited cases if it corresponds to the legitimate interests of the controller. Given the provision's clear wording, it cannot serve as legal permission for processors in order to transfer personal data to non-EU sub-processors.236 This general clause only applies if no other legal permission for international data transfers can be used (meaning the provisions in Arts. 45, 46, 49 Sec. 1 GDPR) and if the data-exporting controller fulfils a number of statutory conditions:
-­ the transfer is not repetitive; ­ the transfer only concerns a limited number of data subjects; ­ the transfer is necessary for the purposes of compelling legitimate interests
-pursued by the data-exporting controller; ­ those legitimate interests are not overridden by the interests or rights and
-freedoms of the data subjects; and ­ the data-exporting controller has assessed all surrounding circumstances and
+ï¿½ the transfer is not repetitive; ï¿½ the transfer only concerns a limited number of data subjects; ï¿½ the transfer is necessary for the purposes of compelling legitimate interests
+pursued by the data-exporting controller; ï¿½ those legitimate interests are not overridden by the interests or rights and
+freedoms of the data subjects; and ï¿½ the data-exporting controller has assessed all surrounding circumstances and
 provided suitable safeguards for the transfer on the basis of that assessment.
 Such an assessment should include and give particular consideration to the nature of the personal data, the purpose and duration of the proposed processing operation(s), the situation in the country of origin, the third country and the country of final destination.237
 234Pauly, in: Paal/Pauly, DSGVO, Art. 49 (2017), rec. 36. 235Please note that this exception does not apply to activities carried out by public authorities in the exercise of their public powers, Art. 49 Sec. 3 GDPR. 236Laue/Nink/Kremer, Datenschutzrecht, Verarbeitung durch Dritte (2016), rec. 63. 237Rec. 113 GDPR.
@@ -2119,8 +2125,8 @@ Such an assessment should include and give particular consideration to the natur
 133
 
 The interpretation of the requirements of this exception remains unclear as the wording is very vague. The notions of `not repetitive' or `limited number' are not further specified. For example, a transfer could be deemed `repetitive' if it takes place more than once or only if it takes place with certain regularity.238 However, the statutory requirements shall underline the exceptional character of this provision. Thus, they might only be met cumulatively in very exceptional cases and require additional efforts of the controller.239 Transfers under this exception should only take place where none of the other grounds for transfer are applicable.240 Apart from fulfilling the statutory requirements of this provision, such transfer triggers additional obligations of the controller:
-­ it shall inform the Supervisory Authority of such a transfer; ­ it shall inform the data subject of the transfer of the compelling legitimate
-interests pursued; ­ it shall document the assessment, as well as the suitable safeguards taken in its
+ï¿½ it shall inform the Supervisory Authority of such a transfer; ï¿½ it shall inform the data subject of the transfer of the compelling legitimate
+interests pursued; ï¿½ it shall document the assessment, as well as the suitable safeguards taken in its
 Data Processing Records (see Sect. 3.4), Art. 49 Sec. 6 GDPR.
 Given the numerous conditions for a lawful data transfer under Art. 49 Sec. 1 sub-paragraph 2 GDPR, it should rarely serve as legal basis for such transfers in practice.
 
@@ -2133,32 +2139,32 @@ According to Art. 27 GDPR, entities that are subject to the territorial scope of
 
 4 Material Requirements
 
-­ The representative needs to be designated in writing (Art. 4 No. 17 GDPR). However, it is not specified whether an electronic form is considered `written form'. Since the written designation shall serve for authentication purposes, a simple mentioning of the representative on a website should not meet this requirement.242
-­ The GDPR does not set out any requirements as to the qualification or affiliation of the representative to the controller or processor.
-­ It is possible to designate one representative for several controllers and/or processors as long as no conflict of interests occurs.243
-­ The representative shall act on behalf of the controller/representative and therefore needs to have power of representation.244
-­ According to Art. 27 Sec. 3 GDPR, the representative needs to be established in one of the EU Member States where the data subjects affected by the data processing are located. It is not necessary to appoint a representative for each EU Member State. Establishment means, just as for Art. 3 GDPR, the effective and real exercise of activity through stable arrangements (see Sect. 2.3.1).
+ï¿½ The representative needs to be designated in writing (Art. 4 No. 17 GDPR). However, it is not specified whether an electronic form is considered `written form'. Since the written designation shall serve for authentication purposes, a simple mentioning of the representative on a website should not meet this requirement.242
+ï¿½ The GDPR does not set out any requirements as to the qualification or affiliation of the representative to the controller or processor.
+ï¿½ It is possible to designate one representative for several controllers and/or processors as long as no conflict of interests occurs.243
+ï¿½ The representative shall act on behalf of the controller/representative and therefore needs to have power of representation.244
+ï¿½ According to Art. 27 Sec. 3 GDPR, the representative needs to be established in one of the EU Member States where the data subjects affected by the data processing are located. It is not necessary to appoint a representative for each EU Member State. Establishment means, just as for Art. 3 GDPR, the effective and real exercise of activity through stable arrangements (see Sect. 2.3.1).
 Example
 Entity H is located in Australia and runs an online shop. For processing orders, the customer data is stored. The company has no subsidiaries or representatives abroad. H addresses EU customers located in Germany, Italy and France.
 In this example, as H addresses customers located in Germany, France and Italy, it needs to designate a representative in one of those Member States. For instance, H could designate a representative established in Italy. It is not necessary to designate representatives that are established in the other two Member States. On the contrary, it would not meet the requirements under Art. 27 GDPR to designate a representative, e.g., established in the Czech Republic because the representative has to be located in one of the EU Member States where the data subjects are affected by the entity's processing activities. As H does not address Czech customers, the representative cannot be located there.
 
 4.3.8.2 Exemptions from the Obligation to Designate a Representative Not every entity that falls within the territorial scope of application under Art. 3 Sec. 2 GDPR has the duty to designate an EU representative. Article 27 GDPR provides for two exemptions.245
-242Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), rec. 19. 243Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), rec. 27; see also Dammann, in: Simitis, BDSG, § 1 (2014), rec. 234. 244Rec. 80 GDPR; Plath, in: Plath, BDSG/DSGVO, Art.27 (2016), rec. 1. 245The second exemption is provided for in Art. 27 Sec. 2 lit. b GDPR according to which public authorities or bodies are not obliged to designate a representative.
+242Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), rec. 19. 243Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), rec. 27; see also Dammann, in: Simitis, BDSG, ï¿½ 1 (2014), rec. 234. 244Rec. 80 GDPR; Plath, in: Plath, BDSG/DSGVO, Art.27 (2016), rec. 1. 245The second exemption is provided for in Art. 27 Sec. 2 lit. b GDPR according to which public authorities or bodies are not obliged to designate a representative.
 
 4.4 Limited Privilege for Intra-Group Processing Activities
 
 135
 
 According to Art. 27 Sec. 2 lit. a GDPR, the obligation does not apply to cases where the legislator identified a small risk for data protection. This is the case for
-· occasional processing · that does not, on a large scale, affect special categories of personal data (Art.
-9 Sec. 1 GDPR) or personal data relating to criminal convictions and offences and · that is unlikely to result in a risk to the rights and freedoms of individuals.
+ï¿½ occasional processing ï¿½ that does not, on a large scale, affect special categories of personal data (Art.
+9 Sec. 1 GDPR) or personal data relating to criminal convictions and offences and ï¿½ that is unlikely to result in a risk to the rights and freedoms of individuals.
 
 All three conditions have to be met. Unfortunately, the legislator did not specify what `occasional' processing or `on a large scale' shall mean. In future, this might give rise to a number of disputes and the terms will have to be specified by the courts. However, data processing should be considered `occasional' if the processing in question only plays a subordinate role in the activity of the controller/processor and only occurs for a very short time period or once.246 In order to identify the likeliness of a risk to the rights and freedoms of individuals, the controller/processor needs to take into account the nature, context, scope and purposes of the processing.
 4.3.8.3 Obligations of the Representative The representative serves as contact point for Supervisory Authorities and data subjects. For this purpose, the latter have to be informed about the name and contact details of the representative.247 He needs to cooperate with the Supervisory Authorities with regard to any action taken by the controller/processor to ensure compliance with the GDPR.248 The representative will be subject to enforcement proceedings in the event of non-compliance with the GDPR by the controller/ processor.249 Additionally, the representative shall maintain the controller's record of processing activities under the responsibility of the controller, Art. 30 Sec. 1 GDPR.
 
 4.4 Limited Privilege for Intra-Group Processing Activities
 Large corporations should bear in mind that the GDPR does not provide for an intra-group exemption.250 This means that data transfers between different group members require a legal basis and, thus, are treated like any other data transfer not involving entities that are connected.
-246Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), recs. 35­36. 247Art. 13 Sec. 1 lit. a in connection with Art. 14 Sec. 1 lit. a GDPR. 248Rec. 80 GDPR. 249Rec. 80 GDPR. 250Art. 4 No. 19 GDPR defines a `group of undertakings' as a controlling undertaking and its controlled undertakings.
+246Martini, in: Paal/Pauly, DSGVO, Art. 27 (2017), recs. 35ï¿½36. 247Art. 13 Sec. 1 lit. a in connection with Art. 14 Sec. 1 lit. a GDPR. 248Rec. 80 GDPR. 249Rec. 80 GDPR. 250Art. 4 No. 19 GDPR defines a `group of undertakings' as a controlling undertaking and its controlled undertakings.
 
 136
 
@@ -2201,40 +2207,40 @@ Art. 29 Data Protection Working Party (2005) Working document on a common interp
 Art. 29 Data Protection Working Party (2011) Opinion 15/2011 on the definition of consent, WP 187
 Art. 29 Data Protection Working Party (2013) Opinion 03/2013 on purpose limitation, WP 203 Art. 29 Data Protection Working Party (2013) Explanatory document on the processor binding
 corporate rules, WP 204 Art. 29 Data Protection Working Party (2014) Working document setting forth a co-operation
-procedure for issuing common opinions on `contractual clauses' considered as compliant with the EC model clauses, WP 226 Art. 29 Data Protection Working Party (2016) Opinion 1/2016 on the EU-U.S. Privacy Shield draft adequacy decision, WP238 Dachwitz I (2016) Nationale Datenschutzbehorden kritisieren Privacy Shield und kündigen umfassende Prüfung an. https://netzpolitik.org/2016/nationale-datenschutzbehoerdenkritisieren-privacy-shield-und-kuendigen-umfassende-pruefung-an/. Accessed 18 Jan 2017 Dammann U (2014) § 1 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Dammann U (2016) Erfolge und Defizite der EU-Datenschutzgrundverordnung - Erwarteter Fortschritt, Schwa¨chen und überraschende Innovationen, ZD, pp 307­314
+procedure for issuing common opinions on `contractual clauses' considered as compliant with the EC model clauses, WP 226 Art. 29 Data Protection Working Party (2016) Opinion 1/2016 on the EU-U.S. Privacy Shield draft adequacy decision, WP238 Dachwitz I (2016) Nationale Datenschutzbehorden kritisieren Privacy Shield und kï¿½ndigen umfassende Prï¿½fung an. https://netzpolitik.org/2016/nationale-datenschutzbehoerdenkritisieren-privacy-shield-und-kuendigen-umfassende-pruefung-an/. Accessed 18 Jan 2017 Dammann U (2014) ï¿½ 1 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Dammann U (2016) Erfolge und Defizite der EU-Datenschutzgrundverordnung - Erwarteter Fortschritt, Schwaï¿½chen und ï¿½berraschende Innovationen, ZD, pp 307ï¿½314
 255Lachenmann, DSRITB 2016, p. 536.
 
 References
 
 139
 
-Dovas M-U (2016) Joint Controllership ­ Moglichkeiten oder Risiken der Datennutzung?, ZD, pp 512­517
-Düsseldorfer Kreis (2014) Anwendungshinweise der Datenschutzaufsichtsbehorden zur Erhebung, Verarbeitung und Nutzung von personenbezogenen Daten für werbliche Zwecke. https://www.lda.bayern.de/media/ah_werbung.pdf. Accessed 25 Jan 2017
+Dovas M-U (2016) Joint Controllership ï¿½ Moglichkeiten oder Risiken der Datennutzung?, ZD, pp 512ï¿½517
+Dï¿½sseldorfer Kreis (2014) Anwendungshinweise der Datenschutzaufsichtsbehorden zur Erhebung, Verarbeitung und Nutzung von personenbezogenen Daten fï¿½r werbliche Zwecke. https://www.lda.bayern.de/media/ah_werbung.pdf. Accessed 25 Jan 2017
 Ernst S (2017) Art. 4 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich
 European Commission (2016) European Commission launches EU-U.S. Privacy Shield: stronger protection for transatlantic data flows. http://europa.eu/rapid/press-release_IP-16-2461_en. htm. Accessed 18 Jan 2017
 Frenzel EM (2017) Arts. 5, 6, 7, 8, 9, 10 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich
-Galetzka C (2016) EU-US Privacy Shield als Safe Harbor 2.0 ­ Perspektive für Datenübermittlungen in die USA nach dem Dolchstoss des EuGH, DSRITB, pp 217­232
-Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51­55
-Gola P, Schulz S (2013) DS-GVO ­ Neue Vorgaben für den Datenschutz bei Kindern? U¨ berlegungen zur einwilligungsbasierten Verarbeitung von personenbezogenen Daten Minderja¨hriger, ZD, pp 475­481
+Galetzka C (2016) EU-US Privacy Shield als Safe Harbor 2.0 ï¿½ Perspektive fï¿½r Datenï¿½bermittlungen in die USA nach dem Dolchstoss des EuGH, DSRITB, pp 217ï¿½232
+Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51ï¿½55
+Gola P, Schulz S (2013) DS-GVO ï¿½ Neue Vorgaben fï¿½r den Datenschutz bei Kindern? Uï¿½ berlegungen zur einwilligungsbasierten Verarbeitung von personenbezogenen Daten Minderjaï¿½hriger, ZD, pp 475ï¿½481
 Gola P, Wronka G (eds) (2013) Handbuch Arbeitnehmerdatenschutz, 6th edn. Frechen, DATAKONTEXT GmbH
-Gola P, Klug C, Korffer B (2015) § 28 BDSG. In: Gola, Peter/Schomerus, Rudolf (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich
-Grützner T, Jakob A (2015) Document retention policy. In: Grützner T, Jakob A (eds) Complianze von A-Z, 2nd edn. C.H.Beck, Munich
-Ha¨rting N (ed) (2016) Datenschutz-Grundverordnung, 1st edn. Dr. Otto Schmidt Verlag, Cologne Heckmann D (2013) § 13 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht
+Gola P, Klug C, Korffer B (2015) ï¿½ 28 BDSG. In: Gola, Peter/Schomerus, Rudolf (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich
+Grï¿½tzner T, Jakob A (2015) Document retention policy. In: Grï¿½tzner T, Jakob A (eds) Complianze von A-Z, 2nd edn. C.H.Beck, Munich
+Haï¿½rting N (ed) (2016) Datenschutz-Grundverordnung, 1st edn. Dr. Otto Schmidt Verlag, Cologne Heckmann D (2013) ï¿½ 13 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht
 und Wirtschaft, Frankfurt am Main Hullen N (2014) Ausblick auf die EU-Datenschutz-Grundverordnung. In: von dem Bussche AF,
 Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich Hunton & Williams (2016) European Commission proposes changes to data export decisions.
-https://www.huntonprivacyblog.com/2016/10/24/european-commission-proposes-changesdata-export-decisions/. Accessed 18 Jan 2017 Jensen S (2016) Vorabentscheidungsverfahren zur Prüfung von Standardvertragsklauseln angestrebt, ZD-Aktuell, 05204 Karg M (2016) Gegenwart und Zukunft der Angemessenheit des Datenschutzniveaus im außereuropa¨ischen Datenverkehr, VuR, pp 457­465 Lachenmann M (2016) Smart-Groups - Smart Transfers! Konzerndatenübermittlung in der Datenschutzgrundverordnung, DSRITB, pp 535­550 Laue P, Nink J, Kremer S (eds) (2016) Verarbeitung durch Dritte und im Ausland; Zula¨ssigkeit der Verarbeitung. In: Das neue Datenschutzrecht in der betrieblichen Praxis. 1st edn. Nomos, Baden-Baden Martini M (2017) Art. 27 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Meents JG, Hinzpeter B (2013) § 35 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main Monreal M (2016) Weiterverarbeitung nach einer Zwecka¨nderung in der DS-GVO, ZD, pp 507­512 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO - Vergleich der deutschen Rechtslage mit dem Kommissionsentwurf, ZD, pp 407­413 Pauly DA (2017) Vorbem. zu Art. 44 ff. DSGVO; Arts. 46, 47, 49 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich
+https://www.huntonprivacyblog.com/2016/10/24/european-commission-proposes-changesdata-export-decisions/. Accessed 18 Jan 2017 Jensen S (2016) Vorabentscheidungsverfahren zur Prï¿½fung von Standardvertragsklauseln angestrebt, ZD-Aktuell, 05204 Karg M (2016) Gegenwart und Zukunft der Angemessenheit des Datenschutzniveaus im auï¿½ereuropaï¿½ischen Datenverkehr, VuR, pp 457ï¿½465 Lachenmann M (2016) Smart-Groups - Smart Transfers! Konzerndatenï¿½bermittlung in der Datenschutzgrundverordnung, DSRITB, pp 535ï¿½550 Laue P, Nink J, Kremer S (eds) (2016) Verarbeitung durch Dritte und im Ausland; Zulaï¿½ssigkeit der Verarbeitung. In: Das neue Datenschutzrecht in der betrieblichen Praxis. 1st edn. Nomos, Baden-Baden Martini M (2017) Art. 27 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Meents JG, Hinzpeter B (2013) ï¿½ 35 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main Monreal M (2016) Weiterverarbeitung nach einer Zweckaï¿½nderung in der DS-GVO, ZD, pp 507ï¿½512 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO - Vergleich der deutschen Rechtslage mit dem Kommissionsentwurf, ZD, pp 407ï¿½413 Pauly DA (2017) Vorbem. zu Art. 44 ff. DSGVO; Arts. 46, 47, 49 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich
 
 140
 
 4 Material Requirements
 
-Piltz C (2016) Die Datenschutz-Grundverordnung, K&R, pp 557­567 Plath K-U (2016) Arts. 5, 6, 7, 9, 27 DSGVO; § 28 BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd
-edn. Verlag Dr. Otto Schmidt, Cologne Roßnagel A, Nebel M, Richter P (2015) Was bleibt vom Europa¨ischen Datenschutzrecht? -
-U¨ berlegungen zum Ratsentwurf der DS-GVO, ZD, pp 455­460 Schantz P (2016) Die Datenschutz-Grundverordnung ­ Beginn einer neuen Zeitrechnung im
-Datenschutzrecht, NJW, pp 1841­1847 Simitis S (2014) §§ 3, 28, 32 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos,
-Baden-Baden Spies A (2016) EU/US-Datenübermittlungen: Neuer Datenschutzschild ­ wie sieht er aus und wie
-geht es weiter? ZD-Aktuell, 04992 Squire Patton Boggs (US) LLP (2017) Data privacy ­ commission changes existing decisions on
-standard contractual clauses and adequacy of third countries. http://www.natlawreview.com/ article/data-privacy-commission-changes-existing-decisions-standard-contractual-clausesand. Accessed 3 Feb 2017 Stemmer B (2017) Art. 7 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 19th edn. C.H.Beck, Munich Taeger J (2013) § 28 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main von dem Bussche AF (2016) Arts. 45, 49 DSGVO; § 4c BDSG. In: Plath K-U (ed) BDSG/ DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF, Voigt P (2014) Datenu¨bermittlungen in Drittla¨nder; Rechtliche Anforderungen an Datenverarbeitungen. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich von dem Bussche AF, Zeiter A (2016) Practitioner's corner ­ implementing the EU general data protection regulation: a business perspective. EDPL (4):576­581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359­1365 Weichert T (2016) EU-US-Privacy-Shield ­ Ist der transatlantische Datentransfer nun grundrechtskonform? Eine erste Bestandsaufnahme, ZD, pp 209­217 Weichert T (2017) Art. 9 DSGVO. In: Kühling J, Buchner B (eds) Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Wybitul T (ed) (2016) Kapitel III. In: EU-Datenschutz-Grundverordnung im Unternehmen, 1st edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main
+Piltz C (2016) Die Datenschutz-Grundverordnung, K&R, pp 557ï¿½567 Plath K-U (2016) Arts. 5, 6, 7, 9, 27 DSGVO; ï¿½ 28 BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd
+edn. Verlag Dr. Otto Schmidt, Cologne Roï¿½nagel A, Nebel M, Richter P (2015) Was bleibt vom Europaï¿½ischen Datenschutzrecht? -
+Uï¿½ berlegungen zum Ratsentwurf der DS-GVO, ZD, pp 455ï¿½460 Schantz P (2016) Die Datenschutz-Grundverordnung ï¿½ Beginn einer neuen Zeitrechnung im
+Datenschutzrecht, NJW, pp 1841ï¿½1847 Simitis S (2014) ï¿½ï¿½ 3, 28, 32 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos,
+Baden-Baden Spies A (2016) EU/US-Datenï¿½bermittlungen: Neuer Datenschutzschild ï¿½ wie sieht er aus und wie
+geht es weiter? ZD-Aktuell, 04992 Squire Patton Boggs (US) LLP (2017) Data privacy ï¿½ commission changes existing decisions on
+standard contractual clauses and adequacy of third countries. http://www.natlawreview.com/ article/data-privacy-commission-changes-existing-decisions-standard-contractual-clausesand. Accessed 3 Feb 2017 Stemmer B (2017) Art. 7 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 19th edn. C.H.Beck, Munich Taeger J (2013) ï¿½ 28 BDSG. In: Taeger J, Gabel D (eds) BDSG, 2nd edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main von dem Bussche AF (2016) Arts. 45, 49 DSGVO; ï¿½ 4c BDSG. In: Plath K-U (ed) BDSG/ DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne von dem Bussche AF, Voigt P (2014) Datenuï¿½bermittlungen in Drittlaï¿½nder; Rechtliche Anforderungen an Datenverarbeitungen. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H.Beck, Munich von dem Bussche AF, Zeiter A (2016) Practitioner's corner ï¿½ implementing the EU general data protection regulation: a business perspective. EDPL (4):576ï¿½581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359ï¿½1365 Weichert T (2016) EU-US-Privacy-Shield ï¿½ Ist der transatlantische Datentransfer nun grundrechtskonform? Eine erste Bestandsaufnahme, ZD, pp 209ï¿½217 Weichert T (2017) Art. 9 DSGVO. In: Kï¿½hling J, Buchner B (eds) Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Wybitul T (ed) (2016) Kapitel III. In: EU-Datenschutz-Grundverordnung im Unternehmen, 1st edn. Fachmedien Recht und Wirtschaft, Frankfurt am Main
 
 Rights of Data Subjects
 
@@ -2248,7 +2254,7 @@ efforts to comply with the data subject's rights.
 Information provided to the data subject shall increase the transparency of data processing activities for individuals and permit them to effectively exercise their rights.2 Only an informed individual will be in the position to exercise control over or influence the treatment of his personal data.3 Thus, especially the data subjects' information rights and corresponding obligations of the controller play a key role in data protection. Any communication with the data subject must be governed by the principle of transparency under Art. 5 Sec. 1 lit. a GDPR (see Sect. 4.1.1). Compared to the Data Protection Directive,4 the information obligations of the controller towards the data subjects have been largely increased. Furthermore, fines have also been considerably increased under the GDPR to up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover (Art. 83 Sec. 5 lit. b GDPR).
 In order to be able to communicate appropriately with the data subjects, the controller is obliged to create suitable information measures. These general
 
-1v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Gierschmann, ZD 2016,51, 53. 2Rec. 39 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Informationspflichten (2016), rec. 1. 3Laue/Nink/Kremer, Datenschutzrecht, Informationspflichten (2016), rec. 1; in greater detail Krüger, ZRP 2016, 190, 190 et seq. 4Arts. 10, 11 Data Protection Directive.
+1v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Gierschmann, ZD 2016,51, 53. 2Rec. 39 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Informationspflichten (2016), rec. 1. 3Laue/Nink/Kremer, Datenschutzrecht, Informationspflichten (2016), rec. 1; in greater detail Krï¿½ger, ZRP 2016, 190, 190 et seq. 4Arts. 10, 11 Data Protection Directive.
 
 # Springer International Publishing AG 2017
 
@@ -2268,8 +2274,8 @@ The manner and form of providing information are especially important where info
 
 5.1.1 The Manner of Communicating with the Data Subject
 Different requirements shall govern the manner of providing any information as this shall increase transparency and comprehensibility for the data subject. As just mentioned, information must be concise, transparent, intelligible and in an easily accessible form, using clear and plain language. However, the delimitation of the different criteria remains unclear as they partially overlap7:
-­ Conciseness requires the information to be correct and comprehensive as regards its content.8 However, as it shall be presented in an intelligible and easily accessible form, unnecessary information should be avoided. To give more comprehensive information on certain aspects of processing, the controller could use layered privacy notices (see Sect. 4.1.2.2).
-­ Accessibility requires an adaptation of the information to the specific needs of the data subjects in question. However, the level of adaptation should be limited by the practical efforts required in the specific case.9 The controller should adapt its information measures to the average group of data subjects concerned.10
+ï¿½ Conciseness requires the information to be correct and comprehensive as regards its content.8 However, as it shall be presented in an intelligible and easily accessible form, unnecessary information should be avoided. To give more comprehensive information on certain aspects of processing, the controller could use layered privacy notices (see Sect. 4.1.2.2).
+ï¿½ Accessibility requires an adaptation of the information to the specific needs of the data subjects in question. However, the level of adaptation should be limited by the practical efforts required in the specific case.9 The controller should adapt its information measures to the average group of data subjects concerned.10
 5Rec. 59 GDPR. 6Rec. 58 GDPR. 7Kamlah, in: Plath, BDSG/DSGVO, Art. 12 (2016), rec. 2. 8Paal, in: Paal/Pauly, DSGVO, Art. 12 (2017), rec. 28. 9Paal, in: Paal/Pauly, DSGVO, Art. 12 (2017), rec. 26. 10Paal, in: Paal/Pauly, DSGVO, Art. 12 (2017), rec. 26.
 
 5.2 Information Obligation of the Controller Prior to Processing
@@ -2296,30 +2302,30 @@ The information obligations have been considerably expanded compared to the Data
 
 5.2.1 Time of Information
 Information in relation to the intended processing of personal data should be given to the data subject at the time of the collection from it (Art. 13 Sec. 1 GDPR). Where data is not directly obtained from the data subject but from another source, the information shall be provided to the data subject within a reasonable period, but at latest within 1 month, depending on the circumstances of the case.19 Pursuant to Art. 14 Sec. 3 lits. b, c GDPR, such subsequent information should be provided at the latest:
-­ if the personal data is to be used for communication with the data subject, at the time of the first communication to that data subject; or
-­ if a disclosure to another recipient is envisaged, when the personal data is first disclosed.
+ï¿½ if the personal data is to be used for communication with the data subject, at the time of the first communication to that data subject; or
+ï¿½ if a disclosure to another recipient is envisaged, when the personal data is first disclosed.
 
 5.2.2 Collection of the Data from the Data Subject
 Pursuant to Art. 13 Sec. 1 GDPR, if personal data is collected directly from the data subject, the controller has to provide for the following information:
-­ the identity and contact details of the controller and, where applicable, its representative (see Sect. 4.3.8);
-­ the contact details of the Data Protection Officer, where applicable (see Sect. 3.6);
-­ the purposes of and the legal basis for processing; in this regard, if processing shall be based upon the prevailing legitimate interests of the controller (Art.
+ï¿½ the identity and contact details of the controller and, where applicable, its representative (see Sect. 4.3.8);
+ï¿½ the contact details of the Data Protection Officer, where applicable (see Sect. 3.6);
+ï¿½ the purposes of and the legal basis for processing; in this regard, if processing shall be based upon the prevailing legitimate interests of the controller (Art.
 17Rec. 60 GDPR. 18Arts. 10, 11 Data Protection Directive. 19Art. 14 Sec. 3 lit. a GDPR.
 
 5.2 Information Obligation of the Controller Prior to Processing
 
 145
 
-6 Sec. 1 phrase 1 lit. f GDPR; see Sect. 4.2.2.2 for details), these legitimate interests must be communicated to the data subject; ­ the recipients/categories of recipients of the personal data, if any20; and ­ where applicable, the controller's intention to transfer the personal data to a third country (see Sect. 4.3) and the intended safeguards for such transfer.
+6 Sec. 1 phrase 1 lit. f GDPR; see Sect. 4.2.2.2 for details), these legitimate interests must be communicated to the data subject; ï¿½ the recipients/categories of recipients of the personal data, if any20; and ï¿½ where applicable, the controller's intention to transfer the personal data to a third country (see Sect. 4.3) and the intended safeguards for such transfer.
 Additional Information In addition to that information, the controller shall provide the data subject with the following additional information necessary to ensure fair and transparent processing, Art. 13 Sec. 2 GDPR:
-­ the period for which the personal data will be stored; ­ information on the data subject's rights under Arts. 15­23 GDPR (see Sects. 5.4­
-5.9); ­ information on the right to withdraw consent where processing is based on the
-data subject's consent; ­ the right to lodge a complaint with the Supervisory Authority; ­ whether provision of personal data is a statutory or contractual requirement or a
-requirement necessary to enter into a contract, as well as whether the data subject is obliged to provide the personal data and of the possible consequences of failure to provide such data; and ­ the existence of automated decision-making, including profiling.
+ï¿½ the period for which the personal data will be stored; ï¿½ information on the data subject's rights under Arts. 15ï¿½23 GDPR (see Sects. 5.4ï¿½
+5.9); ï¿½ information on the right to withdraw consent where processing is based on the
+data subject's consent; ï¿½ the right to lodge a complaint with the Supervisory Authority; ï¿½ whether provision of personal data is a statutory or contractual requirement or a
+requirement necessary to enter into a contract, as well as whether the data subject is obliged to provide the personal data and of the possible consequences of failure to provide such data; and ï¿½ the existence of automated decision-making, including profiling.
 The additional information shall create a balance of information between the controller and the data subject.21 Thus, as there usually is a considerable imbalance of information between those parties, the provision of said additional information must be deemed generally necessary and, thus, has to be carried out.22
 Change of the Processing Purpose Pursuant to Art. 13 Sec. 3 GDPR, where the controller intends to process the personal data for a purpose other than that for which it was collected, it should provide the data subject prior to that further processing with information on that other purpose and other necessary information. In order to prevent additional expenses at the occasion of such change of purpose, controllers should try to communicate predictable, future purposes of processing to the data subjects upon collection of the data.23
 
-20Please note that, pursuant to Recital 61 of the Regulation, where personal data can be legitimately disclosed to another recipient, the data subject should be informed when the personal data are first disclosed to said recipient. 21Walter, DSRITB 2016, 367, 371. 22For further details see Paal, in: Paal/Pauly, DSGVO, Art. 13 (2017), recs. 22­23. 23Walter, DSRITB 2016, 367, 374.
+20Please note that, pursuant to Recital 61 of the Regulation, where personal data can be legitimately disclosed to another recipient, the data subject should be informed when the personal data are first disclosed to said recipient. 21Walter, DSRITB 2016, 367, 371. 22For further details see Paal, in: Paal/Pauly, DSGVO, Art. 13 (2017), recs. 22ï¿½23. 23Walter, DSRITB 2016, 367, 374.
 
 146
 
@@ -2332,9 +2338,9 @@ Pursuant to Art. 14 Sec. 1 GDPR, where personal data has not been obtained from 
 Under Art. 14 Sec. 2 GDPR, the controller shall provide the data subject with further information necessary to ensure fair and transparent processing similar to the one under Art. 13 Sec. 2 GDPR (see above). Said further information includes the source where the personal data has been obtained from and whether it came from publicly accessible sources, Art. 14 Sec. 2 lit. f GDPR. Please note that where the origin of the personal data cannot be provided to the data subject because various sources have been used, general information should be provided.24
 Change of the Processing Purpose Pursuant to Art. 14 Sec. 4 GDPR, where the controller intends to change the initial purpose of processing, it should provide the data subject prior to that further processing with information on said purpose and other necessary information.
 Non-Applicability of the Information Obligation The controller is not subject to an information obligation where25
-­ the data subject already has the information; ­ the provision of such information proves to be impossible or would involve a
-disproportionate effort26; ­ the obtaining or disclosure is expressly laid down by EU or EU Member State
-law; or ­ an obligation of professional secrecy regulated by EU or EU Member State law
+ï¿½ the data subject already has the information; ï¿½ the provision of such information proves to be impossible or would involve a
+disproportionate effort26; ï¿½ the obtaining or disclosure is expressly laid down by EU or EU Member State
+law; or ï¿½ an obligation of professional secrecy regulated by EU or EU Member State law
 applies.
 24Rec. 61 GDPR. 25Art. 14 Sec. 5 lits. a-d GDPR. 26Pursuant to Recital 62 of the Regulation, such disproportionate effort could in particular exist where processing is carried out for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes. In that regard, the number of data subjects, the age of the data and any appropriate safeguards adopted should be taken into consideration. Moreover, pursuant to Art. 14 Sec. 5 lit. b GDPR, such disproportionate effort could be identified where the information obligation would render impossible or seriously impair the achievement of the objectives of processing.
 
@@ -2347,12 +2353,12 @@ applies.
 The controller's information obligations under the GDPR are rather comprehensive and, subsequently, will require some efforts on its part to reach compliance. Thus, entities should, in a timely manner, revise their current consent forms, privacy statements, customer information notices, etc.27 Although this will much likely require substantial effort, entities can build on their existing information notices as the basic information required under the former legislative situation is still required under the GDPR.28 For information that is provided via electronic means, layered privacy notices (see Sect. 4.1.2.2) might prove helpful to achieve the balancing act between providing the minimum information under Arts. 13, 14 GDPR and providing it in an intelligible and easily accessible form.
 
 5.3 Response to Data Subjects' Requests
-If an individual is unaware of the fact that and how his personal data is processed, he is unable to exercise his resulting rights, such as to erasure or rectification, under the GDPR (see Sects. 5.4­5.7).29 Thus, his information rights under Arts. 13, 14 GDPR and the exercise of his resulting further rights under Arts. 15­22 GDPR are strongly linked. To enforce the effectiveness of an exercise of these further rights, the controller shall be obliged to respond to any request from a data subject relating to them. For this purpose, Art. 12 Secs. 3, 4, 6 GDPR provides for an obligation of the controller to inform the data subject of any action taken upon its request to exercise its rights under the GDPR. Moreover, when responding to data subjects' request, the general requirements for communication under Art. 12 GDPR (see Sect. 5.1) have to be fulfilled.
-These requirements must be respected for any interaction with a data subject that exercised any of its rights under the GDPR (see the following Sects. 5.4­5.7).
+If an individual is unaware of the fact that and how his personal data is processed, he is unable to exercise his resulting rights, such as to erasure or rectification, under the GDPR (see Sects. 5.4ï¿½5.7).29 Thus, his information rights under Arts. 13, 14 GDPR and the exercise of his resulting further rights under Arts. 15ï¿½22 GDPR are strongly linked. To enforce the effectiveness of an exercise of these further rights, the controller shall be obliged to respond to any request from a data subject relating to them. For this purpose, Art. 12 Secs. 3, 4, 6 GDPR provides for an obligation of the controller to inform the data subject of any action taken upon its request to exercise its rights under the GDPR. Moreover, when responding to data subjects' request, the general requirements for communication under Art. 12 GDPR (see Sect. 5.1) have to be fulfilled.
+These requirements must be respected for any interaction with a data subject that exercised any of its rights under the GDPR (see the following Sects. 5.4ï¿½5.7).
 
 5.3.1 Manner of Response
 Form of the Response Where the data subject makes a request under Art. 12 GDPR by electronic means, the information shall be provided by electronic means where possible.30
-Moreover, when requested by the data subject, information may be provided to it orally, under the condition that the identity of the data subject is proven, Art. 12 Sec. 1 GDPR. Such a request might occur in situations where the data subject exercised its rights under Arts. 15­22 GDPR and wants to obtain quick
+Moreover, when requested by the data subject, information may be provided to it orally, under the condition that the identity of the data subject is proven, Art. 12 Sec. 1 GDPR. Such a request might occur in situations where the data subject exercised its rights under Arts. 15ï¿½22 GDPR and wants to obtain quick
 27v.d.Bussche/Zeiter/Brombach, DB 2016, 1359, 1360. 28Hunton & Williams, The proposed Regulation (2015), p. 18. 29Quaas, in: Wolff/Brink, BeckOK, Art. 12 (2016), rec. 4. 30Art. 12 Sec. 3 phrase 4 GDPR.
 
 148
@@ -2361,14 +2367,14 @@ Moreover, when requested by the data subject, information may be provided to it 
 
 conformation on whether and what actions the controller has taken upon its request (see Sect. 5.3) so far. In other situations, the practical relevance of an oral provision of information is limited given the burden of proof resting with the controller. Oral information is unlawful unless requested by a data subject, and, even if requested, the controller can refuse to give oral information and choose another form of provision instead.31
 Provision of Information Free of Charge According to Art. 12 Sec. 5 GDPR, any information provided to the data subject shall be free of charge. However, where requests by the data subject are manifestly unfounded or excessive, the latter in particular because of their repetitive character, the controller may either32:
-­ charge a reasonable fee taking into account its administrative costs; or ­ refuse to act on the request.
+ï¿½ charge a reasonable fee taking into account its administrative costs; or ï¿½ refuse to act on the request.
 The wording of Art. 12 Sec. 5 GDPR does not provide for a hierarchy of these options. Thus, it is at the discretion of the controller to choose between them.33 Please keep in mind that the controller bears the burden of proof to demonstrate the manifestly unfounded or excessive character of the request, Art. 12 Sec. 5 phrase 3 GDPR. Thus, as for repetitive requests, controllers should document the number of requests received in order to be able to fulfil their burden of proof as to their excessive character.34
 Manifestly unfounded requests should be an extremely exceptional case as their unfounded character should reveal itself to the controller at first glance.
 Example
 An individual requests under Art. 15 GDPR (for details, see Sect. 5.4) from a controller confirmation on whether or not its personal data is being processed by said controller. Such processing is truthfully denied by the controller. Nevertheless, the individual requests the erasure of his personal data from the controller under Art. 17 GDPR (for details, see Sect. 5.5.2).
 In this example, the individual requests an action by the controller that the latter is obviously unable to carry out as it does not process any personal data of the individual. The individual is aware of that fact as it received confirmation on this circumstance. As a result, the controller has the option to choose not to act on this request under Art. 12 Sec. 5 GDPR.35
 
-31Walter, DSRITB 2016, 367, 373. 32Art. 12 Sec. 5 phrase 2 GDPR. 33Quaas, in: Wolff/Brink, BeckOK, Art. 12 (2016), recs. 45­46; Paal, in: Paal/Pauly, DSGVO, Art. 12 (2017), rec. 63. 34Kamlah, in: Plath, BDSG/DSGVO, Art. 12 (2016), rec. 20. 35Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 21.
+31Walter, DSRITB 2016, 367, 373. 32Art. 12 Sec. 5 phrase 2 GDPR. 33Quaas, in: Wolff/Brink, BeckOK, Art. 12 (2016), recs. 45ï¿½46; Paal, in: Paal/Pauly, DSGVO, Art. 12 (2017), rec. 63. 34Kamlah, in: Plath, BDSG/DSGVO, Art. 12 (2016), rec. 20. 35Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 21.
 
 5.3 Response to Data Subjects' Requests
 
@@ -2400,23 +2406,23 @@ Please note that, where the controller has reasonable doubts concerning the iden
 
 5.4 Right to Access
 In addition to the comprehensive information rights of the data subjects and the corresponding obligations of the controllers, the data subjects' right to access their personal data has been expanded under the GDPR. The right to access shall increase fairness and transparency of data processing as it permits data subjects to verify the lawfulness of processing activities performed on their personal data and will, thus, ultimately help to effectively enforce the data subjects' rights under the GDPR.42
-Unlike the information rights under Arts. 13­14 GDPR, the right to access shall go beyond providing the data subject with general information on data processing activities. It shall give the data subject the possibility to demand more in-depth information on processing in order to permit it to further assess the lawfulness of processing. This can be helpful in order to prepare an exercise of its data subject rights under Arts. 16­22 GDPR. Moreover, while the information obligations under Arts. 13­14 GDPR have to be proactively fulfilled by the controller, the right to access under Art. 15 GDPR requires a request for information by the data subject.
+Unlike the information rights under Arts. 13ï¿½14 GDPR, the right to access shall go beyond providing the data subject with general information on data processing activities. It shall give the data subject the possibility to demand more in-depth information on processing in order to permit it to further assess the lawfulness of processing. This can be helpful in order to prepare an exercise of its data subject rights under Arts. 16ï¿½22 GDPR. Moreover, while the information obligations under Arts. 13ï¿½14 GDPR have to be proactively fulfilled by the controller, the right to access under Art. 15 GDPR requires a request for information by the data subject.
 
 5.4.1 Scope of the Right to Access
 The right to access under Art. 15 GDPR is (legally) organised in two steps. In a first step, the data subject has the right to obtain confirmation from the controller as to whether or not its personal data is being processed, Art 15 Sec. 1 GDPR. If such processing takes place, in a second step, the data subject shall have access to its personal data processed and the following information43:
-­ the purposes of processing; ­ the categories of personal data concerned; ­ the recipients to whom the data has been or will be disclosed, in particular
-recipients in third countries or international organisations; ­ where possible, the envisaged storage period or, if not possible, the criteria to
+ï¿½ the purposes of processing; ï¿½ the categories of personal data concerned; ï¿½ the recipients to whom the data has been or will be disclosed, in particular
+recipients in third countries or international organisations; ï¿½ where possible, the envisaged storage period or, if not possible, the criteria to
 determine that period;
-42Rec. 63 GDPR; Paal, in: Paal/Pauly, DSGVO, Art. 15 (2017), rec. 3; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 22. 43Art. 15 Sec. 1 lits. a­h, Sec. 2 GDPR.
+42Rec. 63 GDPR; Paal, in: Paal/Pauly, DSGVO, Art. 15 (2017), rec. 3; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 22. 43Art. 15 Sec. 1 lits. aï¿½h, Sec. 2 GDPR.
 
 5.4 Right to Access
 
 151
 
-­ the existence of the data subject's rights to deletion, rectification, restriction of processing or the right to object;
-­ the right to lodge a complaint with the Supervisory Authority; ­ where the personal data is not collected from the data subject, any available
-information as to its source; ­ the existence of automated decision-making and meaningful information about
-the logic involved and the envisaged consequences of such processing; ­ where personal data is transferred to third countries, information on the
+ï¿½ the existence of the data subject's rights to deletion, rectification, restriction of processing or the right to object;
+ï¿½ the right to lodge a complaint with the Supervisory Authority; ï¿½ where the personal data is not collected from the data subject, any available
+information as to its source; ï¿½ the existence of automated decision-making and meaningful information about
+the logic involved and the envisaged consequences of such processing; ï¿½ where personal data is transferred to third countries, information on the
 safeguards taken for such transfer (see Sect. 4.3).
 The appropriate reaction of the controller to a request by a data subject under Art. 15 GDPR will depend on the specific request in question. Such request might not be limited to a confirmation of whether processing takes place but might immediately involve a demand for more detailed information on processing.44 Thus, a two-step procedure as to handling such requests should not be established in practice. It will generally not be sufficient to, first, confirm or decline ongoing processing and, later on, give detailed information as the data subject making a request under Art. 15 GDPR is interested in in-depth information to begin with.
 Example
@@ -2457,7 +2463,7 @@ controllers might conceal data that could adversely affect others when giving in
 5.4.3 Practical Implications
 As a violation of the data subject's right to access might entail considerable fines for the controller under Art. 83 Sec. 5 lit. b GDPR (up to EUR 20,000,000.00 or up to 4% of the total worldwide annual turnover), it should be ensured that such requests are processed and acted upon in a diligent manner.
 For this reason, companies should review available options for giving their access mechanisms a more transparent design and for introducing possible technical solutions.57 Those structural changes should ensure that copies for the data subjects can be provided in a timely manner.58 In this regard, standardised forms containing all relevant information might be used as, in order to respond to a request of a data subject, its respective personal data will only have to be added to such form.59 This can accelerate the proceedings for acting upon data subjects' requests.
-52Walter, DSRITB 2016, 367, 385. 53Rec. 63 GDPR. 54Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 30; Zikesch/ Kramer, ZD 2015, 565, 566­567. 55Rec. 63 GDPR. 56Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 31. 57v.d.Bussche/Zeiter, EDPL 2016, 576, 579. 58Wybitul, BB 2016, 1077, 1079. 59Walter, DSRITB 2016, 367, 386.
+52Walter, DSRITB 2016, 367, 385. 53Rec. 63 GDPR. 54Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 30; Zikesch/ Kramer, ZD 2015, 565, 566ï¿½567. 55Rec. 63 GDPR. 56Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 31. 57v.d.Bussche/Zeiter, EDPL 2016, 576, 579. 58Wybitul, BB 2016, 1077, 1079. 59Walter, DSRITB 2016, 367, 386.
 
 154
 
@@ -2492,7 +2498,7 @@ without undue delay based on the circumstances of the case. Moreover, the genera
 5.5.1.2 Incomplete Personal Data Under Art. 16 phrase 2 GDPR, taking into account the purposes of the processing, the data subject shall have the right to have incomplete personal data completed. In some cases, it might be difficult to differentiate this provision's regulatory content from the one of Art. 16 phrase 1 GDPR, as missing information should have to be added pursuant to Art. 16 phrase 1 GDPR if its absence renders personal data inaccurate.72
 The addition of information in order to have incomplete data completed leads to an increased amount of data being processed. Thus, such completion should only
 
-66Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 49; Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 15. 67Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 53. 68See also Mallmann, in: Simitis, BDSG, § 20 (2014), rec. 17 et seq. 69Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 56; see also Mallmann, in: Simitis, BDSG, § 20 (2014), rec. 19. 70Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 56; see also Mallmann, in: Simitis, BDSG, § 20 (2014), rec. 19 et seq. 71Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 7. 72Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 10.
+66Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 49; Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 15. 67Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 53. 68See also Mallmann, in: Simitis, BDSG, ï¿½ 20 (2014), rec. 17 et seq. 69Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 56; see also Mallmann, in: Simitis, BDSG, ï¿½ 20 (2014), rec. 19. 70Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 56; see also Mallmann, in: Simitis, BDSG, ï¿½ 20 (2014), rec. 19 et seq. 71Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 7. 72Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 10.
 
 156
 
@@ -2504,8 +2510,8 @@ A completion of personal data pursuant to Art. 16 phrase 2 GDPR might include pr
 5.5.2 Right to Erasure
 The right to be forgotten was brought to a greater attention of the public and of the legislator by the Court of Justice of the European Union's Google Spain decision in 201477 and has now been strengthened in the GDPR. It is one of the most controversially discussed recent issues in data protection law.78 Article 17 GDPR even surpasses the scope of the `right to be forgotten' that was set out in detail in the `Google Spain' decision, as it imposes information obligations on the controller towards other parties that have received the personal data concerned.
 5.5.2.1 Grounds for Erasure The data subject has the right to demand from the controller the erasure of its personal data where one of the following grounds applies79:
-­ The personal data are no longer necessary in relation to the purposes for which they were processed: this provision applies to data that has initially been
-73Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 18; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 36; Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 58; see also Brink, in: Wolff/Brink, BeckOK, § 35 (2016), rec. 13. 74Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), recs. 58­60. 75Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 20. 76Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 13. 77ECJ, ruling of 13 May 2014, Google Spain, C-131/12. 78Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 38; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 2. 79Art. 17 Sec. 1 lits. a-f GDPR.
+ï¿½ The personal data are no longer necessary in relation to the purposes for which they were processed: this provision applies to data that has initially been
+73Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 18; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 36; Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), rec. 58; see also Brink, in: Wolff/Brink, BeckOK, ï¿½ 35 (2016), rec. 13. 74Worms, in: Wolff/Brink, BeckOK, Art. 16 (2016), recs. 58ï¿½60. 75Paal, in: Paal/Pauly, DSGVO, Art. 16 (2017), rec. 20. 76Kamlah, in: Plath, BDSG/DSGVO, Art. 16 (2016), rec. 13. 77ECJ, ruling of 13 May 2014, Google Spain, C-131/12. 78Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 38; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 2. 79Art. 17 Sec. 1 lits. a-f GDPR.
 
 5.5 Rights to Erasure, Rectification and Restriction
 
@@ -2515,8 +2521,8 @@ collected and processed lawfully. Erasure can be obtained for those data that ar
 Example
 Entity X wants to recruit new employees to expand its business. In the course of the recruitment procedure, many applicants are eliminated from the group of eligible applicants for the open positions and receive letters of refusal from X.
 In this example, X processes personal data for the purpose of recruiting new employees. This processing takes place on a valid legal ground. As X does not need the data of applicants that have been refused anymore for finding new employees, those applicants have the right to demand the erasure of their personal data from X. Moreover, X is obliged to delete said data based on the principle of data minimisation under Art. 5 Sec. 1 lit. c GDPR (see Sect. 4.1.3), as they are no longer necessary for the purpose of processing.82
-­ The data subject withdraws consent on which the processing is based (see Sect. 4.2.1), and there is no other legal ground for the processing: as the data subject has the right to withdraw its consent at any given moment (see Sect. 4.2.1.5 for details), processing that cannot be based on another legal ground becomes unlawful after the withdrawal. Thus, upon withdrawal, the right to erasure arises.
-­ The data subject objects to the processing pursuant to Art. 21 Sec. 1 GDPR and there are no overriding legitimate grounds for processing or pursuant to Art. 21 Sec. 2 GDPR (see Sect. 5.7): This provision also requires that processing must have been lawful before the data subject's right to object arises.83 Under Art. 21 Sec. 1 GDPR, the data subject can object to interest-based processing (public interest/prevailing legitimate interests of the controller) based on grounds relating to its particular situation. The data subject must demonstrate the circumstances that have led to the modified interests at stake.84 The controller has the right to revaluate the situation as its own interests for processing might still prevail and an erasure might not have to take place. This evaluation might require some time, and thus the data subject could exercise its right to restriction of processing in the meantime (see Sect. 5.5.3).85 Under Art. 21 Sec. 2 GDPR, the data subject can object to processing for direct marketing purposes. In this
+ï¿½ The data subject withdraws consent on which the processing is based (see Sect. 4.2.1), and there is no other legal ground for the processing: as the data subject has the right to withdraw its consent at any given moment (see Sect. 4.2.1.5 for details), processing that cannot be based on another legal ground becomes unlawful after the withdrawal. Thus, upon withdrawal, the right to erasure arises.
+ï¿½ The data subject objects to the processing pursuant to Art. 21 Sec. 1 GDPR and there are no overriding legitimate grounds for processing or pursuant to Art. 21 Sec. 2 GDPR (see Sect. 5.7): This provision also requires that processing must have been lawful before the data subject's right to object arises.83 Under Art. 21 Sec. 1 GDPR, the data subject can object to interest-based processing (public interest/prevailing legitimate interests of the controller) based on grounds relating to its particular situation. The data subject must demonstrate the circumstances that have led to the modified interests at stake.84 The controller has the right to revaluate the situation as its own interests for processing might still prevail and an erasure might not have to take place. This evaluation might require some time, and thus the data subject could exercise its right to restriction of processing in the meantime (see Sect. 5.5.3).85 Under Art. 21 Sec. 2 GDPR, the data subject can object to processing for direct marketing purposes. In this
 
 80Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 25. 81Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 41. 82Example drawn from Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 22. 83Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 38. 84Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 40. 85Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 11.
 
@@ -2525,14 +2531,14 @@ In this example, X processes personal data for the purpose of recruiting new emp
 5 Rights of Data Subjects
 
 case, the right to erasure arises without the necessity of a prior revaluation of the circumstances.86
-­ The personal data have been unlawfully processed: this provision can be seen as a sweeping clause, as it grants a right to erasure where processing is unlawful,
+ï¿½ The personal data have been unlawfully processed: this provision can be seen as a sweeping clause, as it grants a right to erasure where processing is unlawful,
 whether it is for a lacking legal permission for processing or for non-compliance
 with the Regulation, such as regarding the organisational obligations of the controller (see Chap. 3 for details).87
-­ The personal data have to be erased for compliance with a legal obligation
+ï¿½ The personal data have to be erased for compliance with a legal obligation
 under EU or EU Member State Law to which the controller is subject: under this
 provision, erasure is an obligation of the controller in order to comply with other legal obligations that might, for example, arise from EU Member State law.88 In this regard, it is unclear whether the provision contains an opening clause that
 enables the EU Member States to introduce national legal obligations for erasure.89
-­ The personal data have been collected based on a child's consent in relation to
+ï¿½ The personal data have been collected based on a child's consent in relation to
 the offer of information security services (see Sect. 4.2.1.6): this provision shall
 enforce the protection of the personal data of children, as it grants a right to
 erasure for data processing in relation to information security services based on a
@@ -2542,26 +2548,26 @@ and, thus, this provision would not have a separate scope of application as it w
 increase the protection of children and the otherwise lacking additional benefit,
 the provision should allow a request for erasure of selective personal data (where possible) without a withdrawal of the consent for processing altogether.93
 
-86Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 41. 87Rec. 65 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Recht der betroffenen Person (2016), rec. 43; Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 12. 88Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 13. 89Arguing in this direction are Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016) rec. 13; Ha¨rting, DSGVO (2016), rec. 696; negatively see Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 45­48. 90Rec. 65 GDPR. 91Rec. 65 GDPR. 92Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 50­53; identifying the exception as an obligation to erasure of the controller without the need of such a request by the data subject: Schantz, NJW 2016, 1841, 1845; negatively as regards such a kind of obligation is Paal, in: Paal/ Pauly, DSGVO, Art. 17 (2017), rec. 28; disapprovingly as regards a separate scope of application of this exception is Ha¨rting, DSGVO (2016), recs. 698. 93Trying to differentiate between withdrawal and erasure under this provision: Worms, in: Wolff/ Brink, BeckOK, Art. 17 (2016), recs. 50­53.
+86Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 41. 87Rec. 65 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Recht der betroffenen Person (2016), rec. 43; Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 12. 88Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 13. 89Arguing in this direction are Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016) rec. 13; Haï¿½rting, DSGVO (2016), rec. 696; negatively see Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 45ï¿½48. 90Rec. 65 GDPR. 91Rec. 65 GDPR. 92Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 50ï¿½53; identifying the exception as an obligation to erasure of the controller without the need of such a request by the data subject: Schantz, NJW 2016, 1841, 1845; negatively as regards such a kind of obligation is Paal, in: Paal/ Pauly, DSGVO, Art. 17 (2017), rec. 28; disapprovingly as regards a separate scope of application of this exception is Haï¿½rting, DSGVO (2016), recs. 698. 93Trying to differentiate between withdrawal and erasure under this provision: Worms, in: Wolff/ Brink, BeckOK, Art. 17 (2016), recs. 50ï¿½53.
 
 5.5 Rights to Erasure, Rectification and Restriction
 
 159
 
 5.5.2.2 Exercise of the Right Under Art. 17 Sec. 1 GDPR, the data subject has the right to demand from the controller the erasure of personal data and the controller shall have the obligation to erase personal data. Thus, right and obligation correlate.94 In this regard, it should be noted that the right of the data subject shall only help to enforce the controller's obligation to erase personal data that would exist anyway under any of the grounds of Art. 17 Sec. 1 GDPR.
-The relationship of the corresponding right and obligation becomes relevant as regards the burden of proof for the existence of a right to erasure. As it is a subjective right, the data subject has to prove the existence of its right to erasure.95 The data subject should be obliged to specify the provision of Art. 17 Sec. 1 lits. a­f GDPR under which it wishes to exercise its right as it would have to prove additional circumstances under some of these provisions, such as an articulation of its withdrawal of consent under Art. 17 Sec. 1 lit. a GDPR or a change of circumstances under Art. 17 Sec 1 lit. b GDPR.96 Nevertheless, the controller will be obliged to prove favourable circumstances for it, such as a producing counterevidence to negate unlawful processing under Art. 17 Sec. 1 lit. d GDPR. The same goes for proving exceptions from the right to erasure under Art. 17 Sec. 3 GDPR.
+The relationship of the corresponding right and obligation becomes relevant as regards the burden of proof for the existence of a right to erasure. As it is a subjective right, the data subject has to prove the existence of its right to erasure.95 The data subject should be obliged to specify the provision of Art. 17 Sec. 1 lits. aï¿½f GDPR under which it wishes to exercise its right as it would have to prove additional circumstances under some of these provisions, such as an articulation of its withdrawal of consent under Art. 17 Sec. 1 lit. a GDPR or a change of circumstances under Art. 17 Sec 1 lit. b GDPR.96 Nevertheless, the controller will be obliged to prove favourable circumstances for it, such as a producing counterevidence to negate unlawful processing under Art. 17 Sec. 1 lit. d GDPR. The same goes for proving exceptions from the right to erasure under Art. 17 Sec. 3 GDPR.
 Moreover, the general requirements set out by Art. 12 GDPR (see Sect. 5.1) have to be fulfilled.
 
-5.5.2.3 Exceptions Article 17 Sec. 3 lits. a­e GDPR provides for exceptions from the data subject's right to erasure to the extent that processing is necessary for the following:
-­ Exercising the right of freedom of expression and information: this exception might become highly relevant in practice as this right cannot only be invoked by the press but also by any entity.97 Under this exception, an erasure of opinions should be excluded.98 However, the distinction between personal data and opinion can be difficult where an opinion is based on personal data.99 In such a case, it needs to be balanced out whether the underlying personal data is still
+5.5.2.3 Exceptions Article 17 Sec. 3 lits. aï¿½e GDPR provides for exceptions from the data subject's right to erasure to the extent that processing is necessary for the following:
+ï¿½ Exercising the right of freedom of expression and information: this exception might become highly relevant in practice as this right cannot only be invoked by the press but also by any entity.97 Under this exception, an erasure of opinions should be excluded.98 However, the distinction between personal data and opinion can be difficult where an opinion is based on personal data.99 In such a case, it needs to be balanced out whether the underlying personal data is still
 
-94Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 45; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 23. 95Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 52; Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), recs. 5­6. 96Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 5. 97Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 81. 98Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17. 99Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17.
+94Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 45; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 23. 95Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 52; Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), recs. 5ï¿½6. 96Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 5. 97Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 81. 98Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17. 99Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 17.
 
 160
 
 5 Rights of Data Subjects
 
-necessary for forming an opinion.100 The older the personal data is, the more improbable is their necessity for forming an opinion.101 ­ Compliance with a legal obligation of the controller requiring processing by EU or EU Member State law/the performance of a task carried out in the public interest/ the exercise of official authority vested in the controller: under this exception, a legal requirement of processing, such as storing personal data, outweighs the interest of the data subject to achieve an erasure of its personal data.102 Such legal obligation could, inter alia, arise from national commercial or tax law.103 ­ Reasons of public interest in the area of public health: this exception is to be interpreted in accordance with Art. 9 Sec. 2 lits. h, I and Sec. 3 GDPR. Pursuant to this provision, viable reasons are preventive or occupational medicine, the assessment of the working capacity of employees, medical diagnosis, the provision of health/social care or treatment, the management of health/social care systems and services on the basis of EU or EU Member State law or pursuant to a contract with a health professional. Processing pursuant to a contract must be carried out by or under the responsibility of a health professional subject to professional secrecy. Moreover, viable reasons under this provision are, among others, the protection against serious cross-border threats to health or ensuring high standards of quality and safety of health care, medical products or medical devices (for details, see Sect. 4.2.3). ­ Archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in so far as an erasure of the personal data would render impossible or seriously impair the achievement of the objectives of such processing: the scope of application of the exception as to research purposes is unclear as the necessity of personal data for achieving research findings can often only be determined after the research work has been completed.104 Consequently, a right to erasure might only arise after such completion.105 ­ Establishment, exercise or defence of legal claims: This exception shall prevent data subjects from demanding an erasure of their personal data that might become relevant for (future) legal claims of the controller and, thus, where such erasure would prevent or complicate the controller's assertion of rights.106 A right to erasure should be excluded where the controller and the data subject are involved in ongoing or impending legal proceedings.107
+necessary for forming an opinion.100 The older the personal data is, the more improbable is their necessity for forming an opinion.101 ï¿½ Compliance with a legal obligation of the controller requiring processing by EU or EU Member State law/the performance of a task carried out in the public interest/ the exercise of official authority vested in the controller: under this exception, a legal requirement of processing, such as storing personal data, outweighs the interest of the data subject to achieve an erasure of its personal data.102 Such legal obligation could, inter alia, arise from national commercial or tax law.103 ï¿½ Reasons of public interest in the area of public health: this exception is to be interpreted in accordance with Art. 9 Sec. 2 lits. h, I and Sec. 3 GDPR. Pursuant to this provision, viable reasons are preventive or occupational medicine, the assessment of the working capacity of employees, medical diagnosis, the provision of health/social care or treatment, the management of health/social care systems and services on the basis of EU or EU Member State law or pursuant to a contract with a health professional. Processing pursuant to a contract must be carried out by or under the responsibility of a health professional subject to professional secrecy. Moreover, viable reasons under this provision are, among others, the protection against serious cross-border threats to health or ensuring high standards of quality and safety of health care, medical products or medical devices (for details, see Sect. 4.2.3). ï¿½ Archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in so far as an erasure of the personal data would render impossible or seriously impair the achievement of the objectives of such processing: the scope of application of the exception as to research purposes is unclear as the necessity of personal data for achieving research findings can often only be determined after the research work has been completed.104 Consequently, a right to erasure might only arise after such completion.105 ï¿½ Establishment, exercise or defence of legal claims: This exception shall prevent data subjects from demanding an erasure of their personal data that might become relevant for (future) legal claims of the controller and, thus, where such erasure would prevent or complicate the controller's assertion of rights.106 A right to erasure should be excluded where the controller and the data subject are involved in ongoing or impending legal proceedings.107
 
 100Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec.17. 101ECJ, ruling of 13 May 2014, Google Spain, C-131/12, rec. 93; Kamlah, in: Plath, BDSG/ DSGVO, Art. 17 (2016), rec. 17. 102Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 18. 103Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 50. 104Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 19. 105Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 19. 106Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 87. 107Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 87; Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 20.
 
@@ -2592,18 +2598,18 @@ Example
 An entity runs a social network where users share personal data. Said entity is a controller of these personal data. According to the network's privacy setting, profiles are public unless the user changes the default settings.115
 It is unclear to what extent social networks are to be considered accessible by the public. This should depend on the specific privacy settings of the social network in question. Often, social networks create a platform that enables third
 
-112Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 47. 113Ha¨rting, DSGVO (2016), rec. 723; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 33. 114For details see ECJ, ruling of 13 May 2014, Google Spain, C-131/12, recs. 21, 89­99; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 70­71; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 37 115Under the GDPR, the concepts of Privacy by Design & Privacy by Default must be taken into account. For details see Sect. 3.7.
+112Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 47. 113Haï¿½rting, DSGVO (2016), rec. 723; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 33. 114For details see ECJ, ruling of 13 May 2014, Google Spain, C-131/12, recs. 21, 89ï¿½99; Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), recs. 70ï¿½71; Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 37 115Under the GDPR, the concepts of Privacy by Design & Privacy by Default must be taken into account. For details see Sect. 3.7.
 
 5.5 Rights to Erasure, Rectification and Restriction
 
 163
 
-parties to an unlimited publication of their information on the platform, such as operators of cafe´s or bars or even companies, in order to attract potential customers or employees. If entities running a social network expressly approve or apparently do not take countermeasures to prevent such use, they could be considered controllers responsible for the publication of the personal data in question.
+parties to an unlimited publication of their information on the platform, such as operators of cafeï¿½s or bars or even companies, in order to attract potential customers or employees. If entities running a social network expressly approve or apparently do not take countermeasures to prevent such use, they could be considered controllers responsible for the publication of the personal data in question.
 In this example, that would be the case as the default privacy settings leads to an unlimited publication of the profile. As a consequence, the entity should be obliged under Art. 17 Sec. 2 GDPR. This entails that if a data subject demands erasure of its personal data from the social network under Art. 17 Sec.1 GDPR, the entity running the social network would be obliged to take reasonable steps for demanding erasure from other controllers processing said personal data, such as search engines.116
 As the scope of the right to be forgotten is limited to reasonable steps of the controller, it does not entail a comprehensive obligation to contact other controllers. However, it is unclear whether the reasonableness of certain measures is to be determined according to the subjective situation of the controller in question or whether objective criteria should be used.117 The former should be the case, as otherwise the obligation would be too much of a burden for micro, small and medium-sized enterprises whose interests have received special consideration under the GDPR.118 Moreover, the cost of implementation, which has to be considered under this provision, can only be determined according to the specific situation, e.g., as to how many controllers are involved and have to be contacted.119 A subjective interpretation is also implied by the fact that the data subject is not without protection if the controller is not obliged to contact other controllers due to excessive effort required: under Art. 15 GDPR, the data subject has the right to be informed of all recipients of its personal data (see Sect. 5.4) and, based on this information, could exercise its right to erasure under Art. 17 Sec. 1 GDPR vis-a`-vis each single controller.120
 Nevertheless, in order to be able to fulfil a data subject's right to be forgotten, controllers should, where feasible, implement technical and organisational measures that allow them to record the recipients of the personal data. Otherwise, entities might not be in the position to identify the latter. In this regard, the records of processing activities (see Sect. 3.4), as well as, where feasible, a Data Protection Management System (see Sect. 3.2.1), might prove helpful.
 
-116For details see Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 71; Japsers, DuD 2012, 571, 572­573. 117Arguing for the use objective criteria is Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 15; and for the use of subjective criteria is Paal, in: Paal/Pauly, DSGVO, Art 17 (2017), rec. 36; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48. 118See recs. 13, 98, 132, 167 GDPR. 119Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48. 120Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48.
+116For details see Worms, in: Wolff/Brink, BeckOK, Art. 17 (2016), rec. 71; Japsers, DuD 2012, 571, 572ï¿½573. 117Arguing for the use objective criteria is Kamlah, in: Plath, BDSG/DSGVO, Art. 17 (2016), rec. 15; and for the use of subjective criteria is Paal, in: Paal/Pauly, DSGVO, Art 17 (2017), rec. 36; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48. 118See recs. 13, 98, 132, 167 GDPR. 119Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48. 120Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 48.
 
 164
 
@@ -2619,30 +2625,30 @@ Practical Implications Article 17 Sec. 2 GDPR contains numerous undetermined leg
 5.5.3 Right to Restriction of Processing
 The right to a restriction of processing under Art. 18 GDPR shall achieve a reconciliation of interests between, on one hand, the data subject's interest in a rectification or erasure of its personal data and, on the other hand, the controller's interest in continuing to process the concerned personal data.123 The right to restriction is a medium of these conflicting interests where the existence of grounds for erasure or rectification requires further verification or is in dispute between controller and data subject.124
 
-121Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 37. 122For details see Paal, in: Paal/Pauly, DSGVO, Art 17 (2017), rec. 37; Holznagel/Hartmann, MMR 2016, 228, 232; Leutheusser-Schnarrenberger, ZD 2015, 149, 150. 123Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 3; Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), recs. 1­2. 124Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 3; Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), recs. 1­2.
+121Paal, in: Paal/Pauly, DSGVO, Art. 17 (2017), rec. 37. 122For details see Paal, in: Paal/Pauly, DSGVO, Art 17 (2017), rec. 37; Holznagel/Hartmann, MMR 2016, 228, 232; Leutheusser-Schnarrenberger, ZD 2015, 149, 150. 123Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 3; Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), recs. 1ï¿½2. 124Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 3; Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), recs. 1ï¿½2.
 
 5.5 Rights to Erasure, Rectification and Restriction
 
 165
 
-5.5.3.1 Grounds for a Restriction of Processing Article 18 Sec. 1 lits. a­d GDPR provides for four grounds that establish a right for a restriction of processing:
-­ The accuracy of the personal data is contested by the data subject, and a restriction shall take place for a period enabling the controller to verify the accuracy of said data: when contesting the accuracy of its personal data (for details on inaccurate personal data, see Sect. 5.5.1.1), the data subject must specify and include proof as to which specific data relating to it does not reflect reality.125 However, in practice, a random contesting of the accuracy of the processed data might lead to a temporary restriction of processing as the controller cannot initially verify whether the data subject's assertions are true.126 The time period for a restriction of processing shall be as short as necessary for carrying out the verification.127 If a verification of the accuracy of the personal data is impossible, the restriction of processing should be upheld.128 Based on the wording of Art. 18 GDPR, an (even temporary) restriction of processing for verification purposes cannot result from contesting the lawfulness of processing as unlawful processing should immediately lead to an erasure of the concerned personal data under Art. 17 GDPR (see Sect. 5.5.2) and unlawful processing shall be covered by the restriction ground provided for in the following Art. 18 Sec. lit. b GDPR.129
-­ The processing is unlawful and the data subject opposes the erasure of its personal data and requests the restriction of their use instead: despite of the unlawfulness of processing, the data subject might be interested in preventing an erasure of the respective personal data pursuant to Art. 17 GDPR (see Sect. 5.5.2) if it wishes to prove the availability of the data to the controller (later on).130 As such situation should also be covered by the following provision that provides for a more general scope of application.
-­ The controller no longer needs the personal data for the purposes of the processing but they are required by the data subject for the establishment, exercise or defence of legal claims: this exception shall permit or simplify the assertion of, as well as the defence against, legal claims. The personal data under this provision is retained for purposes of proof. This corresponds to the situation
+5.5.3.1 Grounds for a Restriction of Processing Article 18 Sec. 1 lits. aï¿½d GDPR provides for four grounds that establish a right for a restriction of processing:
+ï¿½ The accuracy of the personal data is contested by the data subject, and a restriction shall take place for a period enabling the controller to verify the accuracy of said data: when contesting the accuracy of its personal data (for details on inaccurate personal data, see Sect. 5.5.1.1), the data subject must specify and include proof as to which specific data relating to it does not reflect reality.125 However, in practice, a random contesting of the accuracy of the processed data might lead to a temporary restriction of processing as the controller cannot initially verify whether the data subject's assertions are true.126 The time period for a restriction of processing shall be as short as necessary for carrying out the verification.127 If a verification of the accuracy of the personal data is impossible, the restriction of processing should be upheld.128 Based on the wording of Art. 18 GDPR, an (even temporary) restriction of processing for verification purposes cannot result from contesting the lawfulness of processing as unlawful processing should immediately lead to an erasure of the concerned personal data under Art. 17 GDPR (see Sect. 5.5.2) and unlawful processing shall be covered by the restriction ground provided for in the following Art. 18 Sec. lit. b GDPR.129
+ï¿½ The processing is unlawful and the data subject opposes the erasure of its personal data and requests the restriction of their use instead: despite of the unlawfulness of processing, the data subject might be interested in preventing an erasure of the respective personal data pursuant to Art. 17 GDPR (see Sect. 5.5.2) if it wishes to prove the availability of the data to the controller (later on).130 As such situation should also be covered by the following provision that provides for a more general scope of application.
+ï¿½ The controller no longer needs the personal data for the purposes of the processing but they are required by the data subject for the establishment, exercise or defence of legal claims: this exception shall permit or simplify the assertion of, as well as the defence against, legal claims. The personal data under this provision is retained for purposes of proof. This corresponds to the situation
 
-125Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 5. 126Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 16. 127Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 8. 128Apparently positively Ha¨rting, DSGVO (2016), rec. 710; negatively see Worms, in: Wolff/ Brink, BeckOK, Art. 18 (2016) rec. 35; and demanding an erasure of the personal data as the result of an unsuccessful verification: Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 8. 129Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), recs. 6­7. 130Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), rec. 39; Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 10.
+125Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 5. 126Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 16. 127Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 8. 128Apparently positively Haï¿½rting, DSGVO (2016), rec. 710; negatively see Worms, in: Wolff/ Brink, BeckOK, Art. 18 (2016) rec. 35; and demanding an erasure of the personal data as the result of an unsuccessful verification: Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 8. 129Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), recs. 6ï¿½7. 130Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), rec. 39; Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 10.
 
 166
 
 5 Rights of Data Subjects
 
-covered by the former Art. 18 Sec. 1 lit. c GDPR. Therefore, the existence of a separate scope of application of this provision seems questionable. ­ The data subject has objected to processing pursuant to Art. 21 Sec. 1 GDPR pending the verification whether the legitimate interests of the controller override those of the data subject: if a data subject objected to processing under Art. 21 Sec. 1 GDPR (see Sect. 5.7), the controller has to assess whether its legitimate interests override those of the data subject and the controller could, subsequently, continue processing the data. During the time of such assessment, processing is restricted under this provision.
+covered by the former Art. 18 Sec. 1 lit. c GDPR. Therefore, the existence of a separate scope of application of this provision seems questionable. ï¿½ The data subject has objected to processing pursuant to Art. 21 Sec. 1 GDPR pending the verification whether the legitimate interests of the controller override those of the data subject: if a data subject objected to processing under Art. 21 Sec. 1 GDPR (see Sect. 5.7), the controller has to assess whether its legitimate interests override those of the data subject and the controller could, subsequently, continue processing the data. During the time of such assessment, processing is restricted under this provision.
 The existence of one of the grounds for a restriction of processing under Art. 18 Sec. 1 GDPR needs to be determined on a case-by-case basis. While the provisions of Art. 18 Sec. 1 lits. a, d GDPR require a temporary restriction of processing in order to carry out verifications, the provisions of Art. 18 Sec. 1 lits. b, c GDPR require a restriction of processing as a less restrictive alternative to the erasure of the personal data.
 
 5.5.3.2 Exercise of the Right The data subject must request a restriction of processing under Art. 18 Sec. 1 GDPR. However, such request is not subject to any formal requirements but must indicate the data subject's demand in a sufficiently clear manner. In this regard, the general requirements for the exercise of data subject rights under Art. 12 GDPR have to be taken into account (see Sect. 5.1).
 
 5.5.3.3 Legal Consequences Restriction of processing requires that the concerned personal data is prevented from and, additionally, marked in a way that prevents it from being subject to processing activities.131 The restriction of processing does not relate to the storage of the concerned personal data, Art. 18 Sec. 2 GDPR. Methods could include, inter alia:
-­ temporarily moving the selected data to another processing system; or ­ making the selected personal data unavailable to users; or ­ temporarily removing published data from a website.132
+ï¿½ temporarily moving the selected data to another processing system; or ï¿½ making the selected personal data unavailable to users; or ï¿½ temporarily removing published data from a website.132
 As regards automated filing systems, the restriction of processing should be clearly indicated by the system in question and it must be ensured by technical means that the personal data is no longer subject to processing operations.133
 131Paal, in: Paal/Pauly, DSGVO, Art. 18 (2017), rec. 14; Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), rec. 47. 132Rec. 67 GDPR. 133Rec. 67 GDPR.
 
@@ -2651,13 +2657,13 @@ As regards automated filing systems, the restriction of processing should be cle
 167
 
 Where processing has been restricted, the concerned personal data may only be processed
-­ with the data subject's consent: the practical scope of application of this exception remains unclear. The exception shall guarantee the data subject's right to self-determination, whereas the latter was previously used by the data subject to request a restriction of processing. However, it might apply in situations where the data subject consents (for the conditions for valid consent, see Sect. 4.2.1) to the disclosure of its personal data to third parties, such as vis-a`-vis a legal representative134;
-­ for the establishment, exercise or defence of legal claims: this exception addresses situations where processing shall allow for or simplify the assertion of or protection from legal claims. This might become especially relevant where the controller wants to assert legal claims against the data subject and depends on processing personal data in this regard, which shall not be prevented by a request of the data subject to achieve a restriction of processing for the relevant personal data135;
-­ for the protection of the rights of another individual or legal person; or ­ for reasons of important public interest of the EU/an EU Member State.
+ï¿½ with the data subject's consent: the practical scope of application of this exception remains unclear. The exception shall guarantee the data subject's right to self-determination, whereas the latter was previously used by the data subject to request a restriction of processing. However, it might apply in situations where the data subject consents (for the conditions for valid consent, see Sect. 4.2.1) to the disclosure of its personal data to third parties, such as vis-a`-vis a legal representative134;
+ï¿½ for the establishment, exercise or defence of legal claims: this exception addresses situations where processing shall allow for or simplify the assertion of or protection from legal claims. This might become especially relevant where the controller wants to assert legal claims against the data subject and depends on processing personal data in this regard, which shall not be prevented by a request of the data subject to achieve a restriction of processing for the relevant personal data135;
+ï¿½ for the protection of the rights of another individual or legal person; or ï¿½ for reasons of important public interest of the EU/an EU Member State.
 Pursuant to Art. 18 Sec. 3 GDPR, a data subject that has obtained a restriction of processing shall be informed by the controller before this restriction is lifted.
 
 5.5.4 Notification of Third Parties Regarding the Rights to Erasure, Rectification and Restriction, Art. 19
-The notification obligation complements the rights to erasure, rectification and restriction of the data subject under Arts. 16­18 GDPR as it shall serve to effectively enforce these rights.136 Pursuant to Art. 19 phrase 1 GDPR, the controller shall communicate any rectification, erasure or restriction of processing of personal data under Arts. 16, 17 Sec. 1 and 18 GDPR (see Sects. 5.5.1, 5.5.2 and 5.5.3) to each recipient to whom the personal data has been disclosed, unless this proves impossible or involves disproportionate effort. Such effort must be established based on the specific situation of the controller. Whereas impossibility might result from legal or factual circumstances (e.g., when the identity of the recipients is no longer known to the controller), disproportionate effort might, inter alia, result from a vast number of recipients and, thus, a vast number of notifications to be made.137
+The notification obligation complements the rights to erasure, rectification and restriction of the data subject under Arts. 16ï¿½18 GDPR as it shall serve to effectively enforce these rights.136 Pursuant to Art. 19 phrase 1 GDPR, the controller shall communicate any rectification, erasure or restriction of processing of personal data under Arts. 16, 17 Sec. 1 and 18 GDPR (see Sects. 5.5.1, 5.5.2 and 5.5.3) to each recipient to whom the personal data has been disclosed, unless this proves impossible or involves disproportionate effort. Such effort must be established based on the specific situation of the controller. Whereas impossibility might result from legal or factual circumstances (e.g., when the identity of the recipients is no longer known to the controller), disproportionate effort might, inter alia, result from a vast number of recipients and, thus, a vast number of notifications to be made.137
 134Kamlah, in: Plath, BDSG/DSGVO, Art. 18 (2016), rec. 16. 135Worms, in: Wolff/Brink, BeckOK, Art. 18 (2016), rec. 50. 136Worms, in: Wolff/Brink, BeckOK, Art. 19 (2016), recs. 1, 6; Paal, in: Paal/Pauly, DSGVO, Art. 19 (2017), rec. 3. 137Kamlah, in: Plath, BDSG/DSGVO, Art. 19 (2016), rec. 6.
 
 168
@@ -2672,21 +2678,21 @@ Right to Be Forgotten Article 19 GDPR explicitly does not refer to the right to 
 Article 20 GDPR introduces a new data subject right, the right to data portability, which shall strengthen the data subject's control over its data where processing is carried out by automated means, by giving it the possibility to transmit its personal data from one controller to another.139
 This right shall allow data subjects to change service providers as simply as possible.140 It shall grant data subjects more economic flexibility and, thus, leads to consumer empowerment as it facilitates their ability to move, copy or transmit personal data easily from one IT environment to another.141 In this regard, the legislator primarily targeted operators of social networks.142 Nevertheless, the right to data portability is applicable to a variety of controllers.
 
-138Worms, in: Wolff/Brink, BeckOK, Art. 19 (2016), rec. 6. 139Rec. 68 GDPR. 140Gierschmann, ZD 2016, 51, 54; Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 4. 141Schantz, NJW 2016, 1841, 1845; Art. 29 Data Protection Working Party, WP 242 (2016), pp. 3­4. 142Gierschmann, ZD 2016, 51, 54; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 59.
+138Worms, in: Wolff/Brink, BeckOK, Art. 19 (2016), rec. 6. 139Rec. 68 GDPR. 140Gierschmann, ZD 2016, 51, 54; Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 4. 141Schantz, NJW 2016, 1841, 1845; Art. 29 Data Protection Working Party, WP 242 (2016), pp. 3ï¿½4. 142Gierschmann, ZD 2016, 51, 54; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 59.
 
 5.6 Right to Data Portability
 
 169
 
 Example
-­ The data subject purchases a car. The car is financed by way of a leasing agreement between the controller (lessor) and the data subject (lessee). Upon conclusion of the leasing agreement, the data subject consented to the transfer of data on its driving behaviour to the controller in order to resolve the potentially arising question of liability in case of a car accident. The lessee requests the transfer of said data to another lessor with whom the lessee wishes to negotiate a future leasing agreement with more beneficial conditions.
-­ The controller is an insurance company that shall transmit the personal data of a policy holder as the latter switches to a new insurance company. The personal data has been provided by the policy holder to the insurance company for obtaining an insurance policy.
-­ The controller is a bank that shall transmit the personal data of its former account holder (which has been provided by the account holder to open up the bank account) to the latter's new bank.143
+ï¿½ The data subject purchases a car. The car is financed by way of a leasing agreement between the controller (lessor) and the data subject (lessee). Upon conclusion of the leasing agreement, the data subject consented to the transfer of data on its driving behaviour to the controller in order to resolve the potentially arising question of liability in case of a car accident. The lessee requests the transfer of said data to another lessor with whom the lessee wishes to negotiate a future leasing agreement with more beneficial conditions.
+ï¿½ The controller is an insurance company that shall transmit the personal data of a policy holder as the latter switches to a new insurance company. The personal data has been provided by the policy holder to the insurance company for obtaining an insurance policy.
+ï¿½ The controller is a bank that shall transmit the personal data of its former account holder (which has been provided by the account holder to open up the bank account) to the latter's new bank.143
 Also, the right to data portability shall strengthen the competition among service providers for customers and, in doing so, foster the development of privacy-friendly technologies and interoperable data formats.144 However, compliance with the right to data portability will entail considerable efforts for controllers. The provision is strongly shaped by consumer protection considerations, which pushes the controllers' interests into the background.145 Thus, while the right to data portability guarantees the free disposal of individuals over their personal data,146 it might also--depending on the interpretation of the scope of application of this right--put business secrets and practices of the controllers at risk.
 
 5.6.1 Scope and Exercise of the Right to Data Portability
 Where personal data falls within the scope of application of Art. 20 GDPR, the data subject can request the transmission of its personal data under this provision. Such request is subject to the general requirements for the exercise of data subject rights under Art. 12 GDPR (see Sect. 5.1). Where the controller processes a large quantity of information concerning the requesting data subject, the former might ask the latter to specify to which information or processing activities the request relates
-143Examples drawn from Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 6; Schantz, NJW 2016, 1841, 1845; Wybitul/Rauer, ZD 2012, 160, 162; Jülicher/Rottgen/v. Schonfeld, ZD 2016, 358, 361; Scha¨tzle, PinG 2016, 71, 72­73. 144Schantz, NJW 2016, 1841, 1845; Albrecht, CR 2016, 88, 93; Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 5; rec. 68 GDPR. 145Jaspers, DuD 2012, 571, 573; Ha¨rting, BB 2012, 459, 465. 146Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 4.
+143Examples drawn from Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 6; Schantz, NJW 2016, 1841, 1845; Wybitul/Rauer, ZD 2012, 160, 162; Jï¿½licher/Rottgen/v. Schonfeld, ZD 2016, 358, 361; Schaï¿½tzle, PinG 2016, 71, 72ï¿½73. 144Schantz, NJW 2016, 1841, 1845; Albrecht, CR 2016, 88, 93; Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 5; rec. 68 GDPR. 145Jaspers, DuD 2012, 571, 573; Haï¿½rting, BB 2012, 459, 465. 146Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 4.
 
 170
 
@@ -2694,19 +2700,19 @@ Where personal data falls within the scope of application of Art. 20 GDPR, the d
 
 before taking actions.147 Pursuant to Art. 20 Sec. 1 GDPR, the scope of application opens up when
 
-­ personal data [. . .]: (see Sect. 2.1.2) in this regard, it should be noted that pseudonymous data that can be clearly linked to a data subject, such as by it providing the respective identifier, falls within the scope of application148;
-­ that the data subject has provided to a controller [. . .]: the provision of its data by the data subject requires, to a certain extent, an intentional act by it, and thus it
+ï¿½ personal data [. . .]: (see Sect. 2.1.2) in this regard, it should be noted that pseudonymous data that can be clearly linked to a data subject, such as by it providing the respective identifier, falls within the scope of application148;
+ï¿½ that the data subject has provided to a controller [. . .]: the provision of its data by the data subject requires, to a certain extent, an intentional act by it, and thus it
 should be necessary that said data was--directly or indirectly--obtained from the data subject.149 It includes data that has been actively and knowingly
 provided (such as account data, an email address, the person's age), as well as
 data that is generated by the data subject and observed by the controller in the
 course of their (contractual) relationship, such as a person's browser search
 history, traffic and location or data collected by a fitness tracker that the data subject is wearing.150 Thus, it is sufficient if a data subject provides an access option to the personal data for the controller.151 However, it is unclear whether
 data was `provided by the data subject' if a third party--such as an employer or a bank--provides the data to the controller with the data subject's consent152;
-­ are processed based on the data subject's consent (see Sect. 4.2.1) or based on
-their necessity for the performance of a contract between the data subject and the controller [. . .] (see Sect. 4.2.2.1); and ­ processing is carried out by automated means: this means any treatment of personal data using data processing systems (see Sect. 2.1.1).153
+ï¿½ are processed based on the data subject's consent (see Sect. 4.2.1) or based on
+their necessity for the performance of a contract between the data subject and the controller [. . .] (see Sect. 4.2.2.1); and ï¿½ processing is carried out by automated means: this means any treatment of personal data using data processing systems (see Sect. 2.1.1).153
 
 5.6.1.1 Data Provided by the Data Subject The interpretation of Art. 20 GDPR's scope of application is not fully clear, especially as regards the notion of data that has been `provided by the data subject'. As just shown, personal data that can be observed by the controller throughout the course of its (contractual) relationship with the data subject falls within the scope of application of Art. 20 GDPR. However, said data is often further processed, such as being altered or classified according to certain criteria. This modified data might reflect the business practices or underlying processing activities of said controller, such as tracking data or profiling information.154 Thus, for competitive reasons, any
-147Rec. 63 GDPR. 148Art. 29 Data Protection Working Party, WP 242 (2016), p. 7. 149Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 17; Scha¨tzle, PinG 2016, 71, 73; Ha¨rting, DSGVO (2016), rec. 729. 150Art. 29 Data Protection Working Party, WP 242 (2016), p. 8; Jaspers, DuD 2012, 571, 573; Jülicher/Rottgen/v. Schonfeld, ZD 2016, 358, 359; negatively see Kamlah, in: Plath, BDSG/ DSGVO, Art. 20 (2016), rec. 6. 151Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 152Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 153Schild, in: Wolff/Brink, BeckOK, Art. 4 (2016), rec. 34. 154Jaspers, DuD 2012, 571, 573.
+147Rec. 63 GDPR. 148Art. 29 Data Protection Working Party, WP 242 (2016), p. 7. 149Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), rec. 17; Schaï¿½tzle, PinG 2016, 71, 73; Haï¿½rting, DSGVO (2016), rec. 729. 150Art. 29 Data Protection Working Party, WP 242 (2016), p. 8; Jaspers, DuD 2012, 571, 573; Jï¿½licher/Rottgen/v. Schonfeld, ZD 2016, 358, 359; negatively see Kamlah, in: Plath, BDSG/ DSGVO, Art. 20 (2016), rec. 6. 151Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 152Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 153Schild, in: Wolff/Brink, BeckOK, Art. 4 (2016), rec. 34. 154Jaspers, DuD 2012, 571, 573.
 
 5.6 Right to Data Portability
 
@@ -2722,7 +2728,7 @@ Example
 The operator of a social network O receives a request by one of its users U to transfer the latter's profile to another operator of a social network. Upon creation of its profile, U had to enter its name, email address, age, location, interests, etc. On its profile, U shared pictures, received comments from its contacts (other users of the social network) and shared thoughts. Moreover, the social network provided for a messenger service where U chatted with its contacts.
 In this example, when acting upon the request of U, O should be obliged to transmit U's personal data that were entered for creating U's profile with O. However, upon transmission of the profile, a lot of the data relates to third parties. This concerns, among others, U's chat records with other users or pictures from U's profiles that feature other users. Thus, O might not be able to lawfully transmit these data to the other operator.158
 
-155Art. 29 Data Protection Working Party, WP 242 (2016), pp. 8­9; Gierschmann, ZD 2016, 51, 54; v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 6. 156Art. 29 Data Protection Working Party, WP 242 (2016), pp. 7­9. 157According to Art. 20 Sec. 3 phrase 2 GDPR and rec. 68 GDPR, the data subject's right to data portability shall not apply to processing necessary for the performance of a task carried out in the public interest or for compliance with a legal obligation to which the controller is subject or in the exercise of official authority vested in the controller. 158Schantz, NJW 2016, 1841, 1845; Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 359.
+155Art. 29 Data Protection Working Party, WP 242 (2016), pp. 8ï¿½9; Gierschmann, ZD 2016, 51, 54; v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 6. 156Art. 29 Data Protection Working Party, WP 242 (2016), pp. 7ï¿½9. 157According to Art. 20 Sec. 3 phrase 2 GDPR and rec. 68 GDPR, the data subject's right to data portability shall not apply to processing necessary for the performance of a task carried out in the public interest or for compliance with a legal obligation to which the controller is subject or in the exercise of official authority vested in the controller. 158Schantz, NJW 2016, 1841, 1845; Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 359.
 
 172
 
@@ -2734,7 +2740,7 @@ Example
 An email service provider allows creating a user account to send and receive emails and creating a private collection of (email) address data. X is a user of this service and uses its mail address exclusively for private needs. X exercises its right to data portability and asks the email service provider to transfer its account to another service provider.
 In this example, when acting upon the request of X, the service provider will be obliged to transmit X's personal data, such as its received and sent emails and its collection of (email) addresses. These data relate to X's contacts and, thus, third parties. Nevertheless, as X uses the email service for purely personal needs, the new service provider might process the data based on its prevailing legitimate interests of providing an email service to X. However, the provider cannot use the third-party-related data for any other purpose, such as marketing measures. This would surpass the scope of its legitimate interest of providing an email service to X as it would serve economical purposes of the provider and not X's personal needs.162
 
-159Art. 29 Data Protection Working Party, WP 242 (2016), pp. 7­8; v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Schantz, NJW 2016, 1841, 1845; negatively Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 160Art. 29 Data Protection Working Party, WP 242 (2016), p. 8. 161Art. 29 Data Protection Working Party, WP 242 (2016), p. 9. 162Art. 29 Data Protection Working Party, WP 242 (2016), pp. 9­10.
+159Art. 29 Data Protection Working Party, WP 242 (2016), pp. 7ï¿½8; v.d.Bussche/Zeiter, EDPL 2016, 576, 579; Schantz, NJW 2016, 1841, 1845; negatively Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 359. 160Art. 29 Data Protection Working Party, WP 242 (2016), p. 8. 161Art. 29 Data Protection Working Party, WP 242 (2016), p. 9. 162Art. 29 Data Protection Working Party, WP 242 (2016), pp. 9ï¿½10.
 
 5.6 Right to Data Portability
 
@@ -2748,7 +2754,7 @@ Trade Secrets and Intellectual Property The right to data portability might also
 5.6.1.3 Employment Context Even though the right to data portability was created to facilitate switching between service providers, the provision's wording is not limited to a certain processing activity, which, subsequently, includes processing activities in the employment context into the scope of application. Within the employment relationship, an employee's personal data is mostly processed based on its necessity for the execution of the employment contract. Additional personal data that is not necessary for the performance of the employment relationship is often processed based on the employee's consent, such as for voluntary bonus programs or private mobile phone use.168 Therefore, Art. 20 GDPR applies to these personal data.
 However, it should be noted that employers process a considerable amount of their employees' personal data due to public law requirements (such as for social security of tax matters).169 In such a case, these data would be processed based on several legal bases: based on consent or the employment contract on one hand and
 
-163Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 164Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 165Rec. 63 GDPR. 166Rec. 63 GDPR. 167Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), recs. 26­27; Scha¨tzle, PinG 2016, 71, 74; Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 168Bitkom, Position paper (2017), p. 7. 169Bitkom, Position paper (2017), pp. 7­8.
+163Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 164Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 165Rec. 63 GDPR. 166Rec. 63 GDPR. 167Paal, in: Paal/Pauly, DSGVO, Art. 20 (2017), recs. 26ï¿½27; Schaï¿½tzle, PinG 2016, 71, 74; Art. 29 Data Protection Working Party, WP 242 (2016), p. 10. 168Bitkom, Position paper (2017), p. 7. 169Bitkom, Position paper (2017), pp. 7ï¿½8.
 
 174
 
@@ -2763,7 +2769,7 @@ On a technical level, data controllers should offer different implementations of
 
 5.6.3 Transmission of the Data
 Under Art. 20 Sec. 2 GDPR, the data subject shall have the right to have the personal data transmitted directly from one controller to another, where technically feasible. A direct transmission might take place where a renewed provision of the personal data to the new controller requires unreasonable effort from the data subject or is impossible.177 Apart from this possibility, the data subject is free to
-170Art. 20 Sec. 1 GDPR; rec. 68 GDPR. 171Scha¨tzle, PinG 2016, 71, 74. 172Art. 29 Data Protection Working Party, WP 242 (2016), p. 13. 173Rec. 68 GDPR. 174Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 66. 175Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 8; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 66. 176Art. 29 Data Protection Working Party, WP 242 (2016), p. 5. 177Gierschmann, ZD 2016, 51, 54.
+170Art. 20 Sec. 1 GDPR; rec. 68 GDPR. 171Schaï¿½tzle, PinG 2016, 71, 74. 172Art. 29 Data Protection Working Party, WP 242 (2016), p. 13. 173Rec. 68 GDPR. 174Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 66. 175Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 8; Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 66. 176Art. 29 Data Protection Working Party, WP 242 (2016), p. 5. 177Gierschmann, ZD 2016, 51, 54.
 
 5.6 Right to Data Portability
 
@@ -2782,7 +2788,7 @@ Pursuant to Art. 20 Sec. 3 phrase 1 GDPR, the exercise of the right to data port
 
 5.6.5 Exclusion of the Right to Data Portability
 Pursuant to Art. 20 Sec. 1 GDPR, the data transmission to another provider shall take place `without hindrance' from the controller to which the personal data has been provided. Thus, technical measures that would complicate the transmission are unlawful.182 However, it is unclear whether `without hindrance' prevents a contractual exclusion between the controller and the data subject of the right to data portability.183 The GDPR itself does not provide for rules on the lawfulness of
-178Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 179Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 180Schantz, NJW 2016, 1841, 1845; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 10. 181Jülicher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 182Scha¨tzle, PinG 2016, 71, 73; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 9. 183Scha¨tzle, PinG 2016, 71, 73 who deems at least any contractual exclusion unlawful that excludes the right to data portability beyond the termination of the contract between the data subject and the controller.
+178Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 179Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 180Schantz, NJW 2016, 1841, 1845; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 10. 181Jï¿½licher/Rottgen/v.Schonfeld, ZD 2016, 358, 360. 182Schaï¿½tzle, PinG 2016, 71, 73; Kamlah, in: Plath, BDSG/DSGVO, Art. 20 (2016), rec. 9. 183Schaï¿½tzle, PinG 2016, 71, 73 who deems at least any contractual exclusion unlawful that excludes the right to data portability beyond the termination of the contract between the data subject and the controller.
 
 176
 
@@ -2795,7 +2801,7 @@ A limitation of the right to data portability is at least not alien to the syste
 5.7 Right to Object
 Under specific circumstances set out in Art. 21 GDPR, the data subject has the right to object to processing that will oblige the controller to refrain from further processing of said individual's personal data. Compared to the Data Protection Directive, the data subject's right to object will be clearly enhanced under the GDPR to the detriment of data processing entities as objections to processing will
 
-184See also Kingreen, in: Calliess/Ruffert, EUV/AEUV, Art. 8 EU-GrCharta (2016), rec. 9. 185Albrecht/Jotzo, Datenschutzrecht, Individuelle Datenschutzrechte (2017), rec. 19; Kühling/ Martini, EuZW 2016, 448, 450; Schantz, NJW 2016, 1841, 1845. 186The GDPR does not establish a general right to data portability. Art. 29 Data Protection Working Party, WP 242 (2016), p. 7.
+184See also Kingreen, in: Calliess/Ruffert, EUV/AEUV, Art. 8 EU-GrCharta (2016), rec. 9. 185Albrecht/Jotzo, Datenschutzrecht, Individuelle Datenschutzrechte (2017), rec. 19; Kï¿½hling/ Martini, EuZW 2016, 448, 450; Schantz, NJW 2016, 1841, 1845. 186The GDPR does not establish a general right to data portability. Art. 29 Data Protection Working Party, WP 242 (2016), p. 7.
 
 5.7 Right to Object
 
@@ -2807,14 +2813,14 @@ against lawful processing activities that do not correspond to the will of the d
 5.7.1 Grounds for an Objection to Processing
 Art. 21 GDPR provides for three situations that can be grounds for an objection to processing.
 5.7.1.1 Particular Situation of the Data Subject According to Art. 21 Sec. 1 GDPR, the data subject has the right to object, on grounds relating to its particular situation, at any time to processing which
-­ is based on prevailing legitimate interests of the controller/a third party; or ­ is necessary for the performance of a task carried out in the public interest or in
+ï¿½ is based on prevailing legitimate interests of the controller/a third party; or ï¿½ is necessary for the performance of a task carried out in the public interest or in
 the exercise of official authority vested in the controller (for details, see Sect. 4.2.2.3), including profiling based on those legal permissions.
 Upon reversion of the provision's wording, the processing activities to which the data subject objects are per se lawful. However, a right to objection arises based on new circumstances that influence the initial balancing of interests.189 As a result of the specific situation of the data subject, its interests prevail over those that serve as legal basis for processing, and, as a consequence, the data subject can object to the processing activities in question.
 This ground for objection cannot be interpreted extensively as it would undermine the legal bases for processing.190 The specific situation of the data subject might be based on its rights or freedoms in question, such as its personal rights.191 A specific situation might, for example, arise from the data subject's family circumstances or a professional interest in confidentiality.192
 However, Art. 21 Sec. 1 GDPR provides for two counter-exceptions from the right to object: the controller may demonstrate
-­ compelling legitimate grounds for processing which override the interests, rights and freedoms of the data subject; or
-­ that processing serves the establishment, exercise or defence of legal claims.
-187v.d.Bussche/Zeiter, EDPL 2016, 576, 579. 188Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), recs. 1­2; Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 1. 189Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 5. 190Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 6; Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 31. 191Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 30. 192Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 30.
+ï¿½ compelling legitimate grounds for processing which override the interests, rights and freedoms of the data subject; or
+ï¿½ that processing serves the establishment, exercise or defence of legal claims.
+187v.d.Bussche/Zeiter, EDPL 2016, 576, 579. 188Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), recs. 1ï¿½2; Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 1. 189Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 5. 190Kamlah, in: Plath, BDSG/DSGVO, Art. 21 (2016), rec. 6; Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 31. 191Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 30. 192Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 30.
 
 178
 
@@ -2823,7 +2829,7 @@ However, Art. 21 Sec. 1 GDPR provides for two counter-exceptions from the right 
 The controller bears the burden of proof for demonstrating such compelling overriding interests.193 Compelling legitimate grounds must be so important that the purposes of processing cannot be achieved without the processing activities that the data subject objected to.194
 5.7.1.2 Processing for Direct Marketing Purposes Pursuant to Art. 21 Sec. 2 GDPR, where personal data is processed for direct marketing purposes, the data subject has the right to object at any time to the processing of its personal data for such marketing, which includes profiling,195 to the extent that the latter is related to such direct marketing. Direct marketing consists of addressing individuals directly with (especially personalised) marketing material such as via email or through advertisements on websites or in apps.196 Unlike the ground for objection under Art. 21 Sec. 1 GDPR, this ground is not subject to any further conditions. A similar ground for objection was already provided for under the Data Protection Directive.197
 5.7.1.3 Processing for Research or Statistical Purposes Under Art. 21 Sec. 6 GDPR, the data subject shall have the right to object to processing on grounds relating to its particular situation where personal data is processed for
-­ scientific or historical research purposes; or ­ statistical purposes.
+ï¿½ scientific or historical research purposes; or ï¿½ statistical purposes.
 Under the GDPR, processing for such purposes is generally privileged, inter alia, as regards the lawfulness of these processing activities or the controller's obligations to information or to erasure.198 Especially, mass data processing holds a massive knowledge potential but, at the same time, puts the rights and freedoms of data subjects at risk. Therefore, the data subject shall have the possibility to object to such processing.199
 Under the GDPR, `statistical purposes' means processing of personal data that is necessary for statistical surveys or for the production of statistical results that may further be used for different purposes.200 The introduction of specific rules on
 
@@ -2850,7 +2856,7 @@ Pursuant to Art. 21 Sec. 5 GDPR, in the context of the use of information societ
 If a data subject successfully exercises its right to object, the controller can no longer process the personal data, Art. 21 Sec. 1 GDPR. Any objection only has an effect on future processing activities. While this prohibition to process is the result of a balancing of interests under Art. 21 Secs. 1, 6 GDPR, an objection to processing for direct marketing purposes leads to an immediate prohibition of processing under Art. 21 Sec. 3 GDPR. In this case, the controller cannot reassess the situation for a possible counter-exception.205
 It is unclear whether a successful objection to processing entails the controller's obligation to delete the concerned personal data under Art. 17 GDPR (see Sect.
 
-201Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), recs. 71­72. 202Rec. 162 GDPR. 203Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 119; Grages, in: Plath, BDSG/ DSGVO, Art. 89 (2016), rec. 7. 204Art. 21 Sec. 6 GDPR. 205Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 74.
+201Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), recs. 71ï¿½72. 202Rec. 162 GDPR. 203Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 119; Grages, in: Plath, BDSG/ DSGVO, Art. 89 (2016), rec. 7. 204Art. 21 Sec. 6 GDPR. 205Laue/Nink/Kremer, Datenschutzrecht, Rechte der betroffenen Person (2016), rec. 74.
 
 180
 
@@ -2859,12 +2865,12 @@ It is unclear whether a successful objection to processing entails the controlle
 5.5.2).206 In any case, a successful objection gives rise to the data subject's right to erasure pursuant to Art. 17 Sec. 1 lit. c GDPR.207
 
 5.7.3 Information Obligation
-At the latest at the time of the first communication with the data subject, the right to object shall be explicitly brought to the attention of the data subject and shall be presented clearly and separately from any other information, Art. 21 Sec. 4 GDPR. This specifies the general information obligations of the controller under Arts. 12­14 GDPR (for details, see Sects. 5.1 and 5.2). In this regard, data processing entities should consider how they can fulfil this information obligation as to how and where to place the relevant information; for example, such information could be highlighted within the entity's privacy statement.208
+At the latest at the time of the first communication with the data subject, the right to object shall be explicitly brought to the attention of the data subject and shall be presented clearly and separately from any other information, Art. 21 Sec. 4 GDPR. This specifies the general information obligations of the controller under Arts. 12ï¿½14 GDPR (for details, see Sects. 5.1 and 5.2). In this regard, data processing entities should consider how they can fulfil this information obligation as to how and where to place the relevant information; for example, such information could be highlighted within the entity's privacy statement.208
 
 5.8 Automated Decision-Making
 Article 22 GDPR shall restrict automated decision-making as such automated decision-making processes put individuals' rights and freedoms at risk. Thus, Art. 22 Sec. 1 GDPR provides for a general prohibition of automated decision-making, including profiling, which produces legal effects concerning the data subject or is similarly significantly affecting it. Such prohibition had already been provided for in German Data Protection Law for more than 15 years and, thus, casuistry and jurisprudence already elaborated on this matter.209
 The wording of Art. 22 GDPR does not specify whether the data subject has to exercise its right in order to not be subject to automated decision-making or whether it is a statutory prohibition.210 The provision shall prevent individuals from being subject to decisions taken by machines that could influence their lives.211 In order to successfully achieve this purpose, Art. 22 GDPR should be interpreted as a statutory prohibition or, at least, restriction of these kinds of processing activities.212
-206Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 33. 207Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 33. 208Gierschmann, ZD 2016, 51, 54. 209The prohibition was provided for in § 6a BDSG. 210Kamlah, in: Plath, BDSG/DSGVO, Art. 22 (2016), rec. 4. 211Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), rec. 61; see also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 1. 212Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 29; see also Gola/Klug/Korffer, in: Gola/ Schomerus, BDSG, § 6a (2015), rec. 1; Scholz, in: Simitis, BDSG, § 6a (2014), rec. 1; v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), recs. 1, 1.1; negatively see Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit der Verarbeitung (2016), recs. 71­72; Kamlah, in: Plath, BDSG/ DSGVO, Art. 22 (2016), rec. 4.
+206Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 33. 207Martini, in: Paal/Pauly, DSGVO, Art. 21 (2017), rec. 33. 208Gierschmann, ZD 2016, 51, 54. 209The prohibition was provided for in ï¿½ 6a BDSG. 210Kamlah, in: Plath, BDSG/DSGVO, Art. 22 (2016), rec. 4. 211Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), rec. 61; see also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 1. 212Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 29; see also Gola/Klug/Korffer, in: Gola/ Schomerus, BDSG, ï¿½ 6a (2015), rec. 1; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), rec. 1; v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), recs. 1, 1.1; negatively see Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit der Verarbeitung (2016), recs. 71ï¿½72; Kamlah, in: Plath, BDSG/ DSGVO, Art. 22 (2016), rec. 4.
 
 5.8 Automated Decision-Making
 
@@ -2876,7 +2882,7 @@ Automated Decision-Making
 Automated decision-making consists of evaluating personal aspects relating to an individual based solely on automated processing.213
 
 Example
-­ automatic refusal of an online credit application ­ e-recruiting practices with no human intervention214
+ï¿½ automatic refusal of an online credit application ï¿½ e-recruiting practices with no human intervention214
 
 Article 22 GDPR is applicable if a decision regarding the data subject is taken by automated means without any human assessing the content of said decision.215
 Thus, the scope of application opens up if no human has any decision-making
@@ -2893,7 +2899,7 @@ aspects relating to an individual, in particular to analyse or predict aspects
 concerning the data subject's performance at work, economic situation, health,
 personal preferences or interests, reliability or behaviour, location or movements.220 The definition describes only the result of such processing but not
 
-213Rec. 71 GDPR. 214Rec. 71 GDPR. 215See also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 15; Scholz, in: Simitis, BDSG, § 6a (2014), recs. 14­16. 216Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), recs. 17­19; see also Kamlah, in: Plath, BDSG/DSGVO, § 6a (2016), rec. 12; Scholz, in: Simitis, BDSG, § 6a (2014), recs. 14­16; v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 17; negatively see Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit der Verarbeitung (2016), rec. 75. 217See also Scholz, in: Simitis, BDSG, § 6a (2014), recs. 14­15. 218See also Kamlah, in: Plath, BDSG/DSGVO, § 6a (2016), rec. 13; v. Lewinski, in: Wolff/Brink, BeckOK, §6a (2016), recs. 16, 17; Scholz, in: Simitis, BDSG, § 6a (2014), rec. 16. 219See also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 18. 220Art. 4 No. 4 GDPR.
+213Rec. 71 GDPR. 214Rec. 71 GDPR. 215See also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 15; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), recs. 14ï¿½16. 216Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), recs. 17ï¿½19; see also Kamlah, in: Plath, BDSG/DSGVO, ï¿½ 6a (2016), rec. 12; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), recs. 14ï¿½16; v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 17; negatively see Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit der Verarbeitung (2016), rec. 75. 217See also Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), recs. 14ï¿½15. 218See also Kamlah, in: Plath, BDSG/DSGVO, ï¿½ 6a (2016), rec. 13; v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½6a (2016), recs. 16, 17; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), rec. 16. 219See also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 18. 220Art. 4 No. 4 GDPR.
 
 182
 
@@ -2918,8 +2924,8 @@ Example
 Personalised advertisements based on profiling should not fall within the scope of the prohibition under Art. 22 Sec. 1 GDPR. This is due to the fact that they produce neither legal effects nor a comparable risk potential as regards the rights and freedoms of natural persons. Thus, they should not constitute a prohibited processing activity under Art. 22 GDPR.228
 
 221Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 21.
-222Rec. 71 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Zula¨ssigkeit der Verarbeitung (2016), recs. 73­74; Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), recs. 21­23. 223See also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), recs. 24­25; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 6a (2015), rec. 11. 224See also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, § 6a (2015), rec. 11; v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 26. 225See also Scholz, in: Simitis, BDSG, § 6a (2014), rec. 28; v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 33. 226See also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), recs. 32, 34; Scholz, in: Simitis, BDSG, § 6a (2014), rec. 28. 227Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 23.
-228Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 23; see also v. Lewinski, in: Wolff/Brink, BeckOK, § 6a (2016), rec. 37.
+222Rec. 71 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Zulaï¿½ssigkeit der Verarbeitung (2016), recs. 73ï¿½74; Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), recs. 21ï¿½23. 223See also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), recs. 24ï¿½25; Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 6a (2015), rec. 11. 224See also Gola/Klug/Korffer, in: Gola/Schomerus, BDSG, ï¿½ 6a (2015), rec. 11; v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 26. 225See also Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), rec. 28; v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 33. 226See also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), recs. 32, 34; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), rec. 28. 227Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 23.
+228Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 23; see also v. Lewinski, in: Wolff/Brink, BeckOK, ï¿½ 6a (2016), rec. 37.
 
 5.8 Automated Decision-Making
 
@@ -2929,18 +2935,18 @@ Special Categories of Personal Data Where special categories of personal data ar
 
 5.8.2 Exceptions from the Prohibition
 Article 22 Sec. 2 GDPR provides for three exceptions from the prohibition of automated decision-making. Those exceptions should become especially relevant in practice as they have a rather large scope of application. Pursuant to this provision, the prohibition to process does not apply if the decision229
-­ is necessary for entering into, or performance of, a contract between the data subject and a controller: the necessity of the decision has to be determined based on the contractual objectives that the parties agreed upon.230 This has to be established on a case-by-case basis;
+ï¿½ is necessary for entering into, or performance of, a contract between the data subject and a controller: the necessity of the decision has to be determined based on the contractual objectives that the parties agreed upon.230 This has to be established on a case-by-case basis;
 Example Individual A wants to insure its car. Before concluding a contract with A, insurance company X carries out scoring. The latter means that X's computer system analyses data on A's previous driving behaviour (e.g., car accidents or other traffic offences) and rates this behaviour based on predetermined criteria. Based on the result of the scoring, X will decide whether or not it wants to conclude an insurance policy with A and what insurance rate it can propose to A based on its previous driving behaviour.
 In this example, the contractual objective of the agreement between X and A will be the insurance of A's car. Without the scoring, and the automated decision resulting from this processing activity, X could not propose a contract to A and could not calculate the amount of the insurance premium.231
-­ is authorised by EU or EU Member State law to which the controller is subject: this exception constitutes an opening clause that enables EU Member States to
+ï¿½ is authorised by EU or EU Member State law to which the controller is subject: this exception constitutes an opening clause that enables EU Member States to
 
-229Art. 22 Sec. 2 lits. a­c GDPR. 230Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 31. 231See also Simitis, in: Simitis, BDSG, § 28 (2014), rec. 61; Scholz, in: Simitis, BDSG, § 6a (2014), rec. 31.
+229Art. 22 Sec. 2 lits. aï¿½c GDPR. 230Martini, in: Paal/Pauly, DSGVO, Art. 22 (2017), rec. 31. 231See also Simitis, in: Simitis, BDSG, ï¿½ 28 (2014), rec. 61; Scholz, in: Simitis, BDSG, ï¿½ 6a (2014), rec. 31.
 
 184
 
 5 Rights of Data Subjects
 
-create national legislation.232 This includes national legislation for fraud and tax-evasion monitoring and prevention purposes conducted in accordance with official supervisory bodies233; or ­ is based on the data subject's explicit consent: such consent must correspond to the conditions laid down in Arts. 6­8 GDPR (see Sect. 4.2.1) and must explicitly refer to the automated decision-making. Thus, the data subject must be directly informed of such processing prior to consenting.
+create national legislation.232 This includes national legislation for fraud and tax-evasion monitoring and prevention purposes conducted in accordance with official supervisory bodies233; or ï¿½ is based on the data subject's explicit consent: such consent must correspond to the conditions laid down in Arts. 6ï¿½8 GDPR (see Sect. 4.2.1) and must explicitly refer to the automated decision-making. Thus, the data subject must be directly informed of such processing prior to consenting.
 
 5.8.3 Appropriate Safeguards
 If processing activities based on automated decision-making are permissible under one of the exceptions provided for in Art. 22 Sec. 2 lits. a, c GDPR (automated decision-making is necessary for entering into/the performance of a contract or is based on the data subject's explicit consent), they shall be subject to suitable safeguards to protect the data subject's rights and freedoms and legitimate interests, including specific information to the data subject, the right to obtain human intervention on the part of the controller, to express its point of view, to obtain an explanation of the decision reached after such assessment and to contest the decision.234 As regards the exception provided for in Art. 22 Sec. 2 lit. b GDPR, where automated decision-making is authorised by EU or EU Member State law, those safeguards should be provided for by the respective legislation.235
@@ -2955,7 +2961,7 @@ References
 185
 
 keep up pre-existing legislation that is in line with the GDPR.237 Any legislative measure based on this provision must have a certain minimum content enumerated in Art. 23 Sec. 2 GDPR (such as the purposes of processing and the scope of restrictions).
-Pursuant to Art. 23 Sec. 1 lits. a­j GDPR, such legislation may be introduced or maintained for one of the following objectives:
+Pursuant to Art. 23 Sec. 1 lits. aï¿½j GDPR, such legislation may be introduced or maintained for one of the following objectives:
 
 (a) national security; (b) defence; (c) public security; (d) the prevention, investigation, detection or prosecution of criminal offences or
 the execution of criminal penalties; (e) other important objectives of general public interest of the EU or of an EU
@@ -2966,8 +2972,8 @@ to the exercise of official authority in the aforementioned cases (except for th
 In this list, above all Art. 23 Sec. 1 lit. e GDPR seems particularly problematic as it allows national derogations for `other important objectives of general public interest' and, thus, has a rather broad scope of application.238 Such objectives include in particular an important economic or financial interest of the EU or of an EU Member State, including monetary, budgetary and taxation matters, public health and social security. The enumerated objectives give the EU Member States a lot of legislative flexibility and could, as a consequence, put the intended harmonisation through the GDPR at risk. Entities should, thus, be especially attentive as regards national particularities in data protection law under this provision (see Chap. 8).
 
 References
-Albrecht JP (2016) Das neue EU-Datenschutzrecht - von der Richtlinie zur Verordnung, CR, pp 88­98
-Albrecht JP, Jotzo F (eds) (2017) Allgemeine Bestimmungen, Rechtma¨ßigkeit der Datenverarbeitung; Individuelle Datenschutzrechte, Einschra¨nkungen der Rechte. In: Das neue Datenschutzrecht der EU. 1st edn. Nomos, Baden-Baden
+Albrecht JP (2016) Das neue EU-Datenschutzrecht - von der Richtlinie zur Verordnung, CR, pp 88ï¿½98
+Albrecht JP, Jotzo F (eds) (2017) Allgemeine Bestimmungen, Rechtmaï¿½ï¿½igkeit der Datenverarbeitung; Individuelle Datenschutzrechte, Einschraï¿½nkungen der Rechte. In: Das neue Datenschutzrecht der EU. 1st edn. Nomos, Baden-Baden
 237Grages, in: Plath, BDSG/DSGVO, Art. 23 (2016), rec. 3; Paal, in: Paal/Pauly, DSGVO, Art. 23 (2017), rec. 1. 238Grages, in: Plath, BDSG/DSGVO, Art. 23 (2016), rec. 6.
 
 186
@@ -2975,20 +2981,20 @@ Albrecht JP, Jotzo F (eds) (2017) Allgemeine Bestimmungen, Rechtma¨ßigkeit der D
 5 Rights of Data Subjects
 
 Art. 29 Data Protection Working Party (2016) Guidelines on the right to data portability, WP 242 Bitkom (2017) Position paper - Stellungnahme zu den Auslegungsrichtlinien der Art.29-
-Datenschutzgruppe zum Recht auf Datenportabilita¨t (paper in english language). https:// www.bitkom.org/Bitkom/Publikationen/Bitkom-Stellungnahme-zur-Datenportabilitaet.html. Accessed 22 Mar 2017 Brink S (2016) § 35 BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51­55 Gola P, Klug C, Korffer B (2015) § 6a BDSG. In: Gola P, Schomerus R (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich Grages J-M (2016) Arts. 23, 89 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Ha¨rting N (2012) Starke Behorden, schwaches Recht ­ Der neue EU-Datenschutzentwurf, BB, pp 459­466 Ha¨rting N (ed) (2016) Datenschutz-Grundverordnung, 1st edn. Dr. Otto Schmidt Verlag, Cologne Holznagel B, Hartmann S (2016) Das `Recht auf Vergessenwerden' als Reaktion auf ein grenzenloses Internet, MMR, pp 228­232 Hunton & Williams (2015) The proposed EU general data protection regulation. https://www. huntonregulationtracker.com/files/Uploads/Documents/EU%20Data%20Protection%20Reg% 20Tracker/Hunton_Guide_to_the_EU_General_Data_Protection_Regulation.pdf. Accessed 19 Dec 2016 Jaspers A (2012) Die EU-Datenschutzgrundverordnung, DuD, pp 571­575 Ju¨licher T, Ro¨ttgen C, von Scho¨nfeld M (2016) Das Recht auf Datenu¨bertragbarkeit, ZD, pp 358­ 362 Kamlah W (2016) Arts. 12, 16, 17, 18, 19, 20, 21, 22 DSGVO; § 6a BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Kingreen T (2016) Art. 8 EU-GrCharta. In: Calliess C, Ruffert M (eds) EUV/AEUV, 5th edn. C.H. Beck, Munich Krüger P-L (2016) Datensouvera¨nita¨t und Digitalisierung, ZRP, pp 190­192 Kühling J, Martini M (2016) Die Datenschutz-Grundverordnung: Revolution oder Evolution im europa¨ischen und deutschen Datenschutzrecht?, EuZW, pp 448­454 Laue P, Nink J, Kremer S (eds) (2016) Einführung; Informationspflichten; Rechte der betroffenen Personen; Zula¨ssigkeit der Verarbeitung. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Leutheusser-Schnarrenberger S (2015) Das Recht auf Vergessenwerden ­ ein Durchbruch oder ein digitales Unding?, ZD, pp 149­150 Mallmann O (2014) § 20 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Martini M (2017) Arts. 21, 22 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Paal BP (2017) Arts. 12, 13, 15, 16, 17, 18, 19, 20, 23 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Piltz C (2016) Die Datenschutz-Grundverordnung, K&R, pp 557­567 Quaas S (2016) Art. 12 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Schantz P (2016) Die Datenschutz-Grundverordnung ­ Beginn einer neuen Zeitrechnung im Datenschutzrecht, NJW, pp 1841­1847 Scha¨tzle D (2016) Ein Recht auf Fahrzeugdaten, PinG 2016, pp 71­75 Schild HH (2016) Art. 4 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Scholz P (2014) § 6a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden Simitis S (2014) § 28 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
+Datenschutzgruppe zum Recht auf Datenportabilitaï¿½t (paper in english language). https:// www.bitkom.org/Bitkom/Publikationen/Bitkom-Stellungnahme-zur-Datenportabilitaet.html. Accessed 22 Mar 2017 Brink S (2016) ï¿½ 35 BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51ï¿½55 Gola P, Klug C, Korffer B (2015) ï¿½ 6a BDSG. In: Gola P, Schomerus R (eds) Bundesdatenschutzgesetz Kommentar, 12th edn. C.H.Beck, Munich Grages J-M (2016) Arts. 23, 89 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Haï¿½rting N (2012) Starke Behorden, schwaches Recht ï¿½ Der neue EU-Datenschutzentwurf, BB, pp 459ï¿½466 Haï¿½rting N (ed) (2016) Datenschutz-Grundverordnung, 1st edn. Dr. Otto Schmidt Verlag, Cologne Holznagel B, Hartmann S (2016) Das `Recht auf Vergessenwerden' als Reaktion auf ein grenzenloses Internet, MMR, pp 228ï¿½232 Hunton & Williams (2015) The proposed EU general data protection regulation. https://www. huntonregulationtracker.com/files/Uploads/Documents/EU%20Data%20Protection%20Reg% 20Tracker/Hunton_Guide_to_the_EU_General_Data_Protection_Regulation.pdf. Accessed 19 Dec 2016 Jaspers A (2012) Die EU-Datenschutzgrundverordnung, DuD, pp 571ï¿½575 Juï¿½licher T, Roï¿½ttgen C, von Schoï¿½nfeld M (2016) Das Recht auf Datenuï¿½bertragbarkeit, ZD, pp 358ï¿½ 362 Kamlah W (2016) Arts. 12, 16, 17, 18, 19, 20, 21, 22 DSGVO; ï¿½ 6a BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Kingreen T (2016) Art. 8 EU-GrCharta. In: Calliess C, Ruffert M (eds) EUV/AEUV, 5th edn. C.H. Beck, Munich Krï¿½ger P-L (2016) Datensouveraï¿½nitaï¿½t und Digitalisierung, ZRP, pp 190ï¿½192 Kï¿½hling J, Martini M (2016) Die Datenschutz-Grundverordnung: Revolution oder Evolution im europaï¿½ischen und deutschen Datenschutzrecht?, EuZW, pp 448ï¿½454 Laue P, Nink J, Kremer S (eds) (2016) Einfï¿½hrung; Informationspflichten; Rechte der betroffenen Personen; Zulaï¿½ssigkeit der Verarbeitung. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Leutheusser-Schnarrenberger S (2015) Das Recht auf Vergessenwerden ï¿½ ein Durchbruch oder ein digitales Unding?, ZD, pp 149ï¿½150 Mallmann O (2014) ï¿½ 20 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, Baden-Baden Martini M (2017) Arts. 21, 22 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Paal BP (2017) Arts. 12, 13, 15, 16, 17, 18, 19, 20, 23 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Piltz C (2016) Die Datenschutz-Grundverordnung, K&R, pp 557ï¿½567 Quaas S (2016) Art. 12 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Schantz P (2016) Die Datenschutz-Grundverordnung ï¿½ Beginn einer neuen Zeitrechnung im Datenschutzrecht, NJW, pp 1841ï¿½1847 Schaï¿½tzle D (2016) Ein Recht auf Fahrzeugdaten, PinG 2016, pp 71ï¿½75 Schild HH (2016) Art. 4 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Scholz P (2014) ï¿½ 6a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden Simitis S (2014) ï¿½ 28 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
 
 References
 
 187
 
-von dem Bussche AF, Zeiter A (2016) Practitioner's corner ­ implementing the EU general data protection regulation: a business perspective. EDPL (4):576­581
-von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359­1365
-von Lewinski K (2016) § 6a BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
-Walter S (2016) Die datenschutzrechtlichen Transparenzpflichten nach der EU-DSGVO, DSRITB, pp 367­386
+von dem Bussche AF, Zeiter A (2016) Practitioner's corner ï¿½ implementing the EU general data protection regulation: a business perspective. EDPL (4):576ï¿½581
+von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EUDatenschutz-Grundverordnung durch Unternehmen, DB, pp 1359ï¿½1365
+von Lewinski K (2016) ï¿½ 6a BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
+Walter S (2016) Die datenschutzrechtlichen Transparenzpflichten nach der EU-DSGVO, DSRITB, pp 367ï¿½386
 Worms C (2016) Arts. 16, 17, 18, 19 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
-Wybitul T (2016) EU-Datenschutz-Grundverordnung in der Praxis - Was a¨ndert sich durch das neue Datenschutzrecht?, BB, pp 1077­1081
-Wybitul T, Rauer N (2012) EU-Datenschutz-Grundverordnung und Bescha¨ftigtendatenschutz, ZD, pp 160­164
-Zikesch P, Kramer R (2015) Die DS-GVO und das Berufsrecht der Rechtsanwa¨lte, Steuerberater und Wirtschaftsprüfer, ZD, pp 565­570
+Wybitul T (2016) EU-Datenschutz-Grundverordnung in der Praxis - Was aï¿½ndert sich durch das neue Datenschutzrecht?, BB, pp 1077ï¿½1081
+Wybitul T, Rauer N (2012) EU-Datenschutz-Grundverordnung und Beschaï¿½ftigtendatenschutz, ZD, pp 160ï¿½164
+Zikesch P, Kramer R (2015) Die DS-GVO und das Berufsrecht der Rechtsanwaï¿½lte, Steuerberater und Wirtschaftsprï¿½fer, ZD, pp 565ï¿½570
 
 Interaction with the Supervisory Authorities
 
@@ -3016,9 +3022,9 @@ DOI 10.1007/978-3-319-57959-7_6
 
 Where the Supervisory Authorities tasks only relate to one of these norm addressees, such as giving advice to controllers in connection with the latter's Data Protection Impact Assessment (see Sect. 3.5 for details), only one Supervisory Authority might be competent. This is the case if the norm addressee is established in the respective EU Member State, its processing activities are only carried out through said establishment and they only affect individuals located in the respective EU Member State.3
 However, in practice, processing activities often involve several EU Member States, such as where different norm addressees that are established in different EU Member States are involved or where individuals in several EU Member States are affected. Subsequently, several Supervisory Authorities might be competent. Their competence might result from the following:
-­ the controller/processor being established on the territory of the EU Member State of that Supervisory Authority;
-­ data subjects residing in the EU Member State of that Supervisory Authority being substantially affected/likely to be substantially affected by processing; or
-­ a complaint having been lodged with that Supervisory Authority.4
+ï¿½ the controller/processor being established on the territory of the EU Member State of that Supervisory Authority;
+ï¿½ data subjects residing in the EU Member State of that Supervisory Authority being substantially affected/likely to be substantially affected by processing; or
+ï¿½ a complaint having been lodged with that Supervisory Authority.4
 These criteria are likely to call multiple Supervisory Authorities to attention. In the past, this issue--which already existed under the Data Protection Directive-- led to entities being forced to interact with different Supervisory Authorities, which proved to be complicated and time-consuming. To resolve this problem, the GDPR introduces a one-stop-shop competence mechanism that shall make only one national Supervisory Authority responsible for a case.
 Global entities have placed much hope on this mechanism as to simplify their interactions with the Supervisory Authorities.5 However, the clear and simple competence mechanism provided for in the first draft of the GDPR in 2012 turned into a differentiated coordination and consistency mechanism under the Regulation's legal framework.6 Thus, entities might still struggle to determine which national Supervisory Authority shall serve as their contact point within the EU.
 
@@ -3046,7 +3052,7 @@ is upheld (see Sect. 6.4), the one-stop-shop mechanism does not come into effect
 6.3 Determination of the Competent Lead Supervisory Authority
 Given the new one-stop-shop mechanism, global entities might be subject to a change as to their competent Supervisory Authority. In this regard, it is important for these entities to determine said authority as their future contact point in a timely fashion. The fulfilment of various organizational requirements under the GDPR will require a (prior) interaction with the competent Supervisory Authority that has to be initiated by the respective controller/processor, such as their notification obligation in case of data breaches (see Sect. 3.8.2), a possible consultation of the Supervisory Authorities within the scope of a Data Protection Impact Assessment (see Sect. 3.5.2.4) or the communication of the contact details of an entity's Data Protection Officer (see Sect. 3.6.1).
 Pursuant to Art. 56 Sec. 1 GDPR, the national Supervisory Authority of
-­ the main establishment, or ­ the single establishment of the controller/processor
+ï¿½ the main establishment, or ï¿½ the single establishment of the controller/processor
 shall be competent to act as Lead Supervisory Authority. Thus, in case of processing activities that affect different EU Member States, an entity's main establishment must be determined.
 
 6.3.1 Determination Based on an Entity's Main Establishment
@@ -3058,8 +3064,8 @@ In order to single out the Lead Supervisory Authority where an entity has severa
 193
 
 According to Art. 4 No. 16 GDPR, `main establishment' means:
-­ as regards a controller with establishments in multiple EU Member States, the place of its central administration in the EU, unless the decisions on the purposes and means of the processing of personal data are taken in another EU establishment of the controller and the latter establishment has the power to have such decisions implemented, in which case the establishment having taken such decisions is considered to be the main establishment;
-­ as regards a processor with establishments in multiple EU Member States, the place of its central administration in the EU, or, if the processor has no central administration in the EU, the EU establishment of the processor where the main processing activities in the context of the activities of an establishment of the processor take place to the extent that the processor is subject to specific obligations under GDPR.
+ï¿½ as regards a controller with establishments in multiple EU Member States, the place of its central administration in the EU, unless the decisions on the purposes and means of the processing of personal data are taken in another EU establishment of the controller and the latter establishment has the power to have such decisions implemented, in which case the establishment having taken such decisions is considered to be the main establishment;
+ï¿½ as regards a processor with establishments in multiple EU Member States, the place of its central administration in the EU, or, if the processor has no central administration in the EU, the EU establishment of the processor where the main processing activities in the context of the activities of an establishment of the processor take place to the extent that the processor is subject to specific obligations under GDPR.
 In cases involving both controller and processor, the competent Lead Supervisory Authority shall be the one of the EU Member State where the controller has its main establishment, but the--under Art. 4 No. 16 GDPR--competent Supervisory Authority of the processor should be included into the proceedings by way of the cooperation mechanism (see Sect. 6.4).14
 Example
 Entity A has its central administration in Germany and has two branches in Spain and in the Netherlands. All processing activities are carried out in Germany where, in addition, the purposes and means of processing are determined.
@@ -3080,7 +3086,7 @@ Groups of Undertakings Based on the lacking intra-group privilege for large corp
 Still, in practice, the controlled group entities often independently determine the purposes and means of processing. Inter alia, the controlled group entities will often be responsible for processing activities in a purely local context (see Sect. 6.3.3). Thus, they are likely to each qualify as main establishment regarding the respective processing activities, which leads to the competence of the Supervisory Authorities of the respective EU Member States where the group entities take the decisions on processing. In such a case, as different group entities qualify as main establishment, the one-stop-shop mechanism will not apply.19 Each group entity will have to interact with the Supervisory Authority that is competent for the entity's processing activities. International corporations should be aware of this practical shortcoming of the one-stop-shop mechanism as they especially hoped for procedural simplifications under this instrument.20
 As a consequence of complex corporate structures and the allocation of responsibilities between multiple entities being involved in processing, the determination of the competent Lead Supervisory Authority might involve a more
 
-16Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 33. 17Rec. 37 GDPR. 18Rec. 36 GDPR. 19Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 37. 20Bayrisches Landesamt für Datenschutzaufsicht (2016).
+16Example drawn from Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 33. 17Rec. 37 GDPR. 18Rec. 36 GDPR. 19Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 37. 20Bayrisches Landesamt fï¿½r Datenschutzaufsicht (2016).
 
 6.3 Determination of the Competent Lead Supervisory Authority
 
@@ -3090,8 +3096,8 @@ detailed assessment of the controlling/processing entity in question. In this re
 
 6.3.2 Determination in the Absence of an EU Establishment
 The GDPR does not provide for rules on how to determine the competent Supervisory Authority where an entity has no establishment in the EU but falls within the scope of application of the GDPR pursuant to the principle of lex loci solutionis under Art. 3 Sec. 2 GDPR (see Sect. 2.3.2 for details). An indicator, such as the main establishment of an entity, is not available, but other criteria for determining the Lead Supervisory Authority could include:
-­ the EU Member State in which the main processing activities in question take place;
-­ in which EU Member States individuals are affected or ­ which EU Member State's Supervisory Authority has specifically received
+ï¿½ the EU Member State in which the main processing activities in question take place;
+ï¿½ in which EU Member States individuals are affected or ï¿½ which EU Member State's Supervisory Authority has specifically received
 complaints by individuals.21
 Nevertheless, it is likely that several national Supervisory Authorities will fulfil these criteria and, thus, be competent pursuant to Art. 55 et seq. GDPR. This could be problematic as regards the one-stop-shop mechanism pursuant to which only one Supervisory Authority shall serve as a contact point for controllers/processors (see Sect. 6.2).22
 In practice, the national Supervisory Authorities should solve this problem by agreeing amongst themselves who should take the lead responsibility or, where an agreement cannot be reached, the European Data Protection Board (see Sect. 6.4.1) should take a decision.23
@@ -3099,20 +3105,20 @@ In practice, the national Supervisory Authorities should solve this problem by a
 6.3.3 Exception: Local Competences
 An exception from the competence of a single Lead Supervisory Authority might arise in certain local cases. Thus, the concentration of competences with a single Lead Supervisory Authority is not absolute.
 Pursuant to Art. 55 Sec. 2 GDPR, where processing is lawful based on
-­ its necessity for compliance with a legal obligation to which the controller is subject, or
+ï¿½ its necessity for compliance with a legal obligation to which the controller is subject, or
 21Art. 29 Data Protection Working Party, WP 191 (2012), p. 19. 22Korffer, in: Paal/Pauly, DSGVO, Art. 56 (2017), rec. 3. 23Art. 29 Data Protection Working Party, WP 191 (2012), p. 19.
 
 196
 
 6 Interaction with the Supervisory Authorities
 
-­ its necessity for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller (see Sect. 4.2.2 for details),
+ï¿½ its necessity for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller (see Sect. 4.2.2 for details),
 there will be no Lead Supervisory Authority but the Supervisory Authority of the EU Member State concerned shall be competent.24 This is due to the fact that such processing will be linked to national legislation or necessities.
 Furthermore, pursuant to Art. 56 Sec. 2 GDPR, each national Supervisory Authority shall be competent if the subject matter relates only to an establishment in its EU Member State or substantially affects data subjects only there. This derogation allows for an uncomplicated and efficient handling of local cases and enhances the proximity of the competent Supervisory Authorities to its cases.25 In such a case, non-leading Supervisory Authorities might be competent.
 Example
-­ A Danish entity, targeting customers in Denmark and Germany, uses video surveillance for its premises in Denmark. As the entity's processing activities concern individuals located in Denmark and Germany, both EU Member States' national Supervisory Authorities are concerned under Art. 51 GDPR and, thus, a Lead Supervisory Authority would usually have to be determined. However, as the surveillance only relates to the Danish office and should primarily affect data subjects there, the Danish Supervisory Authority can handle the case.
-­ Processing concerns employees' personal data in the specific employment context of an EU Member State. In such cases, even though entities might be part of a group of undertakings with group entities in different countries, each local entity will usually conclude its own employment contract with its local employees and, subsequently, determine the purposes and means of data processing in connection with this contract. In this case, the national Supervisory Authority in the relevant EU Member State might be competent.
-­ An Italian group entity of a large international corporation independently concludes and executes contracts with the corporation's Italian customers, including data processing in connection with these agreements. In this case, the Italian entity is solely in charge of contracts that exclusively affect Italian customers. Thus, the Italian Supervisory Authority might be competent for this local case. However, in case the controlling group entity determines the purposes and means of this processing, a different Supervisory Authority might be competent.26
+ï¿½ A Danish entity, targeting customers in Denmark and Germany, uses video surveillance for its premises in Denmark. As the entity's processing activities concern individuals located in Denmark and Germany, both EU Member States' national Supervisory Authorities are concerned under Art. 51 GDPR and, thus, a Lead Supervisory Authority would usually have to be determined. However, as the surveillance only relates to the Danish office and should primarily affect data subjects there, the Danish Supervisory Authority can handle the case.
+ï¿½ Processing concerns employees' personal data in the specific employment context of an EU Member State. In such cases, even though entities might be part of a group of undertakings with group entities in different countries, each local entity will usually conclude its own employment contract with its local employees and, subsequently, determine the purposes and means of data processing in connection with this contract. In this case, the national Supervisory Authority in the relevant EU Member State might be competent.
+ï¿½ An Italian group entity of a large international corporation independently concludes and executes contracts with the corporation's Italian customers, including data processing in connection with these agreements. In this case, the Italian entity is solely in charge of contracts that exclusively affect Italian customers. Thus, the Italian Supervisory Authority might be competent for this local case. However, in case the controlling group entity determines the purposes and means of this processing, a different Supervisory Authority might be competent.26
 
 24Under this provision, the same derogation applies to processing carried out by public authorities. 25Nguyen, ZD 2015, 265, 267. 26Rec. 127 GDPR; Gierschmann, ZD 2016, 51, 52; Nguyen, ZD 2015, 265, 267.
 
@@ -3130,10 +3136,10 @@ competence of the Lead Supervisory Authority are themselves not conclusive.
 As the legal implementation of the one-stop-shop mechanism within the GDPR is rather differentiated and subject to several exceptions, cooperation and consistency mechanisms shall ensure that data processing entities have an easier access to the Supervisory Authorities. Moreover, the exchange between the Supervisory Authorities under these mechanisms shall prevent forum shopping by the data processing entities.29 The detailed functioning of these mechanisms between the different Supervisory Authorities and the European Data Protection Board (EDPB) is not of significant practical importance for the concerned entities. Thus, this chapter shall only illustrate its practically relevant basic features.
 
 6.4.1 European Data Protection Board
-The GDPR establishes a new, independent monitoring body for data protection with legal personality at EU level: the European Data Protection Board (EDPB). The rules on the tasks and organisation of the EDPB are laid down in Arts. 68­76 of the Regulation. According to Art. 68 Sec. 3 GDPR, it shall be composed of the head of one Supervisory Authority of each EU Member State and of the European Data Protection Supervisor. It will be represented by its chair, who will be elected from among its members.30
+The GDPR establishes a new, independent monitoring body for data protection with legal personality at EU level: the European Data Protection Board (EDPB). The rules on the tasks and organisation of the EDPB are laid down in Arts. 68ï¿½76 of the Regulation. According to Art. 68 Sec. 3 GDPR, it shall be composed of the head of one Supervisory Authority of each EU Member State and of the European Data Protection Supervisor. It will be represented by its chair, who will be elected from among its members.30
 The EDPB replaces the Art. 29 Data Protection Working Party31 and, thus, in the future will issue guidelines, recommendations and best practices for the interpretation and application of the GDPR. Moreover, it will play a role as final decisionmaking body within the cooperation and consistency mechanisms.
 
-27Rec. 127 GDPR. 28Rec. 127 GDPR. 29Kühling/Martini, EuZW 2016, 448, 453. 30Arts. 68 Sec. 2, 73 GDPR. 31Rec. 139 GDPR.
+27Rec. 127 GDPR. 28Rec. 127 GDPR. 29Kï¿½hling/Martini, EuZW 2016, 448, 453. 30Arts. 68 Sec. 2, 73 GDPR. 31Rec. 139 GDPR.
 
 198
 
@@ -3141,13 +3147,13 @@ The EDPB replaces the Art. 29 Data Protection Working Party31 and, thus, in the 
 
 6.4.2 Cooperation Mechanism
 
-Under Arts. 60­62 GDPR, the Lead Supervisory Authority cooperates with the other Supervisory Authorities concerned. The goal of the cooperation mechanism is the effective exchange of information between and mutual assistance of the national Supervisory Authorities in order to reach a consensus as to the decision on a certain case.32
+Under Arts. 60ï¿½62 GDPR, the Lead Supervisory Authority cooperates with the other Supervisory Authorities concerned. The goal of the cooperation mechanism is the effective exchange of information between and mutual assistance of the national Supervisory Authorities in order to reach a consensus as to the decision on a certain case.32
 In order to involve all Supervisory Authorities concerned, they shall exchange all relevant information with each other, Art. 60 Sec. 1 GDPR. Before the Lead Supervisory Authority adopts its final decision, it will submit its draft decision to all Supervisory Authorities concerned, who will give their opinions on the decision and can express relevant and reasoned objections. The Lead Supervisory Authority must take due account of their views, and, in case of an objection, it might change its draft decision based on such objection, Art. 60 Sec. 4 GDPR. The cooperation mechanism will lead to a final decision adopted by a single Supervisory Authority (the Lead Supervisory Authority) that will, nevertheless, reflect the opinions of all Supervisory Authorities concerned.
 In the unlikely event that the Supervisory Authorities will not reach a consensus pursuant to an objection as the Lead Supervisory Authority decides not to follow an objection that has been made, the consistency mechanism will be triggered and a final decision will be taken by the EDPB, Art. 60 Sec. 4 GDPR. In such a case, proceedings might be pending for a longer time and the concerned entities might face legal uncertainties until a final decision is taken.
 It should be noted that the involved Supervisory Authorities might decide to split up the bundled proceedings under the responsibility of the Lead Supervisory Authority in such a way, that the Lead Supervisory Authority as well as the Supervisory Authorities concerned adopt own decisions regarding separate parts of the proceedings, Art. 60 Sec. 9 GDPR. In such a case, the one-stop-shop mechanism only comes into play in a limited manner, as the Supervisory Authorities concerned might adopt own decisions for such parts of the proceedings that relate to their respective territory.
 
 6.4.3 Consistency Mechanism
-The consistency mechanism under the responsibility of the EDPB pursuant to Arts. 63­67 GDPR shall be the ultima ratio. It shall contribute to the consistent application of the GDPR throughout the EU, Art. 63 GDPR. The consistency mechanism shall only be triggered where the cooperation between the concerned Supervisory Authorities cannot lead to a consensus.33 The EDPB will then issue opinions and binding decisions to resolve disagreements between the concerned Supervisory Authorities (Arts. 64, 65 GDPR). The consistency mechanism should, in particular,
+The consistency mechanism under the responsibility of the EDPB pursuant to Arts. 63ï¿½67 GDPR shall be the ultima ratio. It shall contribute to the consistent application of the GDPR throughout the EU, Art. 63 GDPR. The consistency mechanism shall only be triggered where the cooperation between the concerned Supervisory Authorities cannot lead to a consensus.33 The EDPB will then issue opinions and binding decisions to resolve disagreements between the concerned Supervisory Authorities (Arts. 64, 65 GDPR). The consistency mechanism should, in particular,
 32Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 39. 33Rec. 138 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Aufsichtsbehorden (2016), rec. 41.
 
 References
@@ -3158,17 +3164,17 @@ apply in cases where measures by the authorities will concern processing operati
 
 References
 Art. 29 Data Protection Working Party (2012) Opinion 1/2012 on the data protection reform proposals, WP 191
-Bayrisches Landesamt für Datenschutzaufsicht (2016) Der One Stop Shop. https://www.lda. bayern.de/media/baylda_ds-gvo_13_one_stop_shop.pdf. Accessed 16 Feb 2017
-Dehmel S, Hullen N (2013) Auf dem Weg zu einem zukunftsfa¨higen Datenschutz in Europa? ZD, pp 147­153
-Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? ­ Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51­55
+Bayrisches Landesamt fï¿½r Datenschutzaufsicht (2016) Der One Stop Shop. https://www.lda. bayern.de/media/baylda_ds-gvo_13_one_stop_shop.pdf. Accessed 16 Feb 2017
+Dehmel S, Hullen N (2013) Auf dem Weg zu einem zukunftsfaï¿½higen Datenschutz in Europa? ZD, pp 147ï¿½153
+Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? ï¿½ Mehr Pflichten, aber die Rechtsunsicherheit bleibt, ZD, pp 51ï¿½55
 Korffer B (2017) Art. 56 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H. Beck, Munich
-Kühling J, Martini M (2016) Die Datenschutz-Grundverordnung: Revolution oder Evolution im europa¨ischen und deutschen Datenschutzrecht? EuZW, pp 448­454
+Kï¿½hling J, Martini M (2016) Die Datenschutz-Grundverordnung: Revolution oder Evolution im europaï¿½ischen und deutschen Datenschutzrecht? EuZW, pp 448ï¿½454
 Laue P, Nink J, Kremer S (eds) (2016) Zusammenarbeit mit Aufsichtsbehorden. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden
-Nguyen AM (2015) Die zukünftige Datenschutzaufsicht in Europa. ZD, pp 265­270 Schantz P (2016) Die Datenschutz-Grundverordnung ­ Beginn einer neuen Zeitrechnung im
-Datenschutzrecht. NJW, pp 1841­1847 von dem Bussche AF, Zeiter A (2016) Practitioner's corner ­ implementing the EU general data
-protection regulation: a business perspective. EDPL (4): 576­581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EU-
-Datenschutz-Grundverordnung durch Unternehmen. DB, pp 1359­1365 von Lewinski K, Herrmann C (2016) Cloud vs. Cloud ­ Datenschutz im Binnenmarkt. ZD, pp
-467­474
+Nguyen AM (2015) Die zukï¿½nftige Datenschutzaufsicht in Europa. ZD, pp 265ï¿½270 Schantz P (2016) Die Datenschutz-Grundverordnung ï¿½ Beginn einer neuen Zeitrechnung im
+Datenschutzrecht. NJW, pp 1841ï¿½1847 von dem Bussche AF, Zeiter A (2016) Practitioner's corner ï¿½ implementing the EU general data
+protection regulation: a business perspective. EDPL (4): 576ï¿½581 von dem Bussche AF, Zeiter A, Brombach T (2016) Die Umsetzung der Vorgaben der EU-
+Datenschutz-Grundverordnung durch Unternehmen. DB, pp 1359ï¿½1365 von Lewinski K, Herrmann C (2016) Cloud vs. Cloud ï¿½ Datenschutz im Binnenmarkt. ZD, pp
+467ï¿½474
 
 34Rec. 135 GDPR.
 
@@ -3180,10 +3186,10 @@ As mentioned throughout this handbook, fines under the GDPR have been considerab
 
 7.1 Tasks and Investigative Powers of the Supervisory Authorities
 The Supervisory Authorities' tasks have been considerably expanded and are set out in detail in the GDPR.2 Under Art. 57 GDPR, those tasks can be classified into two categories for simplification:
-­ tasks that serve the immediate protection of the data subject's rights and freedoms, such as monitoring and enforcing the application of the Regulation pursuant to Art. 57 Sec. 1 lit. a GDPR; and
-­ tasks that shall indirectly serve this purpose, such as promoting public awareness for data protection, providing information and advice to the different parties concerned or cooperating with other Supervisory Authorities under the cooperation and consistency mechanisms (see Sect. 6.4).3
+ï¿½ tasks that serve the immediate protection of the data subject's rights and freedoms, such as monitoring and enforcing the application of the Regulation pursuant to Art. 57 Sec. 1 lit. a GDPR; and
+ï¿½ tasks that shall indirectly serve this purpose, such as promoting public awareness for data protection, providing information and advice to the different parties concerned or cooperating with other Supervisory Authorities under the cooperation and consistency mechanisms (see Sect. 6.4).3
 
-1Rec. 11 GDPR. 2For the Supervisory Authorities' tasks under the former legal framework, see Art. 28 Sec. 1 Data Protection Directive. 3Nguyen, ZD 2015, 265, 269; Hullen, in: Plath, BDSG/DSGVO, Art. 57 (2016), recs. 1­3.
+1Rec. 11 GDPR. 2For the Supervisory Authorities' tasks under the former legal framework, see Art. 28 Sec. 1 Data Protection Directive. 3Nguyen, ZD 2015, 265, 269; Hullen, in: Plath, BDSG/DSGVO, Art. 57 (2016), recs. 1ï¿½3.
 
 # Springer International Publishing AG 2017
 
@@ -3205,17 +3211,17 @@ In order to enable the Supervisory Authorities to fulfil their new or extended t
 However, Art. 58 Sec. 6 GDPR contains an opening clause enabling each EU Member State to introduce additional powers in its national legislation. Thus, it remains to be seen whether the diversity of enforcement powers in the EU Member States might persist to a certain extent.
 
 7.1.2 Scope of Investigative Powers
-The scope of investigative powers under Art. 58 Sec. 1 GDPR is widely consistent--apart from the greater level of detail--with the one under the Data Protection Directive.7 Under Art. 58 Sec. 1 lits. a­f GDPR, each national Supervisory Authority shall have the investigative powers to
-­ order the controller, processor and, where applicable, their respective EU representative (see Sect. 4.3.8) to provide any information required for the performance of the Supervisory Authority's tasks: this power is mirrored by the data processing entities' general obligation to cooperate with the Supervisory Authorities under Art. 31 GDPR (see Sect. 3.2.3). The emergence of this
+The scope of investigative powers under Art. 58 Sec. 1 GDPR is widely consistent--apart from the greater level of detail--with the one under the Data Protection Directive.7 Under Art. 58 Sec. 1 lits. aï¿½f GDPR, each national Supervisory Authority shall have the investigative powers to
+ï¿½ order the controller, processor and, where applicable, their respective EU representative (see Sect. 4.3.8) to provide any information required for the performance of the Supervisory Authority's tasks: this power is mirrored by the data processing entities' general obligation to cooperate with the Supervisory Authorities under Art. 31 GDPR (see Sect. 3.2.3). The emergence of this
 4Gierschmann, ZD 2016, 51, 55; Hullen, in: Plath, BDSG/DSGVO, Art. 57 (2016), rec. 2. 5Art. 28 Sec. 3 Data Protection Directive: `Each authority shall in particular be endowed with [. . .] investigative powers, such as powers of access to data [. . .], effective powers of intervention, such as, for example [. . .].' 6Art. 29 Data Protection Working Party, WP 168 (2009), p. 22; Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 1. 7Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 5.
 
 7.1 Tasks and Investigative Powers of the Supervisory Authorities
 
 203
 
-investigative power requires factual indications that data processing activities are being carried out by the entity in question.8 The power permits investigations on processing activities performed on personal data that fall within the scope of application of the GDPR (see Sect. 2.1) but also includes requests for general information on the entity's data processing organisation, meaning the technical and organisational procedures that form the basis for data processing.9 The scope of required information will be set by the requesting Supervisory Authority with respect to its object of investigation. The Supervisory Authority will have to communicate said object, as well as intent and purpose of the request, to the concerned entity.10 The provision explicitly commits controllers/processors and their EU representatives to provide information but, as regards legal persons, also commits their organs and representatives.11 The entities are not legally obliged to provide information in a certain form; thus, they might do so orally, in writing or by providing a digital file12; ­ carry out investigations in the form of data protection audits: the Supervisory Authorities will determine the scope of and the reason for the data protection audit as both are not prescribed by law.13 Such audit might be carried out at the business premises of the controller/processor, which would be covered by the investigative power under Art. 58 Sec. 1 lit. f GDPR, through gaining access to the IT systems of the respective entity or through comprehensive requests for information14; ­ carry out reviews on Certifications (see Sect. 3.9); ­ notify the controller/processor of an alleged infringement of the GDPR: the exercise of the other investigative powers by the Supervisory Authorities could be linked to the occurrence of a certain incident that has been qualified as possible infringement of the GDPR. In such a case, this should be notified to the respective entity in the course of such investigation15; ­ obtain from the controller/processor access to all personal data and to all information necessary for the performance of the Supervisory Authority's tasks; ­ obtain access to any premises of the controller/processor, including to any data processing equipment and means, in accordance with EU or EU Member State procedural law: this provision gives Supervisory Authorities the power to carry
+investigative power requires factual indications that data processing activities are being carried out by the entity in question.8 The power permits investigations on processing activities performed on personal data that fall within the scope of application of the GDPR (see Sect. 2.1) but also includes requests for general information on the entity's data processing organisation, meaning the technical and organisational procedures that form the basis for data processing.9 The scope of required information will be set by the requesting Supervisory Authority with respect to its object of investigation. The Supervisory Authority will have to communicate said object, as well as intent and purpose of the request, to the concerned entity.10 The provision explicitly commits controllers/processors and their EU representatives to provide information but, as regards legal persons, also commits their organs and representatives.11 The entities are not legally obliged to provide information in a certain form; thus, they might do so orally, in writing or by providing a digital file12; ï¿½ carry out investigations in the form of data protection audits: the Supervisory Authorities will determine the scope of and the reason for the data protection audit as both are not prescribed by law.13 Such audit might be carried out at the business premises of the controller/processor, which would be covered by the investigative power under Art. 58 Sec. 1 lit. f GDPR, through gaining access to the IT systems of the respective entity or through comprehensive requests for information14; ï¿½ carry out reviews on Certifications (see Sect. 3.9); ï¿½ notify the controller/processor of an alleged infringement of the GDPR: the exercise of the other investigative powers by the Supervisory Authorities could be linked to the occurrence of a certain incident that has been qualified as possible infringement of the GDPR. In such a case, this should be notified to the respective entity in the course of such investigation15; ï¿½ obtain from the controller/processor access to all personal data and to all information necessary for the performance of the Supervisory Authority's tasks; ï¿½ obtain access to any premises of the controller/processor, including to any data processing equipment and means, in accordance with EU or EU Member State procedural law: this provision gives Supervisory Authorities the power to carry
 
-8See also Brink, in: Wolff/Brink, BeckOK, § 38 (2016), rec. 57. 9Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 7; see also Brink, in: Wolff/Brink, BeckOK, § 38 (2016), rec. 57. 10See also Plath, in: Plath, BDSG/DSGVO, § 38 (2016), rec. 44. 11Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 7. 12Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 9. 13Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 10. 14Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 10. 15Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 12.
+8See also Brink, in: Wolff/Brink, BeckOK, ï¿½ 38 (2016), rec. 57. 9Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 7; see also Brink, in: Wolff/Brink, BeckOK, ï¿½ 38 (2016), rec. 57. 10See also Plath, in: Plath, BDSG/DSGVO, ï¿½ 38 (2016), rec. 44. 11Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 7. 12Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 9. 13Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 10. 14Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 10. 15Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), rec. 12.
 
 204
 
@@ -3243,12 +3249,12 @@ So far, rules on liability of data processing entities were provided for by the 
 Directive.24 Article 82 GDPR, providing for a right to compensation and liability, introduces some significant legal changes. For the first time, the processor can be directly held liable for a violation of its obligations under the GDPR (see Sect. 3.10). Thus, all entities involved in data processing may potentially be held liable in future.
 
 7.2.1 Right to Claim Compensation
-Article 82 ­ Right to compensation and liability
+Article 82 ï¿½ Right to compensation and liability
 1. Any person who has suffered material or non-material damage as a result of an infringement of this Regulation shall have the right to receive compensation from the controller or processor for the damage suffered.
 [. . .]
 Article 82 GDPR provides for a comprehensive right to compensation for any damage--material or non-material--suffered from an infringement of the GDPR. The claim is not restricted to certain phases of data processing or certain processing activities.25 Moreover, the notion infringement of the GDPR is to be interpreted in a broad manner and, thus, includes processing that violates delegated and implementing acts adopted in accordance with the GDPR, as well as EU Member State law specifying rules of the GDPR.26 In that respect, entities should be especially observant as regards the existence of national peculiarities (see Chap. 8).
 Damage `Damage' under Art. 82 Sec. 1 GDPR explicitly includes material and non-material damages as the consequences of data breaches can vary widely and are often of intangible nature, such as social discrimination, psychological stress or barriers to the free personality development.27 Individuals should receive full and effective compensation for the damage they have suffered.28 Moreover, the concept of damage should be broadly interpreted in the light of the case-law of the European Court of Justice.29 In line with its established jurisprudence, the ECJ is
-24Pursuant to Art. 23 Sec. 1 Data Protection Directive, EU Member States should provide that any person who has suffered damage as a result of an unlawful processing operation or of any act incompatible with the national provisions adopted pursuant to the Directive is entitled to receive compensation from the controller for the damage suffered. Pursuant to Art. 23 Sec. 2 of the Directive, the controller could be exempted from its liability, in whole or in part, if it proved that it was not responsible for the event giving rise to the damage. 25Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 4. 26Rec. 146 GDPR. 27See also Quaas, in: Wolff/Brink, BeckOK, § 7 (2016), rec. 56; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 6. 28Rec. 146 GDPR. 29Rec. 146 GDPR.
+24Pursuant to Art. 23 Sec. 1 Data Protection Directive, EU Member States should provide that any person who has suffered damage as a result of an unlawful processing operation or of any act incompatible with the national provisions adopted pursuant to the Directive is entitled to receive compensation from the controller for the damage suffered. Pursuant to Art. 23 Sec. 2 of the Directive, the controller could be exempted from its liability, in whole or in part, if it proved that it was not responsible for the event giving rise to the damage. 25Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 4. 26Rec. 146 GDPR. 27See also Quaas, in: Wolff/Brink, BeckOK, ï¿½ 7 (2016), rec. 56; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 6. 28Rec. 146 GDPR. 29Rec. 146 GDPR.
 
 206
 
@@ -3261,7 +3267,7 @@ Due to incorrect, GDPR-infringing data processing by a controller, an individual
 In this example, the dependent may potentially be entitled to claim compensation for its material damages (non-payment of the maintenance) directly from the controller under the condition of a causal link between the controller's infringement of the GDPR and the dependent's damage. In this case, there may exist a causal link between, on one hand, the maintenance creditor losing his job and his subsequent inability to pay maintenance and, on the other hand, the processing carried out by the controller, as the latter caused the former.34
 EU Member State Law Data processing entities should be aware that the right to claim compensation under Art. 82 GDPR is without prejudice to any claims for damages deriving from the violation of other rules in EU or EU Member State law.35 Thus, they might be facing further claims under national civil law such a based on contractual, tort or other grounds.36
 
-30Exemplarily ECJ, ruling of 17 December 2015, Arjona Camacho, C-407/14, rec. 31; Schantz, NJW 2016, 1841, 1847; Wybitul, ZD 2016, 253, 253. 31Schantz, NJW 2016, 1841, 1847. 32Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 11. 33Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 7; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 7; Quaas, in: Wolff/Brink, BeckOK, Art. 82 (2016), rec. 37; disapprovingly see Becker, in: Plath, BDSG/DSGVO, Art. 82 (2016), rec. 2. 34Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 7. 35Rec. 146 GDPR. 36See also Quaas, in: Wolff/Brink, BeckOK, § 7 (2016), rec. 9; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 15.
+30Exemplarily ECJ, ruling of 17 December 2015, Arjona Camacho, C-407/14, rec. 31; Schantz, NJW 2016, 1841, 1847; Wybitul, ZD 2016, 253, 253. 31Schantz, NJW 2016, 1841, 1847. 32Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 11. 33Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 7; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 7; Quaas, in: Wolff/Brink, BeckOK, Art. 82 (2016), rec. 37; disapprovingly see Becker, in: Plath, BDSG/DSGVO, Art. 82 (2016), rec. 2. 34Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 7. 35Rec. 146 GDPR. 36See also Quaas, in: Wolff/Brink, BeckOK, ï¿½ 7 (2016), rec. 9; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 15.
 
 7.2 Civil Liability
 
@@ -3269,7 +3275,7 @@ EU Member State Law Data processing entities should be aware that the right to c
 
 7.2.2 Liable Parties
 
-Article 82 ­ Right to compensation and liability
+Article 82 ï¿½ Right to compensation and liability
 [. . .]
 2. Any controller involved in processing shall be liable for the damage caused by processing which infringes this Regulation. A processor shall be liable for the damage caused by processing only where it has not complied with obligations of this Regulation specifically directed to processors or where it has acted outside or contrary to lawful instructions of the controller.
 [. . .]
@@ -3294,7 +3300,7 @@ In this example, the controller fulfilled its obligations under the GDPR but, de
 
 7.3 Administrative Sanctions and Fines
 In order to enforce compliance with the GDPR, the Supervisory Authority has different corrective powers that it might exercise against the controller/processor in case of an (alleged) infringement of the GDPR. One of these measures is the
-41Art. 23 Sec. 2 Data Protection Directive: `The controller may be exempted from this liability, in whole or in part, if he proves that he is not responsible for the event giving rise to the damage.' 42Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 9; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15. 43See also Simitis, in: Simitis, BDSG, § 7 (2014), rec. 25; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15. 44Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15.
+41Art. 23 Sec. 2 Data Protection Directive: `The controller may be exempted from this liability, in whole or in part, if he proves that he is not responsible for the event giving rise to the damage.' 42Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 9; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15. 43See also Simitis, in: Simitis, BDSG, ï¿½ 7 (2014), rec. 25; Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15. 44Frenzel, in: Paal/Pauly, DSGVO, Art. 82 (2017), rec. 15.
 
 7.3 Administrative Sanctions and Fines
 
@@ -3304,28 +3310,28 @@ imposition of administrative fines. Article 83 GDPR lays down the general condit
 The GDPR's provisions on administrative fines are not conclusive as the EU Member States' law will govern the exercise by the Supervisory Authority of its powers to impose fines, including effective judicial remedy and due process, Art. 83 Secs. 8, 9 GDPR. Moreover, EU Member States may introduce other penalties-- criminal or administrative--for infringements of the GDPR into their national legislation, Art. 84 GDPR.46
 
 7.3.1 Corrective Powers of the Supervisory Authorities
-Under Art. 58 Sec. 2 lits a­j GDPR, the Supervisory Authorities have different corrective powers to react to (alleged) infringements of the GDPR. These powers are to:
-­ issue warnings to a controller/processor whose intended processing activities are likely to infringe the GDPR;
-­ issue reprimands to a controller/processor whose intended processing activities are likely to infringe the GDPR.
+Under Art. 58 Sec. 2 lits aï¿½j GDPR, the Supervisory Authorities have different corrective powers to react to (alleged) infringements of the GDPR. These powers are to:
+ï¿½ issue warnings to a controller/processor whose intended processing activities are likely to infringe the GDPR;
+ï¿½ issue reprimands to a controller/processor whose intended processing activities are likely to infringe the GDPR.
 These two instruments constitute the least severe sanctions as they do not trigger any direct obligations for the controller/processor to cease or alter their processing activities.47 These instruments can only be used by the Supervisory Authorities if infringements of the GDPR have not been proven yet. The other corrective powers are to:
-­ order the controller/processor to comply with the data subject's requests to exercise its rights under the GDPR (see Chap. 5);
-­ order the controller/processor to bring processing operations into compliance with the GDPR, where appropriate, in a specified manner and within a specified period;
-­ order the controller to communicate a personal data breach to the data subject (see Sect. 3.8.3);
-45For instance, in Germany, the maximum amount of administrative fines for breaches of data protection law was EUR 300,000.00, § 43 Sec. 3 BDSG. In France, the maximum amount of administrative fines was EUR 3,000,000.00, Art. 47 Loi 78-17 du 6 janvier 1978 (modifie´e). 46Rec. 152 GDPR. 47Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 12; Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), recs. 17­18.
+ï¿½ order the controller/processor to comply with the data subject's requests to exercise its rights under the GDPR (see Chap. 5);
+ï¿½ order the controller/processor to bring processing operations into compliance with the GDPR, where appropriate, in a specified manner and within a specified period;
+ï¿½ order the controller to communicate a personal data breach to the data subject (see Sect. 3.8.3);
+45For instance, in Germany, the maximum amount of administrative fines for breaches of data protection law was EUR 300,000.00, ï¿½ 43 Sec. 3 BDSG. In France, the maximum amount of administrative fines was EUR 3,000,000.00, Art. 47 Loi 78-17 du 6 janvier 1978 (modifieï¿½e). 46Rec. 152 GDPR. 47Hullen, in: Plath, BDSG/DSGVO, Art. 58 (2016), rec. 12; Korffer, in: Paal/Pauly, DSGVO, Art. 58 (2017), recs. 17ï¿½18.
 
 210
 
 7 Enforcement and Fines Under the GDPR
 
-­ impose a temporary or definitive limitation, including a ban on processing; ­ order the rectification, erasure or restriction of processing of personal data
-pursuant to Arts. 16­18 GDPR and the notification of such actions to recipients to whom the personal data have been disclosed pursuant to Arts. 17 Sec. 2, 19 GDPR (see Sect. 5.5); ­ withdraw a Certification or order the certification body to do so or order the certification body not to issue a Certification if the necessary requirements are not/no longer met (see Sect. 3.9); ­ impose an administrative fine pursuant to Art. 83 GDPR, in addition to, or instead of other corrective measures referred to above, depending on the circumstances of each individual case. As the EU legislator apparently gives preference to administrative fines over other reprimands, entities should try to avoid sanctioning and diligently act upon the instructions of Supervisory Authorities (see Sect. 7.3.5)48; ­ order the suspension of data flows to third country recipients.
+ï¿½ impose a temporary or definitive limitation, including a ban on processing; ï¿½ order the rectification, erasure or restriction of processing of personal data
+pursuant to Arts. 16ï¿½18 GDPR and the notification of such actions to recipients to whom the personal data have been disclosed pursuant to Arts. 17 Sec. 2, 19 GDPR (see Sect. 5.5); ï¿½ withdraw a Certification or order the certification body to do so or order the certification body not to issue a Certification if the necessary requirements are not/no longer met (see Sect. 3.9); ï¿½ impose an administrative fine pursuant to Art. 83 GDPR, in addition to, or instead of other corrective measures referred to above, depending on the circumstances of each individual case. As the EU legislator apparently gives preference to administrative fines over other reprimands, entities should try to avoid sanctioning and diligently act upon the instructions of Supervisory Authorities (see Sect. 7.3.5)48; ï¿½ order the suspension of data flows to third country recipients.
 
 7.3.2 Grounds for and Amounts of Administrative Fines
 Based on the statutory maximum amount of administrative fines, there are two categories of infringements of the GDPR.
 Article 83 Sec. 4 GDPR Under Art. 83 Sec. 4 GDPR, the following infringements shall be subject to administrative fines of up to EUR 10,000,000.00 or, in the case of an undertaking, up to 2% of the total worldwide annual turnover of the preceding financial year, whichever is higher:
-· the obligations of controller and processor in connection with ­ the conditions for a child's consent under Art. 8 GDPR (see Sect. 4.2.1.6); ­ Art. 11 GDPR, pursuant to which a controller that does not or no longer require the identification of a data subject for its processing purposes shall not be obliged to maintain, acquire or process the additional information that would allow an identification; ­ the organizational requirements for processing under Arts. 25 to 39 GDPR (see Chap. 3); ­ data protection Certifications under Arts. 42, 43 GDPR (see Sect. 3.9);
-· the obligations of the certification body pursuant to Arts. 42, 43 GDPR (see Sect. 3.9.3.3);
-· the obligations of the monitoring body for Codes of Conduct pursuant to Art. 41 Sec. 4 GDPR (see Sect. 3.9.2.3).
+ï¿½ the obligations of controller and processor in connection with ï¿½ the conditions for a child's consent under Art. 8 GDPR (see Sect. 4.2.1.6); ï¿½ Art. 11 GDPR, pursuant to which a controller that does not or no longer require the identification of a data subject for its processing purposes shall not be obliged to maintain, acquire or process the additional information that would allow an identification; ï¿½ the organizational requirements for processing under Arts. 25 to 39 GDPR (see Chap. 3); ï¿½ data protection Certifications under Arts. 42, 43 GDPR (see Sect. 3.9);
+ï¿½ the obligations of the certification body pursuant to Arts. 42, 43 GDPR (see Sect. 3.9.3.3);
+ï¿½ the obligations of the monitoring body for Codes of Conduct pursuant to Art. 41 Sec. 4 GDPR (see Sect. 3.9.2.3).
 48von dem Bussche/Zeiter, EDPL 2016, 576, 581; rec. 148 GDPR. Pursuant to the latter, in case of minor infringements of the GDPR, a reprimand may be issued instead of a fine.
 
 7.3 Administrative Sanctions and Fines
@@ -3333,17 +3339,17 @@ Article 83 Sec. 4 GDPR Under Art. 83 Sec. 4 GDPR, the following infringements sh
 211
 
 Article 83 Sec. 5 GDPR Under Art. 83 Sec. 5 GDPR, the following infringements shall be subject to administrative fines of up to EUR 20,000,000.00 or, in the case of an undertaking, up to 4% of the total worldwide annual turnover of the preceding financial year, whichever is higher:
-· the basic principles for processing, including conditions for consent and processing of special categories of personal data, pursuant to Arts. 5, 6, 7, 9 GDPR (see Sects. 4.1 to 4.2.3.1);
-· the data subjects' rights pursuant to Arts. 12 to 22 (see Chap. 5); · the rules on international data transfers pursuant to Arts. 44 to 49 GDPR (see
-Sect. 4.3); · any obligation pursuant to EU Member State law adopted under the opening
-clauses in Chapter IX of the GDPR (see Chap. 8); · non-compliance with an order/temporary or definitive limitation on processing
+ï¿½ the basic principles for processing, including conditions for consent and processing of special categories of personal data, pursuant to Arts. 5, 6, 7, 9 GDPR (see Sects. 4.1 to 4.2.3.1);
+ï¿½ the data subjects' rights pursuant to Arts. 12 to 22 (see Chap. 5); ï¿½ the rules on international data transfers pursuant to Arts. 44 to 49 GDPR (see
+Sect. 4.3); ï¿½ any obligation pursuant to EU Member State law adopted under the opening
+clauses in Chapter IX of the GDPR (see Chap. 8); ï¿½ non-compliance with an order/temporary or definitive limitation on processing
 or the suspension of data flows by the Supervisory Authority pursuant to Art. 58 Sec. 2 GDPR or failure to provide the latter access to information in violation of Art. 58 Sec. 1 GDPR (see Sect. 7.3.1).
 Amount of Fines in Case of Multiple Infringements It should be noted that, under Art. 83 Sec. 3 GDPR, if a controller/processor infringes several provisions of the GDPR intentionally or negligently for the same or linked processing operations, the total amount of the administrative fine shall not exceed the amount specified by law for the gravest infringement. Thus, the amount of fines should never exceed EUR 20,000,000.00 or 4% of the total worldwide annual turnover. This limitation of the total amount should apply to processing operations, including by automated means, which concern a large number of individuals as the unlawfulness of such processing would entail separate infringements of the GDPR towards each individual concerned.49
 
 7.3.3 Imposition of Fines, Including Mitigating Factors
 Fines can be imposed for the grounds enumerated in Art. 83 Secs. 4, 5 GDPR (see Sect. 7.3.2 above) under the condition that the infringement was committed intentionally or at least negligently by the controller/processor in question.50
 The specific amount of the fine will be determined by the Supervisory Authorities on a case-by-case basis.51 According to Art. 83 Sec. 1 GDPR, each Supervisory
-49Frenzel, in: Paal/Pauly, DSGVO, Art. 83 (2017), rec. 16. 50Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 11; Holla¨nder, in: Wolff/Brink, BeckOK, Art. 83 (2016), recs. 17­18; Frenzel, in: Paal/Pauly, DSGVO, Art. 83 (2017), rec. 14. 51Please note that the legal systems of the EU Member States Denmark and Estonia do not allow for such imposition of administrative fines by the Supervisory Authorities, for details see Recital 151 of the Regulation.
+49Frenzel, in: Paal/Pauly, DSGVO, Art. 83 (2017), rec. 16. 50Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 11; Hollaï¿½nder, in: Wolff/Brink, BeckOK, Art. 83 (2016), recs. 17ï¿½18; Frenzel, in: Paal/Pauly, DSGVO, Art. 83 (2017), rec. 14. 51Please note that the legal systems of the EU Member States Denmark and Estonia do not allow for such imposition of administrative fines by the Supervisory Authorities, for details see Recital 151 of the Regulation.
 
 212
 
@@ -3351,14 +3357,14 @@ The specific amount of the fine will be determined by the Supervisory Authoritie
 
 Authority shall ensure that the imposition of administrative fines shall be effective, proportionate and dissuasive in each individual case. Where an individual shall be fined, the Supervisory Authority should take account of the general level of income in the respective EU Member State, as well as the economic situation of the individual in considering the appropriate amount of the fine.52
 When determining the amount of fines, Supervisory Authorities must take the relevant aggravating or mitigating factors into account, such as the following:
-­ nature, gravity and duration of the infringement; ­ the intentional character of the infringement; ­ actions taken to mitigate the damage suffered; ­ degree of responsibility or any relevant previous infringements; ­ the manner in which the infringement became known to the Supervisory
-Authority; ­ compliance with measures ordered against the controller/processor; ­ adherence to a Code of Conduct (see Sect. 3.9).53
+ï¿½ nature, gravity and duration of the infringement; ï¿½ the intentional character of the infringement; ï¿½ actions taken to mitigate the damage suffered; ï¿½ degree of responsibility or any relevant previous infringements; ï¿½ the manner in which the infringement became known to the Supervisory
+Authority; ï¿½ compliance with measures ordered against the controller/processor; ï¿½ adherence to a Code of Conduct (see Sect. 3.9).53
 In order to achieve a reduced amount of administrative fines or avoid them altogether, data processing entities could, where available and feasible, adhere to an approved Code of Conduct. Not only can it serve as a mitigating factor for the calculation of the amount of fines, but it is generally helpful to fulfil the organisational and material obligations under the GDPR as the Code of Conduct will give sector- or product-specific guidelines in this matter (see Sect. 3.9 for details).
 
 7.3.4 Sanctioning of Groups of Undertakings
 When laying down the statutory amount of administrative fines in the GDPR, the EU legislator gave specific consideration to processing carried out by entities. As fines shall have a dissuasive effect, the factor for determining the amount of fines shall be an `undertaking's' total worldwide annual turnover.
 Pursuant to Recital 150 of the GDPR, the notion `undertaking' shall be interpreted in accordance with Arts. 101, 102 of the Treaty on the Functioning of the European Union. These provisions provide for a wide interpretation of the notion that is being used in competition law.54 It is not limited to legal entities but, in the context of competition law, encompasses every entity engaged in an economic activity, regardless of the legal status of the entity and the way in which it is financed.55 Under this definition, groups of undertakings might be considered as a
-52Rec. 150 GDPR. 53Rec. 148 GDPR. 54Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 23. 55ECJ, ruling of 23 April 1991, Hofner and Elser./.Macrotron, C-41/90, rec. 21; Faust/Spittka/ Wybitul, ZD 2016, 120, 120­121.
+52Rec. 150 GDPR. 53Rec. 148 GDPR. 54Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 23. 55ECJ, ruling of 23 April 1991, Hofner and Elser./.Macrotron, C-41/90, rec. 21; Faust/Spittka/ Wybitul, ZD 2016, 120, 120ï¿½121.
 
 7.3 Administrative Sanctions and Fines
 
@@ -3370,10 +3376,10 @@ However, as Recital 150 has no force of law and Art. 4 No. 19 GDPR distinguishes
 7.3.5 Practical Implications
 When receiving requests or instructions of a Supervisory Authority, entities should diligently prepare their response to said Supervisory Authority and evaluate which way to act best upon such request or instruction. As administrative fines can be severe, they should be avoided at all cost. Thus, entities should aim to cooperate with the Supervisory Authorities, inter alia, when providing them with information for investigations (see Sect. 7.1).
 In order to reach an amicable solution, the following methods might be helpful when negotiating with Supervisory Authorities:
-­ Before responding to a Supervisory Authority, entities should collect and include all relevant facts into their response, as well as carry out and include a short legal examination and a potential proposal for addressing the issue in question. Supervisory Authorities might accept such proposal as it would permit them to quickly resolve an issue.
-­ If possible, entities should try to meet in person with the Supervisory Authority in order to discuss further details and avoid or resolve misunderstandings.
+ï¿½ Before responding to a Supervisory Authority, entities should collect and include all relevant facts into their response, as well as carry out and include a short legal examination and a potential proposal for addressing the issue in question. Supervisory Authorities might accept such proposal as it would permit them to quickly resolve an issue.
+ï¿½ If possible, entities should try to meet in person with the Supervisory Authority in order to discuss further details and avoid or resolve misunderstandings.
 In any case, the Data Protection Officer (if existent, see Sect. 3.6) shall be involved in communications with the Supervisory Authorities, as its expertise of the
-56Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 27; Faust/Spittka/Wybitul, ZD 2016, 120, 121­124; Bayrisches Landesamt für Datenschutzaufsicht (2016), p. 2. 57Faust/Spittka/Wybitul, ZD 2016, 120, 124; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 28; disapprovingly Holla¨nder, in: Wolff/Brink, BeckOK, Art. 83 (2016), recs. 12­15; Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 23. 58Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 28.
+56Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 27; Faust/Spittka/Wybitul, ZD 2016, 120, 121ï¿½124; Bayrisches Landesamt fï¿½r Datenschutzaufsicht (2016), p. 2. 57Faust/Spittka/Wybitul, ZD 2016, 120, 124; Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 28; disapprovingly Hollaï¿½nder, in: Wolff/Brink, BeckOK, Art. 83 (2016), recs. 12ï¿½15; Becker, in: Plath, BDSG/DSGVO, Art. 83 (2016), rec. 23. 58Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 28.
 
 214
 
@@ -3402,7 +3408,7 @@ Out-of-Court Remedy As an out-of-court remedy, Art. 77 Sec. 1 GDPR grants data s
 Judicial Remedy Against Supervisory Authorities Under Art. 78 GDPR, the data subject can seek judicial remedy against Supervisory Authorities before the courts. Like the controller/processor, the data subject has the right to contest a legally binding decision of a Supervisory Authority concerning it under Art. 78 Sec. 1 GDPR (see Sect. 7.4.1). Moreover, data subjects have the right to an effective judicial remedy where the competent Supervisory Authority does not handle a complaint or does not inform the data subject within 3 months on the progress or outcome of its complaint under Art. 77 GDPR.
 Judicial Remedy Against Controllers/Processors As regards judicial remedy against a controller/processor, each data subject shall have the right to an effective judicial remedy where it considers that its rights under the GDPR have been infringed as a result of the processing of its personal data in non-compliance with the GDPR, Art. 79 Sec. 1 GDPR. This is without prejudice to
 
-65Nebel, in: Roßnagel, DSGVO, Rechtswege (2017), rec. 115. 66Mundil, in: Wolff/Brink, BeckOK, Art. 78 (2016), rec. 10. 67Korffer, in: Paal/Pauly, DSGVO, Art. 78 (2017), rec. 7; Mundil, in: Wolff/Brink, BeckOK, Art. 78 (2016), rec. 11.
+65Nebel, in: Roï¿½nagel, DSGVO, Rechtswege (2017), rec. 115. 66Mundil, in: Wolff/Brink, BeckOK, Art. 78 (2016), rec. 10. 67Korffer, in: Paal/Pauly, DSGVO, Art. 78 (2017), rec. 7; Mundil, in: Wolff/Brink, BeckOK, Art. 78 (2016), rec. 11.
 
 216
 
@@ -3420,23 +3426,23 @@ It should be noted that the data subject cannot only exercise its rights on its 
 but can also mandate a not-for-profit body, organisation or association to seek judicial or non-judicial remedy on its behalf, Art. 80 GDPR.72 In practice, this might lead to an increased involvement of consumer protection associations, which could build up pressure on controllers/processors to reach compliance with the GDPR as the number of complaints might rise.73
 
 References
-Art. 29 Data Protection Working Party (2009) The Future of Privacy ­ Joint contribution to the Consultation of the European Commission on the legal framework for the fundamental right to protection of personal data, WP 168
-Bayrisches Landesamt für Datenschutzaufsicht (2016) Sanktionen nach der DS-GVO. https:// www.lda.bayern.de/media/baylda_ds-gvo_7_sanctions.pdf. Accessed 6 Apr 2017
-68In the latter case, this is under the condition that the controller/processor in question is not a public authority of the EU Member State acting in the exercise of its public powers. 69Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 35; Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 24­25; Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 16. 70Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 26­28; Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 18. 71Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 18; Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 26­28. 72According to Art. 80 Sec. 1 GDPR, such not-for-profit body must have been properly constituted in accordance with the law of an EU Member State, have statutory objectives which are in the public interest and be active in the field of the protection of data subjects' rights and freedoms with regard to the protection of their personal data. 73Gierschmann, ZD 2016, 51, 53.
+Art. 29 Data Protection Working Party (2009) The Future of Privacy ï¿½ Joint contribution to the Consultation of the European Commission on the legal framework for the fundamental right to protection of personal data, WP 168
+Bayrisches Landesamt fï¿½r Datenschutzaufsicht (2016) Sanktionen nach der DS-GVO. https:// www.lda.bayern.de/media/baylda_ds-gvo_7_sanctions.pdf. Accessed 6 Apr 2017
+68In the latter case, this is under the condition that the controller/processor in question is not a public authority of the EU Member State acting in the exercise of its public powers. 69Laue/Nink/Kremer, Datenschutzrecht, Haftung (2016), rec. 35; Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 24ï¿½25; Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 16. 70Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 26ï¿½28; Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 18. 71Mundil, in: Wolff/Brink, BeckOK, Art. 79 (2016), rec. 18; Martini, in: Paal/Pauly, DSGVO, Art. 79 (2017), recs. 26ï¿½28. 72According to Art. 80 Sec. 1 GDPR, such not-for-profit body must have been properly constituted in accordance with the law of an EU Member State, have statutory objectives which are in the public interest and be active in the field of the protection of data subjects' rights and freedoms with regard to the protection of their personal data. 73Gierschmann, ZD 2016, 51, 53.
 
 References
 
 217
 
 Becker T (2016) Arts. 82, 83 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne
-Brink S (2016) § 38 BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
-Faust S, Spittka J, Wybitul T (2016) Milliardenbußgelder nach der DS-GVO? ZD, pp 120­125 Frenzel EM (2017) Arts. 82, 83 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche
+Brink S (2016) ï¿½ 38 BDSG. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich
+Faust S, Spittka J, Wybitul T (2016) Milliardenbuï¿½gelder nach der DS-GVO? ZD, pp 120ï¿½125 Frenzel EM (2017) Arts. 82, 83 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche
 Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Gierschmann S (2016) Was `bringt' deutschen Unternehmen die DS-GVO? - Mehr Pflichten, aber
-die Rechtsunsicherheit bleibt. ZD, pp 51­55 Holla¨nder C (2016) Art. 83 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
+die Rechtsunsicherheit bleibt. ZD, pp 51ï¿½55 Hollaï¿½nder C (2016) Art. 83 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
 Datenschutzrecht, 18th edn. C.H.Beck, Munich Hullen N (2016) Arts. 57, 58 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag
 Dr. Otto Schmidt, Cologne Korffer B (2017) Arts. 55, 58, 78 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche
 Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Laue P, Nink J, Kremer S (eds) (2016) Haftung, Sanktionen und Rechtsbehelfe; Zusammenarbeit
-mit Aufsichtsbehorden. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Martini M (2017) Art. 79 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Mundil D (2016) Arts. 78, 79 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Nebel M (2017) Rechtswege und Rechtsbehelfe. In: Roßnagel A (ed) Europa¨ische DatenschutzGrundverordnung, Vorrang des Unionsrechts ­ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Nguyen AM (2015) Die zukünftige Datenschutzaufsicht in Europa. ZD, pp 265­270 Plath K-U (2016) § 38 BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Quaas S (2016) Art. 82 DSGVO; § 7 BDSG. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Schantz P (2016) Die Datenschutz-Grundverordnung ­ Beginn einer neuen Zeitrechnung im Datenschutzrecht. NJW, pp 1841­1847 Simitis S (2014) § 7 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden von dem Bussche AF, Zeiter A (2016) Practitioner's corner ­ implementing the EU general data protection regulation: a business perspective. EDPL 4:576­581 Wybitul T (2016) DS-GVO veroffentlicht ­ Was sind die neuen Anforderungen an die Unternehmen? ZD, pp 253­254
+mit Aufsichtsbehorden. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Martini M (2017) Art. 79 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare Datenschutz-Grundverordnung, 1st edn. C.H.Beck, Munich Mundil D (2016) Arts. 78, 79 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Nebel M (2017) Rechtswege und Rechtsbehelfe. In: Roï¿½nagel A (ed) Europaï¿½ische DatenschutzGrundverordnung, Vorrang des Unionsrechts ï¿½ Anwendbarkeit des nationalen Rechts, 1st edn. Nomos, Baden-Baden Nguyen AM (2015) Die zukï¿½nftige Datenschutzaufsicht in Europa. ZD, pp 265ï¿½270 Plath K-U (2016) ï¿½ 38 BDSG. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne Quaas S (2016) Art. 82 DSGVO; ï¿½ 7 BDSG. In: Wolff HA, Brink S (eds) Beck'scher OnlineKommentar Datenschutzrecht, 18th edn. C.H.Beck, Munich Schantz P (2016) Die Datenschutz-Grundverordnung ï¿½ Beginn einer neuen Zeitrechnung im Datenschutzrecht. NJW, pp 1841ï¿½1847 Simitis S (2014) ï¿½ 7 BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden von dem Bussche AF, Zeiter A (2016) Practitioner's corner ï¿½ implementing the EU general data protection regulation: a business perspective. EDPL 4:576ï¿½581 Wybitul T (2016) DS-GVO veroffentlicht ï¿½ Was sind die neuen Anforderungen an die Unternehmen? ZD, pp 253ï¿½254
 
 National Peculiarities
 
@@ -3484,7 +3490,7 @@ Art. 10
 
 Processing of personal data relating to criminal convictions and offences
 
-Art. 14 Sec. 5 lits. c­d
+Art. 14 Sec. 5 lits. cï¿½d
 
 Information to be provided where personal data has not been obtained from the data subject
 
@@ -3535,7 +3541,7 @@ The controller is obliged to erase personal data based on a legal obligation in 
 The general prohibition of automated decision-making does not apply where the latter has been authorised by EU Member State law to which the controller is subject (Sect. 5.8).
 EU Member State law may restrict the scope of the data subject rights and corresponding obligations of data processing entities for various public-interest-related reasons (Sect. 5.9).
 EU Member State law may determine the respective data protection obligations of joint controllers.
-EU Member State law may ­ permit processors to carry out processing without authorisation of the controller; ­ require them not to delete personal data after the termination of their services for the controller; ­ lay down rules on the involvement of sub-processors.
+EU Member State law may ï¿½ permit processors to carry out processing without authorisation of the controller; ï¿½ require them not to delete personal data after the termination of their services for the controller; ï¿½ lay down rules on the involvement of sub-processors.
 EU Member State law may require individuals acting under the authority of a controller/processor to process personal data even though they have not been instructed to do so by said controller/processor.
 A Data Protection Impact Assessment will not be required where processing is based on EU Member State law introduced under Art. 6 Sec. 2 GDPR and a general impact assessment has already been carried out in the context of the adoption of that legal basis (Sect. 3.5).
 (continued)
@@ -3577,7 +3583,7 @@ EU Member States shall lay down rules on other penalties for infringements of th
 involved.1 These clauses either allow EU Member States, pursuant to the specific
 terms of each provision, to replace, complement or further specify the provisions of the GDPR.2
 
-1Laue, ZD 2016, 463, 464; Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 113. 2Laue, ZD 2016, 463, 464.
+1Laue, ZD 2016, 463, 464; Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 113. 2Laue, ZD 2016, 463, 464.
 
 8.1 Various Opening Clauses
 
@@ -3587,10 +3593,10 @@ The opening clauses will entail national differences when it comes to the detail
 Legal uncertainties might, above all, challenge entities carrying out processing activities in different EU Member States or affecting data subjects located in different EU Member States.3
 
 8.1.2 EU Member State Competence for Specific Processing Situations
-Articles 85­91 GDPR leave the legislation for specific processing situations in the competence of the EU Member States. Some of them will become highly relevant for private entities.
+Articles 85ï¿½91 GDPR leave the legislation for specific processing situations in the competence of the EU Member States. Some of them will become highly relevant for private entities.
 Pursuant to Art. 85 GDPR, the EU Member States are obliged to reconcile the right to the protection of personal data under the GDPR with the right to freedom of expression and information, including processing for journalistic purposes and the purposes of academic, artistic or literary expression. This provision largely corresponds to its predecessor provided for in Art. 9 Data Protection Directive. It shall allow balancing out the different rights. In favour of journalistic purposes or the purpose of academic, artistic or literary expression, Art. 85 Sec. 2 GDPR enables EU Member States to introduce derogations or exceptions from basically all key regulatory areas of the GDPR, such as the basic principles of processing or the data subject rights.4 Article 90 GDPR enables EU Member States to introduce legislation that exempts controllers/processors who are subject to an obligation of professional secrecy (such as lawyers, doctors) from being obliged to provide information or access to personal data to the Supervisory Authorities.
 Article 88 GDPR provides for a comprehensive opening clause as regards data processing in the context of employment. This reflects the situation that employment law is strongly characterised by national legal traditions and, thus, there exist considerable legal differences among the EU Member States' legislation. For details, see the following Sect. 8.2.
-3Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 113. 4Grages, in: Plath, BDSG/DSGVO, Art. 85 (2016), rec. 8.
+3Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 113. 4Grages, in: Plath, BDSG/DSGVO, Art. 85 (2016), rec. 8.
 
 224
 
@@ -3602,7 +3608,7 @@ As regards these specific rules, especially the introduction of rules on statist
 8.2 Employee Data Protection
 The GDPR does not provide for specific provisions on employee data protection, as all of its requirements also apply in an employment context. However, the GDPR enables EU Member States to introduce specific regulations in this field.8 As mentioned above, this corresponds to the strong characterisation of labour law by the respective national legal traditions and, thus, the occurrence of considerable legal differences among the EU Member States' legislation. Employee data protection is a key issue for any entity as it governs its day-to-day business.
 It should be noted that, as regards multinational corporations, employment contracts are usually concluded by the respective group entities with their local employees and, thus, in a national context. As a result, the employment contracts are governed by different national laws, which lead to the occurrence of national peculiarities. At the same time, corporations--starting from a certain size--often centralise the HR administration for all group entities in order to increase cost- and
-5Under Art. 89 Sec. 1 GDPR, processing for these purposes must be subject to appropriate safeguards. These specific minimum requirements for data protection shall counterbalance the privileged treatment of these processing purposes under the GDPR, such as regarding storage limitation or information obligations of controllers. 6Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), recs. 71­72. 7Rec. 162 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Einführung (2016), rec. 119; Grages, in Plath, BDSG/DSGVO, Art. 89 (2016), rec. 7. 8The only specific rule is laid down in Art. 9 Sec. 2 lit. b GDPR which provides for an exception from the general prohibition to process special categories of personal data in case such processing is necessary for carrying out obligations and exercising specific rights of the controller/data subject in the field of employment, social security and social protection law.
+5Under Art. 89 Sec. 1 GDPR, processing for these purposes must be subject to appropriate safeguards. These specific minimum requirements for data protection shall counterbalance the privileged treatment of these processing purposes under the GDPR, such as regarding storage limitation or information obligations of controllers. 6Albrecht/Jotzo, Datenschutzrecht, Allgemeine Bestimmungen (2017), recs. 71ï¿½72. 7Rec. 162 GDPR; Laue/Nink/Kremer, Datenschutzrecht, Einfï¿½hrung (2016), rec. 119; Grages, in Plath, BDSG/DSGVO, Art. 89 (2016), rec. 7. 8The only specific rule is laid down in Art. 9 Sec. 2 lit. b GDPR which provides for an exception from the general prohibition to process special categories of personal data in case such processing is necessary for carrying out obligations and exercising specific rights of the controller/data subject in the field of employment, social security and social protection law.
 
 8.2 Employee Data Protection
 
@@ -3612,25 +3618,25 @@ overall efficiency of these processes.9 When doing so, national peculiarities wi
 
 8.2.1 Opening Clause
 Under Art. 88 Sec. 1 GDPR, the EU Member States may provide for comprehensive, specific data protection rules to ensure the protection of rights and freedoms in respect of the processing of employees' personal data in the employment context. By way of this opening clause, the EU legislator enables the EU Member States to specify the general data protection requirements under the GDPR in accordance with their respective national labour laws.11 Such legislation might in particular be adopted as regards processing activities for the following purposes:
-­ recruitment; ­ performance of the employment contract, including discharge of obligations laid
-down by law or by collective agreements; ­ management, planning and organisation of work; ­ equality and diversity in the workplace; ­ health and safety at work; ­ protection of employer's or customer's property; ­ exercise and enjoyment, on an individual or collective basis, of rights and
-benefits related to employment; ­ termination of the employment relationship.
+ï¿½ recruitment; ï¿½ performance of the employment contract, including discharge of obligations laid
+down by law or by collective agreements; ï¿½ management, planning and organisation of work; ï¿½ equality and diversity in the workplace; ï¿½ health and safety at work; ï¿½ protection of employer's or customer's property; ï¿½ exercise and enjoyment, on an individual or collective basis, of rights and
+benefits related to employment; ï¿½ termination of the employment relationship.
 As regards the scope of the `employment context' under Art. 88 GDPR, this list is not conclusive (`in particular'). Inter alia, national legislation adopted under this opening clause might also lay down the conditions under which personal data in the employment context may be processed on the basis of the consent of the employee.12 This is of high practical relevance as employees are in a relationship of social dependence with their employer, and, in the past, some voices argued that consent in the employment context could not be deemed freely given (see Sect. 4.2.1.3).13
-9Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), recs. 1­2. 10Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), rec. 4. 11Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 1. 12Rec. 155 GDPR. 13Kort, DB 2016, 711, 715; Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 8.
+9Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), recs. 1ï¿½2. 10Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), rec. 4. 11Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 1. 12Rec. 155 GDPR. 13Kort, DB 2016, 711, 715; Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 8.
 
 226
 
 8 National Peculiarities
 
 Specific rules governing data protection in the employment context might be introduced by law or by collective agreements. The latter refers to, inter alia14:
-­ collective bargaining agreements: contracts concluded between an employer/ employer's association and a trade union regulating working conditions collectively for employees who are members of the respective trade union, such as working time, remuneration, number of vacation days15; and
-­ works agreements: contracts concluded between an employer and, if provided for by national law, the works council representing the employees of said employer (see Sect. 8.2.2) regulating working conditions collectively for all of the company's employees.16
+ï¿½ collective bargaining agreements: contracts concluded between an employer/ employer's association and a trade union regulating working conditions collectively for employees who are members of the respective trade union, such as working time, remuneration, number of vacation days15; and
+ï¿½ works agreements: contracts concluded between an employer and, if provided for by national law, the works council representing the employees of said employer (see Sect. 8.2.2) regulating working conditions collectively for all of the company's employees.16
 Article 88 Sec. 2 GDPR lays down the content requirements for EU Member State data protection legislation in the employment context. They must provide for suitable and specific measures to safeguard the data subject's human dignity, legitimate interests and fundamental rights, with particular regard to the transparency of processing (see Sect. 4.1.1), the transfer of personal data within a group of undertakings or a group of enterprises engaged in a joint economic activity (see Sect. 4.4) and monitoring systems at the work place.
 
 8.2.2 Co-determination Bodies Provided for in Selected EU Member States
 The collective labour law of some EU Member States provides for co-determination bodies--works councils--whose participation and co-determination rights play a role in employee data protection matters. The roles of these works councils differentiate significantly between the different EU Member States. This handbook shall only cursorily illustrate the works councils provided for in Germany (Betriebsrat) and France.
 8.2.2.1 Germany The German works council (Betriebsrat) is an elected employee representative body that is introduced on the initiative of the employees. Such initiative is possible if a workplace (this relates not to an entity itself but to the entity's `organizational labour unit(s)') has at least five employees. The German works council plays a key role in employee data protection. It is, together with the employer, responsible for
-14Stamer/Kuhnke, in: Plath, BDSG/DSGVO, Art. 88 (2016), recs. 8­9; Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 5. 15Lingemann/v. Steinau-Steinrück/Mengel, Employment & Labor Law, Fundamentals (2012), p. 4. 16Lingemann/v. Steinau-Steinrück/Mengel, Employment & Labor Law, Fundamentals (2012), p. 4.
+14Stamer/Kuhnke, in: Plath, BDSG/DSGVO, Art. 88 (2016), recs. 8ï¿½9; Pauly, in: Paal/Pauly, DSGVO, Art. 88 (2017), rec. 5. 15Lingemann/v. Steinau-Steinrï¿½ck/Mengel, Employment & Labor Law, Fundamentals (2012), p. 4. 16Lingemann/v. Steinau-Steinrï¿½ck/Mengel, Employment & Labor Law, Fundamentals (2012), p. 4.
 
 8.2 Employee Data Protection
 
@@ -3640,22 +3646,22 @@ protecting employee-related personal data from unlawful collection, processing a
 Participation Rights The works council has far-reaching participation rights allowing it to access information. One of its general duties consists of ensuring the implementation of laws, regulations, safety regulations and collective bargaining agreements and works agreements concluded for the benefit of the employees, Sec. 80 para. 1 no. 1 BetrVG. This includes the implementation of the GDPR insofar as its provisions apply to employees as data subjects.17 Thus, the works council has comprehensive information rights and the employer must provide it with information on, inter alia, the intended implementation or revision of IT systems, the involvement of a processor concerning processing activities performed on employees' personal data or the intended introduction of a centralised HR planning within a group structure (Sec. 92 BetrVG).18 However, it should be noted that the (enforceable) participation right does not entail any decision or enforcement power in these data protection matters.19 The works council can make proposals to address these matters, but the employer does not have to accept them. Thus, the participation right will not impair the employer's decisions as to data processing.
 Co-determination Rights However, a lot of data processing activities performed on employees' personal data will trigger the works council's co-determination right under Sec. 87 para. 1 no. 6 BetrVG. This co-determination right concerns the introduction and use of technical equipment within the workplace that is specifically designed to monitor the conduct or performance of the employee. IT systems generally form the basis of data processing activities as they are used to collect employee data, as well as to process and transfer it within multinational corporations that provide for a central HR administration. The scope of this provision applies if the IT is generally suitable for collecting or storing personal data of employees and, thus, monitoring their behaviour in the workplace.20 Consequently, in case an entity wants to introduce or rework its IT systems or software, it must obtain the consent of the works council.
 
-17Kort, ZD 2017, 3, 5; see also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), rec. 70. 18See also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), recs. 78­81. 19See also BAG, decision of 16 July 1985, DB 1986, 231, 231; Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), rec. 73. 20See also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Bescha¨ftigtendatenschutz (2014), rec. 95; BAG, decision of 6 December 1983, NJW 1984, 1476, 1476.
+17Kort, ZD 2017, 3, 5; see also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), rec. 70. 18See also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), recs. 78ï¿½81. 19See also BAG, decision of 16 July 1985, DB 1986, 231, 231; Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), rec. 73. 20See also Wedde, in: v.d.Bussche/Voigt, Konzerndatenschutz, Beschaï¿½ftigtendatenschutz (2014), rec. 95; BAG, decision of 6 December 1983, NJW 1984, 1476, 1476.
 
 228
 
 8 National Peculiarities
 
 Example
-­ Office Word software that allows the employer to see on which documents and for how long an employee worked
-­ Email programs that allow to monitor the employee's communication with others
-­ Internet browsers storing an employee's search history ­ Time clocks to monitor an employee's working hours ­ Surveillance systems21
+ï¿½ Office Word software that allows the employer to see on which documents and for how long an employee worked
+ï¿½ Email programs that allow to monitor the employee's communication with others
+ï¿½ Internet browsers storing an employee's search history ï¿½ Time clocks to monitor an employee's working hours ï¿½ Surveillance systems21
 The co-determination right does not relate to the legal basis for processing or the scope of the processing activities, but to the IT used for processing. Thus, most processing activities will trigger the works council's co-determination right and entities must ensure to involve it at an early stage and try to obtain its consent. In case of a violation of the works council's co-determination right, the works council has a right to injunctive relief from the employer's measure that would have been subject to the co-determination by the works council. Thus, employers would have to reverse and eliminate their measures that are subject to this right. If the works council is being duly involved but refuses to consent, the employer may involve a conciliation board that will adopt a binding decision in the case.
-8.2.2.2 France In France, a lot of entities have to establish several employee representation bodies, inter alia, the works council (comite´ d'entreprise), the employee delegate (de´le´gue´ du personnel) and the health and safety committee (comite´ d'hygie`ne, de se´curite´ et des conditions de travail).
-Works Council In France, every entity with more than 50 employees has to establish a works council (comite´ d'entreprise) that is presided over by a representative of the employer and consists of employee representatives, Art. L2322-1 et seq. Code du travail.22 As regards entities with less than 50 employees, collective bargaining agreements or other collective agreements might grant employees the option to initiate the formation of a works council.
+8.2.2.2 France In France, a lot of entities have to establish several employee representation bodies, inter alia, the works council (comiteï¿½ d'entreprise), the employee delegate (deï¿½leï¿½gueï¿½ du personnel) and the health and safety committee (comiteï¿½ d'hygie`ne, de seï¿½curiteï¿½ et des conditions de travail).
+Works Council In France, every entity with more than 50 employees has to establish a works council (comiteï¿½ d'entreprise) that is presided over by a representative of the employer and consists of employee representatives, Art. L2322-1 et seq. Code du travail.22 As regards entities with less than 50 employees, collective bargaining agreements or other collective agreements might grant employees the option to initiate the formation of a works council.
 To protect the social, economic and professional interests of the employees, the works council has different information and consultation rights. These rights do not include a consultation on processing activities or data transfers, but, comparable to the situation in Germany, under Art. L2323-29 Code du travail, the works council must be informed and consulted prior to any introduction of new technologies into the entity that are generally suitable to have consequences on the employment,
 
-21Werner, in: Rolfs/Giesen/Kreikebohm/Udsching, BeckOK, § 87 (2016), rec. 95; Lingemann/v. Steinau-Steinrück/Mengel, Employment & Labor Law, Labor Law (2012), p. 61. 22For official information on the works council provided by the French public authorities, see https://www.service-public.fr/particuliers/vosdroits/F96, accessed 8 March 2017.
+21Werner, in: Rolfs/Giesen/Kreikebohm/Udsching, BeckOK, ï¿½ 87 (2016), rec. 95; Lingemann/v. Steinau-Steinrï¿½ck/Mengel, Employment & Labor Law, Labor Law (2012), p. 61. 22For official information on the works council provided by the French public authorities, see https://www.service-public.fr/particuliers/vosdroits/F96, accessed 8 March 2017.
 
 8.2 Employee Data Protection
 
@@ -3663,10 +3669,10 @@ To protect the social, economic and professional interests of the employees, the
 
 working conditions, training or payment of employees. As IT that allows collecting and processing the personal data of employees monitors their behaviour, it is suitable to have consequences on the working conditions and, thus, the works council must be consulted. It should be noted that, even though the employer must seek the works council's opinion, it is not bound by said opinion. However, in case the employer does not involve the works council properly, the employer's decision is considered invalid and cannot be enforced within the entity.
 The works council has the possibility to seek injunctive relief before the courts against such an invalid decision. Failure to comply with an injunction may eventually lead to an obligation of the employer to pay compensation to the works council or may even result in a criminal offence.23 The involvement of the works council cannot impair or prevent the employer from processing employees' personal data, but the employer must fulfil the works council's participation rights to be able to make valid decisions regarding the IT necessary for processing.
-Employee Delegate Every entity with more than 11 employees has to organise elections for one or several employee delegates (de´le´gue´ du personnel), their number depending on the total number of employees of the entity. Its main tasks include taking up the concerns and complaints of the employees with the employer and to communicate any observations of employees relevant to the tasks of the works council and the health and safety committee to both of these bodies.24 Complaints of the employees might regard data protection matters within the entity. The employer should try to settle the issue by finding a solution with the employee delegate as, in case of disagreements, the matter will be taken up to a court for settlement.25
+Employee Delegate Every entity with more than 11 employees has to organise elections for one or several employee delegates (deï¿½leï¿½gueï¿½ du personnel), their number depending on the total number of employees of the entity. Its main tasks include taking up the concerns and complaints of the employees with the employer and to communicate any observations of employees relevant to the tasks of the works council and the health and safety committee to both of these bodies.24 Complaints of the employees might regard data protection matters within the entity. The employer should try to settle the issue by finding a solution with the employee delegate as, in case of disagreements, the matter will be taken up to a court for settlement.25
 The employer must meet with the employee delegates once a month in order to enable them to verify that the existing rules and agreements governing the employment relationships and overall working conditions are applied properly. Employee delegates submit questions to the employer in these matters prior to each reunion that the employer must discuss with them during said reunions. However, the employee delegate has no veto right regarding decisions of the employer.
 Moreover, the employee delegates can make suggestions to the employer regarding the general working conditions in the entity, but the employer is not obliged to act upon these suggestions.
-Health and Safety Committee Every entity with at least 50 employees must establish a health and safety committee (comite´ d'hygie`ne, de se´curite´ et des conditions de travail) that shall contribute to the physical and mental health and safety of the employees. Therefore, it must be consulted by the employer before any important changes to the working conditions
+Health and Safety Committee Every entity with at least 50 employees must establish a health and safety committee (comiteï¿½ d'hygie`ne, de seï¿½curiteï¿½ et des conditions de travail) that shall contribute to the physical and mental health and safety of the employees. Therefore, it must be consulted by the employer before any important changes to the working conditions
 
 23Art. L2328-1 Code du travail. 24Art. L2313-9 Code du travail. 25Art. L2313-2 Code du travail.
 
@@ -3683,8 +3689,8 @@ will have to be consulted. If the employer breaches this consultation obligation
 Telemedia data protection shall safeguard the confidentiality of communications guaranteed, in particular, by Arts. 7, 8 of the Charter of Fundamental Rights of the European Union.28 Individuals shall be able to communicate free from unwanted or unnoticed observation by providers of communication services.29 Without the consent of their users, service providers shall not use or store their communication data.30
 Pursuant to Art. 95 GDPR, the Regulation shall not impose additional obligations on entities' processing activities that are already subject to specific obligations with the same objectives under Directive 2002/58/EC (ePrivacy Directive).31 This concerns entities processing personal data in connection with the provision of electronic communication services. In this regard, the ePrivacy Directive is a lex specialis in relation to the GDPR. However, in all other cases, meaning sector-specific provisions with different objectives, the GDPR applies as its rules are applicable to the processing of personal data regardless of the nature of the data or the service providers concerned.32
 In order to determine the applicable law, the scope of the ePrivacy Directive must be clarified. Pursuant to Art. 3 Sec. 1 ePrivacy Directive, it applies to the processing of personal data in connection with the provision of publicly available electronic communication services in public communication networks in the EU, the last two elements of the scope of application meaning
-­ publicly available electronic communications services: the ePrivacy Directive only applies to services that entirely or predominantly consist of transmitting
-26Art. L4612-8-1 Code du travail. 27Art. L4741-1 Code du travail. 28Rec. 3 ePrivacy Directive. 29See also Bock, in: Geppert/Schütz, TKG, § 88 (2013), rec. 9; Klesczewski, in: Sa¨cker, TKG, § 88 (2013), rec. 4. 30Art. 5 Sec. 1 ePrivacy Directive; see also Klesczewski, in: Sa¨cker, TKG, § 88 (2013), rec. 4. 31Directive 2002/58/EC of the European Parliament and of the Council of 12 July 2002 concerning the processing of personal data and the protection of privacy in the electronic communications sector (Directive on privacy and electronic communications), available at http://eur-lex.europa.eu/ LexUriServ/LexUriServ.do?uri¼CELEX:32002L0058:en:HTML, accessed 8 March 2017. 32Art. 29 Data Protection Working Party, WP240 (2016), p. 4.
+ï¿½ publicly available electronic communications services: the ePrivacy Directive only applies to services that entirely or predominantly consist of transmitting
+26Art. L4612-8-1 Code du travail. 27Art. L4741-1 Code du travail. 28Rec. 3 ePrivacy Directive. 29See also Bock, in: Geppert/Schï¿½tz, TKG, ï¿½ 88 (2013), rec. 9; Klesczewski, in: Saï¿½cker, TKG, ï¿½ 88 (2013), rec. 4. 30Art. 5 Sec. 1 ePrivacy Directive; see also Klesczewski, in: Saï¿½cker, TKG, ï¿½ 88 (2013), rec. 4. 31Directive 2002/58/EC of the European Parliament and of the Council of 12 July 2002 concerning the processing of personal data and the protection of privacy in the electronic communications sector (Directive on privacy and electronic communications), available at http://eur-lex.europa.eu/ LexUriServ/LexUriServ.do?uriï¿½CELEX:32002L0058:en:HTML, accessed 8 March 2017. 32Art. 29 Data Protection Working Party, WP240 (2016), p. 4.
 
 8.3 Telemedia Data Protection
 
@@ -3693,7 +3699,7 @@ In order to determine the applicable law, the scope of the ePrivacy Directive mu
 signals, such as telephone services or email services.33 Even though the latter
 provide for an interface to write or store messages, the communication aspect is paramount.34 Upon reversion, services where the communication plays a secondary role do not fall within the scope of application, such as social networks,
 search engines, news services or the online offering of products/services with direct order facility35;
-­ public communications networks in the EU: networks must be offered to the
+ï¿½ public communications networks in the EU: networks must be offered to the
 public, meaning an indefinite number or persons, such as landline networks, mobile networks or the Internet (including Voice over IP services).36 On the
 other hand, publicly accessible networks do not fall within the scope of applica-
 tion of the ePrivacy Directive. This means networks that are only accessible for a definite number of persons, such as WiFi services in hotels, shops, trains,
@@ -3703,7 +3709,7 @@ Given the complexity of online services and the multitude of actors offering tel
 
 Practical Difficulties Arising Because of the National Transformative Acts So far, the ePrivacy Directive has been implemented into the EU Member States' law through entirely different transformative acts. For example, in Germany, the ePrivacy Directive has been implemented through two different legislative acts: the TKG, regulating data protection in the field of telecommunication, and the TMG, regulating data protection for telemedia services and, in particular, website or Internet service providers. The delimitation of their scopes of application is, to
 
-33Nebel/Richter, ZD 2012, 407, 408; Keppeler, MMR 2015, p. 781. 34Nebel/Richter, ZD 2012, 407, 408. 35See also Oster, in: Hoeren/Sieber/Holznagel, Handbuch, Vorfragen (2016), rec. 23; Roßnagel, in: Roßnagel, Telemediendienste, TMG Einl (2013), rec. 32. 36Nebel/Richter, ZD 2012, 407, 408; see also Ricke, in: Spindler/Schuster, elektronische Medien, § 3 (2015), rec. 32. 37Holla¨nder, in: Wolff/Brink, BeckOK, Art. 95 (2016), rec. 4; Art. 29 Data Protection Working Party, WP240 (2016), p. 8. 38Rec. 173 GDPR; Albrecht/Jotzo, Datenschutzrecht, Schlussbestimmungen (2017), rec. 7. 39Further information is available under https://ec.europa.eu/digital-single-market/en/proposaleprivacy-regulation, accessed 22 Mar 2017.
+33Nebel/Richter, ZD 2012, 407, 408; Keppeler, MMR 2015, p. 781. 34Nebel/Richter, ZD 2012, 407, 408. 35See also Oster, in: Hoeren/Sieber/Holznagel, Handbuch, Vorfragen (2016), rec. 23; Roï¿½nagel, in: Roï¿½nagel, Telemediendienste, TMG Einl (2013), rec. 32. 36Nebel/Richter, ZD 2012, 407, 408; see also Ricke, in: Spindler/Schuster, elektronische Medien, ï¿½ 3 (2015), rec. 32. 37Hollaï¿½nder, in: Wolff/Brink, BeckOK, Art. 95 (2016), rec. 4; Art. 29 Data Protection Working Party, WP240 (2016), p. 8. 38Rec. 173 GDPR; Albrecht/Jotzo, Datenschutzrecht, Schlussbestimmungen (2017), rec. 7. 39Further information is available under https://ec.europa.eu/digital-single-market/en/proposaleprivacy-regulation, accessed 22 Mar 2017.
 
 232
 
@@ -3712,31 +3718,31 @@ Practical Difficulties Arising Because of the National Transformative Acts So fa
 this day, causing great difficulties in practice in light of modern technology.40 Moreover, the TMG surpasses the provisions of the ePrivacy Directive contentwise and, thus, will likely no longer be applicable after the GDPR enters into force.41 This illustrates that entities will be facing great practical difficulties to determine whether the different national transformative acts of the EU Member States are still applicable after the entering into force of the GDPR and which law will prevail in its application in the entity's specific situation.
 
 References
-Albrecht JP, Jotzo F (eds) (2017) Allgemeine Bestimmungen, Rechtma¨ßigkeit der Datenverarbeitung; Schlussbestimmungen. In: Das neue Datenschutzrecht der EU, 1st edn. Nomos, Baden-Baden
+Albrecht JP, Jotzo F (eds) (2017) Allgemeine Bestimmungen, Rechtmaï¿½ï¿½igkeit der Datenverarbeitung; Schlussbestimmungen. In: Das neue Datenschutzrecht der EU, 1st edn. Nomos, Baden-Baden
 Art. 29 Data Protection Working Party (2016) Opinion 3/2016 on the evaluation and review of the ePrivacy Directive, WP 240
-Bock M (2013) § 88. In: Geppert M, Schütz R (eds) Beck'scher TKG-Kommentar, 4th edn. C.H. Beck, Munich
-Bundearbeitsgericht (1984) Mitbestimmung bei Datensichtgera¨ten. NJW, pp 1476­1486 Bundesarbeitsgericht (1986) DB, p 231 Grages J-M (2016) Arts. 85, 89 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag
-Dr. Otto Schmidt, Cologne Holla¨nder C (2016) Art. 95 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
-Datenschutzrecht, 18th edn. C.H. Beck, Munich Keppeler LM (2015) Was bleibt vom TMG-Datenschutz nach der DS-GVO? ­ Losung und
-Schaffung von Abgrenzungsproblemen im Multimedia-Datenschutz. MMR, pp 779­783 Klesczewski D (2013) § 88. In: Sa¨cker FJ (ed) TKG, 3rd edn. Fachmedien Recht und Wirtschaft,
-Frankfurt am Main Kort M (2016) Arbeitnehmerdatenschutz gema¨ß der EU-Datenschutz-Grundverordnung. DB, pp
-711­716 Kort M (2017) Was a¨ndert sich für Datenschutzbeauftragte, Aufsichtsbehorden und Betriebsrat
-mit der DS-GVO? ZD, pp 3­7 Laue P (2016) O¨ ffnungsklauseln in der DS-GVO ­ O¨ ffnung wohin? ZD, pp 463­467 Laue P, Nink J, Kremer S (eds) (2016) Einführung. In: Das neue Datenschutzrecht in der
-betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Lingemann S, von Steinau-Steinrück R, Mengel A (eds) (2012) Fundamentals; Labor Law. In:
-Employment & Labor Law in Germany, 3rd edn. C.H. Beck, Munich Marosi J (2016) One (smart) size fits all? ­ Das (Datenschutz-)TMG heute ­ und morgen?
-DSRITB, pp 435­452 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO. ZD, pp 407­413 Oster J (2016) Telekommunikationsrechtliche Vorfragen. In: Hoeren T, Sieber U, Holznagel B
+Bock M (2013) ï¿½ 88. In: Geppert M, Schï¿½tz R (eds) Beck'scher TKG-Kommentar, 4th edn. C.H. Beck, Munich
+Bundearbeitsgericht (1984) Mitbestimmung bei Datensichtgeraï¿½ten. NJW, pp 1476ï¿½1486 Bundesarbeitsgericht (1986) DB, p 231 Grages J-M (2016) Arts. 85, 89 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag
+Dr. Otto Schmidt, Cologne Hollaï¿½nder C (2016) Art. 95 DSGVO. In: Wolff HA, Brink S (eds) Beck'scher Online-Kommentar
+Datenschutzrecht, 18th edn. C.H. Beck, Munich Keppeler LM (2015) Was bleibt vom TMG-Datenschutz nach der DS-GVO? ï¿½ Losung und
+Schaffung von Abgrenzungsproblemen im Multimedia-Datenschutz. MMR, pp 779ï¿½783 Klesczewski D (2013) ï¿½ 88. In: Saï¿½cker FJ (ed) TKG, 3rd edn. Fachmedien Recht und Wirtschaft,
+Frankfurt am Main Kort M (2016) Arbeitnehmerdatenschutz gemaï¿½ï¿½ der EU-Datenschutz-Grundverordnung. DB, pp
+711ï¿½716 Kort M (2017) Was aï¿½ndert sich fï¿½r Datenschutzbeauftragte, Aufsichtsbehorden und Betriebsrat
+mit der DS-GVO? ZD, pp 3ï¿½7 Laue P (2016) Oï¿½ ffnungsklauseln in der DS-GVO ï¿½ Oï¿½ ffnung wohin? ZD, pp 463ï¿½467 Laue P, Nink J, Kremer S (eds) (2016) Einfï¿½hrung. In: Das neue Datenschutzrecht in der
+betrieblichen Praxis, 1st edn. Nomos, Baden-Baden Lingemann S, von Steinau-Steinrï¿½ck R, Mengel A (eds) (2012) Fundamentals; Labor Law. In:
+Employment & Labor Law in Germany, 3rd edn. C.H. Beck, Munich Marosi J (2016) One (smart) size fits all? ï¿½ Das (Datenschutz-)TMG heute ï¿½ und morgen?
+DSRITB, pp 435ï¿½452 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO. ZD, pp 407ï¿½413 Oster J (2016) Telekommunikationsrechtliche Vorfragen. In: Hoeren T, Sieber U, Holznagel B
 (eds) Handbuch Multimedia-Recht, supplement 7/2016. C.H. Beck, Munich Pauly DA (2017) Art. 88 DSGVO. In: Paal BP, Pauly DA (eds) Beck'sche Kompaktkommentare
-Datenschutz-Grundverordnung, 1st edn. C.H. Beck, Munich Ricke T (2015) § 3 TKG. In: Spindler G, Schuster F (eds) Recht der elektronischen Medien, 3rd
+Datenschutz-Grundverordnung, 1st edn. C.H. Beck, Munich Ricke T (2015) ï¿½ 3 TKG. In: Spindler G, Schuster F (eds) Recht der elektronischen Medien, 3rd
 edn. C.H. Beck, Munich
-40Keppeler, MMR 2015, 779, 779­780. 41Marosi, DSRITB 2016, 435, 446; Keppeler, MMR 2015, 779, 781.
+40Keppeler, MMR 2015, 779, 779ï¿½780. 41Marosi, DSRITB 2016, 435, 446; Keppeler, MMR 2015, 779, 781.
 
 References
 
 233
 
-Roßnagel A (ed) (2013) TMG Einl. In: Beck'scher Kommentar zum Recht der Telemediendienste, 1st edn. C.H. Beck, Munich
+Roï¿½nagel A (ed) (2013) TMG Einl. In: Beck'scher Kommentar zum Recht der Telemediendienste, 1st edn. C.H. Beck, Munich
 Stamer K, Kuhnke M (2016) Art. 88 DSGVO. In: Plath K-U (ed) BDSG/DSGVO, 2nd edn. Verlag Dr. Otto Schmidt, Cologne
-Wedde P (2014) Bescha¨ftigtendatenschutz und Mitbestimmungsrechte des Betriebsrats. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H. Beck, Munich
+Wedde P (2014) Beschaï¿½ftigtendatenschutz und Mitbestimmungsrechte des Betriebsrats. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H. Beck, Munich
 Werner M (2016) Art. 87 BetrVG. In: Rolfs C, Kreikebohm R, Giesen R, Udsching P (eds) Beck'scher Online-Kommentar Arbeitsrecht, supplement 12/2016. C.H. Beck, Munich
 
 Special Data Processing Activities
@@ -3749,7 +3755,7 @@ Entities carrying out special data processing activities involving big quantitie
 9.1 Big Data
 The term `Big Data' refers to a specific approach to data processing, rather than specific techniques. A lot of entities build their business on different technologies that are capable of collecting, processing, classifying and analysing vast data sets and, this way, extract value from these data.4 Such big data applications often process factual data, like weather or machine processes, but also increasingly use
 
-1Roßnagel/Richter/Nebel ZD 2013, 103, 104; Nebel/Richter, ZD 2012, 407, 408. 2Keppeler/MMR 2015, 779, 779. 3Sydow/Kring, ZD 2014, 271, 276. 4Ha¨rting, ITRB 2016, 209, 209.
+1Roï¿½nagel/Richter/Nebel ZD 2013, 103, 104; Nebel/Richter, ZD 2012, 407, 408. 2Keppeler/MMR 2015, 779, 779. 3Sydow/Kring, ZD 2014, 271, 276. 4Haï¿½rting, ITRB 2016, 209, 209.
 
 # Springer International Publishing AG 2017
 
@@ -3772,9 +3778,9 @@ processing activity and, thus, is subject to a specific provision--Art. 22 GDPR 
 9.1.1 Applicability of the GDPR
 As soon as big data sets contain personal data, meaning data that can be linked to an identified or identifiable individual (see Sect. 2.1.2), the scope of application of the GDPR opens up. Given the vast number and content diversity of big data sets, there is a great likeliness that personal data is available, e.g., through combination of the available information. If this is the case, the whole data set falls within the scope of application of the GDPR.9
 Example An entity collects and analyses data on its production volume. The data set contains information on how many products the entity's different machines produce within each hour. Additionally, the data set contains information on the location of each machine and the time of production. These data, combined with additional information, such as shift schedules of employees, allow the entity to determine which individual operated the machine at that time and, thus, determine its work results.
-In this example, the entity can use the data set to get information on the productivity of its employees. This constitutes personal data. As a result, because the data set can be linked to identifiable individuals (¼ employees of the entity), it falls within the scope of application of the GDPR.10
+In this example, the entity can use the data set to get information on the productivity of its employees. This constitutes personal data. As a result, because the data set can be linked to identifiable individuals (ï¿½ employees of the entity), it falls within the scope of application of the GDPR.10
 In order to avoid the applicability of the GDPR, entities might consider anonymising their data sets (see Sect. 2.1.2.2). In this regard, entities should keep in mind that, the more comprehensive the data sets are and the larger the amount of
-5European Data Protection Supervisor, Opinion 8/2016 (2016), p. 6. 6European Data Protection Supervisor, Opinion 8/2016 (2016), pp. 6­7; Ha¨rting, ITRB 2016, 209, 209. 7Roßnagel, ZD 2013, 562, 562; Liedke, K&R 2014, 709, 709. 8Ha¨rting, ITRB 2016, 209, 210. 9Dammann, ZD 2016, 307, 313; Ringeling, CRi 2015, 7, 7­11. 10Werkmeister/Brandt, CR 2016, 233, 234.
+5European Data Protection Supervisor, Opinion 8/2016 (2016), p. 6. 6European Data Protection Supervisor, Opinion 8/2016 (2016), pp. 6ï¿½7; Haï¿½rting, ITRB 2016, 209, 209. 7Roï¿½nagel, ZD 2013, 562, 562; Liedke, K&R 2014, 709, 709. 8Haï¿½rting, ITRB 2016, 209, 210. 9Dammann, ZD 2016, 307, 313; Ringeling, CRi 2015, 7, 7ï¿½11. 10Werkmeister/Brandt, CR 2016, 233, 234.
 
 9.1 Big Data
 
@@ -3799,11 +3805,11 @@ Big data technologies function based on the processing of vast amounts of data. 
 9 Special Data Processing Activities
 
 data (see Sect. 3.5 for details) and the former will help to identify the impacts and risks of the intended processing activities. The assessment will help to determine which measures will be appropriate to safeguard, inter alia, the basic principles of lawful processing.
-Under the principle of transparency, data subjects must be informed of processing activities carried out on their personal data (see Sect. 4.1.1). Therefore, controllers are obliged to give data subjects information prior to processing under Arts. 13­14 GDPR, which include, among others, information on the purposes of and legal basis for processing, the source of the information and the identity of the controller (see Sect. 5.2). In this regard, the communication of the processing purposes will be challenging for entities, as business based on big data often process large amounts of data to find out how they can be used for commercial purposes.16 The purpose will be the result of processing and not the other way round. However, under the basic principle of purpose limitation (see Sect. 4.1.2), personal data shall only be collected for specified, explicit and legitimate purposes. In order to be able to communicate purposes, entities might have to communicate several possible uses of the data. The level of detail of the processing purpose may vary on a case-by-case basis given the specific situation of big data technologies.17 It should be noted that the more general the purpose of processing is laid down, the more risk-prone a processing activity will be and, thus, the higher the appropriate safeguards must be.18 In this regard, entities could use the concepts of Privacy by Design and Privacy by Default (see Sect. 3.7) in order to increase the data protection level of their technologies.
+Under the principle of transparency, data subjects must be informed of processing activities carried out on their personal data (see Sect. 4.1.1). Therefore, controllers are obliged to give data subjects information prior to processing under Arts. 13ï¿½14 GDPR, which include, among others, information on the purposes of and legal basis for processing, the source of the information and the identity of the controller (see Sect. 5.2). In this regard, the communication of the processing purposes will be challenging for entities, as business based on big data often process large amounts of data to find out how they can be used for commercial purposes.16 The purpose will be the result of processing and not the other way round. However, under the basic principle of purpose limitation (see Sect. 4.1.2), personal data shall only be collected for specified, explicit and legitimate purposes. In order to be able to communicate purposes, entities might have to communicate several possible uses of the data. The level of detail of the processing purpose may vary on a case-by-case basis given the specific situation of big data technologies.17 It should be noted that the more general the purpose of processing is laid down, the more risk-prone a processing activity will be and, thus, the higher the appropriate safeguards must be.18 In this regard, entities could use the concepts of Privacy by Design and Privacy by Default (see Sect. 3.7) in order to increase the data protection level of their technologies.
 
 9.2 Cloud Computing
 Cloud computing consists of a set of technologies and service models that focus on the Internet-based use and delivery of IT applications, processing capability and/or storage space.19 There is a great variety of cloud services ranging from virtual processing systems (remotely accessible IT infrastructure) to web-based software solutions, such as calendars, email or text-processing solutions.20 Cloud computing offers technical and economic benefits to businesses as it allows them to use scalable high-quality IT that would otherwise be out of their budget and/or not be technically feasible for them.21 Cloud services will often be used to process
-16Koch, ITRB 2015, 13, 16; Weichert, ZD 2013, 251, 256. 17See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 51; Weichert, ZD 2013, 251, 256. 18Weichert, ZD 2013, 251, 256. 19Art. 29 Data Protection Working Party, WP 196 (2012), p. 4. 20Spies, in: v.d.Bussche/Voigt, Konzerndatenschutz, Cloud Computing (2014), rec. 6; Art. 29 Data Protection Working Party, WP 196 (2012), p. 4. 21Spies, in: v.d.Bussche/Voigt, Konzerndatenschutz, Cloud Computing (2014), recs. 1­2; Art. 29 Data Protection Working Party, WP 196 (2012), p. 4.
+16Koch, ITRB 2015, 13, 16; Weichert, ZD 2013, 251, 256. 17See also Art. 29 Data Protection Working Party, WP 203 (2013), p. 51; Weichert, ZD 2013, 251, 256. 18Weichert, ZD 2013, 251, 256. 19Art. 29 Data Protection Working Party, WP 196 (2012), p. 4. 20Spies, in: v.d.Bussche/Voigt, Konzerndatenschutz, Cloud Computing (2014), rec. 6; Art. 29 Data Protection Working Party, WP 196 (2012), p. 4. 21Spies, in: v.d.Bussche/Voigt, Konzerndatenschutz, Cloud Computing (2014), recs. 1ï¿½2; Art. 29 Data Protection Working Party, WP 196 (2012), p. 4.
 
 9.2 Cloud Computing
 
@@ -3817,7 +3823,7 @@ Based on the concept of joint controllership under Art. 26 GDPR, if both provide
 
 9.2.2 Choosing a Suitable Cloud Service Provider
 In case the client qualifies as a controller, it will be obliged to choose a suitable processor under the GDPR (see Sect. 3.10.2). Where the controller does not carry out data processing by itself but commissions it to a cloud service provider, the former may no longer be in exclusive control of the personal data and cannot deploy the technical and organisational measures necessary to ensure the availability, integrity, confidentiality, transparency, isolation and portability of the data.27 Thus, the chosen cloud service provider must apply appropriate safeguards to
-22Schmid/Kahl, ZD 2017, 54, 55; Art. 29 Data Protection Working Party, WP 196 (2012), pp. 7­8. 23Hofmann, ZD-Aktuell 2017, 05488. 24Hofmann, ZD-Aktuell 2017, 05488. 25Art. 29 Data Protection Working Party, WP 196 (2012), p. 8. 26Art. 29 Data Protection Working Party, WP 196 (2012), p. 8. 27Art. 29 Data Protection Working Party, WP 196 (2012), p. 5.
+22Schmid/Kahl, ZD 2017, 54, 55; Art. 29 Data Protection Working Party, WP 196 (2012), pp. 7ï¿½8. 23Hofmann, ZD-Aktuell 2017, 05488. 24Hofmann, ZD-Aktuell 2017, 05488. 25Art. 29 Data Protection Working Party, WP 196 (2012), p. 8. 26Art. 29 Data Protection Working Party, WP 196 (2012), p. 8. 27Art. 29 Data Protection Working Party, WP 196 (2012), p. 5.
 
 240
 
@@ -3827,7 +3833,7 @@ processing. Even though the processor is facing its own enforceable obligations 
 Cloud computing services often involve sub-processors (see Sect. 3.10.4). Where this is the case, all the relevant data protection obligations of the cloud service provider must also apply to the sub-processors through contracts between the cloud provider and the subcontractor reflecting the stipulations of the contract between the cloud client and the cloud provider.29
 
 9.2.3 Third-Country Cloud Service Providers
-Cloud computing will often lead to a transfer of personal data to cloud service providers located in third countries. Under the GDPR, the involvement of a non-EU processor should not require a separate legal basis than the one enabling the controller to process the data (see Sect. 3.10.1).30 However, third-country data transfers must be subject to additional safeguards (see Sect. 4.3). The latter might consist, inter alia, of the use of Standard Contractual Causes or Binding Corporate Rules or adherence to the EU­U.S. Privacy Shield. Such measures shall ensure that the third country processor provides for a level of data protection similar to the one in the EU.
+Cloud computing will often lead to a transfer of personal data to cloud service providers located in third countries. Under the GDPR, the involvement of a non-EU processor should not require a separate legal basis than the one enabling the controller to process the data (see Sect. 3.10.1).30 However, third-country data transfers must be subject to additional safeguards (see Sect. 4.3). The latter might consist, inter alia, of the use of Standard Contractual Causes or Binding Corporate Rules or adherence to the EUï¿½U.S. Privacy Shield. Such measures shall ensure that the third country processor provides for a level of data protection similar to the one in the EU.
 
 9.3 Internet of Things
 The Internet of Things (IoT) refers to an infrastructure in which billions of sensors embedded in common, everyday devices turn the latter into `smart things' that are designed to continuously record, process and transfer data.31 Based on the data collected by the devices, IoT entities offer applications and services based on the combination and analysis of the data that corresponds to the habits or activities of the user, such as fitness tracking. IoT relies on the principle of extensive data processing to measure the user's environment or behaviour.32 Thus, such processing often relates to an identifiable person, which leads to the applicability of the GDPR.
@@ -3842,7 +3848,7 @@ Contractual Necessity As data processing forms the basis of IoT businesses, its 
 Prevailing Legitimate Interests of the Controller Moreover, processing might be lawful based on the prevailing legitimate interests of the IoT entity. However, this legal basis is somewhat risk-prone as it requires a balancing of interests by the controller for whose result it can be held accountable (see Sect. 4.2.2.2). Given the increasingly stronger and omnipresent interconnection of data by everyday items in the IoT, the data subject's interests might quickly overrule the legitimate interest of the controller in processing.34 This is due to the fact that, in the context of data processing in the IoT, the individual's right to privacy is likely to be affected significantly when the data relates to the individual's state of health, home or intimacy; his location; or many other aspects of his private life.35 Thus, the economic interests of IoT entities will hardly justify such processing.36
 Consent As regards smart devices, users may not be aware of the extent to which data processing is carried out through certain objects, and this lack of information constitutes a barrier for IoT entities to demonstrate the data subject's valid consent to processing under the GDPR.37 However, as just shown, other legal bases for processing might not be viable, and thus the data subject's consent is likely to continue playing an important role for the IoT as legal ground for processing under the GDPR.38 Thus, IoT entities should increase their efforts to provide their users with information on intended processing activities and to obtain their valid consent
 
-33Dienst/Falke, in: Bra¨utigam/Rücker, E-Commerce, Internet der Dinge (2017), recs. 33­34. 34Dienst/Falke, in: Bra¨utigam/Rücker, E-Commerce, Internet der Dinge (2017), rec. 37; Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 35Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 36Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 37Art. 29 Data Protection Working Party, WP 223 (2014), p. 7. 38Dienst/Falke, in: Bra¨utigam/Rücker, E-Commerce, Internet der Dinge (2017), rec. 38.
+33Dienst/Falke, in: Braï¿½utigam/Rï¿½cker, E-Commerce, Internet der Dinge (2017), recs. 33ï¿½34. 34Dienst/Falke, in: Braï¿½utigam/Rï¿½cker, E-Commerce, Internet der Dinge (2017), rec. 37; Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 35Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 36Art. 29 Data Protection Working Party, WP 223 (2014), p. 15. 37Art. 29 Data Protection Working Party, WP 223 (2014), p. 7. 38Dienst/Falke, in: Braï¿½utigam/Rï¿½cker, E-Commerce, Internet der Dinge (2017), rec. 38.
 
 242
 
@@ -3858,21 +3864,21 @@ Under the concept of Privacy by Design and Privacy by Default, smart devices sho
 References
 Art. 29 Data Protection Working Party (2012) Opinion 5/2012 on Cloud Computing, WP 196 Art. 29 Data Protection Working Party (2013) Opinion 3/2013 on purpose limitation, WP 203 Art. 29 Data Protection Working Party (2014) Statement on statement of the WP29 on the impact
 of the development of big data on the protection of individuals with regard to the processing of their personal data in the EU, WP 221 Art. 29 Data Protection Working Party (2014) Opinion 8/2014 on the Recent Developments on the Internet of Things, WP 223
-39Art. 29 Data Protection Working Party, WP 223 (2014), p. 7. 40Art. 29 Data Protection Working Party, WP 223 (2014), p. 8. 41Art. 29 Data Protection Working Party, WP 223 (2014), p. 8. 42Dienst/Falke, in: Bra¨utigam/Rücker, E-Commerce, Internet der Dinge (2017), rec. 58. 43Art. 29 Data Protection Working Party, WP 223 (2014), p. 22. 44Dienst/Falke, in: Bra¨utigam/Rücker, E-Commerce, Internet der Dinge (2017), rec. 60.
+39Art. 29 Data Protection Working Party, WP 223 (2014), p. 7. 40Art. 29 Data Protection Working Party, WP 223 (2014), p. 8. 41Art. 29 Data Protection Working Party, WP 223 (2014), p. 8. 42Dienst/Falke, in: Braï¿½utigam/Rï¿½cker, E-Commerce, Internet der Dinge (2017), rec. 58. 43Art. 29 Data Protection Working Party, WP 223 (2014), p. 22. 44Dienst/Falke, in: Braï¿½utigam/Rï¿½cker, E-Commerce, Internet der Dinge (2017), rec. 60.
 
 References
 
 243
 
-Dammann U (2016) Erfolge und Defizite der EU-Datenschutzgrundverordnung. ZD, pp 307­314 Dienst S, Falke M (2017) Datenschutzrechtliche Herausforderungen im Internet der Dinge. In:
-Bra¨utigam P, Rücker D (eds) E-Commerce Rechtshandbuch, 1st edn. C.H. Beck, Munich European Data Protection Supervisor (2016) Opinion 8/2016 ­ EDPS opinion on coherent
-enforcement of fundamental rights in the age of big data Ha¨rting N (2016) Big Data und Profiling nach der DSGVO. ITRB, pp 209­211 Hofmann J (2017) Anforderungen aus DS-GVO und NIS-RL an das Cloud Computing,
-ZD-Aktuell, 05488 Keppeler LM (2015) Was bleibt vom TMG-Datenschutz nach der DS-GVO? MMR, pp 779­783 Koch FA (2015) Big Data und der Schutz der Daten. ITRB, pp 13­20 Liedke B (2014) BIG DATA ­ small information: muss der datenschutzrechtliche
-Auskunftsanspruch reformiert werden? K&R, pp 709­714 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO. ZD, pp 407­413 Ringeling C (2015) A practical approach to business analytics software. Cri, pp 7­11 Roßnagel A (2013) Big data ­ small privacy? ZD, pp 562­567 Roßnagel A, Richter P, Nebel M (2013) Besserer Internetdatenschutz für Europa. ZD, pp 103­108 Schmid G, Kahl T (2017) Verarbeitung `sensibler' Daten durch Cloud-Anbieter in Drittstaaten.
-ZD, pp 54­57 Spies A (2014) Cloud Computing. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz
-Rechtshandbuch, 1st edn. C.H. Beck, Munich Sydow G, Kring M (2014) Die Datenschutzgrundverordnung zwischen Technikneutralita¨t und
-Technikbezug. ZD, pp 271­276 Weichert T (2013) Big Data und Datenschutz. ZD, pp 251­259 Werkmeister C, Brandt E (2016) Datenschutzrechtliche Herausforderungen für Big Data. CR, pp
-233­238
+Dammann U (2016) Erfolge und Defizite der EU-Datenschutzgrundverordnung. ZD, pp 307ï¿½314 Dienst S, Falke M (2017) Datenschutzrechtliche Herausforderungen im Internet der Dinge. In:
+Braï¿½utigam P, Rï¿½cker D (eds) E-Commerce Rechtshandbuch, 1st edn. C.H. Beck, Munich European Data Protection Supervisor (2016) Opinion 8/2016 ï¿½ EDPS opinion on coherent
+enforcement of fundamental rights in the age of big data Haï¿½rting N (2016) Big Data und Profiling nach der DSGVO. ITRB, pp 209ï¿½211 Hofmann J (2017) Anforderungen aus DS-GVO und NIS-RL an das Cloud Computing,
+ZD-Aktuell, 05488 Keppeler LM (2015) Was bleibt vom TMG-Datenschutz nach der DS-GVO? MMR, pp 779ï¿½783 Koch FA (2015) Big Data und der Schutz der Daten. ITRB, pp 13ï¿½20 Liedke B (2014) BIG DATA ï¿½ small information: muss der datenschutzrechtliche
+Auskunftsanspruch reformiert werden? K&R, pp 709ï¿½714 Nebel M, Richter P (2012) Datenschutz bei Internetdiensten nach der DS-GVO. ZD, pp 407ï¿½413 Ringeling C (2015) A practical approach to business analytics software. Cri, pp 7ï¿½11 Roï¿½nagel A (2013) Big data ï¿½ small privacy? ZD, pp 562ï¿½567 Roï¿½nagel A, Richter P, Nebel M (2013) Besserer Internetdatenschutz fï¿½r Europa. ZD, pp 103ï¿½108 Schmid G, Kahl T (2017) Verarbeitung `sensibler' Daten durch Cloud-Anbieter in Drittstaaten.
+ZD, pp 54ï¿½57 Spies A (2014) Cloud Computing. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz
+Rechtshandbuch, 1st edn. C.H. Beck, Munich Sydow G, Kring M (2014) Die Datenschutzgrundverordnung zwischen Technikneutralitaï¿½t und
+Technikbezug. ZD, pp 271ï¿½276 Weichert T (2013) Big Data und Datenschutz. ZD, pp 251ï¿½259 Werkmeister C, Brandt E (2016) Datenschutzrechtliche Herausforderungen fï¿½r Big Data. CR, pp
+233ï¿½238
 
 Practical Implementation of the Requirements Under the GDPR
 
@@ -3904,7 +3910,7 @@ order to adapt the data protection structure to national peculiarities (see Chap
 10.1 Step 1: `Gap' Analysis
 In a first step, the entity needs to analyse its existing data protection standards. They must be compared to what will be necessary for fulfilling the obligations under the GDPR. In the course of analysing the data protection `gap', potential non-compliance with the Data Protection Directive should be eliminated as well.
 To carry out the `gap' analysis, the responsible persons for data processing in the entity's different departments must be included in the assessment process. The analysis could be carried out via workshops, specialised interviews or selfassessments.5 Emphasis should be made on the following:
-­ what kind of processing activities are carried out for what purpose(s); ­ what kind of data are processed; ­ how the internal responsibilities are allocated; and ­ what safeguards are in place, inter alia, as regards data subjects' rights.
+ï¿½ what kind of processing activities are carried out for what purpose(s); ï¿½ what kind of data are processed; ï¿½ how the internal responsibilities are allocated; and ï¿½ what safeguards are in place, inter alia, as regards data subjects' rights.
 The `gap' analysis must include the identification of the entity's obligations under the GDPR based on its specific data processing activities. To conclude the first phase, the entity will compare its data protection standards with the new requirements and identify the protection `gap' that will be addressed in the course of the subsequent steps.
 
 10.2 Step 2: Risk Analysis
@@ -3936,7 +3942,7 @@ Data Protection Officer Under the GDPR, a lot of entities will be obliged to des
 Records of Processing Activities Entities--controllers and processors--will have to maintain records of their data processing activities (see Sect. 3.4 for details). In order to record those activities in a timely manner, it is advisable, first, to record an overview of the processing activities (name, short description, contact) and, afterwards, document them in detail according to the legal requirements. Records could be maintained by either the respective departments or a central representative.10 The latter is highly advisable in order to get a better overall view of the entities' processing activities and to ensure a consistent maintenance of the records. As regards processors, they might be able to maintain records by using and systematising the respective information from their data processing agreement with the controller, as the latter will contain a detailed description of the purposes and means of processing that the processor shall carry out on behalf of the controller (see Sect. 3.10.2).
 Constant Monitoring and Up-Keeping To conclude the final phase, the new data protection standards will be successfully implemented and come into regular operation. Entities should be aware that this will not conclude the process as compliance with the GDPR must be constantly monitored and kept-up. As just mentioned, the Data Protection Officer might assume a key role in this regard as its tasks include the assessment of technical and organisational measures, contracts and IT systems, regular reports and information to the management, etc. Entities must constantly review their processing activities for compliance with the GDPR.
 
-9Laue/Nink/Kremer, Datenschutzrecht, Datenschutz (2016), rec. 30; see also Scholz, in: Simitis, BDSG, § 3a (2014), rec. 44. 10See also Egle/Zeller, in: v.d.Bussche/Voigt, Konzerndatenschutz, Verarbeitungsübersicht (2014), recs. 15­18.
+9Laue/Nink/Kremer, Datenschutzrecht, Datenschutz (2016), rec. 30; see also Scholz, in: Simitis, BDSG, ï¿½ 3a (2014), rec. 44. 10See also Egle/Zeller, in: v.d.Bussche/Voigt, Konzerndatenschutz, Verarbeitungsï¿½bersicht (2014), recs. 15ï¿½18.
 
 References
 
@@ -3947,10 +3953,10 @@ References
 The GDPR leaves a considerable margin for national legislation to specify the rules on data protection (see Chap. 8 for details). Thus, it is likely that different EU Member States will introduce additional data protection requirements that entities might have to fulfil. If entities carry out data processing activities in different EU Member States or that are affecting multiple EU Member States, they must identify whether they will be affected by national data protection legislation. In this regard, rules on employee data protection merit specific attention (see Sect. 8.2). Based on applicable EU Member State legislation, the data protection standards will have to be adjusted for the relevant data processing activities.
 
 References
-Egle M, Zeller A (2014) Datenschutzmanagement im Konzern; Verarbeitungsübersicht im Konzern. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H. Beck, Munich
+Egle M, Zeller A (2014) Datenschutzmanagement im Konzern; Verarbeitungsï¿½bersicht im Konzern. In: von dem Bussche AF, Voigt P (eds) Konzerndatenschutz Rechtshandbuch, 1st edn. C.H. Beck, Munich
 Laue P, Nink J, Kremer S (eds) (2016) Technischer und Organisatorischer Datenschutz. In: Das neue Datenschutzrecht in der betrieblichen Praxis, 1st edn. Nomos, Baden-Baden
-Scholz P (2014) § 3a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
-Selk R (2017) Projekt: Datenschutz-Grundverordnung. PinG, pp 38­44
+Scholz P (2014) ï¿½ 3a BDSG. In: Simitis S (ed) Bundesdatenschutzgesetz, 8th edn. Nomos, BadenBaden
+Selk R (2017) Projekt: Datenschutz-Grundverordnung. PinG, pp 38ï¿½44
 
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
@@ -4033,7 +4039,7 @@ Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 Article of the GDPR
 execution of criminal penalties, including the safeguarding against and the prevention of threats to public security.
 3. For the processing of personal data by the Union institutions, bodies, offices and agencies, Regulation (EC) No 45/2001 applies. Regulation (EC) No 45/2001 and other Union legal acts applicable to such processing of personal data shall be adapted to the principles and rules of this Regulation in accordance with Article 98.
-4. This Regulation shall be without prejudice to the application of Directive 2000/31/EC, in particular of the liability rules of intermediary service providers in Articles 12­15 of that Directive.
+4. This Regulation shall be without prejudice to the application of Directive 2000/31/EC, in particular of the liability rules of intermediary service providers in Articles 12ï¿½15 of that Directive.
 
 Recital(s)
 files, as well as their cover pages, which are not structured according to specific criteria should not fall within the scope of this Regulation.
@@ -4062,7 +4068,7 @@ Article of the GDPR
 Recital(s)
 security. This is relevant for instance in the framework of anti-money laundering or the activities of forensic laboratories.
 (20) While this Regulation applies, inter alia, to the activities of courts and other judicial authorities, Union or Member State law could specify the processing operations and processing procedures in relation to the processing of personal data by courts and other judicial authorities. The competence of the supervisory authorities should not cover the processing of personal data when courts are acting in their judicial capacity, in order to safeguard the independence of the judiciary in the performance of its judicial tasks, including decision-making. It should be possible to entrust supervision of such data processing operations to specific bodies within the judicial system of the Member State, which should, in particular ensure compliance with the rules of this Regulation, enhance awareness among members of the judiciary of their obligations under this Regulation and handle complaints in relation to such data processing operations.
-(21) This Regulation is without prejudice to the application of Directive 2000/31/EC of the European Parliament and of the Council, in particular of the liability rules of intermediary service providers in Articles 12­15 of that Directive. That Directive seeks to contribute to the proper functioning of the internal market by ensuring the free movement of information society services between Member States.
+(21) This Regulation is without prejudice to the application of Directive 2000/31/EC of the European Parliament and of the Council, in particular of the liability rules of intermediary service providers in Articles 12ï¿½15 of that Directive. That Directive seeks to contribute to the proper functioning of the internal market by ensuring the free movement of information society services between Member States.
 (27) This Regulation does not apply to the personal data of deceased persons. Member States may provide for rules regarding the processing of personal data of deceased persons.
 (102) This Regulation is without prejudice to international agreements concluded between the Union and third countries regulating the transfer of personal data including appropriate safeguards for the data subjects. Member States may conclude international agreements which involve the transfer of personal data to third countries or international organisations, as far as such agreements do not affect this
 (continued)
@@ -4376,7 +4382,7 @@ Article 10: Processing of personal data relating to criminal convictions and off
 Recital(s) processing should be subject to suitable and specific measures so as to protect the rights and freedoms of natural persons. In that context, `public health' should be interpreted as defined in Regulation (EC) No 1338/2008 of the European Parliament and of the Council, namely all elements related to health, namely health status, including morbidity and disability, the determinants having an effect on that health status, health care needs, resources allocated to health care, the provision of, and universal access to, health care as well as health care expenditure and financing, and the causes of mortality. Such processing of data concerning health for reasons of public interest should not result in personal data being processed for other purposes by third parties such as employers or insurance and banking companies.
 (55) Moreover, the processing of personal data by official authorities for the purpose of achieving the aims, laid down by constitutional law or by international public law, of officially recognised religious associations, is carried out on grounds of public interest.
 (56) Where in the course of electoral activities, the operation of the democratic system in a Member State requires that political parties compile personal data on people's political opinions, the processing of such data may be permitted for reasons of public interest, provided that appropriate safeguards are established.
-­
+ï¿½
 (continued)
 
 278
@@ -4386,12 +4392,12 @@ Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 Article of the GDPR
 Article 11: Processing which does not require identification
 1. If the purposes for which a controller processes personal data do not or do no longer require the identification of a data subject by the controller, the controller shall not be obliged to maintain, acquire or process additional information in order to identify the data subject for the sole purpose of complying with this Regulation.
-2. Where, in cases referred to in paragraph 1 of this Article, the controller is able to demonstrate that it is not in a position to identify the data subject, the controller shall inform the data subject accordingly, if possible. In such cases, Articles 15­20 shall not apply except where the data subject, for the purpose of exercising his or her rights under those articles, provides additional information enabling his or her identification.
+2. Where, in cases referred to in paragraph 1 of this Article, the controller is able to demonstrate that it is not in a position to identify the data subject, the controller shall inform the data subject accordingly, if possible. In such cases, Articles 15ï¿½20 shall not apply except where the data subject, for the purpose of exercising his or her rights under those articles, provides additional information enabling his or her identification.
 Chapter III - Rights of the data subject
 Section 1 - Transparency and modalities
 Article 12: Transparent information, communication and modalities for the exercise of the rights of the data subject For details, see Sect. 5.1.
-1. The controller shall take appropriate measures to provide any information referred to in Articles 13 and 14 and any communication under Articles 15­22 and 34 relating to processing to the data subject in a concise, transparent, intelligible and easily accessible form, using clear and plain language, in particular for any information addressed specifically to a child. The information shall be provided in writing, or by other means, including, where appropriate, by electronic means. When requested by the data subject, the information may be provided orally, provided that the identity of the data subject is proven by other means.
-2. The controller shall facilitate the exercise of data subject rights under Articles 15­22. In the cases referred to in Article 11(2), the controller shall not refuse to act on the request of the data subject for exercising his or her rights under Articles 15­22, unless the controller demonstrates that it is not in a position to identify the data subject.
+1. The controller shall take appropriate measures to provide any information referred to in Articles 13 and 14 and any communication under Articles 15ï¿½22 and 34 relating to processing to the data subject in a concise, transparent, intelligible and easily accessible form, using clear and plain language, in particular for any information addressed specifically to a child. The information shall be provided in writing, or by other means, including, where appropriate, by electronic means. When requested by the data subject, the information may be provided orally, provided that the identity of the data subject is proven by other means.
+2. The controller shall facilitate the exercise of data subject rights under Articles 15ï¿½22. In the cases referred to in Article 11(2), the controller shall not refuse to act on the request of the data subject for exercising his or her rights under Articles 15ï¿½22, unless the controller demonstrates that it is not in a position to identify the data subject.
 
 Recital(s)
 (57) If the personal data processed by a controller do not permit the controller to identify a natural person, the data controller should not be obliged to acquire additional information in order to identify the data subject for the sole purpose of complying with any provision of this Regulation. However, the controller should not refuse to take additional information provided by the data subject in order to support the exercise of his or her rights. Identification should include the digital identification of a data subject, for example through authentication mechanism such as the same credentials, used by the data subject to log-in to the on-line service offered by the data controller.
@@ -4404,13 +4410,13 @@ Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 279
 
 Article of the GDPR
-3. The controller shall provide information on action taken on a request under Articles 15­22 to the data subject without undue delay and in any event within 1 month of receipt of the request. That period may be extended by two further months where necessary, taking into account the complexity and number of the requests. The controller shall inform the data subject of any such extension within 1 month of receipt of the request, together with the reasons for the delay. Where the data subject makes the request by electronic form means, the information shall be provided by electronic means where possible, unless otherwise requested by the data subject.
+3. The controller shall provide information on action taken on a request under Articles 15ï¿½22 to the data subject without undue delay and in any event within 1 month of receipt of the request. That period may be extended by two further months where necessary, taking into account the complexity and number of the requests. The controller shall inform the data subject of any such extension within 1 month of receipt of the request, together with the reasons for the delay. Where the data subject makes the request by electronic form means, the information shall be provided by electronic means where possible, unless otherwise requested by the data subject.
 4. If the controller does not take action on the request of the data subject, the controller shall inform the data subject without delay and at the latest within 1 month of receipt of the request of the reasons for not taking action and on the possibility of lodging a complaint with a supervisory authority and seeking a judicial remedy.
-5. Information provided under Articles 13 and 14 and any communication and any actions taken under Articles 15­22 and 34 shall be provided free of charge. Where requests from a data subject are manifestly unfounded or excessive, in particular because of their repetitive character, the controller may either:
+5. Information provided under Articles 13 and 14 and any communication and any actions taken under Articles 15ï¿½22 and 34 shall be provided free of charge. Where requests from a data subject are manifestly unfounded or excessive, in particular because of their repetitive character, the controller may either:
 (a) charge a reasonable fee taking into account the administrative costs of providing the information or communication or taking the action requested; or
 (b) refuse to act on the request.
 The controller shall bear the burden of demonstrating the manifestly unfounded or excessive character of the request.
-6. Without prejudice to Article 11, where the controller has reasonable doubts concerning the identity of the natural person making the request referred to in Articles 15­21, the controller may request the provision of additional information necessary to confirm the identity of the data subject.
+6. Without prejudice to Article 11, where the controller has reasonable doubts concerning the identity of the natural person making the request referred to in Articles 15ï¿½21, the controller may request the provision of additional information necessary to confirm the identity of the data subject.
 7. The information to be provided to data subjects pursuant to Articles 13 and 14 may be
 
 Recital(s) mechanisms to request and, if applicable, obtain, free of charge, in particular, access to and rectification or erasure of personal data and the exercise of the right to object. The controller should also provide means for requests to be made electronically, especially where personal data are processed by electronic means. The controller should be obliged to respond to requests from the data subject without undue delay and at the latest within 1 month and to give reasons where the controller does not intend to comply with any such requests.
@@ -4501,7 +4507,7 @@ of the personal data cannot be provided to the data subject because various sour
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
 Article of the GDPR
-5. Paragraphs 1­4 shall not apply where and insofar as:
+5. Paragraphs 1ï¿½4 shall not apply where and insofar as:
 (a) the data subject already has the information;
 (b) the provision of such information proves impossible or would involve a disproportionate effort, in particular for processing for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes, subject to the conditions and safeguards referred to in Article 89(1) or in so far as the obligation referred to in paragraph 1 of this Article is likely to render impossible or seriously impair the achievement of the objectives of that processing. In such cases the controller shall take appropriate measures to protect the data subject's rights and freedoms and legitimate interests, including making the information publicly available;
 (c) obtaining or disclosure is expressly laid down by Union or Member State law to which the controller is subject and which provides appropriate measures to protect the data subject's legitimate interests; or
@@ -4581,7 +4587,7 @@ objectives of that processing; or
 
 Recital(s)
 (67) Methods by which to restrict the processing of personal data could include, inter alia, temporarily moving the selected data to another processing system, making the selected personal data unavailable to users, or temporarily removing published data from a website. In automated filing systems, the restriction of processing should in principle be ensured by technical means in such a manner that the personal data are not subject to further processing operations and cannot be changed. The fact that the processing of personal data is restricted should be clearly indicated in the system.
-­ (continued)
+ï¿½ (continued)
 
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
@@ -4638,7 +4644,7 @@ Recital(s)
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
 Article of the GDPR
-Section 5 - Restrictions Article 23: Restrictions For details, see Sect. 5.9. 1. Union or Member State law to which the data controller or processor is subject may restrict by way of a legislative measure the scope of the obligations and rights provided for in Articles 12­22 and Article 34, as well as Article 5 in so far as its provisions correspond to the rights and obligations provided for in Articles 12­22, when such a restriction respects the essence of the fundamental rights
+Section 5 - Restrictions Article 23: Restrictions For details, see Sect. 5.9. 1. Union or Member State law to which the data controller or processor is subject may restrict by way of a legislative measure the scope of the obligations and rights provided for in Articles 12ï¿½22 and Article 34, as well as Article 5 in so far as its provisions correspond to the rights and obligations provided for in Articles 12ï¿½22, when such a restriction respects the essence of the fundamental rights
 
 Recital(s)
 be subject to suitable safeguards, which should include specific information to the data subject and the right to obtain human intervention, to express his or her point of view, to obtain an explanation of the decision reached after such assessment and to challenge the decision. Such measure should not concern a child. In order to ensure fair and transparent processing in respect of the data subject, taking into account the specific circumstances and context in which the personal data are processed, the controller should use appropriate mathematical or statistical procedures for the profiling, implement technical and organisational measures appropriate to ensure, in particular, that factors which result in inaccuracies in personal data are corrected and the risk of errors is minimised, secure personal data in a manner that takes account of the potential risks involved for the interests and rights of the data subject and that prevents, inter alia, discriminatory effects on natural persons on the basis of racial or ethnic origin, political opinion, religion or beliefs, trade union membership, genetic or health status or sexual orientation, or that result in measures having such an effect. Automated decision-making and profiling based on special categories of personal data should be allowed only under specific conditions.
@@ -4761,7 +4767,7 @@ to confidentiality or are under an appropriate statutory obligation of confident
 (c) takes all measures required pursuant to Article 32;
 (d) respects the conditions referred to in paragraphs 2 and 4 for engaging another processor;
 (e) taking into account the nature of the processing, assists the controller by appropriate technical and organisational measures, insofar as this is possible, for the fulfilment of the controller's obligation to respond to requests for exercising the data subject's rights laid down in Chapter III;
-(f) assists the controller in ensuring compliance with the obligations pursuant to Articles 32­36 taking into account the nature of processing and the information available to the processor;
+(f) assists the controller in ensuring compliance with the obligations pursuant to Articles 32ï¿½36 taking into account the nature of processing and the information available to the processor;
 (g) at the choice of the controller, deletes or returns all the personal data to the controller after the end of the provision of services relating to processing, and deletes existing copies unless Union or Member State law requires storage of the personal data;
 (h) makes available to the controller all information necessary to demonstrate compliance with the obligations laid down in this Article and allow for and contribute to audits, including inspections, conducted by the controller or another auditor mandated by the controller.
 With regard to point (h) of the first subparagraph, the processor shall immediately inform the controller if, in its opinion, an instruction infringes this Regulation or other Union or Member State data protection provisions.
@@ -4786,7 +4792,7 @@ implement appropriate technical and organisational measures in such a manner tha
 Article 29: Processing under the authority of the controller or processor
 The processor and any person acting under the authority of the controller or of the processor, who has access to personal data, shall not process those data except on instructions from
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -4826,7 +4832,7 @@ The controller and the processor and, where applicable, their representatives, s
 1. Taking into account the state of the art, the costs of implementation and the nature, scope, context and purposes of processing as well as the risk of varying likelihood and severity for the rights and freedoms of natural persons, the controller and the processor shall implement
 
 Recital(s)
-­ (76) The likelihood and severity of the risk to the rights and freedoms of the data subject should be determined by reference to the nature, scope, context and purposes of the processing. Risk should be evaluated on the basis of an objective assessment, by which it is
+ï¿½ (76) The likelihood and severity of the risk to the rights and freedoms of the data subject should be determined by reference to the nature, scope, context and purposes of the processing. Risk should be evaluated on the basis of an objective assessment, by which it is
 (continued)
 
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
@@ -4938,7 +4944,7 @@ Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 Article of the GDPR
 relevant controllers or processors shall be taken into due account in assessing the impact of the processing operations performed by such controllers or processors, in particular for the purposes of a data protection impact assessment.
 9. Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.
-10. Where processing pursuant to point (c) or (e) of Article 6(1) has a legal basis in Union law or in the law of the Member State to which the controller is subject, that law regulates the specific processing operation or set of operations in question, and a data protection impact assessment has already been carried out as part of a general impact assessment in the context of the adoption of that legal basis, paragraphs 1­7 shall not apply unless Member States deem it to be necessary to carry out such an assessment prior to processing activities.
+10. Where processing pursuant to point (c) or (e) of Article 6(1) has a legal basis in Union law or in the law of the Member State to which the controller is subject, that law regulates the specific processing operation or set of operations in question, and a data protection impact assessment has already been carried out as part of a general impact assessment in the context of the adoption of that legal basis, paragraphs 1ï¿½7 shall not apply unless Member States deem it to be necessary to carry out such an assessment prior to processing activities.
 11. Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.
 Article 36: Prior consultation For details, see Sect. 3.5.2.4. 1. The controller shall consult the supervisory authority prior to processing where a data protection impact assessment under Article 35 indicates that the processing would result in a high risk in the absence of measures taken by the controller to mitigate the risk.
 2. Where the supervisory authority is of the opinion that the intended processing referred to in paragraph 1 would infringe this Regulation, in particular where the controller
@@ -5022,7 +5028,7 @@ performance of his or her tasks, in accordance with Union or Member State law.
 (e) to act as the contact point for the supervisory authority on issues relating to processing, including the prior consultation referred to in Article 36, and to consult, where appropriate, with regard to any other matter.
 2. The data protection officer shall in the performance of his or her tasks have due regard to the risk associated with processing operations, taking into account the nature, scope, context and purposes of processing. Section 5 - Codes of conduct and certification Article 40: Codes of conduct For details, see Sect. 3.9.2. 1. The Member States, the supervisory authorities, the Board and the Commission shall encourage the drawing up of codes of
 
-Recital(s) ­
+Recital(s) ï¿½
 (98) Associations or other bodies representing categories of controllers or processors should be encouraged to draw up codes of conduct,
 (continued)
 
@@ -5077,7 +5083,7 @@ to in Article 63 to the Board which shall provide an opinion on whether the draf
 2. A body as referred to in paragraph 1 may be accredited to monitor compliance with a code of conduct where that body has:
 (a) demonstrated its independence and expertise in relation to the subject-matter of
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -5129,7 +5135,7 @@ Article 43: Certification bodies For details, see Sect. 3.9.3.3.
 (b) the national accreditation body named in accordance with Regulation (EC) No 765/2008 of the European Parliament and of the Council in accordance with EN-ISO/IEC 17065/2012 and with the additional requirements established by the supervisory authority which is competent pursuant to Article 55 or 56.
 2. Certification bodies referred to in paragraph 1 shall be accredited in accordance with that paragraph only where they have:
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -5207,7 +5213,7 @@ developments in the third country or international organisation. The implementin
 4. The Commission shall, on an ongoing basis, monitor developments in third countries and international organisations that could affect the functioning of decisions adopted pursuant to paragraph 3 of this Article and decisions adopted on the basis of Article 25(6) of Directive 95/46/EC.
 5. The Commission shall, where available information reveals, in particular following the review referred to in paragraph 3 of this Article, that a third country, a territory or one or more specified sectors within a third country, or an international organisation no longer ensures an adequate level of protection within the meaning of paragraph 2 of this Article, to the extent necessary, repeal, amend or suspend the decision referred to in paragraph 3 of this Article by means of implementing acts without retro-active effect. Those implementing acts shall be adopted in accordance with the examination procedure referred to in Article 93(2). On duly justified imperative grounds of urgency, the Commission shall adopt immediately applicable implementing acts in accordance with the procedure referred to in Article 93(3).
 6. The Commission shall enter into consultations with the third country or international organisation with a view to remedying the situation giving rise to the decision made pursuant to paragraph 5.
-7. A decision pursuant to paragraph 5 of this Article is without prejudice to transfers of personal data to the third country, a territory or one or more specified sectors within that third country, or the international organisation in question pursuant to Articles 46­49.
+7. A decision pursuant to paragraph 5 of this Article is without prejudice to transfers of personal data to the third country, a territory or one or more specified sectors within that third country, or the international organisation in question pursuant to Articles 46ï¿½49.
 8. The Commission shall publish in the Official Journal of the European Union and on its website a list of the third countries,
 
 Recital(s)
@@ -5222,7 +5228,7 @@ Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
 Article of the GDPR
 territories and specified sectors within a third country and international organisations for which it has decided that an adequate level of protection is or is no longer ensured.
-9.Decisions adopted by the Commission on the basis of Article 25(6) of Directive 95/46/ EC shall remain in force until amended, replaced or repealed by a Commission Decision adopted in accordance with paragraph 3 or 5 of this Article. Article 46: Transfers subject to appropriate safeguards For details, see Sects. 4.3.3­4.3.6. 1. In the absence of a decision pursuant to Article 45(3), a controller or processor may transfer personal data to a third country or an international organisation only if the controller or processor has provided appropriate safeguards, and on condition that enforceable data subject rights and effective legal remedies for data subjects are available.
+9.Decisions adopted by the Commission on the basis of Article 25(6) of Directive 95/46/ EC shall remain in force until amended, replaced or repealed by a Commission Decision adopted in accordance with paragraph 3 or 5 of this Article. Article 46: Transfers subject to appropriate safeguards For details, see Sects. 4.3.3ï¿½4.3.6. 1. In the absence of a decision pursuant to Article 45(3), a controller or processor may transfer personal data to a third country or an international organisation only if the controller or processor has provided appropriate safeguards, and on condition that enforceable data subject rights and effective legal remedies for data subjects are available.
 2. The appropriate safeguards referred to in paragraph 1 may be provided for, without requiring any specific authorisation from a supervisory authority, by:
 (a) a legally binding and enforceable instrument between public authorities or bodies;
 (b) binding corporate rules in accordance with Article 47;
@@ -5307,7 +5313,7 @@ Article 49: Derogations for specific situations For details, see Sect. 4.3.7.
 (b) the transfer is necessary for the performance of a contract between the data subject and the controller or the
 
 Recital(s)
-­
+ï¿½
 (111) Provisions should be made for the possibility for transfers in certain circumstances where the data subject has given his or her explicit consent, where the transfer is occasional and necessary in relation to a contract or a legal claim, regardless of whether in a judicial procedure or whether in an administrative or any out-of-court procedure, including procedures before regulatory bodies. Provision should also be made for the possibility for transfers where important grounds of public interest laid down by Union or Member State law so require or where the transfer is made from a register established by law and intended for consultation by the public or persons having a
 (continued)
 
@@ -5388,9 +5394,9 @@ and exercising its powers in accordance with this Regulation.
 4. Each Member State shall ensure that each supervisory authority is provided with the human, technical and financial resources, premises and infrastructure necessary for the effective performance of its tasks and exercise of its powers, including those to be carried out in the context of mutual assistance, cooperation and participation in the Board.
 5. Each Member State shall ensure that each supervisory authority chooses and has its own staff which shall be subject to the exclusive direction of the member or members of the supervisory authority concerned.
 6. Each Member State shall ensure that each supervisory authority is subject to financial control which does not affect its independence and that it has separate, public annual budgets, which may be part of the overall state or national budget. Article 53: General conditions for the members of the supervisory authority 1. Member States shall provide for each member of their supervisory authorities to be appointed by means of a transparent procedure by:
-­ their parliament;
-­ their government;
-­ their head of State; or
+ï¿½ their parliament;
+ï¿½ their government;
+ï¿½ their head of State; or
 
 Recital(s) supervisory authorities cannot be subject to control or monitoring mechanisms regarding their financial expenditure or to judicial review. (120) Each supervisory authority should be provided with the financial and human resources, premises and infrastructure necessary for the effective performance of their tasks, including those related to mutual assistance and cooperation with other supervisory authorities throughout the Union. Each supervisory authority should have a separate, public annual budget, which may be part of the overall state or national budget.
 (121) The general conditions for the member or members of the supervisory authority should be laid down by law in each Member State and should in particular provide that those members are to be appointed, by means of a transparent procedure, either by the parliament, government or the head of State of the Member State on the basis of a proposal from the government, a member of the government, the parliament or a chamber of
@@ -5401,7 +5407,7 @@ Recital(s) supervisory authorities cannot be subject to control or monitoring me
 Annex I: Juxtaposition of the Provisions and Respective Recitals of the GDPR
 
 Article of the GDPR
-­ an independent body entrusted with the appointment under Member State law.
+ï¿½ an independent body entrusted with the appointment under Member State law.
 2. Each member shall have the qualifications, experience and skills, in particular in the area of the protection of personal data, required to perform its duties and exercise its powers.
 3. The duties of a member shall end in the event of the expiry of the term of office, resignation or compulsory retirement, in accordance with the law of the Member State concerned.
 4. A member shall be dismissed only in cases of serious misconduct or if the member no longer fulfils the conditions required for the performance of the duties. Article 54: Rules on the establishment of the supervisory authority 1. Each Member State shall provide by law for all of the following:
@@ -5413,7 +5419,7 @@ Article of the GDPR
 (f) the conditions governing the obligations of the member or members and staff of each supervisory authority, prohibitions on actions, occupations and benefits incompatible therewith during and after the term of office and rules governing the cessation of employment.
 
 Recital(s) the parliament, or by an independent body entrusted under Member State law. In order to ensure the independence of the supervisory authority, the member or members should act with integrity, refrain from any action that is incompatible with their duties and should not, during their term of office, engage in any incompatible occupation, whether gainful or not. The supervisory authority should have its own staff, chosen by the supervisory authority or an independent body established by Member State law, which should be subject to the exclusive direction of the member or members of the supervisory authority.
-­
+ï¿½
 
 (continued)
 
@@ -5586,7 +5592,7 @@ Article 60: Cooperation between the lead supervisory authority and the other sup
 2. The lead supervisory authority may request at any time other supervisory authorities concerned to provide mutual assistance pursuant to Article 61 and may conduct joint operations pursuant to Article 62, in particular for carrying out investigations or for monitoring the implementation of a measure concerning a controller or processor established in another Member State.
 
 Recital(s)
-­
+ï¿½
 (124) Where the processing of personal data takes place in the context of the activities of an establishment of a controller or a processor in the Union and the controller or processor is established in more than one Member State, or where processing taking place in the context of the activities of a single establishment of a controller or processor in the Union substantially affects or is likely to substantially affect data subjects in more than one Member State, the supervisory authority for the main establishment of the controller or processor or for the single establishment of the controller or processor should act as lead authority. It should cooperate with the other authorities concerned, because the controller or processor has an establishment on the territory of their Member State, because data
 
 (continued)
@@ -5733,7 +5739,7 @@ Article 65: Dispute resolution by the Board
 (c) where a competent supervisory authority does not request the opinion of the Board in the cases referred to in Article 64(1), or does not follow the opinion of the Board issued under Article 64. In that case, any supervisory authority concerned or the Commission may communicate the matter to the Board.
 2. The decision referred to in paragraph 1 shall be adopted within 1 month from the referral of the subject-matter by a two-thirds majority of the members of the Board. That period may be extended by a further month on account of the complexity of the subject-matter. The decision referred to in paragraph 1 shall be reasoned and addressed to the lead supervisory
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -5767,7 +5773,7 @@ The Commission may adopt implementing acts of general scope in order to specify 
 
 Recital(s)
 (137) There may be an urgent need to act in order to protect the rights and freedoms of data subjects, in particular when the danger exists that the enforcement of a right of a data subject could be considerably impeded. A supervisory authority should therefore be able to adopt duly justified provisional measures on its territory with a specified period of validity which should not exceed 3 months. (138) The application of such mechanism should be a condition for the lawfulness of a measure intended to produce legal effects by a supervisory authority in those cases where its application is mandatory. In other cases of cross-border relevance, the cooperation mechanism between the lead supervisory authority and supervisory authorities concerned should be applied and mutual assistance and joint operations might be carried out between the supervisory authorities concerned on a bilateral or multilateral basis without triggering the consistency mechanism.
-­
+ï¿½
 
 (continued)
 
@@ -5854,7 +5860,7 @@ information and best practices between the supervisory authorities;
 4. The Board shall, where appropriate, consult interested parties and give them the opportunity to comment within a reasonable period. The Board shall, without prejudice to Article 76, make the results of the consultation procedure publicly available. Article 71: Reports 1. The Board shall draw up an annual report regarding the protection of natural persons with regard to processing in the Union and, where relevant, in third countries and international organisations. The report shall be made public and be transmitted to the European Parliament, to the Council and to the Commission.
 2. The annual report shall include a review of the practical application of the guidelines, recommendations and best practices referred
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -5873,9 +5879,9 @@ to in point (l) of Article 70(1) as well as of the binding decisions referred to
 2. The secretariat shall perform its tasks exclusively under the instructions of the Chair of the Board.
 3. The staff of the European Data Protection Supervisor involved in carrying out the tasks conferred on the Board by this Regulation shall be subject to separate reporting lines
 
-Recital(s) ­
-­
-­
+Recital(s) ï¿½
+ï¿½
+ï¿½
 (140) The Board should be assisted by a secretariat provided by the European Data Protection Supervisor. The staff of the European Data Protection Supervisor involved in carrying out the tasks conferred on the Board by this Regulation should perform its tasks exclusively under the instructions of, and report to, the Chair of the Board.
 (continued)
 
@@ -5897,7 +5903,7 @@ from the staff involved in carrying out tasks conferred on the European Data Pro
 (g) the preparation, drafting and publication of opinions, decisions on the settlement of disputes between supervisory authorities and other texts adopted by the Board. Article 76: Confidentiality 1. The discussions of the Board shall be confidential where the Board deems it necessary, as provided for in its rules of procedure.
 2. Access to documents submitted to members of the Board, experts and representatives of third parties shall be governed by Regulation (EC) No 1049/2001 of the European Parliament and of the Council. Chapter VIII - Remedies, liability and penalties
 
-Recital(s) ­
+Recital(s) ï¿½
 
 (continued)
 
@@ -6009,13 +6015,13 @@ Article of the GDPR
 avoided, directly or indirectly, from the infringement.
 3. If a controller or processor intentionally or negligently, for the same or linked processing operations, infringes several provisions of this Regulation, the total amount of the administrative fine shall not exceed the amount specified for the gravest infringement.
 4. Infringements of the following provisions shall, in accordance with paragraph 2, be subject to administrative fines up to 10,000,000 EUR, or in the case of an undertaking, up to 2% of the total worldwide annual turnover of the preceding financial year, whichever is higher:
-(a) the obligations of the controller and the processor pursuant to Articles 8, 11, 25­39 and 42 and 43;
+(a) the obligations of the controller and the processor pursuant to Articles 8, 11, 25ï¿½39 and 42 and 43;
 (b) the obligations of the certification body pursuant to Articles 42 and 43;
 (c) the obligations of the monitoring body pursuant to Article 41(4).
 5. Infringements of the following provisions shall, in accordance with paragraph 2, be subject to administrative fines up to 20,000,000 EUR, or in the case of an undertaking, up to 4% of the total worldwide annual turnover of the preceding financial year, whichever is higher:
 (a) the basic principles for processing, including conditions for consent, pursuant to Articles 5, 6, 7 and 9;
-(b) the data subjects' rights pursuant to Articles 12­22;
-(c) the transfers of personal data to a recipient in a third country or an international organisation pursuant to Articles 44­49;
+(b) the data subjects' rights pursuant to Articles 12ï¿½22;
+(c) the transfers of personal data to a recipient in a third country or an international organisation pursuant to Articles 44ï¿½49;
 (d) any obligations pursuant to Member State law adopted under Chapter IX;
 (e) non-compliance with an order or a temporary or definitive limitation on processing or the suspension of data flows by the supervisory authority pursuant to Article 58(2) or failure to provide access in violation of Article 58(1).
 
@@ -6081,7 +6087,7 @@ Article 88: Processing in the context of employment For details, see Sect. 8.2.
 3. Each Member State shall notify to the Commission those provisions of its law which it adopts pursuant to paragraph 1, by 25 May 2018 and, without delay, any subsequent amendment affecting them.
 
 Recital(s)
-­
+ï¿½
 (155) Member State law or collective agreements, including `works agreements', may provide for specific rules on the processing of employees' personal data in the employment context, in particular for the conditions under which personal data in the employment context may be processed on the basis of the consent of the employee, the purposes of the recruitment, the performance of the contract of employment, including discharge of obligations laid down by law or by collective agreements, management, planning and organisation of work, equality and diversity in the workplace, health and safety at work, and for the purposes of the exercise and enjoyment, on an individual or collective basis, of rights and benefits related to employment, and for the purpose of the termination of the employment relationship.
 (continued)
 
@@ -6170,7 +6176,7 @@ Article 93: Committee procedure 1. The Commission shall be assisted by a committ
 
 Recital(s) standards and mechanisms for certification; the adequate level of protection afforded by a third country, a territory or a specified sector within that third country, or an international organisation; standard protection clauses; formats and procedures for the exchange of information by electronic means between controllers, processors and supervisory authorities for binding corporate rules; mutual assistance; and arrangements for the exchange of information by electronic means between supervisory authorities, and between supervisory authorities and the Board.
 (169) The Commission should adopt immediately applicable implementing acts where available evidence reveals that a third country, a territory or a specified sector within that third country, or an international organisation does not ensure an adequate level of protection, and imperative grounds of urgency so require.
-­
+ï¿½
 (171) Directive 95/46/EC should be repealed by this Regulation. Processing already under way on the date of application of this Regulation should be brought into conformity with this Regulation within the period of 2 years after which this Regulation enters into force. Where processing is based on consent pursuant to Directive 95/46/EC, it is not necessary for the data subject to give his or her consent again if the manner in which the consent has been given is in line with the conditions of this Regulation, so as to allow the controller to continue such processing after the date of application of this Regulation. Commission decisions adopted and authorisations by supervisory authorities
 (continued)
 
@@ -6188,8 +6194,8 @@ Article 96: Relationship with previously concluded Agreements International agre
 
 Recital(s) based on Directive 95/46/EC remain in force until amended, replaced or repealed.
 (173) This Regulation should apply to all matters concerning the protection of fundamental rights and freedoms vis-a`-vis the processing of personal data which are not subject to specific obligations with the same objective set out in Directive 2002/58/EC of the European Parliament and of the Council, including the obligations on the controller and the rights of natural persons. In order to clarify the relationship between this Regulation and Directive 2002/58/EC, that Directive should be amended accordingly. Once this Regulation is adopted, Directive 2002/58/EC should be reviewed in particular in order to ensure consistency with this Regulation.
-­
-­
+ï¿½
+ï¿½
 
 (continued)
 
@@ -6201,22 +6207,22 @@ Article of the GDPR 4. In carrying out the evaluations and reviews referred to i
 Miscellaneous
 
 Recital(s)
-­
-­
+ï¿½
+ï¿½
 (170) Since the objective of this Regulation, namely to ensure an equivalent level of protection of natural persons and the free flow of personal data throughout the Union, cannot be sufficiently achieved by the Member States and can rather, by reason of the scale or effects of the action, be better achieved at Union level, the Union may adopt measures, in accordance with the principle of subsidiarity as set out in Article 5 of the Treaty on European Union (TEU). In accordance with the principle of proportionality as set out in that Article, this Regulation does not go beyond what is necessary in order to achieve that objective. (172) The European Data Protection Supervisor was consulted in accordance with Article 28(2) of Regulation (EC) No 45/2001 and delivered an opinion on 7 March 2012.
 
 Index
 
-A Accountability, 34, 87, 93 Accuracy, 91­92, 154, 165 Adequacy decision, 117 Administrative fine, 210 Administrative procedure, 38 Anonymisation, 13, 14, 64, 173 Archiving purpose, 224 Automated decision-making, 180 Automated filing system, 166 Automated means, 170, 181
+A Accountability, 34, 87, 93 Accuracy, 91ï¿½92, 154, 165 Adequacy decision, 117 Administrative fine, 210 Administrative procedure, 38 Anonymisation, 13, 14, 64, 173 Archiving purpose, 224 Automated decision-making, 180 Automated filing system, 166 Automated means, 170, 181
 
 Contact details, 144 Contract, 130 Contractual necessity, 241 Controller, 20, 33, 35, 44, 134, 190, 193, 207,
-237, 239 Cookie, 28 Cooperation mechanism, 198 Copy of personal data, 152 Corrective power, 209­210 Criminal conviction, 115 Cross-border data transfer, 22, 116
+237, 239 Cookie, 28 Cooperation mechanism, 198 Copy of personal data, 152 Corrective power, 209ï¿½210 Criminal conviction, 115 Cross-border data transfer, 22, 116
 
-B Basic principles, 87, 237 Big Data, 235­238 Binding corporate rules, 125 Burden of proof, 148, 159, 178, 207
-C Certification, 130, 203 Certification mechanism, 64 Change of purpose, 108, 145 Child's consent, 158, 220 Children, 21, 37, 98, 142 Cloud computing, 238­240 Code of Conduct, 50, 130, 212 Co-determination right, 227 Collection, 144 Communication, 230 Compensation, 205 Complaint, 215 Confirmation, 150 Conflict of interests, 60 Consent, 93, 112, 118, 157, 167, 170, 184, 225,
-241 Consistency mechanism, 198­199 Consultation obligation, 52
+B Basic principles, 87, 237 Big Data, 235ï¿½238 Binding corporate rules, 125 Burden of proof, 148, 159, 178, 207
+C Certification, 130, 203 Certification mechanism, 64 Change of purpose, 108, 145 Child's consent, 158, 220 Children, 21, 37, 98, 142 Cloud computing, 238ï¿½240 Code of Conduct, 50, 130, 212 Co-determination right, 227 Collection, 144 Communication, 230 Compensation, 205 Complaint, 215 Confirmation, 150 Conflict of interests, 60 Consent, 93, 112, 118, 157, 167, 170, 184, 225,
+241 Consistency mechanism, 198ï¿½199 Consultation obligation, 52
 
-D Damage, 205 Data minimization, 14, 90­91, 175 Data protection audit, 203 Data Protection Directive, 2 Data protection gap, 246 Data Protection Impact Assessment, 36, 47,
+D Damage, 205 Data minimization, 14, 90ï¿½91, 175 Data protection audit, 203 Data Protection Directive, 2 Data protection gap, 246 Data Protection Impact Assessment, 36, 47,
 221 Data Protection Management
 System, 33, 248 Data Protection Officer, 34, 50, 53, 64, 222,
 248 Data subject, 69, 105, 190 Data subject right, 224 Deceased person, 11 Direct marketing purposes, 103
@@ -6233,23 +6239,23 @@ DOI 10.1007/978-3-319-57959-7
 
 382
 Erasure, 161, 165 Establishment, 22, 192
-flexible concept, 22­23 European Data Protection Board, 195, 197 EU-U.S. Privacy Shield, 122
-F Filing system, 10 France, 228­230 Free of charge, 148 Freedom of expression and
+flexible concept, 22ï¿½23 European Data Protection Board, 195, 197 EU-U.S. Privacy Shield, 122
+F Filing system, 10 France, 228ï¿½230 Free of charge, 148 Freedom of expression and
 information, 223
-G General Data Protection Regulation, 2 Germany, 226­228 Group of undertakings, 55, 212, 224, 245
+G General Data Protection Regulation, 2 Germany, 226ï¿½228 Group of undertakings, 55, 212, 224, 245
 H Health, 114 High risk, 47, 69
-I Identifiability, 12­13
-relative criteria, 12 Immediacy, 67 Inaccurate personal data, 155 Incomplete personal data, 155­156 Information, 119, 142, 202 Information obligation, 180, 220 Information society service, 98 Injunctive relief, 228, 229 Intellectual property, 153, 173 Internet of Things, 240­242 Intra-group, 107, 126, 194 Investigative power, 202 IT security, 43
+I Identifiability, 12ï¿½13
+relative criteria, 12 Immediacy, 67 Inaccurate personal data, 155 Incomplete personal data, 155ï¿½156 Information, 119, 142, 202 Information obligation, 180, 220 Information society service, 98 Injunctive relief, 228, 229 Intellectual property, 153, 173 Internet of Things, 240ï¿½242 Intra-group, 107, 126, 194 Investigative power, 202 IT security, 43
 J Joint controllers, 18, 34, 105, 239 Judicial remedy, 214, 215
 L Large-scale processing, 48 Lawfulness, 150
 
 Index
-Layered privacy notices, 147 Legal claims, 113, 160, 165, 167 Legal obligation, 107, 160 Legislative purpose, 1­2 Legitimacy, 89 Legitimate interests, 103, 132, 241 Level of protection, 38 Lex loci solutionis, 26, 195 Liability, 204 Local case, 196
+Layered privacy notices, 147 Legal claims, 113, 160, 165, 167 Legal obligation, 107, 160 Legislative purpose, 1ï¿½2 Legitimacy, 89 Legitimate interests, 103, 132, 241 Level of protection, 38 Lex loci solutionis, 26, 195 Liability, 204 Local case, 196
 M Manual processing, 10 Micro, small and medium-sized
 enterprises, 45 Minimum information, 143, 144
 N National peculiarities, 249 NIS Directive, 42 Notification obligation, 167
 O One-stop-shop, 191 Onward transfer, 116 Opening clause, 53, 158, 202, 219, 225 Opt-in, 124
-P Parental responsibility, 99 Performance of a contract, 102 Personal data, 11­16, 236 Personal data breach, 65, 209, 247 Privacy by Default, 63, 242 Privacy by Design, 62, 242 Privacy policy, 247 Procedural law, 204 Processing, 9­11 Processors, 19, 20, 44, 66, 134, 193, 205, 207,
+P Parental responsibility, 99 Performance of a contract, 102 Personal data, 11ï¿½16, 236 Personal data breach, 65, 209, 247 Privacy by Default, 63, 242 Privacy by Design, 62, 242 Privacy policy, 247 Procedural law, 204 Processing, 9ï¿½11 Processors, 19, 20, 44, 66, 134, 193, 205, 207,
 237, 239 Professional secrecy, 223 Profiling, 27, 48, 177, 181 Pseudonymisation, 15, 39, 62, 64 Public interest, 107, 131, 160 Publication, 162 Purpose, 13, 19, 63, 88, 89, 156
 157, 238
 
@@ -6258,7 +6264,7 @@ Index
 383
 
 R Records, 44, 248 Representative, 26, 133 Request from a data subject, 147 Research purpose, 224 Residence, 28 Right to a restriction of processing, 164 Right to access, 150 Right to be forgotten, 161, 168 Right to data portability, 168 Right to object, 157, 166, 176 Right to rectification, 154 Risk assessment, 40 Risk-based approach, 31, 246
-S Safe Harbor, 121, 122 Scope of Application, 9­29 Scoring, 183 Self-certification, 123 Self-regulation, 71, 129 Service provider, 168, 175 Source, 146, 151 Special categories of personal data, 46, 110,
+S Safe Harbor, 121, 122 Scope of Application, 9ï¿½29 Scoring, 183 Self-certification, 123 Self-regulation, 71, 129 Service provider, 168, 175 Source, 146, 151 Special categories of personal data, 46, 110,
 220 Standard contractual clauses, 119 Statistical purpose, 224 Storage, 92 Storage period, 150
 
 Supervisory Authority, 37, 51, 65, 129, 135, 145, 189, 191, 201, 211
@@ -6267,4 +6273,3 @@ T Technical and organizational
 measures, 33, 38, 63 Telemedia service, 231 Territorial scope, 22 Third country, 145, 151, 240 Third party, 104, 131 Trade secrets, 153, 173 Transmission of personal data, 169 Transparency, 37, 88, 141 Two-step procedure, 151
 V Vital interests, 108, 112, 132 Voluntariness, 95
 W Web tracking, 28 Website, 143 Withdrawal, 97, 157 Without undue delay, 149 Works council, 226 Written form, 58
-

@@ -1,3 +1,9 @@
+# OWASP ASVS 4.0.3
+
+> **Category:** 09_security_and_privacy Â· **Language:** English
+
+---
+
 Application Security Verification Standard 4.0.3
 Final
 October 2021
@@ -81,7 +87,7 @@ The Application Security Verification Standard is a list of application security
 Copyright and License
 Version 4.0.3, October 2021
 
-Copyright © 2008-2021 The OWASP Foundation. This document is released under the Creative Commons Attribution ShareAlike 3.0 license. For any reuse or distribution, you must make clear to others the license terms of this work.
+Copyright ï¿½ 2008-2021 The OWASP Foundation. This document is released under the Creative Commons Attribution ShareAlike 3.0 license. For any reuse or distribution, you must make clear to others the license terms of this work.
 Project Leads
 
 Andrew van der Stock Daniel Cuthbert Jim Manico
@@ -112,11 +118,11 @@ Andreas Kurtz
 
 Anthony Weems Barbara Schachner
 
-Christian Heinrich Christopher Loessl Clément Notin
+Christian Heinrich Christopher Loessl Clï¿½ment Notin
 
 Dan Cornell
 
-Daniël Geerts
+Daniï¿½l Geerts
 
 David Clarke
 
@@ -162,7 +168,7 @@ lyz-code
 
 Marc Aubry
 
-Marco Schnüriger Mark Burnett
+Marco Schnï¿½riger Mark Burnett
 
 Philippe De Ryck Ravi Balla
 
@@ -180,7 +186,7 @@ Sajjad Pourali
 
 Serg Belkommen Siim Puustusmaa
 
-Ståle Pettersen
+Stï¿½le Pettersen
 
 Stuart Gunter
 
@@ -232,13 +238,13 @@ OWASP Application Security Verification Standard 4.0.3
 
 Using the ASVS
 ASVS has two main goals:
-· to help organizations develop and maintain secure applications.
-· to allow security service vendors, security tools vendors, and consumers to align their requirements and offerings.
+ï¿½ to help organizations develop and maintain secure applications.
+ï¿½ to allow security service vendors, security tools vendors, and consumers to align their requirements and offerings.
 Application Security Verification Levels
 The Application Security Verification Standard defines three security verification levels, with each level increasing in depth.
-· ASVS Level 1 is for low assurance levels, and is completely penetration testable
-· ASVS Level 2 is for applications that contain sensitive data, which requires protection and is the recommended level for most apps
-· ASVS Level 3 is for the most critical applications - applications that perform high value transactions, contain sensitive medical data, or any application that requires the highest level of trust.
+ï¿½ ASVS Level 1 is for low assurance levels, and is completely penetration testable
+ï¿½ ASVS Level 2 is for applications that contain sensitive data, which requires protection and is the recommended level for most apps
+ï¿½ ASVS Level 3 is for the most critical applications - applications that perform high value transactions, contain sensitive medical data, or any application that requires the highest level of trust.
 Each ASVS level contains a list of security requirements. Each of these requirements can also be mapped to security-specific features and capabilities that must be built into software by developers.
 
 Figure 1 - OWASP Application Security Verification Standard 4.0 Levels
@@ -275,9 +281,9 @@ Different threats have different motivations. Some industries have unique inform
 Organizations are strongly encouraged to look deeply at their unique risk characteristics based on the nature of their business, and based upon that risk and business requirements determine the appropriate ASVS level.
 How to Reference ASVS Requirements
 Each requirement has an identifier in the format <chapter>.<section>.<requirement> where each element is a number, for example: 1.11.3.
-· The <chapter> value corresponds to the chapter from which the requirement comes, for example: all 1.#.# requirements are from the Architecture chapter.
-· The <section> value corresponds to the section within that chapter where the requirement appears, for example: all 1.11.# requirements are in the Business Logic Architecture section of the Architecture chapter.
-· The <requirement> value identifies the specific requirement within the chapter and section, for example: 1.11.3 which as of version 4.0.3 of this standard is:
+ï¿½ The <chapter> value corresponds to the chapter from which the requirement comes, for example: all 1.#.# requirements are from the Architecture chapter.
+ï¿½ The <section> value corresponds to the section within that chapter where the requirement appears, for example: all 1.11.# requirements are in the Business Logic Architecture section of the Architecture chapter.
+ï¿½ The <requirement> value identifies the specific requirement within the chapter and section, for example: 1.11.3 which as of version 4.0.3 of this standard is:
 Verify that all high-value business logic flows, including authentication, session management and access control are thread safe and resistant to time-of-check and time-of-use race conditions.
 The identifiers may change between versions of the standard therefore it is preferable that other documents, reports, or tools use the format: v<version>-<chapter>.<section>.<requirement>, where: 'version' is the ASVS version tag. For example: v4.0.3-1.11.3 would be understood to mean specifically the 3rd requirement in the 'Business Logic Architecture' section of the 'Architecture' chapter from version 4.0.3. (This could be summarized as v<version>-<requirement_identifier>.)
 Note: The v preceding the version portion is to be lower case.
@@ -350,8 +356,6 @@ V1.1 Secure Software Development Lifecycle
 L1 L2 L3 CWE
 
 1.1.1 Verify the use of a secure software development lifecycle that addresses security in all stages of development. (C1)
-
-
 
 1.1.2 Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.
 
@@ -506,8 +510,6 @@ L1 L2 L3 CWE
 
 1.7.2 Verify that logs are securely transmitted to a preferably remote system for analysis, detection, alerting, and escalation. (C9)
 
-
-
 V1.8 Data Protection and Privacy Architecture
 
 # Description
@@ -600,8 +602,6 @@ L1 L2 L3 CWE
 
 Verify that the build pipeline contains a build step to automatically build and verify the secure deployment of the application, particularly if the application infrastructure is software defined, such as cloud environment build scripts.
 
-
-
 1.14.5
 
 Verify that application deployments adequately sandbox, containerize and/or isolate at the network level to delay and deter attackers from attacking other applications, especially when they are performing sensitive or dangerous actions such as deserialization. (C5)
@@ -613,7 +613,7 @@ Verify that application deployments adequately sandbox, containerize and/or isol
   477
 
 References
-For more information, see also: · OWASP Threat Modeling Cheat Sheet · OWASP Attack Surface Analysis Cheat Sheet · OWASP Threat modeling · OWASP Software Assurance Maturity Model Project · Microsoft SDL · NIST SP 800-57
+For more information, see also: ï¿½ OWASP Threat Modeling Cheat Sheet ï¿½ OWASP Attack Surface Analysis Cheat Sheet ï¿½ OWASP Threat modeling ï¿½ OWASP Software Assurance Maturity Model Project ï¿½ Microsoft SDL ï¿½ NIST SP 800-57
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -650,7 +650,7 @@ Credential Service Providers (CSPs) provide federated identity for users. Users 
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.1.1 Verify that user set passwords are at least 12 characters in length (after multiple spaces are combined). (C6)
 
@@ -686,7 +686,7 @@ OWASP Application Security Verification Standard 4.0.3
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.1.7 Verify that passwords submitted during account registration, login,    521 5.1.1.2 and password change are checked against a set of breached passwords either locally (such as the top 1,000 or 10,000 most common passwords which match the system's password policy) or using an external API. If using an API a zero knowledge proof or other mechanism should be used to ensure that the plain text password is not sent or used in verifying the breach status of the password. If the password is breached, the application must require the user to set a new non-breached password. (C6)
 
@@ -725,7 +725,7 @@ NIST considers email and SMS as "restricted" authenticator types, and they are l
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.2.1
 
@@ -772,7 +772,7 @@ Note: Passwords are not to have a maximum lifetime or be subject to password rot
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.3.1
 
@@ -791,12 +791,12 @@ Verify system generated initial passwords or activation codes SHOULD be securely
 V2.4 Credential Storage
 
 Architects and developers should adhere to this section when building or refactoring code. This section can only be fully verified using source code review or through secure unit or integration tests. Penetration testing cannot identify any of these issues.
-The list of approved one-way key derivation functions is detailed in NIST 800-63 B section 5.1.1.2, and in BSI Kryptographische Verfahren: Empfehlungen und Schlussellängen (2018). The latest national or regional algorithm and key length standards can be chosen in place of these choices.
+The list of approved one-way key derivation functions is detailed in NIST 800-63 B section 5.1.1.2, and in BSI Kryptographische Verfahren: Empfehlungen und Schlussellï¿½ngen (2018). The latest national or regional algorithm and key length standards can be chosen in place of these choices.
 This section cannot be penetration tested, so controls are not marked as L1. However, this section is of vital importance to the security of credentials if they are stolen, so if forking the ASVS for an architecture or coding guideline or source code review checklist, please place these controls back to L1 in your private version.
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.4.1
 
@@ -824,7 +824,7 @@ OWASP Application Security Verification Standard 4.0.3
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.4.5
 
@@ -837,7 +837,7 @@ V2.5 Credential Recovery
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.5.1 Verify that a system generated initial activation or recovery secret    640 5.1.1.2 is not sent in clear text to the user. (C6)
 
@@ -871,7 +871,7 @@ Look up secrets are pre-generated lists of secret codes, similar to Transaction 
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.6.1 Verify that lookup secrets can be used only once.
 
@@ -893,12 +893,12 @@ V2.7 Out of Band Verifier
 
 In the past, a common out of band verifier would have been an email or SMS containing a password reset link. Attackers use this weak mechanism to reset accounts they don't yet control, such as taking over a person's email account and re-using any discovered reset links. There are better ways to handle out of band verification.
 Secure out of band authenticators are physical devices that can communicate with the verifier over a secure secondary channel. Examples include push notifications to mobile devices. This type of authenticator is considered "something you have". When a user wishes to authenticate, the verifying application sends a message to the out of band authenticator via a connection to the authenticator directly or indirectly through a third party service. The message contains an authentication code (typically a random six digit number or a modal approval dialog). The verifying application waits to receive the authentication code through the primary channel and compares the hash of the received value to the hash of the original authentication code. If they match, the out of band verifier can assume that the user has authenticated.
-The ASVS assumes that only a few developers will be developing new out of band authenticators, such as push notifications, and thus the following ASVS controls apply to verifiers, such as authentication API, applications, and single sign-on implementations. If developing a new out of band authenticator, please refer to NIST 80063B § 5.1.3.1.
-Unsafe out of band authenticators such as e-mail and VOIP are not permitted. PSTN and SMS authentication are currently "restricted" by NIST and should be deprecated in favor of push notifications or similar. If you need to use telephone or SMS out of band authentication, please see § 5.1.3.3.
+The ASVS assumes that only a few developers will be developing new out of band authenticators, such as push notifications, and thus the following ASVS controls apply to verifiers, such as authentication API, applications, and single sign-on implementations. If developing a new out of band authenticator, please refer to NIST 80063B ï¿½ 5.1.3.1.
+Unsafe out of band authenticators such as e-mail and VOIP are not permitted. PSTN and SMS authentication are currently "restricted" by NIST and should be deprecated in favor of push notifications or similar. If you need to use telephone or SMS out of band authentication, please see ï¿½ 5.1.3.3.
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.7.1 Verify that clear text out of band (NIST "restricted") authenticators, such as SMS or PSTN, are not offered by default, and stronger alternatives such as push notifications are offered first.
 
@@ -932,7 +932,7 @@ Single-factor One-time Passwords (OTPs) are physical or soft tokens that display
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.8.1 Verify that time-based OTPs have a defined lifetime before expiring.
 
@@ -969,7 +969,7 @@ The requirements for single-factor cryptographic devices and software, and multi
 
 # Description
 
-L1 L2 L3 CWE NIST §
+L1 L2 L3 CWE NIST ï¿½
 
 2.9.1
 
@@ -997,7 +997,7 @@ This section is not penetration testable, so does not have any L1 requirements. 
 
 L1 L2
 
-L3 CWE NIST §
+L3 CWE NIST ï¿½
 
 2.10.1 Verify that intra-service secrets do not rely on unchanging credentials such as passwords, API keys or shared accounts with privileged access.
 
@@ -1059,7 +1059,7 @@ OWASP Application Security Verification Standard 4.0.3
 30
 
 References
-For more information, see also: · NIST 800-63 - Digital Identity Guidelines · NIST 800-63 A - Enrollment and Identity Proofing · NIST 800-63 B - Authentication and Lifecycle Management · NIST 800-63 C - Federation and Assertions · NIST 800-63 FAQ · OWASP Testing Guide 4.0: Testing for Authentication · OWASP Cheat Sheet - Password storage · OWASP Cheat Sheet - Forgot password · OWASP Cheat Sheet - Choosing and using security questions
+For more information, see also: ï¿½ NIST 800-63 - Digital Identity Guidelines ï¿½ NIST 800-63 A - Enrollment and Identity Proofing ï¿½ NIST 800-63 B - Authentication and Lifecycle Management ï¿½ NIST 800-63 C - Federation and Assertions ï¿½ NIST 800-63 FAQ ï¿½ OWASP Testing Guide 4.0: Testing for Authentication ï¿½ OWASP Cheat Sheet - Password storage ï¿½ OWASP Cheat Sheet - Forgot password ï¿½ OWASP Cheat Sheet - Choosing and using security questions
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1070,15 +1070,15 @@ V3 Session Management
 Control Objective
 One of the core components of any web-based application or stateful API is the mechanism by which it controls and maintains the state for a user or device interacting with it. Session management changes a stateless protocol to stateful, which is critical for differentiating different users or devices.
 Ensure that a verified application satisfies the following high-level session management requirements:
-· Sessions are unique to each individual and cannot be guessed or shared.
-· Sessions are invalidated when no longer required and timed out during periods of inactivity.
+ï¿½ Sessions are unique to each individual and cannot be guessed or shared.
+ï¿½ Sessions are invalidated when no longer required and timed out during periods of inactivity.
 As previously noted, these requirements have been adapted to be a compliant subset of selected NIST 80063b controls, focused around common threats and commonly exploited authentication weaknesses. Previous verification requirements have been retired, de-duped, or in most cases adapted to be strongly aligned with the intent of mandatory NIST 800-63b requirements.
 Security Verification Requirements
 V3.1 Fundamental Session Management Security
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.1.1 Verify the application never reveals session tokens in URL parameters.
 
@@ -1088,7 +1088,7 @@ V3.2 Session Binding
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.2.1 Verify the application generates a new session token on user authentication. (C6)
 
@@ -1126,11 +1126,9 @@ NIST
 
 L3
 
-CWE §
+CWE ï¿½
 
 3.3.1 Verify that logout and expiration invalidate 
-
-
 
 the session token, such that the back button
 
@@ -1139,8 +1137,6 @@ or a downstream relying party does not
 resume an authenticated session, including
 
 across relying parties. (C6)
-
-
 
 613 7.1
 
@@ -1166,19 +1162,11 @@ with 2FA
 
 Verify that the application gives the option to terminate all other active sessions after a successful password change (including change via password reset/recovery), and that this is effective across the application, federated login (if present), and any relying parties.
 
-
-
-
-
 613
 
 3.3.4
 
 Verify that users are able to view and (having re-entered login credentials) log out of any or all currently active sessions and devices.
-
-
-
-
 
 613 7.1
 
@@ -1186,7 +1174,7 @@ V3.4 Cookie-based Session Management
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.4.1 Verify that cookie-based session tokens have the 'Secure' attribute set. (C6)
 
@@ -1218,7 +1206,7 @@ Token-based session management includes JWT, OAuth, SAML, and API keys. Of these
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.5.1 Verify the application allows users to revoke OAuth tokens that form trust relationships with linked applications.
 
@@ -1238,7 +1226,7 @@ This section relates to those writing Relying Party (RP) or Credential Service P
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.6.1
 
@@ -1263,13 +1251,13 @@ Attackers start a half-open attack by attempting to lock, reset, or recover a cr
 
 # Description
 
-NIST L1 L2 L3 CWE §
+NIST L1 L2 L3 CWE ï¿½
 
 3.7.1 Verify the application ensures a full, valid login session or requires re-    306 authentication or secondary verification before allowing any sensitive
 transactions or account modifications.
 
 References
-For more information, see also: · OWASP Testing Guide 4.0: Session Management Testing · OWASP Session Management Cheat Sheet · Set-Cookie __Host- prefix details
+For more information, see also: ï¿½ OWASP Testing Guide 4.0: Session Management Testing ï¿½ OWASP Session Management Cheat Sheet ï¿½ Set-Cookie __Host- prefix details
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1278,7 +1266,7 @@ OWASP Application Security Verification Standard 4.0.3
 V4 Access Control
 
 Control Objective
-Authorization is the concept of allowing access to resources only to those permitted to use them. Ensure that a verified application satisfies the following high level requirements: · Persons accessing resources hold valid credentials to do so. · Users are associated with a well-defined set of roles and privileges. · Role and permission metadata is protected from replay or tampering.
+Authorization is the concept of allowing access to resources only to those permitted to use them. Ensure that a verified application satisfies the following high level requirements: ï¿½ Persons accessing resources hold valid credentials to do so. ï¿½ Users are associated with a well-defined set of roles and privileges. ï¿½ Role and permission metadata is protected from replay or tampering.
 Security Verification Requirements V4.1 General Access Control Design
 
 # Description
@@ -1339,7 +1327,7 @@ Verify the application has additional authorization (such as step up or adaptive
   732
 
 References
-For more information, see also: · OWASP Testing Guide 4.0: Authorization · OWASP Cheat Sheet: Access Control · OWASP CSRF Cheat Sheet · OWASP REST Cheat Sheet
+For more information, see also: ï¿½ OWASP Testing Guide 4.0: Authorization ï¿½ OWASP Cheat Sheet: Access Control ï¿½ OWASP CSRF Cheat Sheet ï¿½ OWASP REST Cheat Sheet
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1351,9 +1339,9 @@ Control Objective
 
 The most common web application security weakness is the failure to properly validate input coming from the client or the environment before directly using it without any output encoding. This weakness leads to almost all of the significant vulnerabilities in web applications, such as Cross-Site Scripting (XSS), SQL injection, interpreter injection, locale/Unicode attacks, file system attacks, and buffer overflows.
 Ensure that a verified application satisfies the following high-level requirements:
-· Input validation and output encoding architecture have an agreed pipeline to prevent injection attacks.
-· Input data is strongly typed, validated, range or length checked, or at worst, sanitized or filtered.
-· Output data is encoded or escaped as per the context of the data as close to the interpreter as possible.
+ï¿½ Input validation and output encoding architecture have an agreed pipeline to prevent injection attacks.
+ï¿½ Input data is strongly typed, validated, range or length checked, or at worst, sanitized or filtered.
+ï¿½ Output data is encoded or escaped as per the context of the data as close to the interpreter as possible.
 With modern web application architecture, output encoding is more important than ever. It is difficult to provide robust input validation in certain scenarios, so the use of safer API such as parameterized queries, auto-escaping templating frameworks, or carefully chosen output encoding is critical to the security of the application.
 V5.1 Input Validation
 
@@ -1533,7 +1521,7 @@ L1 L2 L3 CWE
    95
 
 References
-For more information, see also: · OWASP Testing Guide 4.0: Input Validation Testing · OWASP Cheat Sheet: Input Validation · OWASP Testing Guide 4.0: Testing for HTTP Parameter Pollution · OWASP LDAP Injection Cheat Sheet · OWASP Testing Guide 4.0: Client Side Testing · OWASP Cross Site Scripting Prevention Cheat Sheet · OWASP DOM Based Cross Site Scripting Prevention Cheat Sheet · OWASP Java Encoding Project · OWASP Mass Assignment Prevention Cheat Sheet · DOMPurify - Client-side HTML Sanitization Library · XML External Entity (XXE) Prevention Cheat Sheet For more information on auto-escaping, please see: · Reducing XSS by way of Automatic Context-Aware Escaping in Template Systems · AngularJS Strict Contextual Escaping · AngularJS ngBind · Angular Sanitization · Angular Security · ReactJS Escaping · Improperly Controlled Modification of Dynamically-Determined Object Attributes For more information on deserialization, please see: · OWASP Deserialization Cheat Sheet · OWASP Deserialization of Untrusted Data Guide
+For more information, see also: ï¿½ OWASP Testing Guide 4.0: Input Validation Testing ï¿½ OWASP Cheat Sheet: Input Validation ï¿½ OWASP Testing Guide 4.0: Testing for HTTP Parameter Pollution ï¿½ OWASP LDAP Injection Cheat Sheet ï¿½ OWASP Testing Guide 4.0: Client Side Testing ï¿½ OWASP Cross Site Scripting Prevention Cheat Sheet ï¿½ OWASP DOM Based Cross Site Scripting Prevention Cheat Sheet ï¿½ OWASP Java Encoding Project ï¿½ OWASP Mass Assignment Prevention Cheat Sheet ï¿½ DOMPurify - Client-side HTML Sanitization Library ï¿½ XML External Entity (XXE) Prevention Cheat Sheet For more information on auto-escaping, please see: ï¿½ Reducing XSS by way of Automatic Context-Aware Escaping in Template Systems ï¿½ AngularJS Strict Contextual Escaping ï¿½ AngularJS ngBind ï¿½ Angular Sanitization ï¿½ Angular Security ï¿½ ReactJS Escaping ï¿½ Improperly Controlled Modification of Dynamically-Determined Object Attributes For more information on deserialization, please see: ï¿½ OWASP Deserialization Cheat Sheet ï¿½ OWASP Deserialization of Untrusted Data Guide
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1543,7 +1531,7 @@ V6 Stored Cryptography
 
 Control Objective
 
-Ensure that a verified application satisfies the following high level requirements: · All cryptographic modules fail in a secure manner and that errors are handled correctly. · A suitable random number generator is used. · Access to keys is securely managed.
+Ensure that a verified application satisfies the following high level requirements: ï¿½ All cryptographic modules fail in a secure manner and that errors are handled correctly. ï¿½ A suitable random number generator is used. ï¿½ Access to keys is securely managed.
 V6.1 Data Classification
 The most important asset is the data processed, stored or transmitted by an application. Always perform a privacy impact assessment to classify the data protection needs of any stored data correctly.
 
@@ -1646,7 +1634,7 @@ L1 L2 L3 CWE
   320
 
 References
-For more information, see also: · OWASP Testing Guide 4.0: Testing for weak Cryptography · OWASP Cheat Sheet: Cryptographic Storage · FIPS 140-2
+For more information, see also: ï¿½ OWASP Testing Guide 4.0: Testing for weak Cryptography ï¿½ OWASP Cheat Sheet: Cryptographic Storage ï¿½ FIPS 140-2
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1658,17 +1646,17 @@ Control Objective
 
 The primary objective of error handling and logging is to provide useful information for the user, administrators, and incident response teams. The objective is not to create massive amounts of logs, but high quality logs, with more signal than discarded noise.
 High quality logs will often contain sensitive data, and must be protected as per local data privacy laws or directives. This should include:
-· Not collecting or logging sensitive information unless specifically required.
-· Ensuring all logged information is handled securely and protected as per its data classification.
-· Ensuring that logs are not stored forever, but have an absolute lifetime that is as short as possible.
+ï¿½ Not collecting or logging sensitive information unless specifically required.
+ï¿½ Ensuring all logged information is handled securely and protected as per its data classification.
+ï¿½ Ensuring that logs are not stored forever, but have an absolute lifetime that is as short as possible.
 If logs contain private or sensitive data, the definition of which varies from country to country, the logs become some of the most sensitive information held by the application and thus very attractive to attackers in their own right.
 It is also important to ensure that the application fails securely and that errors do not disclose unnecessary information.
 V7.1 Log Content
 
 Logging sensitive information is dangerous - the logs become classified themselves, which means they need to be encrypted, become subject to retention policies, and must be disclosed in security audits. Ensure only necessary information is kept in logs, and certainly no payment, credentials (including session tokens), sensitive or personally identifiable information.
 V7.1 covers OWASP Top 10 2017:A10. As 2017:A10 and this section are not penetration testable, it's important for:
-· Developers to ensure full compliance with this section, as if all items were marked as L1
-· Penetration testers to validate full compliance of all items in V7.1 via interview, screenshots, or assertion
+ï¿½ Developers to ensure full compliance with this section, as if all items were marked as L1
+ï¿½ Penetration testers to validate full compliance of all items in V7.1 via interview, screenshots, or assertion
 
 # Description
 
@@ -1696,8 +1684,8 @@ V7.2 Log Processing
 
 Timely logging is critical for audit events, triage, and escalation. Ensure that the application's logs are clear and can be easily monitored and analyzed either locally or log shipped to a remote monitoring system.
 V7.2 covers OWASP Top 10 2017:A10. As 2017:A10 and this section are not penetration testable, it's important for:
-· Developers to ensure full compliance with this section, as if all items were marked as L1
-· Penetration testers to validate full compliance of all items in V7.2 via interview, screenshots, or assertion
+ï¿½ Developers to ensure full compliance with this section, as if all items were marked as L1
+ï¿½ Penetration testers to validate full compliance of all items in V7.2 via interview, screenshots, or assertion
 
 # Description
 
@@ -1731,8 +1719,6 @@ L1 L2 L3 CWE
 
 7.3.4 Verify that time sources are synchronized to the correct time and time zone. Strongly consider logging only in UTC if systems are global to assist with postincident forensic analysis. (C9)
 
-
-
 Note: Log encoding (7.3.1) is difficult to test and review using automated dynamic tools and penetration tests, but architects, developers, and source code reviewers should consider it an L1 requirement.
 
 OWASP Application Security Verification Standard 4.0.3
@@ -1762,7 +1748,7 @@ L1 L2 L3 CWE
 Note: Certain languages, such as Swift and Go - and through common design practice - many functional languages, do not support exceptions or last resort event handlers. In this case, architects and developers should use a pattern, language, or framework friendly way to ensure that applications can securely handle exceptional, unexpected, or security-related events.
 References
 
-For more information, see also: · OWASP Testing Guide 4.0 content: Testing for Error Handling · OWASP Authentication Cheat Sheet section about error messages
+For more information, see also: ï¿½ OWASP Testing Guide 4.0 content: Testing for Error Handling ï¿½ OWASP Authentication Cheat Sheet section about error messages
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1774,9 +1760,9 @@ Control Objective
 There are three key elements to sound data protection: Confidentiality, Integrity and Availability (CIA). This standard assumes that data protection is enforced on a trusted system, such as a server, which has been hardened and has sufficient protections.
 Applications have to assume that all user devices are compromised in some way. Where an application transmits or stores sensitive information on insecure devices, such as shared computers, phones and tablets, the application is responsible for ensuring data stored on these devices is encrypted and cannot be easily illicitly obtained, altered or disclosed.
 Ensure that a verified application satisfies the following high level data protection requirements:
-· Confidentiality: Data should be protected from unauthorized observation or disclosure both in transit and when stored.
-· Integrity: Data should be protected from being maliciously created, altered or deleted by unauthorized attackers.
-· Availability: Data should be available to authorized users as required.
+ï¿½ Confidentiality: Data should be protected from unauthorized observation or disclosure both in transit and when stored.
+ï¿½ Integrity: Data should be protected from being maliciously created, altered or deleted by unauthorized attackers.
+ï¿½ Availability: Data should be available to authorized users as required.
 V8.1 General Data Protection
 
 # Description
@@ -1870,7 +1856,7 @@ OWASP Application Security Verification Standard 4.0.3
 48
 
 References
-For more information, see also: · Consider using Security Headers website to check security and anti-caching headers · OWASP Secure Headers project · OWASP Privacy Risks Project · OWASP User Privacy Protection Cheat Sheet · European Union General Data Protection Regulation (GDPR) overview · European Union Data Protection Supervisor - Internet Privacy Engineering Network
+For more information, see also: ï¿½ Consider using Security Headers website to check security and anti-caching headers ï¿½ OWASP Secure Headers project ï¿½ OWASP Privacy Risks Project ï¿½ OWASP User Privacy Protection Cheat Sheet ï¿½ European Union General Data Protection Regulation (GDPR) overview ï¿½ European Union Data Protection Supervisor - Internet Privacy Engineering Network
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1880,8 +1866,8 @@ V9 Communication
 
 Control Objective
 
-Ensure that a verified application meets the following high level requirements: · Require TLS or strong encryption, independent of sensitivity of the content. · Follow the latest guidance, including:
-­ Configuration advice ­ Preferred algorithms and ciphers · Avoid weak or soon to be deprecated algorithms and ciphers, except as a last resort · Disable deprecated or known insecure algorithms and ciphers. Within these requirements: · Stay current with recommended industry advice on secure TLS configuration, as it changes frequently (often due to catastrophic breaks in existing algorithms and ciphers). · Use the most recent versions of TLS configuration review tools to configure the preferred order and algorithm selection. · Check your configuration periodically to ensure that secure communication is always present and effective.
+Ensure that a verified application meets the following high level requirements: ï¿½ Require TLS or strong encryption, independent of sensitivity of the content. ï¿½ Follow the latest guidance, including:
+ï¿½ Configuration advice ï¿½ Preferred algorithms and ciphers ï¿½ Avoid weak or soon to be deprecated algorithms and ciphers, except as a last resort ï¿½ Disable deprecated or known insecure algorithms and ciphers. Within these requirements: ï¿½ Stay current with recommended industry advice on secure TLS configuration, as it changes frequently (often due to catastrophic breaks in existing algorithms and ciphers). ï¿½ Use the most recent versions of TLS configuration review tools to configure the preferred order and algorithm selection. ï¿½ Check your configuration periodically to ensure that secure communication is always present and effective.
 V9.1 Client Communication Security
 
 Ensure all client messages are sent over encrypted networks, using TLS 1.2 or later. Use up to date tools to review the client configuration on a regular basis.
@@ -1940,11 +1926,11 @@ Verify that encrypted communications such as TLS is used for all inbound and out
 
 References
 For more information, see also:
-· OWASP ­ TLS Cheat Sheet
-· OWASP - Pinning Guide
-· Notes on "Approved modes of TLS":
-­ In the past, the ASVS referred to the US standard FIPS 140-2, but as a global standard, applying US standards can be difficult, contradictory, or confusing to apply.
-­ A better method of achieving compliance with section 9.1 would be to review guides such as Mozilla's Server Side TLS or generate known good configurations, and use known and up to date TLS evaluation tools to obtain a desired level of security.
+ï¿½ OWASP ï¿½ TLS Cheat Sheet
+ï¿½ OWASP - Pinning Guide
+ï¿½ Notes on "Approved modes of TLS":
+ï¿½ In the past, the ASVS referred to the US standard FIPS 140-2, but as a global standard, applying US standards can be difficult, contradictory, or confusing to apply.
+ï¿½ A better method of achieving compliance with section 9.1 would be to review guides such as Mozilla's Server Side TLS or generate known good configurations, and use known and up to date TLS evaluation tools to obtain a desired level of security.
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -1954,7 +1940,7 @@ V10 Malicious Code
 
 Control Objective
 
-Ensure that code satisfies the following high level requirements: · Malicious activity is handled securely and properly to not affect the rest of the application. · Does not have time bombs or other time-based attacks. · Does not "phone home" to malicious or unauthorized destinations. · Does not have back doors, Easter eggs, salami attacks, rootkits, or unauthorized code that can be
+Ensure that code satisfies the following high level requirements: ï¿½ Malicious activity is handled securely and properly to not affect the rest of the application. ï¿½ Does not have time bombs or other time-based attacks. ï¿½ Does not "phone home" to malicious or unauthorized destinations. ï¿½ Does not have back doors, Easter eggs, salami attacks, rootkits, or unauthorized code that can be
 controlled by an attacker. Finding malicious code is proof of the negative, which is impossible to completely validate. Best efforts should be undertaken to ensure that the code has no inherent malicious code or unwanted functionality.
 V10.1 Code Integrity
 
@@ -2036,7 +2022,7 @@ Verify that the application has protection from subdomain takeovers if the appli
    350
 
 References
-· Hostile Subdomain Takeover, Detectify Labs · Hijacking of abandoned subdomains part 2, Detectify Labs
+ï¿½ Hostile Subdomain Takeover, Detectify Labs ï¿½ Hijacking of abandoned subdomains part 2, Detectify Labs
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -2047,9 +2033,9 @@ V11 Business Logic
 Control Objective
 
 Ensure that a verified application satisfies the following high level requirements:
-· The business logic flow is sequential, processed in order, and cannot be bypassed.
-· Business logic includes limits to detect and prevent automated attacks, such as continuous small funds transfers, or adding a million friends one at a time, and so on.
-· High value business logic flows have considered abuse cases and malicious actors, and have protections against spoofing, tampering, information disclosure, and elevation of privilege attacks.
+ï¿½ The business logic flow is sequential, processed in order, and cannot be bypassed.
+ï¿½ Business logic includes limits to detect and prevent automated attacks, such as continuous small funds transfers, or adding a million friends one at a time, and so on.
+ï¿½ High value business logic flows have considered abuse cases and malicious actors, and have protections against spoofing, tampering, information disclosure, and elevation of privilege attacks.
 V11.1 Business Logic Security
 
 Business logic security is so individual to every application that no one checklist will ever apply. Business logic security must be designed in to protect against likely external threats - it cannot be added using web application firewalls or secure communications. We recommend the use of threat modeling during design sprints, for example using the OWASP Cornucopia or similar tools.
@@ -2092,8 +2078,8 @@ OWASP Application Security Verification Standard 4.0.3
 54
 
 References
-For more information, see also: · OWASP Web Security Testing Guide 4.1: Business Logic Testing · Anti-automation can be achieved in many ways, including the use of OWASP AppSensor and OWASP
-Automated Threats to Web Applications · OWASP AppSensor can also help with Attack Detection and Response. · OWASP Cornucopia
+For more information, see also: ï¿½ OWASP Web Security Testing Guide 4.1: Business Logic Testing ï¿½ Anti-automation can be achieved in many ways, including the use of OWASP AppSensor and OWASP
+Automated Threats to Web Applications ï¿½ OWASP AppSensor can also help with Attack Detection and Response. ï¿½ OWASP Cornucopia
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -2103,7 +2089,7 @@ V12 Files and Resources
 
 Control Objective
 
-Ensure that a verified application satisfies the following high level requirements: · Untrusted file data should be handled accordingly and in a secure manner. · Untrusted file data obtained from untrusted sources are stored outside the web root and with limited
+Ensure that a verified application satisfies the following high level requirements: ï¿½ Untrusted file data should be handled accordingly and in a secure manner. ï¿½ Untrusted file data obtained from untrusted sources are stored outside the web root and with limited
 permissions.
 V12.1 File Upload
 
@@ -2199,7 +2185,7 @@ L1 L2 L3 CWE
 12.6.1 Verify that the web or application server is configured with an allow list of    918 resources or systems to which the server can send requests or load data/files from.
 
 References
-For more information, see also: · File Extension Handling for Sensitive Information · Reflective file download by Oren Hafif · OWASP Third Party JavaScript Management Cheat Sheet
+For more information, see also: ï¿½ File Extension Handling for Sensitive Information ï¿½ Reflective file download by Oren Hafif ï¿½ OWASP Third Party JavaScript Management Cheat Sheet
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -2207,7 +2193,7 @@ OWASP Application Security Verification Standard 4.0.3
 
 V13 API and Web Service
 Control Objective
-Ensure that a verified application that uses trusted service layer APIs (commonly using JSON or XML or GraphQL) has: · Adequate authentication, session management and authorization of all web services. · Input validation of all parameters that transit from a lower to higher trust level. · Effective security controls for all API types, including cloud and Serverless API Please read this chapter in combination with all other chapters at this same level; we no longer duplicate authentication or API session management concerns.
+Ensure that a verified application that uses trusted service layer APIs (commonly using JSON or XML or GraphQL) has: ï¿½ Adequate authentication, session management and authorization of all web services. ï¿½ Input validation of all parameters that transit from a lower to higher trust level. ï¿½ Effective security controls for all API types, including cloud and Serverless API Please read this chapter in combination with all other chapters at this same level; we no longer duplicate authentication or API session management concerns.
 V13.1 Generic Web Service Security
 
 # Description
@@ -2223,9 +2209,9 @@ L1 L2 L3 CWE    116
 V13.2 RESTful Web Service
 
 JSON schema validation is in a draft stage of standardization (see references). When considering using JSON schema validation, which is best practice for RESTful web services, consider using these additional data validation strategies in combination with JSON schema validation:
-· Parsing validation of the JSON object, such as if there are missing or extra elements.
-· Validation of the JSON object values using standard input validation methods, such as data type, data format, length, etc.
-· and formal JSON schema validation.
+ï¿½ Parsing validation of the JSON object, such as if there are missing or extra elements.
+ï¿½ Validation of the JSON object values using standard input validation methods, such as data type, data format, length, etc.
+ï¿½ and formal JSON schema validation.
 Once the JSON schema validation standard is formalized, ASVS will update its advice in this area. Carefully monitor any JSON schema validation libraries in use, as they will need to be updated regularly until the standard is formalized and bugs are ironed out of reference implementations.
 
 # Description
@@ -2297,7 +2283,7 @@ OWASP Application Security Verification Standard 4.0.3
 59
 
 References
-For more information, see also: · OWASP Serverless Top 10 · OWASP Serverless Project · OWASP Testing Guide 4.0: Configuration and Deployment Management Testing · OWASP Cross-Site Request Forgery cheat sheet · OWASP XML External Entity Prevention Cheat Sheet - General Guidance · JSON Web Tokens (and Signing) · REST Security Cheat Sheet · JSON Schema · XML DTD Entity Attacks · Orange Tsai - A new era of SSRF Exploiting URL Parser In Trending Programming Languages
+For more information, see also: ï¿½ OWASP Serverless Top 10 ï¿½ OWASP Serverless Project ï¿½ OWASP Testing Guide 4.0: Configuration and Deployment Management Testing ï¿½ OWASP Cross-Site Request Forgery cheat sheet ï¿½ OWASP XML External Entity Prevention Cheat Sheet - General Guidance ï¿½ JSON Web Tokens (and Signing) ï¿½ REST Security Cheat Sheet ï¿½ JSON Schema ï¿½ XML DTD Entity Attacks ï¿½ Orange Tsai - A new era of SSRF Exploiting URL Parser In Trending Programming Languages
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -2308,8 +2294,8 @@ V14 Configuration
 Control Objective
 
 Ensure that a verified application has:
-· A secure, repeatable, automatable build environment.
-· Hardened third party library, dependency and configuration management such that out of date or insecure components are not included by the application.
+ï¿½ A secure, repeatable, automatable build environment.
+ï¿½ Hardened third party library, dependency and configuration management such that out of date or insecure components are not included by the application.
 Configuration of the application out of the box should be safe to be on the Internet, which means a safe out of the box configuration.
 V14.1 Build and Deploy
 
@@ -2323,8 +2309,6 @@ Compliance with this section requires an automated build system, and access to b
 L1 L2 L3 CWE
 
 14.1.1 Verify that the application build and deployment processes are performed in a secure and repeatable way, such as CI / CD automation, automated configuration management, and automated deployment scripts.
-
-
 
 14.1.2
 
@@ -2340,11 +2324,7 @@ Verify that compiler flags are configured to enable all available buffer overflo
 
 Verify that the application, configuration, and all dependencies can be redeployed using automated deployment scripts, built from a documented and tested runbook in a reasonable time, or restored from backups in a timely fashion.
 
-
-
 14.1.5 Verify that authorized administrators can verify the integrity of all security-
-
-
 
 relevant configurations to detect tampering.
 
@@ -2384,8 +2364,6 @@ of the asset.
   829
 
 14.2.5 Verify that a Software Bill of Materials (SBOM) is maintained of all third party libraries in use. (C2)
-
-
 
 14.2.6 Verify that the attack surface is reduced by sandboxing or encapsulating third party libraries to expose only the required behaviour into the application. (C2)
 
@@ -2467,77 +2445,77 @@ OWASP Application Security Verification Standard 4.0.3
 63
 
 References
-For more information, see also: · OWASP Web Security Testing Guide 4.1: Testing for HTTP Verb Tampering · Adding Content-Disposition to API responses helps prevent many attacks based on misunderstanding on
-the MIME type between client and server, and the "filename" option specifically helps prevent Reflected File Download attacks. · Content Security Policy Cheat Sheet · Exploiting CORS misconfiguration for BitCoins and Bounties · OWASP Web Security Testing Guide 4.1: Configuration and Deployment Management Testing · Sandboxing third party components
+For more information, see also: ï¿½ OWASP Web Security Testing Guide 4.1: Testing for HTTP Verb Tampering ï¿½ Adding Content-Disposition to API responses helps prevent many attacks based on misunderstanding on
+the MIME type between client and server, and the "filename" option specifically helps prevent Reflected File Download attacks. ï¿½ Content Security Policy Cheat Sheet ï¿½ Exploiting CORS misconfiguration for BitCoins and Bounties ï¿½ OWASP Web Security Testing Guide 4.1: Configuration and Deployment Management Testing ï¿½ Sandboxing third party components
 
 OWASP Application Security Verification Standard 4.0.3
 
 64
 
 Appendix A: Glossary
-· Address Space Layout Randomization (ASLR) ­ A technique to make exploiting memory corruption bugs more difficult.
-· Allow list ­ A list of permitted data or operations, for example a list of characters that are allowed to perform input validation.
-· Application Security ­ Application-level security focuses on the analysis of components that comprise the application layer of the Open Systems Interconnection Reference Model (OSI Model), rather than focusing on for example the underlying operating system or connected networks.
-· Application Security Verification ­ The technical assessment of an application against the OWASP ASVS.
-· Application Security Verification Report ­ A report that documents the overall results and supporting analysis produced by the verifier for a particular application.
-· Authentication ­ The verification of the claimed identity of an application user.
-· Automated Verification ­ The use of automated tools (either dynamic analysis tools, static analysis tools, or both) that use vulnerability signatures to find problems.
-· Black box testing ­ It is a method of software testing that examines the functionality of an application without peering into its internal structures or workings.
-· Component ­ a self-contained unit of code, with associated disk and network interfaces that communicates with other components.
-· Cross-Site Scripting (XSS) ­ A security vulnerability typically found in web applications allowing the injection of client-side scripts into content.
-· Cryptographic module ­ Hardware, software, and/or firmware that implements cryptographic algorithms and/or generates cryptographic keys.
-· Common Weakness Enumeration (CWE) - A community-developed list of common software security weaknesses. It serves as a common language, a measuring stick for software security tools, and as a baseline for weakness identification, mitigation, and prevention efforts.
-· Design Verification ­ The technical assessment of the security architecture of an application.
-· Dynamic Application Security Testing (DAST) - Technologies are designed to detect conditions indicative of a security vulnerability in an application in its running state.
-· Dynamic Verification ­ The use of automated tools that use vulnerability signatures to find problems during the execution of an application.
-· Fast IDentity Online (FIDO) - A set of authentication standards which allow a variety of different authentication methods to be used including biometrics, Trusted Platform Modules (TPMs), USB security tokens, etc.
-· Globally Unique Identifier (GUID) ­ a unique reference number used as an identifier in software.
-· Hyper Text Transfer Protocol (HTTPS) ­ An application protocol for distributed, collaborative, hypermedia information systems. It is the foundation of data communication for the World Wide Web.
-· Hardcoded keys ­ Cryptographic keys which are stored on the filesystem, be it in code, comments or files.
-· Hardware Security Module (HSM) - Hardware component which is able to store cryptographic keys and other secrets in a protected manner.
-· Hibernate Query Language (HQL) - A query language that is similar in appearance to SQL used by the Hibernate ORM library.
-· Input Validation ­ The canonicalization and validation of untrusted user input.
+ï¿½ Address Space Layout Randomization (ASLR) ï¿½ A technique to make exploiting memory corruption bugs more difficult.
+ï¿½ Allow list ï¿½ A list of permitted data or operations, for example a list of characters that are allowed to perform input validation.
+ï¿½ Application Security ï¿½ Application-level security focuses on the analysis of components that comprise the application layer of the Open Systems Interconnection Reference Model (OSI Model), rather than focusing on for example the underlying operating system or connected networks.
+ï¿½ Application Security Verification ï¿½ The technical assessment of an application against the OWASP ASVS.
+ï¿½ Application Security Verification Report ï¿½ A report that documents the overall results and supporting analysis produced by the verifier for a particular application.
+ï¿½ Authentication ï¿½ The verification of the claimed identity of an application user.
+ï¿½ Automated Verification ï¿½ The use of automated tools (either dynamic analysis tools, static analysis tools, or both) that use vulnerability signatures to find problems.
+ï¿½ Black box testing ï¿½ It is a method of software testing that examines the functionality of an application without peering into its internal structures or workings.
+ï¿½ Component ï¿½ a self-contained unit of code, with associated disk and network interfaces that communicates with other components.
+ï¿½ Cross-Site Scripting (XSS) ï¿½ A security vulnerability typically found in web applications allowing the injection of client-side scripts into content.
+ï¿½ Cryptographic module ï¿½ Hardware, software, and/or firmware that implements cryptographic algorithms and/or generates cryptographic keys.
+ï¿½ Common Weakness Enumeration (CWE) - A community-developed list of common software security weaknesses. It serves as a common language, a measuring stick for software security tools, and as a baseline for weakness identification, mitigation, and prevention efforts.
+ï¿½ Design Verification ï¿½ The technical assessment of the security architecture of an application.
+ï¿½ Dynamic Application Security Testing (DAST) - Technologies are designed to detect conditions indicative of a security vulnerability in an application in its running state.
+ï¿½ Dynamic Verification ï¿½ The use of automated tools that use vulnerability signatures to find problems during the execution of an application.
+ï¿½ Fast IDentity Online (FIDO) - A set of authentication standards which allow a variety of different authentication methods to be used including biometrics, Trusted Platform Modules (TPMs), USB security tokens, etc.
+ï¿½ Globally Unique Identifier (GUID) ï¿½ a unique reference number used as an identifier in software.
+ï¿½ Hyper Text Transfer Protocol (HTTPS) ï¿½ An application protocol for distributed, collaborative, hypermedia information systems. It is the foundation of data communication for the World Wide Web.
+ï¿½ Hardcoded keys ï¿½ Cryptographic keys which are stored on the filesystem, be it in code, comments or files.
+ï¿½ Hardware Security Module (HSM) - Hardware component which is able to store cryptographic keys and other secrets in a protected manner.
+ï¿½ Hibernate Query Language (HQL) - A query language that is similar in appearance to SQL used by the Hibernate ORM library.
+ï¿½ Input Validation ï¿½ The canonicalization and validation of untrusted user input.
 
 OWASP Application Security Verification Standard 4.0.3
 
 65
 
-· Malicious Code ­ Code introduced into an application during its development unbeknownst to the application owner, which circumvents the application's intended security policy. Not the same as malware such as a virus or worm!
-· Malware ­ Executable code that is introduced into an application during runtime without the knowledge of the application user or administrator.
-· Open Web Application Security Project (OWASP) ­ The Open Web Application Security Project (OWASP) is a worldwide free and open community focused on improving the security of application software. Our mission is to make application security "visible," so that people and organizations can make informed decisions about application security risks. See: https://www.owasp.org/
-· One-time Password (OTP) - A password which is uniquely generated to be used on a single occasion.
-· Object-relational Mapping (ORM) - A system used to allow a relational/table-based database to be referenced and queried within an application program using an application-compatible object model.
-· Password-Based Key Derivation Function 2 (PBKDF2) - A special one-way algorithm used to create a strong cryptographic key from an input text (such as a password) and an additional random salt value and can therefore be used make it harder to crack a password offline if the resulting value is stored instead of the original password.
-· Personally Identifiable Information (PII) - is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context.
-· Position-independent executable (PIE) - A body of machine code that, being placed somewhere in the primary memory, executes properly regardless of its absolute address.
-· Public Key Infrastructure (PKI) - An arrangement that binds public keys with respective identities of entities. The binding is established through a process of registration and issuance of certificates at and by a certificate authority (CA).
-· Public Switched Telephone Network (PSTN) - The traditional telephone network including both fixedline telephones and mobile telephones.
-· Relying Party (RP) - Generally an application which is relying on a user having authenticated against a separate authentication provider. The application is relying on some sort of token or set of signed assertions provided by that authentication provider to trust that the user is who they say they are.
-· Static application security testing (SAST) - A set of technologies designed to analyze application source code, byte code and binaries for coding and design conditions that are indicative of security vulnerabilities. SAST solutions analyze an application from the "inside out" in a nonrunning state.
-· Software development lifecycle (SDLC) - The step by step process by which software is developed going from the initial requirements to deployment and maintainance.
-· Security Architecture ­ An abstraction of an application's design that identifies and describes where and how security controls are used, and also identifies and describes the location and sensitivity of both user and application data.
-· Security Configuration ­ The runtime configuration of an application that affects how security controls are used.
-· Security Control ­ A function or component that performs a security check (e.g. an access control check) or when called results in a security effect (e.g. generating an audit record).
-· Server-side Request Forgery (SSRF) - An attack which abuses functionality on the server to read or update internal resources by supplying or modifying a URL which the code running on the server will read or submit data to.
-· Single Sign-on Authentication (SSO) - This occurs when a user logs into one application and is then automatically logged in to other applications without having to re-authenticate. For example, when you login to Google, when accessing other Google services such as YouTube, Google Docs, and Gmail you will be automatically logged in.
+ï¿½ Malicious Code ï¿½ Code introduced into an application during its development unbeknownst to the application owner, which circumvents the application's intended security policy. Not the same as malware such as a virus or worm!
+ï¿½ Malware ï¿½ Executable code that is introduced into an application during runtime without the knowledge of the application user or administrator.
+ï¿½ Open Web Application Security Project (OWASP) ï¿½ The Open Web Application Security Project (OWASP) is a worldwide free and open community focused on improving the security of application software. Our mission is to make application security "visible," so that people and organizations can make informed decisions about application security risks. See: https://www.owasp.org/
+ï¿½ One-time Password (OTP) - A password which is uniquely generated to be used on a single occasion.
+ï¿½ Object-relational Mapping (ORM) - A system used to allow a relational/table-based database to be referenced and queried within an application program using an application-compatible object model.
+ï¿½ Password-Based Key Derivation Function 2 (PBKDF2) - A special one-way algorithm used to create a strong cryptographic key from an input text (such as a password) and an additional random salt value and can therefore be used make it harder to crack a password offline if the resulting value is stored instead of the original password.
+ï¿½ Personally Identifiable Information (PII) - is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context.
+ï¿½ Position-independent executable (PIE) - A body of machine code that, being placed somewhere in the primary memory, executes properly regardless of its absolute address.
+ï¿½ Public Key Infrastructure (PKI) - An arrangement that binds public keys with respective identities of entities. The binding is established through a process of registration and issuance of certificates at and by a certificate authority (CA).
+ï¿½ Public Switched Telephone Network (PSTN) - The traditional telephone network including both fixedline telephones and mobile telephones.
+ï¿½ Relying Party (RP) - Generally an application which is relying on a user having authenticated against a separate authentication provider. The application is relying on some sort of token or set of signed assertions provided by that authentication provider to trust that the user is who they say they are.
+ï¿½ Static application security testing (SAST) - A set of technologies designed to analyze application source code, byte code and binaries for coding and design conditions that are indicative of security vulnerabilities. SAST solutions analyze an application from the "inside out" in a nonrunning state.
+ï¿½ Software development lifecycle (SDLC) - The step by step process by which software is developed going from the initial requirements to deployment and maintainance.
+ï¿½ Security Architecture ï¿½ An abstraction of an application's design that identifies and describes where and how security controls are used, and also identifies and describes the location and sensitivity of both user and application data.
+ï¿½ Security Configuration ï¿½ The runtime configuration of an application that affects how security controls are used.
+ï¿½ Security Control ï¿½ A function or component that performs a security check (e.g. an access control check) or when called results in a security effect (e.g. generating an audit record).
+ï¿½ Server-side Request Forgery (SSRF) - An attack which abuses functionality on the server to read or update internal resources by supplying or modifying a URL which the code running on the server will read or submit data to.
+ï¿½ Single Sign-on Authentication (SSO) - This occurs when a user logs into one application and is then automatically logged in to other applications without having to re-authenticate. For example, when you login to Google, when accessing other Google services such as YouTube, Google Docs, and Gmail you will be automatically logged in.
 
 OWASP Application Security Verification Standard 4.0.3
 
 66
 
-· SQL Injection (SQLi) ­ A code injection technique used to attack data driven applications, in which malicious SQL statements are inserted into an entry point.
-· SVG - Scalable Vector Graphics
-· Time-based OTP - A method of generating an OTP where the current time acts as part of the algorithm to generate the password.
-· Threat Modeling - A technique consisting of developing increasingly refined security architectures to identify threat agents, security zones, security controls, and important technical and business assets.
-· Transport Layer Security (TLS) ­ Cryptographic protocols that provide communication security over a network connection
-· Trusted Platform Module (TPM) - A type of HSM which is usually attached to a larger hardware component such as a motherboard and acts as the "root of trust" for that system.
-· Two-factor authentication (2FA) - This adds a second level of authentication to an account log-in.
-· Universal 2nd Factor (U2F) - One of the standards created by FIDO specifically for allowing a USB or NFC security key to be used as a 2nd authentication factor.
-· URI/URL/URL fragments ­ A Uniform Resource Identifier is a string of characters used to identify a name or a web resource. A Uniform Resource Locator is often used as a reference to a resource.
-· Verifier ­ The person or team that is reviewing an application against the OWASP ASVS requirements.
-· What You See Is What You Get (WYSIWYG) - A type of rich content editor which shows how the content will actually look when rendered rather than showing the coding used to govern the rendering.
-· X.509 Certificate ­ An X.509 certificate is a digital certificate that uses the widely accepted international X.509 public key infrastructure (PKI) standard to verify that a public key belongs to the user, computer or service identity contained within the certificate.
-· XML eXternal Entity (XXE) - A type of XML entity that can access local or remote content via a declared system identifier. This may load to various injection attacks.
+ï¿½ SQL Injection (SQLi) ï¿½ A code injection technique used to attack data driven applications, in which malicious SQL statements are inserted into an entry point.
+ï¿½ SVG - Scalable Vector Graphics
+ï¿½ Time-based OTP - A method of generating an OTP where the current time acts as part of the algorithm to generate the password.
+ï¿½ Threat Modeling - A technique consisting of developing increasingly refined security architectures to identify threat agents, security zones, security controls, and important technical and business assets.
+ï¿½ Transport Layer Security (TLS) ï¿½ Cryptographic protocols that provide communication security over a network connection
+ï¿½ Trusted Platform Module (TPM) - A type of HSM which is usually attached to a larger hardware component such as a motherboard and acts as the "root of trust" for that system.
+ï¿½ Two-factor authentication (2FA) - This adds a second level of authentication to an account log-in.
+ï¿½ Universal 2nd Factor (U2F) - One of the standards created by FIDO specifically for allowing a USB or NFC security key to be used as a 2nd authentication factor.
+ï¿½ URI/URL/URL fragments ï¿½ A Uniform Resource Identifier is a string of characters used to identify a name or a web resource. A Uniform Resource Locator is often used as a reference to a resource.
+ï¿½ Verifier ï¿½ The person or team that is reviewing an application against the OWASP ASVS requirements.
+ï¿½ What You See Is What You Get (WYSIWYG) - A type of rich content editor which shows how the content will actually look when rendered rather than showing the coding used to govern the rendering.
+ï¿½ X.509 Certificate ï¿½ An X.509 certificate is a digital certificate that uses the widely accepted international X.509 public key infrastructure (PKI) standard to verify that a public key belongs to the user, computer or service identity contained within the certificate.
+ï¿½ XML eXternal Entity (XXE) - A type of XML entity that can access local or remote content via a declared system identifier. This may load to various injection attacks.
 
 OWASP Application Security Verification Standard 4.0.3
 
@@ -2572,9 +2550,9 @@ Appendix C: Internet of Things Verification Requirements
 This chapter was originally in the main branch, but with the work that the OWASP IoT team has done, it doesn't make sense to maintain two different threads on the subject. For the 4.0 release, we are moving this to the Appendix, and urge all who require this, to rather use the main OWASP IoT project
 Control Objective
 Embedded/IoT devices should:
-· Have the same level of security controls within the device as found in the server, by enforcing security controls in a trusted environment.
-· Sensitive data stored on the device should be done so in a secure manner using hardware backed storage such as secure elements.
-· All sensitive data transmitted from the device should utilize transport layer security.
+ï¿½ Have the same level of security controls within the device as found in the server, by enforcing security controls in a trusted environment.
+ï¿½ Sensitive data stored on the device should be done so in a secure manner using hardware backed storage such as secure elements.
+ï¿½ All sensitive data transmitted from the device should utilize transport layer security.
 Security Verification Requirements
 
 # Description
@@ -2718,11 +2696,10 @@ OWASP Application Security Verification Standard 4.0.3
 # Description
 C.34 Verify that micro controllers are configured with code protection (if applicable).
 References
-For more information, see also: · OWASP Internet of Things Top 10 · OWASP Embedded Application Security Project · OWASP Internet of Things Project · Trudy TCP Proxy Tool
+For more information, see also: ï¿½ OWASP Internet of Things Top 10 ï¿½ OWASP Embedded Application Security Project ï¿½ OWASP Internet of Things Project ï¿½ Trudy TCP Proxy Tool
 
 L1 L2 L3 Since  4.0
 
 OWASP Application Security Verification Standard 4.0.3
 
 71
-

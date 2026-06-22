@@ -1,3 +1,9 @@
+# Seven Databases in Seven Weeks
+
+> **Author(s):** Redmond, Wilson Â· **Category:** 05_databases Â· **Language:** English
+
+---
+
 What Readers Are Saying About
 Seven Databases in Seven Weeks
 The flow is perfect. On Friday, you'll be up and running with a new database. On Saturday, you'll see what it's like under daily use. By Sunday, you'll have learned a few tricks that might even surprise the experts! And next week, you'll vault to another database and have fun all over again.  Ian Dees
@@ -18,7 +24,7 @@ Seven Databases in Seven Weeks
 A Guide to Modern Databases and the NoSQL Movement
 Eric Redmond Jim R. Wilson
 The Pragmatic Bookshelf
-Dallas, Texas · Raleigh, North Carolina
+Dallas, Texas ï¿½ Raleigh, North Carolina
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and The Pragmatic Programmers, LLC was aware of a trademark claim, the designations have been printed in initial capital letters or in all capitals. The Pragmatic Starter Kit, The Pragmatic Programmer, Pragmatic Programming, Pragmatic Bookshelf, PragProg and the linking g device are trademarks of The Pragmatic Programmers, LLC.
 Every precaution was taken in the preparation of this book. However, the publisher assumes no responsibility for errors or omissions, or for damages that may result from the use of information (including program listings) contained herein.
@@ -26,7 +32,7 @@ Our Pragmatic courses, workshops, and other products can help you and your team 
 Apache, Apache HBase, Apache CouchDB, HBase, CouchDB, and the HBase and CouchDB logos are trademarks of The Apache Software Foundation. Used with permission. No endorsement by The Apache Software Foundation is implied by the use of these marks.
 The team that produced this book includes:
 Jackie Carter (editor) Potomac Indexing, LLC (indexer) Kim Wimpsett (copyeditor) David J Kelly (typesetter) Janet Furlow (producer) Juliet Benda (rights) Ellie Callahan (support)
-Copyright © 2012 Pragmatic Programmers, LLC.
+Copyright ï¿½ 2012 Pragmatic Programmers, LLC.
 All rights reserved.
 No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher.
 Printed in the United States of America. ISBN-13: 978-1-93435-692-0 Encoded using the finest acid-free high-entropy binary digits. Book version: P1..0--May 2012
@@ -119,7 +125,7 @@ Preface . . . . . . . . . . . . . . xi
 
 131
 
-vi · Contents
+vi ï¿½ Contents
 
 5. MongoDB . . . . . . . . . . . . . 135
 
@@ -250,7 +256,7 @@ Over time, the user interfaces changed from green screens to client-server to In
 And then the fresh powder finally came. At first, the dusting wasn't even enough to cover this morning's earliest tracks, but the power of the storm took over, replenishing the landscape and delivering the perfect skiing experience with the diversity and quality that we craved. Just this past year, I woke up to the realization that the database world, too, is covered with a fresh blanket of snow. Sure, the relational databases are there, and you can get a surprisingly rich experience with open source RDBMS software. You can do clustering, full-text search, and even fuzzy searching. But you're no longer limited to that approach. I have not built a fully relational solution in a year. Over that time, I've used a document-based database and a couple of keyvalue datastores.
 The truth is that relational databases no longer have a monopoly on flexibility or even scalability. For the kinds of applications that we build, there are more
 
-viii · Foreword
+viii ï¿½ Foreword
 appropriate models that are simpler, faster, and more reliable. As a person who spent ten years at IBM Austin working on databases with our labs and customers, this development is simply stunning to me. In Seven Databases in Seven Weeks, you'll work through examples that cover a beautiful cross section of the most critical advances in the databases that back Internet development. Within key-value stores, you'll learn about the radically scalable and reliable Riak and the beautiful query mechanisms in Redis. From the columnar database community, you'll sample the power of HBase, a close cousin of the relational database models. And from the document-oriented database stores, you'll see the elegant solutions for deeply nested documents in the wildly scalable MongoDB. You'll also see Neo4J's spin on graph databases, allowing rapid traversal of relationships.
 You won't have to use all of these databases to be a better programmer or database admin. As Eric Redmond and Jim Wilson take you on this magical tour, every step will make you smarter and lend the kind of insight that is invaluable in a modern software professional. You will know where each platform shines and where it is the most limited. You will see where your industry is moving and learn the forces driving it there.
 Enjoy the ride.
@@ -281,7 +287,7 @@ From Eric: Dear Noelle, you're not special; you're unique, and that's so much be
 
 From Jim: First, I have to thank my family; Ruthy, your boundless patience and encouragement have been heartwarming. Emma and Jimmy, you're two
 
-x · Acknowledgments
+x ï¿½ Acknowledgments
 smart cookies, and your daddy loves you always. Also a special thanks to all the unsung heroes who monitor IRC, message boards, mailing lists, and bug systems ready to help anyone who needs you. Your dedication to open source keeps these projects kicking.
 
 Preface
@@ -294,7 +300,7 @@ What's in This Book
 This book is aimed at experienced developers who want a well-rounded understanding of the modern database landscape. Prior database experience is not strictly required, but it helps.
 After a brief introduction, this book tackles a series of seven databases chapter by chapter. The databases were chosen to span five different database
 
-xii · Preface
+xii ï¿½ Preface
 genres or styles, which are discussed in Chapter 1, Introduction, on page 1. In order, they are PostgreSQL, Riak, Apache HBase, MongoDB, Apache CouchDB, Neo4J, and Redis.
 Each chapter is designed to be taken as a long weekend's worth of work, split up into three days. Each day ends with exercises that expand on the topics and concepts just introduced, and each chapter culminates in a wrap-up discussion that summarizes the good and bad points about the database. You may choose to move a little faster or slower, but it's important to grasp each day's concepts before continuing. We've tried to craft examples that explore each database's distinguishing features. To really understand what these databases have to offer, you have to spend some time using them, and that means rolling up your sleeves and doing some work.
 Although you may be tempted to skip chapters, we designed this book to be read linearly. Some concepts, such as mapreduce, are introduced in depth in earlier chapters and then skimmed over in later ones. The goal of this book is to attain a solid understanding of the modern database field, so we recommend you read them all.
@@ -305,7 +311,7 @@ Installing the databases in this book is sometimes easy, sometimes challenging, 
 Administration Manual? We Think Not
 Along the same lines of installation, this book will not cover everything you'd find in an administration manual. Each of these databases has myriad options, settings, switches, and configuration details, most of which are well documented on the Web. We're more interested in teaching you useful concepts and full immersion than focusing on the day-to-day operations. Though the characteristics of the databases can change based on operational settings-- and we may discuss those characteristics--we won't be able to go into all the nitty-gritty details of all possible configurations. There simply isn't space!
 
-Code Examples and Conventions · xiii
+Code Examples and Conventions ï¿½ xiii
 A Note to Windows Users
 This book is inherently about choices, predominantly open source software on *nix platforms. Microsoft environments tend to strive for an integrated environment, which limits many choices to a smaller predefined set. As such, the databases we cover are open source and are developed by (and largely for) users of *nix systems. This is not our own bias so much as a reflection of the current state of affairs. Consequently, our tutorial-esque examples are presumed to be run in a *nix shell. If you run Windows and want to give it a try anyway, we recommend setting up Cygwin1 to give you the best shot at success. You may also want to consider running a Linux virtual machine.
 Code Examples and Conventions
@@ -322,17 +328,17 @@ In this book, we explore seven databases across the spectrum of database styles.
 1.1 It Starts with a Question
 The central question of Seven Databases in Seven Weeks is this: what database or combination of databases best resolves your problem? If you walk away understanding how to make that choice, given your particular needs and resources at hand, we're happy.
 But to answer that question, you'll need to understand your options. For that, we'll take you on a deep dive into each of seven databases, uncovering the good parts and pointing out the not so good. You'll get your hands dirty with CRUD, flex your schema muscles, and find answers to these questions:
-· What type of datastore is this? Databases come in a variety of genres, such as relational, key-value, columnar, document-oriented, and graph. Popular databases--including those covered in this book--can generally be grouped into one of these broad categories. You'll learn about each
+ï¿½ What type of datastore is this? Databases come in a variety of genres, such as relational, key-value, columnar, document-oriented, and graph. Popular databases--including those covered in this book--can generally be grouped into one of these broad categories. You'll learn about each
 
-2 · Chapter 1. Introduction
+2 ï¿½ Chapter 1. Introduction
 type and the kinds of problems for which they're best suited. We've specifically chosen databases to span these categories including one relational database (Postgres), two key-value stores (Riak, Redis), a column-oriented database (HBase), two document-oriented databases (MongoDB, CouchDB), and a graph database (Neo4J).
-· What was the driving force? Databases are not created in a vacuum. They are designed to solve problems presented by real use cases. RDBMS databases arose in a world where query flexibility was more important than flexible schemas. On the other hand, column-oriented datastores were built to be well suited for storing large amounts of data across several machines, while data relationships took a backseat. We'll cover cases in which to use each database and related examples.
-· How do you talk to it? Databases often support a variety of connection options. Whenever a database has an interactive command-line interface, we'll start with that before moving on to other means. Where programming is needed, we've stuck mostly to Ruby and JavaScript, though a few other languages sneak in from time to time--like PL/pgSQL (Postgres) and Gremlin (Neo4J). At a lower level, we'll discuss protocols like REST (CouchDB, Riak) and Thrift (HBase). In the final chapter, we present a more complex database setup tied together by a Node.js JavaScript implementation.
-· What makes it unique? Any datastore will support writing data and reading it back out again. What else it does varies greatly from one to the next. Some allow querying on arbitrary fields. Some provide indexing for rapid lookup. Some support ad hoc queries; for others, queries must be planned. Is schema a rigid framework enforced by the database or merely a set of guidelines to be renegotiated at will? Understanding capabilities and constraints will help you pick the right database for the job.
-· How does it perform? How does this database function and at what cost? Does it support sharding? How about replication? Does it distribute data evenly using consistent hashing, or does it keep like data together? Is this database tuned for reading, writing, or some other operation? How much control do you have over its tuning, if any?
-· How does it scale? Scalability is related to performance. Talking about scalability without the context of what you want to scale to is generally fruitless. This book will give you the background you need to ask the right questions to establish that context. While the discussion on how to scale each database will be intentionally light, in these pages you'll find out
+ï¿½ What was the driving force? Databases are not created in a vacuum. They are designed to solve problems presented by real use cases. RDBMS databases arose in a world where query flexibility was more important than flexible schemas. On the other hand, column-oriented datastores were built to be well suited for storing large amounts of data across several machines, while data relationships took a backseat. We'll cover cases in which to use each database and related examples.
+ï¿½ How do you talk to it? Databases often support a variety of connection options. Whenever a database has an interactive command-line interface, we'll start with that before moving on to other means. Where programming is needed, we've stuck mostly to Ruby and JavaScript, though a few other languages sneak in from time to time--like PL/pgSQL (Postgres) and Gremlin (Neo4J). At a lower level, we'll discuss protocols like REST (CouchDB, Riak) and Thrift (HBase). In the final chapter, we present a more complex database setup tied together by a Node.js JavaScript implementation.
+ï¿½ What makes it unique? Any datastore will support writing data and reading it back out again. What else it does varies greatly from one to the next. Some allow querying on arbitrary fields. Some provide indexing for rapid lookup. Some support ad hoc queries; for others, queries must be planned. Is schema a rigid framework enforced by the database or merely a set of guidelines to be renegotiated at will? Understanding capabilities and constraints will help you pick the right database for the job.
+ï¿½ How does it perform? How does this database function and at what cost? Does it support sharding? How about replication? Does it distribute data evenly using consistent hashing, or does it keep like data together? Is this database tuned for reading, writing, or some other operation? How much control do you have over its tuning, if any?
+ï¿½ How does it scale? Scalability is related to performance. Talking about scalability without the context of what you want to scale to is generally fruitless. This book will give you the background you need to ask the right questions to establish that context. While the discussion on how to scale each database will be intentionally light, in these pages you'll find out
 
-The Genres · 3
+The Genres ï¿½ 3
 whether each datastore is geared more for horizontal scaling (MongoDB, HBase, Riak), traditional vertical scaling (Postgres, Neo4J, Redis), or something in between.
 Our goal is not to guide a novice to mastery of any of these databases. A full treatment of any one of them could (and does) fill entire books. But by the end you should have a firm grasp of the strengths of each, as well as how they differ.
 1.2 The Genres
@@ -342,7 +348,7 @@ It's important to remember that most of the data problems you'll face could be s
 Relational
 The relational model is generally what comes to mind for most people with database experience. Relational database management systems (RDBMSs) are set-theory-based systems implemented as two-dimensional tables with rows and columns. The canonical means of interacting with an RDBMS is by writing queries in Structured Query Language (SQL). Data values are typed and may be numeric, strings, dates, uninterpreted blobs, or other types. The types are enforced by the system. Importantly, tables can join and morph into new, more complex tables, because of their mathematical basis in relational (set) theory.
 
-4 · Chapter 1. Introduction
+4 ï¿½ Chapter 1. Introduction
 There are lots of open source relational databases to choose from, including MySQL, H2, HSQLDB, SQLite, and many others. The one we cover is in Chapter 2, PostgreSQL, on page 9.
 PostgreSQL Battle-hardened PostgreSQL is by far the oldest and most robust database we cover. With its adherence to the SQL standard, it will feel familiar to anyone who has worked with relational databases before, and it provides a solid point of comparison to the other databases we'll work with. We'll also explore some of SQL's unsung features and Postgres's specific advantages. There's something for everyone here, from SQL novice to expert.
 Key-Value
@@ -350,7 +356,7 @@ The key-value (KV) store is the simplest model we cover. As the name implies, a 
 As with relational databases, many open source options are available. Some of the more popular offerings include memcached (and its cousins memcachedb and membase), Voldemort, and the two we cover in this book: Redis and Riak.
 Riak More than a key-value store, Riak--covered in Chapter 3, Riak, on page 51-- embraces web constructs like HTTP and REST from the ground up. It's a faithful implementation of Amazon's Dynamo, with advanced features such as vector clocks for conflict resolution. Values in Riak can be anything, from plain text to XML to image data, and relationships between keys are handled by named structures called links. One of the lesser known databases in this book, Riak, is rising in popularity, and it's the first one we'll talk about that supports advanced querying via mapreduce.
 
-The Genres · 5
+The Genres ï¿½ 5
 Redis Redis provides for complex datatypes like sorted sets and hashes, as well as basic message patterns like publish-subscribe and blocking queues. It also has one of the most robust query mechanisms for a KV store. And by caching writes in memory before committing to disk, Redis gains amazing performance in exchange for increased risk of data loss in the case of a hardware failure. This characteristic makes it a good fit for caching noncritical data and for acting as a message broker. We leave it until the end--see Chapter 8, Redis, on page 261--so we can build a multidatabase application with Redis and others working together in harmony.
 Columnar
 Columnar, or column-oriented, databases are so named because the important aspect of their design is that data from a given column (in the two-dimensional table sense) is stored together. By contrast, a row-oriented database (like an RDBMS) keeps information about a row together. The difference may seem inconsequential, but the impact of this design decision runs deep. In columnoriented databases, adding columns is quite inexpensive and is done on a row-by-row basis. Each row can have a different set of columns, or none at all, allowing tables to remain sparse without incurring a storage cost for null values. With respect to structure, columnar is about midway between relational and key-value.
@@ -359,7 +365,7 @@ HBase This column-oriented database shares the most similarities with the relati
 Document
 Document-oriented databases store, well, documents. In short, a document is like a hash, with a unique ID field and values that may be any of a variety of types, including more hashes. Documents can contain nested structures,
 
-6 · Chapter 1. Introduction
+6 ï¿½ Chapter 1. Introduction
 and so they exhibit a high degree of flexibility, allowing for variable domains. The system imposes few restrictions on incoming data, as long as it meets the basic requirement of being expressible as a document. Different document databases take different approaches with respect to indexing, ad hoc querying, replication, consistency, and other design decisions. Choosing wisely between them requires understanding these differences and how they impact your particular use cases.
 The two major open source players in the document database market are MongoDB, which we cover in Chapter 5, MongoDB, on page 135, and CouchDB, covered in Chapter 6, CouchDB, on page 177.
 MongoDB MongoDB is designed to be huge (the name mongo is extracted from the word humongous). Mongo server configurations attempt to remain consistent--if you write something, subsequent reads will receive the same value (until the next update). This feature makes it attractive to those coming from an RDBMS background. It also offers atomic read-write operations such as incrementing a value and deep querying of nested document structures. Using JavaScript for its query language, MongoDB supports both simple queries and complex mapreduce jobs.
@@ -368,7 +374,7 @@ Graph
 One of the less commonly used database styles, graph databases excel at dealing with highly interconnected data. A graph database consists of nodes and relationships between nodes. Both nodes and relationships can have properties--key-value pairs--that store data. The real strength of graph databases is traversing through the nodes by following relationships.
 In Chapter 7, Neo4J, on page 219, we discuss the most popular graph database today, Neo4J.
 
-Onward and Upward · 7
+Onward and Upward ï¿½ 7
 Neo4J One operation where other databases often fall flat is crawling through selfreferential or otherwise intricately linked data. This is exactly where Neo4J shines. The benefit of using a graph database is the ability to quickly traverse nodes and relationships to find relevant data. Often found in social networking applications, graph databases are gaining traction for their flexibility, with Neo4j as a pinnacle implementation.
 Polyglot
 In the wild, databases are often used alongside other databases. It's still common to find a lone relational database, but over time it is becoming popular to use several databases together, leveraging their strengths to create an ecosystem that is more powerful, capable, and robust than the sum of its parts. This practice is known as polyglot persistence and is a topic we consider further in Chapter 9, Wrapping Up, on page 307.
@@ -383,9 +389,9 @@ PostgreSQL is the hammer of the database world. It's commonly understood, is oft
 PostgreSQL is a relational database management system, which means it's a set-theory-based system, implemented as two-dimensional tables with data rows and strictly enforced column types. Despite the growing interest in newer database trends, the relational style remains the most popular and probably will for quite some time.
 The prevalence of relational databases comes not only from their vast toolkits (triggers, stored procedures, advanced indexes), their data safety (via ACID compliance), or their mind share (many programmers speak and think relationally) but also from their query pliancy. Unlike some other datastores, you needn't know how you plan to use the data. If a relational schema is normalized, queries are flexible. PostgreSQL is the finest open source example of the relational database management system (RDBMS) tradition.
 2.1 That's Post-greS-Q-L
-PostgreSQL is by far the oldest and most battle-tested database in this book. It has plug-ins for natural-language parsing, multidimensional indexing, geographic queries, custom datatypes, and much more. It has sophisticated transaction handling, has built-in stored procedures for a dozen languages, and runs on a variety of platforms. PostgreSQL has built-in Unicode support, sequences, table inheritance, and subselects, and it is one of the most ANSI SQL­compliant relational databases on the market. It's fast and reliable, can handle terabytes of data, and has been proven to run in high-profile production
+PostgreSQL is by far the oldest and most battle-tested database in this book. It has plug-ins for natural-language parsing, multidimensional indexing, geographic queries, custom datatypes, and much more. It has sophisticated transaction handling, has built-in stored procedures for a dozen languages, and runs on a variety of platforms. PostgreSQL has built-in Unicode support, sequences, table inheritance, and subselects, and it is one of the most ANSI SQLï¿½compliant relational databases on the market. It's fast and reliable, can handle terabytes of data, and has been proven to run in high-profile production
 
-10 · Chapter 2. PostgreSQL
+10 ï¿½ Chapter 2. PostgreSQL
 So, What's with the Name?
 PostgreSQL has existed in the current project incarnation since 1995, but its roots are considerably older. The original project was written at Berkeley in the early 1970s and called the Interactive Graphics and Retrieval System, or "Ingres" for short. In the 1980s, an improved version was launched post-Ingres--shortened to Postgres. The project ended at Berkeley proper in 1993 but was picked up again by the open source community as Postgres95. It was later renamed to PostgreSQL in 1996 to denote its rather new SQL support and has remained so ever since.
 projects such as Skype, France's Caisse Nationale d'Allocations Familiales (CNAF), and the United States' Federal Aviation Administration (FAA). You can install PostgreSQL in many ways, depending on your operating system.1 Beyond the basic install, we'll need to extend Postgres with the following contributed packages: tablefunc, dict_xsyn, fuzzystrmatch, pg_trgm, and cube. You can refer to the website for installation instructions.2 Once you have Postgres installed, create a schema called book using the following command:
@@ -397,7 +403,7 @@ Seek out the online docs for more information if you receive an error message.
 While we won't assume you're a relational database expert, we do assume you have confronted a database or two in the past. Odds are good that the database was relational. We'll start with creating our own schemas and populating them. Then we'll take a look at querying for values and finally what makes relational databases so special: the table join. Like most databases we'll read about, Postgres provides a back-end server that does all of the work and a command-line shell to connect to the running
 1. http://www.postgresql.org/download/ 2. http://www.postgresql.org/docs/9.0/static/contrib.html
 
-Day 1: Relations, CRUD, and Joins · 11
+Day 1: Relations, CRUD, and Joins ï¿½ 11
 
 server. The server communicates through port 5432 by default, which you can connect to with the psql shell.
 
@@ -436,7 +442,7 @@ Creating a table consists of giving it a name and a list of columns with types a
 CREATE TABLE countries ( country_code char(2) PRIMARY KEY, country_name text UNIQUE
 );
 
-12 · Chapter 2. PostgreSQL
+12 ï¿½ Chapter 2. PostgreSQL
 
 Mathematical Relations
 
@@ -475,7 +481,7 @@ free variable result
 
 SELECT x.name FROM People x WHERE x.died_at_age IS NULL
 
-Day 1: Relations, CRUD, and Joins · 13
+Day 1: Relations, CRUD, and Joins ï¿½ 13
 
 This new table will store a set of rows, where each is identified by a twocharacter code and the name is unique. These columns both have constraints. The PRIMARY KEY constrains the country_code column to disallow duplicate country codes. Only one us and one gb may exist. We explicitly gave country_name a similar unique constraint, although it is not a primary key. We can populate the countries table by inserting a few rows.
 
@@ -528,7 +534,7 @@ DELETE FROM countries WHERE country_code = 'll';
 
 With only real countries left in the countries table, let's add a cities table. To ensure any inserted country_code also exists in our countries table, we add the REFERENCES keyword. Since the country_code column references another table's key, it's known as the foreign key constraint.
 
-14 · Chapter 2. PostgreSQL
+14 ï¿½ Chapter 2. PostgreSQL
 On CRUD
 CRUD is a useful mnemonic for remembering the basic data management operations: Create, Read, Update, and Delete. These generally correspond to inserting new records (creating), modifying existing records (updating), and removing records you no longer need (deleting). All of the other operations you use a database for (any crazy query you can dream up) are read operations. If you can CRUD, you can do anything.
 CREATE TABLE cities ( name text NOT NULL, postal_code varchar(9) CHECK (postal_code <> ''), country_code char(2) REFERENCES countries, PRIMARY KEY (country_code, postal_code)
@@ -543,7 +549,7 @@ Now let's try another insert, this time with a U.S. city.
 INSERT INTO cities VALUES ('Portland','87200','us');
 INSERT 0 1
 
-Day 1: Relations, CRUD, and Joins · 15
+Day 1: Relations, CRUD, and Joins ï¿½ 15
 
 name | postal_code | country_code
 
@@ -605,7 +611,7 @@ The join returns a single table, sharing all columns' values of the cities table
 
 We can also join a table like cities that has a compound primary key. To test a compound join, let's create a new table that stores a list of venues.
 
-16 · Chapter 2. PostgreSQL
+16 ï¿½ Chapter 2. PostgreSQL
 
 A venue exists in both a postal code and a specific country. The foreign key must be two columns that reference both cities primary key columns. (MATCH FULL is a constraint that ensures either both values exist or both are NULL.)
 
@@ -642,7 +648,7 @@ id ----
 
 This provides the new venue_id without issuing another query.
 
-Day 1: Relations, CRUD, and Joins · 17
+Day 1: Relations, CRUD, and Joins ï¿½ 17
 
 The Outer Limits
 In addition to inner joins, PostgreSQL can also perform outer joins. Outer joins are a way of merging two tables when the results of one table must always be returned, whether or not any matching column values exist on the other table.
@@ -718,7 +724,7 @@ April Fools Day |
 
 Christmas Day |
 
-18 · Chapter 2. PostgreSQL
+18 ï¿½ Chapter 2. PostgreSQL
 
 countries
 
@@ -768,7 +774,7 @@ Christmas Day |
 An index is a special data structure built to avoid a full table scan when performing a query. When running CREATE TABLE commands, you may have noticed a message like this:
 CREATE TABLE / PRIMARY KEY will create implicit index "events_pkey" \ for table "events"
 
-Day 1: Relations, CRUD, and Joins · 19
+Day 1: Relations, CRUD, and Joins ï¿½ 19
 
 PostgreSQL automatically creates an index on the primary key, where the key is the primary key value and where the value points to a row on disk, as shown in the graphic below. Using the UNIQUE keyword is another way to force an index on a table column.
 
@@ -811,7 +817,7 @@ We can inspect our work with this command to list all indexes in the schema:
 book=# \di
 It's worth noting that when you set a FOREIGN KEY constraint, PostgreSQL will automatically create an index on the targeted column(s). Even if you don't like using database constraints (that's right, we're looking at you, Ruby on
 
-20 · Chapter 2. PostgreSQL
+20 ï¿½ Chapter 2. PostgreSQL
 
 SELECT * FROM some_table WHERE some_number >= 2108900; Index Scan
 1
@@ -904,7 +910,7 @@ Left join
 
 Combining two tables into one by some matching columns or NULL if nothing matches the left table
 
-Day 2: Advanced Queries, Code, and Rules · 21
+Day 2: Advanced Queries, Code, and Rules ï¿½ 21
 
 Term Index B-tree
 
@@ -925,7 +931,7 @@ Aggregate Functions
 An aggregate query groups results from several rows by some common criteria. It can be as simple as counting the number of rows in a table or calculating the average of some numerical column. They're powerful SQL tools and also a lot of fun.
 Let's try some aggregate functions, but first we'll need some more data in our database. Enter your own country into the countries table, your own city into the cities table, and your own address as a venue (which we just named My Place). Then add a few records to the events table.
 
-22 · Chapter 2. PostgreSQL
+22 ï¿½ Chapter 2. PostgreSQL
 
 Here's a quick SQL tip: rather than setting the venue_id explicitly, you can sub-SELECT it using a more human-readable title. If Moby is playing at the Crystal Ballroom, set the venue_id like this:
 
@@ -981,7 +987,7 @@ Aggregate functions are useful but limited on their own. If we wanted to count a
 
 SELECT count(*) FROM events WHERE venue_id = 1; SELECT count(*) FROM events WHERE venue_id = 2; SELECT count(*) FROM events WHERE venue_id = 3; SELECT count(*) FROM events WHERE venue_id IS NULL;
 
-Day 2: Advanced Queries, Code, and Rules · 23
+Day 2: Advanced Queries, Code, and Rules ï¿½ 23
 
 This would be tedious (intractable even) as the number of venues grows. Enter the GROUP BY command.
 
@@ -1034,7 +1040,7 @@ SELECT DISTINCT venue_id FROM events;
 
 The results of both queries will be identical.
 
-24 · Chapter 2. PostgreSQL
+24 ï¿½ Chapter 2. PostgreSQL
 GROUP BY in MySQL
 If you tried to run a SELECT with columns not defined under a GROUP BY in MySQL, you may be shocked to see that it works. This originally made us question the necessity of window functions. But when we more closely inspected the data MySQL returns, we found it will return only a random row of data along with the count, not all relevant results. Generally, that's not useful (and quite potentially dangerous).
 Window Functions
@@ -1049,7 +1055,7 @@ Window functions return all matches and replicate the results of any aggregate f
 SELECT title, count(*) OVER (PARTITION BY venue_id) FROM events;
 We like to think of PARTITION BY as akin to GROUP BY, but rather than grouping the results outside of the SELECT attribute list (and thus combining the results
 
-Day 2: Advanced Queries, Code, and Rules · 25
+Day 2: Advanced Queries, Code, and Rules ï¿½ 25
 
 SELECT venue_id, count(*)
 
@@ -1127,7 +1133,7 @@ Transactions are the bulwark of relational database consistency. All or nothing,
 PostgreSQL transactions follow ACID compliance, which stands for Atomic (all ops succeed or none do), Consistent (the data will always be in a good state--no inconsistent states), Isolated (transactions don't interfere), and Durable (a committed transaction is safe, even after a server crash). We should note that consistency in ACID is different from consistency in CAP (covered in Appendix 2, The CAP Theorem, on page 317).
 We can wrap any transaction within a BEGIN TRANSACTION block. To verify atomicity, we'll kill the transaction with the ROLLBACK command.
 
-26 · Chapter 2. PostgreSQL
+26 ï¿½ Chapter 2. PostgreSQL
 Unavoidable Transactions
 Up until now, every command we've executed in psql has been implicitly wrapped in a transaction. If you executed a command, such as DELETE FROM account WHERE total < 20;, and the database crashed halfway through the delete, you wouldn't be stuck with half a table. When you restart the database server, that command will be rolled back.
 BEGIN TRANSACTION; DELETE FROM events;
@@ -1144,7 +1150,7 @@ postgres/add_event.sql CREATE OR REPLACE FUNCTION add_event( title text, starts 
 ends timestamp, venue text, postal varchar(9), country char(2) ) RETURNS boolean AS $$ DECLARE
 did_insert boolean := false;
 
-Day 2: Advanced Queries, Code, and Rules · 27
+Day 2: Advanced Queries, Code, and Rules ï¿½ 27
 What About Vendor Lock?
 When relational databases hit their heyday, they were the Swiss Army knife of technologies. You could store nearly anything--even programming entire projects in them (for example, Microsoft Access). The few companies that provided this software promoted use of proprietary differences and then took advantage of this corporate reliance by charging enormous license and consulting fees. This was the dreaded vendor lock that newer programming methodologies tried to mitigate in the 1990s and early 2000s.
 However, in their zeal to neuter the vendors, maxims arose such as no logic in the database. This is a shame because relational databases are capable of so many varied data management options. Vendor lock has not disappeared. Many actions we investigate in this book are highly implementation specific. However, it's worth knowing how to use databases to their fullest extent before deciding to skip tools like stored procedures a priori.
@@ -1157,7 +1163,7 @@ RETURN did_insert; END; $$ LANGUAGE plpgsql;
 You can import this external file into the current schema by the following command-line argument (if you don't feel like typing all that code).
 book=# \i add_event.sql
 
-28 · Chapter 2. PostgreSQL
+28 ï¿½ Chapter 2. PostgreSQL
 Running it should return t (true), since this is the first use of the venue Run's House. This saves a client two round-trip SQL commands to the database (a select and then an insert) and instead does only one.
 SELECT add_event('House Party', '2012-05-03 23:00', '2012-05-04 02:00', 'Run''s House', '97205', 'us');
 The language we used in the procedure we wrote is PL/pgSQL (which stands for Procedural Language/PostgreSQL). Covering the details of an entire programming language is beyond our scope, but you can read much more about it in the online PostgreSQL documentation.3
@@ -1172,7 +1178,7 @@ CREATE TABLE logs ( event_id integer, old_title varchar(255), old_starts timesta
 Next, we build a function to insert old data into the log. The OLD variable represents the row about to be changed (NEW represents an incoming row, which we'll see in action soon enough). Output a notice to the console with the event_id before returning.
 3. http://www.postgresql.org/docs/9.0/static/plpgsql.html 4. http://www.postgresql.org/docs/9.0/static/app-createlang.html
 
-Day 2: Advanced Queries, Code, and Rules · 29
+Day 2: Advanced Queries, Code, and Rules ï¿½ 29
 Choosing to Execute Database Code
 This is the first of a number of places you'll see this theme in this book: does the code belong in your application or in the database? It is a difficult decision--one that you'll have to answer uniquely for every application.
 The benefit is you'll often improve performance by as much as an order of magnitude. For example, you might have a complex application-specific calculation that requires custom code. If the calculation involves many rows, a stored procedure will save you from moving thousands of rows instead of a single result. The cost is splitting your application, your code, and your tests, across two different programming paradigms.
@@ -1210,7 +1216,7 @@ Triggers can also be created before updates and before or after inserts.5
 
 5. http://www.postgresql.org/docs/9.0/static/triggers.html
 
-30 · Chapter 2. PostgreSQL
+30 ï¿½ Chapter 2. PostgreSQL
 
 Viewing the World
 Wouldn't it be great if you could use the results of a complex query just like any other table? Well, that's exactly what VIEWs are for. Unlike stored procedures, these aren't functions being executed but rather aliased queries.
@@ -1250,7 +1256,7 @@ CREATE OR REPLACE VIEW holidays AS SELECT event_id AS holiday_id, title AS name,
 
 Now it's a matter of setting an array or color strings to the holiday of choice. Unfortunately, we cannot update a view directly.
 
-Day 2: Advanced Queries, Code, and Rules · 31
+Day 2: Advanced Queries, Code, and Rules ï¿½ 31
 UPDATE holidays SET colors = '{"red","green"}' where name = 'Christmas Day';
 ERROR: cannot update a view HINT: You need an unconditional ON UPDATE DO INSTEAD rule.
 Looks like we need a RULE.
@@ -1266,7 +1272,7 @@ EXPLAIN VERBOSE SELECT event_id AS holiday_id, title AS name, starts AS date, co
 QUERY PLAN -----------------------------------------------------------------------------------
 Seq Scan on public.events (cost=0.00..1.04 rows=1 width=57) Output: event_id, title, starts, colors Filter: ((events.venue_id IS NULL) AND ((events.title)::text ~~ '%Day%'::text))
 
-32 · Chapter 2. PostgreSQL
+32 ï¿½ Chapter 2. PostgreSQL
 
 psql client
 
@@ -1312,7 +1318,7 @@ UPDATE holidays SET colors = '{"red","green"}' where name = 'Christmas Day';
 Next let's insert New Years Day on 2013-01-01 into holidays. As expected, we need a rule for that too. No problem.
 CREATE RULE insert_holidays AS ON INSERT TO holidays DO INSTEAD INSERT INTO ...
 
-Day 2: Advanced Queries, Code, and Rules · 33
+Day 2: Advanced Queries, Code, and Rules ï¿½ 33
 We're going to move on from here, but if you'd like to play more with RULEs, try to add a DELETE RULE.
 I'll Meet You at the Crosstab
 For our last exercise of the day, we're going to build a monthly calendar of events, where each month in the calendar year counts the number of events in that month. This kind of operation is commonly done by a pivot table. These constructs "pivot" grouped data around some other output, in our case, a list of months. We'll build our pivot table using the crosstab() function.
@@ -1329,7 +1335,7 @@ ERROR: a column definition list is required for functions returning "record"
 Oops. An error occurred.
 It may feel cryptic, but it's saying the function is returning a set of records (rows), but it doesn't know how to label them. In fact, it doesn't even know what datatypes they are.
 
-34 · Chapter 2. PostgreSQL
+34 ï¿½ Chapter 2. PostgreSQL
 
 Remember, the pivot table is using our months as categories, but those months are just integers. So, we define them like this:
 
@@ -1374,7 +1380,7 @@ Do 1. Create a rule that captures DELETEs on venues and instead sets the active
 flag (created in the Day 1 homework) to FALSE.
 2. A temporary table was not the best way to implement our event calendar pivot table. The generate_series(a, b) function returns a set of records, from a to b. Replace the month_count table SELECT with this.
 
-Day 3: Full-Text and Multidimensions · 35
+Day 3: Full-Text and Multidimensions ï¿½ 35
 3. Build a pivot table that displays every day in a single month, where each week of the month is a row and each day name forms a column across the top (seven days, starting with Sunday and ending with Saturday) like a standard month calendar. Each day should contain a count of the number of events for that date or should remain blank if no event occurs.
 2.4 Day 3: Full-Text and Multidimensions
 We'll spend Day 3 investigating the many tools at our disposal to build a movie query system. We'll begin with the many ways that PostgreSQL can search actor/movie names using fuzzy string matching. Then we'll discover the cube package by creating a movie suggestion system based on similar genres of movies we already like. Since these are all contributed packages, the implementations are special to PostgreSQL and not part of the SQL standard.
@@ -1384,7 +1390,7 @@ Let's first build the database. It's often good practice to create indexes on fo
 postgres/create_movies.sql CREATE TABLE genres (
 name text UNIQUE, position integer ); CREATE TABLE movies ( movie_id SERIAL PRIMARY KEY, title text, genre cube ); CREATE TABLE actors ( actor_id SERIAL PRIMARY KEY, name text );
 
-36 · Chapter 2. PostgreSQL
+36 ï¿½ Chapter 2. PostgreSQL
 movies *movie_id title genres[]
 
 genres name position
@@ -1401,7 +1407,7 @@ Fuzzy Searching
 Opening up a system to text searches means opening your system to inaccurate inputs. You have to expect typos like "Brid of Frankstein." Sometimes, users can't remember the full name of "J. Roberts." In other cases, we just plain don't know how to spell "Benn Aflek." We'll look into a few PostgreSQL packages that make text searching easy. It's worth noting that as we progress, this kind of string matching blurs the lines between relational queries and searching frameworks like Lucene.6 Although some may feel features like fulltext search belong with the application code, there can be performance and administrative benefits of pushing these packages to the database, where the data lives.
 6. http://lucene.apache.org/
 
-Day 3: Full-Text and Multidimensions · 37
+Day 3: Full-Text and Multidimensions ï¿½ 37
 SQL Standard String Matches PostgreSQL has many ways of performing text matches, but the two big default methods are LIKE and regular expressions.
 I Like LIKE and ILIKE LIKE and ILIKE (case-insensitive LIKE) are the simplest forms of text search. They are fairly universal in relational databases. LIKE compares column values against a given pattern string. The % and _ characters are wildcards. % matches any number of any characters, and _ matches exactly one character.
 SELECT title FROM movies WHERE title ILIKE 'stardust%';
@@ -1418,7 +1424,7 @@ SELECT COUNT(*) FROM movies WHERE title !~* '^the.*';
 You can index strings for pattern matching the previous queries by creating a text_pattern_ops operator class index, as long as the values are indexed in lowercase.
 CREATE INDEX movies_title_pattern ON movies (lower(title) text_pattern_ops);
 
-38 · Chapter 2. PostgreSQL
+38 ï¿½ Chapter 2. PostgreSQL
 
 We used the text_pattern_ops because the title is of type text. If you need to index varchars, chars, or names, use the related ops: varchar_pattern_ops, bpchar_pattern_ops, and name_pattern_ops.
 
@@ -1453,7 +1459,7 @@ SELECT show_trgm('Avatar');
 show_trgm -------------------------------------
 {" a"," av","ar ",ata,ava,tar,vat}
 
-Day 3: Full-Text and Multidimensions · 39
+Day 3: Full-Text and Multidimensions ï¿½ 39
 Finding a matching string is as simple as counting the number of matching trigrams. The strings with the most matches are the most similar. It's useful for doing a search where you're OK with either slight misspellings or even minor words missing. The longer the string, the more trigrams and the more likely a match--they're great for something like movie titles, since they have relatively similar lengths.
 We'll create a trigram index against movie names to start (we use Generalized Index Search Tree [GIST], a generic index API made available by the PostgreSQL engine).
 CREATE INDEX movies_title_trigram ON movies USING gist (title gist_trgm_ops);
@@ -1469,7 +1475,7 @@ SELECT title FROM movies WHERE title @@ 'night & day';
 title -------------------------------
 A Hard Day's Night Six Days Seven Nights Long Day's Journey Into Night
 
-40 · Chapter 2. PostgreSQL
+40 ï¿½ Chapter 2. PostgreSQL
 
 The query returns titles like A Hard Day's Night, despite the word Day being in possessive form, and the two words are out of order in the query. The @@ operator converts the name field into a tsvector and converts the query into a tsquery.
 
@@ -1503,7 +1509,7 @@ cat `pg_config --sharedir`/tsearch_data/english.stop
 
 We could remove a from the list, or we could use another dictionary like simple that just breaks up strings by nonword characters and makes them lowercase. Compare these two vectors:
 
-Day 3: Full-Text and Multidimensions · 41
+Day 3: Full-Text and Multidimensions ï¿½ 41
 SELECT to_tsvector('english', 'A Hard Day''s Night');
 to_tsvector ---------------------------'day':3 'hard':2 'night':5
 SELECT to_tsvector('simple', 'A Hard Day''s Night');
@@ -1522,7 +1528,7 @@ SELECT to_tsvector('german', 'was machst du gerade?');
 to_tsvector -------------------'gerad':4 'mach':2
 Since was (what) and du (you) are common, they are marked as stop words in the German dictionary, while machst (doing) and gerade (now) are stemmed.
 
-42 · Chapter 2. PostgreSQL
+42 ï¿½ Chapter 2. PostgreSQL
 Indexing Lexemes Full-text search is powerful. But if we don't index our tables, it's also slow. The EXPLAIN command is a powerful tool for digging into how queries are internally planned.
 EXPLAIN SELECT * FROM movies WHERE title @@ 'night & day';
 QUERY PLAN ---------------------------------------------------------------------------
@@ -1537,7 +1543,7 @@ Seq Scan on movies (cost=10000000000.00..10000000001.12 rows=1 width=68) Filter:
 What happened? Nothing. The index is there, but Postgres isn't using it. It's because our GIN index specifically uses the english configuration for building its tsvectors, but we aren't specifying that vector. We need to specify it in the WHERE clause of the query.
 EXPLAIN SELECT * FROM movies WHERE to_tsvector('english',title) @@ 'night & day';
 
-Day 3: Full-Text and Multidimensions · 43
+Day 3: Full-Text and Multidimensions ï¿½ 43
 QUERY PLAN ------------------------------------------------------------------------------------
 Bitmap Heap Scan on movies (cost=4.26..8.28 rows=1 width=68) Recheck Cond: (to_tsvector('english'::regconfig, title) @@ '''day'''::tsquery) -> Bitmap Index Scan on movies_title_searchable (cost=0.00..4.26 rows=1 width=0) Index Cond: (to_tsvector('english'::regconfig, title) @@ '''day'''::tsquery)
 EXPLAIN is important to ensure indexes are used as you expect them. Otherwise, the index is just wasted overhead.
@@ -1550,7 +1556,7 @@ Enter the metaphones, which are algorithms for creating a string representation 
 To find all films acted by someone sounding like Broos Wils, we can query against the metaphone output. Note that NATURAL JOIN is an INNER JOIN that automatically joins ON matching column names (for example, movies.actor_id= movies_actors.actor_id).
 SELECT title FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors WHERE metaphone(name, 6) = metaphone('Broos Wils', 6);
 
-44 · Chapter 2. PostgreSQL
+44 ï¿½ Chapter 2. PostgreSQL
 
 title -----------------------------
 The Fifth Element Twelve Monkeys Armageddon Die Hard Pulp Fiction The Sixth Sense :
@@ -1613,13 +1619,13 @@ name
 
 4090 | Robin Shou
 
-Day 3: Full-Text and Multidimensions · 45
+Day 3: Full-Text and Multidimensions ï¿½ 45
 
 4093 | Robin Williams 4479 | Steven Williams
 Note it isn't perfect. Robin Williams ranked at #3. Unbridled exploitation of this flexibility can yield other funny results, so be careful.
 SELECT * FROM actors WHERE dmetaphone(name) % dmetaphone('Ron');
 actor_id | name ----------+-------------
-3911 | Renji Ishibashi 3913 | Renée Zellweger :
+3911 | Renji Ishibashi 3913 | Renï¿½e Zellweger :
 The combinations are vast, limited only by your experimentations.
 
 Genres as a Multidimensional Hypercube
@@ -1652,7 +1658,7 @@ SciFi
 
 T ragedy
 
-46 · Chapter 2. PostgreSQL
+46 ï¿½ Chapter 2. PostgreSQL
 We will find similar movies by finding the nearest points. To understand why this works, we can envision two movies on a two-dimensional genre graph, like the graph shown below.. If your favorite movie is Animal House, you'll probably want to see The 40 Year Old Virgin more than Oedipus--a story distinctly lacking in comedy. In our two-dimensional universe, it's a simple nearest-neighbor search to find likely matches.
 Oedipus
 Gone with the Wind
@@ -1667,7 +1673,7 @@ We created the movies_genres_cube cube index earlier when we created the tables.
 Rather than compute the distance of every point, we can instead focus on likely points by way of a bounding cube. Just like finding the closest five towns on a map will be faster on a state map than a world map, bounding reduces the points we need to look at.
 We use cube_enlarge(cube,radius,dimensions) to build an 18-dimensional cube that is some length (radius) wider than a point.
 
-Day 3: Full-Text and Multidimensions · 47
+Day 3: Full-Text and Multidimensions ï¿½ 47
 
 Let's view a simpler example. If we built a two-dimensional square one unit around a point (1,1), the lower-left point of the square would be at (0,0), and the upper-right point would be (2,2).
 
@@ -1746,7 +1752,7 @@ title
 
 1445 | The Rocketeer
 
-48 · Chapter 2. PostgreSQL
+48 ï¿½ Chapter 2. PostgreSQL
 This method of movie suggestion is not perfect, but it's an excellent start. We will see more dimensional queries in later chapters, such as two-dimensional geographic searches in MongoDB (see GeoSpatial Queries, on page 171).
 Day 3 Wrap-Up
 Today we jumped headlong into PostgreSQL's flexibility at string searches and used the cube package for multidimensional searching. Most importantly, we caught a glimpse of the nonstandard extensions that puts PostgreSQL at the top of the open source RDBMS field. There are dozens (if not hundreds) of more extensions at your disposal, from geographic storage to cryptographic functions, custom datatypes, and language extensions. Beyond the core power of SQL, contrib packages are what makes PostgreSQL shine.
@@ -1760,14 +1766,14 @@ name you like, and it will return the top five suggestions based on either movie
 2.5 Wrap-Up
 If you haven't spent much time with relational databases, we highly recommend digging deeper into PostgreSQL, or another relational database, before deciding to scrap it for a newer variety. Relational databases have been the focus of intense academic research and industrial improvements for more than forty years, and PostgreSQL is one of the top open source relational databases to benefit from these advancements.
 
-Wrap-Up · 49
+Wrap-Up ï¿½ 49
 PostgreSQL's Strengths
 PostgreSQL's strengths are as numerous as any relational model: years of research and production use across nearly every field of computing, flexible queryability, and very consistent and durable data. Most programming languages have battle-tested driver support for Postgres, and many programming models, like object-relational mapping (ORM), assume an underlying relational database. The crux of the matter is the flexibility of the join. You needn't know how you plan to actually query your model, since you can always perform some joins, filters, views, and indexes--odds are good you will always have the ability to extract the data you want.
 PostgreSQL is fantastic for what we call "Stepford data" (named for The Stepford Wives, a story about a neighborhood where nearly everyone was consistent in style and substance), which is data that is fairly homogeneous and conforms well to a structured schema. Furthermore, PostgreSQL goes beyond the normal open source RDBMS offerings, such as powerful schema constraint mechanisms. You can write your own language extensions, customize indexes, create custom datatypes, and even overwrite the parsing of incoming queries. And where other open source databases may have complex licensing agreements, PostgreSQL is open source in its purest form. No one owns the code. Anyone can do pretty much anything they want with the project (other than hold authors liable). The development and distribution are completely community supported. If you are a fan of free(dom) software or have a long bushy beard, you have to respect their general resistance to cashing in on an amazing product.
 PostgreSQL's Weaknesses
 Although relational databases are undeniably the most successful style of database over the years, there are cases where it may not be a great fit.
 
-50 · Chapter 2. PostgreSQL
+50 ï¿½ Chapter 2. PostgreSQL
 Partitioning is not one of the strong suits of relational databases like PostgreSQL. If you need to scale out rather than up (multiple parallel datastores rather than a single beefy machine or cluster), you may be better served looking elsewhere. If your data requirements are too flexible to easily fit into the rigid schema requirements of a relational database or you don't need the overhead of a full database, require very high-volume reads and writes as key values, or need to store only large blobs of data, then one of the other datastores might be a better fit.
 Parting Thoughts
 A relational database is an excellent choice for query flexibility. While PostgreSQL requires you to design your data up front, it makes no assumptions on how you use that data. As long as your schema is designed in a fairly normalized way, without duplication or storage of computable values, you should generally be all set for any queries you might need to create. And if you include the correct modules, tune your engine, and index well, it will perform amazingly well for multiple terabytes of data with very small resource consumption. Finally, to those for whom data safety is paramount, PostgreSQL's ACID-compliant transactions ensure your commits are completely atomic, consistent, isolated, and durable.
@@ -1781,7 +1787,7 @@ But this flexibility has some trade-offs. Riak lacks robust support for ad hoc q
 3.1 Riak Loves the Web
 Riak speaks web better than any other database we'll see in this book (though CouchDB is a close second). You query via URLs, headers, and verbs, and Riak returns assets and standard HTTP response codes.
 
-52 · Chapter 3. Riak
+52 ï¿½ Chapter 3. Riak
 Riak and cURL
 Since the goal of this book is to investigate seven databases and their concepts, and not teach new programming languages, we try to avoid introducing new languages where possible. Riak supplies an HTTP REST interface, so we're going to interact with it via the URL tool cURL. In production, you'll almost always use a driver in your language of choice. Using cURL allows us to peek at the underlying API without resorting to a particular driver or programming language.
 Riak is a great choice for datacenters like Amazon that must serve many requests with low latency. If every millisecond spent waiting is a potential customer loss, Riak is hard to beat. It's easy to manage, easy to set up, and can grow with your needs. If you've ever used Amazon Web Services, like SimpleDB or S3, you may notice some similarities in form and function. This is no coincidence. Riak is inspired by Amazon's Dynamo paper.1
@@ -1791,7 +1797,7 @@ You can download and install a build of Riak provided by Basho2 (the company tha
 Building Riak from source requires three things: Erlang, the source code, and general Unix build tools like Make. Installing Erlang is easy enough (you'll also need Erlang for CouchDB in Chapter 6, CouchDB, on page 177), though it can take a while. We get the Riak source from its repository (link available via the Basho website--if you don't have Git or Mercurial installed, you can download a zipped package). All of the examples in this chapter were run on version 1.0.2.
 1. http://allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf 2. http://www.basho.com/ 3. http://www.erlang.org/
 
-Day 1: CRUD, Links, and MIMEs · 53
+Day 1: CRUD, Links, and MIMEs ï¿½ 53
 The Riak creators played Santa Claus for us new users, slipping a cool toy into our stockings. In the same directory you built Riak, run this command:
 $ make devrel
 When complete, we find three example servers. Just fire them up:
@@ -1805,7 +1811,7 @@ $ dev/dev3/bin/riak-admin join dev2@127.0.0.1
 Verify your servers are healthy by checking their stats in a web browser: http://localhost:8091/stats. It may prompt you to download the file, which contains lots of information about the cluster. It should look something like this (edited for readability):
 { "vnode_gets":0, "vnode_puts":0, "vnode_index_reads":0, ... "connected_nodes":[ "dev2@127.0.0.1", "dev3@127.0.0.1" ], ... "ring_members":[ "dev1@127.0.0.1", "dev2@127.0.0.1", "dev3@127.0.0.1" ],
 
-54 · Chapter 3. Riak
+54 ï¿½ Chapter 3. Riak
 "ring_num_partitions":64, "ring_ownership":
 "[{'dev3@127.0.0.1',21},{'dev2@127.0.0.1',21},{'dev1@127.0.0.1',22}]", ... }
 We can see that all servers are equal participants in the ring by pinging the other servers for stats on ports 8092 (dev2) and 8093 (dev3). For now, we'll stick with the stats from dev1.
@@ -1821,7 +1827,7 @@ $ curl http://localhost:8091/ping OK
 Let's issue a bad query. -I tells cURL that we want only the header response.
 $ curl -I http://localhost:8091/riak/no_bucket/no_key HTTP/1.1 404 Object Not Found Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic) Date: Thu, 04 Aug 2011 01:25:49 GMT Content-Type: text/plain Content-Length: 10
 
-Day 1: CRUD, Links, and MIMEs · 55
+Day 1: CRUD, Links, and MIMEs ï¿½ 55
 Since Riak leverages HTTP URLs and actions, it uses HTTP headers and error codes. The 404 response means the same as a 404 when you encounter a missing web page: nothing to see here. So, let's PUT something in Riak.
 The -X PUT parameter tells cURL that we want to perform an HTTP PUT action to store and retrieve on an explicit key. The -H attribute sets the following text as HTTP header information. In this case, we set the MIME content type to HTML. Everything passed to -d (also known as the body data) is what Riak will add as a new value.
 $ curl -v -X PUT http://localhost:8091/riak/favs/db \ -H "Content-Type: text/html" \ -d "<html><body><h1>My new favorite DB is RIAK</h1></body></html>"
@@ -1837,7 +1843,7 @@ Putting a new value returns a 204 code. The -v (verbose) attribute in the curl c
 We can view our list of buckets that have been created.
 $ curl -X GET http://localhost:8091/riak?buckets=true {"buckets":["favs","animals"]}
 
-56 · Chapter 3. Riak
+56 ï¿½ Chapter 3. Riak
 Optionally, you can return the set results with the ?returnbody=true parameter, which we'll test by adding another animal, Polly:
 $ curl -v -X PUT http://localhost:8091/riak/animals/polly?returnbody=true \ -H "Content-Type: application/json" \ -d '{"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}'
 This time you'll see a 200 code.
@@ -1854,7 +1860,7 @@ DELETE won't return any body, but the HTTP code will be 204 if successful. Other
 If we've forgotten any of our keys in a bucket, we can get them all with keys=true.
 $ curl http://localhost:8091/riak/animals?keys=true
 
-Day 1: CRUD, Links, and MIMEs · 57
+Day 1: CRUD, Links, and MIMEs ï¿½ 57
 You can also get them as a stream with keys=stream, which can be a safer choice for huge datasets--it just keeps sending chunks of keys array objects and ends with an empty array.
 Links
 Links are metadata that associate one key to other keys. The basic structure is this:
@@ -1867,7 +1873,7 @@ $ curl -i http://localhost:8091/riak/animals/polly
 HTTP/1.1 200 OK X-Riak-Vclock: a85hYGBgzGDKBVIcypz/fvrde/U5gymRMY+VwZw35gRfFgA= Vary: Accept-Encoding Server: MochiWeb/1.1 WebMachine/1.9.0 (participate in the frantic) Link: </riak/animals>; rel="up" Last-Modified: Tue, 13 Dec 2011 17:53:59 GMT ETag: "VD0ZAfOTsIHsgG5PM3YZW" Date: Tue, 13 Dec 2011 17:54:51 GMT Content-Type: application/json Content-Length: 59
 {"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}
 
-58 · Chapter 3. Riak
+58 ï¿½ Chapter 3. Riak
 You can have as many metadata Links as necessary, separated by commas. We'll put Ace in cage 2 and also point to cage 1 tagged with next_to so we know that it's nearby.
 $ curl -X PUT http://localhost:8091/riak/cages/2 \ -H "Content-Type: application/json" \ -H "Link:</riak/animals/ace>;riaktag=\"contains\",
 </riak/cages/1>;riaktag=\"next_to\"" \ -d '{"room" : 101}'
@@ -1881,7 +1887,7 @@ It returns a multipart/mixed dump of headers plus bodies of all linked keys/valu
 If you're not familiar with reading the multipart/mixed MIME type, the Content-Type definition describes a boundary string, which denotes the beginning and end of some HTTP header and body data.
 --BcOdSWMLuhkisryp0GidDLqeA64 some HTTP header and body data --BcOdSWMLuhkisryp0GidDLqeA64--
 
-Day 1: CRUD, Links, and MIMEs · 59
+Day 1: CRUD, Links, and MIMEs ï¿½ 59
 In our case, the data is what cage 1 links to: Polly Purebred. You may have noticed that the headers returned don't actually display the link information. This is OK; that data is still stored under the linked-to key.
 When link walking, we can replace the underscores in the link spec to filter only values we want. Cage 2 has two links, so performing a link spec request will return both the animal Ace contained in the cage and the cage 1 next_to it. To specify only following the animals bucket, replace the first underscore with the bucket name.
 $ curl http://localhost:8091/riak/cages/2/animals,_,_
@@ -1898,7 +1904,7 @@ $ curl http://localhost:8091/riak/cages/2/_,next_to,1/_,_,_
 --PDVOEl7Rh1AP90jGln1mhz7x8r9 Content-Type: multipart/mixed; boundary=YliPQ9LPNEoAnDeAMiRkAjCbmed
 --YliPQ9LPNEoAnDeAMiRkAjCbmed X-Riak-Vclock: a85hYGBgzGDKBVIcypz/fvrde/U5gymRKY+VIYo35gRfFgA=
 
-60 · Chapter 3. Riak
+60 ï¿½ Chapter 3. Riak
 Location: /riak/cages/1 Content-Type: application/json Link: </riak/animals/polly>; riaktag="contains", </riak/cages>; rel="up" Etag: 6LYhRnMRrGIqsTmpE55PaU Last-Modified: Tue, 13 Dec 2011 17:54:34 GMT
 {"room" : 101} --YliPQ9LPNEoAnDeAMiRkAjCbmed--
 --PDVOEl7Rh1AP90jGln1mhz7x8r9 Content-Type: multipart/mixed; boundary=GS9J6KQLsI8zzMxJluDITfwiUKA
@@ -1911,7 +1917,7 @@ $ curl -X PUT http://localhost:8091/riak/cages/1 \ -H "Content-Type: application
 MIME Types in Riak
 Riak stores everything as a binary-encoded value, just like normal HTTP. The MIME type gives the binary data context--we've been dealing only with plain text up until now. MIME types are stored on the Riak server but are really just a flag to the client so that when it downloads the binary data, it knows how to render it.
 
-Day 1: CRUD, Links, and MIMEs · 61
+Day 1: CRUD, Links, and MIMEs ï¿½ 61
 We'd like our dog hotel to keep images of our guests. We need only use the data-binary flag on the curl command to upload an image to the server and specify the MIME type as image/jpeg. We'll add a link back to the /animals/polly key so we know who we are looking at.
 First, create an image called polly_image.jpg and place it in the same directory you've been using to issue the curl commands.
 $ curl -X PUT http://localhost:8091/riak/photos/polly.jpg \ -H "Content-type: image/jpeg" \ -H "Link: </riak/animals/polly>; riaktag=\"photo\"" \ --data-binary @polly_image.jpg
@@ -1926,7 +1932,7 @@ API documentation.
 2. Find a good list of browser-supported MIME types.
 3. Read the example Riak config dev/dev1/etc/app.config, and compare it to the other dev configurations.
 
-62 · Chapter 3. Riak
+62 ï¿½ Chapter 3. Riak
 Do 1. Using PUT, update animals/polly to have a Link pointing to photos/polly.jpg. 2. POST a file of a MIME type we haven't tried (such as application/pdf), find the
 generated key, and hit that URL from a web browser. 3. Create a new bucket type called medicines, PUT a JPEG image value (with
 the proper MIME type) keyed as antibiotics, and link to the animal Ace (poor, sick puppy).
@@ -1938,7 +1944,7 @@ $ gem install riak-client json
 Each room in our hotel will have a random capacity from one to eight people and be of a random style such as a single room or a suite.
 4. http://ruby-lang.org 5. http://rubygems.org 6. http://rubygems.org/gems/riak-client
 
-Day 2: Mapreduce and Server Clusters · 63
+Day 2: Mapreduce and Server Clusters ï¿½ 63
 riak/hotel.rb # generate loads and loads of rooms with random styles and capacities require 'rubygems' require 'riak' STYLES = %w{single double queen king suite}
 client = Riak::Client.new(:http_port => 8091) bucket = client.bucket('rooms') # Create 100 floors to the building for floor in 1..100
 current_rooms_block = floor * 100 puts "Making rooms #{current_rooms_block} - #{current_rooms_block + 100}" # Put 100 rooms on each floor (huge hotel!) for room in 1...100
@@ -1950,7 +1956,7 @@ One of Google's greatest lasting contributions to computer science is the popula
 Mapreduce breaks down problems into two parts. Part 1 is to convert a list of data into another type of list by way of a map() function. Part 2 is to convert this second list to one or more scalar values by way of a reduce() function. Following this pattern allows a system to divide tasks into smaller components and run them across a massive cluster of servers in parallel. We could count up all Riak values containing {country : 'CA'} by mapping each matching document to {count : 1} and reducing the sum of all of these counts.
 7. http://research.google.com/archive/mapreduce.html
 
-64 · Chapter 3. Riak
+64 ï¿½ Chapter 3. Riak
 If there were 5,012 Canadian values in our dataset, the reduce result would be {count : 5012}.
 map = function(v) { var parsedData = JSON.parse(v.values[0].data); if(parsedData.country === 'CA') return [{count : 1}]; else return [{count : 0}];
 }
@@ -1964,7 +1970,7 @@ SELECT * FROM rooms;
 The database sends all of the results to the app server, and the app server code performs some action on that data. In this case, we're looping through each room in the hotel and then counting the total capacity for each room style (for example, the capacity of all the suites in the hotel may be 448 guests). This is acceptable for small datasets. But as room count grows, the system slows as the database continues to stream each room's data to the application.
 Mapreduce runs in an inverse manner. Rather than grabbing data from the database and running it on a client (or app server), mapreduce is a pattern to pass an algorithm to all of the database nodes, which are then each responsible for returning a result. Each object on the server is "mapped" to some common key that groups the data together, and then all matching keys are "reduced" into some single value.
 
-Day 2: Mapreduce and Server Clusters · 65
+Day 2: Mapreduce and Server Clusters ï¿½ 65
 
 $154 Reduce
 
@@ -1995,7 +2001,7 @@ Figure 7--The map function outputs
 For Riak, that means the database servers are responsible for mapping and reducing the values on each node. Those reduced values are passed around, where some other server (usually the requesting server) reduces those values further, until a final result is passed to the requesting client (or Rails application server, as the case may be).
 This simple reversal is a powerful way to allow complex algorithms to run locally on each server and return a very small result to the calling client. It's faster to send the algorithm to the data and then send the data to the algorithm. In Figure 7, The map function outputs, on page 65, we can see how a bucket of phone bills keyed by phone number may calculate the total charged against all numbers across three servers, where each server contains all numbers with a similar prefix.
 
-66 · Chapter 3. Riak
+66 ï¿½ Chapter 3. Riak
 The results of map functions will populate reduce functions; however, a combination of the results of map and previous reduce function calls populate successive reduce functions. We'll revisit this idea in later chapters because it's an important yet subtle component to the art of writing effective mapreduce queries.
 Mapreduce in Riak
 Let's create mapreduce functions for our Riak dataset that work like the previous hotel capacity counter. A neat feature of Riak's mapreduce is that you can run the map() function alone and see what all the results are mid-run (assuming you even want to run a reduce). Let's take it slow and look at the results for rooms 101, 102, and 103 only.
@@ -2008,7 +2014,7 @@ $ curl -X POST -H "content-type:application/json" \ http://localhost:8091/mapred
 }} ] }
 CTRL-D
 
-Day 2: Mapreduce and Server Clusters · 67
+Day 2: Mapreduce and Server Clusters ï¿½ 67
 The /mapred command expects valid JSON, and here we specified the form of our mapreduce commands. We choose the three rooms we want by setting the "inputs" value to be an array containing [bucket, key] pairs. But the real meat of the settings is under the query value, which accepts an array of JSON objects containing objects, keyed by map, reduce, and/or links (more on links later).
 All this does is dig down into the data (v.values[0].data), parse the value as a JSON object (JSON.parse(...)), and return the capacity (parsed_data.capacity) keyed by room style (parsed_data.style). You'll get a result like this:
 [{"suite":6},{"single":1},{"double":1}]
@@ -2021,7 +2027,7 @@ Stored Functions Another option Riak provides us with is to store the map functi
 $ curl -X PUT -H "content-type:application/json" \ http://localhost:8091/riak/my_functions/map_capacity --data @function(v) {
 var parsed_data = JSON.parse(v.values[0].data); var data = {}; data[parsed_data.style] = parsed_data.capacity; return [data]; }
 
-68 · Chapter 3. Riak
+68 ï¿½ Chapter 3. Riak
 With your function safely stored, we'll run the function by pointing to the new bucket and key containing the function.
 $ curl -X POST -H "content-type:application/json" \ http://localhost:8091/mapred --data @{
 "inputs":[ ["rooms","101"],["rooms","102"],["rooms","103"]
@@ -2040,7 +2046,7 @@ Riak provides more of these in a file named mapred_builtins.js, which you can fi
 Reducing
 Mapping is useful, but you're limited to converting individual values into other individual values. Performing some sort of analysis over that set of data,
 
-Day 2: Mapreduce and Server Clusters · 69
+Day 2: Mapreduce and Server Clusters ï¿½ 69
 
 even something as simple as counting the records, requires another step. This is where reduce comes into play.
 
@@ -2111,7 +2117,7 @@ Your totals won't match the previous exactly, since we randomly generated room d
 Key Filters
 A rather recent addition to Riak is the concept of key filters. A key filter is a collection of commands that process each key before executing mapreduce
 
-70 · Chapter 3. Riak
+70 ï¿½ Chapter 3. Riak
 Reducer Patterns
 It's easier to write a reduce function if it follows the same pattern as your map function. Meaning, if you map a single value as...
 [{name:'Eric', count:1}]
@@ -2127,7 +2133,7 @@ Mapreduce is a powerful tool for bundling data and performing some overarching a
 Link Walking with Mapreduce Yesterday we introduced link walking. Today we'll look at how to do the same thing using mapreduce. The query section has one more value option along with map and reduce. It's link.
 Let's return to our cages bucket from yesterday's dog hotel example and write a mapper that returns only cage 2 (remember, the one housing Ace the dog).
 
-Day 2: Mapreduce and Server Clusters · 71
+Day 2: Mapreduce and Server Clusters ï¿½ 71
 $ curl -X POST -H "content-type:application/json" \ http://localhost:8091/mapred --data @{
 "inputs":{ "bucket":"cages", "key_filters":[["eq", "2"]]
 }, "query":[
@@ -2141,7 +2147,7 @@ Although we ran the mapreduce query against the cages bucket, this will return A
 Both data and metadata (which would normally be returned in the HTTP header) appear under a values array.
 Put map, reduce, link walking, and key filters together, and you can execute arbitrary queries on a wide array of Riak keys. It's considerably more efficient than scanning all data from a client. Since these queries are generally run across several servers simultaneously, you should never have to wait long. But if you really cannot wait, a query has one more option: timeout. Set timeout to a value in milliseconds (the default is "timeout": 60000, or 60 seconds), and if the query does not complete in the allotted time, it will abort.
 
-72 · Chapter 3. Riak
+72 ï¿½ Chapter 3. Riak
 Of Consistency and Durability
 Riak server architecture removes single points of failure (all nodes are peers) and allows you to grow or shrink the cluster at will. This is important when dealing with large-scale deployments, since it allows your database to remain available even if several nodes fail or are otherwise unresponsive.
 Distributing data across several servers is saddled with an inherent problem. If you want your database to continue running when a network partition occurs (meaning, some messages were lost), it means you must make a tradeoff. Either you can remain available to server requests or you can refuse requests and ensure the consistency of your data. It is not possible to create a distributed database that is fully consistent, available, and partition tolerant. You can have only two (partition tolerant and consistent, partition tolerant and available, or consistent and available but not distributed). This is known as the CAP theorem (Consistency, Availability, Partition tolerance). See Appendix 2, The CAP Theorem, on page 317 for more details, but suffice to say it is a problem in system design.
@@ -2151,7 +2157,7 @@ Riak divides its server configuration into partitions denoted by a 160-bit numbe
 One of the first decisions you'll make when setting up a Riak cluster is how many partitions you'd like. Let's consider the case where you have 64 partitions (Riak's default). If you divide those sixty-four partitions across three nodes (or, servers), then Riak will give each node twenty-one or twenty-two partitions (64 / 3). Each partition is called a virtual node, or vnode. Each Riak service counts around the ring on boot, claiming partitions in turn until all vnodes are claimed, as shown in Figure 8, "The Riak ring" of sixty-four vnodes, assigned across three physical nodes, on page 73.
 Node A manages vnodes 1, 4, 7, 10...63. These vnodes are mapped to partitions of the 160-bit ring. If you view the status of your three development servers
 
-Day 2: Mapreduce and Server Clusters · 73
+Day 2: Mapreduce and Server Clusters ï¿½ 73
 
 N=3
 
@@ -2204,7 +2210,7 @@ Figure 8--"The Riak ring" of sixty-four vnodes, assigned across three physical n
 "ring_ownership": \ "[{'dev3@127.0.0.1',21},{'dev2@127.0.0.1',21},{'dev1@127.0.0.1',22}]"
 The second number of each object is the number of vnodes each node owns. They will total sixty-four (21 + 21 + 22).
 
-74 · Chapter 3. Riak
+74 ï¿½ Chapter 3. Riak
 Each vnode represents a range of hashed keys. When we insert the room data for key 101, it may get hashed into the vnode 2 range, so then the key-value object gets stored onto Node B. The benefit is that if we need to find which server the key lives on, Riak just hashes the key to find the corresponding vnode. Specifically, Riak will convert the hash into a list of potential vnodes and use the first value.
 Nodes/Writes/Reads Riak allows us to control reads and writes into the cluster by altering three values: N, W, and R. N is the number of nodes a write ultimately replicates to, in other words, the number of copies in the cluster. W is the number of nodes that must be successfully written to before a successful response. If W is less than N, a write will be considered successful even while Riak is still copying the value. Finally, R is the number of nodes required to read a value successfully. If R is greater than the number of copies available, the request will fail.
 Let's investigate each of these in more detail.
@@ -2214,7 +2220,7 @@ N is simply the total number of nodes that will eventually contain the correct v
 We can set the W value to the number of successful writes that must occur before our operation is considered a success. Although we're writing to four nodes eventually, if we set W to 2, a write operation will return after only two copies are made. The remaining two will replicate in the background.
 curl -X PUT http://localhost:8091/riak/animals \ -H "Content-Type: application/json" \ -d '{"props":{"w":2}}'
 
-Day 2: Mapreduce and Server Clusters · 75
+Day 2: Mapreduce and Server Clusters ï¿½ 75
 Finally, we can use the R value. R is the number of nodes that must be read in order to be considered a successful read. You can set a default R like we did earlier with n_val and w.
 curl -X PUT http://localhost:8091/riak/animals \ -H "Content-Type: application/json" \ -d '{"props":{"r":3}}'
 But Riak provides a more flexible solution. We may choose the number of nodes we want to read by setting an r parameter in the URL per request.
@@ -2225,7 +2231,7 @@ One way to be certain we have the most current value is to set W=N and R=1 like 
 Or you could just write to a single node but read from all of them. This would be setting W=1 and R=N like this: {"n_val":3, "r":3, "w":1} (see Figure 11, Consistency by reads: W=1, R=N, on page 76). Although you may read a few old values, you are guaranteed to retrieve the most recent value, too. You'll just have to resolve which one that is (using a vector clock, which we'll cover tomorrow). Of course, this has the opposite problem as shown earlier and slows down reads.
 Or you could set W=2 and R=2 as {"n_val":3, "r":2, "w":2} (see Figure 12, Consistency by quorum: W+R > N, on page 77). This way, you need only write to more than half of the nodes and read from more than half, but you still get the benefits of consistency while sharing the time delays between reads and writes. This is called a quorum and is the minimum amount to keep consistent data.
 
-76 · Chapter 3. Riak
+76 ï¿½ Chapter 3. Riak
 
 version: B W=1
 
@@ -2260,7 +2266,7 @@ Figure 11--Consistency by reads: W=1, R=N
 
 version: B W=2
 
-Day 2: Mapreduce and Server Clusters · 77
+Day 2: Mapreduce and Server Clusters ï¿½ 77
 version: [B, A] R=2
 
 N=3 version: B version: B version: A
@@ -2295,7 +2301,7 @@ $ dev/dev3/bin/riak stop
 
 Now if we attempt to read from all nodes, there's a good chance our request will fail (if it doesn't, try shutting down dev2 as well, or possibly shut down dev1 and read from port 8092 or 8093; we cannot control what vnodes Riak writes to).
 
-78 · Chapter 3. Riak
+78 ï¿½ Chapter 3. Riak
 $ curl -i http://localhost:8091/riak/animals/ace?r=all HTTP/1.1 404 Object Not Found Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic) Date: Thu, 02 Jun 2011 17:18:18 GMT Content-Type: text/plain Content-Length: 10
 not found
 If your request cannot be fulfilled, you'll get a 404 code (Object Not Found), which makes sense in the scope of the request. That object cannot be found, because there aren't enough copies to fulfill the URL request. This isn't a good thing, of course, so this kicks Riak to do a read repair: to request N replications of the key across the servers still available. If you attempt to access the same URL again, you'll get the key's value rather than another 404. The online Riak docs have an excellent example8 using Erlang.
@@ -2308,7 +2314,7 @@ Writes and Durable Writes We've been keeping a secret from you. Writes in Riak a
 That's the bad news. The good news is Riak has provided us with a separate setting named DW for durable write. This is slower but further reduces risk,
 8. http://wiki.basho.com/Replication.html
 
-Day 2: Mapreduce and Server Clusters · 79
+Day 2: Mapreduce and Server Clusters ï¿½ 79
 since Riak will not return a success until after the object is written to disk on the given number of nodes. Just like we did with writes, you can set this property on the bucket. Here we're setting dw to be one to be certain at least one node has stored our data.
 $ curl -X PUT http://localhost:8091/riak/animals \ -H "Content-Type: application/json" \ -d '{"props":{"dw":"one"}}'
 Or, if you like, you can override this on a per-write basis using the dw query parameter in the URL.
@@ -2321,7 +2327,7 @@ Find 1. Read the online Riak mapreduce documentation.
 3. Find the online documentation for a complete list of key filters, which range from converting strings to_upper to finding numerical values between
 9. http://wiki.basho.com/MapReduce.html 10. http://en.wikipedia.org/wiki/MapReduce
 
-80 · Chapter 3. Riak
+80 ï¿½ Chapter 3. Riak
 some range to even some simple Levenshtein distance string matches and logical and/or/not operations.
 Do 1. Write map and reduce functions against the rooms bucket to find the total
 guest capacity per floor.
@@ -2335,7 +2341,7 @@ You may think "just timestamp the values and let the last value win," but in a s
 Vector clocks help by tagging each key-value event (create, update, or delete) with which client made the change, in which order. This way, the clients, or application developer, can decide who wins in the case of conflict. If you are
 11. http://en.wikipedia.org/wiki/Vector_clock
 
-Day 3: Resolving Conflicts and Extending Riak · 81
+Day 3: Resolving Conflicts and Extending Riak ï¿½ 81
 familiar with version control systems like Git or Subversion, this is not dissimilar to resolving version conflicts when two people change the same file.
 Vector Clocks in Theory Let's say that your dog hotel is doing well so you must start being more selective of the clientele. To help make the best decision, you've gathered a panel of three animal experts to help decide which new dogs are a good fit. They give each dog a score from 1 (not a good fit) to 4 (a perfect candidate). All of these panelists--named Bob, Jane, and Rakshith--must reach a unanimous decision.
 Each panelist has their own client connecting to a database server, and each client stamps a unique client ID onto each request. This client ID is used to build the vector clock, as well as keep track of the last updating client in the object header. Let's look at a simple pseudocode example and later try the example in Riak.
@@ -2349,7 +2355,7 @@ Later that day, Jane (as the panel chair) rechecks the scores. Since Rakshith's 
 vclock: bob[1], jane[1] value: {score : 2} --vclock: bob[1], rakshith[1] value: {score : 4}
 She chooses a middle value so updates the score to 3.
 
-82 · Chapter 3. Riak
+82 ï¿½ Chapter 3. Riak
 vclock: bob[1], rakshith[1], jane[2] value: {score : 3}
 Having been resolved, anyone who pulls a request after this point will get this most recent value.
 Vector Clocks in Practice Let's run through the previous example scenario using Riak.
@@ -2365,7 +2371,7 @@ Jane makes her update to score 2 and includes the most recent vector clock she r
 $ curl -i -X PUT http://localhost:8091/riak/animals/bruiser \ -H "X-Riak-ClientId: jane" \ -H "X-Riak-Vclock: a85hYGBgzGDKBVIs7NtEXmUwJTLmsTI8FMs5zpcFAA==" \ -H "Content-Type: application/json" \ -d '{"score" : 2}'
 Since Jane and Rakshith pulled Bob's data at the same time, he also submits an update (of score 4) using Bob's vector clock.
 
-Day 3: Resolving Conflicts and Extending Riak · 83
+Day 3: Resolving Conflicts and Extending Riak ï¿½ 83
 $ curl -i -X PUT http://localhost:8091/riak/animals/bruiser \ -H "X-Riak-ClientId: rakshith" \ -H "X-Riak-Vclock: a85hYGBgzGDKBVIs7NtEXmUwJTLmsTI8FMs5zpcFAA==" \ -H "Content-Type: application/json" \ -d '{"score" : 4}'
 When Jane rechecks the score, she sees not a value, as expected, but rather an HTTP code for multiple choices and a body containing two "sibling" values.
 $ curl http://localhost:8091/riak/animals/bruiser?return_body=true Siblings: 637aZSiky628lx1YrstzH5 7F85FBAIW8eiD9ubsBAeVk
@@ -2378,7 +2384,7 @@ HTTP/1.1 300 Multiple Choices X-Riak-Vclock: a85hYGBgyWDKBVHs20Re...OYn9XY4sskQU
 Notice that the "siblings" shown earlier are HTTP etags (which Riak called vtags) to specific values. As a side note, you can use the vtag parameter in the URL to retrieve only that version: curl http://localhost:8091/riak/animals/bruiser?vtag=7F85FBAIW8eiD9ubsBAeVk will return {"score" : 2}. Jane's job now is to use this information to make a reasonable update. She decides to average the two scores and update to 3, using the vector clock given to resolve the conflict.
 $ curl -i -X PUT http://localhost:8091/riak/animals/bruiser?return_body=true \ -H "X-Riak-ClientId: jane" \ -H "X-Riak-Vclock: a85hYGBgyWDKBVHs20Re...OYn9XY4sskQUA" \ -H "Content-Type: application/json" \ -d '{"score" : 3}'
 
-84 · Chapter 3. Riak
+84 ï¿½ Chapter 3. Riak
 Now when Bob and Rakshith retrieve bruiser's information, they'll get the resolved score.
 $ curl -i http://localhost:8091/riak/animals/bruiser?return_body=true HTTP/1.1 200 OK X-Riak-Vclock: a85hYGBgyWDKBVHs20Re...CpQmAkonCcHFM4CAA==
 {"score" : 3}
@@ -2392,7 +2398,7 @@ Pre/Post-commit Hooks Riak can transform data before or after saving an object, 
 Each server has an app.config file, which needs to reference the location of any custom JavaScript code. First open your file for server dev1, under dev/dev1/etc/app.config, and find the line containing js_source_dir. Replace it with any directory path you want (note that the line may be commented out with
 12. http://wiki.basho.com/Vector-Clocks.html
 
-Day 3: Resolving Conflicts and Extending Riak · 85
+Day 3: Resolving Conflicts and Extending Riak ï¿½ 85
 a % character, so uncomment it first by removing the character). Our line looks like this:
 {js_source_dir, "~/riak/js_source"},
 You'll need to make this change in triplicate, once for each dev server.
@@ -2406,7 +2412,7 @@ $ dev/dev1/bin/riak restart $ dev/dev2/bin/riak restart $ dev/dev3/bin/riak rest
 Riak will scan for any files ending in .js and load those into memory. You can now set a bucket's precommit property to use the JavaScript function name (not the filename).
 curl -X PUT http://localhost:8091/riak/animals \ -H "content-type:application/json" \ -d '{"props":{"precommit":[{"name" : "good_score"}]}}'
 
-86 · Chapter 3. Riak
+86 ï¿½ Chapter 3. Riak
 Let's test our new hook by setting a score greater than 4. Our pre-commit hook enforces that a score must be from 1 to 4, so the following will fail:
 curl -i -X PUT http://localhost:8091/riak/animals/bruiser \ -H "Content-Type: application/json" -d '{"score" : 5}' HTTP/1.1 403 Forbidden Content-Type: text/plain Content-Length: 25
 Score must be 1 to 4
@@ -2420,7 +2426,7 @@ Using Riak search requires enabling it in your app.config files and setting the 
 %% To enable Search functionality set this 'true'. {enabled, true} ]},
 If you're familiar with search engine solutions such as Lucene, this part should be a cakewalk. If not, it's easy to get the hang of it.
 
-Day 3: Resolving Conflicts and Extending Riak · 87
+Day 3: Resolving Conflicts and Extending Riak ï¿½ 87
 We need to let the search know when we change values in the database by way of a pre-commit hook. You can install riak_search_kv_hook, Erlang module's precommit function, in a new animals bucket with the following command:
 $ curl -X PUT http://localhost:8091/riak/animals \ -H "Content-Type: application/json" \ -d '{"props":{"precommit": [{"mod": "riak_search_kv_hook","fun":"precommit"}]}}'
 Calling curl http://localhost:8091/riak/animals will show that the hook has been added to the animals bucket's precommit property. Now, when you put data that is encoded as JSON or XML into the animals bucket, Riak search will index the field names and values. Let's upload a few animals.
@@ -2431,7 +2437,7 @@ $ curl http://localhost:8091/solr/animals/select?q=breed:Shepherd <?xml version=
 </lst>
 13. http://lucene.apache.org/solr/
 
-88 · Chapter 3. Riak
+88 ï¿½ Chapter 3. Riak
 
 <result name="response" numFound="2" start="0" maxScore="0.500000"> <doc> <str name="id">ace</str> <str name="breed">German Shepherd</str> <str name="nickname">The Wonder Dog</str> <str name="score">3</str> </doc> <doc> <str name="id">rtt</str> <str name="breed">German Shepherd</str> <str name="nickname">Rin Tin Tin</str> <str name="score">4</str> </doc>
 </result> </response>
@@ -2472,7 +2478,7 @@ xml
 
 index Specifies the index to use
 
-Day 3: Resolving Conflicts and Extending Riak · 89
+Day 3: Resolving Conflicts and Extending Riak ï¿½ 89
 There is plenty more to learn about the Riak search extension, far more than we can reasonably cover here. Ideally you've gotten a feel for its power. It's a clear choice if you plan to provide search functionality for a large web application, but it also deserves a second look if you need a lot of simple ad hoc querying.
 Indexing Riak As of version 1.0, Riak supports secondary indexes. These are similar to the indexes we saw in PostgreSQL but with a slight twist. Rather than indexing on a specific column or columns of data, Riak allows you to index on metadata attached to the header of the object.
 Once again, we must make a change to the app.config file. Switch the storage back end from bitcask to eLevelDB, as shown here, and then restart the servers:
@@ -2484,7 +2490,7 @@ $ curl -X PUT http://localhost:8098/riak/animals/blue -H "x-riak-index-mascot_bi
 You may have noticed that the indexes have nothing to do with the value stored in the key. This is actually a powerful feature, since it allows us to index data orthogonal to any data we may store. If you want to store a video as a value, you may still index it.
 14. http://code.google.com/p/leveldb/
 
-90 · Chapter 3. Riak
+90 ï¿½ Chapter 3. Riak
 Getting the value by the index is fairly straightforward.
 $ curl http://localhost:8098/riak/animals/index/mascot_bin/butler
 Though secondary indexing in Riak is a big step in the right direction, it still has a way to go. If you want to index dates, for example, you must store a string that can be sorted in order--such as "YYYYMMDD". Storing any floating digits requires to you first multiply the float by some significant precision multiple of 10 and then store it as an integer--such as 1.45 * 100 == 145. Your client is responsible for doing this conversion. But between mapreduce, Riak search, and now secondary indexing, Riak is providing many tools to loosen up the classic constraints of the key-value store design by other means of value access beyond simple keys.
@@ -2498,7 +2504,7 @@ the score field to integer type, and query it as a range. 2. Start up a small cl
 instances), and install Riak on each. Set up the servers as a cluster. Install the Google stock dataset, located on the Basho website.16
 15. http://aws.amazon.com/ec2/ 16. http://wiki.basho.com/Loading-Data-and-Running-MapReduce-Queries.html
 
-Wrap-Up · 91
+Wrap-Up ï¿½ 91
 3.5 Wrap-Up
 Riak is the first NoSQL style database we've covered. It is a distributed, datareplicating, enhanced key-value store without a single point of failure.
 If your experience with databases until now has been only relational, Riak may seem like an alien beast. There are no transactions, no SQL, no schema. There are keys, but linking between buckets is not at all like a table join, and mapreduce can be a daunting methodology to grok.
@@ -2509,7 +2515,7 @@ Riak's Weaknesses
 If you require simple queryability, complex data structures, or a rigid schema or if you have no need to scale horizontally with your servers, Riak is probably not your best choice. One of our major gripes about Riak is it still lags in terms of an easy and robust ad hoc querying framework, although it is certainly on the right track. Mapreduce provides fantastic and powerful functionality, but we'd like to see more built-in URL-based or other PUT query actions. The addition of indexing was a major step in the right direction and a concept we'd love to see expanded upon. Finally, if you don't want to write
 17. http://code.google.com/p/protobuf/
 
-92 · Chapter 3. Riak
+92 ï¿½ Chapter 3. Riak
 Erlang, you may see a few limitations using JavaScript, such as the unavailability of post-commit or slower mapreduce execution. However, the Riak team is working on these relatively minor hiccups.
 Riak on CAP
 Riak provides a clever way of circumventing the constraints that CAP places on all distributed databases. How it dances around the problem is astounding, compared to a system like PostgreSQL that can (largely) only support strong write consistency. Riak leverages the Amazon Dynamo paper's insight that CAP can be changed on a per-bucket, or per-request, basis. It's a big step forward for robust and flexible open source database systems. As you read about other databases in this book, keep Riak in mind, and you'll continue to be impressed by its flexibility.
@@ -2524,7 +2530,7 @@ Wrong! In HBase, tables don't behave like relations, rows don't act like records
 So, why would you use this database? Aside from scalability, there are a few reasons. First, HBase has some built-in features that other databases lack, such as versioning, compression, garbage collection (for expired data), and in-memory tables. Having these features available right out of the box means less code that you have to write when your requirements demand them. HBase also makes strong consistency guarantees, making it easier to transition from relational databases.
 For all of these reasons, HBase really shines as the cornerstone of an online analytics processing system. While individual operations may be slower than equivalent operations in other databases, scanning through enormous datasets is something HBase takes to with relish. So, for genuinely big queries, HBase
 
-94 · Chapter 4. HBase
+94 ï¿½ Chapter 4. HBase
 often outpaces other databases. This also explains why HBase is often employed at big companies to back logging and search systems.
 4.1 Introducing HBase
 HBase is a column-oriented database that prides itself on consistency and scaling out. It is based on BigTable, a high-performance, proprietary database developed by Google and described in the 2006 white paper "Bigtable: A Distributed Storage System for Structured Data."1 Initially created for naturallanguage processing, HBase started life as a contrib package for Apache Hadoop. Since then, it has become a top-level Apache project.
@@ -2536,10 +2542,10 @@ With all of this activity, new versions of HBase are coming out at a fairly rapi
 Today's goal is to learn the nuts and bolts of working with HBase. We'll get a local instance of HBase running in stand-alone mode, and then we'll use
 1. http://research.google.com/archive/bigtable.html
 
-Day 1: CRUD and Table Administration · 95
+Day 1: CRUD and Table Administration ï¿½ 95
 the HBase shell to create and alter tables and to insert and modify data using basic commands. After that, we'll explore how to perform some of those operations programmatically by using the HBase Java API in JRuby. Along the way, we'll uncover some HBase architectural concepts, such as the relationship between rows, column families, columns, and values in a table.
 A fully operational, production-quality HBase cluster should really consist of no fewer than five nodes, or so goes the conventional wisdom. Such a setup would be overkill for our needs. Fortunately, HBase supports three running modes:
-· Stand-alone mode is a single machine acting alone. · Pseudodistributed mode is a single node pretending to be a cluster. · Fully distributed mode is a cluster of nodes working together.
+ï¿½ Stand-alone mode is a single machine acting alone. ï¿½ Pseudodistributed mode is a single node pretending to be a cluster. ï¿½ Fully distributed mode is a cluster of nodes working together.
 For most of this chapter, we'll be running HBase in stand-alone mode. Even that can be a bit of a challenge, so although we won't cover every aspect of installation and administration, we'll give some relevant troubleshooting tips where appropriate.
 Configuring HBase
 Before using HBase, it has to be configured. Configuration settings for HBase are kept in a file called hbase-site.xml, which can be found in the ${HBASE_HOME}/ conf/ directory. Note that HBASE_HOME is an environment variable pointing to the directory where HBase has been installed.
@@ -2550,7 +2556,7 @@ A full list of available properties, along with default values and descriptions,
 By default, HBase uses a temporary directory to store its data files. This means you'll lose all your data whenever the operating system decides to reclaim the disk space.
 To keep your data around, you should specify an involatile storage location. Set the hbase.rootdir property to an appropriate path like so:
 
-96 · Chapter 4. HBase
+96 ï¿½ Chapter 4. HBase
 <property> <name>hbase.rootdir</name> <value>file:///path/to/hbase</value>
 </property>
 To start HBase, open a terminal (command prompt) and run this command:
@@ -2571,7 +2577,7 @@ If an error occurs for any of these commands or if the shell hangs, it could be 
 Creating a Table
 A map is a key-value pair, like a hash in Ruby or a hashmap in Java. A table in HBase is basically a big map. Well, more accurately, it's a map of maps.
 
-Day 1: CRUD and Table Administration · 97
+Day 1: CRUD and Table Administration ï¿½ 97
 
 HBase Network Settings
 
@@ -2604,7 +2610,7 @@ To illustrate these concepts, take a look at Figure 13, HBase tables consist of 
 In this figure, we have a hypothetical table with two column families: color and shape. The table has two rows--denoted by dashed boxes--identified by their row keys: first and second. Looking at just the first row, we see that it has three columns in the color column family (with qualifiers red, blue, and yellow) and one column in the shape column family (square). The combination of row key and column name (including both family and qualifier) creates an address for locating data. In this example, the tuple first/color:red points us to the value '#F00'.
 Now let's take what we've learned about table structure and use it to do something fun--we're going to make a wiki!
 
-98 · Chapter 4. HBase
+98 ï¿½ Chapter 4. HBase
 
 row keys column family "color"
 
@@ -2634,7 +2640,7 @@ Here, we're creating a table called wiki with a single column family called text
 Visualizing our table architecture, we arrive at something like Figure 14, The wiki table has one column family, on page 99. By our own convention, we expect each row to have exactly one column within the text family, qualified by the empty string (''). So, the full column name containing the text of a page will be 'text:'.
 Of course, for our wiki table to be useful, it's going to need content. Let's add some!
 
-Day 1: CRUD and Table Administration · 99
+Day 1: CRUD and Table Administration ï¿½ 99
 
 row keys (wiki page titles)
 r(opwage) "first page's title"
@@ -2654,21 +2660,21 @@ hbase> get 'wiki', 'Home', 'text:' COLUMN CELL
 text: timestamp=1295774833226, value=Welcome to the wiki! 1 row(s) in 0.0590 seconds
 Notice the timestamp field in the output. HBase stores an integer timestamp for all data values, representing time in milliseconds since the epoch (00:00:00 UTC on January 1, 1970). When a new value is written to the same cell, the old value hangs around, indexed by its timestamp. This is a pretty awesome feature. Most databases require you to specifically handle historical data yourself, but in HBase, versioning is baked right in!
 
-100 · Chapter 4. HBase
+100 ï¿½ Chapter 4. HBase
 Case Study: Facebook's Messaging Index Table
 Facebook uses HBase as a principal component of its messaging infrastructure, both for storing message data and for maintaining an inverted index for search.
 In its index table schema:
-· The row keys are user IDs. · Column qualifiers are words that appear in that user's messages. · Timestamps are message IDs of messages that contain that word.
+ï¿½ The row keys are user IDs. ï¿½ Column qualifiers are words that appear in that user's messages. ï¿½ Timestamps are message IDs of messages that contain that word.
 Since messages between users are immutable, the index entries for a message are static as well. The concept of versioned values doesn't make sense.
 For Facebook, manipulating the timestamp to match message IDs gives them another dimension for storing data.
 Put and Get The put and get commands allow you to specify a timestamp explicitly. If using milliseconds since the epoch doesn't strike your fancy, you can specify another integer value of your choice. This gives you an extra dimension to work with if you need it. If you don't specify a timestamp, HBase will use the current time when inserting, and it will return the most recent version when reading.
 For an example of how one company chose to overload the timestamp field, see Case Study: Facebook's Messaging Index Table, on page 100. In the rest of this chapter, we'll continue to use the default timestamp interpretation.
 Altering Tables
 So far, our wiki schema has pages with titles, text, and an integrated version history but nothing else. Let's expand our requirements to include the following:
-· In our wiki, a page is uniquely identified by its title. · A page can have unlimited revisions. · A revision is identified by its timestamp. · A revision contains text and optionally a commit comment. · A revision was made by an author, identified by name.
+ï¿½ In our wiki, a page is uniquely identified by its title. ï¿½ A page can have unlimited revisions. ï¿½ A revision is identified by its timestamp. ï¿½ A revision contains text and optionally a commit comment. ï¿½ A revision was made by an author, identified by name.
 Visually, our requirements can be sketched, like in Figure 15, Requirements for a wiki page (including time dimension), on page 102. In this abstract representation of our requirements for a page, we see that each revision has an author, a commit comment, some article text, and a timestamp. The title of
 
-Day 1: CRUD and Table Administration · 101
+Day 1: CRUD and Table Administration ï¿½ 101
 a page is not part of a revision, because it's the identifier we use to denote revisions belonging to the same page.
 Mapping our vision to an HBase table takes a somewhat different form, as illustrated in Figure 16, Updated wiki table architecture (time dimension not shown), on page 102. Our wiki table uses the title as the row key and will group other page data into two column families called text and revision. The text column family is the same as before; we expect each row to have exactly one column, qualified by the empty string (''), to hold the article contents. The job of the revision column family is to hold other revision-specific data, such as the author and commit comment.
 Defaults We created the wiki table with no special options, so all the HBase default values were used. One such default value is to keep only three VERSIONS of column values, so let's increase that. To make schema changes, first we have to take the table offline with the disable command.
@@ -2680,7 +2686,7 @@ Altering a Table Operations that alter column family characteristics can be very
 With the wiki table still disabled, let's add the revision column family, again using the alter command:
 hbase> alter 'wiki', { NAME => 'revision', VERSIONS => hbase* org.apache.hadoop.hbase.HConstants::ALL_VERSIONS } 0 row(s) in 0.0660 seconds
 
-102 · Chapter 4. HBase title
+102 ï¿½ Chapter 4. HBase title
 
 revision
 
@@ -2709,7 +2715,7 @@ family "revision"
 Figure 16--Updated wiki table architecture (time dimension not shown)
 Just as before, with the text family, we're only adding a revision column family to the table schema, not individual columns. Though we expect each row to eventually contain a revision:author and revision:comment, it's up to the client to honor this expectation; it's not written into any formal schema. If someone wants to add a revision:foo for a page, HBase won't stop them.
 
-Day 1: CRUD and Table Administration · 103
+Day 1: CRUD and Table Administration ï¿½ 103
 Moving On With these additions in place, let's reenable our wiki:
 hbase> enable 'wiki' 0 row(s) in 0.0550 seconds
 Now that our wiki table has been modified to support our growing requirements list, we can start adding data to columns in the revision column family.
@@ -2726,7 +2732,7 @@ table.put( p )
 The import lines bring references to useful HBase classes into the shell. This saves us from having to write out the full namespace later. Next, the jbytes() function takes any number of arguments and returns an array converted to Java byte arrays, as the HBase API methods demand.
 After that, we create a local variable (table) pointing to our wiki table, using the @hbase administration object for configuration information.
 
-104 · Chapter 4. HBase
+104 ï¿½ Chapter 4. HBase
 
 Next we stage a commit operation by creating and preparing a new instance of Put, which takes the row to be modified. In this case, we're sticking with the Home page we've been working with thus far. Finally, we add() properties to our Put instance and then call on the table object to execute the put operation we've prepared. The add() method has several forms; in our case, we used the three-argument version: add(column_family, column_qualifier, value).
 
@@ -2759,13 +2765,13 @@ Day 1 Wrap-Up
 Today, we got a firsthand look at a running HBase server. We learned how to configure it and monitor log files for troubleshooting. Using the HBase shell, we performed basic administration and data manipulation tasks.
 In modeling a wiki system, we explored schema design in HBase. We learned how to create tables and manipulate column families. Designing an HBase schema means making choices about column family options and, just as important, our semantic interpretation of features like timestamps and row keys.
 
-Day 1: CRUD and Table Administration · 105
+Day 1: CRUD and Table Administration ï¿½ 105
 We also started poking around in the HBase Java API by executing JRuby code in the shell. In Day 2, we'll take this a step further, using the shell to run custom scripts for big jobs like data import.
 Ideally you've begun to shrug off some of the relational concepts that burden terms such as table, row, and column. The difference between how HBase uses these terms and what they mean in other systems will become even starker as we explore deeper into HBase's features.
 Day 1 Homework
 HBase documentation online generally comes in two flavors: extremely technical and nonexistent. This is slowly changing as "getting started" guides start to appear, but be prepared to spend some time trolling through Javadoc or source code to find answers.
 Find 1. Figure out how to use the shell to do the following:
-· Delete individual column values in a row · Delete an entire row
+ï¿½ Delete individual column values in a row ï¿½ Delete an entire row
 2. Bookmark the HBase API documentation for the version of HBase you're using.
 Do 1. Create a function called put_many() that creates a Put instance, adds any
 number of column-value pairs to it, and commits it to a table. The signature should look like this:
@@ -2774,7 +2780,7 @@ end
 2. Define your put_many() function by pasting it in the HBase shell, and then call it like so:
 hbase> put_many 'wiki', 'Some title', { hbase* "text:" => "Some article text", hbase* "revision:author" => "jschmoe", hbase* "revision:comment" => "no comment" }
 
-106 · Chapter 4. HBase
+106 ï¿½ Chapter 4. HBase
 4.3 Day 2: Working with Big Data
 With Day 1's table creation and manipulation under our belts, it's time to start adding some serious data to our wiki table. Today, we'll script against the HBase APIs, ultimately streaming Wikipedia content right into our wiki! Along the way, we'll pick up some performance tricks for making faster import jobs. Finally, we'll poke around in HBase's internals to see how it partitions data into regions, achieving both performance and disaster recovery goals.
 Importing Data, Invoking Scripts
@@ -2786,7 +2792,7 @@ Since we're interested specifically in "Big Data," let's create a script for imp
 ... [[bat-smg:Anarkzmos]]
 </text> </revision> </page>
 
-Day 2: Working with Big Data · 107
+Day 2: Working with Big Data ï¿½ 107
 Because we were so smart, this contains all the information we've already accounted for in our schema: title (row key), text, timestamp, and author. So, we ought to be able to write a script to import revisions without too much trouble.
 Streaming XML
 First things first. We'll need to parse the huge XML files in a streaming (SAX) fashion, so let's start with that. The basic outline for parsing an XML file in JRuby, record by record, looks like this:
@@ -2804,7 +2810,7 @@ Next, we set up a while loop, which will continuously pull out tokens from the X
 Streaming Wikipedia
 Now we can combine this basic XML processing framework with our previous exploration of the HTable and Put interfaces. Here's the resultant script. Most of it should look familiar, and we'll discuss a few novel parts.
 
-108 · Chapter 4. HBase
+108 ï¿½ Chapter 4. HBase
 hbase/import_from_wikipedia.rb require 'time'
 import 'org.apache.hadoop.hbase.client.HTable' import 'org.apache.hadoop.hbase.client.Put' import 'javax.xml.stream.XMLStreamConstants'
 def jbytes( *args ) args.map { |arg| arg.to_s.to_java_bytes }
@@ -2825,14 +2831,14 @@ document[reader.local_name] = buffer.join when 'revision'
 key = document['title'].to_java_bytes ts = ( Time.parse document['timestamp'] ).to_i
 p = Put.new( key, ts ) p.add( *jbytes( "text", "", document['text'] ) ) p.add( *jbytes( "revision", "author", document['username'] ) ) p.add( *jbytes( "revision", "comment", document['comment'] ) ) table.put( p )
 
-Day 2: Working with Big Data · 109
+Day 2: Working with Big Data ï¿½ 109
 count += 1 table.flushCommits() if count % 10 == 0 if count % 500 == 0
 puts "#{count} records inserted (#{document['title']})" end end end end
 table.flushCommits() exit
  The first difference of note is the introduction of a few variables:
-· document: Holds the current article and revision data
-· buffer: Holds character data for the current field within the document (text, title, author, and so on)
-· count: Keeps track of how many articles we've imported so far
+ï¿½ document: Holds the current article and revision data
+ï¿½ buffer: Holds character data for the current field within the document (text, title, author, and so on)
+ï¿½ count: Keeps track of how many articles we've imported so far
  Pay special attention to the use of table.setAutoFlush(false). In HBase, data is automatically flushed to disk periodically. This is preferred in most applications. By disabling autoflush in our script, any put operations we execute will be buffered until we call table.flushCommits(). This allows us to batch up writes and execute them when it's convenient for us.
  Next, let's look at what happens in parsing. If the start tag is a <page>, then reset document to an empty hash. Otherwise, if it's another tag we care about, reset buffer for storing its text.
  We handle character data by appending it to the buffer.
@@ -2841,7 +2847,7 @@ Compression and Bloom Filters
 We're almost ready to run the script; we just have one more bit of housecleaning to do first. The text column family is going to contain big blobs of text content; it would benefit from some compression. Let's enable compression and fast lookups:
 hbase> alter 'wiki', {NAME=>'text', COMPRESSION=>'GZ', BLOOMFILTER=>'ROW'} 0 row(s) in 0.0510 seconds
 
-110 · Chapter 4. HBase
+110 ï¿½ Chapter 4. HBase
 HBase supports two compression algorithms: Gzip (GZ) and Lempel-ZivOberhumer (LZO). The HBase community highly recommends using LZO over Gzip, pretty much unilaterally, but here we're using GZ.
 The problem with LZO is the implementation's license. While open source, it's not compatible with Apache's licensing philosophy, so LZO can't be bundled with HBase. Detailed instructions are available online for installing and configuring LZO support. If you want high-performance compression, get LZO.
 A Bloom filter is a really cool data structure that efficiently answers the question, "Have I ever seen this thing before?" Originally developed by Burton Howard Bloom in 1970 for use in spell-checking applications, Bloom filters have become popular in data storage applications for determining quickly whether a key exists. If you're unfamiliar with Bloom filters, they're explained briefly in How Do Bloom Filters Work?, on page 111.
@@ -2854,7 +2860,7 @@ Note that you should replace <dump_url> with the URL of a WikiMedia Foundation d
 Plug in the URL and run it! You should see output like this (eventually):
 2. http://dumps.wikimedia.org 3. http://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2 4. http://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2
 
-Day 2: Working with Big Data · 111
+Day 2: Working with Big Data ï¿½ 111
 How Do Bloom Filters Work?
 Without going too deep into implementation details, a Bloom filter manages a statically sized array of bits initially set to 0. Each time a new blob of data is presented to the filter, some of the bits are flipped to 1. Determining which bits to flip depends on generating a hash from the data and turning that hash into a set of bit positions.
 Later, to test whether the filter has been presented with a particular blob in the past, the filter figures out which bits would have to be 1 and checks them. If any are 0, then the filter can unequivocally say "no." If all of the bits are 1, then it reports "yes"; chances are it has been presented with that blob before, but false positives are increasingly likely as more blobs are entered.
@@ -2866,7 +2872,7 @@ In HBase, rows are kept in order, sorted by the row key. A region is a chunk of 
 So, let's take a look at your HBase server's disk usage, which will give us insight into how the data is laid out. You can inspect HBase's disk usage by opening a command prompt to the hbase.rootdir location you specified earlier and executing the du command. du is a standard *nix command-line utility that tells you how much space is used by a directory and its children, recursively. The -h option tells du to report numbers in human-readable form.
 Here's what ours looked like after about 12,000 pages had been inserted and the import was still running:
 
-112 · Chapter 4. HBase
+112 ï¿½ Chapter 4. HBase
 
 $ du -h
 
@@ -2934,7 +2940,7 @@ For performance reasons, edits are not necessarily written to disk immediately. 
 
 Writing to the WAL is optional and enabled by default. Edit classes like Put and Increment have a setter method called setWriteToWAL() that can be used to exclude the operation from being written to the WAL. Generally you'll want to keep the default option, but in some instances it might make sense to change it. For example, if you're running an import job that you can rerun
 
-Day 2: Working with Big Data · 113
+Day 2: Working with Big Data ï¿½ 113
 
 any time, like our Wikipedia import script, you might want to take the performance benefit of disabling WAL writes over the disaster recovery protection.
 
@@ -3033,7 +3039,7 @@ $ du -h
 
 The biggest change is that the old region (517496fecabb7d16af7573fc37257905) is now gone, replaced by four new ones. In our stand-alone server, all the regions are served by our singular server, but in a distributed environment, these would be parceled out to the various region servers.
 
-114 · Chapter 4. HBase
+114 ï¿½ Chapter 4. HBase
 This raises a few questions, such as "How do the region servers know which regions they're responsible for serving?" and "How can you find which region (and, by extension, which region server) is serving a given row?"
 If we drop back into the HBase shell, we can query the .META. table to find out more about the current regions. .META. is a special table whose sole purpose is to keep track of all the user tables and which region servers are responsible for serving the regions of those tables.
 hbase> scan '.META.', { COLUMNS => [ 'info:server', 'info:regioninfo' ] }
@@ -3046,7 +3052,7 @@ Both of the regions listed previously are served by the same server, localhost.l
 STARTKEY is inclusive, while ENDKEY is exclusive. So, if we were looking for the 'Demographics of Macedonia' row, we'd find it in the second region.
 Since rows are kept in sorted order, we can use the information stored in .META. to look up the region and server where any given row should be found. But where is the .META. table stored?
 
-Day 2: Working with Big Data · 115
+Day 2: Working with Big Data ï¿½ 115
 It turns out that the .META. table is split into regions and served by region servers just like any other table would be. To find out which servers have which parts of the .META. table, we have to scan -ROOT-.
 hbase> scan '-ROOT-', { COLUMNS => [ 'info:server', 'info:regioninfo' ] }
 ROW .META.,,1
@@ -3059,7 +3065,7 @@ Wiki syntax is filled with links, some of which link internally to other article
 Our goal is to capture the relationships between articles as directional links, pointing one article to another or receiving a link from another. An internal article link in wikitext looks like this: [[<target name>|<alt text>]], where <target name> is the article to link to, and <alt text> is the alternative text to display (optional).
 For example, if the text of the article on Star Wars contains the string "[[Yoda|jedi master]]", we want to store that relationship twice--once as an outgoing link from Star Wars and once as an incoming link to Yoda. Storing the relationship twice means that it's fast to look up both a page's outgoing links and its incoming links.
 
-116 · Chapter 4. HBase
+116 ï¿½ Chapter 4. HBase
 Where's My TABLE Schema?
 The TABLE schema has been removed from the example output of regioninfo scans. This reduces clutter, and we'll be talking about performance-tuning options later. If you're dying to see the schema definition for a table, use the describe command. Here's an example:
 hbase> describe 'wiki' hbase> describe '.META.' hbase> describe '-ROOT-'
@@ -3073,7 +3079,7 @@ In our wiki case, we need the text and revision column families to be on the sam
 Constructing the Scanner
 With the links table created, we're ready to implement a script that will scan all the rows of the wiki table. Then, for each row, retrieve the wikitext and parse out the links. Finally, for each link found, create incoming and outgoing
 
-Day 2: Working with Big Data · 117
+Day 2: Working with Big Data ï¿½ 117
 
 link table records. The bulk of this script should be pretty familiar to you by now. Most of the pieces are recycled, and we'll discuss the few novel bits.
 hbase/generate_wiki_links.rb import 'org.apache.hadoop.hbase.client.HTable' import 'org.apache.hadoop.hbase.client.Put' import 'org.apache.hadoop.hbase.client.Scan' import 'org.apache.hadoop.hbase.util.Bytes'
@@ -3091,8 +3097,6 @@ while (result = scanner.next())
 text = Bytes.toString( result.getValue( *jbytes( 'text', '' ) ) ) if text
 
 put_to = nil
-
-
 
 text.scan(linkpattern) do |target, label|
 
@@ -3116,19 +3120,15 @@ put_from.add( *jbytes( "from", title, label ) )
 
 put_from.setWriteToWAL( false )
 
-
-
 links_table.put( put_from )
 
 end
-
-
 
 links_table.put( put_to ) if put_to
 
 links_table.flushCommits()
 
-118 · Chapter 4. HBase
+118 ï¿½ Chapter 4. HBase
 end count += 1 puts "#{count} pages processed (#{title})" if count % 500 == 0
 end links_table.flushCommits() exit
  First, we grab a Scan object, which we'll use to scan through the wiki table.
@@ -3145,7 +3145,7 @@ It should produce output like this:
 As with the previous script, you can let it run as long as you like, even to completion. If you want to stop it, press CTRL+C.
 You can monitor the disk usage of the script using du as we've done before. You'll see new entries for the links table we just created, and the size counts will increase as the script runs.
 
-Day 2: Working with Big Data · 119
+Day 2: Working with Big Data ï¿½ 119
 Joe asks:
 Couldn't We Have Done This with Mapreduce?
 In the introduction, we explained that our examples would be in (J)Ruby and JavaScript. JRuby does not play nice with Hadoop, but if you wanted to use mapreduce using Java, you'd have written this scanner code as a mapreduce job and sent it off to Hadoop.
@@ -3169,10 +3169,10 @@ links:to:3-d film links:to:Aayla secura ...
 
 timestamp=1300419602350, value= timestamp=1300419602350, value=
 
-120 · Chapter 4. HBase
+120 ï¿½ Chapter 4. HBase
 In the wiki table, the rows are very regular with respect to columns. As you recall, each row has text:, revision:author, and revision:comment columns. The links table has no such regularity. Each row may have one column or hundreds. And the variety of column names is as diverse as the row keys themselves (titles of Wikipedia articles). That's OK! HBase is a so-called sparse data store for exactly this reason.
 To find out just how many rows are now in your table, you can use the count command.
-hbase> count 'wiki', INTERVAL => 100000, CACHE => 10000 Current count: 100000, row: Alexander wilson (vauxhall) Current count: 200000, row: Bachelor of liberal studies Current count: 300000, row: Brian donlevy ... Current count: 2000000, row: Thomas Hobbes Current count: 2100000, row: Vardousia Current count: 2200000, row: Wörrstadt (verbandsgemeinde) 2256081 row(s) in 173.8120 seconds
+hbase> count 'wiki', INTERVAL => 100000, CACHE => 10000 Current count: 100000, row: Alexander wilson (vauxhall) Current count: 200000, row: Bachelor of liberal studies Current count: 300000, row: Brian donlevy ... Current count: 2000000, row: Thomas Hobbes Current count: 2100000, row: Vardousia Current count: 2200000, row: Wï¿½rrstadt (verbandsgemeinde) 2256081 row(s) in 173.8120 seconds
 Because of its distributed architecture, HBase doesn't immediately know how many rows are in each table. To find out, it has to count them (by performing a table scan). Fortunately, HBase's region-based storage architecture lends itself to fast distributed scanning. So, even if the operation at hand requires a table scan, we don't have to worry quite as much as we would with other databases.
 Day 2 Wrap-Up
 Whew, that was a pretty big day! We learned how to write an import script for HBase that parses data out of a stream of XML. Then we used those techniques to stream Wikipedia dumps directly into our wiki table.
@@ -3180,7 +3180,7 @@ We learned more of the HBase API, including some client-controllable performance
 Speaking of architecture, we discovered table regions and how HBase divvies up responsibility for them among the region servers in the cluster. We scanned the .META. and -ROOT- tables to get a feel for HBase internals.
 Finally, we discussed some of the performance implications of HBase's sparse design. In so doing, we touched on some community best practices regarding the use of columns, families, and tables.
 
-Day 2: Working with Big Data · 121
+Day 2: Working with Big Data ï¿½ 121
 Day 2 Homework
 Find 1. Find a discussion or article describing the pros and cons of compression
 in HBase. 2. Find an article explaining how Bloom filters work in general and how they
@@ -3191,7 +3191,7 @@ Do Expanding on the idea of data import, let's build a database containing nutri
 facts. What should you use for the row key? What column family options make sense for this data? 2. Create a new JRuby script for importing the food data. Use the SAX parsing style we used earlier for the Wikipedia import script and tailor it for the food data. 3. Pipe the food data into your import script on the command line to populate the table. 4. Finally, using the HBase shell, query the foods table for information about your favorite foods.
 5. http://explore.data.gov/Health-and-Nutrition/MyPyramid-Food-Raw-Data/b978-7txq
 
-122 · Chapter 4. HBase
+122 ï¿½ Chapter 4. HBase
 
 4.4 Day 3: Taking It to the Cloud
 
@@ -3227,7 +3227,7 @@ Of all these options, Thrift is probably the most popular for developing client 
 Installing Thrift Like many things in the database realm, working with Thrift requires a little setup. To connect to our HBase server via Thrift, we'll need to do the following:
 1. Have HBase run the Thrift service. 2. Install the Thrift command-line tool. 3. Install libraries for your chosen client language.
 
-Day 3: Taking It to the Cloud · 123
+Day 3: Taking It to the Cloud ï¿½ 123
 4. Generate HBase model files for your language. 5. Create and run a client application.
 We'll start by running the Thrift service, which is pretty easy. Start the daemon from the command line like this:
 ${HBASE_HOME}/bin/hbase-daemon.sh start thrift -b 127.0.0.1
@@ -3245,8 +3245,8 @@ With the path identified, generate the model files with the following command, r
 $ thrift --gen rb <path_to_Hbase.thrift>
 This will create a new folder called gen-rb, which contains the following model files:
 
-124 · Chapter 4. HBase
-· hbase_constants.rb · hbase.rb · hbase_types.rb
+124 ï¿½ Chapter 4. HBase
+ï¿½ hbase_constants.rb ï¿½ hbase.rb ï¿½ hbase_types.rb
 We'll be using these files next as we build a simple client application.
 Building a Client Application Our program will connect to HBase over Thrift and then list any tables it finds along with their column families. These would be the first steps toward building an administrative interface for HBase. Unlike our previous examples, this script is meant to be run by good old normal Ruby, not JRuby. It could be suitable for inclusion in a Ruby-based web application, for example.
 Key this into a new text file (we called ours thrift_example.rb):
@@ -3259,7 +3259,7 @@ transport.close()
 In the previous code, the first thing we do is make sure Ruby can find the model files by adding gen-rb to the path and including thrift and hbase. After that, we create a connection to the Thrift server and wire it up to an HBase client instance. The client object will be our means for communicating with HBase.
 After opening the transport, we iterate over the tables brought back by getTableNames(). For each table, we iterate over the list of column families returned by getColumnDescriptors() and output some properties to standard output.
 
-Day 3: Taking It to the Cloud · 125
+Day 3: Taking It to the Cloud ï¿½ 125
 Now, let's run the program on the command line. Your output should look similar since we're connecting to the local HBase server we started with earlier.
 $> ruby thrift_example.rb links
 from: maxVersions: 1 compression: NONE bloomFilterType: ROWCOL
@@ -3271,7 +3271,7 @@ Introducing Whirr
 Setting up a functioning cluster using a cloud service used to be a lot of work. Fortunately, Whirr is changing all that. Currently in the Apache Incubator program, Whirr provides tools for launching, connecting to, and destroying clusters of virtual machines. It supports popular services like Amazon's Elastic Compute Cloud (EC2) and RackSpace's Cloud Servers. Whirr currently supports setting up Hadoop, HBase, Cassandra, Voldemort, and ZooKeeper clusters, with support for more technologies like MongoDB and ElasticSearch on the way.
 Though service providers like Amazon often supply some means of persisting data after virtual machines have been terminated, we won't be using them. For our purposes, it will suffice to have temporary clusters that lose all data
 
-126 · Chapter 4. HBase
+126 ï¿½ Chapter 4. HBase
 upon termination. If you decide to use HBase in a production capacity later, you may want to set up persistent storage. If so, it's worth considering whether dedicated hardware would better suit your needs. Dynamic services like EC2 are great for horsepower on-the-fly, but you'll generally get more bang for the buck out of a cluster of dedicated physical or virtual machines.
 Getting Set Up with EC2
 Before you use Whirr to power up a cluster, you'll need to have an account with a supported cloud service provider. In this chapter, we'll describe how to use Amazon's EC2, but you're welcome to use another provider of your choice.
@@ -3284,7 +3284,7 @@ Next, we'll create some passwordless SSH keys for Whirr to use when launching in
 $ mkdir keys $ ssh-keygen -t rsa -P '' -f keys/id_rsa
 6. http://aws.amazon.com/ 7. http://aws.amazon.com/ec2/ 8. https://console.aws.amazon.com/ec2/#s=Instances 9. http://incubator.apache.org/whirr/
 
-Day 3: Taking It to the Cloud · 127
+Day 3: Taking It to the Cloud ï¿½ 127
 Figure 17--Amazon EC2 console showing no instances
 This will create a directory called keys and add to it an id_rsa file and an id_rsa.pub file. With these details out of the way, it's time to start configuring our cluster.
 Configuring the Cluster
@@ -3292,7 +3292,7 @@ To specify details about a cluster, we'll supply Whirr with a .properties file c
 hbase/hbase.properties # service provider whirr.provider=aws-ec2 whirr.identity=your AWS_ACCESS_KEY_ID here whirr.credential=your AWS_SECRET_ACCESS_KEY here # ssh credentials whirr.private-key-file=keys/id_rsa whirr.public-key-file=keys/id_rsa.pub # cluster configuration whirr.cluster-name=myhbasecluster whirr.instance-templates=\
 1 zookeeper+hadoop-namenode+hadoop-jobtracker+hbase-master,\ 5 hadoop-datanode+hadoop-tasktracker+hbase-regionserver # HBase and Hadoop version configuration whirr.hbase.tarball.url=\ http://apache.cu.be/hbase/hbase-0.90.3/hbase-0.90.3.tar.gz whirr.hadoop.tarball.url=\ http://archive.cloudera.com/cdh/3/hadoop-0.20.2-cdh3u1.tar.gz
 
-128 · Chapter 4. HBase
+128 ï¿½ Chapter 4. HBase
 The first two sections identify the service provider and all relevant credentials --largely boilerplate--while the latter two sections are specific to the HBase cluster that we're going to create. The whirr.cluster-name is unimportant unless you plan on running more than one cluster simultaneously, in which case they should each have different names. The whirr.instance-templates property contains a comma-separated list describing which roles the nodes will play and how many of each there should be. In our case, we want one master and five region servers. Finally, the whirr.hbase.tarball.url forces Whirr to use the same version of HBase we've been using so far.
 Launching the Cluster
 With all the configuration details saved to hbase.properties, it's time to launch the cluster. On the command line, in the Whirr directory, execute the launchcluster command, providing it with the properties file we just made.
@@ -3307,7 +3307,7 @@ $ /usr/local/hbase-0.90.3/bin/hbase shell
 Once the shell has started up, you can check on the health of the cluster with the status command.
 hbase> status 6 servers, 0 dead, 2.0000 average load
 
-Day 3: Taking It to the Cloud · 129
+Day 3: Taking It to the Cloud ï¿½ 129
 Figure 18--Amazon EC2 console showing HBase instances starting up
 From here, you can perform all the same operations we did on Days 1 and 2 such as creating tables and inserting data. Connecting the sample Thriftbased client application to the cluster is left as an exercise in the homework. Of course, one more thing is worth talking about before we finish out the day: destroying a cluster.
 Destroying the Cluster
@@ -3315,7 +3315,7 @@ When you're done with your remote HBase EC2 cluster, use Whirr's destroycluster 
 $ bin/whirr destroy-cluster --config hbase.properties Destroying myhbasecluster cluster Cluster myhbasecluster destroyed
 This should take only a little while. Confirm that the instances are shutting down in the AWS console, which should resemble Figure 19, Amazon EC2 console showing HBase instances shutting down, on page 130. If anything goes wrong when shutting these things down, remember that you can still terminate them directly using the AWS console.
 
-130 · Chapter 4. HBase
+130 ï¿½ Chapter 4. HBase
 Figure 19--Amazon EC2 console showing HBase instances shutting down
 Day 3 Wrap-Up
 Today we stepped outside the HBase shell to look at other connection options, including a binary protocol called Thrift. We developed a Thrifty client application, and then we created and administrated a remote cluster in Amazon EC2 using Apache Whirr. Coming up in the homework, you'll string these two things together, querying your remote EC2 cluster from your locally running Thrift app.
@@ -3324,7 +3324,7 @@ In today's homework, you'll connect your local Thrift application to a remotely 
 hbase shell, and then create a table with at least one column family. 2. In the same SSH session, start the Thrift service.
 $ sudo /usr/local/hbase-0.90.3/bin/hbase-daemon.sh start thrift -b 0.0.0.0
 
-Wrap-Up · 131
+Wrap-Up ï¿½ 131
 3. Use the Amazon EC2 web interface console to open TCP port 9090 in the security group for your cluster (Network & Security > Security Groups > Inbound > Create a new rule).
 4. Modify the simple Thrift-based Ruby client app you developed to hit the EC2 node running Thrift instead of localhost. Run the program and confirm that it displays the correct information about your newly created table.
 4.5 Wrap-Up
@@ -3335,7 +3335,7 @@ On the performance front, HBase is meant to scale out. If you have huge amounts 
 The HBase community is pretty awesome. There's almost always somebody on the IRC channel10 or mailing lists11 ready to help with questions and get you pointed in the right direction. Although a number of high-profile companies use HBase for their projects, there is no corporate HBase service provider. This means the people of the HBase community do it for the love of the project and the common good.
 10. irc://irc.freenode.net/#hbase 11. http://hbase.apache.org/mail-lists.html
 
-132 · Chapter 4. HBase
+132 ï¿½ Chapter 4. HBase
 HBase's Weaknesses
 Although HBase is designed to scale out, it doesn't scale down. The HBase community seems to agree that five nodes is the minimum number you'll want to use. Because it's designed to be big, it can also be harder to administrate. Solving small problems isn't what HBase is about, and nonexpert documentation is tough to come by, which steepens the learning curve.
 Additionally, HBase is almost never deployed alone. Rather, it's part of an ecosystem of scale-ready pieces. These include Hadoop (an implementation of Google's MapReduce), the Hadoop distributed file system (HDFS), and Zookeeper (a headless service that aids internode coordination). This ecosystem is both a strength and a weakness; it simultaneously affords a great deal of architectural sturdiness but also encumbers the administrator with the burden of maintaining it.
@@ -3345,7 +3345,7 @@ HBase on CAP
 With respect to CAP, HBase is decidedly CP. HBase makes strong consistency guarantees. If a client succeeds in writing a value, other clients will receive the updated value on the next request. Some databases, like Riak, allow you to tweak the CAP equation on a per-operation basis. Not so with HBase. In the face of reasonable amounts of partitioning--for example, a node failing-- HBase will remain available, shunting the responsibility off to other nodes in the cluster. However, in the pathological example, where only one node is left alive, HBase has no choice but to refuse requests.
 The CAP discussion gets a little more complex when you introduce clusterto-cluster replication, an advanced feature we didn't cover in this chapter. A typical multicluster setup could have clusters separated geographically by some distance. In this case, for a given column family, one cluster is the system of record, while the other clusters merely provide access to the replicated data. This system is eventually consistent since the replication clusters
 
-Wrap-Up · 133
+Wrap-Up ï¿½ 133
 will serve up the most recent values they're aware of, which may not be the most recent values in the master cluster.
 Parting Thoughts
 As one of the first nonrelational databases we had ever encountered, HBase was quite a challenge for us. The terminology can be deceptively reassuring, and the installation and configuration are not for the faint of heart. On the plus side, some of the features HBase offers, such as versioning and compression, are quite unique. These aspects can make HBase quite appealing for solving certain problems. And of course, it scales out to many nodes of commodity hardware quite well. All in all, HBase--like a nail gun--is a pretty big tool, so watch your thumbs.
@@ -3359,7 +3359,7 @@ But don't think that MongoDB's flexibility makes it a toy. There are some huge p
 Mongo hits a sweet spot between the powerful queryability of a relational database and the distributed nature of other datastores like Riak or HBase. Project founder Dwight Merriman has said that MongoDB is the database he wishes he'd had at DoubleClick, where as the CTO he had to house largescale data while still being able to satisfy ad hoc queries.
 Mongo is a JSON document database (though technically data is stored in a binary form of JSON known as BSON). A Mongo document can be likened to a relational table row without a schema, whose values can nest to an arbitrary
 
-136 · Chapter 5. MongoDB
+136 ï¿½ Chapter 5. MongoDB
 
 ndOne({"_id" : ObjectId("4d0b6da3bb30773266f39fea")}) )
 
@@ -3394,7 +3394,7 @@ We'll spend today working on some CRUD operations and finish up with performing 
 
 1. http://www.mongodb.org/downloads
 
-Day 1: CRUD and Nesting · 137
+Day 1: CRUD and Nesting ï¿½ 137
 Eric says:
 On the Fence
 I was on the fence about using a document datastore before making the switch in my own production code. Coming from the relational database world, I found Mongo to be an easy move with its ad hoc queries. And its ability to scale out mirrored my own web-scale dreams. But beyond the structure, I trusted the development team. They readily admitted that Mongo wasn't perfect, but their clear plans (and general adherence to those plans) were based on general web infrastructure use cases, rather than idyllic debates on scalability and replication. This pragmatic focus on usability should shine as you use MongoDB. A trade-off of this evolutionary behavior is that there are several paths to performing any given function in Mongo.
@@ -3407,7 +3407,7 @@ Creating a collection (similar to a bucket in Riak nomenclature) in Mongo is as 
 > db.towns.insert({ name: "New York", population: 22200000, last_census: ISODate("2009-07-31"), famous_for: [ "statue of liberty", "food" ], mayor : { name : "Michael Bloomberg", party : "I" }
 })
 
-138 · Chapter 5. MongoDB
+138 ï¿½ Chapter 5. MongoDB
 In the previous section, we said documents were JSON (well, really BSON), so we add new documents in JSON format, where brackets like {...} denote an object (aka a hashtable or Map) with keyed values and where brackets like [...] denote an array. You can nest these values to any depth.
 With the show collections command, you can verify the collection now exists.
 > show collections
@@ -3422,7 +3422,7 @@ What's great about this autonumbering scheme is that each process on every machi
 JavaScript Mongo's native tongue is JavaScript, be it as complex as mapreduce queries or as simple as asking for help.
 > db.help() > db.towns.help()
 
-Day 1: CRUD and Nesting · 139
+Day 1: CRUD and Nesting ï¿½ 139
 
 4d 0a d9 75 bb 30 77 32 66 f3 9f e3
 
@@ -3444,7 +3444,7 @@ var tmp = obj; obj = {_id:new ObjectId}; for (var key in tmp) {
 obj[key] = tmp[key]; } } this._mongo.insert(this._fullName, obj); this._lastID = obj._id; }
 Let's populate a few more documents into our towns collection by creating our own JavaScript function.
 
-140 · Chapter 5. MongoDB
+140 ï¿½ Chapter 5. MongoDB
 mongo/insert_city.js function insertCity(
 name, population, last_census, famous_for, mayor_info ){ db.towns.insert({
 name:name, population:population, last_census: ISODate(last_census), famous_for:famous_for, mayor : mayor_info }); }
@@ -3461,7 +3461,7 @@ db.towns.find({ "_id" : ObjectId("4d0ada1fbb30773266f39fe4") })
 }
 The find() function also accepts an optional second parameter: a fields object we can use to filter which fields are retrieved. If we want only the town name (along with _id), pass in name with a value resolving to 1 (or true).
 
-Day 1: CRUD and Nesting · 141
+Day 1: CRUD and Nesting ï¿½ 141
 db.towns.find({ _id : ObjectId("4d0ada1fbb30773266f39fe4") }, { name : 1 })
 { "_id" : ObjectId("4d0ada1fbb30773266f39fe4"), "name" : "Punxsutawney"
 }
@@ -3479,7 +3479,7 @@ var population_range = {} population_range['$lt'] = 1000000 population_range['$g
 { "_id" : ObjectId("4d0ada87bb30773266f39fe5"), "name" : "Portland" }
 2. http://www.pcre.org/
 
-142 · Chapter 5. MongoDB
+142 ï¿½ Chapter 5. MongoDB
 We are not limited to number ranges but can also retrieve date ranges. We can find all names with a last_census less than or equal to January 31, 2008, like this:
 db.towns.find( { last_census : { $lte : ISODate('2008-31-01') } }, { _id : 0, name: 1 }
 )
@@ -3503,7 +3503,7 @@ db.towns.find( { famous_for : { $nin : ['food', 'beer'] } }, { _id : 0, name : 1
 )
 { "name" : "Punxsutawney", "famous_for" : [ "phil the groundhog" ] }
 
-Day 1: CRUD and Nesting · 143
+Day 1: CRUD and Nesting ï¿½ 143
 But the true power of Mongo stems from its ability to dig down into a document and return the results of deeply nested subdocuments. To query a subdocument, your field name is a string separating nested layers with a dot. For instance, you can find towns with independent mayors...
 db.towns.find( { 'mayor.party' : 'I' }, { _id : 0, name : 1, mayor : 1 }
 )
@@ -3521,7 +3521,7 @@ db.countries.insert({ _id : "us", name : "United States", exports : { foods : [ 
 _id : "ca", name : "Canada", exports : {
 foods : [
 
-144 · Chapter 5. MongoDB
+144 ï¿½ Chapter 5. MongoDB
 
 { name : "bacon", tasty : false }, { name : "syrup", tasty : true } ] } }) db.countries.insert({ _id : "mx", name : "Mexico", exports : { foods : [{ name : "salsa", tasty : true, condiment : true }] } })
 
@@ -3545,7 +3545,7 @@ db.countries.find( { 'exports.foods' : { $elemMatch : { name : 'bacon', tasty : 
 
 { "name" : "United States" }
 
-Day 1: CRUD and Nesting · 145
+Day 1: CRUD and Nesting ï¿½ 145
 $elemMatch criteria can utilize advanced operators, too. You can find any country that exports a tasty food that also has a condiment label:
 db.countries.find( { 'exports.foods' : { $elemMatch : { tasty : true, condiment : { $exists : true } } } }, { _id : 0, name : 1 }
 )
@@ -3560,7 +3560,7 @@ db.countries.find( { $or : [ { _id : "mx" }, { name : "United States" } ] }, { _
 { "_id" : "us" } { "_id" : "mx" }
 There are so many operators we can't cover them all here, but we hope this has given you a taste of MongoDB's powerful query ability. The following is is not a complete list of the commands but a good chunk of them.
 
-146 · Chapter 5. MongoDB
+146 ï¿½ Chapter 5. MongoDB
 
 Command
 
@@ -3640,7 +3640,7 @@ The update(criteria,operation) function requires two parameters. The first is a 
 db.towns.update( { _id : ObjectId("4d0ada87bb30773266f39fe5") }, { $set : { "state" : "OR" } }
 );
 
-Day 1: CRUD and Nesting · 147
+Day 1: CRUD and Nesting ï¿½ 147
 You may wonder why the $set operation is even required. Mongo doesn't think in terms of attributes; it has only an internal, implicit understanding of attributes for optimization reasons. But nothing about the interface is attribute-oriented. Mongo is document-oriented. You will rarely want something like this (notice the lack of $set operation):
 db.towns.update( { _id : ObjectId("4d0ada87bb30773266f39fe5") }, { state : "OR" }
 );
@@ -3654,7 +3654,7 @@ db.towns.update( { _id : ObjectId("4d0ada87bb30773266f39fe5") }, { $inc : { popu
 )
 There are more directives than this, such as the $ positional operator for arrays. New operations are added frequently and are updated in the online documentation. Here are the major directives:
 
-148 · Chapter 5. MongoDB
+148 ï¿½ Chapter 5. MongoDB
 
 Command Description
 
@@ -3698,7 +3698,7 @@ The last two queries are equivalent; the second is just a bit more data-driven.
 Deleting
 Removing documents from a collection is simple. Merely replace the find function with a call to remove(), and all matched criteria will be removed. It's
 
-Day 1: CRUD and Nesting · 149
+Day 1: CRUD and Nesting ï¿½ 149
 Spelling Bee Warning
 Mongo is not very friendly when it comes to misspellings. If you haven't run across this problem yet, you probably will at some point, so be warned. You can draw parallels between static and dynamic programming languages. You define static up front, while dynamic will accept values you may not have intended, even nonsensical types like person_name = 5.
 Documents are schemaless, so Mongo has no way of knowing if you intended on inserting pipulation into your city or meant to querying on lust_census; it will happily insert those fields or return no matching values.
@@ -3711,7 +3711,7 @@ var bad_bacon = { 'exports.foods' : { $elemMatch : { name : 'bacon', tasty : fal
 }
 Everything looks good. Let's remove it.
 
-150 · Chapter 5. MongoDB
+150 ï¿½ Chapter 5. MongoDB
 db.countries.remove( bad_bacon ) db.countries.count()
 2
 Now when you run count(), verify we are left with only two countries. If so, our delete was successful!
@@ -3729,7 +3729,7 @@ A word of warning: Mongo will brutishly run this function against each document,
 Day 1 Wrap-Up
 Today we took a peek at our first document database, MongoDB. We saw how we can store nested structured data as JSON objects and query that data at any depth. You learned that a document can be envisioned as a schemaless row in the relational model, keyed by a generated _id. A set of documents is called a collection in Mongo, similar to a table in PostgreSQL.
 
-Day 2: Indexing, Grouping, Mapreduce · 151
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 151
 Unlike the previous styles we've encountered, with collections of sets of simple datatypes, Mongo stores complex, denormalized documents, stored and retrieved as collections of arbitrary JSON structures. Mongo tops off this flexible storage strategy with a powerful query mechanism not constrained by any predefined schema.
 Its denormalized nature makes a document datastore a superb choice for storing data with unknown qualities, while other styles (such as relational or columnar) prefer you know in advance and require schema migrations to add or edit fields.
 Day 1 Homework
@@ -3744,7 +3744,7 @@ Do 1. Print a JSON document containing { "hello" : "world" }.
 5.3 Day 2: Indexing, Grouping, Mapreduce
 Increasing MongoDB's query performance is the first item on today's docket, followed by some more powerful and complex grouped queries. Finally, we'll round out the day with some data analysis using mapreduce, similar to what we did with Riak.
 
-152 · Chapter 5. MongoDB
+152 ï¿½ Chapter 5. MongoDB
 Indexing: When Fast Isn't Fast Enough
 One of Mongo's useful built-in features is indexing to increase query performance--something, as we've seen, that's not available on all NoSQL databases. MongoDB provides several of the best data structures for indexing, such as the classic B-tree, and other additions such as two-dimensional and spherical GeoSpatial indexes.
 For now we're going to do a little experiment to see the power of MongoDB's B-tree index by populating a series of phone numbers with a random country prefix (feel free to replace this code with your own country code). Enter the following code into your console. This will generate 100,000 phone numbers (it may take a while), between 1-800-555-0000 and 1-800-565-9999.
@@ -3759,7 +3759,7 @@ Whenever a new collection is created, Mongo automatically creates an index by th
 db.system.indexes.find()
 { "name" : "_id_", "ns" : "book.phones", "key" : { "_id" : 1 } }
 
-Day 2: Indexing, Grouping, Mapreduce · 153
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 153
 Most queries will include more fields than just the _id, so we need to make indexes on those fields.
 We're going to create a B-tree index on the display field. But first, let's verify that the index will improve speed. To do this, we'll first check a query without an index. The explain() method is used to output details of a given operation.
 db.phones.find({display: "+1 800-5650001"}).explain()
@@ -3774,7 +3774,7 @@ db.phones.find({ display: "+1 800-5650001" }).explain()
 { "cursor" : "BtreeCursor display_1", "nscanned" : 1, "nscannedObjects" : 1, "n" : 1, "millis" : 0, "indexBounds" : { "display" : [ [ "+1 800-5650001", "+1 800-5650001" ] ] }
 }
 
-154 · Chapter 5. MongoDB
+154 ï¿½ Chapter 5. MongoDB
 The millis value changed from 52 to 0--an infinity improvement (52 / 0)! Just kidding, but it is an orders of magnitude speedup. Also notice the cursor changed from a Basic to a B-tree cursor (it's called a cursor because it points to where values are stored; it doesn't contain them). Mongo is no longer doing a full collection scan but instead walking the tree to retrieve the value. Importantly, scanned objects dropped from 109999 to 1--since it has become just a unique lookup.
 explain() is a useful function, but you'll use it only when testing specific query calls. If you need to profile in a normal test or production environment, you'll need the system profiler.
 Let's set the profiling level to 2 (level 2 stores all queries; profiling level 1 stores only slower queries greater than 100 milliseconds) and then run find() as normal.
@@ -3787,7 +3787,7 @@ Like yesterday's nested queries, Mongo can build your index on nested values. If
 db.phones.ensureIndex({ "components.area": 1 }, { background : 1 })
 If we find() all of the system indexes for our phones collection, the new one should appear last. The first index is always automatically created to quickly look up by _id, and the second is the unique index we made previously.
 
-Day 2: Indexing, Grouping, Mapreduce · 155
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 155
 db.system.indexes.find({ "ns" : "book.phones" })
 { "name" : "_id_", "ns" : "book.phones", "key" : { "_id" : 1 }
 } {
@@ -3795,13 +3795,13 @@ db.system.indexes.find({ "ns" : "book.phones" })
 Our book.phones indexes have rounded out quite nicely.
 We should close this section by noting that creating an index on a large collection can be slow and resource-intensive. You should always consider these impacts when building an index by creating indexes off-peak times, running index creation in the background, and running them manually rather than using automated index creation. There are plenty more indexing tricks and tips online, but these are the basics that are good to know.
 Aggregated Queries
-The queries we investigated yesterday are useful for basic extraction of data, but any post-processing would be up to you to handle. For example, say we wanted to count the phone numbers greater than 559­9999; we would prefer the database perform such a count on the back end. Like in PostgreSQL, count() is the most basic aggregator. It takes a query and returns a number (of matches).
+The queries we investigated yesterday are useful for basic extraction of data, but any post-processing would be up to you to handle. For example, say we wanted to count the phone numbers greater than 559ï¿½9999; we would prefer the database perform such a count on the back end. Like in PostgreSQL, count() is the most basic aggregator. It takes a query and returns a number (of matches).
 db.phones.count({'components.number': { $gt : 5599999 } })
 50000
 To see the power of the next few aggregating queries, let's add another 100,000 phone numbers to our phones collection, this time with a different area code.
 populatePhones( 855, 5550000, 5650000 )
 
-156 · Chapter 5. MongoDB
+156 ï¿½ Chapter 5. MongoDB
 Change Is Good
 Aggregated queries return a structure other than the individual documents we're used to. count() aggregates the result into a count of documents, distinct() aggregates the results into an array of results, and group() returns documents of its own design. Even mapreduce generally takes a bit of effort to retrieve objects that resemble your internal stored documents.
 
@@ -3839,7 +3839,7 @@ You can easily replicate the count() function with the following group() call. H
 
 db.phones.group({ initial: { count:0 }, reduce: function(phone, output) { output.count++; },
 
-Day 2: Indexing, Grouping, Mapreduce · 157
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 157
 
 cond: })
 
@@ -3860,7 +3860,7 @@ db.phones.group({ initial: { prefixes : {} }, reduce: function(phone, output) { 
 
 The group() function is powerful--like SQL's GROUP BY--but Mongo's implementation has a downside, too. First, you are limited to a result of 10,000 documents. Moreover, if you shard your Mongo collection (which we will tomorrow) group() won't work. There are also much more flexible ways of crafting queries. For these and other reasons, we'll dive into MongoDB's version of mapreduce in just a bit. But first, we'll touch on the boundary between clientside and server-side commands, which is a distinction that has important consequences for your applications.
 
-158 · Chapter 5. MongoDB
+158 ï¿½ Chapter 5. MongoDB
 Server-Side Commands
 If you were to run the following function through a command line (or through a driver), the client will pull each phone locally, all 100,000 of them, and save each phone document one by one to the server.
 mongo/update_area.js update_area = function() {
@@ -3876,7 +3876,7 @@ On running listCommands(), you may notice a lot of commands we've used. In fact,
 > db.runCommand({ "count" : "phones" }) { "n" : 100000, "ok" : 1 }
 The number (n) returned is correct (100,000), but the format is an object with an ok field. That's because db.phones.count() is a wrapper function created for our convenience by the shell's JavaScript interface, whereas runCommand() is
 
-Day 2: Indexing, Grouping, Mapreduce · 159
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 159
 a count executed on the server. Remember that we can play detective on how a function like count() works by leaving off the calling parentheses.
 > db.phones.count function (x) {
 return this.find(x).count(); }
@@ -3894,10 +3894,10 @@ It turns out that runCommand() is also a helper function that wraps a call to a 
 > db.$cmd.findOne({'count' : 'phones'}) { "n" : 100000, "ok" : 1 }
 This is bare-metal and how drivers generally communicate to the Mongo server.
 
-160 · Chapter 5. MongoDB
+160 ï¿½ Chapter 5. MongoDB
 Diversion We took this diversion for two reasons:
-· To drive home the idea that most of the magic you execute on the mongo console is executed on the server, not the client, which just provides convenient wrapper functions.
-· We can leverage the concept of executing server-side code for our own gain to create something in MongoDB that's similar to the stored procedures we saw in PostgreSQL.
+ï¿½ To drive home the idea that most of the magic you execute on the mongo console is executed on the server, not the client, which just provides convenient wrapper functions.
+ï¿½ We can leverage the concept of executing server-side code for our own gain to create something in MongoDB that's similar to the stored procedures we saw in PostgreSQL.
 Any JavaScript function can be stored in a special collection named system.js. This is a normal collection; you just save the function by setting the name as the _id, and value is the function object.
 > db.system.js.save({ _id:'getLast', value:function(collection){ return collection.find({}).sort({'_id':1}).limit(1)[0] }
 })
@@ -3909,7 +3909,7 @@ It's worth mentioning that eval() blocks the mongod as it runs, so it's mainly u
 Mapreduce (and Finalize)
 The Mongo mapreduce pattern is similar to Riak's, with a few small differences. Rather than the map() function returning a converted value, Mongo requires your mapper to call an emit() function with a key. The benefit here is that you can emit more than once per document. The reduce() function accepts a single key and a list of values that were emitted to that key. Finally, Mongo provides an optional third step called finalize(), which is executed only once per mapped value after the reducers are run. This allows you to perform any final calculations or cleanup you may need.
 
-Day 2: Indexing, Grouping, Mapreduce · 161
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 161
 Since we already know the basics of mapreduce, we'll skip the intro wadingpool example and go right to the high-dive. Let's generate a report that counts all phone numbers that contain the same digits for each country. First we'll store a helper function that extracts an array of all distinct numbers (understanding how this helper works is not imperative to understanding the overall mapreduce).
 mongo/distinct_digits.js distinctDigits = function(phone){
 var number = phone.components.number + '', seen = [], result = [], i = number.length;
@@ -3924,7 +3924,7 @@ db.eval("distinctDigits(db.phones.findOne({ 'components.number' : 5551213 }))")
 [ 1, 2, 3, 5 ]
 Now we can get to work on the mapper. As with any mapreduce function, deciding what fields to map by is a crucial decision, since it dictates the aggregated values that you return. Since our report is finding distinct numbers, the array of distinct values is one field. But since we also need to query by country, that is another field. We add both values as a compound key: {digits : X, country : Y}.
 
-162 · Chapter 5. MongoDB
+162 ï¿½ Chapter 5. MongoDB
 
 Our goal is to simply count these values, so we emit the value 1 (each document represents one item to count). The reducer's job is to sum all those 1s together.
 
@@ -3956,7 +3956,7 @@ Since we set the collection name via the out parameter (out : 'phones.report'), 
 > db.phones.report.find({'_id.country' : 8}) {
 "_id" : { "digits" : [ 0, 1, 2, 3, 4, 5, 6 ], "country" : 8 }, "value" : { "count" : 19 } } { "_id" : { "digits" : [ 0, 1, 2, 3, 5 ], "country" : 8 }, "value" : { "count" : 3 } } { "_id" : { "digits" : [ 0, 1, 2, 3, 5, 6 ], "country" : 8 }, "value" : { "count" : 48 } } { "_id" : { "digits" : [ 0, 1, 2, 3, 5, 6, 7 ], "country" : 8 }, "value" : { "count" : 12 } } has more
 
-Day 2: Indexing, Grouping, Mapreduce · 163
+Day 2: Indexing, Grouping, Mapreduce ï¿½ 163
 Type it to continue iterating through the results. Note the unique emitted keys are under the field _ids, and all of the data returned from the reducers are under the field value.
 If you prefer that the mapreducer just output the results, rather than outputting to a collection, you can set the out value to { inline : 1 }, but bear in mind there is a limit to the size of a result you can output. As of Mongo 2.0, that limit is 16MB.
 Recall from the Riak chapter that reducers can have either mapped (emitted) results or other reducer results as inputs. Why would the output of one reducer feed into the input of another if they are mapped to the same key? Think of how this would look if run on separate servers, as shown in Figure 22, A Mongo map reduce call over two servers, on page 164.
@@ -3970,7 +3970,7 @@ However, Mongo predicted that you might need to perform some final changes, such
 Day 2 Wrap-Up
 On Day 2 we've expanded our query power by including several aggregate queries: count(), distinct(), and topped off by group(). To speed up the response time of these queries, we used MongoDB's indexing options. When more power is required, the ever-present mapReduce() is available.
 
-164 · Chapter 5. MongoDB
+164 ï¿½ Chapter 5. MongoDB
 db.runCommand({'mapReduce'...}) mongos
 reduce
 
@@ -3999,7 +3999,7 @@ functions: help(), findOne(), and stats().
 Do 1. Implement a finalize method to output the count as the total. 2. Install a Mongo driver for a language of your choice, and connect to the
 database. Populate a collection through it, and index one of the fields.
 
-Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS · 165
+Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS ï¿½ 165
 5.4 Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS
 Mongo has a powerful ability to store and query data in a variety of ways. But then again, so can other databases. What makes document databases unique is their ability to efficiently handle arbitrarily nested, schemaless data documents. What makes Mongo special in the realm of document stores is its ability to scale across several servers, by replicating (copying data to other servers) or sharding collections (splitting a collection into pieces) and performing queries in parallel. Both promote availability.
 Replica Sets
@@ -4008,7 +4008,7 @@ $ mkdir ./mongo1 ./mongo2 ./mongo3
 Next we'll fire up the Mongo servers. This time we'll add the replSet flag with the name book and specify the ports. While we're at it, let's turn on the REST flag so we can use the web interface.
 $ mongod --replSet book --dbpath ./mongo1 --port 27011 --rest
 
-166 · Chapter 5. MongoDB
+166 ï¿½ Chapter 5. MongoDB
 Open another terminal window, and run the next command, which launches another server, pointing to a different directory, available on another port. Then open a third terminal to start the third server.
 $ mongod --replSet book --dbpath ./mongo2 --port 27012 --rest $ mongod --replSet book --dbpath ./mongo3 --port 27013 --rest
 Notice that you get a lot of this noise on the output.
@@ -4025,7 +4025,7 @@ PRIMARY will be the master server. Chances are, this will be the server on port 
 > db.echo.insert({ say : 'HELLO!' })
 After the insert, exit the console, and then let's test that our change has been replicated by shutting down the master node; pressing CTRL+C is sufficient. If you watch the logs of the remaining two servers, you should see that one of the two has now been promoted to master (it will output the replSet PRIMARY
 
-Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS · 167
+Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS ï¿½ 167
 line). Open a console into that machine (for us it was localhost:27012), and db.echo.find() should contain your value.
 We'll play one more round of our console-shuffle game. Open a console into the remaining SECONDARY server. Just to be sure, run the isMaster() function. Ours looked like this:
 $ mongo localhost:27013 MongoDB shell version: 1.6.2 connecting to: localhost:27013/test > db.isMaster() {
@@ -4038,7 +4038,7 @@ Replicating data has its own issues not found in single-source databases. In the
 [ReplSetHealthPollTask] replSet info localhost:27012 is now down (or... [rs Manager] replSet can't see a majority, will not try to elect self
 This comes down to the Mongo philosophy of server setups and the reason we should always have an odd number of servers (three, five, and so on).
 
-168 · Chapter 5. MongoDB
+168 ï¿½ Chapter 5. MongoDB
 Go ahead and relaunch the other servers and watch the logs. When the nodes are brought back up, they go into a recovery state and attempt to resync their data with the new master node. "What a minute!?" (we hear you cry). "So, what if the original master had data that did not yet propagate?" Those operations are dropped. A write in a Mongo replica set isn't considered successful until most nodes have a copy of the data.
 The Problem with Even Nodes
 The concept of replication is easy enough to grasp: you write to one MongoDB server, and that data is duplicated across others within the replica set. If one server is unavailable, then one of the others can be promoted and serve requests. But there are more ways a server can be unavailable than a server crash. Sometimes, the network connection between nodes is down. In that case, Mongo dictates that a majority of nodes that can still communicate make up the network.
@@ -4047,18 +4047,18 @@ To see why an odd number of nodes is preferred, consider what might happen to a 
 Some databases (e.g., CouchDB) are built to allow multiple masters, but Mongo is not, and so it isn't prepared to resolve data updates between them. MongoDB deals with conflicts between multiple masters by simply not allowing them.
 Unlike, say, Riak, Mongo always knows the most recent value; the client needn't decide. Mongo's concern is strong consistency on writes, and preventing a multimaster scenario is not a bad method for achieving it.
 
-Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS · 169
+Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS ï¿½ 169
 Voting and Arbiters
 You may not always want to have an odd number of servers replicating data. In that case, you can either launch an arbiter (generally recommended) or increase voting rights on your servers (generally not recommended). In Mongo, an arbiter is a voting but nonreplicating server in the replica set. You launch it just like any other server, but on configuration set a flag, like this: {_id: 3, host: 'localhost:27013', arbiterOnly : true}. Arbiters are useful for breaking ties, like the U.S. vice president in the Senate. By default each mongod instance has a single vote.
 Sharding
 One of the central reasons for Mongo to exist is to safely and quickly handle very large datasets. The clearest method of achieving this is through horizontal sharding by value ranges--or just sharding for brevity. Rather than a single server hosting all values in a collection, some range of values are split (or in other words, sharded) onto other servers. For example, in our phone numbers collection, we may put all phone numbers less than 1-500-000-0000 onto Mongo server A and put numbers greater than or equal to 1-500-000-0001 onto a server B. Mongo makes this easier by autosharding, managing this division for you.
 Let's launch a couple of (nonreplicating) mongod servers. Like replica sets, there's a special parameter necessary to be considered a shard server (which just means this server is capable of sharding).
 $ mkdir ./mongo4 ./mongo5 $ mongod --shardsvr --dbpath ./mongo4 --port 27014 $ mongod --shardsvr --dbpath ./mongo5 --port 27015
-Now we need a server to actually keep track of our keys. Imagine we created a table to store city names alphabetically. We need some way to know that (for example) cities starting with A­N go to server mongo4 and O­Z go to server mongo5. In Mongo you create a config server (which is just a regular mongod) that keeps track of which server (mongo4 or mongo5) owns what values.
+Now we need a server to actually keep track of our keys. Imagine we created a table to store city names alphabetically. We need some way to know that (for example) cities starting with Aï¿½N go to server mongo4 and Oï¿½Z go to server mongo5. In Mongo you create a config server (which is just a regular mongod) that keeps track of which server (mongo4 or mongo5) owns what values.
 $ mkdir ./mongoconfig $ mongod --configsvr --dbpath ./mongoconfig --port 27016
 Finally, we need to run a fourth server called mongos, which is the single point of entry for our clients. The mongos server will connect to the mongoconfig config server to keep track of the sharding information stored there. We'll set it on port 27020 with a chunkSize of 1. (Our chunkSize is 1MB, which is the smallest value allowed. This is just for our small dataset, so we can watch sharding
 
-170 · Chapter 5. MongoDB
+170 ï¿½ Chapter 5. MongoDB
 mongos vs. mongoconfig
 You may wonder why Mongo separates configuration and the mongos point of entry into two different servers. This is because in production environments they will generally live on different physical servers. The config server (itself replicated) manages the sharded information for other sharded servers, while mongos will likely live on your local application server where clients can easily connect (without needing to manage which shards to connect to).
 take place. In production you'd use the default or a much bigger number.) We point mongos to the config server:port with the --configdb flag.
@@ -4071,7 +4071,7 @@ With that set up, now we have to give it the database and collection to shard an
 With all that setup out of the way, let's load some data. If you download the book code, you'll find a 12MB data file named mongo_cities1000.json that contains data for every city in the world with a population of more than 1,000 people. Download that file, and run the following import script that imports the data into our mongos server:
 $ mongoimport -h localhost:27020 -db test --collection cities \ --type json mongo_cities1000.json
 
-Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS · 171
+Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS ï¿½ 171
 clients
 
 mongos
@@ -4092,7 +4092,7 @@ The core of the geospatial secret lies in indexing. It's a special form of index
 If we were not dealing with a sharded collection, we could easily query for cities at or near a location. However, the following will work only with nonsharded collections in our current version of Mongo.
 > db.cities.find({ location : { $near : [45.52, -122.67] } }).limit(5)
 
-172 · Chapter 5. MongoDB
+172 ï¿½ Chapter 5. MongoDB
 This should be patched in future versions for sharded collections. But in the meantime, to query a sharded cities collection for other cities near a location, use the geoNear() command. Here is a sample of what it can return:
 > db.runCommand({geoNear : 'cities', near : [45.52, -122.67], num : 5, maxDistance : 1})
 { "ns" : "test.cities", "near" : "1000110001000000011100101011100011001001110001111110", "results" : [ { "dis" : 0.007105400003747849, "obj" : { "_id" : ObjectId("4d81c216a5d037634ca98df6"), "name" : "Portland", ... } }, ... ], "stats" : { "time" : 0, "btreelocs" : 53, "nscanned" : 49, "objectsLoaded" : 6, "avgDistance" : 0.02166813996454613, "maxDistance" : 0.07991909980773926 }, "ok" : 1
@@ -4102,7 +4102,7 @@ GridFS
 One downside of a distributed system can be the lack of a single coherent filesystem. Say you operate a website where users can upload images of themselves. If you run several web servers on several different nodes, you must manually replicate the uploaded image to each web server's disk or create some alternative central system. Mongo handles this scenario by its own distributed filesystem called GridFS.
 Mongo comes bundled with a command-line tool for interacting with the GridFS. The great thing is we don't have to set up anything special to use it. If we list the files in the mongos managed shards using the command mongofiles, we get an empty list.
 
-Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS · 173
+Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS ï¿½ 173
 
 $ mongofiles -h localhost:27020 list
 
@@ -4140,7 +4140,7 @@ Day 3 Homework
 
 Find 1. Read the full replica set configuration options in the online docs. 2. Find out how to create a spherical geo index.
 
-174 · Chapter 5. MongoDB
+174 ï¿½ Chapter 5. MongoDB
 Do 1. Mongo has support for bounding shapes (namely, squares and circles).
 Find all cities within a 50-mile box around the center of London.3
 2. Run six servers: three servers in a replica set, and each replica set is one of two shards. Run a config server and mongos. Run GridFS across them (this is the final exam).
@@ -4154,7 +4154,7 @@ How Mongo encourages denormalization of schemas (by not having any) might be a b
 Because Mongo is focused on large datasets, it works best in large clusters, which can require some effort to design and manage. Unlike Riak, where
 3. http://www.mongodb.org/display/DOCS/Geospatial+Indexing
 
-Wrap-Up · 175
+Wrap-Up ï¿½ 175
 adding new nodes is transparent and relatively painless for operations, setting up a Mongo cluster requires a little more forethought.
 Parting Thoughts
 Mongo is an excellent choice if you are currently using a relational database to store your data through an ORM out of habit. We often recommend it to Rails, Django, and Model-View-Controller (MVC) developers, since they can then perform validations and field management through the models at the application layer and because schema migrations become a thing of the past (for the most part). Adding new fields to a document is as easy as adding a new field to your data model, and Mongo will happily accept the new terms. We find Mongo to be a much more natural answer to many common problem scopes for application-driven datasets than relational databases.
@@ -4167,7 +4167,7 @@ Somewhat like MongoDB, CouchDB stores documents--JSON objects consisting of key-
 6.1 Relaxing on the Couch
 CouchDB lives up to its tag line: relax. Instead of focusing only on big-iron cluster installations, CouchDB aims to support a variety of deployment scenarios from the datacenter down to the smartphone. You can run CouchDB on your Android phone, on your MacBook, and in your datacenter. Written in Erlang, CouchDB is heartily built--the only way to shut it down is to kill the process! With its append-only storage model, your data is virtually incorruptible and easy to replicate, back up, and restore.
 
-178 · Chapter 6. CouchDB
+178 ï¿½ Chapter 6. CouchDB
 CouchDB is document-oriented, using JSON as its storage and communication language. Like Riak, all calls to CouchDB happen over its REST interface. Replication can be one-way or bidirectional and ad hoc or continuous. CouchDB gives you a lot of flexibility to decide how to structure, protect, and distribute your data.
 Comparing CouchDB and MongoDB
 One of the big questions we wanted to address in this book is "What's the difference between CouchDB and MongoDB?" On the surface, CouchDB and MongoDB--which we covered in Chapter 5, MongoDB, on page 135--can seem quite similar. They're both document-oriented datastores with an affinity for JavaScript that use JSON for data transport. There are many differences, though, ranging from project philosophy to implementation to scalability characteristics. We'll cover many of these as we explore the beautiful simplicity of CouchDB.
@@ -4178,11 +4178,11 @@ Getting Comfortable with Futon
 CouchDB comes with a useful web interface called Futon. Once you have CouchDB installed and running, open a web browser to http://localhost:5984/_utils/. This will open the Overview page pictured in Figure 24, CouchDB Futon: Overview page, on page 179.
 Before we can start working with documents, we need to create a database to house them. We're going to create a database to store musicians along with
 
-Day 1: CRUD, Futon, and cURL Redux · 179
+Day 1: CRUD, Futon, and cURL Redux ï¿½ 179
 Figure 24--CouchDB Futon: Overview page
 Figure 25--CouchDB Futon: creating a document their album and track data. Click the Create Database... button. In the popup, enter music and click Create. This will redirect you automatically to the database's page. From here, we can create new documents or open existing ones. On the music database's page, click the New Document button. This will take you to a new page that looks like Figure 25, CouchDB Futon: creating a document, on page 179.
 
-180 · Chapter 6. CouchDB
+180 ï¿½ Chapter 6. CouchDB
 Welcome to Admin Party!
 In Futon, you may notice the warning at the bottom of the right column explaining that everyone is an admin. Were this destined to become a production server, your next step would be to click the "Fix this" link and create an admin user to restrict who can do what. In our case, leaving it open is fine for now and will make our other tasks easier.
 Just as in MongoDB, a document consists of a JSON object containing keyvalue pairs called fields. All documents in CouchDB have an _id field, which must be unique and can never be changed. You can specify an _id explicitly, but if you don't, CouchDB will generate one for you. In our case, the default is fine, so click Save Document to finish.
@@ -4192,7 +4192,7 @@ There are no transactions or locking in CouchDB. To modify an existing record, y
 With the document page still open, click the Add Field button. In the Field column, enter name, and in the Value column, enter The Beatles. Click the green check mark next to the value to ensure it sticks, and then click the Save Document button. Notice how the _rev field now begins with 2.
 CouchDB is not limited to storing string values. It can handle any JSON structure nested to any depth. Click the Add Field button again. This time, set Field to albums, and for Value enter the following (this is not an exhaustive list):
 
-Day 1: CRUD, Futon, and cURL Redux · 181
+Day 1: CRUD, Futon, and cURL Redux ï¿½ 181
 Figure 26--CouchDB Futon: document with an array value
 [ "Help!", "Sgt. Pepper's Lonely Hearts Club Band", "Abbey Road"
 ]
@@ -4203,7 +4203,7 @@ After you click Save Document, it should look like Figure 26, CouchDB Futon: doc
 }]
 After you save the document, this time you should be able to expand the albums value to expose the nested documents underneath. It should resemble Figure 27, CouchDB Futon: document with deep nested values, on page 182. Clicking the Delete Document button would do what you might expect; it would remove the document from the music database. But don't do it just yet. Instead, let's drop down to the command line and take a look at how to communicate with CouchDB over REST.
 
-182 · Chapter 6. CouchDB
+182 ï¿½ Chapter 6. CouchDB
 Figure 27--CouchDB Futon: document with deep nested values
 Performing RESTful CRUD Operations with cURL
 All communication with CouchDB is REST-based, and this means issuing commands over HTTP. CouchDB isn't the first database we've talked about with this quality. Riak--covered in Chapter 3, Riak, on page 51--also relies on REST for all client communication. And like we did with Riak, we can communicate with CouchDB using the command-line tool cURL. Here we'll perform some basic CRUD operations before moving on to the topic of views. To start, open a command prompt and run the following:
@@ -4212,7 +4212,7 @@ Issuing GET requests (cURL's default) retrieves information about the thing indi
 $ curl http://localhost:5984/music/ {
 "db_name":"music", "doc_count":1, "doc_del_count":0, "update_seq":4,
 
-Day 1: CRUD, Futon, and cURL Redux · 183
+Day 1: CRUD, Futon, and cURL Redux ï¿½ 183
 "purge_seq":0, "compact_running":false, "disk_size":16473, "instance_start_time":"1326845777510067", "disk_format_version":5, "committed_update_seq":4 }
 This returns some information about how many documents are in the database, how long the server has been up, and how many operations have been performed.
 Reading a Document with GET
@@ -4229,7 +4229,7 @@ To create a new document, use POST. Make sure to specify a Content-Type header w
 $ curl -i -X POST "http://localhost:5984/music/" \ -H "Content-Type: application/json" \ -d '{ "name": "Wings" }'
 HTTP/1.1 201 Created Server: CouchDB/1.1.1 (Erlang OTP/R14B03)
 
-184 · Chapter 6. CouchDB
+184 ï¿½ Chapter 6. CouchDB
 Location: http://localhost:5984/music/74c7a8d2a8548c8b97da748f43000f1b Date: Wed, 18 Jan 2012 00:37:51 GMT Content-Type: text/plain;charset=utf-8 Content-Length: 95 Cache-Control: must-revalidate
 { "ok":true, "id":"74c7a8d2a8548c8b97da748f43000f1b", "rev":"1-2fe1dd1911153eb9df8460747dfe75a0"
 }
@@ -4242,7 +4242,7 @@ HTTP/1.1 201 Created Server: CouchDB/1.1.1 (Erlang OTP/R14B03) Location: http://
 }
 Unlike MongoDB, in which you modify documents in place, with CouchDB you always overwrite the entire document to make any change. The Futon web interface we saw earlier may have made it look like you could modify a
 
-Day 1: CRUD, Futon, and cURL Redux · 185
+Day 1: CRUD, Futon, and cURL Redux ï¿½ 185
 single field in isolation, but behind the scenes it was rerecording the whole document when you hit Save.
 As we mentioned earlier, both the _id and _rev fields must exactly match the document being updated, or the operation will fail. To see how, try executing the same PUT operation again.
 HTTP/1.1 409 Conflict Server: CouchDB/1.1.1 (Erlang OTP/R14B03) Date: Wed, 18 Jan 2012 00:44:12 GMT Content-Type: text/plain;charset=utf-8 Content-Length: 58 Cache-Control: must-revalidate
@@ -4256,7 +4256,7 @@ HTTP/1.1 200 OK Server: CouchDB/1.1.1 (Erlang OTP/R14B03) Etag: "3-42aafb7411c09
 }
 The DELETE operation will supply a new revision number, even though the document is gone. It's worth noting that the document wasn't really removed from disk, but rather a new empty document was appended, flagging the document as deleted. Just like with an update, CouchDB does not modify documents in place. But for all intents and purposes, it's deleted.
 
-186 · Chapter 6. CouchDB
+186 ï¿½ Chapter 6. CouchDB
 Day 1 Wrap-Up
 Now that we've learned how to do basic CRUD operations in Futon and cURL, we're about ready to move onto more advanced topics. In Day 2 we'll dig into creating indexed views, which will provide other avenues for retrieving documents than just specifying them by their _id values.
 Day 1 Homework
@@ -4271,14 +4271,14 @@ In CouchDB, a view is a window into the documents contained in a database. Views
 Accessing Documents Through Views
 A view consists of mapper and reducer functions that are used to generate an ordered list of key-value pairs. Both keys and values can be any valid JSON. The simplest view is called _all_docs. It is provided out of the box for all databases and contains an entry for each document in the database, keyed by its string _id.
 
-Day 2: Creating and Querying Views · 187
+Day 2: Creating and Querying Views ï¿½ 187
 To retrieve all the things in the database, issue a GET request for the _all_docs view.
 $ curl http://localhost:5984/music/_all_docs {
 "total_rows":1, "offset":0, "rows":[{
 "id":"74c7a8d2a8548c8b97da748f43000ac4", "key":"74c7a8d2a8548c8b97da748f43000ac4", "value":{
 "rev":"4-93a101178ba65f61ed39e60d70c9fd97" } }] }
 You can see in the previous output the one document we've created so far. The response is a JSON object that contains an array of rows. Each row is an object with three fields:
-· id is the document's _id. · key is the JSON key produced by the mapreduce functions. · value is the associated JSON value, also produced through mapreduce.
+ï¿½ id is the document's _id. ï¿½ key is the JSON key produced by the mapreduce functions. ï¿½ value is the associated JSON value, also produced through mapreduce.
 In the case of _all_docs, the id and key fields match, but for custom views this will almost never be the case.
 By default, views won't include all of each document's content in the value returned. To retrieve all of the document's fields, add the include_docs=true URL parameter.
 $ curl http://localhost:5984/music/_all_docs?include_docs=true {
@@ -4288,7 +4288,7 @@ $ curl http://localhost:5984/music/_all_docs?include_docs=true {
 "_id":"74c7a8d2a8548c8b97da748f43000ac4", "_rev":"4-93a101178ba65f61ed39e60d70c9fd97", "name":"The Beatles", "albums":[{
 "title":"Help!", "year":1965 },{ "title":"Sgt. Pepper's Lonely Hearts Club Band",
 
-188 · Chapter 6. CouchDB
+188 ï¿½ Chapter 6. CouchDB
 "year":1967 },{
 "title":"Abbey Road", "year":1969 }] } }] }
 Here you can see that the other properties name and albums have been added to the value object in the output. With this basic structure in mind, let's make our own views.
@@ -4303,7 +4303,7 @@ name: "The Beatles", albums: [{title: "Help!", year: 1965}, {title: "Sgt. Pepper
 The secret to this output, and all views, is the emit() function (this works just like the MongoDB function of the same name). emit takes two arguments: the key and the value. A given map function may call emit one time, many times,
 1. http://localhost:5984/_utils/
 
-Day 2: Creating and Querying Views · 189
+Day 2: Creating and Querying Views ï¿½ 189
 
 Figure 28--CouchDB Futon: temporary view
 
@@ -4321,7 +4321,7 @@ Value
 
 Note that you don't have to use Futon to execute temporary views. You may also send a POST request to the _temp_view handler. In this case, you pass in your map function as a JSON object in the request body.
 
-190 · Chapter 6. CouchDB
+190 ï¿½ Chapter 6. CouchDB
 $ curl -X POST \ http://localhost:5984/music/_temp_view \ -H "Content-Type: application/json" \ -d '{"map":"function(doc){emit(doc._id,{rev:doc._rev});}"}'
 { "total_rows":1, "offset":0, "rows":[{ "id":"74c7a8d2a8548c8b97da748f43000ac4", "key":"74c7a8d2a8548c8b97da748f43000ac4", "value":{ "rev":"4-93a101178ba65f61ed39e60d70c9fd97" } }]
 }
@@ -4332,7 +4332,7 @@ $ curl -X POST \ http://localhost:5984/music/_temp_view?include_docs=true \ -H "
 This time, instead of integrating additional fields into the value object, a separate property called doc is added to the row result containing the full document.
 A custom view may emit any value, even null. Providing a separate doc property prevents problems that might otherwise arise with combining the row value with the document. Next, let's see how to save a view so that CouchDB can index the results.
 
-Day 2: Creating and Querying Views · 191
+Day 2: Creating and Querying Views ï¿½ 191
 Saving a View as a Design Document
 When CouchDB executes a temporary view, it must execute the provided map function for each and every document in the database. This is extremely resource-intensive, chewing up a lot of processing power, and it's slow. You should use temporary views only for development purposes. For production, you should store your views in design documents.
 A design document is a real document in the database, just like the Beatles document we created earlier. As such, it can show up in views and be replicated to other CouchDB servers in the usual fashion. To save a temporary view as a design document in Futon, click the Save As... button, and then fill in the Design Document and View Name fields.
@@ -4345,7 +4345,7 @@ if ('name' in doc) { emit(doc.name, doc._id);
 } }
 This function checks whether the current document has a name field and, if so, emits the name and document _id as the relevant key-value pair. This should produce a table like this:
 
-192 · Chapter 6. CouchDB
+192 ï¿½ Chapter 6. CouchDB
 
 Key
 
@@ -4389,7 +4389,7 @@ Just like we did with the Artists By Name view, click the Save As... button. Thi
 Querying Our Custom Artist and Album Views
 Now that we have a couple of custom design documents saved, let's jump back to the command line and query them with the curl command. We'll start with the Artists By Name view. On the command line, execute the following:
 
-Day 2: Creating and Querying Views · 193
+Day 2: Creating and Querying Views ï¿½ 193
 $ curl http://localhost:5984/music/_design/artists/_view/by_name {
 "total_rows":1, "offset":0, "rows":[{
 "id":"74c7a8d2a8548c8b97da748f43000ac4", "key":"The Beatles", "value":"74c7a8d2a8548c8b97da748f43000ac4" }] }
@@ -4401,7 +4401,7 @@ $ curl http://localhost:5984/music/_design/albums/_view/by_name {
 "by":"The Beatles", "album":{
 "title":"Abbey Road", "year":1969 } } },{ "id":"74c7a8d2a8548c8b97da748f43000ac4", "key":"Help!", "value":{ "by":"The Beatles", "album":{ "title":"Help!", "year":1965 } } },{ "id":"74c7a8d2a8548c8b97da748f43000ac4", "key":"Sgt. Pepper's Lonely Hearts Club Band", "value":{ "by":"The Beatles", "album":{ "title":"Sgt. Pepper's Lonely Hearts Club Band", "year":1967
 
-194 · Chapter 6. CouchDB
+194 ï¿½ Chapter 6. CouchDB
 } } }] }
 CouchDB will ensure that the records are presented in alphanumerical order by the emitted keys. In effect, this is the indexing that CouchDB offers. When designing your views, it's important to pick emitted keys that will make sense when ordered. Requesting a view in this fashion returns the whole set, but what if we want just a subset? One way to do that is to use the key URL parameter. When you specify a key, only rows with that exact key are returned.
 $ curl 'http://localhost:5984/music/_design/albums/_view/by_name?key="Help!"' {
@@ -4415,7 +4415,7 @@ Importing data is a recurring problem that you'll face no matter what database y
 We'll use music data from Jamendo.com,2 a site devoted to hosting freely licensed music. Jamendo provides all their artist, album, and track data in
 2. http://www.jamendo.com/
 
-Day 2: Creating and Querying Views · 195
+Day 2: Creating and Querying Views ï¿½ 195
 a structured XML format, making it ideal for importing into a documentoriented database like CouchDB.
 Head over to Jamendo's NewDatabaseDumps page3 and download dbdump_ artistalbumtrack.xml.gz.4 The zipped file is only about 15MB. To parse Jamendo's XML file, we'll use the libxml-ruby gem.
 Rather than writing our own Ruby-CouchDB driver or issuing HTTP requests directly, we'll use a popular Ruby gem called couchrest that wraps these calls into a convenient Ruby API. We'll be using only a few methods from the API, but if you want to continue using this driver for your own projects, the documentation is quite good.5
@@ -4435,7 +4435,7 @@ case element when 'artist'
 @artist = { :albums => [] }
 3. http://developer.jamendo.com/en/wiki/NewDatabaseDumps 4. http://img.jamendo.com/data/dbdump_artistalbumtrack.xml.gz 5. http://rdoc.info/github/couchrest/couchrest/master/
 
-196 · Chapter 6. CouchDB
+196 ï¿½ Chapter 6. CouchDB
 @stack.push @artist when 'album'
 @album = { :tracks => [] } @artist[:albums].push @album @stack.push @album when 'track' @track = { :tags => [] } @album[:tracks].push @track @stack.push @track when 'tag' @tag = {} @track[:tags].push @tag @stack.push @tag when 'Artists', 'Albums', 'Tracks', 'Tags' # ignore else @buffer = [] end end
  def on_characters(chars)
@@ -4447,7 +4447,7 @@ on_end_document end if @count % 500 == 0
 puts " #{@count} records inserted" end when 'album', 'track', 'tag' top = @stack.pop top[:random] = rand when 'Artists', 'Albums', 'Tracks', 'Tags' # ignore else if @stack[-1] && @buffer
 @stack[-1][element] = @buffer.join.force_encoding('utf-8') @buffer = nil end end end
 
-Day 2: Creating and Querying Views · 197
+Day 2: Creating and Querying Views ï¿½ 197
 def on_end_document() puts "TOTAL: #{@count} records inserted" exit(1)
 end end
  parser = XML::SaxParser.io(ARGF)
@@ -4460,7 +4460,7 @@ parser.callbacks = JamendoCallbacks.new parser.parse
  Much of the interesting stuff happens in the on_end_element() method. Here, we close out the current container element by popping it off the stack. If the tag closes an <artist> element, we take the opportunity to save off the document in CouchDB with the @db.save_doc() method. For any container element, we also add a random property containing a freshly generated random number. We'll use this later when selecting a random track, album, or artist.
  Ruby's ARGF stream combines standard input and any files specified on the command line. We feed this into LibXML and specify an instance of our JamendoCallbacks class to handle the tokens--start tags, end tags, and character data--as they're encountered.
 
-198 · Chapter 6. CouchDB
+198 ï¿½ Chapter 6. CouchDB
 To run the script, pipe the unzipped XML content into the import script:
 $ zcat dbdump_artistalbumtrack.xml.gz | ruby import_from_jamendo.rb TOTAL: 100 records inserted
 When the import has finished, drop back down to the command line, and we'll see how our views look. First let's pull up a few artists. The limit URL parameter specifies that we want only that number of documents in the response (or less).
@@ -4472,7 +4472,7 @@ $ curl http://localhost:5984/music/_design/artists/_view/by_name?\ startkey=%22C
 To get the rows in reverse order, use the descending URL parameter. Be sure to reverse your startkey and endkey as well.
 $ curl http://localhost:5984/music/_design/artists/_view/by_name?\ startkey=%22D%22\&endkey=%22C%22\&descending=true {"total_rows":100,"offset":16,"rows":[
 
-Day 2: Creating and Querying Views · 199
+Day 2: Creating and Querying Views ï¿½ 199
 {"id":"351138","key":"Compartir D\u00f3na Gustet","value":"351138"}, {"id":"272","key":"Chroma","value":"272"}, {"id":"353888","key":"carsten may","value":"353888"}, {"id":"340296","key":"CalexB","value":"340296"} ]}
 A number of other URL parameters are available for modifying view requests, but these are the most common and are the ones you'll reach for most often. Some of the URL parameters have to do with grouping, which comes from the reducer part of CouchDB mapreduce views. We'll explore these tomorrow.
 Day 2 Wrap-Up
@@ -4486,7 +4486,7 @@ artist by adding a property called random. Create a mapper function that will em
 2. Craft a cURL request that will retrieve a random artist.
 Hint: You'll need to use the startkey parameter, and you can produce a random number on the command line via `ruby -e 'puts rand'`.
 
-200 · Chapter 6. CouchDB
+200 ï¿½ Chapter 6. CouchDB
 3. The import script also added a random property for each album, track, and tag. Create three additional views in the _design/random design document with the view names album, track, and tag to match the earlier artist view.
 6.4 Day 3: Advanced Views, Changes API, and Replicating Data
 In Days 1 and 2 we learned how to perform basic CRUD operations and interact with views for finding data. Building on this experience, today we'll take a closer look at views, dissecting the reduce part of the mapreduce equation. After that, we'll develop some Node.js applications in JavaScript to leverage CouchDB's unique Changes API. Lastly, we'll discuss replication and how CouchDB handles conflicting data.
@@ -4500,7 +4500,7 @@ couchdb/tags_by_name_mapper.js function(doc) {
 This function digs into the artist document and then down into each album, each track, and finally each tag. For each tag, it emits a key-value pair consisting of the tag's idstr property (a string representation of the tag, like "rock") and the number 1.
 With the map function in place, enter the following under Reduce Function:
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 201
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 201
 
 couchdb/simple_count_reducer.js function(key, values, rereduce) {
 return sum(values); }
@@ -4571,7 +4571,7 @@ Value
 
 "autodidacta" 17
 
-202 · Chapter 6. CouchDB
+202 ï¿½ Chapter 6. CouchDB
 
 What happened? In short, the reducer reduced the output by combining like mapper rows in accordance with our Reducer Function. The CouchDB mapreduce engine works conceptually like the other mapreducers we've seen before (Riak's Introducing Mapreduce, on page 63, and MongoDB's Mapreduce (and Finalize), on page 160). Specifically, here's a high-level outline of the steps CouchDB takes to build a view:
 1. Send documents off to the mapper function.
@@ -4594,7 +4594,7 @@ reduce( [["ambient", id1], ["ambient", id2], ...], [1, 1, ...], false
 
 // keys are the same // values are all 1 // rereduce is false
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 203
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 203
 
 Recall that in our reducer function we take the sum() of values. Since they're all 1, the sum will simply be the length--effectively a count of how many tracks have the "ambient" tag. CouchDB keeps this return value for later processing. For the sake of this example, let's call that number 10.
 
@@ -4615,7 +4615,7 @@ Watching CouchDB for Changes
 CouchDB's incremental approach to mapreduce is an innovative feature, to be sure; it's one of many that set CouchDB apart from other databases. The next feature we'll investigate is the Changes API. This interface provides mechanisms for watching a database for changes and getting updates instantly.
 The Changes API makes CouchDB a perfect candidate for a system of record. Imagine a multidatabase system where data is streaming in from several directions and other systems need to be kept up-to-date (we'll actually do this in the next chapter, Section 8.4, Day 3: Playing with Other Databases, on
 
-204 · Chapter 6. CouchDB
+204 ï¿½ Chapter 6. CouchDB
 page 291). Examples might include a search engine backed by Lucene or ElasticSeach or a caching layer implemented on memcached or Redis. You could have different maintenance scripts kick off in response to changes too --performing tasks such as database compaction and remote backups. In short, this simple API opens up a world of possibilities. Today we'll learn how to harness it.
 To make use of the API, we're going to develop some simple client applications using Node.js.6 Node.js is a server-side JavaScript platform built on the V8 JavaScript engine--the same one used in Google's Chrome browser. Because Node.js is event-driven and code for it is written in JavaScript, it's a natural fit for integrating with CouchDB. If you don't already have Node.js, head over to the Node.js site and install the latest stable version (we use version 0.6).
 The three flavors of the Changes API are polling, long-polling, and continuous. We'll talk about each of these in turn. As always, we'll start with cURL to get close to the bare metal and then follow up with a programmatic approach.
@@ -4628,7 +4628,7 @@ $ curl http://localhost:5984/music/_changes {
 }], "last_seq":100 }
 6. http://nodejs.org/
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 205
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 205
 When you send a GET request for _changes with no other parameters, CouchDB will respond with everything it has. Just like accessing views, you can specify a limit parameter to request just a subset of the data, and adding include_docs=true will cause full documents to be returned.
 Typically you won't want all the changes from the beginning of time. You're more likely to want the changes that have occurred since you last checked. For this, use the since parameter.
 $ curl http://localhost:5984/music/_changes?since=99 {
@@ -4642,7 +4642,7 @@ Polling is a fine solution if your need for up-to-date changes can suffer delays
 If you want updates quicker, without incurring the overhead of reopening connections, then longpolling is a better option. When you specify the URL parameter feed=longpoll, CouchDB will leave the connection open for some time, waiting for changes to happen before finishing the response. Try this:
 $ curl 'http://localhost:5984/music/_changes?feed=longpoll&since=9000' {"results":[
 
-206 · Chapter 6. CouchDB
+206 ï¿½ Chapter 6. CouchDB
 You should see the beginning of a JSON response but nothing else. If you leave the terminal open long enough, CouchDB will eventually close the connection by finishing it:
 ], "last_seq":9000}
 From a development perspective, writing a driver that watches CouchDB for changes using polling is equivalent to writing one for longpolling. The difference is essentially just how long CouchDB is willing to leave the connection open. Now let's turn our attention to writing a Node.js application that watches and uses the change feed.
@@ -4659,7 +4659,7 @@ watcher.host = options.host || 'localhost'; watcher.port = options.port || 5984;
 return watcher;
 };
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 207
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 207
 // start watching CouchDB for changes if running as main script
  if (!module.parent) {
 exports.createWatcher({ db: process.argv[2], last_seq: process.argv[3]
@@ -4672,7 +4672,7 @@ exports.createWatcher({ db: process.argv[2], last_seq: process.argv[3]
 So far, there's nothing specific to CouchDB at all in this code. It's all just Node.js's way of doing things. This code may look foreign to you, especially if you haven't developed with an event-driven server technology before, but it's one we'll be using increasingly in this book going forward.
 With the skeleton in place, let's add the code to connect to CouchDB via longpolling and emit events. The following is just the code that goes inside the watcher.start() method. Written inside the previous outline (where the comment says feed-specific implementation), the new complete file should be called watch_changes_longpolling.js.
 
-208 · Chapter 6. CouchDB
+208 ï¿½ Chapter 6. CouchDB
 
 couchdb/watch_changes_longpolling_impl.js var
  http_options = {
@@ -4690,8 +4690,6 @@ buffer += chunk;
 });
 
 res.on('end', function() {
-
-
 
 var output = JSON.parse(buffer);
 
@@ -4728,7 +4726,7 @@ watcher.emit('error', err);
  Finally, when the response object emits an end event, we parse the buffer (which should contain JSON). From this we learn the new last_seq value, emit a change event, and then reinvoke watcher.start() to wait for the next change.
 To run this script in command-line mode, execute it like this (output truncated for brevity):
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 209
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 209
 $ node watch_changes_longpolling.js music { seq: 1,
 id: '370255', changes: [ { rev: '1-a7b7cc38d4130f0a5f3eae5d2c963d85' } ], doc:
 { _id: '370255', _rev: '1-a7b7cc38d4130f0a5f3eae5d2c963d85', albums: [ [Object] ], id: '370255', name: '""ATTIC""', url: 'http://www.jamendo.com/artist/ATTIC_(3)', mbgid: '', random: 0.4121620435325435 } }
@@ -4742,7 +4740,7 @@ $ curl 'http://localhost:5984/music/_changes?since=97&feed=continuous' {"seq":98
 Eventually, if no changes have happened for a while, CouchDB will close the connection after outputting a line like this:
 {"last_seq":100}
 
-210 · Chapter 6. CouchDB
+210 ï¿½ Chapter 6. CouchDB
 The benefit of this method over polling or longpolling is the reduced overhead that accompanies leaving the connection open. There's no time lost reestablishing the HTTP connections. On the other hand, the output isn't straight JSON, which means it's a bit more of a chore to parse. Also, it's not a good fit if your client is a web browser. A browser downloading the feed asynchronously might not receive any of the data until the entire connection finishes (better to use longpolling in this case).
 Filtering Changes As we've just seen, the Changes API provides a unique window into the goings on of a CouchDB database. On the plus side, it provides all the changes in a single stream. However, sometimes you may want just a subset of changes, rather than the fire hose of everything that has ever changed. For example, you may be interested only in document deletions or maybe only in documents that have a particular quality. This is where filter functions come in.
 A filter is a function that takes in a document (and request information) and makes a decision as to whether that document ought to be allowed through the filter. This is gated by the return value. Let's explore how this works. Considering our music database, most artist documents we've been inserting have a country property that contains a three-letter code. Say we were interested only in bands from Russia (RUS). Our filter function might look like the following:
@@ -4754,7 +4752,7 @@ function(doc, req) { return doc.country === req.query.country;
 }
 Notice this time how we're comparing the document's country property to a parameter of the same name passed in the request's query string. To see this in action, let's create a new design document just for geography-based filters and add it:
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 211
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 211
 $ curl -X PUT \ http://localhost:5984/music/_design/wherabouts \ -H "Content-Type: application/json" \ -d '{"language":"javascript","filters":{"by_country": "function(doc,req){return doc.country === req.query.country;}" }}'
 { "ok":true, "id":"_design/wherabouts", "rev":"1-c08b557d676ab861957eaeb85b628d74"
 }
@@ -4764,7 +4762,7 @@ Using filters, you have the power to set up a sort of pseudosharding, where only
 Since filter functions may contain arbitrary JavaScript, more sophisticated logic can be put into them. Testing for deeply nested fields would be similar to what we did for creating views. You could also use regular expressions for testing properties or compare them mathematically (for example, filtering by a date range). There's even a user context property on the request object (req.userCtx) you can use to find out more about the credentials provided with the request.
 We'll revisit Node.js and the CouchDB Changes API in Chapter 8, Redis, on page 261 when we build a multidatabase application. For now, though, it's time to move on to the last distinguishing feature of CouchDB we're going to cover: replication.
 
-212 · Chapter 6. CouchDB
+212 ï¿½ Chapter 6. CouchDB
 CouchDB or BigCouch?
 CouchDB's approach makes sense in a lot of use cases. It certainly fills a niche that the other databases we've discussed largely don't address. On the other hand, sometimes it's nice to selectively replicate data between nodes in order to capitalize on available disk space. That is, instead of having all nodes have all the data, keep only a certain number of copies. This is the N in NWR--discussed in Nodes/Writes/ Reads, on page 74.
 This isn't a feature that CouchDB offers out of the box, but don't worry! BigCouch has you covered. Developed and maintained by Cloudant, BigCouch offers a CouchDBcompatible interface (with only a few minor differencesa). Under the surface, though, it implements the sharding and replication strategy of a Dynamo-inspired database like Riak.
@@ -4776,7 +4774,7 @@ Each CouchDB server is equally able to receive updates, respond to requests, and
 Replication is the last major topic in CouchDB that we'll be discussing. First we'll see how to set up ad hoc and continuous replication between databases. Then we'll work through the implications of conflicting data and how to make applications capable of handling these cases gracefully.
 To begin, click the Replicator link in the Tools menu on the right side of the page. It should open a page that looks like Figure 29, CouchDB Futon: Replicator, on page 213. In the "Replicate changes from" dialog, choose music from the left drop-down menu and enter music-repl in the right-side slot. Leave the Continuous checkbox unchecked, and then click Replicate. Click OK to create
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 213
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 213
 Figure 29--CouchDB Futon: Replicator
 the music-repl database when prompted. This should produce an event message in the event log below the form. To confirm that the replication request worked, go back to the Futon Overview page. There should now be a new database called music-repl with the same number of documents as the music database. If it has fewer, give it some time and refresh the page--CouchDB may be in the process of catching up. Don't be concerned if the Update Seq values don't match. That's because the original music database had deletions and updates to documents, whereas the musicrepl database had only insertions to bring it up to speed. Creating Conflicts Next we'll create a conflict and then explore how to deal with it. Keep the Replicator page handy because we're going to be triggering ad hoc replication between music and music-repl frequently. Drop back to the command line, and enter this to create a document in the music database:
 $ curl -X PUT "http://localhost:5984/music/theconflicts" \ -H "Content-Type: application/json" \ -d '{ "name": "The Conflicts" }'
@@ -4784,7 +4782,7 @@ $ curl -X PUT "http://localhost:5984/music/theconflicts" \ -H "Content-Type: app
 }
 On the Replicator page, click Replicate to trigger another synchronization. We can confirm that the document was successfully replicated by retrieving it from the music-repl database.
 
-214 · Chapter 6. CouchDB
+214 ï¿½ Chapter 6. CouchDB
 $ curl "http://localhost:5984/music-repl/theconflicts" {
 "_id":"theconflicts", "_rev":"1-e007498c59e95d23912be35545049174", "name":"The Conflicts" }
 Next, let's update it in music-repl by adding an album called Conflicts of Interest.
@@ -4799,7 +4797,7 @@ At this point, both the music and music-repl databases have a document with an _
 Resolving Conflicts
 With our document now in a conflicting state between the two databases, head back to the Replicator page and kick off another replication. If you were
 
-Day 3: Advanced Views, Changes API, and Replicating Data · 215
+Day 3: Advanced Views, Changes API, and Replicating Data ï¿½ 215
 expecting this to fail, you may be shocked to learn that the operation succeeds just fine. So, how did CouchDB deal with the discrepancy?
 It turns out that CouchDB basically just picks one and calls that one the winner. Using a deterministic algorithm, all CouchDB nodes will pick the same winner when a conflict is detected. However, the story doesn't end there. CouchDB stores the unselected "loser" documents as well so that a client application can review the situation and resolve it at a later date.
 To find out which version of our document won during the last replication, we can request it using the normal GET request channel. By adding the conflicts=true URL parameter, CouchDB will also include information about the conflicting revisions.
@@ -4812,7 +4810,7 @@ $ curl http://localhost:5984/music-repl/theconflicts?rev=2-0c969f... {
 The takeaway here is that CouchDB does not try to intelligently merge conflicting changes. How to merge two documents is highly application-specific, and a general solution isn't practical. In our case, combining the two albums arrays by concatenating them makes sense, but one could easily think of scenarios where the appropriate action is not obvious.
 For example, consider you're maintaining a database of calendar events. One copy is on your smartphone; another is on your laptop. You get a text message from a party planner specifying the venue for the party you're hosting, so you
 
-216 · Chapter 6. CouchDB
+216 ï¿½ Chapter 6. CouchDB
 update your phone database accordingly. Later, back at the office, you receive another email from the planner specifying a different venue. So, you update your laptop database and then replicate between them. CouchDB has no way of knowing which of the two venues is correct. The best it can do is make them consistent, keeping the old value around so you can verify which of the conflicting values should be kept. It would be up to the application to determine the right user interface for presenting this situation and asking for a decision.
 Day 3 Wrap-Up
 And so ends our tour of CouchDB. Here in Day 3 we started out by learning how to add reducer functions to our mapreduce-generated views. After that, we took a deep dive into the Changes API, including a jaunt into the world of event-driven server-side JavaScript development with Node.js. Lastly, we took a brief look at how CouchDB achieves its master-master replication strategy and how client applications can detect and correct for conflicts.
@@ -4827,7 +4825,7 @@ Node.js module described in the section Polling for Changes with Node.js, on pag
 2. Implement watcher.start() such that it monitors the continuous _changes feed. Confirm that it produces the same output as watch_changes_longpolling.js.
 Hint: If you get stuck, you can find an example implementation in the downloads that accompany this book.
 
-Wrap-Up · 217
+Wrap-Up ï¿½ 217
 3. Documents with conflicting revisions have a _conflicts property. Create a view that emits conflicting revisions and maps them to the doc _id.
 6.5 Wrap-Up
 Through this chapter we've seen how to do a pretty wide range of tasks with CouchDB, from performing basic CRUD operations to building views out of mapreduce functions. We saw how to watch for changes, and we explored developing nonblocking event-driven client applications. Finally, we learned how to perform ad hoc replication between databases and how to detect and resolve conflicts. Despite all of this content, there's still a lot we didn't cover, but now it's time to wrap things up before heading off to our next database.
@@ -4837,7 +4835,7 @@ CouchDB is as much an API as a database. In this chapter, we focused on the cano
 CouchDB's Weaknesses
 Of course, CouchDB isn't for everything. CouchDB's mapreduce-based views, while novel, can't perform all the fancy data slicing you'd expect from a relational database. In fact, you shouldn't be running ad hoc queries at all in production. Also, CouchDB's replication strategy isn't always the right choice. CouchDB replication is all or nothing, meaning all replicated servers will have the same contents. There is no sharding to distribute content around the datacenter. The principal reason for adding more CouchDB nodes is not to spread the data around so much as to increase throughput for read and write operations.
 
-218 · Chapter 6. CouchDB
+218 ï¿½ Chapter 6. CouchDB
 Parting Thoughts
 CouchDB's attention to robustness in the face of uncertainty makes it a great choice if your system must stand up to the harsh realities of the wild Internet. By leveraging standard webisms like HTTP/REST and JSON, CouchDB fits in easily wherever web technologies are prevalent, which is increasingly everywhere. Inside the walled garden of a datacenter, CouchDB can still make sense if you commit to managing conflicts when they arise or if you pursue an alternative implementation like BigCouch, but don't expect to get sharding right out of the box.
 There are plenty of other features that make CouchDB unique and special that we didn't have time to cover. A short list would include ease of backups, binary attachments to documents, and CouchApps--a system for developing and deploying web apps directly through CouchDB with no other middleware. Having said that, we hope we've provided enough of an overview to whet your appetite for more. Try CouchDB for your next data-driven web app; you won't be disappointed!
@@ -4851,7 +4849,7 @@ Neo4j is small enough to be embedded into nearly any application. On the other e
 Imagine you must create a wine suggestion engine where wines have different varieties, regions, wineries, vintages, and designations. Perhaps you need to keep track of articles by authors describing wines. Perhaps you want to let users track their favorites.
 A relational model may create a category table and a many-to-many relationship between a single winery's wine and some combination of categories and other data. But this isn't quite how humans mentally model data. Compare these two figures: Figure 30, Wine suggestion schema in relational UML, on
 
-220 · Chapter 7. Neo4J
+220 ï¿½ Chapter 7. Neo4J
 
 categories id name
 articles id publish_date title content
@@ -4869,7 +4867,7 @@ In this chapter, we'll use the Neo4j 1.7 Enterprise edition. Most of the actions
 7.2 Day 1: Graphs, Groovy, and CRUD
 Today we're really going to jump in with both feet. In addition to exploring the Neo4j web interface, we'll get deep into graph database terminology and CRUD. Much of today will be learning how to query a graph database through a process called walking. The concepts here differ significantly from other databases we've looked at so far, which have largely taken a document- or record-based view of the world. In Neo4j, it's all about relationships.
 
-Day 1: Graphs, Groovy, and CRUD · 221
+Day 1: Graphs, Groovy, and CRUD ï¿½ 221
 Figure 31--Wine suggestion data on a whiteboard
 But before we get to all that, let's start with the web interface to see how Neo4j represents data in graph form and how to walk around that graph. After you've downloaded and unzipped the Neo4j package, cd into the directory and start up the server with this:
 $ bin/neo4j start
@@ -4881,7 +4879,7 @@ Launch a web browser, and navigate to the administration page.
 http://localhost:7474/webadmin/
 You'll be greeted by a colorful yet empty graph like the one pictured in Figure 32, The web administration page dashboard, on page 222. Click the Data Browser option at the top. A new Neo4j install will have a preexisting reference node: node 0. A node in a graph database is not entirely unlike the nodes we talked about in prior chapters. Previously, when we spoke of a node, we meant a physical server in a network. If you viewed the entire network as a huge interconnected
 
-222 · Chapter 7. Neo4J
+222 ï¿½ Chapter 7. Neo4J
 
 Figure 32--The web administration page dashboard
 
@@ -4899,7 +4897,7 @@ http://localhost:7474/db/data/relationship/0
 that shows Node 1 reported_on Node 0.
 Just like nodes, relationships can contain properties. Click the + Add Property button and enter the property [rating : 92] so we can keep track of what score the wine received.
 
-Day 1: Graphs, Groovy, and CRUD · 223
+Day 1: Graphs, Groovy, and CRUD ï¿½ 223
 This particular ice wine is created from the riesling grape, so let's add that information too. We could add the property directly to the wine node, but riesling is a general category that could apply to other wines, so let's create a new node and set its property to [name : "riesling"]. Next add another relationship from node 0 to 2 as grape_type and give it the property [style : "ice wine"].
 But what does our graph look like? If you click the "switch view mode" button (the squiggle-looking one beside + Relationship), you'll see something like Figure 33, A graph of nodes related to the current one, on page 224.
 The Style button brings up a menu where you can choose which profile is used for rendering the graph visualization. To see more useful information on the diagram, click Style and then New Profile. This will take you to the "Create new visualization profile" page. Enter the name wines at the top, and then change the label from {id} to {id}: {prop.name}. Click Save to bring you back to the visualization page. Now you can choose wines from the Style menu, which should produce something like Figure 34, A graph of nodes using a custom profile, on page 224.
@@ -4910,7 +4908,7 @@ Like other consoles we've explored, Gremlin provides access to the underlying la
 As a matter of convention, g is a variable that represents the graph object. Graph actions are functions called on it.
 Since Gremlin is a general-purpose graph traversal language, it uses general mathematic graph terms. Where Neo4j calls a graph data point a node, Gremlin prefers vertex, and rather than relationship, Gremlin calls it an edge.
 
-224 · Chapter 7. Neo4J
+224 ï¿½ Chapter 7. Neo4J
 
 1
 
@@ -4944,7 +4942,7 @@ gremlin> g.v(0) ==> v[0]
 To make sure you have the correct vertex, you can list its properties via the map() method. Note that you can chain method calls in Groovy/Gremlin.
 gremlin> g.v(0).map() ==> name=Prancing Wolf Ice Wine 2007
 
-Day 1: Graphs, Groovy, and CRUD · 225
+Day 1: Graphs, Groovy, and CRUD ï¿½ 225
 Although using v(0) will retrieve the exact node, you could also filter out all nodes by some value you want. For example, to retrieve riesling by name, you can use the {...} filter syntax, which in Groovy code is called a closure. All of the code between the curly braces, {...}, define the function that, if it returns true, will walk that vertex. The it keyword inside the closure represents the current object and is automatically populated for your use.
 gremlin> g.V.filter{it.name=='riesling'} ==> v[2]
 Once you have a vertex, you can get the outgoing edges by calling outE() on the returned vertex. Incoming edges are retrieved by inE(), and both incoming and outgoing are called by bothE().
@@ -4959,7 +4957,7 @@ A winery makes more than one wine, so if we plan to add more, we should add the 
 gremlin> pwolf = g.addVertex([name : 'Prancing Wolf Winery']) ==> v[3] gremlin> g.addEdge(pwolf, g.v(0), 'produced') ==> e[2][3-produced->0]
 From here we'll add a couple more rieslings: Kabinett and Spatlese.
 
-226 · Chapter 7. Neo4J
+226 ï¿½ Chapter 7. Neo4J
 gremlin> kabinett = g.addVertex([name : 'Prancing Wolf Kabinett 2002']) ==> v[4] gremlin> g.addEdge(pwolf, kabinett, 'produced') ==> e[3][3-produced->4] gremlin> spatlese = g.addVertex([name : 'Prancing Wolf Spatlese 2007']) ==> v[5] gremlin> g.addEdge(pwolf, spatlese, 'produced') ==> e[4][3-produced->5]
 Let's wrap up this little graph by adding some edges from the riesling vertex to the newly added vertices. We'll set the riesling variable by filtering the riesling node; next() is necessary to grab the first vertex out of the pipeline-- something we will go over in more detail shortly.
 gremlin> riesling = g.V.filter{it.name=='riesling'}.next() ==> v[2] gremlin> g.addEdge([style:'kabinett'], kabinett, riesling, 'grape_type') ==> e[5][4-grape_type->2]
@@ -4970,7 +4968,7 @@ For example, the outE pipe takes in a collection of vertices and sends out a col
 At its heart, Gremlin is a language to build these pipes. Specifically, it is built on top of a Java project named Pipes. To explore the pipe concept, let's return to our wine graph. Suppose we want to find wines that are similar to a given wine--that is, they have the same type. We can follow an ice wine that also shares a grape_type edge with other out nodes (ignoring the initial wine node).
 ice_wine = g.v(0) ice_wine.out('grape_type').in('grape_type').filter{ !it.equals(ice_wine) }
 
-Day 1: Graphs, Groovy, and CRUD · 227
+Day 1: Graphs, Groovy, and CRUD ï¿½ 227
 
 1: Wine Expert Monthly
 reported_on
@@ -5000,7 +4998,7 @@ return wine_list; }
 Rather than nesting and iterating as shown earlier, the Pipes project designed a way to declare incoming and outgoing vertices. You create a sequence of in and out pipes, filters, and request values from the pipeline. Then iteratively call the pipeline's hasNext() method, which returns the next matching node. In other words, the pipeline walks the tree for you. Until the pipeline is requested, you're simply declaring how the walk will occur.
 To illustrate, here's another implementation of the same_variety() method, which uses Pipes rather than explicitly looping:
 
-228 · Chapter 7. Neo4J
+228 ï¿½ Chapter 7. Neo4J
 Jim says:
 jQuery and Gremlin
 Users of the popular jQuery JavaScript library may find Gremlin's collection-oriented traversal method to be quite familiar. Consider this HTML snippet:
@@ -5046,10 +5044,10 @@ Deep down Gremlin is a Pipe-building language. The work of walking the graph is 
 Pipeline vs. Vertex
 To grab a collection containing just one specific vertex, we can filter it from the list of all nodes. This is what we have been doing when we call, for
 
-Day 1: Graphs, Groovy, and CRUD · 229
+Day 1: Graphs, Groovy, and CRUD ï¿½ 229
 Eric says:
 Cypher Language
-Cypher is the other graph query language supported by Neo4j, based on pattern matching and a SQL-like syntax. The clauses feel familiar, making it easy to understand what's going on. Particularly, the MATCH clause is very intuitive, resulting in ASCII art­like expressions.
+Cypher is the other graph query language supported by Neo4j, based on pattern matching and a SQL-like syntax. The clauses feel familiar, making it easy to understand what's going on. Particularly, the MATCH clause is very intuitive, resulting in ASCII artï¿½like expressions.
 At first I didn't like Cypher's verbosity, but over time as my eyes adjusted to reading its grammar, I've become a fan.
 Look at this Cypher equivalent of our "similar wines" query:
 START ice_wine=node(0) MATCH (ice_wine) -[:grape_type]-> () <-[:grape_type]- (similar) RETURN similar
@@ -5062,7 +5060,7 @@ If you look at the class constructed by calling the filter's class property, not
 gremlin> g.V.filter{it.name=='Prancing Wolf Winery'}.class ==>class com.tinkerpop.gremlin.pipes.GremlinPipeline
 Compare that to the class of the next node from the pipeline. It returns something else, the Neo4jVertex.
 
-230 · Chapter 7. Neo4J
+230 ï¿½ Chapter 7. Neo4J
 
 gremlin> g.V.filter{it.name=='Prancing Wolf Winery'}.next().class ==>class com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jVertex
 Although the console conveniently lists the nodes retrieved from the pipeline, it remains a pipeline until you retrieve something from it.
@@ -5094,7 +5092,7 @@ reported_on
 
 6: Alice likes 0: Prancing Wolf Ice Wine 2007
 
-Day 1: Graphs, Groovy, and CRUD · 231
+Day 1: Graphs, Groovy, and CRUD ï¿½ 231
 Stepping Stones
 We've looked at a few core Gremlin steps, or Pipe-processing units. Gremlin provides many more. Let's take a look at more of these building blocks that not only walk the graph but also transform objects, filter steps, and produce side effects like counting nodes grouped by criteria.
 We've seen inE, outE, inV, and outV, which are transform steps for retrieving the incoming and outgoing edges and vertices. Two other types are bothE and bothV, which just follow an edge, regardless of whether it is directed in or out.
@@ -5112,7 +5110,7 @@ alice.bothE('friends').bothV.except([alice]). bothE('friends').bothV.except([ali
 In the same fashion, we could get friends of Alice's friends' friends by adding more bothE/bothV/except calls to the chain. But that's a lot of typing, and it's not possible to write this for a variable number of steps in this manner. The loop() method does just that. It repeats some number of previous steps and continues while the given closure is still true.
 The following code will loop the previous three steps by counting periods back from the loop call. So, except is one, bothV is two, and bothE is three.
 
-232 · Chapter 7. Neo4J
+232 ï¿½ Chapter 7. Neo4J
 alice.bothE('friends').bothV.except([alice]).loop(3){ it.loops <= 2
 }.name
 After each time through the looped series of steps, loop() invokes the given in the closure--that is, the code between the {...} brackets. In here, the it.loops property keeps track of how many times the current loop has been executed. In our case, we check and return whether this number is less than or equal to 2, meaning the loop will execute two times and stop. In effect, the closure is very much like the clause for a while loop in a typical programming language.
@@ -5130,7 +5128,7 @@ gremlin> alice.outE.inV.back(2).name ==> Alice
 The last commonly used step we'll investigate is groupCount(), which walks through the nodes and counts duplicate values, capturing them in a map.
 Consider this example that collects all the name properties of all vertices in the graph and counts how many of each there are:
 
-Day 1: Graphs, Groovy, and CRUD · 233
+Day 1: Graphs, Groovy, and CRUD ï¿½ 233
 gremlin> name_map = [:] gremlin> g.V.name.groupCount( name_map ) gremlin> name_map ==> Prancing Wolf Ice Wine 2007=1 ==> Wine Expert Monthly=1 ==> riesling=1 ==> Prancing Wolf Winery=1 ==> Prancing Wolf Kabinett 2002=1 ==> Prancing Wolf Spatlese 2007=1 ==> Alice=1 ==> Tom=1 ==> Patty=1
 In Groovy/Gremlin, a map is denoted by the nomenclature [:] and is pretty much identical to the Ruby/JavaScript object literal {}. Notice how all of the values are 1. This is exactly what we'd expect, since we haven't repeated any names, and the V collection has exactly one copy of each node in our graph.
 Next, let's count up the number of wines liked by each person in our system. We can get all of the liked vertices and count up the numbers per name.
@@ -5143,7 +5141,7 @@ rated_list = g.V.in('grape_type').collect{ !it.inE('reported_on').toList().isEmp
 }
 In the previous code, the expression g.V.in('grape_type') returns all the nodes that have an incoming grape_type relationship. Only wines will have this type of edge, so we have our list of all wines in the system. Next, in the collect
 
-234 · Chapter 7. Neo4J
+234 ï¿½ Chapter 7. Neo4J
 closure, we determine whether the wine in question has any incoming reported_on edges. The toList() call forces the pipeline to become a true list, which we can then test for emptiness. The rated_list produced by this code will be a list of true and false values.
 To count how many wines have not been rated, we can run that list through a reducer using the inject() method.
 rated_list.inject(0){ count, is_rated -> if (is_rated) { count } else { count + 1 }
@@ -5157,7 +5155,7 @@ g.V.outE('friends').transform{[it.outV.name.next(), it.inV.name.next()]}
 In the previous code, the return value of the transform closure is an array literal ([...]) with two elements: the output and input vertices to the friend edge.
 To find all people and the wines they like, we transform our output of people (identified as vertices with friends) into a list with two elements: the name of the person and a list of wines they like.
 
-Day 1: Graphs, Groovy, and CRUD · 235
+Day 1: Graphs, Groovy, and CRUD ï¿½ 235
 g.V.both('friends').dedup.transform{ [ it.name, it.out('likes').name.toList() ]
 }
 ==> [Alice, [Prancing Wolf Ice Wine 2007]] ==> [Patty, []] ==> [Tom, [Prancing Wolf Ice Wine 2007, Prancing Wolf Kabinett 2002]]
@@ -5171,7 +5169,7 @@ neo4j/varietal.groovy Gremlin.defineStep( 'varietal',
 [Vertex, Pipe], {_().out('grape_type').dedup} )
 First we tell the Gremlin engine we're adding a new step called varietal. The second line tells Gremlin that this new step should attach to both Vertex and Pipe classes (when in double, just use both). The last line is where the magic happens. Effectively, this creates a closure that contains the code this step should execute. The underscore and parentheses represent the current pipeline object. From this object, we walk to any neighbor nodes related by a grape_type edge--that is, the varietal node. We end with dedup to remove any possible duplicates.
 
-236 · Chapter 7. Neo4J
+236 ï¿½ Chapter 7. Neo4J
 Calling our new step is just like any other step. For example, the following gets the name of the ice wine's varietal:
 g.V.filter{it.name=='Prancing Wolf Ice Wine 2007'}.varietal.name
 ==> riesling
@@ -5190,7 +5188,7 @@ Using Groovy metaprogramming to create new steps is a powerful force for craftin
 Update, Delete, Done
 You've inserted and stepped through a graph, but what about updating and deleting data? It's easy enough, once you find the vertex or edge you want to alter. Let's add a weight to how much Alice likes the Prancing Wolf Ice Wine 2007.
 
-Day 1: Graphs, Groovy, and CRUD · 237
+Day 1: Graphs, Groovy, and CRUD ï¿½ 237
 gremlin> e=g.V.filter{it.name=='Alice'}.outE('likes').next() gremlin> e.weight = 95 gremlin> e.save
 We can remove the value just as easily.
 gremlin> e.removeProperty('weight') gremlin> e.save
@@ -5209,7 +5207,7 @@ Day 1 Homework
 Find 1. Bookmark the Neo4j wiki. 2. Bookmark the Gremlin steps from the wiki or API. 3. Find two other Neo4j shells (such as the Cypher shell in the admin
 console).
 
-238 · Chapter 7. Neo4J
+238 ï¿½ Chapter 7. Neo4J
 Do 1. Query all node names with another shell (such as the Cypher query
 language). 2. Delete all the nodes and edges in your database. 3. Create a new graph that represents your family.
 7.3 Day 2: REST, Indexes, and Algorithms
@@ -5222,7 +5220,7 @@ $ curl http://localhost:7474/db/data/ {
 It will return a nice JSON object describing the URLs of other commands, like node actions or indices.
 Creating Nodes and Relationships Using REST It's as easy to create nodes and relationships in Neo4j REST as in CouchDB or Riak. Creating a node is a POST to the /db/data/node path with JSON data. As
 
-Day 2: REST, Indexes, and Algorithms · 239
+Day 2: REST, Indexes, and Algorithms ï¿½ 239
 matter of convention, it pays to give each node a name property. This makes viewing any node's information easy: just call name.
 $ curl -i -X POST http://localhost:7474/db/data/node \ -H "Content-Type: application/json" \ -d '{"name": "P.G. Wodehouse", "genre": "British Humour"}'
 When posted, you'll get the node path in the header and a body of metadata about the node (both are truncated here for brevity). All of this data is retrievable by calling GET on the given header Location value (or the self property in the metadata).
@@ -5232,7 +5230,7 @@ HTTP/1.1 201 Created Location: http://localhost:7474/db/data/node/9 Content-Type
 If you just want the node properties (not the metadata), you can GET that by appending /properties to the node URL or even an individual property by further appending the property name.
 $ curl http://localhost:7474/db/data/node/9/properties/genre "British Humour"
 
-240 · Chapter 7. Neo4J
+240 ï¿½ Chapter 7. Neo4J
 One node doesn't do us much good, so go ahead and create another one with the properties ["name" : "Jeeves Takes Charge", "style" : "short story"].
 Since P.G. Wodehouse wrote the short story "Jeeves Takes Charge," we can make a relationship between them.
 $ curl -i -X POST http://localhost:7474/db/data/node/9/relationships \ -H "Content-Type: application/json" \ -d '{"to": "http://localhost:7474/db/data/node/10", "type": "WROTE",
@@ -5246,7 +5244,7 @@ $ curl -X POST http://localhost:7474/db/data/node/9/paths \ -H "Content-Type: ap
 The other path algorithm choices are allPaths, allSimplePaths, and dijkstra. Details on these algorithms can be found in the online documentation,1 but covering them in detail is outside the scope of this book.
 1. http://api.neo4j.org/current/org/neo4j/graphalgo/GraphAlgoFactory.html
 
-Day 2: REST, Indexes, and Algorithms · 241
+Day 2: REST, Indexes, and Algorithms ï¿½ 241
 Indexing Like other databases we've seen, Neo4j supports fast data lookups by constructing indexes. There is a twist, though. Unlike other database indexes where you perform queries in much the same way as without one, Neo4j indexes have a different path. This is because the indexing service is actually a separate service.
 The simplest index is the key-value or hash style. You key the index by some node data, and the value is a REST URL, which points to the node in the graph. You can have as many indexes as you like, so we'll name this one "authors." The end of the URL will contain the author name we want to index and pass in node 1 as the value (or whatever your Wodehouse node was).
 $ curl -X POST http://localhost:7474/db/data/index/node/authors \ -H "Content-Type: application/json" \ -d '{ "uri" : "http://localhost:7474/db/data/node/9", "key" : "name", "value" : "P.G.+Wodehouse"}'
@@ -5260,7 +5258,7 @@ The POST will return a JSON response containing information about the newly adde
 Now if we add Wodehouse to the full-text index, we get this:
 curl -X POST http://localhost:7474/db/data/index/node/fulltext \ -H "Content-Type: application/json" \ -d '{ "uri" : "http://localhost:7474/db/data/node/9", "key" : "name", "value" : "P.G.+Wodehouse"}'
 
-242 · Chapter 7. Neo4J
+242 ï¿½ Chapter 7. Neo4J
 Then a search is as easy as a Lucene syntax query on the index URL.
 $ curl http://localhost:7474/db/data/index/node/fulltext?query=name:P*
 Indexes can also be built on edges like earlier; just replace the instances of node in the URLs with relationship, for example http://localhost:7474/db/data/index/relationship/published/date/1916-11-28.
@@ -5275,7 +5273,7 @@ Let's explore some movie data by grabbing a dataset from Freebase.com. We'll be 
 Be warned, this dataset contains a vast amount of movie information, from blockbusters to foreign films to, well, adult entertainment. You will need the json and faraday Ruby gems installed to run this script.
 2. http://docs.neo4j.org/chunked/stable/gremlin-plugin.html 3. http://download.freebase.com/datadumps/latest/browse/film/performance.tsv
 
-Day 2: REST, Indexes, and Algorithms · 243
+Day 2: REST, Indexes, and Algorithms ï¿½ 243
 neo4j/importer.rb REST_URL = 'http://localhost:7474/' HEADER = { 'Content-Type' => 'application/json' }
 %w{rubygems json cgi faraday}.each{|r| require r}
 # make a connection to the Neo4j REST server conn = Faraday.new(:url => REST_URL) do |builder|
@@ -5294,7 +5292,7 @@ puts " #{count} relationships loaded" if (count += 1) % 100 == 0
 end
 puts "done!"
 
-244 · Chapter 7. Neo4J
+244 ï¿½ Chapter 7. Neo4J
 With everything set up, just run the script and point it to the downloaded performance.tsv file.
 $ ruby importer.rb performance.tsv
 This can take hours to run the whole dataset, but you can stop the process at any time for a partial movie/actor list. If you're running Ruby 1.9, you might have better luck replacing the line builder.adapter :net_http with builder.adapter :em_synchrony, which creates a nonblocking connection.
@@ -5309,7 +5307,7 @@ _().sideEffect{start = it}.outE('ACTED_IN'). inV.inE('ACTED_IN').outV.filter{
 In Neo4j you don't so much "query" for a set of values as you "walk" the graph. The nice thing about this concept is that generally the first node walked to will be the closest to your starting node (in terms of raw edge/node distance, not of weighted distance). Let's begin by finding our starting and ending nodes.
 gremlin> bacon = g.V.filter{it.name=='Kevin Bacon'}.next() gremlin> elvis = g.V.filter{it.name=='Elvis Presley'}.next()
 
-Day 2: REST, Indexes, and Algorithms · 245
+Day 2: REST, Indexes, and Algorithms ï¿½ 245
 We start by finding an actor's costars' costars' costars...the classic stopping distance is six degrees, but practically we can stop at four (if you don't find a match, you can try again). Here we can loop through the graph four times, which finds all actors with "four degrees of separation." We'll use the costars step we just created.
 elvis.costars.loop(1){it.loops < 4}
 Only vertices that end with Bacon are to be retained. All others are ignored.
@@ -5327,7 +5325,7 @@ Finally, we get the name of each vertex and filter out any null edge data using 
 ==>Elvis Presley ==>Double Trouble ==>Roddy McDowall ==>The Big Picture ==>Kevin Bacon
 We didn't know who Roddy McDowall was, but that's the beauty of our graph database. We didn't have to know to get a good answer. Feel free to sharpen your Groovy-foo if you want the output to be fancier than our simple list, but the data is all there.
 
-246 · Chapter 7. Neo4J
+246 ï¿½ Chapter 7. Neo4J
 Random Walk When looking for good sample from a large data set, a useful trick is the "random walk." You start with a random number generator.
 rand = new Random()
 Then you filter out some target ratio of the total. If we want to return only about one-third of Kevin Bacon's ~60 movies, we could filter out any random number less than 0.33.
@@ -5345,7 +5343,7 @@ We received Elijah Wood, who we can run through our Bacon path algorithm and rea
 Centrality Park Centrality is a measure of individual nodes against a full graph. For example, if we wanted to measure how important each node in a network is based on its distance to all the other nodes, that would require a centrality algorithm.
 The most famous centrality algorithm is probably Google's PageRank, but there are several styles. We'll execute a simple version called eigenvector centrality, which just counts the number of in or out edges related to a node. We're going to give each actor a number related to how many roles they have played.
 
-Day 2: REST, Indexes, and Algorithms · 247
+Day 2: REST, Indexes, and Algorithms ï¿½ 247
 We need a map for groupCount() to populate and a count to set a maximum number or loops.
 role_count = [:]; count = 0 g.V.in.groupCount(role_count).loop(2){ count++ < 1000 }; ''
 The role_count map will be keyed by vertices, with values of the count of edges the vertex has. The easiest way to read the output is by sorting the map.
@@ -5359,7 +5357,7 @@ j = new GraphJung( g )
 Part of the reason Kevin Bacon was chosen as the ultimate path destination is his relative closeness to other actors. He has starred in movies with other popular stars. To be important, he didn't need to be in many roles himself but simply be connected to those who are well connected.
 4. http://blueprints.tinkerpop.com
 
-248 · Chapter 7. Neo4J
+248 ï¿½ Chapter 7. Neo4J
 This raises the question: can we find a better actor than Kevin Bacon, in terms of distance from other actors?
 JUNG contains a scoring algorithm called BarycenterScorer that gives a score to each vertex based on its distance to all other vertices. If Kevin Bacon is indeed the best choice, we would expect his score to be the lowest, meaning he is "closest" to all other actors.
 Our JUNG algorithm should apply only to actors, so we construct a transformer to filter only actor nodes. The EdgeLabelTransformer permits only those nodes with an edge of ACTED_IN to the algorithm.
@@ -5376,7 +5374,7 @@ bacon.costars.each{ score = b.getVertexScore(it); if(score < bacon_score) { conn
 }
 All of the keys that exist in the connected map represent a better choice than Kevin Bacon. But it's good to have a name we recognize, so let's output them all and pick one we like. Your output will vary from ours, since the public movie dataset is always in flux.
 
-Day 2: REST, Indexes, and Algorithms · 249
+Day 2: REST, Indexes, and Algorithms ï¿½ 249
 connected.collect{k,v -> k.name + " => " + v}
 ==> Donald Sutherland => 0.00925 ==> Clint Eastwood => 0.01488 ...
 Donald Sutherland appeared in the list with a respectable ~0.00925. So, hypothetically, the Six Degrees of Donald Sutherland should be an easier game to play with your friends than the traditional Six Degrees of Kevin Bacon.
@@ -5392,14 +5390,14 @@ step. Then implement a general-purpose Groovy function (for example, def actor_p
 2. Choose and run one of the many JUNG algorithms on a node (or the data set, if the API demands it).
 3. Install your driver of choice, and use it to manage your company graph with the people and the roles they play, with edges describing their interactions (reports to, works with). If your company is huge, just try
 
-250 · Chapter 7. Neo4J
+250 ï¿½ Chapter 7. Neo4J
 your close teams; if you're with a small organization, try including some customers. Find the most well-connected person in the organization by closest distance to all other nodes.
 7.4 Day 3: Distributed High Availability
 We're going to wrap up our Neo4j investigation by learning how to make Neo4j more attuned to mission-critical uses. We'll see how Neo4j keeps data stable via ACID-compliant transactions. Then we'll install and configure a Neo4j high availability (HA) cluster to improve availability when serving high-read traffic. Then we're going to look into backup strategies to ensure our data remains safe.
 Transactions
 Neo4j is an Atomic, Consistent, Isolated, Durable (ACID) transaction database, similar to PostgreSQL. This makes it a good option for important data you may have otherwise picked a relational database for. Just like transactions we've seen before, Neo4j transactions are all-or-nothing operations. When a transaction starts, every following operation will succeed or fail as an atomic unit--failure of one means failure of all. The details of how transactions are handled goes beyond Gremlin into the underlying Neo4j wrapper project called Blueprint. Specific details can change from version to version. We're using Gremlin 1.3, which uses Blueprints 1.0. If you're using a different version of either, you can find the specifics in the Blueprint API Javadocs. Just like PostgreSQL, basic one-line functions are automatically wrapped in an implicit transaction. To demonstrate multiline transactions, we need to flag the graph object to turn off automatic transaction mode, letting Neo4j
 
-Day 3: Distributed High Availability · 251
+Day 3: Distributed High Availability ï¿½ 251
 know that we plan to handle transactions manually. You can change the transaction mode through the setTransactionMode() function.
 gremlin> g.setTransactionMode(TransactionalGraph.Mode.MANUAL)
 You start and stop the transaction on the graph object using startTransaction() and stopTransaction(conclusion). When you stop the transaction, you also need to mark whether the transaction was successful. If not, Neo4j can roll back all commands executed since the start. It's a good idea to wrap the transaction within a try/catch block to ensure that any exceptions will trigger a rollback.
@@ -5412,7 +5410,7 @@ Both varieties provide you with full ACID transaction guarantees. Even system fa
 High Availability
 High availability mode is Neo4j's answer to the question, "Can a graph database scale?" Yes, but with some caveats. A write to one slave is not immediately synchronized with all other slaves, so there is a danger of losing consistency (in the CAP sense) for a brief moment (making it eventually consistent). HA will lose pure ACID-compliant transactions. It's for this reason that Neo4j HA is touted as a solution largely for increasing capacity for reads.
 
-252 · Chapter 7. Neo4J
+252 ï¿½ Chapter 7. Neo4J
 Just like Mongo, the servers in the cluster will elect a master that is the gold copy of data. Unlike Mongo, however, slaves accept writes. Slave writes will synchronize with the master node, which then propagates those changes to the other slaves.
 HA Cluster To use Neo4j HA, we must first set up a cluster. Neo4j uses an external cluster coordinator service called Zookeeper. Zookeeper is yet another excellent project to arise from the Apache Hadoop project. It's a general-purpose service to coordinate distributed applications. Neo4j HA uses this to manage its lifecycle activities. Each Neo4j server has its own related coordinator--tasked with managing its place in the cluster--as shown in Figure 36, A three-server Neo4j cluster and their coordinators, on page 253.
 Happily, Neo4j Enterprise comes bundled with Zookeeper as well as some files to help us configure a cluster. We're going to run three instances of Neo4j Enterprise version 1.7. You can download a copy from the website for your operating system (be sure you select the correct edition)5 and then unzip it and create two more copies of the directory. We suffixed ours with 1, 2, and 3 and will refer to them as such.
@@ -5426,7 +5424,7 @@ We will follow five steps to create our cluster, starting by configuring the Zoo
 4. Configure each Neo4j server to run in HA mode, give them unique ports, and make them aware of the coordinator cluster.
 5. http://neo4j.org/download/
 
-Day 3: Distributed High Availability · 253
+Day 3: Distributed High Availability ï¿½ 253
 Coordinator 1
 
 Coordinator 2
@@ -5448,7 +5446,7 @@ echo "2" > neo4j-enterprise-1.7-2/data/coordinator/myid echo "3" > neo4j-enterpr
 We must also indicate some communication settings internal to the cluster. Each server will have a file named conf/coord.cfg. By default, notice the server.1 variable has the server as localhost and two ports set: the quorum election port (2888) and the master election port (3888).
 Building the Cluster A Zookeeper quorum is a group of servers in the cluster and the ports they communicate through (this should not to be confused with a Riak quorum, which is a minimal majority for enforcing consistency). The master election port is used when the master goes down--this special port is used so the
 
-254 · Chapter 7. Neo4J
+254 ï¿½ Chapter 7. Neo4J
 remaining servers can elect a new master. We'll keep server.1 as is and add server.2 and server.3 to use successive ports. The coord.cfg files under servers 1, 2, and 3 must all contain the same three lines.
 server.1=localhost:2888:3888 server.2=localhost:2889:3889 server.3=localhost:2890:3890
 Finally, we must set the public port to which Neo4j may connect. This clientPort defaults to 2181, so for server 1 we'll leave it alone. We set clientPort=2182 for server 2 and clientPort=2183 for server 3. If any of these ports are in use on your machine, feel free to change this as necessary, but we'll assume the previous ports are in use for the remaining steps.
@@ -5462,7 +5460,7 @@ This sets Neo4j to run in high availability mode; up until now we've been runnin
 org.neo4j.server.webserver.port=7471 org.neo4j.server.webserver.https.port=7481
 Finally, we set each Neo4j instance to connect to one of the coordinator servers. If you open the conf/neo4j.properties file for server 1, you should see a few commented lines starting with ha. These are high availability settings that convey three things: the current cluster machine number, the list of
 
-Day 3: Distributed High Availability · 255
+Day 3: Distributed High Availability ï¿½ 255
 zookeeper servers, and the port that the neo4j servers will use to communicate with each other. For server 1, add the following fields to neo4j.properties:
 ha.server_id=1 ha.coordinators=localhost:2181,localhost:2182,localhost:2183 ha.server=localhost:6001 ha.pull_interval=1
 These settings will be similar on the other two servers, with two provisos: ha.server_id=2 for server 2 and ha.server_id=3 for server 3. And the ha.server must use a different port (we chose 6002 for server 2 and 6003 for server 3). Again, the server ports needn't change when you run them on separate machines. Server 2 will contain the following (and so on for server 3):
@@ -5477,7 +5475,7 @@ Verifying Cluster Status Whatever coordinator was first launched will be the mas
 The properties under High Availability list information about this cluster. If this server is the master server, the property will be true. If not, you can find which server has been elected master by looking under InstancesInCluster. This lists each connected server, its machine ID, whether it is the master server, and other info.
 6. http://localhost:7471/webadmin/#/info/org.neo4j/High%20Availability/
 
-256 · Chapter 7. Neo4J
+256 ï¿½ Chapter 7. Neo4J
 Verifying Replication With our cluster up and running, you can verify that your servers are replicating correctly. If all goes according to plan, any writes to a slave should propagate to the master node and then eventually to the other slave server. If you open the web consoles for each of the three servers, you can use the built-in Gremlin consoles in the web admin. Notice that the Gremlin graph object has changed to wrap a HighlyAvailableGraphDatabase.
 g = neo4jgraph[HighlyAvailableGraphDatabase [/.../neo4j-ent-1.7-2/data/graph.db]]
 To test our servers, we're going to populate our new graph with some nodes containing the names of some famous paradoxes. In one of the slave consoles, let's set the root node to store Zeno's paradox.
@@ -5490,7 +5488,7 @@ If one of your slave servers does not yet have the changes propagated to it, you
 Master Election If you shut down the master server and refresh the server info in one of the remaining servers, you will see that another server has been elected the new master. Starting the server again will add it back to the cluster, but now the old master will remain a slave (until another server goes down).
 High availability allows very read-heavy systems to deal with replicating a graph across multiple servers and thus sharing the load. Although the cluster
 
-Day 3: Distributed High Availability · 257
+Day 3: Distributed High Availability ï¿½ 257
 as a whole is only eventually consistent, there are tricks you can apply to reduce the chance of reading stale data in your own applications, such as assigning a session to one server. With the right tools, planning, and a good setup, you can build a graph database large enough to handle billions of nodes and edges and nearly any number of requests you may need. Just add regular backups, and you have the recipe for a solid production system.
 Backups
 Backups are a necessary aspect of any professional database use. Although backups are effectively built in when using replication, nightly backups that are stored off-site are always a good idea for disaster recovery. It's hard to plan for a server room fire or an earthquake shaking a building to rubble.
@@ -5504,7 +5502,7 @@ But keep in mind incremental works only on a fully backed-up directory, so ensur
 Day 3 Wrap-Up
 Today we spent some time keeping Neo4j data stable via ACID-compliant transactions, high availability, and backup tools.
 
-258 · Chapter 7. Neo4J
+258 ï¿½ Chapter 7. Neo4J
 It's important to note that all of the tools we used today require the Neo4j Enterprise edition, and so use a dual license--GPL/AGPL. If you want to keep your server closed source, you should look into switching to the Community edition or getting an OEM from Neo Technology (the company behind Neo4j). Contact the Neo4j team for more information.
 Day 3 Homework
 Find 1. Find the Neo4j licensing guide.
@@ -5517,7 +5515,7 @@ Neo4j's Strengths
 Neo4j is one of the finest examples of open source graph databases. Graph databases are perfect for unstructured data, in many ways even more so than document datastores. Not only is Neo4j typeless and schemaless, but it puts no constraints on how data is related. It is, in the best sense, a free-for-all. Currently, Neo4j can support 34.4 billion nodes and 34.4 billion relationships, which is more than enough for most uses (Neo4j could hold more than 42 nodes for each of Facebook's 800 million users in a single graph).
 The Neo4j distributions provide several tools for fast lookups with Lucene and easy-to-use (if sometimes cryptic) language extensions like Gremlin and the REST interface. Beyond ease of use, Neo4j is fast. Unlike join operations
 
-Wrap-Up · 259
+Wrap-Up ï¿½ 259
 in relational databases or map-reduce operations in other databases, graph traversals are constant time. Like data is only a node step away, rather than joining values in bulk and filtering the desired results--as most of the databases we've seen operate. It doesn't matter how large the graph becomes; moving from node A to node B is always one step if they share a relationship. Finally, the Enterprise edition provides for highly available and high readtraffic sites by way of Neo4j HA.
 Neo4j's Weaknesses
 Neo4j does have a few shortcomings. Edges in Neo4j cannot direct a vertex back on itself. We also found its choice of nomenclature (node rather than vertex, and relationship rather than edge) to add complexity when communicating. Although HA is excellent at replication, it can only replicate a full graph to other servers. It cannot currently shard subgraphs, which still places a limit on graph size (though, to be fair, that limit measures in the tens of billions). Finally, if you are looking for a business-friendly open source license (like MIT), Neo4j may not be for you. Where the Community edition (everything we used in the first two days) is GPL, if you want to run a production environment using the Enterprise tools (which includes HA and backups), you'll probably need to purchase a license.
@@ -5534,7 +5532,7 @@ First released in 2009, Redis (REmote DIctionary Service) is a simple-to-use key
 It can be a bit difficult to classify exactly what Redis is. At a basic level, it's a key-value store, of course, but that simple label doesn't really do it justice. Redis supports advanced data structures, though not to the degree that a document-oriented database would. It supports set-based query operations but not with the granularity or type support you'd find in a relational database. And, of course, it's fast, trading durability for raw speed.
 In addition to being an advanced data structure server, Redis is a blocking queue (or stack) and a publish-subscribe system. It features configurable expiry policies, durability levels, and replication options. All of this makes Redis more of a toolkit of useful data structure algorithms and processes than a member of any specific database genre.
 
-262 · Chapter 8. Redis
+262 ï¿½ Chapter 8. Redis
 Redis' expansive list of client libraries makes it a drop-in option for many programming languages. It's not simply easy to use; it's a joy. If an API is UX for programmers, then Redis should be in the Museum of Modern Art alongside the Mac Cube.
 In Days 1 and 2 we'll explore Redis's features, conventions, and configuration. Starting with simple CRUD operations like always, we'll quickly move on to more advanced operations involving more powerful data structures: lists, hashes, sets, and sorted sets. We'll create transactions and manipulate data expiry characteristics. We'll use Redis to create a simple message queue and explore its publish-subscribe functionality. Then we'll dive into Redis's configuration and replication options, learning how to strike an applicationappropriate balance between data durability and speed.
 Databases are often and increasingly used in concert with each other. Redis is introduced last in this book so that we can use it in just such a manner. In Day 3, we'll build our capstone system, a rich multidatabase music solution including Redis, CouchDB, Neo4J, and Postgres--using Node.js to cement it together.
@@ -5547,7 +5545,7 @@ It won't run in the background by default, but you can make that happen by appen
 After you connect, let's try to ping the server.
 1. http://redis.io
 
-Day 1: CRUD and Datatypes · 263
+Day 1: CRUD and Datatypes ï¿½ 263
 $ redis-cli
 redis 127.0.0.1:6379> PING PONG
 If you cannot connect, you'll receive an error message. Typing help will display a list of help options. Type help followed by a space and then start typing any command. If you don't know any Redis commands, just start pressing Tab to cycle through your options.
@@ -5562,7 +5560,7 @@ Correlatively, MGET grabs multiple keys and returns values as an ordered list.
 redis 127.0.0.1:6379> MGET gog yah 1) "http://www.google.com/" 2) "http://www.yahoo.com/"
 Although Redis stores strings, it recognizes integers and provides some simple operations for them. If we want to keep a running total of how many short keys are in our dataset, we can create a count and then increment it with the INCR command.
 
-264 · Chapter 8. Redis
+264 ï¿½ Chapter 8. Redis
 redis 127.0.0.1:6379> SET count 2 OK redis 127.0.0.1:6379> INCR count (integer) 3 redis 127.0.0.1:6379> GET count "3"
 Although GET returns count as a string, INCR recognized it as an integer and added one to it. Any attempt to increment a noninteger ends poorly.
 redis 127.0.0.1:6379> SET bad_count "a" OK redis 127.0.0.1:6379> INCR bad_count (error) ERR value is not an integer or out of range
@@ -5574,7 +5572,7 @@ redis 127.0.0.1:6379> MULTI OK redis 127.0.0.1:6379> SET prag http://pragprog.co
 When using MULTI, the commands aren't actually executed when we define them (similar to Postgres transactions). Instead, they are queued and then executed in sequence.
 Similar to ROLLBACK in SQL, you can stop a transaction with the DISCARD command, which will clear the transaction queue. Unlike ROLLBACK, it won't revert the database; it will simply not run the transaction at all. The effect is identical, although the underlying concept is a different mechanism (transaction rollback vs. operation cancellation).
 
-Day 1: CRUD and Datatypes · 265
+Day 1: CRUD and Datatypes ï¿½ 265
 Complex Datatypes
 So far, we haven't seen much complex behavior. Storing string and integer values under keys--even as transactions--is all fine and good, but most programming and data storage problems deal with many types of data. Storing lists, hashes, sets, and sorted sets natively helps explain Redis' popularity, and after exploring the complex operations you can enact on them, you may find you agree.
 These collection datatypes can contain a huge number of values (up to 2^32 elements or more than 4 billion) per key. That's more than enough for all Facebook accounts to live as a list under a single key.
@@ -5588,7 +5586,7 @@ We need only keep track of the single Redis key to retrieve all values of the ha
 redis 127.0.0.1:6379> HVALS user:eric 1) "Eric Redmond" 2) "s3cret"
 Or we can retrieve all hash keys.
 
-266 · Chapter 8. Redis
+266 ï¿½ Chapter 8. Redis
 redis 127.0.0.1:6379> HKEYS user:eric 1) "name" 2) "password"
 Or we can get a single value, by passing in the Redis key, followed by the hash key. Here we get just the password.
 redis 127.0.0.1:6379> HGET user:eric password "s3cret"
@@ -5602,7 +5600,7 @@ Using the list range command LRANGE, we can retrieve any part of the list by spe
 redis 127.0.0.1:6379> LRANGE eric:wishlist 0 -1 1) "7wks" 2) "gog" 3) "prag"
 LREM removes from the given key some matching values. It also requires a number to know how many matches to remove. Setting the count to 0 as we do here just removes them all:
 
-Day 1: CRUD and Datatypes · 267
+Day 1: CRUD and Datatypes ï¿½ 267
 redis 127.0.0.1:6379> LREM eric:wishlist 0 gog
 Setting the count greater than 0 will remove only that number of matches, and setting the count to a negative number will remove that number of matches but scan the list from the end (right side).
 To remove and retrieve each value in the order we added them (like a queue), we can pop them off from the left (head) of the list.
@@ -5618,7 +5616,7 @@ If you find the range of the wishlist, prag will be gone; it now lives under vis
 If you looked through the Redis docs to find RPOPRPUSH, LPOPLPUSH, and LPOPRPUSH commands, you may be dismayed to learn they don't exist. RPOPLPUSH is your only option, and you must build your list accordingly.
 Blocking Lists Now that our URL shortener is taking off, let's add some social activities--like a real-time commenting system--where people can post about the websites they have visited.
 
-268 · Chapter 8. Redis
+268 ï¿½ Chapter 8. Redis
 Let's write a simple messaging system where multiple clients can push comments and one client (the digester) pops messages from the queue. We'd like the digester to just listen for new comments and pop them as they arrive. Redis provides a few blocking commands for this sort of purpose.
 First open another terminal and start another redis-cli client. This will be our digester. The command to block until a value exists to pop is BRPOP. It requires the key to pop a value from and a timeout in seconds, which we'll set to five minutes.
 redis 127.0.0.1:6379> BRPOP comments 300
@@ -5635,7 +5633,7 @@ Redis added two values. We can retrieve the full set, in no particular order, vi
 redis 127.0.0.1:6379> SMEMBERS news 1) "pragprog.com" 2) "nytimes.com"
 Let's add another category called tech for technology-related sites.
 
-Day 1: CRUD and Datatypes · 269
+Day 1: CRUD and Datatypes ï¿½ 269
 redis 127.0.0.1:6379> SADD tech pragprog.com apple.com (integer) 2
 To find the intersection of websites that both provide news and are technology focused, we use the SINTER command.
 redis 127.0.0.1:6379> SINTER news tech 1) "pragprog.com"
@@ -5652,7 +5650,7 @@ Since sets are not ordered, there are no left, right, or other positional comman
 Unlike lists, there are no blocking commands for sets.
 Sorted Sets Whereas other Redis datatypes we've looked at so far easily map to common programming language constructs, sorted sets take something from each of the previous datatypes. They are ordered like lists and are unique like sets. They have field-value pairs like hashes, but rather than string fields, they are
 
-270 · Chapter 8. Redis
+270 ï¿½ Chapter 8. Redis
 instead numeric scores that denote the order of the values. You can think of sorted sets as like a random access priority queue. This power has a tradeoff, however. Internally, sorted sets keep values in order, so inserts can take log(N) time to insert (where N is the size of the set), rather than the constant time complexity of hashes or lists.
 Next we want to keep track of the popularity of specific shortcodes. Every time someone visits a URL, the score gets increased. Like a hash, adding a value to a sorted set requires two values after the Redis key name: the score and the member.
 redis 127.0.0.1:6379> ZADD visits 500 7wks 9 gog 9999 prag (integer) 3
@@ -5665,7 +5663,7 @@ To get the scores of each element as well, append WITHSCORES to the previous cod
 redis 127.0.0.1:6379> ZREVRANGE visits 0 -1 WITHSCORES 1) "prag" 2) "10000" 3) "7wks" 4) "500" 5) "gog" 6) "9"
 But if we're using a sorted set, it's more likely we want to range by score, rather than by position. ZRANGEBYSCORE has a slightly different syntax from ZRANGE. Since the low and high range numbers are inclusive by default, we
 
-Day 1: CRUD and Datatypes · 271
+Day 1: CRUD and Datatypes ï¿½ 271
 can make a score number exclusive by prefixing it with an opening paren: (. So, this will return all scores where 9 <= score <= 10,000:
 redis 127.0.0.1:6379> ZRANGEBYSCORE visits 9 9999 1) "gog" 2) "7wks"
 But the following will return 9 < score <= 10,000:
@@ -5681,7 +5679,7 @@ Let's use this command to measure the importance of a sorted set of shortcodes.
 First we'll create another key that scores our short codes by votes. Each visitor to a site can vote if they like the site or not, and each vote adds a point.
 redis 127.0.0.1:6379> ZADD votes 2 7wks 0 gog 9001 prag (integer) 3
 
-272 · Chapter 8. Redis
+272 ï¿½ Chapter 8. Redis
 We want to figure out the most important websites in our system, as some combination of votes and visits. Votes are important, but to a lesser extent, website visits also carry some weight (perhaps people are so enchanted by the website, they simply forget to vote). We want to add the two types of scores together to compute a new importance score, while giving votes a weight of double importance--multiplied by two.
 ZUNIONSTORE importance 2 visits votes WEIGHTS 1 2 AGGREGATE SUM (integer) 3 redis 127.0.0.1:6379> ZRANGEBYSCORE importance -inf inf WITHSCORES 1) "gog" 2) "9" 3) "7wks" 4) "504" 5) "prag" 6) "28002"
 This command is powerful in other ways too. For example, if we need to double all scores of a set, we can union a single key with a weight of 2 and store it back into itself.
@@ -5692,7 +5690,7 @@ A common use case for a key-value system like Redis is as a fast-access cache fo
 Marking a key for expiration requires the EXPIRE command, an existing key, and a time to live in seconds. Here we set a key and set it to expire in ten seconds. We can check whether the key EXISTS within ten seconds and it returns a 1 (true). If we wait to execute, it will eventually return a 0 (false).
 redis 127.0.0.1:6379> SET ice "I'm melting..." OK redis 127.0.0.1:6379> EXPIRE ice 10 (integer) 1
 
-Day 1: CRUD and Datatypes · 273
+Day 1: CRUD and Datatypes ï¿½ 273
 redis 127.0.0.1:6379> EXISTS ice (integer) 1 redis 127.0.0.1:6379> EXISTS ice (integer) 0
 Setting and expiring keys is so common that Redis provides a shortcut command called SETEX.
 redis 127.0.0.1:6379> SETEX ice 10 "I'm melting..."
@@ -5707,7 +5705,7 @@ So far, we've interacted only with a single namespace. Just like buckets in Riak
 In Redis nomenclature, a namespace is called a database and is keyed by number. So far, we've always interacted with the default namespace 0 (also known as database 0). Here we set greeting to the English hello.
 redis 127.0.0.1:6379> SET greeting hello OK redis 127.0.0.1:6379> GET greeting "hello"
 
-274 · Chapter 8. Redis
+274 ï¿½ Chapter 8. Redis
 But if we switch to another database via the SELECT command, that key is unavailable.
 redis 127.0.0.1:6379> SELECT 1 OK redis 127.0.0.1:6379[1]> GET greeting (nil)
 And setting a value to this database's namespace will not affect the value of the original.
@@ -5720,7 +5718,7 @@ Redis has plenty of other commands for actions such as renaming keys (RENAME), d
 Day 1 Wrap-Up
 The datatypes of Redis and the complex queries it can perform make it much more than a standard key-value store. It can act as a stack, queue, or priority queue; can be an object store (via hashes); and even can perform complex set operations such as unions, intersections, and subtractions (diff). It provides
 
-Day 2: Advanced Usage, Distribution · 275
+Day 2: Advanced Usage, Distribution ï¿½ 275
 many atomic commands, and for those multistep commands, it provides a transaction mechanism. It has a built-in ability to expire keys, which is useful as a cache. Day 1 Homework Find Find the complete Redis commands documentation, as well as the Big-O notated (O(x)) time complexity under the command details. Do 1. Install your favorite programming language driver and connect to the
 Redis server. Insert and increment a value within a transaction. 2. Using your driver of choice, create a program that reads a blocking list
 and outputs somewhere (console, file, Socket.io, and so on) and another that writes to the same list.
@@ -5729,7 +5727,7 @@ Day 1 introduced us to Redis as a data structure server. Today we'll build on th
 A Simple Interface
 At 20,000 lines of source code, Redis is a fairly simple project. But beyond code size, it has a simple interface that accepts the very strings we have been writing in the console.
 
-276 · Chapter 8. Redis
+276 ï¿½ Chapter 8. Redis
 Telnet
 We can interact without the command-line interface by streaming commands through TCP on our own via telnet and terminating the command with a carriage return line feed (CRLF, or \r\n).
 redis/telnet.sh $ telnet localhost 6379 Trying 127.0.0.1... Connected to localhost. Escape character is '^]'. SET test hello
@@ -5750,7 +5748,7 @@ We can see that our input is the same as we provided to the console, but the con
 Pipelining
 We can also stream our own strings one at a time by using the BSD netcat (nc) command, which you may find is already installed on many Unix machines. With netcat, we must specifically end a line with CRLF (telnet did this for us implicitly). We also sleep for a second after the echo command has finished
 
-Day 2: Advanced Usage, Distribution · 277
+Day 2: Advanced Usage, Distribution ï¿½ 277
 to give some time for the Redis server to return. Some nc implementations have a -q option, thus negating the need for a sleep, but not all do, so feel free to try it.
 $ (echo -en "ECHO hello\r\n"; sleep 1) | nc localhost 6379 $5 hello
 We can take advantage of this level of control by pipelining our commands, or streaming multiple commands in a single request.
@@ -5761,7 +5759,7 @@ Yesterday we were able to implement a rudimentary blocking queue using the list 
 Let's improve on the commenting mechanism we made yesterday using blocking lists, by allowing a user to post a comment to multiple subscribers (as opposed to just one). We start with some subscribers that connect to a key, known as a channel in pub-sub nomenclature. Let's start two more clients and subscribe to the comments channel. Subscribing will cause the CLI to block.
 redis 127.0.0.1:6379> SUBSCRIBE comments Reading messages... (press Ctrl-C to quit) 1) "subscribe" 2) "comments" 3) (integer) 1
 
-278 · Chapter 8. Redis
+278 ï¿½ Chapter 8. Redis
 
 Publisher
 
@@ -5781,7 +5779,7 @@ Server Info
 Before getting into changing Redis's system settings, it's worth taking a quick look at the INFO command, since changing settings values will alter some of these values as well. INFO outputs a list of server data, including version, process ID, memory used, and uptime.
 redis 127.0.0.1:6379> INFO redis_version:2.4.5 redis_git_sha1:00000000 redis_git_dirty:0
 
-Day 2: Advanced Usage, Distribution · 279
+Day 2: Advanced Usage, Distribution ï¿½ 279
 arch_bits:64 multiplexing_api:kqueue process_id:54046 uptime_in_seconds:4 uptime_in_days:0 lru_clock:1807217 ...
 You may want to revisit this command again in this chapter, because it provides a useful snapshot of this server's global information and settings. It even provides information on durability, memory fragmentation, and replication server status.
 Redis Configuration
@@ -5793,7 +5791,7 @@ loglevel defaults to verbose, but it's good to set it to notice or warning in pr
 database sets the number of Redis databases we have available. We saw how to switch between databases yesterday. If you plan to only ever use a single database namespace, it's not a bad idea to set this to 1.
 Durability Redis has a few persistence options. First is no persistence at all, which will simply keep all values in main memory. If you're running a basic caching server, this is a reasonable choice since durability always increases latency.
 
-280 · Chapter 8. Redis
+280 ï¿½ Chapter 8. Redis
 One of the things that sets Redis apart from other fast-access caches like memcached2 is its built-in support for storing values to disk. By default, keyvalue pairs are only occasionally saved. You can run the LASTSAVE command to get a Unix timestamp of the last time a Redis disk write succeeded, or you can read the last_save_time field from the server INFO output.
 You can force durability by executing the SAVE command (or BGSAVE, to asynchronously save in the background).
 redis 127.0.0.1:6379> SAVE
@@ -5809,7 +5807,7 @@ You can add as many or few save lines as necessary to specify precise thresholds
 Append-Only File Redis is eventually durable by default, in that it asynchronously writes values to disk in intervals defined by our save settings, or it is forced to write by
 2. http://www.memcached.org/
 
-Day 2: Advanced Usage, Distribution · 281
+Day 2: Advanced Usage, Distribution ï¿½ 281
 client-initiated commands. This is acceptable for a second-level cache or session server but is insufficient for storing data you need to be durable, like financial data. If a Redis server crashes, our users might not appreciate having lost money.
 Redis provides an append-only file (appendonly.aof) that keeps a record of all write commands. This is like the write-ahead logging we saw in Chapter 4, HBase, on page 93. If the server crashes before a value is saved, it executes the commands on startup, restoring its state; appendonly must be enabled by setting it to yes in the redis.conf file.
 appendonly yes
@@ -5820,7 +5818,7 @@ Security Although Redis is not natively built to be a fully secure server, you m
 Interestingly, Redis provides command-level security through obscurity, by allowing you to hide or suppress commands. This will rename the FLUSHALL command (remove all keys from the system) into some hard-to-guess value like c283d93ac9528f986023793b411e4ba2:
 rename-command FLUSHALL c283d93ac9528f986023793b411e4ba2
 
-282 · Chapter 8. Redis
+282 ï¿½ Chapter 8. Redis
 If we attempt to execute FLUSHALL against this server, we'll be hit with an error. The secret command works instead.
 redis 127.0.0.1:6379> FLUSHALL (error) ERR unknown command 'FLUSHALL' redis 127.0.0.1:6379> c283d93ac9528f986023793b411e4ba2 OK
 Or better yet, we can disable the command entirely by setting it to a blank string.
@@ -5834,7 +5832,7 @@ Other commands are tested as well, like SADD and LRANGE; the more complex ones g
 Master-Slave Replication
 Just like other NoSQL databases we've seen (such as MongoDB and Neo4j), Redis supports master-slave replication. One server is the master by default
 
-Day 2: Advanced Usage, Distribution · 283
+Day 2: Advanced Usage, Distribution ï¿½ 283
 if you don't set it as a slave of anything. Data will be replicated to any number of slave servers.
 Making slave servers is easy. We first need a copy of our redis.conf file.
 $ cp redis.conf redis-s1.conf
@@ -5853,7 +5851,7 @@ So far, we've talked a lot about how fast Redis is, but it's hard to get a feel 
 Let's insert a large dataset into our Redis server. You can keep the slave running if you like, but a laptop or desktop might run quicker if you have just a single master server. We're going to grab a list of more than 2.5 million published book titles, keyed by their International Standard Book Number (ISBN) from Freebase.com.3
 3. http://download.freebase.com/datadumps/latest/browse/book/isbn.tsv
 
-284 · Chapter 8. Redis
+284 ï¿½ Chapter 8. Redis
 You'll first need the redis Ruby gem.
 $ gem install redis
 There are several ways to go about inserting a large dataset, and they get progressively faster but more complex.
@@ -5869,7 +5867,7 @@ You will see a big improvement with pipelining. Here we batch 1,000 lines at a t
 redis/isbn_pipelined.rb BATCH_SIZE = 1000 LIMIT = 1.0 / 0 # 1.0/0 is Infinity in Ruby
 # %w{rubygems hiredis redis/connection/hiredis}.each{|r| require r} %w{rubygems time redis}.each{|r| require r}
 
-Day 2: Advanced Usage, Distribution · 285
+Day 2: Advanced Usage, Distribution ï¿½ 285
 $redis = Redis.new(:host => "127.0.0.1", :port => 6379) $redis.flushall
 # set line data as a single batch update def flush(batch)
 $redis.pipelined do batch.each do |saved_line| isbn, _, _, title = line.split("\t") next if isbn.empty? || title == "\n" $redis.set(isbn, title.strip) end
@@ -5885,7 +5883,7 @@ $ ruby isbn_pipelined.rb isbn.tsv 2666642 items in 79.312975 seconds
 This reduces the number of Redis connections required, but building the pipelined dataset has some overhead of its own. You should experiment with different numbers of batched operations when pipelining in production.
 As a side note to Ruby users, if your application is nonblocking via Event Machine, the Ruby driver can use em-synchrony via EM::Protocols::Redis.connect.
 
-286 · Chapter 8. Redis
+286 ï¿½ Chapter 8. Redis
 Redis Cluster
 Beyond simple replication, many Redis clients provide an interface for building a simple ad hoc distributed Redis cluster. The Ruby client redis-rb supports a consistent-hashing managed cluster. You may recall consistent hashing from the Riak chapter, where nodes can be added and dropped without having to expire most keys. This is the same idea, only managed via a client rather than by the servers themselves.
 First we need another server. Unlike the master-slave setup, both of our servers will take the master (default) configuration. We copied the redis.conf file and changed the port to 6380. That's all that's required for the servers.
@@ -5902,7 +5900,7 @@ Then replace the Redis client with Redis::Distributed and pass in an array of se
 $redis = Redis::Distributed.new([ "redis://localhost:6379/", "redis://localhost:6380/"
 ])
 
-Day 2: Advanced Usage, Distribution · 287
+Day 2: Advanced Usage, Distribution ï¿½ 287
 Running the client is the same as before.
 $ ruby isbn_cluster.rb isbn.tsv
 But a lot more work is being done by the client, since it handles computing which keys are stored on which servers. You can validate that keys are stored on separate servers by attempting to retrieve the same ISBN key from each server through the CLI. Only one client will GET a value. But as long as you retrieve keys set through the same Redis::Distributed configuration, the client will access the values from the correct servers.
@@ -5914,7 +5912,7 @@ ab
 000100010001001000110000
 c
 
-288 · Chapter 8. Redis
+288 ï¿½ Chapter 8. Redis
 Let's write a program that loops through a bunch of ISBN book data, extracts and simplifies each book's title works, and splits them into individual words. Each new word encountered is checked against the Bloom filter. If the Bloom filter returns false, meaning the word does not exist in our Bloom filter, then go ahead and add it. Just to follow along, we can output any new word that's added.
 $ gem install bloomfilter-rb
 redis/isbn_bf.rb # LIMIT = 1.0 / 0 # 1.0/0 is Infinity in Ruby LIMIT= 10000 %w{rubygems time bloomfilter-rb}.each{|r| require r} bloomfilter = BloomFilter::Redis.new(:size => 1000000)
@@ -5927,7 +5925,7 @@ Ruby wunderkind Ilya Grigorik created this Redis-backed Bloom filter, but the co
 Running the client uses the same ISBN file but needs only the book titles.
 $ ruby isbn_bf.rb isbn.tsv
 
-Day 2: Advanced Usage, Distribution · 289
+Day 2: Advanced Usage, Distribution ï¿½ 289
 At the start of the output you should see plenty of common words, like and and the. Near the end of the set, the words become increasingly esoteric, like unindustria.
 The upside with this approach is the ability to detect duplicate words. The downside is that a few false positives will seep through--the Bloom filter may flag a word we have never seen before. This is why in a real-world use case you would perform some secondary check, such as a slower database query to a system of record, which should happen only a small percentage of the time, presuming a large enough filter size, which is computable.4
 SETBIT and GETBIT As we mentioned earlier, Bloom filters function by flipping certain bits in a sparse binary field. The Redis Bloom filter implementation we just used takes advantage of two relatively recent Redis commands that perform just such actions: SETBIT and GETBIT.
@@ -5939,7 +5937,7 @@ redis 127.0.0.1:6379> GETBIT my_burger 3 (integer) 0 redis 127.0.0.1:6379> GETBI
 The Bloom filter implementation takes advantage of this behavior by hashing a value as a multibit value. It calls SETBIT X 1 for each on position in an insert() (where X is the bit position) and verifies existence by calling GETBIT X on include?() --returning false if any GETBIT position returns 0.
 4. http://en.wikipedia.org/wiki/Bloom_filter
 
-290 · Chapter 8. Redis
+290 ï¿½ Chapter 8. Redis
 Bloom filters are excellent for reducing unnecessary traffic to a slower underlying system, be it a slower database, limited resource, or network request. If you have a slower database of IP addresses and you want to track all new users to your site, you can use a Bloom filter to first check whether the IP address exists in your system. If the Bloom filter returns false, you know the IP address has yet to be added and can respond accordingly. If the Bloom filter returns true, this IP address may or may not exist on the back end and requires a secondary lookup to be sure. This is why computing the correct size is important--a well-sized Bloom filter can reduce (but not eliminate) the error rate or the likelihood of a false positive.
 Day 2 Wrap-Up
 Today we rounded out our Redis investigation by moving beyond simple operations into squeezing every last bit of speed out of a very fast system. Redis provides for fast and flexible data structure storage and simple manipulations as we saw in Day 1 but is equally adept at more complex behaviors by way of built-in publish-subscribe functions and bit operations. It's also highly configurable, with many durability and replication settings that conform to whatever your needs may be. It also supports some nice thirdparty enhancements, like Bloom filters and clustering.
@@ -5950,7 +5948,7 @@ Do 1. Run the ISBN populator script with all snapshotting and the append-only
 file turned off. Then try running with appendfsync set to always, marking the speed difference.
 2. Using your favorite programming language's web framework, try to build a simple URL-shortening service backed by Redis with an input box for the URL and a simple redirect based on the URL. Back it up with a Redis master-slave replicated cluster across multiple nodes as your back end.
 
-Day 3: Playing with Other Databases · 291
+Day 3: Playing with Other Databases ï¿½ 291
 8.4 Day 3: Playing with Other Databases
 Today we're wrapping up our final database chapter by inviting some previous databases to play. Yet Redis will hold a starring role by making our interaction with other databases faster and easier.
 We've learned throughout this book that different databases have different strengths, so many modern system designs have moved toward a polyglot persistence model, where many databases each play a role in the system. You'll learn how to build one of these projects using CouchDB as the system of record (the canonical data source), Neo4j to handle data relationships, and Redis to help with data population and caching. Consider this your final exam.
@@ -5961,7 +5959,7 @@ Redis plays three important roles in our system: to assist in data populating Co
 CouchDB is our system of record (SOR), or authoritative data source. CouchDB's document structure is an easy way to store band data with nested artist and role information, and we will take advantage of the Changes API in CouchDB to keep our third data source in sync.
 Neo4j is our relationship store. Although querying the CouchDB SOR directly is perfectly reasonable, a graph datastore allows us a simplicity and speed in walking node relationships that other databases have a difficult time matching. We'll store relationships between bands, band members, and the roles the members play.
 
-292 · Chapter 8. Redis
+292 ï¿½ Chapter 8. Redis
 The Rise of Polyglot Persistence
 Like the growing phenomenon of polyglot programming, polyglot persistence is now gaining ground.
 If you are unfamiliar with the practice, polyglot programming is whereby a team uses more than one programming language in a single project. Contrast this with the convention of using one general-purpose language throughout a project. This is useful because of the different inherent strengths of languages. A framework like Scala may be better suited for server-side stateless transactions on the Web, but a language like Ruby may be friendlier for business logic. Used together, they create a synergy. A polyglot language system like this was famously used at Twitter.
@@ -5972,7 +5970,7 @@ Each database has a specific role to play in our system, but they don't natively
 Population
 The first item of business is to populate our datastores with the necessary data. We take a two-phased approach here, by first populating Redis and then populating our CouchDB SOR.
 
-Day 3: Playing with Other Databases · 293
+Day 3: Playing with Other Databases ï¿½ 293
 As in earlier sections, we download a dataset from Freebase.com. We'll be using the group_membership tab-separated set.5 This file contains a lot of information, but we are interested only in extracting the member or artist name, the group or band name, and their roles in that band stored as a commaseparated list. For example, John Cooper played in the band Skillet as the Lead vocalist, Acoustic guitar player, and Bassist.
 /m/0654bxy John Cooper Skillet Lead vocalist,Acoustic guitar,Bass 1996
 Ultimately we want to structure John Cooper and the other members of Skillet into a single CouchDB document like the following, stored at the URL http://localhost:5984/bands/Skillet:
@@ -5981,7 +5979,7 @@ Ultimately we want to structure John Cooper and the other members of Skillet int
 This file contains well over 100,000 band members and more than 30,000 bands. That's not many, but it's a good starting point to build your own system. Note that not every artist's roles are documented. This is an incomplete dataset, but we can deal with that later.
 5. http://download.freebase.com/datadumps/latest/browse/music/group_membership.tsv
 
-294 · Chapter 8. Redis
+294 ï¿½ Chapter 8. Redis
 Phase 1: Data Transformation You may wonder why we bother populating Redis and not just dive right into populating CouchDB. Acting as an intermediary, Redis adds structure to the flat TSV data so that subsequent insertion into another database is fast. Since our plan is to create a single record per band name, Redis allows us to make a single pass through our TSV file (which lists the same band for each band member--each band member is represented in a line). Adding single members directly to CouchDB for each line in the file can cause update thrashing, where two band member lines attempt to create/update the same band document at the same time, forcing the system to reinsert when one of them fails CouchDB's version check.
 The catch with this strategy is that you're limited to the constraints of Redis to hold an entire dataset in RAM--though this limit could be overcome by the simple consistent-hashing cluster we saw on Day 2.
 With our data file in hand, ensure you have Node.js installed as well as the Node Package Manager (npm). Once that's all done, we need to install three NPM projects: redis, csv, and hiredis (the optional Redis C-driver we learned about yesterday that can greatly speed up Redis interactions).
@@ -5992,7 +5990,7 @@ $ node pre_populate.js
 This script basically iterates through each line of the TSV and extracts the artist name, the band name, and the roles they play in that band. Then it adds those values to Redis (skipping any blank values).
 The format of each Redis band key is "band:Band Name". The script will add this artist name to the set of artist names. So, the key "band:Beatles" will contain the set of values ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"]. The artist keys will also contain the band name and similarly contain a set of roles. "artist:Beatles:Ringo Starr" will contain the set ["Drums"].
 
-Day 3: Playing with Other Databases · 295
+Day 3: Playing with Other Databases ï¿½ 295
 The other code just keeps track of how many lines we've processed and outputs the results to the screen.
 redis/pre_populate.js csv(). fromPath( tsvFileName, { delimiter: '\t', quote: '' }). on('data', function(data, index) {
 var artist = data[2], band = data[3], roles = buildRoles(data[4]);
@@ -6007,7 +6005,7 @@ Ensure CouchDB is running on the default port 5984, or change the require('http'
 $ node populate_couch.js
 Since phase 1 was all about pulling data from a TSV and populating Redis, this phase is all about pulling data from Redis and populating CouchDB. We don't use any special drivers for CouchDB, since it's a simple REST interface and Node.js has a simple built-in HTTP library.
 
-296 · Chapter 8. Redis
+296 ï¿½ Chapter 8. Redis
 Eric says:
 Nonblocking Code
 Before starting this book, we were only passingly familiar with writing event-driven nonblocking applications. Nonblocking means precisely that: rather than waiting for a long-running process to complete, the main code will continue executing. Whatever you need to do in response to a blocking event you put inside a function or code block to be executed later. This can be by spawning a separate thread or, in our case, implementing a reactor pattern event-driven approach.
@@ -6021,7 +6019,7 @@ It took us quite some time to realize the benefits here. The rest of the program
 We try to keep the code as simple as we can, but interacting with databases in a nonblocking way is an inherently complex process. But as we learned, it's generally a very good method when dealing with databases. Nearly every popular programming language has some sort of nonblocking library. Ruby has EventMachine, Python has Twisted, Java has the NIO library, C# has Interlace, and of course JavaScript has Node.js.
 In the following block of code, we perform a Redis KEYS bands:* to get a list of all band names in our system. If we had a really big dataset, we could add more scoping (for example, bands:A* to get only band names starting with a, and so on). Then for each of those bands we fetch the set of artists and extract the band name from the key, by removing the prefix bands: from the key string.
 
-Day 3: Playing with Other Databases · 297
+Day 3: Playing with Other Databases ï¿½ 297
 redis/populate_couch.js redisClient.keys('band:*', function(error, bandKeys) {
 totalBands = bandKeys.length; var
 readBands = 0, bandsBatch = [];
@@ -6038,7 +6036,7 @@ artistDocs.push({ name: artistName, role : roles[i++] }); });
 // add this new band document to the batch to be executed later bandsBatch.push({
 _id: couchKeyify( bandName ), name: bandName, artists: artistDocs });
 
-298 · Chapter 8. Redis
+298 ï¿½ Chapter 8. Redis
 With the population of the bands database, we now have in a single location all of the data our system requires. We know the names of many bands, the artists who performed in them, and the roles they played in those bands.
 Now would be a good time to take a break and play around with our newly populated bands system of record in CouchDB at http://localhost:5984/_utils/ database.html?bands.
 Relationship Store
@@ -6050,7 +6048,7 @@ $ node graph_sync.js
 This server just uses the continuous polling example we saw in the CouchDB chapter to track all CouchDB changes. Whenever a change is detected, we do two things: populate Redis and populate Neo4j. This code populates Redis by cascading callback functions. First it populates the band as "band-name:Band Name". It follows this pattern for artist name and roles.
 This way, we can search with partial strings. For example, KEYS band-name:Bea* could return this: Beach Boys, Beastie Boys, Beatles, and so on.
 
-Day 3: Playing with Other Databases · 299
+Day 3: Playing with Other Databases ï¿½ 299
 redis/graph_sync.js function feedBandToRedis(band) {
 redisClient.set('band-name:' + band.name, 1); band.artists.forEach(function(artist) {
 redisClient.set('artist-name:' + artist.name, 1); artist.role.forEach(function(role){
@@ -6062,7 +6060,7 @@ var lookup = neo4jClient.lookupOrCreateNode, relate = neo4jClient.createRelation
 lookup('bands', 'name', band.name, function(bandNode) { progress.emit('progress', 'band'); band.artists.forEach(function(artist) { lookup('artists', 'name', artist.name, function(artistNode){ progress.emit('progress', 'artist'); relate(bandNode.self, artistNode.self, 'member', function(){ progress.emit('progress', 'member'); }); artist.role.forEach(function(role){ lookup('roles', 'role', role, function(roleNode){ progress.emit('progress', 'role'); relate(artistNode.self, roleNode.self, 'plays', function(){ progress.emit('progress', 'plays');
 Let this service keep running in its own window. Every update to CouchDB that adds a new artist or role to an existing artist will trigger a new relationship in Neo4j and potentially new keys in Redis. As long as this service runs, they should be in sync.
 
-300 · Chapter 8. Redis
+300 ï¿½ Chapter 8. Redis
 Open your CouchDB web console and open a band. Make any data change you want to the database: add a new band member (make yourself a member of the Beatles!), or add a new role to an artist. Keep an eye on the graph_sync output. Then fire up the Neo4j console and try finding any new connections in the graph. If you added a new band member, they should now have a relationship with the band node or new role if that was altered. The current implementation does not remove relationships--though it would not be a complete modification to add a Neo4j DELETE operation to the script.
 The Service
 This is the part we've been building up to. We're going to create a simple web application that allows users to search for a band. Any band in the system will list all of the band members as links, and any clicked band member link will list some information about the artist--namely, the roles they play. In addition, each role the artist plays will list every other artist in the system who also plays that role.
@@ -6076,7 +6074,7 @@ Let's take a look at the code that will build a web page that lists band informa
 redis/bands.js appServer.addRoute("^/band$", function(req, res) {
 var bandName = req.param('name'), bandNodePath = '/bands/' + couchUtil.couchKeyify( bandName ), membersQuery = 'g.V[[name:"'+bandName+'"]]' + '.out("member").in("member").uniqueObject.name';
 
-Day 3: Playing with Other Databases · 301
+Day 3: Playing with Other Databases ï¿½ 301
 getCouchDoc( bandNodePath, res, function( couchObj ) { gremlin( membersQuery, function(graphData) { var artists = couchObj && couchObj['artists']; var values = { band: bandName, artists: artists, bands: graphData }; var body = '<h2>{{band}} Band Members</h2>'; body += '<ul>{{#artists}}'; body += '<li><a href="/artist?name={{name}}">{{name}}</a></li>'; body += '{{/artists}}</ul>'; body += '<h3>You may also like</h3>'; body += '<ul>{{#bands}}'; body += '<li><a href="/band?name={{.}}">{{.}}</a></li>'; body += '{{/bands}}</ul>'; writeTemplate( res, body, values );
 If you enter in the band Nirvana in the search form, your URL request will be http://localhost:8080/band?name=Nirvana. This function will render an HTML page (the overall template is in an external file named template.html). This web page lists all artists in a band, which it pulls directly from CouchDB. It also lists some suggested bands, which it retrieves from a Gremlin query against the Neo4j graph. The Gremlin query is like this for Nirvana:
 g.V.filter{it.name=="Nirvana"}.out("member").in("member").dedup.name
@@ -6086,7 +6084,7 @@ redis/bands.js appServer.addRoute("^/artist$", function(req, res) {
 var artistName = req.param('name'), rolesQuery = 'g.V[[name:"'+artistName+'"]].out("plays").role.uniqueObject', bandsQuery = 'g.V[[name:"'+artistName+'"]].in("member").name.uniqueObject';
 gremlin( rolesQuery, function(roles) { gremlin( bandsQuery, function(bands) { var values = { artist: artistName, roles: roles, bands: bands }; var body = '<h3>{{artist}} Performs these Roles</h3>'; body += '<ul>{{#roles}}'; body += '<li>{{.}}</li>'; body += '{{/roles}}</ul>'; body += '<h3>Play in Bands</h3>'; body += '<ul>{{#bands}}'; body += '<li><a href="/band?name={{.}}">{{.}}</a></li>'; body += '{{/bands}}</ul>'; writeTemplate( res, body, values );
 
-302 · Chapter 8. Redis
+302 ï¿½ Chapter 8. Redis
 Two Gremlin queries are executed here. This first outputs all roles a member plays, and the second is a list of bands that person played in. For example, Jeff Ward (http://localhost:8080/artist?name=Jeff%20Ward) would be listed as playing the role Drummer and in the bands Nine Inch Nails and Ministry.
 A cool feature of the previous two pages is that we render links between these values. The artist list in the /bands page links to the chosen /artist page, and vice versa. But we could make searching a bit easier.
 redis/bands.js appServer.addRoute("^/search$", function(req, res) {
@@ -6098,7 +6096,7 @@ You may also note that we do not have a form where someone can update band infor
 If you enjoy playing with this kind of polyglot persistence, you could take this even further. You could add a PostgreSQL data warehouse6 to transform this data into a star schema--allowing for different dimensions of analysis, such
 6. http://en.wikipedia.org/wiki/Data_warehouse
 
-Day 3: Playing with Other Databases · 303
+Day 3: Playing with Other Databases ï¿½ 303
 as most commonly played instrument or average numbers of total members in a band vs. total instruments. You could add a Riak server to store samples of bands' music, an HBase server to build a messaging system where users can keep track of their historical likes/dislikes, or a MongoDB extension to add a geographic element to this service.
 Or, redesign this project entirely with a different language, web framework, or dataset. There are as many opportunities to extend this project as there are combinations of databases and technologies to create it--a Cartesian product of all open source.
 Day 3 Wrap-Up
@@ -6110,7 +6108,7 @@ Do 1. Alter the importer steps to also track a band member's start and end
 dates with the band. Track that data in the artist's CouchDB subdocument. Display this information on the artist's page.
 2. Add MongoDB into the mix by storing a few music samples into GridFS, whereby users can hear a song or two related to a band. If any songs exists for a band, add a link to the web app. Ensure the Riak data and CouchDB remain in sync.
 
-304 · Chapter 8. Redis
+304 ï¿½ Chapter 8. Redis
 8.5 Wrap-Up
 The Redis key-value (or data structure) store is light and compact, with a variety of uses. It's akin to one of those multitools composed of a knife, can opener, and other bits and bobs like a corkscrew--Redis is good to have around for solving a variety of odd tasks. Above all, Redis is fast, simple, and as durable as you choose. While rarely a stand-alone database, Redis is a perfect complement to any polyglot ecosystem as an ever-present helper for transforming data, caching requests, or managing messages by way of its blocking commands.
 Redis's Strengths
@@ -6119,7 +6117,7 @@ Redis's Weaknesses
 Redis is fast largely because it resides in memory. Some may consider this cheating, since of course a database that never hits the disk will be fast. A main memory database has an inherent durability problem; namely, if you shut down the database before a snapshot occurs, you can lose data. Even if you set the append-only file to disk sync on every operation, you run a risk with playing back expiry values, since time-based events can never be counted on to replay in exactly the same manner--though in fairness this case is more hypothetical than practical.
 Redis also does not support datasets larger than your available RAM (Redis is removing virtual memory support), so its size has a practical limitation. Although there is a Redis Cluster currently in development to grow beyond a single-machine's RAM requirements, anyone wanting to cluster Redis must currently roll their own with a client that supports it (like the Ruby driver we used in Day 2).
 
-Wrap-Up · 305
+Wrap-Up ï¿½ 305
 Parting Thoughts
 Redis is chock-full of commands--more than 120 of them. Most commands are straightforward enough to understand by their names alone, once you get used to the idea that seemingly random letters will be removed (for example, INCRBY) or that mathematical precision can sometimes be more confusing than helpful (for example, ZCOUNT, or sorted set count, vs. SCARD, or set cardinality).
 Redis is already becoming an integral part of many systems. Several open source projects rely on Redis, from Resque, a Ruby-based asynchronous job queueing service, to session management in the Node.js project SocketStream. Regardless of the database you choose as your SOR, you should certainly add Redis to the mix.
@@ -6134,7 +6132,7 @@ We've seen that how databases store their data can be largely divided into five 
 Relational
 This is the most common classic database pattern. Relational database management systems (RDBMSs) are set-theory-based systems implemented as two-dimensional tables with rows and columns. Relational databases strictly enforce type and are generally numeric, strings, dates, and uninterpreted blobs, but as we saw, PostgreSQL provided extensions such as array or cube.
 
-308 · Chapter 9. Wrapping Up
+308 ï¿½ Chapter 9. Wrapping Up
 Good For: Because of the structured nature of relational databases, they make sense when the layout of the data is known in advance but how you plan to use that data later may not be. Or, in other words, you pay the organizational complexity up front to achieve query flexibility later. Many business problems are aptly modeled this way, from orders to shipments and from inventory to shopping carts. You may not know in advance how you'll want to query the data later--how many orders did we process in February?--but the data is quite regular in nature, so enforcing that regularity is helpful.
 Not-So-Good For: When your data is highly variable or deeply hierarchical, relational databases aren't the best fit. Because you must specify a schema up front, data problems that exhibit a high degree of record-to-record variation will be problematic. Consider developing a database to describe all the creatures in nature. Creating a full list of all features to account for (hasHair, numLegs, laysEggs, and so on) would be intractable. In such a case, you'd want a database that makes less restrictions in advance on what you can put into it.
 Key-Value
@@ -6142,7 +6140,7 @@ The key-value (KV) store was the simplest model we covered. KV maps simple keys 
 Good For: With little or no need to maintain indexes, key-value stores are often designed to be horizontally scalable, extremely fast, or both. They're particularly suited for problems where the data are not highly related. For example, in a web application, users' session data meet this criteria; each user's session activity will be different and largely unrelated to the activity of other users.
 Not-So-Good For: Often lacking indexes and scanning capabilities, KV stores won't help you if you need to be able to perform queries on your data, other than basic CRUD operations (Create, Read, Update, Delete).
 
-Genres Redux · 309
+Genres Redux ï¿½ 309
 Columnar
 Columnar databases (aka column-oriented, aka column family) share many similarities with both KV and RDBMS stores. Like with a key-value database, values are queried by matching keys. Like relational, their values are groups of zero or more columns, though each row is capable of populating however many it wants. Unlike either, columnar databases store like data by columns, rather than keeping data together by rows. Columns are inexpensive to add, versioning is trivial, and there is no real storage cost for unpopulated values. We saw how HBase is a classic implementation of this genre.
 Good For:
@@ -6152,7 +6150,7 @@ Different columnar databases have different features and therefore different dra
 Document
 Document databases allow for any number of fields per object and even allow objects to be nested to any depth as values of other fields. The common representation of these objects is as JavaScript Object Notation (JSON), adhered to by both MongoDB and CouchDB--though this is by no means a conceptual requirement. Since documents don't relate to each other like relational databases, they are relatively easy to shard and replicate across several servers, making distributed implementations fairly common. MongoHQ tends to tackle availability by supporting the creation of datacenters that manage huge datasets for the Web. Meanwhile, CouchDB focuses on being simple and durable, where availability is achieved by master-master replication of fairly autonomous nodes. There is high overlap between these projects.
 
-310 · Chapter 9. Wrapping Up
+310 ï¿½ Chapter 9. Wrapping Up
 Good For: Document databases are suited to problems involving highly variable domains. When you don't know in advance what exactly your data will look like, document databases are a good bet. Also, because of the nature of documents, they often map well to object-oriented programming models. This means less impedance mismatch when moving data between the database model and application model.
 Not-So-Good For: If you're used to performing elaborate join queries on highly normalized relational database schemas, you'll find the capabilities of document databases lacking. A document should generally contain most or all of the relevant information required for normal use. So while in a relational database you'd naturally normalize your data to reduce or eliminate copies that can get out of sync, with document databases, denormalized data is the norm.
 Graph
@@ -6160,7 +6158,7 @@ Graph databases are an emerging class of database that focuses more on the free 
 Good For: Graph databases seem to be tailor-made for networking applications. The prototypical example is a social network, where nodes represent users who have various kinds of relationships to each other. Modeling this kind of data using any of the other styles is often a tough fit, but a graph database would accept it with relish. They are also perfect matches for an object-oriented system. If you can model your data on a whiteboard, you can model it in a graph.
 Not-So-Good For: Because of the high degree of interconnectedness between nodes, graph databases are generally not suitable for network partitioning. Spidering the graph quickly means you can't afford network hops to other database nodes,
 
-Making a Choice · 311
+Making a Choice ï¿½ 311
 so graph databases don't scale out well. It's likely that if you use a graph database, it'll be one piece of a larger system, with the bulk of the data stored elsewhere and only the relationships maintained in the graph.
 9.2 Making a Choice
 As we said at the beginning, data is the new oil. We sit upon a vast ocean of data, yet until it's refined into information, it's unusable (and with a more crude comparison, there's a lot of money in data these days). The ease of collecting and ultimately storing, mining, and refining the data out there starts with the database you choose.
@@ -6169,7 +6167,7 @@ These examples serve to point out that there are other avenues beyond genre to c
 There are several more dimensions to consider when choosing a database, such as durability, availability, consistency, scalability, and security. You have to decide whether ad hoc queryability is important or if mapreduce will suffice. Do you prefer to use an HTTP/REST interface, or are you willing to require a driver for a custom binary protocol? Even smaller scope concerns, such as the existence of bulk data loaders, might be important for you to think about.
 To simplify the comparison between these databases, we created a table in Appendix 1, Database Overview Tables, on page 313. The table is not meant to be an exhaustive list of features. Instead, it's meant to be a tool to quickly
 
-312 · Chapter 9. Wrapping Up
+312 ï¿½ Chapter 9. Wrapping Up
 compare these databases we've already covered. Note the versions of each database. These features change in the blink of an eye, so we highly recommend double-checking these values for more recent versions.
 9.3 Where Do We Go from Here?
 Modern application scaling problems now fall largely in the realm of data management. We've reached a point in application evolution where programming language, framework, and operating system choice--even hardware and operations (thanks to virtual machine hosts and "the cloud")--are becoming so cheap and easy as to become largely trivial problems driven as much by preference as necessity. If you want to scale your application in this age, you should think quite a bit about which database, or databases, you choose-- it's more than likely your true bottleneck. Helping you make this choice correctly was a leading purpose of this book.
@@ -6199,7 +6197,7 @@ Datatypes Typed Typed Blob Semi-typed Predefined and typed Untyped Predefined an
 Data Relations None None Ad hoc (Links) None Predefined
 Ad hoc (Edges) None
 
-314 · Appendix 1. Database Overview Tables
+314 ï¿½ Appendix 1. Database Overview Tables
 
 MongoDB
 
@@ -6295,7 +6293,7 @@ Datacenter
 
 Write-ahead logging
 
-Appendix 1. Database Overview Tables · 315
+Appendix 1. Database Overview Tables ï¿½ 315
 
 MongoDB CouchDB Riak
 
@@ -6401,7 +6399,7 @@ Write lock
 
 Master-slave Yes via HDFS Consistent per row
 
-316 · Appendix 1. Database Overview Tables
+316 ï¿½ Appendix 1. Database Overview Tables
 
 MongoDB CouchDB
 Riak Redis PostgreSQL Neo4j HBase
@@ -6454,11 +6452,11 @@ The CAP theorem is pertinent when considering a distributed database, since you 
 A2.1 Eventual Consistency
 Distributed databases must be partition tolerant, so the choice between availability and consistency can be difficult. However, while CAP dictates that
 
-318 · Appendix 2. The CAP Theorem
+318 ï¿½ Appendix 2. The CAP Theorem
 A CAP Adventure, Part I: CAP
 Imagine the world as a giant distributed database system. All of the land in the world contains information about certain topics, and as long as you're somewhere near people or technology, you can find an answer to your questions.
-Now, for the sake of argument, imagine you are a passionate Beyoncé Knowles fan and the date is September 5, 2006. Suddenly, at your friend's beach house party celebrating the release of Beyoncé's second studio album, a freak tidal wave sweeps across the dock and drags you out to sea. You fashion a makeshift raft and wash up on a desert island days later. Without any means of communication, you are effectively partitioned from the rest of the system (the world). There you wait for five long years....
-One morning in 2011 you are awakened by shouts from the sea. A salty old schooner captain has discovered you! After five years alone, the captain leans over the bow and bellows: "How many studio albums does Beyoncé have?"
+Now, for the sake of argument, imagine you are a passionate Beyoncï¿½ Knowles fan and the date is September 5, 2006. Suddenly, at your friend's beach house party celebrating the release of Beyoncï¿½'s second studio album, a freak tidal wave sweeps across the dock and drags you out to sea. You fashion a makeshift raft and wash up on a desert island days later. Without any means of communication, you are effectively partitioned from the rest of the system (the world). There you wait for five long years....
+One morning in 2011 you are awakened by shouts from the sea. A salty old schooner captain has discovered you! After five years alone, the captain leans over the bow and bellows: "How many studio albums does Beyoncï¿½ have?"
 You now have a decision to make. You can answer the question with the most recent value you have (which is now five years old). If you answer his query, you are available. Or, you can decline to answer the question, knowing since you are partitioned, your answer may not be consistent with the rest of the world. The captain won't get his answer, but the state of the world remains consistent (if he sails back home, he can get the correct answer). As your role of queried node, you can either help keep the world's data consistent or be available, but not both.
 if you pick availability you cannot have true consistency, you can still provide eventual consistency.
 The idea behind eventual consistency is that each node is always available to serve requests. As a trade-off, data modifications are propagated in the background to other nodes. This means that at any time the system may be inconsistent, but the data is still largely accurate.
@@ -6466,11 +6464,11 @@ The Internet's Domain Name Service (DNS) is a prime example of an eventually con
 A2.2 CAP in the Wild
 Some partition-tolerant databases can be tuned to be more or less consistent or available on a per-request basis. Riak works like this, allowing clients to decide at request time what level of consistency they require. The other databases in this book largely occupy one corner or another of the CAP tradeoff triangle.
 
-The Latency Trade-Off · 319
+The Latency Trade-Off ï¿½ 319
 A CAP Adventure, Part II: Eventual Consistency
 Let's rewind two years, back to 2009. You've been on the island for three years at this point, and you spot a bottle in the sand--precious contact with the outside world. You uncork it and rejoice! You've just received an integral piece of knowledge...
-The number of studio albums Beyoncé has is of utmost importance to the world's aggregate knowledge. It's so important, in fact, that every time she releases a new album, someone writes the current date and the number on a piece of paper. They place that paper in a bottle and throw it out to sea. If someone, like yourself, is partitioned from the rest of the world on a desert island, they can eventually have the correct answer.
-Skip forward to the present. When the ship captain asks, "How many studio albums does Beyoncé have?" you remain available and answer "three." You may be inconsistent with the rest of the world, but you are reasonably certain of your answer, having not yet received another bottle.
+The number of studio albums Beyoncï¿½ has is of utmost importance to the world's aggregate knowledge. It's so important, in fact, that every time she releases a new album, someone writes the current date and the number on a piece of paper. They place that paper in a bottle and throw it out to sea. If someone, like yourself, is partitioned from the rest of the world on a desert island, they can eventually have the correct answer.
+Skip forward to the present. When the ship captain asks, "How many studio albums does Beyoncï¿½ have?" you remain available and answer "three." You may be inconsistent with the rest of the world, but you are reasonably certain of your answer, having not yet received another bottle.
 The story ends with the captain rescuing you, and you return home to find her new album and live happily ever after. As long as you remain on land, you needn't be partition tolerant and can remain consistent and available until the end of your days.
 Redis, PostgreSQL, and Neo4J are consistent and available (CA); they don't distribute data and so partitioning is not an issue (though arguably, CAP doesn't make much sense in non-distributed systems). MongoDB and HBase are generally consistent and partition tolerant (CP). In the event of a network partition, they can become unable to respond to certain types of queries (for example, in a Mongo replica set you flag slaveok to false for reads). In practice, hardware failure is handled gracefully--other still-networked nodes can cover for the downed server--but strictly speaking, in the CAP theorem sense, they are unavailable. Finally, CouchDB is available and partition tolerant (AP). Even though two or more CouchDB servers can replicate data between them, CouchDB doesn't guarantee consistency between any two servers.
 It's worth noting that most of these databases can be configured to change CAP type (Mongo can be CA, CouchDB can be CP), but here we've noted their default or common behaviors.
@@ -6478,7 +6476,7 @@ A2.3 The Latency Trade-Off
 There is more to distributed database system design than CAP, however. For example, low latency (speed) is a chief concern for many architects. If you read the Amazon Dynamo1 paper, you'll notice a lot of talk about availability
 1. http://allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
 
-320 · Appendix 2. The CAP Theorem
+320 ï¿½ Appendix 2. The CAP Theorem
 but also Amazon's latency requirements. For a certain class of applications, even a small latency change can translate to a large costs. Yahoo's PNUTS database famously gives up both availability on normal operation and consistency on partitions in order to squeeze a lower latency out of its design.2 It's important to consider CAP when dealing with distributed databases, but it's equally important to be aware that distributed database theory does not stop there.
 2. http://dbmsmusings.blogspot.com/2010/04/problems-with-cap-and-yahoos-little.html
 
@@ -6505,9 +6503,9 @@ SYMBOLS
 A
 abstract syntax tree (query tree), 31
 ACID compliance, 25
-ACID transaction database, Neo4j as, 250­251
-aggregate functions, 21­23
-aggregated queries, in MongoDB, 155­157
+ACID transaction database, Neo4j as, 250ï¿½251
+aggregate functions, 21ï¿½23
+aggregated queries, in MongoDB, 155ï¿½157
 algebra, relational, SQL and, 13
 
 Amazon Dynamo paper, Riak and, 52 Elastic Compute Cloud (EC2), 126
@@ -6527,73 +6525,73 @@ AUTO_INCREMENT, MySQL, 16
 Avro protocol, HBase, 122
 AWS (Amazon's Web Services), 126, 129
 B
-B-tree definition of, 21 index in PostgreSQL, 19 in MongoDB, 152­155
+B-tree definition of, 21 index in PostgreSQL, 19 in MongoDB, 152ï¿½155
 
 B-tree index, in PostgreSQL, 20
 backslash (\) commands, for psql shell, 11
-Big Data implementation, 106­111, 311
-Big Table, 94 big_vclock, 84 BigCouch, vs. CouchDB, 212 Bloom filters, 287­290
-about, 109, 111 Bloom, Burton Howard, 109 BSD netcat (nc), 276­277 bucket values, storing map
-functions in, 67­68 buckets, populating Riak, 55 built-in functions, in Riak, 68
+Big Data implementation, 106ï¿½111, 311
+Big Table, 94 big_vclock, 84 BigCouch, vs. CouchDB, 212 Bloom filters, 287ï¿½290
+about, 109, 111 Bloom, Burton Howard, 109 BSD netcat (nc), 276ï¿½277 bucket values, storing map
+functions in, 67ï¿½68 buckets, populating Riak, 55 built-in functions, in Riak, 68
 C
-CAP theorem about, 317­320 adventure, 318­319 in HBase, 132 in Neo4j, 259 in Riak, 72, 92
+CAP theorem about, 317ï¿½320 adventure, 318ï¿½319 in HBase, 132 in Neo4j, 259 in Riak, 72, 92
 Cartesian products, 12 Cassandra database, 5, 125 centrality, meaning of, 246 Changes API interface, 203,
 291 characters, regular expres-
 sion, 37 CLI (command-line interface),
 connecting to MySQL, 137 Cloud Servers, RackSpace,
 125 cloud service providers, 125
 
-324 · Index
+324 ï¿½ Index
 
-cluster checking health of, 128 configuring, 127­128 connecting to, 128 HA, 252 launching, 128­129 Redis, 286­287 setting up, 125­126
+cluster checking health of, 128 configuring, 127ï¿½128 connecting to, 128 HA, 252 launching, 128ï¿½129 Redis, 286ï¿½287 setting up, 125ï¿½126
 code, choosing to execute database, 29
 collect(), as Groovy map function, 233
 collection in Gremlin, 226 in MongoDB, 150
-column families, HBase, 97­ 99, 104, 116
+column families, HBase, 97ï¿½ 99, 104, 116
 column-oriented databases, 94
 columnar databases about, 309 strengths of, 309 weaknesses of, 309
 columnar databases (columnoriented databases), about, 5
 columns definition of, 21 in PostgreSQL, 11
-command line shell, in PostgreSQL, 10­11
-command line, Redis commands DEL command, 274 DISCARD command, 264 EXPIRE command, 272­ 273 FLUSHALL command, 274, 281 FLUSHDB command, 274 GET command, 264 GETBIT command, 287­ 290 INCR command, 263 INFO command, 278­279 LASTSAVE command, 280 LRANGE command, 270, 282 MGET command, 263 MOVE command, 274 MULTI command in, 264 RENAME command, 274 SADD command, 282 SAVE command, 280 SDIFF command, 269 SET command, 263
+command line shell, in PostgreSQL, 10ï¿½11
+command line, Redis commands DEL command, 274 DISCARD command, 264 EXPIRE command, 272ï¿½ 273 FLUSHALL command, 274, 281 FLUSHDB command, 274 GET command, 264 GETBIT command, 287ï¿½ 290 INCR command, 263 INFO command, 278ï¿½279 LASTSAVE command, 280 LRANGE command, 270, 282 MGET command, 263 MOVE command, 274 MULTI command in, 264 RENAME command, 274 SADD command, 282 SAVE command, 280 SDIFF command, 269 SET command, 263
 
-SETBIT command, 287­ 290
-SETEX command, 273 SINTER command, 269 TYPE command, 274 ZRANGE command, 270­
+SETBIT command, 287ï¿½ 290
+SETEX command, 273 SINTER command, 269 TYPE command, 274 ZRANGE command, 270ï¿½
 271
 command-line interface (CLI) connecting to MySQL, 137 Redis and, 262
 compression algorithms, in HBase, 110
 conflicts, resolving with vector clocks, 80
 constraints foreign key, 13 primary key, 11 REFERENCES keyword as, 15
-CouchDB, see also polyglot persistence service example _all_docs view, 191 _changes field, 205 _id field in, 180 _rev field, 181 about, 6, 177­178 accessing documents through views, 186­ 188 Changes API interface, 203, 291 communication with, 182 CouchDB, 217 creating documents with POST, 183­184 creating views with reducers, 200­202 developing application specific view, 191­192 field names, 180 filtering changes, 210­ 211 handling conflicts, 213­ 216 importing data using, 194­199 issuing GET requests, 183 JSON structure nested in, 180, 182 modifying records, 180 polling for changes with Node.js, 206­209 querying design documents with curl, 192­ 194
+CouchDB, see also polyglot persistence service example _all_docs view, 191 _changes field, 205 _id field in, 180 _rev field, 181 about, 6, 177ï¿½178 accessing documents through views, 186ï¿½ 188 Changes API interface, 203, 291 communication with, 182 CouchDB, 217 creating documents with POST, 183ï¿½184 creating views with reducers, 200ï¿½202 developing application specific view, 191ï¿½192 field names, 180 filtering changes, 210ï¿½ 211 handling conflicts, 213ï¿½ 216 importing data using, 194ï¿½199 issuing GET requests, 183 JSON structure nested in, 180, 182 modifying records, 180 polling for changes with Node.js, 206ï¿½209 querying design documents with curl, 192ï¿½ 194
 
 removing documents with DELETE, 185
-replicating data in, 212­ 213
+replicating data in, 212ï¿½ 213
 role in polyglot persistence service example, 291
 saving view as design document, 191
 strengths of, 217 total_rows field, 194 updating documents with
-PUT, 183­184 vs. BigCouch, 212 vs. MongoDB, 178 watching for changes,
-203­206 watching for changes
-continuously, 209­210 weaknesses of, 217 writing views, 188­190
-CouchDB Futon creating documents, 179­ 181 document with Array Value, 181 replicator, 213
+PUT, 183ï¿½184 vs. BigCouch, 212 vs. MongoDB, 178 watching for changes,
+203ï¿½206 watching for changes
+continuously, 209ï¿½210 weaknesses of, 217 writing views, 188ï¿½190
+CouchDB Futon creating documents, 179ï¿½ 181 document with Array Value, 181 replicator, 213
 count() function about, 22 using HAVING with, 23
 count()function, aggregating results, 156
 CREATE INDEX command, SQL, 19
 CREATE TABLE command, SQL, 11, 18
-crosstab(), using in PostgreSQL, 33­34
-Crow's-Feet Entity Relationship Diagram, 17­18
+crosstab(), using in PostgreSQL, 33ï¿½34
+Crow's-Feet Entity Relationship Diagram, 17ï¿½18
 CRUD about, 14 definition of, 21 verbs, 54
 cURL @- command, 66 issuing GET requests, 182 querying CouchDB design documents with, 192 REST and, 54 Riak and, 52
 
-Index · 325
+Index ï¿½ 325
 
 -v (verbose) attribute in, 55
 -X PUT parameter, 55
 curly braces {...}, Groovy code use of, 225
 D
 database code, choosing to execute, 29
-databases choosing correct, 1­3 genres of, 3­7 listing languages available in, 28
-datastores, genres of, 1­2
-datatypes PostgreSQL, 14 Redis, 263, 265­267
+databases choosing correct, 1ï¿½3 genres of, 3ï¿½7 listing languages available in, 28
+datastores, genres of, 1ï¿½2
+datatypes PostgreSQL, 14 Redis, 263, 265ï¿½267
 default values, in HBase, 101
 DEL command, in Redis, 274
 DELETE (Delete) as CRUD verb, 54 removing documents with, 185 removing value using, 56
@@ -6605,122 +6603,122 @@ DISTINCT keyword, SQL, 23
 distinct() function in aggregated queries, 157 aggregating results, 156
 document databases about, 309 strengths of, 310 uniqueness of, 165 weaknesses of, 310
 document datastore, MongoDB as, 151
-document oriented databases, about, 5­6
+document oriented databases, about, 5ï¿½6
 domain specific languages, conversing in, 235
 dynamic programming languages, vs. static programming languages, 149
 
 E
 EC2 (Elastic Compute Cloud), Amazon, 126
 edges, in Gremlin, 223
-Elastic Compute Cloud (EC2), Amazon, 125­126
-elemMatch directive, MongoDB, 143­145
-Entity Relationship Diagram (ERD), 17­18
-ERD (Entity Relationship Diagram), 17­18
-Erlang, 52, 78, 86­87 CouchDB written in, 177 downloading, 52
+Elastic Compute Cloud (EC2), Amazon, 125ï¿½126
+elemMatch directive, MongoDB, 143ï¿½145
+Entity Relationship Diagram (ERD), 17ï¿½18
+ERD (Entity Relationship Diagram), 17ï¿½18
+Erlang, 52, 78, 86ï¿½87 CouchDB written in, 177 downloading, 52
 eval() function, MongoDB, 160
 event-driven nonblocking applications, 296
 exclamation sign (!), in regular expression searches, 37
-EXPIRE command, in Redis, 272­273
-EXPLAIN command, SQL, 42­ 43
+EXPIRE command, in Redis, 272ï¿½273
+EXPLAIN command, SQL, 42ï¿½ 43
 extract(), in PostgreSQL, 33
 F
 Facebook, messaging index table of, 100
 filters definition of, 210 using, 211
-find function, in MongoDB, 140­141, 148­149
+find function, in MongoDB, 140ï¿½141, 148ï¿½149
 FLUSHALL command, in Redis, 274, 281
 FLUSHDB command, in Redis, 274
 foreign key constraint, 13
 foreign keys, building indexes on, 35
 freebase.com, 293
 full table scans, 18
-full text search, inverted index in Neo4j, 241­242
-Full-text searches, 39­48
+full text search, inverted index in Neo4j, 241ï¿½242
+Full-text searches, 39ï¿½48
 Fully distributed mode, HBase, 95
-functions, creating functions in Riak, 66­67
+functions, creating functions in Riak, 66ï¿½67
 Futon web interface creating Admin, 180
 
 creating documents, 181 creating documents in
-CouchDB, 179­181
+CouchDB, 179ï¿½181
 fuzzy searching, about, 36
 G
 Generalized Index Search Tree (GIST), 39
-Generalized Inverted iNdex (GIN), 42­43
+Generalized Inverted iNdex (GIN), 42ï¿½43
 genre graph, two-dimensional, 46
-genres, as multidimensional cube, 45­48
+genres, as multidimensional cube, 45ï¿½48
 GeoSpatial indexes, spherical, 152
-GeoSpatial Queries, MongoDB, 171­172
+GeoSpatial Queries, MongoDB, 171ï¿½172
 German dictionary, installing, 41
-GET (Read) as CRUD verb, 54 issuing requests, 182­ 183 reading documents with, 183 in Redis, 264 request for _changes field, 205 retrieving value using, 56 using in Neo4j, 238­240
+GET (Read) as CRUD verb, 54 issuing requests, 182ï¿½ 183 reading documents with, 183 in Redis, 264 request for _changes field, 205 retrieving value using, 56 using in Neo4j, 238ï¿½240
 get command, in HBase, 100
 getLast(collection), calling in MongoDB, 160
-GETBIT command, 287­290
-GIN (Generalized Inverted iNdex), 42­43
+GETBIT command, 287ï¿½290
+GIN (Generalized Inverted iNdex), 42ï¿½43
 GIST (Generalized Index Search Tree), 39
 Git, downloading, 52
 Google, MapReduce, 132
 graph, Gremlin terms in, 223
-graph databases about, 6, 310 Neo4j as, 219­220 strengths of, 310 weaknesses of, 310
-Gremlin about, 223 as Pipe building language, 226­228 as general-purpose graph traversal language, 223 calling loop(), 230­232
+graph databases about, 6, 310 Neo4j as, 219ï¿½220 strengths of, 310 weaknesses of, 310
+Gremlin about, 223 as Pipe building language, 226ï¿½228 as general-purpose graph traversal language, 223 calling loop(), 230ï¿½232
 
-326 · Index
+326 ï¿½ Index
 
 conversing in domain specific languages, 235
-edges in, 223 graph algorithms in, 244­
+edges in, 223 graph algorithms in, 244ï¿½
 245 Groovy programming
-language and, 233­235 jQuery and, 228 Java libraries in, 223 REST and, 242
-Gremlin/Blueprint project, 247­249
-GridFS, in MongoDB, 172­ 173
-Groovy programming language, 223­226 closure in, 224 map function in, 233 method parentheses in, 225 reduce function in, 233
-GROUP BY clause in MySQL, 24 SQL, 23 vs. PARTITION BY, 24 vs. Window functions, 24­25
+language and, 233ï¿½235 jQuery and, 228 Java libraries in, 223 REST and, 242
+Gremlin/Blueprint project, 247ï¿½249
+GridFS, in MongoDB, 172ï¿½ 173
+Groovy programming language, 223ï¿½226 closure in, 224 map function in, 233 method parentheses in, 225 reduce function in, 233
+GROUP BY clause in MySQL, 24 SQL, 23 vs. PARTITION BY, 24 vs. Window functions, 24ï¿½25
 group() function in aggregated queries, 157 aggregating results, 156 in MongoDB, 163
 groupCount(), in Neo4j, 246
 group()function, aggregate query in MongoDB, 156
 H
-HA cluster, using in Neo4j, 252­253, 255
+HA cluster, using in Neo4j, 252ï¿½253, 255
 Hadoop distributed file system (HDFS), 132
 Hadoop, Apache, 94, 119, 125, 252
-hash datatype, Redis, 265­ 267
+hash datatype, Redis, 265ï¿½ 267
 hash index, creating, 19
 HAVING clause, using with count(), 23
-HBase about, 93­94 adding data programmatically, 103­104 altering tables, 101­102 as columnar database, 5 Big Data implementation, 106­111
+HBase about, 93ï¿½94 adding data programmatically, 103ï¿½104 altering tables, 101ï¿½102 as columnar database, 5 Big Data implementation, 106ï¿½111
 
 Bloom filter support, 110 capturing data contained
 in links, 116 column families, 97, 99,
 104, 116 compression algorithms
-in, 110 configuring, 95­96 constructing scanner,
-116­118 creating tables, 96­99 datatypes, 132 default values in, 101 developing Thrift HBase
-application, 124­125 disk usage, 111­112 get command in, 100 importing data, 106­107 inserting data in, 99 invoking scripts, 106­107 map, 96 on CAP, 132 properties, 97 protocols for client con-
-nectivity, 122 put command in, 100 regions, 111, 113­115 retrieving data in, 99 running modes, 95 setting up cloud service,
-126­129 shell in, 96­97, 103 shutting down, 96 starting, 96 streaming Wikipedia,
-107­109 strengths of, 131 timestamp in, 100 timestamps in, 99 updating data in, 99 weaknesses of, 132 Whirr setting up clusters
+in, 110 configuring, 95ï¿½96 constructing scanner,
+116ï¿½118 creating tables, 96ï¿½99 datatypes, 132 default values in, 101 developing Thrift HBase
+application, 124ï¿½125 disk usage, 111ï¿½112 get command in, 100 importing data, 106ï¿½107 inserting data in, 99 invoking scripts, 106ï¿½107 map, 96 on CAP, 132 properties, 97 protocols for client con-
+nectivity, 122 put command in, 100 regions, 111, 113ï¿½115 retrieving data in, 99 running modes, 95 setting up cloud service,
+126ï¿½129 shell in, 96ï¿½97, 103 shutting down, 96 starting, 96 streaming Wikipedia,
+107ï¿½109 strengths of, 131 timestamp in, 100 timestamps in, 99 updating data in, 99 weaknesses of, 132 Whirr setting up clusters
 in, 125
 HBase Network Settings, 97
 HBase shell, 96
 HBaseMaster, 115
 HDFS (Hadoop distributed file system), 132
 Homebrew for Mac, 262
-hooks, pre/post commit, 84­ 86
+hooks, pre/post commit, 84ï¿½ 86
 HTTP Etags, 83
 HTTP headers and error codes, in Riak, 55
 HTTP PUT action, 55
 HTTP Solr interface, Riak, 87
 
 HTTP/REST interface, 52, 311
-humongous, 135­136
+humongous, 135ï¿½136
 Hypertable database, 5
 I
 ILIKE searches, 37
-INCR command, in Redis, 263­264
+INCR command, in Redis, 263ï¿½264
 index, as URL parameter for Riak searches, 88
 indexed lookup points, 19
-indexes about, 18 building on foreign keys, 35 definition of, 21 inverted, 42­43 in PostgreSQL, 18­20 in Riak, 89­90
-indexing lexemes, 42­43 in MongoDB, 152 in Neo4j, 241 values in Redis, 271
-INFO command, in Redis, 278­279
+indexes about, 18 building on foreign keys, 35 definition of, 21 inverted, 42ï¿½43 in PostgreSQL, 18ï¿½20 in Riak, 89ï¿½90
+indexing lexemes, 42ï¿½43 in MongoDB, 152 in Neo4j, 241 values in Redis, 271
+INFO command, in Redis, 278ï¿½279
 inject(), as reduce function in Groovy, 233
-inner joins, 15­17
+inner joins, 15ï¿½17
 INSERT INTO, SQL commands, 14
 INSERT INTO command INSERT INTO command, 14 SQL, 13
-inverted indexes, GIN, 42­43
+inverted indexes, GIN, 42ï¿½43
 J
 jQuery, Gremlin and, 228
 Jamendo data, 200
@@ -6728,20 +6726,20 @@ Java, support in PostgreSQL for, 28
 Java API protocol, HBase, 122
 Java libraries, in Gremlin, 223
 Java Virtual Machine (JVM), 103
-JavaScript as native tongue of MongoDB, 138­140 reduce function in, 69 Riak precommit property to use function name, 85
+JavaScript as native tongue of MongoDB, 138ï¿½140 reduce function in, 69 Riak precommit property to use function name, 85
 
-Index · 327
+Index ï¿½ 327
 
-JavaScript framework in polyglot persistence service exam, 292 relationship store, 298­ 300
-joins about, 15 definition of, 21 inner, 15­17 left, 21 left joins, 17 MongoDB and, 148 outer, 17­18 right, 18
+JavaScript framework in polyglot persistence service exam, 292 relationship store, 298ï¿½ 300
+joins about, 15 definition of, 21 inner, 15ï¿½17 left, 21 left joins, 17 MongoDB and, 148 outer, 17ï¿½18 right, 18
 journaling, WAL, 112
 JRuby Apache Hadoop and, 119 based command line program, HBase and, 96
 JSON based document database, CouchDB as, 178 documents, 136 Riak search returning, 88 structure nested in CouchDB, 180, 182
 JSON objects in CouchDB, 187 key/value pairs in, 180 in Neo4j, 238 serialized change notification, 209
-JUNG (Java Universal Network/Graph) Framework, 247­249
+JUNG (Java Universal Network/Graph) Framework, 247ï¿½249
 JVM (Java Virtual Machine), 103
 K
-Kevin Bacon algorithm, 244­ 245
+Kevin Bacon algorithm, 244ï¿½ 245
 key events, 80
 key filters, in Riak, 69
 key name, creating using Post, 56
@@ -6756,89 +6754,89 @@ large-scale deployments, in Riak, 72
 LASTSAVE command, in Redis, 280
 left joins, 17, 21
 levenshtein, searches, 38
-lexemes, indexing, 42­43
+lexemes, indexing, 42ï¿½43
 LIKE searches % as wildcard on, 22 about, 37
-link walking, 57­60 with mapreduce, 70­71
+link walking, 57ï¿½60 with mapreduce, 70ï¿½71
 Links about, 57 metadata, 58 using next_to in, 57
 links, capturing data contained in, 116
 Linls, metadata, 57
-list datatype, Redis, 266­267
+list datatype, Redis, 266ï¿½267
 listCommands() function, MongoDB, 158
-logs, table, 28­29
-lookups with indexing, in PostgreSQL, 18­20
+logs, table, 28ï¿½29
+lookups with indexing, in PostgreSQL, 18ï¿½20
 loopback interface, 97
-loops(), Neo4j calling, 230­ 232
+loops(), Neo4j calling, 230ï¿½ 232
 LRANGE command, in Redis, 270, 282
 Lucene, Erlang module, 86
 M
-map function following pattern of reduce function, 70 in Groovy, 233 outputs in Riak, 65 storing in bucked value, 67­68 storing in bucket value, 68
-map functions, mapreduce converting data using, 63­ 64
+map function following pattern of reduce function, 70 in Groovy, 233 outputs in Riak, 65 storing in bucked value, 67ï¿½68 storing in bucket value, 68
+map functions, mapreduce converting data using, 63ï¿½ 64
 map() function, in MongoDB, 163
-mapping object to common key, 64­66
+mapping object to common key, 64ï¿½66
 
 /mapred command, 67
 MapReduce, Google, 132
-mapreduce about, 63­66 in CouchDB, 200, 202­ 203 creating in Riak, 66­67 link walking, 70­71 mapping object to common key, 64­66 in MongoDB, 160­164 retrieving objects using, 156
-mapreduce functions, creating in Riak, 66­67
+mapreduce about, 63ï¿½66 in CouchDB, 200, 202ï¿½ 203 creating in Riak, 66ï¿½67 link walking, 70ï¿½71 mapping object to common key, 64ï¿½66 in MongoDB, 160ï¿½164 retrieving objects using, 156
+mapreduce functions, creating in Riak, 66ï¿½67
 max(), 22
 membase database, 4
 memcached database, 4
 Mercurial, downloading, 52
 metadata Links as, 57 storing, 58
-metaphones, using in searches, 43­44
+metaphones, using in searches, 43ï¿½44
 MGET command, using in Redis, 263
-MIME types multipart/mixed, 58 in Riak, 60­61
+MIME types multipart/mixed, 58 in Riak, 60ï¿½61
 min(), 22
 misspellings, MongoDB warning about, 149
-MongoDB about, 6, 135­136 aggregated queries, 155­ 157 building index on nested values, 154 collection in, 150 command line reading, 140­142 commands, 139 constructing ad-hoc queries, 141­142 count() function, 156 creating, 137­138 creating JavaScript functions, 139­140 deleting documents, 149­ 150 distinct() function, 156 elemMatch directive, 143­145 eval() function, 160 find function in, 140­ 141, 148­149
+MongoDB about, 6, 135ï¿½136 aggregated queries, 155ï¿½ 157 building index on nested values, 154 collection in, 150 command line reading, 140ï¿½142 commands, 139 constructing ad-hoc queries, 141ï¿½142 count() function, 156 creating, 137ï¿½138 creating JavaScript functions, 139ï¿½140 deleting documents, 149ï¿½ 150 distinct() function, 156 elemMatch directive, 143ï¿½145 eval() function, 160 find function in, 140ï¿½ 141, 148ï¿½149
 
-328 · Index
+328 ï¿½ Index
 
-GeoSpatial Queries, 171­ 172
-getLast(collection), 160 GridFS, 172­173 group() function, 156­157 indexing in, 152­155 installing, 136 joins and, 148 listCommands() function,
-158 mapreduce in, 160­164 MongoDB, 139 nested array data in,
-142­143 ObjectId, 138 operators, 145­148 problem with even nodes,
-168 reading with code, 150 reducers, 163­164 references, 148 replica sets, 165­168 retrieving documents in,
-140­141 runCommand() function,
-157­159 server-side commands,
-158­159 sharding in, 169­171 shortcut for simple deci-
-sion functions, 150 strengths of, 174 updating, 146­148 use of JavaScript in, 138­
+GeoSpatial Queries, 171ï¿½ 172
+getLast(collection), 160 GridFS, 172ï¿½173 group() function, 156ï¿½157 indexing in, 152ï¿½155 installing, 136 joins and, 148 listCommands() function,
+158 mapreduce in, 160ï¿½164 MongoDB, 139 nested array data in,
+142ï¿½143 ObjectId, 138 operators, 145ï¿½148 problem with even nodes,
+168 reading with code, 150 reducers, 163ï¿½164 references, 148 replica sets, 165ï¿½168 retrieving documents in,
+140ï¿½141 runCommand() function,
+157ï¿½159 server-side commands,
+158ï¿½159 sharding in, 169ï¿½171 shortcut for simple deci-
+sion functions, 150 strengths of, 174 updating, 146ï¿½148 use of JavaScript in, 138ï¿½
 140 voting and arbiters in,
 169 vs. CouchDB, 178 vs. mongoconfig, 170 warning about mis-
 spellings, 149
 MOVE command, in Redis, 274
-movie suggestion system schema, 35­36
+movie suggestion system schema, 35ï¿½36
 MULTI command, in Redis, 264
-multidimensional cubes, 45­ 48 genres as, 45­48
+multidimensional cubes, 45ï¿½ 48 genres as, 45ï¿½48
 multipart/mixed MIME type, 58
 MySQL AUTO_INCREMENT, 16 connecting to commandline interface, 137 GROUP BY in, 24
 
 N
-namespaces, in Redis, 273­ 274
+namespaces, in Redis, 273ï¿½ 274
 Neo4j, random walk in, 246
-Neo4j database about, 7, 219 adding nodes in, 222, 224 adding subset of nodes to graph, 230­232 as ACID transaction database, 250­251 as whiteboard friendly, 219­221 backups, 257 building cluster, 253 calling loop(), 230­232 conversing in domain specific languages, 235 dealing with large data sets, 242­244 deleting, 236 finding path between two nodes, 240 graph algorithms in, 244­ 245 graph of nodes, 227 Gremlin and REST, 242 Groovy programming language and, 233­235 groupCount() in, 246 high availability mode and, 251, 254 indexing in, 241­242 process called walking, 220 process stepping forward and back, 231 REST interface of, 238 role in polyglot persistence service example, 291 role_count map in, 246 shutting down master servers, 256 strengths of, 258 suggested schema, 220 updating, 236 using HA cluster in, 252­ 253, 255 using JUNG in, 247­249 using REST in, 238­240 using pipes in Gremlin, 226­228 verifying cluster status, 255 verifying replication, 256 via Gremlin, 223­227
+Neo4j database about, 7, 219 adding nodes in, 222, 224 adding subset of nodes to graph, 230ï¿½232 as ACID transaction database, 250ï¿½251 as whiteboard friendly, 219ï¿½221 backups, 257 building cluster, 253 calling loop(), 230ï¿½232 conversing in domain specific languages, 235 dealing with large data sets, 242ï¿½244 deleting, 236 finding path between two nodes, 240 graph algorithms in, 244ï¿½ 245 graph of nodes, 227 Gremlin and REST, 242 Groovy programming language and, 233ï¿½235 groupCount() in, 246 high availability mode and, 251, 254 indexing in, 241ï¿½242 process called walking, 220 process stepping forward and back, 231 REST interface of, 238 role in polyglot persistence service example, 291 role_count map in, 246 shutting down master servers, 256 strengths of, 258 suggested schema, 220 updating, 236 using HA cluster in, 252ï¿½ 253, 255 using JUNG in, 247ï¿½249 using REST in, 238ï¿½240 using pipes in Gremlin, 226ï¿½228 verifying cluster status, 255 verifying replication, 256 via Gremlin, 223ï¿½227
 
-weaknesses of, 259 web interface, 221­222 Zookeeper coordinator in,
+weaknesses of, 259 web interface, 221ï¿½222 Zookeeper coordinator in,
 252, 254
-nested array data, in MongoDB, 142­143
+nested array data, in MongoDB, 142ï¿½143
 nested values, building MongoDB index on, 154
 next_to, using in links, 57
-*nix pipes, 110­111
+*nix pipes, 110ï¿½111
 *nix systems, 279
-Node.js JavaScript framework in polyglot persistence service example, 292 polling for changes with, 206­209
-nodes adding in Neo4j, 222, 224 consistency by quorum in Riak, 77 consistency by reads in Riak, 76 consistency by writes in Riak, 76 durable writes in Riak, 78­79 eventual consistency in Riak, 76 finding in Neo4j path between two in, 240 in Neo4j, 221 Neo4j graph of, 224 Riak, 72­78 server, 221 using REST in Neo4j to create, 238
+Node.js JavaScript framework in polyglot persistence service example, 292 polling for changes with, 206ï¿½209
+nodes adding in Neo4j, 222, 224 consistency by quorum in Riak, 77 consistency by reads in Riak, 76 consistency by writes in Riak, 76 durable writes in Riak, 78ï¿½79 eventual consistency in Riak, 76 finding in Neo4j path between two in, 240 in Neo4j, 221 Neo4j graph of, 224 Riak, 72ï¿½78 server, 221 using REST in Neo4j to create, 238
 non-blocking, meaning of, 296
 NoSQL, vs. relational databases RDBMS, 1
 not equal sign (<>), in PostgreSQL, 14
 Null values about, 14 disallowing, 14
 O
-ObjectId, MongoDB, 138­139
+ObjectId, MongoDB, 138ï¿½139
 old_vclock, 84
 ON keyword, 15
-operators MongoDB, 145­148 in regular expression searches, 37
-outer joins, 17­18
+operators MongoDB, 145ï¿½148 in regular expression searches, 37
+outer joins, 17ï¿½18
 
-Index · 329
+Index ï¿½ 329
 
 P
 PageRank, Google, 246
@@ -6849,29 +6847,29 @@ Perl, 28
 PERSIST key, in Redis, 273
 PHP, 28
 Pipe, processing units, 231
-pipeline Gremlin operations as, 226 meaning of, 226 streaming strings, 276­ 277 vs. vertex, 228
-pivot tables, in PostgreSQL, 33­34
+pipeline Gremlin operations as, 226 meaning of, 226 streaming strings, 276ï¿½ 277 vs. vertex, 228
+pivot tables, in PostgreSQL, 33ï¿½34
 PL/pgSQL, 28
 polling interface, accessing Changes API interface through, 204
 polyglot persistence, about, 7
-polyglot persistence service example, 291­303 phase 1, data transformation, 294­295 phase 2, system of record(SOR) insertion, 295­298 populate datastores, 292­ 293 rise of, 292 service of searching for bands, 300­303
-population script, using Ruby, 62­63
-POST (Create) as CRUD verb, 54 creating documents with, 183­184 creating key name using, 56
+polyglot persistence service example, 291ï¿½303 phase 1, data transformation, 294ï¿½295 phase 2, system of record(SOR) insertion, 295ï¿½298 populate datastores, 292ï¿½ 293 rise of, 292 service of searching for bands, 300ï¿½303
+population script, using Ruby, 62ï¿½63
+POST (Create) as CRUD verb, 54 creating documents with, 183ï¿½184 creating key name using, 56
 PostgreSQL, SQL executed to, 32
-PostgreSQL database about, 4, 9­10 aggregate functions, 21­ 23 as relational database, 9 built-in documentation, 11 creating table logs, 28­29
+PostgreSQL database about, 4, 9ï¿½10 aggregate functions, 21ï¿½ 23 as relational database, 9 built-in documentation, 11 creating table logs, 28ï¿½29
 
-creating views in, 30­31 datatypes, 14 generating tsvector lex-
-emes, 41 installing, 10 joining tables, 15­18 lookups with indexing,
-18­20 parsers in, 41 pivot tables in, 33­34 searching, 37­38 shell in, 11 SQL executed to, 31 strengths of, 49 templates in, 41 transactions in, 25­26 using Window functions,
-24­25 using crosstab() in, 33­34 using extract() in, 33 views as RULES, 31­33 weaknesses of, 49 working with tables, 11­
+creating views in, 30ï¿½31 datatypes, 14 generating tsvector lex-
+emes, 41 installing, 10 joining tables, 15ï¿½18 lookups with indexing,
+18ï¿½20 parsers in, 41 pivot tables in, 33ï¿½34 searching, 37ï¿½38 shell in, 11 SQL executed to, 31 strengths of, 49 templates in, 41 transactions in, 25ï¿½26 using Window functions,
+24ï¿½25 using crosstab() in, 33ï¿½34 using extract() in, 33 views as RULES, 31ï¿½33 weaknesses of, 49 working with tables, 11ï¿½
 15 writing procedures in, 28
-pre/post commit hooks, 84­ 86
-precommit functions, Erlang module, 86­87
-primary key, 21 as SQL identifier, 11 constraints, 11 creating compound key using, 14 definition of, 21 index, 19 ObjectId in MongoDB as, 138­139 setups, 16
+pre/post commit hooks, 84ï¿½ 86
+precommit functions, Erlang module, 86ï¿½87
+primary key, 21 as SQL identifier, 11 constraints, 11 creating compound key using, 14 definition of, 21 index, 19 ObjectId in MongoDB as, 138ï¿½139 setups, 16
 protocols for client connectivity, HBase, 122
 Pseudodistributed mode, HBase, 95
 psql shell backslash (/) commands, 11 connecting to, 11
-PUT (Update) as CRUD verb, 54 creating Riak buckets, 55­57 updating documents with PUT, 184­185
+PUT (Update) as CRUD verb, 54 creating Riak buckets, 55ï¿½57 updating documents with PUT, 184ï¿½185
 put and get commands, in HBase, 100
 
 put command, in HBase, 100, 103
@@ -6884,89 +6882,89 @@ question mark (?), in Riak searches, 88
 R
 RackSpace Cloud Servers, 125
 random walk, in Neo4j, 246
-RDBMS databases about, 2­3, 307 mathematical relations in, 12 strengths of, 308 transactions in, 25­26 vs. NoSQL, 1 weaknesses of, 308
+RDBMS databases about, 2ï¿½3, 307 mathematical relations in, 12 strengths of, 308 transactions in, 25ï¿½26 vs. NoSQL, 1 weaknesses of, 308
 RDBMS databases), vs. columnar databases, 5
-reading, in MongoDB with code, 150 command line, 140­142
-Redis Bloom filter, 287­290
-Redis database, see also polyglot persistence service example , 287 about, 5, 261 as key-value store, 261­ 262 blocking lists, 267 building backend for a, 263­264 cluster, 282 command-line interface and, 262 configuration of, 279 connecting to server, 262­263 data dumps, 283­285 datatypes, 263 DEL command, 274 DISCARD command, 264 durability of, 280 EXPIRE command, 272­ 273 FLUSHALL command, 274, 281
+reading, in MongoDB with code, 150 command line, 140ï¿½142
+Redis Bloom filter, 287ï¿½290
+Redis database, see also polyglot persistence service example , 287 about, 5, 261 as key-value store, 261ï¿½ 262 blocking lists, 267 building backend for a, 263ï¿½264 cluster, 282 command-line interface and, 262 configuration of, 279 connecting to server, 262ï¿½263 data dumps, 283ï¿½285 datatypes, 263 DEL command, 274 DISCARD command, 264 durability of, 280 EXPIRE command, 272ï¿½ 273 FLUSHALL command, 274, 281
 
-330 · Index
+330 ï¿½ Index
 
-FLUSHDB command, 274 GET command, 264 GETBIT command, 287­
-290 getting ranges in, 270­
-271 INCR command, 263 INFO command, 278­279 LASTSAVE command,
+FLUSHDB command, 274 GET command, 264 GETBIT command, 287ï¿½
+290 getting ranges in, 270ï¿½
+271 INCR command, 263 INFO command, 278ï¿½279 LASTSAVE command,
 280 LRANGE command, 270,
 282 master/slave replication,
-282 MGET command, 263 MOVE command, 274 MULTI command in, 264 namespaces in, 273­274 PERSIST key in, 273 persistence options, 279 publishing and subscrib-
-ing, 276­278 RENAME command, 274 role in polyglot persis-
-tence service example, 291 SADD command, 282 SAVE command, 280 SDIFF command, 269 security of, 281­282 server information, 278­ 279 SET command, 263 SETBIT command, 291 SETEX command, 273 SINTER command, 269 sorting sets, 269­272 streaming commands via telnet, 276 streaming strings, 276­ 277 strengths of, 304 transactions in, 264 tweaking parameters, 282 TYPE command, 274 using Bloom filter, 287­ 290 weaknesses of, 304 ZRANGE command, 270­ 271
+282 MGET command, 263 MOVE command, 274 MULTI command in, 264 namespaces in, 273ï¿½274 PERSIST key in, 273 persistence options, 279 publishing and subscrib-
+ing, 276ï¿½278 RENAME command, 274 role in polyglot persis-
+tence service example, 291 SADD command, 282 SAVE command, 280 SDIFF command, 269 security of, 281ï¿½282 server information, 278ï¿½ 279 SET command, 263 SETBIT command, 291 SETEX command, 273 SINTER command, 269 sorting sets, 269ï¿½272 streaming commands via telnet, 276 streaming strings, 276ï¿½ 277 strengths of, 304 transactions in, 264 tweaking parameters, 282 TYPE command, 274 using Bloom filter, 287ï¿½ 290 weaknesses of, 304 ZRANGE command, 270ï¿½ 271
 Redis Ruby gem, 282
 reduce function in CouchDB, 202 following pattern of map function, 70 in Groovy, 233
 
 in JavaScript, 69 mapreduce converting
-scalar values using, 63­64
+scalar values using, 63ï¿½64
 reduce() function, in MongoDB, 163
-reducers in CouchDB, 200­202 in MongoDB, 163 running on separate servers, 163
-REFERENCES, SQL keyword, 13­14
+reducers in CouchDB, 200ï¿½202 in MongoDB, 163 running on separate servers, 163
+REFERENCES, SQL keyword, 13ï¿½14
 REFERENCES keyword, as constraint, 15
 regex (regular expression) searches, 37
 regioninfo scans, TABLE schema, 116
-regions, HBase, 111, 113­115
+regions, HBase, 111, 113ï¿½115
 regular expression (regex) searches, 37
 relational algebra, SQL and, 13
-relational databases about, 2­3, 307 mathematical relations in, 12 Neo4j as, 219­220 strengths of, 308 transactions in, 25­26 vs. NoSQL, 1 vs. Riak database, 91 vs. columnar databases, 5 weaknesses of, 308
+relational databases about, 2ï¿½3, 307 mathematical relations in, 12 Neo4j as, 219ï¿½220 strengths of, 308 transactions in, 25ï¿½26 vs. NoSQL, 1 vs. Riak database, 91 vs. columnar databases, 5 weaknesses of, 308
 relations, in PostgreSQL (TABLES), 11
 relationship, vs. vertex, 223
 RENAME command, in Redis, 274
-replicating data, in CouchDB, 212­213
-Representational State Transfer (REST), about, 54­ 55
-REST (Representational State Transfer) about, 54­55 based document database, CouchDB as, 178 communication with CouchDB, 182 Gremlin and, 242
+replicating data, in CouchDB, 212ï¿½213
+Representational State Transfer (REST), about, 54ï¿½ 55
+REST (Representational State Transfer) about, 54ï¿½55 based document database, CouchDB as, 178 communication with CouchDB, 182 Gremlin and, 242
 
-Neo4j interface of, 238 using in Neo4j, 238­240
+Neo4j interface of, 238 using in Neo4j, 238ï¿½240
 REST protocol, HBase, 122
 restart argument, in Riak, 85
 RETURNING statement, SQL, 16
-Riak database about, 4, 51 Amazon Dynamo paper, 52 as NoSQL style database, 91 as key value store, 55 built-in functions, 68 creating mapreduce functions in Riak, 66­ 67 cURL and, 52 indexes in, 89­90 installing, 52­54 key filters in, 69 mapreduce in, 66 MIME types in, 58 on CAP, 92 populating buckets, 55­ 57 query parameter values, 77 restart argument, 85 ring, 72­74 searching, 86­88 stored functions in, 67­ 68 strengths of, 91 timeout option, 71 timestamps in, 80 valid bucket properties, 77 vs. relational databases, 91 weaknesses of, 91 web and, 51­52 -X PUT parameter, 55
-Riak servers app. config, 84 configuring partitions, 72­74 durable writes in, 78­79 large-scale deployments and, 72 nodes and vnodes, 72­78 resolving with vector clocks, 80­84
+Riak database about, 4, 51 Amazon Dynamo paper, 52 as NoSQL style database, 91 as key value store, 55 built-in functions, 68 creating mapreduce functions in Riak, 66ï¿½ 67 cURL and, 52 indexes in, 89ï¿½90 installing, 52ï¿½54 key filters in, 69 mapreduce in, 66 MIME types in, 58 on CAP, 92 populating buckets, 55ï¿½ 57 query parameter values, 77 restart argument, 85 ring, 72ï¿½74 searching, 86ï¿½88 stored functions in, 67ï¿½ 68 strengths of, 91 timeout option, 71 timestamps in, 80 valid bucket properties, 77 vs. relational databases, 91 weaknesses of, 91 web and, 51ï¿½52 -X PUT parameter, 55
+Riak servers app. config, 84 configuring partitions, 72ï¿½74 durable writes in, 78ï¿½79 large-scale deployments and, 72 nodes and vnodes, 72ï¿½78 resolving with vector clocks, 80ï¿½84
 Riak, HTTP Solr interface, 87
 right joins, 18
 role_count map, in Neo4j, 246
 
-Index · 331
+Index ï¿½ 331
 
 ROLLBACK command SQL, 25 vs. ROLLBACK (SQL) DISCARD (Redis), 264
 rows as URL parameter for Riak searches, 88 definition of, 21 in PostgreSQL, 11
-Ruby importing data into CouchDB using, 194­ 199 population script using, 62­63 support in PostgreSQL for, 28
+Ruby importing data into CouchDB using, 194ï¿½ 199 population script using, 62ï¿½63 support in PostgreSQL for, 28
 Ruby on Rails system, grabbing data via ActiveRecord interface, 64
-RULES, in PostgreSQL, 31­33
-runCommand() function, MongoDB, 157­159
+RULES, in PostgreSQL, 31ï¿½33
+runCommand() function, MongoDB, 157ï¿½159
 S
 SADD command, in Redis, 282
 SAVE command, in Redis, 280
-scalability, about, 2­3
-scanner, constructing HBase, 116­118
-scanning tables to build other tables about, 115­116 examining output, 119­ 120 running script, 118 using mapreduce for, 119
+scalability, about, 2ï¿½3
+scanner, constructing HBase, 116ï¿½118
+scanning tables to build other tables about, 115ï¿½116 examining output, 119ï¿½ 120 running script, 118 using mapreduce for, 119
 schema definition diagram, 18
-schemas definition diagram, 17 movie suggestion system, 35­36 in Neo4j, 220 for PostgreSQL, 11­14
+schemas definition diagram, 17 movie suggestion system, 35ï¿½36 in Neo4j, 220 for PostgreSQL, 11ï¿½14
 Scheme, 28
-scripts HBase Big Data implementation, 106­111 for scanning all rows of table, 116­118
+scripts HBase Big Data implementation, 106ï¿½111 for scanning all rows of table, 116ï¿½118
 SDIFF command, in Redis, 269
 
-searches about, 36 combining string matches, 44 Full-text, 39­48 ILIKE, 37 levenshtein, 38 LIKE, 22, 37 regular expression (regex), 37 in Riak, 86­88 trigram, 38­39 TSQuery, 39­41 TSVector, 39­41 using metaphones, 43­44 using wildcards in Riak, 88
-secondary indexes, in Riak, 89­90
+searches about, 36 combining string matches, 44 Full-text, 39ï¿½48 ILIKE, 37 levenshtein, 38 LIKE, 22, 37 regular expression (regex), 37 in Riak, 86ï¿½88 trigram, 38ï¿½39 TSQuery, 39ï¿½41 TSVector, 39ï¿½41 using metaphones, 43ï¿½44 using wildcards in Riak, 88
+secondary indexes, in Riak, 89ï¿½90
 SELECT...FROM table command , 13 SQL, 13
 SERIAL integers, 17
 SERIAL keyword, 16
-server-side commands, in MongoDB, 158­159
+server-side commands, in MongoDB, 158ï¿½159
 servers, nodes in, 221
-servers, Riak configuring partitions, 72­74 durable writes in, 78­79 large-scale deployments and, 72 nodes and vnodes, 72­78 pruning vector clocks, 84 resolving with vector clocks, 80­84
+servers, Riak configuring partitions, 72ï¿½74 durable writes in, 78ï¿½79 large-scale deployments and, 72 nodes and vnodes, 72ï¿½78 pruning vector clocks, 84 resolving with vector clocks, 80ï¿½84
 SET command, using in Redis, 263
-$set operation, in MongoDB, 147­148
-SETBIT command, 287­290
+$set operation, in MongoDB, 147ï¿½148
+SETBIT command, 287ï¿½290
 SETEX command, in Redis, 273
 sets, meaning of, 268
 Seven Languages in Seven Weeks (Tate), xi
-sharding, in MongoDB, 169­ 171
+sharding, in MongoDB, 169ï¿½ 171
 shell protocol, HBase, 122
 simple dictionary, 40
 SINTER command, in Redis, 269
@@ -6974,43 +6972,43 @@ small_vclock, 84
 
 snapshotting, in Redis, 280
 sort, as URL parameter for Riak searches, 88
-SQL, see also primary key aggregate functions, 21­ 23 definition of, 21 executed to PostgreSQL, 31­32 foreign key constraints, 13, 15 joins, 15­18 PostgreSQL and, 4 standard string matches, 37­38
+SQL, see also primary key aggregate functions, 21ï¿½ 23 definition of, 21 executed to PostgreSQL, 31ï¿½32 foreign key constraints, 13, 15 joins, 15ï¿½18 PostgreSQL and, 4 standard string matches, 37ï¿½38
 SQL clauses GROUP BY, 23 HAVING, 23 WHERE, 13
-SQL commands CREATE INDEX, 19 CREATE TABLE, 11, 18 DELETE FROM, 13 EXPLAIN, 42­43 finding in PostgreSQL, 11 INSERT INTO, 13­14 ROLLBACK, 25 SELECT...FROM, 13 UPDATE, 15, 29
+SQL commands CREATE INDEX, 19 CREATE TABLE, 11, 18 DELETE FROM, 13 EXPLAIN, 42ï¿½43 finding in PostgreSQL, 11 INSERT INTO, 13ï¿½14 ROLLBACK, 25 SELECT...FROM, 13 UPDATE, 15, 29
 SQL identifier, primary key as, 11
-SQL keywords DISTINCT, 23 ON, 15 REFERENCES, 13­14 SERIAL, 16 UNIQUE, 19
+SQL keywords DISTINCT, 23 ON, 15 REFERENCES, 13ï¿½14 SERIAL, 16 UNIQUE, 19
 SQL statements, RETURNING, 16
 Stand-alone mode, HBase, 95
 star (*) in regular expression searches, 37 in Riak searches, 88
 static programming languages, vs. dynamic programming languages, 149
 stop words, 40
-stored functions, in Riak, 67­ 68
-stored procedures, 26­28
+stored functions, in Riak, 67ï¿½ 68
+stored procedures, 26ï¿½28
 string matches, combining in searches, 44
 strings, in PostgreSQL, 14
 system design, consistency and durability in, 72
 
-332 · Index
+332 ï¿½ Index
 
 T
-table logs, 28­29
-tables altering in HBase, 100­ 102 building by scanning, 115­116 creating HBase, 96­98 creating SQL, 11 definition of, 21 full table scans of, 18 joins, 15­18 timestamps in, 17 unions, 18
+table logs, 28ï¿½29
+tables altering in HBase, 100ï¿½ 102 building by scanning, 115ï¿½116 creating HBase, 96ï¿½98 creating SQL, 11 definition of, 21 full table scans of, 18 joins, 15ï¿½18 timestamps in, 17 unions, 18
 Tate, Bruce A., xi
 Tcl, 28
 telnet, streaming commands via, 276
 templates, in Postgres, 41
 text datatype, 14
-Thrift protocol, HBase about, 122 building client application, 123­125 generating models, 123 installing, 122­123
+Thrift protocol, HBase about, 122 building client application, 123ï¿½125 generating models, 123 installing, 122ï¿½123
 timeout option, in Riak, 71
-timestamps in HBase, 99­100 in Riak, 80 table, 17
+timestamps in HBase, 99ï¿½100 in Riak, 80 table, 17
 top command, MongoDB, 158
-transactions in PostgreSQL, 25­26 unavoidable, 26
+transactions in PostgreSQL, 25ï¿½26 unavoidable, 26
 transform steps, in Gremlin, 231
 triggers, 28
-trigram searches, 38­39
-TSQuery searches, 39­41
+trigram searches, 38ï¿½39
+TSQuery searches, 39ï¿½41
 tsvector lexemes, generating in Postgres, 41
-TSVector searches, 39­41
+TSVector searches, 39ï¿½41
 Tuple relational calculus, SQL and, 13
 tuples, in PostgreSQL (ROWs), 11
 two dimensional indexes, in MongoDB, 152
@@ -7018,42 +7016,42 @@ TYPE command, in Redis, 274
 
 U
 underscores (_), as wildcard in Riak Link, 58
-unions in Redis, 271­272 table, 18
+unions in Redis, 271ï¿½272 table, 18
 UNIQUE constraints, setting, 35
 UNIQUE keyword, SQL, 19
 Unix build tools, 52
 UPDATE command, SQL, 15, 29
 URL parameters, for Riak searches, 88
-URL shortener adding activities to, 267 building backend for a, 263­264
+URL shortener adding activities to, 267 building backend for a, 263ï¿½264
 V
 -v (verbose) attribute, in cURL, 55
 varchar() strings, 14
-vector clocks (vclocks) about, 80 in practice, 82­84 Riak pruning, 84 in theory, 81­82
+vector clocks (vclocks) about, 80 in practice, 82ï¿½84 Riak pruning, 84 in theory, 81ï¿½82
 vendor lock, 27
 venue_id counting events at, 22 setting, 22
 venues, creating tables with, 16
 versioning, in HBase, 99
 vertex vs. pipeline, 228 vs. relationship, 223
-views accessing documents through views in CouchDB, 186­188 creating in , 30­31 creating views with CouchDB reducers, 200­202 developing in CouchDB application specific, 191­192 path for querying, 193 saving as design document in CouchDB, 191­192 writing views in CouchDB, 188­190
+views accessing documents through views in CouchDB, 186ï¿½188 creating in , 30ï¿½31 creating views with CouchDB reducers, 200ï¿½202 developing in CouchDB application specific, 191ï¿½192 path for querying, 193 saving as design document in CouchDB, 191ï¿½192 writing views in CouchDB, 188ï¿½190
 
-virtual nodes (vnodes) consistency by quorum in Riak, 77 consistency by reads in Riak, 76 consistency by writes in Riak, 76 durable writes in Riak, 78­79 eventual consistency in Riak, 76 Riak, 72­78
+virtual nodes (vnodes) consistency by quorum in Riak, 77 consistency by reads in Riak, 76 consistency by writes in Riak, 76 durable writes in Riak, 78ï¿½79 eventual consistency in Riak, 76 Riak, 72ï¿½78
 Voldemort database, 4, 125
 voting and arbiters in, in MongoDB, 169
 vtags, 83
 W
-WAL (Write-Ahead Log) files, 112­113
-web, Riak and, 51­52
+WAL (Write-Ahead Log) files, 112ï¿½113
+web, Riak and, 51ï¿½52
 web administration page dashboard, 222
 WHERE clause, SQL, 13
 $where clause, running custom code in MongoDB using, 150
-Whirr about, 125 configuring cluster for, 127­128 destroying cluster command, 129 preparing, 126 setting up cloud service, 126
+Whirr about, 125 configuring cluster for, 127ï¿½128 destroying cluster command, 129 preparing, 126 setting up cloud service, 126
 whiteboard friendly, meaning of, 219
 WikiMedia Foundation, publishing data dumps, 106
-Wikipedia, streaming, 107­ 109
+Wikipedia, streaming, 107ï¿½ 109
 wildcards in ILIKE searches, 37 in LIKE searches, 22, 37 in regular expressions, 37 in Riak, 88 in Riak Link, 58
-Window functions, using in PostgreSQL, 24­25
+Window functions, using in PostgreSQL, 24ï¿½25
 Write Ahead Logging, 94
-Write-Ahead Log (WAL) files, 112­113
+Write-Ahead Log (WAL) files, 112ï¿½113
 wt, as URL parameter for Riak searches, 88
 
 X
@@ -7064,10 +7062,10 @@ XML, streaming, 107
 Y
 young_vclock, 84
 
-Index · 333
+Index ï¿½ 333
 Z
 Zookeeper, 125, 132, 252, 254
-ZRANGE command, in Redis, 270­271
+ZRANGE command, in Redis, 270ï¿½271
 
 Learn a New Language This Year
 Want to be a better programmer? Each new programming language you learn teaches you something new about computing. Come see what you're missing.
@@ -7125,4 +7123,3 @@ http://pragprog.com/write-for-us
 Or Call:
 
 +1 800-699-7764
-

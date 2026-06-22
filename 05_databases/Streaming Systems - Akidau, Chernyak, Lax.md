@@ -1,8 +1,14 @@
+# Streaming Systems
+
+> **Author(s):** Akidau, Chernyak, Lax Â· **Category:** 05_databases Â· **Language:** English
+
+---
+
 Streaming Systems
 The What, Where, When, and How of Large-Scale Data Processing
 Tyler Akidau, Slava Chernyak, and Reuven Lax
 
-Streaming Systems by Tyler Akidau, Slava Chernyak, and Reuven Lax Copyright © 2018 Tyler Akidau, Slava Chernyak, and Reuven Lax. All rights reserved. Printed in the United States of America. Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://oreilly.com/safari). For more information, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com.
+Streaming Systems by Tyler Akidau, Slava Chernyak, and Reuven Lax Copyright ï¿½ 2018 Tyler Akidau, Slava Chernyak, and Reuven Lax. All rights reserved. Printed in the United States of America. Published by O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O'Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles (http://oreilly.com/safari). For more information, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com.
 Editors: Rachel Roumeliotis and Jeff Bleiel
 Production Editor: Nicholas Adams
 Copyeditor: Octal Publishing, Inc.
@@ -36,14 +42,14 @@ Reuven
 Reuven is at the bottom of this list because he has more experience with stream processing than both Slava and me combined and would thus crush us if he were placed any higher. Reuven has created or led the creation of nearly all of the interesting systems-level magic in Google's general-purpose stream processing engines, including applying an untold amount of attention to detail in providing high-throughput, low-latency, exactly-once semantics in a system that nevertheless utilizes fine-grained checkpointing. You might find it unsurprising that he's the author of Chapter 5, Exactly-Once and Side Effects. He also happens to be an Apache Beam PMC member.
 Navigating This Book
 Now that you know who you'll be hearing from, the next logical step would be to find out what you'll be hearing about, which brings us to the second thing I wanted to mention. There are conceptually two major parts to this book, each with four chapters, and each followed up by a chapter that stands relatively independently on its own.
-The fun begins with Part I, The Beam Model (Chapters 1­4), which focuses on the high-level batch plus streaming data processing model originally developed for Google Cloud Dataflow, later donated to the Apache Software Foundation as Apache Beam, and also now seen in whole or in part across most other systems in the industry. It's composed of four chapters:
+The fun begins with Part I, The Beam Model (Chapters 1ï¿½4), which focuses on the high-level batch plus streaming data processing model originally developed for Google Cloud Dataflow, later donated to the Apache Software Foundation as Apache Beam, and also now seen in whole or in part across most other systems in the industry. It's composed of four chapters:
 
 Chapter 1, Streaming 101, which covers the basics of stream processing, establishing some terminology, discussing the capabilities of streaming systems, distinguishing between two important domains of time (processing time and event time), and finally looking at some common data processing patterns.
 Chapter 2, The What, Where, When, and How of Data Processing, which covers in detail the core concepts of robust stream processing over out-of-order data, each analyzed within the context of a concrete running example and with animated diagrams to highlight the dimension of time.
 Chapter 3, Watermarks (written by Slava), which provides a deep survey of temporal progress metrics, how they are created, and how they propagate through pipelines. It ends by examining the details of two real-world watermark implementations.
 Chapter 4, Advanced Windowing, which picks up where Chapter 2 left off, diving into some advanced windowing and triggering concepts like processing-time windows, sessions, and continuation triggers.
 Between Parts I and II, providing an interlude as timely as the details contained therein are important, stands Chapter 5, Exactly-Once and Side Effects (written by Reuven). In it, he enumerates the challenges of providing end-to-end exactly-once (or effectively-once) processing semantics and walks through the implementation details of three different approaches to exactlyonce processing: Apache Flink, Apache Spark, and Google Cloud Dataflow.
-Next begins Part II, Streams and Tables (Chapters 6­9), which dives deeper into the conceptual and investigates the lower-level "streams and tables" way of thinking about stream processing, recently popularized by some upstanding citizens in the Apache Kafka community but, of course, invented decades ago by folks in the database community, because wasn't everything? It too is composed of four chapters:
+Next begins Part II, Streams and Tables (Chapters 6ï¿½9), which dives deeper into the conceptual and investigates the lower-level "streams and tables" way of thinking about stream processing, recently popularized by some upstanding citizens in the Apache Kafka community but, of course, invented decades ago by folks in the database community, because wasn't everything? It too is composed of four chapters:
 Chapter 6, Streams and Tables, which introduces the basic idea of
 
 streams and tables, analyzes the classic MapReduce approach through a streams-and-tables lens, and then constructs a theory of streams and tables sufficiently general to encompass the full breadth of the Beam Model (and beyond).
@@ -132,8 +138,8 @@ Stephan Ewen, Kostas Tzoumas, Fabian Hueske, Aljoscha Krettek, Robert Metzger, K
 Jesse Anderson, for his diligent reviews and for all the hugs. If you see Jesse, give him a big hug for me.
 Danny Yuan, Sid Anand, Wes Reisz, and the amazing QCon developer conference, for giving us our first opportunity to talk publicly within the industry about our work, at QCon San Francisco 2014.
 Ben Lorica at O'Reilly and the iconic Strata Data Conference, for being repeatedly supportive of our efforts to evangelize stream processing, be it online, in print, or in person.
-The entire Apache Beam community, and in particular our fellow committers, for helping push forward the Beam vision: Ahmet Altay, Amit Sela, Aviem Zur, Ben Chambers, Griselda Cuevas, Chamikara Jayalath, Davor Bonaci, Dan Halperin, Etienne Chauchot, Frances Perry, Ismaël Mejía, Jason Kuster, Jean-Baptiste Onofré, Jesse Anderson, Eugene Kirpichov, Josh Wills, Kenneth Knowles, Luke Cwik, Jingsong Lee, Manu Zhang, Melissa Pashniak, Mingmin Xu, Max Michels, Pablo Estrada, Pei He, Robert Bradshaw, Stephan Ewen, Stas Levin, Thomas Groh, Thomas Weise, and James Xu.
-No acknowledgments section would be complete without a nod to the otherwise faceless cohort of tireless reviewers whose insightful comments helped turn garbage into awesomeness: Jesse Anderson, Grzegorz Czajkowski, Marián Dvorský, Stephan Ewen, Rafael J. FernándezMoctezuma, Martin Kleppmann, Kenneth Knowles, Sam McVeety, Mosha
+The entire Apache Beam community, and in particular our fellow committers, for helping push forward the Beam vision: Ahmet Altay, Amit Sela, Aviem Zur, Ben Chambers, Griselda Cuevas, Chamikara Jayalath, Davor Bonaci, Dan Halperin, Etienne Chauchot, Frances Perry, Ismaï¿½l Mejï¿½a, Jason Kuster, Jean-Baptiste Onofrï¿½, Jesse Anderson, Eugene Kirpichov, Josh Wills, Kenneth Knowles, Luke Cwik, Jingsong Lee, Manu Zhang, Melissa Pashniak, Mingmin Xu, Max Michels, Pablo Estrada, Pei He, Robert Bradshaw, Stephan Ewen, Stas Levin, Thomas Groh, Thomas Weise, and James Xu.
+No acknowledgments section would be complete without a nod to the otherwise faceless cohort of tireless reviewers whose insightful comments helped turn garbage into awesomeness: Jesse Anderson, Grzegorz Czajkowski, Mariï¿½n Dvorskï¿½, Stephan Ewen, Rafael J. Fernï¿½ndezMoctezuma, Martin Kleppmann, Kenneth Knowles, Sam McVeety, Mosha
 
 Pasumansky, Frances Perry, Jelena Pjesivac-Grbovic, Jeff Shute, and William Vambenepe. You are the Mr. Fusion to our DeLorean Time Machine. That had a nicer ring to it in my head--see, this is what I'm talking about.
 And of course, a big thanks to our authoring and production support team:
@@ -582,7 +588,7 @@ Discarding Accumulating Accumulating & Retracting
 
 12
 
-12, ­3
+12, ï¿½3
 
 pane
 
@@ -963,7 +969,7 @@ Triggers
 Ignore event time (i.e., use a global window spanning all of event time) and use triggers to provide snapshots of that window in the processingtime axis.
 Ingress time
 Assign ingress times as the event times for data as they arrive, and use normal event-time windowing from there on. This is essentially what something like Spark Streaming 1.x does.
-Note that the two methods are more or less equivalent, although they differ slightly in the case of multistage pipelines: in the triggers version, a multistage pipeline will slice the processing-time "windows" independently at each stage, so, for example, data in window N for one stage might instead end up in window N­1 or N+1 in the following stage; in the ingress-time version, after a datum is incorporated into window N, it will remain in window N for the duration of the pipeline due to synchronization of progress between stages via watermarks (in the Cloud Dataflow case), microbatch boundaries (in the Spark Streaming case), or whatever other coordinating factor is involved at the engine level.
+Note that the two methods are more or less equivalent, although they differ slightly in the case of multistage pipelines: in the triggers version, a multistage pipeline will slice the processing-time "windows" independently at each stage, so, for example, data in window N for one stage might instead end up in window Nï¿½1 or N+1 in the following stage; in the ingress-time version, after a datum is incorporated into window N, it will remain in window N for the duration of the pipeline due to synchronization of progress between stages via watermarks (in the Cloud Dataflow case), microbatch boundaries (in the Spark Streaming case), or whatever other coordinating factor is involved at the engine level.
 As I've noted to death, the big downside of processing-time windowing is that the contents of the windows change when the observation order of the inputs changes. To drive this point home in a more concrete manner, we're going to look at these three use cases: event-time windowing, processing-time windowing via triggers, and processing-time windowing via ingress time.
 Each will be applied to two different input sets (so six variations total). The two inputs sets will be for the exact same events (i.e., same values, occurring at the same event times), but with different observation orders. The first set
 
@@ -1466,7 +1472,7 @@ Looking at the new streams/tables portion of the diagram, if all we're doing
 
 is calculating sums as our final results (and not actually transforming those sums in any additional way further downstream within the pipeline), the table we created with our grouping operation has our answer sitting right there, evolving over time as new data arrive. Why don't we just read our results from there?
 This is exactly the point being made by the folks championing stream processors as a database8 (primarily the Kafka and Flink crews): anywhere you have a grouping operation in your pipeline, you're creating a table that includes what is effectively the output values of that portion of the stage. If those output values happen to be the final thing your pipeline is calculating, you don't need to rematerialize them somewhere else if you can read them directly out of that table. Besides providing quick and easy access to results as they evolve over time, this approach saves on compute resources by not requiring an additional sink stage in the pipeline to materialize the outputs, yields disk savings by eliminating redundant data storage, and obviates the need for any engineering work building the aforementioned sink stages.9 The only major caveat is that you need to take care to ensure that only the data processing pipeline has the ability to make modifications to the table. If the values in the table can change out from under the pipeline due to external modification, all bets are off regarding consistency guarantees.
-A number of folks in the industry have been recommending this approach for a while now, and it's being put to great use in a variety of scenarios. We've seen MillWheel customers within Google do the same thing by serving data directly out of their Bigtable-based state tables, and we're in the process of adding first-class support for accessing state from outside of your pipeline in the C++­based Apache Beam equivalent we use internally at Google (Google Flume); hopefully those concepts will make their way to Apache Beam proper someday soon, as well.
+A number of folks in the industry have been recommending this approach for a while now, and it's being put to great use in a variety of scenarios. We've seen MillWheel customers within Google do the same thing by serving data directly out of their Bigtable-based state tables, and we're in the process of adding first-class support for accessing state from outside of your pipeline in the C++ï¿½based Apache Beam equivalent we use internally at Google (Google Flume); hopefully those concepts will make their way to Apache Beam proper someday soon, as well.
 Now, reading from the state tables is great if the values therein are your final results. But, if you have more processing to perform downstream in the pipeline (e.g., imagine our pipeline was actually computing the top scoring team), we still need some better way to cope with unbounded data, allowing us to transform the table back into a stream in a more incremental fashion.
 
 For that, we'll want to journey back through the remaining three questions, beginning with windowing, expanding into triggering, and finally tying it all together with accumulation.
@@ -2575,7 +2581,7 @@ Looking Backward: Stream and Table Biases
 In many ways, the act of adding robust streaming support to SQL is largely an exercise in attempting to merge the where, when, and how semantics of the Beam Model with the what semantics of the classic SQL model. But to do so cleanly, and in a way that remains true to the look and feel of classic SQL, requires an understanding of how the two models relate to each other. Thus, much as we explored the relationship of the Beam Model to stream and table theory in Chapter 6, we'll now explore the relationship of the Beam Model to the classic SQL model, using stream and table theory as the underlying framework for our comparison. In doing so, we'll uncover the inherent biases present in each model, which will provide us some insights in how to best marry the two in a clean, natural way.
 The Beam Model: A Stream-Biased Approach
 Let's begin with the Beam Model, building upon the discussion in Chapter 6. To begin, I want to discuss the inherent stream bias in the Beam Model as it exists today relative to streams and tables.
-If you think back to Figures 6-11 and 6-12, they showed two different views of the same score-summation pipeline that we've used as an example throughout the book: in Figure 6-11 a logical, Beam-Model view, and in Figure 6-12 a physical, streams and tables­oriented view. Comparing the two helped highlight the relationship of the Beam Model to streams and tables. But by overlaying one on top of the other, as I've done in Figure 8-1, we can see an additional interesting aspect of the relationship: the Beam Model's inherent stream bias.
+If you think back to Figures 6-11 and 6-12, they showed two different views of the same score-summation pipeline that we've used as an example throughout the book: in Figure 6-11 a logical, Beam-Model view, and in Figure 6-12 a physical, streams and tablesï¿½oriented view. Comparing the two helped highlight the relationship of the Beam Model to streams and tables. But by overlaying one on top of the other, as I've done in Figure 8-1, we can see an additional interesting aspect of the relationship: the Beam Model's inherent stream bias.
 
 Figure 8-1. Stream bias in the Beam Model approach
 
@@ -3448,15 +3454,15 @@ On the surface, it sounds like a lot of variations. But as you'll see, there's r
 subset of the FULL OUTER join.1 As a result, after you understand the commonality between all the different join types, it becomes a lot easier to keep them all in your head. It also makes reasoning about them in the context of streaming all that much simpler.
 One last note here before we get started: we'll be primarily considering equi joins with at most 1:1 cardinality, by which I mean joins in which the join predicate is an equality statement and there is at most one matching row on each side of the join. This keeps the examples simple and concise. When we get to SEMI joins, we'll expand our example to consider joins with arbitrary N:M cardinality, which will let us observe the behavior of more arbitrary predicate joins.
 FULL OUTER
-Because they form the conceptual foundation for each of the other variations, we first look at FULL OUTER joins. Outer joins embody a rather liberal and optimistic interpretation of the word "join": the result of FULL OUTER­joining two datasets is essentially the full list of rows in both datasets,2 with rows in the two datasets that share the same join key combined together, but unmatched rows for either side included unjoined.
-For example, if we FULL OUTER­join our two example datasets into a new relation containing only the joined IDs, the result would look something like this:
+Because they form the conceptual foundation for each of the other variations, we first look at FULL OUTER joins. Outer joins embody a rather liberal and optimistic interpretation of the word "join": the result of FULL OUTERï¿½joining two datasets is essentially the full list of rows in both datasets,2 with rows in the two datasets that share the same join key combined together, but unmatched rows for either side included unjoined.
+For example, if we FULL OUTERï¿½join our two example datasets into a new relation containing only the joined IDs, the result would look something like this:
 12:10> SELECT TABLE Left.Id as L, Right.Id as R,
 FROM Left FULL OUTER JOIN Right ON L.Num = R.Num; --------------|L |R | --------------| L1 | null | | L2 | R2 | | L3 | R3 |
 
 | null | R4 | ---------------
 
 We can see that the FULL OUTER join includes both rows that satisfied the join predicate (e.g., "L2, R2" and "L3, R3"), but it also includes partial rows that failed the predicate (e.g., "L1, null" and "null, R4", where the null is signaling the unjoined portion of the data).
-Of course, that's just a point-in-time snapshot of this FULL OUTER­join relation, taken after all of the data have arrived in the system. We're here to learn about streaming joins, and streaming joins by definition involve the added dimension of time. As we know from Chapter 8, if we want to understand how a given dataset/relation changes over time, we want to speak in terms of time-varying relations (TVRs). So to best understand how the join evolves over time, let's look now at the full TVR for this join (with changes between each snapshot relation highlighted in yellow):
+Of course, that's just a point-in-time snapshot of this FULL OUTERï¿½join relation, taken after all of the data have arrived in the system. We're here to learn about streaming joins, and streaming joins by definition involve the added dimension of time. As we know from Chapter 8, if we want to understand how a given dataset/relation changes over time, we want to speak in terms of time-varying relations (TVRs). So to best understand how the join evolves over time, let's look now at the full TVR for this join (with changes between each snapshot relation highlighted in yellow):
 
 12:10> SELECT TVR
 
@@ -4933,15 +4939,15 @@ To highlight what I mean by saying that temporal validity windows "effectively s
 
 | Euro | 116 | 12:03:00 | 12:09:07 | | Euro | 119 | 12:06:00 | 12:07:33 | --------------------------------------
 
-From a database engineering perspective, we understand that these values don't mean that the rate for converting Euros to Yen is 114 ¥/ at precisely 12:00, 116 ¥/ at 12:03, 119 ¥/ at 12:06, and undefined at all other times. Instead, we know that the intent of this table is to capture the fact that the conversion rate for Euros to Yen is undefined until 12:00, 114 ¥/ from 12:00 to 12:03, 116 ¥/ from 12:03 to 12:06, and 119 ¥/ from then on. Or drawn out in a timeline:
+From a database engineering perspective, we understand that these values don't mean that the rate for converting Euros to Yen is 114 ï¿½/ at precisely 12:00, 116 ï¿½/ at 12:03, 119 ï¿½/ at 12:06, and undefined at all other times. Instead, we know that the intent of this table is to capture the fact that the conversion rate for Euros to Yen is undefined until 12:00, 114 ï¿½/ from 12:00 to 12:03, 116 ï¿½/ from 12:03 to 12:06, and 119 ï¿½/ from then on. Or drawn out in a timeline:
 
 Undefined
 
-114 ¥/
+114 ï¿½/
 
-116 ¥/
+116 ï¿½/
 
-119 ¥/
+119 ï¿½/
 
 |----[-inf, 12:00)----|----[12:00, 12:03)----|----[12:03, 12:06)----|--
 
@@ -4973,7 +4979,7 @@ Undefined
 
 Undefined
 
-114 ¥/
+114 ï¿½/
 
 [12:06:23, 12:07:33) | |--[-inf, 12:00)--|--[12:00, +inf)----------
 
@@ -4985,9 +4991,9 @@ Undefined
 
 Undefined
 
-114 ¥/
+114 ï¿½/
 
-119 ¥/
+119 ï¿½/
 
 [12:07:33, 12:09:07) | |--[-inf, 12:00)--|--[12:00, 12:06)---------
 
@@ -4999,11 +5005,11 @@ Undefined
 
 Undefined
 
-114 ¥/
+114 ï¿½/
 
-116 ¥/
+116 ï¿½/
 
-119 ¥/
+119 ï¿½/
 
 [12:09:07, now) | |--[-inf, 12:00)--|--[12:00, 12:03)--|--
 
@@ -5535,7 +5541,7 @@ HAVING Curr = "Euro";
 | | 3 | 119 | 357 | 12:08 | [12:06, +inf) | |
 
 | ------------------------------------------ | ----------------------------------------------
-In particular, the result for the 5  order is originally quoted at 570 ¥ because that order (which happened at 12:05) originally falls into the validity window for the 114 ¥/ rate. But when the 116 ¥/ rate for event time 12:03 arrives out of order, the result for the 5  order must be updated from 570 ¥ to 580 ¥. This is also evident if you observe the results of the join as a stream (here I've highlighted the incorrect 570 ¥ in red, and the retraction for 570 ¥ and subsequent corrected value of 580 ¥ in blue):
+In particular, the result for the 5  order is originally quoted at 570 ï¿½ because that order (which happened at 12:05) originally falls into the validity window for the 114 ï¿½/ rate. But when the 116 ï¿½/ rate for event time 12:03 arrives out of order, the result for the 5  order must be updated from 570 ï¿½ to 580 ï¿½. This is also evident if you observe the results of the join as a stream (here I've highlighted the incorrect 570 ï¿½ in red, and the retraction for 570 ï¿½ and subsequent corrected value of 580 ï¿½ in blue):
 12:00> WITH ValidRates AS (SELECT Curr, MAX(Rate) as Rate, VALIDITY_WINDOW(EventTime) as Window FROM YenRates GROUP BY Curr, VALIDITY_WINDOW(EventTime))
 SELECT STREAM YenOrders.Amount as "E", ValidRates.Rate as "Y/E", YenOrders.Amount * ValidRates.Rate as "Y", YenOrders.EventTime as Order, ValidRates.Window as "Rate Window", Sys.EmitTime as Time, Sys.Undo as Undo
 FROM YenOrders FULL OUTER JOIN ValidRates ON YenOrders.Curr = ValidRates.Curr AND WINDOW_START(ValidRates.Window) <=
@@ -5765,8 +5771,8 @@ Group that stream into a table After it was placed into service within Google, M
 Figure 10-4. The MapReduce paper, published at OSDI 2004
 In it, the team described in detail the history of the project, design of the API and implementation, and details about a number of different use cases to which MapReduce had been applied. Unfortunately, they provided no actual source code, so the best that folks outside of Google at the time could do was say, "Yes, that sounds very nice indeed," and go back to building their bespoke systems. Over the course of the decade that followed, MapReduce continued to undergo heavy development within Google, with large amounts of time invested in making the system scale to unprecedented levels. For a more
 
-detailed account of some of the highlights along that journey, I recommend the post "History of massive-scale sorting experiments at Google" (Figure 10-5) written by our official MapReduce historian/scalability and performance wizard, Marián Dvorský.
-Figure 10-5. Marián Dvorský's "History of massive-scale sorting experiments" blog post
+detailed account of some of the highlights along that journey, I recommend the post "History of massive-scale sorting experiments at Google" (Figure 10-5) written by our official MapReduce historian/scalability and performance wizard, Mariï¿½n Dvorskï¿½.
+Figure 10-5. Mariï¿½n Dvorskï¿½'s "History of massive-scale sorting experiments" blog post
 But for our purposes here, suffice it to say that nothing else yet has touched the magnitude of scale achieved by MapReduce, not even within Google. Considering how long MapReduce has been around, that's saying something; 14 years is an eternity in our industry.
 
 From a streaming systems perspective, the main takeaways I want to leave you with for MapReduce are simplicity and scalability. MapReduce took the first brave steps toward taming the unruly beast that is massive-scale data processing, exposing a simple and straightforward API for crafting powerful data processing pipelines, its austerity belying the complex distributed systems magic happening under the covers to allow those pipelines to run at scale on large clusters of commodity hardware.
@@ -5951,7 +5957,7 @@ A set of DSLs (domain specific languages) that build upon the SDKs, providing sp
 A set of runners that can execute Beam pipelines. Runners take the logical pipeline described in Beam SDK terms, and translate them as efficiently as possible into a physical pipeline that they can then execute. Beam runners exist currently for Apex, Flink, Spark, and Google Cloud Dataflow. In SQL terms, you can think of these runners as Beam's equivalent to the various SQL database implementations, such as Postgres, MySQL, Oracle, and so on.
 The core vision for Beam is built around its value as a portability layer, and one of the more compelling features in that realm is its planned support for full cross-language portability. Though not yet fully complete (but landing imminently), the plan is for Beam to provide sufficiently performant abstraction layers between SDKs and runners that will allow for a full cross-
 
-product of SDK × runner matchups. In such a world, a pipeline written in a JavaScript SDK could seamlessly execute on a runner written in Haskell, even if the Haskell runner itself had no native ability to execute JavaScript code. As an abstraction layer, the way that Beam positions itself relative to its runners is critical to ensure that Beam actually brings value to the community, rather than introducing just an unnecessary layer of abstraction. The key point here is that Beam aims to never be just the intersection (lowest common denominator) or union (kitchen sink) of the features found in its runners. Instead, it aims to include only the best ideas across the data processing community at large. This allows for innovation in two dimensions: Innovation in Beam
+product of SDK ï¿½ runner matchups. In such a world, a pipeline written in a JavaScript SDK could seamlessly execute on a runner written in Haskell, even if the Haskell runner itself had no native ability to execute JavaScript code. As an abstraction layer, the way that Beam positions itself relative to its runners is critical to ensure that Beam actually brings value to the community, rather than introducing just an unnecessary layer of abstraction. The key point here is that Beam aims to never be just the intersection (lowest common denominator) or union (kitchen sink) of the features found in its runners. Instead, it aims to include only the best ideas across the data processing community at large. This allows for innovation in two dimensions: Innovation in Beam
 Figure 10-34. Powerful and modular I/O
 Beam might include API support for runtime features that not all runners initially support. This is okay. Over time, we expect many runners will
 
@@ -6302,10 +6308,9 @@ Slava Chernyak is a senior software engineer at Google Seattle. Slava spent more
 Reuven Lax is a senior staff software engineer at Google, Seattle, and has spent the past ten years helping to shape Google's data processing and analysis strategy. For much of that time he has focused on Google's lowlatency, streaming data processing efforts, first as a long-time member and lead of the MillWheel team, and more recently founding and leading the team responsible for Windmill, the next-generation stream processing engine powering Google Cloud Dataflow. He is also a Beam PMC member. He's very excited to bring Google's data processing experience to the world at large and proud to have been a part of publishing both the "MillWheel" paper in 2013 and the "Dataflow Model" paper in 2015. When not at work, Reuven enjoys swing dancing, rock climbing, and exploring new parts of the world.
 
 Colophon
-The animal on the cover of Streaming Systems is a brown trout (Salmo trutta) a species of medium-sized fish native to northern Europe but now distributed across the globe. Brown trout generally weigh about 2 pounds and grow to a length of 16­31 inches. They have an overall shiny brown color with many dark spots over their upper body.
-Brown trout feed mostly on aquatic invertebrates although larger members of the species have been known to prey on other fish. During spawning, the female brown trout produces thousands of eggs. It takes 3­4 years for a brown trout to reach maturity.
+The animal on the cover of Streaming Systems is a brown trout (Salmo trutta) a species of medium-sized fish native to northern Europe but now distributed across the globe. Brown trout generally weigh about 2 pounds and grow to a length of 16ï¿½31 inches. They have an overall shiny brown color with many dark spots over their upper body.
+Brown trout feed mostly on aquatic invertebrates although larger members of the species have been known to prey on other fish. During spawning, the female brown trout produces thousands of eggs. It takes 3ï¿½4 years for a brown trout to reach maturity.
 Popular with anglers, brown trout were introduced into lakes and rivers throughout the world during the 19th and early 20th centuries. To this day, brown trout are farmed commercially and stocked for recreational fishing. Brown trout are edible and can be prepared in several ways, including grilling, frying, and smoking.
 The animal on the improved cover in Figure P-1 is a robotic tyrannosaurus rex imbued with the soul of Sean Connery. True to form, it always speaks with a Scottish accent, even when playing the role of a Russian submarine captain.
 Many of the animals on O'Reilly covers are endangered; all of them are important to the world. To learn more about how you can help, go to animals.oreilly.com.
 The cover image is from Karen Montgomery. The cover fonts are URW Typewriter and Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad Condensed; and the code font is Dalton Maag's Ubuntu Mono.
-

@@ -1,3 +1,9 @@
+# The Object-Oriented Thought Process (3rd Ed)
+
+> **Author(s):** Weisfeld Â· **Edition:** 3rd Ed Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 The Object-Oriented Thought Process
 Third Edition
 
@@ -25,10 +31,10 @@ informit.com/devlibrary
 The Object-Oriented Thought Process
 Third Edition
 Matt Weisfeld
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid
-Cape Town · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid
+Cape Town ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 
-The Object-Oriented Thought Process, Third Edition Copyright © 2009 by Pearson Education
+The Object-Oriented Thought Process, Third Edition Copyright ï¿½ 2009 by Pearson Education
 All rights reserved. No part of this book shall be reproduced, stored in a retrieval system, or transmitted by any means, electronic, mechanical, photocopying, recording, or otherwise, without written permission from the publisher. No patent liability is assumed with respect to the use of the information contained herein. Although every precaution has been taken in the preparation of this book, the publisher and author assume no responsibility for errors or omissions. Nor is any liability assumed for damages resulting from the use of the information contained herein.
 ISBN-10: 0-672-33016-4
 ISBN-13: 978-0-672-33016-2
@@ -163,7 +169,7 @@ Although learning a modeling language is an important step, it is much more impo
 The same problem occurs with programming languages. As stated earlier, many C programmers moved into the realm of object orientation by migrating to C++ before being directly exposed to OO concepts.This would always come out in an interview. Many times developers who claim to be C++ programmers are simply C programmers using C++ compilers. Even now, with languages such as C# .NET,VB .NET, and Java well established, a few key questions in a job interview can quickly uncover a lack of OO understanding.
 Early versions of Visual Basic are not OO. C is not OO, and C++ was developed to be backward compatible with C. Because of this, it is quite possible to use a C++ compiler (writing only C syntax) while forsaking all of C++'s OO features. Even worse, a programmer can use just enough OO features to make a program incomprehensible to OO and non-OO programmers alike.
 Thus, it is of vital importance that while you're on the road to OO development, you first learn the fundamental OO concepts. Resist the temptation to jump directly into a programming language (such as VB .NET, C++, C# .NET or Java) or a modeling language (such as UML), and take the time to learn the object-oriented thought process.
-In my first class in Smalltalk in the late 1980s, the instructor told the class that the new OO paradigm was a totally new way of thinking (despite the fact that it has been around since the 60s). He went on to say that although all of us were most likely very good programmers, about 10%­20% of us would never really grasp the OO way of doing things. If this statement is indeed true, it is most likely because some people never really take the time to make the paradigm shift and learn the underlying OO concepts.
+In my first class in Smalltalk in the late 1980s, the instructor told the class that the new OO paradigm was a totally new way of thinking (despite the fact that it has been around since the 60s). He went on to say that although all of us were most likely very good programmers, about 10%ï¿½20% of us would never really grasp the OO way of doing things. If this statement is indeed true, it is most likely because some people never really take the time to make the paradigm shift and learn the underlying OO concepts.
 
 What's New in the Third Edition
 As stated often in this introduction, my vision for the first edition was primarily a conceptual book.Although I still adhere to this goal for the second and third editions, I have included several application topics that fit well with object-oriented concepts. For the third edition I expand on many of the topics of the second edition and well as include totally new chapters.These revised and updated concepts
@@ -207,7 +213,7 @@ You can download all the source code and examples discussed within this book fro
 1
 Introduction to Object-Oriented Concepts
 Although many people find this bit of information surprising, object-oriented (OO)
-software development has been around since the early 1960s. Objects are now used throughout the software development industry. It is no secret that the software industry can be slow-moving at times. It is also true that, when systems are working fine, there has to be a compelling reason to replace them.This has somewhat slowed the propagation of OO systems.There are many non-OO legacy systems (that is, older systems that are already in place) that are doing the job--so why risk potential disaster by changing them? In most cases you should not change them, at least not simply for the sake of change.There is nothing inherently wrong with systems written in non­OO code. However, brand-new development definitely warrants the consideration of using OO technologies.
+software development has been around since the early 1960s. Objects are now used throughout the software development industry. It is no secret that the software industry can be slow-moving at times. It is also true that, when systems are working fine, there has to be a compelling reason to replace them.This has somewhat slowed the propagation of OO systems.There are many non-OO legacy systems (that is, older systems that are already in place) that are doing the job--so why risk potential disaster by changing them? In most cases you should not change them, at least not simply for the sake of change.There is nothing inherently wrong with systems written in nonï¿½OO code. However, brand-new development definitely warrants the consideration of using OO technologies.
 Although there has been a steady and significant growth in OO development in the past 15 years, the continued reliance on the Internet has helped catapult it even further into the mainstream.The emergence of day-to-day business transactions on the Internet has opened a brand-new arena, where much of the software development is new and mostly unencumbered by legacy concerns. Even when there are legacy concerns, there is a trend to wrap the legacy systems in object wrappers.
 Object Wrappers
 Object wrappers are object-oriented code that includes other code inside. For example, you can take a structured module and wrap it inside an object to make it look like an object. You can also use object wrappers to wrap functionality such as security features, non-portable hardware features, and so on.
@@ -378,10 +384,10 @@ Figure 1.7 Employee behaviors.
 Employee object.The employee object recognizes the message and returns the requested information.
 To illustrate further, Figure 1.8 is a class diagram representing the Employee/Payroll system we have been talking about.
 Employee
-­socialSecurityNumber:String ­gender:boolean ­dateOfBirth:Date
+ï¿½socialSecurityNumber:String ï¿½gender:boolean ï¿½dateOfBirth:Date
 +getSocialSecurityNumber:String +getGender:boolean +getDateOfBirth:Date +setSocialSecurityNumber:void +setGender:void +setDateOfBirth:void
 Payroll
-­pay:double +calculatePay:double
+ï¿½pay:double +calculatePay:double
 Figure 1.8 Employee and payroll class diagrams.
 
 14
@@ -487,7 +493,7 @@ Using UML to Model a Class Diagram
 Over the years, many tools and modeling methodologies have been developed to assist in designing software systems. One of the most popular tools in use today is Unified Modeling Language (UML).Although it is beyond the scope of this book to describe UML in fine detail, we will use UML class diagrams to illustrate the classes that we build. In fact, we have already used class diagrams in this chapter. Figure 1.11 shows the Person class diagram we discussed earlier in the chapter.
 
 Person
-­name:String ­address:String
+ï¿½name:String ï¿½address:String
 +getName:String +setName:void +getAddress:String +setAddress:void
 Figure 1.11 The Person class diagram.
 As we saw previously, notice that the attributes and methods are separated (the attributes on the top, and the methods on the bottom).As we delve more deeply into OO design, these class diagrams will get much more sophisticated and convey much more information on how the different classes interact with each other.
@@ -539,7 +545,7 @@ A Model of the Interface/Implementation Paradigm
 Let's explore the Square class further.Assume that you are writing a class that calculates the squares of integers.You must provide a separate interface and implementation.That is, you must provide a way for the user to invoke and obtain the square value.You must also provide the implementation that calculates the square; however, the user should not know anything about the specific implementation. Figure 1.13 shows one way to do this. Note that in the class diagram, the plus sign (+) designates public and the minus sign (-) designates private.Thus, you can identify the interface by the methods, prefaced with plus signs.
 
 IntSquare
-­squareValue:int +getSquare:int ­calculateSquare:int
+ï¿½squareValue:int +getSquare:int ï¿½calculateSquare:int
 Figure 1.13 The square class.
 
 This class diagram corresponds to the following code:
@@ -564,14 +570,14 @@ One of the most powerful features of OO programming is, perhaps, code reuse. Str
 Inheritance allows a class to inherit the attributes and methods of another class.This allows creation of brand new classes by abstracting out common attributes and behaviors.
 One of the major design issues in OO programming is to factor out commonality of the various classes. For example, say you have a Dog class and a Cat class, and each will have an attribute for eye color. In a procedural model, the code for Dog and Cat would each contain this attribute. In an OO design, the color attribute could be moved up to a class called Mammal--along with any other common attributes and methods. In this case, both Dog and Cat inherit from the Mammal class, as shown in Figure 1.14.
 Mammal
-­eyeColor:int
+ï¿½eyeColor:int
 +getEyeColor:int
 
 Dog
-­barkFrequency:int +bark:void
+ï¿½barkFrequency:int +bark:void
 
 Cat
-­meowFrequency:int +meow:void
+ï¿½meowFrequency:int +meow:void
 
 Figure 1.14 Mammal hierarchy.
 
@@ -610,13 +616,13 @@ Chapter 1 Introduction to Object-Oriented Concepts
 
 from Mammal.Thus, the GermanShepherd and Poodle classes contain all the attributes and methods included in Dog and Mammal, as well as their own (see Figure 1.16).
 Mammal
-­eyeColor:int +getEyeColor:int
+ï¿½eyeColor:int +getEyeColor:int
 
 Dog
-­barkFrequency:int +bark:void
+ï¿½barkFrequency:int +bark:void
 
 Cat
-­meowFrequency:int +meow:void
+ï¿½meowFrequency:int +meow:void
 
 GermanShepherd
 
@@ -1513,7 +1519,7 @@ In the context of strings, the plus sign does not mean addition of integers or f
 What about matrix addition? You could have code like this:
 Matrix a, b, c;
 c = a + b;
-Thus, the plus sign now performs matrix addition, not addition of integers or floats. Overloading is a powerful mechanism. However, it can be downright confusing for people who read and maintain code. In fact, developers can confuse themselves.To take this to an extreme, it would be possible to change the operation of addition to perform subtraction. Why not? Operator overloading allows you to change the meaning of an operator.Thus, if the plus sign were changed to perform subtraction, the following code would result in an X value of ­1.
+Thus, the plus sign now performs matrix addition, not addition of integers or floats. Overloading is a powerful mechanism. However, it can be downright confusing for people who read and maintain code. In fact, developers can confuse themselves.To take this to an extreme, it would be possible to change the operation of addition to perform subtraction. Why not? Operator overloading allows you to change the meaning of an operator.Thus, if the plus sign were changed to perform subtraction, the following code would result in an X value of ï¿½1.
 x = 5 + 6;
 More recent OO languages like Java and .NET do not allow operator overloading. While these languages do not allow the option of overloading operators; the languages themselves do overload the plus sign for string concatenation, but that's about it.The designers of Java must have decided that operator overloading was more of a problem than it was worth. If you must use operator overloading in C++, take care not to confuse the people who will use the class by documenting and commenting properly.
 
@@ -2260,7 +2266,7 @@ Object-oriented (OO) design has been touted as a robust and flexible software de
 In Chapter 5,"Class Design Guidelines," we concentrated on designing good classes. This chapter focuses on designing good systems. (A system can be defined as classes that interact with each other.) Proper design practices have evolved throughout the history of software development, and there is no reason you should not take advantage of the blood, sweat, and tears of your software predecessors, whether they used OO technologies or not.
 Design Guidelines
 One fallacy is that there is one true design methodology.This is not the case.There is no right or wrong way to create a design.There are many design methodologies available today, and they all have their proponents. However, the primary issue is not which design method to use, but simply whether to use a method at all.This can be expanded to the entire software development process. Many organizations do not follow a standard software development process.The most important factor in creating a good design is to find a process that you and your organization can feel comfortable with. It makes no sense to implement a design process that no one will follow.
-Most books that deal with object-oriented technologies offer very similar strategies for designing systems. In fact, except for some of the object-oriented specific issues involved, much of the strategy is applicable to non­OO systems as well.
+Most books that deal with object-oriented technologies offer very similar strategies for designing systems. In fact, except for some of the object-oriented specific issues involved, much of the strategy is applicable to nonï¿½OO systems as well.
 
 104 Chapter 6 Designing with Objects
 Generally, a solid OO design process will generally include the following steps:
@@ -2666,7 +2672,7 @@ UML Class Diagrams: The Object Model
 After you have completed the initial design using CRC cards, transfer the information contained on the CRC cards to class diagrams (see Figure 6.21). Note that this class diagram represents one possible design--it does not represent the initial pass of classes created during the previous exercise.The class diagrams go beyond the information on the CRC cards and might include such information as method parameters and return types. (Note that the UML diagrams in this book do not include method parameters.) Check out the options for the modeling tool that you have to see how information is presented.You can use the detailed form of the class diagram to document the implementation.
 
 Hand
-­value:int ­hand:Vector
+ï¿½value:int ï¿½hand:Vector
 +getValue:int +addToHand:void +showHand:void
 
 Player
@@ -2676,12 +2682,12 @@ Player: +moreCards:boolean +getCard:void +showHand:void +getValueOfHand:int
 Dealer
 startNewGame:void +getCard:Card
 Card
-­name:String ­value:int ­suit:String
+ï¿½name:String ï¿½value:int ï¿½suit:String
 +getName:String +getValue:int +getSuit:String +setName:void +setValue:void +setSuit:void
 
 Deck
-­cards:Vector ­shuffledCards:Vector
-random:Random ­nextItem:int
+ï¿½cards:Vector ï¿½shuffledCards:Vector
+random:Random ï¿½nextItem:int
 Deck: +resetDeck:void +getDeckSize:int +getNextCard:Card +shuffleDeck:void +showOriginalDeck:void +showShuffledDeck:void +completeDeck:void -createHearts:void -createSpades:void -createClubs:void -createDiamonds:void
 
 Figure 6.21 A UML diagram for the blackjack program.
@@ -2706,7 +2712,7 @@ Ambler, Scott. The Object Primer, 3rd ed. Cambridge University Press, 2004. Camb
 Gilbert, Stephen, and Bill McCarty. Object-Oriented Design in Java.The Waite Group Press, 1998. Berkeley, CA.
 Jaworski, Jamie. Java 2 Platform Unleashed. Sams Publishing, 1999. Indianapolis, IN. Jaworski, Jamie. Java 1.1 Developers Guide. Sams Publishing, 1997. Indianapolis, IN. Wirfs-Brock, R., B.Wilkerson, and L.Weiner. Designing Object-Oriented Software. Prentice-
 Hall, 1990. Upper Saddle River New Jersey. Weisfeld, Matt and John Ciccozzi."Software by Committee," Project Management Journal
-v5, number 1 (September, 1999): 30­36.
+v5, number 1 (September, 1999): 30ï¿½36.
 
 7
 Mastering Inheritance and Composition
@@ -2900,7 +2906,7 @@ As already stated, encapsulation is the process of packaging classes into the pu
 Peter Coad and Mark Mayfield make a case that when using inheritance; encapsulation is inherently weakened within a class hierarchy.They talk about a specific risk: Inheritance connotes strong encapsulation with other classes but weak encapsulation between a superclass and its subclasses.
 The problem is that if you inherit an implementation from a superclass and then change that implementation, the change from the superclass ripples through the class hierarchy.This rippling effect potentially affects all the subclasses.At first, this might not seem like a major problem; however, as we have seen, a rippling effect such as this can cause unanticipated problems. For example, testing can become a nightmare. In Chapter 6,"Designing with Objects," we talked about how encapsulation makes testing systems easier. In theory, if you create a class called Cabbie (see Figure 7.9) with the appropriate public interfaces, any change to the implementation of Cabbie should be transparent to all other classes. However, in any design a change to a superclass is certainly not transparent to a subclass. Do you see the conundrum?
 Cabbie
-­companyName: String ­name: String +Cabbie: void +Cabbie: void +setName: void +getName: String +giveDirections: void ­turnRight: void ­turnLeft: void +getCompanyName: String
+ï¿½companyName: String ï¿½name: String +Cabbie: void +Cabbie: void +setName: void +getName: String +giveDirections: void ï¿½turnRight: void ï¿½turnLeft: void +getCompanyName: String
 Figure 7.9 A UML diagram of the Cabbie class.
 If the other classes were directly dependent on the implementation of the Cabbie class, testing would become more difficult, if not untenable.
 Keep Testing
@@ -2909,7 +2915,7 @@ If you then create a subclass of Cabbie called PartTimeCabbie, and PartTimeCabbi
 
 140 Chapter 7 Mastering Inheritance and Composition
 For example, consider the UML diagram in Figure 7.10. PartTimeCabbie is a subclass of Cabbie.Thus, PartTimeCabbie inherits the public implementation of Cabbie, including the method giveDirections(). If the method giveDirections is changed in Cabbie, it will have a direct impact on PartTimeCabbie and any other classes that might later be subclasses of Cabbie. In this subtle way, changes to the implementation of Cabbie are not necessarily encapsulated within the Cabbie class.
-Cabbie ­companyName: String ­name: String +Cabbie: void +Cabbie: void +setName: void +getName: String +giveDirections: void ­turnRight: void ­turnLeft: void +getCompanyName: String
+Cabbie ï¿½companyName: String ï¿½name: String +Cabbie: void +Cabbie: void +setName: void +getName: String +giveDirections: void ï¿½turnRight: void ï¿½turnLeft: void +getCompanyName: String
 PartTimeCabbie partTimeHours: int +setPartTimeHours: void +getPartTimeHours: int
 Figure 7.10 A UML diagram of the Cabbie/PartTimeCabbie classes.
 To reduce the risk posed by this dilemma, it is important that you stick to the strict is-a condition when using inheritance. If the subclass were truly a specialization of the superclass, changes to the parent would likely affect the child in ways that are natural and expected.To illustrate, if a Circle class inherits implementation from a Shape class, and a change to the implementation of Shape breaks Circle, then Circle was not truly a Shape to begin with.
@@ -3076,7 +3082,7 @@ composition play major roles in the design of object-oriented (OO) systems.This 
 Java interfaces and abstract classes are a powerful mechanism for code reuse, providing the foundation for a concept I call contracts.This chapter covers the topics of code reuse, frameworks, contracts, Java interfaces, and abstract classes.At the end of the chapter, we'll work through an example of how all these concepts can be applied to a real-world situation.
 Code: To Reuse or Not to Reuse?
 You have been dealing with the issue of code reuse since you took your first programming class or wrote your first line of code. Many software development paradigms have code reuse as a major component. Since the dawn of computer software, the concept of reusing code has been reinvented several times.The OO paradigm is no different. One of the major advantages touted by OO proponents is that if you write code properly the first time, you can reuse it to your heart's content.
-This is only true to a certain degree.As with all design approaches, the utility and the reusability of code depends on how well it was designed and implemented. OO design does not hold the patent on code reuse.There is nothing stopping anyone from writing very robust and reusable code in a non­OO language. Certainly, there are countless numbers of routines and functions, written in structured languages such as COBOL C and traditional VB, that are of high quality and quite reusable.
+This is only true to a certain degree.As with all design approaches, the utility and the reusability of code depends on how well it was designed and implemented. OO design does not hold the patent on code reuse.There is nothing stopping anyone from writing very robust and reusable code in a nonï¿½OO language. Certainly, there are countless numbers of routines and functions, written in structured languages such as COBOL C and traditional VB, that are of high quality and quite reusable.
 Thus, it is clear that following the OO paradigm is not the only way to develop reusable code. However, the OO approach does provide several mechanisms for facilitat-
 
 152 Chapter 8 Frameworks and Reuse: Designing with Interfaces and Abstract Classes
@@ -3532,9 +3538,9 @@ We have already seen that composition represents a part of a whole.Although the 
 
 180 Chapter 9 Building Objects
 Person
-­Name:String ­SSNum:String ­Age:int +getName:String +getSSNum:String +getAge:int +setName:void +setSSNum:void +setAge:void
+ï¿½Name:String ï¿½SSNum:String ï¿½Age:int +getName:String +getSSNum:String +getAge:int +setName:void +setSSNum:void +setAge:void
 Employee
-­CompanyID:String ­Title:String ­StartDate:Date +getCompanyID:String +getTitle:String +getStartDate:Date +setCompanyID:void +setTitle:void +setStarDate:void
+ï¿½CompanyID:String ï¿½Title:String ï¿½StartDate:Date +getCompanyID:String +getTitle:String +getStartDate:Date +setCompanyID:void +setTitle:void +setStarDate:void
 Figure 9.1 An inheritance relationship.
 A Car has a Steering Wheel
 Figure 9.2 A composition relationship. Is-a and Has-a Please forgive my grammar: For consistency, I will stick with "has a engine," even though "has an engine" might be grammatically correct. I do this because I want to simply state the rules as "is-a" and "has-a." The reason to use composition is that it builds systems by combining less complex parts. This is a common way for people to approach problems. Studies show that even the best
@@ -3656,26 +3662,26 @@ The notation of 0...1 means that an employee can have either zero or one spouse.
 Figure 9.7 shows the class diagram for this system. Note that in this class diagram, the cardinality is indicated along the association lines. Refer to Table 9.1 to see whether the association is mandatory.
 
 Person
-­Name:String ­SSNum:String ­Age:int +getName:String +getSSNum:String +getAge:int +setName:void +setSSNum:void +setAge:void
+ï¿½Name:String ï¿½SSNum:String ï¿½Age:int +getName:String +getSSNum:String +getAge:int +setName:void +setSSNum:void +setAge:void
 
 Cardinality 189
 
 Spouse
-­AnniversaryData:Date 0..1 +getAnniversaryDate:Date +getAnniversaryDate:void
+ï¿½AnniversaryData:Date 0..1 +getAnniversaryDate:Date +getAnniversaryDate:void
 
 Employee
-­CompanyID:String ­Title:String ­StartDate:Date +getCompanyID:String +getTitle:String +getStartDate:Date +setCompanyID:void +setTitle:void +setStartDate:void
+ï¿½CompanyID:String ï¿½Title:String ï¿½StartDate:Date +getCompanyID:String +getTitle:String +getStartDate:Date +setCompanyID:void +setTitle:void +setStartDate:void
 
 Child
-0..n ­FavoriteToy:String +getFavoriteToyString +setFavoriteToy:void
+0..n ï¿½FavoriteToy:String +getFavoriteToyString +setFavoriteToy:void
 
 1
 Division
-­DivisionName:String +getDivisionName:String +setDivisionName:void
+ï¿½DivisionName:String +getDivisionName:String +setDivisionName:void
 
 1..n
 JobDescription
-­Description:String +getDescription:String +setDescription:void
+ï¿½Description:String +getDescription:String +setDescription:void
 
 Figure 9.7 Cardinality in a UML diagram.
 
@@ -3754,7 +3760,7 @@ New Jersey. Gilbert, Stephen, and Bill McCarty. Object-Oriented Design in Java.T
 10
 Creating Object Models with UML
 I believe very strongly that learning the fundamental OO concepts should come before
-learning any specific modeling tools.Thus, the placement of this chapter was somewhat problematic. In many ways, this chapter could go first, because the Unified Modeling Language (UML) diagrams are present throughout this book, including in Chapter 1,"Introduction to Object-Oriented Concepts." Finally, it was decided to place this chapter at the end of the "conceptual" chapters, which I consider Chapters 1­9.The remaining chapters cover application issues as well as concepts.
+learning any specific modeling tools.Thus, the placement of this chapter was somewhat problematic. In many ways, this chapter could go first, because the Unified Modeling Language (UML) diagrams are present throughout this book, including in Chapter 1,"Introduction to Object-Oriented Concepts." Finally, it was decided to place this chapter at the end of the "conceptual" chapters, which I consider Chapters 1ï¿½9.The remaining chapters cover application issues as well as concepts.
 This chapter is a brief overview of the UML notation used in this book. It is not a comprehensive tutorial on UML because that would require an entire book unto itself, and there are many such books. For several good sources, see the references at the end of this chapter. Because this book deals with fundamentals, the UML that is used only scratches the surface of what UML actually offers.
 In this book, the UML notation we are concerned with concerns modeling objectoriented systems or, as I like to call it, object-modeling.This notation includes system modeling using class diagrams. Many components of UML are not used in this book. For example, because this book is concerned with object-models, UML constructs such as State Chart Diagrams and Activity Diagrams are not covered.
 Each of those topics could warrant a complete chapter or more.Again, the purpose of this chapter is to provide a quick overview of object models and, specifically, class diagrams so that if you are unfamiliar with class diagrams, you can pick up the basics quickly. With this introduction, the examples in the book will be more meaningful.
@@ -3774,9 +3780,9 @@ A class diagram is constructed of three different parts: the class name, the att
 Attributes
 
 Cabbie
-­companyName: String
-­name: String
-+Cabbie: +Cabbie: +setName: void +getName: String +giveDirections: void ­turnRight: void ­turnLeft: void +getCompanyName: String
+ï¿½companyName: String
+ï¿½name: String
++Cabbie: +Cabbie: +setName: void +getName: String +giveDirections: void ï¿½turnRight: void ï¿½turnLeft: void +getCompanyName: String
 
 Class Name Constructors Methods
 
@@ -4015,7 +4021,7 @@ Schmuller, Joseph, Sams TeachYourself UML in 24 Hours, 3rd ed. Sams Publishing, 
 Booch, G., I. Jacobson, and J. Rumbagh, The UML Users Guide, 2nd ed.Addison-Wesley, 2005. Boston, MA.
 Lee, Richard and Tepfenhart,William. Practical Object-Oriented Development with UML and Java. Prentice Hall, 2003. Upper Saddle River, New Jersey.
 Ambler, Scott. The Elements of UML Style. Cambridge University Press, 2003. Cambridge, United Kingdom.
-Flower, Martin. UML Distilled, 3rd ed.Addison-Wesley Longman, 2003. Boston, MA. Larman, Craig."What the UML Is--and Isn't." Java Report, 4(5): 20­24, May 1999.
+Flower, Martin. UML Distilled, 3rd ed.Addison-Wesley Longman, 2003. Boston, MA. Larman, Craig."What the UML Is--and Isn't." Java Report, 4(5): 20ï¿½24, May 1999.
 
 This page intentionally left blank
 
@@ -4930,7 +4936,7 @@ E Invoice E Address E Package A name
 
 string
 
-­
+ï¿½
 
 E Address A Street A City A State A Zip A Country
 
@@ -4961,7 +4967,7 @@ Web Services
 
 Application Program (Parser)
 
-XM´ L File (SOAP)
+XMï¿½ L File (SOAP)
 
 XML File (SOAP)
 
@@ -5437,7 +5443,7 @@ Figure 15.5 shows the output from the singleton application. Note that in this c
 Figure 15.5 Using the updated Counter singleton.
 Structural Patterns
 Structural patterns are used to create larger structures from groups of objects.The following seven design patterns are members of the structural category.
-n Adapter n Bridge n Composite n Decorator n Façade n Flyweight n Proxy
+n Adapter n Bridge n Composite n Decorator n Faï¿½ade n Flyweight n Proxy
 
 296 Chapter 15 Design Patterns
 
@@ -6116,4 +6122,3 @@ comments, 213 compared to HTML, 209-210 CSS, 220-222 data validation, 212-213 do
 data validation, 212-213 integrating into XML document,
 213-219 horizontal applications, 208 parsers, 211 PCDATA, 213 portable data, 208-209 proprietary solutions, 211 RecipeML, 208 references, 223 serialization, 231-234 vertical applications, 208 XML Notepad, 215-216, 219
 XML: How to Program, 223 XML Notepad, 215-216, 219 XML: Web Warrior Series, 223
-

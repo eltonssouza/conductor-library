@@ -1,3 +1,9 @@
+# Agile Testing - A Practical Guide
+
+> **Author(s):** Crispin, Gregory Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 Praise for Agile Testing
 "As Agile methods have entered the mainstream, we've learned a lot about how the testing discipline fits into Agile projects. Lisa and Janet give us a solid look at what to do, and what to avoid, in Agile testing." --Ron Jeffries, www.XProgramming.com
 "An excellent introduction to agile and how it affects the software test community!" --Gerard Meszaros, Agile Practice Lead and Chief Test Strategist at Solution Frameworks, Inc., an agile coaching and lean software development consultancy
@@ -16,7 +22,7 @@ This page intentionally left blank
 AGILE TESTING
 A PRACTICAL GUIDE FOR TESTERS AND AGILE TEAMS
 Lisa Crispin Janet Gregory
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid Capetown · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid Capetown ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and the publisher was aware of a trademark claim, the designations have been printed with initial capital letters or in all capitals.
 
@@ -41,7 +47,7 @@ QA76.76.T48C75 2009 005.1--dc22
 
 2008042444
 
-Copyright © 2009 Pearson Education, Inc.
+Copyright ï¿½ 2009 Pearson Education, Inc.
 
 All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 
@@ -1959,7 +1965,7 @@ difference between traditional QA professionals and agile
 team members with a QA background, so that I can begin
 internalizing my new responsibilities and deliver value to
 the customer sooner and with less difficulty.
-Acceptance conditions: · My concerns and fears about losing control of testing are addressed. · My concerns and fears about having to write code (never done it) are addressed. · As a tester I understand my new value to the team. · As a tester new to Agile, I can easily read about things that are most important to my new role. · As a tester new to Agile, I can easily ignore things that are less important to my new role. · As a tester new to Agile, I can easily get further detail about agile testing that is important to MY context.
+Acceptance conditions: ï¿½ My concerns and fears about losing control of testing are addressed. ï¿½ My concerns and fears about having to write code (never done it) are addressed. ï¿½ As a tester I understand my new value to the team. ï¿½ As a tester new to Agile, I can easily read about things that are most important to my new role. ï¿½ As a tester new to Agile, I can easily ignore things that are less important to my new role. ï¿½ As a tester new to Agile, I can easily get further detail about agile testing that is important to MY context.
 Were I to suggest a solution to this problem, I think of Scrum versus XP. With Scrum you get a simple view that enables people to quickly adopt Agile. However, Scrum is the tip of the iceberg for successful agile teams. For testers who are new, I would love to see agile testing ideas expressed in layers of detail. What do I need to know today, what should I know tomorrow, and what context-sensitive things should I consider for continuous improvement?
 We've tried to provide these layers of detail in this book. We'll approach agile testing from a few different perspectives: transitioning into agile development, using an agile testing matrix to guide testing efforts, and explaining all the different testing activities that take place throughout the agile development cycle.
 
@@ -2019,7 +2025,7 @@ Other Elements
 We've also included a glossary we hope you will find useful, as well as references to books, articles, websites, and blogs in the bibliography.
 JUST START DOING IT--TODAY!
 Agile development is all about doing your best work. Every team has unique challenges. We've tried to present all the information that we think may help agile testers, their teams, managers, and customers. Apply the techniques that you think are appropriate for your situation. Experiment constantly, evaluate the results, and come back to this book to see what might help you improve. Our goal is to help testers and agile teams enjoy delivering the best and most valuable product they can.
-When we asked Dierk König, founder and project manager of Canoo WebTest, what he thought was the number one success factor for agile testing, he answered: "Start doing it--today!" You can take a baby step to improve your team's testing right now. Go get started!
+When we asked Dierk Kï¿½nig, founder and project manager of Canoo WebTest, what he thought was the number one success factor for agile testing, he answered: "Start doing it--today!" You can take a baby step to improve your team's testing right now. Go get started!
 
 This page intentionally left blank
 
@@ -2032,7 +2038,7 @@ Special thanks to two reviewers and top-notch agile testers who read every word 
 xxxvii
 
 xxxviii ACKNOWLEDGMENTS
-We interviewed several teams to learn what advice they would give new agile teams and testers, and solicited success stories and "lessons learned" from colleagues in the agile testing community. Heartfelt thanks to our many contributors of sidebars and quotes, as well as providers of helpful feedback, including (in no particular order) Robin Dymond, Bret Pettichord, Tae Chang, Bob Galen, Erika Boyer, Grig Gheorghiu, Erik Bos, Mark Benander, Jonathan Rasmusson, Andy Pols, Dierk König, Rafael Santos, Jason Holzer, Christophe Louvion, David Reed, John Voris, Chris McMahon, Declan Whelan, Michael Bolton, Elisabeth Hendrickson, Joe Yakich, Andrew Glover, Alessandro Collino, Coni Tartaglia, Markus Gärtner, Megan Sumrell, Nathan Silberman, Mike Thomas, Mike Busse, Steve Perkins, Joseph King, Jakub Oleszkiewicz, Pierre Veragen (again), Paul Rogers (again), Jon Hagar, Antony Marcano, Patrick Wilson-Welsh, Patrick Fleisch, Apurva Chandra, Ken De Souza, and Carol Vaage.
+We interviewed several teams to learn what advice they would give new agile teams and testers, and solicited success stories and "lessons learned" from colleagues in the agile testing community. Heartfelt thanks to our many contributors of sidebars and quotes, as well as providers of helpful feedback, including (in no particular order) Robin Dymond, Bret Pettichord, Tae Chang, Bob Galen, Erika Boyer, Grig Gheorghiu, Erik Bos, Mark Benander, Jonathan Rasmusson, Andy Pols, Dierk Kï¿½nig, Rafael Santos, Jason Holzer, Christophe Louvion, David Reed, John Voris, Chris McMahon, Declan Whelan, Michael Bolton, Elisabeth Hendrickson, Joe Yakich, Andrew Glover, Alessandro Collino, Coni Tartaglia, Markus Gï¿½rtner, Megan Sumrell, Nathan Silberman, Mike Thomas, Mike Busse, Steve Perkins, Joseph King, Jakub Oleszkiewicz, Pierre Veragen (again), Paul Rogers (again), Jon Hagar, Antony Marcano, Patrick Wilson-Welsh, Patrick Fleisch, Apurva Chandra, Ken De Souza, and Carol Vaage.
 Many thanks also to the rest of our community of unofficial reviewers who read chapters, gave feedback and ideas, and let us bounce ideas off of them, including Tom Poppendieck, Jun Bueno, Kevin Lawrence, Hannu Kokko, Titus Brown, Wim van de Goor, Lucas Campos, Kay Johansen, Adrian Howard, Henrik Kniberg, Shelly Park, Robert Small, Senaka Suriyaachchi, and Erik Petersen. And if we've neglected to list you here, it's not that we value your contribution any less, it's just that we didn't keep good enough notes! We hope you will see how your time and effort paid off in the finished book.
 We appreciate the groundwork laid by the agile pioneers who have helped us and our teams succeed with agile. You'll find some of their works in the bibliography. We are grateful for the agile teams that have given us so many open source test tools that help all of our teams deliver so much value. Some of those tools are also listed in the bibliography.
 Thanks to Mike Thomas for taking many of the action photos of an agile team that appear in this book. We hope these photos show those of you new to agile testing and development that there's no big mystery--it's just good people getting together to discuss, demo, and draw pictures.
@@ -2270,7 +2276,7 @@ It 3
 It 4
 
 Agile: Iterative & incremental
-· Each story is expanded, coded, and tested · Possible release after each iteration
+ï¿½ Each story is expanded, coded, and tested ï¿½ Possible release after each iteration
 
 Figure 1-4 Traditional testing vs. agile testing
 
@@ -2853,12 +2859,12 @@ CHAPTER 3
 CULTURAL CHALLENGES
 
 be a good thing when they help the team to overcome cultural barriers and to understand how to work in new ways. The following list presents a "Tester Bill of Rights." We encourage you to use it to help testers integrate into agile teams.
-· You have the right to bring up issues related to testing, quality, and process at any time.
-· You have the right to ask questions of customers, programmers, and other team members and receive timely answers.
-· You have the right to ask for and receive help from anyone on the project teams, including programmers, managers, and customers.
-· You have the right to estimate testing tasks and have these included in story estimates.
-· You have the right to the tools you need to perform testing tasks in a timely manner.
-· You have the right to expect your entire team, not just yourself, to be responsible for quality and testing. --Lisa
+ï¿½ You have the right to bring up issues related to testing, quality, and process at any time.
+ï¿½ You have the right to ask questions of customers, programmers, and other team members and receive timely answers.
+ï¿½ You have the right to ask for and receive help from anyone on the project teams, including programmers, managers, and customers.
+ï¿½ You have the right to estimate testing tasks and have these included in story estimates.
+ï¿½ You have the right to the tools you need to perform testing tasks in a timely manner.
+ï¿½ You have the right to expect your entire team, not just yourself, to be responsible for quality and testing. --Lisa
 
 Give Team Ownership
 A critical success factor is whether the team takes ownership and has the ability to customize its approach. People can change their attitudes and their perceptions if they are given the right help. Lisa was able to observe Mike Cohn work with her team as a coach. As a self-organizing team, the team had to identify and solve its own problems. Mike made sure they had the time and resources to experiment and improve. He made sure that the business understood that quality was more important than quantity or speed. Every team, even a self-organizing team, needs a leader who can effectively interact with the organization's management team.
@@ -3149,7 +3155,7 @@ I never felt that I didn't have enough time to do the testing I needed to, becau
 Lisa's Story
 
 I was once the only professional tester on a team of up to 20 programmers developing a content management system on an Internet shopping website. The team began to get really productive when the programmers took on responsibility for both manual testing and test automation. One or two programmers wore a "tester hat" for each iteration, writing customer-facing tests ahead of coding and performing manual tests. Additional programmers picked up the test automation tasks during the iteration.
-Conversely, my current team has had two testers for every three to five programmers. The web-based financial application we produce has highly complex business logic, is high risk, and test intensive. Testing tasks often add up to the same amount of time as programming tasks. Even with a relatively high tester­programmer ratio, programmers do much of the functional test automation and sometimes pick up manual testing tasks. Specialized testing tasks such as writing high-level test cases and detailed customer-facing tests are usually done by the testers.
+Conversely, my current team has had two testers for every three to five programmers. The web-based financial application we produce has highly complex business logic, is high risk, and test intensive. Testing tasks often add up to the same amount of time as programming tasks. Even with a relatively high testerï¿½programmer ratio, programmers do much of the functional test automation and sometimes pick up manual testing tasks. Specialized testing tasks such as writing high-level test cases and detailed customer-facing tests are usually done by the testers.
 --Lisa
 Rather than focus on a ratio, teams should evaluate the testing skills they need and find the appropriate resources. A team that takes responsibility for testing can continually evaluate whether it has the expertise and bandwidth it needs. Use retrospectives to identify whether there's a problem that hiring more testers would solve.
 Hiring an Agile Tester
@@ -3165,13 +3171,13 @@ Lisa's Story
 
 Our first attempt at recruiting another tester was not very successful. The first job posting elicited many responses, and we interviewed three candidates without finding a good fit. The programmers wanted someone "techie," but we also needed someone with the skills to collaborate with business people and help them to produce examples and requirements. We struggled to determine the content of the job posting in order to attract candidates with the right attitude and mind-set.
 After soliciting opinions and suggestions from Janet and other colleagues in the agile testing community, we decided to look for a tester with the mind-set that is described in Chapter 2. We changed the job posting to include items such as these:
-· Experience writing black box and GUI test cases, designing tests to mitigate risks, and helping business experts define requirements
-· Experience writing simple SQL queries and insert/update statements and basic grasp of Oracle or another relational database
-· At least one year of experience with some scripting or programming language and/or open source test tools
-· Ability to use basic Unix commands
-· Experience collaborating with programmers and business experts
-· Experience in context-based, exploratory, or scenario testing a plus
-· Ability to work as part of a self-organizing team in which you determine your tasks on a daily basis in coordination with coworkers rather than waiting for work to be assigned to you
+ï¿½ Experience writing black box and GUI test cases, designing tests to mitigate risks, and helping business experts define requirements
+ï¿½ Experience writing simple SQL queries and insert/update statements and basic grasp of Oracle or another relational database
+ï¿½ At least one year of experience with some scripting or programming language and/or open source test tools
+ï¿½ Ability to use basic Unix commands
+ï¿½ Experience collaborating with programmers and business experts
+ï¿½ Experience in context-based, exploratory, or scenario testing a plus
+ï¿½ Ability to work as part of a self-organizing team in which you determine your tasks on a daily basis in coordination with coworkers rather than waiting for work to be assigned to you
 These requirements brought candidates more suited to an agile testing job. I proceeded carefully with screening, ruling out people with a "quality police" mentality. Testers who pursued professional development and showed interest in agile development were more likely to have the right mind-set. The team needed someone who would be strong in the area of test tools and automation, so a passion for learning was paramount.
 This more creative approach to recruiting a tester paid off. At that time, it wasn't easy to find good "agile tester" candidates, but subsequent searches went more smoothly. We found that posting the tester position in less obvious places, such as a Ruby mailing list or the local agile user group, helped reach a wider range of suitable candidates.
 Hiring an agile tester taught me a lot about the agile testing mind-set. There are testers with very good skill sets who would be valuable to any traditional test team but would not be a good fit on an agile team because of their attitude toward testing.
@@ -3236,7 +3242,7 @@ CHAPTER 4
 
 TEAM LOGISTICS
 
-It is important for the whole team to be located together, to foster collaboration; if the team is distributed, provide tools to promote communication. Hire for attitude. There is no right tester­developer ratio. The right answer is, "It depends on your situation." Teams need to self-organize, identify and find solutions to their own problems, and look for ways to improve. They can't wait for someone to tell them what to do. Management should reward performance in a way that promotes the team's effort to deliver business value but not penalize good individual performance if the team is struggling. Testers can use agile principles to improve their own skills and increase their value to the team. They need to be proactive and find ways that they can contribute.
+It is important for the whole team to be located together, to foster collaboration; if the team is distributed, provide tools to promote communication. Hire for attitude. There is no right testerï¿½developer ratio. The right answer is, "It depends on your situation." Teams need to self-organize, identify and find solutions to their own problems, and look for ways to improve. They can't wait for someone to tell them what to do. Management should reward performance in a way that promotes the team's effort to deliver business value but not penalize good individual performance if the team is struggling. Testers can use agile principles to improve their own skills and increase their value to the team. They need to be proactive and find ways that they can contribute.
 
 Chapter 5
 TRANSITIONING TYPICAL PROCESSES
@@ -3337,7 +3343,7 @@ TRANSITIONING TYPICAL PROCESSES
 
 Table 5-1 Starting and Ending Metrics
 
-Metric NCSS ­ Whitney NCSS ­ Ghidrah Number of JUnit tests Number of Canoo/Watir assertions Number of FitNesse assertions
+Metric NCSS ï¿½ Whitney NCSS ï¿½ Ghidrah Number of JUnit tests Number of Canoo/Watir assertions Number of FitNesse assertions
 
 At Start 69943 41044 3001 3215 57319
 
@@ -3507,7 +3513,7 @@ Janet's Story
 
 I have had success with this approach at several organizations. Processes that were common to all projects were captured into one document. Using this format answered most compliance requirements. Some of the topics that were covered were:
 
-· Testing Practices · Story Testing · Solution Verification Testing · User Acceptance Testing · Exploratory Testing · Load and Performance Testing · Test Automation · Test Results · Defect Tracking Process · Test Tools · Test Environments
+ï¿½ Testing Practices ï¿½ Story Testing ï¿½ Solution Verification Testing ï¿½ User Acceptance Testing ï¿½ Exploratory Testing ï¿½ Load and Performance Testing ï¿½ Test Automation ï¿½ Test Results ï¿½ Defect Tracking Process ï¿½ Test Tools ï¿½ Test Environments
 
 --Janet
 
@@ -3958,7 +3964,7 @@ WHY WRITE AND EXECUTE THESE TESTS?
 Our years on agile teams have been Utopian in contrast to this scenario. Driving coding practices with tests means that the programmers probably understood the story's requirements reasonably well. They've talked extensively with the customers and testers to clarify the desired behaviors. All parties understand the changes being made. By the time the team has completed all of the task cards for coding a story, or a thin, testable slice of one, the feature has been well covered by unit and component tests. Usually the programmers have made sure at least one path through the story works end to end.
 This means that we, as testers, waste little time finding low-level bugs. We're likely to try scenarios the programmers hadn't thought of and to spend our time on higher-level business functionality. Well-designed code is usually robust and testable. If we find a defect, we show it to the programmer, who writes a unit test to reproduce the bug and then fixes it quickly. We actually have time to focus on exploratory testing and the other types of in-depth tests to give the code a good workout and learn more about how it should work. Often, the only "bugs" we find are requirements that everyone on our team missed or misunderstood. Even those are found quickly if the customer is involved and has regular demos and test opportunities. After a development team has mastered TDD, the focus for improvement shifts from bug prevention to figuring out better ways to elicit and capture requirements before coding.
 
-Test-First Development vs. Test-Driven Development Gerard Meszaros [Meszaros 2007, pp. 813­814] offers the following description of how test-first development differs from test-driven development:
+Test-First Development vs. Test-Driven Development Gerard Meszaros [Meszaros 2007, pp. 813ï¿½814] offers the following description of how test-first development differs from test-driven development:
 "Unlike test-driven development, test-first development merely says that the tests are written before the production code; it does not imply that the production code is made to work one test at a time (emergent design). Test-first development can be applied at the unit test or customer test level, depending on which tests we have chosen to automate."
 Erik Bos [2008] observes that test-first development involves both test-first programming and test-first design, but there's a subtle difference:
 "With test-first design, the design follows the tests, whereas you can do test-first programming of a design that you first write down on a whiteboard. On larger projects, we tend to do more design via whiteboard discussions; the team discusses the architecture around a whiteboard, and codes test-first based on this design. On smaller projects, we do practice test-driven design."
@@ -4023,9 +4029,9 @@ For more information about Presenter First development, see the bibliography.
 
 Testing Legacy Systems
 John Voris, a developer with Crown Cork and Seal, works in the RPG language, a cousin of COBOL, which runs on the operating system previously known as AS 400 and now known as System i. John was tasked with merging new code with a vendor code base. He applied tenets of Agile, Lean, and IBM-recommended coding practices to come up with an approach he calls "ADEPT" for "AS400 Displays for External Prototyping and Testing." While he isn't coding test-first, he's testing "Minutes Afterward." Here's how he summed up his approach:
-· Write small, single-purpose modules (not monolithic programs), and refactor existing programs into modules. Use a Presenter First development approach (similar to the Model View Presenter or Model View Controller pattern).
-· Define parameter interfaces for the testing harness based on screen formats and screen fields. The only drawback here is numbers are defined as zoned decimals rather than packed hexadecimal, but this is offset by the gain in productivity.
-· "Minutes after" coding each production module, create a testing program using the screen format to test via the UI. The UI interface for the test is created prior to the production program, because the UI testing interface is the referenced interface for the production module. The impetus for running a test looms large for the programmer, because most of the coding for the test is already done.
+ï¿½ Write small, single-purpose modules (not monolithic programs), and refactor existing programs into modules. Use a Presenter First development approach (similar to the Model View Presenter or Model View Controller pattern).
+ï¿½ Define parameter interfaces for the testing harness based on screen formats and screen fields. The only drawback here is numbers are defined as zoned decimals rather than packed hexadecimal, but this is offset by the gain in productivity.
+ï¿½ "Minutes after" coding each production module, create a testing program using the screen format to test via the UI. The UI interface for the test is created prior to the production program, because the UI testing interface is the referenced interface for the production module. The impetus for running a test looms large for the programmer, because most of the coding for the test is already done.
 
 118
 
@@ -4035,8 +4041,8 @@ TECHNOLOGY-FACING TESTS THAT SUPPORT THE TEAM
 
 For more about RPGUnit, see www .RPGUnit.org.
 
-· Use standard test data sets, which are unchanging, canonical test data, to drive the tests.
-· This approach, in which the test programs are almost auto-generated, lends itself to automation with a record/playback tool that would capture data inputs and outputs, with tests run in a continuous build, using RPGUnit.
+ï¿½ Use standard test data sets, which are unchanging, canonical test data, to drive the tests.
+ï¿½ This approach, in which the test programs are almost auto-generated, lends itself to automation with a record/playback tool that would capture data inputs and outputs, with tests run in a continuous build, using RPGUnit.
 
 Your team can find an approach to designing for testability that works for you. The secret is the whole-team commitment to testing and quality. When a team is constantly working to write tests and make them pass, it finds a way to get it done. Teams should take time to consider how they can create an architecture that will make automated tests easy to create, inexpensive to maintain, and long-lived. Don't be afraid to revisit the architecture if automated tests don't return enough value for the investment in them.
 Timely Feedback
@@ -4442,7 +4448,7 @@ THE REQUIREMENTS QUANDARY
 
 139
 
-While we were reimplementing the master data maintenance, I attended the Agile 2005 conference and took a tutorial by Jeff Patton. One of the exercises was building paper prototypes of the UI for a sample application. Then we "tested" the paper prototypes with members of the other groups as our users and found out how badly flawed our UI designs were. Déjà vu! The tutorial resembled my reality.
+While we were reimplementing the master data maintenance, I attended the Agile 2005 conference and took a tutorial by Jeff Patton. One of the exercises was building paper prototypes of the UI for a sample application. Then we "tested" the paper prototypes with members of the other groups as our users and found out how badly flawed our UI designs were. Dï¿½jï¿½ vu! The tutorial resembled my reality.
 On my return to the project back home, I took the project manager I was mentoring in agile development aside and suggested that paper prototyping and "Wizard of Oz" testing (the Wizard of Oz reference is to a human being acting as a computer--sort of the "man behind the curtain") might have avoided our one-month setback. After a very short discussion, we decided to give it a try on our release 2 functionality. We stayed late a couple of evenings and designed the UI using screenshots from the R1 functionality overlaid with hand-drawn R2 functionality. It was a long time since either of us had used scissors and glue sticks, and it was fun!
 For the Wizard of Oz testing with users, we asked our on-site customers to find some real users with whom to do the testing. They also came up with some realistic sample tasks for the users to try to execute. We put the sample data into Excel spreadsheets and printed out various combinations of data grids to use the in the testing. Some future users came to town for a conference. We hijacked pairs of them for an hour each and did our testing.
 I acted as the "wizard," playing the part of the computer ("it's a 286 processor so don't expect the response times to be very good"). The on-site customer introduced the problem and programmers acted as observers, recording the missteps the users made as "possible defects." After just a few hours, we had huge amounts of valuable data about which parts of our UI design worked well and which parts needed rethinking. And there was little argument about which was which! We repeated the usability testing with other users when we had alpha versions of the application available and gained further valuable insights. Our business customer found the exercise so valuable that on a subsequent project the business team set about doing the paper prototyping and Wizard of Oz testing with no prompting from the development team. This might have been influenced somewhat by the first e-mail we got from a real user 30 minutes after going live: "I love this application!!!"
@@ -4936,9 +4942,9 @@ TOOLS FOR AUTOMATING TESTS BASED ON EXAMPLES
 171
 
 A Tool Selection Rationale David Reed, a test automation engineer, and his team went with soapUI Pro to automate testing for their web services. Here are some reasons he gave for choosing this particular tool.
-· It has an open source version, so you can try it out it for free. You can learn it, kick the tires, expand stuff, and learn its strengths and weaknesses.
-· It was easy to figure out what requests to make for what service. · The assertions provided for verifying the results from requests are great
-and expandable. One really helpful one is verifying that the response comes back in an acceptable amount of time, raising an error if it doesn't. · The Pro version takes a lot of the hassle out of designing XPath queries to verify results. It also adds some nice touches for retrieving database data. · It's expandable with Groovy, a Java-based scripting language. (They're working on a Java application, so it pays to have Java-friendly tools.) · Developers can use it without sneering at it as a "test tool." · It's easily integrated with our continuous integration environment. · It has a feature to check code coverage. · The price is right.
+ï¿½ It has an open source version, so you can try it out it for free. You can learn it, kick the tires, expand stuff, and learn its strengths and weaknesses.
+ï¿½ It was easy to figure out what requests to make for what service. ï¿½ The assertions provided for verifying the results from requests are great
+and expandable. One really helpful one is verifying that the response comes back in an acceptable amount of time, raising an error if it doesn't. ï¿½ The Pro version takes a lot of the hassle out of designing XPath queries to verify results. It also adds some nice touches for retrieving database data. ï¿½ It's expandable with Groovy, a Java-based scripting language. (They're working on a Java application, so it pays to have Java-friendly tools.) ï¿½ Developers can use it without sneering at it as a "test tool." ï¿½ It's easily integrated with our continuous integration environment. ï¿½ It has a feature to check code coverage. ï¿½ The price is right.
 fore coding is finished, either by using HTML mock-ups or by developing an end-to-end bare-bones slice through all of the screens that simply navigates but doesn't provide all of the functionality yet. Even if you're not using a lot of automated story tests to drive development, manual exploratory testing that helps us learn about the functionality and provides immediate feedback gets pretty tedious and slow without any assistance from automation. Let's look at the types of GUI test tools that help drive development using business-facing tests.
 Record/Playback Tools Record/playback tools are appealing because you can usually learn how to record a script and play it back quickly, and you can create lots of scripts in a short time. However, they have drawbacks. Early GUI test tools recorded mouse movements using X-Y screen coordinates. Scripts using those tools might also be sensitive to changes in screen resolution, color depth, and even where the window is placed on the screen.
 
@@ -5498,23 +5504,23 @@ Exploratory testing starts with a charter of what aspects of the functionality w
 Technique: Exploratory Testing and Information Evaluation Jon Hagar, an experienced exploratory tester, learner, and trainer, shares some activities, characteristics, and skills that are vital to effective exploratory testing.
 Exploratory testing uses the tester's understanding of the system, along with critical thinking, to define focused, experimental "tests" which can be run in short time frames and then fed back into the test planning process.
 An agile team has many opportunities to do exploratory testing, since each development cycle creates production-ready, working software. Starting early in each development cycle, consider exploratory tests based on:
-· Risk (analysis): The critical things you and the customer/user think can go wrong or be potential problems that will make people unhappy.
-· Models (mental or otherwise) of how software should behave: You and/or the customer have a great expectation about what the newly produced function should do or look like, so you test that.
-· Past experience: Think about how similar systems have failed (or succeeded) in predictable patterns that can be refined into a test, and explore it.
+ï¿½ Risk (analysis): The critical things you and the customer/user think can go wrong or be potential problems that will make people unhappy.
+ï¿½ Models (mental or otherwise) of how software should behave: You and/or the customer have a great expectation about what the newly produced function should do or look like, so you test that.
+ï¿½ Past experience: Think about how similar systems have failed (or succeeded) in predictable patterns that can be refined into a test, and explore it.
 
 EXPLORATORY TESTING
 
 199
 
-· What your development team is telling you: Talk to your developers and find out what "is important to us."
-· Most importantly: What you learn (see and observe) as you test. As a tester on an agile team, a big part of your job is to constantly learn about your product, your team, and your customer. As you learn, you should quickly see tests based on such things as customer needs, common mistakes the team seems to be making, or good/ bad characteristics of the product.
+ï¿½ What your development team is telling you: Talk to your developers and find out what "is important to us."
+ï¿½ Most importantly: What you learn (see and observe) as you test. As a tester on an agile team, a big part of your job is to constantly learn about your product, your team, and your customer. As you learn, you should quickly see tests based on such things as customer needs, common mistakes the team seems to be making, or good/ bad characteristics of the product.
 Some tests might be good candidates for automated regression suites. Some might just answer your exploratory charter and be "done." The agile team must critically think about what they are learning and "evolve" tests accordingly. The most important aspect here is to be "brain on" while testing, where you are looking for the "funny," unexpected, or new, which automated tests would miss. Use automation for what it is good at (repetitive tasks) and use agile humans for what we are good at (seeing, thinking, and dealing with the unexpected).
 Several components are typically needed for useful exploratory testing:
-· Test Design: An exploratory tester as a good test designer understands the many test methods. You should be able to call different methods into play on the fly during the exploration. This agility is a big advantage of exploratory testing over automated (scripted) procedures, where things must be thought out in advance.
-· Careful Observation: Exploratory testers are good observers. They watch for the unusual and unexpected and are careful about assumptions of correctness. They might observe subtle software characteristics or patterns that drive them to change the test in real time.
-· Critical Thinking: The ability to think openly and with agility is a key reason to have thinking humans doing nonautomated exploratory testing. Exploratory testers are able to review and redirect a test into unexpected directions on the fly. They should also be able to explain their logic of looking for defects and to provide clear status on testing. Critical thinking is a learned human skill.
-· Diverse Ideas: Experienced testers and subject matter experts can produce more and better ideas. Exploratory testers can build on this diversity during testing. One of the key reasons for exploratory tests is to use critical thinking to drive the tests in unexpected directions and find errors.
-· Rich Resources: Exploratory testers should develop a large set of tools, techniques, test data, friends, and information sources upon which they can draw. The agile test team members should grow their exploratory resources throughout a project and throughout their careers.
+ï¿½ Test Design: An exploratory tester as a good test designer understands the many test methods. You should be able to call different methods into play on the fly during the exploration. This agility is a big advantage of exploratory testing over automated (scripted) procedures, where things must be thought out in advance.
+ï¿½ Careful Observation: Exploratory testers are good observers. They watch for the unusual and unexpected and are careful about assumptions of correctness. They might observe subtle software characteristics or patterns that drive them to change the test in real time.
+ï¿½ Critical Thinking: The ability to think openly and with agility is a key reason to have thinking humans doing nonautomated exploratory testing. Exploratory testers are able to review and redirect a test into unexpected directions on the fly. They should also be able to explain their logic of looking for defects and to provide clear status on testing. Critical thinking is a learned human skill.
+ï¿½ Diverse Ideas: Experienced testers and subject matter experts can produce more and better ideas. Exploratory testers can build on this diversity during testing. One of the key reasons for exploratory tests is to use critical thinking to drive the tests in unexpected directions and find errors.
+ï¿½ Rich Resources: Exploratory testers should develop a large set of tools, techniques, test data, friends, and information sources upon which they can draw. The agile test team members should grow their exploratory resources throughout a project and throughout their careers.
 
 200
 
@@ -5578,7 +5584,7 @@ Another way to approach persona testing, which we learned from Brian Marick and 
 
 Real World Projects: Personas
 The OneNote team at Microsoft uses personas as part of their testing process. Mike Tholfsen [2008], the Test Manager for OneNote, says they use seven personas that might use OneNote, specific customer types such as Attorneys, Students, Real Estate Agents, and Salespersons. The personas they create contain information such as:
-· General job description · "A Day in the Life" · Primary uses for OneNote · List of features the persona might use · Potential notebook structures · Other applications used · Configuration and hardware environment
+ï¿½ General job description ï¿½ "A Day in the Life" ï¿½ Primary uses for OneNote ï¿½ List of features the persona might use ï¿½ Potential notebook structures ï¿½ Other applications used ï¿½ Configuration and hardware environment
 
 You can also just assume the roles of novice, intermediate, and expert users as you explore the application. Can users figure out what they are supposed to do without instructions? If you have a lot of first-time users, you might need to make the interface very simple.
 
@@ -6142,10 +6148,10 @@ Performance tuning can turn into a big project, so it is essential to provide a 
 
 Performance Baseline Test Results Lisa's coworker Mike Busse took on the task of obtaining performance baselines for their web application that manages retirement plans. He evaluated load test tools, implemented one (JMeter), and set about to get a baseline. He reported the results both in a high-level summary and a spreadsheet with detailed results.
 The tests simulated slowly increasing the load up to 100 concurrent users. Three test scripts, each for a common user activity, were used, and they were run separately and all together. Data gathered included:
-· Maximum time of a transaction
-· Maximum number of busy connections.
-· A plot of the max time of a transaction against the number of users (see Figure 11-2 for an example of a chart)
-· Number of users who were on the system when the max time of a transaction equaled eight seconds
+ï¿½ Maximum time of a transaction
+ï¿½ Maximum number of busy connections.
+ï¿½ A plot of the max time of a transaction against the number of users (see Figure 11-2 for an example of a chart)
+ï¿½ Number of users who were on the system when the max time of a transaction equaled eight seconds
 
 236
 
@@ -6197,10 +6203,10 @@ Figure 11-2 Max and average transaction times at different user loads.
 
 An important aspect of reporting results was providing definitions of terms such as transaction and connection in order to make the results meaningful to everyone. For example, maximum time of a transaction is defined as the longest transaction of all transactions completed during the test.
 Mike's report also included assumptions made for the performance test:
-· Eight seconds is a transaction threshold that we would not like to cross.
-· The test web server is equivalent to either of the two web servers in production.
-· The load the system can handle, as determined by these tests, can be doubled in production because the load is distributed between two web servers.
-· The distribution of tasks in the test that combines all three tests is accurate to a reasonable degree.
+ï¿½ Eight seconds is a transaction threshold that we would not like to cross.
+ï¿½ The test web server is equivalent to either of the two web servers in production.
+ï¿½ The load the system can handle, as determined by these tests, can be doubled in production because the load is distributed between two web servers.
+ï¿½ The distribution of tasks in the test that combines all three tests is accurate to a reasonable degree.
 Mike also identified shortcomings with the performance baseline. More than one transaction can contribute to loading a page, meaning that the max page load time could be longer than the max time of a transaction. The test machine doesn't duplicate the production environment, which has two machines and load-balancing software to distribute the transactions.
 The report ended with a conclusion about the number of concurrent users that the production system could support. This serves as a guideline to be aware of as the production load increases. The current load is less than half of this number, but there are unknowns, such as whether the production users are all active or have neglected to log out.
 
@@ -7468,7 +7474,7 @@ a table or column to the production database, you must update your test schemas 
 Lisa's team members run their GUI test suites and some of their functional regression tests against schemas refreshed each run with canonical data. On rare occasions, tests fail unexpectedly because of an erroneous update to the seed data. Deciding whether to "roll" data forward, so that, for example, 2008's rows become 2009's rows, gets to be a headache. So far, the ROI on using canonical data has been acceptable for the team. Janet's current team also uses seed data for its "middle layer" testing on local builds. It works well for fast feedback during the development cycle. However, the test environment and the staging environments use a migrated copy of production data. The downside is that the regression tests can only be run on local copies of the build. The risk is low because they practice "build once, deploy to many."
 Production-Like Data
 The ability to test a system that is as much like production as possible is essential to most software development teams. However, running a suite of automated regression tests against a copy of a production database would probably run too slowly to be useful feedback. Besides, you couldn't really depend on any data remaining stable as you bring over new copies to stay up-to-date. Generally, when you're talking about functional or end-to-end testing, a clone of the production database is most useful for manual exploratory testing.
-Stress, performance, and load testing, which are automation­intensive, need an environment that closely simulates production in order to provide results that can translate to actual operations. Usability, security, and reliability are other examples of testing that needs a production-like system, although they may not involve much automation.
+Stress, performance, and load testing, which are automationï¿½intensive, need an environment that closely simulates production in order to provide results that can translate to actual operations. Usability, security, and reliability are other examples of testing that needs a production-like system, although they may not involve much automation.
 There is always a trade-off; your production database might be huge, so it is expensive and slow, but it provides the most accurate test data available. If your organization can afford hardware and software to store multiple copies of production data for testing purposes, this is ideal. Small companies may
 
 310
@@ -7635,7 +7641,7 @@ AN AGILE TEST AUTOMATION STRATEGY
 
 version control. As of this writing, FitNesse is starting to provide support for source code control tools such as Subversion. Scripts written in other test tools, such as Watir and Canoo WebTest, can and should be maintained within the same source code control system as production code, just as the unit tests are.
 
-Organizing Tests with the Project under Test We asked some agile testing experts how they manage tests. Dierk König, founder and project manager of Canoo WebTest, explained how his teams have managed their automated tests to satisfy the needs of both the development and customer teams.
+Organizing Tests with the Project under Test We asked some agile testing experts how they manage tests. Dierk Kï¿½nig, founder and project manager of Canoo WebTest, explained how his teams have managed their automated tests to satisfy the needs of both the development and customer teams.
 We always organize our tests alongside the project under test. That is, test sources are stored together with the project sources in the exact same repository, using the same mechanisms for revision control, tagging, and sharing the test base.
 WebTest comes with a standard layout of how to organize tests and test data in directories. You can adapt this to any structure you fancy, but the "convention over configuration" shows its strength here. In large projects, every sub-project maintains its own test base in a "webtest" subdirectory that follows the convention.
 Whenever a client did not follow this approach, the experience was very painful for all people involved. We have seen huge databases of test descriptions that did not even feature a proper revision control (i.e., where you could, for example, see diffs to old releases or who changed which test for what reason).
@@ -8166,7 +8172,7 @@ Let's look at an example. We have a small release we want to put out that calcul
 
 Shipping Test Matrix Test Conditions
 
-Single Destination Multiple Destinations Physical Address <= 2 lbs 2 ­ 4 lbs > 4 lbs Same Day Next Day < 5 Business Days Shipping Estimates
+Single Destination Multiple Destinations Physical Address <= 2 lbs 2 ï¿½ 4 lbs > 4 lbs Same Day Next Day < 5 Business Days Shipping Estimates
 
 Functionality
 
@@ -8881,7 +8887,7 @@ Lisa's Story Lisa's Story
 
 writing a "XUnit" task card for each story. Write programming task cards for any test automation fixtures that will be needed. Think about application changes that could help with testing, such as runtime properties and APIs.
 The application that I work on has many time- and date-dependent activities. The programmers added a runtime server property to the web application to set the server date. I can specify a date and time override, and when the server starts up, it behaves accordingly. This allows kicking off monthly or quarterly processes with a simple override. This property has helped in testing a wide variety of stories.
-Markus Gärtner [2008] told us his team has a similar property, a "DATE_OFFSET" counted in "days to advance." However, this was only used by the Java components of the application where the business logic lives. The back-end systems in C and C++ don't use the date offset, which caused a problem.
+Markus Gï¿½rtner [2008] told us his team has a similar property, a "DATE_OFFSET" counted in "days to advance." However, this was only used by the Java components of the application where the business logic lives. The back-end systems in C and C++ don't use the date offset, which caused a problem.
 --Lisa
 If you have similar issues because other teams are developing parts of the system, write a task card to discuss the problem with the other team and come up with a coordinated solution. If working with the other team isn't an option, budget time to brainstorm another solution. At the very least, be mindful of the limitations, and adjust testing estimates accordingly and manage the associated risk.
 We started a project to replace our company's interactive voice response (IVR) system, which allows retirement plan participants to obtain account information and manage accounts by phone. We contracted with another company to write the system in Java, with the intention that our team would maintain it after a certain time period.
@@ -9691,17 +9697,17 @@ ITERATION METRICS
 
 Useful Iteration Metrics Coni Tartaglia, a software test manager at Primavera Systems, Inc., explains some ways she has found to achieve useful iteration metrics.
 Collecting metrics at the end of the iteration is particularly useful when many different teams are working on the same product releases. This helps ensure all teams end the iteration with the same standard for "done." The teams should agree on what should be measured. What follows are some standards for potentially shippable software [Schwaber 2004], and different ways of judging the state of each one.
-· Sprint deliverables are refactored and coded to standards.
+ï¿½ Sprint deliverables are refactored and coded to standards.
 Use a static analysis tool. Focus on data that is useful and actionable. Decide each sprint if corrective action is needed. For example, use an open source tool like FindBugs, and look for an increase each sprint in the number of priority one issues. Correct these accordingly.
-· Sprint deliverables are unit tested.
-For example, look at the code coverage results each sprint. Count the number of packages with unit test coverage falling into ranges of 0%­30% (low coverage), 31%­55% (average coverage), and 56%­100% (high) coverage. Legacy packages may fall into the low coverage range, while coverage for new packages should fall into the 56%­100% range, if you are practicing test driven development. An increase in the high coverage range is desirable.
-· Sprint deliverables have passing, automated acceptance tests.
+ï¿½ Sprint deliverables are unit tested.
+For example, look at the code coverage results each sprint. Count the number of packages with unit test coverage falling into ranges of 0%ï¿½30% (low coverage), 31%ï¿½55% (average coverage), and 56%ï¿½100% (high) coverage. Legacy packages may fall into the low coverage range, while coverage for new packages should fall into the 56%ï¿½100% range, if you are practicing test driven development. An increase in the high coverage range is desirable.
+ï¿½ Sprint deliverables have passing, automated acceptance tests.
 Map automated acceptance tests to requirements in a quality management system. At the end of the iteration, generate a coverage report showing that all requirements selected as goals for the iteration have passing tests. Requirements that do not show passing test coverage are not complete. The same approach is easily executed using story cards on a bulletin board. The intent is simply to show that the agreed-upon tests for each requirement or story are passing at the end of the sprint.
-· Sprint deliverables are successfully integrated.
+ï¿½ Sprint deliverables are successfully integrated.
 Check the continuous integration build test results to ensure they are passing. Run other integration tests during the sprint. Make corrections prior to the beginning of the next iteration. Hesitate to start a new iteration if integration tests are failing.
-· Sprint deliverables are free of defects.
+ï¿½ Sprint deliverables are free of defects.
 Requirements completed during the iteration should be free of defects.
-· Can the product ship in [30] days?
+ï¿½ Can the product ship in [30] days?
 
 440
 
@@ -9852,7 +9858,7 @@ We love the celebration idea we got from Megan Sumrell, an agile trainer and coa
 Celebrating accomplishments is something I am pretty passionate about on teams. On a recent project, we implemented the Shout-Out Shoebox. I took an old shoebox and decorated it. Then, I just cut a slit in the top of the lid so people could put their shout-outs in the box. The box is open to the entire team during the course of the sprint.
 Anytime team members want to give a "shout-out" to another team member, they can write it on a card and put it in the box. They can range from someone helping you with a difficult task to someone going above and beyond the call of duty. If you have distributed team members, encourage them to email their shout-outs to your ScrumMaster who can then put them in the box as well.
 At the end of our demo, someone from the team gets up and reads all of the cards out of the box. This is even better if you have other stakeholders at your demo. That way, folks on your team are getting public recognition for their work in front of a larger audience. You can also include small give-aways for folks, too.
-It may be a cliché, but little things can mean a lot. The Shout-Out Shoebox is a great way to recognize the value different team members contribute.
+It may be a clichï¿½, but little things can mean a lot. The Shout-Out Shoebox is a great way to recognize the value different team members contribute.
 
 SUMMARY
 
@@ -10279,9 +10285,9 @@ RELEASING THE PRODUCT
 
 Each project, each team, each business is unique. Agile teams work with the business experts to decide when they're ready to deliver software to production. If the release deadline is set in stone, the business will have to modify scope. If there's enough flexibility to release when the software has enough value, the teams can decide when the quality criteria have been met and the software can go to production.
 Challenging Release Candidate Builds Coni Tartaglia's team uses a checklist to evaluate each release candidate build. The checklist might specify that the release candidate build:
-· Includes all features that provide business value for the release, including artwork, logos, legal agreements, and documentation
-· Meets all build acceptance criteria · Has proof that all agreed-upon tests (acceptance, integration, regres-
-sion, nonfunctional, UAT) have passed · Has no open defect reports
+ï¿½ Includes all features that provide business value for the release, including artwork, logos, legal agreements, and documentation
+ï¿½ Meets all build acceptance criteria ï¿½ Has proof that all agreed-upon tests (acceptance, integration, regres-
+sion, nonfunctional, UAT) have passed ï¿½ Has no open defect reports
 Coni's team challenges the software they might ship with a final set of inspections and agreed-upon "release acceptance tests," or "RATS." She explains:
 The key phrase is "agreed-upon tests." By agreeing on the tests in advance, the scope for the release checklist is well defined. Include systemlevel, end-to-end tests in the RATS, and select from the compatibility roster tests, which will really challenge the release candidate build. Performance tests can also be included in RATs. Agree in advance on the content of the automation suites as well as a subset of manual tests for each RAT.
 Agree in advance which tests will be repeated if a RAT succeeds in causing the failure of a release candidate build. If the software has survived several iterations of continuously run automated regression tests, passing these final challenges should be a breeze.
@@ -10326,7 +10332,7 @@ CHAPTER 20
 SUCCESSFUL DELIVERY
 
 that minimize disruption. Automate and streamline deployment processes as much as possible to keep downtime windows small. A quick deployment process is also helpful during development in short iterations where we may deploy a dozen times in one day.
-International Considerations Markus Gärtner, an "agile affected" testing group lead, explains his team's approach to timing its releases:
+International Considerations Markus Gï¿½rtner, an "agile affected" testing group lead, explains his team's approach to timing its releases:
 We build telecommunications software for mobiles, so we usually install our software at night, when no one is likely to make calls. This might be during our office hours, when we're handling a customer in Australia, but usually it is during our nighttime.
 My colleagues who do the actual installation--there are three within our team--are most likely to appear late during next day's office hours because we don't have a separate group for these tasks.
 As businesses and development teams become more global, release timing gets more complicated. Fortunately, production configurations can make releases easier. If your production environment has multiple application servers, you may be able to bring them down one at a time for release without disrupting users.
@@ -10638,7 +10644,7 @@ Agile Alliance. "Principles Behind the Agile Manifesto," www.agilemanifesto .org
 BIBLIOGRAPHY
 
 Bolton, Michael. "Testing Without a Map," Better Software, January 2005, www.developsense.com/articles/Testing%20Without%20A%20Map.pdf.
-Bos, Erik and Christ Vriens. "An Agile CMM," in Extreme Programming and Agile Methods­XP/Agile Universe 2004, 4th Conference on Extreme Programming and Agile Methods, Calgary, Canada, August 15­18, 2004, Proceedings, ed. Carmen Zannier, Hakan Erdogmus, Lowell Lindstrom, pp. 129­138, Springer, 2004.
+Bos, Erik and Christ Vriens. "An Agile CMM," in Extreme Programming and Agile Methodsï¿½XP/Agile Universe 2004, 4th Conference on Extreme Programming and Agile Methods, Calgary, Canada, August 15ï¿½18, 2004, Proceedings, ed. Carmen Zannier, Hakan Erdogmus, Lowell Lindstrom, pp. 129ï¿½138, Springer, 2004.
 Boutelle, Jonathan. "Usability Testing for Agile Development," www .jonathanboutelle.com/mt/archives/2005/08/usability_testi_1.html, 2005.
 Brown, Titus. "The (Lack of) Testing Death Spiral," http://ivory.idyll.org/ blog/mar-08/software-quality-death-spiral.html, 2008.
 Buwalda, Hans. "Soap Opera Testing," Better Software Magazine, February 2004, www.logigear.com/resources/articles_lg/soap_opera_testing.asp.
@@ -10666,7 +10672,7 @@ Freeman, Steve and Nat Pryce. "Mock Objects," www.mockobjects.com.
 Fowler, Martin. "Continuous Integration," http://martinfowler.com/articles/ continuousIntegration.html, 2006.
 Fowler, Martin. "StranglerApplication," www.martinfowler.com/bliki/ StranglerApplication.html, 2004.
 Fowler, Martin, "TechnicalDebt," http://martinfowler.com/bliki/ TechnicalDebt.html, 2003.
-Gårtner, Markus, Blog, http://blog.shino.de.
+Gï¿½rtner, Markus, Blog, http://blog.shino.de.
 Galen, Robert. Software Endgames: Eliminating Defects, Controlling Change, and the Countdown to On-Time Delivery, Dorset House, 2005.
 Ghiorghiu, Grig. "Performance vs. load vs. stress testing," http:// agiletesting.blogspot.com/2005/02/performance-vs-load-vs-stresstesting.html, 2005.
 Ghirghiu, Grig. "Agile Testing" blog, http://agiletesting.blogspot.com.
@@ -10732,14 +10738,14 @@ BIBLIOGRAPHY
 507
 
 Soni, Mukesh. "Defect Prevention: Reducing Costs and Enhancing Quality," iSixSigma, http://software.isixsigma.com/library/content/c060719b.asp.
-Sumrell, Megan. "'Shout-Out' Shoebox ­ Boosting Team Morale," http:// megansumrell.wordpress.com/2007/08/27/shout-out-shoebox-boostingteam-morale, 2007.
+Sumrell, Megan. "'Shout-Out' Shoebox ï¿½ Boosting Team Morale," http:// megansumrell.wordpress.com/2007/08/27/shout-out-shoebox-boostingteam-morale, 2007.
 Sutherland, Jeff, Carsten Ruseng Jakobsen, and Kent Johnson. "Scrum and CMMI Level 5: The Magic Potion for Code Warriors," Agile 2007, Washington, DC, 2007, http://jeffsutherland.com/scrum/ Sutherland-ScrumCMMI6pages.pdf.
 Tabaka, Jean. Collaboration Explained: Facilitation Skills for Software Project Leaders, Addison-Wesley, 2006.
 Thomas, Mike. "Strangling Legacy Code," Better Software magazine, October 2005, http://samoht.com/wiki_downloads/StranglingLegacyCodeArticle.pdf.
-Tholfsen, Mike. "The Rise of the Customer Champions," STAREAST, May 7­9, 2008.
+Tholfsen, Mike. "The Rise of the Customer Champions," STAREAST, May 7ï¿½9, 2008.
 Voris, John. ADEPT AS400 Displays for External Prototyping and Testing, www.AdeptTesting.org.
 Wake, Bill. "XP Radar Chart," http://xp123.com/xplor/xp0012b/index.shtml, 2001.
-Vriens, Christ. "Certifying for CMM Level 2 and ISO9001 with XP@Scrum," in ADC 2003: Proceedings of the Agile Development Conference, 25­28 June 2003, Salt Lake City, UT, USA, 120­124, IEEE, 2003.
+Vriens, Christ. "Certifying for CMM Level 2 and ISO9001 with XP@Scrum," in ADC 2003: Proceedings of the Agile Development Conference, 25ï¿½28 June 2003, Salt Lake City, UT, USA, 120ï¿½124, IEEE, 2003.
 TOOL REFERENCES
 Abbot Java GUI Test Framework, http://abbot.sourceforge.net/doc/ overview.shtml.
 Adzik, Gojko. DbFit: Test-driven Database Development, http://gojko.net/ fitnesse/dbfit/.
@@ -10771,18 +10777,18 @@ INDEX
 A Abbot GUI test tool, 127 Acceptance tests. See also Business-facing tests
 definition, 501 Remote Data Monitoring system example,
 245 UAT (user acceptance testing) compared
-with, 130 Ad hoc testing, 198 Adaptability, skills and, 39­40 ADEPT (AS400 Displays for External
-Prototyping and Testing), 117­118 Advance clarity
-customers speaking with one voice, 373­374
-determining story size, 375­376 gathering all viewpoints regarding
-requirements, 374­375 overview of, 140­142, 373 Advance preparation downside of, 373 how much needed, 372­373 Agile development Agile manifesto and, 3­4 barriers to. See Barriers to adopting agile
+with, 130 Ad hoc testing, 198 Adaptability, skills and, 39ï¿½40 ADEPT (AS400 Displays for External
+Prototyping and Testing), 117ï¿½118 Advance clarity
+customers speaking with one voice, 373ï¿½374
+determining story size, 375ï¿½376 gathering all viewpoints regarding
+requirements, 374ï¿½375 overview of, 140ï¿½142, 373 Advance preparation downside of, 373 how much needed, 372ï¿½373 Agile development Agile manifesto and, 3ï¿½4 barriers to. See Barriers to adopting agile
 development team orientation of, 6 Agile Estimating and Planning (Cohn), 331, 332 Agile manifesto people focus, 30 statement of, 4 value statements in, 21
 
 Agile principles. See Principles, for agile testers
-Agile testers. See also Testers agile testing mind-set, 482­483 definition, 4 giving all team members equal weight, 31 hiring, 67­69 what they are, 19­20
-Agile testing definition, 6 as mind-set, 20­21 what we mean, 4­7
-Agile values, 3­4 Alcea's FIT IssueTrack, 84 Alpha tests, 466­467 ant, 284
-as build tool, 126 continual builds and, 175, 291 AnthillPro, 126 ANTS Profiler Pro, 234 Apache JMeter. See JMeter API-layer functional test tools, 168­170 Fit and FitNesse, 168­170 overview of, 168 testing web Services, 170 API testing automating, 282 overview of, 205­206 APIs (application programming interfaces),
+Agile testers. See also Testers agile testing mind-set, 482ï¿½483 definition, 4 giving all team members equal weight, 31 hiring, 67ï¿½69 what they are, 19ï¿½20
+Agile testing definition, 6 as mind-set, 20ï¿½21 what we mean, 4ï¿½7
+Agile values, 3ï¿½4 Alcea's FIT IssueTrack, 84 Alpha tests, 466ï¿½467 ant, 284
+as build tool, 126 continual builds and, 175, 291 AnthillPro, 126 ANTS Profiler Pro, 234 Apache JMeter. See JMeter API-layer functional test tools, 168ï¿½170 Fit and FitNesse, 168ï¿½170 overview of, 168 testing web Services, 170 API testing automating, 282 overview of, 205ï¿½206 APIs (application programming interfaces),
 501 Appleton, Brad, 124 Application under test (AUT), 246
 
 509
@@ -10791,232 +10797,232 @@ as build tool, 126 continual builds and, 175, 291 AnthillPro, 126 ANTS Profiler 
 
 INDEX
 
-Applications integration testing with external applications, 459 Remote Data Monitoring system example, 242­243
+Applications integration testing with external applications, 459 Remote Data Monitoring system example, 242ï¿½243
 Architecture incremental approach to testing, 114 layered, 116 Quadrant 1 tests and, 99 scalability and, 104, 221 testable, 30, 115, 182, 184, 267
-AS400 Displays for External Prototyping and Testing (ADEPT), 117­118
+AS400 Displays for External Prototyping and Testing (ADEPT), 117ï¿½118
 Assumptions, hidden agile testers response to, 25 failure to detect, 32 questions that uncover, 136 worst-case scenarios and, 334
-Attitude agile testing mind-set, 482­483 barriers to adopting agile development, 48 vs. skills, 20
-Audits, compliance with audit requirements, 89­90
+Attitude agile testing mind-set, 482ï¿½483 barriers to adopting agile development, 48 vs. skills, 20
+Audits, compliance with audit requirements, 89ï¿½90
 AUT (application under test), 143, 225, 246, 317
 Authorization, security testing and, 224 Automated regression testing
-key success factors, 484 release candidates and, 458 as a safety net, 261­262 Automated test lists, test plan alternatives,
-353­354 Automation
-code flux and, 269 of deployment, 232 driving development with, 262­263 of exploratory testing, 201 fear of, 269­270 feedback from, 262 freeing people for other work, 259­261 of functional test structure, 245­247 home-brewed test, 175 investment required, 267­268
+key success factors, 484 release candidates and, 458 as a safety net, 261ï¿½262 Automated test lists, test plan alternatives,
+353ï¿½354 Automation
+code flux and, 269 of deployment, 232 driving development with, 262ï¿½263 of exploratory testing, 201 fear of, 269ï¿½270 feedback from, 262 freeing people for other work, 259ï¿½261 of functional test structure, 245ï¿½247 home-brewed test, 175 investment required, 267ï¿½268
 
-learning curve, 266­267 legacy code and, 269 maintainability and, 227­228 manual testing vs., 258­259 obstacles to, 264­265 old habits and, 270 overview of, 255 programmers' attitude regarding,
-265­266 reasons for, 257­258 responding to change and, 29 ROI and, 264 task cards and, 394­395 testability and, 149­150 tests as documentation, 263­264 Automation strategy agile coding practices and, 303­304 applying one tool at a time, 312­313 data generation tools, 304­305 database access and, 306­310 design and maintenance and, 292­294 developing, 288­289 identifying tool requirements, 311­312 implementing, 316­319 iterative approach, 299­300 keep it simple, 298­299 learning by doing, 303 managing automated tests, 319 multi-layered approach to, 290­292 organizing test results, 322­324 organizing tests, 319­322 overview of, 273 principles, 298 record/playback tools and, 294, 296­297 starting with area of greatest pain,
-289­290 taking time to do it right, 301­303 test automation pyramid, 276­279 test categories, 274­276 tool selection, 294­298, 313­316 understanding purpose of tests and, 310­311 what can be automated, 279­285 what might be difficult to automate,
-287­288
+learning curve, 266ï¿½267 legacy code and, 269 maintainability and, 227ï¿½228 manual testing vs., 258ï¿½259 obstacles to, 264ï¿½265 old habits and, 270 overview of, 255 programmers' attitude regarding,
+265ï¿½266 reasons for, 257ï¿½258 responding to change and, 29 ROI and, 264 task cards and, 394ï¿½395 testability and, 149ï¿½150 tests as documentation, 263ï¿½264 Automation strategy agile coding practices and, 303ï¿½304 applying one tool at a time, 312ï¿½313 data generation tools, 304ï¿½305 database access and, 306ï¿½310 design and maintenance and, 292ï¿½294 developing, 288ï¿½289 identifying tool requirements, 311ï¿½312 implementing, 316ï¿½319 iterative approach, 299ï¿½300 keep it simple, 298ï¿½299 learning by doing, 303 managing automated tests, 319 multi-layered approach to, 290ï¿½292 organizing test results, 322ï¿½324 organizing tests, 319ï¿½322 overview of, 273 principles, 298 record/playback tools and, 294, 296ï¿½297 starting with area of greatest pain,
+289ï¿½290 taking time to do it right, 301ï¿½303 test automation pyramid, 276ï¿½279 test categories, 274ï¿½276 tool selection, 294ï¿½298, 313ï¿½316 understanding purpose of tests and, 310ï¿½311 what can be automated, 279ï¿½285 what might be difficult to automate,
+287ï¿½288
 
 INDEX
 
 511
 
-what should not be automated, 285­287 whole team approach, 300­301 Automation tools, 164­177 API-layer functional test tools, 168­170 builds and, 126 GUI test tools, 170­176 overview of, 164­165 unit-level test tools, 165­168 web services test tool, 170
+what should not be automated, 285ï¿½287 whole team approach, 300ï¿½301 Automation tools, 164ï¿½177 API-layer functional test tools, 168ï¿½170 builds and, 126 GUI test tools, 170ï¿½176 overview of, 164ï¿½165 unit-level test tools, 165ï¿½168 web services test tool, 170
 B Bach, James, 195, 200, 212 Bach, Jonathan, 201 Back-end testing
-behind the GUI, 282 non-UI testing, 204­205 Bamboo, 126 Barriers to adopting agile development, 44­49 conflicting or multiple roles, 45 cultural differences among roles, 48­49 lack of training, 45 lack of understanding of agile concepts,
-45­48 loss of identity, 44­45 overview of, 44 past experience and attitudes, 48 Baselines break-test baseline technique, 363 performance, 235­237 Batch files, 251 processing, 345 scheduling process, 182 BDD (Behavior-driven development) easyb tool, 166­168 tools for Quadrant 1 tests, 127 Beck, Kent, 26, 99 Benander, Mark, 51 Benchmarking, 237 Berczuk, Stephen, 124 Beta testing, 466­467 Big picture agile testers focus on, 23 high-level tests and examples, 397­402
+behind the GUI, 282 non-UI testing, 204ï¿½205 Bamboo, 126 Barriers to adopting agile development, 44ï¿½49 conflicting or multiple roles, 45 cultural differences among roles, 48ï¿½49 lack of training, 45 lack of understanding of agile concepts,
+45ï¿½48 loss of identity, 44ï¿½45 overview of, 44 past experience and attitudes, 48 Baselines break-test baseline technique, 363 performance, 235ï¿½237 Batch files, 251 processing, 345 scheduling process, 182 BDD (Behavior-driven development) easyb tool, 166ï¿½168 tools for Quadrant 1 tests, 127 Beck, Kent, 26, 99 Benander, Mark, 51 Benchmarking, 237 Berczuk, Stephen, 124 Beta testing, 466ï¿½467 Big picture agile testers focus on, 23 high-level tests and examples, 397ï¿½402
 
-key success factors, 490­491 peril of forgetting, 148 regression tests and, 434 Bolton, Michael, 195 Bos, Erik, 114 Boundary conditions API testing and, 205 automation and, 11 data generation tools and, 304 identifying test variations, 410 writing test cases for, 137 Boyer, Erika, 140, 163, 372, 432 Brainstorming automation giving testers better work,
-260 prior to iteration, 370, 381 quadrants as framework for, 253 taking time for, 301 testers, 121 Break-test baseline technique, 363 Browsers, compatibility testing and, 230 Budget limits, 55 Bug tracking. See Defect tracking Bugs. See Defects Build automating, 280­282 challenging release candidate builds, 473 definition, 501 incremental, 178­179 speeding up, 118­119 Build automation tools, 126, 282 Build/Operate/Check pattern, 180 Build tools, 126 BuildBeat, 126 Business analysts, 374 Business expert role agreement regarding requirements, 428,
-430 common language and, 134, 291, 414 on customer team, 6­7 iteration demo and, 443 language of, 291 Power of Three and, 482 tools geared to, 134
+key success factors, 490ï¿½491 peril of forgetting, 148 regression tests and, 434 Bolton, Michael, 195 Bos, Erik, 114 Boundary conditions API testing and, 205 automation and, 11 data generation tools and, 304 identifying test variations, 410 writing test cases for, 137 Boyer, Erika, 140, 163, 372, 432 Brainstorming automation giving testers better work,
+260 prior to iteration, 370, 381 quadrants as framework for, 253 taking time for, 301 testers, 121 Break-test baseline technique, 363 Browsers, compatibility testing and, 230 Budget limits, 55 Bug tracking. See Defect tracking Bugs. See Defects Build automating, 280ï¿½282 challenging release candidate builds, 473 definition, 501 incremental, 178ï¿½179 speeding up, 118ï¿½119 Build automation tools, 126, 282 Build/Operate/Check pattern, 180 Build tools, 126 BuildBeat, 126 Business analysts, 374 Business expert role agreement regarding requirements, 428,
+430 common language and, 134, 291, 414 on customer team, 6ï¿½7 iteration demo and, 443 language of, 291 Power of Three and, 482 tools geared to, 134
 
 512
 
 INDEX
 
-Business-facing tests agile testing as, 6 Quadrants 2 & 3, 97­98 technology-facing tests compared with, 120
-Business-facing tests, critiquing the product (Quadrant 3), 189­215
-acceptance tests, 245 API testing, 205­206 demonstrations, 191­192 emulator tools, 213­214 end-to-end tests, 249­250 exploratory testing, 195­202, 248­249 generating test data, 212 GUI testing, 204 monitoring tools, 212­213 overview of, 189­191 reports, 208­210 scenario testing, 192­195 session-based testing, 200­201 setting up tests, 211­212 simulator tools, 213 tools for exploratory testing, 210­211 usability testing, 202­204 user acceptance testing, 250 user documentation, 207­208 web services testing, 207 Business-facing tests, supporting team
-(Quadrant 2), 129­151 advance clarity, 140­142 automating functional tests, 245­247 common language and, 134­135 conditions of satisfaction and, 142­143 doneness, 146­147 driving development with, 129­132 eliciting requirements, 135­140 embedded testing, 248 incremental approach, 144­146 requirements quandary and, 132­134 ripple effects, 143­144 risk mitigation and, 147­149 testability and automation, 149­150 toolkit for. See Toolkit (Quadrant 2) web services testing, 247­248 Business impact, 475­476
+Business-facing tests agile testing as, 6 Quadrants 2 & 3, 97ï¿½98 technology-facing tests compared with, 120
+Business-facing tests, critiquing the product (Quadrant 3), 189ï¿½215
+acceptance tests, 245 API testing, 205ï¿½206 demonstrations, 191ï¿½192 emulator tools, 213ï¿½214 end-to-end tests, 249ï¿½250 exploratory testing, 195ï¿½202, 248ï¿½249 generating test data, 212 GUI testing, 204 monitoring tools, 212ï¿½213 overview of, 189ï¿½191 reports, 208ï¿½210 scenario testing, 192ï¿½195 session-based testing, 200ï¿½201 setting up tests, 211ï¿½212 simulator tools, 213 tools for exploratory testing, 210ï¿½211 usability testing, 202ï¿½204 user acceptance testing, 250 user documentation, 207ï¿½208 web services testing, 207 Business-facing tests, supporting team
+(Quadrant 2), 129ï¿½151 advance clarity, 140ï¿½142 automating functional tests, 245ï¿½247 common language and, 134ï¿½135 conditions of satisfaction and, 142ï¿½143 doneness, 146ï¿½147 driving development with, 129ï¿½132 eliciting requirements, 135ï¿½140 embedded testing, 248 incremental approach, 144ï¿½146 requirements quandary and, 132ï¿½134 ripple effects, 143ï¿½144 risk mitigation and, 147ï¿½149 testability and automation, 149ï¿½150 toolkit for. See Toolkit (Quadrant 2) web services testing, 247ï¿½248 Business impact, 475ï¿½476
 
-Business value adding value, 31­33 as goal of agile development, 5­8, 69, 454 metrics and, 75 release cycles and, 3 role, function, business value pattern, 155 team approach and, 16
+Business value adding value, 31ï¿½33 as goal of agile development, 5ï¿½8, 69, 454 metrics and, 75 release cycles and, 3 role, function, business value pattern, 155 team approach and, 16
 Busse, Mike, 106, 235, 284, 313 Buwalda, Hans, 193
 C Canonical data, automating databases and,
-308­309 Canoo WebTest
-automating GUI tests, 184, 186 GUI regression test suite, 291 GUI smoke tests, 300 GUI test tools, 174­175 organizing tests and, 320 scripts and, 320 XML Editor for, 125 Capability Maturity Model Integration
-(CMMI), 90­91 Capture-playback tool, 267 Celebrating successes
-change implementation and, 50­52 iteration wrap up and, 449­451 Chandra, Apurva, 377 Chang, Tae, 53­54 Change celebrating successes, 50­52 giving team ownership, 50 introducing, 49 not coming easy, 56­57 responsiveness to, 28­29 talking about fears, 49­50 Checklists release readiness, 474 tools for eliciting examples and requirements,
+308ï¿½309 Canoo WebTest
+automating GUI tests, 184, 186 GUI regression test suite, 291 GUI smoke tests, 300 GUI test tools, 174ï¿½175 organizing tests and, 320 scripts and, 320 XML Editor for, 125 Capability Maturity Model Integration
+(CMMI), 90ï¿½91 Capture-playback tool, 267 Celebrating successes
+change implementation and, 50ï¿½52 iteration wrap up and, 449ï¿½451 Chandra, Apurva, 377 Chang, Tae, 53ï¿½54 Change celebrating successes, 50ï¿½52 giving team ownership, 50 introducing, 49 not coming easy, 56ï¿½57 responsiveness to, 28ï¿½29 talking about fears, 49ï¿½50 Checklists release readiness, 474 tools for eliciting examples and requirements,
 156 CI. See Continuous integration (CI) CI Factory, 126 CMMI (Capability Maturity Model
-Integration), 90­91
+Integration), 90ï¿½91
 
-Co-location, team logistics and, 65­66 Coaches
-adjusting to agile culture and, 40 learning curve and, 266 providing encouragement, 69 skill development and, 122 training and, 45­46 Cockburn, Alistair, 115 Code automation and code flux, 269 automation and legacy code, 269 automation strategy and, 303­304 documentation of, 251 standards, 227 writing testable, 115 Code coverage, release metrics, 360­364 Coding and testing, 405­441 adding complexity, 407 alternatives for dealing with bugs, 424­428 choosing when to fix bugs, 421­423 collaborating with programmers, 413­414 dealing with bugs, 416­419 deciding which bugs to log, 420­421 driving development and, 406 facilitating communication, 429­432 focusing on one story, 411­412 identifying variations, 410 iteration metrics, 435­440 media for logging bugs, 423­424 overview of, 405 Power of Three for resolving differences in
-viewpoint, 411 regression testing and, 432­434 resources, 434­435 risk assessment, 407­409 as simultaneous process, 409­410,
-488­489 starting simple, 406, 428­429 talking to customers, 414­415 tests that critique the product, 412­413 Cohn, Mike, 50, 155, 276, 296, 331, 332 Collaboration with customers, 396­397 key success factors, 489­490
+Co-location, team logistics and, 65ï¿½66 Coaches
+adjusting to agile culture and, 40 learning curve and, 266 providing encouragement, 69 skill development and, 122 training and, 45ï¿½46 Cockburn, Alistair, 115 Code automation and code flux, 269 automation and legacy code, 269 automation strategy and, 303ï¿½304 documentation of, 251 standards, 227 writing testable, 115 Code coverage, release metrics, 360ï¿½364 Coding and testing, 405ï¿½441 adding complexity, 407 alternatives for dealing with bugs, 424ï¿½428 choosing when to fix bugs, 421ï¿½423 collaborating with programmers, 413ï¿½414 dealing with bugs, 416ï¿½419 deciding which bugs to log, 420ï¿½421 driving development and, 406 facilitating communication, 429ï¿½432 focusing on one story, 411ï¿½412 identifying variations, 410 iteration metrics, 435ï¿½440 media for logging bugs, 423ï¿½424 overview of, 405 Power of Three for resolving differences in
+viewpoint, 411 regression testing and, 432ï¿½434 resources, 434ï¿½435 risk assessment, 407ï¿½409 as simultaneous process, 409ï¿½410,
+488ï¿½489 starting simple, 406, 428ï¿½429 talking to customers, 414ï¿½415 tests that critique the product, 412ï¿½413 Cohn, Mike, 50, 155, 276, 296, 331, 332 Collaboration with customers, 396ï¿½397 key success factors, 489ï¿½490
 
 INDEX
 
 513
 
-with programmers, 413­414 whole team approach, 15­16 Collino, Alessandro, 103, 363 Communication common language and, 134­135 with customer, 140, 396­397 DTS (Defect Tracking System) and, 83 facilitating, 23­25, 429­432 product delivery and, 462­463 size as challenge to, 42­43 between teams, 69­70 test results, 357­358 Comparisons, automating, 283 Compatibility testing, 229­230 Component tests automating, 282 definition, 501 supporting function of, 5 Conditions of satisfaction business-facing tests and, 142­143 definition, 501­502 Context-driven testing definition, 502 quadrants and, 106­107 Continuous build process failure notification and, 112 feedback and, 119 FitNesse tests and, 357 implementing, 114 integrating tools with, 175, 311 source code control and, 124 what testers can do, 121 Continuous feedback principle, 22 Continuous improvement principle, 27­28 Continuous integration (CI) automating, 280­282 as core practice, 486­487 installability and, 231­232 Remote Data Monitoring system example, 244 running tests and, 111­112 Conversion, data migration and, 460­461 Core practices coding and testing as one process, 488­489 continuous integration, 486­487
+with programmers, 413ï¿½414 whole team approach, 15ï¿½16 Collino, Alessandro, 103, 363 Communication common language and, 134ï¿½135 with customer, 140, 396ï¿½397 DTS (Defect Tracking System) and, 83 facilitating, 23ï¿½25, 429ï¿½432 product delivery and, 462ï¿½463 size as challenge to, 42ï¿½43 between teams, 69ï¿½70 test results, 357ï¿½358 Comparisons, automating, 283 Compatibility testing, 229ï¿½230 Component tests automating, 282 definition, 501 supporting function of, 5 Conditions of satisfaction business-facing tests and, 142ï¿½143 definition, 501ï¿½502 Context-driven testing definition, 502 quadrants and, 106ï¿½107 Continuous build process failure notification and, 112 feedback and, 119 FitNesse tests and, 357 implementing, 114 integrating tools with, 175, 311 source code control and, 124 what testers can do, 121 Continuous feedback principle, 22 Continuous improvement principle, 27ï¿½28 Continuous integration (CI) automating, 280ï¿½282 as core practice, 486ï¿½487 installability and, 231ï¿½232 Remote Data Monitoring system example, 244 running tests and, 111ï¿½112 Conversion, data migration and, 460ï¿½461 Core practices coding and testing as one process, 488ï¿½489 continuous integration, 486ï¿½487
 
 514
 
 INDEX
 
-Core practices, continued incremental approach, 488 overview of, 486 synergy between practices, 489 technical debt management, 487­488 test environments, 487
-Courage, principles, 25­26, 71 Credibility, building, 57 Critiquing the product
+Core practices, continued incremental approach, 488 overview of, 486 synergy between practices, 489 technical debt management, 487ï¿½488 test environments, 487
+Courage, principles, 25ï¿½26, 71 Credibility, building, 57 Critiquing the product
 business facing tests. See Business-facing tests, critiquing the product (Quadrant 3)
 technology-facing tests. See Technology-facing tests, critiquing the product (Quadrant 4)
 CrossCheck, testing Web Services, 170 CruiseControl, 126, 244, 291 Cultural change, 37. See also Organizations Cunningham, Ward, 106, 168, 506 Customer expectations
-business impact and, 475­476 production support, 475 Customer-facing test. See Business-facing tests Customer support, DTS (Defect Tracking
+business impact and, 475ï¿½476 production support, 475 Customer-facing test. See Business-facing tests Customer support, DTS (Defect Tracking
 System) and, 82 Customer team
 definition, 502 interaction between customer and developer
-teams, 8 overview of, 7 Customer testing Alpha/Beta testing, 466­467 definition, 502 overview of, 464 UAT (user acceptance testing), 464­466 Customers collaborating with, 396­397, 489­490 considering all viewpoints during iteration
-planning, 388­389 delivering value to, 22­23 importance of communicating with, 140,
-414­415, 444 iteration demo, 191­192, 443­444 participation in iteration planning,384­385
+teams, 8 overview of, 7 Customer testing Alpha/Beta testing, 466ï¿½467 definition, 502 overview of, 464 UAT (user acceptance testing), 464ï¿½466 Customers collaborating with, 396ï¿½397, 489ï¿½490 considering all viewpoints during iteration
+planning, 388ï¿½389 delivering value to, 22ï¿½23 importance of communicating with, 140,
+414ï¿½415, 444 iteration demo, 191ï¿½192, 443ï¿½444 participation in iteration planning,384ï¿½385
 
-relationship with, 41­42 reviewing high-level tests with, 400 speaking with one voice, 373­374 CVS, source code control and, 124
+relationship with, 41ï¿½42 reviewing high-level tests with, 400 speaking with one voice, 373ï¿½374 CVS, source code control and, 124
 D Data
-automating creation or setup, 284­285 cleanup, 461 conversion, 459­461 release planning and, 348 writing task cards and, 392 Data-driven tests, 182­183 Data feeds, testing, 249 Data generation tools, 304­305 Data migration, automating, 310, 460 Databases avoiding access when running tests, 306­310 canonical data and automation, 308­309 maintainability and, 228 product delivery and updates, 459­461 production-like data and automation,
-309­310 setting up/tearing down data for each
-automated test, 307­308 testing data migration, 310 De Souza, Ken, 223 Deadlines, scope and, 340­341 Defect metrics overview of, 437­440 release metrics, 364­366 Defect tracking, 79­86 DTS (Defect Tracking System), 79­83 keeping focus and, 85­86 overview of, 79 reasons for, 79 tools for, 83­85 Defect Tracking System. See DTS (Defect
+automating creation or setup, 284ï¿½285 cleanup, 461 conversion, 459ï¿½461 release planning and, 348 writing task cards and, 392 Data-driven tests, 182ï¿½183 Data feeds, testing, 249 Data generation tools, 304ï¿½305 Data migration, automating, 310, 460 Databases avoiding access when running tests, 306ï¿½310 canonical data and automation, 308ï¿½309 maintainability and, 228 product delivery and updates, 459ï¿½461 production-like data and automation,
+309ï¿½310 setting up/tearing down data for each
+automated test, 307ï¿½308 testing data migration, 310 De Souza, Ken, 223 Deadlines, scope and, 340ï¿½341 Defect metrics overview of, 437ï¿½440 release metrics, 364ï¿½366 Defect tracking, 79ï¿½86 DTS (Defect Tracking System), 79ï¿½83 keeping focus and, 85ï¿½86 overview of, 79 reasons for, 79 tools for, 83ï¿½85 Defect Tracking System. See DTS (Defect
 Tracking System) Defects
-alternatives for dealing with bugs, 424­428
-choosing when to fix bugs, 421­423
+alternatives for dealing with bugs, 424ï¿½428
+choosing when to fix bugs, 421ï¿½423
 
 INDEX
 
 515
 
-dealing with bugs, 416­419 deciding which bugs to log, 420­421 media for logging bugs, 423­424 metrics and, 79 TDD (test-driven development) and, 490 writing task cards and, 391­392 zero bug tolerance, 79, 418­419 Deliverables "fit and finish" deliverables, 454 nonsoftware, 470 overview of, 468­470 Delivering product Alpha/Beta testing, 466­467 business impact and, 475­476 communication and, 462­463 customer expectations, 475 customer testing, 464 data conversion and database updates, 459­461 deliverables, 468­470 end game, 456­457 installation testing, 461­462 integration with external applications, 459 nonfunctional testing and, 458­459 overview of, 453 packaging, 474­475 planning time for testing, 455­456 post-development testing cycles, 467­468 production support, 475 release acceptance criteria, 470­473 release management, 470, 474 releasing product, 470 staging environment and, 458 testing release candidates, 458 UAT (user acceptance testing), 464­466 what if it is not ready, 463­464 what makes a product, 453­455 Demos/demonstrations of an iteration, 443­444 value to customers, 191­192 Deployment, automating, 280­282 Design automation strategy and, 292­294 designing with testing in mind, 115­118
+dealing with bugs, 416ï¿½419 deciding which bugs to log, 420ï¿½421 media for logging bugs, 423ï¿½424 metrics and, 79 TDD (test-driven development) and, 490 writing task cards and, 391ï¿½392 zero bug tolerance, 79, 418ï¿½419 Deliverables "fit and finish" deliverables, 454 nonsoftware, 470 overview of, 468ï¿½470 Delivering product Alpha/Beta testing, 466ï¿½467 business impact and, 475ï¿½476 communication and, 462ï¿½463 customer expectations, 475 customer testing, 464 data conversion and database updates, 459ï¿½461 deliverables, 468ï¿½470 end game, 456ï¿½457 installation testing, 461ï¿½462 integration with external applications, 459 nonfunctional testing and, 458ï¿½459 overview of, 453 packaging, 474ï¿½475 planning time for testing, 455ï¿½456 post-development testing cycles, 467ï¿½468 production support, 475 release acceptance criteria, 470ï¿½473 release management, 470, 474 releasing product, 470 staging environment and, 458 testing release candidates, 458 UAT (user acceptance testing), 464ï¿½466 what if it is not ready, 463ï¿½464 what makes a product, 453ï¿½455 Demos/demonstrations of an iteration, 443ï¿½444 value to customers, 191ï¿½192 Deployment, automating, 280ï¿½282 Design automation strategy and, 292ï¿½294 designing with testing in mind, 115ï¿½118
 
-Detailed test cases art and science of writing, 178 big picture approach and, 148­149 designing with, 401
-Developer team interaction between customer and developer teams, 8 overview of, 7­8
-Development agile development, 3­4, 6 automated tests driving, 262­263 business-facing tests driving, 129­132 coding driving, 406 post-development testing cycles, 467­468
-Development spikes, 381 Development team, 502 diff tool, 283 Distributed teams, 431­432
+Detailed test cases art and science of writing, 178 big picture approach and, 148ï¿½149 designing with, 401
+Developer team interaction between customer and developer teams, 8 overview of, 7ï¿½8
+Development agile development, 3ï¿½4, 6 automated tests driving, 262ï¿½263 business-facing tests driving, 129ï¿½132 coding driving, 406 post-development testing cycles, 467ï¿½468
+Development spikes, 381 Development team, 502 diff tool, 283 Distributed teams, 431ï¿½432
 defect tracing systems, and, 82 physical logistics, 66 online high level tests for, 399 online story board for, 357 responding to change, 29 software-based tools to elicit examples and
-requirements, and, 163­164 Documentation
-automated tests as source of, 263­264 problems and fixes, 417 reports, 208­210 of test code, 251 tests as, 402 user documentation, 207­208 Doneness knowing when a story is done, 104­105 multitiered, 471­472 Driving development with tests. See TDD
-(test-driven development) DTS (Defect Tracking System), 80­83
-benefits of, 80­82 choosing media for logging bugs, 424 documenting problems and fixes, 417
+requirements, and, 163ï¿½164 Documentation
+automated tests as source of, 263ï¿½264 problems and fixes, 417 reports, 208ï¿½210 of test code, 251 tests as, 402 user documentation, 207ï¿½208 Doneness knowing when a story is done, 104ï¿½105 multitiered, 471ï¿½472 Driving development with tests. See TDD
+(test-driven development) DTS (Defect Tracking System), 80ï¿½83
+benefits of, 80ï¿½82 choosing media for logging bugs, 424 documenting problems and fixes, 417
 
 516
 
 INDEX
 
-DTS (Defect Tracking System), continued logging bugs and, 420 reason for not using, 82­83
+DTS (Defect Tracking System), continued logging bugs and, 420 reason for not using, 82ï¿½83
 Dymond, Robin, xxx Dynamic analysis, security testing tools, 225
-E easyb behavior-driven development tool, 165­168 EasyMock, 127 Eclipse, 125, 316 Edge cases
+E easyb behavior-driven development tool, 165ï¿½168 EasyMock, 127 Eclipse, 125, 316 Edge cases
 identifying variations, 410 not having time for, 112 starting simple and then adding complexity,
-406­407 test cases for, 137 Embedded system, Remote Data Monitoring
-example, 248 Empowerment, of teams, 44 Emulator tools, 213­214 End game
-Agile testing, 91 iteration, 14 product delivery and, 456­457 release and, 327 End-to-end tests, 249­250 Enjoyment, principle of, 31 Environment, test environment, 347­348 Epic. See also Themes definition, 502 features becoming, 502 iterations in, 76, 329 planning, 252 ePlan Services, Inc., xli, 267 Errors, manual testing and, 259 Estimating story size, 332­338 eValid, 234 Event-based patterns, test design patterns, 181 Everyday Scripting with Ruby for Teams, Testers,
-and You (Marick), 297, 303 Example-driven development, 378­380 Examples
-for eliciting requirements, 136­137 tools for eliciting examples and requirements,
-155­156
+406ï¿½407 test cases for, 137 Embedded system, Remote Data Monitoring
+example, 248 Empowerment, of teams, 44 Emulator tools, 213ï¿½214 End game
+Agile testing, 91 iteration, 14 product delivery and, 456ï¿½457 release and, 327 End-to-end tests, 249ï¿½250 Enjoyment, principle of, 31 Environment, test environment, 347ï¿½348 Epic. See also Themes definition, 502 features becoming, 502 iterations in, 76, 329 planning, 252 ePlan Services, Inc., xli, 267 Errors, manual testing and, 259 Estimating story size, 332ï¿½338 eValid, 234 Event-based patterns, test design patterns, 181 Everyday Scripting with Ruby for Teams, Testers,
+and You (Marick), 297, 303 Example-driven development, 378ï¿½380 Examples
+for eliciting requirements, 136ï¿½137 tools for eliciting examples and requirements,
+155ï¿½156
 
 Executable tests, 406 Exploratory testing (ET)
-activities, characteristics, and skills (Hagar), 198­200
-attributes of exploratory tester, 201­202
-automation of, 201 definition, 502­503 end game and, 457 explained (Bolton), 195­198 manual testing and, 280 monitoring tools, 212 overview of, 26, 195 Remote Data Monitoring system example,
-248­249 session-based testing and, 200­201 setup, 211­212 simulators and emulators, 212­213 tests that critique the product, 412­413 tools for, 210­212 tools for generating test data, 212 what should not be automated, 286 External quality, business facing tests defining,
+activities, characteristics, and skills (Hagar), 198ï¿½200
+attributes of exploratory tester, 201ï¿½202
+automation of, 201 definition, 502ï¿½503 end game and, 457 explained (Bolton), 195ï¿½198 manual testing and, 280 monitoring tools, 212 overview of, 26, 195 Remote Data Monitoring system example,
+248ï¿½249 session-based testing and, 200ï¿½201 setup, 211ï¿½212 simulators and emulators, 212ï¿½213 tests that critique the product, 412ï¿½413 tools for, 210ï¿½212 tools for generating test data, 212 what should not be automated, 286 External quality, business facing tests defining,
 99, 131 External teams, 43, 457 Extreme Programming. See XP (Extreme
 Programming) Extreme Programming Explained (Beck),
 26
-F Face-to-face communication, 23­25 Failover tests, 232 Failure, courage to learn from, 25 Fake objects, 115, 118, 306, 502­503 Fault tolerance, product delivery and, 459 Fear
-barriers to automation, 269­270 change and, 49­50 Fearless Change (Manns and Rising), 121 Feathers, Michael, 117, 288 Features defects vs., 417­418 definition, 502­503 focusing on value, 341
+F Face-to-face communication, 23ï¿½25 Failover tests, 232 Failure, courage to learn from, 25 Fake objects, 115, 118, 306, 502ï¿½503 Fault tolerance, product delivery and, 459 Fear
+barriers to automation, 269ï¿½270 change and, 49ï¿½50 Fearless Change (Manns and Rising), 121 Feathers, Michael, 117, 288 Features defects vs., 417ï¿½418 definition, 502ï¿½503 focusing on value, 341
 
-Feedback automated tests providing, 262 continuous feedback principle, 22 iterative approach and, 299­300 key success factors, 484­486 managing tests for, 323­324 Quadrant 1 tests and, 118­119
+Feedback automated tests providing, 262 continuous feedback principle, 22 iterative approach and, 299ï¿½300 key success factors, 484ï¿½486 managing tests for, 323ï¿½324 Quadrant 1 tests and, 118ï¿½119
 "Fit and finish" deliverables, 454 Fit (Framework for Integrated Test),
-134­135 API-layer functional test tools, 168­169 automation test pyramid and, 278 FIT IssueTrack, Alcea, 83­84 FitNesse advantages of, 163 API-layer functional test tools, 169­170 automating functional tests with, 30,
-145 business-facing tests with, 154, 178 collaboration and, 164 continual builds and, 119, 357 data verification with, 287 doneness and, 472 encouraging use of, 122 examples and, 136, 169 feedback and, 323­324 file parsing rules illustrated with, 205 functional testing behind the GUI, 291,
+134ï¿½135 API-layer functional test tools, 168ï¿½169 automation test pyramid and, 278 FIT IssueTrack, Alcea, 83ï¿½84 FitNesse advantages of, 163 API-layer functional test tools, 169ï¿½170 automating functional tests with, 30,
+145 business-facing tests with, 154, 178 collaboration and, 164 continual builds and, 119, 357 data verification with, 287 doneness and, 472 encouraging use of, 122 examples and, 136, 169 feedback and, 323ï¿½324 file parsing rules illustrated with, 205 functional testing behind the GUI, 291,
 300 home-grown scripts and, 305 JUnit compared with, 299 keywords or actions words for automating
-tests, 182­183 manual vs. automated testing, 210 memory demands of, 306 organizing tests and, 319­320 overview of, 168­170 remote testing and, 432 "start, stop, continue" list, 446 support for source code control tools,
-320 test automation pyramid and, 278 test cards and, 389­390 test cases as documentation, 402 test design and maintenance, 292
+tests, 182ï¿½183 manual vs. automated testing, 210 memory demands of, 306 organizing tests and, 319ï¿½320 overview of, 168ï¿½170 remote testing and, 432 "start, stop, continue" list, 446 support for source code control tools,
+320 test automation pyramid and, 278 test cards and, 389ï¿½390 test cases as documentation, 402 test design and maintenance, 292
 
 INDEX
 
 517
 
-testing database layer with, 284 testing stories, 395 traceability requirements and, 88 user acceptance testing, 295 wikis and, 186 Fleisch, Patrick, 377, 440 Flow diagrams scenario testing and, 194­195 tools for eliciting examples and requirements,
-160­163 Fowler, Martin, 117 Framework for Integrated Test. See Fit
-(Framework for Integrated Test) Frameworks, 90­93 ftptt, 234 Functional analysts, 386 Functional testing
-compatibility issues and, 230 definition, 502­503 end-to-end tests, 249­250 layers, 246 nonfunctional tests compared with, 225 Remote Data Monitoring system example,
-245­247
-G Galen, Bob, 455­456, 471 Gärtner, Markus, 395, 476 Geographically dispersed teams
-coping with, 376­378 facilitating communication and,
-431­432 Gheorghiu, Grig, 225­226, 234 Glover, Andrew, 166 Greenfield projects
-code testing and, 116 definition, 502­503 GUI (graphical user interface) automation strategy and, 293 code flux and, 269 standards, 227 GUI smoke tests Canoo WebTest and, 300 continual builds and, 119 defect metrics, 437
+testing database layer with, 284 testing stories, 395 traceability requirements and, 88 user acceptance testing, 295 wikis and, 186 Fleisch, Patrick, 377, 440 Flow diagrams scenario testing and, 194ï¿½195 tools for eliciting examples and requirements,
+160ï¿½163 Fowler, Martin, 117 Framework for Integrated Test. See Fit
+(Framework for Integrated Test) Frameworks, 90ï¿½93 ftptt, 234 Functional analysts, 386 Functional testing
+compatibility issues and, 230 definition, 502ï¿½503 end-to-end tests, 249ï¿½250 layers, 246 nonfunctional tests compared with, 225 Remote Data Monitoring system example,
+245ï¿½247
+G Galen, Bob, 455ï¿½456, 471 Gï¿½rtner, Markus, 395, 476 Geographically dispersed teams
+coping with, 376ï¿½378 facilitating communication and,
+431ï¿½432 Gheorghiu, Grig, 225ï¿½226, 234 Glover, Andrew, 166 Greenfield projects
+code testing and, 116 definition, 502ï¿½503 GUI (graphical user interface) automation strategy and, 293 code flux and, 269 standards, 227 GUI smoke tests Canoo WebTest and, 300 continual builds and, 119 defect metrics, 437
 
 518
 
 INDEX
 
-GUI test tools, 170­176 Canoo Web Test, 174­175 "home-brewed" test automation tools, 175 open source test tools, 172 overview of, 170­171 record/playback tools, 171­172 Ruby with Watir, 172­174 Selenium, 174
-GUI testing API testing, 205­206 automating, 282­283, 295­296 automation test pyramid and, 278 GUI smoke tests, 119, 300, 437 overview of, 204 Web service testing, 207
+GUI test tools, 170ï¿½176 Canoo Web Test, 174ï¿½175 "home-brewed" test automation tools, 175 open source test tools, 172 overview of, 170ï¿½171 record/playback tools, 171ï¿½172 Ruby with Watir, 172ï¿½174 Selenium, 174
+GUI testing API testing, 205ï¿½206 automating, 282ï¿½283, 295ï¿½296 automation test pyramid and, 278 GUI smoke tests, 119, 300, 437 overview of, 204 Web service testing, 207
 H Hagar, Jon, 198 Hardware
-compatibility and, 229 cost of test environments, 487 functional testing and, 230 investing in automation and, 267 production environment and, 310 scalability and, 233 test infrastructure, 319 testing product installation, 462 Hendrickson, Elisabeth, 203, 315­316 High-level test cases, 397­402 mockups, 398­399 overview of, 397­398 reviewing with customers, 400 reviewing with programmers,
-400­401 test cases as documentation, 402 Hiring a tester, 67­69 Holzer, Jason, 220, 448 Home-grown test tool automation tools, 314 GUI test tools, 175 test results, 323 httperf, 234 Hudson, 126
+compatibility and, 229 cost of test environments, 487 functional testing and, 230 investing in automation and, 267 production environment and, 310 scalability and, 233 test infrastructure, 319 testing product installation, 462 Hendrickson, Elisabeth, 203, 315ï¿½316 High-level test cases, 397ï¿½402 mockups, 398ï¿½399 overview of, 397ï¿½398 reviewing with customers, 400 reviewing with programmers,
+400ï¿½401 test cases as documentation, 402 Hiring a tester, 67ï¿½69 Holzer, Jason, 220, 448 Home-grown test tool automation tools, 314 GUI test tools, 175 test results, 323 httperf, 234 Hudson, 126
 
 I IBM Rational ClearCase, 124 IDEs (Integrated Development Environments)
-definition, 502­503 log analysis tools, 212 tools for Quadrant 1 tests, 124­126 "ility" testing compatibility testing, 229­230 installability testing, 231­232 interoperability testing, 228­229 maintainability testing, 227­228 reliability testing, 230­231, 250­251 security testing, 223­227 Impact, system-wide, 342 Implementing Lean Software Development: From
+definition, 502ï¿½503 log analysis tools, 212 tools for Quadrant 1 tests, 124ï¿½126 "ility" testing compatibility testing, 229ï¿½230 installability testing, 231ï¿½232 interoperability testing, 228ï¿½229 maintainability testing, 227ï¿½228 reliability testing, 230ï¿½231, 250ï¿½251 security testing, 223ï¿½227 Impact, system-wide, 342 Implementing Lean Software Development: From
 Concept to Cash (Poppendieck), 74, 416 Improvement
-approach to process improvement, 448­449 continuous improvement principle, 27­28 ideas for improvement from retrospectives,
-447­449 Incremental development
-building tests incrementally, 178­179 as core practice, 488 "ilities" tests and, 232 thin slices, small chunks, 144­146 traditional vs. agile testing, 12­13 Index cards, logging bugs on, 423 Infrastructure Quadrant 1 tests, 111­112 test infrastructure, 319 test plans and, 346­347 Installability testing, 231­232 Installation testing, 461­462 Integrated Development Environments. See
+approach to process improvement, 448ï¿½449 continuous improvement principle, 27ï¿½28 ideas for improvement from retrospectives,
+447ï¿½449 Incremental development
+building tests incrementally, 178ï¿½179 as core practice, 488 "ilities" tests and, 232 thin slices, small chunks, 144ï¿½146 traditional vs. agile testing, 12ï¿½13 Index cards, logging bugs on, 423 Infrastructure Quadrant 1 tests, 111ï¿½112 test infrastructure, 319 test plans and, 346ï¿½347 Installability testing, 231ï¿½232 Installation testing, 461ï¿½462 Integrated Development Environments. See
 IDEs (Integrated Development Environments) Integration testing interoperability and, 229 product and external applications, 459 IntelliJ IDEA, 125 Internal quality measuring internal quality of code, 99 meeting team standards, 366
 
-Quadrant 1 tests and, 111 speed and, 112 Interoperability testing, 228­229 Investment, automation requiring,
-267­268 Iteration
-automation strategy and, 299­300 definition, 502­503 demo, 443­444 life of a tester and, 327 pre-iteration activities. See Pre-iteration
-activities prioritizing stories and, 338 review, 415, 435­437 traditional vs. agile testing, 12­13 Iteration kickoff, 383­403 collaboration with customers, 396­397 considering all viewpoints, 385­389 controlling workload, 393 high-level tests and examples, 397­402 iteration planning, 383­384 learning project details, 384­385 overview of, 383 testable stories, 393­396 writing task cards, 389­392 Iteration metrics, 435­440 defect metrics, 437­440 measuring progress with, 435­437 overview of, 435 usefulness of, 439­440 Iteration planning considering all viewpoints, 385­389 controlling workload, 393 learning project details, 384­385 overview of, 383­384 writing task cards, 389­392 Iteration review meeting, 415 Iteration wrap up, 443­451 celebrating successes, 449­451 demo of iteration, 443­444 ideas for improvement, 447­449 retrospectives, 444­445 "start, stop, continue" exercise for
-retrospectives, 445­447
+Quadrant 1 tests and, 111 speed and, 112 Interoperability testing, 228ï¿½229 Investment, automation requiring,
+267ï¿½268 Iteration
+automation strategy and, 299ï¿½300 definition, 502ï¿½503 demo, 443ï¿½444 life of a tester and, 327 pre-iteration activities. See Pre-iteration
+activities prioritizing stories and, 338 review, 415, 435ï¿½437 traditional vs. agile testing, 12ï¿½13 Iteration kickoff, 383ï¿½403 collaboration with customers, 396ï¿½397 considering all viewpoints, 385ï¿½389 controlling workload, 393 high-level tests and examples, 397ï¿½402 iteration planning, 383ï¿½384 learning project details, 384ï¿½385 overview of, 383 testable stories, 393ï¿½396 writing task cards, 389ï¿½392 Iteration metrics, 435ï¿½440 defect metrics, 437ï¿½440 measuring progress with, 435ï¿½437 overview of, 435 usefulness of, 439ï¿½440 Iteration planning considering all viewpoints, 385ï¿½389 controlling workload, 393 learning project details, 384ï¿½385 overview of, 383ï¿½384 writing task cards, 389ï¿½392 Iteration review meeting, 415 Iteration wrap up, 443ï¿½451 celebrating successes, 449ï¿½451 demo of iteration, 443ï¿½444 ideas for improvement, 447ï¿½449 retrospectives, 444ï¿½445 "start, stop, continue" exercise for
+retrospectives, 445ï¿½447
 
 INDEX
 
 519
 
-ITIL (Information Technology Infrastructure Library), 90­91
+ITIL (Information Technology Infrastructure Library), 90ï¿½91
 J JBehave, 165 JConsole, 234 JMeter
-performance baseline tests, 235 performance testing, 223, 234, 313 JMS (Java Messaging Service) definition, 502­503 integration with external applications and,
-243 testing data feeds and, 249 JProfiler, 234 JUnit FitNesse as alternative for TDD, 299 functional testing, 176 load testing tools, 234­235 unit test tools, 126, 165, 291 JUnitPerf, 234 Just in time development, 369. See also
+performance baseline tests, 235 performance testing, 223, 234, 313 JMS (Java Messaging Service) definition, 502ï¿½503 integration with external applications and,
+243 testing data feeds and, 249 JProfiler, 234 JUnit FitNesse as alternative for TDD, 299 functional testing, 176 load testing tools, 234ï¿½235 unit test tools, 126, 165, 291 JUnitPerf, 234 Just in time development, 369. See also
 Pre-iteration activities
 K Key success factors
-agile testing mind-set, 482­483 automating regression testing, 484 big picture approach, 490­491 coding and testing as one process, 488­489 collaboration with customers, 489­490 continuous integration (CI), 486­487 feedback, 484­486 foundation of core practices, 486 incremental approach (thin slices, small
-chunks), 488 overview of, 481 synergy between practices, 489 technical debt management, 487­488 test environments, 487 whole team approach, 482 Keyword-driven tests, 182­183 King, Joseph, 176 Knowledge base, DTS, 80­81
+agile testing mind-set, 482ï¿½483 automating regression testing, 484 big picture approach, 490ï¿½491 coding and testing as one process, 488ï¿½489 collaboration with customers, 489ï¿½490 continuous integration (CI), 486ï¿½487 feedback, 484ï¿½486 foundation of core practices, 486 incremental approach (thin slices, small
+chunks), 488 overview of, 481 synergy between practices, 489 technical debt management, 487ï¿½488 test environments, 487 whole team approach, 482 Keyword-driven tests, 182ï¿½183 King, Joseph, 176 Knowledge base, DTS, 80ï¿½81
 
 520
 
 INDEX
 
-Kohl, Jonathan, 201, 204, 211 König, Dierk, 320
-L Language, need for common, 134­135 Layered architecture, 116 Lean measurements, metrics, 74­75 Learning
-automation strategy and, 303 continuous improvement principle, 27 Learning curve, automation and, 266­267, 303 Legacy code, 269 Legacy code rescue (Feathers), 117 Legacy systems ccde, 269 definition, 502­503 logging bugs and, 421 testing, 117 Lessons Learned in Software Testing (Pettichord),
+Kohl, Jonathan, 201, 204, 211 Kï¿½nig, Dierk, 320
+L Language, need for common, 134ï¿½135 Layered architecture, 116 Lean measurements, metrics, 74ï¿½75 Learning
+automation strategy and, 303 continuous improvement principle, 27 Learning curve, automation and, 266ï¿½267, 303 Legacy code, 269 Legacy code rescue (Feathers), 117 Legacy systems ccde, 269 definition, 502ï¿½503 logging bugs and, 421 testing, 117 Lessons Learned in Software Testing (Pettichord),
 485 Lessons learned sessions, 383. See also
-Retrospectives Lightweight processes, 73­74 Lightweight test plans, 350 Load testing. See Performance and load testing LoadRunner, 234 LoadTest, 234 Logistics, physical, 65­66 LogWatch tool, 212 Loss of identity, QA teams fearing, 44­45 Louvion, Christophe, 63
-M Maintainability testing, 227­228 Management, 52­55
-advance clarity and, 373­374 cultural change and, 52­54 overview of, 52 providing metrics to, 440 Managers cultural changes for, 52­54 how to influence testing, 122­123 speaking managerís language, 55 Manns, Mary Lynn, 121­122
+Retrospectives Lightweight processes, 73ï¿½74 Lightweight test plans, 350 Load testing. See Performance and load testing LoadRunner, 234 LoadTest, 234 Logistics, physical, 65ï¿½66 LogWatch tool, 212 Loss of identity, QA teams fearing, 44ï¿½45 Louvion, Christophe, 63
+M Maintainability testing, 227ï¿½228 Management, 52ï¿½55
+advance clarity and, 373ï¿½374 cultural change and, 52ï¿½54 overview of, 52 providing metrics to, 440 Managers cultural changes for, 52ï¿½54 how to influence testing, 122ï¿½123 speaking managerï¿½s language, 55 Manns, Mary Lynn, 121ï¿½122
 
-Manual testing automation vs., 258­259 peril of, 289
+Manual testing automation vs., 258ï¿½259 peril of, 289
 Marcano, Antony, 83, 426 Marick, Brian, 5, 24, 97, 134, 170, 203, 303 Martin, Micah, 169 Martin, Robert C., 169 Matrices
-high-level tests and, 398­399 text matrices, 350­353 Maven, 126 McMahon, Chris, 260 Mean time between failure, reliability testing,
-230 Mean time to failure, reliability testing, 230 Media, for logging bugs, 423­424 Meetings
-demonstrations, 71, 192 geographically dispersed, 376 iteration kickoff, 372 iteration planning, 23­24, 244, 331, 384, 389 iteration review, 71, 415 pre-planning, 370­372 release planning, 338, 345 retrospective, 447 scheduling, 70 sizing process and, 336­337 standup, 177, 429, 462 team participation and, 32 test planning, 263 Memory leaks, 237­238 Memory management testing, 237­238 Meszaros, Gerald, 99, 111, 113, 138, 146, 182,
-204, 291, 296, 430 Metrics, 74­79
-code coverage, 360­364 communication of, 77­78 defect metrics, 364­366, 437­440 iteration metrics, 435­440 justifying investment in automation, 268 lean measurements, 74­75 overview of, 74 passing tests, 358­360 reasons for tracking defects, 52, 75­77, 82
+high-level tests and, 398ï¿½399 text matrices, 350ï¿½353 Maven, 126 McMahon, Chris, 260 Mean time between failure, reliability testing,
+230 Mean time to failure, reliability testing, 230 Media, for logging bugs, 423ï¿½424 Meetings
+demonstrations, 71, 192 geographically dispersed, 376 iteration kickoff, 372 iteration planning, 23ï¿½24, 244, 331, 384, 389 iteration review, 71, 415 pre-planning, 370ï¿½372 release planning, 338, 345 retrospective, 447 scheduling, 70 sizing process and, 336ï¿½337 standup, 177, 429, 462 team participation and, 32 test planning, 263 Memory leaks, 237ï¿½238 Memory management testing, 237ï¿½238 Meszaros, Gerald, 99, 111, 113, 138, 146, 182,
+204, 291, 296, 430 Metrics, 74ï¿½79
+code coverage, 360ï¿½364 communication of, 77ï¿½78 defect metrics, 364ï¿½366, 437ï¿½440 iteration metrics, 435ï¿½440 justifying investment in automation, 268 lean measurements, 74ï¿½75 overview of, 74 passing tests, 358ï¿½360 reasons for tracking defects, 52, 75ï¿½77, 82
 
 INDEX
 
 521
 
-release metrics, 358 ROI and, 78­79 what not to do with, 77 XP radar charts, 47­48 Milestones, celebrating successes, 449­450 MIME (Multipurpose Internet Mail
-Extensions) definition, 504 testing data feeds and, 249 Mind maps, 156­158 Mind-set agile testing as, 20­21 key success factors, 482­483 pro-active, 369­370 "Mini-waterfall" phenomenon, 46­47 Mock objects definition, 504 risk alleviation and, 459 tools for implementing, 127 unit tests and, 114 Mock-ups facilitating communication and, 430 high-level tests and, 398­399 stories and, 380 tools for eliciting examples and requirements,
+release metrics, 358 ROI and, 78ï¿½79 what not to do with, 77 XP radar charts, 47ï¿½48 Milestones, celebrating successes, 449ï¿½450 MIME (Multipurpose Internet Mail
+Extensions) definition, 504 testing data feeds and, 249 Mind maps, 156ï¿½158 Mind-set agile testing as, 20ï¿½21 key success factors, 482ï¿½483 pro-active, 369ï¿½370 "Mini-waterfall" phenomenon, 46ï¿½47 Mock objects definition, 504 risk alleviation and, 459 tools for implementing, 127 unit tests and, 114 Mock-ups facilitating communication and, 430 high-level tests and, 398ï¿½399 stories and, 380 tools for eliciting examples and requirements,
 160 Model-driven development, 398 Models
-quality models, 90­93 UI modeling example, 399 Monitoring tools, 212­213, 235 Multi-layered approach, automation strategy,
-290­292 Multipurpose Internet Mail Extensions
+quality models, 90ï¿½93 UI modeling example, 399 Monitoring tools, 212ï¿½213, 235 Multi-layered approach, automation strategy,
+290ï¿½292 Multipurpose Internet Mail Extensions
 (MIME) definition, 504 testing data feeds and, 249
 N Naming conventions, 227 Nant, 126 Navigation, usability testing and, 204 NBehave, 165 NeoLoad, 234
 
 Nessus, vulnerability scanner, 226 .NET Memory Profiler, 234 NetBeans, 125 NetScout, 235 Non-functional testing. See also
-Technology-facing tests, critiquing the product (Quadrant 4) delivering product and, 458­459 functional testing compared with, 225 requirements, 218­219 when to perform, 222 North, Dan, 165 NSpec, 165 NUnit, 126, 165
-O Oleszkiewicz, Jakub, 418 One-off tests, 286­287 Open source tools
-agile open source test tools, 172­175 automation and, 314­315 GUI test tools, 172 IDEs, 124­125 OpenWebLoad, 234 Operating systems (OSs), compatibility testing
-and, 230 Organizations, 37­44
-challenges of agile development, 35 conflicting cultures, 43 customer relationships and, 41­42 overview of, 37­38 quality philosophy, 38­40 size and, 42­43 sustainable pace of testing and, 40­41 team empowerment, 44 OSs (operating systems), compatibility testing
+Technology-facing tests, critiquing the product (Quadrant 4) delivering product and, 458ï¿½459 functional testing compared with, 225 requirements, 218ï¿½219 when to perform, 222 North, Dan, 165 NSpec, 165 NUnit, 126, 165
+O Oleszkiewicz, Jakub, 418 One-off tests, 286ï¿½287 Open source tools
+agile open source test tools, 172ï¿½175 automation and, 314ï¿½315 GUI test tools, 172 IDEs, 124ï¿½125 OpenWebLoad, 234 Operating systems (OSs), compatibility testing
+and, 230 Organizations, 37ï¿½44
+challenges of agile development, 35 conflicting cultures, 43 customer relationships and, 41ï¿½42 overview of, 37ï¿½38 quality philosophy, 38ï¿½40 size and, 42ï¿½43 sustainable pace of testing and, 40ï¿½41 team empowerment, 44 OSs (operating systems), compatibility testing
 and, 230 Ownership, giving team ownership, 50
-P Packaging, product delivery and, 474­475 Pair programming
+P Packaging, product delivery and, 474ï¿½475 Pair programming
 code review and, 227 developers trained in, 61
 
 522
@@ -11024,55 +11030,55 @@ code review and, 227 developers trained in, 61
 INDEX
 
 Pair programming, continued IDEs and, 125 team approach and, 244
-Pair testing, 413 Passing tests, release metrics, 358­360 PerfMon, 235 Perforce, 124 Performance and load testing
-automating, 283 baselines, 235­237 memory management testing, 237­238 overview of, 234 product delivery and, 458 scalability testing, 233­234 test environment, 237 tools for, 234­235 when to perform, 223 who performs the test, 220­221 Performance, rewards and, 70­71 Perils forgetting the big picture, 148 quality police mentality, 39 the testing crunch, 416 waiting for Tuesdayís build, 280 youíre not really part of the team, 32 Perkins, Steve, 156, 159, 373 PerlClip data generation tools, 305 tools for generating test data, 212 Persona testing, 202­204 Pettichord, Bret, 175, 264, 485 Phased and gated development, 73­74, 129 Physical logistics, 65­66 Planning advance, 43 iteration. See Iteration planning release/theme planning. See Release planning testing. See Test planning PMO (Project Management Office), 440 Pols, Andy, 134 Ports and Adapters pattern (Cockburn), 115 Post-development testing, 467­468 Post-iteration bugs, 421 Pounder, 234
+Pair testing, 413 Passing tests, release metrics, 358ï¿½360 PerfMon, 235 Perforce, 124 Performance and load testing
+automating, 283 baselines, 235ï¿½237 memory management testing, 237ï¿½238 overview of, 234 product delivery and, 458 scalability testing, 233ï¿½234 test environment, 237 tools for, 234ï¿½235 when to perform, 223 who performs the test, 220ï¿½221 Performance, rewards and, 70ï¿½71 Perils forgetting the big picture, 148 quality police mentality, 39 the testing crunch, 416 waiting for Tuesdayï¿½s build, 280 youï¿½re not really part of the team, 32 Perkins, Steve, 156, 159, 373 PerlClip data generation tools, 305 tools for generating test data, 212 Persona testing, 202ï¿½204 Pettichord, Bret, 175, 264, 485 Phased and gated development, 73ï¿½74, 129 Physical logistics, 65ï¿½66 Planning advance, 43 iteration. See Iteration planning release/theme planning. See Release planning testing. See Test planning PMO (Project Management Office), 440 Pols, Andy, 134 Ports and Adapters pattern (Cockburn), 115 Post-development testing, 467ï¿½468 Post-iteration bugs, 421 Pounder, 234
 
 Power of Three business expert and, 482 finding a common language, 430 good communication and, 33, 490 problem solving and, 24 resolving differences in viewpoint, 401, 411 whole team approach and, 482
-Pragmatic Project Automation, 260 Pre-iteration activities, 369­382
+Pragmatic Project Automation, 260 Pre-iteration activities, 369ï¿½382
 advance clarity, 373 benefits of working on stories in advance,
-370­372 customers speaking with one voice, 373­374 determining story size, 375­376 evaluating amount of advance preparation
-needed, 372­373 examples, 378­380 gathering all viewpoints regarding
-requirements, 374­375 geographically dispersed team and,
-376­378 overview of, 369 prioritizing defects, 381 pro-active mindset, 369­370 resources, 381 test strategies and, 380­381 Pre-planning meeting, 370­372 Principles, automation agile coding practices, 303­304 iterative approach, 299­300 keep it simple, 298­299 learning by doing, 303 overview of, 298 taking time to do it right, 301­303 whole team approach, 300­301 Principles, for agile testers continuous feedback, 22 continuous improvement, 27­28 courage, 25­26 delivering value to customer, 22­23 enjoyment, 31 face-to-face communication, 23­25 keeping it simple, 26­27 overview of, 21­22
+370ï¿½372 customers speaking with one voice, 373ï¿½374 determining story size, 375ï¿½376 evaluating amount of advance preparation
+needed, 372ï¿½373 examples, 378ï¿½380 gathering all viewpoints regarding
+requirements, 374ï¿½375 geographically dispersed team and,
+376ï¿½378 overview of, 369 prioritizing defects, 381 pro-active mindset, 369ï¿½370 resources, 381 test strategies and, 380ï¿½381 Pre-planning meeting, 370ï¿½372 Principles, automation agile coding practices, 303ï¿½304 iterative approach, 299ï¿½300 keep it simple, 298ï¿½299 learning by doing, 303 overview of, 298 taking time to do it right, 301ï¿½303 whole team approach, 300ï¿½301 Principles, for agile testers continuous feedback, 22 continuous improvement, 27ï¿½28 courage, 25ï¿½26 delivering value to customer, 22ï¿½23 enjoyment, 31 face-to-face communication, 23ï¿½25 keeping it simple, 26ï¿½27 overview of, 21ï¿½22
 
-people focus, 30 responsive to change, 28­29 self-organizing, 29­30 Prioritizing defects, 381 Prioritizing stories, 338­340 Pro-active mindset, 369­370 Product business value, 31­33 delivery. See Delivering product tests that critique (Q3 & Q4), 101­104 what makes a product, 453­455 Product owner considering all viewpoints during iteration
-planning, 386­389 definition, 504 iteration planning and, 384 Scrum roles, 141, 373 tools geared to, 134 Production logging bugs and, 421 support, 475 Production code automation test pyramid and, 277­278 definition, 504 delivering value to, 70 programmers writing, 48 source code control and, 434 synchronization with testing, 322 test-first development and, 113 tests supporting, 303­304 Production-like data, automating databases
-and, 309­310 Professional development, 57 Profiling tools, 234 Programmers
-attitude regarding automation, 265­266 big picture tests, 397 collaboration with, 413­414 considering all viewpoints during iteration
-planning, 387­389 facilitating communication and, 429­430 reviewing high-level tests with, 400­401 tester-developer ratio, 66­67 testers compared with, 4, 5
+people focus, 30 responsive to change, 28ï¿½29 self-organizing, 29ï¿½30 Prioritizing defects, 381 Prioritizing stories, 338ï¿½340 Pro-active mindset, 369ï¿½370 Product business value, 31ï¿½33 delivery. See Delivering product tests that critique (Q3 & Q4), 101ï¿½104 what makes a product, 453ï¿½455 Product owner considering all viewpoints during iteration
+planning, 386ï¿½389 definition, 504 iteration planning and, 384 Scrum roles, 141, 373 tools geared to, 134 Production logging bugs and, 421 support, 475 Production code automation test pyramid and, 277ï¿½278 definition, 504 delivering value to, 70 programmers writing, 48 source code control and, 434 synchronization with testing, 322 test-first development and, 113 tests supporting, 303ï¿½304 Production-like data, automating databases
+and, 309ï¿½310 Professional development, 57 Profiling tools, 234 Programmers
+attitude regarding automation, 265ï¿½266 big picture tests, 397 collaboration with, 413ï¿½414 considering all viewpoints during iteration
+planning, 387ï¿½389 facilitating communication and, 429ï¿½430 reviewing high-level tests with, 400ï¿½401 tester-developer ratio, 66ï¿½67 testers compared with, 4, 5
 
 INDEX
 
 523
 
-training, 61 writing task cards and, 391 Project Management Office (PMO), 440 Projects, PAS example, 176­177 Prototypes accessible as common language, 134 mock-ups and, 160 paper, 22, 138­139, 380, 400, 414 paper vs. Wizard of Oz type, 275 UI (user interface), 107 Pulse, 126 PyUnit unit test tool for Python, 126
+training, 61 writing task cards and, 391 Project Management Office (PMO), 440 Projects, PAS example, 176ï¿½177 Prototypes accessible as common language, 134 mock-ups and, 160 paper, 22, 138ï¿½139, 380, 400, 414 paper vs. Wizard of Oz type, 275 UI (user interface), 107 Pulse, 126 PyUnit unit test tool for Python, 126
 Q QA (quality assurance)
 definition, 504 in job titles, 31 independent QA team, 60 interchangeable with "test," 59 whole team approach, 39 working on traditional teams, 9 Quadrant 1. See Technology-facing tests,
 supporting team (Quadrant 1) Quadrant 2. See Business-facing tests,
 supporting team (Quadrant 2) Quadrant 3. See Business-facing tests, critiquing
 the product (Quadrant 3) Quadrant 4. See Technology-facing tests,
 critiquing the product (Quadrant 4) Quadrants
-automation test categories, 274­276 business facing (Q2 & Q3), 97­98 context-driven testing and, 106­108 critiquing the product (Q3 & Q4), 104 managing technical debt, 106 overview of, 97­98 as planning guide, 490 purpose of testing and, 97 Quadrant 1 summary, 99 Quadrant 2 summary, 99­100 Quadrant 3 summary, 101­102 Quadrant 4 summary, 102­104 shared responsibility and, 105­106 story completion and, 104­105
+automation test categories, 274ï¿½276 business facing (Q2 & Q3), 97ï¿½98 context-driven testing and, 106ï¿½108 critiquing the product (Q3 & Q4), 104 managing technical debt, 106 overview of, 97ï¿½98 as planning guide, 490 purpose of testing and, 97 Quadrant 1 summary, 99 Quadrant 2 summary, 99ï¿½100 Quadrant 3 summary, 101ï¿½102 Quadrant 4 summary, 102ï¿½104 shared responsibility and, 105ï¿½106 story completion and, 104ï¿½105
 
 524
 
 INDEX
 
-Quadrants, continued supporting the team (Q1 & Q2), 100­101 technology facing (Q1 & Q4), 97­98
-Quality customer role in setting quality standards, 26 models, 90­93 organizational philosophy regarding, 38­40
+Quadrants, continued supporting the team (Q1 & Q2), 100ï¿½101 technology facing (Q1 & Q4), 97ï¿½98
+Quality customer role in setting quality standards, 26 models, 90ï¿½93 organizational philosophy regarding, 38ï¿½40
 Quality assurance. See QA (quality assurance) Quality police mentality, 57 Questions, for eliciting requirements,
-135­136
-R Radar charts, XP, 47­48 Rasmusson, Jonathan, 11 Record/playback tools
-automation strategy and, 294, 296­297 GUI test tools, 171­172 Recovery testing, 459 Redundancy tests, 232 Reed, David, 171, 377 Refactoring definition, 504 IDEs supporting, 124­126 Regression suite, 434 Regression tests, 432­434 automated regression tests as a safety net,
-261­262 automating as success factor, 484 checking big picture, 434 definition, 504 exploratory testing and, 212 keeping the build "green," 433 keeping the build quick, 433­434 logging bugs and, 420 regression suite and, 434 release candidates and, 458 Release acceptance criteria, 470­473 end game, 327, 456­457 management, 474 product delivery, 470 what if it is not ready, 463­464
+135ï¿½136
+R Radar charts, XP, 47ï¿½48 Rasmusson, Jonathan, 11 Record/playback tools
+automation strategy and, 294, 296ï¿½297 GUI test tools, 171ï¿½172 Recovery testing, 459 Redundancy tests, 232 Reed, David, 171, 377 Refactoring definition, 504 IDEs supporting, 124ï¿½126 Regression suite, 434 Regression tests, 432ï¿½434 automated regression tests as a safety net,
+261ï¿½262 automating as success factor, 484 checking big picture, 434 definition, 504 exploratory testing and, 212 keeping the build "green," 433 keeping the build quick, 433ï¿½434 logging bugs and, 420 regression suite and, 434 release candidates and, 458 Release acceptance criteria, 470ï¿½473 end game, 327, 456ï¿½457 management, 474 product delivery, 470 what if it is not ready, 463ï¿½464
 
 Release candidates challenging release candidate builds, 473 definition, 505 testing, 458
-Release metrics code coverage, 360­364 defect metrics, 364­366 overview of, 358 passing tests, 358­360
-Release notes, 474 Release planning, 329­367
-overview of, 329 prioritizing and, 338­340 purpose of, 330­331 scope, 340­344 sizing and, 332­337 test plan alternatives, 350­354 test planning, 345­350 visibility and, 354­366 Reliability testing overview of, 230­231 Remote Data Monitoring system example,
-250­251 Remote Data Monitoring system example
-acceptance tests, 245 application, 242­243 applying test quadrants, 252­253 automated functional test structure,
-245­247 documenting test code, 251 embedded testing, 248 end-to-end tests, 249­250 exploratory testing, 248­249 overview of, 242 reliability testing, 250­251 reporting test results, 251 team and process, 243­244 testing data feeds, 249 unit tests, 244­245 user acceptance testing, 250 web services, 247­248 Remote team member. See Geographically
+Release metrics code coverage, 360ï¿½364 defect metrics, 364ï¿½366 overview of, 358 passing tests, 358ï¿½360
+Release notes, 474 Release planning, 329ï¿½367
+overview of, 329 prioritizing and, 338ï¿½340 purpose of, 330ï¿½331 scope, 340ï¿½344 sizing and, 332ï¿½337 test plan alternatives, 350ï¿½354 test planning, 345ï¿½350 visibility and, 354ï¿½366 Reliability testing overview of, 230ï¿½231 Remote Data Monitoring system example,
+250ï¿½251 Remote Data Monitoring system example
+acceptance tests, 245 application, 242ï¿½243 applying test quadrants, 252ï¿½253 automated functional test structure,
+245ï¿½247 documenting test code, 251 embedded testing, 248 end-to-end tests, 249ï¿½250 exploratory testing, 248ï¿½249 overview of, 242 reliability testing, 250ï¿½251 reporting test results, 251 team and process, 243ï¿½244 testing data feeds, 249 unit tests, 244ï¿½245 user acceptance testing, 250 web services, 247ï¿½248 Remote team member. See Geographically
 dispersed teams
 
 INDEX
@@ -11080,123 +11086,123 @@ INDEX
 525
 
 Repetitive tasks, automating, 284 Reports
-documentation and, 208­210 Remote Data Monitoring system example,
+documentation and, 208ï¿½210 Remote Data Monitoring system example,
 251 Repository, 124 Requirements
 business-facing tests addressing, 130 documentation of, 402 gathering all viewpoints regarding
-requirements, 374­375 how to elicit, 135­140 nonfunctional, 218­219 quandary, 132­134 tools for eliciting examples and requirements,
-155­156 Resources
-completing stories and, 381 hiring agile tester, 67­69 overview of, 66 tester-developer ratio, 66­67 testing and, 434­435 Response time API, 411 load testing and, 234­235 measurable goals and, 76 web services and, 207 Retrospectives continuous improvement and, 28 ideas for improvement, 447­449 iteration planning and, 383 overview of, 444­445 process improvement and, 90 "start, stop, and continue" exercise,
-445­447 Return on investment. See ROI (return on
-investment) Rewards, performance and, 70­71 Rich-client unit testing tools, 127 Rising, Linda, 121­122 Risk
-risk analysis, 198, 286, 290, 345­346 risk assessment, 407­409 test mitigating, 147­149
+requirements, 374ï¿½375 how to elicit, 135ï¿½140 nonfunctional, 218ï¿½219 quandary, 132ï¿½134 tools for eliciting examples and requirements,
+155ï¿½156 Resources
+completing stories and, 381 hiring agile tester, 67ï¿½69 overview of, 66 tester-developer ratio, 66ï¿½67 testing and, 434ï¿½435 Response time API, 411 load testing and, 234ï¿½235 measurable goals and, 76 web services and, 207 Retrospectives continuous improvement and, 28 ideas for improvement, 447ï¿½449 iteration planning and, 383 overview of, 444ï¿½445 process improvement and, 90 "start, stop, and continue" exercise,
+445ï¿½447 Return on investment. See ROI (return on
+investment) Rewards, performance and, 70ï¿½71 Rich-client unit testing tools, 127 Rising, Linda, 121ï¿½122 Risk
+risk analysis, 198, 286, 290, 345ï¿½346 risk assessment, 407ï¿½409 test mitigating, 147ï¿½149
 
 Rogers, Paul, 242, 310, 388, 398 ROI (return on investment)
-automation and, 264 definition, 505 lean measurement and, 75 metrics and, 78­79 speaking managerís language, 55 Role, function, business value pattern, 155 Roles conflicting or multiple roles, 45 cultural differences among, 48­49 customer team, 7 developer team, 7­8 interaction of, 8 RPGUnit, 118 RSpec, 165, 318 Ruby Test::Unit, 170 Ruby with Watir functional testing, 247 GUI testing, 285 identifying defects with, 212 keywords or actions words for automating
-tests, 182 overview of, 172­174 test automation with, 186 RubyMock, 127 Rules, managing bugs and, 425
+automation and, 264 definition, 505 lean measurement and, 75 metrics and, 78ï¿½79 speaking managerï¿½s language, 55 Role, function, business value pattern, 155 Roles conflicting or multiple roles, 45 cultural differences among, 48ï¿½49 customer team, 7 developer team, 7ï¿½8 interaction of, 8 RPGUnit, 118 RSpec, 165, 318 Ruby Test::Unit, 170 Ruby with Watir functional testing, 247 GUI testing, 285 identifying defects with, 212 keywords or actions words for automating
+tests, 182 overview of, 172ï¿½174 test automation with, 186 RubyMock, 127 Rules, managing bugs and, 425
 S Safety tests, 232 Santos, Rafael, 448 Satisfaction conditions. See Conditions of
-satisfaction Scalability testing, 233­234 Scenario testing, 192­193
-flow diagrams and, 194­195 overview of, 192­195 soap opera tests, 193 Scope, 340­344 business-facing tests defining, 134 deadlines and timelines and, 340­341 focusing on value, 341­342 overview of, 340 system-wide impact, 342
+satisfaction Scalability testing, 233ï¿½234 Scenario testing, 192ï¿½193
+flow diagrams and, 194ï¿½195 overview of, 192ï¿½195 soap opera tests, 193 Scope, 340ï¿½344 business-facing tests defining, 134 deadlines and timelines and, 340ï¿½341 focusing on value, 341ï¿½342 overview of, 340 system-wide impact, 342
 
 526
 
 INDEX
 
-Scope, continued test plans and, 345 third-party involvement and, 342­344
+Scope, continued test plans and, 345 third-party involvement and, 342ï¿½344
 Scope creep, 385, 412 Scripts
-automating comparisons, 283 as automation tools, 297 conversion scripts, 461 data generation tools, 305 exploratory testing and, 211­212 Scrum product owner role, 141, 373 Remote Data Monitoring system example,
-244 sprint reviews, 444 ScrumMaster approach to process improvement, 448­449 sizing stories and, 336­337 writing task cards and, 391 SDD (story test-driven development) identifying variations, 410 overview of, 262­263 test-first development and, 263 testing web services and, 170 Security testing outside-in approach of attackers, 225 overview of, 223­227 specialized knowledge required for, 220 Selenium GUI test tools, 174­175 implementing automation, 316­318 open source tools, 163 test automation with, 186, 316 Self-organization principles, 29­30 self-organizing teams, 69 Session-based testing, 200­201 Setup automating, 284­285 exploratory testing, 211­212 Shared resources access to, 43 specialists as, 301 writing tasks and, 390
+automating comparisons, 283 as automation tools, 297 conversion scripts, 461 data generation tools, 305 exploratory testing and, 211ï¿½212 Scrum product owner role, 141, 373 Remote Data Monitoring system example,
+244 sprint reviews, 444 ScrumMaster approach to process improvement, 448ï¿½449 sizing stories and, 336ï¿½337 writing task cards and, 391 SDD (story test-driven development) identifying variations, 410 overview of, 262ï¿½263 test-first development and, 263 testing web services and, 170 Security testing outside-in approach of attackers, 225 overview of, 223ï¿½227 specialized knowledge required for, 220 Selenium GUI test tools, 174ï¿½175 implementing automation, 316ï¿½318 open source tools, 163 test automation with, 186, 316 Self-organization principles, 29ï¿½30 self-organizing teams, 69 Session-based testing, 200ï¿½201 Setup automating, 284ï¿½285 exploratory testing, 211ï¿½212 Shared resources access to, 43 specialists as, 301 writing tasks and, 390
 
-Shared responsibility, 105­106 Shout-Out Shoebox, 450 "Show me," collaboration with programmers,
-413­414 Simplicity
-automation and, 298­299 coding, 406 logging bugs and, 428­429 principle of "keeping it simple," 26­27 Simulator tools embedded testing and, 248 overview of, 213 Size, organizational, 42­43 Sizing stories, 332­337 example of, 334­337 how to, 332­333 overview of, 332 tester's role in, 333­334 Skills adaptability and, 39­40 vs. attitude, 20 continuous improvement principle,
-27 who performs tests and, 220­221 Small chunks, incremental development,
-144­146 SOAP
-definition, 505 performance tests and, 223, 234 Soap opera tests, 193 soapUI definition, 505 performance tests and, 223, 234 testing Web Services, 170­171 SOATest, 234 Software-based tools, 163 Software Configuration Management Patterns:
-Effective Teamwork, Practical Integrations (Berczuk and Appleton), 124 Software Endgames (Galen), 471 Source code control benefits of, 255 overview of, 123­124 tools for, 124, 320
+Shared responsibility, 105ï¿½106 Shout-Out Shoebox, 450 "Show me," collaboration with programmers,
+413ï¿½414 Simplicity
+automation and, 298ï¿½299 coding, 406 logging bugs and, 428ï¿½429 principle of "keeping it simple," 26ï¿½27 Simulator tools embedded testing and, 248 overview of, 213 Size, organizational, 42ï¿½43 Sizing stories, 332ï¿½337 example of, 334ï¿½337 how to, 332ï¿½333 overview of, 332 tester's role in, 333ï¿½334 Skills adaptability and, 39ï¿½40 vs. attitude, 20 continuous improvement principle,
+27 who performs tests and, 220ï¿½221 Small chunks, incremental development,
+144ï¿½146 SOAP
+definition, 505 performance tests and, 223, 234 Soap opera tests, 193 soapUI definition, 505 performance tests and, 223, 234 testing Web Services, 170ï¿½171 SOATest, 234 Software-based tools, 163 Software Configuration Management Patterns:
+Effective Teamwork, Practical Integrations (Berczuk and Appleton), 124 Software Endgames (Galen), 471 Source code control benefits of, 255 overview of, 123ï¿½124 tools for, 124, 320
 
 INDEX
 
 527
 
-SOX compliance, 469 Speak with one voice, customers, 373­374 Specialization, 220­221 Speed as a goal, 112 Spikes, development and test, 381 Spreadsheets
+SOX compliance, 469 Speak with one voice, customers, 373ï¿½374 Specialization, 220ï¿½221 Speed as a goal, 112 Spikes, development and test, 381 Spreadsheets
 test spreadsheets, 353 tools for eliciting examples and requirements,
 159 Sprint reviews, 444. See also Demos/
 demonstrations SQL*Loader, 460 Stability testing, 28 Staging environment, 458 Stand-up meetings, 177, 429, 462 Standards
-maintainability and, 227 quality models and, 90­93 "Start, stop, continue" exercise, retrospectives,
-445­447 Static analysis, security testing tools, 225 Steel thread, incremental development, 144,
+maintainability and, 227 quality models and, 90ï¿½93 "Start, stop, continue" exercise, retrospectives,
+445ï¿½447 Static analysis, security testing tools, 225 Steel thread, incremental development, 144,
 338, 345 Stories. See also Business-facing tests
-benefits of working on in advance of iterations, 370­372
-briefness of, 129­130 business-facing tests as, 130 determining story size, 375­376 focusing on one story when coding,
-411­412 identifying variations, 410 knowing when a story is done,
-104­105 logging bugs and, 420­421 mock-ups and, 380 prioritizing, 338­340 resources and, 381 scope and, 340 sizing. See Sizing stories starting simple, 133, 406 story tests defined, 505 system-wide impact of, 342 test plans and, 345
+benefits of working on in advance of iterations, 370ï¿½372
+briefness of, 129ï¿½130 business-facing tests as, 130 determining story size, 375ï¿½376 focusing on one story when coding,
+411ï¿½412 identifying variations, 410 knowing when a story is done,
+104ï¿½105 logging bugs and, 420ï¿½421 mock-ups and, 380 prioritizing, 338ï¿½340 resources and, 381 scope and, 340 sizing. See Sizing stories starting simple, 133, 406 story tests defined, 505 system-wide impact of, 342 test plans and, 345
 
-test strategies and, 380­381 testable, 393­396 treating bugs as, 425 Story boards burndown charts, 429 definition, 505­506 examples, 356­357 online, 357, 384 physical, 356 stickers and, 355 tasks, 222, 355, 436 virtual, 357, 384, 393 work in progress, 390 Story cards audits and, 89 dealing with bugs and, 424­425 iteration planning and, 244 story narrative on, 409 Story test-driven development. See SDD
-(story test-driven development) Strangler application (Fowler), 116­117 Strategy
-automation. See Automation strategy test planning vs. test strategy, 86­87 test strategies, 380­381 Strategy, for writing tests building tests incrementally, 178­179 iteration planning and, 372 keep the tests passing, 179 overview of, 177­178 test design patterns, 179­183 testability and, 183­185 Stress testing. See Load testing Subversion (SVN), 124, 320 Success factors. See Key success factors Successes, celebrating change implementation and, 50­52 iteration wrap up and, 449­451 Sumrell, Megan, 365, 450 Sustainable pace, of testing, 40­41, 303 SVN (Subversion), 124, 320 SWTBot GUI test tool, 127 Synergy, between practices, 489 System, system-wide impact of story, 342
+test strategies and, 380ï¿½381 testable, 393ï¿½396 treating bugs as, 425 Story boards burndown charts, 429 definition, 505ï¿½506 examples, 356ï¿½357 online, 357, 384 physical, 356 stickers and, 355 tasks, 222, 355, 436 virtual, 357, 384, 393 work in progress, 390 Story cards audits and, 89 dealing with bugs and, 424ï¿½425 iteration planning and, 244 story narrative on, 409 Story test-driven development. See SDD
+(story test-driven development) Strangler application (Fowler), 116ï¿½117 Strategy
+automation. See Automation strategy test planning vs. test strategy, 86ï¿½87 test strategies, 380ï¿½381 Strategy, for writing tests building tests incrementally, 178ï¿½179 iteration planning and, 372 keep the tests passing, 179 overview of, 177ï¿½178 test design patterns, 179ï¿½183 testability and, 183ï¿½185 Stress testing. See Load testing Subversion (SVN), 124, 320 Success factors. See Key success factors Successes, celebrating change implementation and, 50ï¿½52 iteration wrap up and, 449ï¿½451 Sumrell, Megan, 365, 450 Sustainable pace, of testing, 40ï¿½41, 303 SVN (Subversion), 124, 320 SWTBot GUI test tool, 127 Synergy, between practices, 489 System, system-wide impact of story, 342
 
 528
 
 INDEX
 
 T tail-f, 212 Tartaglia, Coni, 439, 454, 470, 473 Task boards. See Story boards Task cards
-automating testing and, 394­395 iteration planning and, 389­392 product delivery and, 462­463 Tasks completing testing tasks, 415­416 definition, 505­506 TDD (test-driven development) automated tests driving, 262­263 defects and, 490 definition, 506 overview of, 5 Test-First Development compared with,
-113­114 unit tests and, 111, 244­245 Team City, 126 Team structure, 59­65 agile project teams, 64­65 independent QA team, 60 integration of testers into agile project, 61­63 overview of, 59 traditional functional structure vs agile
+automating testing and, 394ï¿½395 iteration planning and, 389ï¿½392 product delivery and, 462ï¿½463 Tasks completing testing tasks, 415ï¿½416 definition, 505ï¿½506 TDD (test-driven development) automated tests driving, 262ï¿½263 defects and, 490 definition, 506 overview of, 5 Test-First Development compared with,
+113ï¿½114 unit tests and, 111, 244ï¿½245 Team City, 126 Team structure, 59ï¿½65 agile project teams, 64ï¿½65 independent QA team, 60 integration of testers into agile project, 61ï¿½63 overview of, 59 traditional functional structure vs agile
 structure, 64 Teams
-automation as team effort, 484 building, 69­71 celebrating success, 50­52 co-located, 65­66 controlling workload and, 393 customer, 7 developer, 7­8 empowerment of, 44 facilitating communication and, 429­432 geographically dispersed, 376­378, 431­432 giving all team members equal weight, 31 giving ownership to, 50 hiring agile tester for, 67­69 interaction between customer and developer
-teams, 8 iteration planning and, 384­385
+automation as team effort, 484 building, 69ï¿½71 celebrating success, 50ï¿½52 co-located, 65ï¿½66 controlling workload and, 393 customer, 7 developer, 7ï¿½8 empowerment of, 44 facilitating communication and, 429ï¿½432 geographically dispersed, 376ï¿½378, 431ï¿½432 giving all team members equal weight, 31 giving ownership to, 50 hiring agile tester for, 67ï¿½69 interaction between customer and developer
+teams, 8 iteration planning and, 384ï¿½385
 
 logistics, 59 problem solving and, 123 Remote Data Monitoring system example,
-243­244 shared responsibility and, 105­106 traditional, 9­10 using tests to support Quadrants 1 and 2,
-100­101 whole team approach. See Whole team
-approach working on agile teams, 10­12 Teardown, for tests, 307­308 Technical debt defects as, 418 definition, 506 managing, 106, 487­488 Technology-facing tests overview of, 5 Quadrants 1 & 4, 97­98 Technology-facing tests, critiquing the product
-(Quadrant 4), 217­239 baselines, 235­237 coding and testing and, 412­413 compatibility testing, 229­230 installability testing, 231­232 interoperability testing, 228­229 maintainability testing, 227­228 memory management testing, 237­238 overview of, 217­219 performance and load testing, 234 performance and load testing tools, 234­235 reliability testing, 230­231, 250­251 scalability testing, 233­234 security testing, 223­227 test environment and, 237 when to use, 222­223 who performs the test, 220­222 Technology-facing tests, supporting team
-(Quadrant 1) build tools, 126 designing with testing in mind, 115­118 ease of accomplishing tasks, 114­115 IDEs for, 124­126 infrastructure supporting, 111­112
+243ï¿½244 shared responsibility and, 105ï¿½106 traditional, 9ï¿½10 using tests to support Quadrants 1 and 2,
+100ï¿½101 whole team approach. See Whole team
+approach working on agile teams, 10ï¿½12 Teardown, for tests, 307ï¿½308 Technical debt defects as, 418 definition, 506 managing, 106, 487ï¿½488 Technology-facing tests overview of, 5 Quadrants 1 & 4, 97ï¿½98 Technology-facing tests, critiquing the product
+(Quadrant 4), 217ï¿½239 baselines, 235ï¿½237 coding and testing and, 412ï¿½413 compatibility testing, 229ï¿½230 installability testing, 231ï¿½232 interoperability testing, 228ï¿½229 maintainability testing, 227ï¿½228 memory management testing, 237ï¿½238 overview of, 217ï¿½219 performance and load testing, 234 performance and load testing tools, 234ï¿½235 reliability testing, 230ï¿½231, 250ï¿½251 scalability testing, 233ï¿½234 security testing, 223ï¿½227 test environment and, 237 when to use, 222ï¿½223 who performs the test, 220ï¿½222 Technology-facing tests, supporting team
+(Quadrant 1) build tools, 126 designing with testing in mind, 115ï¿½118 ease of accomplishing tasks, 114ï¿½115 IDEs for, 124ï¿½126 infrastructure supporting, 111ï¿½112
 
 INDEX
 
 529
 
-overview of, 109­110 purpose of, 110­111 source code control, 123­124 speed as benefit of, 112­114 timely feedback, 118­119 toolkit for, 123 unit test tools, 126­127 unit tests, 244­245 what to do if team doesn't perform these
-tests, 121­123 where/when to stop, 119­121 Test automation pyramid multi-layered approach to automation and,
-290­291 overview of, 276­279 three little pigs metaphor, 278 Test behind UI, 282 Test cases adding complexity, 407 as documentation, 402 example-driven development, 379 identifying variations, 410 starting simple, 406 Test coverage (and/or code coverage),
-360­364 Test design patterns, 179­183
+overview of, 109ï¿½110 purpose of, 110ï¿½111 source code control, 123ï¿½124 speed as benefit of, 112ï¿½114 timely feedback, 118ï¿½119 toolkit for, 123 unit test tools, 126ï¿½127 unit tests, 244ï¿½245 what to do if team doesn't perform these
+tests, 121ï¿½123 where/when to stop, 119ï¿½121 Test automation pyramid multi-layered approach to automation and,
+290ï¿½291 overview of, 276ï¿½279 three little pigs metaphor, 278 Test behind UI, 282 Test cases adding complexity, 407 as documentation, 402 example-driven development, 379 identifying variations, 410 starting simple, 406 Test coverage (and/or code coverage),
+360ï¿½364 Test design patterns, 179ï¿½183
 Build/Operate/Check pattern, 180 data-driven and keyword-driven tests,
-182­183 overview of, 179 test genesis patterns (Veragen), 179 time-based, activity, and event patterns, 181 Test doubles definition, 506 layered architectures and, 116 Test-driven development. See TDD (test-driven
+182ï¿½183 overview of, 179 test genesis patterns (Veragen), 179 time-based, activity, and event patterns, 181 Test doubles definition, 506 layered architectures and, 116 Test-driven development. See TDD (test-driven
 development) Test environments, 237, 487 Test-First Development
 definition, 506 TDD (test-driven development) compared
-with, 113­114 Test management, 186 Test management toolkit (Quadrant 2), 186
+with, 113ï¿½114 Test management, 186 Test management toolkit (Quadrant 2), 186
 
-Test plan alternatives, 350-354 Test planning, 345­350
-automated test lists, test plan alternatives, 353­354
-infrastructure and, 346­347 overview of, 86, 345 reasons for writing, 345­346 test environment and, 347­348 test plan alternatives, 350­354 test plans, lightweight 350 test plan sample, 351 test strategy vs., 86­88 traceability and, 88 types of tests and, 346 where to start, 345 Test results communicating, 357­358 organizing, 322­324 release planning and, 349­350 Test skills. See Skills Test spikes, 381 Test spreadsheets, 353 Test strategy iterations, pre-iteration activities and,
-380­381 test plan vs., 86­88 Test stubs definition, 506 integration with external applications and,
-459 unit tests and, 127 Test teams, 506­507. See also Teams Test tools. See also Toolkits API-layer functional, 168­170 exploratory testing, 210­211 generating test data with, 212 GUI tests, 170­176 home-brewed, 175 home-grown, 314 IDEs, 124­126 performance testing, 234­235 security testing, 225 unit-level tests, 126­127, 165­168 web service tests, 170
+Test plan alternatives, 350-354 Test planning, 345ï¿½350
+automated test lists, test plan alternatives, 353ï¿½354
+infrastructure and, 346ï¿½347 overview of, 86, 345 reasons for writing, 345ï¿½346 test environment and, 347ï¿½348 test plan alternatives, 350ï¿½354 test plans, lightweight 350 test plan sample, 351 test strategy vs., 86ï¿½88 traceability and, 88 types of tests and, 346 where to start, 345 Test results communicating, 357ï¿½358 organizing, 322ï¿½324 release planning and, 349ï¿½350 Test skills. See Skills Test spikes, 381 Test spreadsheets, 353 Test strategy iterations, pre-iteration activities and,
+380ï¿½381 test plan vs., 86ï¿½88 Test stubs definition, 506 integration with external applications and,
+459 unit tests and, 127 Test teams, 506ï¿½507. See also Teams Test tools. See also Toolkits API-layer functional, 168ï¿½170 exploratory testing, 210ï¿½211 generating test data with, 212 GUI tests, 170ï¿½176 home-brewed, 175 home-grown, 314 IDEs, 124ï¿½126 performance testing, 234ï¿½235 security testing, 225 unit-level tests, 126ï¿½127, 165ï¿½168 web service tests, 170
 
 530
 
 INDEX
 
-Test types alpha/beta, 466­467 exploratory. See Exploratory testing (ET) functional. See Functional testing GUI. See GUI testing integration, 229, 459 load. See Load testing performance. See Performance and load testing reliability, 230­231, 250­251 security, 220, 223­227 stress. See Load testing unit. See Unit testing usability. See Usability testing user acceptance testing. See UAT (user acceptance testing)
+Test types alpha/beta, 466ï¿½467 exploratory. See Exploratory testing (ET) functional. See Functional testing GUI. See GUI testing integration, 229, 459 load. See Load testing performance. See Performance and load testing reliability, 230ï¿½231, 250ï¿½251 security, 220, 223ï¿½227 stress. See Load testing unit. See Unit testing usability. See Usability testing user acceptance testing. See UAT (user acceptance testing)
 Test writing strategy. See Strategy, for writing tests
-Testability, 183­185 automated vs. manual Quadrant 2 tests, 185 automation and, 149­150 code design and test design and, 184­185 overview of, 183 of stories, 393­396
-Testers adding value, 12 agile testers, 4, 19­20 agile testing mindset, 20­21 automation allowing focus on more important work, 260 collaboration with customers, 396­397 considering all viewpoints during iteration planning, 386­389 controlling workload and, 393 definition, 507 facilitating communication, 429­430 feedback and, 486 hiring agile tester, 67­69 how to influence testing, 121­122 integration of testers into agile project, 61­63 iterations and, 327 making job easier, 114­115 sizing stories, 333­334
+Testability, 183ï¿½185 automated vs. manual Quadrant 2 tests, 185 automation and, 149ï¿½150 code design and test design and, 184ï¿½185 overview of, 183 of stories, 393ï¿½396
+Testers adding value, 12 agile testers, 4, 19ï¿½20 agile testing mindset, 20ï¿½21 automation allowing focus on more important work, 260 collaboration with customers, 396ï¿½397 considering all viewpoints during iteration planning, 386ï¿½389 controlling workload and, 393 definition, 507 facilitating communication, 429ï¿½430 feedback and, 486 hiring agile tester, 67ï¿½69 how to influence testing, 121ï¿½122 integration of testers into agile project, 61ï¿½63 iterations and, 327 making job easier, 114ï¿½115 sizing stories, 333ï¿½334
 
-tester-developer ratio, 66­67 writing task cards and, 391 Tester's bill of rights, 49­50 Testing coding and testing simultaneously, 409­410 completing testing tasks, 415­416 identifying variations, 410 managing, 320­322 organizing test results, 322­324 organizing tests, 319­322 planning time for, 455­456 post-development cycles, 467­468 quadrants. See Quadrants release candidates, 458 risk assessment and, 407­409 sustainable pace of, 40­41 traditional vs. agile, 12­15 transparency of tests, 321­322 Testing in context context-driven testing and, 106­108 definition, 502 TestNG GUI test tool, 127 Tests that never fail, 286 Text matrices, 350­353 The Grinder, 234 Themes. See also Release planning definition, 507 prioritizing stories and, 339 writing task cards and, 392 Thin slices, incremental development and, 338 Third parties compatibility testing and, 230 release planning and, 342­344 software, 163 Tholfsen, Mike, 203 Thomas, Mike, 116, 194 Three little pigs metaphor, 278 Timelines, scope and, 340­341 Toolkit (Quadrant 1) build tools, 126 IDEs, 124­126 overview of, 123 source code control, 123­124 unit test tools, 126­127
+tester-developer ratio, 66ï¿½67 writing task cards and, 391 Tester's bill of rights, 49ï¿½50 Testing coding and testing simultaneously, 409ï¿½410 completing testing tasks, 415ï¿½416 identifying variations, 410 managing, 320ï¿½322 organizing test results, 322ï¿½324 organizing tests, 319ï¿½322 planning time for, 455ï¿½456 post-development cycles, 467ï¿½468 quadrants. See Quadrants release candidates, 458 risk assessment and, 407ï¿½409 sustainable pace of, 40ï¿½41 traditional vs. agile, 12ï¿½15 transparency of tests, 321ï¿½322 Testing in context context-driven testing and, 106ï¿½108 definition, 502 TestNG GUI test tool, 127 Tests that never fail, 286 Text matrices, 350ï¿½353 The Grinder, 234 Themes. See also Release planning definition, 507 prioritizing stories and, 339 writing task cards and, 392 Thin slices, incremental development and, 338 Third parties compatibility testing and, 230 release planning and, 342ï¿½344 software, 163 Tholfsen, Mike, 203 Thomas, Mike, 116, 194 Three little pigs metaphor, 278 Timelines, scope and, 340ï¿½341 Toolkit (Quadrant 1) build tools, 126 IDEs, 124ï¿½126 overview of, 123 source code control, 123ï¿½124 unit test tools, 126ï¿½127
 
 INDEX
 
 531
 
-Toolkit (Quadrant 2) API-layer functional test tools, 168­170 automation tools, 164­165 building tests incrementally, 178­179 checklists, 156 flow diagrams, 160­163 GUI test tools, 170­176 keep the tests passing, 179 mind maps, 156­158 mock-ups, 160 software-based tools, 163 spreadsheets, 159 strategies for writing tests, 177­178 test design patterns, 179­183 test management, 186 testability and, 183­185 tool strategy, 153­155 tools for eliciting examples and requirements, 155­156 unit-level test tools, 165­168 Web service test tool, 170
-Toolkit (Quadrant 3) emulator tools, 213­214 monitoring tools, 212­213 simulator tools, 213 user acceptance testing, 250
-Toolkit (Quadrant 4) baselines, 235­237 performance and load testing tools, 234­235
-Tools API-layer functional test tools, 168­170 automation, 164­165 data generation, 304­305 defect tracking, 83­85 eliciting examples and requirements, 155­156, 159­163 emulator tools, 213­214 exploratory testing, 210­211 generating test data, 212 GUI test tools, 170­176 home-brewed, 175 home-grown, 314 IDEs, 124­126 load testing, 234­235
+Toolkit (Quadrant 2) API-layer functional test tools, 168ï¿½170 automation tools, 164ï¿½165 building tests incrementally, 178ï¿½179 checklists, 156 flow diagrams, 160ï¿½163 GUI test tools, 170ï¿½176 keep the tests passing, 179 mind maps, 156ï¿½158 mock-ups, 160 software-based tools, 163 spreadsheets, 159 strategies for writing tests, 177ï¿½178 test design patterns, 179ï¿½183 test management, 186 testability and, 183ï¿½185 tool strategy, 153ï¿½155 tools for eliciting examples and requirements, 155ï¿½156 unit-level test tools, 165ï¿½168 Web service test tool, 170
+Toolkit (Quadrant 3) emulator tools, 213ï¿½214 monitoring tools, 212ï¿½213 simulator tools, 213 user acceptance testing, 250
+Toolkit (Quadrant 4) baselines, 235ï¿½237 performance and load testing tools, 234ï¿½235
+Tools API-layer functional test tools, 168ï¿½170 automation, 164ï¿½165 data generation, 304ï¿½305 defect tracking, 83ï¿½85 eliciting examples and requirements, 155ï¿½156, 159ï¿½163 emulator tools, 213ï¿½214 exploratory testing, 210ï¿½211 generating test data, 212 GUI test tools, 170ï¿½176 home-brewed, 175 home-grown, 314 IDEs, 124ï¿½126 load testing, 234ï¿½235
 
-monitoring, 212­213 open source, 172, 314­315 performance testing, 234­235 for product owners and business experts, 134 security testing, 225 simulators, 213 software-based, 163 unit-level tests, 126­127, 165­168 vendor/commercial, 315­316 web service test tool, 170 Tools, automation agile-friendly, 316 applying one tool at a time, 312­313 home-brewed, 175 home-grown, 314 identifying tool requirements, 311­312 open source, 314­315 selecting, 294­298 vendors, 315­316 Traceability DTS and, 82 matrices, 86 test planning and, 88 Tracking, test tasks and status, 354­357 Traditional processes, transitioning. See
-Transitioning traditional processes to agile Traditional teams, 9­10 Traditional vs. agile testing, 12­15 Training
-as deliverable, 469 lack of, 45 Transitioning traditional processes to agile, 73­93 defect tracking. See Defect tracking existing process and, 88­92 lean measurements, 74­75 lightweight processes and, 73­74 metrics and, 74­79 overview of, 73 test planning. See Test planning
+monitoring, 212ï¿½213 open source, 172, 314ï¿½315 performance testing, 234ï¿½235 for product owners and business experts, 134 security testing, 225 simulators, 213 software-based, 163 unit-level tests, 126ï¿½127, 165ï¿½168 vendor/commercial, 315ï¿½316 web service test tool, 170 Tools, automation agile-friendly, 316 applying one tool at a time, 312ï¿½313 home-brewed, 175 home-grown, 314 identifying tool requirements, 311ï¿½312 open source, 314ï¿½315 selecting, 294ï¿½298 vendors, 315ï¿½316 Traceability DTS and, 82 matrices, 86 test planning and, 88 Tracking, test tasks and status, 354ï¿½357 Traditional processes, transitioning. See
+Transitioning traditional processes to agile Traditional teams, 9ï¿½10 Traditional vs. agile testing, 12ï¿½15 Training
+as deliverable, 469 lack of, 45 Transitioning traditional processes to agile, 73ï¿½93 defect tracking. See Defect tracking existing process and, 88ï¿½92 lean measurements, 74ï¿½75 lightweight processes and, 73ï¿½74 metrics and, 74ï¿½79 overview of, 73 test planning. See Test planning
 U UAT (user acceptance testing)
-post-development testing cycles, 467­468 product delivery and, 464­466
+post-development testing cycles, 467ï¿½468 product delivery and, 464ï¿½466
 
 532
 
@@ -11204,45 +11210,44 @@ INDEX
 
 UAT (user acceptance testing), continued in Quadrant 3, 102 release planning for, 331, 346 Remote Data Monitoring system example, 250 in test plan, 351 tryng out new features and, 102 writing at iteration kickoff meeting, 372
 UI (user interface). See also GUI (graphical user interface)
-automation strategy and, 293 modeling and, 399 Unit test tools, 165­168. See also by individual
-unit tools behavior-driven development tools, 166­168 list of, 126­127 overview of, 165 Unit testing automating, 282 BDD (Behavior-driven development), 165­168 definition, 507 metrics and, 76 supporting function of, 5 TDD (test-driven development) and, 111 technology-facing tests, 120 tools for Quadrant 1 tests, 126­127 Usability testing, 202­204 checking out applications of competitors, 204 navigation and, 204 overview of, 202 users needs and persona testing, 202­204 what should not be automated, 285­286 Use cases, 398 User acceptance testing. See UAT (user
-acceptance testing) User documentation, 207­208 User interface (UI). See also GUI (graphical user
+automation strategy and, 293 modeling and, 399 Unit test tools, 165ï¿½168. See also by individual
+unit tools behavior-driven development tools, 166ï¿½168 list of, 126ï¿½127 overview of, 165 Unit testing automating, 282 BDD (Behavior-driven development), 165ï¿½168 definition, 507 metrics and, 76 supporting function of, 5 TDD (test-driven development) and, 111 technology-facing tests, 120 tools for Quadrant 1 tests, 126ï¿½127 Usability testing, 202ï¿½204 checking out applications of competitors, 204 navigation and, 204 overview of, 202 users needs and persona testing, 202ï¿½204 what should not be automated, 285ï¿½286 Use cases, 398 User acceptance testing. See UAT (user
+acceptance testing) User documentation, 207ï¿½208 User interface (UI). See also GUI (graphical user
 interface) automation strategy and, 293 modeling and, 399 User story. See Story User story card. See Story card User Stories Applied for Agile Software
 Development (Cohn), 155
 
 V Vaage, Carol, 330 Value
-adding, 31­33 delivering to customer, 22­23 focusing on, 341­342 testers adding, 12 Values, agile, 3­4. See also Principles, for agile
+adding, 31ï¿½33 delivering to customer, 22ï¿½23 focusing on, 341ï¿½342 testers adding, 12 Values, agile, 3ï¿½4. See also Principles, for agile
 testers Variations, coding and testing and, 410 Velocity
-automation and, 255, 484 burnout rate and, 79 database impact on, 228 defects and, 487 definition, 507 maximizing, 370 sustainable pace of testing and, 41 taking time to do it right, 301 technical debt and, 106, 313, 418, 506 Vendors automation tools, 315­316 capture-playback tool, 267 IDEs, 125 planning and, 342­344 source code control tools, 124 working with, 142, 349 Veragen, Pierre, 76, 163, 179, 295, 363, 372,
-444 Version control, 123­124, 186. See also
+automation and, 255, 484 burnout rate and, 79 database impact on, 228 defects and, 487 definition, 507 maximizing, 370 sustainable pace of testing and, 41 taking time to do it right, 301 technical debt and, 106, 313, 418, 506 Vendors automation tools, 315ï¿½316 capture-playback tool, 267 IDEs, 125 planning and, 342ï¿½344 source code control tools, 124 working with, 142, 349 Veragen, Pierre, 76, 163, 179, 295, 363, 372,
+444 Version control, 123ï¿½124, 186. See also
 Source Code Control Viewpoints. See also Big picture
-considering all viewpoints during iteration planning, 385­389
-gathering all viewpoints regarding requirements, 374­375
+considering all viewpoints during iteration planning, 385ï¿½389
+gathering all viewpoints regarding requirements, 374ï¿½375
 Power of Three and, 411 using multiple viewpoints in eliciting
-requirement, 137­138 Visibility, 354­366
-code coverage, 360­364 communicating test results, 357­358 defect metrics, 364­366 number of passing tests, 358­360
+requirement, 137ï¿½138 Visibility, 354ï¿½366
+code coverage, 360ï¿½364 communicating test results, 357ï¿½358 defect metrics, 364ï¿½366 number of passing tests, 358ï¿½360
 
 INDEX
 
 533
 
-overview of, 354 release metrics, 358 tracking test tasks and status, 354­357 Visual Studio, 125 Voris, John, 117
+overview of, 354 release metrics, 358 tracking test tasks and status, 354ï¿½357 Visual Studio, 125 Voris, John, 117
 W Waterfall approach, to development
-agile development compared with, 12­13 ìmini-waterfallî phenomenon, 46­47 successes of, 112 test plans and, 346 Watir (Web Application Testing in Ruby), 163,
-172­174, 320. See also Ruby with Watir Web Services Description Language (WSDL),
+agile development compared with, 12ï¿½13 ï¿½mini-waterfallï¿½ phenomenon, 46ï¿½47 successes of, 112 test plans and, 346 Watir (Web Application Testing in Ruby), 163,
+172ï¿½174, 320. See also Ruby with Watir Web Services Description Language (WSDL),
 507 Web service testing
 automating, 282 overview of, 207 Remote Data Monitoring system example,
-247­248 tools for, 170­171 WebLoad, 234 Whelan, Declan, 321 Whiteboards example-driven development, 379 facilitating communication, 430 modeling, 399 planning diagram, 371 reviewing high-level tests with programmers,
-400­401 test plan alternatives, 353­354 Whole team approach, 325 advantages of, 26 agile vs. traditional development, 15­16 automation strategy and, 300­301 budget limits and, 55 finding enjoyment in work and, 31 key success factors, 482, 491 pairing testers with programmers, 279
+247ï¿½248 tools for, 170ï¿½171 WebLoad, 234 Whelan, Declan, 321 Whiteboards example-driven development, 379 facilitating communication, 430 modeling, 399 planning diagram, 371 reviewing high-level tests with programmers,
+400ï¿½401 test plan alternatives, 353ï¿½354 Whole team approach, 325 advantages of, 26 agile vs. traditional development, 15ï¿½16 automation strategy and, 300ï¿½301 budget limits and, 55 finding enjoyment in work and, 31 key success factors, 482, 491 pairing testers with programmers, 279
 
-shared responsibility and, 105­106 team building and, 69 team structure and, 59­62 to test automation, 270 test management and, 322 traditional cross-functional team compared
+shared responsibility and, 105ï¿½106 team building and, 69 team structure and, 59ï¿½62 to test automation, 270 test management and, 322 traditional cross-functional team compared
 with, 64 value of team members and, 70 Wiki as communication tool, 164 graphical documentation of examples,
-398­399 mockups, 160, 380 requirements, 402 story checklists and, 156 test cases, 372 traceability and, 88 Wilson-Welsh, Patrick, 278 Wizard of Oz Testing, 138­139 Workflow diagrams, 398 Working Effectively With Legacy Code (Feathers),
+398ï¿½399 mockups, 160, 380 requirements, 402 story checklists and, 156 test cases, 372 traceability and, 88 Wilson-Welsh, Patrick, 278 Wizard of Oz Testing, 138ï¿½139 Workflow diagrams, 398 Working Effectively With Legacy Code (Feathers),
 117, 288 Workload, 393 Worst-case scenarios, 136, 334 Writing tests, strategy for. See Strategy, for
 writing tests WSDL (Web Services Description Language),
 507
 X XP (Extreme Programming)
-agile team embracing, 10­11 courage as core value in, 25 xUnit, 126­127
+agile team embracing, 10ï¿½11 courage as core value in, 25 xUnit, 126ï¿½127
 Y Yakich, Joe, 316
-Z Zero bug tolerance, 79, 418­419
-
+Z Zero bug tolerance, 79, 418ï¿½419

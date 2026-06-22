@@ -1,3 +1,9 @@
+# User Story Mapping
+
+> **Author(s):** Patton · **Category:** 11_management_product_process · **Language:** English
+
+---
+
 User Story Mapping
 
 Author Jeff Patton shows you how changeable story maps enable your team to hold better conversations about the project throughout the development process. Your team will learn to come away with a shared understanding of what you’re attempting to build and why.

@@ -1,3 +1,9 @@
+# Enterprise Integration Patterns
+
+> **Author(s):** Hohpe, Woolf Â· **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Table of Content
 TABLE OF CONTENT ........................................................................................................................................ 2
 FOREWORD......................................................................................................................................................... 6
@@ -57,20 +63,20 @@ Martin Fowler Melrose, MA August 2003
 
 Preface
 This is a book about enterprise integration using messaging. It does not document any particular technology or product. Rather, it is designed for developers and integrators using a variety of messaging products and technologies, such as:
-· Message-oriented middleware (MOM) and integration suites offered by vendors such as the IBM (WebSphere MQ Family), Microsoft (BizTalk), TIBCO, WebMethods, SeeBeyond, Vitria, and others
-· Java Message Service (JMS) implementations incorporated into commercial and open-source J2EE application servers as well as standalone products
-· Microsoft's Message Queuing (MSMQ), accessible through several API's, including the System.Messaging libraries in Microsoft .NET
-· Emerging Web services standards that support asynchronous Web services (for example, WS-ReliableMessaging) and the associated API's such as Sun's Java API for XML Messaging (JAXM) or Microsoft's Web Services Extensions (WSE).
+ï¿½ Message-oriented middleware (MOM) and integration suites offered by vendors such as the IBM (WebSphere MQ Family), Microsoft (BizTalk), TIBCO, WebMethods, SeeBeyond, Vitria, and others
+ï¿½ Java Message Service (JMS) implementations incorporated into commercial and open-source J2EE application servers as well as standalone products
+ï¿½ Microsoft's Message Queuing (MSMQ), accessible through several API's, including the System.Messaging libraries in Microsoft .NET
+ï¿½ Emerging Web services standards that support asynchronous Web services (for example, WS-ReliableMessaging) and the associated API's such as Sun's Java API for XML Messaging (JAXM) or Microsoft's Web Services Extensions (WSE).
 Enterprise integration goes beyond creating a single application with a distributed n-tier architecture, which enables a single application to be distributed across several computers. Whereas one tier in a distributed application cannot run by itself, integrated applications are independent programs that can each run by itself, yet that function by coordinating with each other in a loosely coupled way. Messaging enables data or commands to be sent across the network using a "send and forget" approach where the caller sends the information and then goes on to other work while the information is transmitted by the messaging system. Optionally, the caller can later be notified of the result through a callback. Asynchronous calls and callbacks can make a design more complex than a synchronous approach, but an asynchronous call can be retried until it succeeds, which makes the communication much more reliable. Asynchronous messaging also enables several other advantages such as throttling of requests and load balancing.
 Who Should Read This Book
 This book is designed to help application developers and system integrators connect applications using message-oriented middleware products:
-· Application architects and developers who design and build complex enterprise applications that need to integrate with other applications. We assume that you're developing your applications using a modern enterprise application platform such as the Java 2 Platform, Enterprise Edition (J2EE) or the Microsoft .NET framework. This book will help you connect the application to a messaging layer and exchange information with other applications. This book focuses on the integration of applications, not on
+ï¿½ Application architects and developers who design and build complex enterprise applications that need to integrate with other applications. We assume that you're developing your applications using a modern enterprise application platform such as the Java 2 Platform, Enterprise Edition (J2EE) or the Microsoft .NET framework. This book will help you connect the application to a messaging layer and exchange information with other applications. This book focuses on the integration of applications, not on
 
-building applications; for that, we refer you to Patterns of Enterprise Application Architecture by Martin Fowler. · Integration architects and developers who design and build integration solutions connecting packaged or custom applications. Most readers in this group will have experience with one of the many commercial integration tools like IBM WebSphere MQ, TIBCO, WebMethods, SeeBeyond, Vitria, etc. Many of these tools incorporate the patterns presented in this book. This book helps readers understand the underlying concepts and make confident design decisions using a vendor-independent vocabulary. · Enterprise Architects have to maintain the "big picture" view of the software and hardware assets in an enterprise. This book presents a consistent language to describe large-scale integration solutions that may span across many technologies or point solutions. This language is also a key enabler for efficient communication between the enterprise architect and the integration and application architects and developers.
+building applications; for that, we refer you to Patterns of Enterprise Application Architecture by Martin Fowler. ï¿½ Integration architects and developers who design and build integration solutions connecting packaged or custom applications. Most readers in this group will have experience with one of the many commercial integration tools like IBM WebSphere MQ, TIBCO, WebMethods, SeeBeyond, Vitria, etc. Many of these tools incorporate the patterns presented in this book. This book helps readers understand the underlying concepts and make confident design decisions using a vendor-independent vocabulary. ï¿½ Enterprise Architects have to maintain the "big picture" view of the software and hardware assets in an enterprise. This book presents a consistent language to describe large-scale integration solutions that may span across many technologies or point solutions. This language is also a key enabler for efficient communication between the enterprise architect and the integration and application architects and developers.
 What You Will Learn
 This book does not attempt to make a business case for enterprise application integration; the focus is on how to make it work. Readers of this book will learn how to integrate enterprise applications by understanding:
-· The advantages and limitations of messaging as compared to other integration techniques · How to determine the message channels your applications will need, how to control
-whether multiple consumers can receive the same message, and how to handle invalid messages · When to send a message, what it should contain, and how to use special message properties · How to route a message to its ultimate destination even when the sender does not know where that is · How to convert messages when the sender and receiver do not agree on a common format · How to design the code that connects an application to the messaging system · How to manage and monitor a messaging system once it's in use as part of the enterprise
+ï¿½ The advantages and limitations of messaging as compared to other integration techniques ï¿½ How to determine the message channels your applications will need, how to control
+whether multiple consumers can receive the same message, and how to handle invalid messages ï¿½ When to send a message, what it should contain, and how to use special message properties ï¿½ How to route a message to its ultimate destination even when the sender does not know where that is ï¿½ How to convert messages when the sender and receiver do not agree on a common format ï¿½ How to design the code that connects an application to the messaging system ï¿½ How to manage and monitor a messaging system once it's in use as part of the enterprise
 Even readers who are familiar with these practices will benefit from having them documented and being able to use them to facilitate communication with their colleagues.
 What This Book Does Not Cover
 We believe that any book sporting the word "enterprise" in the title is likely to fall into one of three categories. Either it attempts to cover the whole breadth of the subject matter and will be forced to stop short of detailed guidance on how to implement actual solutions. Or, the book will provide specific hands-on guidance on the development of actual solutions but is forced to constrain the scope of the subject area it addresses. Lastly, books that attempt to do both are
@@ -93,10 +99,10 @@ We selected a picture of the Taiko-bashi Bridge at the Sumiyoshi-taisha Shrine i
 Introduction
 Interesting applications rarely live in isolation. Whether your sales application must interface with your inventory application, your procurement application must connect to an auction site, or your PDA's PIM must synchronize with the corporate calendar server, it seems like any application can be made better by integrating it with other applications.
 All integration solutions have to deal with a few fundamental challenges:
-· Networks are unreliable. Integration solutions have to transport data from one computer to another across networks. Compared to a process running on a single computer, distributed computing has to be prepared to deal with a much larger set of possible problems. Often times, two systems to be integrated are separated by continents and data between them has to travel through phone-lines, LAN segments, routers, switches, public networks, and satellite links. Each of these steps can cause delays or interruptions.
-· Networks are slow. Sending data across a network is multiple orders of magnitude slower than making a local method call. Designing a widely distributed solution the same way you would approach a single application could have disastrous performance implications.
-· Any two applications are different. Integration solutions need to transmit information between systems that use different programming languages, operating platforms, and data formats. An integration solution needs to be able to interface with all these different technologies.
-· Change is inevitable. Applications change over time. An integration solution has to keep pace with changes in the applications it connects. Integration solutions can easily get caught in an avalanche effect of changes ­ if one system changes, all other systems may be affected. An integration solution needs to minimize the dependencies from one system to another by using loose coupling between applications.
+ï¿½ Networks are unreliable. Integration solutions have to transport data from one computer to another across networks. Compared to a process running on a single computer, distributed computing has to be prepared to deal with a much larger set of possible problems. Often times, two systems to be integrated are separated by continents and data between them has to travel through phone-lines, LAN segments, routers, switches, public networks, and satellite links. Each of these steps can cause delays or interruptions.
+ï¿½ Networks are slow. Sending data across a network is multiple orders of magnitude slower than making a local method call. Designing a widely distributed solution the same way you would approach a single application could have disastrous performance implications.
+ï¿½ Any two applications are different. Integration solutions need to transmit information between systems that use different programming languages, operating platforms, and data formats. An integration solution needs to be able to interface with all these different technologies.
+ï¿½ Change is inevitable. Applications change over time. An integration solution has to keep pace with changes in the applications it connects. Integration solutions can easily get caught in an avalanche effect of changes ï¿½ if one system changes, all other systems may be affected. An integration solution needs to minimize the dependencies from one system to another by using loose coupling between applications.
 Over time, developers have overcome these challenges with four main approaches:
 1. File Transfer -- One application writes a file that another later reads. The applications need to agree on the filename and location, the format of the file, the timing of when it will be written and read, and who will delete the file.
 2. Shared Database -- Multiple applications share the same database schema, located in a single physical database. Because there is no duplicate data storage, no data has to be transferred from one application to the other.
@@ -128,24 +134,24 @@ Why Use Messaging?
 Now that we know what messaging is, we should ask: Why use messaging? As with any sophisticated solution, there is no one simple answer. The quick answer is that messaging is more immediate than File Transfer, better encapsulated than Shared Database, and more reliable than Remote Procedure Invocation. However, that's just the beginning of the advantages that can be gained using messaging.
 Specific benefits of messaging include:
 
-· Remote Communication. Messaging enables separate applications to communicate and transfer data. Two objects that reside in the same process can simply share the same data in memory. Sending data to another computer is a lot more complicated and requires data to be copied from one computer to another. This means that objects have to "serializable", i.e. they can be converted into a simple byte stream that can be sent across the network. If remote communication is not needed, messaging is not needed; a simpler solution such as concurrent collections or shared memory is sufficient.
-· Platform/Language Integration.When connecting multiple computer systems via remote communication, these systems likely use different languages, technologies and platforms, perhaps because they were developed over time by independent teams. Integrating such divergent applications can require a demilitarized zone of middleware to negotiate between the applications, often using the lowest common denominator--such as flat data files with obscure formats. In these circumstances, a messaging system can be a universal translator between the applications that works with each one's language and platform on its own terms, yet allows them to all communicate through a common messaging paradigm. This universal connectivity is the heart of the Message Bus pattern.
-· Asynchronous Communication. Messaging enables a send and forget approach to communication. The sender does not have to wait for the receiver to receive and process the message; it does not even have to wait for the messaging system to deliver the message. The sender only needs to wait for the message to be sent, e.g. for the message to successfully be stored in the channel by the messaging system. Once the message is stored, the sender is then free to perform other work while the message is transmitted in the background. The receiver may want to send an acknowledgement or result back to the sender, which requires another message, whose delivery will need to be detected by a callback mechanism on the sender.
-· Variable Timing. With synchronous communication, the caller must wait for the receiver to finish processing the call before the caller can receive the result and continue. In this way, the caller can only make calls as fast as the receiver can perform them. On the other hand, asynchronous communication allows the sender to batch requests to the receiver at its own pace, and for the receiver to consume the requests at its own different pace. This allows both applications to run at maximum throughput and not waste time waiting on each other (at least until the receiver runs out of messages to process).
-· Throttling. A problem with remote procedure calls is that too many of them on a single receiver at the same time can overload the receiver. This can cause performance degradation and even cause the receiver to crash. Asynchronous communication enables the receiver to control the rate at which it consumes requests, so as not to become overloaded by too many simultaneous requests. The adverse effect on callers caused by this throttling is minimized because the communication is asynchronous, so the callers are not blocked waiting on the receiver.
-· Reliable Communication. Messaging provides reliable delivery that a remote procedure call (RPC) cannot. The reason messaging is more reliable than RPC is that messaging uses a store and forward approach to transmitting messages. The data is packaged as messages, which are atomic, independent units. When the sender sends a message, the messaging system stores the message. It then delivers the message by forwarding it to the receiver's
+ï¿½ Remote Communication. Messaging enables separate applications to communicate and transfer data. Two objects that reside in the same process can simply share the same data in memory. Sending data to another computer is a lot more complicated and requires data to be copied from one computer to another. This means that objects have to "serializable", i.e. they can be converted into a simple byte stream that can be sent across the network. If remote communication is not needed, messaging is not needed; a simpler solution such as concurrent collections or shared memory is sufficient.
+ï¿½ Platform/Language Integration.When connecting multiple computer systems via remote communication, these systems likely use different languages, technologies and platforms, perhaps because they were developed over time by independent teams. Integrating such divergent applications can require a demilitarized zone of middleware to negotiate between the applications, often using the lowest common denominator--such as flat data files with obscure formats. In these circumstances, a messaging system can be a universal translator between the applications that works with each one's language and platform on its own terms, yet allows them to all communicate through a common messaging paradigm. This universal connectivity is the heart of the Message Bus pattern.
+ï¿½ Asynchronous Communication. Messaging enables a send and forget approach to communication. The sender does not have to wait for the receiver to receive and process the message; it does not even have to wait for the messaging system to deliver the message. The sender only needs to wait for the message to be sent, e.g. for the message to successfully be stored in the channel by the messaging system. Once the message is stored, the sender is then free to perform other work while the message is transmitted in the background. The receiver may want to send an acknowledgement or result back to the sender, which requires another message, whose delivery will need to be detected by a callback mechanism on the sender.
+ï¿½ Variable Timing. With synchronous communication, the caller must wait for the receiver to finish processing the call before the caller can receive the result and continue. In this way, the caller can only make calls as fast as the receiver can perform them. On the other hand, asynchronous communication allows the sender to batch requests to the receiver at its own pace, and for the receiver to consume the requests at its own different pace. This allows both applications to run at maximum throughput and not waste time waiting on each other (at least until the receiver runs out of messages to process).
+ï¿½ Throttling. A problem with remote procedure calls is that too many of them on a single receiver at the same time can overload the receiver. This can cause performance degradation and even cause the receiver to crash. Asynchronous communication enables the receiver to control the rate at which it consumes requests, so as not to become overloaded by too many simultaneous requests. The adverse effect on callers caused by this throttling is minimized because the communication is asynchronous, so the callers are not blocked waiting on the receiver.
+ï¿½ Reliable Communication. Messaging provides reliable delivery that a remote procedure call (RPC) cannot. The reason messaging is more reliable than RPC is that messaging uses a store and forward approach to transmitting messages. The data is packaged as messages, which are atomic, independent units. When the sender sends a message, the messaging system stores the message. It then delivers the message by forwarding it to the receiver's
 
-computer, where it is stored again. Storing the message on the sender's computer and the receiver's computer is assumed to be reliable. (To make it even more reliable, the messages can be stored to disk instead of memory; see Guaranteed Delivery.) What is unreliable is forwarding (moving) the message from the sender's computer to the receiver's computer, because the receiver or the network may not be running properly. The messaging system overcomes this by resending the message until it succeeds. This automatic retry enables the messaging system to overcome problems with the network such that the sender and receiver don't have to worry about these details. · Disconnected Operation. Some applications are specifically designed to run disconnected from the network, yet to synchronize with servers when a network connection is available. Such applications are deployed on platforms like laptop computers, PDA's, and automobile dashboards. Messaging is ideal for enabling these applications to synchronize--data to be synchronized can be queued as it is created, waiting until the application reconnects to the network. · Mediation. The messaging system acts as a mediator--as in the Mediator pattern [GoF]--between all of the programs that can send and receive messages. An application can use it as a directory of other applications or services available to integrate with. If an application becomes disconnected from the others, it need only reconnect to the messaging system, not to all of the other messaging applications. The messaging system can be used to provide a high number of distributed connections to a shared resource, such as a database. The messaging system can employ redundant resources to provide high-availability, balance load, reroute around failed network connections, and tune performance and quality of service. · Thread Management. Asynchronous communication means that one application does not have to block while waiting for another application to perform a task, unless it wants to. Rather than blocking to wait for a reply, the caller can use a callback that will alert the caller when the reply arrives. (See the Request-Reply pattern.) A large number of blocked threads, or threads blocked for a long time, can be problematic. Too many blocked threads may leave the application with too few available threads to perform real work. If an application with some dynamic number of blocked threads crashes, when the application restarts and recovers its former state, re-establishing those threads will be difficult. With callbacks, the only threads that block are a small, known number of listeners waiting for replies. This leaves most threads available for other work and defines a known number of listener threads that can easily be re-established after a crash.
+computer, where it is stored again. Storing the message on the sender's computer and the receiver's computer is assumed to be reliable. (To make it even more reliable, the messages can be stored to disk instead of memory; see Guaranteed Delivery.) What is unreliable is forwarding (moving) the message from the sender's computer to the receiver's computer, because the receiver or the network may not be running properly. The messaging system overcomes this by resending the message until it succeeds. This automatic retry enables the messaging system to overcome problems with the network such that the sender and receiver don't have to worry about these details. ï¿½ Disconnected Operation. Some applications are specifically designed to run disconnected from the network, yet to synchronize with servers when a network connection is available. Such applications are deployed on platforms like laptop computers, PDA's, and automobile dashboards. Messaging is ideal for enabling these applications to synchronize--data to be synchronized can be queued as it is created, waiting until the application reconnects to the network. ï¿½ Mediation. The messaging system acts as a mediator--as in the Mediator pattern [GoF]--between all of the programs that can send and receive messages. An application can use it as a directory of other applications or services available to integrate with. If an application becomes disconnected from the others, it need only reconnect to the messaging system, not to all of the other messaging applications. The messaging system can be used to provide a high number of distributed connections to a shared resource, such as a database. The messaging system can employ redundant resources to provide high-availability, balance load, reroute around failed network connections, and tune performance and quality of service. ï¿½ Thread Management. Asynchronous communication means that one application does not have to block while waiting for another application to perform a task, unless it wants to. Rather than blocking to wait for a reply, the caller can use a callback that will alert the caller when the reply arrives. (See the Request-Reply pattern.) A large number of blocked threads, or threads blocked for a long time, can be problematic. Too many blocked threads may leave the application with too few available threads to perform real work. If an application with some dynamic number of blocked threads crashes, when the application restarts and recovers its former state, re-establishing those threads will be difficult. With callbacks, the only threads that block are a small, known number of listeners waiting for replies. This leaves most threads available for other work and defines a known number of listener threads that can easily be re-established after a crash.
 So there are a number of different reasons an application or enterprise may benefit from messaging. Some of these are technical details that application developers relate most readily to, whereas others are strategic decisions that resonate best with enterprise architects. Which of these reasons is most important depends on the current requirements of your particular applications. They're all good reasons to use messaging, so take advantage of whichever reasons provide the most benefit to you.
 
 Challenges of Asynchronous Messaging
 Asynchronous messaging is not the panacea of integration. It resolves many of the challenges of integrating disparate systems in an elegant way but it also introduces new challenges. Some of these challenges are inherent in the asynchronous model while other challenges vary with the specific implementation of a messaging system.
-· Complex programming model. Asynchronous messaging requires developers to work with an event-driven programming model. Application logic can no longer be coded in a single method that invokes other methods, but the logic is not split up into a number of event handlers that respond to incoming messages. Such a system is more complex and harder to develop and debug. For example, the equivalent of a simple method call can require a request message and a request channel, a reply message and a reply channel, a correlation identifier and an invalid message queue (as described in Request-Reply).
-· Sequence issues. Message channels guarantee message delivery, but they do not guarantee when the message will be delivered. This can cause messages that are sent in sequence to get out of sequence. In situations where messages depend on each other special care has to be taken to re-establish the message sequence.
-· Synchronous scenarios. Not all applications can operate in a send and forget mode. If a user is looking for airline tickets, he or she is going to want to see the ticket price right away, not after some undetermined time. Therefore, many messaging systems need to bridge the gap between synchronous and asynchronous solutions. (See the Request-Reply pattern.)
-· Performance. Messaging systems do add some overhead to communication. It takes effort to make data into a message and send it, and to receive a message and process it. If you have to transport a huge chunk of data, dividing it into a gazillion small pieces may not be a smart idea. For example, if an integration solution needs to synchronize information between two exiting systems, the first step is usually to replicate all relevant information from one system to the other. For such a bulk data replication step, ETL (extract, transform, and load) tools are much more efficient than messaging. Messaging is best suited to keeping the systems in sync after the initial data replication.
-· Limited platform support. Many proprietary messaging systems are not available on all platforms. Often times it is easier to FTP a file to another platform than accessing it via a messaging system.
-· Vendor lock-in. Many messaging system implementations rely on proprietary protocols. Even common messaging specifications such as JMS do not control the physical implementation of the solution. As a result, different messaging systems usually do not connect to one another. This can leave you with a whole new integration challenge: integrating multiple integration solutions! (See the Messaging Bridge pattern.)
+ï¿½ Complex programming model. Asynchronous messaging requires developers to work with an event-driven programming model. Application logic can no longer be coded in a single method that invokes other methods, but the logic is not split up into a number of event handlers that respond to incoming messages. Such a system is more complex and harder to develop and debug. For example, the equivalent of a simple method call can require a request message and a request channel, a reply message and a reply channel, a correlation identifier and an invalid message queue (as described in Request-Reply).
+ï¿½ Sequence issues. Message channels guarantee message delivery, but they do not guarantee when the message will be delivered. This can cause messages that are sent in sequence to get out of sequence. In situations where messages depend on each other special care has to be taken to re-establish the message sequence.
+ï¿½ Synchronous scenarios. Not all applications can operate in a send and forget mode. If a user is looking for airline tickets, he or she is going to want to see the ticket price right away, not after some undetermined time. Therefore, many messaging systems need to bridge the gap between synchronous and asynchronous solutions. (See the Request-Reply pattern.)
+ï¿½ Performance. Messaging systems do add some overhead to communication. It takes effort to make data into a message and send it, and to receive a message and process it. If you have to transport a huge chunk of data, dividing it into a gazillion small pieces may not be a smart idea. For example, if an integration solution needs to synchronize information between two exiting systems, the first step is usually to replicate all relevant information from one system to the other. For such a bulk data replication step, ETL (extract, transform, and load) tools are much more efficient than messaging. Messaging is best suited to keeping the systems in sync after the initial data replication.
+ï¿½ Limited platform support. Many proprietary messaging systems are not available on all platforms. Often times it is easier to FTP a file to another platform than accessing it via a messaging system.
+ï¿½ Vendor lock-in. Many messaging system implementations rely on proprietary protocols. Even common messaging specifications such as JMS do not control the physical implementation of the solution. As a result, different messaging systems usually do not connect to one another. This can leave you with a whole new integration challenge: integrating multiple integration solutions! (See the Messaging Bridge pattern.)
 So asynchronous messaging does not solve all problems, and can even create some new ones. Keep these consequences in mind when deciding which problems to solve using messaging.
 
 Thinking Asynchronously
@@ -253,17 +259,17 @@ Patterns should be prescriptive, meaning that they should tell you what to do. T
 There is no one universal pattern form; different books use various structures. We used a style that is fairly close to the Alexandrian form, which was first popularized for computer programming in Smalltalk Best Practice Patterns by Kent Beck. We like the Alexandrian form because it results in patterns that are more prose-like. As a result, even though each pattern follows an identical, well-defined structure, the format avoids headings for each individual sub-section, which disrupt the flow of the discussion. To improve navigability, the format uses style elements such as bolding, indentation, and pictures to help the reader identify important sections even at a quick glance.
 
 This pattern language uses the following pattern structure:
-· Name ­ This is an identifier for the pattern that indicates what the pattern does. We chose names that can easily be used in a sentence that describes applying the pattern so that it is easy to reference the pattern's concept in a conversation between designers.
-· Icon ­ Many patterns are associated with an icon in addition to the pattern name. Because many architects are used to communicating visually by using diagrams, we wanted to provide a visual language in addition to the verbal language. This visual language underlines the composability of the patterns as multiple pattern icons can be combined to describe the solution of a larger, more complex pattern.
-· Context ­ This explains what you might be working on that would make you likely to run into the problem that this pattern solves. The context sets the stage for the problem and often refers to other patterns you may have already applied.
-· Problem ­ This explains the difficulty you are facing, expressed as a question you're asking yourself, which this pattern solves. You should be able to read the problem statement and quickly determine if this pattern is relevant to your work. We've formatted the problem to be one sentence, bold and indented.
-· Forces ­ The forces explore the constraints that make the problem difficult to solve. If it were easy, you wouldn't need a pattern. They often consider alternative solutions that seem promising but don't pan out, which helps show the value of the real solution.
-· Solution ­ This is a template that explains what you should do to solve the problem. It is not specific to your particular circumstances, but describes what to do in the variety of circumstances represented by the problem. If you understand a pattern's problem and solution, you understand the pattern and don't necessarily need to read the other sections. We've formatted the solution to be one sentence, bold and indented.
-· Sketch ­ One of the most appealing properties of the Alexandrian form is that each pattern contains a sketch that illustrates the solution. In many cases, just by looking at the pattern name and the sketch you can understand the essence of the pattern. We tried to maintain this style by inserting a solution picture, or sketch, after the solution statement of each pattern.
-· Results ­ This part expands upon the solution to explain the details of how to apply the solution and how it resolves the forces. It also addresses new challenges that may arise as a result of applying this pattern.
-· Next ­ This section lists other patterns to be considered after applying the current one. Patterns don't live in isolation; the application of one pattern usually leads you to new problems that are solved by other patterns. This is what makes the collection a pattern language and not just a pattern catalog.
-· Sidebars ­ These sections discuss more detailed technical issues or variations of the pattern. We set these sections visually apart from the remainder of the text so you can easily skip them if they are not be relevant to your particular application of the pattern.
-· Examples ­ A pattern usually includes one or more examples of the pattern being applied or having been applied. An example may be as simple as naming a known use or as detailed as a large segment of sample code. Given the large number of available messaging technologies, we do not expect readers to be familiar with each technology
+ï¿½ Name ï¿½ This is an identifier for the pattern that indicates what the pattern does. We chose names that can easily be used in a sentence that describes applying the pattern so that it is easy to reference the pattern's concept in a conversation between designers.
+ï¿½ Icon ï¿½ Many patterns are associated with an icon in addition to the pattern name. Because many architects are used to communicating visually by using diagrams, we wanted to provide a visual language in addition to the verbal language. This visual language underlines the composability of the patterns as multiple pattern icons can be combined to describe the solution of a larger, more complex pattern.
+ï¿½ Context ï¿½ This explains what you might be working on that would make you likely to run into the problem that this pattern solves. The context sets the stage for the problem and often refers to other patterns you may have already applied.
+ï¿½ Problem ï¿½ This explains the difficulty you are facing, expressed as a question you're asking yourself, which this pattern solves. You should be able to read the problem statement and quickly determine if this pattern is relevant to your work. We've formatted the problem to be one sentence, bold and indented.
+ï¿½ Forces ï¿½ The forces explore the constraints that make the problem difficult to solve. If it were easy, you wouldn't need a pattern. They often consider alternative solutions that seem promising but don't pan out, which helps show the value of the real solution.
+ï¿½ Solution ï¿½ This is a template that explains what you should do to solve the problem. It is not specific to your particular circumstances, but describes what to do in the variety of circumstances represented by the problem. If you understand a pattern's problem and solution, you understand the pattern and don't necessarily need to read the other sections. We've formatted the solution to be one sentence, bold and indented.
+ï¿½ Sketch ï¿½ One of the most appealing properties of the Alexandrian form is that each pattern contains a sketch that illustrates the solution. In many cases, just by looking at the pattern name and the sketch you can understand the essence of the pattern. We tried to maintain this style by inserting a solution picture, or sketch, after the solution statement of each pattern.
+ï¿½ Results ï¿½ This part expands upon the solution to explain the details of how to apply the solution and how it resolves the forces. It also addresses new challenges that may arise as a result of applying this pattern.
+ï¿½ Next ï¿½ This section lists other patterns to be considered after applying the current one. Patterns don't live in isolation; the application of one pattern usually leads you to new problems that are solved by other patterns. This is what makes the collection a pattern language and not just a pattern catalog.
+ï¿½ Sidebars ï¿½ These sections discuss more detailed technical issues or variations of the pattern. We set these sections visually apart from the remainder of the text so you can easily skip them if they are not be relevant to your particular application of the pattern.
+ï¿½ Examples ï¿½ A pattern usually includes one or more examples of the pattern being applied or having been applied. An example may be as simple as naming a known use or as detailed as a large segment of sample code. Given the large number of available messaging technologies, we do not expect readers to be familiar with each technology
 
 used to implement an example. Therefore, we designed the patterns so that you can safely skip the example without loosing any critical content of the pattern.
 The beauty in describing solutions as patterns is that it not only teaches the reader how to solve the specific problems discussed, but also how to create designs that solve problems the authors were not even aware of. As a result, these patterns for messaging describe not only messaging systems that exist today, but may also apply to new ones created well after this book is published.
@@ -289,14 +295,14 @@ The most fundamental pattern is Messaging; that's what this whole book is about.
 
 root patterns leads to its own chapter in the book (except Pipes and Filters, which is not specific to messaging but is the basis of the routing and transformation patterns).
 The pattern language is divided into eight chapters, which follow the hierarchy described above:
-· Chapter 1: Integration Styles ­ This chapter reviews the different approaches available for integrating applications, including Messaging.
-· Chapter 2: Messaging Systems ­ This chapter reviews the six root messaging patterns, giving an overview of the entire pattern language.
-· Chapter 3: Messaging Channels ­ Applications communicate via channels. Channels define the logical pathways a message can follow. This chapter shows how to determine what channels your applications need.
-· Chapter 4: Message Construction ­ Once you have message channels, you need messages to send on them. This chapter explains the different ways messages can be used and how to take advantage of their special properties.
-· Chapter 5: Message Routing ­ As a messaging topography becomes more complex, senders know less and less about who should receive their messages. Rather, they send the messages to intermediate applications that send them to others until the messages finally find their way to their final destination. This chapter teaches you the responsibilities of these routing applications.
-· Chapter 6: Message Transformation ­ Independently developed applications often don't agree on messages' formats, on the form and meaning of supposedly unique identifiers, and even the character encoding to be used. Therefore, intermediate components are needed to convert messages from the form one application produced to that which other applications will consume. This chapter shows how to design these transformer applications.
-· Chapter 7: Messaging Endpoints ­ Many applications were not designed to participate in a messaging solution. As a result, they must be explicitly connected to the messaging system. This section describes a messaging layer in the applications that is responsible for sending and receiving the messages, making your application an endpoint for messages.
-· Chapter 8: System Management ­ Once we have a messaging system in place to integrate our applications, how do we make sure that it's running correctly and doing what we want? This chapter explores how to test and monitor a running messaging system.
+ï¿½ Chapter 1: Integration Styles ï¿½ This chapter reviews the different approaches available for integrating applications, including Messaging.
+ï¿½ Chapter 2: Messaging Systems ï¿½ This chapter reviews the six root messaging patterns, giving an overview of the entire pattern language.
+ï¿½ Chapter 3: Messaging Channels ï¿½ Applications communicate via channels. Channels define the logical pathways a message can follow. This chapter shows how to determine what channels your applications need.
+ï¿½ Chapter 4: Message Construction ï¿½ Once you have message channels, you need messages to send on them. This chapter explains the different ways messages can be used and how to take advantage of their special properties.
+ï¿½ Chapter 5: Message Routing ï¿½ As a messaging topography becomes more complex, senders know less and less about who should receive their messages. Rather, they send the messages to intermediate applications that send them to others until the messages finally find their way to their final destination. This chapter teaches you the responsibilities of these routing applications.
+ï¿½ Chapter 6: Message Transformation ï¿½ Independently developed applications often don't agree on messages' formats, on the form and meaning of supposedly unique identifiers, and even the character encoding to be used. Therefore, intermediate components are needed to convert messages from the form one application produced to that which other applications will consume. This chapter shows how to design these transformer applications.
+ï¿½ Chapter 7: Messaging Endpoints ï¿½ Many applications were not designed to participate in a messaging solution. As a result, they must be explicitly connected to the messaging system. This section describes a messaging layer in the applications that is responsible for sending and receiving the messages, making your application an endpoint for messages.
+ï¿½ Chapter 8: System Management ï¿½ Once we have a messaging system in place to integrate our applications, how do we make sure that it's running correctly and doing what we want? This chapter explores how to test and monitor a running messaging system.
 These eight chapters go together to teach you what you need to know about connecting applications using messaging.
 Getting Started
 With any book that has a lot to teach, it's hard to know where to start, both for the authors and the readers. Reading all of the pages straight through assures covering the entire subject area, but isn't the quickest way to get to the issues that are of the most help. Starting with a pattern in the middle of the language can be like starting to watch a movie that's half over; you see what's happening but don't understand what it means.
@@ -305,29 +311,29 @@ Luckily, the pattern language is formed around root patterns (as described earli
 Chapter 1: Integration Styles provides an overview of the four main application integration techniques and settles on Messaging as being the best overall for many integration opportunities. Read this chapter if you are unfamiliar with issues involved in application integration and the pros and cons of the various approaches that are available. If you just want to know what's so great about messaging, go straight to that pattern. If you're already convinced that messaging is the way to go and want to get started with how to use messaging, you can skip the first chapter completely.
 Chapter 2: Messaging Systems contains all of this pattern language's root patterns (except Messaging, which is in the first chapter). For an overview of the pattern language, read (or at least skim) all of the patterns in this chapter. To dive deep on a particular topic, read its root pattern, then go to the patterns mentioned in its next section at the end of the pattern; those next patterns will all be in a chapter named after the root pattern.
 The root patterns in this language are:
-· Messaging ­ This is the #1 root pattern for the entire book: What is messaging, what problem does it solve, and how does it solve it?
-· Message Channel ­ What is the structure in a messaging system that conveys messages from the sender to the receiver? How do you know which ones your applications need?
-· Message ­ How does information get communicated from a sender to a receiver? · Pipes and Filters ­ How can intermediate steps be performed after a message is sent but
-before it is received? · Message Router ­ If the sender does not know ultimately where the message should go,
-how can the messaging system get it there? · Message Translator ­ If the sender and receiver do not agree on the message format, how
-can they communicate? · Message Endpoint ­ How do the applications that send and receive messages connect to
+ï¿½ Messaging ï¿½ This is the #1 root pattern for the entire book: What is messaging, what problem does it solve, and how does it solve it?
+ï¿½ Message Channel ï¿½ What is the structure in a messaging system that conveys messages from the sender to the receiver? How do you know which ones your applications need?
+ï¿½ Message ï¿½ How does information get communicated from a sender to a receiver? ï¿½ Pipes and Filters ï¿½ How can intermediate steps be performed after a message is sent but
+before it is received? ï¿½ Message Router ï¿½ If the sender does not know ultimately where the message should go,
+how can the messaging system get it there? ï¿½ Message Translator ï¿½ If the sender and receiver do not agree on the message format, how
+can they communicate? ï¿½ Message Endpoint ï¿½ How do the applications that send and receive messages connect to
 the messaging system?
 After the first two chapters, different types of messaging developers may be most interested in different chapters, based on the specifics of how each group uses messaging to perform integration:
-· System Administrators may be most interested in Chapter 3: Messaging Channels, the guidelines for what channels to create, and Chapter 8: System Management, guidance on how to maintain a running messaging system.
+ï¿½ System Administrators may be most interested in Chapter 3: Messaging Channels, the guidelines for what channels to create, and Chapter 8: System Management, guidance on how to maintain a running messaging system.
 
-· Application Developers should look at Chapter 7: Messaging Endpoints to learn how integrate an application with a messaging system, and Chapter 4: Message Construction to learn what messages to send when.
-· System Integrators will gain the most from Chapter 5: Message Routing--how to direct messages to the proper receivers--and Chapter 6: Message Transformation--how to convert messages from the sender's format to the receiver's.
+ï¿½ Application Developers should look at Chapter 7: Messaging Endpoints to learn how integrate an application with a messaging system, and Chapter 4: Message Construction to learn what messages to send when.
+ï¿½ System Integrators will gain the most from Chapter 5: Message Routing--how to direct messages to the proper receivers--and Chapter 6: Message Transformation--how to convert messages from the sender's format to the receiver's.
 Keep in mind that when reading a pattern, if you're in a hurry, start by just reading the problem and solution (the two sentences in bold). This will give you enough information to determine if the pattern is of interest to you right now, and if you already know the pattern. If you do not know the pattern and it sounds interesting, go ahead and read the other parts.
 Also remember that this is a pattern language, so the patterns are not necessarily meant to be read in the order they're presented in the book. The book's order teaches you about messaging by considering all of the relevant topics in turn and discussing related issues together. To use the patterns to solve a particular problem, start with an appropriate root pattern. Its context explains what patterns need to be applied before this one, even if they're not the ones immediately preceding this one in the book. Likewise, the next section (the last paragraph of the pattern) describes what patterns to consider applying after this one, even if they're not the ones immediately following this one in the book. Use the web of interconnected patterns, not the linear list of book pages, to guide you through the material.
 Supporting Web Site
 Please look for companion information to this book plus related information on enterprise integration at our Web site: www.enterpriseintegrationpatterns.com. You can also e-mail your comments, suggestions and feedback to us at authors@enterpriseintegrationpatterns.com.
 Summary
 You should now have a good understanding of the following concepts which are fundamental to the material in this book:
-· What messaging is · What a messaging system is · Why to use messaging · How asynchronous programming is different · How application integration is different from application distribution · What types of commercial products contain messaging systems
+ï¿½ What messaging is ï¿½ What a messaging system is ï¿½ Why to use messaging ï¿½ How asynchronous programming is different ï¿½ How application integration is different from application distribution ï¿½ What types of commercial products contain messaging systems
 You should also have a feel for how this book is going to teach you how to use messaging:
-· The role patterns have in structuring the material
+ï¿½ The role patterns have in structuring the material
 
-· The meaning of the custom notation used in the diagrams · The purpose and scope of the examples · The organization of the material · How to get started learning the material
+ï¿½ The meaning of the custom notation used in the diagrams ï¿½ The purpose and scope of the examples ï¿½ The organization of the material ï¿½ How to get started learning the material
 Now that you understand the basic concepts and how the material will be presented, you are now ready to start learning how to integrate applications using messaging.
 
 1Solving Integration Problems using Patterns
@@ -343,11 +349,11 @@ Users such as customers, business partners and internal users do generally not t
 In order to support common business processes and data sharing across applications, these applications need to be integrated. Application integration needs to provide efficient, reliable and secure data exchange between multiple enterprise applications.
 Integration Challenges
 Unfortunately, enterprise integration is no easy task. By definition, enterprise integration has to deal with multiple applications running on multiple platforms in different locations, making the term `simple integration' pretty much an oxymoron. Software vendors offer EAI suites that provide cross-platform, cross-language integration as well as the ability to interface with many popular packaged business applications. However, this technical infrastructure presents only a small portion of the integration complexities. The true challenges of integration span far across business and technical issues.
-· Enterprise integration requires a significant shift in corporate politics. Business applications generally focus on a specific functional area, such as Customer Relationship Management (CRM), Billing, Finance, etc. This seems to be an extension of Conway's famous law that postulates that "Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." As a result, many IT groups are organized in alignment with these functional areas. Successful enterprise integration does not only need to establish communication between multiple computer systems but also between business units and IT departments -- in an integrated enterprise application groups no longer control a specific application because each application is now part of an overall flow of integrated applications and services.
-· Because of their wide scope, integration efforts typically have far-reaching implications on the business. Once the processing of the most critical business functions is incorporated into an integration solution, the proper functioning of that solution becomes vital to the business. A failing or misbehaving integration solution can cost a business millions of Dollars in lost orders, misrouted payments and disgruntled customers.
-· One important constraint of developing integration solutions is the limited amount of control the integration developers typically have over the participating applications. In most cases, the applications are "legacy" systems or packaged applications that cannot be
+ï¿½ Enterprise integration requires a significant shift in corporate politics. Business applications generally focus on a specific functional area, such as Customer Relationship Management (CRM), Billing, Finance, etc. This seems to be an extension of Conway's famous law that postulates that "Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." As a result, many IT groups are organized in alignment with these functional areas. Successful enterprise integration does not only need to establish communication between multiple computer systems but also between business units and IT departments -- in an integrated enterprise application groups no longer control a specific application because each application is now part of an overall flow of integrated applications and services.
+ï¿½ Because of their wide scope, integration efforts typically have far-reaching implications on the business. Once the processing of the most critical business functions is incorporated into an integration solution, the proper functioning of that solution becomes vital to the business. A failing or misbehaving integration solution can cost a business millions of Dollars in lost orders, misrouted payments and disgruntled customers.
+ï¿½ One important constraint of developing integration solutions is the limited amount of control the integration developers typically have over the participating applications. In most cases, the applications are "legacy" systems or packaged applications that cannot be
 
-changed just to be connected to an integration solution. This often leaves the integration developers in a situation where they have to make up for deficiencies or idiosyncrasies inside the applications or differences between the applications. Often it would be easier to implement part of the solution inside the application "endpoints", but for political or technical reasons that option may not be available. · Despite the wide-spread need for integration solutions, only few standards have established themselves in this domain. The advent of XML, XSL and Web services certainly mark the most significant advance of standards-based features in an integration solution. However, the hype around Web services has also given grounds to new fragmentation of the marketplace, resulting in a flurry of new "extensions" and "interpretations" of the standards. This should remind us that the lack of interoperability between "standards-compliant" products was one of the major stumbling blocks for CORBA, which offered a sophisticated technical solution for system integration. · Also, existing XML Web Services standards address only a fraction of the integration challenges. For example, the frequent claim that XML is the `Lingua franca" of system integration is somewhat misleading. Standardizing all data exchange to XML can be likened to writing all documents using a common alphabet, such as the Roman alphabet. Even though the alphabet is common, it is still being used to represent many languages and dialects, which cannot be readily understood by all readers. The same is true in enterprise integration. The existence of a common presentation (e.g. XML) does not imply common semantics. The notion of "account" can have many different semantics, connotations, constraints and assumptions in each participating system. Resolving semantic differences between systems proves to be a particularly difficult and time-consuming task because it involves significant business and technical decisions. · While developing an EAI solution is challenging in itself, operating and maintaining such a solution can be even more daunting. The mix of technologies and the distributed nature of EAI solutions make deployment, monitoring, and trouble-shooting complex tasks that require a combination of skill sets. In many cases, these skill sets do not exist within IT operations or are spread across many different individuals.
+changed just to be connected to an integration solution. This often leaves the integration developers in a situation where they have to make up for deficiencies or idiosyncrasies inside the applications or differences between the applications. Often it would be easier to implement part of the solution inside the application "endpoints", but for political or technical reasons that option may not be available. ï¿½ Despite the wide-spread need for integration solutions, only few standards have established themselves in this domain. The advent of XML, XSL and Web services certainly mark the most significant advance of standards-based features in an integration solution. However, the hype around Web services has also given grounds to new fragmentation of the marketplace, resulting in a flurry of new "extensions" and "interpretations" of the standards. This should remind us that the lack of interoperability between "standards-compliant" products was one of the major stumbling blocks for CORBA, which offered a sophisticated technical solution for system integration. ï¿½ Also, existing XML Web Services standards address only a fraction of the integration challenges. For example, the frequent claim that XML is the `Lingua franca" of system integration is somewhat misleading. Standardizing all data exchange to XML can be likened to writing all documents using a common alphabet, such as the Roman alphabet. Even though the alphabet is common, it is still being used to represent many languages and dialects, which cannot be readily understood by all readers. The same is true in enterprise integration. The existence of a common presentation (e.g. XML) does not imply common semantics. The notion of "account" can have many different semantics, connotations, constraints and assumptions in each participating system. Resolving semantic differences between systems proves to be a particularly difficult and time-consuming task because it involves significant business and technical decisions. ï¿½ While developing an EAI solution is challenging in itself, operating and maintaining such a solution can be even more daunting. The mix of technologies and the distributed nature of EAI solutions make deployment, monitoring, and trouble-shooting complex tasks that require a combination of skill sets. In many cases, these skill sets do not exist within IT operations or are spread across many different individuals.
 Anyone who has been through an EAI deployment can attest to the fact that EAI solutions are a critical component of today's enterprise strategies, but make IT life harder, not easier. It's a long way between the high-level vision of the integrated enterprise (defined by terms such as "Straight-Through-Processing", "T+1", "Agile Enterprise") and the nuts-and-bolts implementations (what parameters did System.Messaging.XmlMessageFormatter take again?).
 How Integration Patterns Can Help
 There are no simple answers for enterprise integration. In our opinion, anyone who claims that integration is easy must be either incredibly smart (or at least a good bit smarter than the rest of us), incredibly ignorant (OK, let's say optimistic), or they have a financial interest in making you believe that integration is easy.
@@ -356,7 +362,7 @@ Even though integration is a broad and difficult topic, we can always observer s
 The "patterns" are not copy-paste code samples or shrink-wrap components, but rather nuggets of advice that describe solutions to frequently recurring problems. Used properly, the integration patterns can help fill the wide gap between the high-level vision of integration and the actual system implementation.
 The Wide World of Integration
 We intentionally left the definition of "integration" very broad. To us it means connecting computer systems, companies or people. While this broad definition gives us the convenience of sticking whatever we find interesting into this book, it is helpful to have a closer look at some of the most common integration scenarios. Helping clients design and implement integration solutions, we repeatedly came across the following six types of integration projects:
-· Information Portals · Data Replication · Shared Business Functions · Service-Oriented Architectures · Distributed Business Processes · Business-to-Business Integration
+ï¿½ Information Portals ï¿½ Data Replication ï¿½ Shared Business Functions ï¿½ Service-Oriented Architectures ï¿½ Distributed Business Processes ï¿½ Business-to-Business Integration
 This list is by no means a complete taxonomy of all things integration but it does help to illustrate the kind of solutions that integration architects build. Many integration projects consist of a combination of multiple types of integration. For example, reference data replication is often required in order to tie applications into a single distributed business process.
 Information Portal
 
@@ -413,7 +419,7 @@ be established first. Establishing a TCP connection involves IP packets travelin
 Lastly, the simple communication also relies on a very strict data format. We are sending 4 bytes of amount data and then a sequence of characters that define the customer's account. If we want to insert a third parameter, e.g. the name of the currency, we would have to modify both sender and receiver to use the new data format.
 Tightly Coupled Interaction
 In summary, our minimalist integration solution is fast and cheap, but it results in a very brittle solution because the two participating parties make the following assumptions about each other:
-· Platform Technology ­ internal representations of numbers and objects · Location ­ hard-coded machine addresses · Time ­ all components have to be available at the same time · Data Format ­ the list of parameters and their types must match
+ï¿½ Platform Technology ï¿½ internal representations of numbers and objects ï¿½ Location ï¿½ hard-coded machine addresses ï¿½ Time ï¿½ all components have to be available at the same time ï¿½ Data Format ï¿½ the list of parameters and their types must match
 As we stated in the beginning, coupling is a measure of how many assumptions parties make about each other when they communicate. Our simple solution requires the parties to make a lot of assumptions. Therefore, this solution is tightly coupled.
 In order to make the solution more loosely coupled we can try to remove these dependencies one by one. We should use a standard data format that is self-describing and platform independent, such as XML. Instead of sending information directly to a specific machine we should send it to an addressable "channel". A channel is a logical address that both sender and receiver can agree on the same channel without being aware of each other's identity. Using channels resolves the location-dependency, but still requires all components to be available at the same time if the channel is implemented using a connection-oriented protocol.. In order to remove this temporal dependency we can enhance the channel to queue up sent requests until the network and the receiving system are ready. To support queuing of requests inside the channel, we need wrap data into self-contained messages so that the channel knows how much data to buffer and deliver at any one time. Lastly, the two systems still depend on a common data format. We can remove this dependency by allowing for data format transformations inside the channel. If the format of one system changes we only have to change the transformer and not the other participating systems. This is particularly useful if many applications send data to the same channel.
 
@@ -421,8 +427,8 @@ Loosely Coupled Interaction
 Mechanisms such as a common data format, queuing channels, and transformers help turn a tightly coupled solution into a loosely coupled solution. The sender no longer has to depend on the receiver's internal data format not its location. It does not even have to pay attention to whether the other computer is ready to accept requests or not. Removing these dependencies between the systems makes the overall solution more tolerant to change, the key benefit of loose coupling. The main drawback of the loosely coupled approach is the additional complexity. This is no longer a 10-lines-of-code solution! Therefore, we use a message-oriented middleware infrastructure that provides these services for us. This infrastructure makes exchanging data in a loosely coupled way almost as easy as the example we started with. The next section describes the components that make up such a middleware solution.
 Is loose coupling the panacea? Like everything else in enterprise architecture, there is no single best answer. Loose coupling provides important benefits such as flexibility and scalability, but it introduces a more complex programming model and can make designing, building and debugging solutions more difficult.
 A Loosely Coupled Integration Solution
-In order to connect two systems via an integration solution, a number of things have to happen. These things make up what we call middleware ­ the things that sit between applications.
-Invariably, some data has to be transported from one application to the next. This data could be an address record that needs to be replicated, a call to a remote service or a snippet of HTML headed for a portal display. Regardless of the payload, this piece of data needs to be understood by both ends and needs to be transported, usually across a network. Two elements provide this basic function. We need a communications channel that can move information from one application to the other. This channel could be a series of TCP/IP connections, a shared file, a shared database or a floppy disk being carried from one computer to the next (the infamous `sneakernet'). Inside this channel we place a message ­ a snippet of data that has an agreed-upon meaning to both applications that are to be integrated. This piece of data can be very small, such as the phone number of a single customer that has changed, or very large, such as the complete list of all customers and their associated addresses. We call this piece of data a message.
+In order to connect two systems via an integration solution, a number of things have to happen. These things make up what we call middleware ï¿½ the things that sit between applications.
+Invariably, some data has to be transported from one application to the next. This data could be an address record that needs to be replicated, a call to a remote service or a snippet of HTML headed for a portal display. Regardless of the payload, this piece of data needs to be understood by both ends and needs to be transported, usually across a network. Two elements provide this basic function. We need a communications channel that can move information from one application to the other. This channel could be a series of TCP/IP connections, a shared file, a shared database or a floppy disk being carried from one computer to the next (the infamous `sneakernet'). Inside this channel we place a message ï¿½ a snippet of data that has an agreed-upon meaning to both applications that are to be integrated. This piece of data can be very small, such as the phone number of a single customer that has changed, or very large, such as the complete list of all customers and their associated addresses. We call this piece of data a message.
 
 Basic Elements of an Integration Solution
 Now that we can send messages across channels we can establish a very basic form of integration. However, we promised that simple integration is an oxymoron, so let's see what is missing. We mentioned before that integration solutions often have limited control over the applications they are integrating, such as the internal data formats used by the applications. For example, one data format may store the customer name in two fields, called FIRST_NAME and LAST_NAME, while the other system may use a single field called Customer_Name. Likewise, one system may support multiple customer addresses while the other system only supports a single address. Because the internal data format of an application can often not be changed the middleware needs to provide some mechanism to convert one application's data format in the other's. We call this step translation.
@@ -435,10 +441,10 @@ Widget-Gadget Corp -- An Example
 The best way to understand message-based integration solutions is by walking through a concrete example. Let's consider Widgets & Gadgets `R Us (WGRUS), an on-line retailer that buys widgets and gadgets from manufacturers and resells them to customers.
 WGRUS Ecosystem
 For this example, we assume that the solution needs to support the following requirements. Naturally, we simplified the requirements a bit for sake of brevity, but nevertheless these types of requirements occur frequently in real businesses.
-· Take Orders: Customers can place orders via Web, phone or fax · Process Orders: Processing an order involves multiple steps, including verifying
-inventory, shipping the goods and invoicing the customer · Check Status: Customers can check the order status · Change Address: Customers can use a Web front-end to change their billing and
-shipping address · New Catalog: The suppliers update their catalog periodically. WGRUS needs to update
-its pricing and availability based in the new catalogs. · Announcements: Customers can subscribe to selective announcements from WGRUS. · Testing and Monitoring: The operations staff needs to be able to monitor all individual
+ï¿½ Take Orders: Customers can place orders via Web, phone or fax ï¿½ Process Orders: Processing an order involves multiple steps, including verifying
+inventory, shipping the goods and invoicing the customer ï¿½ Check Status: Customers can check the order status ï¿½ Change Address: Customers can use a Web front-end to change their billing and
+shipping address ï¿½ New Catalog: The suppliers update their catalog periodically. WGRUS needs to update
+its pricing and availability based in the new catalogs. ï¿½ Announcements: Customers can subscribe to selective announcements from WGRUS. ï¿½ Testing and Monitoring: The operations staff needs to be able to monitor all individual
 components and the message flow between them. We will tackle each of these requirements separately and describe the solution alternatives and trade-offs using the pattern language introduced in this book. Internal Systems
 
 Like in most integration scenarios, WGRUS is not a so-called "green field" implementation, but rather the integration of an existing IT infrastructure comprised of a variety of packaged and custom applications. The fact that we have to work with existing applications often makes integration work challenging. In our example WGRUS runs the following systems (see picture).
@@ -458,9 +464,9 @@ We connect each Channel Adapter to the Message Translator via a Point-to-Point C
 The NEW_ORDER Message Channel is a so-called Datatype Channel because it carries messages of only one type, i.e. new orders. This makes it easy for message consumers to know what type of message to expect. The New Order message itself is designed as a Document Message. The intent of the message is not to instruct the receiver to take a specific action, but rather to pass a document to any interested recipient who is free to decide how to process document.
 Processing Orders
 Now that we have a consistent order message that is independent from the message source we need to process orders. In order to fulfill an order we need to complete the following steps:
-· Verify the customer's credit standing. If the customer has outstanding bills, we want to reject the new order. · Verify inventory. We can't fulfill orders for items that are not in stock. · If the customer is in good standing and we have inventory we want to shop the goods and bill the customer.
+ï¿½ Verify the customer's credit standing. If the customer has outstanding bills, we want to reject the new order. ï¿½ Verify inventory. We can't fulfill orders for items that are not in stock. ï¿½ If the customer is in good standing and we have inventory we want to shop the goods and bill the customer.
 We can express this sequence of events using a UML activity diagram. Activity diagrams have relatively simple semantics and are a good tool to depict processes that include parallel activities. Subsequent activities are connected by simple arrows. Parallel activities are connected by a thick black bar representing fork and join actions. A fork action causes all connected activities to start simultaneously while the join action only continues after all incoming activities have been completed.
-The activity diagram executes the "Check Inventory" task and the "Verify Customer Standing" task in parallel. The join bar waits until both activities are completed before it allows the next activity to start. The next activity verifies the results of both steps ­ do we have inventory and is the customer in good standing? If both conditions are fulfilled, the process goes on to fulfill the order. Otherwise, we transition to an exception handling activity. For example, we may call the customer to remind them to pay the last invoice or send an e-mail letting him or her know that the order will be delayed. Because this book focuses on the design aspects of message-oriented integration rather than workflow modeling, we leave the details of the exception handling process aside for now. For a very good discussion of workflow architecture and workflow modeling we refer you to [Leyman] and [Sharp].
+The activity diagram executes the "Check Inventory" task and the "Verify Customer Standing" task in parallel. The join bar waits until both activities are completed before it allows the next activity to start. The next activity verifies the results of both steps ï¿½ do we have inventory and is the customer in good standing? If both conditions are fulfilled, the process goes on to fulfill the order. Otherwise, we transition to an exception handling activity. For example, we may call the customer to remind them to pay the last invoice or send an e-mail letting him or her know that the order will be delayed. Because this book focuses on the design aspects of message-oriented integration rather than workflow modeling, we leave the details of the exception handling process aside for now. For a very good discussion of workflow architecture and workflow modeling we refer you to [Leyman] and [Sharp].
 
 Activity Diagram for Order Processing
 It turns out that the activities map relatively nicely to the systems in WGRUS' IT department. The Accounting system verifies the customer's credit standing, the inventory systems check the inventory and the shipping system initiates the physical shipping of goods. The accounting system also acts as the billing system and sends invoices. The order processing function is a typical implementation of a distributed business process. To convert the logical activity diagram into an integration design, we use a Publish-Subscribe Channel to implement the fork action and an Aggregator to implement the join action. A Publish-Subscribe Channel sends a message to all active consumers while an Aggregator receives multiple incoming messages and combines them into a single outgoing message (see picture):
@@ -477,7 +483,7 @@ What happens if the order item starts neither with `W' nor with `G"? The Content
 So far, we have assumed that each order can only contain a single item. This would be pretty inconvenient for our customers because they would have to place a new order for each item. Also, we would end up shipping multiple orders to the same customer and incur unnecessary shipping costs. However, if we allow multiple items inside an order, which inventory system should verify the inventory for this order? We could use a Publish-Subscribe Channel to send the order to each inventory system to pick out the items that it can process. But what would then happen to invalid items? How would we notice that neither inventory system processed the item? We want to maintain the central control the Content-Based Router gives us, but we need to be able to route each order item individually. Therefore, we insert a Splitter, a component that breaks a single message into multiple individual messages. In our case, the Splitter splits a single Order message into multiple Order Item message. Each Order Item message can then be routed to the correct inventory system using a Content-Based Router (see below).
 Processing Order Items Individually
 Naturally, when the inventory for all items has been verified, we need to recombine the messages into a single message. We already learned that the component that can combine multiple messages into a single message is the Aggregator. Using both a Splitter and an Aggregator, we can logically separate the message flow for order items from that for orders. When designing an Aggregator, we have to make three key decisions:
-· Which messages belong together ("correlation")? · How do we determine that all messages are received (the "completeness condition")? · How do we combine the individual messages into one result message (the "aggregation
+ï¿½ Which messages belong together ("correlation")? ï¿½ How do we determine that all messages are received (the "completeness condition")? ï¿½ How do we combine the individual messages into one result message (the "aggregation
 algorithm")? We can't correlate order items by the customer ID because a customer may place multiple orders in short succession. Therefore, we need a unique order ID for each order. We accomplish this by
 
 inserting a Content Enricherinto the Taking Orders solution (see picture). A Content Enricheris a component that adds missing data items to an incoming message.
@@ -496,11 +502,11 @@ Tracking Messages with a Wire Tap
 Storing message data in a central database has another significant advantage. In the original design each message had to carry all relevant data in order to continue processing the message down the line. For example, the `Verify Customer Standing' may have to pass through all sorts of customer data even though it may only require the customer ID. This additional data is necessary so that the resulting message still contains all data from the original order message. Storing the New Order message in a Message Store has the advantage that all subsequent components can refer to the Message Store for important message data without all intermediate steps having to carry the data along (we will later to this function as Claim Check - messages can "check" data for later retrieval).
 Now the Message Store is responsible for maintaining data related to the new message as well as the progress of the message within the process. This data gives us enough information to use the Message Store to determine the next required steps in the process rather than connecting components with fixed Message Channels. For example, if the database contains reply messages from both the inventory systems and the billing system, we can conclude that the order has been validated and send a message to the Shipping and billing system. Instead of making this decision in a separate Aggregator component, we can do it right in the Message Store. Effectively, we are turning the Message Store into a Process Manager.
 A Process Manager is a central component that manages the flow of messages through the system. The Process Manager provides two main functions:
-· Storing data between messages · Keeping track of progress and determining the next step
+ï¿½ Storing data between messages ï¿½ Keeping track of progress and determining the next step
 
 Processing Orders With a Process Manager
 This architecture turns the individual systems (e.g. the inventory systems) into Shared Services that can be accessed by any process. This increases reuse and allows for rapid changes and maintenance. The services themselves can still be composed out of multiple steps, wired together via a message flow (for example, using a Composed Message Processor to check inventory status for each order item), or orchestrated via a Process Manager.
-The Process Manager itself uses a persistent store (typically files or a relational database) to store data associated with each process instance. In order to allow the Web Interface to query the status of an order we could send a message to the Process Manager or the order DB. However, checking status is a synchronous process ­ the customer expects the response right away. Because the Web Interface is a custom application, we decide to access the Order Database directly to query the order status. This form of Shared Database is the simplest and most efficient approach and we are always ensured that the Web Interface displays the most current status. The potential downside of this approach is the fact that the Web Interface is tightly coupled to the database, a trade-off that we are willing to take.
+The Process Manager itself uses a persistent store (typically files or a relational database) to store data associated with each process instance. In order to allow the Web Interface to query the status of an order we could send a message to the Process Manager or the order DB. However, checking status is a synchronous process ï¿½ the customer expects the response right away. Because the Web Interface is a custom application, we decide to access the Order Database directly to query the order status. This form of Shared Database is the simplest and most efficient approach and we are always ensured that the Web Interface displays the most current status. The potential downside of this approach is the fact that the Web Interface is tightly coupled to the database, a trade-off that we are willing to take.
 The new architecture exposes all services to a common services bus so that they can be invoked from any other component. If we add facilities to lookup ("discover") a service from a service registry, we can turn the WGRUS IT infrastructure into a Service-Oriented Architecture. In order to participate in a Service-Oriented Architecture, each service has to provide additional functions. For example, each service has to expose an interface contract that describes the functions provided by the service. Each request-reply service also needs to support the concept of a Return Address. A Return Address allows the caller (the "service consumer") to specify the channel where the service should send the reply message. This is important to allow the service to be reused in different contexts, each of which may require its own channel for reply messages.
 One difficulty in enabling these service functions is that many legacy systems were not build with features such as Return Address in mind. Therefore, we "wrap" access to the legacy system with a Smart Proxy. This Smart Proxy enhances the basic system service with additional capability
 
@@ -510,7 +516,7 @@ The Smart Proxy can store information from the request message (e.g. the Return 
 Change Address
 WGRUS needs to deal with a number of addresses. For example, the invoice has to be sent to the customer's billing address while the goods are shipped to the shipping address. We want to allow the customer to maintain all these addresses through the Web Interface to eliminate unnecessary manual steps.
 We can choose between two basic approaches to get the correct billing and shipping addresses to the billing and shipping systems:
-· Include address data with the New Order message · Replicate address data to other systems
+ï¿½ Include address data with the New Order message ï¿½ Replicate address data to other systems
 The first option has the advantage that we can use an existing integration channel to transport the additional information. A potential downside is the additional data flowing across the middleware infrastructure. We pass the address data along with every order even though the address may change much less frequently.
 Because the billing and shipping systems are packaged applications they were not designed with integration in mind. As such, they are unlikely to be able to accept addresses with a new order but rather use the address that is stored in their local database. In order to enable the systems to update the address with the New Order message we need to execute two functions in the billing system (and the shipping system): first, we need to update the address, and then we need to send the bill (or ship the goods). Because the order of the two messages matters we insert a simple Process Manager component that receives a New Order message (which includes the current
 
@@ -525,12 +531,12 @@ We also use Message Translators to translate the generic Address Change message 
 Propagating Address Changes via a Separate Publish-Subscribe Channel
 Both the shipping and the billing system store addresses in a relational database so that we use a database Channel Adapter to update the data in each system.
 How do we decide between the two options? In our situation the message traffic is not much of a concern because we only process a few hundred orders a day, so either solution would work well. The main decision driver is going to be the internal structure of the applications. We may not be able to insert the addresses directly into the database, but rather through the applications' business layer. In this case the applications may perform additional validation steps and record the address change activity. The system may even be programmed to e-mail a confirmation message to the customer every time the address changes. This would get very annoying if the update the address with every order. Such a condition would favor propagating address changes using dedicated messages that are sent only when the customer actually changes the address.
-In general we prefer well-defined, self-contained business actions such as "Change Address" and "Place Order" because they give us more flexibility in orchestrating the businesses processes. It all comes down to a question of granularity and the associated trade-offs. Fine-grained interfaces can lead to sluggish systems due to an excessive number of remote calls being made or messages being sent. For example, imagine an interface that exposes a separate method to change each address field. This approach would be efficient if the communication happens inside a single application ­ you only update those fields that changed. In an integration scenario sending six or seven messages to update an address would be a significant overhead plus we would have to deal with synchronizing the individual messages. Fine-grained interfaces also lead to tight coupling. If we change the address format, we have to define new message formats and change all other applications to send an additional message.
+In general we prefer well-defined, self-contained business actions such as "Change Address" and "Place Order" because they give us more flexibility in orchestrating the businesses processes. It all comes down to a question of granularity and the associated trade-offs. Fine-grained interfaces can lead to sluggish systems due to an excessive number of remote calls being made or messages being sent. For example, imagine an interface that exposes a separate method to change each address field. This approach would be efficient if the communication happens inside a single application ï¿½ you only update those fields that changed. In an integration scenario sending six or seven messages to update an address would be a significant overhead plus we would have to deal with synchronizing the individual messages. Fine-grained interfaces also lead to tight coupling. If we change the address format, we have to define new message formats and change all other applications to send an additional message.
 Coarse grained interfaces solve these issues. We send fewer messages and are therefore more efficient and less tightly coupled. However, interfaces that are too coarse can limit our flexibility.
 
 If Send Invoice and Change Address are combined into one external function, will we never need to change an address without sending a bill? So as always the best answer is the happy medium and depends on the specific trade-offs at work in the real-life scenario.
 New Catalog
-In order for customers to place orders they need to see the currently offered items and their prices on-line. WGRUS' catalog is driven by the offerings from the respective suppliers. However, one of the services that WGRUS provides to its customers is allowing them to view widgets and gadgets on the same site and to order both types of items in a single order. This function is an example of an Information Portal scenario ­ we combine information from multiple sources into a single view.
+In order for customers to place orders they need to see the currently offered items and their prices on-line. WGRUS' catalog is driven by the offerings from the respective suppliers. However, one of the services that WGRUS provides to its customers is allowing them to view widgets and gadgets on the same site and to order both types of items in a single order. This function is an example of an Information Portal scenario ï¿½ we combine information from multiple sources into a single view.
 It turns out that both suppliers update their product catalog once every 3 months. Therefore, it makes relatively little sense to create a real-time messaging infrastructure to propagate catalog changes from the suppliers to WGRUS. Instead, we use File Transfer integration to move catalog data from suppliers to WGRUS. The other advantage of using files is that they are easily and efficiently transported across public networks using FTP or similar protocols. In comparison, most asynchronous messaging infrastructures do not work well over the public Internet.
 We still can use Translators and Adapters to transform the data to our internal catalog format. However, these Translators process a whole catalog at once instead of one item at a time. This approach is much more efficient if we are dealing with large amounts of data in the same format.
 Updating Catalog Data via File Transfer
@@ -733,8 +739,8 @@ So messaging transmits discrete units of data, and does so by marshalling the da
 Package the information into a Message, a data record that the messaging system can transmit through a message channel.
 Thus any data that is to be transmitted via a messaging system must be converted into one or more messages that can be sent through messaging channels.
 A message consists of two basic parts:
-1. Header ­ Information used by the messaging system that describes the data being transmitted, its origin, its destination, and so on.
-2. Body ­ The data being transmitted; generally ignored by the messaging system and simply transmitted as-is.
+1. Header ï¿½ Information used by the messaging system that describes the data being transmitted, its origin, its destination, and so on.
+2. Body ï¿½ The data being transmitted; generally ignored by the messaging system and simply transmitted as-is.
 This concept is not unique to messaging. Both postal service mail and e-mail send data as discrete mail messages. An Ethernet network transmits data as packets, as does the IP part of TCP/IP such as the Internet. Streaming media on the Internet is actually a series of packets.
 To the messaging system, all messages are the same: Some body of data to be transmitted as described by the header. However, to the applications programmer, there are different types of messages, i.e., different application styles of use. Use a Command Message to invoke a procedure in another application. Use a Document Message to pass a set of data to another application. Use
 
@@ -742,11 +748,11 @@ an Event Message to notify another application of a change in this application. 
 If an application wishes to send more information than one message can hold, break the data into smaller parts and send the parts as a Message Sequence. If the data is only useful for a limited amount of time, specify this use-by time as a Message Expiration. Since all the various senders and receivers of messages must agree on the format of the data in the messages, specify the format as a Canonical Data Model.
 Example: JMS Message
 In JMS, a message is represented by the type Message, which has several subtypes. In each subtype, the header structure is the same; it's the body format that varies by type.
-· TextMessage ­ The most common type of message. The body is a String, such as a text file or an XML document. textMessage.getText() returns a String.
-· BytesMessage ­ The simplest, most universal type of message. The body is a byte array. bytesMessage.readBytes(byteArray) copies the contents into the specified byte array.
-· ObjectMessage ­ The body is a single Java object, specifically one that implements java.io.Serializable, which enables the object to be marshaled and unmarshaled. objectMessage.getObject() returns the Serializable.
-· StreamMessage ­ The body is a stream of Java primitives. The receiver uses methods like readBoolean(), readChar(), and readDouble() to read the data from the message.
-· MapMessage ­ The body acts like a java.util.Map, where the keys are Strings. The receiver uses methods like getBoolean("isEnabled") and getInt("numberOfItems") to read the data from the message.
+ï¿½ TextMessage ï¿½ The most common type of message. The body is a String, such as a text file or an XML document. textMessage.getText() returns a String.
+ï¿½ BytesMessage ï¿½ The simplest, most universal type of message. The body is a byte array. bytesMessage.readBytes(byteArray) copies the contents into the specified byte array.
+ï¿½ ObjectMessage ï¿½ The body is a single Java object, specifically one that implements java.io.Serializable, which enables the object to be marshaled and unmarshaled. objectMessage.getObject() returns the Serializable.
+ï¿½ StreamMessage ï¿½ The body is a stream of Java primitives. The receiver uses methods like readBoolean(), readChar(), and readDouble() to read the data from the message.
+ï¿½ MapMessage ï¿½ The body acts like a java.util.Map, where the keys are Strings. The receiver uses methods like getBoolean("isEnabled") and getInt("numberOfItems") to read the data from the message.
 Example: .NET Message
 In .NET, the Message class implements the message type. It has a property, Body, which contains the contents of the message as an Object; BodyStream stores the contents as a Stream. Another property, BodyType, is an int that specifies the type of data the body contains, such as a string, a date, a currency, or a number.
 Example: SOAP Message
@@ -1095,13 +1101,13 @@ A new feature in MSMQ 3.0 [MSMQ01] is a one-to-many messaging model, which has t
 
 1.
 
-Real-Time Messaging Multicast ­ This most closely matches publish-subscribe, but its implementation is
+Real-Time Messaging Multicast ï¿½ This most closely matches publish-subscribe, but its implementation is
 
 entirely dependent on IP multicasting via the Pragmatic General Multicast (PGM) protocol.
 
 2.
 
-Distribution Lists and Multiple-Element Format Names ­ A Distribution List enables the sender to
+Distribution Lists and Multiple-Element Format Names ï¿½ A Distribution List enables the sender to
 
 explicitly send a message to a list of receivers (but this violates the spirit of the Observer pattern). A
 
@@ -1238,9 +1244,9 @@ In the case of custom applications, we could add code inside the application to 
 approach requires developers who are skilled with both the application logic and the messaging API. If we deal with a packaged application that we purchased from a third-party software vendor, we may not even have the option of changing the application code. Use a Channel Adapter that can access the application's API or data and publish messages on a channel based on this data, and that likewise can receive messages and invoke functionality inside the application.
 The adapter acts as a messaging client to the messaging system and invokes applications functions via an application-supplied interface. This way, any application can connect to the messaging system and be integrated with other applications as long as it has a proper Channel Adapter. The Channel Adapter can connect to different layers of the application's architecture, depending on that architecture and the data the messaging system needs to access.
 A Channel Adapter Connecting to Different Layers of an Application
-· User Interface Adapter. Sometimes disparagingly called "screen scraping," these types of adapters can be very effective in many situations. For example, an application may be implemented on a platform that is not supported by the messaging system. Or, the owner of the application may have little interest in supporting the integration. This eliminates the option of running the Channel Adapter on the application platform. However, the user interface is usually available from other machines and platforms (e.g. 3270 terminals). Also, the surge of Web-based thin-client architectures has caused a certain revival of user interface integration. HTML-based user interfaces make it very easy to make an HTTP request and parse out the results. Another advantage of user-interface integration is that no direct access to the application internals is needed. In some
+ï¿½ User Interface Adapter. Sometimes disparagingly called "screen scraping," these types of adapters can be very effective in many situations. For example, an application may be implemented on a platform that is not supported by the messaging system. Or, the owner of the application may have little interest in supporting the integration. This eliminates the option of running the Channel Adapter on the application platform. However, the user interface is usually available from other machines and platforms (e.g. 3270 terminals). Also, the surge of Web-based thin-client architectures has caused a certain revival of user interface integration. HTML-based user interfaces make it very easy to make an HTTP request and parse out the results. Another advantage of user-interface integration is that no direct access to the application internals is needed. In some
 
-cases, it may not be desirable or possible to expose internal functions of a system to the integration solution. Using a user-interface adapter, other applications have the exact same access to the application as a regular user. The downside of user interface adapters is the potential brittleness and low speed of the solution. The application has to parse "user" input and render a screen in response, just so that the Channel Adapter can parse the screen back into raw data. This process involves many unnecessary steps and can be slow. Also, user interfaces tend to change more frequently than the core application logic. Every time the user interface changes, the Channel Adapter is likely to have to be changed as well. · Business Logic Adapter. Most business applications expose their core functions as an API. This interface may be a set of component (e.g. EJB's, COM objects, CORBA components) or a direct programming API (e.g., a C++, C#, or Java library). Since the software vendor (or developer) exposes these API's expressly for access by other applications, they tend to be more stable than the user interface. In most cases, accessing the API is also more efficient. In general, if the application exposes a well-defined API, this type of Channel Adapter is likely to be the best approach. · Database Adapter. Most business applications persist their data inside a relational database. Since the information is already in the database, Channel Adapter can extract information directly from the database without the application ever noticing, which is very non-intrusive. The Channel Adapter can even add a trigger to the relevant tables and send messages every time the data in these tables changes. This type of Channel Adapter can also be very efficient and is quite universal, aided by the fact that only two or three database vendors dominate the market for relational databases. This allows us to connect to many applications with a relatively generic adapter. The downside of a database adapter is that we are poking around deep in the internals of an application. This may not be as risky if we simply read data, but making updates directly to the database can be very dangerous. Also, many application vendors consider the database schema "unpublished," meaning that they reserve the right to change it at will, which can make a database adapter solution brittle.
+cases, it may not be desirable or possible to expose internal functions of a system to the integration solution. Using a user-interface adapter, other applications have the exact same access to the application as a regular user. The downside of user interface adapters is the potential brittleness and low speed of the solution. The application has to parse "user" input and render a screen in response, just so that the Channel Adapter can parse the screen back into raw data. This process involves many unnecessary steps and can be slow. Also, user interfaces tend to change more frequently than the core application logic. Every time the user interface changes, the Channel Adapter is likely to have to be changed as well. ï¿½ Business Logic Adapter. Most business applications expose their core functions as an API. This interface may be a set of component (e.g. EJB's, COM objects, CORBA components) or a direct programming API (e.g., a C++, C#, or Java library). Since the software vendor (or developer) exposes these API's expressly for access by other applications, they tend to be more stable than the user interface. In most cases, accessing the API is also more efficient. In general, if the application exposes a well-defined API, this type of Channel Adapter is likely to be the best approach. ï¿½ Database Adapter. Most business applications persist their data inside a relational database. Since the information is already in the database, Channel Adapter can extract information directly from the database without the application ever noticing, which is very non-intrusive. The Channel Adapter can even add a trigger to the relevant tables and send messages every time the data in these tables changes. This type of Channel Adapter can also be very efficient and is quite universal, aided by the fact that only two or three database vendors dominate the market for relational databases. This allows us to connect to many applications with a relatively generic adapter. The downside of a database adapter is that we are poking around deep in the internals of an application. This may not be as risky if we simply read data, but making updates directly to the database can be very dangerous. Also, many application vendors consider the database schema "unpublished," meaning that they reserve the right to change it at will, which can make a database adapter solution brittle.
 An important limitation of Channel Adapters is that they can convert messages into application functions, but require message formatting that closely resembles the implementation of the components being adapted. For example, a database adapter typically requires the message field names of incoming messages to be the same as the names of tables and fields in the application database. This kind of message format is driven entirely by the internal structure of the application and is not a good message format to use when integration with other applications. Therefore, most Channel Adapters require the combination with a Message Translator to convert the application-specific message into a message format that complies with the Canonical Data Model.
 Channel Adapters can often times run on a different computer than the application or the database itself. The Channel Adapter can the connect to the application logic or the database via protocols such as HTTP or ODBC. While this setup allows us to avoid installing additional software on the application or database serer, these protocols do not provide the same quality-of-service that a messaging channel provides, such as guaranteed delivery.
 Some Channel Adapters may be unidirectional. For example, if a Channel Adapter connects to an application via HTTP, it may only be able to consume messages and invoke functions on the application, but it may not be able to detect changes in the application data.
@@ -1295,10 +1301,10 @@ Even if all of these applications could be made to work together, any change to 
 What is needed is an integration architecture that enables the product applications to coordinate in a loosely coupled way, and for user applications to be able to integrate with them.
 Structure the connecting middleware between these applications as a Message Bus that enables them to work together using messaging.
 A Message Bus is a combination of a common data model, a common command set, and a messaging infrastructure to allow different systems to communicate through a shared set of interfaces. This is analogous to a communications bus in a computer system, which serves as the focal point for communication between the CPU, main memory, and peripherals. Just as in the hardware analogy, there are a number of pieces that come together to form the message bus:
-· Common communication infrastructure -- Just as the physical pins and wires of a PCI bus provide a common, well-known physical infrastructure for a PC, a common infrastructure must serve the same purpose in a message bus. Typically, a messaging system is chosen to serve as the physical communications infrastructure, providing a cross-platform, cross-language universal adapter between the applications. The infrastructure may include Message Router capabilities to facilitate the correct routing of messages from system to system. Another common option is to use Publish-Subscribe Channels to facilitate sending messages to all receivers.
+ï¿½ Common communication infrastructure -- Just as the physical pins and wires of a PCI bus provide a common, well-known physical infrastructure for a PC, a common infrastructure must serve the same purpose in a message bus. Typically, a messaging system is chosen to serve as the physical communications infrastructure, providing a cross-platform, cross-language universal adapter between the applications. The infrastructure may include Message Router capabilities to facilitate the correct routing of messages from system to system. Another common option is to use Publish-Subscribe Channels to facilitate sending messages to all receivers.
 
-· Adapters -- The different systems must find a way to interface with the message bus. Most commonly, this is done with commercial or custom Channel Adapters and Service Activators that can handle things like invoking CICS transactions with the proper parameters, or representing the general data structures flowing on the bus in the specific and particular way they should be represented inside each system. This also requires a Canonical Data Model that all systems can agree on.
-· Common Command Structure -- Just like PC architectures have a common set of commands to represent the different operations possible on the physical bus (read bytes from an address, write bytes to an address), there needs to be common commands that are understood by all the participants in the Message Bus. Command Message illustrates how this feature works. Another common implementation for this is the Datatype Channel, where a Message Router makes an explicit decision as to how to route particular messages (like Purchase Orders) to particular endpoints. It is at the end that the analogy breaks down, since the level of the messages carried on the bus are much more fine-grained than the "read/write" kinds of messages carried on a physical bus.
+ï¿½ Adapters -- The different systems must find a way to interface with the message bus. Most commonly, this is done with commercial or custom Channel Adapters and Service Activators that can handle things like invoking CICS transactions with the proper parameters, or representing the general data structures flowing on the bus in the specific and particular way they should be represented inside each system. This also requires a Canonical Data Model that all systems can agree on.
+ï¿½ Common Command Structure -- Just like PC architectures have a common set of commands to represent the different operations possible on the physical bus (read bytes from an address, write bytes to an address), there needs to be common commands that are understood by all the participants in the Message Bus. Command Message illustrates how this feature works. Another common implementation for this is the Datatype Channel, where a Message Router makes an explicit decision as to how to route particular messages (like Purchase Orders) to particular endpoints. It is at the end that the analogy breaks down, since the level of the messages carried on the bus are much more fine-grained than the "read/write" kinds of messages carried on a physical bus.
 In our EAI example, a Message Bus could serve as a universal connector between the various insurance systems, and as a universal interface for client applications that wish to connect to the insurance systems.
 Insurance Company Message Bus
 Here we have a two GUI's that only know about the Message Bus--they are entirely unaware of the complexities of idiosyncrasies of the underlying systems. The bus is responsible for routing Command Messages to the proper underlying systems. In some cases, the best way to handle the command messages is to build an adapter to the system that interprets the command and then communicates with the system in a way it understands (invoking a CICS transaction, for instance, or calling a C++ API). In other cases, it may be possible to build the command-processing logic directly into the existing system as an additional way to invoke current logic.
@@ -1421,9 +1427,9 @@ When a subject has an event to announce, it will create an event object, wrap it
 
 Our B2B example could use Event Messages, Document Messages, or a combination of the two. If a message says that the price for computer disk drives has changed, that's an event. If the message provided information about the disk drive, including its new price, that's a document being sent as an event. Another message that announces the new catalog and its URL is an event, whereas a similar message that actually contains the new catalog is an event that contains a document.
 Which is better? The Observer pattern describes this as a trade-off between a push model and a pull model. The push model sends information about the change as part of the update, whereas the pull model sends minimal information and observers that want more information request it by sending GetState() to the subject. The two models relate to messaging like this:
-Push model ­ The message is a combined document/event message; the message's delivery announces that the state has occurred and the message's contents are the new state. This is more efficient if all observers want these details, but otherwise can be the worst of both worlds: A large message that is sent frequently and often ignored by many observers.
-Pull model ­ There are three messages:
-· Update ­ An Event Message that notifies the observer of the event. · State Request ­ A Command Message an interested observer uses to request details from the subject. · State Reply ­ A Document Message the subject uses to send the details to the observer.
+Push model ï¿½ The message is a combined document/event message; the message's delivery announces that the state has occurred and the message's contents are the new state. This is more efficient if all observers want these details, but otherwise can be the worst of both worlds: A large message that is sent frequently and often ignored by many observers.
+Pull model ï¿½ There are three messages:
+ï¿½ Update ï¿½ An Event Message that notifies the observer of the event. ï¿½ State Request ï¿½ A Command Message an interested observer uses to request details from the subject. ï¿½ State Reply ï¿½ A Document Message the subject uses to send the details to the observer.
 The advantage of the pull model is that the update messages are small, only interested observers request details, and potentially each interested observer can request the details it specifically is interested in. The disadvantage is the channels needed and traffic caused by three messages instead of one.
 For more details on how to implement Observer using messaging, see JMS Publish/Subscribe Example.
 There is usually no reason to limit an event message to a single receiver via a Point-to-Point Channel; the message is usually broadcast via a Publish-Subscribe Channel so that all interested processes receive notification. Whereas a Document Message needs to be consumed so that the document is not lost, a receiver of Event Messages can often ignore the messages when it's too busy to process them, so the subscribers can often be non-durable (not Durable Subscribers). Event Message is a key part of implementing the Observer pattern using messaging.
@@ -1444,29 +1450,29 @@ Request-Reply has two participants:
 
 1.
 
-Requestor ­ Sends a request message and waits for a reply message.
+Requestor ï¿½ Sends a request message and waits for a reply message.
 
 2.
 
-Replier ­ Receives the request message and responds with a reply message.
+Replier ï¿½ Receives the request message and responds with a reply message.
 
-The request channel can be a Point-to-Point Channel or a Publish-Subscribe Channel. The difference is whether the request should be broadcast to all interested parties or should only be processed by a single consumer. The reply channel, on the other hand, is almost always point-to-point, because it usually makes no sense to broadcast replies­they should only be returned to the requestor.
+The request channel can be a Point-to-Point Channel or a Publish-Subscribe Channel. The difference is whether the request should be broadcast to all interested parties or should only be processed by a single consumer. The reply channel, on the other hand, is almost always point-to-point, because it usually makes no sense to broadcast repliesï¿½they should only be returned to the requestor.
 
 When a caller performs a Remote Procedure Invocation, the caller's thread must block while it waits for the response. With Request-Reply, the requestor has two approaches for receiving the reply:
-1. Synchronous Block ­ A single thread in the caller sends the request message, blocks (as a Polling Consumer) to wait for the reply message, then processes the reply. This is simple to implement, but if the requestor crashes, it will have difficulty re-establishing the blocked thread. The request thread awaiting the response implies that there is only one outstanding request, or that the reply channel for this request is private for this thread.
-2. Asynchronous Callback ­ One thread in the caller sends the request message and sets up a callback for the reply. A separate thread listens for reply messages. When a reply message arrives, the reply thread invokes the appropriate callback, which re-establishes the caller's context and processes the reply. This approach enables multiple outstanding requests to share a single reply channel, and a single reply thread to process replies for multiple request threads. If the requestor crashes, it can recover by simply restarting the reply thread. An added complexity, however, is the callback mechanism that must re-establish the caller's context.
+1. Synchronous Block ï¿½ A single thread in the caller sends the request message, blocks (as a Polling Consumer) to wait for the reply message, then processes the reply. This is simple to implement, but if the requestor crashes, it will have difficulty re-establishing the blocked thread. The request thread awaiting the response implies that there is only one outstanding request, or that the reply channel for this request is private for this thread.
+2. Asynchronous Callback ï¿½ One thread in the caller sends the request message and sets up a callback for the reply. A separate thread listens for reply messages. When a reply message arrives, the reply thread invokes the appropriate callback, which re-establishes the caller's context and processes the reply. This approach enables multiple outstanding requests to share a single reply channel, and a single reply thread to process replies for multiple request threads. If the requestor crashes, it can recover by simply restarting the reply thread. An added complexity, however, is the callback mechanism that must re-establish the caller's context.
 By itself, two applications sending requests and replies to each other are not very helpful. What is interesting is what the two messages represent.
-1. Messaging RPC ­ This is how to implement Remote Procedure Invocation using messaging. The request is a Command Message that describes the function the replier should invoke. The reply is a Document Message that contains the function's return value or exception.
-2. Messaging Query ­ This is how to perform a remote query using messaging. The request is a Command Message containing the query, and the reply is the results of the query, perhaps a Message Sequence.
-3. Notify/Acknowledge ­ This provides for event notfication with acknowledgement using messaging. The request is an Event Message that provides notification and the reply is a Document Message acknowledging the notification. The acknowledgement may itself be another request, one seeking details about the event.
+1. Messaging RPC ï¿½ This is how to implement Remote Procedure Invocation using messaging. The request is a Command Message that describes the function the replier should invoke. The reply is a Document Message that contains the function's return value or exception.
+2. Messaging Query ï¿½ This is how to perform a remote query using messaging. The request is a Command Message containing the query, and the reply is the results of the query, perhaps a Message Sequence.
+3. Notify/Acknowledge ï¿½ This provides for event notfication with acknowledgement using messaging. The request is an Event Message that provides notification and the reply is a Document Message acknowledging the notification. The acknowledgement may itself be another request, one seeking details about the event.
 The request is like a method call. As such, the reply is one of three possibilities:
-1. Void ­ Simply notifies the caller that the method has finished so that the caller can proceed. 2. Result value ­ A single object that is the method's return value. 3. Exception ­ A single exception object indicating that the method aborted before completing
+1. Void ï¿½ Simply notifies the caller that the method has finished so that the caller can proceed. 2. Result value ï¿½ A single object that is the method's return value. 3. Exception ï¿½ A single exception object indicating that the method aborted before completing
 successfully, and indicating why.
 The request should contain a Return Address to tell the replier where to send the reply. The reply should contain a Correlation Identifier that specifies which request this reply is for.
 Example: SOAP 1.1 Messages
 SOAP messages come in Request-Reply pairs. A SOAP request message indicates a service the sender wishes to invoke on the receiver, whereas a SOAP response message contains the result of
 
-the service invocation. The response message either contains a result value or a fault­the SOAP equivalent of an exception. [SOAP 1.1]
+the service invocation. The response message either contains a result value or a faultï¿½the SOAP equivalent of an exception. [SOAP 1.1]
 Example: SOAP 1.2 Response Message Exchange Pattern
 Whereas SOAP 1.1 has response messages and they are loosely described, SOAP 1.2 introduces an explicit Request-Response Message Exchange Pattern. [SOAP 1.2 Part 2] This patterns describes a separate, potentially asynchronous response to a SOAP request.
 Example: JMS Requestor Objects
@@ -1476,7 +1482,7 @@ How are MessageProducers going to know about this newly created, private queue? 
 The downside with temporary queues is that when their Connection closes, the queue and any messages in it are deleted. Likewise, temporary queues cannot provide Guaranteed Delivery; if the messaging system crashes, then the connection is lost, so the queue and its messages are lost.
 JMS also provides QueueRequestor, a simple class for sending requests and receiving replies. A requestor contains a QueueSender for sending requests and a QueueReceiver for receiving replies. Each requestor creates its own temporary queue for receiving replies and specifies that in the request's reply-to property. [JMS11, p.78] A requestor makes sending a request and receiving a reply very simple:
 QueueConnection connection = // obtain the connection Queue requestQueue = // obtain the queue Message request = // create the request message QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE); QueueRequestor requestor = new QueueRequestor(session, requestQueue ); Message reply = requestor.request(request);
-One method­request­sends the request message and blocks until it receives the reply message.
+One methodï¿½requestï¿½sends the request message and blocks until it receives the reply message.
 
 TemporaryQueue, used by QueueRequestor, is a Point-to-Point Channel. Its Publish-Subscribe Channel equivalents are TemporaryTopic and TopicRequestor. Related patterns: Command Message, Correlation Identifier, Document Message, Remote Procedure Invocation, Event Message, Guaranteed Delivery, Message, Message Channel, Message Sequence, Messaging, Point-to-Point Channel, Polling Consumer, Publish-Subscribe Channel, Return Address
 Return Address
@@ -1559,15 +1565,15 @@ The three Message Sequence identification fields are:
 
 1.
 
-Sequence identifier ­ Distinguishes this cluster of messages from others.
+Sequence identifier ï¿½ Distinguishes this cluster of messages from others.
 
 2.
 
-Position identifier ­ Uniquely identifies and sequentially orders each message in a sequence.
+Position identifier ï¿½ Uniquely identifies and sequentially orders each message in a sequence.
 
 3.
 
-Size or End indicator ­ Specifies the number of messages in the cluster, or marks the last message in the
+Size or End indicator ï¿½ Specifies the number of messages in the cluster, or marks the last message in the
 
 cluster (whose position identifier then specifies the size of the cluster).
 
@@ -1658,9 +1664,9 @@ Design a data format that includes a Format Indicator, so that the message speci
 The format indicator enables the sender to tell the receiver the format of the message. This way, a receiver expecting several possible formats knows which one a message is using and therefore how to interpret the message's contents.
 There are three main alternatives for implementing a format indicator:
 
-1. Version Number ­ A number or string that that uniquely identifies the format. Both the sender and receiver must agree on which format is designated by a particular indicator.
-2. Foreign Key ­ A unique ID--such as a filename, a database row key, a home primary key, or an Internet URL--that specifies a format document. The sender and receiver must agree on the mapping of keys to documents, and the format of the schema document.
-3. Format Document ­ A schema that describes the data format. The schema document does not have to be retrieved via a foreign key or inferred from a version number, it is embedded in the message. The sender and the receiver must agree on the format of the schema.
+1. Version Number ï¿½ A number or string that that uniquely identifies the format. Both the sender and receiver must agree on which format is designated by a particular indicator.
+2. Foreign Key ï¿½ A unique ID--such as a filename, a database row key, a home primary key, or an Internet URL--that specifies a format document. The sender and receiver must agree on the mapping of keys to documents, and the format of the schema document.
+3. Format Document ï¿½ A schema that describes the data format. The schema document does not have to be retrieved via a foreign key or inferred from a version number, it is embedded in the message. The sender and the receiver must agree on the format of the schema.
 A version number or foreign key can be stored in a header field that the senders and receivers agree upon. Receivers that are not interested in the format version can ignore the field. A format document may be too long or complex to store in a header field, in which case the message body will need to have a format that contains two parts, the schema and the data.
 Example: XML
 XML documents have examples of all three approaches. One example is an XML declaration, like this:
@@ -1683,13 +1689,13 @@ So how do all of these patterns fit together? How does a developer integrate app
 
 This is the chapter where we really get to see the code. We have two examples:
 
-·
+ï¿½
 
 Request/Reply -- Demonstrates (in Java and .NET/C#) how to use messaging to send a request message and
 
 respond with a reply message.
 
-·
+ï¿½
 
 Publish/Subscribe -- Explores how to use a JMS Topic to implement the Observer pattern.
 
@@ -1698,16 +1704,16 @@ These two simple examples should get you started on how add messaging to your ow
 Request/Reply Example
 
 This is a simple but powerful example, transmitting a request and transmitting back a reply. It consists of two main classes:
-· Requestor -- The object that sends the request message and expects to receive the reply message. · Replier -- The object that receives the request message and sends a reply message in response.
+ï¿½ Requestor -- The object that sends the request message and expects to receive the reply message. ï¿½ Replier -- The object that receives the request message and sends a reply message in response.
 These two simple classes sending simple messages illustrate a number of the patterns:
-· Message Channel and Point-to-Point Channel -- One channel for transmitting the requests, another for transmitting the replies.
-· Document Message -- The default type of message, used as both the request and the reply. · Request-Reply -- A pair of messages sent over a pair of channels, allowing the two applications to
-have a two-way conversation. · Return Address -- The channel to send the response on. · Correlation Identifier -- The ID of the request that caused this response. · Datatype Channel -- All of the messages on each channel should be of the same type. · Invalid Message Channel -- What happens to messages that aren't of the right type.
+ï¿½ Message Channel and Point-to-Point Channel -- One channel for transmitting the requests, another for transmitting the replies.
+ï¿½ Document Message -- The default type of message, used as both the request and the reply. ï¿½ Request-Reply -- A pair of messages sent over a pair of channels, allowing the two applications to
+have a two-way conversation. ï¿½ Return Address -- The channel to send the response on. ï¿½ Correlation Identifier -- The ID of the request that caused this response. ï¿½ Datatype Channel -- All of the messages on each channel should be of the same type. ï¿½ Invalid Message Channel -- What happens to messages that aren't of the right type.
 
 The example code also demostrates a couple of patterns from the Messaging Endpoints chapter later in the book:
-· Polling Consumer -- How the requestor consumes reply messages. · Event-Driven Consumer -- How the replier consumes request messages.
+ï¿½ Polling Consumer -- How the requestor consumes reply messages. ï¿½ Event-Driven Consumer -- How the replier consumes request messages.
 While this book is technology-, product-, and language-neutral, code cannot be. So we've choosen two messaging programming platforms to implement this example:
-· The JMS API in Java J2EE · The MSMQ API in Microsoft .NET using C#
+ï¿½ The JMS API in Java J2EE ï¿½ The MSMQ API in Microsoft .NET using C#
 The same request/reply example is implemented in both platforms. So choose your favorite platform as an example of how messaging works. If you'd like to see how messaging works on the other platform, even if you don't know how to write code for that platform, you should be able to figure out how that code works by comparing it to the code in the language you already know.
 
 Publish/Subscribe Example
@@ -1716,33 +1722,33 @@ This example explores how to implement the Observer pattern using a Publish-Subs
 
 The discussion and sample code will illustrate several patterns:
 
-·
+ï¿½
 
 Publish-Subscribe Channel -- The channel that provides publish/subscribe notification.
 
-·
+ï¿½
 
 Event Message -- The message type used to send notifications.
 
-·
+ï¿½
 
 Request-Reply -- The technique used as part of the pull model for an observer to request state from the
 
 subject.
 
-·
+ï¿½
 
 Command Message -- The message type used by an observer to request state from the subject.
 
-·
+ï¿½
 
 Document Message -- The message type used by a subject to send its state to an observer.
 
-·
+ï¿½
 
 Return Address -- Tells the subject how to send the state to the observer.
 
-·
+ï¿½
 
 Datatype Channel -- The main guideline for whether two unrelated subjects can use the same channel to
 
@@ -1750,10 +1756,10 @@ update the same group of observers.
 
 The example code also demostrates a couple of patterns from the Messaging Endpoints chapter later in the book:
 
-· Messaging Gateway -- How the subject and observer encapsulate the messaging code so that they are not messaging-specific.
-· Event-Driven Consumer -- How the observers consume notification messages.
+ï¿½ Messaging Gateway -- How the subject and observer encapsulate the messaging code so that they are not messaging-specific.
+ï¿½ Event-Driven Consumer -- How the observers consume notification messages.
 
-· Durable Subscriber -- An observer that does not want to miss notifications, even if the observer is temporarily disconnected when the notification is sent.
+ï¿½ Durable Subscriber -- An observer that does not want to miss notifications, even if the observer is temporarily disconnected when the notification is sent.
 This example is implemented in Java using JMS because JMS supports Publish-Subscribe Channel as an explicit feature of the API through its Topic interface. .NET does not provide a similar level of support for using the publish/subscribe semantics in MSMQ; when it does, the techniques in the JMS example should be readily applicable to .NET programs as well.
 JMS Request/Reply Example
 This is a simple example of how to use messaging, implemented in JMS [JMS]. It shows how to implement Request-Reply, where a requestor application sends a request, a replier application receives the request and returns a reply, and the requestor receives the reply. It also shows how an invalid message will be rerouted to a special channel.
@@ -1997,21 +2003,21 @@ System.out.println("\tReply to: " + msg.getJMSReplyTo());
 An application that wants to send requests and recieve replies could use a requestor to do so. The application provides its requestor a Connection to the messaging system. It also specifies the JNDI names of three queues: the request queue, the reply queue, and the invalid message queue. This is the information the requestor needs to initialize itself.
 
 In initialize, the requestor uses the Connection and queue names to connect to the messaging system.
-· It uses the Connection to create a Session. An application only needs one connection to a messaging system, but each component in the application that wishes to be able to send and receive messages independently needs its own session. Two threads cannot share a single session; they should each use a different session so that the sessions will work properly.
-· It uses the queue names to look up the queues, which are Destinations. The names are JNDI identifiers; JndiUtil performs the JNDI lookups.
-· It creates a MessageProducer for sending messages on the request queue, a MessageConsumer for receiving messages from the reply queue, and another producer for moving messages to the invalid message queue.
+ï¿½ It uses the Connection to create a Session. An application only needs one connection to a messaging system, but each component in the application that wishes to be able to send and receive messages independently needs its own session. Two threads cannot share a single session; they should each use a different session so that the sessions will work properly.
+ï¿½ It uses the queue names to look up the queues, which are Destinations. The names are JNDI identifiers; JndiUtil performs the JNDI lookups.
+ï¿½ It creates a MessageProducer for sending messages on the request queue, a MessageConsumer for receiving messages from the reply queue, and another producer for moving messages to the invalid message queue.
 
 One thing that the requestor needs to be able to do is send request messages. For that, it implements the send() method.
-· It creates a TextMessage and sets its contents to "Hello world." · It sets the message's reply-to property to be the reply queue. This is a Return Address that
-will tell the replier how to send back the reply. · It uses the requestProducer to send the message. The producer is connected to the request
-queue, so that's the queue the message is sent on. · It then prints out the details of the message it just sent. This is done after the message is
+ï¿½ It creates a TextMessage and sets its contents to "Hello world." ï¿½ It sets the message's reply-to property to be the reply queue. This is a Return Address that
+will tell the replier how to send back the reply. ï¿½ It uses the requestProducer to send the message. The producer is connected to the request
+queue, so that's the queue the message is sent on. ï¿½ It then prints out the details of the message it just sent. This is done after the message is
 sent because the message ID is set by the messaging system and is not set until the message is actually sent.
 
 The other thing the requestor needs to be able to do is receive reply messages. It implements the receiveSync() method for this purpose.
 
-· It uses its replyConsumer to receive the reply. The consumer is connected to the reply queue, so it will receive messages from there. It uses the receive() method to get the message, which synchronously blocks until a message is delivered to the queue and is read from the queue, so the requestor is a Polling Consumer. Because this receive is synchronous, the requestor's method is called receiveSync().
-· The message should be a TextMessage. If so, the requestor gets the message's contents and prints out the message's details.
-· If the message is not a TextMessage, then the message cannot be processed. Rather than just discarding the message, the requestor resends it to the invalid message queue. Resending the message will change its message ID, so before resending it, the requestor stores its original message ID in its correlation ID (see Correlation Identifier).
+ï¿½ It uses its replyConsumer to receive the reply. The consumer is connected to the reply queue, so it will receive messages from there. It uses the receive() method to get the message, which synchronously blocks until a message is delivered to the queue and is read from the queue, so the requestor is a Polling Consumer. Because this receive is synchronous, the requestor's method is called receiveSync().
+ï¿½ The message should be a TextMessage. If so, the requestor gets the message's contents and prints out the message's details.
+ï¿½ If the message is not a TextMessage, then the message cannot be processed. Rather than just discarding the message, the requestor resends it to the invalid message queue. Resending the message will change its message ID, so before resending it, the requestor stores its original message ID in its correlation ID (see Correlation Identifier).
 In this way, a requestor does everything necessary to send a request, receive a reply, and route the reply to a special queue if the message does not make any sense.
 Next, let's take a look at how the Replier is implemented:
 import javax.jms.Connection; import javax.jms.Destination; import javax.jms.JMSException; import javax.jms.Message; import javax.jms.MessageConsumer; import javax.jms.MessageListener; import javax.jms.MessageProducer; import javax.jms.Session; import javax.jms.TextMessage; import javax.naming.NamingException;
@@ -2149,14 +2155,14 @@ System.out.println("\tReply to: " + message.getJMSReplyTo());
 e.printStackTrace(); } } }
 Replier is what an application might use to receive a request and send a reply. The application provides its requestor a Connection to the messaging system, as well as the JNDI names of the request and invalid message queues. (It does not need to specify the name of the reply queue because, as we'll see, that will be provided by the message's Return Address.) This is the information the requestor needs to initialize itself.
 The replier's initialize code is pretty similar to the requestor's, but there are a couple of differences:
-· One difference is that the replier does not look up the reply queue and create a producer for it. This is because the replier does not assume it will always send replies on that queue; rather, as we'll see it will let the request message tell it what queue to send the reply message on.
-· Another difference is that replier is an Event-Driven Consumer, so it implements MessageListener. When a message is delivered to the request queue, the messaging system will automatically call the replier's onMessage method.
+ï¿½ One difference is that the replier does not look up the reply queue and create a producer for it. This is because the replier does not assume it will always send replies on that queue; rather, as we'll see it will let the request message tell it what queue to send the reply message on.
+ï¿½ Another difference is that replier is an Event-Driven Consumer, so it implements MessageListener. When a message is delivered to the request queue, the messaging system will automatically call the replier's onMessage method.
 Once the replier has initialized itself to be a listener on the request queue, there's not much for it to do but wait for messages. Unlike the requestor, which has to explicitedly poll the reply queue for messages, the replier is event-driven and so does nothing until the messaging system calls its onMessage method with a new message. The message will be from the request queue because initialize created the consumer on the request queue. Once onMessage receives a new message, it processes the message like this:
-· Like with the requestor processing a reply message, the request message is supposed to be a TextMessage. It is also supposed to specify the queue to send the reply on. If the message does not meet these requirements, the replier will move the message to the invalid message queue (same as the requestor).
-· If the message meets the requirements: Here is where the replier implements its part of the Return Address pattern. Remember that the requestor set the request message's reply-to property to specify the reply queue. The replier now gets that property's value and uses it to create a MessageProducer on the proper queue. The important part here is that the replier is not hard-coded to use a particular reply queue; it uses whatever reply queue each particular request message specifies.
+ï¿½ Like with the requestor processing a reply message, the request message is supposed to be a TextMessage. It is also supposed to specify the queue to send the reply on. If the message does not meet these requirements, the replier will move the message to the invalid message queue (same as the requestor).
+ï¿½ If the message meets the requirements: Here is where the replier implements its part of the Return Address pattern. Remember that the requestor set the request message's reply-to property to specify the reply queue. The replier now gets that property's value and uses it to create a MessageProducer on the proper queue. The important part here is that the replier is not hard-coded to use a particular reply queue; it uses whatever reply queue each particular request message specifies.
 
-· The replier then creates the reply message. In doing so, it implements the Correlation Identifier pattern by setting the relpy message's correlation-id property to the same value as the request message's message-id property.
-· The replier then sends out the reply message and displays its details.
+ï¿½ The replier then creates the reply message. In doing so, it implements the Correlation Identifier pattern by setting the relpy message's correlation-id property to the same value as the request message's message-id property.
+ï¿½ The replier then sends out the reply message and displays its details.
 Thus a replier does everything necessary to receive a message (presumably a request) and send a reply.
 
 Invalid Message Example
@@ -2392,16 +2398,16 @@ replyMessage.Body.ToString());
 
 An application that wants to send requests and recieve replies could use a requestor to do so. The application specifies the pathnames of two queues: the request queue and the reply queue. This is the information the requestor needs to initialize itself.
 In the Requestor constructor, the requestor uses the queue names to connect to the messaging system.
-· It uses the queue names to look up the queues, which are MessageQueues. The names are pathnames to MSMQ resources.
-· It sets the reply queue's property filter so that when a message is read from the queue, all of the message's properties will be read as well. It also sets the queue's formatter to be an XmlMessageFormatter so that the message contents will be interpreted as strings.
+ï¿½ It uses the queue names to look up the queues, which are MessageQueues. The names are pathnames to MSMQ resources.
+ï¿½ It sets the reply queue's property filter so that when a message is read from the queue, all of the message's properties will be read as well. It also sets the queue's formatter to be an XmlMessageFormatter so that the message contents will be interpreted as strings.
 One thing that the requestor needs to be able to do is send request messages. For that, it implements the Send() method.
-· It creates a Message and sets its contents to "Hello world." · It sets the message's ResponseQueue property to be the reply queue. This is a Return
-Address that will tell the replier how to send back the reply. · It then sends the message to the queue. · It then prints out the details of the message it just sent. This is done after the message is
+ï¿½ It creates a Message and sets its contents to "Hello world." ï¿½ It sets the message's ResponseQueue property to be the reply queue. This is a Return
+Address that will tell the replier how to send back the reply. ï¿½ It then sends the message to the queue. ï¿½ It then prints out the details of the message it just sent. This is done after the message is
 sent because the message ID is set by the messaging system and is not set until the message is actually sent.
 The other thing the requestor needs to be able to do is receive reply messages. It implements the ReceiveSync() method for this purpose.
-· It runs the queue's Receive() method to get the message, which synchronously blocks until a message is delivered to the queue and is read from the queue, so the requestor is a
+ï¿½ It runs the queue's Receive() method to get the message, which synchronously blocks until a message is delivered to the queue and is read from the queue, so the requestor is a
 
-Polling Consumer. Because this receive is synchronous, the requestor's method is called ReceiveSync(). · The requestor gets the message's contents and prints out the message's details.
+Polling Consumer. Because this receive is synchronous, the requestor's method is called ReceiveSync(). ï¿½ The requestor gets the message's contents and prints out the message's details.
 In this way, a requestor does everything necessary to send a request and receive a reply.
 Next, let's take a look at how the Replier is implemented:
 using System; using System.Messaging;
@@ -2522,12 +2528,12 @@ requestMessage.ResponseQueue.Path);
 requestQueue.BeginReceive(); } }
 Replier is what an application might use to receive a request and send a reply. The application specifies the pathnames of the request and invalid message queues. (It does not need to specify the name of the reply queue because, as we'll see, that will be provided by the message's Return Address.) This is the information the requestor needs to initialize itself.
 The Replier constructor is pretty similar to the requestor's, but there are a couple of differences:
-· One difference is that the replier does not look up the reply queue. This is because the replier does not assume it will always send replies on that queue; rather, as we'll see it will let the request message tell it what queue to send the reply message on.
-· Another difference is that replier is an Event-Driven Consumer, so it sets up a ReceiveCompletedEventHandler. When a message is delivered to the request queue, the messaging system will automatically call the specified method, OnReceiveCompleted.
+ï¿½ One difference is that the replier does not look up the reply queue. This is because the replier does not assume it will always send replies on that queue; rather, as we'll see it will let the request message tell it what queue to send the reply message on.
+ï¿½ Another difference is that replier is an Event-Driven Consumer, so it sets up a ReceiveCompletedEventHandler. When a message is delivered to the request queue, the messaging system will automatically call the specified method, OnReceiveCompleted.
 Once the replier has initialized itself to be a listener on the request queue, there's not much for it to do but wait for messages. Unlike the requestor, which has to explicitedly poll the reply queue for messages, the replier is event-driven and so does nothing until the messaging system calls its OnReceiveCompleted method with a new message. The message will be from the request queue because the constructor created the event handler on the request queue. Once OnReceiveCompleted is called, this is what it does to get the new message and processes it:
-· The source is a MessageQueue, the request queue. · The message itself is obtained by running the queue's EndReceive method. The replier
-then prints out the details about the message. · Then the replier implements its part of the Return Address pattern. Remember that the
-requestor set the request message's response-queue property to specify the reply queue. The replier now gets that property's value and uses it reference the proper MessageQueue. The important part here is that the replier is not hard-coded to use a particular reply queue; it uses whatever reply queue each particular request message specifies. · The replier then creates the reply message. In doing so, it implements the Correlation Identifier pattern by setting the relpy message's correlation-id property to the same value as the request message's message-id property. · The replier then sends out the reply message and displays its details. · If the message can be received but not successfully processed, and an Exception is thrown, the replier resends the message to the invalid message queue. In the process, it sets the new message's correlation id to the original message's message id. · Once the replier has finished processing the message, it runs BeginReceive to start listening for the next message.
+ï¿½ The source is a MessageQueue, the request queue. ï¿½ The message itself is obtained by running the queue's EndReceive method. The replier
+then prints out the details about the message. ï¿½ Then the replier implements its part of the Return Address pattern. Remember that the
+requestor set the request message's response-queue property to specify the reply queue. The replier now gets that property's value and uses it reference the proper MessageQueue. The important part here is that the replier is not hard-coded to use a particular reply queue; it uses whatever reply queue each particular request message specifies. ï¿½ The replier then creates the reply message. In doing so, it implements the Correlation Identifier pattern by setting the relpy message's correlation-id property to the same value as the request message's message-id property. ï¿½ The replier then sends out the reply message and displays its details. ï¿½ If the message can be received but not successfully processed, and an Exception is thrown, the replier resends the message to the invalid message queue. In the process, it sets the new message's correlation id to the original message's message id. ï¿½ Once the replier has finished processing the message, it runs BeginReceive to start listening for the next message.
 
 Thus a replier does everything necessary to receive a message (presumably a request) and send a reply. If it cannot reply to a message, it routes the message to the invalid message queue.
 
@@ -2664,11 +2670,11 @@ the message to get the new state, and calls is own update(String) method which c
 These two classes implement the push model version of Observer. With the notification message sent by SubjectGateway.notify(String), the existance of the message tells the Observer that a change has occurred, but it is the contents of the message that tell the Observer what the Subject's new state is. The new state is being pushed from the Subject to the Observer. As we'll see later, there's another way to implement all this using the pull model.
 Comparisons
 For distributed notification between applications, the Publish-Subscribe (e.g., messaging) approach has several advantages over the traditional, synchronous (e.g., RPC) approach of implementing Observer:
-· Simplifies Notification -- The Subject's implementation of Notify() becomes incredibly simple; the code just has to send a message on a channel. Likewise, Observer.Update() just has to receive a message.
-· Simplifies Attach/Detach -- Rather than attach to and detach from the Subject, an Observer needs to subscribe to and unsubscribe from the channel. The Subject does not need to implement Attach(Observer) or Detach(Observer) (although the Observer may implement these methods to encapsulate the subscribe and unsubscribe behavior).
-· Simplifies Concurrent Threading -- The Subject only needs one thread to update all Observers concurrently--the channel delivers the notification message to the Observers concurrently--and each Observer handles the update in its own thread. This simplifies the Subject's implementation, and because each Observer uses its own thread, what one does in its update thread does not affect the others.
-· Simplifies Remote Access -- Niether the Subject nor the Observers have to implement any remote methods, nor do they need to run in an ORB. They just need to access the messaging system and it handles the distribution.
-· Increases Reliability -- Because the channel uses messaging, notifications will be queued until the Observer can process them, which also enables the Observer to throttle the notifications. If an Observer wants to receive notifications that are sent while that Observer is disconnected, it should make itself a Durable Subscriber.
+ï¿½ Simplifies Notification -- The Subject's implementation of Notify() becomes incredibly simple; the code just has to send a message on a channel. Likewise, Observer.Update() just has to receive a message.
+ï¿½ Simplifies Attach/Detach -- Rather than attach to and detach from the Subject, an Observer needs to subscribe to and unsubscribe from the channel. The Subject does not need to implement Attach(Observer) or Detach(Observer) (although the Observer may implement these methods to encapsulate the subscribe and unsubscribe behavior).
+ï¿½ Simplifies Concurrent Threading -- The Subject only needs one thread to update all Observers concurrently--the channel delivers the notification message to the Observers concurrently--and each Observer handles the update in its own thread. This simplifies the Subject's implementation, and because each Observer uses its own thread, what one does in its update thread does not affect the others.
+ï¿½ Simplifies Remote Access -- Niether the Subject nor the Observers have to implement any remote methods, nor do they need to run in an ORB. They just need to access the messaging system and it handles the distribution.
+ï¿½ Increases Reliability -- Because the channel uses messaging, notifications will be queued until the Observer can process them, which also enables the Observer to throttle the notifications. If an Observer wants to receive notifications that are sent while that Observer is disconnected, it should make itself a Durable Subscriber.
 One issue that the Publish-Subscribe approach does not change is serialization. Whether Observer is implemented through RPC or messaging, state data is being distributed from the Subject's memory space to each Observer's memory space, so the data has to be serialized (e.g., marshalled). This behavior has to be implemented for either approach.
 If the Publish-Subscribe approach has a downside, it's that the approach requires messaging, which means that the Subject and Observer applications must have access to a shared messaging system and must be implemented as clients of that messaging system. Still, making applications into messaging clients is no more difficult, and probably easier, than using the RPC approach.
 
@@ -2790,19 +2796,19 @@ Introduction
 
 In the Chapter 2, we discussed how a Message Router can be used to decouple a message source from the ultimate destination of the message. This chapter elaborates on specific types of Message Routers to explain how to provide routing and brokering ability to an integration solution. Most patterns are refinements of the Message Router pattern while others combine multiple Message Routers to solve more complex problems. Therefore, we can categorize the Message Routing patterns into the following groups:
 
-·
+ï¿½
 
 Simple Routers are variants of the Message Router and route messages from one inbound
 
 channel to one or more outbound channels.
 
-·
+ï¿½
 
 Composed Routers combine multiple simple routers to create more complex message
 
 flows.
 
-·
+ï¿½
 
 Architectural Patterns describe architectural styles based on Message Routers.
 
@@ -2989,7 +2995,7 @@ Distributed routing solutions also suffer from the risk that there are multiple 
 In order to achieve this accuracy, the Message Router has to incorporate knowledge about each destination and the rules for routing messages to the destination. This can turn the Message Router into a maintenance burden if the list of possible destinations changes frequently. Use a Dynamic Router, a Router that can self-configure based on special configuration messages from participating destinations.
 Besides the usual input and output channels the Dynamic Router uses an additional control channel. During system start-up, each potential recipient sends a special message to the Dynamic Router on this control channel, announcing its presence and listing the conditions under which it can handle a message. The Dynamic Router stores the 'preferences' for each participant in a rule base. When a message arrives, the Dynamic Router evaluates all rules and routes the message to the recipient whose rules are fulfilled. This allows for efficient, predictive routing without the maintenance dependency of the Dynamic Router on each potential recipient. In the most basic scenario each participant announces its existence and routing preferences to the Dynamic Router on start-up time. This requires each participant to be aware of the control queue used by the Dynamic Router. It also requires the Dynamic Router to store the rules in a persistent way. Otherwise, if the Dynamic Router fails and has to restart it would not be able to recover the routing rules. Alternatively, the Dynamic Router could send a broadcast message to all possible participants to trigger them to reply with the control message. This configuration is more robust but requires the use of an additional Publish-Subscribe Channel. It might make sense to enhance the control channel to allow participants to send both 'subscribe' and 'unsubscribe' messages to the Dynamic Router. This would allow recipients to add or remove themselves from the routing scheme during runtime. Because the recipients are independent from each other, the Dynamic Router has to deal rules conflicts, i.e. multiple recipients announcing interest in the same type of message. The Dynamic Router can employ a number of different strategies to resolve such conflicts:
 
-·
+ï¿½
 
 Ignore control messages that conflict with existing messages. This option assures that the
 
@@ -3001,13 +3007,13 @@ this may lead to unpredictable behavior because all recipients would announce th
 
 preferences at the same time to the control queue.
 
-·
+ï¿½
 
 Send the message to the first recipient whose criteria match. This option allows the
 
 routing table to contain conflicts, but resolves them as messages come in.
 
-·
+ï¿½
 
 Send the message to all recipients whose criteria match. This option is tolerant of conflicts
 
@@ -3078,7 +3084,7 @@ Robustness
 
 The Recipient List component is responsible for sending the incoming message to each recipient specified in the recipient list. A robust implementation of the Recipient List must be able to process the incoming message but only 'consume' it after all outbound messages have been successfully sent. As such, the Recipient List component has to ensure that the complete operation is atomic. If the Recipient List fails, it needs to be restartable. This can be accomplished in multiple ways:
 
-·
+ï¿½
 
 Single transaction - The Recipient List can use transactional channels and places the message on the
 
@@ -3086,7 +3092,7 @@ outbound channels as part of a single transaction. It does not commit the messag
 
 on the channels. This guarantees that either all or no messages are sent.
 
-·
+ï¿½
 
 Persistent recipient list - The Recipient List can "remember" which messages it already sent so that on failure
 
@@ -3094,7 +3100,7 @@ and restart can send messages to the remaining recipients. The recipient list co
 
 so that it survives a crash of the Recipient List component.
 
-·
+ï¿½
 
 Idempotent receivers Alternatively, the Recipient List could simply resend all messages on restart. This
 
@@ -3307,15 +3313,15 @@ Unlike most of the previous routing patterns, the Aggregator is a stateful compo
 
 When designing an Aggregator, we need to specify the following items:
 
-·
+ï¿½
 
 Correlation - which incoming messages belong together?
 
-·
+ï¿½
 
 Completeness Condition - when are we ready to publish the result message?
 
-·
+ï¿½
 
 Aggregation Algorithm - how do we combine the received messages into a single result
 
@@ -3334,15 +3340,15 @@ Aggregation Strategies
 There are a number of strategies for aggregator completeness conditions. The available strategies primarily depend on whether we know how many messages to expect or not. The Aggregator could know the number of sub-messages to expect because it received a copy of the original composite message or because each individual message contains the total count (as described in
 
 the Splitter example). Depending on how much the Aggregator knows about the message stream, the most common strategies are as follows:
-· "Wait for All" Wait until all responses are received. This scenario is most likely in the order example we discussed earlier. An incomplete order may not be meaningful. So if not all items are received within a certain time-out period an error condition should be raised by the Aggregator. This approach may give us the best basis for decision-making, but may also be the slowest and most brittle (plus we need to know how many messages to expect). A single missing or delayed message will prevent further processing of the whole aggregate. Resolving such error conditions can be a complicated matter in loosely-coupled asynchronous systems because the asynchronous flow of messages makes it hard to reliably detect error conditions (how long should we wait before a message is "missing"?). One way to deal with missing messages is to re-request the message. However, this approach requires the Aggregator to know the source of the message, which may introduce additional dependencies between the Aggregator and other components.
-· "Time Out" Wait for a specified length of time for responses and then make a decision by evaluating those responses received within that time limit. If no responses are received, the system may report an exception or retry. This heuristic is useful if incoming responses are scored and only the message (or a small number of messages) with the highest score is used. This approach is common in "bidding" scenarios.
-· "First Best" Wait only until the first (fastest) response is received and ignore all other responses. This approach is the fastest, but ignores a lot of information. It may be practical in a bidding or quoting scenario where response time is critical.
-· "Time Out with Override" Wait for a specified amount of time or until a message with a preset minimum score has been received. In this scenario, we are willing to abort early if we find a very favorable response; otherwise, we keep on going until time is up. If no clear winner was found at that point, rank ordering among all the messages received so far occurs.
-· "External Event" Sometimes the aggregation is concluded by the arrival of an external business event. For example, in the financial industry, the end of the trading day may signal the end of an aggregation of incoming price quotes. Using a fixed timer for such an event reduces flexibility because it does not other variability. Also, a designated business even in form of an Event Message allows for central control of the system. The Aggregator can listen for the Event Message on a special control channel or receive a specially formatted message that indicates the end of the aggregation.
+ï¿½ "Wait for All" Wait until all responses are received. This scenario is most likely in the order example we discussed earlier. An incomplete order may not be meaningful. So if not all items are received within a certain time-out period an error condition should be raised by the Aggregator. This approach may give us the best basis for decision-making, but may also be the slowest and most brittle (plus we need to know how many messages to expect). A single missing or delayed message will prevent further processing of the whole aggregate. Resolving such error conditions can be a complicated matter in loosely-coupled asynchronous systems because the asynchronous flow of messages makes it hard to reliably detect error conditions (how long should we wait before a message is "missing"?). One way to deal with missing messages is to re-request the message. However, this approach requires the Aggregator to know the source of the message, which may introduce additional dependencies between the Aggregator and other components.
+ï¿½ "Time Out" Wait for a specified length of time for responses and then make a decision by evaluating those responses received within that time limit. If no responses are received, the system may report an exception or retry. This heuristic is useful if incoming responses are scored and only the message (or a small number of messages) with the highest score is used. This approach is common in "bidding" scenarios.
+ï¿½ "First Best" Wait only until the first (fastest) response is received and ignore all other responses. This approach is the fastest, but ignores a lot of information. It may be practical in a bidding or quoting scenario where response time is critical.
+ï¿½ "Time Out with Override" Wait for a specified amount of time or until a message with a preset minimum score has been received. In this scenario, we are willing to abort early if we find a very favorable response; otherwise, we keep on going until time is up. If no clear winner was found at that point, rank ordering among all the messages received so far occurs.
+ï¿½ "External Event" Sometimes the aggregation is concluded by the arrival of an external business event. For example, in the financial industry, the end of the trading day may signal the end of an aggregation of incoming price quotes. Using a fixed timer for such an event reduces flexibility because it does not other variability. Also, a designated business even in form of an Event Message allows for central control of the system. The Aggregator can listen for the Event Message on a special control channel or receive a specially formatted message that indicates the end of the aggregation.
 Closely tied to the selection of a completeness condition is the selection of the aggregation algorithm. The following strategies are common to condense multiple messages into a single message:
-· Select the "best" answer. This approach assumes that there is a single best answer, e.g. the lowest bid for an identical item. This makes it possible for the Aggregator to make the decision and only pass the "best" message on. However, in real life, selection criteria are
+ï¿½ Select the "best" answer. This approach assumes that there is a single best answer, e.g. the lowest bid for an identical item. This makes it possible for the Aggregator to make the decision and only pass the "best" message on. However, in real life, selection criteria are
 
-rarely this simple. For example, the "best" bid for an item may depend on time of delivery, the number of available items, whether the vendor is on the preferred vendor list etc. · Condense data. An Aggregator can be used to reduce message traffic from a high-traffic source. In these cases it may make sense to compute an average of individual messages or add numeric fields from each message into a single message. This works best if each message represents a numeric value, for example, the number of orders received. · Collect data for later evaluation. it is not always possible to for an Aggregator to make the decision of how to select the best answer. In those cases it makes still sense to use an Aggregator to collect the individual messages and combine them into a single message. This message may simply be a compilation of the individual's messages data. The aggregation decision may be made later by a separate component or a human being.
+rarely this simple. For example, the "best" bid for an item may depend on time of delivery, the number of available items, whether the vendor is on the preferred vendor list etc. ï¿½ Condense data. An Aggregator can be used to reduce message traffic from a high-traffic source. In these cases it may make sense to compute an average of individual messages or add numeric fields from each message into a single message. This works best if each message represents a numeric value, for example, the number of orders received. ï¿½ Collect data for later evaluation. it is not always possible to for an Aggregator to make the decision of how to select the best answer. In those cases it makes still sense to use an Aggregator to collect the individual messages and combine them into a single message. This message may simply be a compilation of the individual's messages data. The aggregation decision may be made later by a separate component or a human being.
 In many instances, the aggregation strategy is driven by parameters. For example, a strategy that waits for a specified amount of time can be configured with the maximum wait time. Likewise, if the strategy is to wait until an offer exceeds a specific threshold we will most likely let the Aggregator know in advance what the desired threshold is. If these parameters are configurable at run-time, an Aggregator may feature an additional input that can receive control messages such as these parameter settings. The control messages may also contain information such as the number of correlated messages to expect, which can help the Aggregator implement more effective completion conditions. In such a scenario, the Aggregator does not simply start a new aggregate when the first message arrives, but rather receives up-front information related to an expected series of messages. This information can be a copy of the original request message (e.g., an Scatter-Gather message), augmented by any necessary parameter information. The Aggregator then allocates a new aggregate and stores the parameter information with the aggregate (see figure). When the individual messages come in, they are associated with the corresponding aggregate. We call this variation an Initialized Aggregator as opposed to the Self-starting Aggregator. This configuration is obviously only possible if we have access to the originating message, which may not always be the case.
 Aggregators are useful in many applications. The Aggregator is often coupled with a Splitter or a Recipient List to form a composite pattern. See Composed Message Processor and Scatter-Gather for a more detailed description of these composite patterns.
 
@@ -3358,10 +3364,10 @@ This example show the implementation of an Aggregator using the Java Messaging S
 publishes a message with the lowest bid to another channel. Bids are correlated through an Auction ID property that acts as a Correlation Identifier for the messages. The aggregation strategy is to receive a minimum of 3 bids. The Aggregator is self-starting and does not require external initialization.
 The Aggregator Example Selects the Lowest Bid
 The solution consists of the following main classes:
-· Aggregator - contains logic to receive messages, aggregate them and send result messages. Interfaces with aggregates via the Aggregate interface.
-· AuctionAggregate - implements the Aggregate interface. This class acts as an Adapter (see [GoF]) between the Aggregate interface and the Auction class. This setup allows the Auction class to be free of references to the JMS API.
-· Auction - a collection of related bids that have been received. The Auction class implements the aggregation strategy, e.g. finding the lowest bid and determining when the aggregate is complete.
-· Bid - is a convenience class that holds the data items associated with a bid. We convert incoming message data into a bid object so that we can access the bid data through a strongly-typed interface, making the the Auction logic completely independent from the JMS API.
+ï¿½ Aggregator - contains logic to receive messages, aggregate them and send result messages. Interfaces with aggregates via the Aggregate interface.
+ï¿½ AuctionAggregate - implements the Aggregate interface. This class acts as an Adapter (see [GoF]) between the Aggregate interface and the Auction class. This setup allows the Auction class to be free of references to the JMS API.
+ï¿½ Auction - a collection of related bids that have been received. The Auction class implements the aggregation strategy, e.g. finding the lowest bid and determining when the aggregate is complete.
+ï¿½ Bid - is a convenience class that holds the data items associated with a bid. We convert incoming message data into a bid object so that we can access the bid data through a strongly-typed interface, making the the Auction logic completely independent from the JMS API.
 
 The code of the solution is the Aggregator class. This class requires two JMS destinations, an input destination and an output destination. Destination is the JMS abstraction for a queue or a topic (Publish-Subscribe Channel). This abstraction allows us to write JMS code independent from the type of channel. This feature can be very useful for testing and debugging. For example, during testing we may use publish-subscribe topics so that we can easily "listen in" on the message traffic. In production may want to switch to queues.
 public class Aggregator implements MessageListener {
@@ -3452,7 +3458,7 @@ Resequencer Test Configuration
 
 The test setup consists of four main components, each implemented as a C# class. The components communicate via MSMQ message queues, provided by the Message queuing service that is part of Windows 2000 and Windows XP.
 
-·
+ï¿½
 
 MQSend acts as the Test Message generator. The message body contains a simple text
 
@@ -3464,7 +3470,7 @@ passed in from the command line. MQSend publishes the messages to the private qu
 
 inQueue.
 
-·
+ï¿½
 
 DelayProcessor reads messages off the inQueue. The only 'processing' consists of a timed
 
@@ -3478,13 +3484,13 @@ processors publish messages to the outQueue. Because of the different processing
 
 messages on the outQueue are out of sequence.
 
-·
+ï¿½
 
 The Resequencer buffers incoming out-of-sequence messages and republishes them in
 
 sequence to the sequenceQueue.
 
-·
+ï¿½
 
 MQSequenceReceive reads messages off the sequenceQueue and verifies that the
 
@@ -3569,13 +3575,13 @@ The Scatter-Gather routes a request message to the a number of recipients. It th
 
 There are two variants of the Scatter-Gather that use different mechanisms to send the request messages to the intended recipients:
 
-·
+ï¿½
 
 Distribution via a Recipient List allows the Scatter-Gather to control the list of recipients
 
 but requires the Scatter-Gather to be aware of each recipient's message channel.
 
-·
+ï¿½
 
 Auction-style Scatter-Gathers use a Publish-Subscribe Channel to broadcast the request to
 
@@ -3610,23 +3616,23 @@ The Pipes and Filters architectural style give us an elegant approach to represe
 
 The key requirements to a good solution to our problem can be summarized as follows:
 
-·
+ï¿½
 
 Efficient message flow - Messages should only flow through the required steps and
 
 avoid unnecessary components.
 
-·
+ï¿½
 
 Efficient use of resources - The solution should not use a huge amount of channels,
 
 routers and other resources.
 
-·
+ï¿½
 
 Flexible - The route that individual messages that should be easy to change.
 
-·
+ï¿½
 
 Simple to maintain - If a new type of message needs to be supported, we would like to
 
@@ -3656,9 +3662,9 @@ Implementing a Routing Slip with Legacy Applications
 Common Usage
 The Routing Slip is most useful in the following scenarios:
 
-· A sequence of binary validation steps. By not adding information to the message, the limitation that we cannot change the routing once the message is underway is no longer a factor. We still appreciate the flexibility to change the sequence of validation steps by reconfiguring the central Routing Slip. Each component has the choice between aborting the sequence due to error or to pass the message on to the next step.
-· Each step is a stateless transformation. For example, let's assume that we receive orders from a variety of business partners. All orders arrive on a common channel. Depending in the partner, the message may require different transformation steps. Messages from some partners may require decryption, others may not. Some may require transformation or enrichment while others may not. Keeping a Routing Slip for each partner gives us an easy way to reconfigure the steps for each partner in a central location.
-· Each step gathers data, but makes no decisions. In some cases, we receive a message that contains reference identifiers to other data. For example, if we receive an order for a DSL line, the message may contain only the home phone number of the applicant. We need to go to external sources to determine the customer's name, the central office servicing the line, the distance from the central office etc. Once we have a complete message with all relevant data we can decide what package to offer to the customer. In this scenario the decision is postponed until the end so we can use a Routing Slip. In this scenario we need to assess though whether we really require the flexibility of the Routing Slip. Otherwise a simple hard-wired chain of Pipes and Filters may be sufficient.
+ï¿½ A sequence of binary validation steps. By not adding information to the message, the limitation that we cannot change the routing once the message is underway is no longer a factor. We still appreciate the flexibility to change the sequence of validation steps by reconfiguring the central Routing Slip. Each component has the choice between aborting the sequence due to error or to pass the message on to the next step.
+ï¿½ Each step is a stateless transformation. For example, let's assume that we receive orders from a variety of business partners. All orders arrive on a common channel. Depending in the partner, the message may require different transformation steps. Messages from some partners may require decryption, others may not. Some may require transformation or enrichment while others may not. Keeping a Routing Slip for each partner gives us an easy way to reconfigure the steps for each partner in a central location.
+ï¿½ Each step gathers data, but makes no decisions. In some cases, we receive a message that contains reference identifiers to other data. For example, if we receive an order for a DSL line, the message may contain only the home phone number of the applicant. We need to go to external sources to determine the customer's name, the central office servicing the line, the distance from the central office etc. Once we have a complete message with all relevant data we can decide what package to offer to the customer. In this scenario the decision is postponed until the end so we can use a Routing Slip. In this scenario we need to assess though whether we really require the flexibility of the Routing Slip. Otherwise a simple hard-wired chain of Pipes and Filters may be sufficient.
 Implementing a Simple Router with a Routing Slip
 One of the downsides of a Content-Based Router was that it has to incorporate knowledge about each possible recipient and the routing rules associated with that recipient. Under the spirit of loose coupling it may be undesirable to have a central component that incorporates knowledge about many other components. An alternative solution to the Content-Based Router was a Publish-Subscribe Channel combined with an array of Message Filters. This solution allows each recipient to decide which messages to process but suffered from risk of duplicate message processing. Another option to enable individual recipients to decide whether to process a given message is to use a modified version of a Routing Slip acting as a Chain of Responsibility as described in [GoF]. The Chain of Responsibility allows each component to accept a message or route it to the next component in the list. The Routing Slip is a static list of all participants. This still implies that a central component has to have knowledge of all possible recipients. However, the component does not need to know which messages each component consumes.
 
@@ -3793,8 +3799,8 @@ The Message Broker pattern has a slightly different scope than most of the other
 The Message Broker is not a monolithic component. Internally, it uses many of the message routing patterns presented in this chapter. So once you decide to use the Message Broker as an
 
 architectural pattern, you can choose the correct Message Router design patterns to implement the Message Broker.
-The advantage of central maintenance of a Message Broker can also turn into a disadvantage. Routing all messages through a single Message Broker can turn the Message Broker into a serious bottleneck. A number of techniques can help us alleviate this problem. For example, the Message Broker pattern only tells us to develop a single entity that performs routing. It does not prescribe how many instances of this entity we deploy in the system at deployment time. If the Message Broker design is stateless (i.e. if it is composed only of stateless components), we can easily deploy multiple instances of the broker to improve throughput. The properties of a Point-to-Point Channel ensure that only one instance of the Message Broker consumes any incoming message. Also, as in most real-life situations, the ultimate solution ends up being a combination of a patterns. Likewise, in many complex integration solutions it may make sense to design multiple Message Broker components, each specializing on a specific portion of the solution. This avoids creating the über-Message Broker that is so complex as to become unmaintainable. The apparent flip-side is that we no longer have a single point of maintenance and could create a new form of "Message Broker spaghetti". One excellent architectural style to use a combination of Message Brokers is a Message Broker hierarchy (see picture). This configuration resembles a network configuration composed out of individual subnets. If a message has to travel only between two applications inside a "subnet" the local Message Broker can manage the routing of the message. If the message is destined for another subnet, the local Message Broker can pass the message to the central Message Broker who then determines the ultimate destination. The central Message Broker performs the same functions as a local Message Broker, but instead of decoupling individual applications it decouples whole subsystems consisting of multiple applications.
-A Hierarchy of Message Brokers Provides Decoupling while Avoiding the "Über-Broker"
+The advantage of central maintenance of a Message Broker can also turn into a disadvantage. Routing all messages through a single Message Broker can turn the Message Broker into a serious bottleneck. A number of techniques can help us alleviate this problem. For example, the Message Broker pattern only tells us to develop a single entity that performs routing. It does not prescribe how many instances of this entity we deploy in the system at deployment time. If the Message Broker design is stateless (i.e. if it is composed only of stateless components), we can easily deploy multiple instances of the broker to improve throughput. The properties of a Point-to-Point Channel ensure that only one instance of the Message Broker consumes any incoming message. Also, as in most real-life situations, the ultimate solution ends up being a combination of a patterns. Likewise, in many complex integration solutions it may make sense to design multiple Message Broker components, each specializing on a specific portion of the solution. This avoids creating the ï¿½ber-Message Broker that is so complex as to become unmaintainable. The apparent flip-side is that we no longer have a single point of maintenance and could create a new form of "Message Broker spaghetti". One excellent architectural style to use a combination of Message Brokers is a Message Broker hierarchy (see picture). This configuration resembles a network configuration composed out of individual subnets. If a message has to travel only between two applications inside a "subnet" the local Message Broker can manage the routing of the message. If the message is destined for another subnet, the local Message Broker can pass the message to the central Message Broker who then determines the ultimate destination. The central Message Broker performs the same functions as a local Message Broker, but instead of decoupling individual applications it decouples whole subsystems consisting of multiple applications.
+A Hierarchy of Message Brokers Provides Decoupling while Avoiding the "ï¿½ber-Broker"
 Because the purpose of the Message Broker is to reduce coupling between individual applications, it usually has to deal with translating message data formats between applications. Having a Message Broker abstract the routing of the message does not help the sending application if it has to format the message in the (supposedly hidden) destination's message format. The next chapter introduces a series of message transformation patterns to address these issues. In many cases, a Message Broker uses a Canonical Data Model internally to avoid the N-square problem (the number
 
 of translators required to translate between each and every recipient in a system grows with the square of the number of participants).
@@ -3803,7 +3809,7 @@ Example: Commercial EAI Tools
 
 Most commercial EAI tools provide tools to greatly simplify the creation of Message Broker components for integration solutions. These tool suites typically provide a number of features that support the development and deployment of Message Brokers:
 
-·
+ï¿½
 
 Built-in Endpoint code. Most EAI suites incorporate all code to send and receive
 
@@ -3811,7 +3817,7 @@ messages to and from the message bus. The developer does not have to concern its
 
 writing any of the transport-related code.
 
-·
+ï¿½
 
 Visual Design tools. These tools allow the developer to compose the functionality of a
 
@@ -3821,7 +3827,7 @@ These tools make the flow of message visually intuitive and can reduce the codin
 
 many of these components to single-lines of code, e.g. an evaluation function or a rule.
 
-·
+ï¿½
 
 Runtime support. Most EAI packages also provide sophisticated run-time support in
 
@@ -3852,7 +3858,7 @@ Use a Envelope Wrapper to wrap application data inside an envelope that is compl
 
 The process of wrapping and unwrapping a message consists of five steps:
 
-·
+ï¿½
 
 The Message Source publishes a message in a raw format. This format is typically
 
@@ -3860,7 +3866,7 @@ determined by the nature of the application and does not comply with the require
 
 the messaging infrastructure.
 
-·
+ï¿½
 
 The Wrapper takes the raw message and transforms it into a message format that
 
@@ -3868,11 +3874,11 @@ complies with the messaging system. This may include adding message header field
 
 encrypting the message, adding security credentials etc.
 
-·
+ï¿½
 
 The Messaging System processes the compliant messages.
 
-·
+ï¿½
 
 A resulting message is delivered to the Unwrapper. The unwrapper reverses any
 
@@ -3880,7 +3886,7 @@ modifications the wrapper made. This may include removing header fields, decrypt
 
 message or verifying security credentials.
 
-·
+ï¿½
 
 The Message Recipient receives a 'clear text' message.
 
@@ -3925,7 +3931,7 @@ The Content Enricher uses information inside the incoming message (e.g. key fiel
 
 The additional information injected by the Content Enricher has to be available somewhere in the system. The most common sources for the new data are:
 
-·
+ï¿½
 
 Computation The Content Enricher may be able to compute the missing information. In
 
@@ -3941,7 +3947,7 @@ This form of Content Enricher is very similar to the basic Message Translator be
 
 no external data source.
 
-·
+ï¿½
 
 Environment The Content Enricher may be able to retrieve the additional data from the
 
@@ -3953,7 +3959,7 @@ not include this field, the Content Enricher can get the current time from the o
 
 and add it to the message.
 
-·
+ï¿½
 
 Another System This option is the most common one. The Content Enricher has to retrieve
 
@@ -4036,8 +4042,8 @@ As the picture illustrates, the data that was contained in the original message 
 The Data May Be Stored and Retrieved Locally
 Choosing a Key
 How should we choose a key for the data? A number of options spring to mind:
-· A business key may already be contained in the message body, e.g. a Customer ID. · The message may contain a message ID that can be used to associate the data in the data
-store with the message. · We can generate a unique ID.
+ï¿½ A business key may already be contained in the message body, e.g. a Customer ID. ï¿½ The message may contain a message ID that can be used to associate the data in the data
+store with the message. ï¿½ We can generate a unique ID.
 Reusing an existing business key seem like the easiest choice. If we have to stow away some customer detail we can reference it later by the customer ID. When we pass this key to other components we need to decide whether we want these components to be aware that the key is a customer ID as opposed to just an abstract key. Representing the key as an abstract key has the advantage that we can process all keys in the same way and can create a generic mechanism to retrieve data from the data store based on an abstract key.
 Using the message ID as the key may seem convenient but is generally not a good idea. Using a message ID as a key for data retrieval results in dual semantics being attached to a single data element and can cause conflicts. For example, let's assume we need to pass the reference on to another message. The new message is supposed to be assigned a new, unique ID, but then we can't use that new ID anymore to retrieve data from the data store. The use of a message ID can be meaningful only in a circumstance where we want the data to be accessible only within the
 
@@ -4073,7 +4079,7 @@ The use a Canonical Data Model seems complicated if only a small number of appli
 The use of a Canonical Data Model can also be very useful if an existing application is likely to be replaced by another application in the future. For example, is a number of applications interface with a legacy system that is likely to be replaced by a new system in the future, the effort of switching from one application to the other is much reduced if the concept of a Canonical Data Model is built into the original solution.
 How do you make applications conform to the common format? You have three basic choices:
 
-·
+ï¿½
 
 Change the applications internal data format. This may be in theory possible, but is
 
@@ -4083,13 +4089,13 @@ natively use the same data format, we would be better off using Shared Database 
 
 Messaging.
 
-·
+ï¿½
 
 Implement a Messaging Mapper inside the application. Custom applications can use a
 
 mapper to generate the desired data format.
 
-·
+ï¿½
 
 Use an external Message Translator. You can use an external Message Translator to
 
@@ -4135,8 +4141,8 @@ Complete Loan Broker Design
 
 Sequencing: Synchronous vs. Asynchronous
 So far, we have described the flow of the messages and the routing and transformation patterns we can use to describe the design of the loan broker component. We have not yet discussed the timing of the broker operation. We have two primary choices:
-· Synchronous (Sequential): The broker asks one bank for the quote and waits for a response.
-· Asynchronous (Parallel): The broker sends all quote requests at once and waits for the answers to come back.
+ï¿½ Synchronous (Sequential): The broker asks one bank for the quote and waits for a response.
+ï¿½ Asynchronous (Parallel): The broker sends all quote requests at once and waits for the answers to come back.
 We can use UML sequence diagrams to illustrate the two options. The synchronous option implies a sequential processing of all loan requests (see picture). This solution has the advantage of being simpler to manage because we do not have to deal with any concurrency issues or threads. However, it is an inefficient solution because we do not take advantage of the fact that each bank possesses independent processing power and could be executing requests simultaneously. As a result, the consumer might have to wait a long time for an answer.
 Synchronous, Sequential Processing of Loan Requests
 The asynchronous solution issues all requests right away so that each bank can start processing. As the banks finish the computation, they return the results to the loan broker. This solution allows for a much quicker response. For example, if all banks take a similar amount of time to produce a loan quote, this solution is almost n times faster where n is the number of banks we are
@@ -4146,8 +4152,8 @@ Asynchronous, Parallel Processing of Loan Requests
 Another significant advantage of using asynchronous invocation over a message queue is the ability to create more than one instance of a service. For example, if it turns out that the credit bureau is a bottleneck, we could decide to run two instances of the credit bureau component. Because the loan broker sends the request message to a queue instead of directly to the credit bureau component it does not matter which component instance processes the message as long as the response is put back onto the response channel.
 Addressing: Distribution vs. Auction
 Using a Scatter-Gather to obtain the best quote allows us to choose from two addressing mechanisms, a Recipient List or a Publish-Subscribe Channel. The decision primarily depends on how much control do we want to exert over the banks who are allowed to participate in a specific loan request? Again, we have a number of choices:
-· Fixed: The list of banks is hard-coded. Each loan request goes to the same set of banks. · Distribution: The broker maintains criteria on which banks are a good match for a
-specific request. For example, it would not send a quote request for a customer with a poor credit history to a bank that specializes in premier customers. · Auction: The broker broadcasts the request using a Publish-Subscribe Channel. Any bank that is interested is allowed to subscribe to the channel and 'bid' on the request. Banks can subscribe or unsubscribe at will. Each bank can still apply its own criteria on whether to submit a bid.
+ï¿½ Fixed: The list of banks is hard-coded. Each loan request goes to the same set of banks. ï¿½ Distribution: The broker maintains criteria on which banks are a good match for a
+specific request. For example, it would not send a quote request for a customer with a poor credit history to a bank that specializes in premier customers. ï¿½ Auction: The broker broadcasts the request using a Publish-Subscribe Channel. Any bank that is interested is allowed to subscribe to the channel and 'bid' on the request. Banks can subscribe or unsubscribe at will. Each bank can still apply its own criteria on whether to submit a bid.
 
 Which option is best for our scenario? As always, there is no simple "and the answer is...", but the choice is driven by both business and technical preferences and constraints. The first option is simple and gives the broker control over the list of banks. However, if new banks come and go frequently, the solution can result in an administrative burden. Also, the bank may not be happy to be receiving a bunch of irrelevant requests because each request incurs a certain internal cost for the bank. Also, to maintain the simplicity of this approach, the aggregation strategy is more likely to require banks to submit a response. Banks may want to reserve the right to withhold from the bid.
 A distribution approach (using a Recipient List) gives the broker more control over which bank to involve in each loan request. This allows the broker to be more efficient by reducing the number of requests. It also allows the broker to prefer certain banks based on the business relationship. On the downside, it requires additional business logic to be implemented and maintained inside the loan broker component. Both the distribution and the fixed approach require a separate Message Channel for each participant in order to control the message flow.
@@ -4159,7 +4165,7 @@ When receiving loan quotes from the bank we have similar design choices. We can 
 channel for each participating bank, but requires each bank reply message to include a field identifying the bank who issued the quote. If we use a single response channel, the Aggregator may not know how many response messages to expect unless the Recipient List passes this information to the Aggregator (we call this an Initialized Aggregator). If we use an auction-style Publish-Subscribe Channel the number of possible responses is unknown to the loan broker so that the Aggregator has to employ a completeness condition that does not depend on the total number of participants. For example, the Aggregator could simply wait until it has a minimum of three responses. But even that would be risky if temporarily only two banks participate. In that case, the Aggregator could time out and report that it received an insufficient number of responses.
 Managing Concurrency
 A service such as a loan broker should be able to deal with multiple clients wanting to use the service concurrently. For example, if we expose the loan broker function as a Web service or connect it to a public Web site we do not really have any control over the number of clients and we may receive hundreds or thousands of concurrent requests. We can enable the loan broker to process multiple concurrent requests using two different strategies:
-· Execute multiple instances. · A single even-driven instance
+ï¿½ Execute multiple instances. ï¿½ A single even-driven instance
 The first option maintains multiple parallel instances of the loan broker component. We can either start a new instance for each incoming request or maintain a 'pool' of active loan broker processes and assign incoming requests to the next available process (using a Message Dispatcher). If no process is available we would queue up the requests until a process becomes available. A process pool has the advantage that we can allocate system resources in a predictable way. For example, we can decide to execute a maximum of 20 loan broker instances. In contrast, if we started a new process for each request we could quickly choke the machine if a spike of concurrent requests arrives. Also, maintaining a pool of running processes allows us to 'reuse' an existing process for multiple requests, saving time for process instantiation and initialization.
 Because much of the 'processing' required by the loan broker is to wait for replies from external parties (the credit bureau and the banks) running many parallel processes may not be a good use of system resources. Instead, we can run a single process instance that reacts to incoming message events as they arrive. Processing an individual message (e.g. a bank quote) is a relatively simple task so that a single process may be able to service many concurrent requests. This approach uses system resources more efficiently and simplifies management of the solution due to the fact that we only have to monitor a single process instance. The potential downside is the limited scalability because we are tied to one process. Many high-volume applications use a combination of the two techniques, executing multiple parallel processes each of which can handle multiple requests concurrently.
 Executing multiple concurrent requests requires us to associate each message in the system to the correct process instance. For example, it may be most convenient for a bank to send all reply
@@ -4206,7 +4212,7 @@ Synchronous messaging is useful in some problem domains where a simple solution 
 Web Services Design Considerations
 XML Web services rely on the Simple Object Access Protocol (SOAP). The SOAP specification was submitted to the W3C and defines an XML based protocol for the purpose of exchanging messages between decentralized and distributed systems. For more details on SOAP please refer to the documents at the World Wide Web Consortium web site (www.w3.org/TR/SOAP).
 Unfortunately, the "S" in "SOAP" is no longer valid. Actually, we have jokingly postulated that SOAP be renamed to Complex Remote Access Protocol -- you figure out the acronym... Seriously, designing a robust Web services interface requires us to dive into a a number of terminologies and associated design trade-offs. While this book is not an introduction into Web Services, we feel it is important to briefly discuss the following design considerations:
-· Transport protocol · Asynchronous messaging versus Synchronous messaging · Encoding style (SOAP Encoding vs. doc/literal) · Binding style (RPC vs. Document-style) · Reliability and Security
+ï¿½ Transport protocol ï¿½ Asynchronous messaging versus Synchronous messaging ï¿½ Encoding style (SOAP Encoding vs. doc/literal) ï¿½ Binding style (RPC vs. Document-style) ï¿½ Reliability and Security
 Transport Protocol
 The SOAP specification was created to allow applications to make synchronous RPC-style calls to a service across the network in a technology-neutral way. The SOAP specification actually defines a separate request and response message for each invocation to a Web Service (as defined in the WSDL document describing the service). Even though SOAP was developed with messaging in mind, the vast majority of the Web Service applications use HTTP as the transport protocol. HTTP is a natural choice because it is the most commonly used protocol on the Web and can sneak through firewalls. However, the HTTP protocol is the "Hyper Text Transfer Protocol" -- it was designed to allow users with Web browsers to retrieve documents over the
 
@@ -4239,11 +4245,11 @@ The Axis framework is made up of a series of Handlers, which are invoked in a pa
 The figure above shows a high level representation of the internals of the Axis framework. A detailed discussion on the architecture of Axis can be found at http://xml.apache.org/axis.
 Axis consists of several subsystems that work together to provide the functionality of a Message Channel. This framework is available for use by both the client and server application.
 The relevant Axis subsystems for our example are as follows:
-· Message Model subsystem defines the XML syntax of the SOAP messages. · Message Flow subsystem defines Handlers and Chains to pass the messages · Service subsystem defines the service handler (SOAP, XML-RPC) · Transport subsystem provides alternatives for the transport of messages (for e.g., HTTP,
-JMS, SMTP) · Provider subsystem defines the providers for different types of classes (for e.g., java:RPC,
+ï¿½ Message Model subsystem defines the XML syntax of the SOAP messages. ï¿½ Message Flow subsystem defines Handlers and Chains to pass the messages ï¿½ Service subsystem defines the service handler (SOAP, XML-RPC) ï¿½ Transport subsystem provides alternatives for the transport of messages (for e.g., HTTP,
+JMS, SMTP) ï¿½ Provider subsystem defines the providers for different types of classes (for e.g., java:RPC,
 EJB, MDB)
 As mentioned earlier, the developer only needs to focus on creating an application that implements the business logic, which can then be deployed in the Axis server. There are three techniques for deploying a java class as a Web service and being made available as an endpoint service and we have named them as follows.
-· Automatic Deployment · Using a Web Services Deployment Descriptor · Generate proxies from an existing WSDL document
+ï¿½ Automatic Deployment ï¿½ Using a Web Services Deployment Descriptor ï¿½ Generate proxies from an existing WSDL document
 The first and simplest way is to write the class containing the business logic as a Java Web Service file (this is a Java source file with a *.jws extension). The methods of this class contain the business logic. The JWS file does not need to be compiled and can be instantly deployed by copying the source file into the webapps directory on the server. Each public method is now accessible as a Web service. The name of this JWS file forms part of the endpoint that the Axis server exposes as a Web service as shown below:
 
 http://hostname:portnumber/axis/LoanBroker.jws
@@ -4268,7 +4274,7 @@ The diagram highlights the sequential processing of the quote requests to each b
 Components of the Loan Broker Application
 We will now start designing the functional aspects of the loan broker application. As stated earlier the Axis framework can support both the client and server application. This allows a remote client to access the published endpoint across the network. A server application may also need to act like a client and access some other Web service endpoint, regardless of whether that endpoint is on the same server or a remote server. We are going to demonstrate this by modeling the key components of our solution as Web services albeit running on the same instance of our server.
 The loan broker solution has to implement the following functions. The following sections discuss the implementation of each function.
-· Accept Client Requests · Retrieve Credit Agency Data · Implement the Credit Agency Service · Obtain Quotes · Implement the Banking Operations
+ï¿½ Accept Client Requests ï¿½ Retrieve Credit Agency Data ï¿½ Implement the Credit Agency Service ï¿½ Obtain Quotes ï¿½ Implement the Banking Operations
 Accepting Client Requests
 The loan broker is implemented in a JWS file named LoanBrokerWS.jws. It exposes a single public method as a Web service: GetLoanQuote. The loan broker needs three pieces of data from the client to start processing a loan request: the social security number (SSN) that acts as the customer identification number, the amount of the loan and the duration of the loan in months:
 public String getLoanQuote(int ssn, double loanamount, int loanduration) {
@@ -4365,9 +4371,9 @@ Obtaining Quotes
 Having enriched the customer data, the loan broker now calls the loan clearing house function, which is part of the loan broker itself. As seen in the call below, the loan-clearing house receives all the data for the loan application.
 getResultsFromLoanClearingHouse(ssn,loanamount,loanduration,credit_history_length,c redit_score);
 The loan clearing house functions could be further demarcated into its own logical unit if the application gets more complex or the loan broker requirements change to use an external loan-clearing house. In our example the loan clearing house functionality can be broken down into three steps, namely:
-· Get a list of lenders who can service the customer loan
+ï¿½ Get a list of lenders who can service the customer loan
 
-· Get the best quote out of all quotes from each bank in the lender list · Format the data from the best quote and return it to the loan broker
+ï¿½ Get the best quote out of all quotes from each bank in the lender list ï¿½ Format the data from the best quote and return it to the loan broker
 The code shows these steps:
 private String getResultsFromLoanClearingHouse(int ssn, double loanamount, int loanduration, int credit_history_length, int credit_score) {
 String lch_results="Results from Loan Clearing House ";
@@ -4770,7 +4776,7 @@ void Listen() {...} void GetBestQuote(BankQuoteRequest quoteRequest, OnBestQuote
 The internal workings are slightly more complex because the Scatter-Gather style of interaction routes a single BankQuoteRequest to multiple banks. Likewise, a single BankQuoteReply is usually the result of multiple bank quote reply messages. The former part is handled by a Recipient List while the latter part is handled by an Aggregator. Let's start with the Recipient List.
 The Recipient List has to implement three main functions:
 
-· Computation of appropriate recipients · Sending the message to the recipients · Initializing the Aggregator to process incoming replies.
+ï¿½ Computation of appropriate recipients ï¿½ Sending the message to the recipients ï¿½ Initializing the Aggregator to process incoming replies.
 As described in the design overview (Introduction to Composed Messaging Examples), this implementation uses the distribution style of Scatter-Gather, actively determining which banks to route the request to. This approach makes business sense if the banks charge the broker for each quote or the bank and the broker have an agreement that requires the broker to prequalify leads he or she generates . The loan broker makes the routing decision based on the customer's credit score, the amount of the loan and the length of the credit history. We encapsulate each connection to a bank inside a class that inherits from the abstract BankConnection. This class contains a reference to the properly addressed message queue and a method CanHandleLoanRequest that determines whether the quote request should be forwarded to this bank. The BankConnectionManager simply iterates through the list of all bank connections and compiles a list of those that match the criteria of the loan quote. If the list of banks was longer we could consider implementing a configurable rules engine. We prefer the current approach because it is simple and explicit.
 internal class BankConnectionManager {
 static protected BankConnection[] banks = {new Bank1(), new Bank2(), new Bank3(), new Bank4(), new Bank5() };
@@ -4864,7 +4870,7 @@ Next, we need to create a class that inherits from AsyncRequestReplyService and 
 
 The "Process"
 The loan broker is different from the previous classes because the process that is triggered by an incoming message is not contained in any single method. Instead, the completion of the process depends on a sequence of external events. The loan broker can receive three types of events:
-· A new loan request message arrives · A credit score reply message arrives (via the CreditBureauGateway) · A bank quote message arrives (via the BankGateway)
+ï¿½ A new loan request message arrives ï¿½ A credit score reply message arrives (via the CreditBureauGateway) ï¿½ A bank quote message arrives (via the BankGateway)
 Since the logic for the loan broker is spread across multiple event handlers we need to keep the state of the broker across these functions. That's where the asynchronous completion tokens come in! Remember that the credit bureau gateway and the bank gateway allow the caller (the loan broker) to pass a reference to an object instance when sending a request. The gateway passes the object reference back when the reply message is received. To take advantage of this functionality, we declare an ACT in the loan broker as follows:
 internal class ACT {
 public LoanQuoteRequest loanRequest; public Message message;
@@ -4982,9 +4988,9 @@ General Retail Bank (Bank 3). After the Pawn Shop, this bank has the next least 
 Tuning asynchronous, message-based systems can be a very complex task. Our example showed some of the most basic techniques of identifying and resolving bottlenecks. But even our simple example made it clear that correcting one problem (the credit bureau bottleneck) can cause another problem (the Bank 5 bottleneck) to surface. We can also clearly see the advantages of asynchronous messaging and event-driven consumers. We were able to process 50 quote requests in 12 seconds -- a synchronous solution would have taken 8 or 10 times as long!
 A Few Words on Testing
 The loan broker example demonstrates how a simple application can become reasonably complex once it becomes distributed, asynchronous and event-driven. We now have a dozen classes and use delegates throughout to deal with the event-driven nature of asynchronous message processing. The increased complexity also means increased risk of defects. The asynchronous nature means risk of defects that are hard to reproduce or trouble-shoot because they depend on specific temporal conditions. Because of these additional risks, messaging solutions require a very thorough approach to testing. While we could probably write a whole book on testing messaging solutions I do want to include some simple, actionable advice on testing in this example. Let me summarize the testing advice in the following there rules:
-· Isolate the application from the messaging implementation by using interfaces and implementation classes
-· Test the business logic with unit test cases before plugging it into the messaging environment
-· Provide a 'Mock' implementation of the messaging layer that allows you to test synchronously
+ï¿½ Isolate the application from the messaging implementation by using interfaces and implementation classes
+ï¿½ Test the business logic with unit test cases before plugging it into the messaging environment
+ï¿½ Provide a 'Mock' implementation of the messaging layer that allows you to test synchronously
 Isolate the Application From the Messaging Implementation
 Testing a single application is much easier than testing multiple, distributed applications connected by messaging channels. A single application allows us to trace through the complete execution path, we do not need a complex start-up procedure to fire up all components, and there is no need to purge channels between tests (see Channel Purger. Sometimes it is useful to "stub out" some external functions while testing others. For example, while we are testing the
 
@@ -5024,7 +5030,7 @@ return null; }
 We can see that the Send triggers the onMsg delegate immediately without using any message queue. To use this mock queue for the credit bureau gateway we would have to make sure to reply with a message of the correct type. We would not be able to simply pass the request message back to the reply message. This implementation is not shown here but can be simple if, for example, we use a canned reply message.
 Limitations of This Example
 This section reminded us that even a simple messaging system (the loan broker really has to execute only two steps -- get the credit score and get the best bank quote) can get fairly complex due to the asynchronous nature and loose coupling between components. However, I still took a number of shortcuts to make the example fit inside the book. Specifically, the example does not address the following topics:
-· Error Handling · Transactions · Thread Safety
+ï¿½ Error Handling ï¿½ Transactions ï¿½ Thread Safety
 The example has no managed mechanism to handle errors. At this point, components simple spit out messages into the various console windows -- not a suitable solution for a production system. For a real implementation error messages should be routed to a central console so they can notify an operator in a unified way. The systems management patterns in the following chapter (e.g., the Control Bus address these requirements.
 This example does not use transactional queues. For example, if the MessageRouter crashes after sending 2 out of 4 quote request messages to the banks, some banks will process a quite request while others will not. Likewise, if the loan broker crashes after it receives all bank quote replies but before it sends a reply to the client the client will never receive a reply. In a real-life system, actions like this need to be encapsulated inside transactions so that incoming messages are not consumed until the corresponding outbound message had been sent.
 
@@ -5047,7 +5053,7 @@ Many commercial EAI product suites offer substantially more functionality to str
 
 with TIBCO ActiveEnterprise before. If you are interested in detailed product or vendor information please visit www.tibco.com. This example implementation also differs in the solution design by using an Auction-style Scatter-Gather approach. This approach uses a Publish-Subscribe Channel instead of a Recipient List so that the Loan Broker can send the quote request to any number of banks. This type of Scatter-Gather pattern performs a dynamic Request/Reply with an unknown number of listeners. Additionally, the implementation of the Loan Broker component uses the business process management functionality provided by TIBCO's Process Manager tool.
 Solution Architecture
-Our application is a simple bank quote request system. Customers submit quote requests to a loan broker interface. The loan broker fulfills the request by first obtaining a credit score, then requesting quotes from a number of banks. Once the loan broker obtains quotes from the banks it selects the best quote and returns it to the customer (see picture). Clients of the system expect a synchronous Request-Reply interface to the loan broker ­ the client sends a quote request and waits for a reply message from the loan broker. The loan broker in turn uses a Request-Reply interface to communicate with the credit bureau to obtain credit scores. Once the initial client request is received, the loan broker has the option to perform asynchronous operations behind the distributed, synchronous facade. This allows the loan broker to utilize an auction-style Scatter-Gather with a Publish-Subscribe Channel to acquire the bank quotes from multiple banks.
+Our application is a simple bank quote request system. Customers submit quote requests to a loan broker interface. The loan broker fulfills the request by first obtaining a credit score, then requesting quotes from a number of banks. Once the loan broker obtains quotes from the banks it selects the best quote and returns it to the customer (see picture). Clients of the system expect a synchronous Request-Reply interface to the loan broker ï¿½ the client sends a quote request and waits for a reply message from the loan broker. The loan broker in turn uses a Request-Reply interface to communicate with the credit bureau to obtain credit scores. Once the initial client request is received, the loan broker has the option to perform asynchronous operations behind the distributed, synchronous facade. This allows the loan broker to utilize an auction-style Scatter-Gather with a Publish-Subscribe Channel to acquire the bank quotes from multiple banks.
 TIBCO Loan Broker Solution Architecture
 The auction sequence begins by publishing the request for quotes message to the bank.loan.request Publish-Subscribe Channelso that any interested party can listen for the message and provide their own rates. The number of banks submitting replies is unknown and can vary for each quote request. The auction works by opening the auction to the banks, then waiting a predefined amount of time for response messages on the channel bank.loan.reply. Each time a
 
@@ -5057,11 +5063,11 @@ In this implementation, the Content Enricher and Aggregator functions are implem
 
 The Implementation Toolset
 In order to explain the design of our solution, we need to introduce some basic concepts about the TIBCO product suite. Implementing TIBCO solutions often requires evaluating different tools for a particular problem. At times, a problem can be solved with several different tools. The trick is picking the best one. We limit the discussion to only those TIBCO features that are required to construct the example implementation:
-· TIB/RendezVous Transport · TIB/IntegrationManager Process Manager tool · TIBCO Repository for Metadata Management
+ï¿½ TIB/RendezVous Transport ï¿½ TIB/IntegrationManager Process Manager tool ï¿½ TIBCO Repository for Metadata Management
 TIB/RendezVous Transport
 At the heart of TIBCO's messaging suite is the TIB/Rendezvous transport layer. Rendezvous provides the messaging mechanism for sending and receiving TIBCO messages on the "information bus". TIBCO supports a wide range of transports including (but not limited to) JMS, HTTP, FTP, and email. Rendezvous will provide the underlying transport for the messages in our example. The transport supports both synchronous and asynchronous messages, as well as Point-to-Point Channels and Publish-Subscribe Channels. Each channel can be configured for different service levels:
-· Reliable Messaging (RV) - provides high performance, but at the realistic risk of losing messages.
-· Certified messages (RVCM) - at least once delivery · Transactional messaging (RVTX) - guaranteed once and only once delivery
+ï¿½ Reliable Messaging (RV) - provides high performance, but at the realistic risk of losing messages.
+ï¿½ Certified messages (RVCM) - at least once delivery ï¿½ Transactional messaging (RVTX) - guaranteed once and only once delivery
 Similar to the MSMQ examples in this book, TIBCO provides an open API for creating messaging solutions using Java or C++, and includes a range of tools for simplifying the development process.
 TIB/IntegrationManager Process Manager tool
 IntegrationManager is a TIBCO development tool consisting of a rich user interface for designing workflow solutions, and a Process Manager engine for executing them. The GUI provides an extensive array of configuration, workflow, and implementation options that are stored in the TIBCO Repository. TIBCO uses the repository as the central configuration artifact for the system. It holds all metadata, workflow and custom code.
@@ -5080,18 +5086,18 @@ However, remember that this is a dynamic, scripted environment with limited comp
 The Interfaces
 The Solution Architecture diagram shows us that the solution requires the following services.
 Loan Broker
-· Receives the initial request · Obtains a credit score · Holds loan auction with banks · Returns best loan offer to client
+ï¿½ Receives the initial request ï¿½ Obtains a credit score ï¿½ Holds loan auction with banks ï¿½ Returns best loan offer to client
 Credit Service
 
-· Provides a credit score based upon SSN
+ï¿½ Provides a credit score based upon SSN
 Bank(s)
-· Submit a quote based upon the credit rating and loan amount
+ï¿½ Submit a quote based upon the credit rating and loan amount
 Each service is accessible through an external interface. For each such interface we have to make the following design decisions:
-· Conversation Style: Synchronous vs. Asynchronous · Quality of Service Level
+ï¿½ Conversation Style: Synchronous vs. Asynchronous ï¿½ Quality of Service Level
 The conversation styles for the interfaces have been predetermined by the solution architecture. The loan broker and credit service will both need synchronous interfaces, while the communication with the banks will be purely asynchronous.
 Service levels for messaging solutions can become quite complicated especially given failover scenarios. Fortunately, the loan example service level resolves to a simple solution. In event of failure (timeout, dropped messages, down systems), the original request can be resubmitted (the loan broker as an Idempotent Receiver). Remember that we are only obtaining a quote at this point. It is not yet a legally binding agreement. Of course, this type of assumption needs to be documented in the system and understood by all parties involved. For example, the banks need to know that a quote may be resubmitted a second time. If the banks track customer loan requests for fraud detection purposes we may have to change the solution to avoid sending duplicate requests, for example by using Guaranteed Delivery.
 Implementing the Synchronous Services
-The loan broker system has 2 synchronous interfaces ­ between the customer and the loan broker and between the loan broker and the credit bureau. TIBCO implements RPC style messaging with operations using Request-Reply and Command Message. Essentially, this is a synchronous wrapper to the underlying TIBCO messaging engine. During the invocation of TIBCO operations, you can listen to the request and reply messages passing across the bus. The request message is published on the specified channel (for example customer.loan.request). The message includes a Return Address that specifies the address of a so-called INBOX channel for the reply. TIBCO hides the asynchronous details behind an RPC-style programming model. In Integration Manager, the domain operations such as obtain credit score, etc. are defined as part of the AE classes and can be invoked from the process modeling tool.
+The loan broker system has 2 synchronous interfaces ï¿½ between the customer and the loan broker and between the loan broker and the credit bureau. TIBCO implements RPC style messaging with operations using Request-Reply and Command Message. Essentially, this is a synchronous wrapper to the underlying TIBCO messaging engine. During the invocation of TIBCO operations, you can listen to the request and reply messages passing across the bus. The request message is published on the specified channel (for example customer.loan.request). The message includes a Return Address that specifies the address of a so-called INBOX channel for the reply. TIBCO hides the asynchronous details behind an RPC-style programming model. In Integration Manager, the domain operations such as obtain credit score, etc. are defined as part of the AE classes and can be invoked from the process modeling tool.
 For example, to expose the loan broker as a synchronous interface we must perform several implementation steps. The implementation of the credit bureau service follows closely to these same steps.
 Define the AE Class Definitions
 
@@ -5208,7 +5214,7 @@ separate message. We could take some of the burden off the application by using 
 The Messaging Gateway encapsulates messaging-specific code (e.g., the code required to send or receive a message) and separates it from the rest of the application code. This way, only the Messaging Gateway code knows about the messaging system; the rest of the application code does not. The Messaging Gateway exposes a business function to the rest of the application so that instead of requiring the application to set properties like Message.MessageReadPropertyFilter.AppSpecific, a Messaging Gateway exposes methods such as GetCreditScore that accept strongly typed parameters just like any other method. A Messaging Gateway is a messaging-specific version of the more general Gateway pattern [EAA].
 A Gateway Eliminates Direct Dependencies Between the Application and the Messaging Systems
 A Messaging Gateway sits between the application and the messaging system and provides a domain-specific API to the application (see picture). Because the application doesn't even know that it's using a messaging system, we can swap out the gateway with a different implementation that uses another integration technology, such as remote procedure calls or Web services. Many Messaging Gateways send a message to another component and expect a reply message (Request-Reply). Such a Messaging Gateway can be implemented in two different ways:
-· Blocking (Synchronous) Messaging Gateway · Event-Driven (Asynchronous) Messaging Gateway A blocking Messaging Gateways sends out a message and waits for the reply message to arrive before returning control to the application. When the gateway receives the reply, it processes the message and returns the result to the application (see sequence diagram).
+ï¿½ Blocking (Synchronous) Messaging Gateway ï¿½ Event-Driven (Asynchronous) Messaging Gateway A blocking Messaging Gateways sends out a message and waits for the reply message to arrive before returning control to the application. When the gateway receives the reply, it processes the message and returns the result to the application (see sequence diagram).
 
 Blocking (Synchronous) Messaging Gateway
 A blocking Messaging Gateway encapsulates the asynchronous nature of the messaging interaction, exposing a regular synchronous method to the application logic. Thus, the application is unaware of any asynchronicity in the communication. For example, a blocking gateway may expose the following method:
@@ -5312,10 +5318,10 @@ A messaging system must use transactions internally. A single Message Channel ca
 
 Message Endpoints sending and receiving messages are transactional, even if they don't realize it. The send method that adds a message to a channel does so within a transaction to isolate that message from any other messages simultaneously being added to or removed from that channel. Likewise, a receive method also uses a transaction, which prevents other point-to-point receivers from getting the same message, and even assures that a publish-subscribe receiver won't read the same message twice. (Transactions are often described as being ACID: atomic, consistent, isolated, and durable. Only transactions for Guaranteed Delivery are durable, and a message by definition is atomic. But all messaging transactions have to be consistent and isolated. A message can't be sort of in the channel, it either is or isn't. And an application's sending and receiving of messages has to be isolated from whatever other sending and receiving other threads and applications might be doing.)
 The messaging system's internal transactions are sufficient and convenient for a client that simply wants to send or receive a single message. However, an application may need a broader transaction to coordinate several messages or to coordinate messaging with other resources. Common scenarios like this include:
-· Send-Receive Message Pairs ­ Receive one message and send another, such as a Request-Reply scenario or when implementing a message filter such as a Message Router or Message Translator.
-· Message Groups ­ Send or receive a group of related messages, such as a Message Sequence.
-· Message/Database Coordination ­ Combine sending or receiving a message with updating a database, such as with a Channel Adapter. For example, when an application receives and processes a message for ordering a product, the application will also need to update the product inventory database. Likewise, the sender of a Document Message may wish to delete a persisted document, but only when it is sent successfully; the receiver may want to persist the document before the message is truly considered to be consumed.
-· Message/Workflow Coordination ­ Use a pair of Request-Reply messages to perform a work item, and use transactions to ensure that the work item isn't acquired unless the request is also sent, and the work item isn't completed or aborted unless the reply is also received.
+ï¿½ Send-Receive Message Pairs ï¿½ Receive one message and send another, such as a Request-Reply scenario or when implementing a message filter such as a Message Router or Message Translator.
+ï¿½ Message Groups ï¿½ Send or receive a group of related messages, such as a Message Sequence.
+ï¿½ Message/Database Coordination ï¿½ Combine sending or receiving a message with updating a database, such as with a Channel Adapter. For example, when an application receives and processes a message for ordering a product, the application will also need to update the product inventory database. Likewise, the sender of a Document Message may wish to delete a persisted document, but only when it is sent successfully; the receiver may want to persist the document before the message is truly considered to be consumed.
+ï¿½ Message/Workflow Coordination ï¿½ Use a pair of Request-Reply messages to perform a work item, and use transactions to ensure that the work item isn't acquired unless the request is also sent, and the work item isn't completed or aborted unless the reply is also received.
 Scenarios like these require a larger atomic transaction that involve more than just a single message and may involve other transactional stores besides the messaging system. A transaction is required so that if part of the scenario works (receiving the message, for example) but another part does not (such as updating the database, or sending another message), all parts can be rolled back as if they never happened, and then the application can try again.
 Yet a messaging system's internal transaction model is insufficient to allow an application to coordinate handling a message with other messages or other resources. What is needed is a way for the application to externally control the messaging system's transactions and combine them with other transactions in the messaging system or elsewhere.
 
@@ -5326,22 +5332,22 @@ With a transactional receiver, an application can receive a message without actu
 
 How does controlling a messaging system's transactions externally help an application coordinate several tasks? Here's what the application would do in the scenarios described above:
 Send-Receive Message Pairs
-· What to do: Start a transaction, receive and process the first message, create and send the second message, then commit.
-· What this does: This keeps the first message from being removed from its channel until the second message is successfully added to its channel.
-· Transaction type: If the two messages are sent via channels in the same messaging system, the transaction encompassing the two channels is a simple one. However, if the two channels are managed by two separate messaging systems, such as with a Messaging Bridge, the transaction will be a distributed one coordinating the two messaging systems.
-· Warning: A single transaction only works for the receiver of a request sending a reply. The sender of a request cannot use a single transaction to send a request and wait for its reply. If it tries to do this, the request will never really be sent--because the send transaction isn't committed--so the reply will never be received.
+ï¿½ What to do: Start a transaction, receive and process the first message, create and send the second message, then commit.
+ï¿½ What this does: This keeps the first message from being removed from its channel until the second message is successfully added to its channel.
+ï¿½ Transaction type: If the two messages are sent via channels in the same messaging system, the transaction encompassing the two channels is a simple one. However, if the two channels are managed by two separate messaging systems, such as with a Messaging Bridge, the transaction will be a distributed one coordinating the two messaging systems.
+ï¿½ Warning: A single transaction only works for the receiver of a request sending a reply. The sender of a request cannot use a single transaction to send a request and wait for its reply. If it tries to do this, the request will never really be sent--because the send transaction isn't committed--so the reply will never be received.
 Message Groups
-· What to do: Start a transaction, send or receive all of the messages in the group (such as a Message Sequence), then commit.
-· What this does: When sending, none of the messages in the group will be added to the channel until they are all successfully sent. When receiving, none of the messages will be removed from the channel until all are received.
-· Transaction type: Since all of the messages are being sent to or received from a single channel, that channel will be managed by a single messaging system, so the transaction will be a simple one. Also, in many messaging system implementations, sending a group of messages in a single transaction ensures that they will be received on the other end of the channel in the order they were sent.
+ï¿½ What to do: Start a transaction, send or receive all of the messages in the group (such as a Message Sequence), then commit.
+ï¿½ What this does: When sending, none of the messages in the group will be added to the channel until they are all successfully sent. When receiving, none of the messages will be removed from the channel until all are received.
+ï¿½ Transaction type: Since all of the messages are being sent to or received from a single channel, that channel will be managed by a single messaging system, so the transaction will be a simple one. Also, in many messaging system implementations, sending a group of messages in a single transaction ensures that they will be received on the other end of the channel in the order they were sent.
 Message/Database Coordination
-· What to do: Start a transaction, receive a message, update the database, then commit. Or update the database and send a message to report the update to others, then commit. (This behavior is often implemented by a Channel Adapter.)
-· What this does: The message will not be removed unless the database is updated (or the database change will not stick if the message cannot be sent).
-· Transaction type: Since the messaging system and the database each has its own transaction manager, the transaction to coordinate them will be a distributed one.
+ï¿½ What to do: Start a transaction, receive a message, update the database, then commit. Or update the database and send a message to report the update to others, then commit. (This behavior is often implemented by a Channel Adapter.)
+ï¿½ What this does: The message will not be removed unless the database is updated (or the database change will not stick if the message cannot be sent).
+ï¿½ Transaction type: Since the messaging system and the database each has its own transaction manager, the transaction to coordinate them will be a distributed one.
 Message/Workflow Coordination
-· What to do: Use a pair of Request-Reply messages to perform a work item. Start a transaction, acquire the work item, send the request message, then commit. Or start
+ï¿½ What to do: Use a pair of Request-Reply messages to perform a work item. Start a transaction, acquire the work item, send the request message, then commit. Or start
 
-another transaction, receive the reply message, complete or abort the work item, then commit. · What this does: The work item will not be committed unless the request is sent; the reply will not be removed unless the work item is updated. · Transaction type: Since the messaging system and the workflow engine each has its own transaction manager, the transaction to coordinate them will be a distributed one.
+another transaction, receive the reply message, complete or abort the work item, then commit. ï¿½ What this does: The work item will not be committed unless the request is sent; the reply will not be removed unless the work item is updated. ï¿½ Transaction type: Since the messaging system and the workflow engine each has its own transaction manager, the transaction to coordinate them will be a distributed one.
 In this way, the application can assure that it will not loose the messages it receives, nor forget to send a message that it should. If something goes wrong in the middle, the application can roll back the transaction and try again.
 Transactional clients using Event-Driven Consumers may not work as expected. The consumer typically must commit the transaction for receiving the message before passing the message to the application. Then if the application examines the message and decides it does not want to consume it, or if the application encounters an error and wants to rollback the consume action, it cannot because it does not have access to the transaction. So an event-driven consumer tends to work the same whether or not its client is transactional.
 Messaging systems are capable of participating in a distributed transaction, although some implementations may not support it. In JMS, a provider can act as an XA resource and participate in Java Transaction API [JTA] transactions. This behavior is defined by the "XA" classes in the javax.jms package, particularly javax.jms.XASession, and by the javax.transaction.xa package. The JMS spec recommends that JMS clients not try to handle distributed transactions directly, so an application should use the distributed transaction support provided by a J2EE application server. MSMQ can also participate in an XA transaction; this behavior is exposed in .NET by the MessageQueue.Transactional property and the MessageQueueTransaction class.
@@ -5424,13 +5430,13 @@ A consumer that is polling too much or blocking threads for too long can be inef
 
 Example: JMS Receive
 In JMS, a message consumer uses MessageConsumer.receive to consume a message synchronously. [JMS11, p.69], [Hapner, p.21] MessageConsumer has three different receive methods:
-1. receive() ­ Blocks until a message is available, and then returns it. 2. receiveNoWait() ­ Checks once for a message, and returns it or null. 3. receive(long) ­ Blocks either until a message is available and returns it, or until the time-out expires and
+1. receive() ï¿½ Blocks until a message is available, and then returns it. 2. receiveNoWait() ï¿½ Checks once for a message, and returns it or null. 3. receive(long) ï¿½ Blocks either until a message is available and returns it, or until the time-out expires and
 returns null.
 For example, the code to create a consumer and receive a message is very simple:
 Destination dest = // Get the destination Session session = // Create the session MessageConsumer consumer = session.createConsumer(dest); Message message = consumer.receive();
 Example: .NET Receive
 In .NET, a consumer uses MessageQueue.Receive to consume a message synchronously. [SysMsg] A MessageQueue client has several variations of receive. The two simplest are:
-1. Receive() ­ Blocks until a message is available, and then returns it. 2. Receive(TimeSpan) ­ Blocks either until a message is available and returns it, or until the time-out expires
+1. Receive() ï¿½ Blocks until a message is available, and then returns it. 2. Receive(TimeSpan) ï¿½ Blocks either until a message is available and returns it, or until the time-out expires
 and throws MessageQueueException.
 The code to receive a message from an existing queue is quite simple:
 MessageQueue queue = // Get the queue Message message = queue.Receive();
@@ -5445,8 +5451,8 @@ This is also known as an asynchronous receiver, because the receiver does not ha
 An Event-Driven Consumer is an object that is invoked by the messaging system when a message arrives on the consumer's channel. The consumer passes the message to the application through a callback in the application's API. (How the messaging system gets the message is implementation-specific and may or may not be event-driven. All the consumer knows is that it can sit dormant with no active threads until it gets invoked by the messaging system passing it a message.)
 An Event-Driven Consumer is invoked by the messaging system, yet it invokes an application-specific callback. To bridge this gap, the consumer has an application-specific implementation that conforms to a known API defined by the messaging system.
 The code for an Event-Driven Consumer consists of two parts:
-1. Initialization ­ The application creates an application-specific consumer and associates it with a particular Message Channel. After this code is run once, the consumer is ready to receive a series of messages.
-2. Consumption ­ The consumer receives a message, which it and the application process. This code is run once per message being consumed.
+1. Initialization ï¿½ The application creates an application-specific consumer and associates it with a particular Message Channel. After this code is run once, the consumer is ready to receive a series of messages.
+2. Consumption ï¿½ The consumer receives a message, which it and the application process. This code is run once per message being consumed.
 
 Event-Driven Consumer Sequence
 The application creates its custom consumer and associates it with the channel. Once the consumer is initialized, it (and the application) can then go dormant, with no running threads, waiting to be invoked when a message arrives.
@@ -5535,7 +5541,7 @@ Alas, consumers are very independent objects that are difficult to coordinate. M
 The Mediator pattern [GoF] offers some help. A Meditor coordinates a group of objects so that they don't need to know how to coordinate with each other. What we need for messaging is a mediator that coordinates the consumers for a channel. Then each consumer could focus on processing a particular kind of message, and the coordinator could make sure the right message gets to the right consumer.
 Create a Message Dispatcher on a channel that will consume messages from a channel and distribute them to performers.
 
-A Message Dispatcher consists of two parts: 1. Dispatcher ­ The object that consumes messages from a channel and distributes each message to a performer. 2. Performer ­ The object that is given the message by the dispatcher and processes it.
+A Message Dispatcher consists of two parts: 1. Dispatcher ï¿½ The object that consumes messages from a channel and distributes each message to a performer. 2. Performer ï¿½ The object that is given the message by the dispatcher and processes it.
 When a Message Dispatcher receives a message, it obtains a performer and dispatches the message to the performer to process it. A performer can delegate to the rest of its application to help process its message. The performer could be newly created by the dispatcher, or could be selected from a pool of available performers. Each performer can run in its own thread to process messages concurrently. All performers may be appropriate for all messages, or the dispatcher may match a message to a specialized performer based on properties of the message.
 Message Dispatcher Sequence
 When the dispatcher receives a message, it delegates the message to an available performer to process it. If the performer processes the message using the dispatcher's thread, then the dispatcher blocks until the performer is finished processing the message. On the other hand, if the performer processes the message in its own thread, then once the dispatcher starts that thread, it can immediately start receiving other messages and delegating them to other performers, so that the messages are processed concurrently. This way, messages can be consumed as fast as the dispatcher can recieve and delegate them, regardless of how long each message takes to process. A dispatcher acts as a one-to-many connection between a single channel and a group of performers. The performers do most of the work; the dispatcher just acts as a matchmaker, matching each message with an available performer, and does not block as long as the performers run in their own threads. The dispatcher receives the message and then sends it to a performer to process it. Because the dispatcher does relatively little work and does not block, it
@@ -5769,16 +5775,16 @@ It seems natural to try to leverage the messaging infrastructure to perform some
 
 Use a Control Bus to manage an enterprise integration system. The Control Bus uses the same messaging mechanism used by the application data, but uses separate channels to transmit data that is relevant to the management of components involved in the message flow.
 Each component in the system is now connected to two messaging subsystems:
-· The Application Message Flow · The Control Bus
+ï¿½ The Application Message Flow ï¿½ The Control Bus
 The application message flow transports all application-related messages. The components subscribe and publish to these channels just like they would in an unmanaged scenario. In addition, each component also sends and receives messages from the channels that make up the Control Bus. These channels connect to a central management component.
 The Control Bus is well suited to carry the following types of messages:
-· Configuration - each component involved in the message flow should have configurable parameters that can be changed as required. These parameters include channel addresses, message data formats, timeouts etc. Components use the Control Bus to retrieve this information from a central repository rather than using property files, allowing a central point of configuration and the reconfiguration of the integration solution at run-time. For example, the routing table inside a Content-Based Router may need to be updated dynamically based on system conditions, such as overload or component failure.
-· Heartbeat - each component may send a periodic 'heartbeat' message on the Control Bus at specified intervals so that a central console application can verify that the component is functioning properly. This 'heartbeat' may also include metrics about the component, such as number of messages processed, the amount of available memory on the machine etc.
-· Test Messages - heartbeat messages tell the Control Bus that a component is still alive, but may provide limited information on ability of the component to correctly process messages. In addition to having components publish periodic heartbeat messages to the Control Bus, we can also inject test messages into the message stream that will be processed by the components. We will then extract the message later to see whether the component processed the message correctly. As this blurs the definition of the control bus and the message bus, I decided to define a separate pattern for it (see Test Message).
+ï¿½ Configuration - each component involved in the message flow should have configurable parameters that can be changed as required. These parameters include channel addresses, message data formats, timeouts etc. Components use the Control Bus to retrieve this information from a central repository rather than using property files, allowing a central point of configuration and the reconfiguration of the integration solution at run-time. For example, the routing table inside a Content-Based Router may need to be updated dynamically based on system conditions, such as overload or component failure.
+ï¿½ Heartbeat - each component may send a periodic 'heartbeat' message on the Control Bus at specified intervals so that a central console application can verify that the component is functioning properly. This 'heartbeat' may also include metrics about the component, such as number of messages processed, the amount of available memory on the machine etc.
+ï¿½ Test Messages - heartbeat messages tell the Control Bus that a component is still alive, but may provide limited information on ability of the component to correctly process messages. In addition to having components publish periodic heartbeat messages to the Control Bus, we can also inject test messages into the message stream that will be processed by the components. We will then extract the message later to see whether the component processed the message correctly. As this blurs the definition of the control bus and the message bus, I decided to define a separate pattern for it (see Test Message).
 
-· Exceptions - each component can channel exception conditions to the Control Bus to be evaluated. Severe exceptions may cause an operator to be alerted. The rules to define exception handling should be specified in a central handler.
-· Statistics - Each component can collect statistics about the number of messages processed, average throughput, average time to process a message, etc. Some of this data may be split out by message type, so we can determine whether messages of a certain type are flooding the system. Since this message tends to be lower priority than other messages, it is likely that the Control Bus uses non-guaranteed or lower-priority channels for this type of data.
-· Live Console - most of the functions mentioned here can be aggregated for display in a central console. From here, operators can assess the health of the messaging system and take corrective action if needed.
+ï¿½ Exceptions - each component can channel exception conditions to the Control Bus to be evaluated. Severe exceptions may cause an operator to be alerted. The rules to define exception handling should be specified in a central handler.
+ï¿½ Statistics - Each component can collect statistics about the number of messages processed, average throughput, average time to process a message, etc. Some of this data may be split out by message type, so we can determine whether messages of a certain type are flooding the system. Since this message tends to be lower priority than other messages, it is likely that the Control Bus uses non-guaranteed or lower-priority channels for this type of data.
+ï¿½ Live Console - most of the functions mentioned here can be aggregated for display in a central console. From here, operators can assess the health of the messaging system and take corrective action if needed.
 Many of the functions that a Control Bus supports resemble traditional network management functions that are used to monitor and maintain any networked solution. A Control Bus allows us to implement equivalent management functions at the messaging system level -- essentially elevating them from the low-level IP network level to the richer messaging level. Providing this functionality is vital to the successful operation of a messaging infrastructure, but the absence of management standards for messaging solutions makes it difficult to build enterprise-wide, reusable management solutions for messaging systems.
 When we design message processing components, we architect the core processor around three interfaces (see Figure). The inbound data interface receives incoming messages from the message channel. The outbound data interface sends processed messages to the outbound channel. The control interface sends and receives control messages from and to the Control Bus.
 Key interfaces of a messaging component.
@@ -5934,7 +5940,7 @@ Use a Smart Proxy to store the Return Address supplied by the original requestor
 The Smart Proxy intercepts messages sent on the request channel to the Request-Reply service. For each incoming message, the Smart Proxy stores the Return Address specified by the original sender. It then replaces the Return Address in the message with the channel the reply channel that the Smart Proxy is listening on. When a reply message comes in on that channel, the Smart Proxy retrieves the stored Return Address and uses a Message Router to forward the unmodified reply address to that channel.
 The Smart Proxy is also useful in cases where an external service does not support a Return Address but instead replies to a fixed reply channel. We can proxy such a service with a Smart Proxy to provide support for a Return Address. In this case the Smart Proxy performs no analytical functions, but simply forwards the reply message to the correct channel.
 The Smart Proxy needs to store the Return Address supplied by the original requestor in such a way that it can correlate incoming reply messages with the Return Address and forward the reply message to the correct channel. The Smart Proxy can store this data in two places:
-· Inside the Message · Inside the Smart Proxy
+ï¿½ Inside the Message ï¿½ Inside the Smart Proxy
 To store the Return Address inside the message, the Smart Proxy can add a new message field with the Return Address to the message. The Request-Reply service is required to copy this field the reply message. All the Smart Proxy has to do is to extract the special message field from the reply message, remove the field from the message and forward the message to the channel specified by the field. This solution keeps the Smart Proxy simple but it requires collaboration by the Request-Reply service. If the Request-Reply service is a non-modifiable component, this option may not be available.
 
 Alternatively, the Smart Proxy can store the Return Address in dedicated storage, for example in a memory structure or a relational database. Because the purpose of the Smart Proxy is to track messages between the request and reply message the Smart Proxy usually has to store data from the request message anyway to correlate it to the reply message and to analyze both messages in unison. This approach requires the Smart Proxy to be able to correlate the reply message to the response message. Most Request-Reply services support a Correlation Identifier that the service copies from the request message to the reply message. If the Smart Proxy cannot modify the original message format, it can (ab-)use this field to correlate request and reply messages. The Smart Proxy should construct its own Correlation Identifier because not all requestors will specify a Correlation Identifier and also because the Correlation Identifier needs to be unique only across requests made by a single requestor and not across multiple requestors. Because the service reply queue now carries messages from multiple requestors using the original Correlation Identifier is not reliable. Therefore, the Smart Proxy stores the original Correlation Identifier together with the original Return Address and replaces the original Correlation Identifier with its own Correlation Identifier so that it can retrieve the original Correlation Identifier and Return Address when the reply message arrives. Many services us the Message ID of the request message as the Correlation Identifier for the reply message. This introduces another problem. The service will now copy the Message ID of the request message it received from the Smart Proxy to the reply message to the Smart Proxy. The Smart Proxy needs to replace this Correlation Identifier in the reply message with the Message ID of the original request message so that the requestor can properly correlate request and reply messages. The following picture illustrates this process:
@@ -6027,10 +6033,10 @@ The Control Bus describes a number of approaches to monitor the health of the me
 
 Therefore, use Test Message to assure the health of message processing components (see Figure).
 The Test Message pattern relies on the following components:
-· The Test Data Generator creates messages to be sent to the component for testing. Test data may be constant, driven by a test data file or generated randomly.
-· The Test Message Injector inserts test data into the regular stream of data messages sent to the component. The main role of the injector is to tag messages in order to differentiate 'real' application messages from test messages. This can be accomplished by inserting a special header field. If we have no control over the message structure, we can try to use special values to indicate test messages (e.g. OrderID = 999999). This changes the semantics of application data by using the same field to represent application data (the actual order number) and control information (this is a test message). Therefore, this approach should be used only as a last resort.
-· The Test Message Separator extracts the results of test messages from the output stream. This can usually be accomplished by using a Content-Based Router.
-· The Test Data Verifier compares actual results with expected results and flags an exception if a discrepancy is discovered. Depending on the nature of the test data, the verifier may need access to the original test data.
+ï¿½ The Test Data Generator creates messages to be sent to the component for testing. Test data may be constant, driven by a test data file or generated randomly.
+ï¿½ The Test Message Injector inserts test data into the regular stream of data messages sent to the component. The main role of the injector is to tag messages in order to differentiate 'real' application messages from test messages. This can be accomplished by inserting a special header field. If we have no control over the message structure, we can try to use special values to indicate test messages (e.g. OrderID = 999999). This changes the semantics of application data by using the same field to represent application data (the actual order number) and control information (this is a test message). Therefore, this approach should be used only as a last resort.
+ï¿½ The Test Message Separator extracts the results of test messages from the output stream. This can usually be accomplished by using a Content-Based Router.
+ï¿½ The Test Data Verifier compares actual results with expected results and flags an exception if a discrepancy is discovered. Depending on the nature of the test data, the verifier may need access to the original test data.
 An explicit Test Message Separator may not needed if the component under test supports a Return Address. In this case the test Data Generator can include a special test channel as the Return Address so that test messages are not passed through the remainder of the system. Effectively, the Return Address acts as the tag for text messages.
 Test Message is considered an active monitoring mechanism. Unlike passive mechanisms, active mechanisms do not rely on information generated by the components (e.g. log files or heartbeat messages), but actively probe the component. The advantage is that active monitoring usually achieves a deeper level of testing since data is routed through the same processing steps as the application messages. It also works well with components that were not designed to support passive monitoring.
 
@@ -6054,8 +6060,8 @@ A simple Channel Purger simply remove all the messages from a channel. This may 
 In many cases it is alright for the Channel Purger to simply delete the message from the channel. In other cases, we may need the Channel Purger to store the removed messages for later inspection or replay. This is useful if the messages on a channel cause a system to malfunction, so that we need to remove them to continue operation. However, once the problems are corrected, we want to re-inject the message(s) so that the system does not lose the contents of the message. This may also include the requirement to edit message contents before re-injecting the message. This type of function combines some of the features of a Message Store and a Channel Purger.
 Example: Channel Purger in JMS
 This example shows a simple Channel Purger implemented in Java. This example simply removes all messages on a channel. The ChannelPurger class references two external classes:
-· JMSEndpoint - The base class for any JMS particpant. Provides pre-initialized instance variables for a Connection and Session instance.
-· JNDIUtil - Implements helper functions to encapsulate the lookup of JMS objects via JNDI.
+ï¿½ JMSEndpoint - The base class for any JMS particpant. Provides pre-initialized instance variables for a Connection and Session instance.
+ï¿½ JNDIUtil - Implements helper functions to encapsulate the lookup of JMS objects via JNDI.
 Both classes are described in more detail in JMS Request/Reply Example.
 import javax.jms.JMSException; import javax.jms.MessageConsumer; import javax.jms.Queue;
 public class ChannelPurger extends JmsEndpoint {
@@ -6082,16 +6088,16 @@ Loan Broker System Management
 This section uses a more elaborate example to demonstrate how the system management patterns introduced in this section can be used to monitor and control a messaging solution. The example builds upon the C# and MSMQ implementation of the Loan Broker example from Chapter ?? (see Asynchronous Implementation with MSMQ). We augment rather than modify the original example solution so it is not critical that you reviewed all the code of the original example. As with the original example implementation, the intent of this section is not to explain the use of MSMQ-specific API's but rather to illustrate the implementation of the patterns in this book using a queue-oriented messaging system. The structure of the solution would look very similar when implemented in Java using JMS queues or IBM WebSphere MQ. Because we focus mostly on the design decisions and trade-offs, this section should be valuable to you even if you are not a C# or MSMQ developer.
 Instrumenting the Loan Broker
 The loan broker implementation consists of the following four key components (see picture):
-· The Test Client makes requests for loan quotes. · The Loan Broker acts as the central process manager and coordinates the communication
-between the credit bureau and the banks. · The Credit Bureau provides a service to the Loan Broker, computing customer's credit
-scores. · Each Bank receives a quote request from the Loan Broker and submits an interest rate
+ï¿½ The Test Client makes requests for loan quotes. ï¿½ The Loan Broker acts as the central process manager and coordinates the communication
+between the credit bureau and the banks. ï¿½ The Credit Bureau provides a service to the Loan Broker, computing customer's credit
+scores. ï¿½ Each Bank receives a quote request from the Loan Broker and submits an interest rate
 quote according to the loan parameters.
 
 In most integration scenarios we do not have access to the application internals but are limited to monitoring and managing components from the outside. To make this example as realistic as possible, we decide to treat each of the components as a black box. Keeping this constraint in mind, we want the management solution to meet the following requirements:
-· Management Console: We want a single front-end that displays the health of all components and allows us to take compensating actions if something goes wrong.
-· Loan Broker Quality of Service: In the original solution we developed a test client that monitors the loan broker's response times between quote request and response. In a real production scenario clients will not perform this function for us (they may, however, complain that the system is too slow). Therefore, we want the management solution to capture this information and relay it to the management console.
-· Verify the Credit Bureau Operation: The Credit Bureau is an external service provided by a third party. We want to ensure the correct operation of this service by periodically sending test messages.
-· Credit Bureau Failover: If the Credit Bureau malfunctions we want to temporarily redirect the credit request messages to another service provider.
+ï¿½ Management Console: We want a single front-end that displays the health of all components and allows us to take compensating actions if something goes wrong.
+ï¿½ Loan Broker Quality of Service: In the original solution we developed a test client that monitors the loan broker's response times between quote request and response. In a real production scenario clients will not perform this function for us (they may, however, complain that the system is too slow). Therefore, we want the management solution to capture this information and relay it to the management console.
+ï¿½ Verify the Credit Bureau Operation: The Credit Bureau is an external service provided by a third party. We want to ensure the correct operation of this service by periodically sending test messages.
+ï¿½ Credit Bureau Failover: If the Credit Bureau malfunctions we want to temporarily redirect the credit request messages to another service provider.
 Management Console
 We want to be able to collect metrics from multiple components in a single point so we can assess the health of the overall solution from a central spot. The management console also has to be able to control message flow and component parameters so that we can address outages by rerouting messages or changing component behavior.
 The management console communicates with the individual components via messaging. It uses a separate Control Bus that only contains messages related to system management and not application data.
@@ -6585,8 +6591,8 @@ First, market data comes into the system. Market data is data regarding the pric
 Architecture with Patterns
 With this overview of the workflow of the system, we can approach some of the architectural problems we encounter during the design process. Let's take a look at what we know to date. Traders need a very responsive application on both Windows NT and Solaris workstations. Therefore, we decided to implement the client application as a Java thick client because of its platform independence and its ability to quickly respond to user input and market data. On the server side, we are inheriting legacy C++ components that our system will utilize. The market data components communicate with the TIBCO Information Bus (TIB) messaging infrastructure.
 We are inheriting the following components:
-· Market Data Price Feed Server: Publishes incoming market data to the TIB. · Analytics Engine: Performs analytics on incoming market data and broadcasts the
-modified market data to the TIB. · Contribution Server: Performs all communication with trading venues. The trading
+ï¿½ Market Data Price Feed Server: Publishes incoming market data to the TIB. ï¿½ Analytics Engine: Performs analytics on incoming market data and broadcasts the
+modified market data to the TIB. ï¿½ Contribution Server: Performs all communication with trading venues. The trading
 venues are third party components not controlled by the bank.
 
 Legacy Market Data Subsystem
@@ -6667,7 +6673,7 @@ What's left is to determine how the Aggregator will know when to send a message 
 This is because the Aggregator is assuming the consumers of its purged messages (the client application in this case) are Event-Driven Consumers, or consumers that rely on events from an external source. We need to turn the client into a Polling Consumer, or a consumer that continuously checks for messages, so the client application can control the message flow. We can do this by creating a background thread that continuously cycles through the set of bonds and updates and flashes any changes that have occurred since the last iteration. This way, the client controls when messages are received and as a result, guarantees that it will never become overloaded with messages during high update periods. We can easily implement this by sending a Command Message to the Aggregator initiating an update. The Aggregator will respond with a Document Message containing the set of updated fields that the client will process.
 The choice of Aggregator over Message Filter is clearly a decision based solely on the business requirements of our system. Each could help us solve our performance problems, but using the Message Filter would solve the problem at cost of the system data integrity.
 Major Production Crash
-With the performance of the flashing fixed, we are now in production. One day the entire system goes down. MQSeries crashes, bringing several components down with it. We struggle with the problem for a while and finally trace it back to the MQSeries dead letter queue (an implementation of the Dead Letter Channel). The queue grows so large that it brings down the entire server. After exploring the messages in the dead letter queue we find they are all expired market data messages. This is caused by "slow consumers," or consumers that do not process messages fast enough. While messages are waiting to be processed, they time out (see the Message Expiration pattern) and are sent to the Dead Letter Channel. The excessive number of expired market data messages in the dead letter queue is a clear indication that the message flow is too great ­ messages expire before the target application can consume them. We need to fix the message flow and we turn to patterns for help slowing down the message flow.
+With the performance of the flashing fixed, we are now in production. One day the entire system goes down. MQSeries crashes, bringing several components down with it. We struggle with the problem for a while and finally trace it back to the MQSeries dead letter queue (an implementation of the Dead Letter Channel). The queue grows so large that it brings down the entire server. After exploring the messages in the dead letter queue we find they are all expired market data messages. This is caused by "slow consumers," or consumers that do not process messages fast enough. While messages are waiting to be processed, they time out (see the Message Expiration pattern) and are sent to the Dead Letter Channel. The excessive number of expired market data messages in the dead letter queue is a clear indication that the message flow is too great ï¿½ messages expire before the target application can consume them. We need to fix the message flow and we turn to patterns for help slowing down the message flow.
 
 The bottleneck
 A reasonable first step is to explore solving this problem with the Aggregator as we recently used this pattern to solve the similar flashing market data control rate problem. The system design relies on the client application to immediately forward market data update messages to the trading venues. This means the system cannot wait to collect messages and aggregate them. So the Aggregator must be abandoned.
@@ -6714,12 +6720,12 @@ The process component is a macro view of a set of services that is particularly 
 
 and the car are separate highly-complex systems; the process view of the man and car, however, sees them as a single component defined by their interactions with one another, and does not focus on the composition of either the man or the car separate from the interaction between them. Further, the process component view goes on to describe the interactions of that single component with others on the road, again without interest in the internal composition of other automobiles or drivers. This is not the same as simply presenting an external interface, as it also includes the rules that govern behaviors between usages of the interfaces. The business process component as emerging in standards is a single component that internally consists of a set of web services and a definition for how messages flow into and out of them. Web services and other message destinations are building blocks used to compose larger compositions whose interactions follow messaging patterns -- both the composition of the process component, and the linking of multiple process components into an application follow messaging patterns. Business process standards address the correlation of messages between web services in order to create flows of execution, and include behaviors related to errors, transactions, and data exchange. A more technical business example is illustrated below, in which the processing of a purchase order is handled by a component that consists of a number of service operations.
 Figure 1: The Business Process Component exposing a single destination endpoint on behalf of multiple internally choreographed web services.
-The example includes the following characteristics and activities: · Each operation in the Process Purchase Order component is an operation available on the portType of a web service, and the various web services which expose the operations may reside on remote hosts in partner production facilities.
+The example includes the following characteristics and activities: ï¿½ Each operation in the Process Purchase Order component is an operation available on the portType of a web service, and the various web services which expose the operations may reside on remote hosts in partner production facilities.
 
-· When a purchase order is received, four operations are invoked concurrently; but some of the operations have dependencies that must be synchronously resolved (the dashed arrows in the illustration indicate dependencies).
-· Two specific dependencies show that the shipping agreement and insurance costs are needed in order to calculate the final cost, and that a binding insurance agreement must be received before the manufacturer will commit resources to a production schedule.
-· Once all service operations have asynchronously completed, the purchase order has been processed. Rather than requiring the messaging client to interact with all of these services individually and manage the dependencies between them -- that is, rather than requiring the client to create a Process Manager implementation -- the process component exposes a single network endpoint on behalf of all the services, and manages all of the messaging and dependencies between services internally, simplifying the client's tasks.
-· The Purchase Order process component is in turn linked to another business process component, the Process Invoice Component.
+ï¿½ When a purchase order is received, four operations are invoked concurrently; but some of the operations have dependencies that must be synchronously resolved (the dashed arrows in the illustration indicate dependencies).
+ï¿½ Two specific dependencies show that the shipping agreement and insurance costs are needed in order to calculate the final cost, and that a binding insurance agreement must be received before the manufacturer will commit resources to a production schedule.
+ï¿½ Once all service operations have asynchronously completed, the purchase order has been processed. Rather than requiring the messaging client to interact with all of these services individually and manage the dependencies between them -- that is, rather than requiring the client to create a Process Manager implementation -- the process component exposes a single network endpoint on behalf of all the services, and manages all of the messaging and dependencies between services internally, simplifying the client's tasks.
+ï¿½ The Purchase Order process component is in turn linked to another business process component, the Process Invoice Component.
 Four standards initiatives warrant a good look in the business process component and integration space: the ebXML initiative, two competing proposals called Business Process Execution Language and Web Services Choreography Interface, and a collection of individual specifications joined through the "WS-" prefix that address pieces of the same functionality in slightly narrower, more specific fashion.
 ebXML and the Electronic Business Messaging Service
 (ebMS)
@@ -6908,4 +6914,3 @@ XML 1.0 Extensible Markup Language (XML) 1.0 (Second Edition), http://www.w3.org
 XSLT 1.0 XSL Transformations (XSLT) Version 1.0 -- W3C Recommendation, http://www.w3.org/TR/xslt
 Waldo Waldo, J., Wyant, G., Wollrath, A., and Kendall, S., A Note on Distributed Computing, Technical Report SMLI TR-94-29, Sun Microsystems Laboratories, November 1994, http://citeseer.nj.nec.com/waldo94note.html
 Zahavi Ron Zahavi, Enterprise Application Integration with CORBA , John Wiley & Sons, 1999, ISBN: 0471327204
-

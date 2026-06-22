@@ -1,3 +1,9 @@
+# Ruby on Rails Tutorial (6th Ed)
+
+> **Author(s):** Hartl Â· **Edition:** 6th Ed Â· **Category:** 01_languages_and_fundamentals Â· **Language:** English
+
+---
+
 LEARN EN O UG H
 RUBY ON RAILS
 TO BE DANGEROUS
@@ -516,7 +522,7 @@ xviii
 CONTENTS
 
 Copyright and license
-Ruby on Rails Tutorial: Learn Web Development with Rails. Copyright © 2016 by Michael Hartl. Last updated 2020/01/27 19:05 PT.
+Ruby on Rails Tutorial: Learn Web Development with Rails. Copyright ï¿½ 2016 by Michael Hartl. Last updated 2020/01/27 19:05 PT.
 All source code in the Ruby on Rails Tutorial is available jointly under the MIT License and the Beerware License. Note that this means that either license is valid; if you wish to use the software under the terms of the MIT license, there is no need to buy me a beer as well.
 The MIT License
 Copyright (c) 2016 Michael Hartl
@@ -1030,7 +1036,7 @@ Exercises
 Solutions to the exercises are available to all Rails Tutorial purchasers here. To see other people's answers and to record your own, subscribe to the Rails
 Tutorial course or to the Learn Enough All Access Bundle.
 1. Change the content of the hello action in Listing 1.9 to read "hola, mundo!" instead of "hello, world!".
-2. Show that Rails supports non-ASCII characters by including an inverted exclamation point, as in "¡Hola, mundo!" (Figure 1.21).14 To get a ¡ character on a Mac, you can use Option-1; otherwise, you can always copy-and-paste the character into your editor.
+2. Show that Rails supports non-ASCII characters by including an inverted exclamation point, as in "ï¿½Hola, mundo!" (Figure 1.21).14 To get a ï¿½ character on a Mac, you can use Option-1; otherwise, you can always copy-and-paste the character into your editor.
 3. By following the example of the hello action in Listing 1.9, add a second action called goodbye that renders the text "goodbye, world!". Edit the routes file from Listing 1.11 so that the root route goes to goodbye instead of to hello (Figure 1.22).
 
 1.3 Version control with Git
@@ -1042,7 +1048,7 @@ There are many options for version control, but the software development communi
 
 CHAPTER 1. FROM ZERO TO DEPLOY
 
-Figure 1.21: Changing the root route to return "¡Hola, mundo!".
+Figure 1.21: Changing the root route to return "ï¿½Hola, mundo!".
 
 1.3. VERSION CONTROL WITH GIT
 
@@ -1218,7 +1224,7 @@ The result is a page at GitHub for the hello_app repository, with file browsing,
 
 1.3.4 Branch, edit, commit, merge
 If you've followed the steps in Section 1.3.3, you might notice that GitHub automatically rendered the repository's README file, as shown in Figure 1.28. This file, called README.md, was generated automatically by the command in Listing 1.4. As indicated by the filename extension .md, it is written in Markdown,22 a human-readable markup language designed to be easy to convert to HTML--which is exactly what GitHub has done.
-This automatic rendering of the README is convenient, but of course it would be better if we tailored the contents of the file to the project at hand. In this section, we'll customize the README by adding some Rails Tutorial­ specific content. In the process, we'll see a first example of the branch, edit, commit, merge workflow that I recommend using with Git.23
+This automatic rendering of the README is convenient, but of course it would be better if we tailored the contents of the file to the project at hand. In this section, we'll customize the README by adding some Rails Tutorialï¿½ specific content. In the process, we'll see a first example of the branch, edit, commit, merge workflow that I recommend using with Git.23
 22See Learn Enough Text Editor to Be Dangerous and Learn Enough Git to Be Dangerous for more information about Markdown.
 23For a convenient way to visualize Git repositories, take a look at Atlassian's SourceTree app.
 
@@ -1494,18 +1500,18 @@ I'm learning Ruby on Rails with the @railstutorial! https://www.railstutorial.or
 I also recommend signing up for the Rails Tutorial email list33, which will ensure that you receive priority updates (and exclusive coupon codes) regarding the Ruby on Rails Tutorial.
 
 1.5.1 What we learned in this chapter
-· Ruby on Rails is a web development framework written in the Ruby programming language.
+ï¿½ Ruby on Rails is a web development framework written in the Ruby programming language.
 33railstutorial.org/email
 
 68
 
 CHAPTER 1. FROM ZERO TO DEPLOY
 
-· Installing Rails, generating an application, and editing the resulting files is easy using a preconfigured cloud environment.
-· Rails comes with a command-line command called rails that can generate new applications (rails new) and run local servers (rails server).
-· We added a controller action and modified the root route to create a "hello, world" application.
-· We protected against data loss while enabling collaboration by placing our application source code under version control with Git and pushing the resulting code to a private repository at GitHub.
-· We deployed our application to a production environment using Heroku.
+ï¿½ Installing Rails, generating an application, and editing the resulting files is easy using a preconfigured cloud environment.
+ï¿½ Rails comes with a command-line command called rails that can generate new applications (rails new) and run local servers (rails server).
+ï¿½ We added a controller action and modified the root route to create a "hello, world" application.
+ï¿½ We protected against data loss while enabling collaboration by placing our application source code under version control with Git and pushing the resulting code to a private repository at GitHub.
+ï¿½ We deployed our application to a production environment using Heroku.
 
 1.6 Conventions used in this book
 The conventions used in this book are mostly self-explanatory. In this section, we'll go over some that may not be.
@@ -2090,11 +2096,11 @@ Tutorial course or to the Learn Enough All Access Bundle.
 
 2.2.3 Weaknesses of this Users resource
 Though good for getting a general overview of Rails, the scaffold Users resource suffers from a number of severe weaknesses.
-· No data validations. Our User model accepts data such as blank names and invalid email addresses without complaint.
-· No authentication. We have no notion of logging in or out, and no way to prevent any user from performing any operation.
-· No tests. This isn't technically true--the scaffolding includes rudimentary tests--but the generated tests don't test for data validation, authentication, or any other custom requirements.
-· No style or layout. There is no consistent site styling or navigation.
-· No real understanding. If you understand the scaffold code, you probably shouldn't be reading this book.
+ï¿½ No data validations. Our User model accepts data such as blank names and invalid email addresses without complaint.
+ï¿½ No authentication. We have no notion of logging in or out, and no way to prevent any user from performing any operation.
+ï¿½ No tests. This isn't technically true--the scaffolding includes rudimentary tests--but the generated tests don't test for data validation, authentication, or any other custom requirements.
+ï¿½ No style or layout. There is no consistent site styling or navigation.
+ï¿½ No real understanding. If you understand the scaffold code, you probably shouldn't be reading this book.
 
 2.3 The Microposts resource
 Having generated and explored the Users resource, we turn now to the associated Microposts resource. Throughout this section, I recommend comparing the elements of the Microposts resource with the analogous user elements from Section 2.2; you should see that the two resources parallel each other in many ways. The RESTful structure of Rails applications is best absorbed by this sort of repetition of form--indeed, seeing the parallel structure of Users and Microposts even at this early stage is one of the prime motivations for this chapter.
@@ -2284,7 +2290,7 @@ Tutorial course or to the Learn Enough All Access Bundle.
 4. Destroy the microposts from the previous exercises.
 
 2.3.2 Putting the micro in microposts
-Any micropost worthy of the name should have some means of enforcing the length of the post. Implementing this constraint in Rails is easy with validations; to accept microposts with at most 140 characters (à la the original design of Twitter), we use a length validation. At this point, you should open the file app/models/micropost.rb in your text editor or IDE and fill it with the contents of Listing 2.14.
+Any micropost worthy of the name should have some means of enforcing the length of the post. Implementing this constraint in Rails is easy with validations; to accept microposts with at most 140 characters (ï¿½ la the original design of Twitter), we use a length validation. At this point, you should open the file app/models/micropost.rb in your text editor or IDE and fill it with the contents of Listing 2.14.
 Listing 2.14: Constraining microposts to be at most 140 characters.
 app/models/micropost.rb
 class Micropost < ApplicationRecord validates :content, length: { maximum: 140 }
@@ -2359,7 +2365,7 @@ foo@bar.com
 
 Figure 2.16: The association between microposts and users.
 We can visualize the result of this association in Figure 2.16. Because of the user_id column in the microposts table, Rails (using Active Record) can infer the microposts associated with each user.
-In Chapter 13 and Chapter 14, we will use the association of users and microposts both to display all of a user's microposts and to construct a Twitterlike micropost feed. For now, we can examine the implications of the user­ micropost association by using the console, which is a useful tool for interacting with Rails applications. We first invoke the console with rails console at the command line, and then retrieve the first user from the database using User.first (putting the results in the variable first_user), as shown in Listing 2.17.8 (I include exit in the last line just to demonstrate how to exit the console. On most systems, you can also use Ctrl-D for the same purpose.)9
+In Chapter 13 and Chapter 14, we will use the association of users and microposts both to display all of a user's microposts and to construct a Twitterlike micropost feed. For now, we can examine the implications of the userï¿½ micropost association by using the console, which is a useful tool for interacting with Rails applications. We first invoke the console with rails console at the command line, and then retrieve the first user from the database using User.first (putting the results in the variable first_user), as shown in Listing 2.17.8 (I include exit in the last line just to demonstrate how to exit the console. On most systems, you can also use Ctrl-D for the same purpose.)9
 Listing 2.17: Investigating the state of the application using the Rails console.
 $ rails console >> first_user = User.first
 (0.5ms) SELECT sqlite_version(*) User Load (0.2ms) SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ? [["LIMIT", 1]] => #<User id: 1, name: "Michael Hartl", email: "michael@example.org", created_at: "2019-08-20 00:39:14", updated_at: "2019-08-20 00:41:24"> >> first_user.microposts Micropost Load (3.2ms) SELECT "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ? [["user_id", 1], ["LIMIT", 11]] => #<ActiveRecord::Associations::CollectionProxy [#<Micropost id: 1, content:
@@ -2519,7 +2525,7 @@ Tutorial course or to the Learn Enough All Access Bundle.
 2.4 Conclusion
 We've come now to the end of the high-level overview of a Rails application. The toy app developed in this chapter has several strengths and a host of weaknesses.
 Strengths
-· High-level overview of Rails
+ï¿½ High-level overview of Rails
 10The production database should work without any additional configuration, but in fact some configuration is recommended by the official Heroku documentation. We'll take care of this detail in Section 7.5.3.
 
 118
@@ -2532,11 +2538,11 @@ Figure 2.22: Running the toy app in production.
 
 119
 
-· Introduction to MVC · First taste of the REST architecture · Beginning data modeling · A live, database-backed web application in production
+ï¿½ Introduction to MVC ï¿½ First taste of the REST architecture ï¿½ Beginning data modeling ï¿½ A live, database-backed web application in production
 
 Weaknesses
 
-· No custom layout or styling · No static pages (such as "Home" or "About") · No user passwords · No user images · No logging in · No security · No automatic user/micropost association · No notion of "following" or "followed" · No micropost feed · No meaningful tests · No real understanding
+ï¿½ No custom layout or styling ï¿½ No static pages (such as "Home" or "About") ï¿½ No user passwords ï¿½ No user images ï¿½ No logging in ï¿½ No security ï¿½ No automatic user/micropost association ï¿½ No notion of "following" or "followed" ï¿½ No micropost feed ï¿½ No meaningful tests ï¿½ No real understanding
 
 The rest of this tutorial is dedicated to building on the strengths and eliminating the weaknesses.
 
@@ -2545,13 +2551,13 @@ The rest of this tutorial is dedicated to building on the strengths and eliminat
 CHAPTER 2. A TOY APP
 
 2.4.1 What we learned in this chapter
-· Scaffolding automatically creates code to model data and interact with it through the web.
-· Scaffolding is good for getting started quickly but is bad for understanding.
-· Rails uses the Model-View-Controller (MVC) pattern for structuring web applications.
-· As interpreted by Rails, the REST architecture includes a standard set of URLs and controller actions for interacting with data models.
-· Rails supports data validations to place constraints on the values of data model attributes.
-· Rails comes with built-in functions for defining associations between different data models.
-· We can interact with Rails applications at the command line using the Rails console.
+ï¿½ Scaffolding automatically creates code to model data and interact with it through the web.
+ï¿½ Scaffolding is good for getting started quickly but is bad for understanding.
+ï¿½ Rails uses the Model-View-Controller (MVC) pattern for structuring web applications.
+ï¿½ As interpreted by Rails, the REST architecture includes a standard set of URLs and controller actions for interacting with data models.
+ï¿½ Rails supports data validations to place constraints on the values of data model attributes.
+ï¿½ Rails comes with built-in functions for defining associations between different data models.
+ï¿½ We can interact with Rails applications at the command line using the Rails console.
 
 Chapter 3
 Mostly static pages
@@ -3001,12 +3007,12 @@ In this context, it's helpful to have a set of guidelines on when we should test
 
 145
 
-· When a test is especially short or simple compared to the application code it tests, lean toward writing the test first.
-· When the desired behavior isn't yet crystal clear, lean toward writing the application code first, then write a test to codify the result.
-· Because security is a top priority, err on the side of writing tests of the security model first.
-· Whenever a bug is found, write a test to reproduce it and protect against regressions, then write the application code to fix it.
-· Lean against writing tests for code (such as detailed HTML structure) likely to change in the future.
-· Write tests before refactoring code, focusing on testing error-prone code that's especially likely to break.
+ï¿½ When a test is especially short or simple compared to the application code it tests, lean toward writing the test first.
+ï¿½ When the desired behavior isn't yet crystal clear, lean toward writing the application code first, then write a test to codify the result.
+ï¿½ Because security is a top priority, err on the side of writing tests of the security model first.
+ï¿½ Whenever a bug is found, write a test to reproduce it and protect against regressions, then write the application code to fix it.
+ï¿½ Lean against writing tests for code (such as detailed HTML structure) likely to change in the future.
+ï¿½ Write tests before refactoring code, focusing on testing error-prone code that's especially likely to break.
 In practice, the guidelines above mean that we'll usually write controller and model tests first and integration tests (which test functionality across models, views, and controllers) second. And when we're writing application code that isn't particularly brittle or error-prone, or is likely to change (as is often the case with views), we'll often skip testing altogether.
 
 Our main testing tools will be controller tests (starting in this section), model tests (starting in Chapter 6), and integration tests (starting in Chapter 7). Integration tests are especially powerful, as they allow us to simulate the actions of a user interacting with our application using a web browser. Integration tests will eventually be our primary testing technique, but controller tests give us an easier place to start.
@@ -3077,7 +3083,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 test "should get home" do get static_pages_home_url assert_response :success
 end
 test "should get help" do get static_pages_help_url assert_response :success
-9On some systems, rails test shows red when the tests fail but doesn't show green when the tests pass. To arrange for a true Red­Green cycle, see Section 3.6.1.
+9On some systems, rails test shows red when the tests fail but doesn't show green when the tests pass. To arrange for a true Redï¿½Green cycle, see Section 3.6.1.
 
 3.3. GETTING STARTED WITH TESTING
 
@@ -3298,9 +3304,9 @@ end end
 
 3.4.3 Layouts and embedded Ruby (Refactor)
 We've achieved a lot already in this section, generating three valid pages using Rails controllers and actions, but they are purely static HTML and hence don't show off the power of Rails. Moreover, they suffer from terrible duplication:
-· The page titles are almost (but not quite) exactly the same.
-· "Ruby on Rails Tutorial Sample App" is common to all three titles.
-· The entire HTML skeleton structure is repeated on each page.
+ï¿½ The page titles are almost (but not quite) exactly the same.
+ï¿½ "Ruby on Rails Tutorial Sample App" is common to all three titles.
+ï¿½ The entire HTML skeleton structure is repeated on each page.
 This repeated code is a violation of the important "Don't Repeat Yourself" (DRY) principle; in this section we'll "DRY out our code" by removing the repetition. At the end, we'll re-run the tests from Section 3.4.2 to verify that the titles are still correct.
 Paradoxically, we'll take the first step toward eliminating duplication by first adding some more: we'll make the titles of the pages, which are currently quite similar, match exactly. This will make it much simpler to remove all the repetition at a stroke.
 The technique involves using embedded Ruby in our views. Since the Home, Help, and About page titles have a variable component, we'll use a special Rails function called provide to set a different title on each page. We can see how this works by replacing the literal title "Home" in the home.html.erb view with the code in Listing 3.33.
@@ -3513,13 +3519,13 @@ Here we've taken care to run the test suite before deploying, which is a good ha
 173
 
 3.5.1 What we learned in this chapter
-· For a third time, we went through the full procedure of creating a new Rails application from scratch, installing the necessary gems, pushing it up to a remote repository, and deploying it to production.
-· The rails script generates a new controller with rails generate controller ControllerName <optional action names>.
-· New routes are defined in the file config/routes.rb.
-· Rails views can contain static HTML or embedded Ruby (ERb).
-· Automated testing allows us to write test suites that drive the development of new features, allow for confident refactoring, and catch regressions.
-· Test-driven development uses a "Red, Green, Refactor" cycle.
-· Rails layouts allow the use of a common template for pages in our application, thereby eliminating duplication.
+ï¿½ For a third time, we went through the full procedure of creating a new Rails application from scratch, installing the necessary gems, pushing it up to a remote repository, and deploying it to production.
+ï¿½ The rails script generates a new controller with rails generate controller ControllerName <optional action names>.
+ï¿½ New routes are defined in the file config/routes.rb.
+ï¿½ Rails views can contain static HTML or embedded Ruby (ERb).
+ï¿½ Automated testing allows us to write test suites that drive the development of new features, allow for confident refactoring, and catch regressions.
+ï¿½ Test-driven development uses a "Red, Green, Refactor" cycle.
+ï¿½ Rails layouts allow the use of a common template for pages in our application, thereby eliminating duplication.
 
 3.6 Advanced testing setup
 This optional section describes the testing setup used in the Ruby on Rails Tutorial screencast series. There are two main elements: an enhanced pass/fail reporter (Section 3.6.1), and an automated test runner that detects file changes and automatically runs the corresponding tests (Section 3.6.2). The code in this section is advanced and is presented for convenience only; you are not expected to understand it at this time.
@@ -3556,7 +3562,7 @@ static_pages_controller_test.rb file, only those tests get run. Even better, we 
 The Gemfile in Listing 3.2 has already included the guard gem in our application, so to get started we just need to initialize it:
 $ bundle exec guard init Writing new Guardfile to /home/ec2-user/environment/sample_app/Guardfile 00:51:32 - INFO - minitest guard added to Guardfile, feel free to edit it
 We then edit the resulting Guardfile so that Guard will run the right tests when the integration tests and views are updated, which will look something like Listing 3.47. For maximum flexibility, I recommend using the version of the Guardfile listed in the reference application, which if you're reading this online should be identical to Listing 3.47:
-· Reference Guardfile at railstutorial.org/guardfile
+ï¿½ Reference Guardfile at railstutorial.org/guardfile
 Listing 3.47: A custom Guardfile.
 # Defines the matching rules for Guard. guard :minitest, spring: "bin/rails test", all_on_start: false do
 
@@ -5000,9 +5006,9 @@ $ git push heroku
 CHAPTER 4. RAILS-FLAVORED RUBY
 
 4.5.1 What we learned in this chapter
-· Ruby has a large number of methods for manipulating strings of characters.
-· Everything in Ruby is an object. · Ruby supports method definition via the def keyword. · Ruby supports class definition via the class keyword. · Rails views can contain static HTML or embedded Ruby (ERb). · Built-in Ruby data structures include arrays, ranges, and hashes. · Ruby blocks are a flexible construct that (among other things) allow nat-
-ural iteration over enumerable data structures. · Symbols are labels, like strings without any additional structure. · Ruby supports object inheritance. · It is possible to open up and modify built-in Ruby classes. · The word "deified" is a palindrome.
+ï¿½ Ruby has a large number of methods for manipulating strings of characters.
+ï¿½ Everything in Ruby is an object. ï¿½ Ruby supports method definition via the def keyword. ï¿½ Ruby supports class definition via the class keyword. ï¿½ Rails views can contain static HTML or embedded Ruby (ERb). ï¿½ Built-in Ruby data structures include arrays, ranges, and hashes. ï¿½ Ruby blocks are a flexible construct that (among other things) allow nat-
+ural iteration over enumerable data structures. ï¿½ Symbols are labels, like strings without any additional structure. ï¿½ Ruby supports object inheritance. ï¿½ It is possible to open up and modify built-in Ruby classes. ï¿½ The word "deified" is a palindrome.
 
 Chapter 5
 Filling in the layout
@@ -5150,7 +5156,7 @@ Solutions to the exercises are available to all Rails Tutorial purchasers here. 
 Tutorial course or to the Learn Enough All Access Bundle.
 1. It's well-known that no web page is complete without a cat image. Using the command in Listing 5.4, arrange to download the kitten pic shown in Figure 5.3.11
 10You might notice that the img tag, rather than looking like <img>...</img>, instead looks like <img ... />. Tags that follow this form are known as self-closing tags.
-11Image retrieved from https://www.flickr.com/photos/deborah_s_perspective/14144861329 on 2016-01-09. Copyright © 2009 by Deborah and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+11Image retrieved from https://www.flickr.com/photos/deborah_s_perspective/14144861329 on 2016-01-09. Copyright ï¿½ 2009 by Deborah and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 
 242
 
@@ -5440,9 +5446,9 @@ CHAPTER 5. FILLING IN THE LAYOUT
 From the perspective of a typical Rails developer, there are three main features to understand about the asset pipeline: asset directories, manifest files, and preprocessor engines.16 Let's consider each in turn.
 
 Asset directories The Rails asset pipeline uses three standard directories for static assets, each with its own purpose:
-· app/assets: assets specific to the present application
-· lib/assets: assets for libraries written by your dev team
-· vendor/assets: assets from third-party vendors (not present by default)
+ï¿½ app/assets: assets specific to the present application
+ï¿½ lib/assets: assets for libraries written by your dev team
+ï¿½ vendor/assets: assets from third-party vendors (not present by default)
 Each of these directories has a subdirectory for each of two asset classes-- images and Cascading Style Sheets:
 
 $ ls app/assets/ config images stylesheets
@@ -5808,7 +5814,7 @@ end end
 
 281
 
-Listing 5.32 uses some of the more advanced options of the assert_select method, seen before in Listing 3.26 and Listing 5.21. In this case, we use a syntax that allows us to test for the presence of a particular link­URL combination by specifying the tag name a and attribute href, as in
+Listing 5.32 uses some of the more advanced options of the assert_select method, seen before in Listing 3.26 and Listing 5.21. In this case, we use a syntax that allows us to test for the presence of a particular linkï¿½URL combination by specifying the tag name a and attribute href, as in
 
 assert_select "a[href=?]", about_path
 
@@ -6004,13 +6010,13 @@ The result of the deployment should be a working sample application on the produ
 291
 
 5.5.1 What we learned in this chapter
-· Using HTML5, we can define a site layout with logo, header, footer, and main body content.
-· Rails partials are used to place markup in a separate file for convenience.
-· CSS allows us to style the site layout based on CSS classes and ids.
-· The Bootstrap framework makes it easy to make a nicely designed site quickly.
-· Sass and the asset pipeline allow us to eliminate duplication in our CSS while packaging up the results efficiently for production.
-· Rails allows us to define custom routing rules, thereby providing named routes.
-· Integration tests effectively simulate a browser clicking from page to page.
+ï¿½ Using HTML5, we can define a site layout with logo, header, footer, and main body content.
+ï¿½ Rails partials are used to place markup in a separate file for convenience.
+ï¿½ CSS allows us to style the site layout based on CSS classes and ids.
+ï¿½ The Bootstrap framework makes it easy to make a nicely designed site quickly.
+ï¿½ Sass and the asset pipeline allow us to eliminate duplication in our CSS while packaging up the results efficiently for production.
+ï¿½ Rails allows us to define custom routing rules, thereby providing named routes.
+ï¿½ Integration tests effectively simulate a browser clicking from page to page.
 
 292
 
@@ -6781,7 +6787,7 @@ If the above sequence seems implausible, believe me, it isn't: it can happen on 
 to create a database index on the email column (Box 6.2), and then require that the index be unique.
 
 Box 6.2. Database indices
-When creating a column in a database, it is important to consider whether we will need to find records by that column. Consider, for example, the email attribute created by the migration in Listing 6.2. When we allow users to log in to the sample app starting in Chapter 7, we will need to find the user record corresponding to the submitted email address. Unfortunately, based on the naïve data model, the only way to find a user by email address is to look through each user row in the database and compare its email attribute to the given email--which means we might have to examine every row (since the user could be the last one in the database). This is known in the database business as a full-table scan, and for a real site with thousands of users it is a Bad Thing.
+When creating a column in a database, it is important to consider whether we will need to find records by that column. Consider, for example, the email attribute created by the migration in Listing 6.2. When we allow users to log in to the sample app starting in Chapter 7, we will need to find the user record corresponding to the submitted email address. Unfortunately, based on the naï¿½ve data model, the only way to find a user by email address is to look through each user row in the database and compare its email attribute to the given email--which means we might have to examine every row (since the user could be the last one in the database). This is known in the database business as a full-table scan, and for a real site with thousands of users it is a Bad Thing.
 Putting an index on the email column fixes the problem. To understand a database index, it's helpful to consider the analogy of a book index. In a book, to find all the occurrences of a given string, say "foobar", you would have to scan each page for "foobar"--the paper version of a full-table scan. With a book index, on the other hand, you can just look up "foobar" in the index to see all the pages containing "foobar". A database index works essentially the same way.
 
 The email index represents an update to our data modeling requirements, which (as discussed in Section 6.1.1) is handled in Rails using migrations. We saw in Section 6.1.1 that generating the User model automatically created a new migration (Listing 6.2); in the present case, we are adding structure to an existing model, so we need to create a migration directly using the migration generator:
@@ -6902,9 +6908,9 @@ end
 CHAPTER 6. MODELING USERS
 
 When included in a model as above, this one method adds the following functionality:
-· The ability to save a securely hashed password_digest attribute to the database
-· A pair of virtual attributes19 (password and password_confirmation), including presence validations upon object creation and a validation requiring that they match
-· An authenticate method that returns the user when the password is correct (and false otherwise)
+ï¿½ The ability to save a securely hashed password_digest attribute to the database
+ï¿½ A pair of virtual attributes19 (password and password_confirmation), including presence validations upon object creation and a validation requiring that they match
+ï¿½ An authenticate method that returns the user when the password is correct (and false otherwise)
 The only requirement for has_secure_password to work its magic is for the corresponding model to have an attribute called password_digest. (The name digest comes from the terminology of cryptographic hash functions. In this context, hashed password and password digest are synonyms.)20 In the case of the User model, this leads to the data model shown in Figure 6.9.
 To implement the data model in Figure 6.9 , we first generate an appropriate migration for the password_digest column. We can choose any migration name we want, but it's convenient to end the name with to_users, since in this case Rails automatically constructs a migration to add columns to the users table. The result, with migration name add_password_digest_to_users, appears as follows:
 
@@ -7145,18 +7151,18 @@ created_at: "2019-08-22 03:20:06", updated_at: "2019-08-22 03:20:06",
 password_digest: [FILTERED]>
 
 6.4.1 What we learned in this chapter
-· Migrations allow us to modify our application's data model.
-· Active Record comes with a large number of methods for creating and manipulating data models.
-· Active Record validations allow us to place constraints on the data in our models.
-· Common validations include presence, length, and format.
-· Regular expressions are cryptic but powerful.
+ï¿½ Migrations allow us to modify our application's data model.
+ï¿½ Active Record comes with a large number of methods for creating and manipulating data models.
+ï¿½ Active Record validations allow us to place constraints on the data in our models.
+ï¿½ Common validations include presence, length, and format.
+ï¿½ Regular expressions are cryptic but powerful.
 
 352
 
 CHAPTER 6. MODELING USERS
 
-· Defining a database index improves lookup efficiency while allowing enforcement of uniqueness at the database level.
-· We can add a secure password to a model using the built-in has_secure_password method.
+ï¿½ Defining a database index improves lookup efficiency while allowing enforcement of uniqueness at the database level.
+ï¿½ We can add a secure password to a model using the built-in has_secure_password method.
 
 Chapter 7
 Sign up
@@ -7187,7 +7193,7 @@ app/views/layouts/application.html.erb
 <!DOCTYPE html> <html>
 .
 1Mockingbird doesn't support custom images like the profile photo in Figure 7.1; I put that in by hand using GIMP.
-2Image retrieved from https://www.flickr.com/photos/43803060@N00/24308857/ on 2014-06-16. Copyright © 2002 by Shaun Wallin and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+2Image retrieved from https://www.flickr.com/photos/43803060@N00/24308857/ on 2014-06-16. Copyright ï¿½ 2002 by Shaun Wallin and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 
 7.1. SHOWING USERS
 
@@ -8503,22 +8509,22 @@ Tutorial course or to the Learn Enough All Access Bundle.
 Being able to sign up users is a major milestone for our application. Although the sample app has yet to accomplish anything useful, we have laid an essential foundation for all future development. In Chapter 8 and Chapter 9, we will complete our authentication machinery by allowing users to log in and out of the application (with optional "remember me" functionality). In Chapter 10, we will allow all users to update their account information, and we will allow site administrators to delete users, thereby completing the full suite of Users resource REST actions from Table 7.1.
 
 7.6.1 What we learned in this chapter
-· Rails displays useful debug information via the debug method.
-· Sass mixins allow a group of CSS rules to be bundled and reused in multiple places.
-· Rails comes with three standard environments: development, test, and production.
-· We can interact with users as a resource through a standard set of REST URLs.
-· Gravatars provide a convenient way of displaying images to represent users.
-· The form_with helper is used to generate forms for interacting with Active Record objects.
-· Signup failure renders the new user page and displays error messages automatically determined by Active Record.
-· Rails provides the flash as a standard way to display temporary messages.
+ï¿½ Rails displays useful debug information via the debug method.
+ï¿½ Sass mixins allow a group of CSS rules to be bundled and reused in multiple places.
+ï¿½ Rails comes with three standard environments: development, test, and production.
+ï¿½ We can interact with users as a resource through a standard set of REST URLs.
+ï¿½ Gravatars provide a convenient way of displaying images to represent users.
+ï¿½ The form_with helper is used to generate forms for interacting with Active Record objects.
+ï¿½ Signup failure renders the new user page and displays error messages automatically determined by Active Record.
+ï¿½ Rails provides the flash as a standard way to display temporary messages.
 
 430
 
 CHAPTER 7. SIGN UP
 
-· Signup success creates a user in the database and redirects to the user show page, and displays a welcome message.
-· We can use integration tests to verify form submission behavior and catch regressions.
-· We can configure our production application to use SSL for secure communications and Puma for high performance.
+ï¿½ Signup success creates a user in the database and redirects to the user show page, and displays a welcome message.
+ï¿½ We can use integration tests to verify form submission behavior and catch regressions.
+ï¿½ We can configure our production application to use SSL for secure communications and Puma for high performance.
 
 Chapter 8
 Basic login
@@ -9114,7 +9120,7 @@ x
 Thus we see that @foo = @foo || "bar" and @foo ||= "bar" are equivalent. In the context of the current user, this suggests the following construction:
 
 @current_user ||= User.find_by(id: session[:user_id])
-Voilà ! (Technically, Ruby evaluates the expression @foo || @foo = "bar",
+Voilï¿½ ! (Technically, Ruby evaluates the expression @foo || @foo = "bar",
 which avoids an unnecessary assignment when @foo is not nil or false. But this expression doesn't explain the ||= notation as well, so the above discussion uses the nearly equivalent @foo = @foo || "bar".)
 
 Applying the results of the above discussion yields the succinct current_user method shown in Listing 8.16. (There's a slight amount of repetition in the use of session[:user_id], which we'll eliminate in Section 9.1.2.)
@@ -9143,7 +9149,7 @@ Listing 8.17: Simulating session in the console.
 
 8.2.3 Changing the layout links
 The first practical application of logging in involves changing the layout links based on login status. In particular, as seen in the Figure 8.8 mockup,5 we'll add links for logging out, for user settings, for listing all users, and for the current user's profile page. Note in Figure 8.8 that the logout and profile links appear in a dropdown "Account" menu; we'll see in Listing 8.19 how to make such a menu with Bootstrap.
-5Image retrieved from https://www.flickr.com/photos/elevy/14730820387 on 2016-06-03. Copyright © 2014 by Elias Levy and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+5Image retrieved from https://www.flickr.com/photos/elevy/14730820387 on 2016-06-03. Copyright ï¿½ 2014 by Elias Levy and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 
 8.2. LOGGING IN
 
@@ -9677,13 +9683,13 @@ Finally, deploy to Heroku as usual:
 $ git push heroku
 
 8.4.1 What we learned in this chapter
-· Rails can maintain state from one page to the next using temporary cookies via the session method.
-· The login form is designed to create a new session to log a user in.
-· The flash.now method is used for flash messages on rendered pages.
-· Test-driven development is useful when debugging by reproducing the bug in a test.
-· Using the session method, we can securely place a user id on the browser to create a temporary session.
-· We can change features such as links on the layouts based on login status.
-· Integration tests can verify correct routes, database updates, and proper changes to the layout.
+ï¿½ Rails can maintain state from one page to the next using temporary cookies via the session method.
+ï¿½ The login form is designed to create a new session to log a user in.
+ï¿½ The flash.now method is used for flash messages on rendered pages.
+ï¿½ Test-driven development is useful when debugging by reproducing the bug in a test.
+ï¿½ Using the session method, we can securely place a user id on the browser to create a temporary session.
+ï¿½ We can change features such as links on the layouts based on login status.
+ï¿½ Integration tests can verify correct routes, database updates, and proper changes to the layout.
 
 492
 
@@ -9753,7 +9759,7 @@ Now we have to decide what to use as a remember token. There are many mostly equ
 
 497
 
-of the characters A­Z, a­z, 0­9, "-", and "_" (for a total of 64 possibilities, thus "base64"). A typical base64 string appears as follows:
+of the characters Aï¿½Z, aï¿½z, 0ï¿½9, "-", and "_" (for a total of 64 possibilities, thus "base64"). A typical base64 string appears as follows:
 
 $ rails console >> SecureRandom.urlsafe_base64 => "brl_446-8bqHv87AQzUj_Q"
 Just as it's perfectly fine if two users have the same password,4 there's no need for remember tokens to be unique, but it's more secure if they are.5 In the case of the base64 string above, each of the 22 characters has 64 possibilities, so the probability of two remember tokens colliding is a negligibly small 1/6422 = 2-132  10-40.6 As a bonus, by using base64 strings specifically designed to be safe in URLs (as indicated by the name urlsafe_base64), we'll be able to use the same token generator to make account activation and password reset links in Chapter 12.
@@ -9761,7 +9767,7 @@ Remembering users involves creating a remember token and saving the digest of th
 Listing 9.2: Adding a method for generating tokens.
 app/models/user.rb
 class User < ApplicationRecord before_save { self.email = email.downcase } validates :name, presence: true, length: { maximum: 50 }
-4In any case, with bcrypt's salted hashes there's no way for us to tell if two users' passwords match. 5With unique remember tokens, an attacker always needs both the user id and the remember token cookies to hijack the session. 6This hasn't stopped some developers from adding a check to verify that no collision has occurred, but such efforts result from failing to grasp just how small 10-40 is. For example, if we generated a billion tokens a second for the entire age of the Universe (4.4 × 107 s), the expected number of collisions would still be on the order of 2 × 10-23, which is zero in any operational sense of the word. 7As a general rule, if a method doesn't need an instance of an object, it should be a class method. Indeed, this decision will prove to be wise in Section 11.2.
+4In any case, with bcrypt's salted hashes there's no way for us to tell if two users' passwords match. 5With unique remember tokens, an attacker always needs both the user id and the remember token cookies to hijack the session. 6This hasn't stopped some developers from adding a check to verify that no collision has occurred, but such efforts result from failing to grasp just how small 10-40 is. For example, if we generated a billion tokens a second for the entire age of the Universe (4.4 ï¿½ 107 s), the expected number of collisions would still be on the order of 2 ï¿½ 10-23, which is zero in any operational sense of the word. 7As a general rule, if a method doesn't need an instance of an object, it should be a class method. Indeed, this decision will prove to be wise in Section 11.2.
 
 498
 
@@ -9888,7 +9894,7 @@ the source code of the bcrypt gem verifies that the comparison operator == is be
 BCrypt::Password.new(remember_digest).is_password?(remember_token)
 
 Instead of ==, this uses the boolean method is_password? to perform the comparison. Because its meaning is a little clearer, we'll prefer this second comparison form in the application code.
-The above discussion suggests putting the digest­token comparison into an authenticated? method in the User model, which plays a role similar to that of the authenticate method provided by has_secure_password for authenticating a user (Listing 8.15). The implementation appears in Listing 9.6. (Although the authenticated? method in Listing 9.6 is tied specifically to the remember digest, it will turn out to be useful in other contexts as well, and we'll generalize it in Chapter 11.)
+The above discussion suggests putting the digestï¿½token comparison into an authenticated? method in the User model, which plays a role similar to that of the authenticate method provided by has_secure_password for authenticating a user (Listing 8.15). The implementation appears in Listing 9.6. (Although the authenticated? method in Listing 9.6 is tied specifically to the remember digest, it will turn out to be useful in other contexts as well, and we'll generalize it in Chapter 11.)
 Listing 9.6: Adding an authenticated? method to the User model.
 app/models/user.rb
 class User < ApplicationRecord attr_accessor :remember_token before_save { self.email = email.downcase } validates :name, presence: true, length: { maximum: 50 } VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true has_secure_password validates :password, presence: true, length: { minimum: 6 }
@@ -10069,7 +10075,7 @@ if (user_id = session[:user_id]) @current_user ||= User.find_by(id: user_id)
 elsif (user_id = cookies.encrypted[:user_id]) user = User.find_by(id: user_id) if user && user.authenticated?(cookies[:remember_token]) log_in user @current_user = user end
 end end
 As a result, evaluation falls off the end of the current_user method, thereby returning nil as required.
-12Thanks to reader Paulo Célio Júnior for pointing this out. 13Thanks to reader Niels de Ron for pointing this out.
+12Thanks to reader Paulo Cï¿½lio Jï¿½nior for pointing this out. 13Thanks to reader Niels de Ron for pointing this out.
 
 9.1. REMEMBER ME
 
@@ -10569,7 +10575,7 @@ $ heroku maintenance:on $ git push heroku $ heroku run rails db:migrate $ heroku
 This arranges to show a standard error page during the deployment and migration (Figure 9.5). (We won't bother with this step again, but it's good to see it at least once.) For more information, see the Heroku documentation on error pages.
 
 9.4.1 What we learned in this chapter
-· Rails can maintain state from one page to the next using persistent cookies via the cookies method.
+ï¿½ Rails can maintain state from one page to the next using persistent cookies via the cookies method.
 
 538
 
@@ -10581,11 +10587,11 @@ Figure 9.5: The production app in maintenance mode.
 
 539
 
-· We associate to each user a remember token and a corresponding remember digest for use in persistent sessions.
-· Using the cookies method, we create a persistent session by placing a permanent remember token cookie on the browser.
-· Login status is determined by the presence of a current user based on the temporary session's user id or the permanent session's unique remember token.
-· The application signs users out by deleting the session's user id and removing the permanent cookie from the browser.
-· The ternary operator is a compact way to write simple if-then statements.
+ï¿½ We associate to each user a remember token and a corresponding remember digest for use in persistent sessions.
+ï¿½ Using the cookies method, we create a persistent session by placing a permanent remember token cookie on the browser.
+ï¿½ Login status is determined by the presence of a current user based on the temporary session's user id or the permanent session's unique remember token.
+ï¿½ The application signs users out by deleting the session's user id and removing the permanent cookie from the browser.
+ï¿½ The ternary operator is a compact way to write simple if-then statements.
 
 540
 
@@ -10617,7 +10623,7 @@ end
 def new @user = User.new
 end
 def create @user = User.new(user_params) if @user.save log_in @user flash[:success] = "Welcome to the Sample App!" redirect_to @user else render 'new'
-1Image retrieved from https://www.flickr.com/photos/sashawolff/4598355045/ on 2014-08-25. Copyright © 2010 by Sasha Wolff and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+1Image retrieved from https://www.flickr.com/photos/sashawolff/4598355045/ on 2014-08-25. Copyright ï¿½ 2010 by Sasha Wolff and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 
 10.1. UPDATING USERS
 
@@ -10724,7 +10730,7 @@ app/views/users/new.html.erb
 
 Listing 10.7: The edit view with partial.
 app/views/users/edit.html.erb
-3Thanks to Jose Carlos Montero Gómez for a suggestion that further reduced duplication in the new and edit partials.
+3Thanks to Jose Carlos Montero Gï¿½mez for a suggestion that further reduced duplication in the new and edit partials.
 
 550
 
@@ -11286,7 +11292,7 @@ def setup
 
 end
 
-8Image retrieved from https://www.flickr.com/photos/glasgows/338937124/ on 2014-08-25. Copyright © 2008 by M&R Glasgow and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+8Image retrieved from https://www.flickr.com/photos/glasgows/338937124/ on 2014-08-25. Copyright ï¿½ 2008 by M&R Glasgow and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 9This is the same authorization model used by Twitter.
 
 578
@@ -11326,7 +11332,7 @@ app/views/users/index.html.erb
 <% provide(:title, 'All users') %> <h1>All users</h1>
 <ul class="users"> <% @users.each do |user| %> <li> <%= gravatar_for user, size: 50 %> <%= link_to user.name, user %> </li> <% end %>
 </ul>
-The code in Listing 10.37 uses the result of Listing 10.38 from Section 7.1.4, which allows us to pass an option to the Gravatar helper specifying a size other than the default. If you didn't do that exercise, update your Users helper file with the contents of Listing 10.38 before proceeding. (You are also welcome to use the Ruby 2.0­style version from Listing 7.13 instead.)
+The code in Listing 10.37 uses the result of Listing 10.38 from Section 7.1.4, which allows us to pass an option to the Gravatar helper specifying a size other than the default. If you didn't do that exercise, update your Users helper file with the contents of Listing 10.38 before proceeding. (You are also welcome to use the Ruby 2.0ï¿½style version from Listing 7.13 instead.)
 
 10.3. SHOWING ALL USERS
 
@@ -11557,7 +11563,7 @@ User Load (3.0ms) SELECT "users".* FROM "users" LIMIT ? OFFSET ? [["LIMIT", 30],
 
 589
 
-Note that paginate takes a hash argument with key :page and value equal to the page requested. User.paginate pulls the users out of the database one chunk at a time (30 by default), based on the :page parameter. So, for example, page 1 is users 1­30, page 2 is users 31­60, etc. If page is nil, paginate simply returns the first page. (The console result above shows 11 results rather than 30 due to a console limit in Active Record itself, but calling the length method bypasses this restriction.)
+Note that paginate takes a hash argument with key :page and value equal to the page requested. User.paginate pulls the users out of the database one chunk at a time (30 by default), based on the :page parameter. So, for example, page 1 is users 1ï¿½30, page 2 is users 31ï¿½60, etc. If page is nil, paginate simply returns the first page. (The console result above shows 11 results rather than 30 due to a console limit in Active Record itself, but calling the length method bypasses this restriction.)
 Using the paginate method, we can paginate the users in the sample application by using paginate in place of all in the index action (Listing 10.46). Here the page parameter comes from params[:page], which is generated automatically by will_paginate.
 
 Listing 10.46: Paginating the users in the index action.
@@ -12025,18 +12031,18 @@ Of course, on a real site you probably wouldn't want to seed it with sample data
 611
 
 10.5.1 What we learned in this chapter
-· Users can be updated using an edit form, which sends a PATCH request to the update action.
-· Safe updating through the web is enforced using strong parameters.
-· Before filters give a standard way to run methods before particular controller actions.
-· We implement an authorization using before filters.
-· Authorization tests use both low-level commands to submit particular HTTP requests directly to controller actions and high-level integration tests.
-· Friendly forwarding redirects users where they wanted to go after logging in.
-· The users index page shows all users, one page at a time.
-· Rails uses the standard file db/seeds.rb to seed the database with sample data using rails db:seed.
-· Running render @users automatically calls the _user.html.erb partial on each user in the collection.
-· A boolean attribute called admin on the User model automatically creates an admin? boolean method on user objects.
-· Admins can delete users through the web by clicking on delete links that issue DELETE requests to the Users controller destroy action.
-· We can create a large number of test users using embedded Ruby inside fixtures.
+ï¿½ Users can be updated using an edit form, which sends a PATCH request to the update action.
+ï¿½ Safe updating through the web is enforced using strong parameters.
+ï¿½ Before filters give a standard way to run methods before particular controller actions.
+ï¿½ We implement an authorization using before filters.
+ï¿½ Authorization tests use both low-level commands to submit particular HTTP requests directly to controller actions and high-level integration tests.
+ï¿½ Friendly forwarding redirects users where they wanted to go after logging in.
+ï¿½ The users index page shows all users, one page at a time.
+ï¿½ Rails uses the standard file db/seeds.rb to seed the database with sample data using rails db:seed.
+ï¿½ Running render @users automatically calls the _user.html.erb partial on each user in the collection.
+ï¿½ A boolean attribute called admin on the User model automatically creates an admin? boolean method on user objects.
+ï¿½ Admins can delete users through the web by clicking on delete links that issue DELETE requests to the Users controller destroy action.
+ï¿½ We can create a large number of test users using embedded Ruby inside fixtures.
 
 612
 
@@ -13114,14 +13120,14 @@ Figure 11.9: Successful account activation in production.
 With the added account activation, our sample application's sign up, log in, and log out machinery is nearly complete. The only significant feature left is allowing users to reset their passwords if they forget them. As we'll see in Chapter 12, password reset shares many features with account activation, which means that we'll be able to put the knowledge we've gained in this chapter to good use.
 
 11.5.1 What we learned in this chapter
-· Like sessions, account activations can be modeled as a resource despite not being Active Record objects.
-· Rails can generate Action Mailer actions and views to send email.
-· Action Mailer supports both plain-text and HTML mail.
-· As with ordinary actions and views, instance variables defined in mailer actions are available in mailer views.
-· Account activations use a generated token to create a unique URL for activating users.
-· Account activations use a hashed activation digest to securely identify valid activation requests.
-· Both mailer tests and integration tests are useful for verifying the behavior of the User mailer.
-· We can send email in production using SendGrid.
+ï¿½ Like sessions, account activations can be modeled as a resource despite not being Active Record objects.
+ï¿½ Rails can generate Action Mailer actions and views to send email.
+ï¿½ Action Mailer supports both plain-text and HTML mail.
+ï¿½ As with ordinary actions and views, instance variables defined in mailer actions are available in mailer views.
+ï¿½ Account activations use a generated token to create a unique URL for activating users.
+ï¿½ Account activations use a hashed activation digest to securely identify valid activation requests.
+ï¿½ Both mailer tests and integration tests are useful for verifying the behavior of the User mailer.
+ï¿½ We can send email in production using SendGrid.
 
 664
 
@@ -13279,7 +13285,7 @@ Figure 12.5: The User model with added password reset attributes.
 675
 
 $ rails db:migrate
-To make the view for new password resets, we'll work in analogy with the previous form for making a new non­Active Record resource, namely, the login form (Listing 8.4) for creating a new session, shown again in Listing 12.3 for reference.
+To make the view for new password resets, we'll work in analogy with the previous form for making a new nonï¿½Active Record resource, namely, the login form (Listing 8.4) for creating a new session, shown again in Listing 12.3 for reference.
 Listing 12.3: Reviewing the code for the login form.
 app/views/sessions/new.html.erb
 <% provide(:title, "Log in") %> <h1>Log in</h1>
@@ -13632,7 +13638,7 @@ This requires defining a private check_expiration method:
 if @user.password_reset_expired? flash[:danger] = "Password reset has expired." redirect_to new_password_reset_url
 end end
 In the check_expiration method, we've deferred the expiration check to the instance method password_reset_expired?, which is a little tricky and will be defined in a moment.
-Listing 12.16 shows the implementation of these filters, together with the update action that implements Cases (2)­(4). Case (2) gets handled by a failed
+Listing 12.16 shows the implementation of these filters, together with the update action that implements Cases (2)ï¿½(4). Case (2) gets handled by a failed
 
 12.3. RESETTING THE PASSWORD
 
@@ -13644,7 +13650,7 @@ The only failure case not handled by Case (2) is when the password is empty, whi
 @user.errors.add(:password, :blank)
 
 This arranges to use the default message for blank content when the password is empty.4
-The result of putting Cases (1)­(4) together is the update action shown in
+The result of putting Cases (1)ï¿½(4) together is the update action shown in
 Listing 12.16.
 
 Listing 12.16: The update action for password reset.
@@ -14078,14 +14084,14 @@ CHAPTER 12. PASSWORD RESET
 In the process, we'll learn about some of the most powerful features of Rails, including image upload, custom database queries, and advanced data modeling with has_many and has_many :through.
 
 12.5.1 What we learned in this chapter
-· Like sessions and account activations, password resets can be modeled as a resource despite not being Active Record objects.
-· Rails can generate Action Mailer actions and views to send email.
-· Action Mailer supports both plain-text and HTML mail.
-· As with ordinary actions and views, instance variables defined in mailer actions are available in mailer views.
-· Password resets use a generated token to create a unique URL for resetting passwords.
-· Password resets use a hashed reset digest to securely identify valid reset requests.
-· Both mailer tests and integration tests are useful for verifying the behavior of the User mailer.
-· We can send email in production using SendGrid.
+ï¿½ Like sessions and account activations, password resets can be modeled as a resource despite not being Active Record objects.
+ï¿½ Rails can generate Action Mailer actions and views to send email.
+ï¿½ Action Mailer supports both plain-text and HTML mail.
+ï¿½ As with ordinary actions and views, instance variables defined in mailer actions are available in mailer views.
+ï¿½ Password resets use a generated token to create a unique URL for resetting passwords.
+ï¿½ Password resets use a hashed reset digest to securely identify valid reset requests.
+ï¿½ Both mailer tests and integration tests are useful for verifying the behavior of the User mailer.
+ï¿½ We can send email in production using SendGrid.
 
 12.6 Proof of expiration comparison
 We saw in Section 12.3 that the comparison test for determining when a password reset has expired is
@@ -14143,7 +14149,7 @@ grateful I couldn't find a way to work
 
 V
 
- = E or Gµ = 8T µ (= 4 T µ ) into the exposition.
+ = E or Gï¿½ = 8T ï¿½ (= 4 T ï¿½ ) into the exposition.
 
 712
 
@@ -15089,7 +15095,7 @@ CHAPTER 13. USER MICROPOSTS
 1. Refactor the Home page to use separate partials for the two branches of the if-else statement.
 
 13.3.3 A proto-feed
-Although the micropost form is actually now working, users can't immediately see the results of a successful submission because the current Home page doesn't display any microposts. If you like, you can verify that the form shown in Figure 13.11 is working by submitting a valid entry and then navigating to the profile page to see the post, but that's rather cumbersome. It would be far better to have a feed of microposts that includes the user's own posts, as mocked up in Figure 13.13. (In Chapter 14, we'll generalize this feed to include the microposts of users being followed by the current user, à la Twitter.)
+Although the micropost form is actually now working, users can't immediately see the results of a successful submission because the current Home page doesn't display any microposts. If you like, you can verify that the form shown in Figure 13.11 is working by submitting a valid entry and then navigating to the profile page to see the post, but that's rather cumbersome. It would be far better to have a feed of microposts that includes the user's own posts, as mocked up in Figure 13.13. (In Chapter 14, we'll generalize this feed to include the microposts of users being followed by the current user, ï¿½ la Twitter.)
 Since each user should have a feed, we are led naturally to a feed method in the User model, which will initially just select all the microposts belonging to the current user. We'll accomplish this using the where method on the Micropost model (seen briefly before in Section 11.3.3), as shown in Listing 13.46.13
 Listing 13.46: A preliminary implementation for the micropost status feed.
 app/models/user.rb
@@ -15377,7 +15383,7 @@ The most convenient way to upload files in Rails is to use a built-in feature ca
 As described in the Active Storage documentation, adding Active Storage to our application is as easy as running a single command:
 $ rails active_storage:install
 This command generates a database migration that creates a data model for storing attached files. You're welcome to take a look at it, but this is an excellent
-17Image retrieved from https://www.flickr.com/photos/grungepunk/14026922186 on 2014-09-19. Copyright © 2014 by Jussie D. Brito and used unaltered under the terms of the Creative Commons Attribution-ShareAlike 2.0 Generic license.
+17Image retrieved from https://www.flickr.com/photos/grungepunk/14026922186 on 2014-09-19. Copyright ï¿½ 2014 by Jussie D. Brito and used unaltered under the terms of the Creative Commons Attribution-ShareAlike 2.0 Generic license.
 18Active Storage was added in Rails 5.2.
 
 13.4. MICROPOST IMAGES
@@ -16029,32 +16035,32 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 13.5.1 What we learned in this chapter
-· Microposts, like Users, are modeled as a resource backed by an Active Record model.
-· Rails supports multiple-key indices.
+ï¿½ Microposts, like Users, are modeled as a resource backed by an Active Record model.
+ï¿½ Rails supports multiple-key indices.
 
 816
 
 CHAPTER 13. USER MICROPOSTS
 
-· We can model a user having many microposts using the has_many and belongs_to methods in the User and Micropost models, respectively.
-· The has_many/belongs_to combination gives rise to methods that work through the association.
-· The code user.microposts.build(...) returns a new Micropost object automatically associated with the given user.
-· Rails supports default ordering via default_scope.
-· Scopes take anonymous functions as arguments.
-· The dependent: :destroy option causes objects to be destroyed at the same time as associated objects.
-· Pagination and object counts can both be performed through associations, leading to automatically efficient code.
-· Fixtures support the creation of associations.
-· It is possible to pass variables to Rails partials.
-· The where method can be used to perform Active Record selections.
-· We can enforce secure operations by always creating and destroying dependent objects through their association.
-· We can upload images using Active Storage.
+ï¿½ We can model a user having many microposts using the has_many and belongs_to methods in the User and Micropost models, respectively.
+ï¿½ The has_many/belongs_to combination gives rise to methods that work through the association.
+ï¿½ The code user.microposts.build(...) returns a new Micropost object automatically associated with the given user.
+ï¿½ Rails supports default ordering via default_scope.
+ï¿½ Scopes take anonymous functions as arguments.
+ï¿½ The dependent: :destroy option causes objects to be destroyed at the same time as associated objects.
+ï¿½ Pagination and object counts can both be performed through associations, leading to automatically efficient code.
+ï¿½ Fixtures support the creation of associations.
+ï¿½ It is possible to pass variables to Rails partials.
+ï¿½ The where method can be used to perform Active Record selections.
+ï¿½ We can enforce secure operations by always creating and destroying dependent objects through their association.
+ï¿½ We can upload images using Active Storage.
 
 Chapter 14
 Following users
 In this chapter, we will complete the Rails Tutorial sample application by adding a social layer that allows users to follow (and unfollow) other users, resulting in each user's Home page displaying a status feed of the followed users' microposts. We'll start by learning how to model relationships between users in Section 14.1, and we'll build the corresponding web interface in Section 14.2 (including an introduction to Ajax). We'll end by developing a fully functional status feed in Section 14.3.
 This final chapter contains some of the most challenging material in the tutorial, including some Ruby/SQL trickery to make the status feed. Through these examples, you will see how Rails can handle even rather intricate data models, which should serve you well as you go on to develop your own applications with their own specific requirements. To help with the transition from tutorial to independent development, Section 14.4 offers some pointers to more advanced resources.
 Because the material in this chapter is particularly challenging, before writing any code we'll pause for a moment and take a tour of the interface. As in previous chapters, at this early stage we'll represent pages using mockups.1 The full page flow runs as follows: a user (John Calvin) starts at his profile page
-1Image of child retrieved from https://www.flickr.com/photos/john_lustig/2518452221/ on 2013-12-16. Copyright © 2008 by John Lustig and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license. Image of tiger retrieved from https://www.flickr.com/photos/renemensen/9187111340 on 2014-08-15. Copyright © 2013 by Rene Mesen and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
+1Image of child retrieved from https://www.flickr.com/photos/john_lustig/2518452221/ on 2013-12-16. Copyright ï¿½ 2008 by John Lustig and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license. Image of tiger retrieved from https://www.flickr.com/photos/renemensen/9187111340 on 2014-08-15. Copyright ï¿½ 2013 by Rene Mesen and used unaltered under the terms of the Creative Commons Attribution 2.0 Generic license.
 817
 
 818
@@ -16064,7 +16070,7 @@ CHAPTER 14. FOLLOWING USERS
 (Figure 14.1) and navigates to the Users page (Figure 14.2) to select a user to follow. Calvin navigates to the profile of a second user, Thomas Hobbes (Figure 14.3), clicking on the "Follow" button to follow that user. This changes the "Follow" button to "Unfollow" and increments Hobbes's "followers" count by one (Figure 14.4). Navigating to his home page, Calvin now sees an incremented "following" count and finds Hobbes's microposts in his status feed (Figure 14.5). The rest of this chapter is dedicated to making this page flow actually work.
 
 14.1 The Relationship model
-Our first step in implementing following users is to construct a data model, which is not as straightforward as it seems. Naïvely, it seems that a has_many relationship would do: a user has_many followed users and has_many followers. As we will see, there is a problem with this approach, and we'll learn how to fix it using has_many :through.
+Our first step in implementing following users is to construct a data model, which is not as straightforward as it seems. Naï¿½vely, it seems that a has_many relationship would do: a user has_many followed users and has_many followers. As we will see, there is a problem with this approach, and we'll learn how to fix it using has_many :through.
 As usual, Git users should create a new topic branch:
 
 $ git checkout -b following-users
@@ -16148,7 +16154,7 @@ follower_id followed_id name
 
 email ... ... ... ...
 
-Figure 14.6: A naïve implementation of user following.
+Figure 14.6: A naï¿½ve implementation of user following.
 This discussion suggests modeling the followed users as in Figure 14.6, with a following table and a has_many association. Since user.following should be a collection of users, each row of the following table would need to be a user, as identified by the followed_id, together with the follower_id to establish the association.2 In addition, since each row is a user, we would need to include the user's other attributes, including the name, email, password, etc.
 The problem with the data model in Figure 14.6 is that it is terribly redundant: each row contains not only each followed user's id, but all their other information as well--all of which is already in the users table. Even worse, to model user followers we would need a separate, similarly redundant followers table. Finally, this data model is a maintainability nightmare: each time a user changed (say) their name, we would need to update not just the user's record in the users table but also every row containing that user in both the following and followers tables.
 The problem here is that we are missing an underlying abstraction. One way to find the proper model is to consider how we might implement the act of following in a web application. Recall from Section 7.1.2 that the REST architecture involves resources that are created and destroyed. This leads us to
@@ -17592,26 +17598,25 @@ CHAPTER 14. FOLLOWING USERS
 
 this far, you're ready for almost anything else out there. Here are some suggestions for further learning:
 
-· Learn Enough All Access Bundle: Premium subscription service that includes a special enhanced version of the Ruby on Rails Tutorial book and 15+ hours of streaming screencast lessons filled with the kind of tips, tricks, and live demos that you can't get from reading a book. Also includes text and videos for the other Learn Enough tutorials. Scholarship discounts are available.
-· Launch School: Lots of in-person developer bootcamps have sprung up in recent years, and I recommend looking for one in your area, but Launch School is available online and so can be taken from anywhere. Launch School is an especially good choice if you want instructor feedback within the context of a structured curriculum.
-· The Turing School of Software & Design: a full-time, 27-week Ruby/Rails/JavaScript training program in Denver, Colorado. Most of their students start with limited programming experience but have the determination and drive needed to pick it up quickly. Turing guarantees its students will find a job after graduating or they'll refund the cost of tuition.
-· Bloc: An online bootcamp with a structured curriculum, personalized mentorship, and a focus on learning through concrete projects. Use the coupon code BLOCLOVESHARTL to get $500 off the enrollment fee.
-· Thinkful: An online class that pairs you with a professional engineer as you work through a project-based curriculum. Subjects include Ruby on Rails, front-end development, web design, and data science.
-· Pragmatic Studio: Online Ruby and Rails courses from Mike and Nicole Clark.
-· RailsApps: Instructive sample Rails apps
+ï¿½ Learn Enough All Access Bundle: Premium subscription service that includes a special enhanced version of the Ruby on Rails Tutorial book and 15+ hours of streaming screencast lessons filled with the kind of tips, tricks, and live demos that you can't get from reading a book. Also includes text and videos for the other Learn Enough tutorials. Scholarship discounts are available.
+ï¿½ Launch School: Lots of in-person developer bootcamps have sprung up in recent years, and I recommend looking for one in your area, but Launch School is available online and so can be taken from anywhere. Launch School is an especially good choice if you want instructor feedback within the context of a structured curriculum.
+ï¿½ The Turing School of Software & Design: a full-time, 27-week Ruby/Rails/JavaScript training program in Denver, Colorado. Most of their students start with limited programming experience but have the determination and drive needed to pick it up quickly. Turing guarantees its students will find a job after graduating or they'll refund the cost of tuition.
+ï¿½ Bloc: An online bootcamp with a structured curriculum, personalized mentorship, and a focus on learning through concrete projects. Use the coupon code BLOCLOVESHARTL to get $500 off the enrollment fee.
+ï¿½ Thinkful: An online class that pairs you with a professional engineer as you work through a project-based curriculum. Subjects include Ruby on Rails, front-end development, web design, and data science.
+ï¿½ Pragmatic Studio: Online Ruby and Rails courses from Mike and Nicole Clark.
+ï¿½ RailsApps: Instructive sample Rails apps
 
 14.4. CONCLUSION
 
 893
 
-· Lambda School: Innovative full-time online program that you pay for only if you land a high-paying job.
+ï¿½ Lambda School: Innovative full-time online program that you pay for only if you land a high-paying job.
 
 14.4.2 What we learned in this chapter
-· Rails' has_many :through allows the modeling of complicated data relationships.
-· The has_many method takes several optional arguments, including the object class name and the foreign key.
-· Using has_many and has_many :through with properly chosen class names and foreign keys, we can model both active (following) and passive (being followed) relationships.
-· Rails routing supports nested routes.
-· The where method is a flexible and powerful way to create database queries.
-· Rails supports issuing lower-level SQL queries if needed.
-· By putting together everything we've learned in this book, we've successfully implemented user following with a status feed of microposts from followed users.
-
+ï¿½ Rails' has_many :through allows the modeling of complicated data relationships.
+ï¿½ The has_many method takes several optional arguments, including the object class name and the foreign key.
+ï¿½ Using has_many and has_many :through with properly chosen class names and foreign keys, we can model both active (following) and passive (being followed) relationships.
+ï¿½ Rails routing supports nested routes.
+ï¿½ The where method is a flexible and powerful way to create database queries.
+ï¿½ Rails supports issuing lower-level SQL queries if needed.
+ï¿½ By putting together everything we've learned in this book, we've successfully implemented user following with a status feed of microposts from followed users.

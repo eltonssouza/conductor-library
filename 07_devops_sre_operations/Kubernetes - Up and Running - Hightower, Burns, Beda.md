@@ -1,3 +1,9 @@
+# Kubernetes - Up and Running
+
+> **Author(s):** Hightower, Burns, Beda Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 EdSiteioconnd
 Kubernetes
 Up & Running
@@ -7,7 +13,7 @@ Brendan Burns, Joe Beda & Kelsey Hightower
 Get started
 Kubernetes on Azure
 
-Find out what you can do with a fully managed service for simplifying Kubernetes deployment, management and operations, including: · Build microservices applications. · Deploy a Kubernetes cluster. · Easily monitor and manage Kubernetes.
+Find out what you can do with a fully managed service for simplifying Kubernetes deployment, management and operations, including: ï¿½ Build microservices applications. ï¿½ Deploy a Kubernetes cluster. ï¿½ Easily monitor and manage Kubernetes.
 Create a free account and get started with Kubernetes on Azure. Azure Kubernetes Service (AKS) is one of more than 25 products that are always free with your account. Start free >
 Then, try these labs to master the basic and advanced tasks required to deploy a multicontainer application to Kubernetes on Azure Kubernetes Service (AKS). Try now >
 
@@ -20,7 +26,7 @@ Beijing Boston Farnham Sebastopol Tokyo
 Kubernetes: Up and Running
 by Brendan Burns, Joe Beda, and Kelsey Hightower
 
-Copyright © 2019 Brendan Burns, Joe Beda, and Kelsey Hightower. All rights reserved.
+Copyright ï¿½ 2019 Brendan Burns, Joe Beda, and Kelsey Hightower. All rights reserved.
 
 Printed in the United States of America.
 
@@ -1134,14 +1140,14 @@ xviii | Preface
 CHAPTER 1
 Introduction
 Kubernetes is an open source orchestrator for deploying containerized applications. It was originally developed by Google, inspired by a decade of experience deploying scalable, reliable systems in containers via application-oriented APIs.1 Since its introduction in 2014, Kubernetes has grown to be one of the largest and most popular open source projects in the world. It has become the standard API for building cloud-native applications, present in nearly every public cloud. Kubernetes is a proven infrastructure for distributed systems that is suitable for cloud-native developers of all scales, from a cluster of Raspberry Pi computers to a warehouse full of the latest machines. It provides the software necessary to successfully build and deploy reliable, scalable distributed systems. You may be wondering what we mean when we say "reliable, scalable distributed sys- tems." More and more services are delivered over the network via APIs. These APIs are often delivered by a distributed system, the various pieces that implement the API running on different machines, connected via the network and coordinating their actions via network communication. Because we rely on these APIs increasingly for all aspects of our daily lives (e.g., finding directions to the nearest hospital), these sys- tems must be highly reliable. They cannot fail, even if a part of the system crashes or otherwise stops working. Likewise, they must maintain availability even during soft- ware rollouts or other maintenance events. Finally, because more and more of the world is coming online and using such services, they must be highly scalable so that they can grow their capacity to keep up with ever-increasing usage without radical redesign of the distributed system that implements the services.
-1 Brendan Burns et al., "Borg, Omega, and Kubernetes: Lessons Learned from Three Container-Management Systems over a Decade," ACM Queue 14 (2016): 70­93, available at http://bit.ly/2vIrL4S. 1
+1 Brendan Burns et al., "Borg, Omega, and Kubernetes: Lessons Learned from Three Container-Management Systems over a Decade," ACM Queue 14 (2016): 70ï¿½93, available at http://bit.ly/2vIrL4S. 1
 
 Depending on when and why you have come to hold this book in your hands, you may have varying degrees of experience with containers, distributed systems, and Kubernetes. You may be planning on building your application on top of public cloud infrastructure, in private data centers, or in some hybrid environment. Regardless of what your experience is, we believe this book will enable you to make the most of your use of Kubernetes. There are many reasons why people come to use containers and container APIs like Kubernetes, but we believe they can all be traced back to one of these benefits:
-· Velocity · Scaling (of both software and teams) · Abstracting your infrastructure · Efficiency
+ï¿½ Velocity ï¿½ Scaling (of both software and teams) ï¿½ Abstracting your infrastructure ï¿½ Efficiency
 In the following sections, we describe how Kubernetes can help provide each of these features.
 Velocity
 Velocity is the key component in nearly all software development today. The software industry has evolved from shipping products as boxed CDs or DVDs to software that is delivered over the network via web-based services that are updated hourly. This changing landscape means that the difference between you and your competitors is often the speed with which you can develop and deploy new components and fea- tures, or the speed with which you can respond to innovations developed by others. It is important to note, however, that velocity is not defined in terms of simply raw speed. While your users are always looking for iterative improvement, they are more interested in a highly reliable service. Once upon a time, it was OK for a service to be down for maintenance at midnight every night. But today, all users expect constant uptime, even if the software they are running is changing constantly. Consequently, velocity is measured not in terms of the raw number of features you can ship per hour or day, but rather in terms of the number of things you can ship while maintaining a highly available service. In this way, containers and Kubernetes can provide the tools that you need to move quickly, while staying available. The core concepts that enable this are:
-· Immutability · Declarative configuration · Online self-healing systems
+ï¿½ Immutability ï¿½ Declarative configuration ï¿½ Online self-healing systems
 2 | Chapter 1: Introduction
 
 These ideas all interrelate to radically improve the speed with which you can reliably deploy software.
@@ -1172,10 +1178,10 @@ Concretely, when you need to scale your service, the immutable, declarative natu
 each team's growth is highly variable and thus hard to predict. If you are provisioning individual machines for each service, you have no choice but to forecast based on the maximum expected growth for each service, since machines dedicated to one team cannot be used for another team. If instead you use Kubernetes to decouple the teams from the specific machines they are using, you can forecast growth based on the aggregate growth of all three services. Combining three variable growth rates into a single growth rate reduces statistical noise and produces a more reliable forecast of expected growth. Furthermore, decoupling the teams from specific machines means that teams can share fractional parts of one another's machines, reducing even further the overheads associated with forecasting growth of computing resources.
 Scaling Development Teams with Microservices
 As noted in a variety of research, the ideal team size is the "two-pizza team," or roughly six to eight people. This group size often results in good knowledge sharing, fast decision making, and a common sense of purpose. Larger teams tend to suffer from issues of hierarchy, poor visibility, and infighting, which hinder agility and success. However, many projects require significantly more resources to be successful and achieve their goals. Consequently, there is a tension between the ideal team size for agility and the necessary team size for the product's end goals. The common solution to this tension has been the development of decoupled, service-oriented teams that each build a single microservice. Each small team is responsible for the design and delivery of a service that is consumed by other small teams. The aggregation of all of these services ultimately provides the implementation of the overall product's surface area. Kubernetes provides numerous abstractions and APIs that make it easier to build these decoupled microservice architectures:
-· Pods, or groups of containers, can group together container images developed by different teams into a single deployable unit.
-· Kubernetes services provide load balancing, naming, and discovery to isolate one microservice from another.
-· Namespaces provide isolation and access control, so that each microservice can control the degree to which other services interact with it.
-· Ingress objects provide an easy-to-use frontend that can combine multiple micro- services into a single externalized API surface area.
+ï¿½ Pods, or groups of containers, can group together container images developed by different teams into a single deployable unit.
+ï¿½ Kubernetes services provide load balancing, naming, and discovery to isolate one microservice from another.
+ï¿½ Namespaces provide isolation and access control, so that each microservice can control the degree to which other services interact with it.
+ï¿½ Ingress objects provide an easy-to-use frontend that can combine multiple micro- services into a single externalized API surface area.
 Finally, decoupling the application container image and machine means that different microservices can colocate on the same machine without interfering with one another, reducing the overhead and cost of microservice architectures. The health-
 Scaling Your Service and Your Teams | 7
 
@@ -1205,7 +1211,7 @@ Kubernetes is a platform for creating, deploying, and managing distributed appli
 13
 
 This makes the task of rolling out a new version of all or parts of a distributed system a labor-intensive and difficult task. In Chapter 1, we argued strongly for the value of immutable images and infrastruc- ture. This immutability is exactly what the container image provides. As we will see, it easily solves all the problems of dependency management and encapsulation just described. When working with applications it's often helpful to package them in a way that makes it easy to share them with others. Docker, the default container runtime engine, makes it easy to package an executable and push it to a remote registry where it can later be pulled by others. At the time of writing, container registries are avail- able in all of the major public clouds, and services to build images in the cloud are also available in many of them. You can also run your own registry using open source or commercial systems. These registries make it easy for users to manage and deploy private images, while image-builder services provide easy integration with continuous delivery systems. For this chapter, and the remainder of the book, we are going to work with a simple example application that we built to help show this workflow in action. You can find the application on GitHub. Container images bundle a program and its dependencies into a single artifact under a root filesystem. The most popular container image format is the Docker image for- mat, which has been standardized by the Open Container Initiative to the OCI image format. Kubernetes supports both Docker- and OCI-compatible images via Docker and other runtimes. Docker images also include additional metadata used by a con- tainer runtime to start a running application instance based on the contents of the container image. This chapter covers the following topics:
-· How to package an application using the Docker image format · How to start an application using the Docker container runtime
+ï¿½ How to package an application using the Docker image format ï¿½ How to start an application using the Docker container runtime
 Container Images
 For nearly everyone, their first interaction with any container technology is with a container image. A container image is a binary package that encapsulates all of the files necessary to run a program inside of an OS container. Depending on how you first experiment with containers, you will either build a container image from your local filesystem or download a preexisting image from a container registry. In either case, once the container image is present on your computer, you can run that image to produce a running application inside an OS container.
 14 | Chapter 2: Creating and Running Containers
@@ -1223,7 +1229,7 @@ Container Images | 15
 
 Conceptually, each container image layer builds upon a previous one. Each parent reference is a pointer. While the example here is a simple set of containers, other realworld containers can be part of a larger extensive directed acyclic graph.
 Container images are typically combined with a container configuration file, which provides instructions on how to set up the container environment and execute an application entry point. The container configuration often includes information on how to set up networking, namespace isolation, resource constraints (cgroups), and what syscall restrictions should be placed on a running container instance. The container root filesystem and configuration file are typically bundled using the Docker image format. Containers fall into two main categories:
-· System containers · Application containers System containers seek to mimic virtual machines and often run a full boot process. They often include a set of system services typically found in a VM, such as ssh, cron, and syslog. When Docker was new, these types of containers were much more com- mon. Over time, they have come to be seen as poor practice and application contain- ers have gained favor. Application containers differ from system containers in that they commonly run a single program. While running a single program per container might seem like an unnecessary constraint, it provides the perfect level of granularity for composing scal- able applications and is a design philosophy that is leveraged heavily by Pods. We will examine how Pods work in detail in Chapter 5.
+ï¿½ System containers ï¿½ Application containers System containers seek to mimic virtual machines and often run a full boot process. They often include a set of system services typically found in a VM, such as ssh, cron, and syslog. When Docker was new, these types of containers were much more com- mon. Over time, they have come to be seen as poor practice and application contain- ers have gained favor. Application containers differ from system containers in that they commonly run a single program. While running a single program per container might seem like an unnecessary constraint, it provides the perfect level of granularity for composing scal- able applications and is a design philosophy that is leveraged heavily by Pods. We will examine how Pods work in detail in Chapter 5.
 Building Application Images with Docker
 In general, container orchestration systems like Kubernetes are focused on building and deploying distributed systems made up of application containers. Consequently, we will focus on application containers for the remainder of this chapter.
 Dockerfiles
@@ -1771,7 +1777,7 @@ echo "source <(kubectl completion bash)" >> ${HOME}/.bashrc
 If you use zsh you can find similar instructions online.
 Alternative Ways of Viewing Your Cluster
 In addition to kubectl, there are other tools for interacting with your Kubernetes cluster. For example, there are plug-ins for several editors that integrate Kubernetes and the editor environment, including:
-· Visual Studio Code · IntelliJ · Eclipse Additionally, there is an open source mobile application that allows you to access your cluster from your phone.
+ï¿½ Visual Studio Code ï¿½ IntelliJ ï¿½ Eclipse Additionally, there is an open source mobile application that allows you to access your cluster from your phone.
 42 | Chapter 4: Common kubectl Commands
 
 Summary
@@ -1998,7 +2004,7 @@ Of course, liveness isn't the only kind of health check we want to perform. Kube
 Health Checks | 55
 
 Types of Health Checks
-In addition to HTTP checks, Kubernetes also supports tcpSocket health checks that open a TCP socket; if the connection is successful, the probe succeeds. This style of probe is useful for non-HTTP applications; for example, databases or other non­ HTTP-based APIs. Finally, Kubernetes allows exec probes. These execute a script or program in the con- text of the container. Following typical convention, if this script returns a zero exit code, the probe succeeds; otherwise, it fails. exec scripts are often useful for custom application validation logic that doesn't fit neatly into an HTTP call.
+In addition to HTTP checks, Kubernetes also supports tcpSocket health checks that open a TCP socket; if the connection is successful, the probe succeeds. This style of probe is useful for non-HTTP applications; for example, databases or other nonï¿½ HTTP-based APIs. Finally, Kubernetes allows exec probes. These execute a script or program in the con- text of the container. Following typical convention, if this script returns a zero exit code, the probe succeeds; otherwise, it fails. exec scripts are often useful for custom application validation logic that doesn't fit neatly into an HTTP call.
 Resource Management
 Most people move into containers and orchestrators like Kubernetes because of the radical improvements in image packaging and reliable deployment they provide. In addition to application-oriented primitives that simplify distributed system develop- ment, equally important is the ability to increase the overall utilization of the com- pute nodes that make up the cluster. The basic cost of operating a machine, either virtual or physical, is basically constant regardless of whether it is idle or fully loaded. Consequently, ensuring that these machines are maximally active increases the effi- ciency of every dollar spent on infrastructure. Generally speaking, we measure this efficiency with the utilization metric. Utilization is defined as the amount of a resource actively being used divided by the amount of a resource that has been purchased. For example, if you purchase a one-core machine, and your application uses one-tenth of a core, then your utilization is 10%. With scheduling systems like Kubernetes managing resource packing, you can drive your utilization to greater than 50%. To achieve this, you have to tell Kubernetes about the resources your application requires, so that Kubernetes can find the optimal packing of containers onto pur- chased machines. Kubernetes allows users to specify two different resource metrics. Resource requests specify the minimum amount of a resource required to run the application. Resource limits specify the maximum amount of a resource that an application can consume. Both of these resource definitions are described in greater detail in the following sections.
 Resource Requests: Minimum Required Resources
@@ -2053,7 +2059,7 @@ Sometimes you will use a volume for truly persistent data--data that is independ
 Mounting the host filesystem
 Other applications don't actually need a persistent volume, but they do need some access to the underlying host filesystem. For example, they may need access to the /dev filesystem in order to perform raw block-level access to a device on the sys- tem. For these cases, Kubernetes supports the hostPath volume, which can mount arbitrary locations on the worker node into the container. The previous example uses the hostPath volume type. The volume created is /var/lib/ kuard on the host.
 Persisting Data Using Remote Disks
-Oftentimes, you want the data a Pod is using to stay with the Pod, even if it is restar- ted on a different host machine. To achieve this, you can mount a remote network storage volume into your Pod. When using network-based storage, Kubernetes automatically mounts and unmounts the appropriate storage whenever a Pod using that volume is scheduled onto a partic- ular machine. There are numerous methods for mounting volumes over the network. Kubernetes includes support for standard protocols such as NFS and iSCSI as well as cloud pro- vider­based storage APIs for the major cloud providers (both public and private). In many cases, the cloud providers will also create the disk for you if it doesn't already exist. Here is an example of using an NFS server:
+Oftentimes, you want the data a Pod is using to stay with the Pod, even if it is restar- ted on a different host machine. To achieve this, you can mount a remote network storage volume into your Pod. When using network-based storage, Kubernetes automatically mounts and unmounts the appropriate storage whenever a Pod using that volume is scheduled onto a partic- ular machine. There are numerous methods for mounting volumes over the network. Kubernetes includes support for standard protocols such as NFS and iSCSI as well as cloud pro- viderï¿½based storage APIs for the major cloud providers (both public and private). In many cases, the cloud providers will also create the disk for you if it doesn't already exist. Here is an example of using an NFS server:
 ... # Rest of pod definition above here volumes:
 - name: "kuard-data" nfs: server: my.nfs.server.local path: "/exports"
 Persistent volumes are a deep topic that has many different details: in particular, the manner in which persistent volumes, persistent volume claims, and dynamic volume provisioning work together. There is a more in-depth examination of the subject in Chapter 15.
@@ -2334,11 +2340,11 @@ Annotations provide a place to store additional metadata for Kubernetes objects 
 Annotations | 71
 
 While labels are used to identify and group objects, annotations are used to provide extra information about where an object came from, how to use it, or policy around that object. There is overlap, and it is a matter of taste as to when to use an annotation or a label. When in doubt, add information to an object as an annotation and pro- mote it to a label if you find yourself wanting to use it in a selector. Annotations are used to:
-· Keep track of a "reason" for the latest update to an object. · Communicate a specialized scheduling policy to a specialized scheduler. · Extend data about the last tool to update the resource and how it was updated
-(used for detecting changes by other tools and doing a smart merge). · Attach build, release, or image information that isn't appropriate for labels (may
-include a Git hash, timestamp, PR number, etc.). · Enable the Deployment object (Chapter 10) to keep track of ReplicaSets that it is
-managing for rollouts. · Provide extra data to enhance the visual quality or usability of a UI. For example,
-objects could include a link to an icon (or a base64-encoded version of an icon). · Prototype alpha functionality in Kubernetes (instead of creating a first-class API
+ï¿½ Keep track of a "reason" for the latest update to an object. ï¿½ Communicate a specialized scheduling policy to a specialized scheduler. ï¿½ Extend data about the last tool to update the resource and how it was updated
+(used for detecting changes by other tools and doing a smart merge). ï¿½ Attach build, release, or image information that isn't appropriate for labels (may
+include a Git hash, timestamp, PR number, etc.). ï¿½ Enable the Deployment object (Chapter 10) to keep track of ReplicaSets that it is
+managing for rollouts. ï¿½ Provide extra data to enhance the visual quality or usability of a UI. For example,
+objects could include a link to an icon (or a base64-encoded version of an icon). ï¿½ Prototype alpha functionality in Kubernetes (instead of creating a first-class API
 field, the parameters for that functionality are encoded in an annotation).
 Annotations are used in various places in Kubernetes, with the primary use case being rolling deployments. During rolling deployments, annotations are used to track rollout status and provide the necessary information required to roll back a deploy- ment to a previous state. Users should avoid using the Kubernetes API server as a general-purpose database. Annotations are good for small bits of data that are highly associated with a specific resource. If you want to store data in Kubernetes but you don't have an obvious object to associate it with, consider storing that data in some other, more appropriate data- base.
 Defining Annotations
@@ -2365,7 +2371,7 @@ What Is Service Discovery?
 The general name for this class of problems and solutions is service discovery. Servicediscovery tools help solve the problem of finding which processes are listening at which addresses for which services. A good service-discovery system will enable users to resolve this information quickly and reliably. A good system is also low-latency; clients are updated soon after the information associated with a service changes. Finally, a good service-discovery system can store a richer definition of what that ser- vice is. For example, perhaps there are multiple ports associated with the service. The Domain Name System (DNS) is the traditional system of service discovery on the internet. DNS is designed for relatively stable name resolution with wide and effi- cient caching. It is a great system for the internet but falls short in the dynamic world of Kubernetes. Unfortunately, many systems (for example, Java, by default) look up a name in DNS directly and never re-resolve. This can lead to clients caching stale mappings and talking to the wrong IP. Even with short TTLs and well-behaved clients, there is a
 75
 
-natural delay between when a name resolution changes and when the client notices. There are natural limits to the amount and type of information that can be returned in a typical DNS query, too. Things start to break past 20­30 A records for a single name. SRV records solve some problems, but are often very hard to use. Finally, the way that clients handle multiple IPs in a DNS record is usually to take the first IP address and rely on the DNS server to randomize or round-robin the order of records. This is no substitute for more purpose-built load balancing.
+natural delay between when a name resolution changes and when the client notices. There are natural limits to the amount and type of information that can be returned in a typical DNS query, too. Things start to break past 20ï¿½30 A records for a single name. SRV records solve some problems, but are often very hard to use. Finally, the way that clients handle multiple IPs in a DNS record is usually to take the first IP address and rely on the DNS server to randomize or round-robin the order of records. This is no substitute for more purpose-built load balancing.
 
 The Service Object
 Real service discovery in Kubernetes starts with a Service object.
@@ -3597,7 +3603,7 @@ you may limit your revision history to 14, to keep a maximum of 2 weeks' worth o
 # We do daily rollouts, limit the revision history to two weeks of # releases as we don't expect to roll back beyond that. revisionHistoryLimit: 14 ...
 Deployment Strategies
 When it comes time to change the version of software implementing your service, a Kubernetes deployment supports two different rollout strategies:
-· Recreate · RollingUpdate
+ï¿½ Recreate ï¿½ RollingUpdate
 Recreate Strategy
 The Recreate strategy is the simpler of the two rollout strategies. It simply updates the ReplicaSet it manages to use the new image and terminates all of the Pods associ- ated with the deployment. The ReplicaSet notices that it no longer has any replicas, and re-creates all Pods using the new image. Once the Pods are re-created, they are running the new version. While this strategy is fast and simple, it has one major drawback--it is potentially catastrophic, and will almost certainly result in some site downtime. Because of this, the Recreate strategy should only be used for test deployments where a service is not user-facing and a small amount of downtime is acceptable.
 RollingUpdate Strategy
@@ -3815,9 +3821,9 @@ DaemonSets can be rolled out using the same RollingUpdate strategy that deploy- 
 136 | Chapter 11: DaemonSets
 
 As with rolling updates of deployments (see Chapter 10), the RollingUpdate strategy gradually updates members of a DaemonSet until all of the Pods are running the new configuration. There are two parameters that control the rolling update of a DaemonSet:
-· spec.minReadySeconds, which determines how long a Pod must be "ready" before the rolling update proceeds to upgrade subsequent Pods
-· spec.updateStrategy.rollingUpdate.maxUnavailable, which indicates how many Pods may be simultaneously updated by the rolling update
-You will likely want to set spec.minReadySeconds to a reasonably long value, for example 30­60 seconds, to ensure that your Pod is truly healthy before the rollout proceeds. The setting for spec.updateStrategy.rollingUpdate.maxUnavailable is more likely to be application-dependent. Setting it to 1 is a safe, general-purpose strategy, but it also takes a while to complete the rollout (number of nodes × minReadySec onds). Increasing the maximum unavailability will make your rollout move faster, but increases the "blast radius" of a failed rollout. The characteristics of your application and cluster environment dictate the relative values of speed versus safety. A good approach might be to set maxUnavailable to 1 and only increase it if users or admin- istrators complain about DaemonSet rollout speed. Once a rolling update has started, you can use the kubectl rollout commands to see the current status of a DaemonSet rollout. For example, kubectl rollout status daemonSets my-daemon-set will show the current rollout status of a DaemonSet named my-daemon-set.
+ï¿½ spec.minReadySeconds, which determines how long a Pod must be "ready" before the rolling update proceeds to upgrade subsequent Pods
+ï¿½ spec.updateStrategy.rollingUpdate.maxUnavailable, which indicates how many Pods may be simultaneously updated by the rolling update
+You will likely want to set spec.minReadySeconds to a reasonably long value, for example 30ï¿½60 seconds, to ensure that your Pod is truly healthy before the rollout proceeds. The setting for spec.updateStrategy.rollingUpdate.maxUnavailable is more likely to be application-dependent. Setting it to 1 is a safe, general-purpose strategy, but it also takes a while to complete the rollout (number of nodes ï¿½ minReadySec onds). Increasing the maximum unavailability will make your rollout move faster, but increases the "blast radius" of a failed rollout. The characteristics of your application and cluster environment dictate the relative values of speed versus safety. A good approach might be to set maxUnavailable to 1 and only increase it if users or admin- istrators complain about DaemonSet rollout speed. Once a rolling update has started, you can use the kubectl rollout commands to see the current status of a DaemonSet rollout. For example, kubectl rollout status daemonSets my-daemon-set will show the current rollout status of a DaemonSet named my-daemon-set.
 Deleting a DaemonSet
 Deleting a DaemonSet is pretty straightforward using the kubectl delete com- mand. Just be sure to supply the correct name of the DaemonSet you would like to delete:
 $ kubectl delete -f fluentd.yaml
@@ -3879,9 +3885,9 @@ $ kubectl run -i oneshot \ --image=gcr.io/kuar-demo/kuard-amd64:blue \ --restart
 
 (ID 0) Workload starting (ID 0 1/10) Item done: SHA256:nAsUsG54XoKRkJwyN+OShkUPKew3mwq7OCc (ID 0 2/10) Item done: SHA256:HVKX1ANns6SgF/er1lyo+ZCdnB8geFGt0/8 (ID 0 3/10) Item done: SHA256:irjCLRov3mTT0P0JfsvUyhKRQ1TdGR8H1jg (ID 0 4/10) Item done: SHA256:nbQAIVY/yrhmEGk3Ui2sAHuxb/o6mYO0qRk (ID 0 5/10) Item done: SHA256:CCpBoXNlXOMQvR2v38yqimXGAa/w2Tym+aI (ID 0 6/10) Item done: SHA256:wEY2TTIDz4ATjcr1iimxavCzZzNjRmbOQp8 (ID 0 7/10) Item done: SHA256:t3JSrCt7sQweBgqG5CrbMoBulwk4lfDWiTI (ID 0 8/10) Item done: SHA256:E84/Vze7KKyjCh9OZh02MkXJGoty9PhaCec (ID 0 9/10) Item done: SHA256:UOmYex79qqbI1MhcIfG4hDnGKonlsij2k3s (ID 0 10/10) Item done: SHA256:WCR8wIGOFag84Bsa8f/9QHuKqF+0mEnCADY (ID 0) Workload exiting
 There are some things to note here:
-· The -i option to kubectl indicates that this is an interactive command. kubectl will wait until the job is running and then show the log output from the first (and in this case only) Pod in the job.
-· --restart=OnFailure is the option that tells kubectl to create a Job object. · All of the options after -- are command-line arguments to the container image.
-These instruct our test server (kuard) to generate 10 4,096-bit SSH keys and then exit. · Your output may not match this exactly. kubectl often misses the first couple of lines of output with the -i option.
+ï¿½ The -i option to kubectl indicates that this is an interactive command. kubectl will wait until the job is running and then show the log output from the first (and in this case only) Pod in the job.
+ï¿½ --restart=OnFailure is the option that tells kubectl to create a Job object. ï¿½ All of the options after -- are command-line arguments to the container image.
+These instruct our test server (kuard) to generate 10 4,096-bit SSH keys and then exit. ï¿½ Your output may not match this exactly. kubectl often misses the first couple of lines of output with the -i option.
 After the job has completed, the Job object and related Pod are still around. This is so that you can inspect the log output. Note that this job won't show up in kubectl get jobs unless you pass the -a flag. Without this flag, kubectl hides completed jobs. Delete the job before continuing:
 $ kubectl delete jobs oneshot
 The other option for creating a one-shot job is using a configuration file, as shown in Example 12-1.
@@ -4591,11 +4597,11 @@ Role-Based Access Control
 To properly manage access in Kubernetes, it's critical to understand how identity, roles, and role bindings interact to control who can do what with what resources. At first, RBAC can seem like a challenge to understand, with a series of interconnected, abstract concepts; but once understood, managing cluster access is straightforward and safe.
 Identity in Kubernetes
 Every request that comes to Kubernetes is associated with some identity. Even a request with no identity is associated with the system:unauthenticated group. Kubernetes makes a distinction between user identities and service account identities. Service accounts are created and managed by Kubernetes itself and are generally asso- ciated with components running inside the cluster. User accounts are all other accounts associated with actual users of the cluster, and often include automation like continuous delivery as a service that runs outside of the cluster. Kubernetes uses a generic interface for authentication providers. Each of the provid- ers supplies a username and optionally the set of groups to which the user belongs. Kubernetes supports a number of different authentication providers, including:
-· HTTP Basic Authentication (largely deprecated) · x509 client certificates
+ï¿½ HTTP Basic Authentication (largely deprecated) ï¿½ x509 client certificates
 168 | Chapter 14: Role-Based Access Control for Kubernetes
 
-· Static token files on the host · Cloud authentication providers like Azure Active Directory and AWS Identity
-and Access Management (IAM) · Authentication webhooks
+ï¿½ Static token files on the host ï¿½ Cloud authentication providers like Azure Active Directory and AWS Identity
+and Access Management (IAM) ï¿½ Authentication webhooks
 While most managed Kubernetes installations configure authentication for you, if you are deploying your own authentication you will need to configure flags on the Kubernetes API server appropriately.
 Understanding Roles and Role Bindings
 Identity is just the beginning of authorization in Kubernetes. Once the system knows the identity of the request, it needs to determine if the request is authorized for that user. To achieve this, it uses the general concept of roles and role bindings. A role is a set of abstract capabilities. For example, the appdev role might represent the ability to create Pods and services. A role binding is an assignment of a role to one or more identities. Thus, binding the appdev role to the user identity alice indicates that Alice has the ability to create Pods and services.
@@ -4654,7 +4660,7 @@ Using built-in roles
 Of course, designing your own roles can be complicated and time-consuming. Fur- thermore, Kubernetes has a large number of well-known system identities (e.g., a scheduler) that require a known set of capabilities. Consequently, Kubernetes has a large number of built-in cluster roles. You can view these by running:
 $ kubectl get clusterroles
 While most of these built-in roles are for system utilities, four are designed for generic end users:
-· The cluster-admin role provides complete access to the entire cluster. · The admin role provides complete access to a complete namespace. · The edit role allows an end user to modify things in a namespace. · The view role allows for read-only access to a namespace. Most clusters already have numerous ClusterRole bindings set up, and you can view these bindings with kubectl get clusterrolebindings.
+ï¿½ The cluster-admin role provides complete access to the entire cluster. ï¿½ The admin role provides complete access to a complete namespace. ï¿½ The edit role allows an end user to modify things in a namespace. ï¿½ The view role allows for read-only access to a namespace. Most clusters already have numerous ClusterRole bindings set up, and you can view these bindings with kubectl get clusterrolebindings.
 Auto-reconciliation of built-in roles
 When the Kubernetes API server starts up, it automatically installs a number of default ClusterRoles that are defined in the code of the API server itself. This means that if you modify any built-in cluster role, those modifications are transient. Whenever the API server is restarted (e.g., for an upgrade) your changes will be overwritten. To prevent this from happening, before you make any other modifications you need to add the rbac.authorization.kubernetes.io/autoupdate annotation with a value of false to the built-in ClusterRole resource. If this annotation is set to false, the API server will not overwrite the modified ClusterRole resource.
 By default, the Kubernetes API server installs a cluster role that allows system:unauthenticated users access to the API server's API discovery endpoint. For any cluster exposed to a hostile envi- ronment (e.g., the public internet) this is a bad idea, and there has been at least one serious security vulnerability via this exposure. Consequently, if you are running a Kubernetes service on the pub- lic internet or an other hostile environment, you should ensure that the --anonymous-auth=false flag is set on your API server.
@@ -4743,8 +4749,8 @@ Running a MySQL Singleton
 In this section, we'll describe how to run a reliable singleton instance of the MySQL database as a Pod in Kubernetes, and how to expose that singleton to other applica- tions in the cluster. To do this, we are going to create three basic objects:
 Running Reliable Singletons | 181
 
-· A persistent volume to manage the lifespan of the on-disk storage independently from the lifespan of the running MySQL application
-· A MySQL Pod that will run the MySQL application · A service that will expose this Pod to other containers in the cluster
+ï¿½ A persistent volume to manage the lifespan of the on-disk storage independently from the lifespan of the running MySQL application
+ï¿½ A MySQL Pod that will run the MySQL application ï¿½ A service that will expose this Pod to other containers in the cluster
 In Chapter 5 we described persistent volumes, but a quick review makes sense. A per- sistent volume is a storage location that has a lifetime independent of any Pod or con- tainer. This is very useful in the case of persistent storage solutions where the on-disk representation of a database should survive even if the containers running the data- base application crash, or move to different machines. If the application moves to a different machine, the volume should move with it, and data should be preserved. Separating the data storage out as a persistent volume makes this possible. To begin, we'll create a persistent volume for our MySQL database to use. This exam- ple uses NFS for maximum portability, but Kubernetes supports many different per- sistent volume drive types. For example, there are persistent volume drivers for all major public cloud providers, as well as many private cloud providers. To use these solutions, simply replace nfs with the appropriate cloud provider volume type (e.g., azure, awsElasticBlockStore, or gcePersistentDisk). In all cases, this change is all you need. Kubernetes knows how to create the appropriate storage disk in the respec- tive cloud provider. This is a great example of how Kubernetes simplifies the develop- ment of reliable distributed systems. Example 15-4 shows the PersistentVolume object.
 Example 15-4. nfs-volume.yaml
 apiVersion: v1 kind: PersistentVolume metadata:
@@ -4810,9 +4816,9 @@ When Kubernetes was first developed, there was a heavy emphasis on homogeneity f
 
 Properties of StatefulSets
 StatefulSets are replicated groups of Pods, similar to ReplicaSets. But unlike a Replica- Set, they have certain unique properties:
-· Each replica gets a persistent hostname with a unique index (e.g., database-0, database-1, etc.).
-· Each replica is created in order from lowest to highest index, and creation will block until the Pod at the previous index is healthy and available. This also applies to scaling up.
-· When a StatefulSet is deleted, each of the managed replica Pods is also deleted in order from highest to lowest. This also applies to scaling down the number of replicas.
+ï¿½ Each replica gets a persistent hostname with a unique index (e.g., database-0, database-1, etc.).
+ï¿½ Each replica is created in order from lowest to highest index, and creation will block until the Pod at the previous index is healthy and available. This also applies to scaling up.
+ï¿½ When a StatefulSet is deleted, each of the managed replica Pods is also deleted in order from highest to lowest. This also applies to scaling down the number of replicas.
 It turns out that this simple set of requirements makes it drastically easier to deploy storage applications on Kubernetes. For example, the combination of stable host- names (e.g., database-0) and the ordering constraints mean that all replicas, other than the first one, can reliably reference database-0 for the purposes of discovery and establishing replication quorum.
 Manually Replicated MongoDB with StatefulSets
 In this section, we'll deploy a replicated MongoDB cluster. For now, the replication setup itself will be done manually to give you a feel for how StatefulSets work. Even- tually we will automate this setup as well. To start, we'll create a replicated set of three MongoDB Pods using a StatefulSet object (Example 15-10).
@@ -5116,7 +5122,7 @@ are the key to making your cluster your own and building the right environment f
 CHAPTER 17
 Deploying Real-World Applications
 The previous chapters described a variety of API objects that are available in a Kuber- netes cluster and ways in which those objects can best be used to construct reliable distributed systems. However, none of the preceding chapters really discussed how you might use the objects in practice to deploy a complete, real-world application. That is the focus of this chapter. We'll take a look at four real-world applications:
-· Jupyter, an open source scientific notebook · Parse, an open source API server for mobile applications · Ghost, a blogging and content management platform · Redis, a lightweight, performant key/value store These complete examples should give you a better idea of how to structure your own deployments using Kubernetes.
+ï¿½ Jupyter, an open source scientific notebook ï¿½ Parse, an open source API server for mobile applications ï¿½ Ghost, a blogging and content management platform ï¿½ Redis, a lightweight, performant key/value store These complete examples should give you a better idea of how to structure your own deployments using Kubernetes.
 Jupyter
 The Jupyter Project is a web-based interactive scientific notebook for exploration and visualization. It is used by students and scientists around the world to build and explore data and data visualizations. Because it is both simple to deploy and interest- ing to use, it's a great first service to deploy on Kubernetes. We begin by creating a namespace to hold the Jupyter application:
 $ kubectl create namespace jupyter
@@ -5313,7 +5319,7 @@ Organizing Your Application
 Throughout this book we have described various components of an application built on top of Kubernetes. We have described how to wrap programs up as containers, place those containers in Pods, replicate those Pods with ReplicaSets, and roll out software each week with deployments. We have even described how to deploy stateful and real-world applications that put together a collection of these objects into a single distributed system. But we have not covered how to actually work with such an appli- cation in a practical way. How can you lay out, share, manage, and update the various configurations that make up your application? That is the topic for this chapter.
 Principles to Guide Us
 Before digging into the concrete details of how to structure your application, it's worth considering the goals that drive this structure. Obviously, reliability and agility are the general goals of developing a cloud-native application in Kubernetes, but moving to the next level of detail, how does this actually relate to how you design the maintenance and deployment of your application? The following sections describe the various principles that we can use as a guide to design a structure that best suits these goals. The principles are:
-· Filesystems as the source of truth · Code review to ensure the quality of changes · Feature flags for staged roll forward and roll back
+ï¿½ Filesystems as the source of truth ï¿½ Code review to ensure the quality of changes ï¿½ Feature flags for staged roll forward and roll back
 221
 
 Filesystems as the Source of Truth
@@ -5409,9 +5415,9 @@ Generally speaking, each Kubernetes cluster is intended to live in a single regi
 230 | Chapter 18: Organizing Your Application
 
 Describing how to actually build a worldwide application, especially with complex subjects like data replication, is beyond the scope of this chapter, but we will describe how to arrange the application configurations in the filesystem. Ultimately, a particular region's configuration is conceptually the same as a stage in the deployment lifecycle. Thus, adding multiple regions to your configuration is iden- tical to adding new lifecycle stages. For example, instead of:
-· Development · Staging · Canary · Production
+ï¿½ Development ï¿½ Staging ï¿½ Canary ï¿½ Production
 You might have:
-· Development · Staging · Canary · EastUS · WestUS · Europe · Asia
+ï¿½ Development ï¿½ Staging ï¿½ Canary ï¿½ EastUS ï¿½ WestUS ï¿½ Europe ï¿½ Asia
 Modeling this in the filesystem for configuration, this looks like:
 frontend/ staging/ templates -> ../v3/ parameters.yaml eastus/ templates -> ../v1/ parameters.yaml westus/ templates -> ../v2/ parameters.yaml ...
 If you instead are using version control and tags, the filesystem would look like:
@@ -5438,12 +5444,12 @@ Parts List
 The first thing you need to do is assemble the pieces for your cluster. In all of the examples here, we'll assume a four-node cluster. You could build a cluster of three nodes, or even a cluster of a hundred nodes if you wanted to, but four is a pretty good number. To start, you'll need to purchase (or scrounge) the various pieces needed to build the cluster. Here is the shopping list, with some approximate prices as of the time of writing:
 235
 
-1. Four Raspberry Pi 3 boards (Raspberry Pi 2 will also work)--$160 2. Four SDHC memory cards, at least 8 GB (buy high-quality ones!)--$30­50 3. Four 12-inch Cat. 6 Ethernet cables--$10 4. Four 12-inch USB A­Micro USB cables--$10 5. One 5-port 10/100 Fast Ethernet switch--$10 6. One 5-port USB charger--$25 7. One Raspberry Pi stackable case capable of holding four Pis--$40 (or build your
+1. Four Raspberry Pi 3 boards (Raspberry Pi 2 will also work)--$160 2. Four SDHC memory cards, at least 8 GB (buy high-quality ones!)--$30ï¿½50 3. Four 12-inch Cat. 6 Ethernet cables--$10 4. Four 12-inch USB Aï¿½Micro USB cables--$10 5. One 5-port 10/100 Fast Ethernet switch--$10 6. One 5-port USB charger--$25 7. One Raspberry Pi stackable case capable of holding four Pis--$40 (or build your
 own) 8. One USB-to-barrel plug for powering the Ethernet switch (optional)--$5 The total for the cluster comes out to be about $300, which you can drop down to $200 by building a three-node cluster and skipping the case and the USB power cable for the switch (though the case and the cable really clean up the whole cluster). One other note on memory cards: do not scrimp here. Low-end memory cards behave unpredictably and make your cluster really unstable. If you want to save some money, buy a smaller, high-quality card. High-quality 8 GB cards can be had for around $7 each online. Once you have your parts, you're ready to move on to building the cluster.
 These instructions also assume that you have a device capable of flashing an SDHC card. If you do not, you will need to purchase a USB  memory card reader/writer.
 Flashing Images
 The default Raspbian image now supports Docker through the standard install meth- ods, but to make things even easier, the Hypriot project provides images with Docker preinstalled. Visit the Hypriot downloads page and download the latest stable image. Unzip the image, and you should now have an .img file. The Hypriot project also provides really excellent documentation for writing this image to your memory card for each of these platforms:
-· macOS · Windows · Linux
+ï¿½ macOS ï¿½ Windows ï¿½ Linux
 236 | Appendix A: Building a Raspberry Pi Kubernetes Cluster
 
 Write the same image onto each of your memory cards.
@@ -5797,5 +5803,4 @@ Brendan Burns began his career with a brief stint in the software industry follo
 Colophon
 The animal on the cover of Kubernetes: Up and Running is an Atlantic white-sided dolphin (Lagenorhynchus acutus). As its name suggests, the white-sided dolphin has light patches on its sides and a light gray strip that runs from above the eye to below the dorsal fin. It is among the largest species of oceanic dolphins, and ranges throughout the North Atlantic Ocean. It prefers open water, so it is not often seen from the shore, but will readily approach boats and perform various acrobatic feats. White-sided dolphins are social animals commonly found in large groups (known as pods) of about 60 individuals, though the size will vary depending on location and the availability of food. Dolphins often work as a team to harvest schools of fish, but they also hunt individually. They primarily search for prey using echolocation, which
 
-is similar to sonar. The bulk of this marine mammal's diet consists of herring, mack- erel, and squid. The average lifespan of the white-sided dolphin is between 22­27 years. Females only mate every 2­3 years, and the gestation period is 11 months. Calves are typically born in June or July, and are weaned after 18 months. Dolphins have very great intelligence and display complex social behaviors like grieving, cooperation, and problem solving, due to their high brain-to-body ratio (the highest among aquatic mammals). Many of the animals on O'Reilly covers are endangered; all of them are important to the world. The cover illustration is by Karen Montgomery, based on a black and white engraving from British Quadrupeds. The cover fonts are Gilroy Semibold and Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad Condensed; and the code font is Dalton Maag's Ubuntu Mono.
-
+is similar to sonar. The bulk of this marine mammal's diet consists of herring, mack- erel, and squid. The average lifespan of the white-sided dolphin is between 22ï¿½27 years. Females only mate every 2ï¿½3 years, and the gestation period is 11 months. Calves are typically born in June or July, and are weaned after 18 months. Dolphins have very great intelligence and display complex social behaviors like grieving, cooperation, and problem solving, due to their high brain-to-body ratio (the highest among aquatic mammals). Many of the animals on O'Reilly covers are endangered; all of them are important to the world. The cover illustration is by Karen Montgomery, based on a black and white engraving from British Quadrupeds. The cover fonts are Gilroy Semibold and Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad Condensed; and the code font is Dalton Maag's Ubuntu Mono.

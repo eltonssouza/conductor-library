@@ -1,3 +1,9 @@
+# The Pragmatic Programmer (20th Anniversary Ed)
+
+> **Author(s):** Hunt, Thomas Â· **Edition:** 20th Anniversary Ed Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 The Pragmatic Programmer
 YOUR JOURNEY TO MASTERY BY DAVE THOMAS, ANDY HUNT
 Version: P1.0 (September 13, 2019)
@@ -9,7 +15,7 @@ For government sales inquiries, please contact governmentsales@pearsoned.com. Fo
 
 informit.com/aw
 Library of Congress Control Number: 2019944178
-Copyright © 2020 Pearson Education, Inc. Cover images: Mihalec/Shutterstock, Stockish/Shutterstock
+Copyright ï¿½ 2020 Pearson Education, Inc. Cover images: Mihalec/Shutterstock, Stockish/Shutterstock
 All rights reserved. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, request forms and the appro- priate contacts within the Pearson Education Global Rights & Permissions Department, please visit www.pearsoned.com/permissions.
 ISBN-13: 978-0-13-595705-9 ISBN-10: 0-13-595705-2
 
@@ -65,7 +71,7 @@ Preface to the Second Edition
 13. 10. Postface
 14. A1. Bibliography
 15. A2. Possible Answers to the Exercises
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Praise for the second edition of The Pragmatic Programmer
 Some say that with The Pragmatic Programmer, Andy and Dave captured lightning in a bottle; that it's unlikely anyone will soon write a book that can move an entire industry as it did. Sometimes, though, lightning does strike twice, and this book is proof. The updated content ensures that it will stay at the top of "best books in software development" lists for another 20 years, right where it belongs.
@@ -110,7 +116,7 @@ act of programming but the process of becoming a programmer. There is an entire 
 But make no mistake--it doesn't tell you how programming should be. It's not philosophical or judgmental in that way. It tells you, plain and simple, what a Pragmatic Programmer is-- how they operate, and how they approach code. They leave it up to you to decide if you want to be one. If you feel it's not for you, they won't hold it against you. But if you decide it is, they're your friendly neighbors, there to show you the way.
  Saron Yitbarek
 Founder & CEO of CodeNewbie Host of Command Line Heroes
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Preface to the Second Edition
 Back in the 1990s, we worked with companies whose projects were having problems. We found ourselves saying the same things to each: maybe you should test that before you ship it; why does the code only build on Mary's machine? Why didn't anyone ask the users?
@@ -148,7 +154,7 @@ We'd appreciate hearing from you. Email us at ppbook@pragprog.com.
 Second Edition Acknowledgments
 We have enjoyed literally thousands of interesting conversations about programming over the last 20 years, meeting people at conferences, at courses, and sometimes even on the plane. Each one of these has added to our understanding of the development process, and has contributed to the updates in this edition. Thank you all (and keep telling us when we're wrong).
 Thanks to the participants in the book's beta process. Your questions and comments helped us explain things better.
-Before we went beta, we shared the book with a few folks for comments. Thanks to VM (Vicky) Brasseur, Jeff Langr, and Kim Shrier for your detailed comments, and to José Valim and Nick Cuthbert for your technical reviews.
+Before we went beta, we shared the book with a few folks for comments. Thanks to VM (Vicky) Brasseur, Jeff Langr, and Kim Shrier for your detailed comments, and to Josï¿½ Valim and Nick Cuthbert for your technical reviews.
 Thanks to Ron Jeffries for letting us use the Sudoku example.
 Much gratitude to the folks at Pearson who agreed to let us create this book our way.
 A special thanks to the indispensable Janet Furlow, who masters whatever she takes on and keeps us in line.
@@ -157,7 +163,7 @@ Footnotes
 
 [1] If, over the years, every component of a ship is replaced as it fails, is the resulting vessel the same ship?
 [2] https://pragprog.com/titles/tpp20
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 From the Preface to the First Edition
 This book will help you become a better programmer.
@@ -209,7 +215,7 @@ It's a Continuous Process
 A tourist visiting England's Eton College asked the gardener how he got the lawns so perfect. "That's easy," he replied, "You just brush off the dew every morning, mow them every other day, and roll them once a week."
 "Is that all?" asked the tourist. "Absolutely," replied the gardener. "Do that for 500 years and you'll have a nice lawn, too."
 Great lawns need small amounts of daily care, and so do great programmers. Management consultants like to drop the word kaizen in conversations. "Kaizen" is a Japanese term that captures the concept of continuously making many small improvements. It was considered to be one of the main reasons for the dramatic gains in productivity and quality in Japanese manufacturing and was widely copied throughout the world. Kaizen applies to individuals, too. Every day, work to refine the skills you have and to add new tools to your repertoire. Unlike the Eton lawns, you'll start seeing results in a matter of days. Over the years, you'll be amazed at how your experience has blossomed and how your skills have grown.
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 1
 A Pragmatic Philosophy
@@ -591,7 +597,7 @@ Topic 18, Power Editing
 Topic 45, The Requirements Pit Topic 49, Pragmatic Teams
 Online Communication Everything we've said about communicating in writing applies equally to email, social media posts, blogs, and so on. Email in particular has evolved to the point where it is a mainstay of corporate communications; it's used to discuss contracts, to settle disputes, and as evidence in court. But for some reason, people who would never send out a shabby paper document are happy to fling nasty-looking, incoherent emails around the world.
 Our tips are simple:
-Proofread before you hit SEND . Check your spelling and look for any accidental auto-correct mishaps. Keep the format simple and clear. Keep quoting to a minimum. No one likes to receive back their own 100-line email with "I agree" tacked on. If you're quoting other people's email, be sure to attribute it, and quote it inline (rather than as an attachment). Same when quoting on social media platforms. Don't flame or act like a troll unless you want it to come back and haunt you later. If you wouldn't say it to someone's face, don't say it online. Check your list of recipients before sending. It's become a cliché to criticize the boss over departmental email without realizing that the boss is on the cc list. Better yet, don't criticize the boss over email.
+Proofread before you hit SEND . Check your spelling and look for any accidental auto-correct mishaps. Keep the format simple and clear. Keep quoting to a minimum. No one likes to receive back their own 100-line email with "I agree" tacked on. If you're quoting other people's email, be sure to attribute it, and quote it inline (rather than as an attachment). Same when quoting on social media platforms. Don't flame or act like a troll unless you want it to come back and haunt you later. If you wouldn't say it to someone's face, don't say it online. Check your list of recipients before sending. It's become a clichï¿½ to criticize the boss over departmental email without realizing that the boss is on the cc list. Better yet, don't criticize the boss over email.
 As countless large corporations and politicians have discovered, email and social media posts are forever. Try to give the same attention and care to email as you would to any written memo or report.
 CHALLENGES
 
@@ -608,7 +614,7 @@ Footnotes
 [10] We may be biased, but there's a fine selection available at https://pragprog.com.
 [11] Never heard of any of these languages? Remember, knowledge is an expiring asset, and so is popular technology. The list of hot new and experimental languages was very different for the first edition, and is probably different again by the time you read this. All the more reason to keep learning.
 
-[12] The word annoy comes from the Old French enui, which also means "to bore.'' Copyright © 2020 Pearson Education, Inc.
+[12] The word annoy comes from the Old French enui, which also means "to bore.'' Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 2
 A Pragmatic Approach
@@ -945,7 +951,7 @@ Topic 28, Decoupling
 Topic 45, The Requirements Pit
 Topic 51, Pragmatic Starter Kit
 CHALLENGES
-Time for a little quantum mechanics with Schrödinger's cat. Suppose you have a cat in a closed box, along with a radioactive particle. The particle has exactly a 50% chance of fissioning into two. If it does, the cat will be killed. If it doesn't, the cat will be okay. So, is the cat dead or alive? According to Schrödinger, the correct answer is both (at least while the box remains closed). Every time a subnuclear reaction takes place that has two possible outcomes, the universe is cloned. In one, the event occurred, in the other it didn't. The cat's alive in one universe, dead in another. Only when you open the box do you know which universe you are in. No wonder coding for the future is difficult. But think of code evolution along the same lines as a box full of Schrödinger's cats: every decision results in a different version of the future. How many possible futures can your code support? Which ones are more likely? How hard will it be to support them when the time comes? Dare you open the box?
+Time for a little quantum mechanics with Schrï¿½dinger's cat. Suppose you have a cat in a closed box, along with a radioactive particle. The particle has exactly a 50% chance of fissioning into two. If it does, the cat will be killed. If it doesn't, the cat will be okay. So, is the cat dead or alive? According to Schrï¿½dinger, the correct answer is both (at least while the box remains closed). Every time a subnuclear reaction takes place that has two possible outcomes, the universe is cloned. In one, the event occurred, in the other it didn't. The cat's alive in one universe, dead in another. Only when you open the box do you know which universe you are in. No wonder coding for the future is difficult. But think of code evolution along the same lines as a box full of Schrï¿½dinger's cats: every decision results in a different version of the future. How many possible futures can your code support? Which ones are more likely? How hard will it be to support them when the time comes? Dare you open the box?
 
 Topic 12 Tracer Bullets
 
@@ -1196,15 +1202,15 @@ Duration
 
 Quote estimate in
 
-1­15 days
+1ï¿½15 days
 
 Days
 
-3­6 weeks
+3ï¿½6 weeks
 
 Weeks
 
-8­20 weeks
+8ï¿½20 weeks
 
 Months
 
@@ -1281,12 +1287,12 @@ Footnotes [13] To paraphrase the old Arlen/Mercer song... [14] Or, perhaps, to k
 [15] https://github.com/OAI/OpenAPI-Specification
 [16] In reality, this is naive. Unless you are remarkably lucky, most real-world requirements changes will affect multiple functions in the system. However, if you analyze the change in terms of functions, each functional change should still ideally affect just one module.
 [17] In fact, this book is written in Markdown, and typeset directly from the Markdown source.
-[18] Take a nonlinear, or chaotic, system and apply a small change to one of its inputs. You may get a large and often unpredictable result. The clichéd butterfly flapping its wings in Tokyo could be the start of a chain of events that ends up generating a tornado in Texas. Does this sound like any projects you know?
+[18] Take a nonlinear, or chaotic, system and apply a small change to one of its inputs. You may get a large and often unpredictable result. The clichï¿½d butterfly flapping its wings in Tokyo could be the start of a chain of events that ends up generating a tornado in Texas. Does this sound like any projects you know?
 [19] https://rspec.info
 [20] https://cucumber.io/
 [21] https://phoenixframework.org/ [22] https://www.ansible.com/
 [23] https://yaml.org/
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 3
 The Basic Tools
@@ -1686,7 +1692,7 @@ Dave has known. For several months Greg carried around a small yellow rubber duc
 [27] Earlier versions of the book talked about talking to your pot plant. It was a typo. Honest.
 [28] Here router means the tool that spins cutting blades very, very fast, not a device for interconnecting networks.
 [29] There is some evidence that doodling helps focus and improves cognitive skills, for example, see What does doodling do? [And10].
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 4
 Pragmatic Paranoia
@@ -1887,7 +1893,7 @@ Just sayin'.
 
 Exercise 16 (possible answer)
 A quick reality check. Which of these "impossible" things can happen?
-A month with fewer than 28 days Error code from a system call: can't access the current directory In C++: a = 2; b = 3; but (a + b) does not equal 5 A triangle with an interior angle sum  180° A minute that doesn't have 60 seconds (a + 1) <= a
+A month with fewer than 28 days Error code from a system call: can't access the current directory In C++: a = 2; b = 3; but (a + b) does not equal 5 A triangle with an interior angle sum  180ï¿½ A minute that doesn't have 60 seconds (a + 1) <= a
 RELATED SECTIONS INCLUDE
 Topic 23, Design by Contract Topic 24, Dead Programs Tell No Lies Topic 42, Property-Based Testing Topic 43, Stay Safe Out There
 
@@ -2085,8 +2091,8 @@ Tip 43 Avoid Fortune-Telling
 Much of the time, tomorrow looks a lot like today. But don't count on it.
 RELATED SECTIONS INCLUDE
 Topic 12, Tracer Bullets Topic 13, Prototypes and Post-it Notes Topic 40, Refactoring Topic 41, Test to Code Topic 48, The Essence of Agility Topic 50, Coconuts Don't Cut It
-Footnotes [30] Based in part on earlier work by Dijkstra, Floyd, Hoare, Wirth, and others. [31] In C and C++ these are usually implemented as macros. In Java, assertions are disabled by default. Invoke the Java VM with the ­enableassertions flag to enable them, and leave them enabled. [32] http://www.eps.mcgill.ca/jargon/jargon.html#heisenbug [33] For a discussion of the dangers of coupled code, see Topic 28, Decoupling. [34] See the tip here. [35] Per the NHTSA, Stopping Distance = Reaction Distance + Braking Distance, assuming an average reaction time of 1.5s and deceleration of 17.02ft/s². [36] Motif and OpenLook were GUI standards for X-Windows based Unix workstations.
-Copyright © 2020 Pearson Education, Inc.
+Footnotes [30] Based in part on earlier work by Dijkstra, Floyd, Hoare, Wirth, and others. [31] In C and C++ these are usually implemented as macros. In Java, assertions are disabled by default. Invoke the Java VM with the ï¿½enableassertions flag to enable them, and leave them enabled. [32] http://www.eps.mcgill.ca/jargon/jargon.html#heisenbug [33] For a discussion of the dangers of coupled code, see Topic 28, Decoupling. [34] See the tip here. [35] Per the NHTSA, Stopping Distance = Reaction Distance + Braking Distance, assuming an average reaction time of 1.5s and deceleration of 17.02ft/sï¿½. [36] Motif and OpenLook were GUI standards for X-Windows based Unix workstations.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 5
 Bend, or Break
@@ -2359,7 +2365,7 @@ combined.subscribe(next => logValues(JSON.stringify(next)))
 This code uses a simple logging function[40] which adds items to a list in the browser window. Each item is timestamped with the time in milliseconds since the program started to run. Here's what it shows for our code:
 
 images/events_rxjs_0.png
-Notice the timestamps: we're getting one event from the stream every 500ms. Each event contains a serial number (created by the interval observable) and the name of the next animal from the list. Watching it live in a browser, the log lines appear at every half second. Event streams are normally populated as events occur, which implies that the observables that populate them can run in parallel. Here's an example that fetches information about users from a remote site. For this we'll use https://reqres.in, a public site that provides an open REST interface. As part of its API, we can fetch data on a particular (fake) user by performing a GET request to users/«id». Our code fetches the users with the IDs 3, 2, and 1:
+Notice the timestamps: we're getting one event from the stream every 500ms. Each event contains a serial number (created by the interval observable) and the name of the next animal from the list. Watching it live in a browser, the log lines appear at every half second. Event streams are normally populated as events occur, which implies that the observables that populate them can run in parallel. Here's an example that fetches information about users from a remote site. For this we'll use https://reqres.in, a public site that provides an open REST interface. As part of its API, we can fetch data on a particular (fake) user by performing a GET request to users/ï¿½idï¿½. Our code fetches the users with the IDs 3, 2, and 1:
 event/rx1/index.js import * as Observable from 'rxjs' import { mergeMap } from 'rxjs/operators' import { ajax } from 'rxjs/ajax'
 
 import { logValues } from "../rxcommon/logger.js" let users = Observable.of(3, 2, 1) let result = users.pipe( mergeMap((user) => ajax.getJSON(`https://reqres.in/api/users/${user}`)) ) result.subscribe( resp => logValues(JSON.stringify(resp.data)), err => console.error(JSON.stringify(err)) )
@@ -2815,7 +2821,7 @@ Footnotes
 [43] In fact you could add such an operator to Elixir using its macro facility; an example of this is the Monad library in hex. You could also use Elixir's with construct, but then you lose much of the sense of writing transformations that you get with pipelines.
 [44] https://www.quora.com/What-does-Alan-Kay-think-about-inheritance-in-objectoriented-programming
 [45] It didn't help that the settlers beat the placid (read: stupid) birds to death with clubs for sport.
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 6
 Concurrency
@@ -2847,9 +2853,9 @@ LOOKING FOR CONCURRENCY On many projects, we need to model and analyze the appli
 Tip 56 Analyze Workflow to Improve Concurrency
 An activity diagram consists of a set of actions drawn as rounded boxes. The arrow leaving an action leads to either another action (which can start once the first action completes) or to a thick line called a synchronization bar. Once all the actions leading into a synchronization bar are complete, you can then proceed along any arrows leaving the bar. An action with no arrows leading into it can be started at any time.
 You can use activity diagrams to maximize parallelism by identifying activities that could be performed in parallel, but aren't.
-For instance, we may be writing the software for a robotic piña colada maker. We're told that the steps are:
+For instance, we may be writing the software for a robotic piï¿½a colada maker. We're told that the steps are:
 
-1. Open blender 2. Open piña colada mix
+1. Open blender 2. Open piï¿½a colada mix
 
 1. Close blender 2. Liquefy for 1 minute
 
@@ -2860,7 +2866,7 @@ For instance, we may be writing the software for a robotic piña colada maker. We
 However, a bartender would lose their job if they followed these steps, one by one, in order. Even though they describe these actions serially, many of them could be performed in parallel. We'll use the following activity diagram to capture and reason about potential concurrency.
 
 images/pina-colada.png
-It can be eye-opening to see where the dependencies really exist. In this instance, the top-level tasks (1, 2, 4, 10, and 11) can all happen concurrently, up front. Tasks 3, 5, and 6 can happen in parallel later. If you were in a piña colada-making contest, these optimizations may make all the difference.
+It can be eye-opening to see where the dependencies really exist. In this instance, the top-level tasks (1, 2, 4, 10, and 11) can all happen concurrently, up front. Tasks 3, 5, and 6 can happen in parallel later. If you were in a piï¿½a colada-making contest, these optimizations may make all the difference.
 Faster Formatting
 
 This book is written in plain text. To build the version to be printed, or an ebook, or whatever, that text is fed through a pipeline of processors. Some look for particular constructs (bibliography citations, index entries, special markup for tips, and so on). Other processors operate on the document as a whole.
@@ -2868,7 +2874,7 @@ Many of the processors in the pipeline have to access external information (read
 In addition, some parts of the process are relatively processor intensive. One of these is the conversion of mathematical formulae. For various historical reasons each equation can take up to 500ms to convert. To speed things up, we take advantage of parallelism. Because each formula is independent of the others, we convert each in its own parallel process and collect the results back into the book as they become available.
 As a result, the book builds much, much faster on multicore machines.
 (And, yes, we did indeed discover a number of concurrency errors in our pipeline along the way....)
-OPPORTUNITIES FOR CONCURRENCY Activity diagrams show the potential areas of concurrency, but have nothing to say about whether these areas are worth exploiting. For example, in the piña colada example, a bartender would need five hands to be able to run all the potential initial tasks at once.
+OPPORTUNITIES FOR CONCURRENCY Activity diagrams show the potential areas of concurrency, but have nothing to say about whether these areas are worth exploiting. For example, in the piï¿½a colada example, a bartender would need five hands to be able to run all the potential initial tasks at once.
 And that's where the design part comes in. When we look at the activities, we realize that number 8, liquify, will take a minute. During that time, our bartender can get the glasses and umbrellas (activities 10 and 11) and probably still have time to serve another customer.
 And that's what we're looking for when we're designing for concurrency. We're hoping to find activities that take time, but not time in our code. Querying a database, accessing an external
 
@@ -2960,7 +2966,7 @@ Because this is such a common mistake, many languages provide libraries that han
 def get_pie_if_available() @case_semaphore.protect() { if @slices.size > 0
 update_sales_data(:pie) return @slices.shift else false end } end
 MULTIPLE RESOURCE TRANSACTIONS
-Our diner just installed an ice cream freezer. If a customer orders pie à la mode, the waiter will need to check that both pie and ice cream are available.
+Our diner just installed an ice cream freezer. If a customer orders pie ï¿½ la mode, the waiter will need to check that both pie and ice cream are available.
 We could change the waiter code to something like:
 slice = display_case.get_pie_if_available() scoop = freezer.get_ice_cream_if_available()
 if slice && scoop give_order_to_customer() end
@@ -2973,7 +2979,7 @@ if slice try {
 scoop = freezer.get_ice_cream_if_available() if scoop try { give_order_to_customer() } rescue { freezer.give_back(scoop) } end } rescue { display_case.give_back(slice) } end
 Again, this is less than ideal. The code is now really ugly: working out what it actually does is difficult: the business logic is buried in all the housekeeping.
 Previously we fixed this by moving the resource handling code into the resource itself. Here, though, we have two resources. Should we put the code in the display case or the freezer?
-We think the answer is "no" to both options. The pragmatic approach would be to say that "apple pie à la mode" is its own resource. We'd move this code into a new module, and then the
+We think the answer is "no" to both options. The pragmatic approach would be to say that "apple pie ï¿½ la mode" is its own resource. We'd move this code into a new module, and then the
 
 client could just say "get me apple pie with ice cream" and it either succeeds or fails.
 Of course, in the real world there are likely to be many composite dishes like this, and you wouldn't want to write new modules for each. Instead, you'd probably want some kind of menu item which contained references to its components, and then have a generic get_menu_item method that does the resource dance with each.
@@ -3081,7 +3087,7 @@ But Erlang (and it's progeny Elixir) aren't unique--there are actor implementati
 RELATED SECTIONS INCLUDE
 Topic 28, Decoupling Topic 30, Transforming Programming Topic 36, Blackboards
 CHALLENGES
-Do you currently have code that uses mutual exclusion to protect shared data. Why not try a prototype of the same code written using actors? The actor code for the diner only supports ordering slices of pie. Extend it to let customers order pie à la mode, with separate agents managing the pie slices and the scoops of ice cream. Arrange things so that it handles the situation where one or the other runs out.
+Do you currently have code that uses mutual exclusion to protect shared data. Why not try a prototype of the same code written using actors? The actor code for the diner only supports ordering slices of pie. Extend it to let customers order pie ï¿½ la mode, with separate agents managing the pie slices and the scoops of ice cream. Arrange things so that it handles the situation where one or the other runs out.
 
 Topic 36 Blackboards
 
@@ -3142,7 +3148,7 @@ Footnotes
 [47] The names P and V come from the initial letters of Dutch words. However there is some discussion about exactly which words. The inventor of the technique, Edsger Dkstra, has suggested both passering and prolaag for P, and vrijgave and possibly verhogen for V.
 [48] https://github.com/ncthbrt/nact
 [49] In order to run this code you'll also need our wrapper functions, which are not shown here. You can download them from https://media.pragprog.com/titles/tpp20/code/concurrency/actors/index.js
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 7
 While You Are Coding
@@ -3686,11 +3692,11 @@ Our property testing found a faulty assumption: our in_stock function only check
 
 stock. Instead we need to make sure we have enough to fill the order:
 proptest/stock1.py
-def in_stock(self, item_name, quantity): » return (item_name in self.stock) and (self.stock[item_name] >=
+def in_stock(self, item_name, quantity): ï¿½ return (item_name in self.stock) and (self.stock[item_name] >=
 quantity)
 And we change the order function, too:
 proptest/stock1.py
-def order(warehouse, item, quantity): » if warehouse.in_stock(item, quantity):
+def order(warehouse, item, quantity): ï¿½ if warehouse.in_stock(item, quantity):
 warehouse.take_from_stock(item, quantity) return ( "ok", item, quantity ) else: return ( "not available", item, quantity )
 And now our property test passes.
 PROPERTY-BASED TESTS OFTEN SURPRISE YOU In the previous example, we used a property-based test to check that stock levels were adjusted properly. The test found a bug, but it wasn't to do with stock level adjustment. Instead, it found a bug in our in_stock function.
@@ -3748,7 +3754,7 @@ A nefarious user could do damage like this:
 Enter a file name to count: test.dat; rm -rf /
 However, setting the SAFE level to 1 will taint external data, which means it can't be used in dangerous contexts:
 safety/taint.rb
-» $SAFE = 1
+ï¿½ $SAFE = 1
 puts "Enter a file name to count: " name = gets system("wc -c #{name}")
 ~~~ session $ ruby taint.rb Enter a file name to count: test.dat; rm -rf /
 code/safety/taint.rb:5:in system': Insecure operation - system (SecurityError) from code/safety/taint.rb:5:in main' ~~~
@@ -3850,7 +3856,7 @@ When naming things, you're constantly looking for ways of clarifying what you me
 However, not all names have to be candidates for a literary prize.
 
 The Exception That Proves the Rule While we strive for clarity in code, branding is a different matter entirely.
-There's a well-established tradition that projects and project teams should have obscure, "clever" names. Names of Pokémon, Marvel superheroes, cute mammals, Lord of the Rings characters, you name it.
+There's a well-established tradition that projects and project teams should have obscure, "clever" names. Names of Pokï¿½mon, Marvel superheroes, cute mammals, Lord of the Rings characters, you name it.
 Literally.
 HONOR THE CULTURE Most introductory computer texts will admonish you never to use single letter variables such as i, j, or k.[69]
 We think they're wrong. Sort of.
@@ -3899,7 +3905,7 @@ Programming: An Evolutionary Approach [CN91].
 [67] Studies of Interference in Serial Verbal Reactions [Str35]
 [68] We have two versions of this panel. One uses different colors, and the other uses shades of gray. If you're seeing this in black and white and want the color version, or if you're having trouble distinguishing colors and want to try the grayscale version, pop over to https://pragprog.com/the-pragmatic-programmer/stroop-effect.
 [69] Do you know why i is commonly used as a loop variable? The answer comes from over 60 years ago, when variables starting with I through N were integers in the original FORTRAN. And FORTRAN was in turn influenced by algebra.
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 8
 Before the Project
@@ -4071,7 +4077,7 @@ Have them ask you questions such as:
 Why are you solving this problem? What's the benefit of solving it? Are the problems you're having related to edge cases? Can you eliminate them? Is there a simpler, related problem you can solve?
 This is another example of Rubber Ducking in practice.
 FORTUNE FAVORS THE PREPARED MIND Louis Pasteur is reported to have said:
-Dans les champs de l'observation le hasard ne favorise que les esprits préparés. (When it comes to observation, fortune favors the prepared mind.)
+Dans les champs de l'observation le hasard ne favorise que les esprits prï¿½parï¿½s. (When it comes to observation, fortune favors the prepared mind.)
 That is true for problem solving, too. In order to have those eureka! moments, your nonconscious brain needs to have plenty of raw material; prior experiences that can contribute to an answer.
 A great way to feed your brain is to give it feedback on what works and what doesn't work as you do your daily job. And we describe a great way to do that using an Engineering Daybook (Topic 22, Engineering Daybooks).
 And always remember the advice on the cover of The Hitchhiker's Guide to the Galaxy: DON'T PANIC.
@@ -4114,7 +4120,7 @@ deadline from inception to
 
 deployment was on the order of months.
 
-And that is where Andy and Dave first met. An impossible project with a ridiculous deadline. There was only one thing that made the project a roaring success. The expert who had managed this system for years was sitting right there in her office, just across the hall from our broom closet­sized development room. Continuously available for questions, clarifications, decisions, and demos.
+And that is where Andy and Dave first met. An impossible project with a ridiculous deadline. There was only one thing that made the project a roaring success. The expert who had managed this system for years was sitting right there in her office, just across the hall from our broom closetï¿½sized development room. Continuously available for questions, clarifications, decisions, and demos.
 
 Throughout this book we recommend working closely with users; they are part of your team. On that first project together,
 
@@ -4203,7 +4209,7 @@ Footnotes [70] Does a week sound like a long time? It really isn't, particularly
 [72] https://www.psychologytoday.com/us/blog/your-brain-work/201209/stop-tryingsolve-problems
 [73] https://agilemanifesto.org
 [74] For more on just how bad that approach can be, see The Tyranny of Metrics [Mul18].
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Chapter 9
 Pragmatic Projects
@@ -4502,7 +4508,7 @@ Footnotes [75] As team size grows, communication paths grow at the rate of , whe
 [82] For an interesting study of the correlation between test coverage and defects, see Mythical Unit Test Coverage [ADSS18].
 [83] Always remember Topic 3, Software Entropy. Always.
 [84] http://www.extremeprogramming.org
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 In the long run, we shape our lives, and we shape ourselves. The process never ends until we die. And the choices we make are ultimately our own responsibility.
 Eleanor Roosevelt
 
@@ -4541,7 +4547,7 @@ Tip 100
 
 It's Your Life. Share it. Celebrate it. Build it. AND HAVE FUN!
 
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 Appendix 1
 
@@ -4648,7 +4654,7 @@ Edward Yourdon and Larry L. Constantine. Structured Design: Fundamentals of a Di
 
 [You95] Edward Yourdon. When good-enough software is best. IEEE Software. 1995, May.
 
-Copyright © 2020 Pearson Education, Inc.
+Copyright ï¿½ 2020 Pearson Education, Inc.
 
 I would rather have questions that can't be answered than answers that can't be questioned.
 Richard Feynman
@@ -4834,7 +4840,7 @@ Answer 9 (from exercise 9)
 Our answer must be couched in several assumptions:
 The storage device contains the information we need to be transferred. We know the speed at which the person walks. We know the distance between the machines. We are not accounting for the time it takes to transfer information to and from the storage device. The overhead of storing data is roughly equal to the overhead of sending it over a communications line.
 Answer 10 (from exercise 10)
-Subject to the caveats in the previous answer: A 1TGB tape contains 8×240, or 243 bits, so a 1Gbps line would have to pump data for about 9,000 seconds, or roughly 2½ hours, to transfer the equivalent amount of information. If the person is walking at a constant 3½ mph, then our two machines would need to be almost 9 miles apart for the communications line to outperform our courier. Otherwise, the person wins.
+Subject to the caveats in the previous answer: A 1TGB tape contains 8ï¿½240, or 243 bits, so a 1Gbps line would have to pump data for about 9,000 seconds, or roughly 2ï¿½ hours, to transfer the equivalent amount of information. If the person is walking at a constant 3ï¿½ mph, then our two machines would need to be almost 9 miles apart for the communications line to outperform our courier. Otherwise, the person wins.
 Answer 14 (from exercise 14)
 We'll show the function signatures in Java, with the pre- and postconditions in comments.
 
@@ -4895,7 +4901,7 @@ September, 1752 had only 19 days. This was done to synchronize
 calendars as part of the Gregorian Reformation.
 The directory could have been removed by another process, you might not have permission to read it, the drive might not be mounted, ...; you get the picture.
 We sneakily didn't specify the types of a and b. Operator overloading might have defined +, =, or != to have unexpected behavior. Also, a and b may be aliases for the same variable, so the second assignment will overwrite the value stored in the first. Also, if the program is concurrent and badly written, a might have been updated by the time the addition takes place.
-In non-Euclidean geometry, the sum of the angles of a triangle will not add up to 180°. Think of a triangle mapped on the surface of a sphere.
+In non-Euclidean geometry, the sum of the angles of a triangle will not add up to 180ï¿½. Think of a triangle mapped on the surface of a sphere.
 Leap minutes may have 61 or 62 seconds.
 Depending on the language, numeric overflow may leave the result of a+1 negative.
 Answer 17 (from exercise 17)
@@ -4990,5 +4996,4 @@ and will warn the user when these entries are made.'' 5. This statement is proba
 hardware limitation.
 And here's a solution to the four-dots problem:
 images/four_dots_answer.png
-Footnotes [85] Thanks for this bit of trivia goes to Avi Bryant (@avibryant) Copyright © 2020 Pearson Education, Inc.
-
+Footnotes [85] Thanks for this bit of trivia goes to Avi Bryant (@avibryant) Copyright ï¿½ 2020 Pearson Education, Inc.

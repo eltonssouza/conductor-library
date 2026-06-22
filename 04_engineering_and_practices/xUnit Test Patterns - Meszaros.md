@@ -1,3 +1,9 @@
+# xUnit Test Patterns
+
+> **Author(s):** Meszaros Â· **Category:** 04_engineering_and_practices Â· **Language:** English
+
+---
+
 www.it-ebooks.info
 
 List of Patterns
@@ -15,7 +21,7 @@ www.it-ebooks.info
 xUnit Test Patterns
 Refactoring Test Code
 Gerard Meszaros
-Upper Saddle River, NJ · Boston · Indianapolis · San Francisco New York · Toronto · Montreal · London · Munich · Paris · Madrid Capetown · Sydney · Tokyo · Singapore · Mexico City
+Upper Saddle River, NJ ï¿½ Boston ï¿½ Indianapolis ï¿½ San Francisco New York ï¿½ Toronto ï¿½ Montreal ï¿½ London ï¿½ Munich ï¿½ Paris ï¿½ Madrid Capetown ï¿½ Sydney ï¿½ Tokyo ï¿½ Singapore ï¿½ Mexico City
 www.it-ebooks.info
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and the publisher was aware of a trademark claim, the designations have been printed with initial capital letters or in all capitals. The author and publisher have taken care in the preparation of this book, but make no expressed or implied warranty of any kind and assume no responsibility for errors or omissions. No liability is assumed for incidental or consequential damages in connection with or arising out of the use of the information or programs contained herein. The publisher offers excellent discounts on this book when ordered in quantity for bulk purchases or special sales, which may include electronic versions and/or custom covers and content particular to your business, training goals, marketing focus, and branding interests. For more information, please contact:
@@ -23,7 +29,7 @@ U.S. Corporate and Government Sales (800) 382-3419 corpsales@pearsontechgroup.co
 Library of Congress Cataloging-in-Publication Data Meszaros, Gerard.
 XUnit test patterns : refactoring test code / Gerard Meszaros. p. cm.
 Includes bibliographical references and index. ISBN-13: 978-0-13-149505-0 (hardback : alk. paper) ISBN-10: 0-13-149505-4 1. Software patterns. 2. Computer software--Testing. I. Title. QA76.76.P37M49 2007 005.1--dc22
-2006103488 Copyright © 2007 Pearson Education, Inc. All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
+2006103488 Copyright ï¿½ 2007 Pearson Education, Inc. All rights reserved. Printed in the United States of America. This publication is protected by copyright, and permission must be obtained from the publisher prior to any prohibited reproduction, storage in a retrieval system, or transmission in any form or by any means, electronic, mechanical, photocopying, recording, or likewise. For information regarding permissions, write to:
 Pearson Education, Inc. Rights and Contracts Department 75 Arlington Street, Suite 300 Boston, MA 02116 Fax: (617) 848-7047
 ISBN 13: 978-0-13-149505-0 ISBN 10: 0-13-149505-4 Text printed in the United States on recycled paper at Courier in Westford, Massachusetts. First printing, May 2007
 www.it-ebooks.info
@@ -564,9 +570,9 @@ xxiii
 
 parts of the behavior of the SUT. I say "nonessential" because most of the affected tests did not care about how the objects in the fixture were created; they were interested in ensuring that those objects were in the correct state. Upon further examination, we found that many of the tests were creating identical or nearly identical objects in their test fixtures.
 The obvious solution to this problem was to factor out this logic into a small set of Test Utility Methods (page 599). There were several variations:
-· When we had a bunch of tests that needed identical objects, we simply created a method that returned that kind of object ready to use. We now call these Creation Methods (page 415).
-· Some tests needed to specify different values for some attribute of the object. In these cases, we passed that attribute as a parameter to the Parameterized Creation Method (see Creation Method).
-· Some tests wanted to create a malformed object to ensure that the SUT would reject it. Writing a separate Parameterized Creation Method for each attribute cluttered the signature of our Test Helper (page 643), so we created a valid object and then replaced the value of the One Bad Attribute (see Derived Value on page 718).
+ï¿½ When we had a bunch of tests that needed identical objects, we simply created a method that returned that kind of object ready to use. We now call these Creation Methods (page 415).
+ï¿½ Some tests needed to specify different values for some attribute of the object. In these cases, we passed that attribute as a parameter to the Parameterized Creation Method (see Creation Method).
+ï¿½ Some tests wanted to create a malformed object to ensure that the SUT would reject it. Writing a separate Parameterized Creation Method for each attribute cluttered the signature of our Test Helper (page 643), so we created a valid object and then replaced the value of the One Bad Attribute (see Derived Value on page 718).
 We had discovered what would become2 our first test automation patterns. Later, when tests started failing because the database did not like the fact
 that we were trying to insert another object with the same key that had a unique constraint, we added code to generate the unique key programmatically. We called this variant an Anonymous Creation Method (see Creation Method) to indicate the presence of this added behavior.
 Identifying the problem that we now call a Fragile Test (page 239) was an important event on this project, and the subsequent definition of its solution patterns saved this project from possible failure. Without this discovery we would, at best, have abandoned the automated unit tests that we had already built. At worst, the tests would have reduced our productivity so much that we would have been unable to deliver on our commitments to the client. As it turned out, we were able to deliver what we had promised and with very good quality. Yes, the testers3 still found bugs in our code because we were definitely missing some tests. Introducing the changes needed to fix those bugs, once we had figured
@@ -634,7 +640,7 @@ xxviii
 
 Acknowledgments
 
-provided very timely feedback on the sometimes very draft-like material I had posted there. These folks included Javid Jamae, Philip Nelson, Tomasz Gajewski, John Hurst, Sven Gorts, Bradley T. Landis, Cédric Beust, Joseph Pelrine, Sebastian Bergmann, Kevin Rutherford, Scott W. Ambler, J. B. Rainsberger, Oli Bye, Dale Emery, David Nunn, Alex Chaffee, Burkhardt Hufnagel, Johannes Brodwall, Bret Pettichord, Clint Shank, Sunil Joglekar, Rachel Davies, Nat Pryce, Paul Hodgetts, Owen Rogers, Amir Kolsky, Kevin Lawrence, Alistair Cockburn, Michael Feathers, and Joe Schmetzer. Special thanks go to Neal Norwitz, Markus Gaelli, Stephane Ducasse, and Stefan Reichhart, who provided copious feedback as unofficial reviewers.
+provided very timely feedback on the sometimes very draft-like material I had posted there. These folks included Javid Jamae, Philip Nelson, Tomasz Gajewski, John Hurst, Sven Gorts, Bradley T. Landis, Cï¿½dric Beust, Joseph Pelrine, Sebastian Bergmann, Kevin Rutherford, Scott W. Ambler, J. B. Rainsberger, Oli Bye, Dale Emery, David Nunn, Alex Chaffee, Burkhardt Hufnagel, Johannes Brodwall, Bret Pettichord, Clint Shank, Sunil Joglekar, Rachel Davies, Nat Pryce, Paul Hodgetts, Owen Rogers, Amir Kolsky, Kevin Lawrence, Alistair Cockburn, Michael Feathers, and Joe Schmetzer. Special thanks go to Neal Norwitz, Markus Gaelli, Stephane Ducasse, and Stefan Reichhart, who provided copious feedback as unofficial reviewers.
 Quite a few people sent me e-mails describing their favorite pattern or special feature from their member of the xUnit family. Most of these were variations on patterns I had already documented; I've included them in this book as aliases or implementation variations as appropriate. A few were more esoteric patterns that I had to leave out for space reasons--for that, I apologize.
 Many of the ideas described in this book came from projects I worked on with my colleagues from ClearStream Consulting. We all pushed one another to find better ways of doing things back in the early days of eXtreme Programming when few--if any--resources were available. It was this single-minded determination that led to many of the more useful techniques described here. Those colleagues are Jennitta Andrea, Ralph Bohnet, Dave Braat, Russel Bryant, Greg Cook, Geoff Hardy, Shaun Smith, and Thomas (T2) Tannahill. Many of them also provided early reviews of various chapters. Greg also provided many of the code samples in Chapter 25, Database Patterns, while Ralph set up my CVS repository and automated build process for the Web site. I would also like to thank my bosses at ClearStream, who let me take time off from consulting engagements to work on the book and for permission to use the code-based exercises from our two-day "Testing for Developers" course as the basis for many of the code samples. Thanks, Denis Clelland and Luke McFarlane!
 Several people encouraged me to keep working on the book when the going got tough. They were always willing to take a phone call to discuss some sticky issue I was grappling with. Foremost among these individuals were Joshua Kerievsky and Martin Fowler.
@@ -731,9 +737,9 @@ xxxv
 can work our way down from the higher-level "strategy" patterns to the more detailed "design patterns" and the most detailed "coding idioms."
 Patterns versus Principles versus Smells
 This book includes three kinds of patterns. The most traditional kind of pattern is the "recurring solution to a common problem"; most of the patterns in this book fall into this general category. I do distinguish between three different levels:
-· "Strategy"-level patterns have far-reaching consequences. The decision to use a Shared Fixture (page 317) rather than a Fresh Fixture (page 311) takes us down a very different path and leads to a different set of test design patterns. Each of the strategy patterns has its own write-up in the "Strategy Patterns" chapter in the reference section of the book.
-· Test "design"-level patterns are used when developing tests for specific functionality. They focus on how we organize our test logic. An example that should be familiar to most readers is the Mock Object pattern (page 544). Each test design pattern has its own write-up and the patterns are grouped into chapters in the reference section of the book based on topics such as Test Double patterns.
-· Test "coding idioms" describe different ways to code a specific test. Many of these are language specific; examples include using block closures for Expected Exception Tests (see Test Method on page 348) in Smalltalk and anonymous inner classes for Mock Objects in Java. Some, such as Simple Success Test (see Test Method), are fairly generic in that they have analogs in each language. These idioms are typically listed as implementation variations or examples within the write-up of a "test design pattern."
+ï¿½ "Strategy"-level patterns have far-reaching consequences. The decision to use a Shared Fixture (page 317) rather than a Fresh Fixture (page 311) takes us down a very different path and leads to a different set of test design patterns. Each of the strategy patterns has its own write-up in the "Strategy Patterns" chapter in the reference section of the book.
+ï¿½ Test "design"-level patterns are used when developing tests for specific functionality. They focus on how we organize our test logic. An example that should be familiar to most readers is the Mock Object pattern (page 544). Each test design pattern has its own write-up and the patterns are grouped into chapters in the reference section of the book based on topics such as Test Double patterns.
+ï¿½ Test "coding idioms" describe different ways to code a specific test. Many of these are language specific; examples include using block closures for Expected Exception Tests (see Test Method on page 348) in Smalltalk and anonymous inner classes for Mock Objects in Java. Some, such as Simple Success Test (see Test Method), are fairly generic in that they have analogs in each language. These idioms are typically listed as implementation variations or examples within the write-up of a "test design pattern."
 Often, several alternative patterns could be used at each level. Of course, I almost always have a preference for which patterns to use, but one person's "antipattern" may be another person's "best practice pattern." As a result, this book includes patterns that I do not necessarily advocate. It describes the advantages and disadvantages of each of those patterns, allowing readers to make informed decisions about their use. I have tried to provide linkages to those alternatives in each of the pattern descriptions as well as in the introductory narratives.
 The nice thing about patterns is that they provide enough information to make an intelligent decision between several alternatives. The pattern we choose may be affected by the goals we have for test automation. The goals describe
 
@@ -1196,7 +1202,7 @@ About This Chapter
 There are a lot of principles, patterns, and smells in this book--and even more patterns that couldn't fit into the book. Do you need to learn them all? Do you need to use them all? Probably not! This chapter provides an abbreviated introduction to the bulk of the material in the entire book. You can use it as a quick tour of the material before diving into particular patterns or smells of interest. You can also use it as a warm-up before exploring the more detailed narrative chapters.
 The Simplest Test Automation Strategy That Could Possibly Work
 There is a simple test automation strategy that will work for many, many projects. This section describes this minimal test strategy. The principles, patterns, and smells referenced here are the core patterns that will serve us well in the long run. If we learn to apply them effectively, we will probably be successful in our test automation endeavors. If we find that we really cannot make the minimal test strategy work on our project by using these patterns, we can fall back to the alternative patterns listed in the full descriptions of these patterns and in the other narratives.
-I have laid out this simple strategy in five parts: · Development Process: How the process we use to develop the code affects our tests. · Customer Tests: The first tests we should write as the ultimate definition of "what done looks like."
+I have laid out this simple strategy in five parts: ï¿½ Development Process: How the process we use to develop the code affects our tests. ï¿½ Customer Tests: The first tests we should write as the ultimate definition of "what done looks like."
 3
 www.it-ebooks.info
 
@@ -1204,9 +1210,9 @@ www.it-ebooks.info
 
 Chapter 1 A Brief Tour
 
-· Unit Tests: The tests that help our design emerge incrementally and ensure that all our code is tested.
-· Design for Testability: The patterns that make our design easier to test, thereby reducing the cost of test automation.
-· Test Organization: How we can organize our Test Methods (page 348) and Testcase Classes (page 373).
+ï¿½ Unit Tests: The tests that help our design emerge incrementally and ensure that all our code is tested.
+ï¿½ Design for Testability: The patterns that make our design easier to test, thereby reducing the cost of test automation.
+ï¿½ Test Organization: How we can organize our Test Methods (page 348) and Testcase Classes (page 373).
 Development Process
 First things first: When do we write our tests? Writing tests before we write our software has several benefits. In particular, it gives us an agreed-upon definition of what success looks like.1
 When doing new software development, we strive to do storytest-driven development by first automating a suite of customer tests that verify the functionality provided by the application. To ensure that all of our software is tested, we augment these tests with a suite of unit tests that verify all code paths or, at a minimum, all the code paths that are not covered by the customer tests. We can use code coverage tools to discover which code is not being exercised and then retrofit unit tests to accommodate the untested code.2
@@ -1330,7 +1336,7 @@ The Behavior Smells
 Behavior smells are encountered when we compile or run tests. We don't have to be particularly observant to notice them, as these smells will take the form of compile errors or test failures.
 The most common behavior smell is Fragile Tests. It arises when tests that once passed begin failing for some reason. The Fragile Test problem has given test automation a bad name in many circles, especially when commercial "record and playback" test tools fail to deliver on their promise of easy test automation. Once recorded, these tests are very susceptible to breakage. Often the only remedy is to rerecord them because the test recordings are difficult to understand or modify by hand.
 The root causes of Fragile Tests can be classified into four broad categories:
-· Interface Sensitivity (see Fragile Test) occurs when tests are broken by changes to the test programming API or the user interface used to automate the tests. Commercial Record and Playback Test (see Recorded Test) tools typically interact with the system via the user interface. Even minor changes to the interface can cause tests to fail, even in circumstances in which a human user would say that the test should still pass.
+ï¿½ Interface Sensitivity (see Fragile Test) occurs when tests are broken by changes to the test programming API or the user interface used to automate the tests. Commercial Record and Playback Test (see Recorded Test) tools typically interact with the system via the user interface. Even minor changes to the interface can cause tests to fail, even in circumstances in which a human user would say that the test should still pass.
 
 2 It can be hard enough to get project managers to buy into letting developers write automated tests. It is crucial that we don't squander this opportunity by being sloppy or inefficient. The need for this balancing act is, in a nutshell, why I started writing this book: to help developers succeed and avoid giving the pessimistic project manager an excuse for calling a halt to automated unit testing.
 
@@ -1340,9 +1346,9 @@ www.it-ebooks.info
 
 Chapter 2 Test Smells
 
-· Behavior Sensitivity (see Fragile Test) occurs when tests are broken by changes to the behavior of the SUT. This may seem like a "no-brainer" (of course, the tests should break if we change the SUT!) but the issue is that only a few tests should be broken by any one change. If many or most of the tests break, we have a problem.
-· Data Sensitivity (see Fragile Test) occurs when tests are broken by changes to the data already in the SUT. This issue is particularly a problem for applications that use databases. Data Sensitivity is a special case of Context Sensitivity (see Fragile Test) where the context in question is the database.
-· Context Sensitivity occurs when tests are broken by differences in the environment surrounding the SUT. The most common example is when tests depend on the time or date, but this problem can also arise when tests rely on the state of devices such as servers, printers, or monitors.
+ï¿½ Behavior Sensitivity (see Fragile Test) occurs when tests are broken by changes to the behavior of the SUT. This may seem like a "no-brainer" (of course, the tests should break if we change the SUT!) but the issue is that only a few tests should be broken by any one change. If many or most of the tests break, we have a problem.
+ï¿½ Data Sensitivity (see Fragile Test) occurs when tests are broken by changes to the data already in the SUT. This issue is particularly a problem for applications that use databases. Data Sensitivity is a special case of Context Sensitivity (see Fragile Test) where the context in question is the database.
+ï¿½ Context Sensitivity occurs when tests are broken by differences in the environment surrounding the SUT. The most common example is when tests depend on the time or date, but this problem can also arise when tests rely on the state of devices such as servers, printers, or monitors.
 Data Sensitivity and Context Sensitivity are examples of a special kind of Fragile Test, known as a Fragile Fixture, in which changes to a commonly used test fixture cause multiple existing tests to fail. This scenario increases the cost of extending the Standard Fixture (page 305) to support new tests and, in turn, discourages good test coverage. Although Fragile Fixture's root cause is poor test design, the problem actually appears when the fixture is changed rather than when the SUT is changed.
 Most agile projects use some form of daily or continuous integration that includes two steps: compiling the latest version of the code and running all of the automated tests against the newly compiled build. Assertion Roulette (page 224) can make it difficult to determine how and why tests failed during the integration build because the failure log does not include sufficient information to clearly identify which assertion failed. Troubleshooting of the build failures may proceed slowly, because the failure must be reproduced in the development environment before we can speculate on the cause of the failure.
 A common cause of grief is tests that fail for no apparent reason. That is, neither the tests nor the production code has been modified, yet the tests suddenly begin failing. When we try to reproduce these results in the development environment, the tests may or may not fail. These Erratic Tests (page 228) are both very annoying and time-consuming to fix, because they have numerous possible causes. A few are listed here:
@@ -1353,9 +1359,9 @@ A Catalog of Smells
 
 15
 
-· Interacting Tests arise when several tests use a Shared Fixture (page 317). They make it hard to run tests individually or to run several test suites as part of a larger Suite of Suites (see Test Suite Object on page 387). They can also cause cascading failures (where a single test failure leaves the Shared Fixture in a state that causes many other tests to fail).
-· Test Run Wars occur when several Test Runners (page 377) run tests against a Shared Fixture at the same time. They invariably happen at the worst possible time, such as when you are trying to fix the last few bugs before a release.
-· Unrepeatable Tests provide a different result between the first and subsequent test runs. They may force the test automater to perform a Manual Intervention (page 250) between test runs.
+ï¿½ Interacting Tests arise when several tests use a Shared Fixture (page 317). They make it hard to run tests individually or to run several test suites as part of a larger Suite of Suites (see Test Suite Object on page 387). They can also cause cascading failures (where a single test failure leaves the Shared Fixture in a state that causes many other tests to fail).
+ï¿½ Test Run Wars occur when several Test Runners (page 377) run tests against a Shared Fixture at the same time. They invariably happen at the worst possible time, such as when you are trying to fix the last few bugs before a release.
+ï¿½ Unrepeatable Tests provide a different result between the first and subsequent test runs. They may force the test automater to perform a Manual Intervention (page 250) between test runs.
 Another productivity-sapping smell is Frequent Debugging (page 248). Automated unit tests should obviate the need to use a debugger in all but rare cases, because the set of tests that are failing should make it obvious why the failure is occurring. Frequent Debugging is a sign that the unit tests are lacking in coverage or are trying to test too much functionality at once.
 The real value of having Fully Automated Tests (page 26) is being able to run them frequently. Agile developers who are doing test-driven development often run (at least a subset of) the tests every few minutes. This behavior should be encouraged because it shortens the feedback loop, thereby reducing the cost of any defects introduced into the code. When tests require Manual Intervention each time they are run, developers tend to run the tests less frequently. This practice increases the cost of finding all defects introduced since the tests were last run, because more changes will have been made to the software since it was last tested.
 Another smell that has the same net impact on productivity is Slow Tests (page 253). When tests take more than approximately 30 seconds to run, developers stop running them after every individual code change, instead waiting for a "logical time" to run them--for example, before a coffee break, lunch, or a meeting. This delayed feedback results in a loss of "flow" and increases the time between when a defect is introduced and when it is identified by a test. The most frequently used solution to Slow Tests is also the most problematic; a Shared Fixture can result in many behavior smells and should be the solution of last resort.
@@ -1400,7 +1406,7 @@ About This Chapter
 Chapter 2, Test Smells, introduced the various "test smells" that can act as symptoms of problems with automated testing. This chapter describes the goals we should be striving to reach to ensure successful automated unit tests and customer tests. It begins with a general discussion of why we automate tests, then turns to a description of the overall goals of test automation, including reducing costs, improving quality, and improving the understanding of code. Each of these areas has more detailed named goals that are discussed briefly here as well. This chapter doesn't describe how to achieve these goals; that explanation will come in subsequent chapters where these goals are used as the rationale for many of the principles and patterns.
 Why Test?
 Much has been written about the need for automated unit and acceptance tests as part of agile software development. Writing good test code is hard, and maintaining obtuse test code is even harder. Because test code is optional (i.e., it is not what the customer is paying for), there is a strong temptation to abandon testing when the tests become difficult or expensive to maintain. Once we have given up on the principle of "keep the bar green to keep the code clean," much of the value of the automated tests is lost.
-Over a series of projects, the teams I have worked with have faced a number of challenges to automated testing. The cost of writing and maintaining test suites has been a particular challenge, especially on projects with thousands of tests. Fortunately, as the cliché says, "Necessity is the mother of invention." My teams, and others, have developed a number of solutions to address these challenges. I have since spent a lot of time reflecting on these solutions to ask why they are good
+Over a series of projects, the teams I have worked with have faced a number of challenges to automated testing. The cost of writing and maintaining test suites has been a particular challenge, especially on projects with thousands of tests. Fortunately, as the clichï¿½ says, "Necessity is the mother of invention." My teams, and others, have developed a number of solutions to address these challenges. I have since spent a lot of time reflecting on these solutions to ask why they are good
 19
 www.it-ebooks.info
 
@@ -1461,7 +1467,7 @@ Note how the added work above the line in Figure 3.2 is more than that seen in F
 
 Goals of Test Automation
 We all come to test automation with some notion of why having automated tests would be a "good thing." Here are some high-level objectives that might apply:
-· Tests should help us improve quality. · Tests should help us understand the SUT. · Tests should reduce (and not introduce) risk. · Tests should be easy to run. · Tests should be easy to write and maintain. · Tests should require minimal maintenance as the system evolves
+ï¿½ Tests should help us improve quality. ï¿½ Tests should help us understand the SUT. ï¿½ Tests should reduce (and not introduce) risk. ï¿½ Tests should be easy to run. ï¿½ Tests should be easy to write and maintain. ï¿½ Tests should require minimal maintenance as the system evolves
 around them.
 
 www.it-ebooks.info
@@ -1562,7 +1568,7 @@ Figure 3.3 A range of tests, each with its own SUT. An application, component, o
 Tests Should Be Easy to Run
 Most software developers just want to write code; testing is simply a necessary evil in our line of work. Automated tests provide a nice safety net so that we can write code more quickly,3 but we will run the automated tests frequently only if they are really easy to run.
 What makes tests easy to run? Four specific goals answer this question:
-· They must be Fully Automated Tests so they can be run without any effort.
+ï¿½ They must be Fully Automated Tests so they can be run without any effort.
 
 3 "With less paranoia" is probably more accurate! www.it-ebooks.info
 
@@ -1570,9 +1576,9 @@ What makes tests easy to run? Four specific goals answer this question:
 
 Chapter 3 Goals of Test Automation
 
-· They must be Self-Checking Tests so they can detect and report any errors without manual inspection.
-· They must be Repeatable Tests so they can be run multiple times with the same result.
-· Ideally, each test should be an Independent Test that can be run by itself.
+ï¿½ They must be Self-Checking Tests so they can detect and report any errors without manual inspection.
+ï¿½ They must be Repeatable Tests so they can be run multiple times with the same result.
+ï¿½ Ideally, each test should be an Independent Test that can be run by itself.
 With these four goals satisfied, one click of a button (or keyboard shortcut) is all it should take to get the valuable feedback the tests provide. Let's look at these goals in a bit more detail.
 Goal: Fully Automated Test
 A test that can be run without any Manual Intervention (page 250) is a Fully Automated Test. Satisfying this criterion is a prerequisite to meeting many of the other goals. Yes, it is possible to write Fully Automated Tests that don't check the results and that can be run only once. The main() program that runs the code and directs print statements to the console is a good example of such a test. I consider these two aspects of test automation to be so important in making tests easy to run that I have made them separate goals: Self-Checking Test and Repeatable Test.
@@ -1593,8 +1599,8 @@ Tests Should Be Easy to Write and Maintain
 Coding is a fundamentally difficult activity because we must keep a lot of information in our heads as we work. When we are writing tests, we should stay focused on testing rather than coding of the tests. This means that tests must be simple--simple to read and simple to write. They need to be simple to read and understand because testing the automated tests themselves is a complicated endeavor. They can be tested properly only by introducing the very bugs that they are intended to detect into the SUT; this is hard to do in an automated way so it is usually done only once (if at all), when the test is first written. For these reasons, we need to rely on our eyes to catch any problems that creep into the tests, and that means we must keep the tests simple enough to read quickly.
 Of course, if we are changing the behavior of part of the system, we should expect a small number of tests to be affected by our modifications. We want to Minimize Test Overlap so that only a few tests are affected by any one change. Contrary to popular opinion, having more tests pass through the same code doesn't improve the quality of the code if most of the tests do exactly the same thing.
 Tests become complicated for two reasons:
-· We try to verify too much functionality in a single test.
-· Too large an "expressiveness gap" separates the test scripting language (e.g., Java) and the before/after relationships between domain concepts that we are trying to express in the test.
+ï¿½ We try to verify too much functionality in a single test.
+ï¿½ Too large an "expressiveness gap" separates the test scripting language (e.g., Java) and the before/after relationships between domain concepts that we are trying to express in the test.
 
 www.it-ebooks.info
 
@@ -1649,8 +1655,8 @@ www.it-ebooks.info
 
 Chapter 4 Philosophy of Test Automation
 
-· "Test after" versus "test first" · Test-by-test versus test all-at-once · "Outside-in" versus "inside-out" (applies independently to design and
-coding) · Behavior verification versus state verification · "Fixture designed test-by-test" versus "big fixture design upfront"
+ï¿½ "Test after" versus "test first" ï¿½ Test-by-test versus test all-at-once ï¿½ "Outside-in" versus "inside-out" (applies independently to design and
+coding) ï¿½ Behavior verification versus state verification ï¿½ "Fixture designed test-by-test" versus "big fixture design upfront"
 
 Some Philosophical Differences
 Test First or Last?
@@ -1762,7 +1768,7 @@ When Philosophies Differ
 We cannot always persuade the people we work with to adopt our philosophy, of course. Even so, understanding that others subscribe to a different philosophy helps us appreciate why they do things differently. It's not that these individuals don't share the same goals as ours;1 it's just that they make the decisions about how to achieve those goals using a different philosophy. Understanding that different philosophies exist and recognizing which ones we subscribe to are good first steps toward finding some common ground between us.
 
 My Philosophy
-In case you were wondering what my personal philosophy is, here it is: · Write the tests first! · Tests are examples! · I usually write tests one at a time, but sometimes I list all the tests I can think of as skeletons upfront. · Outside-in development helps clarify which tests are needed for the next layer inward. · I use primarily State Verification (page 462) but will resort to Behavior Verification (page 468) when needed to get good code coverage. · I perform fixture design on a test-by-test basis.
+In case you were wondering what my personal philosophy is, here it is: ï¿½ Write the tests first! ï¿½ Tests are examples! ï¿½ I usually write tests one at a time, but sometimes I list all the tests I can think of as skeletons upfront. ï¿½ Outside-in development helps clarify which tests are needed for the next layer inward. ï¿½ I use primarily State Verification (page 462) but will resort to Behavior Verification (page 468) when needed to get good code coverage. ï¿½ I perform fixture design on a test-by-test basis.
 There! Now you know where I'm coming from.
 
 What's Next?
@@ -1906,10 +1912,10 @@ Chapter 5 Principles of Test Automation
 multiple-condition tests.2 They also have the intelligence to work around any issues they encounter so that all is not lost if a single step fails. In contrast, with automated tests, a single failed assertion will cause the test to stop running and the rest of the test will provide no data on what works and what doesn't.
 Each Scripted Test should verify a single test condition. This single-mindedness is possible because the test fixture is set up programmatically rather than by a human. Programs can set up fixtures very quickly and they don't have trouble executing exactly the same sequence of steps hundreds of times! If several tests need the same test fixture, either we can move the Test Methods into a single Testcase Class per Fixture (page 631) so we can use Implicit Setup (page 424) or we can call Test Utility Methods to set up the fixture using Delegated Setup (page 411).
 We design each test to have four distinct phases (see Four-Phase Test on page 358) that are executed in sequence: fixture setup, exercise SUT, result verification, and fixture teardown.
-· In the first phase, we set up the test fixture (the "before" picture) that is required for the SUT to exhibit the expected behavior as well as anything we need to put in place to observe the actual outcome (such as using a Test Double).
-· In the second phase, we interact with the SUT to exercise whatever behavior we are trying to verify. This should be a single, distinct behavior; if we try to exercise several parts of the SUT, we are not writing a Single-Condition Test.
-· In the third phase, we do whatever is necessary to determine whether the expected outcome has been obtained and fail the test if it has not.
-· In the fourth phase, we tear down the test fixture and put the world back into the state in which we found it.
+ï¿½ In the first phase, we set up the test fixture (the "before" picture) that is required for the SUT to exhibit the expected behavior as well as anything we need to put in place to observe the actual outcome (such as using a Test Double).
+ï¿½ In the second phase, we interact with the SUT to exercise whatever behavior we are trying to verify. This should be a single, distinct behavior; if we try to exercise several parts of the SUT, we are not writing a Single-Condition Test.
+ï¿½ In the third phase, we do whatever is necessary to determine whether the expected outcome has been obtained and fail the test if it has not.
+ï¿½ In the fourth phase, we tear down the test fixture and put the world back into the state in which we found it.
 Note that there is a single exercise SUT phase and a single result verification phase. We avoid having a series of such alternating calls (exercise, verify, exercise, verify) because that approach would be trying to verify several distinct conditions--something that is better handled via distinct Test Methods.
 One possibly contentious aspect of Verify One Condition per Test is what we mean by "one condition." Some test drivers insist on one assertion per test. This insistence may be based on using a Testcase Class per Fixture organization of the Test Methods and naming each test based on what the one assertion is
 
@@ -1960,17 +1966,17 @@ Chapter 6 Test Automation Strategy
 
 at the same time. Put another way, any decision that could cost a large amount of effort to change is strategic.
 Common strategic decisions include the following considerations:
-· Which kinds of tests to automate?
-· Which tools to use to automate them?
-· How to manage the test fixture?
-· How to ensure that the system is easily tested and how the tests interact with the SUT?
+ï¿½ Which kinds of tests to automate?
+ï¿½ Which tools to use to automate them?
+ï¿½ How to manage the test fixture?
+ï¿½ How to ensure that the system is easily tested and how the tests interact with the SUT?
 Each of these decisions can have far-reaching consequences, so they are best made consciously, at the right time, and based on the best available information.
 The strategies and more detailed patterns described in this book are equally applicable regardless of the kind of Test Automation Framework (page 298) we choose to use. Most of my experience is with xUnit, so it is the focus of this book. But "don't throw out the baby with the bath water": If you find yourself using a different kind of Test Automation Framework, remember that most of what you learn in regard to xUnit may still be applicable.
 
 Which Kinds of Tests Should We Automate?
 Roughly speaking, we can divide tests into the following two categories:
-· Per-functionality tests (also known as functional tests) verify the behavior of the SUT in response to a particular stimulus.
-· Cross-functional tests verify various aspects of the system's behavior that cut across specific functionality.
+ï¿½ Per-functionality tests (also known as functional tests) verify the behavior of the SUT in response to a particular stimulus.
+ï¿½ Cross-functional tests verify various aspects of the system's behavior that cut across specific functionality.
 Figure 6.1 shows these two basic kinds of tests as two columns, each of which is further subdivided into more specific kinds of tests.
 Per-Functionality Tests
 Per-functionality tests verify the directly observable behavior of a piece of software. The functionality can be business related (e.g., the principal use cases of the system) or related to operational requirements (e.g., system maintenance and specific fault-tolerance scenarios). Most of these requirements can also be expressed as use cases, features, user stories, or test scenarios.
@@ -2055,9 +2061,9 @@ Fault insertion tests typically show up at all three levels of granularity withi
 Cross-Functional Tests
 Property Tests
 Performance tests verify various "nonfunctional" (also known as "extra-functional" or "cross-functional") requirements of the system. These requirements are different in that they span the various kinds of functionality. They often correspond to the architectural "-ilities." These kinds of tests include
-· Response time tests
-· Capacity tests
-· Stress tests
+ï¿½ Response time tests
+ï¿½ Capacity tests
+ï¿½ Stress tests
 From a test automation perspective, many of these tests must be automated (at least partially) because human testers would have a hard time creating enough load to verify the behavior under stress. While we can run the same test many times in a row in xUnit, the xUnit framework is not particularly well suited to automating performance tests.
 One advantage of agile methods is that we can start running these kinds of tests quite early in the project--as soon as the key components of the architecture have been roughed in and the skeleton of the functionality is executable. The same tests can then be run continuously throughout the project as new features are added to the system skeleton.
 
@@ -2085,7 +2091,7 @@ Chapter 6 Test Automation Strategy
 
 and the ever-popular Fit (and its wiki-based sibling FitNesse). Some of these tools even provide a test capture capability, thereby blurring the lines between Scripted Tests and Recorded Tests.
 
-Means of Test ­ SUT Interaction
+Means of Test ï¿½ SUT Interaction
 
 GSraUnTusSlayryitCcsy otteemmmmUuppnooniittnenetnt
 API UI
@@ -2101,7 +2107,7 @@ Figure 6.2 A summary of the three dimensions of test automation choices. The lef
 Choosing which test automation tools to use is a large part of the test strategy decision. A full survey of the different kinds of tools available is beyond the scope of this book, but a somewhat more detailed treatment of the topic is available in [ARTRP]. The following sections summarize the information here to provide an overview of the strengths and weaknesses of each approach.
 
 Test Automation Ways and Means
-Figure 6.3 depicts the decision-making possibilities as a matrix. In theory, there are 2 × 2 × 3 possible combinations in this matrix, but it is possible to understand the primary differences between the approaches by looking at the front face of the cube. Some of the four quadrants are applicable to all levels of granularity; others are primarily used for automating customer tests.
+Figure 6.3 depicts the decision-making possibilities as a matrix. In theory, there are 2 ï¿½ 2 ï¿½ 3 possible combinations in this matrix, but it is possible to understand the primary differences between the approaches by looking at the front face of the cube. Some of the four quadrants are applicable to all levels of granularity; others are primarily used for automating customer tests.
 
 www.it-ebooks.info
 
@@ -2110,7 +2116,7 @@ Which Tools Do We Use to Automate Which Tests?
 55
 
 BBuuiilltt--iinn API RR&&PPB
-Means of Test ­ SUT Interaction
+Means of Test ï¿½ SUT Interaction
 
 Roobboott
 
@@ -2140,7 +2146,7 @@ Way of Capturing Tests
 Mooddeerrnn xXUUnit
 Sccrriipptteedd UI TTeessttss
 
-Figure 6.3 The choices on the front face of the cube. A more detailed look at the front face of the cube in Figure 6.2 along with the advantages (+) and disadvantages of each (­).
+Figure 6.3 The choices on the front face of the cube. A more detailed look at the front face of the cube in Figure 6.2 along with the advantages (+) and disadvantages of each (ï¿½).
 
 Upper-Right Quadrant: Modern xUnit
 The upper-right quadrant of the front face of the cube is dominated by the xUnit family of testing frameworks. These frameworks involve hand-scripting tests that exercise the system at all three levels of granularity (system, component, and unit) via internal interfaces. A good example is unit tests automated using JUnit or NUnit.
@@ -2161,10 +2167,10 @@ For completeness, the upper-left quadrant involves creating Recorded Tests via a
 This quadrant is not well populated with commercial tools1 but is a feasible option when building a Recorded Test mechanism into the application itself.
 Introducing xUnit
 The xUnit family of Test Automation Frameworks is designed for use in automating programmer tests. Its design is intended to meet the following goals:
-· Make it easy for developers to write tests without needing to learn a new programming language. xUnit is available in most languages in use today.
-· Make it easy to test individual classes and objects without needing to have the rest of the application available. xUnit is designed to allow us to test the software from the inside; we just have to design for testability to take advantage of this capability.
-· Make it easy to run one test or many tests with a single action. xUnit includes the concept of a test suite and Suite of Suites (see Test Suite Object on page 387) to support this kind of test execution.
-· Minimize the cost of running the tests so programmers aren't discouraged from running the existing tests. For this reason, each test should be a Self-Checking Test (page 26) that implements the Hollywood principle.2
+ï¿½ Make it easy for developers to write tests without needing to learn a new programming language. xUnit is available in most languages in use today.
+ï¿½ Make it easy to test individual classes and objects without needing to have the rest of the application available. xUnit is designed to allow us to test the software from the inside; we just have to design for testability to take advantage of this capability.
+ï¿½ Make it easy to run one test or many tests with a single action. xUnit includes the concept of a test suite and Suite of Suites (see Test Suite Object on page 387) to support this kind of test execution.
+ï¿½ Minimize the cost of running the tests so programmers aren't discouraged from running the existing tests. For this reason, each test should be a Self-Checking Test (page 26) that implements the Hollywood principle.2
 
 1 Most of the tools in this quadrant focus on recording regression tests by inserting observation points into a component-based application and recording the (remote) method calls and responses between the components. This approach is becoming more popular with the advent of service-oriented architecture (SOA).
 2 The name is derived from what directors in Hollywood tell aspiring applicants at mass casting calls: "Don't call us; we'll call you (if we want you)."
@@ -2176,9 +2182,9 @@ Which Tools Do We Use to Automate Which Tests?
 57
 
 The xUnit family has been extraordinarily successful at meeting its goals. I cannot imagine that Erich Gamma and Kent Beck could have possibly anticipated just how big an impact that first version of JUnit would have on software development!3 The same characteristics that make xUnit particularly well suited to automating programmer tests, however, may make it less suitable for writing some other kinds of tests. In particular, the "stop on first failure" behavior of assertions in xUnit has often been criticized (or overridden) by people who want to use xUnit for automating multistep customer tests so that they can see the whole score (what worked and what didn't) rather than merely the first deviation from the expected results. This disagreement points out several things:
-· "Stop on first failure" is a tool philosophy, not a characteristic of unit tests. It so happens that most test automaters prefer to have their unit tests stop on first failure, and most recognize that customer tests must necessarily be longer than unit tests.
-· It is possible to change the fundamental behavior of xUnit to satisfy specific needs; this flexibility is just one advantage of open-source tools.
-· Seeing a need to change the fundamental behavior of xUnit should probably be interpreted as a trigger for considering whether some other tool might possibly be a better fit.
+ï¿½ "Stop on first failure" is a tool philosophy, not a characteristic of unit tests. It so happens that most test automaters prefer to have their unit tests stop on first failure, and most recognize that customer tests must necessarily be longer than unit tests.
+ï¿½ It is possible to change the fundamental behavior of xUnit to satisfy specific needs; this flexibility is just one advantage of open-source tools.
+ï¿½ Seeing a need to change the fundamental behavior of xUnit should probably be interpreted as a trigger for considering whether some other tool might possibly be a better fit.
 For example, the Fit framework has been designed specifically for the purpose of running customer tests. It overcomes the limitations of xUnit that lead to the "stop on first failure" behavior by communicating the pass/fail status of each step of a test using color coding. Another option for Java developers is TestNG, which provides capabilities for explicitly sequencing Chained Tests (page 454).
 Having said this, choosing a different tool doesn't eliminate the need to make many of the strategic decisions unless the tool constrains that decision making in some way. For example, we still need to set up the test fixture for a Fit test. Some patterns--such as Chained Tests, where one test sets up the fixture for a subsequent test--are difficult to automate and may therefore be less attractive in Fit than in xUnit. And isn't it ironic that the very flexibility of xUnit is what allows test automaters to get themselves into so much trouble by creating Obscure Tests (page 186) that result in High Test Maintenance Cost (page 265)?
 
@@ -2207,10 +2213,10 @@ Which Test Fixture Strategy Do We Use?
 What Is a Fixture?
 Every test consists of four parts, as described in Four-Phase Test (page 358). In the first phase, we create the SUT and everything it depends on and put them into the state required to exercise the SUT. In xUnit, we call everything we need in place to exercise the SUT the test fixture, and we call the part of the test logic that we execute to set it up the fixture setup phase of the test.
 At this point, a word of caution is in order. The term "fixture" means many things to many people:
-· Some variants of xUnit keep the concept of the fixture separate from the Testcase Class (page 373) that creates it. JUnit and its direct ports fall into this category.
-· Other members of the xUnit family assume that an instance of the Testcase Class "is a" fixture. NUnit is a good example.
-· A third camp uses an entirely different name for the fixture. For example, RSpec captures the pre-conditions of the test in a test context class that holds the Test Methods (same idea as NUnit but with different terminology).
-· The term "fixture" is used to mean entirely different things in other kinds of test automation. In Fit, for example, it means the custom-built parts of the Data-Driven Test Interpreter [GOF] that we use to define our Higher-Level Language.
+ï¿½ Some variants of xUnit keep the concept of the fixture separate from the Testcase Class (page 373) that creates it. JUnit and its direct ports fall into this category.
+ï¿½ Other members of the xUnit family assume that an instance of the Testcase Class "is a" fixture. NUnit is a good example.
+ï¿½ A third camp uses an entirely different name for the fixture. For example, RSpec captures the pre-conditions of the test in a test context class that holds the Test Methods (same idea as NUnit but with different terminology).
+ï¿½ The term "fixture" is used to mean entirely different things in other kinds of test automation. In Fit, for example, it means the custom-built parts of the Data-Driven Test Interpreter [GOF] that we use to define our Higher-Level Language.
 The "class `is a' fixture" approach assumes the Testcase Class per Fixture (page 631) approach to organizing the tests. When we choose a different way of organizing the tests, such as Testcase Class per Class (page 617) or Testcase Class per Feature (page 624), this merging of the concepts of test fixture and Testcase Class can be confusing. Throughout this book, I use "test fixture"--or just "fixture"--to mean "the pre-conditions of the test" and Testcase Class to mean "the class that contains the Test Methods and any code needed to set up the test fixture."
 The most common way to set up the fixture is to use front door fixture setup by calling the appropriate methods on the SUT to construct the objects. When the state of the SUT is stored in other objects or components, we can do Back Door Setup (see Back Door Manipulation on page 327) by inserting the necessary records directly into the other component on which the behavior of the SUT depends. We use Back Door Setup most often with databases or when we need to use a Mock Object (page 544) or Test Double (page 522); these concepts are covered in more detail in Chapter 13, Testing with Databases, and Chapter 11, Using Test Doubles.
 
@@ -2293,14 +2299,14 @@ Which Test Fixture Strategy Do We Use?
 63
 
 hash tables instead of tables. Each test may require many, many database operations to set up and tear down the fixture required by a single query in the SUT.
-There is a lot to be said for minimizing the size and complexity of the test fixture. A Minimal Fixture (see Minimal Fixture) is much easier to understand and helps highlight the cause­effect relationship between the fixture and the expected outcome. In this regard, it is a major enabler of Tests as Documentation (page 23). In some cases, we can make the test fixture much smaller by using Entity Chain Snipping (see Test Stub on page 529) to eliminate the need to instantiate those objects on which our test depends only indirectly. This tactic will certainly speed up the instantiation of our test fixture.
+There is a lot to be said for minimizing the size and complexity of the test fixture. A Minimal Fixture (see Minimal Fixture) is much easier to understand and helps highlight the causeï¿½effect relationship between the fixture and the expected outcome. In this regard, it is a major enabler of Tests as Documentation (page 23). In some cases, we can make the test fixture much smaller by using Entity Chain Snipping (see Test Stub on page 529) to eliminate the need to instantiate those objects on which our test depends only indirectly. This tactic will certainly speed up the instantiation of our test fixture.
 Shared Fixture Strategies
 Sometimes we cannot--or choose not to--use a Fresh Fixture strategy. In these cases, we can use a Shared Fixture. In this approach, many tests reuse the same instance of a test fixture.
 The major advantage of Shared Fixtures is that we save a lot of execution time in setting up and tearing down the fixture. The main disadvantage is conveyed by one of its aliases, Stale Fixture, and by the test smell that describes its most common side effects, Interacting Tests (see Erratic Test). Although Shared Fixtures do have other benefits, most can be realized by applying other patterns to Fresh Fixtures; Standard Fixture (page 305) avoids the fixture design and coding effort for every test without actually sharing the fixture.
 Now, if Shared Fixtures are so bad, why even discuss them? Because everyone seems to go down this road at least once in his or her career--so we might as well share the best available information about them should you venture down that path. Mind you, this discussion isn't meant to encourage anyone to go down this path unnecessarily because it is paved with broken glass, infested with poisonous snakes, and . . . well, you get my drift.
 Given that we have decided to use a Shared Fixture (we did investigate every possible alternative, didn't we?), what are our options? We can make the following adjustments (Figure 6.5):
-· How far and wide we share a fixture (e.g., a Testcase Class, all tests in a test suite, all test run by a particular user)
-· How often we recreate the fixture
+ï¿½ How far and wide we share a fixture (e.g., a Testcase Class, all tests in a test suite, all test run by a particular user)
+ï¿½ How often we recreate the fixture
 
 www.it-ebooks.info
 
@@ -2557,7 +2563,7 @@ Teardown
 Testable GUI Logic Component
 
 Figure 6.12 A Humble Dialog reducing the dependency of the test on the UI framework. The logic that controls the state of UI components can be very difficult to test. Extracting it into a testable component leaves behind a Humble Dialog that requires very little testing.
-From a test automation strategy perspective, the key thing is to make the decision about which test­SUT interaction styles should be used and which ones should be avoided, and to ensure that the software is designed to support that decision.
+From a test automation strategy perspective, the key thing is to make the decision about which testï¿½SUT interaction styles should be used and which ones should be avoided, and to ensure that the software is designed to support that decision.
 
 11 Any UI that contains state information or supports conditional display or enabling of elements should be considered nontrivial.
 www.it-ebooks.info
@@ -2591,16 +2597,16 @@ Chapter 7 xUnit Basics
 Common Features
 Given that most members of the xUnit family are implemented using an objectoriented programming language (OOPL), they are described here first and then places where the non-OOPL members of the family differ are noted.
 All members of the xUnit family implement a basic set of features. They all provide a way to perform the following tasks:
-· Specify a test as a Test Method (page 348)
-· Specify the expected results within the test method in the form of calls to Assertion Methods (page 362)
-· Aggregate the tests into test suites that can be run as a single operation
-· Run one or more tests to get a report on the results of the test run
+ï¿½ Specify a test as a Test Method (page 348)
+ï¿½ Specify the expected results within the test method in the form of calls to Assertion Methods (page 362)
+ï¿½ Aggregate the tests into test suites that can be run as a single operation
+ï¿½ Run one or more tests to get a report on the results of the test run
 Because many members of the xUnit family support Test Method Discovery (see Test Discovery on page 393), we do not have to use Test Enumeration (page 399) in these members to manually add each Test Method we want to run to a test suite. Some members also support some form of Test Selection (page 403) to run subsets of test methods based on some criteria.
 
 The Bare Minimum
 Here is the bare minimum we need to understand about how xUnit operates (Figure 7.1):
-· How we define tests using Test Methods on Testcase Classes (page 373) · How we can build up arbitrary Suites of Suites (see Test Suite Object on
-page 387)2 · How we run the tests · How we interpret the test results
+ï¿½ How we define tests using Test Methods on Testcase Classes (page 373) ï¿½ How we can build up arbitrary Suites of Suites (see Test Suite Object on
+page 387)2 ï¿½ How we run the tests ï¿½ How we interpret the test results
 Defining Tests
 Each test is represented by a Test Method that implements a single Four-Phase Test (page 358) by following these steps:
 2 Even those xUnit variants that don't have an explicit Suite class or method still build Test Suite Objects behind the scene.
@@ -2610,10 +2616,10 @@ The Bare Minimum
 
 77
 
-· Setting up the test fixture using either In-line Setup (page 408), Delegated Setup (page 411), or Implicit Setup (page 424)
-· Exercising the SUT by interacting with methods in its public or private interface
-· Verifying that the expected outcome has occurred using calls to Assertion Methods
-· Tearing down the test fixture using either Garbage-Collected Teardown (page 500), In-line Teardown (page 509), Implicit Teardown (page 516), or Automated Teardown (page 503)
+ï¿½ Setting up the test fixture using either In-line Setup (page 408), Delegated Setup (page 411), or Implicit Setup (page 424)
+ï¿½ Exercising the SUT by interacting with methods in its public or private interface
+ï¿½ Verifying that the expected outcome has occurred using calls to Assertion Methods
+ï¿½ Tearing down the test fixture using either Garbage-Collected Teardown (page 500), In-line Teardown (page 509), Implicit Teardown (page 516), or Automated Teardown (page 503)
 
 Test Suite Factory
 Suite Test Runner
@@ -2913,7 +2919,7 @@ Another consequence of using Implicit Setup is that we cannot use local variable
 Misuse of the SetUp Method
 When you have a new hammer, everything looks like a nail!
 Like any feature of any system, the setUp method can be abused. We should not feel obligated to use it just because it is provided. It is one of several code reuse mechanisms that are available for our application. When object-oriented languages were first introduced, programmers were enamored with inheritance and tried to apply it in all possible reuse scenarios. Over time, we learned when inheritance was appropriate and when we should resort to other mechanisms such as delegation. The setUp method is xUnit's inheritance.
-The setUp method is most prone to misuse when it is applied to build a General Fixture (see Obscure Test) with multiple distinct parts, each of which is dedicated to a different Test Method. This can lead to Slow Tests (page 253) if we are building a Persistent Fresh Fixture. More importantly, it can lead to Obscure Tests by hiding the cause­effect relationship between the fixture and the expected outcome of exercising the SUT.
+The setUp method is most prone to misuse when it is applied to build a General Fixture (see Obscure Test) with multiple distinct parts, each of which is dedicated to a different Test Method. This can lead to Slow Tests (page 253) if we are building a Persistent Fresh Fixture. More importantly, it can lead to Obscure Tests by hiding the causeï¿½effect relationship between the fixture and the expected outcome of exercising the SUT.
 If we do not adopt the practice of grouping the Test Methods into Testcase Classes based on identical fixtures but we do use the setUp method, we should build only the lowest common denominator part of the fixture in the setUp
 
 www.it-ebooks.info
@@ -3222,9 +3228,9 @@ Chapter 10 Result Verification
 Using Built-in Assertions
 We use the assertions provided by our testing framework to specify what should be and depend on them to tell us when it isn't so! But simply using the built-in assertions is only a small part of the story.
 The simplest form of result verification is the assertion in which we specify what should be true. Most members of the xUnit family support a range of different Assertion Methods, including the following:
-· Stated Outcome Assertions (see Assertion Method) such as assertTrue (aBooleanExpression)
-· Simple Equality Assertions such as assertEquals(expected, actual)
-· Fuzzy Equality Assertions such as assertEquals(expected, actual, tolerance), which are used for comparing floats
+ï¿½ Stated Outcome Assertions (see Assertion Method) such as assertTrue (aBooleanExpression)
+ï¿½ Simple Equality Assertions such as assertEquals(expected, actual)
+ï¿½ Fuzzy Equality Assertions such as assertEquals(expected, actual, tolerance), which are used for comparing floats
 Of course, the test programming language has some influence on the nature of the assertions. In JUnit, SUnit, CppUnit, NUnit, and CsUnit, most of the Equality Assertions take a pair of Objects as their parameters. Some languages support "overloading" of method parameter types so we can have different implementations of an assertion for different types of objects. Some languages--C, for example--don't support objects, so we cannot compare objects, only values.
 There are several issues to consider when using Assertion Methods. Naturally, the first priority is the verification of all things that should be true. The better our assertions, the finer our Safety Net (see page 24) and the higher our confidence in our code. The second priority is the documentation value of the assertions. Each test should make it very clear that "When the system is in state S1 and I do X, the result should be R and the system should be in state S2." We put the system into state S1 in our fixture setup logic. "I do X" corresponds to the exercise SUT phase of the test. "The result is R" and "the system is in state S2" are implemented using assertions. Thus we want to write our assertions in such a way that they succinctly describe "R" and "S2."
 Another thing to consider is that when the test fails, we want the failure message to tell us enough to enable us to identify the problem.2 Therefore, we should almost always include an Assertion Message (page 370) as the optional message parameter (assuming our xUnit family member has one!). This tactic avoids the possibility of us playing Assertion Roulette (page 224), in which we cannot even tell which assertion is failing without running the test interactively;
@@ -3316,7 +3322,7 @@ Reducing Test Code Duplication
 
 115
 
-· Expected Objects · Custom Assertions · Verification Methods
+ï¿½ Expected Objects ï¿½ Custom Assertions ï¿½ Verification Methods
 
 Expected Objects
 Often, we will find ourselves doing a series of assertions on different fields of the same object. If we begin repeating this group of assertions (whether multiple times in a single test or in multiple tests), we should look for a way to reduce the Test Code Duplication. The next listing shows one Test Method that compares several attributes of a single object. Many other Test Methods probably require the same sequence of assertions.
@@ -3399,9 +3405,9 @@ TTerms,crossref,<testterms id='abc'/>,<a href='abc.html'>abcs</a>
 
 Avoiding Conditional Test Logic
 Another thing we want to avoid in our tests is conditional logic. Conditional Test Logic (page 200) is bad because the same test may execute differently in different circumstances. Conditional Test Logic reduces our trust in the tests because the code in our Test Methods is Untestable Test Code. Why is this important? Because the only way we can verify our Test Method is to manually edit the SUT so that it produces the error we want to be detected. If the Test Method has many paths through it, we need to make sure each path is coded correctly. Isn't it so much simpler just to have only one possible execution path through the test? Let us look at some reasons why we might include conditional logic in our tests:
-· We don't want to execute certain assertions because their execution doesn't make sense given what we have already discovered at this point in the test (typically a failure condition).
-· We have to allow for various situations in the actual results that we are comparing to the expected results.
-· We are trying to reuse a Test Method in several different circumstances (essentially merging several tests into a single Test Method).
+ï¿½ We don't want to execute certain assertions because their execution doesn't make sense given what we have already discovered at this point in the test (typically a failure condition).
+ï¿½ We have to allow for various situations in the actual results that we are comparing to the expected results.
+ï¿½ We are trying to reuse a Test Method in several different circumstances (essentially merging several tests into a single Test Method).
 The problem with using Conditional Test Logic in the first two cases is that it makes the code hard to read and may mask cases of reusing test methods via Flexible Tests (see Conditional Test Logic). The last "reason" is just a bad idea,
 
 www.it-ebooks.info
@@ -3431,9 +3437,9 @@ Other Techniques
 
 Eliminating Loops
 Conditional Test Logic may also appear as loops that verify the content of a collection returned by the SUT matches what we expected. Putting loops directly into the Test Method creates three problems:
-· It introduces Untestable Test Code because the looping code, which is part of the test, cannot be tested with Fully Automated Tests (see page 26).
-· It leads to Obscure Tests because all that looping code obscures the real intent: Does or doesn't the collection match?
-· It can lead to the project-level smell Developers Not Writing Tests (page 263) because the complexity of writing the loops may discourage the developer from writing the Self-Checking Test.
+ï¿½ It introduces Untestable Test Code because the looping code, which is part of the test, cannot be tested with Fully Automated Tests (see page 26).
+ï¿½ It leads to Obscure Tests because all that looping code obscures the real intent: Does or doesn't the collection match?
+ï¿½ It can lead to the project-level smell Developers Not Writing Tests (page 263) because the complexity of writing the loops may discourage the developer from writing the Self-Checking Test.
 A better solution is to delegate this logic to a Test Utility Method with an IntentRevealing Name, which can be both tested and reused.
 
 Other Techniques
@@ -3538,9 +3544,9 @@ How Do We Control Indirect Inputs?
 Testing with indirect inputs is a bit simpler than testing with indirect outputs because the techniques used to test outputs build on those used to test inputs. Let's delve into indirect inputs first.
 To test the SUT with indirect inputs, we must be able to control th e DOC well enough to cause it to return every possible kind of return value. That implies the availability of a suitable control point.
 Examples of the kinds of indirect inputs we want to be able to induce via this control point include
-· Return values of methods/functions
-· Values of updatable arguments
-· Exceptions that could be thrown
+ï¿½ Return values of methods/functions
+ï¿½ Values of updatable arguments
+ï¿½ Exceptions that could be thrown
 Often, the test can interact with the DOC to set up how it will respond to requests. For example, if a component provides access to data in a database, then we can use Back Door Setup (see Back Door Manipulation on page 327) to insert specific values into a database that cause the component to respond in the desired ways (e.g., no items found, one item found, many items found). (See Figure 11.3.) In this specific case, we can use the database itself as a control point.
 
 Setup
@@ -3561,10 +3567,10 @@ What Are Indirect Inputs and Outputs?
 
 129
 
-· The real component cannot be manipulated to produce the desired indirect input. Only a true software error within the real component would result in the desired input to the SUT.
-· The real component could be manipulated to make the input occur but doing so would not be cost-effective.
-· The real component could be manipulated to make the input occur but doing so could have unacceptable side effects.
-· The real component is not yet available for use.
+ï¿½ The real component cannot be manipulated to produce the desired indirect input. Only a true software error within the real component would result in the desired input to the SUT.
+ï¿½ The real component could be manipulated to make the input occur but doing so would not be cost-effective.
+ï¿½ The real component could be manipulated to make the input occur but doing so could have unacceptable side effects.
+ï¿½ The real component is not yet available for use.
 If we cannot use the real component as a control point, then we have to replace it with one that we can control. This replacement can be done in a number of different ways, which are the focus of the section Installing the Test Double later in this chapter. The most common approach is to configure a Test Stub (page 529) with a set of values to return from its functions and then to install this Test Stub into the SUT. During execution of the SUT, the Test Stub receives the calls and returns the previously configured responses (Figure 11.4). It has become our control point.
 
 Setup Exercise
@@ -3612,9 +3618,9 @@ Verify
 
 Figure 11.5 Using Behavior Verification to verify the indirect outputs of the SUT. When we care about exactly what calls our SUT makes to other components, we may have to do Behavior Verification rather than simply verifying the post-test state of the SUT.
 In many cases, the test can use the DOC as an observation point to find out how it has been used. For example:
-· We can ask the file system for the contents of a file that the SUT has written to verify that it exists and was written with the expected contents.
-· We can ask the database for the contents of a table or specific record to verify that the SUT wrote the expected records to the database.
-· We can interact directly with the e-mail sending component to ask whether the SUT had asked it to send a particular e-mail.
+ï¿½ We can ask the file system for the contents of a file that the SUT has written to verify that it exists and was written with the expected contents.
+ï¿½ We can ask the database for the contents of a table or specific record to verify that the SUT wrote the expected records to the database.
+ï¿½ We can interact directly with the e-mail sending component to ask whether the SUT had asked it to send a particular e-mail.
 These are all examples of Back Door Verification (see Back Door Manipulation on page 327). Some DOCs allow us to configure their behavior in such a way that we can use them to keep the test informed of how they are being used:
 
 www.it-ebooks.info
@@ -3623,14 +3629,14 @@ What Are Indirect Inputs and Outputs?
 
 131
 
-· We can ask the file system to notify the test whenever a file is created or modified so we can verify its contents.
-· We can use a database trigger to notify the test when a record is written or deleted.
-· We can configure the e-mail sending component to deliver all outgoing e-mail to the test.
+ï¿½ We can ask the file system to notify the test whenever a file is created or modified so we can verify its contents.
+ï¿½ We can use a database trigger to notify the test when a record is written or deleted.
+ï¿½ We can configure the e-mail sending component to deliver all outgoing e-mail to the test.
 Sometimes, as we have seen with indirect inputs, it is not practical to use the real component as an observation point. When all else fails, we may need to replace the real component with a test-specific alternative. For example, we might need to do this for the following reasons:
-· The calls to (or the internal state of) the DOC cannot be queried.
-· The real component can be queried but doing so is cost-prohibitive.
-· The real component can be queried but doing so has unacceptable side effects.
-· The real component is not yet available for use.
+ï¿½ The calls to (or the internal state of) the DOC cannot be queried.
+ï¿½ The real component can be queried but doing so is cost-prohibitive.
+ï¿½ The real component can be queried but doing so has unacceptable side effects.
+ï¿½ The real component is not yet available for use.
 The replacement of the real component can be done in a number of different ways, as will be discussed in Installing the Test Double.
 Two basic styles of indirect output verification are available. Procedural Behavior Verification (see Behavior Verification) captures the calls to a DOC (or their results) during SUT execution and then compares them with the expected calls after the SUT has finished executing. This verification involves replacing a substitutable dependency with a Test Spy (page 538). During execution of the SUT, the Test Spy receives the calls and records them. After the Test Method (page 348) has finished exercising the SUT, it retrieves the actual calls from the Test Spy and uses Assertion Methods (page 362) to compare them with the expected calls (Figure 11.6).
 Expected Behavior (see Behavior Verification) involves building a "behavior specification" during the fixture setup phase of the test and then comparing the actual behavior with this Expected Behavior. It is typically done by loading a Mock Object (page 544) with a set of expected procedure call descriptions and installing this object into the SUT (Figure 11.7). During execution of the SUT, the Mock Object receives the calls and compares them to the previously defined expected calls (the "behavior specification"). As the test proceeds, if the Mock Object receives an unexpected call, it fails the test immediately. The test failure traceback will show the exact location in the SUT where the problem occurred because the Assertion Methods are called from the Mock Object, which is in turn called by the SUT. We can also see exactly where in the Test Method the SUT was being exercised.
@@ -3688,9 +3694,9 @@ By now you are probably wondering about how to replace those inflexible and unco
 As we have seen, to test the indirect inputs, we must be able to control the DOC well enough to cause it to return every possible kind of return value (valid, invalid, and exception). To test indirect outputs, we must be able to track the calls the SUT makes to other components. A Test Double is a type of object that is much more cooperative and lets us write tests the way we want to.
 Types of Test Doubles
 A Test Double is any object or component that we install in place of the real component for the express purpose of running a test. Depending on the reason why we are using it, a Test Double can behave in one of four ways (summarized in Figure 11.8):
-· A Dummy Object (page 728) is a placeholder object that is passed to the SUT as an argument (or an attribute of an argument) but is never actually used.
-· A Test Stub is an object that replaces a real component on which the SUT depends so that the test can control the indirect inputs of the SUT. It allows the test to force the SUT down paths it might not otherwise exercise. A Test Spy, which is a more capable version of a Test Stub, can be used to verify the indirect outputs of the SUT by giving the test a way to inspect them after exercising the SUT.
-· A Mock Object is an object that replaces a real component on which the SUT depends so that the test can verify its indirect outputs.
+ï¿½ A Dummy Object (page 728) is a placeholder object that is passed to the SUT as an argument (or an attribute of an argument) but is never actually used.
+ï¿½ A Test Stub is an object that replaces a real component on which the SUT depends so that the test can control the indirect inputs of the SUT. It allows the test to force the SUT down paths it might not otherwise exercise. A Test Spy, which is a more capable version of a Test Stub, can be used to verify the indirect outputs of the SUT by giving the test a way to inspect them after exercising the SUT.
+ï¿½ A Mock Object is an object that replaces a real component on which the SUT depends so that the test can verify its indirect outputs.
 
 www.it-ebooks.info
 
@@ -3698,7 +3704,7 @@ www.it-ebooks.info
 
 Chapter 11 Using Test Doubles
 
-· A Fake Object (page 551) (or just "Fake" for short) is an object that replaces the functionality of the real DOC with an alternative implementation of the same functionality.
+ï¿½ A Fake Object (page 551) (or just "Fake" for short) is an object that replaces the functionality of the real DOC with an alternative implementation of the same functionality.
 Test Double
 
 Dummy
@@ -3786,8 +3792,8 @@ www.it-ebooks.info
 Chapter 11 Using Test Doubles
 
 Mock Object compares actual calls received with the previously defined expectations using assertions and fails the test on behalf of the Test Method. As a consequence, we can reuse the logic employed to verify the indirect outputs of the SUT across all tests that use the same Mock Object. Mock Objects come in two basic flavors:
-· A strict Mock Object fails the test if the correct calls are received in a different order than was specified.
-· A lenient2 Mock Object tolerates out-of-order calls. Some lenient Mock Objects tolerate or even ignore unexpected calls or missed calls. That is, the Mock Object may verify only those actual calls that correspond to expected ones.
+ï¿½ A strict Mock Object fails the test if the correct calls are received in a different order than was specified.
+ï¿½ A lenient2 Mock Object tolerates out-of-order calls. Some lenient Mock Objects tolerate or even ignore unexpected calls or missed calls. That is, the Mock Object may verify only those actual calls that correspond to expected ones.
 The following test configures a Mock Object with the arguments of the expected call to logMessage. When the SUT (the removeFlight method) calls logMessage, the Mock Object asserts that each of the actual arguments equals the expected argument. If it discovers that any wrong arguments were passed, the test fails.
 public void testRemoveFlight_Mock() throws Exception { // Fixture setup FlightDto expectedFlightDto = createAnonRegFlight(); // Mock configuration ConfigurableMockAuditLog mockLog = new ConfigurableMockAuditLog(); mockLog.setExpectedLogMessage( helper.getTodaysDateWithoutTime(), Helper.TEST_USER_NAME, Helper.REMOVE_FLIGHT_ACTION_CODE, expectedFlightDto.getFlightNumber()); mockLog.setExpectedNumberCalls(1); // Mock installation FlightManagementFacade facade = new FlightManagementFacadeImpl(); facade.setAuditLog(mockLog); // Exercise facade.removeFlight(expectedFlightDto.getFlightNumber()); // Verify assertFalse("flight still exists after being removed", facade.flightExists( expectedFlightDto. getFlightNumber())); mockLog.verify();
 }
@@ -3881,7 +3887,7 @@ The basic choices boil down to Dependency Injection (page 678), in which the cli
 If an inversion of control framework is available in our language, our tests can substitute dependencies without much additional work on our part. This removes the need for building in the Dependency Injection or Dependency Lookup mechanism.
 Dependency Injection
 Dependency Injection is a class of design decoupling in which the client tells the SUT which DOC to use at runtime (Figure 11.10). The test-driven development (TDD) movement has greatly increased its popularity because Dependency Injection makes for more easily tested designs. This pattern also makes it possible to reuse the SUT more broadly because it removes knowledge of the dependency from the SUT; often the SUT will be aware of only a generic interface that the DOC must implement. Dependency Injection comes in several specific flavors, with the choice between them being largely a matter of taste:
-· Setter Injection (see Dependency Injection): The SUT accesses the DOC through a public attribute (i.e., a variable or property). The test explicitly sets the attribute after instantiating the SUT to installing the Test Double. The SUT may have previously initialized the attribute with the real DOC in its constructor (in which case the test is replacing it) or the SUT may use Lazy Initialization [SBPP] to initialize the attribute (in which case the SUT will not bother to install the real DOC).
+ï¿½ Setter Injection (see Dependency Injection): The SUT accesses the DOC through a public attribute (i.e., a variable or property). The test explicitly sets the attribute after instantiating the SUT to installing the Test Double. The SUT may have previously initialized the attribute with the real DOC in its constructor (in which case the test is replacing it) or the SUT may use Lazy Initialization [SBPP] to initialize the attribute (in which case the SUT will not bother to install the real DOC).
 
 www.it-ebooks.info
 
@@ -3905,8 +3911,8 @@ Usage
 Test Double
 
 Figure 11.10 A Test Double being "injected" into the SUT by a test. Using Test Doubles requires a means to replace the DOC. Using Dependency Injection involves having the caller supply the dependency to the SUT before or as it is used.
-· Constructor Injection (see Dependency Injection): The SUT accesses the DOC through a private attribute. The test passes the Test Double to the SUT via a constructor that takes the DOC to be used as an explicit argument and initializes the attribute from it. This may be the primary constructor used by production code clients or it may be an alternative constructor. In the latter case, the primary constructor should call this constructor, passing the default DOC to it as an argument.
-· Parameter Injection (see Dependency Injection): The SUT receives the DOC as a method parameter. The test passes in a Test Double, whereas the production code passes in the real object.5 This approach works well when the API of the SUT takes as a parameter the object we need to replace. Although Mock Object aficionados might argue that designing APIs in this way improves the design of the SUT, it is not always possible or practical to pass everything required to each method.
+ï¿½ Constructor Injection (see Dependency Injection): The SUT accesses the DOC through a private attribute. The test passes the Test Double to the SUT via a constructor that takes the DOC to be used as an explicit argument and initializes the attribute from it. This may be the primary constructor used by production code clients or it may be an alternative constructor. In the latter case, the primary constructor should call this constructor, passing the default DOC to it as an argument.
+ï¿½ Parameter Injection (see Dependency Injection): The SUT receives the DOC as a method parameter. The test passes in a Test Double, whereas the production code passes in the real object.5 This approach works well when the API of the SUT takes as a parameter the object we need to replace. Although Mock Object aficionados might argue that designing APIs in this way improves the design of the SUT, it is not always possible or practical to pass everything required to each method.
 Dependency Lookup
 When software is not designed for testability or when Dependency Injection is not appropriate, we may find it convenient to use Dependency Lookup. This pattern also removes the knowledge of exactly which DOC should be used from
 5 This approach was advocated in the original paper on Mock Objects [ET]. In this paper, Mock Objects passed as parameters to methods are called "Smart Handlers."
@@ -3942,8 +3948,8 @@ Usage Usage
 Test Double
 
 Figure 11.11 A Service Locator being "configured" by a test to return a Test Double to the SUT. Using Test Doubles requires a means to replace the DOC. Using Dependency Lookup involves having the SUT ask a well-known object to provide a reference to the DOC; the test can provide the Service Locator with a Test Double to return.
-· Object Factory (see Dependency Lookup): The SUT creates the DOC by calling a Factory Method [GOF] on a well-known object instead of using an object constructor to create the DOC directly. The test explicitly tells the Object Factory to create a Test Double instead of a normal DOC whenever this method is called .
-· Service Locator (see Dependency Lookup): The SUT retrieves a previously created service object by asking a well-known Registry [PEAA] object for it. The test configures the Service Locator to return the Test Double when the SUT requests the DOC.
+ï¿½ Object Factory (see Dependency Lookup): The SUT creates the DOC by calling a Factory Method [GOF] on a well-known object instead of using an object constructor to create the DOC directly. The test explicitly tells the Object Factory to create a Test Double instead of a normal DOC whenever this method is called .
+ï¿½ Service Locator (see Dependency Lookup): The SUT retrieves a previously created service object by asking a well-known Registry [PEAA] object for it. The test configures the Service Locator to return the Test Double when the SUT requests the DOC.
 The line between these two patterns can become quite blurry when we use Lazy Initialization to create the object being returned by a Service Locator. Should it be called an Object Factory instead? Does it really matter which label we apply? Probably not--hence the generic name of Dependency Lookup.
 
 www.it-ebooks.info
@@ -4212,10 +4218,10 @@ Clearly, there is no single "best practice" we can always follow; the best pract
 
 Test Naming Conventions
 The names we give to our Testcase Classes and Test Methods are crucial in making our tests easy to find and understand. We can make the test coverage more obvious by naming each Test Method systematically based on which test condition it verifies. Regardless of which test method organization scheme we use, we would like the combination of the names of the test package, the Testcase Class, and the Test Method to convey at least the following information:
-· The name of the SUT class
-· The name of the method or feature being exercised
-· The important characteristics of any input values related to the exercising of the SUT
-· Anything relevant about the state of the SUT or its dependencies
+ï¿½ The name of the SUT class
+ï¿½ The name of the method or feature being exercised
+ï¿½ The important characteristics of any input values related to the exercising of the SUT
+ï¿½ Anything relevant about the state of the SUT or its dependencies
 These items are the "input" part of the test condition. Obviously, this is a lot to communicate in just two names but the reward is high if we can achieve it: We can tell exactly what test conditions we have tests for merely by looking at the names of the classes and methods in an outline view of our IDE. Figure 12.5 provides an example.
 
 www.it-ebooks.info
@@ -4225,7 +4231,7 @@ Test Naming Conventions
 159
 
 Figure 12.5 A production class with one Testcase Class for each test fixture. When we use the Testcase Class per Fixture pattern, the class name can describe the fixture, leaving the method name available for describing the inputs and expected outputs. Figure 12.5 also shows how useful it is to include the "expectations" side of the test condition:
-· The outputs (responses) expected when exercising the SUT · The expected post-exercise state of the SUT and its dependencies This information can be included in the name of the Test Method prefixed by "should." If this nomenclature makes the names too long,3 we can always access the expected outcome by looking at the body of the Test Method.
+ï¿½ The outputs (responses) expected when exercising the SUT ï¿½ The expected post-exercise state of the SUT and its dependencies This information can be included in the name of the Test Method prefixed by "should." If this nomenclature makes the names too long,3 we can always access the expected outcome by looking at the body of the Test Method.
 3 Many xUnit variants "encourage" us to start all our Test Method names with "test" so that these methods can be automatically detected and added to the Test Suite Object. This constrains our naming somewhat compared to variants that indicate test methods via method attributes or annotations.
 www.it-ebooks.info
 
@@ -4494,7 +4500,7 @@ Chapter 13, Testing with Databases, introduced a set of patterns specific to tes
 This raises an important point: We don't become experts in test automation overnight--these skills take time to develop. It also takes time to learn the various tools and patterns at our disposal. This chapter provides something of a roadmap for how to learn the patterns and acquire the skills. It introduces the concept of "test automation maturity," which is loosely based on the SEI's Capability Maturity Model (CMM).
 Test Automation Difficulty
 Some kinds of tests are harder to write than others. This difficulty arises partly because the techniques are more involved and partly because they are less well known and the tools to do this kind of test automation are less readily available. The following common kinds of tests are listed in approximate order of difficulty, from easiest to most difficult:
-1. Simple entity objects (Domain Model [PEAA]) · Simple business classes with no dependencies · Complex business classes with dependencies
+1. Simple entity objects (Domain Model [PEAA]) ï¿½ Simple business classes with no dependencies ï¿½ Complex business classes with dependencies
 175
 www.it-ebooks.info
 
@@ -4503,15 +4509,15 @@ www.it-ebooks.info
 Chapter 14 A Roadmap to Effective Test Automation
 
 2. Stateless service objects
-· Individual components via component tests
-· The entire business logic layer via Layer Tests (page 337)
+ï¿½ Individual components via component tests
+ï¿½ The entire business logic layer via Layer Tests (page 337)
 3. Stateful service objects
-· Customer tests via a Service Facade [CJ2EEP] using Subcutaneous Tests (see Layer Test)
-· Stateful components via component tests
+ï¿½ Customer tests via a Service Facade [CJ2EEP] using Subcutaneous Tests (see Layer Test)
+ï¿½ Stateful components via component tests
 4. "Hard-to-test" code
-· User interface logic exposed via Humble Dialog (see Humble Object on page 695)
-· Database logic
-· Multi-threaded software
+ï¿½ User interface logic exposed via Humble Dialog (see Humble Object on page 695)
+ï¿½ Database logic
+ï¿½ Multi-threaded software
 5. Object-oriented legacy software (software built without any tests)
 6. Non-object-oriented legacy software
 As we move down this list, the software becomes increasingly more challenging to test. The irony is that many teams "get their feet wet" by trying to retrofit tests onto an existing application. This puts them in one of the last two categories in this list, which is precisely where the most experience is required. Unfortunately, many teams fail to test the legacy software successfully, which may then prejudice them against trying automated testing, with or without test-driven development. If you find yourself trying to learn test automation by retrofitting tests onto legacy software, I have two pieces of advice for you: First, hire someone who has done it before to help you through this process. Second, read Michael Feathers' excellent book [WEwLC]; he covers many techniques specifically applicable to retrofitting tests.
@@ -4525,11 +4531,11 @@ Roadmap to Highly Maintainable Automated Tests
 
 177
 
-1. Exercise the happy path code · Set up a simple pre-test state of the SUT · Exercise the SUT by calling the method being tested
-2. Verify direct outputs of the happy path · Call Assertion Methods (page 362) on the SUT's responses · Call Assertion Methods on the post-test state
-3. Verify alternative paths · Vary the SUT method arguments · Vary the pre-test state of the SUT · Control indirect inputs of the SUT via a Test Stub (page 529)
-4. Verify indirect output behavior · Use Mock Objects (page 544) or Test Spies (page 538) to intercept and verify outgoing method calls
-5. Optimize test execution and maintainability · Make the tests run faster · Make the tests easy to understand and maintain · Design the SUT for testability · Reduce the risk of missed bugs
+1. Exercise the happy path code ï¿½ Set up a simple pre-test state of the SUT ï¿½ Exercise the SUT by calling the method being tested
+2. Verify direct outputs of the happy path ï¿½ Call Assertion Methods (page 362) on the SUT's responses ï¿½ Call Assertion Methods on the post-test state
+3. Verify alternative paths ï¿½ Vary the SUT method arguments ï¿½ Vary the pre-test state of the SUT ï¿½ Control indirect inputs of the SUT via a Test Stub (page 529)
+4. Verify indirect output behavior ï¿½ Use Mock Objects (page 544) or Test Spies (page 538) to intercept and verify outgoing method calls
+5. Optimize test execution and maintainability ï¿½ Make the tests run faster ï¿½ Make the tests easy to understand and maintain ï¿½ Design the SUT for testability ï¿½ Reduce the risk of missed bugs
 This ordering of needs isn't meant to imply that this is the order in which we might think about implementing any specific test.1 Rather, it is likely to be the order in which a project team might reasonably expect to learn about the techniques of test automation.
 Let's look at each of these points in more detail.
 Exercise the Happy Path Code
@@ -4547,9 +4553,9 @@ Verify Direct Outputs of the Happy Path
 Once the happy path is executing successfully, we can add result verification logic to turn our test into a Self-Checking Test (see page 26). This involves adding calls to Assertion Methods to compare the expected results with what actually occurred. We can easily make this change for any objects or values returned to the test by the SUT (e.g., "return values," "out parameters"). We can also call other methods on the SUT or use public fields to access the post-test state of the SUT; we can then call Assertion Methods on these values as well.
 Verify Alternative Paths
 At this point the happy path through the code is reasonably well tested. The alternative paths through the code are still Untested Code (see Production Bugs on page 268) so the next step is to write tests for these paths (whether we have already written the production code or we are striving to automate the tests that would drive us to implement them). The question to ask here is "What causes the alternative paths to be exercised?" The most common causes are as follows:
-· Different values passed in by the client as arguments
-· Different prior state of the SUT itself
-· Different results of invoking methods on components on which the SUT depends
+ï¿½ Different values passed in by the client as arguments
+ï¿½ Different prior state of the SUT itself
+ï¿½ Different results of invoking methods on components on which the SUT depends
 The first case can be tested by varying the logic in our tests that calls the SUT methods we are exercising and passing in different values as arguments. The second case involves initializing the SUT with a different starting state. Neither of these cases requires any "rocket science." The third case, however, is where things get interesting.
 Controlling Indirect Inputs
 Because the responses from other components are supposed to cause the SUT to exercise the alternative paths through the code, we need to get control
@@ -4578,10 +4584,10 @@ Chapter 14 A Roadmap to Effective Test Automation
 
 Optimize Test Execution and Maintenance
 At this point we should have automated tests for all the paths through our code. We may, however, have less than optimal tests:
-· We may have Slow Tests (page 253).
-· The tests may contain Test Code Duplication (page 213) that makes them hard to understand.
-· We may have Obscure Tests (page 186) that are hard to understand and maintain.
-· We may have Buggy Tests (page 260) that are caused by unreliable Test Utility Methods (page 599) or Conditional Test Logic (page 200).
+ï¿½ We may have Slow Tests (page 253).
+ï¿½ The tests may contain Test Code Duplication (page 213) that makes them hard to understand.
+ï¿½ We may have Obscure Tests (page 186) that are hard to understand and maintain.
+ï¿½ We may have Buggy Tests (page 260) that are caused by unreliable Test Utility Methods (page 599) or Conditional Test Logic (page 200).
 Make the Tests Run Faster
 Slow Tests is often the first behavior smell we need to address. To make tests run faster, we can reuse the test fixture across many tests--for example, by using some form of Shared Fixture (page 317). Unfortunately, this tactic typically produces its own share of problems. Replacing a DOC with a Fake Object (page 551) that is functionally equivalent but executes much faster is almost always a better solution. Use of a Fake Object builds on the techniques we learned for verifying indirect inputs and outputs.
 Make the Tests Easy to Understand and Maintain
@@ -4599,7 +4605,7 @@ What's Next?
 Test Utility Methods. We should verify the behavior of nontrivial Test Utility Methods using Test Utility Tests (see Test Utility Method).
 
 What's Next?
-This chapter concludes Part I, The Narratives. Chapters 1­14 have provided an overview of the goals, principles, philosophies, patterns, smells, and coding idioms related to writing effective automated tests. Part II, The Test Smells, and Part III, The Patterns, contain detailed descriptions of each of the smells and patterns introduced in these narrative chapters, complete with code samples.
+This chapter concludes Part I, The Narratives. Chapters 1ï¿½14 have provided an overview of the goals, principles, philosophies, patterns, smells, and coding idioms related to writing effective automated tests. Part II, The Test Smells, and Part III, The Patterns, contain detailed descriptions of each of the smells and patterns introduced in these narrative chapters, complete with code samples.
 
 www.it-ebooks.info
 
@@ -4657,13 +4663,13 @@ Obscure Test
 
 187
 
-· Eager Test: The test verifies too much functionality in a single Test Method.
-· Mystery Guest: The test reader is not able to see the cause and effect between fixture and verification logic because part of it is done outside the Test Method.
+ï¿½ Eager Test: The test verifies too much functionality in a single Test Method.
+ï¿½ Mystery Guest: The test reader is not able to see the cause and effect between fixture and verification logic because part of it is done outside the Test Method.
 The general problem of Verbose Tests--tests that use too much code to say what they need to say--can be further broken down into a number of root causes:
-· General Fixture: The test builds or references a larger fixture than is needed to verify the functionality in question.
-· Irrelevant Information: The test exposes a lot of irrelevant details about the fixture that distract the test reader from what really affects the behavior of the SUT.
-· Hard-Coded Test Data: Data values in the fixture, assertions, or arguments of the SUT are hard-coded in the Test Method, obscuring cause­ effect relationships between inputs and expected outputs.
-· Indirect Testing: The Test Method interacts with the SUT indirectly via another object, thereby making the interactions more complex.
+ï¿½ General Fixture: The test builds or references a larger fixture than is needed to verify the functionality in question.
+ï¿½ Irrelevant Information: The test exposes a lot of irrelevant details about the fixture that distract the test reader from what really affects the behavior of the SUT.
+ï¿½ Hard-Coded Test Data: Data values in the fixture, assertions, or arguments of the SUT are hard-coded in the Test Method, obscuring causeï¿½ effect relationships between inputs and expected outputs.
+ï¿½ Indirect Testing: The Test Method interacts with the SUT indirectly via another object, thereby making the interactions more complex.
 
 Obscure Test
 
@@ -4707,16 +4713,16 @@ loadAirportsAndFlightsFromFile("test-flights.csv"); // Exercise System List flig
 Obscure Test
 
 Impact
-The Mystery Guest makes it hard to see the cause­effect relationship between the test fixture (the pre-conditions of the test) and the expected outcome of the test. As a consequence, the tests don't fulfill the role of Tests as Documentation. Even worse, someone may modify or delete the external resource without realizing the impact this action will have when the tests are run. This behavior smell has its own name: Resource Optimism (see Erratic Test on page 228)!
+The Mystery Guest makes it hard to see the causeï¿½effect relationship between the test fixture (the pre-conditions of the test) and the expected outcome of the test. As a consequence, the tests don't fulfill the role of Tests as Documentation. Even worse, someone may modify or delete the external resource without realizing the impact this action will have when the tests are run. This behavior smell has its own name: Resource Optimism (see Erratic Test on page 228)!
 If the Mystery Guest is a Shared Fixture (page 317), it may also lead to Erratic Tests if other tests modify it.
 Root Cause
 A test depends on mysterious external resources, making it difficult to understand the behavior that it is verifying. Mystery Guests may take many forms:
-· A filename of an existing external file is passed to a method of the SUT; the contents of the file should determine the behavior of the SUT.
-· The contents of a database record identified by a literal key are read into an object that is then used by the test or passed to the SUT.
-· The contents of a file are read and used in calls to Assertion Methods to verify the expected outcome.
-· A Setup Decorator (page 447) is used to create a Shared Fixture, and objects in this fixture are then referenced via variables within the result verification logic.
-· A General Fixture is set up using Implicit Setup (page 424), and the Test Methods then access them via instance variables or class variables.
-All of these scenarios share a common outcome: It is hard to see the cause­effect relationship between the test fixture and the expected outcome of the test because
+ï¿½ A filename of an existing external file is passed to a method of the SUT; the contents of the file should determine the behavior of the SUT.
+ï¿½ The contents of a database record identified by a literal key are read into an object that is then used by the test or passed to the SUT.
+ï¿½ The contents of a file are read and used in calls to Assertion Methods to verify the expected outcome.
+ï¿½ A Setup Decorator (page 447) is used to create a Shared Fixture, and objects in this fixture are then referenced via variables within the result verification logic.
+ï¿½ A General Fixture is set up using Implicit Setup (page 424), and the Test Methods then access them via instance variables or class variables.
+All of these scenarios share a common outcome: It is hard to see the causeï¿½effect relationship between the test fixture and the expected outcome of the test because
 
 www.it-ebooks.info
 
@@ -4733,7 +4739,7 @@ If we must use a Shared Fixture or Implicit Setup, we should consider using evoc
 Cause: General Fixture
 The test builds or references a larger fixture than is needed to verify the functionality in question.
 Symptoms
-There seems to be a lot of test fixture being built--much more than would appear to be necessary for any particular test. It is hard to understand the cause­effect relationship between the fixture, the part of the SUT being exercised, and the expected outcome of a test.
+There seems to be a lot of test fixture being built--much more than would appear to be necessary for any particular test. It is hard to understand the causeï¿½effect relationship between the fixture, the part of the SUT being exercised, and the expected outcome of a test.
 Consider the following set of tests:
 public void testGetFlightsByFromAirport_OneOutboundFlight() throws Exception {
 setupStandardAirportsAndFlights(); FlightDto outboundFlight = findOneOutboundFlight(); // Exercise System List flightsAtOrigin = facade.getFlightsByOriginAirport(
@@ -4817,7 +4823,7 @@ Possible Solution
 The best way to get rid of Irrelevant Information in fixture setup logic is to replace direct calls to the constructor or Factory Methods [GOF] with calls to Parameterized Creation Methods (see Creation Method) that take only the relevant information as parameters. Fixture values that do not matter to the test (i.e., those that do not affect the expected outcome) should be defaulted within Creation Methods or replaced by Dummy Objects (page 728). In this way we say to the test reader, "The values you don't see don't affect the expected outcome." We can replace fixture values that appear in both the fixture setup and outcome verification parts of the test with suitably initialized named constants as long as we are using a Fresh Fixture approach to fixture setup.
 To hide Irrelevant Information in result verification logic, we can use assertions on entire Expected Objects (see State Verification), rather than asserting on individual fields, and we can create Custom Assertions (page 474) that hide complex procedural verification logic.
 Cause: Hard-Coded Test Data
-Data values in the fixture, assertions, or arguments of the SUT are hard-coded in the Test Method, obscuring cause­effect relationships between inputs and expected outputs.
+Data values in the fixture, assertions, or arguments of the SUT are hard-coded in the Test Method, obscuring causeï¿½effect relationships between inputs and expected outputs.
 Symptoms
 As test readers, we find it difficult to determine how various hard-coded (i.e., literal) values in the test are related to one another and which values should affect the behavior of the SUT. We may also encounter behavior smells such as Erratic Tests.
 
@@ -4958,11 +4964,11 @@ To increase our confidence in production code, we can write Self-Checking Tests 
 A related issue is that Conditional Test Logic makes writing the test correctly a more difficult task. Because the test itself cannot be tested easily, how do we know that it will actually detect the bugs it is intended to catch? [This is a general problem with Obscure Tests (page 186); they are more likely to result in Buggy Tests (page 260) than simple code.]
 Causes
 Test automaters may introduce Conditional Test Logic for several reasons:
-· They may use if statements to steer execution to a fail statement or to avoid executing certain pieces of test code when the SUT fails to return valid data.
-· They may use loops to verify the contents of collections of objects (Conditional Verification Logic). This may also result in an Obscure Test.
-· They may use Conditional Test Logic to verify complex objects or polymorphic data structures (another form of Conditional Verification Logic). This is just a Foreign Method [Fowler] implementation of the equals method.
-· They may use Conditional Test Logic to initialize the test fixture or Expected Object (see State Verification on page 462) so they can reuse a single test to verify several different cases (Flexible Test).
-· They may use if statements to avoid tearing down nonexistent fixture objects (Complex Teardown).
+ï¿½ They may use if statements to steer execution to a fail statement or to avoid executing certain pieces of test code when the SUT fails to return valid data.
+ï¿½ They may use loops to verify the contents of collections of objects (Conditional Verification Logic). This may also result in an Obscure Test.
+ï¿½ They may use Conditional Test Logic to verify complex objects or polymorphic data structures (another form of Conditional Verification Logic). This is just a Foreign Method [Fowler] implementation of the equals method.
+ï¿½ They may use Conditional Test Logic to initialize the test fixture or Expected Object (see State Verification on page 462) so they can reuse a single test to verify several different cases (Flexible Test).
+ï¿½ They may use if statements to avoid tearing down nonexistent fixture objects (Complex Teardown).
 
 Conditional Test Logic
 
@@ -5582,7 +5588,7 @@ Causes
 Tests may behave erratically for a number of reasons. The underlying cause can usually be determined through some persistent sleuthing by paying attention to patterns regarding how and when the tests fail. Some of the causes are common enough to warrant giving them names and specific advice for rectifying them.
 Cause: Interacting Tests Tests depend on other tests in some way. Note that Interacting Test Suites and Lonely Test are specific variations of Interacting Tests.
 Symptoms A test that works by itself suddenly fails in the following circumstances:
-· Another test is added to (or removed from) the suite. · Another test in the suite fails (or starts to pass). · The test (or another test) is renamed or moved in the source file. · A new version of the Test Runner is installed.
+ï¿½ Another test is added to (or removed from) the suite. ï¿½ Another test in the suite fails (or starts to pass). ï¿½ The test (or another test) is renamed or moved in the source file. ï¿½ A new version of the Test Runner is installed.
 Root Cause Interacting Tests usually arise when tests use a Shared Fixture (page 317), with one test depending in some way on the outcome of another test. The cause of Interacting Tests can be described from two perspectives:
 
 www.it-ebooks.info
@@ -5593,22 +5599,22 @@ Chapter 16 Behavior Smells
 
 Erratic Test
 
-· The mechanism of interaction
-· The reason for interaction
+ï¿½ The mechanism of interaction
+ï¿½ The reason for interaction
 The mechanism for interaction could be something blatantly obvious--for example, testing an SUT that includes a database--or it could be more subtle. Anything that outlives the lifetime of the test can lead to interactions; static variables can be depended on to cause Interacting Tests and, therefore, should be avoided in both the SUT and the Test Automation Framework (page 298)! See the sidebar "There's Always an Exception" on page 384 for an example of the latter problem. Singletons [GOF] and Registries [PEAA] are good examples of things to avoid in the SUT if at all possible. If we must use them, it is best to include a mechanism to reinitialize their static variables at the beginning of each test.
 Tests may interact for a number of reasons, either by design or by accident:
-· Depending on the fixture constructed by the fixture setup phase of another test
-· Depending on the changes made to the SUT during the exercise SUT phase of another test
-· A collision caused by some mutually exclusive action (which may be either of the problems mentioned above) between two tests run in the same test run
+ï¿½ Depending on the fixture constructed by the fixture setup phase of another test
+ï¿½ Depending on the changes made to the SUT during the exercise SUT phase of another test
+ï¿½ A collision caused by some mutually exclusive action (which may be either of the problems mentioned above) between two tests run in the same test run
 The dependencies may suddenly cease to be satisfied if the depended-on test
-· Is removed from the suite,
-· Is modified to no longer change the state of the SUT,
-· Fails in its attempt to change the state of the SUT, or
-· Is run after the test in question (because it was renamed or moved to a different Testcase Class; see page 373).
+ï¿½ Is removed from the suite,
+ï¿½ Is modified to no longer change the state of the SUT,
+ï¿½ Fails in its attempt to change the state of the SUT, or
+ï¿½ Is run after the test in question (because it was renamed or moved to a different Testcase Class; see page 373).
 Similarly, collisions may start occurring when the colliding test is
-· Added to the suite,
-· Passes for the first time, or
-· Runs before the dependent test.
+ï¿½ Added to the suite,
+ï¿½ Passes for the first time, or
+ï¿½ Runs before the dependent test.
 In many of these cases, multiple tests will fail. Some of the tests may fail for a good reason--namely, the SUT is not doing what it is supposed to do. Dependent tests may fail for the wrong reason--because they were coded to depend
 
 www.it-ebooks.info
@@ -5662,8 +5668,8 @@ Cause: Resource Leakage Tests or the SUT consume finite resources.
 Symptoms Tests run more and more slowly or start to fail suddenly. Reinitializing the Test Runner, SUT, or Database Sandbox (page 650) clears up the problem--only to have it reappear over time.
 Root Cause Tests or the SUT consume finite resources by allocating those resources and failing to free them afterward. This practice may make the tests run more slowly. Over time, all the resources are used up and tests that depend on them start to fail.
 This problem can be caused by one of two types of bugs:
-· The SUT fails to clean up the resources properly. The sooner we detect this behavior, the sooner we can track it down and fix it.
-· The tests themselves cause the resource leakage by allocating resources as part of fixture setup and failing to clean them up during fixture teardown.
+ï¿½ The SUT fails to clean up the resources properly. The sooner we detect this behavior, the sooner we can track it down and fix it.
+ï¿½ The tests themselves cause the resource leakage by allocating resources as part of fixture setup and failing to clean them up during fixture teardown.
 
 Erratic Test
 
@@ -5734,8 +5740,8 @@ A Test Run War can be very frustrating because the probability of it occurring i
 Root Cause
 A Test Run War can happen only when we have a globally Shared Fixture that various tests access and sometimes modify. This shared fixture could be a file that must be opened or read by either a test or the SUT, or it could consist of the records in a test database.
 Database contention can be caused by the following activities:
-· Trying to update or delete a record while another test is also updating the same record
-· Trying to update or delete a record while another test has a read lock (pessimistic locking) on the same record
+ï¿½ Trying to update or delete a record while another test is also updating the same record
+ï¿½ Trying to update or delete a record while another test has a read lock (pessimistic locking) on the same record
 File contention can be caused by an attempt to access a file that has already been opened by another instance of the test running from a different Test Runner.
 Possible Solution
 Using a Fresh Fixture is the preferred solution for a Test Run War. An even simpler solution is to give each Test Runner his or her own Database Sandbox. This
@@ -5770,8 +5776,8 @@ Erratic Test
 
 Root Cause
 Nondeterministic Tests are caused by using different values each time a test is run. Sometimes, of course, it is a good idea to use different values each time the same test is run. For example, Distinct Generated Values may legitimately be used as unique keys for objects stored in a database. Use of generated values as input to an algorithm where the behavior of the SUT is expected to differ for different values can cause Nondeterministic Tests, however, as in the following examples:
-· Integer values where negative (or even zero) values are treated differently by the system, or where there is a maximum allowable value. If we generate a value at random, the test could fail in some test runs and pass on others.
-· String values where the length of a string has minimum or maximum allowed values. This problem often occurs accidentally when we generate a random or unique numeric value and then convert it to a string representation without using an explicit format that guarantees the length is constant.
+ï¿½ Integer values where negative (or even zero) values are treated differently by the system, or where there is a maximum allowable value. If we generate a value at random, the test could fail in some test runs and pass on others.
+ï¿½ String values where the length of a string has minimum or maximum allowed values. This problem often occurs accidentally when we generate a random or unique numeric value and then convert it to a string representation without using an explicit format that guarantees the length is constant.
 It might seem like a good idea to use random values because they would improve our test coverage. Unfortunately, this tactic decreases our understanding of the test coverage and the repeatability of our tests (which violates the Repeatable Test principle; see page 26).
 Another potential cause of Nondeterministic Tests is the use of Conditional Test Logic (page 200) in our tests. Its inclusion can result in different code paths being executed on different test runs, which in turn makes our tests nondeterministic. A common "reason" cited for doing so is the Flexible Test (see Conditional Test Logic). Anything that makes the tests less than completely deterministic is a bad idea!
 Possible Solution
@@ -5890,9 +5896,9 @@ Symptoms
 A test that once passed suddenly starts failing when a new feature is added to the SUT or a bug is fixed.
 Root Cause
 Tests may fail because the functionality they are verifying has been modified. This outcome does not necessarily signal a case of Behavior Sensitivity because it is the whole reason for having regression tests. It is a case of Behavior Sensitivity in any of the following circumstances:
-· The functionality the regression tests use to set up the pre-test state of the SUT has been modified.
-· The functionality the regression tests use to verify the post-test state of the SUT has been modified.
-· The code the regression tests use to tear down the fixture has been changed.
+ï¿½ The functionality the regression tests use to set up the pre-test state of the SUT has been modified.
+ï¿½ The functionality the regression tests use to verify the post-test state of the SUT has been modified.
+ï¿½ The code the regression tests use to tear down the fixture has been changed.
 If the code that changed is not part of the SUT we are verifying, then we are dealing with Context Sensitivity. That is, we may be testing too large a SUT. In such a case, what we really need to do is to separate the SUT into the part we are verifying and the components on which that part depends.
 Possible Solution
 Any newly incorrect assumptions about the behavior of the SUT used during fixture setup may be encapsulated behind Creation Methods. Similarly, assumptions about the details of post-test state of the SUT can be encapsulated in Custom Assertions or Verification Methods. While these measures won't eliminate
@@ -5906,10 +5912,10 @@ Fragile Test
 the need to update test code when the assumptions change, they certainly do reduce the amount of test code that needs to be changed.
 Cause: Data Sensitivity Data Sensitivity occurs when a test fails because the data being used to test the SUT has been modified. This sensitivity most commonly arises when the contents of the test database change.
 Symptoms A test that once passed suddenly starts failing in any of the following circumstances:
-· Data is added to the database that holds the pre-test state of the SUT.
-· Records in the database are modified or deleted.
-· The code that sets up a Standard Fixture (page 305) is modified.
-· A Shared Fixture is modified before the first test that uses it.
+ï¿½ Data is added to the database that holds the pre-test state of the SUT.
+ï¿½ Records in the database are modified or deleted.
+ï¿½ The code that sets up a Standard Fixture (page 305) is modified.
+ï¿½ A Shared Fixture is modified before the first test that uses it.
 In all of these cases, we must be using a Standard Fixture, which may be either a Fresh Fixture (page 311) or a Shared Fixture such as a Prebuilt Fixture (see Shared Fixture).
 Root Cause Tests may fail because the result verification logic in the test looks for data that no longer exists in the database or uses search criteria that accidentally include newly added records. Another potential cause of failure is that the SUT is being exercised with inputs that reference missing or modified data and, therefore, the SUT behaves differently.
 In all cases, the tests make assumptions about which data exist in the database--and those assumptions are violated.
@@ -5949,8 +5955,8 @@ Symptoms
 A test that once passed suddenly starts failing for mysterious reasons. Unlike with an Erratic Test (page 228), the test produces consistent results when run repeatedly over a short period of time. What is different is that it consistently fails regardless of how it is run.
 Root Cause
 Tests may fail for two reasons:
-· The functionality they are verifying depends in some way on the time or date.
-· The behavior of some other code or system(s) on which the SUT depends has changed.
+ï¿½ The functionality they are verifying depends in some way on the time or date.
+ï¿½ The behavior of some other code or system(s) on which the SUT depends has changed.
 A major source of Context Sensitivity is confusion about which SUT we are intending to verify. Recall that the SUT is whatever piece of software we are intending to verify. When unit testing, it should be a very small part of the overall system or application. Failure to isolate the specific unit (e.g., class or method) is bound to lead to Context Sensitivity because we end up testing too much software all at once. Indirect inputs that should be controlled by the test are then left to chance. If someone then modifies a depended-on component (DOC), our tests fail.
 To eliminate Context Sensitivity, we must track down which indirect input to the SUT has changed and why. If the system contains any date- or time-related logic, we should examine this logic to see whether the length of the month or other similar factors could be the cause of the problem.
 If the SUT depends on input from any other systems, we should examine these inputs to see if anything has changed recently. Logs of previous interactions
@@ -6012,8 +6018,8 @@ If this case is an exception, we needn't worry about it. If most test failures r
 
 Causes
 Frequent Debugging is caused by a lack of Defect Localization (see page 22) in our suite of automated tests. The failed tests should tell us what went wrong either through their individual failure messages (see Assertion Message on page 370) or through the pattern of test failures. If they don't:
-· We may be missing the detailed unit tests that would point out a logic error inside an individual class.
-· We may be missing the component tests for a cluster of classes (i.e., a component) that would point out an integration error between the individual classes. This can happen when we use Mock Objects (page 544) extensively to replace depended-on objects but the unit tests of the depended-on objects don't match the way the Mock Objects are programmed to behave.
+ï¿½ We may be missing the detailed unit tests that would point out a logic error inside an individual class.
+ï¿½ We may be missing the component tests for a cluster of classes (i.e., a component) that would point out an integration error between the individual classes. This can happen when we use Mock Objects (page 544) extensively to replace depended-on objects but the unit tests of the depended-on objects don't match the way the Mock Objects are programmed to behave.
 I've encountered this problem most frequently when I wrote higher-level (functional or component) tests but failed to write all the unit tests for the individual methods. (Some people would call this approach storytest-driven development to distinguish it from unit test-driven development, in which every little bit of code is pulled into existence by a failing unit test.)
 Frequent Debugging can also be caused by Infrequently Run Tests (see Production Bugs on page 268). If we run our tests after every little change we make to the software, we can easily remember what we changed since the last time we ran the tests. Thus, when a test fails, we don't have to spend a lot
 
@@ -6098,9 +6104,9 @@ The tests take long enough to run that developers don't run them every time they
 Impact
 Slow Tests obviously have a direct cost: They reduce the productivity of the person running the test. When we are test driving the code, we'll waste precious seconds every time we run our tests; when it is time to run all the tests before we commit our changes, we'll have an even more significant wait time.
 Slow Tests also have many indirect costs:
-· The bottleneck created by holding the "integration token" longer because we need to wait for the tests to run after merging all our changes.
-· The time during which other people are distracted by the person waiting for his or her test run to finish.
-· The time spent in debuggers finding a problem that was inserted sometime after the last time we ran the test. The longer it has been since the test was run, the less likely we are to remember exactly what we did to break the test. This cost is a result of the breakdown of the rapid feedback that automated unit tests provide.
+ï¿½ The bottleneck created by holding the "integration token" longer because we need to wait for the tests to run after merging all our changes.
+ï¿½ The time during which other people are distracted by the person waiting for his or her test run to finish.
+ï¿½ The time spent in debuggers finding a problem that was inserted sometime after the last time we ran the test. The longer it has been since the test was run, the less likely we are to remember exactly what we did to break the test. This cost is a result of the breakdown of the rapid feedback that automated unit tests provide.
 A common reaction to Slow Tests is to immediately go for a Shared Fixture (page 317). Unfortunately, this approach almost always results in other problems, including Erratic Tests (page 228). A better solution is to use a Fake Object (page 551) to replace slow components (such as the database) with faster ones. However, if all else fails and we must use some kind of Shared Fixture, we should make it immutable if at all possible.
 
 Troubleshooting Advice
@@ -6234,7 +6240,7 @@ Chapter 17 Project Smells
 
 Buggy Tests
 
-· Learn to write the tests properly · Refactor the legacy code to make test automation easier and more robust · Write the tests first Failure to address these project-level causes guarantees that the problems will recur in the near future.
+ï¿½ Learn to write the tests properly ï¿½ Refactor the legacy code to make test automation easier and more robust ï¿½ Write the tests first Failure to address these project-level causes guarantees that the problems will recur in the near future.
 
 www.it-ebooks.info
 
@@ -6285,9 +6291,9 @@ Symptoms
 Development of new functionality slows down. Every time we add some new functionality, we need to make extensive changes to the existing tests. Developers or test automaters may tell the project manager or coach that they need a "test refactoring/cleanup iteration."
 If we have been tracking the amount of time we spend writing the new tests and modifying existing tests separately from the time we spend implementing the code to make the tests pass, we notice that most of the time is spent modifying the existing tests.
 Most test maintainability issues are accompanied by other smells, such as the following:
-· A Fragile Test (page 239) indicates that tests are too closely coupled to the SUT.
-· A Fragile Fixture (see Fragile Test) signals that too many tests depend on the same fixture design (Standard Fixture on page 305), which leads to High Test Maintenance Cost.
-· An Erratic Test (page 228) may be a sign that a Shared Fixture (page 317) is causing our problem.
+ï¿½ A Fragile Test (page 239) indicates that tests are too closely coupled to the SUT.
+ï¿½ A Fragile Fixture (see Fragile Test) signals that too many tests depend on the same fixture design (Standard Fixture on page 305), which leads to High Test Maintenance Cost.
+ï¿½ An Erratic Test (page 228) may be a sign that a Shared Fixture (page 317) is causing our problem.
 
 High Test Maintenance Cost
 
@@ -6366,8 +6372,8 @@ The number of tests being executed in a test suite has declined (or has not incr
 Root Cause
 Lost Tests can be caused by either a Test Method (page 348) or a Testcase Class (page 373) that has been disabled or has never been added to the AllTests Suite (see Named Test Suite on page 592).
 Tests can be accidentally left out (i.e., never run) of test suite in the following circumstances:
-· We forget to add the [test] attribute to the Test Method, or we accidentally use a method name that doesn't match the naming convention used by the Test Discovery (page 393) mechanism.
-· We forget to add a call to suite.addTest to add the Test Method to the Test Suite Object (page 387) when we are automating tests in a Test Automation Framework (page 298) that supports only Test Enumeration (page 399).
+ï¿½ We forget to add the [test] attribute to the Test Method, or we accidentally use a method name that doesn't match the naming convention used by the Test Discovery (page 393) mechanism.
+ï¿½ We forget to add a call to suite.addTest to add the Test Method to the Test Suite Object (page 387) when we are automating tests in a Test Automation Framework (page 298) that supports only Test Enumeration (page 399).
 
 Production Bugs
 
@@ -6379,12 +6385,12 @@ Chapter 17 Project Smells
 
 Production Bugs
 
-· We forget to add a call to the Test Method explicitly in the Test Suite Procedure (see Test Suite Object) in procedural-language variations of xUnit.
-· We forget to add the test suite to the Suite of Suites (see Test Suite Object) or forget to add the [Test Fixture] attribute to the Testcase Class.
+ï¿½ We forget to add a call to the Test Method explicitly in the Test Suite Procedure (see Test Suite Object) in procedural-language variations of xUnit.
+ï¿½ We forget to add the test suite to the Suite of Suites (see Test Suite Object) or forget to add the [Test Fixture] attribute to the Testcase Class.
 Tests that ran in the past may have been disabled in any of the following ways:
-· We renamed the Test Method to not match the pattern that causes Test Discovery to include the test in the test suite (e.g., the method name starts with "test . . .").
-· We added an [Ignore] attribute in variants of xUnit that use method attributes to indicate Test Methods.
-· We commented out (or deleted) the code that adds the test (or suite) to the suite explicitly.
+ï¿½ We renamed the Test Method to not match the pattern that causes Test Discovery to include the test in the test suite (e.g., the method name starts with "test . . .").
+ï¿½ We added an [Ignore] attribute in variants of xUnit that use method attributes to indicate Test Methods.
+ï¿½ We commented out (or deleted) the code that adds the test (or suite) to the suite explicitly.
 Typically, a Lost Test occurs when a test is failing and someone disables it to avoid having to wade through the failing tests when running other tests. It may also occur accidentally, of course.
 Possible Solution
 There are a number of ways to avoid introducing Lost Tests. We can use a Single Test Suite (see Named Test Suite) to run a single Test
@@ -6803,13 +6809,13 @@ Data-Driven Test
 Framework is a generic Data-Driven Test interpreter that reads the input file and finds all tables in it. It looks in the top-left cell of each table for a fixture classname and then searches our test executable for that class. When it finds a class, it creates an instance of the class and passes control to that instance as it reads each row and column of the table. We can override methods defined by the framework to specify what should happen for each cell in the table. A Fit fixture, then, is an adapter that Fit calls to interpret a table of data and invoke methods on the SUT.
 The Fit table can also contain expected results from the SUT. Fit compares the specified values with the actual values returned by the SUT. Unlike Assertion Methods (page 362) in xUnit, however, Fit does not abandon a test at the first value that does not match the expected value. Instead, it colors in each cell in the table, with green cells indicating actual values that matched the expected values and red cells indicating wrong or unexpected values.
 Using Fit offers several advantages:
-· There is much less code to write than when we build our own test Interpreter [GOF].
-· The output makes sense to a business person, not just a technical person.
-· The tests don't stop at the first failed assertion. Fit has a way of communicating multiple failures/errors in a way that allows us to see the failure patterns very easily.
-· There are a plethora of fixture types available to subclass or use as is.
+ï¿½ There is much less code to write than when we build our own test Interpreter [GOF].
+ï¿½ The output makes sense to a business person, not just a technical person.
+ï¿½ The tests don't stop at the first failed assertion. Fit has a way of communicating multiple failures/errors in a way that allows us to see the failure patterns very easily.
+ï¿½ There are a plethora of fixture types available to subclass or use as is.
 So why wouldn't we use Fit for all our unit testing instead of xUnit? The main disadvantages of using Fit are described here:
-· The test scenarios need to be very well understood before we can build the Fit fixture. We then need to translate each test's logic into a tabular representation; this isn't always a good fit, especially for developers who are used to thinking procedurally. While it may be appropriate to have testers who can write the Fit fixtures for customer tests, this approach wouldn't be appropriate for true unit tests unless we had close to a 1:1 tester-to-developer ratio.
-· The tests need to employ the same SUT interaction logic in each test.5 To run several different styles of tests, we would probably have to build one or more different fixtures for each style of test. Building a new fixture is typically more complex than writing a few Test Methods (page 348).
+ï¿½ The test scenarios need to be very well understood before we can build the Fit fixture. We then need to translate each test's logic into a tabular representation; this isn't always a good fit, especially for developers who are used to thinking procedurally. While it may be appropriate to have testers who can write the Fit fixtures for customer tests, this approach wouldn't be appropriate for true unit tests unless we had close to a 1:1 tester-to-developer ratio.
+ï¿½ The tests need to employ the same SUT interaction logic in each test.5 To run several different styles of tests, we would probably have to build one or more different fixtures for each style of test. Building a new fixture is typically more complex than writing a few Test Methods (page 348).
 5 The tabular data must be injected into the SUT during the fixture setup or exercise SUT phases or retrieved from the SUT during the result verification phase.
 
 Data-Driven Test
@@ -6823,13 +6829,13 @@ Chapter 18 Test Strategy Patterns
 Data-Driven Test
 
 Although many different fixture types are available to subclass or use as is, their use in this way is yet another thing that developers would be required to learn to do their jobs. Even then, not all unit tests are amenable to automation using Fit.
-· Fit tests aren't normally integrated into developers' regression tests that are run via xUnit. Instead, these tests must be run separately--which introduces the possibility that they will not be run at each check-in. Some teams include Fit tests as part of their continuous integration build process to partially mitigate this issue. Other teams have reported great success having a second "customer" build service or server that runs all the customer tests.
+ï¿½ Fit tests aren't normally integrated into developers' regression tests that are run via xUnit. Instead, these tests must be run separately--which introduces the possibility that they will not be run at each check-in. Some teams include Fit tests as part of their continuous integration build process to partially mitigate this issue. Other teams have reported great success having a second "customer" build service or server that runs all the customer tests.
 Each of these issues is potentially surmountable, of course. In general, xUnit is a more appropriate framework for unit testing than Fit; the reverse is true for customer tests.
 Variation: Naive xUnit Test Interpreter
 When we have a small number of Data-Driven Tests that we wish to run as part of an xUnit-based Scripted Test strategy, the simplest implementation is to write a Test Method containing a loop that reads one set of input data values from the file along with the expected results. This is the equivalent of converting a single Parameterized Test and all its callers into a Tabular Test (see Parameterized Test). As with a Tabular Test, this approach to building the Data-Driven Test interpreter will result in a single Testcase Object (page 382) with many assertions. This has several ramifications:
-· The entire set of Data-Driven Tests will count as a single test. Hence, converting a set of Parameterized Tests into a single Data-Driven Test will reduce the count of tests executed.
-· We will stop executing the Data-Driven Test on the first failure or error. As a consequence, we will lose a lot of our Defect Localization (see page 22). Some variants of xUnit do allow us to specify that failed assertions shouldn't abort execution of the Test Method.
-· We need to make sure our assertion failures tell us which subtest we were executing when the failure occurred.
+ï¿½ The entire set of Data-Driven Tests will count as a single test. Hence, converting a set of Parameterized Tests into a single Data-Driven Test will reduce the count of tests executed.
+ï¿½ We will stop executing the Data-Driven Test on the first failure or error. As a consequence, we will lose a lot of our Defect Localization (see page 22). Some variants of xUnit do allow us to specify that failed assertions shouldn't abort execution of the Test Method.
+ï¿½ We need to make sure our assertion failures tell us which subtest we were executing when the failure occurred.
 We could address the last two issues by including a try/catch statement inside the loop but surrounding the test logic and then continuing the code's execution. Nevertheless, we still need to find a way to report the test results in a meaningful way (e.g., "Failed subtests 1, 3, and 6 with . . .").
 
 www.it-ebooks.info
@@ -6880,9 +6886,9 @@ Data-Driven Test
 
 295
 
-· An action that tells the Data-Driven Test interpreter which test logic to run (e.g., crossref)
-· The input to be passed to the SUT--in this case, the sourceXml element
-· The HTML we expect the SUT to produce (in the expectedHtml element)
+ï¿½ An action that tells the Data-Driven Test interpreter which test logic to run (e.g., crossref)
+ï¿½ The input to be passed to the SUT--in this case, the sourceXml element
+ï¿½ The HTML we expect the SUT to produce (in the expectedHtml element)
 These three components are wrapped up in a testsuite element.
 <testsuite id="CrossRefHandlerTest"> <test id="extref"> <action>crossref</action> <sourceXml> <extref id='abc'/> </sourceXml> <expectedHtml> <a href='abc.html'>abc</a> </expectedHtml> </test> <test id="TestTerm"> <action>crossref</action> <sourceXml> <testterm id='abc'/> </sourceXml> <expectedHtml> <a href='abc.html'>abc</a> </expectedHtml> </test> <test id="TestTerm Plural"> <action>crossref</action> <sourceXml> <testterms id='abc'/> </sourceXml> <expectedHtml> <a href='abc.html'>abcs</a> </expectedHtml> </test>
 </testsuite>
@@ -7067,8 +7073,8 @@ Minimal Fixture
 Implementation Notes
 We design a fixture that includes only those objects that are absolutely necessary to express the behavior that the test verifies. Another way to phrase this is "If the object is not important to understand the test, it is important not to include it in the fixture."
 To build a Minimal Fixture, we ruthlessly remove anything from the fixture that does not help the test communicate how the SUT should behave. Two forms of "minimization" can be considered:
-· We can eliminate objects entirely. That is, we don't even build the objects as part of the fixture. If the object isn't necessary to prove something about how the SUT behaves, we don't include it at all.
-· We can hide unnecessary attributes of the object when they don't contribute to the understanding of the expected behavior.
+ï¿½ We can eliminate objects entirely. That is, we don't even build the objects as part of the fixture. If the object isn't necessary to prove something about how the SUT behaves, we don't include it at all.
+ï¿½ We can hide unnecessary attributes of the object when they don't contribute to the understanding of the expected behavior.
 A simple way to find out whether an object is necessary as part of the fixture is to remove it. If the test fails as a result, the object was probably necessary in some way. Of course, it may have been necessary only as an argument to some method we are not interested in or as an attribute that is never used (even though the object to which the attribute belongs is required for some reason). Including these kinds of objects as part of fixture setup definitely contributes to Obscure Tests (page 186). We can eliminate these unnecessary objects in one of two ways: (1) by hiding them or (2) by eliminating the need for them by passing in Dummy Objects (page 728) or using Entity Chain Snipping (see Test Stub on page 529). If the SUT actually accesses the object as it is executing the logic under test, however, we may be forced to include the object as part of the test fixture.
 Having determined that the object is necessary for the execution of the test, we must now ask whether the object is helpful in understanding the test. If we were to initialize it "off-stage," would that make it harder to understand the test? Would the object lead to an Obscure Test by acting as a Mystery Guest (see Obscure Test)? If so, we want to keep the object visible. Boundary values are a good example of a case in which we do want to keep the objects and attributes that take on the boundary values visible.
 If we have established that the object or attribute isn't necessary for understanding the test, we should make every effort to eliminate it from the Test Method (page 348), albeit not necessarily from the test fixture. Creation Methods (page 415) are a common way of achieving this goal. We can hide the attributes of objects that don't affect the outcome of the test but that are needed for construction of the object by using Creation Methods to fill in all
@@ -7123,7 +7129,7 @@ Fixture (a Fresh Fixture) or whether we will build it once as a Shared Fixture a
 When to Use It
 When I was reviewing an early draft of this book with Series Editor Martin Fowler, he asked me, "Do people actually do this?" This question exemplifies the philosophical divide of fixture design. Coming from an agile background, Martin lets each test pull a fixture into existence. If several tests happen to need the same fixture, then it makes sense to factor it out into the setUp method and split the class into one Testcase Class per Fixture (page 631). It doesn't even occur to Martin to design a Standard Fixture that all tests can use. So who uses them?
 Standard Fixtures are something of a tradition in the testing (quality assessment) community. It is very commonplace to define a large Standard Fixture that is then used as a test bed for testing activities. This approach makes a lot of sense in the context of manual execution of many customer tests because it eliminates the need for each tester to spend a lot of time setting up the test environment for each customer test and it allows several testers to work in the same test environment at the same time. Some test automaters also use Standard Fixtures when defining their automated customer tests. This strategy is especially prevalent when test automaters use a Shared Fixture, for obvious reasons.
-In the xUnit community, use of a Standard Fixture simply to avoid designing a Minimal Fixture (page 302) for each test is considered undesirable and has been given the name General Fixture (see Obscure Test on page 186). A more accepted example is the use of Implicit Setup (page 424) in conjunction with Testcase Class per Fixture because only a few Test Methods (page 348) share the design of the fixture and they do so because they need the same design. As we make a Standard Fixture more reusable across many tests with disparate needs, it tends to grow larger and more complex. This trend can lead to a Fragile Fixture (see Fragile Test on page 239) as the needs of new tests introduce changes that break existing clients of the Standard Fixture. Depending on how we go about building the Standard Fixture, we may also find ourselves entertaining a Mystery Guest (see Obscure Test) if the cause­effect relationships between the fixture and outcome are not easy to discern either because the fixture setup is hidden from the test or because it is not clear which characteristics of the referenced part of the Standard Fixture serve as pre-conditions for the test.
+In the xUnit community, use of a Standard Fixture simply to avoid designing a Minimal Fixture (page 302) for each test is considered undesirable and has been given the name General Fixture (see Obscure Test on page 186). A more accepted example is the use of Implicit Setup (page 424) in conjunction with Testcase Class per Fixture because only a few Test Methods (page 348) share the design of the fixture and they do so because they need the same design. As we make a Standard Fixture more reusable across many tests with disparate needs, it tends to grow larger and more complex. This trend can lead to a Fragile Fixture (see Fragile Test on page 239) as the needs of new tests introduce changes that break existing clients of the Standard Fixture. Depending on how we go about building the Standard Fixture, we may also find ourselves entertaining a Mystery Guest (see Obscure Test) if the causeï¿½effect relationships between the fixture and outcome are not easy to discern either because the fixture setup is hidden from the test or because it is not clear which characteristics of the referenced part of the Standard Fixture serve as pre-conditions for the test.
 A Standard Fixture will also take longer to build than a Minimal Fixture because there is more fixture to construct. When we are building a Fresh Fixture for each Testcase Object (page 382), this effort can lead to Slow Tests (page 253), especially if the fixture setup involves a database. (See the sidebar "Unit Test Rulz"
 
 www.it-ebooks.info
@@ -7133,7 +7139,7 @@ Standard Fixture
 307
 
 Unit Test Rulz
-Michael Feathers of Object Mentor writes: I've used these rules with a large number of teams. They encourage good design and rapid feedback and they seem to help teams avoid a lot of trouble. A test is not a unit test if: · It talks to the database. · It communicates across the network. · It touches the file system. · It can't run correctly at the same time as any of your other unit tests. · You have to do special things to your environment (such as editing config files) to run it. Tests that do these things aren't bad. Often they are worth writing, and they can be written in a unit test harness. However, it is important to be able to separate them from true unit tests so that we can keep a set of tests that we can run fast whenever we make our changes. http://www.objectmentor.com
+Michael Feathers of Object Mentor writes: I've used these rules with a large number of teams. They encourage good design and rapid feedback and they seem to help teams avoid a lot of trouble. A test is not a unit test if: ï¿½ It talks to the database. ï¿½ It communicates across the network. ï¿½ It touches the file system. ï¿½ It can't run correctly at the same time as any of your other unit tests. ï¿½ You have to do special things to your environment (such as editing config files) to run it. Tests that do these things aren't bad. Often they are worth writing, and they can be written in a unit test harness. However, it is important to be able to separate them from true unit tests so that we can keep a set of tests that we can run fast whenever we make our changes. http://www.objectmentor.com
 
 Standard Fixture
 
@@ -7434,7 +7440,7 @@ Shared Fixture
 developers must run continuously (e.g., Master Data and GUI test suites are not required to check in, as they are run by Cruise Control and are areas that change infrequently).
 Two of the most interesting solutions recently (aside from the inmemory framework) are the test server and the clustering framework.
 The test server (named the "check-in" box here) is actually quite useful and has proven to be reliable and robust. We bought an Opteron box that is roughly twice as fast as the development boxes (really, the fastest box we could find). The server has an account set up for each development machine in the pit. Using the UNIX tool rsynch, the Eclipse workspace is synchronized with the user's corresponding server account file system. A series of shell scripts then recreates the database on the server for the remote account and runs all the development tests. When the tests have completed, a list of times to run each test is dumped to the console, along with a MyTestSuite.java class containing all the test failures, which the developer can use to run locally to fix any tests that have broken. The biggest advantage the remote server has provided is that it makes running a large number of tests feel fast again, because the developer can continue working while he or she waits for the results of the test server to come back.
-The clustering framework (based on Condor) was quite fast but had the defect that it had to ship the entire workspace (11MB) to all the nodes on the network (×20), which had a significant cost, especially when a dozen pairs are using it. In comparison, the test server uses rsynch, which copies only the files that are new or different in the developer's workspace. The clustering framework also proved to be less reliable than the server solution, frequently not returning any status of the test run. There were also some tests that would not run reliably on the framework. Since it gave us roughly the same performance as the "check-in" test server, we have put this solution on the back burner.
+The clustering framework (based on Condor) was quite fast but had the defect that it had to ship the entire workspace (11MB) to all the nodes on the network (ï¿½20), which had a significant cost, especially when a dozen pairs are using it. In comparison, the test server uses rsynch, which copies only the files that are new or different in the developer's workspace. The clustering framework also proved to be less reliable than the server solution, frequently not returning any status of the test run. There were also some tests that would not run reliably on the framework. Since it gave us roughly the same performance as the "check-in" test server, we have put this solution on the back burner.
 Further Reading A more detailed description of the first experience can be found at http:// FasterTestsPaper.gerardmeszaros.com.
 
 Shared Fixture
@@ -7655,9 +7661,9 @@ Back Door Manipulation
 more flexibility and allows us to use the Data Loader even when the system state is stored somewhere other than a relational database.
 If the data store is external to the SUT, such as in a relational database, the Data Loader can be "just another application" that writes to that data store. It would use the database in much the same way as the SUT but would get its inputs from a file rather than from wherever the SUT normally gets its inputs (e.g., other "upstream" programs). When we are using an object relational mapping (ORM) tool to access the database from our SUT, a simple way to build the Data Loader is to use the same domain objects and mappings in our Data Loader. We just create the desired objects in memory and commit the ORM's unit of work to save them into the database.
 If the SUT stores data in internal data structures (e.g., in memory), the Data Loader may need to be an interface provided by the SUT itself. The following characteristics differentiate it from the normal functionality provided by the SUT:
-· It is used only by the tests.
-· It reads the data from a file rather than wherever the SUT normally gets the data.
-· It bypasses a lot of the "edit checks" (input validation) normally done by the SUT.
+ï¿½ It is used only by the tests.
+ï¿½ It reads the data from a file rather than wherever the SUT normally gets the data.
+ï¿½ It bypasses a lot of the "edit checks" (input validation) normally done by the SUT.
 The input files may be simple flat files containing comma- or tab-delimited text, or they could be structured using XML. DbUnit is an extension of JUnit that implements Data Loader for fixture setup.
 Variation: Database Extraction Script
 When the SUT stores its state in a database that it accesses as it runs, we can take advantage of this structure to do Back Door Verification. We simply use a database script to extract data from the test database and verify that it contains the right data either by comparing it to previously prepared "extract" files or by ensuring that specific queries return the right number of records.
@@ -8248,10 +8254,10 @@ SUT
 
 How It Works
 We design each test to have four distinct phases that are executed in sequence: fixture setup, exercise SUT, result verification, and fixture teardown.
-· In the first phase, we set up the test fixture (the "before" picture) that is required for the SUT to exhibit the expected behavior as well as anything you need to put in place to be able to observe the actual outcome (such as using a Test Double; see page 522).
-· In the second phase, we interact with the SUT.
-· In the third phase, we do whatever is necessary to determine whether the expected outcome has been obtained.
-· In the fourth phase, we tear down the test fixture to put the world back into the state in which we found it.
+ï¿½ In the first phase, we set up the test fixture (the "before" picture) that is required for the SUT to exhibit the expected behavior as well as anything you need to put in place to be able to observe the actual outcome (such as using a Test Double; see page 522).
+ï¿½ In the second phase, we interact with the SUT.
+ï¿½ In the third phase, we do whatever is necessary to determine whether the expected outcome has been obtained.
+ï¿½ In the fourth phase, we tear down the test fixture to put the world back into the state in which we found it.
 
 Why We Do This
 The test reader must be able to quickly determine what behavior the test is verifying. It can be very confusing when various behaviors of the SUT are being invoked--some to set up the pre-test state (fixture) of the SUT, others to exercise
@@ -8367,16 +8373,16 @@ Why We Do This
 Encoding the expected outcome using Conditional Test Logic (page 200) is very verbose and makes tests hard to read and understand. It is also much more likely to lead to Test Code Duplication (page 213) and Buggy Tests (page 260). Assertion Methods help us avoid these issues by moving that complexity into reusable Test Utility Methods (page 599); these methods can then be verified as working correctly using Test Utility Tests (see Test Utility Method).
 Implementation Notes
 Although all members of the xUnit family provide Assertion Methods, they do so with a fair degree of variability. The key implementation considerations are as follows:
-· How to call the Assertion Methods
-· How to choose the best Assertion Method to call
-· What information to include in the Assertion Message (page 370)
+ï¿½ How to call the Assertion Methods
+ï¿½ How to choose the best Assertion Method to call
+ï¿½ What information to include in the Assertion Message (page 370)
 
 Assertion Method
 
 Calling Built-in Assertion Methods
 The way the Assertion Methods are called from within the Test Method (page 348) varies from language to language and from framework to framework. The language features determine what is possible and preferable, while the framework builders chose which options to use. The names these developers chose for the Assertion Methods were influenced by how they chose to access them. Here are the most common options for accessing the Assertion Methods:
-· The Assertion Methods are inherited from a Testcase Superclass (page 638) provided by the framework. Such methods may be invoked as though they were provided locally on the Testcase Class (page 373). The original version of Java's JUnit, for example, used this approach by providing a Testcase Superclass that inherits from the class Assert, which contains the actual Assertion Methods.
-· The Assertion Methods are provided via a globally accessible class or module. They are invoked using the class or module name to fully qualify the Assertion Method name. NUnit, for example, uses this approach [e.g., Assert.isTrue(x);]. JUnit does allow assertions to be invoked as static
+ï¿½ The Assertion Methods are inherited from a Testcase Superclass (page 638) provided by the framework. Such methods may be invoked as though they were provided locally on the Testcase Class (page 373). The original version of Java's JUnit, for example, used this approach by providing a Testcase Superclass that inherits from the class Assert, which contains the actual Assertion Methods.
+ï¿½ The Assertion Methods are provided via a globally accessible class or module. They are invoked using the class or module name to fully qualify the Assertion Method name. NUnit, for example, uses this approach [e.g., Assert.isTrue(x);]. JUnit does allow assertions to be invoked as static
 
 www.it-ebooks.info
 
@@ -8387,15 +8393,15 @@ Chapter 19 xUnit Basics Patterns
 Assertion Method
 
 methods on the Assert class [e.g., Assert.assertTrue(x)] but this is not usually necessary because they are inherited via the Testcase Superclass.
-· The Assertion Methods are provided as "mix-ins" or macros. Ruby's Test:: Unit, for example, provides the Assertion Methods in a module called Assert that can be included in any class,2 thereby allowing the Assertion Methods to be used as though defined within the Testcase Class [e.g., assert_equal(a,b)]. CppUnit, by contrast, defines the Assertion Methods as macros, which are expanded before the compiler sees the code.
+ï¿½ The Assertion Methods are provided as "mix-ins" or macros. Ruby's Test:: Unit, for example, provides the Assertion Methods in a module called Assert that can be included in any class,2 thereby allowing the Assertion Methods to be used as though defined within the Testcase Class [e.g., assert_equal(a,b)]. CppUnit, by contrast, defines the Assertion Methods as macros, which are expanded before the compiler sees the code.
 
 Assertion Messages
 Assertion Methods typically take an optional Assertion Message as a text parameter that is included in the output when the assertion fails. This structure allows the test automater to explain to the test maintainer exactly which Assertion Method failed and to better explain what should have occurred. The error detected by the test will be much easier to debug if the Assertion Method provides more information about why it failed. Choosing the right Assertion Method goes a long way toward achieving this goal because many of the built-in Assertion Methods provide useful diagnostic information about the values of the arguments. This is especially true for Equality Assertions.
 One of the biggest differences between members of the xUnit family is where the optional Assertion Message appears in the argument list. Most members tack it on to the end as an optional argument. JUnit, however, makes the Assertion Message the first argument when it is present.
 Choosing the Right Assertion
 We have two goals for the calls to Assertion Methods in our Test Methods:
-· Fail the test when something other than the expected outcome occurs
-· Document how the SUT is supposed to behave (i.e., Tests as Documentation)
+ï¿½ Fail the test when something other than the expected outcome occurs
+ï¿½ Document how the SUT is supposed to behave (i.e., Tests as Documentation)
 To achieve these goals we must strive to use the most appropriate Assertion Method. While the syntax and naming conventions vary from one member of the xUnit family to the next, most provide a basic set of assertions that fall into the following categories:
 
 2 This approach is particularly useful when we are building Mock Objects (page 544) because these objects are outside the Testcase Class but need to invoke Assertion Methods.
@@ -8406,11 +8412,11 @@ Assertion Method
 
 365
 
-· Single-Outcome Assertions such as fail; these take no arguments because they always behave the same way.
-· Stated Outcome Assertions such as assertNotNull(anObjectReference) and assertTrue(aBooleanExpression); these compare a single argument to an outcome implied by the method name.
-· Expected Exception Assertions such as assert_raises(expectedError) { codeToExecute }; these evaluate a block of code and a single expected exception argument.
-· Equality Assertions such as assertEqual(expected, actual); these compare two objects or values for equality.
-· Fuzzy Equality Assertions such as assertEqual(expected, actual, tolerance); these determine whether two values are "close enough" to each other by using a "tolerance" or "comparison mask."
+ï¿½ Single-Outcome Assertions such as fail; these take no arguments because they always behave the same way.
+ï¿½ Stated Outcome Assertions such as assertNotNull(anObjectReference) and assertTrue(aBooleanExpression); these compare a single argument to an outcome implied by the method name.
+ï¿½ Expected Exception Assertions such as assert_raises(expectedError) { codeToExecute }; these evaluate a block of code and a single expected exception argument.
+ï¿½ Equality Assertions such as assertEqual(expected, actual); these compare two objects or values for equality.
+ï¿½ Fuzzy Equality Assertions such as assertEqual(expected, actual, tolerance); these determine whether two values are "close enough" to each other by using a "tolerance" or "comparison mask."
 
 Assertion Method
 
@@ -8430,16 +8436,16 @@ Assertion Method
 We use the same approach when comparing XML documents where direct string comparisons may result in failure owing to certain fields having unpredictable content. In this case, the "fuzz" specification is a "comparison schema" that specifies which fields need to match or which fields should be ignored. This kind of Equality Assertion is very similar to asserting that a string conforms to a regular expression or other form of pattern matching.
 Variation: Stated Outcome Assertion
 Stated Outcome Assertions are a way of saying exactly what the outcome should be without passing an expected value as an argument. The outcome must be common enough to warrant a special Assertion Method. The most common examples are as follows:
-· assertTrue(aBooleanExpression), which fails if the expression evaluates to FALSE
-· assertNotNull(anObjectReference), which fails if the objectReference doesn't refer to a valid object
+ï¿½ assertTrue(aBooleanExpression), which fails if the expression evaluates to FALSE
+ï¿½ assertNotNull(anObjectReference), which fails if the objectReference doesn't refer to a valid object
 Stated Outcome Assertions are often used as Guard Assertions (page 490) to avoid Conditional Test Logic.
 Variation: Expected Exception Assertion
 In languages that support block closures, we can use a variation of a Stated Outcome Assertion that takes an additional parameter specifying the kind of exception we expect. We can use this Expected Exception Assertion to say, "Run this block and verify that the following exception is thrown." This format is more compact than using a try/catch construct. Some typical examples follow:
-· should: [aBlockToExecute] raise: expectedException in Smalltalk's SUnit
-· assert_raises( expectedError) { codeToExecute } in Ruby's Test::Unit
+ï¿½ should: [aBlockToExecute] raise: expectedException in Smalltalk's SUnit
+ï¿½ assert_raises( expectedError) { codeToExecute } in Ruby's Test::Unit
 Variation: Single-Outcome Assertion
 A Single-Outcome Assertion always behaves the same way. The most commonly used Single-Outcome Assertion is fail, which causes a test to be treated as a failure. It is typically used in two circumstances:
-· As an Unfinished Test Assertion (page 494) when a test is first identified and implemented as a nearly empty Test Method. By including a call to fail, we can have the Test Runner (page 377) remind us that we still have a test to finish writing.
+ï¿½ As an Unfinished Test Assertion (page 494) when a test is first identified and implemented as a nearly empty Test Method. By including a call to fail, we can have the Test Runner (page 377) remind us that we still have a test to finish writing.
 
 www.it-ebooks.info
 
@@ -8447,7 +8453,7 @@ Assertion Method
 
 367
 
-· As part of a try/catch (or equivalent) block in an Expected Exception Test (see Test Method) by including a call to fail in the try block immediately after the call that is expected to throw an exception. If we don't want to assert something about the exception that was caught, we can avoid an empty catch block by using the Single-Outcome Assertion success to document that this is the expected outcome.
+ï¿½ As part of a try/catch (or equivalent) block in an Expected Exception Test (see Test Method) by including a call to fail in the try block immediately after the call that is expected to throw an exception. If we don't want to assert something about the exception that was caught, we can avoid an empty catch block by using the Single-Outcome Assertion success to document that this is the expected outcome.
 One circumstance in which we really should not use Single-Outcome Assertions is in Conditional Test Logic. There is almost never a good reason to include conditional logic in a Test Method, as there is usually a more declarative way to handle this situation using other styles of Assertion Methods. For example, use of Guard Assertions results in tests that are more easily understood and less likely to yield incorrect results.
 Motivating Example
 The following example illustrates the kind of code that would be required for each item we wanted to verify if we did not have Assertion Methods. All we really want to do is this:
@@ -8656,8 +8662,8 @@ Chapter 19 xUnit Basics Patterns
 
 Testcase Class
 
-Class­Instance Duality
-Back in high school physics, we learned about the "wave­particle duality" of light. Sometimes light acts like a particle (e.g., going through a small aperture), and sometimes it acts like a wave (e.g., rainbows). The behavior of Testcase Classes (page 373) sometimes reminds me of this concept. Let me explain why.
+Classï¿½Instance Duality
+Back in high school physics, we learned about the "waveï¿½particle duality" of light. Sometimes light acts like a particle (e.g., going through a small aperture), and sometimes it acts like a wave (e.g., rainbows). The behavior of Testcase Classes (page 373) sometimes reminds me of this concept. Let me explain why.
 Developers new to xUnit often ask, "Why is the class we subclass called TestCase when we have several Test Methods on it? Shouldn't it be called TestSuite?" These questions make a lot of sense when we are focused primarily on the view of the class when we are writing the test code as opposed to when we are running the code.
 When we are writing test code, we concentrate on the Test Methods. The Testcase Class is primarily just a place to put the methods. About the only time we think of objects is when we use Implicit Setup (page 424) and need to create fields (instance variables) to hold them between the invocation of the setUp method and when they are used in the Test Method. When developers new to xUnit test automation are writing their first tests, they tend to code by example. Following an existing example is a good way to get something working quickly but it doesn't necessarily help the developer understand what is really going on.
 At runtime, the xUnit framework typically creates one instance of the Testcase Class for each Test Method. The Testcase Class acts as a Test Suite Factory (see Test Enumeration on page 399) that builds a Test Suite Object (page 387) containing all the instances of itself, one instance for each Test Method. Now, it's not very often that a static method on a class returns an instance of another class containing many instances of itself. If this behavior wasn't odd enough, the fact that xUnit reports the test failures using the Test Method name can be enough to obscure from many test automaters the existence of "objects inside."
@@ -8968,9 +8974,9 @@ We can build up larger Named Test Suites (page 592) by organizing smaller test s
 Implementation Notes
 As a Composite object, each Test Suite Object implements the same interface as a simple Testcase Object. Thus neither the Test Runner nor the Test Suite Object needs to be aware of whether it is holding a reference to a single test or an entire suite. This makes it easier to implement any operations that involve iterating across all the tests such as counting, running, and displaying.
 Before we can do anything with our Test Suite Object, we must construct it. We can choose from several options to do so:
-· Test Discovery (page 393): We can let the Test Automation Framework discover our Testcase Classes and Test Methods for us.
-· Test Enumeration (page 399): We can write code that enumerates which Test Methods we want to include in a Test Suite Object. This usually involves creating a Test Suite Factory (see Test Enumeration).
-· Test Selection (page 403): We can specify which subset of the Testcase Objects we want to include from an existing Test Suite Object.
+ï¿½ Test Discovery (page 393): We can let the Test Automation Framework discover our Testcase Classes and Test Methods for us.
+ï¿½ Test Enumeration (page 399): We can write code that enumerates which Test Methods we want to include in a Test Suite Object. This usually involves creating a Test Suite Factory (see Test Enumeration).
+ï¿½ Test Selection (page 403): We can specify which subset of the Testcase Objects we want to include from an existing Test Suite Object.
 
 Variation: Test Suite Procedure
 Sometimes we have to write code in programming or scripting languages that do not support objects. Given that we have written a number of Test Methods, we need to give the Test Runner some way to find the tests. A Test Suite Procedure allows us to enumerate all the tests we want to run by invoking each test in turn. The calls to each test are hard-coded within the body of the Test Suite Object. Of course, a Test Suite Procedure may call several other Test Suite Procedures to realize a Suite of Suites.
@@ -9412,7 +9418,7 @@ In-line Setup
 
 When to Use It
 We can use In-line Setup when the fixture setup logic is very simple and straightforward. As soon as the fixture setup gets at all complex, we should consider using Delegated Setup (page 411) or Implicit Setup (page 424) for part or all of the fixture setup.
-We can also use In-line Setup when we are writing a first draft of tests and haven't yet figured out which part of the fixture setup will be repeated from test to test. This is an example of applying the "Red­Green­Refactor" process pattern to the tests themselves. Nevertheless, we need to be careful when we refactor the tests to ensure that we don't break the tests in ways that are undetectable.
+We can also use In-line Setup when we are writing a first draft of tests and haven't yet figured out which part of the fixture setup will be repeated from test to test. This is an example of applying the "Redï¿½Greenï¿½Refactor" process pattern to the tests themselves. Nevertheless, we need to be careful when we refactor the tests to ensure that we don't break the tests in ways that are undetectable.
 A third occasion to use In-line Setup is when refactoring obtuse fixture setup code. A first step may be to use In-line Method [Fowler] refactorings on all Creation Methods (page 415) and the setUp method. Then we can try using a series of Extract Method [Fowler] refactorings to define a new set of Creation Methods that are more intent-revealing and reusable.
 Implementation Notes
 In practice, most fixture setup logic will include a mix of styles, such as In-line Setup building on top of Implicit Setup or Delegated Setup interspersed with In-line Setup.
@@ -9769,9 +9775,9 @@ The obvious alternatives for creating a Fresh Fixture are In-line Setup, in whic
 Implicit Setup removes a lot of Test Code Duplication (page 213) and helps prevent Fragile Tests (page 239) by moving much of the nonessential interaction with the SUT out of the very numerous tests and into a much smaller number of places where it is easier to maintain. It can, however, lead to Obscure Tests (page 186) when a Mystery Guest makes the test fixture used by each test less obvious. It can also lead to a Fragile Fixture (see Fragile Test) if all tests in the class do not really need identical test fixtures.
 Implementation Notes
 The main implementation considerations for Implicit Setup are as follows:
-· How do we cause the fixture setUp method to be called?
-· How do we tear the fixture down?
-· How do the Test Methods access the fixture?
+ï¿½ How do we cause the fixture setUp method to be called?
+ï¿½ How do we tear the fixture down?
+ï¿½ How do the Test Methods access the fixture?
 
 Implicit Setup
 
@@ -10153,8 +10159,8 @@ If we need to share the fixture more widely, we must use either a Prebuilt Fixtu
 The main reason for using a Shared Fixture, and hence Suite Fixture Setup, is to overcome the problem of Slow Tests (page 253) caused by too many test fixture objects being created each time every test is run. Of course, a Shared Fixture can lead to Interacting Tests (see Erratic Test on page 228) or even a Test Run War (see Erratic Test); the sidebar "Faster Tests Without Shared Fixtures" (page 319) describes other ways to solve this problem.
 Implementation Notes
 For Suite Fixture Setup to work properly, we must ensure that the fixture is remembered between calls to the Test Methods. This criterion implies we need to use a class variable, Registry [PEAA], or Singleton [GOF] to hold the references to the fixture (except in NUnit; see the sidebar "There's Always an Exception" on page 384). The exact implementation varies from one member of the xUnit family to the next. Here are a few highlights:
-· In VbUnit, we implement the interface IFixtureFrame in the Testcase Class, thereby causing the Test Automation Framework (1) to call the IFixture Frame_Create method before the first Test Method is called and (2) to call the IFixtureFrame_Destroy method after the last Test Method is called.
-· In NUnit, the attributes [TestFixtureSetUp] and [TestFixtureTearDown] are used inside a test fixture to designate the methods to be called (1) once
+ï¿½ In VbUnit, we implement the interface IFixtureFrame in the Testcase Class, thereby causing the Test Automation Framework (1) to call the IFixture Frame_Create method before the first Test Method is called and (2) to call the IFixtureFrame_Destroy method after the last Test Method is called.
+ï¿½ In NUnit, the attributes [TestFixtureSetUp] and [TestFixtureTearDown] are used inside a test fixture to designate the methods to be called (1) once
 
 www.it-ebooks.info
 
@@ -10163,7 +10169,7 @@ Suite Fixture Setup
 443
 
 prior to executing any of the tests in the fixture and (2) once after all tests are completed.
-· In JUnit 4.0 and later, the attribute @BeforeClass is used to indicate that a method should be run once before the first Test Method is executed. The method with the attribute @AfterClass is run after the last Test Method is run. JUnit allows these methods to be inherited and overridden; the subclass's methods are run between the superclass's methods.
+ï¿½ In JUnit 4.0 and later, the attribute @BeforeClass is used to indicate that a method should be run once before the first Test Method is executed. The method with the attribute @AfterClass is run after the last Test Method is run. JUnit allows these methods to be inherited and overridden; the subclass's methods are run between the superclass's methods.
 Just because we use a form of Implicit Setup to invoke the construction and destruction of the test fixture, it doesn't mean that we should dump all the fixture setup logic into the Suite Fixture Setup. We can call Creation Methods (page 415) from the Suite Fixture Setup method to move complex construction logic into places where it can be tested and reused more easily, such as a Testcase Superclass (page 638) or a Test Helper (page 643).
 Motivating Example
 Suppose we have the following test:
@@ -10461,8 +10467,8 @@ Variation: Fixture Setup Testcase
 If we need to set up a Shared Fixture and we cannot use any of the other techniques to set it up [e.g., Lazy Setup (page 435), Suite Fixture Setup (page 441), or Setup Decorator (page 447)], we can arrange to have a Fixture Setup Testcase run as the first test in the test suite. This is simple to do if we are using Test Enumeration (page 399); we just include the appropriate addTest method call in our Test Suite Factory (see Test Enumeration). This variation is a degenerate form of the Chained Tests pattern in that we are chaining a test suite behind a single Fixture Setup Testcase.
 Implementation Notes
 There are two key challenges in implementing Chained Tests:
-· Getting tests in the test suite to run in the desired order
-· Accessing the fixture leftover by the previous test(s)
+ï¿½ Getting tests in the test suite to run in the desired order
+ï¿½ Accessing the fixture leftover by the previous test(s)
 While a few members of the xUnit family provide an explicit mechanism for defining the order of tests, most members make no such guarantees about this order. We can probably figure out what order the xUnit member uses by performing a few experiments. Most commonly, we will discover that it is either the order in which the Test Methods appear in the file or alphabetical order by Test Method name (in which case, the easiest solution is to include a test sequence number in the test name). In the worst-case scenario, we could always revert to Test Method Enumeration (see Test Enumeration) to ensure that Testcase Objects are added to the test suite in the correct order.
 To refer to the objects created by the previous tests, we need to use one of the fixture object access patterns. If the preceding tests are Test Methods on the same Testcase Class, it is sufficient for each test to store any object references that subsequent tests will use to access the fixture in a fixture holding class variable. (Fixture holding instance variables typically won't work here because each test runs on a separate Testcase Object and, therefore, the tests don't share instance variables. See the sidebar "There's Always an Exception" on page 384 for a description of when instance variations do not behave this way.)
 
@@ -10620,7 +10626,7 @@ State Verification
 465
 
 Assertions usually ask the Expected State Specification to compare itself to the actual result, rather than the reverse.
-We can build the Expected State Specification either during the result verification phase of the test immediately before it is used in the Equality Assertion or during the fixture setup phase of the test. The latter strategy allows us to use attributes of the Expected State Specification as parameters passed to the SUT or as the base for Derived Values (page 718) when building other objects in the test fixture. This makes it easier to see the cause­effect relationship between the fixture and the Expected State Specification, which in turn helps us achieve Tests as Documentation (see page 23). It is particularly useful when the Expected State Specification is created out of sight of the test reader such as when using Creation Methods to do the construction.
+We can build the Expected State Specification either during the result verification phase of the test immediately before it is used in the Equality Assertion or during the fixture setup phase of the test. The latter strategy allows us to use attributes of the Expected State Specification as parameters passed to the SUT or as the base for Derived Values (page 718) when building other objects in the test fixture. This makes it easier to see the causeï¿½effect relationship between the fixture and the Expected State Specification, which in turn helps us achieve Tests as Documentation (see page 23). It is particularly useful when the Expected State Specification is created out of sight of the test reader such as when using Creation Methods to do the construction.
 Motivating Example
 This simple1 example features a test that exercises the code that adds a line item to an invoice. Because it contains no assertions, it is not a Self-Checking Test.
 public void testInvoice_addOneLineItem_quantity1() { // Exercise inv.addItemQuantity(product, QUANTITY);
@@ -10840,10 +10846,10 @@ A key characteristic of Custom Assertions is that they receive everything they n
 Typically, we create Custom Assertions through refactoring by identifying common patterns of assertions in our tests. When test driving, we might just go ahead and call a nonexistent Custom Assertion because it makes writing our test easier; this tactic lets us focus on the part of the SUT that needs to be tested rather than the mechanics of how the test would be carried out.
 When to Use It
 We should consider creating a Custom Assertion whenever any of the following statements are true:
-· We find ourselves writing (or cloning) the same assertion logic in test after test (Test Code Duplication; see page 213).
-· We find ourselves writing Conditional Test Logic (page 200) in the result verification part of our tests. That is, our calls to Assertion Methods are embedded in if statements or loops.
-· The result verification parts of our tests suffer from Obscure Test (page 186) because we use procedural rather than declarative result verification in the tests.
-· We find ourselves doing Frequent Debugging (page 248) whenever assertions fail because they do not provide enough information.
+ï¿½ We find ourselves writing (or cloning) the same assertion logic in test after test (Test Code Duplication; see page 213).
+ï¿½ We find ourselves writing Conditional Test Logic (page 200) in the result verification part of our tests. That is, our calls to Assertion Methods are embedded in if statements or loops.
+ï¿½ The result verification parts of our tests suffer from Obscure Test (page 186) because we use procedural rather than declarative result verification in the tests.
+ï¿½ We find ourselves doing Frequent Debugging (page 248) whenever assertions fail because they do not provide enough information.
 A key reason for moving the assertion logic out of the tests and into Custom Assertions is to Minimize Untestable Code (see page 44). Once the verification logic has been moved into a Custom Assertion, we can write Custom Assertion Tests (see Custom Assertion on page 474) to prove the verification logic is working properly. Another important benefit of using Custom Assertions is that they help avoid Obscure Tests and make tests Communicate Intent (see page 41). That, in turn, will help produce robust, easily maintained tests.
 If the verification logic must interact with the SUT to determine the actual outcome, we can use a Verification Method (see Custom Assertion) instead of a Custom Assertion. If the setup and exercise parts of the tests are also the same except for the values of the actual/expected objects, we should consider using a Parameterized Test (page 607). The primary advantage of Custom Assertions over both of these techniques is reusability; the same Custom Assertion can be
 
@@ -11423,8 +11429,8 @@ Automated Teardown comes in two flavors. The basic flavor tears down only object
 Variation: Automated Fixture Teardown
 The simplest solution is to register the objects we create in our Creation Methods (page 415). Although this pattern will not tear down the objects created by the SUT, by dealing with our fixture it reduces the effort and likelihood of errors significantly.
 There are two key challenges with this variation:
-· Finding a generic way to clean up the registered objects
-· Ensuring that our Automated Teardown code is run for each registered object
+ï¿½ Finding a generic way to clean up the registered objects
+ï¿½ Ensuring that our Automated Teardown code is run for each registered object
 Given that the latter challenge is the easier problem, let us deal with it first. When we are tearing down a Persistent Fresh Fixture (see Fresh Fixture), the
 
 www.it-ebooks.info
@@ -11717,8 +11723,8 @@ We can use Implicit Teardown whenever several tests with the same resources need
 If the objects created by the test are internal resources and subject to automated memory management, then Garbage-Collected Teardown may eliminate a lot of work for us. If each test has a completely different set of objects to tear down, then In-line Teardown (page 509) may be more appropriate. In many cases, we can completely avoid manually written teardown logic by using Automated Teardown (page 503).
 Implementation Notes
 The teardown logic in the tearDown method is most often created by refactoring from tests that had In-line Teardown. The tearDown method may need to be "flexible" or "accommodating" for several reasons:
-· When a test fails or when a test error occurs, the Test Method may not have created all the fixture objects.
-· If all the Test Methods in the Testcase Class (page 373) don't use identical fixtures,1 there may be different sets of objects to clean up for different tests.
+ï¿½ When a test fails or when a test error occurs, the Test Method may not have created all the fixture objects.
+ï¿½ If all the Test Methods in the Testcase Class (page 373) don't use identical fixtures,1 there may be different sets of objects to clean up for different tests.
 
 Implicit Teardown
 
@@ -11823,9 +11829,9 @@ For testing purposes, we can replace the real DOC (not the SUT!) with our equiva
 Regardless of which variation of Test Double we choose to use, we must keep in mind that we don't need to implement the entire interface of the DOC. Instead, we provide only the functionality needed for our particular test. We can even build different Test Doubles for different tests that involve the same DOC.
 When to Use It
 We might want to use some sort of Test Double during our tests in the following circumstances:
-· If we have an Untested Requirement (see Production Bugs on page 268) because neither the SUT nor its DOCs provide an observation point for the SUT's indirect output that we need to verify using Behavior Verification (page 468)
-· If we have Untested Code (see Production Bugs) and a DOC does not provide the control point to allow us to exercise the SUT with the necessary indirect inputs
-· If we have Slow Tests (page 253) and we want to be able to run our tests more quickly and hence more often
+ï¿½ If we have an Untested Requirement (see Production Bugs on page 268) because neither the SUT nor its DOCs provide an observation point for the SUT's indirect output that we need to verify using Behavior Verification (page 468)
+ï¿½ If we have Untested Code (see Production Bugs) and a DOC does not provide the control point to allow us to exercise the SUT with the necessary indirect inputs
+ï¿½ If we have Slow Tests (page 253) and we want to be able to run our tests more quickly and hence more often
 Each of these scenarios can be addressed in some way by using a Test Double. Of course, we have to be careful when using Test Doubles because we are testing
 
 Test Double
@@ -11901,9 +11907,9 @@ Variation: Procedural Test Stub
 A Test Double implemented in a procedural programming language is often called a "test stub," but I prefer to call it a Procedural Test Stub (see Test Stub) to distinguish this usage from the modern Test Stub variation of Test Doubles. Typically, we use a Procedural Test Stub to allow testing/debugging to proceed while waiting for other code to become available. It is rare for these objects to be "swapped in" at runtime but sometimes we make the code conditional on a "Debugging" flag--a form of Test Logic in Production (page 217).
 Implementation Notes
 Several considerations must be taken into account when we are building the Test Double (Figure 23.2):
-· Whether the Test Double should be specific to a single test or reusable across many tests
-· Whether the Test Double should exist in code or be generated on-the-fly
-· How we tell the SUT to use the Test Double (installation)
+ï¿½ Whether the Test Double should be specific to a single test or reusable across many tests
+ï¿½ Whether the Test Double should exist in code or be generated on-the-fly
+ï¿½ How we tell the SUT to use the Test Double (installation)
 The first and last points are addressed here. The discussion of Test Double generation is left to the section on Configurable Test Doubles.
 Because the techniques for building Test Doubles are pretty much independent of their behavior (e.g., they apply to both Test Stubs and Mock Objects), I've chosen to split out the descriptions of the various ways we can build Hard-Coded Test Doubles and Configurable Test Doubles (page 558) into separate patterns.
 
@@ -12288,9 +12294,9 @@ When to Use It
 A key indication for using a Test Spy is having an Untested Requirement (see Production Bugs on page 268) caused by an inability to observe the side effects of invoking methods on the SUT. Test Spies are a natural and intuitive way to extend the existing tests to cover these indirect outputs because the calls to the Assertion Methods (page 362) are invoked by the test after the SUT has been exercised just like in "normal" tests. The Test Spy merely acts as the observation point that gives the Test Method (page 348) access to the values recorded during the SUT execution.
 We should use a Test Spy in the following circumstances:
 
-· We are verifying the indirect outputs of the SUT and we cannot predict the values of all attributes of the interactions with the SUT ahead of time.
+ï¿½ We are verifying the indirect outputs of the SUT and we cannot predict the values of all attributes of the interactions with the SUT ahead of time.
 
-· We want the assertions to be visible in the test and we don't think the
+ï¿½ We want the assertions to be visible in the test and we don't think the
 
 way in which the Mock Object (page 544) expectations are established Test
 
@@ -12298,11 +12304,11 @@ is sufficiently intent-revealing.
 
 Spy
 
-· Our test requires test-specific equality (so we cannot use the standard definition of equality as implemented in the SUT) and we are using tools that generate the Mock Object but do not give us control over the Assertion Methods being called.
+ï¿½ Our test requires test-specific equality (so we cannot use the standard definition of equality as implemented in the SUT) and we are using tools that generate the Mock Object but do not give us control over the Assertion Methods being called.
 
-· A failed assertion cannot be reported effectively back to the Test Runner (page 377). This might occur if the SUT is running inside a container that catches all exceptions and makes it difficult to report the results or if the logic of the SUT runs in a different thread or process from the test that invokes it. (Both of these cases really beg refactoring to allow us to test the SUT logic directly, but that is the subject of another chapter.)
+ï¿½ A failed assertion cannot be reported effectively back to the Test Runner (page 377). This might occur if the SUT is running inside a container that catches all exceptions and makes it difficult to report the results or if the logic of the SUT runs in a different thread or process from the test that invokes it. (Both of these cases really beg refactoring to allow us to test the SUT logic directly, but that is the subject of another chapter.)
 
-· We would like to have access to all the outgoing calls of the SUT before making any assertions on them.
+ï¿½ We would like to have access to all the outgoing calls of the SUT before making any assertions on them.
 
 If none of these criteria apply, we may want to consider using a Mock Object. If we are trying to address Untested Code (see Production Bugs) by controlling the indirect inputs of the SUT, a simple Test Stub (page 529) may be all we need.
 
@@ -12464,15 +12470,15 @@ Implementation Notes
 Tests written using Mock Objects look different from more traditional tests because all the expected behavior must be specified before the SUT is exercised. This makes the tests harder to write and to understand for test automation neophytes. This factor may be enough to cause us to prefer writing our tests using Test Spies.
 The standard Four-Phase Test (page 358) is altered somewhat when we use Mock Objects. In particular, the fixture setup phase of the test is broken down into three specific activities and the result verification phase more or less disappears, except for the possible presence of a call to the "final verification" method at the end of the test.
 Fixture setup:
-· Test constructs Mock Object.
-· Test configures Mock Object. This step is omitted for Hard-Coded Test Doubles (page 568).
-· Test installs Mock Object into SUT.
+ï¿½ Test constructs Mock Object.
+ï¿½ Test configures Mock Object. This step is omitted for Hard-Coded Test Doubles (page 568).
+ï¿½ Test installs Mock Object into SUT.
 Exercise SUT:
-· SUT calls Mock Object; Mock Object does assertions.
+ï¿½ SUT calls Mock Object; Mock Object does assertions.
 Result verification:
-· Test calls "final verification" method.
+ï¿½ Test calls "final verification" method.
 Fixture teardown:
-· No impact.
+ï¿½ No impact.
 Let's examine these differences a bit more closely:
 Construction As part of the fixture setup phase of our Four-Phase Test, we must construct the Mock Object that we will use to replace the substitutable dependency. Depending on which tools are available in our programming language, we can either build the Mock Object class manually, use a code generator to create a Mock Object class, or use a dynamically generated Mock Object.
 Configuration with Expected Values Because the Mock Object toolkits available in many members of the xUnit family typically create Configurable Mock Objects (page 544), we need
@@ -12611,8 +12617,8 @@ Variation: Fake Web Service When testing software that depends on other componen
 Variation: Fake Service Layer When testing user interfaces, we can avoid Data Sensitivity (see Fragile Test) and Behavior Sensitivity (see Fragile Test) of the tests by replacing the component that implements the Service Layer [PEAA] (including the domain layer) of our application with a Fake Object that returns remembered or data-driven results. This approach allows us to focus on testing the user interface without having to worry about the data being returned changing over time.
 Implementation Notes
 Introducing a Fake Object involves two basic concerns:
-· Building the Fake Object implementation
-· Installing the Fake Object
+ï¿½ Building the Fake Object implementation
+ï¿½ Installing the Fake Object
 
 Fake Object
 
@@ -13220,8 +13226,8 @@ Also known as: Subclassed Singleton, Substitutable Singleton
 
 Implementation Notes
 The use of a Test-Specific Subclass brings some challenges:
-· Feature granularity: ensuring that any behavior we want to override or expose is in its own single-purpose method. It is enabled through copious use of small methods and Self-Calls.
-· Feature visibility: ensuring that subclasses can access attributes and behavior of the SUT class. It is primarily an issue in statically typed languages such as Java, C#, and C++; dynamically typed languages typically do not enforce visibility.
+ï¿½ Feature granularity: ensuring that any behavior we want to override or expose is in its own single-purpose method. It is enabled through copious use of small methods and Self-Calls.
+ï¿½ Feature visibility: ensuring that subclasses can access attributes and behavior of the SUT class. It is primarily an issue in statically typed languages such as Java, C#, and C++; dynamically typed languages typically do not enforce visibility.
 As with Test Doubles, we must be careful to ensure that we do not replace any of the behavior we are actually trying to test.
 In languages that support class extensions without the need for subclassing (e.g., Smalltalk, Ruby, JavaScript, and other dynamic languages), a Test-Specific Subclass can be implemented as a class extension in the test package. We need to be aware, however, whether the extensions will make it into production; doing so would introduce Test Logic in Production.
 
@@ -13500,7 +13506,7 @@ test suite construction techniques to return a Test Suite Object (page 387) cont
 When to Use It
 Although we often want to run all the tests with a single command, sometimes we want to run only a subset of the tests. The most common reason for doing so is time; for this purpose, running the AllTests Suite for a specific context is probably our best bet. When our member of xUnit doesn't support Test Selection and the tests we want to run are scattered across multiple contexts and some contexts contain tests we definitely don't want run, we can use a Subset Suite.
 Variation: AllTests Suite
-We often want to run all the tests we have available. With smaller systems, it may be standard practice to run the AllTests Suite after checking out a new code base (to ensure we start at a known point) and before every check-in (to ensure all our code works). We typically have an AllTests Suite for each package or namespace of software so that we can run subsets of the tests after each code change as part of the "red­green­refactor" cycle.
+We often want to run all the tests we have available. With smaller systems, it may be standard practice to run the AllTests Suite after checking out a new code base (to ensure we start at a known point) and before every check-in (to ensure all our code works). We typically have an AllTests Suite for each package or namespace of software so that we can run subsets of the tests after each code change as part of the "redï¿½greenï¿½refactor" cycle.
 Variation: Subset Suite
 Developers often do not want to run tests because they are Slow Tests (page 253). Tests that exercise components that access a database will inevitably run much more slowly than tests that run entirely in memory. By defining one Named Test Suite for the database tests and another Named Test Suite for the in-memory tests, we can choose not to run the database tests simply by choosing to run the in-memory Subset Suite.
 Another common reason given for not running tests is because the context they need to run is not available. For example, if we don't have a Web server running on our development desktop, or if deploying our software to the Web server takes too long, we won't want to run the tests of components that require the Web server to be running (they would just take extra time to run, and we know they will fail and spoil our chances of achieving a green bar).
@@ -13543,9 +13549,9 @@ The other notable aspect of this example is the JUnit-start and JUnit-end commen
 Example: Special-Purpose Suite
 Suppose we have three major packages (A, B, and C) containing business logic. Each package contains both in-memory objects and database access classes. We would then have corresponding test packages for each of the three packages. Some tests in each package would require the database, while others could run purely in memory.
 We want to be able to run the following sets of tests for the entire system, and for each package (A, B, and C):
-· All tests
-· All database tests
-· All in-memory tests
+ï¿½ All tests
+ï¿½ All database tests
+ï¿½ All in-memory tests
 This implies a total of 12 named sets of tests (three named sets for each of four contexts).
 In each of the three packages (A, B, and C), we should define the following Named Test Suites:
 
@@ -13559,13 +13565,13 @@ Chapter 24 Test Organization Patterns
 
 Named Test Suite
 
-· AllDbTests, by adding all the Testcase Classes containing database tests
-· AllInMemoryTests, by adding all the Testcase Classes containing in-memory tests
-· AllTests, by combining AllDbTests and AllInMemoryTests
+ï¿½ AllDbTests, by adding all the Testcase Classes containing database tests
+ï¿½ AllInMemoryTests, by adding all the Testcase Classes containing in-memory tests
+ï¿½ AllTests, by combining AllDbTests and AllInMemoryTests
 Then, at the top-level testing context, we define Named Test Suites by the same names as follows:
-· AllDbTests, by composing all the AllDbTests Testcase Classes from packages A, B, and C
-· AllInMemoryTests, by composing all the AllInMemoryTests Testcase Classes from packages A, B, and C
-· AllTests, by composing all the AllTests Testcase Classes from packages A, B, and C (This is just the normal AllTests Suite.)
+ï¿½ AllDbTests, by composing all the AllDbTests Testcase Classes from packages A, B, and C
+ï¿½ AllInMemoryTests, by composing all the AllInMemoryTests Testcase Classes from packages A, B, and C
+ï¿½ AllTests, by composing all the AllTests Testcase Classes from packages A, B, and C (This is just the normal AllTests Suite.)
 If we find ourselves needing to include some tests from a single Testcase Class in both Named Test Suites, we should split the class into one class for each context (e.g., database tests and in-memory tests).
 Example: Single Test Suite
 In some circumstances--especially when we are using a debugger--it is highly desirable to not run all the tests in a Testcase Class. One way to run only a subset of these tests is to use the Test Tree Explorer provided by some Graphical Test Runners (see Test Runner). When this capability isn't available, a common practice is to disable the tests we don't want run by either commenting them out, copying the entire Testcase Class and deleting most of the tests, or changing the names or attributes of the test that cause them to be included by the Test Discovery algorithm.
@@ -15000,9 +15006,9 @@ Before we can use Table Truncation Teardown, we must satisfy a couple of criteri
 If we are not using a transactional database, the closest approximation is Automated Teardown (page 503), which deletes only those records that were created by the test. Automated Teardown does not depend on the database transactions to do the work for it, but it does involve more development work on our part. We can also avoid the need to do teardown entirely by using Delta Assertions (page 485).
 Implementation Notes
 Besides the usual "Where do we put the teardown code?" decision, implementation of Table Truncation Teardown needs to deal with the following questions:
-· How do we actually delete the data--that is, which database commands do we use?
-· How do we deal with foreign key constraints and triggers?
-· How do we ensure consistency when we are using an object-relational mapping (ORM)?
+ï¿½ How do we actually delete the data--that is, which database commands do we use?
+ï¿½ How do we deal with foreign key constraints and triggers?
+ï¿½ How do we ensure consistency when we are using an object-relational mapping (ORM)?
 Some databases support the TRUNCATE command directly. Where this is the case, the obvious choice is to use this command. Oracle, for example, supports TRUNCATE.
 
 www.it-ebooks.info
@@ -15326,9 +15332,9 @@ Chapter 26 Design-for-Testability Patterns
 
 Dependency Injection
 
-· Parameter Injection: We pass the dependency directly to the SUT as we invoke it.
-· Constructor Injection: We tell the SUT which DOC to use when we construct it.
-· Setter Injection: We tell the SUT about the DOC sometime between when we construct it and when we exercise it.
+ï¿½ Parameter Injection: We pass the dependency directly to the SUT as we invoke it.
+ï¿½ Constructor Injection: We tell the SUT which DOC to use when we construct it.
+ï¿½ Setter Injection: We tell the SUT about the DOC sometime between when we construct it and when we exercise it.
 Each of these three variations of Dependency Injection can be hand-coded. Another option is to use an "Inversion of Control" (IoC) framework to link the various components together at runtime. This scheme avoids superfluous diversity in how Dependency Injection is implemented across the application and can simplify the process of reconfiguring the application for different deployment models.
 Variation: Parameter Injection
 Parameter Injection is a form of Dependency Injection in which the SUT does not keep or initialize a reference to the DOC; instead, it is passed in as an argument of the method being called on the SUT. All clients of the SUT--whether they are tests or production code--supply the DOC. As a consequence, the SUT is more independent of the context because it makes no assumptions about the dependency other than its usage interface. The main drawback is that Parameter Injection forces the client to know about the dependency, which is more appropriate in some circumstances than in others. Most of the other variants of Dependency Injection move this knowledge somewhere other than the client or at least make it optional.
@@ -15608,10 +15614,10 @@ The well-known intermediary may be called a "Service Locator," "Object Factory,"
 Implementation Notes
 A desire to use a Test Double when testing our code implies a need to make DOCs substitutable. This constraint rules out hard-coding the names of classes on which we depend into our code because static binding severely limits our options regarding how the software is configured as it runs. One way to avoid this issue is to have the SUT delegate DOC fabrication to another object. Of course, this scheme implies we need a way to get a reference to that object. We solve this recursive problem by having a well-known object act as an intermediary between the test and the DOC. This well-known object is referenced by a hard-coded classname. To be useful for installing Test Doubles, this well-known object must supply a mechanism by which the test can specify the object to be returned.
 Dependency Lookup has the following characteristics:
-· Either a Singleton [GOF], a Registry [PEAA], or some kind of ThreadSpecific Storage [POSA2]
-· An interface that fully encapsulates which implementation we are using
-· A built-in substitution mechanism for replacing the returned object with a Test Double
-· Access via well-known global name
+ï¿½ Either a Singleton [GOF], a Registry [PEAA], or some kind of ThreadSpecific Storage [POSA2]
+ï¿½ An interface that fully encapsulates which implementation we are using
+ï¿½ A built-in substitution mechanism for replacing the returned object with a Test Double
+ï¿½ Access via well-known global name
 The Dependency Lookup mechanism returns an object that can be used directly by the client. The nature of the actual object returned determines whether it is more appropriate to call it a "Service Locator" or an "Object Factory." Once the object is retrieved, the SUT uses it directly. During testing, the test arranges for the Dependency Lookup mechanism to return a test-specific object.
 Encapsulated Implementation
 A major requirement of Dependency Lookup is the existence of a well-known object to which we can delegate our requests for DOCs. This well-known
@@ -15879,7 +15885,7 @@ To implement Humble Transaction Controller, we use an Extract Method [Fowler] re
 As for the Humble Object, it contains no business logic. Thus the only behavior that needs to be tested is whether the Humble Object commits and rolls back the transaction properly based on the outcome of the methods it calls. We can write a test that replaces the testable component with a Test Stub (page 529) that throws an exception and then verify that this activity results in a rollback of the transaction. If we are using a Poor Man's Humble Object, the stub would be implemented as a Subclassed Test Double (see Test-Specific Subclass on page 579) that overrides the "real" methods with methods that throw exceptions.
 Many of the major application server technologies support this pattern either directly or indirectly by taking transaction control away from the business objects that we write. If we are building our software without using a transaction control framework, we may need to implement our own Humble Transaction Controller. See the "Implementation Notes" section for some ideas on how we can enforce the separation.
 Variation: Humble Container Adapter
-Speaking of "containers," we often have to implement specific interfaces to allow our objects to run inside an application server (e.g., the "EJB session bean" interface). Another variation on the Humble Object pattern is to design our objects to be container-independent and then have a Humble Container Adapter adapt them to the interface required by container. This strategy makes our logic components easy to test outside the container, which dramatically reduces the time required for an "edit­compile­test" cycle.
+Speaking of "containers," we often have to implement specific interfaces to allow our objects to run inside an application server (e.g., the "EJB session bean" interface). Another variation on the Humble Object pattern is to design our objects to be container-independent and then have a Humble Container Adapter adapt them to the interface required by container. This strategy makes our logic components easy to test outside the container, which dramatically reduces the time required for an "editï¿½compileï¿½test" cycle.
 Implementation Notes
 We can make the logic that normally runs inside the Humble Object testable in several different ways. All of these techniques share one commonality: They involve exposing the logic so that it can be verified using synchronous tests. They
 
@@ -16140,9 +16146,9 @@ A Test Hook may be the only way to introduce Test Double (page 522) behavior whe
 Test Hooks can be used as a transition strategy to bring legacy code under the testing umbrella. We can introduce testability using the Test Hooks and then use those Tests as Safety Net (see page 24) while we refactor for even more testability. At some point we should be able to discard the initial round of tests that required the Test Hooks because we have enough "modern" tests to protect us.
 Implementation Notes
 The essence of the Test Hook pattern is that we insert some code into the SUT that lets us test it. Regardless of how we insert this code into the SUT, the code itself can either
-· Divert control to a Test Double instead of the real object, or
-· Be the Test Double within the real object, or
-· Be a test-specific Decorator [GOF] that delegates to the real object when in production.
+ï¿½ Divert control to a Test Double instead of the real object, or
+ï¿½ Be the Test Double within the real object, or
+ï¿½ Be a test-specific Decorator [GOF] that delegates to the real object when in production.
 The flag that indicates testing is in progress can be a compile-time constant, which may, for example, cause the compiler to optimize out all the testing logic. In languages that support preprocessors or compiler macros, such constructs may also be used to remove the Test Hook before the code enters the production phase. The value of the flag can also be read in from configuration data or stored in a global variable that the test sets directly.
 Motivating Example
 The following test cannot be made to pass "as is":
@@ -16934,9 +16940,9 @@ Stub
 
 Terminology CrossReference
 
-· Unit Testing with Java [UTwJ] uses the term "Dummy Object" to refer to what this book calls a "Fake Object."
-· Pragmatic Unit Testing [PUT] describes a "Stub" as an empty implementation of a method. This is a common interpretation in the procedural world; in the object world, however, it is typically called a Null Object [PLOPD3].
-· Some of the early Mock Objects literature could be interpreted to equate a "Stub" with a "Mock Object." The distinction between the two has since been clarified in [MRNO] and [MAS].
+ï¿½ Unit Testing with Java [UTwJ] uses the term "Dummy Object" to refer to what this book calls a "Fake Object."
+ï¿½ Pragmatic Unit Testing [PUT] describes a "Stub" as an empty implementation of a method. This is a common interpretation in the procedural world; in the object world, however, it is typically called a Null Object [PLOPD3].
+ï¿½ Some of the early Mock Objects literature could be interpreted to equate a "Stub" with a "Mock Object." The distinction between the two has since been clarified in [MRNO] and [MAS].
 
 www.it-ebooks.info
 
@@ -16947,7 +16953,7 @@ Appendix B xUnit Terminology
 xUnit Terminology
 CrossReference
 
-· The CORBA standard1 and other remote-procedure call specifications use the terms "stubs" and "skeletons" to refer to the automatically generated code for the near- and far-end implementations of a remote interface defined in IDL. (I've included this information here because it is another use of a term that is commonly used in the TDD and automated developer testing community.)
+ï¿½ The CORBA standard1 and other remote-procedure call specifications use the terms "stubs" and "skeletons" to refer to the automatically generated code for the near- and far-end implementations of a remote interface defined in IDL. (I've included this information here because it is another use of a term that is commonly used in the TDD and automated developer testing community.)
 
 The sources quoted in the preceding table are provided here:
 
@@ -20479,10 +20485,10 @@ A method that provides access to an instance variable of an object either by ret
 
 ACID
 The four qualities of transactions that modern databases ensure:
-· Atomic: A transaction is all or nothing.
-· Consistent: All operations within a transaction see the same view of the world.
-· Independent: Transactions are independent of one another (no crosstransaction leakage of changes).
-· Durable: Once committed, the changes made within a transaction are permanent (they don't just vanish for no reason!).
+ï¿½ Atomic: A transaction is all or nothing.
+ï¿½ Consistent: All operations within a transaction see the same view of the world.
+ï¿½ Independent: Transactions are independent of one another (no crosstransaction leakage of changes).
+ï¿½ Durable: Once committed, the changes made within a transaction are permanent (they don't just vanish for no reason!).
 
 agile method
 A method of executing projects (typically, but not always, restricted to software) that reduces the cost of change and allows customers of the software to have more control over how much they spend and what they get for their money. Agile
@@ -21082,7 +21088,7 @@ www.it-ebooks.info
 
 Glossary
 
-· If the SUT is in some state S1, and · We exercise the SUT in some way X, then · The SUT should respond with R and · The SUT should be in state S2.
+ï¿½ If the SUT is in some state S1, and ï¿½ We exercise the SUT in some way X, then ï¿½ The SUT should respond with R and ï¿½ The SUT should be in state S2.
 
 test context
 Everything a system under test (SUT) needs to have in place so that we can exercise the SUT for the purpose of verifying its behavior. For this reason, RSpec calls the test fixture (as used in xUnit) a "context."
@@ -21210,7 +21216,7 @@ References
 AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis Published by: John Wiley (1998) ISBN: 0-471-19713-0 By: William J. Brown et al.
 This book describes common problems on software projects and suggests how to eliminate them by changing the architecture or project organization.
 [APLfPW]
-A Pattern Language for Pattern Writing In: Pattern Languages of Program Design 3 [PLoPD3], pp. 529­574. Published by: Addison-Wesley (1998) By: Gerard Meszaros and James Doble
+A Pattern Language for Pattern Writing In: Pattern Languages of Program Design 3 [PLoPD3], pp. 529ï¿½574. Published by: Addison-Wesley (1998) By: Gerard Meszaros and James Doble
 As the patterns community has accumulated experience in writing and reviewing patterns and pattern languages, we have begun to develop insight into pattern-writing techniques and approaches that have been observed to be particularly effective at addressing certain recurring problems. This pattern language attempts to capture some of these "best practices" of pattern writing, both by describing them in pattern form and by demonstrating them in action. As such, this pattern language is its own running example.
 Further Reading Full text of this paper is available online in PDF form at http://PatternWritingPatterns.gerardmeszaros.com and in HTML form, complete with a hyperlinked table of contents, at http://hillside.net/patterns/writing/patternwritingpaper.htm.
 819
@@ -21425,7 +21431,7 @@ www.it-ebooks.info
 References
 
 [UTwJ]
-Unit Testing in Java: How Tests Drive the Code Published by: Morgan Kaufmann ISBN: 1-55860-868-0 By: Johannes Link, with contributions by Peter Fröhlich
+Unit Testing in Java: How Tests Drive the Code Published by: Morgan Kaufmann ISBN: 1-55860-868-0 By: Johannes Link, with contributions by Peter Frï¿½hlich
 This book does a very nice job of introducing many of the concepts and techniques of unit testing. It uses intertwined narratives and examples to introduce a wide range of techniques. Unfortunately, due to the format, it can be difficult to find something at a later time.
 [VCTP]
 The Virtual Clock Test Pattern http://www.nusco.org/docs/virtual_clock.pdf By: Paolo Perrotta
@@ -21472,11 +21478,11 @@ Index
 
 A
 ABAP Object Unit, 747 ABAP Unit, 747 Abstract Setup Decorator
-defined, 449 example, 453 acceptance tests. See also customer tests defined, 785 why test?, 19 accessor methods, 785 ACID, 785 acknowledgements, xxvii­xxviii action components, 280 agile method defined, 785­786 property tests, 52 AllTests Suite example, 594­595 introduction, 13 when to use, 593 annotation defined, 786 Test Methods, 351 Anonymous Creation Method defined, 417 example, 420
+defined, 449 example, 453 acceptance tests. See also customer tests defined, 785 why test?, 19 accessor methods, 785 ACID, 785 acknowledgements, xxviiï¿½xxviii action components, 280 agile method defined, 785ï¿½786 property tests, 52 AllTests Suite example, 594ï¿½595 introduction, 13 when to use, 593 annotation defined, 786 Test Methods, 351 Anonymous Creation Method defined, 417 example, 420
 
 Hard-Coded Test Data solution, 196
 preface, xxi anonymous inner class
-defined, 786 Test Stub examples, 535­536 Ant, 753 AntHill, 753 anti-pattern (AP) defined, 786 test smells, xxxv AOP (aspect-oriented programming) defined, 786 Dependency Injection, 681 retrofitting testability, 148 API (application programming interface) Creation Methods, 416 database as SUT, 336 defined, 786 Test Utility Method, 600 architecture, design for testability. See design-for-testability arguments messages describing, 371­372 as parameters (Dummy
+defined, 786 Test Stub examples, 535ï¿½536 Ant, 753 AntHill, 753 anti-pattern (AP) defined, 786 test smells, xxxv AOP (aspect-oriented programming) defined, 786 Dependency Injection, 681 retrofitting testability, 148 API (application programming interface) Creation Methods, 416 database as SUT, 336 defined, 786 Test Utility Method, 600 architecture, design for testability. See design-for-testability arguments messages describing, 371ï¿½372 as parameters (Dummy
 Arguments), 729 role-describing, 725
 
 835 www.it-ebooks.info
@@ -21486,20 +21492,20 @@ Arguments), 729 role-describing, 725
 Index
 
 Arguments, Dummy, 729 Ariane 5 rocket, 218 aspect-oriented programming (AOP)
-defined, 786 Dependency Injection, 681 retrofitting testability, 148 Assertion Message of Assertion Method, 364 pattern description, 370­372 Assertion Method Assertion Messages, 364 calling built-in, 363­364 choosing right, 364­365 Equality Assertions, 365 examples, 368­369 Expected Exception
+defined, 786 Dependency Injection, 681 retrofitting testability, 148 Assertion Message of Assertion Method, 364 pattern description, 370ï¿½372 Assertion Method Assertion Messages, 364 calling built-in, 363ï¿½364 choosing right, 364ï¿½365 Equality Assertions, 365 examples, 368ï¿½369 Expected Exception
 Assertions, 366 Fuzzy Equality Assertions,
-365­366 implementation, 363 as macros, 364 motivating example, 367­368 overview, 362­363 refactoring, 368 Single-Outcome Assertions,
-366­367 Stated Outcome Assertions, 366 Assertion Roulette Eager Tests, 224­226 impact, 224 introduction, 14 Missing Assertion Message,
-226­227 symptoms, 224 assertions Built-in, 110­111 custom. See Custom Assertion defined, 786 diagramming notation, xlii Domain Assertions, 476,
-481­482
+365ï¿½366 implementation, 363 as macros, 364 motivating example, 367ï¿½368 overview, 362ï¿½363 refactoring, 368 Single-Outcome Assertions,
+366ï¿½367 Stated Outcome Assertions, 366 Assertion Roulette Eager Tests, 224ï¿½226 impact, 224 introduction, 14 Missing Assertion Message,
+226ï¿½227 symptoms, 224 assertions Built-in, 110ï¿½111 custom. See Custom Assertion defined, 786 diagramming notation, xlii Domain Assertions, 476,
+481ï¿½482
 
 improperly coded in Neverfail Tests, 274
 introduction, 77 Missing Assertion Messages,
-226­227 reducing Test Code Duplication,
-114­119 refactoring, xlvi­xlix Self-Checking Tests, 107­108 unit testing, 6 Verify One Condition per Test,
-46­47 assumptions, xxxix­xl Astels, Dave, 110 asynchronous tests
-defined, 787 Hard-To-Test Code, 210­211 Humble Object, 696­697 Slow Tests, 255­256 testability, 70­71 Attachment Method defined, 418 example, 421 attributes defined, 787 dummy, 729 hiding unnecessary, 303­304 One Bad Attribute. See One
-Bad Attribute parameters as, 608 Suite Fixture Setup, 442­443 Test Discovery using, 397 Test Selection, 403­405 Automated Exercise Teardown defined, 505 example, 508 Automated Fixture Teardown, 504­505 Automated Teardown ensuring Repeatable Tests, 27 examples, 507­508
+226ï¿½227 reducing Test Code Duplication,
+114ï¿½119 refactoring, xlviï¿½xlix Self-Checking Tests, 107ï¿½108 unit testing, 6 Verify One Condition per Test,
+46ï¿½47 assumptions, xxxixï¿½xl Astels, Dave, 110 asynchronous tests
+defined, 787 Hard-To-Test Code, 210ï¿½211 Humble Object, 696ï¿½697 Slow Tests, 255ï¿½256 testability, 70ï¿½71 Attachment Method defined, 418 example, 421 attributes defined, 787 dummy, 729 hiding unnecessary, 303ï¿½304 One Bad Attribute. See One
+Bad Attribute parameters as, 608 Suite Fixture Setup, 442ï¿½443 Test Discovery using, 397 Test Selection, 403ï¿½405 Automated Exercise Teardown defined, 505 example, 508 Automated Fixture Teardown, 504ï¿½505 Automated Teardown ensuring Repeatable Tests, 27 examples, 507ï¿½508
 
 www.it-ebooks.info
 
@@ -21507,15 +21513,15 @@ Index
 
 837
 
-implementation, 504­505 Interacting Test Suites, 232 Interacting Tests solution, 231 motivating example, 505­506 overview, 503­504 of persistent fixtures, 99­100 refactoring, 506­507 resource leakage solution, 233 when to use, 504 automated unit testing author's motivation, xxiv­xxv fragile test problem, xxxi­xxxii introduction, xxx­xxxii
+implementation, 504ï¿½505 Interacting Test Suites, 232 Interacting Tests solution, 231 motivating example, 505ï¿½506 overview, 503ï¿½504 of persistent fixtures, 99ï¿½100 refactoring, 506ï¿½507 resource leakage solution, 233 when to use, 504 automated unit testing author's motivation, xxivï¿½xxv fragile test problem, xxxiï¿½xxxii introduction, xxxï¿½xxxii
 B
 back door, defined, 787 Back Door Manipulation
-control/observation points, 66­67 database as SUT API, 336 Expected State Specification, 464 fixture setup, 333­335 implementation, 330­332 motivating example, 332 overview, 327­328 refactoring, 333 setup, 329 teardown, 330 verification, 329­330 verification using Test Spy, 333 when to use, 328 Back Door Setup controlling indirect inputs, 128 fixture design, 59 Prebuilt Fixtures, 430­431 transient fixtures, 86 Back Door Verification, 130­133 BDUF (big design upfront) defined, 787 design for testability, 65 test automation strategy, 49
+control/observation points, 66ï¿½67 database as SUT API, 336 Expected State Specification, 464 fixture setup, 333ï¿½335 implementation, 330ï¿½332 motivating example, 332 overview, 327ï¿½328 refactoring, 333 setup, 329 teardown, 330 verification, 329ï¿½330 verification using Test Spy, 333 when to use, 328 Back Door Setup controlling indirect inputs, 128 fixture design, 59 Prebuilt Fixtures, 430ï¿½431 transient fixtures, 86 Back Door Verification, 130ï¿½133 BDUF (big design upfront) defined, 787 design for testability, 65 test automation strategy, 49
 
 Beck, Kent, xxii sniff test, xxxviii Test Automation Frameworks, 301 test smells, 9 Testcase Class per Class, 618 xUnit, 57
-Behavior Sensitivity cause of Fragile Tests, 242­243 caused by Overspecified Software, 246 defined, xxxi smells, 14
-behavior smells, 223­247 Assertion Roulette. See Assertion Roulette defined, 10­11, 788 Erratic Tests. See Erratic Test Fragile Tests. See Fragile Test Frequent Debugging. See Frequent Debugging Manual Intervention. See Manual Intervention overview, 13­15 Slow Tests. See Slow Tests
-Behavior Verification approach to Self-Checking Tests, 108 examples, 472­473 implementation, 469­471 indirect outputs, 179­180 motivating example, 471­472 overview, 468­469 refactoring, 472 vs. state, 36 test results, 112­114 using Mock Objects. See Mock Object using Test Spies. See Test Spy using Use the Front Door First, 40
+Behavior Sensitivity cause of Fragile Tests, 242ï¿½243 caused by Overspecified Software, 246 defined, xxxi smells, 14
+behavior smells, 223ï¿½247 Assertion Roulette. See Assertion Roulette defined, 10ï¿½11, 788 Erratic Tests. See Erratic Test Fragile Tests. See Fragile Test Frequent Debugging. See Frequent Debugging Manual Intervention. See Manual Intervention overview, 13ï¿½15 Slow Tests. See Slow Tests
+Behavior Verification approach to Self-Checking Tests, 108 examples, 472ï¿½473 implementation, 469ï¿½471 indirect outputs, 179ï¿½180 motivating example, 471ï¿½472 overview, 468ï¿½469 refactoring, 472 vs. state, 36 test results, 112ï¿½114 using Mock Objects. See Mock Object using Test Spies. See Test Spy using Use the Front Door First, 40
 
 www.it-ebooks.info
 
@@ -21523,25 +21529,25 @@ www.it-ebooks.info
 
 Index
 
-verifying indirect outputs, 130­133
+verifying indirect outputs, 130ï¿½133
 when to use, 469 behavior-driven development
-defined, 787­788 Testcase Class per Fixture
+defined, 787ï¿½788 Testcase Class per Fixture
 usage, 632 Behavior-Exposing Subclass
 Test-Specific Subclass example, 587
 when to use, 580 Behavior-Modifying Subclass
-Defining Test-Specific Equality, 588­589
-Substituted Singleton, 586­587
-Test Stub, 584­585 when to use, 580 Bespoke Assertion. See Custom Assertion bimodal tests, 687 binding, static defined, 809 Dependency Injection, 678­679 black box defined, 788 Remoted Stored Procedure
+Defining Test-Specific Equality, 588ï¿½589
+Substituted Singleton, 586ï¿½587
+Test Stub, 584ï¿½585 when to use, 580 Bespoke Assertion. See Custom Assertion bimodal tests, 687 binding, static defined, 809 Dependency Injection, 678ï¿½679 black box defined, 788 Remoted Stored Procedure
 Tests, 656 block closures
 defined, 788 Expected Exception Tests,
-354­355 blocks
-cleaning up fixture teardown logic, l­liv
+354ï¿½355 blocks
+cleaning up fixture teardown logic, lï¿½liv
 defined, 788 try/finally. See try/finally block boundary values defined, 788 erratic tests, 238 Minimal Fixtures, 303 result verification patterns, 478
 
 BPT (Business Process Testing) defined, 753 Recorded Tests, 280 Test Automation Frameworks, 301
 Bug Repellent, 22 Buggy Test
-introduction, 12­13 reducing risk, 181 symptoms, 260­262 Built-in Assertion calling, 363­364 introduction, 110­111 built-in self-tests defined, 788 test file organization, 164 built-in test recording defined, 281 example, 281­282 business logic defined, 789 developer testing, xxx development process, 4­5 Layer Tests example, 344­345 testing without databases,
-169­171 Business Process Testing (BPT).
+introduction, 12ï¿½13 reducing risk, 181 symptoms, 260ï¿½262 Built-in Assertion calling, 363ï¿½364 introduction, 110ï¿½111 built-in self-tests defined, 788 test file organization, 164 built-in test recording defined, 281 example, 281ï¿½282 business logic defined, 789 developer testing, xxx development process, 4ï¿½5 Layer Tests example, 344ï¿½345 testing without databases,
+169ï¿½171 Business Process Testing (BPT).
 See BPT (Business Process Testing)
 C
 Calculated Value. See also Derived Value Loop-Driven Tests, 615 Production Logic in Test solution, 205
@@ -21555,22 +21561,22 @@ Index
 
 capacity tests, 52 Capture/Playback Test.
 See Recorded Test Chained Test
-customer testing, 6 examples, 459­460 implementation, 456­457 motivating example, 457­458 overview, 454­455 refactoring, 458 Shared Fixture strategies, 64­65 Shared Fixtures, 104­105, 322 when to use, 455­456 xUnit introduction, 57 class attributes defined, 789 Test Discovery using, 397 Testcase Class Selection using,
-404­405 class methods
-defined, 789 with Test Helper, 645, 646 class variables defined, 789 Suite Fixture Setup, 442 classes diagramming notation, xlii as fixtures, 59 Test Double, 569­570, 572­573 Testcase. See Testcase Class class-instance duality, 374 Cleanup Method, 602 closure, block defined, 788 Expected Exception Tests,
-354­355 Cockburn, Alistair
-pattern naming, 578 service layer tests, 339 code inside-out development, 34­36 organization. See test
+customer testing, 6 examples, 459ï¿½460 implementation, 456ï¿½457 motivating example, 457ï¿½458 overview, 454ï¿½455 refactoring, 458 Shared Fixture strategies, 64ï¿½65 Shared Fixtures, 104ï¿½105, 322 when to use, 455ï¿½456 xUnit introduction, 57 class attributes defined, 789 Test Discovery using, 397 Testcase Class Selection using,
+404ï¿½405 class methods
+defined, 789 with Test Helper, 645, 646 class variables defined, 789 Suite Fixture Setup, 442 classes diagramming notation, xlii as fixtures, 59 Test Double, 569ï¿½570, 572ï¿½573 Testcase. See Testcase Class class-instance duality, 374 Cleanup Method, 602 closure, block defined, 788 Expected Exception Tests,
+354ï¿½355 Cockburn, Alistair
+pattern naming, 578 service layer tests, 339 code inside-out development, 34ï¿½36 organization. See test
 organization
 
-samples, xli­xlii writing tests, 27­29 code smells Conditional Test Logic. See
-Conditional Test Logic defined, 10­11, 789 Hard-To-Test Code. See
+samples, xliï¿½xlii writing tests, 27ï¿½29 code smells Conditional Test Logic. See
+Conditional Test Logic defined, 10ï¿½11, 789 Hard-To-Test Code. See
 Hard-To-Test Code obscure tests. See Obscure Test Test Code Duplication. See Test
 Code Duplication Test Logic in Production. See
-Test Logic in Production types of, 16­17 coding idioms defined, xxxv design patterns, 792 collisions Interacting Tests, 229­231 Shared Fixtures, 318 Command object introduction, 82 Testcase Object as, 382 Command-Line Test Runner Assertion Message, 371 defined, 379­380 introduction, 79 Missing Assertion Message,
-226­227 commercial recorded tests
-refactored, 283­284 tools, 282­283 common location, Test Discovery, 397­398 Communicate Intent defined, 41 refactoring Recorded Tests to,
-283­284 compiler macro, Test Method
-Discovery, 395­396 Complex Teardown, 206­207 Complex Test. See Dependency
+Test Logic in Production types of, 16ï¿½17 coding idioms defined, xxxv design patterns, 792 collisions Interacting Tests, 229ï¿½231 Shared Fixtures, 318 Command object introduction, 82 Testcase Object as, 382 Command-Line Test Runner Assertion Message, 371 defined, 379ï¿½380 introduction, 79 Missing Assertion Message,
+226ï¿½227 commercial recorded tests
+refactored, 283ï¿½284 tools, 282ï¿½283 common location, Test Discovery, 397ï¿½398 Communicate Intent defined, 41 refactoring Recorded Tests to,
+283ï¿½284 compiler macro, Test Method
+Discovery, 395ï¿½396 Complex Teardown, 206ï¿½207 Complex Test. See Dependency
 Lookup
 
 www.it-ebooks.info
@@ -21582,17 +21588,17 @@ Index
 Component Broker. See Dependency Lookup
 Component Registry, 688 component tests
 defined, 790 layer-crossing tests, 69 per-functionality, 52 test automation philosophies,
-34­36 test strategy patterns, 340 components defined, 790 depended-on component. See
-DOC (depended-on component) Composite object, defined, 82 Concerns, Separation of, 28­29 concrete classes, 581 Condition Verification Logic, 203­204 Conditional Test Logic vs. Assertion Method, 363 avoidance, 119­121 avoiding via Custom Assertion, 475 avoiding via Guard Assertion, 490­493 causes, 201­202 Complex Teardown, 206­207 Condition Verification Logic, 203­204 Flexible Tests, 202­203 impact, 201 introduction, 16 Multiple Test Conditions, 207­208 Production Logic in Test, 204­205 symptoms, 200 Test Methods, 155 Configurable Mock Object, 546­547. See also Configurable Test Double Configurable Registry, 691­692
+34ï¿½36 test strategy patterns, 340 components defined, 790 depended-on component. See
+DOC (depended-on component) Composite object, defined, 82 Concerns, Separation of, 28ï¿½29 concrete classes, 581 Condition Verification Logic, 203ï¿½204 Conditional Test Logic vs. Assertion Method, 363 avoidance, 119ï¿½121 avoiding via Custom Assertion, 475 avoiding via Guard Assertion, 490ï¿½493 causes, 201ï¿½202 Complex Teardown, 206ï¿½207 Condition Verification Logic, 203ï¿½204 Flexible Tests, 202ï¿½203 impact, 201 introduction, 16 Multiple Test Conditions, 207ï¿½208 Production Logic in Test, 204ï¿½205 symptoms, 200 Test Methods, 155 Configurable Mock Object, 546ï¿½547. See also Configurable Test Double Configurable Registry, 691ï¿½692
 
-Configurable Test Double examples, 564­567 implementation, 559­562 installing, 141­142 as kind of Test Double, 528 motivating example, 562­563 overview, 558 refactoring, 563 when to use, 559
+Configurable Test Double examples, 564ï¿½567 implementation, 559ï¿½562 installing, 141ï¿½142 as kind of Test Double, 528 motivating example, 562ï¿½563 overview, 558 refactoring, 563 when to use, 559
 Configurable Test Stub. See also Configurable Test Double implementation, 532 indirect input control, 179
-Configuration Interface examples, 564­566 implementation, 560
-Configuration Mode example, 566­567 implementation, 560
+Configuration Interface examples, 564ï¿½566 implementation, 560
+Configuration Mode example, 566ï¿½567 implementation, 560
 Constant Value. See Literal Value constants in Derived Value,
-718­722 constructing Mock Object, 546 Constructor Injection
-example, 683­684 implementation, 680­681 installing Test Doubles, 144 Constructor Test defined, 351 example, 355­357 introduction, 77 constructors defined, 790 problems with, 419 containers, Humble Container Adapter, 698 Context Sensitivity avoiding via Isolate the SUT,
-43­44 defined, 245­246 introduction, xxxii, 14 continuous design, xxxiii
+718ï¿½722 constructing Mock Object, 546 Constructor Injection
+example, 683ï¿½684 implementation, 680ï¿½681 installing Test Doubles, 144 Constructor Test defined, 351 example, 355ï¿½357 introduction, 77 constructors defined, 790 problems with, 419 containers, Humble Container Adapter, 698 Context Sensitivity avoiding via Isolate the SUT,
+43ï¿½44 defined, 245ï¿½246 introduction, xxxii, 14 continuous design, xxxiii
 
 www.it-ebooks.info
 
@@ -21601,25 +21607,25 @@ Index
 841
 
 continuous integration avoiding Lost Tests, 270 defined, 791 impact of Data-Driven Tests, 290 steps, 14
-control points defined, 791 testability, 66­67
+control points defined, 791 testability, 66ï¿½67
 Coplien, Jim, 576 CORBA standards, 744 cost effectiveness, Self-Checking
-Tests, 107­108 costs, test automation, 20­21 Covey, Stephen, 121 CppUnit
+Tests, 107ï¿½108 costs, test automation, 20ï¿½21 Covey, Stephen, 121 CppUnit
 defined, 748 Test Automation Frameworks,
-300 Test Method enumeration, 401 Creation Method Delegated Setup, 89­91,
-411­414 eliminating unnecessary
-objects/attributes, 303­304 examples, 420­423 as Hard-Coded Test Data
-solution, 196 hybrid setup, 93 implementation, 418­419 motivating example, 419 overview, 415­416 persistent fixtures
-teardown, 100 preface, xxiii refactoring, 420 as Test Utility Method, 600 when to use, 416­418 writing simple tests, 28 cross-functional tests, 52­53 cross-thread failure assertion, 274 Cruise Control, 754 CsUnit, 748
+300 Test Method enumeration, 401 Creation Method Delegated Setup, 89ï¿½91,
+411ï¿½414 eliminating unnecessary
+objects/attributes, 303ï¿½304 examples, 420ï¿½423 as Hard-Coded Test Data
+solution, 196 hybrid setup, 93 implementation, 418ï¿½419 motivating example, 419 overview, 415ï¿½416 persistent fixtures
+teardown, 100 preface, xxiii refactoring, 420 as Test Utility Method, 600 when to use, 416ï¿½418 writing simple tests, 28 cross-functional tests, 52ï¿½53 cross-thread failure assertion, 274 Cruise Control, 754 CsUnit, 748
 
 CSV files, xUnit Data-Driven Test, 296
 CUnit, 748 Cunningham, Ward, xxv, 290 Custom Assertion
 as Conditional Verification Logic solution, 204
-examples, 480­484 implementation, 477­478 Indirect Testing solution,
-198­199 Irrelevant Information
-solution, 193 motivating example, 478­480 overview, 474­475 reducing Test Code Duplication,
-116­117 refactoring, 480 Test Utility Methods, 602 when to use, 475­477 writing simple tests, 28 Custom Assertion test example, 483­484 implementation, 477­478 Custom Equality Assertion, 476 customer tests defined, 791 Eager Tests cause, 225 Missing Unit Test, 271 overview, 5­6 per-functionality, 51 as Scripted Test, 285­287 Cut and Paste code reuse, 214­215
+examples, 480ï¿½484 implementation, 477ï¿½478 Indirect Testing solution,
+198ï¿½199 Irrelevant Information
+solution, 193 motivating example, 478ï¿½480 overview, 474ï¿½475 reducing Test Code Duplication,
+116ï¿½117 refactoring, 480 Test Utility Methods, 602 when to use, 475ï¿½477 writing simple tests, 28 Custom Assertion test example, 483ï¿½484 implementation, 477ï¿½478 Custom Equality Assertion, 476 customer tests defined, 791 Eager Tests cause, 225 Missing Unit Test, 271 overview, 5ï¿½6 per-functionality, 51 as Scripted Test, 285ï¿½287 Cut and Paste code reuse, 214ï¿½215
 D
-data access layer database testing, 172­173 defined, 791 Slow Tests with Shared Fixtures, 319
+data access layer database testing, 172ï¿½173 defined, 791 Slow Tests with Shared Fixtures, 319
 
 www.it-ebooks.info
 
@@ -21627,23 +21633,23 @@ www.it-ebooks.info
 
 Index
 
-data leaks avoiding with Delta Assertions, 486­487 Complex Teardown, 206
-Data Loader, Back Door Manipulation, 330­331
-data minimization, 738­739 data population script, 434 Data Retriever, 331 Data Sensitivity
-defined, 243­245 introduction, xxxii, 14 Data Transfer Object (DTO) defined, 793 result verification, 116 Database Extraction Script, 331 Database Partitioning Scheme Data Sensitivity solution,
-244­245 developer independence, 173 example, 653 Global Fixtures, 430 implementation, 652 database patterns, 649­675 Database Sandbox,
-650­653 Stored Procedure Test,
-654­660 Table Truncation Teardown,
-661­667 Transaction Rollback
-Teardown, 668­675 Database Population Script, 330 Database Sandbox
-database testing, 168 design for testability, 7 pattern description, 650­653 as Test Run Wars solution,
-236­237 Unrepeatable Tests cause, 235 when to use, 650
+data leaks avoiding with Delta Assertions, 486ï¿½487 Complex Teardown, 206
+Data Loader, Back Door Manipulation, 330ï¿½331
+data minimization, 738ï¿½739 data population script, 434 Data Retriever, 331 Data Sensitivity
+defined, 243ï¿½245 introduction, xxxii, 14 Data Transfer Object (DTO) defined, 793 result verification, 116 Database Extraction Script, 331 Database Partitioning Scheme Data Sensitivity solution,
+244ï¿½245 developer independence, 173 example, 653 Global Fixtures, 430 implementation, 652 database patterns, 649ï¿½675 Database Sandbox,
+650ï¿½653 Stored Procedure Test,
+654ï¿½660 Table Truncation Teardown,
+661ï¿½667 Transaction Rollback
+Teardown, 668ï¿½675 Database Population Script, 330 Database Sandbox
+database testing, 168 design for testability, 7 pattern description, 650ï¿½653 as Test Run Wars solution,
+236ï¿½237 Unrepeatable Tests cause, 235 when to use, 650
 
-database testing, 167­174 overview, 167­169 persistent fixtures, 313 testing without databases, 169­171 types of, 171­174
-Database Transaction Rollback Teardown, 674­675
+database testing, 167ï¿½174 overview, 167ï¿½169 persistent fixtures, 313 testing without databases, 169ï¿½171 types of, 171ï¿½174
+Database Transaction Rollback Teardown, 674ï¿½675
 databases fake. See Fake Database as SUT API, 336 teardown, 100
-Data-Driven Test customer testing, 5 Fit framework example, 296­297 frameworks, 300 implementation, 290 implemented as Recorded Test, 281 introduction, 83 motivating example, 293­294 overview, 288­289 principles, 48 reducing Test Code Duplication, 118­119 refactoring notes, 294 Test Suite Object Simulator, 293 using Fit framework, 290­292 via Naive xUnit Test Interpreter, 292­293 via Test Suite Object Generator, 293 when to use, 289­290 xUnit with CSV input file, 296 xUnit with XML data file, 294­295
-DB Schema per Test Runner developer independence, 173 implementation, 651­652
+Data-Driven Test customer testing, 5 Fit framework example, 296ï¿½297 frameworks, 300 implementation, 290 implemented as Recorded Test, 281 introduction, 83 motivating example, 293ï¿½294 overview, 288ï¿½289 principles, 48 reducing Test Code Duplication, 118ï¿½119 refactoring notes, 294 Test Suite Object Simulator, 293 using Fit framework, 290ï¿½292 via Naive xUnit Test Interpreter, 292ï¿½293 via Test Suite Object Generator, 293 when to use, 289ï¿½290 xUnit with CSV input file, 296 xUnit with XML data file, 294ï¿½295
+DB Schema per Test Runner developer independence, 173 implementation, 651ï¿½652
 
 www.it-ebooks.info
 
@@ -21652,19 +21658,19 @@ Index
 843
 
 DbUnit Back Door Manipulation, 335 defined, 748 Expected State Specification, 464
-DDSteps, 754 Decorated Lazy Setup, 449­450 Decorator
+DDSteps, 754 Decorated Lazy Setup, 449ï¿½450 Decorator
 Abstract Setup Decorator, 449, 453
-Parameterized Setup Decorator, 452­453
-Pushdown Decorator, 450 Setup. See Setup Decorator Test Hook as, 710 Dedicated Database Sandbox, 651 Defect Localization customer testing, 5 defined, 22­23 Frequent Debugging, 248 Keep Tests Independent Tests, 43 right-sizing Test Methods, 154 test automation philosophies, 34 unit testing, 6 Verify One Condition per Test, 45 defining tests introduction, 76­78 suites of, 78­79 delays. See Slow Tests Delegated Setup example, 413­414 introduction, 77 matching with teardown code,
-98­99 overview, 411­414 of transient fixtures, 89­91 when to use, 412 Delegated Teardown example, 514­515 overview, 511 of persistent fixtures, 98­99 Table Truncation Teardown, 665
+Parameterized Setup Decorator, 452ï¿½453
+Pushdown Decorator, 450 Setup. See Setup Decorator Test Hook as, 710 Dedicated Database Sandbox, 651 Defect Localization customer testing, 5 defined, 22ï¿½23 Frequent Debugging, 248 Keep Tests Independent Tests, 43 right-sizing Test Methods, 154 test automation philosophies, 34 unit testing, 6 Verify One Condition per Test, 45 defining tests introduction, 76ï¿½78 suites of, 78ï¿½79 delays. See Slow Tests Delegated Setup example, 413ï¿½414 introduction, 77 matching with teardown code,
+98ï¿½99 overview, 411ï¿½414 of transient fixtures, 89ï¿½91 when to use, 412 Delegated Teardown example, 514ï¿½515 overview, 511 of persistent fixtures, 98ï¿½99 Table Truncation Teardown, 665
 
-Delta Assertion avoiding fixture collisions, 101 as Data Sensitivity solution, 245 detecting data leakage with, 487 examples, 488­489 introduction, 111 pattern description, 485­486
+Delta Assertion avoiding fixture collisions, 101 as Data Sensitivity solution, 245 detecting data leakage with, 487 examples, 488ï¿½489 introduction, 111 pattern description, 485ï¿½486
 depended-on component (DOC). See DOC (depended-on component)
-dependencies Interacting Tests, 230­231 replacement with Test Doubles, 739 replacing using Test Hooks, 709­712 retrofitting testability, 148 test automation philosophies, 34 Test Dependency in Production, 220­221 test file organization, 165
+dependencies Interacting Tests, 230ï¿½231 replacement with Test Doubles, 739 replacing using Test Hooks, 709ï¿½712 retrofitting testability, 148 test automation philosophies, 34 Test Dependency in Production, 220ï¿½221 test file organization, 165
 Dependency Initialization Test, 352 Dependency Injection
-design for testability, 7 examples, 683­685 implementation, 679­681 installing Test Doubles via,
-143­144 Isolate the SUT, 44 motivating example, 682 overview, 678 Persistent Fresh Fixtures
-avoidance, 62­63 refactoring, 682 testability improvement, 70 when database testing, 171 when to use, 678­679 Dependency Lookup design for testability, 7 examples, 691­693 implementation, 688­689 installing Test Doubles, 144­145
+design for testability, 7 examples, 683ï¿½685 implementation, 679ï¿½681 installing Test Doubles via,
+143ï¿½144 Isolate the SUT, 44 motivating example, 682 overview, 678 Persistent Fresh Fixtures
+avoidance, 62ï¿½63 refactoring, 682 testability improvement, 70 when database testing, 171 when to use, 678ï¿½679 Dependency Lookup design for testability, 7 examples, 691ï¿½693 implementation, 688ï¿½689 installing Test Doubles, 144ï¿½145
 
 www.it-ebooks.info
 
@@ -21672,30 +21678,30 @@ www.it-ebooks.info
 
 Index
 
-Isolate the SUT, 44 motivating example, 690 names, 693­694 overview, 686 Persistent Fresh Fixtures,
-62­63 refactoring, 690­691 when database testing, 171 when to use, 687­688 Derived Expectation example, 720 when to use, 719 Derived Input, 719 Derived Value examples, 719­722 overview, 718 when to use, 718­719 design patterns, xxxv, 792 design-for-testability control points and observation
-points, 66­67 defined, 792 divide and test, 71­72 ensuring testability, 65 interaction styles and testability
-patterns, 67­71 overview, 7 Separation of Concerns, 28­29 test automation philosophies.
-See test automation philosophies test automation principles, 40 test-driven testability, 66 design-for-testability patterns, 677­712 Dependency Injection. See Dependency Injection Dependency Lookup. See Dependency Lookup Humble Object. See Humble Object Test Hooks, 709­712
+Isolate the SUT, 44 motivating example, 690 names, 693ï¿½694 overview, 686 Persistent Fresh Fixtures,
+62ï¿½63 refactoring, 690ï¿½691 when database testing, 171 when to use, 687ï¿½688 Derived Expectation example, 720 when to use, 719 Derived Input, 719 Derived Value examples, 719ï¿½722 overview, 718 when to use, 718ï¿½719 design patterns, xxxv, 792 design-for-testability control points and observation
+points, 66ï¿½67 defined, 792 divide and test, 71ï¿½72 ensuring testability, 65 interaction styles and testability
+patterns, 67ï¿½71 overview, 7 Separation of Concerns, 28ï¿½29 test automation philosophies.
+See test automation philosophies test automation principles, 40 test-driven testability, 66 design-for-testability patterns, 677ï¿½712 Dependency Injection. See Dependency Injection Dependency Lookup. See Dependency Lookup Humble Object. See Humble Object Test Hooks, 709ï¿½712
 
 deterministic values, 238 developer independence, 173 developer testing
-defined, 792 introduction, xxx Developers Not Writing Tests, 13 development agile, 239 behavior driven, 632, 787­788 document-driven, 793 EDD. See EDD (example-driven
-development) incremental, 33­34, 799­800 inside-out, 463 inside-out vs. outside in, 34­36 need-driven. See need-driven
-development outside-in, 469 process, 4­5 TDD. See TDD (test-driven
+defined, 792 introduction, xxx Developers Not Writing Tests, 13 development agile, 239 behavior driven, 632, 787ï¿½788 document-driven, 793 EDD. See EDD (example-driven
+development) incremental, 33ï¿½34, 799ï¿½800 inside-out, 463 inside-out vs. outside in, 34ï¿½36 need-driven. See need-driven
+development outside-in, 469 process, 4ï¿½5 TDD. See TDD (test-driven
 development) test-first. See test-first
-development test-last. See test-last development Diagnostic Assertion, 476­477 diagramming notation, xlii Dialog, Humble. See Humble Dialog direct output defined, 792­793 verification, 178 Direct Test Method Invocation, 401 disambiguation, test fixtures, 814 Discovery, Test. See Test Discovery Distinct Generated Values Anonymous Creation
-Methods, 417 Delegated Setup, 90 example, 725­726 Hard-Coded Test Data
+development test-last. See test-last development Diagnostic Assertion, 476ï¿½477 diagramming notation, xlii Dialog, Humble. See Humble Dialog direct output defined, 792ï¿½793 verification, 178 Direct Test Method Invocation, 401 disambiguation, test fixtures, 814 Discovery, Test. See Test Discovery Distinct Generated Values Anonymous Creation
+Methods, 417 Delegated Setup, 90 example, 725ï¿½726 Hard-Coded Test Data
 solution, 196 implementation, 724 Unrepeatable Tests solution, 235
 
 www.it-ebooks.info
 
-Distinct Values, 717 Do No Harm, 24­25 DOC (depended-on component)
+Distinct Values, 717 Do No Harm, 24ï¿½25 DOC (depended-on component)
 Behavior Verification, 469 control points and observation
-points, 66­67 defined, 791­792 outside-in development, 35 replacing with Test Double.
+points, 66ï¿½67 defined, 791ï¿½792 outside-in development, 35 replacing with Test Double.
 See Test Double retrieving. See Dependency
-Lookup terminology, xl­xli Test Hook in, 712 Documentation, Tests as. See Tests as Documentation document-driven development, 793 Domain Assertion defined, 476 example, 481­482 domain layer defined, 793 test strategy patterns, 337 domain model, 793 Don't Modify the SUT, 41­42 drivers, test defined, 813 lack of Assertion Messages,
+Lookup terminology, xlï¿½xli Test Hook in, 712 Documentation, Tests as. See Tests as Documentation document-driven development, 793 Domain Assertion defined, 476 example, 481ï¿½482 domain layer defined, 793 test strategy patterns, 337 domain model, 793 Don't Modify the SUT, 41ï¿½42 drivers, test defined, 813 lack of Assertion Messages,
 370 DRY (don't repeat yourself), 28 DTO (Data Transfer Object)
-defined, 793 result verification, 116 Dummy Argument, 729 Dummy Attribute, 729 Dummy Object configuring, 141­142 defined, 133 as Test Double, 134­135, 526 as value pattern, 728­732 xUnit terminology, 741­744
+defined, 793 result verification, 116 Dummy Argument, 729 Dummy Attribute, 729 Dummy Object configuring, 141ï¿½142 defined, 133 as Test Double, 134ï¿½135, 526 as value pattern, 728ï¿½732 xUnit terminology, 741ï¿½744
 
 Index
 
@@ -21703,17 +21709,17 @@ Index
 
 dynamic binding defined, 793 use in Dependency Injection, 679
 Dynamically Generated Mock Object, 550
-Dynamically Generated Test Double implementation, 561­562 providing, 140­141
-Dynamically Generated Test Stub, 534­535
+Dynamically Generated Test Double implementation, 561ï¿½562 providing, 140ï¿½141
+Dynamically Generated Test Stub, 534ï¿½535
 E
-Eager Test Assertion Roulette, 224­226 Fragile Tests, 240 Obscure Tests, 187­188 right-sizing Test Methods, 154
+Eager Test Assertion Roulette, 224ï¿½226 Fragile Tests, 240 Obscure Tests, 187ï¿½188 right-sizing Test Methods, 154
 EasyMock defined, 754 Test Doubles, 140
 eCATT defined, 754 Test Automation Frameworks, 301
 Eclipse Debugger, 110 defined, 754
-economics of test automation, 20­21 EDD (example-driven development)
+economics of test automation, 20ï¿½21 EDD (example-driven development)
 defined, 794 tests as examples, 33 efficiency, 11 emergent design vs. BDUF, 65 defined, xxxiii, 794 encapsulation Creation Method. See Creation
 Method Dependency Lookup
-implementation, 688­689 indirect outputs and, 126
+implementation, 688ï¿½689 indirect outputs and, 126
 
 www.it-ebooks.info
 
@@ -21724,21 +21730,21 @@ Index
 Indirect Testing solution, 198 SUT API. See SUT API
 Encapsulation using Test Utility Methods.
 See Test Utility Method endoscopic testing (ET)
-defined, 794 Mock Objects, 545 Test Doubles, 149 Ensure Commensurate Effort and Responsibility, 47­48 Entity Chain Snipping example, 536­537 testing with doubles, 149 when to use, 531 entity object, 794 enumeration customer testing, 5 Suite of Suites built using, 389­391 test conditions in Loop-Driven
-Tests, 614­615 Test Enumeration, 399­402 Test Suite Object built using, 388 xUnit organization
+defined, 794 Mock Objects, 545 Test Doubles, 149 Ensure Commensurate Effort and Responsibility, 47ï¿½48 Entity Chain Snipping example, 536ï¿½537 testing with doubles, 149 when to use, 531 entity object, 794 enumeration customer testing, 5 Suite of Suites built using, 389ï¿½391 test conditions in Loop-Driven
+Tests, 614ï¿½615 Test Enumeration, 399ï¿½402 Test Suite Object built using, 388 xUnit organization
 mechanisms, 153 Equality, Sensitivity
 Fragile Tests, 246 test-first development, 32 Equality Assertion Assertion Methods, 365 Custom, 476 example, 368 Guard Assertion as, 491 introduction, 110 reducing Test Code
-Duplication, 115 unit testing, 6 Equality Pollution, 221­222 equals method Equality Pollution, 221­222 Expected State Specification, 464 reducing Test Code Duplication,
-115­116
+Duplication, 115 unit testing, 6 Equality Pollution, 221ï¿½222 equals method Equality Pollution, 221ï¿½222 Expected State Specification, 464 reducing Test Code Duplication,
+115ï¿½116
 
 equivalence class Behavior Smells, 238 defined, 794 Untested Code, 272
-Erratic Test Automated Teardown and, 27 customer testing, 5 database testing, 168­169 impact, 228 Interacting Test Suites, 231­232 Interacting Tests, 229­231 introduction, 14­16 Lonely Tests, 232 Nondeterministic Tests, 237­238 Resource Leakage, 233 Resource Optimism, 233­234 symptoms, 228 Test Run Wars, 235­237 troubleshooting, 228­229 Unrepeatable Tests, 234­235
+Erratic Test Automated Teardown and, 27 customer testing, 5 database testing, 168ï¿½169 impact, 228 Interacting Test Suites, 231ï¿½232 Interacting Tests, 229ï¿½231 introduction, 14ï¿½16 Lonely Tests, 232 Nondeterministic Tests, 237ï¿½238 Resource Leakage, 233 Resource Optimism, 233ï¿½234 symptoms, 228 Test Run Wars, 235ï¿½237 troubleshooting, 228ï¿½229 Unrepeatable Tests, 234ï¿½235
 essential but irrelevant fixture setup, 425
 ET (endoscopic testing) defined, 794 Mock Object use for, 149, 545
 example-driven development (EDD) defined, 794 tests as examples, 33
 examples, tests as, 33 exclamation marks, xlii Executable, Humble. See Humble
-Executable Executable Specification, 51 execution optimization, 180­181 exercise SUT
-defined, 794 test phases, 359 expectations defined, 795 Derived Expectations, 719, 720 messages describing, 371­372 naming conventions, 159
+Executable Executable Specification, 51 execution optimization, 180ï¿½181 exercise SUT
+defined, 794 test phases, 359 expectations defined, 795 Derived Expectations, 719, 720 messages describing, 371ï¿½372 naming conventions, 159
 
 www.it-ebooks.info
 
@@ -21746,27 +21752,27 @@ Index
 
 847
 
-Expected Behavior Specification defined, 470­471 example, 473
-Expected Behavior Verification defined, 112 indirect outputs, 131­132
-Expected Exception Assertion defined as Assertion Method, 365­366 example, 369
-Expected Exception Test Conditional Verification Logic solution, 204 introduction, 77 as Test Method, 350­351 using block closure, 354­355 using method attributes, 354 using try/catch, 353­354
-Expected Object reducing Test Code Duplication, 115­116 refactoring tests, xlv­xlviii State Verifications, 109, 466­467 unit testing, 6
+Expected Behavior Specification defined, 470ï¿½471 example, 473
+Expected Behavior Verification defined, 112 indirect outputs, 131ï¿½132
+Expected Exception Assertion defined as Assertion Method, 365ï¿½366 example, 369
+Expected Exception Test Conditional Verification Logic solution, 204 introduction, 77 as Test Method, 350ï¿½351 using block closure, 354ï¿½355 using method attributes, 354 using try/catch, 353ï¿½354
+Expected Object reducing Test Code Duplication, 115ï¿½116 refactoring tests, xlvï¿½xlviii State Verifications, 109, 466ï¿½467 unit testing, 6
 expected outcome, 795 Expected State Specification,
-464­465 expected values, 546­547 exploratory testing
-cross-functionality, 53 defined, 795 Scripted Tests, 287 Expression Builders, 564­566 expressiveness gaps, 27­28 external resource setup, 740 external result verification, 111­112 external test recording, 280 Extract Method Creation Methods, 418 Custom Assertions, 117 Delegated Setup, 89 as Eager Tests solution, 225 example, xlvii
+464ï¿½465 expected values, 546ï¿½547 exploratory testing
+cross-functionality, 53 defined, 795 Scripted Tests, 287 Expression Builders, 564ï¿½566 expressiveness gaps, 27ï¿½28 external resource setup, 740 external result verification, 111ï¿½112 external test recording, 280 Extract Method Creation Methods, 418 Custom Assertions, 117 Delegated Setup, 89 as Eager Tests solution, 225 example, xlvii
 
-in persistent fixture teardown, 98 refactoring Recorded Tests, 283 Extract Testable Component, 197, 735­736 eXtreme Programming defined, 795 projects affected by Slow Tests,
-319­321 eXtreme Programming Explained
+in persistent fixture teardown, 98 refactoring Recorded Tests, 283 Extract Testable Component, 197, 735ï¿½736 eXtreme Programming defined, 795 projects affected by Slow Tests,
+319ï¿½321 eXtreme Programming Explained
 (Beck), xxii
 F
-factories defined, 795 Factory Method, 592­593 Object Factories, 145, 688
-failed tests due to Unfinished Test Assertions, 494­497 implementation, 80
-"Fail-Pass-Pass", 234­235 failure messages
-Assertion Messages, 370­372 Built-in Assertions, 110­111 removing "if" statements, 120 Single-Outcome Assertions,
-366­367 Fake Database
-avoiding persistence, 101 database testing, 170 example, 556­557 Slow Component Usage
+factories defined, 795 Factory Method, 592ï¿½593 Object Factories, 145, 688
+failed tests due to Unfinished Test Assertions, 494ï¿½497 implementation, 80
+"Fail-Pass-Pass", 234ï¿½235 failure messages
+Assertion Messages, 370ï¿½372 Built-in Assertions, 110ï¿½111 removing "if" statements, 120 Single-Outcome Assertions,
+366ï¿½367 Fake Database
+avoiding persistence, 101 database testing, 170 example, 556ï¿½557 Slow Component Usage
 solution, 254 Slow Tests with Shared
-Fixtures, 319 when to use, 553 Fake Object configuring, 141­142 customer testing, 6 defined, 134 examples, 556­557 implementation, 553­554
+Fixtures, 319 when to use, 553 Fake Object configuring, 141ï¿½142 customer testing, 6 defined, 134 examples, 556ï¿½557 implementation, 553ï¿½554
 
 www.it-ebooks.info
 
@@ -21774,18 +21780,18 @@ www.it-ebooks.info
 
 Index
 
-motivating example, 554­555 optimizing test execution, 180 overview, 551­552 refactoring, 555­556 as Test Double, 139, 525 when to use, 552­553 xUnit terminology, 741­744 Fake Service Layer, 553 Fake Web Services, 553 false negative, 795 false positive, 795­796 fault insertion tests defined, 796 per-functionality, 52 Feathers, Michael, 40 Highly Coupled Code
+motivating example, 554ï¿½555 optimizing test execution, 180 overview, 551ï¿½552 refactoring, 555ï¿½556 as Test Double, 139, 525 when to use, 552ï¿½553 xUnit terminology, 741ï¿½744 Fake Service Layer, 553 Fake Web Services, 553 false negative, 795 false positive, 795ï¿½796 fault insertion tests defined, 796 per-functionality, 52 Feathers, Michael, 40 Highly Coupled Code
 solution, 210 Humble Object, 708 pattern naming, 576 retrofitting testability, 148 Self Shunt, 578 test automation roadmap, 176 Unit Test Rulz, 307 features defined, 796 right-sizing Test Methods,
-156­157 Testcase Class per. See Testcase
+156ï¿½157 Testcase Class per. See Testcase
 Class per Feature visibility/granularity in
-Test-Specific Subclass, 581­582 feedback in test automation, xxix file contention. See Test Run War File System Test Runner, 380 Finder Method accessing Shared Fixtures, 103­104 Mystery Guests solution, 190 when to use, 600­601 fine-grained testing, 33­34
+Test-Specific Subclass, 581ï¿½582 feedback in test automation, xxix file contention. See Test Run War File System Test Runner, 380 Finder Method accessing Shared Fixtures, 103ï¿½104 Mystery Guests solution, 190 when to use, 600ï¿½601 fine-grained testing, 33ï¿½34
 
-Fit Data-Driven Test example, 296­297 Data-Driven Test implementation, 290­292 defined, 754­755, 796 Expected State Specification, 464 fixture definition, 59, 86 fixture vs. Testcase Class, 376 Scripted Tests implementation, 286 Test Automation Framework, 301 test automation tools, 54 tests as examples, 33 vs. xUnit, 57
+Fit Data-Driven Test example, 296ï¿½297 Data-Driven Test implementation, 290ï¿½292 defined, 754ï¿½755, 796 Expected State Specification, 464 fixture definition, 59, 86 fixture vs. Testcase Class, 376 Scripted Tests implementation, 286 Test Automation Framework, 301 test automation tools, 54 tests as examples, 33 vs. xUnit, 57
 Fitnesse Data-Driven Test implementation, 290 defined, 755 Scripted Test implementation, 286
 "Five Whys", 11 fixture design
 upfront or test-by-test, 36 Verify One Condition per
 Test, 46 xUnit sweet spot, 58 fixture holding class variables, 797 fixture holding instance variables, 797 fixture setup Back Door Manipulation, 329,
-333­335 cleaning up, liv­lvii defined, 797 Delegated Setup, 89­91 external resources, 740 Four-Phase Test, 358­361 Fresh Fixtures, 313­314 hybrid setup, 93
+333ï¿½335 cleaning up, livï¿½lvii defined, 797 Delegated Setup, 89ï¿½91 external resources, 740 Four-Phase Test, 358ï¿½361 Fresh Fixtures, 313ï¿½314 hybrid setup, 93
 
 www.it-ebooks.info
 
@@ -21793,27 +21799,27 @@ Index
 
 849
 
-Implicit Setup, 91­93 In-Line Setup, 88­89 introduction, 77 matching with teardown code,
-98­99 Shared Fixtures, 104­105 speeding up with doubles,
-149­150 strategies, 60 fixture setup patterns, 407­459 Chained Test. See Chained Test Creation Method. See Creation
-Method Delegated Setup, 411­414 Implicit Setup, 424­428. See also
-Implicit Setup In-line Setup, 408­410. See also
+Implicit Setup, 91ï¿½93 In-Line Setup, 88ï¿½89 introduction, 77 matching with teardown code,
+98ï¿½99 Shared Fixtures, 104ï¿½105 speeding up with doubles,
+149ï¿½150 strategies, 60 fixture setup patterns, 407ï¿½459 Chained Test. See Chained Test Creation Method. See Creation
+Method Delegated Setup, 411ï¿½414 Implicit Setup, 424ï¿½428. See also
+Implicit Setup In-line Setup, 408ï¿½410. See also
 In-line Setup Lazy Setup. See Lazy Setup Prebuilt Fixture. See Prebuilt
 Fixture Setup Decorator. See Setup
 Decorator Suite Fixture Setup. See Suite
 Fixture Setup Fixture Setup Testcase, 456 fixture strategies
-overview, 58­61 persistent fresh fixtures, 62­63 shared fixture strategies, 63­65 fixture teardown avoiding in persistent fixtures,
-100­101 Back Door Manipulation, 330 cleaning up, l­liv Complex Teardown, 206­207 data access layer testing, 173 defined, 797 fixture strategies, 60 Four-Phase Test, 358­361 Implicit Setup, 426
+overview, 58ï¿½61 persistent fresh fixtures, 62ï¿½63 shared fixture strategies, 63ï¿½65 fixture teardown avoiding in persistent fixtures,
+100ï¿½101 Back Door Manipulation, 330 cleaning up, lï¿½liv Complex Teardown, 206ï¿½207 data access layer testing, 173 defined, 797 fixture strategies, 60 Four-Phase Test, 358ï¿½361 Implicit Setup, 426
 
-introduction, 77 Lazy Setup problems, 439 persistent fixtures, 97­100 Persistent Fresh Fixtures, 314 refactoring, l­liv Shared Fixtures, 105 transient fixtures, 93­94 Verify One Condition per
-Test, 46 fixture teardown patterns, 499­519
-Automated Teardown, 503­508
-Garbage-Collected Teardown, 500­502
-Implicit Teardown, 516­519. See also Implicit Teardown
-In-line Teardown, 509­515. See also In-line Teardown
-Table Truncation Teardown, 661­667
+introduction, 77 Lazy Setup problems, 439 persistent fixtures, 97ï¿½100 Persistent Fresh Fixtures, 314 refactoring, lï¿½liv Shared Fixtures, 105 transient fixtures, 93ï¿½94 Verify One Condition per
+Test, 46 fixture teardown patterns, 499ï¿½519
+Automated Teardown, 503ï¿½508
+Garbage-Collected Teardown, 500ï¿½502
+Implicit Teardown, 516ï¿½519. See also Implicit Teardown
+In-line Teardown, 509ï¿½515. See also In-line Teardown
+Table Truncation Teardown, 661ï¿½667
 Transaction Rollback Teardown. See Transaction Rollback Teardown
-fixtures collisions, 100­101 database testing, 168­169 defined, 796, 814 Four-Phase Test, 358­361 fresh. See Fresh Fixture introduction, 78 Minimal. See Minimal Fixture right-sizing Test Methods, 156­157 Shared. See Shared Fixture speeding up setup with doubles, 149­150 Standard. See Standard Fixture Testcase Class as, 376 Testcase Class per Fixture. See Testcase Class per Fixture transient. See transient fixtures
+fixtures collisions, 100ï¿½101 database testing, 168ï¿½169 defined, 796, 814 Four-Phase Test, 358ï¿½361 fresh. See Fresh Fixture introduction, 78 Minimal. See Minimal Fixture right-sizing Test Methods, 156ï¿½157 Shared. See Shared Fixture speeding up setup with doubles, 149ï¿½150 Standard. See Standard Fixture Testcase Class as, 376 Testcase Class per Fixture. See Testcase Class per Fixture transient. See transient fixtures
 
 www.it-ebooks.info
 
@@ -21821,19 +21827,19 @@ www.it-ebooks.info
 
 Index
 
-Flexible Test, 202­203 fluent interface, 797 For Tests Only, 219­220 foreign-key constraints, 663 forms, pattern, xxxiv­xxxv Four-Phase Test
-Custom Assertions, 478 fixture design, 59 introduction, 76­78 Mock Object patterns, 546 pattern description, 358­361 unit testing, 6 Verify One Condition per Test, 46 Fowler, Martin, xxvi code smells, 16 Creation Methods, 418 Custom Assertions, 117 Cut and Paste code reuse, 215 Delegated Setup, 89, 413 Eager Tests solution, 225 Multiple Test Conditions
+Flexible Test, 202ï¿½203 fluent interface, 797 For Tests Only, 219ï¿½220 foreign-key constraints, 663 forms, pattern, xxxivï¿½xxxv Four-Phase Test
+Custom Assertions, 478 fixture design, 59 introduction, 76ï¿½78 Mock Object patterns, 546 pattern description, 358ï¿½361 unit testing, 6 Verify One Condition per Test, 46 Fowler, Martin, xxvi code smells, 16 Creation Methods, 418 Custom Assertions, 117 Cut and Paste code reuse, 215 Delegated Setup, 89, 413 Eager Tests solution, 225 Multiple Test Conditions
 solution, 208 pattern forms, xxxvi refactoring, xxxix refactoring Recorded Tests, 283 reusable test logic, 123 self-testing code, xxi Standard Fixtures, 306 state vs. behavior
-verification, 36 test smells, 9 Testcase Object exception, 385 Fragile Fixture defined, 246­247 introduction, 14, 16 setUp method misuse, 93 Fragile Test Behavior Sensitivity, 242­243 Buggy Tests, 260 causes, 240­241 Context Sensitivity, 245­246
+verification, 36 test smells, 9 Testcase Object exception, 385 Fragile Fixture defined, 246ï¿½247 introduction, 14, 16 setUp method misuse, 93 Fragile Test Behavior Sensitivity, 242ï¿½243 Buggy Tests, 260 causes, 240ï¿½241 Context Sensitivity, 245ï¿½246
 
-Data Sensitivity, 243­245 Fragile Fixture, 246­247 High Test Maintenance
-Cost, 266 impact, 239 Interface Sensitivity, 241­242 introduction, xxiii, xxxi­xxxii,
-13­14 Overspecified Software, 246 Sensitivity Equality, 246 symptoms, 239 troubleshooting, 239­240 frameworks Fit. See Fit Test Automation Framework, 75,
-298­301 Frequent Debugging
+Data Sensitivity, 243ï¿½245 Fragile Fixture, 246ï¿½247 High Test Maintenance
+Cost, 266 impact, 239 Interface Sensitivity, 241ï¿½242 introduction, xxiii, xxxiï¿½xxxii,
+13ï¿½14 Overspecified Software, 246 Sensitivity Equality, 246 symptoms, 239 troubleshooting, 239ï¿½240 frameworks Fit. See Fit Test Automation Framework, 75,
+298ï¿½301 Frequent Debugging
 avoidance with Custom Assertion, 475
-causes, 248­249 impact, 249 introduction, 15 solution patterns, 249 symptoms, 248 Fresh Fixture Creation Method. See Creation
+causes, 248ï¿½249 impact, 249 introduction, 15 solution patterns, 249 symptoms, 248 Fresh Fixture Creation Method. See Creation
 Method Data Sensitivity solution,
-244­245 Delegated Setup, 411­414 example, 316 fixture strategies, 60­61 implementation, 312 Implicit Setup, 424­428 Interacting Tests solution, 231 motivating example, 315 Mystery Guests solution, 190 overview, 311 persistent, 62­63, 313­314.
+244ï¿½245 Delegated Setup, 411ï¿½414 example, 316 fixture strategies, 60ï¿½61 implementation, 312 Implicit Setup, 424ï¿½428 Interacting Tests solution, 231 motivating example, 315 Mystery Guests solution, 190 overview, 311 persistent, 62ï¿½63, 313ï¿½314.
 See also persistent fixtures refactoring, 315
 
 www.it-ebooks.info
@@ -21842,23 +21848,23 @@ Index
 
 851
 
-setup, 313­314 test automation philosophies, 36 Test Run Wars solution, 236­237 transient, 61­62. See also
-transient fixtures Transient Fresh Fixture, 314 when to use, 312 front door, 797 Front Door First defined, 40­41 Overspecified Software
+setup, 313ï¿½314 test automation philosophies, 36 Test Run Wars solution, 236ï¿½237 transient, 61ï¿½62. See also
+transient fixtures Transient Fresh Fixture, 314 when to use, 312 front door, 797 Front Door First defined, 40ï¿½41 Overspecified Software
 avoidance, 246 Fully Automated Test
 behavior smells and, 15 Communicate Intent and, 41 Manual Fixture Setup
-solution, 251 minimizing untested code, 44­45 running, 25­26 unit testing, 6 functional tests defined, 798 per-functionality, 50­52 Fuzzy Equality Assertion defined, 365­366 example, 368­369 external result verification,
-111­112 introduction, 110
+solution, 251 minimizing untested code, 44ï¿½45 running, 25ï¿½26 unit testing, 6 functional tests defined, 798 per-functionality, 50ï¿½52 Fuzzy Equality Assertion defined, 365ï¿½366 example, 368ï¿½369 external result verification,
+111ï¿½112 introduction, 110
 G
 Gamma, Erich, 57 garbage collection, 798 Garbage-Collected Teardown
-design-for-testability, 7 pattern description, 500­502 persistent fixtures, 97 transient fixtures, 87­88 General Fixture database testing, 169 defined, 187
+design-for-testability, 7 pattern description, 500ï¿½502 persistent fixtures, 97 transient fixtures, 87ï¿½88 General Fixture database testing, 169 defined, 187
 
-misuse of setUp method, 92­93
-Obscure Tests, 190­192 Slow Tests, 255 Generated Value, 723­727 Geras, Adam, 280 Global Fixture, 430 global variables defined, 798 instance variables as, 92 goals, test automation. See test automation goals Gorts, Sven, 537 granularity test automation tools and,
-53­54 Test-Specific Subclass,
-581­582 Graphical Test Runner
-clicking through to test code, 226­227
-defined, 378­379 green bar, 26 introduction, 79, 300 graphical user interface (GUI). See GUI (graphical user interface) green bar, defined, 798 Guaranteed In-Line Teardown, 233 Guard Assertion Conditional Verification Logic
-solution, 203­204 introduction, 80 pattern description, 490­493 removing "if" statements in
+misuse of setUp method, 92ï¿½93
+Obscure Tests, 190ï¿½192 Slow Tests, 255 Generated Value, 723ï¿½727 Geras, Adam, 280 Global Fixture, 430 global variables defined, 798 instance variables as, 92 goals, test automation. See test automation goals Gorts, Sven, 537 granularity test automation tools and,
+53ï¿½54 Test-Specific Subclass,
+581ï¿½582 Graphical Test Runner
+clicking through to test code, 226ï¿½227
+defined, 378ï¿½379 green bar, 26 introduction, 79, 300 graphical user interface (GUI). See GUI (graphical user interface) green bar, defined, 798 Guaranteed In-Line Teardown, 233 Guard Assertion Conditional Verification Logic
+solution, 203ï¿½204 introduction, 80 pattern description, 490ï¿½493 removing "if" statements in
 Test Method, 120 GUI (graphical user interface)
 defined, 799 design for testability, 7 Interface Sensitivity, xxxii testing with Humble
 Dialogs, 696
@@ -21870,19 +21876,19 @@ www.it-ebooks.info
 Index
 
 H
-Hand-Built Test Double. See also Hard-Coded Test Double Configurable Test Double, 560­561 providing, 140­141
-Hand-Coded Mock Object, 548­550 hand-coded teardown, 97­98 Hand-Coded Test Stub, 533­534 Hand-Scripted Test. See also
-Scripted Test introduction, 75 tools for automating, 53­54
+Hand-Built Test Double. See also Hard-Coded Test Double Configurable Test Double, 560ï¿½561 providing, 140ï¿½141
+Hand-Coded Mock Object, 548ï¿½550 hand-coded teardown, 97ï¿½98 Hand-Coded Test Stub, 533ï¿½534 Hand-Scripted Test. See also
+Scripted Test introduction, 75 tools for automating, 53ï¿½54
 Hand-Written Test. See Scripted Test happy path
-defined, 799 Responder use, 530 Simple Success Tests, 349­350 test automation roadmap,
-177­178 Hard-Coded Mock Object. See Hard-
+defined, 799 Responder use, 530 Simple Success Tests, 349ï¿½350 test automation roadmap,
+177ï¿½178 Hard-Coded Mock Object. See Hard-
 Coded Test Double Hard-Coded Setup Decorator
-defined, 449 example, 451­452 Hard-Coded Test Data causing Obscure Tests, 194­196 defined, 187 introduction, lv­lvii, 16 Hard-Coded Test Double configuring, 141­142 implementation, 527, 569­571 motivating example, 571 naming patterns, 576­578 overview, 568 refactoring, 572 Self Shunt/Loopback, 573 Subclassed Inner Test Double,
-573­575, 578 Test Double Class, 572­573
+defined, 449 example, 451ï¿½452 Hard-Coded Test Data causing Obscure Tests, 194ï¿½196 defined, 187 introduction, lvï¿½lvii, 16 Hard-Coded Test Double configuring, 141ï¿½142 implementation, 527, 569ï¿½571 motivating example, 571 naming patterns, 576ï¿½578 overview, 568 refactoring, 572 Self Shunt/Loopback, 573 Subclassed Inner Test Double,
+573ï¿½575, 578 Test Double Class, 572ï¿½573
 
-testing with, 140­142 when to use, 569 Hard-Coded Test Spy. See Hard-Coded Test Double Hard-Coded Test Stub. See also Hard-Coded Test Double implementation, 531­532 indirect input control, 179 Hard-Coded Value, 103 Hard-To-Test Code Asynchronous Code, 210­211 Buggy Tests, 261 code smells, 16 Developers Not Writing
-Tests, 264 divide and test, 71­72 High Test Maintenance Cost,
-266­267 Highly Coupled Code, 210 impact, 209 solution patterns, 209 symptoms, 209 Untestable Test Code, 211­212 hierarchy of test automation needs, 176­177 High Test Maintenance Cost Conditional Test Logic, 200 In-Line Setup, 89 introduction, 12­13 smell description, 265­267 Higher Level Language Custom Assertion, 117 Interface Sensitivity solution, 241 xUnit sweet spot, 58 Highly Coupled Code, 210 historical patterns and smells, xxxviii Hollywood principle defined, 56, 799 test results, 79 Hook, Test. See Test Hook HTML user interface sensitivity, xxxii
+testing with, 140ï¿½142 when to use, 569 Hard-Coded Test Spy. See Hard-Coded Test Double Hard-Coded Test Stub. See also Hard-Coded Test Double implementation, 531ï¿½532 indirect input control, 179 Hard-Coded Value, 103 Hard-To-Test Code Asynchronous Code, 210ï¿½211 Buggy Tests, 261 code smells, 16 Developers Not Writing
+Tests, 264 divide and test, 71ï¿½72 High Test Maintenance Cost,
+266ï¿½267 Highly Coupled Code, 210 impact, 209 solution patterns, 209 symptoms, 209 Untestable Test Code, 211ï¿½212 hierarchy of test automation needs, 176ï¿½177 High Test Maintenance Cost Conditional Test Logic, 200 In-Line Setup, 89 introduction, 12ï¿½13 smell description, 265ï¿½267 Higher Level Language Custom Assertion, 117 Interface Sensitivity solution, 241 xUnit sweet spot, 58 Highly Coupled Code, 210 historical patterns and smells, xxxviii Hollywood principle defined, 56, 799 test results, 79 Hook, Test. See Test Hook HTML user interface sensitivity, xxxii
 
 www.it-ebooks.info
 
@@ -21891,16 +21897,16 @@ Index
 853
 
 HttpUnit, 755 Humble Container Adapter, 698 Humble Dialog
-design-for-testability, 7 example, 706­708 Hard-To-Test Code, 72 minimizing untested code, 45 when to use, 696­697 Humble Executable asynchronous tests, 70­71 minimizing untested code, 44 motivating example, 700­702 Neverfail Test solution, 274 when to use, 697 Humble Object Asynchronous Code solution, 211 Humble Dialog, 706­708 Humble Transaction
-Controller, 708 implementation, 698­700 motivating example, 700­702 overview, 695­696 Poor Manís Humble
+design-for-testability, 7 example, 706ï¿½708 Hard-To-Test Code, 72 minimizing untested code, 45 when to use, 696ï¿½697 Humble Executable asynchronous tests, 70ï¿½71 minimizing untested code, 44 motivating example, 700ï¿½702 Neverfail Test solution, 274 when to use, 697 Humble Object Asynchronous Code solution, 211 Humble Dialog, 706ï¿½708 Humble Transaction
+Controller, 708 implementation, 698ï¿½700 motivating example, 700ï¿½702 overview, 695ï¿½696 Poor Manï¿½s Humble
 Executable, 703 refactoring, 702 True Humble Executable,
-703­706 when to use, 696­698 Humble Transaction Controller data access layer testing, 173 example, 708 when to use, 697­698 Hurst, John, 670­671 hybrid setup, 93
+703ï¿½706 when to use, 696ï¿½698 Humble Transaction Controller data access layer testing, 173 example, 708 when to use, 697ï¿½698 Hurst, John, 670ï¿½671 hybrid setup, 93
 I
 IDE (integrated development environment) defined, 799 introduction, 78 refactoring, xxxix
 
 Idea, 755 IeUnit
-defined, 748 Graphical Test Runner, 378 "if" statements Conditional Test Logic, 201 Guard Assertions, 490­491 removing, 120 IFixtureFrame, 442 ignoring tests, 270 Immutable Shared Fixture defined, 323 example, 326 Interacting Tests solution, 231 introduction, 61, 65 vs. Irrelevant Information, 192 Test Run Wars solution, 237 impact Assertion Roulette, 224 Asynchronous Code, 211 Buggy Tests, 260 Conditional Test Logic, 201 Developers Not Writing
-Tests, 263 Equality Pollution, 221 Erratic Tests, 228 Flexible Tests, 203 Fragile Tests, 239 Frequent Debugging, 249 General Fixtures, 191­192 Hard-Coded Test Data, 195 Hard-To-Test Code, 209 High Test Maintenance
+defined, 748 Graphical Test Runner, 378 "if" statements Conditional Test Logic, 201 Guard Assertions, 490ï¿½491 removing, 120 IFixtureFrame, 442 ignoring tests, 270 Immutable Shared Fixture defined, 323 example, 326 Interacting Tests solution, 231 introduction, 61, 65 vs. Irrelevant Information, 192 Test Run Wars solution, 237 impact Assertion Roulette, 224 Asynchronous Code, 211 Buggy Tests, 260 Conditional Test Logic, 201 Developers Not Writing
+Tests, 263 Equality Pollution, 221 Erratic Tests, 228 Flexible Tests, 203 Fragile Tests, 239 Frequent Debugging, 249 General Fixtures, 191ï¿½192 Hard-Coded Test Data, 195 Hard-To-Test Code, 209 High Test Maintenance
 Cost, 265 Highly Coupled Code, 210 Indirect Testing, 197 Irrelevant Information, 193 Manual Intervention, 250 Mystery Guests, 189 Neverfail Tests, 274 Nondeterministic Tests, 237
 
 www.it-ebooks.info
@@ -21910,17 +21916,17 @@ www.it-ebooks.info
 Index
 
 Obscure Tests, 186 Production Bugs, 268 Slow Tests, 253 Test Code Duplication, 214 Test Dependency in
-Production, 221 Test Hooks, 218­219 Test Logic in Production, 217 Test Run Wars, 236 For Tests Only, 220 Untestable Test Code, 211 Untested Requirements, 273 Implicit Setup vs. Four-Phase Test, 360­361 introduction, 7, 77 matching with teardown code,
-98­99 pattern description, 424­428 pattern naming, 577 reusing test code with, 162 transient fixtures, 91­93 Implicit Teardown Complex Teardown solution,
-206­207 database, 100 vs. Four-Phase Test, 360­361 pattern description, 516­519 persistent fixtures, 98­99 Self-Checking Tests with, 108 Imposter. See Test Double incremental delivery agile development, 239 defined, 799 incremental development defined, 799­800 test automation philosophies,
-33­34 Incremental Tabular Test
-implementation, 609­610 Parameterized Test patterns,
-613­614
+Production, 221 Test Hooks, 218ï¿½219 Test Logic in Production, 217 Test Run Wars, 236 For Tests Only, 220 Untestable Test Code, 211 Untested Requirements, 273 Implicit Setup vs. Four-Phase Test, 360ï¿½361 introduction, 7, 77 matching with teardown code,
+98ï¿½99 pattern description, 424ï¿½428 pattern naming, 577 reusing test code with, 162 transient fixtures, 91ï¿½93 Implicit Teardown Complex Teardown solution,
+206ï¿½207 database, 100 vs. Four-Phase Test, 360ï¿½361 pattern description, 516ï¿½519 persistent fixtures, 98ï¿½99 Self-Checking Tests with, 108 Imposter. See Test Double incremental delivery agile development, 239 defined, 799 incremental development defined, 799ï¿½800 test automation philosophies,
+33ï¿½34 Incremental Tabular Test
+implementation, 609ï¿½610 Parameterized Test patterns,
+613ï¿½614
 
 incremental tests, 322 In-Database Stored Procedure Test
-database testing, 172 example, 658­659 implementation, 655­656 Independent Tabular Test, 612­613 independent testing. See Keep Tests Independent indirect input alternative path verification, 179 controlling, 128­129 controlling in Layer Tests, 341 defined, 800 importance of, 126 Test Doubles, 125­126 indirect output Behavior Verification.
-See Behavior Verification defined, 800 importance of, 126­127 registries, 541 Test Doubles, 125­126 verification, 130­133, 178­180 verifying in Layer Tests, 341 Indirect Testing defined, 187 Fragile Tests cause, 240 Obscure Tests cause, 196­199 testability, 70­71 Infrequently Run Test Frequent Debugging cause,
-248­249 Production Bugs cause, 268­269 inheritance reusing test code, 164 reusing test fixtures, 62 injected values, Test Stub. See Test Stub Injection, Parameter. See Parameter Injection in-line Four Phase Test, 360
+database testing, 172 example, 658ï¿½659 implementation, 655ï¿½656 Independent Tabular Test, 612ï¿½613 independent testing. See Keep Tests Independent indirect input alternative path verification, 179 controlling, 128ï¿½129 controlling in Layer Tests, 341 defined, 800 importance of, 126 Test Doubles, 125ï¿½126 indirect output Behavior Verification.
+See Behavior Verification defined, 800 importance of, 126ï¿½127 registries, 541 Test Doubles, 125ï¿½126 verification, 130ï¿½133, 178ï¿½180 verifying in Layer Tests, 341 Indirect Testing defined, 187 Fragile Tests cause, 240 Obscure Tests cause, 196ï¿½199 testability, 70ï¿½71 Infrequently Run Test Frequent Debugging cause,
+248ï¿½249 Production Bugs cause, 268ï¿½269 inheritance reusing test code, 164 reusing test fixtures, 62 injected values, Test Stub. See Test Stub Injection, Parameter. See Parameter Injection in-line Four Phase Test, 360
 
 www.it-ebooks.info
 
@@ -21928,23 +21934,23 @@ Index
 
 855
 
-in-line resources, 736­737 In-line Setup
+in-line resources, 736ï¿½737 In-line Setup
 introduction, 77 matching with teardown code,
-98­99 Mystery Guest solution, 190 pattern description, 408­410 transient fixtures, 88­89 In-line Teardown examples, 512­515 implementation, 510­511 motivating example, 511 Naive In-Line Teardown, 512 overview, 509 of persistent fixtures, 98­99 refactoring, 512 when to use, 510 In-Memory Database, 553 inner class anonymous, 535­536, 786 defined, 800 Inner Test Double example, 573­574 Hard-Coded Test Double
-implementation, 570­571 Subclassed from Pseudo-Class,
-574­575, 578 Test Spy implementation, 541 input derived, 719 indirect. See indirect input naming conventions, 158­159 inside-out development vs. outside-in development, 34­36 State Verification, 463 installing Test Doubles, 528 Dependency Injection, 143­144,
-679­680 Dependency Lookup, 144­145 Fake Object, 554 introduction, 143
+98ï¿½99 Mystery Guest solution, 190 pattern description, 408ï¿½410 transient fixtures, 88ï¿½89 In-line Teardown examples, 512ï¿½515 implementation, 510ï¿½511 motivating example, 511 Naive In-Line Teardown, 512 overview, 509 of persistent fixtures, 98ï¿½99 refactoring, 512 when to use, 510 In-Memory Database, 553 inner class anonymous, 535ï¿½536, 786 defined, 800 Inner Test Double example, 573ï¿½574 Hard-Coded Test Double
+implementation, 570ï¿½571 Subclassed from Pseudo-Class,
+574ï¿½575, 578 Test Spy implementation, 541 input derived, 719 indirect. See indirect input naming conventions, 158ï¿½159 inside-out development vs. outside-in development, 34ï¿½36 State Verification, 463 installing Test Doubles, 528 Dependency Injection, 143ï¿½144,
+679ï¿½680 Dependency Lookup, 144ï¿½145 Fake Object, 554 introduction, 143
 
 Mock Object, 547 retrofitting testability,
-146­148 instance methods
-defined, 800­801 with Test Helper, 645, 647 instance variables converting for Implicit Setup, 427 Data-Driven Tests using Fit
+146ï¿½148 instance methods
+defined, 800ï¿½801 with Test Helper, 645, 647 instance variables converting for Implicit Setup, 427 Data-Driven Tests using Fit
 Framework, 297 defined, 801 Fresh Fixtures, 313 as global variables, 92 Reuse Tests for Fixture Setup,
-418­419 with Test Specific Subclass, 558 Testcase Class per Fixture, 632 instances reusing, 63 Testcase Object exception,
-384­385 integrated development environment
+418ï¿½419 with Test Specific Subclass, 558 Testcase Class per Fixture, 632 instances reusing, 63 Testcase Object exception,
+384ï¿½385 integrated development environment
 (IDE). See IDE (integrated development environment) Integration Build, 4 Intent-Revealing Name
-Custom Assertion, 474­475 Implicit Setup, 92 Parameterized Test, 608 Test Utility Method, 602­603 Interacting Test Suites, 231­232 Interacting Tests avoiding with Database
-Sandbox, 650­653 avoiding with Delta Assertion,
-111, 486 caused by Shared Fixture, 63 Chained Tests, 455 customer testing, 5­6 database testing, 169
+Custom Assertion, 474ï¿½475 Implicit Setup, 92 Parameterized Test, 608 Test Utility Method, 602ï¿½603 Interacting Test Suites, 231ï¿½232 Interacting Tests avoiding with Database
+Sandbox, 650ï¿½653 avoiding with Delta Assertion,
+111, 486 caused by Shared Fixture, 63 Chained Tests, 455 customer testing, 5ï¿½6 database testing, 169
 
 www.it-ebooks.info
 
@@ -21952,8 +21958,8 @@ www.it-ebooks.info
 
 Index
 
-Erratic Test cause, 229­231 introduction, 15 Keep Tests Independent, 43 interaction point, 801 interaction styles, 67­71 Interaction Testing. See Behavior Verification Interface Sensitivity defined, 241­242 introduction, xxxii, 13 interfaces Configuration Interface, 560 defined, 801 GUI. See GUI (graphical user
-interface) outgoing interface, 804­805 standard test, 378 Test Runner. See Test Runner Use the Front Door First, 40­41 internal recording tools, 56 interpreters in Data-Driven Tests. See Data-Driven Test Intervention, Manual. See Manual Intervention Introduce Explaining Variable refactoring, lvii­lviii IoC (inversion of control) framework defined, 801 for Dependency Injection, 680 irrelevant information defined, 187 Obscure Test, 192­194 Isolate the SUT, 43­44 iterative development, 802
+Erratic Test cause, 229ï¿½231 introduction, 15 Keep Tests Independent, 43 interaction point, 801 interaction styles, 67ï¿½71 Interaction Testing. See Behavior Verification Interface Sensitivity defined, 241ï¿½242 introduction, xxxii, 13 interfaces Configuration Interface, 560 defined, 801 GUI. See GUI (graphical user
+interface) outgoing interface, 804ï¿½805 standard test, 378 Test Runner. See Test Runner Use the Front Door First, 40ï¿½41 internal recording tools, 56 interpreters in Data-Driven Tests. See Data-Driven Test Intervention, Manual. See Manual Intervention Introduce Explaining Variable refactoring, lviiï¿½lviii IoC (inversion of control) framework defined, 801 for Dependency Injection, 680 irrelevant information defined, 187 Obscure Test, 192ï¿½194 Isolate the SUT, 43ï¿½44 iterative development, 802
 J
 Java language-specific xUnit terminology, xl test code packaging, 165
 
@@ -21963,13 +21969,13 @@ Configuration Interface, 560 defined, 755 Test Double implementation,
 140 Johnson, Rod, 670 JUnit
 defined, 748 Expected Exception Test
 expression, 351 fixture design, 59 language-specific terminology, xl Suite Fixture Setup support,
-442­443 Test Automation
+442ï¿½443 Test Automation
 Framework, 300 test automation tools, 55 Testcase Object exception,
-384­385 testing stored procedures, 657
+384ï¿½385 testing stored procedures, 657
 K
-Keep Test Logic Out of Production Code minimizing risk, 24 principle, 45 test code organization, 164­165
-Keep Tests Independent running, 26 test automation principles, 42­43 using Fake Object. See Fake Object
-Kerievsky, Joshua, xxxix keys, Literal Values as, 714 King, Joseph, 319­321
+Keep Test Logic Out of Production Code minimizing risk, 24 principle, 45 test code organization, 164ï¿½165
+Keep Tests Independent running, 26 test automation principles, 42ï¿½43 using Fake Object. See Fake Object
+Kerievsky, Joshua, xxxix keys, Literal Values as, 714 King, Joseph, 319ï¿½321
 
 www.it-ebooks.info
 
@@ -21978,21 +21984,21 @@ Index
 857
 
 L
-languages terminology, xl­xli variations in Built-in Assertions, 110­111 xUnit implementations, 76
-language-specific xUnit terminology, xl­xli
+languages terminology, xlï¿½xli variations in Built-in Assertions, 110ï¿½111 xUnit implementations, 76
+language-specific xUnit terminology, xlï¿½xli
 "Law of Raspberry Jam", xxv Layer Test
-Business Layer Tests, 344­345 database testing, 169­171 implementation, 340­341 motivating example, 341­342 overview, 337­338 Presentation Layer Tests, 343 refactoring, 342 Subcutaneous Tests, 343­344 when to use, 338­340 layer-crossing tests defined, 802 testability, 67­69 Layered Architecture design-for-testability, 7 layer-crossing tests, 67­69 Lazy Initialization, 435 Lazy Setup Decorated, 449­450 examples, 439­440 implementation, 436­437 Interacting Tests solution, 231 motivating example, 437­438 overview, 435 vs. Prebuilt Fixtures, 431­432 refactoring, 439 Shared Fixture, 64, 105 when to use, 436 Lazy Teardown example, 665­666 implementation, 663­664
+Business Layer Tests, 344ï¿½345 database testing, 169ï¿½171 implementation, 340ï¿½341 motivating example, 341ï¿½342 overview, 337ï¿½338 Presentation Layer Tests, 343 refactoring, 342 Subcutaneous Tests, 343ï¿½344 when to use, 338ï¿½340 layer-crossing tests defined, 802 testability, 67ï¿½69 Layered Architecture design-for-testability, 7 layer-crossing tests, 67ï¿½69 Lazy Initialization, 435 Lazy Setup Decorated, 449ï¿½450 examples, 439ï¿½440 implementation, 436ï¿½437 Interacting Tests solution, 231 motivating example, 437ï¿½438 overview, 435 vs. Prebuilt Fixtures, 431ï¿½432 refactoring, 439 Shared Fixture, 64, 105 when to use, 436 Lazy Teardown example, 665ï¿½666 implementation, 663ï¿½664
 
 leakage, resource Erratic Tests, 233 persistent fixtures, 99
-learning styles, xxxix­xl legacy software
-Buggy Tests, 261­262 defined, 802 tests as safety net, 24 lenient Mock Object defined, 138 when to use, 545 lightweight implementation using Fake Object. See Fake Object Literal Value Hard-Coded Test Data, 195 pattern description, 714­717 local variables converting in Implicit
+learning styles, xxxixï¿½xl legacy software
+Buggy Tests, 261ï¿½262 defined, 802 tests as safety net, 24 lenient Mock Object defined, 138 when to use, 545 lightweight implementation using Fake Object. See Fake Object Literal Value Hard-Coded Test Data, 195 pattern description, 714ï¿½717 local variables converting in Implicit
 Setup, 427 defined, 802 Fresh Fixtures, 313 Lonely Test caused by Chained Test. See
 Chained Test Erratic Tests, 232 Interacting Tests.
 See Interacting Tests Long Tests. See Obscure Test Loopback. See Self Shunt Loop-Driven Test
-implementation, 610 Parameterized Test, 614­615 loops as Conditional Test Logic, 201 eliminating, 121 Production Logic in Test cause,
-204­205 Lost Tests
+implementation, 610 Parameterized Test, 614ï¿½615 loops as Conditional Test Logic, 201 eliminating, 121 Production Logic in Test cause,
+204ï¿½205 Lost Tests
 avoiding, 597 Production Bugs cause,
-269­271
+269ï¿½271
 
 www.it-ebooks.info
 
@@ -22003,9 +22009,9 @@ Index
 M
 Mackinnon, Tim, 149 macros, Assertion Methods as, 364 maintenance
 High Test Maintenance Cost. See High Test Maintenance Cost
-optimizing, 180­181 test automation goals, 27­29 Manual Event Injection, 251­252 Manual Fixture Setup, 250­251 Manual Intervention impact, 250 introduction, 15 Manual Event Injection,
-251­252 Manual Fixture Setup, 250­251 Manual Result Verification, 251 symptoms, 250 Manual Result Verification, 251 manual testing defined, 802 right-sizing Test Methods, 154 Marrick, Brian purpose of tests, 51 right-sizing Test Methods, 155 tests as examples, 33 Maslow, 176 MbUnit defined, 749 Parameterized Test
-implementation, 608­609 Tabular Test with framework
+optimizing, 180ï¿½181 test automation goals, 27ï¿½29 Manual Event Injection, 251ï¿½252 Manual Fixture Setup, 250ï¿½251 Manual Intervention impact, 250 introduction, 15 Manual Event Injection,
+251ï¿½252 Manual Fixture Setup, 250ï¿½251 Manual Result Verification, 251 symptoms, 250 Manual Result Verification, 251 manual testing defined, 802 right-sizing Test Methods, 154 Marrick, Brian purpose of tests, 51 right-sizing Test Methods, 155 tests as examples, 33 Maslow, 176 MbUnit defined, 749 Parameterized Test
+implementation, 608ï¿½609 Tabular Test with framework
 support, 614 Message, Assertion. See Assertion
 Message messages, failure. See failure
 messages meta objects
@@ -22014,12 +22020,12 @@ Data-Driven Tests, 290 defined, 803
 metatests, 803 method attributes
 defined, 803 Expected Exception Tests, 354 Test Discovery using, 397 Test Method Selection
 using, 405 method names
-language-specific xUnit terminology, xl­xli
-Test Method Discovery, 395­396 methods
+language-specific xUnit terminology, xlï¿½xli
+Test Method Discovery, 395ï¿½396 methods
 diagramming notation, xlii instance. See instance methods setUp. See setUp method static, 809 suite, 399 tearDown. See tearDown method Template Method, 164 test commands, 82 verification. See result
 verification Miller, Jeremy, 687 Minimal Fixture
-external result verification, 112 General Fixtures solution, 192 minimizing data, 738­739 misuse of setUp method, 93 pattern description, 302­304 strategy, 62­63 test automation philosophies, 36 Minimize Test Overlap, 44 Minimize Untestable Code, 44­45 Missing Assertion Message, 226­227 Missing Unit Test Defect Localization, 23 Production Bugs, 271 mixins defined, 803 Test Helper Mixins, 639,
-641­642
+external result verification, 112 General Fixtures solution, 192 minimizing data, 738ï¿½739 misuse of setUp method, 93 pattern description, 302ï¿½304 strategy, 62ï¿½63 test automation philosophies, 36 Minimize Test Overlap, 44 Minimize Untestable Code, 44ï¿½45 Missing Assertion Message, 226ï¿½227 Missing Unit Test Defect Localization, 23 Production Bugs, 271 mixins defined, 803 Test Helper Mixins, 639,
+641ï¿½642
 
 www.it-ebooks.info
 
@@ -22027,20 +22033,20 @@ Index
 
 859
 
-Mock Object Configurable. See Configurable Test Double configuring, 141­142 defined, 133 examples, 548­550 Expected Behavior Specification, 470­471 implementation, 546­548 motivating example, 548 Overspecified Software cause, 246 overview, 544­545 refactoring, 548 Test Double patterns, 525 Test Doubles, 137­139 unit testing, 6 vs. Use the Front Door First, 40 verifying indirect output, 131­133 when to use, 545 xUnit terminology, 741­744
-MockMaker, 560 modules, 803­804 Move Method, 413 MSTest, 749 Mugridge, Rick, xxiv multimodal tests, 687 multiple-condition tests
-Conditional Test Logic, 207­208
-defined, 45­47 Multiresource In-line Teardown,
-513­514 MySql, 651 Mystery Guest
-defined, 187 Obscure Test cause, 188­190
+Mock Object Configurable. See Configurable Test Double configuring, 141ï¿½142 defined, 133 examples, 548ï¿½550 Expected Behavior Specification, 470ï¿½471 implementation, 546ï¿½548 motivating example, 548 Overspecified Software cause, 246 overview, 544ï¿½545 refactoring, 548 Test Double patterns, 525 Test Doubles, 137ï¿½139 unit testing, 6 vs. Use the Front Door First, 40 verifying indirect output, 131ï¿½133 when to use, 545 xUnit terminology, 741ï¿½744
+MockMaker, 560 modules, 803ï¿½804 Move Method, 413 MSTest, 749 Mugridge, Rick, xxiv multimodal tests, 687 multiple-condition tests
+Conditional Test Logic, 207ï¿½208
+defined, 45ï¿½47 Multiresource In-line Teardown,
+513ï¿½514 MySql, 651 Mystery Guest
+defined, 187 Obscure Test cause, 188ï¿½190
 
 N
 Naive In-line Teardown defined, 511 example, 512 of persistent fixtures, 97
-Naive xUnit Test Interpreter, 292­293
-Named State Reaching Method, 417­418
-Named Test Suite examples, 594­598 implementation, 594 introduction, 160­161 overview, 592­593 refactoring, 594 Test Enumeration, 400 when to use, 593­594
-names Dependency Lookup, 693­694 intent-revealing. See Intent-Revealing Name referring to patterns and smells, xxxviii Scripted Test, 287 Suite Fixture Setup, 446
-naming conventions assertion-identifying messages, 371 making resources unique, 737­738 patterns, 576­578 vs. test code organization, 158­159 Test Method Discovery, 395­396 Testcase Class per Class, 618 Testcase Class per Feature, 626 Testcase Class per Fixture, 632 For Tests Only solution, 220
+Naive xUnit Test Interpreter, 292ï¿½293
+Named State Reaching Method, 417ï¿½418
+Named Test Suite examples, 594ï¿½598 implementation, 594 introduction, 160ï¿½161 overview, 592ï¿½593 refactoring, 594 Test Enumeration, 400 when to use, 593ï¿½594
+names Dependency Lookup, 693ï¿½694 intent-revealing. See Intent-Revealing Name referring to patterns and smells, xxxviii Scripted Test, 287 Suite Fixture Setup, 446
+naming conventions assertion-identifying messages, 371 making resources unique, 737ï¿½738 patterns, 576ï¿½578 vs. test code organization, 158ï¿½159 Test Method Discovery, 395ï¿½396 Testcase Class per Class, 618 Testcase Class per Feature, 626 Testcase Class per Fixture, 632 For Tests Only solution, 220
 
 www.it-ebooks.info
 
@@ -22049,30 +22055,30 @@ www.it-ebooks.info
 Index
 
 need-driven development Behavior Verification, 469 defined, 804 testing with doubles, 149 using Mock Objects, 545
-Neverfail Test, 274 New River Gorge bridge, xxvi Newkirk, James, 384­385 NMock, 756 No Test Risk, 24­25 Nondeterministic Test
-dangers of, 26­27 Erratic Test, 237­238 Generated Values cause, 723­724 notation, diagramming, xlii Null Object vs. Dummy Object, 730 null values in Dummy Objects, 729­732 NUnit defined, 749 Expected Exception Test
+Neverfail Test, 274 New River Gorge bridge, xxvi Newkirk, James, 384ï¿½385 NMock, 756 No Test Risk, 24ï¿½25 Nondeterministic Test
+dangers of, 26ï¿½27 Erratic Test, 237ï¿½238 Generated Values cause, 723ï¿½724 notation, diagramming, xlii Null Object vs. Dummy Object, 730 null values in Dummy Objects, 729ï¿½732 NUnit defined, 749 Expected Exception Test
 expression, 351 fixture design, 59 Interacting Test Suites, 232 Suite Fixture Setup support,
-442­443 Test Automation Frameworks,
+442ï¿½443 Test Automation Frameworks,
 300 test automation ways and
 means, 55 test fixtures, 814 Testcase Classes, 376 Testcase Object exception,
-384­385
+384ï¿½385
 O
 Object Attribute Equality Assertion, 476
 Object Factory Dependency Lookup, 688 installing Test Double, 145
 
-Object Mother in Delegated Setup, 90­91 when to use, 644­645
-object technology, xxxix­xl Object Transaction Rollback
-Teardown, 673­674 object-oriented programming
+Object Mother in Delegated Setup, 90ï¿½91 when to use, 644ï¿½645
+object technology, xxxixï¿½xl Object Transaction Rollback
+Teardown, 673ï¿½674 object-oriented programming
 language (OOPL), 76 object-relational mapping (ORM).
 See ORM (object-relational mapping) objects
 Creation Method. See Creation Method
-determining necessary, 303­304
+determining necessary, 303ï¿½304
 diagramming notation, xlii fake. See Fake Object Test Suite Objects. See Test Suite
 Object Testcase. See Testcase Object Obscure Test avoiding with Custom Assertion,
 475 avoiding with Separation of Con-
-cerns, 28­29 Buggy Test, 261 causes, 186­187 vs. Communicate Intent, 41 customer testing, 5 database testing, 169 Eager Test, 187­188 General Fixture, 190­192 Hard-Coded Test Data,
-194­196 High Test Maintenance Cost,
-266 impact, 186 Indirect Testing, 196­199 introduction, xlvi, 12­13, 16 Irrelevant Information, 192­194 Mystery Guests, 188­190
+cerns, 28ï¿½29 Buggy Test, 261 causes, 186ï¿½187 vs. Communicate Intent, 41 customer testing, 5 database testing, 169 Eager Test, 187ï¿½188 General Fixture, 190ï¿½192 Hard-Coded Test Data,
+194ï¿½196 High Test Maintenance Cost,
+266 impact, 186 Indirect Testing, 196ï¿½199 introduction, xlvi, 12ï¿½13, 16 Irrelevant Information, 192ï¿½194 Mystery Guests, 188ï¿½190
 
 www.it-ebooks.info
 
@@ -22081,23 +22087,23 @@ Index
 861
 
 optimizing test execution/ maintenance, 180
-smells, 10 solution patterns, 199 symptoms, 186 observation points defined, 804 test automation strategy, 66­67 O'Grady, Ted, 319­321 One Bad Attribute example, 721­722 introduction, xxiii, 90 Minimal Fixtures, 304 when to use, 719 OOPL (object-oriented programming language), 76 optimism, resource, 189, 233­234 order of tests, 456 organization, test. See test organization; test organization patterns ORM (object-relational mapping) defined, 804 Table Truncation Teardown, 663 Table Truncation Teardown
+smells, 10 solution patterns, 199 symptoms, 186 observation points defined, 804 test automation strategy, 66ï¿½67 O'Grady, Ted, 319ï¿½321 One Bad Attribute example, 721ï¿½722 introduction, xxiii, 90 Minimal Fixtures, 304 when to use, 719 OOPL (object-oriented programming language), 76 optimism, resource, 189, 233ï¿½234 order of tests, 456 organization, test. See test organization; test organization patterns ORM (object-relational mapping) defined, 804 Table Truncation Teardown, 663 Table Truncation Teardown
 using, 667 Transaction Rollback
 Teardown, 671 Outcome Assertions, Stated. See
 Stated Outcome Assertion outcome verification patterns. See
 result verification patterns outcome-describing Verification
-Method, 117 outgoing interface, 804­805 out-of-order calls, 138 output, indirect. See indirect output outside-in development
+Method, 117 outgoing interface, 804ï¿½805 out-of-order calls, 138 output, indirect. See indirect output outside-in development
 Behavior Verification, 469 vs. inside-out development,
-34­36 Overcoupled Software, 40
+34ï¿½36 Overcoupled Software, 40
 
-overlapping tests minimizing, 44 Too Many Tests, 256­257
+overlapping tests minimizing, 44 Too Many Tests, 256ï¿½257
 Overspecified Software avoiding with Fake Objects, 552 Fragile Tests, 246 testing with doubles, 150 Use the Front Door First, 40
 P
 Parameter Injection example, 683 implementation, 680 installing Test Doubles, 144
 Parameterized Anonymous Creation Method, 417
-Parameterized Creation Method defined, 417 Delegated Setup, 90 example, xxiii, 420­421 Irrelevant Information solution, 193
-Parameterized Setup Decorator defined, 449 example, 452­453
-Parameterized Test example, 611­612 extracting. See Data-Driven Test further reading, 615­616 implementation, 608­610 Incremental Tabular Test, 613­614 Independent Tabular Test, 612­613 Loop-Driven Tests, 614­615 motivating example, 610­611 overview, 607­608 reducing Test Code Duplication, 118­119 refactoring, 611
+Parameterized Creation Method defined, 417 Delegated Setup, 90 example, xxiii, 420ï¿½421 Irrelevant Information solution, 193
+Parameterized Setup Decorator defined, 449 example, 452ï¿½453
+Parameterized Test example, 611ï¿½612 extracting. See Data-Driven Test further reading, 615ï¿½616 implementation, 608ï¿½610 Incremental Tabular Test, 613ï¿½614 Independent Tabular Test, 612ï¿½613 Loop-Driven Tests, 614ï¿½615 motivating example, 610ï¿½611 overview, 607ï¿½608 reducing Test Code Duplication, 118ï¿½119 refactoring, 611
 
 www.it-ebooks.info
 
@@ -22106,23 +22112,23 @@ www.it-ebooks.info
 Index
 
 Tabular Test with framework support, 614
-Test Utility Method, 602 when to use, 608 parameters, arguments as, 729 "Pass-Fail-Fail", 234­235 pattern language defined, xxxv­xxxvi, 805 pattern naming, 577 Pattern Languages of Programming (PLoP), 576 patterns aliases and variations, 767­784 database. See database patterns defined, 805 design-for-testability. See
+Test Utility Method, 602 when to use, 608 parameters, arguments as, 729 "Pass-Fail-Fail", 234ï¿½235 pattern language defined, xxxvï¿½xxxvi, 805 pattern naming, 577 Pattern Languages of Programming (PLoP), 576 patterns aliases and variations, 767ï¿½784 database. See database patterns defined, 805 design-for-testability. See
 design-for-testability patterns fixture setup. See fixture setup
 patterns result verification. See result
 verification patterns test automation introduction,
-xxxiv­xxxviii Test Double. See Test Double test organization. See test
+xxxivï¿½xxxviii Test Double. See Test Double test organization. See test
 organization patterns test strategy. See test strategy
-patterns testability, 67­71 value. See value patterns xUnit basics. See xUnit basics
-patterns peeling the onion, 11 per-functionality test, 50­52 Perrotta, Paolo, 537 Per-Run Fixtures, 323 persistence layer, 339­340 persistence resources, 504 persistent fixtures, 95­106
-database testing, 168­169 issues caused by, 96
+patterns testability, 67ï¿½71 value. See value patterns xUnit basics. See xUnit basics
+patterns peeling the onion, 11 per-functionality test, 50ï¿½52 Perrotta, Paolo, 537 Per-Run Fixtures, 323 persistence layer, 339ï¿½340 persistence resources, 504 persistent fixtures, 95ï¿½106
+database testing, 168ï¿½169 issues caused by, 96
 
-managing, 103­105 overview, 95­96 Slow Tests cause, 102 Table Truncation Teardown. See
-Table Truncation Teardown teardown avoidance, 100­101 tearing down, 97­100 test strategy patterns, 313­314 what's next, 106 Persistent Fresh Fixture building, 88 defined, 60­61 strategies, 62­63 Personal Oracle, 651 philosophy, test automation. See test automation philosophies PHPUnit, 749 PLoP (Pattern Languages of Programming), 576 Pluggable Behavior in Named Test Suites, 597 Testcase Object
+managing, 103ï¿½105 overview, 95ï¿½96 Slow Tests cause, 102 Table Truncation Teardown. See
+Table Truncation Teardown teardown avoidance, 100ï¿½101 tearing down, 97ï¿½100 test strategy patterns, 313ï¿½314 what's next, 106 Persistent Fresh Fixture building, 88 defined, 60ï¿½61 strategies, 62ï¿½63 Personal Oracle, 651 philosophy, test automation. See test automation philosophies PHPUnit, 749 PLoP (Pattern Languages of Programming), 576 Pluggable Behavior in Named Test Suites, 597 Testcase Object
 implementation, 383 pollution
-Equality Pollution, 221­222 Shared Fixture, 326 polymorphism, 805 Poor Manís Humble Executable, 703 Poor Man's Humble Object implementation, 699 Transaction Rollback
+Equality Pollution, 221ï¿½222 Shared Fixture, 326 polymorphism, 805 Poor Manï¿½s Humble Executable, 703 Poor Man's Humble Object implementation, 699 Transaction Rollback
 Teardown, 671 Poppendieck, Mary, 51 Pragmatic Unit Testing, 743 Prebuilt Fixture
-examples, 432­434 implementation, 430­431 motivating example,
-431­432 overview, 429­430
+examples, 432ï¿½434 implementation, 430ï¿½431 motivating example,
+431ï¿½432 overview, 429ï¿½430
 
 www.it-ebooks.info
 
@@ -22130,17 +22136,17 @@ Index
 
 863
 
-refactoring, 432 Shared Fixture strategies, 64 Shared Fixtures, 104­105 Unrepeatable Tests cause, 235 presentation layer defined, 805 Layer Tests example, 343 testing, 338­339 presentation logic, 805 Preserve Whole Object refactoring, xlviii­xlix principles list of, 757­759 patterns vs., xxxv­xxxvi test automation. See test
-automation principles Private Fixture. See Fresh Fixture private methods, 586 problem statements, xxxvi­xxxvii Procedural Behavior Verification
-defined, 470 example, 472­473 indirect outputs, 131 introduction, 112­113 Test Spy usage, 137 Procedural State Verification defined, 463­464 example, 466 introduction, 109 Procedural Test Stub defined, 526 introduction, 135­136 when to use, 531 Procedure Test, Stored. See Stored Procedure Test procedure variables, 805­806 production, 806 Production Bugs Infrequently Run Tests, 268­269 introduction, 12­13 Lost Tests, 269­271
+refactoring, 432 Shared Fixture strategies, 64 Shared Fixtures, 104ï¿½105 Unrepeatable Tests cause, 235 presentation layer defined, 805 Layer Tests example, 343 testing, 338ï¿½339 presentation logic, 805 Preserve Whole Object refactoring, xlviiiï¿½xlix principles list of, 757ï¿½759 patterns vs., xxxvï¿½xxxvi test automation. See test
+automation principles Private Fixture. See Fresh Fixture private methods, 586 problem statements, xxxviï¿½xxxvii Procedural Behavior Verification
+defined, 470 example, 472ï¿½473 indirect outputs, 131 introduction, 112ï¿½113 Test Spy usage, 137 Procedural State Verification defined, 463ï¿½464 example, 466 introduction, 109 Procedural Test Stub defined, 526 introduction, 135ï¿½136 when to use, 531 Procedure Test, Stored. See Stored Procedure Test procedure variables, 805ï¿½806 production, 806 Production Bugs Infrequently Run Tests, 268ï¿½269 introduction, 12ï¿½13 Lost Tests, 269ï¿½271
 
-Missing Unit Tests, 271 Neverfail Tests, 274 overview, 268 reducing risk, 181 Untested Code, 271­272 Untested Requirements, 272­274 production code defined, 806 keeping test logic out of, 45 Production Logic in Test, 204­205 profiling tools, 254 Programmatic Test. See Scripted Test programmer tests, 806 project smells, 259­274 Buggy Tests, 260­262 defined, 806 Developers Not Writing Tests,
-263­264 High Test Maintenance Cost,
-265­267 overview, 12­13 Production Bugs. See Production
+Missing Unit Tests, 271 Neverfail Tests, 274 overview, 268 reducing risk, 181 Untested Code, 271ï¿½272 Untested Requirements, 272ï¿½274 production code defined, 806 keeping test logic out of, 45 Production Logic in Test, 204ï¿½205 profiling tools, 254 Programmatic Test. See Scripted Test programmer tests, 806 project smells, 259ï¿½274 Buggy Tests, 260ï¿½262 defined, 806 Developers Not Writing Tests,
+263ï¿½264 High Test Maintenance Cost,
+265ï¿½267 overview, 12ï¿½13 Production Bugs. See Production
 Bugs property tests, 52 Pseudo-Object
-Hard-Coded Test Double implementation, 570­571
-Inner Test Double Subclassed from Pseudo-Class, 574­575, 578
-testing with doubles, 140­141 pull system, 806­807 Pull-Up Method refactoring
+Hard-Coded Test Double implementation, 570ï¿½571
+Inner Test Double Subclassed from Pseudo-Class, 574ï¿½575, 578
+testing with doubles, 140ï¿½141 pull system, 806ï¿½807 Pull-Up Method refactoring
 Delegated Setup, 413 moving reusable test logic, 123 Testcase Superclass, 640 Pushdown Decorator, 450 PyUnit defined, 749 Test Automation Framework,
 300
 
@@ -22151,22 +22157,22 @@ www.it-ebooks.info
 Index
 
 Q
-QA (quality assurance), 22­23 QaRun, 244 QTP (QuickTest Professional)
+QA (quality assurance), 22ï¿½23 QaRun, 244 QTP (QuickTest Professional)
 Data-Driven Tests, 290 defined, 756 record and playback tools, 282 Test Automation
-Framework, 301 quality assurance (QA), 22­23 QuickTest Professional (QTP).
+Framework, 301 quality assurance (QA), 22ï¿½23 QuickTest Professional (QTP).
 See QTP (QuickTest Professional)
 R
 random values Nondeterministic Tests, 238 Random Generated Values, 724
 Record and Playback Test, 13 record and playback tools
-introduction, xxxi Recorded Tests, 282­283 xUnit sweet spot, 58 Recorded Test built-in test recording,
-281­282 commercial record and
-playback tool, 282­283 customer testing, 5 Data-Driven Tests and, 289 implementation, 280­281 Interface Sensitivity, 241 overview, 278­279 refactored commercial recorded
-tests, 283­284 vs. Scripted Tests, 286 smells, 10 tools, 56 tools for automating, 53­54 when to use, 279­280 Recording Test Stub. See Test Spy
+introduction, xxxi Recorded Tests, 282ï¿½283 xUnit sweet spot, 58 Recorded Test built-in test recording,
+281ï¿½282 commercial record and
+playback tool, 282ï¿½283 customer testing, 5 Data-Driven Tests and, 289 implementation, 280ï¿½281 Interface Sensitivity, 241 overview, 278ï¿½279 refactored commercial recorded
+tests, 283ï¿½284 vs. Scripted Tests, 286 smells, 10 tools, 56 tools for automating, 53ï¿½54 when to use, 279ï¿½280 Recording Test Stub. See Test Spy
 
 red bar, 807 Refactored Recorded Tests
-commercial, 283­284 overview, 280 refactoring. See also test refactorings Assertion Message, 372 Assertion Method, 368 Automated Teardown,
-506­507 Back Door Manipulation, 333 Chained Test, 458 Configurable Test Double, 463 Creation Method, 420 Custom Assertion, 480 Database Sandbox, 653 Data-Driven Test, 294 defined, 807 Delegated Setup, 413 Delta Assertion, 488 Dependency Injection, 682 Dependency Lookup, 690­691 Derived Value, 720 Dummy Object, 731 Fake Object, 555­556 Fresh Fixture, 315­316 Garbage-Collected
-Teardown, 502 Generated Value, 725 Guard Assertion, 492 Hard-Coded Test Double, 572 Humble Object, 702 Implicit Setup, 427 Implicit Teardown, 518­519 In-line Setup, 410 In-line Teardown, 512 Layer Test, 342 Lazy Setup, 439 Literal Value, 716 Mock Object, 548 Named Test Suite, 594 Parameterized Test, 611
+commercial, 283ï¿½284 overview, 280 refactoring. See also test refactorings Assertion Message, 372 Assertion Method, 368 Automated Teardown,
+506ï¿½507 Back Door Manipulation, 333 Chained Test, 458 Configurable Test Double, 463 Creation Method, 420 Custom Assertion, 480 Database Sandbox, 653 Data-Driven Test, 294 defined, 807 Delegated Setup, 413 Delta Assertion, 488 Dependency Injection, 682 Dependency Lookup, 690ï¿½691 Derived Value, 720 Dummy Object, 731 Fake Object, 555ï¿½556 Fresh Fixture, 315ï¿½316 Garbage-Collected
+Teardown, 502 Generated Value, 725 Guard Assertion, 492 Hard-Coded Test Double, 572 Humble Object, 702 Implicit Setup, 427 Implicit Teardown, 518ï¿½519 In-line Setup, 410 In-line Teardown, 512 Layer Test, 342 Lazy Setup, 439 Literal Value, 716 Mock Object, 548 Named Test Suite, 594 Parameterized Test, 611
 
 www.it-ebooks.info
 
@@ -22174,24 +22180,24 @@ Index
 
 865
 
-Prebuilt Fixture, 432 Setup Decorator, 451 Shared Fixture, 324 Standard Fixture, 309­310 State Verification, 465­466 Stored Procedure Test, 658 Suite Fixture Setup, 444 Table Truncation Teardown,
-664­665 Test Discovery, 395 Test Helper, 646 Test Spy, 541­542 Test Stub, 533 Test Utility Method, 605 Testcase Class per Feature,
-627­628 Testcase Class per Fixture,
-634­635 Testcase Superclass, 640 Test-Specific Subclass, 584 Transaction Rollback
-Teardown, 672 Unfinished Test Assertion, 496 Refactoring: Improving the Design of Existing Code (Fowler), 9, 16 references, 819­832 reflection defined, 807 Test Discovery, 393 Testcase Object
+Prebuilt Fixture, 432 Setup Decorator, 451 Shared Fixture, 324 Standard Fixture, 309ï¿½310 State Verification, 465ï¿½466 Stored Procedure Test, 658 Suite Fixture Setup, 444 Table Truncation Teardown,
+664ï¿½665 Test Discovery, 395 Test Helper, 646 Test Spy, 541ï¿½542 Test Stub, 533 Test Utility Method, 605 Testcase Class per Feature,
+627ï¿½628 Testcase Class per Fixture,
+634ï¿½635 Testcase Superclass, 640 Test-Specific Subclass, 584 Transaction Rollback
+Teardown, 672 Unfinished Test Assertion, 496 Refactoring: Improving the Design of Existing Code (Fowler), 9, 16 references, 819ï¿½832 reflection defined, 807 Test Discovery, 393 Testcase Object
 implementation, 383 Registry
-configurable, 691­692 in Dependency Lookup, 688­689 Interacting Tests, 230 Test Fixture, 644 regression tests defined, 807 Recorded Tests. See Recorded
-Test Scripted Tests, 285­287
+configurable, 691ï¿½692 in Dependency Lookup, 688ï¿½689 Interacting Tests, 230 Test Fixture, 644 regression tests defined, 807 Recorded Tests. See Recorded
+Test Scripted Tests, 285ï¿½287
 
-Related Generated Values example, 726­727 implementation, 725
-Remoted Stored Procedure Test example, 659­660 implementation, 656­658 introduction, 172
-Repeatable Test defined, 26­27 indirect inputs control, 179
+Related Generated Values example, 726ï¿½727 implementation, 725
+Remoted Stored Procedure Test example, 659ï¿½660 implementation, 656ï¿½658 introduction, 172
+Repeatable Test defined, 26ï¿½27 indirect inputs control, 179
 Replace Dependency with Test Double refactoring Behavior Verification, 472 defined, 739
 Repository Data-Driven Test files, 290 persistent objects, 90 source code, 24, 79, 234, 561, 656 test code, 164, 561
 Requirement, Untested. See Untested Requirement
 ReSharper, 756 Resource Leakage
-Erratic Tests, 233 persistent fixtures, 99 Resource Optimism, 189, 233­234 resources external, 740 in-line, 736­737 unique, 737­738 Responder defined, 524 examples, 533­535 indirect input control, 179 introduction, 135 when to use, 530 response time tests, 52 result verification, 107­123 Behavior Verification, 112­114 Conditional Test Logic
-avoidance, 119­121
+Erratic Tests, 233 persistent fixtures, 99 Resource Optimism, 189, 233ï¿½234 resources external, 740 in-line, 736ï¿½737 unique, 737ï¿½738 Responder defined, 524 examples, 533ï¿½535 indirect input control, 179 introduction, 135 when to use, 530 response time tests, 52 result verification, 107ï¿½123 Behavior Verification, 112ï¿½114 Conditional Test Logic
+avoidance, 119ï¿½121
 
 www.it-ebooks.info
 
@@ -22199,26 +22205,26 @@ www.it-ebooks.info
 
 Index
 
-Data Sensitivity, 243­245 defined, 807 Four-Phase Test, 358­361 Mock Object, 547­548 other techniques, 121­122 reducing Test Code Duplication,
-114­119 reusable test logic, 123 Self-Checking Tests, 107­108 State Verification, 109­112 result verification patterns, 461­497 Behavior Verification. See
+Data Sensitivity, 243ï¿½245 defined, 807 Four-Phase Test, 358ï¿½361 Mock Object, 547ï¿½548 other techniques, 121ï¿½122 reducing Test Code Duplication,
+114ï¿½119 reusable test logic, 123 Self-Checking Tests, 107ï¿½108 State Verification, 109ï¿½112 result verification patterns, 461ï¿½497 Behavior Verification. See
 Behavior Verification Custom Assertion. See Custom
-Assertion Delta Assertion, 485­489 Guard Assertion, 490­493 State Verification. See State Veri-
+Assertion Delta Assertion, 485ï¿½489 Guard Assertion, 490ï¿½493 State Verification. See State Veri-
 fication Unfinished Test Assertion,
-494­497 results, test
-defined, 815 introduction, 79­80 Retrieval Interface, 137, 540 retrospective, 807­808 reusable test logic Creation Method, 418­419 fixture setup patterns, 422­423 organization, 162­164 result verification, 123 Test Code Duplication, 214­215 Test Utility Method. See Test
+494ï¿½497 results, test
+defined, 815 introduction, 79ï¿½80 Retrieval Interface, 137, 540 retrospective, 807ï¿½808 reusable test logic Creation Method, 418ï¿½419 fixture setup patterns, 422ï¿½423 organization, 162ï¿½164 result verification, 123 Test Code Duplication, 214ï¿½215 Test Utility Method. See Test
 Utility Method Reuse Tests for Fixture Setup, 90 Robot User Test. See Recorded Test robot user tools
-defined, 55­56 introduction, xxxi Test Automation Framework,
+defined, 55ï¿½56 introduction, xxxi Test Automation Framework,
 299
 
 Robust Tests defined, 29 indirect inputs control, 179
 role-describing arguments, 725 root cause analysis
-defined, 808 smells, 11 round-trip tests defined, 808 introduction, 67­69 Layer Tests, 340­341 row tests. See Tabular Test RSpec defined, 750 fixture design, 59 tests as examples, 33 runit defined, 750 Test Automation
+defined, 808 smells, 11 round-trip tests defined, 808 introduction, 67ï¿½69 Layer Tests, 340ï¿½341 row tests. See Tabular Test RSpec defined, 750 fixture design, 59 tests as examples, 33 runit defined, 750 Test Automation
 Frameworks, 300 running tests
-introduction, 79 structure, 81 test automation goals, 25­27 runtime reflection, 393
+introduction, 79 structure, 81 test automation goals, 25ï¿½27 runtime reflection, 393
 S
-Saboteur defined, 135 example, 535­536 inside-out development, 35 Test Double patterns, 524 when to use, 530
+Saboteur defined, 135 example, 535ï¿½536 inside-out development, 35 Test Double patterns, 524 when to use, 530
 Safety Net Buggy Tests, 260 tests as, 24
-sample code, xli­xlii screen scraping, 241 Scripted Test
+sample code, xliï¿½xlii screen scraping, 241 Scripted Test
 Communicate Intent, 41 customer testing, 5
 
 www.it-ebooks.info
@@ -22227,23 +22233,23 @@ Index
 
 867
 
-Data-Driven Tests and, 289 introduction, 75 pattern description, 285­287 vs. Recorded Tests, 279 smells, 10 UI, 55 Verify One Condition per
+Data-Driven Tests and, 289 introduction, 75 pattern description, 285ï¿½287 vs. Recorded Tests, 279 smells, 10 UI, 55 Verify One Condition per
 Test, 46 Self Shunt
 Behavior Verifications, 113 example, 573 Hard-Coded Test Double
 implementation, 570 pattern naming, 576 Test Spy implementation,
-540­541 Self-Call, 582 Self-Checking Test
+540ï¿½541 Self-Call, 582 Self-Checking Test
 Assertion Method usage, 362 Conditional Test Logic
-solution, 201 defined, 80 happy path code, 178 introduction, 107­108 running, 26 Self-Describing Value example, 717 Literal Value patterns, 715 self-testing code, xxi self-tests, built-in defined, 788 test file organization, 164 Sensitive Equality Fragile Tests, 246 test-first development, 32 sensitivities automated unit testing,
-xxxi­xxxii behavior. See Behavior Sensitivity Buggy Tests cause, 260 context. See Context Sensitivity
+solution, 201 defined, 80 happy path code, 178 introduction, 107ï¿½108 running, 26 Self-Describing Value example, 717 Literal Value patterns, 715 self-testing code, xxi self-tests, built-in defined, 788 test file organization, 164 Sensitive Equality Fragile Tests, 246 test-first development, 32 sensitivities automated unit testing,
+xxxiï¿½xxxii behavior. See Behavior Sensitivity Buggy Tests cause, 260 context. See Context Sensitivity
 
 data. See Data Sensitivity interface. See Interface
-Sensitivity Separation of Concerns, 28­29 Service Facade, 71­72 service layers
+Sensitivity Separation of Concerns, 28ï¿½29 Service Facade, 71ï¿½72 service layers
 fake, 553 tests, 7, 339 Service Locator in Dependency Lookup.
 See Dependency Lookup installing Test Doubles, 145 service objects, 808 Setter Injection Configuration Interface
-using, 564 example, 684­685 implementation, 681 installing Test Doubles, 143 setters, 808 setup, fixtures. See fixture setup Setup Decorator examples, 451­453 implementation, 448­450 Implicit Setup, 426 motivating example, 450­451 overview, 447­448 refactoring, 451 Shared Fixture strategies, 64,
-104­105 when to use, 448 setUp method Implicit Setup, 91­92, 424­428 misuse of, 92­93 pattern naming, 577 Setup Decorator. See Setup
+using, 564 example, 684ï¿½685 implementation, 681 installing Test Doubles, 143 setters, 808 setup, fixtures. See fixture setup Setup Decorator examples, 451ï¿½453 implementation, 448ï¿½450 Implicit Setup, 426 motivating example, 450ï¿½451 overview, 447ï¿½448 refactoring, 451 Shared Fixture strategies, 64,
+104ï¿½105 when to use, 448 setUp method Implicit Setup, 91ï¿½92, 424ï¿½428 misuse of, 92ï¿½93 pattern naming, 577 Setup Decorator. See Setup
 Decorator Suite Fixture Setup. See Suite
-Fixture Setup shadows, diagramming notation, xlii Shank, Clint, 457­458, 613, 616
+Fixture Setup shadows, diagramming notation, xlii Shank, Clint, 457ï¿½458, 613, 616
 
 www.it-ebooks.info
 
@@ -22251,34 +22257,34 @@ www.it-ebooks.info
 
 Index
 
-Shared Fixture. See also Standard Fixture Behavior Verification, 108 Chained Test. See Chained Test customer testing, 5 Data Sensitivity cause, 243 database testing, 169 defined, 60­61 Delta Assertions, 111 example, 324­325 Immutable. See Immutable Shared Fixture Immutable Shared Fixtures, 326 implementation, 322­323 incremental tests, 322 Interacting Tests cause, 229­231 introduction, 15, 63­65 Lazy Setup. See Lazy Setup managing, 103­105 motivating example, 323­324 in Nondeterministic Tests, 27 overview, 317 Prebuilt Fixture. See Prebuilt Fixture refactoring, 324 Setup Decorator. See Setup Decorator Slow Tests cause, 318­321 Suite Fixture Setup. See Suite Fixture Setup Table Truncation Teardown. See Table Truncation Teardown Test Run Wars cause, 236 Unrepeatable Tests cause, 235 using Finder Methods, 600­601 when to use, 318
-Shared Fixture Guard Assertion, 492­493
+Shared Fixture. See also Standard Fixture Behavior Verification, 108 Chained Test. See Chained Test customer testing, 5 Data Sensitivity cause, 243 database testing, 169 defined, 60ï¿½61 Delta Assertions, 111 example, 324ï¿½325 Immutable. See Immutable Shared Fixture Immutable Shared Fixtures, 326 implementation, 322ï¿½323 incremental tests, 322 Interacting Tests cause, 229ï¿½231 introduction, 15, 63ï¿½65 Lazy Setup. See Lazy Setup managing, 103ï¿½105 motivating example, 323ï¿½324 in Nondeterministic Tests, 27 overview, 317 Prebuilt Fixture. See Prebuilt Fixture refactoring, 324 Setup Decorator. See Setup Decorator Slow Tests cause, 318ï¿½321 Suite Fixture Setup. See Suite Fixture Setup Table Truncation Teardown. See Table Truncation Teardown Test Run Wars cause, 236 Unrepeatable Tests cause, 235 using Finder Methods, 600ï¿½601 when to use, 318
+Shared Fixture Guard Assertion, 492ï¿½493
 Shared Fixture State Assertion, 491 Simple Success Test
-example, 352­353 happy path code, 177
+example, 352ï¿½353 happy path code, 177
 
-introduction, 77 pattern description, 349­350 The simplest thing that could possibly work (STTCPW), 810 Single Glance Readable. See Communicate Intent Single Layer Test. See Layer Test Single Test Suite example, 596­597 Lost Tests solution, 270 when to use, 593­594 single tests, 161­162 Single-Condition Test Eager Tests solution, 225­226 Obscure Tests solution, 188 principles. See Verify One
-Condition per Test unit testing, 6 Single-Outcome Assertion Assertion Method, 366­367 defined, 365 example, 369 Singleton in Dependency Lookup,
-688­689 Interacting Tests, 230 retrofitting testability, 146­147 Singleton, Substituted example, 586­587 when to use, 581 skeletons, 744 Slow Component Usage, 254 Slow Tests Asynchronous Tests, 255­256 avoiding with Shared Fixture,
-318­321 database testing, 168 design for testability, 7 due to Transaction Rollback
+introduction, 77 pattern description, 349ï¿½350 The simplest thing that could possibly work (STTCPW), 810 Single Glance Readable. See Communicate Intent Single Layer Test. See Layer Test Single Test Suite example, 596ï¿½597 Lost Tests solution, 270 when to use, 593ï¿½594 single tests, 161ï¿½162 Single-Condition Test Eager Tests solution, 225ï¿½226 Obscure Tests solution, 188 principles. See Verify One
+Condition per Test unit testing, 6 Single-Outcome Assertion Assertion Method, 366ï¿½367 defined, 365 example, 369 Singleton in Dependency Lookup,
+688ï¿½689 Interacting Tests, 230 retrofitting testability, 146ï¿½147 Singleton, Substituted example, 586ï¿½587 when to use, 581 skeletons, 744 Slow Component Usage, 254 Slow Tests Asynchronous Tests, 255ï¿½256 avoiding with Shared Fixture,
+318ï¿½321 database testing, 168 design for testability, 7 due to Transaction Rollback
 Teardown, 669 General Fixtures, 255 impact, 253
 
 www.it-ebooks.info
 
 introduction, 15 optimizing execution, 180 persistent fixtures, 102 preventing with Fake Object.
 See Fake Object preventing with Test
-Double, 523 Slow Component Usage, 254 symptoms, 253 Too Many Tests, 256­257 troubleshooting, 253­254 smells, test. See test smells Smith, Shaun, 39 Smoke Test development process, 4 suites, 597­598 Test Discovery, 394 sniff test defined, xxxviii test smells, 10 solution patterns, behavior smells Asynchronous Tests, 256 Behavior Sensitivity, 242­243 Context Sensitivity, 246 Data Sensitivity, 243­245 Eager Tests, 225­226 Frequent Debugging, 249 General Fixture, 255 Interacting Test Suites, 232 Interacting Tests, 231 Interface Sensitivity, 241­242 Manual Intervention,
-250­252 Missing Assertion Messages,
-226­227 Resource Leakage, 233 Resource Optimism, 234 Slow Component Usage, 254 Test Run War, 236­237 Too Many Tests, 257 Unrepeatable Tests, 235
+Double, 523 Slow Component Usage, 254 symptoms, 253 Too Many Tests, 256ï¿½257 troubleshooting, 253ï¿½254 smells, test. See test smells Smith, Shaun, 39 Smoke Test development process, 4 suites, 597ï¿½598 Test Discovery, 394 sniff test defined, xxxviii test smells, 10 solution patterns, behavior smells Asynchronous Tests, 256 Behavior Sensitivity, 242ï¿½243 Context Sensitivity, 246 Data Sensitivity, 243ï¿½245 Eager Tests, 225ï¿½226 Frequent Debugging, 249 General Fixture, 255 Interacting Test Suites, 232 Interacting Tests, 231 Interface Sensitivity, 241ï¿½242 Manual Intervention,
+250ï¿½252 Missing Assertion Messages,
+226ï¿½227 Resource Leakage, 233 Resource Optimism, 234 Slow Component Usage, 254 Test Run War, 236ï¿½237 Too Many Tests, 257 Unrepeatable Tests, 235
 
 Index
 
 869
 
-solution patterns, code smells Asynchronous Code, 211 Conditional Verification Logic, 203­204 Cut and Paste code reuse, 215 Eager Test, 188 Equality Pollution, 222 Flexible Test, 203 General Fixture, 192 Hard-Coded Test Data, 196 Hard-To-Test Code, 209 Highly Coupled Code, 210 Indirect Testing, 197­199 Irrelevant Information, 193 Multiple Test Conditions, 207­208 Mystery Guests, 190 Obscure Tests, 199 Production Logic in Test, 205 Test Code Duplication, 115­216 Test Dependency in Production, 221 Test Hook, 219 For Tests Only, 220 Untestable Test Code, 212
-solution patterns, project smells Buggy Test, 261­262 Infrequently Run Test, 269 Lost Test, 270­271 Missing Unit Test, 271 Neverfail Test, 274 Untested Code, 272 Untested Requirements, 274
-Special-Purpose Suite, 595­596 specification
-Expected Behavior, 470­471 Expected Behavior
-example, 473 Expected Object example, 466 Expected State, 464­465 tests as, xxxiii, 22
+solution patterns, code smells Asynchronous Code, 211 Conditional Verification Logic, 203ï¿½204 Cut and Paste code reuse, 215 Eager Test, 188 Equality Pollution, 222 Flexible Test, 203 General Fixture, 192 Hard-Coded Test Data, 196 Hard-To-Test Code, 209 Highly Coupled Code, 210 Indirect Testing, 197ï¿½199 Irrelevant Information, 193 Multiple Test Conditions, 207ï¿½208 Mystery Guests, 190 Obscure Tests, 199 Production Logic in Test, 205 Test Code Duplication, 115ï¿½216 Test Dependency in Production, 221 Test Hook, 219 For Tests Only, 220 Untestable Test Code, 212
+solution patterns, project smells Buggy Test, 261ï¿½262 Infrequently Run Test, 269 Lost Test, 270ï¿½271 Missing Unit Test, 271 Neverfail Test, 274 Untested Code, 272 Untested Requirements, 274
+Special-Purpose Suite, 595ï¿½596 specification
+Expected Behavior, 470ï¿½471 Expected Behavior
+example, 473 Expected Object example, 466 Expected State, 464ï¿½465 tests as, xxxiii, 22
 
 www.it-ebooks.info
 
@@ -22287,19 +22293,19 @@ www.it-ebooks.info
 Index
 
 spikes, 809 Spy, Test. See Test Spy SQL, Table Truncation Teardown
-using, 666­667 Standard Fixture
-implementation, 307­308 motivating example, 308 overview, 305­306 refactoring, 309­310 when to use, 306­307 standard test interface, 378 starbursts, diagramming notation, xlii state, initializing via Back Door Manipulation.
+using, 666ï¿½667 Standard Fixture
+implementation, 307ï¿½308 motivating example, 308 overview, 305ï¿½306 refactoring, 309ï¿½310 when to use, 306ï¿½307 standard test interface, 378 starbursts, diagramming notation, xlii state, initializing via Back Door Manipulation.
 See Back Door Manipulation Named State Reaching Method,
-417­418 State Verification
-vs. behavior, 36 examples, 466­467 implementation, 463­465 indirect outputs, 179­180 introduction, 109­112 motivating example, 465 overview, 462­463 refactoring, 465­466 Self-Checking Tests, 108 Use the Front Door First, 41 when to use, 463 Stated Outcome Assertion Assertion Methods, 366 defined, 365 example, 369 Guard Assertions as, 491 introduction, 110­111 State-Exposing Subclass Test-Specific Subclass, 289­590 when to use, 580 stateless, 809 statements, "if". See "if" statements
+417ï¿½418 State Verification
+vs. behavior, 36 examples, 466ï¿½467 implementation, 463ï¿½465 indirect outputs, 179ï¿½180 introduction, 109ï¿½112 motivating example, 465 overview, 462ï¿½463 refactoring, 465ï¿½466 Self-Checking Tests, 108 Use the Front Door First, 41 when to use, 463 Stated Outcome Assertion Assertion Methods, 366 defined, 365 example, 369 Guard Assertions as, 491 introduction, 110ï¿½111 State-Exposing Subclass Test-Specific Subclass, 289ï¿½590 when to use, 580 stateless, 809 statements, "if". See "if" statements
 
-static binding defined, 809 Dependency Injection, 678­679
+static binding defined, 809 Dependency Injection, 678ï¿½679
 static methods, 809 static variables, 809 Statically Generated Test
 Doubles, 561 STDD (storytest-driven
 development), 4, 810 stop on first failure
-Naive xUnit Test Interpreter, 292­293
+Naive xUnit Test Interpreter, 292ï¿½293
 xUnit introduction, 57 Stored Procedure Test
-database testing, 172 examples, 658­660 implementation, 655­658 motivating example, 658 overview, 654 refactoring, 658 when to use, 654­655 storytest, 810 storytest-driven development (STDD), 4, 810 strategies, test automation. See test automation strategies stress tests, cross-functionality, 52 strict Mock Object defined, 138 when to use, 545 STTCPW (The simplest thing that could possibly work), 810 Stub, Test. See Test Stub Subclass, Test-Specific. See Test-Specific Subclass Subclassed Humble Object, 700 Subclassed Inner Test Double, 573­574 Subclassed Singleton, 7 Subclassed Test Double, 146­147
+database testing, 172 examples, 658ï¿½660 implementation, 655ï¿½658 motivating example, 658 overview, 654 refactoring, 658 when to use, 654ï¿½655 storytest, 810 storytest-driven development (STDD), 4, 810 strategies, test automation. See test automation strategies stress tests, cross-functionality, 52 strict Mock Object defined, 138 when to use, 545 STTCPW (The simplest thing that could possibly work), 810 Stub, Test. See Test Stub Subclass, Test-Specific. See Test-Specific Subclass Subclassed Humble Object, 700 Subclassed Inner Test Double, 573ï¿½574 Subclassed Singleton, 7 Subclassed Test Double, 146ï¿½147
 
 www.it-ebooks.info
 
@@ -22307,23 +22313,23 @@ Index
 
 871
 
-Subcutaneous Test customer testing, 5 database testing, 174 design for testability, 7 Layer Tests, 343­344
-Subset Suite example, 594­598 implementation, 594 introduction, 160­161 overview, 592 Too Many Tests solution, 257 when to use, 593
+Subcutaneous Test customer testing, 5 database testing, 174 design for testability, 7 Layer Tests, 343ï¿½344
+Subset Suite example, 594ï¿½598 implementation, 594 introduction, 160ï¿½161 overview, 592 Too Many Tests solution, 257 when to use, 593
 substitutable dependencies defined, 810 Dependency Initialization Test, 352 using Test Spy, 540
-Substitutable Singleton in Dependency Lookup, 689 example, 586­587, 692­693 retrofitting testability, 146­147 when to use, 581
-substitution mechanisms, 688­689
-Suite Fixture Setup example, 444­446 implementation, 442­443 implicit, 426 motivating example, 443­444 overview, 441­442 refactoring, 444 Shared Fixture strategies, 64 Shared Fixtures, 104­105 when to use, 442
+Substitutable Singleton in Dependency Lookup, 689 example, 586ï¿½587, 692ï¿½693 retrofitting testability, 146ï¿½147 when to use, 581
+substitution mechanisms, 688ï¿½689
+Suite Fixture Setup example, 444ï¿½446 implementation, 442ï¿½443 implicit, 426 motivating example, 443ï¿½444 overview, 441ï¿½442 refactoring, 444 Shared Fixture strategies, 64 Shared Fixtures, 104ï¿½105 when to use, 442
 suite method, 399 suites
 Named Test Suite. See Named Test Suite
-test organization, 160­162 Test Suite Object. See Test Suite
+test organization, 160ï¿½162 Test Suite Object. See Test Suite
 Object
 
-Suites of Suites building with Test enumeration, 400 defined, 388 example, 389­391 Interacting Test Suites, 231­232 introduction, 7, 15, 78
+Suites of Suites building with Test enumeration, 400 defined, 388 example, 389ï¿½391 Interacting Test Suites, 231ï¿½232 introduction, 7, 15, 78
 SUnit defined, 750 Test Automation Frameworks, 300
 Superclass, Testcase. See Testcase Superclass
-SUT (system under test) control points and observation points, 66­67 dangers of modifying, 41­42 defined, 810­811 Four-Phase Test, 358­361 interface sensitivity, xxxii isolation principle, 43­44 minimizing risk, 24­25 preface, xxii­xxiii replacing in Parameterized Test, 609 result verification. See result verification state vs. behavior verification, 36 terminology, xl­xli test automation tools, 53­54 Test Hook in, 711­712 understanding with test automation, 23
+SUT (system under test) control points and observation points, 66ï¿½67 dangers of modifying, 41ï¿½42 defined, 810ï¿½811 Four-Phase Test, 358ï¿½361 interface sensitivity, xxxii isolation principle, 43ï¿½44 minimizing risk, 24ï¿½25 preface, xxiiï¿½xxiii replacing in Parameterized Test, 609 result verification. See result verification state vs. behavior verification, 36 terminology, xlï¿½xli test automation tools, 53ï¿½54 Test Hook in, 711ï¿½712 understanding with test automation, 23
 SUT API Encapsulation Chained Tests as, 455 Indirect Testing solution, 198 Interface Sensitivity solution, 241
-SUT Encapsulation Method, 601­602
+SUT Encapsulation Method, 601ï¿½602
 
 www.it-ebooks.info
 
@@ -22332,34 +22338,34 @@ www.it-ebooks.info
 Index
 
 Symbolic Constants example, 716 Literal Value, 715
-symptoms, behavior smells Assertion Roulette, 224 Asynchronous Tests, 255 Behavior Sensitivity, 242 Context Sensitivity, 245 Data Sensitivity, 243 Eager Tests, 224­225 Erratic Tests, 228 Fragile Tests, 239 Frequent Debugging, 248 General Fixtures, 255 Interacting Test Suites, 231 Interacting Tests, 229 Interface Sensitivity, 241 Manual Intervention, 250­252 Missing Assertion Messages, 226 Nondeterministic Tests, 237 Resource Leakage, 233 Resource Optimism, 233 Slow Tests, 253 Test Run Wars, 236 Too Many Tests, 256 Unrepeatable Tests, 234­235
-symptoms, code smells Asynchronous Code, 210 Complex Teardown, 206 Conditional Test Logic, 200 Eager Tests, 187­188 Equality Pollution, 221 Flexible Tests, 202 General Fixtures, 190­191 Hard-Coded Test Data, 194­195 Hard-To-Test Code, 209 Highly Coupled Code, 210 Indirect Testing, 196­197 Irrelevant Information, 192­193 Multiple Test Conditions, 207
+symptoms, behavior smells Assertion Roulette, 224 Asynchronous Tests, 255 Behavior Sensitivity, 242 Context Sensitivity, 245 Data Sensitivity, 243 Eager Tests, 224ï¿½225 Erratic Tests, 228 Fragile Tests, 239 Frequent Debugging, 248 General Fixtures, 255 Interacting Test Suites, 231 Interacting Tests, 229 Interface Sensitivity, 241 Manual Intervention, 250ï¿½252 Missing Assertion Messages, 226 Nondeterministic Tests, 237 Resource Leakage, 233 Resource Optimism, 233 Slow Tests, 253 Test Run Wars, 236 Too Many Tests, 256 Unrepeatable Tests, 234ï¿½235
+symptoms, code smells Asynchronous Code, 210 Complex Teardown, 206 Conditional Test Logic, 200 Eager Tests, 187ï¿½188 Equality Pollution, 221 Flexible Tests, 202 General Fixtures, 190ï¿½191 Hard-Coded Test Data, 194ï¿½195 Hard-To-Test Code, 209 Highly Coupled Code, 210 Indirect Testing, 196ï¿½197 Irrelevant Information, 192ï¿½193 Multiple Test Conditions, 207
 
-Mystery Guests, 188­189 Obscure Tests, 186 Production Logic in Test,
-204­205 Test Code Duplication, 213­214 Test Dependency in
+Mystery Guests, 188ï¿½189 Obscure Tests, 186 Production Logic in Test,
+204ï¿½205 Test Code Duplication, 213ï¿½214 Test Dependency in
 Production, 220 Test Logic in Production, 217 test smells, 10 For Tests Only, 219 Untestable Test Code, 211 symptoms, project smells Buggy Tests, 260 Developers Not Writing Tests,
 263 High Test Maintenance
-Cost, 265 Infrequently Run Tests, 268­269 Lost Tests, 269 Missing Unit Tests, 271 Neverfail Tests, 274 Production Bugs, 268 Untested Code, 271­272 Untested Requirements, 272­273 symptoms, test smells, 10 synchronous tests avoiding with Humble Object,
-696­697 defined, 810 system under test (SUT). See SUT (system under test)
+Cost, 265 Infrequently Run Tests, 268ï¿½269 Lost Tests, 269 Missing Unit Tests, 271 Neverfail Tests, 274 Production Bugs, 268 Untested Code, 271ï¿½272 Untested Requirements, 272ï¿½273 symptoms, test smells, 10 synchronous tests avoiding with Humble Object,
+696ï¿½697 defined, 810 system under test (SUT). See SUT (system under test)
 T
-Table Truncation Teardown data access layer testing, 173 defined, 100 examples, 665­667 implementation, 662­664 motivating example, 664 overview, 661­662
+Table Truncation Teardown data access layer testing, 173 defined, 100 examples, 665ï¿½667 implementation, 662ï¿½664 motivating example, 664 overview, 661ï¿½662
 
 www.it-ebooks.info
 
-refactoring, 664­665 when to use, 662 tabular data, 291 Tabular Test Chained Tests, 457­458 with framework support, 614 implementation, 609­610 Incremental, 613­614 Independent, 612­613 tasks, 811 TDD (test-driven development) defined, 813 implementing utility methods,
-122 introduction, xxxiii­xxxiv Missing Unit Tests, 271 need-driven development, 149 process, 4­5 Test Automation
-Frameworks, 301 test automation principles, 40 teardown, fixture. See fixture teardown Teardown Guard Clause example, 513 Implicit Teardown, 517­518 In-line Teardown, 511 tearDown method Implicit Teardown, 516­519 persistent fixtures, 98 Setup Decorator. See Setup
+refactoring, 664ï¿½665 when to use, 662 tabular data, 291 Tabular Test Chained Tests, 457ï¿½458 with framework support, 614 implementation, 609ï¿½610 Incremental, 613ï¿½614 Independent, 612ï¿½613 tasks, 811 TDD (test-driven development) defined, 813 implementing utility methods,
+122 introduction, xxxiiiï¿½xxxiv Missing Unit Tests, 271 need-driven development, 149 process, 4ï¿½5 Test Automation
+Frameworks, 301 test automation principles, 40 teardown, fixture. See fixture teardown Teardown Guard Clause example, 513 Implicit Teardown, 517ï¿½518 In-line Teardown, 511 tearDown method Implicit Teardown, 516ï¿½519 persistent fixtures, 98 Setup Decorator. See Setup
 Decorator Template Method, 164 Temporary Test Stub
-when to use, 530­531 xUnit terminology, 741­744 terminology test automation introduction,
-xl­xli transient fixtures, 86­88 xUnit. See xUnit basics
+when to use, 530ï¿½531 xUnit terminology, 741ï¿½744 terminology test automation introduction,
+xlï¿½xli transient fixtures, 86ï¿½88 xUnit. See xUnit basics
 
 Index
 
 873
 
-test automater, 811 test automation, xxix­xliii
-assumptions, xxxix­xl automated unit testing, xxx­xxxii brief tour, 3­8 code samples, xli­xlii developer testing, xxx diagramming notation, xlii feedback, xxix fragile test problem, xxxi­xxxii limitations, xliii overview, xxix patterns, xxxiv­xxxviii refactoring, xxxviii­xxxix terminology, xl­xli testing, xxx uses of, xxxiii­xxxiv Test Automation Framework introduction, 75 pattern description, 298­301 test automation goals, 19­29 ease of running, 25­27 improving quality, 22­23 list of, 757­759 objectives, 21­22 reducing risk, 23­25 system evolution, 29 understanding SUT, 23 why test?, 19­21 writing and maintaining, 27­29 Test Automation Manifesto, 39 test automation philosophies, 31­37 author's, 37 differences, 32­36 importance of, 31­32 test automation principles, 39­48 Communicate Intent, 41 Design for Testability, 40 Don't Modify the SUT, 41­42 Ensure Commensurate Effort
-and Responsibility, 47­48
+test automater, 811 test automation, xxixï¿½xliii
+assumptions, xxxixï¿½xl automated unit testing, xxxï¿½xxxii brief tour, 3ï¿½8 code samples, xliï¿½xlii developer testing, xxx diagramming notation, xlii feedback, xxix fragile test problem, xxxiï¿½xxxii limitations, xliii overview, xxix patterns, xxxivï¿½xxxviii refactoring, xxxviiiï¿½xxxix terminology, xlï¿½xli testing, xxx uses of, xxxiiiï¿½xxxiv Test Automation Framework introduction, 75 pattern description, 298ï¿½301 test automation goals, 19ï¿½29 ease of running, 25ï¿½27 improving quality, 22ï¿½23 list of, 757ï¿½759 objectives, 21ï¿½22 reducing risk, 23ï¿½25 system evolution, 29 understanding SUT, 23 why test?, 19ï¿½21 writing and maintaining, 27ï¿½29 Test Automation Manifesto, 39 test automation philosophies, 31ï¿½37 author's, 37 differences, 32ï¿½36 importance of, 31ï¿½32 test automation principles, 39ï¿½48 Communicate Intent, 41 Design for Testability, 40 Don't Modify the SUT, 41ï¿½42 Ensure Commensurate Effort
+and Responsibility, 47ï¿½48
 
 www.it-ebooks.info
 
@@ -22367,21 +22373,21 @@ www.it-ebooks.info
 
 Index
 
-Isolate the SUT, 43­44 Keep Test Logic Out of
+Isolate the SUT, 43ï¿½44 Keep Test Logic Out of
 Production Code, 45 Keep Tests Independent,
-42­43 Minimize Test Overlap, 44 Minimize Untestable Code,
-44­45 overview, 39­40 Test Concerns Separately, 47 Use the Front Door First,
-40­41 Verify One Condition per Test,
-45­47 Write the Tests First, 40 test automation roadmap, 175­181 alternative path verification,
-178­179 difficulties, 175­176 direct output verification, 178 execution and maintenance
-optimization, 180­181 happy path code, 177­178 indirect outputs verification,
-178­180 maintainability, 176­177 test automation strategies, 49­73 brief tour, 3­8 control points and observation
-points, 66­67 cross-functional tests, 52­53 divide and test, 71­72 ensuring testability, 65 fixture strategies overview, 58­61 interaction styles and testability
-patterns, 67­71 overview, 49­50 per-functionality tests, 50­52 persistent fresh fixtures, 62­63 shared fixture strategies, 63­65 test-driven testability, 66
+42ï¿½43 Minimize Test Overlap, 44 Minimize Untestable Code,
+44ï¿½45 overview, 39ï¿½40 Test Concerns Separately, 47 Use the Front Door First,
+40ï¿½41 Verify One Condition per Test,
+45ï¿½47 Write the Tests First, 40 test automation roadmap, 175ï¿½181 alternative path verification,
+178ï¿½179 difficulties, 175ï¿½176 direct output verification, 178 execution and maintenance
+optimization, 180ï¿½181 happy path code, 177ï¿½178 indirect outputs verification,
+178ï¿½180 maintainability, 176ï¿½177 test automation strategies, 49ï¿½73 brief tour, 3ï¿½8 control points and observation
+points, 66ï¿½67 cross-functional tests, 52ï¿½53 divide and test, 71ï¿½72 ensuring testability, 65 fixture strategies overview, 58ï¿½61 interaction styles and testability
+patterns, 67ï¿½71 overview, 49ï¿½50 per-functionality tests, 50ï¿½52 persistent fresh fixtures, 62ï¿½63 shared fixture strategies, 63ï¿½65 test-driven testability, 66
 
-tools for, 53­58 transient fresh fixtures, 61­62 what's next, 73 wrong, 264 Test Bed. See Prebuilt Fixture test cases, 811 test code, 811 Test Code Duplication causes, 214­215 Custom Assertions, 475 Delegated Setup, 412 High Test Maintenance
-Cost, 266 impact, 214 In-Line Setup, 89 introduction, 16 possible solution, 216 reducing, 114­119 reducing with Configurable
-Test Doubles. See Configurable Test Double reducing with Parameterized Tests. See Parameterized Test reducing with Test Utility Methods. See Test Utility Method removing with Testcase Class per Fixture. See Testcase Class per Fixture reusing test code, 162 symptoms, 213­214 Test Commands, 82 Test Concerns Separately, 47 test conditions, 154, 811­812 test database, 812 test debt, 812 Test Dependency in Production, 220­221 Test Discovery introduction, 78 Lost Tests solution, 271
+tools for, 53ï¿½58 transient fresh fixtures, 61ï¿½62 what's next, 73 wrong, 264 Test Bed. See Prebuilt Fixture test cases, 811 test code, 811 Test Code Duplication causes, 214ï¿½215 Custom Assertions, 475 Delegated Setup, 412 High Test Maintenance
+Cost, 266 impact, 214 In-Line Setup, 89 introduction, 16 possible solution, 216 reducing, 114ï¿½119 reducing with Configurable
+Test Doubles. See Configurable Test Double reducing with Parameterized Tests. See Parameterized Test reducing with Test Utility Methods. See Test Utility Method removing with Testcase Class per Fixture. See Testcase Class per Fixture reusing test code, 162 symptoms, 213ï¿½214 Test Commands, 82 Test Concerns Separately, 47 test conditions, 154, 811ï¿½812 test database, 812 test debt, 812 Test Dependency in Production, 220ï¿½221 Test Discovery introduction, 78 Lost Tests solution, 271
 
 www.it-ebooks.info
 
@@ -22389,20 +22395,20 @@ Index
 
 875
 
-pattern description, 393­398 Test Suite Object Generator, 293 Test Suite Objects, 388 Test Double, 125­151, 521­590 Back Door Manipulation, 332 Behavior Verification, 112 Configurable Test Double.
-See Configurable Test Double configuring, 141­142 considerations, 150 customer testing, 5 database testing, 169­171 Dependency Injection.
-See Dependency Injection Dependency Lookup, 144­145 dependency replacement, 739 design for testability, 7 Don't Modify the SUT, 41­42 Dummy Object, 134­135 example, 526­528 Fake Object. See Fake Object Fragile Test, 240 Hard-Coded Test Double.
+pattern description, 393ï¿½398 Test Suite Object Generator, 293 Test Suite Objects, 388 Test Double, 125ï¿½151, 521ï¿½590 Back Door Manipulation, 332 Behavior Verification, 112 Configurable Test Double.
+See Configurable Test Double configuring, 141ï¿½142 considerations, 150 customer testing, 5 database testing, 169ï¿½171 Dependency Injection.
+See Dependency Injection Dependency Lookup, 144ï¿½145 dependency replacement, 739 design for testability, 7 Don't Modify the SUT, 41ï¿½42 Dummy Object, 134ï¿½135 example, 526ï¿½528 Fake Object. See Fake Object Fragile Test, 240 Hard-Coded Test Double.
 See Hard-Coded Test Double Highly Coupled Code
 solution, 210 indirect input and output,
-125­126 indirect input control, 128­129 indirect input, importance
+125ï¿½126 indirect input control, 128ï¿½129 indirect input, importance
 of, 126 indirect output, importance of,
-126­127 indirect output verification,
-130­133 installing, 143 minimizing risk, 25 Mock Object. See Mock Object other uses, 148­150 outside-in development, 35­36 overview, 522­523
+126ï¿½127 indirect output verification,
+130ï¿½133 installing, 143 minimizing risk, 25 Mock Object. See Mock Object other uses, 148ï¿½150 outside-in development, 35ï¿½36 overview, 522ï¿½523
 
-providing, 140­141 retrofitting testability,
-146­148 reusing test code, 162 terminology, 741­744 vs. Test Hook, 709­712 Test Spy, 137, 538­543 Test Stub. See Test Stub Test-Specific Subclass.
-See Test-Specific Subclass types of, 133­134 when to use, 523­526 Test Double Class example, 572­573 implementation, 569­570 Test Double Subclass implementation, 570 when to use, 580­581 test drivers Assertion Messages, 370 defined, 813 test driving, 813 Test Enumeration introduction, 153 pattern description, 399­402 test errors, 80, 813 test failure, 80, 813 test first development defined, 813­814 process, 4­5 test automation philosophy,
-32­33 vs. test-last development, xxxiv Test Fixture Registry accessing Shared Fixtures, 104 Test Helper use, 644 test fixtures. See fixtures Test Helper Automated Teardown, 505 introduction, xxiii pattern description, 643­647
+providing, 140ï¿½141 retrofitting testability,
+146ï¿½148 reusing test code, 162 terminology, 741ï¿½744 vs. Test Hook, 709ï¿½712 Test Spy, 137, 538ï¿½543 Test Stub. See Test Stub Test-Specific Subclass.
+See Test-Specific Subclass types of, 133ï¿½134 when to use, 523ï¿½526 Test Double Class example, 572ï¿½573 implementation, 569ï¿½570 Test Double Subclass implementation, 570 when to use, 580ï¿½581 test drivers Assertion Messages, 370 defined, 813 test driving, 813 Test Enumeration introduction, 153 pattern description, 399ï¿½402 test errors, 80, 813 test failure, 80, 813 test first development defined, 813ï¿½814 process, 4ï¿½5 test automation philosophy,
+32ï¿½33 vs. test-last development, xxxiv Test Fixture Registry accessing Shared Fixtures, 104 Test Helper use, 644 test fixtures. See fixtures Test Helper Automated Teardown, 505 introduction, xxiii pattern description, 643ï¿½647
 
 www.it-ebooks.info
 
@@ -22410,29 +22416,29 @@ www.it-ebooks.info
 
 Index
 
-Test Helper Mixin example, 641­642 vs. Testcase Superclass, 639
-Test Hook pattern description, 709­712 in Procedural Test Stub, 135­136 retrofitting testability, 148 Test Logic in Production, 217­219 testability, 70
+Test Helper Mixin example, 641ï¿½642 vs. Testcase Superclass, 639
+Test Hook pattern description, 709ï¿½712 in Procedural Test Stub, 135ï¿½136 retrofitting testability, 148 Test Logic in Production, 217ï¿½219 testability, 70
 Test Logic, Conditional. See Conditional Test Logic
-Test Logic in Production Equality Pollution, 221­222 impact, 217 introduction, 17 symptoms, 217 Test Dependency in Production, 220­221 Test Hooks, 148, 217­219 For Tests Only, 219­220
+Test Logic in Production Equality Pollution, 221ï¿½222 impact, 217 introduction, 17 symptoms, 217 Test Dependency in Production, 220ï¿½221 Test Hooks, 148, 217ï¿½219 For Tests Only, 219ï¿½220
 test maintainer, 815 Test Method
 calling Assertion. See Assertion Method
-Constructor Test example, 355­357
+Constructor Test example, 355ï¿½357
 Constructor Tests, 351 Dependency Initialization
 Tests, 352 enumeration, 401 Expected Exception Test,
-350­351 Expected Exception Test using
-block closure, 354­355 Expected Exception Test using
+350ï¿½351 Expected Exception Test using
+block closure, 354ï¿½355 Expected Exception Test using
 method attributes, 354 Expected Exception Test using
-try/catch, 353­354 fixture design, 59
+try/catch, 353ï¿½354 fixture design, 59
 
-implementation, 349 invocation, 402 Lost Tests, 269­270 minimizing untested code,
-44­45 organization, 7, 155­158. See
-also test organization patterns overview, 348­349 persistent fixtures. See persistent
-fixtures right-sizing, 154­155 running, 81 selection, 404­405 Simple Success Test, 349­350 Simple Success Test example,
-352­353 test automation philosophies, 34 Test Commands, 82 Test Concerns Separately, 47 Test Suite Objects, 82 Testcase Object implementation,
-384­385 transient fixture management.
+implementation, 349 invocation, 402 Lost Tests, 269ï¿½270 minimizing untested code,
+44ï¿½45 organization, 7, 155ï¿½158. See
+also test organization patterns overview, 348ï¿½349 persistent fixtures. See persistent
+fixtures right-sizing, 154ï¿½155 running, 81 selection, 404ï¿½405 Simple Success Test, 349ï¿½350 Simple Success Test example,
+352ï¿½353 test automation philosophies, 34 Test Commands, 82 Test Concerns Separately, 47 Test Suite Objects, 82 Testcase Object implementation,
+384ï¿½385 transient fixture management.
 See transient fixtures unit testing, 6 Verify One Condition per Test,
-46­47 writing simple tests, 28 Test Method Discovery defined, 394­395 examples, 395­397 Test Object Registry. See Automated Teardown test organization, 153­165 code reuse, 162­164 introduction, 153 naming conventions, 158­159 overview, 7 right-sizing Test Methods,
-154­155 test files, 164­165
+46ï¿½47 writing simple tests, 28 Test Method Discovery defined, 394ï¿½395 examples, 395ï¿½397 Test Object Registry. See Automated Teardown test organization, 153ï¿½165 code reuse, 162ï¿½164 introduction, 153 naming conventions, 158ï¿½159 overview, 7 right-sizing Test Methods,
+154ï¿½155 test files, 164ï¿½165
 
 www.it-ebooks.info
 
@@ -22440,28 +22446,28 @@ Index
 
 877
 
-Test Methods and Testcase Classes, 155­158
-test suites, 160­162 test organization patterns, 591­647
+Test Methods and Testcase Classes, 155ï¿½158
+test suites, 160ï¿½162 test organization patterns, 591ï¿½647
 Named Test Suite. See Named Test Suite
 Parameterized Test. See Parameterized Test
-Test Helper, 643­647 Test Utility Method. See Test
+Test Helper, 643ï¿½647 Test Utility Method. See Test
 Utility Method Testcase Class per Class.
 See Testcase Class per Class Testcase Class per Feature.
 See Testcase Class per Feature Testcase Class per Fixture.
-See Testcase Class per Fixture Testcase Superclass, 638­642 test packages defined, 815 test file organization, 164­165 test readers, 815 test refactorings. See also refactoring Extractable Test Component,
-735­736 In-line Resource, 736­737 Make Resources Unique,
-737­738 Minimize Data, 738­739 Replace Dependency with Test
-Double, 739 Set Up External Resource, 740 test results defined, 815 introduction, 79­80 verification. See result verification Test Run War database testing, 169 Erratic Tests cause, 235­237 introduction, 15 vs. Shared Fixture strategy, 64
+See Testcase Class per Fixture Testcase Superclass, 638ï¿½642 test packages defined, 815 test file organization, 164ï¿½165 test readers, 815 test refactorings. See also refactoring Extractable Test Component,
+735ï¿½736 In-line Resource, 736ï¿½737 Make Resources Unique,
+737ï¿½738 Minimize Data, 738ï¿½739 Replace Dependency with Test
+Double, 739 Set Up External Resource, 740 test results defined, 815 introduction, 79ï¿½80 verification. See result verification Test Run War database testing, 169 Erratic Tests cause, 235ï¿½237 introduction, 15 vs. Shared Fixture strategy, 64
 
-Test Runner Graphical. See Graphical Test Runner implementation, 378­381 introduction, 79 Missing Assertion Messages, 226­227 overview, 377­378 Test Automation Frameworks, 300
+Test Runner Graphical. See Graphical Test Runner implementation, 378ï¿½381 introduction, 79 Missing Assertion Messages, 226ï¿½227 overview, 377ï¿½378 Test Automation Frameworks, 300
 test runs, 815 Test Selection
-pattern description, 403­405 Test Suite Object, 388 test smells, 9­17 aliases and causes, 761­765 behavior. See behavior smells catalog of, 12­17 code smells. See code smells database testing. See database
-testing defined, 808, 816 introduction, xxxvi overview, 9­11 patterns and principles vs.,
-xxxv­xxxvi project smells. See project smells reducing Test Code Duplication,
-114­119 Test Spy
+pattern description, 403ï¿½405 Test Suite Object, 388 test smells, 9ï¿½17 aliases and causes, 761ï¿½765 behavior. See behavior smells catalog of, 12ï¿½17 code smells. See code smells database testing. See database
+testing defined, 808, 816 introduction, xxxvi overview, 9ï¿½11 patterns and principles vs.,
+xxxvï¿½xxxvi project smells. See project smells reducing Test Code Duplication,
+114ï¿½119 Test Spy
 Back Door Verification, 333 Behavior Verification, 113 Configurable. See Configurable
-Test Double examples, 542­543 implementation, 540­541 indirect outputs verification,
-179­180 introduction, 131­133,
+Test Double examples, 542ï¿½543 implementation, 540ï¿½541 indirect outputs verification,
+179ï¿½180 introduction, 131ï¿½133,
 137, 525 motivating example, 541
 
 www.it-ebooks.info
@@ -22470,43 +22476,43 @@ www.it-ebooks.info
 
 Index
 
-overview, 538­539 Procedural Behavior
-Verification, 470 refactoring, 541­542 when to use, 539­540 xUnit terminology, 741­744 test strategy patterns, 277­345 Data-Driven Test. See Data-
-Driven Test Fresh Fixture. See Fresh Fixture Layer Test. See Layer Test Minimal Fixture, 302­304 Recorded Test. See Recorded
-Test Scripted Test, 285­287 Shared Fixture. See Shared
+overview, 538ï¿½539 Procedural Behavior
+Verification, 470 refactoring, 541ï¿½542 when to use, 539ï¿½540 xUnit terminology, 741ï¿½744 test strategy patterns, 277ï¿½345 Data-Driven Test. See Data-
+Driven Test Fresh Fixture. See Fresh Fixture Layer Test. See Layer Test Minimal Fixture, 302ï¿½304 Recorded Test. See Recorded
+Test Scripted Test, 285ï¿½287 Shared Fixture. See Shared
 Fixture Standard Fixture. See Standard
 Fixture Test Automation Framework,
-298­301 test strippers, 816 Test Stub
-Behavior-Modifying Subclass, 584­585
+298ï¿½301 test strippers, 816 Test Stub
+Behavior-Modifying Subclass, 584ï¿½585
 Configurable. See Configurable Test Double
-configuring, 141­142 Context Sensitivity solution, 246 controlling indirect inputs, 129 creating in-line resources, 737 examples, 533­537 implementation, 531­532 indirect inputs control, 179 inside-out development, 34­35 introduction, 133, 135­136, 524 motivating example, 532­533 overview, 529­530 refactoring, 533 unit testing, 6
+configuring, 141ï¿½142 Context Sensitivity solution, 246 controlling indirect inputs, 129 creating in-line resources, 737 examples, 533ï¿½537 implementation, 531ï¿½532 indirect inputs control, 179 inside-out development, 34ï¿½35 introduction, 133, 135ï¿½136, 524 motivating example, 532ï¿½533 overview, 529ï¿½530 refactoring, 533 unit testing, 6
 
-when to use, 530­531 xUnit terminology, 741­744 test success, 816 Test Suite Enumeration defined, 400 example, 402 Test Suite Factory, 232 Test Suite Object enumeration, 400 Interacting Test Suites, 231­232 introduction, 7, 82 pattern description, 387­392 Test Suite Object Generator, 293 Test Suite Object Simulator, 293 Test Suite Procedure defined, 388­389 example, 391­392 test suites defined, 816 Lost Tests, 269­270 Named Test Suites. See Named
-Test Suite Test Tree Explorer, 161­162,
-380­381 Test Utility Method
-Communicate Intent, 41 eliminating loops, 121 example, 605­606 implementation, 602­603 introduction, xxiii, 16­17, 23,
-162­163 motivating example, 603­604 Obscure Tests solution, 199 overview, 599 reducing risk of bugs, 181 refactoring, 605 reusing, lviii­lix reusing via Test Helper, 643­647 reusing via Testcase Superclass,
-638­642
+when to use, 530ï¿½531 xUnit terminology, 741ï¿½744 test success, 816 Test Suite Enumeration defined, 400 example, 402 Test Suite Factory, 232 Test Suite Object enumeration, 400 Interacting Test Suites, 231ï¿½232 introduction, 7, 82 pattern description, 387ï¿½392 Test Suite Object Generator, 293 Test Suite Object Simulator, 293 Test Suite Procedure defined, 388ï¿½389 example, 391ï¿½392 test suites defined, 816 Lost Tests, 269ï¿½270 Named Test Suites. See Named
+Test Suite Test Tree Explorer, 161ï¿½162,
+380ï¿½381 Test Utility Method
+Communicate Intent, 41 eliminating loops, 121 example, 605ï¿½606 implementation, 602ï¿½603 introduction, xxiii, 16ï¿½17, 23,
+162ï¿½163 motivating example, 603ï¿½604 Obscure Tests solution, 199 overview, 599 reducing risk of bugs, 181 refactoring, 605 reusing, lviiiï¿½lix reusing via Test Helper, 643ï¿½647 reusing via Testcase Superclass,
+638ï¿½642
 
 www.it-ebooks.info
 
-using TDD to write, 122 when to use, 600­602 Test Utility Test, 603 testability, design for. See designfor-testability Testcase Class introduction, 78 organization, 7, 155­158 pattern description, 373­376 reusable test logic, 123 selection, 404­405 Testcase Class Discovery defined, 394 example, 397­398 Testcase Class per Class example, 618­623 implementation, 618 overview, 617 when to use, 618 Testcase Class per Feature example, 628­630 implementation, 626 motivating example, 626­627 overview, 624 refactoring, 627­628 when to use, 625 Testcase Class per Fixture example, 635­637 implementation, 632­633 motivating example,
-633­634 overview, 631 refactoring, 634­635 Verify One Condition per Test,
-46­47 when to use, 632 Testcase Class per Method, 625 Testcase Class per User Story, 625 Testcase Object introduction, 81 pattern description, 382­386
+using TDD to write, 122 when to use, 600ï¿½602 Test Utility Test, 603 testability, design for. See designfor-testability Testcase Class introduction, 78 organization, 7, 155ï¿½158 pattern description, 373ï¿½376 reusable test logic, 123 selection, 404ï¿½405 Testcase Class Discovery defined, 394 example, 397ï¿½398 Testcase Class per Class example, 618ï¿½623 implementation, 618 overview, 617 when to use, 618 Testcase Class per Feature example, 628ï¿½630 implementation, 626 motivating example, 626ï¿½627 overview, 624 refactoring, 627ï¿½628 when to use, 625 Testcase Class per Fixture example, 635ï¿½637 implementation, 632ï¿½633 motivating example,
+633ï¿½634 overview, 631 refactoring, 634ï¿½635 Verify One Condition per Test,
+46ï¿½47 when to use, 632 Testcase Class per Method, 625 Testcase Class per User Story, 625 Testcase Object introduction, 81 pattern description, 382ï¿½386
 
 Index
 
 879
 
-Testcase Superclass pattern description, 638­642 reusing test code, 163­164 Test Discovery using, 397­398
+Testcase Superclass pattern description, 638ï¿½642 reusing test code, 163ï¿½164 Test Discovery using, 397ï¿½398
 test-driven bug fixing, 812 test-driven development (TDD).
 See TDD (test-driven development) Test-Driven Development: By
 Example (Beck), 301 test-driven testability, 66 Testing by Layers. See Layer Test testing terminology. See terminology test-last development
 defined, 815 strategy, 65 test automation philosophy,
-32­33 vs. test-first development, xxxiv TestNG defined, 750 Interacting Tests, 231 Testcase Object exception,
-384­385 vs. xUnit, 57 Tests as Documentation Communicate Intent, 41 customer testing, 5 defined, 23 reusing test code, 162 unit testing, 6 Tests as Safety Net, 24, 260 Tests as Specification, xxxiii, 22 test-specific equality, 588­589, 816 Test-Specific Extension. See Test-Specific Subclass Test-Specific Subclass Behavior-Exposing Subclass,
+32ï¿½33 vs. test-first development, xxxiv TestNG defined, 750 Interacting Tests, 231 Testcase Object exception,
+384ï¿½385 vs. xUnit, 57 Tests as Documentation Communicate Intent, 41 customer testing, 5 defined, 23 reusing test code, 162 unit testing, 6 Tests as Safety Net, 24, 260 Tests as Specification, xxxiii, 22 test-specific equality, 588ï¿½589, 816 Test-Specific Extension. See Test-Specific Subclass Test-Specific Subclass Behavior-Exposing Subclass,
 587 Behavior-Modifying Subclass
-(Substituted Singleton), 586­587
+(Substituted Singleton), 586ï¿½587
 
 www.it-ebooks.info
 
@@ -22514,24 +22520,24 @@ www.it-ebooks.info
 
 Index
 
-Behavior-Modifying Subclass (Test Stub), 584­585
-defining Test-Specific Equality, 588­589
-Don't Modify the SUT, 42 implementation, 581­582 Isolate the SUT, 44 motivating example, 582­584 overview, 579­580 refactoring, 584 retrofitting testability, 146­147 State-Exposing Subclass,
-289­590 For Tests Only solution, 220 when to use, 580­581 Test::Unit, 750 Thread-Specific Storage, 688­689 Too Many Tests, 256­257 tools automated unit testing,
-xxx­xxxi commercial record and playback,
-282­283 QTP. See QTP (QuickTest
+Behavior-Modifying Subclass (Test Stub), 584ï¿½585
+defining Test-Specific Equality, 588ï¿½589
+Don't Modify the SUT, 42 implementation, 581ï¿½582 Isolate the SUT, 44 motivating example, 582ï¿½584 overview, 579ï¿½580 refactoring, 584 retrofitting testability, 146ï¿½147 State-Exposing Subclass,
+289ï¿½590 For Tests Only solution, 220 when to use, 580ï¿½581 Test::Unit, 750 Thread-Specific Storage, 688ï¿½689 Too Many Tests, 256ï¿½257 tools automated unit testing,
+xxxï¿½xxxi commercial record and playback,
+282ï¿½283 QTP. See QTP (QuickTest
 Professional) robot user. See robot user tools for test automation strategy,
-53­58 types of, 753­756 Transaction Controller, Humble. See Humble Transaction Controller Transaction Rollback Teardown data access layer testing, 173 defined, 100 examples, 673­675 implementation, 671 motivating example, 672 overview, 668­669 refactoring, 672 when to use, 669­671
+53ï¿½58 types of, 753ï¿½756 Transaction Controller, Humble. See Humble Transaction Controller Transaction Rollback Teardown data access layer testing, 173 defined, 100 examples, 673ï¿½675 implementation, 671 motivating example, 672 overview, 668ï¿½669 refactoring, 672 when to use, 669ï¿½671
 
-transient fixtures, 85­94 Delegated Setup, 89­91 hybrid setup, 93 Implicit Setup, 91­93 In-Line Setup, 88­89 overview, 85­86 vs. persistent fixtures, 96 tearing down, 93­94 terminology, 86­88 what's next, 94
-Transient Fresh Fixture database testing, 170 defined, 60­61, 314 vs. Shared Fixture, 61­62
-troubleshooting Buggy Tests, 261 Developers Not Writing Tests, 264 Erratic Tests, 228­229 Fragile Tests, 239­240 High Test Maintenance Cost, 267 Slow Tests, 253­254
-True Humble Executable, 703­706 True Humble Objects, 699­700 TRUNCATE command. See Table
+transient fixtures, 85ï¿½94 Delegated Setup, 89ï¿½91 hybrid setup, 93 Implicit Setup, 91ï¿½93 In-Line Setup, 88ï¿½89 overview, 85ï¿½86 vs. persistent fixtures, 96 tearing down, 93ï¿½94 terminology, 86ï¿½88 what's next, 94
+Transient Fresh Fixture database testing, 170 defined, 60ï¿½61, 314 vs. Shared Fixture, 61ï¿½62
+troubleshooting Buggy Tests, 261 Developers Not Writing Tests, 264 Erratic Tests, 228ï¿½229 Fragile Tests, 239ï¿½240 High Test Maintenance Cost, 267 Slow Tests, 253ï¿½254
+True Humble Executable, 703ï¿½706 True Humble Objects, 699ï¿½700 TRUNCATE command. See Table
 Truncation Teardown try/catch
-Expected Exception Tests, 353­354
+Expected Exception Tests, 353ï¿½354
 Single-Outcome Assertions, 367 try/finally block
-cleaning up fixture teardown logic, l­liv
-Implicit Teardown, 519 In-line Teardown, 512­513 type compatibility, 679 type visibility Test Helper use, 644 Test Utility Methods, 603 Testcase Superclass use, 639
+cleaning up fixture teardown logic, lï¿½liv
+Implicit Teardown, 519 In-line Teardown, 512ï¿½513 type compatibility, 679 type visibility Test Helper use, 644 Test Utility Methods, 603 Testcase Superclass use, 639
 
 www.it-ebooks.info
 
@@ -22541,20 +22547,20 @@ Index
 
 U
 UAT (user acceptance tests) defined, 817 principles, 42
-UI (User Interface) tests asynchronous tests, 70­71 Hard-To-Test Code, 71­72 tools, 55
+UI (User Interface) tests asynchronous tests, 70ï¿½71 Hard-To-Test Code, 71ï¿½72 tools, 55
 UML (Unified Modeling Language), 816
-Unconfigurable Test Doubles, 527 unexpected exceptions, 352 Unfinished Test Assertion, 494­497 Unfinished Test Method from
-Template, 496­497 Unified Modeling Language
-(UML), 816 unique resources, 737­738 Unit Testing with Java (Link), 743 unit tests
-defined, 817 introduction, 6 per-functionality, 51 rules, 307 Scripted Tests, 285­287 xUnit vs. Fit, 290­292 unnecessary object elimination, 303­304 Unrepeatable Test database testing, 169 Erratic Test cause, 234­235 introduction, 15, 64 persistent fresh fixtures, 96 vs. Repeatable Test, 26­27 Untestable Test Code avoiding Conditional Logic,
-119­121 Hard-To-Test Code, 211­212
+Unconfigurable Test Doubles, 527 unexpected exceptions, 352 Unfinished Test Assertion, 494ï¿½497 Unfinished Test Method from
+Template, 496ï¿½497 Unified Modeling Language
+(UML), 816 unique resources, 737ï¿½738 Unit Testing with Java (Link), 743 unit tests
+defined, 817 introduction, 6 per-functionality, 51 rules, 307 Scripted Tests, 285ï¿½287 xUnit vs. Fit, 290ï¿½292 unnecessary object elimination, 303ï¿½304 Unrepeatable Test database testing, 169 Erratic Test cause, 234ï¿½235 introduction, 15, 64 persistent fresh fixtures, 96 vs. Repeatable Test, 26ï¿½27 Untestable Test Code avoiding Conditional Logic,
+119ï¿½121 Hard-To-Test Code, 211ï¿½212
 
-Untested Code alternative path verification, 178­179 indirect inputs and, 126 Isolate the SUT, 43 minimizing, 44­45 preventing with Test Doubles, 523 Production Bugs, 271­272 unit testing, 6
-Untested Requirement Frequent Debugging cause, 249 indirect output testing, 127 preventing with Test Doubles, 523 Production Bugs cause, 272­274 reducing via Isolate the SUT, 43
+Untested Code alternative path verification, 178ï¿½179 indirect inputs and, 126 Isolate the SUT, 43 minimizing, 44ï¿½45 preventing with Test Doubles, 523 Production Bugs, 271ï¿½272 unit testing, 6
+Untested Requirement Frequent Debugging cause, 249 indirect output testing, 127 preventing with Test Doubles, 523 Production Bugs cause, 272ï¿½274 reducing via Isolate the SUT, 43
 usability tests, 53 use cases, 817 Use the Front Door First
-defined, 40­41 Overspecified Software
+defined, 40ï¿½41 Overspecified Software
 avoidance, 246 user acceptance tests (UAT)
-defined, 817 principles, 42 User Interface (UI) tests asynchronous tests, 70­71 Hard-To-Test Code, 71­72 tools, 55 user story defined, 817 Testcase Class per, 625 utility methods. See Test Utility Method utPLSQL, 750
+defined, 817 principles, 42 User Interface (UI) tests asynchronous tests, 70ï¿½71 Hard-To-Test Code, 71ï¿½72 tools, 55 user story defined, 817 Testcase Class per, 625 utility methods. See Test Utility Method utPLSQL, 750
 
 www.it-ebooks.info
 
@@ -22563,49 +22569,49 @@ www.it-ebooks.info
 Index
 
 V
-value patterns, 713­732 Derived Values, 718­722 Dummy Objects, 728­732 Generated Values, 723­727 Literal Values, 714­717
-variables in Derived Values, 718­722 global, 92, 798 instance. See instance variables local. See local variables procedure variables, 805­806 static, 809
+value patterns, 713ï¿½732 Derived Values, 718ï¿½722 Dummy Objects, 728ï¿½732 Generated Values, 723ï¿½727 Literal Values, 714ï¿½717
+variables in Derived Values, 718ï¿½722 global, 92, 798 instance. See instance variables local. See local variables procedure variables, 805ï¿½806 static, 809
 VB Lite Unit, 751 VbUnit
-defined, 751 Suite Fixture Setup support, 442 Testcase Class terminology, 376 xUnit terminology, 300 Verbose Tests. See Obscure Test verification alternative path, 178­179 Back Door Manipulation,
-329­330 Back Door using Test Spy, 333 cleaning up logic, xlvi­l direct output, 178 indirect outputs, 130­133,
-178­180 state vs. behavior, 36 test results. See result verification Verify One Condition per Test,
-45­47 Verification Method
-defined, 477, 602 example, 482­483 Verify One Condition per Test defined, 40, 45­47 right-sizing Test Methods,
-154­155 verify outcome, 817 Virtual Clock, 246
+defined, 751 Suite Fixture Setup support, 442 Testcase Class terminology, 376 xUnit terminology, 300 Verbose Tests. See Obscure Test verification alternative path, 178ï¿½179 Back Door Manipulation,
+329ï¿½330 Back Door using Test Spy, 333 cleaning up logic, xlviï¿½l direct output, 178 indirect outputs, 130ï¿½133,
+178ï¿½180 state vs. behavior, 36 test results. See result verification Verify One Condition per Test,
+45ï¿½47 Verification Method
+defined, 477, 602 example, 482ï¿½483 Verify One Condition per Test defined, 40, 45ï¿½47 right-sizing Test Methods,
+154ï¿½155 verify outcome, 817 Virtual Clock, 246
 
-visibility of SUT features from TestSpecific Subclass, 581­582 test file organization, 165 type. See type visibility
+visibility of SUT features from TestSpecific Subclass, 581ï¿½582 test file organization, 165 type. See type visibility
 visual objects, Humble Dialog use, 706
 Visual Studio, 756
 W
 waterfall design, 65 Watir
 defined, 756 Test Automation Frameworks,
-301 test automation tools, 53 Weinberg, Gerry, xxiv­xxv, 61­62 widgets Humble Dialog use, 706 recognizers, 299 Wikipedia, 729 Working Effectively with Legacy Code (Feathers), 210 Write the Tests First, 40 writing tests Developers Not Writing Tests
-project smells, 263­264 development process, 4­5 goals, 27­29 philosophies. See test automation
+301 test automation tools, 53 Weinberg, Gerry, xxivï¿½xxv, 61ï¿½62 widgets Humble Dialog use, 706 recognizers, 299 Wikipedia, 729 Working Effectively with Legacy Code (Feathers), 210 Write the Tests First, 40 writing tests Developers Not Writing Tests
+project smells, 263ï¿½264 development process, 4ï¿½5 goals, 27ï¿½29 philosophies. See test automation
 philosophies principles. See test automation
 principles
 X
-XML data files, Data-Driven Tests, 294­295
-xUnit Data-Driven Tests with CSV input file, 296 Data-Driven Tests with XML data file, 294­295
+XML data files, Data-Driven Tests, 294ï¿½295
+xUnit Data-Driven Tests with CSV input file, 296 Data-Driven Tests with XML data file, 294ï¿½295
 
 www.it-ebooks.info
 
-defined, 751 family members, 747­751 vs. Fit, 291­292 fixture definitions, 86 Interacting Test Suites, 232 introduction, 56­57 language-specific terminology,
-xl­xli modern, 55 Naive xUnit Test Interpreter,
-292­293 profiling tools, 254 Suite Fixture Setup support,
-442­443 sweet spot, 58 terminology, 741­746 Test Automation Frameworks,
+defined, 751 family members, 747ï¿½751 vs. Fit, 291ï¿½292 fixture definitions, 86 Interacting Test Suites, 232 introduction, 56ï¿½57 language-specific terminology,
+xlï¿½xli modern, 55 Naive xUnit Test Interpreter,
+292ï¿½293 profiling tools, 254 Suite Fixture Setup support,
+442ï¿½443 sweet spot, 58 terminology, 741ï¿½746 Test Automation Frameworks,
 300 test fixtures, 814 test organization mechanisms,
-153 xUnit basics, 75­83
-defining suites of tests, 78­79 defining tests, 76­78
+153 xUnit basics, 75ï¿½83
+defining suites of tests, 78ï¿½79 defining tests, 76ï¿½78
 
 Index
 
 883
 
-fixtures, 78 overview, 75­76 procedural world, 82­83 running Test Methods, 81 running tests, 79 Test Commands, 82 test results, 79­80 Test Suite Object, 82 xUnit basics patterns, 347­405 Assertion Message, 370­372 Assertion Method.
-See Assertion Method Four-Phase Test, 358­361 Test Discovery, 393­398 Test Enumeration, 399­402 Test Method.
+fixtures, 78 overview, 75ï¿½76 procedural world, 82ï¿½83 running Test Methods, 81 running tests, 79 Test Commands, 82 test results, 79ï¿½80 Test Suite Object, 82 xUnit basics patterns, 347ï¿½405 Assertion Message, 370ï¿½372 Assertion Method.
+See Assertion Method Four-Phase Test, 358ï¿½361 Test Discovery, 393ï¿½398 Test Enumeration, 399ï¿½402 Test Method.
 See Test Method Test Runner.
-See Test Runner Test Selection, 403­405 Test Suite Object, 82,
-387­392 Testcase Class, 373­376 Testcase Object, 382­386
+See Test Runner Test Selection, 403ï¿½405 Test Suite Object, 82,
+387ï¿½392 Testcase Class, 373ï¿½376 Testcase Object, 382ï¿½386
 
 www.it-ebooks.info
 
@@ -22636,4 +22642,3 @@ How do we tell a Test Double what to return or expect? Configurable Test Double 
 How can we make code testable? Humble Object (695); Test-Specific Subclass (579)
 How do we design the SUT so that we can replace its dependencies at runtime? Dependency Injection (678); Dependency Lookup (686); Test Hook (709)
 www.it-ebooks.info
-

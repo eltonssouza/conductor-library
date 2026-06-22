@@ -1,3 +1,9 @@
+# Web Form Design
+
+> **Author(s):** Wroblewski Â· **Category:** 06_web_and_frontend Â· **Language:** English
+
+---
+
 WEB FORM DESIGN
 Filling in the Blanks by LUKE WROBLE W SK I foreword by Jared Spool
 
@@ -134,7 +140,7 @@ Web Form Design: Filling in the Blanks By Luke Wroblewski
 Rosenfeld Media, LLC 705 Carroll Street, #2L Brooklyn, New York 11215 USA
 On the web: www.rosenfeldmedia.com Please send errors to: errata@rosenfeldmedia.com
 Publisher: Louis Rosenfeld Editor/Production Editor: Marta Justak Interior Layout: Susan Honeywell Cover Design: The Heads of State Indexer: Nancy Guenther Proofreader: Chuck Hutchinson
-© 2008 Rosenfeld Media, LLC All Rights Reserved ISBN: 1-933820-25-X ISBN-13: 978-1-933820-25-5
+ï¿½ 2008 Rosenfeld Media, LLC All Rights Reserved ISBN: 1-933820-25-X ISBN-13: 978-1-933820-25-5
 Library of Congress Control Number: 2008923241
 Printed and bound in the United States of America
 Download at Boykma.Com
@@ -143,13 +149,13 @@ For everyone who has had to fill in a form.
 Download at Boykma.Com
 
 How to Use this Book
-Web form design. Do we really need an entire book on such a mundane topic? You bet we do. As arbiters of checkout, registration, and data entry, Web forms are often the lynchpins of successful Web applications. · Checkout forms are how ecommerce
-vendors close deals--they stand between people and the products or services they want and between companies and their profits. For example, eBay's vast inventory (it's the 30th largest economy in the world) is driven in no small part by its Sell Your Item form. · Registration forms are the gatekeepers to community membership--they allow people to define their identity within social applications. All of MySpace's 150+ million users joined through a Web form.
+Web form design. Do we really need an entire book on such a mundane topic? You bet we do. As arbiters of checkout, registration, and data entry, Web forms are often the lynchpins of successful Web applications. ï¿½ Checkout forms are how ecommerce
+vendors close deals--they stand between people and the products or services they want and between companies and their profits. For example, eBay's vast inventory (it's the 30th largest economy in the world) is driven in no small part by its Sell Your Item form. ï¿½ Registration forms are the gatekeepers to community membership--they allow people to define their identity within social applications. All of MySpace's 150+ million users joined through a Web form.
  How to Use this Book
 Download at Boykma.Com
 
 How to Use this Book
-· Data input forms allow users to contribute or share information, and they allow companies to grow their content. Most of YouTube's huge video collection comes from its Upload Your Video form.
+ï¿½ Data input forms allow users to contribute or share information, and they allow companies to grow their content. Most of YouTube's huge video collection comes from its Upload Your Video form.
 Web forms are often the last and most important mile in a long journey. Despite their importance, the design of forms is often poorly thought out and conceived. Your organization may have already invested heavily in opening a relationship with its customers through high-quality marketing, site design, and search engine optimization. But now it is time to "close the deal" by making sure those customers can complete your forms. And that's where this book will help.
 Who Should Read this Book? Web Form Design: Filling in the Blanks is truly for anyone who needs to design or develop
 xi How to Use this Book
@@ -237,7 +243,7 @@ xxiii Foreword
 Download at Boykma.Com
 
 foreword
-can create something that is both useful and beautiful. The best are aware their products are only a piece of the overall décor and know how to blend their results perfectly into the surrounding experience. After all, when we're in the kitchen, it's about the cooking and the family interaction--not about eternal admiration of the dovetail joints holding the utensils in place.
+can create something that is both useful and beautiful. The best are aware their products are only a piece of the overall dï¿½cor and know how to blend their results perfectly into the surrounding experience. After all, when we're in the kitchen, it's about the cooking and the family interaction--not about eternal admiration of the dovetail joints holding the utensils in place.
 One of the biggest takeaways from our research was the carpenters' extreme attention to detail. Even though each person we interviewed had years of experience, nothing was taken for granted. Every hinge and joint was finely crafted, almost as if it were the most important element in their entire career. The pride they took in the final cabinet was the sum of the pride they took in each individual element.
 Cabinetmakers aren't the only folks who behave this way. So are the master craftsmen of
 xxiv Foreword
@@ -367,13 +373,13 @@ California voter registration offline and online--it's all just a form.
 14 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-All these examples should make it pretty clear that Web forms stand in the way of user needs (what people want from a product or service) and business goals (how the organizations running these applications stay in business). · On ecommerce sites, people want to buy
-the things they need and businesses want to maximize sales. Standing in the way is the checkout form. · On social applications, people want to join communities, chat with their friends, or share content. From a business perspective, these sites want to grow and increase engagement between people. In the way are registration and contact forms. · In Web-based productivity tools, people want to get things done and create or collaborate. Businesses want to increase the amount of content and time spent on their site. Once again, forms are in between.
+All these examples should make it pretty clear that Web forms stand in the way of user needs (what people want from a product or service) and business goals (how the organizations running these applications stay in business). ï¿½ On ecommerce sites, people want to buy
+the things they need and businesses want to maximize sales. Standing in the way is the checkout form. ï¿½ On social applications, people want to join communities, chat with their friends, or share content. From a business perspective, these sites want to grow and increase engagement between people. In the way are registration and contact forms. ï¿½ In Web-based productivity tools, people want to get things done and create or collaborate. Businesses want to increase the amount of content and time spent on their site. Once again, forms are in between.
 15 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 So forms enable commerce, communities, and productivity on the Web to thrive. It's no wonder that form design matters.
-The Impact of Form Design Since Web forms broker crucial interactions like checkout and registration, it shouldn't come as a surprise that they can have a big impact on business goals. Increased completion rates of 10­40 percent were not uncommon in many of the form redesign projects I've been part of. And when form completion means new sales or new customers, it's easy to see how improvements in form design can amount to substantial increases in revenue (see Figure 1.7).
+The Impact of Form Design Since Web forms broker crucial interactions like checkout and registration, it shouldn't come as a surprise that they can have a big impact on business goals. Increased completion rates of 10ï¿½40 percent were not uncommon in many of the form redesign projects I've been part of. And when form completion means new sales or new customers, it's easy to see how improvements in form design can amount to substantial increases in revenue (see Figure 1.7).
 16 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
@@ -398,8 +404,8 @@ eBay user experience and design team. Their registration redesign had such a pos
 The enormous success of the eBay registration redesign was grounded in a deep understanding of the opportunities and issues present in the registration process. The team culled through usability data, customer support records, site logs, and Web conventions to inform their form redesign recommendations (see Figure 1.8).
 Each of these unique sources of data provides valuable ways to measure the impact of a form design. Let's take a look at them individually:
 Usability Testing: Observing how people interact with forms in a usability lab setting can provide valuable qualitative and quantitative information.
-· Number and location of errors or issues
-· Severity of errors or problems
+ï¿½ Number and location of errors or issues
+ï¿½ Severity of errors or problems
 18 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
@@ -418,28 +424,28 @@ site click-through data that illustrated user drop-off and best
 
 practice analysis.
 
-· Completion rates · Time spent to complete the form or sections
-of the form · Satisfaction scores · Subjective comments about tasks
+ï¿½ Completion rates ï¿½ Time spent to complete the form or sections
+of the form ï¿½ Satisfaction scores ï¿½ Subjective comments about tasks
 
 19 Chapter 1 The Design of Forms
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Field Testing: Ethnographic observation of people interacting with forms in their home or office.
-· Sources used to access information required by forms: documents, software, people, etc.
-· Environment in which forms are filled in: loud office, small monitor, etc.
-· Any additional context that informs form completion or error rates
+ï¿½ Sources used to access information required by forms: documents, software, people, etc.
+ï¿½ Environment in which forms are filled in: loud office, small monitor, etc.
+ï¿½ Any additional context that informs form completion or error rates
 Customer Support: Knowing the problems reported by users when filling in forms can help isolate issues and ways to resolve them.
-· Top problems reported
-· Common ways to resolve reported problems
-· Demographic information about people reporting problems
-· Operating system and Web browser settings for people reporting problems
+ï¿½ Top problems reported
+ï¿½ Common ways to resolve reported problems
+ï¿½ Demographic information about people reporting problems
+ï¿½ Operating system and Web browser settings for people reporting problems
 Site Tracking: Forms can be instrumented to track any number of useful quantitative metrics.
 20 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-· Completion rates · Where people dropped off the form if they
-did not complete it · How people accessed the form · Which form elements were used · What data was entered · Web browser and operating system
+ï¿½ Completion rates ï¿½ Where people dropped off the form if they
+did not complete it ï¿½ How people accessed the form ï¿½ Which form elements were used ï¿½ What data was entered ï¿½ Web browser and operating system
 information
 Eye Tracking: Recording how people make sense of the presentation of forms can illuminate points of complexity (see Figure 1.9).
 
@@ -457,10 +463,10 @@ people's eyes move through a simple form.
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-· What people looked at on a form · Number of eye fixations: level of effort
-required to parse a form · Length of eye fixations: time spent looking
+ï¿½ What people looked at on a form ï¿½ Number of eye fixations: level of effort
+required to parse a form ï¿½ Length of eye fixations: time spent looking
 at each element
-Web Conventions: Surveying common solutions to form design problems can provide valuable insights (see Figure 1.10). · Unique solutions to design problems · Common patterns in use across the Web
+Web Conventions: Surveying common solutions to form design problems can provide valuable insights (see Figure 1.10). ï¿½ Unique solutions to design problems ï¿½ Common patterns in use across the Web
 These data points not only inform the design process, but they also help measure success. Therefore, it's a good idea to use some of these metrics with your form designs so you can better gauge your success. This doesn't require a lot of expensive testing or development. Observing how a few people complete your forms or monitoring Web server logs with offthe-shelf Web analytics programs can provide a lot of useful information.
 22 Chapter 1 The Design of Forms Download at Boykma.Com
 
@@ -513,10 +519,10 @@ Design Considerations Given the impact that form design can have on crucial metr
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Design Principles
 Design principles are the guiding light for any solution. They articulate the fundamental goals that any solution should embody. In the case of Web form design, the principles I continually strive for are
-· Minimize the Pain: People want what lies on the other side of a form so the process of completing forms should be as simple and easy as possible.
-· Illuminate a Path to Completion: Since the point of just about every form is to get it filled in, make it abundantly clear how people can accomplish that goal.
-· Consider the Context: Forms rarely exist in a vacuum. They are almost always part of a broader context (audience, application, business), which informs how they'll be used.
-· Ensure Consistent Communication: Forms broker conversations between customers and companies. Although an organization can have many groups taking
+ï¿½ Minimize the Pain: People want what lies on the other side of a form so the process of completing forms should be as simple and easy as possible.
+ï¿½ Illuminate a Path to Completion: Since the point of just about every form is to get it filled in, make it abundantly clear how people can accomplish that goal.
+ï¿½ Consider the Context: Forms rarely exist in a vacuum. They are almost always part of a broader context (audience, application, business), which informs how they'll be used.
+ï¿½ Ensure Consistent Communication: Forms broker conversations between customers and companies. Although an organization can have many groups taking
 28 Chapter 1 The Design of Forms Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
@@ -795,18 +801,18 @@ needed to make a clear distinction.
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices · Take the time to evaluate every question you are
-adding to your forms. Be vigilant about removing everything that isn't necessary. · Strive for succinctness in all the questions (labels) you ask in your forms. · When succinct labels may be misinterpreted, look for opportunities to use natural language to clarify the questions your forms ask people to answer. · Ensure that your forms speak with one voice, despite questions from several different people or departments. · Organize the content on your forms into logical groups to aid scanning and completion. · When possible, structure your forms as a conversation. Natural breaks between topics will emerge that can help you organize your form.
+Best Practices ï¿½ Take the time to evaluate every question you are
+adding to your forms. Be vigilant about removing everything that isn't necessary. ï¿½ Strive for succinctness in all the questions (labels) you ask in your forms. ï¿½ When succinct labels may be misinterpreted, look for opportunities to use natural language to clarify the questions your forms ask people to answer. ï¿½ Ensure that your forms speak with one voice, despite questions from several different people or departments. ï¿½ Organize the content on your forms into logical groups to aid scanning and completion. ï¿½ When possible, structure your forms as a conversation. Natural breaks between topics will emerge that can help you organize your form.
 56 Chapter 2 Form Organization Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · If a form naturally breaks down into a few short
-topics, a single Web page is likely to be a good way to organize the form. · When a form contains a large number of questions that are only related by a few topics, multiple Web pages are probably a good way to organize the form. · When a form contains a large number of questions related to a single topic, one long Web page is generally a good way to organize the form. · Consider asking optional questions only after a form is completed. Chances are you'll get more answers than if these questions were part of the initial form. · Consider using Web convention surveys to discover patterns in how forms are organized on specific kinds of sites.
+Best Practices (continued) ï¿½ If a form naturally breaks down into a few short
+topics, a single Web page is likely to be a good way to organize the form. ï¿½ When a form contains a large number of questions that are only related by a few topics, multiple Web pages are probably a good way to organize the form. ï¿½ When a form contains a large number of questions related to a single topic, one long Web page is generally a good way to organize the form. ï¿½ Consider asking optional questions only after a form is completed. Chances are you'll get more answers than if these questions were part of the initial form. ï¿½ Consider using Web convention surveys to discover patterns in how forms are organized on specific kinds of sites.
 57 Chapter 2 Form Organization Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · Use the minimal amount of visual information
-necessary to distinguish content groups. · Use initial capital letters to make the titles of
+Best Practices (continued) ï¿½ Use the minimal amount of visual information
+necessary to distinguish content groups. ï¿½ Use initial capital letters to make the titles of
 content groups easier to scan.
 58 Chapter 2 Form Organization Download at Boykma.Com
 
@@ -1005,40 +1011,40 @@ Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008;
 Perspective: Peter Wallack
 Accessibility Program Director, Oracle
 Designing Accessible Forms
-For many disabled users, the virtual world of the computer eliminates most of the barriers of the physical world, but it's up to you, the Web page designer, to enable it. An accessible form takes into account the unique needs of users who have limited or no vision, limited or no hearing, limited physical movement, or cognitive impairments. Statistically speaking, there's a 25 percent chance that could be any one of us at some point in our lives! Many disabled users will operate Web pages with additional hardware or software called "assistive technology" (AT), such as a screen reader or a Braille printer. It's important that you design with the proper content and structure in the first place, and then let the AT communicate with the user. Here are some areas where your design solutions that you make for accessibility purposes will benefit other users as well: · Closed captioning of multimedia helps when you are watching
+For many disabled users, the virtual world of the computer eliminates most of the barriers of the physical world, but it's up to you, the Web page designer, to enable it. An accessible form takes into account the unique needs of users who have limited or no vision, limited or no hearing, limited physical movement, or cognitive impairments. Statistically speaking, there's a 25 percent chance that could be any one of us at some point in our lives! Many disabled users will operate Web pages with additional hardware or software called "assistive technology" (AT), such as a screen reader or a Braille printer. It's important that you design with the proper content and structure in the first place, and then let the AT communicate with the user. Here are some areas where your design solutions that you make for accessibility purposes will benefit other users as well: ï¿½ Closed captioning of multimedia helps when you are watching
 TV in a noisy environment such as a restaurant, gym, or airport.
-· Keyboard-only access is great for "power users," who find reaching for the mouse slows them down.
-· When running over slow networks, some people disable the rendering of images, relying on the alternate text associated with those images instead.
+ï¿½ Keyboard-only access is great for "power users," who find reaching for the mouse slows them down.
+ï¿½ When running over slow networks, some people disable the rendering of images, relying on the alternate text associated with those images instead.
 76 Chapter 3 Path to Completion Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Perspective: Peter Wallack (Continued)
-One more reason to care--if you post your Web site in a public place, or if it is used by an employee of some company, or if it is sold to a government, there are probably laws that demand it be accessible. At the heart of accessibility is usability. For example, a page that isn't usable to begin with won't stand a chance of being accessible. Think of accessibility as first requiring "uber-design": · Uber-minimize the pain: The process of completing forms
-should be ridiculously easy and simple, so that someone with memory issues or attention span problems can get through it. · Uber-illuminate a path to completion: Make it abundantly clear how people can accomplish the goal, so that a person listening to the screen can "get it" quickly without needing to hear every last character on it. · Uber-consider the context: Some disabled users may be using sip-and-puff devices to type characters, so don't require them to type in novels! · Uber-ensure consistent communication: A consistent presentation across all the pages makes life easier for those using a keyboard only, those using a screen reader, those with low vision, those with cognitive disabilities...everyone! Once you adhere to these principles, the best guidelines for accessibility come from the Web Content Accessibility Guidelines
+One more reason to care--if you post your Web site in a public place, or if it is used by an employee of some company, or if it is sold to a government, there are probably laws that demand it be accessible. At the heart of accessibility is usability. For example, a page that isn't usable to begin with won't stand a chance of being accessible. Think of accessibility as first requiring "uber-design": ï¿½ Uber-minimize the pain: The process of completing forms
+should be ridiculously easy and simple, so that someone with memory issues or attention span problems can get through it. ï¿½ Uber-illuminate a path to completion: Make it abundantly clear how people can accomplish the goal, so that a person listening to the screen can "get it" quickly without needing to hear every last character on it. ï¿½ Uber-consider the context: Some disabled users may be using sip-and-puff devices to type characters, so don't require them to type in novels! ï¿½ Uber-ensure consistent communication: A consistent presentation across all the pages makes life easier for those using a keyboard only, those using a screen reader, those with low vision, those with cognitive disabilities...everyone! Once you adhere to these principles, the best guidelines for accessibility come from the Web Content Accessibility Guidelines
 77 Chapter 3 Path to Completion Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Perspective: Peter Wallack (Continued)
-(WCAG) produced by the W3C (www.w3.org/TR/WCAG10/) and the U.S. Section 508 Federal Procurement laws (www. section508.gov). Here is a brief summary of the most important accessibility requirements to consider in your forms: · Specify text for everything that is not just fluff. This includes
+(WCAG) produced by the W3C (www.w3.org/TR/WCAG10/) and the U.S. Section 508 Federal Procurement laws (www. section508.gov). Here is a brief summary of the most important accessibility requirements to consider in your forms: ï¿½ Specify text for everything that is not just fluff. This includes
  Alternative text for images (like Tooltips). Summary tags for tables (a brief summary of the contents
 of a table). Labels that are "implied" by their physical relationship
-to other objects. For example, address fields are often unlabeled because the relationship of address, city, state, and zip code is implied. To be accessible, each needs its own label, although that label can be hidden. T itles for frames and pages. Make them meaningful and unique. · Make all links on a page unique, unless they really do the same thing. And give them meaningful labels that make sense out of context, as opposed to the dreaded "Click here." · Do not use color as the only way to convey information. For example, if you color a row in a table red to indicate that something is in
+to other objects. For example, address fields are often unlabeled because the relationship of address, city, state, and zip code is implied. To be accessible, each needs its own label, although that label can be hidden. T itles for frames and pages. Make them meaningful and unique. ï¿½ Make all links on a page unique, unless they really do the same thing. And give them meaningful labels that make sense out of context, as opposed to the dreaded "Click here." ï¿½ Do not use color as the only way to convey information. For example, if you color a row in a table red to indicate that something is in
 error, also provide a column that shows the word "Error."
-· Ensure good color contrast, especially between text and backgrounds. And be aware that color-blind users cannot
+ï¿½ Ensure good color contrast, especially between text and backgrounds. And be aware that color-blind users cannot
 78 Chapter 3 Path to Completion Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Perspective: Peter Wallack (Continued)
-distinguish between certain colors. The best solution is to allow users to select colors themselves. (By the way, it's not that things are "invisible" to color-blind users; they just cannot distinguish the difference between certain colors, like redgreen and blue-yellow.) · Make font sizes large enough to read. Again, the best solution is to allow users to select their own fonts and sizes, which also means that your page has to be designed so that it scales well with large fonts, up to at least 14-point. · Do not use gratuitous animation, as it can distract people with ADD. · Avoid anything that flashes more than three times per second. If a user has epilepsy, this can cause an attack. · There must be a way to accomplish all functionality on the page with the keyboard only. So if you have designed some fancy drag-and-drop interface, you must also provide a way to perform the same task without the mouse. Don't let this prevent you from doing the fancy stuff, though, since that's so much fun. · Use clear and precise language. Also, choose your words carefully--don't refer to "the button on the right" or the "button with the green arrow." Only refer to objects by their name or function, not their physical characteristics.
+distinguish between certain colors. The best solution is to allow users to select colors themselves. (By the way, it's not that things are "invisible" to color-blind users; they just cannot distinguish the difference between certain colors, like redgreen and blue-yellow.) ï¿½ Make font sizes large enough to read. Again, the best solution is to allow users to select their own fonts and sizes, which also means that your page has to be designed so that it scales well with large fonts, up to at least 14-point. ï¿½ Do not use gratuitous animation, as it can distract people with ADD. ï¿½ Avoid anything that flashes more than three times per second. If a user has epilepsy, this can cause an attack. ï¿½ There must be a way to accomplish all functionality on the page with the keyboard only. So if you have designed some fancy drag-and-drop interface, you must also provide a way to perform the same task without the mouse. Don't let this prevent you from doing the fancy stuff, though, since that's so much fun. ï¿½ Use clear and precise language. Also, choose your words carefully--don't refer to "the button on the right" or the "button with the green arrow." Only refer to objects by their name or function, not their physical characteristics.
 79 Chapter 3 Path to Completion Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Perspective: Peter Wallack (Continued)
-· If there are timing aspects of the product, allow the user to turn them off, adjust them, or extend them. For example, if the product imposes a timeout for security or performance reasons, allow the end-user to extend it without losing any work.
-· Consistency matters! Use images and text consistently across all pages of your site.
-· If you convey information visually on the page by means of layout, it must also be coded that way. For example, if you show a hierarchy of data by using indentation, the same information must be available in semantic markup so that AT can interpret it. If that doesn't make any sense to you, just tell the person actually coding the page that it's his responsibility.
-· Provide a way for a keyboard-only user to skip repetitive content at the top of each page. No matter how elegant you've made your navigation scheme, if you have to use the Tab key to wade through it on every page, your users will really hate you.
-· Ultimately, though, there is one recommendation that dwarfs all of these: Test your page with your intended users, including those who have disabilities.
+ï¿½ If there are timing aspects of the product, allow the user to turn them off, adjust them, or extend them. For example, if the product imposes a timeout for security or performance reasons, allow the end-user to extend it without losing any work.
+ï¿½ Consistency matters! Use images and text consistently across all pages of your site.
+ï¿½ If you convey information visually on the page by means of layout, it must also be coded that way. For example, if you show a hierarchy of data by using indentation, the same information must be available in semantic markup so that AT can interpret it. If that doesn't make any sense to you, just tell the person actually coding the page that it's his responsibility.
+ï¿½ Provide a way for a keyboard-only user to skip repetitive content at the top of each page. No matter how elegant you've made your navigation scheme, if you have to use the Tab key to wade through it on every page, your users will really hate you.
+ï¿½ Ultimately, though, there is one recommendation that dwarfs all of these: Test your page with your intended users, including those who have disabilities.
 80 Chapter 3 Path to Completion Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
@@ -1068,14 +1074,14 @@ When I described the experience of filling out the Office Depot form previously,
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
-· Ensure that the titles of your forms match people's expectations and succinctly explain what each form is for.
-· For forms requiring substantial time or information requiring look-up, use a start page to set people's expectations.
-· Make sure that you illuminate a clear path to completion through a form by using clear scan lines and effective visual pacing that comfortably takes people from start to finish.
-· For mission-critical forms like checkout or registration, remove distractions and any links or content that may lead to form abandonment.
-· For forms with a known sequence of multiple Web pages, include progress indicators that communicate scope, status, and position.
-· For forms without a clear sequence of pages, do not include progress indicators or use more general progress indicators instead of those that set incorrect expectations.
-· Consider the experience of "tabbing" through a form when making form layout decisions.
-· Use the "tabindex" HTML attribute to control tabbing order through a form.
+ï¿½ Ensure that the titles of your forms match people's expectations and succinctly explain what each form is for.
+ï¿½ For forms requiring substantial time or information requiring look-up, use a start page to set people's expectations.
+ï¿½ Make sure that you illuminate a clear path to completion through a form by using clear scan lines and effective visual pacing that comfortably takes people from start to finish.
+ï¿½ For mission-critical forms like checkout or registration, remove distractions and any links or content that may lead to form abandonment.
+ï¿½ For forms with a known sequence of multiple Web pages, include progress indicators that communicate scope, status, and position.
+ï¿½ For forms without a clear sequence of pages, do not include progress indicators or use more general progress indicators instead of those that set incorrect expectations.
+ï¿½ Consider the experience of "tabbing" through a form when making form layout decisions.
+ï¿½ Use the "tabindex" HTML attribute to control tabbing order through a form.
 85 Chapter 3 Path to Completion Download at Boykma.Com
 
 CHAPTER 4
@@ -1343,14 +1349,14 @@ consistency. But be sure to tread carefully when using different form layouts in
 Labels Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices · Web form labels should use succinct, natural
-language and consistent capitalization to make answering the questions they pose as easy as possible. · When you are trying to reduce completion times or if you need flexible label lengths for localization, consider top-aligned labels. · When you have similar goals but vertical screen real estate constraints, consider right-aligned labels. · When your form requires people to scan labels to learn what's required or to answer a few specific questions out of many, consider left-aligned labels. · When you are under extreme space constraints for very short forms, labels within inputs may be a good solution. Just ensure that you have the right interactions and context in place.
+Best Practices ï¿½ Web form labels should use succinct, natural
+language and consistent capitalization to make answering the questions they pose as easy as possible. ï¿½ When you are trying to reduce completion times or if you need flexible label lengths for localization, consider top-aligned labels. ï¿½ When you have similar goals but vertical screen real estate constraints, consider right-aligned labels. ï¿½ When your form requires people to scan labels to learn what's required or to answer a few specific questions out of many, consider left-aligned labels. ï¿½ When you are under extreme space constraints for very short forms, labels within inputs may be a good solution. Just ensure that you have the right interactions and context in place.
 104 Chapter 4
 Labels Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · Make sure that you distinguish clearly between
-labels and data, especially when using labels within input fields. · When considering different label alignments for different forms in a single application, think through the context versus consistency trade-off. · Different label alignments in a single form will disrupt a clear path to completion and may confuse people.
+Best Practices (continued) ï¿½ Make sure that you distinguish clearly between
+labels and data, especially when using labels within input fields. ï¿½ When considering different label alignments for different forms in a single application, think through the context versus consistency trade-off. ï¿½ Different label alignments in a single form will disrupt a clear path to completion and may confuse people.
 105 Chapter 4
 Labels Download at Boykma.Com
 
@@ -1698,11 +1704,11 @@ Three different types of groups include the following:
 Structural Design
 The form examples here are taken from the pattern language we developed when redesigning the selling processes at eBay. By thinking about the design structurally, we forced ourselves to consider the following questions, for each new UI element:
 
-· What kind of thing is this?
+ï¿½ What kind of thing is this?
 
-· How are other things of this kind treated?
+ï¿½ How are other things of this kind treated?
 
-· What is the relationship
+ï¿½ What is the relationship
 
 of this element to all other
 
@@ -1710,7 +1716,7 @@ elements?
 
 http://www.flickr.com/photos/
 
-· Can we simplify the design rosenfeldmedia/2405624141
+ï¿½ Can we simplify the design rosenfeldmedia/2405624141
 
 by consolidating this kind of element with others or by
 
@@ -1774,19 +1780,19 @@ how little information is provided is up to the person filling in the form. In t
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
-· Use the right input field for the type of question you are asking: Does it require a yes or no answer; a selection from mutually exclusive options; etc.?
-· Where possible, ensure that field lengths provide meaningful affordances that help people answer questions effectively.
-· Otherwise, utilize a consistent length that provides enough room for correct answers.
-· Try to avoid optional input fields in forms. · If most of the inputs on a form are required, indicate the few that
-are optional. · If most of the inputs on a form are optional, indicate the few that
-are required. · When indicating what form fields are either required or optional,
-text is the most clear. However, the * symbol is relatively well understood to mean required. · If you do use * to indicate required fields, don't forget a legend that explains what it indicates. · Associate required or optional indicators with input labels to give people an easy way to see which questions need to be answered. · If there's a natural structure among input fields that provides a valuable clue on how to answer a question, look for ways to group these inputs visually to clearly communicate that structure.
+ï¿½ Use the right input field for the type of question you are asking: Does it require a yes or no answer; a selection from mutually exclusive options; etc.?
+ï¿½ Where possible, ensure that field lengths provide meaningful affordances that help people answer questions effectively.
+ï¿½ Otherwise, utilize a consistent length that provides enough room for correct answers.
+ï¿½ Try to avoid optional input fields in forms. ï¿½ If most of the inputs on a form are required, indicate the few that
+are optional. ï¿½ If most of the inputs on a form are optional, indicate the few that
+are required. ï¿½ When indicating what form fields are either required or optional,
+text is the most clear. However, the * symbol is relatively well understood to mean required. ï¿½ If you do use * to indicate required fields, don't forget a legend that explains what it indicates. ï¿½ Associate required or optional indicators with input labels to give people an easy way to see which questions need to be answered. ï¿½ If there's a natural structure among input fields that provides a valuable clue on how to answer a question, look for ways to group these inputs visually to clearly communicate that structure.
 136 Chapter 5 Input Fields Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices (continued)
-· When there's clearly more than one way to format an answer correctly, consider using a flexible input field.
-· Ensure that flexible inputs don't make providing easy answers more difficult.
+ï¿½ When there's clearly more than one way to format an answer correctly, consider using a flexible input field.
+ï¿½ Ensure that flexible inputs don't make providing easy answers more difficult.
 137 Chapter 5 Input Fields Download at Boykma.Com
 
 CHAPTER 6
@@ -2059,15 +2065,15 @@ Actions Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 The advantage of both these options is that they require one less explicit question for people to answer. However, the second option has the added advantage of not complicating the primary call to action. Consider the difference between "Buy Now" and "Agree & Buy Now." One is clearly more directly aligned with people's goals of buying a product than the other.
-Best Practices · Avoid secondary actions on forms whenever
-possible. Provide people with a single path to completion. · If secondary actions are required, ensure that there is a clear visual distinction between the primary and secondary actions. · When you are distributing the questions in a form across multiple Web pages, primary actions move people closer to completion and secondary actions allow them to go back.
+Best Practices ï¿½ Avoid secondary actions on forms whenever
+possible. Provide people with a single path to completion. ï¿½ If secondary actions are required, ensure that there is a clear visual distinction between the primary and secondary actions. ï¿½ When you are distributing the questions in a form across multiple Web pages, primary actions move people closer to completion and secondary actions allow them to go back.
 158 Chapter 6
 Actions Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · Align primary actions with input fields to create a
-clear path to completion. · If you do choose to include potentially destructive
-secondary actions like Reset or Clear in your form, provide people with an easy way to undo them. · Clearly communicate when a form is being processed to avoid duplicate submissions. · Don't rely on help text urging people not to hit a primary action twice; instead, disable the primary action button and prevent them from doing so. · Consider opportunities to streamline legal requirements by combining terms of service agreements with primary actions.
+Best Practices (continued) ï¿½ Align primary actions with input fields to create a
+clear path to completion. ï¿½ If you do choose to include potentially destructive
+secondary actions like Reset or Clear in your form, provide people with an easy way to undo them. ï¿½ Clearly communicate when a form is being processed to avoid duplicate submissions. ï¿½ Don't rely on help text urging people not to hit a primary action twice; instead, disable the primary action button and prevent them from doing so. ï¿½ Consider opportunities to streamline legal requirements by combining terms of service agreements with primary actions.
 159 Chapter 6
 Actions Download at Boykma.Com
 
@@ -2142,9 +2148,9 @@ Hotels page are likely to get passed over by most people.
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Yet there are cases when instructional text is appropriate. In particular, concise bits of help text are most useful in the following circumstances: · When forms ask for unfamiliar data: What's
-a PAC code? · When people question why they are being
-asked for specific data: Why do you need to know my date of birth? · When people may be concerned about the security or privacy of their data: Is my credit card number safe here? · When there are recommended ways of providing data: Separate your tags with commas, please. · When certain data fields are optional or required when the bulk of the form is not. In these cases, a clear and concise bit of help text adjacent to an input field tends to do the
+Yet there are cases when instructional text is appropriate. In particular, concise bits of help text are most useful in the following circumstances: ï¿½ When forms ask for unfamiliar data: What's
+a PAC code? ï¿½ When people question why they are being
+asked for specific data: Why do you need to know my date of birth? ï¿½ When people may be concerned about the security or privacy of their data: Is my credit card number safe here? ï¿½ When there are recommended ways of providing data: Separate your tags with commas, please. ï¿½ When certain data fields are optional or required when the bulk of the form is not. In these cases, a clear and concise bit of help text adjacent to an input field tends to do the
 164 Chapter 7 Help Text Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
@@ -2229,15 +2235,15 @@ http://www.flickr.com/photos/rosenfeldmedia/2367268488
 Help text within an input field on LinkedIn.
 
 Also, the same caveats that apply to labels within input fields (discussed in Chapter 4) also apply to help text within input fields:
-· Make sure the help text goes away when people are providing answers so it does not become part of their answers.
+ï¿½ Make sure the help text goes away when people are providing answers so it does not become part of their answers.
 
 171 Chapter 7 Help Text
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-· Be aware that the help text is gone as soon as people start providing an answer so they immediately lose any assistance the help text provided.
-· Be wary of using this method for complex inputs that benefit from always visible help.
-· Make sure that people can tell the difference between answers in input fields and help text within input fields. In the LinkedIn example in Figure 7.7, help text is gray and includes the prefix "eg:"
+ï¿½ Be aware that the help text is gone as soon as people start providing an answer so they immediately lose any assistance the help text provided.
+ï¿½ Be wary of using this method for complex inputs that benefit from always visible help.
+ï¿½ Make sure that people can tell the difference between answers in input fields and help text within input fields. In the LinkedIn example in Figure 7.7, help text is gray and includes the prefix "eg:"
 Because they show no help text up front, automatic inline help systems tend to work best for forms that ask questions people are likely to have answers for but may be apprehensive or unsure about how to provide them. When specific help text needs to be provided for each input field, consider using a method that displays help adjacent to the field to which it applies. When help text is specific to a group of inputs, consider using a method that consistently displays help text in a predictable location.
 172 Chapter 7 Help Text Download at Boykma.Com
 
@@ -2337,17 +2343,17 @@ If you are asking people to provide sensitive information, you may want to engag
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
-· Don't use help text to compensate for the shortcomings of your forms. Striving to minimize the amount of help text on your forms will push you toward better design solutions.
-· Help text is best for explaining unfamiliar data requests, such as why certain questions are being asked, security and privacy concerns, recommended ways of providing answers, and indicating optional answers.
-· Concise help text visible and adjacent to the question being asked provides the most clarity for people.
-· Help text within input fields should only be used to provide recommended ways of answering questions.
-· If your form is asking questions people have answers for but may be unsure how or why they should answer, consider using an automatic inline help system.
-· If your form is asking unfamiliar or complex questions, and is likely to be reused by the same people multiple times, consider using a useractivated help system.
+ï¿½ Don't use help text to compensate for the shortcomings of your forms. Striving to minimize the amount of help text on your forms will push you toward better design solutions.
+ï¿½ Help text is best for explaining unfamiliar data requests, such as why certain questions are being asked, security and privacy concerns, recommended ways of providing answers, and indicating optional answers.
+ï¿½ Concise help text visible and adjacent to the question being asked provides the most clarity for people.
+ï¿½ Help text within input fields should only be used to provide recommended ways of answering questions.
+ï¿½ If your form is asking questions people have answers for but may be unsure how or why they should answer, consider using an automatic inline help system.
+ï¿½ If your form is asking unfamiliar or complex questions, and is likely to be reused by the same people multiple times, consider using a useractivated help system.
 184 Chapter 7 Help Text Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · Unless you have a lot of help text or content
-(graphics, charts), for each question being asked, use an inline system that avoids page-jumping and rollover problems. · If you do have a lot of help content, use a consistent help section instead of an in-line solution. · Be as specific as you can with help text. If help text applies to a group of related input fields instead of individual inputs, consider devoting a portion of the page to displaying help to communicate a clear association between the group of fields and the help text. · Triggers for user-activated help text, such as icons, links, or buttons, should be placed next to labels and not input fields. · When asking for sensitive information, consider including actionable help text that allows people to confirm that their information is safe.
+Best Practices (continued) ï¿½ Unless you have a lot of help text or content
+(graphics, charts), for each question being asked, use an inline system that avoids page-jumping and rollover problems. ï¿½ If you do have a lot of help content, use a consistent help section instead of an in-line solution. ï¿½ Be as specific as you can with help text. If help text applies to a group of related input fields instead of individual inputs, consider devoting a portion of the page to displaying help to communicate a clear association between the group of fields and the help text. ï¿½ Triggers for user-activated help text, such as icons, links, or buttons, should be placed next to labels and not input fields. ï¿½ When asking for sensitive information, consider including actionable help text that allows people to confirm that their information is safe.
 185 Chapter 7 Help Text Download at Boykma.Com
 
 CHAPTER 8
@@ -2482,11 +2488,11 @@ Success Messages
 Success messages are a nice way of thanking your customer for putting up with your tedious form and its error messages. They should be short and sweet, the visual equivalent of hearing "Have a nice day!" on your way out of the grocery store.
 Any Other Kind of Messages
 For various reasons you may be tempted to add additional kinds of messages, like the following:
-· Educational messages
-· Marketing messages thinly disguised as educational messages
-· The "something bad has happened, and while theoretically the user could continue, it might be a bad idea" message
-· Site-specific messages (e.g., "You're outbid!" on eBay)
-· A clip-art picture of a mouse with a pencil (don't ask!) Basically, you should try to avoid all of these. They introduce additional complexity, and inevitably any message that's in the squishy area of "not bad or good but somewhere in between" has a high likelihood of being misunderstood. If you must add an additional type, be very specific about when it should or should not be used, make it visually distinct from the other message types, and test the heck out of it with real users.
+ï¿½ Educational messages
+ï¿½ Marketing messages thinly disguised as educational messages
+ï¿½ The "something bad has happened, and while theoretically the user could continue, it might be a bad idea" message
+ï¿½ Site-specific messages (e.g., "You're outbid!" on eBay)
+ï¿½ A clip-art picture of a mouse with a pencil (don't ask!) Basically, you should try to avoid all of these. They introduce additional complexity, and inevitably any message that's in the squishy area of "not bad or good but somewhere in between" has a high likelihood of being misunderstood. If you must add an additional type, be very specific about when it should or should not be used, make it visually distinct from the other message types, and test the heck out of it with real users.
 How to Build Great Messages
 Once you've figured out how many types of message you have, you need to build a visual and textual framework for them. The
 196 Chapter 8 Errors and Success Download at Boykma.Com
@@ -2707,18 +2713,18 @@ Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
-· Clearly communicate when an error is blocking someone from completing a form. Error messages are arguably the most important element on a form when present. Make sure they appear that way!
-· Display error messages in context so they can be resolved quickly.
-· Provide actionable remedies that enable people to resolve errors easily.
-· Top-level error messages should indicate an error has occurred and how it can be resolved. If multiple errors exist, they should be listed in the top-level message.
-· If any input fields are responsible for an error, clearly mark them with a double visual emphasis to ensure they are noticeable.
-· Visually associate any responsible form elements with a top-level error message to clearly communicate they need to be resolved in order to continue.
+ï¿½ Clearly communicate when an error is blocking someone from completing a form. Error messages are arguably the most important element on a form when present. Make sure they appear that way!
+ï¿½ Display error messages in context so they can be resolved quickly.
+ï¿½ Provide actionable remedies that enable people to resolve errors easily.
+ï¿½ Top-level error messages should indicate an error has occurred and how it can be resolved. If multiple errors exist, they should be listed in the top-level message.
+ï¿½ If any input fields are responsible for an error, clearly mark them with a double visual emphasis to ensure they are noticeable.
+ï¿½ Visually associate any responsible form elements with a top-level error message to clearly communicate they need to be resolved in order to continue.
 212 Chapter 8 Errors and Success Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · Reserve red text and warning icons for error
-messages. · On short forms, it may be possible to omit either
-a top-level message or indicators for responsible input fields. If you choose this approach--do so thoughtfully. · Clearly communicate when a form has been completed successfully and what happened as a result using success messages. · Provide success messages in context so as not to block any further progress. · Consider dynamic success messages to highlight the results of a successful form submission. · Avoid success message page dead ends.
+Best Practices (continued) ï¿½ Reserve red text and warning icons for error
+messages. ï¿½ On short forms, it may be possible to omit either
+a top-level message or indicators for responsible input fields. If you choose this approach--do so thoughtfully. ï¿½ Clearly communicate when a form has been completed successfully and what happened as a result using success messages. ï¿½ Provide success messages in context so as not to block any further progress. ï¿½ Consider dynamic success messages to highlight the results of a successful form submission. ï¿½ Avoid success message page dead ends.
 213 Chapter 8 Errors and Success Download at Boykma.Com
 
 CHAPTER 9
@@ -2845,8 +2851,8 @@ friends or family. To avoid spam or excessively long content, Yahoo! limits the 
 229 Chapter 9 Inline Validation Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices · Consider using inline validation to confirm or
-suggest valid answers and to help people stay within limits. · Inline confirmation works best for questions with potentially high error rates or specific formatting requirements. · Inline suggestions work best when there is a large set of valid answers people can pick from. · Inline quality indicators can guide people to better answers to complex questions. · When validating people's answers inline, do so after they have finished providing an answer, not during the process. · If you need to change people's responses into a specific format, make sure you do so after they have finished providing an answer, not during the process. · When input limits exist, communicate their boundaries using real-time, dynamic updates.
+Best Practices ï¿½ Consider using inline validation to confirm or
+suggest valid answers and to help people stay within limits. ï¿½ Inline confirmation works best for questions with potentially high error rates or specific formatting requirements. ï¿½ Inline suggestions work best when there is a large set of valid answers people can pick from. ï¿½ Inline quality indicators can guide people to better answers to complex questions. ï¿½ When validating people's answers inline, do so after they have finished providing an answer, not during the process. ï¿½ If you need to change people's responses into a specific format, make sure you do so after they have finished providing an answer, not during the process. ï¿½ When input limits exist, communicate their boundaries using real-time, dynamic updates.
 230 Chapter 9 Inline Validation Download at Boykma.Com
 
 CHAPTER 10
@@ -2909,7 +2915,7 @@ they are using to make a purchase. Is that necessary?
 Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-However, it turns out one of these questions is unnecessary. Credit card numbers follow a consistent structure. American Express cards start with either 34 or 37. Mastercard numbers begin with 51­55. Visa cards start with 4. And so on. This information can be used to infer what type of credit card someone is using simply by looking at his credit card number.
+However, it turns out one of these questions is unnecessary. Credit card numbers follow a consistent structure. American Express cards start with either 34 or 37. Mastercard numbers begin with 51ï¿½55. Visa cards start with 4. And so on. This information can be used to infer what type of credit card someone is using simply by looking at his credit card number.
 In the redesigned form in Figure 10.3, PayPal does exactly that. When someone enters a credit card number, the appropriate card type
 
 Figure 10.3
@@ -3029,14 +3035,14 @@ Smart defaults for travel options on the Expedia site, based on previous usage.
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
-· Carefully examine all the questions being asked in your form for opportunities to eliminate unnecessary inputs.
-· Look for patterns in how people answer questions that allow you to infer answers accurately.
-· Be mindful not to complicate questions for the sake of removing inputs.
-· Smart defaults can help people answer questions by putting default selections in place that serve the interests of most people.
-· Because people are likely to leave default selections in place, ensure they align with most people's goals.
-· Whenever possible, include a default selection in a set of radio buttons. If no clear default exists, chances are that people will still understand they need to make a choice. But if they don't, they'll get an error.
-· Personally relevant default selections enable return customers to complete forms faster because their answers are "sticky."
-· Think through where personalized defaults make sense. It won't be every input on every form.
+ï¿½ Carefully examine all the questions being asked in your form for opportunities to eliminate unnecessary inputs.
+ï¿½ Look for patterns in how people answer questions that allow you to infer answers accurately.
+ï¿½ Be mindful not to complicate questions for the sake of removing inputs.
+ï¿½ Smart defaults can help people answer questions by putting default selections in place that serve the interests of most people.
+ï¿½ Because people are likely to leave default selections in place, ensure they align with most people's goals.
+ï¿½ Whenever possible, include a default selection in a set of radio buttons. If no clear default exists, chances are that people will still understand they need to make a choice. But if they don't, they'll get an error.
+ï¿½ Personally relevant default selections enable return customers to complete forms faster because their answers are "sticky."
+ï¿½ Think through where personalized defaults make sense. It won't be every input on every form.
 248 Chapter 10 Unnecessary Inputs Download at Boykma.Com
 
 CHAPTER 11
@@ -3264,13 +3270,13 @@ One of the drawbacks of this solution, however, is that all 30 options are never
 268 Chapter 11 Additional Inputs Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices · Additional inputs can be used to provide added
-or advanced options to the people who need them without getting in the way of people who don't. · You should map additional inputs to prioritized customer needs. Primary use cases should be up front and visible; secondary use cases may be a click away. · Additional inputs are usually more welcome when invoked by people (user-activated) than when automatically surfaced. · Ensure that the actions that trigger additional options are clearly worded. If additional options are triggered automatically, try to provide a clue (icon, text) that sets expectations. · Within a single form, try to maintain a consistent approach to additional inputs.
+Best Practices ï¿½ Additional inputs can be used to provide added
+or advanced options to the people who need them without getting in the way of people who don't. ï¿½ You should map additional inputs to prioritized customer needs. Primary use cases should be up front and visible; secondary use cases may be a click away. ï¿½ Additional inputs are usually more welcome when invoked by people (user-activated) than when automatically surfaced. ï¿½ Ensure that the actions that trigger additional options are clearly worded. If additional options are triggered automatically, try to provide a clue (icon, text) that sets expectations. ï¿½ Within a single form, try to maintain a consistent approach to additional inputs.
 269 Chapter 11 Additional Inputs Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (continued) · If you need to expose a large number of
-additional inputs, consider using an overlay instead of exposing them inline to avoid page jumping and disorientation. · Ensure that overlays don't cover the input fields they are helping people fill in so people can still enter an answer on their own. · When additional options need to be considered in isolation, consider using a modal overlay. · Make sure that there are clear ways to close or cancel a modal overlay and return to the form. · Show the choices made in additional input overlays to people when they return to the form. · When your primary goal is to engage customers, additional inputs can be a captivating way to step people through choices.
+Best Practices (continued) ï¿½ If you need to expose a large number of
+additional inputs, consider using an overlay instead of exposing them inline to avoid page jumping and disorientation. ï¿½ Ensure that overlays don't cover the input fields they are helping people fill in so people can still enter an answer on their own. ï¿½ When additional options need to be considered in isolation, consider using a modal overlay. ï¿½ Make sure that there are clear ways to close or cancel a modal overlay and return to the form. ï¿½ Show the choices made in additional input overlays to people when they return to the form. ï¿½ When your primary goal is to engage customers, additional inputs can be a captivating way to step people through choices.
 270 Chapter 11 Additional Inputs Download at Boykma.Com
 
 CHAPTER 12
@@ -3540,21 +3546,21 @@ Download at Boykma.Com
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices
 Well, I warned you that selection-dependent inputs have lots of considerations, didn't I? Now that we're through that deluge of data, what have we learned?
-· Page-level selection-dependent inputs are probably your best bet when the number of additional options for each initial choice is large. Though you need two Web pages to break up the form, the dynamic hiding and showing of additional inputs won't confuse people, and they won't need to question whether or not their choices are mutually exclusive.
-· Vertical and horizontal tabs actually perform quite well in all-around usability, satisfaction, and eye-tracking metrics but come with the gnarly problem of mutual exclusivity. I've gotten conflicting data on which of these options resolves this issue so they both seem to be stuck with it. If you can get around mutual exclusivity through clever interaction or visual design, good performance is yours to be had with these solutions.
+ï¿½ Page-level selection-dependent inputs are probably your best bet when the number of additional options for each initial choice is large. Though you need two Web pages to break up the form, the dynamic hiding and showing of additional inputs won't confuse people, and they won't need to question whether or not their choices are mutually exclusive.
+ï¿½ Vertical and horizontal tabs actually perform quite well in all-around usability, satisfaction, and eye-tracking metrics but come with the gnarly problem of mutual exclusivity. I've gotten conflicting data on which of these options resolves this issue so they both seem to be stuck with it. If you can get around mutual exclusivity through clever interaction or visual design, good performance is yours to be had with these solutions.
 299 Chapter 12 Selection-Dependent Inputs Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
 Best Practices (Continued)
-· When you have a long list of initial options (more than 4 or 5) each with its unique set of selection-dependent inputs, using a drop-down list and visual grouping for the additional options is likely a good way to go.
-· If you only have a few additional inputs for each initial option, exposed below radio buttons or exposed within radio buttons might be your best option. I've seen both of these options cause confusion with excessive page jumping and disassociation between initial choices, so tread carefully. But if you really only have 1­3 additional fields per initial choice, I'd go with exposed inline radio buttons. Just make sure you use clear visual associations and transitions, if possible.
-· All options exposed as inactive or all options exposed are basically nonstarters because people are quickly overwhelmed by too many options that don't map to their goals.
-· Overall, hiding irrelevant form controls from people until they need them results in forms that are easy on the eyes and completed quite quickly.
+ï¿½ When you have a long list of initial options (more than 4 or 5) each with its unique set of selection-dependent inputs, using a drop-down list and visual grouping for the additional options is likely a good way to go.
+ï¿½ If you only have a few additional inputs for each initial option, exposed below radio buttons or exposed within radio buttons might be your best option. I've seen both of these options cause confusion with excessive page jumping and disassociation between initial choices, so tread carefully. But if you really only have 1ï¿½3 additional fields per initial choice, I'd go with exposed inline radio buttons. Just make sure you use clear visual associations and transitions, if possible.
+ï¿½ All options exposed as inactive or all options exposed are basically nonstarters because people are quickly overwhelmed by too many options that don't map to their goals.
+ï¿½ Overall, hiding irrelevant form controls from people until they need them results in forms that are easy on the eyes and completed quite quickly.
 300 Chapter 12 Selection-Dependent Inputs Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices (Continued) · Overall, displaying initial options and their
-selection-dependent inputs in close proximity to one another seems to lead to high satisfaction ratings. · In all cases, maintain a clear association between the initial selection options. Don't let people lose sight of their initial top-level choice. · In all cases, clearly associate selection-dependent inputs with their trigger. All the examples outlined in this section do so with either yellow backgrounds or gray outlines. · In all cases, avoid excessive page jumping that disassociates selection-dependent inputs from the initial set of options.
+Best Practices (Continued) ï¿½ Overall, displaying initial options and their
+selection-dependent inputs in close proximity to one another seems to lead to high satisfaction ratings. ï¿½ In all cases, maintain a clear association between the initial selection options. Don't let people lose sight of their initial top-level choice. ï¿½ In all cases, clearly associate selection-dependent inputs with their trigger. All the examples outlined in this section do so with either yellow backgrounds or gray outlines. ï¿½ In all cases, avoid excessive page jumping that disassociates selection-dependent inputs from the initial set of options.
 301 Chapter 12 Selection-Dependent Inputs Download at Boykma.Com
 
 CHAPTER 13
@@ -3652,8 +3658,8 @@ Fidelity's myplan form divides a series of input into stand-alone slider interac
 315 Chapter 13 Gradual Engagement Download at Boykma.Com
 
 Web Form Design: Filling in the Blanks by Luke Wroblewski Rosenfeld Media, 2008; version 1.0
-Best Practices · When planning a customer's initial experience
-for your Web service, think about how you can avoid sign-up forms in favor of gradual engagement. · If you do opt for a gradual engagement solution, ensure that it gives potential customers an understanding of how they can use your service and why they should care. · If you choose to auto-generate accounts for potential customers, ensure there is a clear way for them to access their account. Chances are that people will either ignore or not see account creation emails, and may be uncertain if they have an account or not. · Avoid gradual engagement solutions that simply distribute the various input fields in a sign-up form across multiple pages. It's a good possibility that this will reduce efficiency and not delight anyone.
+Best Practices ï¿½ When planning a customer's initial experience
+for your Web service, think about how you can avoid sign-up forms in favor of gradual engagement. ï¿½ If you do opt for a gradual engagement solution, ensure that it gives potential customers an understanding of how they can use your service and why they should care. ï¿½ If you choose to auto-generate accounts for potential customers, ensure there is a clear way for them to access their account. Chances are that people will either ignore or not see account creation emails, and may be uncertain if they have an account or not. ï¿½ Avoid gradual engagement solutions that simply distribute the various input fields in a sign-up form across multiple pages. It's a good possibility that this will reduce efficiency and not delight anyone.
 316 Chapter 13 Gradual Engagement Download at Boykma.Com
 
 CHAPTER 14
@@ -4139,4 +4145,3 @@ ERIC MEYER Author of CSS: The Definitive Guide meyerweb.com
 Irene Au Director, User Experience Google
 www.rosenfeldmedia.com MORE ON WEB FORM DESIGN www.rosenfeldmedia.com/books/webforms/
 Download at Boykma.Com
-

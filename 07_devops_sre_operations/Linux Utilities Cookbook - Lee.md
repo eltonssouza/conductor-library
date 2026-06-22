@@ -1,10 +1,16 @@
+# Linux Utilities Cookbook
+
+> **Author(s):** Lee Â· **Category:** 07_devops_sre_operations Â· **Language:** English
+
+---
+
 Linux Utilities Cookbook
 Over 70 recipes to help you accomplish a wide variety of tasks in Linux quickly and efficiently
 James Kent Lewis
 BIRMINGHAM - MUMBAI
 
 Linux Utilities Cookbook
-Copyright © 2013 Packt Publishing
+Copyright ï¿½ 2013 Packt Publishing
 All rights reserved. No part of this book may be reproduced, stored in a retrieval system, or transmitted in any form or by any means, without the prior written permission of the publisher, except in the case of brief quotations embedded in critical articles or reviews. Every effort has been made in the preparation of this book to ensure the accuracy of the information presented. However, the information contained in this book is sold without warranty, either express or implied. Neither the author, nor Packt Publishing, and its dealers and distributors will be held liable for any damages caused or alleged to be caused directly or indirectly by this book. Packt Publishing has endeavored to provide trademark information about all of the companies and products mentioned in this book by the appropriate use of capitals. However, Packt Publishing cannot guarantee the accuracy of this information.
 First published: October 2013
 Production Reference: 1211013
@@ -171,7 +177,7 @@ Finding files using find and locate
 
 41
 
-Creating text files ­ vim, Emacs, and others
+Creating text files ï¿½ vim, Emacs, and others
 
 42
 
@@ -205,27 +211,27 @@ Troubleshooting bad connections
 
 56
 
-Copying files to another machine ­ FTP and SCP
+Copying files to another machine ï¿½ FTP and SCP
 
 59
 
-Logging into another machine ­ Telnet and Secure Shell
+Logging into another machine ï¿½ Telnet and Secure Shell
 
 62
 
-Getting a web page without a browser ­ wget
+Getting a web page without a browser ï¿½ wget
 
 64
 
-Browsing the web ­ Firefox
+Browsing the web ï¿½ Firefox
 
 64
 
-E-mail ­ Using a web mail program
+E-mail ï¿½ Using a web mail program
 
 67
 
-Running your own web server ­ httpd
+Running your own web server ï¿½ httpd
 
 69
 
@@ -245,7 +251,7 @@ Introduction
 
 75
 
-Creating and managing user accounts ­ useradd
+Creating and managing user accounts ï¿½ useradd
 
 75
 
@@ -261,7 +267,7 @@ Working with the firewalls and router settings
 
 81
 
-Working with Secure Linux ­ SELinux
+Working with Secure Linux ï¿½ SELinux
 
 82
 
@@ -566,7 +572,7 @@ Chapter 2
 How to do it...
 Let's work with this desktop a bit:
 1. Bring this dialog up by right-clicking on an empty location on the task bar. 2. Let's add something cool. Scroll down until you see Weather Report, click on it and
-then click on the Add button at the bottom. 3. On the panel you should now see something like 0 °F. Right-click on it. 4. This will bring up a dialog, select Preferences. 5. You are now on the General tab. Feel free to change anything here you want, then
+then click on the Add button at the bottom. 3. On the panel you should now see something like 0 ï¿½F. Right-click on it. 4. This will bring up a dialog, select Preferences. 5. You are now on the General tab. Feel free to change anything here you want, then
 select the Location tab, and put in your information. 6. When done, close the dialog. On my system the correct information was
 displayed instantly. 7. Now let's add something else that is even more cool. Open the Add to Panel dialog
 again and this time add Workspace Switcher. 8. The default number of workspaces is two, I would suggest adding two more. When
@@ -667,7 +673,7 @@ As you can see, Mate works very much like GNOME 2. It is very intuitive and easy
 
 3
 Files and Directories
-In this chapter we will cover: ff Copying, removing, and updating files and directories ff Finding files using find and locate ff Creating text files ­ vim, Emacs, and others ff Using the file command ff Using grep to find patterns ff Compressing files using ZIP and TAR ff Other helpful commands such as stat, sum, touch, and more
+In this chapter we will cover: ff Copying, removing, and updating files and directories ff Finding files using find and locate ff Creating text files ï¿½ vim, Emacs, and others ff Using the file command ff Using grep to find patterns ff Compressing files using ZIP and TAR ff Other helpful commands such as stat, sum, touch, and more
 Introduction
 You can think of everything in a Linux filesystem as a stream of bytes. This is simply called a file. A directory is also a file that contains other files. Most of the files are located on your computer's hard disk. However, some are in memory, for example, /proc and /sys are actually virtual filesystems. Files can also be stored on removable media too such as USB devices, CD/DVDs, and on other machines (that is, NFS mounts).
 Understanding inodes and the superblock
@@ -720,7 +726,7 @@ Files and Directories
 There's more...
 The find command has over 100 parameters; consult the man page for more information.
 The locate command uses a database(s) to store the location of files. This database is usually automatically recreated by a cron job every night. If you want to refresh the database immediately run the updatedb command. Note that it may take a while on a large filesystem and/or slow computer.
-Creating text files ­ vim, Emacs, and others
+Creating text files ï¿½ vim, Emacs, and others
 Most users are probably familiar with a GUI-based word processing program. For example, I am using LibreOffice Writer to compose this book. However, you can edit files using the command line as well. Some of us even prefer it.
 Getting ready
 It is assumed the reader has access to a Linux machine with a selection of text editors available. We will start with vim, a text editor that is available on every Linux/Unix system. If Emacs is not on your system, try installing it with yum install emacs or apt-get install emacs.
@@ -849,7 +855,7 @@ As I have said before, there are many, many more commands that deal with files. 
 
 4
 Networking and the Internet
-In this chapter we will cover: ff Troubleshooting bad connections ff Copying files to another machine­FTP and SCP ff Logging into another machine ­ Telnet and Secure Shell ff Getting a web page without a browser ­ wget ff Browsing the web ­ Firefox ff E-mail ­ using a web mail program ff Running your own web server ­ httpd ff What is using that port? The /etc/services file ff IPv4 versus IPv6
+In this chapter we will cover: ff Troubleshooting bad connections ff Copying files to another machineï¿½FTP and SCP ff Logging into another machine ï¿½ Telnet and Secure Shell ff Getting a web page without a browser ï¿½ wget ff Browsing the web ï¿½ Firefox ff E-mail ï¿½ using a web mail program ff Running your own web server ï¿½ httpd ff What is using that port? The /etc/services file ff IPv4 versus IPv6
 Introduction
 Being "on the net" is crucial in today's world. Here we explain connectivity and what to do when it doesn't work. But first we will explain the pros and cons of a wired versus a wireless connection. A typical wired Ethernet connection is fast and reliable. It does not normally suffer from dropouts or lost packets. A good quality wire such as Cat 5E or Cat 6 can run for several feet without any loss of signal.
 
@@ -888,7 +894,7 @@ Working with IP addresses, subnets, domains, and so on This will serve as a very
 ff IP address: The Internet Protocol address of this machine, for example, 192.168.1.115.
 ff Subnet: The third octet (or set of numbers) is the subnet. For example, 192.168.1.115 and 192.168.1.120 are on the same subnet. However, 192.168.2.115 is not.
 ff Domain: A domain is usually referred to by a hostname, such as rr.com. It too has a numeric IP. Use the ping command to determine what IP a hostname is using.
-Copying files to another machine ­ FTP and SCP
+Copying files to another machine ï¿½ FTP and SCP
 Not counting email, the two most common ways to copy files to another machine are FTP (File Transfer Protocol)and SCP (Secure copy). Here we will discuss both.
 FTP has been around for many years and is still used quite a lot today. However, standard FTP does have a serious drawback. The data is sent in what is called "clear text". This means a knowledgeable person could obtain the data under the right conditions. We will talk about this a bit later.
 Getting ready
@@ -920,7 +926,7 @@ I mentioned that FTP sends its data in clear text. The Secure Shell commands (mo
 61
 
 Networking and the Internet
-Logging into another machine ­ Telnet and Secure Shell
+Logging into another machine ï¿½ Telnet and Secure Shell
 Telnet is an older protocol but is still used a lot today. It suffers from the same security problem as FTP; it sends text in a non-encrypted format. However, it is still useful in say a lab environment protected by a good firewall.
 Getting ready
 I will again use the same machine as both the client and server. For this example, we will assume both the Telnet client and server are already installed and operational. The command to start a Telnet session is telnet hostname. The hostname can be a name reachable on your network or a numeric IP. Secure Shell (SSH), is a more popular protocol as it provides for strong encryption of both the password and text. It's also much easier to use, in my opinion. To start a secure shell, the command is as follows: ssh username@hostname
@@ -942,7 +948,7 @@ One other thing, I mentioned that the Telnet and SSH sessions should work just l
 63
 
 Networking and the Internet
-Getting a web page without a browser ­ wget
+Getting a web page without a browser ï¿½ wget
 Probably everyone has received an e-mail from a questionable source. You know you shouldn't click on any of the links, but wouldn't it be nice if there was a safe way to determine what was on that site? Well, there is. The wget program allows you to download files from URLs. Although it can do a lot, the simplest form of the command is: wget <some URL>. Assuming no errors, it will place that file in the current directory. If you do not specify a filename, by default it will attempt to get the index.html file.
 How to do it...
 The following is the method to run wget: 1. Run the following command: cd /tmp
@@ -953,7 +959,7 @@ The following is the method to run wget: 1. Run the following command: cd /tmp
 to other sites. If you see something like http:/DoWeCheatThemAndHow.com. I probably wouldn't click on that.
 There's more...
 The wget command can do a lot more. With the right parameters, it can be used to clone entire websites and a lot of other neat things. Consult the man page for more information.
-Browsing the web ­ Firefox
+Browsing the web ï¿½ Firefox
 There are several different browsers to choose from for your Linux system. Here we will focus on Firefox by Mozilla.
 64
 
@@ -980,10 +986,10 @@ As you can see, there are quite a few more options. Explore these as you need th
 66
 
 Chapter 4
-When bookmarking a page, take a good look at the title given. For some reason they don't always give a good descriptive name. "Account Login" just doesn't tell me much. However, if I change it to "Hi-Fee Bank and Trust ­ Login" that tells me exactly which account it is.
+When bookmarking a page, take a good look at the title given. For some reason they don't always give a good descriptive name. "Account Login" just doesn't tell me much. However, if I change it to "Hi-Fee Bank and Trust ï¿½ Login" that tells me exactly which account it is.
 I highly recommend your browser be run from a guest account, and not root. Note that if you are running your desktop under a guest user (also highly recommended) starting Firefox from the icon will be fine.
 On the right of the URL field is a star. Clicking on this brings up History. Next to that is a semicircle with an arrow. This is the Refresh button. If a page ever seems to be loading too slowly, or is just not working right, try refreshing the page by clicking on this icon.
-E-mail ­ Using a web mail program
+E-mail ï¿½ Using a web mail program
 There are many web mail clients available, such as Evolution and Thunderbird. I have used both and find them lacking in some areas. For this reason and others I use a browser web mail app instead.
 Getting ready
 If you already use a web mail program this will probably be old hat to you. However, if you have not used one before this should be very helpful. Note, for this section I do not suggest you try and run these commands, just read them.
@@ -1002,7 +1008,7 @@ One of the nice features of a web mailer is you should be able to access your em
 68
 
 Chapter 4
-Running your own web server ­ httpd
+Running your own web server ï¿½ httpd
 There may come a time when you will want to run your own web server. In my career as a software engineer I have been often asked to run the department lab. The easiest way to keep my users informed as to what is going on is to put the notes and files on my own local website that I control. This may sound hard but it really isn't.
 Getting ready
 This assumes you have a Linux system available to try this out on. If not, you can still get a lot out of this section. This also assumes that httpd is not already installed. These steps were performed on my laptop running Fedora 18.
@@ -1077,10 +1083,10 @@ configured correctly, this is not an issue with IPv6 ff Multicasting is done mor
 
 5
 Permissions, Access, and Security
-In this chapter we will cover: ff Creating and managing user accounts ­ useradd ff Working with passwords ff Working with file permissions ff Working with firewalls and router settings ff Working with Secure Linux ­ SELinux ff Using sudo to secure a system ff The /tmp directory
+In this chapter we will cover: ff Creating and managing user accounts ï¿½ useradd ff Working with passwords ff Working with file permissions ff Working with firewalls and router settings ff Working with Secure Linux ï¿½ SELinux ff Using sudo to secure a system ff The /tmp directory
 Introduction
 This chapter will serve as a brief review of Linux file permissions, and how access to the machine is handled by the password system. It will also show how to work with the security features in the firewall and router, and mentions SELinux and sudo.
-Creating and managing user accounts ­ useradd
+Creating and managing user accounts ï¿½ useradd
 In this section we will show you how to add a user account using the useradd program.
 
 Permissions, Access, and Security
@@ -1101,13 +1107,13 @@ Here we will run the useradd command to add a user and the passwd command to set
 
 Chapter 5 9. Save the file and exit. If you get a permission error remember you have
 to be root for this procedure. 10. Now run su to become the test1 user again:
-su ­ test1 11. Run passwd. 12. Hey, cool, it's not asking for the current password this time. So go ahead
-and create one now as we really don't want an open account on the system. If you plan to keep this account I suggest writing this password down or even better putting it into an encrypted file somewhere safe. 13. After entering the same new password twice you should get a message similar to: passwd: all authentication tokens updated successfully We now have a new user. Note that in general this user can perform most of the activities on the command line that he has the proper permissions for. However, depending on the Linux distribution, the user may not be able to access all resources (the sound system, for example). Here is a screenshot of useradd ­help taken on my Fedora 17 system:
+su ï¿½ test1 11. Run passwd. 12. Hey, cool, it's not asking for the current password this time. So go ahead
+and create one now as we really don't want an open account on the system. If you plan to keep this account I suggest writing this password down or even better putting it into an encrypted file somewhere safe. 13. After entering the same new password twice you should get a message similar to: passwd: all authentication tokens updated successfully We now have a new user. Note that in general this user can perform most of the activities on the command line that he has the proper permissions for. However, depending on the Linux distribution, the user may not be able to access all resources (the sound system, for example). Here is a screenshot of useradd ï¿½help taken on my Fedora 17 system:
 77
 
 Permissions, Access, and Security
 There's more...
-The useradd command can do a whole lot more than just create new accounts. You can change how an existing account works, or when it expires. You can even give a user system authority so he has almost has much power as root. Consult the man pages or use the ­help option for more information.
+The useradd command can do a whole lot more than just create new accounts. You can change how an existing account works, or when it expires. You can even give a user system authority so he has almost has much power as root. Consult the man pages or use the ï¿½help option for more information.
 Working with passwords
 I mentioned the passwd command in the previous recipe. It is used to update a user's authentication tokens. You will need to be the root user for this example. We will use the test1 user created in the above section.
 How to do it...
@@ -1176,7 +1182,7 @@ Permissions, Access, and Security Here is a screenshot of my router on the Secur
 You may have to enter an ID and password. Consult your router documentation for the defaults if you haven't already changed them. Go to the Security (or equivalent) tab to access those features.
 There's more...
 There is a whole lot more to iptables, enough to fill an entire book. For more information refer to the man pages, or a book on firewalls. There are also quite a few good websites on the topic.
-Working with Secure Linux ­ SELinux
+Working with Secure Linux ï¿½ SELinux
 This section will serve as an overview of Security Enhanced Linux (SELinux). In the Working with file permissions section, we discussed how standard Linux provides protection for the system. This method is called Discretionary Access Control (DAC), and has some limitations. For example, a typical user could open his files up, either accidentally or on purpose, for any other user to read or write. This could allow unauthorized access to sensitive information. To provide more security, SELinux uses MAC (Mandatory Access Control). MAC uses a security policy that covers all processes and files in the system. All files in SELinux have labels that contain security-relevant information.
 82
 
@@ -1184,11 +1190,11 @@ Chapter 5 For example, the following is a normal listing of a file under DAC: ls
 Getting ready
 We are only going to run some commands as root and view some of the settings. We will not be making any changes to the configuration. This example will assume you are already running SELinux in Enforcing mode. To determine if this is so run the sestatus command. The output should be similar to the following screenshot
 How to do it...
-Okay, so let's run some SELinux commands. 1. Run getenforce; it should report enforcing. 2. Now let's view the list of mappings: semanage login -l 3. To view the SELinux contexts for processes run the following command: ps ­eZ 4. To view the context for user run the following command: id ­Z
+Okay, so let's run some SELinux commands. 1. Run getenforce; it should report enforcing. 2. Now let's view the list of mappings: semanage login -l 3. To view the SELinux contexts for processes run the following command: ps ï¿½eZ 4. To view the context for user run the following command: id ï¿½Z
 83
 
-Permissions, Access, and Security 5. The sealert command is used to view the complete SELinux message when an error occurs. Check your /var/log/messages file to see if any alerts have been generated, and if so can run sealert -l on the number to get a detailed view. 6. To get a detailed list of the SELinux Booleans with descriptions run the following command: semanage boolean ­l
-7. To see the list but without the descriptions run the following command: getsebool ­a
+Permissions, Access, and Security 5. The sealert command is used to view the complete SELinux message when an error occurs. Check your /var/log/messages file to see if any alerts have been generated, and if so can run sealert -l on the number to get a detailed view. 6. To get a detailed list of the SELinux Booleans with descriptions run the following command: semanage boolean ï¿½l
+7. To see the list but without the descriptions run the following command: getsebool ï¿½a
 8. To check if files and directories have the correct SELinux context run the following command: matchpathcon
 There's more...
 As I mentioned SELinux is normally installed by default in most distributions. In some cases you may not even realize it is there. However, at times it will get in your way. If you try to install a service, for example, vsftpd, it may fail because it will violate the SELinux policy. It will usually pop up a fairly decent error message. The message may even tell you how to fix the problem, however, I have found in practice that it doesn't work. You perform the action(s) it gives, it seems to run without error, but then the access is still denied. In these cases I use the setenforce command to put SELinux into Permissive mode and then carry on with my activity: setenforce 0
@@ -1411,7 +1417,7 @@ The /proc filesystem is where Linux stores the data related to the currently run
 
 Processes
 How to do it...
-The following steps explain how to see the information contained in /proc: 1. Let's try an experiment in /proc as root run: file uptime 2. It shows uptime: empty, right? So if we cat it, there should be no output ideally, right? Try it: cat uptime 3. Wow, so how did that happen? The files in /proc are special because the information is read out of them in real time. Let's try some more and run the following command: cat interrupts 4. Now run cat version and cat meminfo. 5. In another session, run the following command: vi test5.txt 6. Let's find its PID: ps auxw | grep "vi test5.txt" 7. Change to that directory in /proc: cd /proc/<pid-from-above>. 8. Now change the directory to the File Descriptor (FD) directory: cd fd 9. Run the ls -la command. You should see something like the following output: Big2 /proc/20879/fd # ls ­la. total 0 dr-x------. 2 root root 0 Apr 11 16:27 . dr-xr-xr-x. 8 root root 0 Apr 11 16:27 .. lrwx------. 1 root root 64 Apr 11 16:27 0 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 1 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 2 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 4 -> /tmp/.test5.txt. swp
+The following steps explain how to see the information contained in /proc: 1. Let's try an experiment in /proc as root run: file uptime 2. It shows uptime: empty, right? So if we cat it, there should be no output ideally, right? Try it: cat uptime 3. Wow, so how did that happen? The files in /proc are special because the information is read out of them in real time. Let's try some more and run the following command: cat interrupts 4. Now run cat version and cat meminfo. 5. In another session, run the following command: vi test5.txt 6. Let's find its PID: ps auxw | grep "vi test5.txt" 7. Change to that directory in /proc: cd /proc/<pid-from-above>. 8. Now change the directory to the File Descriptor (FD) directory: cd fd 9. Run the ls -la command. You should see something like the following output: Big2 /proc/20879/fd # ls ï¿½la. total 0 dr-x------. 2 root root 0 Apr 11 16:27 . dr-xr-xr-x. 8 root root 0 Apr 11 16:27 .. lrwx------. 1 root root 64 Apr 11 16:27 0 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 1 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 2 -> /dev/pts/10 lrwx------. 1 root root 64 Apr 11 16:27 4 -> /tmp/.test5.txt. swp
 You can see this is indeed our session of vi editing the test5.txt file. Note that the file shown is a temporary file created by vi and left open during execution.
 102
 
@@ -1660,7 +1666,7 @@ Removing text from a file
 A script can be written to do almost anything you can imagine. The following is one such example.
 How to do it...
 The following is the listing for a script that can be used to cut the line numbers off the examples. You can then run them as is on your system.
-Script 1 ­ removing line numbers
+Script 1 ï¿½ removing line numbers
 1 #!/bin/sh 2 # removelines 5/1/2013 3 if [ "$1" = "" ] ; then 4 echo "Usage: removenumbers filename > newfile" 5 echo " This script will remove the line numbers from the beginning of the lines" 6 echo " in filename. It assumes the number field is 5 characters wide." 7 echo " Use the redirection operator to save the output to a new file." 8 exit 9 fi 10 cat $1 | cut -c 1-5 --complement
 124
 
@@ -1679,7 +1685,7 @@ Using script parameters
 Here we show how to count and show the number of parameters given to a script.
 How to do it...
 The following is the script listing:
-Script 2 ­ parameters
+Script 2 ï¿½ parameters
 1 #!/bin/sh 2 # 5/1/2013 3 echo Script showing how to count and show the parameters 4 N=$# 5 echo Number of parameters: $N 6 if [ $N -eq 0 ] ; then 7 echo "Usage: $0 parameters and/or a mask" 8 exit 9 fi 10 for i in $* ; do 11 echo Parm: $i 12 done
 How it works...
 ff You already know what lines 1 to 3 do. The $# built-in variable contains the number of parameters that were given to the script. In line 4, we set the variable N to that value.
@@ -1787,7 +1793,7 @@ Backing up your system
 Automating tasks is what makes scripts really powerful. You can spend some time getting a script just right and then let it do its thing. I easily have at least ten scripts running on each of my Fedora systems right now. Here's what I call my poor man's backup utility. In the past, I have tried some store-bought programs only to be disappointed with the quality of the software. There's nothing worse than needing your backup files and then discovering there aren't any! This script is called by a cron job every night at 3 a.m. We cover cron in the next chapter. If you want to try and use this script, be sure you understand what is going on. The backup directories must be created manually first, along with the filenum1 file. This script, as written, must run as root.
 How to do it...
 I use the following script to make a backup copy of my files:
-Script 4 ­ making backups
+Script 4 ï¿½ making backups
 1 #!/bin/sh 2 # Jim's backup program 3 # Change to an appropriate directory on your system 4 cd /lewis/backup 5 VER="File backup by Jim Lewis 4/25/2011 A" 6 echo $VER 7 date >> datelog.txt 8 T=`cat filenum1` 9 T=`expr $T + 1` 10 if [ $T -gt 7 ] ; then 11 T=1 12 fi 13 echo $T > filenum1 14 TDIR=/temp/linuxbook/chap8/backups$T
 130
 
@@ -1849,7 +1855,7 @@ Locking a file for only one use at a time
 This comes up often enough for me to mention it. There may be times when you want to edit a file in a terminal by running a simple script. However, if the file has already been opened in another terminal, there is the possibility that updates made in one session will get overwritten in the other. The following script should help prevent that from occurring.
 How to do it...
 Here is an easy way to prevent the same file from being edited by more than one terminal at the same time:
-Script 5 ­ file locking
+Script 5 ï¿½ file locking
 1 #!/bin/sh 2 # todo script 5/1/2013 3 FN1=/tmp/file.lock
 132
 
@@ -3015,7 +3021,7 @@ Finding Help The following is a screenshot of http://www.irchelp.org/irchelp/cli
 If you are new to IRC, here are a few pointers to get you started. I did not already have one and so began by getting a client. I prefer command line programs and so installed irssi on my Fedora 17 machine by running the yum command as root: yum -y install irssi This worked just fine.
 196
 
-The following is a screenshot of irssi ­help on Fedora 17:
+The following is a screenshot of irssi ï¿½help on Fedora 17:
 
 Appendix B
 
@@ -3254,4 +3260,3 @@ A practical guide to learn basic concepts, techniques, and tools to become a Lin
 3. Find out how to carry out system administrator tasks such as monitoring, backups, and network configuration
 
 Please check www.PacktPub.com for information on our titles
-

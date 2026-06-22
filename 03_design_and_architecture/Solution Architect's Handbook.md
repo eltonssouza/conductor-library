@@ -1,10 +1,16 @@
+# Solution Architect's Handbook
+
+> **Category:** 03_design_and_architecture Â· **Language:** English
+
+---
+
 Solutions Architect's Handbook
 Kick-start your solutions architect career by learning architecture design principles and strategies
 Saurabh Shrivastava Neelanjali Srivastav
 BIRMINGHAM - MUMBAI
 
 Solutions Architect's Handbook
-Copyright © 2020 Packt Publishing
+Copyright ï¿½ 2020 Packt Publishing
 All rights reserved. No part of this book may be reproduced, stored in a retrieval system, or transmitted in any form or by any means, without the prior written permission of the publisher, except in the case of brief quotations embedded in critical articles or reviews.
 Every effort has been made in the preparation of this book to ensure the accuracy of the information presented. However, the information contained in this book is sold without warranty, either express or implied. Neither the authors, nor Packt Publishing or its dealers and distributors, will be held liable for any damages caused or alleged to have been caused directly or indirectly by this book.
 Packt Publishing has endeavored to provide trademark information about all of the companies and products mentioned in this book by the appropriate use of capitals. However, Packt Publishing cannot guarantee the accuracy of this information.
@@ -15,7 +21,7 @@ Published by Packt Publishing Ltd. Livery Place 35 Livery Street Birmingham B3 2
 ISBN 978-1-83864-564-9
 www.packt.com
 
-To our loving daughter Sanvi, who fills our lives with happiness and joy. ­ Saurabh and Neelanjali
+To our loving daughter Sanvi, who fills our lives with happiness and joy. ï¿½ Saurabh and Neelanjali
 
 Packt.com
 Subscribe to our online digital library for full access to over 7,000 books and videos, as well as industry leading tools to help you plan your personal development and advance your career. For more information, please visit our website.
@@ -1426,7 +1432,7 @@ Working with data science and ML
 
 383
 
-Evaluating ML models ­ overfitting versus underfitting
+Evaluating ML models ï¿½ overfitting versus underfitting
 
 385
 
@@ -1700,7 +1706,7 @@ The Meaning of Solution Architecture
 Chapter 1
 
 As shown in the preceding diagram, a good solution architect addresses the most common aspects of the solution in an organization:
-Globally distributed teams: In this age of globalization, almost every product has users distributed across the globe, and stakeholder's groups to take care of customer needs. Often, the software development team has an onshore­offshore model, where a team works across different time zones to increase productivity and optimize project cost. Solution design needs to consider a globally distributed team structure.
+Globally distributed teams: In this age of globalization, almost every product has users distributed across the globe, and stakeholder's groups to take care of customer needs. Often, the software development team has an onshoreï¿½offshore model, where a team works across different time zones to increase productivity and optimize project cost. Solution design needs to consider a globally distributed team structure.
 Global compliance requirement: When you are deploying your solution globally, each country and region has its laws and compliance regime, which your solution needs to adhere. Some examples are as follows:
 The Federal Risk and Authorization Management Program (FedRAMP) and Department of Defense Cloud Computing Security Requirements Guide (DoD SRG) for the USA The General Data Protection Regulation (GDPR) for Europe The Information Security Registered Assessors Program (IRAP) for Australia
 The Center for Financial Industry Information Systems (FISC) for Japan
@@ -1745,7 +1751,7 @@ Chapter 1
 Evolution of solution architecture
 Solution architecture has evolved with technological modernization. Today, solution architecture design has changed drastically compared to a couple of decades ago, due to the increasing use of the internet, the availability of high-bandwidth network, the low cost of storage, and computer availability.
 Back in the days before the era of the internet, most solution designs focused on providing a thick desktop client, which was capable of operating with low bandwidth and working offline when a system could not connect to the internet.
-This technology started evolving in the last decade. Service-oriented architecture (SOA) started taking shape for distributed design, and applications started moving from monolithic to modern n-tier architecture, where the frontend server, application server, and database were live in their computer and the storage layer. These SOAs are mostly achieved by an XML-based messaging protocol, called Simple Object Access Protocol (SOAP). This majorly follows a client­server model in order to create services.
+This technology started evolving in the last decade. Service-oriented architecture (SOA) started taking shape for distributed design, and applications started moving from monolithic to modern n-tier architecture, where the frontend server, application server, and database were live in their computer and the storage layer. These SOAs are mostly achieved by an XML-based messaging protocol, called Simple Object Access Protocol (SOAP). This majorly follows a clientï¿½server model in order to create services.
 In this age of digitization, you will see microservice-based solution design becoming increasingly popular, which is based on JavaScript Object Notation (JSON)-based messaging and the Representational State Transfer (REST) service. These are Web APIs, which do not require XML-based web service protocols (SOAPs) to support their interfaces. They rely on web-based HTTP protocols such as POST, GET, UPDATE, DELETE, and so on. You will learn more about different architecture patterns in great detail in Chapter 6, Solution Architecture Design Patterns.
 The microservice architecture addresses the need for changing requirements in an agile environment, where any solution changes need to be accommodated and deployed rapidly. Organizations have to be agile to stay ahead of the competition. This forces solution architecture to be flexible, compared to the waterfall model, where you have a long cycle of project release.
 The web-based microservice architecture is fueled by an almost unlimited resource capability, which is available from cloud providers and which can scale in minutes or seconds. It's becoming easier to innovate, experiment, and change as solution architects and developers can risk failing without harming anything.
@@ -1759,7 +1765,7 @@ Chapter 1
 Why is solution architecture important?
 Solution architecture is the building block for an overall enterprise software solution that addresses specific problems and requirements. As the project size increases, the team becomes distributed globally. It is required to have a solution architecture in place for longterm sustainability and a solid foundation.
 Solution architecture addresses various solution needs, keeping the business context intact. It specifies and documents technology platforms, application components, data requirements, resource requirements, and many important non-functional requirements such as scalability, reliability, performance, throughput, availability, security, and maintainability.
-Solution architecture is vital for any industry and its solution. In the absence of solution architecture, there is a chance that software development could fail; projects can get delayed, get over budget, and not deliver enough functionalities. This scenario can be drastically improved by creating a solution architecture and applying experience and knowledge; all of which are provided by a solution architect. It helps to keep stakeholders from all areas ­ from non-technical business functions to technical development ­ on the same page, which avoids confusion, keeps the project on track within schedule and time, and helps to derive maximum return on investment(ROI).
+Solution architecture is vital for any industry and its solution. In the absence of solution architecture, there is a chance that software development could fail; projects can get delayed, get over budget, and not deliver enough functionalities. This scenario can be drastically improved by creating a solution architecture and applying experience and knowledge; all of which are provided by a solution architect. It helps to keep stakeholders from all areas ï¿½ from non-technical business functions to technical development ï¿½ on the same page, which avoids confusion, keeps the project on track within schedule and time, and helps to derive maximum return on investment(ROI).
 Often, the solution architect requires customer collaboration in order to understand specifications. In a solution architect's role, the architect needs multiple skillsets from technical leaders and experts, to business analysts and project management. We will learn more about the solution architect's role in Chapter 2, Solution Architects in an Organization.
 A good solution architecture puts specifications in place with a well-defined solution, which helps us to deliver and accomplish the final product, along with smooth product operability after launch. A single problem can have multiple solutions, and each solution has its constraints. Solution architecture considers all the solutions, and finds the best way, by creating a hands-on proof of concept that accommodates all of the business and technical limitations.
 
@@ -1921,7 +1927,7 @@ Summary
 In this chapter, you learned about the definition of solution architecture from both the industry standards and in a more simplified way. You learned the importance of solution architecture, and how it can help the organization to achieve a more significant result and maximize the return on its investments. This chapter helped you to understand the benefits of having a solution architecture, and how it helps in different aspects of solution design and implementation.
 In summary, solution architecture is a building block in a complex organization and is used to address all stakeholder's needs and establish a standard in order to fill the gap between business requirements and technical solutions. A good solution architecture not only addresses functional requirements but also puts long-term thought into, and takes care of, non-functional requirements such as scalability, performance, resiliency, high availability, disaster recovery, and so on. Solution architecture finds an optimal solution to accommodate the constraints of cost, resources, timelines, security, and compliance.
 Later in the chapter, you learned about the basics of cloud computing, solution architecture in the cloud environment, and about significant public cloud providers and their service offerings. This also helped you to gain a high-level overview of different cloud computing models, such as IaaS, PaaS, SaaS, and the cloud computing deployment models in the public cloud, private cloud, and hybrid cloud. Finally, this chapter sheld some light on the evolution of solution architecture design.
-In the next chapter, you will learn all about the solution architecture role ­ the different types of solution architect, the role's responsibilities as regards solution architecture, and how they fit into an organizational structure and an agile environment.
+In the next chapter, you will learn all about the solution architecture role ï¿½ the different types of solution architect, the role's responsibilities as regards solution architecture, and how they fit into an organizational structure and an agile environment.
 
 [ 24 ]
 
@@ -1985,7 +1991,7 @@ DevOps architect: IT automation Continuous integration and continuous deployment
 There may be other types of specialist solution architect, such as migration architect and storage architect. This, again, depends on the organization's structure. As per the project and organizational complexity, a solution architect can take on multiple roles or different solution architects can have overlapping responsibilities. You will learn more about each architect role in subsequent sections.
 
 Enterprise solution architect
-Do you ever think about how products launch in the information technology industry? This is where the enterprise solution role comes into the picture ­ they define best practices, culture, and suitable technologies. An enterprise architect works closely with stakeholders, subject matter experts, and management to identify organizational strategies for information technology and make sure that their knowledge aligns with company business rules.
+Do you ever think about how products launch in the information technology industry? This is where the enterprise solution role comes into the picture ï¿½ they define best practices, culture, and suitable technologies. An enterprise architect works closely with stakeholders, subject matter experts, and management to identify organizational strategies for information technology and make sure that their knowledge aligns with company business rules.
 Enterprise architects handle solution design across the organization; they create long-term plans and solutions with stockholders and leadership. One of the most important aspects is to finalize which technologies should be used by the company and making sure the company is using these technologies with consistency and integrity.
 Another important aspect of the enterprise architect is defining the business architecture. In some organizations, you may see a business architect as the job title. Business architecture fills the gap between organizational strategy and its successful execution. It helps convert a map strategy into executable action items and takes this to a tactical level for implementation.
 Overall, enterprise architects are more aligned with company visions and responsibilities when it comes to defining organization-wide standards for the successful implementation of the business' vision.
@@ -2057,7 +2063,7 @@ Solution Architects in an Organization
 Chapter 2
 
 Data architect
-Any solution design revolves around data, and it is mostly about storing, updating, and accessing it regardless of whether it is about customers or products. As the adoption of the internet is increasing, so are data and the need for data architects. In the last decade, data growth has risen exponentially ­ not long ago, gigabytes of data were considered to be big data, but now even 100 terabytes of data are deemed to be normal. You can even get a 1terabyte computer hard disk.
+Any solution design revolves around data, and it is mostly about storing, updating, and accessing it regardless of whether it is about customers or products. As the adoption of the internet is increasing, so are data and the need for data architects. In the last decade, data growth has risen exponentially ï¿½ not long ago, gigabytes of data were considered to be big data, but now even 100 terabytes of data are deemed to be normal. You can even get a 1terabyte computer hard disk.
 Traditionally, data used to be stored in a structured relational way. Now, most data are in an unstructured format generated from resources such as social media, Internet of Things (IoT), and application logs. There is a need to store, process, and analyze data to get useful insights, where the data architect role comes into the picture.
 The data architect defines a set of rules, policies, standards, and models that govern the type of data that's used and collected in the organization database. They design, create, and manage the data architecture in an organization. A data architect develops data models and data lake designs to capture business's key performance indicators (KPIs) and enable data transformation. They ensure consistent data performance and data quality across the organization.
 The primary customers for a data architect are as follows:
@@ -4556,7 +4562,7 @@ Chapter 7
 
 Kubernetes
 Kubernetes can manage and control multiple containers in production environments compared to Docker, where you can only work with a few containers. You can consider Kubernetes as a container orchestration system. You can host a Docker container in bare metal, or a virtual machine node called a Docker host, and Kubernetes can co-ordinate across a cluster of these nodes.
-Kubernetes makes your application self-healing by replacing unresponsive containers. It also provides horizontal scaling capabilities and a blue­green deployment ability to avoid any downtime. Kubernetes distributes incoming user traffic load between the container and manages the storage shared by various containers.
+Kubernetes makes your application self-healing by replacing unresponsive containers. It also provides horizontal scaling capabilities and a blueï¿½green deployment ability to avoid any downtime. Kubernetes distributes incoming user traffic load between the container and manages the storage shared by various containers.
 As shown in the following diagram, Kubernetes and Docker work well together to orchestrate your software application. Kubernetes handles network communication between Docker nodes and Docker containers:
 
 Docker and Kubernetes
@@ -4567,7 +4573,7 @@ Performance Considerations
 Chapter 7
 
 Docker works as an individual piece of the application and Kubernetes takes care of the orchestration to make sure all these pieces work together as designed. It's easier to automate overall application deployment and scaling with Kubernetes. In Docker, containers are hosted in nodes and each Docker container in a single node shares the same IP space. In Docker, you need to manage the connections between containers by taking care of any IP conflict. Kubernetes solves this problem by having a master instance that keeps track of all nodes hosting containers.
-Kubernetes's master node is responsible for assigning an IP address and hosting a key­value store for container configuration along with Kubelet to manage the containers. Docker containers are groups in the pod, where they share the same IP address. This entire setup is called the Kubernetes cluster.
+Kubernetes's master node is responsible for assigning an IP address and hosting a keyï¿½value store for container configuration along with Kubelet to manage the containers. Docker containers are groups in the pod, where they share the same IP address. This entire setup is called the Kubernetes cluster.
 While Kubernetes is quickly becoming popular, there are other options available, such as Docker Swarm, which is built by Docker itself; however, Swarm doesn't have a webbased interface like Kubernetes, and also does not provide autoscaling and external load balancing.
 Kubernetes is more complex to learn. A public cloud provider, such as AWS, provides Amazon Elastic Kubernetes Service (EKS) to simplify the management of the Kubernetes cluster. OpenShift is another Kubernetes distribution managed by Red Hat and is offered as a platform as a service (PaaS).
 Overall, containers add a layer of virtualization to the whole application infrastructure. While they are useful in resource utilization, you may want to choose a bare metal physical machine for your application deployment if it requires ultra-low latency.
@@ -4725,7 +4731,7 @@ In Chapter 6, Solution Architecture Design Patterns, you learned how to use a CD
 Defining a DNS routing strategy
 In order to have global reach, you may be deploying your application in multiple geographical regions. When it comes to user request routing, you want to route their requests to the nearest and fastest available server for a quick response from your application. The DNS router provides the mapping between the domain names to the IP addresses and makes sure that the requests are served by the right server when the user types in the domain name--for example, when you type amazon.com in your browser to do some shopping, your request is always routed to the Amazon application server by the DNS service.
 The public cloud-like AWS provides a DNS service called Amazon Route 53, where you can define a different kind of routing policy as per your application's need. Amazon Route 53 provides DNS services to simplify domain management and zone APEX support. The following are the most used routing policies:
-Simple routing policy: As the name suggests, this is the most straightforward routing policy and doesn't involve any complications. It is useful to route traffic to a single resource--for example, a web server that serves content for a particular website. Failover routing policy: This routing policy requires you to achieve high availability by configuring active­passive failover. If your application goes down in one region, then all the traffic can be routed to another region automatically. Geolocation routing policy: If the user belongs to a particular location then you can use a geolocation policy. A geolocation routing policy helps to route traffic to a specific region. Geoproximity routing policy: This is like a geolocation policy, but you have the option to shift traffic to other nearby locations when needed.
+Simple routing policy: As the name suggests, this is the most straightforward routing policy and doesn't involve any complications. It is useful to route traffic to a single resource--for example, a web server that serves content for a particular website. Failover routing policy: This routing policy requires you to achieve high availability by configuring activeï¿½passive failover. If your application goes down in one region, then all the traffic can be routed to another region automatically. Geolocation routing policy: If the user belongs to a particular location then you can use a geolocation policy. A geolocation routing policy helps to route traffic to a specific region. Geoproximity routing policy: This is like a geolocation policy, but you have the option to shift traffic to other nearby locations when needed.
 
 [ 215 ]
 
@@ -5228,7 +5234,7 @@ You can have a more granular category depending on the type of industry and the 
 Data encryption
 Data encryption is a method to protect your data whereby you convert your data from plaintext to encoded ciphertext format using the encryption key. To read these ciphertexts, they first need to be decrypted using the encryption key, and only authorized users will have access to those decryption keys. Commonly used key-based encryption falls into one of two categories of cryptography:
 Symmetric-key encryption: With symmetric encryption algorithms, the same key is used to encrypt and decrypt the data. Each data packet is self-encrypted with a secret key. Data is encrypted while saving and decrypted during retrieval. Earlier, symmetric encryption used to be applied as per the Data Encryption Standard (DES), which used a 56-bit key. Now, the Advanced Encryption Standard (AES) is heavily used for symmetric encryption, which is more reliable as it uses a 128-bit, 192-bit, or 256-bit key.
-Asymmetric-key encryption: With the help of asymmetric algorithms, two different keys can be used, one to encrypt and one to decrypt. In most cases, the encryption key is a public key and the decryption key is a private key. Asymmetric key encryption is also known as public-key encryption. Both public and private keys are unidentical, but they are paired together. The private key is only available to one user, while the public key can be distributed across multiple resources. Only the user who has a private key can decrypt the data. Rivest­Shamir­Adleman (RSA) is one of the first and most popular public keyencryption algorithms used to secure data transmissions over the network.
+Asymmetric-key encryption: With the help of asymmetric algorithms, two different keys can be used, one to encrypt and one to decrypt. In most cases, the encryption key is a public key and the decryption key is a private key. Asymmetric key encryption is also known as public-key encryption. Both public and private keys are unidentical, but they are paired together. The private key is only available to one user, while the public key can be distributed across multiple resources. Only the user who has a private key can decrypt the data. Rivestï¿½Shamirï¿½Adleman (RSA) is one of the first and most popular public keyencryption algorithms used to secure data transmissions over the network.
 If you are encrypting your data with an AES 256-bit security key, it's become almost impossible to break the encryption. The only way to decrypt is by getting hands-on encryption, which means you need to secure your code and keep it in a safe place. Let's learn about some essential management methods to safeguard your encryption key.
 
 [ 249 ]
@@ -7124,7 +7130,7 @@ Data Engineering and Machine Learning
 
 Chapter 13
 
-Evaluating ML models ­ overfitting versus underfitting
+Evaluating ML models ï¿½ overfitting versus underfitting
 In overfitting, your model fails to generalize. You will determine the overfitting model when it performs well on the training set but poorly on the test set. This typically indicates that the model is too flexible for the amount of training data, and this flexibility allows it to memorize the data, including noise. Overfitting corresponds to high variance, where small changes in the training data result in big changes to the results.
 In underfitting, your model fails to capture essential patterns in the training dataset. Typically, underfitting indicates the model is too simple or has too few explanatory variables. An underfit model is not flexible enough to model real patterns and corresponds to high bias, which indicates the results show a systematic lack of fit in a certain region.
 The following graph illustrates the clear difference between overfitting versus underfitting as they correspond to a model with good fit:
@@ -8049,7 +8055,7 @@ handling 43 working, as technology evangelist 47 working, with stakeholders 41 R
 
 [ 453 ]
 
-reusability 67, 68 revolution per minute (RPM) 195 rewrite proxy pattern 173, 174 Rivest­Shamir­Adleman (RSA) 249 role-based authentication (RBA) 228 roles, agile scrum team
+reusability 67, 68 revolution per minute (RPM) 195 rewrite proxy pattern 173, 174 Rivestï¿½Shamirï¿½Adleman (RSA) 249 role-based authentication (RBA) 228 roles, agile scrum team
 development team 51 product owner: 51 Scrum Master 51 Scrum Team 51 rolling deployment 338 root cause analysis (RCA) about 226, 298, 300 refining 282 router hops 193
 S
 Salesforce CRM 308 scalability 57 scaling
@@ -8111,4 +8117,3 @@ about 74 app vulnerabilities 236 handling 236 mitigation 239 Web Services Descri
 
 web-based microservice architecture 11 Wide Area Network (WAN) 33 workload
 scaling 79 Write once read many (WORM) 207
-

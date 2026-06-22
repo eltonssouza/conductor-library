@@ -1,3 +1,9 @@
+# SQL Antipatterns
+
+> **Author(s):** Karwin Â· **Category:** 05_databases Â· **Language:** English
+
+---
+
 What Readers Are Saying About SQL Antipatterns
 I am a strong advocate of best practices. I prefer to learn from other people's mistakes. This book is a comprehensive collection of those other people's mistakes and, quite surprisingly, some of my own. I wish I had read this book sooner.
 Marcus Adams Senior Software Engineer
@@ -25,7 +31,7 @@ Raleigh, North Carolina Dallas, Texas
 
 Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and The Pragmatic Programmers, LLC was aware of a trademark claim, the designations have been printed in initial capital letters or in all capitals. The Pragmatic Starter Kit, The Pragmatic Programmer, Pragmatic Programming, Pragmatic Bookshelf and the linking g device are trademarks of The Pragmatic Programmers, LLC. Every precaution was taken in the preparation of this book. However, the publisher assumes no responsibility for errors or omissions, or for damages that may result from the use of information (including program listings) contained herein. Our Pragmatic courses, workshops, and other products can help you and your team create better software and have more fun. For more information, as well as the latest Pragmatic titles, please visit us at
 http://www.pragprog.com
-Copyright © 2010 Bill Karwin. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher. Printed in the United States of America.
+Copyright ï¿½ 2010 Bill Karwin. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form, or by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior consent of the publisher. Printed in the United States of America.
 ISBN-10: 1-934356-55-7 ISBN-13: 978-1-934356-55-5 Printed on acid-free paper. P1.0 printing, May 2010 Version: 2010-6-9
 
 Contents
@@ -939,11 +945,11 @@ How can you know that VARCHAR(30) supports the longest list you will need in the
 
 2.3 How to Recognize the Antipattern
 If you hear phrases like the following spoken by your project team, treat it as a clue that the Jaywalking antipattern is being employed:
-· "What is the greatest number of entries this list must support?"
+ï¿½ "What is the greatest number of entries this list must support?"
 This question comes up when you're trying to choose the maximum length of the VARCHAR column.
-· "Do you know how to match a word boundary in SQL?"
+ï¿½ "Do you know how to match a word boundary in SQL?"
 If you use regular expressions to pick out parts of a string, this could be a clue that you should store those parts separately.
-· "What character will never appear in any list entry?"
+ï¿½ "What character will never appear in any list entry?"
 You want to use an unambiguous separator character, but you should expect that any character might someday appear in a value in the list.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -1243,11 +1249,11 @@ These are examples of operations that require multiple steps when you use the Ad
 
 3.3 How to Recognize the Antipattern
 If you hear a question like the following, it's a clue that the Naive Trees antipattern is being employed:
-· "How many levels do we need to support in trees?"
+ï¿½ "How many levels do we need to support in trees?"
 You're struggling to get all descendants or all ancestors of a node, without using a recursive query. You could compromise by supporting only trees of a limited depth, but the next natural question is, how deep is deep enough?
-· "I dread ever having to touch the code that manages the tree data structures."
+ï¿½ "I dread ever having to touch the code that manages the tree data structures."
 You've adopted one of the more sophisticated solutions of managing hierarchies, but you're using the wrong one. Each technique makes some tasks easier, but usually at the cost of other tasks that become harder. You may have chosen a solution that isn't the best choice for the way you need to use hierarchies in your application.
-· "I need to run a script periodically to clean up the orphaned rows in the trees."
+ï¿½ "I need to run a script periodically to clean up the orphaned rows in the trees."
 Your application creates disconnected nodes in the tree as it deletes nonleaf nodes. When you store complex data structures in
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -1847,8 +1853,8 @@ However, you can improve the Closure Table to make queries for immediate parent 
 Download Trees/soln/closure-table/child.sql
 SELECT * FROM TreePaths WHERE ancestor = 4 AND path_length = 1;
 Which Design Should You Use? Each of the designs has its own strengths and weaknesses. Choose the design depending on which operations you need to be most efficient. In Figure 3.5, some operations are marked as easy or hard with each respective tree design. You can also consider the following strengths and weaknesses of each design:
-· Adjacency List is the most conventional design, and many software developers recognize it.
-· Recursive Queries using WITH or CONNECT BY PRIOR make it more efficient to use the Adjacency List design, provided you use one of the database brands that supports the syntax.
+ï¿½ Adjacency List is the most conventional design, and many software developers recognize it.
+ï¿½ Recursive Queries using WITH or CONNECT BY PRIOR make it more efficient to use the Adjacency List design, provided you use one of the database brands that supports the syntax.
 
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -1856,9 +1862,9 @@ SOLUTION: USE ALTERNATIVE TREE MODELS
 
 53
 
-· Path Enumeration is good for breadcrumbs in user interfaces, but it's fragile because it fails to enforce referential integrity and stores information redundantly.
-· Nested Sets is a clever solution--maybe too clever. It also fails to support referential integrity. It's best used when you need to query a tree more frequently than you need to modify the tree.
-· Closure Table is the most versatile design and the only design in this chapter that could allow a node to belong to multiple trees. It requires an additional table to store the relationships. This design also uses a lot of rows when encoding deep hierarchies, increasing space consumption as a trade-off for reducing computing.
+ï¿½ Path Enumeration is good for breadcrumbs in user interfaces, but it's fragile because it fails to enforce referential integrity and stores information redundantly.
+ï¿½ Nested Sets is a clever solution--maybe too clever. It also fails to support referential integrity. It's best used when you need to query a tree more frequently than you need to modify the tree.
+ï¿½ Closure Table is the most versatile design and the only design in this chapter that could allow a node to belong to multiple trees. It requires an additional table to store the relationships. This design also uses a lot of rows when encoding deep hierarchies, increasing space consumption as a trade-off for reducing computing.
 There's more to learn about storing and manipulating hierarchical data in SQL. A good book that covers hierarchical queries is Joe Celko's Trees and Hierarchies in SQL for Smarties [Cel04]. Another book that covers trees and even graphs is SQL Design Patterns [Tro06] by Vadim Tropashko. The latter book has a more formal, academic style.
 
 A hierarchy consists of entries and relationships. Model both of these to suit your work.
@@ -1932,9 +1938,9 @@ Do I Really Need a Primary Key?
 I've heard some software developers claim that their table doesn't need a primary key.
 Sometimes these programmers want to avoid the imagined overhead of maintaining a unique index, or else they have tables with no columns they can use for this purpose.
 A primary key constraint is important when you need to do the following:
-· Prevent a table from containing duplicate rows
-· Reference individual rows in queries
-· Support foreign key references
+ï¿½ Prevent a table from containing duplicate rows
+ï¿½ Reference individual rows in queries
+ï¿½ Support foreign key references
 If you don't use primary key constraints, you create a chore for yourself: checking for duplicate rows.
 SELECT bug_id FROM Bugs GROUP BY bug_id HAVING COUNT(*) > 1;
 How frequently should you run this check? What should you do with a duplicate when you find one?
@@ -1962,11 +1968,11 @@ ANTIPATTERN: ONE SIZE FITS ALL
 
 Books, articles, and programming frameworks have established a cultural convention that every database table must have a primary key column with the following characteristics:
 
-· The primary key's column name is id.
+ï¿½ The primary key's column name is id.
 
-· Its data type is a 32-bit or 64-bit integer.
+ï¿½ Its data type is a 32-bit or 64-bit integer.
 
-· Unique values are generated automatically.
+ï¿½ Unique values are generated automatically.
 
 The presence of a column named id in every table is so common that this has become synonymous with a primary key. Programmers learning SQL get the false idea that a primary key always means a column defined in this manner.
 
@@ -2120,11 +2126,11 @@ HOW TO RECOGNIZE THE ANTIPATTERN
 4.3 How to Recognize the Antipattern
 The symptom of this antipattern is easy to recognize: tables use the overly generic name id for the primary key. There's virtually no reason to prefer this column name over one that is more descriptive.
 The following can also be evidence of the antipattern:
-· "I don't think I need a primary key in this table."
+ï¿½ "I don't think I need a primary key in this table."
 The developer who says this is confusing the term primary key with pseudokey. Every table must have a primary key constraint to prevent duplicate rows and identify individual rows. They might want to use a natural key or a compound key instead.
-· "How did I get duplicate many-to-many associations?"
+ï¿½ "How did I get duplicate many-to-many associations?"
 An intersection table for a many-to-many relationship should declare a primary key constraint, or at least a unique key constraint, over the set of foreign key columns.
-· "I read that database theory says I should move values to a lookup table and refer to them by ID. But I don't want to do that because I have to do a join every time I want the actual values."
+ï¿½ "I read that database theory says I should move values to a lookup table and refer to them by ID. But I don't want to do that because I have to do a join every time I want the actual values."
 This is a common misunderstanding of database design theory called normalization, which has nothing to do with pseudokeys in reality. For more on this, see Appendix A, on page 294.
 
 4.4 Legitimate Uses of the Antipattern
@@ -2218,9 +2224,9 @@ OBJECTIVE: SIMPLIFY DATABASE ARCHITECTURE
 5.1 Objective: Simplify Database Architecture
 Relational database design is almost as much about relationships between tables as it is about the individual tables themselves. Referential integrity is an important part of proper database design and operation. When you declare a foreign key constraint for a column or set of columns, the values in these columns must exist in the primary key or unique key columns of the parent table. This seems simple enough.
 However, some software developers recommend avoiding referential integrity constraints. The reasons you might hear to ignore foreign keys include the following:
-· Your data updates can conflict with the constraints. · You're using a database design that's so flexible it can't support
-referential integrity constraints. · You believe that the index the database creates for the foreign key
-will impact performance. · You use a database brand that doesn't support foreign keys. · You have to look up the syntax for declaring foreign keys.
+ï¿½ Your data updates can conflict with the constraints. ï¿½ You're using a database design that's so flexible it can't support
+referential integrity constraints. ï¿½ You believe that the index the database creates for the foreign key
+will impact performance. ï¿½ You use a database brand that doesn't support foreign keys. ï¿½ You have to look up the syntax for declaring foreign keys.
 
 5.2 Antipattern: Leave Out the Constraints
 Even though it seems at first that skipping foreign key constraints makes your database design simpler, more flexible, or speedier, you pay for this in other ways. It becomes your responsibility to write code to ensure referential integrity manually.
@@ -2291,11 +2297,11 @@ Some developers find these scenarios difficult to manage, so they decide not to 
 
 5.3 How to Recognize the Antipattern
 If you hear people use phrases like the following, they're probably practicing the Keyless Entry antipattern:
-· "How do I query to check for a value that exists in one table and not the other table?"
+ï¿½ "How do I query to check for a value that exists in one table and not the other table?"
 Usually this is to find orphan child rows whose parent has been updated or deleted.
-· "Is there a quick way to check that a value exists in one table as part of my insert to a second table?"
+ï¿½ "Is there a quick way to check that a value exists in one table as part of my insert to a second table?"
 This is to ensure that the parent row exists. A foreign key does this for you automatically and uses any index on the parent table to make the check as efficient as possible.
-· "Foreign keys? I was told not to use them because they slow down the database."
+ï¿½ "Foreign keys? I was told not to use them because they slow down the database."
 Performance is often used as a justification for cutting corners, but it usually creates more problems than it solves--including performance problems.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -2392,9 +2398,9 @@ SOLUTION: DECLARE CONSTRAINTS
 72
 
 Overhead? Not Really It's true that foreign key constraints have a bit of overhead. But compared to the alternative, foreign keys prove to be a lot more efficient.
-· You don't need to run SELECT queries to check before you insert or update or delete.
-· You don't need to lock tables to protect multitable changes.
-· You don't need to run periodic quality control scripts to correct the inevitable orphans.
+ï¿½ You don't need to run SELECT queries to check before you insert or update or delete.
+ï¿½ You don't need to lock tables to protect multitable changes.
+ï¿½ You don't need to run periodic quality control scripts to correct the inevitable orphans.
 Foreign keys are easy to use, improve performance, and help you maintain consistent referential integrity during any data change, both simple and complex.
 
 Make your database mistake-proof with constraints.
@@ -2408,7 +2414,7 @@ Entity-Attribute-Value
 "How do I count the number of rows by date?" This is an example of a simple task for a database programmer. This solution is covered in any introductory tutorial on SQL. It involves basic SQL syntax:
 Download EAV/intro/count.sql
 SELECT date_reported, COUNT(*) FROM Bugs GROUP BY date_reported;
-However, the simple solution assumes two things: · Values are stored in the same column, as in Bugs.date_reported. · Values can be compared to one another so that GROUP BY can accurately group dates with equal values together.
+However, the simple solution assumes two things: ï¿½ Values are stored in the same column, as in Bugs.date_reported. ï¿½ Values can be compared to one another so that GROUP BY can accurately group dates with equal values together.
 What if you can't rely on those assumptions? What if the date is stored in the date_reported or report_date column or in any other column name that may be different on each row? What if dates can take a variety of different formats and the computer can't easily compare two dates? You may encounter these problems and others when you employ the antipattern known as Entity-Attribute-Value.
 6.1 Objective: Support Variable Attributes
 Extensibility is frequently a goal of software projects. We would like to design software that can adapt fluidly to future usage with little or no additional programming. This is not a new problem; similar arguments against the inflexibility of relational database metadata have been made almost continuously
@@ -2424,9 +2430,9 @@ Let's use an example from our bugs database. In Figure 6.1, on the following pag
 
 6.2 Antipattern: Use a Generic Attribute Table
 The solution that appeals to some programmers when they need to support variable attributes is to create a second table, storing attributes as rows. See the diagram showing the two tables in Figure 6.2, on page 76. Each row in this attribute table has three columns:
-· The Entity. Typically this is a foreign key to a parent table that has one row per entity.
-· The Attribute. This is simply the name of a column in a conventional table, but in this new design, we have to identify the attribute on each given row.
-· The Value. Each entity has a value for each of its attributes.
+ï¿½ The Entity. Typically this is a foreign key to a parent table that has one row per entity.
+ï¿½ The Attribute. This is simply the name of a column in a conventional table, but in this new design, we have to identify the attribute on each given row.
+ï¿½ The Value. Each entity has a value for each of its attributes.
 
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -2497,11 +2503,11 @@ VALUES
 
 By adding one additional table, you seem to gain the following benefits:
 
-· Both tables have few columns.
+ï¿½ Both tables have few columns.
 
-· The number of columns doesn't need to grow to support new attributes.
+ï¿½ The number of columns doesn't need to grow to support new attributes.
 
-· You avoid a clutter of columns that contain null in rows where the attribute is inapplicable.
+ï¿½ You avoid a clutter of columns that contain null in rows where the attribute is inapplicable.
 
 This appears to be an improved design. However, the simple database structure doesn't make up for the difficulty of using it.
 
@@ -2619,11 +2625,11 @@ You must use outer joins because inner joins would cause the query to return no 
 
 6.3 How to Recognize the Antipattern
 If you hear phrases like the following spoken by your project team, it's a clue that someone is employing the EAV antipattern:
-· "This database is totally extensible without metadata changes. You can define new attributes at runtime."
+ï¿½ "This database is totally extensible without metadata changes. You can define new attributes at runtime."
 Relational databases don't support that degree of flexibility. When someone claims to have designed an arbitrarily extensible database, they're probably using the EAV design.
-· "What's the maximum number of joins I can do in a query?"
+ï¿½ "What's the maximum number of joins I can do in a query?"
 If you need a query to support such a high number of joins that you're concerned about exceeding the database's limits, you may have a problem in your database design. It's common for an EAV design to lead to this problem.
-· "I can't figure out how to write a report for our e-commerce platform. We need to hire a consultant to do it for us."
+ï¿½ "I can't figure out how to write a report for our e-commerce platform. We need to hire a consultant to do it for us."
 It seems that many turnkey database-driven software packages designed for customizability use the EAV design. This makes most common reporting queries very complex or even impractical.
 
 6.4 Legitimate Uses of the Antipattern
@@ -2638,19 +2644,19 @@ LEGITIMATE USES OF THE ANTIPATTERN
 relational paradigm. But that doesn't address the legitimate need in some applications to support dynamic attributes.
 Most applications that need schemaless data really need it for only a few tables or even just one table. The rest of your data requirements conform to standard table designs. If you account for the extra work and risk of EAV in your project plan, it may be the lesser evil to use it sparingly. But keep in mind that experienced database consultants report that systems using EAV become unwieldy within a year.
 If you have nonrelational data management needs, the best answer is to use a nonrelational technology. This is a book about SQL, not about SQL alternatives, so I'll list only a sampling of these technologies:
-· Berkeley DB is a popular key-value store that's easy to embed in a variety of applications.
+ï¿½ Berkeley DB is a popular key-value store that's easy to embed in a variety of applications.
 http://www.oracle.com/technology/products/berkeley-db/
-· Cassandra is a distributed column-oriented database developed at Facebook and contributed to the Apache project.
+ï¿½ Cassandra is a distributed column-oriented database developed at Facebook and contributed to the Apache project.
 http://incubator.apache.org/cassandra/
-· CouchDB is a document-oriented database -- a distributed keyvalue store that encodes values in JSON.
+ï¿½ CouchDB is a document-oriented database -- a distributed keyvalue store that encodes values in JSON.
 http://couchdb.apache.org/
-· Hadoop and HBase make up an open source DBMS inspired by Google's MapReduce algorithm for distributing queries against very large-scale semistructured data stores.
+ï¿½ Hadoop and HBase make up an open source DBMS inspired by Google's MapReduce algorithm for distributing queries against very large-scale semistructured data stores.
 http://hadoop.apache.org/
-· MongoDB is a document-oriented database like CouchDB.
+ï¿½ MongoDB is a document-oriented database like CouchDB.
 http://www.mongodb.org/
-· Redis is a document-oriented in-memory database.
+ï¿½ Redis is a document-oriented in-memory database.
 http://code.google.com/p/redis/
-· Tokyo Cabinet is a key-value store, designed in the vein of POSIX DBM, GNU GDBM, or Berkeley DB.
+ï¿½ Tokyo Cabinet is a key-value store, designed in the vein of POSIX DBM, GNU GDBM, or Berkeley DB.
 http://1978th.net/
 Many other nonrelational projects are also emerging. However, the weaknesses of EAV relative to relational databases also apply to these
 
@@ -3228,16 +3234,16 @@ TEXT
 
 7.3 How to Recognize the Antipattern
 If you hear statements like the following, it's a clue that the Polymorphic Associations antipattern is being employed:
-· "This tagging schema allows you to associate a tag (or other attribute) with any other resource in the database." Like in EAV, you should be suspicious of any claims of unlimited flexibility.
+ï¿½ "This tagging schema allows you to associate a tag (or other attribute) with any other resource in the database." Like in EAV, you should be suspicious of any claims of unlimited flexibility.
 Report erratum this copy is (P1.0 printing, May 2010)
 
 LEGITIMATE USES OF THE ANTIPATTERN
 
 95
 
-· "You can't declare foreign keys in our database design."
+ï¿½ "You can't declare foreign keys in our database design."
 This is another red flag. Foreign keys are a fundamental feature of relational databases, and a design that can't work with proper referential integrity has a lot of problems.
-· "What's the entity_type column for? Oh, that tells you which thing this other column points to."
+ï¿½ "What's the entity_type column for? Oh, that tells you which thing this other column points to."
 Any foreign key must reference the same table on all rows.
 The Ruby on Rails framework supports Polymorphic Associations by declaring Active Record classes with the :polymorphic attribute. For example, you could associate Comments to Bugs and FeatureRequests as follows:
 Download Polymorphic/recog/commentable.rb
@@ -3607,9 +3613,9 @@ One tactic is to guess at a moderate number of columns and expand later, if nece
 Download Multi-Column/anti/alter-table.sql
 ALTER TABLE Bugs ADD COLUMN tag4 VARCHAR(20);
 However, this change is costly in three ways:
-· Restructuring a database table that already contains data may require locking the entire table, blocking access for other concurrent clients.
-· Some databases implement this kind of table restructure by defining a new table to match the desired structure, copying the data from the old table, and then dropping the old table. If the table in question has a lot of data, this transfer can take a long time.
-· When you add a column in the set for a multicolumn attribute, you must revisit every SQL statement in every application that uses this table, editing the statement to support new columns.
+ï¿½ Restructuring a database table that already contains data may require locking the entire table, blocking access for other concurrent clients.
+ï¿½ Some databases implement this kind of table restructure by defining a new table to match the desired structure, copying the data from the old table, and then dropping the old table. If the table in question has a lot of data, this transfer can take a long time.
+ï¿½ When you add a column in the set for a multicolumn attribute, you must revisit every SQL statement in every application that uses this table, editing the statement to support new columns.
 Download Multi-Column/anti/search-four-columns.sql
 SELECT * FROM Bugs WHERE tag1 = 'performance'
 OR tag2 = 'performance' OR tag3 = 'performance' OR tag4 = 'performance' ; -- you must add this new term
@@ -3629,8 +3635,8 @@ The Jaywalking and Multicolumn Attributes antipatterns have a common thread: the
 In the examples for Jaywalking, we saw how that antipattern relates to many-to-many relationships. In this chapter, we see a simpler one-to-many relationship. Be aware that both antipatterns are sometimes used for both types of relationships.
 
 fixed maximum number of values, this might indicate that the Multicolumn Attributes antipattern is in use. Admittedly, some attributes might have a limit on the number of selections on purpose, but it's more common that there's no such limit. If the limit seems arbitrary or unjustified, it might be because of this antipattern. Another clue that the antipattern might be in use is if you hear statements such as the following:
-· "How many is the greatest number of tags we need to support?" You need to decide how many columns to define in the table for a multivalue attribute like tag.
-· "How can I search multiple columns at the same time in SQL?" If you're searching for a given value across multiple columns, this is a clue that the multiple columns should really be stored as a single logical attribute.
+ï¿½ "How many is the greatest number of tags we need to support?" You need to decide how many columns to define in the table for a multivalue attribute like tag.
+ï¿½ "How can I search multiple columns at the same time in SQL?" If you're searching for a given value across multiple columns, this is a clue that the multiple columns should really be stored as a single logical attribute.
 8.4 Legitimate Uses of the Antipattern
 In some cases, an attribute may have a fixed number of choices, and the position or order of these choices may be significant. For example, a given bug may be associated with several users' accounts, but the nature of each association is unique. One is the user who reported the bug, another is a programmer assigned to fix the bug, and another is the quality control engineer assigned to verify the fix. Even though the
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -3741,8 +3747,8 @@ The objective is to structure a database to improve the performance of queries a
 In the television series Star Trek,1 "tribbles" are small furry animals kept as pets. Tribbles are very appealing at first, but soon they reveal their tendency to reproduce out of control, and managing the overpopulation of tribbles becomes a serious problem.
 Where do you put them? Who's responsible for them? How long would it take to pick up every tribble? Eventually, Captain Kirk discovers that his ship and crew can't function, and he has to order his crew to make it top priority to remove the tribbles.
 We know from experience that querying a table with few rows is quicker than querying a table with many rows, all other things being equal. This leads to a common fallacy that we must make every table contain fewer rows, no matter what we have to do. This leads to two forms of the antipattern:
-· Split a single long table into multiple smaller tables, using table names based on distinct data values in one of the table's attributes.
-· Split a single column into multiple columns, using column names based on distinct values in another attribute.
+ï¿½ Split a single long table into multiple smaller tables, using table names based on distinct data values in one of the table's attributes.
+ï¿½ Split a single column into multiple columns, using column names based on distinct values in another attribute.
 But you can't get something for nothing; to meet the goal of having few rows in every table, you have to either create tables that have too many
 1. "Star Trek" and related marks are trademarks of CBS Studios Inc.
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -3862,13 +3868,13 @@ CREATE TABLE ProjectHistory ( bugs_fixed_2008 INT, bugs_fixed_2009 INT, bugs_fix
 
 9.3 How to Recognize the Antipattern
 The following phrases may indicate that the Metadata Tribbles antipattern is growing in your database:
-· "Then we need to create a table (or column) per . . . "
+ï¿½ "Then we need to create a table (or column) per . . . "
 When you describe your database with phrases using per in this way, you're splitting tables by distinct values in one of the columns.
-· "What's the maximum number of tables (or columns) that the database supports?"
+ï¿½ "What's the maximum number of tables (or columns) that the database supports?"
 Most brands of database can handle many more tables and columns than you would need, if you used a sensible database design. If you think you might exceed the maximum, it's a strong sign that you need to rethink your design.
-· "We found out why the application failed to add new data this morning: we forgot to create a new table for the new year."
+ï¿½ "We found out why the application failed to add new data this morning: we forgot to create a new table for the new year."
 This is a common consequence of Metadata Tribbles. When new data demands new database objects, you need to define those objects proactively or else risk unforeseen failures.
-· "How do I run a query to search many tables at once? All the tables have the same columns."
+ï¿½ "How do I run a query to search many tables at once? All the tables have the same columns."
 
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -3877,7 +3883,7 @@ LEGITIMATE USES OF THE ANTIPATTERN
 117
 
 If you need to search many tables with identical structure, you should have stored them together in a single table, with one extra attribute column to distinguish the rows.
-· "How do I pass a parameter for a table name? I need to query a table name appended with the year number dynamically."
+ï¿½ "How do I pass a parameter for a table name? I need to query a table name appended with the year number dynamically."
 You wouldn't need to do this if your data were in one table.
 
 9.4 Legitimate Uses of the Antipattern
@@ -4201,7 +4207,7 @@ Do not use FLOAT if you can avoid it.
 Report erratum this copy is (P1.0 printing, May 2010)
 
 Science is feasible when the variables are few and can be enumerated; when their combinations are distinct and clear.
-Paul Valéry
+Paul Valï¿½ry
 Chapter 11
 31 Flavors
 In a personal contact information table, the salutation is a good example of a column that can have only a few values. Once you support Mr., Mrs., Ms., Dr., and Rev., you've accounted for virtually everyone. You could specify this list in the column definition, using a data type or a constraint, so that no one can accidentally enter an invalid string into the salutation column.
@@ -4290,11 +4296,11 @@ LEGITIMATE USES OF THE ANTIPATTERN
 136
 
 whether the set of values are expected to change or even whether they might change. If so, it's probably not a good time to employ an ENUM.
-· "We have to take the database offline so we can add a new choice in one of our application's menus. It should take no more than thirty minutes, if all goes well."
+ï¿½ "We have to take the database offline so we can add a new choice in one of our application's menus. It should take no more than thirty minutes, if all goes well."
 This is a sign that a set of values is baked into the definition of a column. You should never need to interrupt service for a change like this.
-· "The status column can have one of the following values. We should not need to revise this list."
+ï¿½ "The status column can have one of the following values. We should not need to revise this list."
 Shouldn't need to are weasel words, and this says something quite different from can't.
-· "The list of values in the application code got out of sync with the business rules in the database--again."
+ï¿½ "The list of values in the application code got out of sync with the business rules in the database--again."
 This is a risk of maintaining information in two different places.
 
 11.4 Legitimate Uses of the Antipattern
@@ -4512,17 +4518,17 @@ LEGITIMATE USES OF THE ANTIPATTERN
 144
 
 the opportunity to interview the programmers who designed it (even if that's you), seek the answers to questions like the following:
-· What is the data backup and restore procedure? How can a backup be verified? Have you tested restoring data on a clean server or a different server than where the backup was made?
-· Do images accumulate, or are they removed from the system when they are obsolete? What is the procedure for removing them? Is this an automated or manual procedure?
-· Which users of the application have access to view images? How is access enforced? What do users see if they request to view images they don't have privilege to see?
-· Can I cancel a change to an image? If so, should the application restore the previous state of an image?
+ï¿½ What is the data backup and restore procedure? How can a backup be verified? Have you tested restoring data on a clean server or a different server than where the backup was made?
+ï¿½ Do images accumulate, or are they removed from the system when they are obsolete? What is the procedure for removing them? Is this an automated or manual procedure?
+ï¿½ Which users of the application have access to view images? How is access enforced? What do users see if they request to view images they don't have privilege to see?
+ï¿½ Can I cancel a change to an image? If so, should the application restore the previous state of an image?
 Projects that are guilty of the antipattern typically fail to think through some or all of these questions. Not every application needs robust transaction management or SQL access control for image files. You might find that taking a database offline during backups is a fair trade-off. If these answers are unclear or not forthcoming, it could indicate that the project designed their use of external files carelessly.
 
 12.4 Legitimate Uses of the Antipattern
 There are good reasons to store images or other large objects in files outside the database:
-· The database is much leaner without images, because images tend to be large compared to simple datatypes like integers and strings.
-· Backing up the database is faster and the result is smaller if images are not included. You must copy images from the filesystem as a separate backup step, but this can be more manageable than a huge database backup.
-· If images are in files external to the database, it's easier to do ad hoc image previewing or editing. For example, if you need to apply a batch edit to all your images, it's especially good to keep images external to the database.
+ï¿½ The database is much leaner without images, because images tend to be large compared to simple datatypes like integers and strings.
+ï¿½ Backing up the database is faster and the result is smaller if images are not included. You must copy images from the filesystem as a separate backup step, but this can be more manageable than a huge database backup.
+ï¿½ If images are in files external to the database, it's easier to do ad hoc image previewing or editing. For example, if you need to apply a batch edit to all your images, it's especially good to keep images external to the database.
 If these advantages of storing images in files are important and the issues described earlier are not deal-breakers, you may decide that it's the right thing to do in this project.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -4575,10 +4581,10 @@ SOLUTION: USE BLOB DATA TYPES AS NEEDED
 146
 
 If you store an image in this way in a BLOB column, all the issues are solved:
-· The image data is stored in the database. There is no extra step to load it. There's no risk that the file's pathname is incorrect.
-· Deleting a row deletes the image automatically. · Changes to an image are not visible to other clients until you com-
-mit the change. · Rolling back a transaction restores the previous state of the image. · Updating a row creates a lock, so no other client can update the
-same image concurrently. · Database backups include all the images. · SQL privileges control access to the image as well as the row.
+ï¿½ The image data is stored in the database. There is no extra step to load it. There's no risk that the file's pathname is incorrect.
+ï¿½ Deleting a row deletes the image automatically. ï¿½ Changes to an image are not visible to other clients until you com-
+mit the change. ï¿½ Rolling back a transaction restores the previous state of the image. ï¿½ Updating a row creates a lock, so no other client can update the
+same image concurrently. ï¿½ Database backups include all the images. ï¿½ SQL privileges control access to the image as well as the row.
 The maximum size for a BLOB varies by database brand, but it's enough to store most images. All databases should support BLOB or something akin to it. MySQL, for example, provides a data type called MEDIUMBLOB that stores up to 16 megabytes, which is enough for most images. Oracle supports data types called LONG RAW or BLOB, with capacity up to 2 or 4 gigabytes, respectively. Similar data types are available in other database brands.
 Images usually exist in a file to begin with, so you need some way to load them into a BLOB column in the database. Some databases provide functions to load external files. For example, MySQL has a function called LOAD_FILE( ) you can use to read a file, typically to store the content in a BLOB column.
 Download Phantom-Files/soln/load-file.sql
@@ -4629,9 +4635,9 @@ Software developers typically don't understand how or when to use an index. Docu
 
 13.2 Antipattern: Using Indexes Without a Plan
 When we choose our indexes by guessing, we inevitably make some wrong choices. Misunderstandings about when to use indexes leads to mistakes in one of these three categories:
-· Defining no indexes or not enough indexes
-· Defining too many indexes or indexes that don't help
-· Running queries that no index can help
+ï¿½ Defining no indexes or not enough indexes
+ï¿½ Defining too many indexes or indexes that don't help
+ï¿½ Running queries that no index can help
 No Indexes We commonly read that a database incurs overhead as it keeps an index up-to-date. Each time we use INSERT, UPDATE, or DELETE, the database has to update the index data structures for that table to be consistent so that our subsequent searches use these indexes to find the right set of rows reliably.
 We're trained to think that overhead means waste. So when we read that the database incurs overhead to keep an index updated, we want to eliminate that overhead. Some developers conclude that the remedy
 
@@ -4683,19 +4689,11 @@ hours
 
 NUMERIC(9,2),
 
-
-
 INDEX (bug_id),
-
-
 
 INDEX (summary),
 
-
-
 INDEX (hours),
-
-
 
 INDEX (bug_id, date_reported, status)
 
@@ -4729,8 +4727,8 @@ The telephone book is ordered by last name and then by first name, just like a c
 Download Index-Shotgun/anti/create-index.sql
 CREATE INDEX TelephoneBook ON Accounts(last_name, first_name);
 Some examples of queries that can't benefit from this index include the following:
-· SELECT * FROM Accounts ORDER BY first_name, last_name;
-This query shows the telephone book scenario. If you create a compound index for the columns last_name followed by first_name (as in a telephone book), the index doesn't help you sort primarily by first_name. · SELECT * FROM Bugs WHERE MONTH(date_reported) = 4;
+ï¿½ SELECT * FROM Accounts ORDER BY first_name, last_name;
+This query shows the telephone book scenario. If you create a compound index for the columns last_name followed by first_name (as in a telephone book), the index doesn't help you sort primarily by first_name. ï¿½ SELECT * FROM Bugs WHERE MONTH(date_reported) = 4;
 Even if you create an index for the date_reported column, the order of the index doesn't help you search by month. The order of this index is based on the entire date, starting with the year. But each year has a fourth month, so the rows where the month is equal to 4 are scattered through the table.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -4740,20 +4738,20 @@ HOW TO RECOGNIZE THE ANTIPATTERN
 153
 
 Some databases support indexes on expressions, or indexes on generated columns, as well as indexes on plain columns. But you have to define the index prior to using it, and that index helps only for the expression you specify in its definition.
-· SELECT * FROM Bugs WHERE last_name = 'Charles' OR first_name = 'Charles' ;
+ï¿½ SELECT * FROM Bugs WHERE last_name = 'Charles' OR first_name = 'Charles' ;
 We're back to the problem that rows with that specific first name are scattered unpredictably with respect to the order of the index we defined. The result of the previous query is the same as the result of the following:
 SELECT * FROM Bugs WHERE last_name = 'Charles' UNION SELECT * FROM Bugs WHERE first_name = 'Charles' ;
 The index in our example helps find that last name, but it doesn't help find that first name.
-· SELECT * FROM Bugs WHERE description LIKE '%crash%' ;
+ï¿½ SELECT * FROM Bugs WHERE description LIKE '%crash%' ;
 Because the pattern in this search predicate could occur anywhere in the string, there's no way the sorted index data structure can help.
 
 13.3 How to Recognize the Antipattern
 The following are symptoms of the Index Shotgun antipattern:
-· "Here's my query; how can I make it faster?"
+ï¿½ "Here's my query; how can I make it faster?"
 This is probably the single most common SQL question, but it's missing details about table description, indexes, data volume, and measurements of performance and optimization. Without this context, any answer is just guesswork.
-· "I defined an index on every field; why isn't it faster?"
+ï¿½ "I defined an index on every field; why isn't it faster?"
 This is the classic Index Shotgun antisolution. You've tried every possible index--but you're shooting in the dark.
-· "I read that indexes make the database slow, so I don't use them."
+ï¿½ "I read that indexes make the database slow, so I don't use them."
 Like many developers, you're looking for a one-size-fits-all strategy for performance improvement. No such blanket rule exists.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -4788,8 +4786,8 @@ Before making assumptions about where the performance problem exists, use softwa
 
 You can use the mnemonic MENTOR to describe a checklist for analyzing your database for good index choices: Measure, Explain, Nominate, Test, Optimize, and Rebuild.
 Measure You can't make informed decisions without information. Most databases provide some way to log the time to execute SQL queries so you can identify the operations with the greatest cost. For example:
-· Microsoft SQL Server and Oracle both have SQL Trace facilities and tools to report and analyze trace results. Microsoft calls this tool the SQL Server Profiler, and Oracle calls it TKProf.
-· MySQL and PostgreSQL can log queries that take longer to execute than a specified threshold of time. MySQL calls this the slow query log, and its long_query_time configuration parameter defaults to 10 seconds. PostgreSQL has a similar configuration variable log_min_duration_statement.
+ï¿½ Microsoft SQL Server and Oracle both have SQL Trace facilities and tools to report and analyze trace results. Microsoft calls this tool the SQL Server Profiler, and Oracle calls it TKProf.
+ï¿½ MySQL and PostgreSQL can log queries that take longer to execute than a specified threshold of time. MySQL calls this the slow query log, and its long_query_time configuration parameter defaults to 10 seconds. PostgreSQL has a similar configuration variable log_min_duration_statement.
 PostgreSQL also has a companion tool called pgFouine, which helps you analyze the query log and identify queries that need attention (http://pgfouine.projects.postgresql.org/).
 Once you know which queries account for the most time in your application, you know where you should focus your optimizing attention for
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -4878,10 +4876,10 @@ SELECT status, bug_id, date_reported, summary FROM Bugs WHERE status = 'OPEN' ;
 The database doesn't need to read the corresponding rows from this table. You can't use covering indexes for every query, but when you can, it's usually a great win for performance.
 
 Some databases have tools to do this for you, collecting query trace statistics and proposing a number of changes, including creating new indexes that you're missing but would benefit your query. For example:
-· IBM DB2 Design Advisor
-· Microsoft SQL Server Database Engine Tuning Advisor
-· MySQL Enterprise Query Analyzer
-· Oracle Automatic SQL Tuning Advisor
+ï¿½ IBM DB2 Design Advisor
+ï¿½ Microsoft SQL Server Database Engine Tuning Advisor
+ï¿½ MySQL Enterprise Query Analyzer
+ï¿½ Oracle Automatic SQL Tuning Advisor
 Even without automatic advisors, you can learn how to recognize when an index could benefit a query. You need to study your database's documentation to interpret the QEP report.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -4947,10 +4945,10 @@ OBJECTIVE: DISTINGUISH MISSING VALUES
 14.1 Objective: Distinguish Missing Values
 It's inevitable that some data in your database has no value. Either you need to insert a row before you have discovered the values for all the columns, or else some columns have no meaningful value in some legitimate circumstances. SQL supports a special null value, corresponding to the NULL keyword.
 There are many ways you can use a null value productively in SQL tables and queries:
-· You can use null in place of a value that is not available at the time the row is created, such as the date of termination for an employee who is still working.
-· A given column can use a null value when it has no applicable value on a given row, such as the fuel efficiency rating for a car that is fully electric.
-· A function can return a null value when given invalid inputs, as in DAY('2009-12-32').
-· An outer join uses null values as placeholders for the columns of an unmatched table in an outer join.
+ï¿½ You can use null in place of a value that is not available at the time the row is created, such as the date of termination for an employee who is still working.
+ï¿½ A given column can use a null value when it has no applicable value on a given row, such as the fuel efficiency rating for a car that is fully electric.
+ï¿½ A function can return a null value when given invalid inputs, as in DAY('2009-12-32').
+ï¿½ An outer join uses null values as placeholders for the columns of an unmatched table in an outer join.
 The objective is to write queries against columns that contain null.
 
 14.2 Antipattern: Use Null as an Ordinary Value, or Vice Versa
@@ -5049,9 +5047,9 @@ When you declare a column as NOT NULL, it should be because it would make no sen
 
 14.3 How to Recognize the Antipattern
 If you find yourself or another member of your team describing issues like the following, it could be because of improper handling of nulls:
-· "How do I find rows where no value has been set in the assigned_to (or other) column?"
+ï¿½ "How do I find rows where no value has been set in the assigned_to (or other) column?"
 You can't use the equality operator for null. We'll see how to use the IS NULL predicate later in this chapter.
-· "The full names of some users appear blank in the application presentation, but I can see them in the database."
+ï¿½ "The full names of some users appear blank in the application presentation, but I can see them in the database."
 The problem might be that you're concatenating strings with null, which produces null.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -5064,9 +5062,9 @@ Are Nulls Relational?
 There is some controversy about null in SQL. E. F. Codd, the computer scientist who developed relational theory, recognized the need for null to signify missing data. However, C. J. Date has shown that the behavior of null as defined in the SQL standard has some edge cases that conflict with relational logic.
 The fact is that most programming languages are not perfect implementations of computer science theories. The SQL language supports null, for better or for worse. We've seen some of the hazards, but you can learn how to account for these cases and use null productively.
 
-· "The report of total hours spent working on this project includes only a few of the bugs that we completed! Only those for which we assigned a priority are included."
+ï¿½ "The report of total hours spent working on this project includes only a few of the bugs that we completed! Only those for which we assigned a priority are included."
 Your aggregate query to sum the hours probably includes an expression in the WHERE clause that fails to be true when priority is null. Watch out for unexpected results when you use not equals expressions. For example, on rows where priority is null, the expression priority <> 1 will fail.
-· "It turns out we can't use the string we've been using to represent unknown in the Bugs table, so we need to have a meeting to discuss what new special value we can use and estimate the development time to migrate our data and convert our code to use that value."
+ï¿½ "It turns out we can't use the string we've been using to represent unknown in the Bugs table, so we need to have a meeting to discuss what new special value we can use and estimate the development time to migrate our data and convert our code to use that value."
 This is a likely consequence of assigning a special flag value that could be a legitimate value in your column's domain. Eventually, you may find you need to use that value for its literal meaning instead of its flag meaning.
 Recognizing problems with your handling of nulls can be elusive. Problems may not occur during application testing, especially if you overlooked some edge cases while designing sample data for tests. However, when your application is used in production, data can take many unanticipated forms. If a null can creep into the data, you can count on it happening.
 
@@ -5264,7 +5262,7 @@ Since there is no guarantee of a single value per group in the "extra" columns, 
 MySQL and SQLite have different behavior from other brands of database, which we'll explore in Section 15.4, Legitimate Uses of the Antipattern, on page 178.
 Do-What-I-Mean Queries The common misconception that programmers have is that SQL can guess which bug_id you want in the report, based on the fact that MAX( ) is used in another column. Most people assume that if the query fetches the greatest value, then other columns named will naturally take their value from the same row where that greatest value occurs.
 Unfortunately, SQL can't make this inference in several cases:
-· If two bugs have the exact same value for date_reported and that is the greatest value in the group, which value of bug_id should the query report?
+ï¿½ If two bugs have the exact same value for date_reported and that is the greatest value in the group, which value of bug_id should the query report?
 
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -5272,20 +5270,20 @@ HOW TO RECOGNIZE THE ANTIPATTERN
 
 176
 
-· If you query for two different aggregate functions, for example MAX( ) and MIN( ), these probably correspond to two different rows in the group. Which bug_id should the query return for this group?
+ï¿½ If you query for two different aggregate functions, for example MAX( ) and MIN( ), these probably correspond to two different rows in the group. Which bug_id should the query return for this group?
 Download Groups/anti/maxandmin.sql
 SELECT product_id, MAX(date_reported) AS latest, MIN(date_reported) AS earliest, bug_id
 FROM Bugs JOIN BugsProducts USING (bug_id) GROUP BY product_id;
-· If none of the rows in the table matches the value returned by the aggregate function, what is the value of bug_id? This is commonly true for the functions AVG( ), COUNT( ), and SUM( ).
+ï¿½ If none of the rows in the table matches the value returned by the aggregate function, what is the value of bug_id? This is commonly true for the functions AVG( ), COUNT( ), and SUM( ).
 Download Groups/anti/sumbyproduct.sql
 SELECT product_id, SUM(hours) AS total_project_estimate, bug_id FROM Bugs JOIN BugsProducts USING (bug_id) GROUP BY product_id;
 These are examples of why the Single-Value Rule is important. Not every query that fails to follow this rule would produce an ambiguous result, but many do. It would be clever if the database could tell an ambiguous query from an unambiguous one and produce an error only when the data contains ambiguity. But that would not be good for application reliability; it would mean that the same query might be valid or invalid, depending on the state of data.
 
 15.3 How to Recognize the Antipattern
 In most brands of database, writing a query that violates the SingleValue Rule should elicit an error immediately as you prepare the query. The following are examples of error messages given by some brands of database:
-· Firebird 2.1:
+ï¿½ Firebird 2.1:
 Invalid expression in the select list (not contained in either an aggregate function or the GROUP BY clause)
-· IBM DB2 9.5:
+ï¿½ IBM DB2 9.5:
 An expression starting with "BUG_ID" specified in a SELECT clause, HAVING clause, or ORDER BY clause is not specified in the GROUP BY clause or it is in a SELECT clause, HAVING clause, or ORDER BY clause with a column function and no GROUP BY clause is specified.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -5301,13 +5299,13 @@ A grouping query can achieve the same result by omitting any aggregate function.
 SELECT date_reported, reported_by FROM Bugs GROUP BY date_reported, reported_by;
 Both queries produce the same result and should be optimized and executed similarly, so the difference in this example is only a matter of preference.
 
-· Microsoft SQL Server 2008:
+ï¿½ Microsoft SQL Server 2008:
 Column 'Bugs.bug_id' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.
-· MySQL 5.1, after setting the ONLY_FULL_GROUP SQL mode to disallow ambiguous queries.
+ï¿½ MySQL 5.1, after setting the ONLY_FULL_GROUP SQL mode to disallow ambiguous queries.
 'bugs.b.bug_id' isn't in GROUP BY
-· Oracle 10.2:
+ï¿½ Oracle 10.2:
 not a GROUP BY expression
-· PostgreSQL 8.3:
+ï¿½ PostgreSQL 8.3:
 column "bp.bug_id" must appear in the GROUP BY clause or be used in an aggregate function
 In SQLite and in MySQL, ambiguous columns may contain unexpected and unreliable values. In MySQL, the value returned is from the first row in the group, where first corresponds to physical storage. SQLite gives the opposite result: the value is from the last row in the group. In both cases, the behavior is not documented, and these databases aren't obligated to work the same in future versions. It's your responsibility to notice these cases and to design your queries to avoid ambiguity.
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -5497,10 +5495,10 @@ OBJECTIVE: FETCH A SAMPLE ROW
 
 16.1 Objective: Fetch a Sample Row
 It's surprising how frequently we need an SQL query that returns a random result. This seems to go against the principles of repeatability and deterministic programming. However, it's ordinary to ask for a sample from a large data set. The following are some examples:
-· Displaying rotating content, such as an advertisement or a news story to highlight
-· Auditing a subset of records
-· Assigning incoming calls to available operators
-· Generating test data
+ï¿½ Displaying rotating content, such as an advertisement or a news story to highlight
+ï¿½ Auditing a subset of records
+ï¿½ Assigning incoming calls to available operators
+ï¿½ Generating test data
 It's better to query the database for this sample, as an alternative to fetching the entire data set into your application just so you can pick a sample from the set.
 The objective is to write an efficient SQL query that returns only a random sample of data.1
 
@@ -5527,7 +5525,7 @@ Both of these problems are unnoticeable when you run the query over a small numb
 
 16.3 How to Recognize the Antipattern
 The technique shown in the antipattern is straightforward, and many programmers use it, either after reading it in an article or coming up with it on their own. Some of the following quotes are clues that your colleague is practicing the antipattern:
-· "In SQL, returning a random row is really slow."
+ï¿½ "In SQL, returning a random row is really slow."
 The query to select a random sample worked well against trivial data during development and testing, but it gets progressively slower as the real data grows. No amount of database server tuning, indexing, or caching can improve the scalability.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -5536,9 +5534,9 @@ LEGITIMATE USES OF THE ANTIPATTERN
 
 186
 
-· "How can I increase memory for my application? I need to fetch all the rows so I can randomly pick one."
+ï¿½ "How can I increase memory for my application? I need to fetch all the rows so I can randomly pick one."
 You shouldn't have to load all the rows into the application, and it's wildly wasteful to do this. Besides, the database tends to grow larger than your application memory can handle.
-· "Does it seem to you like some entries come up more frequently than they should? This randomizer doesn't seem very random."
+ï¿½ "Does it seem to you like some entries come up more frequently than they should? This randomizer doesn't seem very random."
 Your random numbers are not synchronized with the gaps in primary key values in the database (see Section 16.5, Choose Next Higher Key Value, on the following page).
 
 16.4 Legitimate Uses of the Antipattern
@@ -5580,9 +5578,9 @@ SOLUTION: IN NO PARTICULAR ORDER. . .
 
 $stmt = $pdo->prepare("SELECT * FROM Bugs WHERE bug_id = ?"); $stmt->execute( array($rand_bug_id) ); $rand_bug = $stmt->fetch();
 This avoids sorting the table, and the chance of choosing each key value is approximately equal, but this solution has other costs:
-· Fetching all the bug_id values from the database might return a list of impractical size. It can even exceed application memory resources and cause an error such as the following:
+ï¿½ Fetching all the bug_id values from the database might return a list of impractical size. It can even exceed application memory resources and cause an error such as the following:
 Fatal error: Allowed memory size of 16777216 bytes exhausted
-· The query must be run twice: once to produce the list of primary keys and a second time to fetch the random row. If the query is too complex and costly, this is a problem.
+ï¿½ The query must be run twice: once to produce the list of primary keys and a second time to fetch the random row. If the query is too complex and costly, this is a problem.
 Use this solution when you're selecting a random row from a simple query with a moderately sized result set. This solution is good for choosing from a list of noncontiguous values.
 Choose a Random Row Using an Offset Still another technique that avoids problems found in the preceding alternatives is to count the rows in the data set and return a random number between 0 and the count. Then use this number as an offset when querying the data set.
 Download Random/soln/limit-offset.php
@@ -5662,9 +5660,9 @@ Given the problems of performance and scalability and the gymnastics you have to
 
 17.3 How to Recognize the Antipattern
 Some questions like the following commonly indicate that the Poor Man's Search Engine antipattern is being employed:
-· "How do I insert a variable in between two wildcards in a LIKE expression?"
+ï¿½ "How do I insert a variable in between two wildcards in a LIKE expression?"
 The question usually comes up when the programmer wants to do a pattern-matching search using input from a user.
-· "How can I write a regular expression to check that a string contains multiple words, that the string doesn't contain a certain word, or that the string contains any form of a given word?"
+ï¿½ "How can I write a regular expression to check that a string contains multiple words, that the string doesn't contain a certain word, or that the string contains any form of a given word?"
 
 2. This example uses MySQL syntax.
 
@@ -5675,7 +5673,7 @@ LEGITIMATE USES OF THE ANTIPATTERN
 193
 
 If a complex problem seems too hard to solve with a regular expression, it probably is.
-· "The search feature of our website has become unusably slow as we've added more documents to the database. What's wrong?"
+ï¿½ "The search feature of our website has become unusably slow as we've added more documents to the database. What's wrong?"
 As the volume of data goes up, the antipattern solution shows poor scalability.
 
 17.4 Legitimate Uses of the Antipattern
@@ -5705,7 +5703,7 @@ Since MySQL 4.1, you can also use a simple boolean expression notation in the pa
 Download Search/soln/mysql/match-boolean.sql
 SELECT * FROM Bugs WHERE MATCH(summary, description) AGAINST ('+crash -save' IN BOOLEAN MODE);
 Text Indexing in Oracle Oracle has supported text-indexing features since Oracle 8 in 1997, when it was part of a data cartridge called ConText. The technology has been updated several times, and the feature is now integrated into the database software. The text indexing in Oracle is complex and rich, so here is a greatly simplified summary:
-· CONTEXT
+ï¿½ CONTEXT
 Create an index of this type for a single text column. Use the CONTAINS( ) operator to search using this index. The index doesn't stay consistent with changes to data, so you have to rebuild the index manually or on a schedule.
 Download Search/soln/oracle/create-index.sql
 CREATE INDEX BugsText ON Bugs(summary) INDEXTYPE IS CTSSYS.CONTEXT;
@@ -5716,7 +5714,7 @@ SOLUTION: USE THE RIGHT TOOL FOR THE JOB
 
 195
 
-· CTXCAT
+ï¿½ CTXCAT
 This index type is specialized for short text samples such as those used in online catalogs, along with other structured columns from the same table. The index stays consistent as transactions update the indexed data.
 Download Search/soln/oracle/ctxcat-create.sql
 CTX_DDL.CREATE_INDEX_SET('BugsCatalogSet' ); CTX_DDL.ADD_INDEX('BugsCatalogSet' , 'status' ); CTX_DDL.ADD_INDEX('BugsCatalogSet' , 'priority' );
@@ -5724,12 +5722,12 @@ CREATE INDEX BugsCatalog ON Bugs(summary) INDEXTYPE IS CTSSYS.CTXCAT PARAMETERS(
 The CATSEARCH( ) operator takes two arguments for searching the text column and the structured column set, respectively.
 Download Search/soln/oracle/ctxcat-search.sql
 SELECT * FROM Bugs WHERE CATSEARCH(summary, '(crash save)' , 'status = "NEW"' ) > 0;
-· CTXXPATH
+ï¿½ CTXXPATH
 This index type is specialized for searching an XML document with the existsNode( ) operator.
 Download Search/soln/oracle/ctxxpath.sql
 CREATE INDEX BugTestXml ON Bugs(testoutput) INDEXTYPE IS CTSSYS.CTXXPATH;
 SELECT * FROM Bugs WHERE testoutput.existsNode('/testsuite/test[@status="fail"]' ) > 0;
-· CTXRULE
+ï¿½ CTXRULE
 Suppose you have a large collection of documents in your database and you need to classify them based on their content.
 With the CTXRULE index, you can design rules to analyze documents and report their classification. Alternatively, you can provide a sample set of documents with your idea of their classifications and have Oracle design the rules to apply to the rest of the document collection. You can even fully automate the process, letting Oracle analyze your document collection and come up with a set of rules and classifications for identifying them.
 Examples using CTXRULE indexes are beyond the scope of this book.
@@ -5962,8 +5960,6 @@ SOLUTION: USE THE RIGHT TOOL FOR THE JOB
 
 202
 
-
-
 PREPARE s1 FROM 'SELECT MAX(keyword_id) INTO @k FROM Keywords
 
 WHERE keyword = ?';
@@ -5974,19 +5970,13 @@ DEALLOCATE PREPARE s1;
 
 IF (@k IS NULL) THEN
 
-
-
 PREPARE s2 FROM 'INSERT INTO Keywords (keyword) VALUES (?)' ;
 
 EXECUTE s2 USING @keyword;
 
 DEALLOCATE PREPARE s2;
 
-
-
 SELECT LAST_INSERT_ID() INTO @k;
-
-
 
 PREPARE s3 FROM 'INSERT INTO BugsKeywords (bug_id, keyword_id)
 
@@ -6001,8 +5991,6 @@ EXECUTE s3 USING @k, @keyword, @keyword;
 DEALLOCATE PREPARE s3;
 
 END IF;
-
-
 
 PREPARE s4 FROM 'SELECT b.* FROM Bugs b
 
@@ -6117,7 +6105,7 @@ There are runtime costs, too. An elaborate SQL query that has to use many joins,
 
 18.3 How to Recognize the Antipattern
 If you hear the following statements from members of your project, it could indicate a case of the Spaghetti Query antipattern:
-· "Why are my sums and counts impossibly large?"
+ï¿½ "Why are my sums and counts impossibly large?"
 An unintended Cartesian product has multiplied two different joined data sets.
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -6125,11 +6113,11 @@ LEGITIMATE USES OF THE ANTIPATTERN
 
 208
 
-· "I've been working on this monster SQL query all day!"
+ï¿½ "I've been working on this monster SQL query all day!"
 SQL isn't this difficult--really. If you've been struggling with a single query for too long, you should reconsider your approach.
-· "We can't add anything to our database report, because it will take too long to figure out how to recode the SQL query."
+ï¿½ "We can't add anything to our database report, because it will take too long to figure out how to recode the SQL query."
 The person who coded the query will be responsible for maintaining that code forever, even if they have moved on to other projects. That person could be you, so don't write overly complex SQL that no one else can maintain!
-· "Try putting another DISTINCT into the query."
+ï¿½ "Try putting another DISTINCT into the query."
 Compensating for the explosion of rows in a Cartesian product, programmers reduce duplicates using the DISTINCT keyword as a query modifier or an aggregate function modifier. This hides the evidence of the malformed query but causes extra work for the RDBMS to generate the interim result set only to sort it and discard duplicates.
 Another clue that a query might be a Spaghetti Query is simply that it has an excessively long execution time. Poor performance could be symptomatic of other causes, but as you investigate such a query, you should consider that you may be trying to do too much in a single SQL statement.
 
@@ -6164,10 +6152,10 @@ SOLUTION: DIVIDE AND CONQUER
 210
 
 You may feel slight regret at resorting to an "inelegant" solution by splitting this into multiple queries, but this should quickly be replaced by relief as you realize this has several positive effects for development, maintenance, and performance:
-· The query doesn't produce an unwanted Cartesian product, as shown in the earlier examples, so it's easier to be sure the query is giving you accurate results.
-· When new requirements are added to the report, it's easier to add another simple query than to integrate more calculations into an already-complicated query.
-· The SQL engine can usually optimize and execute a simple query more easily and reliably than a complex query. Even if it seems like the work is duplicated by splitting the query, it may nevertheless be a net win.
-· In a code review or a teammate training session, it's easier to explain how several straightforward queries work than to explain one intricate query.
+ï¿½ The query doesn't produce an unwanted Cartesian product, as shown in the earlier examples, so it's easier to be sure the query is giving you accurate results.
+ï¿½ When new requirements are added to the report, it's easier to add another simple query than to integrate more calculations into an already-complicated query.
+ï¿½ The SQL engine can usually optimize and execute a simple query more easily and reliably than a complex query. Even if it seems like the work is duplicated by splitting the query, it may nevertheless be a net win.
+ï¿½ In a code review or a teammate training session, it's easier to explain how several straightforward queries work than to explain one intricate query.
 Look for the UNION Label You can combine the results of several queries into one result set with the UNION operation. This can be useful if you really want to submit a single query and consume a single result set, for instance because the result needs to be sorted.
 Download Spaghetti-Query/soln/union.sql
 (SELECT p.product_id, f.status, COUNT(f.bug_id) AS bug_count FROM BugsProducts p LEFT OUTER JOIN Bugs f ON (p.bug_id = f.bug_id AND f.status = 'FIXED' ) WHERE p.product_id = 1 GROUP BY p.product_id, f.status)
@@ -6186,18 +6174,18 @@ to include a column to distinguish the results of one subquery from the other, i
 Use the UNION operation only when the columns in both subqueries are compatible. You can't change the number, name, or data type of columns midway through a result set, so be sure that the columns apply to all the rows consistently and sensibly. If you catch yourself defining a column alias like bugcount_or_customerid_or_null, you're probably using UNION to combine query results that are not compatible.
 Solving Your Boss's Problem How could you have solved the urgent request for statistics about your project? Your boss said, "I need to know how many products we work on, how many developers fixed bugs, the average bugs fixed per developer, and how many of our fixed bugs were reported by customers."
 The best solution is to split up the work:
-· How many products:
+ï¿½ How many products:
 Download Spaghetti-Query/soln/count-products.sql
 SELECT COUNT(*) AS how_many_products FROM Products;
-· How many developers fixed bugs:
+ï¿½ How many developers fixed bugs:
 Download Spaghetti-Query/soln/count-developers.sql
 SELECT COUNT(DISTINCT assigned_to) AS how_many_developers FROM Bugs WHERE status = 'FIXED' ;
-· Average number of bugs fixed per developer:
+ï¿½ Average number of bugs fixed per developer:
 Download Spaghetti-Query/soln/bugs-per-developer.sql
 SELECT AVG(bugs_per_developer) AS average_bugs_per_developer FROM (SELECT dev.account_id, COUNT(*) AS bugs_per_developer
 FROM Bugs b JOIN Accounts dev ON (b.assigned_to = dev.account_id)
 WHERE b.status = 'FIXED' GROUP BY dev.account_id) t;
-· How many of our fixed bugs were reported by customers:
+ï¿½ How many of our fixed bugs were reported by customers:
 Download Spaghetti-Query/soln/bugs-by-customers.sql
 SELECT COUNT(*) AS how_many_customer_bugs FROM Bugs b JOIN Accounts cust ON (b.reported_by = cust.account_id) WHERE b.status = 'FIXED' AND cust.email NOT LIKE '%@example.com' ;
 
@@ -6309,7 +6297,7 @@ The answer is no, SQL does not support any syntax, which means, "all the columns
 
 19.3 How to Recognize the Antipattern
 The following scenarios may indicate that your project is using implicit columns inappropriately, and it's causing trouble:
-· "The application broke because it's still referencing columns in the database result set by the old column names. We tried to update all the code, but I guess we missed some."
+ï¿½ "The application broke because it's still referencing columns in the database result set by the old column names. We tried to update all the code, but I guess we missed some."
 You've changed a table in the database--adding, deleting, renaming, or changing the order of columns--but you failed to change your application code that references the table. It's laborious to track down all these references.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -6318,7 +6306,7 @@ LEGITIMATE USES OF THE ANTIPATTERN
 
 218
 
-· "It took us days to track down our network bottleneck, and we finally narrowed it down to excessive traffic to the database server. According to our statistics, the average query fetches more than 2MB of data but displays less than a tenth of that."
+ï¿½ "It took us days to track down our network bottleneck, and we finally narrowed it down to excessive traffic to the database server. According to our statistics, the average query fetches more than 2MB of data but displays less than a tenth of that."
 You're fetching a lot of data you don't need.
 
 19.4 Legitimate Uses of the Antipattern
@@ -6347,9 +6335,9 @@ INSERT INTO Accounts (account_name, first_name, last_name, email, password_hash,
 VALUES ('bkarwin' , 'Bill' , 'Karwin' , 'bill@example.com' , SHA2('xyzzy' ), NULL, 49.95);
 All this typing seems burdensome, but it's worth it in several ways.
 Mistake-Proofing Remember poka-yoke?1 You make your SQL queries more resistant to the errors and confusion described earlier when you specify the columns in the select-list of the query.
-· If a column has been repositioned in the table, it doesn't change position in a query result.
-· If a column has been added in the table, it doesn't appear in the query result.
-· If a column has been dropped from the table, your query raises an error--but it's a good error, because you're led directly to the code that you need to fix, instead of left to hunt for the root cause.
+ï¿½ If a column has been repositioned in the table, it doesn't change position in a query result.
+ï¿½ If a column has been added in the table, it doesn't appear in the query result.
+ï¿½ If a column has been dropped from the table, your query raises an error--but it's a good error, because you're led directly to the code that you need to fix, instead of left to hunt for the root cause.
 You get similar benefits when you specify columns in INSERT statements. The order of columns you specify overrides the order in the table definition, and values are assigned to the columns you intend. Newly added columns you haven't named in your statement are given default values or null. If you reference a column that has been deleted, you get an error, but troubleshooting is easier.
 This is an example of the fail early principle.
 
@@ -6421,7 +6409,7 @@ INSERT INTO Accounts (account_id, account_name, email, password) VALUES (123, 'b
 
 It's not secure to store a password in clear text or even to pass it over the network in the clear. If an attacker can read the SQL statement you use to insert a password, they can see the password plainly. This is also true for SQL statements to change a password or verify that user input matches a stored password. Hackers have several opportunities to steal a password, including the following:
 
-· Intercepting network packets as the SQL statement is sent from the application client to the database server. This is easier than it sounds; there are free software tools such as Wireshark.1
+ï¿½ Intercepting network packets as the SQL statement is sent from the application client to the database server. This is easier than it sounds; there are free software tools such as Wireshark.1
 
 1. Wireshark (formerly known as Ethereal) is available at http://www.wireshark.org/.
 
@@ -6433,8 +6421,8 @@ ANTIPATTERN: STORE PASSWORD IN PLAIN TEXT
 
 224
 
-· Searching SQL query logs on the database server. The attacker needs access to the database server host, but assuming they have that, they can access log files that may include a record of SQL statements executed by that database server.
-· Reading data from database backup files on the server or on backup media. Are your backup media kept safe? Do you erase backup media destructively before they are recycled or disposed of?
+ï¿½ Searching SQL query logs on the database server. The attacker needs access to the database server host, but assuming they have that, they can access log files that may include a record of SQL statements executed by that database server.
+ï¿½ Reading data from database backup files on the server or on backup media. Are your backup media kept safe? Do you erase backup media destructively before they are recycled or disposed of?
 Authenticating Passwords Later, when the user tries to log in, your application compares the user's input to the password string stored in the database. This comparison is done as plain text, since the password itself is stored in plain text. For example, you can use a query like the following to return a 0 (false) or 1 (true), indicating whether the user's input matches the password in the database:
 Download Passwords/anti/auth-plaintext.sql
 SELECT CASE WHEN password = 'opensesame' THEN 1 ELSE 0 END AS password_matches
@@ -6689,8 +6677,8 @@ SOLUTION: STORE A SALTED HASH OF THE PASSWORD
 When the application receives a request for the special reset_password screen, the value in the token parameter must match a row in the PasswordResetRequest table, and the expiration timestamp on this row must still be upcoming, not past. The account_id on this row references the Accounts table, so the token is restricted to enable a password reset of only one specific account.
 Of course, it would be harmful if the wrong people could access this page. Simple restrictions reduce this risk, such as giving the special screen a short expiration period and making sure the screen does not show the account for which the password is being set.
 The state of cryptography is constantly advancing, trying to stay ahead of attack technology. The techniques in this chapter will improve a great number of typical applications, but if you need to develop very secure systems, you should move on to more advanced techniques such as the following:
-· PBKDF2 (http://tools.ietf.org/html/rfc2898) is a widely used key strengthening standard.
-· Bcrypt (http://bcrypt.sourceforge.net/) implements an adaptive hashing function.
+ï¿½ PBKDF2 (http://tools.ietf.org/html/rfc2898) is a widely used key strengthening standard.
+ï¿½ Bcrypt (http://bcrypt.sourceforge.net/) implements an adaptive hashing function.
 
 If you can read passwords, so can a hacker.
 
@@ -6804,25 +6792,25 @@ ANTIPATTERN: EXECUTE UNVERIFIED INPUT AS CODE
 
 240
 
-· No lists of values can be a single parameter:
+ï¿½ No lists of values can be a single parameter:
 Download SQL-Injection/anti/parameter.php
 <?php $stmt = $pdo->prepare("SELECT * FROM Bugs WHERE bug_id IN ( ? )"); $stmt->execute(array("1234,3456,5678"));
 This works as though you provided a single string value composed of digits and commas, which doesn't work the same as a series of integers:
 Download SQL-Injection/anti/parameter.sql
 SELECT * FROM Bugs WHERE bug_id IN ( '1234,3456,5678' )
-· No table identifier can be a parameter:
+ï¿½ No table identifier can be a parameter:
 Download SQL-Injection/anti/parameter.php
 <?php $stmt = $pdo->prepare("SELECT * FROM ? WHERE bug_id = 1234"); $stmt->execute(array("Bugs"));
 This works as though you had entered a string literal in place of the table name, which is simply a syntax error:
 Download SQL-Injection/anti/parameter.sql
 SELECT * FROM 'Bugs' WHERE bug_id = 1234
-· No column identifier can be a parameter:
+ï¿½ No column identifier can be a parameter:
 Download SQL-Injection/anti/parameter.php
 <?php $stmt = $pdo->prepare("SELECT * FROM Bugs ORDER BY ?"); $stmt->execute(array("date_reported"));
 In this example, the sort is a no-op, because the expression is a constant string, the same on every row:
 Download SQL-Injection/anti/parameter.sql
 SELECT * FROM Bugs ORDER BY 'date_reported' ;
-· No SQL keyword can be a parameter:
+ï¿½ No SQL keyword can be a parameter:
 Download SQL-Injection/anti/parameter.php
 <?php $stmt = $pdo->prepare("SELECT * FROM Bugs ORDER BY date_reported ?"); $stmt->execute(array("DESC"));
 
@@ -6985,10 +6973,10 @@ SOLUTION: TRUST NO ONE
 Download SQL-Injection/soln/mapping.php
 $sql = "SELECT * FROM Bugs ORDER BY {$sortorder} {$direction}"; $stmt = $pdo->query($sql);
 Using this technique has several advantages:
-· You never combine user input with your SQL query, so you reduce the risk of SQL Injection.
-· You can make any part of an SQL statement dynamic, including identifiers, SQL keywords, and even entire expressions.
-· You have an easy and efficient way to validate user choices.
-· You decouple the internal details of your database queries from the user interface.
+ï¿½ You never combine user input with your SQL query, so you reduce the risk of SQL Injection.
+ï¿½ You can make any part of an SQL statement dynamic, including identifiers, SQL keywords, and even entire expressions.
+ï¿½ You have an easy and efficient way to validate user choices.
+ï¿½ You decouple the internal details of your database queries from the user interface.
 The choices are hard-coded in your application, but this is appropriate for table names, column names, and SQL keywords. Choices over the full range of strings or numbers are typical for data values, but not for identifiers or syntax.
 Get a Buddy to Review Your Code The best way to catch flaws is to get another pair of eyes to look at it. Ask a teammate who is familiar with SQL Injection risks to help you inspect your code. Don't let pride or ego keep you from doing the right thing--you may be embarrassed now over missing a coding mistake, but would you rather have to admit responsibility later for a security flaw that allowed hackers to exploit your website?
 In an inspection for SQL Injection, use the following guidelines:
@@ -7134,13 +7122,13 @@ HOW TO RECOGNIZE THE ANTIPATTERN
 
 22.3 How to Recognize the Antipattern
 The following quotes can be hints that someone in your organization is about to use the Pseudokey Neat-Freak antipattern.
-· "How can I reuse an autogenerated identity value after I roll back an insert?"
+ï¿½ "How can I reuse an autogenerated identity value after I roll back an insert?"
 Pseudokey allocation doesn't roll back; if it did, the RDBMS would have to allocate pseudokey values within the scope of a transaction. This would cause either race conditions or blocking when multiple clients are inserting data concurrently.
-· "What happened to bug_id 4?"
+ï¿½ "What happened to bug_id 4?"
 This is an expression of misplaced anxiety over unused numbers in the sequence of primary keys.
-· "How can I query for the first unused ID?"
+ï¿½ "How can I query for the first unused ID?"
 The reason to do this search is almost certainly to reassign the ID.
-· "What if I run out of numbers?"
+ï¿½ "What if I run out of numbers?"
 This is used as a justification for reallocating unused ID values.
 
 22.4 Legitimate Uses of the Antipattern
@@ -7203,16 +7191,16 @@ SOLUTION: GET OVER IT
 257
 
 You gain at least two advantages over traditional pseudokey generators when you use GUIDs:
-· You can generate pseudokeys on multiple database servers concurrently without using the same values.
-· No one will complain about gaps--they'll be too busy complaining about typing thirty-two hex digits for primary key values.
+ï¿½ You can generate pseudokeys on multiple database servers concurrently without using the same values.
+ï¿½ No one will complain about gaps--they'll be too busy complaining about typing thirty-two hex digits for primary key values.
 The latter point leads to some of the disadvantages:
-· The values are long and hard to type.
-· The values are random, so you can't infer any pattern or rely on a greater value indicating a more recent row.
-· Storing a GUID requires 16 bytes. This takes more space and runs more slowly than using a typical 4-byte integer pseudokey.
+ï¿½ The values are long and hard to type.
+ï¿½ The values are random, so you can't infer any pattern or rely on a greater value indicating a more recent row.
+ï¿½ Storing a GUID requires 16 bytes. This takes more space and runs more slowly than using a typical 4-byte integer pseudokey.
 The Most Important Problem Now that you know the problems caused by renumbering pseudokeys and some alternative solutions for related goals, you still have one big problem to solve: how do you fend off an order from a boss who wants you to tidy up the database by closing the gaps in a pseudokey? This is a problem of communication, not technology. Nevertheless, you might need to manage your manager to defend the data integrity of your database.
-· Explain the technology. Honesty is usually the best policy. Be respectful and acknowledge the feeling behind the request. For example, tell your manager this:
+ï¿½ Explain the technology. Honesty is usually the best policy. Be respectful and acknowledge the feeling behind the request. For example, tell your manager this:
 "The gaps do look strange, but they're harmless. It's normal for rows to be skipped, rolled back, or deleted from time to time. We allocate a new number for each new row in the database, instead of writing code to figure out which old numbers we can reuse safely. This makes our code cheap to develop, makes it faster to run, and reduces errors."
-· Be clear about the costs. Changing the primary key values seems like a trivial task, but you should give realistic estimates for the work it will take to calculate new values, write and test code to handle duplicate values, cascade changes throughout the database, investigate the impact to other systems, and train users and administrators to manage the new procedures.
+ï¿½ Be clear about the costs. Changing the primary key values seems like a trivial task, but you should give realistic estimates for the work it will take to calculate new values, write and test code to handle duplicate values, cascade changes throughout the database, investigate the impact to other systems, and train users and administrators to manage the new procedures.
 
 Report erratum this copy is (P1.0 printing, May 2010)
 
@@ -7221,7 +7209,7 @@ SOLUTION: GET OVER IT
 258
 
 Most managers prioritize based on cost of a task, and they should back down from requesting frivolous, micro-optimizing work when they're confronted with the real cost.
-· Use natural keys. If your manager or other users of the database insist on interpreting meaning in the primary key values, then let there be meaning. Don't use pseudokeys--use a string or a number that encodes some identifying meaning. Then it's easier to explain any gaps within the context of the meaning of these natural keys.
+ï¿½ Use natural keys. If your manager or other users of the database insist on interpreting meaning in the primary key values, then let there be meaning. Don't use pseudokeys--use a string or a number that encodes some identifying meaning. Then it's easier to explain any gaps within the context of the meaning of these natural keys.
 You can also use both a pseudokey and another attribute column you use as a natural identifier. Hide the pseudokey from reports if gaps in the numeric sequence make readers anxious.
 
 Use pseudokeys as unique row identifiers; they're not row numbers.
@@ -7241,9 +7229,9 @@ OBJECTIVE: WRITE LESS CODE
 23.1 Objective: Write Less Code
 Everyone wants to write elegant code. That is, we want to do cool work with little code. The cooler the work is and the less code it takes us, the greater the ratio of elegance. If we can't make our work cooler, it stands to reason that at least we can improve the elegance ratio of coolness to code volume by doing the same work with less code.
 That's a superficial reason, but there are more rational reasons to write concise code:
-· We'll finish coding a working application more quickly.
-· We'll have less code to test, to document, or to have peer-reviewed.
-· We'll have fewer bugs if we have fewer lines of code.
+ï¿½ We'll finish coding a working application more quickly.
+ï¿½ We'll have less code to test, to document, or to have peer-reviewed.
+ï¿½ We'll have fewer bugs if we have fewer lines of code.
 It's therefore an instinctive priority for programmers to eliminate any code they can, especially if that code fails to increase coolness.
 
 23.2 Antipattern: Making Bricks Without Straw
@@ -7294,11 +7282,11 @@ LEGITIMATE USES OF THE ANTIPATTERN
 263
 
 code where you ignore a return value from a function that returns one or where your code calls a function but neglects to handle a checked exception.1 You could also encounter the See No Evil antipattern if you hear phrases like the following:
-· "My program crashes after I query the database."
+ï¿½ "My program crashes after I query the database."
 Often the crash happens because your query failed, and you tried to use the result in an illegal manner, such as calling a method on a nonobject or dereferencing a null pointer.
-· "Can you help me find my SQL error? Here's my code. . . "
+ï¿½ "Can you help me find my SQL error? Here's my code. . . "
 First, start by looking at the SQL, not the code that builds it.
-· "I don't bother cluttering up my code with error handling."
+ï¿½ "I don't bother cluttering up my code with error handling."
 Some computer scientists have estimated that up to 50 percent of the lines of code in a robust application are devoted to handling error cases. This may seem like a lot, unless you think of all the steps that you could include under error handling: detecting, classifying, reporting, and compensating. It's important for any software to be able to do all that.
 
 23.4 Legitimate Uses of the Antipattern
@@ -7339,9 +7327,9 @@ SOLUTION: RECOVER FROM ERRORS GRACEFULLY
 
 After checking for a problem at , , and , you can get more information from the database connection object or the statement object.
 Retrace Your Steps It's also important to use the actual SQL query to debug a problem, instead of the code that produces an SQL query. Many simple mistakes, such as misspellings or imbalanced quotes or parentheses, are apparent instantly, even though they're obscure and puzzling otherwise.
-· Build your SQL query in a variable, instead of building it ad hoc in the arguments of the API method to prepare the query. This gives you the opportunity to examine the variable before you use it.
-· Choose a place to output SQL that is not part of your application output, such as a log file, an IDE debugger console, or a browser extension to show diagnostic output.2
-· Do not print the SQL query within HTML comments of a web application's output. Any user can view your page source. Reading the SQL query gives hackers a lot of knowledge about your database structure.
+ï¿½ Build your SQL query in a variable, instead of building it ad hoc in the arguments of the API method to prepare the query. This gives you the opportunity to examine the variable before you use it.
+ï¿½ Choose a place to output SQL that is not part of your application output, such as a log file, an IDE debugger console, or a browser extension to show diagnostic output.2
+ï¿½ Do not print the SQL query within HTML comments of a web application's output. Any user can view your page source. Reading the SQL query gives hackers a lot of knowledge about your database structure.
 Using an object-relational mapping (ORM) framework that builds and executes SQL queries transparently can make debugging complicated. If you don't have access to the content of the SQL query, how can you observe it for debugging? Some ORM frameworks solve this by sending generated SQL to a log.
 Finally, most database brands provide their own logging mechanism on the database servers instead of in application client code. If you can't enable SQL logging in the application, you can still monitor queries as the database server executes them.
 
@@ -7364,35 +7352,35 @@ OBJECTIVE: EMPLOY BEST PRACTICES
 
 24.1 Objective: Employ Best Practices
 Professional programmers strive to use good software engineering habits in their projects, such as the following:
-· Keeping application source code under revision control using tools such as Subversion or Git.
-· Developing and running automated unit tests or functional tests for applications.
-· Writing documentation, specifications, and code comments to record the requirements and implementation strategies of an application.
+ï¿½ Keeping application source code under revision control using tools such as Subversion or Git.
+ï¿½ Developing and running automated unit tests or functional tests for applications.
+ï¿½ Writing documentation, specifications, and code comments to record the requirements and implementation strategies of an application.
 The time you take to develop software using best practices is a net win, because it reduces a lot of needless or repetitive work. Most experienced developers know that sacrificing these practices for the sake of expediency is a recipe for failure.
 
 24.2 Antipattern: Make SQL a Second-Class Citizen
 Even among developers who accept best practices when developing application code, there's a tendency to think of database code as exempt from these practices. I call this antipattern Diplomatic Immunity because it assumes that the rules of application development don't apply to database development.
 Why would developers make this assumption? The following are some possible reasons:
-· The role of software engineer and database administrator are separate in some companies. The DBA typically works with several teams of programmers, so there's a perception that she's not a full-time member of any one of these teams. She's treated like a visitor, and she's not subject to the same responsibilities as the software engineers.
-· The SQL language used for relational databases is different from conventional programming. Even the way we invoke SQL statements as a specialized language within application code suggests a kind of guest-like status.
-· Advanced IDE tools are popular for application code languages, making editing, testing, and source control quick and painless. But tools for database development are not as advanced, or at least not as widely used. Developers can code applications with
+ï¿½ The role of software engineer and database administrator are separate in some companies. The DBA typically works with several teams of programmers, so there's a perception that she's not a full-time member of any one of these teams. She's treated like a visitor, and she's not subject to the same responsibilities as the software engineers.
+ï¿½ The SQL language used for relational databases is different from conventional programming. Even the way we invoke SQL statements as a specialized language within application code suggests a kind of guest-like status.
+ï¿½ Advanced IDE tools are popular for application code languages, making editing, testing, and source control quick and painless. But tools for database development are not as advanced, or at least not as widely used. Developers can code applications with
 Report erratum this copy is (P1.0 printing, May 2010)
 
 HOW TO RECOGNIZE THE ANTIPATTERN
 
 268
 
-best practices easily, but applying these practices to SQL feels clumsy by comparison. Developers tend to find other things to do. · In IT, it's ordinary for knowledge and operation of the database to be focused on one person--the DBA. Because the DBA is the only one who has access to the database server, she serves as a living knowledge base and source control system.
+best practices easily, but applying these practices to SQL feels clumsy by comparison. Developers tend to find other things to do. ï¿½ In IT, it's ordinary for knowledge and operation of the database to be focused on one person--the DBA. Because the DBA is the only one who has access to the database server, she serves as a living knowledge base and source control system.
 The database is the foundation of an application, and quality matters. You know how to develop application code with high quality, but you may be building your application on top of a database that has failed to solve the needs of the project or that no one understands. The risk is that you're developing an application only to find that you have to scrap it.
 
 24.3 How to Recognize the Antipattern
 You might think it's hard to show evidence of not doing something, but that isn't always true. The following are some telltale signs of cutting corners:
-· "We are adopting the new engineering process--that is, a lightweight version of it."
+ï¿½ "We are adopting the new engineering process--that is, a lightweight version of it."
 Lightweight in this context means that the team intends to skip some tasks that the engineering process calls for. Some of these may be legitimate to skip, but it could also be a euphemism for not following important best practices.
-· "We don't need the DBA staff to attend training for our new source control system, since they don't use it anyway."
+ï¿½ "We don't need the DBA staff to attend training for our new source control system, since they don't use it anyway."
 Excluding some technical team members from training (and probably access) ensures that they won't use those tools.
-· "How can I track usage of tables and columns in the database? There are some elements we don't know the purpose of, and we'd like to eliminate them if they're obsolete."
+ï¿½ "How can I track usage of tables and columns in the database? There are some elements we don't know the purpose of, and we'd like to eliminate them if they're obsolete."
 You are not using the project documentation for the database schema. The document may be out-of-date, may be inaccessible, or may never have existed at all. Even if you don't know the purpose of some tables or columns, they might be important to someone, and you can't remove them.
-· "Is there a tool to compare two database schema, report the differences, and create a script to alter one to match the other?"
+ï¿½ "Is there a tool to compare two database schema, report the differences, and create a script to alter one to match the other?"
 Report erratum this copy is (P1.0 printing, May 2010)
 
 LEGITIMATE USES OF THE ANTIPATTERN
@@ -7572,9 +7560,9 @@ Robert L. Glass found that "eighty percent of software work is intellectual. A f
 One way we assist the intellectual part of software development is to adopt the terminology and conventions of design patterns. When we say Singleton or Facade or Factory, the other developers on our team know what we mean. That saves a lot of time.
 Much of the code in any application is repetitive--practically boilerplate. Frameworks help improve coding productivity by giving us reusable components and code generation tools. We can produce working software applications while writing less original code.
 Design patterns and software frameworks come together when we use the Model View Controller (MVC) architecture. This is a technique for separating concerns in an application, as illustrated in Figure 25.1, on the following page.
-· The controllers accept user input, define the work the application should do in response, delegate work to the appropriate models, and send results to the view.
-· The models handle everything else; they are the heart of the application and include input validation, business logic, and database interaction.
-· The views present information in the user interface.
+ï¿½ The controllers accept user input, define the work the application should do in response, delegate work to the appropriate models, and send results to the view.
+ï¿½ The models handle everything else; they are the heart of the application and include input validation, business logic, and database interaction.
+ï¿½ The views present information in the user interface.
 It's easy to understand what the controller and the view do. But the purpose of the model is more vague. There's a great desire in the software developer community to simplify and generalize what a model is,
 
 1. Facts and Fallacies of Software Engineering [Gla92], p.60.
@@ -7705,25 +7693,25 @@ ActiveRecord ActiveRecord ActiveRecord
 Figure 25.2: Using Magic Beans leads to vinelike tangles.
 that uses different models together is duplicated across controllers. You need to use another approach to simplify and encapsulate part of your application.
 Unit Testing Magic Beans Is Hard When you employ the Magic Beans antipattern, you find that testing each of the layers in MVC is harder.
-· Testing the model: Since you've made the model the same class as the Active Record, you can't test model behavior separately from data access. To test the model, you have to execute queries against a live database. Many people use database fixtures. A database fixture loads data into a test database to ensure that each test runs against a baseline state. Doing this much complex setup and teardown work makes testing models slow and error-prone, as well as requiring a live database for tests.
-· Testing the view: Testing views involves rendering the view into HTML and parsing the result to verify that dynamic HTML elements provided by models appear in the output. Even if your framework simplifies the assertions in your test scripts, the framework has to run complex and time-consuming code to perform the rendering and then parse the HTML for specific elements.
+ï¿½ Testing the model: Since you've made the model the same class as the Active Record, you can't test model behavior separately from data access. To test the model, you have to execute queries against a live database. Many people use database fixtures. A database fixture loads data into a test database to ensure that each test runs against a baseline state. Doing this much complex setup and teardown work makes testing models slow and error-prone, as well as requiring a live database for tests.
+ï¿½ Testing the view: Testing views involves rendering the view into HTML and parsing the result to verify that dynamic HTML elements provided by models appear in the output. Even if your framework simplifies the assertions in your test scripts, the framework has to run complex and time-consuming code to perform the rendering and then parse the HTML for specific elements.
 Report erratum this copy is (P1.0 printing, May 2010)
 
 HOW TO RECOGNIZE THE ANTIPATTERN
 
 286
 
-· Testing the controller: You also find that testing the controller is complex, because a model that is a data access object leads to repetitions of the same code in multiple controllers, all of which need to be tested.
+ï¿½ Testing the controller: You also find that testing the controller is complex, because a model that is a data access object leads to repetitions of the same code in multiple controllers, all of which need to be tested.
 To test a controller, you need to create a fake HTTP request. The output of a web application is an HTTP response header and body. To verify the test, you have to pick apart the HTTP response the controller returns. This needs a lot of setup code to test business logic, and it makes tests run slowly.
 If you could separate business logic from the database access and separate business logic from presentation, it would help to meet the goals of MVC, and it would make testing simpler too.
 
 25.3 How to Recognize the Antipattern
 The following clues may mean that you have Magic Beans:
-· "How can I pass a custom SQL query to a model?"
+ï¿½ "How can I pass a custom SQL query to a model?"
 The question suggests that you're using a database access class as a model class. You shouldn't have to pass SQL queries to the model--the model class should encapsulate any queries it needs.
-· "Should I copy complex model queries to all my controllers, or should I code them once in an abstract controller?"
+ï¿½ "Should I copy complex model queries to all my controllers, or should I code them once in an abstract controller?"
 Neither of these solutions gives you the stability or simplicity you are looking for. You should code complex queries within the model, exposed as part of the interface of the model. That way, you follow the Don't Repeat Yourself (DRY) principle, and you make the model's usage simpler.4
-· "I have to write more database fixtures to unit test my models."
+ï¿½ "I have to write more database fixtures to unit test my models."
 If you're using database fixtures, you're testing database access, not business logic. You should be able to unit test a model in isolation from the database.
 4. DRY was coined in The Pragmatic Programmer [HT00] by Andy Hunt and Dave Thomas.
 
@@ -7819,11 +7807,11 @@ public function bugsAction() {
 $this->view->searchResults = $this->bugReport->search( $this->_getParam("status", "OPEN"), $this->_getParam("search"));
 } }
 You should be able to notice several improvements:
-· The class interaction diagram (shown in Figure 25.3, on the following page) is much simpler and easier to read, indicating an improvement in decoupling classes.
-· By decoupling the model's interface from its underlying database structure, we've reduced and simplified the code in the controller.
-· Each model class creates the objects to interact with one or more tables. The controllers do not need to know which tables are involved.
-· The model classes encapsulate and hide the database queries. The controller is concerned only with retrieving user inputs and invoking higher-level tasks through the model API.
-· In some cases, a query is too complex to do easily through a DAO, and writing custom SQL is needed. Using plain SQL seems less scary when it's safely encapsulated inside a model class.
+ï¿½ The class interaction diagram (shown in Figure 25.3, on the following page) is much simpler and easier to read, indicating an improvement in decoupling classes.
+ï¿½ By decoupling the model's interface from its underlying database structure, we've reduced and simplified the code in the controller.
+ï¿½ Each model class creates the objects to interact with one or more tables. The controllers do not need to know which tables are involved.
+ï¿½ The model classes encapsulate and hide the database queries. The controller is concerned only with retrieving user inputs and invoking higher-level tasks through the model API.
+ï¿½ In some cases, a query is too complex to do easily through a DAO, and writing custom SQL is needed. Using plain SQL seems less scary when it's safely encapsulated inside a model class.
 Testing Plain Objects Ideally, you should be able to test your model without connecting to a live database. If you decouple your model from its DAO, then you can create stub and mock DAOs to help unit test your model.
 Likewise, you can test the interface of a domain model just like any other object-oriented testing: call methods of the object, and then validate the method's return value. This is faster and easier than creating fake HTTP requests to feed to a controller and parsing the resulting HTTP response.
 You still test your controllers with fake HTTP requests, but because the controller code is simpler, you don't need to test as many logical paths.
@@ -7867,7 +7855,7 @@ Young man, in mathematics you don't understand things. You just get used to them
 John von Neumann
 Appendix A
 Rules of Normalization
-Relational database design isn't arbitrary or mysterious. You can use a number of well-defined rules to design a data storage strategy that avoids redundancy and helps make your application mistake-proof, like the poka-yoke ideas mentioned earlier in this book. You've probably heard other metaphors for the same idea, such as defensive design or fail early. The rules of normalization aren't complicated, but they are subtle. Developers often misunderstand how they work, perhaps because they expect the rules to be harder than they are. Another possibility is that people are turned off by having to follow rules at all. Rules are the bête noire of developers who value newness, creativity, and innovation. Rules are in a way the opposite of freedom. Software developers continually make trade-offs between simplicity and flexibility. You can make a lot of work for yourself by reinventing the wheel and developing custom data management software for every application. Or you can take advantage of existing knowledge and technology if you can conform to a relational design. I've described the antipatterns in this book using their own merits (or faults) to avoid being too academic or theoretical. But in this appendix, we'll see that theory can also be practical.
+Relational database design isn't arbitrary or mysterious. You can use a number of well-defined rules to design a data storage strategy that avoids redundancy and helps make your application mistake-proof, like the poka-yoke ideas mentioned earlier in this book. You've probably heard other metaphors for the same idea, such as defensive design or fail early. The rules of normalization aren't complicated, but they are subtle. Developers often misunderstand how they work, perhaps because they expect the rules to be harder than they are. Another possibility is that people are turned off by having to follow rules at all. Rules are the bï¿½te noire of developers who value newness, creativity, and innovation. Rules are in a way the opposite of freedom. Software developers continually make trade-offs between simplicity and flexibility. You can make a lot of work for yourself by reinventing the wheel and developing custom data management software for every application. Or you can take advantage of existing knowledge and technology if you can conform to a relational design. I've described the antipatterns in this book using their own merits (or faults) to avoid being too academic or theoretical. But in this appendix, we'll see that theory can also be practical.
 A.1 What Does Relational Mean?
 This term relational doesn't refer to relationships between tables. It refers to the table itself, or rather, the relationship between columns within a table. In a way, it refers to both.
 
@@ -7910,15 +7898,15 @@ MYTHS ABOUT NORMALIZATION
 297
 
 developers who express with complete confidence untruths such as these:
-· "Normalization makes a database slower. Denormalization makes a database faster."
+ï¿½ "Normalization makes a database slower. Denormalization makes a database faster."
 False. It's true that you may need to use a join to retrieve attributes from separate tables after you apply normalization. If you denormalize data, you can avoid some joins.
 For example, the comma-separated list in Chapter 2, Jaywalking, on page 25 stores products for a given bug. But what if you also need a list of bugs for a given product? Denormalization usually helps convenience or performance for one type of query, but at a great cost for some other types of queries.
 There are legitimate uses for denormalization. But you should model your database in a normal form first, before deciding to use denormaliziation. The MENTOR guide for indexing in Chapter 13, Index Shotgun, on page 148 applies to denormalization too: be sure you measure performance both before and after you implement a change for the sake of efficiency.
-· "Normalization says to push the data out to child tables and reference it using a pseudokey."
+ï¿½ "Normalization says to push the data out to child tables and reference it using a pseudokey."
 False. You can use pseudokeys for the goal of convenience, performance, or storage efficiency, and those reasons are legitimate. But don't believe that it has anything to do with normalization.
-· "Normalization is where you separate attributes as much as possible, such as in the Entity-Attribute-Value design."
+ï¿½ "Normalization is where you separate attributes as much as possible, such as in the Entity-Attribute-Value design."
 False. It's common for developers to use the word normalization inaccurately, implying that it makes data less human-readable or less convenient to query. In fact, the opposite is true.
-· "No one needs to normalize past the third normal form. The other normal forms are so esoteric that you'll never encounter them."
+ï¿½ "No one needs to normalize past the third normal form. The other normal forms are so esoteric that you'll never encounter them."
 False. One study showed that more than 20 percent of business databases contain designs that satisfy the first three normal forms but violate the fourth normal form. This is a minority, but it's far from insignificant. If you learn of a bug that potentially results in data loss and occurs in 20 percent of your applications, wouldn't you want to fix it?
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -7947,9 +7935,9 @@ Figure A.1: Progression of normal forms
 
 A.3 What Is Normalization?
 The following are the objectives of normalization:
-· To represent facts about the real world in a way that we can understand
-· To reduce storing facts redundantly and to prevent anomalous or inconsistent data
-· To support integrity constraints
+ï¿½ To represent facts about the real world in a way that we can understand
+ï¿½ To reduce storing facts redundantly and to prevent anomalous or inconsistent data
+ï¿½ To support integrity constraints
 Notice that improving database performance is not on this list. Normalization helps us store data correctly and avoid getting into trouble. It's practically inevitable that a database that is not normalized becomes a mess. We find ourselves developing a lot more code to clean up inconsistent or duplicate data. We experience delays and expenses to our businesses from faulty data. If you include these scenarios, the benefits to performance from normalizing a database become clearer.
 When a table satisfies rules of normalization, we say the table is in normal form. There are five traditional normal forms, describing progressive levels of normalization. Each normal form eliminates a specific type of redundancy or anomaly when you design a relation. Generally, if your table satisfies a normal form, the table also satisfies all the preceding normal forms. There are three additional normal forms that researchers have described. The progression of normal forms is shown in Figure A.1.
 First Normal Form The most fundamental requirement for first normal form is that the table must be a relation. If it doesn't meet the criteria for a relation described in the first section, then your table can't be in first normal form or any of the subsequent normal forms.
@@ -7999,8 +7987,8 @@ Figure A.2: Repeating groups vs. first normal form
 
 The next requirement is that the table must not have any repeating groups. Remember that each row in a relation is a combination between several sets, choosing one value from each set. A repeating group means that one row may have multiple values from the given set.
 We saw two antipatterns that create repeating groups:
-· Multiple values from the same domain across multiple columns, in Chapter 8, Multicolumn Attributes, on page 102
-· Multiple values within a single column, in Chapter 2, Jaywalking, on page 25
+ï¿½ Multiple values from the same domain across multiple columns, in Chapter 8, Multicolumn Attributes, on page 102
+ï¿½ Multiple values within a single column, in Chapter 2, Jaywalking, on page 25
 In Figure A.2, we can see repeating groups according to each of these antipatterns. The proper design that satisfies first normal form is to create a separate table. Tags now occupy a single column, and we can support multiple tags by storing one tag per row.
 
 Report erratum this copy is (P1.0 printing, May 2010)
@@ -8532,7 +8520,7 @@ Joe Celko. Joe Celko's SQL Programming Style. Morgan Kaufmann Publishers, San Fr
 
 [Cod70]
 
-Edgar F. Codd. A relational model of data for large shared data banks. Communications of the ACM, 13(6):377­387, June 1970.
+Edgar F. Codd. A relational model of data for large shared data banks. Communications of the ACM, 13(6):377ï¿½387, June 1970.
 
 [Eva03]
 
@@ -8552,7 +8540,7 @@ know about floating-point arithmetic.
 
 ACM Com-
 
-put. Surv., pages 5­48, March 1991.
+put. Surv., pages 5ï¿½48, March 1991.
 
 Reprinted
 
@@ -8608,37 +8596,37 @@ A
 ABS() function, with floating-point numbers, 127
 access privileges, external files and, 143
 accuracy, numeric, see Rounding Errors antipattern
-Active Record pattern as MVC model, 278­292
-avoiding, 287­292 consequences of, 282­286 how it works, 280­281 legitimate uses of, 287 recognizing as antipattern, 286 ad hoc programming, 269 adding (inserting) rows assigning keys out of sequence, 251 with comma-separated attributes, 32 dependent tables for multivalue
-attributes, 109 with insufficient indexing, 149­150 with multicolumn attributes, 104 with multiple spawned tables, 112 nodes in tree structures
-Adjacency List pattern, 38 Closure Table pattern, 50 Nested Sets pattern, 47 Path Enumeration model, 43 reference integrity without foreign key constraints, 66 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214­220 consequences of, 215­217 legitimate uses of, 218
+Active Record pattern as MVC model, 278ï¿½292
+avoiding, 287ï¿½292 consequences of, 282ï¿½286 how it works, 280ï¿½281 legitimate uses of, 287 recognizing as antipattern, 286 ad hoc programming, 269 adding (inserting) rows assigning keys out of sequence, 251 with comma-separated attributes, 32 dependent tables for multivalue
+attributes, 109 with insufficient indexing, 149ï¿½150 with multicolumn attributes, 104 with multiple spawned tables, 112 nodes in tree structures
+Adjacency List pattern, 38 Closure Table pattern, 50 Nested Sets pattern, 47 Path Enumeration model, 43 reference integrity without foreign key constraints, 66 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218
 
-naming columns instead of, 219­220 recognizing as antipattern, 217­218 see also race conditions adding allowed values for columns with lookup tables, 137 with restrictive column definitions, 134 addresses as multivalue attributes, 102 polymorphic associations for (example), 93 adjacency lists, 34­53 alternative models for, 41­53 Closure Table pattern, 48­52 comparison among, 52­53 Nested Sets model, 44­48 Path Enumeration model, 41­44 compared to other models, 52­53 consequences of, 35­39 legitimate uses of, 40­41 recognizing as antipattern, 39­40 aggregate functions, 181 aggregate queries with intersection tables, 31 see also queries Ambiguous Groups antipattern, 173­182 avoiding with unambiguous columns, 179­182 consequences of, 174­176 legitimate uses of, 178 recognizing, 176­177 ancestors, tree, see Naive Trees antipattern Apache Lucene search engine, 200 API return values, ignoring, see See No Evil antipattern
+naming columns instead of, 219ï¿½220 recognizing as antipattern, 217ï¿½218 see also race conditions adding allowed values for columns with lookup tables, 137 with restrictive column definitions, 134 addresses as multivalue attributes, 102 polymorphic associations for (example), 93 adjacency lists, 34ï¿½53 alternative models for, 41ï¿½53 Closure Table pattern, 48ï¿½52 comparison among, 52ï¿½53 Nested Sets model, 44ï¿½48 Path Enumeration model, 41ï¿½44 compared to other models, 52ï¿½53 consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing as antipattern, 39ï¿½40 aggregate functions, 181 aggregate queries with intersection tables, 31 see also queries Ambiguous Groups antipattern, 173ï¿½182 avoiding with unambiguous columns, 179ï¿½182 consequences of, 174ï¿½176 legitimate uses of, 178 recognizing, 176ï¿½177 ancestors, tree, see Naive Trees antipattern Apache Lucene search engine, 200 API return values, ignoring, see See No Evil antipattern
 
 APPLICATION TESTING
 
 COLUMN DEFINITIONS TO RESTRICT VALUES
 
-application testing, 274 archiving, splitting tables for, 117 arithmetic with null values, 163, 168 assigning primary key values, 251 atomicity, 191 attribute tables, 73­88
-avoiding with subtype modeling, 82­88 Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 with post-processing, 86­88 semistructured data, 86 Single Table Inheritance, 82­83
-consequences of using, 74­80 legitimate uses of, 80­82 recognizing as antipattern, 80 attributes, multivalue in delimited lists in columns, 25­33,
-107 consequences of, 26­29 legitimate uses of, 30 recognizing as antipattern, 29 in delimited lists in columns intersection tables instead of, 30­33 in multiple columns, 102­109 avoiding with dependent tables, 108­109 consequences of, 103­106 legitimate uses of, 107­108 recognizing as antipattern, 106­107 authentication, 224 automatic code generation, 212 AVG() function, 31
+application testing, 274 archiving, splitting tables for, 117 arithmetic with null values, 163, 168 assigning primary key values, 251 atomicity, 191 attribute tables, 73ï¿½88
+avoiding with subtype modeling, 82ï¿½88 Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 with post-processing, 86ï¿½88 semistructured data, 86 Single Table Inheritance, 82ï¿½83
+consequences of using, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing as antipattern, 80 attributes, multivalue in delimited lists in columns, 25ï¿½33,
+107 consequences of, 26ï¿½29 legitimate uses of, 30 recognizing as antipattern, 29 in delimited lists in columns intersection tables instead of, 30ï¿½33 in multiple columns, 102ï¿½109 avoiding with dependent tables, 108ï¿½109 consequences of, 103ï¿½106 legitimate uses of, 107ï¿½108 recognizing as antipattern, 106ï¿½107 authentication, 224 automatic code generation, 212 AVG() function, 31
 B
 backing up databases, external files and, 142
 backup media, passwords stored on, 224
-bandwidth of SQL queries, 220 Berkeley DB database, 81 best practices, 266­277
-establishing culture of quality, 269­277 documenting code, 269 source code control, 272 validation and testing, 274
-excuses for doing otherwise, 267­268
+bandwidth of SQL queries, 220 Berkeley DB database, 81 best practices, 266ï¿½277
+establishing culture of quality, 269ï¿½277 documenting code, 269 source code control, 272 validation and testing, 274
+excuses for doing otherwise, 267ï¿½268
 
-legitimate excuses, 269 recognizing as antipattern, 268­269 BFILE data type, 145 BINARY_FLOAT data type, 128 BLOB data type for dynamic attributes, 86 for images and media, 140, 145­147 Boolean expressions, nulls in, 169 bootstrap data, 274, 276 Boyce-Codd normal form, 302 branches, application, 277 broken references, checking for, 67 buddy review of code, 248­249
+legitimate excuses, 269 recognizing as antipattern, 268ï¿½269 BFILE data type, 145 BINARY_FLOAT data type, 128 BLOB data type for dynamic attributes, 86 for images and media, 140, 145ï¿½147 Boolean expressions, nulls in, 169 bootstrap data, 274, 276 Boyce-Codd normal form, 302 branches, application, 277 broken references, checking for, 67 buddy review of code, 248ï¿½249
 C
 Cartesian products, 51, 205, 208 avoiding with multiple queries, 209
 cascading updates, 71 Cassandra database, 81 CATSEARCH() operator, 195 characters, escaping, 238 check constraints, 132
 legitimate uses of, 136 lookup tables instead of, 136 recognizing as antipattern, 135 for split tables, 113 child nodes, tree, see Naive Trees
-antipattern Class Table Inheritance, 84­86 clear-text passwords, see passwords,
-readable cloning to achieve scalability, 110­121
-consequences of, 111­116 legitimate uses of, 117 recognizing as antipattern, 116­117 solutions to, 118
-creating dependent tables, 120­121 horizontal partitioning, 118­119 vertical partitioning, 119­120 close() function, 263 Closure Table pattern, 48­52 compared to other models, 52­53 COALESCE() function, 99, 171 code generation, 212 column definitions to restrict values, 131­138 consequences of, 132­135 legitimate uses of, 136 lookup tables instead of, 136­138
+antipattern Class Table Inheritance, 84ï¿½86 clear-text passwords, see passwords,
+readable cloning to achieve scalability, 110ï¿½121
+consequences of, 111ï¿½116 legitimate uses of, 117 recognizing as antipattern, 116ï¿½117 solutions to, 118
+creating dependent tables, 120ï¿½121 horizontal partitioning, 118ï¿½119 vertical partitioning, 119ï¿½120 close() function, 263 Closure Table pattern, 48ï¿½52 compared to other models, 52ï¿½53 COALESCE() function, 99, 171 code generation, 212 column definitions to restrict values, 131ï¿½138 consequences of, 132ï¿½135 legitimate uses of, 136 lookup tables instead of, 136ï¿½138
 
 312
 
@@ -8646,19 +8634,19 @@ COLUMN INDEXING
 
 CRUD FUNCTIONS
 
-recognizing as antipattern, 135­136 column indexing, see indexing columns
+recognizing as antipattern, 135ï¿½136 column indexing, see indexing columns
 BLOB, for image storage, 140 defaults for, 171 documenting, 270 functionally dependent, 178, 179 having no order, 295 multivalue attributes across
-multiple, 102­109 avoiding with dependent tables, 108­109 consequences of, 103­106 legitimate uses of, 107­108 recognizing as antipattern, 106­107 multivalue attributes in, 25­33, 107 consequences of, 26­29 intersection tables instead of, 30­33 legitimate uses of, 30 recognizing as antipattern, 29 nongrouped, referencing, 173­182 avoiding with unambiguous columns, 179­182 consequences of, 174­176 legitimate uses of, 178 recognizing as antipattern, 176­177 NOT NULL columns, 165, 171 nullable, searching, 164, 169 for parent identifiers, 34­53 alternative tree models for, 41­53 consequences of, 35­39 legitimate uses of, 40­41 recognizing as antipattern, 39­40 partitioning tables by, 119­120 restricting to specific values, 131­138 using column definitions, 132­136 using lookup tables, 136­138 split (spawned), 116 testing to validate databases, 275 using wildcards for, 214­220 avoiding by naming columns, 219­220 consequences of, 215­217 legitimate uses of, 218 recognizing as antipattern, 217­218 value atomicity, 191
+multiple, 102ï¿½109 avoiding with dependent tables, 108ï¿½109 consequences of, 103ï¿½106 legitimate uses of, 107ï¿½108 recognizing as antipattern, 106ï¿½107 multivalue attributes in, 25ï¿½33, 107 consequences of, 26ï¿½29 intersection tables instead of, 30ï¿½33 legitimate uses of, 30 recognizing as antipattern, 29 nongrouped, referencing, 173ï¿½182 avoiding with unambiguous columns, 179ï¿½182 consequences of, 174ï¿½176 legitimate uses of, 178 recognizing as antipattern, 176ï¿½177 NOT NULL columns, 165, 171 nullable, searching, 164, 169 for parent identifiers, 34ï¿½53 alternative tree models for, 41ï¿½53 consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing as antipattern, 39ï¿½40 partitioning tables by, 119ï¿½120 restricting to specific values, 131ï¿½138 using column definitions, 132ï¿½136 using lookup tables, 136ï¿½138 split (spawned), 116 testing to validate databases, 275 using wildcards for, 214ï¿½220 avoiding by naming columns, 219ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 recognizing as antipattern, 217ï¿½218 value atomicity, 191
 
 columns for primary keys, see duplicate rows, avoiding
 comma-delimited lists in columns, see Jaywalking pattern
-common super-tables, 100­101 common table expressions, 40 comparing strings
-good tools for, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198
-with pattern-matching predicates, 191­192 legitimate uses of, 193 recognizing as antipattern, 192­193
-comparisons to NULL, 164, 169 complex queries, using, 204­213
-consequences of, 205­207 legitimate uses of, 208­209 recognizing as antipattern, 207­208 using multiple queries instead,
-209­213 compound indexes, 151, 152 compound keys, 58
-as better than pseudokeys, 63 as hard to use, 59 referenced by foreign keys, 64 concise code, writing, 260 Concrete Table Inheritance, 83­84 concurrent inserts assigning IDs out of sequence, 252 race conditions with, 60 consistency of database, see referential
+common super-tables, 100ï¿½101 common table expressions, 40 comparing strings
+good tools for, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198
+with pattern-matching predicates, 191ï¿½192 legitimate uses of, 193 recognizing as antipattern, 192ï¿½193
+comparisons to NULL, 164, 169 complex queries, using, 204ï¿½213
+consequences of, 205ï¿½207 legitimate uses of, 208ï¿½209 recognizing as antipattern, 207ï¿½208 using multiple queries instead,
+209ï¿½213 compound indexes, 151, 152 compound keys, 58
+as better than pseudokeys, 63 as hard to use, 59 referenced by foreign keys, 64 concise code, writing, 260 Concrete Table Inheritance, 83ï¿½84 concurrent inserts assigning IDs out of sequence, 252 race conditions with, 60 consistency of database, see referential
 integrity constraints, testing to validate
 database, 276 CONTAINS() operator, 194 CONTEXT indexes (Oracle), 194 ConText technology, 194 ConvertEmptyStringToNull property, 168 correlated subqueries, 179 CouchDB database, 81 COUNT() function, 31
 items in adjacency lists, 38 coupling independent blocks of code,
@@ -8672,17 +8660,17 @@ CTXCAT INDEXES (ORACLE)
 DELIMITED LISTS IN COLUMNS
 
 CTXCAT indexes (Oracle), 195 CTXRULE indexes (Oracle), 195 CTXXPATH indexes (Oracle), 195 culture of quality, establishing,
-269­277 documenting code, 269 source code control, 272 validation and testing, 274
+269ï¿½277 documenting code, 269 source code control, 272 validation and testing, 274
 D
 DAO, decoupling model class from, 288 DAOs, testing with, 291 data
 archiving, by splitting tables, 117 mixing with metadata, 92, 112 synchronizing with split tables, 113 data access frameworks, 242 data integrity defending to your manager, 257 Entity-Attribute-Value antipattern,
-77­79 with multicolumn attributes, 105 renumbering primary key values
-and, 250­258 methods and consequences of, 251­253 recognizing as antipattern, 254 stopping habit of, 254­258 with split tables, 113, 114 transaction isolation and files, 141 value-restricted columns, 131­138 using column definitions, 132­136 using lookup tables, 136­138 see also referential integrity data types generic attribute tables and, 77 for referencing external files, 143, 145 see also specific data type by name data uniqueness, see data integrity data validation, see validation data values, confusing null with, 163, 168 data, fractional, see Rounding Errors antipattern database backup, external files and, 142 database consistency, see referential integrity database indexes, see indexing
+77ï¿½79 with multicolumn attributes, 105 renumbering primary key values
+and, 250ï¿½258 methods and consequences of, 251ï¿½253 recognizing as antipattern, 254 stopping habit of, 254ï¿½258 with split tables, 113, 114 transaction isolation and files, 141 value-restricted columns, 131ï¿½138 using column definitions, 132ï¿½136 using lookup tables, 136ï¿½138 see also referential integrity data types generic attribute tables and, 77 for referencing external files, 143, 145 see also specific data type by name data uniqueness, see data integrity data validation, see validation data values, confusing null with, 163, 168 data, fractional, see Rounding Errors antipattern database backup, external files and, 142 database consistency, see referential integrity database indexes, see indexing
 
 database infrastructure, documenting, 271
 database validity, testing, 274 DBA scripts, source code control for,
 274 debugging against SQL injection,
-248­249 debugging dynamic SQL, 262 DECIMAL data type, 128­130 decoupling independent blocks of code,
+248ï¿½249 debugging dynamic SQL, 262 DECIMAL data type, 128ï¿½130 decoupling independent blocks of code,
 288 DEFAULT keyword, 171 deleting allowed values for columns
 designating values as obsolete, 135, 138
 with lookup tables, 137 with restrictive column definitions,
@@ -8691,8 +8679,8 @@ rollbacks and, 142 deleting rows
 archiving data by splitting tables, 117
 associated with image files, 141 rollbacks and, 142
 with comma-separated attributes, 32 dependent tables for multivalue
-attributes, 109 with insufficient indexing, 149­150 with multicolumn attributes, 104 nodes in tree structures
-Adjacency List pattern, 38 Closure Table pattern, 50 Nested Sets pattern, 46, 47 reference integrity and cascading updates and, 71 without foreign key constraints, 67, 68 reusing primary key values and, 253 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214­220 consequences of, 215­217 legitimate uses of, 218 naming columns instead of, 219­220 recognizing as antipattern, 217­218 delimited lists in columns, see Jaywalking pattern
+attributes, 109 with insufficient indexing, 149ï¿½150 with multicolumn attributes, 104 nodes in tree structures
+Adjacency List pattern, 38 Closure Table pattern, 50 Nested Sets pattern, 46, 47 reference integrity and cascading updates and, 71 without foreign key constraints, 67, 68 reusing primary key values and, 253 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 naming columns instead of, 219ï¿½220 recognizing as antipattern, 217ï¿½218 delimited lists in columns, see Jaywalking pattern
 
 314
 
@@ -8701,24 +8689,24 @@ DELIMITING ITEMS WITHIN COLUMNS
 ENUMERATED VALUES FOR COLUMNS
 
 delimiting items within columns, 32 denormalization, 297 dependent tables
-to avoid multicolumn attributes, 108­109
+to avoid multicolumn attributes, 108ï¿½109
 split tables as, 115 to resolve Metadata Tribbles
-antipattern, 120­121 depth-first traversal, 44 derived tables, 179 descendants, tree, see Naive Trees
+antipattern, 120ï¿½121 depth-first traversal, 44 derived tables, 179 descendants, tree, see Naive Trees
 antipattern Diplomatic Immunity antipattern,
-266­277 consequences, 267­268 establishing quality culture instead,
-269­277 documenting code, 269 source code control, 272 validation and testing, 274 legitimate uses of, 269 recognizing, 268­269 directory hierarchies, 42 DINSTINCT keyword, 177 DISTINCT keyword, 208 documentation source code control for, 274 documenting code, 269 domain modeling, 278­292 Active Record as model consequences of, 282­286 how it works, 280­281 legitimate uses of, 287 recognizing as antipattern, 286 designing appropriate model for, 287­292 Domain-Key normal form (DKNF), 307 domains, to restrict column values, 133 DOUBLE PRECISION data type, 125 dual-purpose foreign keys, 89­101 consequences of using, 91­94 legitimate uses of, 95­96 recognizing as antipattern, 94­95 solutions for avoiding, 96­101 common super-tables, 100­101 reversing the references, 96­99 duplicate rows, avoiding, 54­64 creating good primary keys, 62­64 using primary key column consequences of, 57­60 legitimate uses of, 61
+266ï¿½277 consequences, 267ï¿½268 establishing quality culture instead,
+269ï¿½277 documenting code, 269 source code control, 272 validation and testing, 274 legitimate uses of, 269 recognizing, 268ï¿½269 directory hierarchies, 42 DINSTINCT keyword, 177 DISTINCT keyword, 208 documentation source code control for, 274 documenting code, 269 domain modeling, 278ï¿½292 Active Record as model consequences of, 282ï¿½286 how it works, 280ï¿½281 legitimate uses of, 287 recognizing as antipattern, 286 designing appropriate model for, 287ï¿½292 Domain-Key normal form (DKNF), 307 domains, to restrict column values, 133 DOUBLE PRECISION data type, 125 dual-purpose foreign keys, 89ï¿½101 consequences of using, 91ï¿½94 legitimate uses of, 95ï¿½96 recognizing as antipattern, 94ï¿½95 solutions for avoiding, 96ï¿½101 common super-tables, 100ï¿½101 reversing the references, 96ï¿½99 duplicate rows, avoiding, 54ï¿½64 creating good primary keys, 62ï¿½64 using primary key column consequences of, 57ï¿½60 legitimate uses of, 61
 
-recognizing as antipattern, 61 duplicate rows, disallowed, 295 dynamic attributes, supporting, 73­88
-with generic attribute tables, 74­80 legitimate uses of, 80­82 recognizing as antipattern, 80
-with subtype modeling, 82­88 cConcrete Table Inheritance, 83­84 Class Table Inheritance, 84­86 with post-processing, 86­88 semistructured data, 86 Single Table Inheritance, 82­83
+recognizing as antipattern, 61 duplicate rows, disallowed, 295 dynamic attributes, supporting, 73ï¿½88
+with generic attribute tables, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing as antipattern, 80
+with subtype modeling, 82ï¿½88 cConcrete Table Inheritance, 83ï¿½84 Class Table Inheritance, 84ï¿½86 with post-processing, 86ï¿½88 semistructured data, 86 Single Table Inheritance, 82ï¿½83
 dynamic defaults for columns, 171 dynamic SQL, 212
-debugging, 262 SQL injection with, 234­249
-how to prevent, 243­249 mechanics and consequences of, 235­242 no legitimate reasons for, 243 recognizing as antipattern, 242
+debugging, 262 SQL injection with, 234ï¿½249
+how to prevent, 243ï¿½249 mechanics and consequences of, 235ï¿½242 no legitimate reasons for, 243 recognizing as antipattern, 242
 E
 EAV, see Entity-Attribute-Value antipattern
 elegant code, writing, 260 email, sending passwords in, 225 empty strings, null vs., 164 Entity-Attribute-Value antipattern,
-73­88 avoiding by modeling subtypes,
-82­88 Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 with post-processing, 86­88 semistructured data, 86 Single Table Inheritance, 82­83 consequences of, 74­80 legitimate uses of, 80­82 recognizing, 80 entity-relationship diagrams (ERDs), 270, 274 ENUM data type, 133 legitimate uses of, 136 lookup tables instead of, 136 recognizing as antipattern, 135 enumerated values for columns, 131­138 using column definitions, 132­135 legitimate uses of, 136
+73ï¿½88 avoiding by modeling subtypes,
+82ï¿½88 Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 with post-processing, 86ï¿½88 semistructured data, 86 Single Table Inheritance, 82ï¿½83 consequences of, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing, 80 entity-relationship diagrams (ERDs), 270, 274 ENUM data type, 133 legitimate uses of, 136 lookup tables instead of, 136 recognizing as antipattern, 135 enumerated values for columns, 131ï¿½138 using column definitions, 132ï¿½135 legitimate uses of, 136
 
 315
 
@@ -8726,17 +8714,17 @@ EQUALITY WITH NULL VALUES
 
 FOREIGN KEYS
 
-recognizing as antipattern, 135­136 using lookup tables, 136­138 equality with null values, 163, 168 ERDs (entity-relationship diagrams), 270, 274 error return values, ignoring, see See No Evil antipattern error-free code, assuming, 66 errors breaking refactoring, 216 fatal, ignoring, 261 rounding errors with FLOAT, 123­130 avoiding with NUMERIC, 128­130 consequences of, 124­128 how caused, 124 legitimate uses of FLOAT, 128 recognizing potential for, 128 update errors, 60, 104 violations of Single-Value Rule, 176 errors, duplication, see duplicate rows, avoiding errors, reference, see referential integrity escaping characters, 238 ETL (Extract, Transform, Load) operation, 135 exceptions from API calls, ignoring, see See No Evil antipattern executing unverified user input, 234­249 how to prevent, 243­249 buddy review, 248­249 filtering input, 244 isolating input from code, 246­248 quoting dynamic values, 245 using parameter placeholders, 244­245 mechanics and consequences of, 235­242 no legitimate reasons for, 243 recognizing as antipattern, 242 existsNode() operator, 195 expressions, nulls in, 163, 168 external media files, 139­147 consequences of, 140­143 legitimate uses for, 144­145 recognizing as antipattern, 143­144 using BLOBs instead of, 145­147
+recognizing as antipattern, 135ï¿½136 using lookup tables, 136ï¿½138 equality with null values, 163, 168 ERDs (entity-relationship diagrams), 270, 274 error return values, ignoring, see See No Evil antipattern error-free code, assuming, 66 errors breaking refactoring, 216 fatal, ignoring, 261 rounding errors with FLOAT, 123ï¿½130 avoiding with NUMERIC, 128ï¿½130 consequences of, 124ï¿½128 how caused, 124 legitimate uses of FLOAT, 128 recognizing potential for, 128 update errors, 60, 104 violations of Single-Value Rule, 176 errors, duplication, see duplicate rows, avoiding errors, reference, see referential integrity escaping characters, 238 ETL (Extract, Transform, Load) operation, 135 exceptions from API calls, ignoring, see See No Evil antipattern executing unverified user input, 234ï¿½249 how to prevent, 243ï¿½249 buddy review, 248ï¿½249 filtering input, 244 isolating input from code, 246ï¿½248 quoting dynamic values, 245 using parameter placeholders, 244ï¿½245 mechanics and consequences of, 235ï¿½242 no legitimate reasons for, 243 recognizing as antipattern, 242 existsNode() operator, 195 expressions, nulls in, 163, 168 external media files, 139ï¿½147 consequences of, 140ï¿½143 legitimate uses for, 144ï¿½145 recognizing as antipattern, 143ï¿½144 using BLOBs instead of, 145ï¿½147
 
 F
 false, null vs., 164, 169 fatal errors, ignoring, 261 Fear of the Unknown antipattern,
-162­172 avoiding with NULL as unique,
-168­172 consequences of, 163­166 legitimate uses of, 168 recognizing, 166­167 fetching, see querying fifth normal form, 305 file existence, checking for, 143 files, storing externally, 139­147 consequences of, 140­143 legitimate uses for, 144­145 recognizing as antipattern, 143­144 using BLOBs instead of, 145­147 FILESTREAM data type, 145 filesystem hierarchies, 42 filter extension, 244 filtering input against SQL injection,
-244 finite precision, 124 first normal form, 298 flawless code, assuming, 66 FLOAT data type, 125 foreign key constraints, 65­72
-avoiding consequences of, 66­69 legitimate uses of, 70 recognizing as antipattern, 69
-declaring, need for, 70­72 foreign keys
-common super-tables, 100­101 in dependent tables, 108­109 as entities in attribute tables, 73­88
-avoiding with subtype modeling, 82­88 consequences of using, 74­80 legitimate uses of, 80­82 recognizing as antipattern, 80 with intersection tables, 33 multiple in single field, 27 names for, 62 referencing compound keys, 59, 64 referencing multiple parent tables, 89­101 with dual-purpose foreign keys, 91­96 workable solutions for, 96­101
+162ï¿½172 avoiding with NULL as unique,
+168ï¿½172 consequences of, 163ï¿½166 legitimate uses of, 168 recognizing, 166ï¿½167 fetching, see querying fifth normal form, 305 file existence, checking for, 143 files, storing externally, 139ï¿½147 consequences of, 140ï¿½143 legitimate uses for, 144ï¿½145 recognizing as antipattern, 143ï¿½144 using BLOBs instead of, 145ï¿½147 FILESTREAM data type, 145 filesystem hierarchies, 42 filter extension, 244 filtering input against SQL injection,
+244 finite precision, 124 first normal form, 298 flawless code, assuming, 66 FLOAT data type, 125 foreign key constraints, 65ï¿½72
+avoiding consequences of, 66ï¿½69 legitimate uses of, 70 recognizing as antipattern, 69
+declaring, need for, 70ï¿½72 foreign keys
+common super-tables, 100ï¿½101 in dependent tables, 108ï¿½109 as entities in attribute tables, 73ï¿½88
+avoiding with subtype modeling, 82ï¿½88 consequences of using, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing as antipattern, 80 with intersection tables, 33 multiple in single field, 27 names for, 62 referencing compound keys, 59, 64 referencing multiple parent tables, 89ï¿½101 with dual-purpose foreign keys, 91ï¿½96 workable solutions for, 96ï¿½101
 
 316
 
@@ -8744,25 +8732,25 @@ FOURTH NORMAL FORM
 
 INFINITE PRECISION
 
-split tables and, 115 fourth normal form, 297, 304 fractional numbers, storing, 123­130
-legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124­128
-avoiding with NUMERIC, 128­130 recognizing potential for, 128 FTS extensions, SQLite, 197 full-text indexes, MySQL, 194 full-text search, 190 good tools for, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198 using pattern-matching predicates, 191­192 legitimate uses of, 193 recognizing as antipattern, 192­193 functionally dependent columns, 178, 179
+split tables and, 115 fourth normal form, 297, 304 fractional numbers, storing, 123ï¿½130
+legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124ï¿½128
+avoiding with NUMERIC, 128ï¿½130 recognizing potential for, 128 FTS extensions, SQLite, 197 full-text indexes, MySQL, 194 full-text search, 190 good tools for, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198 using pattern-matching predicates, 191ï¿½192 legitimate uses of, 193 recognizing as antipattern, 192ï¿½193 functionally dependent columns, 178, 179
 G
-garbage collection with image files, 141 generalized inverted index (GIN), 197 generating pseudokeys, 254 generic attribute tables, 73­88
-avoiding with subtype modeling, 82­88 Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 with post-processing, 86­88 semistructured data, 86 Single Table Inheritance, 82­83
-consequences of using, 74­80 legitimate uses of, 80­82 recognizing as antipattern, 80 GIN (generalized inverted index), 197 globally unique identifiers (GUIDs), 255 Gonzalez, Albert, 234 GRANT statements, files and, 143 GROUP BY clause, 174, 177 GROUP_CONCAT() function, 181 grouping queries, see nongrouped
+garbage collection with image files, 141 generalized inverted index (GIN), 197 generating pseudokeys, 254 generic attribute tables, 73ï¿½88
+avoiding with subtype modeling, 82ï¿½88 Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 with post-processing, 86ï¿½88 semistructured data, 86 Single Table Inheritance, 82ï¿½83
+consequences of using, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing as antipattern, 80 GIN (generalized inverted index), 197 globally unique identifiers (GUIDs), 255 Gonzalez, Albert, 234 GRANT statements, files and, 143 GROUP BY clause, 174, 177 GROUP_CONCAT() function, 181 grouping queries, see nongrouped
 columns, referencing GUIDs (globally unique identifiers), 255
 H
 Hadoop, 81 HAS-A relationship between model and
 DAO, 288
 
 HBase database, 81 hierarchies, storing and querying,
-34­53 alternatives to adjacency lists, 41­53
-Closure Table pattern, 48­52 comparison among, 52­53 Nested Sets model, 44­48 Path Enumeration model, 41­44 using adjacency lists consequences of, 35­39 legitimate uses of, 40­41 recognizing as antipattern, 39­40 historical data, splitting tables for, 117 horizontal partitioning, 118­119
+34ï¿½53 alternatives to adjacency lists, 41ï¿½53
+Closure Table pattern, 48ï¿½52 comparison among, 52ï¿½53 Nested Sets model, 44ï¿½48 Path Enumeration model, 41ï¿½44 using adjacency lists consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing as antipattern, 39ï¿½40 historical data, splitting tables for, 117 horizontal partitioning, 118ï¿½119
 I
-id columns, renaming, 58, 62 ID Required antipattern, 54­64
-consequences of, 57­60 legitimate uses of, 61 recognizing, 61 successful solutions to, 62­64 ID values, renumbering, 250­258 methods and consequences of,
-251­253 recognizing as antipattern, 254 stopping habit of, 254­258 IEEE 754 format, 125, 126 images, storing externally, 139­147 consequences of, 140­143 legitimate uses for, 144­145 recognizing as antipattern, 143­144 using BLOBs instead of, 145­147 Implicit Columns antipattern, 214­220 consequences of, 215­217 legitimate uses of, 218 naming columns instead of, 219­220 recognizing, 217­218 IN() predicate, 246 Index Shotgun antipattern, 148 consequences of, 149­153 indexing, 148 insufficiently, 149­150 intersection tables and, 33 inverted indexes, 200­203 overzealous, 151­152 queries that can't use, 152­153 with randomly sorted columns, 185 for rarely used queries, 193 inequality with null values, 163, 168 infinite precision, 124, 130
+id columns, renaming, 58, 62 ID Required antipattern, 54ï¿½64
+consequences of, 57ï¿½60 legitimate uses of, 61 recognizing, 61 successful solutions to, 62ï¿½64 ID values, renumbering, 250ï¿½258 methods and consequences of,
+251ï¿½253 recognizing as antipattern, 254 stopping habit of, 254ï¿½258 IEEE 754 format, 125, 126 images, storing externally, 139ï¿½147 consequences of, 140ï¿½143 legitimate uses for, 144ï¿½145 recognizing as antipattern, 143ï¿½144 using BLOBs instead of, 145ï¿½147 Implicit Columns antipattern, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 naming columns instead of, 219ï¿½220 recognizing, 217ï¿½218 IN() predicate, 246 Index Shotgun antipattern, 148 consequences of, 149ï¿½153 indexing, 148 insufficiently, 149ï¿½150 intersection tables and, 33 inverted indexes, 200ï¿½203 overzealous, 151ï¿½152 queries that can't use, 152ï¿½153 with randomly sorted columns, 185 for rarely used queries, 193 inequality with null values, 163, 168 infinite precision, 124, 130
 
 317
 
@@ -8770,32 +8758,32 @@ INHERITANCE
 
 MAGIC BEANS ANTIPATTERN
 
-inheritance Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 Single Table Inheritance, 82­83
+inheritance Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 Single Table Inheritance, 82ï¿½83
 inner joins, see joins input
-filtering against SQL injection, 244 isolating from code, 246­248 inserting rows, see adding (inserting)
+filtering against SQL injection, 244 isolating from code, 246ï¿½248 inserting rows, see adding (inserting)
 rows inspecting code against SQL injection,
-248­249 integers, as unlimited resource, 256 integers, fractional numbers instead of,
-123­130, see Rounding Errors antipattern legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124­128 avoiding with NUMERIC, 128­130 recognizing potential for, 128 integrity, see data integrity; referential integrity intercepting network packets, 223 intersection tables advantages of using, 30­33 to avoid multicolumn attributes, 108­109 to avoid polymorphic associations, 96 avoiding, 25­33 consequences of, 26­29 legitimate uses of, 30 recognizing as antipattern, 29 compound keys in, 58 defined, 30 fourth normal form, 304 inverted indexes, 200­203 IS DISTINCT FROM predicate, 170 IS NOT NULL predicate, 169 IS NULL predicate, 169 IS-A relationship between model and DAO, 288 ISNULL() function, 172 ISO/IEC 11179 standard, 62 isolating input from code, 246­248 isolation testing, 274
+248ï¿½249 integers, as unlimited resource, 256 integers, fractional numbers instead of,
+123ï¿½130, see Rounding Errors antipattern legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124ï¿½128 avoiding with NUMERIC, 128ï¿½130 recognizing potential for, 128 integrity, see data integrity; referential integrity intercepting network packets, 223 intersection tables advantages of using, 30ï¿½33 to avoid multicolumn attributes, 108ï¿½109 to avoid polymorphic associations, 96 avoiding, 25ï¿½33 consequences of, 26ï¿½29 legitimate uses of, 30 recognizing as antipattern, 29 compound keys in, 58 defined, 30 fourth normal form, 304 inverted indexes, 200ï¿½203 IS DISTINCT FROM predicate, 170 IS NOT NULL predicate, 169 IS NULL predicate, 169 IS-A relationship between model and DAO, 288 ISNULL() function, 172 ISO/IEC 11179 standard, 62 isolating input from code, 246ï¿½248 isolation testing, 274
 J
-Jaywalking antipattern, 25­33, 107 avoiding with intersection tables, 30­33
+Jaywalking antipattern, 25ï¿½33, 107 avoiding with intersection tables, 30ï¿½33
 
-consequences of, 26­29 legitimate uses of, 30 recognizing, 29 join tables, see intersection tables joins with comma-separated attributes, 27 creating Cartesian products, 205,
+consequences of, 26ï¿½29 legitimate uses of, 30 recognizing, 29 join tables, see intersection tables joins with comma-separated attributes, 27 creating Cartesian products, 205,
 209 with generic attribute tables, 79 pseudokey primary keys and, 59 querying polymorphic associations,
 93 for unambiguous queries, 180 wildcards for tables, 218
 K
-key selection, random, 186 Keyless Entry antipattern, 65­72
-consequences of, 66­69 legitimate uses of, 70 recognizing, 69 solving with foreign key constraints,
-70­72 keyword search, see full-text search
+key selection, random, 186 Keyless Entry antipattern, 65ï¿½72
+consequences of, 66ï¿½69 legitimate uses of, 70 recognizing, 69 solving with foreign key constraints,
+70ï¿½72 keyword search, see full-text search
 L
 large objects, storing, see external media files
 LAST_INSERT_ID() function, 43 law of parsimony, 209 leaky abstractions, 281 leaves, tree, see Naive Trees
 antipattern length limit on multivalue attributes,
-29, 33 levels, tree, see Naive Trees antipattern lightweight code, 268 LIKE predicates, 191­192
-better tools for search, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198
-legitimate uses of, 193 recognizing as antipattern, 192­193 LIMIT clause, 188 lookup tables, to restrict values,
-136­138 Lucene search engine, 200
+29, 33 levels, tree, see Naive Trees antipattern lightweight code, 268 LIKE predicates, 191ï¿½192
+better tools for search, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198
+legitimate uses of, 193 recognizing as antipattern, 192ï¿½193 LIMIT clause, 188 lookup tables, to restrict values,
+136ï¿½138 Lucene search engine, 200
 M
-Magic Beans antipattern, 278­292
+Magic Beans antipattern, 278ï¿½292
 
 318
 
@@ -8803,15 +8791,15 @@ MAINTAINING DATABASE
 
 NAIVE TREES ANTIPATTERN
 
-consequences of, 282­286 how it works, 280­281 legitimate uses of, 287 recognizing, 286 solution to, 287­292 maintaining database, see adding
-(inserting) rows; deleting rows; updating rows mandatory attributes, disallowing, 77 many-to-many relationships, 107 many-to-many tables, see intersection tables mapping tables, see intersection tables MATCH() function, 194 media files, storing externally, 139­147 consequences of, 140­143 legitimate uses for, 144­145 recognizing as antipattern, 143­144 using BLOBs instead of, 145­147 metadata changing, policy on, 135 cloning tables and columns for, 110­121 consequences of, 111­116 legitimate uses of, 117 recognizing as antipattern, 116­117 solutions to, 118 lists of allowable values as, 132 mixing data with, 92, 112 subtype modeling Class Table Inheritance and, 85 Concrete Table Inheritance and, 84 Single Table Inheritance and, 83 synchronizing, with split tables, 115 metadata naming conventions, 62 Metadata Tribbles antipattern, 110­121 consequences of, 111­116 legitimate uses of, 117 recognizing, 116­117 solutions to, 118 creating dependent tables, 120­121 horizontal partitioning, 118­119 vertical partitioning, 119­120 Microsoft SQL Server, full-text search in, 196 migrations (migration scripts), 273
+consequences of, 282ï¿½286 how it works, 280ï¿½281 legitimate uses of, 287 recognizing, 286 solution to, 287ï¿½292 maintaining database, see adding
+(inserting) rows; deleting rows; updating rows mandatory attributes, disallowing, 77 many-to-many relationships, 107 many-to-many tables, see intersection tables mapping tables, see intersection tables MATCH() function, 194 media files, storing externally, 139ï¿½147 consequences of, 140ï¿½143 legitimate uses for, 144ï¿½145 recognizing as antipattern, 143ï¿½144 using BLOBs instead of, 145ï¿½147 metadata changing, policy on, 135 cloning tables and columns for, 110ï¿½121 consequences of, 111ï¿½116 legitimate uses of, 117 recognizing as antipattern, 116ï¿½117 solutions to, 118 lists of allowable values as, 132 mixing data with, 92, 112 subtype modeling Class Table Inheritance and, 85 Concrete Table Inheritance and, 84 Single Table Inheritance and, 83 synchronizing, with split tables, 115 metadata naming conventions, 62 Metadata Tribbles antipattern, 110ï¿½121 consequences of, 111ï¿½116 legitimate uses of, 117 recognizing, 116ï¿½117 solutions to, 118 creating dependent tables, 120ï¿½121 horizontal partitioning, 118ï¿½119 vertical partitioning, 119ï¿½120 Microsoft SQL Server, full-text search in, 196 migrations (migration scripts), 273
 
 mistake-proofing databases, see referential integrity
 mixing data with metadata, 92, 112 mock DAOs, testing with, 291 Model View Controller (MVC)
-architecture, 278­292 Active Record as model
-consequences of, 282­286 how it works, 280­281 legitimate uses of, 287 recognizing as antipattern, 286 designing appropriate model, 287­292 MongoDB database, 81 monotonically increasing pseudokeys, 254 moving rows, see adding (inserting) rows; deleting rows; updating rows Multicolumn Attributes antipattern, 102­109 avoiding with dependent tables, 108­109 consequences of, 103­106 legitimate uses of, 107­108 recognizing, 106­107 multitable (cascading) updates, 71 multivalue attributes in delimited lists in columns, 25­33, 107 consequences of, 26­29 legitimate uses of, 30 recognizing as antipattern, 29 in delimited lists in columns intersection tables instead of, 30­33 in multiple columns, 102­109 avoiding with dependent tables, 108­109 consequences of, 103­106 legitimate uses of, 107­108 recognizing as antipattern, 106­107 mutually exclusive column values, 136 MySQL full-text indexes, 194
+architecture, 278ï¿½292 Active Record as model
+consequences of, 282ï¿½286 how it works, 280ï¿½281 legitimate uses of, 287 recognizing as antipattern, 286 designing appropriate model, 287ï¿½292 MongoDB database, 81 monotonically increasing pseudokeys, 254 moving rows, see adding (inserting) rows; deleting rows; updating rows Multicolumn Attributes antipattern, 102ï¿½109 avoiding with dependent tables, 108ï¿½109 consequences of, 103ï¿½106 legitimate uses of, 107ï¿½108 recognizing, 106ï¿½107 multitable (cascading) updates, 71 multivalue attributes in delimited lists in columns, 25ï¿½33, 107 consequences of, 26ï¿½29 legitimate uses of, 30 recognizing as antipattern, 29 in delimited lists in columns intersection tables instead of, 30ï¿½33 in multiple columns, 102ï¿½109 avoiding with dependent tables, 108ï¿½109 consequences of, 103ï¿½106 legitimate uses of, 107ï¿½108 recognizing as antipattern, 106ï¿½107 mutually exclusive column values, 136 MySQL full-text indexes, 194
 N
-Naive Trees antipattern, 34­53 alternative tree models for, 41­53 Closure Table pattern, 48­52 comparison among, 52­53
+Naive Trees antipattern, 34ï¿½53 alternative tree models for, 41ï¿½53 Closure Table pattern, 48ï¿½52 comparison among, 52ï¿½53
 
 319
 
@@ -8819,7 +8807,7 @@ NAME-VALUE PAIRS
 
 PARENT TABLES
 
-Nested Sets model, 44­48 Path Enumeration model, 41­44 consequences of, 35­39 legitimate uses of, 40­41 recognizing, 39­40 name-value pairs, see Entity-Attribute-Value antipattern names of attributes, in EAV antipattern, 79 of columns, using explicitly, 219­220 of columns, using wildcards, 214­220 consequences of, 215­217 legitimate uses of, 218 recognizing as antipattern, 217­218 for primary keys, 58, 62 natural primary key, 63, 258 negative tests, 276 Nested Sets pattern, 44­48 compared to other models, 52­53 nodes, tree, see Naive Trees antipattern nongrouped columns, referencing, 173­182 avoiding with unambiguous columns, 179­182 consequences of, 174­176 legitimate uses of, 178 recognizing as antipattern, 176­177 nonleaf nodes (tree data), 35, 43 nonrelational data management tools, 81 normal forms, defined, 298 normalization, 294­308 defined, 298 myths about, 296 NOT NULL columns, 165, 171 NULL keyword, quoting, 170 null values, 162­172 productive uses of, 163 substituting values for, 163­166 legitimate uses of, 168 recognizing as antipattern, 166­167 using NULL as unique value, 168­172 NULLIF() function, 105 numeric accuracy problems, see Rounding Errors antipattern NUMERIC data type, 128­130 numeric values, confusing null with, 163, 168
+Nested Sets model, 44ï¿½48 Path Enumeration model, 41ï¿½44 consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing, 39ï¿½40 name-value pairs, see Entity-Attribute-Value antipattern names of attributes, in EAV antipattern, 79 of columns, using explicitly, 219ï¿½220 of columns, using wildcards, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 recognizing as antipattern, 217ï¿½218 for primary keys, 58, 62 natural primary key, 63, 258 negative tests, 276 Nested Sets pattern, 44ï¿½48 compared to other models, 52ï¿½53 nodes, tree, see Naive Trees antipattern nongrouped columns, referencing, 173ï¿½182 avoiding with unambiguous columns, 179ï¿½182 consequences of, 174ï¿½176 legitimate uses of, 178 recognizing as antipattern, 176ï¿½177 nonleaf nodes (tree data), 35, 43 nonrelational data management tools, 81 normal forms, defined, 298 normalization, 294ï¿½308 defined, 298 myths about, 296 NOT NULL columns, 165, 171 NULL keyword, quoting, 170 null values, 162ï¿½172 productive uses of, 163 substituting values for, 163ï¿½166 legitimate uses of, 168 recognizing as antipattern, 166ï¿½167 using NULL as unique value, 168ï¿½172 NULLIF() function, 105 numeric accuracy problems, see Rounding Errors antipattern NUMERIC data type, 128ï¿½130 numeric values, confusing null with, 163, 168
 
 NVL() function, 172
 O
@@ -8830,13 +8818,13 @@ Entity-Attribute-Value antipattern optimizing performance, see indexing;
 performance Oracle text indexes, 194 order, columns, 295 order, rows, 295 organization charts, 35 ORM (object-relational mapping)
 frameworks, 265, 272 ORM classes, testing, 276 outer joins, see joins overhead, see performance
 P
-packet sniffing, 223 pagination, 255 parameter placeholders, 239, 244­245
-vs. interpolating values in SQL, 245 parameters, see query parameters parent identifiers in columns, 34­53
-alternative tree models for, 41­53 Closure Table pattern, 48­52 comparison among, 52­53 Nested Sets model, 44­48 Path Enumeration model, 41­44
-consequences of, 35­39 legitimate uses of, 40­41 recognizing as antipattern, 39­40 parent nodes, tree, see Naive Trees
+packet sniffing, 223 pagination, 255 parameter placeholders, 239, 244ï¿½245
+vs. interpolating values in SQL, 245 parameters, see query parameters parent identifiers in columns, 34ï¿½53
+alternative tree models for, 41ï¿½53 Closure Table pattern, 48ï¿½52 comparison among, 52ï¿½53 Nested Sets model, 44ï¿½48 Path Enumeration model, 41ï¿½44
+consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing as antipattern, 39ï¿½40 parent nodes, tree, see Naive Trees
 antipattern parent tables, referencing multiple,
-89­101 with common super-table, 100­101 with dual-purpose foreign keys
-consequences of, 91­94 legitimate uses of, 95­96 recognizing as antipattern, 94­95
+89ï¿½101 with common super-table, 100ï¿½101 with dual-purpose foreign keys
+consequences of, 91ï¿½94 legitimate uses of, 95ï¿½96 recognizing as antipattern, 94ï¿½95
 
 320
 
@@ -8844,21 +8832,21 @@ PARSIMONY
 
 PSEUDOKEY NEAT -FREAK ANTIPATTERN
 
-by reversing references, 96­99 parsimony, law of, 209 partitioning tables
-horizontally, 118­119 vertically, 119­120 passwords, changing with SQL
-injection, 237 passwords, readable, 222­233
-avoiding with salted hashes, 227­233
-legitimate uses of, 225­226 mechanisms and consequences,
-223­225 recognizing as antipattern, 225 Path Enumeration pattern, 41­44 compared to other models, 52­53 pathname validity, checking, 143 paths to files, storing, see external
-media files pattern-matching predicates, 191­192
-better tools for search, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198
-legitimate uses of, 193 recognizing as antipattern, 192­193 peer review of code, 248­249 % wildcard, 191 performance cloning to achieve scalability,
-110­121 consequences of, 111­116 legitimate uses of, 117 recognizing as antipattern, 116­117 solutions to, 118 foreign keys and, 69, 72 normalization and, 297 query complexity and, 207, 208 random selection, 183 removing data to archives, 117 searching with pattern-matching operators, 192 wildcards in queries, 217 performance, with indexes, see indexing Phantom Files antipattern, 139­147 avoiding with BLOBs, 145­147 consequences of, 140­143 legitimate uses of, 144­145 recognizing, 143­144
+by reversing references, 96ï¿½99 parsimony, law of, 209 partitioning tables
+horizontally, 118ï¿½119 vertically, 119ï¿½120 passwords, changing with SQL
+injection, 237 passwords, readable, 222ï¿½233
+avoiding with salted hashes, 227ï¿½233
+legitimate uses of, 225ï¿½226 mechanisms and consequences,
+223ï¿½225 recognizing as antipattern, 225 Path Enumeration pattern, 41ï¿½44 compared to other models, 52ï¿½53 pathname validity, checking, 143 paths to files, storing, see external
+media files pattern-matching predicates, 191ï¿½192
+better tools for search, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198
+legitimate uses of, 193 recognizing as antipattern, 192ï¿½193 peer review of code, 248ï¿½249 % wildcard, 191 performance cloning to achieve scalability,
+110ï¿½121 consequences of, 111ï¿½116 legitimate uses of, 117 recognizing as antipattern, 116ï¿½117 solutions to, 118 foreign keys and, 69, 72 normalization and, 297 query complexity and, 207, 208 random selection, 183 removing data to archives, 117 searching with pattern-matching operators, 192 wildcards in queries, 217 performance, with indexes, see indexing Phantom Files antipattern, 139ï¿½147 avoiding with BLOBs, 145ï¿½147 consequences of, 140ï¿½143 legitimate uses of, 144ï¿½145 recognizing, 143ï¿½144
 
 plaintext passwords, see passwords, readable
 poka-yoke (mistake-proofing), 70, 219 Polymorphic Associations antipattern,
-89­101 consequences of, 91­94 legitimate uses of, 95­96 recognizing, 94­95 solutions for avoiding, 96­101
-common super-tables, 100­101 reversing the references, 96­99 polymorphic associations, defining, 91 :polymorphic attribute (Ruby on Rails), 95 Poor Man's Search Engine antipattern, 190 better tools for search, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198 consequences of, 191­192 legitimate uses of, 193 recognizing, 192­193 post-processing with EAV antipattern, 86­88 Postgre, text search in, 196 precision, numeric, see Rounding Errors antipattern primary key random key value selection, 186 PRIMARY KEY constraint, 109 primary key conventions, see duplicate rows, avoiding primary keys names for, 58, 62 need for, about, 56 renumbering values for, 250­258 methods and consequences of, 251­253 recognizing as antipattern, 254 stopping habit of, 254­258 row numbers vs., 255 privileges, external files and, 143 procedures, source code control for, 272 promiscuous associations, see polymorphic associations Pseudokey Neat-Freak antipattern, 250­258 methods and consequences of, 251­253
+89ï¿½101 consequences of, 91ï¿½94 legitimate uses of, 95ï¿½96 recognizing, 94ï¿½95 solutions for avoiding, 96ï¿½101
+common super-tables, 100ï¿½101 reversing the references, 96ï¿½99 polymorphic associations, defining, 91 :polymorphic attribute (Ruby on Rails), 95 Poor Man's Search Engine antipattern, 190 better tools for search, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198 consequences of, 191ï¿½192 legitimate uses of, 193 recognizing, 192ï¿½193 post-processing with EAV antipattern, 86ï¿½88 Postgre, text search in, 196 precision, numeric, see Rounding Errors antipattern primary key random key value selection, 186 PRIMARY KEY constraint, 109 primary key conventions, see duplicate rows, avoiding primary keys names for, 58, 62 need for, about, 56 renumbering values for, 250ï¿½258 methods and consequences of, 251ï¿½253 recognizing as antipattern, 254 stopping habit of, 254ï¿½258 row numbers vs., 255 privileges, external files and, 143 procedures, source code control for, 272 promiscuous associations, see polymorphic associations Pseudokey Neat-Freak antipattern, 250ï¿½258 methods and consequences of, 251ï¿½253
 
 321
 
@@ -8866,19 +8854,19 @@ PSEUDOKEYS
 
 RANDOM SELECTION ANTIPATTERN
 
-recognizing, 254 stopping habit of, 254­258 pseudokeys, 55 good alternatives for, 63 joins and, 59 legitimate uses of, 61 naming, 63 see also ID Required antipattern
+recognizing, 254 stopping habit of, 254ï¿½258 pseudokeys, 55 good alternatives for, 63 joins and, 59 legitimate uses of, 61 naming, 63 see also ID Required antipattern
 Q
-quality code, writing, 266­277 establishing culture of quality, 269­277 documenting code, 269 source code control, 272 validation and testing, 274 excuses for doing otherwise, 267­268 legitimate excuses, 269 recognizing as antipattern, 268­269
-queries, indexes for, see indexing query parameters, 239, 241, 244­245
+quality code, writing, 266ï¿½277 establishing culture of quality, 269ï¿½277 documenting code, 269 source code control, 272 validation and testing, 274 excuses for doing otherwise, 267ï¿½268 legitimate excuses, 269 recognizing as antipattern, 268ï¿½269
+queries, indexes for, see indexing query parameters, 239, 241, 244ï¿½245
 nulls as, 164 vs. interpolating values in SQL, 245 query speed, see performance querying against comma-delimited attributes,
 27 allowed values for columns
-with lookup tables, 137 with restrictive column definitions, 133 ambiguously, 173­182 consequences of, 174­176 legitimate uses of, 178 recognizing as antipattern, 176­177 with dynamic attributes Class Table Inheritance, 85 Concrete Table Inheritance, 84 in generic attribute tables, 76, 79 in semistructured blobs, 86 using post-processing, 87 failures from rounding errors, 127 with intersection tables, 31 less, by increasing complexity, 204­213 consequences of, 205­207 legitimate uses of, 208­209
+with lookup tables, 137 with restrictive column definitions, 133 ambiguously, 173ï¿½182 consequences of, 174ï¿½176 legitimate uses of, 178 recognizing as antipattern, 176ï¿½177 with dynamic attributes Class Table Inheritance, 85 Concrete Table Inheritance, 84 in generic attribute tables, 76, 79 in semistructured blobs, 86 using post-processing, 87 failures from rounding errors, 127 with intersection tables, 31 less, by increasing complexity, 204ï¿½213 consequences of, 205ï¿½207 legitimate uses of, 208ï¿½209
 
-recognizing as antipattern, 207­208 using multiple queries instead, 209­213 limiting results by row numbers, 255 multicolumn attributes, 103 multiple parent tables, 89­101 with dual-purpose foreign keys, 91­96 workable solutions for, 96­101 nullable columns, 164, 169 polymorphic associations, 92 random selection, 183­189 better implementations of, 186­189 with random data sorts, 184­185, 186 reference integrity and, 66, 67 across split tables, 114 testing to validate database, 276 trees with adjacency lists, 34­53 alternative tree models for, 41­53 consequences of, 35­39 legitimate uses of, 40­41 recognizing as antipattern, 39­40 unambiguously, 179­182 using wildcards for column names, 214­220 consequences of, 215­217 legitimate uses of, 218 naming columns instead of, 219­220 recognizing as antipattern, 217­218 querying dynamically, see dynamic SQL quote characters, escaping, 238 quotes around NULL keyword, 170 quotes, unmatched, 237, 238 quoting dynamic values, 245
+recognizing as antipattern, 207ï¿½208 using multiple queries instead, 209ï¿½213 limiting results by row numbers, 255 multicolumn attributes, 103 multiple parent tables, 89ï¿½101 with dual-purpose foreign keys, 91ï¿½96 workable solutions for, 96ï¿½101 nullable columns, 164, 169 polymorphic associations, 92 random selection, 183ï¿½189 better implementations of, 186ï¿½189 with random data sorts, 184ï¿½185, 186 reference integrity and, 66, 67 across split tables, 114 testing to validate database, 276 trees with adjacency lists, 34ï¿½53 alternative tree models for, 41ï¿½53 consequences of, 35ï¿½39 legitimate uses of, 40ï¿½41 recognizing as antipattern, 39ï¿½40 unambiguously, 179ï¿½182 using wildcards for column names, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 naming columns instead of, 219ï¿½220 recognizing as antipattern, 217ï¿½218 querying dynamically, see dynamic SQL quote characters, escaping, 238 quotes around NULL keyword, 170 quotes, unmatched, 237, 238 quoting dynamic values, 245
 R
 race conditions, 60 random pseudokey values, 255 Random Selection antipattern,
-183­189 better alternatives to, 186­189
-random key value selection, 186 consequences of, 184­185 legitimate uses of, 186 recognizing, 185­186
+183ï¿½189 better alternatives to, 186ï¿½189
+random key value selection, 186 consequences of, 184ï¿½185 legitimate uses of, 186 recognizing, 185ï¿½186
 
 322
 
@@ -8886,15 +8874,15 @@ RATIONAL NUMBERS
 
 REVERSING REFERENCES TO AVOID POLYMORPHIC ASSOCIATIONS
 
-rational numbers, about, 124 rational numbers, storing, 123­130
-legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124­128
-avoiding with NUMERIC, 128­130 recognizing potential for, 128 raw binary data, storing, 140, 145­147 Readable Passwords antipattern, 222­233 avoiding with salted hashes, 227­233 legitimate uses of, 225­226 mechanisms and consequences, 223­225 recognizing, 225 REAL data type, 125 reallocating pseudokey values, 253 recognizing antipatterns Ambiguous Groups, 176­177 Diplomatic Immunity, 268­269 Entity-Attribute-Value, 80 Fear of the Unknown, 166­167 ID Required, 61 Implicit Columns, 217­218 Jaywalking, 29 Keyless Entry, 69 Magic Beans, 286 Metadata Tribbles, 116­117 Multicolumn Attributes, 106­107 Naive Trees (Adjacent Lists), 39­40 Phantom Files, 143­144 Polymorphic Associations, 94­95 Poor Man's Search Engine, 192­193 Pseudokey Neat-Freak, 254 Random Selection, 185­186 Readable Passwords, 225 Rounding Errors, 128 See No Evil, 262­263 Spaghetti Query, 207­208 SQL Injection, 242 31 Flavors antipattern, 135­136 recovering passwords, see passwords, readable recursive queries, 40 Redis database, 81 redundant keys, 57 refactoring, breaking, 216 referenced files, see external media files referencing multiple parent tables, 89­101 with common super-table, 100­101
+rational numbers, about, 124 rational numbers, storing, 123ï¿½130
+legitimate uses of FLOAT, 128 rounding errors with FLOAT, 124ï¿½128
+avoiding with NUMERIC, 128ï¿½130 recognizing potential for, 128 raw binary data, storing, 140, 145ï¿½147 Readable Passwords antipattern, 222ï¿½233 avoiding with salted hashes, 227ï¿½233 legitimate uses of, 225ï¿½226 mechanisms and consequences, 223ï¿½225 recognizing, 225 REAL data type, 125 reallocating pseudokey values, 253 recognizing antipatterns Ambiguous Groups, 176ï¿½177 Diplomatic Immunity, 268ï¿½269 Entity-Attribute-Value, 80 Fear of the Unknown, 166ï¿½167 ID Required, 61 Implicit Columns, 217ï¿½218 Jaywalking, 29 Keyless Entry, 69 Magic Beans, 286 Metadata Tribbles, 116ï¿½117 Multicolumn Attributes, 106ï¿½107 Naive Trees (Adjacent Lists), 39ï¿½40 Phantom Files, 143ï¿½144 Polymorphic Associations, 94ï¿½95 Poor Man's Search Engine, 192ï¿½193 Pseudokey Neat-Freak, 254 Random Selection, 185ï¿½186 Readable Passwords, 225 Rounding Errors, 128 See No Evil, 262ï¿½263 Spaghetti Query, 207ï¿½208 SQL Injection, 242 31 Flavors antipattern, 135ï¿½136 recovering passwords, see passwords, readable recursive queries, 40 Redis database, 81 redundant keys, 57 refactoring, breaking, 216 referenced files, see external media files referencing multiple parent tables, 89ï¿½101 with common super-table, 100ï¿½101
 
-with dual-purpose foreign keys consequences of, 91­94 legitimate uses of, 95­96 recognizing as antipattern, 94­95
-by reversing references, 96­99 referencing nongrouped columns,
-173­182 avoiding with unambiguous
-columns, 179­182 consequences of, 174­176 legitimate uses of, 178 recognizing as antipattern, 176­177 referential integrity, 65­72 avoiding foreign key constraints
-consequences of, 66­69 legitimate uses of, 70 recognizing as antipattern, 69 declaring foreign key constraints, 70­72 documentation and, 271 with generic attribute tables, 78 polymorphic associations and, 95 with split tables, 115 see also data integrity regular expressions, 191 relational database design constraints, see referential integrity relational logic, nulls and, 167 relational, defined, 294 relationships, documenting, 271 renumbering primary key values, 250­258 methods and consequences of, 251­253 recognizing as antipattern, 254 stopping habit of, 254­258 reporting tools, complexity of, 208 resetting passwords, see passwords, readable restricting values in columns, 131­138 using column definitions, 132­135 legitimate uses of, 136 recognizing as antipattern, 135­136 using lookup tables, 136­138 retrieving data, see querying return values, ignoring, see See No Evil antipattern reusing primary key values, 253 reversing references to avoid polymorphic associations, 96­99
+with dual-purpose foreign keys consequences of, 91ï¿½94 legitimate uses of, 95ï¿½96 recognizing as antipattern, 94ï¿½95
+by reversing references, 96ï¿½99 referencing nongrouped columns,
+173ï¿½182 avoiding with unambiguous
+columns, 179ï¿½182 consequences of, 174ï¿½176 legitimate uses of, 178 recognizing as antipattern, 176ï¿½177 referential integrity, 65ï¿½72 avoiding foreign key constraints
+consequences of, 66ï¿½69 legitimate uses of, 70 recognizing as antipattern, 69 declaring foreign key constraints, 70ï¿½72 documentation and, 271 with generic attribute tables, 78 polymorphic associations and, 95 with split tables, 115 see also data integrity regular expressions, 191 relational database design constraints, see referential integrity relational logic, nulls and, 167 relational, defined, 294 relationships, documenting, 271 renumbering primary key values, 250ï¿½258 methods and consequences of, 251ï¿½253 recognizing as antipattern, 254 stopping habit of, 254ï¿½258 reporting tools, complexity of, 208 resetting passwords, see passwords, readable restricting values in columns, 131ï¿½138 using column definitions, 132ï¿½135 legitimate uses of, 136 recognizing as antipattern, 135ï¿½136 using lookup tables, 136ï¿½138 retrieving data, see querying return values, ignoring, see See No Evil antipattern reusing primary key values, 253 reversing references to avoid polymorphic associations, 96ï¿½99
 
 323
 
@@ -8902,18 +8890,18 @@ REVIEWING CODE AGAINST SQL INJECTION
 
 SPAGHETTI QUERY ANTIPATTERN
 
-reviewing code against SQL injection, 248­249
+reviewing code against SQL injection, 248ï¿½249
 REVOKE statements, files and, 143 rollbacks
-external files and, 142 reusing primary key values, 253 roots, tree, see Naive Trees antipattern Rounding Errors antipattern, 123­130 avoiding with NUMERIC, 128­130 consequences of, 124­128 legitimate uses of FLOAT, 128 recognizing, 128 rounding errors, how caused, 124 ROW_NUMBER() function, 188 row renumbering, 252 ROW_NUMBER() function, 255 rows duplicate, disallowed, 295 having no order, 295 partitioning by, 118­119 rows, duplicate, see duplicate rows,
-avoiding rules of normalization, 294­308
+external files and, 142 reusing primary key values, 253 roots, tree, see Naive Trees antipattern Rounding Errors antipattern, 123ï¿½130 avoiding with NUMERIC, 128ï¿½130 consequences of, 124ï¿½128 legitimate uses of FLOAT, 128 recognizing, 128 rounding errors, how caused, 124 ROW_NUMBER() function, 188 row renumbering, 252 ROW_NUMBER() function, 255 rows duplicate, disallowed, 295 having no order, 295 partitioning by, 118ï¿½119 rows, duplicate, see duplicate rows,
+avoiding rules of normalization, 294ï¿½308
 objects of normalization, 298 runtime costs of complex queries, 207
 S
-salted hashes for passwords, 227­233 scalar expressions, nulls in, 163, 168 scale for data type, 129 schema evolution tools, 273 schemaless design, see
+salted hashes for passwords, 227ï¿½233 scalar expressions, nulls in, 163, 168 scale for data type, 129 schema evolution tools, 273 schemaless design, see
 Entity-Attribute-Value antipattern scope, sequence, 60 scripts, source code control for, 272 searching, see querying searching text, see full-text search second normal form, 300 security
-documenting, 271 readable passwords, 222­233
-avoiding with salted hashes, 227­233 legitimate uses of, 225­226 mechanisms and consequences, 223­225 recognizing as antipattern, 225 SQL Injection antipattern, 234­249 how to prevent, 243­249 mechanics and consequences of, 235­242
+documenting, 271 readable passwords, 222ï¿½233
+avoiding with salted hashes, 227ï¿½233 legitimate uses of, 225ï¿½226 mechanisms and consequences, 223ï¿½225 recognizing as antipattern, 225 SQL Injection antipattern, 234ï¿½249 how to prevent, 243ï¿½249 mechanics and consequences of, 235ï¿½242
 
-no legitimate uses of, 243 recognizing, 242 See No Evil antipattern, 259­265 consequences of, 260­262 legitimate uses of, 263 managing errors gracefully instead, 264­265 recognizing, 262­263 seed data, 274 SELECT queries, see querying semistructured data, 86 sending messages with passwords, 225 separator character in multivalue attributes, 32 sequence of ID values, see renumbering primary key values sequences, scope for, 60 serialized LOB pattern, 86 sharding databases, 117­119 Single Table Inheritance, 82­83 single-use queries, 218 Single-Value Rule, 174 compliance with aggregate functions, 181 recognizing violations of, 176 sixth normal form, 307 software development best practices, 266­277 establishing culture of quality, 269­277 documenting code, 269 source code control, 272 validation and testing, 274 excuses for doing otherwise, 267­268 legitimate excuses, 269 recognizing as antipattern, 268­269 Solr server, 200 sorting rows randomly, 184­185 better alternatives to, 186­189 random key value selection, 186 legitimate uses of, 186 recognizing as antipattern, 185­186 source code control, 272 Spaghetti Query antipattern, 204­213 consequences of, 205­207 legitimate uses of, 208­209 recognizing, 207­208 using multiple queries instead, 209­213
+no legitimate uses of, 243 recognizing, 242 See No Evil antipattern, 259ï¿½265 consequences of, 260ï¿½262 legitimate uses of, 263 managing errors gracefully instead, 264ï¿½265 recognizing, 262ï¿½263 seed data, 274 SELECT queries, see querying semistructured data, 86 sending messages with passwords, 225 separator character in multivalue attributes, 32 sequence of ID values, see renumbering primary key values sequences, scope for, 60 serialized LOB pattern, 86 sharding databases, 117ï¿½119 Single Table Inheritance, 82ï¿½83 single-use queries, 218 Single-Value Rule, 174 compliance with aggregate functions, 181 recognizing violations of, 176 sixth normal form, 307 software development best practices, 266ï¿½277 establishing culture of quality, 269ï¿½277 documenting code, 269 source code control, 272 validation and testing, 274 excuses for doing otherwise, 267ï¿½268 legitimate excuses, 269 recognizing as antipattern, 268ï¿½269 Solr server, 200 sorting rows randomly, 184ï¿½185 better alternatives to, 186ï¿½189 random key value selection, 186 legitimate uses of, 186 recognizing as antipattern, 185ï¿½186 source code control, 272 Spaghetti Query antipattern, 204ï¿½213 consequences of, 205ï¿½207 legitimate uses of, 208ï¿½209 recognizing, 207ï¿½208 using multiple queries instead, 209ï¿½213
 
 324
 
@@ -8924,24 +8912,24 @@ TECHNICAL DEBT
 spanning tables, 111 spawning columns, 116 spawning tables, 112
 for archiving, 117 speed, see performance Sphinx Search engine, 198 split columns, 116 splitting tables, 111, 112
 for archiving, 117 SQL data types, see data types; specific
-data type by name SQL Injection antipattern, 234­249
-how to prevent, 243­249 buddy review, 248­249 filtering input, 244 isolating input from code, 246­248 quoting dynamic values, 245 using parameter placeholders, 244­245
-mechanics and consequences of, 235­242
+data type by name SQL Injection antipattern, 234ï¿½249
+how to prevent, 243ï¿½249 buddy review, 248ï¿½249 filtering input, 244 isolating input from code, 246ï¿½248 quoting dynamic values, 245 using parameter placeholders, 244ï¿½245
+mechanics and consequences of, 235ï¿½242
 no legitimate uses of, 243 recognizing, 242 SQL Server, full-text search in, 196 SQLite, full-text search in, 197 standard for indexes, nonexistent, 150 stored procedures documenting, 271 testing to validate database, 276 stored procedures, dynamic SQL in,
 241 storing hierarchies, see Naive Trees
 antipattern storing images and media externally,
-139­147 consequences of, 140­143 legitimate uses for, 144­145 recognizing as antipattern, 143­144 using BLOBs instead of, 145­147 storing passwords, see passwords,
+139ï¿½147 consequences of, 140ï¿½143 legitimate uses for, 144ï¿½145 recognizing as antipattern, 143ï¿½144 using BLOBs instead of, 145ï¿½147 storing passwords, see passwords,
 readable strings of zero length, null vs., 164 strings, comparing
-good tools for, 193­203, 203 inverted indexes, 200­203 third-party engines, 198­200 vendor extensions, 193­198
-with pattern-matching predicates, 191­192 legitimate uses of, 193
+good tools for, 193ï¿½203, 203 inverted indexes, 200ï¿½203 third-party engines, 198ï¿½200 vendor extensions, 193ï¿½198
+with pattern-matching predicates, 191ï¿½192 legitimate uses of, 193
 
-recognizing as antipattern, 192­193 stub DAOs, testing with, 291 substituting values for nulls, 162­172 avoiding, 168­172 consequences of, 163­166 legitimate uses of, 168 recognizing as antipattern, 166­167 subtrees, deleting, 38, 50 subtrees, querying, 43 subtype modeling, 82­88 Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 with post-processing, 86­88 semistructured data, 86 Single Table Inheritance, 82­83 SUM() function with comma-separated lists, 31 with floating-point numbers, 127 super-tables, shared, 100­101 surrogate keys, see pseudokeys synchronizing data, with split tables, 113 metadata, with split tables, 115
+recognizing as antipattern, 192ï¿½193 stub DAOs, testing with, 291 substituting values for nulls, 162ï¿½172 avoiding, 168ï¿½172 consequences of, 163ï¿½166 legitimate uses of, 168 recognizing as antipattern, 166ï¿½167 subtrees, deleting, 38, 50 subtrees, querying, 43 subtype modeling, 82ï¿½88 Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 with post-processing, 86ï¿½88 semistructured data, 86 Single Table Inheritance, 82ï¿½83 SUM() function with comma-separated lists, 31 with floating-point numbers, 127 super-tables, shared, 100ï¿½101 surrogate keys, see pseudokeys synchronizing data, with split tables, 113 metadata, with split tables, 115
 T
 table columns, see columns table inheritance
-Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 Single Table Inheritance, 82­83 table joins, see joins table locks, 60 table scans, 185 tables documenting, 270 as object-oriented classes, 84 partitioning by columns (vertically),
-119­120 partitioning by rows (horizontally),
-118­119 primary key columns in, 54­64
-better approaches than, 62­64 consequences of, 57­60 legitimate uses of, 61 recognizing as antipattern, 61 testing to validate database, 275 TABLESAMPLE clause, 189 team review against SQL injection, 248­249 technical debt, 266
+Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 Single Table Inheritance, 82ï¿½83 table joins, see joins table locks, 60 table scans, 185 tables documenting, 270 as object-oriented classes, 84 partitioning by columns (vertically),
+119ï¿½120 partitioning by rows (horizontally),
+118ï¿½119 primary key columns in, 54ï¿½64
+better approaches than, 62ï¿½64 consequences of, 57ï¿½60 legitimate uses of, 61 recognizing as antipattern, 61 testing to validate database, 275 TABLESAMPLE clause, 189 team review against SQL injection, 248ï¿½249 technical debt, 266
 
 325
 
@@ -8949,8 +8937,8 @@ TEMPORARY CODE
 
 VALIDATION
 
-temporary code, 269 testing code, 274 testing model with DAOs, 291 text search, see full-text search third normal form, 297, 301 third-party search engines, 198­200 31 Flavors antipattern, 131­138
-avoiding with lookup tables, 136­138 consequences of, 132­135 legitimate uses of, 136 recognizing, 135­136 threaded discussions, 35 three-valued logic, 168 Tokyo Cabinet database, 81 transaction isolation, files and, 141 tree data structures, see Naive Trees
+temporary code, 269 testing code, 274 testing model with DAOs, 291 text search, see full-text search third normal form, 297, 301 third-party search engines, 198ï¿½200 31 Flavors antipattern, 131ï¿½138
+avoiding with lookup tables, 136ï¿½138 consequences of, 132ï¿½135 legitimate uses of, 136 recognizing, 135ï¿½136 threaded discussions, 35 three-valued logic, 168 Tokyo Cabinet database, 81 transaction isolation, files and, 141 tree data structures, see Naive Trees
 antipattern tribbles, explained, 111 triggers
 documenting, 271 to restrict column values, 133 source code control for, 272 testing to validate database, 276 TSVECTOR data type, 197
 U
@@ -8958,29 +8946,29 @@ UNION syntax combining query results with, 210 querying multiple parent tables, 
 UNIQUE constraint, 57, 58 hindering polymorphic associations with, 97
 unique keys, see duplicate rows, avoiding
 uniqueness, data, see data integrity unmatched quotes, 237, 238 unnamed columns, see wildcards for
-column names unverified user input, 234­249
-how to prevent, 243­249 buddy review, 248­249 filtering input, 244 isolating input from code, 246­248 quoting dynamic values, 245 using parameter placeholders, 244­245
-mechanics and consequences of, 235­242
+column names unverified user input, 234ï¿½249
+how to prevent, 243ï¿½249 buddy review, 248ï¿½249 filtering input, 244 isolating input from code, 246ï¿½248 quoting dynamic values, 245 using parameter placeholders, 244ï¿½245
+mechanics and consequences of, 235ï¿½242
 no legitimate reasons for, 243
 
 recognizing as antipattern, 242 updating allowed values for columns
 designating values as obsolete, 135, 138
 with lookup tables, 137 with restrictive column definitions,
 134 updating rows
-with comma-separated attributes, 32 with insufficient indexing, 149­150 with multicolumn attributes, 104 multiple split tables, 113 nodes in tree structures
-Adjacency List pattern, 38 Nested Sets pattern, 47 reference integrity and cascading updates and, 71 without foreign key constraints, 69 reference integrity without foreign key constraints, 66 renumbering rows when, 252 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214­220 consequences of, 215­217 legitimate uses of, 218 naming columns instead of, 219­220 recognizing as antipattern, 217­218 user input filtering against SQL injection, 244 isolating from code, 246­248 representing nulls, 168 unverified, executing, 234­249 how to prevent, 243­249 mechanics and consequences of, 235­242 no legitimate reasons for, 243 recognizing as antipattern, 242 user-defined types, 133 USING syntax, 59
+with comma-separated attributes, 32 with insufficient indexing, 149ï¿½150 with multicolumn attributes, 104 multiple split tables, 113 nodes in tree structures
+Adjacency List pattern, 38 Nested Sets pattern, 47 reference integrity and cascading updates and, 71 without foreign key constraints, 69 reference integrity without foreign key constraints, 66 renumbering rows when, 252 testing to validate database, 276 using intersection tables, 32 using wildcards for column names, 214ï¿½220 consequences of, 215ï¿½217 legitimate uses of, 218 naming columns instead of, 219ï¿½220 recognizing as antipattern, 217ï¿½218 user input filtering against SQL injection, 244 isolating from code, 246ï¿½248 representing nulls, 168 unverified, executing, 234ï¿½249 how to prevent, 243ï¿½249 mechanics and consequences of, 235ï¿½242 no legitimate reasons for, 243 recognizing as antipattern, 242 user-defined types, 133 USING syntax, 59
 V
-validation, 274 executing unverified input, 234­249 how to prevent, 243­249 mechanics and consequences of, 235­242
+validation, 274 executing unverified input, 234ï¿½249 how to prevent, 243ï¿½249 mechanics and consequences of, 235ï¿½242
 
 326
 
 VALUE-CONTROLLED COLUMNS
-no legitimate reasons for, 243 recognizing as antipattern, 242 with intersection tables, 32 of items in comma-separated attributes, 28 value-controlled columns, 131­138 using column definitions, 132­135 legitimate uses of, 136 recognizing as antipattern, 135­136 using lookup tables, 136­138 values, confusing null with, 163, 168 VARCHAR data type length limit on multivalue attributes, 29, 33, 44 paths to external files, 140 variable attributes, supporting, 73­88 with generic attribute tables, 74­80 legitimate uses of, 80­82 recognizing as antipattern, 80 with subtype modeling, 82­88 Class Table Inheritance, 84­86 Concrete Table Inheritance, 83­84 with post-processing, 86­88
+no legitimate reasons for, 243 recognizing as antipattern, 242 with intersection tables, 32 of items in comma-separated attributes, 28 value-controlled columns, 131ï¿½138 using column definitions, 132ï¿½135 legitimate uses of, 136 recognizing as antipattern, 135ï¿½136 using lookup tables, 136ï¿½138 values, confusing null with, 163, 168 VARCHAR data type length limit on multivalue attributes, 29, 33, 44 paths to external files, 140 variable attributes, supporting, 73ï¿½88 with generic attribute tables, 74ï¿½80 legitimate uses of, 80ï¿½82 recognizing as antipattern, 80 with subtype modeling, 82ï¿½88 Class Table Inheritance, 84ï¿½86 Concrete Table Inheritance, 83ï¿½84 with post-processing, 86ï¿½88
 
 ZERO
-semistructured data, 86 Single Table Inheritance, 82­83 vendor-specific search extensions, 193­198 vertical partitioning, 119­120 views documenting, 270 testing to validate databases, 275
+semistructured data, 86 Single Table Inheritance, 82ï¿½83 vendor-specific search extensions, 193ï¿½198 vertical partitioning, 119ï¿½120 views documenting, 270 testing to validate databases, 275
 W
-wildcards for column names, 214­220 consequences of consequences of, 215­217 legitimate uses of, 218 recognizing as antipattern, 217­218 naming columns instead of, 219­220
+wildcards for column names, 214ï¿½220 consequences of consequences of, 215ï¿½217 legitimate uses of, 218 recognizing as antipattern, 217ï¿½218 naming columns instead of, 219ï¿½220
 window functions (SQL:2003), 255 WITH keyword
 for recursive queries, 40
 Z
@@ -9156,7 +9144,7 @@ In this book you'll get a hands-on tour of Clojure, Haskell, Io, Prolog, Scala, 
 Seven Languages in Seven Weeks: A Pragmatic Guide to Learning Programming Languages Bruce A. Tate (300 pages) ISBN: 978-1934356-59-3. $34.95 http://pragprog.com/titles/btlang
 The RSpec Book
 RSpec, Ruby's leading Behaviour Driven Development tool, helps you do TDD right by embracing the design and documentation aspects of TDD. It encourages readable, maintainable suites of code examples that not only test your code, they document it as well. The RSpec Book will teach you how to use RSpec, Cucumber, and other Ruby tools to develop truly agile software that gets you to market quickly and maintains its value as evolving market trends drive new requirements.
-The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends David Chelimsky, Dave Astels, Zach Dennis, Aslak Hellesøy, Bryan Helmkamp, Dan North (450 pages) ISBN: 978-1-9343563-7-1. $42.95 http://pragprog.com/titles/achbd
+The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends David Chelimsky, Dave Astels, Zach Dennis, Aslak Hellesï¿½y, Bryan Helmkamp, Dan North (450 pages) ISBN: 978-1-9343563-7-1. $42.95 http://pragprog.com/titles/achbd
 
 Grow Your Skills
 Language Implementation Patterns
@@ -9183,4 +9171,3 @@ Contact Us
 Online Orders: Customer Service: Non-English Versions: Pragmatic Teaching: Author Proposals: Contact us:
 
 www.pragprog.com/catalog support@pragprog.com translations@pragprog.com academic@pragprog.com proposals@pragprog.com 1-800-699-PROG (+1 919 847 3884)
-
