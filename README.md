@@ -1,6 +1,6 @@
 # 📚 Computer Engineering Library
 
-> A library organized as a Computer Engineering track. **English-only**, no images. Curriculum reading lists live in folder `00_`; full books are grouped by topic in folders `01_`–`13_`. See `FILE_CONVENTIONS.md` for the naming and formatting standard.
+> A library organized as a Computer Engineering track. **English-only**, no images. Curriculum reading lists live in folder `00_`; full books are grouped by topic in folders `01_`–`14_`. See `FILE_CONVENTIONS.md` for the naming and formatting standard.
 
 
 ## Reference documents
@@ -47,14 +47,17 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 01 · Programming Languages
 
+- [C# 13 and .NET 9 - Complete Professional Guide](01_programming_languages/C%23%2013%20and%20.NET%209%20-%20Complete%20Professional%20Guide.md)
 - [Core Java - Volume I - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
 - [Core Java - Volume II - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
 - [Eloquent JavaScript - Haverbeke](01_programming_languages/Eloquent%20JavaScript%20-%20Haverbeke.md)
 - [JavaScript - The Good Parts - Crockford](01_programming_languages/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
+- [PHP 8.4 - Complete Professional Guide](01_programming_languages/PHP%208.4%20-%20Complete%20Professional%20Guide.md)
 - [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
 - [Programming Ruby 3.3 (preview) - Rappin](01_programming_languages/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
 - [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
 - [Python Crash Course - Matthes](01_programming_languages/Python%20Crash%20Course%20-%20Matthes.md)
+- [Rust 2024 - Complete Professional Guide](01_programming_languages/Rust%202024%20-%20Complete%20Professional%20Guide.md)
 - [The Go Programming Language - Donovan, Kernighan](01_programming_languages/The%20Go%20Programming%20Language%20-%20Donovan,%20Kernighan.md)
 
 ## 02 · Algorithms & Data Structures
@@ -188,12 +191,30 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 14 · Frameworks
 
+- [Angular 17 - Complete Professional Guide](14_frameworks/Angular%2017%20-%20Complete%20Professional%20Guide.md)
+- [Angular 18 - Complete Professional Guide](14_frameworks/Angular%2018%20-%20Complete%20Professional%20Guide.md)
+- [Angular 19 - Complete Professional Guide](14_frameworks/Angular%2019%20-%20Complete%20Professional%20Guide.md)
+- [Angular 20 - Complete Professional Guide](14_frameworks/Angular%2020%20-%20Complete%20Professional%20Guide.md)
+- [Angular 21 - Complete Professional Guide](14_frameworks/Angular%2021%20-%20Complete%20Professional%20Guide.md)
 - [Angular 22 - Complete Professional Guide](14_frameworks/Angular%2022%20-%20Complete%20Professional%20Guide.md)
+- [Django 5 - Complete Professional Guide](14_frameworks/Django%205%20-%20Complete%20Professional%20Guide.md)
+- [Express 5 - Complete Professional Guide](14_frameworks/Express%205%20-%20Complete%20Professional%20Guide.md)
+- [FastAPI - Complete Professional Guide](14_frameworks/FastAPI%20-%20Complete%20Professional%20Guide.md)
+- [Fastify 5 - Complete Professional Guide](14_frameworks/Fastify%205%20-%20Complete%20Professional%20Guide.md)
+- [Flask 3 - Complete Professional Guide](14_frameworks/Flask%203%20-%20Complete%20Professional%20Guide.md)
+- [Flutter 3 - Complete Professional Guide](14_frameworks/Flutter%203%20-%20Complete%20Professional%20Guide.md)
 - [Learning GraphQL - Porcello, Banks](14_frameworks/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
 - [Learning React Native - Eisenman](14_frameworks/Learning%20React%20Native%20-%20Eisenman.md)
 - [Mastering Node.js](14_frameworks/Mastering%20Node.js.md)
+- [NestJS 11 - Complete Professional Guide](14_frameworks/NestJS%2011%20-%20Complete%20Professional%20Guide.md)
+- [Next.js 15 - Complete Professional Guide](14_frameworks/Next.js%2015%20-%20Complete%20Professional%20Guide.md)
+- [React 19 - Complete Professional Guide](14_frameworks/React%2019%20-%20Complete%20Professional%20Guide.md)
 - [Ruby on Rails Tutorial (6th Ed) - Hartl](14_frameworks/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
+- [Spring Boot 3 - Complete Professional Guide](14_frameworks/Spring%20Boot%203%20-%20Complete%20Professional%20Guide.md)
+- [Svelte 5 - Complete Professional Guide](14_frameworks/Svelte%205%20-%20Complete%20Professional%20Guide.md)
+- [Swift 6 and SwiftUI - Complete Professional Guide](14_frameworks/Swift%206%20and%20SwiftUI%20-%20Complete%20Professional%20Guide.md)
+- [Vue 3 - Complete Professional Guide](14_frameworks/Vue%203%20-%20Complete%20Professional%20Guide.md)
 
 ---
 
-**Total: 135 book/reading-list files**
+**Total: 156 book/reading-list files**

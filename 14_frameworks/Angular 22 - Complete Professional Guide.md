@@ -9,7 +9,6 @@ stack: angular
 
 ---
 
-# Angular 22 — Complete Professional Guide
 ### What's New in v22: Signal Forms, Resources, OnPush by Default, Fetch, AI Tooling, and Migration
 **Edition for Angular v22.0 (released June 3, 2026)**
 

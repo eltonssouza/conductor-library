@@ -9,7 +9,6 @@ stack: n8n
 
 ---
 
-# n8n — Complete Professional Guide
 ### Workflow Automation, Enterprise Integrations, and Generative AI in Production
 **Edition updated for n8n 2.x (June 2026)**
 

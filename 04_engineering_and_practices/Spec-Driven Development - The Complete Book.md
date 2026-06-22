@@ -8,8 +8,6 @@ software_dev: core
 
 ---
 
-# Spec-Driven Development (SDD)
-
 ### The Complete Book: Specification-Guided Software Development in the Age of Artificial Intelligence
 
 ---
