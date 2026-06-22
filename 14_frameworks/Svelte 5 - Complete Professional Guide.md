@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: svelte
+version: 5
 ---
 
 # Svelte 5 - Complete Professional Guide

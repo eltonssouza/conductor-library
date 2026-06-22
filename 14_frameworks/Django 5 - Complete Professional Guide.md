@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: django
+version: 5
 ---
 
 # Django 5 - Complete Professional Guide

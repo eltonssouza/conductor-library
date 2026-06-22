@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: angular
+version: 21
 ---
 
 # Angular 21 - Complete Professional Guide

@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: spring
+version: 3
 ---
 
 # Spring Boot 3 - Complete Professional Guide

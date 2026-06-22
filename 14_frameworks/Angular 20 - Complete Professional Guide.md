@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: angular
+version: 20
 ---
 
 # Angular 20 - Complete Professional Guide
