@@ -5,7 +5,7 @@ stack: react-native
 
 # Learning React Native
 
-> **Author(s):** Eisenman · **Category:** 06_web_and_frontend · **Language:** English
+> **Author(s):** Eisenman · **Category:** 14_frameworks · **Language:** English
 
 ---
 

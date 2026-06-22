@@ -5,7 +5,7 @@ stack: graphql
 
 # Learning GraphQL
 
-> **Author(s):** Porcello, Banks · **Category:** 06_web_and_frontend · **Language:** English
+> **Author(s):** Porcello, Banks · **Category:** 14_frameworks · **Language:** English
 
 ---
 

@@ -5,7 +5,7 @@ stack: ruby
 
 # Programming Ruby 3.3
 
-> **Author(s):** Rappin, Thomas · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Rappin, Thomas · **Category:** 01_programming_languages · **Language:** English
 
 ---
 

@@ -5,7 +5,7 @@ stack: javascript
 
 # Eloquent JavaScript
 
-> **Author(s):** Haverbeke · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Haverbeke · **Category:** 01_programming_languages · **Language:** English
 
 ---
 

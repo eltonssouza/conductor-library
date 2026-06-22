@@ -5,7 +5,7 @@ stack: go
 
 # The Go Programming Language
 
-> **Author(s):** Donovan, Kernighan · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Donovan, Kernighan · **Category:** 01_programming_languages · **Language:** English
 
 ---
 

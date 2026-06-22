@@ -5,7 +5,7 @@ stack: node
 
 # Mastering Node.js
 
-> **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Category:** 14_frameworks · **Language:** English
 
 ---
 

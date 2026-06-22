@@ -5,7 +5,7 @@ stack: angular
 
 # Angular 22 - Complete Professional Guide
 
-> **Category:** 06_web_and_frontend · **Language:** English
+> **Category:** 14_frameworks · **Language:** English
 
 ---
 

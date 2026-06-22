@@ -5,7 +5,7 @@ stack: java
 
 # Core Java - Volume II
 
-> **Author(s):** Horstmann · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Horstmann · **Category:** 01_programming_languages · **Language:** English
 
 ---
 

@@ -5,7 +5,7 @@ stack: rails
 
 # Ruby on Rails Tutorial (6th Ed)
 
-> **Author(s):** Hartl · **Edition:** 6th Ed · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Hartl · **Edition:** 6th Ed · **Category:** 14_frameworks · **Language:** English
 
 ---
 

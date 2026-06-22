@@ -5,7 +5,7 @@ stack: ruby
 
 # Programming Ruby 1.9 & 2.0 (4th Ed)
 
-> **Author(s):** Thomas · **Edition:** 4th Ed · **Category:** 01_languages_and_fundamentals · **Language:** English
+> **Author(s):** Thomas · **Edition:** 4th Ed · **Category:** 01_programming_languages · **Language:** English
 
 ---
 

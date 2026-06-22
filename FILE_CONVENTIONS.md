@@ -17,7 +17,7 @@ The library is a single corpus, split into topic folders. Each folder name is pr
 ```
 .
 ├── 00_academic_curriculum/         ← academic reading lists (one file per discipline)
-├── 01_languages_and_fundamentals/  ┐
+├── 01_programming_languages/       ┐  ← languages only (software_dev: stack)
 ├── 02_algorithms_and_data_structures/ │
 ├── 03_design_and_architecture/     │
 ├── 04_engineering_and_practices/   │
@@ -29,14 +29,15 @@ The library is a single corpus, split into topic folders. Each folder name is pr
 ├── 10_ai_and_llm/                  │
 ├── 11_management_product_process/  │
 ├── 12_design_ux/                   │
-├── 13_automation_and_integration/  ┘
+├── 13_automation_and_integration/  │
+├── 14_frameworks/                  ┘  ← frameworks/runtimes (software_dev: stack)
 ├── README.md                       ← navigable index of the whole corpus
 ├── FILE_CONVENTIONS.md             ← this file (the standard)
 ├── ROLES_AND_ACRONYMS.md           ← tech roles glossary
 └── AGENTS_AND_SKILLS_BY_ROLE.md    ← Agent prompt + Skill per role
 ```
 
-**Folder-name rule:** `NN_words_separated_by_underscore` — lowercase, English, no spaces, no accents. The number defines ordering (roughly a Computer Engineering track: languages → algorithms → design → engineering → data → web → operations → security → AI → management → design → automation).
+**Folder-name rule:** `NN_words_separated_by_underscore` — lowercase, English, no spaces, no accents. The number defines ordering (roughly a Computer Engineering track: languages → algorithms → design → engineering → data → web → operations → security → AI → management → design → automation → frameworks). Language and framework books are split into `01_programming_languages/` and `14_frameworks/` so a project can opt into only the stacks it uses.
 
 There are two kinds of content file, and both obey the three absolute rules above.
 
@@ -165,7 +166,7 @@ stack: python
 - `stack` is a single lowercase id: a language or framework (`java`, `javascript`, `node`, `python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, …). Add new ids as books arrive.
 - Conductor ingests a `stack` book only when its id is in `CONDUCTOR_LIBRARY_STACKS` (or that is `all`). `core` and the other tiers never use `stack:`.
 
-Assignment rule: professional books inherit the tier of their topic folder — **except** language/framework titles, which are `stack` (all of `01_languages_and_fundamentals`, plus framework-specific books like Angular/React Native/GraphQL). Academic reading lists are tiered per discipline. When unsure between two tiers, prefer the **more** dev-relevant one only if the book is routinely used while building software.
+Assignment rule: professional books inherit the tier of their topic folder — **except** language/framework titles, which are `stack` and live in `01_programming_languages/` (languages) or `14_frameworks/` (frameworks/runtimes: Angular, React Native, Rails, Node, GraphQL). Each `stack` file also carries a `stack: <id>` field (see `CONDUCTOR.md`). Academic reading lists are tiered per discipline. When unsure between two tiers, prefer the **more** dev-relevant one only if the book is routinely used while building software.
 
 ## 5. The standard header (every file)
 
