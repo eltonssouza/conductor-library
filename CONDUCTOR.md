@@ -85,7 +85,8 @@ CONDUCTOR_LIBRARY_TIERS=core,supporting CONDUCTOR_LIBRARY_STACKS=all cdt up   # 
 
 Ingest is incremental, so changing the selection and re-running `cdt up` only
 adds what's newly included. Available `stack` ids: `java`, `javascript`, `node`,
-`python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`.
+`python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, `n8n`,
+`hermes`.
 
 ---
 

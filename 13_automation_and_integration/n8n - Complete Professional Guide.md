@@ -1,5 +1,6 @@
 ---
-software_dev: core
+software_dev: stack
+stack: n8n
 ---
 
 # n8n - Complete Professional Guide
