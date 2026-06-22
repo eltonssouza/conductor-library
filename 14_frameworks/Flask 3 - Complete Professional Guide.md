@@ -82,7 +82,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Flask Fundamentals
+## Part I – Flask Fundamentals
 
 Part I establishes the core mental model of Flask: a thin, explicit microframework built on **Werkzeug** (WSGI and routing) and **Jinja2** (templating). You will learn how an application object dispatches requests, how the request and application contexts make data available without globals, and how to render dynamic HTML safely. Master these three chapters and every later topic — blueprints, databases, APIs — becomes a natural extension.
 

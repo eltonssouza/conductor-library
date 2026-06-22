@@ -78,7 +78,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Swift Language Foundations
+## Part I – Swift Language Foundations
 
 Part I builds the bedrock of everything that follows: how Swift models values, how it eliminates whole classes of bugs with **optionals**, how **value semantics** differ from reference semantics, and how **protocols and generics** let you write reusable, type-safe code. Master these three chapters and the rest of the stack — concurrency and SwiftUI — will feel like natural extensions rather than new languages.
 

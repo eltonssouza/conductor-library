@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v17:
 
 ---
 
-# Part I – Angular 17 Overview & Foundations
+## Part I – Angular 17 Overview & Foundations
 
 Part I gives you the strategic map of Angular 17. v17 is widely described as a **"renaissance" release**: it introduces a brand-new **declarative control flow** in templates (`@if`, `@for`, `@switch`), **deferrable views** (`@defer`) for in-template lazy loading, a **new esbuild/Vite build system** as the default for new projects, dramatically simpler **SSR and hydration**, **standalone** as the default, and the stabilization of **Signals**. Understanding these pillars — and how they fit together — is the difference between treating v17 as "just another version" and using it to modernize how you build Angular apps.
 

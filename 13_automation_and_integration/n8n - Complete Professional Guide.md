@@ -72,7 +72,7 @@ P1. Financial Automation · P2. AI-Powered Support · P3. Data Pipeline · P4. I
 
 ---
 
-# Part I – n8n Fundamentals
+## Part I – n8n Fundamentals
 
 Part I establishes the conceptual foundation for everything that follows. Even seasoned integration professionals should read it, because n8n 2.x introduced mental-model shifts (secure-by-default execution, the Publish/Save paradigm, task runners) that invalidate part of the knowledge accumulated on the 1.x line.
 

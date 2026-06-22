@@ -86,7 +86,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – The App Router Foundations
+## Part I – The App Router Foundations
 
 Part I gives you the mental model for Next.js 15. The App Router is a **server-first** framework built on **React Server Components**: components render on the server by default, you `await` data directly inside them, and you opt into client interactivity explicitly with `"use client"`. Equally important, Next.js 15 changed several **caching defaults** — `fetch` and `GET` Route Handlers are no longer cached unless you ask. Understanding the component boundary and the new caching defaults is the difference between a fast, correct app and one that ships stale data or leaks server code to the browser.
 

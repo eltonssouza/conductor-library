@@ -84,7 +84,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations
+## Part I – Foundations
 
 Part I builds the mental model you need for everything else. Spring Boot is not a new framework on top of Spring — it is an **opinionated, convention-over-configuration** layer that wires Spring Framework for you. Understanding three things — **starters**, **auto-configuration**, and the **IoC container** — explains 80% of what Spring Boot does at runtime, and demystifies the "magic" that newcomers often distrust.
 

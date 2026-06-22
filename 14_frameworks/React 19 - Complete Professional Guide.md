@@ -82,7 +82,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Fundamentals
+## Part I – Fundamentals
 
 Part I builds the mental model every React developer needs: React describes UI as a function of state, renders it through a reconciler, and lets you compose small components into screens. We start with JSX and rendering (Chapter 1), move to components and props (Chapter 2), and finish with interactive state and events (Chapter 3). Everything is written in React 19 idioms — function components, hooks, and the modern `createRoot` API — so the foundation you learn here carries straight into the advanced parts.
 

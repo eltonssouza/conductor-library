@@ -83,7 +83,7 @@ Progressive depth across five maturity levels, all centered on Svelte 5:
 
 ---
 
-# Part I – Svelte 5 Foundations
+## Part I – Svelte 5 Foundations
 
 Part I gives you the mental model for Svelte 5. Svelte is a **compiler**: it turns components into small, efficient JavaScript that updates the DOM directly, with no virtual DOM. Svelte 5's defining change is **runes** — compiler-recognized symbols like `$state` and `$derived` that make reactivity explicit, granular, and usable outside `.svelte` files. By the end of Part I you can write components, use control flow in markup, and build reactive state and derived values the modern way.
 

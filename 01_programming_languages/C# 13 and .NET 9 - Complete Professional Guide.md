@@ -82,7 +82,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations: Types & Syntax
+## Part I – Foundations: Types & Syntax
 
 Part I establishes the bedrock every later chapter builds on: how C# classifies data into **value types** and **reference types**, how **nullable reference types** make null-safety a compile-time concern, and how a C# 13 program is structured with file-scoped namespaces and top-level statements. Get these three chapters right and the rest of the language — OOP, generics, LINQ, async — slots cleanly into place.
 

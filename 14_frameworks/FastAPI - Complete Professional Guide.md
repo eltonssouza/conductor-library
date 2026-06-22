@@ -86,7 +86,7 @@ Progressive depth across five maturity levels:
 
 ---
 
-# Part I – Foundations & Request Handling
+## Part I – Foundations & Request Handling
 
 Part I builds the mental model behind FastAPI: a framework where **Python type hints are the source of truth**. From the function signature, FastAPI derives data parsing, validation, serialization, and the OpenAPI schema — at once. These three chapters take you from a first endpoint to fully typed, validated request handling.
 

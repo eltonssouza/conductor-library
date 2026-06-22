@@ -82,7 +82,7 @@ Progressive depth across five maturity levels, all centered on v22:
 
 ---
 
-# Part I – Angular 22 Overview & Migration
+## Part I – Angular 22 Overview & Migration
 
 Part I gives you the strategic map of Angular 22 and a concrete migration path. v22 is a **"modernization-by-default"** release: features that were experimental or opt-in for several versions (Signal Forms, Resources, Fetch, strict templates, OnPush) become **stable and/or the default**. Understanding which defaults flipped — and which changes are breaking — is the difference between a smooth upgrade and a broken build.
 
