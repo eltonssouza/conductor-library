@@ -2,7 +2,7 @@
 
 > For each role (acronym + name) there is a complete **Agent system prompt** (role, responsibilities, style, constraints) and a **Skill** (when to use + steps). Each Agent is anchored in the relevant books from this library.
 >
-> How to use: paste the "Agent — System prompt" as the agent's system prompt; use the "Skill" block as the definition of an actionable capability.
+> How to use: paste the "Agent — System prompt" as the agent's system prompt; use the "Skill" block as the definition of an actionable capability. These mirror the role agents the Conductor app scaffolds into a project's `.claude/` — see [CONDUCTOR.md](CONDUCTOR.md).
 
 ## Index
 1. Management, Product & Process — PM, PO, TPM, EM, BA, SM, AC, CTO, VPE

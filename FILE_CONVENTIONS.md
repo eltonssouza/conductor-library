@@ -173,6 +173,7 @@ Directly below the frontmatter, every content file has this header, derived from
 Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md` (except `README.md`), all in English:
 
 - `README.md` — navigable index of every folder and file.
+- `CONDUCTOR.md` — how the Conductor app fetches, ingests, and filters this library (install integration).
 - `FILE_CONVENTIONS.md` — this standard.
 - `ROLES_AND_ACRONYMS.md` — tech roles glossary (acronym + name).
 - `AGENTS_AND_SKILLS_BY_ROLE.md` — Agent prompt + Skill per role.
