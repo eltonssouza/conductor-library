@@ -8,8 +8,6 @@ software_dev: core
 
 ---
 
-# Context Engineering: Designing Information Environments for LLM Systems
-
 *A Practitioner's Guide* — 2026
 
 ## Preface

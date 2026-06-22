@@ -9,7 +9,6 @@ stack: hermes
 
 ---
 
-# Hermes Agent — Complete Professional Guide
 ### Autonomous Agents, Persistent Memory, Continuous Learning, and Enterprise Architecture
 **Edition updated for Hermes Agent v0.16 — "Surface Release" (June 2026)**
 

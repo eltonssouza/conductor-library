@@ -8,8 +8,6 @@ software_dev: core
 
 ---
 
-# Prompt Engineering: Principles, Patterns, and Practice for LLM Instruction Design
-
 *A Practitioner's Guide — 2026*
 
 ## Preface
