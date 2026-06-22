@@ -12,11 +12,12 @@ You do **not** install this repo by hand. Conductor fetches and indexes it for y
 cdt up
   │
   ├─ fetch  ──►  github.com/<CONDUCTOR_LIBRARY_REPO>@<CONDUCTOR_LIBRARY_REF>   (this repo)
+  │             keep only the SELECTED books (tier + stack)
   ├─ pull   ──►  bge-m3 embedding model (Ollama, GPU if available)
-  └─ ingest ──►  every .md → chunked → embedded → upserted into ChromaDB
+  └─ ingest ──►  selected .md → chunked → embedded → upserted into ChromaDB
 ```
 
-- **Fetch.** `cdt up` clones this repo (default `eltonssouza/conductor-library@main`). Nothing is downloaded by hand.
+- **Fetch.** `cdt up` downloads this repo (default `eltonssouza/conductor-library@main`) and writes to disk **only the books matching your selection** (see *Choosing what to ingest*). Nothing is downloaded by hand.
 - **Category.** Each chunk's `category` metadata is the **top-level folder name** (`00_academic_curriculum`, `03_design_and_architecture`, …). That is the unit `cdt library --category` filters on.
 - **Ingest is incremental.** Each chunk stores a content hash, so re-running only re-embeds new or changed files.
 
@@ -27,8 +28,8 @@ See the Conductor README's *Installation* and *The Docker backends → RAG stack
 ## Install / wire-up (from the Conductor side)
 
 ```bash
-# 1. Install Conductor (once)
-pipx install conductor
+# 1. Install Conductor (once) — see the Conductor README for the one-liner
+#    (curl … | sh  /  irm … | iex). It installs from the git repo, not PyPI.
 
 # 2. Start the RAG stack — fetches THIS repo and indexes it
 cdt up                    # attached; or `cdt up -d` for detached
@@ -57,8 +58,10 @@ To index a fork or branch instead of the default corpus, set the environment var
 
 ## Choosing what to ingest
 
-The whole repo is fetched, but **only the selected books are embedded** into
-ChromaDB — so the index stays small and on-topic. Two dials, read at `cdt up`:
+The repo is downloaded once, but **only the selected books are written to disk —
+and thus chunked and embedded** into ChromaDB. So a Java + Angular dev never even
+extracts the Ruby/Go/React books, and the index stays small and on-topic. Two
+dials, read at `cdt up`:
 
 - **Tiers** (`CONDUCTOR_LIBRARY_TIERS`, default `core`) — language-agnostic
   `software_dev` tiers. The default is `core` only: the engineering craft that
