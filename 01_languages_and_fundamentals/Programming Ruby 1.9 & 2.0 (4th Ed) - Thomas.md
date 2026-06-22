@@ -1,5 +1,5 @@
 ---
-software_dev: core
+software_dev: stack
 ---
 
 # Programming Ruby 1.9 & 2.0 (4th Ed)

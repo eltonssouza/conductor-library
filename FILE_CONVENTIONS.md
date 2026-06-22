@@ -139,16 +139,19 @@ software_dev: core
 ---
 ```
 
-`software_dev` is one of four tiers:
+`software_dev` is one of five tiers:
 
 | Tier | Meaning | Examples |
 |------|---------|----------|
-| `core` | Directly about writing, designing, or testing software | *Clean Code*, *Domain-Driven Design*, *Designing Data-Intensive Applications*, the languages/web/architecture books |
+| `core` | **Language-agnostic** craft of building software — writing, designing, testing | *Clean Code*, *Domain-Driven Design*, *Designing Data-Intensive Applications*, architecture/web/engineering books |
+| `stack` | A specific **programming language or framework** — the project (user) chooses these per its tech stack, not universal | Core Java, Eloquent JavaScript, The Go Programming Language, Angular, React Native, GraphQL |
 | `supporting` | Adjacent discipline that supports delivery | DevOps/SRE, security & privacy, management/product/process, design/UX |
 | `foundational` | Computer-science / math base underneath software | algorithms, operating systems, networks, compilers, automata, AI fundamentals |
 | `optional` | Pure math, theory, or hardware not strictly needed to build software | calculus, linear algebra, statistics, digital circuits, quantum computing |
 
-Assignment rule: professional books inherit the tier of their topic folder; academic reading lists are tiered per discipline. When unsure between two tiers, pick the **more** dev-relevant one only if the book is routinely used while building software.
+`core` is deliberately **language- and framework-neutral**: it is the craft every project needs regardless of stack. Anything tied to one language or framework is `stack`, so the user can opt into only the technologies they actually use.
+
+Assignment rule: professional books inherit the tier of their topic folder — **except** language/framework titles, which are `stack` (all of `01_languages_and_fundamentals`, plus framework-specific books like Angular/React Native/GraphQL). Academic reading lists are tiered per discipline. When unsure between two tiers, prefer the **more** dev-relevant one only if the book is routinely used while building software.
 
 ## 5. The standard header (every file)
 
@@ -186,7 +189,7 @@ Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md
 |------|----------|
 | Language | **English only**, every file |
 | Images | **None** — covers and figure embeds removed (literal `<img>` in prose/code is kept) |
-| Frontmatter | `software_dev: core \| supporting \| foundational \| optional` at the very top of every file |
+| Frontmatter | `software_dev: core \| stack \| supporting \| foundational \| optional` at the very top of every file |
 | Folder | `NN_lowercase_words` (English, no accents/spaces) |
 | Academic file | `NN_slug.md`, English, one entry per book (table + description, no cover) |
 | Professional book | `Title (Edition) - Author.md`, English, raw body + standard header |
