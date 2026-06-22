@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: javascript
 ---
 
 # JavaScript - The Good Parts

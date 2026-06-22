@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: java
 ---
 
 # Core Java - Volume I

@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: go
 ---
 
 # The Go Programming Language
