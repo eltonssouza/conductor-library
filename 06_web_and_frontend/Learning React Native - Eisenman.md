@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: react-native
 ---
 
 # Learning React Native

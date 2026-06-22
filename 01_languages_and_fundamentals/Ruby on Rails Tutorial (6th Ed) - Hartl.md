@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: rails
 ---
 
 # Ruby on Rails Tutorial (6th Ed)

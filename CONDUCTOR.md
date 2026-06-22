@@ -50,6 +50,33 @@ To index a fork or branch instead of the default corpus, set the environment var
 | `CONDUCTOR_LIBRARY_REF` | `main` | branch/tag of this repo to fetch |
 | `CONDUCTOR_LIBRARY_ARCHIVE` | _(unset)_ | optional offline seed: a mounted `.7z` used instead of the repo fetch |
 | `CONDUCTOR_LIBRARY` | `~/.conductor/library` (host) · `/data/library` (container) | corpus markdown root |
+| `CONDUCTOR_LIBRARY_TIERS` | `core` | comma list of `software_dev` tiers to ingest (`core,supporting,foundational,optional`) |
+| `CONDUCTOR_LIBRARY_STACKS` | _(none)_ | comma list of languages/frameworks to add (e.g. `python,angular`), or `all` |
+
+---
+
+## Choosing what to ingest
+
+The whole repo is fetched, but **only the selected books are embedded** into
+ChromaDB — so the index stays small and on-topic. Two dials, read at `cdt up`:
+
+- **Tiers** (`CONDUCTOR_LIBRARY_TIERS`, default `core`) — language-agnostic
+  `software_dev` tiers. The default is `core` only: the engineering craft that
+  doesn't depend on a language. Widen with
+  `CONDUCTOR_LIBRARY_TIERS=core,supporting` (DevOps, security, product, UX).
+- **Stacks** (`CONDUCTOR_LIBRARY_STACKS`, default none) — `software_dev: stack`
+  books carry a `stack: <id>` field and are **opt-in**: add the ones you use.
+  `CONDUCTOR_LIBRARY_STACKS=python,angular` adds those; `all` adds every stack.
+
+```bash
+cdt up                                                  # default: core, language-agnostic
+CONDUCTOR_LIBRARY_STACKS=python,angular cdt up          # + those stacks
+CONDUCTOR_LIBRARY_TIERS=core,supporting CONDUCTOR_LIBRARY_STACKS=all cdt up   # broad
+```
+
+Ingest is incremental, so changing the selection and re-running `cdt up` only
+adds what's newly included. Available `stack` ids: `java`, `javascript`, `node`,
+`python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`.
 
 ---
 

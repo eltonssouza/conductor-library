@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: angular
 ---
 
 # Angular 22 - Complete Professional Guide

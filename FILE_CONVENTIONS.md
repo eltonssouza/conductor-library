@@ -151,6 +151,20 @@ software_dev: core
 
 `core` is deliberately **language- and framework-neutral**: it is the craft every project needs regardless of stack. Anything tied to one language or framework is `stack`, so the user can opt into only the technologies they actually use.
 
+### `stack:` — which language/framework
+
+Every `software_dev: stack` file also carries a **`stack:` id** so the user can pick *which* technologies to ingest (not all-or-nothing):
+
+```yaml
+---
+software_dev: stack
+stack: python
+---
+```
+
+- `stack` is a single lowercase id: a language or framework (`java`, `javascript`, `node`, `python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, …). Add new ids as books arrive.
+- Conductor ingests a `stack` book only when its id is in `CONDUCTOR_LIBRARY_STACKS` (or that is `all`). `core` and the other tiers never use `stack:`.
+
 Assignment rule: professional books inherit the tier of their topic folder — **except** language/framework titles, which are `stack` (all of `01_languages_and_fundamentals`, plus framework-specific books like Angular/React Native/GraphQL). Academic reading lists are tiered per discipline. When unsure between two tiers, prefer the **more** dev-relevant one only if the book is routinely used while building software.
 
 ## 5. The standard header (every file)

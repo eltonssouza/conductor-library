@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: graphql
 ---
 
 # Learning GraphQL

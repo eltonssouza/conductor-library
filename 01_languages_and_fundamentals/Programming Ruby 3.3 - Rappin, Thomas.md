@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: ruby
 ---
 
 # Programming Ruby 3.3

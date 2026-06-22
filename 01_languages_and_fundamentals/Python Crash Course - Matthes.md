@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: python
 ---
 
 # Python Crash Course

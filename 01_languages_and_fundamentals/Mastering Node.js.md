@@ -1,5 +1,6 @@
 ---
 software_dev: stack
+stack: node
 ---
 
 # Mastering Node.js
