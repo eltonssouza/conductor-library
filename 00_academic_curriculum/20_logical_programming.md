@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 20 — Logic Programming
 
 > Reading list for this discipline.

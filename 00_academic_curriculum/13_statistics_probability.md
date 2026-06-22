@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 13 — Statistics & Probability
 
 > Reading list for this discipline.

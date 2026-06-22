@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 32 — Deep Learning
 
 > Reading list for this discipline.

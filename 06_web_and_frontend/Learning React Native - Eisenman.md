@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Learning React Native
 
 > **Author(s):** Eisenman · **Category:** 06_web_and_frontend · **Language:** English

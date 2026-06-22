@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 14 — Advanced Calculus
 
 > Reading list for this discipline.

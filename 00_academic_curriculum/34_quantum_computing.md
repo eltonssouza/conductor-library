@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 34 — Quantum Computing
 
 > Reading list for this discipline.

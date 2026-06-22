@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 06 — Introduction to Calculus
 
 > Reading list for this discipline.

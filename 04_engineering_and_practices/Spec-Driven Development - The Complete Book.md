@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Spec-Driven Development - The Complete Book
 
 > **Category:** 04_engineering_and_practices · **Language:** English

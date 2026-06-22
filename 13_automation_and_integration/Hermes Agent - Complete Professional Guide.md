@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Hermes Agent - Complete Professional Guide
 
 > **Category:** 13_automation_and_integration · **Language:** English

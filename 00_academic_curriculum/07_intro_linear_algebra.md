@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 07 — Introduction to Linear Algebra
 
 > Reading list for this discipline.

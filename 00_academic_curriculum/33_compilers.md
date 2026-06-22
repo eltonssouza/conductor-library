@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 33 — Compilers
 
 > Reading list for this discipline.

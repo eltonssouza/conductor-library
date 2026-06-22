@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 29 — Graphs
 
 > Reading list for this discipline.

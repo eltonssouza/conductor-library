@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Ontologies for Privacy Requirements Engineering (paper)
 
 > **Author(s):** Gharib · **Category:** 09_security_and_privacy · **Language:** English

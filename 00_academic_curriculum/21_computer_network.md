@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 21 — Computer Networks
 
 > Reading list for this discipline.

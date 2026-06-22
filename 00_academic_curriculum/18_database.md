@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 18 — Databases
 
 > Reading list for this discipline.

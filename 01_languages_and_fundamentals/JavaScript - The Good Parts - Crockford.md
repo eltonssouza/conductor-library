@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # JavaScript - The Good Parts
 
 > **Author(s):** Crockford · **Category:** 01_languages_and_fundamentals · **Language:** English

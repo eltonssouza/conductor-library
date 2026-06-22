@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # n8n - Complete Professional Guide
 
 > **Category:** 13_automation_and_integration · **Language:** English

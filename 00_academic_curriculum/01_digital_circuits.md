@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 01 — Digital Circuits
 
 > Reading list for this discipline.

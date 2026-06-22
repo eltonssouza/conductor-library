@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 27 — Artificial Intelligence
 
 > Reading list for this discipline.

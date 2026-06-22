@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Mastering Node.js
 
 > **Category:** 01_languages_and_fundamentals · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 03 — Programming Languages
 
 > Reading list for this discipline.

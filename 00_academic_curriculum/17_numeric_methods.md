@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 17 — Numerical Methods
 
 > Reading list for this discipline.

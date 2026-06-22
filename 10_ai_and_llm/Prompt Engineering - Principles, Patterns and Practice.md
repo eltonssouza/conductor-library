@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Prompt Engineering - Principles, Patterns and Practice
 
 > **Category:** 10_ai_and_llm · **Language:** English

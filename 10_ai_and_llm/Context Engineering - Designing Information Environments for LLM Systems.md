@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Context Engineering - Designing Information Environments for LLM Systems
 
 > **Category:** 10_ai_and_llm · **Language:** English

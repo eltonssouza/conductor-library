@@ -129,9 +129,30 @@ What the standard **does** enforce on every professional file:
 
 ---
 
-## 4. The standard header (every file)
+## 4. YAML frontmatter — software-development relevance
 
-Every content file begins with this block, derived from the filename and folder:
+Every content file **opens with a YAML frontmatter block** that tags how relevant the material is to building software. This lets the corpus be filtered (e.g. a RAG query can prefer `core`/`supporting` and skip pure theory).
+
+```yaml
+---
+software_dev: core
+---
+```
+
+`software_dev` is one of four tiers:
+
+| Tier | Meaning | Examples |
+|------|---------|----------|
+| `core` | Directly about writing, designing, or testing software | *Clean Code*, *Domain-Driven Design*, *Designing Data-Intensive Applications*, the languages/web/architecture books |
+| `supporting` | Adjacent discipline that supports delivery | DevOps/SRE, security & privacy, management/product/process, design/UX |
+| `foundational` | Computer-science / math base underneath software | algorithms, operating systems, networks, compilers, automata, AI fundamentals |
+| `optional` | Pure math, theory, or hardware not strictly needed to build software | calculus, linear algebra, statistics, digital circuits, quantum computing |
+
+Assignment rule: professional books inherit the tier of their topic folder; academic reading lists are tiered per discipline. When unsure between two tiers, pick the **more** dev-relevant one only if the book is routinely used while building software.
+
+## 5. The standard header (every file)
+
+Directly below the frontmatter, every content file has this header, derived from the filename and folder:
 
 ```markdown
 # <Title>
@@ -147,7 +168,7 @@ Every content file begins with this block, derived from the filename and folder:
 
 ---
 
-## 5. Root support files
+## 6. Root support files
 
 Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md` (except `README.md`), all in English:
 
@@ -158,15 +179,16 @@ Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md
 
 ---
 
-## 6. Quick reference
+## 7. Quick reference
 
 | Item | Standard |
 |------|----------|
 | Language | **English only**, every file |
 | Images | **None** — covers and figure embeds removed (literal `<img>` in prose/code is kept) |
+| Frontmatter | `software_dev: core \| supporting \| foundational \| optional` at the very top of every file |
 | Folder | `NN_lowercase_words` (English, no accents/spaces) |
 | Academic file | `NN_slug.md`, English, one entry per book (table + description, no cover) |
 | Professional book | `Title (Edition) - Author.md`, English, raw body + standard header |
-| Header | standard metadata block (section 4) at the top of every file |
+| Header | frontmatter, then standard metadata block (section 5) at the top of every file |
 | Support docs (root) | `UPPERCASE_WITH_UNDERSCORE.md` |
 | Ordering | by the numeric `NN_` prefix |

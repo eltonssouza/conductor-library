@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 15 — Haskell
 
 > Reading list for this discipline.

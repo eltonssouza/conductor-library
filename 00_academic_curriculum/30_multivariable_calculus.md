@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 30 — Multivariable Calculus
 
 > Reading list for this discipline.

@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 24 — Mathematical Optimization
 
 > Reading list for this discipline.
