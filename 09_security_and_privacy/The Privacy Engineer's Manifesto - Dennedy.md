@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The Privacy Engineer's Manifesto
 
 > **Author(s):** Dennedy · **Category:** 09_security_and_privacy · **Language:** English

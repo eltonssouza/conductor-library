@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 08 — Data Structures
 
 > Reading list for this discipline.

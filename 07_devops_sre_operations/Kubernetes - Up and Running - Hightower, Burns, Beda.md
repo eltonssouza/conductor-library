@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Kubernetes - Up and Running
 
 > **Author(s):** Hightower, Burns, Beda · **Category:** 07_devops_sre_operations · **Language:** English

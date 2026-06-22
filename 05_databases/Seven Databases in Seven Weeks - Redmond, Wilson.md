@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Seven Databases in Seven Weeks
 
 > **Author(s):** Redmond, Wilson · **Category:** 05_databases · **Language:** English

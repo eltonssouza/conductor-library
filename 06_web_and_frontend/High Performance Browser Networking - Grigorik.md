@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # High Performance Browser Networking
 
 > **Author(s):** Grigorik · **Category:** 06_web_and_frontend · **Language:** English

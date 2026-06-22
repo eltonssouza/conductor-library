@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 16 — Analysis of Algorithms
 
 > Reading list for this discipline.

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Unit Testing - Principles, Practices and Patterns
 
 > **Author(s):** Khorikov · **Category:** 04_engineering_and_practices · **Language:** English

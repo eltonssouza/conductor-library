@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Database Internals
 
 > **Author(s):** Petrov · **Category:** 05_databases · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Refactoring UI
 
 > **Author(s):** Wathan, Schoger · **Category:** 06_web_and_frontend · **Language:** English

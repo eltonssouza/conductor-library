@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The Design of Everyday Things
 
 > **Author(s):** Norman · **Category:** 12_design_ux · **Language:** English

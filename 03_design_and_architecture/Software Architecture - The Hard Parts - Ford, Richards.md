@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Software Architecture - The Hard Parts
 
 > **Author(s):** Ford, Richards · **Category:** 03_design_and_architecture · **Language:** English

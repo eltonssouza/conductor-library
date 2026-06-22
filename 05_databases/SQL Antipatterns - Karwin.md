@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # SQL Antipatterns
 
 > **Author(s):** Karwin · **Category:** 05_databases · **Language:** English

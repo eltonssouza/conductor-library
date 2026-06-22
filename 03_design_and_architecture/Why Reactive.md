@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Why Reactive
 
 > **Category:** 03_design_and_architecture · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Agile Testing - A Practical Guide
 
 > **Author(s):** Crispin, Gregory · **Category:** 04_engineering_and_practices · **Language:** English

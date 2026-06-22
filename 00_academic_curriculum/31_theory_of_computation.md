@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 31 — Theory of Computation
 
 > Reading list for this discipline.

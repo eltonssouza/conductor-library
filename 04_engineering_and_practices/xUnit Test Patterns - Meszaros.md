@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # xUnit Test Patterns
 
 > **Author(s):** Meszaros · **Category:** 04_engineering_and_practices · **Language:** English

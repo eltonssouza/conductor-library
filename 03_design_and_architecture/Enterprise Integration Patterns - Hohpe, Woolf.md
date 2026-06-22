@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Enterprise Integration Patterns
 
 > **Author(s):** Hohpe, Woolf · **Category:** 03_design_and_architecture · **Language:** English

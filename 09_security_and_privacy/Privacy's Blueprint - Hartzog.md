@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Privacy's Blueprint
 
 > **Author(s):** Hartzog · **Category:** 09_security_and_privacy · **Language:** English

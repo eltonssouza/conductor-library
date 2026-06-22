@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The Manager's Path
 
 > **Author(s):** Fournier · **Category:** 11_management_product_process · **Language:** English

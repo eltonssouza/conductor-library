@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Database System Concepts (7th Ed)
 
 > **Author(s):** Silberschatz, Korth · **Edition:** 7th Ed · **Category:** 05_databases · **Language:** English

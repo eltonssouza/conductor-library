@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # The Object-Oriented Thought Process (3rd Ed)
 
 > **Author(s):** Weisfeld · **Edition:** 3rd Ed · **Category:** 03_design_and_architecture · **Language:** English

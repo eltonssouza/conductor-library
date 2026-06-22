@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Learning Domain-Driven Design
 
 > **Author(s):** Khononov · **Category:** 03_design_and_architecture · **Language:** English

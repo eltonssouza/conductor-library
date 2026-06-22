@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Effective DevOps
 
 > **Author(s):** Davis, Daniels · **Category:** 07_devops_sre_operations · **Language:** English

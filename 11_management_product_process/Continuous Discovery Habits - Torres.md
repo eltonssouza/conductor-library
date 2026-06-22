@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Continuous Discovery Habits
 
 > **Author(s):** Torres · **Category:** 11_management_product_process · **Language:** English

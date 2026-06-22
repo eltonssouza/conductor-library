@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # SQL Performance Explained
 
 > **Author(s):** Winand · **Category:** 05_databases · **Language:** English

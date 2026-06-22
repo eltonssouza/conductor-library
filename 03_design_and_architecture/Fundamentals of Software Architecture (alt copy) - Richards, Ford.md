@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Fundamentals of Software Architecture (alt copy)
 
 > **Author(s):** Richards, Ford · **Category:** 03_design_and_architecture · **Language:** English

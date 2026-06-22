@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Python Crash Course
 
 > **Author(s):** Matthes · **Category:** 01_languages_and_fundamentals · **Language:** English

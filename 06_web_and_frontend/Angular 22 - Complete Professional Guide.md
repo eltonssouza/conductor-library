@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Angular 22 - Complete Professional Guide
 
 > **Category:** 06_web_and_frontend · **Language:** English

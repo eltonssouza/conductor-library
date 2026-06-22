@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Design Patterns
 
 > **Author(s):** Gang of Four · **Category:** 03_design_and_architecture · **Language:** English

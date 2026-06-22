@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Software Architecture in Practice (3rd Ed)
 
 > **Author(s):** Bass · **Edition:** 3rd Ed · **Category:** 03_design_and_architecture · **Language:** English

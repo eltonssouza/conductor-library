@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Solution Architect's Handbook
 
 > **Category:** 03_design_and_architecture · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Code Complete (2nd Ed)
 
 > **Author(s):** McConnell · **Edition:** 2nd Ed · **Category:** 04_engineering_and_practices · **Language:** English

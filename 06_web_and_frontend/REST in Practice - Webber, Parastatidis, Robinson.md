@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # REST in Practice
 
 > **Author(s):** Webber, Parastatidis, Robinson · **Category:** 06_web_and_frontend · **Language:** English

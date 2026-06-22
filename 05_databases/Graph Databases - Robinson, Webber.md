@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Graph Databases
 
 > **Author(s):** Robinson, Webber · **Category:** 05_databases · **Language:** English

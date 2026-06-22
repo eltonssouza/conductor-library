@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 23 — Operating Systems
 
 > Reading list for this discipline.

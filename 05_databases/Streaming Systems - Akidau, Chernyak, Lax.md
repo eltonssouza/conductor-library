@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Streaming Systems
 
 > **Author(s):** Akidau, Chernyak, Lax · **Category:** 05_databases · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Domain-Driven Design
 
 > **Author(s):** Evans · **Category:** 03_design_and_architecture · **Language:** English

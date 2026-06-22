@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Solution Architecture Patterns for Enterprise
 
 > **Category:** 03_design_and_architecture · **Language:** English

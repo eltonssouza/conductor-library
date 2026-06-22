@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # An Elegant Puzzle
 
 > **Author(s):** Larson · **Category:** 11_management_product_process · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Continuous Delivery
 
 > **Author(s):** Humble, Farley · **Category:** 07_devops_sre_operations · **Language:** English

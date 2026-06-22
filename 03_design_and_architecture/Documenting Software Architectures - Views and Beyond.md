@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Documenting Software Architectures
 
 > **Author(s):** Views and Beyond · **Category:** 03_design_and_architecture · **Language:** English

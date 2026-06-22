@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The Web Application Hacker's Handbook
 
 > **Author(s):** Stuttard, Pinto · **Category:** 09_security_and_privacy · **Language:** English

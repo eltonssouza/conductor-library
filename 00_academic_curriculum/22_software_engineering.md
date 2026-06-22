@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # 22 — Software Engineering
 
 > Reading list for this discipline.

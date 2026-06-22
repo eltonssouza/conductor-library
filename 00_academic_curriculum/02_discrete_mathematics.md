@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 02 — Discrete Mathematics
 
 > Reading list for this discipline.

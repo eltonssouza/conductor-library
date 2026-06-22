@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Working Effectively with Legacy Code
 
 > **Author(s):** Feathers · **Category:** 04_engineering_and_practices · **Language:** English

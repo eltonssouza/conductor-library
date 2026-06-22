@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Don't Make Me Think (3rd Ed)
 
 > **Author(s):** Krug · **Edition:** 3rd Ed · **Category:** 06_web_and_frontend · **Language:** English

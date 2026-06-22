@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # The Mythical Man-Month
 
 > **Author(s):** Brooks · **Category:** 04_engineering_and_practices · **Language:** English

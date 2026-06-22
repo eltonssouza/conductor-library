@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Specification by Example
 
 > **Author(s):** Adzic · **Category:** 04_engineering_and_practices · **Language:** English

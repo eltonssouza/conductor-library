@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The Art of Software Security Assessment
 
 > **Author(s):** Dowd, McDonald · **Category:** 09_security_and_privacy · **Language:** English

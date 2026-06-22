@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # The EU GDPR - A Practical Guide
 
 > **Author(s):** Voigt, von dem Bussche · **Category:** 09_security_and_privacy · **Language:** English

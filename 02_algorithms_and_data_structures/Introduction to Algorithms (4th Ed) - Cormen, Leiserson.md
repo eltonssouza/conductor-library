@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # Introduction to Algorithms (4th Ed)
 
 > **Author(s):** Cormen, Leiserson · **Edition:** 4th Ed · **Category:** 02_algorithms_and_data_structures · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 25 — Fundamentals of Computer Graphics
 
 > Reading list for this discipline.

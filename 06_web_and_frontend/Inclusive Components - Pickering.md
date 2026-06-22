@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Inclusive Components
 
 > **Author(s):** Pickering · **Category:** 06_web_and_frontend · **Language:** English

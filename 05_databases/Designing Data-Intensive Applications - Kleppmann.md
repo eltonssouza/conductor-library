@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Designing Data-Intensive Applications
 
 > **Author(s):** Kleppmann · **Category:** 05_databases · **Language:** English

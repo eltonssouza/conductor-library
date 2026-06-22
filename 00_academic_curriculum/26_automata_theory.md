@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 26 — Automata Theory
 
 > Reading list for this discipline.

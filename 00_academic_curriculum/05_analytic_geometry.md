@@ -1,3 +1,7 @@
+---
+software_dev: optional
+---
+
 # 05 — Analytic Geometry
 
 > Reading list for this discipline.

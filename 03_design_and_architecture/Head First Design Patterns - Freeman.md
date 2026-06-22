@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Head First Design Patterns
 
 > **Author(s):** Freeman · **Category:** 03_design_and_architecture · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Refactoring - Improving the Design of Existing Code
 
 > **Author(s):** Fowler · **Category:** 03_design_and_architecture · **Language:** English

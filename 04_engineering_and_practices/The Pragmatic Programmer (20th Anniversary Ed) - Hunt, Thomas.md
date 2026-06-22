@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # The Pragmatic Programmer (20th Anniversary Ed)
 
 > **Author(s):** Hunt, Thomas · **Edition:** 20th Anniversary Ed · **Category:** 04_engineering_and_practices · **Language:** English

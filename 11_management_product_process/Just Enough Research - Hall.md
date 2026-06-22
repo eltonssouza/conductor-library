@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Just Enough Research
 
 > **Author(s):** Hall · **Category:** 11_management_product_process · **Language:** English

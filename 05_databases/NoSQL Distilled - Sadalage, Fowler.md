@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # NoSQL Distilled
 
 > **Author(s):** Sadalage, Fowler · **Category:** 05_databases · **Language:** English

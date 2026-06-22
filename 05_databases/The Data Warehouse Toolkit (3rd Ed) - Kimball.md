@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # The Data Warehouse Toolkit (3rd Ed)
 
 > **Author(s):** Kimball · **Edition:** 3rd Ed · **Category:** 05_databases · **Language:** English

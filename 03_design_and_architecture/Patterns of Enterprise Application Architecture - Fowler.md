@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Patterns of Enterprise Application Architecture
 
 > **Author(s):** Fowler · **Category:** 03_design_and_architecture · **Language:** English

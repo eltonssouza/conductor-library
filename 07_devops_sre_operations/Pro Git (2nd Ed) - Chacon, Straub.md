@@ -1,3 +1,7 @@
+---
+software_dev: supporting
+---
+
 # Pro Git (2nd Ed)
 
 > **Author(s):** Chacon, Straub · **Edition:** 2nd Ed · **Category:** 07_devops_sre_operations · **Language:** English

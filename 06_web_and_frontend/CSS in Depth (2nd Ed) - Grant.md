@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # CSS in Depth (2nd Ed)
 
 > **Author(s):** Grant · **Edition:** 2nd Ed · **Category:** 06_web_and_frontend · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: foundational
+---
+
 # 28 — Distributed Computing
 
 > Reading list for this discipline.

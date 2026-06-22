@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Design It! From Programmer to Software Architect
 
 > **Author(s):** Keeling · **Category:** 03_design_and_architecture · **Language:** English

@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # A Philosophy of Software Design (2nd Ed)
 
 > **Author(s):** Ousterhout · **Edition:** 2nd Ed · **Category:** 03_design_and_architecture · **Language:** English

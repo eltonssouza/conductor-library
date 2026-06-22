@@ -1,3 +1,7 @@
+---
+software_dev: core
+---
+
 # Growing Object-Oriented Software, Guided by Tests
 
 > **Author(s):** Freeman, Pryce · **Category:** 04_engineering_and_practices · **Language:** English
