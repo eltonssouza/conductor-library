@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: fastify
+version: 5
 ---
 
 # Fastify 5 - Complete Professional Guide

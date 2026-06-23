@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: nestjs
+version: 11
 ---
 
 # NestJS 11 - Complete Professional Guide

@@ -1,21 +1,38 @@
 ---
 software_dev: stack
 stack: spring
-version: 3
+version: 4
 ---
 
-# Spring Boot 3 - Complete Professional Guide
+# Spring Boot 4 - Complete Professional Guide
 
 > **Category:** 14_frameworks · **Language:** English
 
 ---
 
 ### Auto-configuration, Spring MVC & WebFlux, Data JPA, Security, Actuator, Testing, Native/AOT
-**Edition for Spring Boot 3.x (Spring Framework 6, Java 17+)**
+**Edition for Spring Boot 4.x (Spring Framework 7, Java 17+ with first-class Java 25)**
 
-> **Reference book (English).** Based on the official Spring Boot reference documentation (https://docs.spring.io), the Spring Framework reference, and the Spring Boot release notes. Written for developers, architects, and teams building production services on the JVM.
+> **Reference book (English).** Based on the official Spring Boot reference documentation (https://docs.spring.io), the Spring Framework 7 reference, and the Spring Boot 4.0 release notes. Written for developers, architects, and teams building production services on the JVM.
 >
-> **Scope notice:** this is a **production-focused** book. It teaches Spring Boot 3 as it is built today: Jakarta EE 9+ namespaces (`jakarta.*`), Java 17+ baseline, GraalVM native images, observability with Micrometer, and the modern auto-configuration model. Each chapter follows the TO-BRAIN editorial standard (see `FILE_CONVENTIONS.md`).
+> **Scope notice:** this is a **production-focused** book. It teaches Spring Boot 4 as it is built today: Jakarta EE 11 (`jakarta.*`, Servlet 6.1, JPA 3.2, Bean Validation 3.1), a Java 17 baseline with first-class Java 25 support, JSpecify null-safety, Jackson 3, built-in REST API versioning, core resilience (`@Retryable`, `@ConcurrencyLimit`), a modularized auto-configuration model, and GraalVM native images. Each chapter follows the TO-BRAIN editorial standard (see `FILE_CONVENTIONS.md`).
+
+---
+
+## What changed since Spring Boot 3
+
+Spring Boot 4 is built on **Spring Framework 7** and starts a new generation of the platform. The headline changes — woven into the relevant chapters below — are:
+
+- **Java baseline & toolchain.** Java **17** remains the minimum, but 4.0 ships **first-class support for Java 25** (the recommended LTS). Kotlin **2.2+** and, for native images, **GraalVM 25+** are required.
+- **Jakarta EE 11.** Servlet 6.1, JPA 3.2, Bean Validation 3.1. Still `jakarta.*`; a Servlet 6.1-compatible container is required.
+- **JSpecify null-safety.** The portfolio standardizes on **JSpecify** annotations (`@Nullable`, `@NonNull`, `@NullMarked`) for tool-checkable nullness, replacing Spring's own annotations.
+- **Jackson 3.** JSON processing moves to **Jackson 3** (new `tools.jackson.*` packages); Jackson 2 is still bridgeable during migration.
+- **Built-in REST API versioning.** First-class API versioning across MVC and WebFlux (`@RequestMapping(version = ...)`) — no custom resolver plumbing.
+- **Core resilience.** `@Retryable` and `@ConcurrencyLimit` are now first-class in the framework (Spring Retry folded into core).
+- **Modularized auto-configuration.** The monolithic `spring-boot-autoconfigure` jar is split into focused modules, shrinking footprint and clarifying dependencies.
+- **Declarative HTTP clients.** `@HttpServiceClient` interfaces are promoted to a fully supported, auto-detected programming model.
+
+If you are migrating, read this edition alongside the official **Spring Boot 4.0 Migration Guide** and the **OpenRewrite** recipes that automate most of the mechanical changes.
 
 ---
 
@@ -31,26 +48,26 @@ Progressive depth across five maturity levels:
 | 4 — Specialist | Testing & observability | Parts VI–VII |
 | 5 — Enterprise | Packaging, native, production | Part VIII |
 
-**Target audience:** Java and backend developers, software architects, platform engineers, tech leads, and CTOs adopting or scaling Spring Boot 3 services.
+**Target audience:** Java and backend developers, software architects, platform engineers, tech leads, and CTOs adopting or scaling Spring Boot 4 services.
 
 **Structure of each chapter:** Introduction · Business context · Theoretical concepts · Architecture · Diagrams (Mermaid) · Real examples · Step by step · Complete code · Exercises · Challenges · Checklist · Best practices · Anti-patterns · Troubleshooting · Official references.
 
 **Example format:** Scenario · Problem · Solution · Implementation · Result · Future improvements.
 
-> **Note on prerequisites.** This book assumes working knowledge of Java 17+ (records, sealed types, `var`), Maven or Gradle, and basic HTTP. Where a Spring Boot feature builds on plain Spring Framework, the lineage is made explicit.
+> **Note on prerequisites.** This book assumes working knowledge of Java 17+ (records, sealed types, `var`; ideally pattern matching and virtual threads from later releases), Maven or Gradle, and basic HTTP. Where a Spring Boot feature builds on plain Spring Framework, the lineage is made explicit.
 
 ---
 
 ## Table of Contents
 
 **Part I – Foundations**
-1. What is Spring Boot 3 — starters and the project model
+1. What is Spring Boot 4 — starters and the project model
 2. Auto-configuration and the Spring Boot lifecycle
 3. The IoC container, beans, and dependency injection
 
 **Part II – Configuration & Web APIs**
 4. Externalized configuration, profiles, and `@ConfigurationProperties`
-5. Building REST APIs with Spring MVC (`@RestController`, content negotiation)
+5. Building REST APIs with Spring MVC (`@RestController`, content negotiation, API versioning)
 6. Bean Validation and error handling (`@Valid`, `ProblemDetail`, `@ControllerAdvice`)
 
 **Part III – Data & Transactions**
@@ -63,10 +80,10 @@ Progressive depth across five maturity levels:
 11. Stateless authentication with JWT
 12. OAuth2 / OIDC resource server and client
 
-**Part V – Reactive**
+**Part V – Reactive & Resilience**
 13. Reactive programming with Project Reactor
 14. Spring WebFlux and the functional/annotated models
-15. Reactive data access (R2DBC)
+15. Reactive data access (R2DBC) and core resilience (`@Retryable`, `@ConcurrencyLimit`)
 
 **Part VI – Testing**
 16. Unit and slice tests (`@WebMvcTest`, `@DataJpaTest`)
@@ -91,21 +108,21 @@ Part I builds the mental model you need for everything else. Spring Boot is not 
 
 ---
 
-## Chapter 1 — What is Spring Boot 3 — starters and the project model
+## Chapter 1 — What is Spring Boot 4 — starters and the project model
 
 ### 1.1 Introduction
 
-Spring Boot 3 (built on **Spring Framework 6**, requiring **Java 17+** and the **`jakarta.*`** namespace) lets you create stand-alone, production-grade Spring applications that "just run." Instead of assembling dozens of libraries and XML files, you declare a small set of **starters** — curated dependency descriptors — and Spring Boot supplies sensible defaults, an embedded server, and a single executable artifact. This chapter explains the project model: starters, the parent BOM, the embedded server, and the `@SpringBootApplication` entry point.
+Spring Boot 4 (built on **Spring Framework 7**, requiring **Java 17+** with **first-class Java 25** support and the **`jakarta.*`** namespace at the **Jakarta EE 11** level) lets you create stand-alone, production-grade Spring applications that "just run." Instead of assembling dozens of libraries and XML files, you declare a small set of **starters** — curated dependency descriptors — and Spring Boot supplies sensible defaults, an embedded server, and a single executable artifact. This chapter explains the project model: starters, the parent BOM, the embedded server, and the `@SpringBootApplication` entry point.
 
 ### 1.2 Business context
 
-For engineering organizations, Spring Boot's value is **time-to-first-endpoint** and **operational consistency**. A new service can be live in minutes, every service shares the same dependency versions (via the managed BOM), and the same `java -jar` command runs locally, in CI, and in production. This standardization lowers onboarding cost, reduces "works on my machine" drift, and makes a fleet of microservices governable. The trade-off — accepting Spring's opinions — is usually a net win because the defaults reflect community-wide best practice.
+For engineering organizations, Spring Boot's value is **time-to-first-endpoint** and **operational consistency**. A new service can be live in minutes, every service shares the same dependency versions (via the managed BOM), and the same `java -jar` command runs locally, in CI, and in production. Spring Boot 4 sharpens this with a **modularized** dependency model (smaller, clearer auto-configuration modules) and a JSpecify-checked, null-safe codebase — standardization that lowers onboarding cost, reduces "works on my machine" drift, and makes a fleet of microservices governable. The trade-off — accepting Spring's opinions — is usually a net win because the defaults reflect community-wide best practice.
 
 ### 1.3 Theoretical concepts: the building blocks
 
 ```mermaid
 mindmap
-  root((Spring Boot 3))
+  root((Spring Boot 4))
     Starters
       spring-boot-starter-web
       spring-boot-starter-data-jpa
@@ -114,6 +131,7 @@ mindmap
     Dependency management
       spring-boot-starter-parent (BOM)
       consistent versions
+      modularized auto-config
     Embedded server
       Tomcat (default)
       Jetty / Undertow
@@ -121,12 +139,13 @@ mindmap
       @SpringBootApplication
       SpringApplication.run()
     Platform baseline
-      Java 17+
-      jakarta.* namespace
-      Spring Framework 6
+      Java 17+ (first-class Java 25)
+      jakarta.* (Jakarta EE 11)
+      Spring Framework 7
+      JSpecify null-safety
 ```
 
-A **starter** is a dependency that transitively pulls a coherent set of libraries (for example, `spring-boot-starter-web` brings Spring MVC, Jackson, validation, and embedded Tomcat). The **starter parent** (or the dependency-management BOM in Gradle) pins compatible versions so you rarely specify version numbers yourself. The result is a reproducible, version-aligned dependency tree.
+A **starter** is a dependency that transitively pulls a coherent set of libraries (for example, `spring-boot-starter-web` brings Spring MVC, Jackson 3, validation, and embedded Tomcat). The **starter parent** (or the dependency-management BOM in Gradle) pins compatible versions so you rarely specify version numbers yourself. In Spring Boot 4 the auto-configuration that backs these starters is **split into focused modules** rather than one monolithic jar, so an app pulls in only what it uses. The result is a reproducible, version-aligned, leaner dependency tree.
 
 ### 1.4 Architecture: from main() to a running server
 
@@ -134,9 +153,9 @@ A **starter** is a dependency that transitively pulls a coherent set of librarie
 flowchart TB
     main["main(): SpringApplication.run(App.class, args)"] --> ctx["Create ApplicationContext"]
     ctx --> scan["Component scanning<br/>(@Component, @Service, @RestController)"]
-    ctx --> ac["Apply auto-configuration"]
+    ctx --> ac["Apply auto-configuration (modular)"]
     ac --> beans["Instantiate & wire beans"]
-    beans --> server["Start embedded server (Tomcat)"]
+    beans --> server["Start embedded server (Tomcat, Servlet 6.1)"]
     server --> ready["ApplicationReadyEvent — app serving traffic"]
 ```
 
@@ -153,7 +172,7 @@ flowchart TB
 **Implementation.**
 
 ```java
-// build: spring-boot-starter-parent + spring-boot-starter-web
+// build: spring-boot-starter-parent (4.x) + spring-boot-starter-web
 package com.example.greeting;
 
 import org.springframework.boot.SpringApplication;
@@ -190,7 +209,7 @@ java -jar target/greeting-0.0.1-SNAPSHOT.jar
 
 **Result.** A self-contained jar with embedded Tomcat serves JSON on port 8080 — no external server, no XML, one command.
 
-**Future improvements.** Add `@ConfigurationProperties` for the greeting text (Chapter 4) and Actuator for health/metrics (Chapter 18).
+**Future improvements.** Add `@ConfigurationProperties` for the greeting text (Chapter 4), version the endpoint with built-in API versioning (Chapter 5), and add Actuator for health/metrics (Chapter 18).
 
 ### 1.6 Exercises
 
@@ -200,13 +219,13 @@ java -jar target/greeting-0.0.1-SNAPSHOT.jar
 
 ### 1.7 Challenges
 
-- **Challenge.** Generate a project with Spring Initializr (start.spring.io), add `web` and `actuator`, run it, and confirm the embedded server version printed in the startup log matches the BOM.
+- **Challenge.** Generate a project with Spring Initializr (start.spring.io) selecting Spring Boot 4.x, add `web` and `actuator`, run it on Java 25, and confirm the embedded server version printed in the startup log matches the BOM.
 
 ### 1.8 Checklist
 
 - [ ] I understand what a starter is and why versions are managed for me.
 - [ ] I can explain the role of `@SpringBootApplication`.
-- [ ] I know Spring Boot 3 requires Java 17+ and the `jakarta.*` namespace.
+- [ ] I know Spring Boot 4 requires Java 17+ (first-class Java 25) and Jakarta EE 11 (`jakarta.*`).
 - [ ] I can package and run an app as a single executable jar.
 
 ### 1.9 Best practices
@@ -214,19 +233,21 @@ java -jar target/greeting-0.0.1-SNAPSHOT.jar
 - Prefer starters over hand-picking individual libraries — you inherit tested version alignment.
 - Keep the main application class in the **root package** so component scanning covers all sub-packages.
 - Let the BOM manage versions; only override a version when you have a concrete reason.
+- Target the latest LTS (Java 25) for new Boot 4 services unless a constraint pins you to 17.
 
 ### 1.10 Anti-patterns
 
 - Pinning library versions manually and fighting the managed BOM, causing classpath conflicts.
 - Placing `@SpringBootApplication` in a deep package so component scanning misses your beans.
-- Mixing `javax.*` and `jakarta.*` imports (the former is unsupported in Spring Boot 3).
+- Carrying over `javax.*` or Jakarta EE 10 / Servlet 6.0 assumptions — Boot 4 is Jakarta EE 11 (Servlet 6.1).
 
 ### 1.11 Troubleshooting
 
 | Symptom | Likely cause | Action |
 |---------|--------------|--------|
 | Beans/controllers not discovered | Main class outside root package | Move it up so `@ComponentScan` covers them |
-| `ClassNotFoundException: javax.servlet...` | Legacy `javax.*` dependency | Use Jakarta-based libraries; Boot 3 is `jakarta.*` |
+| `ClassNotFoundException: javax.servlet...` | Legacy `javax.*` dependency | Use Jakarta EE 11 libraries; Boot 4 is `jakarta.*` |
+| Container fails to start on old server | Servlet < 6.1 container | Use a Servlet 6.1-compatible container |
 | Port 8080 already in use | Another process bound to the port | Set `server.port` or free the port |
 | Wrong/duplicate dependency versions | Bypassing the BOM | Remove explicit versions; rely on starter parent |
 
@@ -235,7 +256,8 @@ java -jar target/greeting-0.0.1-SNAPSHOT.jar
 - Spring Boot reference — Getting Started: https://docs.spring.io/spring-boot/reference/using/index.html
 - Spring Boot starters: https://docs.spring.io/spring-boot/reference/using/build-systems.html#using.build-systems.starters
 - Spring Initializr: https://start.spring.io
-- Spring Boot 3 release notes: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Release-Notes
+- Spring Boot 4.0 release notes: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes
+- Spring Framework 7.0 GA announcement: https://spring.io/blog/2025/11/13/spring-framework-7-0-general-availability/
 
 ---
 
@@ -243,19 +265,19 @@ java -jar target/greeting-0.0.1-SNAPSHOT.jar
 
 ### 2.1 Introduction
 
-Auto-configuration is the mechanism that makes Spring Boot feel magical: based on what is on the classpath, what beans already exist, and what properties are set, Spring Boot **conditionally** configures beans for you (a `DataSource`, a `Jackson` mapper, an MVC stack, and so on). This chapter explains how auto-configuration is discovered and applied, how conditions decide what gets created, and how you override or disable it.
+Auto-configuration is the mechanism that makes Spring Boot feel magical: based on what is on the classpath, what beans already exist, and what properties are set, Spring Boot **conditionally** configures beans for you (a `DataSource`, a JSON mapper, an MVC stack, and so on). This chapter explains how auto-configuration is discovered and applied, how conditions decide what gets created, and how you override or disable it. In Spring Boot 4 the auto-configuration is delivered as **focused modules** rather than one jar, but the discovery and conditional model is unchanged.
 
 ### 2.2 Business context
 
-Auto-configuration is what turns "weeks of plumbing" into "minutes of coding." For a business, that means faster delivery and fewer configuration defects. But teams must understand it well enough to **debug** it — when a bean unexpectedly exists (or doesn't), the difference between a one-line fix and a multi-day investigation is knowing how conditions and ordering work. Treating auto-configuration as an unknowable black box is an operational risk.
+Auto-configuration is what turns "weeks of plumbing" into "minutes of coding." For a business, that means faster delivery and fewer configuration defects. But teams must understand it well enough to **debug** it — when a bean unexpectedly exists (or doesn't), the difference between a one-line fix and a multi-day investigation is knowing how conditions and ordering work. Treating auto-configuration as an unknowable black box is an operational risk. The Boot 4 modularization makes this easier: smaller modules mean fewer surprising conditions on the classpath.
 
 ### 2.3 Theoretical concepts: conditional beans
 
-Auto-configuration classes are listed in `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`. Each is gated by `@Conditional` annotations such as `@ConditionalOnClass`, `@ConditionalOnMissingBean`, and `@ConditionalOnProperty`. The crucial rule: **your beans win** — `@ConditionalOnMissingBean` means an auto-configured bean is created only if you didn't already define one.
+Auto-configuration classes are listed in `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (now within each auto-configuration module). Each is gated by `@Conditional` annotations such as `@ConditionalOnClass`, `@ConditionalOnMissingBean`, and `@ConditionalOnProperty`. The crucial rule: **your beans win** — `@ConditionalOnMissingBean` means an auto-configured bean is created only if you didn't already define one.
 
 ```mermaid
 flowchart TB
-    start["@EnableAutoConfiguration"] --> load["Load AutoConfiguration.imports"]
+    start["@EnableAutoConfiguration"] --> load["Load AutoConfiguration.imports<br/>(across modules)"]
     load --> cond{"Conditions met?"}
     cond -- "@ConditionalOnClass present" --> chkbean{"@ConditionalOnMissingBean?"}
     cond -- "no" --> skip["Skip configuration"]
@@ -267,7 +289,7 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    cp["Classpath<br/>(starters, libraries)"] --> ac["Auto-configuration classes"]
+    cp["Classpath<br/>(starters, modular libraries)"] --> ac["Auto-configuration classes"]
     props["Properties<br/>(application.yml)"] --> ac
     user["User @Configuration<br/>& @Bean"] --> ctx["ApplicationContext"]
     ac --> ctx
@@ -280,18 +302,19 @@ Auto-configuration runs **after** your own configuration so your beans are seen 
 
 **Scenario.** A team wants a custom JSON `ObjectMapper` (snake_case, ignore unknown fields) but keep all other web auto-configuration intact.
 
-**Problem.** They worry that defining their own mapper will break Spring Boot's Jackson setup.
+**Problem.** They worry that defining their own mapper will break Spring Boot's Jackson setup, and they are now on **Jackson 3**.
 
-**Solution.** Define a single `@Bean ObjectMapper`. Because the Jackson auto-configuration uses `@ConditionalOnMissingBean`, it backs off for the mapper while keeping everything else.
+**Solution.** Prefer a `Jackson2ObjectMapperBuilderCustomizer`-style customizer (now backed by Jackson 3) so Boot's other defaults are preserved. If full control is genuinely required, define a single mapper bean and let the Jackson auto-configuration back off via `@ConditionalOnMissingBean`.
 
 **Implementation.**
 
 ```java
 package com.example.config;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+// Spring Boot 4 uses Jackson 3 (tools.jackson.* packages).
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.PropertyNamingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -300,9 +323,10 @@ public class JacksonConfig {
 
     @Bean
     ObjectMapper objectMapper() {
-        return new ObjectMapper()
-            .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return ObjectMapper.builder()
+            .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .build();
     }
 }
 ```
@@ -316,11 +340,11 @@ java -jar app.jar --debug
 
 **Result.** The application uses your `ObjectMapper`; Spring Boot's Jackson auto-config backs off for that bean but still wires the rest of the web stack.
 
-**Future improvements.** Prefer customizing via `Jackson2ObjectMapperBuilderCustomizer` so Boot's other defaults (modules, date handling) are preserved; reserve a full `ObjectMapper` bean for cases that truly need total control.
+**Future improvements.** Prefer a builder customizer so Boot's other defaults (modules, date handling) are preserved; reserve a full `ObjectMapper` bean for cases that truly need total control.
 
 ### 2.6 Exercises
 
-1. What file declares auto-configuration classes in Spring Boot 3?
+1. What file declares auto-configuration classes in Spring Boot 4, and how does modularization change where it lives?
 2. Explain what `@ConditionalOnMissingBean` does and why it matters.
 3. How do you exclude a specific auto-configuration class?
 
@@ -330,7 +354,7 @@ java -jar app.jar --debug
 
 ### 2.8 Checklist
 
-- [ ] I can describe how auto-configuration is discovered.
+- [ ] I can describe how auto-configuration is discovered (and that it is now modular).
 - [ ] I know the common `@Conditional` annotations and the "back off" rule.
 - [ ] I can read the Conditions Evaluation Report.
 - [ ] I know how to exclude an auto-configuration via `exclude` or properties.
@@ -338,7 +362,7 @@ java -jar app.jar --debug
 ### 2.9 Best practices
 
 - Override behavior by **adding your own bean** and letting auto-config back off, rather than fighting it.
-- Use `Customizer` beans (e.g. `WebMvcConfigurer`, `Jackson2ObjectMapperBuilderCustomizer`) to tweak defaults without replacing them wholesale.
+- Use `Customizer` beans (e.g. `WebMvcConfigurer`, a Jackson builder customizer) to tweak defaults without replacing them wholesale.
 - Use the `--debug` report when a bean unexpectedly exists or is missing.
 
 ### 2.10 Anti-patterns
@@ -354,7 +378,7 @@ java -jar app.jar --debug
 | Expected bean is missing | A condition wasn't met | Check `--debug` negative matches |
 | Two conflicting beans of a type | Auto-config didn't back off | Ensure your bean type matches the `@ConditionalOnMissingBean` target |
 | Auto-config you don't want is active | Class is on the classpath | Use `@SpringBootApplication(exclude = ...)` or `spring.autoconfigure.exclude` |
-| Customization ignored | Replaced bean instead of customizing | Use the matching `Customizer`/`Configurer` |
+| Jackson customization ignored | Mixed Jackson 2 and 3 types | Use the Jackson 3 (`tools.jackson.*`) types and the matching customizer |
 
 ### 2.12 Official references
 
@@ -369,11 +393,11 @@ java -jar app.jar --debug
 
 ### 3.1 Introduction
 
-Underneath every Spring Boot app is the Spring Framework **Inversion of Control (IoC) container**: it creates objects (**beans**), resolves their dependencies, and manages their lifecycle. Spring Boot adds auto-configuration and conventions, but the container is the engine. This chapter covers beans, the stereotype annotations, **constructor injection** (the modern default), scopes, and how the `ApplicationContext` ties it together.
+Underneath every Spring Boot app is the Spring Framework **Inversion of Control (IoC) container**: it creates objects (**beans**), resolves their dependencies, and manages their lifecycle. Spring Boot adds auto-configuration and conventions, but the container is the engine. This chapter covers beans, the stereotype annotations, **constructor injection** (the modern default), scopes, and how the `ApplicationContext` ties it together. In Spring Framework 7 the container is also **JSpecify-annotated**, so nullness is tool-checkable across injection points.
 
 ### 3.2 Business context
 
-Dependency injection is not academic — it directly shapes **testability and change cost**. Code that receives its collaborators (rather than constructing them) can be unit-tested with fakes, swapped per environment, and refactored without ripple effects. Teams that internalize DI ship code that is cheaper to test and safer to evolve; teams that don't end up with tangled singletons and brittle tests.
+Dependency injection is not academic — it directly shapes **testability and change cost**. Code that receives its collaborators (rather than constructing them) can be unit-tested with fakes, swapped per environment, and refactored without ripple effects. Teams that internalize DI ship code that is cheaper to test and safer to evolve; teams that don't end up with tangled singletons and brittle tests. Boot 4's JSpecify null-safety adds a second payoff: nullness bugs surface in the IDE and build, not in production.
 
 ### 3.3 Theoretical concepts: beans and injection
 
@@ -406,7 +430,7 @@ Each arrow is a constructor dependency the container resolves. Because beans are
 
 **Problem.** Field injection (`@Autowired` on fields) makes the class hard to unit-test and hides required dependencies.
 
-**Solution.** Use **constructor injection**. With a single constructor, Spring injects automatically — no `@Autowired` needed — and the dependencies become `final`.
+**Solution.** Use **constructor injection**. With a single constructor, Spring injects automatically — no `@Autowired` needed — and the dependencies become `final`. Mark the package `@NullMarked` (JSpecify) so non-null is the default and nullable points are explicit.
 
 **Implementation.**
 
@@ -474,12 +498,14 @@ class OrderServiceTest {
 - [ ] I use constructor injection with `final` fields.
 - [ ] I understand singleton vs other scopes.
 - [ ] I can disambiguate multiple candidates with `@Qualifier`/`@Primary`.
+- [ ] I use JSpecify (`@NullMarked`, `@Nullable`) to make nullness explicit.
 
 ### 3.9 Best practices
 
 - Prefer constructor injection; let a single constructor be injected implicitly.
 - Make injected fields `final` to express immutability and catch missing wiring at compile time.
 - Keep beans focused (single responsibility); inject interfaces, not concrete classes, where it aids testing.
+- Adopt JSpecify null-safety package-wide so the build catches nullness mistakes.
 
 ### 3.10 Anti-patterns
 
@@ -501,10 +527,11 @@ class OrderServiceTest {
 - The IoC container: https://docs.spring.io/spring-framework/reference/core/beans.html
 - Dependency injection: https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html
 - Bean scopes: https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html
+- Null-safety (JSpecify): https://docs.spring.io/spring-framework/reference/core/null-safety.html
 - Spring Boot — Spring Beans and dependency injection: https://docs.spring.io/spring-boot/reference/using/spring-beans-and-dependency-injection.html
 
 ---
 
-> **End of Part I.** You now have the foundational mental model of Spring Boot 3: the **project model** (starters, BOM, embedded server, `@SpringBootApplication`), the **auto-configuration** mechanism (conditional beans and the "back off" rule), and the **IoC container** with constructor-based dependency injection. **Part II — Configuration & Web APIs** (Chapters 4–6) builds on this to cover externalized configuration and profiles, REST APIs with Spring MVC, and validation with RFC 7807 `ProblemDetail` error handling.
+> **End of Part I.** You now have the foundational mental model of Spring Boot 4: the **project model** (starters, BOM, modularized auto-config, embedded server, `@SpringBootApplication`), the **auto-configuration** mechanism (conditional beans and the "back off" rule), and the **IoC container** with constructor-based, JSpecify-null-safe dependency injection. **Part II — Configuration & Web APIs** (Chapters 4–6) builds on this to cover externalized configuration and profiles, REST APIs with Spring MVC including **built-in API versioning**, and validation with RFC 7807 `ProblemDetail` error handling.
 
 <!--APPEND-PARTE-II-->

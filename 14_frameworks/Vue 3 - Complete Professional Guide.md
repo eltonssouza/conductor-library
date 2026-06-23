@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: vue
+version: 3
 ---
 
 # Vue 3 - Complete Professional Guide

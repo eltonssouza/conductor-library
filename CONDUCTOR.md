@@ -76,19 +76,24 @@ cover both. Override or pin it explicitly with the two dials below, read at
 - **Stacks** (`CONDUCTOR_LIBRARY_STACKS`, default none) — `software_dev: stack`
   books carry a `stack: <id>` field and are **opt-in**: add the ones you use.
   `CONDUCTOR_LIBRARY_STACKS=python,angular` adds those; `all` adds every stack.
+- **Edition (`stack@major`)** — pin a version with `stack@major`
+  (`java@25,spring@4,angular@21`). It resolves to the **nearest** `version` book
+  (ties prefer the higher), so an Angular 21 project still grounds in the Angular
+  22 book. A bare `stack` takes every edition. The exact versions available per
+  stack are listed in [`LIBRARY_INDEX.json`](LIBRARY_INDEX.json) (`stacks` map).
 
 ```bash
 cdt up                                                  # default: core, language-agnostic
 CONDUCTOR_LIBRARY_STACKS=python,angular cdt up          # + those stacks
+CONDUCTOR_LIBRARY_STACKS=java@25,spring@4,angular@21 cdt up   # pin editions (nearest match)
 CONDUCTOR_LIBRARY_TIERS=core,supporting CONDUCTOR_LIBRARY_STACKS=all cdt up   # broad
 ```
 
 Ingest is incremental, so changing the selection and re-running `cdt up` only
-adds what's newly included. Available `stack` ids: `java`, `javascript`, `node`,
-`python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, `n8n`,
-`hermes`, `php`, `rust`, `dotnet`, `react`, `vue`, `svelte`, `nextjs`,
-`spring`, `nestjs`, `express`, `fastify`, `django`, `fastapi`, `flask`,
-`flutter`, `swift`.
+adds what's newly included. The authoritative list of available `stack` ids and
+their versions is [`LIBRARY_INDEX.json`](LIBRARY_INDEX.json) (the `stacks` map),
+regenerated from frontmatter by `scripts/build_index.py` — see
+`FILE_CONVENTIONS.md` §7.
 
 ---
 

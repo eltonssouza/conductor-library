@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: react
+version: 19
 ---
 
 # React 19 - Complete Professional Guide

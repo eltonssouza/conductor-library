@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: flask
+version: 3
 ---
 
 # Flask 3 - Complete Professional Guide
