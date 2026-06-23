@@ -159,12 +159,14 @@ Every `software_dev: stack` file also carries a **`stack:` id** so the user can 
 ```yaml
 ---
 software_dev: stack
-stack: python
+stack: angular
+version: 22
 ---
 ```
 
 - `stack` is a single lowercase id: a language or framework (`java`, `javascript`, `node`, `python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, …). Add new ids as books arrive.
-- Conductor ingests a `stack` book only when its id is in `CONDUCTOR_LIBRARY_STACKS` (or that is `all`). `core` and the other tiers never use `stack:`.
+- `version` (optional) is the **single major** the book targets (e.g. `22` for the Angular 22 guide, `4` for Spring Boot 4, `25` for Core Java 25). Omit it for an edition-agnostic book.
+- Conductor ingests a `stack` book only when its id is in `CONDUCTOR_LIBRARY_STACKS` (or that is `all`). When the request pins an edition (`stack@major`, e.g. `angular@21`), it resolves to the **nearest** `version` available (ties prefer the higher) — so an Angular 21 project still gets the Angular 22 book. `core` and the other tiers never use `stack:`/`version:`.
 
 Assignment rule: professional books inherit the tier of their topic folder — **except** language/framework titles, which are `stack` and live in `01_programming_languages/` (languages) or `14_frameworks/` (frameworks/runtimes: Angular, React Native, Rails, Node, GraphQL). Each `stack` file also carries a `stack: <id>` field (see `CONDUCTOR.md`). Academic reading lists are tiered per discipline. When unsure between two tiers, prefer the **more** dev-relevant one only if the book is routinely used while building software.
 

@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: php
+version: 8
 ---
 
 # PHP 8.4 - Complete Professional Guide

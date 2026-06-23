@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: angular
+version: 19
 ---
 
 # Angular 19 - Complete Professional Guide

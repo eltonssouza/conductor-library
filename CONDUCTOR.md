@@ -76,10 +76,15 @@ cover both. Override or pin it explicitly with the two dials below, read at
 - **Stacks** (`CONDUCTOR_LIBRARY_STACKS`, default none) — `software_dev: stack`
   books carry a `stack: <id>` field and are **opt-in**: add the ones you use.
   `CONDUCTOR_LIBRARY_STACKS=python,angular` adds those; `all` adds every stack.
+- **Edition (`stack@major`)** — pin a version with `stack@major`
+  (`java@25,spring@4,angular@21`). It resolves to the **nearest** `version` book
+  (ties prefer the higher), so an Angular 21 project still grounds in the Angular
+  22 book. A bare `stack` takes every edition.
 
 ```bash
 cdt up                                                  # default: core, language-agnostic
 CONDUCTOR_LIBRARY_STACKS=python,angular cdt up          # + those stacks
+CONDUCTOR_LIBRARY_STACKS=java@25,spring@4,angular@21 cdt up   # pin editions (nearest match)
 CONDUCTOR_LIBRARY_TIERS=core,supporting CONDUCTOR_LIBRARY_STACKS=all cdt up   # broad
 ```
 

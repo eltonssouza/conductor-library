@@ -1,6 +1,7 @@
 ---
 software_dev: stack
 stack: dotnet
+version: 9
 ---
 
 # C# 13 and .NET 9 - Complete Professional Guide
