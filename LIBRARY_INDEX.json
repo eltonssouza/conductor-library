@@ -1,0 +1,1310 @@
+{
+  "schema": "conductor-library-index/v1",
+  "totals": {
+    "files": 157,
+    "categories": 15,
+    "stacks": 28
+  },
+  "categories": [
+    {
+      "id": "00_academic_curriculum",
+      "number": "00",
+      "title": "Academic Curriculum (reading lists)",
+      "files": [
+        {
+          "path": "00_academic_curriculum/01_digital_circuits.md",
+          "title": "01_digital_circuits",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/02_discrete_mathematics.md",
+          "title": "02_discrete_mathematics",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/03_programming_languages.md",
+          "title": "03_programming_languages",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/05_analytic_geometry.md",
+          "title": "05_analytic_geometry",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/06_intro_calculus.md",
+          "title": "06_intro_calculus",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/07_intro_linear_algebra.md",
+          "title": "07_intro_linear_algebra",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/08_data_structure.md",
+          "title": "08_data_structure",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/13_statistics_probability.md",
+          "title": "13_statistics_probability",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/14_advanced_calculus.md",
+          "title": "14_advanced_calculus",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/15_haskell.md",
+          "title": "15_haskell",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/16_analysis_of_algorithms.md",
+          "title": "16_analysis_of_algorithms",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/17_numeric_methods.md",
+          "title": "17_numeric_methods",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/18_database.md",
+          "title": "18_database",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/20_logical_programming.md",
+          "title": "20_logical_programming",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/21_computer_network.md",
+          "title": "21_computer_network",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/22_software_engineering.md",
+          "title": "22_software_engineering",
+          "tier": "core"
+        },
+        {
+          "path": "00_academic_curriculum/23_operating_system.md",
+          "title": "23_operating_system",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/24_math_optimization.md",
+          "title": "24_math_optimization",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/25_fundamentals_computer_graphics.md",
+          "title": "25_fundamentals_computer_graphics",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/26_automata_theory.md",
+          "title": "26_automata_theory",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/27_artificial_intelligence.md",
+          "title": "27_artificial_intelligence",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/28_distributed_computing.md",
+          "title": "28_distributed_computing",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/29_graphs.md",
+          "title": "29_graphs",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/30_multivariable_calculus.md",
+          "title": "30_multivariable_calculus",
+          "tier": "optional"
+        },
+        {
+          "path": "00_academic_curriculum/31_theory_of_computation.md",
+          "title": "31_theory_of_computation",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/32_deep_learning.md",
+          "title": "32_deep_learning",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/33_compilers.md",
+          "title": "33_compilers",
+          "tier": "foundational"
+        },
+        {
+          "path": "00_academic_curriculum/34_quantum_computing.md",
+          "title": "34_quantum_computing",
+          "tier": "optional"
+        }
+      ]
+    },
+    {
+      "id": "01_programming_languages",
+      "number": "01",
+      "title": "Programming Languages",
+      "files": [
+        {
+          "path": "01_programming_languages/C# 13 and .NET 9 - Complete Professional Guide.md",
+          "title": "C# 13 and .NET 9 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "dotnet",
+          "version": 9
+        },
+        {
+          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
+          "title": "Core Java - Volume I - Horstmann",
+          "tier": "stack",
+          "stack": "java"
+        },
+        {
+          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
+          "title": "Core Java - Volume II - Horstmann",
+          "tier": "stack",
+          "stack": "java"
+        },
+        {
+          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
+          "title": "Eloquent JavaScript - Haverbeke",
+          "tier": "stack",
+          "stack": "javascript"
+        },
+        {
+          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
+          "title": "JavaScript - The Good Parts - Crockford",
+          "tier": "stack",
+          "stack": "javascript"
+        },
+        {
+          "path": "01_programming_languages/PHP 8.4 - Complete Professional Guide.md",
+          "title": "PHP 8.4 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "php",
+          "version": 8
+        },
+        {
+          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
+          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas",
+          "tier": "stack",
+          "stack": "ruby"
+        },
+        {
+          "path": "01_programming_languages/Programming Ruby 3.3 (preview) - Rappin.md",
+          "title": "Programming Ruby 3.3 (preview) - Rappin",
+          "tier": "stack",
+          "stack": "ruby"
+        },
+        {
+          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
+          "title": "Programming Ruby 3.3 - Rappin, Thomas",
+          "tier": "stack",
+          "stack": "ruby"
+        },
+        {
+          "path": "01_programming_languages/Python Crash Course - Matthes.md",
+          "title": "Python Crash Course - Matthes",
+          "tier": "stack",
+          "stack": "python"
+        },
+        {
+          "path": "01_programming_languages/Rust 2024 - Complete Professional Guide.md",
+          "title": "Rust 2024 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "rust",
+          "version": 2024
+        },
+        {
+          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
+          "title": "The Go Programming Language - Donovan, Kernighan",
+          "tier": "stack",
+          "stack": "go"
+        }
+      ]
+    },
+    {
+      "id": "02_algorithms_and_data_structures",
+      "number": "02",
+      "title": "Algorithms & Data Structures",
+      "files": [
+        {
+          "path": "02_algorithms_and_data_structures/Introduction to Algorithms (4th Ed) - Cormen, Leiserson.md",
+          "title": "Introduction to Algorithms (4th Ed) - Cormen, Leiserson",
+          "tier": "foundational"
+        }
+      ]
+    },
+    {
+      "id": "03_design_and_architecture",
+      "number": "03",
+      "title": "Software Design & Architecture",
+      "files": [
+        {
+          "path": "03_design_and_architecture/A Philosophy of Software Design (2nd Ed) - Ousterhout.md",
+          "title": "A Philosophy of Software Design (2nd Ed) - Ousterhout",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Clean Architecture - Martin.md",
+          "title": "Clean Architecture - Martin",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Clean Code - Martin.md",
+          "title": "Clean Code - Martin",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
+          "title": "Design It! From Programmer to Software Architect - Keeling",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Design Patterns - Gang of Four.md",
+          "title": "Design Patterns - Gang of Four",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Documenting Software Architectures - Views and Beyond.md",
+          "title": "Documenting Software Architectures - Views and Beyond",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Domain-Driven Design - Evans.md",
+          "title": "Domain-Driven Design - Evans",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Enterprise Integration Patterns - Hohpe, Woolf.md",
+          "title": "Enterprise Integration Patterns - Hohpe, Woolf",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Fundamentals of Software Architecture (alt copy) - Richards, Ford.md",
+          "title": "Fundamentals of Software Architecture (alt copy) - Richards, Ford",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Fundamentals of Software Architecture - Richards, Ford.md",
+          "title": "Fundamentals of Software Architecture - Richards, Ford",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Head First Design Patterns - Freeman.md",
+          "title": "Head First Design Patterns - Freeman",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Learning Domain-Driven Design - Khononov.md",
+          "title": "Learning Domain-Driven Design - Khononov",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Patterns of Enterprise Application Architecture - Fowler.md",
+          "title": "Patterns of Enterprise Application Architecture - Fowler",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Refactoring - Improving the Design of Existing Code - Fowler.md",
+          "title": "Refactoring - Improving the Design of Existing Code - Fowler",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Software Architecture - The Hard Parts - Ford, Richards.md",
+          "title": "Software Architecture - The Hard Parts - Ford, Richards",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Software Architecture in Practice (3rd Ed) - Bass.md",
+          "title": "Software Architecture in Practice (3rd Ed) - Bass",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Solution Architect's Handbook.md",
+          "title": "Solution Architect's Handbook",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Solution Architecture Patterns for Enterprise.md",
+          "title": "Solution Architecture Patterns for Enterprise",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/The Object-Oriented Thought Process (3rd Ed) - Weisfeld.md",
+          "title": "The Object-Oriented Thought Process (3rd Ed) - Weisfeld",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Why Reactive.md",
+          "title": "Why Reactive",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "04_engineering_and_practices",
+      "number": "04",
+      "title": "Software Engineering & Practices",
+      "files": [
+        {
+          "path": "04_engineering_and_practices/Agile Software Development - Martin.md",
+          "title": "Agile Software Development - Martin",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Agile Testing - A Practical Guide - Crispin, Gregory.md",
+          "title": "Agile Testing - A Practical Guide - Crispin, Gregory",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Code Complete (2nd Ed) - McConnell.md",
+          "title": "Code Complete (2nd Ed) - McConnell",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce.md",
+          "title": "Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Spec-Driven Development - The Complete Book.md",
+          "title": "Spec-Driven Development - The Complete Book",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Specification by Example - Adzic.md",
+          "title": "Specification by Example - Adzic",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Test-Driven Development by Example - Beck.md",
+          "title": "Test-Driven Development by Example - Beck",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/The Mythical Man-Month - Brooks.md",
+          "title": "The Mythical Man-Month - Brooks",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas.md",
+          "title": "The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/The Pragmatic Programmer (alt copy) - Hunt, Thomas.md",
+          "title": "The Pragmatic Programmer (alt copy) - Hunt, Thomas",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Unit Testing - Principles, Practices and Patterns - Khorikov.md",
+          "title": "Unit Testing - Principles, Practices and Patterns - Khorikov",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Working Effectively with Legacy Code - Feathers.md",
+          "title": "Working Effectively with Legacy Code - Feathers",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/xUnit Test Patterns - Meszaros.md",
+          "title": "xUnit Test Patterns - Meszaros",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "05_databases",
+      "number": "05",
+      "title": "Databases & Data",
+      "files": [
+        {
+          "path": "05_databases/Database Internals - Petrov.md",
+          "title": "Database Internals - Petrov",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/Database System Concepts (7th Ed) - Silberschatz, Korth.md",
+          "title": "Database System Concepts (7th Ed) - Silberschatz, Korth",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/Designing Data-Intensive Applications - Kleppmann.md",
+          "title": "Designing Data-Intensive Applications - Kleppmann",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/Graph Databases - Robinson, Webber.md",
+          "title": "Graph Databases - Robinson, Webber",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/NoSQL Distilled - Sadalage, Fowler.md",
+          "title": "NoSQL Distilled - Sadalage, Fowler",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/SQL Antipatterns - Karwin.md",
+          "title": "SQL Antipatterns - Karwin",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/SQL Performance Explained - Winand.md",
+          "title": "SQL Performance Explained - Winand",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/Seven Databases in Seven Weeks - Redmond, Wilson.md",
+          "title": "Seven Databases in Seven Weeks - Redmond, Wilson",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/Streaming Systems - Akidau, Chernyak, Lax.md",
+          "title": "Streaming Systems - Akidau, Chernyak, Lax",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/The Data Warehouse Toolkit (3rd Ed) - Kimball.md",
+          "title": "The Data Warehouse Toolkit (3rd Ed) - Kimball",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "06_web_and_frontend",
+      "number": "06",
+      "title": "Web & Frontend",
+      "files": [
+        {
+          "path": "06_web_and_frontend/CSS in Depth (2nd Ed) - Grant.md",
+          "title": "CSS in Depth (2nd Ed) - Grant",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Don't Make Me Think (3rd Ed) - Krug.md",
+          "title": "Don't Make Me Think (3rd Ed) - Krug",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/High Performance Browser Networking - Grigorik.md",
+          "title": "High Performance Browser Networking - Grigorik",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
+          "title": "Inclusive Components - Pickering",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/REST in Practice - Webber, Parastatidis, Robinson.md",
+          "title": "REST in Practice - Webber, Parastatidis, Robinson",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Refactoring UI - Wathan, Schoger.md",
+          "title": "Refactoring UI - Wathan, Schoger",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Web Form Design - Wroblewski.md",
+          "title": "Web Form Design - Wroblewski",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "07_devops_sre_operations",
+      "number": "07",
+      "title": "DevOps, SRE & Operations",
+      "files": [
+        {
+          "path": "07_devops_sre_operations/Accelerate - Forsgren, Humble, Kim.md",
+          "title": "Accelerate - Forsgren, Humble, Kim",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Continuous Delivery - Humble, Farley.md",
+          "title": "Continuous Delivery - Humble, Farley",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Effective DevOps - Davis, Daniels.md",
+          "title": "Effective DevOps - Davis, Daniels",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Jenkins Essentials - Soni.md",
+          "title": "Jenkins Essentials - Soni",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Kubernetes - Up and Running - Hightower, Burns, Beda.md",
+          "title": "Kubernetes - Up and Running - Hightower, Burns, Beda",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Linux Utilities Cookbook - Lee.md",
+          "title": "Linux Utilities Cookbook - Lee",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Observability Engineering - Majors, Fong-Jones, Miranda.md",
+          "title": "Observability Engineering - Majors, Fong-Jones, Miranda",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Pro Git (2nd Ed) - Chacon, Straub.md",
+          "title": "Pro Git (2nd Ed) - Chacon, Straub",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Release It! - Nygard.md",
+          "title": "Release It! - Nygard",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Site Reliability Engineering - Google.md",
+          "title": "Site Reliability Engineering - Google",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Systems Performance (2nd Ed) - Gregg.md",
+          "title": "Systems Performance (2nd Ed) - Gregg",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/The DevOps Handbook - Kim, Humble, Debois.md",
+          "title": "The DevOps Handbook - Kim, Humble, Debois",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/The Phoenix Project - Kim, Behr, Spafford.md",
+          "title": "The Phoenix Project - Kim, Behr, Spafford",
+          "tier": "supporting"
+        }
+      ]
+    },
+    {
+      "id": "08_distributed_systems",
+      "number": "08",
+      "title": "Distributed Systems & Microservices",
+      "files": [
+        {
+          "path": "08_distributed_systems/Building Microservices - Newman.md",
+          "title": "Building Microservices - Newman",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "09_security_and_privacy",
+      "number": "09",
+      "title": "Security & Privacy",
+      "files": [
+        {
+          "path": "09_security_and_privacy/Building Secure and Reliable Systems - Google.md",
+          "title": "Building Secure and Reliable Systems - Google",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/OWASP ASVS 4.0.3.md",
+          "title": "OWASP ASVS 4.0.3",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Ontologies for Privacy Requirements Engineering (paper) - Gharib.md",
+          "title": "Ontologies for Privacy Requirements Engineering (paper) - Gharib",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Practical Data Privacy - Kamara.md",
+          "title": "Practical Data Privacy - Kamara",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Privacy's Blueprint - Hartzog.md",
+          "title": "Privacy's Blueprint - Hartzog",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Security Engineering (3rd Ed) - Anderson.md",
+          "title": "Security Engineering (3rd Ed) - Anderson",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/The Art of Software Security Assessment - Dowd, McDonald.md",
+          "title": "The Art of Software Security Assessment - Dowd, McDonald",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/The EU GDPR - A Practical Guide - Voigt, von dem Bussche.md",
+          "title": "The EU GDPR - A Practical Guide - Voigt, von dem Bussche",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/The Privacy Engineer's Manifesto - Dennedy.md",
+          "title": "The Privacy Engineer's Manifesto - Dennedy",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/The Tangled Web - Zalewski.md",
+          "title": "The Tangled Web - Zalewski",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/The Web Application Hacker's Handbook - Stuttard, Pinto.md",
+          "title": "The Web Application Hacker's Handbook - Stuttard, Pinto",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Threat Modeling - Shostack.md",
+          "title": "Threat Modeling - Shostack",
+          "tier": "supporting"
+        }
+      ]
+    },
+    {
+      "id": "10_ai_and_llm",
+      "number": "10",
+      "title": "AI & LLM",
+      "files": [
+        {
+          "path": "10_ai_and_llm/Context Engineering - Designing Information Environments for LLM Systems.md",
+          "title": "Context Engineering - Designing Information Environments for LLM Systems",
+          "tier": "core"
+        },
+        {
+          "path": "10_ai_and_llm/Prompt Engineering - Principles, Patterns and Practice.md",
+          "title": "Prompt Engineering - Principles, Patterns and Practice",
+          "tier": "core"
+        }
+      ]
+    },
+    {
+      "id": "11_management_product_process",
+      "number": "11",
+      "title": "Management, Product & Process",
+      "files": [
+        {
+          "path": "11_management_product_process/An Elegant Puzzle - Larson.md",
+          "title": "An Elegant Puzzle - Larson",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Continuous Discovery Habits - Torres.md",
+          "title": "Continuous Discovery Habits - Torres",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Escaping the Build Trap - Perri.md",
+          "title": "Escaping the Build Trap - Perri",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Inspired - Cagan.md",
+          "title": "Inspired - Cagan",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Just Enough Research - Hall.md",
+          "title": "Just Enough Research - Hall",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Making Things Happen - Berkun.md",
+          "title": "Making Things Happen - Berkun",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Staff Engineer - Larson.md",
+          "title": "Staff Engineer - Larson",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Team Topologies - Skelton, Pais.md",
+          "title": "Team Topologies - Skelton, Pais",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/The Manager's Path - Fournier.md",
+          "title": "The Manager's Path - Fournier",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/The Mom Test - Fitzpatrick.md",
+          "title": "The Mom Test - Fitzpatrick",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/User Story Mapping - Patton.md",
+          "title": "User Story Mapping - Patton",
+          "tier": "supporting"
+        }
+      ]
+    },
+    {
+      "id": "12_design_ux",
+      "number": "12",
+      "title": "Design & UX",
+      "files": [
+        {
+          "path": "12_design_ux/The Design of Everyday Things - Norman.md",
+          "title": "The Design of Everyday Things - Norman",
+          "tier": "supporting"
+        }
+      ]
+    },
+    {
+      "id": "13_automation_and_integration",
+      "number": "13",
+      "title": "Automation & Integration",
+      "files": [
+        {
+          "path": "13_automation_and_integration/Hermes Agent - Complete Professional Guide.md",
+          "title": "Hermes Agent - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "hermes"
+        },
+        {
+          "path": "13_automation_and_integration/n8n - Complete Professional Guide.md",
+          "title": "n8n - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "n8n"
+        }
+      ]
+    },
+    {
+      "id": "14_frameworks",
+      "number": "14",
+      "title": "Frameworks",
+      "files": [
+        {
+          "path": "14_frameworks/Angular 17 - Complete Professional Guide.md",
+          "title": "Angular 17 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 17
+        },
+        {
+          "path": "14_frameworks/Angular 18 - Complete Professional Guide.md",
+          "title": "Angular 18 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 18
+        },
+        {
+          "path": "14_frameworks/Angular 19 - Complete Professional Guide.md",
+          "title": "Angular 19 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 19
+        },
+        {
+          "path": "14_frameworks/Angular 20 - Complete Professional Guide.md",
+          "title": "Angular 20 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 20
+        },
+        {
+          "path": "14_frameworks/Angular 21 - Complete Professional Guide.md",
+          "title": "Angular 21 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 21
+        },
+        {
+          "path": "14_frameworks/Angular 22 - Complete Professional Guide.md",
+          "title": "Angular 22 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "angular",
+          "version": 22
+        },
+        {
+          "path": "14_frameworks/Django 5 - Complete Professional Guide.md",
+          "title": "Django 5 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "django",
+          "version": 5
+        },
+        {
+          "path": "14_frameworks/Express 5 - Complete Professional Guide.md",
+          "title": "Express 5 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "express",
+          "version": 5
+        },
+        {
+          "path": "14_frameworks/FastAPI - Complete Professional Guide.md",
+          "title": "FastAPI - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "fastapi"
+        },
+        {
+          "path": "14_frameworks/Fastify 5 - Complete Professional Guide.md",
+          "title": "Fastify 5 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "fastify",
+          "version": 5
+        },
+        {
+          "path": "14_frameworks/Flask 3 - Complete Professional Guide.md",
+          "title": "Flask 3 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "flask",
+          "version": 3
+        },
+        {
+          "path": "14_frameworks/Flutter 3 - Complete Professional Guide.md",
+          "title": "Flutter 3 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "flutter",
+          "version": 3
+        },
+        {
+          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
+          "title": "Learning GraphQL - Porcello, Banks",
+          "tier": "stack",
+          "stack": "graphql"
+        },
+        {
+          "path": "14_frameworks/Learning React Native - Eisenman.md",
+          "title": "Learning React Native - Eisenman",
+          "tier": "stack",
+          "stack": "react-native"
+        },
+        {
+          "path": "14_frameworks/Mastering Node.js.md",
+          "title": "Mastering Node.js",
+          "tier": "stack",
+          "stack": "node"
+        },
+        {
+          "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
+          "title": "NestJS 11 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "nestjs",
+          "version": 11
+        },
+        {
+          "path": "14_frameworks/Next.js 15 - Complete Professional Guide.md",
+          "title": "Next.js 15 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "nextjs",
+          "version": 15
+        },
+        {
+          "path": "14_frameworks/React 19 - Complete Professional Guide.md",
+          "title": "React 19 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "react",
+          "version": 19
+        },
+        {
+          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
+          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl",
+          "tier": "stack",
+          "stack": "rails"
+        },
+        {
+          "path": "14_frameworks/Spring Boot 3 - Complete Professional Guide.md",
+          "title": "Spring Boot 3 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "spring",
+          "version": 3
+        },
+        {
+          "path": "14_frameworks/Spring Boot 4 - Complete Professional Guide.md",
+          "title": "Spring Boot 4 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "spring",
+          "version": 4
+        },
+        {
+          "path": "14_frameworks/Svelte 5 - Complete Professional Guide.md",
+          "title": "Svelte 5 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "svelte",
+          "version": 5
+        },
+        {
+          "path": "14_frameworks/Swift 6 and SwiftUI - Complete Professional Guide.md",
+          "title": "Swift 6 and SwiftUI - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "swift"
+        },
+        {
+          "path": "14_frameworks/Vue 3 - Complete Professional Guide.md",
+          "title": "Vue 3 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "vue",
+          "version": 3
+        }
+      ]
+    }
+  ],
+  "stacks": {
+    "angular": {
+      "versions": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Angular 17 - Complete Professional Guide.md",
+          "title": "Angular 17 - Complete Professional Guide",
+          "version": 17
+        },
+        {
+          "path": "14_frameworks/Angular 18 - Complete Professional Guide.md",
+          "title": "Angular 18 - Complete Professional Guide",
+          "version": 18
+        },
+        {
+          "path": "14_frameworks/Angular 19 - Complete Professional Guide.md",
+          "title": "Angular 19 - Complete Professional Guide",
+          "version": 19
+        },
+        {
+          "path": "14_frameworks/Angular 20 - Complete Professional Guide.md",
+          "title": "Angular 20 - Complete Professional Guide",
+          "version": 20
+        },
+        {
+          "path": "14_frameworks/Angular 21 - Complete Professional Guide.md",
+          "title": "Angular 21 - Complete Professional Guide",
+          "version": 21
+        },
+        {
+          "path": "14_frameworks/Angular 22 - Complete Professional Guide.md",
+          "title": "Angular 22 - Complete Professional Guide",
+          "version": 22
+        }
+      ]
+    },
+    "django": {
+      "versions": [
+        5
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Django 5 - Complete Professional Guide.md",
+          "title": "Django 5 - Complete Professional Guide",
+          "version": 5
+        }
+      ]
+    },
+    "dotnet": {
+      "versions": [
+        9
+      ],
+      "editions": [
+        {
+          "path": "01_programming_languages/C# 13 and .NET 9 - Complete Professional Guide.md",
+          "title": "C# 13 and .NET 9 - Complete Professional Guide",
+          "version": 9
+        }
+      ]
+    },
+    "express": {
+      "versions": [
+        5
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Express 5 - Complete Professional Guide.md",
+          "title": "Express 5 - Complete Professional Guide",
+          "version": 5
+        }
+      ]
+    },
+    "fastapi": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/FastAPI - Complete Professional Guide.md",
+          "title": "FastAPI - Complete Professional Guide"
+        }
+      ]
+    },
+    "fastify": {
+      "versions": [
+        5
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Fastify 5 - Complete Professional Guide.md",
+          "title": "Fastify 5 - Complete Professional Guide",
+          "version": 5
+        }
+      ]
+    },
+    "flask": {
+      "versions": [
+        3
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Flask 3 - Complete Professional Guide.md",
+          "title": "Flask 3 - Complete Professional Guide",
+          "version": 3
+        }
+      ]
+    },
+    "flutter": {
+      "versions": [
+        3
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Flutter 3 - Complete Professional Guide.md",
+          "title": "Flutter 3 - Complete Professional Guide",
+          "version": 3
+        }
+      ]
+    },
+    "go": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
+          "title": "The Go Programming Language - Donovan, Kernighan"
+        }
+      ]
+    },
+    "graphql": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
+          "title": "Learning GraphQL - Porcello, Banks"
+        }
+      ]
+    },
+    "hermes": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "13_automation_and_integration/Hermes Agent - Complete Professional Guide.md",
+          "title": "Hermes Agent - Complete Professional Guide"
+        }
+      ]
+    },
+    "java": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
+          "title": "Core Java - Volume I - Horstmann"
+        },
+        {
+          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
+          "title": "Core Java - Volume II - Horstmann"
+        }
+      ]
+    },
+    "javascript": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
+          "title": "Eloquent JavaScript - Haverbeke"
+        },
+        {
+          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
+          "title": "JavaScript - The Good Parts - Crockford"
+        }
+      ]
+    },
+    "n8n": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "13_automation_and_integration/n8n - Complete Professional Guide.md",
+          "title": "n8n - Complete Professional Guide"
+        }
+      ]
+    },
+    "nestjs": {
+      "versions": [
+        11
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
+          "title": "NestJS 11 - Complete Professional Guide",
+          "version": 11
+        }
+      ]
+    },
+    "nextjs": {
+      "versions": [
+        15
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Next.js 15 - Complete Professional Guide.md",
+          "title": "Next.js 15 - Complete Professional Guide",
+          "version": 15
+        }
+      ]
+    },
+    "node": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/Mastering Node.js.md",
+          "title": "Mastering Node.js"
+        }
+      ]
+    },
+    "php": {
+      "versions": [
+        8
+      ],
+      "editions": [
+        {
+          "path": "01_programming_languages/PHP 8.4 - Complete Professional Guide.md",
+          "title": "PHP 8.4 - Complete Professional Guide",
+          "version": 8
+        }
+      ]
+    },
+    "python": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "01_programming_languages/Python Crash Course - Matthes.md",
+          "title": "Python Crash Course - Matthes"
+        }
+      ]
+    },
+    "rails": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
+          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl"
+        }
+      ]
+    },
+    "react": {
+      "versions": [
+        19
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/React 19 - Complete Professional Guide.md",
+          "title": "React 19 - Complete Professional Guide",
+          "version": 19
+        }
+      ]
+    },
+    "react-native": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/Learning React Native - Eisenman.md",
+          "title": "Learning React Native - Eisenman"
+        }
+      ]
+    },
+    "ruby": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
+          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas"
+        },
+        {
+          "path": "01_programming_languages/Programming Ruby 3.3 (preview) - Rappin.md",
+          "title": "Programming Ruby 3.3 (preview) - Rappin"
+        },
+        {
+          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
+          "title": "Programming Ruby 3.3 - Rappin, Thomas"
+        }
+      ]
+    },
+    "rust": {
+      "versions": [
+        2024
+      ],
+      "editions": [
+        {
+          "path": "01_programming_languages/Rust 2024 - Complete Professional Guide.md",
+          "title": "Rust 2024 - Complete Professional Guide",
+          "version": 2024
+        }
+      ]
+    },
+    "spring": {
+      "versions": [
+        3,
+        4
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Spring Boot 3 - Complete Professional Guide.md",
+          "title": "Spring Boot 3 - Complete Professional Guide",
+          "version": 3
+        },
+        {
+          "path": "14_frameworks/Spring Boot 4 - Complete Professional Guide.md",
+          "title": "Spring Boot 4 - Complete Professional Guide",
+          "version": 4
+        }
+      ]
+    },
+    "svelte": {
+      "versions": [
+        5
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Svelte 5 - Complete Professional Guide.md",
+          "title": "Svelte 5 - Complete Professional Guide",
+          "version": 5
+        }
+      ]
+    },
+    "swift": {
+      "versions": [],
+      "editions": [
+        {
+          "path": "14_frameworks/Swift 6 and SwiftUI - Complete Professional Guide.md",
+          "title": "Swift 6 and SwiftUI - Complete Professional Guide"
+        }
+      ]
+    },
+    "vue": {
+      "versions": [
+        3
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/Vue 3 - Complete Professional Guide.md",
+          "title": "Vue 3 - Complete Professional Guide",
+          "version": 3
+        }
+      ]
+    }
+  }
+}

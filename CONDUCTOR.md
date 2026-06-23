@@ -79,7 +79,8 @@ cover both. Override or pin it explicitly with the two dials below, read at
 - **Edition (`stack@major`)** — pin a version with `stack@major`
   (`java@25,spring@4,angular@21`). It resolves to the **nearest** `version` book
   (ties prefer the higher), so an Angular 21 project still grounds in the Angular
-  22 book. A bare `stack` takes every edition.
+  22 book. A bare `stack` takes every edition. The exact versions available per
+  stack are listed in [`LIBRARY_INDEX.json`](LIBRARY_INDEX.json) (`stacks` map).
 
 ```bash
 cdt up                                                  # default: core, language-agnostic
@@ -89,11 +90,10 @@ CONDUCTOR_LIBRARY_TIERS=core,supporting CONDUCTOR_LIBRARY_STACKS=all cdt up   # 
 ```
 
 Ingest is incremental, so changing the selection and re-running `cdt up` only
-adds what's newly included. Available `stack` ids: `java`, `javascript`, `node`,
-`python`, `go`, `ruby`, `rails`, `angular`, `react-native`, `graphql`, `n8n`,
-`hermes`, `php`, `rust`, `dotnet`, `react`, `vue`, `svelte`, `nextjs`,
-`spring`, `nestjs`, `express`, `fastify`, `django`, `fastapi`, `flask`,
-`flutter`, `swift`.
+adds what's newly included. The authoritative list of available `stack` ids and
+their versions is [`LIBRARY_INDEX.json`](LIBRARY_INDEX.json) (the `stacks` map),
+regenerated from frontmatter by `scripts/build_index.py` — see
+`FILE_CONVENTIONS.md` §7.
 
 ---
 
