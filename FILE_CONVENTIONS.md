@@ -192,7 +192,8 @@ Directly below the frontmatter, every content file has this header, derived from
 
 Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md` (except `README.md`), all in English:
 
-- `README.md` — navigable index of every folder and file.
+- `README.md` — navigable index of every folder and file (catalog region auto-generated; see section 8).
+- `LIBRARY_INDEX.json` — machine-readable catalog Conductor consumes (auto-generated; see section 8).
 - `CONDUCTOR.md` — how the Conductor app fetches, ingests, and filters this library (install integration).
 - `FILE_CONVENTIONS.md` — this standard.
 - `ROLES_AND_ACRONYMS.md` — tech roles glossary (acronym + name).
@@ -200,7 +201,36 @@ Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md
 
 ---
 
-## 7. Quick reference
+## 7. Book disposition — the generated catalog
+
+So Conductor (and humans) can **always see what the library holds** without scanning every file, the corpus exposes a single, deterministic catalog generated from the frontmatter that already lives in each file. The frontmatter (section 4) is the **source of truth**; the catalog is derived, never hand-edited.
+
+### What is generated
+
+`scripts/build_index.py` scans the numbered topic folders, reads each file's frontmatter (`software_dev`, `stack`, `version`), and writes two artifacts:
+
+- **`LIBRARY_INDEX.json`** — the machine-readable manifest Conductor reads. Shape (`schema: conductor-library-index/v1`):
+  - `totals` — file / category / stack counts.
+  - `categories[]` — one per topic folder (`id`, `number`, `title`, and `files[]` with `path`, `title`, `tier`, optional `stack`/`version`).
+  - `stacks{}` — every `stack` id mapped to its available `versions[]` and `editions[]`. This is what powers `stack@major` edition selection (CONDUCTOR.md §Edition): the resolver reads the versions here and picks the nearest.
+- **`README.md`** — the human navigable index. Only the region between `<!-- AUTO-INDEX:START -->` and `<!-- AUTO-INDEX:END -->` is generated; the intro above the markers is manual.
+
+Both artifacts are **deterministic** — stable sort, no timestamps — so re-running produces no spurious diffs.
+
+### The rule
+
+Whenever you **add, remove, rename, or retag** a content file (including changing `stack`/`version`), regenerate the catalog:
+
+```bash
+python scripts/build_index.py            # regenerate LIBRARY_INDEX.json + README.md
+python scripts/build_index.py --check    # CI guard: non-zero exit if stale
+```
+
+Do not hand-edit `LIBRARY_INDEX.json` or the README catalog region — your change will be overwritten on the next run. To add a new topic folder, give it the `NN_` prefix (section 1) and add its display title to `CATEGORY_TITLES` in the script.
+
+---
+
+## 8. Quick reference
 
 | Item | Standard |
 |------|----------|
@@ -212,4 +242,5 @@ Documents that describe or index the corpus. Named `UPPERCASE_WITH_UNDERSCORE.md
 | Professional book | `Title (Edition) - Author.md`, English, raw body + standard header |
 | Header | frontmatter, then standard metadata block (section 5) at the top of every file |
 | Support docs (root) | `UPPERCASE_WITH_UNDERSCORE.md` |
+| Catalog | `LIBRARY_INDEX.json` + README region — **generated** via `scripts/build_index.py`, never hand-edited |
 | Ordering | by the numeric `NN_` prefix |
