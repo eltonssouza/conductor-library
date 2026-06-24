@@ -1,8 +1,8 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 157,
-    "categories": 15,
+    "files": 134,
+    "categories": 14,
     "stacks": 28
   },
   "categories": [
@@ -166,26 +166,22 @@
           "version": 9
         },
         {
-          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
-          "title": "Core Java - Volume I - Horstmann",
+          "path": "01_programming_languages/Go 1.24 - Complete Professional Guide.md",
+          "title": "Go 1.24 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "java"
+          "stack": "go",
+          "version": 24
         },
         {
-          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
-          "title": "Core Java - Volume II - Horstmann",
+          "path": "01_programming_languages/Java 25 - Complete Professional Guide.md",
+          "title": "Java 25 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "java"
+          "stack": "java",
+          "version": 25
         },
         {
-          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
-          "title": "Eloquent JavaScript - Haverbeke",
-          "tier": "stack",
-          "stack": "javascript"
-        },
-        {
-          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
-          "title": "JavaScript - The Good Parts - Crockford",
+          "path": "01_programming_languages/JavaScript - Complete Professional Guide.md",
+          "title": "JavaScript - Complete Professional Guide",
           "tier": "stack",
           "stack": "javascript"
         },
@@ -197,28 +193,18 @@
           "version": 8
         },
         {
-          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
-          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas",
+          "path": "01_programming_languages/Python 3.13 - Complete Professional Guide.md",
+          "title": "Python 3.13 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "ruby"
+          "stack": "python",
+          "version": 3
         },
         {
-          "path": "01_programming_languages/Programming Ruby 3.3 (preview) - Rappin.md",
-          "title": "Programming Ruby 3.3 (preview) - Rappin",
+          "path": "01_programming_languages/Ruby 3.4 - Complete Professional Guide.md",
+          "title": "Ruby 3.4 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "ruby"
-        },
-        {
-          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
-          "title": "Programming Ruby 3.3 - Rappin, Thomas",
-          "tier": "stack",
-          "stack": "ruby"
-        },
-        {
-          "path": "01_programming_languages/Python Crash Course - Matthes.md",
-          "title": "Python Crash Course - Matthes",
-          "tier": "stack",
-          "stack": "python"
+          "stack": "ruby",
+          "version": 3
         },
         {
           "path": "01_programming_languages/Rust 2024 - Complete Professional Guide.md",
@@ -226,12 +212,6 @@
           "tier": "stack",
           "stack": "rust",
           "version": 2024
-        },
-        {
-          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
-          "title": "The Go Programming Language - Donovan, Kernighan",
-          "tier": "stack",
-          "stack": "go"
         }
       ]
     },
@@ -241,8 +221,8 @@
       "title": "Algorithms & Data Structures",
       "files": [
         {
-          "path": "02_algorithms_and_data_structures/Introduction to Algorithms (4th Ed) - Cormen, Leiserson.md",
-          "title": "Introduction to Algorithms (4th Ed) - Cormen, Leiserson",
+          "path": "02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md",
+          "title": "Algorithm Design and Analysis - Complete Professional Guide",
           "tier": "foundational"
         }
       ]
@@ -253,103 +233,83 @@
       "title": "Software Design & Architecture",
       "files": [
         {
-          "path": "03_design_and_architecture/A Philosophy of Software Design (2nd Ed) - Ousterhout.md",
-          "title": "A Philosophy of Software Design (2nd Ed) - Ousterhout",
+          "path": "03_design_and_architecture/Architecture Boundaries and the Dependency Rule - Complete Professional Guide.md",
+          "title": "Architecture Boundaries and the Dependency Rule - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Clean Architecture - Martin.md",
-          "title": "Clean Architecture - Martin",
+          "path": "03_design_and_architecture/Architecture Styles and Trade-offs - Complete Professional Guide.md",
+          "title": "Architecture Styles and Trade-offs - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Clean Code - Martin.md",
-          "title": "Clean Code - Martin",
+          "path": "03_design_and_architecture/Distributed Architecture Decisions - Complete Professional Guide.md",
+          "title": "Distributed Architecture Decisions - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
-          "title": "Design It! From Programmer to Software Architect - Keeling",
+          "path": "03_design_and_architecture/Documenting Software Architecture - Complete Professional Guide.md",
+          "title": "Documenting Software Architecture - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Design Patterns - Gang of Four.md",
-          "title": "Design Patterns - Gang of Four",
+          "path": "03_design_and_architecture/Domain-Driven Design - Complete Professional Guide.md",
+          "title": "Domain-Driven Design - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Documenting Software Architectures - Views and Beyond.md",
-          "title": "Documenting Software Architectures - Views and Beyond",
+          "path": "03_design_and_architecture/Enterprise Application Architecture Patterns - Complete Professional Guide.md",
+          "title": "Enterprise Application Architecture Patterns - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Domain-Driven Design - Evans.md",
-          "title": "Domain-Driven Design - Evans",
+          "path": "03_design_and_architecture/Managing Software Complexity - Complete Professional Guide.md",
+          "title": "Managing Software Complexity - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Enterprise Integration Patterns - Hohpe, Woolf.md",
-          "title": "Enterprise Integration Patterns - Hohpe, Woolf",
+          "path": "03_design_and_architecture/Messaging and Integration Patterns - Complete Professional Guide.md",
+          "title": "Messaging and Integration Patterns - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Fundamentals of Software Architecture (alt copy) - Richards, Ford.md",
-          "title": "Fundamentals of Software Architecture (alt copy) - Richards, Ford",
+          "path": "03_design_and_architecture/Object-Oriented Design Patterns - Complete Professional Guide.md",
+          "title": "Object-Oriented Design Patterns - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Fundamentals of Software Architecture - Richards, Ford.md",
-          "title": "Fundamentals of Software Architecture - Richards, Ford",
+          "path": "03_design_and_architecture/Object-Oriented Thinking - Complete Professional Guide.md",
+          "title": "Object-Oriented Thinking - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Head First Design Patterns - Freeman.md",
-          "title": "Head First Design Patterns - Freeman",
+          "path": "03_design_and_architecture/Reactive Systems - Complete Professional Guide.md",
+          "title": "Reactive Systems - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Learning Domain-Driven Design - Khononov.md",
-          "title": "Learning Domain-Driven Design - Khononov",
+          "path": "03_design_and_architecture/Refactoring and Code Improvement - Complete Professional Guide.md",
+          "title": "Refactoring and Code Improvement - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Patterns of Enterprise Application Architecture - Fowler.md",
-          "title": "Patterns of Enterprise Application Architecture - Fowler",
+          "path": "03_design_and_architecture/Software Architecture and Quality Attributes - Complete Professional Guide.md",
+          "title": "Software Architecture and Quality Attributes - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Refactoring - Improving the Design of Existing Code - Fowler.md",
-          "title": "Refactoring - Improving the Design of Existing Code - Fowler",
+          "path": "03_design_and_architecture/Solution Architecture - Complete Professional Guide.md",
+          "title": "Solution Architecture - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Software Architecture - The Hard Parts - Ford, Richards.md",
-          "title": "Software Architecture - The Hard Parts - Ford, Richards",
+          "path": "03_design_and_architecture/The Practice of Architecting - Complete Professional Guide.md",
+          "title": "The Practice of Architecting - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Software Architecture in Practice (3rd Ed) - Bass.md",
-          "title": "Software Architecture in Practice (3rd Ed) - Bass",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Solution Architect's Handbook.md",
-          "title": "Solution Architect's Handbook",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Solution Architecture Patterns for Enterprise.md",
-          "title": "Solution Architecture Patterns for Enterprise",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/The Object-Oriented Thought Process (3rd Ed) - Weisfeld.md",
-          "title": "The Object-Oriented Thought Process (3rd Ed) - Weisfeld",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Why Reactive.md",
-          "title": "Why Reactive",
+          "path": "03_design_and_architecture/Writing Maintainable Code - Complete Professional Guide.md",
+          "title": "Writing Maintainable Code - Complete Professional Guide",
           "tier": "core"
         }
       ]
@@ -360,23 +320,33 @@
       "title": "Software Engineering & Practices",
       "files": [
         {
-          "path": "04_engineering_and_practices/Agile Software Development - Martin.md",
-          "title": "Agile Software Development - Martin",
+          "path": "04_engineering_and_practices/Agile Testing - Complete Professional Guide.md",
+          "title": "Agile Testing - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Agile Testing - A Practical Guide - Crispin, Gregory.md",
-          "title": "Agile Testing - A Practical Guide - Crispin, Gregory",
+          "path": "04_engineering_and_practices/Outside-In Development - Complete Professional Guide.md",
+          "title": "Outside-In Development - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Code Complete (2nd Ed) - McConnell.md",
-          "title": "Code Complete (2nd Ed) - McConnell",
+          "path": "04_engineering_and_practices/Pragmatic Programming Practices - Complete Professional Guide.md",
+          "title": "Pragmatic Programming Practices - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce.md",
-          "title": "Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce",
+          "path": "04_engineering_and_practices/SOLID Design Principles - Complete Professional Guide.md",
+          "title": "SOLID Design Principles - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Software Construction Practices - Complete Professional Guide.md",
+          "title": "Software Construction Practices - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Software Project Realities - Complete Professional Guide.md",
+          "title": "Software Project Realities - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -385,43 +355,28 @@
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Specification by Example - Adzic.md",
-          "title": "Specification by Example - Adzic",
+          "path": "04_engineering_and_practices/Specification by Example - Complete Professional Guide.md",
+          "title": "Specification by Example - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Test-Driven Development by Example - Beck.md",
-          "title": "Test-Driven Development by Example - Beck",
+          "path": "04_engineering_and_practices/Test Patterns and Smells - Complete Professional Guide.md",
+          "title": "Test Patterns and Smells - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/The Mythical Man-Month - Brooks.md",
-          "title": "The Mythical Man-Month - Brooks",
+          "path": "04_engineering_and_practices/Test-Driven Development - Complete Professional Guide.md",
+          "title": "Test-Driven Development - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas.md",
-          "title": "The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas",
+          "path": "04_engineering_and_practices/Unit Testing Principles - Complete Professional Guide.md",
+          "title": "Unit Testing Principles - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/The Pragmatic Programmer (alt copy) - Hunt, Thomas.md",
-          "title": "The Pragmatic Programmer (alt copy) - Hunt, Thomas",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/Unit Testing - Principles, Practices and Patterns - Khorikov.md",
-          "title": "Unit Testing - Principles, Practices and Patterns - Khorikov",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/Working Effectively with Legacy Code - Feathers.md",
-          "title": "Working Effectively with Legacy Code - Feathers",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/xUnit Test Patterns - Meszaros.md",
-          "title": "xUnit Test Patterns - Meszaros",
+          "path": "04_engineering_and_practices/Working with Legacy Code - Complete Professional Guide.md",
+          "title": "Working with Legacy Code - Complete Professional Guide",
           "tier": "core"
         }
       ]
@@ -432,53 +387,43 @@
       "title": "Databases & Data",
       "files": [
         {
-          "path": "05_databases/Database Internals - Petrov.md",
-          "title": "Database Internals - Petrov",
+          "path": "05_databases/Database Transactions and Concurrency - Complete Professional Guide.md",
+          "title": "Database Transactions and Concurrency - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/Database System Concepts (7th Ed) - Silberschatz, Korth.md",
-          "title": "Database System Concepts (7th Ed) - Silberschatz, Korth",
+          "path": "05_databases/Designing Data-Intensive Systems - Complete Professional Guide.md",
+          "title": "Designing Data-Intensive Systems - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/Designing Data-Intensive Applications - Kleppmann.md",
-          "title": "Designing Data-Intensive Applications - Kleppmann",
+          "path": "05_databases/Dimensional Modeling for Analytics - Complete Professional Guide.md",
+          "title": "Dimensional Modeling for Analytics - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/Graph Databases - Robinson, Webber.md",
-          "title": "Graph Databases - Robinson, Webber",
+          "path": "05_databases/How Databases Work Internally - Complete Professional Guide.md",
+          "title": "How Databases Work Internally - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/NoSQL Distilled - Sadalage, Fowler.md",
-          "title": "NoSQL Distilled - Sadalage, Fowler",
+          "path": "05_databases/NoSQL Data Models - Complete Professional Guide.md",
+          "title": "NoSQL Data Models - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/SQL Antipatterns - Karwin.md",
-          "title": "SQL Antipatterns - Karwin",
+          "path": "05_databases/SQL Database Antipatterns - Complete Professional Guide.md",
+          "title": "SQL Database Antipatterns - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/SQL Performance Explained - Winand.md",
-          "title": "SQL Performance Explained - Winand",
+          "path": "05_databases/SQL Performance and Indexing - Complete Professional Guide.md",
+          "title": "SQL Performance and Indexing - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/Seven Databases in Seven Weeks - Redmond, Wilson.md",
-          "title": "Seven Databases in Seven Weeks - Redmond, Wilson",
-          "tier": "core"
-        },
-        {
-          "path": "05_databases/Streaming Systems - Akidau, Chernyak, Lax.md",
-          "title": "Streaming Systems - Akidau, Chernyak, Lax",
-          "tier": "core"
-        },
-        {
-          "path": "05_databases/The Data Warehouse Toolkit (3rd Ed) - Kimball.md",
-          "title": "The Data Warehouse Toolkit (3rd Ed) - Kimball",
+          "path": "05_databases/Stream Processing - Complete Professional Guide.md",
+          "title": "Stream Processing - Complete Professional Guide",
           "tier": "core"
         }
       ]
@@ -489,38 +434,38 @@
       "title": "Web & Frontend",
       "files": [
         {
-          "path": "06_web_and_frontend/CSS in Depth (2nd Ed) - Grant.md",
-          "title": "CSS in Depth (2nd Ed) - Grant",
+          "path": "06_web_and_frontend/Accessible Web Components - Complete Professional Guide.md",
+          "title": "Accessible Web Components - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/Don't Make Me Think (3rd Ed) - Krug.md",
-          "title": "Don't Make Me Think (3rd Ed) - Krug",
+          "path": "06_web_and_frontend/Form Design and UX - Complete Professional Guide.md",
+          "title": "Form Design and UX - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/High Performance Browser Networking - Grigorik.md",
-          "title": "High Performance Browser Networking - Grigorik",
+          "path": "06_web_and_frontend/Modern CSS Layout - Complete Professional Guide.md",
+          "title": "Modern CSS Layout - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
-          "title": "Inclusive Components - Pickering",
+          "path": "06_web_and_frontend/Practical Visual Design - Complete Professional Guide.md",
+          "title": "Practical Visual Design - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/REST in Practice - Webber, Parastatidis, Robinson.md",
-          "title": "REST in Practice - Webber, Parastatidis, Robinson",
+          "path": "06_web_and_frontend/RESTful API Design - Complete Professional Guide.md",
+          "title": "RESTful API Design - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/Refactoring UI - Wathan, Schoger.md",
-          "title": "Refactoring UI - Wathan, Schoger",
+          "path": "06_web_and_frontend/Web Performance and Networking - Complete Professional Guide.md",
+          "title": "Web Performance and Networking - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/Web Form Design - Wroblewski.md",
-          "title": "Web Form Design - Wroblewski",
+          "path": "06_web_and_frontend/Web Usability Principles - Complete Professional Guide.md",
+          "title": "Web Usability Principles - Complete Professional Guide",
           "tier": "core"
         }
       ]
@@ -531,81 +476,59 @@
       "title": "DevOps, SRE & Operations",
       "files": [
         {
-          "path": "07_devops_sre_operations/Accelerate - Forsgren, Humble, Kim.md",
-          "title": "Accelerate - Forsgren, Humble, Kim",
+          "path": "07_devops_sre_operations/Container Orchestration with Kubernetes - Complete Professional Guide.md",
+          "title": "Container Orchestration with Kubernetes - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Continuous Delivery - Humble, Farley.md",
-          "title": "Continuous Delivery - Humble, Farley",
+          "path": "07_devops_sre_operations/Continuous Delivery and Deployment Pipelines - Complete Professional Guide.md",
+          "title": "Continuous Delivery and Deployment Pipelines - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Effective DevOps - Davis, Daniels.md",
-          "title": "Effective DevOps - Davis, Daniels",
+          "path": "07_devops_sre_operations/DevOps Culture and Collaboration - Complete Professional Guide.md",
+          "title": "DevOps Culture and Collaboration - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Jenkins Essentials - Soni.md",
-          "title": "Jenkins Essentials - Soni",
+          "path": "07_devops_sre_operations/DevOps Principles and Flow - Complete Professional Guide.md",
+          "title": "DevOps Principles and Flow - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Kubernetes - Up and Running - Hightower, Burns, Beda.md",
-          "title": "Kubernetes - Up and Running - Hightower, Burns, Beda",
+          "path": "07_devops_sre_operations/Git Version Control - Complete Professional Guide.md",
+          "title": "Git Version Control - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Linux Utilities Cookbook - Lee.md",
-          "title": "Linux Utilities Cookbook - Lee",
+          "path": "07_devops_sre_operations/Linux Command-Line for Operations - Complete Professional Guide.md",
+          "title": "Linux Command-Line for Operations - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Observability Engineering - Majors, Fong-Jones, Miranda.md",
-          "title": "Observability Engineering - Majors, Fong-Jones, Miranda",
+          "path": "07_devops_sre_operations/Measuring Software Delivery Performance - Complete Professional Guide.md",
+          "title": "Measuring Software Delivery Performance - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Pro Git (2nd Ed) - Chacon, Straub.md",
-          "title": "Pro Git (2nd Ed) - Chacon, Straub",
+          "path": "07_devops_sre_operations/Observability - Complete Professional Guide.md",
+          "title": "Observability - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Release It! - Nygard.md",
-          "title": "Release It! - Nygard",
+          "path": "07_devops_sre_operations/Site Reliability Engineering - Complete Professional Guide.md",
+          "title": "Site Reliability Engineering - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Site Reliability Engineering - Google.md",
-          "title": "Site Reliability Engineering - Google",
+          "path": "07_devops_sre_operations/Stability Patterns for Production - Complete Professional Guide.md",
+          "title": "Stability Patterns for Production - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Systems Performance (2nd Ed) - Gregg.md",
-          "title": "Systems Performance (2nd Ed) - Gregg",
+          "path": "07_devops_sre_operations/Systems Performance Analysis - Complete Professional Guide.md",
+          "title": "Systems Performance Analysis - Complete Professional Guide",
           "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/The DevOps Handbook - Kim, Humble, Debois.md",
-          "title": "The DevOps Handbook - Kim, Humble, Debois",
-          "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/The Phoenix Project - Kim, Behr, Spafford.md",
-          "title": "The Phoenix Project - Kim, Behr, Spafford",
-          "tier": "supporting"
-        }
-      ]
-    },
-    {
-      "id": "08_distributed_systems",
-      "number": "08",
-      "title": "Distributed Systems & Microservices",
-      "files": [
-        {
-          "path": "08_distributed_systems/Building Microservices - Newman.md",
-          "title": "Building Microservices - Newman",
-          "tier": "core"
         }
       ]
     },
@@ -615,8 +538,8 @@
       "title": "Security & Privacy",
       "files": [
         {
-          "path": "09_security_and_privacy/Building Secure and Reliable Systems - Google.md",
-          "title": "Building Secure and Reliable Systems - Google",
+          "path": "09_security_and_privacy/Data Protection and GDPR Compliance - Complete Professional Guide.md",
+          "title": "Data Protection and GDPR Compliance - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -630,48 +553,33 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Practical Data Privacy - Kamara.md",
-          "title": "Practical Data Privacy - Kamara",
+          "path": "09_security_and_privacy/Privacy Engineering - Complete Professional Guide.md",
+          "title": "Privacy Engineering - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Privacy's Blueprint - Hartzog.md",
-          "title": "Privacy's Blueprint - Hartzog",
+          "path": "09_security_and_privacy/Secure Code Review - Complete Professional Guide.md",
+          "title": "Secure Code Review - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Security Engineering (3rd Ed) - Anderson.md",
-          "title": "Security Engineering (3rd Ed) - Anderson",
+          "path": "09_security_and_privacy/Secure and Reliable Systems Design - Complete Professional Guide.md",
+          "title": "Secure and Reliable Systems Design - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/The Art of Software Security Assessment - Dowd, McDonald.md",
-          "title": "The Art of Software Security Assessment - Dowd, McDonald",
+          "path": "09_security_and_privacy/Security Engineering Principles - Complete Professional Guide.md",
+          "title": "Security Engineering Principles - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/The EU GDPR - A Practical Guide - Voigt, von dem Bussche.md",
-          "title": "The EU GDPR - A Practical Guide - Voigt, von dem Bussche",
+          "path": "09_security_and_privacy/Threat Modeling - Complete Professional Guide.md",
+          "title": "Threat Modeling - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/The Privacy Engineer's Manifesto - Dennedy.md",
-          "title": "The Privacy Engineer's Manifesto - Dennedy",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/The Tangled Web - Zalewski.md",
-          "title": "The Tangled Web - Zalewski",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/The Web Application Hacker's Handbook - Stuttard, Pinto.md",
-          "title": "The Web Application Hacker's Handbook - Stuttard, Pinto",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/Threat Modeling - Shostack.md",
-          "title": "Threat Modeling - Shostack",
+          "path": "09_security_and_privacy/Web Application Security - Complete Professional Guide.md",
+          "title": "Web Application Security - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
@@ -699,58 +607,28 @@
       "title": "Management, Product & Process",
       "files": [
         {
-          "path": "11_management_product_process/An Elegant Puzzle - Larson.md",
-          "title": "An Elegant Puzzle - Larson",
+          "path": "11_management_product_process/Customer Discovery and Research - Complete Professional Guide.md",
+          "title": "Customer Discovery and Research - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Continuous Discovery Habits - Torres.md",
-          "title": "Continuous Discovery Habits - Torres",
+          "path": "11_management_product_process/Engineering Management and Career Growth - Complete Professional Guide.md",
+          "title": "Engineering Management and Career Growth - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Escaping the Build Trap - Perri.md",
-          "title": "Escaping the Build Trap - Perri",
+          "path": "11_management_product_process/Product Management Fundamentals - Complete Professional Guide.md",
+          "title": "Product Management Fundamentals - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Inspired - Cagan.md",
-          "title": "Inspired - Cagan",
+          "path": "11_management_product_process/Team Topologies and Organization Design - Complete Professional Guide.md",
+          "title": "Team Topologies and Organization Design - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Just Enough Research - Hall.md",
-          "title": "Just Enough Research - Hall",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Making Things Happen - Berkun.md",
-          "title": "Making Things Happen - Berkun",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Staff Engineer - Larson.md",
-          "title": "Staff Engineer - Larson",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Team Topologies - Skelton, Pais.md",
-          "title": "Team Topologies - Skelton, Pais",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/The Manager's Path - Fournier.md",
-          "title": "The Manager's Path - Fournier",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/The Mom Test - Fitzpatrick.md",
-          "title": "The Mom Test - Fitzpatrick",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/User Story Mapping - Patton.md",
-          "title": "User Story Mapping - Patton",
+          "path": "11_management_product_process/User Story Mapping and Planning - Complete Professional Guide.md",
+          "title": "User Story Mapping and Planning - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
@@ -761,8 +639,8 @@
       "title": "Design & UX",
       "files": [
         {
-          "path": "12_design_ux/The Design of Everyday Things - Norman.md",
-          "title": "The Design of Everyday Things - Norman",
+          "path": "12_design_ux/Usable Design Principles - Complete Professional Guide.md",
+          "title": "Usable Design Principles - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
@@ -875,22 +753,10 @@
           "version": 3
         },
         {
-          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
-          "title": "Learning GraphQL - Porcello, Banks",
+          "path": "14_frameworks/GraphQL - Complete Professional Guide.md",
+          "title": "GraphQL - Complete Professional Guide",
           "tier": "stack",
           "stack": "graphql"
-        },
-        {
-          "path": "14_frameworks/Learning React Native - Eisenman.md",
-          "title": "Learning React Native - Eisenman",
-          "tier": "stack",
-          "stack": "react-native"
-        },
-        {
-          "path": "14_frameworks/Mastering Node.js.md",
-          "title": "Mastering Node.js",
-          "tier": "stack",
-          "stack": "node"
         },
         {
           "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
@@ -907,6 +773,13 @@
           "version": 15
         },
         {
+          "path": "14_frameworks/Node.js 24 - Complete Professional Guide.md",
+          "title": "Node.js 24 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "node",
+          "version": 24
+        },
+        {
           "path": "14_frameworks/React 19 - Complete Professional Guide.md",
           "title": "React 19 - Complete Professional Guide",
           "tier": "stack",
@@ -914,10 +787,17 @@
           "version": 19
         },
         {
-          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
-          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl",
+          "path": "14_frameworks/React Native - Complete Professional Guide.md",
+          "title": "React Native - Complete Professional Guide",
           "tier": "stack",
-          "stack": "rails"
+          "stack": "react-native"
+        },
+        {
+          "path": "14_frameworks/Ruby on Rails 8 - Complete Professional Guide.md",
+          "title": "Ruby on Rails 8 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "rails",
+          "version": 8
         },
         {
           "path": "14_frameworks/Spring Boot 3 - Complete Professional Guide.md",
@@ -1081,11 +961,14 @@
       ]
     },
     "go": {
-      "versions": [],
+      "versions": [
+        24
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
-          "title": "The Go Programming Language - Donovan, Kernighan"
+          "path": "01_programming_languages/Go 1.24 - Complete Professional Guide.md",
+          "title": "Go 1.24 - Complete Professional Guide",
+          "version": 24
         }
       ]
     },
@@ -1093,8 +976,8 @@
       "versions": [],
       "editions": [
         {
-          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
-          "title": "Learning GraphQL - Porcello, Banks"
+          "path": "14_frameworks/GraphQL - Complete Professional Guide.md",
+          "title": "GraphQL - Complete Professional Guide"
         }
       ]
     },
@@ -1108,15 +991,14 @@
       ]
     },
     "java": {
-      "versions": [],
+      "versions": [
+        25
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
-          "title": "Core Java - Volume I - Horstmann"
-        },
-        {
-          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
-          "title": "Core Java - Volume II - Horstmann"
+          "path": "01_programming_languages/Java 25 - Complete Professional Guide.md",
+          "title": "Java 25 - Complete Professional Guide",
+          "version": 25
         }
       ]
     },
@@ -1124,12 +1006,8 @@
       "versions": [],
       "editions": [
         {
-          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
-          "title": "Eloquent JavaScript - Haverbeke"
-        },
-        {
-          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
-          "title": "JavaScript - The Good Parts - Crockford"
+          "path": "01_programming_languages/JavaScript - Complete Professional Guide.md",
+          "title": "JavaScript - Complete Professional Guide"
         }
       ]
     },
@@ -1167,11 +1045,14 @@
       ]
     },
     "node": {
-      "versions": [],
+      "versions": [
+        24
+      ],
       "editions": [
         {
-          "path": "14_frameworks/Mastering Node.js.md",
-          "title": "Mastering Node.js"
+          "path": "14_frameworks/Node.js 24 - Complete Professional Guide.md",
+          "title": "Node.js 24 - Complete Professional Guide",
+          "version": 24
         }
       ]
     },
@@ -1188,20 +1069,26 @@
       ]
     },
     "python": {
-      "versions": [],
+      "versions": [
+        3
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Python Crash Course - Matthes.md",
-          "title": "Python Crash Course - Matthes"
+          "path": "01_programming_languages/Python 3.13 - Complete Professional Guide.md",
+          "title": "Python 3.13 - Complete Professional Guide",
+          "version": 3
         }
       ]
     },
     "rails": {
-      "versions": [],
+      "versions": [
+        8
+      ],
       "editions": [
         {
-          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
-          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl"
+          "path": "14_frameworks/Ruby on Rails 8 - Complete Professional Guide.md",
+          "title": "Ruby on Rails 8 - Complete Professional Guide",
+          "version": 8
         }
       ]
     },
@@ -1221,25 +1108,20 @@
       "versions": [],
       "editions": [
         {
-          "path": "14_frameworks/Learning React Native - Eisenman.md",
-          "title": "Learning React Native - Eisenman"
+          "path": "14_frameworks/React Native - Complete Professional Guide.md",
+          "title": "React Native - Complete Professional Guide"
         }
       ]
     },
     "ruby": {
-      "versions": [],
+      "versions": [
+        3
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
-          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas"
-        },
-        {
-          "path": "01_programming_languages/Programming Ruby 3.3 (preview) - Rappin.md",
-          "title": "Programming Ruby 3.3 (preview) - Rappin"
-        },
-        {
-          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
-          "title": "Programming Ruby 3.3 - Rappin, Thomas"
+          "path": "01_programming_languages/Ruby 3.4 - Complete Professional Guide.md",
+          "title": "Ruby 3.4 - Complete Professional Guide",
+          "version": 3
         }
       ]
     },

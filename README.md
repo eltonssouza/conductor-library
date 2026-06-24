@@ -53,118 +53,98 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 ## 01 · Programming Languages
 
 - [C# 13 and .NET 9 - Complete Professional Guide](01_programming_languages/C%23%2013%20and%20.NET%209%20-%20Complete%20Professional%20Guide.md)
-- [Core Java - Volume I - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
-- [Core Java - Volume II - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
-- [Eloquent JavaScript - Haverbeke](01_programming_languages/Eloquent%20JavaScript%20-%20Haverbeke.md)
-- [JavaScript - The Good Parts - Crockford](01_programming_languages/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
+- [Go 1.24 - Complete Professional Guide](01_programming_languages/Go%201.24%20-%20Complete%20Professional%20Guide.md)
+- [Java 25 - Complete Professional Guide](01_programming_languages/Java%2025%20-%20Complete%20Professional%20Guide.md)
+- [JavaScript - Complete Professional Guide](01_programming_languages/JavaScript%20-%20Complete%20Professional%20Guide.md)
 - [PHP 8.4 - Complete Professional Guide](01_programming_languages/PHP%208.4%20-%20Complete%20Professional%20Guide.md)
-- [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
-- [Programming Ruby 3.3 (preview) - Rappin](01_programming_languages/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
-- [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
-- [Python Crash Course - Matthes](01_programming_languages/Python%20Crash%20Course%20-%20Matthes.md)
+- [Python 3.13 - Complete Professional Guide](01_programming_languages/Python%203.13%20-%20Complete%20Professional%20Guide.md)
+- [Ruby 3.4 - Complete Professional Guide](01_programming_languages/Ruby%203.4%20-%20Complete%20Professional%20Guide.md)
 - [Rust 2024 - Complete Professional Guide](01_programming_languages/Rust%202024%20-%20Complete%20Professional%20Guide.md)
-- [The Go Programming Language - Donovan, Kernighan](01_programming_languages/The%20Go%20Programming%20Language%20-%20Donovan,%20Kernighan.md)
 
 ## 02 · Algorithms & Data Structures
 
-- [Introduction to Algorithms (4th Ed) - Cormen, Leiserson](02_algorithms_and_data_structures/Introduction%20to%20Algorithms%20(4th%20Ed)%20-%20Cormen,%20Leiserson.md)
+- [Algorithm Design and Analysis - Complete Professional Guide](02_algorithms_and_data_structures/Algorithm%20Design%20and%20Analysis%20-%20Complete%20Professional%20Guide.md)
 
 ## 03 · Software Design & Architecture
 
-- [A Philosophy of Software Design (2nd Ed) - Ousterhout](03_design_and_architecture/A%20Philosophy%20of%20Software%20Design%20(2nd%20Ed)%20-%20Ousterhout.md)
-- [Clean Architecture - Martin](03_design_and_architecture/Clean%20Architecture%20-%20Martin.md)
-- [Clean Code - Martin](03_design_and_architecture/Clean%20Code%20-%20Martin.md)
-- [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
-- [Design Patterns - Gang of Four](03_design_and_architecture/Design%20Patterns%20-%20Gang%20of%20Four.md)
-- [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
-- [Domain-Driven Design - Evans](03_design_and_architecture/Domain-Driven%20Design%20-%20Evans.md)
-- [Enterprise Integration Patterns - Hohpe, Woolf](03_design_and_architecture/Enterprise%20Integration%20Patterns%20-%20Hohpe,%20Woolf.md)
-- [Fundamentals of Software Architecture (alt copy) - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20(alt%20copy)%20-%20Richards,%20Ford.md)
-- [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
-- [Head First Design Patterns - Freeman](03_design_and_architecture/Head%20First%20Design%20Patterns%20-%20Freeman.md)
-- [Learning Domain-Driven Design - Khononov](03_design_and_architecture/Learning%20Domain-Driven%20Design%20-%20Khononov.md)
-- [Patterns of Enterprise Application Architecture - Fowler](03_design_and_architecture/Patterns%20of%20Enterprise%20Application%20Architecture%20-%20Fowler.md)
-- [Refactoring - Improving the Design of Existing Code - Fowler](03_design_and_architecture/Refactoring%20-%20Improving%20the%20Design%20of%20Existing%20Code%20-%20Fowler.md)
-- [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
-- [Software Architecture in Practice (3rd Ed) - Bass](03_design_and_architecture/Software%20Architecture%20in%20Practice%20(3rd%20Ed)%20-%20Bass.md)
-- [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
-- [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
-- [The Object-Oriented Thought Process (3rd Ed) - Weisfeld](03_design_and_architecture/The%20Object-Oriented%20Thought%20Process%20(3rd%20Ed)%20-%20Weisfeld.md)
-- [Why Reactive](03_design_and_architecture/Why%20Reactive.md)
+- [Architecture Boundaries and the Dependency Rule - Complete Professional Guide](03_design_and_architecture/Architecture%20Boundaries%20and%20the%20Dependency%20Rule%20-%20Complete%20Professional%20Guide.md)
+- [Architecture Styles and Trade-offs - Complete Professional Guide](03_design_and_architecture/Architecture%20Styles%20and%20Trade-offs%20-%20Complete%20Professional%20Guide.md)
+- [Distributed Architecture Decisions - Complete Professional Guide](03_design_and_architecture/Distributed%20Architecture%20Decisions%20-%20Complete%20Professional%20Guide.md)
+- [Documenting Software Architecture - Complete Professional Guide](03_design_and_architecture/Documenting%20Software%20Architecture%20-%20Complete%20Professional%20Guide.md)
+- [Domain-Driven Design - Complete Professional Guide](03_design_and_architecture/Domain-Driven%20Design%20-%20Complete%20Professional%20Guide.md)
+- [Enterprise Application Architecture Patterns - Complete Professional Guide](03_design_and_architecture/Enterprise%20Application%20Architecture%20Patterns%20-%20Complete%20Professional%20Guide.md)
+- [Managing Software Complexity - Complete Professional Guide](03_design_and_architecture/Managing%20Software%20Complexity%20-%20Complete%20Professional%20Guide.md)
+- [Messaging and Integration Patterns - Complete Professional Guide](03_design_and_architecture/Messaging%20and%20Integration%20Patterns%20-%20Complete%20Professional%20Guide.md)
+- [Object-Oriented Design Patterns - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Design%20Patterns%20-%20Complete%20Professional%20Guide.md)
+- [Object-Oriented Thinking - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Thinking%20-%20Complete%20Professional%20Guide.md)
+- [Reactive Systems - Complete Professional Guide](03_design_and_architecture/Reactive%20Systems%20-%20Complete%20Professional%20Guide.md)
+- [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
+- [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)
+- [Solution Architecture - Complete Professional Guide](03_design_and_architecture/Solution%20Architecture%20-%20Complete%20Professional%20Guide.md)
+- [The Practice of Architecting - Complete Professional Guide](03_design_and_architecture/The%20Practice%20of%20Architecting%20-%20Complete%20Professional%20Guide.md)
+- [Writing Maintainable Code - Complete Professional Guide](03_design_and_architecture/Writing%20Maintainable%20Code%20-%20Complete%20Professional%20Guide.md)
 
 ## 04 · Software Engineering & Practices
 
-- [Agile Software Development - Martin](04_engineering_and_practices/Agile%20Software%20Development%20-%20Martin.md)
-- [Agile Testing - A Practical Guide - Crispin, Gregory](04_engineering_and_practices/Agile%20Testing%20-%20A%20Practical%20Guide%20-%20Crispin,%20Gregory.md)
-- [Code Complete (2nd Ed) - McConnell](04_engineering_and_practices/Code%20Complete%20(2nd%20Ed)%20-%20McConnell.md)
-- [Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce](04_engineering_and_practices/Growing%20Object-Oriented%20Software,%20Guided%20by%20Tests%20-%20Freeman,%20Pryce.md)
+- [Agile Testing - Complete Professional Guide](04_engineering_and_practices/Agile%20Testing%20-%20Complete%20Professional%20Guide.md)
+- [Outside-In Development - Complete Professional Guide](04_engineering_and_practices/Outside-In%20Development%20-%20Complete%20Professional%20Guide.md)
+- [Pragmatic Programming Practices - Complete Professional Guide](04_engineering_and_practices/Pragmatic%20Programming%20Practices%20-%20Complete%20Professional%20Guide.md)
+- [SOLID Design Principles - Complete Professional Guide](04_engineering_and_practices/SOLID%20Design%20Principles%20-%20Complete%20Professional%20Guide.md)
+- [Software Construction Practices - Complete Professional Guide](04_engineering_and_practices/Software%20Construction%20Practices%20-%20Complete%20Professional%20Guide.md)
+- [Software Project Realities - Complete Professional Guide](04_engineering_and_practices/Software%20Project%20Realities%20-%20Complete%20Professional%20Guide.md)
 - [Spec-Driven Development - The Complete Book](04_engineering_and_practices/Spec-Driven%20Development%20-%20The%20Complete%20Book.md)
-- [Specification by Example - Adzic](04_engineering_and_practices/Specification%20by%20Example%20-%20Adzic.md)
-- [Test-Driven Development by Example - Beck](04_engineering_and_practices/Test-Driven%20Development%20by%20Example%20-%20Beck.md)
-- [The Mythical Man-Month - Brooks](04_engineering_and_practices/The%20Mythical%20Man-Month%20-%20Brooks.md)
-- [The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(20th%20Anniversary%20Ed)%20-%20Hunt,%20Thomas.md)
-- [The Pragmatic Programmer (alt copy) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(alt%20copy)%20-%20Hunt,%20Thomas.md)
-- [Unit Testing - Principles, Practices and Patterns - Khorikov](04_engineering_and_practices/Unit%20Testing%20-%20Principles,%20Practices%20and%20Patterns%20-%20Khorikov.md)
-- [Working Effectively with Legacy Code - Feathers](04_engineering_and_practices/Working%20Effectively%20with%20Legacy%20Code%20-%20Feathers.md)
-- [xUnit Test Patterns - Meszaros](04_engineering_and_practices/xUnit%20Test%20Patterns%20-%20Meszaros.md)
+- [Specification by Example - Complete Professional Guide](04_engineering_and_practices/Specification%20by%20Example%20-%20Complete%20Professional%20Guide.md)
+- [Test Patterns and Smells - Complete Professional Guide](04_engineering_and_practices/Test%20Patterns%20and%20Smells%20-%20Complete%20Professional%20Guide.md)
+- [Test-Driven Development - Complete Professional Guide](04_engineering_and_practices/Test-Driven%20Development%20-%20Complete%20Professional%20Guide.md)
+- [Unit Testing Principles - Complete Professional Guide](04_engineering_and_practices/Unit%20Testing%20Principles%20-%20Complete%20Professional%20Guide.md)
+- [Working with Legacy Code - Complete Professional Guide](04_engineering_and_practices/Working%20with%20Legacy%20Code%20-%20Complete%20Professional%20Guide.md)
 
 ## 05 · Databases & Data
 
-- [Database Internals - Petrov](05_databases/Database%20Internals%20-%20Petrov.md)
-- [Database System Concepts (7th Ed) - Silberschatz, Korth](05_databases/Database%20System%20Concepts%20(7th%20Ed)%20-%20Silberschatz,%20Korth.md)
-- [Designing Data-Intensive Applications - Kleppmann](05_databases/Designing%20Data-Intensive%20Applications%20-%20Kleppmann.md)
-- [Graph Databases - Robinson, Webber](05_databases/Graph%20Databases%20-%20Robinson,%20Webber.md)
-- [NoSQL Distilled - Sadalage, Fowler](05_databases/NoSQL%20Distilled%20-%20Sadalage,%20Fowler.md)
-- [SQL Antipatterns - Karwin](05_databases/SQL%20Antipatterns%20-%20Karwin.md)
-- [SQL Performance Explained - Winand](05_databases/SQL%20Performance%20Explained%20-%20Winand.md)
-- [Seven Databases in Seven Weeks - Redmond, Wilson](05_databases/Seven%20Databases%20in%20Seven%20Weeks%20-%20Redmond,%20Wilson.md)
-- [Streaming Systems - Akidau, Chernyak, Lax](05_databases/Streaming%20Systems%20-%20Akidau,%20Chernyak,%20Lax.md)
-- [The Data Warehouse Toolkit (3rd Ed) - Kimball](05_databases/The%20Data%20Warehouse%20Toolkit%20(3rd%20Ed)%20-%20Kimball.md)
+- [Database Transactions and Concurrency - Complete Professional Guide](05_databases/Database%20Transactions%20and%20Concurrency%20-%20Complete%20Professional%20Guide.md)
+- [Designing Data-Intensive Systems - Complete Professional Guide](05_databases/Designing%20Data-Intensive%20Systems%20-%20Complete%20Professional%20Guide.md)
+- [Dimensional Modeling for Analytics - Complete Professional Guide](05_databases/Dimensional%20Modeling%20for%20Analytics%20-%20Complete%20Professional%20Guide.md)
+- [How Databases Work Internally - Complete Professional Guide](05_databases/How%20Databases%20Work%20Internally%20-%20Complete%20Professional%20Guide.md)
+- [NoSQL Data Models - Complete Professional Guide](05_databases/NoSQL%20Data%20Models%20-%20Complete%20Professional%20Guide.md)
+- [SQL Database Antipatterns - Complete Professional Guide](05_databases/SQL%20Database%20Antipatterns%20-%20Complete%20Professional%20Guide.md)
+- [SQL Performance and Indexing - Complete Professional Guide](05_databases/SQL%20Performance%20and%20Indexing%20-%20Complete%20Professional%20Guide.md)
+- [Stream Processing - Complete Professional Guide](05_databases/Stream%20Processing%20-%20Complete%20Professional%20Guide.md)
 
 ## 06 · Web & Frontend
 
-- [CSS in Depth (2nd Ed) - Grant](06_web_and_frontend/CSS%20in%20Depth%20(2nd%20Ed)%20-%20Grant.md)
-- [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
-- [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
-- [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
-- [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
-- [Refactoring UI - Wathan, Schoger](06_web_and_frontend/Refactoring%20UI%20-%20Wathan,%20Schoger.md)
-- [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
+- [Accessible Web Components - Complete Professional Guide](06_web_and_frontend/Accessible%20Web%20Components%20-%20Complete%20Professional%20Guide.md)
+- [Form Design and UX - Complete Professional Guide](06_web_and_frontend/Form%20Design%20and%20UX%20-%20Complete%20Professional%20Guide.md)
+- [Modern CSS Layout - Complete Professional Guide](06_web_and_frontend/Modern%20CSS%20Layout%20-%20Complete%20Professional%20Guide.md)
+- [Practical Visual Design - Complete Professional Guide](06_web_and_frontend/Practical%20Visual%20Design%20-%20Complete%20Professional%20Guide.md)
+- [RESTful API Design - Complete Professional Guide](06_web_and_frontend/RESTful%20API%20Design%20-%20Complete%20Professional%20Guide.md)
+- [Web Performance and Networking - Complete Professional Guide](06_web_and_frontend/Web%20Performance%20and%20Networking%20-%20Complete%20Professional%20Guide.md)
+- [Web Usability Principles - Complete Professional Guide](06_web_and_frontend/Web%20Usability%20Principles%20-%20Complete%20Professional%20Guide.md)
 
 ## 07 · DevOps, SRE & Operations
 
-- [Accelerate - Forsgren, Humble, Kim](07_devops_sre_operations/Accelerate%20-%20Forsgren,%20Humble,%20Kim.md)
-- [Continuous Delivery - Humble, Farley](07_devops_sre_operations/Continuous%20Delivery%20-%20Humble,%20Farley.md)
-- [Effective DevOps - Davis, Daniels](07_devops_sre_operations/Effective%20DevOps%20-%20Davis,%20Daniels.md)
-- [Jenkins Essentials - Soni](07_devops_sre_operations/Jenkins%20Essentials%20-%20Soni.md)
-- [Kubernetes - Up and Running - Hightower, Burns, Beda](07_devops_sre_operations/Kubernetes%20-%20Up%20and%20Running%20-%20Hightower,%20Burns,%20Beda.md)
-- [Linux Utilities Cookbook - Lee](07_devops_sre_operations/Linux%20Utilities%20Cookbook%20-%20Lee.md)
-- [Observability Engineering - Majors, Fong-Jones, Miranda](07_devops_sre_operations/Observability%20Engineering%20-%20Majors,%20Fong-Jones,%20Miranda.md)
-- [Pro Git (2nd Ed) - Chacon, Straub](07_devops_sre_operations/Pro%20Git%20(2nd%20Ed)%20-%20Chacon,%20Straub.md)
-- [Release It! - Nygard](07_devops_sre_operations/Release%20It!%20-%20Nygard.md)
-- [Site Reliability Engineering - Google](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Google.md)
-- [Systems Performance (2nd Ed) - Gregg](07_devops_sre_operations/Systems%20Performance%20(2nd%20Ed)%20-%20Gregg.md)
-- [The DevOps Handbook - Kim, Humble, Debois](07_devops_sre_operations/The%20DevOps%20Handbook%20-%20Kim,%20Humble,%20Debois.md)
-- [The Phoenix Project - Kim, Behr, Spafford](07_devops_sre_operations/The%20Phoenix%20Project%20-%20Kim,%20Behr,%20Spafford.md)
-
-## 08 · Distributed Systems & Microservices
-
-- [Building Microservices - Newman](08_distributed_systems/Building%20Microservices%20-%20Newman.md)
+- [Container Orchestration with Kubernetes - Complete Professional Guide](07_devops_sre_operations/Container%20Orchestration%20with%20Kubernetes%20-%20Complete%20Professional%20Guide.md)
+- [Continuous Delivery and Deployment Pipelines - Complete Professional Guide](07_devops_sre_operations/Continuous%20Delivery%20and%20Deployment%20Pipelines%20-%20Complete%20Professional%20Guide.md)
+- [DevOps Culture and Collaboration - Complete Professional Guide](07_devops_sre_operations/DevOps%20Culture%20and%20Collaboration%20-%20Complete%20Professional%20Guide.md)
+- [DevOps Principles and Flow - Complete Professional Guide](07_devops_sre_operations/DevOps%20Principles%20and%20Flow%20-%20Complete%20Professional%20Guide.md)
+- [Git Version Control - Complete Professional Guide](07_devops_sre_operations/Git%20Version%20Control%20-%20Complete%20Professional%20Guide.md)
+- [Linux Command-Line for Operations - Complete Professional Guide](07_devops_sre_operations/Linux%20Command-Line%20for%20Operations%20-%20Complete%20Professional%20Guide.md)
+- [Measuring Software Delivery Performance - Complete Professional Guide](07_devops_sre_operations/Measuring%20Software%20Delivery%20Performance%20-%20Complete%20Professional%20Guide.md)
+- [Observability - Complete Professional Guide](07_devops_sre_operations/Observability%20-%20Complete%20Professional%20Guide.md)
+- [Site Reliability Engineering - Complete Professional Guide](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Complete%20Professional%20Guide.md)
+- [Stability Patterns for Production - Complete Professional Guide](07_devops_sre_operations/Stability%20Patterns%20for%20Production%20-%20Complete%20Professional%20Guide.md)
+- [Systems Performance Analysis - Complete Professional Guide](07_devops_sre_operations/Systems%20Performance%20Analysis%20-%20Complete%20Professional%20Guide.md)
 
 ## 09 · Security & Privacy
 
-- [Building Secure and Reliable Systems - Google](09_security_and_privacy/Building%20Secure%20and%20Reliable%20Systems%20-%20Google.md)
+- [Data Protection and GDPR Compliance - Complete Professional Guide](09_security_and_privacy/Data%20Protection%20and%20GDPR%20Compliance%20-%20Complete%20Professional%20Guide.md)
 - [OWASP ASVS 4.0.3](09_security_and_privacy/OWASP%20ASVS%204.0.3.md)
 - [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
-- [Practical Data Privacy - Kamara](09_security_and_privacy/Practical%20Data%20Privacy%20-%20Kamara.md)
-- [Privacy's Blueprint - Hartzog](09_security_and_privacy/Privacy's%20Blueprint%20-%20Hartzog.md)
-- [Security Engineering (3rd Ed) - Anderson](09_security_and_privacy/Security%20Engineering%20(3rd%20Ed)%20-%20Anderson.md)
-- [The Art of Software Security Assessment - Dowd, McDonald](09_security_and_privacy/The%20Art%20of%20Software%20Security%20Assessment%20-%20Dowd,%20McDonald.md)
-- [The EU GDPR - A Practical Guide - Voigt, von dem Bussche](09_security_and_privacy/The%20EU%20GDPR%20-%20A%20Practical%20Guide%20-%20Voigt,%20von%20dem%20Bussche.md)
-- [The Privacy Engineer's Manifesto - Dennedy](09_security_and_privacy/The%20Privacy%20Engineer's%20Manifesto%20-%20Dennedy.md)
-- [The Tangled Web - Zalewski](09_security_and_privacy/The%20Tangled%20Web%20-%20Zalewski.md)
-- [The Web Application Hacker's Handbook - Stuttard, Pinto](09_security_and_privacy/The%20Web%20Application%20Hacker's%20Handbook%20-%20Stuttard,%20Pinto.md)
-- [Threat Modeling - Shostack](09_security_and_privacy/Threat%20Modeling%20-%20Shostack.md)
+- [Privacy Engineering - Complete Professional Guide](09_security_and_privacy/Privacy%20Engineering%20-%20Complete%20Professional%20Guide.md)
+- [Secure Code Review - Complete Professional Guide](09_security_and_privacy/Secure%20Code%20Review%20-%20Complete%20Professional%20Guide.md)
+- [Secure and Reliable Systems Design - Complete Professional Guide](09_security_and_privacy/Secure%20and%20Reliable%20Systems%20Design%20-%20Complete%20Professional%20Guide.md)
+- [Security Engineering Principles - Complete Professional Guide](09_security_and_privacy/Security%20Engineering%20Principles%20-%20Complete%20Professional%20Guide.md)
+- [Threat Modeling - Complete Professional Guide](09_security_and_privacy/Threat%20Modeling%20-%20Complete%20Professional%20Guide.md)
+- [Web Application Security - Complete Professional Guide](09_security_and_privacy/Web%20Application%20Security%20-%20Complete%20Professional%20Guide.md)
 
 ## 10 · AI & LLM
 
@@ -173,21 +153,15 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 11 · Management, Product & Process
 
-- [An Elegant Puzzle - Larson](11_management_product_process/An%20Elegant%20Puzzle%20-%20Larson.md)
-- [Continuous Discovery Habits - Torres](11_management_product_process/Continuous%20Discovery%20Habits%20-%20Torres.md)
-- [Escaping the Build Trap - Perri](11_management_product_process/Escaping%20the%20Build%20Trap%20-%20Perri.md)
-- [Inspired - Cagan](11_management_product_process/Inspired%20-%20Cagan.md)
-- [Just Enough Research - Hall](11_management_product_process/Just%20Enough%20Research%20-%20Hall.md)
-- [Making Things Happen - Berkun](11_management_product_process/Making%20Things%20Happen%20-%20Berkun.md)
-- [Staff Engineer - Larson](11_management_product_process/Staff%20Engineer%20-%20Larson.md)
-- [Team Topologies - Skelton, Pais](11_management_product_process/Team%20Topologies%20-%20Skelton,%20Pais.md)
-- [The Manager's Path - Fournier](11_management_product_process/The%20Manager's%20Path%20-%20Fournier.md)
-- [The Mom Test - Fitzpatrick](11_management_product_process/The%20Mom%20Test%20-%20Fitzpatrick.md)
-- [User Story Mapping - Patton](11_management_product_process/User%20Story%20Mapping%20-%20Patton.md)
+- [Customer Discovery and Research - Complete Professional Guide](11_management_product_process/Customer%20Discovery%20and%20Research%20-%20Complete%20Professional%20Guide.md)
+- [Engineering Management and Career Growth - Complete Professional Guide](11_management_product_process/Engineering%20Management%20and%20Career%20Growth%20-%20Complete%20Professional%20Guide.md)
+- [Product Management Fundamentals - Complete Professional Guide](11_management_product_process/Product%20Management%20Fundamentals%20-%20Complete%20Professional%20Guide.md)
+- [Team Topologies and Organization Design - Complete Professional Guide](11_management_product_process/Team%20Topologies%20and%20Organization%20Design%20-%20Complete%20Professional%20Guide.md)
+- [User Story Mapping and Planning - Complete Professional Guide](11_management_product_process/User%20Story%20Mapping%20and%20Planning%20-%20Complete%20Professional%20Guide.md)
 
 ## 12 · Design & UX
 
-- [The Design of Everyday Things - Norman](12_design_ux/The%20Design%20of%20Everyday%20Things%20-%20Norman.md)
+- [Usable Design Principles - Complete Professional Guide](12_design_ux/Usable%20Design%20Principles%20-%20Complete%20Professional%20Guide.md)
 
 ## 13 · Automation & Integration
 
@@ -208,13 +182,13 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Fastify 5 - Complete Professional Guide](14_frameworks/Fastify%205%20-%20Complete%20Professional%20Guide.md)
 - [Flask 3 - Complete Professional Guide](14_frameworks/Flask%203%20-%20Complete%20Professional%20Guide.md)
 - [Flutter 3 - Complete Professional Guide](14_frameworks/Flutter%203%20-%20Complete%20Professional%20Guide.md)
-- [Learning GraphQL - Porcello, Banks](14_frameworks/Learning%20GraphQL%20-%20Porcello,%20Banks.md)
-- [Learning React Native - Eisenman](14_frameworks/Learning%20React%20Native%20-%20Eisenman.md)
-- [Mastering Node.js](14_frameworks/Mastering%20Node.js.md)
+- [GraphQL - Complete Professional Guide](14_frameworks/GraphQL%20-%20Complete%20Professional%20Guide.md)
 - [NestJS 11 - Complete Professional Guide](14_frameworks/NestJS%2011%20-%20Complete%20Professional%20Guide.md)
 - [Next.js 15 - Complete Professional Guide](14_frameworks/Next.js%2015%20-%20Complete%20Professional%20Guide.md)
+- [Node.js 24 - Complete Professional Guide](14_frameworks/Node.js%2024%20-%20Complete%20Professional%20Guide.md)
 - [React 19 - Complete Professional Guide](14_frameworks/React%2019%20-%20Complete%20Professional%20Guide.md)
-- [Ruby on Rails Tutorial (6th Ed) - Hartl](14_frameworks/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
+- [React Native - Complete Professional Guide](14_frameworks/React%20Native%20-%20Complete%20Professional%20Guide.md)
+- [Ruby on Rails 8 - Complete Professional Guide](14_frameworks/Ruby%20on%20Rails%208%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 3 - Complete Professional Guide](14_frameworks/Spring%20Boot%203%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 4 - Complete Professional Guide](14_frameworks/Spring%20Boot%204%20-%20Complete%20Professional%20Guide.md)
 - [Svelte 5 - Complete Professional Guide](14_frameworks/Svelte%205%20-%20Complete%20Professional%20Guide.md)
@@ -223,6 +197,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 157 book/reading-list files**
+**Total: 134 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
