@@ -53,11 +53,9 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 ## 01 · Programming Languages
 
 - [C# 13 and .NET 9 - Complete Professional Guide](01_programming_languages/C%23%2013%20and%20.NET%209%20-%20Complete%20Professional%20Guide.md)
-- [Core Java - Volume I - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20I%20-%20Horstmann.md)
-- [Core Java - Volume II - Horstmann](01_programming_languages/Core%20Java%20-%20Volume%20II%20-%20Horstmann.md)
-- [Eloquent JavaScript - Haverbeke](01_programming_languages/Eloquent%20JavaScript%20-%20Haverbeke.md)
 - [Go 1.24 - Complete Professional Guide](01_programming_languages/Go%201.24%20-%20Complete%20Professional%20Guide.md)
-- [JavaScript - The Good Parts - Crockford](01_programming_languages/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
+- [Java 25 - Complete Professional Guide](01_programming_languages/Java%2025%20-%20Complete%20Professional%20Guide.md)
+- [JavaScript - Complete Professional Guide](01_programming_languages/JavaScript%20-%20Complete%20Professional%20Guide.md)
 - [PHP 8.4 - Complete Professional Guide](01_programming_languages/PHP%208.4%20-%20Complete%20Professional%20Guide.md)
 - [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
 - [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
@@ -200,6 +198,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 137 book/reading-list files**
+**Total: 135 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
