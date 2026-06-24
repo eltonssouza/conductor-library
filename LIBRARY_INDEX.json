@@ -339,8 +339,8 @@
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Agile Testing - A Practical Guide - Crispin, Gregory.md",
-          "title": "Agile Testing - A Practical Guide - Crispin, Gregory",
+          "path": "04_engineering_and_practices/Agile Testing - Complete Professional Guide.md",
+          "title": "Agile Testing - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -369,6 +369,11 @@
           "tier": "core"
         },
         {
+          "path": "04_engineering_and_practices/Test Patterns and Smells - Complete Professional Guide.md",
+          "title": "Test Patterns and Smells - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "04_engineering_and_practices/Test-Driven Development - Complete Professional Guide.md",
           "title": "Test-Driven Development - Complete Professional Guide",
           "tier": "core"
@@ -386,11 +391,6 @@
         {
           "path": "04_engineering_and_practices/Working with Legacy Code - Complete Professional Guide.md",
           "title": "Working with Legacy Code - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/xUnit Test Patterns - Meszaros.md",
-          "title": "xUnit Test Patterns - Meszaros",
           "tier": "core"
         }
       ]
