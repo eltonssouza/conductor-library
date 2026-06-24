@@ -767,8 +767,8 @@
           "version": 3
         },
         {
-          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
-          "title": "Learning GraphQL - Porcello, Banks",
+          "path": "14_frameworks/GraphQL - Complete Professional Guide.md",
+          "title": "GraphQL - Complete Professional Guide",
           "tier": "stack",
           "stack": "graphql"
         },
@@ -777,12 +777,6 @@
           "title": "Learning React Native - Eisenman",
           "tier": "stack",
           "stack": "react-native"
-        },
-        {
-          "path": "14_frameworks/Mastering Node.js.md",
-          "title": "Mastering Node.js",
-          "tier": "stack",
-          "stack": "node"
         },
         {
           "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
@@ -797,6 +791,13 @@
           "tier": "stack",
           "stack": "nextjs",
           "version": 15
+        },
+        {
+          "path": "14_frameworks/Node.js 24 - Complete Professional Guide.md",
+          "title": "Node.js 24 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "node",
+          "version": 24
         },
         {
           "path": "14_frameworks/React 19 - Complete Professional Guide.md",
@@ -985,8 +986,8 @@
       "versions": [],
       "editions": [
         {
-          "path": "14_frameworks/Learning GraphQL - Porcello, Banks.md",
-          "title": "Learning GraphQL - Porcello, Banks"
+          "path": "14_frameworks/GraphQL - Complete Professional Guide.md",
+          "title": "GraphQL - Complete Professional Guide"
         }
       ]
     },
@@ -1059,11 +1060,14 @@
       ]
     },
     "node": {
-      "versions": [],
+      "versions": [
+        24
+      ],
       "editions": [
         {
-          "path": "14_frameworks/Mastering Node.js.md",
-          "title": "Mastering Node.js"
+          "path": "14_frameworks/Node.js 24 - Complete Professional Guide.md",
+          "title": "Node.js 24 - Complete Professional Guide",
+          "version": 24
         }
       ]
     },
