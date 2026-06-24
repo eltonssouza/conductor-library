@@ -552,11 +552,6 @@
       "title": "Security & Privacy",
       "files": [
         {
-          "path": "09_security_and_privacy/Building Secure and Reliable Systems - Google.md",
-          "title": "Building Secure and Reliable Systems - Google",
-          "tier": "supporting"
-        },
-        {
           "path": "09_security_and_privacy/Data Protection and GDPR Compliance - Complete Professional Guide.md",
           "title": "Data Protection and GDPR Compliance - Complete Professional Guide",
           "tier": "supporting"
@@ -577,13 +572,18 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Security Engineering Principles - Complete Professional Guide.md",
-          "title": "Security Engineering Principles - Complete Professional Guide",
+          "path": "09_security_and_privacy/Secure Code Review - Complete Professional Guide.md",
+          "title": "Secure Code Review - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/The Art of Software Security Assessment - Dowd, McDonald.md",
-          "title": "The Art of Software Security Assessment - Dowd, McDonald",
+          "path": "09_security_and_privacy/Secure and Reliable Systems Design - Complete Professional Guide.md",
+          "title": "Secure and Reliable Systems Design - Complete Professional Guide",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Security Engineering Principles - Complete Professional Guide.md",
+          "title": "Security Engineering Principles - Complete Professional Guide",
           "tier": "supporting"
         },
         {
