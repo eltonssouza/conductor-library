@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 140,
+    "files": 137,
     "categories": 14,
     "stacks": 28
   },
@@ -621,18 +621,13 @@
       "title": "Management, Product & Process",
       "files": [
         {
-          "path": "11_management_product_process/An Elegant Puzzle - Larson.md",
-          "title": "An Elegant Puzzle - Larson",
-          "tier": "supporting"
-        },
-        {
           "path": "11_management_product_process/Customer Discovery and Research - Complete Professional Guide.md",
           "title": "Customer Discovery and Research - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Making Things Happen - Berkun.md",
-          "title": "Making Things Happen - Berkun",
+          "path": "11_management_product_process/Engineering Management and Career Growth - Complete Professional Guide.md",
+          "title": "Engineering Management and Career Growth - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -641,23 +636,13 @@
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Staff Engineer - Larson.md",
-          "title": "Staff Engineer - Larson",
-          "tier": "supporting"
-        },
-        {
           "path": "11_management_product_process/Team Topologies and Organization Design - Complete Professional Guide.md",
           "title": "Team Topologies and Organization Design - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/The Manager's Path - Fournier.md",
-          "title": "The Manager's Path - Fournier",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/User Story Mapping - Patton.md",
-          "title": "User Story Mapping - Patton",
+          "path": "11_management_product_process/User Story Mapping and Planning - Complete Professional Guide.md",
+          "title": "User Story Mapping and Planning - Complete Professional Guide",
           "tier": "supporting"
         }
       ]

@@ -156,14 +156,11 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 11 · Management, Product & Process
 
-- [An Elegant Puzzle - Larson](11_management_product_process/An%20Elegant%20Puzzle%20-%20Larson.md)
 - [Customer Discovery and Research - Complete Professional Guide](11_management_product_process/Customer%20Discovery%20and%20Research%20-%20Complete%20Professional%20Guide.md)
-- [Making Things Happen - Berkun](11_management_product_process/Making%20Things%20Happen%20-%20Berkun.md)
+- [Engineering Management and Career Growth - Complete Professional Guide](11_management_product_process/Engineering%20Management%20and%20Career%20Growth%20-%20Complete%20Professional%20Guide.md)
 - [Product Management Fundamentals - Complete Professional Guide](11_management_product_process/Product%20Management%20Fundamentals%20-%20Complete%20Professional%20Guide.md)
-- [Staff Engineer - Larson](11_management_product_process/Staff%20Engineer%20-%20Larson.md)
 - [Team Topologies and Organization Design - Complete Professional Guide](11_management_product_process/Team%20Topologies%20and%20Organization%20Design%20-%20Complete%20Professional%20Guide.md)
-- [The Manager's Path - Fournier](11_management_product_process/The%20Manager's%20Path%20-%20Fournier.md)
-- [User Story Mapping - Patton](11_management_product_process/User%20Story%20Mapping%20-%20Patton.md)
+- [User Story Mapping and Planning - Complete Professional Guide](11_management_product_process/User%20Story%20Mapping%20and%20Planning%20-%20Complete%20Professional%20Guide.md)
 
 ## 12 · Design & UX
 
@@ -203,6 +200,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 140 book/reading-list files**
+**Total: 137 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
