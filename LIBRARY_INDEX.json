@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 149,
+    "files": 148,
     "categories": 15,
     "stacks": 28
   },
@@ -490,13 +490,13 @@
       "title": "DevOps, SRE & Operations",
       "files": [
         {
-          "path": "07_devops_sre_operations/Accelerate - Forsgren, Humble, Kim.md",
-          "title": "Accelerate - Forsgren, Humble, Kim",
+          "path": "07_devops_sre_operations/Continuous Delivery - Humble, Farley.md",
+          "title": "Continuous Delivery - Humble, Farley",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Continuous Delivery - Humble, Farley.md",
-          "title": "Continuous Delivery - Humble, Farley",
+          "path": "07_devops_sre_operations/DevOps Principles and Flow - Complete Professional Guide.md",
+          "title": "DevOps Principles and Flow - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -517,6 +517,11 @@
         {
           "path": "07_devops_sre_operations/Linux Utilities Cookbook - Lee.md",
           "title": "Linux Utilities Cookbook - Lee",
+          "tier": "supporting"
+        },
+        {
+          "path": "07_devops_sre_operations/Measuring Software Delivery Performance - Complete Professional Guide.md",
+          "title": "Measuring Software Delivery Performance - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -542,16 +547,6 @@
         {
           "path": "07_devops_sre_operations/Systems Performance (2nd Ed) - Gregg.md",
           "title": "Systems Performance (2nd Ed) - Gregg",
-          "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/The DevOps Handbook - Kim, Humble, Debois.md",
-          "title": "The DevOps Handbook - Kim, Humble, Debois",
-          "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/The Phoenix Project - Kim, Behr, Spafford.md",
-          "title": "The Phoenix Project - Kim, Behr, Spafford",
           "tier": "supporting"
         }
       ]
