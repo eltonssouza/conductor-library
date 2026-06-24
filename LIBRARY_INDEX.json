@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 151,
+    "files": 149,
     "categories": 15,
     "stacks": 28
   },
@@ -401,8 +401,8 @@
       "title": "Databases & Data",
       "files": [
         {
-          "path": "05_databases/Database System Concepts (7th Ed) - Silberschatz, Korth.md",
-          "title": "Database System Concepts (7th Ed) - Silberschatz, Korth",
+          "path": "05_databases/Database Transactions and Concurrency - Complete Professional Guide.md",
+          "title": "Database Transactions and Concurrency - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -413,11 +413,6 @@
         {
           "path": "05_databases/Dimensional Modeling for Analytics - Complete Professional Guide.md",
           "title": "Dimensional Modeling for Analytics - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "05_databases/Graph Databases - Robinson, Webber.md",
-          "title": "Graph Databases - Robinson, Webber",
           "tier": "core"
         },
         {
@@ -441,11 +436,6 @@
           "tier": "core"
         },
         {
-          "path": "05_databases/Seven Databases in Seven Weeks - Redmond, Wilson.md",
-          "title": "Seven Databases in Seven Weeks - Redmond, Wilson",
-          "tier": "core"
-        },
-        {
           "path": "05_databases/Stream Processing - Complete Professional Guide.md",
           "title": "Stream Processing - Complete Professional Guide",
           "tier": "core"
@@ -457,11 +447,6 @@
       "number": "06",
       "title": "Web & Frontend",
       "files": [
-        {
-          "path": "06_web_and_frontend/CSS in Depth (2nd Ed) - Grant.md",
-          "title": "CSS in Depth (2nd Ed) - Grant",
-          "tier": "core"
-        },
         {
           "path": "06_web_and_frontend/Don't Make Me Think (3rd Ed) - Krug.md",
           "title": "Don't Make Me Think (3rd Ed) - Krug",
@@ -475,6 +460,11 @@
         {
           "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
           "title": "Inclusive Components - Pickering",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Modern CSS Layout - Complete Professional Guide.md",
+          "title": "Modern CSS Layout - Complete Professional Guide",
           "tier": "core"
         },
         {

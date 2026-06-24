@@ -104,23 +104,21 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 05 · Databases & Data
 
-- [Database System Concepts (7th Ed) - Silberschatz, Korth](05_databases/Database%20System%20Concepts%20(7th%20Ed)%20-%20Silberschatz,%20Korth.md)
+- [Database Transactions and Concurrency - Complete Professional Guide](05_databases/Database%20Transactions%20and%20Concurrency%20-%20Complete%20Professional%20Guide.md)
 - [Designing Data-Intensive Systems - Complete Professional Guide](05_databases/Designing%20Data-Intensive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Dimensional Modeling for Analytics - Complete Professional Guide](05_databases/Dimensional%20Modeling%20for%20Analytics%20-%20Complete%20Professional%20Guide.md)
-- [Graph Databases - Robinson, Webber](05_databases/Graph%20Databases%20-%20Robinson,%20Webber.md)
 - [How Databases Work Internally - Complete Professional Guide](05_databases/How%20Databases%20Work%20Internally%20-%20Complete%20Professional%20Guide.md)
 - [NoSQL Data Models - Complete Professional Guide](05_databases/NoSQL%20Data%20Models%20-%20Complete%20Professional%20Guide.md)
 - [SQL Database Antipatterns - Complete Professional Guide](05_databases/SQL%20Database%20Antipatterns%20-%20Complete%20Professional%20Guide.md)
 - [SQL Performance and Indexing - Complete Professional Guide](05_databases/SQL%20Performance%20and%20Indexing%20-%20Complete%20Professional%20Guide.md)
-- [Seven Databases in Seven Weeks - Redmond, Wilson](05_databases/Seven%20Databases%20in%20Seven%20Weeks%20-%20Redmond,%20Wilson.md)
 - [Stream Processing - Complete Professional Guide](05_databases/Stream%20Processing%20-%20Complete%20Professional%20Guide.md)
 
 ## 06 · Web & Frontend
 
-- [CSS in Depth (2nd Ed) - Grant](06_web_and_frontend/CSS%20in%20Depth%20(2nd%20Ed)%20-%20Grant.md)
 - [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
 - [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
 - [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
+- [Modern CSS Layout - Complete Professional Guide](06_web_and_frontend/Modern%20CSS%20Layout%20-%20Complete%20Professional%20Guide.md)
 - [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
 - [Refactoring UI - Wathan, Schoger](06_web_and_frontend/Refactoring%20UI%20-%20Wathan,%20Schoger.md)
 - [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
@@ -217,6 +215,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 151 book/reading-list files**
+**Total: 149 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
