@@ -116,12 +116,12 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 ## 06 · Web & Frontend
 
 - [Don't Make Me Think (3rd Ed) - Krug](06_web_and_frontend/Don't%20Make%20Me%20Think%20(3rd%20Ed)%20-%20Krug.md)
-- [High Performance Browser Networking - Grigorik](06_web_and_frontend/High%20Performance%20Browser%20Networking%20-%20Grigorik.md)
 - [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
 - [Modern CSS Layout - Complete Professional Guide](06_web_and_frontend/Modern%20CSS%20Layout%20-%20Complete%20Professional%20Guide.md)
-- [REST in Practice - Webber, Parastatidis, Robinson](06_web_and_frontend/REST%20in%20Practice%20-%20Webber,%20Parastatidis,%20Robinson.md)
+- [RESTful API Design - Complete Professional Guide](06_web_and_frontend/RESTful%20API%20Design%20-%20Complete%20Professional%20Guide.md)
 - [Refactoring UI - Wathan, Schoger](06_web_and_frontend/Refactoring%20UI%20-%20Wathan,%20Schoger.md)
 - [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
+- [Web Performance and Networking - Complete Professional Guide](06_web_and_frontend/Web%20Performance%20and%20Networking%20-%20Complete%20Professional%20Guide.md)
 
 ## 07 · DevOps, SRE & Operations
 
