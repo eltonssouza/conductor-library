@@ -72,7 +72,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 - [Architecture Boundaries and the Dependency Rule - Complete Professional Guide](03_design_and_architecture/Architecture%20Boundaries%20and%20the%20Dependency%20Rule%20-%20Complete%20Professional%20Guide.md)
 - [Architecture Styles and Trade-offs - Complete Professional Guide](03_design_and_architecture/Architecture%20Styles%20and%20Trade-offs%20-%20Complete%20Professional%20Guide.md)
-- [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
+- [Distributed Architecture Decisions - Complete Professional Guide](03_design_and_architecture/Distributed%20Architecture%20Decisions%20-%20Complete%20Professional%20Guide.md)
 - [Documenting Software Architecture - Complete Professional Guide](03_design_and_architecture/Documenting%20Software%20Architecture%20-%20Complete%20Professional%20Guide.md)
 - [Domain-Driven Design - Complete Professional Guide](03_design_and_architecture/Domain-Driven%20Design%20-%20Complete%20Professional%20Guide.md)
 - [Enterprise Application Architecture Patterns - Complete Professional Guide](03_design_and_architecture/Enterprise%20Application%20Architecture%20Patterns%20-%20Complete%20Professional%20Guide.md)
@@ -82,10 +82,10 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Object-Oriented Thinking - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Thinking%20-%20Complete%20Professional%20Guide.md)
 - [Reactive Systems - Complete Professional Guide](03_design_and_architecture/Reactive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
-- [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
 - [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)
 - [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
 - [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
+- [The Practice of Architecting - Complete Professional Guide](03_design_and_architecture/The%20Practice%20of%20Architecting%20-%20Complete%20Professional%20Guide.md)
 - [Writing Maintainable Code - Complete Professional Guide](03_design_and_architecture/Writing%20Maintainable%20Code%20-%20Complete%20Professional%20Guide.md)
 
 ## 04 · Software Engineering & Practices

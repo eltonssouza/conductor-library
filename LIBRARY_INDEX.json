@@ -257,8 +257,8 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
-          "title": "Design It! From Programmer to Software Architect - Keeling",
+          "path": "03_design_and_architecture/Distributed Architecture Decisions - Complete Professional Guide.md",
+          "title": "Distributed Architecture Decisions - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -307,11 +307,6 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Software Architecture - The Hard Parts - Ford, Richards.md",
-          "title": "Software Architecture - The Hard Parts - Ford, Richards",
-          "tier": "core"
-        },
-        {
           "path": "03_design_and_architecture/Software Architecture and Quality Attributes - Complete Professional Guide.md",
           "title": "Software Architecture and Quality Attributes - Complete Professional Guide",
           "tier": "core"
@@ -324,6 +319,11 @@
         {
           "path": "03_design_and_architecture/Solution Architecture Patterns for Enterprise.md",
           "title": "Solution Architecture Patterns for Enterprise",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/The Practice of Architecting - Complete Professional Guide.md",
+          "title": "The Practice of Architecting - Complete Professional Guide",
           "tier": "core"
         },
         {
