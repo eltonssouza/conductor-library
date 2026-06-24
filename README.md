@@ -139,13 +139,13 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 09 · Security & Privacy
 
-- [Building Secure and Reliable Systems - Google](09_security_and_privacy/Building%20Secure%20and%20Reliable%20Systems%20-%20Google.md)
 - [Data Protection and GDPR Compliance - Complete Professional Guide](09_security_and_privacy/Data%20Protection%20and%20GDPR%20Compliance%20-%20Complete%20Professional%20Guide.md)
 - [OWASP ASVS 4.0.3](09_security_and_privacy/OWASP%20ASVS%204.0.3.md)
 - [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
 - [Privacy Engineering - Complete Professional Guide](09_security_and_privacy/Privacy%20Engineering%20-%20Complete%20Professional%20Guide.md)
+- [Secure Code Review - Complete Professional Guide](09_security_and_privacy/Secure%20Code%20Review%20-%20Complete%20Professional%20Guide.md)
+- [Secure and Reliable Systems Design - Complete Professional Guide](09_security_and_privacy/Secure%20and%20Reliable%20Systems%20Design%20-%20Complete%20Professional%20Guide.md)
 - [Security Engineering Principles - Complete Professional Guide](09_security_and_privacy/Security%20Engineering%20Principles%20-%20Complete%20Professional%20Guide.md)
-- [The Art of Software Security Assessment - Dowd, McDonald](09_security_and_privacy/The%20Art%20of%20Software%20Security%20Assessment%20-%20Dowd,%20McDonald.md)
 - [Threat Modeling - Complete Professional Guide](09_security_and_privacy/Threat%20Modeling%20-%20Complete%20Professional%20Guide.md)
 - [Web Application Security - Complete Professional Guide](09_security_and_privacy/Web%20Application%20Security%20-%20Complete%20Professional%20Guide.md)
 
