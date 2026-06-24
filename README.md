@@ -125,7 +125,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 07 · DevOps, SRE & Operations
 
-- [Continuous Delivery - Humble, Farley](07_devops_sre_operations/Continuous%20Delivery%20-%20Humble,%20Farley.md)
+- [Continuous Delivery and Deployment Pipelines - Complete Professional Guide](07_devops_sre_operations/Continuous%20Delivery%20and%20Deployment%20Pipelines%20-%20Complete%20Professional%20Guide.md)
 - [DevOps Principles and Flow - Complete Professional Guide](07_devops_sre_operations/DevOps%20Principles%20and%20Flow%20-%20Complete%20Professional%20Guide.md)
 - [Effective DevOps - Davis, Daniels](07_devops_sre_operations/Effective%20DevOps%20-%20Davis,%20Daniels.md)
 - [Jenkins Essentials - Soni](07_devops_sre_operations/Jenkins%20Essentials%20-%20Soni.md)
@@ -135,7 +135,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Observability Engineering - Majors, Fong-Jones, Miranda](07_devops_sre_operations/Observability%20Engineering%20-%20Majors,%20Fong-Jones,%20Miranda.md)
 - [Pro Git (2nd Ed) - Chacon, Straub](07_devops_sre_operations/Pro%20Git%20(2nd%20Ed)%20-%20Chacon,%20Straub.md)
 - [Release It! - Nygard](07_devops_sre_operations/Release%20It!%20-%20Nygard.md)
-- [Site Reliability Engineering - Google](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Google.md)
+- [Site Reliability Engineering - Complete Professional Guide](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Complete%20Professional%20Guide.md)
 - [Systems Performance (2nd Ed) - Gregg](07_devops_sre_operations/Systems%20Performance%20(2nd%20Ed)%20-%20Gregg.md)
 
 ## 08 · Distributed Systems & Microservices

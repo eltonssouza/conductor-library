@@ -490,8 +490,8 @@
       "title": "DevOps, SRE & Operations",
       "files": [
         {
-          "path": "07_devops_sre_operations/Continuous Delivery - Humble, Farley.md",
-          "title": "Continuous Delivery - Humble, Farley",
+          "path": "07_devops_sre_operations/Continuous Delivery and Deployment Pipelines - Complete Professional Guide.md",
+          "title": "Continuous Delivery and Deployment Pipelines - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -540,8 +540,8 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Site Reliability Engineering - Google.md",
-          "title": "Site Reliability Engineering - Google",
+          "path": "07_devops_sre_operations/Site Reliability Engineering - Complete Professional Guide.md",
+          "title": "Site Reliability Engineering - Complete Professional Guide",
           "tier": "supporting"
         },
         {
