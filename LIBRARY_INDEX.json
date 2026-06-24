@@ -184,6 +184,13 @@
           "stack": "javascript"
         },
         {
+          "path": "01_programming_languages/Go 1.24 - Complete Professional Guide.md",
+          "title": "Go 1.24 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "go",
+          "version": 24
+        },
+        {
           "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
           "title": "JavaScript - The Good Parts - Crockford",
           "tier": "stack",
@@ -209,10 +216,11 @@
           "stack": "ruby"
         },
         {
-          "path": "01_programming_languages/Python Crash Course - Matthes.md",
-          "title": "Python Crash Course - Matthes",
+          "path": "01_programming_languages/Python 3.13 - Complete Professional Guide.md",
+          "title": "Python 3.13 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "python"
+          "stack": "python",
+          "version": 3
         },
         {
           "path": "01_programming_languages/Rust 2024 - Complete Professional Guide.md",
@@ -220,12 +228,6 @@
           "tier": "stack",
           "stack": "rust",
           "version": 2024
-        },
-        {
-          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
-          "title": "The Go Programming Language - Donovan, Kernighan",
-          "tier": "stack",
-          "stack": "go"
         }
       ]
     },
@@ -974,11 +976,14 @@
       ]
     },
     "go": {
-      "versions": [],
+      "versions": [
+        24
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/The Go Programming Language - Donovan, Kernighan.md",
-          "title": "The Go Programming Language - Donovan, Kernighan"
+          "path": "01_programming_languages/Go 1.24 - Complete Professional Guide.md",
+          "title": "Go 1.24 - Complete Professional Guide",
+          "version": 24
         }
       ]
     },
@@ -1084,11 +1089,14 @@
       ]
     },
     "python": {
-      "versions": [],
+      "versions": [
+        3
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Python Crash Course - Matthes.md",
-          "title": "Python Crash Course - Matthes"
+          "path": "01_programming_languages/Python 3.13 - Complete Professional Guide.md",
+          "title": "Python 3.13 - Complete Professional Guide",
+          "version": 3
         }
       ]
     },
