@@ -426,13 +426,13 @@
           "tier": "core"
         },
         {
-          "path": "05_databases/SQL Antipatterns - Karwin.md",
-          "title": "SQL Antipatterns - Karwin",
+          "path": "05_databases/SQL Database Antipatterns - Complete Professional Guide.md",
+          "title": "SQL Database Antipatterns - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "05_databases/SQL Performance Explained - Winand.md",
-          "title": "SQL Performance Explained - Winand",
+          "path": "05_databases/SQL Performance and Indexing - Complete Professional Guide.md",
+          "title": "SQL Performance and Indexing - Complete Professional Guide",
           "tier": "core"
         },
         {
