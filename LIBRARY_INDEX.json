@@ -448,8 +448,13 @@
       "title": "Web & Frontend",
       "files": [
         {
-          "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
-          "title": "Inclusive Components - Pickering",
+          "path": "06_web_and_frontend/Accessible Web Components - Complete Professional Guide.md",
+          "title": "Accessible Web Components - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Form Design and UX - Complete Professional Guide.md",
+          "title": "Form Design and UX - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -465,11 +470,6 @@
         {
           "path": "06_web_and_frontend/RESTful API Design - Complete Professional Guide.md",
           "title": "RESTful API Design - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "06_web_and_frontend/Web Form Design - Wroblewski.md",
-          "title": "Web Form Design - Wroblewski",
           "tier": "core"
         },
         {
