@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 152,
+    "files": 151,
     "categories": 15,
     "stacks": 28
   },
@@ -312,13 +312,8 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Solution Architect's Handbook.md",
-          "title": "Solution Architect's Handbook",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Solution Architecture Patterns for Enterprise.md",
-          "title": "Solution Architecture Patterns for Enterprise",
+          "path": "03_design_and_architecture/Solution Architecture - Complete Professional Guide.md",
+          "title": "Solution Architecture - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -349,13 +344,13 @@
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Code Complete (2nd Ed) - McConnell.md",
-          "title": "Code Complete (2nd Ed) - McConnell",
+          "path": "04_engineering_and_practices/Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce.md",
+          "title": "Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce",
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce.md",
-          "title": "Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce",
+          "path": "04_engineering_and_practices/Software Construction Practices - Complete Professional Guide.md",
+          "title": "Software Construction Practices - Complete Professional Guide",
           "tier": "core"
         },
         {
