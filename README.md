@@ -144,13 +144,12 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
 - [Practical Data Privacy - Kamara](09_security_and_privacy/Practical%20Data%20Privacy%20-%20Kamara.md)
 - [Privacy's Blueprint - Hartzog](09_security_and_privacy/Privacy's%20Blueprint%20-%20Hartzog.md)
-- [Security Engineering (3rd Ed) - Anderson](09_security_and_privacy/Security%20Engineering%20(3rd%20Ed)%20-%20Anderson.md)
+- [Security Engineering Principles - Complete Professional Guide](09_security_and_privacy/Security%20Engineering%20Principles%20-%20Complete%20Professional%20Guide.md)
 - [The Art of Software Security Assessment - Dowd, McDonald](09_security_and_privacy/The%20Art%20of%20Software%20Security%20Assessment%20-%20Dowd,%20McDonald.md)
 - [The EU GDPR - A Practical Guide - Voigt, von dem Bussche](09_security_and_privacy/The%20EU%20GDPR%20-%20A%20Practical%20Guide%20-%20Voigt,%20von%20dem%20Bussche.md)
 - [The Privacy Engineer's Manifesto - Dennedy](09_security_and_privacy/The%20Privacy%20Engineer's%20Manifesto%20-%20Dennedy.md)
-- [The Tangled Web - Zalewski](09_security_and_privacy/The%20Tangled%20Web%20-%20Zalewski.md)
-- [The Web Application Hacker's Handbook - Stuttard, Pinto](09_security_and_privacy/The%20Web%20Application%20Hacker's%20Handbook%20-%20Stuttard,%20Pinto.md)
 - [Threat Modeling - Complete Professional Guide](09_security_and_privacy/Threat%20Modeling%20-%20Complete%20Professional%20Guide.md)
+- [Web Application Security - Complete Professional Guide](09_security_and_privacy/Web%20Application%20Security%20-%20Complete%20Professional%20Guide.md)
 
 ## 10 · AI & LLM
 
@@ -209,6 +208,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 146 book/reading-list files**
+**Total: 145 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
