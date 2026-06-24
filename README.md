@@ -79,13 +79,13 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Managing Software Complexity - Complete Professional Guide](03_design_and_architecture/Managing%20Software%20Complexity%20-%20Complete%20Professional%20Guide.md)
 - [Messaging and Integration Patterns - Complete Professional Guide](03_design_and_architecture/Messaging%20and%20Integration%20Patterns%20-%20Complete%20Professional%20Guide.md)
 - [Object-Oriented Design Patterns - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Design%20Patterns%20-%20Complete%20Professional%20Guide.md)
+- [Object-Oriented Thinking - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Thinking%20-%20Complete%20Professional%20Guide.md)
+- [Reactive Systems - Complete Professional Guide](03_design_and_architecture/Reactive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
 - [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
 - [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)
 - [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
 - [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
-- [The Object-Oriented Thought Process (3rd Ed) - Weisfeld](03_design_and_architecture/The%20Object-Oriented%20Thought%20Process%20(3rd%20Ed)%20-%20Weisfeld.md)
-- [Why Reactive](03_design_and_architecture/Why%20Reactive.md)
 - [Writing Maintainable Code - Complete Professional Guide](03_design_and_architecture/Writing%20Maintainable%20Code%20-%20Complete%20Professional%20Guide.md)
 
 ## 04 · Software Engineering & Practices

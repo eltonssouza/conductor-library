@@ -292,6 +292,16 @@
           "tier": "core"
         },
         {
+          "path": "03_design_and_architecture/Object-Oriented Thinking - Complete Professional Guide.md",
+          "title": "Object-Oriented Thinking - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Reactive Systems - Complete Professional Guide.md",
+          "title": "Reactive Systems - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "03_design_and_architecture/Refactoring and Code Improvement - Complete Professional Guide.md",
           "title": "Refactoring and Code Improvement - Complete Professional Guide",
           "tier": "core"
@@ -314,16 +324,6 @@
         {
           "path": "03_design_and_architecture/Solution Architecture Patterns for Enterprise.md",
           "title": "Solution Architecture Patterns for Enterprise",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/The Object-Oriented Thought Process (3rd Ed) - Weisfeld.md",
-          "title": "The Object-Oriented Thought Process (3rd Ed) - Weisfeld",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Why Reactive.md",
-          "title": "Why Reactive",
           "tier": "core"
         },
         {
