@@ -453,11 +453,6 @@
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/High Performance Browser Networking - Grigorik.md",
-          "title": "High Performance Browser Networking - Grigorik",
-          "tier": "core"
-        },
-        {
           "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
           "title": "Inclusive Components - Pickering",
           "tier": "core"
@@ -468,8 +463,8 @@
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/REST in Practice - Webber, Parastatidis, Robinson.md",
-          "title": "REST in Practice - Webber, Parastatidis, Robinson",
+          "path": "06_web_and_frontend/RESTful API Design - Complete Professional Guide.md",
+          "title": "RESTful API Design - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -480,6 +475,11 @@
         {
           "path": "06_web_and_frontend/Web Form Design - Wroblewski.md",
           "title": "Web Form Design - Wroblewski",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Web Performance and Networking - Complete Professional Guide.md",
+          "title": "Web Performance and Networking - Complete Professional Guide",
           "tier": "core"
         }
       ]
