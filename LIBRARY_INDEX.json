@@ -448,11 +448,6 @@
       "title": "Web & Frontend",
       "files": [
         {
-          "path": "06_web_and_frontend/Don't Make Me Think (3rd Ed) - Krug.md",
-          "title": "Don't Make Me Think (3rd Ed) - Krug",
-          "tier": "core"
-        },
-        {
           "path": "06_web_and_frontend/Inclusive Components - Pickering.md",
           "title": "Inclusive Components - Pickering",
           "tier": "core"
@@ -463,13 +458,13 @@
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/RESTful API Design - Complete Professional Guide.md",
-          "title": "RESTful API Design - Complete Professional Guide",
+          "path": "06_web_and_frontend/Practical Visual Design - Complete Professional Guide.md",
+          "title": "Practical Visual Design - Complete Professional Guide",
           "tier": "core"
         },
         {
-          "path": "06_web_and_frontend/Refactoring UI - Wathan, Schoger.md",
-          "title": "Refactoring UI - Wathan, Schoger",
+          "path": "06_web_and_frontend/RESTful API Design - Complete Professional Guide.md",
+          "title": "RESTful API Design - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -480,6 +475,11 @@
         {
           "path": "06_web_and_frontend/Web Performance and Networking - Complete Professional Guide.md",
           "title": "Web Performance and Networking - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "06_web_and_frontend/Web Usability Principles - Complete Professional Guide.md",
+          "title": "Web Usability Principles - Complete Professional Guide",
           "tier": "core"
         }
       ]
