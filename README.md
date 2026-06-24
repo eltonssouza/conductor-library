@@ -130,16 +130,12 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [DevOps Culture and Collaboration - Complete Professional Guide](07_devops_sre_operations/DevOps%20Culture%20and%20Collaboration%20-%20Complete%20Professional%20Guide.md)
 - [DevOps Principles and Flow - Complete Professional Guide](07_devops_sre_operations/DevOps%20Principles%20and%20Flow%20-%20Complete%20Professional%20Guide.md)
 - [Git Version Control - Complete Professional Guide](07_devops_sre_operations/Git%20Version%20Control%20-%20Complete%20Professional%20Guide.md)
-- [Linux Utilities Cookbook - Lee](07_devops_sre_operations/Linux%20Utilities%20Cookbook%20-%20Lee.md)
+- [Linux Command-Line for Operations - Complete Professional Guide](07_devops_sre_operations/Linux%20Command-Line%20for%20Operations%20-%20Complete%20Professional%20Guide.md)
 - [Measuring Software Delivery Performance - Complete Professional Guide](07_devops_sre_operations/Measuring%20Software%20Delivery%20Performance%20-%20Complete%20Professional%20Guide.md)
 - [Observability - Complete Professional Guide](07_devops_sre_operations/Observability%20-%20Complete%20Professional%20Guide.md)
 - [Site Reliability Engineering - Complete Professional Guide](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Complete%20Professional%20Guide.md)
 - [Stability Patterns for Production - Complete Professional Guide](07_devops_sre_operations/Stability%20Patterns%20for%20Production%20-%20Complete%20Professional%20Guide.md)
 - [Systems Performance Analysis - Complete Professional Guide](07_devops_sre_operations/Systems%20Performance%20Analysis%20-%20Complete%20Professional%20Guide.md)
-
-## 08 · Distributed Systems & Microservices
-
-- [Building Microservices - Newman](08_distributed_systems/Building%20Microservices%20-%20Newman.md)
 
 ## 09 · Security & Privacy
 
@@ -154,7 +150,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [The Privacy Engineer's Manifesto - Dennedy](09_security_and_privacy/The%20Privacy%20Engineer's%20Manifesto%20-%20Dennedy.md)
 - [The Tangled Web - Zalewski](09_security_and_privacy/The%20Tangled%20Web%20-%20Zalewski.md)
 - [The Web Application Hacker's Handbook - Stuttard, Pinto](09_security_and_privacy/The%20Web%20Application%20Hacker's%20Handbook%20-%20Stuttard,%20Pinto.md)
-- [Threat Modeling - Shostack](09_security_and_privacy/Threat%20Modeling%20-%20Shostack.md)
+- [Threat Modeling - Complete Professional Guide](09_security_and_privacy/Threat%20Modeling%20-%20Complete%20Professional%20Guide.md)
 
 ## 10 · AI & LLM
 
@@ -213,6 +209,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 147 book/reading-list files**
+**Total: 146 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
