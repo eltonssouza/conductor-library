@@ -1,8 +1,8 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 147,
-    "categories": 15,
+    "files": 146,
+    "categories": 14,
     "stacks": 28
   },
   "categories": [
@@ -515,8 +515,8 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Linux Utilities Cookbook - Lee.md",
-          "title": "Linux Utilities Cookbook - Lee",
+          "path": "07_devops_sre_operations/Linux Command-Line for Operations - Complete Professional Guide.md",
+          "title": "Linux Command-Line for Operations - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -543,18 +543,6 @@
           "path": "07_devops_sre_operations/Systems Performance Analysis - Complete Professional Guide.md",
           "title": "Systems Performance Analysis - Complete Professional Guide",
           "tier": "supporting"
-        }
-      ]
-    },
-    {
-      "id": "08_distributed_systems",
-      "number": "08",
-      "title": "Distributed Systems & Microservices",
-      "files": [
-        {
-          "path": "08_distributed_systems/Building Microservices - Newman.md",
-          "title": "Building Microservices - Newman",
-          "tier": "core"
         }
       ]
     },
@@ -619,8 +607,8 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Threat Modeling - Shostack.md",
-          "title": "Threat Modeling - Shostack",
+          "path": "09_security_and_privacy/Threat Modeling - Complete Professional Guide.md",
+          "title": "Threat Modeling - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
