@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 148,
+    "files": 147,
     "categories": 15,
     "stacks": 28
   },
@@ -500,23 +500,18 @@
           "tier": "supporting"
         },
         {
+          "path": "07_devops_sre_operations/DevOps Culture and Collaboration - Complete Professional Guide.md",
+          "title": "DevOps Culture and Collaboration - Complete Professional Guide",
+          "tier": "supporting"
+        },
+        {
           "path": "07_devops_sre_operations/DevOps Principles and Flow - Complete Professional Guide.md",
           "title": "DevOps Principles and Flow - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Effective DevOps - Davis, Daniels.md",
-          "title": "Effective DevOps - Davis, Daniels",
-          "tier": "supporting"
-        },
-        {
           "path": "07_devops_sre_operations/Git Version Control - Complete Professional Guide.md",
           "title": "Git Version Control - Complete Professional Guide",
-          "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/Jenkins Essentials - Soni.md",
-          "title": "Jenkins Essentials - Soni",
           "tier": "supporting"
         },
         {
@@ -545,8 +540,8 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Systems Performance (2nd Ed) - Gregg.md",
-          "title": "Systems Performance (2nd Ed) - Gregg",
+          "path": "07_devops_sre_operations/Systems Performance Analysis - Complete Professional Guide.md",
+          "title": "Systems Performance Analysis - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
