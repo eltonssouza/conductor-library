@@ -401,11 +401,6 @@
       "title": "Databases & Data",
       "files": [
         {
-          "path": "05_databases/Database Internals - Petrov.md",
-          "title": "Database Internals - Petrov",
-          "tier": "core"
-        },
-        {
           "path": "05_databases/Database System Concepts (7th Ed) - Silberschatz, Korth.md",
           "title": "Database System Concepts (7th Ed) - Silberschatz, Korth",
           "tier": "core"
@@ -423,6 +418,11 @@
         {
           "path": "05_databases/Graph Databases - Robinson, Webber.md",
           "title": "Graph Databases - Robinson, Webber",
+          "tier": "core"
+        },
+        {
+          "path": "05_databases/How Databases Work Internally - Complete Professional Guide.md",
+          "title": "How Databases Work Internally - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -446,8 +446,8 @@
           "tier": "core"
         },
         {
-          "path": "05_databases/Streaming Systems - Akidau, Chernyak, Lax.md",
-          "title": "Streaming Systems - Akidau, Chernyak, Lax",
+          "path": "05_databases/Stream Processing - Complete Professional Guide.md",
+          "title": "Stream Processing - Complete Professional Guide",
           "tier": "core"
         }
       ]

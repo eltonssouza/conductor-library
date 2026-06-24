@@ -104,16 +104,16 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 05 · Databases & Data
 
-- [Database Internals - Petrov](05_databases/Database%20Internals%20-%20Petrov.md)
 - [Database System Concepts (7th Ed) - Silberschatz, Korth](05_databases/Database%20System%20Concepts%20(7th%20Ed)%20-%20Silberschatz,%20Korth.md)
 - [Designing Data-Intensive Systems - Complete Professional Guide](05_databases/Designing%20Data-Intensive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Dimensional Modeling for Analytics - Complete Professional Guide](05_databases/Dimensional%20Modeling%20for%20Analytics%20-%20Complete%20Professional%20Guide.md)
 - [Graph Databases - Robinson, Webber](05_databases/Graph%20Databases%20-%20Robinson,%20Webber.md)
+- [How Databases Work Internally - Complete Professional Guide](05_databases/How%20Databases%20Work%20Internally%20-%20Complete%20Professional%20Guide.md)
 - [NoSQL Data Models - Complete Professional Guide](05_databases/NoSQL%20Data%20Models%20-%20Complete%20Professional%20Guide.md)
 - [SQL Database Antipatterns - Complete Professional Guide](05_databases/SQL%20Database%20Antipatterns%20-%20Complete%20Professional%20Guide.md)
 - [SQL Performance and Indexing - Complete Professional Guide](05_databases/SQL%20Performance%20and%20Indexing%20-%20Complete%20Professional%20Guide.md)
 - [Seven Databases in Seven Weeks - Redmond, Wilson](05_databases/Seven%20Databases%20in%20Seven%20Weeks%20-%20Redmond,%20Wilson.md)
-- [Streaming Systems - Akidau, Chernyak, Lax](05_databases/Streaming%20Systems%20-%20Akidau,%20Chernyak,%20Lax.md)
+- [Stream Processing - Complete Professional Guide](05_databases/Stream%20Processing%20-%20Complete%20Professional%20Guide.md)
 
 ## 06 · Web & Frontend
 
