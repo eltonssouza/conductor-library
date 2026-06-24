@@ -57,9 +57,8 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Java 25 - Complete Professional Guide](01_programming_languages/Java%2025%20-%20Complete%20Professional%20Guide.md)
 - [JavaScript - Complete Professional Guide](01_programming_languages/JavaScript%20-%20Complete%20Professional%20Guide.md)
 - [PHP 8.4 - Complete Professional Guide](01_programming_languages/PHP%208.4%20-%20Complete%20Professional%20Guide.md)
-- [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
-- [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
 - [Python 3.13 - Complete Professional Guide](01_programming_languages/Python%203.13%20-%20Complete%20Professional%20Guide.md)
+- [Ruby 3.4 - Complete Professional Guide](01_programming_languages/Ruby%203.4%20-%20Complete%20Professional%20Guide.md)
 - [Rust 2024 - Complete Professional Guide](01_programming_languages/Rust%202024%20-%20Complete%20Professional%20Guide.md)
 
 ## 02 · Algorithms & Data Structures
@@ -189,7 +188,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Next.js 15 - Complete Professional Guide](14_frameworks/Next.js%2015%20-%20Complete%20Professional%20Guide.md)
 - [Node.js 24 - Complete Professional Guide](14_frameworks/Node.js%2024%20-%20Complete%20Professional%20Guide.md)
 - [React 19 - Complete Professional Guide](14_frameworks/React%2019%20-%20Complete%20Professional%20Guide.md)
-- [Ruby on Rails Tutorial (6th Ed) - Hartl](14_frameworks/Ruby%20on%20Rails%20Tutorial%20(6th%20Ed)%20-%20Hartl.md)
+- [Ruby on Rails 8 - Complete Professional Guide](14_frameworks/Ruby%20on%20Rails%208%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 3 - Complete Professional Guide](14_frameworks/Spring%20Boot%203%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 4 - Complete Professional Guide](14_frameworks/Spring%20Boot%204%20-%20Complete%20Professional%20Guide.md)
 - [Svelte 5 - Complete Professional Guide](14_frameworks/Svelte%205%20-%20Complete%20Professional%20Guide.md)
@@ -198,6 +197,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 135 book/reading-list files**
+**Total: 134 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
