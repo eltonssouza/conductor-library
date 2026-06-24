@@ -140,14 +140,12 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 ## 09 · Security & Privacy
 
 - [Building Secure and Reliable Systems - Google](09_security_and_privacy/Building%20Secure%20and%20Reliable%20Systems%20-%20Google.md)
+- [Data Protection and GDPR Compliance - Complete Professional Guide](09_security_and_privacy/Data%20Protection%20and%20GDPR%20Compliance%20-%20Complete%20Professional%20Guide.md)
 - [OWASP ASVS 4.0.3](09_security_and_privacy/OWASP%20ASVS%204.0.3.md)
 - [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
-- [Practical Data Privacy - Kamara](09_security_and_privacy/Practical%20Data%20Privacy%20-%20Kamara.md)
-- [Privacy's Blueprint - Hartzog](09_security_and_privacy/Privacy's%20Blueprint%20-%20Hartzog.md)
+- [Privacy Engineering - Complete Professional Guide](09_security_and_privacy/Privacy%20Engineering%20-%20Complete%20Professional%20Guide.md)
 - [Security Engineering Principles - Complete Professional Guide](09_security_and_privacy/Security%20Engineering%20Principles%20-%20Complete%20Professional%20Guide.md)
 - [The Art of Software Security Assessment - Dowd, McDonald](09_security_and_privacy/The%20Art%20of%20Software%20Security%20Assessment%20-%20Dowd,%20McDonald.md)
-- [The EU GDPR - A Practical Guide - Voigt, von dem Bussche](09_security_and_privacy/The%20EU%20GDPR%20-%20A%20Practical%20Guide%20-%20Voigt,%20von%20dem%20Bussche.md)
-- [The Privacy Engineer's Manifesto - Dennedy](09_security_and_privacy/The%20Privacy%20Engineer's%20Manifesto%20-%20Dennedy.md)
 - [Threat Modeling - Complete Professional Guide](09_security_and_privacy/Threat%20Modeling%20-%20Complete%20Professional%20Guide.md)
 - [Web Application Security - Complete Professional Guide](09_security_and_privacy/Web%20Application%20Security%20-%20Complete%20Professional%20Guide.md)
 
@@ -208,6 +206,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 145 book/reading-list files**
+**Total: 143 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->

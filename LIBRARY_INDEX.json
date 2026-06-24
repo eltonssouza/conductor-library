@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 145,
+    "files": 143,
     "categories": 14,
     "stacks": 28
   },
@@ -557,6 +557,11 @@
           "tier": "supporting"
         },
         {
+          "path": "09_security_and_privacy/Data Protection and GDPR Compliance - Complete Professional Guide.md",
+          "title": "Data Protection and GDPR Compliance - Complete Professional Guide",
+          "tier": "supporting"
+        },
+        {
           "path": "09_security_and_privacy/OWASP ASVS 4.0.3.md",
           "title": "OWASP ASVS 4.0.3",
           "tier": "supporting"
@@ -567,13 +572,8 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Practical Data Privacy - Kamara.md",
-          "title": "Practical Data Privacy - Kamara",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/Privacy's Blueprint - Hartzog.md",
-          "title": "Privacy's Blueprint - Hartzog",
+          "path": "09_security_and_privacy/Privacy Engineering - Complete Professional Guide.md",
+          "title": "Privacy Engineering - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -584,16 +584,6 @@
         {
           "path": "09_security_and_privacy/The Art of Software Security Assessment - Dowd, McDonald.md",
           "title": "The Art of Software Security Assessment - Dowd, McDonald",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/The EU GDPR - A Practical Guide - Voigt, von dem Bussche.md",
-          "title": "The EU GDPR - A Practical Guide - Voigt, von dem Bussche",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/The Privacy Engineer's Manifesto - Dennedy.md",
-          "title": "The Privacy Engineer's Manifesto - Dennedy",
           "tier": "supporting"
         },
         {
