@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 135,
+    "files": 134,
     "categories": 14,
     "stacks": 28
   },
@@ -193,22 +193,17 @@
           "version": 8
         },
         {
-          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
-          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas",
-          "tier": "stack",
-          "stack": "ruby"
-        },
-        {
-          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
-          "title": "Programming Ruby 3.3 - Rappin, Thomas",
-          "tier": "stack",
-          "stack": "ruby"
-        },
-        {
           "path": "01_programming_languages/Python 3.13 - Complete Professional Guide.md",
           "title": "Python 3.13 - Complete Professional Guide",
           "tier": "stack",
           "stack": "python",
+          "version": 3
+        },
+        {
+          "path": "01_programming_languages/Ruby 3.4 - Complete Professional Guide.md",
+          "title": "Ruby 3.4 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "ruby",
           "version": 3
         },
         {
@@ -798,10 +793,11 @@
           "version": 19
         },
         {
-          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
-          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl",
+          "path": "14_frameworks/Ruby on Rails 8 - Complete Professional Guide.md",
+          "title": "Ruby on Rails 8 - Complete Professional Guide",
           "tier": "stack",
-          "stack": "rails"
+          "stack": "rails",
+          "version": 8
         },
         {
           "path": "14_frameworks/Spring Boot 3 - Complete Professional Guide.md",
@@ -1085,11 +1081,14 @@
       ]
     },
     "rails": {
-      "versions": [],
+      "versions": [
+        8
+      ],
       "editions": [
         {
-          "path": "14_frameworks/Ruby on Rails Tutorial (6th Ed) - Hartl.md",
-          "title": "Ruby on Rails Tutorial (6th Ed) - Hartl"
+          "path": "14_frameworks/Ruby on Rails 8 - Complete Professional Guide.md",
+          "title": "Ruby on Rails 8 - Complete Professional Guide",
+          "version": 8
         }
       ]
     },
@@ -1115,15 +1114,14 @@
       ]
     },
     "ruby": {
-      "versions": [],
+      "versions": [
+        3
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas.md",
-          "title": "Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas"
-        },
-        {
-          "path": "01_programming_languages/Programming Ruby 3.3 - Rappin, Thomas.md",
-          "title": "Programming Ruby 3.3 - Rappin, Thomas"
+          "path": "01_programming_languages/Ruby 3.4 - Complete Professional Guide.md",
+          "title": "Ruby 3.4 - Complete Professional Guide",
+          "version": 3
         }
       ]
     },
