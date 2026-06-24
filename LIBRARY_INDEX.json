@@ -344,8 +344,13 @@
           "tier": "core"
         },
         {
-          "path": "04_engineering_and_practices/Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce.md",
-          "title": "Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce",
+          "path": "04_engineering_and_practices/Outside-In Development - Complete Professional Guide.md",
+          "title": "Outside-In Development - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Pragmatic Programming Practices - Complete Professional Guide.md",
+          "title": "Pragmatic Programming Practices - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -371,11 +376,6 @@
         {
           "path": "04_engineering_and_practices/The Mythical Man-Month - Brooks.md",
           "title": "The Mythical Man-Month - Brooks",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas.md",
-          "title": "The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas",
           "tier": "core"
         },
         {
