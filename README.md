@@ -94,11 +94,11 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce](04_engineering_and_practices/Growing%20Object-Oriented%20Software,%20Guided%20by%20Tests%20-%20Freeman,%20Pryce.md)
 - [Software Construction Practices - Complete Professional Guide](04_engineering_and_practices/Software%20Construction%20Practices%20-%20Complete%20Professional%20Guide.md)
 - [Spec-Driven Development - The Complete Book](04_engineering_and_practices/Spec-Driven%20Development%20-%20The%20Complete%20Book.md)
-- [Specification by Example - Adzic](04_engineering_and_practices/Specification%20by%20Example%20-%20Adzic.md)
+- [Specification by Example - Complete Professional Guide](04_engineering_and_practices/Specification%20by%20Example%20-%20Complete%20Professional%20Guide.md)
 - [Test-Driven Development - Complete Professional Guide](04_engineering_and_practices/Test-Driven%20Development%20-%20Complete%20Professional%20Guide.md)
 - [The Mythical Man-Month - Brooks](04_engineering_and_practices/The%20Mythical%20Man-Month%20-%20Brooks.md)
 - [The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(20th%20Anniversary%20Ed)%20-%20Hunt,%20Thomas.md)
-- [Unit Testing - Principles, Practices and Patterns - Khorikov](04_engineering_and_practices/Unit%20Testing%20-%20Principles,%20Practices%20and%20Patterns%20-%20Khorikov.md)
+- [Unit Testing Principles - Complete Professional Guide](04_engineering_and_practices/Unit%20Testing%20Principles%20-%20Complete%20Professional%20Guide.md)
 - [Working with Legacy Code - Complete Professional Guide](04_engineering_and_practices/Working%20with%20Legacy%20Code%20-%20Complete%20Professional%20Guide.md)
 - [xUnit Test Patterns - Meszaros](04_engineering_and_practices/xUnit%20Test%20Patterns%20-%20Meszaros.md)
 
