@@ -72,11 +72,10 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 - [A Philosophy of Software Design (2nd Ed) - Ousterhout](03_design_and_architecture/A%20Philosophy%20of%20Software%20Design%20(2nd%20Ed)%20-%20Ousterhout.md)
 - [Clean Architecture - Martin](03_design_and_architecture/Clean%20Architecture%20-%20Martin.md)
-- [Clean Code - Martin](03_design_and_architecture/Clean%20Code%20-%20Martin.md)
 - [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
 - [Design Patterns - Gang of Four](03_design_and_architecture/Design%20Patterns%20-%20Gang%20of%20Four.md)
 - [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
-- [Domain-Driven Design - Evans](03_design_and_architecture/Domain-Driven%20Design%20-%20Evans.md)
+- [Domain-Driven Design - Complete Professional Guide](03_design_and_architecture/Domain-Driven%20Design%20-%20Complete%20Professional%20Guide.md)
 - [Enterprise Integration Patterns - Hohpe, Woolf](03_design_and_architecture/Enterprise%20Integration%20Patterns%20-%20Hohpe,%20Woolf.md)
 - [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
 - [Head First Design Patterns - Freeman](03_design_and_architecture/Head%20First%20Design%20Patterns%20-%20Freeman.md)
@@ -89,6 +88,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
 - [The Object-Oriented Thought Process (3rd Ed) - Weisfeld](03_design_and_architecture/The%20Object-Oriented%20Thought%20Process%20(3rd%20Ed)%20-%20Weisfeld.md)
 - [Why Reactive](03_design_and_architecture/Why%20Reactive.md)
+- [Writing Maintainable Code - Complete Professional Guide](03_design_and_architecture/Writing%20Maintainable%20Code%20-%20Complete%20Professional%20Guide.md)
 
 ## 04 · Software Engineering & Practices
 
