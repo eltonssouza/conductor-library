@@ -525,8 +525,8 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Observability Engineering - Majors, Fong-Jones, Miranda.md",
-          "title": "Observability Engineering - Majors, Fong-Jones, Miranda",
+          "path": "07_devops_sre_operations/Observability - Complete Professional Guide.md",
+          "title": "Observability - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -535,13 +535,13 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Release It! - Nygard.md",
-          "title": "Release It! - Nygard",
+          "path": "07_devops_sre_operations/Site Reliability Engineering - Complete Professional Guide.md",
+          "title": "Site Reliability Engineering - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Site Reliability Engineering - Complete Professional Guide.md",
-          "title": "Site Reliability Engineering - Complete Professional Guide",
+          "path": "07_devops_sre_operations/Stability Patterns for Production - Complete Professional Guide.md",
+          "title": "Stability Patterns for Production - Complete Professional Guide",
           "tier": "supporting"
         },
         {

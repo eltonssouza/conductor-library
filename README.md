@@ -132,10 +132,10 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Kubernetes - Up and Running - Hightower, Burns, Beda](07_devops_sre_operations/Kubernetes%20-%20Up%20and%20Running%20-%20Hightower,%20Burns,%20Beda.md)
 - [Linux Utilities Cookbook - Lee](07_devops_sre_operations/Linux%20Utilities%20Cookbook%20-%20Lee.md)
 - [Measuring Software Delivery Performance - Complete Professional Guide](07_devops_sre_operations/Measuring%20Software%20Delivery%20Performance%20-%20Complete%20Professional%20Guide.md)
-- [Observability Engineering - Majors, Fong-Jones, Miranda](07_devops_sre_operations/Observability%20Engineering%20-%20Majors,%20Fong-Jones,%20Miranda.md)
+- [Observability - Complete Professional Guide](07_devops_sre_operations/Observability%20-%20Complete%20Professional%20Guide.md)
 - [Pro Git (2nd Ed) - Chacon, Straub](07_devops_sre_operations/Pro%20Git%20(2nd%20Ed)%20-%20Chacon,%20Straub.md)
-- [Release It! - Nygard](07_devops_sre_operations/Release%20It!%20-%20Nygard.md)
 - [Site Reliability Engineering - Complete Professional Guide](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Complete%20Professional%20Guide.md)
+- [Stability Patterns for Production - Complete Professional Guide](07_devops_sre_operations/Stability%20Patterns%20for%20Production%20-%20Complete%20Professional%20Guide.md)
 - [Systems Performance (2nd Ed) - Gregg](07_devops_sre_operations/Systems%20Performance%20(2nd%20Ed)%20-%20Gregg.md)
 
 ## 08 · Distributed Systems & Microservices
