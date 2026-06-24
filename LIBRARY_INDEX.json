@@ -252,18 +252,13 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Clean Architecture - Martin.md",
-          "title": "Clean Architecture - Martin",
+          "path": "03_design_and_architecture/Architecture Boundaries and the Dependency Rule - Complete Professional Guide.md",
+          "title": "Architecture Boundaries and the Dependency Rule - Complete Professional Guide",
           "tier": "core"
         },
         {
           "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
           "title": "Design It! From Programmer to Software Architect - Keeling",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Design Patterns - Gang of Four.md",
-          "title": "Design Patterns - Gang of Four",
           "tier": "core"
         },
         {
@@ -294,6 +289,11 @@
         {
           "path": "03_design_and_architecture/Learning Domain-Driven Design - Khononov.md",
           "title": "Learning Domain-Driven Design - Khononov",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Object-Oriented Design Patterns - Complete Professional Guide.md",
+          "title": "Object-Oriented Design Patterns - Complete Professional Guide",
           "tier": "core"
         },
         {
