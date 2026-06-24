@@ -115,11 +115,11 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 06 · Web & Frontend
 
-- [Inclusive Components - Pickering](06_web_and_frontend/Inclusive%20Components%20-%20Pickering.md)
+- [Accessible Web Components - Complete Professional Guide](06_web_and_frontend/Accessible%20Web%20Components%20-%20Complete%20Professional%20Guide.md)
+- [Form Design and UX - Complete Professional Guide](06_web_and_frontend/Form%20Design%20and%20UX%20-%20Complete%20Professional%20Guide.md)
 - [Modern CSS Layout - Complete Professional Guide](06_web_and_frontend/Modern%20CSS%20Layout%20-%20Complete%20Professional%20Guide.md)
 - [Practical Visual Design - Complete Professional Guide](06_web_and_frontend/Practical%20Visual%20Design%20-%20Complete%20Professional%20Guide.md)
 - [RESTful API Design - Complete Professional Guide](06_web_and_frontend/RESTful%20API%20Design%20-%20Complete%20Professional%20Guide.md)
-- [Web Form Design - Wroblewski](06_web_and_frontend/Web%20Form%20Design%20-%20Wroblewski.md)
 - [Web Performance and Networking - Complete Professional Guide](06_web_and_frontend/Web%20Performance%20and%20Networking%20-%20Complete%20Professional%20Guide.md)
 - [Web Usability Principles - Complete Professional Guide](06_web_and_frontend/Web%20Usability%20Principles%20-%20Complete%20Professional%20Guide.md)
 
