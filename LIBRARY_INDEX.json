@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 137,
+    "files": 135,
     "categories": 14,
     "stacks": 28
   },
@@ -166,24 +166,6 @@
           "version": 9
         },
         {
-          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
-          "title": "Core Java - Volume I - Horstmann",
-          "tier": "stack",
-          "stack": "java"
-        },
-        {
-          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
-          "title": "Core Java - Volume II - Horstmann",
-          "tier": "stack",
-          "stack": "java"
-        },
-        {
-          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
-          "title": "Eloquent JavaScript - Haverbeke",
-          "tier": "stack",
-          "stack": "javascript"
-        },
-        {
           "path": "01_programming_languages/Go 1.24 - Complete Professional Guide.md",
           "title": "Go 1.24 - Complete Professional Guide",
           "tier": "stack",
@@ -191,8 +173,15 @@
           "version": 24
         },
         {
-          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
-          "title": "JavaScript - The Good Parts - Crockford",
+          "path": "01_programming_languages/Java 25 - Complete Professional Guide.md",
+          "title": "Java 25 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "java",
+          "version": 25
+        },
+        {
+          "path": "01_programming_languages/JavaScript - Complete Professional Guide.md",
+          "title": "JavaScript - Complete Professional Guide",
           "tier": "stack",
           "stack": "javascript"
         },
@@ -1006,15 +995,14 @@
       ]
     },
     "java": {
-      "versions": [],
+      "versions": [
+        25
+      ],
       "editions": [
         {
-          "path": "01_programming_languages/Core Java - Volume I - Horstmann.md",
-          "title": "Core Java - Volume I - Horstmann"
-        },
-        {
-          "path": "01_programming_languages/Core Java - Volume II - Horstmann.md",
-          "title": "Core Java - Volume II - Horstmann"
+          "path": "01_programming_languages/Java 25 - Complete Professional Guide.md",
+          "title": "Java 25 - Complete Professional Guide",
+          "version": 25
         }
       ]
     },
@@ -1022,12 +1010,8 @@
       "versions": [],
       "editions": [
         {
-          "path": "01_programming_languages/Eloquent JavaScript - Haverbeke.md",
-          "title": "Eloquent JavaScript - Haverbeke"
-        },
-        {
-          "path": "01_programming_languages/JavaScript - The Good Parts - Crockford.md",
-          "title": "JavaScript - The Good Parts - Crockford"
+          "path": "01_programming_languages/JavaScript - Complete Professional Guide.md",
+          "title": "JavaScript - Complete Professional Guide"
         }
       ]
     },
