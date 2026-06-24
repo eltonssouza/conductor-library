@@ -257,11 +257,6 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Clean Code - Martin.md",
-          "title": "Clean Code - Martin",
-          "tier": "core"
-        },
-        {
           "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
           "title": "Design It! From Programmer to Software Architect - Keeling",
           "tier": "core"
@@ -277,8 +272,8 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Domain-Driven Design - Evans.md",
-          "title": "Domain-Driven Design - Evans",
+          "path": "03_design_and_architecture/Domain-Driven Design - Complete Professional Guide.md",
+          "title": "Domain-Driven Design - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -339,6 +334,11 @@
         {
           "path": "03_design_and_architecture/Why Reactive.md",
           "title": "Why Reactive",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Writing Maintainable Code - Complete Professional Guide.md",
+          "title": "Writing Maintainable Code - Complete Professional Guide",
           "tier": "core"
         }
       ]
