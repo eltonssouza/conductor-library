@@ -89,16 +89,16 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 04 · Software Engineering & Practices
 
-- [Agile Software Development - Martin](04_engineering_and_practices/Agile%20Software%20Development%20-%20Martin.md)
 - [Agile Testing - Complete Professional Guide](04_engineering_and_practices/Agile%20Testing%20-%20Complete%20Professional%20Guide.md)
 - [Outside-In Development - Complete Professional Guide](04_engineering_and_practices/Outside-In%20Development%20-%20Complete%20Professional%20Guide.md)
 - [Pragmatic Programming Practices - Complete Professional Guide](04_engineering_and_practices/Pragmatic%20Programming%20Practices%20-%20Complete%20Professional%20Guide.md)
+- [SOLID Design Principles - Complete Professional Guide](04_engineering_and_practices/SOLID%20Design%20Principles%20-%20Complete%20Professional%20Guide.md)
 - [Software Construction Practices - Complete Professional Guide](04_engineering_and_practices/Software%20Construction%20Practices%20-%20Complete%20Professional%20Guide.md)
+- [Software Project Realities - Complete Professional Guide](04_engineering_and_practices/Software%20Project%20Realities%20-%20Complete%20Professional%20Guide.md)
 - [Spec-Driven Development - The Complete Book](04_engineering_and_practices/Spec-Driven%20Development%20-%20The%20Complete%20Book.md)
 - [Specification by Example - Complete Professional Guide](04_engineering_and_practices/Specification%20by%20Example%20-%20Complete%20Professional%20Guide.md)
 - [Test Patterns and Smells - Complete Professional Guide](04_engineering_and_practices/Test%20Patterns%20and%20Smells%20-%20Complete%20Professional%20Guide.md)
 - [Test-Driven Development - Complete Professional Guide](04_engineering_and_practices/Test-Driven%20Development%20-%20Complete%20Professional%20Guide.md)
-- [The Mythical Man-Month - Brooks](04_engineering_and_practices/The%20Mythical%20Man-Month%20-%20Brooks.md)
 - [Unit Testing Principles - Complete Professional Guide](04_engineering_and_practices/Unit%20Testing%20Principles%20-%20Complete%20Professional%20Guide.md)
 - [Working with Legacy Code - Complete Professional Guide](04_engineering_and_practices/Working%20with%20Legacy%20Code%20-%20Complete%20Professional%20Guide.md)
 
