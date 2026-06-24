@@ -416,13 +416,18 @@
           "tier": "core"
         },
         {
+          "path": "05_databases/Dimensional Modeling for Analytics - Complete Professional Guide.md",
+          "title": "Dimensional Modeling for Analytics - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "05_databases/Graph Databases - Robinson, Webber.md",
           "title": "Graph Databases - Robinson, Webber",
           "tier": "core"
         },
         {
-          "path": "05_databases/NoSQL Distilled - Sadalage, Fowler.md",
-          "title": "NoSQL Distilled - Sadalage, Fowler",
+          "path": "05_databases/NoSQL Data Models - Complete Professional Guide.md",
+          "title": "NoSQL Data Models - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -443,11 +448,6 @@
         {
           "path": "05_databases/Streaming Systems - Akidau, Chernyak, Lax.md",
           "title": "Streaming Systems - Akidau, Chernyak, Lax",
-          "tier": "core"
-        },
-        {
-          "path": "05_databases/The Data Warehouse Toolkit (3rd Ed) - Kimball.md",
-          "title": "The Data Warehouse Toolkit (3rd Ed) - Kimball",
           "tier": "core"
         }
       ]
