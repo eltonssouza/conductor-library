@@ -59,7 +59,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [JavaScript - The Good Parts - Crockford](01_programming_languages/JavaScript%20-%20The%20Good%20Parts%20-%20Crockford.md)
 - [PHP 8.4 - Complete Professional Guide](01_programming_languages/PHP%208.4%20-%20Complete%20Professional%20Guide.md)
 - [Programming Ruby 1.9 & 2.0 (4th Ed) - Thomas](01_programming_languages/Programming%20Ruby%201.9%20&%202.0%20(4th%20Ed)%20-%20Thomas.md)
-- [Programming Ruby 3.3 (preview) - Rappin](01_programming_languages/Programming%20Ruby%203.3%20(preview)%20-%20Rappin.md)
 - [Programming Ruby 3.3 - Rappin, Thomas](01_programming_languages/Programming%20Ruby%203.3%20-%20Rappin,%20Thomas.md)
 - [Python Crash Course - Matthes](01_programming_languages/Python%20Crash%20Course%20-%20Matthes.md)
 - [Rust 2024 - Complete Professional Guide](01_programming_languages/Rust%202024%20-%20Complete%20Professional%20Guide.md)
@@ -79,7 +78,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
 - [Domain-Driven Design - Evans](03_design_and_architecture/Domain-Driven%20Design%20-%20Evans.md)
 - [Enterprise Integration Patterns - Hohpe, Woolf](03_design_and_architecture/Enterprise%20Integration%20Patterns%20-%20Hohpe,%20Woolf.md)
-- [Fundamentals of Software Architecture (alt copy) - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20(alt%20copy)%20-%20Richards,%20Ford.md)
 - [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
 - [Head First Design Patterns - Freeman](03_design_and_architecture/Head%20First%20Design%20Patterns%20-%20Freeman.md)
 - [Learning Domain-Driven Design - Khononov](03_design_and_architecture/Learning%20Domain-Driven%20Design%20-%20Khononov.md)
@@ -103,7 +101,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Test-Driven Development by Example - Beck](04_engineering_and_practices/Test-Driven%20Development%20by%20Example%20-%20Beck.md)
 - [The Mythical Man-Month - Brooks](04_engineering_and_practices/The%20Mythical%20Man-Month%20-%20Brooks.md)
 - [The Pragmatic Programmer (20th Anniversary Ed) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(20th%20Anniversary%20Ed)%20-%20Hunt,%20Thomas.md)
-- [The Pragmatic Programmer (alt copy) - Hunt, Thomas](04_engineering_and_practices/The%20Pragmatic%20Programmer%20(alt%20copy)%20-%20Hunt,%20Thomas.md)
 - [Unit Testing - Principles, Practices and Patterns - Khorikov](04_engineering_and_practices/Unit%20Testing%20-%20Principles,%20Practices%20and%20Patterns%20-%20Khorikov.md)
 - [Working Effectively with Legacy Code - Feathers](04_engineering_and_practices/Working%20Effectively%20with%20Legacy%20Code%20-%20Feathers.md)
 - [xUnit Test Patterns - Meszaros](04_engineering_and_practices/xUnit%20Test%20Patterns%20-%20Meszaros.md)
@@ -112,7 +109,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 - [Database Internals - Petrov](05_databases/Database%20Internals%20-%20Petrov.md)
 - [Database System Concepts (7th Ed) - Silberschatz, Korth](05_databases/Database%20System%20Concepts%20(7th%20Ed)%20-%20Silberschatz,%20Korth.md)
-- [Designing Data-Intensive Applications - Kleppmann](05_databases/Designing%20Data-Intensive%20Applications%20-%20Kleppmann.md)
+- [Designing Data-Intensive Systems - Complete Professional Guide](05_databases/Designing%20Data-Intensive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Graph Databases - Robinson, Webber](05_databases/Graph%20Databases%20-%20Robinson,%20Webber.md)
 - [NoSQL Distilled - Sadalage, Fowler](05_databases/NoSQL%20Distilled%20-%20Sadalage,%20Fowler.md)
 - [SQL Antipatterns - Karwin](05_databases/SQL%20Antipatterns%20-%20Karwin.md)
@@ -223,6 +220,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 157 book/reading-list files**
+**Total: 154 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
