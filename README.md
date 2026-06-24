@@ -75,15 +75,13 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
 - [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
 - [Domain-Driven Design - Complete Professional Guide](03_design_and_architecture/Domain-Driven%20Design%20-%20Complete%20Professional%20Guide.md)
-- [Enterprise Integration Patterns - Hohpe, Woolf](03_design_and_architecture/Enterprise%20Integration%20Patterns%20-%20Hohpe,%20Woolf.md)
 - [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
-- [Head First Design Patterns - Freeman](03_design_and_architecture/Head%20First%20Design%20Patterns%20-%20Freeman.md)
-- [Learning Domain-Driven Design - Khononov](03_design_and_architecture/Learning%20Domain-Driven%20Design%20-%20Khononov.md)
+- [Messaging and Integration Patterns - Complete Professional Guide](03_design_and_architecture/Messaging%20and%20Integration%20Patterns%20-%20Complete%20Professional%20Guide.md)
 - [Object-Oriented Design Patterns - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Design%20Patterns%20-%20Complete%20Professional%20Guide.md)
 - [Patterns of Enterprise Application Architecture - Fowler](03_design_and_architecture/Patterns%20of%20Enterprise%20Application%20Architecture%20-%20Fowler.md)
 - [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
 - [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
-- [Software Architecture in Practice (3rd Ed) - Bass](03_design_and_architecture/Software%20Architecture%20in%20Practice%20(3rd%20Ed)%20-%20Bass.md)
+- [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)
 - [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
 - [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
 - [The Object-Oriented Thought Process (3rd Ed) - Weisfeld](03_design_and_architecture/The%20Object-Oriented%20Thought%20Process%20(3rd%20Ed)%20-%20Weisfeld.md)
@@ -220,6 +218,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 154 book/reading-list files**
+**Total: 152 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->

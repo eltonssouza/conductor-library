@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 154,
+    "files": 152,
     "categories": 15,
     "stacks": 28
   },
@@ -272,23 +272,13 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Enterprise Integration Patterns - Hohpe, Woolf.md",
-          "title": "Enterprise Integration Patterns - Hohpe, Woolf",
-          "tier": "core"
-        },
-        {
           "path": "03_design_and_architecture/Fundamentals of Software Architecture - Richards, Ford.md",
           "title": "Fundamentals of Software Architecture - Richards, Ford",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Head First Design Patterns - Freeman.md",
-          "title": "Head First Design Patterns - Freeman",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Learning Domain-Driven Design - Khononov.md",
-          "title": "Learning Domain-Driven Design - Khononov",
+          "path": "03_design_and_architecture/Messaging and Integration Patterns - Complete Professional Guide.md",
+          "title": "Messaging and Integration Patterns - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -312,8 +302,8 @@
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Software Architecture in Practice (3rd Ed) - Bass.md",
-          "title": "Software Architecture in Practice (3rd Ed) - Bass",
+          "path": "03_design_and_architecture/Software Architecture and Quality Attributes - Complete Professional Guide.md",
+          "title": "Software Architecture and Quality Attributes - Complete Professional Guide",
           "tier": "core"
         },
         {
