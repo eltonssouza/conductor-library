@@ -83,8 +83,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Reactive Systems - Complete Professional Guide](03_design_and_architecture/Reactive%20Systems%20-%20Complete%20Professional%20Guide.md)
 - [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
 - [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)
-- [Solution Architect's Handbook](03_design_and_architecture/Solution%20Architect's%20Handbook.md)
-- [Solution Architecture Patterns for Enterprise](03_design_and_architecture/Solution%20Architecture%20Patterns%20for%20Enterprise.md)
+- [Solution Architecture - Complete Professional Guide](03_design_and_architecture/Solution%20Architecture%20-%20Complete%20Professional%20Guide.md)
 - [The Practice of Architecting - Complete Professional Guide](03_design_and_architecture/The%20Practice%20of%20Architecting%20-%20Complete%20Professional%20Guide.md)
 - [Writing Maintainable Code - Complete Professional Guide](03_design_and_architecture/Writing%20Maintainable%20Code%20-%20Complete%20Professional%20Guide.md)
 
@@ -92,8 +91,8 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 - [Agile Software Development - Martin](04_engineering_and_practices/Agile%20Software%20Development%20-%20Martin.md)
 - [Agile Testing - A Practical Guide - Crispin, Gregory](04_engineering_and_practices/Agile%20Testing%20-%20A%20Practical%20Guide%20-%20Crispin,%20Gregory.md)
-- [Code Complete (2nd Ed) - McConnell](04_engineering_and_practices/Code%20Complete%20(2nd%20Ed)%20-%20McConnell.md)
 - [Growing Object-Oriented Software, Guided by Tests - Freeman, Pryce](04_engineering_and_practices/Growing%20Object-Oriented%20Software,%20Guided%20by%20Tests%20-%20Freeman,%20Pryce.md)
+- [Software Construction Practices - Complete Professional Guide](04_engineering_and_practices/Software%20Construction%20Practices%20-%20Complete%20Professional%20Guide.md)
 - [Spec-Driven Development - The Complete Book](04_engineering_and_practices/Spec-Driven%20Development%20-%20The%20Complete%20Book.md)
 - [Specification by Example - Adzic](04_engineering_and_practices/Specification%20by%20Example%20-%20Adzic.md)
 - [Test-Driven Development by Example - Beck](04_engineering_and_practices/Test-Driven%20Development%20by%20Example%20-%20Beck.md)
@@ -218,6 +217,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 152 book/reading-list files**
+**Total: 151 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
