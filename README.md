@@ -70,15 +70,15 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 03 · Software Design & Architecture
 
-- [A Philosophy of Software Design (2nd Ed) - Ousterhout](03_design_and_architecture/A%20Philosophy%20of%20Software%20Design%20(2nd%20Ed)%20-%20Ousterhout.md)
 - [Architecture Boundaries and the Dependency Rule - Complete Professional Guide](03_design_and_architecture/Architecture%20Boundaries%20and%20the%20Dependency%20Rule%20-%20Complete%20Professional%20Guide.md)
 - [Design It! From Programmer to Software Architect - Keeling](03_design_and_architecture/Design%20It!%20From%20Programmer%20to%20Software%20Architect%20-%20Keeling.md)
 - [Documenting Software Architectures - Views and Beyond](03_design_and_architecture/Documenting%20Software%20Architectures%20-%20Views%20and%20Beyond.md)
 - [Domain-Driven Design - Complete Professional Guide](03_design_and_architecture/Domain-Driven%20Design%20-%20Complete%20Professional%20Guide.md)
+- [Enterprise Application Architecture Patterns - Complete Professional Guide](03_design_and_architecture/Enterprise%20Application%20Architecture%20Patterns%20-%20Complete%20Professional%20Guide.md)
 - [Fundamentals of Software Architecture - Richards, Ford](03_design_and_architecture/Fundamentals%20of%20Software%20Architecture%20-%20Richards,%20Ford.md)
+- [Managing Software Complexity - Complete Professional Guide](03_design_and_architecture/Managing%20Software%20Complexity%20-%20Complete%20Professional%20Guide.md)
 - [Messaging and Integration Patterns - Complete Professional Guide](03_design_and_architecture/Messaging%20and%20Integration%20Patterns%20-%20Complete%20Professional%20Guide.md)
 - [Object-Oriented Design Patterns - Complete Professional Guide](03_design_and_architecture/Object-Oriented%20Design%20Patterns%20-%20Complete%20Professional%20Guide.md)
-- [Patterns of Enterprise Application Architecture - Fowler](03_design_and_architecture/Patterns%20of%20Enterprise%20Application%20Architecture%20-%20Fowler.md)
 - [Refactoring and Code Improvement - Complete Professional Guide](03_design_and_architecture/Refactoring%20and%20Code%20Improvement%20-%20Complete%20Professional%20Guide.md)
 - [Software Architecture - The Hard Parts - Ford, Richards](03_design_and_architecture/Software%20Architecture%20-%20The%20Hard%20Parts%20-%20Ford,%20Richards.md)
 - [Software Architecture and Quality Attributes - Complete Professional Guide](03_design_and_architecture/Software%20Architecture%20and%20Quality%20Attributes%20-%20Complete%20Professional%20Guide.md)

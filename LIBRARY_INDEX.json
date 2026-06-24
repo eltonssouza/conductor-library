@@ -247,11 +247,6 @@
       "title": "Software Design & Architecture",
       "files": [
         {
-          "path": "03_design_and_architecture/A Philosophy of Software Design (2nd Ed) - Ousterhout.md",
-          "title": "A Philosophy of Software Design (2nd Ed) - Ousterhout",
-          "tier": "core"
-        },
-        {
           "path": "03_design_and_architecture/Architecture Boundaries and the Dependency Rule - Complete Professional Guide.md",
           "title": "Architecture Boundaries and the Dependency Rule - Complete Professional Guide",
           "tier": "core"
@@ -272,8 +267,18 @@
           "tier": "core"
         },
         {
+          "path": "03_design_and_architecture/Enterprise Application Architecture Patterns - Complete Professional Guide.md",
+          "title": "Enterprise Application Architecture Patterns - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "03_design_and_architecture/Fundamentals of Software Architecture - Richards, Ford.md",
           "title": "Fundamentals of Software Architecture - Richards, Ford",
+          "tier": "core"
+        },
+        {
+          "path": "03_design_and_architecture/Managing Software Complexity - Complete Professional Guide.md",
+          "title": "Managing Software Complexity - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -284,11 +289,6 @@
         {
           "path": "03_design_and_architecture/Object-Oriented Design Patterns - Complete Professional Guide.md",
           "title": "Object-Oriented Design Patterns - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Patterns of Enterprise Application Architecture - Fowler.md",
-          "title": "Patterns of Enterprise Application Architecture - Fowler",
           "tier": "core"
         },
         {
