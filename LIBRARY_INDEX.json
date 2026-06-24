@@ -252,13 +252,18 @@
           "tier": "core"
         },
         {
+          "path": "03_design_and_architecture/Architecture Styles and Trade-offs - Complete Professional Guide.md",
+          "title": "Architecture Styles and Trade-offs - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "03_design_and_architecture/Design It! From Programmer to Software Architect - Keeling.md",
           "title": "Design It! From Programmer to Software Architect - Keeling",
           "tier": "core"
         },
         {
-          "path": "03_design_and_architecture/Documenting Software Architectures - Views and Beyond.md",
-          "title": "Documenting Software Architectures - Views and Beyond",
+          "path": "03_design_and_architecture/Documenting Software Architecture - Complete Professional Guide.md",
+          "title": "Documenting Software Architecture - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -269,11 +274,6 @@
         {
           "path": "03_design_and_architecture/Enterprise Application Architecture Patterns - Complete Professional Guide.md",
           "title": "Enterprise Application Architecture Patterns - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "03_design_and_architecture/Fundamentals of Software Architecture - Richards, Ford.md",
-          "title": "Fundamentals of Software Architecture - Richards, Ford",
           "tier": "core"
         },
         {
