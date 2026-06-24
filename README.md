@@ -63,7 +63,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 02 · Algorithms & Data Structures
 
-- [Introduction to Algorithms (4th Ed) - Cormen, Leiserson](02_algorithms_and_data_structures/Introduction%20to%20Algorithms%20(4th%20Ed)%20-%20Cormen,%20Leiserson.md)
+- [Algorithm Design and Analysis - Complete Professional Guide](02_algorithms_and_data_structures/Algorithm%20Design%20and%20Analysis%20-%20Complete%20Professional%20Guide.md)
 
 ## 03 · Software Design & Architecture
 
@@ -183,11 +183,11 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Flask 3 - Complete Professional Guide](14_frameworks/Flask%203%20-%20Complete%20Professional%20Guide.md)
 - [Flutter 3 - Complete Professional Guide](14_frameworks/Flutter%203%20-%20Complete%20Professional%20Guide.md)
 - [GraphQL - Complete Professional Guide](14_frameworks/GraphQL%20-%20Complete%20Professional%20Guide.md)
-- [Learning React Native - Eisenman](14_frameworks/Learning%20React%20Native%20-%20Eisenman.md)
 - [NestJS 11 - Complete Professional Guide](14_frameworks/NestJS%2011%20-%20Complete%20Professional%20Guide.md)
 - [Next.js 15 - Complete Professional Guide](14_frameworks/Next.js%2015%20-%20Complete%20Professional%20Guide.md)
 - [Node.js 24 - Complete Professional Guide](14_frameworks/Node.js%2024%20-%20Complete%20Professional%20Guide.md)
 - [React 19 - Complete Professional Guide](14_frameworks/React%2019%20-%20Complete%20Professional%20Guide.md)
+- [React Native - Complete Professional Guide](14_frameworks/React%20Native%20-%20Complete%20Professional%20Guide.md)
 - [Ruby on Rails 8 - Complete Professional Guide](14_frameworks/Ruby%20on%20Rails%208%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 3 - Complete Professional Guide](14_frameworks/Spring%20Boot%203%20-%20Complete%20Professional%20Guide.md)
 - [Spring Boot 4 - Complete Professional Guide](14_frameworks/Spring%20Boot%204%20-%20Complete%20Professional%20Guide.md)
