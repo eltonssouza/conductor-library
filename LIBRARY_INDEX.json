@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 143,
+    "files": 140,
     "categories": 14,
     "stacks": 28
   },
@@ -626,28 +626,18 @@
           "tier": "supporting"
         },
         {
-          "path": "11_management_product_process/Continuous Discovery Habits - Torres.md",
-          "title": "Continuous Discovery Habits - Torres",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Escaping the Build Trap - Perri.md",
-          "title": "Escaping the Build Trap - Perri",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Inspired - Cagan.md",
-          "title": "Inspired - Cagan",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/Just Enough Research - Hall.md",
-          "title": "Just Enough Research - Hall",
+          "path": "11_management_product_process/Customer Discovery and Research - Complete Professional Guide.md",
+          "title": "Customer Discovery and Research - Complete Professional Guide",
           "tier": "supporting"
         },
         {
           "path": "11_management_product_process/Making Things Happen - Berkun.md",
           "title": "Making Things Happen - Berkun",
+          "tier": "supporting"
+        },
+        {
+          "path": "11_management_product_process/Product Management Fundamentals - Complete Professional Guide.md",
+          "title": "Product Management Fundamentals - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -663,11 +653,6 @@
         {
           "path": "11_management_product_process/The Manager's Path - Fournier.md",
           "title": "The Manager's Path - Fournier",
-          "tier": "supporting"
-        },
-        {
-          "path": "11_management_product_process/The Mom Test - Fitzpatrick.md",
-          "title": "The Mom Test - Fitzpatrick",
           "tier": "supporting"
         },
         {

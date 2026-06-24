@@ -157,15 +157,12 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 ## 11 · Management, Product & Process
 
 - [An Elegant Puzzle - Larson](11_management_product_process/An%20Elegant%20Puzzle%20-%20Larson.md)
-- [Continuous Discovery Habits - Torres](11_management_product_process/Continuous%20Discovery%20Habits%20-%20Torres.md)
-- [Escaping the Build Trap - Perri](11_management_product_process/Escaping%20the%20Build%20Trap%20-%20Perri.md)
-- [Inspired - Cagan](11_management_product_process/Inspired%20-%20Cagan.md)
-- [Just Enough Research - Hall](11_management_product_process/Just%20Enough%20Research%20-%20Hall.md)
+- [Customer Discovery and Research - Complete Professional Guide](11_management_product_process/Customer%20Discovery%20and%20Research%20-%20Complete%20Professional%20Guide.md)
 - [Making Things Happen - Berkun](11_management_product_process/Making%20Things%20Happen%20-%20Berkun.md)
+- [Product Management Fundamentals - Complete Professional Guide](11_management_product_process/Product%20Management%20Fundamentals%20-%20Complete%20Professional%20Guide.md)
 - [Staff Engineer - Larson](11_management_product_process/Staff%20Engineer%20-%20Larson.md)
 - [Team Topologies and Organization Design - Complete Professional Guide](11_management_product_process/Team%20Topologies%20and%20Organization%20Design%20-%20Complete%20Professional%20Guide.md)
 - [The Manager's Path - Fournier](11_management_product_process/The%20Manager's%20Path%20-%20Fournier.md)
-- [The Mom Test - Fitzpatrick](11_management_product_process/The%20Mom%20Test%20-%20Fitzpatrick.md)
 - [User Story Mapping - Patton](11_management_product_process/User%20Story%20Mapping%20-%20Patton.md)
 
 ## 12 · Design & UX
@@ -206,6 +203,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 143 book/reading-list files**
+**Total: 140 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
