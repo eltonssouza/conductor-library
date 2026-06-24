@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 146,
+    "files": 145,
     "categories": 14,
     "stacks": 28
   },
@@ -577,8 +577,8 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/Security Engineering (3rd Ed) - Anderson.md",
-          "title": "Security Engineering (3rd Ed) - Anderson",
+          "path": "09_security_and_privacy/Security Engineering Principles - Complete Professional Guide.md",
+          "title": "Security Engineering Principles - Complete Professional Guide",
           "tier": "supporting"
         },
         {
@@ -597,18 +597,13 @@
           "tier": "supporting"
         },
         {
-          "path": "09_security_and_privacy/The Tangled Web - Zalewski.md",
-          "title": "The Tangled Web - Zalewski",
-          "tier": "supporting"
-        },
-        {
-          "path": "09_security_and_privacy/The Web Application Hacker's Handbook - Stuttard, Pinto.md",
-          "title": "The Web Application Hacker's Handbook - Stuttard, Pinto",
-          "tier": "supporting"
-        },
-        {
           "path": "09_security_and_privacy/Threat Modeling - Complete Professional Guide.md",
           "title": "Threat Modeling - Complete Professional Guide",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Web Application Security - Complete Professional Guide.md",
+          "title": "Web Application Security - Complete Professional Guide",
           "tier": "supporting"
         }
       ]
