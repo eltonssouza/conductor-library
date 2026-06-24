@@ -334,11 +334,6 @@
       "title": "Software Engineering & Practices",
       "files": [
         {
-          "path": "04_engineering_and_practices/Agile Software Development - Martin.md",
-          "title": "Agile Software Development - Martin",
-          "tier": "core"
-        },
-        {
           "path": "04_engineering_and_practices/Agile Testing - Complete Professional Guide.md",
           "title": "Agile Testing - Complete Professional Guide",
           "tier": "core"
@@ -354,8 +349,18 @@
           "tier": "core"
         },
         {
+          "path": "04_engineering_and_practices/SOLID Design Principles - Complete Professional Guide.md",
+          "title": "SOLID Design Principles - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
           "path": "04_engineering_and_practices/Software Construction Practices - Complete Professional Guide.md",
           "title": "Software Construction Practices - Complete Professional Guide",
+          "tier": "core"
+        },
+        {
+          "path": "04_engineering_and_practices/Software Project Realities - Complete Professional Guide.md",
+          "title": "Software Project Realities - Complete Professional Guide",
           "tier": "core"
         },
         {
@@ -376,11 +381,6 @@
         {
           "path": "04_engineering_and_practices/Test-Driven Development - Complete Professional Guide.md",
           "title": "Test-Driven Development - Complete Professional Guide",
-          "tier": "core"
-        },
-        {
-          "path": "04_engineering_and_practices/The Mythical Man-Month - Brooks.md",
-          "title": "The Mythical Man-Month - Brooks",
           "tier": "core"
         },
         {
