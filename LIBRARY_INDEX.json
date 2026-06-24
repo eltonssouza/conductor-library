@@ -221,8 +221,8 @@
       "title": "Algorithms & Data Structures",
       "files": [
         {
-          "path": "02_algorithms_and_data_structures/Introduction to Algorithms (4th Ed) - Cormen, Leiserson.md",
-          "title": "Introduction to Algorithms (4th Ed) - Cormen, Leiserson",
+          "path": "02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md",
+          "title": "Algorithm Design and Analysis - Complete Professional Guide",
           "tier": "foundational"
         }
       ]
@@ -759,12 +759,6 @@
           "stack": "graphql"
         },
         {
-          "path": "14_frameworks/Learning React Native - Eisenman.md",
-          "title": "Learning React Native - Eisenman",
-          "tier": "stack",
-          "stack": "react-native"
-        },
-        {
           "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
           "title": "NestJS 11 - Complete Professional Guide",
           "tier": "stack",
@@ -791,6 +785,12 @@
           "tier": "stack",
           "stack": "react",
           "version": 19
+        },
+        {
+          "path": "14_frameworks/React Native - Complete Professional Guide.md",
+          "title": "React Native - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "react-native"
         },
         {
           "path": "14_frameworks/Ruby on Rails 8 - Complete Professional Guide.md",
@@ -1108,8 +1108,8 @@
       "versions": [],
       "editions": [
         {
-          "path": "14_frameworks/Learning React Native - Eisenman.md",
-          "title": "Learning React Native - Eisenman"
+          "path": "14_frameworks/React Native - Complete Professional Guide.md",
+          "title": "React Native - Complete Professional Guide"
         }
       ]
     },
