@@ -125,15 +125,15 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ## 07 · DevOps, SRE & Operations
 
+- [Container Orchestration with Kubernetes - Complete Professional Guide](07_devops_sre_operations/Container%20Orchestration%20with%20Kubernetes%20-%20Complete%20Professional%20Guide.md)
 - [Continuous Delivery and Deployment Pipelines - Complete Professional Guide](07_devops_sre_operations/Continuous%20Delivery%20and%20Deployment%20Pipelines%20-%20Complete%20Professional%20Guide.md)
 - [DevOps Principles and Flow - Complete Professional Guide](07_devops_sre_operations/DevOps%20Principles%20and%20Flow%20-%20Complete%20Professional%20Guide.md)
 - [Effective DevOps - Davis, Daniels](07_devops_sre_operations/Effective%20DevOps%20-%20Davis,%20Daniels.md)
+- [Git Version Control - Complete Professional Guide](07_devops_sre_operations/Git%20Version%20Control%20-%20Complete%20Professional%20Guide.md)
 - [Jenkins Essentials - Soni](07_devops_sre_operations/Jenkins%20Essentials%20-%20Soni.md)
-- [Kubernetes - Up and Running - Hightower, Burns, Beda](07_devops_sre_operations/Kubernetes%20-%20Up%20and%20Running%20-%20Hightower,%20Burns,%20Beda.md)
 - [Linux Utilities Cookbook - Lee](07_devops_sre_operations/Linux%20Utilities%20Cookbook%20-%20Lee.md)
 - [Measuring Software Delivery Performance - Complete Professional Guide](07_devops_sre_operations/Measuring%20Software%20Delivery%20Performance%20-%20Complete%20Professional%20Guide.md)
 - [Observability - Complete Professional Guide](07_devops_sre_operations/Observability%20-%20Complete%20Professional%20Guide.md)
-- [Pro Git (2nd Ed) - Chacon, Straub](07_devops_sre_operations/Pro%20Git%20(2nd%20Ed)%20-%20Chacon,%20Straub.md)
 - [Site Reliability Engineering - Complete Professional Guide](07_devops_sre_operations/Site%20Reliability%20Engineering%20-%20Complete%20Professional%20Guide.md)
 - [Stability Patterns for Production - Complete Professional Guide](07_devops_sre_operations/Stability%20Patterns%20for%20Production%20-%20Complete%20Professional%20Guide.md)
 - [Systems Performance (2nd Ed) - Gregg](07_devops_sre_operations/Systems%20Performance%20(2nd%20Ed)%20-%20Gregg.md)

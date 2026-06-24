@@ -490,6 +490,11 @@
       "title": "DevOps, SRE & Operations",
       "files": [
         {
+          "path": "07_devops_sre_operations/Container Orchestration with Kubernetes - Complete Professional Guide.md",
+          "title": "Container Orchestration with Kubernetes - Complete Professional Guide",
+          "tier": "supporting"
+        },
+        {
           "path": "07_devops_sre_operations/Continuous Delivery and Deployment Pipelines - Complete Professional Guide.md",
           "title": "Continuous Delivery and Deployment Pipelines - Complete Professional Guide",
           "tier": "supporting"
@@ -505,13 +510,13 @@
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Jenkins Essentials - Soni.md",
-          "title": "Jenkins Essentials - Soni",
+          "path": "07_devops_sre_operations/Git Version Control - Complete Professional Guide.md",
+          "title": "Git Version Control - Complete Professional Guide",
           "tier": "supporting"
         },
         {
-          "path": "07_devops_sre_operations/Kubernetes - Up and Running - Hightower, Burns, Beda.md",
-          "title": "Kubernetes - Up and Running - Hightower, Burns, Beda",
+          "path": "07_devops_sre_operations/Jenkins Essentials - Soni.md",
+          "title": "Jenkins Essentials - Soni",
           "tier": "supporting"
         },
         {
@@ -527,11 +532,6 @@
         {
           "path": "07_devops_sre_operations/Observability - Complete Professional Guide.md",
           "title": "Observability - Complete Professional Guide",
-          "tier": "supporting"
-        },
-        {
-          "path": "07_devops_sre_operations/Pro Git (2nd Ed) - Chacon, Straub.md",
-          "title": "Pro Git (2nd Ed) - Chacon, Straub",
           "tier": "supporting"
         },
         {
