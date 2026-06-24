@@ -163,14 +163,14 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Just Enough Research - Hall](11_management_product_process/Just%20Enough%20Research%20-%20Hall.md)
 - [Making Things Happen - Berkun](11_management_product_process/Making%20Things%20Happen%20-%20Berkun.md)
 - [Staff Engineer - Larson](11_management_product_process/Staff%20Engineer%20-%20Larson.md)
-- [Team Topologies - Skelton, Pais](11_management_product_process/Team%20Topologies%20-%20Skelton,%20Pais.md)
+- [Team Topologies and Organization Design - Complete Professional Guide](11_management_product_process/Team%20Topologies%20and%20Organization%20Design%20-%20Complete%20Professional%20Guide.md)
 - [The Manager's Path - Fournier](11_management_product_process/The%20Manager's%20Path%20-%20Fournier.md)
 - [The Mom Test - Fitzpatrick](11_management_product_process/The%20Mom%20Test%20-%20Fitzpatrick.md)
 - [User Story Mapping - Patton](11_management_product_process/User%20Story%20Mapping%20-%20Patton.md)
 
 ## 12 · Design & UX
 
-- [The Design of Everyday Things - Norman](12_design_ux/The%20Design%20of%20Everyday%20Things%20-%20Norman.md)
+- [Usable Design Principles - Complete Professional Guide](12_design_ux/Usable%20Design%20Principles%20-%20Complete%20Professional%20Guide.md)
 
 ## 13 · Automation & Integration
 
