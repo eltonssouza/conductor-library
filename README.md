@@ -139,6 +139,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Data Protection and GDPR Compliance - Complete Professional Guide](09_security_and_privacy/Data%20Protection%20and%20GDPR%20Compliance%20-%20Complete%20Professional%20Guide.md)
 - [OWASP ASVS 4.0.3](09_security_and_privacy/OWASP%20ASVS%204.0.3.md)
 - [Ontologies for Privacy Requirements Engineering (paper) - Gharib](09_security_and_privacy/Ontologies%20for%20Privacy%20Requirements%20Engineering%20(paper)%20-%20Gharib.md)
+- [Penetration Testing - Complete Professional Guide](09_security_and_privacy/Penetration%20Testing%20-%20Complete%20Professional%20Guide.md)
 - [Privacy Engineering - Complete Professional Guide](09_security_and_privacy/Privacy%20Engineering%20-%20Complete%20Professional%20Guide.md)
 - [Secure Code Review - Complete Professional Guide](09_security_and_privacy/Secure%20Code%20Review%20-%20Complete%20Professional%20Guide.md)
 - [Secure and Reliable Systems Design - Complete Professional Guide](09_security_and_privacy/Secure%20and%20Reliable%20Systems%20Design%20-%20Complete%20Professional%20Guide.md)
@@ -197,6 +198,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 134 book/reading-list files**
+**Total: 135 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->

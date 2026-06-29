@@ -1,7 +1,7 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 134,
+    "files": 135,
     "categories": 14,
     "stacks": 28
   },
@@ -550,6 +550,11 @@
         {
           "path": "09_security_and_privacy/Ontologies for Privacy Requirements Engineering (paper) - Gharib.md",
           "title": "Ontologies for Privacy Requirements Engineering (paper) - Gharib",
+          "tier": "supporting"
+        },
+        {
+          "path": "09_security_and_privacy/Penetration Testing - Complete Professional Guide.md",
+          "title": "Penetration Testing - Complete Professional Guide",
           "tier": "supporting"
         },
         {
