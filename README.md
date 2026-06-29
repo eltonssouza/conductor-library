@@ -184,6 +184,7 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 - [Flask 3 - Complete Professional Guide](14_frameworks/Flask%203%20-%20Complete%20Professional%20Guide.md)
 - [Flutter 3 - Complete Professional Guide](14_frameworks/Flutter%203%20-%20Complete%20Professional%20Guide.md)
 - [GraphQL - Complete Professional Guide](14_frameworks/GraphQL%20-%20Complete%20Professional%20Guide.md)
+- [MapStruct 1.6 - Complete Professional Guide](14_frameworks/MapStruct%201.6%20-%20Complete%20Professional%20Guide.md)
 - [NestJS 11 - Complete Professional Guide](14_frameworks/NestJS%2011%20-%20Complete%20Professional%20Guide.md)
 - [Next.js 15 - Complete Professional Guide](14_frameworks/Next.js%2015%20-%20Complete%20Professional%20Guide.md)
 - [Node.js 24 - Complete Professional Guide](14_frameworks/Node.js%2024%20-%20Complete%20Professional%20Guide.md)
@@ -198,6 +199,6 @@ This corpus is the **Library (RAG)** memory behind [Conductor](https://github.co
 
 ---
 
-**Total: 135 book/reading-list files**
+**Total: 136 book/reading-list files**
 
 <!-- AUTO-INDEX:END -->
