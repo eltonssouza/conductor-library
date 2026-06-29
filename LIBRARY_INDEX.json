@@ -1,9 +1,9 @@
 {
   "schema": "conductor-library-index/v1",
   "totals": {
-    "files": 135,
+    "files": 136,
     "categories": 14,
-    "stacks": 28
+    "stacks": 29
   },
   "categories": [
     {
@@ -764,6 +764,13 @@
           "stack": "graphql"
         },
         {
+          "path": "14_frameworks/MapStruct 1.6 - Complete Professional Guide.md",
+          "title": "MapStruct 1.6 - Complete Professional Guide",
+          "tier": "stack",
+          "stack": "mapstruct",
+          "version": 1
+        },
+        {
           "path": "14_frameworks/NestJS 11 - Complete Professional Guide.md",
           "title": "NestJS 11 - Complete Professional Guide",
           "tier": "stack",
@@ -1013,6 +1020,18 @@
         {
           "path": "01_programming_languages/JavaScript - Complete Professional Guide.md",
           "title": "JavaScript - Complete Professional Guide"
+        }
+      ]
+    },
+    "mapstruct": {
+      "versions": [
+        1
+      ],
+      "editions": [
+        {
+          "path": "14_frameworks/MapStruct 1.6 - Complete Professional Guide.md",
+          "title": "MapStruct 1.6 - Complete Professional Guide",
+          "version": 1
         }
       ]
     },
