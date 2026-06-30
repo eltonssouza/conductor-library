@@ -143,7 +143,7 @@ A flat specificity landscape means new rules can override old ones by source ord
 
 ### 1.12 References
 
-- K. Grant, *CSS in Depth*, 2nd ed. (Manning, 2024) — ISBN 978-1633437555.
+- K. Grant, *CSS in Depth*, 2nd ed. (Manning, 2024) — Ch. 1 (the cascade & inheritance), Ch. 3 (document flow & the box model). ISBN 978-1633437555.
 - MDN, "The cascade": https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade.
 
 ---
@@ -243,7 +243,7 @@ The container's flex properties govern how children are sized and aligned; child
 
 ### 2.12 References
 
-- K. Grant, *CSS in Depth*, 2nd ed. (Manning, 2024) — ISBN 978-1633437555.
+- K. Grant, *CSS in Depth*, 2nd ed. (Manning, 2024) — Ch. 4 (flexbox). ISBN 978-1633437555.
 - MDN, "Flexbox": https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout.
 
 ---

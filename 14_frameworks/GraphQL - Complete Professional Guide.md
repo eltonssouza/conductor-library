@@ -150,7 +150,7 @@ query {
 
 ### 1.12 References
 
-- E. Porcello, A. Banks, *Learning GraphQL* (O'Reilly, 2018) — ISBN 978-1492030713.
+- E. Porcello, A. Banks, *Learning GraphQL* (O'Reilly, 2018) — Ch. 3 (The GraphQL Query Language), Ch. 4 (Designing a Schema). ISBN 978-1492030713.
 - GraphQL specification & docs: https://graphql.org.
 
 ---
@@ -251,7 +251,7 @@ const resolvers = {
 
 ### 2.12 References
 
-- E. Porcello, A. Banks, *Learning GraphQL* (O'Reilly, 2018) — ISBN 978-1492030713.
+- E. Porcello, A. Banks, *Learning GraphQL* (O'Reilly, 2018) — Ch. 5 (Creating a GraphQL API — resolvers). ISBN 978-1492030713.
 - GraphQL docs, "Execution" & DataLoader: https://graphql.org/learn/execution/.
 
 ---
@@ -390,7 +390,7 @@ Choose by client diversity and caching needs, not by novelty. (See the **RESTful
 
 ### 3.13 References
 
-- E. Porcello & A. Banks, *Learning GraphQL* (O'Reilly, 2018) — Ch. 3 (The GraphQL Query Language), Ch. 5 (Creating a GraphQL API — resolvers), Ch. 7 (GraphQL in the Real World). ISBN 978-1492030713.
+- E. Porcello & A. Banks, *Learning GraphQL* (O'Reilly, 2018) — Ch. 5 (Creating a GraphQL API — resolvers and DataLoader), Ch. 6 (GraphQL Clients — caching). ISBN 978-1492030713.
 - GraphQL docs, "Execution" & DataLoader: https://graphql.org/learn/execution/ and https://github.com/graphql/dataloader.
 - "Securing your GraphQL API" (depth/cost limiting, persisted queries): https://www.apollographql.com/docs/.
 

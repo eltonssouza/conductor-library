@@ -149,7 +149,7 @@ function Screen({ onPress }) {
 
 ### 1.12 References
 
-- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2017) — ISBN 978-1491989142.
+- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2018) — Ch. 1 (What Is React Native?), Ch. 2 (Working with React Native — the bridge, components vs. web). ISBN 978-1491989142.
 - React Native docs: https://reactnative.dev.
 
 ---
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
 
 ### 2.12 References
 
-- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2017) — ISBN 978-1491989142.
+- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2018) — Ch. 5 (Styles — styling with objects and Flexbox). ISBN 978-1491989142.
 - React Native docs, "Flexbox" & "Style": https://reactnative.dev/docs/flexbox.
 
 ---
@@ -385,7 +385,7 @@ const ShareLabel = Platform.select({ ios: 'Share', android: 'SHARE' });
 
 ### 3.12 References
 
-- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2018) — Ch. 2 (components vs. web), Ch. 4 (navigation, platform-specific components, `FlatList`), Ch. 9 (debugging & performance). ISBN 978-1491989142.
+- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2018) — Ch. 4 (Components for Mobile — `FlatList`), Ch. 8 (Platform-Specific Code), Ch. 9 (Debugging and Developer Tools), Ch. 10 (Navigation and Structure in Larger Applications). ISBN 978-1491989142.
 - React Navigation docs: https://reactnavigation.org/docs/getting-started.
 - React Native docs, "Platform-specific code" & "Optimizing FlatList": https://reactnative.dev/docs/platform-specific-code and https://reactnative.dev/docs/optimizing-flatlist-configuration.
 
