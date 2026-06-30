@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Habit**
 3. Continuous discovery, not one-off research
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -241,4 +241,111 @@ Strong: "What do you use today, and what does it cost you?" -> they pay for X / 
 
 > **End of Part I.** You can now run discovery that yields truth: talk about the user's life and problems (never pitch your idea), avoid compliments/fluff/face-value feature requests, and weight **past behavior and evidence of real effort** over stated future intentions — seeking the problems people already pay (in money or effort) to solve. **Part II — Habit** (Chapter 3) covers continuous discovery: making small, regular contact with users a weekly habit woven into delivery, rather than a one-off research project, so you keep learning as you build.
 
-<!--APPEND-PART-II-->
+## Part II – Habit
+
+Knowing *how* to talk to users (Part I) is wasted if you only do it once, at the start, as a "research phase." Markets, users, and your own understanding drift continuously, so the learning has to be continuous too. The shift is from research as a **project** (a big study, then back to building) to research as a **habit** — small, regular contact with customers woven into the rhythm of delivery, owned by the team building the product.
+
+---
+
+## Chapter 3 — Continuous discovery, not one-off research
+
+### 3.1 Introduction
+
+**Continuous discovery** means, at minimum, **weekly touchpoints with customers**, by the **team building the product**, conducting **small research activities**, in pursuit of a **desired outcome**. Each part matters: weekly (not quarterly), by the team itself (not outsourced to a research department), small (a single interview, not a six-week study), and tied to an outcome (you're learning toward a specific goal, not gathering facts in general). Discovery and delivery run in parallel, continuously, not in separate phases.
+
+### 3.2 Business context
+
+One-off research goes stale the moment building starts: decisions made months ago on old learning quietly become wrong, and the team has no cheap way to course-correct. Worse, when research is a separate team's job, the people making product decisions never build the customer empathy that drives good judgment. A continuous habit keeps the team's mental model fresh and close to reality, so the hundreds of small decisions made every week are informed by recent contact with real users — dramatically lowering the risk of drifting into building the wrong thing.
+
+### 3.3 Theoretical concepts: a habit, not a phase
+
+```mermaid
+flowchart LR
+    project["Research as a PROJECT: big study up front,<br/>then build for months on stale learning"]
+    habit["Research as a HABIT: weekly small touchpoints,<br/>by the team, woven into delivery"]
+    project --> drift["Decisions drift from reality"]
+    habit --> fresh["Mental model stays fresh & close to users"]
+```
+
+The unit of work is the **small, regular activity**: a single customer interview each week beats a giant study twice a year. The **product trio** (product, design, engineering) does the discovery *together* so the learning lands directly with the people who decide and build — empathy can't be handed off in a report. And every activity is anchored to a **desired outcome**, so discovery is steering toward a goal, not collecting trivia.
+
+### 3.4 Architecture: discovery in parallel with delivery
+
+```mermaid
+flowchart TB
+    outcome["Desired outcome (the target)"] --> tree["Opportunity space: map customer needs/pains<br/>(opportunity solution tree)"]
+    tree --> interviews["Weekly continuous interviews -> surface opportunities"]
+    interviews --> bets["Pick an opportunity -> small solution bets"]
+    bets --> measure["Build & measure against the outcome"]
+    measure -.->|learning feeds back weekly| tree
+```
+
+### 3.5 Real example
+
+**Scenario.** A team did three weeks of intensive user research at project kickoff, then went heads-down building for six months.
+
+**Problem.** By month four, several early assumptions are clearly wrong, but there's no mechanism to learn that — the "research phase" is over, and the team is committed to a stale plan. They discover the mistakes only at launch.
+
+**Solution.** Replace the research phase with a continuous habit: the trio runs **one customer interview every week**, anchored to the quarter's outcome, mapping what they hear onto the opportunity space and feeding it straight into what they build next.
+
+**Implementation (from phase to habit).**
+
+```text
+Before: [3-week research phase] -> [6 months building on frozen learning] -> launch -> surprises
+After:  weekly cadence, every week, all quarter:
+        - automate recruiting so an interview is always scheduled (no per-study setup)
+        - the trio interviews 1 customer -> surface opportunities (pains/needs), not validate a pitch
+        - update the opportunity solution tree; pick the next opportunity to address
+        - small solution bet -> measure against the outcome -> learning feeds next week
+=> the plan self-corrects continuously instead of failing all at once at launch
+```
+
+**Result.** The team catches wrong assumptions in week 4, not at launch, because contact with customers never stopped. Discovery and delivery run together; the roadmap bends toward what's actually true. Empathy lives with the trio, not in an archived report.
+
+**Future improvements.** Automate interview recruiting so a conversation is always on the calendar, and use an opportunity solution tree to keep weekly learning connected to the target outcome rather than scattering.
+
+### 3.6 Exercises
+
+1. State the four parts of the definition of continuous discovery.
+2. Why should the team building the product do the discovery itself?
+3. Contrast research as a project with research as a habit.
+
+### 3.7 Challenges
+
+- **Challenge.** Set up a weekly customer touchpoint for your team for the next month: automate recruiting so one interview is always booked, and tie what you learn to a single outcome. After four weeks, what changed in your decisions?
+
+### 3.8 Checklist
+
+- [ ] The team has at least weekly contact with customers.
+- [ ] Discovery is done by the product trio, not outsourced.
+- [ ] Activities are small and continuous, not big and occasional.
+- [ ] Every activity is anchored to a desired outcome.
+
+### 3.9 Best practices
+
+- Keep a weekly interviewing cadence; automate recruiting so it never lapses.
+- Have product, design, and engineering do discovery together.
+- Anchor discovery to an outcome and map findings to the opportunity space.
+
+### 3.10 Anti-patterns
+
+- A one-off "research phase" followed by months of building on stale learning.
+- Outsourcing discovery to a separate team (empathy can't be handed off).
+- "Research" with no connection to a target outcome.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Assumptions found wrong only at launch | Research was a one-off phase | Adopt a weekly continuous-discovery cadence |
+| Team lacks customer empathy | Discovery outsourced | Have the trio interview customers directly |
+| Discovery feels unfocused | Not tied to an outcome | Anchor activities to a desired outcome / opportunity tree |
+
+### 3.12 References
+
+- T. Torres, *Continuous Discovery Habits* (Product Talk, 2021) — Ch. 1, "The What and Why of Continuous Discovery" (the weekly-touchpoint definition and the product trio). ISBN 978-1736633304.
+- T. Torres, *Continuous Discovery Habits* (Product Talk, 2021) — Ch. 5, "Continuous Interviewing" (cadence, automated recruiting), and Ch. 6, "Mapping the Opportunity Space" (the opportunity solution tree).
+
+---
+
+> **End of Part II.** You can now run discovery as a continuous habit rather than a one-off study: at least **weekly touchpoints with customers**, conducted by the **product trio**, in **small** activities anchored to a **desired outcome**, with discovery and delivery running in parallel so the plan self-corrects as you build. Combined with Part I's unbiased conversation skills (ask about their life; weight past behavior), you have a complete, low-cost defense against building the wrong thing.
