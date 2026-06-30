@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Improvement**
 3. Capabilities that drive performance
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -255,4 +255,125 @@ After:  peer review in PRs + automated tests + small batches
 
 > **End of Part I.** You can now measure delivery performance with the four key metrics — deployment frequency and lead time (throughput), change failure rate and time to restore (stability) — and you understand the central finding that these rise together: small batches and automation make delivery both faster and safer, so there's no real speed-vs-stability trade-off. **Part II — Improvement** (Chapter 3) covers the technical, process, and cultural capabilities that research links to high performance, and how to drive improvement against the metrics.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Improvement
+
+The four key metrics (Part I) tell you *how well* you deliver, but not *what to change* to improve. A metric is a thermometer, not a treatment. The value of the *Accelerate* research is that it went further: it statistically identified a set of **capabilities** — concrete technical, process, and cultural practices — that *predict* high performance on those metrics. Knowing them turns "we should get better" into a specific, evidence-based improvement backlog. This chapter covers those capabilities and how to use the metrics to drive change.
+
+---
+
+## Chapter 3 — Capabilities that drive performance
+
+### 3.1 Introduction
+
+*Accelerate* identified roughly two dozen **capabilities** that statistically drive software delivery and organizational performance, grouped into a few families: **continuous delivery** (version control for everything, trunk-based development, automated testing and deployment, CI, shift-left on security), **architecture** (loosely coupled, testable and deployable independently; empowered teams choosing their own tools), **lean product & process** (small batches, work-in-progress limits, visible flow, customer feedback), and **culture** (a generative, **Westrum** information-sharing culture; learning treated as investment). The key idea: these capabilities are **causal levers** — improving them moves the four key metrics — and they are measurable, so you can target the weakest one.
+
+### 3.2 Business context
+
+Without a model of *what drives* performance, improvement efforts are guesswork — teams copy practices cargo-cult style and adopt tools that don't move the needle. The capability model lets an organization diagnose its specific constraint (e.g. "our architecture forces coordinated releases" or "we have no test automation") and invest where the evidence says it pays off. Because the same capabilities also predict *organizational* outcomes (profitability, productivity, market share), this is not just an engineering concern — it's how technology investment connects to business results.
+
+### 3.3 Theoretical concepts: capabilities → metrics → outcomes
+
+```mermaid
+flowchart LR
+    caps["Capabilities (CD, architecture, lean, culture)"] --> metrics["Four key metrics improve"]
+    metrics --> org["Organizational performance"]
+    metrics -- "measure & target weakest capability" --> caps
+```
+
+- **Continuous delivery capabilities** — trunk-based development, test automation, deployment automation, CI, version control of config; these directly shorten lead time and cut change failure rate.
+- **Architecture capability** — *loose coupling* is the strongest architectural predictor: teams that can test and deploy independently, without orchestrating with other teams, deliver far better. Architecture, not org chart, often sets the ceiling.
+- **Lean management & product** — small batches, WIP limits, visible flow, and gathering customer feedback shorten feedback loops and reduce rework.
+- **Generative culture (Westrum)** — high-cooperation, high-trust, "messengers are not shot" cultures predict performance; information flows to where it's needed and failure leads to inquiry, not blame.
+
+### 3.4 Architecture: a capability improvement loop
+
+```mermaid
+flowchart TB
+    measure["Measure the four key metrics"] --> diagnose["Find the constraining capability"]
+    diagnose --> invest["Invest in that capability (e.g. test automation)"]
+    invest --> change["Practice changes; capability rises"]
+    change --> measure
+```
+
+### 3.5 Real example
+
+**Scenario.** A company measures the four key metrics and finds long lead times and a high change failure rate, despite buying a fashionable CI/CD tool.
+
+**Problem.** The tool didn't help because the real constraint is architectural: a tightly coupled monolith forces every team to coordinate releases, and there's little test automation — so deployments are big, rare, and risky.
+
+**Solution.** Use the capability model to target the actual constraints: increase the *loose coupling* and *test automation* capabilities, not just tooling.
+
+**Implementation (capability-driven improvement).**
+
+```text
+DIAGNOSIS (from metrics + capability survey):
+  - lead time high           -> batches large, releases coordinated
+  - change fail rate high     -> weak automated testing
+  - constraint: tight coupling + low test automation
+
+TARGETED INVESTMENTS (evidence-backed capabilities):
+  1. Architecture: carve out one service that deploys independently
+     -> a team can release without org-wide coordination
+  2. Test automation: build a reliable automated suite as a CI gate
+     -> deploy with confidence; failures caught pre-prod
+  3. Trunk-based development + small batches
+     -> shorter lead time, smaller blast radius
+
+RE-MEASURE next quarter: lead time and change-fail-rate vs baseline
+```
+
+**Result.** Decoupling one service lets that team deploy on its own cadence (lead time drops); the automated test gate cuts the change failure rate; smaller batches make both improvements compound. The metrics confirm the gains, and the next-weakest capability becomes the following target.
+
+**Future improvements.** Run the capability survey periodically to re-diagnose; spread the decoupling pattern to more services; invest in the cultural capability (Westrum) so information and learning flow, which the research shows underpins the technical gains.
+
+### 3.6 Exercises
+
+1. Name the four capability families and one capability from each.
+2. Why is *loose coupling* described as often setting the ceiling on delivery performance?
+3. How do the four key metrics and the capabilities relate — which do you measure, and which do you change?
+
+### 3.7 Challenges
+
+- **Challenge.** For a team you know, pick the four key metrics, estimate where it stands, hypothesize the single constraining capability, and propose one targeted investment. State how you'd confirm the investment worked by re-measuring.
+
+### 3.8 Checklist
+
+- [ ] The four key metrics are measured as a baseline.
+- [ ] The constraining capability is identified, not guessed.
+- [ ] Investment targets that capability (not just new tooling).
+- [ ] Architecture is assessed for independent testability/deployability.
+- [ ] Culture is treated as a measurable capability (Westrum), not an afterthought.
+
+### 3.9 Best practices
+
+- Let the metrics point to the constraint; improve the capability behind it.
+- Prioritize loose coupling and test automation — high-leverage capabilities.
+- Re-measure after each change to confirm causality, not coincidence.
+- Invest in generative culture; it underpins the technical capabilities.
+
+### 3.10 Anti-patterns
+
+- Buying tools and expecting metrics to improve without changing practices.
+- Optimizing one metric (e.g. deploy frequency) while ignoring stability.
+- Ignoring architecture and blaming teams for slow delivery.
+- Treating culture as immutable rather than a capability you can build.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely constraining capability | Action |
+|---------|-------------------------------|--------|
+| Long lead time | Large batches / coordinated releases | Trunk-based dev, small batches, decouple |
+| High change failure rate | Weak test automation | Build automated tests as a CI gate |
+| Releases need org-wide coordination | Tight architectural coupling | Move toward independently deployable services |
+| Problems hidden until too late | Low-trust (pathological) culture | Build a generative, information-sharing culture |
+
+### 3.12 References
+
+- N. Forsgren, J. Humble, G. Kim, *Accelerate* (IT Revolution, 2018) — ISBN 978-1942788331 — Part I (the 24 capabilities) and the Westrum organizational-culture model.
+- DORA, "State of DevOps" reports: https://dora.dev/.
+
+---
+
+> **End of Part II — and of the guide.** Beyond *measuring* delivery with the four key metrics (Part I), you can now *improve* it: the *Accelerate* research identifies the **capabilities** — continuous delivery, loosely coupled architecture, lean management, and generative culture — that causally drive those metrics, so improvement becomes an evidence-based loop of measure → find the constraint → invest in the capability → re-measure. That is how technology performance is turned from opinion into a managed, compounding business advantage.

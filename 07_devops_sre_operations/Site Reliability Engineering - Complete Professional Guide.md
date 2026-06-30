@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Operating**
 3. Toil and eliminating it with engineering
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -243,4 +243,127 @@ Tracked on a shared dashboard; no debate needed — the number decides.
 
 > **End of Part I.** You can now engineer reliability as a measured, budgeted property: define user-centric SLIs and realistic SLOs (never 100%), and derive an error budget that you spend freely on change while in budget and that triggers a pre-agreed stability focus when exhausted — resolving the dev-vs-ops tension with data. **Part II — Operating** (Chapter 3) covers toil — manual, repetitive operational work — and how SRE caps and eliminates it through automation so engineers spend time on lasting improvements.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Operating
+
+Part I made reliability a measured, budgeted property (SLIs, SLOs, error budgets). But there's a second force that determines whether an SRE team stays effective: how it spends its *time*. A team drowning in manual operational work has no capacity to improve anything — it just keeps the lights on, more expensively each quarter as the service grows. SRE's defining discipline is treating operations as a software problem: identifying **toil** and engineering it away so that human time goes to lasting improvements, not endless repetition. This chapter defines toil, explains the cap SRE places on it, and shows how to eliminate it.
+
+---
+
+## Chapter 3 — Toil and eliminating it with engineering
+
+### 3.1 Introduction
+
+**Toil** is operational work tied to running a service that is **manual, repetitive, automatable, tactical (interrupt-driven), devoid of enduring value, and that scales linearly with the service's size**. Restarting a hung process by hand, manually applying a config to ten servers, copy-pasting steps from a wiki during every deploy — all toil. It is not the same as overhead (meetings, email); it's the grind of *running* the system. SRE's signature move is to treat this work as a software-engineering problem: measure it, cap it, and **automate it away**, so that the cost of operating a service grows sublinearly even as the service grows.
+
+### 3.2 Business context
+
+Toil is dangerous precisely because it feels like "just doing the job." Left unchecked it consumes a team entirely: as the service grows, linear toil eventually eats 100% of capacity, leaving no time for engineering — so reliability and velocity stagnate, and the team burns out and attrits. Capping and eliminating toil is what lets a *fixed-size* team run an *ever-growing* service, which is the whole economic argument for SRE. Every hour of toil automated away is an hour returned to work that compounds (better tooling, better reliability), instead of an hour that must be paid again next week.
+
+### 3.3 Theoretical concepts: identify, cap, automate
+
+```mermaid
+flowchart LR
+    work["Operational work"] --> q{"Manual, repetitive, automatable, no lasting value, scales with service?"}
+    q -- "yes" --> toil["Toil: measure it, cap it"]
+    q -- "no" --> eng["Engineering / overhead"]
+    toil --> auto["Automate or eliminate the source"]
+    auto --> capacity["Capacity returned to engineering"]
+```
+
+- **The hallmarks of toil** — manual, repetitive, automatable, tactical, no enduring value, O(n) with service growth. The more boxes a task ticks, the more it's toil.
+- **The 50% cap** — Google's SRE rule: keep toil **below 50%** of each SRE's time, reserving the rest for engineering that reduces future toil and improves reliability. If toil exceeds the cap, that's a signal to push back (e.g. return pager load to the dev team) and invest in automation.
+- **Eliminate the source, not just the symptom** — automating a bad manual process is good; redesigning the system so the work doesn't exist is better.
+- **Measure it** — track toil (e.g. via ticket/interrupt accounting) so the cap is enforceable and progress is visible.
+
+### 3.4 Architecture: turning toil into engineering capacity
+
+```mermaid
+flowchart TB
+    measure["Measure toil (interrupts, tickets, time)"] --> cap["Enforce < 50% toil cap"]
+    cap --> target["Target the biggest, most repetitive toil"]
+    target --> automate["Automate / self-heal / redesign"]
+    automate --> freed["Freed time -> more automation"]
+    freed --> measure
+```
+
+### 3.5 Real example
+
+**Scenario.** An on-call SRE manually restarts a memory-leaking service ~5 times a day and hand-edits a config across 12 hosts on every change. The team spends most of its week on this and has no time for improvements.
+
+**Problem.** This work is pure toil — manual, repetitive, automatable, no lasting value, and growing as more hosts are added. It's pushing the team past 50% toil and toward burnout, with reliability never actually improving.
+
+**Solution.** Measure the toil, then engineer it away: automate the restart as self-healing and replace hand-editing with config management — and fix the leak at the source.
+
+**Implementation (eliminate the source, then automate the rest).**
+
+```text
+1. MEASURE
+   - log each manual restart + each manual config edit (count, minutes)
+   - result: ~3 hrs/day of toil, trending up with host count
+
+2. ELIMINATE THE SOURCE (best)
+   - file a bug for the memory leak; fix it -> restarts no longer needed
+
+3. AUTOMATE WHAT REMAINS
+   - until fixed: liveness probe / supervisor auto-restarts on OOM (self-healing)
+   - config: move to a managed source-of-truth applied by automation
+     (push once -> all hosts converge; O(1) human effort, not O(n))
+
+4. RE-MEASURE against the < 50% toil cap; redirect freed time to the next toil source
+```
+
+**Result.** The leak fix removes the restart toil entirely; config management makes a 12-host change a single push instead of 12 manual edits; measured toil drops well under the 50% cap. The reclaimed time goes into more automation, so operating cost stops scaling with the fleet. The team escapes the treadmill.
+
+**Future improvements.** Build a toil budget into planning and review it each cycle; create self-service tooling so common requests don't generate tickets; periodically re-audit for new toil that crept in as the system changed.
+
+### 3.6 Exercises
+
+1. List the hallmarks that make a task "toil", and classify two tasks from your own work.
+2. Why does SRE cap toil at 50%, and what should happen when a team exceeds it?
+3. Why is eliminating the *source* of toil better than automating the manual steps?
+
+### 3.7 Challenges
+
+- **Challenge.** Track one week of your operational work and tag each item as toil or engineering. Pick the single largest toil source and write a concrete plan to eliminate or automate it — including how you'd measure the time reclaimed.
+
+### 3.8 Checklist
+
+- [ ] Toil is identified by its hallmarks, not by gut feel.
+- [ ] Toil is measured (interrupts/tickets/time), so it's visible.
+- [ ] Toil is kept below the ~50% cap; exceeding it triggers action.
+- [ ] Automation eliminates sources of toil, not just symptoms.
+- [ ] Reclaimed time is reinvested in further toil reduction/reliability.
+
+### 3.9 Best practices
+
+- Measure toil continuously so the cap is enforceable.
+- Attack the biggest, most repetitive toil first (highest leverage).
+- Prefer fixing the system so the work disappears over automating the work.
+- Protect engineering time; don't let toil silently expand to fill the week.
+
+### 3.10 Anti-patterns
+
+- Treating toil as "just the job" and never measuring it.
+- Heroically absorbing rising toil until the team burns out.
+- Automating a broken process instead of removing the need for it.
+- Letting toil exceed 50% indefinitely with no push-back or investment.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| No time for engineering | Toil over the 50% cap | Measure it; automate the biggest source |
+| Same manual fix, daily | Symptom automated, source untouched | Fix the root cause (e.g. the leak) |
+| Effort grows with fleet size | O(n) manual work | Replace with O(1) automation/config management |
+| Burnout, attrition on-call | Unbounded, unmeasured toil | Enforce the cap; return excess load to dev teams |
+
+### 3.12 References
+
+- B. Beyer, C. Jones, J. Petoff, N. Murphy (eds.), *Site Reliability Engineering* (O'Reilly, 2016) — ISBN 978-1491929124 — Ch. 5 "Eliminating Toil"; https://sre.google/books/.
+- Google, "The Site Reliability Workbook" (2018) — ISBN 978-1492029502 — toil measurement and reduction.
+
+---
+
+> **End of Part II — and of the guide.** SRE's second pillar is **time discipline**: recognize **toil** — manual, repetitive, automatable work that scales with the service and carries no lasting value — measure it, keep it under the ~50% cap, and engineer it away (ideally by removing its source). Combined with Part I's measured, budgeted reliability (SLIs/SLOs/error budgets), this is what lets a fixed-size team run an ever-growing service reliably: human effort goes to improvements that compound, not to a treadmill that must be re-run every week.

@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Color**
 3. Choosing and using color systematically
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -238,4 +238,132 @@ flowchart TB
 
 > **End of Part I.** You can now apply the two biggest visual-design levers without design training: build hierarchy with font weight and color/contrast (using size sparingly) so importance reads clearly, and use a consistent spacing scale plus proximity so whitespace communicates grouping and the UI feels professional. **Part II — Color** (Chapter 3) covers choosing a usable palette (a few well-chosen hues with many shades), ensuring contrast for accessibility, and applying color systematically with design tokens.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Color
+
+Color is where untrained designers most often get stuck: they pick a couple of hex values, discover they need a "slightly lighter" border and a "slightly darker" hover, and end up with a sprawling, inconsistent palette assembled one eyedropper at a time. The fix is not artistic talent — it is **structure**. Choose a small number of hues, generate a predictable set of shades for each, hold the result to a contrast standard, and store it as tokens. Part II turns color from guesswork into a system.
+
+---
+
+## Chapter 3 — Choosing and using color systematically
+
+### 3.1 Introduction
+
+A usable palette is not a handful of nice colors — it is a **structured set**: a few hues (one or two primaries, a set of neutral greys, and a few semantic accents for success/warning/danger), each expanded into a **range of shades** from light to dark. Working in **HSL** instead of hex makes that range tractable, because you build shades by adjusting lightness and saturation along a single hue. On top of structure sits one hard constraint — **contrast** — so text and UI remain legible for everyone. This chapter covers choosing the palette, generating shades, meeting WCAG contrast, and applying it all through design tokens.
+
+### 3.2 Business context
+
+Color decisions made ad hoc are a recurring tax: every new component needs a border shade, a hover state, a disabled grey, and without a system each is hand-picked, so the UI drifts and looks amateurish. A structured palette removes those micro-decisions — the shade you need already exists — which speeds delivery and keeps the product visually coherent as it grows. Contrast is also a legal and reach question: WCAG-level contrast is required by accessibility regulations in many markets, and low-contrast text excludes users with low vision *and* anyone on a phone in sunlight. A systematic palette is simultaneously faster to build with, more consistent, and more accessible.
+
+### 3.3 Theoretical concepts: HSL and a shade range
+
+```mermaid
+flowchart TB
+    hsl["HSL: hue, saturation, lightness"] --> hue["Pick a few hues (primary, greys, semantic)"]
+    hue --> shades["Generate ~9 shades per hue by varying L (and S)"]
+    shades --> sat["Keep saturation up as lightness drops, so darks aren't muddy"]
+    sat --> palette["Predictable palette: the shade you need exists"]
+```
+
+**HSL** describes a color the way the eye reasons about it: **hue** (position on the wheel), **saturation** (how vivid), **lightness** (how light/dark). That makes a *shade range* easy — fix the hue and step the lightness to get 5, 10, 90% versions of "blue." Two refinements from Refactoring UI: you need **more shades than you think** (roughly nine per hue covers backgrounds, borders, text, and states), and **don't let lightness kill saturation** — as you darken or lighten, nudge saturation up so the extremes don't turn grey and lifeless. Beyond hues, you need a **grey scale** (most of a UI is greys) and a few **semantic** colors (success, warning, danger).
+
+### 3.4 Architecture: tokens, not literals
+
+```mermaid
+flowchart LR
+    raw["Palette scale: blue-100..blue-900, grey-50..grey-900"] --> sem["Semantic tokens: color-text, color-border, color-primary"]
+    sem --> ui["Components reference tokens, never raw hex"]
+    ui --> theme["Swap the token layer -> retheme/dark mode for free"]
+```
+
+Store color in two layers. The **scale** is the raw palette (`--blue-500`, `--grey-200`, …). **Semantic tokens** map intent to a scale value (`--color-text: var(--grey-900)`, `--color-primary: var(--blue-600)`). Components reference *semantic* tokens only — never raw hex. This indirection is what makes theming and dark mode a localized change (swap the token layer) instead of a find-and-replace across the codebase, and it guarantees the same blue everywhere.
+
+### 3.5 Real example
+
+**Scenario.** A growing app whose CSS contains 40+ distinct hex values: a dozen near-identical greys, three "brand blues," and hover states hand-darkened per component.
+
+**Problem.** Nothing is consistent — two buttons use different blues, borders are eyeballed greys, and a dark-mode request would mean editing hundreds of literals. Several grey-on-grey labels also fail contrast.
+
+**Solution.** Replace the literals with an HSL-based scale and semantic tokens, and check contrast.
+
+**Implementation.**
+
+```css
+:root {
+  /* Scale: one hue, shades by lightness; saturation kept up at the dark end */
+  --blue-100: hsl(214 95% 93%);
+  --blue-600: hsl(221 83% 45%);   /* primary */
+  --blue-700: hsl(222 80% 38%);   /* hover */
+  --grey-50:  hsl(210 20% 98%);
+  --grey-200: hsl(214 15% 88%);   /* borders */
+  --grey-700: hsl(215 25% 27%);
+  --grey-900: hsl(217 33% 12%);   /* body text */
+  --red-600:  hsl(0 72% 45%);     /* danger */
+
+  /* Semantic tokens: components use these, never the scale directly */
+  --color-text:    var(--grey-900);
+  --color-border:  var(--grey-200);
+  --color-primary: var(--blue-600);
+  --color-primary-hover: var(--blue-700);
+}
+.btn-primary { background: var(--color-primary); color: white; }
+.btn-primary:hover { background: var(--color-primary-hover); }
+```
+
+`--grey-900` on white is ~16:1 and `--blue-600` text on white is ~5:1 — both clear WCAG AA (4.5:1 for body text, 3:1 for large text and UI components).
+
+**Result.** One blue, one grey scale, hover states that come from the scale rather than guesswork. The UI is visually consistent, contrast passes, and dark mode is now a matter of remapping the semantic tokens.
+
+**Future improvements.** Add a dark theme by overriding the semantic-token layer under `prefers-color-scheme: dark`; validate every text/background pair against AA in CI; pair color-coded states with an icon or label so meaning never depends on color alone.
+
+### 3.6 Exercises
+
+1. Why is HSL easier than hex for generating a range of shades?
+2. Roughly how many shades per hue do you need, and what do they cover?
+3. What are the WCAG AA contrast minimums for body text vs. large text/UI?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a component's hand-picked hex colors and rebuild them as an HSL scale plus semantic tokens. Generate at least seven shades of one hue, verify your text/background pairs meet AA, then add a dark mode by overriding only the token layer.
+
+### 3.8 Checklist
+
+- [ ] I define colors in HSL and generate shades by varying lightness (and saturation).
+- [ ] My palette has a grey scale and semantic accents, not just one or two hues.
+- [ ] Components reference semantic tokens, never raw hex.
+- [ ] Text meets WCAG AA contrast (4.5:1 body, 3:1 large/UI).
+- [ ] Meaning never depends on color alone (icon/label paired).
+
+### 3.9 Best practices
+
+- Build a scale of ~9 shades per hue up front; reuse instead of eyedropping new ones.
+- Keep saturation up at light and dark extremes so shades don't go muddy/grey.
+- Layer color as scale → semantic tokens → components for easy theming.
+- Check contrast as part of definition, not as an afterthought.
+
+### 3.10 Anti-patterns
+
+- A palette assembled one hex value at a time, with many near-identical greys.
+- Hand-darkening hover/active states per component.
+- Low-contrast grey-on-grey text that looks elegant but fails AA.
+- Encoding status with color only (red/green) with no icon or text.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Palette feels inconsistent | Ad hoc hex values | Generate an HSL scale; map semantic tokens |
+| Dark shades look muddy | Saturation dropped with lightness | Raise saturation at the dark end |
+| Text fails accessibility audit | Contrast below AA | Use a darker shade until ≥4.5:1 (body) |
+| Retheming is a huge edit | Components use raw hex | Introduce a semantic-token layer |
+
+### 3.12 References
+
+- A. Wathan & S. Schoger, *Refactoring UI* (2018) — "Working with Color" (Ditch hex for HSL; You probably need more colors than you think; Don't let lightness kill your saturation; Accessible doesn't have to mean ugly).
+- W3C, "WCAG 2.2 — Contrast (Minimum) 1.4.3": https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html.
+- MDN, "Using CSS custom properties": https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties.
+
+---
+
+> **End of guide.** You can now make interfaces look designed without design training: build hierarchy with weight and contrast and structure space with a consistent scale (Part I), then choose and apply color as a system — HSL-based shade ranges, a grey scale and semantic accents, WCAG contrast, and design tokens (Part II).

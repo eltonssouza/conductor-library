@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Operating**
 3. Least privilege and blast-radius control in practice
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -248,4 +248,138 @@ flowchart TB
 
 > **End of Part I.** You can now design for security and reliability as one problem — robust behavior under both accidental failure and deliberate attack — reusing shared techniques (isolation, redundancy, monitoring) while watching for conflicts, and you design for recovery (detect, contain, recover to known-good, learn) rather than prevention alone. **Part II — Operating** (Chapter 3) goes deeper on least privilege and blast-radius control in running systems: compartmentalization, credential rotation, and limiting what any compromised component can reach.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Operating
+
+Part I argued that security and reliability are one problem and that you should design for recovery. Part II turns to the *operating* discipline that makes that real in a running system: who and what can do which actions, with how much scope, for how long. The same principle — least privilege — protects against the mistaken insider and the account-takeover attacker at once, because once an attacker holds an employee's credentials, the two are indistinguishable. The companion discipline is **blast-radius control**: structuring the system so that any single compromise — a stolen credential, a bad deploy, a buggy service — can only reach a bounded fraction of it.
+
+---
+
+## Chapter 3 — Least privilege and blast-radius control in practice
+
+### 3.1 Introduction
+
+**Least privilege** means every human, automated task, and machine gets the minimum access needed to do the job *at hand* — minimal in **scope** (which resources, which actions) and in **duration** (only while needed). **Blast-radius control** means designing failure domains so that one compromise can't cascade: a stolen credential scoped to one region can't reach another; a compromised service can call only a handful of narrow APIs, not the whole control plane. The two are the same idea seen from two angles — grant little, and contain what a breach of that little can touch. They defend equally against the well-meaning insider who fat-fingers a command and the attacker who has hijacked that insider's account.
+
+### 3.2 Business context
+
+In most organizations, the access an engineer holds was granted once and never revoked — broad, standing, ambient authority that lets any single compromised account or careless command do enormous damage. That standing access is precisely what an attacker inherits the moment they phish a credential. The cost of *not* applying least privilege is paid twice: in security (one stolen credential = total compromise) and in reliability (one mistaken command = fleet-wide outage). Google's own analysis found a large share of outages were caused by insiders who didn't realize their impact — the same standing privilege that an attacker would abuse. Designing for least privilege at the *start* is cheap; retrofitting it onto a running system whose every tool assumes ambient root is expensive and slow. The business case is that bounded blast radius turns "any mistake or breach can be catastrophic" into "the worst case is contained, observable, and recoverable."
+
+### 3.3 Theoretical concepts: scope, duration, and failure domains
+
+Least privilege is enforced through a handful of concrete mechanisms. **Zero-trust networking**: network location grants no authority — a port in the office is no more trusted than the public internet; access derives from verified user *and* device credentials. **Small functional APIs**: expose narrow, purpose-built operations instead of broad shell/root access, so the granted capability is exactly the task and nothing more. **Multi-party authorization (MPA)**: sensitive actions require a second approver, defeating both a lone malicious insider and a single stolen credential. **Scoped, expiring credentials**: bound to a region/service and short-lived, so a stolen token's reach is small and its window brief. **Breakglass**: an audited, alarmed bypass for emergencies, so least privilege never blocks incident recovery.
+
+```mermaid
+flowchart TB
+    request["Actor requests an action"] --> ztn{"Zero trust: user + device verified?"}
+    ztn -- "no" --> deny["Deny"]
+    ztn -- "yes" --> api["Call a small, purpose-built API (not root)"]
+    api --> mpa{"Sensitive? needs second approver?"}
+    mpa -- "yes" --> approve["Multi-party authorization"]
+    mpa -- "no" --> scope["Issue scoped, short-lived credential"]
+    approve --> scope
+    scope --> audit["Audited; breakglass available for emergencies"]
+```
+
+Blast radius is then a property of how you **compartmentalize**: distinct failure domains (per region, per service, per data class) with credentials scoped to each, so lateral movement and privilege escalation are structurally limited rather than merely discouraged.
+
+### 3.4 Architecture: the safe proxy and bounded failure domains
+
+```mermaid
+flowchart LR
+    actor["Human / automation"] --> proxy["Safe proxy: authN, MPA, ACL check, audit log"]
+    proxy --> a["Failure domain A (region/service)"]
+    proxy --> b["Failure domain B"]
+    proxy --> c["Failure domain C"]
+    note["Direct connections denied except via breakglass<br/>Compromise of A cannot reach B or C"]
+```
+
+Routing privileged actions through a **safe proxy** (Google's "Zero Touch Prod" pattern) gives one central place to enforce multi-party authorization, apply ACLs, and log every command — while denying direct connections to production. Because each target sits in its own failure domain with region- or service-scoped credentials, a compromise of one domain cannot move laterally into the others. The proxy is the choke point where least privilege is enforced and the audit trail is produced; the compartments are what keep the blast radius bounded when a compromise nonetheless happens.
+
+### 3.5 Real example
+
+**Scenario.** An on-call engineer needs to restart a misbehaving service in one region. Today every on-call holds standing SSH-as-root across the entire fleet.
+
+**Problem.** That standing root is a double liability: a fat-fingered command can take down the whole fleet (reliability), and a single phished on-call credential hands an attacker total control (security). The blast radius of any mistake or breach is "everything."
+
+**Solution.** Replace ambient root with least privilege: a small functional API for the specific operation (restart-service), routed through a safe proxy that enforces MPA for risky actions, issues region-scoped short-lived credentials, logs everything, and offers an audited breakglass path for emergencies.
+
+**Implementation (least privilege + bounded blast radius).**
+
+```text
+Before:  on-call has standing SSH root on all regions  => blast radius = entire fleet
+
+After:
+  - No standing root. Access via safe proxy only (direct prod connections denied).
+  - Action exposed as a narrow API:  restartService(region, service)   # not a shell
+  - Credentials: scoped to ONE region, expire in 1 hour
+  - Risky actions (e.g. delete, drain region): require multi-party approval (MPA)
+  - Every call logged to an immutable audit trail
+  - Breakglass: alarmed, audited bypass for emergencies only
+
+Result of a phished on-call credential now:
+  - usable only via the proxy, only for narrow APIs, only in one region, for <1h
+  - destructive actions still blocked without a second approver
+  => blast radius = one region, one hour, no destructive ops
+```
+
+**Result.** The same credential that previously meant "total compromise" now reaches one region for under an hour and cannot perform destructive actions alone. A mistaken command is contained to one failure domain; a stolen credential is contained the same way. Recovery is unaffected because breakglass remains available, audited, and alarmed.
+
+**Future improvements.** Push more actions behind small functional APIs to shrink the remaining shell access; tighten credential lifetimes; add anomaly detection on proxy logs so an attempted abuse is visible in real time; rehearse breakglass in game days so it works under pressure.
+
+### 3.6 Exercises
+
+1. Define least privilege in terms of both scope and duration.
+2. Why does least privilege defend against the mistaken insider and the account-takeover attacker with one mechanism?
+3. What does a safe proxy centralize, and why is that valuable?
+4. How do scoped, expiring credentials bound the blast radius of a stolen token?
+
+### 3.7 Challenges
+
+- **Challenge.** Pick a role in your system that holds standing, broad access. List the *specific* actions that role actually performs in a typical week. Design a small functional API for the two most common ones, decide which actions warrant multi-party authorization, and state the blast radius before and after.
+
+### 3.8 Checklist
+
+- [ ] No standing ambient authority (no default root/admin); access is granted per task.
+- [ ] Access is scoped (resource, action, region/service) and time-bound (expires).
+- [ ] Sensitive actions require multi-party authorization.
+- [ ] Privileged actions flow through an audited choke point (safe proxy); direct prod access is denied.
+- [ ] Failure domains are compartmentalized so one compromise can't move laterally.
+- [ ] An alarmed, audited breakglass path exists for emergencies.
+
+### 3.9 Best practices
+
+- Design for least privilege at the start of the lifecycle, not as a retrofit.
+- Replace broad shell/root with small, purpose-built APIs.
+- Scope credentials to the narrowest region/service and the shortest lifetime that works.
+- Route privileged actions through a safe proxy to centralize MPA, ACLs, and audit logging.
+- Compartmentalize into failure domains; keep breakglass available, alarmed, and rehearsed.
+
+### 3.10 Anti-patterns
+
+- Standing root / ambient authority "for convenience."
+- Network-location trust ("inside the VPN" treated as authorized).
+- Long-lived, broadly scoped credentials that an attacker inherits intact.
+- A flat blast radius where any compromise reaches the whole fleet.
+- Breakglass with no audit or alarm — an unmonitored backdoor.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| One mistake/breach reaches the whole fleet | No compartmentalization | Build failure domains; scope credentials per domain |
+| Stolen credential = total compromise | Standing, broad, long-lived access | Apply least privilege; scope and expire credentials |
+| Can't tell who did what in an incident | No central audited choke point | Route privileged actions through a safe proxy with logging |
+| Least privilege blocks emergency recovery | No breakglass path | Add an alarmed, audited breakglass mechanism |
+| Lone insider can perform destructive ops | No multi-party authorization | Require a second approver for sensitive actions |
+
+### 3.12 References
+
+- H. Adkins et al. (Google), *Building Secure and Reliable Systems* (O'Reilly, 2020), **Ch. 5 "Design for Least Privilege"** (zero-trust networking, small functional APIs, multi-party authorization, breakglass) — ISBN 978-1492083122; https://sre.google/books/building-secure-reliable-systems/.
+- H. Adkins et al., *Building Secure and Reliable Systems*, **Ch. 3 "Case Study: Safe Proxies"** (Zero Touch Prod) and **Ch. 8 "Design for Resilience"** (controlling the blast radius, compartmentalization).
+- NIST, "Zero Trust Architecture" (SP 800-207).
+
+---
+
+> **End of Part II — end of guide.** You can now operate a system under least privilege and bounded blast radius: grant minimal scope for minimal duration, expose narrow purpose-built APIs instead of ambient root, require multi-party authorization for sensitive actions, route privileged access through an audited safe proxy, and compartmentalize into failure domains so a single compromise — mistaken insider or account-takeover attacker alike — is contained, observable, and recoverable. Together with Part I's "security and reliability are one problem, design for recovery," this gives you a coherent way to build systems that keep working correctly under both accident and attack.

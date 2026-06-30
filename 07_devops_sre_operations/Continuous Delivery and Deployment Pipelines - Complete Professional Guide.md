@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Safe release**
 3. Progressive delivery (blue-green, canary)
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -248,4 +248,130 @@ merge small pieces to main continuously, each behind FEATURE_NEW_CHECKOUT=off
 
 > **End of Part I.** You can now build a continuous delivery capability: an automated deployment pipeline that builds one immutable artifact and promotes it through fast-to-slow stages, keeping software always releasable via trunk-based development and feature flags — so deploying becomes a routine, low-risk decision rather than a risky event. **Part II — Safe release** (Chapter 3) covers progressive delivery: blue-green deployments and canary releases that expose new versions to a fraction of traffic first, with automatic rollback on trouble.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Safe release
+
+Part I made software *always releasable*; this part makes the **act of releasing** safe. Even a perfectly tested artifact carries risk at the moment it meets real production traffic — load, data, and integrations no test fully reproduces. Progressive delivery shrinks that risk by **decoupling deploy from release** and exposing a new version to a controlled slice of traffic first, with a fast, rehearsed path back. Two techniques anchor the chapter: blue-green deployments and canary releases.
+
+---
+
+## Chapter 3 — Progressive delivery (blue-green, canary)
+
+### 3.1 Introduction
+
+**Blue-green deployment** runs two production environments — *blue* (current) and *green* (new) — and switches all traffic from one to the other in a single routing change; if the new version misbehaves, you switch back instantly. **Canary releasing** routes a small fraction of traffic (say 1–5%) to the new version, watches its error and latency metrics, and ramps up only if it stays healthy — otherwise it rolls back having affected few users. Both rest on a key idea: **deploying** a version (putting the bits in production) is separate from **releasing** it (sending users to it).
+
+### 3.2 Business context
+
+A big-bang cutover exposes 100% of users to an unproven version at once; if it fails, everyone is affected and rollback is a scramble. Progressive delivery converts that all-or-nothing gamble into a measured, reversible step: blue-green makes rollback a routing flip (seconds, not a redeploy), and canary caps the blast radius of a bad release to a tiny user fraction. For the business this means releasing frequently *without* betting the whole user base on each one — the confidence that underpins true continuous delivery.
+
+### 3.3 Theoretical concepts: deploy ≠ release
+
+```mermaid
+flowchart LR
+    deploy["Deploy: bits in prod, no/low traffic"] --> verify["Verify against real traffic slice"]
+    verify -- "healthy" --> ramp["Release: ramp traffic to 100%"]
+    verify -- "unhealthy" --> rollback["Rollback: route away (no redeploy)"]
+```
+
+- **Blue-green** — two full environments; the router points at one. Cut over by repointing; roll back by repointing. Needs both environments runnable at once and a way to handle in-flight sessions and database schema compatibility.
+- **Canary** — one environment, weighted routing. Start at a small percentage, compare canary vs baseline metrics, then ramp (5% → 25% → 100%) or abort. Needs good observability to judge "healthy".
+- **Automated rollback** — define metric thresholds (error rate, p99 latency) up front; the pipeline aborts and reverts traffic automatically when a threshold is crossed, so a human isn't the failure detector.
+
+### 3.4 Architecture: a router in front of versions
+
+```mermaid
+flowchart TB
+    users["Production traffic"] --> router["Router / load balancer (weighted)"]
+    router -- "100% (then 0%)" --> blue["Blue: current version"]
+    router -- "0% -> canary % -> 100%" --> green["Green: new version"]
+    metrics["Metrics: error rate, latency"] --> gate["Release gate / automated rollback"]
+    gate -. "shift or revert weights" .-> router
+```
+
+### 3.5 Real example
+
+**Scenario.** A payments API releases a rewrite of its fraud-scoring path. The team cannot afford a bad version reaching all merchants, but wants to ship this week.
+
+**Problem.** A full cutover would expose every merchant at once; a regression in scoring would mean mass false declines and a slow, manual rollback.
+
+**Solution.** Deploy the new version alongside the old and release it as a canary behind a CD pipeline (e.g. a Jenkins pipeline) with metric-gated, automatic rollback, then blue-green for the final cutover.
+
+**Implementation (pipeline stage, pseudocode).**
+
+```groovy
+// Jenkins declarative pipeline stage (illustrative)
+stage('Canary release') {
+  steps {
+    sh 'deploy fraud-api:2.0.0 --to green --traffic 0'   // deploy, no traffic
+    sh 'route --canary green --weight 5'                  // 5% to the canary
+    script {
+      def ok = waitForMetrics(window: '10m',
+                              errorRate: '< 0.5%', p99: '< 250ms')
+      if (ok) {
+        sh 'route --canary green --weight 25'             // ramp
+        sh 'route --promote green --weight 100'           // blue-green cutover
+      } else {
+        sh 'route --abort green --weight 0'               // automatic rollback
+        error 'Canary failed health gate; rolled back'
+      }
+    }
+  }
+}
+```
+
+**Result.** The rewrite first saw 5% of traffic; metrics stayed within the gate, so the pipeline ramped to 25% and then promoted green to 100% — a blue-green cutover with blue kept warm for instant revert. Had scoring regressed, the gate would have routed traffic back to blue automatically, sparing the vast majority of merchants.
+
+**Future improvements.** Add automated canary *analysis* (statistical comparison of canary vs baseline rather than fixed thresholds); ensure database changes are backward-compatible (expand/contract) so blue and green can run against the same schema; rehearse the rollback path regularly.
+
+### 3.6 Exercises
+
+1. Why does progressive delivery insist that "deploy" and "release" are different acts?
+2. Contrast blue-green and canary — what does each optimize, and what does each require of the database schema?
+3. Why should rollback be triggered by metrics rather than by a human noticing?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a service and design a canary release: pick two SLIs (error rate, latency), define abort thresholds and a ramp schedule (e.g. 5% → 25% → 100%), and describe exactly what the automated rollback does when a threshold is crossed mid-ramp.
+
+### 3.8 Checklist
+
+- [ ] Deploy is decoupled from release (traffic is controlled separately from the running version).
+- [ ] A blue-green or canary strategy is chosen deliberately per service.
+- [ ] Rollback is a routing change, not a rebuild/redeploy.
+- [ ] Health gates (error rate, latency) are defined *before* the release and enforced automatically.
+- [ ] Database schema changes are backward-compatible across the two versions.
+
+### 3.9 Best practices
+
+- Keep the previous version warm (blue-green) so rollback is instant.
+- Use expand/contract (backward-compatible) database migrations so two app versions coexist safely.
+- Gate ramps on real SLIs and automate the abort; don't rely on humans watching dashboards.
+- Start canaries small and ramp in steps, not one jump to 100%.
+
+### 3.10 Anti-patterns
+
+- A "rollback" that requires rebuilding and redeploying the old version (slow, error-prone).
+- Coupling a breaking schema change to the deploy, so blue and green can't run together.
+- Canarying without observability — you can't judge health, so the canary is theater.
+- Big-bang cutover for high-risk changes because progressive delivery "seems complex".
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Rollback takes many minutes | Rollback means redeploy, not reroute | Keep prior version running; revert by routing |
+| Canary looks fine but full release breaks | Canary % too small or wrong metrics | Ramp in steps; gate on user-facing SLIs |
+| Errors right after cutover | Breaking DB schema change | Use expand/contract; make schema version-compatible |
+| Bad release reached all users | No automated health gate | Add metric thresholds that auto-abort the ramp |
+
+### 3.12 References
+
+- J. Humble, D. Farley, *Continuous Delivery* (Addison-Wesley, 2010) — ISBN 978-0321601919 — Ch. 10 "Deploying and Releasing Applications" (Blue-Green Deployments; Canary Releasing).
+- M. Soni, *Jenkins Essentials* (Packt, 2015) — pipeline orchestration of build/test/deploy stages.
+- M. Fowler, "BlueGreenDeployment" & "CanaryRelease": https://martinfowler.com/bliki/.
+
+---
+
+> **End of Part II — and of the guide.** You can now release safely as well as build releasably: by **decoupling deploy from release** and putting a router in front of versions, you cut over with **blue-green** (instant reroute-based rollback) and limit blast radius with **canary** releases gated on real SLIs and automatic rollback. Together with Part I's build-once deployment pipeline and always-releasable trunk, this makes shipping to production a frequent, low-risk, reversible decision rather than an event to be feared.

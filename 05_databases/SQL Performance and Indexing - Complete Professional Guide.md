@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Diagnosis**
 3. Reading the execution plan
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -145,7 +145,7 @@ SELECT id, password_hash FROM users WHERE email = :email;
 
 ### 1.12 References
 
-- M. Winand, *SQL Performance Explained* (2012) — ISBN 978-3950307825; also https://use-the-index-luke.com.
+- M. Winand, *SQL Performance Explained* (2012), Chapter 1 "Anatomy of an Index" — ISBN 978-3950307825; also https://use-the-index-luke.com.
 - PostgreSQL docs, "Indexes": https://www.postgresql.org/docs/current/indexes.html.
 
 ---
@@ -244,11 +244,143 @@ LIMIT 20;
 
 ### 2.12 References
 
-- M. Winand, *SQL Performance Explained* (2012) — ISBN 978-3950307825; also https://use-the-index-luke.com.
+- M. Winand, *SQL Performance Explained* (2012), Chapter 2 "The Where Clause" (concatenated/composite indexes) — ISBN 978-3950307825; also https://use-the-index-luke.com.
 - MySQL docs, "Multiple-Column Indexes": https://dev.mysql.com/doc/refman/en/multiple-column-indexes.html.
 
 ---
 
 > **End of Part I.** You can now reason about indexing: how a B-tree serves equality, range, and ordered reads, and how composite-index column order (the leftmost-prefix rule) lets one well-designed index serve several query shapes. **Part II — Diagnosis** (Chapter 3) teaches reading the execution plan (EXPLAIN) so you can see whether your indexes are actually used, spot full scans and missing-index sorts, and verify a fix.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Diagnosis
+
+Part I taught how indexes *should* work. Part II teaches how to *check*. The execution plan is the database telling you, in its own words, how it ran your query — which index it used (or ignored), how it joined tables, and where it spent the time. Reading it turns performance work from guessing into measuring.
+
+---
+
+## Chapter 3 — Reading the execution plan
+
+### 3.1 Introduction
+
+The **execution plan** is the optimizer's chosen recipe for a query: the order of operations, the access method for each table, and the estimated (or, with `ANALYZE`, the actual) row counts and cost. You obtain it with `EXPLAIN` (and `EXPLAIN ANALYZE` to run the query and report real timings). Reading it is the single most useful database performance skill: it ends the guessing. Instead of "I added an index, is it faster?", you *see* whether the plan now uses an **index scan** instead of a **full table scan**, and whether a costly **sort** disappeared. Without the plan, indexing is superstition; with it, it is engineering.
+
+### 3.2 Business context
+
+Most "the database is slow" tickets are one query doing a full scan or a needless sort that an index would remove. The execution plan is how you find *which* query and *why*, before touching anything. It also prevents the opposite waste: adding indexes the optimizer never uses. Teams that read plans fix the actual bottleneck and prove the gain with a before/after; teams that don't ship speculative indexes that bloat writes without helping reads.
+
+### 3.3 Theoretical concepts: access methods in the plan
+
+```mermaid
+flowchart TB
+    full["Seq Scan / TABLE ACCESS FULL<br/>read every row — fine for small/most-of-table, bad for selective lookups"]
+    range["Index Range Scan<br/>walk the B-tree to a range — the goal for selective filters"]
+    seek["Index Unique/Seek<br/>one B-tree descent to a single row"]
+    only["Index-Only Scan<br/>answer entirely from the index, no table fetch"]
+```
+
+The first thing to read in a plan is the **access method** per table:
+
+- **Full table scan** (`Seq Scan`, `TABLE ACCESS FULL`) — reads every row. Correct when the query needs most of the table; a red flag when it needs a few rows from a big table.
+- **Index range scan** — descends the B-tree and walks a contiguous range. This is what a selective `WHERE` should produce.
+- **Index unique scan / seek** — one descent to a single row (typically a primary-key lookup).
+- **Index-only scan** — the index alone has every column the query needs, so the table is never touched (a covering index; Part I, leftmost-prefix economics).
+
+A selective query showing a full scan is the classic "missing or unused index" signal.
+
+### 3.4 Architecture: joins and sorts in the plan
+
+```mermaid
+flowchart LR
+    nl["Nested Loop<br/>for each outer row, index-lookup the inner — great when outer set is small + inner is indexed"]
+    hash["Hash Join<br/>build a hash of one side, probe with the other — great for large unindexed joins"]
+    merge["Sort-Merge Join<br/>sort both sides, merge — good when inputs are already ordered"]
+    sort["Sort / Hash Aggregate<br/>explicit ORDER BY or GROUP BY work — often removable with an ordered index"]
+```
+
+Beyond single-table access, two plan elements drive most cost:
+
+- **Join algorithm.** A **nested loop** is ideal when the outer input is small and the inner table is indexed on the join key — but catastrophic (O(n×m)) when the outer set is large and the inner lookup is a scan. A **hash join** suits large, unindexed joins; a **sort-merge join** suits inputs already sorted. When a nested loop over a big input shows up, the fix is usually an index on the inner join column.
+- **Sort.** An explicit `Sort` step for `ORDER BY` or `GROUP BY` is work the database could often skip if an index already delivered rows in that order (Part I). Seeing a large sort that spills to disk is a direct pointer to a missing ordered index.
+
+`EXPLAIN ANALYZE` adds the decisive column: **estimated vs actual rows**. A wild mismatch means the optimizer's statistics are stale — it chose a bad plan from bad estimates, and the fix is to refresh statistics, not to add an index.
+
+### 3.5 Real example
+
+**Scenario.** A report query filtering `orders` by `customer_id` and sorting by `order_date` takes seconds on a large table.
+
+**Problem.** `EXPLAIN ANALYZE` shows a `Seq Scan` on `orders` plus a large `Sort` that spills to disk — no index serves the filter, and none provides the order.
+
+**Solution.** A composite index on `(customer_id, order_date)` serves the equality filter *and* returns rows already ordered, removing both the scan and the sort.
+
+**Implementation (read the plan, fix, re-read).**
+
+```sql
+-- before
+EXPLAIN ANALYZE
+SELECT * FROM orders WHERE customer_id = 42 ORDER BY order_date;
+--   Sort  (actual rows=1200 ...)            <- explicit sort, spills to disk
+--     ->  Seq Scan on orders                <- full scan, filter applied after read
+
+CREATE INDEX idx_orders_cust_date ON orders (customer_id, order_date);
+
+-- after
+EXPLAIN ANALYZE
+SELECT * FROM orders WHERE customer_id = 42 ORDER BY order_date;
+--   Index Scan using idx_orders_cust_date   <- range scan on the filter,
+--                                               rows already ordered: NO sort step
+```
+
+**Result.** The plan switches from `Seq Scan + Sort` to a single `Index Scan`; the sort is gone because the index supplies the order. The before/after plan is the proof the fix worked — not a stopwatch hunch.
+
+**Future improvements.** If the query selects only a few columns, extend the index to cover them for an **index-only scan**, eliminating the table fetch entirely.
+
+### 3.6 Exercises
+
+1. What does a `Seq Scan` on a large table under a selective `WHERE` usually indicate?
+2. When is a nested-loop join the right choice, and when is it a disaster?
+3. In `EXPLAIN ANALYZE`, what does a large gap between estimated and actual rows tell you, and what's the fix?
+
+### 3.7 Challenges
+
+- **Challenge.** Take your slowest query. Capture its `EXPLAIN ANALYZE`, identify the single most expensive operation (scan, join, or sort), apply one targeted index, and capture the plan again. Quantify the improvement from the two plans.
+
+### 3.8 Checklist
+
+- [ ] I can read the access method (full scan vs index scan) for each table.
+- [ ] I recognize nested-loop, hash, and sort-merge joins and when each is appropriate.
+- [ ] I spot an explicit sort that an ordered index would remove.
+- [ ] I use `EXPLAIN ANALYZE` and compare estimated vs actual rows.
+- [ ] I prove every fix with a before/after plan, not a guess.
+
+### 3.9 Best practices
+
+- Always confirm a new index is used by re-reading the plan — don't assume.
+- Use `EXPLAIN ANALYZE` to get real timings and row counts, not just estimates.
+- When estimates are wildly off, refresh table statistics before adding indexes.
+- Keep the plan and timing as before/after evidence for the change.
+
+### 3.10 Anti-patterns
+
+- Adding indexes without reading the plan to see if the optimizer uses them.
+- Ignoring a large `Sort` step that an ordered index would eliminate.
+- Reading only estimated cost and never running `ANALYZE` for actual rows.
+- Blaming the query when stale statistics caused a bad plan.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `Seq Scan` on a big table for a selective filter | Missing or unusable index | Add an index matching the `WHERE` (and order) |
+| Query slow despite an index existing | Optimizer ignores it (low selectivity / function on column) | Check selectivity; avoid wrapping the column in a function |
+| Large `Sort` spilling to disk | No index provides the required order | Add an ordered/composite index covering `ORDER BY` |
+| Estimated rows far from actual | Stale statistics → bad plan | Refresh statistics (`ANALYZE`); then re-check the plan |
+
+### 3.12 References
+
+- M. Winand, *SQL Performance Explained* (2012), Appendix A "Execution Plans" (Oracle, PostgreSQL, SQL Server, MySQL) and Chapter 4 "The Join Operation" — ISBN 978-3950307825; also https://use-the-index-luke.com.
+- PostgreSQL docs, "Using EXPLAIN": https://www.postgresql.org/docs/current/using-explain.html.
+
+---
+
+> **End of guide.** You can now reason about SQL performance end to end: how a **B-tree index** and **composite-column order** serve equality, range, and ordered reads (Part I), and how to **read the execution plan** to verify it (Part II) — spotting full scans, recognizing join algorithms, eliminating needless sorts, and trusting estimated-vs-actual rows over hunches. The discipline is the same throughout: design the index for the access pattern, then read the plan to prove the database actually uses it.

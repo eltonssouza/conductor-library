@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Mechanisms**
 3. How engines enforce isolation (locking and MVCC)
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -151,7 +151,7 @@ COMMIT;   -- both applied, durably; any failure -> ROLLBACK, neither applied
 
 ### 1.12 References
 
-- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019) — ISBN 978-0078022159.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 17 "Transactions" — §17.1 Transaction Concept, §17.4 Transaction Atomicity and Durability — ISBN 978-0078022159.
 - J. Gray, A. Reuter, *Transaction Processing* (Morgan Kaufmann, 1992) — ISBN 978-1558601901.
 
 ---
@@ -255,11 +255,127 @@ COMMIT;   -- concurrent conflicting txn gets a serialization error -> retry
 
 ### 2.12 References
 
-- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019) — ISBN 978-0078022159.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 17 "Transactions" — §17.5 Transaction Isolation, §17.8 Transaction Isolation Levels — ISBN 978-0078022159.
 - PostgreSQL docs, "Transaction Isolation": https://www.postgresql.org/docs/current/transaction-iso.html.
 
 ---
 
 > **End of Part I.** You can now reason about transactions: the ACID guarantees (especially atomicity for boundaries and isolation as the tunable one), and the isolation levels that trade strictness for concurrency by permitting or preventing dirty reads, non-repeatable reads, and phantoms — choosing the weakest level that's still correct per operation. **Part II — Mechanisms** (Chapter 3) covers how engines actually enforce isolation: pessimistic locking versus multi-version concurrency control (MVCC), the model behind PostgreSQL and most modern databases.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Mechanisms
+
+Part I described *what* each isolation level promises. Part II explains *how* an engine delivers it. Two mechanisms do almost all the work, and the one your database uses explains its behavior under contention: whether readers block writers, why a "lost" row is actually an old version, and where deadlocks come from.
+
+---
+
+## Chapter 3 — How engines enforce isolation (locking and MVCC)
+
+### 3.1 Introduction
+
+An isolation level is a promise; **concurrency control** is the machinery that keeps it. Two families dominate. **Pessimistic** control (two-phase locking, 2PL) assumes conflicts will happen and prevents them with **locks** — a transaction must hold a lock before it reads or writes, so conflicting transactions wait. **Optimistic / multi-version** control (MVCC) assumes conflicts are rare and lets transactions proceed on their own **snapshot** of the data, checking for conflicts only at commit. PostgreSQL, Oracle, MySQL/InnoDB, and SQL Server (in its snapshot modes) are all MVCC. Knowing which mechanism runs underneath turns "the database is slow under load" into a specific, diagnosable cause.
+
+### 3.2 Business context
+
+Under load, the *mechanism* — not the SQL — decides whether requests queue, abort, or sail through. A team that does not know its engine is MVCC will misread bloated tables and long-running-transaction warnings; a team that does not know it uses locking will be baffled by deadlocks and lock-wait timeouts. The mechanism also dictates the cheapest correct fix: add a lock, shorten a transaction, or retry an aborted one. Getting this wrong wastes incident time and ships fragile workarounds.
+
+### 3.3 Theoretical concepts: locks vs versions
+
+```mermaid
+flowchart TB
+    twopl["2PL (pessimistic): acquire locks, hold to commit, then release<br/>conflicting txns WAIT — readers can block writers"]
+    mvcc["MVCC (multi-version): each txn reads a consistent SNAPSHOT<br/>writes create new versions — readers never block writers"]
+```
+
+- **Two-phase locking (2PL).** A transaction acquires locks in a **growing** phase and releases them only in a **shrinking** phase (in practice, at commit). This serializes conflicting access but means a write can block a read and vice versa, and two transactions waiting on each other's locks **deadlock** — the engine detects the cycle and aborts a victim.
+- **MVCC.** Every write creates a **new version** of a row tagged with the transaction that made it; it does not overwrite the old one. A reading transaction sees the snapshot consistent with its start, so **readers never block writers and writers never block readers**. The old versions are cleaned up later (PostgreSQL's `VACUUM`).
+
+**Snapshot isolation** is MVCC's headline level: every statement (or transaction) reads a frozen, consistent snapshot — eliminating dirty and non-repeatable reads without a single read lock.
+
+### 3.4 Architecture: write conflicts and the cost of each model
+
+```mermaid
+flowchart LR
+    w1["Txn A updates row R"] --> ver["MVCC: new version of R, old kept"]
+    w2["Txn B updates same row R"] --> wait["B waits for A, then re-checks"]
+    wait --> outcome["A commits -> B sees conflict -> abort/retry (or proceed if no overlap)"]
+```
+
+MVCC makes reads cheap but does not make *write* conflicts disappear: two transactions updating the **same row** still serialize, and under snapshot isolation a **write skew** anomaly can slip through (two transactions each read a shared invariant, then write — both pass their own snapshot, together they break it). The fixes are *Serializable Snapshot Isolation* (PostgreSQL's `SERIALIZABLE`, which tracks read/write dependencies and aborts a transaction that would violate serializability) or an explicit lock (`SELECT … FOR UPDATE`). The costs differ: 2PL pays in **blocking and deadlocks**; MVCC pays in **version bloat and aborts** that the application must retry.
+
+### 3.5 Real example
+
+**Scenario.** A PostgreSQL app reports occasional `could not serialize access` errors and, separately, tables that keep growing even though row counts are flat.
+
+**Problem.** The team treats both as bugs. They are both MVCC behaving as designed: the serialization errors are `SERIALIZABLE` aborting a conflicting transaction; the growth is **dead tuples** (old row versions) awaiting `VACUUM`.
+
+**Solution.** Wrap the serializable transaction in a **retry loop** (the abort is expected, not a failure), and ensure autovacuum keeps up with the dead-version churn. For a specific invariant that snapshot isolation alone can't hold, take an explicit row lock.
+
+**Implementation (the two fixes).**
+
+```sql
+-- 1. Lock the rows whose invariant you are about to depend on (prevents write skew)
+BEGIN;
+SELECT balance FROM accounts WHERE id = 42 FOR UPDATE;   -- pessimistic lock under MVCC
+UPDATE accounts SET balance = balance - 100 WHERE id = 42;
+COMMIT;
+
+-- 2. Under SERIALIZABLE, treat a serialization failure as "retry", not "error"
+--    (application pseudocode)
+--    retry up to N times on SQLSTATE 40001 before surfacing the error
+```
+
+**Result.** The serialization aborts are retried transparently; the invariant is held by the explicit lock; autovacuum reclaims the old versions so tables stop bloating. Each symptom now maps to a deliberate MVCC mechanism, not a mystery.
+
+**Future improvements.** Monitor long-running transactions — under MVCC they pin old versions and block vacuum, the root cause of most "unexplained bloat." Alert on transaction age.
+
+### 3.6 Exercises
+
+1. Under 2PL, why can a read block a write? Under MVCC, why can't it?
+2. What does a write to a row physically do under MVCC, and what must clean it up afterward?
+3. Snapshot isolation prevents dirty and non-repeatable reads but allows **write skew** — why, and what are two ways to prevent it?
+
+### 3.7 Challenges
+
+- **Challenge.** On your database, run two concurrent transactions that update the same row and observe the wait. Then run two that update *different* rows under `SERIALIZABLE` with a shared read invariant and trigger a serialization failure. Explain each outcome in terms of locks vs versions.
+
+### 3.8 Checklist
+
+- [ ] I know whether my engine uses 2PL, MVCC, or both.
+- [ ] I understand readers don't block writers under MVCC — and what that costs (version bloat, vacuum).
+- [ ] I treat serialization failures as retryable, not as bugs.
+- [ ] I use `SELECT … FOR UPDATE` to hold an invariant snapshot isolation can't.
+- [ ] I watch long-running transactions because they pin old versions.
+
+### 3.9 Best practices
+
+- Keep transactions short — under MVCC, long ones block vacuum; under 2PL, they hold locks longer.
+- Wrap `SERIALIZABLE` transactions in a bounded retry loop.
+- Reach for an explicit row lock only for the specific invariant that needs it.
+- Keep autovacuum (or the equivalent) healthy so old versions are reclaimed.
+
+### 3.10 Anti-patterns
+
+- Treating expected serialization aborts as application errors instead of retrying.
+- Long-lived transactions that pin old row versions and starve vacuum.
+- Locking everything `FOR UPDATE` "to be safe," reintroducing the blocking MVCC avoids.
+- Assuming snapshot isolation is fully serializable (ignoring write skew).
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `could not serialize access` errors | `SERIALIZABLE` aborting a real conflict (by design) | Retry the transaction on SQLSTATE 40001 |
+| Deadlock detected / victim aborted | Cyclic lock waits under 2PL / `FOR UPDATE` | Order locks consistently; shorten transactions; retry |
+| Tables grow while row counts are flat | MVCC dead tuples not reclaimed | Ensure autovacuum keeps up; find blocking long transactions |
+| Rare invariant violation under load | Write skew under snapshot isolation | Use `SERIALIZABLE` or lock the read rows `FOR UPDATE` |
+
+### 3.12 References
+
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 18 "Concurrency Control" — §18.1 Two-Phase Locking, §18.7 Multiversion Schemes, §18.8 Snapshot Isolation — ISBN 978-0078022159.
+- PostgreSQL docs, "Concurrency Control" (MVCC, snapshot & serializable): https://www.postgresql.org/docs/current/mvcc.html.
+
+---
+
+> **End of guide.** You can now reason about transactions and concurrency end to end: the **ACID** guarantees and the **isolation levels** that trade strictness for concurrency (Part I), and the **mechanisms** that enforce them (Part II) — **pessimistic 2PL**, where conflicting transactions wait and can deadlock, versus **MVCC**, where every write is a new version and readers never block writers, at the cost of version bloat and retryable aborts. The through-line: pick the weakest isolation that stays correct, know which mechanism your engine uses, and let that knowledge name the cheapest correct fix for contention.

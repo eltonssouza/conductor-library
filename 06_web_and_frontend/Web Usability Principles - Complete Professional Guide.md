@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Validating**
 3. Cheap usability testing
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -250,4 +250,122 @@ After:  key metric  -> 32px bold, high contrast
 
 > **End of Part I.** You can now apply the core usability principle — make interfaces self-evident so users don't have to think — by designing for how people actually behave (scan, satisfice, muddle through), reusing conventions, and expressing visual hierarchy so prominence matches importance. **Part II — Validating** (Chapter 3) covers cheap, frequent usability testing — watching a few real users attempt tasks — as the reliable way to find the confusion you can't see yourself.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Validating
+
+You cannot tell whether your interface is self-evident, because you already know how it works — you're too close to it to see what confuses a first-time user. Design debates ("I think users will…", "no, users prefer…") are usually unresolvable opinions about an *average* user who doesn't exist. The only reliable way out is to **watch real people use it**. Part II makes that practical: not an expensive lab study, but a cheap, repeatable habit any team can sustain — a morning a month, a few users, fixes shipped before the next round.
+
+---
+
+## Chapter 3 — Cheap usability testing
+
+### 3.1 Introduction
+
+Usability testing is **watching one person at a time try to do typical tasks** with your interface while they think out loud, so you can see where they hesitate, misread, or get stuck. Krug's central, liberating claim is that it does **not** need to be expensive or formal: testing **three users** in a **morning, once a month**, then debriefing over lunch and fixing the worst problems before the next round, finds the vast majority of serious issues for almost no cost. The goal is **actionable insight, not statistical proof**. This chapter covers why a few users suffice, how to run a session, and how to turn what you see into fixes.
+
+### 3.2 Business context
+
+Disagreements about design are expensive when settled by seniority or loudest voice — they ship the wrong thing and you discover it after launch, in support tickets and lost conversions. Testing replaces opinion with observation: it ends "religious debates" cheaply and early, when changes still cost little. Because the method is so light (a morning a month), it fits inside real schedules instead of being the study that's always deferred until "after the deadline." And because it surfaces the confusion that costs real users — the unclear label, the invisible button, the form that traps them — it pays back directly in completion rates and reduced support load. The trap it avoids is testing too late and too rarely; small and frequent beats big and occasional.
+
+### 3.3 Theoretical concepts: a few users, often
+
+```mermaid
+flowchart TB
+    three["Test ~3 users"] --> most["They hit most of the serious problems"]
+    most --> fix["Fix the worst few"]
+    fix --> again["Test 3 more next month"]
+    again --> more["Catch what the fixes revealed -- iterate"]
+```
+
+You don't need many participants because the **most serious problems are the most common** — three users will stumble on them. Testing a huge sample to find *every* problem is wasted effort: "you can find more problems in half a day than you can fix in a month," so finding more isn't the bottleneck — fixing is. The leverage is **iteration**: test a few, fix the worst, and test again next month, because each fix exposes the next layer of problems. Frequent small rounds beat one large study because they keep validating as the design changes. The output is qualitative — *where* people struggle and *why* — not a metric.
+
+### 3.4 Architecture: the morning-a-month session
+
+```mermaid
+flowchart LR
+    recruit["Recruit ~3 roughly-representative users"] --> tasks["Give real tasks, ask them to think aloud"]
+    tasks --> observe["Facilitator stays neutral; team observes"]
+    observe --> debrief["Debrief over lunch: pick the few worst problems"]
+    debrief --> next["Fix before next month's round"]
+```
+
+The mechanics are deliberately simple. **Recruit** loosely — "recruit users who are roughly representative," because most serious problems aren't specific to your exact audience. Give **real tasks** ("buy a ticket to…") and ask the user to **think aloud**. The **facilitator** stays neutral: no leading, no rescuing, no explaining — let the interface speak. The **team watches** (a screen share is enough), because seeing a real user struggle is far more persuasive than a report. Then **debrief immediately** over lunch and agree on the **handful of most serious problems** to fix before next month — resisting the urge to log everything.
+
+### 3.5 Real example
+
+**Scenario.** A team argues for weeks about whether their checkout's "Continue" button is clear or whether users want a visible cart summary first. No one can prove it.
+
+**Problem.** The debate is about an imaginary average user; opinions don't converge, and shipping either version is a guess.
+
+**Solution.** A morning-a-month test: three roughly-representative users, one real task, the team watching.
+
+**Implementation.**
+
+> **Task given:** "You want to buy two tickets to Saturday's show — go ahead and do that, and say what you're thinking as you go."
+>
+> **What the team observes (3 users):**
+> - User 1 clicks "Continue," then backtracks: "Wait — did it add both? I can't tell."
+> - User 2 hunts for a cart total: "I'd want to see the price before I commit."
+> - User 3 reads "Continue" as "continue shopping," not "go to payment."
+>
+> **Debrief over lunch — the few worst problems:**
+> 1. "Continue" label is ambiguous → rename to "Go to payment."
+> 2. No order summary before payment → add a cart total on the page.
+>
+> (Smaller nits are noted but not fixed this round.)
+
+**Result.** The weeks-long debate is settled in one morning by observation, not opinion. Two concrete, high-value fixes are agreed and shipped before the next round — which will reveal the *next* layer of confusion.
+
+**Future improvements.** Make it a standing date (e.g. the third Thursday); rotate which team members facilitate and observe; keep a running list of the worst problems so fixes are prioritized by severity, not by who shouted loudest.
+
+### 3.6 Exercises
+
+1. Why do three users find most of the *serious* problems?
+2. What is the facilitator's main job during a session — and what must they avoid?
+3. Why is "a morning a month" better than one big study before launch?
+
+### 3.7 Challenges
+
+- **Challenge.** Run a 60-minute test with three people who haven't seen your product. Give one realistic task, ask them to think aloud, stay neutral, and have the team watch. Debrief afterward and commit to fixing only the three most serious problems before testing again.
+
+### 3.8 Checklist
+
+- [ ] I test a few users (≈3) frequently rather than many users rarely.
+- [ ] I use real tasks and ask participants to think aloud.
+- [ ] The facilitator stays neutral — no leading or rescuing.
+- [ ] The team observes the sessions directly.
+- [ ] We debrief immediately and fix the few most serious problems before the next round.
+
+### 3.9 Best practices
+
+- Schedule a recurring testing day so it survives busy weeks.
+- Recruit loosely; most serious problems aren't audience-specific.
+- Focus on the worst problems first — you'll always find more than you can fix.
+- Treat results as actionable insight, not proof; iterate.
+
+### 3.10 Anti-patterns
+
+- Settling design debates by opinion or seniority instead of observation.
+- Deferring testing until "after launch" (or until a big formal study is affordable).
+- Leading or rescuing the participant, so the interface is never really tested.
+- Logging every minor issue and fixing none of the big ones.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Endless design debates | Opinions, no observation | Watch three users do the task |
+| "We never have time to test" | Test tied to milestones | Fix a recurring morning-a-month date |
+| Sessions feel inconclusive | Facilitator leads/explains | Stay neutral; give tasks, then watch |
+| Nothing improves between rounds | Fixing too many small things | Fix only the few most serious problems |
+
+### 3.12 References
+
+- S. Krug, *Don't Make Me Think, Revisited*, 3rd ed. (New Riders, 2014) — Ch. 9 (Usability testing on 10 cents a day), Ch. 8 (resolving design debates by testing). ISBN 978-0321965516.
+- S. Krug, *Rocket Surgery Made Easy* (New Riders, 2010) — do-it-yourself usability testing.
+- Nielsen Norman Group, "Why You Only Need to Test with 5 Users": https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/.
+
+---
+
+> **End of guide.** You can now make web interfaces usable end to end: design them to be self-evident for how people actually behave, using conventions and clear visual hierarchy (Part I), then validate that they are — cheaply and continuously — by watching a few real users attempt real tasks and fixing the worst problems first (Part II).

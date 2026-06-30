@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Interaction**
 3. Keyboard support and focus management
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -257,4 +257,136 @@ btn.addEventListener('click', () => {
 
 > **End of Part I.** You can now build accessible components by starting from semantic HTML (which gives roles, keyboard support, and focus for free) and adding ARIA only to fill genuine gaps — following its rules, keeping states in sync, and always providing accessible names. **Part II — Interaction** (Chapter 3) covers keyboard support and focus management for custom widgets: tab order, focus trapping in dialogs, and visible focus indicators.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Interaction
+
+Semantic HTML gives you keyboard support for free — but the moment you build a widget the platform does not provide (a custom menu, a tab interface, a modal dialog), you inherit the job the browser used to do: deciding what is focusable, what order focus moves in, what each key does, and where focus goes when things open and close. Part II is that job done correctly. Get it wrong and the component is literally unusable for anyone not holding a mouse; get it right and it works for keyboard, switch, and screen-reader users alike.
+
+---
+
+## Chapter 3 — Keyboard support and focus management
+
+### 3.1 Introduction
+
+Every interaction a mouse can do, the keyboard must be able to do too — this is a baseline requirement of WCAG, not a nice-to-have. For native elements you get it automatically: links, buttons, and form controls are focusable and respond to Enter/Space. For **custom widgets** you must supply it deliberately: make the right elements focusable, manage **tab order** with `tabindex`, implement the **keyboard interaction pattern** the widget's role implies, **trap and restore focus** around modals, and keep the **focus indicator visible**. This chapter covers those four levers and the patterns that combine them.
+
+### 3.2 Business context
+
+Keyboard access is the foundation that switch devices, voice control, and screen readers all build on — fix the keyboard and you fix a whole class of assistive technology at once. It is also where most "accessible-looking" components silently fail: a `<div>` styled as a button looks fine in a demo and is invisible to a keyboard user. Beyond the human cost, keyboard operability is the most-cited issue in accessibility audits and legal complaints (WCAG 2.1.1 *Keyboard*, 2.4.3 *Focus Order*, 2.4.7 *Focus Visible*). Getting it right is cheaper as a habit than as a remediation project, and it benefits everyone — power users navigate faster by keyboard than by mouse.
+
+### 3.3 Theoretical concepts: tabindex and the roving pattern
+
+```mermaid
+flowchart TB
+    t0["tabindex=0 -> in tab order, at DOM position"] --> seq["Tab moves between widgets"]
+    tm["tabindex=-1 -> focusable by script, not by Tab"] --> rove["Arrow keys move within a widget"]
+    seq --> comp["One Tab stop per composite widget"]
+    rove --> comp
+    tpos["tabindex>0 -> AVOID: breaks natural order"]
+```
+
+`tabindex="0"` puts an element in the natural tab order at its DOM position; `tabindex="-1"` makes it focusable by script (`element.focus()`) but skips it during Tab. **Positive** `tabindex` values are an anti-pattern — they override DOM order and create unmaintainable focus traps. Composite widgets (menus, tab lists, grids, toolbars) use the **roving tabindex** pattern: exactly one child has `tabindex="0"` and is the single Tab stop; the rest are `tabindex="-1"`; **arrow keys** move focus between children, updating which one is the `0`. This matches the WAI-ARIA Authoring Practices: Tab moves *between* widgets, arrow keys move *within* one.
+
+### 3.4 Architecture: focus flow through a modal dialog
+
+```mermaid
+flowchart LR
+    open["Open: save the trigger element"] --> move["Move focus into the dialog"]
+    move --> trap["Trap Tab/Shift+Tab inside; Esc closes"]
+    trap --> close["Close: restore focus to the saved trigger"]
+```
+
+A modal dialog is the canonical focus-management problem. On open, **record** the element that triggered it, then move focus to the dialog (its first control or the dialog container). While open, **trap** focus: Tab from the last control wraps to the first, Shift+Tab from the first wraps to the last, and content behind the dialog is inert (`inert` attribute or `aria-hidden`). **Esc** closes. On close, **restore** focus to the saved trigger so the user is not dumped at the top of the page. The native `<dialog>` element with `showModal()` provides trapping and inertness for free — reach for it before hand-rolling.
+
+### 3.5 Real example
+
+**Scenario.** A custom "actions" menu button that opens a list of options, plus a confirmation dialog for the destructive action.
+
+**Problem.** The first version uses `<div>`s with click handlers: nothing is focusable, arrow keys do nothing, and when the dialog opens focus stays behind it — keyboard and screen-reader users cannot operate it at all.
+
+**Solution.** A real `<button>` trigger, a roving-tabindex menu, and the native `<dialog>` for modal focus management.
+
+**Implementation.**
+
+```html
+<button id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="menu">Actions</button>
+<ul id="menu" role="menu" hidden>
+  <li role="menuitem" tabindex="0">Rename</li>
+  <li role="menuitem" tabindex="-1">Duplicate</li>
+  <li role="menuitem" tabindex="-1">Delete…</li>
+</ul>
+<dialog id="confirm"><p>Delete this item?</p><button>Cancel</button><button>Delete</button></dialog>
+```
+
+```js
+const items = [...menu.querySelectorAll('[role=menuitem]')];
+menu.addEventListener('keydown', (e) => {
+  const i = items.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    const next = (i + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length;
+    items[i].tabIndex = -1;            // roving tabindex: move the single 0
+    items[next].tabIndex = 0;
+    items[next].focus();
+  }
+  if (e.key === 'Escape') { closeMenu(); menuBtn.focus(); }  // restore focus to trigger
+});
+// Native <dialog> traps focus and restores it on close automatically:
+deleteItem.addEventListener('click', () => confirm.showModal());
+```
+
+**Result.** The menu is one Tab stop; arrow keys move between items; Esc returns focus to the button. The dialog traps Tab while open and restores focus to its trigger on close. The component is fully operable by keyboard, switch, and screen reader.
+
+**Future improvements.** Add type-ahead (jump to an item by typing its first letter), Home/End to jump to first/last, and `:focus-visible` styling so the focus ring shows for keyboard but not mouse users.
+
+### 3.6 Exercises
+
+1. What is the difference between `tabindex="0"` and `tabindex="-1"`, and why avoid positive values?
+2. Describe the roving tabindex pattern and which widgets use it.
+3. What three focus steps must a modal dialog perform (open, while open, close)?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a custom dropdown built from `<div>`s and rebuild it with a real `<button>` trigger and roving tabindex. Then replace a hand-rolled modal with the native `<dialog>` and confirm focus is trapped while open and restored to the trigger on close.
+
+### 3.8 Checklist
+
+- [ ] Everything operable by mouse is operable by keyboard (WCAG 2.1.1).
+- [ ] Composite widgets are one Tab stop with arrow-key navigation (roving tabindex).
+- [ ] No positive `tabindex` values anywhere.
+- [ ] Modals trap focus, close on Esc, and restore focus to the trigger.
+- [ ] A visible focus indicator is never removed without a replacement.
+
+### 3.9 Best practices
+
+- Start from native elements (`<button>`, `<a>`, `<dialog>`) so you inherit focus and keyboard behavior.
+- Implement the keyboard pattern the role implies — follow the WAI-ARIA Authoring Practices.
+- Use `:focus-visible` to show a strong ring for keyboard users without distracting mouse users.
+- Save and restore focus around any overlay, menu, or dialog.
+
+### 3.10 Anti-patterns
+
+- `<div onclick>` "buttons" with no `tabindex` and no key handling.
+- Positive `tabindex` to force an order.
+- `outline: none` with no visible replacement focus style.
+- Overlays that leave focus behind them or scatter it to the page top on close.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't reach a control with Tab | Not focusable | Use a native control or add `tabindex="0"` |
+| Tab visits every menu item | No roving tabindex | One `0`, rest `-1`, arrow keys move focus |
+| Focus lost after closing a dialog | No restore step | Save the trigger, call `.focus()` on close |
+| Focus ring invisible | `outline` removed | Restore with `:focus-visible` styling |
+
+### 3.12 References
+
+- W3C, "ARIA Authoring Practices Guide — Developing a Keyboard Interface": https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/.
+- H. Pickering, *Inclusive Components* (2018) — chapters on Menus & Menu Buttons, Tabbed Interfaces, and Modal dialogs. https://inclusive-components.design.
+- MDN, "&lt;dialog&gt; element": https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog.
+
+---
+
+> **End of guide.** You can now build accessible components end to end: start from semantic HTML for roles, names, and built-in behavior (Part I), add ARIA only to fill real gaps, and supply correct keyboard and focus management — tab order, roving tabindex, focus trapping, and visible focus — for the custom widgets the platform does not provide (Part II).

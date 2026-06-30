@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Across the stack**
 3. Resources: CPU, memory, disk, network
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -245,4 +245,143 @@ investigate p99 requests -> a slow DB query on a code path -> optimize it
 
 > **End of Part I.** You can now approach performance methodically: use the USE method (Utilization, Saturation, Errors per resource) to find the real bottleneck instead of guessing, and measure latency correctly via distributions and percentiles (p95/p99) at the layer users feel — optimizing the tail, not the misleading average. **Part II — Across the stack** (Chapter 3) goes resource by resource (CPU, memory, disk, network), covering what saturates each, the tools to observe it, and common remedies.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Across the stack
+
+Part I gave you the *method* — USE to find the bottleneck, percentiles to read latency honestly. This part applies that method to the four resources that bound almost every system: **CPU, memory, disk, and network**. For each, the questions are the same (How utilized? How saturated? Any errors?), but the metrics, the tools, and the remedies differ. Knowing what saturation looks like per resource — and which one command reveals it — is what turns the method into a fast, concrete diagnosis.
+
+---
+
+## Chapter 3 — Resources: CPU, memory, disk, network
+
+### 3.1 Introduction
+
+Apply the **USE method** (Utilization, Saturation, Errors) to each physical resource in turn. **CPU**: utilization is busy-time, saturation is the run-queue length (threads waiting for a core). **Memory**: utilization is how full RAM is, but the real saturation signal is **paging/swapping** (and the OOM killer). **Disk**: utilization is `%util`, saturation shows as I/O wait and queue depth, with **latency** the metric users feel. **Network**: utilization is throughput vs link capacity, saturation shows as drops/backlog, errors as **retransmits**. Each resource has a go-to tool — `mpstat`, `vmstat`/`free`, `iostat`, `sar`/`ss` — and a characteristic saturation symptom. This chapter is the per-resource checklist.
+
+### 3.2 Business context
+
+Most performance incidents bottom out in one saturated resource, but teams waste hours optimizing the wrong one because they never checked systematically. A per-resource USE pass is fast and decisive: it tells you in minutes whether you're CPU-bound, swapping, disk-latency-bound, or dropping packets — and therefore whether to scale up, fix a memory leak, add an index, or chase a network error. That precision avoids expensive wrong moves (e.g. buying CPU when the real problem is disk latency) and shortens incidents, which is what the business actually pays for.
+
+### 3.3 Theoretical concepts: USE per resource
+
+```mermaid
+flowchart TB
+    cpu["CPU: util=busy%, sat=run queue, tool=mpstat/top"]
+    mem["Memory: util=RAM used, sat=paging/swap+OOM, tool=vmstat/free"]
+    disk["Disk: util=%util, sat=I/O wait+queue, latency!, tool=iostat"]
+    net["Network: util=throughput, sat=drops/backlog, err=retransmits, tool=sar/ss"]
+```
+
+- **CPU** — high `%usr` means application work; high `%sys` means kernel/syscalls; a long **run queue** (load average >> core count) means saturation. Remedies: profile hot code, scale out, reduce work.
+- **Memory** — RAM "full" is normal (caching); the danger sign is **swapping/paging** (disk-speed memory) and the OOM killer. Remedies: fix leaks, size correctly, tune caches.
+- **Disk** — watch **latency** (ms/op) and queueing, not just throughput; `%util` near 100% with rising await means saturation. Remedies: add an index (push work off disk), faster storage, batch/sequential I/O.
+- **Network** — check throughput vs capacity, **retransmits** (errors), and socket backlog. Remedies: fix the lossy path, increase capacity, reduce chattiness.
+
+### 3.4 Architecture: a top-down per-resource sweep
+
+```mermaid
+flowchart LR
+    slow["Symptom: slow / saturated"] --> sweep["USE sweep across resources"]
+    sweep --> c["CPU? mpstat"]
+    sweep --> m["Memory? vmstat/free"]
+    sweep --> d["Disk? iostat -x"]
+    sweep --> n["Network? sar -n / ss"]
+    c --> found["Identify the one saturated resource"]
+    m --> found
+    d --> found
+    n --> found
+    found --> fix["Targeted remedy"]
+```
+
+### 3.5 Real example
+
+**Scenario.** A reporting service is slow. The team assumes it's CPU-bound and starts adding cores, with no effect.
+
+**Problem.** They guessed the resource. Adding CPU does nothing because the real bottleneck is elsewhere — they never ran a per-resource USE sweep.
+
+**Solution.** Apply USE across all four resources to find the actually-saturated one before remediating.
+
+**Implementation (per-resource USE sweep).**
+
+```bash
+# CPU: utilization + per-core; saturation via load vs cores
+mpstat -P ALL 1            # %usr/%sys/%idle per core
+uptime                     # load average vs nproc -> run-queue saturation
+
+# Memory: is it swapping/paging? (the real saturation signal)
+free -h
+vmstat 1                   # watch 'si'/'so' (swap in/out) and 'r' (run queue)
+
+# Disk: latency + utilization (often the hidden bottleneck)
+iostat -x 1                # await (ms), %util, avgqu-sz per device
+
+# Network: throughput + errors (retransmits) + backlog
+sar -n DEV 1               # throughput per iface
+sar -n EDEV 1              # interface errors/drops
+ss -s                      # socket summary / retransmits
+```
+
+```text
+FINDINGS:
+  CPU      -> mostly idle (not the bottleneck)  -> adding cores was futile
+  Memory   -> no swapping
+  Disk     -> iostat: await = 40ms, %util = 99% on the DB volume  <-- SATURATED
+  Network  -> nominal
+DIAGNOSIS: disk-latency bound — a full-table-scan query hammering the disk
+REMEDY: add the missing index (push the work off disk); await drops, %util falls
+```
+
+**Result.** The USE sweep shows CPU idle but the database disk at 99% util with 40ms await — disk-latency bound, not CPU-bound. Adding an index turns a full scan into an index lookup, disk utilization and latency drop, and the report speeds up. The earlier CPU spend is recognized as the wrong remedy, avoided next time by measuring first.
+
+**Future improvements.** Capture this sweep as a performance runbook; add dashboards for per-resource saturation (run queue, swap rate, disk await, retransmits); for deeper CPU work, use profiling and flame graphs to find hot code paths.
+
+### 3.6 Exercises
+
+1. For each of CPU, memory, disk, and network, name its saturation signal and the go-to tool.
+2. Why is RAM being "full" not itself a problem, and what *is* the memory danger sign?
+3. Why can disk *latency* be the bottleneck even when throughput looks fine?
+
+### 3.7 Challenges
+
+- **Challenge.** On a system you have, run a full USE sweep (`mpstat`, `vmstat`/`free`, `iostat -x`, `sar -n`) and write down utilization/saturation/errors for each resource. Identify which resource is closest to saturation and propose the targeted remedy.
+
+### 3.8 Checklist
+
+- [ ] I run a per-resource USE sweep before remediating.
+- [ ] CPU checked for both utilization and run-queue saturation.
+- [ ] Memory checked for paging/swapping, not just "used".
+- [ ] Disk checked for latency/await and queueing, not just throughput.
+- [ ] Network checked for retransmits/drops, not just bandwidth.
+
+### 3.9 Best practices
+
+- Measure all four resources before optimizing any one.
+- Read disk by latency and queue depth; read memory by swap activity.
+- Compare load average to core count to judge CPU saturation.
+- Capture the sweep as a runbook and dashboard saturation signals.
+
+### 3.10 Anti-patterns
+
+- Assuming the bottleneck resource and tuning it without measuring.
+- Reading only utilization and ignoring saturation (the stronger signal).
+- Treating "memory full" as a problem while ignoring actual swapping.
+- Judging disk by throughput while latency quietly dominates user pain.
+
+### 3.11 Troubleshooting
+
+| Symptom | Resource / signal | Tool & action |
+|---------|-------------------|---------------|
+| Slow, CPU looks idle | Disk latency (await high, %util ~100%) | `iostat -x`; add index / faster storage |
+| Sudden severe slowdown | Memory swapping (si/so > 0) | `vmstat`/`free`; fix leak, size RAM |
+| High latency, load >> cores | CPU run-queue saturation | `mpstat`/`uptime`; profile, scale out |
+| Intermittent timeouts | Network retransmits/drops | `sar -n EDEV`, `ss -s`; fix lossy path |
+
+### 3.12 References
+
+- B. Gregg, *Systems Performance*, 2nd ed. (Addison-Wesley, 2020) — ISBN 978-0136820154 — per-resource analysis (CPUs, Memory, Disks, Network) and the USE method; https://www.brendangregg.com/.
+- `man` pages: `mpstat(1)`, `vmstat(8)`, `iostat(1)`, `sar(1)`.
+
+---
+
+> **End of Part II — and of the guide.** Applying Part I's method across the stack, you can now diagnose any of the four bounding resources by the same USE questions: **CPU** (run-queue saturation, `mpstat`), **memory** (paging/swapping and OOM, `vmstat`/`free`), **disk** (latency and queueing, `iostat`), and **network** (retransmits and drops, `sar`/`ss`). A quick per-resource sweep finds the *one* saturated resource and points straight at the targeted remedy — the disciplined, measure-first alternative to guessing that defines real performance engineering.

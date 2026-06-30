@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Control & quality**
 3. Straightforward control flow and the role of static analysis
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -268,4 +268,134 @@ void transfer(Account from, Account to, long cents) {
 
 > **End of Part I.** You can now build solid code units: keep variables tightly scoped, single-purpose, and immutable, and program defensively — validating untrusted input at boundaries, failing fast with clear messages, and asserting impossible states so bugs surface close to their cause. **Part II — Control & quality** (Chapter 3) covers straightforward control flow (guard clauses over deep nesting) and how static analysis and type systems catch construction defects automatically.
 
-<!--APPEND-PART-II-->
+## Part II – Control & quality
+
+Part I built solid units from the inside: tightly-scoped variables and defensive boundaries. Part II governs how those units *flow* and how defects in them are caught automatically. McConnell's master theme — *managing complexity is software's primary technical imperative* — applies directly to control flow: nested conditionals and tangled loops are where complexity hides and bugs breed, so the goal is control structures so straightforward a reader follows them without effort. The second half of the chapter turns to the machines that read your code for you: static analysis and type systems that catch whole classes of construction defects before a test ever runs.
+
+---
+
+## Chapter 3 — Straightforward control flow and the role of static analysis
+
+### 3.1 Introduction
+
+Control flow is straightforward when a reader can follow each path without holding much in their head. McConnell's guidance pushes relentlessly toward that: write conditionals so the **normal path is clear and comes first**, use loops with a single, obvious purpose and clean entry/exit, and above all **tame deep nesting** — the single strongest source of control-flow complexity. The chief tool against nesting is the **guard clause** (return or `continue` early on the exceptional cases), which flattens an arrow-shaped pyramid of `if/else` into a linear sequence. The objective measure behind this is **control-flow complexity** (McCabe's cyclomatic complexity — essentially the number of paths through a routine); McConnell advises keeping it low and treating a high count as a signal to decompose. The second pillar is **static analysis**: compilers' warnings, type checkers, linters, and dedicated analyzers read code and flag defects — null dereferences, unreachable code, uninitialized variables, resource leaks — *without executing it*, catching at build time what would otherwise become a runtime bug or a missing test.
+
+### 3.2 Business context
+
+Complex control flow is expensive twice over: it is where bugs hide (every extra path is another place to be wrong) and it is what makes code slow and risky to change (a reader must trace many branches to be sure of an edit). Flattening control flow with guard clauses and keeping routine complexity low directly lowers defect rates and the cost of future change — the maintenance phase, which dominates a system's lifetime cost. Static analysis multiplies that benefit by shifting defect detection *left*, to the cheapest possible moment: a null-pointer bug caught by a type checker at compile time costs seconds; the same bug found in production costs orders of magnitude more and may reach a customer. For a business, a wired-in analysis gate is one of the highest-leverage quality investments available — it works on every line, every build, for free, never gets tired, and enforces standards no amount of manual review can match for consistency.
+
+### 3.3 Theoretical concepts: minimize paths, then check them automatically
+
+```mermaid
+flowchart TB
+    nested["Deeply nested if/else (arrow code)"] --> guard["Guard clauses: handle exceptions early, return"]
+    guard --> linear["Linear normal path, low cyclomatic complexity"]
+    linear --> readable["Fewer paths to reason about, fewer places for bugs"]
+    code["Code"] --> static["Static analysis: type check, lint, analyzer (no execution)"]
+    static --> caught["Null/uninitialized/unreachable/leak defects caught at build"]
+```
+
+Two ideas do the work. First, **fewer paths means fewer defects and easier reasoning**: cyclomatic complexity counts the independent paths through a routine, and each one is a place a test must cover and a bug can lurk. Guard clauses, early returns, decomposing a big routine, and replacing sprawling conditionals with **table-driven** lookups all cut path count. Second, **static analysis verifies properties without running the code**: a type system proves certain errors *can't* occur (you can't pass a `String` where an `int` is required); a null-safety analysis proves a reference is non-null on a path; a linter flags suspicious constructs. These are *complementary* to tests — static analysis proves the absence of whole *categories* of defect across all inputs, where tests check specific behaviors on specific inputs. McConnell frames both as part of the broader **software-quality landscape**: no single technique catches everything, so you layer them.
+
+### 3.4 Architecture: layers of automated checking
+
+```mermaid
+flowchart LR
+    compiler["Compiler + warnings-as-errors"] --> types["Type checker / null-safety"]
+    types --> linter["Linter / formatter (style + suspicious code)"]
+    linter --> analyzer["Static analyzer (data-flow, security, complexity)"]
+    analyzer --> ci["CI gate: build fails on new findings"]
+```
+
+Modern construction wires a *pipeline* of automated checks, each catching what the previous misses. **Compiler warnings**, treated as errors, catch the cheapest defects. The **type checker** (and null-safety where the language offers it) proves structural correctness. **Linters and formatters** enforce consistency and flag suspicious patterns (unused variables, shadowed names, fall-through). **Dedicated static analyzers** perform deeper data-flow, security (taint), and complexity analysis — and can fail the build when a routine's cyclomatic complexity crosses a threshold, turning McConnell's "keep complexity low" advice into an enforced rule. Crucially this all sits in **CI as a gate**, so the standard is applied uniformly and a regression can't merge. The architecture mirrors the control-flow lesson: keep the human-reasoned paths few and simple, and let machines exhaustively check the properties humans miss.
+
+### 3.5 Real example
+
+**Scenario.** A `processOrder` routine validates an order through five nested conditions before doing the work, and a recurring class of null-related bugs keeps reaching production.
+
+**Problem.** The five-deep nesting (arrow code) makes the routine hard to read and its many paths hard to test, and the null bugs slip through because nothing checks for them before runtime.
+
+**Solution.** Apply **guard clauses** to flatten the control flow so the normal path is linear, lowering cyclomatic complexity, and add **static analysis** (null-safety type checking plus a CI linter/analyzer gate) so the null-defect category is caught at build time.
+
+**Implementation.**
+
+```java
+// BEFORE — deep nesting (arrow code), high path count, null bugs slip through
+Result processOrder(Order o) {
+    if (o != null) {
+        if (o.isValid()) {
+            if (inventory.has(o)) {
+                if (payment.authorize(o)) {
+                    return fulfil(o);
+                } else { return DECLINED; }
+            } else { return OUT_OF_STOCK; }
+        } else { return INVALID; }
+    } else { return NULL_ORDER; }
+}
+
+// AFTER — guard clauses: exceptional cases handled early, normal path linear
+Result processOrder(Order o) {
+    if (o == null)            return NULL_ORDER;
+    if (!o.isValid())         return INVALID;
+    if (!inventory.has(o))    return OUT_OF_STOCK;
+    if (!payment.authorize(o)) return DECLINED;
+    return fulfil(o);                 // the happy path stands alone, unindented
+}
+// Static analysis gate (CI): @NonNull annotations + null-safety checker reject a future
+// caller that could pass null; linter flags complexity/unused code; build fails on new findings.
+```
+
+**Result.** The routine reads top-to-bottom as a sequence of preconditions followed by the real work; its cyclomatic complexity and nesting depth drop sharply, making every path easy to see and test. The null-safety analyzer closes the recurring bug category at build time, so those defects stop reaching production.
+
+**Future improvements.** Extract the guard conditions into a named validation step if they grow, consider a **table-driven** rule set if the validations multiply, and ratchet the CI complexity threshold downward over time so newly-added code can't reintroduce deep nesting.
+
+### 3.6 Exercises
+
+1. Rewrite a three-level nested conditional using guard clauses and describe the readability gain.
+2. What does cyclomatic complexity measure, and why does a high value warn of trouble?
+3. How does static analysis differ from testing in *what* it proves about code?
+4. Name three distinct layers of automated checking and one defect each catches.
+
+### 3.7 Challenges
+
+- **Challenge.** Find a deeply nested routine in any codebase. Flatten it with guard clauses and measure its cyclomatic complexity before and after. Then enable one new static-analysis check (null-safety, an analyzer rule, or warnings-as-errors) in CI and fix what it surfaces. Which found more real defects — your refactor or the analyzer?
+
+### 3.8 Checklist
+
+- [ ] My conditionals put the normal/happy path first and clear.
+- [ ] I use guard clauses to avoid deep nesting (arrow code).
+- [ ] I keep routine cyclomatic complexity low and decompose when it climbs.
+- [ ] Compiler warnings are treated as errors.
+- [ ] A static-analysis/type-check gate runs in CI and blocks new findings.
+
+### 3.9 Best practices
+
+- Flatten control flow with early returns; reserve nesting for genuine structure.
+- Replace sprawling conditionals with table-driven lookups where it clarifies.
+- Layer automated checks: warnings-as-errors, type/null checks, linters, analyzers.
+- Enforce complexity and analysis thresholds in CI, and ratchet them tighter over time.
+
+### 3.10 Anti-patterns
+
+- Arrow code: deeply nested `if/else` pyramids tracking the happy path at the bottom.
+- Loops or routines with multiple hidden purposes and unclear exit conditions.
+- Ignoring or suppressing compiler/linter warnings wholesale.
+- Relying solely on tests for defect classes a type system or analyzer could prove away.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Routine hard to read/follow | Deep nesting, high path count | Apply guard clauses; decompose; lower complexity |
+| Recurring null/uninitialized bugs | No build-time analysis for them | Add null-safety/type checks; warnings-as-errors |
+| Edits keep introducing regressions | High cyclomatic complexity | Reduce paths; enforce a complexity threshold in CI |
+| Style/quality inconsistent across team | No automated enforcement | Add linter/formatter + analyzer as a CI gate |
+
+### 3.12 References
+
+- S. McConnell, *Code Complete*, 2nd ed. (Microsoft Press, 2004) — ch. 15 "Using Conditionals", ch. 16 "Controlling Loops", ch. 19 "General Control Issues" (§19.4 "Taming Dangerously Deep Nesting", control complexity), ch. 18 "Table-Driven Methods", ch. 20 "The Software-Quality Landscape" — ISBN 978-0735619678.
+- T. McCabe, "A Complexity Measure," *IEEE Transactions on Software Engineering* (1976) — origin of cyclomatic complexity.
+
+---
+
+> **End of Part II.** You can now keep control flow straightforward and let machines catch what reading misses. Put the normal path first, use **guard clauses** to tame deep nesting, and keep **cyclomatic complexity** low so a routine has few paths to reason about and test — McConnell's primary imperative of managing complexity applied to flow. Then layer **static analysis** — warnings-as-errors, type/null checking, linters, analyzers — as a CI gate that proves whole categories of defect absent at build time, complementing tests rather than replacing them. Simple paths for humans, exhaustive checks by machines.

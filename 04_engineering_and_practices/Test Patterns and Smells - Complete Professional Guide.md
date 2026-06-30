@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Diagnosis**
 3. Common test smells and their cures
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -264,4 +264,129 @@ static Account shared = new Account(100_00);   // tests step on each other
 
 > **End of Part I.** You can now give tests a clear four-phase structure (Setup/Exercise/Verify/Teardown) so their intent is obvious, and manage fixtures to be fresh, minimal, and isolated so tests stay independent, fast, and readable. **Part II — Diagnosis** (Chapter 3) catalogs the common test smells — fragile tests, obscure tests, slow tests, erratic tests — and the concrete refactorings that cure each.
 
-<!--APPEND-PART-II-->
+## Part II – Diagnosis
+
+Part I gave tests a clean structure and well-managed fixtures. Part II is about what happens when that structure decays. A **test smell** is a surface symptom — tests that break too easily, read poorly, fail intermittently, or run too slowly — that hints at a deeper problem in the test or the code it covers. Meszaros's key contribution is to classify smells by **symptom, not cause**, because the same root problem can show up many ways and the same symptom can have many causes. This chapter walks the three families of smells, names the most common offenders, and pairs each with the concrete refactoring that cures it.
+
+---
+
+## Chapter 3 — Common test smells and their cures
+
+### 3.1 Introduction
+
+Meszaros sorts test smells into three families by *who notices them and when*. **Code smells** are things you see *reading* the test code — Obscure Test, Conditional Test Logic, Test Code Duplication, Hard-to-Test Code. **Behavior smells** are things you see when tests *run* — Fragile Test (breaks on unrelated changes), Erratic Test (passes and fails nondeterministically), Slow Tests, Assertion Roulette (a failure you can't pin to an assertion). **Project smells** are what a manager sees *across the project* — High Test Maintenance Cost, Buggy Tests, Production Bugs, Developers Not Writing Tests — and they are usually the downstream effect of unaddressed code and behavior smells. The symptom-based taxonomy matters because you *diagnose from the symptom inward*: a Fragile Test might be caused by overspecified assertions, a sensitive interface, or a shared fixture, and only by tracing the specific cause do you pick the right cure.
+
+### 3.2 Business context
+
+Test smells are how a test suite quietly turns from an asset into a liability. A suite that is slow, fragile, and erratic stops being run, stops being trusted, and stops being maintained — the project smell "High Test Maintenance Cost" followed by "Developers Not Writing Tests" and then "Production Bugs." The cost is concrete: developers wait on slow suites, ignore flaky red builds (and so miss real failures), and burn hours debugging tests instead of code. Curing smells protects the very thing tests exist to provide — fast, trustworthy feedback that lets a team change code confidently. Treating smells early, while they are still local code or behavior issues, is far cheaper than waiting until they surface as project-level dysfunction, by which point the team may have already abandoned testing discipline.
+
+### 3.3 Theoretical concepts: symptoms, then causes
+
+```mermaid
+flowchart TB
+    code["Code Smells: seen while READING tests (Obscure, Conditional Logic, Duplication)"]
+    behavior["Behavior Smells: seen while RUNNING tests (Fragile, Erratic, Slow, Assertion Roulette)"]
+    project["Project Smells: seen ACROSS the project (High Maintenance, Buggy Tests, Production Bugs)"]
+    code --> project
+    behavior --> project
+```
+
+The crucial move is to separate **symptom** from **cause**. Meszaros names smells by their symptom because that is what you actually observe, then lists the possible causes under each. A *Fragile Test* (symptom: breaks when something unrelated changes) has distinct causes — Interface Sensitivity, Behavior Sensitivity, Data Sensitivity, Context Sensitivity — each with its own fix. An *Obscure Test* (symptom: you can't tell what it's testing) has causes like Mystery Guest (data hidden in an external resource), Eager Test (verifying too much at once), and General Fixture (a shared setup doing more than this test needs). You cannot cure a smell by its name alone; you trace the specific cause and apply the matching pattern.
+
+### 3.4 Architecture: from symptom to cure
+
+```mermaid
+flowchart LR
+    obscure["Obscure Test"] --> finished["cure: Finder/Creation Methods, fresh minimal fixture"]
+    fragile["Fragile Test"] --> spec["cure: test through stable interfaces, assert only what matters"]
+    erratic["Erratic Test"] --> isolate["cure: Fresh Fixture, no shared state, control time/random"]
+    slow["Slow Tests"] --> fast["cure: shrink scope, Test Double for out-of-process deps"]
+```
+
+Each common smell has a well-trodden cure. **Obscure Test** → make intent explicit: extract Creation Methods and Custom Assertions, inline or name the relevant data (kill the Mystery Guest), and split an Eager Test into focused ones. **Fragile Test** → reduce coupling to internals: test through stable public interfaces, assert only the outcome that matters (not incidental state), and avoid sharing a fixture that ties tests to each other. **Erratic Test** → restore determinism: give each test a Fresh Fixture, eliminate shared mutable state and inter-test ordering, and replace ambient dependencies (clock, randomness, network) with controllable Test Doubles. **Slow Tests** → narrow scope and stub out-of-process collaborators so the bulk of the suite runs in memory. The architecture is consistent: most cures push toward *fresh, minimal, isolated, intention-revealing* tests — the very qualities Part I's four-phase structure and fixture discipline were designed to produce.
+
+### 3.5 Real example
+
+**Scenario.** A team's integration suite takes nine minutes, fails roughly one run in five for no clear reason, and when it does fail the message is just `expected true but was false`.
+
+**Problem.** Three smells compound. **Slow Tests:** every test hits a shared database. **Erratic Test:** tests share fixture rows and depend on run order, and one asserts on `now()`. **Assertion Roulette:** a test with five bare assertions gives no clue which one failed.
+
+**Solution.** Cure each by its cause. Replace the shared DB with in-memory doubles for the out-of-process dependency (Slow). Give each test a Fresh Fixture built by Creation Methods, and inject a fixed clock (Erratic). Replace anonymous assertions with named, message-carrying Custom Assertions (Assertion Roulette).
+
+**Implementation.**
+
+```java
+// BEFORE — slow, erratic, roulette
+@Test void order() {
+    seedSharedDb();                      // shared fixture -> order-dependent, slow
+    var o = repo.find(EXISTING_ID);      // Mystery Guest: where did this row come from?
+    assertTrue(o.isPaid());
+    assertTrue(o.total() > 0);
+    assertEquals(LocalDate.now(), o.date()); // erratic: depends on wall clock
+}
+
+// AFTER — fresh, fast, intention-revealing
+@Test void paid_order_has_positive_total_and_today_date() {
+    var clock = Clock.fixed(JAN_1, UTC);
+    var o = anOrder().paid().total("10.00").placedOn(clock);  // Creation Method, fresh fixture
+    assertOrderIsPaid(o);                                      // Custom Assertion w/ message
+    assertEquals(money("10.00"), o.total());
+    assertEquals(JAN_1.toLocalDate(), o.date());              // deterministic via fixed clock
+}
+```
+
+**Result.** The suite runs in seconds, passes deterministically, and a failure names the exact broken expectation. The three smells are gone because each was traced to its specific cause and cured with the matching pattern.
+
+**Future improvements.** Keep a thin layer of genuine end-to-end tests against the real database (now the exception, not the rule), and add a CI check that flags newly slow or newly flaky tests so smells are caught while still local rather than at project scale.
+
+### 3.6 Exercises
+
+1. Name Meszaros's three families of smells and what distinguishes them.
+2. Why does Meszaros name smells by symptom rather than cause?
+3. Give two distinct causes of a Fragile Test and the cure for each.
+4. What is Assertion Roulette and how do Custom Assertions cure it?
+
+### 3.7 Challenges
+
+- **Challenge.** Find a flaky or slow test in any suite. Classify its smell(s) by family, trace each to a specific cause, and apply the matching cure (Fresh Fixture, Test Double, Custom Assertion, Creation Method). Measure runtime and flakiness before and after. Which cure gave the biggest improvement?
+
+### 3.8 Checklist
+
+- [ ] I classify a failing-quality test by *symptom* first, then trace the specific *cause*.
+- [ ] Each test reveals its intent — no Mystery Guest, no Eager Test, no Assertion Roulette.
+- [ ] Each test has a fresh, minimal fixture and no dependence on order or shared state.
+- [ ] Ambient dependencies (clock, randomness, network) are controlled via Test Doubles.
+- [ ] Slow out-of-process dependencies are doubled in the bulk of the suite.
+
+### 3.9 Best practices
+
+- Use Creation Methods and Custom Assertions to make intent and failures obvious.
+- Give every test a Fresh Fixture; never let tests share mutable state.
+- Inject the clock and randomness so time-dependent tests are deterministic.
+- Catch smells while they are still local code/behavior issues, before they become project smells.
+
+### 3.10 Anti-patterns
+
+- Bare, unnamed assertions stacked in one test (Assertion Roulette).
+- Hiding test data in an external resource (Mystery Guest).
+- One test verifying many behaviors at once (Eager Test).
+- A bloated General Fixture shared across tests that need only part of it.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Test breaks on unrelated change | Fragile Test (overspecified / sensitive interface) | Assert only the outcome; test through stable interfaces |
+| Passes and fails nondeterministically | Erratic Test (shared state / ambient time) | Fresh Fixture; control clock and randomness |
+| Suite too slow to run often | Slow Tests (real out-of-process deps) | Double the dependency; shrink scope |
+| Failure doesn't say which assertion broke | Assertion Roulette | Use named Custom Assertions with messages |
+| Can't tell what a test verifies | Obscure Test (Mystery Guest / Eager Test) | Name data, extract Creation Methods, split the test |
+
+### 3.12 References
+
+- G. Meszaros, *xUnit Test Patterns: Refactoring Test Code* (Addison-Wesley, 2007), ch. 15 "Code Smells" (Obscure Test, Conditional Test Logic, Test Code Duplication), ch. 16 "Behavior Smells" (Fragile Test, Erratic Test, Slow Tests, Assertion Roulette), ch. 17 "Project Smells" — ISBN 978-0131495050.
+- M. Fowler, *Refactoring*, 2nd ed. (Addison-Wesley, 2018) — refactorings underlying many cures — ISBN 978-0134757599.
+
+---
+
+> **End of Part II.** You can now diagnose a degrading test suite the way Meszaros teaches: by **symptom first**, across three families — **code smells** (read: Obscure Test, Duplication), **behavior smells** (run: Fragile, Erratic, Slow, Assertion Roulette), and **project smells** (the downstream cost). Each symptom is traced to a specific cause and cured with a matching pattern — Fresh Fixture, Test Double, Creation Method, Custom Assertion — and nearly every cure pushes tests back toward the fresh, minimal, isolated, intention-revealing form Part I established. Caught early, smells stay local and cheap; ignored, they become the project-level dysfunction that makes a team abandon testing.

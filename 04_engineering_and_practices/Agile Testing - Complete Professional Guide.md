@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Beyond automation**
 3. Exploratory testing and its place
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -255,4 +255,119 @@ Checkout feature — quadrant plan:
 
 > **End of Part I.** You can now treat quality as a continuous, whole-team responsibility built in throughout the flow rather than inspected at the end, and use the testing quadrants as a planning lens to ensure balanced coverage across technology- and business-facing tests that support the team and critique the product. **Part II — Beyond automation** (Chapter 3) covers exploratory testing — structured human investigation — and where it complements (never replaces) automated checks.
 
-<!--APPEND-PART-II-->
+## Part II – Beyond automation
+
+Part I framed quality as a whole-team responsibility and gave the testing quadrants as a planning lens. Part II zooms into one quadrant that automation cannot fill. The quadrants distinguish tests that *support the team* (mostly automated checks that tell you the system still does what you decided) from tests that *critique the product* (investigations that ask whether what you built is actually any good). **Exploratory testing** lives in the latter — Quadrant 3, business-facing tests that critique the product — and it is where skilled human investigation finds the problems scripts and automated checks never will. This chapter explains what exploratory testing really is (and isn't), how to do it with structure, and exactly where it fits alongside automation.
+
+---
+
+## Chapter 3 — Exploratory testing and its place
+
+### 3.1 Introduction
+
+**Exploratory testing** is *simultaneous learning, test design, and test execution* — the tester investigates the product, and what they learn from each interaction shapes the next test, in a tight loop. Crispin and Gregory are emphatic that this is **not** ad hoc or random "banging on the keyboard"; it is a disciplined, skilled activity, often run with **session-based test management**: a time-boxed session (say 60–90 minutes) guided by a **charter** (a clear mission — "explore the checkout flow with invalid coupons to discover pricing errors"), followed by a debrief that captures findings and feeds the next charter. Its place in the agile testing quadrants is **Quadrant 3** — business-facing tests that *critique the product* — because exploration evaluates the software the way a thoughtful user would, surfacing usability problems, surprising edge cases, and emergent behaviors that no one thought to specify. Crucially, exploratory testing is positioned as the *complement* to automation, not a competitor: automated checks verify the things you already know to verify; exploration discovers the things you didn't know to ask about.
+
+### 3.2 Business context
+
+Automated regression suites are necessary but, by construction, blind to anything they weren't told to check — they confirm known behavior and can never find an *unknown* problem. Many of the defects that actually hurt a business are exactly those unknowns: a confusing flow that tanks conversion, a data combination nobody specified, an interaction that's technically "passing" yet clearly wrong to a human. Exploratory testing is how a team finds those before customers do, and it's a high-leverage use of human skill: testers stop spending their day manually re-running scripts (automation does that now) and instead apply judgment, domain knowledge, and curiosity where it pays off. Crispin and Gregory make the workflow argument explicit — building a solid base of automated checks is what *frees* testers' time for exploration, so the two investments reinforce each other. The business result is a product that is not merely *correct against the spec* but actually *good*, because someone skilled deliberately tried to find where it falls short.
+
+### 3.3 Theoretical concepts: checking vs exploring
+
+```mermaid
+flowchart TB
+    checking["Automated CHECKING: verifies known expected behavior, repeatable"] --> regression["Fast regression safety net"]
+    exploring["Human EXPLORING: learn + design + execute, in a loop"] --> discovery["Discovers the unknown: usability, edge cases, surprises"]
+    charter["Charter (mission) + time-box"] --> exploring
+    exploring --> debrief["Debrief: capture findings, shape next charter"]
+```
+
+The load-bearing distinction is **checking versus exploring**. A *check* asks a known question with a known right answer ("does 2+2 still return 4?") — it's an assertion, and machines do it tirelessly. *Exploration* asks open questions whose answers you don't yet know ("what happens if I…?") — it requires a thinking human who adapts based on what just happened. Exploratory testing is the engine of the second mode, made rigorous by **charters** (so a session has a clear mission and isn't aimless) and **time-boxing** (so investigation stays focused and side-trips are bounded — Crispin and Gregory note the value of time-boxing edge-case excursions). Session-based management adds accountability: the debrief turns a tester's discoveries into shareable knowledge and the input to the next charter. This structure is what separates *exploratory testing* (skilled, chartered, debriefed) from mere *ad hoc testing* (unstructured poking).
+
+### 3.4 Architecture: where exploration sits in the workflow
+
+```mermaid
+flowchart LR
+    auto["Automated checks (Q1/Q2): regression base"] --> frees["Free tester time"]
+    frees --> explore["Exploratory sessions (Q3): critique the product"]
+    explore --> bugs["Surface unknown defects & usability issues"]
+    bugs --> feed["Feed back: new automated checks, refined stories"]
+    feed --> auto
+```
+
+In a healthy agile workflow the two modes form a cycle. **Automated checks** (Quadrants 1 and 2 — unit, component, and story/acceptance tests) form a regression base that runs continuously and frees human time. That freed time funds **exploratory sessions** (Quadrant 3) that critique the product and find the unknowns. Discoveries from exploration then *feed back*: a newly found edge case becomes a new automated check so the bug can never silently return, and a usability insight refines the next story. Exploration is not a phase tacked on at the end — it runs throughout, often right after a story's automated checks go green, while the feature is fresh and changeable. The architecture is symbiotic: automation makes exploration affordable; exploration makes automation smarter by revealing what to automate next.
+
+### 3.5 Real example
+
+**Scenario.** A team has a green automated suite for a new discount-coupon feature: unit tests, plus acceptance tests for the specified coupon rules. They consider the feature "tested."
+
+**Problem.** Every automated check encodes a rule someone *thought of*. The risky bugs are in the combinations nobody specified — stacking two coupons, an expired coupon with a valid one, a coupon on a fully-refunded order. Automation will never find these because no one wrote a check for them.
+
+**Solution.** Run a **chartered exploratory session**. Charter: "Explore coupon combinations and lifecycle edge cases to discover incorrect pricing." Time-box 90 minutes. Investigate, follow surprises, record findings, debrief — then convert confirmed bugs into new automated checks.
+
+**Implementation.**
+
+```text
+CHARTER: explore coupon combinations + lifecycle for pricing errors   (time-box: 90 min)
+Session notes (learn -> design -> execute, looping):
+  - stack 2 percentage coupons  -> total goes NEGATIVE        [BUG]
+  - expired + valid coupon      -> expired one still applies  [BUG]
+  - coupon on refunded order     -> re-credits the customer   [BUG]
+  - very long coupon code        -> UI overflows               [usability]
+Debrief: 3 pricing bugs + 1 usability issue. Next charter: "explore refund/coupon interaction".
+Follow-up: write automated regression checks for each confirmed bug so it can't return.
+```
+
+**Result.** Three real pricing defects and a usability problem — none covered by the "complete" automated suite — found in 90 minutes of skilled investigation. Each confirmed bug becomes a permanent automated check, so the regression base grows precisely where it was weak.
+
+**Future improvements.** Make chartered exploratory sessions a routine part of each story's "done," rotate who explores (developers and product folks find different things), and keep feeding discoveries back into automation so exploration always probes new ground rather than re-treading covered cases.
+
+### 3.6 Exercises
+
+1. Define exploratory testing as the simultaneous combination of which three activities?
+2. Distinguish *checking* from *exploring*, and say which one machines do well.
+3. What is a charter, and how does session-based management keep exploration disciplined?
+4. Explain why automation and exploratory testing reinforce rather than replace each other.
+
+### 3.7 Challenges
+
+- **Challenge.** Pick a feature with passing automated tests. Write a charter, time-box a 60–90 minute exploratory session, and investigate combinations and lifecycle states the automated checks don't cover. Debrief your findings, then turn each confirmed bug into a new automated check. How many real issues did exploration find that the green suite missed?
+
+### 3.8 Checklist
+
+- [ ] I treat exploratory testing as disciplined investigation, not ad hoc poking.
+- [ ] Each session has a clear charter (mission) and is time-boxed.
+- [ ] I debrief sessions and capture findings as shareable knowledge.
+- [ ] I use exploration to critique the product (Q3), finding the unknowns automation can't.
+- [ ] I convert confirmed exploratory findings into new automated regression checks.
+
+### 3.9 Best practices
+
+- Build a solid automated regression base to free tester time for exploration.
+- Charter every session and time-box side-trips to stay focused on risk.
+- Run exploratory sessions throughout development, not as an end phase.
+- Feed discoveries back into automation so exploration always probes new ground.
+
+### 3.10 Anti-patterns
+
+- Equating "automated tests pass" with "the product is good."
+- Unstructured ad hoc testing with no charter, time-box, or debrief.
+- Treating exploration as a replacement for automation (or vice versa).
+- Letting found bugs stay un-automated, so they can silently regress.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Bugs reach users despite a green suite | Automation only checks known behavior | Add chartered exploratory sessions to find unknowns |
+| Exploratory sessions feel aimless | No charter or time-box | Define a mission and bound the session; debrief |
+| Testers spend all day re-running scripts | Weak automated regression base | Automate the repeatable checks; free time to explore |
+| Same exploratory bugs keep recurring | Findings not automated | Convert each confirmed bug into a regression check |
+
+### 3.12 References
+
+- L. Crispin, J. Gregory, *Agile Testing: A Practical Guide for Testers and Agile Teams* (Addison-Wesley, 2009), ch. 10 "Business-Facing Tests that Critique the Product" (Introduction to Quadrant 3, Exploratory Testing, Automation and Exploratory Testing, Tools to Assist), ch. 12 "Summary of Testing Quadrants" — ISBN 978-0321534460.
+- J. Bach, "Exploratory Testing Explained" (2003) — session-based test management and charters.
+
+---
+
+> **End of Part II.** You can now place exploratory testing precisely. It is *simultaneous learning, test design, and execution* — disciplined, chartered, time-boxed investigation, not ad hoc poking — and it lives in **Quadrant 3**, business-facing tests that critique the product. Its job is the one automation cannot do: discovering the *unknowns* — usability flaws, unspecified edge cases, emergent surprises — while automated **checks** guard the *knowns*. The two are symbiotic: a solid automated regression base frees tester time for exploration, and exploration reveals exactly what to automate next. A product becomes not just spec-correct but genuinely good when skilled people deliberately go looking for where it falls short.

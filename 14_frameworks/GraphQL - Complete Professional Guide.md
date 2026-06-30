@@ -42,7 +42,7 @@ stack: graphql
 **Part II – Production**
 3. The N+1 problem, performance, and when to use GraphQL
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -258,4 +258,142 @@ const resolvers = {
 
 > **End of Part I.** You can now work with GraphQL's model: a typed **schema** as the contract where clients request **exactly** the fields they need in one request (eliminating over/under-fetching), fulfilled by **resolvers** — one function per field, called as the query tree is traversed — that fetch real data and must use batching (dataloaders) to avoid the N+1 problem. **Part II — Production** (Chapter 3) covers the N+1 problem in depth, query-cost/depth limiting for security, caching, and the decision of when GraphQL is the right choice versus REST.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Production
+
+The model that makes GraphQL pleasant for clients — ask for any shape of data in one request — is exactly what makes it dangerous in production. The resolver-per-field design quietly turns one query into hundreds of database calls (the N+1 problem), and a single deeply nested query can become an accidental denial-of-service. GraphQL also gives up the simple, URL-based HTTP caching REST enjoys. Part II is the operational reality check: batch your data access, bound what clients can ask, cache deliberately, and know when GraphQL is the wrong tool.
+
+---
+
+## Chapter 3 — The N+1 problem, performance, and when to use GraphQL
+
+### 3.1 Introduction
+
+GraphQL's per-field resolver model is elegant and treacherous. Because each field is resolved independently as the server walks the query tree, fetching a list of N items and then a related field on each produces **1 + N** data-source calls — the **N+1 problem** — which silently destroys performance under load. And because a client can request arbitrarily deep, wide, or expensive queries, an unbounded endpoint is an open invitation to overload. This chapter covers the three production concerns: **batching** (DataLoader) to fix N+1, **query-cost and depth limiting** to keep the endpoint safe, **caching** to compensate for the loss of HTTP-level caching — and the honest **REST-vs-GraphQL** decision.
+
+### 3.2 Business context
+
+GraphQL is adopted to make clients fast and flexible — but a naive server delivers the opposite: dashboards that issue thousands of queries per request, p99 latency spikes, and database saturation that takes the whole API down. These failures appear only under realistic data volumes, so they slip past development and surface in production. The security dimension is just as material: a public GraphQL endpoint without depth/cost limits can be brought down by a single hand-crafted query — a real, documented attack class. Getting Part II right is what separates a GraphQL API that scales from one that becomes an incident. The flip side is the adoption decision itself: choosing GraphQL where REST would do adds a query layer, a caching problem, and an attack surface for no benefit.
+
+### 3.3 Theoretical concepts: why N+1 happens and how batching fixes it
+
+```mermaid
+flowchart TB
+    q["Query: list of N authors, each with their books"] --> a["1 call: fetch N authors"]
+    a --> n["N calls: fetch books for each author (N+1!)"]
+    n --> dl["DataLoader: collect the N keys in one tick"]
+    dl --> batch["1 batched call: fetch books for all N keys"]
+```
+
+When a resolver for a list field runs, GraphQL invokes the child-field resolver **once per item**. Resolve `authors` (1 query), then `author.books` fires for each of the N authors (N queries). **DataLoader** breaks the cycle: instead of querying immediately, each `book` resolver registers the key it needs; DataLoader **coalesces** all keys requested in the same execution tick into **one batched query** (`WHERE author_id IN (…)`) and also **caches** within the request so repeated keys aren't re-fetched. The fix is a per-request DataLoader per data source, not ad hoc joins in each resolver.
+
+### 3.4 Architecture: guarding the endpoint
+
+```mermaid
+flowchart LR
+    client["Client query"] --> depth["Depth limit: reject queries nested beyond N"]
+    depth --> cost["Cost analysis: assign a cost per field; reject over budget"]
+    cost --> exec["Execute with per-request DataLoaders"]
+    exec --> cache["Cache: persisted queries / response cache / client cache"]
+```
+
+A production GraphQL server is a pipeline of guards. **Depth limiting** rejects pathologically nested queries (`a { b { c { … } } }`). **Query-cost analysis** assigns each field a cost (lists cost more, multiplied by requested counts) and rejects queries over a budget — the real defense against expensive-but-shallow queries. **Persisted queries** (clients send a hash of a pre-approved query) both shrink payloads and let you allow-list exactly what may run. Because GraphQL POSTs to a single URL, you cannot rely on URL-based HTTP caching; you compensate with a **response cache** keyed by query+variables, **client-side normalized caches** (Apollo/Relay), and CDN support for persisted GETs.
+
+### 3.5 Real example
+
+**Scenario.** A `/graphql` endpoint backs a dashboard that lists 50 projects, each with its owner and recent tasks. It's powered by straightforward resolvers and an ORM.
+
+**Problem.** Loading the dashboard fires 1 query for projects, then 50 for owners and 50 for task lists — ~101 database round trips per request. Under load the database saturates. Separately, a client sends a 30-level nested query and pins a CPU.
+
+**Solution.** Per-request DataLoaders for the related entities, plus depth and cost limits.
+
+**Implementation.**
+
+```js
+// Per-request DataLoader: N+1 -> 1 batched call
+const ownerLoader = new DataLoader(async (ids) => {
+  const rows = await db.user.findMany({ where: { id: { in: ids } } });   // one query for all ids
+  const byId = new Map(rows.map((u) => [u.id, u]));
+  return ids.map((id) => byId.get(id));                                   // return in key order
+});
+
+const resolvers = {
+  Project: {
+    owner: (project, _args, ctx) => ctx.loaders.owner.load(project.ownerId), // batched + cached
+  },
+};
+
+// Build fresh loaders per request so the cache can't leak across users:
+const context = () => ({ loaders: { owner: ownerLoader /* …one per entity */ } });
+
+// Guard the schema: bound depth and cost
+import depthLimit from 'graphql-depth-limit';
+const server = new ApolloServer({
+  schema,
+  validationRules: [depthLimit(7)],          // reject queries nested deeper than 7
+  // + a cost-analysis rule with a per-field cost budget
+});
+```
+
+**Result.** The dashboard drops from ~101 queries to ~3 (projects + one batched owners + one batched tasks). The depth and cost limits reject the abusive query before execution. The endpoint scales and is no longer trivially DoS-able.
+
+**Future improvements.** Add persisted queries to allow-list operations and enable CDN caching; add a normalized client cache to dedupe across components; monitor resolver-level tracing (Apollo traces) to catch new N+1s as the schema grows.
+
+### 3.6 When to use GraphQL (vs REST)
+
+- **Reach for GraphQL** when many clients need different shapes of related data, when round trips are expensive (mobile), or when you're aggregating several backends behind one graph — its single-request, field-precise fetching shines.
+- **Prefer REST** for simple resource CRUD, when HTTP/CDN caching is a primary lever, for file up/downloads, or for public APIs where predictable, cacheable URLs and a low attack surface matter more than query flexibility.
+
+Choose by client diversity and caching needs, not by novelty. (See the **RESTful API Design** guide in `06_web_and_frontend/` for the REST side of this trade-off.)
+
+### 3.7 Exercises
+
+1. Explain the N+1 problem in terms of GraphQL's resolver model.
+2. What two things does DataLoader do, and why must it be per-request?
+3. Why is depth-limiting alone insufficient, and what does cost analysis add?
+
+### 3.8 Challenges
+
+- **Challenge.** Take a schema with a list field whose items have a related entity. Confirm the N+1 by logging queries, add a per-request DataLoader to batch it, then add a depth limit and a per-field cost budget and verify an abusive query is rejected.
+
+### 3.9 Checklist
+
+- [ ] Related-entity resolvers use per-request DataLoaders (no N+1).
+- [ ] The endpoint enforces depth limiting and query-cost budgets.
+- [ ] Loaders are built per request so their cache can't leak across users.
+- [ ] Caching strategy is explicit (persisted queries / response / client cache).
+- [ ] The choice of GraphQL over REST is justified by client/data needs.
+
+### 3.10 Best practices
+
+- One DataLoader per data source, created fresh in the per-request context.
+- Bound queries by both depth and cost; prefer persisted/allow-listed operations in production.
+- Treat caching as a first-class design task — you don't get URL caching for free.
+- Add resolver tracing to catch performance regressions early.
+
+### 3.11 Anti-patterns
+
+- Resolvers that query the database directly per item (textbook N+1).
+- A public endpoint with no depth or cost limits (DoS-by-query).
+- Sharing a DataLoader instance across requests (stale/leaked cache).
+- Adopting GraphQL for simple CRUD where REST + caching is simpler and safer.
+
+### 3.12 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Query count explodes with list size | N+1 in a child resolver | Add a per-request DataLoader to batch it |
+| One query pins CPU / DB | Unbounded depth/cost | Enforce depth limit + cost analysis |
+| Cache serves another user's data | Loader shared across requests | Build loaders per request in context |
+| Can't CDN-cache responses | Single POST URL | Use persisted queries (GET) + response cache |
+
+### 3.13 References
+
+- E. Porcello & A. Banks, *Learning GraphQL* (O'Reilly, 2018) — Ch. 3 (The GraphQL Query Language), Ch. 5 (Creating a GraphQL API — resolvers), Ch. 7 (GraphQL in the Real World). ISBN 978-1492030713.
+- GraphQL docs, "Execution" & DataLoader: https://graphql.org/learn/execution/ and https://github.com/graphql/dataloader.
+- "Securing your GraphQL API" (depth/cost limiting, persisted queries): https://www.apollographql.com/docs/.
+
+---
+
+> **End of guide.** You can now take GraphQL from model to production: design a typed schema and resolvers where clients fetch exactly what they need (Part I), then make it scale and stay safe — batch with DataLoader to kill N+1, bound queries by depth and cost, cache deliberately, and choose GraphQL only where its flexibility beats REST's simplicity (Part II).

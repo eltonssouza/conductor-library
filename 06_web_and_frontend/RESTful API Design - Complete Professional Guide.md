@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Maturity**
 3. Hypermedia and the Richardson maturity model
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -258,4 +258,138 @@ Idempotency-Key: 8f3a-...-key
 
 > **End of Part I.** You can now design REST APIs that work with HTTP rather than against it: model the domain as resources with noun-based URLs acted on by correctly-chosen methods, return specific status codes, and use idempotency (including idempotency keys for POST) so the API is safe to retry over unreliable networks. **Part II — Maturity** (Chapter 3) covers hypermedia (HATEOAS) and the Richardson maturity model, plus when GraphQL or gRPC is the better fit than REST.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Maturity
+
+Most APIs that call themselves "RESTful" are really HTTP-flavored RPC: resources and verbs, but the client hard-codes every URL it will ever call. That works until the server needs to change a URL, add a state, or guide the client through a workflow — then every client breaks. The Richardson maturity model names the rungs of this ladder, and **hypermedia** is its top rung: responses carry the links that tell the client what it can do next. Part II is about understanding that ladder, knowing how far up it is worth climbing, and recognizing when a different paradigm (GraphQL, gRPC) fits better than REST at all.
+
+---
+
+## Chapter 3 — Hypermedia and the Richardson maturity model
+
+### 3.1 Introduction
+
+The **Richardson Maturity Model (RMM)** classifies web APIs by how much of the web's architecture they actually use, in three rungs above a "level 0" of plain RPC-over-HTTP: **Level 1** introduces *resources* (many URIs instead of one endpoint); **Level 2** uses *HTTP verbs and status codes* correctly (the subject of Part I); **Level 3** adds *hypermedia controls* — **HATEOAS**, "hypermedia as the engine of application state" — where responses include links describing the next valid transitions. This chapter explains the model, shows what hypermedia buys you and what it costs, and closes by placing REST against GraphQL and gRPC so you choose the right tool, not the fashionable one.
+
+### 3.2 Business context
+
+The model is a shared vocabulary for "how RESTful is this, really?" — useful in design reviews and API governance. Its practical payoff is **evolvability and coupling**: a Level 2 API forces clients to hard-code URLs and out-of-band knowledge of the workflow, so any server-side change to URL structure or state machine is a breaking change coordinated across every consumer. Level 3 hypermedia lets the server publish the next steps as links, so it can relocate resources and evolve workflows while clients follow links by their *relation* (`rel`) rather than by a memorized path — the same property that lets websites restructure without breaking browsers. The trade-off is real: hypermedia adds complexity that pays off for long-lived, multi-client, evolving APIs and is over-engineering for a small internal service. Knowing where on the ladder to stop is the business decision.
+
+### 3.3 Theoretical concepts: the three rungs
+
+```mermaid
+flowchart TB
+    l0["Level 0: one URI, one verb (RPC over HTTP)"] --> l1["Level 1: resources (many URIs)"]
+    l1 --> l2["Level 2: HTTP verbs + status codes"]
+    l2 --> l3["Level 3: hypermedia controls (HATEOAS) -- links drive state"]
+```
+
+Each rung builds on the last. **Level 1** breaks a single endpoint into many resource URIs. **Level 2** uses the uniform interface properly: GET to read, POST/PUT/PATCH/DELETE to change, with meaningful status codes — this is where most well-designed APIs live and where Part I left off. **Level 3** makes responses *self-describing*: alongside data, the server returns **links** (`self`, `next`, `cancel`, `pay`) telling the client which transitions are currently legal. The client navigates by following links identified by their relation, not by constructing URLs from documentation. Webber et al. note that most "RESTful" services in the wild are actually Level 1 — using HTTP as a transport, not as an application protocol.
+
+### 3.4 Architecture: hypermedia drives the state machine
+
+```mermaid
+flowchart LR
+    order["GET /order/1 -> {status, _links}"] --> links["_links: self, cancel, payment"]
+    links --> client["Client follows the link for the action it wants"]
+    client --> next["Server returns the next valid set of links"]
+```
+
+In a hypermedia API the server owns the workflow's state machine and exposes it as links. A freshly created order returns links to `cancel` and `payment`; once paid, those links disappear and a `receipt` link appears. The client doesn't encode "after creating, POST to /payment" — it discovers the `payment` link when (and only when) that action is valid. The server can change URLs, gate actions by permission, or add steps, and well-behaved clients keep working because they bind to **link relations**, not paths.
+
+### 3.5 Real example
+
+**Scenario.** A coffee-ordering API. Clients currently build every URL from docs: create at `POST /orders`, then `POST /payments?order=N`, then `GET /receipts/N`.
+
+**Problem.** When the team splits payments onto a new service with different URLs — or wants to forbid paying an already-cancelled order — every client breaks, because the workflow lives in client code, not in the API.
+
+**Solution.** Return hypermedia controls so the server drives the workflow.
+
+**Implementation.**
+
+```http
+POST /orders            →  201 Created
+{
+  "id": 1, "status": "awaiting-payment", "total": "4.50",
+  "_links": {
+    "self":    { "href": "/orders/1" },
+    "cancel":  { "href": "/orders/1", "method": "DELETE" },
+    "payment": { "href": "/orders/1/payment", "method": "PUT" }
+  }
+}
+```
+
+After a successful `PUT /orders/1/payment`, the next representation drops `cancel`/`payment` and offers `receipt`:
+
+```http
+GET /orders/1           →  200 OK
+{ "id": 1, "status": "paid",
+  "_links": { "self": {"href":"/orders/1"}, "receipt": {"href":"/orders/1/receipt"} } }
+```
+
+The client logic becomes: *follow the link whose `rel` matches the action I want, if it exists.* A standard media type such as **HAL** (`application/hal+json`) gives `_links` a documented shape.
+
+**Result.** The server can move the payment resource, reorder steps, or hide actions by state, and clients that navigate by relation keep working. The set of available links *is* the documentation of what's currently possible.
+
+**Future improvements.** Adopt a richer hypermedia format (HAL, JSON:API, or Siren) with link relations registered in a profile; advertise available actions per user permission; pair with conditional requests (ETags) from Part I for safe concurrent updates.
+
+### 3.6 When REST is not the answer
+
+REST excels at resource-shaped, cacheable, evolvable APIs over HTTP. It is *not* always the best fit:
+
+- **GraphQL** suits clients that need to fetch exactly the fields they want across a graph of related data in one round trip, avoiding REST's over-/under-fetching — at the cost of HTTP caching and a new query layer. (See the dedicated GraphQL guide in `14_frameworks/`.)
+- **gRPC** suits low-latency, high-throughput *internal* service-to-service calls with strict schemas (Protocol Buffers) and streaming — at the cost of browser-friendliness and human-readable payloads.
+
+Choose by the consumer and the shape of the data, not by trend.
+
+### 3.7 Exercises
+
+1. Name the three rungs of the Richardson maturity model above Level 0.
+2. What does HATEOAS let the server change without breaking conformant clients?
+3. Give one scenario where GraphQL fits better than REST, and one for gRPC.
+
+### 3.8 Challenges
+
+- **Challenge.** Take a Level 2 endpoint and add HAL-style `_links` that expose the valid next actions for the resource's current state. Write a client that performs a two-step workflow purely by following link relations, never by constructing a URL.
+
+### 3.9 Checklist
+
+- [ ] I can place an API on the RMM and justify the target rung for its lifespan and client count.
+- [ ] Resources are real URIs (Level 1) acted on by correct verbs/status codes (Level 2).
+- [ ] Where evolvability matters, responses carry hypermedia links keyed by relation (Level 3).
+- [ ] I use a standard hypermedia media type rather than ad hoc link fields.
+- [ ] I choose REST vs GraphQL vs gRPC by consumer needs and data shape.
+
+### 3.10 Best practices
+
+- Reach Level 2 by default; add Level 3 hypermedia where multiple/long-lived clients and evolving workflows justify it.
+- Bind clients to link relations, not hard-coded URLs.
+- Use an established format (HAL/JSON:API/Siren) for consistency and tooling.
+- Document available transitions as the links the server returns per state.
+
+### 3.11 Anti-patterns
+
+- "RESTful" APIs that are really Level 0/1 RPC (verbs in URLs, one endpoint).
+- Clients hard-coding every URL and the entire workflow from prose docs.
+- Inventing a bespoke link format per endpoint.
+- Forcing REST onto problems better served by GraphQL or gRPC.
+
+### 3.12 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Every URL change breaks clients | No hypermedia; URLs hard-coded | Return links by relation; bind clients to `rel` |
+| "RESTful" API feels like RPC | Stuck at Level 0/1 | Model resources; use verbs/status codes (Level 2) |
+| Clients over-fetch or under-fetch | Resource shape vs client need mismatch | Consider GraphQL for field-level selection |
+| Internal calls too slow/chatty | HTTP/JSON overhead | Consider gRPC for internal service-to-service |
+
+### 3.13 References
+
+- J. Webber, S. Parastatidis & I. Robinson, *REST in Practice* (O'Reilly, 2010) — Ch. 1 (Web friendliness and the Richardson Maturity Model), Ch. 5 (Hypermedia Services). ISBN 978-0596805821.
+- L. Richardson & M. Amundsen, *RESTful Web APIs* (O'Reilly, 2013) — hypermedia formats and link relations.
+- MDN, "HTTP — Hypermedia / link relations": https://developer.mozilla.org/en-US/docs/Web/HTTP.
+
+---
+
+> **End of guide.** You can now design REST APIs that respect HTTP end to end: resources, correct methods, status codes, and idempotency (Part I), then situate them on the Richardson maturity model and add hypermedia for evolvable, low-coupling workflows — while recognizing when GraphQL or gRPC is the better fit (Part II).

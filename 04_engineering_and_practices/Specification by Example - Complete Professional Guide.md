@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Living documentation**
 3. Keeping specifications honest over time
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -259,4 +259,124 @@ Scenario: Bulk discount applies at the threshold
 
 > **End of Part I.** You can now express requirements as concrete, collaboratively-agreed examples that serve simultaneously as specification, automated test, and living documentation, and structure them as Given/When/Then scenarios that map directly to executable tests. **Part II — Living documentation** (Chapter 3) covers organizing and maintaining specifications so they remain a trustworthy, current description of the system over time.
 
-<!--APPEND-PART-II-->
+## Part II – Living documentation
+
+Part I established examples as the shared language of requirements and Given/When/Then as their executable form. But an executable specification's greatest value — being simultaneously spec, test, and documentation — is also its greatest liability: documentation that drifts out of sync with the system is worse than none, because people trust it. Adzic's term **living documentation** names the goal: a body of specifications that stays a trustworthy, current description of what the system does, because it is *executed against the system continuously* and *actively maintained*. Part II is about the discipline that keeps specifications honest over time — frequent validation, a reliable environment, and continuous refinement — drawn from Adzic's process patterns and the uSwitch case study.
+
+---
+
+## Chapter 3 — Keeping specifications honest over time
+
+### 3.1 Introduction
+
+A specification becomes **living documentation** only if two things hold: it is **validated frequently** against the real system, and it is **continuously refined** to stay readable and reliable. Frequent validation is what proves the documentation still matches reality — a spec that hasn't been run against the current build is just a hopeful comment. Refinement is what keeps the suite trustworthy as it grows: raising the level of abstraction so specs speak the business's language rather than the UI's, defining each concept once instead of repeating it, and pruning specs that have stopped earning their keep. Adzic's patterns — *Validating frequently*, *Evolving a documentation system*, and *Refining the specification* — are the machinery. The uSwitch team's three-year journey shows the failure modes concretely: tests that "nobody knew what they did," unstable environments that made results meaningless, and brittle UI-coupled scripts that broke on cosmetic change. Each was a way specifications had stopped being honest, and each had a specific fix.
+
+### 3.2 Business context
+
+The business case for living documentation is *durable trust*. When specifications reliably describe the current system, anyone — a new developer, a business stakeholder, an operations engineer — can answer "what does the system do here?" without reading code or interrogating the one person who remembers. uSwitch's trigger was exactly this pain: a legacy energy rule nobody knew about, and no reliable documentation of a ten-year-old system. The flip side is the cost of *dishonest* documentation: specs that pass against a broken environment (false confidence), or fail for environmental reasons (false alarms that train the team to ignore red), both destroy the suite's value. Frequent, reliable validation converts specifications into a regression safety net that lets a team release small and often — uSwitch went from six-to-nine-week lead times to a four-day average — precisely because they could trust that a green suite meant a working system.
+
+### 3.3 Theoretical concepts: honesty requires execution plus maintenance
+
+```mermaid
+flowchart TB
+    spec["Executable specification"] --> validate["Validate frequently against a stable, dedicated environment"]
+    validate --> reliable["Results are trustworthy (no environmental false alarms)"]
+    reliable --> refine["Refine: raise abstraction, define each concept once, prune dead specs"]
+    refine --> living["Living documentation: current, readable, trusted"]
+    living --> spec
+```
+
+Two forces keep a specification honest. **Frequent validation** is the proof of currency — Adzic stresses a *dedicated, automatically-deployed environment* for continuous validation, because uSwitch found that running specs against shared, unstable environments produced failures unrelated to the code, making every result ambiguous. Once the environment was stable, real instabilities in the *tests* became visible and fixable. **Refinement** is the proof of maintainability: uSwitch rewrote specs to remove browser-specific coupling ("user enters 100 in box _id" → "the user enters a valid amount"), defined concepts like "a valid amount" *once* and reused them, and evolved a consistent business language. Without refinement, a growing suite collapses under maintenance cost; without frequent validation against a clean environment, its results can't be trusted at all.
+
+### 3.4 Architecture: the continuous-validation loop
+
+```mermaid
+flowchart LR
+    commit["Code change committed"] --> deploy["Auto-deploy to dedicated validation environment"]
+    deploy --> run["Run executable specifications"]
+    run --> feedback["Fast, reliable pass/fail feedback"]
+    feedback --> maintain["Refine specs; prune low-value ones; raise abstraction"]
+    maintain --> commit
+```
+
+The architecture that sustains living documentation is a **continuous-validation pipeline** feeding a **maintained specification system**. A dedicated environment, deployed automatically by the build system, runs the specifications on every change, so feedback is fast and free of cross-contamination from manual testing or developer experiments. Around it sits ongoing curation: raising the abstraction level (specs in domain language, not UI mechanics), factoring shared concepts into a single definition, and deliberately *pruning* — uSwitch's most debated decision was to stop running low-risk specs after a feature shipped, accepting weaker regression coverage in exchange for faster feedback, backed by production monitoring. The lesson is not "drop tests" but that the documentation system is *engineered and tended*, with conscious trade-offs, not left to accrete.
+
+### 3.5 Real example
+
+**Scenario.** A team has 800 Cucumber specifications driven through the UI. The suite takes two hours, fails intermittently for environmental reasons, and many specs assert on DOM identifiers.
+
+**Problem.** The documentation has stopped being honest: failures are ambiguous (is it the code or the environment?), so the team has begun ignoring red builds — and the UI-coupled specs break on cosmetic changes that don't affect behavior.
+
+**Solution.** Apply Adzic's patterns. Stand up a **dedicated validation environment** auto-deployed by CI so results are reliable. **Refine** specs to business language and define shared concepts once. **Prune** low-value, slow specs from the continuous run, relying on production monitoring for those areas.
+
+**Implementation.**
+
+```gherkin
+# BEFORE — brittle, UI-coupled, opaque (dishonest documentation)
+When the user enters "100" in box "#amount_id"
+And clicks element "#submit_btn_2"
+Then element "#result" shows "Approved"
+
+# AFTER — business language; "a valid amount" defined ONCE elsewhere and reused
+Scenario: A valid top-up is approved
+  When the customer tops up with a valid amount
+  Then the top-up is approved
+# Validity rules (negative, letters, limits) live in ONE specification, not repeated here.
+# Pipeline: CI auto-deploys to a dedicated env, runs specs, returns reliable pass/fail in ~15 min.
+```
+
+**Result.** Failures now mean something (clean environment), specs survive UI tweaks (business language), and feedback drops from two hours toward minutes (pruning + abstraction). The team trusts red again — the documentation is honest, and a green run credibly means a working system.
+
+**Future improvements.** Periodically review which specs still earn their place; re-enable a pruned spec when work touches its area and clean it up then; and keep evolving the shared domain vocabulary so new specs are written in it from the start rather than retrofitted.
+
+### 3.6 Exercises
+
+1. Why is out-of-date executable documentation more dangerous than no documentation?
+2. What problem does a *dedicated* continuous-validation environment solve that a shared one does not?
+3. How does raising the abstraction level of a specification reduce its maintenance cost?
+4. State the trade-off uSwitch made by not running every specification frequently, and what mitigated the risk.
+
+### 3.7 Challenges
+
+- **Challenge.** Take a brittle, UI-coupled acceptance test. Rewrite it in business language, extracting one shared concept (like "a valid amount") into a single specification reused elsewhere. Then identify a specification in your suite that no longer earns its keep and justify either refining or retiring it. What did honesty cost, and what did it buy?
+
+### 3.8 Checklist
+
+- [ ] Specifications are validated frequently against the current system.
+- [ ] A dedicated, auto-deployed environment makes validation results reliable.
+- [ ] Specs are written in business language, not UI/implementation mechanics.
+- [ ] Each concept is defined once and reused, not duplicated across specs.
+- [ ] Low-value specs are consciously refined or pruned, with the trade-off understood.
+
+### 3.9 Best practices
+
+- Run executable specifications continuously on a stable, dedicated environment.
+- Refine specs toward domain language and a consistent, evolving vocabulary.
+- Define shared concepts in one place; reference them everywhere else.
+- Treat the documentation system as engineered — curate, prune, and raise abstraction deliberately.
+
+### 3.10 Anti-patterns
+
+- Specs nobody understands or trusts ("a complete waste of time").
+- Validating against unstable shared environments, making failures ambiguous.
+- UI/DOM-coupled specifications that break on cosmetic change.
+- Letting the suite grow without refinement until maintenance cost overwhelms its value.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Team ignores red builds | Flaky results from an unstable environment | Use a dedicated, auto-deployed validation environment |
+| Specs break on cosmetic UI changes | Tests coupled to DOM/implementation | Rewrite in business language; raise abstraction |
+| Same rule repeated across many specs | No single definition of the concept | Define it once; reference it elsewhere |
+| Suite too slow for frequent feedback | Every spec run regardless of value | Prune/disable low-risk specs; rely on monitoring |
+| Nobody trusts what a spec means | Drifted, unmaintained documentation | Validate frequently and refine continuously |
+
+### 3.12 References
+
+- G. Adzic, *Specification by Example: How Successful Teams Deliver the Right Software* (Manning, 2011) — process patterns *Validating frequently*, *Evolving a documentation system*, *Refining the specification*; ch. 12 case study (uSwitch) — ISBN 978-1617290084.
+- M. Wynne, A. Hellesøy, *The Cucumber Book* (Pragmatic Bookshelf, 2012) — ISBN 978-1934356807.
+
+---
+
+> **End of Part II.** You can now keep specifications *honest* so they become **living documentation**: **validate frequently** against a stable, dedicated environment so results are trustworthy, and **refine continuously** — raise the abstraction to business language, define each concept once, and consciously prune specs that no longer earn their keep. The uSwitch story shows the payoff and the failure modes: unreliable environments and brittle UI-coupled specs destroy trust, while a curated continuous-validation system turns specifications into a regression safety net that lets a team release small, often, and confidently.

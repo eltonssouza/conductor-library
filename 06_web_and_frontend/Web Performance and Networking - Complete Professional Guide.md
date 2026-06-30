@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Rendering**
 3. The critical rendering path and Core Web Vitals
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -249,4 +249,127 @@ HTTP/2-3:      smaller cacheable chunks over ONE multiplexed connection
 
 > **End of Part I.** You can now reason about web performance correctly: latency (round-trip count and RTT), not bandwidth, dominates most page loads, so you cut and shorten round trips with CDNs, connection reuse, and fewer critical-path requests — and you let HTTP/2/3 multiplexing provide parallelism, retiring HTTP/1.1-era hacks. **Part II — Rendering** (Chapter 3) covers the browser's critical rendering path and the Core Web Vitals (LCP, CLS, INP) that measure real user-perceived performance.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Rendering
+
+Getting the bytes to the browser quickly (Part I) is only half the story. The other half is what the browser *does* with them: parse markup and styles, build the render tree, lay out, and paint. Resources on this **critical rendering path** block the first pixel, and a few render-blocking files can squander all the network gains you fought for. Part II covers that pipeline and then the user-centric metrics — the **Core Web Vitals** — that turn "feels fast" into numbers you can target, measure in the field, and hold a release to.
+
+---
+
+## Chapter 3 — The critical rendering path and Core Web Vitals
+
+### 3.1 Introduction
+
+The **critical rendering path (CRP)** is the sequence the browser runs to turn HTML, CSS, and JavaScript into pixels: parse HTML into the **DOM**, parse CSS into the **CSSOM**, combine them into the **render tree**, compute **layout**, and **paint**. CSS is **render-blocking** and synchronous `<script>` is **parser-blocking**, so the placement and size of those resources directly set the time to first paint. Layered on top are the **Core Web Vitals** — Google's user-centric metrics: **LCP** (loading), **CLS** (visual stability), and **INP** (responsiveness, which replaced FID in March 2024). This chapter explains the pipeline, how to keep it unblocked, and how to optimize each vital.
+
+### 3.2 Business context
+
+Rendering performance is revenue and reach. Core Web Vitals are a Google **ranking signal**, so they affect organic traffic, and they correlate with bounce and conversion: every extra second to LCP loses users, and layout shifts (CLS) cause mis-taps that erode trust. Because the vitals are measured on **real users** (field data via the Chrome UX Report), they capture the slow devices and networks a fast laptop hides — making them a fairer target than a single lab score. Treating them as a budget enforced in CI prevents the slow, invisible regression that performance work otherwise suffers as features pile on.
+
+### 3.3 Theoretical concepts: the rendering pipeline
+
+```mermaid
+flowchart LR
+    html["HTML -> DOM"] --> tree["Render tree"]
+    css["CSS -> CSSOM (render-blocking)"] --> tree
+    js["JS (parser-blocking unless defer/async)"] --> dom2["Can modify DOM/CSSOM"]
+    tree --> layout["Layout"] --> paint["Paint"]
+```
+
+The browser builds the **DOM** by parsing HTML incrementally. In parallel it builds the **CSSOM** from stylesheets — but the CSSOM is **render-blocking**: nothing paints until CSS is parsed, because styles could change every box. A synchronous `<script>` is **parser-blocking**: it pauses DOM construction (it might `document.write`) and must wait for any pending CSSOM (it might read computed styles). Hence the classic rule "styles in the `<head>`, scripts at the end / `defer`": get CSS down fast, and keep JavaScript off the critical path with `defer` (runs after parse, in order) or `async` (runs as soon as it loads). Inlining **critical CSS** and deferring the rest shrinks the path to first paint.
+
+### 3.4 Architecture: the three Core Web Vitals
+
+```mermaid
+flowchart TB
+    lcp["LCP <= 2.5s -- largest content element painted"] --> good["'Good' thresholds (75th percentile, field)"]
+    cls["CLS < 0.1 -- unexpected layout shift"] --> good
+    inp["INP < 200ms -- responsiveness to interactions"] --> good
+```
+
+- **LCP (Largest Contentful Paint)** — when the largest above-the-fold element (hero image, heading block) finishes rendering. Target **≤ 2.5 s**. Driven by server response (Part I), render-blocking resources, and large images. Fix with fast TTFB, preloading the LCP image, and removing render-blockers.
+- **CLS (Cumulative Layout Shift)** — how much visible content jumps unexpectedly. Target **< 0.1**. Caused by images/ads/embeds without reserved dimensions and late-injected content. Fix with explicit `width`/`height` (or `aspect-ratio`) and space reserved for dynamic content.
+- **INP (Interaction to Next Paint)** — the latency from a user interaction to the next paint, across the whole visit. Target **< 200 ms**. Hurt by long JavaScript tasks blocking the main thread. Fix by breaking up long tasks, reducing JS, and yielding to the browser.
+
+Each vital uses the **75th percentile** of real users for its "good" rating.
+
+### 3.5 Real example
+
+**Scenario.** A content site has a 2 MB hero image, a large render-blocking CSS bundle, an analytics `<script>` in the `<head>`, and ads that inject without reserved space.
+
+**Problem.** LCP is 4.8 s (blocking CSS + heavy hero), CLS is 0.28 (ads and an unsized hero shove text down), and INP is 320 ms (a long analytics task blocks input). The page fails all three vitals.
+
+**Solution.** Unblock the path, size media, and defer scripts.
+
+**Implementation.**
+
+```html
+<head>
+  <style>/* inlined critical CSS for above-the-fold */</style>
+  <link rel="preload" as="image" href="/hero.avif" fetchpriority="high">
+  <link rel="stylesheet" href="/full.css" media="print" onload="this.media='all'"> <!-- non-blocking rest -->
+  <script src="/analytics.js" defer></script>            <!-- off the critical path -->
+</head>
+<body>
+  <img src="/hero.avif" width="1200" height="630" alt="…">  <!-- dimensions reserve space: no CLS -->
+  <div class="ad-slot" style="min-height:250px"></div>      <!-- space reserved for late content -->
+</body>
+```
+
+Plus: serve the hero as a compressed AVIF/WebP at display size, and split the long analytics task so it yields to input.
+
+**Result.** Inlined critical CSS and a preloaded, right-sized hero bring LCP under 2.5 s; reserved dimensions drop CLS below 0.1; deferring and chunking the script brings INP under 200 ms. All three vitals pass at the 75th percentile.
+
+**Future improvements.** Set a performance budget enforced in CI (e.g. Lighthouse CI), monitor field vitals via the Chrome UX Report / `web-vitals` library, and adopt `content-visibility` for below-the-fold sections to cut rendering work.
+
+### 3.6 Exercises
+
+1. Why is CSS render-blocking, and what does `defer` change about a script?
+2. Give the "good" threshold for LCP, CLS, and INP.
+3. Which metric does reserving image dimensions improve, and why?
+
+### 3.7 Challenges
+
+- **Challenge.** Profile a real page in Lighthouse and the field (CrUX). Identify its worst vital, apply the matching fix (inline critical CSS / preload the LCP image / size media / defer-and-chunk JS), and re-measure to confirm it crosses the "good" threshold at the 75th percentile.
+
+### 3.8 Checklist
+
+- [ ] CSS is minimal and critical-inlined; the rest loads non-blocking.
+- [ ] Scripts use `defer`/`async`; none block the parser in the `<head>`.
+- [ ] The LCP element is preloaded and right-sized; TTFB is low.
+- [ ] Images/embeds/ads reserve space (`width`/`height`/`aspect-ratio`/`min-height`).
+- [ ] Long JS tasks are broken up; vitals are measured on field data and budgeted in CI.
+
+### 3.9 Best practices
+
+- Keep the critical path short: fewer render-blocking bytes, critical CSS inlined.
+- Optimize per vital — LCP (load), CLS (stability), INP (responsiveness) have different fixes.
+- Measure real users (75th percentile), not just a lab score on a fast machine.
+- Enforce a performance budget so regressions fail the build.
+
+### 3.10 Anti-patterns
+
+- Synchronous analytics/ad scripts in the `<head>`.
+- Unsized images and late-injected content that shift the layout.
+- One giant render-blocking CSS bundle for the whole site.
+- Shipping megabytes of JavaScript that monopolize the main thread.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Slow first paint / high LCP | Render-blocking CSS/JS, heavy hero | Inline critical CSS, defer JS, preload/right-size LCP image |
+| Content jumps (high CLS) | Unsized media / late content | Set dimensions / `aspect-ratio`; reserve space |
+| Sluggish interactions (high INP) | Long main-thread tasks | Break up tasks, reduce JS, yield to input |
+| Lab good, users slow | Lab ignores real devices/networks | Track field vitals (CrUX / `web-vitals`) |
+
+### 3.12 References
+
+- I. Grigorik, *High Performance Browser Networking* (O'Reilly, 2013) — Ch. 10 (Primer on Web Performance: DOM, CSSOM, and the critical rendering path; browser optimization). ISBN 978-1449344764.
+- Google, "Core Web Vitals" and "INP": https://web.dev/articles/vitals and https://web.dev/articles/inp.
+- MDN, "Critical rendering path": https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path.
+
+---
+
+> **End of guide.** You can now optimize web performance end to end: cut and shorten network round trips and let modern protocols parallelize them (Part I), then keep the browser's critical rendering path unblocked and drive the Core Web Vitals — LCP, CLS, INP — to their "good" thresholds on real users (Part II).
