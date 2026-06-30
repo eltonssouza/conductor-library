@@ -43,7 +43,7 @@ version: 3
 **Part II – Idiomatic Ruby**
 3. Modules, mixins, and expressiveness
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -247,4 +247,124 @@ File.open("out.txt", "w") { |f| f.puts(result) }
 
 > **End of Part I.** You can now work with Ruby's distinctive core: a **pure object model** where everything (numbers, `nil`, classes) is an object you send messages to — uniform and malleable — and **blocks** that pass logic to methods, powering expressive iterators and resource handling where the method owns the mechanics and the block owns the logic. **Part II — Idiomatic Ruby** (Chapter 3) covers modules and mixins for sharing behavior across classes, and the expressive idioms that make Ruby (and Rails) read so naturally.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Idiomatic Ruby
+
+Part I covered Ruby's object model and blocks. Part II is about how Ruby shares behavior **without** forcing a single inheritance line — **modules** and **mixins** — and how that, combined with the standard mixins `Comparable` and `Enumerable`, produces the expressiveness Ruby (and Rails) are known for.
+
+---
+
+## Chapter 3 — Modules, mixins, and expressiveness
+
+### 3.1 Introduction
+
+A **module** is a named bundle of methods and constants that — unlike a class — is **not** instantiated. It plays two roles. As a **namespace**, it groups related names and prevents clashes (`Billing::Invoice` vs `Mail::Invoice`). As a **mixin**, it is **included** into a class so its instance methods become available on that class. Ruby has no multiple inheritance; mixins are how it shares behavior across unrelated classes. The expressive payoff: include `Comparable` and define one method (`<=>`), and you get `<`, `<=`, `>`, `>=`, `==`, and `between?` for free.
+
+### 3.2 Business context
+
+Cross-cutting behavior — logging, comparability, iteration, serialization — rarely lines up with a single class hierarchy. A `Money` and a `Version` are unrelated, yet both want ordering; an `Invoice` and a `Playlist` both want collection operations. Mixins let each class **opt into** exactly the behavior it needs without contorting an inheritance tree. Namespacing, meanwhile, is what keeps large applications and gems (the whole Rails ecosystem) from colliding on common names. Together they let teams compose behavior and ship libraries that coexist cleanly.
+
+### 3.3 Theoretical concepts: include inserts into the ancestor chain
+
+```mermaid
+flowchart TB
+    obj["money.between?(a, b)"] --> cls["class Money"]
+    cls -->|"method not here, look up"| mod["module Comparable (included)"]
+    mod -->|"still not here"| sup["superclass Object"]
+    note["include injects the module as an ancestor;<br/>method lookup walks class then included modules then superclass"]
+```
+
+`include SomeModule` inserts the module **into the class's ancestor chain**, just above the class, so method lookup finds the module's methods after the class's own. This is why a mixin's methods behave like instance methods of the host. The standard library leans on this: **`Comparable`** needs you to implement `<=>` (return -1/0/1) and gives you all the comparison operators; **`Enumerable`** needs you to implement `each` and gives you `map`, `select`, `sort`, `min`, `include?`, and dozens more. You implement the *one* core operation; the module expresses the rest.
+
+### 3.4 Architecture: mixin instead of inheritance
+
+```mermaid
+flowchart LR
+    comp["module Comparable"] -->|"include"| money["class Money"]
+    comp -->|"include"| ver["class Version"]
+    enum["module Enumerable"] -->|"include"| playlist["class Playlist"]
+    note["One module, many unrelated classes — behavior shared horizontally"]
+```
+
+Where class inheritance is a vertical "is-a", a mixin is a horizontal "can-also-do": the same module is mixed into many unrelated classes. Reach for a mixin when a *behavior* is shared; reach for inheritance only for a genuine specialization.
+
+### 3.5 Real example
+
+**Scenario.** A `Money` value type needs to be sorted and compared throughout an app.
+
+**Problem.** Hand-writing `<`, `>`, `==`, `between?`, and a `sort` comparator on every value type is repetitive and error-prone.
+
+**Solution.** Namespace the type, then **mix in `Comparable`** and implement only `<=>`.
+
+**Implementation.**
+
+```ruby
+module Billing
+  class Money
+    include Comparable                 # mixin: unlocks <, <=, >, >=, ==, between?
+    attr_reader :cents
+
+    def initialize(cents) = @cents = cents
+
+    # Implement the ONE method Comparable needs; it derives the rest.
+    def <=>(other) = cents <=> other.cents
+  end
+end
+
+a = Billing::Money.new(500)
+b = Billing::Money.new(750)
+a < b                      # => true   (derived from <=>)
+[b, a].sort.map(&:cents)   # => [500, 750]   (sort uses <=>)
+a.between?(Billing::Money.new(0), b)  # => true
+```
+
+**Result.** One method, `<=>`, gives `Money` a full set of comparison operators, `sort`, and `between?` — all from `Comparable`. The `Billing` namespace keeps `Money` from clashing with any other `Money` in the system. The class reads as intent ("money is comparable") rather than boilerplate.
+
+**Future improvements.** Add `Enumerable` to an aggregate type by defining `each`; freeze instances for value semantics; expose the module as a gem with its namespace as the public surface.
+
+### 3.6 Exercises
+
+1. What two roles does a Ruby module play, and how do they differ from a class?
+2. What does `include` do to a class's ancestor chain, and how does that affect method lookup?
+3. Which single method must you implement to get everything `Comparable` (or `Enumerable`) provides?
+
+### 3.7 Challenges
+
+- **Challenge.** Build a `Playlist` class that `include Enumerable` by defining `each`, then use `map`, `select`, and `sort_by` on it without writing those methods yourself.
+
+### 3.8 Checklist
+
+- [ ] I use modules to namespace related classes and avoid name clashes.
+- [ ] I share behavior across unrelated classes with mixins instead of inheritance.
+- [ ] I implement the one required method (`<=>` for `Comparable`, `each` for `Enumerable`) to unlock the rest.
+- [ ] I choose inheritance only for genuine "is-a" specialization.
+
+### 3.9 Best practices
+
+- Namespace library code under a module so it coexists with other gems.
+- Prefer mixins for shared *behavior*; keep inheritance for true specialization.
+- Lean on `Comparable`/`Enumerable` rather than hand-rolling comparisons and iteration.
+
+### 3.10 Anti-patterns
+
+- "God" modules that mix unrelated responsibilities into every class.
+- Carelessly monkey-patching core classes (`String`, `Array`) inside a mixin.
+- Using a mixin where plain composition (holding an object) would read more clearly.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `NoMethodError` for `<`/`sort` on your type | `Comparable` included but `<=>` not defined | Define `<=>` returning -1/0/1 |
+| `Enumerable` methods missing | `each` not implemented | Define `each` that yields elements |
+| Name clash between libraries | Class defined at top level | Wrap it in a `module` namespace |
+
+### 3.12 References
+
+- N. Rappin, D. Thomas, *Programming Ruby 3.3* (Pragmatic Bookshelf, 2024), ch. 6 "Sharing Functionality: Inheritance, Modules, and Mixins" — ISBN 978-1680509878.
+- Ruby core docs: `Comparable` and `Enumerable` — https://ruby-doc.org/core/Comparable.html · https://ruby-doc.org/core/Enumerable.html.
+
+---
+
+> **End of Part II.** Ruby shares behavior horizontally with **modules** — as **namespaces** that prevent clashes and as **mixins** inserted into the ancestor chain — so unrelated classes opt into exactly the behavior they need. Implementing one method (`<=>` or `each`) unlocks whole families of operations through `Comparable`/`Enumerable`. With Part I's **pure object model** and **blocks**, you now have the idioms behind Ruby's and Rails' expressive, natural-reading code.
