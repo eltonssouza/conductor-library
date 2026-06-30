@@ -43,7 +43,7 @@ version: 3
 **Part II – Larger programs**
 3. Functions, modules, and type hints
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -267,4 +267,118 @@ result = [n ** 2 for n in nums if n % 2 == 0]   # [4, 16, 36]
 
 > **End of Part I.** You can now write effective Python: choose the right built-in **data structure** for each access pattern (list/dict/set/tuple, plus `collections`) to get simple, fast solutions, and write **Pythonic** code using comprehensions and direct iteration to express intent rather than mechanics. **Part II — Larger programs** (Chapter 3) covers structuring code with functions and modules, and adding type hints for clarity and tooling in bigger codebases.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Larger programs
+
+Part I covered data structures and Pythonic idioms. Part II is about programs that outgrow a single script: packaging behavior into **functions**, splitting them across **modules**, and annotating them with **type hints** so larger codebases stay readable and tool-checkable.
+
+---
+
+## Chapter 3 — Functions, modules, and type hints
+
+### 3.1 Introduction
+
+A **function** (`def`) packages a piece of behavior behind a name so you call it instead of repeating code. A **module** is simply a `.py` file; its functions, classes, and constants become importable from other files, which is how a program grows beyond one script without becoming a tangle. **Type hints** (`def price(qty: int) -> float:`) annotate the types a function expects and returns. Python does **not** enforce them at runtime — they are documentation that static checkers (mypy, pyright) and editors read to catch bugs and power autocomplete before the code ever runs.
+
+### 3.2 Business context
+
+Small scripts tolerate copy-paste; real systems do not. Functions remove duplication and give each behavior **one place to fix**. Modules turn a growing program into navigable units with clear ownership, and let teams reuse code (`from billing import total`) instead of re-implementing it. Type hints pay off most exactly where bugs are most expensive — large, multi-author codebases — by turning "what does this function take?" from a guess into a checked contract, surfacing mismatches in CI rather than in production.
+
+### 3.3 Theoretical concepts: function signatures and types
+
+```mermaid
+flowchart LR
+    call["total(items, tax=0.1)"] --> pos["positional arg: items"]
+    call --> kw["keyword arg: tax (has default)"]
+    pos --> body["function body"]
+    kw --> body
+    body --> ret["return value (typed -> float)"]
+```
+
+Arguments can be **positional** (matched by order), **keyword** (matched by name, often with **default values** like `tax=0.1`), or collected with `*args`/`**kwargs`. A function returns a value with `return` (or `None` implicitly). Type hints attach with a colon for parameters and `->` for the return: `def total(items: list[float], tax: float = 0.1) -> float:`. Modern syntax uses built-in generics (`list[int]`, `dict[str, int]`) and `X | None` for optional values. Crucially, hints are **not** checked while the program runs — passing the wrong type still executes; a separate static checker is what flags it.
+
+### 3.4 Architecture: a program as modules
+
+```mermaid
+flowchart TB
+    pricing["pricing.py<br/>def total(...) -> float"] -->|"from pricing import total"| app["app.py"]
+    app --> guard["if __name__ == '__main__':<br/>run app entry point"]
+    note["Each file is a module; import by name;<br/>the guard separates 'imported' from 'run directly'"]
+```
+
+`import pricing` runs the file once and binds the module; `from pricing import total` pulls in a specific name. The `if __name__ == "__main__":` guard lets a file act as both an **importable module** and a **runnable script** — code under the guard runs only when the file is executed directly, not when it is imported. Related modules group into a **package** (a directory).
+
+### 3.5 Real example
+
+**Scenario.** An order system computes totals in several places and is growing past one file.
+
+**Problem.** The total-with-tax formula is duplicated and untyped, so a wrong argument (a string, a missing tax) fails far from its cause.
+
+**Solution.** Put one typed function in a `pricing` module and import it where needed; let a static checker verify call sites.
+
+**Implementation.**
+
+```python
+# pricing.py
+def total(prices: list[float], tax: float = 0.1) -> float:
+    """Sum prices and apply a tax rate. Hints document the contract."""
+    return round(sum(prices) * (1 + tax), 2)
+
+# app.py
+from pricing import total
+
+cart = [19.99, 5.50, 3.00]
+print(total(cart))            # uses default tax -> 31.34
+print(total(cart, tax=0.0))   # keyword arg makes intent explicit -> 28.49
+```
+
+**Result.** The formula lives in exactly one place; every caller imports it by name. The hints (`list[float] -> float`) let a checker reject `total("19.99")` or a forgotten argument **before** running, and the editor autocompletes the signature. The keyword argument `tax=0.0` documents intent at the call site.
+
+**Future improvements.** Add a `@dataclass` for line items instead of bare floats; validate inputs and raise a typed exception; expose the module as part of a package with `__init__.py`.
+
+### 3.6 Exercises
+
+1. What is the difference between a positional argument and a keyword argument with a default value?
+2. Are type hints enforced when the program runs? What reads them, and when?
+3. What does `if __name__ == "__main__":` let a single file do?
+
+### 3.7 Challenges
+
+- **Challenge.** Write a `geometry` module with typed `area_circle(r: float) -> float` and `area_rect(w: float, h: float) -> float`, import them into a script, and run mypy (or pyright) to confirm a wrong-type call is flagged.
+
+### 3.8 Checklist
+
+- [ ] Each function does one thing and replaces duplicated code.
+- [ ] I use keyword arguments and defaults for clarity at call sites.
+- [ ] Public functions carry type hints (`param: T`, `-> R`).
+- [ ] I run a static type checker and use the `__main__` guard in runnable modules.
+
+### 3.9 Best practices
+
+- Keep functions small and single-purpose; return values rather than printing inside them.
+- Annotate public functions; use `list[int]`, `dict[str, int]`, `X | None` (modern syntax).
+- Import specific names (`from m import f`) over star imports; add a `__main__` guard.
+
+### 3.10 Anti-patterns
+
+- **Mutable default arguments** (`def f(items=[])`) — the list is shared across calls; use `None` and create inside.
+- `from module import *`, which hides where names come from.
+- Treating type hints as runtime validation — they are not enforced.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| A list/dict "remembers" data between calls | Mutable default argument | Default to `None`; create the container in the body |
+| `ImportError` / `ModuleNotFoundError` | Wrong path or circular import | Fix the import path; restructure to break the cycle |
+| Wrong type accepted, fails later | Hints not enforced at runtime | Run mypy/pyright in CI; validate inputs explicitly if needed |
+
+### 3.12 References
+
+- E. Matthes, *Python Crash Course*, 3rd ed., ch. 8 "Functions" (arguments, return values, storing functions in modules) — ISBN 978-1718502703.
+- "PEP 484 – Type Hints" and the `typing` docs: https://peps.python.org/pep-0484/ · https://docs.python.org/3/library/typing.html.
+
+---
+
+> **End of Part II.** Larger Python programs are built from **functions** (one place per behavior, with positional/keyword/default arguments), organized into **modules and packages** with explicit imports and a `__main__` guard, and made tool-checkable with **type hints** that static checkers enforce before runtime. With Part I's **data structures** and **Pythonic idioms**, you now have what it takes to grow a script into a maintainable codebase.
