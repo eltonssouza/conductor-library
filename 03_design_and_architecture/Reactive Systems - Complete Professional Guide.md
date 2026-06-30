@@ -150,7 +150,7 @@ render_product(id):
 
 ### 1.12 References
 
-- The Reactive Manifesto, https://www.reactivemanifesto.org.
+- The Reactive Manifesto (2014) — the four traits: Responsive, Resilient, Elastic, Message-Driven, https://www.reactivemanifesto.org.
 - M. Nygard, *Release It!*, 2nd ed. (Pragmatic Bookshelf, 2018) — ISBN 978-1680502398, on stability patterns.
 
 ---
@@ -248,7 +248,7 @@ workers: drain queue at DB's sustainable rate
 
 ### 2.12 References
 
-- Reactive Streams specification, https://www.reactive-streams.org.
+- Reactive Streams specification — the asynchronous, non-blocking back-pressure protocol, https://www.reactive-streams.org.
 - The Reactive Manifesto, https://www.reactivemanifesto.org.
 
 ---
