@@ -60,7 +60,7 @@ software_dev: core
 10. Batch and stream processing
 11. Designing systems of integration (the "unbundled database")
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–III (Ch. 1–6). **In progress:** Parts IV–VII.
+> **Status of this guide:** phased delivery. **Ready:** Parts I–IV (Ch. 1–8). **In progress:** Parts V–VII.
 
 ---
 
@@ -740,4 +740,226 @@ clustering_key = timestamp               # still supports "this device, this tim
 
 > **End of Part III.** You can now turn a single database into a distributed one along two axes: **replication** (copies of the same data — single-leader, multi-leader, leaderless — trading consistency for availability and locality) and **partitioning** (different data per node — range vs hash keys chosen to avoid hot spots, with rebalancing decoupled from node count). **Part IV — Consistency & Correctness** (Chapters 7–8) asks what guarantees survive once data is distributed: transactions across the spread, and the hard truths of clocks, partial failures, and unreliable networks.
 
-<!--APPEND-PART-IV-->
+---
+
+## Part IV – Consistency & Correctness
+
+Distribution buys scale and availability but costs *certainty*. Part IV is about the guarantees that keep data correct under concurrency and failure. Chapter 7 covers **transactions** — the abstraction that lets you treat a group of operations as one all-or-nothing, isolated unit. Chapter 8 confronts the uncomfortable physics of distributed systems: unreliable networks, unsynchronized clocks, and partial failures that single-node intuition gets wrong.
+
+---
+
+## Chapter 7 — Transactions and isolation levels
+
+### 7.1 Introduction
+
+A **transaction** groups several reads and writes into one logical unit with **ACID** guarantees: **Atomicity** (all or nothing), **Consistency** (invariants preserved), **Isolation** (concurrent transactions don't corrupt each other), and **Durability** (committed data survives crashes). The point of transactions is to spare the application from reasoning about every possible concurrency interleaving and partial failure. The tunable, subtle one is **isolation**: stronger levels prevent more anomalies but reduce concurrency, so the job is to pick the weakest level that is still correct.
+
+### 7.2 Business context
+
+Transactions are what let a business trust its data through concurrency and crashes — a money transfer that can't lose the credit half, an inventory count two buyers can't both win. Weak isolation, chosen for speed, lets subtle anomalies (lost updates, write skew) corrupt invariants rarely and under load — exactly when it's costliest and hardest to reproduce. Knowing what each isolation level does and doesn't prevent is the difference between a correct system and one that's "usually" correct.
+
+### 7.3 Theoretical concepts: isolation levels and anomalies
+
+```mermaid
+flowchart TB
+    rc["Read Committed: no dirty reads/writes"]
+    rr["Repeatable Read / Snapshot: + no non-repeatable reads (consistent snapshot)"]
+    ser["Serializable: + no phantoms / write skew (as if one at a time)"]
+    rc --> rr --> ser
+```
+
+Each level permits a specific set of **anomalies**:
+
+- **Read Committed** — no dirty reads (you never see uncommitted data) or dirty writes; still allows non-repeatable reads.
+- **Snapshot / Repeatable Read** — each transaction reads a consistent snapshot (MVCC); prevents non-repeatable reads, but **write skew** can slip through (two transactions read a shared invariant, each writes, together they break it).
+- **Serializable** — the strongest: the result is as if transactions ran one at a time. Implemented by actual serial execution, two-phase locking, or **Serializable Snapshot Isolation** (SSI), which detects conflicting read/write dependencies and aborts a transaction (which the app retries).
+
+### 7.4 Architecture: distributed transactions and their cost
+
+```mermaid
+flowchart LR
+    coord["Coordinator"] -->|prepare| p1["Participant 1: vote yes/no"]
+    coord -->|prepare| p2["Participant 2: vote yes/no"]
+    p1 --> commit{"all yes?"}
+    p2 --> commit
+    commit -->|yes| done["commit all"]
+    commit -->|no/timeout| abort["abort all (coordinator failure blocks)"]
+```
+
+Across nodes, atomicity needs an agreement protocol. **Two-phase commit (2PC)** has a coordinator ask all participants to *prepare*, then commit only if all vote yes. It guarantees atomicity but is a **blocking** protocol: if the coordinator dies after prepare, participants hold locks indefinitely. That fragility is why many modern designs **avoid** distributed transactions — keeping a transaction within one partition, or using idempotent operations and sagas across services. The lesson: cross-node ACID is expensive and brittle; design so you rarely need it.
+
+### 7.5 Real example
+
+**Scenario.** A booking system checks "seats remaining > 0" then inserts a booking, under snapshot isolation.
+
+**Problem.** Two concurrent transactions both read "1 seat left," both pass the check on their own snapshot, both insert — overbooking. A textbook **write skew** the snapshot level doesn't prevent.
+
+**Solution.** Raise to **Serializable** (SSI aborts one, app retries) or take an explicit lock on the contended rows (`SELECT … FOR UPDATE`) so the second transaction blocks and re-checks.
+
+**Implementation (the two correct fixes).**
+
+```sql
+-- Option A: lock the rows the invariant depends on
+BEGIN;
+SELECT count(*) FROM seats WHERE flight = 'X' AND booked = false FOR UPDATE; -- serialize the check
+INSERT INTO bookings (...);                                                  -- safe under the lock
+COMMIT;
+
+-- Option B: SERIALIZABLE + retry (let SSI catch the conflict)
+-- run the same logic; on SQLSTATE 40001, retry the whole transaction
+```
+
+**Result.** Only one of the two concurrent bookings succeeds; the invariant "no overbooking" holds. The anomaly is closed deliberately — by the weakest mechanism that fixes *this* case.
+
+**Future improvements.** Keep the transaction inside one partition to avoid distributed commit; if it must span services, use a saga with compensating actions instead of 2PC.
+
+### 7.6 Exercises
+
+1. Name an anomaly each level (Read Committed, Snapshot, Serializable) first prevents.
+2. Why does snapshot isolation allow write skew, and what are two ways to prevent it?
+3. Why is two-phase commit called a blocking protocol, and why avoid it when you can?
+
+### 7.7 Challenges
+
+- **Challenge.** Find an invariant in your system enforced by check-then-write. Show whether two concurrent transactions can both pass under your default isolation, and fix it with the minimal correct mechanism (lock or Serializable).
+
+### 7.8 Checklist
+
+- [ ] I know the anomalies my default isolation level allows.
+- [ ] I raise isolation (or lock) exactly where an invariant needs it.
+- [ ] I treat serialization failures as retryable, not as bugs.
+- [ ] I keep transactions within a partition to avoid distributed commit.
+
+### 7.9 Best practices
+
+- Use the weakest isolation that stays correct, per operation.
+- Prefer single-partition transactions; avoid 2PC across nodes.
+- Wrap Serializable transactions in a bounded retry loop.
+
+### 7.10 Anti-patterns
+
+- Assuming the default level prevents all anomalies.
+- Check-then-write invariants under snapshot isolation (write skew).
+- Sprawling distributed transactions where a saga or single partition would do.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Rare invariant violations under load | Write skew / weak isolation | Serializable or `FOR UPDATE` lock |
+| Locks held forever across nodes | Coordinator failure in 2PC | Avoid distributed txns; use sagas/idempotency |
+| Serialization errors appear | SSI aborting real conflicts (expected) | Add a retry loop |
+
+### 7.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 7 "Transactions" — ISBN 978-1449373320.
+- See also the sibling guide *Database Transactions and Concurrency* for ACID and isolation in depth.
+
+---
+
+## Chapter 8 — The trouble with distributed systems
+
+### 8.1 Introduction
+
+Single-node intuition fails in a distributed system because three things you take for granted stop holding: the **network** is unreliable (messages drop, delay, reorder), **clocks** are not synchronized (each node's time drifts), and failures are **partial** (some nodes work while others don't, and you can't tell *which* from the outside). This chapter is about replacing comfortable assumptions with the pessimism distributed systems actually require — because most distributed-systems bugs come from assuming away exactly these problems.
+
+### 8.2 Business context
+
+Every distributed data system runs on these unreliable foundations, and the bugs they cause are the worst kind: rare, non-deterministic, and catastrophic (duplicated payments, split-brain writes, data corruption after a "successful" deploy). Building with honest assumptions — that the network *will* drop a message, that a node *will* pause unpredictably, that a clock *will* be wrong — is what separates systems that degrade gracefully from ones that corrupt data the first time the network hiccups. This pessimism is cheaper than the incident it prevents.
+
+### 8.3 Theoretical concepts: unreliable networks and clocks
+
+```mermaid
+flowchart TB
+    net["Network: messages lost, delayed, duplicated, reordered<br/>a timeout can't distinguish 'slow' from 'dead'"]
+    clock["Clocks: time-of-day clocks drift & jump (NTP)<br/>never trust them for ordering events across nodes"]
+    pause["Process pauses: GC, VM migration -> a node freezes then resumes<br/>its leases/locks may have expired"]
+```
+
+- **Networks** give no reliable failure signal: a request that times out might have failed, or succeeded with a lost reply, or still be in flight. You cannot tell — so operations must be **idempotent** and detection must use timeouts you treat as *suspicions*, not facts.
+- **Clocks** drift and jump; a node's wall-clock can move backward after an NTP correction. **Never order events across nodes by timestamp.** Use **logical clocks** (version vectors, Lamport timestamps) for ordering, and clocks only for rough timing.
+- **Process pauses** (GC, hypervisor pauses) can freeze a node for seconds; when it resumes, a lease or lock it held may have expired and another node may have taken over — the source of split-brain.
+
+### 8.4 Architecture: fencing against a zombie leader
+
+```mermaid
+flowchart LR
+    leader["Node thinks it's still leader (after a pause)"] --> write["Sends a write"]
+    token["Lock service issues monotonic FENCING TOKEN with the lease"]
+    write --> check{"token >= last seen?"}
+    check -->|stale token| reject["Storage REJECTS the stale write"]
+    check -->|current| accept["Accept"]
+```
+
+The defining hazard is a node that *believes* it still holds leadership or a lock after its lease silently expired (a pause, a partition). If it then writes, you get split-brain corruption. The robust defense is a **fencing token**: the lock service hands out a monotonically increasing number with each lease, every write carries its token, and the storage layer **rejects any write with a stale token**. This makes correctness independent of timing assumptions — the system tolerates pauses and partitions instead of hoping they don't happen.
+
+### 8.5 Real example
+
+**Scenario.** A leader-elected worker holds a lock to be the sole writer to a file/store; leadership is granted by a lock service.
+
+**Problem.** The leader hits a long GC pause; its lease expires; a new leader is elected. The old leader resumes, still "believing" it's the leader, and writes — two writers, corrupted data (split-brain).
+
+**Solution.** Issue a **fencing token** with each lease and have the storage reject stale tokens, so the resumed old leader's write is refused.
+
+**Implementation (fencing).**
+
+```text
+lock service: grant lease -> token = monotonically increasing N
+writer: every write includes its current token
+storage: track highest token seen; if incoming token < highest -> REJECT
+
+# old leader resumes with token=33; new leader already wrote with token=34
+# storage has seen 34, so the stale token=33 write is rejected -> no split-brain
+```
+
+**Result.** The zombie leader cannot corrupt data; correctness holds regardless of how long the pause lasted or whether the network lied. Timing assumptions are removed from the correctness argument.
+
+**Future improvements.** Make all write operations idempotent (so a retried-after-timeout request is harmless); use logical clocks for cross-node ordering instead of timestamps.
+
+### 8.6 Exercises
+
+1. Why can't a timeout distinguish a failed node from a slow one, and what does that imply for retries?
+2. Give a concrete bug caused by trusting wall-clock timestamps to order events across nodes.
+3. How does a fencing token prevent split-brain after a process pause?
+
+### 8.7 Challenges
+
+- **Challenge.** Find a place in your system that assumes "if the call returned an error, the operation didn't happen" or orders events by timestamp across machines. Describe the failure it hides and redesign it with idempotency or a fencing token / logical clock.
+
+### 8.8 Checklist
+
+- [ ] I treat a timeout as "unknown outcome," not "failed."
+- [ ] I make cross-node operations idempotent.
+- [ ] I never order cross-node events by wall-clock time.
+- [ ] I use fencing tokens for leader/lock-protected writes.
+
+### 8.9 Best practices
+
+- Design every remote operation to be safely retryable (idempotent).
+- Use logical clocks for ordering; physical clocks only for rough timing.
+- Protect single-writer invariants with fencing tokens, not lease timing alone.
+
+### 8.10 Anti-patterns
+
+- Assuming a returned error means the operation didn't take effect.
+- Ordering or expiring data by `now()` compared across machines.
+- Relying on a lock's lease time for correctness without fencing.
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Duplicate effects (double charge) | Retried request after a lost reply | Make the operation idempotent (dedupe key) |
+| Split-brain / two writers | Zombie leader after a pause/partition | Add fencing tokens; reject stale writes |
+| Events ordered wrong across nodes | Trusting wall-clock timestamps | Use logical clocks / version vectors |
+
+### 8.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 8 "The Trouble with Distributed Systems" — ISBN 978-1449373320.
+- L. Lamport, "Time, Clocks, and the Ordering of Events in a Distributed System," *CACM* (1978).
+
+---
+
+> **End of Part IV.** You can now reason about correctness under concurrency and failure: **transactions** give all-or-nothing, isolated units (pick the weakest isolation that stays correct, and avoid brittle distributed commit), while the **trouble with distributed systems** — unreliable networks, drifting clocks, partial failures, and process pauses — forces idempotency, logical clocks, and fencing tokens instead of comfortable assumptions. **Part V — Consensus & Coordination** (Chapter 9) builds the positive result on top of this pessimism: the consistency models systems can offer and how nodes *agree* despite all of it.
+
+<!--APPEND-PART-V-->
