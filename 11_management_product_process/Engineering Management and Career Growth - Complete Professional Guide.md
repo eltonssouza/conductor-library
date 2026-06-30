@@ -140,8 +140,8 @@ After:  build a reusable foundation others build on (leverage)
 
 ### 1.12 References
 
-- W. Larson, *Staff Engineer* (2021) — ISBN 978-1736417911.
-- T. Pettit, T. Tigani / various, on technical leadership; and the StaffEng community: https://staffeng.com.
+- W. Larson, *Staff Engineer* (2021) — Overview, "What do Staff engineers actually do?" (impact through leverage beyond personal output). ISBN 978-1736417911.
+- The StaffEng community on technical leadership: https://staffeng.com.
 
 ---
 
@@ -236,8 +236,8 @@ This engineer -> staff+ track: lead architecture, solve the hardest problems,
 
 ### 2.12 References
 
-- C. Fournier, *The Manager's Path* (O'Reilly, 2017) — ISBN 978-1491973899.
-- W. Larson, *Staff Engineer* (2021) — ISBN 978-1736417911; *An Elegant Puzzle* (Stripe Press, 2019) — ISBN 978-1732265189.
+- C. Fournier, *The Manager's Path* (O'Reilly, 2017) — Ch. 3, "Tech Lead" (leading without managing), and Ch. 4, "Managing People." ISBN 978-1491973899.
+- W. Larson, *Staff Engineer* (2021) — Overview, "Staff engineer archetypes" (Tech Lead, Architect, Solver, Right Hand), ISBN 978-1736417911; *An Elegant Puzzle* (Stripe Press, 2019) — Ch. 6, "Careers" (parallel ladders / leveling), ISBN 978-1732265189.
 
 ---
 

@@ -140,8 +140,8 @@ Good: "Walk me through how you decided dinner yesterday."
 
 ### 1.12 References
 
-- R. Fitzpatrick, *The Mom Test* (2013) — ISBN 978-1492180746.
-- E. Hall, *Just Enough Research*, 2nd ed. (A Book Apart, 2019) — ISBN 978-1937557102.
+- R. Fitzpatrick, *The Mom Test* (2013) — Ch. 1, "The Mom Test" (talk about their life, not your idea), and Ch. 2, "Avoiding Bad Data" (compliments, fluff, ideas). ISBN 978-1492180746.
+- E. Hall, *Just Enough Research*, 2nd ed. (A Book Apart, 2019) — Ch. 2, "The Basics," and Ch. 5, "User Research" (interviewing users). ISBN 978-1937557102.
 
 ---
 
@@ -234,8 +234,8 @@ Strong: "What do you use today, and what does it cost you?" -> they pay for X / 
 
 ### 2.12 References
 
-- R. Fitzpatrick, *The Mom Test* (2013) — ISBN 978-1492180746.
-- T. Torres, *Continuous Discovery Habits* (Product Talk, 2021) — ISBN 978-1736633304.
+- R. Fitzpatrick, *The Mom Test* (2013) — Ch. 5, "Commitment and Advancement" (past behavior and real commitment over hypotheticals). ISBN 978-1492180746.
+- T. Torres, *Continuous Discovery Habits* (Product Talk, 2021) — Ch. 5, "Continuous Interviewing" (regular cadence; behavior-based signals). ISBN 978-1736633304.
 
 ---
 

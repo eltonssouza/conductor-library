@@ -140,7 +140,7 @@ Cognitive load: each team owns ONE domain, bounded and comprehensible.
 
 ### 1.12 References
 
-- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — ISBN 978-1942788812.
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 2, "Conway's Law and Why It Matters," and Ch. 3, "Team-First Thinking" (cognitive load). ISBN 978-1942788812.
 - M. Conway, "How Do Committees Invent?" (1968), origin of Conway's Law.
 
 ---
@@ -241,7 +241,7 @@ Result: stream teams' cognitive load drops; less duplication; faster delivery
 
 ### 2.12 References
 
-- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — ISBN 978-1942788812.
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 5, "The Four Fundamental Team Topologies" (stream-aligned, platform, enabling, complicated-subsystem). ISBN 978-1942788812.
 - teamtopologies.com: https://teamtopologies.com.
 
 ---

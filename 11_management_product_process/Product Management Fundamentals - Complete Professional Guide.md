@@ -140,8 +140,8 @@ After (outcome): goal = "increase new-user activation from 40% to 55%"
 
 ### 1.12 References
 
-- M. Perri, *Escaping the Build Trap* (O'Reilly, 2018) — ISBN 978-1491973790.
-- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — ISBN 978-1119387503.
+- M. Perri, *Escaping the Build Trap* (O'Reilly, 2018) — Ch. 1, "The Build Trap" (output vs outcome), and Ch. 2, "The Value Exchange System." ISBN 978-1491973790.
+- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — Ch. 12, "Product Discovery" (value as the first risk). ISBN 978-1119387503.
 
 ---
 
@@ -234,8 +234,8 @@ After:  "Reduce checkout abandonment (problem); target -10%"
 
 ### 2.12 References
 
-- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — ISBN 978-1119387503.
-- M. Cagan, C. Jones, *Empowered* (Wiley, 2020) — ISBN 978-1119691297.
+- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — Ch. 1, "Key Roles and Responsibilities," and Ch. 4–5, "Product Management vs. Design / Engineering" (the product trio). ISBN 978-1119387503.
+- M. Cagan, C. Jones, *Empowered* (Wiley, 2020) — on empowered product teams. ISBN 978-1119691297.
 
 ---
 

@@ -151,7 +151,7 @@ Flat backlog top items: lots of cart features, zero checkout
 
 ### 1.12 References
 
-- J. Patton, *User Story Mapping* (O'Reilly, 2014) — ISBN 978-1491904909.
+- J. Patton, *User Story Mapping* (O'Reilly, 2014) — Ch. 1, "The Big Picture" (the map and the backbone). ISBN 978-1491904909.
 - jpattonassociates.com: https://www.jpattonassociates.com/story-mapping/.
 
 ---
@@ -247,8 +247,8 @@ Release 2 (more depth): search/filter, saved cards, guest checkout, etc.
 
 ### 2.12 References
 
-- J. Patton, *User Story Mapping* (O'Reilly, 2014) — ISBN 978-1491904909.
-- S. Berkun, *Making Things Happen* (O'Reilly, 2008) — ISBN 978-0596517717.
+- J. Patton, *User Story Mapping* (O'Reilly, 2014) — Ch. 2, "Plan to Build Less" (slicing releases across the map). ISBN 978-1491904909.
+- S. Berkun, *Making Things Happen* (O'Reilly, 2008) — Ch. 3, "How to figure out what to do" (planning what to build). ISBN 978-0596517717.
 
 ---
 
