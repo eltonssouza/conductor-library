@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–V (Ch. 1–16). **In progress:** Parts VI–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Ch. 1–20). **In progress:** Parts VII–VIII.
 
 ---
 
@@ -2043,4 +2043,423 @@ $svc->getUser(1);   // works, but emits E_USER_DEPRECATED: "use findUser() inste
 
 > **End of Part V.** PHP signals failure through the **`Throwable`** hierarchy (catch recoverable **`Exception`**s narrowly, let engine **`Error`**s propagate), organizes code with **namespaces** loaded automatically via **Composer** and **PSR-4**, and evolves APIs safely with the **`#[\Deprecated]`** attribute. Part VI covers the **standard library, dates, databases (PDO), and HTTP**.
 
-<!--APPEND-PART-VI-->
+---
+
+## Part VI – Standard Library, Dates, Database & HTTP
+
+Part VI covers the everyday APIs a real PHP app leans on: **strings** (with multibyte safety) and the standard library, **dates** done right with `DateTimeImmutable`, **databases** via **PDO** with prepared statements, and **HTTP** through the **PSR-7/PSR-15** standards.
+
+---
+
+## Chapter 17 — Strings, `mb_*`, and the standard library
+
+### 17.1 Introduction
+
+PHP has a vast **standard library** of functions, and strings are where care matters most. The classic functions (`strlen`, `substr`, `strpos`, `str_replace`) operate on **bytes**, which is wrong for **multibyte** (UTF-8) text where one character may be several bytes. The **`mb_*`** family (`mb_strlen`, `mb_substr`, `mb_strtolower`) is **encoding-aware** and is what you should use for user-facing text. PHP 8 also added clearer helpers (`str_contains`, `str_starts_with`, `str_ends_with`). Knowing which function is byte-safe vs. multibyte-safe prevents a whole class of bugs.
+
+### 17.2 Business context
+
+Text is global: names, addresses, and content arrive in UTF-8 with accents and non-Latin scripts. Using byte functions on them silently corrupts data — `strlen("café")` returns 5, `substr` can split a character into invalid bytes, and truncation mangles output shown to users. Using `mb_*` keeps text correct for every language a business serves, which is a correctness and reputation issue (mojibake in a customer's name is not acceptable). The newer `str_*` predicates also make common checks readable and less error-prone than `strpos() !== false`.
+
+### 17.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    byte["strlen / substr / strtolower: operate on BYTES"] --> ascii["fine for ASCII, WRONG for multibyte"]
+    mb["mb_strlen / mb_substr / mb_strtolower: encoding-aware"] --> utf8["correct for UTF-8 user text"]
+    pred["str_contains / str_starts_with / str_ends_with"] --> clear["readable boolean checks"]
+```
+
+Default to **`mb_*`** for any user-facing or non-ASCII text, specifying UTF-8. Use the byte functions only for genuinely binary data or known-ASCII. The PHP 8 predicates (`str_contains`, `str_starts_with`, `str_ends_with`) replace awkward `strpos(...) !== false` idioms. Beyond strings, lean on the standard library (`json_encode`/`json_decode` with `JSON_THROW_ON_ERROR`, `array_*`, `preg_*`) rather than reimplementing.
+
+### 17.4 Architecture: encoding-correct text handling
+
+```mermaid
+flowchart LR
+    input["UTF-8 user text"] --> mbops["mb_* operations (length, substr, case)"] --> output["correct rendering/truncation"]
+    note["Reserve byte functions for binary/ASCII data"]
+```
+
+Treating user text as UTF-8 and using `mb_*` throughout keeps it intact from input to output.
+
+### 17.5 Real example
+
+**Scenario.** Truncate a product title for a card, safely for any language.
+
+**Problem.** `substr($title, 0, 20)` can cut a multibyte character mid-byte, producing garbage.
+
+**Solution.** Use **`mb_substr`**/**`mb_strlen`** with UTF-8.
+
+**Implementation.**
+
+```php
+function summary(string $title, int $max = 20): string
+{
+    if (mb_strlen($title, 'UTF-8') <= $max) return $title;
+    return mb_substr($title, 0, $max, 'UTF-8') . '…';   // never splits a character
+}
+
+echo summary('Café com pão de açúcar e chocolate');     // correct, no mojibake
+$hasTag = str_contains($title, '#');                     // clear boolean check
+```
+
+**Result.** Truncation counts and cuts by **characters**, so accented and non-Latin titles render correctly with an ellipsis instead of broken bytes. The `str_contains` check reads clearly. Text stays correct for every locale the catalog serves.
+
+**Future improvements.** Set `mb_internal_encoding('UTF-8')` once to avoid repeating the encoding argument; use `json_decode($s, true, flags: JSON_THROW_ON_ERROR)` so malformed JSON throws instead of returning null.
+
+### 17.6 Exercises
+
+1. Why can `strlen`/`substr` corrupt UTF-8 text?
+2. Which functions count and slice by character instead of byte?
+3. What do `str_contains`/`str_starts_with` replace?
+
+### 17.7 Challenges
+
+- **Challenge.** Write a `slugify()` that lowercases (multibyte-safe), keeps only word characters, and replaces spaces with hyphens — correct for accented input.
+
+### 17.8 Checklist
+
+- [ ] I use `mb_*` for user-facing/non-ASCII text.
+- [ ] I reserve byte functions for binary/known-ASCII data.
+- [ ] I use `str_contains`/`str_starts_with`/`str_ends_with` for checks.
+- [ ] I use `JSON_THROW_ON_ERROR` with JSON functions.
+
+### 17.9 Best practices
+
+- Default to multibyte-safe string functions; set UTF-8 internal encoding.
+- Prefer the PHP 8 string predicates for readability.
+- Use the standard library instead of reinventing common operations.
+
+### 17.10 Anti-patterns
+
+- Byte functions on multibyte text (corruption, bad truncation).
+- `strpos(...) !== false` where `str_contains` is clearer.
+- Ignoring JSON errors (default null return).
+
+### 17.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Garbled accented text (mojibake) | Byte functions on UTF-8 | Use `mb_*` with UTF-8 |
+| Wrong character count | `strlen` on multibyte | Use `mb_strlen` |
+| Silent JSON failures | No error flag | Pass `JSON_THROW_ON_ERROR` |
+
+### 17.12 References
+
+- PHP Manual, "Strings", "Multibyte String", "JSON": https://www.php.net/manual/en/book.mbstring.php.
+- J. Lockhart, *Modern PHP* (O'Reilly, 2015) — ISBN 978-1491905012.
+
+---
+
+## Chapter 18 — Dates and `DateTimeImmutable`
+
+### 18.1 Introduction
+
+PHP handles dates through the `DateTime` family, and the right default is **`DateTimeImmutable`** — like `DateTime` but operations return a **new** instance instead of mutating in place. You parse, format (`->format('Y-m-d')`), and do arithmetic with `DateInterval` (`->add(new DateInterval('P1D'))`) and comparisons. **Time zones** (`DateTimeZone`) are first-class and must be handled deliberately. Using the **immutable** variant avoids the classic aliasing bug where modifying a date accidentally changes another reference to it.
+
+### 18.2 Business context
+
+Dates drive billing cycles, deadlines, schedules, and reports — and date bugs cause real financial and trust damage (a subscription charged a day early, a deadline computed wrong across a DST change). The mutable `DateTime` is a notorious source of bugs: passing it around and calling `->modify()` mutates every holder. `DateTimeImmutable` makes dates behave like values, eliminating that aliasing class of bugs. Explicit time zones prevent the "works on my machine, wrong in production" errors that come from relying on server-local time.
+
+### 18.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    mut["DateTime: ->modify() MUTATES in place (aliasing bugs)"] --> avoid["avoid passing around"]
+    imm["DateTimeImmutable: ->add() returns a NEW instance"] --> safe["value-like, safe to share"]
+    tz["DateTimeZone: explicit zones"] --> correct["correct cross-zone/DST math"]
+```
+
+Prefer **`DateTimeImmutable`**: `->add`/`->sub`/`->modify` return new objects, so a date you pass to another function can't be changed under you. Format with `->format()`, parse with `DateTimeImmutable::createFromFormat()`, and compute spans with `DateInterval`/`->diff()`. Always be explicit about **time zones** — store/compute in UTC and convert to the user's zone for display — to avoid DST and server-locale surprises.
+
+### 18.4 Architecture: dates as immutable values
+
+```mermaid
+flowchart LR
+    now["DateTimeImmutable (UTC)"] -->|"add interval -> new instance"| later["new DateTimeImmutable"]
+    later -->|"convert zone for display"| local["user's local time"]
+    note["Compute in UTC; convert at the edges"]
+```
+
+Treating dates as immutable, UTC-based values with conversion only at display time keeps temporal logic correct and bug-resistant.
+
+### 18.5 Real example
+
+**Scenario.** Compute a subscription's next billing date, one month out.
+
+**Problem.** With mutable `DateTime`, modifying the date can corrupt the original passed in; naive local-time math breaks across DST.
+
+**Solution.** Use **`DateTimeImmutable`** in UTC with a `DateInterval`.
+
+**Implementation.**
+
+```php
+function nextBilling(DateTimeImmutable $start): DateTimeImmutable
+{
+    return $start->add(new DateInterval('P1M'));   // returns a NEW date; $start unchanged
+}
+
+$start = new DateTimeImmutable('2025-01-31', new DateTimeZone('UTC'));
+$next  = nextBilling($start);
+echo $start->format('Y-m-d');   // 2025-01-31 — original intact (immutable)
+echo $next->format('Y-m-d');    // 2025-03-03 (Jan 31 + 1 month, normalized)
+```
+
+**Result.** `nextBilling` returns a new date and leaves the caller's `$start` untouched — no aliasing bug — and the computation is done in an explicit UTC zone, so it's stable regardless of server locale or DST. The immutable type makes the date safe to pass anywhere.
+
+**Future improvements.** Store timestamps in UTC and convert to the user's `DateTimeZone` only for display; use `->diff()` for human-readable durations; consider Carbon for richer ergonomics if needed.
+
+### 18.6 Exercises
+
+1. Why prefer `DateTimeImmutable` over `DateTime`?
+2. How do you add a month to a date without mutating the original?
+3. Why compute in UTC and convert zones only for display?
+
+### 18.7 Challenges
+
+- **Challenge.** Write a `daysUntil(DateTimeImmutable $deadline): int` using `->diff()`, and a function that returns a date shifted by N business-agnostic days, leaving the input unchanged.
+
+### 18.8 Checklist
+
+- [ ] I use `DateTimeImmutable` by default.
+- [ ] Date arithmetic returns new instances (no mutation of inputs).
+- [ ] I set explicit time zones and compute in UTC.
+- [ ] I convert to local time only at display.
+
+### 18.9 Best practices
+
+- Default to immutable dates; treat them as values.
+- Be explicit about time zones; store/compute in UTC.
+- Use `DateInterval`/`->diff()` for arithmetic and durations.
+
+### 18.10 Anti-patterns
+
+- Mutable `DateTime` passed around and `->modify()`-ed (aliasing bugs).
+- Relying on server-local time / implicit zones.
+- String date math instead of `DateInterval`.
+
+### 18.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| A date changed unexpectedly elsewhere | Shared mutable `DateTime` | Use `DateTimeImmutable` |
+| Off-by-one across DST | Implicit/local zone math | Compute in UTC; explicit `DateTimeZone` |
+| Wrong duration | String/manual math | Use `->diff()` / `DateInterval` |
+
+### 18.12 References
+
+- PHP Manual, "Date and Time" & "DateTimeImmutable": https://www.php.net/manual/en/class.datetimeimmutable.php.
+- J. Lockhart, *Modern PHP* (O'Reilly, 2015) — ISBN 978-1491905012.
+
+---
+
+## Chapter 19 — Databases with PDO
+
+### 19.1 Introduction
+
+**PDO** (PHP Data Objects) is PHP's uniform database access layer: one API across MySQL, PostgreSQL, SQLite, and more. Its central discipline is **prepared statements** — you send SQL with **placeholders** (`?` or `:name`) and bind values separately, so user data is never concatenated into SQL. This both prevents **SQL injection** (the most serious common web vulnerability) and lets the database reuse query plans. PDO also gives consistent error handling (configure it to **throw exceptions**) and fetching into arrays or objects.
+
+### 19.2 Business context
+
+Database access is where security and correctness meet. Concatenating user input into SQL is the classic path to SQL injection — data theft, deletion, full compromise. Prepared statements close that hole by design, separating code from data. PDO's single API also means a team isn't locked to one driver's quirks, and exception-mode error handling surfaces failures clearly instead of silent `false` returns. Getting this right is non-negotiable for any app touching a database; getting it wrong is a breach waiting to happen.
+
+### 19.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    sql["SQL with placeholders: WHERE id = :id"] --> prep["PDO::prepare"]
+    prep --> bind["bind values separately (never concatenated)"]
+    bind --> exec["execute -> data treated as data, not code"]
+    note["Prevents SQL injection; enables plan reuse"]
+```
+
+Create a `PDO` connection with **`PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`** so errors throw. **Prepare** a statement with placeholders, **execute** with an array of values (or `bindValue`), then **fetch** (`fetchAll(PDO::FETCH_ASSOC)` or into objects). Never interpolate user input into the SQL string. Use **transactions** (`beginTransaction`/`commit`/`rollBack`) for multi-statement consistency. Prepared statements are the rule, not the exception — even for "trusted" values.
+
+### 19.4 Architecture: parameterized, exception-mode access
+
+```mermaid
+flowchart LR
+    app["app data"] --> stmt["prepared statement (placeholders)"] --> db["database"]
+    db --> rows["fetch into arrays/objects"]
+    note["User input bound as parameters; errors throw"]
+```
+
+All queries go through prepared statements with bound parameters, and errors surface as exceptions — a secure, consistent data layer.
+
+### 19.5 Real example
+
+**Scenario.** Look up users by a search term from the request.
+
+**Problem.** Concatenating the term into SQL (`"... LIKE '%$term%'"`) is a SQL-injection hole.
+
+**Solution.** A **prepared statement** with a bound parameter, exception mode on.
+
+**Implementation.**
+
+```php
+$pdo = new PDO($dsn, $user, $pass, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,   // errors throw
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+
+$stmt = $pdo->prepare('SELECT id, name FROM users WHERE name LIKE :q ORDER BY name');
+$stmt->execute([':q' => '%' . $term . '%']);       // value bound, NOT concatenated
+$users = $stmt->fetchAll();                         // safe from injection
+```
+
+**Result.** The search term is bound as a parameter, so even input like `'; DROP TABLE users; --` is treated as literal data, not SQL — injection is impossible. Errors throw (caught by the app's handler, Ch. 14), and results come back as associative arrays. The same code works across database drivers.
+
+**Future improvements.** Wrap multi-step writes in a transaction; map rows to typed objects (`FETCH_CLASS`) or use an ORM (Doctrine/Eloquent) for larger domains; never disable emulated-prepares carelessly.
+
+### 19.6 Exercises
+
+1. How do prepared statements prevent SQL injection?
+2. Why enable `PDO::ERRMODE_EXCEPTION`?
+3. When do you need a transaction?
+
+### 19.7 Challenges
+
+- **Challenge.** Write an `insertUser(PDO $pdo, string $name, string $email): int` using a prepared statement that returns the new id, wrapped so a duplicate-email error surfaces as a domain exception.
+
+### 19.8 Checklist
+
+- [ ] All user input is bound via prepared statements, never concatenated.
+- [ ] PDO is in exception error mode.
+- [ ] Multi-statement writes use transactions.
+- [ ] I fetch into arrays/objects consistently.
+
+### 19.9 Best practices
+
+- Always use prepared statements with bound parameters.
+- Enable exception mode; handle failures via the error strategy (Ch. 14).
+- Use transactions for consistency; consider an ORM for rich domains.
+
+### 19.10 Anti-patterns
+
+- String-concatenated SQL with user input (injection).
+- Ignoring PDO errors (default silent failure).
+- Multi-step writes without a transaction.
+
+### 19.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| SQL injection risk/incident | Concatenated input | Use prepared statements with bound params |
+| Silent query failures | Default error mode | Set `ERRMODE_EXCEPTION` |
+| Partial writes on error | No transaction | Wrap in `beginTransaction`/`commit`/`rollBack` |
+
+### 19.12 References
+
+- PHP Manual, "PDO" & "Prepared statements": https://www.php.net/manual/en/book.pdo.php.
+- OWASP, "SQL Injection Prevention Cheat Sheet": https://cheatsheetseries.owasp.org.
+
+---
+
+## Chapter 20 — HTTP and PSR-7/PSR-15
+
+### 20.1 Introduction
+
+PHP is fundamentally a web language, and the ecosystem standardizes HTTP handling through **PSR-7** (HTTP message interfaces) and **PSR-15** (HTTP server request handlers and middleware). **PSR-7** models requests and responses as **immutable** objects (`ServerRequestInterface`, `ResponseInterface`) with `with*()` methods returning modified copies. **PSR-15** defines a **`RequestHandlerInterface`** (request → response) and **`MiddlewareInterface`** (wrap a handler), enabling a composable middleware pipeline. These standards let routers, frameworks, and middleware from different vendors interoperate.
+
+### 20.2 Business context
+
+Standardized HTTP abstractions are why PHP middleware (auth, CORS, logging, rate-limiting) is reusable across frameworks, and why teams can compose a request pipeline from off-the-shelf parts instead of bespoke plumbing. PSR-7 immutability prevents a class of bugs where one piece of code mutates the request another relies on. Building on PSR-7/PSR-15 keeps an application portable (swap routers/frameworks) and testable (a handler is a pure function of request to response). This interoperability is a major reason the modern PHP web stack is productive.
+
+### 20.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    req["PSR-7 ServerRequest (immutable)"] --> mw1["middleware: auth"] --> mw2["middleware: logging"] --> handler["RequestHandler -> Response"]
+    note["with*() returns a modified copy; pipeline composes middleware"]
+```
+
+A **PSR-7** message is immutable: `$request->withHeader(...)` returns a **new** request. A **PSR-15** `RequestHandlerInterface::handle(Request): Response` is the core; a **`MiddlewareInterface::process(Request, Handler): Response`** can inspect/modify the request, call `$handler->handle()`, and inspect/modify the response — composing a **pipeline**. This is the same middleware idea as ASP.NET Core (C# guide), standardized for PHP so components interoperate.
+
+### 20.4 Architecture: an immutable request through a middleware pipeline
+
+```mermaid
+flowchart TB
+    in["incoming request (PSR-7)"] --> pipe["PSR-15 middleware stack"] --> app["final handler"] --> resp["PSR-7 response out"]
+    note["Each middleware wraps the next; request/response are immutable copies"]
+```
+
+The request flows through composable middleware to a final handler and a response flows back — each layer working with immutable messages.
+
+### 20.5 Real example
+
+**Scenario.** Add authentication around an endpoint handler.
+
+**Problem.** Embedding auth checks in every handler duplicates logic and couples concerns.
+
+**Solution.** A **PSR-15 middleware** that wraps the handler, using **PSR-7** immutable messages.
+
+**Implementation.**
+
+```php
+use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
+use Psr\Http\Message\{ServerRequestInterface, ResponseInterface};
+
+final class AuthMiddleware implements MiddlewareInterface
+{
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        if (!$request->hasHeader('Authorization')) {
+            return new Response(status: 401);                 // short-circuit
+        }
+        $request = $request->withAttribute('userId', 42);     // immutable: new request
+        return $handler->handle($request);                    // pass to the next handler
+    }
+}
+```
+
+**Result.** Authentication lives in one reusable middleware that wraps any handler; it short-circuits with `401` when unauthorized or augments the (immutable) request with the user id and delegates onward. The same middleware composes into any PSR-15 pipeline, across frameworks — separation of concerns and interoperability by design.
+
+**Future improvements.** Compose multiple middleware (CORS, logging, rate-limit) in order; use a PSR-7 implementation (nyholm/psr7) and a PSR-15 dispatcher; return typed responses via a response factory.
+
+### 20.6 Exercises
+
+1. What does PSR-7 immutability mean for `withHeader()`/`withAttribute()`?
+2. What is the difference between a PSR-15 handler and middleware?
+3. Why do these standards improve interoperability?
+
+### 20.7 Challenges
+
+- **Challenge.** Write a logging middleware that records the method and path, calls the next handler, and adds an `X-Response-Time` header to the returned response — all via PSR-7 immutable copies.
+
+### 20.8 Checklist
+
+- [ ] I treat PSR-7 requests/responses as immutable (`with*()` returns copies).
+- [ ] Cross-cutting concerns are PSR-15 middleware, not inline in handlers.
+- [ ] Handlers are functions of request → response (testable).
+- [ ] I compose middleware in a deliberate order.
+
+### 20.9 Best practices
+
+- Build on PSR-7/PSR-15 for portable, interoperable HTTP code.
+- Keep handlers pure; put cross-cutting logic in middleware.
+- Use established PSR-7/PSR-15 implementations rather than rolling your own.
+
+### 20.10 Anti-patterns
+
+- Mutating PSR-7 messages in place (they're immutable — use `with*()`).
+- Auth/logging duplicated inside every handler.
+- Framework-locked HTTP code that can't reuse standard middleware.
+
+### 20.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Header/attribute change not visible | Ignored the returned copy | Use the value returned by `with*()` |
+| Duplicated cross-cutting logic | Concerns inside handlers | Extract PSR-15 middleware |
+| Middleware won't compose | Non-standard interfaces | Implement PSR-15 `MiddlewareInterface` |
+
+### 20.12 References
+
+- PHP-FIG, "PSR-7: HTTP message interfaces" & "PSR-15: HTTP handlers": https://www.php-fig.org/psr/psr-15/.
+- PHP Manual, "Handling HTTP" & the nyholm/psr7, Slim, Laminas ecosystems.
+
+---
+
+> **End of Part VI.** A real PHP app relies on **multibyte-safe strings** and the standard library, **immutable dates** (`DateTimeImmutable`, UTC) for correct temporal logic, **PDO prepared statements** for safe database access (no SQL injection), and **PSR-7/PSR-15** for interoperable, middleware-composed HTTP. Part VII covers **testing (PHPUnit)** and **performance (OPcache, JIT)**.
+
+<!--APPEND-PART-VII-->
