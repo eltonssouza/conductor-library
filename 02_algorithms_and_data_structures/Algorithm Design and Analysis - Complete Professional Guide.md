@@ -143,8 +143,8 @@ for x in a:
 
 ### 1.12 References
 
-- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022) — ISBN 978-0262046305.
-- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005) — ISBN 978-0321295354.
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 3 "Characterizing Running Times" (§3.1 asymptotic notation) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 2 (basics of algorithm analysis) — ISBN 978-0321295354.
 
 ---
 
@@ -236,7 +236,7 @@ O(n log n) merge/quick:  ~2x10^7 operations (seconds)
 
 ### 2.12 References
 
-- T. Cormen et al., *Introduction to Algorithms*, 4th ed. (MIT Press, 2022) — ISBN 978-0262046305.
+- T. Cormen et al., *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), §1.2 "Algorithms as a technology" (insertion sort vs. merge sort at scale) — ISBN 978-0262046305.
 - S. Skiena, *The Algorithm Design Manual*, 3rd ed. (Springer, 2020) — ISBN 978-3030542559.
 
 ---
