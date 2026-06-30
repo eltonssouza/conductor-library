@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–VI (Ch. 1–20). **In progress:** Parts VII–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–VII (Ch. 1–23). **In progress:** Part VIII.
 
 ---
 
@@ -2408,4 +2408,343 @@ fn main() {
 
 > **End of Part VI.** Building real Rust programs: recoverable **errors as `Result`** propagated with **`?`**, **typed errors** via `thiserror` (libraries) and contextual `anyhow` (apps), code organized into **modules and crates** with deliberate visibility and Cargo's reproducible graph, and **smart pointers** (`Box`, `Rc`/`Arc`, `RefCell`, `Weak`) for ownership shapes beyond move/borrow. Part VII covers **concurrency and async**.
 
-<!--APPEND-PART-VII-->
+---
+
+## Part VII — Concurrency and async
+
+Part VII covers Rust's "fearless concurrency": **threads** with the **`Send`/`Sync`** marker traits and shared state via **`Mutex`/`RwLock`**, **message passing** with **channels**, and **async/await** futures on the **`tokio`** runtime.
+
+---
+
+## Chapter 21 — Threads, `Send`, `Sync`, and shared state with `Mutex`/`RwLock`
+
+### 21.1 Introduction
+
+Rust spawns OS threads with `std::thread::spawn`, typically passing a **`move`** closure (Ch. 16) so the thread owns its data. What makes Rust concurrency "fearless" is that **data races are caught at compile time** via two marker traits: **`Send`** (a type is safe to **transfer** to another thread) and **`Sync`** (safe to **share** via `&T` across threads). To share **mutable** state, you wrap it in a **`Mutex<T>`** (exclusive lock) or **`RwLock<T>`** (many readers or one writer) inside an **`Arc`** (Ch. 20) — the canonical **`Arc<Mutex<T>>`**.
+
+### 21.2 Business context
+
+Concurrency bugs — data races, torn reads, deadlocks — are among the hardest and most dangerous defects, often non-deterministic and unreproducible. Rust's `Send`/`Sync` system makes data races **impossible to compile**: sharing non-thread-safe data across threads simply won't build. This lets teams write parallel code aggressively without the usual fear, capturing multicore performance safely. `Arc<Mutex<T>>` provides correct shared mutable state, and the type system even prevents forgetting to lock. For performance-critical, concurrent systems, this is a decisive advantage.
+
+### 21.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    spawn["thread::spawn(move || ...)"] --> own["thread owns moved data"]
+    send["Send: type can move to another thread"]
+    sync["Sync: &T can be shared across threads"]
+    shared["shared mutable state -> Arc<Mutex<T>> / Arc<RwLock<T>>"]
+    note["Non-Send/Sync data across threads = compile error (no data races)"]
+```
+
+`spawn` returns a `JoinHandle`; `.join()` waits for the thread. **`Send`/`Sync`** are auto-implemented for types built from `Send`/`Sync` parts; `Rc` is neither (use `Arc`). To mutate shared data, lock a **`Mutex`** (`lock()` returns a guard; the lock releases when the guard drops) or use **`RwLock`** for read-heavy data (concurrent readers). Wrap it in `Arc` so multiple threads co-own it. Beware **deadlock** from lock ordering — Rust prevents data races, not all logic errors.
+
+### 21.4 Architecture: own-per-thread or share via `Arc<Mutex>`
+
+```mermaid
+flowchart LR
+    data["data to share mutably"] --> arc["Arc (shared ownership)"] --> mutex["Mutex/RwLock (exclusive/Read-write)"]
+    arc --> t1["thread 1 locks to access"]
+    arc --> t2["thread 2 locks to access"]
+```
+
+Threads either own their data outright (moved in) or co-own shared mutable state through `Arc<Mutex<T>>`.
+
+### 21.5 Real example
+
+**Scenario.** Several threads increment a shared counter.
+
+**Problem.** A plain shared integer would be a data race (and won't compile if shared unsafely).
+
+**Solution.** **`Arc<Mutex<T>>`** — shared ownership plus a lock for safe mutation.
+
+**Implementation.**
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+fn main() {
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..5 {
+        let counter = Arc::clone(&counter);          // shared owner per thread
+        handles.push(thread::spawn(move || {         // move the Arc into the thread
+            let mut n = counter.lock().unwrap();      // lock -> exclusive access
+            *n += 1;                                   // safe mutation; guard unlocks at scope end
+        }));
+    }
+    for h in handles { h.join().unwrap(); }          // wait for all
+    println!("{}", *counter.lock().unwrap());         // 5
+}
+```
+
+**Result.** Five threads safely increment the counter: each holds an `Arc` clone (shared ownership) and must `lock()` the `Mutex` to mutate, so accesses are serialized — no data race, guaranteed by the type system (a non-`Send`/`Sync` attempt wouldn't compile). The lock auto-releases when the guard drops. Correct concurrent mutation with no manual unlock.
+
+**Future improvements.** Use `RwLock` for read-heavy shared data; prefer message passing (Ch. 22) or `rayon` for data parallelism to avoid shared-state locking entirely; watch lock ordering to avoid deadlocks.
+
+### 21.6 Exercises
+
+1. What do `Send` and `Sync` each guarantee, and what bug do they prevent?
+2. Why `Arc<Mutex<T>>` rather than `Rc<RefCell<T>>` across threads?
+3. When does a `Mutex` guard release the lock?
+
+### 21.7 Challenges
+
+- **Challenge.** Spawn four threads that each append their id to a shared `Arc<Mutex<Vec<u32>>>`; join them and print the collected ids.
+
+### 21.8 Checklist
+
+- [ ] I `move` data into threads or share it via `Arc`.
+- [ ] Shared mutable state uses `Mutex`/`RwLock` inside `Arc`.
+- [ ] I rely on `Send`/`Sync` to prevent data races at compile time.
+- [ ] I `join` threads and watch for deadlock-prone lock ordering.
+
+### 21.9 Best practices
+
+- Prefer message passing / `rayon` over shared mutable state where possible.
+- Use `RwLock` for read-heavy data; keep critical sections small.
+- Keep a consistent lock order to avoid deadlocks.
+
+### 21.10 Anti-patterns
+
+- Trying to share `Rc`/`RefCell` across threads (won't compile).
+- Holding locks across long operations (contention/deadlock).
+- Manual unsafe sharing to "go faster".
+
+### 21.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "`Rc` cannot be shared between threads" | Non-`Send`/`Sync` type | Use `Arc` (+ `Mutex`) |
+| Deadlock (threads hang) | Inconsistent lock ordering | Lock in a consistent order; shrink critical sections |
+| Contention/slow under load | Coarse `Mutex` | Use `RwLock` / finer-grained locks / messaging |
+
+### 21.12 References
+
+- *The Rust Programming Language*, ch. 16 "Fearless Concurrency" — https://doc.rust-lang.org/book/ch16-00-concurrency.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 22 — Message passing with channels
+
+### 22.1 Introduction
+
+Rust embraces the maxim **"do not communicate by sharing memory; share memory by communicating."** A **channel** is a one-way pipe between threads: a **sender** (`tx`) and a **receiver** (`rx`), created with `std::sync::mpsc::channel()` (**m**ultiple **p**roducer, **s**ingle **c**onsumer). One thread `send`s values; another `recv`s them (or iterates). Because ownership of a sent value **moves** through the channel, there's no shared mutable state to lock — concurrency without `Mutex`, and without data races by construction.
+
+### 22.2 Business context
+
+Shared-state concurrency (locks) is error-prone — deadlocks, contention, forgotten locks. Message passing sidesteps that entire class of problems: each value is owned by exactly one thread at a time, transferred by sending. This models pipelines, work queues, and actor-style designs cleanly, and tends to be easier to reason about and scale than lock-heavy code. For many concurrent workloads (producers/consumers, fan-out/fan-in), channels are the simpler, safer, and often faster design — a better default than shared `Mutex` state.
+
+### 22.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    prod["producer thread(s)"] -->|"tx.send(v) — moves ownership"| chan[("channel")]
+    chan -->|"rx.recv() / for v in rx"| cons["consumer thread"]
+    note["mpsc: many senders, one receiver; value owned by one thread at a time"]
+```
+
+`channel()` returns `(Sender, Receiver)`. **`send`** transfers ownership of a value into the channel (the sender can't use it afterward — enforced by move semantics). The receiver `recv()`s (blocking) or iterates (`for v in rx`), ending when all senders drop. **Clone** the sender for multiple producers. For bounded backpressure use `sync_channel(n)`. The single-consumer model fits fan-in; fan-out uses multiple channels or a work-stealing pool.
+
+### 22.4 Architecture: pipelines of owned messages
+
+```mermaid
+flowchart TB
+    src["producers"] --> ch[("channel (ownership transfer)")] --> sink["consumer processes in order"]
+    note["No shared mutable state; no locks needed"]
+```
+
+Threads cooperate by passing owned messages through channels, eliminating shared-state locking.
+
+### 22.5 Real example
+
+**Scenario.** Worker threads produce results a collector aggregates.
+
+**Problem.** Sharing a result buffer behind a `Mutex` adds locking and contention.
+
+**Solution.** Each worker **sends** its result on a **channel**; the main thread **receives** them.
+
+**Implementation.**
+
+```rust
+use std::sync::mpsc;
+use std::thread;
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+
+    for id in 0..3 {
+        let tx = tx.clone();                  // multiple producers
+        thread::spawn(move || {
+            let result = id * 10;              // some work
+            tx.send(result).unwrap();          // ownership moves into the channel
+        });
+    }
+    drop(tx);                                  // drop the original so rx ends when workers finish
+
+    let total: i32 = rx.iter().sum();          // receive all, no locks
+    println!("{total}");                        // 0 + 10 + 20 = 30
+}
+```
+
+**Result.** Each worker computes independently and **sends** its result; the main thread sums everything received — with **no shared mutable state and no `Mutex`**. Ownership of each result moves through the channel, so there's nothing to lock and no data race possible. Dropping the original sender lets `rx.iter()` terminate when the last worker finishes. Simpler and contention-free versus shared-buffer locking.
+
+**Future improvements.** Use `sync_channel(n)` for bounded backpressure; for CPU-bound data parallelism reach for `rayon`; for async pipelines use `tokio::sync::mpsc` (Ch. 23).
+
+### 22.6 Exercises
+
+1. What does "share memory by communicating" mean in practice?
+2. Why can't a sender use a value after `send`-ing it?
+3. How does the receiver know when to stop iterating?
+
+### 22.7 Challenges
+
+- **Challenge.** Build a producer/consumer: one thread sends 10 numbers over a channel; another receives and prints their running total. Then add a second producer via a cloned sender.
+
+### 22.8 Checklist
+
+- [ ] I model thread cooperation as message passing where it fits.
+- [ ] I clone the sender for multiple producers.
+- [ ] I drop senders so the receiver loop terminates.
+- [ ] I prefer channels over shared `Mutex` state when ownership can transfer.
+
+### 22.9 Best practices
+
+- Default to message passing for producer/consumer and pipeline designs.
+- Use bounded channels (`sync_channel`) for backpressure.
+- Reserve shared-state locking for genuinely shared mutable data.
+
+### 22.10 Anti-patterns
+
+- Shared `Mutex` buffers where a channel would be simpler.
+- Forgetting to drop senders (receiver never terminates).
+- Unbounded channels under load (memory growth) when backpressure is needed.
+
+### 22.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Receiver loop never ends | A sender still alive | Drop all senders when done |
+| "use of moved value" after send | Value moved into the channel | Don't use it after `send` |
+| Memory grows under load | Unbounded channel | Use `sync_channel(n)` for backpressure |
+
+### 22.12 References
+
+- *The Rust Programming Language*, ch. 16.2 "Message Passing" — https://doc.rust-lang.org/book/ch16-02-message-passing.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 23 — Futures, `async`/`await`, and the `tokio` runtime
+
+### 23.1 Introduction
+
+For high-concurrency **I/O**, Rust offers **async/await**. An **`async fn`** returns a **`Future`** — a lazy value representing work that will complete later; **`.await`** drives a future, suspending the current task (not the thread) until it's ready. Crucially, futures do **nothing until polled** by an **executor**; Rust's standard library has no runtime, so you use one — most commonly **`tokio`**. Async lets a few threads handle thousands of concurrent I/O tasks (network servers, clients), the same idea as C#'s async (freeing the thread during waits), with Rust's zero-cost, no-GC guarantees.
+
+### 23.2 Business context
+
+Network services spend most time waiting on I/O; a thread-per-connection model caps concurrency and wastes memory. Async lets one Rust process handle enormous concurrent load efficiently — which is why high-performance web frameworks and infrastructure (proxies, databases, services) are built on `tokio`. The borrow/`Send` rules extend to async, so concurrent tasks are still data-race-free at compile time. Choosing async (for I/O-bound concurrency) versus threads (for CPU-bound parallelism) is a key design decision that determines a service's scalability and cost.
+
+### 23.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    asyncfn["async fn -> returns a Future (lazy)"] --> await["caller .await drives it"]
+    await --> suspend["task suspends on I/O wait, thread freed"]
+    exec["executor (tokio) polls futures to completion"] --> run["nothing runs until polled"]
+    note["async = I/O-bound concurrency; threads = CPU-bound parallelism"]
+```
+
+An `async fn`'s body becomes a state machine implementing `Future`; `.await` yields control when the awaited work isn't ready, letting the executor run other tasks on the same thread. A **runtime** (`#[tokio::main]`) provides the executor, timers, and async I/O. Spawn concurrent tasks with `tokio::spawn`; await many with `tokio::join!`/`try_join!`. Async I/O types (`tokio::fs`, `tokio::net`) are non-blocking — **don't** call blocking std I/O inside async tasks (it stalls the executor; use `spawn_blocking`).
+
+### 23.4 Architecture: many tasks, few threads
+
+```mermaid
+flowchart TB
+    tasks["thousands of async tasks (I/O-bound)"] --> rt["tokio runtime (few worker threads)"]
+    rt --> mux["multiplex: suspend on await, run others"]
+    note["Don't block the executor; offload blocking work to spawn_blocking"]
+```
+
+The runtime multiplexes a huge number of suspended-on-I/O tasks onto a small thread pool — high concurrency, low overhead.
+
+### 23.5 Real example
+
+**Scenario.** Fetch two URLs concurrently and combine the results.
+
+**Problem.** Sequential awaits are slow; blocking I/O per request doesn't scale.
+
+**Solution.** **`async`** functions awaited **concurrently** with `tokio::join!` on the `tokio` runtime.
+
+**Implementation.**
+
+```rust
+async fn fetch(url: &str) -> Result<String, reqwest::Error> {
+    reqwest::get(url).await?.text().await           // non-blocking I/O; .await suspends, frees the thread
+}
+
+#[tokio::main]                                       // sets up the tokio runtime/executor
+async fn main() -> Result<(), reqwest::Error> {
+    let (a, b) = tokio::join!(                        // run both concurrently
+        fetch("https://example.com/a"),
+        fetch("https://example.com/b"),
+    );
+    println!("{} / {} bytes", a?.len(), b?.len());
+    Ok(())
+}
+```
+
+**Result.** Both fetches run **concurrently** on the runtime; each `.await` suspends its task during network waits, freeing the worker thread to drive the other — so a small thread pool can handle many simultaneous requests. `tokio::join!` awaits both. The code reads sequentially while executing concurrently, with Rust's compile-time safety intact. Blocking the thread is avoided entirely.
+
+**Future improvements.** Use `tokio::spawn` for independent background tasks; offload CPU-bound or blocking work with `spawn_blocking`; add timeouts (`tokio::time::timeout`) and cancellation; pick async only for I/O-bound concurrency (threads/`rayon` for CPU-bound).
+
+### 23.6 Exercises
+
+1. What does an `async fn` return, and when does its work actually run?
+2. How does `.await` differ from blocking the thread?
+3. Why must you avoid blocking std I/O inside async tasks?
+
+### 23.7 Challenges
+
+- **Challenge.** Write two `async` functions that sleep different durations (`tokio::time::sleep`) and run them concurrently with `tokio::join!`, showing total time ≈ the longer one.
+
+### 23.8 Checklist
+
+- [ ] I use async/await for I/O-bound concurrency (threads for CPU-bound).
+- [ ] I run a runtime (`#[tokio::main]`/`tokio::spawn`) to drive futures.
+- [ ] I await independent work concurrently (`join!`), not sequentially.
+- [ ] I keep blocking work out of async tasks (`spawn_blocking`).
+
+### 23.9 Best practices
+
+- Choose async for I/O-bound, threads/`rayon` for CPU-bound.
+- Use non-blocking async I/O; offload blocking calls with `spawn_blocking`.
+- Run independent futures concurrently and add timeouts.
+
+### 23.10 Anti-patterns
+
+- Blocking std I/O (or heavy CPU work) inside async tasks (stalls the executor).
+- Awaiting independent futures sequentially.
+- Using async for CPU-bound work expecting parallelism.
+
+### 23.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Async code "does nothing" | Future never awaited/spawned | `.await` it or `tokio::spawn` |
+| Whole runtime stalls | Blocking call in an async task | Use async I/O or `spawn_blocking` |
+| No speedup from concurrency | Sequential awaits / CPU-bound | Use `join!`; offload CPU work to threads |
+
+### 23.12 References
+
+- *The Rust Programming Language*, ch. 17 "Async and Await" — https://doc.rust-lang.org/book/ch17-00-async-await.html.
+- The Tokio docs/tutorial: https://tokio.rs.
+
+---
+
+> **End of Part VII.** Rust's fearless concurrency: **threads** with compile-time **`Send`/`Sync`** safety and shared mutable state via **`Arc<Mutex<T>>`**; **channels** for lock-free message passing ("share by communicating"); and **async/await** futures on **`tokio`** for massive I/O-bound concurrency. Part VIII closes the guide with **macros, testing, `unsafe`, performance, and release**.
+
+<!--APPEND-PART-VIII-->
