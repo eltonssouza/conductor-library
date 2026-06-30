@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Leading**
 3. The fundamentals of leading people
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -243,4 +243,110 @@ This engineer -> staff+ track: lead architecture, solve the hardest problems,
 
 > **End of Part I.** You can now navigate senior engineering growth: shift from personal output to **leverage** (multiplying the team through mentoring, direction, foundations, and process), and choose between the two equally-senior tracks — **management** (impact through leading people) and **staff+ IC** (impact through technical leadership) — by what genuinely energizes you. **Part II — Leading** (Chapter 3) covers the leadership fundamentals shared by both tracks: communication, building trust, giving feedback, and influencing without authority.
 
-<!--APPEND-PART-II-->
+## Part II – Leading
+
+Both tracks from Part I — management and staff+ — create impact through *other people*, and so both rest on the same human fundamentals. Technical skill gets you to senior; the ability to build trust, give feedback, and influence without authority is what makes leverage real. This part covers the leadership basics that a new manager must master and a staff engineer relies on every day.
+
+---
+
+## Chapter 3 — The fundamentals of leading people
+
+### 3.1 Introduction
+
+Leading people rests on a small set of fundamentals: **building trust** through regular, genuine attention (the 1:1 is the core tool, the report's meeting, not a status report); **giving feedback** that is specific, timely, and kind enough to be heard yet honest enough to matter; and **influencing without authority** — getting outcomes through clarity, context, and relationships rather than command. These are learnable skills, not innate traits, and they apply whether you manage a team or lead through technical influence.
+
+### 3.2 Business context
+
+The most common failure of new leaders is treating the people part as overhead — running 1:1s as status updates, dodging hard feedback until it explodes at review time, and trying to drive change by authority they don't really have. The cost is high: low trust, surprised and disengaged people, and an inability to move anything that isn't a direct order. Leaders who master the fundamentals build teams that are candid, motivated, and self-correcting — which is the entire point of moving from doing the work to leading it.
+
+### 3.3 Theoretical concepts: trust, feedback, influence
+
+```mermaid
+flowchart TB
+    trust["Build trust: regular 1:1s (their meeting),<br/>genuine attention, follow-through"]
+    feedback["Give feedback: specific, timely, kind + honest;<br/>praise in public, correct in private"]
+    influence["Influence without authority: clarity, context,<br/>relationships — not command"]
+    trust --> result["A candid, motivated, self-correcting team"]
+    feedback --> result
+    influence --> result
+```
+
+The **1:1** is the foundation of trust: held regularly, owned by the report, used to listen and remove obstacles rather than to extract status. **Feedback** works when it's frequent and small (not hoarded for review season), concrete (a specific behavior and its effect), and delivered with enough care to be heard. **Influence without authority** is the leader's real currency: most of what you want to happen sits outside your direct control, so you get it through shared context, trust, and persuasion — not org-chart power.
+
+### 3.4 Architecture: from positional power to earned influence
+
+```mermaid
+flowchart LR
+    pos["Positional power (limited, brittle)"] --> weak["Works only on direct reports, only for orders"]
+    earned["Earned influence (trust + context + feedback)"] --> strong["Moves people across the org, even peers"]
+```
+
+### 3.5 Real example
+
+**Scenario.** A strong engineer is newly promoted to manage their former teammates.
+
+**Problem.** They keep operating as a senior IC: 1:1s become status meetings, they avoid telling an underperformer the hard truth, and they try to drive a process change by simply mandating it — which the team quietly ignores.
+
+**Solution.** Apply the fundamentals: make 1:1s the report's space, give specific feedback early and often, and drive change through context and trust rather than decree.
+
+**Implementation (lead, don't just manage tasks).**
+
+```text
+Before: 1:1 = "what did you ship?"; hard feedback deferred to review; change by mandate
+After:
+  - 1:1s: their agenda, mostly listening; surface and remove blockers; invest in the relationship
+  - feedback: small + specific + timely ("in standup you cut Ana off — let people finish")
+              praise in public, correct in private
+  - change: explain the WHY and the context; enlist the team; influence > command
+=> trust rises, problems surface early, the change actually sticks
+```
+
+**Result.** The team becomes candid and motivated; the underperformer gets a real, early chance to improve instead of a review-day ambush; the process change is adopted because the team understood and chose it. The new manager is leading people, not just tracking tasks.
+
+**Future improvements.** Protect 1:1s as the last meetings to cancel, and build a regular feedback habit so it never accumulates into a painful surprise.
+
+### 3.6 Exercises
+
+1. What is a 1:1 *for*, and whose meeting is it?
+2. Give three properties of feedback that actually lands.
+3. Why is influence without authority the leader's real currency?
+
+### 3.7 Challenges
+
+- **Challenge.** Audit your last month of 1:1s: were they status reports or the report's space? Pick one piece of overdue feedback and deliver it this week — specific, timely, kind, and honest.
+
+### 3.8 Checklist
+
+- [ ] 1:1s are regular and owned by the report.
+- [ ] Feedback is specific, timely, and frequent (not saved for reviews).
+- [ ] Praise is public; correction is private.
+- [ ] Change is driven by context and trust, not by decree.
+
+### 3.9 Best practices
+
+- Hold regular 1:1s and treat them as the report's meeting.
+- Give small, specific, timely feedback continuously.
+- Lead change through shared context and earned influence.
+
+### 3.10 Anti-patterns
+
+- 1:1s used as status updates.
+- Hoarding hard feedback until performance reviews.
+- Relying on positional authority to drive change.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Low trust; problems surface late | 1:1s are status meetings | Make 1:1s the report's space; listen, unblock |
+| Review-time feedback shocks people | Feedback hoarded | Give small, specific feedback continuously |
+| Mandated change is ignored | Leading by authority | Lead via context, relationships, influence |
+
+### 3.12 References
+
+- C. Fournier, *The Manager's Path* (O'Reilly, 2017) — Ch. 4, "Managing People" (1:1s, building trust, feedback), and Ch. 1, "Management 101." ISBN 978-1491973899.
+- W. Larson, *An Elegant Puzzle* (Stripe Press, 2019) — Ch. 4, §4.3, "Your philosophy of management" (people over process). ISBN 978-1732265189.
+
+---
+
+> **End of Part II.** You can now lead through people on either track: build **trust** with regular, report-owned 1:1s; give **feedback** that is specific, timely, and both kind and honest; and create change through **earned influence** rather than positional authority. Combined with Part I's shift from personal output to leverage and the choice between the management and staff+ tracks, these fundamentals are what turn senior technical skill into real organizational impact.
