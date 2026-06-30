@@ -50,7 +50,11 @@ software_dev: foundational
 6. Comparison sorts: heapsort and quicksort
 7. Sorting in linear time and selection
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–IV (Ch. 1–7).
+**Part V – Algorithmic paradigms in depth**
+8. Dynamic programming
+9. Greedy algorithms
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–V (Ch. 1–9).
 
 ---
 
@@ -847,3 +851,243 @@ randomized_select(A, p, r, i):              # i-th smallest in A[p..r]
 ---
 
 > **End of Part IV.** Sorting ties the whole field together. Beyond merge sort (Part II), **heapsort** gives a worst-case `O(n log n)` in-place sort and the **priority queue**, while **quicksort** is the fast in-practice default (expected `O(n log n)` with a randomized pivot). The **`Ω(n log n)` lower bound** — a decision-tree argument — proves no comparison sort can do better, but **counting, radix, and bucket sort** beat it in **linear time** by exploiting key structure, and **selection** finds the `k`-th smallest (the median, a percentile) in `O(n)` without sorting at all. **Part V — Algorithmic paradigms in depth** returns to design, developing **dynamic programming** and **greedy** algorithms fully.
+
+---
+
+## Part V – Algorithmic paradigms in depth
+
+Part II introduced the design paradigms; this part develops the two that turn exponential problems into polynomial ones. **Dynamic programming (DP)** solves problems with *overlapping subproblems* and *optimal substructure* by computing each subproblem once and reusing the answer — converting naive exponential recursion into polynomial time. **Greedy algorithms** make a single locally optimal choice at each step and never reconsider it; when the problem has the *greedy-choice property*, that gives a globally optimal answer faster and more simply than DP. The crucial skill is telling them apart: both rely on optimal substructure, but greedy works only when a local choice is provably safe, while DP is the fallback when it is not.
+
+---
+
+## Chapter 8 — Dynamic programming
+
+### 8.1 Introduction
+
+**Dynamic programming** applies when a problem has two properties: **optimal substructure** (an optimal solution is built from optimal solutions to subproblems) and **overlapping subproblems** (the same subproblems recur many times in a naive recursion). DP solves each distinct subproblem **once** and stores its result, either **top-down with memoization** (recurse, but cache each answer) or **bottom-up with tabulation** (fill a table from the smallest subproblems up). Either way, the number of *distinct* subproblems times the cost per subproblem gives the running time — usually turning an exponential brute force into a polynomial algorithm. The canonical examples are rod cutting, matrix-chain multiplication, longest common subsequence, and edit distance.
+
+### 8.2 Business context
+
+DP is the engine behind features that would otherwise be intractable. **Edit distance** (a DP) powers spell-checkers, fuzzy search, DNA sequence alignment, and the `diff` that every version-control system and code-review tool runs. **Longest common subsequence** underlies file diffing and plagiarism detection. DP also drives **resource optimization**: knapsack-style budget allocation, optimal scheduling, shortest-path routing (Bellman–Ford and Floyd–Warshall in Part VII are DP), and sequence-to-sequence alignment in bioinformatics and NLP. The business value is concrete: a naive Fibonacci or LCS is `O(2ⁿ)` and dies at `n ≈ 40`, while the DP version is `O(n)` or `O(nm)` and handles inputs millions of times larger. Recognizing "overlapping subproblems" is what lets a team ship a feature instead of declaring it impossible.
+
+### 8.3 Theoretical concepts: solve each subproblem once
+
+```mermaid
+flowchart TB
+    naive["Naive recursion: same subproblems recomputed -> exponential"] --> os["Optimal substructure: optimum built from sub-optima"]
+    os --> ov["Overlapping subproblems: few DISTINCT subproblems"]
+    ov --> memo["Memoize (top-down) OR tabulate (bottom-up)"]
+    memo --> poly["Time = (#distinct subproblems) x (cost each) -> polynomial"]
+```
+
+The defining move is to recognize that the recursion tree, though exponentially large, contains only a **polynomial number of distinct nodes**. Fibonacci recursion makes `O(2ⁿ)` calls but only `n` distinct values `F(0)…F(n)`; caching them makes it `O(n)`. **Memoization** keeps the natural recursive structure and adds a cache, computing only the subproblems actually needed (good for sparse subproblem spaces). **Tabulation** fills every cell of a DP table in dependency order, avoiding recursion overhead and enabling space optimizations (often you only need the last row or two). The running time is the **number of distinct subproblems** multiplied by the **work to combine** their sub-answers — for LCS, `Θ(nm)` cells × `O(1)` each = `Θ(nm)`.
+
+### 8.4 Architecture: recognizing and structuring a DP
+
+```mermaid
+flowchart TB
+    define["Define the subproblem precisely (what does dp[i][j] mean?)"] --> rec["Write the recurrence + base cases"]
+    rec --> order["Choose evaluation order: top-down memo or bottom-up table"]
+    order --> recon["Reconstruct the solution (not just its value) by storing choices"]
+    recon --> space["Optimize space: keep only the table rows still needed"]
+```
+
+A DP is designed in four steps: **(1)** define the subproblem and what its value means; **(2)** write the **recurrence** relating a subproblem to smaller ones, plus base cases; **(3)** pick an evaluation order (memoized recursion or a bottom-up table); **(4)** if you need the *solution itself* and not just its optimal *value*, store the **choice** made at each cell and trace back. A frequent final optimization: when `dp[i]` depends only on `dp[i-1]`, collapse the table to `O(width)` space. Getting step (1) right — a precise subproblem definition — is the hardest and most important part; the recurrence usually follows from it.
+
+### 8.5 Real example
+
+**Scenario.** A code-review tool must show the minimal set of edits (insertions, deletions, substitutions) that turns one version of a file into another.
+
+**Problem.** Naively exploring all alignments of two sequences of lengths `n` and `m` is exponential — unusable on real files.
+
+**Solution.** Compute the **edit (Levenshtein) distance** with DP. Let `dp[i][j]` be the minimum edits to transform the first `i` characters of `A` into the first `j` characters of `B`; each cell depends on three neighbors, giving `Θ(nm)` time.
+
+**Implementation.**
+
+```text
+edit_distance(A[1..n], B[1..m]):
+    dp = table (n+1) x (m+1)
+    for i in 0..n: dp[i][0] = i        # i deletions
+    for j in 0..m: dp[0][j] = j        # j insertions
+    for i in 1..n:
+        for j in 1..m:
+            cost = 0 if A[i] == B[j] else 1
+            dp[i][j] = min(
+                dp[i-1][j]   + 1,       # delete A[i]
+                dp[i][j-1]   + 1,       # insert B[j]
+                dp[i-1][j-1] + cost)    # match or substitute
+    return dp[n][m]
+
+# Optimal substructure + overlapping subproblems -> Theta(n*m) time, O(min(n,m)) space.
+# Store which neighbor each cell chose to RECONSTRUCT the actual edit script.
+```
+
+**Result.** The minimal edit script for real files is computed in milliseconds where brute force would never finish; storing each cell's chosen neighbor lets the tool reconstruct and display the exact insert/delete/substitute operations, not just the distance number.
+
+**Future improvements.** For very long, similar sequences use the **Hirschberg** divide-and-conquer refinement (linear space) or band-limited DP (only compute cells near the diagonal when the distance is known to be small); for huge corpora, anchor on exact-match k-mers first and run DP only between anchors.
+
+### 8.6 Exercises
+
+1. State the two properties a problem must have for dynamic programming to apply.
+2. Contrast memoization (top-down) with tabulation (bottom-up); when is each preferable?
+3. Why is naive recursive Fibonacci `O(2ⁿ)` but the DP version `O(n)`?
+4. How do you recover the *solution* (e.g. the LCS itself) rather than just its optimal value?
+
+### 8.7 Challenges
+
+- **Challenge.** Implement longest common subsequence both as naive recursion and as a `Θ(nm)` DP; show the naive version blowing up around length 30 while the DP handles thousands. Then add traceback to print the actual subsequence, and reduce the table to two rows for `O(min(n,m))` space.
+
+### 8.8 Checklist
+
+- [ ] I confirmed the problem has **optimal substructure** and **overlapping subproblems**.
+- [ ] I wrote a precise subproblem definition before the recurrence.
+- [ ] I chose memoization or tabulation deliberately.
+- [ ] I store choices when I need to reconstruct the solution, not just its value.
+- [ ] I collapsed the DP table to the rows still needed when space matters.
+
+### 8.9 Best practices
+
+- Define `dp[...]`'s meaning in one sentence before writing the recurrence.
+- Prefer tabulation when all subproblems are needed; memoization when the space is sparse.
+- Keep a parallel "choice" table to reconstruct the optimal solution.
+- Reduce space by retaining only the still-referenced portion of the table.
+
+### 8.10 Anti-patterns
+
+- Naive recursion over overlapping subproblems (exponential — the thing DP exists to fix).
+- Applying DP where subproblems do **not** overlap (plain divide and conquer is simpler).
+- Computing only the optimal *value* when the task actually needs the optimal *solution*.
+- Allocating a full 2-D table when only the last row is ever read.
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Recursive solution times out around n≈30–40 | Overlapping subproblems recomputed | Memoize or tabulate |
+| DP gives the right number but you need the path | Choices not recorded | Store each cell's decision and trace back |
+| Out-of-memory on a large 2-D DP | Whole table kept needlessly | Keep only the rows the recurrence still references |
+| DP feels forced / no reuse | Subproblems don't overlap | Use divide and conquer or greedy instead |
+
+### 8.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 14 "Dynamic Programming" (§14.1 rod cutting, §14.2 matrix-chain multiplication, §14.3 elements of dynamic programming, §14.4 longest common subsequence) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 6 (dynamic programming) — ISBN 978-0321295354.
+
+---
+
+## Chapter 9 — Greedy algorithms
+
+### 9.1 Introduction
+
+A **greedy algorithm** builds a solution by repeatedly making the choice that looks best *right now* — the locally optimal move — and never backtracking. This is simpler and usually faster than dynamic programming, but it is only **correct** when the problem has the **greedy-choice property**: a globally optimal solution can always be reached by a sequence of locally optimal choices. Together with **optimal substructure**, that property is what you must prove (typically by an *exchange argument*) before trusting a greedy algorithm. The classic correct examples are **activity selection** (pick the compatible activity that finishes earliest), **Huffman coding** (repeatedly merge the two least-frequent symbols), and the minimum-spanning-tree algorithms of Part VII.
+
+### 9.2 Business context
+
+When greedy *is* valid, it is the best tool: short, fast, and often optimal. **Huffman coding** — a greedy algorithm — is the basis of real compression (DEFLATE/zip, JPEG, MP3 entropy coding), assigning shorter codes to frequent symbols to minimize total size. **Activity selection** models interval scheduling: booking the most non-overlapping meetings in a room, assigning jobs to a machine, allocating non-conflicting reservations. Greedy also drives **MST** algorithms (Kruskal, Prim) for network/cluster design and **Dijkstra**'s shortest paths (Part VII). The danger is using greedy where the greedy-choice property fails — the classic trap is making change or filling a 0/1 knapsack greedily, which can give a *wrong* answer. Knowing when greedy is provably safe versus when you must fall back to DP is a high-value distinction.
+
+### 9.3 Theoretical concepts: when local choices are globally safe
+
+```mermaid
+flowchart TB
+    gc["Greedy-choice property: a locally optimal choice is part of SOME global optimum"]
+    os["Optimal substructure: optimum contains optima of subproblems"]
+    gc --> safe["Make the greedy choice, then solve the one remaining subproblem"]
+    os --> safe
+    safe --> proof["Prove correctness by an EXCHANGE argument"]
+    nope["No greedy-choice property -> greedy may be wrong -> use DP"]
+```
+
+DP considers *all* choices at each step and keeps the best; greedy commits to *one* and never revisits it. That shortcut is valid only when the **greedy-choice property** holds — i.e., there is always a globally optimal solution that includes the greedy choice. The standard proof technique is an **exchange (or cut-and-paste) argument**: take any optimal solution, show you can swap in the greedy choice without making it worse, and conclude the greedy choice is safe. Where this property fails (0/1 knapsack, making change with arbitrary coin denominations), greedy gives a locally-good-but-globally-suboptimal answer, and you must use dynamic programming, which explores the alternatives greedy discarded.
+
+### 9.4 Architecture: greedy vs. dynamic programming
+
+```mermaid
+flowchart TB
+    q["Does a provably safe local choice exist (greedy-choice property)?"] --> yes["Yes: greedy — one choice per step, no reconsideration, faster"]
+    q --> no["No: dynamic programming — consider all choices, keep the best"]
+    yes --> ex["Examples: activity selection, Huffman, Kruskal/Prim, Dijkstra"]
+    no --> ex2["Examples: 0/1 knapsack, edit distance, matrix-chain, coin change (general)"]
+```
+
+The two paradigms sit on a spectrum of how much they trust a local choice. Both need **optimal substructure**; the divide is the **greedy-choice property**. If you can *prove* a local optimum is always extendable to a global one, greedy is correct and cheaper. If you cannot — if a locally inferior choice can lead to a globally better solution — you need DP's exhaustive-but-memoized search. A practical heuristic: try to construct a small counterexample where greedy fails; if you can, use DP; if you genuinely cannot and an exchange argument goes through, greedy is safe.
+
+### 9.5 Real example
+
+**Scenario.** A single conference room must host as many non-overlapping talks as possible from a set of requested time intervals.
+
+**Problem.** Trying all subsets of talks to find the largest compatible set is exponential. Intuitive greedy rules like "pick the shortest talk" or "pick the one starting earliest" can be shown to be **wrong** on simple inputs.
+
+**Solution.** The provably optimal greedy rule is **earliest finish time**: repeatedly pick the compatible activity that *finishes* soonest. An exchange argument proves this is always part of an optimal schedule.
+
+**Implementation.**
+
+```text
+activity_selection(activities):              # each has (start, finish)
+    sort activities by finish time ascending     # O(n log n)
+    chosen = []
+    last_finish = -infinity
+    for a in activities:                          # O(n)
+        if a.start >= last_finish:                # compatible with last pick
+            chosen.append(a)
+            last_finish = a.finish
+    return chosen
+
+# Greedy-choice property: the earliest-finishing activity is in SOME optimum
+# (exchange argument). Optimal substructure: the rest is the same problem on
+# the activities that start after last_finish.  Total: O(n log n).
+```
+
+**Result.** The room hosts the maximum possible number of talks in `O(n log n)` (dominated by the sort), where brute force was exponential. The earliest-finish rule is optimal; the tempting "shortest talk" and "fewest conflicts" rules are not — a reminder that *which* greedy criterion you choose must be proved, not guessed.
+
+**Future improvements.** If talks carry weights/values (maximize total value, not count), the greedy-choice property breaks and you need **weighted interval scheduling** by DP (sort by finish time, `dp[i] = max(skip, value + dp[previous compatible])`); for multiple rooms, switch to an interval-graph coloring / min-heap-of-end-times approach.
+
+### 9.6 Exercises
+
+1. State the greedy-choice property and how it differs from optimal substructure.
+2. Outline an exchange argument proving the earliest-finish-time rule is optimal for activity selection.
+3. Give a concrete input where greedy "make change" fails but DP succeeds.
+4. Why does Huffman coding repeatedly merge the *two least-frequent* symbols?
+
+### 9.7 Challenges
+
+- **Challenge.** Implement activity selection and empirically verify that "earliest finish" beats "shortest duration" and "earliest start" on adversarial inputs. Then implement Huffman coding, build the code table for a sample text, and measure the compression ratio against fixed-length encoding.
+
+### 9.8 Checklist
+
+- [ ] I proved (or cited) the **greedy-choice property** before trusting a greedy algorithm.
+- [ ] I confirmed **optimal substructure** holds.
+- [ ] I tried to construct a counterexample where greedy fails.
+- [ ] I fall back to dynamic programming when a local choice is not provably safe.
+- [ ] I picked the *correct* greedy criterion (e.g. earliest finish, not shortest).
+
+### 9.9 Best practices
+
+- Justify greedy with an exchange argument, not intuition.
+- Default to DP when in doubt; switch to greedy only once correctness is proven.
+- Use Huffman/greedy for compression and interval scheduling where the property holds.
+- Re-examine the greedy criterion when the objective changes (count vs. weighted value).
+
+### 9.10 Anti-patterns
+
+- Assuming a greedy rule is optimal without proof (classic source of subtle bugs).
+- Greedy 0/1 knapsack or general coin change (wrong answers — needs DP).
+- Choosing a plausible-but-wrong greedy criterion (shortest interval, earliest start).
+- Reaching for greedy on a weighted objective where only the unweighted version is greedy-safe.
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Greedy gives a suboptimal result | No greedy-choice property for this objective | Switch to dynamic programming |
+| Coin change returns too many coins | Greedy invalid for these denominations | Use the DP coin-change algorithm |
+| Greedy "works on examples" but fails in prod | Criterion never proven | Construct a counterexample; prove or replace the rule |
+| Right count, wrong total value | Objective is weighted, not a count | Use weighted interval scheduling (DP) |
+
+### 9.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 15 "Greedy Algorithms" (§15.1 activity-selection problem, §15.2 elements of the greedy strategy, §15.3 Huffman codes) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 4 (greedy algorithms; exchange arguments) — ISBN 978-0321295354.
+
+---
+
+> **End of Part V.** The two paradigms that defeat exponential blow-up both rest on **optimal substructure**, and the line between them is the **greedy-choice property**. **Dynamic programming** solves *overlapping subproblems* once — via memoization or tabulation — turning exponential recursion into polynomial time (edit distance, LCS, knapsack); design it by defining the subproblem, writing the recurrence, and reconstructing the solution from stored choices. **Greedy** commits to a provably safe local choice at each step (activity selection, Huffman) — simpler and faster, but correct *only* when an exchange argument holds; otherwise fall back to DP. **Part VI — Data structures** turns from designing algorithms to the structures that make them fast.
