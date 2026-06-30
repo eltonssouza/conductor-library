@@ -4021,4 +4021,621 @@ class CheckoutObservabilityTest {
 
 > **End of Part VII.** Your Boot 4 service can now see itself: **Actuator** exposes health (with liveness/readiness groups mapped to Kubernetes probes), info, metrics, and a Prometheus endpoint behind a secured management port; **Micrometer 2** with the **Observation API** instruments code once to emit both metrics and traces, exporting over **OTLP** through the Boot 4 **OpenTelemetry starter** with trace-correlated logs. **Part VIII — Packaging & Production** (Chapters 20–22) turns the observable application into a shippable, hardened artifact: executable and layered jars plus Cloud Native Buildpacks, GraalVM native images with AOT processing, and production hardening aligned with the twelve-factor methodology.
 
+
+---
+
+# Part VIII – Packaging & Production
+
+Part VIII is where a working Spring Boot 4 application becomes a deployable, operable artifact. Everything earlier in the guide produced *code*; this part produces *units of delivery* — an executable jar that layers cleanly for Docker caching, an OCI image built without writing a Dockerfile, an optional GraalVM native binary that cold-starts in milliseconds, and a hardened runtime configured for zero-downtime operation. It also carries the book's enterprise and migration material to its conclusion: how to take an existing Boot 3 / Spring Framework 6 system forward to the Boot 4 / SF 7 generation. Three chapters take you from `package` to production: jars and images (Chapter 20), native images and AOT (Chapter 21), and production hardening plus the twelve-factor checklist and migration (Chapter 22).
+
+---
+
+## Chapter 20 — Executable jars, layered images, and Docker (Buildpacks)
+
+### 20.1 Introduction
+
+A Spring Boot application ships as a single **executable jar** — an ordinary jar with an embedded server, a special launcher, and all of its dependencies nested inside. `java -jar app.jar` is all it takes to run. But a flat jar is a poor unit for containerized delivery: change one line of your own code and the whole jar is a new layer, forcing Docker to re-pull hundreds of megabytes of unchanged dependencies. Boot 4 solves this with **layered jars** (a `layers.idx` that splits the archive into change-frequency tiers) and with **Cloud Native Buildpacks**, which turn your project into an optimized OCI image via `./mvnw spring-boot:build-image` — no hand-written Dockerfile required. This chapter explains the jar format, layering, and Buildpacks, and when to reach for each.
+
+### 20.2 Business context
+
+Packaging is an economic lever that engineers often underestimate. In a CI/CD fleet, image build time and registry transfer cost are paid on *every* push, by every service, all day. A layered image whose dependency layer is cached means a one-line code change pushes only a few hundred kilobytes instead of the full image, cutting build minutes, registry egress, and rollout latency. Buildpacks add a second win: a consistent, reproducible, security-patched base image and JRE chosen for you, so a fleet of services shares one hardened image recipe instead of dozens of bespoke, drifting Dockerfiles. The result is faster deploys, smaller attack surface, and far less Dockerfile maintenance — operational cost reduction that compounds across the fleet.
+
+### 20.3 Theoretical concepts: jars, layers, and OCI images
+
+```mermaid
+mindmap
+  root((Boot 4 packaging))
+    Executable jar
+      embedded server
+      nested dependencies
+      JarLauncher (Main-Class)
+    Layered jar
+      layers.idx
+      dependencies (stable)
+      spring-boot-loader
+      snapshot-dependencies
+      application (volatile)
+    OCI image
+      Cloud Native Buildpacks
+      spring-boot:build-image
+      no Dockerfile
+      reproducible base + JRE
+    Run model
+      java -jar
+      one command everywhere
+```
+
+- **Executable (fat) jar.** Boot repackages your jar so a `JarLauncher` `Main-Class` boots an embedded classloader that reads dependencies nested under `BOOT-INF/lib`. Your classes live under `BOOT-INF/classes`.
+- **Layered jar.** A `layers.idx` manifest groups archive entries into ordered layers by how often they change: `dependencies`, `spring-boot-loader`, `snapshot-dependencies`, and `application`. A container build maps each layer to a Docker layer, so stable dependencies cache while volatile application code is the only thing rebuilt.
+- **Cloud Native Buildpacks (CNB).** A vendor-neutral spec that inspects your project, selects a base image and JRE, and assembles an OCI image. Spring Boot's `build-image` goal runs Paketo Buildpacks against your layered jar.
+- **OCI image.** The open container image format produced by Buildpacks (or Docker) and consumed by any compliant runtime — Kubernetes, ECS, Cloud Run.
+
+### 20.4 Architecture: from source to a cached image
+
+```mermaid
+flowchart TB
+    src["Source + pom.xml/build.gradle"] --> pkg["./mvnw package<br/>(layered executable jar)"]
+    pkg --> idx["layers.idx<br/>dependencies · loader · snapshot · application"]
+    idx --> bp["./mvnw spring-boot:build-image<br/>(Cloud Native Buildpacks)"]
+    bp --> oci["OCI image<br/>stable deps cached · app layer thin"]
+    pkg -. alternative .-> jar["java -jar app.jar<br/>(run anywhere, no container)"]
+    oci --> reg[("Registry → Kubernetes / Cloud Run")]
+```
+
+Buildpacks read the `layers.idx` so the dependency layers become reusable image layers. A code-only change rebuilds just the `application` layer; everything below it is pulled from cache.
+
+### 20.5 Real example
+
+**Scenario.** A catalog service is deployed to Kubernetes via a CI pipeline that builds and pushes an image on every merge. The team wants fast, cheap rebuilds and no Dockerfile to maintain.
+
+**Problem.** Their current Dockerfile copies a flat fat jar in one `COPY` step, so every code change invalidates the jar layer and forces a full re-push of ~250 MB — slow builds and high registry egress.
+
+**Solution.** Enable layered jars (the Boot 4 default) and build the image with Cloud Native Buildpacks instead of a hand-written Dockerfile. Stable dependency layers cache; only the thin application layer changes per commit.
+
+**Implementation.**
+
+```xml
+<!-- pom.xml — spring-boot-starter-parent 4.0 produces layered jars by default. -->
+<parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>4.0.0</version>
+</parent>
+
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <image>
+          <!-- Name the image; Buildpacks pick a hardened base + JRE for you. -->
+          <name>registry.example.com/catalog:${project.version}</name>
+        </image>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
+
+```bash
+# Inspect how the jar is layered (change-frequency tiers)
+java -Djarmode=tools -jar target/catalog-0.0.1-SNAPSHOT.jar list-layers
+# -> dependencies / spring-boot-loader / snapshot-dependencies / application
+
+# Build an OCI image with Cloud Native Buildpacks — no Dockerfile needed
+./mvnw spring-boot:build-image
+
+# Push and run
+docker push registry.example.com/catalog:0.0.1-SNAPSHOT
+docker run -p 8080:8080 registry.example.com/catalog:0.0.1-SNAPSHOT
+```
+
+```dockerfile
+# If a Dockerfile is mandated, extract layers and copy them most-stable-first
+# so the dependency layers cache across builds.
+FROM eclipse-temurin:25-jre AS builder
+WORKDIR /app
+COPY target/catalog-0.0.1-SNAPSHOT.jar app.jar
+RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
+
+FROM eclipse-temurin:25-jre
+WORKDIR /app
+COPY --from=builder /app/extracted/dependencies/ ./
+COPY --from=builder /app/extracted/spring-boot-loader/ ./
+COPY --from=builder /app/extracted/snapshot-dependencies/ ./
+COPY --from=builder /app/extracted/application/ ./
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+**Result.** The dependency layers are built once and reused; a code-only commit rebuilds and pushes only the thin `application` layer (kilobytes, not megabytes). CI image time drops sharply, registry egress falls, and the team deleted its bespoke Dockerfile in favor of Buildpacks.
+
+**Future improvements.** Pin the Buildpacks builder version for reproducibility, add an SBOM step, and evaluate a GraalVM native image (Chapter 21) for the cold-start-sensitive variant of this service.
+
+### 20.6 Exercises
+
+1. What does `layers.idx` define, and why does layer ordering matter for Docker caching?
+2. What is the difference between `java -jar` on a fat jar and the same on a layered jar at runtime?
+3. What does `./mvnw spring-boot:build-image` produce, and what does it free you from maintaining?
+
+### 20.7 Challenges
+
+- **Challenge.** Build the same service two ways — a single-`COPY` Dockerfile and a layered Buildpacks image — then make a one-line code change and compare the bytes pushed to a local registry for each.
+
+### 20.8 Checklist
+
+- [ ] My executable jar is layered (Boot 4 default) and I can list its layers.
+- [ ] My container build copies layers most-stable-first (or uses Buildpacks).
+- [ ] I can produce an OCI image with `spring-boot:build-image` without a Dockerfile.
+- [ ] The image runs with one command on any OCI-compliant runtime.
+
+### 20.9 Best practices
+
+- Prefer Cloud Native Buildpacks for a consistent, patched base image and JRE across the fleet.
+- Keep the application layer thin and stable layers below it so caching pays off.
+- Pin the Buildpacks builder/base image version so builds are reproducible.
+- Run as a non-root user and use a JRE (not full JDK) base for a smaller attack surface.
+
+### 20.10 Anti-patterns
+
+- Copying a flat fat jar in one Docker step, invalidating all caching on every commit.
+- Hand-maintaining a bespoke Dockerfile per service when Buildpacks would standardize it.
+- Baking secrets or build-time credentials into image layers.
+- Shipping a full JDK image when a JRE suffices at runtime.
+
+### 20.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Full image re-pushed on every commit | Flat jar / wrong layer order | Use layered jar; copy stable layers first or use Buildpacks |
+| `build-image` fails to reach Docker | No daemon / wrong socket | Start Docker; set `DOCKER_HOST` or use a rootless daemon |
+| Image runs as root | Default base / hand Dockerfile | Use Buildpacks (non-root) or add a non-root `USER` |
+| Image larger than expected | Full JDK base or unused deps | Use a JRE base; prune the dependency tree (Chapter 1) |
+| `no main manifest attribute` | Not repackaged by Boot plugin | Ensure the `spring-boot-maven-plugin` `repackage` goal ran |
+
+### 20.12 Official references
+
+- Container images (Spring Boot): https://docs.spring.io/spring-boot/reference/packaging/container-images/index.html
+- Cloud Native Buildpacks support: https://docs.spring.io/spring-boot/reference/packaging/container-images/cloud-native-buildpacks.html
+- Layered jars & efficient images: https://docs.spring.io/spring-boot/reference/packaging/container-images/efficient-images.html
+- Executable jar format: https://docs.spring.io/spring-boot/specification/executable-jar/index.html
+- Cloud Native Buildpacks project: https://buildpacks.io
+
+---
+
+## Chapter 21 — GraalVM native images and AOT processing
+
+### 21.1 Introduction
+
+A **GraalVM native image** compiles a Boot 4 application ahead-of-time into a standalone native executable: there is no JVM to start, no class loading, no warm-up. Startup falls from seconds to a few tens of milliseconds and resident memory from hundreds of megabytes to tens. Making this possible is Spring's **AOT (Ahead-Of-Time) processing**, which at build time evaluates your configuration, pre-computes bean definitions, and emits the reachability metadata (reflection, resources, proxies) the native compiler needs. Boot 4 requires **GraalVM native-image 25+**. This chapter explains AOT, the closed-world model, the native build, and the trade-offs that make native a deliberate choice rather than a default.
+
+### 21.2 Business context
+
+Native images change the economics of serverless and autoscaling. When a function cold-starts in 40 ms instead of 2.5 s, it stops breaching gateway timeouts under bursty traffic and stops paying for warm idle capacity; when a pod uses 60 MB instead of 300 MB, the cluster packs far more densely on the same nodes. For scale-to-zero and spiky workloads, that is a direct cloud-bill reduction and a user-facing latency improvement. The cost is a slower, more constrained build and reduced runtime dynamism (no arbitrary runtime reflection or classloading). For throughput-bound services that run hot for hours, the JVM's JIT still wins — so native is an engineering trade-off applied where cold start and memory dominate, not a universal upgrade.
+
+### 21.3 Theoretical concepts
+
+- **AOT processing.** At build time Spring runs the application context far enough to pre-compute bean definitions and generate functional configuration plus `RuntimeHints` (reflection, resources, serialization, proxies). The `process-aot` goal drives this.
+- **Closed-world assumption.** The native image contains only code reachable at build time. Anything loaded dynamically at runtime — reflection, resources, dynamic proxies — must be *declared* via hints or it simply will not exist in the binary.
+- **Hints.** `@RegisterReflectionForBinding`, `@ImportRuntimeHints`, and `RuntimeHintsRegistrar` declare the dynamic surface the compiler cannot infer. Spring and its starters ship hints for their own needs; you add hints for reflection-heavy third-party libraries.
+- **Native vs JIT.** Native = fast start, low memory, slower build, no JIT peak throughput. JVM = slower start, full dynamism, higher sustained throughput.
+- **CDS / AOT cache.** A middle ground: a JVM jar plus Class Data Sharing / AOT cache speeds startup meaningfully without going fully native and without the closed-world constraints — the low-risk first step.
+
+### 21.4 Architecture: the AOT / native build pipeline
+
+```mermaid
+flowchart TB
+    src["Source + configuration"] --> aot["Spring AOT processing<br/>bean defs + RuntimeHints"]
+    aot --> meta["Reachability metadata<br/>reflection · resources · proxies"]
+    meta --> gvm["GraalVM native-image 25+"]
+    gvm --> exe["Native executable<br/>fast start · low memory"]
+    src -. lower risk .-> jvm["JVM jar + CDS/AOT cache<br/>good start · full dynamism"]
+```
+
+```mermaid
+flowchart LR
+    closed["Closed-world<br/>build-time reachability"] --> ok["Reachable code<br/>compiled in"]
+    closed --> gap["Dynamic code<br/>(reflection/resources)"]
+    gap -- "hint provided" --> incl["Included in image"]
+    gap -- "no hint" --> fail["Missing at runtime<br/>ClassNotFound / no resource"]
+```
+
+The second diagram is the rule to internalize: in a native image, **undeclared dynamic access does not fail at build time — it fails at runtime.** Hints close that gap before the image is built.
+
+### 21.5 Real example
+
+**Scenario.** A scale-to-zero, function-style pricing service must cold-start in milliseconds so it does not breach the API gateway timeout during traffic spikes.
+
+**Problem.** On the JVM the service cold-starts in ~2.5 s. Under bursty, scale-from-zero traffic, the gateway times out the first request to each new instance, surfacing as intermittent 504s.
+
+**Solution.** Build a GraalVM native image using Boot's native build support and AOT processing, adding reflection hints for one library that reflectively (de)serializes an external payload type.
+
+**Implementation.**
+
+```xml
+<!-- pom.xml — Boot plugin + GraalVM native build tools; activate via the native profile. -->
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <groupId>org.graalvm.buildtools</groupId>
+      <artifactId>native-maven-plugin</artifactId>
+    </plugin>
+  </plugins>
+</build>
+```
+
+```java
+package com.example.pricing;
+
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportRuntimeHints;
+
+// Declare the dynamic surface the closed-world compiler cannot infer.
+@Configuration
+@RegisterReflectionForBinding(ExternalQuote.class)   // reflectively (de)serialized by a library
+@ImportRuntimeHints(PricingHints.class)
+class NativeConfig { }
+
+class PricingHints implements RuntimeHintsRegistrar {
+    @Override
+    public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+        hints.resources().registerPattern("pricing/*.json");   // bundle runtime resources
+    }
+}
+```
+
+```bash
+# Build the native executable (GraalVM native-image 25+ on PATH)
+./mvnw -Pnative native:compile
+
+# Run it — starts in milliseconds, no JVM warm-up
+./target/pricing-service
+
+# Measure native startup and memory
+/usr/bin/time -v ./target/pricing-service
+```
+
+**Tests.**
+
+```java
+// Run the standard context-load test under AOT; closed-world / reflection gaps surface here.
+@SpringBootTest
+class NativeReadinessTest {
+
+    @Test
+    void contextLoadsUnderAot() {
+        // Verifies the AOT-processed context is valid before the native build.
+    }
+}
+```
+
+```bash
+# Drive AOT processing explicitly to catch issues before the (slow) native compile
+./mvnw -Pnative process-aot
+```
+
+**Result.** Cold start drops from ~2.5 s to ~40 ms and resident memory from ~300 MB to ~60 MB. The pricing service survives scale-from-zero spikes without gateway timeouts, and the cluster packs more instances per node.
+
+**Future improvements.** Add the native build to CI as a scheduled job (it is slow), keep a JVM + CDS/AOT-cache variant for throughput-bound batch runs, and profile the image to trim its size.
+
+### 21.6 Exercises
+
+1. What two things does Spring AOT processing produce for the native compiler?
+2. Why does runtime reflection require explicit hints under the closed-world assumption?
+3. When is CDS / AOT cache a better choice than a fully native image?
+
+### 21.7 Challenges
+
+- **Challenge.** Build both a native image and a JVM + CDS/AOT-cache variant of one service. Compare cold start, resident memory, peak throughput, and build time, then recommend a deployment target with the numbers to justify it.
+
+### 21.8 Checklist
+
+- [ ] GraalVM native-image 25+ is installed and on `PATH`.
+- [ ] Reflection / resource / serialization hints are declared where libraries need them.
+- [ ] The context-load test passes under AOT before the native compile.
+- [ ] I evaluated CDS / AOT cache as a lower-risk alternative first.
+
+### 21.9 Best practices
+
+- Start with CDS / AOT cache; reserve native for cold-start- and memory-critical workloads.
+- Declare `RuntimeHints` for reflection-heavy third-party libraries up front.
+- Run the full suite under AOT in CI to catch closed-world issues early, not at runtime.
+- Keep a JVM variant for throughput-bound services that benefit from the JIT.
+
+### 21.10 Anti-patterns
+
+- Going native for throughput-bound, long-running services (you lose JIT peak performance).
+- Ignoring hints until the native image fails at runtime instead of build time.
+- Attempting a native build on a GraalVM older than 25.
+- Putting the slow native compile on the inner developer loop instead of CI.
+
+### 21.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `ClassNotFoundException` / reflection error at runtime | Missing hint | Add `@RegisterReflectionForBinding` / `RuntimeHints` |
+| Missing resource (template/JSON) in the binary | Resource not registered | Register the resource pattern in a `RuntimeHintsRegistrar` |
+| Native build fails to start | GraalVM < 25 | Install GraalVM native-image 25+ |
+| Build extremely slow on every change | Native compile on inner loop | Use JVM + CDS/AOT for dev; native in CI |
+| Image works as jar but not native | Closed-world dynamic access | Reproduce under AOT (`process-aot`) and add hints |
+
+### 21.12 Official references
+
+- Native images (Spring Boot): https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html
+- AOT processing (Spring Framework): https://docs.spring.io/spring-framework/reference/core/aot.html
+- Runtime hints & reflection: https://docs.spring.io/spring-framework/reference/core/aot.html#aot.hints
+- GraalVM Native Image: https://www.graalvm.org/latest/reference-manual/native-image/
+
+---
+
+## Chapter 22 — Production hardening and the twelve-factor checklist
+
+### 22.1 Introduction
+
+Most of a system's life is spent *running*, not being written. This final chapter turns a packaged Boot 4 application into a hardened, operable production service: **graceful shutdown** for zero-downtime rollouts, **liveness/readiness probes** wired to the orchestrator, **externalized configuration and secrets**, **deliberate Actuator exposure**, and **structured, correlated logging**. It frames these against the **twelve-factor** methodology, which remains the clearest shared vocabulary for cloud-native discipline. Because production readiness also means *staying current*, the chapter closes with a concise **migration guide** — moving from Boot 3 / Spring Framework 6 to Boot 4 / SF 7 — including an OpenRewrite-driven workflow and the baseline-bump table. This is the richest chapter in the part: it carries hardening, twelve-factor, and migration together, because in practice they are the same conversation about running a service responsibly over its lifetime.
+
+### 22.2 Business context
+
+Operational excellence is what keeps a business online and its data safe. A service that drops in-flight requests on every deploy erodes user trust and inflates error budgets; one that leaks secrets into an image invites a breach; one that runs an end-of-life framework line accumulates unpatched CVEs until an emergency upgrade interrupts the roadmap. Each of these is a *predictable*, *preventable* cost. Hardening — graceful shutdown, readiness gating, externalized secrets, scoped Actuator, planned upgrades — converts surprise outages into non-events and emergency migrations into scheduled, low-risk sprints. The twelve-factor checklist gives leadership a shared definition of "production-ready," and the Java-17 floor of Boot 4 keeps the migration that sustains all of this within reach. The payoff is continuous: higher uptime, lower incident cost, and the freedom to ship safely.
+
+### 22.3 Theoretical concepts
+
+- **Graceful shutdown.** On `SIGTERM`, Boot stops accepting new requests and drains in-flight ones before exiting (`server.shutdown=graceful` with a bounded `spring.lifecycle.timeout-per-shutdown-phase`) — the foundation of zero-downtime rollouts.
+- **Health & probes.** Actuator exposes liveness and readiness groups; the orchestrator uses readiness to gate traffic during a rollout and liveness to restart a wedged instance.
+- **Externalized configuration & secrets.** Config comes from the environment, not the artifact (twelve-factor III): properties, env vars, config maps, and a secret store — never secrets baked into images or committed to git.
+- **Actuator exposure.** Endpoints are powerful, so production exposes the minimum (`health`, `info`, `prometheus`) and protects the rest behind authentication or a separate management port.
+- **Structured logging.** JSON logs with trace/span correlation IDs make a fleet of services diagnosable (twelve-factor XI: logs as event streams).
+- **Twelve-factor.** A baseline of cloud-native practices — codebase, dependencies, config, backing services, build/release/run, processes, port binding, concurrency, disposability, dev/prod parity, logs, admin processes — that Boot 4 supports almost entirely out of the box.
+- **Migration discipline.** Staying on a supported line is a production requirement; the move is mostly *baselines* and a *module split*, driven by OpenRewrite and validated by tests.
+
+### 22.4 Architecture: the production lifecycle loop
+
+```mermaid
+flowchart TB
+    build["Build: layered jar / native + AOT"] --> deploy["Deploy: rolling / blue-green"]
+    deploy --> ready["Readiness gates traffic in"]
+    ready --> run["Run: serve traffic"]
+    run --> observe["Observe: metrics · traces · structured logs"]
+    observe --> issue{"Issue?"}
+    issue -- yes --> diag["Diagnose via traces/logs"] --> deploy
+    issue -- no --> run
+    run --> term["SIGTERM"] --> drain["Graceful shutdown: drain in-flight"] --> stop["Stop"]
+    run -. annual .-> upg["Upgrade on November cadence"] --> build
+```
+
+```mermaid
+flowchart LR
+    cfg["Config and secrets<br/>(env · config map · secret store)"] --> app["Boot 4 app"]
+    app --> act["Actuator (scoped)<br/>health · info · prometheus"]
+    act --> k8s["Orchestrator probes<br/>readiness · liveness"]
+    app --> logs["Structured JSON logs<br/>+ trace/span IDs"]
+    logs --> collector[("Log/trace pipeline (OTel)")]
+```
+
+### 22.5 Real example
+
+**Scenario.** A catalog service must deploy to Kubernetes with **zero downtime**, drain cleanly on shutdown, read all secrets from the environment, expose only safe Actuator endpoints, and emit correlated structured logs.
+
+**Problem.** Today it shuts down abruptly (dropping in-flight requests on every rollout), exposes *all* Actuator endpoints, carries a database password in `application.yml`, and logs unstructured text that is impossible to correlate across instances.
+
+**Solution.** Enable graceful shutdown with a bounded timeout, wire readiness/liveness probes with `maxUnavailable: 0`, externalize secrets to environment variables backed by a secret store, scope Actuator to `health,info,prometheus`, and switch to structured JSON logging with trace correlation.
+
+**Implementation.**
+
+```yaml
+# application.yml — production hardening
+server:
+  shutdown: graceful                 # drain in-flight requests on SIGTERM
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s  # bound the drain so a stuck request can't hang the pod
+  datasource:
+    url: ${DB_URL}                   # config from the environment (twelve-factor III)
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}         # secret injected; never committed, never in the image
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus   # expose the minimum, not '*'
+  endpoint:
+    health:
+      probes:
+        enabled: true                # liveness + readiness groups for the orchestrator
+      show-details: when-authorized  # don't leak internals to anonymous callers
+  server:
+    port: 8081                       # management on a separate, non-public port
+logging:
+  structured:
+    format:
+      console: ecs                   # structured JSON logs with trace/span IDs
+```
+
+```yaml
+# Kubernetes deployment — readiness gates traffic; rolling update = zero downtime
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    spec:
+      containers:
+        - name: catalog
+          envFrom:
+            - secretRef: { name: catalog-db-secret }   # secrets from a store, not the image
+          readinessProbe:
+            httpGet: { path: /actuator/health/readiness, port: 8081 }
+            initialDelaySeconds: 5
+          livenessProbe:
+            httpGet: { path: /actuator/health/liveness, port: 8081 }
+          lifecycle:
+            preStop:
+              exec: { command: ["sh", "-c", "sleep 5"] }  # let the load balancer deregister first
+```
+
+**Tests.**
+
+```bash
+# Prove graceful shutdown drains rather than drops in-flight work
+curl -s localhost:8080/slow & PID=$!         # start a long request
+kill -TERM "$(pgrep -f catalog)"             # send SIGTERM
+wait "$PID" && echo "in-flight request completed during graceful shutdown"
+
+# Confirm only the intended Actuator endpoints are exposed
+curl -s localhost:8081/actuator | grep -o '"href":"[^"]*"'   # health/info/prometheus only
+```
+
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class ReadinessTest {
+    @Autowired MockMvc mvc;
+
+    @Test
+    void readinessReportsState() throws Exception {
+        mvc.perform(get("/actuator/health/readiness")).andExpect(status().isOk());
+    }
+}
+```
+
+**Result.** Rollouts route traffic only to ready pods and `SIGTERM` drains in-flight requests before exit, so deploys drop zero requests. Secrets live in a store and are injected at runtime — none in the image or git. Actuator exposes only safe endpoints on a separate port, and JSON logs carry trace/span IDs for cross-instance correlation. The service now satisfies the twelve-factor checklist below.
+
+**Future improvements.** Add automated rollback on failed readiness, alert on error-rate and p99-latency SLOs, rotate secrets automatically, and schedule the annual upgrade to the next November generation.
+
+#### 22.5.1 The twelve-factor checklist (Boot 4 mapping)
+
+| Factor | Boot 4 mechanism |
+|--------|------------------|
+| I. Codebase | One repo per deployable; build the same artifact for all environments |
+| II. Dependencies | Starters + managed BOM; modular jars (Chapter 1) |
+| III. Config | Externalized via env/config maps/secret store — never in the artifact |
+| IV. Backing services | DataSource/clients as attached resources via config (URLs, credentials) |
+| V. Build, release, run | `package` → image → `java -jar`/run; immutable artifact promoted across stages |
+| VI. Processes | Stateless app; session/state in backing services |
+| VII. Port binding | Embedded server self-binds (`server.port`); no external container |
+| VIII. Concurrency | Scale out via process/pod replicas; virtual threads for blocking I/O |
+| IX. Disposability | Fast startup (AOT/native) + graceful shutdown on `SIGTERM` |
+| X. Dev/prod parity | Same jar/image everywhere; profiles for environment differences |
+| XI. Logs | Structured JSON to stdout as an event stream; collected externally |
+| XII. Admin processes | One-off tasks as separate runs of the same artifact |
+
+#### 22.5.2 Migrating to Boot 4 / Spring Framework 7
+
+Production readiness includes staying on a supported line. The good news: the **Java floor stays at 17**, so most Boot 3 apps reach 4.0 **without a JDK upgrade** — the single biggest cost-saver. The friction is mostly *baselines* and the *module split*, not application logic. The disciplined path is staged and tooling-assisted:
+
+```mermaid
+flowchart TB
+    a["Upgrade to latest 3.4<br/>clear deprecation warnings"] --> b["Bump baselines:<br/>Kotlin 2.2+ · GraalVM 25+ · Servlet 6.1"]
+    b --> c["Apply OpenRewrite Boot 4 recipe"]
+    c --> d["Fix module split:<br/>add explicit starters/modules"]
+    d --> e["Update annotations/properties:<br/>@MockBean → @MockitoBean · OTel starter"]
+    e --> f["Run tests + dependency audit"]
+    f --> g["Adopt Boot 4 features<br/>(HTTP clients · API versioning)"]
+```
+
+The baseline bumps to plan for:
+
+| Baseline | Boot 3.x | Boot 4.0 |
+|----------|----------|----------|
+| Java | 17 floor | **17 floor (unchanged)** |
+| Spring Framework | 6.x | 7.0 |
+| Jakarta EE | 10 (Servlet 6.0) | 11 (Servlet 6.1, e.g. Tomcat 11) |
+| Kotlin | 1.9+ | 2.2+ |
+| GraalVM native-image | earlier | 25+ |
+| Jackson | 2.x | 3.x (`tools.jackson.*`) |
+
+Drive the mechanical bulk with **OpenRewrite** (dry-run, review, apply), then a deprecation sweep, then tests — per service:
+
+```bash
+# 1) Step within 3.x to the latest 3.4 and clear deprecations first.
+# 2) Apply the OpenRewrite Boot 4 recipe (version bumps, @MockBean→@MockitoBean, property renames).
+./mvnw org.openrewrite.maven:rewrite-maven-plugin:run \
+  -Drewrite.activeRecipes=org.openrewrite.java.spring.boot4.UpgradeSpringBoot_4_0
+
+# 3) Deprecation sweep — surface anything the recipe didn't catch.
+./mvnw -Dmaven.compiler.showDeprecation=true -Dmaven.compiler.failOnWarning=true compile
+
+# 4) Audit the modular dependency tree; add any now-explicit starter the split requires.
+./mvnw dependency:tree | grep spring-boot-starter
+
+# 5) Validate.
+./mvnw verify
+```
+
+Stage the work as one concern per PR — baselines, recipe output, module fixes, feature adoption — keeping tests green at each gate. Adopt new Boot 4 features (HTTP Service Clients, API versioning, the OTel starter) only after the upgrade itself is stable.
+
+### 22.6 Exercises
+
+1. What does graceful shutdown do on `SIGTERM`, and why is it the basis of zero-downtime rollouts?
+2. Map three twelve-factor factors to the Boot 4 mechanism that satisfies each.
+3. Which baseline does *not* change in a Boot 3→4 migration, and why does that matter for cost?
+
+### 22.7 Challenges
+
+- **Challenge.** Harden a service end-to-end (graceful shutdown + readiness/liveness + externalized secrets + scoped Actuator + structured logs), prove no requests drop during a rolling deploy under light load, then migrate the same service to Boot 4 in staged PRs and record every breaking change you hit.
+
+### 22.8 Checklist
+
+- [ ] Graceful shutdown is enabled with a bounded timeout.
+- [ ] Liveness/readiness probes are wired; readiness gates traffic (`maxUnavailable: 0`).
+- [ ] All secrets are externalized — none in the image or git.
+- [ ] Actuator exposes only safe endpoints, ideally on a separate management port.
+- [ ] Logs are structured (JSON) with trace correlation.
+- [ ] The twelve-factor checklist is satisfied.
+- [ ] Annual upgrades are planned on the November cadence; not running an EOL line.
+
+### 22.9 Best practices
+
+- Automate rollouts with readiness gating and graceful shutdown; never deploy without both.
+- Externalize all config and secrets; treat the artifact as immutable across environments.
+- Expose the minimum Actuator surface and protect management endpoints.
+- Emit structured, correlated logs and OTel traces for fast diagnosis.
+- Migrate proactively on the November cadence using OpenRewrite + a deprecation sweep; stage one concern per PR.
+
+### 22.10 Anti-patterns
+
+- Abrupt shutdown that drops in-flight requests on every deploy.
+- Secrets baked into images or committed to source control.
+- Exposing all Actuator endpoints (`include: '*'`) on the public port.
+- Plain-text, uncorrelated logs that defeat fleet-wide diagnosis.
+- Deferring upgrades until an EOL/security event forces an emergency migration.
+- Bundling baselines, module fixes, and feature adoption into one giant, unreviewable PR.
+
+### 22.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Dropped requests during a deploy | No graceful shutdown / no preStop delay | Enable `server.shutdown=graceful`; add a `preStop` sleep |
+| 5xx spikes during a rollout | Traffic routed to not-ready pods | Gate on readiness; set `maxUnavailable: 0` |
+| Sensitive data leaking from `/actuator` | Endpoints over-exposed / details public | Scope `exposure.include`; `show-details: when-authorized` |
+| Secret found in image or git history | Config baked into the artifact | Externalize to env/secret store; rotate the leaked secret |
+| Logs impossible to correlate | Unstructured logging | Enable structured JSON logs with trace/span IDs |
+| Many compile errors after the bump | Skipped the 3.4 consolidation step | Roll back; clear deprecations on 3.4 first, then bump |
+| Missing auto-config after upgrade | Module split | Add the now-explicit starter/module the migrator flags |
+
+### 22.12 Official references
+
+- Graceful shutdown: https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html
+- Production-ready features (Actuator): https://docs.spring.io/spring-boot/reference/actuator/index.html
+- Kubernetes probes & application availability: https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.kubernetes-probes
+- Externalized configuration: https://docs.spring.io/spring-boot/reference/features/external-config.html
+- Structured logging: https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.structured
+- Spring Boot 4.0 migration guide: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+- OpenRewrite Spring recipes: https://docs.openrewrite.org/recipes/java/spring
+- The Twelve-Factor App: https://12factor.net
+
+---
+
+> **End of Part VIII — and of the guide.** You now hold the full arc of Spring Boot 4: the **foundations** (starters, the managed BOM, modular auto-configuration, the IoC container, JSpecify-null-safe injection), **configuration and web APIs** (externalized config and profiles, REST with built-in API versioning, `ProblemDetail` validation), **data and persistence** (Spring Data, transactions, declarative HTTP and messaging clients), **resilience, observability, and security** (built-in retries and concurrency limits, Micrometer 2 + the OpenTelemetry starter, OAuth2 resource servers), **testing and architecture** (the testing pyramid with Testcontainers, the modular monolith with Spring Modulith), and finally **packaging and production** — layered jars and Cloud Native Buildpacks, GraalVM native images with AOT, and production hardening against the twelve-factor checklist, with a staged, OpenRewrite-driven migration onto a **Java-17 floor** that keeps the move affordable. The throughline of this generation is pragmatic modernization: leaner dependencies, vendor-neutral nullness and telemetry, declarative HTTP, virtual threads, and native images, all delivered without a forced JDK jump. Start new work on Boot 4, harden it for the way it will actually run, migrate existing systems on the November cadence, and lean on the tooling. The map is complete — go build, package, and ship.
+
 <!--APPEND-PARTE-II-->
