@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Query & integrity antipatterns**
 3. Relying on implicit columns and missing constraints
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -264,4 +264,121 @@ SELECT * FROM subtree;
 
 > **End of Part I.** You can now spot and fix two pervasive schema antipatterns: storing multiple values in one column (fix: junction tables with foreign keys) and naive tree storage (fix: adjacency list with recursive CTEs, escalating to a closure table only when reads demand it). **Part II — Query & integrity antipatterns** (Chapter 3) covers relying on implicit columns (`SELECT *`, ambiguous defaults) and the cost of skipping constraints that the database could enforce for you.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Query & integrity antipatterns
+
+Part I fixed how data is *shaped*. Part II fixes how it is *queried* and *protected*. Two antipatterns here are nearly universal because they feel convenient: writing `SELECT *` instead of naming columns, and leaving out foreign-key constraints "for flexibility." Both trade a tiny short-term convenience for a large, recurring tax in fragility and corrupt data.
+
+---
+
+## Chapter 3 — Implicit columns and missing constraints
+
+### 3.1 Introduction
+
+Two habits quietly erode a schema's reliability. **Implicit columns** — `SELECT *` and `INSERT` without a column list — couple your code to the table's exact column set and order, so any schema change can silently break a query or insert. **Missing constraints** — especially foreign keys — push integrity enforcement out of the database and into the (inevitably incomplete) application code, so orphaned and inconsistent rows accumulate. Both feel faster to write. Both are debt that compounds: the database offers to do this work correctly and forever, and these antipatterns decline the offer.
+
+### 3.2 Business context
+
+Data outlives code. A constraint the database enforces holds for every writer — the app, a migration, a one-off script, a future service — for the lifetime of the data. An invariant enforced only in one application's code holds only when *that* code runs the write, and silently fails the moment anything else touches the table. Likewise, `SELECT *` turns a routine "add a column" into a production incident. These antipatterns convert the database from a guardian of correctness into a passive store that trusts every caller — and someone eventually pays in a data-cleanup project.
+
+### 3.3 Theoretical concepts: implicit columns (`SELECT *`)
+
+```mermaid
+flowchart TB
+    star["SELECT * / INSERT without column list<br/>code depends on column set + order it never named"]
+    star --> break1["Add/reorder/rename a column -> query returns surprises or insert misaligns"]
+    star --> break2["Fetches columns you don't need -> wasted I/O, no index-only scan"]
+```
+
+The **Implicit Columns** antipattern is relying on the database to supply the column list. `SELECT *` returns whatever columns exist *today*, in whatever order — so a join that adds a duplicate column name, or a new `BLOB` column, changes the result silently, breaks ordinal-position access, and prevents covering (index-only) reads. `INSERT INTO t VALUES (...)` without naming columns breaks the instant a column is added or reordered. The fix is simply to **name the columns you mean**: `SELECT id, name, email …` and `INSERT INTO users (name, email) VALUES (…)`. Explicit columns are self-documenting, change-tolerant, and let the optimizer fetch only what you use.
+
+### 3.4 Architecture: missing constraints (Keyless Entry)
+
+```mermaid
+flowchart LR
+    noFK["No FOREIGN KEY constraint"] --> app["Integrity 'enforced' only in app code"]
+    app --> gap["Migration / script / other service writes directly"]
+    gap --> orphan["Orphaned rows, dangling references, inconsistent state"]
+    fk["FOREIGN KEY constraint"] --> db["Database rejects every invalid write, from any source"]
+```
+
+The **Keyless Entry** antipattern is omitting foreign-key constraints — often justified as "they slow down inserts" or "the ORM handles it." The result is **referential decay**: child rows pointing at deleted parents, imports that half-succeed, and reports that silently drop or double-count. A real `FOREIGN KEY` does three things application code cannot reliably do: it **rejects** invalid references from *every* writer, it **cascades** (or restricts) deletes and updates by a declared rule, and it **documents** the relationship for tools and humans. The minor write-time cost buys guaranteed integrity that no amount of careful application code can match, because the application is not the only thing that ever writes.
+
+### 3.5 Real example
+
+**Scenario.** An `orders` table references `customers` by `customer_id`, but with no foreign key. Reports use `SELECT *`. A cleanup script deletes some customers.
+
+**Problem.** Orders now point at non-existent customers (orphans); a customer report under-counts revenue. Separately, adding an `internal_notes` column to `orders` breaks a downstream consumer that read columns by position from `SELECT *`.
+
+**Solution.** Add the missing foreign key (after cleaning existing orphans) so the database rejects orphaning deletes, and replace `SELECT *` with explicit column lists.
+
+**Implementation (both fixes).**
+
+```sql
+-- 1. Missing constraint: enforce referential integrity in the database
+DELETE FROM orders WHERE customer_id NOT IN (SELECT id FROM customers); -- clean existing orphans
+ALTER TABLE orders
+  ADD CONSTRAINT fk_orders_customer
+  FOREIGN KEY (customer_id) REFERENCES customers (id)
+  ON DELETE RESTRICT;          -- now a customer with orders cannot be silently deleted
+
+-- 2. Implicit columns: name what you mean
+-- before:  SELECT * FROM orders WHERE customer_id = 42;
+SELECT id, customer_id, order_date, total   -- explicit: change-tolerant, only what's used
+FROM orders WHERE customer_id = 42;
+```
+
+**Result.** The delete that would orphan orders now fails loudly instead of corrupting data; the report is correct. Adding columns no longer breaks consumers, because every query names its columns. Integrity moved from hope to guarantee.
+
+**Future improvements.** Audit the schema for every referencing column lacking a foreign key; add `NOT NULL`, `UNIQUE`, and `CHECK` constraints wherever the data has a rule the database can enforce.
+
+### 3.6 Exercises
+
+1. Give two distinct ways `SELECT *` can break a working query after a schema change.
+2. Why can application code never fully replace a foreign-key constraint?
+3. What does `ON DELETE RESTRICT` vs `ON DELETE CASCADE` each promise, and when would you pick each?
+
+### 3.7 Challenges
+
+- **Challenge.** In a schema you own, find one referencing column with no foreign key. Write the query that detects existing orphans, then add the constraint. Separately, find one `SELECT *` in hot code and make its columns explicit.
+
+### 3.8 Checklist
+
+- [ ] My queries name columns explicitly; no `SELECT *` in application code.
+- [ ] My inserts list their target columns.
+- [ ] Every referencing column has a foreign-key constraint.
+- [ ] I use `NOT NULL`, `UNIQUE`, and `CHECK` where the data has a rule.
+- [ ] I chose `RESTRICT`/`CASCADE`/`SET NULL` deliberately per relationship.
+
+### 3.9 Best practices
+
+- Name columns in every `SELECT` and `INSERT` — treat `*` as a tool only for ad-hoc exploration.
+- Declare foreign keys for every relationship; let the database enforce them.
+- Add every constraint the data's rules imply (`NOT NULL`, `UNIQUE`, `CHECK`).
+- Clean existing violations before adding a constraint, so it applies cleanly.
+
+### 3.10 Anti-patterns
+
+- `SELECT *` in application code, coupling it to the live column set and order.
+- `INSERT … VALUES (…)` with no column list.
+- Omitting foreign keys "for performance" or "because the ORM handles it."
+- Enforcing integrity only in one application while other writers bypass it.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Query breaks after adding a column | `SELECT *` / positional column access | Name columns explicitly |
+| Rows reference deleted parents | No foreign-key constraint (Keyless Entry) | Clean orphans, add `FOREIGN KEY` |
+| Import half-succeeds, leaves bad data | Integrity enforced only in app code | Move the rule into a DB constraint |
+| Report under/over-counts | Orphaned or duplicate references | Add FK + `UNIQUE`/`NOT NULL` as the data requires |
+
+### 3.12 References
+
+- B. Karwin, *SQL Antipatterns* (Pragmatic Bookshelf, 2010), Chapter 5 "Keyless Entry" and Chapter 19 "Implicit Columns" — ISBN 978-1934356555.
+- PostgreSQL docs, "Constraints": https://www.postgresql.org/docs/current/ddl-constraints.html.
+
+---
+
+> **End of guide.** You can now spot and fix the four antipatterns that quietly wreck relational schemas: **multiple values in one column** and **naive trees** at the schema level (Part I), and **implicit columns** (`SELECT *`) and **missing constraints** (keyless entry) at the query-and-integrity level (Part II). The unifying lesson is to let the database do its job — model relationships explicitly, name what you query, and declare every rule as a constraint — so correctness is enforced once, for every writer, for the life of the data.
