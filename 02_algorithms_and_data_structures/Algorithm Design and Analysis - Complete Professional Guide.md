@@ -46,7 +46,11 @@ software_dev: foundational
 4. Randomized algorithms and probabilistic analysis
 5. Amortized analysis
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–III (Ch. 1–5).
+**Part IV – Sorting and order statistics**
+6. Comparison sorts: heapsort and quicksort
+7. Sorting in linear time and selection
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–IV (Ch. 1–7).
 
 ---
 
@@ -599,3 +603,247 @@ append(arr, x):
 ---
 
 > **End of Part III.** Two refinements complete the analyst's toolkit beyond worst-case Big-O. **Probabilistic analysis** and **randomized algorithms** reason about *expected* cost and make the algorithm's own coin flips — not the input — the source of randomness, so quicksort and hashing have no worst-case *input* to exploit; the **indicator random variable** plus **linearity of expectation** is the engine of these proofs. **Amortized analysis** bounds the *average cost over a worst-case sequence* (no probability) via **aggregate**, **accounting**, or **potential** methods, explaining why doubling dynamic arrays give `O(1)`-amortized append. **Part IV — Sorting and order statistics** applies all of this to the most-studied problem in the field.
+
+---
+
+## Part IV – Sorting and order statistics
+
+Sorting is the most-studied problem in algorithms, and for good reason: it is a subroutine inside countless others, and it is the cleanest setting to see design paradigms, analysis techniques, and lower bounds meet. This part covers the two great `O(n log n)` **comparison sorts** that complement merge sort — **heapsort** (worst-case `O(n log n)`, in place) and **quicksort** (the fast in-practice default) — then proves the **`Ω(n log n)` lower bound** that says no comparison sort can do better, and shows how to **beat** it by *not comparing*: counting, radix, and bucket sort. It closes with **order statistics** — finding the `k`-th smallest element (e.g. the median) in linear time without fully sorting.
+
+---
+
+## Chapter 6 — Comparison sorts: heapsort and quicksort
+
+### 6.1 Introduction
+
+A **comparison sort** orders elements using only pairwise comparisons (`≤`). Merge sort (Part II) is one; this chapter adds the other two textbook `O(n log n)` comparison sorts, each with a distinct engineering profile. **Heapsort** builds a **binary heap** — a nearly complete binary tree where every parent dominates its children — then repeatedly extracts the maximum; it sorts **in place** with **worst-case** `O(n log n)`, the best of both merge sort (good bound) and quicksort (in place). **Quicksort** partitions the array around a **pivot** so that smaller elements go left and larger go right, then recurses on each side; it is `O(n²)` in the pathological worst case but, with a randomized pivot (Part III), **expected** `O(n log n)` with such small constants that it is the default sort in most libraries. The heap also gives us the **priority queue**, a workhorse data structure in its own right.
+
+### 6.2 Business context
+
+The choice among these sorts is a real engineering decision. **Quicksort**'s tiny constant factors and cache-friendly in-place partitioning make it the fastest general comparison sort in practice — which is why it (or a hybrid built on it) backs `Arrays.sort` for primitives in Java, `std::sort` in C++, and many others. **Heapsort**'s value is its **guarantee**: `O(n log n)` *worst case* in `O(1)` extra space, so it is the safety net production sorts fall back to (introsort switches quicksort→heapsort when recursion gets too deep) and the right choice for hard latency bounds. The **priority queue** behind heapsort is itself everywhere: task schedulers, Dijkstra's and Prim's algorithms (Part VII), event simulation, and "top-k" queries. Understanding heaps therefore pays off twice — as a sort and as a data structure.
+
+### 6.3 Theoretical concepts: heaps and partitioning
+
+```mermaid
+flowchart TB
+    arr["Array viewed as a nearly complete binary tree"] --> prop["Max-heap property: parent >= each child"]
+    prop --> heapify["MAX-HEAPIFY: sift one violator down, O(log n)"]
+    heapify --> build["BUILD-MAX-HEAP: heapify nodes bottom-up, O(n) total"]
+    build --> sort["HEAPSORT: swap root to end, shrink, re-heapify — O(n log n)"]
+```
+
+A **binary heap** is stored implicitly in an array: node `i`'s children are `2i` and `2i+1`. `MAX-HEAPIFY` restores the heap property at one node by sifting it down in `O(log n)`. A subtle but important result: `BUILD-MAX-HEAP` running `MAX-HEAPIFY` bottom-up is **`O(n)`**, *not* `O(n log n)`, because most nodes are shallow. **Heapsort** then swaps the maximum (root) to the end, shrinks the heap, and re-heapifies — `n` extractions × `O(log n)` = `O(n log n)`. **Quicksort**'s engine is `PARTITION`: pick a pivot, rearrange so everything ≤ pivot precedes it and everything > pivot follows, in linear time and in place. The recurrence `T(n) = T(q−1) + T(n−q) + Θ(n)` is `Θ(n log n)` when partitions are balanced and `Θ(n²)` when maximally unbalanced — which is exactly why pivot choice (Part III) matters.
+
+### 6.4 Architecture: picking a comparison sort
+
+```mermaid
+flowchart TB
+    merge["Merge sort: stable, O(n log n) worst, but O(n) extra space"]
+    heap["Heapsort: O(n log n) worst, in place, not stable"]
+    quick["Quicksort: O(n log n) expected, in place, smallest constants, O(n^2) worst"]
+    note["Need a hard worst case? Heapsort. Raw speed? Quicksort. Stability? Merge sort."]
+```
+
+The three `O(n log n)` comparison sorts trade off along three axes: **worst-case guarantee**, **extra space**, and **stability** (does the sort preserve the relative order of equal keys?). Merge sort is **stable** but needs `O(n)` scratch space; heapsort is **in place** with a **worst-case** bound but is **not stable**; quicksort is **in place** and **fastest in practice** but has an `O(n²)` worst case and is not stable. Real libraries combine them: **introsort** (quicksort + heapsort fallback) for raw speed with a worst-case guarantee, and **Timsort** (a stable, adaptive merge sort) where stability and real-world partially-ordered data matter (Python `sorted`, Java `Arrays.sort` for objects).
+
+### 6.5 Real example
+
+**Scenario.** A scheduler must always process the highest-priority pending job next, with jobs arriving and completing continuously.
+
+**Problem.** Re-sorting the whole job list on every insertion is `O(n log n)` *per insert*; a linear scan for the max is `O(n)` per extraction. Both are too slow as the queue grows.
+
+**Solution.** Use a **binary heap as a priority queue**: `insert` and `extract-max` are each `O(log n)`, and reading the max is `O(1)`.
+
+**Implementation.**
+
+```text
+# Max-heap in an array A[1..n], children of i are 2i and 2i+1.
+max_heapify(A, i, n):
+    l, r = 2i, 2i+1
+    largest = i
+    if l <= n and A[l] > A[largest]: largest = l
+    if r <= n and A[r] > A[largest]: largest = r
+    if largest != i:
+        swap A[i], A[largest]
+        max_heapify(A, largest, n)          # sift down, O(log n)
+
+heap_extract_max(A, n):                      # priority-queue pop
+    max = A[1]
+    A[1] = A[n]; n -= 1
+    max_heapify(A, 1, n)                      # O(log n)
+    return max
+
+# HEAPSORT: build once O(n), then extract-max n times.
+heapsort(A, n):
+    build_max_heap(A, n)                      # O(n)
+    for i = n downto 2:
+        swap A[1], A[i]                       # max to its final slot
+        max_heapify(A, 1, i-1)               # O(log n)  ->  O(n log n) total
+```
+
+**Result.** Insert and extract-max are `O(log n)`; the scheduler keeps up as the queue grows to millions of jobs. The same heap, run as a sort, gives a worst-case `O(n log n)` in-place ordering — no quadratic surprise, no extra array.
+
+**Future improvements.** For decrease-key-heavy workloads (Dijkstra, Prim), a **binary heap** with a position index, or a **Fibonacci/pairing heap** for better amortized `decrease-key`, can help; for the sort itself, reach for the library (introsort/Timsort) unless you specifically need heapsort's in-place worst-case guarantee.
+
+### 6.6 Exercises
+
+1. Why is `BUILD-MAX-HEAP` `O(n)` and not `O(n log n)`?
+2. Give the array index formulas for a node's parent and two children in a 1-based heap.
+3. Compare heapsort, quicksort, and merge sort on worst-case time, extra space, and stability.
+4. What property of `PARTITION` makes quicksort `O(n²)` in the worst case, and how does Part III remove the worst-case *input*?
+
+### 6.7 Challenges
+
+- **Challenge.** Implement a binary-heap priority queue with `insert`, `extract-max`, and `increase-key`. Then build heapsort on top of it and benchmark against your merge sort and a randomized quicksort on random, sorted, and all-equal inputs of size 1,000,000. Explain each algorithm's behavior on the all-equal input.
+
+### 6.8 Checklist
+
+- [ ] I can view an array as a binary heap and restore the heap property in `O(log n)`.
+- [ ] I use a heap-based priority queue for "repeatedly take the best" workloads.
+- [ ] I choose heapsort when I need a worst-case `O(n log n)` in-place sort.
+- [ ] I know whether I need a **stable** sort (then merge sort / Timsort).
+- [ ] I rely on the standard library's hybrid sort unless I have a specific reason not to.
+
+### 6.9 Best practices
+
+- Default to the standard library's sort (introsort/Timsort); hand-roll only for a specific guarantee.
+- Use a binary heap (priority queue) instead of repeatedly re-sorting or scanning for the extreme.
+- Pick heapsort when worst-case time and `O(1)` space both matter (hard real-time, constrained memory).
+- Pick a stable sort when records carry secondary order that must be preserved.
+
+### 6.10 Anti-patterns
+
+- Re-sorting an entire collection to repeatedly fetch the maximum (use a heap).
+- Choosing plain quicksort for hard-real-time paths (its `O(n²)` worst case can fire).
+- Assuming a sort is stable when it is not (heapsort and quicksort are not).
+- Hand-writing heapsort/quicksort where a tuned library sort would be faster and safer.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Top priority" lookups are slow | Re-sorting or scanning each time | Use a binary-heap priority queue (`O(log n)`) |
+| Quicksort occasionally `O(n²)` | Unbalanced partitions on bad pivots | Randomize the pivot or fall back to heapsort (introsort) |
+| Equal-keyed records reorder unexpectedly | Using a non-stable sort | Switch to a stable sort (merge sort / Timsort) |
+| Sort uses too much memory | Merge sort's `O(n)` scratch space | Use heapsort (in place) if stability is not required |
+
+### 6.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 6 "Heapsort" (§6.1–6.4 heaps and the algorithm, §6.5 priority queues) and ch. 7 "Quicksort" (§7.1 description, §7.2 performance) — ISBN 978-0262046305.
+- R. Sedgewick, K. Wayne, *Algorithms*, 4th ed. (Addison-Wesley, 2011), §2.3 (quicksort) & §2.4 (heaps/priority queues) — ISBN 978-0321573513.
+
+---
+
+## Chapter 7 — Sorting in linear time and selection
+
+### 7.1 Introduction
+
+Two questions complete the sorting story. First: **can any comparison sort beat `O(n log n)`?** No — there is a **`Ω(n log n)` lower bound** for sorting by comparisons, proved with a **decision tree** argument. Second: **can we sort faster by not comparing?** Yes — when keys are small integers or have bounded structure, **counting sort**, **radix sort**, and **bucket sort** run in **linear time** by using the keys to index into arrays instead of comparing them. Finally, **selection** (order statistics) asks for the `k`-th smallest element — the minimum, the maximum, or the **median** — and we can answer it in **linear time** without sorting at all, via a quickselect-style partition (expected `O(n)`) or the median-of-medians algorithm (worst-case `O(n)`).
+
+### 7.2 Business context
+
+The `Ω(n log n)` lower bound is practical knowledge: it tells you when to **stop optimizing** a comparison sort (you have hit the wall) and when to **change the model** instead. Linear-time sorts are not academic curiosities — **radix sort** orders fixed-width keys (integers, IP addresses, fixed-length strings, timestamps) faster than any comparison sort, and **counting sort** is the stable subroutine that makes radix sort work. **Selection** matters whenever you need a quantile but not a full ordering: the **median** for robust statistics, the **`k`-th largest** for "top-k" and percentile-latency (p99) computations, and selection is the partition engine behind efficient `nth_element`. Computing a median in `O(n)` instead of sorting in `O(n log n)` is a routine, meaningful win on large data.
+
+### 7.3 Theoretical concepts: the lower bound, and beating it
+
+```mermaid
+flowchart TB
+    dt["Any comparison sort = a decision tree of comparisons"] --> leaves["n! leaves (one per possible ordering)"]
+    leaves --> height["A binary tree with n! leaves has height >= log2(n!)"]
+    height --> bound["log2(n!) = Theta(n log n)  ->  Omega(n log n) lower bound"]
+    bound --> escape["Escape by NOT comparing: counting / radix / bucket sort"]
+```
+
+A comparison sort's execution is a path down a **decision tree** whose leaves are the `n!` possible orderings; a binary tree with `n!` leaves has height `≥ log₂(n!) = Θ(n log n)`, so **some** input forces `Ω(n log n)` comparisons. The escape is to exploit key structure. **Counting sort** counts occurrences of each of `k` possible key values, then places elements by prefix sums — `O(n + k)`, **stable**, and the foundation of radix sort. **Radix sort** sorts `d`-digit keys one digit at a time, least-significant first, using a stable counting sort per digit — `O(d(n + k))`, linear when `d` and `k` are bounded. **Bucket sort** scatters uniformly-distributed keys into `n` buckets, sorts each, and concatenates — **expected** `O(n)`. For **selection**, `PARTITION` (from quicksort) recurses into only *one* side: expected `O(n)` (randomized select), and median-of-medians chooses a provably good pivot for **worst-case** `O(n)`.
+
+### 7.4 Architecture: which sort, and when to select instead of sort
+
+```mermaid
+flowchart TB
+    cmp["General keys, only comparisons available -> O(n log n) comparison sort"]
+    cnt["Small integer keys in [0, k] -> counting sort, O(n + k), stable"]
+    rdx["Fixed-width keys (ints, fixed strings) -> radix sort, O(d(n + k))"]
+    bkt["Keys ~ uniform over a range -> bucket sort, expected O(n)"]
+    sel["Need only the k-th element / median -> selection, O(n), do not sort"]
+```
+
+The decision is driven by what you know about the keys. With only comparisons, `O(n log n)` is optimal — use the library sort. With **bounded integer keys**, counting/radix sort beat it. With keys **uniform over a range**, bucket sort is expected linear. And when you need a **single order statistic** (median, p99) rather than the whole order, **selection** in `O(n)` dominates sorting in `O(n log n)`. The recurring lesson: a more restrictive input model or a narrower question admits a faster algorithm than the general case allows.
+
+### 7.5 Real example
+
+**Scenario.** A monitoring system computes the **median** (and p99) request latency from a batch of millions of latency samples every minute.
+
+**Problem.** Sorting all samples to read the middle one is `O(n log n)` per batch — wasteful, since the system needs only one element's value, not the full ordering.
+
+**Solution.** Use **selection**: partition around a (randomized) pivot and recurse into only the side containing the target rank. Expected `O(n)` per query; median-of-medians gives worst-case `O(n)` if a hard bound is required.
+
+**Implementation.**
+
+```text
+# Expected O(n): like quicksort, but recurse into ONE side only.
+randomized_select(A, p, r, i):              # i-th smallest in A[p..r]
+    if p == r: return A[p]
+    q = randomized_partition(A, p, r)        # random pivot (Part III)
+    k = q - p + 1                            # rank of the pivot within A[p..r]
+    if i == k: return A[q]                    # pivot is the answer
+    elif i < k: return randomized_select(A, p, q-1, i)
+    else:       return randomized_select(A, q+1, r, i-k)
+
+# Recurrence (balanced, expected): T(n) = T(n/2) + O(n) = O(n)  -- NOT O(n log n)
+# median  = randomized_select(A, 1, n, floor((n+1)/2))
+```
+
+**Result.** The median (and any percentile) is computed in expected **linear** time, roughly a `log n` factor faster than sorting — a clear win on million-sample batches recomputed every minute. Only one side of each partition is explored, so the work is `n + n/2 + n/4 + … = O(n)`.
+
+**Future improvements.** For **streaming** percentiles (samples arriving continuously, no batch), switch models again to approximate sketches (t-digest, HdrHistogram) that estimate quantiles in sublinear space; for fixed-width latency buckets, a **counting/histogram** approach reads percentiles directly in `O(n + k)`.
+
+### 7.6 Exercises
+
+1. Sketch the decision-tree argument for the `Ω(n log n)` comparison-sort lower bound.
+2. Why must the per-digit sort inside radix sort be **stable**?
+3. Give the running times of counting, radix, and bucket sort and the assumptions each needs.
+4. Why is selection `O(n)` while sorting is `O(n log n)`, given both use `PARTITION`?
+
+### 7.7 Challenges
+
+- **Challenge.** Implement counting sort and radix sort for 32-bit integers and benchmark against the library comparison sort on 10,000,000 integers — show radix sort winning. Then implement `randomized_select` and confirm it finds the median faster than sorting; add the median-of-medians pivot and verify it removes the `O(n²)` worst case.
+
+### 7.8 Checklist
+
+- [ ] I recognize when `O(n log n)` is optimal (general comparison sort) and stop tuning there.
+- [ ] I use counting/radix sort for bounded-integer or fixed-width keys.
+- [ ] I keep the per-digit sort **stable** when building radix sort.
+- [ ] I use **selection** (`O(n)`) when I need one order statistic, not a full sort.
+- [ ] I switch to streaming sketches when percentiles must be computed online.
+
+### 7.9 Best practices
+
+- Match the sort to the key model: comparison sort for general keys, radix/counting for bounded integers.
+- Build radix sort on a **stable** counting sort, least-significant digit first.
+- Compute medians/percentiles with selection rather than a full sort.
+- For online/streaming quantiles, use approximate sketches instead of re-sorting.
+
+### 7.10 Anti-patterns
+
+- Trying to beat `O(n log n)` with a *comparison* sort (the lower bound forbids it).
+- Using a non-stable per-digit sort inside radix sort (it produces wrong results).
+- Sorting an entire array to read a single percentile (use selection).
+- Applying bucket sort to badly non-uniform keys (buckets skew, losing the linear bound).
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Comparison sort "can't get below `n log n`" | That is the proven lower bound | Change the model — radix/counting sort if keys allow |
+| Radix sort produces wrong order | Per-digit sort is not stable | Use a stable counting sort for each digit |
+| Bucket sort degrades to `O(n^2)` | Keys not uniform; buckets overflow | Re-hash/re-range buckets or use a different sort |
+| Median computation too slow | Full sort used for one order statistic | Use `randomized_select` (expected `O(n)`) |
+
+### 7.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 8 "Sorting in Linear Time" (§8.1 lower bounds, §8.2 counting sort, §8.3 radix sort, §8.4 bucket sort) and ch. 9 "Medians and Order Statistics" (§9.2 expected linear-time selection, §9.3 worst-case linear-time selection) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 13 (randomized selection) — ISBN 978-0321295354.
+
+---
+
+> **End of Part IV.** Sorting ties the whole field together. Beyond merge sort (Part II), **heapsort** gives a worst-case `O(n log n)` in-place sort and the **priority queue**, while **quicksort** is the fast in-practice default (expected `O(n log n)` with a randomized pivot). The **`Ω(n log n)` lower bound** — a decision-tree argument — proves no comparison sort can do better, but **counting, radix, and bucket sort** beat it in **linear time** by exploiting key structure, and **selection** finds the `k`-th smallest (the median, a percentile) in `O(n)` without sorting at all. **Part V — Algorithmic paradigms in depth** returns to design, developing **dynamic programming** and **greedy** algorithms fully.
