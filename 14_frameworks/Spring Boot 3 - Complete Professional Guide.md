@@ -81,7 +81,7 @@ Progressive depth across five maturity levels:
 21. GraalVM native images and AOT processing
 22. Production hardening and the twelve-factor checklist
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–3). **In progress:** Parts II–VIII.
+> **Status of this edition:** complete — all eight parts are written to the same depth standard. **Ready:** Parts I–VIII (Ch. 1–22).
 
 ---
 
@@ -4686,5 +4686,3 @@ Hardening your Boot 3 service well — externalized config, graceful shutdown, s
 ---
 
 > **End of Part VIII — and of the guide.** You now hold the complete arc of Spring Boot 3: the **foundations** (starters, auto-configuration, the IoC container), **configuration and web APIs**, **data access**, **security**, **observability**, **testing**, and — in this final part — **packaging and production**: layered executable jars and Cloud Native Buildpacks (Chapter 20), GraalVM native images with AOT processing introduced in Boot 3.0 (Chapter 21), and production hardening mapped onto the twelve factors, the Boot 3.x evolution from 3.0 to 3.4, and the path forward (Chapter 22). The throughline of the Boot 3 generation is pragmatic, opinionated modernization on a **Java-17, `jakarta.*`** baseline — Docker Compose and Testcontainers for dev/prod parity, `RestClient` and virtual threads for modern HTTP and concurrency, structured logging and CDS for operable, fast-starting services. Ship new work on Boot 3.x today, harden it with the checklist in this chapter, and when the time comes, migrate to **Boot 4 / Spring Framework 7** on the November cadence — the Java floor stays at 17, so the bridge is short. The map is yours; go build.
-
-<!--APPEND-PARTE-II-->
