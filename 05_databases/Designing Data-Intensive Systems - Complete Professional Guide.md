@@ -60,7 +60,7 @@ software_dev: core
 10. Batch and stream processing
 11. Designing systems of integration (the "unbundled database")
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Parts II–VII.
+> **Status of this guide:** phased delivery. **Ready:** Parts I–II (Ch. 1–4). **In progress:** Parts III–VII.
 
 ---
 
@@ -307,4 +307,219 @@ CREATE INDEX idx_orders_items_sku ON orders USING gin ((items -> 'skus'));
 
 > **End of Part I.** You can now (1) state a data system's goals as measurable reliability, scalability, and maintainability targets, and (2) choose a data model from where the relationships and queries actually live, defaulting to a single source of truth with derived views. **Part II — Storage & Retrieval** (Chapters 3–4) goes one level down: how B-tree and LSM-tree engines store and find data, and how to evolve schemas without breaking readers or writers.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Storage & Retrieval
+
+A database does two fundamental things: store data you give it, and give it back when you ask. *How* it does that — the on-disk structure and the wire/format encoding — sets its whole performance and evolution profile. Part II covers the storage engine underneath every query and the encoding that lets a system change shape over time without breaking the programs reading it.
+
+---
+
+## Chapter 3 — How storage engines actually work (B-trees vs LSM-trees)
+
+### 3.1 Introduction
+
+Every database write eventually becomes bytes laid out by a **storage engine**, and two families dominate. **B-tree** engines (PostgreSQL, InnoDB) keep data in sorted, fixed-size pages updated **in place** — excellent reads, random-ish writes. **LSM-tree** engines (Cassandra, RocksDB, ScyllaDB) **append** writes to an in-memory buffer, flush sorted immutable files, and **compact** them in the background — excellent write throughput, with read cost managed by bloom filters and compaction. Knowing which family a database belongs to explains its behavior under load before you ever benchmark it.
+
+### 3.2 Business context
+
+The storage engine is the hardest thing to change after launch — it is baked into the database choice. A write-heavy ingestion product on a B-tree engine fights page contention; a low-latency read product on an untuned LSM setup suffers read amplification. Matching the engine family to whether the workload is read- or write-dominant is a structural decision that avoids an expensive re-platforming later, and it lets an on-call engineer reason about why a system slows the way it does.
+
+### 3.3 Theoretical concepts: in-place vs append-and-merge
+
+```mermaid
+flowchart TB
+    btree["B-tree: sorted pages updated IN PLACE<br/>read-optimized; writes do random I/O + page splits"]
+    lsm["LSM-tree: APPEND to memtable -> flush SSTables -> compact<br/>write-optimized; reads check several files (bloom filters help)"]
+```
+
+- **B-tree** keeps a balanced tree of sorted pages; a lookup is a few page reads, a range scan walks leaves in order. Writes update the page in place (and may split it), causing random I/O — but the write-ahead log (a sequential append) makes those writes crash-safe.
+- **LSM-tree** buffers writes in a sorted in-memory **memtable**, flushes it as an immutable sorted file (**SSTable**), and merges SSTables via **compaction**. Writes are sequential (fast); a read may consult the memtable plus several SSTables, so **bloom filters** short-circuit "key definitely not here" and compaction keeps the file count bounded.
+
+The trade is **read amplification vs write amplification**: B-trees write each page possibly several times (page + WAL), LSM-trees rewrite data during compaction but turn writes sequential.
+
+### 3.4 Architecture: the read and write paths
+
+```mermaid
+flowchart LR
+    w["Write"] --> mem["LSM: memtable"] --> flush["SSTable (immutable)"] --> comp["compaction merges"]
+    r["Read"] --> mem
+    r --> bloom["bloom filter -> skip SSTables"] --> sst["SSTable"]
+```
+
+A storage engine's secondary indexes layer on the same machinery: a **clustered** index stores the row in the index leaf (InnoDB primary key), a **non-clustered** index stores a pointer. Either way, every index is extra write work — the price of a faster read. The engineering judgment is the same in both families: add an index for a real read pattern, not speculatively, because each one taxes every write.
+
+### 3.5 Real example
+
+**Scenario.** A telemetry platform ingests millions of events per second; reads are mostly recent ranges and a few key lookups.
+
+**Problem.** A B-tree engine cannot sustain the write rate (random page updates, contention, WAL pressure).
+
+**Solution.** An LSM-based engine: sequential appends absorb the write rate; bloom filters and tiered compaction keep recent-range reads fast.
+
+**Implementation (engine-fit reasoning).**
+
+```text
+Workload: write-heavy ingestion, range reads of recent data, sparse point lookups
+  B-tree:  random writes + page splits -> write bottleneck at this rate
+  LSM:     sequential appends -> sustains the write rate
+           compaction tuned for read latency on recent SSTables
+Decision: LSM store; size memtables for the write rate; monitor compaction backlog.
+```
+
+**Result.** The ingestion rate is met structurally; reads stay fast with appropriate compaction — fitting the engine to the workload instead of fighting it.
+
+**Future improvements.** Watch compaction backlog (the key LSM health metric); for the point-lookup path, confirm bloom-filter false-positive rate is low enough.
+
+### 3.6 Exercises
+
+1. Why does an LSM-tree sustain higher write throughput than a B-tree?
+2. What is read amplification, and which two mechanisms mitigate it in LSM engines?
+3. Why is every secondary index a tax on writes regardless of engine family?
+
+### 3.7 Challenges
+
+- **Challenge.** Identify the storage engine behind a database you operate. Classify your workload as read- or write-dominant and argue whether the engine family fits — and what metric you'd watch to confirm.
+
+### 3.8 Checklist
+
+- [ ] I know B-tree updates in place and LSM appends-and-compacts.
+- [ ] I match engine family to read- vs write-heavy workloads.
+- [ ] I understand compaction's role and cost in LSM.
+- [ ] I add indexes for real read patterns, knowing each taxes writes.
+
+### 3.9 Best practices
+
+- Choose the engine family to fit the dominant access pattern.
+- For LSM, monitor and tune compaction; for B-tree, watch write contention and bloat.
+- Justify every secondary index with a concrete query.
+
+### 3.10 Anti-patterns
+
+- Write-heavy ingestion on a read-optimized B-tree without tuning.
+- Ignoring LSM compaction until reads degrade.
+- Index-shotgunning — adding indexes "to be safe," slowing every write.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Write throughput hits a wall | Random-write engine for a write-heavy load | Consider an LSM engine; tune WAL/checkpoint |
+| Read latency rising over time | LSM compaction falling behind | Tune/scale compaction |
+| Writes slow, table bloated | B-tree page splits/fragmentation | Maintenance (vacuum/rebuild); review index count |
+
+### 3.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 3 "Storage and Retrieval" — ISBN 978-1449373320.
+- See also the sibling guide *How Databases Work Internally* (Part I) for storage-engine and WAL internals.
+
+---
+
+## Chapter 4 — Encoding, schema evolution, and compatibility
+
+### 4.1 Introduction
+
+Data outlives the code that wrote it, and in a running system old and new code coexist. **Encoding** (serialization) is how in-memory structures become bytes for storage or the network; **schema evolution** is changing that shape over time without breaking the programs on either side. The goal is two-way compatibility: **backward** (new code reads old data) and **forward** (old code reads new data). Get encoding wrong and a deploy becomes an outage when a new field meets old readers.
+
+### 4.2 Business context
+
+In any system bigger than one process, you cannot upgrade every component at once — rolling deploys, multiple services, and stored data from last year all coexist. Schema evolution is what makes that survivable: it lets teams ship changes independently instead of coordinating a risky big-bang upgrade. A format chosen for compatibility (and a discipline of compatible changes) is the difference between "add a field, deploy gradually" and "freeze everything for a synchronized release."
+
+### 4.3 Theoretical concepts: compatibility directions
+
+```mermaid
+flowchart LR
+    new["New code"] -->|backward compat| old_data["reads OLD data"]
+    old["Old code"] -->|forward compat| new_data["reads NEW data (ignores unknown fields)"]
+```
+
+- **Backward compatibility** — newer code can read what older code wrote. Usually easy (you know the old format).
+- **Forward compatibility** — older code can read what newer code writes. Harder: old code must *ignore* fields it doesn't understand rather than choke.
+
+Schema-based binary formats (**Protocol Buffers**, **Avro**, **Thrift**) give both cheaply: fields carry tags/IDs, so adding an **optional** field with a new tag is backward- and forward-compatible; removing a required field or reusing a tag breaks compatibility. Textual JSON is forward/backward tolerant by convention (ignore unknown keys) but lacks enforced schemas and is larger on the wire.
+
+### 4.4 Architecture: where encoding lives
+
+```mermaid
+flowchart TB
+    disk["On disk (rows, log segments)"]
+    wire["Over the network (RPC, events)"]
+    rules["Compatible-change rules:<br/>add optional fields, never reuse tags, never make a field required late"]
+    disk --> rules
+    wire --> rules
+```
+
+Encoding shows up in three places, each needing evolution discipline: **databases** (a column added today, rows from last year), **service calls** (RPC between independently deployed services), and **message/event streams** (an event written now, consumed months later after replay). The same rule set governs all three: additive, optional changes are safe; destructive or type-changing edits are not. A **schema registry** (common with Avro on Kafka) enforces this automatically by rejecting incompatible schema updates.
+
+### 4.5 Real example
+
+**Scenario.** A payments service and a ledger service exchange `Payment` events on Kafka, deployed independently. A new `currency` field is needed.
+
+**Problem.** If `currency` is added as **required**, old consumers (not yet redeployed) fail to decode new events — a forward-compatibility break that halts the ledger.
+
+**Solution.** Add `currency` as an **optional** field with a new tag and a sensible default; deploy producers and consumers in any order; enforce the rule with a schema registry.
+
+**Implementation (compatible Protobuf change).**
+
+```protobuf
+message Payment {
+  int64  id          = 1;
+  int64  amount_cents = 2;
+  string status      = 3;
+  string currency    = 4;   // NEW: new tag, optional; old readers ignore it,
+                            //      new readers default it when absent. Compatible both ways.
+}
+// Forbidden: reusing tag 4 later, or deleting a still-read field, or making 4 required.
+```
+
+**Result.** Producers and consumers roll out independently with zero coordination; old and new events interoperate. The registry blocks any future incompatible edit before it ships.
+
+**Future improvements.** Add compatibility checks to CI (schema-diff gate); document the field-evolution rules where the schemas live.
+
+### 4.6 Exercises
+
+1. Define backward vs forward compatibility and say which is usually harder, and why.
+2. Why does adding an optional, new-tag field keep a binary format compatible both ways?
+3. What does a schema registry enforce, and at what point in the lifecycle?
+
+### 4.7 Challenges
+
+- **Challenge.** Take an event or API payload you own. Plan adding one field and removing one field as a sequence of *compatible* steps that never break a rolling deploy. Identify which step must wait for all readers to upgrade.
+
+### 4.8 Checklist
+
+- [ ] I know backward vs forward compatibility and design for both.
+- [ ] I make additive changes optional with new field tags/IDs.
+- [ ] I never reuse a field tag or make a field required after the fact.
+- [ ] I use a schema registry (or equivalent gate) for shared event/RPC formats.
+
+### 4.9 Best practices
+
+- Prefer schema-based binary formats (Avro/Protobuf) for high-volume or long-lived data.
+- Evolve schemas additively; sequence destructive changes behind reader upgrades.
+- Enforce compatibility automatically in CI / a registry, not by review alone.
+
+### 4.10 Anti-patterns
+
+- Making a new field required, breaking not-yet-upgraded readers.
+- Reusing or renumbering field tags, silently corrupting old data.
+- Coordinating big-bang upgrades because the format can't evolve.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Consumers fail decoding after a producer deploy | New required field / incompatible change | Make the field optional; add a registry gate |
+| Old rows/events misread after a schema edit | Field tag reused or type changed | Restore tags; treat changes as additive |
+| Teams blocked on synchronized releases | Format lacks evolution support | Adopt a schema-based format + compatibility rules |
+
+### 4.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 4 "Encoding and Evolution" — ISBN 978-1449373320.
+- Apache Avro spec (https://avro.apache.org/docs/) and Protocol Buffers (https://protobuf.dev/).
+
+---
+
+> **End of Part II.** You can now reason one level below the data model: how **B-tree** and **LSM-tree** storage engines trade reads against writes, and how **schema-compatible encoding** (additive, optional fields in formats like Avro/Protobuf) lets a system evolve while old and new code coexist. **Part III — Distributing Data** (Chapters 5–6) takes the next step: copying data across nodes (replication) and splitting it across nodes (partitioning), the two moves that turn a single database into a distributed one.
+
+<!--APPEND-PART-III-->
