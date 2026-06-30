@@ -155,8 +155,8 @@ final class Shipment {
 
 ### 1.12 References
 
-- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003) — ISBN 978-0321125217.
-- V. Khononov, *Learning Domain-Driven Design* (O'Reilly, 2021) — ISBN 978-1098100131.
+- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003), ch. 2 "Communication and the Use of Language" (Ubiquitous Language) — ISBN 978-0321125217.
+- V. Khononov, *Learning Domain-Driven Design* (O'Reilly, 2021), ch. 2 "Discovering Domain Knowledge" — ISBN 978-1098100131.
 
 ---
 
@@ -267,8 +267,8 @@ final class CrmAntiCorruptionLayer {
 
 ### 2.12 References
 
-- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003) — ISBN 978-0321125217.
-- V. Khononov, *Learning Domain-Driven Design* (O'Reilly, 2021) — ISBN 978-1098100131.
+- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003), ch. 14 "Maintaining Model Integrity" (Bounded Context; Context Map) — ISBN 978-0321125217.
+- V. Khononov, *Learning Domain-Driven Design* (O'Reilly, 2021), ch. 3 "Managing Domain Complexity" — ISBN 978-1098100131.
 - S. Newman, *Building Microservices*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492034025, on context-aligned service boundaries.
 
 ---
