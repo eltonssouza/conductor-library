@@ -2702,4 +2702,1613 @@ code_execution:
 
 > **End of Part II.** We opened the hood: the three-layer architecture, the internal components and registries, the turn lifecycle, and the five subsystems that make Hermes self-improving and capable — memory, learning, Skills, planning, and execution. **Part III — Installation and Environments** (Chapters 14–21) gets practical: installing Hermes locally and on Linux, Windows, and macOS, then containerizing with Docker, orchestrating on Kubernetes, deploying to a VPS, and running on cloud providers.
 
+## Part III – Installation and Environments
+
+Part II explained *what* Hermes is internally. Part III makes it *run* — everywhere it should. The same `AIAgent` core (the "platform-agnostic core" principle from Chapter 6) deploys identically whether the target is a developer laptop, a hardened Linux server, a Windows workstation, a Mac, a Docker container, a Kubernetes cluster, a $5 VPS, or a managed cloud. The art is choosing the right environment per workload and configuring it for reliability, cost, and security.
+
+The chapters proceed from simplest to most operationally demanding. Chapter 14 covers the universal local install and first-run setup. Chapters 15–17 dig into the three desktop/server operating systems (Linux, Windows, macOS) and their platform-specific concerns. Chapter 18 containerizes with Docker; Chapter 19 orchestrates on Kubernetes; Chapter 20 deploys a long-lived agent to a VPS; Chapter 21 surveys the major cloud providers and serverless options. Throughout, one principle recurs: **install once, configure per environment** — the agent definition (config, memory, Skills) is portable; only the surrounding infrastructure changes.
+
+> **Operational thread.** Two commands appear in nearly every chapter: `hermes doctor` (environment diagnostics — what's missing and how to fix it) and `hermes --version` (confirming the pinned v0.16 line). Make them the first thing you run after any install or migration.
+
+---
+
+## Chapter 14 — Local Installation
+
+### 14.1 Introduction
+
+Local installation is the front door to Hermes. The official one-liner installs everything — Python (via `uv`), Node.js, ripgrep, ffmpeg, the repo, a virtual environment, and the global `hermes` command — and ends ready to chat. On macOS and Windows there is also a **Desktop installer** (v0.16's "Surface Release") that installs both the CLI and the native desktop app. This chapter covers the universal install path, what the installer does, the install layout, first-run setup (`hermes setup --portal`), and verification.
+
+### 14.2 Chapter objectives
+
+(1) Install Hermes via the one-liner (and know the Windows/Desktop variants); (2) understand what the installer provisions and the resulting install layout; (3) complete first-run setup with Nous Portal; (4) verify with `hermes doctor` and `hermes --version`; (5) understand profiles and `HERMES_HOME` for isolated installs.
+
+### 14.3 Business context
+
+A low-friction install is what makes an agent *adoptable*. The installer's "handles everything automatically" approach removes the classic onboarding tax (Python versions, native deps) that stalls pilots. For an enterprise, the relevant facts are: the data directory (`~/.hermes/`) is the asset to back up and govern; the install method is auto-detected (so updates are one command); and profiles allow many isolated agents on one machine without interference — the basis for per-team or per-tenant separation.
+
+### 14.4 Theoretical foundations
+
+- **Self-contained provisioning.** The installer uses `uv` to install Python 3.11 without sudo, plus Node.js v22, ripgrep, and ffmpeg — no manual dependency management.
+- **Install layout determines updates.** pip vs git-installer vs root-mode vs Homebrew/Nix each place code and the `hermes` binary differently; Hermes auto-detects which and prints the right update command.
+- **Profile isolation.** Each profile (`hermes -p <name>`) has its own `HERMES_HOME` (config, memory, sessions, gateway PID) — concurrent, non-interfering agents.
+- **Portal-first onboarding.** One OAuth (`hermes setup --portal`) configures a model *and* the Tool Gateway (web search, image gen, TTS, cloud browser), eliminating per-tool key juggling.
+
+### 14.5 Architecture (install layout)
+
+```mermaid
+flowchart TB
+    inst[Installer] --> deps[Provision deps<br/>uv·Python3.11·Node22·ripgrep·ffmpeg]
+    inst --> code[Clone repo + venv]
+    inst --> bin[Global hermes command]
+    inst --> home[(~/.hermes/<br/>config·MEMORY.md·USER.md·skills·state.db)]
+    home --> prof{Profiles}
+    prof --> def[default HERMES_HOME]
+    prof --> p1[-p research → own HERMES_HOME]
+```
+
+### 14.6 Internal flows (first run)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant I as install.sh
+    participant H as hermes CLI
+    participant P as Nous Portal
+    U->>I: curl ... | bash
+    I->>I: provision deps, clone, venv, link hermes
+    U->>H: hermes setup --portal
+    H->>P: OAuth login
+    P-->>H: token (model + Tool Gateway)
+    H->>H: write ~/.hermes/config.yaml
+    U->>H: hermes
+    H-->>U: ready to chat
+```
+
+### 14.7 Component diagram
+
+```mermaid
+flowchart LR
+    subgraph home["~/.hermes/"]
+        cfg[config.yaml]
+        mem[MEMORY.md / USER.md]
+        skl[skills/]
+        db[(state.db)]
+        plg[plugins/]
+    end
+    bin[hermes binary] --- venv[venv / site-packages]
+    bin --- home
+```
+
+### 14.8 Complete example
+
+**Scenario.** A developer wants Hermes installed locally with Nous Portal, verified, and a second isolated profile for experiments.
+
+**Problem.** Manual dependency setup is error-prone, and mixing experimental config with the working agent risks breaking the daily driver.
+
+**Solution.** Use the one-liner, set up Portal, verify, then create an isolated `lab` profile.
+
+**Architecture.** Default profile for daily use; `-p lab` with its own `HERMES_HOME` for experiments.
+
+**Implementation:**
+
+```bash
+# 1. Install (Linux / macOS / WSL2 / Termux)
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc            # or ~/.zshrc
+
+# 2. First-run setup — one OAuth for model + Tool Gateway
+hermes setup --portal
+
+# 3. Start chatting
+hermes
+
+# 4. Isolated experiment profile (own config/memory/sessions)
+hermes -p lab setup --portal
+hermes -p lab
+```
+
+On native **Windows**:
+
+```powershell
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+```
+
+To add the **Desktop app** after a CLI install:
+
+```bash
+hermes desktop
+```
+
+**Configuration (`~/.hermes/config.yaml`, written by setup):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+tool_gateway:
+  enabled: true            # web search, image gen, TTS, cloud browser
+memory:
+  enabled: true
+skills:
+  enabled: true
+```
+
+**Tests.**
+
+```bash
+hermes --version           # v0.16.x line
+hermes doctor              # environment + provider diagnostics
+hermes -p lab doctor       # the lab profile is independent
+```
+
+**Result.** A verified local install on Portal, plus an isolated `lab` profile that cannot disturb the daily agent.
+
+**Future improvements.** Connect the messaging gateway (Part IX), back up `~/.hermes/`, and pin the version for reproducibility (Chapter 2).
+
+### 14.9 Source code
+
+```bash
+# Inspect the detected install method and paths (drives the right update command)
+hermes doctor | sed -n '/environment/,/method/p'
+echo "$HERMES_HOME"                     # empty = default ~/.hermes
+hermes config show                       # effective configuration
+hermes config get provider               # single value
+```
+
+### 14.10 Configuration
+
+```yaml
+# Minimal portable agent definition (the asset you back up)
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+# Optional: pin behavior across machines
+fallback_providers: [openrouter]
+```
+
+```bash
+# Profile + HERMES_HOME isolation
+export HERMES_HOME="/srv/hermes/teamA"   # explicit home for a service account
+hermes -p teamA doctor
+```
+
+### 14.11 Real-world use cases
+
+- **Developer laptop** with Portal for daily agentic work.
+- **Isolated experiment profile** to test new Skills/providers safely.
+- **Service-account install** with explicit `HERMES_HOME` on a shared host.
+- **Desktop app** for non-technical users (v0.16), CLI for automation.
+
+### 14.12 Exercises
+
+1. Run the installer and identify, from `hermes doctor`, the detected install method.
+2. Explain the difference between `~/.hermes/` and a profile's `HERMES_HOME`.
+3. What does `hermes setup --portal` configure in one step?
+
+### 14.13 Challenges
+
+- **Challenge 1.** Install Hermes, set up Portal, and create a second isolated profile; prove the two have independent memory.
+- **Challenge 2.** Back up `~/.hermes/`, simulate a fresh machine, and restore the agent (config + memory + Skills).
+
+### 14.14 Checklist
+
+- [ ] Hermes installed; `hermes --version` shows v0.16.x.
+- [ ] `hermes doctor` is clean.
+- [ ] Portal (or a provider) configured.
+- [ ] I understand profiles and `HERMES_HOME`.
+- [ ] `~/.hermes/` is backed up.
+
+### 14.15 Best practices
+
+- **Start with Portal** to remove key-juggling friction.
+- **Use profiles** for isolation instead of multiple half-installs.
+- **Back up `~/.hermes/`** — it is the agent's accumulated value.
+- **Run `hermes doctor`** after every install/update.
+
+### 14.16 Anti-patterns
+
+- Manually installing Python/Node and fighting version conflicts.
+- Hardcoding keys in a versioned `config.yaml`.
+- Running everything in one profile, mixing experiments with production.
+- Never backing up memory/Skills.
+
+### 14.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `hermes: command not found` | PATH not reloaded | `source ~/.bashrc` / check `~/.local/bin` |
+| `API key not set` | No provider | `hermes model` or `hermes setup --portal` |
+| Missing config after update | Migration needed | `hermes config check` then `hermes config migrate` |
+| Wrong agent state | Default vs profile confusion | Check `-p`/`HERMES_HOME` |
+
+### 14.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Quickstart: https://hermes-agent.nousresearch.com/docs/getting-started/quickstart
+- Nous Portal: https://hermes-agent.nousresearch.com/docs/integrations/nous-portal
+- Updating & Uninstalling: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 15 — Linux
+
+### 15.1 Introduction
+
+Linux is Hermes's natural home — the platform for servers, CI runners, and long-lived agents. This chapter covers Linux-specific concerns: the per-user vs root-mode (FHS) install layouts, running Hermes as an unprivileged **systemd service**, the Playwright/Chromium dependency split for headless or non-sudo hosts, and distro differences (Debian/Ubuntu, Arch, Fedora/RHEL, openSUSE). The goal is a Hermes that survives reboots, runs as a dedicated user, and is safe on a shared box.
+
+### 15.2 Chapter objectives
+
+(1) Choose between per-user and root-mode installs; (2) run Hermes as a systemd service under a dedicated user; (3) handle the Playwright `--with-deps` split for non-sudo/headless installs; (4) account for distro-specific package managers; (5) verify a server install.
+
+### 15.3 Business context
+
+On Linux, Hermes becomes **infrastructure**: a service that runs the gateway or scheduled jobs 24/7. Running it as an unprivileged service account (least privilege), surviving reboots (systemd), and installing browser deps correctly (so automation works) are the difference between a fragile script and a production service. Root-mode FHS layout serves shared machines where one system install backs every user.
+
+### 15.4 Theoretical foundations
+
+- **Two layouts.** Per-user (`~/.hermes/hermes-agent/`, `~/.local/bin/hermes`) vs root-mode FHS (`/usr/local/lib/hermes-agent/`, `/usr/local/bin/hermes`, `/root/.hermes/` or `$HERMES_HOME`).
+- **Least privilege.** Only Playwright's `--with-deps` truly needs root (it apt-installs Chromium shared libs); everything else runs as the service user. The installer degrades gracefully when sudo is absent.
+- **Service supervision.** systemd restarts the gateway on failure/reboot and isolates it under a dedicated account.
+- **Distro variance.** Debian/Ubuntu/Arch support `--with-deps`; Fedora/RHEL/openSUSE require an admin to install system libs separately.
+
+### 15.5 Architecture (Linux service)
+
+```mermaid
+flowchart TB
+    sysd[systemd] -->|manages| svc[hermes gateway service]
+    svc --> user[(unprivileged 'hermes' user)]
+    user --> home[(~/.hermes or $HERMES_HOME)]
+    admin[admin w/ sudo] -.one-time.-> deps[playwright install-deps chromium]
+    svc --> pw[Chromium in user Playwright cache]
+```
+
+### 15.6 Internal flows (non-sudo install)
+
+```mermaid
+sequenceDiagram
+    participant Ad as Admin (sudo)
+    participant Su as Service user
+    participant I as install.sh
+    Ad->>Ad: npx playwright install-deps chromium (one time)
+    Su->>I: curl ... | bash
+    I->>I: detect no sudo → skip --with-deps
+    I->>Su: install Chromium into user Playwright cache
+    Su->>Su: add ~/.local/bin to PATH
+    Su->>Su: hermes doctor (clean)
+```
+
+### 15.7 Component diagram
+
+```mermaid
+flowchart LR
+    unit[/etc/systemd/system/hermes.service/] --- bin[/usr/local/bin/hermes or ~/.local/bin/hermes/]
+    bin --- venv[venv launcher]
+    bin --- home[(HERMES_HOME)]
+    home --- gw[gateway PID + sessions]
+```
+
+### 15.8 Complete example
+
+**Scenario.** Run the Hermes messaging gateway 24/7 on an Ubuntu server as an unprivileged `hermes` user, surviving reboots.
+
+**Problem.** A bare `hermes gateway start` dies on logout/reboot and runs as a privileged user — unacceptable for production.
+
+**Solution.** Install browser deps once as admin, install Hermes as the `hermes` user, and supervise the gateway with systemd.
+
+**Architecture.** `hermes` service user → systemd unit → `hermes gateway start` → `$HERMES_HOME` on a controlled volume.
+
+**Implementation:**
+
+```bash
+# 1. As an admin (one time): system libs Chromium needs
+sudo npx playwright install-deps chromium
+
+# 2. As the service user: install Hermes
+sudo useradd -m -d /srv/hermes -s /bin/bash hermes
+sudo -u hermes -i
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+hermes setup --portal
+hermes gateway setup            # add Telegram token + allowlist
+exit
+```
+
+```ini
+# 3. /etc/systemd/system/hermes-gateway.service
+[Unit]
+Description=Hermes Agent Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=hermes
+Environment=HERMES_HOME=/srv/hermes/.hermes
+ExecStart=/srv/hermes/.local/bin/hermes gateway start --platform telegram
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+# 4. Enable and start
+sudo systemctl daemon-reload
+sudo systemctl enable --now hermes-gateway
+sudo systemctl status hermes-gateway
+```
+
+**Tests.**
+
+```bash
+sudo -u hermes hermes doctor
+sudo systemctl restart hermes-gateway && sudo journalctl -u hermes-gateway -n 30
+hermes gateway status
+```
+
+**Result.** A reboot-surviving, least-privilege gateway service on Linux, isolated under the `hermes` account.
+
+**Future improvements.** Add resource limits (`MemoryMax`, `CPUQuota`) to the unit, ship logs to your stack (Part XIII), and front the gateway with the allowlist/pairing security (Part XII).
+
+### 15.9 Source code
+
+```bash
+# Headless server with no browser automation needed: skip Playwright entirely
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --skip-browser
+
+# Fedora/RHEL/openSUSE: admin installs libs separately (printed by the installer)
+# e.g. sudo dnf install <libs printed by installer>
+```
+
+### 15.10 Configuration
+
+```yaml
+# ~/.hermes/config.yaml for a server profile
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@alice", "@bob"]
+tools:
+  terminal_backend: local        # or docker for isolation on shared hosts
+```
+
+### 15.11 Real-world use cases
+
+- **24/7 gateway service** under systemd on a Linux server.
+- **Headless CI agent** installed with `--skip-browser`.
+- **Shared machine** with a root-mode FHS install serving all users.
+- **Hardened service account** with least privilege and resource limits.
+
+### 15.12 Exercises
+
+1. Contrast per-user and root-mode install layouts.
+2. Why does only Playwright's `--with-deps` need root?
+3. Write a systemd unit that restarts the gateway on failure.
+
+### 15.13 Challenges
+
+- **Challenge 1.** Stand up the gateway as a systemd service under a dedicated user and prove it survives a reboot.
+- **Challenge 2.** Install on a Fedora/RHEL box, handling the separate system-lib step.
+
+### 15.14 Checklist
+
+- [ ] Correct install layout chosen.
+- [ ] Service runs under an unprivileged user.
+- [ ] Playwright deps handled (or `--skip-browser`).
+- [ ] systemd supervises and restarts the gateway.
+- [ ] `hermes doctor` clean as the service user.
+
+### 15.15 Best practices
+
+- **Run as a dedicated unprivileged user** with an explicit `HERMES_HOME`.
+- **Supervise with systemd** (`Restart=on-failure`, resource limits).
+- **Install browser deps once as admin**; use `--skip-browser` on headless hosts.
+- **Pin the version** on servers.
+
+### 15.16 Anti-patterns
+
+- Running the gateway as root or under your personal account.
+- `nohup hermes gateway &` with no supervision.
+- Ignoring the Playwright dep split, breaking browser tools silently.
+- Mixing service `HERMES_HOME` with a human user's.
+
+### 15.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `ModuleNotFoundError: dotenv` | Running repo `hermes` with system Python | Use the venv launcher; fix PATH |
+| Browser tools fail | Missing Chromium libs | `sudo npx playwright install-deps chromium` |
+| Service dies on logout | No supervision | Use the systemd unit |
+| `hermes` not on PATH for service user | Minimal PATH | Add `~/.local/bin` or symlink to `/usr/local/bin` |
+
+### 15.18 Official references
+
+- Installation (Linux + non-sudo): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+- Contributing / Dev Setup: https://hermes-agent.nousresearch.com/docs/developer-guide/contributing
+
+---
+
+## Chapter 16 — Windows
+
+### 16.1 Introduction
+
+Hermes runs on Windows two ways: **natively** (PowerShell installer, plus the v0.16 Desktop app) and via **WSL2** (a Linux environment on Windows, which the standard `install.sh` targets). This chapter covers both, when to choose each, the Desktop installer path, and Windows-specific concerns (PATH, PowerShell execution policy, line endings, and Node/native build tools for the desktop app).
+
+### 16.2 Chapter objectives
+
+(1) Install Hermes natively on Windows and via WSL2; (2) choose between native and WSL2; (3) use the Desktop installer; (4) handle Windows-specific issues (PATH, execution policy, build tools); (5) verify the install.
+
+### 16.3 Business context
+
+Many enterprise developers are on Windows. Offering a native installer and a Desktop app (v0.16) lowers adoption friction for non-Linux teams, while WSL2 gives power users a full Linux runtime for server-like behavior. The practical decision: **Desktop/native for end users and quick local use; WSL2 for development that mirrors Linux production.**
+
+### 16.4 Theoretical foundations
+
+- **Two runtimes.** Native Windows (PowerShell install / Desktop) vs WSL2 (Linux kernel; uses `install.sh`).
+- **Desktop = CLI + app.** The Desktop installer provisions both the command-line tool and the native app; `hermes desktop` launches the app after a CLI-only install.
+- **Parity via WSL2.** WSL2 gives the same paths, systemd-like behavior, and tooling as Linux production — fewer surprises.
+
+### 16.5 Architecture (Windows options)
+
+```mermaid
+flowchart TB
+    win[Windows host] --> opt{Install path}
+    opt -->|native| ps[install.ps1 / Desktop installer]
+    opt -->|WSL2| wsl[Ubuntu on WSL2 → install.sh]
+    ps --> cliapp[hermes CLI + Desktop app]
+    wsl --> linuxlike[Linux-parity hermes]
+```
+
+### 16.6 Internal flows (native install)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant PS as PowerShell
+    participant I as install.ps1
+    participant H as hermes
+    U->>PS: iex (irm .../install.ps1)
+    PS->>I: run installer
+    I->>I: provision deps + hermes command
+    U->>H: hermes setup --portal
+    U->>H: hermes desktop  (optional GUI)
+```
+
+### 16.7 Component diagram
+
+```mermaid
+flowchart LR
+    subgraph native["Native Windows"]
+        cli[hermes.exe / launcher]
+        app[Desktop app]
+        home[(%USERPROFILE%\.hermes)]
+    end
+    subgraph wsl["WSL2"]
+        lcli[hermes (Linux)]
+        lhome[(~/.hermes)]
+    end
+```
+
+### 16.8 Complete example
+
+**Scenario.** A Windows developer wants the native Desktop app for daily use and a WSL2 install for testing server behavior that mirrors Linux production.
+
+**Problem.** Pure native lacks Linux parity; pure WSL2 lacks a polished GUI. They want both.
+
+**Solution.** Install natively (Desktop) for the GUI, and install in WSL2 (Ubuntu) for parity testing.
+
+**Architecture.** Native CLI+Desktop under `%USERPROFILE%\.hermes`; WSL2 Hermes under `~/.hermes` inside Ubuntu.
+
+**Implementation:**
+
+```powershell
+# Native (PowerShell) — installs CLI; Desktop via the installer or:
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+hermes setup --portal
+hermes desktop                 # launch the native app
+```
+
+```bash
+# WSL2 (inside Ubuntu) — Linux-parity install
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc
+hermes setup --portal
+```
+
+**Configuration (native, `%USERPROFILE%\.hermes\config.yaml`):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+**Tests.**
+
+```powershell
+hermes --version
+hermes doctor
+```
+
+```bash
+# In WSL2
+hermes doctor
+```
+
+**Result.** A native Desktop experience for daily work plus a WSL2 install that behaves like Linux production for testing.
+
+**Future improvements.** Use WSL2 with Docker Desktop for the Docker terminal backend (Chapter 18); standardize the team on the Desktop app for non-developers.
+
+### 16.9 Source code
+
+```powershell
+# If script execution is blocked, allow for the current user (then re-run installer)
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+# Verify PATH includes the hermes launcher; reopen the shell after install
+$env:Path -split ';' | Select-String hermes
+```
+
+### 16.10 Configuration
+
+```yaml
+# For the desktop app, build tools may be required for native modules:
+# install Node v22 (installer handles it) and a C++ toolchain (Build Tools for VS / g++ in WSL2).
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  terminal_backend: local        # docker via Docker Desktop + WSL2 backend
+```
+
+### 16.11 Real-world use cases
+
+- **Non-technical Windows users** on the Desktop app.
+- **Windows developers** using WSL2 for Linux-parity dev.
+- **Docker workflows** via Docker Desktop + WSL2 backend.
+- **Mixed teams** standardizing on Desktop while CI runs on Linux.
+
+### 16.12 Exercises
+
+1. When would you choose native over WSL2, and vice versa?
+2. What does the Desktop installer provision beyond the CLI?
+3. How do you launch the Desktop app after a CLI-only install?
+
+### 16.13 Challenges
+
+- **Challenge 1.** Install natively and in WSL2; confirm both with `hermes doctor`.
+- **Challenge 2.** Use the Docker backend from WSL2 via Docker Desktop.
+
+### 16.14 Checklist
+
+- [ ] Native and/or WSL2 install chosen deliberately.
+- [ ] Execution policy / PATH issues resolved.
+- [ ] Desktop app installed if needed.
+- [ ] `hermes doctor` clean on the chosen runtime.
+
+### 16.15 Best practices
+
+- **Desktop/native for end users; WSL2 for dev parity.**
+- **Use WSL2 + Docker Desktop** for the Docker terminal backend.
+- **Pin the version** as on any platform.
+- **Keep `%USERPROFILE%\.hermes` backed up.**
+
+### 16.16 Anti-patterns
+
+- Forcing server workloads onto native Windows where WSL2/Linux is better suited.
+- Ignoring execution-policy errors instead of fixing them properly.
+- Mixing native and WSL2 `~/.hermes` and expecting shared state.
+
+### 16.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `install.ps1` blocked | Execution policy | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| `hermes` not found | PATH not refreshed | Reopen the shell; check launcher PATH |
+| Desktop build fails | Missing C++ toolchain | Install VS Build Tools (native) / `build-essential` (WSL2) |
+| State not shared native↔WSL2 | Separate homes | They are independent by design |
+
+### 16.18 Official references
+
+- Installation (Windows native): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Desktop download: https://hermes-agent.nousresearch.com/
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+- Quickstart: https://hermes-agent.nousresearch.com/docs/getting-started/quickstart
+
+---
+
+## Chapter 17 — macOS
+
+### 17.1 Introduction
+
+On macOS, Hermes installs via the same one-liner as Linux or via the **Desktop installer** (recommended on macOS for the combined CLI + app). This chapter covers macOS specifics: the Desktop vs CLI paths, Apple Silicon vs Intel, Homebrew interplay, Gatekeeper/permissions for the desktop app, and Nix on macOS for declarative setups.
+
+### 17.2 Chapter objectives
+
+(1) Install Hermes on macOS via Desktop and CLI; (2) handle Apple Silicon/Intel and permissions; (3) understand the Homebrew install-method detection; (4) optionally use the Nix path; (5) verify.
+
+### 17.3 Business context
+
+macOS is the dominant developer laptop in many companies. The Desktop installer gives a one-click experience; the CLI gives automation parity with Linux. Because install-method is auto-detected (including Homebrew), updates remain one command regardless of how it was installed — important for fleet management.
+
+### 17.4 Theoretical foundations
+
+- **Same `install.sh`.** macOS uses the Linux/macOS one-liner; the only prerequisite is Git (plus a C++ toolchain for the desktop app's native modules).
+- **Desktop recommended.** On macOS the Desktop installer provisions CLI + app together.
+- **Method detection.** Homebrew installs are detected so `hermes update` prints the brew command.
+- **Nix option.** A flake and module exist for declarative macOS setups.
+
+### 17.5 Architecture (macOS options)
+
+```mermaid
+flowchart TB
+    mac[macOS] --> opt{Path}
+    opt -->|recommended| dt[Desktop installer → CLI + app]
+    opt -->|CLI only| sh[install.sh one-liner]
+    opt -->|declarative| nix[Nix flake / module]
+    dt --> home[(~/.hermes)]
+    sh --> home
+    nix --> home
+```
+
+### 17.6 Internal flows (Desktop install)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant D as Desktop installer
+    participant H as hermes CLI
+    U->>D: download + run installer
+    D->>D: install CLI + app + deps
+    U->>H: hermes setup --portal
+    U->>U: launch Hermes Desktop (drag-and-drop files)
+```
+
+### 17.7 Component diagram
+
+```mermaid
+flowchart LR
+    app[Hermes Desktop.app] --- cli[hermes CLI]
+    cli --- venv[venv / site-packages]
+    cli --- home[(~/.hermes)]
+    brew[Homebrew?] -.detected.- upd[hermes update prints brew cmd]
+```
+
+### 17.8 Complete example
+
+**Scenario.** A macOS (Apple Silicon) developer wants the Desktop app for daily use plus CLI parity for scripts, on Portal.
+
+**Problem.** They want both surfaces without two separate setups or update paths.
+
+**Solution.** Install via the Desktop installer (provisions CLI + app), set up Portal, and verify both surfaces.
+
+**Architecture.** Desktop app + CLI sharing one `~/.hermes`.
+
+**Implementation:**
+
+```bash
+# Option A: Desktop installer from https://hermes-agent.nousresearch.com/ (recommended)
+# Option B: CLI one-liner, then add the app
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.zshrc
+hermes setup --portal
+hermes desktop                 # install/launch the desktop app
+```
+
+**Configuration (`~/.hermes/config.yaml`):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+**Tests.**
+
+```bash
+hermes --version
+hermes doctor
+hermes update --check          # prints the correct path-specific update command
+```
+
+**Result.** A unified macOS setup: Desktop for interactive use, CLI for automation, one shared agent state, one update command.
+
+**Future improvements.** Use the Nix path for reproducible developer machines; connect the gateway for a personal Telegram assistant.
+
+### 17.9 Source code
+
+```bash
+# Apple Silicon vs Intel is handled by the installer; verify the arch if debugging:
+uname -m                       # arm64 (Apple Silicon) or x86_64 (Intel)
+
+# If the desktop app needs native build tools:
+xcode-select --install         # provides the C++ toolchain
+```
+
+### 17.10 Configuration
+
+```nix
+# Optional Nix flake input (declarative macOS setup) — see the Nix & NixOS guide
+# inputs.hermes-agent.url = "github:NousResearch/hermes-agent";
+```
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  terminal_backend: local
+```
+
+### 17.11 Real-world use cases
+
+- **macOS developer** with Desktop + CLI on Portal.
+- **Reproducible dev machines** via Nix.
+- **Homebrew-managed fleets** with one-command updates.
+- **Personal assistant** wiring the gateway to Telegram from a Mac.
+
+### 17.12 Exercises
+
+1. When is the Desktop installer preferred on macOS?
+2. How does Hermes know to print the Homebrew update command?
+3. What prerequisite does the desktop app's native build need?
+
+### 17.13 Challenges
+
+- **Challenge 1.** Install via Desktop, set up Portal, verify CLI + app share state.
+- **Challenge 2.** Reproduce the install declaratively with Nix.
+
+### 17.14 Checklist
+
+- [ ] macOS install done (Desktop and/or CLI).
+- [ ] Portal/provider configured.
+- [ ] Permissions/build tools resolved.
+- [ ] `hermes doctor` clean.
+
+### 17.15 Best practices
+
+- **Prefer the Desktop installer** on macOS for the combined experience.
+- **Install Xcode CLT** if building native modules.
+- **Use Nix** for reproducible developer environments.
+- **Let install-method detection** drive updates.
+
+### 17.16 Anti-patterns
+
+- Hand-compiling deps instead of using the installer.
+- Ignoring Gatekeeper prompts rather than granting needed permissions.
+- Mixing Nix and non-Nix installs on one machine.
+
+### 17.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| App won't open (Gatekeeper) | Unsigned/permission | Allow in System Settings → Privacy & Security |
+| Native module build fails | No Xcode CLT | `xcode-select --install` |
+| Wrong update command | Method mis-detected | `hermes doctor` shows method; reinstall via intended path |
+| `hermes` not on PATH | zsh profile not sourced | `source ~/.zshrc` |
+
+### 17.18 Official references
+
+- Installation (macOS): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Desktop download: https://hermes-agent.nousresearch.com/
+- Nix & NixOS Setup: https://hermes-agent.nousresearch.com/docs/getting-started/nix-setup
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 18 — Docker
+
+### 18.1 Introduction
+
+Docker gives Hermes two distinct capabilities. First, you can **run the agent itself in a container** (reproducible, portable deployment). Second — and more uniquely — Hermes can use **Docker as a terminal backend**, executing the agent's commands inside ephemeral containers so its side effects are isolated from the host. This chapter covers both: containerizing the gateway, and configuring the Docker execution backend for safe autonomous work.
+
+### 18.2 Chapter objectives
+
+(1) Containerize the Hermes gateway with a Dockerfile and compose; (2) persist `~/.hermes/` via a volume; (3) configure the Docker *terminal backend* for isolated execution; (4) manage secrets and egress; (5) verify the containerized agent.
+
+### 18.3 Business context
+
+Containers give **reproducibility and isolation** — the two things production autonomy needs. Running the agent in a container makes deployment identical across hosts; using Docker as the execution backend confines what the agent can do (no host access, optional no-egress) — the safe way to let an agent run untrusted code or operate autonomously. Together they make Hermes deployable on any container platform.
+
+### 18.4 Theoretical foundations
+
+- **Agent-in-container.** The whole agent runs in a container; state persists via a mounted volume.
+- **Container-as-backend.** The Docker terminal backend spawns ephemeral containers per execution; the agent's commands never touch the host.
+- **Volume for state.** `~/.hermes/` must be a named volume so memory/Skills/sessions survive container restarts.
+- **Secrets & egress.** Provider keys come via env/secret, not baked in; untrusted execution sets `network: none`.
+
+### 18.5 Architecture (two roles)
+
+```mermaid
+flowchart TB
+    subgraph host["Container host"]
+        c[Hermes container<br/>gateway]
+        vol[(named volume → /root/.hermes)]
+        c --- vol
+    end
+    c -->|terminal_backend: docker| eph[Ephemeral exec containers]
+    c --> prov[Provider/Portal via env secret]
+```
+
+### 18.6 Internal flows (containerized run)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant DC as docker compose
+    participant C as Hermes container
+    participant V as Volume (~/.hermes)
+    Op->>DC: docker compose up -d
+    DC->>C: start gateway (HERMES_HOME=/root/.hermes)
+    C->>V: load/persist memory, skills, sessions
+    C->>C: serve platforms; exec in ephemeral containers
+```
+
+### 18.7 Component diagram
+
+```mermaid
+flowchart LR
+    df[Dockerfile] --- img[hermes image]
+    img --- comp[docker-compose.yml]
+    comp --- vol[(hermes-data volume)]
+    comp --- sec[secret: provider key]
+    img --- sock[/var/run/docker.sock for docker backend/]
+```
+
+### 18.8 Complete example
+
+**Scenario.** Deploy the Hermes Telegram gateway as a container, with persistent state and Docker-backed isolated execution.
+
+**Problem.** A host install is not portable, and letting the agent run commands on the host is risky.
+
+**Solution.** A Dockerfile + compose that runs the gateway, persists `~/.hermes` on a volume, and uses the Docker terminal backend for isolated execution.
+
+**Architecture.** Hermes container (gateway) + named volume + Docker socket for the execution backend.
+
+**Implementation:**
+
+```dockerfile
+# Dockerfile
+FROM python:3.11-slim
+RUN apt-get update && apt-get install -y git curl xz-utils build-essential ripgrep ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+ENV PATH="/root/.local/bin:${PATH}"
+ENV HERMES_HOME=/root/.hermes
+ENTRYPOINT ["hermes", "gateway", "start", "--platform", "telegram"]
+```
+
+```yaml
+# docker-compose.yml
+services:
+  hermes:
+    build: .
+    restart: unless-stopped
+    environment:
+      NOUS_PORTAL_TOKEN: ${NOUS_PORTAL_TOKEN}   # from .env / secret, not baked in
+      HERMES_HOME: /root/.hermes
+    volumes:
+      - hermes-data:/root/.hermes
+      - /var/run/docker.sock:/var/run/docker.sock   # enables docker terminal backend
+volumes:
+  hermes-data:
+```
+
+```yaml
+# Inside the container's ~/.hermes/config.yaml — isolated execution
+tools:
+  terminal_backend: docker
+  docker:
+    image: hermes-exec:latest
+    network: none
+```
+
+**Tests.**
+
+```bash
+docker compose up -d
+docker compose exec hermes hermes doctor
+docker compose exec hermes hermes gateway status
+docker compose logs -f hermes
+```
+
+**Result.** A portable, restartable gateway with persistent state and host-isolated execution.
+
+**Future improvements.** Move to Kubernetes for orchestration (Chapter 19); use a secrets manager; pin the image to a Hermes version.
+
+### 18.9 Source code
+
+```bash
+# Build, run, verify
+docker compose build
+docker compose up -d
+docker compose exec hermes hermes --version
+# Persisted state survives recreation:
+docker compose down && docker compose up -d
+docker compose exec hermes hermes memory show   # memory intact via volume
+```
+
+### 18.10 Configuration
+
+```yaml
+# Pinning + resource limits in compose
+services:
+  hermes:
+    image: ghcr.io/yourorg/hermes:0.16.0     # pin the version
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 1g }
+```
+
+### 18.11 Real-world use cases
+
+- **Portable gateway** deployable on any Docker host.
+- **Isolated execution** for untrusted PR/code runs (Docker backend, no egress).
+- **Reproducible CI agent** as a pinned image.
+- **Stepping stone to Kubernetes** (Chapter 19).
+
+### 18.12 Exercises
+
+1. Distinguish "agent in a container" from "Docker as a terminal backend."
+2. Why mount `~/.hermes` as a named volume?
+3. Why mount the Docker socket, and what risk does it carry?
+
+### 18.13 Challenges
+
+- **Challenge 1.** Containerize the gateway with persistent state and confirm memory survives `down`/`up`.
+- **Challenge 2.** Configure the Docker execution backend with `network: none` and prove untrusted code has no egress.
+
+### 18.14 Checklist
+
+- [ ] Gateway runs in a container.
+- [ ] `~/.hermes` persists via a volume.
+- [ ] Secrets injected, not baked in.
+- [ ] Docker terminal backend configured (if used).
+- [ ] Image pinned to a version.
+
+### 18.15 Best practices
+
+- **Persist state on a named volume.**
+- **Inject secrets** via env/secret store.
+- **Pin the image** to a Hermes version.
+- **Use `network: none`** for untrusted execution.
+
+### 18.16 Anti-patterns
+
+- Baking provider keys into the image.
+- No volume → losing memory/Skills on restart.
+- Mounting the Docker socket without understanding the privilege it grants.
+- Using `latest` in production.
+
+### 18.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| State lost on restart | No volume | Mount a named volume to `HERMES_HOME` |
+| Docker backend fails in container | No socket access | Mount `/var/run/docker.sock` (mind the risk) |
+| Key not found | Secret not injected | Pass via env/secret |
+| Browser tools fail | Missing Chromium libs in image | Add deps or use `--skip-browser` |
+
+### 18.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Terminal Backends: https://hermes-agent.nousresearch.com/docs/user-guide/features/terminal-backends
+- Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 19 — Kubernetes
+
+### 19.1 Introduction
+
+Kubernetes is where Hermes becomes a **managed, resilient service**: self-healing pods, declarative config, secrets, persistent volumes, and horizontal scaling of stateless surfaces (the API server) alongside a stateful gateway. This chapter covers deploying Hermes on Kubernetes — the gateway as a `Deployment` with a `PersistentVolumeClaim` for `~/.hermes`, secrets for provider keys, and the API-server surface behind a `Service`/`Ingress`.
+
+### 19.2 Chapter objectives
+
+(1) Deploy the Hermes gateway on Kubernetes with persistent state; (2) manage provider keys via `Secret`; (3) expose the API-server surface via `Service`/`Ingress`; (4) understand stateful vs stateless surfaces and scaling; (5) verify and operate the deployment.
+
+### 19.3 Business context
+
+For enterprises already on Kubernetes, deploying Hermes there means **one operational model** — the same observability, secrets, and resilience as the rest of the platform. The gateway becomes a self-healing service; the API surface scales horizontally; state lives on a PVC under cluster backup. It is the path from "an agent on a box" to "an agent as a platform service."
+
+### 19.4 Theoretical foundations
+
+- **Stateful gateway, stateless API.** The gateway holds session/PID state (one replica or careful sharding); the API server surface can run stateless replicas.
+- **PVC for `~/.hermes`.** Memory/Skills/sessions persist on a PersistentVolumeClaim.
+- **Secrets, not env literals.** Provider keys live in `Secret` objects mounted as env.
+- **Probes for resilience.** Liveness/readiness probes drive self-healing.
+
+### 19.5 Architecture (K8s deployment)
+
+```mermaid
+flowchart TB
+    subgraph ns["namespace: hermes"]
+        dep[Deployment: gateway<br/>1 replica]
+        pvc[(PVC → /root/.hermes)]
+        sec[Secret: provider keys]
+        svc[Service / Ingress → api_server]
+        dep --- pvc
+        dep --- sec
+        dep --- svc
+    end
+    svc --> clients[Internal services]
+```
+
+### 19.6 Internal flows (rollout)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant K as kubectl / GitOps
+    participant API as K8s API
+    participant Pod as Hermes pod
+    Op->>K: apply manifests
+    K->>API: create Deployment/PVC/Secret/Service
+    API->>Pod: schedule pod, mount PVC + secret
+    Pod->>Pod: hermes gateway start
+    API->>Pod: readiness probe → in service
+```
+
+### 19.7 Component diagram
+
+```mermaid
+flowchart LR
+    cm[ConfigMap: config.yaml] --- pod[Hermes pod]
+    sec[Secret: keys] --- pod
+    pvc[(PVC)] --- pod
+    pod --- svc[Service]
+    svc --- ing[Ingress]
+```
+
+### 19.8 Complete example
+
+**Scenario.** Run the Hermes gateway + API surface on Kubernetes with persistent state and secret-managed keys.
+
+**Problem.** The team standardizes on K8s and needs Hermes self-healing, with state on a PVC and keys in Secrets.
+
+**Solution.** A `Deployment` (gateway), `PVC` (`~/.hermes`), `Secret` (keys), `ConfigMap` (config), and a `Service` for the API surface.
+
+**Architecture.** One gateway replica with PVC + Secret + ConfigMap, exposed via Service/Ingress.
+
+**Implementation:**
+
+```yaml
+# hermes-k8s.yaml
+apiVersion: v1
+kind: Secret
+metadata: { name: hermes-secrets, namespace: hermes }
+type: Opaque
+stringData:
+  NOUS_PORTAL_TOKEN: "REPLACE_ME"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: hermes-home, namespace: hermes }
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources: { requests: { storage: 5Gi } }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: hermes-gateway, namespace: hermes }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: hermes } }
+  template:
+    metadata: { labels: { app: hermes } }
+    spec:
+      containers:
+        - name: hermes
+          image: ghcr.io/yourorg/hermes:0.16.0
+          args: ["gateway", "start", "--platform", "api_server"]
+          env:
+            - name: HERMES_HOME
+              value: /root/.hermes
+            - name: NOUS_PORTAL_TOKEN
+              valueFrom: { secretKeyRef: { name: hermes-secrets, key: NOUS_PORTAL_TOKEN } }
+          volumeMounts:
+            - { name: home, mountPath: /root/.hermes }
+          readinessProbe:
+            httpGet: { path: /v1/models, port: 8080 }
+            initialDelaySeconds: 10
+          livenessProbe:
+            httpGet: { path: /v1/models, port: 8080 }
+            initialDelaySeconds: 20
+      volumes:
+        - name: home
+          persistentVolumeClaim: { claimName: hermes-home }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: hermes, namespace: hermes }
+spec:
+  selector: { app: hermes }
+  ports: [ { port: 80, targetPort: 8080 } ]
+```
+
+**Tests.**
+
+```bash
+kubectl create namespace hermes
+kubectl apply -f hermes-k8s.yaml
+kubectl -n hermes rollout status deploy/hermes-gateway
+kubectl -n hermes exec deploy/hermes-gateway -- hermes doctor
+kubectl -n hermes port-forward svc/hermes 8080:80 &
+curl -s localhost:8080/v1/models | jq '.data[].id'
+```
+
+**Result.** A self-healing Hermes service on Kubernetes with persistent state, secret-managed keys, and an exposed API surface.
+
+**Future improvements.** GitOps (Argo/Flux), HPA on the stateless API surface, network policies, and observability (Part XIII).
+
+### 19.9 Source code
+
+```bash
+# Operate the deployment
+kubectl -n hermes logs deploy/hermes-gateway -f
+kubectl -n hermes get pvc hermes-home
+kubectl -n hermes rollout restart deploy/hermes-gateway   # state survives via PVC
+```
+
+### 19.10 Configuration
+
+```yaml
+# ConfigMap-delivered config.yaml (mounted into /root/.hermes/config.yaml)
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [api_server]
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+### 19.11 Real-world use cases
+
+- **Self-healing gateway** as a platform service.
+- **Horizontally scaled API surface** behind a Service/Ingress.
+- **GitOps-managed** agent infrastructure.
+- **Multi-tenant** namespaces per team/profile.
+
+### 19.12 Exercises
+
+1. Why is the gateway stateful while the API surface can be stateless?
+2. What goes on the PVC and why?
+3. How are provider keys delivered securely?
+
+### 19.13 Challenges
+
+- **Challenge 1.** Deploy the manifests, prove state survives a `rollout restart`.
+- **Challenge 2.** Add liveness/readiness probes and verify self-healing by killing the pod.
+
+### 19.14 Checklist
+
+- [ ] Gateway runs as a Deployment.
+- [ ] `~/.hermes` on a PVC.
+- [ ] Keys in a Secret.
+- [ ] Probes configured.
+- [ ] API surface exposed via Service.
+
+### 19.15 Best practices
+
+- **PVC for state; Secrets for keys; ConfigMap for config.**
+- **Probes** for self-healing.
+- **Pin the image**; deploy via GitOps.
+- **Scale stateless surfaces**, keep the gateway singleton (or shard carefully).
+
+### 19.16 Anti-patterns
+
+- Multiple gateway replicas sharing one RWO PVC without coordination.
+- Keys in plain env/ConfigMap.
+- No probes (no self-healing).
+- `latest` image tags.
+
+### 19.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Pod CrashLoopBackOff | Bad config/secret | `kubectl logs`; verify Secret/ConfigMap |
+| State lost on reschedule | No PVC / RWO on a new node | Use PVC; ensure node affinity / RWX if needed |
+| API 503 | Probe failing / not ready | Check readiness path/port |
+| Two gateways conflict | Shared state | Single replica or proper sharding |
+
+### 19.18 Official references
+
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Gateway Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/gateway-internals
+- API Server surface: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+
+---
+
+## Chapter 20 — VPS
+
+### 20.1 Introduction
+
+A small VPS (as little as $5/month) is the canonical home for a personal or team Hermes — always on, reachable from messaging platforms, cheap. This chapter covers deploying Hermes to a VPS: provisioning, securing the host, installing as a service, connecting the gateway, and keeping it updated — the practical "agent that lives somewhere" deployment from Chapter 1.
+
+### 20.2 Chapter objectives
+
+(1) Provision and harden a VPS for Hermes; (2) install as an unprivileged systemd service; (3) connect the messaging gateway with an allowlist; (4) operate (logs, updates, backups); (5) keep costs low.
+
+### 20.3 Business context
+
+A VPS is the cheapest way to get a **persistent, reachable agent** — no laptop tether, no enterprise K8s required. For individuals and small teams it is the sweet spot: a Telegram-reachable assistant that remembers and runs tasks, for the price of a coffee. The key concerns are security (it is internet-facing) and operability (it must survive reboots and update cleanly).
+
+### 20.4 Theoretical foundations
+
+- **Always-on + reachable.** The gateway long-running process makes the agent reachable from messaging platforms.
+- **Least privilege + hardening.** Internet-facing host → unprivileged service user, SSH keys only, firewall, automatic security updates.
+- **Authorization at the gateway.** Allowlists + DM pairing prevent unauthorized access (Part XII).
+- **Backups.** `~/.hermes/` is the asset; back it up off-host.
+
+### 20.5 Architecture (VPS)
+
+```mermaid
+flowchart TB
+    msg[Telegram/Discord/...] --> gw[Hermes gateway<br/>on VPS, systemd]
+    gw --> agent[AIAgent]
+    agent --> prov[Provider/Portal]
+    gw --> auth[allowlist + DM pairing]
+    home[(~/.hermes)] --- gw
+    home -.backup.-> off[off-host backup]
+```
+
+### 20.6 Internal flows (deploy)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant V as VPS
+    participant H as hermes
+    Op->>V: provision, harden (ufw, ssh keys, updates)
+    Op->>V: create unprivileged user
+    Op->>H: install + setup --portal + gateway setup
+    Op->>V: systemd unit → enable --now
+    H->>H: gateway reachable; allowlist enforced
+```
+
+### 20.7 Component diagram
+
+```mermaid
+flowchart LR
+    ufw[firewall] --- vps[VPS host]
+    vps --- user[(unprivileged user)]
+    user --- svc[systemd: hermes-gateway]
+    svc --- home[(~/.hermes)]
+    home --- bak[backup cron]
+```
+
+### 20.8 Complete example
+
+**Scenario.** Deploy a personal Telegram assistant on a $5 VPS, secured and reboot-proof.
+
+**Problem.** A laptop-bound agent is not always on; an unhardened internet host is a risk.
+
+**Solution.** Harden the VPS, install Hermes as an unprivileged systemd service, connect Telegram with an allowlist, and back up `~/.hermes` nightly.
+
+**Architecture.** VPS → systemd gateway service (unprivileged user) → Telegram, with allowlist + nightly backup.
+
+**Implementation:**
+
+```bash
+# 1. Harden (as root)
+adduser --disabled-password hermes
+ufw default deny incoming && ufw allow OpenSSH && ufw enable
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl reload ssh
+apt-get install -y unattended-upgrades
+
+# 2. Install Hermes as the unprivileged user
+sudo -u hermes -i
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+hermes setup --portal
+hermes gateway setup            # Telegram token + allowlist (@you)
+exit
+```
+
+```ini
+# 3. /etc/systemd/system/hermes-gateway.service
+[Unit]
+Description=Hermes Gateway
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=hermes
+Environment=HERMES_HOME=/home/hermes/.hermes
+ExecStart=/home/hermes/.local/bin/hermes gateway start --platform telegram
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+systemctl enable --now hermes-gateway
+
+# 4. Nightly backup of the asset
+( crontab -u hermes -l 2>/dev/null; \
+  echo "0 3 * * * tar czf /home/hermes/backup-\$(date +\%F).tgz -C /home/hermes .hermes" ) \
+  | crontab -u hermes -
+```
+
+**Tests.**
+
+```bash
+sudo -u hermes hermes doctor
+systemctl status hermes-gateway
+# From Telegram (allowlisted account): send a message and get a reply.
+```
+
+**Result.** An always-on, hardened, reboot-proof personal assistant on a $5 VPS, with nightly backups.
+
+**Future improvements.** Add Discord/Signal surfaces (Part IX), serverless execution backend to cut cost further, and monitoring (Part XIII).
+
+### 20.9 Source code
+
+```bash
+# Controlled updates on the VPS
+sudo -u hermes hermes update --check
+sudo -u hermes hermes update
+systemctl restart hermes-gateway
+journalctl -u hermes-gateway -n 50 --no-pager
+```
+
+### 20.10 Configuration
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@you"]
+  dm_pairing: true
+tools:
+  terminal_backend: local        # or modal/daytona to offload heavy work
+```
+
+### 20.11 Real-world use cases
+
+- **Personal Telegram assistant** that remembers and runs tasks.
+- **Team bot** on a shared cheap VPS with an allowlist.
+- **Scheduled-task operator** (cron) generating reports.
+- **Cost-optimized** with serverless execution backends for heavy jobs.
+
+### 20.12 Exercises
+
+1. List three hardening steps for an internet-facing VPS.
+2. Why run the gateway as an unprivileged user?
+3. What must your backup include?
+
+### 20.13 Challenges
+
+- **Challenge 1.** Deploy the assistant, lock it to your account via allowlist, and confirm a non-allowlisted account is rejected.
+- **Challenge 2.** Restore the agent on a fresh VPS from your backup.
+
+### 20.14 Checklist
+
+- [ ] VPS hardened (firewall, SSH keys, auto-updates).
+- [ ] Gateway runs as a systemd service (unprivileged).
+- [ ] Allowlist/DM pairing enforced.
+- [ ] Nightly backup of `~/.hermes`.
+- [ ] Update path tested.
+
+### 20.15 Best practices
+
+- **Harden first** (firewall, key-only SSH, unattended upgrades).
+- **Unprivileged service user** + systemd supervision.
+- **Allowlist** the gateway; enable DM pairing.
+- **Back up `~/.hermes`** off-host.
+
+### 20.16 Anti-patterns
+
+- Running the gateway as root with password SSH enabled.
+- No allowlist → open agent to anyone who finds the bot.
+- No backups → losing accumulated memory/Skills.
+- Updating in place with no test.
+
+### 20.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Bot replies to strangers | No allowlist | Configure allowlist + DM pairing |
+| Gateway down after reboot | No systemd | Use the service unit |
+| Lost memory after rebuild | No backup | Restore from `~/.hermes` backup |
+| High bill | Heavy local execution | Offload to serverless backend |
+
+### 20.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Messaging Platforms: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Command Approval / Security: https://hermes-agent.nousresearch.com/docs/user-guide/features/command-approval
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 21 — Cloud Providers
+
+### 21.1 Introduction
+
+Beyond a single VPS, Hermes runs on the major clouds (AWS, GCP, Azure) and, distinctively, on **serverless execution backends** (Daytona, Modal) that **hibernate when idle** — so an agent that works in bursts costs almost nothing between tasks. This chapter surveys cloud deployment options: VMs, managed Kubernetes, and serverless execution, with the cost/isolation trade-offs and when to choose each.
+
+### 21.2 Chapter objectives
+
+(1) Map Hermes deployment options across AWS/GCP/Azure; (2) understand serverless execution backends (Daytona, Modal) and hibernation economics; (3) choose VM vs managed-K8s vs serverless per workload; (4) handle cloud secrets and IAM; (5) verify a cloud deployment.
+
+### 21.3 Business context
+
+Cloud choice is a **cost and isolation** decision. A VM is simplest; managed Kubernetes (EKS/GKE/AKS) gives resilience and scale; serverless execution backends give near-zero idle cost and strong isolation for bursty autonomous work. The standout economic lever is **hibernation**: with Modal/Daytona, the heavy compute exists only while a task runs — ideal for an agent that you talk to occasionally but that does real work when you do.
+
+### 21.4 Theoretical foundations
+
+- **Three shapes.** VM (lift-and-shift of the VPS pattern), managed K8s (Chapter 19 on a cloud), serverless execution backend (agent control plane lightweight; execution offloaded).
+- **Hibernation.** Daytona/Modal spin up execution on demand and idle to ~zero — the cost model that makes always-available-but-rarely-busy agents cheap.
+- **Cloud secrets + IAM.** Provider keys in the cloud secret manager; least-privilege IAM for the agent's cloud actions.
+- **Provider agnosticism still applies.** The LLM provider is independent of the *hosting* cloud — no coupling.
+
+### 21.5 Architecture (cloud options)
+
+```mermaid
+flowchart TB
+    choice{Workload shape} -->|simple/always-on| vm[Cloud VM<br/>VPS pattern]
+    choice -->|resilient/scale| k8s[Managed K8s<br/>EKS/GKE/AKS]
+    choice -->|bursty/cheap idle| srv[Serverless exec<br/>Daytona / Modal]
+    vm --> sec[Cloud Secrets + IAM]
+    k8s --> sec
+    srv --> sec
+```
+
+### 21.6 Internal flows (serverless execution)
+
+```mermaid
+sequenceDiagram
+    participant U as User (messaging)
+    participant G as Hermes control plane (light)
+    participant M as Modal/Daytona
+    U->>G: request a heavy task
+    G->>M: spin up execution sandbox (on demand)
+    M-->>G: results
+    M->>M: hibernate (idle → ~$0)
+    G-->>U: deliver result
+```
+
+### 21.7 Component diagram
+
+```mermaid
+flowchart LR
+    cp[Hermes control plane] --- back{terminal_backend}
+    back -->|modal| mo[Modal app]
+    back -->|daytona| da[Daytona workspace]
+    cp --- secmgr[Cloud secret manager]
+    cp --- iam[IAM role]
+```
+
+### 21.8 Complete example
+
+**Scenario.** A team wants an always-reachable agent that does occasional heavy data jobs, but refuses to pay for idle compute.
+
+**Problem.** A big VM sits idle most of the day; K8s is overkill for one team; they want pay-per-use heavy execution.
+
+**Solution.** Run a lightweight Hermes control plane on a small VM (or container), and offload heavy execution to **Modal** — which hibernates to near-zero when idle.
+
+**Architecture.** Small always-on control plane (gateway) + Modal terminal backend for heavy execution.
+
+**Implementation:**
+
+```yaml
+# ~/.hermes/config.yaml — serverless execution backend
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@team"]
+tools:
+  terminal_backend: modal
+  modal:
+    app: hermes-runners
+    cpu: 2
+    memory_mb: 4096
+```
+
+```bash
+# Control plane on a small VM (cheap, always on)
+hermes setup --portal
+hermes gateway start --platform telegram
+# Heavy commands the agent runs are executed in Modal, which hibernates when idle.
+```
+
+**Tests.**
+
+```bash
+hermes doctor                  # confirms modal backend reachable
+# Ask the agent to run a heavy job; observe Modal spins up then hibernates.
+```
+
+**Result.** An always-reachable agent with pay-per-use heavy compute that costs ~nothing between tasks.
+
+**Future improvements.** Promote to managed K8s if scale grows; add cost observability per task (Part XIII); switch to Daytona if its workspace model fits better.
+
+### 21.9 Source code
+
+```bash
+# Daytona alternative
+# tools.terminal_backend: daytona  (workspace-based, also hibernating)
+hermes config set tools.terminal_backend daytona
+hermes doctor
+```
+
+### 21.10 Configuration
+
+```yaml
+# AWS/GCP/Azure secret + IAM pattern (conceptual)
+provider: nous-portal           # LLM provider independent of hosting cloud
+tools:
+  terminal_backend: modal       # or daytona | docker | ssh | local
+secrets:
+  source: cloud                 # pull provider keys from the cloud secret manager
+```
+
+### 21.11 Real-world use cases
+
+- **Bursty heavy work** with hibernating serverless execution (cheapest idle).
+- **Resilient platform service** on managed K8s (EKS/GKE/AKS).
+- **Simple always-on** on a single cloud VM.
+- **Cloud-secret-managed keys** with least-privilege IAM.
+
+### 21.12 Exercises
+
+1. Compare VM, managed-K8s, and serverless execution for a bursty workload.
+2. Explain hibernation and its cost impact.
+3. Why is the LLM provider independent of the hosting cloud?
+
+### 21.13 Challenges
+
+- **Challenge 1.** Run a small control plane with a Modal or Daytona execution backend; trigger a heavy job and observe hibernation.
+- **Challenge 2.** Source provider keys from a cloud secret manager instead of a local file.
+
+### 21.14 Checklist
+
+- [ ] Deployment shape chosen for the workload.
+- [ ] Serverless backend configured (if bursty).
+- [ ] Keys in a cloud secret manager.
+- [ ] Least-privilege IAM.
+- [ ] `hermes doctor` clean.
+
+### 21.15 Best practices
+
+- **Match shape to workload:** VM (simple), K8s (scale), serverless (bursty/cheap).
+- **Use hibernation** to slash idle cost.
+- **Cloud secrets + least-privilege IAM.**
+- **Keep provider choice decoupled** from hosting.
+
+### 21.16 Anti-patterns
+
+- A large always-on VM for a rarely-busy agent (idle waste).
+- Keys in plaintext on cloud disks.
+- Over-engineering with K8s for a single small workload.
+- Coupling LLM provider to the hosting cloud unnecessarily.
+
+### 21.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Serverless backend unreachable | Creds/app misconfig | `hermes doctor`; verify Modal/Daytona setup |
+| High idle cost | Always-on heavy compute | Move to a hibernating backend |
+| Key access denied | IAM/secret misconfig | Fix IAM role / secret reference |
+| Slow first task | Cold start | Expected with hibernation; keep control plane warm |
+
+### 21.18 Official references
+
+- Terminal Backends (Modal/Daytona): https://hermes-agent.nousresearch.com/docs/user-guide/features/terminal-backends
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+> **End of Part III.** Hermes now runs everywhere it should: locally and on Linux, Windows, and macOS; containerized with Docker; orchestrated on Kubernetes; deployed to a hardened VPS; and on the major clouds with hibernating serverless execution. The recurring lesson — *install once, configure per environment* — means the agent definition you built in Part II travels unchanged across all of them.
+
 <!--APPEND-PARTE-II-->
