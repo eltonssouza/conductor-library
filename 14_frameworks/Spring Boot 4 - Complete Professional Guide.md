@@ -3167,4 +3167,410 @@ class OrderServiceResilienceTest {
 
 > **End of Part V.** You can now build the non-blocking side of Spring Boot 4 deliberately: **Project Reactor** pipelines (`Mono`/`Flux`, operators, backpressure, no blocking on the event loop), **Spring WebFlux** in both the **annotated** and **functional** models — chosen against **virtual-thread MVC** rather than reached for by default — and a fully reactive **R2DBC** data path hardened with Spring Framework 7's built-in **`@Retryable`** and **`@ConcurrencyLimit`** under **`@EnableResilientMethods`**. **Part VI — Testing** (Chapters 16–17) shifts from building to proving: focused **slice tests** (`@WebMvcTest`, `@WebFluxTest`, `@DataR2dbcTest`) that load only the relevant part of the context, and full-stack **`@SpringBootTest` with Testcontainers** for realistic, container-backed integration tests.
 
+
+---
+
+# Part VI – Testing
+
+Part VI is where the convenience of the earlier parts pays for itself. Spring Boot 4 gives you a layered testing model — plain JUnit 5 unit tests, focused **test slices** that boot only the part of the context you care about, and **full-context integration tests** backed by real infrastructure through **Testcontainers**. The skill is not knowing every annotation; it is choosing the *cheapest* test that still proves the behavior. This part walks the test pyramid from the bottom up: Chapter 16 covers unit tests and the two most-used slices (`@WebMvcTest`, `@DataJpaTest`) with `@MockitoBean` mocking; Chapter 17 covers `@SpringBootTest` end-to-end tests wired to real backends via Testcontainers and Boot's `@ServiceConnection`.
+
+---
+
+## Chapter 16 — Unit and slice tests
+
+### 16.1 Introduction
+
+A Spring Boot 4 service is a layered bean graph: a controller delegates to a service, which delegates to a repository. You *could* boot the entire `ApplicationContext` for every test, but that is slow and tells you little about which layer failed. **Test slices** solve this by loading only one horizontal layer plus its auto-configuration — `@WebMvcTest` boots the MVC infrastructure and your controllers (nothing else); `@DataJpaTest` boots JPA, Hibernate, and a database (nothing else). Below the slices sit **plain unit tests**: no Spring at all, just JUnit 5 and Mockito exercising one class through its constructor. This chapter covers that bottom-and-middle of the pyramid — the fast, numerous tests that should dominate your suite — and the Boot 4 mocking annotation `@MockitoBean` that replaces a collaborator inside a sliced context.
+
+### 16.2 Business context
+
+The economics of testing are about **feedback latency** and **blast radius**. A unit test runs in single-digit milliseconds and points at exactly one class; a slice test runs in tens of milliseconds and isolates one layer; a full-context test runs in seconds. A team whose suite is mostly slow full-context tests waits minutes per CI run, batches changes, and ships less often — every deploy feels risky. A team that pushes most coverage down to unit and slice tests gets a CI signal in under a minute, which is what actually enables small, frequent, confident releases. Slices are therefore not a stylistic preference; they are the lever that keeps a growing codebase shippable. The cost of getting this wrong compounds: an all-`@SpringBootTest` suite that takes ten minutes today takes thirty next year, and the organization slows with it.
+
+### 16.3 Theoretical concepts
+
+- **Unit test.** No Spring container. Instantiate the class under test with fakes or Mockito mocks passed to its constructor; assert on observable behavior. Fastest and most numerous.
+- **Test slice.** A composed annotation that triggers a *subset* of auto-configuration. `@WebMvcTest` loads `@Controller`/`@RestControllerAdvice`, Jackson, validation, and `MockMvc`/`MockMvcTester` — but **not** `@Service`/`@Repository` beans. `@DataJpaTest` loads JPA entities, repositories, and a `DataSource`, and wraps each test in a rolled-back transaction.
+- **`@MockitoBean`.** Boot 4's replacement for the removed `@MockBean`. It places a Mockito mock into the sliced context, overriding (or contributing) a bean of that type. Its spy sibling is `@MockitoSpyBean`. (`@MockBean`/`@SpyBean` began deprecation in Boot 3.4 and are gone in the new generation — use the `Mockito*` forms.)
+- **`MockMvc` and `MockMvcTester`.** Drive controllers without binding a TCP port. `MockMvcTester` is the modern, AssertJ-fluent entry point; classic `MockMvc` with `perform(...)` still works.
+- **`@AutoConfigureTestDatabase`.** Controls whether `@DataJpaTest` swaps in an embedded database. Set `replace = Replace.NONE` to test against a real engine (e.g. Testcontainers Postgres) instead of H2.
+
+### 16.4 Architecture: the test pyramid and what each slice loads
+
+```mermaid
+flowchart TB
+    unit["Unit tests<br/>plain JUnit 5 + Mockito · no Spring"] --> slice["Slice tests<br/>@WebMvcTest · @DataJpaTest"]
+    slice --> integ["Integration tests<br/>@SpringBootTest + Testcontainers"]
+    integ --> e2e["End-to-end<br/>full app + real backends"]
+    note["Many fast tests at the base,<br/>few slow tests at the top"]
+```
+
+```mermaid
+flowchart LR
+    webmvc["@WebMvcTest"] --> mvc["Controllers · @ControllerAdvice<br/>Jackson · validation · MockMvc"]
+    webmvc -. "does NOT load" .-> svc["@Service / @Repository beans"]
+    datajpa["@DataJpaTest"] --> jpa["Entities · repositories<br/>DataSource · rolled-back tx"]
+    datajpa -. "does NOT load" .-> web["Web layer / controllers"]
+    mock["@MockitoBean ProductService"] --> webmvc
+```
+
+The first diagram is the pyramid: the closer a test is to the base, the more of them you should have. The second shows the *defining trait* of a slice — it deliberately omits the layers it is not testing, which is exactly why a missing collaborator must be supplied with `@MockitoBean`.
+
+### 16.5 Real example
+
+**Scenario.** A `ProductController` exposes `GET /products/{sku}` and delegates to a `ProductService`. A separate `ProductRepository` (Spring Data JPA) backs that service. The team wants fast, layer-isolated tests for both ends.
+
+**Problem.** Booting the full context for each test is slow, and an H2 in-memory database hides Postgres-specific SQL behavior, so a green suite can still mask a production failure.
+
+**Solution.** Test the web layer with `@WebMvcTest`, mocking the service via `@MockitoBean`. Test the persistence layer with `@DataJpaTest`, and — because production is Postgres — disable the embedded-DB swap and point the slice at a real Postgres container (a Testcontainers detail expanded in Chapter 17). Keep the pure domain logic in a plain JUnit unit test with no Spring at all.
+
+**Implementation.**
+
+```java
+// 1) Plain unit test — no Spring. Fastest layer of the pyramid.
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
+
+class ProductServiceUnitTest {
+
+    @Test
+    void returnsProductFromRepository() {
+        ProductRepository repo = mock(ProductRepository.class);
+        when(repo.findBySku("sku-1"))
+            .thenReturn(java.util.Optional.of(new Product("sku-1", "Widget")));
+
+        ProductService service = new ProductService(repo);
+
+        assertThat(service.find("sku-1").name()).isEqualTo("Widget");
+        verify(repo).findBySku("sku-1");
+    }
+}
+```
+
+```java
+// 2) Web slice — only MVC infrastructure + the controller. Service is mocked.
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.assertj.MockMvcTester;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
+@WebMvcTest(ProductController.class)
+class ProductControllerTest {
+
+    @Autowired MockMvcTester mvc;          // Boot 4 AssertJ-fluent client
+    @MockitoBean ProductService service;   // Boot 4 mock annotation (not @MockBean)
+
+    @Test
+    void returnsProductAsJson() {
+        when(service.find("sku-1")).thenReturn(new Product("sku-1", "Widget"));
+
+        assertThat(mvc.get().uri("/products/sku-1"))
+            .hasStatusOk()
+            .bodyJson()
+            .extractingPath("$.name").isEqualTo("Widget");
+    }
+
+    @Test
+    void returns404WhenMissing() {
+        when(service.find("nope")).thenThrow(new ProductNotFoundException("nope"));
+
+        assertThat(mvc.get().uri("/products/nope")).hasStatus(404);
+    }
+}
+```
+
+```java
+// 3) Data slice — JPA + repository against REAL Postgres (no H2 swap).
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = NONE)   // keep the real DataSource, don't swap H2
+@Testcontainers
+class ProductRepositoryTest {
+
+    @Container
+    @ServiceConnection                       // auto-wires JDBC url/user/password
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
+
+    @Autowired ProductRepository repository;
+
+    @Test
+    void persistsAndFindsBySku() {
+        repository.save(new Product("sku-2", "Gadget"));
+
+        assertThat(repository.findBySku("sku-2")).isPresent();
+    }
+}
+```
+
+**Result.** Three tests cover three concerns with the cheapest tool each allows: the domain rule runs in milliseconds with no container; the controller's HTTP contract (status, JSON shape, 404 path) is verified without a server; the repository runs against the *same* Postgres dialect production uses. CI stays fast because the slow, container-backed test is the minority.
+
+**Future improvements.** Add `@RestClientTest` to cover any outbound HTTP Service Clients, add a `@WebMvcTest` case that exercises the API-version negotiation (Chapter 5), and extract the shared Postgres container into a base class so the `@DataJpaTest` and the integration tests in Chapter 17 reuse one container per run.
+
+### 16.6 Exercises
+
+1. When would you reach for `@WebMvcTest` instead of `@SpringBootTest`, and what does the slice deliberately *not* load?
+2. Rewrite a legacy `@MockBean ProductService service;` declaration in its Boot 4 form.
+3. Why does `@DataJpaTest` need `@AutoConfigureTestDatabase(replace = NONE)` when you want to test against Postgres?
+4. Name one behavior that belongs in a plain unit test rather than any slice.
+
+### 16.7 Challenges
+
+- **Challenge.** Take one feature with a controller, a service, and a repository. Write it three ways — one plain unit test, one `@WebMvcTest`, one `@DataJpaTest` — then write a single `@SpringBootTest` that covers "the same" path. Measure total wall-clock time of the sliced approach versus the full-context one across 50 runs, and explain the gap.
+
+### 16.8 Checklist
+
+- [ ] Pure domain logic is covered by plain JUnit 5 + Mockito unit tests (no Spring).
+- [ ] Controllers are tested with `@WebMvcTest` and `MockMvcTester`/`MockMvc`.
+- [ ] Repositories are tested with `@DataJpaTest`.
+- [ ] Collaborators inside a slice are supplied with `@MockitoBean`/`@MockitoSpyBean`.
+- [ ] Data slices that must match production SQL use `replace = NONE` against a real engine.
+
+### 16.9 Best practices
+
+- Push coverage down the pyramid: prefer a unit test, then a slice, and only then a full-context test.
+- Keep slices truly sliced — if you find yourself `@MockitoBean`-ing half the application, you probably want a different slice or a real integration test.
+- Use `MockMvcTester` for new web-slice tests; its AssertJ chaining reads better and fails more clearly than classic `perform(...)`.
+- Assert on observable behavior (status codes, JSON fields, persisted rows), not on internal method calls, except where a side effect *is* the contract.
+
+### 16.10 Anti-patterns
+
+- Using `@SpringBootTest` for a test that a slice would cover — paying full-context startup cost for no extra confidence.
+- Leaving `@MockBean`/`@SpyBean` in code after the Boot 4 deprecation sweep instead of moving to `@MockitoBean`/`@MockitoSpyBean`.
+- Testing repositories against H2 while production runs Postgres, letting dialect-specific SQL fail only in production.
+- Mocking the class under test, or asserting on Mockito interactions so tightly that any refactor breaks the test.
+
+### 16.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `NoSuchBeanDefinitionException` for a service in a `@WebMvcTest` | The slice doesn't load `@Service` beans | Declare it as `@MockitoBean` in the test |
+| `@MockBean` reported as removed/unresolved | Old annotation gone in Boot 4 | Switch to `@MockitoBean` (and `@MockitoSpyBean`) |
+| `@DataJpaTest` passes but prod SQL fails | Embedded H2 swapped in | Add `@AutoConfigureTestDatabase(replace = NONE)` + real DB |
+| `MockMvcTester` not injectable | Using classic-only setup | Inject `MockMvcTester` (or fall back to `MockMvc`) under `@WebMvcTest` |
+| Slice loads the whole app | Extra `@ComponentScan`/`@SpringBootTest` mixed in | Remove it; rely on the slice's own auto-configuration |
+
+### 16.12 Official references
+
+- Spring Boot testing — overview: https://docs.spring.io/spring-boot/reference/testing/index.html
+- Auto-configured tests (slices): https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.autoconfigured-tests
+- `@WebMvcTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.spring-mvc-tests
+- `@DataJpaTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.autoconfigured-spring-data-jpa
+- Mocking beans (`@MockitoBean`): https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-mockitobean.html
+
+---
+
+## Chapter 17 — Integration tests with `@SpringBootTest` and Testcontainers
+
+### 17.1 Introduction
+
+Slices prove each layer in isolation; **integration tests** prove the layers wire together and behave against real infrastructure. `@SpringBootTest` boots the full `ApplicationContext`, optionally on a real embedded server port, so you can drive the application exactly as a client would. The remaining gap is *fidelity of the backend*: an in-memory database or a stubbed broker can pass while the real one fails. **Testcontainers** closes that gap by starting throwaway Docker containers — Postgres, Kafka, Redis — for the duration of the test, and Boot's **`@ServiceConnection`** wires their connection details into the context automatically, with no `@DynamicPropertySource` boilerplate. This chapter covers the `webEnvironment` modes, driving the app with `TestRestTemplate`/`WebTestClient`, and standing up real backends with `@Testcontainers`, `@Container`, and `@ServiceConnection`.
+
+### 17.2 Business context
+
+Integration tests are the last cheap place to catch a class of bugs that unit and slice tests *cannot* see: a mismatched migration, a transaction boundary that doesn't commit, a serialization quirk between layers, a query that only the real database rejects. Catching these in CI — seconds of container startup — is enormously cheaper than catching them in a production incident, where the cost includes downtime, rollback, and lost trust. The historical objection was that integration tests were flaky and environment-dependent: they needed a shared database that drifted, leaked state between runs, and broke on the build server. Testcontainers removes that objection by giving each run a fresh, identical, disposable backend that matches production versions exactly. The result is integration coverage you can actually rely on, which is what lets a team treat "green CI" as a real release gate rather than a hopeful signal.
+
+### 17.3 Theoretical concepts
+
+- **`@SpringBootTest`.** Loads the whole context. The `webEnvironment` attribute controls the server:
+  - `MOCK` (default) — no real port; pair with `MockMvc`/`MockMvcTester`.
+  - `RANDOM_PORT` / `DEFINED_PORT` — start a real embedded server; drive it over HTTP.
+- **`TestRestTemplate` / `WebTestClient`.** HTTP clients for `RANDOM_PORT` tests. `TestRestTemplate` is the classic blocking client; `WebTestClient` is the fluent, AssertJ-friendly client that works against both reactive and servlet stacks.
+- **Testcontainers (`@Testcontainers` + `@Container`).** The JUnit 5 extension manages container lifecycle: a `static` `@Container` starts once per class; a non-static one starts per test method.
+- **`@ServiceConnection`.** Boot inspects the annotated container and contributes a `ConnectionDetails` bean (JDBC url/user/password, Kafka bootstrap servers, Redis host/port, …) directly into the context — replacing manual `@DynamicPropertySource` plumbing.
+- **`@DynamicPropertySource`.** The lower-level escape hatch: a `static` method that registers properties from a running container. Still needed for containers without a built-in `@ServiceConnection` mapping.
+- **Container reuse / singletons.** Sharing one `static` container across test classes (a base class, or Testcontainers' reuse flag) keeps the suite fast.
+
+### 17.4 Architecture: how `@ServiceConnection` wires a container into the context
+
+```mermaid
+flowchart TB
+    test["@SpringBootTest(webEnvironment=RANDOM_PORT)"] --> ctx["Full ApplicationContext"]
+    container["@Container @ServiceConnection<br/>PostgreSQLContainer (Docker)"] --> details["ConnectionDetails bean<br/>(jdbc url · user · password)"]
+    details --> ctx
+    ctx --> ds["Auto-configured DataSource<br/>points at the container"]
+    client["TestRestTemplate / WebTestClient"] --> server["Embedded server on random port"]
+    server --> ctx
+```
+
+```mermaid
+sequenceDiagram
+    participant J as JUnit 5
+    participant TC as Testcontainers
+    participant B as Spring Boot
+    participant T as Test method
+    J->>TC: start @Container (Docker pull/run)
+    TC-->>B: @ServiceConnection -> ConnectionDetails
+    B->>B: build context · DataSource -> container
+    B-->>J: context ready
+    J->>T: run test over real HTTP + real DB
+    T-->>J: assertions
+    J->>TC: stop & discard container
+```
+
+The first diagram shows the wiring at a point in time: the container supplies a `ConnectionDetails` bean that the auto-configured `DataSource` consumes, while the HTTP client talks to the embedded server. The second shows the lifecycle: Testcontainers starts the container, `@ServiceConnection` translates it into Spring properties *before* the context builds, the test runs against the real stack, and everything is torn down afterward.
+
+### 17.5 Real example
+
+**Scenario.** An order API exposes `POST /orders` and `GET /orders/{id}`. The team needs one test that proves the full path — HTTP in, persisted to Postgres, read back out — against the real database engine.
+
+**Problem.** Slices verified each layer separately but never proved they commit and read back together against production's Postgres. A shared CI database would drift and leak state between runs, making such a test flaky.
+
+**Solution.** Use `@SpringBootTest(webEnvironment = RANDOM_PORT)` to boot the whole app on a real port, start a Postgres container with `@Container` + `@ServiceConnection` so the auto-configured `DataSource` targets it, and drive the API with `WebTestClient`. Share the container as a `static` field so it starts once for the class.
+
+**Implementation.**
+
+```java
+package com.example.orders;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+@Testcontainers
+class OrderApiIntegrationTest {
+
+    @Container
+    @ServiceConnection                       // no @DynamicPropertySource needed
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
+
+    @org.springframework.beans.factory.annotation.Autowired
+    WebTestClient client;                    // auto-configured against the random port
+
+    @Test
+    void createsAndReadsBackOrder() {
+        // POST creates an order in real Postgres
+        var created = client.post().uri("/orders")
+            .bodyValue(new CreateOrder("sku-1", 3))
+            .exchange()
+            .expectStatus().isCreated()
+            .expectBody(OrderView.class)
+            .returnResult().getResponseBody();
+
+        // GET reads it back through the full stack
+        client.get().uri("/orders/{id}", created.id())
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$.sku").isEqualTo("sku-1")
+            .jsonPath("$.quantity").isEqualTo(3);
+    }
+}
+```
+
+```java
+// Optional: a reusable base class so many integration tests share ONE container.
+package com.example.orders;
+
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+@Testcontainers
+abstract class AbstractPostgresIT {
+
+    @Container
+    @ServiceConnection
+    static PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:16");
+    // Subclasses add @SpringBootTest and reuse this single static container.
+}
+```
+
+```bash
+# Slices run on every push; the container-backed integration tests run in verify.
+./mvnw test      # fast: unit + slice tests
+./mvnw verify    # adds @SpringBootTest + Testcontainers integration tests
+```
+
+**Result.** A single integration test proves the order API commits to and reads from the *real* Postgres engine over real HTTP, with a fresh container per run and zero shared-environment drift. `@ServiceConnection` removes the property-wiring boilerplate, and the shared `static` container keeps startup cost paid once.
+
+**Future improvements.** Add a Kafka container with `@ServiceConnection` to cover an event published on order creation, enable Testcontainers' reuse flag (or a singleton container) to avoid restarts across classes locally, and add a `WebTestClient` assertion on the RFC 7807 `ProblemDetail` body for the validation-failure path (Chapter 6).
+
+### 17.6 Exercises
+
+1. What are the three `webEnvironment` modes of `@SpringBootTest`, and which client pairs with `RANDOM_PORT`?
+2. What does `@ServiceConnection` do that you would otherwise hand-write with `@DynamicPropertySource`?
+3. Why declare the `@Container` field `static`, and what changes if it is non-static?
+4. Give one situation where you still need `@DynamicPropertySource` despite `@ServiceConnection` existing.
+
+### 17.7 Challenges
+
+- **Challenge.** Build an integration test that spans two backends: Postgres (persistence) and Kafka (an event emitted on `POST /orders`). Wire both with `@ServiceConnection`, assert the row is persisted *and* the event is consumed, then refactor both containers into a shared base class and confirm the suite starts each container only once.
+
+### 17.8 Checklist
+
+- [ ] Full-path tests use `@SpringBootTest` with the appropriate `webEnvironment`.
+- [ ] `RANDOM_PORT` tests are driven with `TestRestTemplate` or `WebTestClient`.
+- [ ] Real backends run in Testcontainers (`@Testcontainers` + `@Container`).
+- [ ] Connection details are wired with `@ServiceConnection` (not hand-rolled properties) where supported.
+- [ ] Containers are `static`/shared so the suite doesn't restart them per test.
+- [ ] Integration tests run in the `verify` phase, separate from the fast slice suite.
+
+### 17.9 Best practices
+
+- Reserve `@SpringBootTest` for genuine wiring/end-to-end coverage; let slices carry the per-layer load.
+- Prefer `@ServiceConnection` over `@DynamicPropertySource` whenever the container type supports it — less boilerplate, fewer mistakes.
+- Pin container image tags to the production version (e.g. `postgres:16`) so the test exercises the real dialect.
+- Share one `static` container per class (and a base class across classes) to amortize Docker startup.
+- Keep integration tests deterministic: rely on per-run fresh containers rather than cleaning shared state.
+
+### 17.10 Anti-patterns
+
+- Using `@SpringBootTest` everywhere, turning a one-minute CI run into a ten-minute one.
+- Pointing integration tests at a long-lived shared database that drifts and leaks state between runs.
+- Hand-wiring JDBC/Kafka properties with `@DynamicPropertySource` when `@ServiceConnection` already maps the container.
+- Recreating the container per test method (non-`static` `@Container`) and blaming Testcontainers for a slow suite.
+- Using `latest` image tags, so the test silently drifts away from the production engine version.
+
+### 17.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `Could not find a valid Docker environment` | No Docker daemon in CI | Provide Docker (or Testcontainers Cloud) on the build agent |
+| Context fails: no `DataSource` URL | Container not wired to Spring | Add `@ServiceConnection` (or `@DynamicPropertySource`) to the container |
+| Suite very slow | Container restarts per method | Make `@Container` `static`; share via a base class / reuse flag |
+| `TestRestTemplate`/`WebTestClient` not injectable | `webEnvironment = MOCK` | Use `RANDOM_PORT` (or switch to `MockMvc` for the mock environment) |
+| Tests flaky across runs | Shared/long-lived backend with leftover state | Use a fresh Testcontainers backend per run |
+| Connection refused mid-test | Asserting before the container is ready | Let `@Container` manage lifecycle; don't start it manually |
+
+### 17.12 Official references
+
+- `@SpringBootTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html
+- Testcontainers support: https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
+- `@ServiceConnection`: https://docs.spring.io/spring-boot/reference/testing/testcontainers.html#testing.testcontainers.service-connections
+- Testcontainers (project docs): https://java.testcontainers.org/
+- `WebTestClient`: https://docs.spring.io/spring-framework/reference/testing/webtestclient.html
+
+---
+
+> **End of Part VI.** You can now place every test at the right altitude: plain **JUnit 5 + Mockito** unit tests at the base, focused **slices** (`@WebMvcTest`, `@DataJpaTest`) with `@MockitoBean` in the middle, and full-context **`@SpringBootTest`** integration tests over **Testcontainers** + `@ServiceConnection` at the top — a fast suite that still proves the app works against real infrastructure. **Part VII — Observability** (Chapters 18–19) turns to running these applications in production: **Actuator** health, info, and management endpoints, then **Micrometer** for metrics, distributed tracing, and structured logs.
+
 <!--APPEND-PARTE-II-->
