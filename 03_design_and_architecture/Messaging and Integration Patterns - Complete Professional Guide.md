@@ -149,7 +149,7 @@ analytics_service:  on OrderPlaced -> record(id)
 
 ### 1.12 References
 
-- G. Hohpe, B. Woolf, *Enterprise Integration Patterns* (Addison-Wesley, 2003) — ISBN 978-0321200686.
+- G. Hohpe, B. Woolf, *Enterprise Integration Patterns* (Addison-Wesley, 2003), ch. 2 "Messaging Systems" (the "Messaging" pattern; "Why Use Messaging?") — ISBN 978-0321200686.
 - Official docs: Apache Kafka (https://kafka.apache.org/documentation/), RabbitMQ (https://www.rabbitmq.com/docs).
 
 ---
@@ -251,7 +251,7 @@ endpoint(raw):
 
 ### 2.12 References
 
-- G. Hohpe, B. Woolf, *Enterprise Integration Patterns* (Addison-Wesley, 2003) — ISBN 978-0321200686.
+- G. Hohpe, B. Woolf, *Enterprise Integration Patterns* (Addison-Wesley, 2003), the "Messaging Channels" & "Message Construction" pattern chapters (Message Channel; Message) — ISBN 978-0321200686.
 - Apache Camel docs (EIP implementations): https://camel.apache.org/components/latest/eips/enterprise-integration-patterns.html.
 
 ---
