@@ -41,7 +41,7 @@ software_dev: foundational
 **Part II – Design**
 3. Divide and conquer (and other techniques)
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -243,4 +243,117 @@ O(n log n) merge/quick:  ~2x10^7 operations (seconds)
 
 > **End of Part I.** You can now analyze algorithms by **asymptotic growth** (Big-O), comparing them by how cost scales with input size while ignoring constants, and you understand why the **growth class dominates** — a better class beats any constant-factor hardware speedup for large enough inputs, making algorithm choice the highest-leverage performance decision. **Part II — Design** (Chapter 3) covers core design techniques, especially **divide and conquer** (break a problem into smaller subproblems, solve recursively, combine — as in merge sort and binary search) and a survey of greedy and dynamic-programming approaches.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Design
+
+Analysis (Part I) tells you how an algorithm scales; **design** is about producing one with a good growth class in the first place. Most efficient algorithms come from a handful of reusable **paradigms**. This part covers the most important one, **divide and conquer**, and surveys two others — **greedy** and **dynamic programming** — so you can recognize which fits a problem.
+
+---
+
+## Chapter 3 — Divide and conquer (and other techniques)
+
+### 3.1 Introduction
+
+**Divide and conquer** solves a problem in three steps: **divide** it into smaller subproblems of the same kind, **conquer** each by solving it recursively (a small enough subproblem is solved directly), and **combine** the subresults into the answer. Merge sort and binary search are the classic examples. Two other paradigms round out the toolkit: **greedy** algorithms, which build a solution from locally optimal choices, and **dynamic programming**, which solves overlapping subproblems once and reuses the results. Recognizing the paradigm is most of the design work.
+
+### 3.2 Business context
+
+The difference between a feature that ships and one that times out is often the design paradigm. Divide and conquer is what makes sorting `O(n log n)` instead of `O(n²)` and search `O(log n)` instead of `O(n)` — the gap that decides whether a job finishes in seconds or hours (Part I). Dynamic programming turns exponential brute force into polynomial time for problems like scheduling, diffing, and routing; greedy algorithms give fast, optimal answers when a problem has the right structure. Knowing these paradigms lets a team reach for a proven `O(n log n)` shape instead of inventing a slow one.
+
+### 3.3 Theoretical concepts: divide, conquer, combine
+
+```mermaid
+flowchart TB
+    p["problem of size n"] --> d["divide into a subproblems of size n/b"]
+    d --> c1["solve recursively"]
+    d --> c2["solve recursively"]
+    c1 --> comb["combine subresults — cost f(n)"]
+    c2 --> comb
+    comb --> ans["answer"]
+```
+
+A divide-and-conquer algorithm's cost is a **recurrence**: `T(n) = a·T(n/b) + f(n)`, where `a` is the number of subproblems, `n/b` their size, and `f(n)` the divide-plus-combine cost. The **master method** (CLRS §4.5) reads the growth class straight off `a`, `b`, and `f(n)`. Merge sort splits into 2 halves and merges in linear time — `T(n) = 2T(n/2) + O(n)` — which the master method resolves to **`O(n log n)`**. Binary search makes one recursive call on half the input — `T(n) = T(n/2) + O(1)` — giving **`O(log n)`**.
+
+### 3.4 Architecture: choosing a paradigm
+
+```mermaid
+flowchart TB
+    dc["Divide & Conquer: independent subproblems, combine results (merge sort, binary search)"]
+    gr["Greedy: locally optimal choice is globally optimal (activity selection, Huffman)"]
+    dp["Dynamic Programming: overlapping subproblems + optimal substructure (LCS, rod cutting)"]
+    note["Match the structure of the problem to the paradigm"]
+```
+
+Use **divide and conquer** when subproblems are independent. Use **greedy** when a locally optimal choice provably leads to a global optimum (it needs the *greedy-choice property* and *optimal substructure*). Use **dynamic programming** when subproblems **overlap** and the problem has *optimal substructure* — solve each subproblem once and store it (memoization or tabulation) instead of recomputing exponentially.
+
+### 3.5 Real example
+
+**Scenario.** Sort a large list efficiently and predictably.
+
+**Problem.** A nested-comparison sort is `O(n²)` and collapses at scale (Part I).
+
+**Solution.** **Merge sort** — divide the list in half, sort each half recursively, then merge the two sorted halves.
+
+**Implementation.**
+
+```text
+merge_sort(a):
+    if len(a) <= 1: return a                  # base case (conquer directly)
+    mid = len(a) // 2
+    left  = merge_sort(a[:mid])               # divide + recurse
+    right = merge_sort(a[mid:])
+    return merge(left, right)                 # combine: O(n) merge of sorted halves
+
+# Recurrence: T(n) = 2T(n/2) + O(n)  ->  master method  ->  O(n log n)
+```
+
+**Result.** Merge sort runs in `O(n log n)` for every input — no quadratic worst case — so it stays fast as data grows. The recurrence makes the cost predictable: two half-size subproblems plus a linear merge is the textbook `O(n log n)` shape.
+
+**Future improvements.** Prefer the standard library's sort (already `O(n log n)`, tuned); reach for a hand-written divide-and-conquer only when the problem isn't a plain sort (e.g., counting inversions, closest pair of points).
+
+### 3.6 Exercises
+
+1. What are the three steps of divide and conquer, and what is the base case for?
+2. Write the recurrence for merge sort and state the class the master method gives.
+3. When do you prefer dynamic programming over plain divide and conquer?
+
+### 3.7 Challenges
+
+- **Challenge.** Implement binary search and write its recurrence. Then take a problem with overlapping subproblems (e.g., Fibonacci or longest common subsequence) and make it polynomial with memoization; compare against the naive exponential recursion.
+
+### 3.8 Checklist
+
+- [ ] I identify whether subproblems are independent (D&C) or overlapping (DP).
+- [ ] I write the recurrence and use the master method to get the class.
+- [ ] I use greedy only when the greedy-choice property and optimal substructure hold.
+- [ ] I memoize/tabulate overlapping subproblems instead of recomputing them.
+
+### 3.9 Best practices
+
+- Match the paradigm to the problem's structure before coding.
+- Derive the recurrence and confirm the growth class up front.
+- Lean on proven library implementations for standard cases (sorting, searching).
+
+### 3.10 Anti-patterns
+
+- Naive recursion over **overlapping** subproblems (exponential blowup — needs DP).
+- Applying greedy where the greedy-choice property doesn't hold (wrong answer).
+- Re-implementing merge/quick sort by hand instead of using the standard library.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Exponential recursive blowup | Overlapping subproblems recomputed | Memoize or tabulate (dynamic programming) |
+| Greedy gives a wrong answer | No greedy-choice property | Switch to dynamic programming or D&C |
+| Recursion never terminates | Missing/incorrect base case | Add the base case that solves the smallest subproblem |
+
+### 3.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 4 "Divide-and-Conquer" (§4.5 the master method) & §2.3 (merge sort); ch. 14 "Dynamic Programming"; ch. 15 "Greedy Algorithms" — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 5–6 (divide & conquer, dynamic programming) — ISBN 978-0321295354.
+
+---
+
+> **End of Part II.** Efficient algorithms come from recognizing a **paradigm**: **divide and conquer** splits a problem into independent subproblems, solves them recursively, and combines them (merge sort, binary search), with cost read from a **recurrence** via the **master method**; **greedy** builds from locally optimal choices when the structure allows; **dynamic programming** solves overlapping subproblems once. With Part I's **asymptotic analysis**, you can now both **measure** an algorithm's scaling and **design** one with the growth class you need.
