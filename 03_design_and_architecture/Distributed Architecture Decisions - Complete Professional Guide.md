@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Coordination**
 3. Distributed transactions and the Saga pattern
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -256,4 +256,115 @@ Order list:    read names from the LOCAL read model (no cross-service call)
 
 > **End of Part I.** You can now approach distributed architecture as deliberate trade-off analysis rather than best-practice copying, and decompose data alongside services — giving each service sole ownership of its data and replacing former joins with APIs, event-fed read models, or boundary changes. **Part II — Coordination** (Chapter 3) covers keeping workflows correct across services without distributed ACID transactions, using the Saga pattern and compensating actions.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Coordination
+
+Part I decomposed services and their data, accepting that distribution is a set of trade-offs. Part II faces the hardest consequence: once a business operation spans services with separate databases, you can no longer wrap it in one ACID transaction. This chapter covers how to coordinate it with **sagas**.
+
+---
+
+## Chapter 3 — Distributed transactions and the Saga pattern
+
+### 3.1 Introduction
+
+When one business operation must update data owned by several services, a single ACID transaction is off the table — there's no shared database to commit, and a two-phase commit across services couples them and kills availability. The standard answer is a **saga**: a sequence of **local** transactions, one per service, where each step publishes an event that triggers the next, and every step has a **compensating** action that semantically undoes it if a later step fails. You trade atomic consistency for **eventual** consistency plus explicit compensation.
+
+### 3.2 Business context
+
+"Place order" might debit inventory, charge payment, and create a shipment — each in a different service. Without a saga, teams reach for a distributed transaction and inherit its locking, latency, and fragility, or they update services in sequence with no recovery and leave the system in a half-done state (paid but not shipped). A saga makes the failure handling **explicit and recoverable**: if payment fails after stock was reserved, a compensating action releases the stock. That is what lets a distributed business process be both decoupled and correct enough for the business.
+
+### 3.3 Theoretical concepts: local transactions + compensation
+
+```mermaid
+flowchart LR
+    s1["reserve stock (local TX)"] --> s2["charge payment (local TX)"]
+    s2 --> s3["create shipment (local TX)"]
+    s3 -. "if a step fails" .-> comp["run compensations in reverse: refund, release stock"]
+    note["No 2PC: each step commits locally; failures trigger compensating actions"]
+```
+
+A saga gives up atomicity and isolation across services; each local transaction commits independently, so intermediate states are briefly visible (eventual consistency). Correctness comes from **compensating transactions** that semantically reverse completed steps — a refund undoes a charge; releasing a reservation undoes a hold. Because steps and compensations may be retried, they must be **idempotent**.
+
+### 3.4 Architecture: orchestration vs. choreography
+
+```mermaid
+flowchart TB
+    orch["Orchestration: a coordinator service drives the steps"]
+    chor["Choreography: each service reacts to the previous one's event"]
+    note["Orchestration = central control, easy to see the flow;<br/>choreography = decoupled, but the flow is emergent"]
+```
+
+Two ways to run a saga. **Orchestration** uses a central coordinator that tells each service what to do and triggers compensations — the flow is explicit and easy to monitor, at the cost of a coordinator. **Choreography** has each service react to the previous step's event with no central brain — maximally decoupled, but the end-to-end flow is harder to see and debug. Choose orchestration when the flow is complex or must be observable; choreography when steps are few and independence matters most.
+
+### 3.5 Real example
+
+**Scenario.** "Place order" spans Inventory, Payment, and Shipping services, each with its own database.
+
+**Problem.** A distributed transaction across the three would couple them and reduce availability; doing them in sequence with no recovery risks a charged-but-not-shipped order.
+
+**Solution.** Run an **orchestrated saga** with a compensating action per step.
+
+**Implementation.**
+
+```text
+saga PlaceOrder (orchestrated):
+  1. Inventory.reserve(items)     compensation: Inventory.release(items)
+  2. Payment.charge(amount)       compensation: Payment.refund(amount)
+  3. Shipping.create(order)       compensation: Shipping.cancel(order)
+
+flow:
+  run step 1 -> 2 -> 3, each a LOCAL transaction emitting an event
+  if step k fails: run compensations for steps k-1 .. 1 in reverse
+  all steps & compensations are idempotent (safe to retry)
+```
+
+**Result.** The order process completes across three independent services without a distributed transaction; a failure at payment triggers `Inventory.release`, leaving no stock held and no money taken. Consistency is eventual but the system never sticks in a half-done state, and each service stays autonomous.
+
+**Future improvements.** Persist saga state (event sourcing / a saga log) for crash recovery; add timeouts and dead-letter handling; expose the saga's status for observability.
+
+### 3.6 Exercises
+
+1. Why can't you use a single ACID transaction across multiple services?
+2. What is a compensating transaction, and why must saga steps be idempotent?
+3. Contrast orchestration and choreography for running a saga.
+
+### 3.7 Challenges
+
+- **Challenge.** Design a saga for a multi-service operation you know: list each local transaction, its compensating action, and choose orchestration or choreography with a one-line justification.
+
+### 3.8 Checklist
+
+- [ ] Cross-service operations are sagas of local transactions, not 2PC.
+- [ ] Every step has a compensating action that semantically undoes it.
+- [ ] Steps and compensations are idempotent (safe to retry).
+- [ ] I chose orchestration vs. choreography deliberately.
+
+### 3.9 Best practices
+
+- Prefer sagas with compensation over distributed transactions.
+- Make every step and compensation idempotent.
+- Persist saga state for recovery and observability.
+
+### 3.10 Anti-patterns
+
+- Two-phase commit across services for normal business operations.
+- Sequential cross-service updates with no compensation (half-done states).
+- Non-idempotent steps that corrupt data on retry.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Money taken but order not fulfilled | No compensation on failure | Add compensating actions; run them in reverse |
+| Duplicate effects on retry | Non-idempotent steps | Make steps idempotent (keys/dedup) |
+| Can't tell where a process stalled | Choreography with no visibility | Persist saga state / switch to orchestration |
+
+### 3.12 References
+
+- N. Ford, M. Richards, P. Sadalage, Z. Dehghani, *Software Architecture: The Hard Parts* (O'Reilly, 2021), distributed transactions & saga patterns — ISBN 978-1492086895.
+- S. Newman, *Building Microservices*, 2nd ed. (O'Reilly, 2021), sagas — ISBN 978-1492034025.
+
+---
+
+> **End of Part II.** A business operation that spans services can't be one ACID transaction; coordinate it as a **saga** — local transactions chained by events, each with a **compensating** action and made **idempotent** — run via **orchestration** (central, observable) or **choreography** (decoupled, emergent). With Part I's service and data decomposition, you can now keep distributed operations correct without distributed transactions.
