@@ -159,7 +159,7 @@ class Customer {
 
 ### 1.12 References
 
-- M. Fowler, *Patterns of Enterprise Application Architecture* (Addison-Wesley, 2002) — ISBN 978-0321127426.
+- M. Fowler, *Patterns of Enterprise Application Architecture* (Addison-Wesley, 2002), ch. 9 "Domain Logic Patterns" (Transaction Script; Domain Model) — ISBN 978-0321127426.
 - E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003) — ISBN 978-0321125217.
 
 ---
@@ -270,7 +270,7 @@ class RegisterUser {                            // domain
 
 ### 2.12 References
 
-- M. Fowler, *Patterns of Enterprise Application Architecture* (Addison-Wesley, 2002) — ISBN 978-0321127426.
+- M. Fowler, *Patterns of Enterprise Application Architecture* (Addison-Wesley, 2002), ch. 1 "Layering" & ch. 9 "Domain Logic Patterns" (Service Layer) — ISBN 978-0321127426.
 - A. Cockburn, "Hexagonal Architecture," https://alistair.cockburn.us/hexagonal-architecture/.
 
 ---
