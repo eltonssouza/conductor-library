@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–VII (Ch. 1–23). **In progress:** Part VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–VIII (Ch. 1–28) — guide complete.
 
 ---
 
@@ -2747,4 +2747,548 @@ async fn main() -> Result<(), reqwest::Error> {
 
 > **End of Part VII.** Rust's fearless concurrency: **threads** with compile-time **`Send`/`Sync`** safety and shared mutable state via **`Arc<Mutex<T>>`**; **channels** for lock-free message passing ("share by communicating"); and **async/await** futures on **`tokio`** for massive I/O-bound concurrency. Part VIII closes the guide with **macros, testing, `unsafe`, performance, and release**.
 
-<!--APPEND-PART-VIII-->
+---
+
+## Part VIII — Macros, testing, unsafe, performance, and release
+
+The final part covers the professional toolkit: **macros** (metaprogramming), **testing** (unit/integration/doctest/bench), **`unsafe`** and FFI, **performance** discipline, and **building and releasing** crates.
+
+---
+
+## Chapter 24 — Declarative and procedural macros
+
+### 24.1 Introduction
+
+**Macros** generate code at compile time. **Declarative macros** (`macro_rules!`) match **patterns** of tokens and expand to code — `vec!`, `println!`, and `assert!` are examples; you write them for repetitive patterns that functions can't capture (variadic, syntax-level). **Procedural macros** are functions that take token streams and produce code, in three forms: **derive** (`#[derive(Serialize)]`), **attribute** (`#[tokio::main]`), and **function-like**. Procedural macros power much of the ecosystem (serde, tokio). Macros are powerful but should be reached for only when functions/generics can't do the job.
+
+### 24.2 Business context
+
+Macros eliminate boilerplate that no function could — deriving serialization for a struct (serde), generating builders, wiring an async `main`. That saves enormous amounts of hand-written, error-prone code and keeps it in sync with the type it's generated from. But macros are harder to read, debug, and maintain than ordinary code, so the discipline is to use **library** macros liberally and **write** your own sparingly, only when generics and functions genuinely fall short. Knowing the difference keeps a codebase both DRY and approachable.
+
+### 24.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    decl["macro_rules!: match token patterns -> expand"] --> ex["vec!, println!, assert!"]
+    proc["procedural: TokenStream in -> TokenStream out"] --> kinds["derive / attribute / function-like"]
+    note["Prefer functions/generics; use macros when they can't express it"]
+```
+
+A **declarative** macro is a set of `(pattern) => { expansion }` rules over token trees, supporting repetition (`$(...)* `) for variadics. A **procedural** macro is a crate of type `proc-macro` that manipulates `TokenStream`s (usually via the `syn`/`quote` crates): **derive** macros add impls to a type, **attribute** macros transform an item, **function-like** macros act like `name!(...)`. Expansion is hygienic and checked by the normal compiler after expansion.
+
+### 24.4 Architecture: generate, don't repeat
+
+```mermaid
+flowchart LR
+    pattern["repetitive code pattern"] --> macro["macro generates it"] --> checked["expanded code type-checked normally"]
+    note["Use library macros freely; author your own only when necessary"]
+```
+
+Macros move repetitive or syntax-level generation to compile time, with the output checked like any code.
+
+### 24.5 Real example
+
+**Scenario.** A small variadic helper that builds a `HashMap` from key-value pairs.
+
+**Problem.** A function can't take an arbitrary number of differently-positioned literal pairs ergonomically.
+
+**Solution.** A **declarative macro** with repetition.
+
+**Implementation.**
+
+```rust
+macro_rules! map {
+    ( $( $k:expr => $v:expr ),* $(,)? ) => {{      // repetition over key => value pairs
+        let mut m = std::collections::HashMap::new();
+        $( m.insert($k, $v); )*                     // expand one insert per pair
+        m
+    }};
+}
+
+fn main() {
+    let scores = map!{ "ana" => 10, "bob" => 7 };   // expands to inserts
+    println!("{:?}", scores.get("ana"));            // Some(10)
+}
+```
+
+**Result.** The `map!` macro accepts any number of `key => value` pairs and expands to the equivalent `HashMap::new()` + `insert` calls — something a function can't do ergonomically with heterogeneous literal pairs. The expansion is ordinary, type-checked code. For most needs, though, you'd reach for existing library macros (serde's `derive`, etc.) rather than authoring your own.
+
+**Future improvements.** For type-driven generation (serialization, builders), use a **derive** procedural macro (serde) instead of declarative macros; keep custom macros small and well-documented.
+
+### 24.6 Exercises
+
+1. When is a macro appropriate instead of a function or generic?
+2. Name the three kinds of procedural macro.
+3. What does `$(...)*` express in a declarative macro?
+
+### 24.7 Challenges
+
+- **Challenge.** Write a `vecof!` declarative macro that builds a `Vec` from repeated elements with a count (`vecof![0; 5]` style) using repetition, and test it.
+
+### 24.8 Checklist
+
+- [ ] I use library macros (serde derive, etc.) where they fit.
+- [ ] I author macros only when functions/generics can't express the pattern.
+- [ ] My custom macros are small and documented.
+- [ ] I prefer derive macros for type-driven code generation.
+
+### 24.9 Best practices
+
+- Reach for functions/generics first; macros last.
+- Use `syn`/`quote` for procedural macros.
+- Keep macros simple and well-tested.
+
+### 24.10 Anti-patterns
+
+- Complex macros where a generic function would do.
+- Unhygienic, hard-to-debug macro soup.
+- Reinventing derive macros that crates already provide.
+
+### 24.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Cryptic macro expansion errors | Over-complex macro | Simplify; `cargo expand` to inspect output |
+| Could be a function | Macro overused | Replace with a generic function |
+| Boilerplate impls per type | Not using derive | Use/author a derive macro |
+
+### 24.12 References
+
+- *The Rust Programming Language*, ch. 19.5 "Macros" — https://doc.rust-lang.org/book/ch19-06-macros.html.
+- The Little Book of Rust Macros; `syn`/`quote` docs.
+
+---
+
+## Chapter 25 — Unit tests, integration tests, doctests, and benchmarks
+
+### 25.1 Introduction
+
+Rust has **first-class testing** built into the language and Cargo. **Unit tests** live next to the code in a `#[cfg(test)] mod tests` block, marked `#[test]`, asserting with `assert!`/`assert_eq!`. **Integration tests** live in `tests/` and exercise the crate's public API as a user would. **Doctests** are code examples in `///` doc comments that are **compiled and run** as tests — so documentation can't go stale. `cargo test` runs all three. Benchmarks measure performance (via `#[bench]` on nightly, or the `criterion` crate on stable).
+
+### 25.2 Business context
+
+Tests are the safety net that makes Rust's already-strong compile-time guarantees complete — they catch **logic** errors the type system can't. Cargo's zero-config testing lowers the barrier so teams actually write them. Doctests are uniquely valuable: they guarantee the examples in your documentation **work**, so users copying them succeed — eliminating the "docs are wrong" frustration. Integration tests verify the public API contract. Together they let teams refactor and ship confidently, and benchmarks (criterion) catch performance regressions before users do.
+
+### 25.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    unit["unit: #[cfg(test)] mod tests, #[test] (private access)"] --> near["next to the code"]
+    integ["integration: tests/ dir (public API only)"] --> user["tests like a consumer"]
+    doc["doctests: examples in /// comments, compiled+run"] --> fresh["docs stay correct"]
+    bench["benchmarks: criterion (stable)"] --> perf["catch perf regressions"]
+```
+
+`cargo test` builds a test harness, runs all `#[test]` functions (in parallel), and reports. Unit tests can access private items (same module); integration tests in `tests/` see only `pub` API. Doctests run each ` ``` ` block in doc comments (use `?`/`no_run`/`ignore` annotations as needed). Use `assert_eq!`/`assert!`, `#[should_panic]`, and return `Result` from tests for `?`. **criterion** provides statistically rigorous benchmarks on stable Rust.
+
+### 25.4 Architecture: tests at every level, runnable docs
+
+```mermaid
+flowchart LR
+    code["library"] --> unit2["unit tests (internals)"]
+    code --> integ2["integration tests (public API)"]
+    code --> doc2["doctests (examples verified)"]
+    code --> bench2["benchmarks (criterion)"]
+```
+
+Rust covers internal logic, public contract, documentation, and performance with one built-in test workflow.
+
+### 25.5 Real example
+
+**Scenario.** Test a small `add` function with a unit test and a doctest.
+
+**Problem.** Logic bugs slip through; documentation examples drift out of date.
+
+**Solution.** A `#[test]` unit test plus a **doctest** in the function's doc comment.
+
+**Implementation.**
+
+```rust
+/// Adds two numbers.
+///
+/// ```
+/// assert_eq!(mycrate::add(2, 3), 5);   // this example is COMPILED and RUN by `cargo test`
+/// ```
+pub fn add(a: i32, b: i32) -> i32 { a + b }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn adds_positives() { assert_eq!(add(2, 2), 4); }
+    #[test]
+    fn adds_negatives() { assert_eq!(add(-1, -1), -2); }
+}
+```
+
+**Result.** `cargo test` runs the unit tests **and** the doctest — so the documentation example is guaranteed correct (if `add` changed to subtract, the doctest would fail). The unit tests cover edge cases with private access. One command verifies logic and docs together, and the suite gates CI to catch regressions.
+
+**Future improvements.** Add integration tests in `tests/` for the public API; use `criterion` for benchmarks; return `Result` from tests to use `?`; cover error paths with `#[should_panic]` or `Result` assertions.
+
+### 25.6 Exercises
+
+1. Where do unit, integration, and doctests each live?
+2. Why are doctests uniquely valuable?
+3. What can unit tests access that integration tests cannot?
+
+### 25.7 Challenges
+
+- **Challenge.** Write a function with a unit test, an integration test in `tests/`, and a doctest example; run all with `cargo test` and confirm the doctest fails if you break the example.
+
+### 25.8 Checklist
+
+- [ ] Unit tests live in `#[cfg(test)] mod tests` next to the code.
+- [ ] Integration tests in `tests/` exercise the public API.
+- [ ] Doc examples are real doctests (compiled and run).
+- [ ] Benchmarks (criterion) guard against performance regressions.
+
+### 25.9 Best practices
+
+- Test logic at every level; keep the suite fast and CI-gated.
+- Write doctests so documentation stays correct.
+- Benchmark with criterion before optimizing.
+
+### 25.10 Anti-patterns
+
+- No tests, relying on the compiler alone (it can't catch logic bugs).
+- Documentation examples that aren't doctests (drift).
+- Micro-optimizing without a benchmark baseline.
+
+### 25.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Doc example out of date | Not a runnable doctest | Put it in a ` ``` ` block; `cargo test` runs it |
+| Test can't see a private item | Written as an integration test | Move to a unit test (same module) |
+| Noisy/unreliable benchmarks | Ad-hoc timing | Use `criterion` for rigorous stats |
+
+### 25.12 References
+
+- *The Rust Programming Language*, ch. 11 "Writing Automated Tests" — https://doc.rust-lang.org/book/ch11-00-testing.html.
+- The `criterion` crate: https://docs.rs/criterion.
+
+---
+
+## Chapter 26 — `unsafe`, raw pointers, and FFI
+
+### 26.1 Introduction
+
+Most Rust is **safe** — the compiler guarantees memory safety. **`unsafe`** is an escape hatch for the few operations the compiler can't verify: dereferencing **raw pointers** (`*const T`/`*mut T`), calling `unsafe` functions, implementing `unsafe` traits, accessing mutable statics, and **FFI** (calling C). `unsafe` does **not** turn off the borrow checker generally — it unlocks a small set of superpowers in a marked block, and **you** become responsible for upholding the invariants the compiler normally checks. The idiom is to keep `unsafe` minimal and wrap it in a **safe abstraction**.
+
+### 26.2 Business context
+
+`unsafe` is essential for systems work: interfacing with C libraries (FFI), writing certain high-performance data structures, and low-level/embedded code. It's also where memory-safety bugs can re-enter — so it must be used deliberately, kept tiny, audited, and encapsulated behind a safe API so the rest of the codebase stays provably safe. The discipline ("safe by default, `unsafe` as a reviewed exception") is what lets Rust interoperate with the C ecosystem and reach the metal while keeping the overall safety guarantee that makes it valuable.
+
+### 26.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    safe["safe Rust (compiler-checked)"] --> unsafeblk["unsafe { } — 5 superpowers"]
+    unsafeblk --> raw["deref raw pointers, call unsafe fns/FFI, mut statics, unsafe traits"]
+    wrap["wrap unsafe in a SAFE abstraction + uphold invariants"]
+    note["unsafe doesn't disable the borrow checker; you uphold the invariants"]
+```
+
+`unsafe` enables exactly five things; everything else stays checked. **Raw pointers** can be created safely but only **dereferenced** in `unsafe`. **FFI** uses `extern "C"` blocks to declare C functions (and `#[no_mangle] pub extern "C"` to expose Rust to C), with `unsafe` calls and careful type/lifetime mapping. The contract: inside `unsafe`, you must manually guarantee the invariants (valid pointers, no aliasing violations, correct lifetimes) the compiler usually enforces — then expose a safe wrapper so callers can't misuse it.
+
+### 26.4 Architecture: tiny unsafe core, safe shell
+
+```mermaid
+flowchart LR
+    callers["safe callers"] --> api["safe wrapper API"] --> core["minimal unsafe block (audited)"]
+    note["Confine and encapsulate unsafe; keep its invariants documented"]
+```
+
+`unsafe` is confined to small, reviewed cores behind safe interfaces, so the rest of the program remains fully safe.
+
+### 26.5 Real example
+
+**Scenario.** Call a function from the C standard library.
+
+**Problem.** Crossing the FFI boundary is inherently unchecked by Rust.
+
+**Solution.** Declare the C function in an `extern "C"` block and call it inside a minimal **`unsafe`** block, behind a safe wrapper.
+
+**Implementation.**
+
+```rust
+extern "C" {
+    fn abs(input: i32) -> i32;    // C standard library function
+}
+
+pub fn c_abs(n: i32) -> i32 {     // SAFE wrapper exposed to the rest of the program
+    unsafe { abs(n) }             // the only unsafe: calling the foreign function
+}
+
+fn main() {
+    println!("{}", c_abs(-7));    // 7 — callers use the safe wrapper, no unsafe
+}
+```
+
+**Result.** The FFI call to C's `abs` happens in a one-line `unsafe` block, wrapped by the safe `c_abs` so the rest of the code calls it without any `unsafe`. The `unsafe` surface is minimal and auditable; the invariant (the C function is sound for any `i32`) is upheld by us, documented at the boundary. Rust interoperates with C while keeping the program's safety guarantee everywhere else.
+
+**Future improvements.** Use `bindgen` to generate FFI declarations for large C APIs; validate/convert types at the boundary; document each `unsafe` block's safety invariants with a `// SAFETY:` comment.
+
+### 26.6 Exercises
+
+1. What five operations does `unsafe` unlock?
+2. Does `unsafe` disable the borrow checker? What does it actually change?
+3. Why wrap `unsafe` in a safe abstraction?
+
+### 26.7 Challenges
+
+- **Challenge.** Create a raw pointer to a value, dereference it inside an `unsafe` block to read it, and explain the invariant you're upholding. Then expose the read behind a safe function.
+
+### 26.8 Checklist
+
+- [ ] I keep `unsafe` blocks minimal and encapsulated.
+- [ ] I document each block's safety invariants (`// SAFETY:`).
+- [ ] FFI boundaries validate/convert types carefully.
+- [ ] Callers use safe wrappers, never raw `unsafe`.
+
+### 26.9 Best practices
+
+- Default to safe Rust; treat `unsafe` as a reviewed exception.
+- Confine `unsafe` to small cores behind safe APIs.
+- Document and audit every `unsafe` invariant.
+
+### 26.10 Anti-patterns
+
+- Large or unexplained `unsafe` blocks.
+- Leaking raw pointers/`unsafe` into public APIs.
+- Using `unsafe` to "silence" the borrow checker instead of fixing the design.
+
+### 26.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Memory corruption/UB | Violated invariant in `unsafe` | Audit the block; uphold validity/aliasing rules |
+| FFI crashes/garbage | Type/lifetime mismatch at boundary | Map types carefully; use `bindgen` |
+| `unsafe` spreading through code | Not encapsulated | Wrap in a minimal safe abstraction |
+
+### 26.12 References
+
+- *The Rust Programming Language*, ch. 19.1 "Unsafe Rust" — https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html.
+- The Rustonomicon (advanced unsafe): https://doc.rust-lang.org/nomicon/.
+
+---
+
+## Chapter 27 — Performance: zero-cost abstractions, profiling, and allocation
+
+### 27.1 Introduction
+
+Rust's headline is **zero-cost abstractions**: high-level constructs (iterators, generics, `Option`, async) compile to code as fast as hand-written low-level equivalents — you don't pay at runtime for the abstraction. Performance work is then about the things that *do* cost: **allocations** (heap `Box`/`Vec`/`String` vs. stack/borrowed data), **copying** vs. borrowing, and algorithmic complexity (the algorithms guide). And as always, you **measure first** — profile to find the real hotspot rather than guessing, because intuition about performance is famously unreliable.
+
+### 27.2 Business context
+
+Teams choose Rust for predictable, high performance without a garbage collector. Realizing that means writing idiomatic code (iterators, borrowing) confident it's already fast, and spending optimization effort where profiling shows it matters — usually reducing allocations, avoiding needless `clone()`, or fixing an algorithm, not micro-tweaking. Measuring before optimizing avoids wasted effort and regressions. Combined with release-mode builds and benchmarks (Ch. 25), this discipline delivers the speed Rust promises while keeping code clean — the whole point of "zero-cost".
+
+### 27.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    zca["iterators / generics / Option / async = zero-cost (compile to optimal code)"] --> free["abstraction is free at runtime"]
+    costs["real costs: heap allocation, cloning, complexity class"] --> measure["profile to find the hotspot"]
+    measure --> fix["reduce allocations/clones; fix the algorithm"]
+```
+
+Trust that idiomatic abstractions are zero-cost (in **release** builds — `cargo build --release` enables optimizations; debug builds are much slower and not representative). Real costs come from **heap allocations** and **copies**: prefer borrowing (`&str`/`&[T]`) over owning, reuse buffers, avoid gratuitous `.clone()`/`.to_string()`. **Profile** (perf, `cargo flamegraph`, `criterion` for micro-benchmarks) to locate the true bottleneck, then address it — algorithm first (complexity), then allocations, then micro-optimizations.
+
+### 27.4 Architecture: trust abstractions, measure, cut allocations
+
+```mermaid
+flowchart LR
+    write["idiomatic, abstract code (zero-cost)"] --> profile["profile in release mode"] --> target["cut allocations/clones; fix complexity at the hotspot"]
+```
+
+Write clean code, measure in release, and optimize the measured hotspot — usually by reducing allocation or improving the algorithm.
+
+### 27.5 Real example
+
+**Scenario.** A text-processing function is slow on large inputs.
+
+**Problem.** The team guesses the iterator chain is slow and considers a manual loop.
+
+**Solution.** **Profile** (it's allocation, not the iterators), then cut allocations by **borrowing** instead of cloning.
+
+**Implementation.**
+
+```rust
+// Before: allocates a new String per word (profiling shows allocation is the hotspot)
+fn shout_slow(words: &[&str]) -> Vec<String> {
+    words.iter().map(|w| w.to_string().to_uppercase()).collect()  // to_string() = needless alloc
+}
+
+// After: avoid the intermediate allocation; the iterator itself is already zero-cost
+fn shout_fast(words: &[&str]) -> Vec<String> {
+    words.iter().map(|w| w.to_uppercase()).collect()              // one allocation per result, not two
+}
+```
+
+**Result.** Profiling showed the cost was the **extra `to_string()` allocation**, not the iterator chain (which is zero-cost). Removing the redundant allocation — letting `to_uppercase()` produce the only needed `String` — speeds it up, with no change to the clean iterator style. The lesson: the abstraction was free; the allocation wasn't, and measurement (not intuition) found it.
+
+**Future improvements.** Reuse a buffer or write into a pre-sized `Vec`/`String`; build in `--release` for real numbers; use `cargo flamegraph`/`criterion` to confirm gains; parallelize the hot chain with `rayon` if CPU-bound.
+
+### 27.6 Exercises
+
+1. What does "zero-cost abstraction" mean, and in which build mode does it hold?
+2. What are the main *real* runtime costs to look for?
+3. Why profile before optimizing?
+
+### 27.7 Challenges
+
+- **Challenge.** Take a function that `clone()`s in a loop; profile or reason about it, remove the unnecessary allocations by borrowing, and benchmark the before/after with `criterion`.
+
+### 27.8 Checklist
+
+- [ ] I trust idiomatic abstractions to be zero-cost (in release).
+- [ ] I benchmark/profile in `--release`, not debug.
+- [ ] I reduce allocations and gratuitous `clone()`s at hotspots.
+- [ ] I fix the algorithm/complexity before micro-optimizing.
+
+### 27.9 Best practices
+
+- Write clean, idiomatic code; it's already fast.
+- Always measure in release mode before optimizing.
+- Cut allocations/copies and fix complexity at the proven hotspot.
+
+### 27.10 Anti-patterns
+
+- Optimizing by guesswork instead of profiling.
+- Benchmarking debug builds.
+- Reaching for `unsafe`/manual loops to "speed up" zero-cost abstractions.
+
+### 27.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Rust feels slow" | Ran a debug build | Build/measure with `--release` |
+| Hotspot is allocation | Needless `clone()`/`to_string()` | Borrow; reuse buffers |
+| Optimized, no gain | Wrong target (not the bottleneck) | Profile; fix the measured hotspot |
+
+### 27.12 References
+
+- *The Rust Performance Book*: https://nnethercote.github.io/perf-book/.
+- `cargo flamegraph`, `criterion`; J. Blandy et al., *Programming Rust* — ISBN 978-1492052593.
+
+---
+
+## Chapter 28 — Building and releasing: profiles, features, semver, and publishing
+
+### 28.1 Introduction
+
+Shipping a Rust crate is managed by **Cargo**. **Profiles** configure builds: `dev` (fast compile, unoptimized) and `release` (`--release`: optimized, for production), tunable in `Cargo.toml` (`opt-level`, `lto`, `strip`). **Features** are named, optional capabilities/dependencies (`[features]`) that let consumers opt in to functionality and keep builds lean. **Semantic versioning** (`MAJOR.MINOR.PATCH`) communicates compatibility, which Cargo's resolver relies on. **Publishing** a library to **crates.io** is `cargo publish` (with metadata and docs auto-built on docs.rs). This is how Rust software is built reproducibly and shared.
+
+### 28.2 Business context
+
+Release engineering determines whether software is fast, lean, and trustworthy to depend on. A production binary must be a `--release` build (debug builds are dramatically slower, Ch. 27). Features let a library serve many users without forcing everyone to compile everything (smaller, faster builds). Honoring **semver** is a promise to consumers — a patch never breaks them, a major signals migration — which is the foundation of trust in the crates.io ecosystem. Getting these right makes a crate adoptable and an application deployable with confidence.
+
+### 28.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    dev["dev profile: fast compile, unoptimized"]
+    rel["release profile: optimized (opt-level, lto, strip)"]
+    feat["features: optional capabilities/deps, opt-in"]
+    semver["semver MAJOR.MINOR.PATCH: compatibility contract"]
+    pub["cargo publish -> crates.io (+ docs.rs)"]
+```
+
+Build production artifacts with **`cargo build --release`**; tune the `[profile.release]` section (`lto = true`, `opt-level = 3`, `strip = true`) for speed/size. **Features** (`[features] default = [...]`) gate optional code/dependencies (`#[cfg(feature = "x")]`); consumers enable them as needed. **Semver**: bump PATCH for fixes, MINOR for backward-compatible additions, MAJOR for breaking changes; Cargo's resolver picks compatible versions and `Cargo.lock` pins them. **`cargo publish`** uploads to crates.io (after `cargo login`), with required metadata (license, description) and docs built automatically on docs.rs.
+
+### 28.4 Architecture: optimized, feature-gated, versioned, published
+
+```mermaid
+flowchart LR
+    code["crate"] --> rel2["release build (optimized)"]
+    code --> feat2["features (opt-in capabilities)"]
+    code --> ver["semver + Cargo.lock"]
+    ver --> pubr["cargo publish -> crates.io / docs.rs"]
+```
+
+A shippable crate is an optimized, feature-gated, semver-versioned package published reproducibly.
+
+### 28.5 Real example
+
+**Scenario.** Prepare a library for release with an optimized profile and an optional feature.
+
+**Problem.** Shipping a debug build is slow; forcing an optional dependency on all users bloats their builds.
+
+**Solution.** Configure the **release profile**, gate the optional capability behind a **feature**, and publish with semver.
+
+**Implementation.**
+
+```toml
+# Cargo.toml
+[package]
+name = "mylib"
+version = "1.2.0"            # semver: MINOR bump for a new backward-compatible feature
+license = "MIT"
+description = "A small example library"
+
+[features]
+default = []
+json = ["dep:serde_json"]   # optional capability, opt-in
+
+[dependencies]
+serde_json = { version = "1", optional = true }
+
+[profile.release]
+lto = true                  # link-time optimization
+strip = true                # strip symbols (smaller binary)
+```
+
+```rust
+#[cfg(feature = "json")]    // compiled only when the `json` feature is enabled
+pub fn to_json(/* ... */) -> String { /* uses serde_json */ String::new() }
+```
+
+**Result.** `cargo build --release` produces an optimized, stripped artifact; the `json` capability (and its `serde_json` dependency) compiles **only** for users who enable the feature, keeping default builds lean. The `1.2.0` version signals a backward-compatible addition under semver, so existing consumers upgrade safely. `cargo publish` ships it to crates.io with docs on docs.rs. Fast, lean, trustworthy to depend on.
+
+**Future improvements.** Add a CI release workflow (test, build, publish); document features in the README; use `cargo-semver-checks` to catch accidental breaking changes before a non-major release.
+
+### 28.6 Exercises
+
+1. Why must production binaries be release builds?
+2. What problem do Cargo features solve?
+3. What does each part of `MAJOR.MINOR.PATCH` communicate?
+
+### 28.7 Challenges
+
+- **Challenge.** Add a release profile with `lto = true` and an optional feature gating a function behind `#[cfg(feature = "...")]`; build with and without the feature and compare.
+
+### 28.8 Checklist
+
+- [ ] Production artifacts are `--release` builds (optimized).
+- [ ] Optional capabilities/dependencies are behind features.
+- [ ] Versions follow semver; `Cargo.lock` pins them for binaries.
+- [ ] Published crates have complete metadata (license, description, docs).
+
+### 28.9 Best practices
+
+- Ship release builds; tune `[profile.release]` for speed/size.
+- Gate optional functionality behind features (lean default builds).
+- Honor semver; verify with `cargo-semver-checks`.
+
+### 28.10 Anti-patterns
+
+- Deploying debug builds.
+- Forcing optional dependencies on all consumers (no features).
+- Breaking changes in a non-major release (semver violation).
+
+### 28.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Slow production binary | Debug build shipped | Build with `--release` |
+| Bloated/over-heavy default build | No feature gating | Move optional code/deps behind features |
+| Consumers' builds broke on a minor bump | Accidental breaking change | Follow semver; run `cargo-semver-checks` |
+
+### 28.12 References
+
+- The Cargo Book — profiles, features, publishing: https://doc.rust-lang.org/cargo/reference/profiles.html.
+- Semantic Versioning: https://semver.org; crates.io & docs.rs.
+
+---
+
+> **End of Part VIII — and of the guide.** The professional toolkit: **macros** for compile-time generation, first-class **testing** (unit/integration/doctest/bench), **`unsafe`/FFI** confined behind safe abstractions, **performance** discipline (zero-cost abstractions, profile, cut allocations), and **release** engineering (release profiles, features, semver, publishing). From **ownership and borrowing** through the **type system, traits, collections, errors, and concurrency** to **shipping**, you now have a complete working model of professional Rust (2024 edition) — code that is safe, fast, and fearless.
