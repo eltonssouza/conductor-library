@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–IV (Ch. 1–10). **In progress:** Parts V–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–V (Ch. 1–12). **In progress:** Parts VI–VIII.
 
 ---
 
@@ -1282,4 +1282,230 @@ var users  = new Repository<User>();    // User  : IEntity
 
 > **End of Part IV.** C# stores data in **collections** chosen by access pattern (`List<T>`, `Dictionary`, `HashSet`, with C# 12 collection expressions), and parameterizes them with **generics** — type parameters made capable by **constraints** and flexible by **variance** — for reuse without losing type safety or boxing. Part V covers **LINQ and functional constructs** — querying data and working with delegates, lambdas, and expression trees.
 
-<!--APPEND-PART-V-->
+---
+
+## Part V – LINQ & Functional Constructs
+
+Part V covers C#'s functional side: **LINQ**, a uniform query language over any sequence, and the building blocks it rests on — **delegates, lambdas, events, and expression trees** — which let you treat behavior as data.
+
+---
+
+## Chapter 11 — LINQ to objects — query and method syntax
+
+### 11.1 Introduction
+
+**LINQ** (Language-Integrated Query) provides a single, declarative way to filter, project, order, group, and aggregate any `IEnumerable<T>`. It comes in two equivalent forms: **query syntax** (`from x in xs where ... select ...`) and **method syntax** (`xs.Where(...).Select(...)`), both compiling to the same calls. LINQ is **lazy** — operators like `Where`/`Select` use **deferred execution**, building a pipeline that runs only when you enumerate it (a `foreach`, `ToList`, `Count`, etc.). This makes data transformations concise and composable.
+
+### 11.2 Business context
+
+Most application code is data transformation: filter these orders, group by customer, sum the totals. Written with manual loops and temporary lists, it's verbose and the intent is buried in mechanics. LINQ expresses the *what* directly, so the code reads like the business question and is far easier to review and change. Deferred execution also avoids unnecessary work — a pipeline that ends in `First()` stops as soon as it finds a match. The same operators work over in-memory data, databases (EF Core), and other providers, so one query style spans the stack.
+
+### 11.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    src["IEnumerable<T>"] --> where["Where (filter)"] --> select["Select (project)"] --> order["OrderBy"] --> run["enumerate -> runs the pipeline"]
+    note["Deferred: nothing executes until you iterate / materialize"]
+```
+
+Core operators: **`Where`** (filter), **`Select`** (project/transform), **`OrderBy`/`ThenBy`** (sort), **`GroupBy`** (bucket), and aggregations (**`Count`**, **`Sum`**, **`Any`**, **`First`/`FirstOrDefault`**). Most are **deferred** — they return a query, not results — so you can compose a pipeline cheaply and run it once at the end; materialize with `ToList`/`ToArray` when you need a stable snapshot. Beware multiple enumeration of an expensive source: materialize first if you'll iterate twice.
+
+### 11.4 Architecture: a declarative pipeline
+
+```mermaid
+flowchart TB
+    data["source data"] --> pipe["filter -> project -> group/order"] --> result["materialized result"]
+    note["Express the question; the pipeline is the answer"]
+```
+
+LINQ turns a transformation into a readable chain of intent, with execution deferred until the result is actually needed.
+
+### 11.5 Real example
+
+**Scenario.** From a list of orders, get total revenue per customer for completed orders, highest first.
+
+**Problem.** Manual loops with dictionaries and sorting are verbose and error-prone.
+
+**Solution.** A LINQ pipeline expressing the question directly.
+
+**Implementation.**
+
+```csharp
+var topCustomers = orders
+    .Where(o => o.Status == Status.Completed)        // filter
+    .GroupBy(o => o.CustomerId)                       // bucket by customer
+    .Select(g => new { CustomerId = g.Key, Revenue = g.Sum(o => o.Total) })  // project
+    .OrderByDescending(x => x.Revenue)                // sort
+    .ToList();                                         // execute now
+
+// equivalent query syntax:
+// from o in orders where o.Status == Status.Completed
+// group o by o.CustomerId into g
+// orderby g.Sum(o => o.Total) descending
+// select new { CustomerId = g.Key, Revenue = g.Sum(o => o.Total) };
+```
+
+**Result.** The five-line pipeline reads as the business question — filter completed, group by customer, sum totals, sort — replacing a page of loops, temporaries, and manual sorting. Deferred execution means the work happens once, at `ToList`. The same shape would run against a database via EF Core.
+
+**Future improvements.** Materialize (`ToList`) once if the result is enumerated multiple times; push filters as early as possible so less data flows through the pipeline.
+
+### 11.6 Exercises
+
+1. What is the difference between query syntax and method syntax?
+2. What does deferred execution mean, and when does a LINQ query actually run?
+3. Why can multiple enumeration of a query be a problem?
+
+### 11.7 Challenges
+
+- **Challenge.** Given a list of employees, use LINQ to produce the average salary per department, including only departments with more than three people, sorted by average descending.
+
+### 11.8 Checklist
+
+- [ ] I express transformations as LINQ pipelines, not manual loops.
+- [ ] I understand which operators are deferred vs. immediate.
+- [ ] I materialize once when enumerating a query multiple times.
+- [ ] I filter early to reduce data flowing through the pipeline.
+
+### 11.9 Best practices
+
+- Prefer LINQ for filtering/projecting/grouping; keep pipelines readable.
+- Materialize with `ToList`/`ToArray` when you need a stable result.
+- Put `Where` before `Select`/`OrderBy` to do less work.
+
+### 11.10 Anti-patterns
+
+- Re-enumerating an expensive deferred query repeatedly.
+- Giant single LINQ expressions that are hard to read (split with locals).
+- Manual loops where a clear LINQ pipeline would express intent.
+
+### 11.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Query runs more than expected | Multiple enumeration of a deferred query | Materialize with `ToList` once |
+| Stale results | Deferred query re-running on changed source | Materialize a snapshot |
+| Slow pipeline | Filtering late / projecting too much | Move `Where` earlier; project only needed fields |
+
+### 11.12 References
+
+- Microsoft, "LINQ (Language-Integrated Query)": https://learn.microsoft.com/dotnet/csharp/linq/.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 12 — Delegates, events, lambdas, and expression trees
+
+### 12.1 Introduction
+
+A **delegate** is a type-safe reference to a method — a value you can store, pass, and invoke. The built-in **`Func<...>`** (returns a value) and **`Action<...>`** (returns void) cover most needs. A **lambda** (`x => x * 2`) is a concise inline method, usually assigned to a delegate or passed to a method (this is what LINQ consumes). An **event** is a delegate-based publish/subscribe member that lets objects notify subscribers. An **expression tree** (`Expression<Func<...>>`) represents code as **data** — a tree the program can inspect or translate (how LINQ providers turn a lambda into SQL).
+
+### 12.2 Business context
+
+Treating behavior as a value is what enables flexible, decoupled designs: strategies passed as `Func`, callbacks, LINQ predicates, and event-driven UI/domain notifications. Events let a component announce "something happened" without knowing who listens, decoupling producers from consumers. Expression trees power ORMs and rules engines by letting a library **read** the code you wrote and execute it elsewhere (e.g., as a database query). Understanding these makes the difference between fighting these APIs and using them fluently.
+
+### 12.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    method["a method"] --> del["delegate (Func/Action) — a value"]
+    lambda["lambda x => ..."] --> del
+    del --> invoke["invoke / pass around"]
+    evt["event"] --> subs["subscribers notified on raise"]
+    expr["Expression<Func<...>>"] --> data["code AS data (inspectable/translatable)"]
+```
+
+A **lambda** compiles to a delegate (or, when typed as `Expression<...>`, to an expression tree). **`Func`/`Action`** are the standard delegate types. An **event** wraps a delegate with publish/subscribe semantics (`+=` to subscribe, raised by the declaring type). **Expression trees** capture the structure of an expression rather than a compiled method, so a provider can walk the tree and translate it — the mechanism behind LINQ-to-SQL/EF Core.
+
+### 12.4 Architecture: behavior as a first-class value
+
+```mermaid
+flowchart LR
+    producer["component"] -->|"event / callback"| subscriber["subscriber(s)"]
+    strategy["Func passed in"] --> consumer["consumer invokes it"]
+    note["Decouple by passing/raising behavior, not hard-coding it"]
+```
+
+Passing delegates and raising events decouples the code that decides *what* from the code that decides *when* — the functional complement to interfaces.
+
+### 12.5 Real example
+
+**Scenario.** A processor should let callers plug in a transformation and be notified when an item is processed.
+
+**Problem.** Hard-coding the transformation and the notification couples the processor to specific behavior.
+
+**Solution.** Accept a **`Func`** strategy and expose an **event**.
+
+**Implementation.**
+
+```csharp
+public class Processor
+{
+    public event Action<string>? ItemProcessed;        // pub/sub notification
+
+    public IEnumerable<int> Run(IEnumerable<string> items, Func<string, int> transform)
+    {
+        foreach (var item in items)
+        {
+            var result = transform(item);              // injected behavior (a lambda)
+            ItemProcessed?.Invoke(item);               // notify subscribers
+            yield return result;
+        }
+    }
+}
+
+var p = new Processor();
+p.ItemProcessed += s => Console.WriteLine($"done: {s}");   // subscribe with a lambda
+var lengths = p.Run(["a", "bb", "ccc"], s => s.Length).ToList();  // pass a Func strategy
+```
+
+**Result.** `Processor` knows nothing about the specific transform or who listens: the caller passes a `Func` and subscribes to the event with lambdas. The same processor works for any transformation and any number of subscribers — behavior is injected and notification is decoupled.
+
+**Future improvements.** Use `Expression<Func<...>>` instead of `Func<...>` if a provider must translate the logic (e.g., to a query); follow the standard `EventHandler<TEventArgs>` pattern for public events.
+
+### 12.6 Exercises
+
+1. What is the difference between `Func<>` and `Action<>`?
+2. How does a lambda relate to a delegate, and when does it become an expression tree instead?
+3. What do expression trees enable that compiled delegates do not?
+
+### 12.7 Challenges
+
+- **Challenge.** Write a `Retry(Action work, int times)` helper that takes behavior as a delegate and raises an event each time it retries; subscribe to log the attempts.
+
+### 12.8 Checklist
+
+- [ ] I pass behavior as `Func`/`Action` to decouple strategy from consumer.
+- [ ] I use events (or `EventHandler<T>`) for publish/subscribe notifications.
+- [ ] I use lambdas for concise inline behavior.
+- [ ] I reach for expression trees only when code must be inspected/translated.
+
+### 12.9 Best practices
+
+- Prefer `Func`/`Action` and lambdas for callbacks and strategies.
+- Follow the standard event pattern for public APIs.
+- Use `Expression<...>` only when a provider needs to read the code.
+
+### 12.10 Anti-patterns
+
+- Hard-coding behavior that should be injected as a delegate.
+- Forgetting to unsubscribe from events (memory leaks).
+- Using expression trees where a plain delegate suffices.
+
+### 12.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Objects not garbage-collected | Event subscriptions not removed | Unsubscribe (`-=`) when done |
+| Provider can't translate a lambda | Passed `Func`, not `Expression` | Use `Expression<Func<...>>` |
+| Inflexible, hard-coded logic | Behavior not parameterized | Accept a `Func`/`Action` parameter |
+
+### 12.12 References
+
+- Microsoft, "Delegates", "Events", "Lambda expressions", "Expression trees": https://learn.microsoft.com/dotnet/csharp/programming-guide/delegates/.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+> **End of Part V.** **LINQ** queries any sequence declaratively with deferred execution, built on C#'s functional core: **delegates** (`Func`/`Action`) and **lambdas** treat behavior as a value, **events** provide publish/subscribe, and **expression trees** represent code as data for providers to translate. Part VI covers **asynchronous programming** — `async`/`await`, `Task`, cancellation, and parallelism.
+
+<!--APPEND-PART-VI-->
