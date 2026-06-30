@@ -90,7 +90,7 @@ Every chapter is **originally written** but **grounded** in a canonical referenc
 14. Strings, number theory, and the FFT
 15. Intractability: NP-completeness and approximation
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VIII (Ch. 1–15).
+> **Status of this guide:** **complete.** All eight parts (Chapters 1–15) are written — from asymptotic analysis through the limits of computation. No part is in progress.
 
 ---
 
