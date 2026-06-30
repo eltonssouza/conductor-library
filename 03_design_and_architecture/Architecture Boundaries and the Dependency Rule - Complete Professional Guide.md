@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Applying it**
 3. Keeping business rules free of I/O
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -282,4 +282,120 @@ class NightlyRepricingJob {
 
 > **End of Part I.** You can now point dependencies inward toward stable policy, invert outward calls through ports, and shape an application as a technology-agnostic core surrounded by driving and driven adapters — making the database and framework replaceable details and the core fast to test. **Part II — Applying it** (Chapter 3) shows how to keep business rules entirely free of I/O so they remain pure, deterministic, and portable.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Applying it
+
+Part I established the **dependency rule** (point dependencies inward at stable policy) and **ports and adapters**. Part II applies it to the decision that makes or breaks a clean architecture: keeping the **business rules free of I/O**, so the database, the web, and the framework stay replaceable details.
+
+---
+
+## Chapter 3 — Keeping business rules free of I/O
+
+### 3.1 Introduction
+
+In a clean architecture the **business rules** — entities (enterprise-wide policy) and use cases (application-specific policy) — sit at the centre and depend on **nothing** outside themselves. The database, the web framework, the message broker, and the file system are **details** that live in the outer ring and depend *inward*. The technique that enforces this is to keep all I/O out of the core: the rules receive plain data and return plain data, while reading and writing happen in adapters behind interfaces (ports). The result is a core that is pure, deterministic, and portable across any I/O technology.
+
+### 3.2 Business context
+
+When business rules call the database or HTTP directly, the most valuable code in the system becomes the hardest to test and the most expensive to change: every rule test needs a database, and swapping Postgres for DynamoDB or REST for gRPC ripples into the domain. Keeping rules free of I/O inverts that. The core can be tested in milliseconds with no infrastructure, the database becomes a late, reversible decision ("the database is a detail"), and the same rules run unchanged behind a web API, a CLI, or a batch job. That is what lets a product move fast without its core rotting.
+
+### 3.3 Theoretical concepts: policy in, details out
+
+```mermaid
+flowchart LR
+    ui["web / CLI (detail)"] --> uc["use cases (application policy)"]
+    uc --> ent["entities (enterprise policy)"]
+    uc -->|"calls a PORT (interface)"| port["Repository port"]
+    db["database adapter (detail)"] -->|"implements the port"| port
+    note["Dependencies point INWARD; the core never imports I/O"]
+```
+
+Entities and use cases form the core; they import no framework, no driver, no `http`, no SQL. When a use case needs to persist or fetch, it calls a **port** — an interface *owned by the core* — and an outer **adapter** implements it (dependency inversion). The **Humble Object** pattern pushes anything hard-to-test (the I/O, the rendering) to the very edge so the testable policy stays behind it. Because the arrows point inward, the database and the web are details the core never sees.
+
+### 3.4 Architecture: I/O at the edges, policy in the middle
+
+```mermaid
+flowchart TB
+    edge["Adapters: DB, HTTP, queue, files (I/O lives here)"] --> boundary["Ports (interfaces owned by the core)"]
+    boundary --> core["Use cases + entities (pure policy, no I/O)"]
+    note["A use case is a function of data in -> data out;<br/>the adapter does the reading and writing"]
+```
+
+A well-shaped use case reads like a pure transformation: it takes already-fetched data (or a port to fetch it), applies rules, and returns a result the adapter persists or renders. Side effects are pushed outward, never interleaved into the policy.
+
+### 3.5 Real example
+
+**Scenario.** A "place order" use case must validate stock and credit, then save the order.
+
+**Problem.** Written directly against the ORM and an HTTP client, it can't be unit-tested without a database and a live service, and changing either breaks the rule.
+
+**Solution.** Express the rule as pure policy that depends on **ports**; let adapters do the I/O.
+
+**Implementation.**
+
+```text
+# Core (no I/O): depends only on ports it owns
+interface Orders   { save(order) }          # port
+interface Inventory{ stockFor(sku): int }   # port
+
+placeOrder(req, orders: Orders, inventory: Inventory):   # use case = pure policy
+    if inventory.stockFor(req.sku) < req.qty: return Rejected("no stock")
+    order = Order.create(req)                # entity rule
+    orders.save(order)                       # via port, not SQL
+    return Confirmed(order.id)
+
+# Outer ring (details): adapters implement the ports
+class SqlOrders implements Orders { save(o){ /* INSERT ... */ } }
+class ApiInventory implements Inventory { stockFor(s){ /* GET /stock */ } }
+```
+
+**Result.** `placeOrder` contains only business rules and can be tested in memory with fake `Orders`/`Inventory` — no database, no network. Switching to a different datastore or a new inventory service means writing a new adapter; the use case and entity are untouched. The database and the web are now details behind the boundary.
+
+**Future improvements.** Return a use-case result object that a Humble presenter renders, keeping formatting out of the core too; add a transaction boundary in the adapter layer rather than in the rule.
+
+### 3.6 Exercises
+
+1. What are entities vs. use cases, and what may each depend on?
+2. Why does "the database is a detail" follow from keeping business rules free of I/O?
+3. What does the Humble Object pattern push to the edge, and why?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a service method that mixes SQL/HTTP with rules. Extract a port interface for each I/O dependency, move the I/O into adapters, and unit-test the now-pure rule with fakes — no infrastructure.
+
+### 3.8 Checklist
+
+- [ ] My entities and use cases import no framework, driver, or I/O library.
+- [ ] I/O is reached only through ports the core owns.
+- [ ] Adapters in the outer ring implement those ports.
+- [ ] Core rules are unit-tested with fakes, no database or network.
+
+### 3.9 Best practices
+
+- Keep use cases as data-in/data-out policy; push side effects to adapters.
+- Define ports in the core and implement them outside (dependency inversion).
+- Use Humble Objects to isolate the untestable I/O at the boundary.
+
+### 3.10 Anti-patterns
+
+- Calling the ORM, HTTP client, or file system directly from a business rule.
+- Domain objects annotated with persistence/serialization framework concerns.
+- "Service" classes that interleave fetching, rules, and rendering.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Rules can't be tested without a database | I/O embedded in the core | Extract a port; move I/O to an adapter |
+| Swapping the datastore touches domain code | Dependencies point outward | Invert through a core-owned interface |
+| Domain class imports the web framework | Detail leaked inward | Move framework concerns to the outer ring |
+
+### 3.12 References
+
+- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017), ch. 20 "Business Rules", ch. 23 "Presenters and Humble Objects", ch. 30 "The Database Is a Detail" & ch. 31 "The Web Is a Detail" — ISBN 978-0134494166.
+- A. Cockburn, "Hexagonal Architecture (Ports and Adapters)": https://alistair.cockburn.us/hexagonal-architecture/.
+
+---
+
+> **End of Part II.** A clean architecture keeps **business rules free of I/O**: entities and use cases are pure policy that depend only on **ports** they own, while the database, web, and framework are **details** in the outer ring that implement those ports and point inward. The payoff is a core that is fast to test and outlives any infrastructure choice. With Part I's **dependency rule** and **ports and adapters**, you can now build systems where technology is replaceable and policy is protected.
