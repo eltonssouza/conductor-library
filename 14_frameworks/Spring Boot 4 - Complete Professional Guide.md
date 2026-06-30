@@ -537,7 +537,7 @@ class OrderServiceTest {
 
 ---
 
-# Part II – Configuration & Web APIs
+## Part II – Configuration & Web APIs
 
 Part II turns the foundational mental model from Part I into a service that is *configurable* and *exposed*. A real application must run unchanged across environments (the 12-factor ideal), so we start with **externalized configuration, profiles, and type-safe `@ConfigurationProperties`**. We then build the HTTP surface with **Spring MVC** — `@RestController`, content negotiation, and Spring Boot 4's **first-class API versioning** — and finally make that surface robust with **Bean Validation** and **RFC 9457 `ProblemDetail`** error handling. Together these three chapters take you from "an app that runs" to "an app that talks to the world correctly across every environment."
 
@@ -1264,7 +1264,7 @@ class CustomerControllerTest {
 
 ---
 
-# Part III – Data & Transactions
+## Part III – Data & Transactions
 
 Part III is where a Spring Boot application stops being a stateless request handler and becomes a system of record. Almost every business application persists data, and the moment data is shared and mutated, three concerns dominate: **how you map objects to rows** (Spring Data JPA), **how you guarantee correctness across multiple writes** (declarative transactions), and **how you evolve the schema and serve connections under load** (migrations and pooling). Spring Boot 4 — on **Spring Framework 7**, **Java 17+** (first-class Java 25), and **Jakarta EE 11** (JPA 3.2, `jakarta.persistence.*`) — auto-configures most of this for you: a `DataSource` backed by HikariCP, an `EntityManagerFactory`, a `PlatformTransactionManager`, and Flyway/Liquibase if either is on the classpath. This part teaches you the model underneath the magic so you can use it deliberately, not superstitiously.
 
@@ -1849,7 +1849,7 @@ class SchemaMigrationTest {
 
 ---
 
-# Part IV – Security
+## Part IV – Security
 
 Part IV turns a working Spring Boot 4 application into one that can be exposed safely. Security in the Spring Framework 7 / Boot 4 generation is built around **Spring Security 6.x / 7-generation**: a chain of servlet filters configured through the **lambda DSL**, authentication and authorization decided per request, and identity standardized on **OAuth2 / OIDC** with **JWT** access tokens. These three chapters move from the mechanics — the `SecurityFilterChain` and how a request is authenticated and authorized — to stateless JWT validation, and finally to a full OAuth2/OIDC story where the application is both a resource server protecting an API and a client logging users in and calling downstream services. Throughout we favor *secure by default* and *deny by default*: you open the few public paths explicitly and let everything else require authentication.
 
@@ -2576,7 +2576,7 @@ class ReconciliationJob {
 
 ---
 
-# Part V – Reactive & Resilience
+## Part V – Reactive & Resilience
 
 Part V covers the non-blocking side of Spring Boot 4 and the resilience patterns that now ship inside the framework. Reactive programming is no longer the only way to scale I/O-bound services — Java 25 virtual threads let blocking code reach comparable concurrency with far less cognitive load — so this part is as much about *when not* to go reactive as about *how* to do it well. We start with **Project Reactor** (the `Mono`/`Flux` engine under WebFlux), move to **Spring WebFlux** and its two programming models (annotated controllers and functional routing), and finish with **reactive data access via R2DBC** plus **Spring Framework 7's built-in resilience** (`@Retryable`, `@ConcurrencyLimit`, `@EnableResilientMethods`). Throughout, we place virtual threads alongside reactive types so you can choose the cheaper model for each workload.
 
@@ -3170,7 +3170,7 @@ class OrderServiceResilienceTest {
 
 ---
 
-# Part VI – Testing
+## Part VI – Testing
 
 Part VI is where the convenience of the earlier parts pays for itself. Spring Boot 4 gives you a layered testing model — plain JUnit 5 unit tests, focused **test slices** that boot only the part of the context you care about, and **full-context integration tests** backed by real infrastructure through **Testcontainers**. The skill is not knowing every annotation; it is choosing the *cheapest* test that still proves the behavior. This part walks the test pyramid from the bottom up: Chapter 16 covers unit tests and the two most-used slices (`@WebMvcTest`, `@DataJpaTest`) with `@MockitoBean` mocking; Chapter 17 covers `@SpringBootTest` end-to-end tests wired to real backends via Testcontainers and Boot's `@ServiceConnection`.
 
@@ -3576,7 +3576,7 @@ abstract class AbstractPostgresIT {
 
 ---
 
-# Part VII – Observability
+## Part VII – Observability
 
 Part VII is where a Spring Boot 4 service learns to report on itself. A system you cannot see is a system you operate by guesswork — and in production, guesswork is downtime. This part covers the two pillars that make a Boot 4 application observable: **Spring Boot Actuator**, which exposes ready-made operational endpoints (health, info, metrics, Prometheus) and the liveness/readiness signals Kubernetes depends on; and **Micrometer 2** with the **Observation API**, which lets you instrument code once and emit both metrics and distributed traces, exporting them through the **OpenTelemetry starter** that ships with Boot 4. Together they turn "is it up?" from a hopeful question into a measurable contract.
 
@@ -4024,7 +4024,7 @@ class CheckoutObservabilityTest {
 
 ---
 
-# Part VIII – Packaging & Production
+## Part VIII – Packaging & Production
 
 Part VIII is where a working Spring Boot 4 application becomes a deployable, operable artifact. Everything earlier in the guide produced *code*; this part produces *units of delivery* — an executable jar that layers cleanly for Docker caching, an OCI image built without writing a Dockerfile, an optional GraalVM native binary that cold-starts in milliseconds, and a hardened runtime configured for zero-downtime operation. It also carries the book's enterprise and migration material to its conclusion: how to take an existing Boot 3 / Spring Framework 6 system forward to the Boot 4 / SF 7 generation. Three chapters take you from `package` to production: jars and images (Chapter 20), native images and AOT (Chapter 21), and production hardening plus the twelve-factor checklist and migration (Chapter 22).
 
