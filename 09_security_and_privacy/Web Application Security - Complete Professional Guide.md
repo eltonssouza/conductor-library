@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Identity**
 3. Broken authentication and access control
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -248,4 +248,132 @@ el.textContent = "Hello, " + userName;        // <script> shown as literal text
 
 > **End of Part I.** You can now defend against the two most common web vulnerability classes by enforcing one principle — never trust input across a boundary: stop injection by separating code from data (parameterized queries and safe APIs), and stop XSS with context-aware output encoding plus a Content Security Policy, understanding that the browser trusts scripts running in your page's origin. **Part II — Identity** (Chapter 3) covers broken authentication (session management, credential handling) and broken access control (the most common modern web risk) — ensuring users can only do and see what they're authorized to.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Identity
+
+Part I was about *what* the user can send; Part II is about *who* the user is and *what they may do*. Injection and XSS abuse trust in data; the bugs in this part abuse trust in identity. Two questions matter: **authentication** — is this request really from who it claims to be? — and **access control** (authorization) — is this identity allowed to perform this action on this resource? Broken access control is the single most common serious web risk (OWASP Top 10 A01), and broken authentication is close behind, precisely because both are about enforcing a *policy* the attacker is actively trying to step outside of.
+
+---
+
+## Chapter 3 — Broken authentication and access control
+
+### 3.1 Introduction
+
+**Authentication** establishes identity (login, credentials, the session that follows). **Session management** carries that identity across stateless HTTP requests, usually via a token in a cookie. **Access control** (authorization) decides, on every request, whether the established identity may perform the requested action on the requested resource. A failure in any of the three is a direct path to acting as someone else or doing something forbidden. The unifying rule: **authenticate strongly, bind the session securely, and authorize every request on the server — by default deny.** The attacker's whole game here is to be treated as a user they are not, or to reach a resource they were never granted.
+
+### 3.2 Business context
+
+Authentication and access-control flaws are the breaches that make headlines: account takeover, one user reading another's data, an ordinary user reaching an admin function. They are common because the happy path *looks* correct — the legitimate user logs in, sees their own data, and never tries the forbidden action — so the missing check is invisible in normal use and in most tests. The attacker, by contrast, *only* tries the forbidden action: incrementing an ID in a URL, replaying a token, requesting `/admin` directly. The cost of getting this wrong is severe and regulated (a horizontal access-control bug that exposes every customer's record is both a breach and, under GDPR/LGPD, a reportable incident). The cost of getting it right is modest — a centralized authorization check and secure session handling — but it must be applied *everywhere*, because the attacker will find the one endpoint that forgot.
+
+### 3.3 Theoretical concepts: identity, session, authorization
+
+**Authentication** must resist guessing and theft: rate-limit and lock out brute force, store passwords with a slow salted hash (bcrypt/argon2), avoid username enumeration (uniform responses and timing), and offer multi-factor authentication. **Session management** must make the token unforgeable and unstealable: high-entropy random tokens, transmitted only over TLS, in cookies marked `HttpOnly` (no JS access — limits XSS impact), `Secure` (HTTPS only), and `SameSite` (mitigates CSRF); rotate the token on login (prevent fixation) and expire/invalidate on logout. **Access control** comes in two flavors — **vertical** (a regular user reaching higher-privilege functions) and **horizontal** (a user reaching another user's data of the same type, the classic *insecure direct object reference*, IDOR). The cardinal rule is that authorization is decided **server-side on every request**, never inferred from a hidden field, a URL the UI didn't show, or "they couldn't have found this link."
+
+```mermaid
+flowchart TB
+    req["Incoming request"] --> authn{"Authenticated? valid session token"}
+    authn -- "no" --> deny1["401 / redirect to login"]
+    authn -- "yes" --> authz{"Authorized for THIS action on THIS resource?"}
+    authz -- "no / unknown" --> deny2["403 Deny (default)"]
+    authz -- "yes" --> allow["Perform action"]
+```
+
+### 3.4 Architecture: deny-by-default authorization on every request
+
+```mermaid
+flowchart LR
+    client["Client (untrusted: cookies, IDs, params)"] --> gate["Server: verify session -> resolve identity"]
+    gate --> check["Authorize: does identity OWN / may ACCESS this resource id?"]
+    check --> data["Only then touch the data"]
+    note["Never trust a client-supplied id or role.<br/>Check ownership against the session, not the request."]
+```
+
+The identity always comes from the *server-validated session*, never from a request parameter. When the client asks for resource `id=123`, the server must check that the session's user actually owns or may access record 123 — not merely that 123 exists. Access control that lives only in the UI (hiding a button, omitting a link) is no control at all: the attacker speaks HTTP directly.
+
+### 3.5 Real example
+
+**Scenario.** A banking app shows a statement at `GET /api/accounts/{id}/statement`, and the front end only ever requests the logged-in user's own account id.
+
+**Problem (horizontal access control / IDOR).** The server fetches the statement for whatever `{id}` is in the URL and returns it. An attacker logs in to their own account, then changes `{id}` to another account number — and reads a stranger's statement. The login worked (authentication is fine); the *authorization* check is missing. Compounding it, the session cookie lacks `HttpOnly`/`Secure`/`SameSite`, so a single XSS or a non-HTTPS hop could also steal the session outright.
+
+**Solution.** Authorize every request server-side against the session identity (check ownership, not existence), and harden the session token. Deny by default.
+
+**Implementation (ownership check + hardened session).**
+
+```java
+// Session cookie set at login:
+//   Set-Cookie: sid=<256-bit random>; HttpOnly; Secure; SameSite=Lax; Path=/
+//   (rotate sid on login to prevent fixation; invalidate on logout)
+
+@GetMapping("/api/accounts/{id}/statement")
+Statement statement(@PathVariable long id, @SessionUser User user) {
+    Account acct = accounts.findById(id)
+        .orElseThrow(() -> new NotFound());          // existence
+    if (acct.ownerId() != user.id() && !user.isAdmin())
+        throw new Forbidden();                        // AUTHORIZATION: ownership
+    return statements.forAccount(acct);               // only now touch data
+}
+```
+
+**Result.** Changing `{id}` to someone else's account now returns `403 Forbidden`: the server checks ownership against the *session* user, not the URL. The `HttpOnly`/`Secure`/`SameSite` flags mean a stolen-cookie attack via XSS or plain HTTP no longer works, and token rotation defeats session fixation. The forbidden action — the only thing the attacker tries — is blocked, while the legitimate user is unaffected.
+
+**Future improvements.** Centralize the ownership check in a policy layer so no endpoint can forget it; add automated tests that assert *another* user gets 403 on every resource endpoint; add MFA for high-value actions; log and alert on repeated 403s (probing).
+
+### 3.6 Exercises
+
+1. Distinguish authentication, session management, and access control.
+2. What is an insecure direct object reference (IDOR), and which kind of access control does it break?
+3. Why is hiding a button or link not a valid access control?
+4. Name three cookie flags that harden a session token and what each prevents.
+
+### 3.7 Challenges
+
+- **Challenge.** Take an endpoint in your app that accepts a resource id. Logged in as user A, request user B's resource. If you get B's data, you have an IDOR — add a server-side ownership check and a test that asserts A receives 403 for B's resources.
+
+### 3.8 Checklist
+
+- [ ] Passwords stored with a slow salted hash (bcrypt/argon2); brute force is rate-limited/locked out.
+- [ ] No username enumeration (uniform responses and timing); MFA available for sensitive accounts.
+- [ ] Session tokens are high-entropy random, TLS-only, `HttpOnly` + `Secure` + `SameSite`.
+- [ ] Token rotates on login (no fixation) and is invalidated on logout/expiry.
+- [ ] Every request is authorized server-side against the session identity — deny by default.
+- [ ] Ownership is checked (does this user own this resource?), not just existence.
+- [ ] No authorization decision relies on hidden fields, client-supplied roles, or UI-only hiding.
+
+### 3.9 Best practices
+
+- Derive identity from the server-validated session, never from a request parameter.
+- Centralize authorization so endpoints can't individually forget the check.
+- Authorize on every request for both vertical (privilege) and horizontal (ownership) access.
+- Harden session cookies and rotate tokens on privilege change.
+- Test access control adversarially: assert that the *other* user is denied.
+
+### 3.10 Anti-patterns
+
+- "Security by obscurity": relying on the user not guessing a URL or an id.
+- Access control enforced only in the UI (hidden buttons, omitted links).
+- Trusting a client-supplied role, user id, or hidden form field.
+- Checking that a resource *exists* but not that the caller *may access* it (IDOR).
+- Long-lived, JS-readable session cookies with no rotation.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| One user can read another's data | Missing horizontal access control (IDOR) | Check resource ownership against the session on every request |
+| Regular user reaches admin function | Missing vertical access control | Authorize by privilege server-side; deny by default |
+| Sessions hijacked after an XSS | Cookie not `HttpOnly`/`Secure` | Set `HttpOnly`, `Secure`, `SameSite`; rotate on login |
+| Account takeover via guessing | Weak hashing / no rate limit / enumeration | bcrypt/argon2, lockout, uniform responses, MFA |
+| New endpoints keep missing checks | Authorization scattered per-endpoint | Centralize authorization in a policy layer + tests |
+
+### 3.12 References
+
+- D. Stuttard, M. Pinto, *The Web Application Hacker's Handbook*, 2nd ed. (Wiley, 2011), **Ch. 6 "Attacking Authentication"**, **Ch. 7 "Attacking Session Management"**, **Ch. 8 "Attacking Access Controls"** — ISBN 978-1118026472.
+- M. Zalewski, *The Tangled Web* (No Starch Press, 2011), **Ch. 3 "Hypertext Transfer Protocol"** (HTTP cookie semantics, HTTP authentication) and **Ch. 9 "Content Isolation Logic"** (same-origin policy, security policy for cookies) — ISBN 978-1593273880.
+- OWASP, "Top 10" — A01:2021 Broken Access Control, A07:2021 Identification and Authentication Failures; "Session Management Cheat Sheet": https://owasp.org.
+
+---
+
+> **End of Part II — end of guide.** You can now defend identity on the web: authenticate strongly (slow hashing, rate limits, no enumeration, MFA), carry the session in an unforgeable, unstealable token (`HttpOnly` + `Secure` + `SameSite`, rotated on login), and authorize **every** request server-side against the session identity — checking ownership, not just existence, and denying by default. Together with Part I's "never trust input" (injection, XSS), this covers the four highest-impact web vulnerability classes: trust no input, and prove who the user is and what they may do on every single request.
+
