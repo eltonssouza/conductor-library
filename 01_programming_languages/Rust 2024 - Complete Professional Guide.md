@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–V (Ch. 1–16). **In progress:** Parts VI–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–VI (Ch. 1–20). **In progress:** Parts VII–VIII.
 
 ---
 
@@ -1959,4 +1959,453 @@ fn main() {
 
 > **End of Part V.** Rust's data machinery: standard **collections** chosen by access pattern (`Vec`, `HashMap`, `BTreeMap`, `HashSet`, `VecDeque`), the lazy, **zero-cost `Iterator`** with its adapter chains, and **closures** classified by capture (`Fn`/`FnMut`/`FnOnce`, with `move`) that power them. Part VI covers **error handling, modules, crates, and smart pointers**.
 
-<!--APPEND-PART-VI-->
+---
+
+## Part VI — Error handling, modules, and crates
+
+Part VI covers building real programs: idiomatic **error handling** with `Result` and `?`, **custom error types** (`thiserror`/`anyhow`), code organization with **modules and crates**, and **smart pointers** (`Box`, `Rc`, `Arc`, `RefCell`) for heap allocation and shared/interior-mutable ownership.
+
+---
+
+## Chapter 17 — `Result`, `Option`, and the `?` operator
+
+### 17.1 Introduction
+
+Rust has **no exceptions** for recoverable errors; failures are **values** of type **`Result<T, E>`** (Ch. 8), and the caller must handle them. The **`?`** operator is the idiom that makes this ergonomic: applied to a `Result`, it returns the value on `Ok` and **propagates** the `Err` (returning early from the function) — converting the error via `From` if needed. The same `?` works on `Option` (propagating `None`). For unrecoverable bugs there's **`panic!`** (and `unwrap`/`expect`), but day-to-day error handling is `Result` + `?`.
+
+### 17.2 Business context
+
+Treating errors as values the compiler forces you to handle is a major reliability advantage: there's no invisible exception path, no forgotten `catch`, no silently-swallowed failure. The `?` operator keeps this explicitness from becoming verbose — error propagation reads almost as cleanly as exception-based code but with none of the hidden control flow. The clear split between **recoverable** (`Result`) and **unrecoverable** (`panic!`) makes intent obvious. This is why Rust services tend to fail predictably and surface actionable errors.
+
+### 17.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    call["let x = fallible()?"] --> ok["Ok(v) -> x = v, continue"]
+    call --> err["Err(e) -> return Err(e.into()) early"]
+    note["? propagates errors; converts via From; works on Result and Option"]
+```
+
+`?` desugars to "match: on `Ok(v)` evaluate to `v`; on `Err(e)` `return Err(From::from(e))`". The `From` conversion lets a function return one error type while inner calls produce others (implement `From<InnerErr> for MyErr`). A function using `?` must itself return a compatible `Result`/`Option`. **`panic!`** aborts the thread (use for invariants that should be impossible); **`unwrap`/`expect`** panic on `Err`/`None` and are for prototypes, tests, or genuinely-can't-fail cases (document why).
+
+### 17.4 Architecture: propagate with `?`, panic only on bugs
+
+```mermaid
+flowchart TB
+    rec["recoverable failure"] --> result["Result<T,E> + ? up the stack"]
+    bug["invariant violated (a bug)"] --> panic["panic! / unwrap (deliberate)"]
+    result --> top["caller handles or reports it"]
+```
+
+Recoverable errors flow as `Result` via `?` to a handling point; panics are reserved for programming errors.
+
+### 17.5 Real example
+
+**Scenario.** Read a file and parse its first line as a number.
+
+**Problem.** Both the read and the parse can fail with **different** error types.
+
+**Solution.** Return `Result` and use **`?`** to propagate, letting `From` unify the error types.
+
+**Implementation.**
+
+```rust
+use std::num::ParseIntError;
+
+fn first_number(path: &str) -> Result<i32, Box<dyn std::error::Error>> {
+    let text = std::fs::read_to_string(path)?;        // io::Error -> Box<dyn Error> via From
+    let first = text.lines().next().unwrap_or("");
+    let n: i32 = first.trim().parse()?;               // ParseIntError -> Box<dyn Error>
+    Ok(n)
+}
+```
+
+**Result.** Each fallible step uses `?` to propagate its error early, and the two distinct error types (`io::Error`, `ParseIntError`) both convert into the function's `Box<dyn Error>` return via `From`. The happy path reads top-to-bottom with no nested matching, yet every failure is handled explicitly — the caller receives a `Result` it must inspect. Concise *and* exhaustive.
+
+**Future improvements.** Replace `Box<dyn Error>` with a typed error enum (Ch. 18) for libraries; reserve `unwrap` for cases proven impossible and add `expect("reason")` to document them.
+
+### 17.6 Exercises
+
+1. What does the `?` operator do on an `Err`?
+2. How does `From` let `?` unify different error types?
+3. When is `panic!`/`unwrap` appropriate versus `Result`?
+
+### 17.7 Challenges
+
+- **Challenge.** Write a function returning `Result<i32, Box<dyn Error>>` that reads an env var and parses it, propagating both possible errors with `?`.
+
+### 17.8 Checklist
+
+- [ ] Recoverable failures return `Result`/`Option`.
+- [ ] I propagate with `?` instead of manual matching.
+- [ ] My error types convert via `From` so `?` unifies them.
+- [ ] I reserve `panic!`/`unwrap` for true bugs/can't-fail cases.
+
+### 17.9 Best practices
+
+- Use `Result` + `?` for recoverable errors.
+- Implement `From` for clean propagation.
+- Use `expect("why")` over bare `unwrap` to document assumptions.
+
+### 17.10 Anti-patterns
+
+- `unwrap()`/`expect()` on recoverable errors (panics in production).
+- Swallowing errors (`let _ = fallible();`).
+- Stringly-typed errors in libraries (use typed enums).
+
+### 17.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `?` won't compile | Function doesn't return `Result`/`Option` | Change the return type |
+| "`?` couldn't convert the error" | No `From` impl | Implement `From<Inner> for MyErr` |
+| Production panic | `unwrap` on a recoverable error | Handle with `?`/`match` |
+
+### 17.12 References
+
+- *The Rust Programming Language*, ch. 9 "Error Handling" — https://doc.rust-lang.org/book/ch09-00-error-handling.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 18 — Custom error types with `thiserror`; application errors with `anyhow`
+
+### 18.1 Introduction
+
+For real programs you define **typed errors**. The **`thiserror`** crate makes a custom error **enum** ergonomic: a `#[derive(Error)]` plus `#[error("...")]` messages and `#[from]` conversions generate the `Display`, `Error`, and `From` impls you'd otherwise hand-write — ideal for **libraries**, where callers want to match on specific error variants. The **`anyhow`** crate provides a single boxed `anyhow::Error` with easy context (`.context("...")`) — ideal for **applications**, where you mostly want to propagate and report. The rule of thumb: **`thiserror` for libraries, `anyhow` for applications**.
+
+### 18.2 Business context
+
+Good error types are the difference between a debuggable failure and a mystery. In a library, a typed error enum lets consumers programmatically distinguish "not found" from "permission denied" and react appropriately — part of a stable API contract. In an application, `anyhow` with context strings turns a raw failure into a readable chain ("while loading config: while reading file: permission denied") that slashes incident diagnosis time. Choosing the right approach per layer keeps both library ergonomics and application observability high, with minimal boilerplate.
+
+### 18.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    lib["library -> thiserror: typed enum, #[from], #[error]"] --> match["callers match on variants"]
+    app["application -> anyhow::Result + .context()"] --> report["readable error chain for logs"]
+```
+
+**`thiserror`**: annotate an `enum AppError { #[error("not found")] NotFound, #[error(transparent)] Io(#[from] std::io::Error) }`; the derive generates `Display`/`Error`/`From`, so `?` converts inner errors automatically and callers can `match`. **`anyhow`**: functions return `anyhow::Result<T>`; `?` accepts any `Error`, and `.context("doing X")` attaches a message, building a chain. Don't expose `anyhow` types in a library's public API (callers can't match them); do use it freely in binaries.
+
+### 18.4 Architecture: typed at the boundary, contextual in the app
+
+```mermaid
+flowchart LR
+    inner["inner errors (io, parse, ...)"] -->|"#[from] / ?"| libErr["library: typed enum (thiserror)"]
+    libErr -->|"?"| appErr["application: anyhow::Error + context"]
+    appErr --> log["clear, chained report"]
+```
+
+Libraries surface precise typed errors; the application layer adds context and reports them.
+
+### 18.5 Real example
+
+**Scenario.** A config library exposes typed errors; the app adds context and reports.
+
+**Problem.** Hand-writing `Display`/`Error`/`From` is tedious; raw errors in the app lack context.
+
+**Solution.** **`thiserror`** in the library, **`anyhow`** with `.context()` in the app.
+
+**Implementation.**
+
+```rust
+// library: typed error with thiserror
+#[derive(thiserror::Error, Debug)]
+pub enum ConfigError {
+    #[error("config file not found")]
+    NotFound,
+    #[error("invalid config: {0}")]
+    Invalid(String),
+    #[error(transparent)]
+    Io(#[from] std::io::Error),     // ? auto-converts io::Error
+}
+
+pub fn load(path: &str) -> Result<String, ConfigError> {
+    let text = std::fs::read_to_string(path)?;   // io::Error -> ConfigError::Io
+    if text.is_empty() { return Err(ConfigError::Invalid("empty".into())); }
+    Ok(text)
+}
+
+// application: anyhow with context
+fn run() -> anyhow::Result<()> {
+    use anyhow::Context;
+    let cfg = load("app.toml").context("loading application config")?;
+    println!("{}", cfg.len());
+    Ok(())
+}
+```
+
+**Result.** The library's `ConfigError` enum lets callers `match` on `NotFound`/`Invalid`/`Io`, with `Display`/`From` generated by `thiserror` (no boilerplate). The application uses `anyhow` and `.context("loading application config")`, so a failure reports a readable chain down to the underlying io error — typed precision in the library, contextual reporting in the app.
+
+**Future improvements.** Add `#[error]` messages aligned with user-facing wording; in the app, log the full `{:?}` chain; keep `anyhow` out of public library signatures.
+
+### 18.6 Exercises
+
+1. Why use `thiserror` for libraries and `anyhow` for applications?
+2. What does `#[from]` generate, and how does it help `?`?
+3. What does `.context()` add to an error?
+
+### 18.7 Challenges
+
+- **Challenge.** Define a `thiserror` enum with three variants (one `#[from]` an `io::Error`) for a small "store" library, then consume it in a `main` using `anyhow` with `.context()`.
+
+### 18.8 Checklist
+
+- [ ] Libraries expose typed error enums (`thiserror`).
+- [ ] Applications use `anyhow::Result` with `.context()`.
+- [ ] `#[from]` enables automatic `?` conversion.
+- [ ] I keep `anyhow` out of public library APIs.
+
+### 18.9 Best practices
+
+- `thiserror` for libraries, `anyhow` for binaries.
+- Attach context at each layer for a readable chain.
+- Make error messages clear and aligned with user wording.
+
+### 18.10 Anti-patterns
+
+- Hand-rolling `Display`/`Error`/`From` that `thiserror` generates.
+- Exposing `anyhow::Error` in a library's public API.
+- Context-free errors that are hard to diagnose.
+
+### 18.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Boilerplate error impls | Manual `Display`/`From` | Use `thiserror` derives |
+| Callers can't match errors | Library returns `anyhow::Error` | Return a typed `thiserror` enum |
+| Unclear failure in logs | No context attached | Add `.context("...")` (anyhow) |
+
+### 18.12 References
+
+- `thiserror` & `anyhow` crate docs: https://docs.rs/thiserror · https://docs.rs/anyhow.
+- *The Rust Programming Language*, ch. 9; J. Blandy et al., *Programming Rust* — ISBN 978-1492052593.
+
+---
+
+## Chapter 19 — Modules, paths, visibility, and the crate graph
+
+### 19.1 Introduction
+
+Rust organizes code with **modules** (`mod`), **paths** (`crate::billing::Invoice`), and **visibility** (`pub`). A **crate** is the unit of compilation: a **binary** crate (has `main`) or a **library** crate; a **package** (a `Cargo.toml`) contains one or more crates and declares dependencies. Items are **private by default** and exposed with `pub`; `use` brings paths into scope. Cargo resolves the **dependency graph** of crates from crates.io. This module-and-crate system is how Rust scales from a script to a large workspace.
+
+### 19.2 Business context
+
+Clear module boundaries and visibility are what keep a growing codebase navigable and its internals protected — `pub` is a deliberate decision about a module's public surface, so refactoring private code can't break consumers. Cargo's crate graph and semantic-versioned dependencies let teams reuse the vast crates.io ecosystem reliably and reproducibly (via `Cargo.lock`). Workspaces let a large project be split into focused crates that compile and test independently. This structure directly affects build times, encapsulation, and how safely a team can evolve the code.
+
+### 19.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    pkg["package (Cargo.toml)"] --> crate["crate (bin or lib)"]
+    crate --> mods["mod tree: crate::a::b"]
+    mods --> vis["private by default; pub to expose"]
+    cargo["Cargo: resolves dependency graph + Cargo.lock"]
+```
+
+A **module** groups items and forms a path tree rooted at `crate`. **Visibility**: items are private to their module unless marked `pub` (or `pub(crate)` for crate-internal). `use` imports a path. A **package** builds one library and/or binary crates; **`Cargo.toml`** declares dependencies (with semver ranges) and Cargo writes **`Cargo.lock`** for reproducible builds. A **workspace** groups related packages sharing a lock file and `target/`.
+
+### 19.4 Architecture: encapsulated modules, reproducible crates
+
+```mermaid
+flowchart LR
+    code["modules with intentional pub surface"] --> encap["internals hidden, API stable"]
+    cargo["Cargo: dependency graph + lock"] --> repro["reproducible, ecosystem-ready builds"]
+```
+
+Deliberate visibility plus Cargo's reproducible dependency resolution keep large projects encapsulated and buildable.
+
+### 19.5 Real example
+
+**Scenario.** Organize a small library with a public API and hidden internals, using a dependency.
+
+**Problem.** A flat, all-public module exposes internals and can't be refactored safely.
+
+**Solution.** A **module tree** with deliberate **`pub`**, and a Cargo dependency.
+
+**Implementation.**
+
+```toml
+# Cargo.toml
+[dependencies]
+uuid = { version = "1", features = ["v4"] }
+```
+
+```rust
+// src/lib.rs
+pub mod billing {                       // public module
+    use uuid::Uuid;                     // dependency from the crate graph
+
+    pub struct Invoice { pub id: String }     // public type/field
+    impl Invoice {
+        pub fn new() -> Self { Invoice { id: Uuid::new_v4().to_string() } }
+    }
+
+    fn internal_helper() -> u32 { 42 }  // private: not part of the public API
+}
+
+// consumer: use crate::billing::Invoice;  -> can use Invoice, NOT internal_helper
+```
+
+**Result.** `billing::Invoice` and `new` are public API; `internal_helper` stays private, so it can change freely without breaking consumers. The `uuid` dependency is resolved from the crate graph and pinned by `Cargo.lock` for reproducibility. The module's `pub` surface is an intentional contract, and encapsulation is enforced by the compiler.
+
+**Future improvements.** Use `pub(crate)` for crate-internal sharing; split into a workspace of focused crates as it grows; re-export a curated API with `pub use` at the crate root.
+
+### 19.6 Exercises
+
+1. What is the difference between a package, a crate, and a module?
+2. What is the default visibility of an item, and how do you expose it?
+3. What does `Cargo.lock` guarantee?
+
+### 19.7 Challenges
+
+- **Challenge.** Create a library crate with two modules where one exposes a `pub` function that calls a private helper in the other module via a `pub(crate)` path.
+
+### 19.8 Checklist
+
+- [ ] Modules have an intentional `pub` surface; internals are private.
+- [ ] I use `use` for clean paths and `pub use` to curate the API.
+- [ ] Dependencies are declared in `Cargo.toml`; `Cargo.lock` is committed (for binaries).
+- [ ] Large projects are split into a workspace of crates.
+
+### 19.9 Best practices
+
+- Keep modules private by default; expose a deliberate API.
+- Use `pub(crate)` for internal sharing.
+- Commit `Cargo.lock` for applications; use workspaces to scale.
+
+### 19.10 Anti-patterns
+
+- Everything `pub`, exposing internals and freezing refactors.
+- Giant single-module files instead of a module tree.
+- Unpinned dependencies / not committing the lock for binaries.
+
+### 19.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "function is private" | Item not `pub` | Mark `pub`/`pub(crate)` as appropriate |
+| Refactor broke consumers | Internals were public | Narrow the `pub` surface |
+| Irreproducible builds | Lock not committed | Commit `Cargo.lock` (binaries) |
+
+### 19.12 References
+
+- *The Rust Programming Language*, ch. 7 "Managing Growing Projects with Packages, Crates, and Modules" — https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html.
+- The Cargo Book: https://doc.rust-lang.org/cargo/.
+
+---
+
+## Chapter 20 — Smart pointers: `Box`, `Rc`, `Arc`, `RefCell`, `Cell`, `Weak`
+
+### 20.1 Introduction
+
+**Smart pointers** are types that own data and add behavior. **`Box<T>`** heap-allocates a single owner — for recursive types, large values, or trait objects. **`Rc<T>`** enables **multiple shared owners** in a single thread (reference-counted); **`Arc<T>`** is its **thread-safe** (atomic) counterpart. **`RefCell<T>`** (and `Cell<T>`) provide **interior mutability** — mutating data through a shared reference, with `RefCell` enforcing the borrow rules **at runtime** (panicking on violation). **`Weak<T>`** is a non-owning reference that breaks reference **cycles** that would otherwise leak.
+
+### 20.2 Business context
+
+These types handle ownership shapes the basic move/borrow model can't express alone: shared graph nodes, observers, caches, and recursive structures. `Rc`/`Arc` enable shared ownership safely; `RefCell` enables the controlled mutation that designs like the observer pattern need; `Weak` prevents the memory leaks that reference cycles cause even in a "safe" language. Picking correctly (and knowing `Arc<Mutex<T>>` is the thread-safe shared-mutable combo, Ch. 21) is essential for non-trivial data structures and concurrency — common in the systems Rust targets.
+
+### 20.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    box["Box<T>: single owner on the heap"]
+    rc["Rc<T>: shared owners (single-thread, non-atomic)"]
+    arc["Arc<T>: shared owners (thread-safe, atomic)"]
+    cell["RefCell<T>/Cell<T>: interior mutability (RefCell checks borrows at RUNTIME)"]
+    weak["Weak<T>: non-owning ref, breaks cycles"]
+```
+
+**`Box<T>`**: one owner, heap-allocated; needed for recursive types (`enum List { Cons(i32, Box<List>) }`) and to store `dyn Trait`. **`Rc<T>`**: `clone()` bumps a count; data dropped when the last `Rc` goes — single-threaded only. **`Arc<T>`**: same, with atomic counting for cross-thread sharing. **`RefCell<T>`**: `borrow()`/`borrow_mut()` enforce aliasing-XOR-mutability **at runtime** (panic if violated), enabling mutation behind a shared `Rc`. **`Weak<T>`**: created via `Rc::downgrade`; doesn't keep data alive, so parent↔child cycles don't leak. Common combos: `Rc<RefCell<T>>` (shared mutable, single-thread), `Arc<Mutex<T>>` (shared mutable, multi-thread).
+
+### 20.4 Architecture: pick the ownership shape
+
+```mermaid
+flowchart LR
+    q1{"shared ownership?"} -->|no| boxx["Box<T>"]
+    q1 -->|"yes, 1 thread"| rc2["Rc<T> (+ RefCell for mutation)"]
+    q1 -->|"yes, threads"| arc2["Arc<T> (+ Mutex for mutation)"]
+    cyc["risk of a cycle?"] --> weak2["use Weak<T> for back-references"]
+```
+
+The right smart pointer follows from how many owners, which threads, whether mutation is needed, and whether cycles are possible.
+
+### 20.5 Real example
+
+**Scenario.** A tree node shared by several parents that occasionally needs mutation, in one thread.
+
+**Problem.** Plain ownership allows only one owner; you also need to mutate through shared references without breaking the rules.
+
+**Solution.** **`Rc<RefCell<T>>`** for shared, interior-mutable nodes (and `Weak` for back-edges to avoid cycles).
+
+**Implementation.**
+
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
+
+#[derive(Debug)]
+struct Node { value: i32, children: Vec<Rc<RefCell<Node>>> }
+
+fn main() {
+    let leaf = Rc::new(RefCell::new(Node { value: 3, children: vec![] }));
+    let root = Rc::new(RefCell::new(Node { value: 1, children: vec![Rc::clone(&leaf)] }));
+
+    leaf.borrow_mut().value += 10;            // mutate through a shared Rc (RefCell)
+    println!("leaf via root: {}", root.borrow().children[0].borrow().value);  // 13
+    println!("owners of leaf: {}", Rc::strong_count(&leaf));                  // 2 (leaf + root's child)
+}
+```
+
+**Result.** `leaf` is owned by both `leaf` and `root.children` (`Rc`, count 2), and `RefCell` lets it be mutated (`value += 10`) through a shared reference — the borrow rules checked at runtime. The change is visible through every owner. For a child→parent back-reference you'd use `Weak` so the `Rc` cycle doesn't leak memory. The combo expresses shared, mutable graph data safely.
+
+**Future improvements.** For multithreaded sharing, switch to `Arc<Mutex<T>>` (Ch. 21); add `Weak` parent pointers to prevent reference cycles; prefer plain ownership/borrowing when sharing isn't truly needed.
+
+### 20.6 Exercises
+
+1. When do you need `Box<T>` specifically?
+2. What's the difference between `Rc<T>` and `Arc<T>`, and when does it matter?
+3. What does `RefCell` move from compile time to runtime, and what's the risk?
+
+### 20.7 Challenges
+
+- **Challenge.** Build a small graph with `Rc<RefCell<Node>>` where two parents share a child; mutate the child through one parent and observe the change through the other. Add a `Weak` back-edge.
+
+### 20.8 Checklist
+
+- [ ] I use `Box<T>` for recursive types/trait objects/large values.
+- [ ] I use `Rc`/`Arc` for single-thread/multi-thread shared ownership.
+- [ ] I use `RefCell`/`Cell` for interior mutability (aware of runtime panics).
+- [ ] I use `Weak` to break reference cycles.
+
+### 20.9 Best practices
+
+- Reach for smart pointers only when plain ownership won't express the shape.
+- Pair `Rc`/`Arc` with `RefCell`/`Mutex` for shared mutation.
+- Use `Weak` for back-references to prevent leaks.
+
+### 20.10 Anti-patterns
+
+- `Rc<RefCell<...>>` everywhere when plain ownership/borrowing suffices.
+- `Rc` across threads (won't compile — use `Arc`).
+- Reference cycles with no `Weak` (memory leak).
+
+### 20.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "`Rc` cannot be sent between threads" | `Rc` used across threads | Use `Arc` |
+| Runtime panic "already borrowed" | `RefCell` borrow rules violated | Fix overlapping `borrow_mut`/`borrow` |
+| Memory not freed (leak) | Reference cycle of `Rc`s | Use `Weak` for one direction |
+
+### 20.12 References
+
+- *The Rust Programming Language*, ch. 15 "Smart Pointers" — https://doc.rust-lang.org/book/ch15-00-smart-pointers.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+> **End of Part VI.** Building real Rust programs: recoverable **errors as `Result`** propagated with **`?`**, **typed errors** via `thiserror` (libraries) and contextual `anyhow` (apps), code organized into **modules and crates** with deliberate visibility and Cargo's reproducible graph, and **smart pointers** (`Box`, `Rc`/`Arc`, `RefCell`, `Weak`) for ownership shapes beyond move/borrow. Part VII covers **concurrency and async**.
+
+<!--APPEND-PART-VII-->
