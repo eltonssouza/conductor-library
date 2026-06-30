@@ -35,3 +35,11 @@ The Notes Series aims to explore primarily texts that provide didactic support f
 ### Description
 
 The Notes Series aims to explore primarily texts that provide didactic support for undergraduate or graduate courses. Synopsis: It presents the logic programming language Prolog, suitable for solving problems involving objects and relationships between objects. It presents and discusses a vast set of Prolog predicates for handling lists, trees, and graphs.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. There is no logic/Prolog guide yet.

@@ -50,3 +50,14 @@ Operating System Concepts, now in its 9th edition, is divided into 20 chapters, 
 ### Description
 
 The study of operating systems gains importance as various computing professionals need this knowledge to carry out their activities, such as system administrators, concurrent application programmers, and security managers. Another important factor is the relationship of operating systems within data communication networks, which makes their study necessary for network administrators. Operating Systems Architecture addresses the architecture and operation of multiprogrammable operating systems in a current, comprehensive, and didactic manner. Its content is aimed at students and IT professionals in all areas. As a basic prerequisite for reading it, only some knowledge of computer organization and data structures is needed. Whenever the use of programs is necessary, the Pascal programming language will be used, due to its clarity and fluency in the academic environment, as well as the Java language, due to its wide acceptance in the market.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Operating-system and systems-level operations are covered from a practitioner angle in:
+
+- [Linux Command-Line for Operations](<../07_devops_sre_operations/Linux Command-Line for Operations - Complete Professional Guide.md>) — the Linux shell and process model for operators.
+- [Systems Performance Analysis](<../07_devops_sre_operations/Systems Performance Analysis - Complete Professional Guide.md>) — CPU, memory, I/O, and OS performance methodology.

@@ -35,3 +35,14 @@ Building on the success of the top-down approach of its previous editions, "Comp
 ### Description
 
 In what is the bible of computer networking, Tanenbaum, Feamster & Wetherall explain how networks work from the inside out. That is, they start with the physical layer of networks, computers, and transmission systems, and go all the way up to applications. The chapters present the key concepts and are illustrated by examples from real networks: the Internet, wireless networks, including wireless LANs; wireless broadband, and Bluetooth. This 6th edition of Computer Networks brings many changes. All chapters have been updated, and Chapter 8, which deals with security, has been completely reworked, prioritizing network security.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Networking from a web/operations angle appears in:
+
+- [Web Performance and Networking](<../06_web_and_frontend/Web Performance and Networking - Complete Professional Guide.md>) — HTTP, latency, the network stack for the web.
+- [RESTful API Design](<../06_web_and_frontend/RESTful API Design - Complete Professional Guide.md>) — designing networked APIs.

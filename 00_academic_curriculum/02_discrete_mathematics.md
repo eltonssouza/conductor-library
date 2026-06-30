@@ -50,3 +50,13 @@ Just as binary representation is the mathematical foundation of the computer its
 ### Description
 
 Aimed at those interested in discrete mathematics in general, this work presents an overview of all of mathematics from the perspective of discrete mathematics. The book covers everything from the nature of mathematics (definitions, theorems, proofs, and counterexamples), logic, sets, and relations, to advanced proof techniques, discrete probability, number theory, graph theory, and abstract algebra, including applications in cryptography. This third edition features many problems and exercises that explore the interconnections among the various topics covered.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Discrete-math foundations are applied in the library's algorithms guide:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

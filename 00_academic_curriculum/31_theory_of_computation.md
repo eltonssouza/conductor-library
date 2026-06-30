@@ -61,3 +61,13 @@ Gain a clear understanding of even the most complex, highly theoretical computat
 ### Description
 
 Introduction to Languages and the Theory of Computation helps students make the connection between the practice of computing and an understanding of the profound ideas that defines it. The book's organization and the author's ability to explain complex topics clearly make this introduction to the theory of computation an excellent resource for a broad range of upper level students. The author has learned through many years of teaching that the best way to present theoretical concepts is to take advantage of the precision and clarity of mathematical language. In a way that is accessible to students still learning this language, he presents the necessary mathematical tools gently and gradually which provides discussion and examples that make the language intelligible.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+The limits of efficient computation (P, NP, NP-completeness, reductions, approximation) are covered in:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

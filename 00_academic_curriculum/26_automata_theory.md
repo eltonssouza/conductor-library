@@ -54,3 +54,13 @@ Conceived as a reference for higher education courses in the computing field, th
 Doing exercises is the most effective way to learn formal languages and automata. It is important to study solved exercises to improve understanding of the most commonly used strategies and to reduce the time spent solving new problems. Even so, it is rare that the solution of new problems does not make use, at least in part, of established strategies used in known problems. Instead of abstract theory and concepts, this book is composed of 601 solved exercises on the topics of the chapters. The idea is that, from the problem statement, the solution, and also the explanations underlying the strategies presented, the reader understands how certain solutions are obtained and becomes capable more quickly of solving new problems.
 
 This work is a large collection, duly revised and extended, of the material that was accumulated over more than a decade of dedication to teaching the discipline of Formal Languages and Automata at the Federal University of the Vale do São Francisco. In each chapter, a small introduction provides a summary of the main definitions and results relevant to the study of the subject, which does not dispense with the use of a good complementary theoretical reference on this important matter.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. Adjacent: the algorithms guide uses finite automata for string matching.
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

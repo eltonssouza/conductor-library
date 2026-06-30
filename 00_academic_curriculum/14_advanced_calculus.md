@@ -35,3 +35,11 @@ In this 9th edition, as in all previous ones, the authors maintain the tradition
 ### Description
 
 Guidorizzi, the complete content for your edge! By Hamilton Luiz Guidorizzi, A Calculus Course offers digital pedagogical resources that deepen and reinforce the learning of Calculus students and assist teachers in the subject. This second volume covers topics such as limits, derivatives, integrals of functions, among others. It is recommended for undergraduate students of Mathematics, Engineering, and Exact Sciences who take Differential and Integral Calculus and related Calculus subjects.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. It is a pure-mathematics topic.

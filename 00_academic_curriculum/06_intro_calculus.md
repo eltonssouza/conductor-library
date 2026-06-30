@@ -50,3 +50,11 @@ Guidorizzi, the complete content for your edge! By Hamilton Luiz Guidorizzi, A C
 ### Description
 
 The aim of this work is to serve all higher education courses at any level. It was designed particularly for the standard three-semester course for students of Sciences, Engineering, or Mathematics. The required prerequisite is high-school Algebra and Geometry.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. It is a pure-mathematics topic.

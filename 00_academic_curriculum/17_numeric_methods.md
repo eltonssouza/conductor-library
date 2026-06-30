@@ -50,3 +50,13 @@ With current computational resources, numerical methods have become indispensabl
 ### Description
 
 The main objective of the text is the presentation of numerical methods with their theoretical foundation, their advantages, and their computational difficulties. In all chapters - a list of exercises, with answers in the appendix. In most chapters, project proposals.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Numerical and number-theoretic algorithms (FFT, modular arithmetic, matrix operations) are covered in:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

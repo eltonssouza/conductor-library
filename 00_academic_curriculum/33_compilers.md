@@ -22,3 +22,11 @@ software_dev: foundational
 Covering everything from lexical and syntactic analysis (with techniques such as LL and LR parsing) to optimization and code generation, the book integrates theory (automata, grammars) and practice (implementable examples and case studies), while also exploring modern topics such as just-in-time compilation and parallelism. Its approach balances technical rigor and clarity, teaching not only about compilers but also developing skills in algorithms and systems design, making it relevant for students, engineers, and programming-language enthusiasts.
 
 ---
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. There is no compilers guide yet; adjacent language internals appear in `01_programming_languages/`.
