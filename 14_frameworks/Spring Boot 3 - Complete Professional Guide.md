@@ -1834,4 +1834,730 @@ public class PoolDiagnostics {
 
 > **End of Part III.** You now have a production-ready data layer: **Spring Data JPA** (entities, `JpaRepository`, derived and `@Query` queries, `Pageable`/`Page`, and record projections), declarative **transaction management** with `@Transactional` (propagation, rollback rules, `readOnly`, and the proxy pitfalls to avoid), and the operational foundation of **versioned migrations** (Flyway/Liquibase) over the default **HikariCP** pool. **Part IV — Security** (Chapters 10–12) builds on this to cover Spring Security fundamentals and the filter chain, authentication with JWT and OAuth2, and method-level authorization — protecting the data and endpoints you have just learned to build.
 
+
+---
+
+## Part IV – Security
+
+Security is the layer where a correct application becomes a *trustworthy* one. In Spring Boot 3, security is delivered by **Spring Security 6** — rebuilt around Java 17+, the `jakarta.*` namespace, and a fully lambda-based configuration DSL. The pre-6 `WebSecurityConfigurerAdapter` base class is **gone**; you now publish a `@Bean SecurityFilterChain` and compose authorization rules with `http.authorizeHttpRequests(...)`. This part builds your mental model from the ground up: first the **filter chain** and how a request is authenticated and authorized (Chapter 10), then **stateless JWT authentication** for self-issued tokens (Chapter 11), and finally standards-based **OAuth2 / OIDC** as a resource server and as a client (Chapter 12). The throughline is *deny by default, validate strictly, stay stateless* — the posture that survives audits and production.
+
+---
+
+## Chapter 10 — Spring Security architecture and the `SecurityFilterChain`
+
+### 10.1 Introduction
+
+Spring Security is a chain of **servlet filters** inserted ahead of your application. Every HTTP request passes through this chain, where it is authenticated (who is calling?) and authorized (are they allowed to do this?) before any controller method runs. In Spring Security 6 — the version bundled with Spring Boot 3 — you configure this chain by declaring a `SecurityFilterChain` bean using the lambda DSL, rather than extending the now-removed `WebSecurityConfigurerAdapter`. This chapter explains the moving parts: the `DelegatingFilterProxy`, the `FilterChainProxy`, the `SecurityContext`, and the authorization rules that decide each request's fate.
+
+### 10.2 Business context
+
+Authentication and authorization are the controls auditors examine first and attackers probe hardest. Hand-rolled security is a notorious source of breaches — off-by-one authorization checks, forgotten endpoints, weak password hashing. Spring Security exists so teams stop reinventing these primitives and instead lean on battle-tested, peer-reviewed code. For an organization, standardizing on one filter chain model means every service enforces the same **deny-by-default** posture, password hashing is consistent (BCrypt, never plain MD5), and a security review can reason about the whole fleet uniformly. The cost of getting this layer wrong — data loss, regulatory penalties, reputational damage — makes it non-negotiable.
+
+### 10.3 Theoretical concepts
+
+- **`DelegatingFilterProxy`.** A standard servlet filter registered with the container that delegates to a Spring-managed bean — the bridge between the servlet world and the Spring context.
+- **`FilterChainProxy`.** The single Spring filter that holds one or more `SecurityFilterChain`s and routes each request to the first chain whose matcher applies.
+- **`SecurityFilterChain`.** An ordered list of security filters (e.g. `BearerTokenAuthenticationFilter`, `AuthorizationFilter`) plus the request matcher that selects it. In Boot 3 you publish it as a `@Bean`.
+- **`AuthenticationManager` / `AuthenticationProvider`.** Establish identity from credentials, producing an `Authentication` on success.
+- **`SecurityContextHolder`.** Holds the current `Authentication` for the duration of the request (thread-bound by default).
+- **Authorization.** `authorizeHttpRequests(...)` (URL-based) and `@PreAuthorize`/`@PostAuthorize` (method-based) decide access. The golden rule is `anyRequest().authenticated()` — **deny by default**.
+- **`DelegatingPasswordEncoder`.** The default `PasswordEncoder` (via `PasswordEncoderFactories.createDelegatingPasswordEncoder()`), storing a `{bcrypt}` prefix so algorithms can be upgraded over time.
+
+### 10.4 Architecture: how a request flows through the chain
+
+```mermaid
+flowchart TB
+    req[Incoming HTTP request] --> dfp[DelegatingFilterProxy]
+    dfp --> fcp[FilterChainProxy]
+    fcp --> match{Matches a SecurityFilterChain?}
+    match -- yes --> authn[Authentication filters<br/>establish identity]
+    authn --> ctx[SecurityContextHolder<br/>holds Authentication]
+    ctx --> authz[AuthorizationFilter<br/>authorizeHttpRequests rules]
+    authz -- permitted --> app[DispatcherServlet then Controller]
+    authz -- denied --> denied[403 Forbidden]
+    authn -- no credentials --> unauth[401 Unauthorized via entry point]
+```
+
+The `FilterChainProxy` picks the **first** matching chain, so chain ordering and matcher specificity matter. Within a chain, filters run in a fixed order; the `AuthorizationFilter` near the end consults your `authorizeHttpRequests` rules.
+
+```mermaid
+flowchart LR
+    cfg["@Bean SecurityFilterChain"] --> http["HttpSecurity builder"]
+    http --> r1["authorizeHttpRequests(...)"]
+    http --> r2["sessionManagement / csrf"]
+    http --> r3["formLogin / httpBasic / oauth2*"]
+    r1 --> built["http.build() -> SecurityFilterChain"]
+    r2 --> built
+    r3 --> built
+    built --> proxy["Registered in FilterChainProxy"]
+```
+
+### 10.5 Real example
+
+**Scenario.** A team is splitting one app into a public marketing site and an internal admin console served from the same Spring Boot 3 application. Public pages must be open; `/admin/**` must require an authenticated user with the `ADMIN` role; everything else must require authentication.
+
+**Problem.** With the removal of `WebSecurityConfigurerAdapter`, the team's old config no longer compiles, and they are unsure how to express role-based rules and a secure password store in the new DSL.
+
+**Solution.** Publish a single `SecurityFilterChain` bean using `authorizeHttpRequests`, enable form login for the browser flow, and supply an in-memory user store backed by a `DelegatingPasswordEncoder` (BCrypt).
+
+**Implementation.**
+
+```java
+package com.example.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class WebSecurityConfig {
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/public/**", "/css/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")   // ROLE_ADMIN
+                .anyRequest().authenticated())                   // deny by default
+            .formLogin(form -> form.permitAll())
+            .logout(logout -> logout.permitAll());
+        return http.build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        // {bcrypt}-prefixed; upgradeable algorithm storage
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    InMemoryUserDetailsManager users(PasswordEncoder encoder) {
+        UserDetails admin = User.withUsername("admin")
+            .password(encoder.encode("s3cret"))
+            .roles("ADMIN")
+            .build();
+        UserDetails staff = User.withUsername("staff")
+            .password(encoder.encode("p4ss"))
+            .roles("USER")
+            .build();
+        return new InMemoryUserDetailsManager(admin, staff);
+    }
+}
+```
+
+```java
+// Slice test: anonymous is redirected/denied, ADMIN passes, USER is forbidden.
+@WebMvcTest(AdminController.class)
+@Import(WebSecurityConfig.class)
+class AdminSecurityTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void anonymousCannotReachAdmin() throws Exception {
+        mvc.perform(get("/admin/dashboard"))
+           .andExpect(status().is3xxRedirection()); // sent to login
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void adminCanReachAdmin() throws Exception {
+        mvc.perform(get("/admin/dashboard")).andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    void userIsForbiddenFromAdmin() throws Exception {
+        mvc.perform(get("/admin/dashboard")).andExpect(status().isForbidden());
+    }
+}
+```
+
+**Result.** Public paths are open, `/admin/**` is restricted to `ROLE_ADMIN`, every other path requires authentication, and passwords are stored as `{bcrypt}` hashes. The config compiles cleanly under Spring Security 6 with no adapter base class.
+
+**Future improvements.** Replace the in-memory store with a JDBC/`UserDetailsService` backed by the database; add `@EnableMethodSecurity` for fine-grained `@PreAuthorize` rules; externalize role-to-URL mappings; and add a second `SecurityFilterChain` (with a higher-priority matcher) for an API segment.
+
+### 10.6 Exercises
+
+1. Name the filter that bridges the servlet container to the Spring-managed security filters.
+2. Why does the order of multiple `SecurityFilterChain` beans matter?
+3. What does `anyRequest().authenticated()` express, and where should it appear in the rule list?
+4. What does the `{bcrypt}` prefix produced by `DelegatingPasswordEncoder` enable?
+
+### 10.7 Challenges
+
+- **Challenge.** Add a second `SecurityFilterChain` with `@Order(1)` that matches `/api/**` and uses HTTP Basic, while the existing chain (default order) handles the browser flow. Verify each chain is selected for the right paths.
+
+### 10.8 Checklist
+
+- [ ] Security is configured via a `@Bean SecurityFilterChain` (no `WebSecurityConfigurerAdapter`).
+- [ ] Rules end with `anyRequest().authenticated()` — deny by default.
+- [ ] Passwords use `DelegatingPasswordEncoder` (BCrypt), never plain text.
+- [ ] Role checks use `hasRole` / `hasAuthority` with the correct `ROLE_` semantics.
+- [ ] Public paths are explicitly and minimally enumerated.
+
+### 10.9 Best practices
+
+- Keep the public allow-list short and explicit; deny everything else.
+- Prefer multiple focused `SecurityFilterChain` beans (API vs browser) over one overloaded chain.
+- Use the `DelegatingPasswordEncoder` so the stored hash format can evolve.
+- Reserve method security (`@PreAuthorize`) for fine-grained rules that URL matching cannot express.
+
+### 10.10 Anti-patterns
+
+- Re-introducing `WebSecurityConfigurerAdapter` patterns copied from Spring Security 5.
+- Opening endpoints with `permitAll()` "temporarily" and forgetting to lock them.
+- Encoding passwords with weak or no hashing (MD5, plain text).
+- Placing a broad `requestMatchers("/**").permitAll()` above narrower rules, defeating them.
+
+### 10.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Every endpoint requires login unexpectedly | Default chain secures all requests | Add explicit `permitAll()` for public paths |
+| `hasRole("ADMIN")` never matches | Authority stored without `ROLE_` prefix | Use `hasAuthority("ROLE_ADMIN")` or grant via `roles("ADMIN")` |
+| Config does not compile after upgrade | `WebSecurityConfigurerAdapter` removed | Migrate to a `@Bean SecurityFilterChain` |
+| Password comparison always fails | Raw password stored, no encoder | Define a `PasswordEncoder` bean and encode on save |
+| Wrong chain handles a request | Matcher too broad / wrong order | Make matchers specific; order chains with `@Order` |
+
+### 10.12 Official references
+
+- Spring Security architecture: https://docs.spring.io/spring-security/reference/servlet/architecture.html
+- `HttpSecurity` and the filter chain: https://docs.spring.io/spring-security/reference/servlet/configuration/java.html
+- Authorize HTTP requests: https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html
+- Password storage: https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html
+
+---
+
+## Chapter 11 — Stateless authentication with JWT
+
+### 11.1 Introduction
+
+A **JSON Web Token (JWT)** is a signed, self-contained credential a client presents on every request — typically in an `Authorization: Bearer <token>` header. Because the token carries the user's identity and authorities and is verifiable by signature, the server keeps **no session**: each request is authenticated from scratch, and the API scales horizontally without sticky sessions. This chapter shows how to validate JWTs in Spring Security 6 using the **resource-server** support, configure a **stateless** filter chain (`SessionCreationPolicy.STATELESS`), and map token claims to Spring authorities. We use Spring Security's resource-server machinery rather than parsing tokens by hand, because it validates signature, expiry, and issuer correctly and consistently.
+
+### 11.2 Business context
+
+Stateless JWT authentication is the default for modern REST APIs and microservices. It removes server-side session storage (no Redis-backed session cluster to operate), lets any instance serve any request, and integrates cleanly with API gateways. For the business this means cheaper horizontal scaling, simpler failover, and a uniform way to propagate identity between services. The trade-off is that tokens cannot be trivially revoked before expiry — so teams keep token lifetimes short and pair them with refresh flows or a denylist when immediate revocation is required.
+
+### 11.3 Theoretical concepts
+
+- **JWT structure.** Three Base64URL parts — header, payload (claims), signature — joined by dots. Claims include `iss` (issuer), `sub` (subject), `exp` (expiry), and custom claims like `scope` or `roles`.
+- **Signature.** Either symmetric (HMAC, shared secret) or asymmetric (RSA/EC, private key signs, public key verifies). Asymmetric is preferred when an external issuer signs tokens.
+- **Bearer token.** The token is presented as `Authorization: Bearer <jwt>`; the `BearerTokenAuthenticationFilter` extracts it.
+- **Resource server.** `oauth2ResourceServer(o -> o.jwt(...))` configures Spring to validate incoming JWTs via a `JwtDecoder`.
+- **Validation.** The decoder checks signature, `exp` (not expired), and — when configured — `iss`. Custom validators add audience or claim checks.
+- **Stateless policy.** `SessionCreationPolicy.STATELESS` tells Spring never to create or use an `HttpSession`; the `SecurityContext` lives only for the request.
+- **Authority mapping.** A `JwtAuthenticationConverter` turns claims (e.g. a `roles` array) into `GrantedAuthority` instances used by `authorizeHttpRequests` and `@PreAuthorize`.
+
+### 11.4 Architecture: validating a bearer token on each request
+
+```mermaid
+flowchart TB
+    client[Client sends Authorization Bearer JWT] --> filter[BearerTokenAuthenticationFilter]
+    filter --> decoder[JwtDecoder]
+    decoder --> sig{Signature valid?}
+    sig -- no --> deny401[401 Unauthorized]
+    sig -- yes --> exp{Not expired and issuer ok?}
+    exp -- no --> deny401
+    exp -- yes --> conv[JwtAuthenticationConverter<br/>claims to authorities]
+    conv --> ctx[SecurityContext authenticated]
+    ctx --> authz[authorizeHttpRequests and PreAuthorize]
+    authz -- permitted --> ctrl[Controller]
+    authz -- denied --> deny403[403 Forbidden]
+```
+
+```mermaid
+flowchart LR
+    chain["@Bean SecurityFilterChain"] --> stateless["sessionManagement STATELESS"]
+    chain --> csrf["csrf disabled for API"]
+    chain --> rs["oauth2ResourceServer jwt"]
+    rs --> jd["JwtDecoder bean"]
+    rs --> jac["JwtAuthenticationConverter"]
+    stateless --> build["http.build()"]
+    csrf --> build
+    rs --> build
+```
+
+### 11.5 Real example
+
+**Scenario.** A standalone REST API issues its own JWTs at `/auth/login` (symmetric HMAC signing with a configured secret) and must accept those tokens on all other endpoints, restricting `/api/admin/**` to tokens carrying an `admin` role claim — with **no session** created.
+
+**Problem.** The team initially parsed the token manually in a custom filter, duplicating signature and expiry checks and getting the authority mapping wrong, so `@PreAuthorize` never matched.
+
+**Solution.** Configure the app as a resource server with an HMAC `JwtDecoder`, set the chain to `STATELESS`, disable CSRF (no browser session), and map the `roles` claim to authorities with a `JwtAuthenticationConverter`.
+
+**Implementation.**
+
+```yaml
+# application.yml
+app:
+  jwt:
+    secret: ${JWT_SECRET}   # 256-bit Base64 secret, injected from the environment
+```
+
+```java
+package com.example.api.security;
+
+import com.nimbusds.jose.jwk.source.ImmutableSecret;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtValidators;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.web.SecurityFilterChain;
+
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+@Configuration
+@EnableMethodSecurity   // enables @PreAuthorize
+public class JwtSecurityConfig {
+
+    @Value("${app.jwt.secret}")
+    private String secret;
+
+    private SecretKeySpec key() {
+        byte[] bytes = Base64.getDecoder().decode(secret);
+        return new SecretKeySpec(bytes, "HmacSHA256");
+    }
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/auth/login", "/actuator/health/**").permitAll()
+                .requestMatchers("/api/admin/**").hasAuthority("ROLE_admin")
+                .anyRequest().authenticated())
+            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .csrf(csrf -> csrf.disable())                  // stateless API, no cookies
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(authoritiesConverter())));
+        return http.build();
+    }
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(key()).build();
+        // Validate expiry by default; add issuer/audience validators as needed.
+        OAuth2TokenValidator<Jwt> validators = JwtValidators.createDefault();
+        decoder.setJwtValidator(validators);
+        return decoder;
+    }
+
+    @Bean
+    JwtEncoder jwtEncoder() {
+        // Used by the /auth/login endpoint to mint tokens with the same key.
+        return new NimbusJwtEncoder(new ImmutableSecret<>(key()));
+    }
+
+    private JwtAuthenticationConverter authoritiesConverter() {
+        JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+        authorities.setAuthoritiesClaimName("roles"); // read the "roles" claim
+        authorities.setAuthorityPrefix("ROLE_");      // -> ROLE_admin, ROLE_user
+        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(authorities);
+        return converter;
+    }
+}
+```
+
+```java
+package com.example.api.auth;
+
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwsHeader;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+
+@RestController
+@RequestMapping("/auth")
+class AuthController {
+
+    private final JwtEncoder encoder;
+
+    AuthController(JwtEncoder encoder) { this.encoder = encoder; }
+
+    public record LoginRequest(String username, String password) {}
+    public record TokenResponse(String accessToken) {}
+
+    @PostMapping("/login")
+    TokenResponse login(@RequestBody LoginRequest req) {
+        // ... authenticate the credentials against your user store first ...
+        Instant now = Instant.now();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+            .issuer("https://api.example.com")
+            .issuedAt(now)
+            .expiresAt(now.plus(Duration.ofMinutes(15)))   // short-lived
+            .subject(req.username())
+            .claim("roles", List.of("admin"))               // mapped to ROLE_admin
+            .build();
+        JwsHeader header = JwsHeader.with(() -> "HS256").build();
+        String token = encoder.encode(JwtEncoderParameters.from(header, claims)).getTokenValue();
+        return new TokenResponse(token);
+    }
+}
+```
+
+```java
+// Token-driven slice test: no session, authorities mapped from the claim.
+@WebMvcTest(AdminController.class)
+@Import(JwtSecurityConfig.class)
+class JwtSecurityTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void rejectsRequestWithoutToken() throws Exception {
+        mvc.perform(get("/api/admin/stats")).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void allowsAdminClaim() throws Exception {
+        mvc.perform(get("/api/admin/stats")
+              .with(jwt().authorities(new SimpleGrantedAuthority("ROLE_admin"))))
+           .andExpect(status().isOk());
+    }
+
+    @Test
+    void forbidsNonAdminClaim() throws Exception {
+        mvc.perform(get("/api/admin/stats")
+              .with(jwt().authorities(new SimpleGrantedAuthority("ROLE_user"))))
+           .andExpect(status().isForbidden());
+    }
+}
+```
+
+**Result.** The API accepts only validly signed, unexpired tokens; the `roles` claim is mapped to `ROLE_` authorities so `hasAuthority("ROLE_admin")` and `@PreAuthorize` work; no `HttpSession` is ever created. Any instance can serve any request.
+
+**Future improvements.** Switch from a shared HMAC secret to asymmetric RSA/EC signing (so verifiers never hold the signing key), add a refresh-token endpoint with rotation, introduce a short denylist (by `jti`) for emergency revocation, and add an audience validator alongside the default expiry check.
+
+### 11.6 Exercises
+
+1. What three parts make up a JWT, and which one is verified on the server?
+2. Why disable CSRF on a stateless JWT API but keep it on a session-based browser app?
+3. What does `SessionCreationPolicy.STATELESS` change about the `SecurityContext` lifetime?
+4. How does a `JwtAuthenticationConverter` make `@PreAuthorize("hasRole('admin')")` work?
+
+### 11.7 Challenges
+
+- **Challenge.** Replace the HMAC `JwtDecoder` with an asymmetric one: sign tokens with an RSA private key in the issuer and verify with the public key via `NimbusJwtDecoder.withPublicKey(...)`. Confirm the verifier no longer needs the signing key.
+
+### 11.8 Checklist
+
+- [ ] The chain uses `SessionCreationPolicy.STATELESS`.
+- [ ] CSRF is disabled for the API chain (no cookies/session).
+- [ ] Tokens are validated for signature, expiry, and (where applicable) issuer/audience.
+- [ ] Claims are mapped to authorities via a `JwtAuthenticationConverter`.
+- [ ] Token lifetimes are short; a revocation strategy exists for emergencies.
+
+### 11.9 Best practices
+
+- Keep access tokens short-lived; pair with refresh tokens rather than long expiries.
+- Prefer asymmetric signing so resource servers hold only the public key.
+- Validate issuer and audience, not just expiry, to reject tokens minted for other services.
+- Never log full tokens; treat the signing secret/key as a high-sensitivity credential.
+
+### 11.10 Anti-patterns
+
+- Parsing and validating JWTs by hand in a custom filter instead of using the resource server.
+- Storing the signing secret in source control or a plain config file.
+- Allowing `none` algorithm or skipping signature verification.
+- Putting sensitive data in the (readable) payload and treating the token as confidential.
+
+### 11.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| 401 on a freshly issued token | Decoder key differs from signing key | Ensure encoder and `JwtDecoder` share the same key |
+| 401 after a while | Token expired | Shorten client refresh interval; check `exp` |
+| `@PreAuthorize` never matches | Claim not mapped to authorities | Configure `JwtAuthenticationConverter` claim name/prefix |
+| Session cookie still appears | Policy not `STATELESS` | Set `SessionCreationPolicy.STATELESS` |
+| CSRF 403 on POST to API | CSRF enabled on stateless chain | Disable CSRF for the API filter chain |
+| `InvalidBearerTokenException` | Malformed/altered token | Verify the `Authorization: Bearer` header and signature |
+
+### 11.12 Official references
+
+- OAuth2 resource server (JWT): https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+- `JwtAuthenticationConverter`: https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html#oauth2resourceserver-jwt-authorization-extraction
+- Session management: https://docs.spring.io/spring-security/reference/servlet/authentication/session-management.html
+- Testing OAuth2 (`jwt()` request post-processor): https://docs.spring.io/spring-security/reference/servlet/test/method.html
+
+---
+
+## Chapter 12 — OAuth2 / OIDC resource server and client
+
+### 12.1 Introduction
+
+Rather than minting your own tokens, most enterprises delegate identity to an **authorization server** (Keycloak, Okta, Microsoft Entra ID, Auth0, Google) and speak the **OAuth2** and **OpenID Connect (OIDC)** standards. Spring Security 6 supports both ends of this relationship: as a **resource server** it validates access tokens issued by a trusted authorization server (discovered via `issuer-uri` and verified against the issuer's JWKS), and as a **client** (`oauth2Login` / `oauth2Client`) it performs the authorization-code login flow on behalf of users and obtains tokens for calling downstream APIs. This chapter covers both roles and how they fit together.
+
+### 12.2 Business context
+
+Centralizing identity in an OIDC provider is what lets an organization enforce single sign-on, multi-factor authentication, and consistent least-privilege scopes across dozens of services — without each team re-implementing login. Auditors prefer it because identity, token issuance, and revocation live in one governed place. For developers, the win is concrete: point a service at an `issuer-uri` and it validates tokens correctly, including signature, expiry, issuer, and JWKS key rotation, with no custom crypto. The result is a fleet where adding a new secured service is configuration, not code.
+
+### 12.3 Theoretical concepts
+
+- **Authorization server.** Issues tokens after authenticating the user (the IdP / OIDC provider).
+- **Resource server.** An API that accepts and validates access tokens; it never sees credentials.
+- **Client.** An application that obtains tokens — for login (OIDC) or to call APIs on a user's behalf.
+- **`issuer-uri` and JWKS.** From the issuer URL, Spring fetches the OIDC discovery document and the **JWKS** (JSON Web Key Set) of public keys, validating token signatures and handling key rotation automatically.
+- **Scopes and authorities.** OAuth2 scopes arrive as `SCOPE_<name>` authorities by default; OIDC adds an `ID Token` describing the user.
+- **Authorization Code + PKCE.** The standard browser login flow; the client redirects to the IdP, receives a code, and exchanges it for tokens.
+- **`oauth2Login` vs `oauth2Client`.** `oauth2Login` logs users in (you get an authenticated session/principal); `oauth2Client` obtains and stores tokens so your app can call other APIs as the user (or as itself, client-credentials).
+
+### 12.4 Architecture: resource server and client together
+
+```mermaid
+flowchart TB
+    user[Browser user] --> webapp[Spring app as OAuth2 client]
+    webapp -- redirect to login --> idp[(Authorization Server / OIDC)]
+    idp -- authorization code --> webapp
+    webapp -- exchange code for tokens --> idp
+    webapp -- call API with access token --> api[Spring app as resource server]
+    api --> validate[Validate JWT via issuer-uri and JWKS]
+    validate -- valid --> data[Return protected data]
+    validate -- invalid --> reject[401 Unauthorized]
+    idp -. publishes JWKS .-> validate
+```
+
+```mermaid
+flowchart LR
+    cfg["spring.security.oauth2"] --> rscfg["resourceserver.jwt.issuer-uri"]
+    cfg --> clcfg["client.registration / provider"]
+    rscfg --> dec["JwtDecoder from issuer JWKS"]
+    clcfg --> reg["ClientRegistration"]
+    dec --> rschain["Resource-server SecurityFilterChain"]
+    reg --> clchain["Client SecurityFilterChain (oauth2Login)"]
+```
+
+### 12.5 Real example
+
+**Scenario.** A company runs Keycloak as its OIDC provider. A back-office **web app** must log users in via Keycloak (authorization-code flow) and then call a separate **orders API**. The orders API must accept only Keycloak-issued access tokens and restrict `/api/orders/refund` to the `orders:refund` scope.
+
+**Problem.** The team was validating tokens with a hard-coded public key that broke whenever Keycloak rotated its signing key, and the web app rolled its own login redirect handling.
+
+**Solution.** Configure the API as a resource server pointed at Keycloak's `issuer-uri` (so JWKS and rotation are automatic), and configure the web app with `oauth2Login` using a `ClientRegistration` so Spring drives the standard authorization-code flow.
+
+**Implementation — resource server (orders API).**
+
+```yaml
+# orders-api: application.yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # discovery + JWKS fetched from here; issuer + signature validated
+          issuer-uri: https://keycloak.example.com/realms/corp
+```
+
+```java
+package com.example.orders;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableMethodSecurity
+public class ResourceServerConfig {
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/actuator/health/**").permitAll()
+                .requestMatchers("/api/orders/refund").hasAuthority("SCOPE_orders:refund")
+                .requestMatchers("/api/orders/**").authenticated()
+                .anyRequest().authenticated())
+            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .csrf(csrf -> csrf.disable())
+            // issuer-uri drives the JwtDecoder; defaults validate issuer + signature + expiry
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+        return http.build();
+    }
+}
+```
+
+**Implementation — OAuth2 client (web app).**
+
+```yaml
+# webapp: application.yml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: backoffice
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            scope: openid, profile, orders:read, orders:refund
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+        provider:
+          keycloak:
+            issuer-uri: https://keycloak.example.com/realms/corp
+```
+
+```java
+package com.example.backoffice;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class ClientSecurityConfig {
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/error", "/css/**").permitAll()
+                .anyRequest().authenticated())
+            // authorization-code login against Keycloak; session-based browser flow
+            .oauth2Login(Customizer.withDefaults());
+        return http.build();
+    }
+}
+```
+
+```java
+package com.example.backoffice;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@RestController
+class OrdersProxyController {
+
+    private final WebClient webClient = WebClient.create("https://orders.example.com");
+
+    // Spring injects the authorized client; we forward its access token to the API.
+    @GetMapping("/my-orders")
+    String myOrders(@RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient client) {
+        return webClient.get()
+            .uri("/api/orders")
+            .headers(h -> h.setBearerAuth(client.getAccessToken().getTokenValue()))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+```java
+// Resource-server test: scope-based access enforced from the token.
+@WebMvcTest(OrdersController.class)
+@Import(ResourceServerConfig.class)
+class ResourceServerScopeTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void refundRequiresScope() throws Exception {
+        mvc.perform(post("/api/orders/refund")
+              .with(jwt().authorities(new SimpleGrantedAuthority("SCOPE_orders:read"))))
+           .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void refundAllowedWithScope() throws Exception {
+        mvc.perform(post("/api/orders/refund")
+              .with(jwt().authorities(new SimpleGrantedAuthority("SCOPE_orders:refund"))))
+           .andExpect(status().isOk());
+    }
+}
+```
+
+**Result.** The orders API validates every token against Keycloak's published JWKS — key rotation is handled automatically and the brittle hard-coded key is gone. The web app logs users in through the standard authorization-code flow and forwards their access token to the API. The `orders:refund` scope gates the refund endpoint.
+
+**Future improvements.** Add a custom `JwtAuthenticationConverter` to also map Keycloak realm/client roles (not just scopes), enable PKCE explicitly for public clients, add client-credentials registrations for service-to-service calls, and centralize the `issuer-uri` in a config server so all services share one trusted issuer.
+
+### 12.6 Exercises
+
+1. What does Spring fetch from the `issuer-uri`, and why does that make key rotation transparent?
+2. How does an OAuth2 scope appear as a Spring authority by default?
+3. When would you use `oauth2Login` versus `oauth2Client`?
+4. Why should a resource server never see the user's credentials?
+
+### 12.7 Challenges
+
+- **Challenge.** Add a `JwtAuthenticationConverter` to the orders API that maps Keycloak's `realm_access.roles` claim into `ROLE_` authorities, then guard an endpoint with `@PreAuthorize("hasRole('manager')")` and test it with the `jwt()` post-processor.
+
+### 12.8 Checklist
+
+- [ ] The resource server uses `issuer-uri` (not a hard-coded key) so JWKS rotation is automatic.
+- [ ] Token validation includes issuer, signature, and expiry by default.
+- [ ] Scopes/roles are mapped to authorities and enforced (`SCOPE_*` / `ROLE_*`).
+- [ ] The client uses the authorization-code flow via `oauth2Login`/`ClientRegistration`.
+- [ ] Client secrets and issuer URLs come from the environment/config, not source.
+
+### 12.9 Best practices
+
+- Trust a single, well-known issuer per environment; validate `iss` strictly.
+- Let `issuer-uri` discovery handle JWKS and rotation instead of pinning keys.
+- Map both scopes and roles when your IdP carries authorization in role claims.
+- Use PKCE for public clients and the authorization-code flow rather than implicit.
+- Keep the resource server stateless; keep the browser client's login session minimal.
+
+### 12.10 Anti-patterns
+
+- Hard-coding a signing public key, breaking on rotation.
+- Accepting tokens without validating the issuer (any IdP's token would pass).
+- Building a custom OAuth2 login redirect instead of using `oauth2Login`.
+- Sharing one bearer token across services with mismatched audiences.
+- Putting client secrets in `application.yml` committed to git.
+
+### 12.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| 401 for all tokens | Wrong `issuer-uri` | Match it exactly to the token's `iss` claim |
+| 401 after IdP key rotation | Pinned key instead of JWKS | Use `issuer-uri`; let Spring fetch JWKS |
+| 403 despite valid login | Scope/role not mapped to authority | Add a `JwtAuthenticationConverter` for roles |
+| Login loops/redirect mismatch | `redirect-uri` not registered in IdP | Register `{baseUrl}/login/oauth2/code/{registrationId}` |
+| `invalid_token` audience error | Token minted for another resource | Validate/align the `aud` claim |
+| Startup fails fetching discovery | IdP unreachable at boot | Verify network/issuer URL; consider lazy decoder init |
+
+### 12.12 Official references
+
+- OAuth2 resource server (issuer-uri / JWKS): https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+- OAuth2 login: https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html
+- OAuth2 client: https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html
+- OIDC and OAuth2 overview: https://docs.spring.io/spring-security/reference/servlet/oauth2/index.html
+
+---
+
+> **End of Part IV.** You now command Spring Security 6 on Spring Boot 3: the **filter-chain architecture** and the lambda `SecurityFilterChain` DSL (Chapter 10), **stateless JWT authentication** with resource-server validation and `SessionCreationPolicy.STATELESS` (Chapter 11), and standards-based **OAuth2 / OIDC** as both resource server (`issuer-uri` + JWKS) and client (`oauth2Login` / `oauth2Client`) (Chapter 12) — all under a deny-by-default, validate-strictly posture. **Part V — Reactive** (Chapters 13–15) shifts from blocking servlets to the non-blocking stack: **Project Reactor** (`Mono`/`Flux` and backpressure), **Spring WebFlux** (functional and annotated reactive endpoints), and **R2DBC** (reactive relational data access).
+
 <!--APPEND-PARTE-II-->
