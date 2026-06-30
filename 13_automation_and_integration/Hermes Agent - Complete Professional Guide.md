@@ -5772,4 +5772,1186 @@ Local agents for non-developers; privacy-first research; pairing with the Hermes
 
 > **End of Part IV.** You can now authenticate and configure every Hermes provider class — the zero-config Nous Portal, the direct cloud providers (OpenAI, Anthropic, Gemini), the meta-provider OpenRouter, the open-weights bridge Hugging Face, and fully sovereign local inference via llama.cpp/MLX/vLLM, Ollama, and LM Studio — and you can chain them with fallbacks and routing. **Part V — Persistent Memory** (Chapters 31–37) turns to what makes Hermes more than a model wrapper: memory that persists, retrieves, and curates itself across sessions.
 
+## Part V – Persistent Memory
+
+Memory is the feature that separates Hermes from a chat window. A model is stateless; an agent must not be. Hermes layers **two natures of memory** (declarative facts and the user model) over **three concrete stores** (`MEMORY.md`, `USER.md`, and a SQLite database with FTS5 full-text search), then adds machinery to *retrieve* the right slice into context, *compress* what doesn't fit, *persist* what matters across sessions, *model* the user over time, and *learn* continuously. Part V dissects each layer. By the end you will treat memory not as a black box but as an engineered subsystem you can inspect, tune, version, and even swap for an external provider.
+
+> **One sentence to carry through the part.** Hermes memory is *write-curated and read-retrieved*: the agent decides what to remember (and nudges itself to do so), and at each turn it pulls back only the relevant fragments — never the whole history.
+
+---
+
+## Chapter 31 — Core Concepts
+
+### 31.1 Introduction
+
+Before structure or retrieval, you need the vocabulary. This chapter establishes what "memory" means in Hermes: the distinction between **declarative** memory (facts about the world and the user) and **procedural** memory (Skills — covered in Part VI); the three physical stores; the idea of **periodic nudges** that prompt the agent to persist knowledge; and the principle that memory is **curated, not hoarded**. Everything in Part V builds on these concepts.
+
+### 31.2 Chapter objectives
+
+(1) Define declarative vs procedural memory in Hermes; (2) name the three stores (`MEMORY.md`, `USER.md`, SQLite+FTS5) and their roles; (3) explain nudges and curation; (4) describe how memory enters a prompt; (5) know how to enable, inspect, and reset memory.
+
+### 31.3 Business context
+
+The three enterprise pains from Chapter 1 — amnesia, stagnation, lock-in — are addressed largely here. Persistent, curated memory means the agent doesn't re-learn the team's conventions every session; knowledge becomes an **accumulating asset** rather than a per-session cost. For a CTO, the read is concrete: memory is the mechanism by which "usage turns into capability."
+
+### 31.4 Theoretical foundations
+
+Hermes implements the cognitive-science split between **declarative** ("knowing that") and **procedural** ("knowing how") memory. Declarative memory lives in human-readable Markdown plus an indexed database; procedural memory lives in Skills. Within declarative memory there is a further split: **world/task facts** (`MEMORY.md`) and **the user model** (`USER.md`). The SQLite database (`~/.hermes/state.db`) stores conversation history and is searchable via **FTS5**, SQLite's full-text engine, so the agent can retrieve relevant past turns by query rather than recency alone. Periodic **nudges** are self-prompts the agent injects to decide whether something from the current session should be persisted — this is what makes memory active rather than passive.
+
+> **Java parallel.** Think of `MEMORY.md`/`USER.md` as human-editable config/state files and the SQLite+FTS5 store as an embedded **Lucene-like index** over history. The nudge is a scheduled `@PostConstruct`-style hook that asks "should this be written through to durable storage?"
+
+### 31.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph decl["Declarative memory"]
+        mem[MEMORY.md<br/>world/task facts]
+        usr[USER.md<br/>user model]
+        db[(SQLite state.db<br/>+ FTS5 index)]
+    end
+    proc[Skills<br/>procedural memory - Part VI]
+    agent[AIAgent loop] --> decl
+    agent --> proc
+    nudge[Periodic nudge] -.writes.-> mem
+    nudge -.updates.-> usr
+    agent -.appends turns.-> db
+```
+
+### 31.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant M as MEMORY.md / USER.md
+    participant DB as SQLite + FTS5
+    U->>A: message
+    A->>M: load stable facts + user model
+    A->>DB: FTS5 search relevant past turns
+    DB-->>A: top matching fragments
+    A->>A: build prompt (facts + retrieved context + turn)
+    A-->>U: response
+    Note over A: every N turns -> nudge
+    A->>M: persist new durable facts (curated)
+    A->>DB: append this turn
+```
+
+### 31.7 Complete example
+
+**Scenario.** A developer tells the agent "we deploy on Fridays and use trunk-based development" once. Weeks later, in a fresh session, the agent should already know this.
+
+**Problem.** Stateless tools force the user to repeat context every session.
+
+**Solution.** Enable memory; the agent persists the fact to `MEMORY.md` via a nudge and retrieves it in future sessions.
+
+**Architecture.** AIAgent → `MEMORY.md` (durable fact) + SQLite/FTS5 (searchable history).
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true            # MEMORY.md + USER.md + SQLite/FTS5
+  nudge_every: 15          # periodically decide what to persist
+```
+
+```bash
+hermes run "Note that we deploy on Fridays and use trunk-based development."
+# weeks later, new session:
+hermes run "When should I avoid merging risky changes?"
+# -> the agent recalls the Friday-deploy fact from MEMORY.md
+```
+
+**Tests.**
+
+```bash
+hermes memory show           # inspect MEMORY.md / USER.md
+cat ~/.hermes/MEMORY.md       # the fact should be present
+```
+
+**Result.** Cross-session recall: the deploy convention persists without being repeated.
+
+**Future improvements.** Add structured retrieval (Ch 33), compression for long sessions (Ch 34), and an external memory provider for richer recall (Ch 35).
+
+### 31.8 Source code
+
+```python
+class MemoryManager:
+    def __init__(self, home: Path):
+        self.memory_md = home / "MEMORY.md"     # world/task facts
+        self.user_md = home / "USER.md"         # user model
+        self.db = sqlite_connect(home / "state.db")  # + FTS5 virtual table
+
+    def load_stable(self) -> str:
+        return self.memory_md.read_text() + "\n" + self.user_md.read_text()
+
+    def maybe_nudge(self, turn_index: int, every: int) -> bool:
+        return turn_index % every == 0          # periodic persist-decision
+```
+
+### 31.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.enabled` | `true` | Master switch |
+| `memory.nudge_every` | `15` | Turns between persist-decisions |
+| `MEMORY.md` | file | World/task facts (human-editable) |
+| `USER.md` | file | User model (human-editable) |
+| `state.db` | SQLite | History + FTS5 index |
+
+### 31.10 Real-world use cases
+
+An engineering assistant that remembers conventions; a support agent that recalls a customer's history; a research bot that accumulates findings across days.
+
+### 31.11 Exercises
+
+1. Distinguish declarative from procedural memory in Hermes with one example each.
+2. What is the role of FTS5 in retrieval?
+3. Explain a nudge in one sentence.
+
+### 31.12 Challenges
+
+- **Challenge 1.** Teach the agent three team facts, restart, and prove recall in a new session.
+- **Challenge 2.** Manually edit `MEMORY.md` to correct a fact and verify the agent uses the correction.
+
+### 31.13 Checklist
+
+- [ ] `memory.enabled: true`.
+- [ ] I can locate and read `MEMORY.md` and `USER.md`.
+- [ ] I understand nudges and curation.
+- [ ] FTS5-backed history exists in `state.db`.
+
+### 31.14 Best practices
+
+- Treat `MEMORY.md`/`USER.md` as versionable team assets.
+- Let curation work — don't hoard everything; keep facts durable and concise.
+- Review memory periodically for stale or wrong facts.
+
+### 31.15 Anti-patterns
+
+- Disabling memory and then complaining the agent forgets.
+- Dumping raw transcripts into `MEMORY.md` instead of curated facts.
+- Storing secrets in plaintext memory files.
+
+### 31.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Agent forgets across sessions | Memory disabled | Set `memory.enabled: true` |
+| Nothing persisted | Nudge interval too long / nothing durable | Lower `nudge_every`; state facts explicitly |
+| Wrong fact recalled | Stale `MEMORY.md` | Edit the file; remove the bad fact |
+| Recall misses obvious turns | FTS index not built | Verify `state.db` and re-index |
+
+### 31.17 Official references
+
+- Memory overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- Architecture (memory subsystem): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Features overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 32 — Memory Structure
+
+### 32.1 Introduction
+
+This chapter opens the files and the database. You will learn exactly what belongs in `MEMORY.md` versus `USER.md`, how the SQLite schema and the FTS5 virtual table are organized, and how context **files** (`.hermes.md`, `AGENTS.md`, `CLAUDE.md`, `SOUL.md`) and **context references** (the `@`-syntax for files, folders, git diffs, and URLs) layer on top of the core stores. Understanding the structure is what lets you curate memory deliberately instead of hoping the agent does it for you.
+
+### 32.2 Chapter objectives
+
+(1) Describe the role of each memory file; (2) understand the SQLite + FTS5 schema at a conceptual level; (3) use context files to seed durable instructions; (4) use `@`-references to pull files/diffs/URLs into context; (5) inspect and edit the structure safely.
+
+### 32.3 Business context
+
+A well-structured memory is auditable and portable: a new team member (or an auditor) can read `MEMORY.md` and `SOUL.md` and understand the agent's knowledge and personality without reading code. Context files turn organizational standards (`AGENTS.md`) into durable, versioned inputs — the agent's "constitution" lives in git alongside the codebase.
+
+### 32.4 Theoretical foundations
+
+The stores divide by **stability and subject**:
+
+- `MEMORY.md` — durable world/task facts the agent curates over time.
+- `USER.md` — the evolving user model (preferences, role, communication style).
+- `state.db` (SQLite) — conversation turns; an **FTS5** virtual table indexes their text for query-based retrieval.
+- **Context files** — `.hermes.md` / `AGENTS.md` / `CLAUDE.md` / `SOUL.md`: project- or persona-level instructions loaded into the stable prompt tier. `SOUL.md` shapes personality; `AGENTS.md`/`CLAUDE.md` carry conventions; `.hermes.md` is Hermes-specific.
+- **Context references** — `@path/to/file`, `@folder/`, `@git-diff`, `@https://url` syntax that injects specific content on demand without permanently writing it to memory.
+
+This separation maps cleanly onto the prompt tiers (Ch 34): context files and curated facts are *stable*; retrieved turns and references are *context*.
+
+> **Java parallel.** Context files are like `application.yml` profiles checked into the repo; `@`-references are like `@Value`/`@PropertySource` pulls that inject a specific resource at runtime; `state.db`+FTS5 is the embedded search index.
+
+### 32.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph stable["Stable inputs"]
+        ctxfiles[Context files<br/>.hermes.md / AGENTS.md<br/>CLAUDE.md / SOUL.md]
+        memmd[MEMORY.md]
+        usermd[USER.md]
+    end
+    subgraph dyn["On-demand / dynamic"]
+        refs["@-references<br/>files / folders / git diff / URLs"]
+        fts[(SQLite + FTS5<br/>conversation turns)]
+    end
+    pb[prompt_builder] --> stable
+    pb --> dyn
+```
+
+### 32.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant CF as Context files
+    participant FTS as SQLite/FTS5
+    U->>A: "Review @src/auth.py against @AGENTS.md"
+    A->>CF: load AGENTS.md (stable conventions)
+    A->>A: resolve @src/auth.py reference
+    A->>FTS: search related past decisions
+    FTS-->>A: relevant turns
+    A-->>U: review grounded in conventions + code + history
+```
+
+### 32.7 Complete example
+
+**Scenario.** A team wants the agent to always follow their coding conventions and to review a specific file against them.
+
+**Problem.** Conventions live in people's heads; the agent doesn't apply them consistently.
+
+**Solution.** Put conventions in `AGENTS.md` (a context file), and use `@`-references to pull the target file and the conventions into a review.
+
+**Architecture.** `AGENTS.md` (stable) + `@src/auth.py` (reference) → prompt_builder → review.
+
+**Implementation.**
+
+```bash
+cat > AGENTS.md <<'EOF'
+# Engineering conventions
+- All public functions require type hints and docstrings.
+- No secrets in code; use environment variables.
+- Errors must be logged with context, never swallowed.
+EOF
+```
+
+```bash
+hermes run "Review @src/auth.py against @AGENTS.md and list violations."
+```
+
+**Tests.**
+
+```bash
+hermes memory show --context-files       # confirm AGENTS.md is loaded
+```
+
+**Result.** A review grounded in versioned, durable conventions plus the exact file content — repeatable across the team.
+
+**Future improvements.** Add a `SOUL.md` to fix the agent's tone, and reference git diffs (`@git-diff`) to review only what changed in a PR.
+
+### 32.8 Source code
+
+```sql
+-- Conceptual schema for conversation history + FTS5
+CREATE TABLE turns (
+    id INTEGER PRIMARY KEY,
+    session_id TEXT,
+    role TEXT,            -- user / assistant / tool
+    content TEXT,
+    created_at TEXT
+);
+
+CREATE VIRTUAL TABLE turns_fts USING fts5(
+    content,
+    content='turns',
+    content_rowid='id'
+);
+-- query: SELECT * FROM turns_fts WHERE turns_fts MATCH ?;
+```
+
+### 32.9 Configuration
+
+| File / Key | Role | Tier |
+|------------|------|------|
+| `MEMORY.md` | Curated world/task facts | stable |
+| `USER.md` | User model | stable |
+| `SOUL.md` | Personality/tone | stable |
+| `AGENTS.md` / `CLAUDE.md` / `.hermes.md` | Conventions/instructions | stable |
+| `@file` / `@folder/` / `@git-diff` / `@url` | On-demand references | context |
+| `state.db` (FTS5) | Searchable history | context |
+
+### 32.10 Real-world use cases
+
+Convention-driven code review; persona-consistent assistants via `SOUL.md`; PR review via `@git-diff`; documentation grounding via `@folder/` references.
+
+### 32.11 Exercises
+
+1. Decide whether each of these belongs in `MEMORY.md`, `USER.md`, or `AGENTS.md`: a coding standard, the user's preferred language, a learned project fact.
+2. Write an `@`-reference that pulls a git diff into context.
+3. Explain the role of the FTS5 virtual table.
+
+### 32.12 Challenges
+
+- **Challenge 1.** Author a `SOUL.md` and demonstrate a consistent tone change across sessions.
+- **Challenge 2.** Build a PR-review command using `@git-diff` and `@AGENTS.md`.
+
+### 32.13 Checklist
+
+- [ ] I know what goes in each memory file.
+- [ ] Context files are versioned in the repo.
+- [ ] I can use `@`-references for files, folders, diffs, and URLs.
+- [ ] I understand the FTS5 history table conceptually.
+
+### 32.14 Best practices
+
+- Keep `AGENTS.md`/`SOUL.md` in git next to the code they govern.
+- Use `@`-references for one-off content; reserve `MEMORY.md` for durable facts.
+- Keep each file focused — facts in `MEMORY.md`, user model in `USER.md`, tone in `SOUL.md`.
+
+### 32.15 Anti-patterns
+
+- Stuffing transient file contents permanently into `MEMORY.md`.
+- Mixing personality, conventions, and facts in one giant file.
+- Referencing huge folders with `@` and blowing the context window.
+
+### 32.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Conventions ignored | Context file not discovered | Place `AGENTS.md` in the working dir / project root |
+| `@`-reference empty | Bad path/URL | Verify the path; check URL reachability |
+| Context overflow | Over-broad `@folder/` | Narrow the reference; rely on FTS retrieval |
+| Tone inconsistent | No `SOUL.md` | Add a persona file |
+
+### 32.17 Official references
+
+- Context files: https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files
+- Context references (@-syntax): https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 33 — Knowledge Retrieval
+
+### 33.1 Introduction
+
+A growing memory is useless if the agent can't find the right fragment at the right moment. **Retrieval** is the read path: given the current turn, pull the most relevant facts and past turns into context — and nothing more. Hermes does this with **FTS5 full-text search** over history plus **LLM summarization** to condense matches into recallable form. This chapter covers how retrieval works, how to tune it, and how it keeps context windows small without losing relevant knowledge.
+
+### 33.2 Chapter objectives
+
+(1) Explain FTS5-based retrieval; (2) understand LLM summarization for recall; (3) tune how much history is retrieved; (4) balance recall against context budget; (5) troubleshoot poor retrieval.
+
+### 33.3 Business context
+
+Retrieval quality is felt directly by users: an agent that "remembers the relevant thing" feels intelligent; one that retrieves noise or misses the obvious feels broken. Good retrieval also controls **cost** — pulling only relevant fragments keeps prompts (and bills) small, which matters at always-on scale.
+
+### 33.4 Theoretical foundations
+
+Hermes uses **lexical retrieval** (FTS5) as its core recall mechanism: the current query is matched against the indexed conversation turns, returning the top hits by relevance. Because raw turns can be verbose, **LLM summarization** condenses retrieved material into compact, recall-ready statements before they enter the prompt's context tier. This two-step pattern — *retrieve then summarize* — keeps recall both relevant and token-efficient. External memory providers (Ch 35) can layer semantic/vector retrieval on top, but the built-in path is FTS5 + summarization.
+
+> **Java parallel.** This is a classic search-then-digest pipeline: FTS5 is your Lucene query; the summarizer is a post-processing reducer that turns raw hits into a concise context object.
+
+### 33.5 Architecture
+
+```mermaid
+flowchart LR
+    turn[Current turn] --> q[Build FTS5 query]
+    q --> fts[(SQLite FTS5<br/>conversation turns)]
+    fts --> hits[Top-k matches]
+    hits --> sum[LLM summarization<br/>for recall]
+    sum --> ctx[Context tier<br/>into prompt]
+```
+
+### 33.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant F as FTS5
+    participant S as Summarizer (LLM)
+    participant P as prompt_builder
+    A->>F: MATCH query(current turn)
+    F-->>A: top-k relevant turns
+    A->>S: summarize hits for recall
+    S-->>A: compact recall snippet
+    A->>P: inject into context tier
+    P-->>A: prompt with relevant, condensed memory
+```
+
+### 33.7 Complete example
+
+**Scenario.** Over months, the agent has thousands of turns. A user asks a question whose answer was decided long ago.
+
+**Problem.** Sending all history is impossible; recency-only would miss the old decision.
+
+**Solution.** FTS5 retrieves the relevant past turns by query; the summarizer condenses them into a short recall snippet for the prompt.
+
+**Architecture.** Query → FTS5 top-k → LLM summarization → context tier.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  retrieval:
+    top_k: 8                 # how many matches to pull
+    summarize: true          # condense matches via the auxiliary model
+```
+
+```bash
+hermes run "What did we decide about the retry policy back in Q1?"
+# FTS5 finds the Q1 decision turns; summarizer condenses; agent answers correctly
+```
+
+**Tests.**
+
+```bash
+hermes memory search "retry policy"     # inspect what FTS5 returns
+```
+
+**Result.** Accurate recall of an old decision without flooding the context window.
+
+**Future improvements.** Add a vector/semantic external provider (Ch 35) for paraphrase-tolerant recall; tune `top_k` per workload.
+
+### 33.8 Source code
+
+```python
+def retrieve_context(query: str, db, summarizer, top_k: int, summarize: bool) -> str:
+    hits = db.fts5_search(query, limit=top_k)          # lexical retrieval
+    if not hits:
+        return ""
+    if summarize:
+        return summarizer.summarize_for_recall(hits)   # condense via aux model
+    return "\n".join(h.content for h in hits)
+```
+
+### 33.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.retrieval.top_k` | `8` | Matches retrieved per query |
+| `memory.retrieval.summarize` | `true` | Condense via the auxiliary model |
+| `state.db` FTS5 | index | Backing search index |
+
+### 33.10 Real-world use cases
+
+Recalling old design decisions; support agents pulling a customer's relevant history; research bots resurfacing prior findings by topic.
+
+### 33.11 Exercises
+
+1. Why retrieve-then-summarize instead of sending raw hits?
+2. What does `top_k` trade off?
+3. When would lexical FTS5 retrieval miss a relevant turn?
+
+### 33.12 Challenges
+
+- **Challenge 1.** Tune `top_k` and measure recall vs prompt size on a long history.
+- **Challenge 2.** Find a paraphrase that FTS5 misses and argue for a semantic provider.
+
+### 33.13 Checklist
+
+- [ ] FTS5 retrieval is working (`memory search` returns hits).
+- [ ] Summarization is enabled for token efficiency.
+- [ ] `top_k` tuned for the workload.
+
+### 33.14 Best practices
+
+- Keep `top_k` modest; summarize to control tokens.
+- Use specific, keyword-rich phrasing to help lexical retrieval.
+- Add a semantic provider when paraphrase-recall matters.
+
+### 33.15 Anti-patterns
+
+- Setting `top_k` very high and bloating context.
+- Disabling summarization and pasting raw verbose turns.
+- Relying on lexical match for fuzzy/semantic queries.
+
+### 33.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Misses obvious facts | Lexical mismatch | Rephrase with keywords; add semantic provider |
+| Context too large | `top_k` high / no summarize | Lower `top_k`; enable summarization |
+| Irrelevant recall | Noisy index | Curate history; raise relevance threshold |
+| No results | FTS index empty | Verify `state.db` and indexing |
+
+### 33.17 Official references
+
+- Memory / retrieval: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Memory providers: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+
+---
+
+## Chapter 34 — Context Engineering
+
+### 34.1 Introduction
+
+The context window is finite; memory is not. **Context engineering** is the discipline of fitting the *right* knowledge into a bounded prompt every turn. Hermes structures this with **three prompt tiers** — *stable*, *context*, *volatile* — and a dedicated `context_compressor.py` that summarizes middle (older) turns to reclaim space without losing the thread. This chapter is the heart of Part V's "read path": how Hermes decides what occupies the window, in what order, and what gets compressed away.
+
+### 34.2 Chapter objectives
+
+(1) Explain the stable→context→volatile tiering; (2) understand `context_compressor.py` and middle-turn summarization; (3) relate tiering to prompt caching (Ch 24); (4) tune compression thresholds; (5) troubleshoot context overflow and loss.
+
+### 34.3 Business context
+
+Context engineering directly drives **cost, latency, and quality**. Too much context is slow and expensive; too little makes the agent forgetful mid-task. Getting the tiers and compression right is what makes an always-on agent both affordable and coherent over long sessions — a prerequisite for production deployment.
+
+### 34.4 Theoretical foundations
+
+Hermes assembles every prompt from three tiers:
+
+- **Stable** — system prompt, Skills metadata, context files, curated facts. Rarely changes; ideal for **prompt caching** (Ch 24).
+- **Context** — retrieved memory (Ch 33) and compressed summaries of earlier turns. Changes slowly.
+- **Volatile** — the current turn and the most recent exchanges. Changes every turn.
+
+When a session grows long, `context_compressor.py` **summarizes the middle** — older turns that are no longer volatile but shouldn't be dropped — collapsing them into compact summaries that live in the context tier. The newest turns stay verbatim (volatile); the oldest durable facts stay in stable; the squeeze happens in the middle. This preserves the conversational thread while bounding token count.
+
+> **Java parallel.** Tiering is like an L1/L2/L3 cache hierarchy for the prompt: hot, immutable data (stable) is cached cheaply; warm data (context) is summarized; the live working set (volatile) is full-fidelity.
+
+### 34.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph window["Prompt window (bounded)"]
+        stable["STABLE<br/>system + skills + context files + facts<br/>(cacheable)"]
+        context["CONTEXT<br/>retrieved memory + compressed middle turns"]
+        volatile["VOLATILE<br/>current + recent turns (verbatim)"]
+    end
+    cc[context_compressor.py] -->|summarize older turns| context
+    stable --> llm[(LLM call)]
+    context --> llm
+    volatile --> llm
+```
+
+### 34.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant CC as context_compressor
+    participant LLM as Provider
+    A->>PB: assemble prompt
+    PB->>PB: place stable + retrieved context + volatile
+    alt session long / over budget
+        PB->>CC: compress middle turns
+        CC-->>PB: compact summaries
+    end
+    PB->>LLM: send tiered prompt (stable prefix cacheable)
+    LLM-->>A: response
+```
+
+### 34.7 Complete example
+
+**Scenario.** A multi-hour debugging session has grown past the context window, but the early reproduction steps still matter.
+
+**Problem.** Dropping old turns loses the repro; keeping them all overflows the window.
+
+**Solution.** Let `context_compressor.py` summarize the middle turns into a compact recap; keep recent turns verbatim and the stable tier cached.
+
+**Architecture.** Stable (cached) + context (compressed middle + retrieved) + volatile (recent).
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+context:
+  max_tokens: 120000
+  compression:
+    enabled: true
+    trigger_ratio: 0.8        # compress when 80% of budget is used
+    keep_recent_turns: 12     # never compress the latest 12 turns
+prompt_caching:
+  enabled: true               # cache the stable prefix (Anthropic; Ch 24)
+```
+
+```bash
+hermes run "Continue debugging; remember the repro from the start of the session."
+# middle turns are summarized; repro is preserved in a compact form
+```
+
+**Tests.**
+
+```bash
+hermes context show          # inspect tier sizes and what was compressed
+```
+
+**Result.** The session continues coherently within budget; the early repro survives as a summary; cost stays bounded.
+
+**Future improvements.** Pair with retrieval (Ch 33) so compressed-away detail can still be pulled back via FTS5 if needed; tune `keep_recent_turns` per task type.
+
+### 34.8 Source code
+
+```python
+def build_tiered_prompt(stable, retrieved, turns, budget, compressor):
+    volatile = turns[-CFG.keep_recent_turns:]
+    middle = turns[:-CFG.keep_recent_turns]
+    used = token_count(stable) + token_count(retrieved) + token_count(volatile)
+    if used > budget * CFG.trigger_ratio and middle:
+        retrieved += compressor.summarize(middle)   # collapse the middle
+    return assemble(stable, retrieved, volatile)     # stable prefix is cacheable
+```
+
+### 34.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `context.max_tokens` | `120000` | Window budget |
+| `context.compression.enabled` | `true` | Summarize middle turns |
+| `context.compression.trigger_ratio` | `0.8` | When to start compressing |
+| `context.compression.keep_recent_turns` | `12` | Verbatim recent turns |
+| `prompt_caching.enabled` | `true` | Cache stable prefix (Ch 24) |
+
+### 34.10 Real-world use cases
+
+Long debugging or research sessions; always-on assistants on a token budget; cost-sensitive deployments combining caching and compression.
+
+### 34.11 Exercises
+
+1. Name the three tiers and what belongs in each.
+2. Why is the *middle* compressed rather than the newest or oldest content?
+3. How does tiering enable prompt caching?
+
+### 34.12 Challenges
+
+- **Challenge 1.** Run a long session with and without compression; compare cost and coherence.
+- **Challenge 2.** Tune `keep_recent_turns` and `trigger_ratio` for a coding workload and justify the values.
+
+### 34.13 Checklist
+
+- [ ] I understand stable/context/volatile tiers.
+- [ ] Compression is enabled with sensible thresholds.
+- [ ] Stable prefix is structured for caching.
+- [ ] Recent turns are preserved verbatim.
+
+### 34.14 Best practices
+
+- Keep the stable tier truly stable to maximize cache hits.
+- Compress the middle; never compress the freshest turns.
+- Combine compression with retrieval so detail can be recalled if needed.
+
+### 34.15 Anti-patterns
+
+- Putting volatile data in the stable tier (kills caching).
+- Aggressive compression that erases task-critical detail.
+- Ignoring the window budget until the provider errors.
+
+### 34.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Context overflow error | Budget too small / no compression | Enable compression; lower `trigger_ratio` |
+| Agent loses the thread | Over-aggressive compression | Raise `keep_recent_turns`; loosen trigger |
+| No cache benefit | Stable tier churns | Move volatile data out of stable |
+| Slow/expensive turns | Oversized context | Compress + retrieve instead of dumping history |
+
+### 34.17 Official references
+
+- Context engineering / compression: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Prompt caching: https://hermes-agent.nousresearch.com/docs/integrations/anthropic
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 35 — Long-Term Memory
+
+### 35.1 Introduction
+
+The built-in stores (Markdown + SQLite/FTS5) are excellent defaults, but some deployments need more: paraphrase-tolerant semantic recall, cross-agent shared memory, dedicated vector stores, or specialized dialectic user modeling. Hermes answers this with **8 external memory provider plugins** — Honcho, OpenViking, Mem0, Hindsight, Holographic, RetainDB, ByteRover, and Supermemory — that plug into the same memory interface. They are **single-select**: you choose one as the long-term backend. This chapter covers when and how to graduate from built-in memory to an external provider.
+
+### 35.2 Chapter objectives
+
+(1) Know the 8 external memory providers and the single-select rule; (2) understand what each class of provider adds (semantic recall, dialectic modeling, shared memory); (3) configure an external provider; (4) decide when to graduate from built-in memory; (5) troubleshoot provider integration.
+
+### 35.3 Business context
+
+Built-in memory is per-agent and lexical. Enterprises often need **shared, semantic, governed** memory: a knowledge layer multiple agents draw from, recall that survives paraphrasing, and a provider with its own retention and compliance story. External providers turn memory into a managed service — at the cost of an extra dependency and data-residency considerations.
+
+### 35.4 Theoretical foundations
+
+Hermes exposes a **memory provider interface**; the 8 plugins implement it behind a registry (the loose-coupling principle from Part I). Because only **one** can be active, choosing is an architectural decision, not a stack. The providers differ in emphasis: **Honcho** specializes in *dialectic user modeling* (building a theory-of-mind of the user — see Ch 36); others (Mem0, Supermemory, RetainDB, ByteRover, Hindsight, Holographic, OpenViking) emphasize semantic/vector recall, cross-session persistence, or shared knowledge. The agentic loop is unchanged — it calls the same "remember/recall" operations; only the backend implementation differs.
+
+> **Java parallel.** This is the **Strategy + SPI** pattern: one interface (memory provider), many implementations discovered via a registry, exactly one wired in at runtime — like choosing a single `CacheManager` implementation for the whole app.
+
+### 35.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent loop] --> mpi[Memory Provider Interface]
+    mpi --> reg[Registry - single-select]
+    reg --> p1[Honcho - dialectic user modeling]
+    reg --> p2[Mem0]
+    reg --> p3[Supermemory]
+    reg --> p4[RetainDB]
+    reg --> p5[ByteRover]
+    reg --> p6[Hindsight]
+    reg --> p7[Holographic]
+    reg --> p8[OpenViking]
+    mpi -.fallback.-> builtin[(Built-in MEMORY.md + SQLite/FTS5)]
+```
+
+### 35.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant MPI as Memory Provider Interface
+    participant EX as External provider (e.g. Mem0)
+    A->>MPI: recall(query)
+    MPI->>EX: semantic search
+    EX-->>MPI: relevant memories (paraphrase-tolerant)
+    MPI-->>A: context fragments
+    A->>MPI: remember(durable fact)
+    MPI->>EX: upsert memory
+```
+
+### 35.7 Complete example
+
+**Scenario.** Several Hermes agents across a company should share a semantic knowledge layer, and recall must survive paraphrasing.
+
+**Problem.** Built-in memory is per-agent and lexical (FTS5) — no sharing, weak on paraphrase.
+
+**Solution.** Select one external provider (e.g., Mem0) as the long-term memory backend for all agents.
+
+**Architecture.** AIAgent → Memory Provider Interface → external provider (semantic, shared).
+
+**Implementation.**
+
+```bash
+export MEM0_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  provider: mem0            # single-select external long-term backend
+  mem0:
+    api_key_env: MEM0_API_KEY
+    namespace: company-shared
+```
+
+```bash
+hermes doctor                       # provider=mem0, status=connected
+hermes run "Recall what we know about the billing service SLAs."
+```
+
+**Tests.**
+
+```bash
+hermes memory search "billing SLA"   # exercises the external provider
+```
+
+**Result.** Shared, semantic, paraphrase-tolerant recall across all company agents.
+
+**Future improvements.** Switch to Honcho if the priority shifts to deep user modeling (Ch 36); add governance and retention policy review (Part XII).
+
+### 35.8 Source code
+
+```python
+MEMORY_PROVIDERS = {  # registry; exactly one is activated by config
+    "honcho": HonchoProvider, "openviking": OpenVikingProvider,
+    "mem0": Mem0Provider, "hindsight": HindsightProvider,
+    "holographic": HolographicProvider, "retaindb": RetainDBProvider,
+    "byterover": ByteRoverProvider, "supermemory": SupermemoryProvider,
+}
+
+def build_memory(cfg, env):
+    name = cfg["memory"].get("provider")          # single-select
+    if not name:
+        return BuiltinMemory()                     # MEMORY.md + SQLite/FTS5
+    return MEMORY_PROVIDERS[name](cfg["memory"][name], env)
+```
+
+### 35.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.provider` | `mem0` / `honcho` / ... | One of 8; single-select |
+| `memory.<provider>.api_key_env` | env var | Provider credential |
+| `memory.<provider>.namespace` | `company-shared` | Scope / sharing boundary |
+| (none) | — | Omit `provider` to use built-in |
+
+### 35.10 Real-world use cases
+
+Cross-agent shared knowledge; semantic recall for support/research; Honcho for deep user modeling; provider-managed retention for compliance.
+
+### 35.11 Exercises
+
+1. Why is the external memory provider single-select?
+2. Which provider specializes in dialectic user modeling?
+3. When is built-in memory sufficient and an external provider unnecessary?
+
+### 35.12 Challenges
+
+- **Challenge 1.** Configure one external provider and prove paraphrase-tolerant recall versus FTS5.
+- **Challenge 2.** Compare two providers on the same recall task and justify a choice.
+
+### 35.13 Checklist
+
+- [ ] I know the 8 providers and the single-select rule.
+- [ ] An external provider is configured (or built-in is consciously chosen).
+- [ ] `hermes doctor` shows the provider connected.
+
+### 35.14 Best practices
+
+- Stay on built-in memory until you have a concrete need (sharing, semantics, governance).
+- Choose deliberately — switching providers later means a migration.
+- Review the provider's data-residency and retention terms before enterprise use.
+
+### 35.15 Anti-patterns
+
+- Adopting an external provider "just in case" and adding needless dependency/egress.
+- Assuming you can run two providers at once (you select one).
+- Ignoring data-residency implications of an external memory store.
+
+### 35.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `provider not connected` | Bad key/endpoint | Verify `api_key_env` and network |
+| Recall worse than FTS5 | Misconfigured namespace | Align namespace; re-seed memories |
+| Two providers configured | Single-select violated | Keep exactly one `memory.provider` |
+| Compliance flag | Data egress to provider | Use built-in/local or a compliant provider |
+
+### 35.17 Official references
+
+- Memory providers: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Honcho: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Memory overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 36 — User Modeling
+
+### 36.1 Introduction
+
+The most personal layer of memory is the **user model**: who the user is, how they communicate, what they prefer, what role they play. Hermes maintains this in `USER.md` and can deepen it dramatically with **Honcho**, the external provider specialized in **dialectic user modeling** — building an evolving, theory-of-mind representation of the user from the dialogue itself. This chapter covers how the user model forms, how it shapes responses, and how Honcho elevates it from a list of preferences to a living model.
+
+### 36.2 Chapter objectives
+
+(1) Explain `USER.md` and what belongs in it; (2) define dialectic user modeling and Honcho's role; (3) understand how the user model shapes responses; (4) configure Honcho; (5) respect privacy and consent in user modeling.
+
+### 36.3 Business context
+
+A personalized agent is a more effective agent: it adapts tone, depth, and assumptions to the individual, reducing friction and rework. For products, user modeling drives retention and satisfaction. But it also raises **privacy and consent** obligations — modeling a person is sensitive data, and must be governed accordingly (Part XII).
+
+### 36.4 Theoretical foundations
+
+The baseline user model is `USER.md`: curated preferences, role, communication style, and durable personal facts, loaded into the stable tier. **Dialectic user modeling** (Honcho) goes further: it continuously infers a richer representation — goals, knowledge level, intent — from the back-and-forth of conversation, in the tradition of *theory of mind*. Rather than only storing stated preferences, it reasons about the user. Because it is a memory provider (Ch 35), it plugs into the same interface; the difference is the **depth and inferential nature** of the model it maintains.
+
+> **Java parallel.** `USER.md` is a plain DTO of user attributes; Honcho is a stateful domain service that *derives* a richer user aggregate from the event stream of the conversation.
+
+### 36.5 Architecture
+
+```mermaid
+flowchart TB
+    dialog[Conversation turns] --> infer[Dialectic inference - Honcho]
+    infer --> model[(Evolving user model)]
+    usermd[USER.md baseline] --> stable[Stable prompt tier]
+    model --> stable
+    stable --> resp[Personalized responses]
+```
+
+### 36.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant H as Honcho (dialectic)
+    U->>A: messages over time
+    A->>H: stream dialogue
+    H->>H: infer goals / knowledge / intent (theory of mind)
+    A->>H: query user model
+    H-->>A: rich user representation
+    A-->>U: response adapted to the modeled user
+```
+
+### 36.7 Complete example
+
+**Scenario.** An assistant should adapt automatically: terse and expert with a senior engineer, more explanatory with a new hire — without anyone configuring it.
+
+**Problem.** A static `USER.md` of stated preferences doesn't capture evolving knowledge level or intent.
+
+**Solution.** Enable Honcho as the memory provider for dialectic user modeling; the model infers expertise and adapts responses.
+
+**Architecture.** Conversation → Honcho inference → user model → stable tier → adapted response.
+
+**Implementation.**
+
+```bash
+export HONCHO_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  provider: honcho            # dialectic user modeling
+  honcho:
+    api_key_env: HONCHO_API_KEY
+    user_modeling: true
+```
+
+```bash
+hermes doctor
+hermes run "Explain our caching layer."
+# Honcho infers expertise from prior turns and tunes depth accordingly
+```
+
+**Tests.**
+
+```bash
+hermes memory show --user      # inspect the modeled user representation
+```
+
+**Result.** Responses that automatically match the user's inferred expertise and intent, improving over time.
+
+**Future improvements.** Add explicit consent capture and a "forget me" path (Part XII); let users review and correct their model.
+
+### 36.8 Source code
+
+```python
+class HonchoUserModel:
+    def observe(self, turns):
+        self.client.ingest(turns)                  # stream dialogue for inference
+
+    def representation(self) -> dict:
+        # dialectic, theory-of-mind style model derived from dialogue
+        return self.client.get_user_model()        # goals, knowledge level, intent
+```
+
+### 36.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.provider` | `honcho` | For dialectic modeling |
+| `memory.honcho.user_modeling` | `true` | Enable inference |
+| `USER.md` | file | Baseline stated preferences |
+| consent/retention | policy | Govern per Part XII |
+
+### 36.10 Real-world use cases
+
+Expertise-adaptive assistants; onboarding bots that adjust to a learner; sales/support agents that model intent; personalized tutors.
+
+### 36.11 Exercises
+
+1. Contrast `USER.md` with dialectic modeling.
+2. Give an example where inferred expertise should change response depth.
+3. Why does user modeling raise privacy obligations?
+
+### 36.12 Challenges
+
+- **Challenge 1.** Demonstrate response adaptation as the inferred expertise changes across a session.
+- **Challenge 2.** Design a consent and "right to be forgotten" flow for the user model.
+
+### 36.13 Checklist
+
+- [ ] `USER.md` baseline is curated.
+- [ ] Honcho configured if dialectic modeling is needed.
+- [ ] Privacy/consent considered.
+- [ ] Users can review/correct their model.
+
+### 36.14 Best practices
+
+- Start with `USER.md`; add Honcho only when adaptive depth/intent matters.
+- Be transparent: tell users they are being modeled and let them inspect it.
+- Govern the user model as sensitive personal data (Part XII).
+
+### 36.15 Anti-patterns
+
+- Modeling users without consent or transparency.
+- Treating inferred traits as facts and over-personalizing.
+- Storing the user model with no deletion/correction path.
+
+### 36.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No adaptation | Honcho not enabled | Set `provider: honcho`, `user_modeling: true` |
+| Wrong assumptions | Stale/over-inferred model | Let users correct; reset the model |
+| Privacy concern | No consent/retention policy | Implement consent + deletion (Part XII) |
+| Model not updating | Dialogue not ingested | Verify Honcho ingestion is running |
+
+### 36.17 Official references
+
+- Honcho / user modeling: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- USER.md / context files: https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files
+
+---
+
+## Chapter 37 — Continuous Learning
+
+### 37.1 Introduction
+
+Memory and learning meet here. Declarative memory remembers *facts*; **continuous learning** is how the agent turns accumulated experience into improved *behavior* — primarily by feeding the **learning loop** that evaluates performance and creates/refines **Skills** (Part VI). This chapter closes Part V by connecting the memory subsystem to self-improvement: how periodic evaluation, nudges, and curation combine so that Hermes genuinely gets more capable the longer it runs.
+
+### 37.2 Chapter objectives
+
+(1) Define continuous learning as the bridge from memory to behavior; (2) explain the learning loop's periodic evaluation (~every 15 tasks); (3) relate nudges, curation, and Skill creation; (4) configure the learning cadence; (5) measure whether the agent is actually improving.
+
+### 37.3 Business context
+
+This is the differentiator from Chapter 1 made operational: an agent that **compounds**. Each task is not just executed but *mined* for reusable knowledge. For an enterprise, continuous learning is how individual usage becomes organizational capability — the agent's competence curve bends upward instead of flat-lining like a stateless chatbot.
+
+### 37.4 Theoretical foundations
+
+Continuous learning rests on three mechanisms already introduced, now combined:
+
+- **Nudges** (Ch 31) decide what declarative knowledge to persist.
+- **Curation** keeps memory durable and concise rather than hoarded.
+- **The learning loop** evaluates performance periodically (by default, roughly every 15 tasks) and creates or refines **Skills** — procedural memory — from observed patterns.
+
+The loop reads from memory (what happened, what worked) and writes to Skills (how to do it better next time). Memory is therefore not an end in itself but the **substrate the learning loop mines**. The `~15-task` cadence balances responsiveness against overhead; it is configurable.
+
+> **Java parallel.** Think of a scheduled batch job that reads an event log (memory), detects recurring patterns, and emits/updates reusable components (Skills) — a self-refactoring system that improves its own toolkit over time.
+
+### 37.5 Architecture
+
+```mermaid
+flowchart TB
+    tasks[Tasks executed] --> mem[(Declarative memory<br/>MEMORY.md + SQLite/FTS5)]
+    mem --> loop[Learning loop<br/>evaluate ~every 15 tasks]
+    loop --> eval[Extract patterns / assess outcomes]
+    eval --> skills[(Skills - procedural memory, Part VI)]
+    skills -.improve.-> tasks
+    nudge[Nudges] -.persist facts.-> mem
+```
+
+### 37.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant M as Memory
+    participant L as Learning loop
+    participant S as Skills
+    loop every ~15 tasks
+        A->>L: trigger evaluation
+        L->>M: read recent outcomes
+        L->>L: extract patterns, assess what worked
+        L->>S: create or refine Skills
+    end
+    A->>S: use improved Skills on next tasks
+```
+
+### 37.7 Complete example
+
+**Scenario.** A team repeatedly asks the agent to generate release notes from git history. The steps are similar each time.
+
+**Problem.** Without learning, the agent re-derives the procedure every time — inconsistent and slow.
+
+**Solution.** Continuous learning: after a handful of similar tasks, the learning loop detects the pattern and creates a "release-notes" Skill that standardizes and accelerates it.
+
+**Architecture.** Repeated tasks → memory → learning loop (~every 15 tasks) → new Skill → faster future runs.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+skills:
+  enabled: true
+learning:
+  enabled: true
+  evaluate_every: 15          # learning-loop cadence (tasks)
+```
+
+```bash
+# Run several release-note tasks; the loop will mine the pattern
+hermes run "Generate release notes from the last 20 commits."
+# ... after enough similar tasks ...
+hermes skills list            # a learned release-notes Skill appears
+```
+
+**Tests.**
+
+```bash
+hermes skills list | grep -i release      # confirm the Skill was created
+hermes run "Release notes for v1.4."       # faster, consistent via the Skill
+```
+
+**Result.** A self-created Skill standardizes a recurring task; subsequent runs are faster and more consistent.
+
+**Future improvements.** Curate and govern learned Skills (Part VI, Ch 45); export task trajectories for RL training (Atropos) per the project's research lineage.
+
+### 37.8 Source code
+
+```python
+class LearningLoop:
+    def __init__(self, every: int = 15):
+        self.every, self.counter = every, 0
+
+    def on_task_complete(self, outcome, memory, skills):
+        self.counter += 1
+        if self.counter % self.every == 0:
+            patterns = self.extract_patterns(memory.recent_outcomes())
+            for p in patterns:
+                skills.create_or_refine(p)     # procedural memory grows
+```
+
+### 37.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `learning.enabled` | `true` | Enable the loop |
+| `learning.evaluate_every` | `15` | Tasks between evaluations |
+| `skills.enabled` | `true` | Required target for learning |
+| `memory.enabled` | `true` | Substrate for learning |
+
+### 37.10 Real-world use cases
+
+Standardizing recurring tasks (release notes, PR reviews, reports); an agent that gets faster at a team's workflows; trajectory generation for model training.
+
+### 37.11 Exercises
+
+1. How does continuous learning bridge declarative memory and procedural Skills?
+2. What does the `evaluate_every` cadence trade off?
+3. Give an example of a recurring task that would benefit from a learned Skill.
+
+### 37.12 Challenges
+
+- **Challenge 1.** Drive a recurring task until a Skill is auto-created; document the before/after.
+- **Challenge 2.** Tune `evaluate_every` and observe its effect on learning responsiveness and overhead.
+
+### 37.13 Checklist
+
+- [ ] `learning.enabled`, `skills.enabled`, `memory.enabled` all true.
+- [ ] Cadence (`evaluate_every`) set sensibly.
+- [ ] I can observe newly created/refined Skills.
+- [ ] I have a way to measure improvement.
+
+### 37.14 Best practices
+
+- Enable memory + skills + learning together — they are interdependent.
+- Keep the cadence moderate (the ~15-task default is a good start).
+- Review learned Skills periodically (governance, Part VI Ch 45).
+
+### 37.15 Anti-patterns
+
+- Enabling learning while disabling Skills (nowhere to write improvements).
+- Setting the cadence so low it adds constant overhead.
+- Never reviewing learned Skills, letting bad patterns calcify.
+
+### 37.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No Skills created | `skills.enabled` false / too few tasks | Enable Skills; run more similar tasks |
+| Learning overhead high | Cadence too aggressive | Raise `evaluate_every` |
+| Bad Skills learned | No curation | Review/disable Skills (Part VI) |
+| No measurable gain | No metrics | Track task time/consistency before/after |
+
+### 37.17 Official references
+
+- Learning loop / self-improvement: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Skills: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+> **End of Part V.** Persistent memory is now a subsystem you understand end to end: the core concepts and three stores (Ch 31), their structure and context files/references (Ch 32), retrieval via FTS5 + summarization (Ch 33), context engineering with tiering and compression (Ch 34), long-term external providers (Ch 35), user modeling with Honcho (Ch 36), and continuous learning that turns memory into improved behavior (Ch 37). **Part VI — Skills** (Chapters 38–45) picks up the procedural-memory thread: what Skills are, how they are architected, created, auto-updated, evolved, reused, and governed as a corporate library.
+
 <!--APPEND-PARTE-II-->
