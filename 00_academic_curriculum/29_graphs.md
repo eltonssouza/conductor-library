@@ -62,3 +62,13 @@ Graph theory is a flourishing discipline containing a body of beautiful and powe
 The primary aim of this book is to present a coherent introduction to the subject, suitable as a textbook for advanced undergraduate and beginning graduate students in mathematics and computer science. It provides a systematic treatment of the theory of graphs without sacrificing its intuitive and aesthetic appeal. Commonly used proof techniques are described and illustrated, and a wealth of exercises - of varying levels of difficulty - are provided tohelp the reader master the techniques and reinforce their grasp of the material.
 
 A second objective is to serve as an introduction to research in graph theory. To this end, sections on more advanced topics are included, and a number of interesting and challenging open problems are highlighted and discussed in some detail. Despite this more advanced material, the book has been organized in such a way that an introductory course on graph theory can be based on the first few sections of selected chapters.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Graph algorithms (BFS/DFS, MST, shortest paths, max-flow) are covered in:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

@@ -63,3 +63,20 @@ The book provides readers with a solid foundation in the syntax, semantics, and 
     <li>Unified and updated treatment of polymorphism in all its forms</li>
     <li>New examples featuring the ARM and x86 64-bit architectures</li>
 </ul>
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+The library covers concrete languages in depth (one guide per language); the frameworks category (`14_frameworks/`) adds language-specific frameworks:
+
+- [Go 1.24](<../01_programming_languages/Go 1.24 - Complete Professional Guide.md>) — the Go language end to end.
+- [Java 25](<../01_programming_languages/Java 25 - Complete Professional Guide.md>) — modern Java.
+- [JavaScript](<../01_programming_languages/JavaScript - Complete Professional Guide.md>) — the JavaScript language.
+- [Python 3.13](<../01_programming_languages/Python 3.13 - Complete Professional Guide.md>) — modern Python.
+- [Ruby 3.4](<../01_programming_languages/Ruby 3.4 - Complete Professional Guide.md>) — the Ruby language.
+- [C# 13 and .NET 9](<../01_programming_languages/C# 13 and .NET 9 - Complete Professional Guide.md>) — C# on .NET 9.
+- [PHP 8.4](<../01_programming_languages/PHP 8.4 - Complete Professional Guide.md>) — modern PHP.
+- [Rust 2024](<../01_programming_languages/Rust 2024 - Complete Professional Guide.md>) — the Rust language and ownership model.

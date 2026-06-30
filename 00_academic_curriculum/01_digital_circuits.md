@@ -50,3 +50,11 @@ This sixth edition brings the latest in structured computer organization, presen
 ### Description
 
 A best-seller that, over 25 years, has provided students with the development of practical skills. It is a complete work, and its strength lies in the countless real-world applications of digital systems in industry. It also includes support material for teachers in Portuguese and English. The book includes two CD-ROMs.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. It is a hardware/foundations topic outside the library's software-guide scope.

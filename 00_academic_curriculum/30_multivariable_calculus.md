@@ -34,3 +34,11 @@ Guidorizzi, the complete content for your edge! By Hamilton Luiz Guidorizzi, A C
 
 Lecture Notes from ICMC - USP.
 <a href="https://www.icmc.usp.br/institucional/estrutura-administrativa/departamentos/sma/material-didatico">Available here.</a>
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. It is a pure-mathematics topic.

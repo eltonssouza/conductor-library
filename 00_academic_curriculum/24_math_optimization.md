@@ -58,3 +58,13 @@ Another striking feature of this work is the various practical applications draw
 In the scope of combinatorial optimization, as the name itself indicates, the book is characterized by presenting the problems through the deliberate use of mixed integer linear programming formulations. In addition to the theoretical interest, formulating combinatorial problems through integer programming opens the way for the use of efficient commercial mathematical programming packages, whose advances in the exact solution of important practical problems have been remarkable. Even for heuristics that do not require integer linear programming formulation, solution quality assessments can often be made through the use of relaxation of the linear programming problem.
 
 Constituting an updated version that preserves the original content and improves the form of presentation, this second edition includes a significant addition of references to the scientific output of the first five years of the new millennium. The update resulted in a positive balance of dozens of pages, with the removal of some appendix pages that were not referenced in the main text of the first edition. The book's rich illustration was reorganized with numbering restricted to the scope of each chapter, covering references to figures, equations, charts, and tables, which, in turn, were given a standardized presentation. This second edition emerges at a time when the connection between combinatorial optimization and linear programming is consolidating, which confirms the appropriateness of the book's title and the importance of the subject taught in it.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Optimization paradigms (greedy, dynamic programming) and intractability (NP-completeness, approximation, linear programming) are covered in:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

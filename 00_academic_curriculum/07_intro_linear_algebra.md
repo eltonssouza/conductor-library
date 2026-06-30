@@ -50,3 +50,13 @@ This book provides an introduction to Linear Algebra. It follows the Schaum's Ou
 ### Description
 
 Linear Algebra is aimed at a one-term course at the junior or senior level. It begins with an exposition of the basic theory of vector spaces and proceeds to explain the fundamental theorems for linear maps, including eigenvectors and eigenvalues, Hermitian and quadratic forms, diagonalization of matrices, and unitary, Hermitian, and symmetric linear maps, triangulation, and the Jordan canonical form. The book also includes a useful chapter on convex sets and the finite-dimensional Krein-Milman theorem. The presentation is geared toward the student who has already had some contact with the elementary theory of matrices, determinants, and linear maps. However, the book is, of course, self-contained. In this new edition, several passages of the book were rewritten and reorganized, and new exercises were added.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. Adjacent: the algorithms guide covers matrix operations and the FFT.
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

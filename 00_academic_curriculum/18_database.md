@@ -50,3 +50,20 @@ Database Systems presents, in a deep and up-to-date way, the most important aspe
 ### Description
 
 This book presents a clear and up-to-date approach to the fundamentals of database systems. Instructors can choose to emphasize database applications or systems. The book brings many examples and applications, including SQL and Oracle, and applications for the Internet. In addition, current standards such as JDBC and XML, and three-tier application development, are introduced.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+The library has a full databases category; the most relevant guides:
+
+- [How Databases Work Internally](<../05_databases/How Databases Work Internally - Complete Professional Guide.md>) — storage engines, indexes, query execution.
+- [SQL Performance and Indexing](<../05_databases/SQL Performance and Indexing - Complete Professional Guide.md>) — indexing and query tuning.
+- [SQL Database Antipatterns](<../05_databases/SQL Database Antipatterns - Complete Professional Guide.md>) — relational modeling pitfalls and fixes.
+- [Database Transactions and Concurrency](<../05_databases/Database Transactions and Concurrency - Complete Professional Guide.md>) — ACID, isolation levels, locking.
+- [NoSQL Data Models](<../05_databases/NoSQL Data Models - Complete Professional Guide.md>) — key-value, document, column, graph stores.
+- [Designing Data-Intensive Systems](<../05_databases/Designing Data-Intensive Systems - Complete Professional Guide.md>) — data systems at scale.
+- [Dimensional Modeling for Analytics](<../05_databases/Dimensional Modeling for Analytics - Complete Professional Guide.md>) — star schemas and the data warehouse.
+- [Stream Processing](<../05_databases/Stream Processing - Complete Professional Guide.md>) — event streams and stateful processing.

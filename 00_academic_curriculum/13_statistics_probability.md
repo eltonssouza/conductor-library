@@ -50,3 +50,15 @@ The best-selling book in the field, the 10th edition of Basic Statistics confirm
 ### Description
 
 The new and updated edition of Introduction to Statistics aims to provide the best and broadest content for teaching and learning the subject. A classic work in the field, it ranges from conceptual aspects to practical exercises, including tips on job search methods and how to avoid mistakes when preparing résumés. Each chapter begins with a list of the sections that compose it — including a brief review of the content presented in the previous chapter — and a proposed problem. At the end, there is a review and a quick test on the topics covered, in addition to exercises and proposed activities.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Probabilistic analysis and analytics modeling appear in:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.
+- [Dimensional Modeling for Analytics](<../05_databases/Dimensional Modeling for Analytics - Complete Professional Guide.md>) — analytics data modeling.
+- [Designing Data-Intensive Systems](<../05_databases/Designing Data-Intensive Systems - Complete Professional Guide.md>) — data at scale.

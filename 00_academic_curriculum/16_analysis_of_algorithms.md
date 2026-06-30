@@ -60,3 +60,13 @@ The chapters are relatively independent, and each one presents an algorithm, a d
 ### Description
 
 The goal in this work is not to present the complete package, neatly wrapped and clean, but to slowly and deeply walk through each stage of the development of algorithms. Many false starts have been added, in the hope that this will help students develop algorithms on their own. People who develop algorithms have different ways of thinking, as well as an intuition that, generally speaking, is not taught. The basic premise of How to Think About Algorithms is that this cannot be taught, but has to be discovered individually. This book attempts to teach students to think like an algorithm designer. Jeff Edmonds has written an entertaining book, organized into blocks, each containing a title and a single thought. The author focuses on the structure and proof of correctness of iterative and recursive meta-algorithms and, within these, of greedy and dynamic programming meta-algorithms. By learning these and their proofs of correctness, one can easily understand most algorithms. The challenge is that thinking about meta-algorithms requires quite a lot of abstraction. Analogies, paradigms, and different notations are presented, within which it is possible to develop and think about algorithms.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+The library's algorithms guide covers this discipline directly:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.

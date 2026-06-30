@@ -50,3 +50,11 @@ With a clear and objective approach, George F. Luger brings together in this six
 ### Description
 
 The book covers a variety of Artificial Intelligence techniques, algorithms, and methodologies, including game playing, intelligent agents, machine learning, genetic algorithms, and artificial life. With straightforward and accessible text, the author focuses on explaining how Artificial Intelligence techniques relate to and are derived from natural systems, such as the human brain and the evolution of species itself, explaining how the artificial equivalents are used in the real world. Each chapter includes an introduction explaining what will be covered, a chapter summary, some exercises and review questions, as well as suggestions for further reading. There is a complete bibliography at the end of the book, in addition to a glossary including brief definitions of most of the important terms.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+This library currently has no professional guide that maps directly to this discipline. The AI/LLM category (`10_ai_and_llm/`) has no professional guide yet.

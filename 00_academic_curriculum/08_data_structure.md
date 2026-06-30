@@ -77,3 +77,13 @@ The companion web site, algs4.cs.princeton.edu, contains
 The MOOC related to this book is accessible via the "Online Course" link at algs4.cs.princeton.edu. The course offers more than 100 video lecture segments that are integrated with the text, extensive online assessments, and the large-scale discussion forums that have proven so valuable. Offered each fall and spring, this course regularly attracts tens of thousands of registrants.
 
 Robert Sedgewick and Kevin Wayne are developing a modern approach to disseminating knowledge that fully embraces technology, enabling people all around the world to discover new ways of learning and teaching. By integrating their textbook, online content, and MOOC, all at the state of the art, they have built a unique resource that greatly expands the breadth and depth of the educational experience.
+
+---
+
+## Library guides for this discipline
+
+> Originally-written professional guides in this library that cover this discipline's software-engineering side. They complement — not replace — the academic textbooks above. See `FILE_CONVENTIONS.md`.
+
+Data structures are developed in depth in the library's algorithms guide:
+
+- [Algorithm Design and Analysis](<../02_algorithms_and_data_structures/Algorithm Design and Analysis - Complete Professional Guide.md>) — asymptotic analysis, design paradigms, sorting, data structures, graphs.
