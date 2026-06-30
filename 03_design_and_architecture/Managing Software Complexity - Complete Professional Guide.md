@@ -153,7 +153,7 @@ field_schema = { name, type, required, max_length }   # declare once
 
 ### 1.12 References
 
-- J. Ousterhout, *A Philosophy of Software Design*, 2nd ed. (Yaknyam Press, 2021) — ISBN 978-1732102217.
+- J. Ousterhout, *A Philosophy of Software Design*, 2nd ed. (Yaknyam Press, 2021), ch. 2 "The Nature of Complexity" — ISBN 978-1732102217.
 - F. Brooks, "No Silver Bullet" (1986), on essential vs accidental complexity.
 
 ---
@@ -249,7 +249,7 @@ byte[] data = store.read(path);
 
 ### 2.12 References
 
-- J. Ousterhout, *A Philosophy of Software Design*, 2nd ed. (Yaknyam Press, 2021) — ISBN 978-1732102217.
+- J. Ousterhout, *A Philosophy of Software Design*, 2nd ed. (Yaknyam Press, 2021), ch. 4 "Modules Should Be Deep" — ISBN 978-1732102217.
 - D. Parnas, "On the Criteria To Be Used in Decomposing Systems into Modules" (CACM, 1972).
 
 ---
