@@ -1261,4 +1261,589 @@ class CustomerControllerTest {
 
 > **End of Part II.** You can now take a Spring Boot 4 service from "runs" to "production-ready at the edge": **externalized configuration** with profiles and validated `@ConfigurationProperties` so one immutable artifact behaves correctly everywhere; **Spring MVC REST APIs** with content negotiation and Spring Boot 4's **first-class API versioning** for safe, side-by-side contract evolution; and **Bean Validation** with centralized **RFC 9457 `ProblemDetail`** error handling so every failure is rejected cleanly and reported in one consistent, secure shape. **Part III — Data & Transactions** (Chapters 7–9) goes a layer deeper, persisting and protecting that data: **Spring Data JPA** repositories and entity mapping, **`@Transactional`** boundaries and propagation, and operational concerns like schema **migrations** (Flyway/Liquibase) and connection **pooling**.
 
+
+---
+
+# Part III – Data & Transactions
+
+Part III is where a Spring Boot application stops being a stateless request handler and becomes a system of record. Almost every business application persists data, and the moment data is shared and mutated, three concerns dominate: **how you map objects to rows** (Spring Data JPA), **how you guarantee correctness across multiple writes** (declarative transactions), and **how you evolve the schema and serve connections under load** (migrations and pooling). Spring Boot 4 — on **Spring Framework 7**, **Java 17+** (first-class Java 25), and **Jakarta EE 11** (JPA 3.2, `jakarta.persistence.*`) — auto-configures most of this for you: a `DataSource` backed by HikariCP, an `EntityManagerFactory`, a `PlatformTransactionManager`, and Flyway/Liquibase if either is on the classpath. This part teaches you the model underneath the magic so you can use it deliberately, not superstitiously.
+
+---
+
+## Chapter 7 — Spring Data JPA fundamentals (entities, repositories, queries)
+
+### 7.1 Introduction
+
+Spring Data JPA sits on top of JPA 3.2 (Jakarta EE 11) and Hibernate as the default provider. It removes the most repetitive part of data access: writing DAOs. You declare an **entity** (a class mapped to a table), then declare a **repository interface**, and Spring Data generates the implementation at runtime — `save`, `findById`, `delete`, paging, sorting, and an entire family of **derived query methods** parsed straight from method names. For anything the method-name DSL cannot express, you drop to `@Query` (JPQL or native SQL), and for fine-grained control you can still reach the lower-level `JdbcClient`. This chapter covers entity mapping, repository abstractions, derived and `@Query` methods, projections with Java records, and paging — the core you will use in every persistent Spring Boot 4 service.
+
+### 7.2 Business context
+
+For a business, the data layer is where correctness and velocity collide. Hand-written DAOs are a tax: every entity needs near-identical CRUD code, every change touches several files, and subtle bugs (a missing `WHERE`, an unbounded `findAll`) leak into production. Spring Data JPA collapses that boilerplate into declarations, so teams ship features instead of plumbing, and reviewers read intent (`findByStatusAndCreatedAtAfter`) instead of SQL string concatenation. The trade-off is that JPA hides the database behind an object model — and a team that does not understand lazy loading, the N+1 problem, or transaction boundaries will trade boilerplate bugs for performance bugs. The business value is real velocity, but only when the abstraction is understood rather than trusted blindly.
+
+### 7.3 Theoretical concepts
+
+- **Entity.** A class annotated `@Entity` mapped to a table, with an `@Id` (often `@GeneratedValue`). Fields map to columns; associations map with `@ManyToOne`, `@OneToMany`, `@ManyToMany`.
+- **Persistence context.** The first-level cache and unit of work managed by the `EntityManager`. Within a transaction, managed entities are tracked and changes are flushed automatically (**dirty checking**) — no explicit `update` call needed.
+- **Repository.** An interface extending `JpaRepository<T, ID>` (or `CrudRepository`, `PagingAndSortingRepository`). Spring Data implements it at runtime.
+- **Derived queries.** Methods whose names follow a DSL (`findBy…`, `existsBy…`, `countBy…`, `deleteBy…`) parsed into queries — for example `findByStatusOrderByCreatedAtDesc`.
+- **`@Query`.** Explicit JPQL or native SQL when the DSL is insufficient; supports named/positional parameters and `@Modifying` for writes.
+- **Projections.** Returning a subset of fields. Spring Data supports **interface** and **class/record** (DTO) projections — a Java `record` constructor maps cleanly to selected columns.
+- **Paging & sorting.** `Pageable`/`Sort` parameters return a `Page<T>` (content + total count) or `Slice<T>` (content + has-next, no count).
+- **`fetch` strategy.** `@ManyToOne` defaults to EAGER, `@OneToMany` to LAZY; the **N+1 problem** arises when iterating a collection triggers one query per element. `JOIN FETCH` or an entity graph fixes it.
+
+### 7.4 Architecture: from repository call to SQL
+
+```mermaid
+flowchart TB
+    svc["@Service (transactional)"] --> repo["OrderRepository<br/>(interface extends JpaRepository)"]
+    repo --> proxy["Spring Data proxy<br/>(generated at runtime)"]
+    proxy --> em["EntityManager<br/>(persistence context)"]
+    em --> hib["Hibernate (JPA provider)"]
+    hib --> ds["HikariCP DataSource"]
+    ds --> db[(Relational database)]
+    note["Dirty checking flushes changes<br/>at transaction commit — no explicit update"]
+```
+
+The repository interface has no implementation you write. At startup Spring Data scans for interfaces extending its base types, builds a proxy for each, and parses every method name or `@Query`. At call time the proxy translates the method into JPQL/SQL, runs it through the `EntityManager`, and maps rows back to entities or projections.
+
+### 7.5 Real example
+
+**Scenario.** An e-commerce service needs to list a customer's recent orders by status, paginated for an admin screen, and to read a lightweight summary (id, total, status) without loading the full order graph.
+
+**Problem.** A naive `findAll()` loads every order and every line item, producing N+1 queries and transferring data the screen never shows. The team also wants type-safe results, not `Object[]` rows.
+
+**Solution.** Define a focused entity, a repository with a derived paged query and a record projection via `@Query`, and mark read paths `readOnly`. Use a Java `record` as the projection DTO so the constructor maps directly to selected columns.
+
+**Implementation.**
+
+```java
+package com.example.orders;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.Instant;
+
+@Entity
+@Table(name = "orders")
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String customerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OrderStatus status;
+
+    @Column(nullable = false)
+    private BigDecimal total;
+
+    @Column(nullable = false)
+    private Instant createdAt;
+
+    protected Order() { } // JPA requires a no-arg constructor
+
+    // getters omitted for brevity
+    public Long getId() { return id; }
+    public OrderStatus getStatus() { return status; }
+}
+
+enum OrderStatus { PENDING, PAID, SHIPPED, CANCELLED }
+```
+
+```java
+package com.example.orders;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+// A record DTO projection: Spring Data maps selected columns to the constructor.
+public record OrderSummary(Long id, java.math.BigDecimal total, OrderStatus status) { }
+
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    // Derived query: parsed from the method name, paginated.
+    Page<Order> findByCustomerIdAndStatusOrderByCreatedAtDesc(
+            String customerId, OrderStatus status, Pageable pageable);
+
+    // Explicit JPQL constructor expression -> record projection (no full entity load).
+    @Query("""
+           select new com.example.orders.OrderSummary(o.id, o.total, o.status)
+           from Order o
+           where o.customerId = :customerId
+           order by o.createdAt desc
+           """)
+    Page<OrderSummary> findSummaries(@Param("customerId") String customerId, Pageable pageable);
+}
+```
+
+```java
+package com.example.orders;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class OrderQueryService {
+
+    private final OrderRepository repository;
+
+    public OrderQueryService(OrderRepository repository) {
+        this.repository = repository;
+    }
+
+    // Read path: readOnly lets the provider skip dirty-checking and flush.
+    @Transactional(readOnly = true)
+    public Page<OrderSummary> recentSummaries(String customerId, int page, int size) {
+        return repository.findSummaries(customerId, PageRequest.of(page, size));
+    }
+}
+```
+
+**Result.** The admin screen receives a `Page<OrderSummary>` containing exactly three columns plus total count for pagination, in a single query. There is no N+1 explosion because no entity collection is traversed, and the `readOnly` hint avoids unnecessary dirty-checking overhead.
+
+**Future improvements.** Replace the offset `Pageable` with **keyset (seek) pagination** for stable, index-friendly deep paging; add a `@EntityGraph` for the cases that do need the full order-with-items graph; introduce **Specifications** or Query by Example for dynamic admin filters.
+
+### 7.6 Exercises
+
+1. Write a derived query method that returns the count of `PAID` orders for a customer created after a given `Instant`.
+2. Convert an interface projection to a Java `record` (DTO) projection and explain when each is preferable.
+3. Explain the difference between `Page<T>` and `Slice<T>` and when the extra count query of `Page` is worth it.
+
+### 7.7 Challenges
+
+- **Challenge.** Reproduce the N+1 problem with a `@OneToMany` order-items association by iterating items in a loop, confirm it in the SQL log (`spring.jpa.show-sql=true` / Hibernate statistics), then fix it two ways — once with `JOIN FETCH` in a `@Query`, once with a `@EntityGraph` — and compare the generated SQL.
+
+### 7.8 Checklist
+
+- [ ] My entities have a no-arg constructor and a deliberate `@Id`/`@GeneratedValue` strategy.
+- [ ] I use derived queries for simple cases and `@Query` for the rest.
+- [ ] I return record projections instead of full entities when the caller needs a subset.
+- [ ] I paginate list endpoints with `Pageable` and avoid unbounded `findAll()`.
+- [ ] I mark read paths `@Transactional(readOnly = true)`.
+- [ ] I know the default fetch types and how to avoid N+1.
+
+### 7.9 Best practices
+
+- Keep entities focused on persistence; do not leak them as API response bodies — map to DTO records at the boundary.
+- Prefer derived query methods for readability; switch to `@Query` once a name would become unreadable.
+- Default associations to LAZY and fetch eagerly only where a query needs it (`JOIN FETCH` / `@EntityGraph`).
+- Always paginate collections that can grow; never expose `findAll()` to the outside world.
+- Let dirty checking persist changes inside a transaction instead of calling `save()` on an already-managed entity.
+
+### 7.10 Anti-patterns
+
+- Exposing JPA entities directly in controllers — couples your API to the schema and risks lazy-loading exceptions during serialization.
+- `EAGER` everywhere "to be safe," loading huge object graphs on every read.
+- Iterating a lazy collection outside the transaction and getting `LazyInitializationException`.
+- Calling `findAll()` then filtering in Java instead of pushing the predicate into the query.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `LazyInitializationException` | Lazy association accessed after the session closed | Fetch within the transaction (`JOIN FETCH`/`@EntityGraph`) or map to a DTO |
+| Many small SELECTs in the log (N+1) | Iterating a lazy collection | Use `JOIN FETCH` or an entity graph |
+| `Page` query runs a slow `count(*)` | Large table with offset paging | Use `Slice`, keyset pagination, or a tuned count query |
+| Derived method throws at startup | Property name doesn't match the entity | Fix the method name or switch to `@Query` |
+| Entity changes not persisted | Modified a detached entity outside a transaction | Mutate inside a `@Transactional` method (dirty checking) |
+
+### 7.12 Official references
+
+- Spring Data JPA reference: https://docs.spring.io/spring-data/jpa/reference/jpa.html
+- Defining query methods: https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html
+- Projections: https://docs.spring.io/spring-data/jpa/reference/repositories/projections.html
+- Spring Boot — working with SQL databases: https://docs.spring.io/spring-boot/reference/data/sql.html
+- Jakarta Persistence (JPA) specification: https://jakarta.ee/specifications/persistence/3.2/
+
+---
+
+## Chapter 8 — Transaction management with `@Transactional`
+
+### 8.1 Introduction
+
+A transaction is a unit of work that either fully happens or fully does not — the **A** in ACID. Spring's killer feature here is **declarative** transaction management: you annotate a method `@Transactional`, and a proxy begins a transaction before the method runs and commits (or rolls back) after it returns (or throws). You write business logic; Spring writes the `begin`/`commit`/`rollback`. This chapter covers how the proxy works, the attributes that control it (`propagation`, `isolation`, `readOnly`, `rollbackFor`, `timeout`), the rollback rules that surprise newcomers, and the proxy limitations (self-invocation) that cause the most "why didn't it roll back?" incidents.
+
+### 8.2 Business context
+
+Transaction correctness is not a nicety — it is the difference between a ledger that balances and one that double-charges. Consider transferring money, decrementing inventory while creating an order, or awarding loyalty points on payment: each is multiple writes that must succeed or fail together. Declarative transactions give every team the same correctness guarantee without hand-written, error-prone commit/rollback code, and they make the boundary visible in review (the `@Transactional` annotation on the service method). The cost of getting this wrong is silent data corruption discovered weeks later in a reconciliation report; the cost of getting it right is one annotation and an understanding of where the boundary belongs.
+
+### 8.3 Theoretical concepts
+
+- **Declarative demarcation.** `@Transactional` on a (public) bean method; an AOP proxy wraps it with begin/commit/rollback.
+- **Propagation.** How a method joins or starts a transaction. `REQUIRED` (default) joins an existing one or starts a new one; `REQUIRES_NEW` suspends the caller's transaction and runs in its own; `NESTED`, `SUPPORTS`, `MANDATORY`, `NEVER` cover the rest.
+- **Isolation.** How concurrent transactions see each other's data: `READ_COMMITTED`, `REPEATABLE_READ`, `SERIALIZABLE`, etc. `DEFAULT` uses the database's setting.
+- **Rollback rules.** By default Spring rolls back on **unchecked** exceptions (`RuntimeException`, `Error`) and **commits** on checked exceptions. Use `rollbackFor`/`noRollbackFor` to change this.
+- **`readOnly`.** A hint that lets the provider skip dirty-checking/flush and the driver optimize — use it on query paths.
+- **`timeout`.** Aborts a transaction that runs longer than N seconds.
+- **Self-invocation limitation.** Because the proxy intercepts external calls, a `this.method()` call to another `@Transactional` method in the same bean **bypasses** the proxy — the annotation is ignored.
+
+### 8.4 Architecture: the transactional proxy
+
+```mermaid
+sequenceDiagram
+    participant C as Controller
+    participant P as Tx Proxy
+    participant S as Service method
+    participant TM as PlatformTransactionManager
+    participant DB as Database
+    C->>P: placeOrder(cmd)
+    P->>TM: begin (REQUIRED)
+    P->>S: invoke target method
+    S->>DB: insert order
+    S->>DB: decrement inventory
+    alt method returns normally
+        P->>TM: commit
+        TM->>DB: COMMIT
+    else unchecked exception thrown
+        P->>TM: rollback
+        TM->>DB: ROLLBACK
+    end
+    P-->>C: result or exception
+```
+
+The proxy is the whole story: it is why `@Transactional` must be on a bean reached **through** the container, why self-invocation silently does nothing, and why the boundary lives at the service layer rather than the repository.
+
+### 8.5 Real example
+
+**Scenario.** Placing an order must persist the order and decrement stock atomically. If stock is insufficient, nothing should be written. A separate audit record must be written **even when the order fails**.
+
+**Problem.** A single transaction cannot both roll back the failed order and keep the audit row — they have opposite fates. And a checked exception thrown by stock validation would, by default, **commit** rather than roll back.
+
+**Solution.** Wrap the order + inventory writes in one `REQUIRED` transaction with `rollbackFor` set for the checked exception. Write the audit row in a `REQUIRES_NEW` transaction so it commits independently of the outer rollback. Keep the boundary at the service layer and call the audit method through an injected bean (not `this`) so the proxy actually applies.
+
+**Implementation.**
+
+```java
+package com.example.orders;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+public class InsufficientStockException extends Exception {
+    public InsufficientStockException(String msg) { super(msg); }
+}
+
+@Service
+public class OrderPlacementService {
+
+    private final OrderRepository orders;
+    private final InventoryRepository inventory;
+    private final AuditService audit; // separate bean -> calls go through the proxy
+
+    public OrderPlacementService(OrderRepository orders,
+                                 InventoryRepository inventory,
+                                 AuditService audit) {
+        this.orders = orders;
+        this.inventory = inventory;
+        this.audit = audit;
+    }
+
+    // Roll back even on the checked exception; default would COMMIT.
+    @Transactional(rollbackFor = InsufficientStockException.class)
+    public Long placeOrder(NewOrder command) throws InsufficientStockException {
+        // Audit must survive even if the order rolls back -> independent transaction.
+        audit.record("ORDER_ATTEMPT", command.customerId());
+
+        int remaining = inventory.decrement(command.sku(), command.quantity());
+        if (remaining < 0) {
+            throw new InsufficientStockException("Out of stock: " + command.sku());
+        }
+        Order saved = orders.save(Order.from(command));
+        return saved.getId();
+    }
+}
+
+@Service
+class AuditService {
+
+    private final AuditRepository repository;
+
+    AuditService(AuditRepository repository) { this.repository = repository; }
+
+    // New, independent transaction: commits regardless of the caller's outcome.
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void record(String action, String customerId) {
+        repository.save(new AuditEntry(action, customerId));
+    }
+}
+```
+
+```java
+@SpringBootTest
+class OrderPlacementServiceTest {
+
+    @Autowired OrderPlacementService service;
+    @Autowired OrderRepository orders;
+    @Autowired AuditRepository audits;
+
+    @Test
+    void rollsBackOrderButKeepsAudit() {
+        long before = orders.count();
+
+        assertThatThrownBy(() ->
+            service.placeOrder(new NewOrder("cust-1", "sold-out-sku", 5)))
+            .isInstanceOf(InsufficientStockException.class);
+
+        assertThat(orders.count()).isEqualTo(before);      // order rolled back
+        assertThat(audits.count()).isGreaterThan(0);       // audit survived (REQUIRES_NEW)
+    }
+}
+```
+
+**Result.** A failed placement leaves no order and no stock change, yet the audit row persists — because the audit runs in its own committed transaction. The checked exception correctly triggers rollback because `rollbackFor` overrides the default commit-on-checked behavior.
+
+**Future improvements.** For cross-service atomicity (e.g., the inventory lives in another microservice), a local transaction is not enough — adopt the **transactional outbox** pattern or a saga with compensating actions. Consider `@Transactional(timeout = …)` to bound long writes, and verify the chosen `isolation` level against the contention you actually observe.
+
+### 8.6 Exercises
+
+1. What is the default rollback behavior for a checked exception, and how do you change it?
+2. Explain the difference between `REQUIRED` and `REQUIRES_NEW` with a concrete example.
+3. Why does calling a `@Transactional` method via `this.otherMethod()` not start a transaction?
+
+### 8.7 Challenges
+
+- **Challenge.** Demonstrate the self-invocation pitfall: put two `@Transactional` methods in one bean where method A (no propagation surprise) calls `this.b()` expecting `REQUIRES_NEW`, prove with logging that `b()` runs in A's transaction, then fix it by extracting `b()` into a separate injected bean and show the new transaction appearing in the logs.
+
+### 8.8 Checklist
+
+- [ ] I place `@Transactional` at the service layer, on public methods reached through the container.
+- [ ] I understand the default rollback-on-unchecked / commit-on-checked rule and use `rollbackFor` when needed.
+- [ ] I use `readOnly = true` on query methods.
+- [ ] I choose propagation deliberately (`REQUIRED` vs `REQUIRES_NEW`).
+- [ ] I never rely on self-invocation to start a transaction.
+- [ ] I know a local transaction does not span multiple services or resources atomically.
+
+### 8.9 Best practices
+
+- Keep transactions **short** and scoped to the business operation; do not hold them open across remote calls.
+- Put the boundary at the **service** layer, not the controller or repository.
+- Mark read paths `readOnly = true` to enable provider/driver optimizations.
+- Prefer unchecked exceptions for failures that should roll back; set `rollbackFor` explicitly when using checked exceptions.
+- Set a `timeout` on transactions that could run long under load.
+
+### 8.10 Anti-patterns
+
+- `@Transactional` on private or self-invoked methods — the proxy is bypassed and the annotation does nothing.
+- Catching and swallowing an exception inside a transactional method, causing a silent commit of partial work.
+- Wrapping an entire controller request (including remote HTTP calls) in one long transaction, holding a DB connection idle.
+- Assuming a DB write plus an external call (message broker, another service) is atomic — it is not.
+
+### 8.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No rollback on a checked exception | Default commits on checked | Add `rollbackFor` or throw a `RuntimeException` |
+| `@Transactional` ignored | Self-invocation or non-public method | Call through an injected bean; make the method public |
+| Connection pool exhausted under load | Transactions held open too long | Shorten the boundary; move remote calls outside it |
+| `TransactionTimedOutException` | Work exceeded the configured timeout | Optimize the query or raise `timeout` deliberately |
+| Inner work committed despite outer rollback | Inner method used `REQUIRES_NEW` | Confirm the propagation is intentional |
+| Partial commit across two resources | No distributed transaction | Use an outbox/saga; do not assume atomicity |
+
+### 8.12 Official references
+
+- Spring transaction management: https://docs.spring.io/spring-framework/reference/data-access/transaction.html
+- Declarative transactions (`@Transactional`): https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html
+- Transaction propagation: https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html
+- Spring Boot — transactions: https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.jdbc-template
+
+---
+
+## Chapter 9 — Database migrations and connection pooling (Flyway/Liquibase, HikariCP)
+
+### 9.1 Introduction
+
+Two operational concerns turn a working data layer into a production-ready one: **how the schema changes over time** and **how database connections are managed under concurrency**. For schema evolution, Spring Boot 4 auto-configures **Flyway** or **Liquibase** the moment either is on the classpath, running versioned migrations on startup so every environment converges to the same schema. For connections, Spring Boot's default `DataSource` is **HikariCP** — a small, fast pool that is auto-configured from your `spring.datasource.*` properties. This chapter explains migration tooling (and why `ddl-auto` is not a migration strategy), HikariCP sizing and the most important pool properties, and how the two fit together at startup.
+
+### 9.2 Business context
+
+Schema changes are among the riskiest deployments a team performs: an un-versioned `ALTER TABLE` run by hand on production is how outages and data loss happen. Versioned migrations make schema change **auditable, repeatable, and reviewable** — the same SQL that ran in CI runs in production, in order, exactly once, recorded in a history table. Connection pooling is the other half of production readiness: a database accepts a finite number of connections, and an oversized or undersized pool is a common, invisible cause of latency spikes and `connection timeout` errors under load. Getting both right means deployments are boring and the system stays responsive when traffic climbs — the two properties operations teams value most.
+
+### 9.3 Theoretical concepts
+
+- **Versioned migration.** A numbered, immutable script (`V1__init.sql`, `V2__add_status.sql`) applied in order exactly once; the tool records applied versions in a history table (`flyway_schema_history` / `DATABASECHANGELOG`).
+- **Flyway.** SQL-first migrations by default; conventionally placed in `db/migration`. Simple and explicit.
+- **Liquibase.** Changelog-driven (XML/YAML/JSON/SQL) with database-agnostic change types and built-in rollback support; placed via `db/changelog`.
+- **`spring.jpa.hibernate.ddl-auto`.** Hibernate's schema generation (`none`, `validate`, `update`, `create`, `create-drop`). Useful in tests; **not** a production migration tool. With Flyway/Liquibase, set it to `validate` (or `none`).
+- **Connection pool.** A bounded set of reusable physical connections. Acquiring a pooled connection is far cheaper than opening a new one per request.
+- **HikariCP.** Spring Boot's default pool. Key properties: `maximum-pool-size`, `minimum-idle`, `connection-timeout`, `idle-timeout`, `max-lifetime`.
+- **Pool sizing.** Bigger is not better. Throughput is bounded by the database's capacity; a common starting point is a small pool (often `cores * 2` plus effective disk count) tuned by measurement, kept below the database's `max_connections`.
+
+### 9.4 Architecture: migrations and pooling at startup
+
+```mermaid
+flowchart TB
+    boot["Spring Boot startup"] --> ds["Auto-configure HikariCP DataSource<br/>(spring.datasource.*)"]
+    ds --> mig{"Flyway or Liquibase<br/>on classpath?"}
+    mig -- "yes" --> run["Run pending migrations<br/>(before JPA EntityManagerFactory)"]
+    mig -- "no" --> skip["Skip migrations"]
+    run --> hist["Record version in history table"]
+    hist --> jpa["Initialize EntityManagerFactory<br/>(ddl-auto=validate)"]
+    skip --> jpa
+    jpa --> ready["Application ready<br/>(pool serves connections)"]
+```
+
+```mermaid
+flowchart LR
+    req1["Request 1"] --> pool["HikariCP pool<br/>(max-pool-size connections)"]
+    req2["Request 2"] --> pool
+    req3["Request 3"] --> pool
+    pool -->|"borrow"| c1["Connection"]
+    pool -->|"borrow"| c2["Connection"]
+    pool -->|"wait up to<br/>connection-timeout"| q["Queued request"]
+    c1 --> db[(Database)]
+    c2 --> db
+    note["Pool size capped below the database<br/>max_connections; excess requests queue"]
+```
+
+Migrations run **before** the JPA `EntityManagerFactory` initializes, so when Hibernate validates the schema (`ddl-auto=validate`) the migrations have already created it. The pool is configured first because the migration tool itself borrows a connection from it.
+
+### 9.5 Real example
+
+**Scenario.** A service must add a `status` column to an existing `orders` table across dev, staging, and production without manual SQL, and it must stay responsive at ~200 concurrent requests against a Postgres instance with `max_connections = 100`.
+
+**Problem.** The team currently relies on `ddl-auto=update`, which drifts between environments and cannot express data backfills or be reviewed safely. The pool is left at defaults, and under load they see intermittent `connection is not available` timeouts.
+
+**Solution.** Adopt Flyway with versioned scripts, switch Hibernate to `validate` so it only checks (never mutates) the schema, and size HikariCP deliberately below the database limit with an explicit `connection-timeout`.
+
+**Implementation.**
+
+```sql
+-- src/main/resources/db/migration/V1__create_orders.sql
+CREATE TABLE orders (
+    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    customer_id VARCHAR(64)    NOT NULL,
+    total       NUMERIC(12,2)  NOT NULL,
+    created_at  TIMESTAMPTZ    NOT NULL DEFAULT now()
+);
+```
+
+```sql
+-- src/main/resources/db/migration/V2__add_status.sql
+ALTER TABLE orders ADD COLUMN status VARCHAR(16) NOT NULL DEFAULT 'PENDING';
+CREATE INDEX idx_orders_customer_status ON orders (customer_id, status);
+-- Backfill existing rows explicitly (reviewable, repeatable).
+UPDATE orders SET status = 'PAID' WHERE status = 'PENDING' AND total > 0;
+```
+
+```yaml
+# src/main/resources/application.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/shop
+    username: shop
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 20        # kept well below Postgres max_connections (100)
+      minimum-idle: 5
+      connection-timeout: 3000     # ms to wait for a connection before failing fast
+      idle-timeout: 600000         # 10 min
+      max-lifetime: 1800000        # 30 min, below DB/proxy idle cutoffs
+  jpa:
+    hibernate:
+      ddl-auto: validate           # Flyway owns the schema; Hibernate only validates
+  flyway:
+    enabled: true                  # auto-detected on classpath; explicit for clarity
+    locations: classpath:db/migration
+```
+
+```java
+// Optional: a smoke check that the schema Flyway produced matches the entities.
+@SpringBootTest
+@Testcontainers
+class SchemaMigrationTest {
+
+    @Container
+    static PostgreSQLContainer<?> postgres =
+        new PostgreSQLContainer<>("postgres:16-alpine");
+
+    @DynamicPropertySource
+    static void datasource(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
+    }
+
+    @Autowired OrderRepository repository;
+
+    @Test
+    void contextStartsWithMigratedSchema() {
+        // Flyway ran V1+V2 on startup; ddl-auto=validate confirmed the mapping.
+        assertThat(repository.count()).isGreaterThanOrEqualTo(0);
+    }
+}
+```
+
+**Result.** Every environment converges to the identical, version-controlled schema on deploy; the `status` change and its backfill are reviewable SQL recorded in `flyway_schema_history`. With a 20-connection pool and a 3-second `connection-timeout`, the service stays within Postgres's limits and fails fast (rather than hanging) if the pool is momentarily saturated — which surfaces real capacity problems instead of hiding them.
+
+**Future improvements.** Add Flyway's `validate`/`info` to the CI pipeline so drift is caught before deploy; gate destructive migrations behind review and run them as separate, reversible steps (expand/contract). Expose HikariCP metrics through Actuator/Micrometer to size the pool from real `pool.usage` and `pending` data rather than guesswork, and consider a read replica with a second pool for heavy read traffic.
+
+### 9.6 Exercises
+
+1. Why is `ddl-auto=update` unsuitable for production schema management, and what should it be set to when Flyway/Liquibase owns the schema?
+2. Name three HikariCP properties and what each controls.
+3. Where does Flyway place its history table, and what does it record?
+
+### 9.7 Challenges
+
+- **Challenge.** Stand up Postgres in a Testcontainer with `max_connections` set low (e.g., 10). Drive the service with a concurrency higher than `maximum-pool-size`, observe `connection-timeout` failures, then tune `maximum-pool-size` and `connection-timeout` and measure how p99 latency and error rate change — produce a short before/after table justifying your chosen pool size.
+
+### 9.8 Checklist
+
+- [ ] My schema changes are versioned migrations, not manual SQL or `ddl-auto=update`.
+- [ ] `spring.jpa.hibernate.ddl-auto` is `validate` (or `none`) in non-test environments.
+- [ ] Migrations are immutable once merged; new changes are new versions.
+- [ ] HikariCP `maximum-pool-size` is set below the database's `max_connections`.
+- [ ] `connection-timeout` is set so the app fails fast instead of hanging.
+- [ ] I monitor pool usage and migration status (Actuator) rather than guessing.
+
+### 9.9 Best practices
+
+- Let Flyway/Liquibase own the schema; reserve `ddl-auto` (`create-drop`) for throwaway test contexts only.
+- Treat merged migration scripts as immutable — never edit an applied version; add a new one.
+- Make data backfills explicit migration steps so they are reviewed and repeatable.
+- Size the pool from measurement; start small and below the DB limit, and prefer a short `connection-timeout` to fail fast.
+- Keep `max-lifetime` under any database or proxy idle-connection cutoff to avoid stale connections.
+- Run `flyway validate`/`info` (or Liquibase status) in CI to catch drift before deploy.
+
+### 9.10 Anti-patterns
+
+- Using `ddl-auto=update` as a migration strategy — it drifts, cannot express backfills, and is unreviewable.
+- Editing an already-applied migration script, breaking the checksum and history on other environments.
+- Setting an enormous `maximum-pool-size` "for performance," exhausting the database's connection limit.
+- Running ad-hoc `ALTER TABLE` by hand on production, outside version control.
+- Leaving `connection-timeout` at a high value so saturated apps hang instead of surfacing the problem.
+
+### 9.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection is not available, request timed out` | Pool saturated or connections leaked | Lower transaction duration; check for leaks; tune pool size |
+| App fails startup: schema validation error | `ddl-auto=validate` mismatch vs. migrations | Align the entity mapping with the migrated schema |
+| Flyway: `Migration checksum mismatch` | An applied script was edited | Restore the script or `flyway repair`; add a new version instead |
+| `Too many connections` from the database | Pool size above `max_connections` | Reduce `maximum-pool-size`; account for all app instances |
+| Migrations not running on startup | Tool not on classpath or disabled | Add the starter; check `spring.flyway.enabled` / locations |
+| Stale/dropped connections after idle | `max-lifetime` above DB/proxy cutoff | Set `max-lifetime` below the cutoff |
+
+### 9.12 Official references
+
+- Spring Boot — database initialization & migrations: https://docs.spring.io/spring-boot/how-to/data-initialization.html
+- Spring Boot — configuring a DataSource (HikariCP): https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.datasource
+- Flyway documentation: https://documentation.red-gate.com/flyway
+- Liquibase documentation: https://docs.liquibase.com/
+- HikariCP project & configuration: https://github.com/brettwooldridge/HikariCP
+
+---
+
+> **End of Part III.** You now have the data layer end to end: **Spring Data JPA** (entities, repositories, derived and `@Query` methods, record projections, and paging), **declarative transactions** with `@Transactional` (propagation, rollback rules, `readOnly`, and the self-invocation pitfall), and the **operational foundation** of versioned migrations (Flyway/Liquibase) plus HikariCP connection pooling. **Part IV — Security** (Chapters 10–12) builds on this to protect what you persist: the Spring Security architecture and the `SecurityFilterChain`, stateless authentication with JWT, and delegated authorization with OAuth2/OIDC.
+
 <!--APPEND-PARTE-II-->
