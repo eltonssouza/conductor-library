@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Operations**
 3. Scaling, health, and config
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -265,4 +265,158 @@ spec:
 
 > **End of Part I.** You can now reason about Kubernetes via its core model — declare desired state and let controllers reconcile reality toward it (self-healing) — and the three workhorse objects: Pods (ephemeral units), Deployments (managing replicas and rolling updates), and Services (stable endpoints load-balancing across pod churn). **Part II — Operations** (Chapter 3) covers scaling (manual and autoscaling), health probes (liveness/readiness), and configuration/secrets so workloads are robust and properly wired.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Operations
+
+Running a workload is more than keeping the declared replica count alive. Production demands that the cluster **scale with load**, **route traffic only to instances that can serve it**, **restart instances that have wedged**, and **inject configuration without rebuilding images**. Kubernetes provides first-class objects for each: the HorizontalPodAutoscaler, liveness/readiness/startup probes, resource requests and limits, and ConfigMaps and Secrets. This chapter wires the core model of Part I into a robust, self-managing production workload.
+
+---
+
+## Chapter 3 — Scaling, health, and config
+
+### 3.1 Introduction
+
+Three operational concerns turn a bare Deployment into a production-grade workload. **Scaling** adjusts the replica count to match load — manually (`kubectl scale`) or automatically via a **HorizontalPodAutoscaler** (HPA) that watches a metric like CPU and changes `replicas` for you. **Health probes** tell Kubernetes whether each container is alive and whether it is ready to receive traffic, so the platform restarts wedged containers and keeps unready ones out of the Service. **Configuration** — non-secret settings in **ConfigMaps**, sensitive values in **Secrets**, plus **resource requests/limits** — wires apps without baking environment-specific values into the image.
+
+### 3.2 Business context
+
+Without these, a Deployment is fragile: it cannot absorb traffic spikes (fixed replica count), it sends requests to pods that are still starting or have silently hung (no probes), and it forces a rebuild for every config change (values baked into the image). Each gap maps to a real outage class — overload, error spikes during deploys, and risky redeploys for trivial config edits. Probes, autoscaling, and externalized config are the difference between a workload that needs constant babysitting and one the platform keeps healthy, right-sized, and reconfigurable on its own.
+
+### 3.3 Theoretical concepts: scale, probe, configure
+
+```mermaid
+flowchart TB
+    metric["Metric (e.g. CPU %)"] --> hpa["HPA: adjust replicas toward target"]
+    hpa --> deploy["Deployment replica count"]
+    probe["Liveness/Readiness probes"] --> kubelet["kubelet: restart if dead, gate traffic if not ready"]
+    cfg["ConfigMap / Secret"] --> pod["Injected as env vars or mounted files"]
+```
+
+- **Liveness probe** — if it fails, the kubelet **restarts** the container (recovers a hung process).
+- **Readiness probe** — if it fails, the pod is **removed from Service endpoints** (no traffic) but **not** restarted; it rejoins when ready. A **startup probe** protects slow-booting apps from premature liveness kills.
+- **Requests/limits** — `requests` drive **scheduling** (and HPA math); `limits` cap usage. Together they set the pod's **QoS class** (Guaranteed/Burstable/BestEffort), which governs eviction order under pressure.
+- **HPA** — scales replicas to keep an observed metric near a target; it needs accurate `requests` because CPU-target HPAs measure utilization as a fraction of the request.
+
+### 3.4 Architecture: the control loops around a Deployment
+
+```mermaid
+flowchart LR
+    users["Traffic"] --> svc["Service (routes only to Ready pods)"]
+    svc --> pods["Pods (Deployment-managed)"]
+    metrics["metrics-server"] --> hpa["HorizontalPodAutoscaler"]
+    hpa -- "set replicas" --> deploy["Deployment"]
+    deploy --> pods
+    kubelet["kubelet probes each pod"] -- "restart / mark unready" --> pods
+```
+
+### 3.5 Real example
+
+**Scenario.** A checkout service has a fixed 3 replicas. Under flash-sale load it overloads; during deploys, the Service briefly routes to pods that are still warming caches, causing 500s; and a config change (payment timeout) requires a full image rebuild.
+
+**Problem.** No autoscaling (overload), no readiness gating (errors during rollout), and config baked into the image (slow, risky changes).
+
+**Solution.** Add resource requests, liveness/readiness probes, externalize the timeout to a ConfigMap, and attach an HPA on CPU.
+
+**Implementation.**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: checkout }
+spec:
+  replicas: 3
+  selector: { matchLabels: { app: checkout } }
+  template:
+    metadata: { labels: { app: checkout } }
+    spec:
+      containers:
+        - name: checkout
+          image: myorg/checkout:2.1.0
+          resources:                       # scheduling + HPA baseline
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+          envFrom:
+            - configMapRef: { name: checkout-config }   # externalized config
+          readinessProbe:                  # gate traffic until warm
+            httpGet: { path: /readyz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:                   # restart if wedged
+            httpGet: { path: /healthz, port: 8080 }
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: checkout-config }
+data:
+  PAYMENT_TIMEOUT_MS: "3000"               # change without rebuilding the image
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: checkout }
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: checkout }
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 70 }
+```
+
+**Result.** The HPA grows replicas toward 70% CPU during the sale and shrinks them afterward; the readiness probe keeps warming pods out of the Service so rollouts no longer emit 500s; the liveness probe recovers any wedged container; and the payment timeout changes with a `kubectl apply` of the ConfigMap (plus a rollout) instead of a rebuild.
+
+**Future improvements.** Move `PAYMENT_TIMEOUT_MS` to a versioned config and roll deliberately; autoscale on a custom or external metric (queue depth, RPS) instead of CPU; add a PodDisruptionBudget so scaling/maintenance never drops below a safe replica count.
+
+### 3.6 Exercises
+
+1. Contrast a liveness probe and a readiness probe — what does Kubernetes do when each fails?
+2. Why must an HPA target be backed by accurate resource `requests`?
+3. When would you inject config as a mounted volume rather than environment variables?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a Deployment, add readiness + liveness probes and CPU requests, attach an HPA (`minReplicas: 2`, `maxReplicas: 10`, 70% CPU), then generate load and watch `kubectl get hpa` scale replicas up and back down. Explain which control loop made each change.
+
+### 3.8 Checklist
+
+- [ ] Every container sets resource `requests` (and sensible `limits`).
+- [ ] Liveness and readiness probes are defined and distinct.
+- [ ] Traffic-bearing workloads gate on readiness before receiving requests.
+- [ ] Config lives in ConfigMaps/Secrets, not baked into images.
+- [ ] An HPA (or deliberate manual policy) governs replica count under load.
+
+### 3.9 Best practices
+
+- Make readiness reflect *true* serving capacity (dependencies reachable, caches warm); keep liveness cheap and local.
+- Set `requests` from real measurements so scheduling and HPA math are accurate.
+- Keep Secrets out of ConfigMaps and out of images; mount or inject them, and restrict access via RBAC.
+- Pair an HPA with a PodDisruptionBudget and a minReplicas floor.
+
+### 3.10 Anti-patterns
+
+- A liveness probe that depends on a downstream service — a dependency blip restarts healthy pods and amplifies the outage.
+- No `requests`, then wondering why the scheduler packs badly and the HPA misbehaves.
+- Storing secrets in ConfigMaps or in the container image.
+- Autoscaling on CPU when the real bottleneck is queue depth or latency.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| 500s during every rollout | No readiness probe; traffic hits warming pods | Add a readiness probe reflecting serving capacity |
+| Healthy pods restart in a loop | Liveness probe too strict or depends on a downstream | Loosen timing; make liveness local; add a startup probe |
+| HPA never scales | Missing metrics-server or missing CPU `requests` | Install metrics-server; set resource requests |
+| Pods evicted first under pressure | BestEffort QoS (no requests/limits) | Set requests/limits to raise QoS class |
+| Config change needs a rebuild | Values baked into the image | Externalize to a ConfigMap/Secret |
+
+### 3.12 References
+
+- B. Burns, J. Beda, K. Hightower, *Kubernetes: Up and Running*, 3rd ed. (O'Reilly, 2022) — ISBN 978-1098110208 — Ch. 5 "Health Checks & Resource Management" and Ch. 13 "ConfigMaps and Secrets".
+- Kubernetes docs, "Configure Liveness, Readiness and Startup Probes" & "Horizontal Pod Autoscaling": https://kubernetes.io/docs/tasks/.
+
+---
+
+> **End of Part II — and of the guide.** You can now run a Kubernetes workload that manages itself in production: it **scales** to load via the HorizontalPodAutoscaler over accurate resource requests, **routes traffic only to Ready pods** and **restarts wedged ones** through readiness and liveness probes, and is **configured without rebuilds** via ConfigMaps and Secrets. Combined with Part I's declarative core model — desired state reconciled by controllers, exposed through Deployments and Services — this is the foundation for operating containerized services reliably at scale.
