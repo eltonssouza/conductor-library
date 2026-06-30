@@ -507,4 +507,733 @@ class OrderServiceTest {
 
 > **End of Part I.** You now have the foundational mental model of Spring Boot 3: the **project model** (starters, BOM, embedded server, `@SpringBootApplication`), the **auto-configuration** mechanism (conditional beans and the "back off" rule), and the **IoC container** with constructor-based dependency injection. **Part II — Configuration & Web APIs** (Chapters 4–6) builds on this to cover externalized configuration and profiles, REST APIs with Spring MVC, and validation with RFC 7807 `ProblemDetail` error handling.
 
+
+---
+
+## Part II – Configuration & Web APIs
+
+Part I explained how Spring Boot wires itself together. Part II turns that container into a configurable, network-facing service. A real application reads its settings from the outside world, exposes HTTP endpoints, and rejects bad input gracefully. These three chapters cover externalized configuration and profiles (so one artifact runs everywhere), REST API construction with Spring MVC (so clients can talk to it), and Bean Validation with structured error handling (so failures are safe and predictable). Throughout, the platform baseline is Spring Boot 3.x on Spring Framework 6, Java 17+, and the `jakarta.*` namespace.
+
+---
+
+## Chapter 4 — Externalized configuration, profiles, and `@ConfigurationProperties`
+
+### 4.1 Introduction
+
+A single deployable artifact must behave differently in development, staging, and production: different database URLs, pool sizes, feature flags, and secrets. Spring Boot's **externalized configuration** makes this possible by reading settings from many sources — property and YAML files, OS environment variables, command-line arguments, and imported config — and merging them in a defined precedence order. **Profiles** let you activate environment-specific properties and beans, and **`@ConfigurationProperties`** binds a whole tree of settings to a type-safe, validated object. This chapter covers the property model, profiles, type-safe binding, and where secrets belong.
+
+### 4.2 Business context
+
+Hardcoded configuration is a reliability and security liability. A database URL compiled into a jar is correct in exactly one environment and wrong everywhere else; a password committed to source control is a breach waiting to be discovered. Externalized configuration enables the 12-factor ideal: one immutable artifact is promoted unchanged from dev to prod, with behavior varying only by external inputs. For an organization this lowers deployment risk, enables centralized secret management, and produces an auditable separation between code and environment. It also makes a fleet of services governable — operators tune behavior without rebuilding, and the same artifact that passed CI is the one that runs in production.
+
+### 4.3 Theoretical concepts: the property model
+
+Spring Boot assembles a single `Environment` from many **property sources**, each with a priority. When the same key appears in more than one source, the higher-priority source wins. A simplified precedence (highest first):
+
+- Command-line arguments (`--server.port=9000`)
+- OS environment variables and `SPRING_APPLICATION_JSON`
+- Profile-specific files (`application-{profile}.yml`)
+- The base file (`application.yml` / `application.properties`)
+- Defaults declared in code (`@Value(":default")`, property defaults)
+
+```mermaid
+mindmap
+  root((Externalized config))
+    Property sources
+      Command-line args
+      Environment variables
+      application-{profile}.yml
+      application.yml
+      Code defaults
+    Profiles
+      spring.profiles.active
+      @Profile beans
+      profile-specific YAML
+    Type-safe binding
+      @ConfigurationProperties
+      @Validated
+      records and relaxed binding
+    Secrets
+      from env or vault
+      never in source control
+      spring.config.import
+```
+
+Two ways to consume config exist: `@Value("${key}")` injects a single property into a field or parameter, while **`@ConfigurationProperties`** binds a prefixed subtree into a structured object. The latter is preferred because it groups related settings, supports **relaxed binding** (`max-size`, `maxSize`, `MAX_SIZE` all map to the same property), and integrates with Jakarta Bean Validation for fail-fast startup checks.
+
+### 4.4 Architecture: how configuration resolves
+
+```mermaid
+flowchart TB
+    cli["Command-line args"] --> merge["Merged Environment"]
+    env["OS env vars / secrets"] --> merge
+    prof["application-{profile}.yml"] --> merge
+    base["application.yml"] --> merge
+    defaults["Code defaults"] --> merge
+    active["spring.profiles.active"] --> prof
+    merge --> cp["@ConfigurationProperties beans"]
+    merge --> val["@Validated (fail fast at startup)"]
+    merge --> at["@Value injections"]
+```
+
+The `Environment` is built early in the bootstrap sequence, before most beans are created. `spring.profiles.active` decides which profile-specific files participate in the merge. Binding into `@ConfigurationProperties` objects happens during context refresh, and when those objects are annotated `@Validated`, any constraint violation aborts startup — a misconfigured service fails loudly at launch rather than silently at the first request.
+
+### 4.5 Real example
+
+**Scenario.** A checkout service must run with different connection-pool sizes and feature flags per environment, and its database password must come from a secret store rather than any file.
+
+**Problem.** Settings are scattered across a dozen `@Value` annotations, there is no validation, and the password risks being committed inside `application.yml`.
+
+**Solution.** Consolidate settings into a validated `@ConfigurationProperties` record, place environment differences in profile-specific YAML, and inject the password from an environment variable so it never touches source control.
+
+**Implementation.**
+
+```yaml
+# application.yml (defaults shared by every environment)
+app:
+  features:
+    new-checkout: false
+  pool:
+    max-size: 10
+---
+# application-prod.yml (production overrides)
+spring:
+  config:
+    activate:
+      on-profile: prod
+app:
+  features:
+    new-checkout: true
+  pool:
+    max-size: 50
+spring:
+  datasource:
+    url: jdbc:postgresql://db.prod.internal:5432/app
+    username: app
+    password: ${DB_PASSWORD}   # resolved from the environment / secret store
+```
+
+```java
+package com.example.checkout.config;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
+
+@ConfigurationProperties(prefix = "app")
+@Validated
+public record AppProperties(
+        Features features,
+        @Valid Pool pool
+) {
+    public record Features(boolean newCheckout) {}
+
+    public record Pool(@Min(1) @Max(200) int maxSize) {}
+}
+```
+
+```java
+package com.example.checkout;
+
+import com.example.checkout.config.AppProperties;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Service;
+
+@SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
+public class CheckoutApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(CheckoutApplication.class, args);
+    }
+}
+
+@Service
+class CheckoutService {
+
+    private final AppProperties props;
+
+    CheckoutService(AppProperties props) {
+        this.props = props;
+    }
+
+    boolean newCheckoutEnabled() {
+        return props.features().newCheckout();
+    }
+}
+```
+
+```java
+package com.example.checkout;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.example.checkout.config.AppProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+@SpringBootTest
+@ActiveProfiles("prod")
+class ProdConfigTest {
+
+    @Autowired
+    AppProperties props;
+
+    @Test
+    void prodOverridesApplied() {
+        assertThat(props.features().newCheckout()).isTrue();
+        assertThat(props.pool().maxSize()).isEqualTo(50);
+    }
+}
+```
+
+```bash
+# Activate the prod profile and supply the secret at run time.
+DB_PASSWORD=s3cr3t java -jar app.jar --spring.profiles.active=prod
+```
+
+**Result.** One artifact behaves correctly in every environment. The password lives only in the deployment environment, never in a file. Invalid configuration — say, `max-size: 0` — fails fast at startup with a clear validation message instead of surfacing as a runtime defect.
+
+**Future improvements.** Source the password from a managed store via `spring.config.import=vault://` or a Kubernetes secret, add `@ConfigurationProperties` metadata (annotation processor) so the IDE autocompletes keys, and expose non-secret feature flags through a refreshable mechanism.
+
+### 4.6 Exercises
+
+1. Order these property sources by precedence (highest first): `application.yml`, an OS environment variable, a command-line argument.
+2. Convert three related `@Value` injections into a single validated `@ConfigurationProperties` record.
+3. Show two different ways to activate the `prod` profile at run time.
+
+### 4.7 Challenges
+
+- **Challenge.** Take a service whose configuration is spread across `@Value` strings, externalize every setting into base plus profile-specific YAML, bind it with a validated `@ConfigurationProperties` record, and inject exactly one secret from an environment variable. Prove the prod overrides with a `@SpringBootTest` using `@ActiveProfiles("prod")`.
+
+### 4.8 Checklist
+
+- [ ] No secrets appear in source code or committed property files.
+- [ ] Environment differences live in `application-{profile}.yml`, not in code.
+- [ ] Configuration is bound via type-safe, `@Validated` `@ConfigurationProperties`.
+- [ ] The active profile is set explicitly per environment.
+- [ ] Invalid configuration fails fast at startup, not at first request.
+
+### 4.9 Best practices
+
+- Prefer `@ConfigurationProperties` (grouped, type-safe, validated) over scattered `@Value` strings.
+- Ship one immutable artifact and vary behavior only through externalized configuration.
+- Inject secrets from environment variables or a vault; never commit them.
+- Add `@Validated` and Jakarta constraints so misconfiguration aborts startup.
+- Use relaxed binding intentionally and keep property names kebab-case in YAML.
+
+### 4.10 Anti-patterns
+
+- Passwords or API keys in `application.yml` checked into git.
+- Building a separate artifact per environment instead of one promoted everywhere.
+- Dozens of unvalidated `@Value` injections with no central structure.
+- Overriding properties in profiles that should be code defaults, fragmenting the source of truth.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Wrong value at runtime | Misunderstood precedence order | Inspect the property-source order; a higher source is overriding you |
+| Profile properties ignored | Profile not active | Set `spring.profiles.active` for that environment |
+| Binding fails at startup | Type or constraint mismatch | Fix the property value or the validation constraint |
+| `${DB_PASSWORD}` is literal | Env var not set | Export the variable in the deployment environment |
+| Property not bound to record | Prefix or relaxed-binding mismatch | Verify the `prefix` and the kebab-case key |
+
+### 4.12 Official references
+
+- Externalized configuration: https://docs.spring.io/spring-boot/reference/features/external-config.html
+- Profiles: https://docs.spring.io/spring-boot/reference/features/profiles.html
+- Type-safe `@ConfigurationProperties`: https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties
+- Importing additional config (`spring.config.import`): https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.files.importing
+
+---
+
+## Chapter 5 — Building REST APIs with Spring MVC
+
+### 5.1 Introduction
+
+**Spring MVC** is Spring Boot's servlet-based web stack. A front controller — the `DispatcherServlet` — routes each HTTP request to a handler method on a controller, binds path variables, query parameters, and request bodies, invokes your code, and serializes the return value back to the client. With `@RestController` the return value is written directly to the response body (typically as JSON via Jackson 2), so building a REST endpoint is mostly a matter of mapping URLs to methods and modeling request and response payloads. This chapter covers controllers, request mapping, content negotiation, status codes, and `ResponseEntity`.
+
+> **Boot 3 note.** Spring Boot 3 has no built-in `@RequestMapping(version=...)` API-versioning attribute — that arrived later in the Spring Framework 7 / Boot 4 generation. In Boot 3 you version APIs by convention: distinct URI paths (`/v1/...`, `/v2/...`), a custom header read in the controller, or a custom request-condition resolver.
+
+### 5.2 Business context
+
+The HTTP API is the contract between a service and everyone who depends on it — front-ends, mobile apps, partner systems, and other services. A clean, predictable API lowers integration cost and reduces support load: clients can rely on consistent status codes, content types, and payload shapes. Spring MVC's conventions make the common case trivial and the uncommon case possible, so teams spend their effort on the domain rather than on plumbing request parsing and response writing. Getting the basics right — correct status codes, proper content negotiation, thin controllers — pays off every time a new consumer integrates.
+
+### 5.3 Theoretical concepts
+
+- **`DispatcherServlet`.** The front controller; it owns the request lifecycle and delegates to handler mappings and message converters.
+- **Controllers.** `@RestController` (= `@Controller` + `@ResponseBody`) returns serialized bodies. `@RequestMapping` and its shortcuts `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping` bind URLs and HTTP methods to methods.
+- **Argument binding.** `@PathVariable`, `@RequestParam`, `@RequestBody`, and `@RequestHeader` populate handler parameters from the request.
+- **Content negotiation.** Spring chooses a representation based on the `Accept` header (and configurable defaults) and uses an `HttpMessageConverter` — `MappingJackson2HttpMessageConverter` for JSON — to serialize.
+- **Response control.** Return a value (serialized with `200 OK`), annotate with `@ResponseStatus`, or return a `ResponseEntity<T>` to set status, headers, and body explicitly.
+
+### 5.4 Architecture: the request-handling pipeline
+
+```mermaid
+flowchart TB
+    client["HTTP client"] --> ds["DispatcherServlet"]
+    ds --> hm["HandlerMapping<br/>match path and method"]
+    hm --> ha["HandlerAdapter<br/>bind arguments"]
+    ha --> ctrl["@RestController method"]
+    ctrl --> svc["Service layer"]
+    svc --> ctrl
+    ctrl --> mc["HttpMessageConverter<br/>(Jackson 2 JSON)"]
+    mc --> cn["Content negotiation<br/>by Accept header"]
+    cn --> resp["HTTP response<br/>status + headers + body"]
+```
+
+The pipeline is symmetrical: converters turn the inbound `@RequestBody` JSON into a Java object on the way in, and turn the returned object back into JSON on the way out. Because the controller deals in plain objects, it stays free of HTTP serialization concerns, and the service layer below it stays free of HTTP entirely.
+
+### 5.5 Real example
+
+**Scenario.** A team must expose a small orders API: create an order, fetch one by id, and list orders with optional paging. Responses are JSON; creation must return `201 Created` with a `Location` header.
+
+**Problem.** Without deliberate design, controllers tend to return everything as `200 OK`, leak entity classes into the API, and put business logic inside the web layer.
+
+**Solution.** Use `@RestController` with explicit mappings, dedicated request/response records (DTOs) separate from the domain, and `ResponseEntity` to set the proper status and headers. Keep the controller thin and delegate to a service.
+
+**Implementation.**
+
+```java
+package com.example.orders.api;
+
+import java.math.BigDecimal;
+
+// Request and response payloads are records, decoupled from the domain entity.
+public record CreateOrderRequest(String item, int quantity, BigDecimal unitPrice) {}
+
+public record OrderResponse(String id, String item, int quantity, BigDecimal total) {}
+```
+
+```java
+package com.example.orders.api;
+
+import java.net.URI;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@RestController
+@RequestMapping(path = "/orders", produces = MediaType.APPLICATION_JSON_VALUE)
+public class OrderController {
+
+    private final OrderService service;
+
+    public OrderController(OrderService service) {
+        this.service = service;
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OrderResponse> create(@RequestBody CreateOrderRequest request,
+                                                UriComponentsBuilder uriBuilder) {
+        OrderResponse created = service.create(request);
+        URI location = uriBuilder.path("/orders/{id}").build(created.id());
+        return ResponseEntity.created(location).body(created);
+    }
+
+    @GetMapping("/{id}")
+    public OrderResponse byId(@PathVariable String id) {
+        return service.find(id); // returned object is serialized with 200 OK
+    }
+
+    @GetMapping
+    public java.util.List<OrderResponse> list(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        return service.list(page, size);
+    }
+}
+```
+
+```java
+package com.example.orders.api;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest(OrderController.class)
+class OrderControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    // Boot 3 uses @MockBean for slice tests (not @MockitoBean, which is Boot 4 / SF7).
+    @MockBean
+    OrderService service;
+
+    @Test
+    void createReturns201WithLocation() throws Exception {
+        when(service.create(org.mockito.ArgumentMatchers.any()))
+                .thenReturn(new OrderResponse("42", "widget", 2, new BigDecimal("19.98")));
+
+        mockMvc.perform(post("/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"item":"widget","quantity":2,"unitPrice":9.99}
+                                """))
+                .andExpect(status().isCreated())
+                .andExpect(header().string("Location", "http://localhost/orders/42"))
+                .andExpect(jsonPath("$.total").value(19.98));
+    }
+
+    @Test
+    void fetchByIdReturnsJson() throws Exception {
+        when(service.find("42"))
+                .thenReturn(new OrderResponse("42", "widget", 2, new BigDecimal("19.98")));
+
+        mockMvc.perform(get("/orders/42").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("42"));
+    }
+}
+```
+
+**Result.** The API returns correct status codes (`201 Created` with a `Location` header on creation, `200 OK` on reads), negotiates JSON cleanly, and keeps the controller thin — it parses, delegates, and serializes, with no business logic. Request and response shapes are records independent of the persistence model, so the domain can evolve without breaking the contract.
+
+**Future improvements.** Add Bean Validation to the request DTO and structured error responses (Chapter 6), introduce paging metadata, document the endpoints with springdoc/OpenAPI, and, when a breaking change is needed, version by URI path or a custom header (Boot 3 has no built-in `version` mapping attribute).
+
+### 5.6 Exercises
+
+1. What does `@RestController` add on top of `@Controller`, and why does it matter for REST?
+2. Name the annotations that bind a path segment, a query parameter, and a JSON body to handler parameters.
+3. When would you return a `ResponseEntity<T>` instead of the plain object?
+
+### 5.7 Challenges
+
+- **Challenge.** Build a three-endpoint resource (create, read-by-id, list) that returns `201 Created` with a `Location` header on creation, negotiates JSON, and keeps all business logic in a service. Cover every endpoint with `@WebMvcTest` slice tests using `MockMvc` and `@MockBean`.
+
+### 5.8 Checklist
+
+- [ ] Controllers are thin: they bind, delegate, and serialize — no business logic.
+- [ ] Request and response payloads are DTOs/records, not persistence entities.
+- [ ] Creation returns `201 Created` with a `Location` header.
+- [ ] Status codes and content types are set deliberately.
+- [ ] Endpoints are covered by `@WebMvcTest` + `MockMvc` slice tests.
+
+### 5.9 Best practices
+
+- Use the method-specific mapping annotations (`@GetMapping`, `@PostMapping`, …) over a bare `@RequestMapping`.
+- Separate API DTOs from domain/persistence types so the contract evolves independently.
+- Return `ResponseEntity` when you need to control status, headers, or both (e.g., `Location` on create).
+- Push all logic into the service layer; keep HTTP concerns in the controller.
+- Be explicit about `consumes`/`produces` to make content types part of the contract.
+
+### 5.10 Anti-patterns
+
+- Returning `200 OK` for everything, including creations and errors.
+- Exposing JPA entities directly as request/response bodies, coupling the API to the schema.
+- Fat controllers that contain business rules or talk to the database directly.
+- Ignoring content negotiation and assuming every client wants JSON regardless of `Accept`.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `406 Not Acceptable` | `Accept` header has no matching converter | Align `produces` with what the client accepts |
+| `415 Unsupported Media Type` | Request `Content-Type` not handled | Set `consumes` and send the matching `Content-Type` |
+| `@RequestBody` is null | Missing/empty body or wrong `Content-Type` | Send a JSON body with `Content-Type: application/json` |
+| `404` for an existing route | Path or method mismatch | Verify the mapping path and HTTP verb |
+| Returned object not serialized | Used `@Controller` without `@ResponseBody` | Use `@RestController` or add `@ResponseBody` |
+
+### 5.12 Official references
+
+- Spring MVC overview: https://docs.spring.io/spring-framework/reference/web/webmvc.html
+- Annotated controllers and request mapping: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-requestmapping.html
+- Content negotiation: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/content-negotiation.html
+- Spring Boot — developing web applications: https://docs.spring.io/spring-boot/reference/web/servlet.html
+
+---
+
+## Chapter 6 — Bean Validation and error handling
+
+### 6.1 Introduction
+
+A robust API never trusts its input and never leaks stack traces. **Jakarta Bean Validation** (`@Valid` plus constraint annotations such as `@NotBlank`, `@Min`, `@Email`) declares the rules a request payload must satisfy, and Spring MVC enforces them before your handler runs. When something does go wrong — a validation failure, a missing resource, an unexpected exception — a centralized **`@ControllerAdvice`** translates it into a consistent, machine-readable response. Spring Framework 6 standardizes that response shape with **`ProblemDetail`**, the RFC 9457 (formerly RFC 7807) "problem+json" media type. This chapter covers declarative validation and global error handling.
+
+### 6.2 Business context
+
+How an API fails is part of its contract. Inconsistent or leaky error responses cost clients hours of guesswork, expose internal details to attackers, and generate support tickets. Centralized validation and a uniform error format turn failures into something clients can program against: a stable status code, a typed problem category, and a clear message. For the organization this means fewer integration defects, a smaller attack surface (no stack traces in responses), and error payloads that monitoring and client SDKs can parse uniformly. Validating at the edge also keeps invalid data out of the domain and the database entirely.
+
+### 6.3 Theoretical concepts
+
+- **Constraint annotations.** Jakarta Bean Validation provides `@NotNull`, `@NotBlank`, `@Size`, `@Min`/`@Max`, `@Email`, `@Pattern`, and more, declared directly on DTO fields or record components.
+- **`@Valid` / `@Validated`.** Placing `@Valid` on a `@RequestBody` parameter triggers validation; a failure raises `MethodArgumentNotValidException` before the handler body executes.
+- **`ProblemDetail`.** An SF6 type representing an RFC 9457 problem response (`type`, `title`, `status`, `detail`, `instance`, plus custom properties), serialized as `application/problem+json`.
+- **`@ControllerAdvice` / `@ExceptionHandler`.** A class annotated `@ControllerAdvice` (or `@RestControllerAdvice`) holds `@ExceptionHandler` methods that catch exceptions across all controllers and produce the error response.
+- **`ResponseEntityExceptionHandler`.** A base class you can extend to customize how Spring's built-in MVC exceptions (validation, unsupported media type, etc.) map to `ProblemDetail`.
+
+### 6.4 Architecture: validation and the error-handling path
+
+```mermaid
+flowchart TB
+    req["Request with @RequestBody"] --> bind["Bind JSON to DTO"]
+    bind --> valid{"@Valid passes?"}
+    valid -- "yes" --> handler["Controller method runs"]
+    valid -- "no" --> ex1["MethodArgumentNotValidException"]
+    handler --> biz{"Domain error?"}
+    biz -- "not found" --> ex2["OrderNotFoundException"]
+    biz -- "ok" --> ok["200 / 201 response"]
+    ex1 --> advice["@RestControllerAdvice"]
+    ex2 --> advice
+    advice --> pd["ProblemDetail<br/>application/problem+json"]
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant D as DispatcherServlet
+    participant V as Validator
+    participant A as ControllerAdvice
+    C->>D: POST /orders (invalid body)
+    D->>V: validate(@Valid DTO)
+    V-->>D: violations found
+    D->>A: MethodArgumentNotValidException
+    A-->>C: 400 problem+json (field errors)
+```
+
+Validation runs as part of argument binding, so a bad payload never reaches your business logic. Any exception — framework or domain — funnels into the advice, which is the single place that decides the HTTP status and the `ProblemDetail` body. This keeps controllers free of try/catch noise and guarantees one error shape across the whole API.
+
+### 6.5 Real example
+
+**Scenario.** The orders API from Chapter 5 must reject malformed creation requests with field-level detail and return a clean `404` when an order id does not exist — both as RFC 9457 problem responses.
+
+**Problem.** Today invalid input produces an opaque `400` with no field information, and a missing order throws an exception that surfaces as a `500` with a stack trace in the body.
+
+**Solution.** Annotate the request DTO with Jakarta constraints, add `@Valid` to the handler parameter, define a domain `OrderNotFoundException`, and centralize translation in a `@RestControllerAdvice` that emits `ProblemDetail`.
+
+**Implementation.**
+
+```java
+package com.example.orders.api;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import java.math.BigDecimal;
+
+public record CreateOrderRequest(
+        @NotBlank(message = "item must not be blank") String item,
+        @Min(value = 1, message = "quantity must be at least 1") int quantity,
+        @DecimalMin(value = "0.01", message = "unitPrice must be positive") BigDecimal unitPrice
+) {}
+```
+
+```java
+package com.example.orders.api;
+
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+// ... other imports as in Chapter 5
+
+// Controller method now validates the body before running.
+@PostMapping(consumes = "application/json")
+public org.springframework.http.ResponseEntity<OrderResponse> create(
+        @Valid @RequestBody CreateOrderRequest request,
+        org.springframework.web.util.UriComponentsBuilder uriBuilder) {
+    OrderResponse created = service.create(request);
+    var location = uriBuilder.path("/orders/{id}").build(created.id());
+    return org.springframework.http.ResponseEntity.created(location).body(created);
+}
+```
+
+```java
+package com.example.orders.api;
+
+// Domain exception raised by the service when an id is unknown.
+public class OrderNotFoundException extends RuntimeException {
+    public OrderNotFoundException(String id) {
+        super("Order not found: " + id);
+    }
+}
+```
+
+```java
+package com.example.orders.api;
+
+import java.net.URI;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@RestControllerAdvice
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    // Map the domain "not found" to a 404 problem+json response.
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ProblemDetail handleNotFound(OrderNotFoundException ex) {
+        ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+        pd.setTitle("Order not found");
+        pd.setType(URI.create("https://api.example.com/problems/order-not-found"));
+        return pd;
+    }
+
+    // Customize the built-in validation failure to include per-field errors.
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request) {
+
+        ProblemDetail pd = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST, "Request validation failed");
+        pd.setTitle("Invalid request");
+        pd.setType(URI.create("https://api.example.com/problems/validation-error"));
+
+        var fieldErrors = ex.getBindingResult().getFieldErrors().stream()
+                .collect(java.util.stream.Collectors.toMap(
+                        fe -> fe.getField(),
+                        fe -> fe.getDefaultMessage() == null ? "invalid" : fe.getDefaultMessage(),
+                        (a, b) -> a));
+        pd.setProperty("errors", fieldErrors);
+
+        return ResponseEntity.status(status).headers(headers).body(pd);
+    }
+}
+```
+
+```java
+package com.example.orders.api;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest(OrderController.class)
+class OrderErrorHandlingTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockBean
+    OrderService service;
+
+    @Test
+    void invalidBodyReturns400ProblemDetail() throws Exception {
+        // quantity 0 and blank item violate the constraints.
+        mockMvc.perform(post("/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"item":"","quantity":0,"unitPrice":9.99}
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
+                .andExpect(jsonPath("$.title").value("Invalid request"))
+                .andExpect(jsonPath("$.errors.item").exists())
+                .andExpect(jsonPath("$.errors.quantity").exists());
+    }
+
+    @Test
+    void unknownIdReturns404ProblemDetail() throws Exception {
+        when(service.find("999")).thenThrow(new OrderNotFoundException("999"));
+
+        mockMvc.perform(get("/orders/999"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
+                .andExpect(jsonPath("$.title").value("Order not found"));
+    }
+}
+```
+
+**Result.** Malformed requests get a `400` with `application/problem+json` listing exactly which fields failed and why; an unknown id gets a `404` with a typed problem category and no stack trace. Every error in the API now shares one shape, so clients, SDKs, and monitoring can parse failures uniformly.
+
+**Future improvements.** Add a catch-all `@ExceptionHandler(Exception.class)` that returns a generic `500` problem (logging the cause server-side but never exposing it), enrich `ProblemDetail` with a correlation/trace id, and add validation groups for create-versus-update payloads.
+
+### 6.6 Exercises
+
+1. What exception does Spring raise when `@Valid` on a `@RequestBody` fails, and what status should it map to?
+2. List the standard fields of an RFC 9457 `ProblemDetail` body.
+3. Why centralize error handling in `@ControllerAdvice` instead of try/catch in each controller?
+
+### 6.7 Challenges
+
+- **Challenge.** Add Jakarta constraints to a request DTO, wire a `@RestControllerAdvice` extending `ResponseEntityExceptionHandler` that returns `ProblemDetail`, and prove with `MockMvc` that an invalid body yields a `400` with per-field errors and an unknown id yields a `404` — both as `application/problem+json`.
+
+### 6.8 Checklist
+
+- [ ] Request DTOs carry Jakarta constraint annotations.
+- [ ] Handler parameters are annotated `@Valid`.
+- [ ] A `@ControllerAdvice` centralizes error translation.
+- [ ] Error responses use `ProblemDetail` (`application/problem+json`).
+- [ ] No stack traces or internal details leak in any error body.
+
+### 6.9 Best practices
+
+- Validate at the edge so invalid data never reaches the domain or database.
+- Return RFC 9457 `ProblemDetail` for every error and keep the shape consistent.
+- Map domain exceptions to specific statuses (`404`, `409`) in one advice class.
+- Extend `ResponseEntityExceptionHandler` to customize Spring's built-in MVC exceptions.
+- Log the cause server-side; expose only a safe message and a typed problem category.
+
+### 6.10 Anti-patterns
+
+- Manual `if`-based validation scattered through controllers instead of declarative constraints.
+- Returning raw exception messages or stack traces in the response body.
+- A different error shape per endpoint, forcing clients to special-case each one.
+- Catching exceptions inside controllers and swallowing or mistranslating them.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Validation never triggers | `@Valid` missing on the parameter | Add `@Valid` to the `@RequestBody` parameter |
+| `400` has no field details | Default handler used | Override `handleMethodArgumentNotValid` to add `errors` |
+| Error body is HTML/whitelabel | No `@ControllerAdvice` matched | Add an `@ExceptionHandler` for that exception type |
+| Wrong content type on errors | Not using `ProblemDetail` | Return `ProblemDetail` so `application/problem+json` is set |
+| Constraints ignored on nested object | Missing `@Valid` on the field | Annotate the nested field with `@Valid` |
+
+### 6.12 Official references
+
+- Jakarta Bean Validation in Spring MVC: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html
+- Error responses and `ProblemDetail` (RFC 9457): https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html
+- `@ControllerAdvice` and `@ExceptionHandler`: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html
+- Spring Boot — handling errors: https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.spring-mvc.error-handling
+
+---
+
+> **End of Part II.** You can now externalize configuration across environments, expose clean REST endpoints with Spring MVC, and reject bad input with validated, RFC 9457-compliant error responses. **Part III — Data & Transactions** (Chapters 7–9) goes beneath the web layer: persistence with Spring Data JPA and repositories, declarative transaction management with `@Transactional`, and database migrations and testing strategies that keep your data layer correct under change.
+
 <!--APPEND-PARTE-II-->
