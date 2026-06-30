@@ -7534,4 +7534,1082 @@ return [{
 
 > **End of Part V.** You can now build AI automations end-to-end: call OpenAI, Claude, and Gemini; expose and consume tools via MCP; implement RAG over vector stores; compose LangChain primitives; orchestrate single and multi-agent systems; and harden it all for the enterprise with guardrails, cost control, observability, and privacy. **Part VI — Professional Development** (Chapters 41–46) brings software-engineering rigor to n8n: Git, versioning, environments, testing, CI/CD, and deployment.
 
+## Part VI – Professional Development
+
+Part VI applies software-engineering discipline to n8n. Workflows are code: they deserve version control, environment separation, testing, CI/CD, and controlled deployment. n8n 2.x's **Publish/Save** paradigm and **environments** (Enterprise) make this practical. We cover Git-based source control, versioning strategy, dev/staging/prod environments, testing approaches, CI/CD pipelines, and deployment patterns — turning ad-hoc automation into a governed engineering practice.
+
+---
+
+## Chapter 41 — Git
+
+### 41.1 Introduction
+
+Workflows live in a database, but the source of truth for a professional team should be **Git**. n8n supports this through **export** (CLI/API to JSON) and, on Enterprise, native **Git-based source control (environments)** that syncs workflows, credentials (references), and variables to a repository. This chapter covers both paths: file-based export for any tier, and the Enterprise source-control integration, plus repository structure and review workflow.
+
+### 41.2 Business context
+
+Without Git, you have no history, no review, no rollback, and no single source of truth — workflows drift between environments and people overwrite each other's work. Git brings code review, audit trail, and disaster recovery to automation. For regulated teams, the Git history *is* the change-control evidence auditors require.
+
+### 41.3 Theoretical concepts
+
+- **Export/import (any tier):** `n8n export:workflow`/`import:workflow` (CLI) or the Public API serialize workflows to JSON files you commit.
+- **Enterprise source control:** connect a Git repo; **push** local changes and **pull** to sync; workflows, variables, and credential *references* (not secrets) are versioned.
+- **Repository structure:** one file per workflow, plus variables and a README; group by domain.
+- **Branching & review:** feature branches + pull requests for workflow changes; the JSON diff is reviewable.
+- **Secrets stay out:** credential secrets are never committed — only references (Chapter 17 external secrets).
+- **Source of truth:** Git, not the running instance; deploy *from* Git.
+
+### 41.4 Architecture
+
+```mermaid
+flowchart LR
+    dev[Developer / editor] -->|export or push| repo[(Git repository)]
+    repo -->|PR review| review[Reviewer]
+    review -->|merge| main[main branch]
+    main -->|CI deploy| envs[dev / staging / prod]
+    repo -.->|pull| dev
+```
+
+### 41.5 Real example
+
+**Scenario.** A team of five edits workflows directly in production, occasionally overwriting each other and with no rollback when something breaks.
+
+**Problem.** No history, no review, no recovery — a single bad edit takes down a critical flow with no way back.
+
+**Solution.** Adopt Git as the source of truth: export all workflows to a repo, require PRs for changes, and deploy from `main` via CI (Chapter 45).
+
+**Implementation.** Export script + repository layout + a pre-commit that strips volatile fields. See code.
+
+**Result.** Every change reviewed and reversible; a clean audit trail; production deployed only from reviewed `main`.
+
+**Future improvements.** Move to Enterprise source control for native push/pull and per-environment branches.
+
+### 41.6 Step by step
+
+1. Initialize a repo with `workflows/`, `variables/`, and `README.md`.
+2. Export all workflows to JSON and commit.
+3. Add a `.gitignore` and a normalization step (strip IDs/timestamps that cause noisy diffs).
+4. Require PRs; review JSON diffs.
+5. Deploy from `main` via CI.
+
+### 41.7 Complete code (export + normalize script)
+
+```bash
+#!/usr/bin/env bash
+# export-workflows.sh — export and normalize workflows for clean diffs
+set -euo pipefail
+OUT=workflows
+mkdir -p "$OUT"
+
+# Export all workflows (one combined file), then split per workflow with jq
+n8n export:workflow --all --output=/tmp/all.json --pretty
+
+jq -c '.[]' /tmp/all.json | while read -r wf; do
+  name=$(echo "$wf" | jq -r '.name' | tr ' /' '__')
+  # strip volatile fields to reduce diff noise
+  echo "$wf" | jq 'del(.id, .updatedAt, .createdAt, .versionId)' \
+    | jq --sort-keys '.' > "$OUT/${name}.json"
+done
+echo "Exported $(ls "$OUT" | wc -l) workflows to $OUT/"
+```
+
+### 41.8 Complete n8n workflow (importable JSON — backup-to-Git via API)
+
+```json
+{
+  "name": "Nightly Git Backup",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "triggerAtHour": 1 }] } },
+      "id": "f2000001-0000-0000-0000-000000000001",
+      "name": "Nightly",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.internal/api/v1/workflows",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "f2000002-0000-0000-0000-000000000002",
+      "name": "Fetch Workflows",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [420, 320],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "n8n API Key" } }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": { "__rl": true, "value": "acme", "mode": "list" },
+        "repository": { "__rl": true, "value": "n8n-workflows", "mode": "list" },
+        "filePath": "=backups/{{ $now.toFormat('yyyy-LL-dd') }}.json",
+        "fileContent": "={{ JSON.stringify($json.data, null, 2) }}",
+        "commitMessage": "=Nightly backup {{ $now.toISO() }}"
+      },
+      "id": "f2000003-0000-0000-0000-000000000003",
+      "name": "Commit to GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [640, 320],
+      "credentials": { "githubApi": { "id": "2", "name": "GitHub" } }
+    }
+  ],
+  "connections": {
+    "Nightly": { "main": [[{ "node": "Fetch Workflows", "type": "main", "index": 0 }]] },
+    "Fetch Workflows": { "main": [[{ "node": "Commit to GitHub", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 41.9 Exercises
+
+1. Export all workflows, normalize them, and commit to a repo.
+2. Make a change, open a PR, and review the JSON diff.
+3. Roll back a workflow by reverting a commit and re-importing.
+
+### 41.10 Challenges
+
+- **Challenge 1.** Set up Enterprise source control with push/pull to a repo.
+- **Challenge 2.** Write a pre-commit hook that fails if any committed JSON contains an inline secret.
+
+### 41.11 Checklist
+
+- [ ] Git is the source of truth, not the instance.
+- [ ] Workflows exported/normalized for clean diffs.
+- [ ] No secrets committed (references only).
+- [ ] Changes go through PR review.
+- [ ] Deploys happen from `main`.
+
+### 41.12 Best practices
+
+- Normalize exports (strip volatile fields) for reviewable diffs.
+- One file per workflow; group by domain.
+- Never commit credential secrets; use references/external secrets.
+- Deploy from Git, not by editing production directly.
+
+### 41.13 Anti-patterns
+
+- Editing production directly with no history.
+- Committing secrets in workflow JSON.
+- Giant noisy diffs from un-normalized exports.
+- Treating the running instance as the source of truth.
+
+### 41.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Noisy diffs | Volatile fields | Strip IDs/timestamps |
+| Secret in repo | Inline credential | Use references; rotate the secret |
+| Import fails | Different encryption key | Align keys / re-create creds |
+| Drift between envs | No deploy-from-Git | Deploy only from `main` |
+| Lost change | No commit | Commit/PR every change |
+
+### 41.15 Official references
+
+- Source control (Enterprise): https://docs.n8n.io/source-control-environments/
+- CLI export/import: https://docs.n8n.io/hosting/cli-commands/
+- Public API: https://docs.n8n.io/api/
+- GitHub node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.github/
+
+---
+
+## Chapter 42 — Versioning
+
+### 42.1 Introduction
+
+Versioning spans three things in n8n: **node type versions** (`typeVersion`), **n8n platform versions** (2.x line), and **your workflow versions** (the Publish/Save model + Git). This chapter clarifies all three and gives a practical strategy: semantic versioning of workflows, change logs, the Save/Publish lifecycle, and how node typeVersions affect upgrades and imports.
+
+### 42.2 Business context
+
+Versioning prevents two costly failures: silently breaking a workflow on a platform/node upgrade, and being unable to tell *which* version of a workflow caused an incident. A clear versioning strategy makes upgrades safe and incidents diagnosable — directly reducing downtime and mean-time-to-resolution.
+
+### 42.3 Theoretical concepts
+
+- **Node `typeVersion`:** each node pins a version; n8n keeps old versions working while new ones add features. On import, the typeVersion determines behavior. Don't blindly bump.
+- **Publish/Save (2.x):** **Save** stores edits without affecting production; **Publish** promotes the current version to production. Autosave (Jan 2026) preserves work-in-progress.
+- **Workflow versioning:** combine Publish with Git tags/commits to label releases (e.g., `order-sync v1.3.0`).
+- **Platform versioning:** the 2.x line with frequent patches; pin the image, read release notes, test upgrades (Chapter 2/12).
+- **Change logs:** record what changed per release for audit and rollback.
+
+### 42.4 Architecture
+
+```mermaid
+flowchart LR
+    edit[Edit] --> save[Save<br/>WIP, not live]
+    save --> review[Review/test]
+    review --> publish[Publish<br/>promote to prod]
+    publish --> tag[Git tag vX.Y.Z]
+    tag --> log[Changelog entry]
+    publish --> prod[(Production)]
+```
+
+### 42.5 Real example
+
+**Scenario.** A platform upgrade changed a node's default behavior; a critical workflow started failing and no one could tell which workflow version was live.
+
+**Problem.** No version labels, no changelog — diagnosing the regression took hours of guesswork.
+
+**Solution.** Adopt SemVer for workflows tied to Git tags, a changelog per release, and a disciplined Save→review→Publish lifecycle; pin node typeVersions and review them on upgrade.
+
+**Implementation.** Versioning convention + changelog template + a node-version audit script. See code.
+
+**Result.** Every release is labeled and logged; regressions are traced to a specific version instantly; upgrades are reviewed for typeVersion impacts before promotion.
+
+**Future improvements.** Automate changelog generation from PRs and gate Publish on CI tests (Chapter 45).
+
+### 42.6 Step by step
+
+1. Adopt SemVer for each workflow (MAJOR.MINOR.PATCH).
+2. On change: Save → review/test → Publish → Git tag + changelog entry.
+3. Pin node typeVersions; audit them before platform upgrades.
+4. Keep a `CHANGELOG.md` per workflow domain.
+
+### 42.7 Complete code (node typeVersion audit)
+
+```bash
+#!/usr/bin/env bash
+# audit-node-versions.sh — list node types and typeVersions across exported workflows
+set -euo pipefail
+for f in workflows/*.json; do
+  echo "== $f =="
+  jq -r '.nodes[] | "  \(.type)\t typeVersion \(.typeVersion)"' "$f" | sort -u
+done
+```
+
+Changelog template:
+
+```markdown
+# Changelog — order-sync
+## v1.3.0 — 2026-06-22
+### Changed
+- Switched pagination to cursor mode (was page-number).
+### Fixed
+- Null customer name now falls back to "there".
+### Node versions
+- httpRequest: 4.2 · postgres: 2.5
+```
+
+### 42.8 Complete n8n workflow (importable JSON — version stamp)
+
+```json
+{
+  "name": "Version Stamp",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "GET", "path": "version", "responseMode": "lastNode" },
+      "id": "12000001-0000-0000-0000-000000000001",
+      "name": "Version In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "assignments": { "assignments": [
+          { "id": "v1", "name": "workflow", "type": "string", "value": "order-sync" },
+          { "id": "v2", "name": "version", "type": "string", "value": "1.3.0" },
+          { "id": "v3", "name": "publishedAt", "type": "string", "value": "={{ $now.toISO() }}" }
+        ] }
+      },
+      "id": "12000002-0000-0000-0000-000000000002",
+      "name": "Stamp",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 300]
+    }
+  ],
+  "connections": {
+    "Version In": { "main": [[{ "node": "Stamp", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 42.9 Exercises
+
+1. Apply SemVer to one workflow and tag a release in Git.
+2. Audit node typeVersions across your workflows.
+3. Use Save vs Publish and observe production behavior difference.
+
+### 42.10 Challenges
+
+- **Challenge 1.** Automate changelog entries from merged PR titles.
+- **Challenge 2.** Build a pre-upgrade report flagging deprecated node typeVersions.
+
+### 42.11 Checklist
+
+- [ ] Workflows use SemVer tied to Git tags.
+- [ ] Save/Publish lifecycle followed.
+- [ ] Node typeVersions pinned and audited.
+- [ ] Changelog maintained.
+- [ ] Platform version pinned; release notes read.
+
+### 42.12 Best practices
+
+- Tie Publish to a Git tag and changelog entry.
+- Don't bump node typeVersions without testing.
+- Keep MAJOR bumps for breaking changes; communicate them.
+- Read release notes before platform upgrades.
+
+### 42.13 Anti-patterns
+
+- Unlabeled releases (can't trace incidents).
+- Blindly upgrading node typeVersions.
+- Editing/publishing without a changelog.
+- Using `latest` platform image.
+
+### 42.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Can't trace incident to version | No version labels | Tag releases + changelog |
+| Node behaves differently | typeVersion bumped | Pin/test typeVersions |
+| Prod changed unexpectedly | Published by mistake | Use Save for WIP |
+| Upgrade broke flow | No release-notes review | Test in staging first |
+| Diff unclear | No changelog | Maintain per-domain changelog |
+
+### 42.15 Official references
+
+- Source control & environments: https://docs.n8n.io/source-control-environments/
+- Release notes: https://docs.n8n.io/release-notes/
+- Workflows (Save/Publish): https://docs.n8n.io/workflows/
+- Node versioning: https://docs.n8n.io/integrations/creating-nodes/build/reference/node-versioning/
+
+---
+
+## Chapter 43 — Environments
+
+### 43.1 Introduction
+
+Professional delivery requires **separate environments** — development, staging, production — so changes are tested before they reach users. n8n Enterprise provides **environments** via Git source control (each environment maps to a branch/instance), while any tier can implement environments with separate instances + environment-specific configuration (instance variables, credentials, external secrets). This chapter covers environment topology, config isolation, and promotion.
+
+### 43.2 Business context
+
+Editing production directly is how outages happen. Environments create a safe path: build in dev, validate in staging (with prod-like data and config), promote to prod with confidence. This separation is both an availability practice and, often, a compliance requirement (segregation of duties).
+
+### 43.3 Theoretical concepts
+
+- **Topology:** distinct instances (or Enterprise environments) for dev/staging/prod, each with its own database and config.
+- **Config isolation:** per-environment instance variables (`$vars`), credentials, and external secrets — workflows stay environment-agnostic (Chapter 17).
+- **Promotion:** move a versioned workflow from dev → staging → prod via Git (pull on the target) or Enterprise source control.
+- **Data isolation:** prod data never used carelessly in dev; staging uses sanitized/representative data.
+- **Encryption keys:** decide whether environments share credentials (same key) or are isolated (different keys) — usually isolated.
+
+### 43.4 Architecture
+
+```mermaid
+flowchart LR
+    dev[Dev instance<br/>own DB/config] -->|push| repo[(Git)]
+    repo -->|pull| stg[Staging instance<br/>prod-like config]
+    stg -->|validate| gate{Approved?}
+    gate -->|yes| prod[Prod instance]
+    repo -->|pull| prod
+    vars1[($vars dev)] -.-> dev
+    vars2[($vars staging)] -.-> stg
+    vars3[($vars prod)] -.-> prod
+```
+
+### 43.5 Real example
+
+**Scenario.** A company wants every workflow change validated in staging before production, with environment-specific URLs and credentials.
+
+**Problem.** A single instance means testing happens in prod; environment-specific values are hardcoded, so promotion breaks them.
+
+**Solution.** Three instances (dev/staging/prod), workflows made environment-agnostic via `$vars`, promoted through Git with per-environment variables and isolated credentials.
+
+**Implementation.** Per-environment `.env`/variables + a promotion checklist. See code.
+
+**Result.** Changes flow dev → staging → prod safely; environment values resolve correctly at each stage; production is never a testing ground.
+
+**Future improvements.** Automate promotion via CI with approval gates (Chapter 45).
+
+### 43.6 Step by step
+
+1. Stand up dev/staging/prod instances with separate DBs.
+2. Define per-environment instance variables (URLs, flags) and credentials.
+3. Make workflows reference `$vars`/credentials, never hardcoded values.
+4. Promote via Git pull (or Enterprise source control) into staging, validate, then prod.
+
+### 43.7 Complete code (per-environment config)
+
+```bash
+# dev.env
+N8N_ENV=dev
+# (set $vars.apiBaseUrl=https://api.dev.example in the dev instance)
+
+# staging.env
+N8N_ENV=staging
+# ($vars.apiBaseUrl=https://api.staging.example)
+
+# prod.env
+N8N_ENV=prod
+# ($vars.apiBaseUrl=https://api.example)
+```
+
+```javascript
+// Guard: refuse to run destructive steps outside prod (defense in depth).
+if ($env.N8N_ENV !== 'prod' && $json.destructive) {
+  return [{ json: { skipped: true, reason: 'non-prod environment' } }];
+}
+return $input.all();
+```
+
+### 43.8 Complete n8n workflow (importable JSON — env-aware guard)
+
+```json
+{
+  "name": "Env-Aware Action",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "env-action", "responseMode": "lastNode" },
+      "id": "22000001-0000-0000-0000-000000000001",
+      "name": "Action In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $env.N8N_ENV }}", "rightValue": "prod", "operator": { "type": "string", "operation": "equals" } } ] }
+      },
+      "id": "22000002-0000-0000-0000-000000000002",
+      "name": "Is Prod?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.apiBaseUrl }}/commit",
+        "method": "POST",
+        "options": {}
+      },
+      "id": "22000003-0000-0000-0000-000000000003",
+      "name": "Commit (prod only)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 220]
+    }
+  ],
+  "connections": {
+    "Action In": { "main": [[{ "node": "Is Prod?", "type": "main", "index": 0 }]] },
+    "Is Prod?": { "main": [[{ "node": "Commit (prod only)", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 43.9 Exercises
+
+1. Stand up two environments and promote a workflow between them via Git.
+2. Make a workflow environment-agnostic with `$vars`.
+3. Add an env guard that disables a destructive step outside prod.
+
+### 43.10 Challenges
+
+- **Challenge 1.** Configure Enterprise source control with branch-per-environment.
+- **Challenge 2.** Automate promotion with an approval gate.
+
+### 43.11 Checklist
+
+- [ ] Separate dev/staging/prod instances + DBs.
+- [ ] Per-environment `$vars`/credentials.
+- [ ] Workflows environment-agnostic.
+- [ ] Promotion via Git/source control.
+- [ ] Encryption-key isolation decided.
+
+### 43.12 Best practices
+
+- Never test in production; use staging with prod-like config.
+- Keep workflows environment-agnostic via `$vars`.
+- Isolate credentials/keys per environment unless sharing is intentional.
+- Promote through Git, with validation gates.
+
+### 43.13 Anti-patterns
+
+- Single instance doubling as dev and prod.
+- Hardcoded environment-specific values.
+- Sharing one encryption key/credentials across all envs by accident.
+- Promoting untested changes straight to prod.
+
+### 43.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Promotion breaks URLs | Hardcoded values | Use `$vars` per env |
+| Prod creds in dev | Shared credentials | Isolate per environment |
+| Can't decrypt after promote | Different keys | Re-create creds per env |
+| Tested in prod | No staging | Add a staging instance |
+| Drift between envs | Manual edits | Promote only via Git |
+
+### 43.15 Official references
+
+- Source control & environments: https://docs.n8n.io/source-control-environments/
+- Variables: https://docs.n8n.io/code/variables/
+- External secrets: https://docs.n8n.io/external-secrets/
+- Configuration: https://docs.n8n.io/hosting/configuration/
+
+---
+
+## Chapter 44 — Testing
+
+### 44.1 Introduction
+
+Testing automation is often skipped — and it's why automations break silently. This chapter covers pragmatic testing for n8n: **pinned-data unit tests** for transforms, **mocking** external calls, **end-to-end** tests against a test instance via the API, **assertion** patterns, and golden-data tests for AI workflows. The goal is a safety net that catches regressions before they reach production.
+
+### 44.2 Business context
+
+A broken automation can silently corrupt data or stop a revenue process. Tests convert "we hope it works" into "we know it works," catching regressions when workflows, prompts, node versions, or APIs change. The ROI is avoided incidents and confident, frequent changes.
+
+### 44.3 Theoretical concepts
+
+- **Unit-style tests:** pin input data (Chapter 20) and assert a node/transform's output — fast, deterministic.
+- **Mocking externals:** replace real API/DB calls with stubbed responses (pinned data or a mock endpoint) so tests don't hit live systems.
+- **End-to-end (E2E):** trigger a workflow on a dedicated test instance via the API/webhook and assert the final result/side effects.
+- **Assertions:** a Code node (or the **Stop and Error** node) that throws if an expectation fails, making a failed test a failed execution.
+- **Golden data (AI):** fixed inputs with expected/acceptable outputs to detect AI regressions.
+- **Test data isolation:** never run tests against prod data/systems.
+
+### 44.4 Architecture
+
+```mermaid
+flowchart LR
+    fixtures[Pinned fixtures] --> wf[Workflow under test]
+    mock[Mocked externals] --> wf
+    wf --> assert[Assertion node]
+    assert -->|pass| green[Test passed]
+    assert -->|throw| red[Test failed]
+    ci[CI] -->|trigger via API| wf
+```
+
+### 44.5 Real example
+
+**Scenario.** The lead-classification workflow (Chapter 14) must keep classifying correctly as the team edits it; a regression once mis-routed enterprise leads.
+
+**Problem.** Manual testing is inconsistent; regressions slip through to production routing.
+
+**Solution.** A test workflow that feeds pinned lead fixtures through the classification sub-workflow and asserts the expected `band`, runnable in CI.
+
+**Implementation.** Test harness workflow with fixtures + assertions calling the sub-workflow. See JSON.
+
+**Result.** Every change is validated against fixtures; a mis-classification fails the test (and the CI build) before reaching production.
+
+**Future improvements.** Add golden-data tests for the AI classification and coverage for edge cases (missing fields).
+
+### 44.6 Step by step
+
+1. Build the logic as a sub-workflow (testable in isolation).
+2. Create a test workflow with pinned fixtures and expected outputs.
+3. Call the sub-workflow per fixture; assert with a Code/Stop-and-Error node.
+4. Run it in CI via the API; fail the build on assertion errors.
+
+### 44.7 Complete code (assertion node)
+
+```javascript
+// Assertion: compare actual vs expected; throw to fail the test execution.
+const cases = $input.all();
+const failures = [];
+for (const c of cases) {
+  const { name, expected, actual } = c.json;
+  if (JSON.stringify(expected) !== JSON.stringify(actual)) {
+    failures.push({ name, expected, actual });
+  }
+}
+if (failures.length) {
+  throw new Error('Test failures: ' + JSON.stringify(failures, null, 2));
+}
+return [{ json: { passed: cases.length } }];
+```
+
+### 44.8 Complete n8n workflow (importable JSON — test harness)
+
+```json
+{
+  "name": "Classifier Tests",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "32000001-0000-0000-0000-000000000001",
+      "name": "Run Tests",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { company: { employees: 2000 }, expectedBand: 'enterprise' } },\n  { json: { company: { employees: 200 }, expectedBand: 'mid-market' } },\n  { json: { company: { employees: 5 }, expectedBand: 'smb' } }\n];"
+      },
+      "id": "32000002-0000-0000-0000-000000000002",
+      "name": "Fixtures",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [400, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = Number($json.company?.employees)||0;\nlet band = e>=1000?'enterprise':e>=100?'mid-market':'smb';\nreturn { json: { name: 'employees='+e, expected: $json.expectedBand, actual: band } };"
+      },
+      "id": "32000003-0000-0000-0000-000000000003",
+      "name": "Classify (under test)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [600, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "const cases=$input.all();const fails=cases.filter(c=>c.json.expected!==c.json.actual).map(c=>c.json);\nif(fails.length) throw new Error('FAIL: '+JSON.stringify(fails));\nreturn [{ json: { passed: cases.length } }];"
+      },
+      "id": "32000004-0000-0000-0000-000000000004",
+      "name": "Assert",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 320]
+    }
+  ],
+  "connections": {
+    "Run Tests": { "main": [[{ "node": "Fixtures", "type": "main", "index": 0 }]] },
+    "Fixtures": { "main": [[{ "node": "Classify (under test)", "type": "main", "index": 0 }]] },
+    "Classify (under test)": { "main": [[{ "node": "Assert", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 44.9 Exercises
+
+1. Write fixtures + assertions for one transform and make a test fail, then fix it.
+2. Mock an external API with pinned data and test the dependent node.
+3. Trigger the test workflow via the API and read the pass/fail result.
+
+### 44.10 Challenges
+
+- **Challenge 1.** Add golden-data tests for an AI classification with acceptable-output matching.
+- **Challenge 2.** Build a coverage report listing which workflows have tests.
+
+### 44.11 Checklist
+
+- [ ] Logic isolated in testable sub-workflows.
+- [ ] Pinned fixtures + assertions exist.
+- [ ] Externals mocked (no live calls).
+- [ ] Tests runnable in CI via API.
+- [ ] AI workflows have golden-data tests.
+
+### 44.12 Best practices
+
+- Test transforms with pinned fixtures; assert with a throwing node.
+- Mock externals; never test against prod.
+- Run tests in CI before Publish.
+- Add golden-data tests for AI to catch silent quality drift.
+
+### 44.13 Anti-patterns
+
+- No tests ("it worked when I built it").
+- Testing against live/prod systems.
+- Untestable god-workflows (no sub-workflow isolation).
+- No AI evaluation (regressions go unnoticed).
+
+### 44.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Tests hit live API | No mocking | Pin/mocks for externals |
+| Can't isolate logic | Monolithic workflow | Extract sub-workflows |
+| Flaky tests | Non-deterministic inputs | Pin fixtures; fix temperature |
+| CI can't run tests | No API trigger | Trigger via API/webhook |
+| AI regressions missed | No golden set | Add golden-data tests |
+
+### 44.15 Official references
+
+- Data pinning: https://docs.n8n.io/data/data-pinning/
+- Executions: https://docs.n8n.io/workflows/executions/
+- Public API: https://docs.n8n.io/api/
+- Sub-workflows: https://docs.n8n.io/flow-logic/subworkflows/
+
+---
+
+## Chapter 45 — CI/CD
+
+### 45.1 Introduction
+
+CI/CD automates the path from a committed workflow change to validated production deployment. For n8n, a pipeline (GitHub Actions, GitLab CI, etc.) lints/validates workflow JSON, runs tests against a disposable n8n instance, and — on approval — promotes to staging/prod via the API or Enterprise source control. This chapter builds a reference pipeline tying together Git (41), versioning (42), environments (43), and testing (44).
+
+### 45.2 Business context
+
+Manual deployment is slow, error-prone, and unauditable. CI/CD makes deployment fast, repeatable, and gated — every change is tested and approved before reaching users, with a complete audit trail. This is what lets teams ship automation changes frequently *and* safely.
+
+### 45.3 Theoretical concepts
+
+- **CI (Continuous Integration):** on each PR/commit, validate JSON, run tests (Chapter 44) against an ephemeral n8n instance, and report status.
+- **CD (Continuous Deployment/Delivery):** on merge to `main`, deploy to staging automatically; promote to prod on approval.
+- **Deployment mechanisms:** import via CLI/API, or Enterprise source-control pull on the target instance.
+- **Gates:** required reviews, passing tests, manual approval for prod.
+- **Secrets in CI:** the n8n API key and any deploy secrets come from the CI secret store, never the repo.
+- **Rollback:** redeploy the previous Git tag.
+
+### 45.4 Architecture
+
+```mermaid
+flowchart LR
+    pr[PR] --> ci[CI: validate + test<br/>ephemeral n8n]
+    ci -->|pass| merge[Merge to main]
+    merge --> stg[Deploy to staging]
+    stg --> approve{Approve?}
+    approve -->|yes| prod[Deploy to prod]
+    approve -->|no| stop[Hold]
+    prod -.rollback.-> tag[Previous tag]
+```
+
+### 45.5 Real example
+
+**Scenario.** A team wants every workflow change tested and deployed automatically to staging, then to prod on a click, with rollback.
+
+**Problem.** Manual imports cause drift and mistakes; no one is sure prod matches the repo.
+
+**Solution.** A GitHub Actions pipeline: validate JSON → spin up n8n in a container → import workflows → run the test harness → on `main`, deploy to staging → manual approval → deploy to prod.
+
+**Implementation.** Pipeline YAML + deploy script via the n8n API. See code.
+
+**Result.** Every change is validated against a real n8n instance and deployed reproducibly; prod always matches the reviewed repo; rollback is a redeploy of the prior tag.
+
+**Future improvements.** Add canary deployment and automated AI evaluation in the test stage.
+
+### 45.6 Step by step
+
+1. On PR: validate JSON schema, lint, spin up ephemeral n8n, import, run tests.
+2. On merge to `main`: deploy to staging via the API.
+3. Require manual approval for prod.
+4. Deploy to prod; tag the release.
+5. Rollback = redeploy the previous tag.
+
+### 45.7 Complete code (GitHub Actions + deploy script)
+
+```yaml
+# .github/workflows/n8n-cicd.yml
+name: n8n CI/CD
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      n8n:
+        image: docker.n8n.io/n8nio/n8n:2.3.0
+        ports: ["5678:5678"]
+        env:
+          N8N_ENCRYPTION_KEY: ${{ secrets.N8N_TEST_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate workflow JSON
+        run: |
+          for f in workflows/*.json; do jq empty "$f" || exit 1; done
+      - name: Import workflows
+        run: ./scripts/deploy.sh http://localhost:5678 "${{ secrets.N8N_TEST_API_KEY }}"
+      - name: Run tests
+        run: ./scripts/run-tests.sh http://localhost:5678 "${{ secrets.N8N_TEST_API_KEY }}"
+
+  deploy-staging:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/deploy.sh "${{ secrets.STAGING_URL }}" "${{ secrets.STAGING_API_KEY }}"
+```
+
+```bash
+#!/usr/bin/env bash
+# scripts/deploy.sh — import all workflow JSON into a target instance via the API
+set -euo pipefail
+BASE="$1"; KEY="$2"
+for f in workflows/*.json; do
+  curl -sf -X POST "$BASE/api/v1/workflows" \
+    -H "X-N8N-API-KEY: $KEY" -H "Content-Type: application/json" \
+    --data-binary "@$f" > /dev/null && echo "deployed $f"
+done
+```
+
+### 45.8 Complete n8n workflow (importable JSON — deploy notifier)
+
+```json
+{
+  "name": "Deploy Notifier",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "deploy-event", "responseMode": "onReceived" },
+      "id": "42000001-0000-0000-0000-000000000001",
+      "name": "Deploy Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"text\": ':rocket: Deployed *' + $json.body.workflow + '* v' + $json.body.version + ' to ' + $json.body.env } }}",
+        "options": {}
+      },
+      "id": "42000002-0000-0000-0000-000000000002",
+      "name": "Announce",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    }
+  ],
+  "connections": {
+    "Deploy Webhook": { "main": [[{ "node": "Announce", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 45.9 Exercises
+
+1. Build a CI job that validates workflow JSON and runs the test harness.
+2. Deploy to a staging instance via the API from CI.
+3. Add a manual approval gate before prod.
+
+### 45.10 Challenges
+
+- **Challenge 1.** Add canary deployment (route a fraction of traffic to the new version).
+- **Challenge 2.** Integrate AI golden-data evaluation into the test stage.
+
+### 45.11 Checklist
+
+- [ ] PRs run validation + tests on an ephemeral instance.
+- [ ] Merge to `main` deploys to staging.
+- [ ] Prod requires manual approval.
+- [ ] Releases tagged; rollback defined.
+- [ ] CI secrets in the secret store, not the repo.
+
+### 45.12 Best practices
+
+- Test against a real (ephemeral) n8n instance, not just JSON linting.
+- Gate prod with approval; deploy from `main` only.
+- Keep secrets in CI's store; rotate the API key.
+- Make rollback a one-command redeploy of a prior tag.
+
+### 45.13 Anti-patterns
+
+- Manual imports to prod.
+- No tests in the pipeline (deploy-and-pray).
+- Secrets committed or printed in CI logs.
+- No rollback path.
+
+### 45.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| CI passes, prod breaks | Only linted, not tested | Run tests on a real instance |
+| Deploy unauthorized | Wrong/expired API key | Refresh CI secret |
+| Drift after deploy | Manual edits in prod | Deploy only from Git |
+| Can't roll back | No tags | Tag every release |
+| Secret leak in logs | Echoed secret | Mask secrets in CI |
+
+### 45.15 Official references
+
+- Source control & environments: https://docs.n8n.io/source-control-environments/
+- Public API: https://docs.n8n.io/api/
+- CLI commands: https://docs.n8n.io/hosting/cli-commands/
+- Docker hosting: https://docs.n8n.io/hosting/installation/docker/
+
+---
+
+## Chapter 46 — Deployment
+
+### 46.1 Introduction
+
+This chapter consolidates the deployment lifecycle: strategies (blue-green, canary, rolling), zero-downtime concerns specific to n8n (active triggers, in-flight executions, queue drain), database migrations, rollback, and post-deploy verification. It ties Parts II (infrastructure) and VI (engineering practice) into a coherent release process.
+
+### 46.2 Business context
+
+Deployment is where reliability is won or lost. A bad release can drop in-flight executions, double-register triggers, or break webhooks. A disciplined deployment process — zero-downtime, verified, reversible — protects the business processes n8n runs and the SLAs around them.
+
+### 46.3 Theoretical concepts
+
+- **Strategies:** **rolling** (replace instances gradually), **blue-green** (stand up a parallel environment, switch traffic), **canary** (route a fraction first).
+- **n8n-specific concerns:**
+  - **Triggers:** ensure only one main process registers schedule/webhook triggers to avoid duplicates (Chapter 8).
+  - **In-flight executions:** drain workers gracefully (let running executions finish) before terminating.
+  - **Queue drain:** in queue mode, stop accepting new jobs, let workers finish, then replace.
+  - **DB migrations:** n8n runs migrations on startup; ensure backward compatibility during rolling updates and back up first.
+- **Verification:** post-deploy health checks, a smoke-test workflow, and execution monitoring.
+- **Rollback:** redeploy the previous image/version (and, if needed, restore the DB).
+
+### 46.4 Architecture
+
+```mermaid
+flowchart TB
+    new[New version] --> bg{Strategy}
+    bg -->|blue-green| green[Green env]
+    green --> smoke[Smoke test]
+    smoke -->|ok| switch[Switch traffic]
+    smoke -->|fail| keepblue[Stay on blue]
+    bg -->|rolling| drain[Drain workers]
+    drain --> replace[Replace pods]
+    replace --> verify[Verify health]
+    verify -->|fail| rollback[Rollback to prev]
+```
+
+### 46.5 Real example
+
+**Scenario.** A high-availability n8n on Kubernetes (Chapter 8) must deploy a new version with zero dropped executions and instant rollback.
+
+**Problem.** A naive rolling restart killed workers mid-execution and briefly double-registered schedule triggers.
+
+**Solution.** Blue-green for the main process (single trigger registration), graceful worker drain (finish in-flight jobs) for rolling worker updates, a smoke-test gate before traffic switch, and image-tag rollback.
+
+**Implementation.** Deployment config with graceful termination + a smoke-test workflow + a rollback runbook. See JSON (smoke test).
+
+**Result.** Zero dropped executions, no duplicate trigger firing, verified releases, and one-command rollback.
+
+**Future improvements.** Add canary routing for webhook traffic and automated rollback on smoke-test failure.
+
+### 46.6 Step by step
+
+1. Back up the database (Chapter 12).
+2. Stand up the new version (blue-green for main; rolling for workers with graceful drain).
+3. Ensure a single main registers triggers.
+4. Run the smoke-test workflow against the new version.
+5. Switch traffic on success; otherwise stay/rollback.
+6. Verify health and execution metrics post-switch.
+
+### 46.7 Complete code (graceful shutdown + smoke test)
+
+```yaml
+# Kubernetes: graceful worker drain (let in-flight executions finish)
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 120   # allow executions to complete
+      containers:
+        - name: n8n-worker
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 5"]   # stop pulling new jobs, drain
+```
+
+```bash
+#!/usr/bin/env bash
+# smoke-test.sh — hit the smoke webhook and assert a 200 + expected body
+set -euo pipefail
+RESP=$(curl -sf -X POST "$1/webhook/smoke" -d '{}')
+echo "$RESP" | jq -e '.status == "ok"' > /dev/null && echo "smoke OK" || { echo "smoke FAILED"; exit 1; }
+```
+
+### 46.8 Complete n8n workflow (importable JSON — smoke test)
+
+```json
+{
+  "name": "Deploy Smoke Test",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "smoke", "responseMode": "lastNode" },
+      "id": "52000001-0000-0000-0000-000000000001",
+      "name": "Smoke In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT 1 AS ok;",
+        "options": {}
+      },
+      "id": "52000002-0000-0000-0000-000000000002",
+      "name": "DB Check",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [440, 300],
+      "credentials": { "postgres": { "id": "1", "name": "n8n DB" } }
+    },
+    {
+      "parameters": {
+        "assignments": { "assignments": [
+          { "id": "s1", "name": "status", "type": "string", "value": "ok" },
+          { "id": "s2", "name": "checkedAt", "type": "string", "value": "={{ $now.toISO() }}" }
+        ] }
+      },
+      "id": "52000003-0000-0000-0000-000000000003",
+      "name": "Report OK",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Smoke In": { "main": [[{ "node": "DB Check", "type": "main", "index": 0 }]] },
+    "DB Check": { "main": [[{ "node": "Report OK", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 46.9 Exercises
+
+1. Configure graceful worker termination and confirm in-flight executions finish.
+2. Run a smoke test against a freshly deployed version.
+3. Practice a rollback by redeploying the previous image tag.
+
+### 46.10 Challenges
+
+- **Challenge 1.** Implement blue-green for the main process ensuring single trigger registration.
+- **Challenge 2.** Automate rollback on smoke-test failure in CI.
+
+### 46.11 Checklist
+
+- [ ] DB backed up before deploy.
+- [ ] Single main registers triggers.
+- [ ] Workers drain gracefully.
+- [ ] Smoke test gates the release.
+- [ ] Rollback path verified.
+
+### 46.12 Best practices
+
+- Back up before every deploy; migrations run on startup.
+- Drain workers; never kill in-flight executions.
+- Gate releases on a smoke test; verify post-deploy metrics.
+- Keep rollback to a single command (previous tag).
+
+### 46.13 Anti-patterns
+
+- Killing workers mid-execution (lost work).
+- Multiple mains registering triggers (duplicates).
+- No smoke test (blind release).
+- No backup before a migration.
+
+### 46.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Dropped executions on deploy | No graceful drain | Add termination grace + preStop |
+| Duplicate trigger firing | >1 main with triggers | Single trigger registration |
+| Migration failure | Incompatible/no backup | Back up; test in staging |
+| Webhooks 404 after deploy | Not published/active | Re-publish; verify activation |
+| Can't roll back | No prior tag/backup | Tag images; back up DB |
+
+### 46.15 Official references
+
+- Scaling / queue mode (drain): https://docs.n8n.io/hosting/scaling/queue-mode/
+- Kubernetes hosting: https://docs.n8n.io/hosting/installation/server-setups/kubernetes/
+- Source control & environments: https://docs.n8n.io/source-control-environments/
+- Hosting / updating: https://docs.n8n.io/hosting/installation/updating/
+
+---
+
+> **End of Part VI.** Your n8n practice is now an engineering discipline: Git as the source of truth, clear versioning, separated environments, automated tests, CI/CD pipelines, and zero-downtime deployment with rollback. **Part VII — Enterprise** (Chapters 47–53) addresses the concerns that gate large-scale adoption: security, SSO, governance, observability, scalability, high availability, and multi-tenancy.
+
 <!--APPEND-PARTE-II-->
