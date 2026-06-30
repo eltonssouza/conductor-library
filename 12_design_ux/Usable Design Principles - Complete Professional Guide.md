@@ -23,8 +23,9 @@ software_dev: supporting
 
 | Level | Profile | Parts |
 |-------|---------|-------|
-| 1 — Beginner | New to design thinking | Part I |
-| 2 — Intermediate | Designing interactions | Part II |
+| 1 — Beginner | New to design thinking | Parts I–II (understandability, the user's mind) |
+| 2 — Intermediate | Designing interactions | Parts III–IV (the action loop, knowledge and constraints) |
+| 3 — Advanced | Designing for error and process | Parts V–VI (error-tolerant design, human-centered design) |
 
 **Target audience:** designers, developers, and product people building anything people interact with.
 
@@ -975,4 +976,6 @@ flowchart LR
 - D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 6 ("Design Thinking") and Chapter 7 ("Design in the World of Business") for human-centered design. The **seven principles for transforming difficult tasks into simple ones** are stated in the original 1988 edition's final chapter ("User-Centered Design"); the revised edition reframes them as the seven fundamental principles of design (discoverability, feedback, conceptual models, affordances, signifiers, mappings, constraints).
 - ISO 9241-210, *Human-centred design for interactive systems* — the HCD process standard.
 
-<!--APPEND-PART-II-->
+---
+
+> **End of guide.** You now have the full vocabulary and method of usable design: make actions **discoverable** with perceivable signifiers for the affordances you offer (Ch.1), close the loop with immediate **feedback** and natural **mapping** (Ch.2), and communicate a **conceptual model** through the system image so users predict behavior correctly (Ch.3). Diagnose any interaction through the **seven stages of action** and bridge the **two gulfs** (Ch.4); shift knowledge **into the world** so users recognize rather than recall (Ch.5); and use the four **constraints** and **forcing functions** to make the right action the easy one (Ch.6). Assume people will err — **design for error** by preventing, revealing, and making errors recoverable, and blame the design, not the user (Ch.7). Finally, resist the forces that produce bad design — **featuritis** and the buyer-vs-user gap (Ch.8) — by practicing **human-centered design** and running the **seven fundamental principles** as a pre-ship review (Ch.9). The throughline: when something is hard to use, it's the design's fault — and that means it's the designer's power to fix.
