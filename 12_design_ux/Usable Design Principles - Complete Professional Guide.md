@@ -51,7 +51,11 @@ software_dev: supporting
 **Part V – Designing for error**
 7. Human error: slips, mistakes, and error-tolerant design
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–V (Ch. 1–7). **In progress:** Part VI (the design process).
+**Part VI – Design in practice**
+8. The design challenge: featuritis and the real customer
+9. Human-centered design and the seven fundamental principles
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VI (Ch. 1–9).
 
 ---
 
@@ -759,5 +763,214 @@ Confirm: reserve hard confirmation for the truly irreversible (Chapter 6)
 
 - D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 5 ("Human Error? No, Bad Design"): slips vs mistakes, the categories of slip (capture, description, mode, data-driven), designing for error, and the Swiss-cheese model. (In the original 1988 edition this material is Chapter 5, "To Err Is Human.")
 - NN/g, "Slips vs. Mistakes" / error-prevention guidelines: https://www.nngroup.com/articles/slips/.
+
+---
+
+## Part VI – Design in practice
+
+The first five parts gave you the principles; this part asks why so many products ignore them anyway, and how to put them to work. Good design is not the default outcome — it loses, daily, to feature lists, deadlines, and the wrong definition of "the customer." This part names those forces honestly, then closes the guide with the discipline that counters them: **human-centered design**, and the seven principles that summarize everything in this book.
+
+---
+
+## Chapter 8 — The design challenge: featuritis and the real customer
+
+### 8.1 Introduction
+
+If the principles are so clear, why are so many things badly designed? Norman's answer is that usability competes against stronger pressures and usually loses. The most common failure is **creeping featurism** (featuritis): each release adds features to match competitors and please reviewers, and complexity accumulates until the product is unusable for its core task. A second trap is **worshipping false images** — designing for how the product *looks* in a demo or spec sheet rather than how it *works* in real use. Underneath both is a misidentified customer: the **person who buys** a product (a procurement committee, a manager choosing tools) is often **not the person who uses** it, so the design optimizes for purchase criteria (feature count, price, looks) instead of daily usability. Add schedule and cost pressure, and the designer who knows better still ships the worse thing. Recognizing these forces is the first step to resisting them.
+
+### 8.2 Business context
+
+These pressures feel like good business and quietly destroy it. Featuritis wins the spec-sheet comparison and loses the renewal, because the product that demos richest is often the one nobody can actually operate. Designing for the buyer instead of the user wins the sale and loses adoption — the tool sits unused, the contract churns, support drowns in "how do I…" tickets. The discipline that pays back is **human-centered design**: spend early, cheap effort understanding real users and their tasks, resist features that don't serve the core job, and measure the product by what users can accomplish, not by how many boxes it ticks. The cost of skipping this shows up later and larger — in training, support, and abandonment.
+
+### 8.3 Theoretical concepts: the forces against good design
+
+```mermaid
+flowchart TB
+    good["Usable design"] --> pressures{"Competing pressures"}
+    pressures --> feat["Creeping featurism:<br/>more features beat usability"]
+    pressures --> image["False images:<br/>looks/demo over real use"]
+    pressures --> buyer["Buyer != user:<br/>optimize for purchase, not use"]
+    pressures --> time["Schedule &amp; cost pressure"]
+```
+
+The counter is not heroics but **process**: human-centered design makes usability a tracked requirement rather than a hope. Observe real users doing real tasks (they differ from the designer and from the buyer); prototype and test cheaply and early, before features harden; and treat every proposed feature as a cost to the core experience until proven otherwise. The point is to give usability an organizational seat at the table where, by default, featuritis and demo-appeal already sit.
+
+### 8.4 Architecture: who is it for, and what is the core task?
+
+```mermaid
+flowchart LR
+    start["A proposed product / feature"] --> who{"Who actually uses it?"}
+    who --> user["Design for the user's real task"]
+    who -.->|"trap"| buyer["Design for the buyer's checklist -> featuritis"]
+    user --> test["Observe &amp; test with real users -> iterate"]
+```
+
+### 8.5 Real example
+
+**Scenario.** A B2B analytics tool is sold to managers (the buyers) but used daily by analysts (the users). Each quarter, sales requests new features to win deals.
+
+**Problem.** Featuritis and buyer-driven design: the product grows a sprawling feature set that demos well to managers but buries the three things analysts do all day, so daily users struggle and adoption stalls despite "winning" feature comparisons.
+
+**Solution.** Refocus on the real customer and core task: observe analysts, identify the few high-frequency jobs, make those effortless, and gate new features against "does this serve the core task or just the spec sheet?"
+
+**Implementation (human-centered refocus).**
+
+```text
+Observe the real users (analysts), not just the buyers (managers)
+Identify the 3 high-frequency tasks -> make them the fast, default path
+Demote rarely-used demo features; stop adding features that don't serve the core job
+Test changes with real analysts before shipping
+-> daily usability rises even as the spec sheet stops growing
+```
+
+**Result.** Daily users get faster at the jobs that matter; adoption and renewals improve even though the feature count stopped ballooning. The product is measured by what users accomplish, not by how it demos.
+
+**Future improvements.** Institutionalize it: a lightweight usability gate in the release process and recurring observation of real users, so featuritis can't quietly creep back in next quarter.
+
+### 8.6 Exercises
+
+1. Define creeping featurism and explain why it keeps winning despite hurting usability.
+2. Why does "the buyer is not the user" lead to badly designed products?
+3. What is "worshipping false images," and how does it distort design decisions?
+
+### 8.7 Challenges
+
+- **Challenge.** For a product you know, list who buys it and who uses it. Find one feature that serves the buyer's checklist but not the user's task. Propose how you'd reprioritize toward the real daily task.
+
+### 8.8 Checklist
+
+- [ ] The actual daily users are identified and observed — not assumed from the buyer.
+- [ ] The few core tasks are the fast, default path.
+- [ ] New features are gated against the core task, not added reflexively to match competitors.
+- [ ] The product is measured by what users accomplish, not by feature count or demo appeal.
+
+### 8.9 Best practices
+
+- Design for the real user and the core task; know when the buyer isn't the user.
+- Resist featuritis: treat each new feature as a cost to the core experience until proven otherwise.
+- Make usability a tracked requirement with a seat in the process, validated by observing real users.
+
+### 8.10 Anti-patterns
+
+- Creeping featurism — endless additions that bury the core task.
+- Designing for the demo / spec sheet (false images) rather than real use.
+- Optimizing for the buyer's checklist while the daily user struggles.
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Powerful" product, low adoption | Featuritis buried the core task | Refocus on the few high-frequency jobs |
+| Wins deals but churns | Designed for the buyer, not the user | Observe and design for daily users |
+| Great demo, frustrating in daily use | Worshipping false images | Validate with real tasks, not demos |
+
+### 8.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 6 ("Design Thinking") and Chapter 7 ("Design in the World of Business"): creeping featurism, the false-image trap, and why the buyer-vs-user gap drives bad design. (In the original 1988 edition this is Chapter 6, "The Design Challenge.")
+- NN/g, "The Definition of User Experience (UX)": https://www.nngroup.com/articles/definition-user-experience/.
+
+---
+
+## Chapter 9 — Human-centered design and the seven fundamental principles
+
+### 9.1 Introduction
+
+This chapter is the synthesis. **Human-centered design (HCD)** puts the needs and capabilities of real people at the center of the process — make it easy to determine what actions are possible, make things (including the conceptual model) visible, make it easy to evaluate the system's state, and follow natural mappings — then iterate with real users. Norman distills the whole book into **seven principles** for turning a difficult task into a usable one: **(1) use knowledge in both the world and the head; (2) simplify the structure of tasks; (3) make things visible — bridge the gulfs of execution and evaluation; (4) get the mappings right; (5) exploit the power of constraints, natural and artificial; (6) design for error; (7) when all else fails, standardize.** Every earlier chapter is one of these principles in depth; this chapter is the checklist you keep.
+
+### 9.2 Business context
+
+The seven principles are valuable precisely because they're *operational* — a team can apply them in a review and a recruiter-proof way to predict usability before shipping. They turn "make it intuitive" (unactionable) into seven concrete questions with cheap, early answers, catching usability problems while they're still cheap to fix rather than after launch. Human-centered design is the same bet at the process level: small, early investment in understanding users and iterating prototypes returns outsized savings in support, training, and retention. Together they make usability a repeatable engineering practice instead of a matter of individual taste or luck.
+
+### 9.3 Theoretical concepts: the seven principles as a map of this guide
+
+```mermaid
+flowchart TB
+    hcd["Human-centered design"] --> p1["1. Knowledge in world &amp; head (Ch.5)"]
+    hcd --> p2["2. Simplify task structure"]
+    hcd --> p3["3. Make things visible: bridge the gulfs (Ch.3-4)"]
+    hcd --> p4["4. Get the mappings right (Ch.2)"]
+    hcd --> p5["5. Exploit constraints (Ch.6)"]
+    hcd --> p6["6. Design for error (Ch.7)"]
+    hcd --> p7["7. When all else fails, standardize"]
+```
+
+The principles aren't a ranked list to pick from — they're complementary, and a good design honors all seven. **Simplify the structure of tasks** is the one not given its own chapter: where a task is inherently complex, reduce what the user must hold in mind (offload to the world), provide mental aids, or restructure the task itself. **Standardize** is the fallback: when an arbitrary mapping or convention can't be made natural, make it *consistent* across the product (and ideally the industry) so it has to be learned only once. Applied together, the seven turn the diagnostic vocabulary of this guide into a constructive method.
+
+### 9.4 Architecture: the seven-principle review
+
+```mermaid
+flowchart LR
+    design["A design under review"] --> check{"Run the seven principles"}
+    check --> pass["All honored -> usable, learnable"]
+    check --> gap["A principle violated -> a predictable usability problem to fix"]
+```
+
+### 9.5 Real example
+
+**Scenario.** A team is about to ship a multi-step onboarding flow and wants to catch usability problems before launch.
+
+**Problem.** "Make it intuitive" gave the team nothing actionable — they had no concrete way to predict where users would struggle, so problems would only surface after release as drop-off and support load.
+
+**Solution.** Run the **seven-principle review** on the flow: check each step against the seven principles and fix every violation before shipping.
+
+**Implementation (apply the seven principles as a gate).**
+
+```text
+1 Knowledge in world/head: are choices shown, not recalled?            -> fix recalls
+2 Simplify task: can any step be removed or offloaded?                 -> cut a step
+3 Visibility/gulfs: is the next action obvious and the result clear?   -> add signifiers/feedback
+4 Mappings: do controls map naturally to effects?                      -> reorder controls
+5 Constraints: are invalid inputs prevented, not just validated?       -> disable/guard
+6 Design for error: is every step reversible; are slips recoverable?   -> add undo
+7 Standardize: are patterns consistent with the rest of the product?   -> align patterns
+```
+
+**Result.** The team finds and fixes concrete, predictable problems *before* launch instead of after — onboarding completion rises and support load falls. "Intuitive" became seven answerable questions.
+
+**Future improvements.** Make the seven-principle review a standing checklist in design reviews, paired with cheap usability testing on real users — institutionalizing human-centered design so quality doesn't depend on who happens to be in the room.
+
+### 9.6 Exercises
+
+1. List the seven principles from memory and name the chapter of this guide that develops each.
+2. "Simplify the structure of tasks" — give three distinct ways to do it.
+3. When is "standardize" the right answer, and why is it the *last* resort rather than the first?
+
+### 9.7 Challenges
+
+- **Challenge.** Take a real screen or flow and run the full seven-principle review on it. For every principle it violates, write the specific fix. Ship the fixes and check whether task completion improves.
+
+### 9.8 Checklist
+
+- [ ] Knowledge users need is in the world (or cheap to retrieve), not forced into the head.
+- [ ] The task is as simple as it can be — unnecessary steps removed or offloaded.
+- [ ] Actions are visible and results perceivable (both gulfs bridged).
+- [ ] Mappings are natural; constraints prevent invalid actions; errors are recoverable.
+- [ ] Where a mapping can't be made natural, it's standardized and consistent.
+
+### 9.9 Best practices
+
+- Use the seven principles as a concrete pre-ship review — turn "make it intuitive" into answerable questions.
+- Practice human-centered design: observe real users, prototype, and iterate cheaply and early.
+- Honor all seven principles together; reach for "standardize" only when a natural design isn't possible.
+
+### 9.10 Anti-patterns
+
+- "Make it intuitive" with no method — taste substituting for the seven principles.
+- Skipping user observation and testing, then discovering problems after launch.
+- Inventing a new arbitrary convention where a standard one already exists.
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Usability problems found only after launch | No pre-ship method | Run the seven-principle review before shipping |
+| Task feels heavy/confusing | Structure too complex (principle 2) | Simplify: remove steps, offload to the world |
+| Users must memorize an arbitrary convention | Unnatural mapping not standardized (principle 7) | Standardize it across the product |
+| Design quality varies by author | Usability left to individual taste | Adopt HCD + the seven principles as shared practice |
+
+### 9.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 6 ("Design Thinking") and Chapter 7 ("Design in the World of Business") for human-centered design. The **seven principles for transforming difficult tasks into simple ones** are stated in the original 1988 edition's final chapter ("User-Centered Design"); the revised edition reframes them as the seven fundamental principles of design (discoverability, feedback, conceptual models, affordances, signifiers, mappings, constraints).
+- ISO 9241-210, *Human-centred design for interactive systems* — the HCD process standard.
 
 <!--APPEND-PART-II-->
