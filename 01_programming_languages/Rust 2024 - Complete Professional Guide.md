@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–IV (Ch. 1–13). **In progress:** Parts V–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–V (Ch. 1–16). **In progress:** Parts VI–VIII.
 
 ---
 
@@ -1629,4 +1629,334 @@ trait Greet: Named {                          // supertrait: every Greet is also
 
 > **End of Part IV.** Rust's polymorphism: **traits** define shared behavior (with default methods); **generics + bounds** give monomorphized, zero-cost reuse (static dispatch); **trait objects** (`dyn`) give heterogeneous, runtime dispatch; and **associated types, supertraits, and coherence** keep trait APIs precise and conflict-free. Part V covers **collections and iterators** — the standard containers and Rust's powerful iterator/closure machinery.
 
-<!--APPEND-PART-V-->
+---
+
+## Part V — Collections and iterators
+
+Part V covers Rust's standard **collections** (`Vec`, `HashMap`, and friends), the **`Iterator`** trait with its lazy adapter chains, and **closures** (`Fn`/`FnMut`/`FnOnce`) — the machinery that makes data processing both expressive and zero-cost.
+
+---
+
+## Chapter 14 — `Vec`, `HashMap`, `BTreeMap`, `VecDeque`, `HashSet`
+
+### 14.1 Introduction
+
+The standard library provides a collection for every need. **`Vec<T>`** is the growable array — the default sequence. **`HashMap<K, V>`** is an unordered key-value map with O(1) average operations; **`BTreeMap<K, V>`** keeps keys **sorted** (O(log n), ordered iteration). **`HashSet<T>`**/**`BTreeSet<T>`** store unique values. **`VecDeque<T>`** is a double-ended queue (push/pop both ends). Choosing by access pattern — and ownership semantics — is a core Rust skill, and the borrow checker ensures you never invalidate a collection while iterating it.
+
+### 14.2 Business context
+
+The right collection is a free performance and correctness win: a `HashSet` membership check is O(1) versus O(n) scanning a `Vec`; a `BTreeMap` gives sorted iteration without re-sorting. Rust's ownership rules additionally prevent the iterator-invalidation bugs (mutating a collection mid-iteration) that crash other languages — at compile time. Picking deliberately keeps data-heavy code fast and bug-free, which matters most exactly in the systems and services where Rust is deployed.
+
+### 14.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    vec["Vec<T>: growable sequence, index O(1)"]
+    hash["HashMap<K,V> / HashSet<T>: O(1) avg, unordered"]
+    btree["BTreeMap<K,V> / BTreeSet<T>: O(log n), sorted"]
+    deque["VecDeque<T>: push/pop both ends"]
+```
+
+Pick by operation: sequence/index → `Vec`; keyed lookup → `HashMap` (or `BTreeMap` for sorted order); uniqueness → `HashSet`/`BTreeSet`; queue/stack at both ends → `VecDeque`. Keys/elements of hashed collections must implement `Hash + Eq`; ordered ones need `Ord`. Methods like `entry()` enable efficient insert-or-update. Because of borrowing, you can't hold a reference into a collection while mutating it — preventing invalidation.
+
+### 14.4 Architecture: match container to access pattern
+
+```mermaid
+flowchart LR
+    need["dominant operation?"] --> seq["sequence -> Vec"]
+    need --> key["lookup -> HashMap / BTreeMap"]
+    need --> uniq["uniqueness -> HashSet"]
+    need --> ends["both ends -> VecDeque"]
+```
+
+The collection choice is an O(...) decision, just as in the algorithms guide.
+
+### 14.5 Real example
+
+**Scenario.** Count word frequencies and report them in sorted order.
+
+**Problem.** A `Vec` of pairs needs O(n) lookups to accumulate counts, and isn't sorted.
+
+**Solution.** A **`HashMap`** with `entry()` for O(1) counting, then a **`BTreeMap`** for sorted output.
+
+**Implementation.**
+
+```rust
+use std::collections::{HashMap, BTreeMap};
+
+fn word_freq(text: &str) -> BTreeMap<&str, u32> {
+    let mut counts: HashMap<&str, u32> = HashMap::new();
+    for word in text.split_whitespace() {
+        *counts.entry(word).or_insert(0) += 1;   // insert-or-update, O(1) avg
+    }
+    counts.into_iter().collect()                  // collect into a sorted BTreeMap
+}
+
+fn main() {
+    for (word, n) in word_freq("the cat the dog the cat") {
+        println!("{word}: {n}");                  // printed in sorted key order
+    }
+}
+```
+
+**Result.** Counting uses a `HashMap` with `entry().or_insert()` for O(1) accumulation; collecting into a `BTreeMap` yields sorted iteration with no manual sort. The borrow checker guarantees no element is invalidated during the process. The right containers made the solution both fast and ordered.
+
+**Future improvements.** Use `HashSet` for membership-only needs; pre-size with `with_capacity` when the count is known; consider `VecDeque` for sliding-window processing.
+
+### 14.6 Exercises
+
+1. When do you choose `BTreeMap` over `HashMap`?
+2. What does `entry().or_insert()` accomplish in one step?
+3. Why can't you mutate a collection while holding a reference into it?
+
+### 14.7 Challenges
+
+- **Challenge.** Given a slice of integers, use a `HashSet` to report duplicates in one pass and a `BTreeSet` to list the unique values in sorted order.
+
+### 14.8 Checklist
+
+- [ ] I pick the collection by its dominant operation's cost.
+- [ ] I use `HashMap`/`HashSet` for O(1) lookup/uniqueness.
+- [ ] I use `BTreeMap`/`BTreeSet` when sorted order matters.
+- [ ] I use `entry()` for efficient insert-or-update.
+
+### 14.9 Best practices
+
+- Default to `Vec`; switch to maps/sets for lookup/uniqueness.
+- Use `entry` APIs to avoid double lookups.
+- Pre-size with `with_capacity` when size is known.
+
+### 14.10 Anti-patterns
+
+- Linear scans of a `Vec` where a `HashMap`/`HashSet` is O(1).
+- Re-sorting a `Vec` repeatedly instead of using a `BTreeMap`.
+- Ignoring `Hash`/`Ord` requirements on keys.
+
+### 14.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Slow lookups/dedup | Scanning a `Vec` | Use `HashMap`/`HashSet` |
+| Need sorted iteration | `HashMap` is unordered | Use `BTreeMap` |
+| "cannot borrow as mutable while borrowed" | Mutating mid-iteration | Restructure; collect indices/keys first |
+
+### 14.12 References
+
+- *The Rust Programming Language*, ch. 8 "Common Collections" — https://doc.rust-lang.org/book/ch08-00-common-collections.html.
+- Rust `std::collections` docs: https://doc.rust-lang.org/std/collections/.
+
+---
+
+## Chapter 15 — The `Iterator` trait and adapter chains
+
+### 15.1 Introduction
+
+The **`Iterator`** trait (one required method, `next() -> Option<Item>`) underlies all sequential processing in Rust. Iterators are **lazy**: **adapters** like `map`, `filter`, `take`, and `enumerate` build a new iterator without doing any work, and nothing runs until a **consumer** (`collect`, `sum`, `for`, `count`, `fold`) drives it. Chaining adapters expresses transformations declaratively, and because everything monomorphizes and inlines, an iterator chain compiles to code **as fast as a hand-written loop** — Rust's "zero-cost abstraction" in action.
+
+### 15.2 Business context
+
+Iterator chains make data transformation readable and correct — `data.iter().filter(...).map(...).sum()` states intent directly, like LINQ in C# — while compiling to optimal machine code with no allocation or indirection overhead. This is rare: most languages make you choose between expressive (slow) and manual (fast); Rust gives both. Laziness also enables processing infinite or large streams without building intermediates. For performance-critical data pipelines, iterators are the idiomatic, fast, and clear choice.
+
+### 15.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    src["iter()/into_iter()"] --> adapt["lazy adapters: filter -> map -> take (no work yet)"]
+    adapt --> consume["consumer: collect/sum/for (drives it)"]
+    note["Lazy until consumed; monomorphized + inlined = zero-cost"]
+```
+
+Get an iterator with `iter()` (yields `&T`), `iter_mut()` (`&mut T`), or `into_iter()` (owned `T`). **Adapters** return a new iterator (lazy); **consumers** force evaluation. `collect()` gathers into a chosen collection (type-annotated). `fold`/`reduce` aggregate; `enumerate`/`zip` combine. Because the chain is one monomorphized type, the compiler inlines it into a tight loop — no per-step allocation.
+
+### 15.4 Architecture: declarative, zero-cost pipelines
+
+```mermaid
+flowchart TB
+    data["collection"] --> pipe["iter -> filter -> map -> ..."] --> result["consumer -> value/collection"]
+    note["Reads as intent; compiles like a manual loop"]
+```
+
+An iterator chain expresses the *what* and the compiler produces the efficient *how*.
+
+### 15.5 Real example
+
+**Scenario.** Sum the squares of the even numbers in a slice.
+
+**Problem.** A manual loop with conditionals and a running total is verbose and easy to get subtly wrong.
+
+**Solution.** A lazy **iterator chain** consumed by `sum`.
+
+**Implementation.**
+
+```rust
+fn sum_even_squares(nums: &[i32]) -> i32 {
+    nums.iter()                       // &i32
+        .filter(|&&n| n % 2 == 0)     // keep evens (lazy)
+        .map(|&n| n * n)              // square them (lazy)
+        .sum()                        // consumer: drives the chain
+}
+
+fn main() {
+    println!("{}", sum_even_squares(&[1, 2, 3, 4, 5, 6]));   // 4 + 16 + 36 = 56
+}
+```
+
+**Result.** The chain reads as the problem statement — filter evens, square, sum — with no manual index, accumulator, or branch bugs. It's lazy (no intermediate `Vec` is allocated) and monomorphizes into a single tight loop, so it's as fast as the hand-written version. Expressive and zero-cost together.
+
+**Future improvements.** Use `collect::<Vec<_>>()` only when you need the materialized result; reach for `fold` for custom aggregation; use `rayon`'s `par_iter()` to parallelize CPU-bound chains.
+
+### 15.6 Exercises
+
+1. What does it mean that iterators are lazy, and what triggers evaluation?
+2. Difference between `iter()`, `iter_mut()`, and `into_iter()`?
+3. Why is an iterator chain as fast as a manual loop?
+
+### 15.7 Challenges
+
+- **Challenge.** Given a slice of words, build a `Vec<String>` of the uppercased words longer than three characters, using `filter`, `map`, and `collect`.
+
+### 15.8 Checklist
+
+- [ ] I express transformations as iterator adapter chains.
+- [ ] I understand adapters are lazy; consumers drive them.
+- [ ] I choose `iter`/`iter_mut`/`into_iter` by the access I need.
+- [ ] I `collect` only when materialization is needed.
+
+### 15.9 Best practices
+
+- Prefer iterator chains over manual index loops.
+- Keep chains readable; name intermediate closures if complex.
+- Use `fold`/`reduce` for custom aggregation; parallelize with `rayon` when CPU-bound.
+
+### 15.10 Anti-patterns
+
+- Manual `for`+index loops where an iterator is clearer.
+- Collecting into a `Vec` just to iterate again.
+- Heavy side effects inside `map` (use `for_each`/a loop for clarity).
+
+### 15.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Chain "does nothing" | No consumer (still lazy) | Add `collect`/`sum`/`for`/etc. |
+| `collect` type error | Target type not inferred | Annotate: `collect::<Vec<_>>()` |
+| Borrow errors in a chain | Wrong `iter` variant | Use `into_iter`/`iter_mut` as needed |
+
+### 15.12 References
+
+- *The Rust Programming Language*, ch. 13.2 "Iterators" — https://doc.rust-lang.org/book/ch13-02-iterators.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 16 — Closures: `Fn`, `FnMut`, `FnOnce`, and capture
+
+### 16.1 Introduction
+
+A **closure** is an anonymous function that can **capture** variables from its environment: `|x| x + base`. Rust classifies closures by how they use captures into three traits: **`Fn`** (captures by shared reference — callable many times), **`FnMut`** (captures by mutable reference — may mutate), and **`FnOnce`** (consumes captures — callable once). The compiler infers the least-restrictive one. The **`move`** keyword forces capture by value (taking ownership), essential when a closure outlives its scope (e.g., passed to a thread). Closures power the iterator adapters of Ch. 15.
+
+### 16.2 Business context
+
+Closures are how Rust passes behavior — predicates to `filter`, mappers to `map`, callbacks, thread bodies. The `Fn`/`FnMut`/`FnOnce` distinction is the borrow model applied to captured data: it lets the compiler guarantee a closure passed to a thread doesn't reference data that might be freed, eliminating a notorious class of concurrency bugs at compile time. `move` makes ownership transfer explicit for closures sent across threads or stored. Understanding capture is essential to using iterators, async, and concurrency correctly and safely.
+
+### 16.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    fn["Fn: captures by &T (call many times)"]
+    fnmut["FnMut: captures by &mut T (mutates)"]
+    fnonce["FnOnce: consumes captures (call once)"]
+    move["move: capture by value (take ownership)"]
+    note["Compiler infers the least restrictive trait from how captures are used"]
+```
+
+A closure captures only the variables it uses, by the **weakest** access that works: shared (`Fn`), mutable (`FnMut`), or by value/consume (`FnOnce`). These traits form a hierarchy (`Fn: FnMut: FnOnce`). Functions accept closures via bounds (`F: Fn(i32) -> i32`). **`move`** forces by-value capture regardless of usage — required to send a closure to another thread (Ch. 21) or return it from a function, so it doesn't dangle. A closure with no captures coerces to a plain `fn` pointer.
+
+### 16.4 Architecture: pass behavior with the right capture
+
+```mermaid
+flowchart LR
+    consumer["function bound F: Fn/FnMut/FnOnce"] --> closure["closure capturing environment"]
+    closure -->|"move when it must outlive scope"| owned["owns its captures"]
+```
+
+The capture mode is chosen by how the closure uses its environment and whether it must outlive the current scope.
+
+### 16.5 Real example
+
+**Scenario.** Build a configurable filter and a counter that mutates captured state.
+
+**Problem.** Passing behavior and mutable state safely is error-prone in many languages.
+
+**Solution.** An **`Fn`** closure capturing a threshold and an **`FnMut`** closure mutating a count; `move` to own captures.
+
+**Implementation.**
+
+```rust
+fn main() {
+    let threshold = 3;
+    let above = |&n: &i32| n > threshold;            // Fn: captures threshold by &
+    let big: Vec<i32> = (1..=6).filter(above).collect();   // [4,5,6]
+
+    let mut count = 0;
+    let mut tally = |_| count += 1;                  // FnMut: mutates captured count
+    (0..big.len()).for_each(&mut tally);
+    println!("{count}");                              // 3
+
+    let owned = String::from("hi");
+    let make = move || owned.len();                  // move: take ownership of `owned`
+    println!("{}", make());                           // closure owns its capture
+}
+```
+
+**Result.** `above` reads the captured `threshold` (`Fn`), `tally` mutates the captured `count` (`FnMut`), and `make` takes ownership of `owned` via `move` so it could safely outlive the current scope (e.g., go to a thread). The compiler inferred the right trait for each and enforced the borrow rules on captures — behavior and state passed safely, no dangling.
+
+**Future improvements.** Use `move` closures for thread/async bodies; return `impl Fn(...)` to hand back a closure; prefer function pointers (`fn`) when no capture is needed.
+
+### 16.6 Exercises
+
+1. What distinguishes `Fn`, `FnMut`, and `FnOnce`?
+2. What does the `move` keyword change about capture, and when is it required?
+3. Why does the closure-capture model help concurrency safety?
+
+### 16.7 Challenges
+
+- **Challenge.** Write a function `make_adder(n: i32) -> impl Fn(i32) -> i32` returning a `move` closure that adds `n`; call it and explain why `move` is needed here.
+
+### 16.8 Checklist
+
+- [ ] I let the compiler infer the least-restrictive closure trait.
+- [ ] I use `move` when a closure must outlive its scope (threads/returns).
+- [ ] I bound functions with `Fn`/`FnMut`/`FnOnce` appropriately.
+- [ ] I use plain `fn` pointers when no capture is needed.
+
+### 16.9 Best practices
+
+- Capture by the weakest access that works; let inference choose.
+- Use `move` for thread/async/returned closures.
+- Bound APIs with the broadest closure trait they can accept (`FnOnce` if called once).
+
+### 16.10 Anti-patterns
+
+- Unnecessary `move` that needlessly takes ownership.
+- Over-restrictive closure bounds rejecting valid closures.
+- Capturing large data by value when a reference would do.
+
+### 16.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "closure may outlive borrowed value" | Captured by reference, needs ownership | Add `move` |
+| "expected Fn, found FnMut/FnOnce" | Closure mutates/consumes captures | Adjust the bound or the closure |
+| "cannot move out of captured variable" | `FnOnce` used like `Fn` | Call once, or clone the capture |
+
+### 16.12 References
+
+- *The Rust Programming Language*, ch. 13.1 "Closures" — https://doc.rust-lang.org/book/ch13-01-closures.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+> **End of Part V.** Rust's data machinery: standard **collections** chosen by access pattern (`Vec`, `HashMap`, `BTreeMap`, `HashSet`, `VecDeque`), the lazy, **zero-cost `Iterator`** with its adapter chains, and **closures** classified by capture (`Fn`/`FnMut`/`FnOnce`, with `move`) that power them. Part VI covers **error handling, modules, crates, and smart pointers**.
+
+<!--APPEND-PART-VI-->
