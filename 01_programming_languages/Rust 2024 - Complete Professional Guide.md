@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–III (Ch. 1–9). **In progress:** Parts IV–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–IV (Ch. 1–13). **In progress:** Parts V–VIII.
 
 ---
 
@@ -1192,4 +1192,441 @@ fn area(s: &Shape) -> f64 {
 
 > **End of Part III.** Rust models data precisely: **scalar/compound** types and **structs** with methods; **enums as sum types** with `Option` (no null) and `Result` (errors as values, propagated with `?`); and **exhaustive `match`** with destructuring and guards that forces every case to be handled. Part IV covers **traits and generics** — Rust's tools for polymorphism and reuse.
 
-<!--APPEND-PART-IV-->
+---
+
+## Part IV — Traits and generics
+
+Part IV covers Rust's polymorphism: **traits** (shared behavior contracts), **generics** with **trait bounds** (compile-time, monomorphized reuse), **trait objects** (`dyn`) for runtime dispatch, and **associated types/supertraits/coherence**.
+
+---
+
+## Chapter 10 — Defining and implementing traits; default methods
+
+### 10.1 Introduction
+
+A **trait** defines shared behavior — a set of method signatures a type can implement, like an interface. You declare `trait Summary { fn summarize(&self) -> String; }` and implement it for a type with `impl Summary for Article { ... }`. Traits can provide **default method** bodies that implementers inherit or override. Standard traits (`Display`, `Debug`, `Clone`, `Iterator`, `PartialOrd`) are everywhere, and many can be auto-generated with `#[derive(...)]`. Traits are the foundation of both generics (Ch. 11) and dynamic dispatch (Ch. 12).
+
+### 10.2 Business context
+
+Traits let code depend on **behavior** rather than concrete types: a function that works with anything `Display`able, a sorting routine for anything `Ord`. This decoupling makes code reusable and testable, and the **coherence** rules (Ch. 13) keep implementations unambiguous across a large dependency graph. Default methods let a trait grow shared functionality without forcing every implementer to rewrite it. Deriving common traits removes boilerplate. The result is highly reusable abstractions with no runtime cost when used generically — reuse and performance together.
+
+### 10.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    trait["trait Summary { fn summarize(&self) -> String; fn preview(&self) -> String { default } }"] --> impl["impl Summary for Article"]
+    impl --> use["call .summarize() / .preview()"]
+    derive["#[derive(Debug, Clone, PartialEq)]"] --> auto["compiler-generated impls"]
+```
+
+A trait lists required methods (and optional **default** implementations). `impl Trait for Type` provides them; a type may implement many traits. **Default methods** can call other (required) trait methods, so implementing one unlocks several. The **orphan rule** (coherence): you can implement a trait for a type only if you own the trait or the type — preventing conflicting impls. `#[derive]` auto-implements standard traits (`Debug`, `Clone`, `PartialEq`, etc.).
+
+### 10.4 Architecture: depend on behavior
+
+```mermaid
+flowchart LR
+    code["code depends on a trait"] --> any["any type implementing it works"]
+    note["Add behavior to a type by implementing a trait; default methods share logic"]
+```
+
+Programming against traits decouples consumers from concrete types, the basis for Rust's generic reuse.
+
+### 10.5 Real example
+
+**Scenario.** Several content types need a summary, with a shared default preview.
+
+**Problem.** Duplicating preview logic per type is wasteful; coupling code to each concrete type blocks reuse.
+
+**Solution.** A **trait** with a required method and a **default** method.
+
+**Implementation.**
+
+```rust
+trait Summary {
+    fn summarize(&self) -> String;                       // required
+    fn preview(&self) -> String {                        // default, uses summarize()
+        format!("{}…", &self.summarize()[..self.summarize().len().min(20)])
+    }
+}
+
+struct Article { title: String, body: String }
+impl Summary for Article {
+    fn summarize(&self) -> String { format!("{}: {}", self.title, self.body) }
+    // preview() inherited from the default
+}
+
+fn print_preview(item: &impl Summary) {                  // works for ANY Summary type
+    println!("{}", item.preview());
+}
+```
+
+**Result.** `Article` implements only `summarize`; it gets `preview` for free from the default. `print_preview` accepts any `Summary` implementer, so adding a `Tweet` type means one `impl` and no change to consumers. Behavior is shared via the default method and abstracted via the trait — reuse without duplication.
+
+**Future improvements.** Derive standard traits where applicable; split large traits into focused ones; use `impl Trait` in argument/return position for concise generic signatures.
+
+### 10.6 Exercises
+
+1. What is a trait, and how is it like/unlike an interface?
+2. What does a default method let implementers avoid?
+3. What is the orphan rule and why does it exist?
+
+### 10.7 Challenges
+
+- **Challenge.** Define a `Describe` trait with a required `name()` and a default `describe()` using it; implement it for two structs and write a function taking `&impl Describe`.
+
+### 10.8 Checklist
+
+- [ ] I define shared behavior as traits and depend on them.
+- [ ] I provide default methods to share logic.
+- [ ] I respect the orphan rule when implementing traits.
+- [ ] I derive standard traits to cut boilerplate.
+
+### 10.9 Best practices
+
+- Program to traits; keep them small and focused.
+- Use default methods for shared behavior; override where needed.
+- Derive `Debug`/`Clone`/`PartialEq`/etc. when appropriate.
+
+### 10.10 Anti-patterns
+
+- God traits bundling unrelated behavior.
+- Reimplementing what a default method could provide.
+- Hand-writing impls that `#[derive]` would generate.
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "trait not implemented" | Type missing the `impl` | Implement the trait (or derive it) |
+| "cannot implement foreign trait for foreign type" | Orphan-rule violation | Use a newtype wrapper you own |
+| Duplicated method bodies | No default method | Add a default in the trait |
+
+### 10.12 References
+
+- *The Rust Programming Language*, ch. 10.2 "Traits" — https://doc.rust-lang.org/book/ch10-02-traits.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 11 — Generic functions, structs, and bounds
+
+### 11.1 Introduction
+
+**Generics** let you write functions, structs, and enums parameterized over types (`fn largest<T>(list: &[T]) -> &T`). To do anything meaningful with a generic `T`, you constrain it with **trait bounds** (`T: PartialOrd`), which specify the behavior `T` must provide. Rust **monomorphizes** generics — it generates a specialized copy per concrete type at compile time — so generic code has **zero runtime cost** (no boxing, no dynamic dispatch). Generics plus bounds are how Rust achieves reusable, type-safe abstractions as fast as hand-written specific code.
+
+### 11.2 Business context
+
+Generics eliminate the duplication of writing the same logic per type while keeping full type safety and speed — `Vec<T>`, `HashMap<K, V>`, and your own data structures are generic. Trait bounds make requirements explicit and checked: a `sort` over `T: Ord` won't compile for a type that isn't ordered, catching misuse at build time. Because monomorphization specializes each instantiation, there's no performance penalty, so teams get reuse **and** the bare-metal speed Rust is chosen for. This combination is rare and valuable.
+
+### 11.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    gen["fn largest<T: PartialOrd>(list: &[T]) -> &T"] --> bound["bound: T must be comparable"]
+    bound --> ops["unlocks the operations on T"]
+    mono["monomorphization: a specialized copy per concrete T"] --> zero["zero-cost, no dynamic dispatch"]
+```
+
+A **bound** (`T: Trait`, or a `where` clause for many) restricts the type parameter and grants its methods to the body. Multiple bounds combine (`T: Clone + Debug`). At compile time, **monomorphization** stamps out a concrete version for each `T` actually used — so `largest::<i32>` and `largest::<char>` are separate, fully optimized functions. This is **static dispatch**: the called method is known at compile time (contrast `dyn`, Ch. 12).
+
+### 11.4 Architecture: one definition, specialized per type
+
+```mermaid
+flowchart LR
+    one["generic definition + bounds"] --> mono["compiler specializes per concrete type"]
+    mono --> fast["as fast as hand-written, type-safe"]
+```
+
+Generic code is written once and compiled into efficient, type-specific machine code wherever it's used.
+
+### 11.5 Real example
+
+**Scenario.** Find the largest element of any comparable slice.
+
+**Problem.** Writing `largest_i32`, `largest_char`, etc. duplicates logic; using a non-comparable type should be rejected.
+
+**Solution.** A **generic** function with a `PartialOrd` **bound**.
+
+**Implementation.**
+
+```rust
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {   // bound: comparable + copyable
+    let mut max = list[0];
+    for &item in &list[1..] {
+        if item > max { max = item; }                  // `>` available because T: PartialOrd
+    }
+    max
+}
+
+fn main() {
+    println!("{}", largest(&[3, 7, 2, 9, 4]));   // i32
+    println!("{}", largest(&['c', 'a', 'z']));   // char — same code, specialized
+}
+```
+
+**Result.** One `largest` serves any `PartialOrd + Copy` type; the compiler monomorphizes a specialized, fully-optimized version for `i32` and `char`. A type without ordering would be a compile error (the bound isn't satisfied), and there's no runtime dispatch cost. Reuse and native speed, type-checked.
+
+**Future improvements.** Use a `where` clause for readability when bounds grow; relax `Copy` to returning `&T` to support non-copy types; consider returning `Option<T>` for empty slices.
+
+### 11.6 Exercises
+
+1. Why does a generic `T` usually need a trait bound to be useful?
+2. What is monomorphization, and what does it cost at runtime?
+3. How do you express multiple bounds on a type parameter?
+
+### 11.7 Challenges
+
+- **Challenge.** Write a generic `struct Pair<T>` with a method that prints the larger field, bounded by `T: PartialOrd + Display`. Instantiate it for two types.
+
+### 11.8 Checklist
+
+- [ ] I use generics to avoid per-type duplication.
+- [ ] I add the trait bounds that enable the operations I use.
+- [ ] I rely on monomorphization for zero-cost generic reuse.
+- [ ] I use `where` clauses when bounds get long.
+
+### 11.9 Best practices
+
+- Constrain type parameters with the minimal bounds needed.
+- Prefer generics (static dispatch) for performance-sensitive reuse.
+- Use `where` clauses for readable complex bounds.
+
+### 11.10 Anti-patterns
+
+- Duplicating logic per concrete type instead of generalizing.
+- Over- or under-constraining type parameters.
+- Reaching for `dyn` where generics would be zero-cost.
+
+### 11.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "method not found for T" | Missing trait bound | Add `T: Trait` to enable it |
+| Code bloat / long compiles | Heavy monomorphization | Consider `dyn` for cold paths (Ch. 12) |
+| Bounds hard to read | Many inline bounds | Move them to a `where` clause |
+
+### 11.12 References
+
+- *The Rust Programming Language*, ch. 10.1 "Generic Data Types" — https://doc.rust-lang.org/book/ch10-01-syntax.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 12 — Trait objects, dynamic dispatch, and `dyn`
+
+### 12.1 Introduction
+
+Generics dispatch statically (one type per instantiation). Sometimes you need a **collection of different types** that share a trait — e.g., a `Vec` of various drawable widgets. A **trait object** (`dyn Trait`, used behind a pointer like `Box<dyn Draw>` or `&dyn Draw`) enables this: it stores a value of *some* type implementing the trait, and method calls go through **dynamic dispatch** (a runtime vtable lookup). You trade a small runtime cost and lose monomorphization for the flexibility of heterogeneous collections and runtime-chosen behavior.
+
+### 12.2 Business context
+
+Some designs are inherently runtime-polymorphic: plugin systems, UI widget trees, lists of handlers of mixed concrete types. Trait objects make these expressible while keeping type safety — every element is guaranteed to implement the trait. The choice between generics (`impl Trait`/bounds) and trait objects (`dyn`) is a real engineering trade-off: static dispatch is faster and inlinable but monomorphizes (code size, homogeneous), while `dyn` is flexible and compact but adds an indirect call. Knowing when each fits keeps both performance and design clean.
+
+### 12.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    static["generics: static dispatch, monomorphized, homogeneous"]
+    dynamic["dyn Trait (Box<dyn T> / &dyn T): dynamic dispatch via vtable, heterogeneous"]
+    note["Trait must be object-safe to be used as dyn"]
+```
+
+A **trait object** is a fat pointer: a data pointer plus a **vtable** pointer; calls look up the method at runtime. Stored behind `Box<dyn Trait>`, `&dyn Trait`, etc. (it's unsized, like slices). This allows a `Vec<Box<dyn Draw>>` holding different concrete types. A trait must be **object-safe** (roughly: no generic methods, no `Self`-returning methods) to be used as `dyn`. Use `dyn` for heterogeneous collections/runtime choice; use generics for hot, homogeneous code.
+
+### 12.4 Architecture: choose static vs dynamic dispatch
+
+```mermaid
+flowchart LR
+    q{"need different types together / runtime choice?"} -->|yes| dyn["Box<dyn Trait> (dynamic)"]
+    q -->|no, perf-critical| gen["generics + bounds (static)"]
+```
+
+The dispatch choice follows the design: heterogeneity/runtime flexibility → `dyn`; homogeneity/performance → generics.
+
+### 12.5 Real example
+
+**Scenario.** A screen renders a list of differently-typed UI components.
+
+**Problem.** Generics produce a homogeneous collection — you can't put `Button` and `Checkbox` in the same `Vec<T>`.
+
+**Solution.** A **`Vec<Box<dyn Draw>>`** holding any `Draw` implementer, dispatched dynamically.
+
+**Implementation.**
+
+```rust
+trait Draw { fn draw(&self); }
+
+struct Button { label: String }
+struct Checkbox { checked: bool }
+impl Draw for Button   { fn draw(&self) { println!("[ {} ]", self.label); } }
+impl Draw for Checkbox { fn draw(&self) { println!("[{}]", if self.checked {"x"} else {" "}); } }
+
+fn render(components: &[Box<dyn Draw>]) {     // heterogeneous list
+    for c in components { c.draw(); }          // dynamic dispatch via vtable
+}
+
+fn main() {
+    let screen: Vec<Box<dyn Draw>> = vec![
+        Box::new(Button { label: "OK".into() }),
+        Box::new(Checkbox { checked: true }),
+    ];
+    render(&screen);
+}
+```
+
+**Result.** Different concrete types (`Button`, `Checkbox`) live in one `Vec<Box<dyn Draw>>`, and `render` calls `draw()` on each via dynamic dispatch — impossible with a homogeneous generic collection. The type system still guarantees every element implements `Draw`. The small vtable-call cost buys the heterogeneous, extensible design a UI needs.
+
+**Future improvements.** Prefer generics on hot, homogeneous paths; keep traits object-safe if they'll be used as `dyn`; use enums instead of `dyn` when the set of types is closed and known.
+
+### 12.6 Exercises
+
+1. What is a trait object, and how does its dispatch differ from generics?
+2. Why can a `Vec<Box<dyn Trait>>` hold different concrete types?
+3. When would you choose `dyn` over generics, and vice versa?
+
+### 12.7 Challenges
+
+- **Challenge.** Build a `Vec<Box<dyn Fn(i32) -> i32>>` of different closures, iterate, and apply each to a value — a heterogeneous list of behaviors.
+
+### 12.8 Checklist
+
+- [ ] I use `dyn Trait` (behind a pointer) for heterogeneous collections.
+- [ ] I use generics for homogeneous, performance-critical code.
+- [ ] I keep traits object-safe when they're used as `dyn`.
+- [ ] I consider enums for a closed set of types.
+
+### 12.9 Best practices
+
+- Match dispatch to the design (heterogeneity vs performance).
+- Keep `dyn`-used traits object-safe.
+- Reach for generics first on hot paths; `dyn` for flexibility.
+
+### 12.10 Anti-patterns
+
+- `dyn` on hot, homogeneous paths where generics are free.
+- Trait objects for a small closed set (an enum is simpler/faster).
+- Non-object-safe traits forced into `dyn`.
+
+### 12.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "trait cannot be made into an object" | Not object-safe | Remove generic/`Self`-returning methods, or use generics |
+| Can't mix types in a `Vec<T>` | Generic = homogeneous | Use `Vec<Box<dyn Trait>>` |
+| Unexpected indirect-call cost | Dynamic dispatch on a hot path | Switch to generics (static dispatch) |
+
+### 12.12 References
+
+- *The Rust Programming Language*, ch. 18.2 "Trait Objects" — https://doc.rust-lang.org/book/ch18-02-trait-objects.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 13 — Associated types, supertraits, and coherence
+
+### 13.1 Introduction
+
+Three features round out Rust's trait system. **Associated types** let a trait declare a placeholder type that each implementer fixes — `trait Iterator { type Item; fn next(&mut self) -> Option<Self::Item>; }` — giving cleaner signatures than extra generic parameters. **Supertraits** require that implementing one trait also implies another (`trait Ord: PartialOrd`), so a trait can rely on another's methods. **Coherence** (the orphan rule) guarantees there's at most one implementation of a trait for a type across the whole program, keeping dispatch unambiguous.
+
+### 13.2 Business context
+
+These features make trait-based APIs precise and conflict-free at scale. Associated types are why `Iterator` reads cleanly and why adapter chains (Ch. 15) type-check nicely — without them, every use would carry extra type parameters. Supertraits express real dependencies between capabilities, so building a richer abstraction on a simpler one is checked. Coherence is what lets thousands of crates define and implement traits without two of them silently conflicting — essential for a large, decentralized ecosystem. Together they keep big Rust codebases coherent and ergonomic.
+
+### 13.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    assoc["trait Iterator { type Item; ... }"] --> fixed["each impl picks Item (one per type)"]
+    super["trait Ord: PartialOrd"] --> requires["implementers must also be PartialOrd"]
+    coherence["orphan rule: own the trait OR the type"] --> unique["at most one impl globally"]
+```
+
+An **associated type** is an output type the implementer chooses (`impl Iterator for Counter { type Item = u32; ... }`), used as `Self::Item`. A **supertrait** (`trait B: A`) means any `B` is also an `A`, so `B`'s defaults/methods may call `A`'s. **Coherence/the orphan rule**: a trait impl is allowed only if you define the trait or the type (or use a local newtype), preventing two crates from giving conflicting impls — there is exactly one for any (trait, type) pair.
+
+### 13.4 Architecture: precise, non-conflicting abstractions
+
+```mermaid
+flowchart LR
+    trait["trait with associated type + supertrait"] --> clean["clean signatures, layered capabilities"]
+    orphan["orphan rule"] --> safe["no conflicting impls across crates"]
+```
+
+These rules let traits compose into rich, unambiguous APIs that scale across a dependency graph.
+
+### 13.5 Real example
+
+**Scenario.** Implement a custom iterator and a trait that builds on another.
+
+**Problem.** Extra generic parameters clutter iterator signatures, and a richer trait needs a base trait's behavior.
+
+**Solution.** An **associated type** for the iterator's item and a **supertrait** for the layered capability.
+
+**Implementation.**
+
+```rust
+struct Counter { n: u32 }
+
+impl Iterator for Counter {
+    type Item = u32;                          // associated type fixed here
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.n < 3 { self.n += 1; Some(self.n) } else { None }
+    }
+}
+
+trait Named { fn name(&self) -> String; }
+trait Greet: Named {                          // supertrait: every Greet is also Named
+    fn greet(&self) -> String { format!("Hello, {}", self.name()) }   // uses Named::name
+}
+```
+
+**Result.** `Counter` is a real `Iterator` with `Item = u32`, so it works with all iterator adapters (Ch. 15) and `for` loops — no extra generic parameters needed thanks to the associated type. `Greet` requires `Named`, so its default `greet` can call `name()`; a type must implement both. Coherence guarantees these impls don't conflict with any other crate's. Clean, layered, unambiguous.
+
+**Future improvements.** Use associated types over generic parameters when there's exactly one logical output type; wrap foreign types in a newtype to implement foreign traits within the orphan rule.
+
+### 13.6 Exercises
+
+1. When is an associated type preferable to a generic type parameter?
+2. What does a supertrait bound (`trait B: A`) guarantee?
+3. What does the orphan rule prevent, and how do you work around it?
+
+### 13.7 Challenges
+
+- **Challenge.** Define a trait `Container` with an associated `type Item` and a method `get(&self, i: usize) -> Option<&Self::Item>`; implement it for a wrapper around `Vec<T>`.
+
+### 13.8 Checklist
+
+- [ ] I use associated types for a trait's single output type.
+- [ ] I use supertraits to express capability dependencies.
+- [ ] I implement foreign traits only via owned types/newtypes (coherence).
+- [ ] I rely on the orphan rule to avoid conflicting impls.
+
+### 13.9 Best practices
+
+- Prefer associated types when there's one natural output type.
+- Layer traits with supertraits to build richer capabilities.
+- Use newtypes to satisfy coherence for foreign trait/type pairs.
+
+### 13.10 Anti-patterns
+
+- Extra generic parameters where an associated type is clearer.
+- Trying to implement a foreign trait on a foreign type (won't compile).
+- Deeply nested supertrait chains that obscure requirements.
+
+### 13.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Cluttered generic signatures | Generic param instead of associated type | Use `type Item` |
+| "the trait bound is not satisfied: PartialOrd" | Supertrait not implemented | Implement the supertrait too |
+| "only traits defined in the current crate…" | Orphan-rule violation | Wrap in a local newtype |
+
+### 13.12 References
+
+- *The Rust Programming Language*, ch. 19.2 (advanced traits: associated types, supertraits) — https://doc.rust-lang.org/book/ch19-03-advanced-traits.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+> **End of Part IV.** Rust's polymorphism: **traits** define shared behavior (with default methods); **generics + bounds** give monomorphized, zero-cost reuse (static dispatch); **trait objects** (`dyn`) give heterogeneous, runtime dispatch; and **associated types, supertraits, and coherence** keep trait APIs precise and conflict-free. Part V covers **collections and iterators** — the standard containers and Rust's powerful iterator/closure machinery.
+
+<!--APPEND-PART-V-->
