@@ -87,7 +87,7 @@ Progressive evolution through five maturity levels:
 **Part XV – Real Projects**
 P1. Intelligent Corporate Assistant · P2. Multi-Agent Support Center · P3. Automated Research Platform · P4. AI-Assisted Software Engineering · P5. Enterprise Agent Platform · P6. Autonomous Agent-Based Organization
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–5). **In progress:** Parts II–XV.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Chapters 1–45). **In progress:** Parts VII–XV.
 
 ---
 
@@ -865,4 +865,7454 @@ Teams that already use ChatGPT for brainstorming and adopt Hermes for **continuo
 
 > **End of Part I.** We established what Hermes Agent is, its history up to v0.16, the philosophy of Nous Research, the concept of a self-evolving agent, and its positioning against competitors. **Part II — Internal Architecture** (Chapters 6–13) opens the hood: general architecture, internal components, the agent lifecycle, and the memory, learning, Skills, planning, and execution subsystems.
 
-<!--APPEND-PARTE-II-->
+## Part II – Internal Architecture
+
+Part II opens the hood. Where Part I built the *mental model* of Hermes Agent, Part II builds the *engineering model*: the concrete files, classes, registries, and data flows that make the agent work. The thesis of this part is that Hermes is best understood as a **stable, modular `AIAgent` core surrounded by pluggable subsystems** — prompt assembly, provider resolution, the tool registry, session persistence, the memory and learning subsystems, the Skills system, planning, and execution backends. Once you internalize how these pieces connect (and how loosely they are coupled), everything downstream — installation, providers, MCP, multi-agents, security — becomes a matter of configuring and extending well-defined seams rather than fighting an opaque black box.
+
+The chapters follow the agent's own anatomy. Chapter 6 maps the whole system. Chapter 7 zooms into the individual components and the registry pattern that binds them. Chapter 8 traces the lifecycle of a single agent run from input to persistence. Chapters 9–11 cover the three subsystems that make Hermes self-improving — memory, learning, and Skills. Chapters 12–13 close with how the agent *plans* multi-step work and *executes* it across six terminal backends.
+
+> **Java parallel for the whole part.** If Part I positioned `AIAgent` as a Spring `ApplicationContext`, Part II is the deep dive into that container: how beans (tools) self-register, how dependencies (providers, memory, backends) are resolved at runtime, and how the request lifecycle (the agentic loop) flows through interceptors (hooks) and persistence (the SQLite session store).
+
+---
+
+## Chapter 6 — General Architecture
+
+### 6.1 Introduction
+
+The **general architecture** of Hermes Agent answers one question: *how does a single line of user input become a sequence of LLM calls, tool executions, and persisted state — regardless of whether that input arrived from a terminal, a Telegram message, an IDE, or a cron tick?* The answer is a deliberately layered design. At the top sit **entry points** (surfaces). They all funnel into one **`AIAgent`** core (`run_agent.py`). The core orchestrates four concerns — prompt assembly, provider resolution, tool dispatch, and persistence — and delegates the heavy lifting to **subsystems and backends** that are attached via registries rather than hard-wired.
+
+This chapter is the map you will return to throughout the book. Every later chapter ("Memory System," "Browser Automation," "Gateway Internals," "Enterprise Architecture") is a zoom into one box on this map. Get the map right and the rest of the book is navigation.
+
+### 6.2 Chapter objectives
+
+By the end of this chapter you will be able to: (1) draw the three-layer architecture from memory — entry points, core, subsystems/backends; (2) explain the role of each of the four core concerns (prompt builder, provider resolution, tool dispatch, persistence); (3) describe the three data-flow paths (CLI session, gateway message, cron job) and how they differ; (4) recite the six design principles and connect each to a concrete file or behavior; (5) understand *why* the architecture is shaped this way (the "platform-agnostic core" principle) and what that buys an enterprise.
+
+### 6.3 Business context
+
+Architecture is not academic. For a CTO evaluating Hermes, the shape of the system determines **operational risk, extensibility cost, and lock-in exposure**. A coupled monolith would mean: every new platform requires touching the core; every provider change risks regressions everywhere; and the tool can only run where its one entry point allows. Hermes's layered design inverts all three: a new surface (say, an internal web console) reuses the same core with zero core changes; a new provider is a registry entry; and the same binary runs on a laptop, a $5 VPS, a Kubernetes pod, or serverless infrastructure. The business read is **one investment in the core, amortized across every surface and every environment** — which is exactly what makes Hermes viable as a long-lived enterprise platform rather than a disposable script.
+
+### 6.4 Theoretical foundations
+
+The architecture rests on four well-known software-engineering ideas, applied to agents:
+
+- **Hexagonal / ports-and-adapters.** The `AIAgent` core is the hexagon. Entry points (CLI, gateway, ACP, API server, batch) are *driving adapters*; backends (terminal, browser, web, MCP) and providers are *driven adapters*. The core depends on abstractions, not concrete platforms.
+- **Registry / service locator.** Tools self-register into `tools/registry.py` at import time; providers register into a `PROVIDER_REGISTRY`; plugins discover via entry points. The core asks the registry "what is available?" rather than importing a fixed list.
+- **Tiered, immutable prompt assembly.** The system prompt is built once per conversation in ordered tiers (`stable` → `context` → `volatile`) and is **not mutated mid-conversation** (the "prompt stability" principle). This is what makes prefix caching and reproducibility possible.
+- **Loose coupling via gating.** Optional subsystems (MCP, memory providers, RL environments) are guarded by `check_fn` gating — present and active only when configured. The absence of a subsystem is a no-op, not an error.
+
+> **Java parallel.** Ports-and-adapters is the Hexagonal Architecture popularized in the Spring/DDD world; the tool registry is component scanning + a `BeanFactory`; tiered prompt assembly resembles building an immutable request context once and passing it down a filter chain.
+
+### 6.5 Architecture (the canonical view)
+
+Three layers, top to bottom: **surfaces**, **core**, **subsystems and backends**.
+
+```mermaid
+flowchart TB
+    subgraph L1["Layer 1 — Entry points (surfaces)"]
+        cli[CLI / TUI<br/>cli.py]
+        gw[Gateway<br/>gateway/run.py · 20 adapters]
+        acp[ACP<br/>acp_adapter/]
+        api[API Server<br/>OpenAI-compatible]
+        batch[Batch Runner<br/>batch_runner.py]
+        lib[Python Library]
+    end
+    subgraph L2["Layer 2 — AIAgent core (run_agent.py)"]
+        pb[Prompt Builder<br/>prompt_builder.py]
+        rp[Provider Resolution<br/>runtime_provider.py]
+        td[Tool Dispatch<br/>model_tools.py]
+        cc[Compression & Caching<br/>context_compressor.py]
+    end
+    subgraph L3["Layer 3 — Subsystems & backends"]
+        reg[Tool Registry<br/>tools/registry.py · 70+ tools]
+        store[(Session Storage<br/>SQLite + FTS5)]
+        mem[(Memory<br/>MEMORY.md · USER.md)]
+        skl[(Skills<br/>~90 + ~60)]
+        back[Backends<br/>terminal x6 · browser x5 · web x4 · MCP]
+    end
+    L1 --> L2
+    pb --> mem
+    pb --> skl
+    rp --> prov[Providers 18+]
+    td --> reg
+    reg --> back
+    L2 --> store
+```
+
+### 6.6 Internal flows
+
+There are three canonical paths into the core, and they differ mainly in *how a session is established* and *where the response goes*.
+
+**CLI session** — synchronous, interactive, one persistent session per working directory:
+
+```
+User input → HermesCLI.process_input()
+  → AIAgent.run_conversation()
+    → prompt_builder.build_system_prompt()
+    → runtime_provider.resolve_runtime_provider()
+    → API call (chat_completions / codex_responses / anthropic_messages)
+    → tool_calls? → model_tools.handle_function_call() → loop
+    → final response → display → save to SessionDB
+```
+
+**Gateway message** — a long-running process routes inbound platform events to per-conversation sessions:
+
+```mermaid
+sequenceDiagram
+    participant P as Platform (Telegram/Slack/...)
+    participant A as Adapter.on_message()
+    participant G as GatewayRunner
+    participant Au as Authorization
+    participant Ag as AIAgent
+    participant D as Delivery
+    P->>A: inbound event
+    A->>G: MessageEvent
+    G->>Au: authorize user (allowlist / DM pairing)
+    Au-->>G: allowed
+    G->>G: resolve session key (per platform + chat)
+    G->>Ag: AIAgent(history) . run_conversation()
+    Ag-->>G: final response
+    G->>D: deliver via adapter
+    D-->>P: outbound message
+```
+
+**Cron job** — a scheduler tick creates a *fresh* agent with no history and injects attached skills:
+
+```
+Scheduler tick → load due jobs from jobs.json
+  → create fresh AIAgent (no history)
+  → inject attached skills as context
+  → run job prompt
+  → deliver response to target platform
+  → update job state and next_run
+```
+
+The crucial observation: **all three paths converge on `AIAgent.run_conversation()`**. The platform differences live in the entry point, never in the core — this is the "platform-agnostic core" principle in action.
+
+### 6.7 Component diagram (core seams)
+
+```mermaid
+flowchart LR
+    subgraph core["AIAgent core"]
+        loop[agentic loop]
+    end
+    loop --- pb[prompt_builder.py]
+    pb --- sp[system_prompt.py]
+    pb --- pc[prompt_caching.py]
+    loop --- rp[runtime_provider.py]
+    rp --- auth[auth.py · PROVIDER_REGISTRY]
+    loop --- mt[model_tools.py]
+    mt --- reg[tools/registry.py]
+    loop --- ce[context_engine.py ABC]
+    ce --- ccx[context_compressor.py]
+    loop --- st[hermes_state.py<br/>SQLite + FTS5]
+    loop --- mm[memory_manager.py]
+```
+
+Each `---` is a **seam**: a stable boundary you can extend (add a provider, add a tool, swap the context engine, plug a memory provider) without editing the core loop.
+
+### 6.8 Complete example
+
+**Scenario.** A platform team wants to prove that one Hermes installation can serve three surfaces — a developer CLI, a team Telegram bot, and an internal REST endpoint — without three separate deployments or three copies of the agent logic.
+
+**Problem.** Naively, teams stand up a chatbot for messaging, a separate script for the API, and tell developers to use a third thing locally. Three codebases, three sets of bugs, three drift trajectories.
+
+**Solution.** Run a single Hermes profile on a host. The CLI, the gateway (Telegram + API-server adapter), and any Python caller all share the same core, the same memory, and the same Skills.
+
+**Architecture.** `cli.py`, `gateway/run.py` (telegram + api_server platforms), and a small Python script all instantiate / reuse one `AIAgent` against one `HERMES_HOME`.
+
+**Implementation:**
+
+```bash
+# 1. Install and point at Nous Portal (model + Tool Gateway in one OAuth)
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+hermes setup --portal
+
+# 2. Configure the messaging surfaces
+hermes gateway setup            # interactive: add Telegram token + allowlist
+hermes gateway start --platform telegram
+
+# 3. Same core, exposed as an OpenAI-compatible API surface
+hermes gateway start --platform api_server   # serves /v1/chat/completions
+```
+
+```python
+# 4. Same core, called as a Python library (the API-server surface under the hood)
+from run_agent import AIAgent
+
+agent = AIAgent()                       # reads ~/.hermes/config.yaml
+reply = agent.run_conversation("Summarize today's open PRs")
+print(reply)
+```
+
+**Tests.**
+
+```bash
+hermes doctor                          # verifies provider, tools, paths
+hermes gateway status                  # shows running adapters + PIDs
+curl -s http://localhost:8080/v1/models | jq '.data[].id'   # API surface live
+```
+
+**Result.** One installation, one memory, one Skills library, three surfaces — developers on the CLI, the team on Telegram, and other services over HTTP, all sharing accumulated knowledge.
+
+**Future improvements.** Add ACP so the same agent appears inside VS Code (Chapter 7/Part XI), and front the API surface with authentication and rate limiting (Part XII/XIV).
+
+### 6.9 Source code
+
+The architecture is visible in the directory layout. The load-bearing entry points and core files:
+
+```text
+hermes-agent/
+├── run_agent.py          # AIAgent — the core conversation loop
+├── cli.py                # HermesCLI — interactive TUI surface
+├── model_tools.py        # tool discovery, schema collection, dispatch
+├── toolsets.py           # tool groupings + platform presets
+├── hermes_state.py       # SQLite session/state DB with FTS5
+├── hermes_constants.py   # HERMES_HOME, profile-aware paths
+├── batch_runner.py       # batch trajectory generation surface
+├── agent/                # prompt_builder, context_engine, context_compressor,
+│                         #   prompt_caching, memory_manager, trajectory, ...
+├── hermes_cli/           # main.py (subcommands), auth.py, runtime_provider.py, setup.py
+├── tools/                # registry.py + one file per tool + environments/
+├── gateway/              # run.py + platforms/ (20 adapters)
+└── acp_adapter/          # IDE surface (VS Code / Zed / JetBrains)
+```
+
+The **file dependency chain** is what makes registration automatic:
+
+```text
+tools/registry.py        (no deps — imported by every tool file)
+       ↑
+tools/*.py               (each calls registry.register() at import time)
+       ↑
+model_tools.py           (imports registry + triggers tool discovery)
+       ↑
+run_agent.py, cli.py, batch_runner.py, environments/
+```
+
+Tool registration therefore happens **before any agent instance exists** — drop a file into `tools/` with a top-level `registry.register()` and it is discovered with no manual import list.
+
+### 6.10 Configuration
+
+The whole architecture is steered from one file plus environment variables:
+
+```yaml
+# ~/.hermes/config.yaml — the control surface for the architecture
+provider: nous-portal           # which driven adapter resolves the LLM
+model: hermes-4-70b
+api_mode: chat_completions       # chat_completions | codex_responses | anthropic_messages (usually inferred)
+
+memory:
+  enabled: true                  # MEMORY.md + USER.md + SQLite/FTS5
+skills:
+  enabled: true
+context_engine: default          # default = context_compressor.py (pluggable ABC)
+
+tools:
+  terminal_backend: local        # local | docker | ssh | daytona | modal | singularity
+
+fallback_providers:              # loose coupling: try in order on failure
+  - openrouter
+  - openai
+```
+
+Profiles isolate everything: `hermes -p research` runs with its own `HERMES_HOME` (config, memory, sessions, gateway PID), so multiple architectures coexist on one host.
+
+### 6.11 Real-world use cases
+
+- **A single agent on three surfaces** (the example above): CLI for engineers, Telegram for the team, API for services.
+- **Environment portability:** the same agent definition promoted from a developer laptop (`terminal_backend: local`) to a hardened CI runner (`terminal_backend: docker`) to serverless (`modal`/`daytona`) with only a config change.
+- **Profile-isolated tenants:** a managed-services firm runs one client per profile on one box, each with its own memory and gateway.
+- **Surface migration:** a team that started on the CLI adds the desktop app (v0.16) and the gateway later, with no rewrite, because all three are surfaces over the same core.
+
+### 6.12 Exercises
+
+1. Draw the three-layer architecture from memory and label each box with the file or directory that implements it.
+2. Trace, in words, the path of a Telegram message from inbound event to delivered reply, naming each component it passes through.
+3. Explain why a cron job creates a *fresh* `AIAgent` with no history while a CLI session reuses one.
+4. List the six design principles and give one concrete consequence of each.
+
+### 6.13 Challenges
+
+- **Challenge 1.** Stand up one Hermes profile and expose it on two surfaces simultaneously (CLI + gateway). Confirm via `hermes gateway status` that one process serves both and that a fact you teach it on the CLI is visible to the gateway session.
+- **Challenge 2.** Write a one-page architecture brief for your team explaining how adding a brand-new surface (e.g., an internal Slack-like tool) would require *zero* changes to the agent core, citing the "platform-agnostic core" principle.
+
+### 6.14 Checklist
+
+- [ ] I can name the three layers and the files behind each box.
+- [ ] I can describe the four core concerns (prompt, provider, tools, persistence).
+- [ ] I can trace the CLI, gateway, and cron data-flow paths.
+- [ ] I know the six design principles and a consequence of each.
+- [ ] I understand why tool registration happens at import time.
+
+### 6.15 Best practices
+
+- **Treat the core as a black box; extend at the seams.** Add providers, tools, memory providers, and surfaces — do not patch `run_agent.py`.
+- **Use profiles to isolate concerns** (`-p <name>`) instead of running multiple half-configured installs.
+- **Pick the terminal backend per environment**, not globally: `local` for dev, `docker`/`singularity` for shared or CI hosts.
+- **Lean on fallback providers** to honor "loose coupling" — never let one provider outage stop the agent.
+
+### 6.16 Anti-patterns
+
+- **Forking the core** to add a platform instead of writing an entry point/adapter — you lose every future core improvement.
+- **Importing internal symbols** from `run_agent.py` (which moved during the v0.15 modularization) instead of the public modules in `agent/`.
+- **Mutating the system prompt mid-conversation**, breaking prompt stability and prefix caching.
+- **One giant shared profile** for unrelated workloads, defeating profile isolation.
+
+### 6.17 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| New tool not picked up | File not in `tools/` or missing top-level `registry.register()` | Confirm location and the registration call; `hermes tools` lists discovered tools |
+| Gateway and CLI seem to have different memory | Different profiles / `HERMES_HOME` | Run both with the same `-p`/`HERMES_HOME` |
+| Internal import error after update | Symbol moved during modularization | Import from `agent/` modules, not `run_agent.py` |
+| Response goes to the wrong chat | Session key collision in gateway | Check per-platform session routing; review `gateway/session.py` keys |
+| Cron job "forgot" context | Cron runs fresh by design | Attach Skills/scripts to the job instead of expecting history |
+
+### 6.18 Official references
+
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Agent Loop Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/agent-loop
+- Gateway Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/gateway-internals
+- Session Storage: https://hermes-agent.nousresearch.com/docs/developer-guide/session-storage
+- Repository (MIT): https://github.com/NousResearch/hermes-agent
+
+---
+
+## Chapter 7 — Internal Components
+
+### 7.1 Introduction
+
+If Chapter 6 was the map, Chapter 7 is the **parts catalog**. The `AIAgent` core is not one big function; it is an orchestrator that wires together a small set of cohesive components, each living in its own module under `agent/`, `hermes_cli/`, and `tools/`. After the v0.15 "Velocity" refactor that cut `run_agent.py` from ~16k to ~3.8k lines, these components became *navigable* — each one has a single responsibility and a clear public surface. This chapter walks the catalog: what each component does, what it depends on, and how the registry pattern lets the agent discover capabilities at runtime.
+
+### 7.2 Chapter objectives
+
+(1) Enumerate the core components and their responsibilities; (2) explain the **registry pattern** (tools, providers, commands, plugins) and why self-registration matters; (3) distinguish the three **plugin types** (general plugins, memory providers, context engines) and their single-select vs multi-register semantics; (4) read the `agent/` directory and know which file to open for a given concern; (5) understand the *auxiliary client* and why side tasks (vision, summarization) use a separate LLM path.
+
+### 7.3 Business context
+
+Component clarity is what makes Hermes **maintainable and extensible by a team rather than a single author**. When every concern has a named home, onboarding a new engineer is "open the file for the concern you're touching," not "read 16,000 lines." For an enterprise, this lowers the cost of customization (write a plugin, register a tool) and reduces the bus-factor risk of relying on internals. The modular core is also why the project sustains near-weekly releases without breaking consumers — public seams are stable even as internals churn.
+
+### 7.4 Theoretical foundations
+
+- **Single Responsibility + cohesion.** Each module owns one concern: prompt assembly, compression, caching, memory orchestration, provider resolution, tool dispatch.
+- **Self-registration.** Components announce themselves to a registry at import time, inverting control: the core never maintains a manual list of tools/providers.
+- **Strategy via ABCs.** `ContextEngine` and `MemoryProvider` are abstract base classes; the default implementations (`context_compressor.py`, the built-in memory) can be swapped for plugins. Single-select means exactly one is active.
+- **Auxiliary delegation.** Expensive or specialized side tasks (image understanding, summarization for compression) run through an `auxiliary_client` — a separate, possibly cheaper model — so the main loop stays focused.
+
+> **Java parallel.** ABCs map to interfaces; self-registration maps to `@Component` scanning; the auxiliary client is like delegating to a secondary `RestTemplate`/bean tuned for a different downstream.
+
+### 7.5 Architecture (component catalog)
+
+```mermaid
+flowchart TB
+    subgraph agentpkg["agent/ — internals"]
+        pb[prompt_builder.py]
+        sp[system_prompt.py]
+        ce[context_engine.py — ABC]
+        cc[context_compressor.py — default engine]
+        pc[prompt_caching.py]
+        ac[auxiliary_client.py]
+        mm[memory_manager.py]
+        mp[memory_provider.py — ABC]
+        tr[trajectory.py]
+        md[model_metadata.py]
+    end
+    subgraph clipkg["hermes_cli/ — wiring"]
+        au[auth.py — PROVIDER_REGISTRY]
+        rp[runtime_provider.py]
+        cmd[commands.py — COMMAND_REGISTRY]
+        pl[plugins.py — PluginManager]
+    end
+    subgraph toolspkg["tools/ — capabilities"]
+        reg[registry.py]
+        tt[terminal_tool.py]
+        ft[file_tools.py]
+        wt[web_tools.py]
+        bt[browser_tool.py]
+        mc[mcp_tool.py]
+        dt[delegate_tool.py]
+    end
+    pb --> sp
+    pb --> pc
+    ce --> cc
+    mm --> mp
+    reg --> tt & ft & wt & bt & mc & dt
+```
+
+### 7.6 Internal flows
+
+How a tool becomes callable, end to end:
+
+```mermaid
+sequenceDiagram
+    participant Imp as import time
+    participant Reg as tools/registry.py
+    participant MT as model_tools.py
+    participant Ag as AIAgent
+    participant LLM as Provider
+    Imp->>Reg: tools/*.py call registry.register(spec, handler, check_fn)
+    Ag->>MT: collect schemas for this run
+    MT->>Reg: list available tools (check_fn gating)
+    Reg-->>MT: enabled tool schemas
+    MT-->>Ag: tool definitions for the prompt
+    Ag->>LLM: call with tools
+    LLM-->>Ag: tool_call(name, args)
+    Ag->>MT: handle_function_call(name, args)
+    MT->>Reg: resolve handler
+    Reg-->>MT: handler(args) → result
+    MT-->>Ag: observed result
+```
+
+### 7.7 Component diagram (plugin discovery)
+
+```mermaid
+flowchart LR
+    subgraph sources["Plugin discovery sources"]
+        u[~/.hermes/plugins/ — user]
+        p[.hermes/plugins/ — project]
+        e[pip entry points]
+    end
+    sources --> pm[PluginManager<br/>hermes_cli/plugins.py]
+    pm --> reg1[register tools]
+    pm --> reg2[register hooks]
+    pm --> reg3[register CLI commands]
+    pm --> mpsel{memory provider<br/>single-select}
+    pm --> cesel{context engine<br/>single-select}
+```
+
+### 7.8 Complete example
+
+**Scenario.** A platform team needs an internal tool: "look up a service owner in our service-catalog API." They want it available to the agent everywhere (CLI, gateway, cron) without forking Hermes.
+
+**Problem.** The capability is company-specific; it must not live in the core, must respect enablement config, and must fail gracefully when the catalog is unreachable.
+
+**Solution.** Ship it as a **registered tool inside a plugin**. It self-registers via the registry; a `check_fn` gates it on a config flag; the handler calls the catalog.
+
+**Architecture.** `~/.hermes/plugins/service_catalog/` → registers `lookup_service_owner` into `tools/registry.py` semantics → discovered by `model_tools.py` at runtime.
+
+**Implementation:**
+
+```python
+# ~/.hermes/plugins/service_catalog/plugin.py
+import os, requests
+from tools.registry import registry
+
+def _enabled() -> bool:
+    return os.getenv("SERVICE_CATALOG_URL") is not None
+
+def lookup_service_owner(service: str) -> dict:
+    """Return the owning team and on-call for a service."""
+    base = os.environ["SERVICE_CATALOG_URL"]
+    r = requests.get(f"{base}/services/{service}", timeout=10)
+    r.raise_for_status()
+    data = r.json()
+    return {"service": service, "owner": data["owner"], "oncall": data["oncall"]}
+
+registry.register(
+    name="lookup_service_owner",
+    description="Look up the owning team and on-call engineer for an internal service.",
+    parameters={
+        "type": "object",
+        "properties": {"service": {"type": "string", "description": "service name"}},
+        "required": ["service"],
+    },
+    handler=lookup_service_owner,
+    check_fn=_enabled,          # gating — only offered when configured
+)
+```
+
+**Configuration:**
+
+```yaml
+# ~/.hermes/config.yaml
+plugins:
+  enabled: true
+```
+
+```bash
+export SERVICE_CATALOG_URL="https://catalog.internal/api"
+```
+
+**Tests.**
+
+```bash
+hermes plugins list                 # shows service_catalog discovered
+hermes tools | grep lookup_service_owner   # tool present when env var set
+unset SERVICE_CATALOG_URL && hermes tools | grep lookup_service_owner || echo "gated off"
+```
+
+**Result.** A first-class, company-specific tool the agent can call from any surface, gated by config, with no core modification.
+
+**Future improvements.** Add caching and a circuit breaker in the handler; publish the plugin to an internal index; add a Skill that teaches the agent *when* to use the tool (Part VI).
+
+### 7.9 Source code
+
+Key component files and their one-line responsibilities:
+
+```text
+agent/prompt_builder.py     # assembles ordered system-prompt tiers
+agent/system_prompt.py      # identity, tool guidance, skills text
+agent/context_engine.py     # ContextEngine ABC (pluggable)
+agent/context_compressor.py # default engine — lossy middle-turn summarization
+agent/prompt_caching.py     # Anthropic prompt cache breakpoints
+agent/auxiliary_client.py   # secondary LLM for vision / summarization
+agent/memory_manager.py     # memory orchestration
+agent/memory_provider.py    # MemoryProvider ABC (single-select)
+hermes_cli/auth.py          # PROVIDER_REGISTRY, credential resolution
+hermes_cli/runtime_provider.py # (provider, model) → (api_mode, key, base_url)
+hermes_cli/commands.py      # COMMAND_REGISTRY — slash commands
+hermes_cli/plugins.py       # PluginManager — discovery + lifecycle
+tools/registry.py           # central tool registry (self-registration)
+model_tools.py              # schema collection + handle_function_call dispatch
+```
+
+### 7.10 Configuration
+
+```yaml
+# Selecting strategy components (single-select for memory & context engine)
+context_engine: default          # or a plugin name, e.g. "honcho_engine"
+memory:
+  provider: builtin              # or one of 8 external providers (Part V)
+plugins:
+  enabled: true
+auxiliary_model:                 # optional cheaper model for side tasks
+  provider: openrouter
+  model: gpt-4o-mini
+```
+
+### 7.11 Real-world use cases
+
+- **Internal tools as plugins** (service catalog, ticketing, deploy gates) without forking.
+- **Cheaper auxiliary model** for vision/summarization to cut cost on a high-volume bot.
+- **Swappable context engine** to A/B a custom compression strategy against the default.
+- **Slash-command extensions** registered via `COMMAND_REGISTRY` for team-specific operations.
+
+### 7.12 Exercises
+
+1. Match each concern (prompt, compression, caching, memory, provider, dispatch) to its module.
+2. Explain the difference between a *general plugin* and a *memory provider plugin* in terms of how many can be active.
+3. What is a `check_fn` and why is gating better than commenting a tool out?
+4. Why does compression/vision use the auxiliary client instead of the main model?
+
+### 7.13 Challenges
+
+- **Challenge 1.** Build the `service_catalog` plugin from 7.8 against a mock API and prove the `check_fn` gates it on/off.
+- **Challenge 2.** Configure a cheaper `auxiliary_model` and observe (via logs/costs) that summarization no longer uses your primary model.
+
+### 7.14 Checklist
+
+- [ ] I can locate the module for any core concern.
+- [ ] I understand self-registration and `check_fn` gating.
+- [ ] I know the three plugin types and their select semantics.
+- [ ] I know what the auxiliary client is for.
+
+### 7.15 Best practices
+
+- **Register, don't import:** add capabilities through the registry/plugin API.
+- **Gate every optional tool** with a meaningful `check_fn` so it disappears cleanly when unconfigured.
+- **Keep handlers thin and resilient** (timeouts, error wrapping); the registry wraps errors but your I/O should fail fast.
+- **Use the auxiliary model** for side tasks to protect the main loop's latency and cost.
+
+### 7.16 Anti-patterns
+
+- Cramming company logic into core files instead of a plugin.
+- Tools without `check_fn`, leaking into prompts where their backend is unavailable.
+- Selecting two memory providers / two context engines and expecting both to run (only one is active).
+- Doing heavy synchronous network calls in a tool handler with no timeout.
+
+### 7.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Plugin not discovered | Wrong directory or import error | Place under `~/.hermes/plugins/`; run `hermes plugins list` |
+| Tool always offered even when backend down | Missing/incorrect `check_fn` | Add gating tied to real availability |
+| Two memory providers configured | Single-select violated | Pick one in `config.yaml`/`hermes plugins` |
+| Vision/summarization slow & costly | No auxiliary model | Configure `auxiliary_model` |
+| Slash command missing | Not registered in `COMMAND_REGISTRY` | Register via plugin command API |
+
+### 7.18 Official references
+
+- Architecture (subsystems): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Tools Runtime: https://hermes-agent.nousresearch.com/docs/developer-guide/tools-runtime
+- Adding Tools: https://hermes-agent.nousresearch.com/docs/developer-guide/adding-tools
+- Build a Hermes Plugin: https://hermes-agent.nousresearch.com/docs/guides/build-a-hermes-plugin
+- Memory Provider Plugin: https://hermes-agent.nousresearch.com/docs/developer-guide/memory-provider-plugin
+
+---
+
+## Chapter 8 — Agent Lifecycle
+
+### 8.1 Introduction
+
+A Hermes "turn" — the unit of work between your input and the agent's final answer — has a precise **lifecycle**: assemble the prompt, resolve the provider, call the model, dispatch any tool calls, observe results, possibly loop, compress if needed, produce a final response, and persist. This chapter follows that lifecycle step by step, because understanding it is the difference between using the agent and *operating* it: knowing when caching kicks in, when compression triggers, how retries and fallback behave, and where a turn can be interrupted.
+
+### 8.2 Chapter objectives
+
+(1) Describe the full lifecycle of a single agent turn; (2) explain the agentic loop (think → act → observe) and its termination conditions; (3) understand retries, fallback providers, and interruption; (4) know when compression and caching occur within a turn; (5) understand how a turn is persisted and how session lineage is maintained across compressions.
+
+### 8.3 Business context
+
+The lifecycle is where **cost, latency, and reliability** are decided. Each loop iteration is an LLM call (cost + latency); compression trades tokens for a summarization call; caching cuts repeated-prefix cost; fallback turns a provider outage into a transparent retry. An operator who understands the lifecycle can tune all of these — set sensible loop/turn limits, enable caching, configure fallbacks — turning an unpredictable bot into a budgeted, reliable service.
+
+### 8.4 Theoretical foundations
+
+- **The agentic loop.** Classic *think → act → observe*: the model reasons, optionally emits a tool call, the agent executes it and feeds the result back, repeating until the model returns a final answer (or a limit is hit).
+- **Termination conditions.** A turn ends when the model returns no tool call (final answer), or a max-iteration / token / time budget is reached.
+- **Retry & fallback.** Transient provider errors trigger retries; persistent failure rotates to the next `fallback_providers` entry.
+- **Interruptibility.** API calls and tool execution can be cancelled mid-flight by user input or signals (the "interruptible" principle).
+- **Session lineage.** When compression replaces middle turns with a summary, the new session records its parent — lineage is preserved for auditability.
+
+### 8.5 Architecture (lifecycle stages)
+
+```mermaid
+flowchart TD
+    start([input received]) --> build[build_system_prompt<br/>stable→context→volatile]
+    build --> cache[apply prompt caching breakpoints]
+    cache --> resolve[resolve_runtime_provider]
+    resolve --> call[API call]
+    call --> dec{tool_call?}
+    dec -->|yes| exec[handle_function_call<br/>observe result]
+    exec --> budget{within limits?}
+    budget -->|yes| call
+    budget -->|no| finalize
+    dec -->|no| finalize[final response]
+    call -. error .-> retry{retry / fallback?}
+    retry -->|retry| call
+    retry -->|exhausted| err[surface error]
+    finalize --> compress{context over threshold?}
+    compress -->|yes| summ[compress middle turns]
+    compress -->|no| persist
+    summ --> persist[persist session + lineage]
+    persist --> done([display / deliver])
+```
+
+### 8.6 Internal flows (a multi-step turn)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant RP as runtime_provider
+    participant LLM as Provider
+    participant T as Tools
+    participant DB as SessionDB
+    U->>A: "deploy staging and report"
+    A->>PB: build_system_prompt()
+    A->>RP: resolve (provider, model) → api_mode, key
+    A->>LLM: call (with tools)
+    LLM-->>A: tool_call run_terminal("make deploy ENV=staging")
+    A->>T: handle_function_call(...)
+    T-->>A: exit 0, logs
+    A->>LLM: continue with observation
+    LLM-->>A: tool_call read_file("deploy.log")
+    A->>T: handle_function_call(...)
+    T-->>A: file contents
+    A->>LLM: continue
+    LLM-->>A: final response (summary)
+    A->>DB: persist session (+lineage if compressed)
+    A-->>U: deliver summary
+```
+
+### 8.7 Component diagram (lifecycle collaborators)
+
+```mermaid
+flowchart LR
+    loop[AIAgent loop] --- pb[prompt_builder]
+    loop --- pc[prompt_caching]
+    loop --- rp[runtime_provider]
+    loop --- mt[model_tools dispatch]
+    loop --- ce[context engine / compressor]
+    loop --- st[hermes_state — persist + lineage]
+    rp --- fb[fallback_providers]
+```
+
+### 8.8 Complete example
+
+**Scenario.** A nightly cron job asks the agent to "check disk usage on the build host, and if any volume is above 85%, prune old artifacts and report what was freed."
+
+**Problem.** This is inherently multi-step and conditional — exactly what a single LLM call cannot do, and exactly where loop limits, tool dispatch, and reliable persistence matter.
+
+**Solution.** The agentic loop runs: inspect → decide → act → observe → report, with a bounded iteration budget and a provider fallback so a transient outage doesn't kill the nightly run.
+
+**Architecture.** Cron tick → fresh `AIAgent` → loop over `run_terminal` calls → final report delivered to Slack.
+
+**Implementation (the cron job and its limits):**
+
+```bash
+# Natural-language scheduling; the job runs as a fresh agent each night
+hermes cron add \
+  --name "disk-guard" \
+  --schedule "every day at 02:30" \
+  --deliver slack:#ops \
+  --prompt "Check disk usage on the build host. For any volume above 85%, prune
+            artifacts older than 14 days under /var/cache/build, then report the
+            volumes affected and bytes freed. If nothing is above 85%, say so."
+```
+
+```yaml
+# ~/.hermes/config.yaml — lifecycle tuning
+agent:
+  max_tool_iterations: 12        # bound the loop
+  request_timeout_s: 120
+fallback_providers:
+  - openrouter
+  - anthropic
+prompt_caching:
+  enabled: true                  # cut repeated-prefix cost across loop turns
+```
+
+**Tests.**
+
+```bash
+hermes cron run disk-guard --dry-run   # execute once now, observe the loop
+hermes cron list                       # confirm schedule + next_run
+```
+
+**Result.** A bounded, observable, fault-tolerant multi-step turn: the agent loops only as many times as needed, caches the stable prefix across iterations, falls back on provider errors, and persists the run.
+
+**Future improvements.** Add an approval gate before the prune step (Part XII), and emit metrics on iterations/tokens per run (Part XIII).
+
+### 8.9 Source code
+
+```python
+# Illustrative shape of the loop (public library usage; internals live in run_agent.py)
+from run_agent import AIAgent
+
+agent = AIAgent()                       # reads config, resolves provider lazily
+# run_conversation drives the full lifecycle: prompt → call → tool loop → persist
+final = agent.run_conversation(
+    "Check disk usage on the build host and prune if any volume > 85%.",
+)
+print(final)
+# Inspect lineage / session after the turn:
+#   ~/.hermes/state.db  (SQLite + FTS5) — one row per session, parent_id for lineage
+```
+
+### 8.10 Configuration
+
+```yaml
+agent:
+  max_tool_iterations: 12
+  request_timeout_s: 120
+  retries: 2                      # transient-error retries before fallback
+prompt_caching:
+  enabled: true
+context_compression:
+  enabled: true
+  trigger_ratio: 0.8             # compress when context > 80% of window
+fallback_providers: [openrouter, anthropic]
+```
+
+### 8.11 Real-world use cases
+
+- **Long autonomous tasks** (deploys, data pulls) that need a bounded loop and fallback.
+- **High-volume bots** where prompt caching across loop turns is the main cost lever.
+- **Auditable runs** where session lineage across compressions is required for compliance.
+- **Interruptible interactive sessions** where a user can cancel a runaway loop with a keystroke.
+
+### 8.12 Exercises
+
+1. List the lifecycle stages from input to delivery in order.
+2. State three termination conditions for the agentic loop.
+3. Explain the difference between a retry and a fallback.
+4. When in the lifecycle does compression run, and what does it trade?
+
+### 8.13 Challenges
+
+- **Challenge 1.** Configure `max_tool_iterations` low (e.g., 3) and give the agent a task that needs more steps; observe how it terminates and reports.
+- **Challenge 2.** Force a provider error (bad key) and confirm fallback rotates to the next provider transparently.
+
+### 8.14 Checklist
+
+- [ ] I can describe the full turn lifecycle.
+- [ ] I understand loop termination conditions.
+- [ ] I know how retries and fallback differ.
+- [ ] I know when caching and compression occur.
+- [ ] I know that turns persist with session lineage.
+
+### 8.15 Best practices
+
+- **Always set `max_tool_iterations`** to bound cost on autonomous tasks.
+- **Enable prompt caching** for any repeated-prefix workload.
+- **Configure fallback providers** for reliability.
+- **Keep tool handlers idempotent** where possible, since the loop may retry.
+
+### 8.16 Anti-patterns
+
+- Unbounded loops (no iteration limit) on autonomous jobs — runaway cost.
+- Mutating the prompt mid-turn, defeating caching.
+- Treating every error as fatal instead of configuring retries/fallback.
+- Ignoring lineage and losing auditability after compression.
+
+### 8.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Turn ends prematurely | `max_tool_iterations` too low | Raise the limit for that workload |
+| Runaway cost on a job | No iteration/token budget | Set bounds in `agent:` config |
+| Provider outage stops agent | No fallback configured | Add `fallback_providers` |
+| Cost not dropping on repeat prompts | Caching off or prompt mutating | Enable caching; keep prompt stable |
+| Lost mid-conversation context | Compression too aggressive | Tune `trigger_ratio`; verify lineage in `state.db` |
+
+### 8.18 Official references
+
+- Agent Loop Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/agent-loop
+- Prompt Assembly: https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly
+- Context Compression & Caching: https://hermes-agent.nousresearch.com/docs/developer-guide/context-compression-and-caching
+- Provider Runtime Resolution: https://hermes-agent.nousresearch.com/docs/developer-guide/provider-runtime
+- Session Storage: https://hermes-agent.nousresearch.com/docs/developer-guide/session-storage
+
+---
+
+## Chapter 9 — Memory System
+
+### 9.1 Introduction
+
+Memory is the subsystem that makes Hermes *persistent* — the antidote to the "amnesia" of ordinary chatbots. It has three concrete substrates: **`MEMORY.md`** (durable facts about the world and projects), **`USER.md`** (the model of who the user is), and a **SQLite database** at `~/.hermes/state.db` with **FTS5 full-text search** indexing every session. On top of those substrates sit a `memory_manager` orchestrator and a `MemoryProvider` ABC that lets you swap the built-in store for one of eight external providers. This chapter covers the architecture, the prompt tiers memory feeds into, and how retrieval works.
+
+### 9.2 Chapter objectives
+
+(1) Describe the three memory substrates and what belongs in each; (2) explain how memory feeds the prompt tiers (`stable` → `context` → `volatile`); (3) understand FTS5 retrieval over sessions; (4) know the `MemoryProvider` ABC and the eight external providers; (5) understand "nudges" — how the agent is prompted to persist what matters.
+
+### 9.3 Business context
+
+Persistent, curated memory turns an assistant into an **organizational asset**. Decisions, conventions, and user preferences accumulate instead of evaporating each session. For a company, this means less repeated context-setting, more consistency across interactions, and — crucially — memory that lives **inside your perimeter** (`~/.hermes/`), under your backup and governance, not in a vendor's closed store. External providers (Honcho, Mem0, etc.) are available when you want managed, shared, or semantic memory at scale.
+
+### 9.4 Theoretical foundations
+
+- **Declarative memory split two ways.** `MEMORY.md` = facts about the world/projects; `USER.md` = facts about the user (the "user model"). Separating them keeps retrieval targeted and the user model portable.
+- **Full-text recall.** Every session is indexed in SQLite **FTS5**, so the agent can retrieve relevant past sessions by query rather than scrolling history.
+- **Prompt tiers.** Memory is injected in the **`volatile`** tier (most likely to change) while identity/tools/skills are **`stable`** — preserving prompt stability and caching.
+- **Provider abstraction.** A `MemoryProvider` ABC means the built-in store is one implementation among nine; external providers add semantic search, cross-device sync, or managed retention.
+- **Nudges.** Periodically the agent is reminded to write durable facts to memory — explicit persistence rather than hoping the model "remembers."
+
+### 9.5 Architecture (memory subsystem)
+
+```mermaid
+flowchart TB
+    subgraph store["Memory substrates (~/.hermes/)"]
+        m[MEMORY.md<br/>world/project facts]
+        u[USER.md<br/>user model]
+        db[(state.db<br/>SQLite + FTS5<br/>session index)]
+    end
+    mm[memory_manager.py] --- m
+    mm --- u
+    mm --- db
+    mp[MemoryProvider ABC] --- mm
+    ext[8 external providers<br/>Honcho · Mem0 · Hindsight · ...] -.plug.- mp
+    pb[prompt_builder] -->|volatile tier| mm
+```
+
+### 9.6 Internal flows (retrieval + persistence)
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant MM as memory_manager
+    participant DB as SQLite/FTS5
+    participant MD as MEMORY.md / USER.md
+    A->>MM: build context for this turn
+    MM->>MD: load durable facts + user model
+    MM->>DB: FTS5 search past sessions (query)
+    DB-->>MM: top relevant sessions
+    MM-->>A: memory block (volatile tier)
+    Note over A: ... turn runs ...
+    A->>MM: nudge: persist new durable facts
+    MM->>MD: append/update MEMORY.md / USER.md
+    A->>DB: index this session (FTS5)
+```
+
+### 9.7 Component diagram
+
+```mermaid
+flowchart LR
+    pb[prompt_builder] --- vol[volatile tier]
+    vol --- mm[memory_manager]
+    mm --- prov{MemoryProvider}
+    prov -->|builtin| files[(MEMORY.md/USER.md + state.db)]
+    prov -->|plugin| honcho[(Honcho / Mem0 / ...)]
+```
+
+### 9.8 Complete example
+
+**Scenario.** A team wants the agent to remember, permanently, their deployment conventions and each developer's preferences — and to recall a past incident when a similar one recurs.
+
+**Problem.** Without curated memory + searchable history, the agent re-asks conventions every session and cannot connect a new incident to last month's identical one.
+
+**Solution.** Use `MEMORY.md` for conventions, `USER.md` for per-user preferences, and FTS5 session search to surface the prior incident.
+
+**Architecture.** Built-in provider; conventions in `MEMORY.md`; preferences in `USER.md`; incident sessions indexed in `state.db`.
+
+**Implementation:**
+
+```markdown
+<!-- ~/.hermes/MEMORY.md -->
+# Deployment conventions
+- Staging first, always: `make deploy ENV=staging`, validate, then `ENV=prod`.
+- Never deploy on Fridays after 15:00.
+- Rollback: `make rollback ENV=prod`.
+
+# Incidents
+- 2026-05-12: prod outage from full /var on build host; fix = prune build cache.
+```
+
+```markdown
+<!-- ~/.hermes/USER.md -->
+# User: Elton
+- Prefers concise, bullet-point summaries.
+- Stack: Python + Postgres; CI on GitHub Actions.
+- Wants deploy reports posted to Slack #ops.
+```
+
+```bash
+# Recall a past incident via full-text search over sessions
+hermes memory search "var full build host outage"
+```
+
+**Configuration:**
+
+```yaml
+memory:
+  enabled: true
+  provider: builtin           # or honcho / mem0 / hindsight / ... (Part V)
+  nudge: true                 # remind the agent to persist durable facts
+```
+
+**Tests.**
+
+```bash
+hermes memory show            # prints MEMORY.md + USER.md the agent sees
+hermes memory search "rollback"   # FTS5 hit on conventions
+```
+
+**Result.** Conventions and preferences persist across every session and surface; a recurring incident is matched to its predecessor via FTS5.
+
+**Future improvements.** Move to an external provider (Honcho/Mem0) for semantic search and cross-device sync (Part V); add memory governance and redaction (Part XII).
+
+### 9.9 Source code
+
+```python
+# Library access to the memory subsystem (illustrative)
+from agent.memory_manager import MemoryManager
+
+mm = MemoryManager()                       # built-in provider by default
+mm.append_fact("MEMORY.md", "No deploys on Fridays after 15:00.")
+hits = mm.search_sessions("var full build host outage", limit=5)  # FTS5
+for h in hits:
+    print(h.session_id, h.snippet)
+```
+
+### 9.10 Configuration
+
+```yaml
+memory:
+  enabled: true
+  provider: builtin
+  nudge: true
+  files:
+    world: MEMORY.md
+    user: USER.md
+  search:
+    backend: fts5             # built-in full-text search
+    max_results: 8
+```
+
+### 9.11 Real-world use cases
+
+- **Team conventions** as durable `MEMORY.md` facts applied automatically.
+- **Per-user modeling** in `USER.md` for tone, stack, and delivery preferences.
+- **Incident recall** via FTS5 to connect recurring problems to past fixes.
+- **Managed/semantic memory** via an external provider for large or shared deployments.
+
+### 9.12 Exercises
+
+1. State what belongs in `MEMORY.md` vs `USER.md`.
+2. Explain why memory lives in the `volatile` prompt tier.
+3. How does FTS5 change recall compared to scrolling history?
+4. Name three external memory providers and one reason to use them.
+
+### 9.13 Challenges
+
+- **Challenge 1.** Seed `MEMORY.md`/`USER.md`, run a few sessions, then prove recall with `hermes memory search`.
+- **Challenge 2.** Swap the built-in provider for an external one and compare retrieval quality.
+
+### 9.14 Checklist
+
+- [ ] I know the three substrates and what each stores.
+- [ ] I know memory feeds the volatile tier.
+- [ ] I can search sessions with FTS5.
+- [ ] I know the provider ABC and external options.
+- [ ] I understand nudges.
+
+### 9.15 Best practices
+
+- **Curate `MEMORY.md`** like documentation; keep it factual and concise.
+- **Keep `USER.md` per-user** and portable; treat it as the user model.
+- **Back up `~/.hermes/`** — your memory is an asset.
+- **Enable nudges** so durable facts actually get written.
+
+### 9.16 Anti-patterns
+
+- Dumping transient chatter into `MEMORY.md` (bloats the volatile tier).
+- Storing secrets in memory files (use the credential flow — Part XII).
+- Relying on the model to "just remember" without persistence.
+- Never backing up `~/.hermes/`.
+
+### 9.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Agent forgets a known fact | Not persisted to memory | Add to `MEMORY.md`; enable nudges |
+| Search returns nothing | FTS5 index empty / disabled | Confirm `memory.enabled`; run more sessions |
+| Volatile prompt too large | `MEMORY.md` bloated | Trim to durable facts; move detail to Skills |
+| Secret leaked into prompt | Secret stored in memory | Remove; use credential flow |
+
+### 9.18 Official references
+
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- Session Storage: https://hermes-agent.nousresearch.com/docs/developer-guide/session-storage
+- Memory Provider Plugin: https://hermes-agent.nousresearch.com/docs/developer-guide/memory-provider-plugin
+- Prompt Assembly: https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly
+
+---
+
+## Chapter 10 — Learning System
+
+### 10.1 Introduction
+
+The **learning system** is what makes Hermes "the only agent with a built-in learning loop." It is not fine-tuning — model weights never change. Instead, after roughly every **15 tasks**, the agent evaluates its own performance, extracts repeatable patterns, and turns them into **Skills** (procedural knowledge) while reinforcing **memory** (declarative knowledge). A background **Curator** then maintains those Skills — tracking usage, detecting staleness, archiving the dead, and running LLM review. This chapter dissects that loop as a system: triggers, inputs (trajectories), outputs (Skills + memory), and the maintenance feedback.
+
+### 10.2 Chapter objectives
+
+(1) Define the learning loop and its ~15-task trigger; (2) explain the inputs (trajectories) and outputs (Skills, memory); (3) describe the Curator's four jobs (usage, staleness, archival, LLM review); (4) distinguish learning from fine-tuning and from simple caching; (5) understand how the loop interacts with the memory and Skills subsystems.
+
+### 10.3 Business context
+
+A learning system changes the **economics of repetition**. The first time the agent does a task, it costs full effort; after the loop captures the pattern, every repeat is cheaper and more consistent. Over months, an organization accumulates a body of operational procedure (Skills) and facts (memory) that is *its own*, portable, and versionable — an asset that compounds. The Curator prevents the failure mode where this asset rots into a pile of stale, contradictory Skills.
+
+### 10.4 Theoretical foundations
+
+- **Context/artifact-level learning.** The agent improves by accumulating and refining *artifacts* (Skills, memory), not by gradient updates — which is why it works with any provider.
+- **Trajectory as evidence.** A completed task produces a trajectory (the sequence of thoughts, tool calls, results). The loop mines trajectories for patterns.
+- **Periodic reflection.** Every ~15 tasks, the agent self-evaluates and decides what to capture — batching reflection rather than reflecting every turn.
+- **Curation as garbage collection.** The Curator is the GC for procedural knowledge: usage stats and staleness detection drive archival and LLM-driven review.
+
+### 10.5 Architecture (learning loop)
+
+```mermaid
+flowchart TD
+    task[Task completed] --> traj[Trajectory captured]
+    traj --> trigger{~15 tasks elapsed?}
+    trigger -->|no| task
+    trigger -->|yes| eval[Self-evaluation]
+    eval --> pat{Reusable pattern?}
+    pat -->|procedural| skill[Create/refine Skill]
+    pat -->|declarative| mem[Update MEMORY.md / USER.md]
+    skill --> use[Use in future tasks]
+    use --> cur[Curator: usage · staleness · archival · LLM review]
+    cur --> task
+    mem --> task
+```
+
+### 10.6 Internal flows (loop iteration)
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant L as Learning Loop
+    participant S as Skills (~/.hermes/skills)
+    participant M as Memory
+    participant C as Curator (background)
+    A->>L: task N completed (trajectory)
+    L->>L: counter reaches ~15 → self-evaluate
+    L->>S: extract pattern → create/refine SKILL.md
+    L->>M: persist durable facts learned
+    Note over A,S: future tasks load the Skill on demand
+    C->>S: track usage, detect staleness
+    C->>S: archive unused / LLM-review for quality
+```
+
+### 10.7 Component diagram
+
+```mermaid
+flowchart LR
+    loop[Learning loop] --- traj[trajectory.py]
+    loop --- sc[skill_commands.py]
+    sc --- skills[(skills/ + optional-skills/)]
+    loop --- mm[memory_manager.py]
+    cur[Curator] --- skills
+```
+
+### 10.8 Complete example
+
+**Scenario.** Over two weeks, an agent repeatedly triages incoming bug reports: read the report, reproduce, label severity, assign a team. The procedure is stable but currently rediscovered each time.
+
+**Problem.** Without learning, each triage spends tokens re-deriving the steps and risks inconsistent severity labeling.
+
+**Solution.** Let the learning loop capture the triage procedure as a Skill after it recurs; the Curator keeps it current as labels evolve.
+
+**Architecture.** Triage trajectories → loop (every ~15 tasks) → `SKILL.md` `triage-bug-report` → reused + curated.
+
+**Implementation (the captured Skill):**
+
+```markdown
+---
+name: triage-bug-report
+description: Standard procedure to triage an incoming bug report.
+version: 3
+---
+
+## Overview
+Turn a raw bug report into a labeled, assigned ticket.
+
+## Steps
+1. Extract repro steps; attempt reproduction in a sandbox.
+2. Assign severity using the matrix below.
+3. Map component → owning team via lookup_service_owner.
+4. Post a summary comment and assign.
+
+## Severity matrix (loaded on demand)
+- S1: data loss / outage. S2: major feature broken. S3: minor. S4: cosmetic.
+```
+
+**Configuration:**
+
+```yaml
+skills:
+  enabled: true
+  learning:
+    enabled: true
+    eval_interval_tasks: 15      # the ~15-task reflection trigger
+  curator:
+    enabled: true                # usage / staleness / archival / LLM review
+```
+
+**Tests.**
+
+```bash
+hermes skills list | grep triage-bug-report     # captured after recurrence
+hermes skills show triage-bug-report            # inspect version + content
+hermes curator status                            # usage + staleness report
+```
+
+**Result.** Triage becomes consistent and cheap; the Skill is versioned (note `version: 3`) and curated as the severity matrix evolves.
+
+**Future improvements.** Promote the Skill to the corporate library (Part VI); add human review gates for severity changes in critical services.
+
+### 10.9 Source code
+
+```python
+# Inspecting learning artifacts (illustrative library use)
+from agent.trajectory import save_trajectory
+from agent.memory_manager import MemoryManager
+
+# A completed task's trajectory is the evidence the loop mines:
+save_trajectory(session_id="abc123", path="~/.hermes/trajectories/")
+
+# After reflection, durable facts are persisted:
+MemoryManager().append_fact("MEMORY.md", "Triage S1 = data loss or outage.")
+```
+
+### 10.10 Configuration
+
+```yaml
+skills:
+  enabled: true
+  learning:
+    enabled: true
+    eval_interval_tasks: 15
+  curator:
+    enabled: true
+    archive_after_idle_days: 30
+    llm_review: true
+trajectories:
+  save: true                     # ShareGPT format, also usable for RL (Atropos)
+```
+
+### 10.11 Real-world use cases
+
+- **Procedure capture** (triage, deploys, report generation) into reusable Skills.
+- **Consistency enforcement** as the loop standardizes a recurring workflow.
+- **Self-maintaining knowledge** via the Curator as processes change.
+- **RL data generation** — trajectories exported in ShareGPT for training (Atropos).
+
+### 10.12 Exercises
+
+1. Explain why the learning loop is not fine-tuning.
+2. What is the input to the loop, and what are its two output types?
+3. List the Curator's four responsibilities.
+4. Why batch reflection every ~15 tasks instead of every turn?
+
+### 10.13 Challenges
+
+- **Challenge 1.** Repeat a small procedure many times and confirm a Skill is captured; inspect its version after a change.
+- **Challenge 2.** Disable the Curator, accumulate stale Skills, then re-enable it and observe archival.
+
+### 10.14 Checklist
+
+- [ ] I can define the learning loop and its trigger.
+- [ ] I know its inputs and outputs.
+- [ ] I know the Curator's four jobs.
+- [ ] I distinguish learning from fine-tuning and caching.
+
+### 10.15 Best practices
+
+- **Keep learning and the Curator enabled**; review captured Skills periodically.
+- **Version and git-track team Skills** so learning is auditable.
+- **Use human review** for Skills touching critical or regulated procedures.
+- **Export trajectories** if you intend to train models later.
+
+### 10.16 Anti-patterns
+
+- Disabling the Curator → "skill rot."
+- Treating captured Skills as infallible in critical domains.
+- Letting the loop run with no `MEMORY.md` discipline (declarative drift).
+- Capturing secrets into Skills/trajectories.
+
+### 10.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No Skills captured | Learning disabled / not enough recurrence | Enable `skills.learning`; run the task repeatedly |
+| Stale/contradictory Skills | Curator off | Enable Curator; run `hermes curator status` |
+| Loop never triggers | `eval_interval_tasks` too high | Lower the interval |
+| Secret in a captured Skill | Captured from a trajectory | Redact; use credential flow; exclude secrets |
+
+### 10.18 Official references
+
+- Skills System: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Curator: https://hermes-agent.nousresearch.com/docs/user-guide/features/curator
+- Creating Skills: https://hermes-agent.nousresearch.com/docs/developer-guide/creating-skills
+- Trajectory Format: https://hermes-agent.nousresearch.com/docs/developer-guide/trajectory-format
+
+---
+
+## Chapter 11 — Skills System
+
+### 11.1 Introduction
+
+**Skills** are Hermes's procedural memory: on-demand knowledge documents (`SKILL.md` with YAML frontmatter) that teach the agent *how to do* something. They use **progressive disclosure** — a short overview is always cheap to load, with details pulled in only when needed — so a large library costs little context. Hermes ships ~**90 bundled** Skills, offers ~**60 optional** ones, and is compatible with the open **agentskills.io** format and the **Skills Hub**. This chapter covers the Skills architecture: format, discovery, progressive disclosure, and the slash commands that manage them.
+
+### 11.2 Chapter objectives
+
+(1) Define a Skill and the `SKILL.md` format; (2) explain progressive disclosure and why it saves tokens; (3) describe Skill discovery (bundled vs optional vs user) and the `~/.hermes/skills/` layout; (4) use the Skills slash commands and Skills Hub; (5) understand agentskills.io compatibility.
+
+### 11.3 Business context
+
+Skills turn tacit operational know-how into a **shareable, versionable asset**. A team's deploy procedure, code-review checklist, or report format becomes a Skill that any agent on the team loads on demand — consistent, auditable, and improvable. Because the format is open (agentskills.io), Skills are portable across compatible agents and shareable via the Hub, avoiding lock-in of your procedural knowledge.
+
+### 11.4 Theoretical foundations
+
+- **Procedural vs declarative.** Skills (how-to) complement memory (facts). Together they are the two halves of the agent's knowledge.
+- **Progressive disclosure.** Load the overview always; load details only when the task needs them — keeping the prompt small while the library is large.
+- **Discovery tiers.** Bundled (always available), optional (install explicitly), user (`~/.hermes/skills/`), and Hub-installed.
+- **Open format.** `SKILL.md` + YAML frontmatter, agentskills.io-compatible — portable and tool-agnostic.
+
+### 11.5 Architecture (Skills subsystem)
+
+```mermaid
+flowchart TB
+    subgraph layout["~/.hermes/skills/ and bundled"]
+        b[bundled skills/ ~90]
+        o[optional-skills/ ~60]
+        usr[user skills/]
+    end
+    sc[skill_commands.py] --- layout
+    hub[Skills Hub<br/>agentskills.io] -.install.- usr
+    pb[prompt_builder<br/>stable tier: skill index] --> layout
+    pb -.on demand.-> details[Skill details loaded only when needed]
+```
+
+### 11.6 Internal flows (progressive disclosure)
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant SK as Skills
+    PB->>SK: load lightweight index (names + descriptions)
+    PB-->>A: stable tier includes skill index (cheap)
+    A->>A: task needs "deploy-internal-app"
+    A->>SK: load full SKILL.md body
+    SK-->>A: overview + steps
+    A->>SK: need rollback detail
+    SK-->>A: details section (on demand)
+```
+
+### 11.7 Component diagram
+
+```mermaid
+flowchart LR
+    cmd[/skills slash command/] --- sc[skill_commands.py]
+    sc --- store[(skills/ · optional-skills/ · user)]
+    sc --- hub[skills_hub.py]
+    cur[Curator] --- store
+    loop[Learning loop] --- store
+```
+
+### 11.8 Complete example
+
+**Scenario.** A team wants a reusable, progressively disclosed Skill for releasing a Python package, used across many sessions and improved over time.
+
+**Problem.** The release steps are detailed; embedding them in every prompt is wasteful, and copy-pasting a runbook is error-prone.
+
+**Solution.** Author a `SKILL.md` with a cheap overview and on-demand details; install it under `~/.hermes/skills/`.
+
+**Architecture.** `~/.hermes/skills/release-python-package/SKILL.md`, discovered by `skill_commands.py`, indexed in the stable tier, details loaded on demand.
+
+**Implementation:**
+
+```markdown
+---
+name: release-python-package
+description: Cut a versioned release of a Python package to PyPI.
+version: 2
+tags: [release, python, ci]
+---
+
+## Overview
+Release `mypkg` to PyPI with a tagged version and changelog.
+
+## Steps
+1. Bump version in `pyproject.toml`.
+2. Update `CHANGELOG.md`.
+3. `make test && make build`.
+4. `twine upload dist/*` (uses PYPI_TOKEN).
+5. `git tag vX.Y.Z && git push --tags`.
+
+## Details (loaded on demand)
+- TestPyPI dry run: `twine upload -r testpypi dist/*`.
+- Yank a bad release: `pip` cannot; use PyPI web UI.
+- Required secrets: PYPI_TOKEN (via credential flow, never inline).
+```
+
+**Configuration:**
+
+```yaml
+skills:
+  enabled: true
+  progressive_disclosure: true
+```
+
+**Tests.**
+
+```bash
+hermes skills list | grep release-python-package
+hermes skills show release-python-package        # overview loads; details on demand
+hermes skills install <hub-id>                    # install from the Skills Hub
+```
+
+**Result.** A reusable, cheap-to-index, detail-on-demand release Skill, shareable via the Hub and improvable by the learning loop and Curator.
+
+**Future improvements.** Publish to the corporate library with governance (Part VI); add an approval gate around `twine upload`.
+
+### 11.9 Source code
+
+```python
+# Listing and loading Skills programmatically (illustrative)
+from agent.skill_commands import SkillStore
+
+store = SkillStore()                         # discovers bundled + optional + user
+print([s.name for s in store.list()])        # lightweight index (names/descriptions)
+skill = store.load("release-python-package") # full body
+print(skill.overview)                         # cheap section
+print(skill.section("Details"))               # on-demand section
+```
+
+### 11.10 Configuration
+
+```yaml
+skills:
+  enabled: true
+  progressive_disclosure: true
+  paths:
+    user: ~/.hermes/skills
+  optional:
+    install: [pdf-tools, web-research]   # opt-in optional skills
+  hub:
+    enabled: true                         # agentskills.io
+```
+
+### 11.11 Real-world use cases
+
+- **Team runbooks** (deploy, release, incident) as shared Skills.
+- **Domain checklists** (code review, security review) loaded on demand.
+- **Hub-sourced Skills** (PDF tools, research) installed per need.
+- **Self-improving procedures** captured by the learning loop (Chapter 10).
+
+### 11.12 Exercises
+
+1. Write the YAML frontmatter for a Skill, naming each field.
+2. Explain progressive disclosure and the token cost it saves.
+3. Name the discovery tiers and where user Skills live.
+4. What does agentskills.io compatibility buy you?
+
+### 11.13 Challenges
+
+- **Challenge 1.** Author the `release-python-package` Skill with overview + on-demand details and confirm only the overview loads until needed.
+- **Challenge 2.** Install a Skill from the Hub and use it in a task.
+
+### 11.14 Checklist
+
+- [ ] I can write a valid `SKILL.md`.
+- [ ] I understand progressive disclosure.
+- [ ] I know the discovery tiers and paths.
+- [ ] I can use the Skills slash commands and Hub.
+
+### 11.15 Best practices
+
+- **Write a tight overview** and push detail into on-demand sections.
+- **Version Skills** and git-track team ones.
+- **Reference secrets, never embed them.**
+- **Tag Skills** for discoverability and Curator hygiene.
+
+### 11.16 Anti-patterns
+
+- Monolithic Skills with no disclosure layering (defeats the point).
+- Embedding credentials in `SKILL.md`.
+- Hoarding stale Skills (let the Curator archive).
+- Duplicating a Skill instead of versioning it.
+
+### 11.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Skill not found | Wrong path / not installed | Place under `~/.hermes/skills/`; `hermes skills list` |
+| Prompt too large | No progressive disclosure | Split into overview + details |
+| Optional skill missing | Not installed | `hermes skills install <name>` |
+| Hub install fails | Hub disabled / network | Enable `skills.hub`; check connectivity |
+
+### 11.18 Official references
+
+- Skills System: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Creating Skills: https://hermes-agent.nousresearch.com/docs/developer-guide/creating-skills
+- Skills Hub: https://agentskills.io
+- Curator: https://hermes-agent.nousresearch.com/docs/user-guide/features/curator
+
+---
+
+## Chapter 12 — Planning System
+
+### 12.1 Introduction
+
+For multi-step work, an agent needs more than a reactive loop — it needs to **plan**: decompose a goal into steps, sequence them, track progress, and adapt. Hermes provides planning at several levels: the implicit decomposition inside the agentic loop, explicit **delegation** to subagents (`delegate_task`), a **Kanban** multi-agent board backed by SQLite, and **persistent goals** via the "Ralph loop." This chapter covers how Hermes plans and executes long-horizon tasks while staying observable and interruptible.
+
+### 12.2 Chapter objectives
+
+(1) Distinguish reactive looping from explicit planning; (2) understand delegation (`delegate_task`) and when to spawn a subagent; (3) describe the Kanban multi-agent board (SQLite-backed); (4) explain persistent goals / the Ralph loop for long-horizon autonomy; (5) keep plans observable and interruptible.
+
+### 12.3 Business context
+
+Planning is what lets an agent own a **deliverable**, not just answer a question. A research report, a migration, a multi-service deploy — these need decomposition, parallelism (subagents), and persistence (a goal that survives restarts). For an organization, structured planning means autonomous work that is *trackable* (Kanban), *bounded*, and *resumable* — the prerequisites for trusting an agent with real outcomes.
+
+### 12.4 Theoretical foundations
+
+- **Decomposition.** Break a goal into ordered, checkable steps (implicitly in the loop, or explicitly via a plan/Kanban).
+- **Delegation.** `delegate_task` spawns a subagent with a scoped objective; results return to the parent — divide-and-conquer with isolation.
+- **Shared board.** A SQLite-backed Kanban lets multiple agents pick up, work, and complete cards — coordination without a central orchestrator process.
+- **Persistent goals (Ralph loop).** A goal that the agent keeps pursuing across iterations/restarts until satisfied — long-horizon autonomy.
+
+### 12.5 Architecture (planning layers)
+
+```mermaid
+flowchart TB
+    goal[Goal] --> dec[Decompose into steps]
+    dec --> mode{Execution mode}
+    mode -->|single agent| loop[Agentic loop runs steps]
+    mode -->|parallelizable| del[delegate_task → subagents]
+    mode -->|team / multi-agent| kan[(Kanban board · SQLite)]
+    mode -->|long-horizon| ralph[Persistent goal · Ralph loop]
+    del --> merge[Merge subagent results]
+    kan --> merge
+    ralph --> loop
+```
+
+### 12.6 Internal flows (delegation)
+
+```mermaid
+sequenceDiagram
+    participant P as Parent AIAgent
+    participant D as delegate_task
+    participant S1 as Subagent A
+    participant S2 as Subagent B
+    P->>D: delegate("research vendor A")
+    P->>D: delegate("research vendor B")
+    D->>S1: scoped objective A
+    D->>S2: scoped objective B
+    S1-->>D: findings A
+    S2-->>D: findings B
+    D-->>P: merged results
+    P->>P: synthesize final deliverable
+```
+
+### 12.7 Component diagram
+
+```mermaid
+flowchart LR
+    loop[AIAgent loop] --- dt[delegate_tool.py]
+    dt --- subs[Subagents]
+    kan[(Kanban · SQLite)] --- agents[Multiple agents]
+    ralph[Persistent goal] --- loop
+```
+
+### 12.8 Complete example
+
+**Scenario.** "Produce a competitive analysis of three vendors and deliver a one-page brief." This benefits from parallel research and a final synthesis.
+
+**Problem.** Researching three vendors serially is slow and pollutes one context with three threads of detail.
+
+**Solution.** Delegate three scoped research subagents, then synthesize their findings in the parent.
+
+**Architecture.** Parent agent → `delegate_task` × 3 (one per vendor) → merge → parent writes the brief.
+
+**Implementation:**
+
+```bash
+hermes
+> Research vendors Acme, Globex, and Initech as a competitive analysis.
+  Delegate one research subagent per vendor, then synthesize a one-page brief
+  comparing pricing, integration effort, and support.
+```
+
+```yaml
+# ~/.hermes/config.yaml — planning / delegation knobs
+delegation:
+  enabled: true
+  max_subagents: 4
+  subagent_timeout_s: 300
+kanban:
+  enabled: false        # turn on for team multi-agent boards (Part VIII)
+```
+
+**Tests.**
+
+```bash
+hermes sessions tree        # shows parent → subagent lineage
+hermes delegate status      # active subagents and their objectives
+```
+
+**Result.** Three vendors researched in parallel in isolated contexts; the parent merges and produces a clean one-page brief — faster and better-scoped than a serial run.
+
+**Future improvements.** Move to a Kanban board for a standing research team (Part VIII); add a persistent goal so the brief auto-refreshes weekly (Part X).
+
+### 12.9 Source code
+
+```python
+# Delegation via the library (illustrative)
+from run_agent import AIAgent
+
+parent = AIAgent()
+brief = parent.run_conversation(
+    "Delegate research on Acme, Globex, Initech (one subagent each), "
+    "then synthesize a one-page competitive brief."
+)
+print(brief)
+# Subagents appear as child sessions in ~/.hermes/state.db (lineage tracked).
+```
+
+### 12.10 Configuration
+
+```yaml
+delegation:
+  enabled: true
+  max_subagents: 4
+  subagent_timeout_s: 300
+kanban:
+  enabled: true
+  db: ~/.hermes/kanban.db
+goals:
+  persistent: true        # Ralph loop for long-horizon goals
+```
+
+### 12.11 Real-world use cases
+
+- **Parallel research** with subagents merged into one deliverable.
+- **Standing multi-agent teams** coordinating via a Kanban board (Part VIII).
+- **Long-horizon goals** (keep a dashboard fresh; pursue a migration) via the Ralph loop.
+- **Divide-and-conquer migrations** where each subagent owns a module.
+
+### 12.12 Exercises
+
+1. Distinguish reactive looping from explicit planning.
+2. When should you `delegate_task` versus run steps in one agent?
+3. What does the Kanban board provide that delegation alone does not?
+4. Define a persistent goal (Ralph loop).
+
+### 12.13 Challenges
+
+- **Challenge 1.** Run a delegated 3-subagent research task and inspect the session tree.
+- **Challenge 2.** Enable the Kanban board and have two agents complete cards from it.
+
+### 12.14 Checklist
+
+- [ ] I understand decomposition and the planning layers.
+- [ ] I can use delegation appropriately.
+- [ ] I know what the Kanban board adds.
+- [ ] I understand persistent goals.
+
+### 12.15 Best practices
+
+- **Delegate when subtasks are independent**; keep contexts isolated.
+- **Bound subagents** (count + timeout) to control cost.
+- **Use Kanban for standing teams**, delegation for one-off fan-out.
+- **Keep plans observable** (`sessions tree`, `delegate status`) and interruptible.
+
+### 12.16 Anti-patterns
+
+- Delegating tightly-coupled steps that need shared context.
+- Unbounded subagent fan-out (cost explosion).
+- Treating a persistent goal as fire-and-forget with no monitoring.
+- Hiding plans, losing observability.
+
+### 12.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Subagents never finish | No timeout | Set `subagent_timeout_s` |
+| Cost spikes on delegation | Too many subagents | Lower `max_subagents` |
+| Kanban cards stuck | No agent picking them up | Ensure agents poll the board; check `kanban.db` |
+| Persistent goal loops forever | No satisfaction condition | Define a clear done-criterion |
+
+### 12.18 Official references
+
+- Delegation / Subagents: https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation
+- Kanban Multi-Agent: https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban
+- Persistent Goals (Ralph loop): https://hermes-agent.nousresearch.com/docs/user-guide/features/persistent-goals
+- Agent Loop Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/agent-loop
+
+---
+
+## Chapter 13 — Execution System
+
+### 13.1 Introduction
+
+Everything the agent *does* in the world happens through the **execution system**: tools that read files, run commands, browse the web, and execute code — dispatched through the registry and run on one of **six terminal backends** (local, Docker, SSH, Daytona, Modal, Singularity). This chapter covers how execution is dispatched, how backends differ (from your laptop to serverless), how dangerous commands are gated, and how `execute_code` provides a sandbox. It is the bridge between the agent's intent and real side effects.
+
+### 13.2 Chapter objectives
+
+(1) Explain tool dispatch through the registry; (2) describe the six terminal backends and when to use each; (3) understand command approval / dangerous-command detection; (4) use `execute_code` and programmatic tool calling; (5) understand background process management and observability of execution.
+
+### 13.3 Business context
+
+Where and how the agent executes determines **blast radius and cost**. Running on your laptop is convenient but unisolated; Docker/Singularity contain the agent; SSH targets a remote host; Daytona/Modal run serverless and hibernate when idle (near-zero cost). Choosing the right backend per workload — and gating dangerous commands — is the core of safe autonomous operation. This is the control surface that lets an enterprise let an agent *act* without unacceptable risk.
+
+### 13.4 Theoretical foundations
+
+- **Dispatch via registry.** A tool call resolves to a handler in `tools/registry.py`; `model_tools.handle_function_call` runs it and feeds back the observation.
+- **Pluggable backends.** Terminal tools target one of six backends behind a common interface — the agent logic is backend-agnostic.
+- **Approval gating.** `tools/approval.py` detects dangerous commands and requires confirmation (or allowlist) before execution.
+- **Sandboxed code.** `execute_code` runs code in a contained environment; programmatic tool calling lets generated code invoke tools.
+- **Observable + interruptible.** Every execution is visible via callbacks and can be cancelled — and background processes are tracked in a process registry.
+
+### 13.5 Architecture (execution)
+
+```mermaid
+flowchart TB
+    llm[Provider emits tool_call] --> disp[model_tools.handle_function_call]
+    disp --> reg[tools/registry.py resolve handler]
+    reg --> approve{dangerous?<br/>approval.py}
+    approve -->|needs approval| ask[user/allowlist gate]
+    approve -->|safe| run
+    ask -->|approved| run[execute on backend]
+    run --> back{terminal backend}
+    back --> local[local]
+    back --> docker[Docker]
+    back --> ssh[SSH]
+    back --> dayt[Daytona]
+    back --> modal[Modal]
+    back --> sing[Singularity]
+    run --> obs[observe result → loop]
+```
+
+### 13.6 Internal flows (gated command)
+
+```mermaid
+sequenceDiagram
+    participant LLM as Provider
+    participant MT as model_tools
+    participant AP as approval.py
+    participant BK as Backend (e.g. Docker)
+    participant U as User
+    LLM-->>MT: tool_call run_terminal("rm -rf build/")
+    MT->>AP: classify command
+    AP-->>MT: dangerous → requires approval
+    MT->>U: request approval (callback)
+    U-->>MT: approve
+    MT->>BK: execute in container
+    BK-->>MT: exit code + output
+    MT-->>LLM: observed result
+```
+
+### 13.7 Component diagram
+
+```mermaid
+flowchart LR
+    mt[model_tools.py] --- reg[tools/registry.py]
+    reg --- tt[terminal_tool.py]
+    tt --- env[tools/environments/]
+    env --- l[local] & d[docker] & s[ssh] & da[daytona] & mo[modal] & si[singularity]
+    reg --- ce[code_execution_tool.py]
+    reg --- pr[process_registry.py]
+    reg --- ap[approval.py]
+```
+
+### 13.8 Complete example
+
+**Scenario.** A team wants the agent to run build-and-test commands for untrusted PRs, fully contained so a malicious PR cannot touch the host.
+
+**Problem.** Running PR code on the host (local backend) is a security risk; the agent must execute inside isolation, with dangerous commands gated.
+
+**Solution.** Use the **Docker** terminal backend with an allowlist and approval for destructive commands; the agent's side effects are confined to the container.
+
+**Architecture.** Agent → tool dispatch → `terminal_tool` → Docker backend (ephemeral container) → results back to the loop.
+
+**Implementation:**
+
+```yaml
+# ~/.hermes/config.yaml — contained execution
+tools:
+  terminal_backend: docker
+  docker:
+    image: hermes-ci:latest
+    network: none              # no egress for untrusted PR code
+    mounts:
+      - "./pr-checkout:/work:ro"
+approval:
+  enabled: true
+  allowlist:
+    - "make test"
+    - "make build"
+  require_approval_for:
+    - "rm -rf*"
+    - "curl*"
+```
+
+```bash
+# Run the agent against a checked-out PR, contained in Docker
+hermes -p ci
+> Build and test the PR in /work. Report failures with the failing test names.
+```
+
+**Tests.**
+
+```bash
+hermes doctor                       # confirms docker backend reachable
+hermes tools | grep run_terminal    # terminal tool available
+# Try a destructive command: it should require approval, not run silently.
+```
+
+**Result.** Untrusted PR code runs build/test inside an egress-less container; allowlisted commands run freely; destructive ones require approval — safe autonomous CI.
+
+**Future improvements.** Switch to Modal/Daytona for serverless, hibernating CI runners (cheaper at scale); add full sandboxing and audit (Part XII/XIII).
+
+### 13.9 Source code
+
+```python
+# Programmatic tool calling via execute_code (illustrative)
+# The agent can generate code that calls tools, run in a sandbox:
+result = execute_code(
+    language="python",
+    code="""
+import json
+out = run_terminal("make test")          # tool callable from sandboxed code
+print(json.dumps({"exit": out.exit_code, "tail": out.stdout[-500:]}))
+""",
+)
+# Background processes are tracked so the agent can poll/kill them:
+#   tools/process_registry.py manages long-running terminal processes.
+```
+
+### 13.10 Configuration
+
+```yaml
+tools:
+  terminal_backend: docker        # local | docker | ssh | daytona | modal | singularity
+  ssh:
+    host: build.internal
+    user: ci
+  modal:
+    app: hermes-runners
+approval:
+  enabled: true
+  allowlist: ["make test", "make build", "git status"]
+  require_approval_for: ["rm -rf*", "curl*", "sudo*"]
+code_execution:
+  enabled: true
+  timeout_s: 120
+```
+
+### 13.11 Real-world use cases
+
+- **Contained CI** for untrusted PRs (Docker/Singularity, no egress).
+- **Remote operations** over SSH on a build or ops host.
+- **Serverless, hibernating runners** (Daytona/Modal) that cost near-zero when idle.
+- **Sandboxed data tasks** via `execute_code` with programmatic tool calling.
+
+### 13.12 Exercises
+
+1. List the six terminal backends and one use case for each.
+2. Explain how a dangerous command is detected and gated.
+3. What does `execute_code` provide that `run_terminal` does not?
+4. Why run untrusted code with `network: none`?
+
+### 13.13 Challenges
+
+- **Challenge 1.** Configure the Docker backend with an allowlist and confirm a destructive command triggers approval.
+- **Challenge 2.** Switch the same workload to the Modal or Daytona backend and observe serverless execution.
+
+### 13.14 Checklist
+
+- [ ] I understand tool dispatch through the registry.
+- [ ] I know the six backends and their trade-offs.
+- [ ] I understand approval / dangerous-command gating.
+- [ ] I can use `execute_code` and programmatic tool calling.
+
+### 13.15 Best practices
+
+- **Match backend to risk:** local for trusted dev, Docker/Singularity for untrusted, serverless for scale.
+- **Gate destructive commands** with approval + allowlist.
+- **Disable egress** for untrusted code.
+- **Track background processes** and keep execution observable.
+
+### 13.16 Anti-patterns
+
+- Running untrusted code on the local backend.
+- Approval disabled in production.
+- Allowlisting broad wildcards that defeat gating.
+- Unbounded `execute_code` with no timeout.
+
+### 13.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Backend unreachable | Misconfig / daemon down | `hermes doctor`; check Docker/SSH/serverless creds |
+| Destructive command ran silently | Approval disabled | Enable `approval`; add to `require_approval_for` |
+| Untrusted code reached network | Egress allowed | Set `network: none` for that backend |
+| Background job orphaned | Not tracked | Use process registry; check `hermes process list` |
+
+### 13.18 Official references
+
+- Tools Runtime: https://hermes-agent.nousresearch.com/docs/developer-guide/tools-runtime
+- Terminal Backends / Environments: https://hermes-agent.nousresearch.com/docs/user-guide/features/terminal-backends
+- Command Approval & Security: https://hermes-agent.nousresearch.com/docs/user-guide/features/command-approval
+- Code Execution: https://hermes-agent.nousresearch.com/docs/user-guide/features/code-execution
+
+---
+
+> **End of Part II.** We opened the hood: the three-layer architecture, the internal components and registries, the turn lifecycle, and the five subsystems that make Hermes self-improving and capable — memory, learning, Skills, planning, and execution. **Part III — Installation and Environments** (Chapters 14–21) gets practical: installing Hermes locally and on Linux, Windows, and macOS, then containerizing with Docker, orchestrating on Kubernetes, deploying to a VPS, and running on cloud providers.
+
+## Part III – Installation and Environments
+
+Part II explained *what* Hermes is internally. Part III makes it *run* — everywhere it should. The same `AIAgent` core (the "platform-agnostic core" principle from Chapter 6) deploys identically whether the target is a developer laptop, a hardened Linux server, a Windows workstation, a Mac, a Docker container, a Kubernetes cluster, a $5 VPS, or a managed cloud. The art is choosing the right environment per workload and configuring it for reliability, cost, and security.
+
+The chapters proceed from simplest to most operationally demanding. Chapter 14 covers the universal local install and first-run setup. Chapters 15–17 dig into the three desktop/server operating systems (Linux, Windows, macOS) and their platform-specific concerns. Chapter 18 containerizes with Docker; Chapter 19 orchestrates on Kubernetes; Chapter 20 deploys a long-lived agent to a VPS; Chapter 21 surveys the major cloud providers and serverless options. Throughout, one principle recurs: **install once, configure per environment** — the agent definition (config, memory, Skills) is portable; only the surrounding infrastructure changes.
+
+> **Operational thread.** Two commands appear in nearly every chapter: `hermes doctor` (environment diagnostics — what's missing and how to fix it) and `hermes --version` (confirming the pinned v0.16 line). Make them the first thing you run after any install or migration.
+
+---
+
+## Chapter 14 — Local Installation
+
+### 14.1 Introduction
+
+Local installation is the front door to Hermes. The official one-liner installs everything — Python (via `uv`), Node.js, ripgrep, ffmpeg, the repo, a virtual environment, and the global `hermes` command — and ends ready to chat. On macOS and Windows there is also a **Desktop installer** (v0.16's "Surface Release") that installs both the CLI and the native desktop app. This chapter covers the universal install path, what the installer does, the install layout, first-run setup (`hermes setup --portal`), and verification.
+
+### 14.2 Chapter objectives
+
+(1) Install Hermes via the one-liner (and know the Windows/Desktop variants); (2) understand what the installer provisions and the resulting install layout; (3) complete first-run setup with Nous Portal; (4) verify with `hermes doctor` and `hermes --version`; (5) understand profiles and `HERMES_HOME` for isolated installs.
+
+### 14.3 Business context
+
+A low-friction install is what makes an agent *adoptable*. The installer's "handles everything automatically" approach removes the classic onboarding tax (Python versions, native deps) that stalls pilots. For an enterprise, the relevant facts are: the data directory (`~/.hermes/`) is the asset to back up and govern; the install method is auto-detected (so updates are one command); and profiles allow many isolated agents on one machine without interference — the basis for per-team or per-tenant separation.
+
+### 14.4 Theoretical foundations
+
+- **Self-contained provisioning.** The installer uses `uv` to install Python 3.11 without sudo, plus Node.js v22, ripgrep, and ffmpeg — no manual dependency management.
+- **Install layout determines updates.** pip vs git-installer vs root-mode vs Homebrew/Nix each place code and the `hermes` binary differently; Hermes auto-detects which and prints the right update command.
+- **Profile isolation.** Each profile (`hermes -p <name>`) has its own `HERMES_HOME` (config, memory, sessions, gateway PID) — concurrent, non-interfering agents.
+- **Portal-first onboarding.** One OAuth (`hermes setup --portal`) configures a model *and* the Tool Gateway (web search, image gen, TTS, cloud browser), eliminating per-tool key juggling.
+
+### 14.5 Architecture (install layout)
+
+```mermaid
+flowchart TB
+    inst[Installer] --> deps[Provision deps<br/>uv·Python3.11·Node22·ripgrep·ffmpeg]
+    inst --> code[Clone repo + venv]
+    inst --> bin[Global hermes command]
+    inst --> home[(~/.hermes/<br/>config·MEMORY.md·USER.md·skills·state.db)]
+    home --> prof{Profiles}
+    prof --> def[default HERMES_HOME]
+    prof --> p1[-p research → own HERMES_HOME]
+```
+
+### 14.6 Internal flows (first run)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant I as install.sh
+    participant H as hermes CLI
+    participant P as Nous Portal
+    U->>I: curl ... | bash
+    I->>I: provision deps, clone, venv, link hermes
+    U->>H: hermes setup --portal
+    H->>P: OAuth login
+    P-->>H: token (model + Tool Gateway)
+    H->>H: write ~/.hermes/config.yaml
+    U->>H: hermes
+    H-->>U: ready to chat
+```
+
+### 14.7 Component diagram
+
+```mermaid
+flowchart LR
+    subgraph home["~/.hermes/"]
+        cfg[config.yaml]
+        mem[MEMORY.md / USER.md]
+        skl[skills/]
+        db[(state.db)]
+        plg[plugins/]
+    end
+    bin[hermes binary] --- venv[venv / site-packages]
+    bin --- home
+```
+
+### 14.8 Complete example
+
+**Scenario.** A developer wants Hermes installed locally with Nous Portal, verified, and a second isolated profile for experiments.
+
+**Problem.** Manual dependency setup is error-prone, and mixing experimental config with the working agent risks breaking the daily driver.
+
+**Solution.** Use the one-liner, set up Portal, verify, then create an isolated `lab` profile.
+
+**Architecture.** Default profile for daily use; `-p lab` with its own `HERMES_HOME` for experiments.
+
+**Implementation:**
+
+```bash
+# 1. Install (Linux / macOS / WSL2 / Termux)
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc            # or ~/.zshrc
+
+# 2. First-run setup — one OAuth for model + Tool Gateway
+hermes setup --portal
+
+# 3. Start chatting
+hermes
+
+# 4. Isolated experiment profile (own config/memory/sessions)
+hermes -p lab setup --portal
+hermes -p lab
+```
+
+On native **Windows**:
+
+```powershell
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+```
+
+To add the **Desktop app** after a CLI install:
+
+```bash
+hermes desktop
+```
+
+**Configuration (`~/.hermes/config.yaml`, written by setup):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+tool_gateway:
+  enabled: true            # web search, image gen, TTS, cloud browser
+memory:
+  enabled: true
+skills:
+  enabled: true
+```
+
+**Tests.**
+
+```bash
+hermes --version           # v0.16.x line
+hermes doctor              # environment + provider diagnostics
+hermes -p lab doctor       # the lab profile is independent
+```
+
+**Result.** A verified local install on Portal, plus an isolated `lab` profile that cannot disturb the daily agent.
+
+**Future improvements.** Connect the messaging gateway (Part IX), back up `~/.hermes/`, and pin the version for reproducibility (Chapter 2).
+
+### 14.9 Source code
+
+```bash
+# Inspect the detected install method and paths (drives the right update command)
+hermes doctor | sed -n '/environment/,/method/p'
+echo "$HERMES_HOME"                     # empty = default ~/.hermes
+hermes config show                       # effective configuration
+hermes config get provider               # single value
+```
+
+### 14.10 Configuration
+
+```yaml
+# Minimal portable agent definition (the asset you back up)
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+# Optional: pin behavior across machines
+fallback_providers: [openrouter]
+```
+
+```bash
+# Profile + HERMES_HOME isolation
+export HERMES_HOME="/srv/hermes/teamA"   # explicit home for a service account
+hermes -p teamA doctor
+```
+
+### 14.11 Real-world use cases
+
+- **Developer laptop** with Portal for daily agentic work.
+- **Isolated experiment profile** to test new Skills/providers safely.
+- **Service-account install** with explicit `HERMES_HOME` on a shared host.
+- **Desktop app** for non-technical users (v0.16), CLI for automation.
+
+### 14.12 Exercises
+
+1. Run the installer and identify, from `hermes doctor`, the detected install method.
+2. Explain the difference between `~/.hermes/` and a profile's `HERMES_HOME`.
+3. What does `hermes setup --portal` configure in one step?
+
+### 14.13 Challenges
+
+- **Challenge 1.** Install Hermes, set up Portal, and create a second isolated profile; prove the two have independent memory.
+- **Challenge 2.** Back up `~/.hermes/`, simulate a fresh machine, and restore the agent (config + memory + Skills).
+
+### 14.14 Checklist
+
+- [ ] Hermes installed; `hermes --version` shows v0.16.x.
+- [ ] `hermes doctor` is clean.
+- [ ] Portal (or a provider) configured.
+- [ ] I understand profiles and `HERMES_HOME`.
+- [ ] `~/.hermes/` is backed up.
+
+### 14.15 Best practices
+
+- **Start with Portal** to remove key-juggling friction.
+- **Use profiles** for isolation instead of multiple half-installs.
+- **Back up `~/.hermes/`** — it is the agent's accumulated value.
+- **Run `hermes doctor`** after every install/update.
+
+### 14.16 Anti-patterns
+
+- Manually installing Python/Node and fighting version conflicts.
+- Hardcoding keys in a versioned `config.yaml`.
+- Running everything in one profile, mixing experiments with production.
+- Never backing up memory/Skills.
+
+### 14.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `hermes: command not found` | PATH not reloaded | `source ~/.bashrc` / check `~/.local/bin` |
+| `API key not set` | No provider | `hermes model` or `hermes setup --portal` |
+| Missing config after update | Migration needed | `hermes config check` then `hermes config migrate` |
+| Wrong agent state | Default vs profile confusion | Check `-p`/`HERMES_HOME` |
+
+### 14.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Quickstart: https://hermes-agent.nousresearch.com/docs/getting-started/quickstart
+- Nous Portal: https://hermes-agent.nousresearch.com/docs/integrations/nous-portal
+- Updating & Uninstalling: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 15 — Linux
+
+### 15.1 Introduction
+
+Linux is Hermes's natural home — the platform for servers, CI runners, and long-lived agents. This chapter covers Linux-specific concerns: the per-user vs root-mode (FHS) install layouts, running Hermes as an unprivileged **systemd service**, the Playwright/Chromium dependency split for headless or non-sudo hosts, and distro differences (Debian/Ubuntu, Arch, Fedora/RHEL, openSUSE). The goal is a Hermes that survives reboots, runs as a dedicated user, and is safe on a shared box.
+
+### 15.2 Chapter objectives
+
+(1) Choose between per-user and root-mode installs; (2) run Hermes as a systemd service under a dedicated user; (3) handle the Playwright `--with-deps` split for non-sudo/headless installs; (4) account for distro-specific package managers; (5) verify a server install.
+
+### 15.3 Business context
+
+On Linux, Hermes becomes **infrastructure**: a service that runs the gateway or scheduled jobs 24/7. Running it as an unprivileged service account (least privilege), surviving reboots (systemd), and installing browser deps correctly (so automation works) are the difference between a fragile script and a production service. Root-mode FHS layout serves shared machines where one system install backs every user.
+
+### 15.4 Theoretical foundations
+
+- **Two layouts.** Per-user (`~/.hermes/hermes-agent/`, `~/.local/bin/hermes`) vs root-mode FHS (`/usr/local/lib/hermes-agent/`, `/usr/local/bin/hermes`, `/root/.hermes/` or `$HERMES_HOME`).
+- **Least privilege.** Only Playwright's `--with-deps` truly needs root (it apt-installs Chromium shared libs); everything else runs as the service user. The installer degrades gracefully when sudo is absent.
+- **Service supervision.** systemd restarts the gateway on failure/reboot and isolates it under a dedicated account.
+- **Distro variance.** Debian/Ubuntu/Arch support `--with-deps`; Fedora/RHEL/openSUSE require an admin to install system libs separately.
+
+### 15.5 Architecture (Linux service)
+
+```mermaid
+flowchart TB
+    sysd[systemd] -->|manages| svc[hermes gateway service]
+    svc --> user[(unprivileged 'hermes' user)]
+    user --> home[(~/.hermes or $HERMES_HOME)]
+    admin[admin w/ sudo] -.one-time.-> deps[playwright install-deps chromium]
+    svc --> pw[Chromium in user Playwright cache]
+```
+
+### 15.6 Internal flows (non-sudo install)
+
+```mermaid
+sequenceDiagram
+    participant Ad as Admin (sudo)
+    participant Su as Service user
+    participant I as install.sh
+    Ad->>Ad: npx playwright install-deps chromium (one time)
+    Su->>I: curl ... | bash
+    I->>I: detect no sudo → skip --with-deps
+    I->>Su: install Chromium into user Playwright cache
+    Su->>Su: add ~/.local/bin to PATH
+    Su->>Su: hermes doctor (clean)
+```
+
+### 15.7 Component diagram
+
+```mermaid
+flowchart LR
+    unit[/etc/systemd/system/hermes.service/] --- bin[/usr/local/bin/hermes or ~/.local/bin/hermes/]
+    bin --- venv[venv launcher]
+    bin --- home[(HERMES_HOME)]
+    home --- gw[gateway PID + sessions]
+```
+
+### 15.8 Complete example
+
+**Scenario.** Run the Hermes messaging gateway 24/7 on an Ubuntu server as an unprivileged `hermes` user, surviving reboots.
+
+**Problem.** A bare `hermes gateway start` dies on logout/reboot and runs as a privileged user — unacceptable for production.
+
+**Solution.** Install browser deps once as admin, install Hermes as the `hermes` user, and supervise the gateway with systemd.
+
+**Architecture.** `hermes` service user → systemd unit → `hermes gateway start` → `$HERMES_HOME` on a controlled volume.
+
+**Implementation:**
+
+```bash
+# 1. As an admin (one time): system libs Chromium needs
+sudo npx playwright install-deps chromium
+
+# 2. As the service user: install Hermes
+sudo useradd -m -d /srv/hermes -s /bin/bash hermes
+sudo -u hermes -i
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+hermes setup --portal
+hermes gateway setup            # add Telegram token + allowlist
+exit
+```
+
+```ini
+# 3. /etc/systemd/system/hermes-gateway.service
+[Unit]
+Description=Hermes Agent Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=hermes
+Environment=HERMES_HOME=/srv/hermes/.hermes
+ExecStart=/srv/hermes/.local/bin/hermes gateway start --platform telegram
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+# 4. Enable and start
+sudo systemctl daemon-reload
+sudo systemctl enable --now hermes-gateway
+sudo systemctl status hermes-gateway
+```
+
+**Tests.**
+
+```bash
+sudo -u hermes hermes doctor
+sudo systemctl restart hermes-gateway && sudo journalctl -u hermes-gateway -n 30
+hermes gateway status
+```
+
+**Result.** A reboot-surviving, least-privilege gateway service on Linux, isolated under the `hermes` account.
+
+**Future improvements.** Add resource limits (`MemoryMax`, `CPUQuota`) to the unit, ship logs to your stack (Part XIII), and front the gateway with the allowlist/pairing security (Part XII).
+
+### 15.9 Source code
+
+```bash
+# Headless server with no browser automation needed: skip Playwright entirely
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --skip-browser
+
+# Fedora/RHEL/openSUSE: admin installs libs separately (printed by the installer)
+# e.g. sudo dnf install <libs printed by installer>
+```
+
+### 15.10 Configuration
+
+```yaml
+# ~/.hermes/config.yaml for a server profile
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@alice", "@bob"]
+tools:
+  terminal_backend: local        # or docker for isolation on shared hosts
+```
+
+### 15.11 Real-world use cases
+
+- **24/7 gateway service** under systemd on a Linux server.
+- **Headless CI agent** installed with `--skip-browser`.
+- **Shared machine** with a root-mode FHS install serving all users.
+- **Hardened service account** with least privilege and resource limits.
+
+### 15.12 Exercises
+
+1. Contrast per-user and root-mode install layouts.
+2. Why does only Playwright's `--with-deps` need root?
+3. Write a systemd unit that restarts the gateway on failure.
+
+### 15.13 Challenges
+
+- **Challenge 1.** Stand up the gateway as a systemd service under a dedicated user and prove it survives a reboot.
+- **Challenge 2.** Install on a Fedora/RHEL box, handling the separate system-lib step.
+
+### 15.14 Checklist
+
+- [ ] Correct install layout chosen.
+- [ ] Service runs under an unprivileged user.
+- [ ] Playwright deps handled (or `--skip-browser`).
+- [ ] systemd supervises and restarts the gateway.
+- [ ] `hermes doctor` clean as the service user.
+
+### 15.15 Best practices
+
+- **Run as a dedicated unprivileged user** with an explicit `HERMES_HOME`.
+- **Supervise with systemd** (`Restart=on-failure`, resource limits).
+- **Install browser deps once as admin**; use `--skip-browser` on headless hosts.
+- **Pin the version** on servers.
+
+### 15.16 Anti-patterns
+
+- Running the gateway as root or under your personal account.
+- `nohup hermes gateway &` with no supervision.
+- Ignoring the Playwright dep split, breaking browser tools silently.
+- Mixing service `HERMES_HOME` with a human user's.
+
+### 15.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `ModuleNotFoundError: dotenv` | Running repo `hermes` with system Python | Use the venv launcher; fix PATH |
+| Browser tools fail | Missing Chromium libs | `sudo npx playwright install-deps chromium` |
+| Service dies on logout | No supervision | Use the systemd unit |
+| `hermes` not on PATH for service user | Minimal PATH | Add `~/.local/bin` or symlink to `/usr/local/bin` |
+
+### 15.18 Official references
+
+- Installation (Linux + non-sudo): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+- Contributing / Dev Setup: https://hermes-agent.nousresearch.com/docs/developer-guide/contributing
+
+---
+
+## Chapter 16 — Windows
+
+### 16.1 Introduction
+
+Hermes runs on Windows two ways: **natively** (PowerShell installer, plus the v0.16 Desktop app) and via **WSL2** (a Linux environment on Windows, which the standard `install.sh` targets). This chapter covers both, when to choose each, the Desktop installer path, and Windows-specific concerns (PATH, PowerShell execution policy, line endings, and Node/native build tools for the desktop app).
+
+### 16.2 Chapter objectives
+
+(1) Install Hermes natively on Windows and via WSL2; (2) choose between native and WSL2; (3) use the Desktop installer; (4) handle Windows-specific issues (PATH, execution policy, build tools); (5) verify the install.
+
+### 16.3 Business context
+
+Many enterprise developers are on Windows. Offering a native installer and a Desktop app (v0.16) lowers adoption friction for non-Linux teams, while WSL2 gives power users a full Linux runtime for server-like behavior. The practical decision: **Desktop/native for end users and quick local use; WSL2 for development that mirrors Linux production.**
+
+### 16.4 Theoretical foundations
+
+- **Two runtimes.** Native Windows (PowerShell install / Desktop) vs WSL2 (Linux kernel; uses `install.sh`).
+- **Desktop = CLI + app.** The Desktop installer provisions both the command-line tool and the native app; `hermes desktop` launches the app after a CLI-only install.
+- **Parity via WSL2.** WSL2 gives the same paths, systemd-like behavior, and tooling as Linux production — fewer surprises.
+
+### 16.5 Architecture (Windows options)
+
+```mermaid
+flowchart TB
+    win[Windows host] --> opt{Install path}
+    opt -->|native| ps[install.ps1 / Desktop installer]
+    opt -->|WSL2| wsl[Ubuntu on WSL2 → install.sh]
+    ps --> cliapp[hermes CLI + Desktop app]
+    wsl --> linuxlike[Linux-parity hermes]
+```
+
+### 16.6 Internal flows (native install)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant PS as PowerShell
+    participant I as install.ps1
+    participant H as hermes
+    U->>PS: iex (irm .../install.ps1)
+    PS->>I: run installer
+    I->>I: provision deps + hermes command
+    U->>H: hermes setup --portal
+    U->>H: hermes desktop  (optional GUI)
+```
+
+### 16.7 Component diagram
+
+```mermaid
+flowchart LR
+    subgraph native["Native Windows"]
+        cli[hermes.exe / launcher]
+        app[Desktop app]
+        home[(%USERPROFILE%\.hermes)]
+    end
+    subgraph wsl["WSL2"]
+        lcli[hermes (Linux)]
+        lhome[(~/.hermes)]
+    end
+```
+
+### 16.8 Complete example
+
+**Scenario.** A Windows developer wants the native Desktop app for daily use and a WSL2 install for testing server behavior that mirrors Linux production.
+
+**Problem.** Pure native lacks Linux parity; pure WSL2 lacks a polished GUI. They want both.
+
+**Solution.** Install natively (Desktop) for the GUI, and install in WSL2 (Ubuntu) for parity testing.
+
+**Architecture.** Native CLI+Desktop under `%USERPROFILE%\.hermes`; WSL2 Hermes under `~/.hermes` inside Ubuntu.
+
+**Implementation:**
+
+```powershell
+# Native (PowerShell) — installs CLI; Desktop via the installer or:
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+hermes setup --portal
+hermes desktop                 # launch the native app
+```
+
+```bash
+# WSL2 (inside Ubuntu) — Linux-parity install
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc
+hermes setup --portal
+```
+
+**Configuration (native, `%USERPROFILE%\.hermes\config.yaml`):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+**Tests.**
+
+```powershell
+hermes --version
+hermes doctor
+```
+
+```bash
+# In WSL2
+hermes doctor
+```
+
+**Result.** A native Desktop experience for daily work plus a WSL2 install that behaves like Linux production for testing.
+
+**Future improvements.** Use WSL2 with Docker Desktop for the Docker terminal backend (Chapter 18); standardize the team on the Desktop app for non-developers.
+
+### 16.9 Source code
+
+```powershell
+# If script execution is blocked, allow for the current user (then re-run installer)
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+# Verify PATH includes the hermes launcher; reopen the shell after install
+$env:Path -split ';' | Select-String hermes
+```
+
+### 16.10 Configuration
+
+```yaml
+# For the desktop app, build tools may be required for native modules:
+# install Node v22 (installer handles it) and a C++ toolchain (Build Tools for VS / g++ in WSL2).
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  terminal_backend: local        # docker via Docker Desktop + WSL2 backend
+```
+
+### 16.11 Real-world use cases
+
+- **Non-technical Windows users** on the Desktop app.
+- **Windows developers** using WSL2 for Linux-parity dev.
+- **Docker workflows** via Docker Desktop + WSL2 backend.
+- **Mixed teams** standardizing on Desktop while CI runs on Linux.
+
+### 16.12 Exercises
+
+1. When would you choose native over WSL2, and vice versa?
+2. What does the Desktop installer provision beyond the CLI?
+3. How do you launch the Desktop app after a CLI-only install?
+
+### 16.13 Challenges
+
+- **Challenge 1.** Install natively and in WSL2; confirm both with `hermes doctor`.
+- **Challenge 2.** Use the Docker backend from WSL2 via Docker Desktop.
+
+### 16.14 Checklist
+
+- [ ] Native and/or WSL2 install chosen deliberately.
+- [ ] Execution policy / PATH issues resolved.
+- [ ] Desktop app installed if needed.
+- [ ] `hermes doctor` clean on the chosen runtime.
+
+### 16.15 Best practices
+
+- **Desktop/native for end users; WSL2 for dev parity.**
+- **Use WSL2 + Docker Desktop** for the Docker terminal backend.
+- **Pin the version** as on any platform.
+- **Keep `%USERPROFILE%\.hermes` backed up.**
+
+### 16.16 Anti-patterns
+
+- Forcing server workloads onto native Windows where WSL2/Linux is better suited.
+- Ignoring execution-policy errors instead of fixing them properly.
+- Mixing native and WSL2 `~/.hermes` and expecting shared state.
+
+### 16.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `install.ps1` blocked | Execution policy | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| `hermes` not found | PATH not refreshed | Reopen the shell; check launcher PATH |
+| Desktop build fails | Missing C++ toolchain | Install VS Build Tools (native) / `build-essential` (WSL2) |
+| State not shared native↔WSL2 | Separate homes | They are independent by design |
+
+### 16.18 Official references
+
+- Installation (Windows native): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Desktop download: https://hermes-agent.nousresearch.com/
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+- Quickstart: https://hermes-agent.nousresearch.com/docs/getting-started/quickstart
+
+---
+
+## Chapter 17 — macOS
+
+### 17.1 Introduction
+
+On macOS, Hermes installs via the same one-liner as Linux or via the **Desktop installer** (recommended on macOS for the combined CLI + app). This chapter covers macOS specifics: the Desktop vs CLI paths, Apple Silicon vs Intel, Homebrew interplay, Gatekeeper/permissions for the desktop app, and Nix on macOS for declarative setups.
+
+### 17.2 Chapter objectives
+
+(1) Install Hermes on macOS via Desktop and CLI; (2) handle Apple Silicon/Intel and permissions; (3) understand the Homebrew install-method detection; (4) optionally use the Nix path; (5) verify.
+
+### 17.3 Business context
+
+macOS is the dominant developer laptop in many companies. The Desktop installer gives a one-click experience; the CLI gives automation parity with Linux. Because install-method is auto-detected (including Homebrew), updates remain one command regardless of how it was installed — important for fleet management.
+
+### 17.4 Theoretical foundations
+
+- **Same `install.sh`.** macOS uses the Linux/macOS one-liner; the only prerequisite is Git (plus a C++ toolchain for the desktop app's native modules).
+- **Desktop recommended.** On macOS the Desktop installer provisions CLI + app together.
+- **Method detection.** Homebrew installs are detected so `hermes update` prints the brew command.
+- **Nix option.** A flake and module exist for declarative macOS setups.
+
+### 17.5 Architecture (macOS options)
+
+```mermaid
+flowchart TB
+    mac[macOS] --> opt{Path}
+    opt -->|recommended| dt[Desktop installer → CLI + app]
+    opt -->|CLI only| sh[install.sh one-liner]
+    opt -->|declarative| nix[Nix flake / module]
+    dt --> home[(~/.hermes)]
+    sh --> home
+    nix --> home
+```
+
+### 17.6 Internal flows (Desktop install)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant D as Desktop installer
+    participant H as hermes CLI
+    U->>D: download + run installer
+    D->>D: install CLI + app + deps
+    U->>H: hermes setup --portal
+    U->>U: launch Hermes Desktop (drag-and-drop files)
+```
+
+### 17.7 Component diagram
+
+```mermaid
+flowchart LR
+    app[Hermes Desktop.app] --- cli[hermes CLI]
+    cli --- venv[venv / site-packages]
+    cli --- home[(~/.hermes)]
+    brew[Homebrew?] -.detected.- upd[hermes update prints brew cmd]
+```
+
+### 17.8 Complete example
+
+**Scenario.** A macOS (Apple Silicon) developer wants the Desktop app for daily use plus CLI parity for scripts, on Portal.
+
+**Problem.** They want both surfaces without two separate setups or update paths.
+
+**Solution.** Install via the Desktop installer (provisions CLI + app), set up Portal, and verify both surfaces.
+
+**Architecture.** Desktop app + CLI sharing one `~/.hermes`.
+
+**Implementation:**
+
+```bash
+# Option A: Desktop installer from https://hermes-agent.nousresearch.com/ (recommended)
+# Option B: CLI one-liner, then add the app
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.zshrc
+hermes setup --portal
+hermes desktop                 # install/launch the desktop app
+```
+
+**Configuration (`~/.hermes/config.yaml`):**
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+**Tests.**
+
+```bash
+hermes --version
+hermes doctor
+hermes update --check          # prints the correct path-specific update command
+```
+
+**Result.** A unified macOS setup: Desktop for interactive use, CLI for automation, one shared agent state, one update command.
+
+**Future improvements.** Use the Nix path for reproducible developer machines; connect the gateway for a personal Telegram assistant.
+
+### 17.9 Source code
+
+```bash
+# Apple Silicon vs Intel is handled by the installer; verify the arch if debugging:
+uname -m                       # arm64 (Apple Silicon) or x86_64 (Intel)
+
+# If the desktop app needs native build tools:
+xcode-select --install         # provides the C++ toolchain
+```
+
+### 17.10 Configuration
+
+```nix
+# Optional Nix flake input (declarative macOS setup) — see the Nix & NixOS guide
+# inputs.hermes-agent.url = "github:NousResearch/hermes-agent";
+```
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  terminal_backend: local
+```
+
+### 17.11 Real-world use cases
+
+- **macOS developer** with Desktop + CLI on Portal.
+- **Reproducible dev machines** via Nix.
+- **Homebrew-managed fleets** with one-command updates.
+- **Personal assistant** wiring the gateway to Telegram from a Mac.
+
+### 17.12 Exercises
+
+1. When is the Desktop installer preferred on macOS?
+2. How does Hermes know to print the Homebrew update command?
+3. What prerequisite does the desktop app's native build need?
+
+### 17.13 Challenges
+
+- **Challenge 1.** Install via Desktop, set up Portal, verify CLI + app share state.
+- **Challenge 2.** Reproduce the install declaratively with Nix.
+
+### 17.14 Checklist
+
+- [ ] macOS install done (Desktop and/or CLI).
+- [ ] Portal/provider configured.
+- [ ] Permissions/build tools resolved.
+- [ ] `hermes doctor` clean.
+
+### 17.15 Best practices
+
+- **Prefer the Desktop installer** on macOS for the combined experience.
+- **Install Xcode CLT** if building native modules.
+- **Use Nix** for reproducible developer environments.
+- **Let install-method detection** drive updates.
+
+### 17.16 Anti-patterns
+
+- Hand-compiling deps instead of using the installer.
+- Ignoring Gatekeeper prompts rather than granting needed permissions.
+- Mixing Nix and non-Nix installs on one machine.
+
+### 17.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| App won't open (Gatekeeper) | Unsigned/permission | Allow in System Settings → Privacy & Security |
+| Native module build fails | No Xcode CLT | `xcode-select --install` |
+| Wrong update command | Method mis-detected | `hermes doctor` shows method; reinstall via intended path |
+| `hermes` not on PATH | zsh profile not sourced | `source ~/.zshrc` |
+
+### 17.18 Official references
+
+- Installation (macOS): https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Desktop download: https://hermes-agent.nousresearch.com/
+- Nix & NixOS Setup: https://hermes-agent.nousresearch.com/docs/getting-started/nix-setup
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 18 — Docker
+
+### 18.1 Introduction
+
+Docker gives Hermes two distinct capabilities. First, you can **run the agent itself in a container** (reproducible, portable deployment). Second — and more uniquely — Hermes can use **Docker as a terminal backend**, executing the agent's commands inside ephemeral containers so its side effects are isolated from the host. This chapter covers both: containerizing the gateway, and configuring the Docker execution backend for safe autonomous work.
+
+### 18.2 Chapter objectives
+
+(1) Containerize the Hermes gateway with a Dockerfile and compose; (2) persist `~/.hermes/` via a volume; (3) configure the Docker *terminal backend* for isolated execution; (4) manage secrets and egress; (5) verify the containerized agent.
+
+### 18.3 Business context
+
+Containers give **reproducibility and isolation** — the two things production autonomy needs. Running the agent in a container makes deployment identical across hosts; using Docker as the execution backend confines what the agent can do (no host access, optional no-egress) — the safe way to let an agent run untrusted code or operate autonomously. Together they make Hermes deployable on any container platform.
+
+### 18.4 Theoretical foundations
+
+- **Agent-in-container.** The whole agent runs in a container; state persists via a mounted volume.
+- **Container-as-backend.** The Docker terminal backend spawns ephemeral containers per execution; the agent's commands never touch the host.
+- **Volume for state.** `~/.hermes/` must be a named volume so memory/Skills/sessions survive container restarts.
+- **Secrets & egress.** Provider keys come via env/secret, not baked in; untrusted execution sets `network: none`.
+
+### 18.5 Architecture (two roles)
+
+```mermaid
+flowchart TB
+    subgraph host["Container host"]
+        c[Hermes container<br/>gateway]
+        vol[(named volume → /root/.hermes)]
+        c --- vol
+    end
+    c -->|terminal_backend: docker| eph[Ephemeral exec containers]
+    c --> prov[Provider/Portal via env secret]
+```
+
+### 18.6 Internal flows (containerized run)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant DC as docker compose
+    participant C as Hermes container
+    participant V as Volume (~/.hermes)
+    Op->>DC: docker compose up -d
+    DC->>C: start gateway (HERMES_HOME=/root/.hermes)
+    C->>V: load/persist memory, skills, sessions
+    C->>C: serve platforms; exec in ephemeral containers
+```
+
+### 18.7 Component diagram
+
+```mermaid
+flowchart LR
+    df[Dockerfile] --- img[hermes image]
+    img --- comp[docker-compose.yml]
+    comp --- vol[(hermes-data volume)]
+    comp --- sec[secret: provider key]
+    img --- sock[/var/run/docker.sock for docker backend/]
+```
+
+### 18.8 Complete example
+
+**Scenario.** Deploy the Hermes Telegram gateway as a container, with persistent state and Docker-backed isolated execution.
+
+**Problem.** A host install is not portable, and letting the agent run commands on the host is risky.
+
+**Solution.** A Dockerfile + compose that runs the gateway, persists `~/.hermes` on a volume, and uses the Docker terminal backend for isolated execution.
+
+**Architecture.** Hermes container (gateway) + named volume + Docker socket for the execution backend.
+
+**Implementation:**
+
+```dockerfile
+# Dockerfile
+FROM python:3.11-slim
+RUN apt-get update && apt-get install -y git curl xz-utils build-essential ripgrep ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+ENV PATH="/root/.local/bin:${PATH}"
+ENV HERMES_HOME=/root/.hermes
+ENTRYPOINT ["hermes", "gateway", "start", "--platform", "telegram"]
+```
+
+```yaml
+# docker-compose.yml
+services:
+  hermes:
+    build: .
+    restart: unless-stopped
+    environment:
+      NOUS_PORTAL_TOKEN: ${NOUS_PORTAL_TOKEN}   # from .env / secret, not baked in
+      HERMES_HOME: /root/.hermes
+    volumes:
+      - hermes-data:/root/.hermes
+      - /var/run/docker.sock:/var/run/docker.sock   # enables docker terminal backend
+volumes:
+  hermes-data:
+```
+
+```yaml
+# Inside the container's ~/.hermes/config.yaml — isolated execution
+tools:
+  terminal_backend: docker
+  docker:
+    image: hermes-exec:latest
+    network: none
+```
+
+**Tests.**
+
+```bash
+docker compose up -d
+docker compose exec hermes hermes doctor
+docker compose exec hermes hermes gateway status
+docker compose logs -f hermes
+```
+
+**Result.** A portable, restartable gateway with persistent state and host-isolated execution.
+
+**Future improvements.** Move to Kubernetes for orchestration (Chapter 19); use a secrets manager; pin the image to a Hermes version.
+
+### 18.9 Source code
+
+```bash
+# Build, run, verify
+docker compose build
+docker compose up -d
+docker compose exec hermes hermes --version
+# Persisted state survives recreation:
+docker compose down && docker compose up -d
+docker compose exec hermes hermes memory show   # memory intact via volume
+```
+
+### 18.10 Configuration
+
+```yaml
+# Pinning + resource limits in compose
+services:
+  hermes:
+    image: ghcr.io/yourorg/hermes:0.16.0     # pin the version
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 1g }
+```
+
+### 18.11 Real-world use cases
+
+- **Portable gateway** deployable on any Docker host.
+- **Isolated execution** for untrusted PR/code runs (Docker backend, no egress).
+- **Reproducible CI agent** as a pinned image.
+- **Stepping stone to Kubernetes** (Chapter 19).
+
+### 18.12 Exercises
+
+1. Distinguish "agent in a container" from "Docker as a terminal backend."
+2. Why mount `~/.hermes` as a named volume?
+3. Why mount the Docker socket, and what risk does it carry?
+
+### 18.13 Challenges
+
+- **Challenge 1.** Containerize the gateway with persistent state and confirm memory survives `down`/`up`.
+- **Challenge 2.** Configure the Docker execution backend with `network: none` and prove untrusted code has no egress.
+
+### 18.14 Checklist
+
+- [ ] Gateway runs in a container.
+- [ ] `~/.hermes` persists via a volume.
+- [ ] Secrets injected, not baked in.
+- [ ] Docker terminal backend configured (if used).
+- [ ] Image pinned to a version.
+
+### 18.15 Best practices
+
+- **Persist state on a named volume.**
+- **Inject secrets** via env/secret store.
+- **Pin the image** to a Hermes version.
+- **Use `network: none`** for untrusted execution.
+
+### 18.16 Anti-patterns
+
+- Baking provider keys into the image.
+- No volume → losing memory/Skills on restart.
+- Mounting the Docker socket without understanding the privilege it grants.
+- Using `latest` in production.
+
+### 18.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| State lost on restart | No volume | Mount a named volume to `HERMES_HOME` |
+| Docker backend fails in container | No socket access | Mount `/var/run/docker.sock` (mind the risk) |
+| Key not found | Secret not injected | Pass via env/secret |
+| Browser tools fail | Missing Chromium libs in image | Add deps or use `--skip-browser` |
+
+### 18.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Terminal Backends: https://hermes-agent.nousresearch.com/docs/user-guide/features/terminal-backends
+- Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 19 — Kubernetes
+
+### 19.1 Introduction
+
+Kubernetes is where Hermes becomes a **managed, resilient service**: self-healing pods, declarative config, secrets, persistent volumes, and horizontal scaling of stateless surfaces (the API server) alongside a stateful gateway. This chapter covers deploying Hermes on Kubernetes — the gateway as a `Deployment` with a `PersistentVolumeClaim` for `~/.hermes`, secrets for provider keys, and the API-server surface behind a `Service`/`Ingress`.
+
+### 19.2 Chapter objectives
+
+(1) Deploy the Hermes gateway on Kubernetes with persistent state; (2) manage provider keys via `Secret`; (3) expose the API-server surface via `Service`/`Ingress`; (4) understand stateful vs stateless surfaces and scaling; (5) verify and operate the deployment.
+
+### 19.3 Business context
+
+For enterprises already on Kubernetes, deploying Hermes there means **one operational model** — the same observability, secrets, and resilience as the rest of the platform. The gateway becomes a self-healing service; the API surface scales horizontally; state lives on a PVC under cluster backup. It is the path from "an agent on a box" to "an agent as a platform service."
+
+### 19.4 Theoretical foundations
+
+- **Stateful gateway, stateless API.** The gateway holds session/PID state (one replica or careful sharding); the API server surface can run stateless replicas.
+- **PVC for `~/.hermes`.** Memory/Skills/sessions persist on a PersistentVolumeClaim.
+- **Secrets, not env literals.** Provider keys live in `Secret` objects mounted as env.
+- **Probes for resilience.** Liveness/readiness probes drive self-healing.
+
+### 19.5 Architecture (K8s deployment)
+
+```mermaid
+flowchart TB
+    subgraph ns["namespace: hermes"]
+        dep[Deployment: gateway<br/>1 replica]
+        pvc[(PVC → /root/.hermes)]
+        sec[Secret: provider keys]
+        svc[Service / Ingress → api_server]
+        dep --- pvc
+        dep --- sec
+        dep --- svc
+    end
+    svc --> clients[Internal services]
+```
+
+### 19.6 Internal flows (rollout)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant K as kubectl / GitOps
+    participant API as K8s API
+    participant Pod as Hermes pod
+    Op->>K: apply manifests
+    K->>API: create Deployment/PVC/Secret/Service
+    API->>Pod: schedule pod, mount PVC + secret
+    Pod->>Pod: hermes gateway start
+    API->>Pod: readiness probe → in service
+```
+
+### 19.7 Component diagram
+
+```mermaid
+flowchart LR
+    cm[ConfigMap: config.yaml] --- pod[Hermes pod]
+    sec[Secret: keys] --- pod
+    pvc[(PVC)] --- pod
+    pod --- svc[Service]
+    svc --- ing[Ingress]
+```
+
+### 19.8 Complete example
+
+**Scenario.** Run the Hermes gateway + API surface on Kubernetes with persistent state and secret-managed keys.
+
+**Problem.** The team standardizes on K8s and needs Hermes self-healing, with state on a PVC and keys in Secrets.
+
+**Solution.** A `Deployment` (gateway), `PVC` (`~/.hermes`), `Secret` (keys), `ConfigMap` (config), and a `Service` for the API surface.
+
+**Architecture.** One gateway replica with PVC + Secret + ConfigMap, exposed via Service/Ingress.
+
+**Implementation:**
+
+```yaml
+# hermes-k8s.yaml
+apiVersion: v1
+kind: Secret
+metadata: { name: hermes-secrets, namespace: hermes }
+type: Opaque
+stringData:
+  NOUS_PORTAL_TOKEN: "REPLACE_ME"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: hermes-home, namespace: hermes }
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources: { requests: { storage: 5Gi } }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: hermes-gateway, namespace: hermes }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: hermes } }
+  template:
+    metadata: { labels: { app: hermes } }
+    spec:
+      containers:
+        - name: hermes
+          image: ghcr.io/yourorg/hermes:0.16.0
+          args: ["gateway", "start", "--platform", "api_server"]
+          env:
+            - name: HERMES_HOME
+              value: /root/.hermes
+            - name: NOUS_PORTAL_TOKEN
+              valueFrom: { secretKeyRef: { name: hermes-secrets, key: NOUS_PORTAL_TOKEN } }
+          volumeMounts:
+            - { name: home, mountPath: /root/.hermes }
+          readinessProbe:
+            httpGet: { path: /v1/models, port: 8080 }
+            initialDelaySeconds: 10
+          livenessProbe:
+            httpGet: { path: /v1/models, port: 8080 }
+            initialDelaySeconds: 20
+      volumes:
+        - name: home
+          persistentVolumeClaim: { claimName: hermes-home }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: hermes, namespace: hermes }
+spec:
+  selector: { app: hermes }
+  ports: [ { port: 80, targetPort: 8080 } ]
+```
+
+**Tests.**
+
+```bash
+kubectl create namespace hermes
+kubectl apply -f hermes-k8s.yaml
+kubectl -n hermes rollout status deploy/hermes-gateway
+kubectl -n hermes exec deploy/hermes-gateway -- hermes doctor
+kubectl -n hermes port-forward svc/hermes 8080:80 &
+curl -s localhost:8080/v1/models | jq '.data[].id'
+```
+
+**Result.** A self-healing Hermes service on Kubernetes with persistent state, secret-managed keys, and an exposed API surface.
+
+**Future improvements.** GitOps (Argo/Flux), HPA on the stateless API surface, network policies, and observability (Part XIII).
+
+### 19.9 Source code
+
+```bash
+# Operate the deployment
+kubectl -n hermes logs deploy/hermes-gateway -f
+kubectl -n hermes get pvc hermes-home
+kubectl -n hermes rollout restart deploy/hermes-gateway   # state survives via PVC
+```
+
+### 19.10 Configuration
+
+```yaml
+# ConfigMap-delivered config.yaml (mounted into /root/.hermes/config.yaml)
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [api_server]
+memory: { enabled: true }
+skills: { enabled: true }
+```
+
+### 19.11 Real-world use cases
+
+- **Self-healing gateway** as a platform service.
+- **Horizontally scaled API surface** behind a Service/Ingress.
+- **GitOps-managed** agent infrastructure.
+- **Multi-tenant** namespaces per team/profile.
+
+### 19.12 Exercises
+
+1. Why is the gateway stateful while the API surface can be stateless?
+2. What goes on the PVC and why?
+3. How are provider keys delivered securely?
+
+### 19.13 Challenges
+
+- **Challenge 1.** Deploy the manifests, prove state survives a `rollout restart`.
+- **Challenge 2.** Add liveness/readiness probes and verify self-healing by killing the pod.
+
+### 19.14 Checklist
+
+- [ ] Gateway runs as a Deployment.
+- [ ] `~/.hermes` on a PVC.
+- [ ] Keys in a Secret.
+- [ ] Probes configured.
+- [ ] API surface exposed via Service.
+
+### 19.15 Best practices
+
+- **PVC for state; Secrets for keys; ConfigMap for config.**
+- **Probes** for self-healing.
+- **Pin the image**; deploy via GitOps.
+- **Scale stateless surfaces**, keep the gateway singleton (or shard carefully).
+
+### 19.16 Anti-patterns
+
+- Multiple gateway replicas sharing one RWO PVC without coordination.
+- Keys in plain env/ConfigMap.
+- No probes (no self-healing).
+- `latest` image tags.
+
+### 19.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Pod CrashLoopBackOff | Bad config/secret | `kubectl logs`; verify Secret/ConfigMap |
+| State lost on reschedule | No PVC / RWO on a new node | Use PVC; ensure node affinity / RWX if needed |
+| API 503 | Probe failing / not ready | Check readiness path/port |
+| Two gateways conflict | Shared state | Single replica or proper sharding |
+
+### 19.18 Official references
+
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Gateway Internals: https://hermes-agent.nousresearch.com/docs/developer-guide/gateway-internals
+- API Server surface: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+
+---
+
+## Chapter 20 — VPS
+
+### 20.1 Introduction
+
+A small VPS (as little as $5/month) is the canonical home for a personal or team Hermes — always on, reachable from messaging platforms, cheap. This chapter covers deploying Hermes to a VPS: provisioning, securing the host, installing as a service, connecting the gateway, and keeping it updated — the practical "agent that lives somewhere" deployment from Chapter 1.
+
+### 20.2 Chapter objectives
+
+(1) Provision and harden a VPS for Hermes; (2) install as an unprivileged systemd service; (3) connect the messaging gateway with an allowlist; (4) operate (logs, updates, backups); (5) keep costs low.
+
+### 20.3 Business context
+
+A VPS is the cheapest way to get a **persistent, reachable agent** — no laptop tether, no enterprise K8s required. For individuals and small teams it is the sweet spot: a Telegram-reachable assistant that remembers and runs tasks, for the price of a coffee. The key concerns are security (it is internet-facing) and operability (it must survive reboots and update cleanly).
+
+### 20.4 Theoretical foundations
+
+- **Always-on + reachable.** The gateway long-running process makes the agent reachable from messaging platforms.
+- **Least privilege + hardening.** Internet-facing host → unprivileged service user, SSH keys only, firewall, automatic security updates.
+- **Authorization at the gateway.** Allowlists + DM pairing prevent unauthorized access (Part XII).
+- **Backups.** `~/.hermes/` is the asset; back it up off-host.
+
+### 20.5 Architecture (VPS)
+
+```mermaid
+flowchart TB
+    msg[Telegram/Discord/...] --> gw[Hermes gateway<br/>on VPS, systemd]
+    gw --> agent[AIAgent]
+    agent --> prov[Provider/Portal]
+    gw --> auth[allowlist + DM pairing]
+    home[(~/.hermes)] --- gw
+    home -.backup.-> off[off-host backup]
+```
+
+### 20.6 Internal flows (deploy)
+
+```mermaid
+sequenceDiagram
+    participant Op as Operator
+    participant V as VPS
+    participant H as hermes
+    Op->>V: provision, harden (ufw, ssh keys, updates)
+    Op->>V: create unprivileged user
+    Op->>H: install + setup --portal + gateway setup
+    Op->>V: systemd unit → enable --now
+    H->>H: gateway reachable; allowlist enforced
+```
+
+### 20.7 Component diagram
+
+```mermaid
+flowchart LR
+    ufw[firewall] --- vps[VPS host]
+    vps --- user[(unprivileged user)]
+    user --- svc[systemd: hermes-gateway]
+    svc --- home[(~/.hermes)]
+    home --- bak[backup cron]
+```
+
+### 20.8 Complete example
+
+**Scenario.** Deploy a personal Telegram assistant on a $5 VPS, secured and reboot-proof.
+
+**Problem.** A laptop-bound agent is not always on; an unhardened internet host is a risk.
+
+**Solution.** Harden the VPS, install Hermes as an unprivileged systemd service, connect Telegram with an allowlist, and back up `~/.hermes` nightly.
+
+**Architecture.** VPS → systemd gateway service (unprivileged user) → Telegram, with allowlist + nightly backup.
+
+**Implementation:**
+
+```bash
+# 1. Harden (as root)
+adduser --disabled-password hermes
+ufw default deny incoming && ufw allow OpenSSH && ufw enable
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl reload ssh
+apt-get install -y unattended-upgrades
+
+# 2. Install Hermes as the unprivileged user
+sudo -u hermes -i
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+hermes setup --portal
+hermes gateway setup            # Telegram token + allowlist (@you)
+exit
+```
+
+```ini
+# 3. /etc/systemd/system/hermes-gateway.service
+[Unit]
+Description=Hermes Gateway
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=hermes
+Environment=HERMES_HOME=/home/hermes/.hermes
+ExecStart=/home/hermes/.local/bin/hermes gateway start --platform telegram
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+systemctl enable --now hermes-gateway
+
+# 4. Nightly backup of the asset
+( crontab -u hermes -l 2>/dev/null; \
+  echo "0 3 * * * tar czf /home/hermes/backup-\$(date +\%F).tgz -C /home/hermes .hermes" ) \
+  | crontab -u hermes -
+```
+
+**Tests.**
+
+```bash
+sudo -u hermes hermes doctor
+systemctl status hermes-gateway
+# From Telegram (allowlisted account): send a message and get a reply.
+```
+
+**Result.** An always-on, hardened, reboot-proof personal assistant on a $5 VPS, with nightly backups.
+
+**Future improvements.** Add Discord/Signal surfaces (Part IX), serverless execution backend to cut cost further, and monitoring (Part XIII).
+
+### 20.9 Source code
+
+```bash
+# Controlled updates on the VPS
+sudo -u hermes hermes update --check
+sudo -u hermes hermes update
+systemctl restart hermes-gateway
+journalctl -u hermes-gateway -n 50 --no-pager
+```
+
+### 20.10 Configuration
+
+```yaml
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@you"]
+  dm_pairing: true
+tools:
+  terminal_backend: local        # or modal/daytona to offload heavy work
+```
+
+### 20.11 Real-world use cases
+
+- **Personal Telegram assistant** that remembers and runs tasks.
+- **Team bot** on a shared cheap VPS with an allowlist.
+- **Scheduled-task operator** (cron) generating reports.
+- **Cost-optimized** with serverless execution backends for heavy jobs.
+
+### 20.12 Exercises
+
+1. List three hardening steps for an internet-facing VPS.
+2. Why run the gateway as an unprivileged user?
+3. What must your backup include?
+
+### 20.13 Challenges
+
+- **Challenge 1.** Deploy the assistant, lock it to your account via allowlist, and confirm a non-allowlisted account is rejected.
+- **Challenge 2.** Restore the agent on a fresh VPS from your backup.
+
+### 20.14 Checklist
+
+- [ ] VPS hardened (firewall, SSH keys, auto-updates).
+- [ ] Gateway runs as a systemd service (unprivileged).
+- [ ] Allowlist/DM pairing enforced.
+- [ ] Nightly backup of `~/.hermes`.
+- [ ] Update path tested.
+
+### 20.15 Best practices
+
+- **Harden first** (firewall, key-only SSH, unattended upgrades).
+- **Unprivileged service user** + systemd supervision.
+- **Allowlist** the gateway; enable DM pairing.
+- **Back up `~/.hermes`** off-host.
+
+### 20.16 Anti-patterns
+
+- Running the gateway as root with password SSH enabled.
+- No allowlist → open agent to anyone who finds the bot.
+- No backups → losing accumulated memory/Skills.
+- Updating in place with no test.
+
+### 20.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Bot replies to strangers | No allowlist | Configure allowlist + DM pairing |
+| Gateway down after reboot | No systemd | Use the service unit |
+| Lost memory after rebuild | No backup | Restore from `~/.hermes` backup |
+| High bill | Heavy local execution | Offload to serverless backend |
+
+### 20.18 Official references
+
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Messaging Platforms: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
+- Command Approval / Security: https://hermes-agent.nousresearch.com/docs/user-guide/features/command-approval
+- Updating: https://hermes-agent.nousresearch.com/docs/getting-started/updating
+
+---
+
+## Chapter 21 — Cloud Providers
+
+### 21.1 Introduction
+
+Beyond a single VPS, Hermes runs on the major clouds (AWS, GCP, Azure) and, distinctively, on **serverless execution backends** (Daytona, Modal) that **hibernate when idle** — so an agent that works in bursts costs almost nothing between tasks. This chapter surveys cloud deployment options: VMs, managed Kubernetes, and serverless execution, with the cost/isolation trade-offs and when to choose each.
+
+### 21.2 Chapter objectives
+
+(1) Map Hermes deployment options across AWS/GCP/Azure; (2) understand serverless execution backends (Daytona, Modal) and hibernation economics; (3) choose VM vs managed-K8s vs serverless per workload; (4) handle cloud secrets and IAM; (5) verify a cloud deployment.
+
+### 21.3 Business context
+
+Cloud choice is a **cost and isolation** decision. A VM is simplest; managed Kubernetes (EKS/GKE/AKS) gives resilience and scale; serverless execution backends give near-zero idle cost and strong isolation for bursty autonomous work. The standout economic lever is **hibernation**: with Modal/Daytona, the heavy compute exists only while a task runs — ideal for an agent that you talk to occasionally but that does real work when you do.
+
+### 21.4 Theoretical foundations
+
+- **Three shapes.** VM (lift-and-shift of the VPS pattern), managed K8s (Chapter 19 on a cloud), serverless execution backend (agent control plane lightweight; execution offloaded).
+- **Hibernation.** Daytona/Modal spin up execution on demand and idle to ~zero — the cost model that makes always-available-but-rarely-busy agents cheap.
+- **Cloud secrets + IAM.** Provider keys in the cloud secret manager; least-privilege IAM for the agent's cloud actions.
+- **Provider agnosticism still applies.** The LLM provider is independent of the *hosting* cloud — no coupling.
+
+### 21.5 Architecture (cloud options)
+
+```mermaid
+flowchart TB
+    choice{Workload shape} -->|simple/always-on| vm[Cloud VM<br/>VPS pattern]
+    choice -->|resilient/scale| k8s[Managed K8s<br/>EKS/GKE/AKS]
+    choice -->|bursty/cheap idle| srv[Serverless exec<br/>Daytona / Modal]
+    vm --> sec[Cloud Secrets + IAM]
+    k8s --> sec
+    srv --> sec
+```
+
+### 21.6 Internal flows (serverless execution)
+
+```mermaid
+sequenceDiagram
+    participant U as User (messaging)
+    participant G as Hermes control plane (light)
+    participant M as Modal/Daytona
+    U->>G: request a heavy task
+    G->>M: spin up execution sandbox (on demand)
+    M-->>G: results
+    M->>M: hibernate (idle → ~$0)
+    G-->>U: deliver result
+```
+
+### 21.7 Component diagram
+
+```mermaid
+flowchart LR
+    cp[Hermes control plane] --- back{terminal_backend}
+    back -->|modal| mo[Modal app]
+    back -->|daytona| da[Daytona workspace]
+    cp --- secmgr[Cloud secret manager]
+    cp --- iam[IAM role]
+```
+
+### 21.8 Complete example
+
+**Scenario.** A team wants an always-reachable agent that does occasional heavy data jobs, but refuses to pay for idle compute.
+
+**Problem.** A big VM sits idle most of the day; K8s is overkill for one team; they want pay-per-use heavy execution.
+
+**Solution.** Run a lightweight Hermes control plane on a small VM (or container), and offload heavy execution to **Modal** — which hibernates to near-zero when idle.
+
+**Architecture.** Small always-on control plane (gateway) + Modal terminal backend for heavy execution.
+
+**Implementation:**
+
+```yaml
+# ~/.hermes/config.yaml — serverless execution backend
+provider: nous-portal
+model: hermes-4-70b
+gateway:
+  platforms: [telegram]
+  allowlist: ["@team"]
+tools:
+  terminal_backend: modal
+  modal:
+    app: hermes-runners
+    cpu: 2
+    memory_mb: 4096
+```
+
+```bash
+# Control plane on a small VM (cheap, always on)
+hermes setup --portal
+hermes gateway start --platform telegram
+# Heavy commands the agent runs are executed in Modal, which hibernates when idle.
+```
+
+**Tests.**
+
+```bash
+hermes doctor                  # confirms modal backend reachable
+# Ask the agent to run a heavy job; observe Modal spins up then hibernates.
+```
+
+**Result.** An always-reachable agent with pay-per-use heavy compute that costs ~nothing between tasks.
+
+**Future improvements.** Promote to managed K8s if scale grows; add cost observability per task (Part XIII); switch to Daytona if its workspace model fits better.
+
+### 21.9 Source code
+
+```bash
+# Daytona alternative
+# tools.terminal_backend: daytona  (workspace-based, also hibernating)
+hermes config set tools.terminal_backend daytona
+hermes doctor
+```
+
+### 21.10 Configuration
+
+```yaml
+# AWS/GCP/Azure secret + IAM pattern (conceptual)
+provider: nous-portal           # LLM provider independent of hosting cloud
+tools:
+  terminal_backend: modal       # or daytona | docker | ssh | local
+secrets:
+  source: cloud                 # pull provider keys from the cloud secret manager
+```
+
+### 21.11 Real-world use cases
+
+- **Bursty heavy work** with hibernating serverless execution (cheapest idle).
+- **Resilient platform service** on managed K8s (EKS/GKE/AKS).
+- **Simple always-on** on a single cloud VM.
+- **Cloud-secret-managed keys** with least-privilege IAM.
+
+### 21.12 Exercises
+
+1. Compare VM, managed-K8s, and serverless execution for a bursty workload.
+2. Explain hibernation and its cost impact.
+3. Why is the LLM provider independent of the hosting cloud?
+
+### 21.13 Challenges
+
+- **Challenge 1.** Run a small control plane with a Modal or Daytona execution backend; trigger a heavy job and observe hibernation.
+- **Challenge 2.** Source provider keys from a cloud secret manager instead of a local file.
+
+### 21.14 Checklist
+
+- [ ] Deployment shape chosen for the workload.
+- [ ] Serverless backend configured (if bursty).
+- [ ] Keys in a cloud secret manager.
+- [ ] Least-privilege IAM.
+- [ ] `hermes doctor` clean.
+
+### 21.15 Best practices
+
+- **Match shape to workload:** VM (simple), K8s (scale), serverless (bursty/cheap).
+- **Use hibernation** to slash idle cost.
+- **Cloud secrets + least-privilege IAM.**
+- **Keep provider choice decoupled** from hosting.
+
+### 21.16 Anti-patterns
+
+- A large always-on VM for a rarely-busy agent (idle waste).
+- Keys in plaintext on cloud disks.
+- Over-engineering with K8s for a single small workload.
+- Coupling LLM provider to the hosting cloud unnecessarily.
+
+### 21.17 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Serverless backend unreachable | Creds/app misconfig | `hermes doctor`; verify Modal/Daytona setup |
+| High idle cost | Always-on heavy compute | Move to a hibernating backend |
+| Key access denied | IAM/secret misconfig | Fix IAM role / secret reference |
+| Slow first task | Cold start | Expected with hibernation; keep control plane warm |
+
+### 21.18 Official references
+
+- Terminal Backends (Modal/Daytona): https://hermes-agent.nousresearch.com/docs/user-guide/features/terminal-backends
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Installation: https://hermes-agent.nousresearch.com/docs/getting-started/installation
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+> **End of Part III.** Hermes now runs everywhere it should: locally and on Linux, Windows, and macOS; containerized with Docker; orchestrated on Kubernetes; deployed to a hardened VPS; and on the major clouds with hibernating serverless execution. The recurring lesson — *install once, configure per environment* — means the agent definition you built in Part II travels unchanged across all of them.
+
+## Part IV – Models and Providers
+
+Part IV is where Hermes stops being abstract and starts talking to real intelligence. The `AIAgent` core is **provider-agnostic**: it speaks three API dialects (`chat_completions`, `codex_responses`, `anthropic_messages`) and resolves any `(provider, model)` pair into a concrete `(api_mode, api_key, base_url)` triple. Around this resolver sit **18+ providers** — from the zero-config Nous Portal to fully local inference on your own GPU. This part teaches you to choose, configure, route, and fall back across all of them, with cost and sovereignty under your control.
+
+> **Mental model for the whole part.** Every chapter answers the same four questions: *how do I authenticate, which `api_mode` does it use, what does `config.yaml` look like, and when should I pick it over the alternatives?* Keep that grid in mind and the 18+ providers collapse into a handful of patterns.
+
+---
+
+## Chapter 22 — Nous Portal
+
+### 22.1 Introduction
+
+**Nous Portal** is the front door to Hermes Agent and the path the official documentation recommends for a first run. A single OAuth flow — `hermes setup --portal` — provisions two things at once: a **frontier model** to drive the agent and the **Tool Gateway**, a hosted bundle of four capabilities (web search, image generation, text-to-speech, and a remote browser). No API keys to copy, no base URLs to remember, no separate billing relationships with five vendors. For most teams, this is the difference between "running in two minutes" and "running after an afternoon of credential plumbing."
+
+### 22.2 Chapter objectives
+
+By the end you will be able to: (1) authenticate to Nous Portal via OAuth and understand what the flow grants; (2) explain the Tool Gateway and its four tools; (3) read the `provider: nous-portal` configuration; (4) decide when the Portal is the right choice versus a direct provider; (5) troubleshoot OAuth and gateway issues.
+
+### 22.3 Business context
+
+The hidden cost of multi-provider AI is **integration friction**: every provider has its own console, key rotation policy, rate limits, and invoice. For a pilot or a small team, that overhead dwarfs the inference cost itself. Nous Portal collapses it into one relationship — one login, one bill, one set of credentials managed by Nous. For an enterprise, the Portal is the fastest way to validate Hermes before committing to a sovereign, self-hosted provider topology; for an individual developer, it is simply the least-effort path to a working agent with web access and image generation included.
+
+### 22.4 Theoretical foundations
+
+The Portal is, architecturally, **a provider plus a tool backend behind one OAuth identity**. The model side resolves to `api_mode: chat_completions` against a Nous-hosted `base_url`; the OAuth token is stored in the credential store and refreshed automatically. The Tool Gateway is **server-side tool execution**: when the model emits a `web_search` or `image_generation` tool call, Hermes forwards it to the gateway endpoint rather than running a local backend. This means the four gateway tools work identically on a $5 VPS with no Chrome installed and on a workstation — the heavy lifting (a real browser, an image model) lives on Nous infrastructure.
+
+> **Java parallel.** Think of Nous Portal as a **BaaS (Backend-as-a-Service)** facade: one SDK key unlocks auth, a managed database, and managed functions. You trade some control for a dramatic drop in setup code.
+
+### 22.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph local["Hermes (your machine / VPS)"]
+        agent[AIAgent loop]
+        cred[Credential store<br/>OAuth token]
+        res[Provider resolution<br/>nous-portal: chat_completions]
+    end
+    agent --> res --> cred
+    cred -->|Bearer token| portal{{Nous Portal}}
+    portal --> model[Frontier model]
+    portal --> gw[Tool Gateway]
+    gw --> ws[Web search]
+    gw --> img[Image generation]
+    gw --> tts[Text-to-speech]
+    gw --> br[Remote browser]
+```
+
+### 22.6 Internal flows
+
+The OAuth handshake runs once; thereafter every request carries a refreshed bearer token. Gateway tool calls are transparent to the agentic loop — the loop sees an ordinary tool result.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant H as hermes setup --portal
+    participant B as Browser
+    participant P as Nous Portal (OAuth)
+    participant S as Credential store
+    U->>H: run setup --portal
+    H->>B: open authorization URL
+    B->>P: login + consent
+    P-->>B: redirect with auth code
+    B-->>H: deliver code (local callback)
+    H->>P: exchange code for tokens
+    P-->>H: access + refresh token
+    H->>S: persist tokens
+    H-->>U: "Portal connected: model + gateway ready"
+```
+
+### 22.7 Complete example
+
+**Scenario.** A solo developer wants a research agent on a cheap VPS that can search the web and generate a header image for a daily report — without installing a browser or signing up for five APIs.
+
+**Problem.** Direct providers need keys; web search and image generation need separate services and local backends the VPS can't run.
+
+**Solution.** Connect Nous Portal: one OAuth gives the model plus the four gateway tools, all executed server-side.
+
+**Architecture.** CLI → AIAgent → Nous Portal (model + Tool Gateway). No local browser, no extra keys.
+
+**Implementation.**
+
+```bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+hermes setup --portal          # opens browser, completes OAuth
+hermes                         # start chatting; web search + image gen available
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  web_search: { enabled: true, backend: gateway }
+  image_generation: { enabled: true, backend: gateway }
+  tts: { enabled: true, backend: gateway }
+  browser: { enabled: true, backend: gateway }
+```
+
+**Tests.**
+
+```bash
+hermes doctor                  # should show: provider=nous-portal, gateway=connected
+hermes run "Search the web for today's top AI paper and summarize it."
+hermes run "Generate a 1024x1024 banner image about distributed training."
+```
+
+**Result.** A fully capable agent with web access and image generation on a server that has neither a GPU nor a browser installed.
+
+**Future improvements.** Add a direct provider as a **fallback** (Ch 23–26) so the agent keeps working if the Portal is unreachable; later migrate to a sovereign provider for compliance (Part XII).
+
+### 22.8 Source code
+
+```python
+# Conceptual: how the resolver maps nous-portal to an api_mode + token.
+def resolve_provider(provider: str, model: str, store) -> "ResolvedProvider":
+    if provider == "nous-portal":
+        token = store.get_oauth_token("nous-portal")  # auto-refreshed
+        return ResolvedProvider(
+            api_mode="chat_completions",
+            base_url="https://portal.nousresearch.com/v1",
+            auth=BearerToken(token),
+            gateway_tools={"web_search", "image_generation", "tts", "browser"},
+        )
+    ...
+```
+
+### 22.9 Configuration
+
+| Key | Value | Notes |
+|-----|-------|-------|
+| `provider` | `nous-portal` | Selects the Portal resolver |
+| `model` | e.g. `hermes-4-70b` | Catalog model served by the Portal |
+| `tools.*.backend` | `gateway` | Routes the tool to the hosted gateway |
+| credential | OAuth token | Stored by `hermes setup --portal`, not in `config.yaml` |
+
+### 22.10 Real-world use cases
+
+A daily-briefing bot that searches and illustrates reports; a non-technical user on the desktop app who wants web-aware answers with zero setup; a pilot project that must show value before infrastructure investment is approved.
+
+### 22.11 Exercises
+
+1. Name the four Tool Gateway capabilities and explain why server-side execution matters for a VPS.
+2. Describe what `hermes setup --portal` provisions in a single sentence.
+3. Where is the OAuth token stored, and why not in `config.yaml`?
+
+### 22.12 Challenges
+
+- **Challenge 1.** Connect the Portal, then add a direct OpenRouter fallback and prove the agent survives a simulated Portal outage.
+- **Challenge 2.** Build a one-command onboarding script for new teammates that runs `setup --portal` and verifies the gateway.
+
+### 22.13 Checklist
+
+- [ ] I authenticated via `hermes setup --portal`.
+- [ ] `hermes doctor` reports the gateway as connected.
+- [ ] I can run web search and image generation without local backends.
+- [ ] I understand the Portal resolves to `chat_completions`.
+
+### 22.14 Best practices
+
+- Start every new project with the Portal, then specialize providers as needs harden.
+- Keep at least one **fallback** provider so a Portal outage doesn't stop the agent.
+- Treat the OAuth token as a secret managed by Hermes — never paste it into config files.
+
+### 22.15 Anti-patterns
+
+- Using the Portal in a compliance-restricted environment that forbids third-party data egress.
+- Disabling the gateway tools and then wondering why web search fails on a browserless VPS.
+- Hardcoding a Portal token anywhere — it rotates and will break.
+
+### 22.16 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| OAuth window never returns | Local callback port blocked | Allow the callback port or use `--device-code` flow |
+| `gateway=disconnected` | Token expired / network egress blocked | Re-run `setup --portal`; check outbound HTTPS |
+| Web search returns nothing | Gateway tool disabled in config | Set `tools.web_search.backend: gateway` |
+| Image generation fails | Model/plan lacks image capability | Verify plan; switch model in catalog |
+
+### 22.17 Official references
+
+- Nous Portal: https://hermes-agent.nousresearch.com/docs/integrations/nous-portal
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Tool Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 23 — OpenAI
+
+### 23.1 Introduction
+
+OpenAI is the canonical **direct provider** and the one most teams already have credentials for. In Hermes it is interesting beyond "just another model": OpenAI exposes **two distinct API modes** that the resolver knows about — the classic `chat_completions` and the newer `codex_responses` (the Responses API used by agentic/coding workloads). Choosing between them affects streaming, tool-call shape, and how reasoning models behave. This chapter shows how to wire OpenAI in, pick the right `api_mode`, and manage the key safely.
+
+### 23.2 Chapter objectives
+
+(1) Configure OpenAI with an environment-referenced key; (2) distinguish `chat_completions` from `codex_responses` and know when each applies; (3) select models from the catalog; (4) set OpenAI as a primary or fallback provider; (5) troubleshoot auth and rate-limit errors.
+
+### 23.3 Business context
+
+Many organizations have an existing OpenAI contract, an enterprise agreement, or Azure OpenAI deployment. Reusing that relationship in Hermes means no new procurement, familiar billing, and known data-handling terms. The flip side — vendor concentration and per-token cost at scale — is exactly what Hermes's provider routing and fallbacks are designed to hedge.
+
+### 23.4 Theoretical foundations
+
+OpenAI maps to **two** of Hermes's three API modes. `chat_completions` is the widely compatible `/v1/chat/completions` contract. `codex_responses` targets the **Responses API**, which gives first-class handling of tool calls and reasoning state for agentic loops. The resolver picks the mode based on the configured provider entry; for reasoning models the Responses path typically yields cleaner multi-step tool orchestration. The API key is referenced **by environment variable name** (`api_key_env`), never stored inline.
+
+> **Java parallel.** `api_mode` is like choosing a `MessageConverter` for an HTTP client: same transport, different wire contract. Picking the wrong one yields valid-but-suboptimal serialization of tool calls.
+
+### 23.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent loop] --> res[Provider resolution]
+    res -->|provider: openai| pick{api_mode?}
+    pick -->|standard| cc[chat_completions]
+    pick -->|agentic/reasoning| cr[codex_responses]
+    cc --> oai[(OpenAI API)]
+    cr --> oai
+    res --> key[api_key_env: OPENAI_API_KEY]
+```
+
+### 23.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant E as Env / Secret store
+    participant O as OpenAI API
+    A->>R: resolve(openai, gpt-5.1)
+    R->>E: read $OPENAI_API_KEY
+    E-->>R: key
+    R-->>A: (codex_responses, key, base_url)
+    A->>O: POST /v1/responses (messages + tools)
+    O-->>A: tool_call or final text
+    A->>O: continue loop with tool result
+    O-->>A: final response
+```
+
+### 23.7 Complete example
+
+**Scenario.** A team with an existing OpenAI enterprise key wants Hermes to drive an agentic coding workflow using a reasoning model.
+
+**Problem.** The default `chat_completions` mode handles multi-step tool calls less cleanly than the Responses API for reasoning models.
+
+**Solution.** Configure the OpenAI provider with `api_mode: codex_responses` and a reasoning-capable model.
+
+**Architecture.** AIAgent → resolver → `codex_responses` → OpenAI Responses API.
+
+**Implementation.**
+
+```bash
+export OPENAI_API_KEY="sk-..."          # set in the environment / secret manager
+hermes config set provider openai
+hermes config set model gpt-5.1
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai
+model: gpt-5.1
+api_mode: codex_responses        # use the Responses API for agentic/reasoning work
+api_key_env: OPENAI_API_KEY
+base_url: https://api.openai.com/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Refactor utils.py to remove duplication and add type hints, then run the tests."
+```
+
+**Result.** Cleaner multi-step tool orchestration for coding tasks, reusing the existing OpenAI contract.
+
+**Future improvements.** Add OpenRouter as a fallback for outages and to access non-OpenAI models without new keys (Ch 26).
+
+### 23.8 Source code
+
+```python
+PROVIDER_TABLE = {
+    "openai": {
+        "default_api_mode": "chat_completions",
+        "responses_api_mode": "codex_responses",
+        "base_url": "https://api.openai.com/v1",
+        "api_key_env": "OPENAI_API_KEY",
+    },
+}
+
+def resolve_openai(model, cfg, env):
+    mode = cfg.get("api_mode") or PROVIDER_TABLE["openai"]["default_api_mode"]
+    key = env[cfg.get("api_key_env", "OPENAI_API_KEY")]
+    return ResolvedProvider(api_mode=mode, base_url=cfg["base_url"], auth=BearerToken(key))
+```
+
+### 23.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openai` | |
+| `model` | `gpt-5.1` | From the model catalog |
+| `api_mode` | `chat_completions` or `codex_responses` | Responses API for agentic/reasoning |
+| `api_key_env` | `OPENAI_API_KEY` | Env var name, not the key itself |
+| `base_url` | `https://api.openai.com/v1` | Override for Azure / proxies |
+
+### 23.10 Real-world use cases
+
+Coding agents on reasoning models via the Responses API; teams reusing an Azure OpenAI deployment by overriding `base_url`; an auxiliary OpenAI model for vision/summarization side tasks.
+
+### 23.11 Exercises
+
+1. When would you choose `codex_responses` over `chat_completions`?
+2. Show how to point Hermes at Azure OpenAI by changing only `base_url` and `api_key_env`.
+3. Why is the key referenced by env var name rather than stored inline?
+
+### 23.12 Challenges
+
+- **Challenge 1.** Configure OpenAI as a fallback behind Nous Portal and verify automatic failover.
+- **Challenge 2.** Run the same coding task in both API modes and compare tool-call cleanliness.
+
+### 23.13 Checklist
+
+- [ ] Key is set via environment, referenced by `api_key_env`.
+- [ ] I chose the correct `api_mode` for my workload.
+- [ ] `hermes doctor` confirms the provider resolves.
+
+### 23.14 Best practices
+
+- Use `codex_responses` for agentic/coding and reasoning models; `chat_completions` for simple chat.
+- Keep keys in a secret manager and inject as env vars; never commit them.
+- Use an OpenAI model as the **auxiliary** model for vision/summarization if your primary is local.
+
+### 23.15 Anti-patterns
+
+- Pasting `sk-...` directly into `config.yaml`.
+- Forcing `chat_completions` on reasoning models and getting messy tool loops.
+- Single-provider deployments with no fallback at production scale.
+
+### 23.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `401 Unauthorized` | Key missing/invalid | Confirm `$OPENAI_API_KEY` is exported in the agent's environment |
+| `429 Rate limit` | Quota exceeded | Add fallback provider; lower concurrency; request quota |
+| Tool calls malformed | Wrong `api_mode` | Switch reasoning models to `codex_responses` |
+| Works locally, fails on VPS | Env var not propagated | Set the var in the service unit / container env |
+
+### 23.17 Official references
+
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- OpenAI integration: https://hermes-agent.nousresearch.com/docs/integrations/openai
+- Architecture (provider resolution): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 24 — Anthropic
+
+### 24.1 Introduction
+
+Anthropic is the provider behind Hermes's third API mode, `anthropic_messages` — the Messages API contract that differs meaningfully from OpenAI's. Beyond model choice, Anthropic unlocks one feature with direct cost impact: **prompt caching**, which Hermes's prompt-tier design (stable → context → volatile) is built to exploit. Cache the stable prefix once, pay a fraction on every subsequent turn. For long-running agents that resend a large system prompt thousands of times, this is not a micro-optimization; it is a line item.
+
+### 24.2 Chapter objectives
+
+(1) Configure Anthropic with `anthropic_messages`; (2) understand prompt caching and how Hermes's prompt tiers align with it; (3) select Claude models; (4) use Anthropic as primary or auxiliary; (5) troubleshoot Messages-API-specific issues.
+
+### 24.3 Business context
+
+Anthropic models are favored for careful tool use, long-context reasoning, and safety-sensitive workloads. The commercial hook for agent operators is prompt caching: an agent whose system prompt, Skills, and context files form a large stable prefix can cut input-token cost dramatically once that prefix is cached. At enterprise volume this changes the economics of always-on agents.
+
+### 24.4 Theoretical foundations
+
+`anthropic_messages` is a distinct wire contract: system content is a top-level field, tool definitions and tool results have their own shapes, and cache breakpoints are explicit. Hermes structures the prompt into **three tiers**: *stable* (system prompt, Skills metadata, context files — rarely changes), *context* (retrieved memory, summaries — changes slowly), and *volatile* (the live turn). Caching is applied to the stable (and where possible context) tiers so repeated turns reuse the cached prefix.
+
+> **Java parallel.** Prompt caching is a server-side **second-level cache** (think Hibernate's L2) for the immutable prefix of every request: compute the expensive part once, read it cheaply thereafter.
+
+### 24.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent loop] --> pb[prompt_builder]
+    pb --> stable[Stable tier<br/>system + skills + context files]
+    pb --> ctx[Context tier<br/>retrieved memory + summaries]
+    pb --> vol[Volatile tier<br/>current turn]
+    stable --> cache[[Anthropic prompt cache]]
+    ctx --> cache
+    cache --> api[(Anthropic Messages API)]
+    vol --> api
+```
+
+### 24.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant AN as Anthropic Messages API
+    A->>PB: build prompt (3 tiers)
+    PB->>AN: messages + cache_control on stable prefix
+    Note over AN: first call writes cache
+    AN-->>A: response
+    A->>PB: next turn (same stable prefix)
+    PB->>AN: messages + cache_control (prefix unchanged)
+    Note over AN: cache HIT - reduced input cost
+    AN-->>A: response
+```
+
+### 24.7 Complete example
+
+**Scenario.** An always-on support agent resends a 12k-token system prompt (instructions + Skills + context files) on every turn across thousands of daily turns.
+
+**Problem.** Re-billing the full prefix on every turn is the dominant cost.
+
+**Solution.** Use Anthropic with `anthropic_messages` and enable prompt caching on the stable tier.
+
+**Architecture.** AIAgent → prompt_builder (tiers) → cache_control on stable prefix → Messages API.
+
+**Implementation.**
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+hermes config set provider anthropic
+hermes config set model claude-sonnet-4-5
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: anthropic
+model: claude-sonnet-4-5
+api_mode: anthropic_messages
+api_key_env: ANTHROPIC_API_KEY
+prompt_caching:
+  enabled: true        # cache the stable prefix (system + skills + context files)
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Summarize the open tickets."          # first call writes cache
+hermes run "Now triage them by severity."         # subsequent call hits cache
+```
+
+**Result.** Input-token cost on the stable prefix drops sharply after the first call; latency improves on cached turns.
+
+**Future improvements.** Combine with `context_compressor.py` to keep the middle (context) tier small, maximizing the cacheable, stable portion.
+
+### 24.8 Source code
+
+```python
+def build_anthropic_payload(tiers, model, caching_enabled):
+    system = [{"type": "text", "text": tiers.stable}]
+    if caching_enabled:
+        system[-1]["cache_control"] = {"type": "ephemeral"}  # cache the stable prefix
+    return {
+        "model": model,
+        "system": system,
+        "messages": tiers.context_and_volatile_as_messages(),
+        "tools": tiers.tool_definitions(),
+    }
+```
+
+### 24.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `anthropic` | |
+| `model` | `claude-sonnet-4-5` | |
+| `api_mode` | `anthropic_messages` | Required for Anthropic |
+| `api_key_env` | `ANTHROPIC_API_KEY` | |
+| `prompt_caching.enabled` | `true` | Cache stable prefix |
+
+### 24.10 Real-world use cases
+
+Always-on assistants with large stable prompts; long-context document agents; safety-sensitive workflows; Anthropic as an auxiliary model for careful summarization.
+
+### 24.11 Exercises
+
+1. Map Hermes's three prompt tiers to what should and shouldn't be cached.
+2. Explain why a large *stable* tier plus a small *context* tier maximizes cache savings.
+3. Why does Anthropic require a different `api_mode` than OpenAI?
+
+### 24.12 Challenges
+
+- **Challenge 1.** Measure input-token cost with and without `prompt_caching.enabled` over 50 turns.
+- **Challenge 2.** Restructure a bloated system prompt to move volatile content out of the stable tier.
+
+### 24.13 Checklist
+
+- [ ] `api_mode: anthropic_messages` is set.
+- [ ] `prompt_caching.enabled: true` for long-running agents.
+- [ ] Stable tier holds only rarely-changing content.
+
+### 24.14 Best practices
+
+- Keep the stable tier truly stable; any churn invalidates the cache.
+- Pair caching with context compression to keep the middle tier lean.
+- Use Claude as the auxiliary model when careful, conservative summarization matters.
+
+### 24.15 Anti-patterns
+
+- Putting timestamps or per-turn data in the stable tier (defeats caching).
+- Enabling caching but rebuilding the system prompt every turn.
+- Using `chat_completions` mode against Anthropic endpoints.
+
+### 24.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No cost reduction | Stable prefix changes each turn | Move volatile data out of the stable tier |
+| `400 invalid request` | Wrong `api_mode` | Set `anthropic_messages` |
+| Cache never hits | Caching disabled or prefix too small | Enable caching; ensure prefix exceeds minimum cacheable size |
+| `401` | Bad key | Verify `$ANTHROPIC_API_KEY` |
+
+### 24.17 Official references
+
+- Anthropic integration: https://hermes-agent.nousresearch.com/docs/integrations/anthropic
+- Prompt caching & tiers: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 25 — Gemini
+
+### 25.1 Introduction
+
+Google's **Gemini** family joins Hermes through the provider resolver, giving access to long-context, multimodal models. Gemini is exposed via an OpenAI-compatible surface, so in Hermes it resolves to `chat_completions` against Google's `base_url`. This chapter covers configuration, the practical strengths of Gemini (very long context windows, native multimodality) that make it a strong **auxiliary** model for vision and summarization, and the integration's quirks.
+
+### 25.2 Chapter objectives
+
+(1) Configure the Google/Gemini provider; (2) understand its OpenAI-compatible `chat_completions` resolution; (3) leverage Gemini's long context and multimodality; (4) set it as auxiliary or primary; (5) troubleshoot Google-specific auth.
+
+### 25.3 Business context
+
+Organizations on Google Cloud often prefer to keep AI spend and data within Google's ecosystem for procurement, residency, and consolidated billing. Gemini's very large context windows make it attractive for whole-repository or whole-document reasoning, and its native vision makes it a cost-effective auxiliary model for image-heavy workloads.
+
+### 25.4 Theoretical foundations
+
+Gemini's OpenAI-compatibility layer means Hermes treats it like any `chat_completions` provider: same message shape, same tool-call contract, different `base_url` and key. The differentiators are at the model level — context length and multimodality — not the wire protocol. Because Hermes supports an **auxiliary model** for side tasks (vision, summarization) independent of the primary, Gemini fits naturally as that auxiliary even when the primary is local or another vendor.
+
+> **Java parallel.** Gemini-via-OpenAI-compat is like talking to a different database through the same JDBC driver: the SQL (protocol) is the same, only the connection string changes.
+
+### 25.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver]
+    res -->|provider: google| cc[chat_completions]
+    cc --> g[(Gemini OpenAI-compatible endpoint)]
+    res --> key[api_key_env: GEMINI_API_KEY]
+    agent -.auxiliary model.-> g
+```
+
+### 25.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant G as Gemini endpoint
+    A->>R: resolve(google, gemini-2.5-pro)
+    R-->>A: (chat_completions, GEMINI_API_KEY, base_url)
+    A->>G: POST /chat/completions (text + image parts)
+    G-->>A: response (long-context aware)
+```
+
+### 25.7 Complete example
+
+**Scenario.** A local-first team runs a Hermes-4 model on their own GPU for privacy but wants strong vision and long-document summarization without buying GPUs for it.
+
+**Problem.** Their local model is text-only and context-limited; vision/long-doc tasks need a different model.
+
+**Solution.** Keep the local model as primary and configure Gemini as the **auxiliary** model for vision and summarization.
+
+**Architecture.** Primary = local; Auxiliary = Gemini (`chat_completions`).
+
+**Implementation.**
+
+```bash
+export GEMINI_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: ollama            # primary stays local (Ch 29)
+model: hermes-4-14b
+auxiliary_model:
+  provider: google
+  model: gemini-2.5-pro
+  api_mode: chat_completions
+  api_key_env: GEMINI_API_KEY
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Describe this screenshot and extract the error." --attach error.png
+hermes run "Summarize this 200-page PDF." --attach spec.pdf
+```
+
+**Result.** Private local reasoning for everyday work, with Gemini handling vision and long-document side tasks.
+
+**Future improvements.** Add an OpenRouter fallback for the auxiliary slot so vision tasks survive a Gemini outage.
+
+### 25.8 Source code
+
+```python
+def resolve_google(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url",
+            "https://generativelanguage.googleapis.com/v1beta/openai"),
+        auth=BearerToken(env[cfg.get("api_key_env", "GEMINI_API_KEY")]),
+    )
+```
+
+### 25.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `google` | |
+| `model` | `gemini-2.5-pro` | |
+| `api_mode` | `chat_completions` | OpenAI-compatible |
+| `api_key_env` | `GEMINI_API_KEY` | |
+| `base_url` | Google OpenAI-compat URL | |
+
+### 25.10 Real-world use cases
+
+Gemini as the vision/summarization auxiliary; whole-repository reasoning using its long context; Google-Cloud-aligned deployments consolidating AI spend.
+
+### 25.11 Exercises
+
+1. Why does Gemini resolve to `chat_completions` in Hermes?
+2. Configure Gemini as an auxiliary model behind a local primary.
+3. Name two model-level strengths that make Gemini a good auxiliary.
+
+### 25.12 Challenges
+
+- **Challenge 1.** Route only vision tasks to Gemini and keep text tasks local; verify the split.
+- **Challenge 2.** Compare summarization quality and cost between Gemini and a local model on the same document.
+
+### 25.13 Checklist
+
+- [ ] Gemini resolves via `chat_completions`.
+- [ ] `base_url` points at the OpenAI-compat endpoint.
+- [ ] Auxiliary-model slot is configured if used for side tasks.
+
+### 25.14 Best practices
+
+- Use Gemini for what it's best at — long context and vision — rather than as a generic default.
+- Keep the auxiliary model independent so you can swap it without touching the primary.
+- Consolidate billing under Google if your org is already Google-Cloud-aligned.
+
+### 25.15 Anti-patterns
+
+- Using a non-compatible base URL and hitting protocol errors.
+- Sending tiny prompts to a long-context model and overpaying for nothing.
+- Mixing up the Gemini key with a generic Google Cloud key.
+
+### 25.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `404`/protocol error | Wrong `base_url` | Use the OpenAI-compat endpoint path |
+| `403` | Key lacks API access | Enable the Generative Language API; check key scope |
+| Vision ignored | Auxiliary not wired | Ensure `auxiliary_model` block is set |
+| Truncated output | Output token cap | Raise max output tokens |
+
+### 25.17 Official references
+
+- Google/Gemini integration: https://hermes-agent.nousresearch.com/docs/integrations/google
+- Auxiliary model: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 26 — OpenRouter
+
+### 26.1 Introduction
+
+**OpenRouter** is a meta-provider: a single API and key that fronts hundreds of models from dozens of vendors. In Hermes it is the pragmatic answer to "I want access to everything without managing ten keys." It resolves to `chat_completions`, exposes a vast catalog (surfaced through the model catalog and models.dev integration), and is the most convenient **fallback** target because one key reaches many backends.
+
+### 26.2 Chapter objectives
+
+(1) Configure OpenRouter with one key; (2) browse and select from its large catalog; (3) use it as a primary or, more commonly, a fallback; (4) understand routing and cost implications; (5) troubleshoot model-availability errors.
+
+### 26.3 Business context
+
+OpenRouter trades a small markup for enormous flexibility: try any model, switch vendors without procurement, and keep a single invoice. For teams that experiment frequently or want resilience against any one vendor's outage, it is the lowest-friction way to have many models behind one credential — and an ideal fallback so the agent never goes dark.
+
+### 26.4 Theoretical foundations
+
+OpenRouter speaks the OpenAI `chat_completions` contract, so Hermes resolves it uniformly. The richness is in the **catalog**: model identifiers are namespaced (`vendor/model`), and Hermes's model catalog plus models.dev integration surface metadata (context length, pricing, modality). Because the protocol is uniform, OpenRouter slots cleanly into Hermes's **fallback providers** and **provider routing** features — list it after your primary and the loop fails over automatically on error.
+
+> **Java parallel.** OpenRouter is a **service registry + load balancer** for models: one endpoint, many backends, selected by a logical name.
+
+### 26.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent] --> route[Provider routing / fallback]
+    route -->|primary| prim[(Primary provider)]
+    route -->|on error| orouter[(OpenRouter chat_completions)]
+    orouter --> m1[vendor-a/model]
+    orouter --> m2[vendor-b/model]
+    orouter --> m3[vendor-c/model]
+```
+
+### 26.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant RT as Routing/Fallback
+    participant P as Primary provider
+    participant OR as OpenRouter
+    A->>RT: request completion
+    RT->>P: try primary
+    P--xRT: error / rate limit
+    RT->>OR: fallback (same chat_completions call)
+    OR-->>RT: completion (vendor/model)
+    RT-->>A: result
+```
+
+### 26.7 Complete example
+
+**Scenario.** A team wants resilience: if their primary OpenAI key is rate-limited, the agent should keep working on an equivalent model without manual intervention.
+
+**Problem.** A single provider means a single point of failure for the agent.
+
+**Solution.** Configure OpenRouter as a fallback provider; one key reaches an equivalent model.
+
+**Architecture.** Primary = OpenAI; Fallback = OpenRouter (`chat_completions`).
+
+**Implementation.**
+
+```bash
+export OPENROUTER_API_KEY="sk-or-..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai
+model: gpt-5.1
+api_key_env: OPENAI_API_KEY
+fallback_providers:
+  - provider: openrouter
+    model: anthropic/claude-sonnet-4-5
+    api_mode: chat_completions
+    api_key_env: OPENROUTER_API_KEY
+    base_url: https://openrouter.ai/api/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Generate a release summary."           # primary
+# Simulate a primary outage (e.g., bad key) and confirm fallback engages
+hermes models list --provider openrouter | head
+```
+
+**Result.** The agent transparently fails over to OpenRouter when the primary errors, with no human in the loop.
+
+**Future improvements.** Add a **credential pool** so even the fallback rotates across multiple keys under heavy load (Part XII).
+
+### 26.8 Source code
+
+```python
+def call_with_fallback(request, primary, fallbacks):
+    try:
+        return primary.complete(request)
+    except (RateLimitError, ProviderError):
+        for fb in fallbacks:           # ordered fallback_providers
+            try:
+                return fb.complete(request)
+            except ProviderError:
+                continue
+        raise
+```
+
+### 26.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openrouter` | |
+| `model` | `vendor/model` | Namespaced identifier |
+| `api_mode` | `chat_completions` | |
+| `api_key_env` | `OPENROUTER_API_KEY` | |
+| `base_url` | `https://openrouter.ai/api/v1` | |
+| `fallback_providers` | list | Ordered failover targets |
+
+### 26.10 Real-world use cases
+
+A universal fallback so the agent never goes dark; rapid model experimentation without new keys; cost arbitrage by routing to cheaper equivalents.
+
+### 26.11 Exercises
+
+1. Why is OpenRouter an ideal fallback target?
+2. Configure OpenRouter as a fallback behind a local primary.
+3. How are OpenRouter model identifiers namespaced?
+
+### 26.12 Challenges
+
+- **Challenge 1.** Build a three-tier fallback chain (primary → OpenRouter → Nous Portal) and test each hop.
+- **Challenge 2.** Use the model catalog to pick the cheapest model meeting a context-length requirement.
+
+### 26.13 Checklist
+
+- [ ] OpenRouter configured with one key.
+- [ ] Listed in `fallback_providers` for resilience.
+- [ ] Model identifiers use the `vendor/model` form.
+
+### 26.14 Best practices
+
+- Make OpenRouter your default fallback for resilience.
+- Use the catalog/models.dev metadata to choose by context and price, not habit.
+- Pin specific model versions for reproducibility in production.
+
+### 26.15 Anti-patterns
+
+- Relying on OpenRouter as the only provider with no awareness of per-hop markup at scale.
+- Using floating model aliases in production and getting silent behavior drift.
+- Ignoring rate limits on the fallback (it can be throttled too).
+
+### 26.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Model not found` | Wrong namespaced id | Check exact `vendor/model` in the catalog |
+| Fallback never triggers | Misconfigured `fallback_providers` | Verify list order and keys |
+| Unexpected cost | Markup + premium model | Route to cheaper equivalents; monitor spend (Part XIII) |
+| `402`/quota | OpenRouter credit exhausted | Top up; add another fallback |
+
+### 26.17 Official references
+
+- OpenRouter integration: https://hermes-agent.nousresearch.com/docs/integrations/openrouter
+- Fallback providers & routing: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Model catalog / models.dev: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 27 — Hugging Face
+
+### 27.1 Introduction
+
+**Hugging Face** brings the open-model ecosystem into Hermes. Through its Inference Providers / serverless endpoints (an OpenAI-compatible surface), you can drive Hermes with thousands of community and frontier open-weight models without standing up your own GPU. In Hermes it resolves to `chat_completions` against a Hugging Face `base_url`, authenticated with a HF token. This chapter shows how to pick a served model, configure the token, and treat Hugging Face as a flexible, open-weights-first provider.
+
+### 27.2 Chapter objectives
+
+(1) Configure Hugging Face with a token; (2) select a served model from the Hub; (3) understand the OpenAI-compatible resolution; (4) decide between HF-hosted inference and self-hosting (Ch 28); (5) troubleshoot model-not-served and rate issues.
+
+### 27.3 Business context
+
+Hugging Face is the center of gravity for open-weight models. For teams that want open models for licensing, transparency, or fine-tuning reasons — but not the burden of running GPUs — HF-hosted inference is the bridge. It also de-risks experimentation: try an open model via HF first, then graduate to self-hosting (Ch 28) once the choice is settled and volume justifies owned hardware.
+
+### 27.4 Theoretical foundations
+
+Hermes treats Hugging Face as a `chat_completions` provider with an HF-specific `base_url` and a token in `HF_TOKEN`. The catalog dimension matters: not every model on the Hub is served via the inference API, so model selection is constrained to available endpoints. The same uniformity that lets Gemini and OpenRouter resolve to `chat_completions` applies here — the protocol is shared; only authentication, base URL, and model availability differ.
+
+> **Java parallel.** Hugging Face Inference is like a **Maven Central for models**: a vast registry where some artifacts are pre-built and instantly consumable (served endpoints) and others you must build/host yourself.
+
+### 27.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver]
+    res -->|provider: huggingface| cc[chat_completions]
+    cc --> hf[(HF Inference endpoint<br/>OpenAI-compatible)]
+    res --> key[api_key_env: HF_TOKEN]
+    hf --> hub[(Hugging Face Hub<br/>open-weight models)]
+```
+
+### 27.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant HF as HF Inference
+    A->>R: resolve(huggingface, model-id)
+    R-->>A: (chat_completions, HF_TOKEN, base_url)
+    A->>HF: POST /chat/completions
+    alt model served
+        HF-->>A: completion
+    else not served / cold
+        HF-->>A: 503 (loading) or 404
+    end
+```
+
+### 27.7 Complete example
+
+**Scenario.** A team standardizing on open-weight models wants to trial a model on shared infrastructure before committing GPUs.
+
+**Problem.** Self-hosting up front is premature; they need a low-commitment way to run an open model.
+
+**Solution.** Configure the Hugging Face provider with a token and a served open-weight model.
+
+**Architecture.** AIAgent → resolver → `chat_completions` → HF Inference endpoint.
+
+**Implementation.**
+
+```bash
+export HF_TOKEN="hf_..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: huggingface
+model: NousResearch/Hermes-4-70B          # an open-weight served model
+api_mode: chat_completions
+api_key_env: HF_TOKEN
+base_url: https://router.huggingface.co/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Explain the trade-offs of open-weight vs proprietary models."
+```
+
+**Result.** An open-weight model driving Hermes with no owned GPUs, ready to graduate to self-hosting later.
+
+**Future improvements.** Once the model choice is settled, move to a self-hosted backend (Ch 28) or Ollama (Ch 29) for cost and data control.
+
+### 27.8 Source code
+
+```python
+def resolve_huggingface(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "https://router.huggingface.co/v1"),
+        auth=BearerToken(env[cfg.get("api_key_env", "HF_TOKEN")]),
+        model=model,  # must be a served/inference-available model id
+    )
+```
+
+### 27.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `huggingface` | |
+| `model` | `org/model` Hub id | Must be inference-available |
+| `api_mode` | `chat_completions` | OpenAI-compatible router |
+| `api_key_env` | `HF_TOKEN` | |
+| `base_url` | HF router URL | |
+
+### 27.10 Real-world use cases
+
+Trialing open-weight models before self-hosting; running Nous's own Hermes models via HF; teams with open-source licensing requirements.
+
+### 27.11 Exercises
+
+1. Why can't every Hub model be used as a Hermes provider model?
+2. Configure Hermes to run a served open-weight model via HF.
+3. When would you graduate from HF inference to self-hosting?
+
+### 27.12 Challenges
+
+- **Challenge 1.** Compare latency and cost of the same open model on HF inference vs local Ollama.
+- **Challenge 2.** Set HF as a fallback behind a self-hosted primary.
+
+### 27.13 Checklist
+
+- [ ] `HF_TOKEN` set and referenced via `api_key_env`.
+- [ ] Chosen model is inference-available.
+- [ ] `base_url` points at the HF OpenAI-compatible router.
+
+### 27.14 Best practices
+
+- Use HF to de-risk open-model choices before buying hardware.
+- Confirm a model is served (not just present on the Hub) before configuring it.
+- Scope the HF token to inference only.
+
+### 27.15 Anti-patterns
+
+- Configuring an un-served Hub model and getting persistent 404s.
+- Treating cold-start 503s as hard failures instead of retrying.
+- Using a broadly-scoped HF token where an inference-only token suffices.
+
+### 27.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `404 model not found` | Model not inference-available | Pick a served model; or self-host (Ch 28) |
+| `503 loading` | Cold start | Retry with backoff; warm the endpoint |
+| `401` | Bad/expired token | Regenerate `HF_TOKEN` |
+| Slow first response | Cold model | Use a dedicated/warm endpoint for production |
+
+### 27.17 Official references
+
+- Hugging Face integration: https://hermes-agent.nousresearch.com/docs/integrations/huggingface
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Open models / Nous on HF: https://huggingface.co/NousResearch
+
+---
+
+## Chapter 28 — Local Models
+
+### 28.1 Introduction
+
+This chapter is about **sovereignty**: running the model on hardware you control, with no token ever leaving your network. Hermes's provider-agnostic core treats any **OpenAI-compatible endpoint** as a first-class provider — which is exactly what local inference servers like **llama.cpp**, **MLX**, and **vLLM** expose. Set `base_url` to `localhost`, point at a served model, and Hermes neither knows nor cares that the model is running three feet away. Ollama (Ch 29) and LM Studio (Ch 30) are friendly front-ends over this same idea; this chapter covers the general pattern and the server-grade options.
+
+### 28.2 Chapter objectives
+
+(1) Understand the OpenAI-compatible local pattern; (2) configure llama.cpp/MLX/vLLM as Hermes providers; (3) weigh data-sovereignty, cost, and latency trade-offs; (4) choose the right local runtime; (5) troubleshoot local-endpoint failures.
+
+### 28.3 Business context
+
+For regulated industries (healthcare, finance, defense) and privacy-sensitive products, **data egress is a non-starter**. Local models let Hermes operate entirely inside a controlled boundary: prompts, memory, and Skills never touch a third party. Beyond compliance, owned hardware turns per-token cost into a fixed infrastructure cost — attractive at high, steady volume. The trade-off is operational: you now run inference yourself.
+
+### 28.4 Theoretical foundations
+
+The enabling abstraction is the **OpenAI-compatible server**. llama.cpp's `server`, MLX, and vLLM all expose `/v1/chat/completions`. Hermes resolves them as `chat_completions` providers with a `localhost` (or internal) `base_url` and typically a dummy/empty key. vLLM is the throughput-oriented choice for serving many concurrent requests on GPUs; llama.cpp and MLX target single-machine and Apple-silicon efficiency. Because the wire protocol is identical to OpenAI's, **nothing else in Hermes changes** — memory, Skills, routing, and fallbacks all work unmodified.
+
+> **Java parallel.** Running a local model is like swapping a managed cloud database for a self-hosted PostgreSQL behind the same JDBC URL: identical client code, very different operational ownership.
+
+### 28.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph boundary["Your network boundary (no egress)"]
+        agent[AIAgent] --> res[Resolver: chat_completions]
+        res --> ep[(OpenAI-compatible server<br/>localhost:port)]
+        ep --> rt{Runtime}
+        rt --> vllm[vLLM - GPU throughput]
+        rt --> lcpp[llama.cpp - CPU/GPU]
+        rt --> mlx[MLX - Apple silicon]
+        agent --> mem[(Local memory + skills)]
+    end
+```
+
+### 28.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant S as Local server (vLLM/llama.cpp)
+    A->>S: POST http://localhost:8000/v1/chat/completions
+    Note over A,S: request never leaves the network
+    S-->>A: completion (tool calls supported if model does)
+    A->>A: persist to local SQLite memory
+```
+
+### 28.7 Complete example
+
+**Scenario.** A healthcare team must run an agent with zero data egress on an on-prem GPU server.
+
+**Problem.** Cloud providers are prohibited; prompts may contain PHI.
+
+**Solution.** Serve an open-weight model with vLLM on the GPU box and point Hermes at the local OpenAI-compatible endpoint.
+
+**Architecture.** AIAgent → `chat_completions` → vLLM @ `localhost:8000` → on-prem GPU. Memory/Skills stay local.
+
+**Implementation.**
+
+```bash
+# Serve an open-weight model with vLLM (OpenAI-compatible API)
+pip install vllm
+vllm serve NousResearch/Hermes-4-14B --host 0.0.0.0 --port 8000
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai-compatible
+model: NousResearch/Hermes-4-14B
+api_mode: chat_completions
+base_url: http://localhost:8000/v1
+api_key_env: LOCAL_DUMMY_KEY        # many local servers ignore the key
+```
+
+```bash
+export LOCAL_DUMMY_KEY="not-needed"
+hermes doctor
+hermes run "Summarize this internal clinical note." --attach note.txt
+```
+
+**Tests.** Confirm with `curl http://localhost:8000/v1/models` that the model is served; run a prompt and verify (via network monitoring) that no external traffic occurs.
+
+**Result.** A fully sovereign agent: no prompt, memory, or Skill ever leaves the network.
+
+**Future improvements.** Add a second vLLM replica behind a load balancer for HA (Part XIV); use MLX on Apple-silicon laptops for offline field use.
+
+### 28.8 Source code
+
+```python
+def resolve_openai_compatible(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg["base_url"],                 # e.g. http://localhost:8000/v1
+        auth=BearerToken(env.get(cfg.get("api_key_env", ""), "")),
+        model=model,
+    )
+```
+
+### 28.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openai-compatible` | Generic local/self-hosted |
+| `model` | served model id | Match what the server loaded |
+| `base_url` | `http://localhost:8000/v1` | Internal/local endpoint |
+| `api_key_env` | often a dummy | Many local servers ignore it |
+| runtime | vLLM / llama.cpp / MLX | Choose by hardware and concurrency |
+
+### 28.10 Real-world use cases
+
+PHI/financial workloads with zero egress; air-gapped environments; cost control at steady high volume; offline field deployments on laptops (MLX).
+
+### 28.11 Exercises
+
+1. Which local runtime would you pick for high-concurrency GPU serving, and why?
+2. Configure Hermes against a llama.cpp server on a non-default port.
+3. Explain why the API key is often a dummy value for local servers.
+
+### 28.12 Challenges
+
+- **Challenge 1.** Prove zero egress by serving locally and monitoring the network during a session.
+- **Challenge 2.** Benchmark vLLM throughput vs llama.cpp on the same model and hardware.
+
+### 28.13 Checklist
+
+- [ ] Local server exposes `/v1/chat/completions`.
+- [ ] `base_url` points at the local endpoint.
+- [ ] Verified no external traffic during a run.
+- [ ] Memory and Skills remain on local storage.
+
+### 28.14 Best practices
+
+- Pick vLLM for multi-user GPU serving; llama.cpp/MLX for single-machine.
+- Verify zero egress with network monitoring in regulated settings.
+- Keep a tested fallback path (another local replica) for HA.
+
+### 28.15 Anti-patterns
+
+- Exposing the local inference port to the public internet without auth.
+- Assuming a small local model matches a frontier model on hard tasks.
+- Forgetting that tool-calling quality depends on the served model's capabilities.
+
+### 28.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused` | Server not running / wrong port | Start the server; fix `base_url` |
+| Empty/garbled tool calls | Model lacks tool-use training | Use a tool-capable model |
+| OOM at load | Model too large for VRAM | Use a smaller/quantized model |
+| Slow throughput | CPU-bound runtime | Switch to vLLM on GPU |
+
+### 28.17 Official references
+
+- Local models / OpenAI-compatible: https://hermes-agent.nousresearch.com/docs/integrations/local-models
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- vLLM: https://docs.vllm.ai/
+
+---
+
+## Chapter 29 — Ollama
+
+### 29.1 Introduction
+
+**Ollama** is the most popular way to run local models with minimal friction: `ollama pull` a model, `ollama run` it, and an OpenAI-compatible server is already listening on `localhost:11434`. For Hermes, Ollama is the gentle on-ramp to local inference — all the sovereignty of Chapter 28 with a fraction of the setup. This chapter covers wiring Ollama into Hermes, model management, and the practical limits of laptop-class local inference.
+
+### 29.2 Chapter objectives
+
+(1) Install and run a model with Ollama; (2) configure Hermes against Ollama's OpenAI-compatible endpoint; (3) manage models with the Ollama CLI; (4) understand when laptop-class local inference suffices; (5) troubleshoot Ollama connectivity.
+
+### 29.3 Business context
+
+Ollama makes local inference accessible to individual developers and small teams without DevOps overhead. It is ideal for offline development, privacy-first prototypes, and zero-cost experimentation — you can build and demo a fully working Hermes agent on a laptop with no API spend and no data leaving the machine. For larger workloads, the same configuration pattern points at a shared Ollama or graduates to vLLM (Ch 28).
+
+### 29.4 Theoretical foundations
+
+Ollama bundles a model runtime and an OpenAI-compatible API. Hermes resolves it as a `chat_completions` provider with `base_url: http://localhost:11434/v1`. Ollama's value is **operational**: model download, quantization selection, and serving are one command each. The model-capability caveats from Chapter 28 still apply — tool-calling quality and context length depend on the chosen model, and laptop hardware caps how large a model you can run comfortably.
+
+> **Java parallel.** Ollama is the **Docker Desktop of local models**: it hides the plumbing of pulling, running, and serving, exposing a clean local endpoint.
+
+### 29.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver: chat_completions]
+    res --> oll[(Ollama server<br/>localhost:11434/v1)]
+    oll --> store[(Local model store<br/>ollama pull)]
+    agent --> mem[(Local memory + skills)]
+```
+
+### 29.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant O as Ollama CLI
+    participant A as AIAgent
+    participant S as Ollama server
+    U->>O: ollama pull hermes
+    O->>S: model available locally
+    U->>A: hermes run "..."
+    A->>S: POST localhost:11434/v1/chat/completions
+    S-->>A: completion (local, offline-capable)
+```
+
+### 29.7 Complete example
+
+**Scenario.** A developer wants to build and demo a Hermes agent on a laptop while flying — fully offline, zero cost.
+
+**Problem.** No internet, no API budget, but the agent must still run.
+
+**Solution.** Run a model via Ollama and point Hermes at the local Ollama endpoint.
+
+**Architecture.** AIAgent → `chat_completions` → Ollama @ `localhost:11434`.
+
+**Implementation.**
+
+```bash
+# Install Ollama (see ollama.com), then:
+ollama pull hermes3:8b            # pull an open-weight model
+ollama serve                       # (usually already running)
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: ollama
+model: hermes3:8b
+api_mode: chat_completions
+base_url: http://localhost:11434/v1
+```
+
+```bash
+hermes doctor
+hermes run "Draft a function to parse this log format."
+```
+
+**Result.** A working, offline, zero-cost Hermes agent on a laptop, with memory and Skills stored locally.
+
+**Future improvements.** Point the same config at a shared Ollama server for the team, or graduate to vLLM (Ch 28) for concurrency.
+
+### 29.8 Source code
+
+```python
+def resolve_ollama(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "http://localhost:11434/v1"),
+        auth=NoAuth(),               # Ollama needs no key by default
+        model=model,                 # e.g. "hermes3:8b"
+    )
+```
+
+### 29.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `ollama` | |
+| `model` | `hermes3:8b` | Ollama model tag |
+| `api_mode` | `chat_completions` | |
+| `base_url` | `http://localhost:11434/v1` | Default Ollama port |
+| key | none | No auth by default |
+
+### 29.10 Real-world use cases
+
+Offline development and demos; privacy-first prototypes; zero-cost experimentation; a shared team Ollama on an internal server.
+
+### 29.11 Exercises
+
+1. Pull a model with Ollama and run a Hermes prompt against it.
+2. Point Hermes at a remote Ollama server by changing only `base_url`.
+3. Explain why no API key is needed.
+
+### 29.12 Challenges
+
+- **Challenge 1.** Build a fully offline Hermes demo (no internet) and record the session.
+- **Challenge 2.** Compare two model sizes in Ollama for the same task on your laptop.
+
+### 29.13 Checklist
+
+- [ ] Ollama installed and a model pulled.
+- [ ] `base_url` points at `:11434/v1`.
+- [ ] Agent runs offline with local memory/Skills.
+
+### 29.14 Best practices
+
+- Use Ollama for development, demos, and privacy-first prototyping.
+- Choose a tool-capable model if your agent relies on tool calls.
+- Share one Ollama server for the team rather than per-laptop downloads.
+
+### 29.15 Anti-patterns
+
+- Expecting frontier-model quality from a small quantized laptop model.
+- Exposing Ollama to the internet without a reverse proxy and auth.
+- Running a model larger than your RAM/VRAM and hitting swaps.
+
+### 29.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused :11434` | Ollama not running | `ollama serve`; check the port |
+| `model not found` | Not pulled | `ollama pull <model>` |
+| Very slow responses | Model too big for hardware | Use a smaller/quantized tag |
+| Tool calls ignored | Model lacks tool training | Pick a tool-capable model |
+
+### 29.17 Official references
+
+- Ollama integration: https://hermes-agent.nousresearch.com/docs/integrations/ollama
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Ollama: https://ollama.com/
+
+---
+
+## Chapter 30 — LM Studio
+
+### 30.1 Introduction
+
+**LM Studio** is the GUI-first local runtime. Where Ollama is CLI-centric, LM Studio gives non-terminal users a desktop app to browse, download, and serve models, then flip on an **OpenAI-compatible local server** with a checkbox. For Hermes — itself increasingly desktop-friendly since the v0.16 Surface Release — LM Studio is the natural pairing for users who want local inference without touching a command line. This chapter covers serving a model in LM Studio and wiring Hermes to it.
+
+### 30.2 Chapter objectives
+
+(1) Serve a model via LM Studio's local server; (2) configure Hermes against it; (3) understand the GUI-first workflow and its audience; (4) compare LM Studio with Ollama; (5) troubleshoot the LM Studio endpoint.
+
+### 30.3 Business context
+
+Not every user lives in a terminal. Analysts, researchers, and domain experts who want a private local agent benefit from LM Studio's point-and-click model management. Paired with Hermes's desktop app, it enables a fully local, GUI-driven AI agent stack — no API keys, no command line, no data egress — which lowers the barrier for privacy-conscious non-developers.
+
+### 30.4 Theoretical foundations
+
+LM Studio's local server exposes the familiar `/v1/chat/completions` contract (commonly on port `1234`). Hermes resolves it identically to any local OpenAI-compatible endpoint — only the `base_url` differs from Ollama. The distinction from Ollama is entirely in the **user experience**, not the integration: GUI model discovery and serving versus CLI commands. All Chapter 28 capability caveats (model-dependent tool use, hardware limits) apply.
+
+> **Java parallel.** LM Studio vs Ollama is like a database GUI client (e.g., DBeaver) vs a CLI (`psql`): same server protocol underneath, different ergonomics for different users.
+
+### 30.5 Architecture
+
+```mermaid
+flowchart LR
+    user[Non-CLI user] --> lms[LM Studio app<br/>browse + serve model]
+    lms --> srv[(Local server<br/>localhost:1234/v1)]
+    agent[Hermes AIAgent] --> res[Resolver: chat_completions]
+    res --> srv
+    agent --> mem[(Local memory + skills)]
+```
+
+### 30.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant L as LM Studio (GUI)
+    participant A as AIAgent
+    U->>L: download model, toggle "Start Server"
+    L-->>U: server listening on :1234
+    U->>A: hermes run "..."
+    A->>L: POST localhost:1234/v1/chat/completions
+    L-->>A: completion (local)
+```
+
+### 30.7 Complete example
+
+**Scenario.** A privacy-conscious research analyst with no terminal experience wants a local Hermes agent.
+
+**Problem.** CLI model management (Ollama) is a barrier; cloud providers are disallowed for the data.
+
+**Solution.** Use LM Studio's GUI to serve a model and point the Hermes desktop app at the local server.
+
+**Architecture.** Hermes desktop → `chat_completions` → LM Studio @ `localhost:1234`.
+
+**Implementation.**
+
+```text
+1. Open LM Studio, search and download an open-weight model.
+2. Go to the "Local Server" tab and click "Start Server" (port 1234).
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: lmstudio
+model: hermes-3-8b          # model loaded in LM Studio
+api_mode: chat_completions
+base_url: http://localhost:1234/v1
+```
+
+```bash
+hermes doctor
+hermes run "Summarize these interview notes." --attach notes.txt
+```
+
+**Result.** A fully local, GUI-managed agent suitable for non-developers, with zero data egress.
+
+**Future improvements.** Distribute a pre-configured Hermes desktop + LM Studio setup to a non-technical team; add a fallback to Nous Portal for tasks beyond local-model capability.
+
+### 30.8 Source code
+
+```python
+def resolve_lmstudio(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "http://localhost:1234/v1"),
+        auth=NoAuth(),               # LM Studio local server needs no key
+        model=model,
+    )
+```
+
+### 30.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `lmstudio` | |
+| `model` | model loaded in LM Studio | Match the GUI selection |
+| `api_mode` | `chat_completions` | |
+| `base_url` | `http://localhost:1234/v1` | Default LM Studio port |
+| key | none | No auth by default |
+
+### 30.10 Real-world use cases
+
+Local agents for non-developers; privacy-first research; pairing with the Hermes desktop app for a no-CLI local stack; offline analyst workflows.
+
+### 30.11 Exercises
+
+1. Serve a model in LM Studio and connect Hermes to it.
+2. Identify the single config difference between LM Studio and Ollama.
+3. Who is LM Studio's target user versus Ollama's?
+
+### 30.12 Challenges
+
+- **Challenge 1.** Assemble a no-CLI local stack (Hermes desktop + LM Studio) and document the steps for a non-technical user.
+- **Challenge 2.** Switch a running Hermes between LM Studio and Ollama by editing only `base_url`.
+
+### 30.13 Checklist
+
+- [ ] LM Studio server started on `:1234`.
+- [ ] `base_url` points at the LM Studio endpoint.
+- [ ] Agent runs locally with no egress.
+
+### 30.14 Best practices
+
+- Use LM Studio for non-CLI users and GUI-driven model management.
+- Pair with the Hermes desktop app for an end-to-end no-terminal local stack.
+- Keep a cloud fallback for tasks exceeding local-model capability.
+
+### 30.15 Anti-patterns
+
+- Forgetting to click "Start Server" and then debugging a connection refusal.
+- Loading a different model in the GUI than configured in Hermes.
+- Expecting LM Studio to outperform a server-grade vLLM deployment.
+
+### 30.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused :1234` | Server not started | Click "Start Server" in LM Studio |
+| Model mismatch errors | GUI model ≠ config model | Align `model` with what's loaded |
+| Slow/large model fails | Hardware limits | Load a smaller/quantized model |
+| Tool calls ignored | Non-tool-capable model | Choose a tool-capable model |
+
+### 30.17 Official references
+
+- LM Studio integration: https://hermes-agent.nousresearch.com/docs/integrations/lm-studio
+- Local models: https://hermes-agent.nousresearch.com/docs/integrations/local-models
+- LM Studio: https://lmstudio.ai/
+
+---
+
+> **End of Part IV.** You can now authenticate and configure every Hermes provider class — the zero-config Nous Portal, the direct cloud providers (OpenAI, Anthropic, Gemini), the meta-provider OpenRouter, the open-weights bridge Hugging Face, and fully sovereign local inference via llama.cpp/MLX/vLLM, Ollama, and LM Studio — and you can chain them with fallbacks and routing. **Part V — Persistent Memory** (Chapters 31–37) turns to what makes Hermes more than a model wrapper: memory that persists, retrieves, and curates itself across sessions.
+
+## Part V – Persistent Memory
+
+Memory is the feature that separates Hermes from a chat window. A model is stateless; an agent must not be. Hermes layers **two natures of memory** (declarative facts and the user model) over **three concrete stores** (`MEMORY.md`, `USER.md`, and a SQLite database with FTS5 full-text search), then adds machinery to *retrieve* the right slice into context, *compress* what doesn't fit, *persist* what matters across sessions, *model* the user over time, and *learn* continuously. Part V dissects each layer. By the end you will treat memory not as a black box but as an engineered subsystem you can inspect, tune, version, and even swap for an external provider.
+
+> **One sentence to carry through the part.** Hermes memory is *write-curated and read-retrieved*: the agent decides what to remember (and nudges itself to do so), and at each turn it pulls back only the relevant fragments — never the whole history.
+
+---
+
+## Chapter 31 — Core Concepts
+
+### 31.1 Introduction
+
+Before structure or retrieval, you need the vocabulary. This chapter establishes what "memory" means in Hermes: the distinction between **declarative** memory (facts about the world and the user) and **procedural** memory (Skills — covered in Part VI); the three physical stores; the idea of **periodic nudges** that prompt the agent to persist knowledge; and the principle that memory is **curated, not hoarded**. Everything in Part V builds on these concepts.
+
+### 31.2 Chapter objectives
+
+(1) Define declarative vs procedural memory in Hermes; (2) name the three stores (`MEMORY.md`, `USER.md`, SQLite+FTS5) and their roles; (3) explain nudges and curation; (4) describe how memory enters a prompt; (5) know how to enable, inspect, and reset memory.
+
+### 31.3 Business context
+
+The three enterprise pains from Chapter 1 — amnesia, stagnation, lock-in — are addressed largely here. Persistent, curated memory means the agent doesn't re-learn the team's conventions every session; knowledge becomes an **accumulating asset** rather than a per-session cost. For a CTO, the read is concrete: memory is the mechanism by which "usage turns into capability."
+
+### 31.4 Theoretical foundations
+
+Hermes implements the cognitive-science split between **declarative** ("knowing that") and **procedural** ("knowing how") memory. Declarative memory lives in human-readable Markdown plus an indexed database; procedural memory lives in Skills. Within declarative memory there is a further split: **world/task facts** (`MEMORY.md`) and **the user model** (`USER.md`). The SQLite database (`~/.hermes/state.db`) stores conversation history and is searchable via **FTS5**, SQLite's full-text engine, so the agent can retrieve relevant past turns by query rather than recency alone. Periodic **nudges** are self-prompts the agent injects to decide whether something from the current session should be persisted — this is what makes memory active rather than passive.
+
+> **Java parallel.** Think of `MEMORY.md`/`USER.md` as human-editable config/state files and the SQLite+FTS5 store as an embedded **Lucene-like index** over history. The nudge is a scheduled `@PostConstruct`-style hook that asks "should this be written through to durable storage?"
+
+### 31.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph decl["Declarative memory"]
+        mem[MEMORY.md<br/>world/task facts]
+        usr[USER.md<br/>user model]
+        db[(SQLite state.db<br/>+ FTS5 index)]
+    end
+    proc[Skills<br/>procedural memory - Part VI]
+    agent[AIAgent loop] --> decl
+    agent --> proc
+    nudge[Periodic nudge] -.writes.-> mem
+    nudge -.updates.-> usr
+    agent -.appends turns.-> db
+```
+
+### 31.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant M as MEMORY.md / USER.md
+    participant DB as SQLite + FTS5
+    U->>A: message
+    A->>M: load stable facts + user model
+    A->>DB: FTS5 search relevant past turns
+    DB-->>A: top matching fragments
+    A->>A: build prompt (facts + retrieved context + turn)
+    A-->>U: response
+    Note over A: every N turns -> nudge
+    A->>M: persist new durable facts (curated)
+    A->>DB: append this turn
+```
+
+### 31.7 Complete example
+
+**Scenario.** A developer tells the agent "we deploy on Fridays and use trunk-based development" once. Weeks later, in a fresh session, the agent should already know this.
+
+**Problem.** Stateless tools force the user to repeat context every session.
+
+**Solution.** Enable memory; the agent persists the fact to `MEMORY.md` via a nudge and retrieves it in future sessions.
+
+**Architecture.** AIAgent → `MEMORY.md` (durable fact) + SQLite/FTS5 (searchable history).
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true            # MEMORY.md + USER.md + SQLite/FTS5
+  nudge_every: 15          # periodically decide what to persist
+```
+
+```bash
+hermes run "Note that we deploy on Fridays and use trunk-based development."
+# weeks later, new session:
+hermes run "When should I avoid merging risky changes?"
+# -> the agent recalls the Friday-deploy fact from MEMORY.md
+```
+
+**Tests.**
+
+```bash
+hermes memory show           # inspect MEMORY.md / USER.md
+cat ~/.hermes/MEMORY.md       # the fact should be present
+```
+
+**Result.** Cross-session recall: the deploy convention persists without being repeated.
+
+**Future improvements.** Add structured retrieval (Ch 33), compression for long sessions (Ch 34), and an external memory provider for richer recall (Ch 35).
+
+### 31.8 Source code
+
+```python
+class MemoryManager:
+    def __init__(self, home: Path):
+        self.memory_md = home / "MEMORY.md"     # world/task facts
+        self.user_md = home / "USER.md"         # user model
+        self.db = sqlite_connect(home / "state.db")  # + FTS5 virtual table
+
+    def load_stable(self) -> str:
+        return self.memory_md.read_text() + "\n" + self.user_md.read_text()
+
+    def maybe_nudge(self, turn_index: int, every: int) -> bool:
+        return turn_index % every == 0          # periodic persist-decision
+```
+
+### 31.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.enabled` | `true` | Master switch |
+| `memory.nudge_every` | `15` | Turns between persist-decisions |
+| `MEMORY.md` | file | World/task facts (human-editable) |
+| `USER.md` | file | User model (human-editable) |
+| `state.db` | SQLite | History + FTS5 index |
+
+### 31.10 Real-world use cases
+
+An engineering assistant that remembers conventions; a support agent that recalls a customer's history; a research bot that accumulates findings across days.
+
+### 31.11 Exercises
+
+1. Distinguish declarative from procedural memory in Hermes with one example each.
+2. What is the role of FTS5 in retrieval?
+3. Explain a nudge in one sentence.
+
+### 31.12 Challenges
+
+- **Challenge 1.** Teach the agent three team facts, restart, and prove recall in a new session.
+- **Challenge 2.** Manually edit `MEMORY.md` to correct a fact and verify the agent uses the correction.
+
+### 31.13 Checklist
+
+- [ ] `memory.enabled: true`.
+- [ ] I can locate and read `MEMORY.md` and `USER.md`.
+- [ ] I understand nudges and curation.
+- [ ] FTS5-backed history exists in `state.db`.
+
+### 31.14 Best practices
+
+- Treat `MEMORY.md`/`USER.md` as versionable team assets.
+- Let curation work — don't hoard everything; keep facts durable and concise.
+- Review memory periodically for stale or wrong facts.
+
+### 31.15 Anti-patterns
+
+- Disabling memory and then complaining the agent forgets.
+- Dumping raw transcripts into `MEMORY.md` instead of curated facts.
+- Storing secrets in plaintext memory files.
+
+### 31.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Agent forgets across sessions | Memory disabled | Set `memory.enabled: true` |
+| Nothing persisted | Nudge interval too long / nothing durable | Lower `nudge_every`; state facts explicitly |
+| Wrong fact recalled | Stale `MEMORY.md` | Edit the file; remove the bad fact |
+| Recall misses obvious turns | FTS index not built | Verify `state.db` and re-index |
+
+### 31.17 Official references
+
+- Memory overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- Architecture (memory subsystem): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Features overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 32 — Memory Structure
+
+### 32.1 Introduction
+
+This chapter opens the files and the database. You will learn exactly what belongs in `MEMORY.md` versus `USER.md`, how the SQLite schema and the FTS5 virtual table are organized, and how context **files** (`.hermes.md`, `AGENTS.md`, `CLAUDE.md`, `SOUL.md`) and **context references** (the `@`-syntax for files, folders, git diffs, and URLs) layer on top of the core stores. Understanding the structure is what lets you curate memory deliberately instead of hoping the agent does it for you.
+
+### 32.2 Chapter objectives
+
+(1) Describe the role of each memory file; (2) understand the SQLite + FTS5 schema at a conceptual level; (3) use context files to seed durable instructions; (4) use `@`-references to pull files/diffs/URLs into context; (5) inspect and edit the structure safely.
+
+### 32.3 Business context
+
+A well-structured memory is auditable and portable: a new team member (or an auditor) can read `MEMORY.md` and `SOUL.md` and understand the agent's knowledge and personality without reading code. Context files turn organizational standards (`AGENTS.md`) into durable, versioned inputs — the agent's "constitution" lives in git alongside the codebase.
+
+### 32.4 Theoretical foundations
+
+The stores divide by **stability and subject**:
+
+- `MEMORY.md` — durable world/task facts the agent curates over time.
+- `USER.md` — the evolving user model (preferences, role, communication style).
+- `state.db` (SQLite) — conversation turns; an **FTS5** virtual table indexes their text for query-based retrieval.
+- **Context files** — `.hermes.md` / `AGENTS.md` / `CLAUDE.md` / `SOUL.md`: project- or persona-level instructions loaded into the stable prompt tier. `SOUL.md` shapes personality; `AGENTS.md`/`CLAUDE.md` carry conventions; `.hermes.md` is Hermes-specific.
+- **Context references** — `@path/to/file`, `@folder/`, `@git-diff`, `@https://url` syntax that injects specific content on demand without permanently writing it to memory.
+
+This separation maps cleanly onto the prompt tiers (Ch 34): context files and curated facts are *stable*; retrieved turns and references are *context*.
+
+> **Java parallel.** Context files are like `application.yml` profiles checked into the repo; `@`-references are like `@Value`/`@PropertySource` pulls that inject a specific resource at runtime; `state.db`+FTS5 is the embedded search index.
+
+### 32.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph stable["Stable inputs"]
+        ctxfiles[Context files<br/>.hermes.md / AGENTS.md<br/>CLAUDE.md / SOUL.md]
+        memmd[MEMORY.md]
+        usermd[USER.md]
+    end
+    subgraph dyn["On-demand / dynamic"]
+        refs["@-references<br/>files / folders / git diff / URLs"]
+        fts[(SQLite + FTS5<br/>conversation turns)]
+    end
+    pb[prompt_builder] --> stable
+    pb --> dyn
+```
+
+### 32.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant CF as Context files
+    participant FTS as SQLite/FTS5
+    U->>A: "Review @src/auth.py against @AGENTS.md"
+    A->>CF: load AGENTS.md (stable conventions)
+    A->>A: resolve @src/auth.py reference
+    A->>FTS: search related past decisions
+    FTS-->>A: relevant turns
+    A-->>U: review grounded in conventions + code + history
+```
+
+### 32.7 Complete example
+
+**Scenario.** A team wants the agent to always follow their coding conventions and to review a specific file against them.
+
+**Problem.** Conventions live in people's heads; the agent doesn't apply them consistently.
+
+**Solution.** Put conventions in `AGENTS.md` (a context file), and use `@`-references to pull the target file and the conventions into a review.
+
+**Architecture.** `AGENTS.md` (stable) + `@src/auth.py` (reference) → prompt_builder → review.
+
+**Implementation.**
+
+```bash
+cat > AGENTS.md <<'EOF'
+# Engineering conventions
+- All public functions require type hints and docstrings.
+- No secrets in code; use environment variables.
+- Errors must be logged with context, never swallowed.
+EOF
+```
+
+```bash
+hermes run "Review @src/auth.py against @AGENTS.md and list violations."
+```
+
+**Tests.**
+
+```bash
+hermes memory show --context-files       # confirm AGENTS.md is loaded
+```
+
+**Result.** A review grounded in versioned, durable conventions plus the exact file content — repeatable across the team.
+
+**Future improvements.** Add a `SOUL.md` to fix the agent's tone, and reference git diffs (`@git-diff`) to review only what changed in a PR.
+
+### 32.8 Source code
+
+```sql
+-- Conceptual schema for conversation history + FTS5
+CREATE TABLE turns (
+    id INTEGER PRIMARY KEY,
+    session_id TEXT,
+    role TEXT,            -- user / assistant / tool
+    content TEXT,
+    created_at TEXT
+);
+
+CREATE VIRTUAL TABLE turns_fts USING fts5(
+    content,
+    content='turns',
+    content_rowid='id'
+);
+-- query: SELECT * FROM turns_fts WHERE turns_fts MATCH ?;
+```
+
+### 32.9 Configuration
+
+| File / Key | Role | Tier |
+|------------|------|------|
+| `MEMORY.md` | Curated world/task facts | stable |
+| `USER.md` | User model | stable |
+| `SOUL.md` | Personality/tone | stable |
+| `AGENTS.md` / `CLAUDE.md` / `.hermes.md` | Conventions/instructions | stable |
+| `@file` / `@folder/` / `@git-diff` / `@url` | On-demand references | context |
+| `state.db` (FTS5) | Searchable history | context |
+
+### 32.10 Real-world use cases
+
+Convention-driven code review; persona-consistent assistants via `SOUL.md`; PR review via `@git-diff`; documentation grounding via `@folder/` references.
+
+### 32.11 Exercises
+
+1. Decide whether each of these belongs in `MEMORY.md`, `USER.md`, or `AGENTS.md`: a coding standard, the user's preferred language, a learned project fact.
+2. Write an `@`-reference that pulls a git diff into context.
+3. Explain the role of the FTS5 virtual table.
+
+### 32.12 Challenges
+
+- **Challenge 1.** Author a `SOUL.md` and demonstrate a consistent tone change across sessions.
+- **Challenge 2.** Build a PR-review command using `@git-diff` and `@AGENTS.md`.
+
+### 32.13 Checklist
+
+- [ ] I know what goes in each memory file.
+- [ ] Context files are versioned in the repo.
+- [ ] I can use `@`-references for files, folders, diffs, and URLs.
+- [ ] I understand the FTS5 history table conceptually.
+
+### 32.14 Best practices
+
+- Keep `AGENTS.md`/`SOUL.md` in git next to the code they govern.
+- Use `@`-references for one-off content; reserve `MEMORY.md` for durable facts.
+- Keep each file focused — facts in `MEMORY.md`, user model in `USER.md`, tone in `SOUL.md`.
+
+### 32.15 Anti-patterns
+
+- Stuffing transient file contents permanently into `MEMORY.md`.
+- Mixing personality, conventions, and facts in one giant file.
+- Referencing huge folders with `@` and blowing the context window.
+
+### 32.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Conventions ignored | Context file not discovered | Place `AGENTS.md` in the working dir / project root |
+| `@`-reference empty | Bad path/URL | Verify the path; check URL reachability |
+| Context overflow | Over-broad `@folder/` | Narrow the reference; rely on FTS retrieval |
+| Tone inconsistent | No `SOUL.md` | Add a persona file |
+
+### 32.17 Official references
+
+- Context files: https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files
+- Context references (@-syntax): https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 33 — Knowledge Retrieval
+
+### 33.1 Introduction
+
+A growing memory is useless if the agent can't find the right fragment at the right moment. **Retrieval** is the read path: given the current turn, pull the most relevant facts and past turns into context — and nothing more. Hermes does this with **FTS5 full-text search** over history plus **LLM summarization** to condense matches into recallable form. This chapter covers how retrieval works, how to tune it, and how it keeps context windows small without losing relevant knowledge.
+
+### 33.2 Chapter objectives
+
+(1) Explain FTS5-based retrieval; (2) understand LLM summarization for recall; (3) tune how much history is retrieved; (4) balance recall against context budget; (5) troubleshoot poor retrieval.
+
+### 33.3 Business context
+
+Retrieval quality is felt directly by users: an agent that "remembers the relevant thing" feels intelligent; one that retrieves noise or misses the obvious feels broken. Good retrieval also controls **cost** — pulling only relevant fragments keeps prompts (and bills) small, which matters at always-on scale.
+
+### 33.4 Theoretical foundations
+
+Hermes uses **lexical retrieval** (FTS5) as its core recall mechanism: the current query is matched against the indexed conversation turns, returning the top hits by relevance. Because raw turns can be verbose, **LLM summarization** condenses retrieved material into compact, recall-ready statements before they enter the prompt's context tier. This two-step pattern — *retrieve then summarize* — keeps recall both relevant and token-efficient. External memory providers (Ch 35) can layer semantic/vector retrieval on top, but the built-in path is FTS5 + summarization.
+
+> **Java parallel.** This is a classic search-then-digest pipeline: FTS5 is your Lucene query; the summarizer is a post-processing reducer that turns raw hits into a concise context object.
+
+### 33.5 Architecture
+
+```mermaid
+flowchart LR
+    turn[Current turn] --> q[Build FTS5 query]
+    q --> fts[(SQLite FTS5<br/>conversation turns)]
+    fts --> hits[Top-k matches]
+    hits --> sum[LLM summarization<br/>for recall]
+    sum --> ctx[Context tier<br/>into prompt]
+```
+
+### 33.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant F as FTS5
+    participant S as Summarizer (LLM)
+    participant P as prompt_builder
+    A->>F: MATCH query(current turn)
+    F-->>A: top-k relevant turns
+    A->>S: summarize hits for recall
+    S-->>A: compact recall snippet
+    A->>P: inject into context tier
+    P-->>A: prompt with relevant, condensed memory
+```
+
+### 33.7 Complete example
+
+**Scenario.** Over months, the agent has thousands of turns. A user asks a question whose answer was decided long ago.
+
+**Problem.** Sending all history is impossible; recency-only would miss the old decision.
+
+**Solution.** FTS5 retrieves the relevant past turns by query; the summarizer condenses them into a short recall snippet for the prompt.
+
+**Architecture.** Query → FTS5 top-k → LLM summarization → context tier.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  retrieval:
+    top_k: 8                 # how many matches to pull
+    summarize: true          # condense matches via the auxiliary model
+```
+
+```bash
+hermes run "What did we decide about the retry policy back in Q1?"
+# FTS5 finds the Q1 decision turns; summarizer condenses; agent answers correctly
+```
+
+**Tests.**
+
+```bash
+hermes memory search "retry policy"     # inspect what FTS5 returns
+```
+
+**Result.** Accurate recall of an old decision without flooding the context window.
+
+**Future improvements.** Add a vector/semantic external provider (Ch 35) for paraphrase-tolerant recall; tune `top_k` per workload.
+
+### 33.8 Source code
+
+```python
+def retrieve_context(query: str, db, summarizer, top_k: int, summarize: bool) -> str:
+    hits = db.fts5_search(query, limit=top_k)          # lexical retrieval
+    if not hits:
+        return ""
+    if summarize:
+        return summarizer.summarize_for_recall(hits)   # condense via aux model
+    return "\n".join(h.content for h in hits)
+```
+
+### 33.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.retrieval.top_k` | `8` | Matches retrieved per query |
+| `memory.retrieval.summarize` | `true` | Condense via the auxiliary model |
+| `state.db` FTS5 | index | Backing search index |
+
+### 33.10 Real-world use cases
+
+Recalling old design decisions; support agents pulling a customer's relevant history; research bots resurfacing prior findings by topic.
+
+### 33.11 Exercises
+
+1. Why retrieve-then-summarize instead of sending raw hits?
+2. What does `top_k` trade off?
+3. When would lexical FTS5 retrieval miss a relevant turn?
+
+### 33.12 Challenges
+
+- **Challenge 1.** Tune `top_k` and measure recall vs prompt size on a long history.
+- **Challenge 2.** Find a paraphrase that FTS5 misses and argue for a semantic provider.
+
+### 33.13 Checklist
+
+- [ ] FTS5 retrieval is working (`memory search` returns hits).
+- [ ] Summarization is enabled for token efficiency.
+- [ ] `top_k` tuned for the workload.
+
+### 33.14 Best practices
+
+- Keep `top_k` modest; summarize to control tokens.
+- Use specific, keyword-rich phrasing to help lexical retrieval.
+- Add a semantic provider when paraphrase-recall matters.
+
+### 33.15 Anti-patterns
+
+- Setting `top_k` very high and bloating context.
+- Disabling summarization and pasting raw verbose turns.
+- Relying on lexical match for fuzzy/semantic queries.
+
+### 33.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Misses obvious facts | Lexical mismatch | Rephrase with keywords; add semantic provider |
+| Context too large | `top_k` high / no summarize | Lower `top_k`; enable summarization |
+| Irrelevant recall | Noisy index | Curate history; raise relevance threshold |
+| No results | FTS index empty | Verify `state.db` and indexing |
+
+### 33.17 Official references
+
+- Memory / retrieval: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Memory providers: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+
+---
+
+## Chapter 34 — Context Engineering
+
+### 34.1 Introduction
+
+The context window is finite; memory is not. **Context engineering** is the discipline of fitting the *right* knowledge into a bounded prompt every turn. Hermes structures this with **three prompt tiers** — *stable*, *context*, *volatile* — and a dedicated `context_compressor.py` that summarizes middle (older) turns to reclaim space without losing the thread. This chapter is the heart of Part V's "read path": how Hermes decides what occupies the window, in what order, and what gets compressed away.
+
+### 34.2 Chapter objectives
+
+(1) Explain the stable→context→volatile tiering; (2) understand `context_compressor.py` and middle-turn summarization; (3) relate tiering to prompt caching (Ch 24); (4) tune compression thresholds; (5) troubleshoot context overflow and loss.
+
+### 34.3 Business context
+
+Context engineering directly drives **cost, latency, and quality**. Too much context is slow and expensive; too little makes the agent forgetful mid-task. Getting the tiers and compression right is what makes an always-on agent both affordable and coherent over long sessions — a prerequisite for production deployment.
+
+### 34.4 Theoretical foundations
+
+Hermes assembles every prompt from three tiers:
+
+- **Stable** — system prompt, Skills metadata, context files, curated facts. Rarely changes; ideal for **prompt caching** (Ch 24).
+- **Context** — retrieved memory (Ch 33) and compressed summaries of earlier turns. Changes slowly.
+- **Volatile** — the current turn and the most recent exchanges. Changes every turn.
+
+When a session grows long, `context_compressor.py` **summarizes the middle** — older turns that are no longer volatile but shouldn't be dropped — collapsing them into compact summaries that live in the context tier. The newest turns stay verbatim (volatile); the oldest durable facts stay in stable; the squeeze happens in the middle. This preserves the conversational thread while bounding token count.
+
+> **Java parallel.** Tiering is like an L1/L2/L3 cache hierarchy for the prompt: hot, immutable data (stable) is cached cheaply; warm data (context) is summarized; the live working set (volatile) is full-fidelity.
+
+### 34.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph window["Prompt window (bounded)"]
+        stable["STABLE<br/>system + skills + context files + facts<br/>(cacheable)"]
+        context["CONTEXT<br/>retrieved memory + compressed middle turns"]
+        volatile["VOLATILE<br/>current + recent turns (verbatim)"]
+    end
+    cc[context_compressor.py] -->|summarize older turns| context
+    stable --> llm[(LLM call)]
+    context --> llm
+    volatile --> llm
+```
+
+### 34.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant CC as context_compressor
+    participant LLM as Provider
+    A->>PB: assemble prompt
+    PB->>PB: place stable + retrieved context + volatile
+    alt session long / over budget
+        PB->>CC: compress middle turns
+        CC-->>PB: compact summaries
+    end
+    PB->>LLM: send tiered prompt (stable prefix cacheable)
+    LLM-->>A: response
+```
+
+### 34.7 Complete example
+
+**Scenario.** A multi-hour debugging session has grown past the context window, but the early reproduction steps still matter.
+
+**Problem.** Dropping old turns loses the repro; keeping them all overflows the window.
+
+**Solution.** Let `context_compressor.py` summarize the middle turns into a compact recap; keep recent turns verbatim and the stable tier cached.
+
+**Architecture.** Stable (cached) + context (compressed middle + retrieved) + volatile (recent).
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+context:
+  max_tokens: 120000
+  compression:
+    enabled: true
+    trigger_ratio: 0.8        # compress when 80% of budget is used
+    keep_recent_turns: 12     # never compress the latest 12 turns
+prompt_caching:
+  enabled: true               # cache the stable prefix (Anthropic; Ch 24)
+```
+
+```bash
+hermes run "Continue debugging; remember the repro from the start of the session."
+# middle turns are summarized; repro is preserved in a compact form
+```
+
+**Tests.**
+
+```bash
+hermes context show          # inspect tier sizes and what was compressed
+```
+
+**Result.** The session continues coherently within budget; the early repro survives as a summary; cost stays bounded.
+
+**Future improvements.** Pair with retrieval (Ch 33) so compressed-away detail can still be pulled back via FTS5 if needed; tune `keep_recent_turns` per task type.
+
+### 34.8 Source code
+
+```python
+def build_tiered_prompt(stable, retrieved, turns, budget, compressor):
+    volatile = turns[-CFG.keep_recent_turns:]
+    middle = turns[:-CFG.keep_recent_turns]
+    used = token_count(stable) + token_count(retrieved) + token_count(volatile)
+    if used > budget * CFG.trigger_ratio and middle:
+        retrieved += compressor.summarize(middle)   # collapse the middle
+    return assemble(stable, retrieved, volatile)     # stable prefix is cacheable
+```
+
+### 34.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `context.max_tokens` | `120000` | Window budget |
+| `context.compression.enabled` | `true` | Summarize middle turns |
+| `context.compression.trigger_ratio` | `0.8` | When to start compressing |
+| `context.compression.keep_recent_turns` | `12` | Verbatim recent turns |
+| `prompt_caching.enabled` | `true` | Cache stable prefix (Ch 24) |
+
+### 34.10 Real-world use cases
+
+Long debugging or research sessions; always-on assistants on a token budget; cost-sensitive deployments combining caching and compression.
+
+### 34.11 Exercises
+
+1. Name the three tiers and what belongs in each.
+2. Why is the *middle* compressed rather than the newest or oldest content?
+3. How does tiering enable prompt caching?
+
+### 34.12 Challenges
+
+- **Challenge 1.** Run a long session with and without compression; compare cost and coherence.
+- **Challenge 2.** Tune `keep_recent_turns` and `trigger_ratio` for a coding workload and justify the values.
+
+### 34.13 Checklist
+
+- [ ] I understand stable/context/volatile tiers.
+- [ ] Compression is enabled with sensible thresholds.
+- [ ] Stable prefix is structured for caching.
+- [ ] Recent turns are preserved verbatim.
+
+### 34.14 Best practices
+
+- Keep the stable tier truly stable to maximize cache hits.
+- Compress the middle; never compress the freshest turns.
+- Combine compression with retrieval so detail can be recalled if needed.
+
+### 34.15 Anti-patterns
+
+- Putting volatile data in the stable tier (kills caching).
+- Aggressive compression that erases task-critical detail.
+- Ignoring the window budget until the provider errors.
+
+### 34.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Context overflow error | Budget too small / no compression | Enable compression; lower `trigger_ratio` |
+| Agent loses the thread | Over-aggressive compression | Raise `keep_recent_turns`; loosen trigger |
+| No cache benefit | Stable tier churns | Move volatile data out of stable |
+| Slow/expensive turns | Oversized context | Compress + retrieve instead of dumping history |
+
+### 34.17 Official references
+
+- Context engineering / compression: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Prompt caching: https://hermes-agent.nousresearch.com/docs/integrations/anthropic
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 35 — Long-Term Memory
+
+### 35.1 Introduction
+
+The built-in stores (Markdown + SQLite/FTS5) are excellent defaults, but some deployments need more: paraphrase-tolerant semantic recall, cross-agent shared memory, dedicated vector stores, or specialized dialectic user modeling. Hermes answers this with **8 external memory provider plugins** — Honcho, OpenViking, Mem0, Hindsight, Holographic, RetainDB, ByteRover, and Supermemory — that plug into the same memory interface. They are **single-select**: you choose one as the long-term backend. This chapter covers when and how to graduate from built-in memory to an external provider.
+
+### 35.2 Chapter objectives
+
+(1) Know the 8 external memory providers and the single-select rule; (2) understand what each class of provider adds (semantic recall, dialectic modeling, shared memory); (3) configure an external provider; (4) decide when to graduate from built-in memory; (5) troubleshoot provider integration.
+
+### 35.3 Business context
+
+Built-in memory is per-agent and lexical. Enterprises often need **shared, semantic, governed** memory: a knowledge layer multiple agents draw from, recall that survives paraphrasing, and a provider with its own retention and compliance story. External providers turn memory into a managed service — at the cost of an extra dependency and data-residency considerations.
+
+### 35.4 Theoretical foundations
+
+Hermes exposes a **memory provider interface**; the 8 plugins implement it behind a registry (the loose-coupling principle from Part I). Because only **one** can be active, choosing is an architectural decision, not a stack. The providers differ in emphasis: **Honcho** specializes in *dialectic user modeling* (building a theory-of-mind of the user — see Ch 36); others (Mem0, Supermemory, RetainDB, ByteRover, Hindsight, Holographic, OpenViking) emphasize semantic/vector recall, cross-session persistence, or shared knowledge. The agentic loop is unchanged — it calls the same "remember/recall" operations; only the backend implementation differs.
+
+> **Java parallel.** This is the **Strategy + SPI** pattern: one interface (memory provider), many implementations discovered via a registry, exactly one wired in at runtime — like choosing a single `CacheManager` implementation for the whole app.
+
+### 35.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent loop] --> mpi[Memory Provider Interface]
+    mpi --> reg[Registry - single-select]
+    reg --> p1[Honcho - dialectic user modeling]
+    reg --> p2[Mem0]
+    reg --> p3[Supermemory]
+    reg --> p4[RetainDB]
+    reg --> p5[ByteRover]
+    reg --> p6[Hindsight]
+    reg --> p7[Holographic]
+    reg --> p8[OpenViking]
+    mpi -.fallback.-> builtin[(Built-in MEMORY.md + SQLite/FTS5)]
+```
+
+### 35.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant MPI as Memory Provider Interface
+    participant EX as External provider (e.g. Mem0)
+    A->>MPI: recall(query)
+    MPI->>EX: semantic search
+    EX-->>MPI: relevant memories (paraphrase-tolerant)
+    MPI-->>A: context fragments
+    A->>MPI: remember(durable fact)
+    MPI->>EX: upsert memory
+```
+
+### 35.7 Complete example
+
+**Scenario.** Several Hermes agents across a company should share a semantic knowledge layer, and recall must survive paraphrasing.
+
+**Problem.** Built-in memory is per-agent and lexical (FTS5) — no sharing, weak on paraphrase.
+
+**Solution.** Select one external provider (e.g., Mem0) as the long-term memory backend for all agents.
+
+**Architecture.** AIAgent → Memory Provider Interface → external provider (semantic, shared).
+
+**Implementation.**
+
+```bash
+export MEM0_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  provider: mem0            # single-select external long-term backend
+  mem0:
+    api_key_env: MEM0_API_KEY
+    namespace: company-shared
+```
+
+```bash
+hermes doctor                       # provider=mem0, status=connected
+hermes run "Recall what we know about the billing service SLAs."
+```
+
+**Tests.**
+
+```bash
+hermes memory search "billing SLA"   # exercises the external provider
+```
+
+**Result.** Shared, semantic, paraphrase-tolerant recall across all company agents.
+
+**Future improvements.** Switch to Honcho if the priority shifts to deep user modeling (Ch 36); add governance and retention policy review (Part XII).
+
+### 35.8 Source code
+
+```python
+MEMORY_PROVIDERS = {  # registry; exactly one is activated by config
+    "honcho": HonchoProvider, "openviking": OpenVikingProvider,
+    "mem0": Mem0Provider, "hindsight": HindsightProvider,
+    "holographic": HolographicProvider, "retaindb": RetainDBProvider,
+    "byterover": ByteRoverProvider, "supermemory": SupermemoryProvider,
+}
+
+def build_memory(cfg, env):
+    name = cfg["memory"].get("provider")          # single-select
+    if not name:
+        return BuiltinMemory()                     # MEMORY.md + SQLite/FTS5
+    return MEMORY_PROVIDERS[name](cfg["memory"][name], env)
+```
+
+### 35.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.provider` | `mem0` / `honcho` / ... | One of 8; single-select |
+| `memory.<provider>.api_key_env` | env var | Provider credential |
+| `memory.<provider>.namespace` | `company-shared` | Scope / sharing boundary |
+| (none) | — | Omit `provider` to use built-in |
+
+### 35.10 Real-world use cases
+
+Cross-agent shared knowledge; semantic recall for support/research; Honcho for deep user modeling; provider-managed retention for compliance.
+
+### 35.11 Exercises
+
+1. Why is the external memory provider single-select?
+2. Which provider specializes in dialectic user modeling?
+3. When is built-in memory sufficient and an external provider unnecessary?
+
+### 35.12 Challenges
+
+- **Challenge 1.** Configure one external provider and prove paraphrase-tolerant recall versus FTS5.
+- **Challenge 2.** Compare two providers on the same recall task and justify a choice.
+
+### 35.13 Checklist
+
+- [ ] I know the 8 providers and the single-select rule.
+- [ ] An external provider is configured (or built-in is consciously chosen).
+- [ ] `hermes doctor` shows the provider connected.
+
+### 35.14 Best practices
+
+- Stay on built-in memory until you have a concrete need (sharing, semantics, governance).
+- Choose deliberately — switching providers later means a migration.
+- Review the provider's data-residency and retention terms before enterprise use.
+
+### 35.15 Anti-patterns
+
+- Adopting an external provider "just in case" and adding needless dependency/egress.
+- Assuming you can run two providers at once (you select one).
+- Ignoring data-residency implications of an external memory store.
+
+### 35.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `provider not connected` | Bad key/endpoint | Verify `api_key_env` and network |
+| Recall worse than FTS5 | Misconfigured namespace | Align namespace; re-seed memories |
+| Two providers configured | Single-select violated | Keep exactly one `memory.provider` |
+| Compliance flag | Data egress to provider | Use built-in/local or a compliant provider |
+
+### 35.17 Official references
+
+- Memory providers: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Honcho: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Memory overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+
+---
+
+## Chapter 36 — User Modeling
+
+### 36.1 Introduction
+
+The most personal layer of memory is the **user model**: who the user is, how they communicate, what they prefer, what role they play. Hermes maintains this in `USER.md` and can deepen it dramatically with **Honcho**, the external provider specialized in **dialectic user modeling** — building an evolving, theory-of-mind representation of the user from the dialogue itself. This chapter covers how the user model forms, how it shapes responses, and how Honcho elevates it from a list of preferences to a living model.
+
+### 36.2 Chapter objectives
+
+(1) Explain `USER.md` and what belongs in it; (2) define dialectic user modeling and Honcho's role; (3) understand how the user model shapes responses; (4) configure Honcho; (5) respect privacy and consent in user modeling.
+
+### 36.3 Business context
+
+A personalized agent is a more effective agent: it adapts tone, depth, and assumptions to the individual, reducing friction and rework. For products, user modeling drives retention and satisfaction. But it also raises **privacy and consent** obligations — modeling a person is sensitive data, and must be governed accordingly (Part XII).
+
+### 36.4 Theoretical foundations
+
+The baseline user model is `USER.md`: curated preferences, role, communication style, and durable personal facts, loaded into the stable tier. **Dialectic user modeling** (Honcho) goes further: it continuously infers a richer representation — goals, knowledge level, intent — from the back-and-forth of conversation, in the tradition of *theory of mind*. Rather than only storing stated preferences, it reasons about the user. Because it is a memory provider (Ch 35), it plugs into the same interface; the difference is the **depth and inferential nature** of the model it maintains.
+
+> **Java parallel.** `USER.md` is a plain DTO of user attributes; Honcho is a stateful domain service that *derives* a richer user aggregate from the event stream of the conversation.
+
+### 36.5 Architecture
+
+```mermaid
+flowchart TB
+    dialog[Conversation turns] --> infer[Dialectic inference - Honcho]
+    infer --> model[(Evolving user model)]
+    usermd[USER.md baseline] --> stable[Stable prompt tier]
+    model --> stable
+    stable --> resp[Personalized responses]
+```
+
+### 36.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant H as Honcho (dialectic)
+    U->>A: messages over time
+    A->>H: stream dialogue
+    H->>H: infer goals / knowledge / intent (theory of mind)
+    A->>H: query user model
+    H-->>A: rich user representation
+    A-->>U: response adapted to the modeled user
+```
+
+### 36.7 Complete example
+
+**Scenario.** An assistant should adapt automatically: terse and expert with a senior engineer, more explanatory with a new hire — without anyone configuring it.
+
+**Problem.** A static `USER.md` of stated preferences doesn't capture evolving knowledge level or intent.
+
+**Solution.** Enable Honcho as the memory provider for dialectic user modeling; the model infers expertise and adapts responses.
+
+**Architecture.** Conversation → Honcho inference → user model → stable tier → adapted response.
+
+**Implementation.**
+
+```bash
+export HONCHO_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+  provider: honcho            # dialectic user modeling
+  honcho:
+    api_key_env: HONCHO_API_KEY
+    user_modeling: true
+```
+
+```bash
+hermes doctor
+hermes run "Explain our caching layer."
+# Honcho infers expertise from prior turns and tunes depth accordingly
+```
+
+**Tests.**
+
+```bash
+hermes memory show --user      # inspect the modeled user representation
+```
+
+**Result.** Responses that automatically match the user's inferred expertise and intent, improving over time.
+
+**Future improvements.** Add explicit consent capture and a "forget me" path (Part XII); let users review and correct their model.
+
+### 36.8 Source code
+
+```python
+class HonchoUserModel:
+    def observe(self, turns):
+        self.client.ingest(turns)                  # stream dialogue for inference
+
+    def representation(self) -> dict:
+        # dialectic, theory-of-mind style model derived from dialogue
+        return self.client.get_user_model()        # goals, knowledge level, intent
+```
+
+### 36.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `memory.provider` | `honcho` | For dialectic modeling |
+| `memory.honcho.user_modeling` | `true` | Enable inference |
+| `USER.md` | file | Baseline stated preferences |
+| consent/retention | policy | Govern per Part XII |
+
+### 36.10 Real-world use cases
+
+Expertise-adaptive assistants; onboarding bots that adjust to a learner; sales/support agents that model intent; personalized tutors.
+
+### 36.11 Exercises
+
+1. Contrast `USER.md` with dialectic modeling.
+2. Give an example where inferred expertise should change response depth.
+3. Why does user modeling raise privacy obligations?
+
+### 36.12 Challenges
+
+- **Challenge 1.** Demonstrate response adaptation as the inferred expertise changes across a session.
+- **Challenge 2.** Design a consent and "right to be forgotten" flow for the user model.
+
+### 36.13 Checklist
+
+- [ ] `USER.md` baseline is curated.
+- [ ] Honcho configured if dialectic modeling is needed.
+- [ ] Privacy/consent considered.
+- [ ] Users can review/correct their model.
+
+### 36.14 Best practices
+
+- Start with `USER.md`; add Honcho only when adaptive depth/intent matters.
+- Be transparent: tell users they are being modeled and let them inspect it.
+- Govern the user model as sensitive personal data (Part XII).
+
+### 36.15 Anti-patterns
+
+- Modeling users without consent or transparency.
+- Treating inferred traits as facts and over-personalizing.
+- Storing the user model with no deletion/correction path.
+
+### 36.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No adaptation | Honcho not enabled | Set `provider: honcho`, `user_modeling: true` |
+| Wrong assumptions | Stale/over-inferred model | Let users correct; reset the model |
+| Privacy concern | No consent/retention policy | Implement consent + deletion (Part XII) |
+| Model not updating | Dialogue not ingested | Verify Honcho ingestion is running |
+
+### 36.17 Official references
+
+- Honcho / user modeling: https://hermes-agent.nousresearch.com/docs/integrations/memory-providers
+- Memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
+- USER.md / context files: https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files
+
+---
+
+## Chapter 37 — Continuous Learning
+
+### 37.1 Introduction
+
+Memory and learning meet here. Declarative memory remembers *facts*; **continuous learning** is how the agent turns accumulated experience into improved *behavior* — primarily by feeding the **learning loop** that evaluates performance and creates/refines **Skills** (Part VI). This chapter closes Part V by connecting the memory subsystem to self-improvement: how periodic evaluation, nudges, and curation combine so that Hermes genuinely gets more capable the longer it runs.
+
+### 37.2 Chapter objectives
+
+(1) Define continuous learning as the bridge from memory to behavior; (2) explain the learning loop's periodic evaluation (~every 15 tasks); (3) relate nudges, curation, and Skill creation; (4) configure the learning cadence; (5) measure whether the agent is actually improving.
+
+### 37.3 Business context
+
+This is the differentiator from Chapter 1 made operational: an agent that **compounds**. Each task is not just executed but *mined* for reusable knowledge. For an enterprise, continuous learning is how individual usage becomes organizational capability — the agent's competence curve bends upward instead of flat-lining like a stateless chatbot.
+
+### 37.4 Theoretical foundations
+
+Continuous learning rests on three mechanisms already introduced, now combined:
+
+- **Nudges** (Ch 31) decide what declarative knowledge to persist.
+- **Curation** keeps memory durable and concise rather than hoarded.
+- **The learning loop** evaluates performance periodically (by default, roughly every 15 tasks) and creates or refines **Skills** — procedural memory — from observed patterns.
+
+The loop reads from memory (what happened, what worked) and writes to Skills (how to do it better next time). Memory is therefore not an end in itself but the **substrate the learning loop mines**. The `~15-task` cadence balances responsiveness against overhead; it is configurable.
+
+> **Java parallel.** Think of a scheduled batch job that reads an event log (memory), detects recurring patterns, and emits/updates reusable components (Skills) — a self-refactoring system that improves its own toolkit over time.
+
+### 37.5 Architecture
+
+```mermaid
+flowchart TB
+    tasks[Tasks executed] --> mem[(Declarative memory<br/>MEMORY.md + SQLite/FTS5)]
+    mem --> loop[Learning loop<br/>evaluate ~every 15 tasks]
+    loop --> eval[Extract patterns / assess outcomes]
+    eval --> skills[(Skills - procedural memory, Part VI)]
+    skills -.improve.-> tasks
+    nudge[Nudges] -.persist facts.-> mem
+```
+
+### 37.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant M as Memory
+    participant L as Learning loop
+    participant S as Skills
+    loop every ~15 tasks
+        A->>L: trigger evaluation
+        L->>M: read recent outcomes
+        L->>L: extract patterns, assess what worked
+        L->>S: create or refine Skills
+    end
+    A->>S: use improved Skills on next tasks
+```
+
+### 37.7 Complete example
+
+**Scenario.** A team repeatedly asks the agent to generate release notes from git history. The steps are similar each time.
+
+**Problem.** Without learning, the agent re-derives the procedure every time — inconsistent and slow.
+
+**Solution.** Continuous learning: after a handful of similar tasks, the learning loop detects the pattern and creates a "release-notes" Skill that standardizes and accelerates it.
+
+**Architecture.** Repeated tasks → memory → learning loop (~every 15 tasks) → new Skill → faster future runs.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+memory:
+  enabled: true
+skills:
+  enabled: true
+learning:
+  enabled: true
+  evaluate_every: 15          # learning-loop cadence (tasks)
+```
+
+```bash
+# Run several release-note tasks; the loop will mine the pattern
+hermes run "Generate release notes from the last 20 commits."
+# ... after enough similar tasks ...
+hermes skills list            # a learned release-notes Skill appears
+```
+
+**Tests.**
+
+```bash
+hermes skills list | grep -i release      # confirm the Skill was created
+hermes run "Release notes for v1.4."       # faster, consistent via the Skill
+```
+
+**Result.** A self-created Skill standardizes a recurring task; subsequent runs are faster and more consistent.
+
+**Future improvements.** Curate and govern learned Skills (Part VI, Ch 45); export task trajectories for RL training (Atropos) per the project's research lineage.
+
+### 37.8 Source code
+
+```python
+class LearningLoop:
+    def __init__(self, every: int = 15):
+        self.every, self.counter = every, 0
+
+    def on_task_complete(self, outcome, memory, skills):
+        self.counter += 1
+        if self.counter % self.every == 0:
+            patterns = self.extract_patterns(memory.recent_outcomes())
+            for p in patterns:
+                skills.create_or_refine(p)     # procedural memory grows
+```
+
+### 37.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `learning.enabled` | `true` | Enable the loop |
+| `learning.evaluate_every` | `15` | Tasks between evaluations |
+| `skills.enabled` | `true` | Required target for learning |
+| `memory.enabled` | `true` | Substrate for learning |
+
+### 37.10 Real-world use cases
+
+Standardizing recurring tasks (release notes, PR reviews, reports); an agent that gets faster at a team's workflows; trajectory generation for model training.
+
+### 37.11 Exercises
+
+1. How does continuous learning bridge declarative memory and procedural Skills?
+2. What does the `evaluate_every` cadence trade off?
+3. Give an example of a recurring task that would benefit from a learned Skill.
+
+### 37.12 Challenges
+
+- **Challenge 1.** Drive a recurring task until a Skill is auto-created; document the before/after.
+- **Challenge 2.** Tune `evaluate_every` and observe its effect on learning responsiveness and overhead.
+
+### 37.13 Checklist
+
+- [ ] `learning.enabled`, `skills.enabled`, `memory.enabled` all true.
+- [ ] Cadence (`evaluate_every`) set sensibly.
+- [ ] I can observe newly created/refined Skills.
+- [ ] I have a way to measure improvement.
+
+### 37.14 Best practices
+
+- Enable memory + skills + learning together — they are interdependent.
+- Keep the cadence moderate (the ~15-task default is a good start).
+- Review learned Skills periodically (governance, Part VI Ch 45).
+
+### 37.15 Anti-patterns
+
+- Enabling learning while disabling Skills (nowhere to write improvements).
+- Setting the cadence so low it adds constant overhead.
+- Never reviewing learned Skills, letting bad patterns calcify.
+
+### 37.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No Skills created | `skills.enabled` false / too few tasks | Enable Skills; run more similar tasks |
+| Learning overhead high | Cadence too aggressive | Raise `evaluate_every` |
+| Bad Skills learned | No curation | Review/disable Skills (Part VI) |
+| No measurable gain | No metrics | Track task time/consistency before/after |
+
+### 37.17 Official references
+
+- Learning loop / self-improvement: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Skills: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+> **End of Part V.** Persistent memory is now a subsystem you understand end to end: the core concepts and three stores (Ch 31), their structure and context files/references (Ch 32), retrieval via FTS5 + summarization (Ch 33), context engineering with tiering and compression (Ch 34), long-term external providers (Ch 35), user modeling with Honcho (Ch 36), and continuous learning that turns memory into improved behavior (Ch 37). **Part VI — Skills** (Chapters 38–45) picks up the procedural-memory thread: what Skills are, how they are architected, created, auto-updated, evolved, reused, and governed as a corporate library.
+
+## Part VI – Skills
+
+If memory (Part V) is *knowing that*, Skills are *knowing how*. A **Skill** is a packaged, reusable procedure — a `SKILL.md` file with YAML frontmatter and supporting assets — that the agent can discover and apply. Hermes ships with **~90 bundled** Skills plus **~60 optional** ones, and, crucially, **creates its own** through the learning loop (Ch 37). Part VI covers the full lifecycle: what Skills are, how they are architected with **progressive disclosure**, how to author them, how the **Curator** keeps them fresh, how they evolve and get reused, and how to govern a corporate Skills library at scale.
+
+> **Carry-through idea.** Skills are *procedural memory as files*: human-readable, versionable, shareable, and — uniquely in Hermes — self-authored and self-maintained.
+
+---
+
+## Chapter 38 — What Skills Are
+
+### 38.1 Introduction
+
+This chapter defines the unit. A Skill is a directory containing a `SKILL.md` (Markdown with YAML frontmatter describing name, description, and triggers) plus any scripts, templates, or references it needs. Skills live in `~/.hermes/skills/` (bundled) and `optional-skills/`; the agent loads their metadata cheaply and pulls the full body only when relevant — the principle of **progressive disclosure**. You invoke them implicitly (the agent matches the task) or explicitly (the `/skills` slash command), and manage them with `hermes skills`.
+
+### 38.2 Chapter objectives
+
+(1) Define a Skill and the `SKILL.md` format; (2) explain bundled vs optional Skills and their locations; (3) understand progressive disclosure; (4) enable/disable and invoke Skills; (5) distinguish Skills from MCP tools and memory.
+
+### 38.3 Business context
+
+Skills make organizational know-how a **first-class, reusable asset**. A procedure encoded once as a Skill is applied consistently by every agent and every team member — onboarding, compliance checks, report formats. Unlike prompts buried in chat history, Skills are discoverable, versionable, and governable, which is what makes "knowledge as an asset" real rather than aspirational.
+
+### 38.4 Theoretical foundations
+
+A Skill is **procedural memory externalized as a file bundle**. The `SKILL.md` frontmatter (YAML) declares metadata — `name`, `description`, and when the Skill applies — followed by the procedure body. **Progressive disclosure** is the key efficiency mechanism: the agent always sees the lightweight metadata of all enabled Skills, but only loads a Skill's full content into context when the task matches. This keeps the prompt small (you can have ~150 Skills available without paying for all of them every turn) while still making everything discoverable. Skills are sourced from the bundle, the optional set, and community hubs (**agentskills.io**, the **Skills Hub**), and can be created by the agent itself.
+
+> **Java parallel.** A Skill is like a Spring bean defined in a small descriptor: the container scans lightweight metadata (annotations) for all beans but only instantiates one when it's actually needed — lazy loading driven by relevance.
+
+### 38.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph store["Skills storage"]
+        bundled["~/.hermes/skills/<br/>~90 bundled"]
+        optional["optional-skills/<br/>~60 optional"]
+    end
+    meta[Metadata index<br/>name + description + triggers] --> agent[AIAgent]
+    bundled --> meta
+    optional --> meta
+    agent -->|task matches| load[Load full SKILL.md<br/>progressive disclosure]
+    hub[agentskills.io / Skills Hub] -.import.-> optional
+```
+
+### 38.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant IDX as Skill metadata index
+    participant SK as SKILL.md (full)
+    U->>A: task
+    A->>IDX: match task against descriptions/triggers
+    IDX-->>A: candidate Skill(s)
+    A->>SK: load full body (only the matched Skill)
+    SK-->>A: procedure + assets
+    A-->>U: execute the Skill
+```
+
+### 38.7 Complete example
+
+**Scenario.** A team wants every agent to format incident postmortems identically.
+
+**Problem.** Postmortems vary by author; the standard lives in a wiki nobody reads.
+
+**Solution.** Encode the standard as a Skill; the agent applies it automatically when a postmortem is requested.
+
+**Architecture.** `SKILL.md` (postmortem) in `~/.hermes/skills/` → metadata indexed → loaded on match.
+
+**Implementation.**
+
+```bash
+hermes skills list                       # see bundled + optional Skills
+hermes skills enable postmortem-writer   # enable a Skill for this platform
+```
+
+```markdown
+<!-- ~/.hermes/skills/postmortem-writer/SKILL.md -->
+---
+name: postmortem-writer
+description: Write a blameless incident postmortem in the company standard format.
+triggers: ["postmortem", "incident report", "RCA"]
+---
+# Postmortem Writer
+1. Summary (impact, duration, severity)
+2. Timeline (UTC)
+3. Root cause (blameless)
+4. Remediation + action items (owners, dates)
+```
+
+**Tests.**
+
+```bash
+hermes run "/skills"                       # list available Skills interactively
+hermes run "Write a postmortem for yesterday's outage."   # auto-applies the Skill
+```
+
+**Result.** Consistent, standard-format postmortems from any agent, with zero per-task instruction.
+
+**Future improvements.** Move the Skill into a shared corporate library (Ch 44) and govern its lifecycle (Ch 45).
+
+### 38.8 Source code
+
+```python
+@dataclass
+class Skill:
+    name: str
+    description: str
+    triggers: list[str]
+    path: Path           # directory with SKILL.md + assets
+
+def index_skills(dirs: list[Path]) -> list[Skill]:
+    skills = []
+    for d in dirs:                       # ~/.hermes/skills/, optional-skills/
+        for sk in d.glob("*/SKILL.md"):
+            fm = parse_frontmatter(sk)   # lightweight: metadata only
+            skills.append(Skill(fm["name"], fm["description"],
+                                fm.get("triggers", []), sk.parent))
+    return skills                        # full body loaded later, on match
+```
+
+### 38.9 Configuration
+
+| Key / Path | Value | Notes |
+|------------|-------|-------|
+| `~/.hermes/skills/` | bundled | ~90 Skills |
+| `optional-skills/` | optional | ~60 Skills |
+| `SKILL.md` frontmatter | `name`, `description`, `triggers` | YAML |
+| `hermes skills enable/disable` | per platform | Toggle availability |
+| `/skills` | slash command | Interactive listing |
+
+### 38.10 Real-world use cases
+
+Standardized postmortems/reports; onboarding procedures; compliance checklists; code-review playbooks — any repeatable know-how.
+
+### 38.11 Exercises
+
+1. Describe the `SKILL.md` structure.
+2. Explain progressive disclosure and why it scales to ~150 Skills.
+3. How do Skills differ from MCP tools?
+
+### 38.12 Challenges
+
+- **Challenge 1.** Enable three optional Skills and trigger each by task phrasing.
+- **Challenge 2.** Write a minimal `SKILL.md` and confirm it loads only when relevant.
+
+### 38.13 Checklist
+
+- [ ] I can read a `SKILL.md` and its frontmatter.
+- [ ] I know the bundled vs optional locations.
+- [ ] I understand progressive disclosure.
+- [ ] I can enable/disable and invoke Skills.
+
+### 38.14 Best practices
+
+- Write tight `description`/`triggers` so matching is accurate.
+- Keep each Skill focused on one procedure.
+- Enable only the Skills a platform needs to keep the index lean.
+
+### 38.15 Anti-patterns
+
+- Vague descriptions that cause wrong-Skill matches.
+- One mega-Skill trying to do everything.
+- Enabling all ~150 Skills everywhere without need.
+
+### 38.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Skill never triggers | Weak description/triggers | Sharpen frontmatter keywords |
+| Wrong Skill applied | Overlapping triggers | Disambiguate descriptions |
+| Skill not listed | Not enabled / bad path | `hermes skills enable`; check directory |
+| Body never loads | Metadata-only mismatch | Verify the task matches triggers |
+
+### 38.17 Official references
+
+- Skills overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Skills Hub / agentskills.io: https://agentskills.io/
+- Features overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 39 — Skills Architecture
+
+### 39.1 Introduction
+
+This chapter goes under the hood: the directory layout, the loading pipeline, how progressive disclosure is implemented across the metadata index and full-body load, and the role of the **Curator** — the background process that tracks usage, detects staleness, archives unused Skills, and runs LLM reviews. Understanding the architecture is what lets you build, debug, and govern Skills with confidence rather than treating them as magic.
+
+### 39.2 Chapter objectives
+
+(1) Map the Skills directory and loading pipeline; (2) understand the metadata-index vs full-body split; (3) explain the Curator's responsibilities; (4) see how Skills integrate with the learning loop; (5) reason about Skill precedence and overrides.
+
+### 39.3 Business context
+
+A clear Skills architecture is what makes a corporate library maintainable: you can see which Skills are used, which are stale, and which overlap. The Curator turns "a pile of Skills" into a **self-maintaining catalog**, reducing the human toil of grooming organizational knowledge — directly lowering maintenance cost at scale.
+
+### 39.4 Theoretical foundations
+
+The architecture has three layers. **Storage** — bundled (`~/.hermes/skills/`), optional (`optional-skills/`), and imported. **Discovery** — a lightweight metadata index over all enabled Skills (progressive disclosure); only matched Skills load their full body. **Maintenance** — the **Curator** runs in the background performing usage tracking, staleness detection, archival of unused Skills, and periodic **LLM review** of Skill quality. The learning loop (Ch 37) is the **producer** of new Skills; the Curator is the **groundskeeper**. Together they make Skills a living system rather than a static folder.
+
+> **Java parallel.** Storage is the classpath; the metadata index is component scanning; the Curator is a scheduled maintenance service (like a cache evictor + linter) that prunes and reviews beans nobody uses.
+
+### 39.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph storage["Storage"]
+        b[bundled] 
+        o[optional]
+        i[imported / corporate]
+    end
+    storage --> idx[Metadata index<br/>progressive disclosure]
+    idx --> agent[AIAgent]
+    agent -->|match| body[Full SKILL.md load]
+    learn[Learning loop<br/>Ch 37] -->|create/refine| storage
+    cur[Curator - background] -->|usage / staleness / archive / LLM review| storage
+```
+
+### 39.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant L as Learning loop
+    participant ST as Skills storage
+    participant C as Curator
+    participant A as AIAgent
+    L->>ST: create/refine Skill
+    A->>ST: use Skill (records usage)
+    loop background
+        C->>ST: scan usage + age
+        C->>C: detect stale/unused
+        C->>ST: archive or flag; LLM review
+    end
+```
+
+### 39.7 Complete example
+
+**Scenario.** A library has grown to 200 Skills; some are stale or never used.
+
+**Problem.** Nobody has time to manually audit 200 Skills for staleness and overlap.
+
+**Solution.** Rely on the Curator to track usage, flag stale Skills, and archive unused ones, with LLM review surfacing quality issues.
+
+**Architecture.** Storage → Curator (usage/staleness/archival/review) → groomed catalog.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  enabled: true
+  curator:
+    enabled: true
+    staleness_days: 90       # flag Skills unused for 90 days
+    archive_unused: true     # move stale Skills to an archive
+    llm_review: true         # periodic quality review
+```
+
+```bash
+hermes skills status         # usage counts, last-used, staleness flags
+hermes skills curate --dry-run   # preview archival/review actions
+```
+
+**Tests.**
+
+```bash
+hermes skills status | sort -k3   # inspect last-used to validate staleness logic
+```
+
+**Result.** A self-grooming catalog: stale Skills are archived, quality issues flagged, with minimal human effort.
+
+**Future improvements.** Wire Curator reports into governance dashboards (Ch 45); require human sign-off before archival in regulated environments.
+
+### 39.8 Source code
+
+```python
+class Curator:
+    def run(self, skills, usage_log, now):
+        for sk in skills:
+            last = usage_log.last_used(sk.name)
+            if last is None or (now - last).days > CFG.staleness_days:
+                sk.flag("stale")
+                if CFG.archive_unused:
+                    self.archive(sk)
+        if CFG.llm_review:
+            self.llm_quality_review(skills)   # periodic background review
+```
+
+### 39.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.curator.enabled` | `true` | Background maintenance |
+| `skills.curator.staleness_days` | `90` | Unused threshold |
+| `skills.curator.archive_unused` | `true` | Auto-archive |
+| `skills.curator.llm_review` | `true` | Periodic quality review |
+
+### 39.10 Real-world use cases
+
+Large corporate libraries needing automated grooming; teams tracking Skill usage; quality control via LLM review; archival of obsolete procedures.
+
+### 39.11 Exercises
+
+1. Distinguish the learning loop's role from the Curator's.
+2. What does progressive disclosure cost vs save?
+3. List the Curator's four responsibilities.
+
+### 39.12 Challenges
+
+- **Challenge 1.** Configure the Curator and force a staleness flag on a test Skill.
+- **Challenge 2.** Add a human sign-off gate before archival.
+
+### 39.13 Checklist
+
+- [ ] I can map storage → index → maintenance.
+- [ ] Curator is configured with sensible thresholds.
+- [ ] I understand learning-loop vs Curator roles.
+
+### 39.14 Best practices
+
+- Keep the Curator on for any library beyond a handful of Skills.
+- Tune `staleness_days` to your cadence; don't archive too eagerly.
+- Review LLM-flagged Skills before deleting.
+
+### 39.15 Anti-patterns
+
+- Disabling the Curator and accumulating dead Skills.
+- Auto-archiving aggressively and losing useful-but-seasonal Skills.
+- Treating Curator output as gospel without review.
+
+### 39.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Stale Skills pile up | Curator disabled | Enable `skills.curator` |
+| Useful Skill archived | Threshold too low | Raise `staleness_days`; restore from archive |
+| No usage data | Tracking off | Ensure usage logging is enabled |
+| Slow startup | Huge full-body loads | Rely on metadata index; trim enabled set |
+
+### 39.17 Official references
+
+- Skills architecture / Curator: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Developer guide (architecture): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Skills Hub: https://agentskills.io/
+
+---
+
+## Chapter 40 — Creating Skills
+
+### 40.1 Introduction
+
+Now you author one. This chapter is hands-on: writing a `SKILL.md` with correct YAML frontmatter, structuring the procedure body, bundling supporting scripts/templates, placing it for discovery, and testing that it triggers correctly. You will create Skills two ways — by hand, and by letting the agent create one for you — and learn the conventions that make a Skill reliable.
+
+### 40.2 Chapter objectives
+
+(1) Write a valid `SKILL.md`; (2) bundle assets (scripts/templates); (3) place and enable a Skill; (4) test triggering and execution; (5) have the agent author a Skill from a demonstrated procedure.
+
+### 40.3 Business context
+
+The ability to author Skills turns tribal knowledge into shared, executable assets quickly. A senior engineer can encode a tricky deployment procedure once; the whole team's agents then execute it correctly. This shortens onboarding and reduces the "only Alice knows how" risk.
+
+### 40.4 Theoretical foundations
+
+A good Skill follows a few principles: a **precise description and triggers** (so progressive disclosure matches it accurately), a **clear, stepwise body** (the agent follows it like a checklist), and **bundled assets** referenced by relative path (scripts to run, templates to fill). Authoring can be **manual** (write the files) or **agent-driven** (demonstrate a task and ask the agent to capture it as a Skill — the same mechanism the learning loop uses, invoked on demand). Either way the output is the same artifact: a directory with `SKILL.md` plus assets.
+
+> **Java parallel.** Authoring a Skill is like writing a small, well-documented utility class with a clear Javadoc (frontmatter), a focused method (the procedure), and bundled resources — designed for reuse, not one-off use.
+
+### 40.5 Architecture
+
+```mermaid
+flowchart LR
+    author[Author: human or agent] --> md[SKILL.md<br/>frontmatter + body]
+    author --> assets[scripts / templates]
+    md --> dir[Skill directory]
+    assets --> dir
+    dir --> place[Place in ~/.hermes/skills/]
+    place --> idx[Indexed -> discoverable]
+```
+
+### 40.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant FS as Filesystem
+    U->>A: "Capture how we cut a release as a Skill."
+    A->>A: derive steps from the demonstrated/explained procedure
+    A->>FS: write SKILL.md + assets to a new Skill dir
+    A->>FS: index the new Skill
+    A-->>U: "Created Skill 'release-cutter'."
+```
+
+### 40.7 Complete example
+
+**Scenario.** The team's release procedure is intricate and error-prone; only one engineer knows all the steps.
+
+**Problem.** The knowledge is tribal; mistakes happen when that engineer is away.
+
+**Solution.** Encode the procedure as a Skill — authored manually, with a helper script bundled.
+
+**Architecture.** `SKILL.md` + `cut_release.sh` in a Skill directory → indexed → executed on request.
+
+**Implementation.**
+
+```bash
+mkdir -p ~/.hermes/skills/release-cutter
+```
+
+```markdown
+<!-- ~/.hermes/skills/release-cutter/SKILL.md -->
+---
+name: release-cutter
+description: Cut a versioned release following the team's exact procedure.
+triggers: ["cut a release", "tag release", "ship version"]
+---
+# Release Cutter
+1. Ensure `main` is green (CI passing).
+2. Bump version in `pyproject.toml`.
+3. Update CHANGELOG from merged PRs.
+4. Run `./cut_release.sh <version>` (bundled).
+5. Verify the tag and the published artifact.
+```
+
+```bash
+cat > ~/.hermes/skills/release-cutter/cut_release.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+VERSION="$1"
+git tag -a "v${VERSION}" -m "Release v${VERSION}"
+git push origin "v${VERSION}"
+EOF
+chmod +x ~/.hermes/skills/release-cutter/cut_release.sh
+hermes skills enable release-cutter
+```
+
+**Tests.**
+
+```bash
+hermes run "/skills"                         # confirm release-cutter is listed
+hermes run "Cut a release for version 1.5.0." # agent follows the Skill
+```
+
+**Result.** Anyone's agent can cut a release correctly; the procedure is no longer tribal.
+
+**Future improvements.** Have the agent auto-create variants for hotfix releases; promote the Skill to the corporate library (Ch 44).
+
+### 40.8 Source code
+
+```python
+def create_skill(name, description, triggers, body, assets, skills_dir: Path):
+    d = skills_dir / name
+    d.mkdir(parents=True, exist_ok=True)
+    frontmatter = {"name": name, "description": description, "triggers": triggers}
+    (d / "SKILL.md").write_text(to_frontmatter(frontmatter) + "\n" + body)
+    for fname, content in assets.items():
+        (d / fname).write_text(content)
+    index_skills([skills_dir])               # make it discoverable
+    return d
+```
+
+### 40.9 Configuration
+
+| Element | Requirement | Notes |
+|---------|-------------|-------|
+| `SKILL.md` | required | Frontmatter + body |
+| `name` | unique | Identifier |
+| `description` / `triggers` | precise | Drives matching |
+| assets | optional | Referenced by relative path |
+| location | `~/.hermes/skills/<name>/` | For discovery |
+
+### 40.10 Real-world use cases
+
+Encoding deployment/release procedures; standard report generators; data-pipeline runbooks; onboarding task captures.
+
+### 40.11 Exercises
+
+1. Write a `SKILL.md` for generating a weekly status report.
+2. Bundle a script and reference it from the body.
+3. Ask the agent to capture a demonstrated task as a Skill.
+
+### 40.12 Challenges
+
+- **Challenge 1.** Author a Skill with a bundled script and prove it runs end-to-end.
+- **Challenge 2.** Compare a hand-authored Skill with an agent-authored one for the same task.
+
+### 40.13 Checklist
+
+- [ ] Valid frontmatter (`name`, `description`, `triggers`).
+- [ ] Clear, stepwise body.
+- [ ] Assets bundled and referenced relatively.
+- [ ] Skill enabled and triggers correctly.
+
+### 40.14 Best practices
+
+- Keep the body a clean checklist the agent can follow literally.
+- Make `description`/`triggers` specific to avoid mismatches.
+- Bundle scripts rather than inlining fragile shell in the body.
+
+### 40.15 Anti-patterns
+
+- Overly broad triggers that hijack unrelated tasks.
+- Embedding secrets in the Skill or its scripts.
+- Giant multi-purpose Skills instead of focused ones.
+
+### 40.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Skill not discovered | Bad path / not indexed | Place under `~/.hermes/skills/`; re-index |
+| Doesn't trigger | Weak triggers | Add specific keywords |
+| Script fails | Not executable / bad path | `chmod +x`; reference relatively |
+| Invalid frontmatter | YAML error | Validate the frontmatter block |
+
+### 40.17 Official references
+
+- Creating Skills: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Skills Hub / agentskills.io: https://agentskills.io/
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 41 — Automatic Updating
+
+### 41.1 Introduction
+
+Skills are not write-once. Hermes **updates them automatically**: the learning loop (Ch 37) refines existing Skills as it observes better ways to do things, and the Curator (Ch 39) keeps quality and freshness in check. This chapter focuses specifically on the *automatic update* path — how a Skill improves itself over repeated use, how updates are reviewed, and how to keep automatic updating safe in production.
+
+### 41.2 Chapter objectives
+
+(1) Explain how the learning loop refines existing Skills; (2) understand Curator-driven quality updates; (3) review and approve automatic updates; (4) configure update cadence and safety gates; (5) troubleshoot bad automatic updates.
+
+### 41.3 Business context
+
+Auto-updating Skills mean procedures **stay current without manual grooming** — when the team's release process changes, the agent can refine the release Skill from observed runs. The risk is uncontrolled drift; the mitigation is review gates. Balancing the two is what makes auto-updating safe enough for production while still delivering its maintenance savings.
+
+### 41.4 Theoretical foundations
+
+Automatic updating combines the two background mechanisms. The **learning loop** evaluates outcomes (~every 15 tasks) and may *refine* an existing Skill — tightening steps, fixing a recurring failure, adding a branch. The **Curator** independently performs **LLM review**, flagging or improving low-quality Skills and retiring stale ones. Updates can be applied directly or gated behind **human review**, depending on configuration and environment. The artifact is versioned, so changes are auditable and revertible.
+
+> **Java parallel.** This is continuous refactoring driven by runtime telemetry: a background process notices a hot-but-flaky method (Skill), rewrites it for reliability, and submits the change for review — Dependabot-meets-self-healing-code.
+
+### 41.5 Architecture
+
+```mermaid
+flowchart TB
+    runs[Repeated Skill runs] --> loop[Learning loop<br/>evaluate outcomes]
+    loop -->|refine| draft[Updated SKILL.md draft]
+    cur[Curator LLM review] -->|improve/flag| draft
+    draft --> gate{Review gate?}
+    gate -->|auto| apply[Apply update + version bump]
+    gate -->|manual| human[Human approves] --> apply
+```
+
+### 41.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant L as Learning loop
+    participant C as Curator
+    participant G as Review gate
+    participant ST as Skills storage
+    A->>L: outcomes from repeated runs
+    L->>L: detect a better procedure
+    L->>ST: draft refined Skill (versioned)
+    C->>ST: LLM quality pass
+    ST->>G: propose update
+    alt auto-apply
+        G->>ST: commit update
+    else manual
+        G-->>A: request approval
+    end
+```
+
+### 41.7 Complete example
+
+**Scenario.** The release Skill (Ch 40) occasionally fails because CI status checks changed; the agent notices and wants to fix it.
+
+**Problem.** Manually keeping the Skill in sync with process changes is toil and lags reality.
+
+**Solution.** Enable automatic updating with a manual review gate; the learning loop drafts a fix, the Curator reviews, a human approves.
+
+**Architecture.** Runs → learning loop draft → Curator review → human gate → versioned update.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  enabled: true
+  auto_update:
+    enabled: true
+    review: manual          # require human approval before applying
+    version_on_update: true # keep an audit trail
+  curator:
+    llm_review: true
+```
+
+```bash
+hermes skills updates list        # see proposed updates awaiting review
+hermes skills updates approve release-cutter
+```
+
+**Tests.**
+
+```bash
+hermes skills history release-cutter   # confirm versioned update applied
+```
+
+**Result.** The release Skill stays correct as the process evolves, with every change reviewed and audited.
+
+**Future improvements.** Auto-apply low-risk updates while gating high-risk ones; integrate approvals into the governance workflow (Ch 45).
+
+### 41.8 Source code
+
+```python
+def propose_skill_update(skill, outcomes, curator, cfg, gate):
+    draft = learning_loop.refine(skill, outcomes)   # better procedure
+    draft = curator.llm_review(draft)               # quality pass
+    if cfg.review == "manual":
+        gate.queue_for_approval(skill.name, draft)  # human in the loop
+    else:
+        apply_update(skill, draft, version_bump=cfg.version_on_update)
+```
+
+### 41.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.auto_update.enabled` | `true` | Allow refinement |
+| `skills.auto_update.review` | `manual` / `auto` | Safety gate |
+| `skills.auto_update.version_on_update` | `true` | Audit trail |
+| `skills.curator.llm_review` | `true` | Quality pass |
+
+### 41.10 Real-world use cases
+
+Keeping process Skills in sync with changing procedures; self-healing flaky Skills; quality improvement of community-imported Skills.
+
+### 41.11 Exercises
+
+1. Differentiate learning-loop refinement from Curator review.
+2. When would you choose `auto` vs `manual` review?
+3. Why version Skills on update?
+
+### 41.12 Challenges
+
+- **Challenge 1.** Trigger an automatic update by repeatedly running a flawed Skill; approve the fix.
+- **Challenge 2.** Configure risk-based gating (auto for low-risk, manual for high-risk).
+
+### 41.13 Checklist
+
+- [ ] Auto-update enabled with an appropriate review mode.
+- [ ] Updates are versioned for audit.
+- [ ] I can list and approve pending updates.
+
+### 41.14 Best practices
+
+- Use `manual` review in production; `auto` only for low-risk Skills.
+- Always version updates so you can revert.
+- Combine with Curator LLM review for quality.
+
+### 41.15 Anti-patterns
+
+- Auto-applying updates in production with no review.
+- Updating without versioning (no rollback).
+- Ignoring the update queue until Skills drift badly.
+
+### 41.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Bad update applied | Auto mode, no gate | Switch to `manual`; revert via history |
+| Updates never proposed | Auto-update disabled / too few runs | Enable; run more tasks |
+| Can't revert | Versioning off | Enable `version_on_update` |
+| Update queue ignored | No review process | Add approval to the workflow (Ch 45) |
+
+### 41.17 Official references
+
+- Skills (auto-update / Curator): https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Learning loop: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 42 — Skill Evolution
+
+### 42.1 Introduction
+
+Auto-updating (Ch 41) fixes a Skill in place; **evolution** is the longer arc — how a Skill matures over its lifetime: born (manual or learned), refined repeatedly, branched into variants, occasionally split or merged, and eventually retired. This chapter takes the lifecycle view, showing how the learning loop and Curator together steward a Skill from naive first draft to a battle-tested, well-scoped asset — and when to deliberately intervene.
+
+### 42.2 Chapter objectives
+
+(1) Describe the full Skill lifecycle; (2) recognize evolution patterns (refine, branch, split, merge, retire); (3) read a Skill's version history; (4) decide when to intervene manually; (5) measure Skill maturity.
+
+### 42.3 Business context
+
+Skills are organizational assets with a lifecycle like any other. Treating them as evolving — not static — means the library reflects how work *actually* happens now, not how it happened a year ago. Understanding evolution patterns lets leaders reason about the health of their knowledge base: which Skills are maturing, which are fragmenting, which should be retired.
+
+### 42.4 Theoretical foundations
+
+A Skill's life follows recognizable transitions:
+
+- **Birth** — created manually or by the learning loop.
+- **Refinement** — incremental improvements from observed runs (Ch 41).
+- **Branching** — a variant emerges (e.g., `release-cutter` spawns `hotfix-cutter`).
+- **Split** — a Skill that grew too broad is divided into focused Skills.
+- **Merge** — overlapping Skills the Curator detects are consolidated.
+- **Retirement** — staleness detection archives an unused Skill (Ch 39).
+
+These transitions are driven by the same two engines (learning loop, Curator) plus human judgment. **Versioning** makes the arc visible and revertible. Maturity can be gauged by stability (few recent changes), usage (consistent invocation), and review status (LLM-reviewed, clean).
+
+> **Java parallel.** Skill evolution mirrors a library's semantic-versioning life: patch refinements, minor branches/variants, occasional major refactors (split/merge), and eventual deprecation — all under version control.
+
+### 42.5 Architecture
+
+```mermaid
+flowchart LR
+    birth[Birth] --> refine[Refinement]
+    refine --> branch[Branch / variant]
+    refine --> split[Split]
+    branch --> merge[Merge]
+    split --> merge
+    refine --> retire[Retirement]
+    merge --> retire
+    classDef s fill:#eef;
+```
+
+### 42.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant L as Learning loop
+    participant C as Curator
+    participant H as Human
+    participant ST as Skills storage
+    L->>ST: refine (patch)
+    L->>ST: spawn variant (branch)
+    C->>ST: detect overlap -> propose merge
+    C->>ST: detect staleness -> propose retire
+    H->>ST: approve split/merge/retire
+    ST-->>H: versioned history reflects the arc
+```
+
+### 42.7 Complete example
+
+**Scenario.** Over months, `release-cutter` has accreted hotfix logic and grown unwieldy.
+
+**Problem.** One broad Skill now handles two distinct procedures, causing mis-triggers.
+
+**Solution.** Split it into `release-cutter` and `hotfix-cutter`; the Curator flags the overlap, a human approves the split.
+
+**Architecture.** Broad Skill → Curator overlap detection → human-approved split → two focused Skills.
+
+**Implementation.**
+
+```bash
+hermes skills history release-cutter        # review the evolution
+hermes skills split release-cutter \
+  --into release-cutter,hotfix-cutter        # propose a split
+hermes skills updates approve release-cutter # confirm the split
+```
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  curator:
+    detect_overlap: true       # surface merge/split candidates
+    llm_review: true
+```
+
+**Tests.**
+
+```bash
+hermes run "Cut a hotfix for 1.5.1."   # routes to hotfix-cutter now
+hermes run "Cut a release for 1.6.0."  # routes to release-cutter
+```
+
+**Result.** Two focused Skills that trigger correctly, with the split recorded in version history.
+
+**Future improvements.** Automate variant creation for predictable branches; add maturity scoring to the governance dashboard (Ch 45).
+
+### 42.8 Source code
+
+```python
+def split_skill(skill, into: list[str], skills_dir, gate):
+    drafts = llm_decompose(skill, into)        # propose focused Skills
+    for name, draft in drafts.items():
+        gate.queue_for_approval(name, draft)   # human approves the split
+    skill.flag("superseded")                   # versioned; revertible
+```
+
+### 42.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.curator.detect_overlap` | `true` | Merge/split candidates |
+| `skills.auto_update.version_on_update` | `true` | Visible arc |
+| `hermes skills history <name>` | command | Read evolution |
+| `hermes skills split/merge` | command | Manual transitions |
+
+### 42.10 Real-world use cases
+
+Splitting overgrown Skills; merging duplicates from community imports; retiring obsolete procedures; tracking maturity of critical Skills.
+
+### 42.11 Exercises
+
+1. List the six lifecycle transitions.
+2. When should a Skill be split versus refined?
+3. How does versioning support evolution?
+
+### 42.12 Challenges
+
+- **Challenge 1.** Force an overlap and let the Curator propose a merge; approve it.
+- **Challenge 2.** Define a maturity score and apply it to your top five Skills.
+
+### 42.13 Checklist
+
+- [ ] I recognize the lifecycle transitions.
+- [ ] Overlap detection is enabled.
+- [ ] Version history is readable per Skill.
+- [ ] I know when to intervene manually.
+
+### 42.14 Best practices
+
+- Split broad Skills early before mis-triggers proliferate.
+- Let the Curator surface merges; approve consciously.
+- Track maturity for business-critical Skills.
+
+### 42.15 Anti-patterns
+
+- Letting a Skill accrete unrelated responsibilities indefinitely.
+- Merging Skills that only superficially overlap.
+- Retiring a seasonal Skill that's simply between uses.
+
+### 42.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Mis-triggers | Overgrown Skill | Split into focused Skills |
+| Duplicate Skills | Imports/overlap | Merge via Curator proposal |
+| Lost a good Skill | Premature retirement | Restore from archive; raise staleness threshold |
+| Opaque history | Versioning off | Enable `version_on_update` |
+
+### 42.17 Official references
+
+- Skills lifecycle: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Curator: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Skills Hub: https://agentskills.io/
+
+---
+
+## Chapter 43 — Reuse
+
+### 43.1 Introduction
+
+A Skill's value multiplies when it is **reused** — across tasks, agents, teams, and the wider community. Hermes supports reuse natively: Skills are portable file bundles, importable from **agentskills.io** and the **Skills Hub**, and shareable between profiles and machines. This chapter covers how to package, share, import, and adapt Skills, and how progressive disclosure makes a large reusable library practical.
+
+### 43.2 Chapter objectives
+
+(1) Package a Skill for sharing; (2) import Skills from hubs; (3) reuse Skills across profiles/agents; (4) adapt an imported Skill; (5) manage reuse safely (trust, review).
+
+### 43.3 Business context
+
+Reuse is the ROI of Skills: author once, apply everywhere. A corporate library (Ch 44) amplifies this internally; community hubs amplify it externally. The discipline is **trust** — imported Skills are third-party code/procedures and must be reviewed before use, exactly as you'd review a dependency.
+
+### 43.4 Theoretical foundations
+
+Because a Skill is just a directory (`SKILL.md` + assets), it is inherently portable: copy it, version it in git, publish it to a hub, or import someone else's. The **Skills Hub / agentskills.io** are registries for discovery and import. **Progressive disclosure** (Ch 38) is what makes large-scale reuse viable — you can import hundreds of Skills and only pay for the ones a task matches. Reuse across **profiles** (`hermes -p <name>`, each with its own `HERMES_HOME`) lets you share a curated set while isolating others.
+
+> **Java parallel.** Skills reuse is package management for procedures: hubs are the registry (Maven Central), import is `dependency`, review is your security/license check, and adaptation is a local fork.
+
+### 43.5 Architecture
+
+```mermaid
+flowchart TB
+    hub[agentskills.io / Skills Hub] -->|import| local[Local skills dir]
+    git[Git repo - corporate] -->|clone/submodule| local
+    local --> idx[Metadata index<br/>progressive disclosure]
+    idx --> a1[Agent / profile A]
+    idx --> a2[Agent / profile B]
+    review{Review / trust} --> local
+```
+
+### 43.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant H as Skills Hub
+    participant R as Review
+    participant ST as Local skills
+    participant A as AIAgent
+    U->>H: search "pdf-extractor"
+    H-->>U: candidate Skill
+    U->>R: review SKILL.md + scripts (trust check)
+    R->>ST: import if approved
+    A->>ST: use on matching tasks (progressive disclosure)
+```
+
+### 43.7 Complete example
+
+**Scenario.** A team needs a PDF-table-extraction Skill; the community already has a good one.
+
+**Problem.** Writing it from scratch duplicates effort; importing blindly risks unsafe scripts.
+
+**Solution.** Import from the Skills Hub, review the `SKILL.md` and bundled scripts, then enable and (optionally) adapt it.
+
+**Architecture.** Hub → review → local skills dir → indexed → reused across agents.
+
+**Implementation.**
+
+```bash
+hermes skills search pdf table extract        # discover on the hub
+hermes skills import agentskills.io/pdf-table-extractor
+# REVIEW before enabling:
+less ~/.hermes/skills/pdf-table-extractor/SKILL.md
+hermes skills enable pdf-table-extractor
+```
+
+```yaml
+# Share a curated set across profiles via git
+# ~/.hermes/config.yaml
+skills:
+  sources:
+    - type: git
+      url: https://github.com/acme/hermes-skills.git
+      review_required: true
+```
+
+**Tests.**
+
+```bash
+hermes run "Extract the tables from @report.pdf."
+```
+
+**Result.** A vetted, reusable Skill applied across the team without reinventing it.
+
+**Future improvements.** Promote vetted imports into the corporate library (Ch 44); pin Skill versions for reproducibility.
+
+### 43.8 Source code
+
+```python
+def import_skill(source: str, skills_dir: Path, review_required: bool):
+    staged = fetch_skill_bundle(source)        # download to a staging area
+    if review_required and not human_review(staged):
+        raise ReviewRejected(source)
+    dest = skills_dir / staged.name
+    copy_tree(staged.path, dest)
+    index_skills([skills_dir])
+    return dest
+```
+
+### 43.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.sources` | list (git/hub) | Reuse sources |
+| `skills.sources[].review_required` | `true` | Trust gate |
+| `hermes skills import` | command | Pull from hub |
+| profiles | `hermes -p <name>` | Share/isolate sets |
+
+### 43.10 Real-world use cases
+
+Importing community Skills (PDF, scraping, formatting); sharing a curated corporate set via git; reusing Skills across dev/prod profiles.
+
+### 43.11 Exercises
+
+1. Import a Skill from a hub and review it before enabling.
+2. Share a Skill set across two profiles via git.
+3. Explain why progressive disclosure makes large reuse practical.
+
+### 43.12 Challenges
+
+- **Challenge 1.** Import, review, adapt, and re-share a community Skill.
+- **Challenge 2.** Set up a git-backed shared Skills source with a review gate.
+
+### 43.13 Checklist
+
+- [ ] I can package and share a Skill.
+- [ ] Imports are reviewed before enabling.
+- [ ] Skills are reused across profiles/agents.
+- [ ] Versions are pinned where reproducibility matters.
+
+### 43.14 Best practices
+
+- Treat imported Skills like dependencies: review, pin, and track them.
+- Share curated sets via git, not ad-hoc copies.
+- Use profiles to isolate experimental from trusted Skills.
+
+### 43.15 Anti-patterns
+
+- Importing and enabling community Skills without review.
+- Copy-pasting Skills between machines instead of versioning them.
+- Floating (unpinned) Skill sources in production.
+
+### 43.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Imported Skill misbehaves | Unreviewed/unsafe | Disable; review scripts; re-import vetted |
+| Drift across machines | Ad-hoc copies | Use a git-backed source |
+| Skill not found on hub | Wrong name | Search the Hub; check exact id |
+| Conflicts after import | Trigger overlap | Disambiguate or disable conflicting Skill |
+
+### 43.17 Official references
+
+- Skills reuse / Hub: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- agentskills.io: https://agentskills.io/
+- Profiles: https://hermes-agent.nousresearch.com/docs/user-guide/features/profiles
+
+---
+
+## Chapter 44 — Corporate Skills Library
+
+### 44.1 Introduction
+
+When reuse scales from a team to an organization, you need a **corporate Skills library**: a governed, versioned, shared catalog of approved Skills that every agent draws from. This chapter shows how to architect such a library — a git-backed source of truth, review and approval workflows, profile-based distribution, and a clear separation between approved, experimental, and archived Skills.
+
+### 44.2 Chapter objectives
+
+(1) Architect a corporate Skills library; (2) establish a git-backed source of truth; (3) define approval/promotion workflows; (4) distribute the library across teams via profiles/config; (5) keep it healthy with the Curator.
+
+### 44.3 Business context
+
+A corporate Skills library is the institutional memory of *how the organization does things*, made executable. It accelerates onboarding, enforces standards (security, compliance, formatting), and prevents the same procedure being reinvented in ten teams. It is a strategic asset — and, like any shared asset, it needs ownership and governance (Ch 45).
+
+### 44.4 Theoretical foundations
+
+The library is a **git repository** of vetted Skill directories, consumed by agents via `skills.sources`. It typically has tiers: **approved** (production-ready, reviewed), **experimental** (under evaluation), and **archived** (retired). Promotion between tiers is a reviewed workflow. Distribution leverages **profiles** (each `HERMES_HOME` can subscribe to the library) and config-driven sources. The **Curator** runs against the library to surface staleness and overlap, but archival/promotion stays human-governed. This combines the loose-coupling registry pattern with standard software supply-chain practices.
+
+> **Java parallel.** The corporate Skills library is an internal artifact repository (Nexus/Artifactory) for procedures: vetted releases, snapshot/experimental channels, access control, and a promotion pipeline.
+
+### 44.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph repo["Corporate Skills repo (git)"]
+        approved[approved/]
+        experimental[experimental/]
+        archived[archived/]
+    end
+    pr[Pull request + review] --> approved
+    experimental -->|promote| pr
+    repo --> dist[Distribution: skills.sources]
+    dist --> t1[Team A agents]
+    dist --> t2[Team B agents]
+    cur[Curator] --> repo
+```
+
+### 44.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant D as Developer
+    participant PR as Review (PR)
+    participant LIB as Corporate library (git)
+    participant AG as Team agents
+    D->>PR: submit new/updated Skill
+    PR->>PR: security + quality review
+    PR->>LIB: merge to approved/
+    AG->>LIB: pull approved Skills (skills.sources)
+    AG-->>D: consistent execution across teams
+```
+
+### 44.7 Complete example
+
+**Scenario.** A company wants every team's agent to use the same vetted security-scan and report Skills.
+
+**Problem.** Teams each maintain divergent copies; standards drift.
+
+**Solution.** A git-backed corporate library with an approval workflow; all agents subscribe to the `approved/` tier.
+
+**Architecture.** Git repo (approved/experimental/archived) → `skills.sources` → all team agents.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml (distributed to all agents)
+skills:
+  sources:
+    - type: git
+      url: https://github.com/acme/corporate-skills.git
+      ref: approved            # consume only the approved tier
+      review_required: false   # already reviewed upstream
+  curator:
+    enabled: true
+```
+
+```bash
+# Promotion workflow (CI on the library repo)
+hermes skills validate experimental/security-scan   # lint + dry-run
+# open PR to move experimental/security-scan -> approved/
+```
+
+**Tests.**
+
+```bash
+hermes skills list --source corporate    # confirm approved Skills are present
+hermes run "Run the standard security scan and report."
+```
+
+**Result.** Every team executes the same vetted procedures; standards stop drifting.
+
+**Future improvements.** Add access tiers per department; wire promotion into CI with automated validation; build a governance dashboard (Ch 45).
+
+### 44.8 Source code
+
+```python
+def sync_corporate_library(cfg):
+    src = next(s for s in cfg["skills"]["sources"] if s["type"] == "git")
+    repo = git_clone_or_pull(src["url"], ref=src.get("ref", "approved"))
+    approved = repo / "approved"
+    link_into_skills_dir(approved)          # consume only the approved tier
+    index_skills([approved])
+```
+
+### 44.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.sources[].type` | `git` | Corporate source |
+| `skills.sources[].ref` | `approved` | Consume a tier/branch |
+| repo tiers | approved/experimental/archived | Promotion model |
+| CI validation | `hermes skills validate` | Pre-merge gate |
+
+### 44.10 Real-world use cases
+
+Standardized security/compliance Skills; org-wide report formats; onboarding playbooks; cross-team procedure consistency.
+
+### 44.11 Exercises
+
+1. Design the tier structure of a corporate library.
+2. Write the promotion workflow from experimental to approved.
+3. Show how agents subscribe to only the approved tier.
+
+### 44.12 Challenges
+
+- **Challenge 1.** Stand up a git-backed library with three tiers and a CI validation step.
+- **Challenge 2.** Add department-scoped access to subsets of the library.
+
+### 44.13 Checklist
+
+- [ ] Git-backed source of truth exists.
+- [ ] Tiers (approved/experimental/archived) defined.
+- [ ] Agents subscribe to the approved tier.
+- [ ] Curator runs against the library.
+
+### 44.14 Best practices
+
+- Consume only the `approved` tier in production agents.
+- Gate promotion with CI validation and human review.
+- Keep the library in version control with clear ownership.
+
+### 44.15 Anti-patterns
+
+- Letting teams maintain divergent local copies.
+- Subscribing production agents to `experimental`.
+- A library with no owner and no promotion process.
+
+### 44.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Divergent Skills across teams | No central library | Adopt a git-backed source of truth |
+| Unvetted Skill in prod | Wrong tier consumed | Pin `ref: approved` |
+| Stale library | Curator off | Enable Curator on the repo |
+| Promotion chaos | No workflow | Add CI validation + review gates |
+
+### 44.17 Official references
+
+- Skills (sources/library): https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Profiles: https://hermes-agent.nousresearch.com/docs/user-guide/features/profiles
+- Enterprise guidance: https://hermes-agent.nousresearch.com/docs/
+
+---
+
+## Chapter 45 — Skills Governance
+
+### 45.1 Introduction
+
+Governance is where Skills meet enterprise responsibility. A self-creating, self-updating, importable Skills system is powerful — and powerful systems need controls. This closing chapter of Part VI covers ownership, review gates, security and compliance for Skills, audit trails, and the policies that keep an autonomous Skills lifecycle safe in production. It ties together auto-update (Ch 41), evolution (Ch 42), reuse (Ch 43), and the corporate library (Ch 44) under a governance umbrella.
+
+### 45.2 Chapter objectives
+
+(1) Define Skills governance and why it matters; (2) establish ownership and review gates; (3) apply security/compliance controls to Skills; (4) maintain audit trails; (5) set policies for autonomous Skill creation/update.
+
+### 45.3 Business context
+
+Skills can execute scripts and encode procedures that touch production. Ungoverned, a self-updating or community-imported Skill is a supply-chain and operational risk. Governance turns the Skills system from a liability into a controlled asset — satisfying security, compliance, and audit requirements while preserving the productivity of autonomy.
+
+### 45.4 Theoretical foundations
+
+Governance applies standard controls to the Skills lifecycle:
+
+- **Ownership** — every approved Skill has an owner accountable for it.
+- **Review gates** — human approval for creation, updates (Ch 41), splits/merges (Ch 42), and imports (Ch 43), scaled by risk.
+- **Security/compliance** — scan bundled scripts, forbid secrets, restrict capabilities, enforce least privilege; align with sandboxing/isolation (Part XII).
+- **Audit trails** — versioned history of every change (who/what/when), surfaced for compliance.
+- **Policy for autonomy** — explicit rules on what the learning loop/Curator may do automatically vs what requires sign-off.
+
+The Curator provides the telemetry (usage, staleness, quality); governance provides the **decision rights** over what happens with it.
+
+> **Java parallel.** This is software supply-chain governance applied to procedures: code owners, PR approvals, dependency scanning, signed artifacts, and an audit log — the same controls you'd put around production code.
+
+### 45.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph lifecycle["Autonomous lifecycle"]
+        learn[Learning loop]
+        cur[Curator]
+        imp[Imports]
+    end
+    lifecycle --> gate{Governance gates}
+    gate -->|owner + review| approve[Approved change]
+    gate -->|security scan| sec[Security/compliance check]
+    approve --> audit[(Audit trail<br/>versioned)]
+    sec --> audit
+    audit --> dash[Governance dashboard]
+```
+
+### 45.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant LC as Lifecycle (loop/Curator/import)
+    participant G as Governance gate
+    participant O as Owner / reviewer
+    participant SEC as Security scan
+    participant AUD as Audit log
+    LC->>G: propose change (create/update/import)
+    G->>SEC: scan scripts + policy check
+    SEC-->>G: pass/fail
+    G->>O: request approval (risk-based)
+    O-->>G: approve/reject
+    G->>AUD: record decision (who/what/when), versioned
+```
+
+### 45.7 Complete example
+
+**Scenario.** A regulated company must ensure no Skill runs unreviewed code in production and that every change is auditable.
+
+**Problem.** Autonomous creation/update/import could introduce unvetted scripts.
+
+**Solution.** Enforce governance: mandatory ownership, risk-based review gates, security scanning of bundled scripts, and a versioned audit trail feeding a dashboard.
+
+**Architecture.** Lifecycle → governance gates (scan + review) → audit trail → dashboard.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  governance:
+    require_owner: true
+    review:
+      create: manual
+      update: manual
+      import: manual
+    security_scan: true        # scan bundled scripts; block secrets
+    audit_log: true            # versioned who/what/when
+  auto_update:
+    review: manual
+  curator:
+    archive_unused: false      # archival requires human sign-off here
+```
+
+```bash
+hermes skills audit                 # show the change log (who/what/when)
+hermes skills review queue          # pending changes awaiting approval
+hermes skills review approve security-scan --owner alice
+```
+
+**Tests.**
+
+```bash
+hermes skills scan release-cutter   # security scan a Skill's scripts
+hermes skills audit | tail          # confirm decisions are logged
+```
+
+**Result.** A fully governed Skills system: nothing reaches production unreviewed, every change is owned and audited.
+
+**Future improvements.** Integrate the audit trail with the enterprise SIEM; add policy-as-code for review thresholds; tie governance into AgentOps (Part XI) and compliance (Part XII).
+
+### 45.8 Source code
+
+```python
+def governed_change(change, policy, scanner, audit, gate):
+    if policy.require_owner and not change.owner:
+        raise PolicyViolation("owner required")
+    if policy.security_scan and not scanner.scan(change.assets).ok:
+        audit.record(change, decision="blocked-by-scan")
+        raise SecurityViolation(change.name)
+    if policy.review.get(change.kind) == "manual":
+        gate.request_approval(change)
+    audit.record(change, decision="pending-or-applied")   # who/what/when
+```
+
+### 45.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.governance.require_owner` | `true` | Accountability |
+| `skills.governance.review.*` | `manual` | Per-action gates |
+| `skills.governance.security_scan` | `true` | Scan scripts; block secrets |
+| `skills.governance.audit_log` | `true` | Versioned trail |
+| `skills.auto_update.review` | `manual` | Gate auto-updates |
+
+### 45.10 Real-world use cases
+
+Regulated industries requiring audit trails; security review of imported Skills; controlled autonomy policies; compliance reporting on procedure changes.
+
+### 45.11 Exercises
+
+1. List the five governance controls for Skills.
+2. Design a risk-based review matrix (which actions need manual approval).
+3. Explain why ownership is foundational to governance.
+
+### 45.12 Challenges
+
+- **Challenge 1.** Implement security scanning that blocks any Skill containing a hardcoded secret.
+- **Challenge 2.** Build a governance dashboard from the audit trail (owners, pending reviews, blocked changes).
+
+### 45.13 Checklist
+
+- [ ] Every approved Skill has an owner.
+- [ ] Review gates set per action and risk.
+- [ ] Security scanning blocks unsafe scripts/secrets.
+- [ ] Audit trail is versioned and reviewable.
+- [ ] Autonomy policy (what's auto vs gated) is explicit.
+
+### 45.14 Best practices
+
+- Scale review rigor by risk; don't gate everything equally.
+- Make ownership mandatory for production Skills.
+- Keep an immutable, versioned audit trail; integrate with the SIEM.
+
+### 45.15 Anti-patterns
+
+- Allowing autonomous changes in production with no gates.
+- Importing community Skills with no security scan.
+- No owner, no audit — "mystery Skills" running in production.
+
+### 45.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Unvetted change in prod | Gates disabled | Enable `governance.review: manual` |
+| Secret leaked via Skill | No scan | Enable `security_scan`; rotate the secret |
+| Can't trace a change | Audit off | Enable `audit_log`; require owners |
+| Review bottleneck | Everything gated | Apply risk-based gating |
+
+### 45.17 Official references
+
+- Skills governance: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Security & isolation: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Enterprise docs: https://hermes-agent.nousresearch.com/docs/
+
+---
+
+> **End of Part VI.** Skills are now covered end to end: what they are and progressive disclosure (Ch 38), their architecture and the Curator (Ch 39), authoring (Ch 40), automatic updating (Ch 41), evolution across the lifecycle (Ch 42), reuse via hubs and profiles (Ch 43), the corporate library (Ch 44), and governance (Ch 45). Together with Part V (memory), this completes Hermes's twin engines of self-improvement — declarative memory and procedural Skills, both persistent, both curated, both governable. **Part VII — MCP and Tools** (Chapters 46–53) will turn outward to how the agent acts on the world: the Model Context Protocol, tool integration, building MCP servers, tool calling, browser automation, web search, and custom tools.
