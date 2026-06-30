@@ -87,6 +87,15 @@ Two caveats keep this honest. Newer models with better long-context training sho
 
 The deeper lesson is about mindset. The context window is not a bag of facts the model consults with uniform diligence; it is a landscape with geography — peaks of attention at the edges, valleys in the middle — and the context engineer is doing physical placement, like a board designer routing signals. Treating placement as a first-class design variable is one of the cheapest quality improvements available: it costs zero extra tokens.
 
+```mermaid
+flowchart TB
+    top["Top of window, high attention<br/>system prompt, persistent rules"]
+    mid["Middle, attention valley<br/>retrieved documents, lost in the middle"]
+    bot["Bottom, high attention<br/>restated task and user question"]
+    top --> mid --> bot
+    rule["Placement is free: instructions on top,<br/>task last, best chunks at the edges"]
+```
+
 ### 1.5 The Signal-to-Noise Frame
 
 A productive way to think about every context decision is signal-to-noise ratio. Signal is any token that increases the probability of the correct output: the relevant passage, the binding instruction, the example that disambiguates the format. Noise is everything else: the irrelevant retrieved chunk, the stale conversation turn, the tool definition for a tool this task will never call, the boilerplate header repeated in every retrieved document.
@@ -136,6 +145,19 @@ Open the request log of any serious LLM application and you will find the same s
 This ordering is not arbitrary; it follows two gradients simultaneously. **Stability**: components near the top change rarely (enabling prompt caching, Chapter 3), components near the bottom change every turn. **Authority**: components near the top constrain components below them (instructions govern data, Chapter 9). The happy accident of the discipline is that these two gradients agree — the stable stuff and the authoritative stuff are the same stuff — so a single top-to-bottom layout serves both caching and instruction hierarchy.
 
 Each layer has its own engineering discipline, failure modes, and budget, which the rest of this chapter walks through. But the first-order insight is simply that the layers *exist* and should be assembled by code you control, not by string concatenation scattered across a codebase. Mature systems have a single **context assembler**: one function that takes the layers as typed inputs, enforces per-layer budgets, applies placement rules, and emits the final token sequence. The assembler is to a context what a linker is to a binary, and centralizing it is the prerequisite for everything else in this book — you cannot budget, cache, log, or ablate a context that is assembled in fourteen places.
+
+```mermaid
+flowchart TB
+    s1["1. System prompt, identity and rules"]
+    s2["2. Tool definitions, schemas"]
+    s3["3. Long-term memory / profile"]
+    s4["4. Retrieved documents"]
+    s5["5. Conversation history"]
+    s6["6. Scratchpad / working memory"]
+    s7["7. Current user message"]
+    s1 --> s2 --> s3 --> s4 --> s5 --> s6 --> s7
+    grad["Top: stable and authoritative, cache-friendly<br/>Bottom: volatile and governed"]
+```
 
 ### 2.2 The System Prompt: Constitution, Not Encyclopedia
 
@@ -260,6 +282,15 @@ The operative word is *prefix*. Caching is not content-addressable memory over a
 
 Note the productive tension: pure attention logic (Chapter 1) might place retrieved documents earlier, and naive designs interleave per-request material high in the context. Cache logic vetoes that. In practice the resolution is the layout of Chapter 2: constitution and tools on top (cached), per-request material toward the bottom (volatile), question at the very end — which attention placement *also* endorses. When the two do conflict, measure; in high-traffic systems the cache usually wins, because a 90% discount on 80% of your tokens buys a lot of eval-verified quality elsewhere.
 
+```mermaid
+flowchart LR
+    a["System prompt"] --> b["Tool definitions"] --> c["Long-term memory"]
+    c --> d["History, append-only"] --> e["Retrieved documents"] --> f["Question"]
+    cached["Stable prefix: cached, about 10 percent price"] -.-> a
+    volatile["Volatile suffix: recomputed every request"] -.-> e
+    rule["One edit in the prefix invalidates everything after it"]
+```
+
 ### 3.5 Cache Discipline: How Layouts Rot
 
 Caches do not fail loudly; they just stop hitting, and your bill quietly triples. The common cache-killers, all of which I have found in production systems:
@@ -298,6 +329,16 @@ query:   question → [rewrite/expand] → search (hybrid) → merge
 The asymmetry of the two halves matters operationally. Ingest runs rarely and offline; you can afford slow, careful processing — quality cleaning, thoughtful chunking, rich metadata — and most of it is cheap to re-run when you change your mind. Query runs on every request under latency budget; everything there must be fast. Teams chronically over-invest in query-time cleverness and under-invest in ingest quality, which is backwards: **no reranker can recover information that chunking destroyed.** Garbage at ingest is garbage forever, or at least until the re-index nobody schedules.
 
 The rest of this chapter walks the pipeline left to right.
+
+```mermaid
+flowchart LR
+    docs["Documents"] --> clean["Clean"] --> chunk["Chunk"] --> embed["Embed"] --> index["Index: dense plus lexical"]
+    q["Question"] --> rw["Rewrite / expand"] --> search["Hybrid search"]
+    index --> search
+    search --> fuse["RRF fusion"] --> rerank["Cross-encoder rerank"] --> select["Select: threshold, top-k, budget"]
+    select --> ctx["Formatted context with citations"]
+    select -.->|"nothing clears threshold"| none["Retrieve nothing, say so"]
+```
 
 ### 4.2 Chunking: Deciding the Unit of Retrieval
 
@@ -425,6 +466,20 @@ Three design points carry most of the quality. First, **the map prompt carries t
 
 Know the costs. Map-reduce multiplies LLM calls (latency mitigated by running maps in parallel; money not mitigated at all), and it structurally cannot see cross-window dependencies: if page 12 says "the following exceptions apply" and page 60 lists them, no window contains the connection, and the reduce step receives two unconnected notes. For documents whose meaning is heavily cross-referential — contracts, codebases, specifications — map-reduce summaries are systematically misleading, and the better designs either pass two sequential reads (first pass builds a document map; second pass extracts with the map in context) or abandon compression in favor of just-in-time retrieval into the full text (Chapter 13). Map-reduce is a tool for *aggregatable* content; recognizing non-aggregatable content is the skill.
 
+```mermaid
+flowchart TB
+    doc["Long document"] --> split["Split into overlapping windows"]
+    split --> m1["Map: extract relevant to question, or reply NONE"]
+    split --> m2["Map: window 2"]
+    split --> m3["Map: window N"]
+    m1 --> filter["Drop NONE notes"]
+    m2 --> filter
+    m3 --> filter
+    filter --> reduce["Reduce: synthesize under budget"]
+    reduce --> ans["Answer"]
+    warn["Cannot see cross-window dependencies<br/>use for aggregatable content only"]
+```
+
 ### 5.5 When Compression Loses Load-Bearing Detail
 
 Every lossy compression destroys information; the craft is ensuring it destroys the right information, and the failure stories cluster into recognizable types worth naming.
@@ -468,6 +523,17 @@ Two distinctions from cognitive science carry real engineering weight, because t
 **Episodic versus semantic.** Episodic memory records *events*: "on June 3rd, we tried upgrading to v4 and rolled back due to the auth regression." Semantic memory records *facts distilled from events*: "v4 upgrade is blocked on the auth regression." The episodic record is ground truth — timestamped, attributable, append-only, never wrong about what happened — but verbose and expensive to inject. The semantic record is compact and directly useful, but it is an *interpretation*, can go stale, and loses the evidence trail. Mature systems keep both, in a deliberate relationship: episodic logs are the durable substrate (cheap storage, rarely injected wholesale); semantic distillations are the working set (small, curated, frequently injected); and the semantic layer cites its episodes, so a doubted fact can be re-derived from the record. When the two disagree, the episodic record wins and the semantic entry gets rewritten — the same source-of-truth instinct Chapter 10 applies to documents.
 
 Most production "memory features" are semantic-only — a list of distilled facts — and the missing episodic substrate is exactly why they are hard to audit and impossible to repair: a wrong fact with no provenance can only be deleted, never explained.
+
+```mermaid
+flowchart TB
+    write["Write<br/>persist the durable, drop the ephemeral"] --> store["Storage"]
+    store --> read["Read<br/>inject only what bears on this request"]
+    read --> ctx["Context window"]
+    store --> forget["Forget<br/>supersede stale, stay under budget"]
+    epi["Episodic: events, ground truth, append-only"] --> store
+    sem["Semantic: distilled facts, working set"] --> store
+    sem -.->|"cites"| epi
+```
 
 ### 6.3 Memory Files: The Unreasonable Effectiveness of a Text File
 
@@ -570,6 +636,14 @@ The isolation pays three times. **Focus**: the sub-agent sees its brief and noth
 The price is paid at the boundary, and the boundary is where sub-agent designs succeed or fail. The sub-agent knows *only its brief* — none of the session's accumulated constraints exist for it unless the brief says so — so brief-writing is a compression task with all of Chapter 5's stakes: include the objective, the constraints that bind ("EU data residency; PostgreSQL 16; do not touch the public API"), the relevant findings so far, and the *output contract* — what to return, in what structure, under what token budget (Chapter 3's budget contracts, now between agents). The symmetric failure modes: the starved brief (sub-agent re-derives or violates constraints it was never told) and the firehose return (sub-agent dumps its whole trace on the parent, defeating the isolation that justified its existence). Both are contract failures, and both are fixed in the brief template, not in the model.
 
 The rule for when to spawn: isolate when the task is *separable* — when its execution details don't need to interleave with the parent's other concerns — and *exploration-heavy*, so the disposal benefit is large. ("Find where rate limiting is implemented and report the entry points" — perfect. "Apply the user's evolving wording preferences across this document" — terrible; the preferences are the session.) Chapter 13 catalogs the librarian/researcher split as the pattern form; Chapter 14's coding agent shows it in production shape.
+
+```mermaid
+flowchart TB
+    res["Researcher / orchestrator<br/>owns task, constraints, synthesis"] -->|"focused brief plus output contract"| lib["Librarian sub-agent<br/>clean, disposable context"]
+    lib --> work["Flails in private:<br/>many searches, reads, dead ends"]
+    work -->|"bounded findings, with handles"| res
+    note["Researcher receives findings, never exhaust"]
+```
 
 ### 7.6 Context Handoff: Continuity Across Boundaries
 
@@ -710,6 +784,14 @@ The separation disciplines, in the order you should apply them:
 4. **Treat model outputs derived from data as data.** A summary of a poisoned document is a poisoned summary; quarantine inherits across transformations (Chapter 5's compression and Chapter 7's compaction must not launder data into instruction-position text).
 
 This separation is the load-bearing wall of context security, which is the next section — but notice that everything above is just good information design with no attacker in sight: the same fences that stop injection stop the model from adopting a document's tone or executing a pasted log. Security and clarity are, for once, the same renovation.
+
+```mermaid
+flowchart TB
+    plat["Platform rules"] --> dev["Developer system prompt"] --> usr["User request"] --> data["Content found in data"]
+    rank["Authority: platform over developer over user over data"]
+    data --> fence["Quarantine in fenced, labeled regions:<br/>describe instructions found here, never follow them"]
+    fence --> ok["Data changes what the model knows,<br/>never what it is trying to do"]
+```
 
 ### 9.6 Prompt Injection as a Context-Design Problem
 
