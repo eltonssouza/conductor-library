@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Dependencies**
 3. Interface Segregation and Dependency Inversion
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -251,4 +251,124 @@ record Square(double side)           implements Shape { public double area(){ re
 
 > **End of Part I.** You can now apply the first three SOLID principles: give each class a single responsibility (SRP), extend behavior by adding code rather than editing it (OCP), and ensure subtypes honor their base type's contract so polymorphism stays trustworthy (LSP). **Part II — Dependencies** (Chapter 3) covers Interface Segregation (small, client-specific interfaces) and Dependency Inversion (depend on abstractions, not concretions), tying SOLID back to the architecture-boundaries guide.
 
-<!--APPEND-PART-II-->
+## Part II – Dependencies
+
+Part I covered the first three SOLID principles, which mostly shape *individual* classes — their responsibilities (SRP), how they extend (OCP), and how their subtypes behave (LSP). Part II covers the last two, which shape the *dependencies between* classes: the **Interface Segregation Principle** (ISP) keeps the interfaces clients depend on small and role-specific, and the **Dependency Inversion Principle** (DIP) controls the *direction* those dependencies point. Together they decouple modules so that high-level policy doesn't drag low-level detail behind it — the principle that, scaled up, becomes the architecture boundaries of Clean Architecture.
+
+---
+
+## Chapter 3 — Interface Segregation and Dependency Inversion
+
+### 3.1 Introduction
+
+The last two SOLID principles attack coupling through interfaces. The **Interface Segregation Principle** states that *no client should be forced to depend on methods it does not use*. "Fat" interfaces — those that accumulate many unrelated methods — couple every client to *all* of them, so a change driven by one client's needs forces recompilation and risk on clients that never cared. ISP's cure is to split a fat interface into several small, **role-specific** interfaces, each serving one kind of client. The **Dependency Inversion Principle** governs which way dependencies point: *high-level modules should not depend on low-level modules; both should depend on abstractions*, and *abstractions should not depend on details; details should depend on abstractions*. The word **inversion** is literal — in a naive design, high-level policy calls and therefore *depends on* low-level detail; DIP inverts that by having both depend on an abstraction (usually owned by the high-level side), so the dependency arrow points *toward* the stable policy rather than away from it. The two principles reinforce each other: the abstractions DIP depends on are best kept small and client-specific — i.e. segregated per ISP.
+
+### 3.2 Business context
+
+These principles decide how expensive change is at the *module* scale. A fat interface means a change requested by one consumer ripples out to every other consumer that shares it — a tax paid on every modification, and a frequent source of "why did touching the reporting feature break billing?" surprises. Segregating interfaces confines change to the clients that actually care. DIP's payoff is even larger: by pointing dependencies at abstractions, the valuable, hard-to-change **business policy** stops depending on volatile details like the database, the web framework, or a third-party API — so those details can be swapped, upgraded, or mocked without touching the core. That is what makes a system **testable** (inject a fake repository), **portable** (swap Postgres for an in-memory store), and **durable** (the framework of the decade doesn't contaminate the domain). For a business, DIP is the difference between a codebase whose core can outlive any particular technology and one that must be rewritten every time the infrastructure changes.
+
+### 3.3 Theoretical concepts: small interfaces, inverted arrows
+
+```mermaid
+flowchart TB
+    fat["Fat interface: many methods, all clients coupled to all"] --> split["ISP: split into role-specific interfaces"]
+    split --> client["Each client depends only on what it uses"]
+    naive["Naive: high-level policy depends on low-level detail"] --> invert["DIP: both depend on an abstraction (owned by policy)"]
+    invert --> arrow["Dependency arrow points toward stable policy"]
+```
+
+ISP is about the *width* of a dependency, DIP about its *direction*. **Width:** an interface a client depends on should expose only what that client needs; fat interfaces create accidental coupling, so segregate by client role. **Direction:** Robert Martin's key observation is that in procedural designs the source-code dependencies follow the runtime call direction — main calls policy calls detail — so the stable, important policy ends up depending on the volatile, unimportant detail, which is backwards. DIP corrects it by inserting an abstraction *between* them that the high-level module **owns** (defines in its own terms), and which the low-level module *implements*. Now the low-level detail depends on (conforms to) the abstraction, and the high-level policy depends only on its own abstraction — the source-code dependency has been *inverted* relative to the flow of control.
+
+### 3.4 Architecture: the plugin shape
+
+```mermaid
+flowchart LR
+    policy["High-level policy module"] --> absA["Abstraction (interface) owned by policy"]
+    detail["Low-level detail (DB, API, UI)"] --> absA
+    note["Detail is a 'plugin' to policy; arrows point inward to the abstraction"]
+```
+
+When DIP is applied consistently, the architecture takes on a **plugin** shape: the core defines abstractions (`OrderRepository`, `PaymentGateway`, `NotificationSender`) in terms meaningful to the business, and the infrastructure provides implementations that *plug into* those abstractions. All source-code dependencies point *inward*, toward the stable core — exactly the **dependency rule** of Clean Architecture, of which DIP is the class-level engine. ISP keeps each of those abstractions lean so an implementer isn't forced to satisfy methods it doesn't need and a consumer isn't coupled to behavior it doesn't use. The result is a boundary you can cross with a test double or a different technology at will. (This connects directly to the architecture-boundaries guide: SOLID at the class level produces the layered, dependency-respecting structure at the system level.)
+
+### 3.5 Real example
+
+**Scenario.** An `OrderService` (high-level policy) directly instantiates and calls a `PostgresOrderRepository` and a giant `IDataStore` interface that bundles orders, users, reports, and audit methods.
+
+**Problem.** Two coupling defects. **ISP violation:** every implementer of the fat `IDataStore` must implement methods it doesn't use, and `OrderService` is coupled to report/audit methods it never calls. **DIP violation:** the business policy depends on a concrete Postgres class, so it can't be unit-tested without a database and can't migrate stores without editing the core.
+
+**Solution.** **Segregate** the fat interface into role-specific ones, and **invert** the dependency by having `OrderService` depend on an `OrderRepository` abstraction it owns, which the Postgres class implements.
+
+**Implementation.**
+
+```java
+// ISP — split the fat interface into role-specific ones
+interface OrderRepository { Order find(Id id); void save(Order o); }   // only what order policy needs
+interface ReportStore   { Report run(Query q); }                       // separate client, separate role
+
+// DIP — policy depends on an abstraction it OWNS; detail implements it
+class OrderService {                       // high-level policy
+    private final OrderRepository repo;     // depends on abstraction, not Postgres
+    OrderService(OrderRepository repo) { this.repo = repo; }  // injected
+    void place(Order o) { /* business rules */ repo.save(o); }
+}
+
+class PostgresOrderRepository implements OrderRepository { /* low-level detail conforms */ }
+
+// test: inject an in-memory fake — no database needed
+var service = new OrderService(new InMemoryOrderRepository());
+```
+
+**Result.** `OrderService` is now testable with a fake repository, the persistence technology can change without touching policy, and no implementer carries methods it doesn't use. The dependency arrow points from Postgres *toward* the abstraction the business owns — inverted, as DIP requires.
+
+**Future improvements.** Add further segregated abstractions (`PaymentGateway`, `NotificationSender`) as the service grows, wire implementations via a dependency-injection container at the composition root, and verify with an architecture test that no inner (policy) package imports an outer (infrastructure) package.
+
+### 3.6 Exercises
+
+1. State the Interface Segregation Principle and give an example of a fat interface to split.
+2. State both clauses of the Dependency Inversion Principle.
+3. Explain what is being "inverted" in DIP, relative to the flow of control.
+4. How do ISP and DIP reinforce each other?
+
+### 3.7 Challenges
+
+- **Challenge.** Find a class that depends on a concrete infrastructure type (a DB client, an HTTP SDK). Introduce an abstraction the class owns, make the concrete type implement it, and inject it. Then write a unit test using a fake implementation. Separately, find a fat interface and split it by client role. Which change made the code easier to test, and which made it easier to change?
+
+### 3.8 Checklist
+
+- [ ] No client depends on interface methods it doesn't use (ISP).
+- [ ] Interfaces are split by client role, not bundled into fat contracts.
+- [ ] High-level policy depends on abstractions, not concrete low-level types (DIP).
+- [ ] Abstractions are owned by the high-level module and implemented by details.
+- [ ] Source-code dependencies point inward, toward stable policy.
+
+### 3.9 Best practices
+
+- Define abstractions in the high-level module's own terms, then have details implement them.
+- Keep each abstraction small and role-specific so implementers and clients stay lean.
+- Inject dependencies (constructor injection) and wire them at a single composition root.
+- Use architecture tests to enforce that inner layers never depend on outer ones.
+
+### 3.10 Anti-patterns
+
+- Fat "do-everything" interfaces forcing clients/implementers to carry unused methods.
+- Business logic that `new`s up or imports concrete infrastructure classes.
+- Abstractions that leak detail (e.g. an interface exposing SQL or HTTP specifics).
+- "Header interfaces" with a single implementation that mirror a concrete class one-to-one (no real inversion).
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| One client's change breaks unrelated clients | Fat shared interface (ISP violation) | Split into role-specific interfaces |
+| Core logic can't be unit-tested without infrastructure | Policy depends on concrete detail (DIP violation) | Depend on an abstraction; inject a fake |
+| Swapping a database/framework touches business code | Dependencies point outward | Invert with an abstraction owned by policy |
+| Interface exposes DB/HTTP specifics | Leaky abstraction | Redefine it in domain terms |
+
+### 3.12 References
+
+- R. C. Martin, *Agile Software Development: Principles, Patterns, and Practices* (Prentice Hall, 2002), ch. 11 "The Dependency-Inversion Principle (DIP)" and ch. 12 "The Interface-Segregation Principle (ISP)" — ISBN 978-0135974445.
+- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017) — DIP as the engine of the dependency rule — ISBN 978-0134494166.
+
+---
+
+> **End of Part II.** You can now apply the two dependency-shaping SOLID principles. **Interface Segregation** controls a dependency's *width* — split fat interfaces into small, role-specific ones so no client carries methods it doesn't use. **Dependency Inversion** controls its *direction* — high-level policy and low-level detail both depend on an abstraction owned by the policy, inverting the source-code dependency so it points toward the stable core. Applied consistently they produce a **plugin architecture** in which infrastructure is swappable and testable, and the business core outlives any particular technology — SOLID at the class level becoming the dependency rule at the system level.
