@@ -87,7 +87,7 @@ Progressive evolution through five maturity levels:
 **Part XV – Real Projects**
 P1. Intelligent Corporate Assistant · P2. Multi-Agent Support Center · P3. Automated Research Platform · P4. AI-Assisted Software Engineering · P5. Enterprise Agent Platform · P6. Autonomous Agent-Based Organization
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–5). **In progress:** Parts II–XV.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Chapters 1–45). **In progress:** Parts VII–XV.
 
 ---
 
@@ -6954,4 +6954,1365 @@ Standardizing recurring tasks (release notes, PR reviews, reports); an agent tha
 
 > **End of Part V.** Persistent memory is now a subsystem you understand end to end: the core concepts and three stores (Ch 31), their structure and context files/references (Ch 32), retrieval via FTS5 + summarization (Ch 33), context engineering with tiering and compression (Ch 34), long-term external providers (Ch 35), user modeling with Honcho (Ch 36), and continuous learning that turns memory into improved behavior (Ch 37). **Part VI — Skills** (Chapters 38–45) picks up the procedural-memory thread: what Skills are, how they are architected, created, auto-updated, evolved, reused, and governed as a corporate library.
 
-<!--APPEND-PARTE-II-->
+## Part VI – Skills
+
+If memory (Part V) is *knowing that*, Skills are *knowing how*. A **Skill** is a packaged, reusable procedure — a `SKILL.md` file with YAML frontmatter and supporting assets — that the agent can discover and apply. Hermes ships with **~90 bundled** Skills plus **~60 optional** ones, and, crucially, **creates its own** through the learning loop (Ch 37). Part VI covers the full lifecycle: what Skills are, how they are architected with **progressive disclosure**, how to author them, how the **Curator** keeps them fresh, how they evolve and get reused, and how to govern a corporate Skills library at scale.
+
+> **Carry-through idea.** Skills are *procedural memory as files*: human-readable, versionable, shareable, and — uniquely in Hermes — self-authored and self-maintained.
+
+---
+
+## Chapter 38 — What Skills Are
+
+### 38.1 Introduction
+
+This chapter defines the unit. A Skill is a directory containing a `SKILL.md` (Markdown with YAML frontmatter describing name, description, and triggers) plus any scripts, templates, or references it needs. Skills live in `~/.hermes/skills/` (bundled) and `optional-skills/`; the agent loads their metadata cheaply and pulls the full body only when relevant — the principle of **progressive disclosure**. You invoke them implicitly (the agent matches the task) or explicitly (the `/skills` slash command), and manage them with `hermes skills`.
+
+### 38.2 Chapter objectives
+
+(1) Define a Skill and the `SKILL.md` format; (2) explain bundled vs optional Skills and their locations; (3) understand progressive disclosure; (4) enable/disable and invoke Skills; (5) distinguish Skills from MCP tools and memory.
+
+### 38.3 Business context
+
+Skills make organizational know-how a **first-class, reusable asset**. A procedure encoded once as a Skill is applied consistently by every agent and every team member — onboarding, compliance checks, report formats. Unlike prompts buried in chat history, Skills are discoverable, versionable, and governable, which is what makes "knowledge as an asset" real rather than aspirational.
+
+### 38.4 Theoretical foundations
+
+A Skill is **procedural memory externalized as a file bundle**. The `SKILL.md` frontmatter (YAML) declares metadata — `name`, `description`, and when the Skill applies — followed by the procedure body. **Progressive disclosure** is the key efficiency mechanism: the agent always sees the lightweight metadata of all enabled Skills, but only loads a Skill's full content into context when the task matches. This keeps the prompt small (you can have ~150 Skills available without paying for all of them every turn) while still making everything discoverable. Skills are sourced from the bundle, the optional set, and community hubs (**agentskills.io**, the **Skills Hub**), and can be created by the agent itself.
+
+> **Java parallel.** A Skill is like a Spring bean defined in a small descriptor: the container scans lightweight metadata (annotations) for all beans but only instantiates one when it's actually needed — lazy loading driven by relevance.
+
+### 38.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph store["Skills storage"]
+        bundled["~/.hermes/skills/<br/>~90 bundled"]
+        optional["optional-skills/<br/>~60 optional"]
+    end
+    meta[Metadata index<br/>name + description + triggers] --> agent[AIAgent]
+    bundled --> meta
+    optional --> meta
+    agent -->|task matches| load[Load full SKILL.md<br/>progressive disclosure]
+    hub[agentskills.io / Skills Hub] -.import.-> optional
+```
+
+### 38.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant IDX as Skill metadata index
+    participant SK as SKILL.md (full)
+    U->>A: task
+    A->>IDX: match task against descriptions/triggers
+    IDX-->>A: candidate Skill(s)
+    A->>SK: load full body (only the matched Skill)
+    SK-->>A: procedure + assets
+    A-->>U: execute the Skill
+```
+
+### 38.7 Complete example
+
+**Scenario.** A team wants every agent to format incident postmortems identically.
+
+**Problem.** Postmortems vary by author; the standard lives in a wiki nobody reads.
+
+**Solution.** Encode the standard as a Skill; the agent applies it automatically when a postmortem is requested.
+
+**Architecture.** `SKILL.md` (postmortem) in `~/.hermes/skills/` → metadata indexed → loaded on match.
+
+**Implementation.**
+
+```bash
+hermes skills list                       # see bundled + optional Skills
+hermes skills enable postmortem-writer   # enable a Skill for this platform
+```
+
+```markdown
+<!-- ~/.hermes/skills/postmortem-writer/SKILL.md -->
+---
+name: postmortem-writer
+description: Write a blameless incident postmortem in the company standard format.
+triggers: ["postmortem", "incident report", "RCA"]
+---
+# Postmortem Writer
+1. Summary (impact, duration, severity)
+2. Timeline (UTC)
+3. Root cause (blameless)
+4. Remediation + action items (owners, dates)
+```
+
+**Tests.**
+
+```bash
+hermes run "/skills"                       # list available Skills interactively
+hermes run "Write a postmortem for yesterday's outage."   # auto-applies the Skill
+```
+
+**Result.** Consistent, standard-format postmortems from any agent, with zero per-task instruction.
+
+**Future improvements.** Move the Skill into a shared corporate library (Ch 44) and govern its lifecycle (Ch 45).
+
+### 38.8 Source code
+
+```python
+@dataclass
+class Skill:
+    name: str
+    description: str
+    triggers: list[str]
+    path: Path           # directory with SKILL.md + assets
+
+def index_skills(dirs: list[Path]) -> list[Skill]:
+    skills = []
+    for d in dirs:                       # ~/.hermes/skills/, optional-skills/
+        for sk in d.glob("*/SKILL.md"):
+            fm = parse_frontmatter(sk)   # lightweight: metadata only
+            skills.append(Skill(fm["name"], fm["description"],
+                                fm.get("triggers", []), sk.parent))
+    return skills                        # full body loaded later, on match
+```
+
+### 38.9 Configuration
+
+| Key / Path | Value | Notes |
+|------------|-------|-------|
+| `~/.hermes/skills/` | bundled | ~90 Skills |
+| `optional-skills/` | optional | ~60 Skills |
+| `SKILL.md` frontmatter | `name`, `description`, `triggers` | YAML |
+| `hermes skills enable/disable` | per platform | Toggle availability |
+| `/skills` | slash command | Interactive listing |
+
+### 38.10 Real-world use cases
+
+Standardized postmortems/reports; onboarding procedures; compliance checklists; code-review playbooks — any repeatable know-how.
+
+### 38.11 Exercises
+
+1. Describe the `SKILL.md` structure.
+2. Explain progressive disclosure and why it scales to ~150 Skills.
+3. How do Skills differ from MCP tools?
+
+### 38.12 Challenges
+
+- **Challenge 1.** Enable three optional Skills and trigger each by task phrasing.
+- **Challenge 2.** Write a minimal `SKILL.md` and confirm it loads only when relevant.
+
+### 38.13 Checklist
+
+- [ ] I can read a `SKILL.md` and its frontmatter.
+- [ ] I know the bundled vs optional locations.
+- [ ] I understand progressive disclosure.
+- [ ] I can enable/disable and invoke Skills.
+
+### 38.14 Best practices
+
+- Write tight `description`/`triggers` so matching is accurate.
+- Keep each Skill focused on one procedure.
+- Enable only the Skills a platform needs to keep the index lean.
+
+### 38.15 Anti-patterns
+
+- Vague descriptions that cause wrong-Skill matches.
+- One mega-Skill trying to do everything.
+- Enabling all ~150 Skills everywhere without need.
+
+### 38.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Skill never triggers | Weak description/triggers | Sharpen frontmatter keywords |
+| Wrong Skill applied | Overlapping triggers | Disambiguate descriptions |
+| Skill not listed | Not enabled / bad path | `hermes skills enable`; check directory |
+| Body never loads | Metadata-only mismatch | Verify the task matches triggers |
+
+### 38.17 Official references
+
+- Skills overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Skills Hub / agentskills.io: https://agentskills.io/
+- Features overview: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 39 — Skills Architecture
+
+### 39.1 Introduction
+
+This chapter goes under the hood: the directory layout, the loading pipeline, how progressive disclosure is implemented across the metadata index and full-body load, and the role of the **Curator** — the background process that tracks usage, detects staleness, archives unused Skills, and runs LLM reviews. Understanding the architecture is what lets you build, debug, and govern Skills with confidence rather than treating them as magic.
+
+### 39.2 Chapter objectives
+
+(1) Map the Skills directory and loading pipeline; (2) understand the metadata-index vs full-body split; (3) explain the Curator's responsibilities; (4) see how Skills integrate with the learning loop; (5) reason about Skill precedence and overrides.
+
+### 39.3 Business context
+
+A clear Skills architecture is what makes a corporate library maintainable: you can see which Skills are used, which are stale, and which overlap. The Curator turns "a pile of Skills" into a **self-maintaining catalog**, reducing the human toil of grooming organizational knowledge — directly lowering maintenance cost at scale.
+
+### 39.4 Theoretical foundations
+
+The architecture has three layers. **Storage** — bundled (`~/.hermes/skills/`), optional (`optional-skills/`), and imported. **Discovery** — a lightweight metadata index over all enabled Skills (progressive disclosure); only matched Skills load their full body. **Maintenance** — the **Curator** runs in the background performing usage tracking, staleness detection, archival of unused Skills, and periodic **LLM review** of Skill quality. The learning loop (Ch 37) is the **producer** of new Skills; the Curator is the **groundskeeper**. Together they make Skills a living system rather than a static folder.
+
+> **Java parallel.** Storage is the classpath; the metadata index is component scanning; the Curator is a scheduled maintenance service (like a cache evictor + linter) that prunes and reviews beans nobody uses.
+
+### 39.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph storage["Storage"]
+        b[bundled] 
+        o[optional]
+        i[imported / corporate]
+    end
+    storage --> idx[Metadata index<br/>progressive disclosure]
+    idx --> agent[AIAgent]
+    agent -->|match| body[Full SKILL.md load]
+    learn[Learning loop<br/>Ch 37] -->|create/refine| storage
+    cur[Curator - background] -->|usage / staleness / archive / LLM review| storage
+```
+
+### 39.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant L as Learning loop
+    participant ST as Skills storage
+    participant C as Curator
+    participant A as AIAgent
+    L->>ST: create/refine Skill
+    A->>ST: use Skill (records usage)
+    loop background
+        C->>ST: scan usage + age
+        C->>C: detect stale/unused
+        C->>ST: archive or flag; LLM review
+    end
+```
+
+### 39.7 Complete example
+
+**Scenario.** A library has grown to 200 Skills; some are stale or never used.
+
+**Problem.** Nobody has time to manually audit 200 Skills for staleness and overlap.
+
+**Solution.** Rely on the Curator to track usage, flag stale Skills, and archive unused ones, with LLM review surfacing quality issues.
+
+**Architecture.** Storage → Curator (usage/staleness/archival/review) → groomed catalog.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  enabled: true
+  curator:
+    enabled: true
+    staleness_days: 90       # flag Skills unused for 90 days
+    archive_unused: true     # move stale Skills to an archive
+    llm_review: true         # periodic quality review
+```
+
+```bash
+hermes skills status         # usage counts, last-used, staleness flags
+hermes skills curate --dry-run   # preview archival/review actions
+```
+
+**Tests.**
+
+```bash
+hermes skills status | sort -k3   # inspect last-used to validate staleness logic
+```
+
+**Result.** A self-grooming catalog: stale Skills are archived, quality issues flagged, with minimal human effort.
+
+**Future improvements.** Wire Curator reports into governance dashboards (Ch 45); require human sign-off before archival in regulated environments.
+
+### 39.8 Source code
+
+```python
+class Curator:
+    def run(self, skills, usage_log, now):
+        for sk in skills:
+            last = usage_log.last_used(sk.name)
+            if last is None or (now - last).days > CFG.staleness_days:
+                sk.flag("stale")
+                if CFG.archive_unused:
+                    self.archive(sk)
+        if CFG.llm_review:
+            self.llm_quality_review(skills)   # periodic background review
+```
+
+### 39.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.curator.enabled` | `true` | Background maintenance |
+| `skills.curator.staleness_days` | `90` | Unused threshold |
+| `skills.curator.archive_unused` | `true` | Auto-archive |
+| `skills.curator.llm_review` | `true` | Periodic quality review |
+
+### 39.10 Real-world use cases
+
+Large corporate libraries needing automated grooming; teams tracking Skill usage; quality control via LLM review; archival of obsolete procedures.
+
+### 39.11 Exercises
+
+1. Distinguish the learning loop's role from the Curator's.
+2. What does progressive disclosure cost vs save?
+3. List the Curator's four responsibilities.
+
+### 39.12 Challenges
+
+- **Challenge 1.** Configure the Curator and force a staleness flag on a test Skill.
+- **Challenge 2.** Add a human sign-off gate before archival.
+
+### 39.13 Checklist
+
+- [ ] I can map storage → index → maintenance.
+- [ ] Curator is configured with sensible thresholds.
+- [ ] I understand learning-loop vs Curator roles.
+
+### 39.14 Best practices
+
+- Keep the Curator on for any library beyond a handful of Skills.
+- Tune `staleness_days` to your cadence; don't archive too eagerly.
+- Review LLM-flagged Skills before deleting.
+
+### 39.15 Anti-patterns
+
+- Disabling the Curator and accumulating dead Skills.
+- Auto-archiving aggressively and losing useful-but-seasonal Skills.
+- Treating Curator output as gospel without review.
+
+### 39.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Stale Skills pile up | Curator disabled | Enable `skills.curator` |
+| Useful Skill archived | Threshold too low | Raise `staleness_days`; restore from archive |
+| No usage data | Tracking off | Ensure usage logging is enabled |
+| Slow startup | Huge full-body loads | Rely on metadata index; trim enabled set |
+
+### 39.17 Official references
+
+- Skills architecture / Curator: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Developer guide (architecture): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Skills Hub: https://agentskills.io/
+
+---
+
+## Chapter 40 — Creating Skills
+
+### 40.1 Introduction
+
+Now you author one. This chapter is hands-on: writing a `SKILL.md` with correct YAML frontmatter, structuring the procedure body, bundling supporting scripts/templates, placing it for discovery, and testing that it triggers correctly. You will create Skills two ways — by hand, and by letting the agent create one for you — and learn the conventions that make a Skill reliable.
+
+### 40.2 Chapter objectives
+
+(1) Write a valid `SKILL.md`; (2) bundle assets (scripts/templates); (3) place and enable a Skill; (4) test triggering and execution; (5) have the agent author a Skill from a demonstrated procedure.
+
+### 40.3 Business context
+
+The ability to author Skills turns tribal knowledge into shared, executable assets quickly. A senior engineer can encode a tricky deployment procedure once; the whole team's agents then execute it correctly. This shortens onboarding and reduces the "only Alice knows how" risk.
+
+### 40.4 Theoretical foundations
+
+A good Skill follows a few principles: a **precise description and triggers** (so progressive disclosure matches it accurately), a **clear, stepwise body** (the agent follows it like a checklist), and **bundled assets** referenced by relative path (scripts to run, templates to fill). Authoring can be **manual** (write the files) or **agent-driven** (demonstrate a task and ask the agent to capture it as a Skill — the same mechanism the learning loop uses, invoked on demand). Either way the output is the same artifact: a directory with `SKILL.md` plus assets.
+
+> **Java parallel.** Authoring a Skill is like writing a small, well-documented utility class with a clear Javadoc (frontmatter), a focused method (the procedure), and bundled resources — designed for reuse, not one-off use.
+
+### 40.5 Architecture
+
+```mermaid
+flowchart LR
+    author[Author: human or agent] --> md[SKILL.md<br/>frontmatter + body]
+    author --> assets[scripts / templates]
+    md --> dir[Skill directory]
+    assets --> dir
+    dir --> place[Place in ~/.hermes/skills/]
+    place --> idx[Indexed -> discoverable]
+```
+
+### 40.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as AIAgent
+    participant FS as Filesystem
+    U->>A: "Capture how we cut a release as a Skill."
+    A->>A: derive steps from the demonstrated/explained procedure
+    A->>FS: write SKILL.md + assets to a new Skill dir
+    A->>FS: index the new Skill
+    A-->>U: "Created Skill 'release-cutter'."
+```
+
+### 40.7 Complete example
+
+**Scenario.** The team's release procedure is intricate and error-prone; only one engineer knows all the steps.
+
+**Problem.** The knowledge is tribal; mistakes happen when that engineer is away.
+
+**Solution.** Encode the procedure as a Skill — authored manually, with a helper script bundled.
+
+**Architecture.** `SKILL.md` + `cut_release.sh` in a Skill directory → indexed → executed on request.
+
+**Implementation.**
+
+```bash
+mkdir -p ~/.hermes/skills/release-cutter
+```
+
+```markdown
+<!-- ~/.hermes/skills/release-cutter/SKILL.md -->
+---
+name: release-cutter
+description: Cut a versioned release following the team's exact procedure.
+triggers: ["cut a release", "tag release", "ship version"]
+---
+# Release Cutter
+1. Ensure `main` is green (CI passing).
+2. Bump version in `pyproject.toml`.
+3. Update CHANGELOG from merged PRs.
+4. Run `./cut_release.sh <version>` (bundled).
+5. Verify the tag and the published artifact.
+```
+
+```bash
+cat > ~/.hermes/skills/release-cutter/cut_release.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+VERSION="$1"
+git tag -a "v${VERSION}" -m "Release v${VERSION}"
+git push origin "v${VERSION}"
+EOF
+chmod +x ~/.hermes/skills/release-cutter/cut_release.sh
+hermes skills enable release-cutter
+```
+
+**Tests.**
+
+```bash
+hermes run "/skills"                         # confirm release-cutter is listed
+hermes run "Cut a release for version 1.5.0." # agent follows the Skill
+```
+
+**Result.** Anyone's agent can cut a release correctly; the procedure is no longer tribal.
+
+**Future improvements.** Have the agent auto-create variants for hotfix releases; promote the Skill to the corporate library (Ch 44).
+
+### 40.8 Source code
+
+```python
+def create_skill(name, description, triggers, body, assets, skills_dir: Path):
+    d = skills_dir / name
+    d.mkdir(parents=True, exist_ok=True)
+    frontmatter = {"name": name, "description": description, "triggers": triggers}
+    (d / "SKILL.md").write_text(to_frontmatter(frontmatter) + "\n" + body)
+    for fname, content in assets.items():
+        (d / fname).write_text(content)
+    index_skills([skills_dir])               # make it discoverable
+    return d
+```
+
+### 40.9 Configuration
+
+| Element | Requirement | Notes |
+|---------|-------------|-------|
+| `SKILL.md` | required | Frontmatter + body |
+| `name` | unique | Identifier |
+| `description` / `triggers` | precise | Drives matching |
+| assets | optional | Referenced by relative path |
+| location | `~/.hermes/skills/<name>/` | For discovery |
+
+### 40.10 Real-world use cases
+
+Encoding deployment/release procedures; standard report generators; data-pipeline runbooks; onboarding task captures.
+
+### 40.11 Exercises
+
+1. Write a `SKILL.md` for generating a weekly status report.
+2. Bundle a script and reference it from the body.
+3. Ask the agent to capture a demonstrated task as a Skill.
+
+### 40.12 Challenges
+
+- **Challenge 1.** Author a Skill with a bundled script and prove it runs end-to-end.
+- **Challenge 2.** Compare a hand-authored Skill with an agent-authored one for the same task.
+
+### 40.13 Checklist
+
+- [ ] Valid frontmatter (`name`, `description`, `triggers`).
+- [ ] Clear, stepwise body.
+- [ ] Assets bundled and referenced relatively.
+- [ ] Skill enabled and triggers correctly.
+
+### 40.14 Best practices
+
+- Keep the body a clean checklist the agent can follow literally.
+- Make `description`/`triggers` specific to avoid mismatches.
+- Bundle scripts rather than inlining fragile shell in the body.
+
+### 40.15 Anti-patterns
+
+- Overly broad triggers that hijack unrelated tasks.
+- Embedding secrets in the Skill or its scripts.
+- Giant multi-purpose Skills instead of focused ones.
+
+### 40.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Skill not discovered | Bad path / not indexed | Place under `~/.hermes/skills/`; re-index |
+| Doesn't trigger | Weak triggers | Add specific keywords |
+| Script fails | Not executable / bad path | `chmod +x`; reference relatively |
+| Invalid frontmatter | YAML error | Validate the frontmatter block |
+
+### 40.17 Official references
+
+- Creating Skills: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Skills Hub / agentskills.io: https://agentskills.io/
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 41 — Automatic Updating
+
+### 41.1 Introduction
+
+Skills are not write-once. Hermes **updates them automatically**: the learning loop (Ch 37) refines existing Skills as it observes better ways to do things, and the Curator (Ch 39) keeps quality and freshness in check. This chapter focuses specifically on the *automatic update* path — how a Skill improves itself over repeated use, how updates are reviewed, and how to keep automatic updating safe in production.
+
+### 41.2 Chapter objectives
+
+(1) Explain how the learning loop refines existing Skills; (2) understand Curator-driven quality updates; (3) review and approve automatic updates; (4) configure update cadence and safety gates; (5) troubleshoot bad automatic updates.
+
+### 41.3 Business context
+
+Auto-updating Skills mean procedures **stay current without manual grooming** — when the team's release process changes, the agent can refine the release Skill from observed runs. The risk is uncontrolled drift; the mitigation is review gates. Balancing the two is what makes auto-updating safe enough for production while still delivering its maintenance savings.
+
+### 41.4 Theoretical foundations
+
+Automatic updating combines the two background mechanisms. The **learning loop** evaluates outcomes (~every 15 tasks) and may *refine* an existing Skill — tightening steps, fixing a recurring failure, adding a branch. The **Curator** independently performs **LLM review**, flagging or improving low-quality Skills and retiring stale ones. Updates can be applied directly or gated behind **human review**, depending on configuration and environment. The artifact is versioned, so changes are auditable and revertible.
+
+> **Java parallel.** This is continuous refactoring driven by runtime telemetry: a background process notices a hot-but-flaky method (Skill), rewrites it for reliability, and submits the change for review — Dependabot-meets-self-healing-code.
+
+### 41.5 Architecture
+
+```mermaid
+flowchart TB
+    runs[Repeated Skill runs] --> loop[Learning loop<br/>evaluate outcomes]
+    loop -->|refine| draft[Updated SKILL.md draft]
+    cur[Curator LLM review] -->|improve/flag| draft
+    draft --> gate{Review gate?}
+    gate -->|auto| apply[Apply update + version bump]
+    gate -->|manual| human[Human approves] --> apply
+```
+
+### 41.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant L as Learning loop
+    participant C as Curator
+    participant G as Review gate
+    participant ST as Skills storage
+    A->>L: outcomes from repeated runs
+    L->>L: detect a better procedure
+    L->>ST: draft refined Skill (versioned)
+    C->>ST: LLM quality pass
+    ST->>G: propose update
+    alt auto-apply
+        G->>ST: commit update
+    else manual
+        G-->>A: request approval
+    end
+```
+
+### 41.7 Complete example
+
+**Scenario.** The release Skill (Ch 40) occasionally fails because CI status checks changed; the agent notices and wants to fix it.
+
+**Problem.** Manually keeping the Skill in sync with process changes is toil and lags reality.
+
+**Solution.** Enable automatic updating with a manual review gate; the learning loop drafts a fix, the Curator reviews, a human approves.
+
+**Architecture.** Runs → learning loop draft → Curator review → human gate → versioned update.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  enabled: true
+  auto_update:
+    enabled: true
+    review: manual          # require human approval before applying
+    version_on_update: true # keep an audit trail
+  curator:
+    llm_review: true
+```
+
+```bash
+hermes skills updates list        # see proposed updates awaiting review
+hermes skills updates approve release-cutter
+```
+
+**Tests.**
+
+```bash
+hermes skills history release-cutter   # confirm versioned update applied
+```
+
+**Result.** The release Skill stays correct as the process evolves, with every change reviewed and audited.
+
+**Future improvements.** Auto-apply low-risk updates while gating high-risk ones; integrate approvals into the governance workflow (Ch 45).
+
+### 41.8 Source code
+
+```python
+def propose_skill_update(skill, outcomes, curator, cfg, gate):
+    draft = learning_loop.refine(skill, outcomes)   # better procedure
+    draft = curator.llm_review(draft)               # quality pass
+    if cfg.review == "manual":
+        gate.queue_for_approval(skill.name, draft)  # human in the loop
+    else:
+        apply_update(skill, draft, version_bump=cfg.version_on_update)
+```
+
+### 41.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.auto_update.enabled` | `true` | Allow refinement |
+| `skills.auto_update.review` | `manual` / `auto` | Safety gate |
+| `skills.auto_update.version_on_update` | `true` | Audit trail |
+| `skills.curator.llm_review` | `true` | Quality pass |
+
+### 41.10 Real-world use cases
+
+Keeping process Skills in sync with changing procedures; self-healing flaky Skills; quality improvement of community-imported Skills.
+
+### 41.11 Exercises
+
+1. Differentiate learning-loop refinement from Curator review.
+2. When would you choose `auto` vs `manual` review?
+3. Why version Skills on update?
+
+### 41.12 Challenges
+
+- **Challenge 1.** Trigger an automatic update by repeatedly running a flawed Skill; approve the fix.
+- **Challenge 2.** Configure risk-based gating (auto for low-risk, manual for high-risk).
+
+### 41.13 Checklist
+
+- [ ] Auto-update enabled with an appropriate review mode.
+- [ ] Updates are versioned for audit.
+- [ ] I can list and approve pending updates.
+
+### 41.14 Best practices
+
+- Use `manual` review in production; `auto` only for low-risk Skills.
+- Always version updates so you can revert.
+- Combine with Curator LLM review for quality.
+
+### 41.15 Anti-patterns
+
+- Auto-applying updates in production with no review.
+- Updating without versioning (no rollback).
+- Ignoring the update queue until Skills drift badly.
+
+### 41.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Bad update applied | Auto mode, no gate | Switch to `manual`; revert via history |
+| Updates never proposed | Auto-update disabled / too few runs | Enable; run more tasks |
+| Can't revert | Versioning off | Enable `version_on_update` |
+| Update queue ignored | No review process | Add approval to the workflow (Ch 45) |
+
+### 41.17 Official references
+
+- Skills (auto-update / Curator): https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Learning loop: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Architecture: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 42 — Skill Evolution
+
+### 42.1 Introduction
+
+Auto-updating (Ch 41) fixes a Skill in place; **evolution** is the longer arc — how a Skill matures over its lifetime: born (manual or learned), refined repeatedly, branched into variants, occasionally split or merged, and eventually retired. This chapter takes the lifecycle view, showing how the learning loop and Curator together steward a Skill from naive first draft to a battle-tested, well-scoped asset — and when to deliberately intervene.
+
+### 42.2 Chapter objectives
+
+(1) Describe the full Skill lifecycle; (2) recognize evolution patterns (refine, branch, split, merge, retire); (3) read a Skill's version history; (4) decide when to intervene manually; (5) measure Skill maturity.
+
+### 42.3 Business context
+
+Skills are organizational assets with a lifecycle like any other. Treating them as evolving — not static — means the library reflects how work *actually* happens now, not how it happened a year ago. Understanding evolution patterns lets leaders reason about the health of their knowledge base: which Skills are maturing, which are fragmenting, which should be retired.
+
+### 42.4 Theoretical foundations
+
+A Skill's life follows recognizable transitions:
+
+- **Birth** — created manually or by the learning loop.
+- **Refinement** — incremental improvements from observed runs (Ch 41).
+- **Branching** — a variant emerges (e.g., `release-cutter` spawns `hotfix-cutter`).
+- **Split** — a Skill that grew too broad is divided into focused Skills.
+- **Merge** — overlapping Skills the Curator detects are consolidated.
+- **Retirement** — staleness detection archives an unused Skill (Ch 39).
+
+These transitions are driven by the same two engines (learning loop, Curator) plus human judgment. **Versioning** makes the arc visible and revertible. Maturity can be gauged by stability (few recent changes), usage (consistent invocation), and review status (LLM-reviewed, clean).
+
+> **Java parallel.** Skill evolution mirrors a library's semantic-versioning life: patch refinements, minor branches/variants, occasional major refactors (split/merge), and eventual deprecation — all under version control.
+
+### 42.5 Architecture
+
+```mermaid
+flowchart LR
+    birth[Birth] --> refine[Refinement]
+    refine --> branch[Branch / variant]
+    refine --> split[Split]
+    branch --> merge[Merge]
+    split --> merge
+    refine --> retire[Retirement]
+    merge --> retire
+    classDef s fill:#eef;
+```
+
+### 42.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant L as Learning loop
+    participant C as Curator
+    participant H as Human
+    participant ST as Skills storage
+    L->>ST: refine (patch)
+    L->>ST: spawn variant (branch)
+    C->>ST: detect overlap -> propose merge
+    C->>ST: detect staleness -> propose retire
+    H->>ST: approve split/merge/retire
+    ST-->>H: versioned history reflects the arc
+```
+
+### 42.7 Complete example
+
+**Scenario.** Over months, `release-cutter` has accreted hotfix logic and grown unwieldy.
+
+**Problem.** One broad Skill now handles two distinct procedures, causing mis-triggers.
+
+**Solution.** Split it into `release-cutter` and `hotfix-cutter`; the Curator flags the overlap, a human approves the split.
+
+**Architecture.** Broad Skill → Curator overlap detection → human-approved split → two focused Skills.
+
+**Implementation.**
+
+```bash
+hermes skills history release-cutter        # review the evolution
+hermes skills split release-cutter \
+  --into release-cutter,hotfix-cutter        # propose a split
+hermes skills updates approve release-cutter # confirm the split
+```
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  curator:
+    detect_overlap: true       # surface merge/split candidates
+    llm_review: true
+```
+
+**Tests.**
+
+```bash
+hermes run "Cut a hotfix for 1.5.1."   # routes to hotfix-cutter now
+hermes run "Cut a release for 1.6.0."  # routes to release-cutter
+```
+
+**Result.** Two focused Skills that trigger correctly, with the split recorded in version history.
+
+**Future improvements.** Automate variant creation for predictable branches; add maturity scoring to the governance dashboard (Ch 45).
+
+### 42.8 Source code
+
+```python
+def split_skill(skill, into: list[str], skills_dir, gate):
+    drafts = llm_decompose(skill, into)        # propose focused Skills
+    for name, draft in drafts.items():
+        gate.queue_for_approval(name, draft)   # human approves the split
+    skill.flag("superseded")                   # versioned; revertible
+```
+
+### 42.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.curator.detect_overlap` | `true` | Merge/split candidates |
+| `skills.auto_update.version_on_update` | `true` | Visible arc |
+| `hermes skills history <name>` | command | Read evolution |
+| `hermes skills split/merge` | command | Manual transitions |
+
+### 42.10 Real-world use cases
+
+Splitting overgrown Skills; merging duplicates from community imports; retiring obsolete procedures; tracking maturity of critical Skills.
+
+### 42.11 Exercises
+
+1. List the six lifecycle transitions.
+2. When should a Skill be split versus refined?
+3. How does versioning support evolution?
+
+### 42.12 Challenges
+
+- **Challenge 1.** Force an overlap and let the Curator propose a merge; approve it.
+- **Challenge 2.** Define a maturity score and apply it to your top five Skills.
+
+### 42.13 Checklist
+
+- [ ] I recognize the lifecycle transitions.
+- [ ] Overlap detection is enabled.
+- [ ] Version history is readable per Skill.
+- [ ] I know when to intervene manually.
+
+### 42.14 Best practices
+
+- Split broad Skills early before mis-triggers proliferate.
+- Let the Curator surface merges; approve consciously.
+- Track maturity for business-critical Skills.
+
+### 42.15 Anti-patterns
+
+- Letting a Skill accrete unrelated responsibilities indefinitely.
+- Merging Skills that only superficially overlap.
+- Retiring a seasonal Skill that's simply between uses.
+
+### 42.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Mis-triggers | Overgrown Skill | Split into focused Skills |
+| Duplicate Skills | Imports/overlap | Merge via Curator proposal |
+| Lost a good Skill | Premature retirement | Restore from archive; raise staleness threshold |
+| Opaque history | Versioning off | Enable `version_on_update` |
+
+### 42.17 Official references
+
+- Skills lifecycle: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Curator: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Skills Hub: https://agentskills.io/
+
+---
+
+## Chapter 43 — Reuse
+
+### 43.1 Introduction
+
+A Skill's value multiplies when it is **reused** — across tasks, agents, teams, and the wider community. Hermes supports reuse natively: Skills are portable file bundles, importable from **agentskills.io** and the **Skills Hub**, and shareable between profiles and machines. This chapter covers how to package, share, import, and adapt Skills, and how progressive disclosure makes a large reusable library practical.
+
+### 43.2 Chapter objectives
+
+(1) Package a Skill for sharing; (2) import Skills from hubs; (3) reuse Skills across profiles/agents; (4) adapt an imported Skill; (5) manage reuse safely (trust, review).
+
+### 43.3 Business context
+
+Reuse is the ROI of Skills: author once, apply everywhere. A corporate library (Ch 44) amplifies this internally; community hubs amplify it externally. The discipline is **trust** — imported Skills are third-party code/procedures and must be reviewed before use, exactly as you'd review a dependency.
+
+### 43.4 Theoretical foundations
+
+Because a Skill is just a directory (`SKILL.md` + assets), it is inherently portable: copy it, version it in git, publish it to a hub, or import someone else's. The **Skills Hub / agentskills.io** are registries for discovery and import. **Progressive disclosure** (Ch 38) is what makes large-scale reuse viable — you can import hundreds of Skills and only pay for the ones a task matches. Reuse across **profiles** (`hermes -p <name>`, each with its own `HERMES_HOME`) lets you share a curated set while isolating others.
+
+> **Java parallel.** Skills reuse is package management for procedures: hubs are the registry (Maven Central), import is `dependency`, review is your security/license check, and adaptation is a local fork.
+
+### 43.5 Architecture
+
+```mermaid
+flowchart TB
+    hub[agentskills.io / Skills Hub] -->|import| local[Local skills dir]
+    git[Git repo - corporate] -->|clone/submodule| local
+    local --> idx[Metadata index<br/>progressive disclosure]
+    idx --> a1[Agent / profile A]
+    idx --> a2[Agent / profile B]
+    review{Review / trust} --> local
+```
+
+### 43.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant H as Skills Hub
+    participant R as Review
+    participant ST as Local skills
+    participant A as AIAgent
+    U->>H: search "pdf-extractor"
+    H-->>U: candidate Skill
+    U->>R: review SKILL.md + scripts (trust check)
+    R->>ST: import if approved
+    A->>ST: use on matching tasks (progressive disclosure)
+```
+
+### 43.7 Complete example
+
+**Scenario.** A team needs a PDF-table-extraction Skill; the community already has a good one.
+
+**Problem.** Writing it from scratch duplicates effort; importing blindly risks unsafe scripts.
+
+**Solution.** Import from the Skills Hub, review the `SKILL.md` and bundled scripts, then enable and (optionally) adapt it.
+
+**Architecture.** Hub → review → local skills dir → indexed → reused across agents.
+
+**Implementation.**
+
+```bash
+hermes skills search pdf table extract        # discover on the hub
+hermes skills import agentskills.io/pdf-table-extractor
+# REVIEW before enabling:
+less ~/.hermes/skills/pdf-table-extractor/SKILL.md
+hermes skills enable pdf-table-extractor
+```
+
+```yaml
+# Share a curated set across profiles via git
+# ~/.hermes/config.yaml
+skills:
+  sources:
+    - type: git
+      url: https://github.com/acme/hermes-skills.git
+      review_required: true
+```
+
+**Tests.**
+
+```bash
+hermes run "Extract the tables from @report.pdf."
+```
+
+**Result.** A vetted, reusable Skill applied across the team without reinventing it.
+
+**Future improvements.** Promote vetted imports into the corporate library (Ch 44); pin Skill versions for reproducibility.
+
+### 43.8 Source code
+
+```python
+def import_skill(source: str, skills_dir: Path, review_required: bool):
+    staged = fetch_skill_bundle(source)        # download to a staging area
+    if review_required and not human_review(staged):
+        raise ReviewRejected(source)
+    dest = skills_dir / staged.name
+    copy_tree(staged.path, dest)
+    index_skills([skills_dir])
+    return dest
+```
+
+### 43.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.sources` | list (git/hub) | Reuse sources |
+| `skills.sources[].review_required` | `true` | Trust gate |
+| `hermes skills import` | command | Pull from hub |
+| profiles | `hermes -p <name>` | Share/isolate sets |
+
+### 43.10 Real-world use cases
+
+Importing community Skills (PDF, scraping, formatting); sharing a curated corporate set via git; reusing Skills across dev/prod profiles.
+
+### 43.11 Exercises
+
+1. Import a Skill from a hub and review it before enabling.
+2. Share a Skill set across two profiles via git.
+3. Explain why progressive disclosure makes large reuse practical.
+
+### 43.12 Challenges
+
+- **Challenge 1.** Import, review, adapt, and re-share a community Skill.
+- **Challenge 2.** Set up a git-backed shared Skills source with a review gate.
+
+### 43.13 Checklist
+
+- [ ] I can package and share a Skill.
+- [ ] Imports are reviewed before enabling.
+- [ ] Skills are reused across profiles/agents.
+- [ ] Versions are pinned where reproducibility matters.
+
+### 43.14 Best practices
+
+- Treat imported Skills like dependencies: review, pin, and track them.
+- Share curated sets via git, not ad-hoc copies.
+- Use profiles to isolate experimental from trusted Skills.
+
+### 43.15 Anti-patterns
+
+- Importing and enabling community Skills without review.
+- Copy-pasting Skills between machines instead of versioning them.
+- Floating (unpinned) Skill sources in production.
+
+### 43.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Imported Skill misbehaves | Unreviewed/unsafe | Disable; review scripts; re-import vetted |
+| Drift across machines | Ad-hoc copies | Use a git-backed source |
+| Skill not found on hub | Wrong name | Search the Hub; check exact id |
+| Conflicts after import | Trigger overlap | Disambiguate or disable conflicting Skill |
+
+### 43.17 Official references
+
+- Skills reuse / Hub: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- agentskills.io: https://agentskills.io/
+- Profiles: https://hermes-agent.nousresearch.com/docs/user-guide/features/profiles
+
+---
+
+## Chapter 44 — Corporate Skills Library
+
+### 44.1 Introduction
+
+When reuse scales from a team to an organization, you need a **corporate Skills library**: a governed, versioned, shared catalog of approved Skills that every agent draws from. This chapter shows how to architect such a library — a git-backed source of truth, review and approval workflows, profile-based distribution, and a clear separation between approved, experimental, and archived Skills.
+
+### 44.2 Chapter objectives
+
+(1) Architect a corporate Skills library; (2) establish a git-backed source of truth; (3) define approval/promotion workflows; (4) distribute the library across teams via profiles/config; (5) keep it healthy with the Curator.
+
+### 44.3 Business context
+
+A corporate Skills library is the institutional memory of *how the organization does things*, made executable. It accelerates onboarding, enforces standards (security, compliance, formatting), and prevents the same procedure being reinvented in ten teams. It is a strategic asset — and, like any shared asset, it needs ownership and governance (Ch 45).
+
+### 44.4 Theoretical foundations
+
+The library is a **git repository** of vetted Skill directories, consumed by agents via `skills.sources`. It typically has tiers: **approved** (production-ready, reviewed), **experimental** (under evaluation), and **archived** (retired). Promotion between tiers is a reviewed workflow. Distribution leverages **profiles** (each `HERMES_HOME` can subscribe to the library) and config-driven sources. The **Curator** runs against the library to surface staleness and overlap, but archival/promotion stays human-governed. This combines the loose-coupling registry pattern with standard software supply-chain practices.
+
+> **Java parallel.** The corporate Skills library is an internal artifact repository (Nexus/Artifactory) for procedures: vetted releases, snapshot/experimental channels, access control, and a promotion pipeline.
+
+### 44.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph repo["Corporate Skills repo (git)"]
+        approved[approved/]
+        experimental[experimental/]
+        archived[archived/]
+    end
+    pr[Pull request + review] --> approved
+    experimental -->|promote| pr
+    repo --> dist[Distribution: skills.sources]
+    dist --> t1[Team A agents]
+    dist --> t2[Team B agents]
+    cur[Curator] --> repo
+```
+
+### 44.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant D as Developer
+    participant PR as Review (PR)
+    participant LIB as Corporate library (git)
+    participant AG as Team agents
+    D->>PR: submit new/updated Skill
+    PR->>PR: security + quality review
+    PR->>LIB: merge to approved/
+    AG->>LIB: pull approved Skills (skills.sources)
+    AG-->>D: consistent execution across teams
+```
+
+### 44.7 Complete example
+
+**Scenario.** A company wants every team's agent to use the same vetted security-scan and report Skills.
+
+**Problem.** Teams each maintain divergent copies; standards drift.
+
+**Solution.** A git-backed corporate library with an approval workflow; all agents subscribe to the `approved/` tier.
+
+**Architecture.** Git repo (approved/experimental/archived) → `skills.sources` → all team agents.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml (distributed to all agents)
+skills:
+  sources:
+    - type: git
+      url: https://github.com/acme/corporate-skills.git
+      ref: approved            # consume only the approved tier
+      review_required: false   # already reviewed upstream
+  curator:
+    enabled: true
+```
+
+```bash
+# Promotion workflow (CI on the library repo)
+hermes skills validate experimental/security-scan   # lint + dry-run
+# open PR to move experimental/security-scan -> approved/
+```
+
+**Tests.**
+
+```bash
+hermes skills list --source corporate    # confirm approved Skills are present
+hermes run "Run the standard security scan and report."
+```
+
+**Result.** Every team executes the same vetted procedures; standards stop drifting.
+
+**Future improvements.** Add access tiers per department; wire promotion into CI with automated validation; build a governance dashboard (Ch 45).
+
+### 44.8 Source code
+
+```python
+def sync_corporate_library(cfg):
+    src = next(s for s in cfg["skills"]["sources"] if s["type"] == "git")
+    repo = git_clone_or_pull(src["url"], ref=src.get("ref", "approved"))
+    approved = repo / "approved"
+    link_into_skills_dir(approved)          # consume only the approved tier
+    index_skills([approved])
+```
+
+### 44.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.sources[].type` | `git` | Corporate source |
+| `skills.sources[].ref` | `approved` | Consume a tier/branch |
+| repo tiers | approved/experimental/archived | Promotion model |
+| CI validation | `hermes skills validate` | Pre-merge gate |
+
+### 44.10 Real-world use cases
+
+Standardized security/compliance Skills; org-wide report formats; onboarding playbooks; cross-team procedure consistency.
+
+### 44.11 Exercises
+
+1. Design the tier structure of a corporate library.
+2. Write the promotion workflow from experimental to approved.
+3. Show how agents subscribe to only the approved tier.
+
+### 44.12 Challenges
+
+- **Challenge 1.** Stand up a git-backed library with three tiers and a CI validation step.
+- **Challenge 2.** Add department-scoped access to subsets of the library.
+
+### 44.13 Checklist
+
+- [ ] Git-backed source of truth exists.
+- [ ] Tiers (approved/experimental/archived) defined.
+- [ ] Agents subscribe to the approved tier.
+- [ ] Curator runs against the library.
+
+### 44.14 Best practices
+
+- Consume only the `approved` tier in production agents.
+- Gate promotion with CI validation and human review.
+- Keep the library in version control with clear ownership.
+
+### 44.15 Anti-patterns
+
+- Letting teams maintain divergent local copies.
+- Subscribing production agents to `experimental`.
+- A library with no owner and no promotion process.
+
+### 44.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Divergent Skills across teams | No central library | Adopt a git-backed source of truth |
+| Unvetted Skill in prod | Wrong tier consumed | Pin `ref: approved` |
+| Stale library | Curator off | Enable Curator on the repo |
+| Promotion chaos | No workflow | Add CI validation + review gates |
+
+### 44.17 Official references
+
+- Skills (sources/library): https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Profiles: https://hermes-agent.nousresearch.com/docs/user-guide/features/profiles
+- Enterprise guidance: https://hermes-agent.nousresearch.com/docs/
+
+---
+
+## Chapter 45 — Skills Governance
+
+### 45.1 Introduction
+
+Governance is where Skills meet enterprise responsibility. A self-creating, self-updating, importable Skills system is powerful — and powerful systems need controls. This closing chapter of Part VI covers ownership, review gates, security and compliance for Skills, audit trails, and the policies that keep an autonomous Skills lifecycle safe in production. It ties together auto-update (Ch 41), evolution (Ch 42), reuse (Ch 43), and the corporate library (Ch 44) under a governance umbrella.
+
+### 45.2 Chapter objectives
+
+(1) Define Skills governance and why it matters; (2) establish ownership and review gates; (3) apply security/compliance controls to Skills; (4) maintain audit trails; (5) set policies for autonomous Skill creation/update.
+
+### 45.3 Business context
+
+Skills can execute scripts and encode procedures that touch production. Ungoverned, a self-updating or community-imported Skill is a supply-chain and operational risk. Governance turns the Skills system from a liability into a controlled asset — satisfying security, compliance, and audit requirements while preserving the productivity of autonomy.
+
+### 45.4 Theoretical foundations
+
+Governance applies standard controls to the Skills lifecycle:
+
+- **Ownership** — every approved Skill has an owner accountable for it.
+- **Review gates** — human approval for creation, updates (Ch 41), splits/merges (Ch 42), and imports (Ch 43), scaled by risk.
+- **Security/compliance** — scan bundled scripts, forbid secrets, restrict capabilities, enforce least privilege; align with sandboxing/isolation (Part XII).
+- **Audit trails** — versioned history of every change (who/what/when), surfaced for compliance.
+- **Policy for autonomy** — explicit rules on what the learning loop/Curator may do automatically vs what requires sign-off.
+
+The Curator provides the telemetry (usage, staleness, quality); governance provides the **decision rights** over what happens with it.
+
+> **Java parallel.** This is software supply-chain governance applied to procedures: code owners, PR approvals, dependency scanning, signed artifacts, and an audit log — the same controls you'd put around production code.
+
+### 45.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph lifecycle["Autonomous lifecycle"]
+        learn[Learning loop]
+        cur[Curator]
+        imp[Imports]
+    end
+    lifecycle --> gate{Governance gates}
+    gate -->|owner + review| approve[Approved change]
+    gate -->|security scan| sec[Security/compliance check]
+    approve --> audit[(Audit trail<br/>versioned)]
+    sec --> audit
+    audit --> dash[Governance dashboard]
+```
+
+### 45.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant LC as Lifecycle (loop/Curator/import)
+    participant G as Governance gate
+    participant O as Owner / reviewer
+    participant SEC as Security scan
+    participant AUD as Audit log
+    LC->>G: propose change (create/update/import)
+    G->>SEC: scan scripts + policy check
+    SEC-->>G: pass/fail
+    G->>O: request approval (risk-based)
+    O-->>G: approve/reject
+    G->>AUD: record decision (who/what/when), versioned
+```
+
+### 45.7 Complete example
+
+**Scenario.** A regulated company must ensure no Skill runs unreviewed code in production and that every change is auditable.
+
+**Problem.** Autonomous creation/update/import could introduce unvetted scripts.
+
+**Solution.** Enforce governance: mandatory ownership, risk-based review gates, security scanning of bundled scripts, and a versioned audit trail feeding a dashboard.
+
+**Architecture.** Lifecycle → governance gates (scan + review) → audit trail → dashboard.
+
+**Implementation.**
+
+```yaml
+# ~/.hermes/config.yaml
+skills:
+  governance:
+    require_owner: true
+    review:
+      create: manual
+      update: manual
+      import: manual
+    security_scan: true        # scan bundled scripts; block secrets
+    audit_log: true            # versioned who/what/when
+  auto_update:
+    review: manual
+  curator:
+    archive_unused: false      # archival requires human sign-off here
+```
+
+```bash
+hermes skills audit                 # show the change log (who/what/when)
+hermes skills review queue          # pending changes awaiting approval
+hermes skills review approve security-scan --owner alice
+```
+
+**Tests.**
+
+```bash
+hermes skills scan release-cutter   # security scan a Skill's scripts
+hermes skills audit | tail          # confirm decisions are logged
+```
+
+**Result.** A fully governed Skills system: nothing reaches production unreviewed, every change is owned and audited.
+
+**Future improvements.** Integrate the audit trail with the enterprise SIEM; add policy-as-code for review thresholds; tie governance into AgentOps (Part XI) and compliance (Part XII).
+
+### 45.8 Source code
+
+```python
+def governed_change(change, policy, scanner, audit, gate):
+    if policy.require_owner and not change.owner:
+        raise PolicyViolation("owner required")
+    if policy.security_scan and not scanner.scan(change.assets).ok:
+        audit.record(change, decision="blocked-by-scan")
+        raise SecurityViolation(change.name)
+    if policy.review.get(change.kind) == "manual":
+        gate.request_approval(change)
+    audit.record(change, decision="pending-or-applied")   # who/what/when
+```
+
+### 45.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `skills.governance.require_owner` | `true` | Accountability |
+| `skills.governance.review.*` | `manual` | Per-action gates |
+| `skills.governance.security_scan` | `true` | Scan scripts; block secrets |
+| `skills.governance.audit_log` | `true` | Versioned trail |
+| `skills.auto_update.review` | `manual` | Gate auto-updates |
+
+### 45.10 Real-world use cases
+
+Regulated industries requiring audit trails; security review of imported Skills; controlled autonomy policies; compliance reporting on procedure changes.
+
+### 45.11 Exercises
+
+1. List the five governance controls for Skills.
+2. Design a risk-based review matrix (which actions need manual approval).
+3. Explain why ownership is foundational to governance.
+
+### 45.12 Challenges
+
+- **Challenge 1.** Implement security scanning that blocks any Skill containing a hardcoded secret.
+- **Challenge 2.** Build a governance dashboard from the audit trail (owners, pending reviews, blocked changes).
+
+### 45.13 Checklist
+
+- [ ] Every approved Skill has an owner.
+- [ ] Review gates set per action and risk.
+- [ ] Security scanning blocks unsafe scripts/secrets.
+- [ ] Audit trail is versioned and reviewable.
+- [ ] Autonomy policy (what's auto vs gated) is explicit.
+
+### 45.14 Best practices
+
+- Scale review rigor by risk; don't gate everything equally.
+- Make ownership mandatory for production Skills.
+- Keep an immutable, versioned audit trail; integrate with the SIEM.
+
+### 45.15 Anti-patterns
+
+- Allowing autonomous changes in production with no gates.
+- Importing community Skills with no security scan.
+- No owner, no audit — "mystery Skills" running in production.
+
+### 45.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Unvetted change in prod | Gates disabled | Enable `governance.review: manual` |
+| Secret leaked via Skill | No scan | Enable `security_scan`; rotate the secret |
+| Can't trace a change | Audit off | Enable `audit_log`; require owners |
+| Review bottleneck | Everything gated | Apply risk-based gating |
+
+### 45.17 Official references
+
+- Skills governance: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills
+- Security & isolation: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Enterprise docs: https://hermes-agent.nousresearch.com/docs/
+
+---
+
+> **End of Part VI.** Skills are now covered end to end: what they are and progressive disclosure (Ch 38), their architecture and the Curator (Ch 39), authoring (Ch 40), automatic updating (Ch 41), evolution across the lifecycle (Ch 42), reuse via hubs and profiles (Ch 43), the corporate library (Ch 44), and governance (Ch 45). Together with Part V (memory), this completes Hermes's twin engines of self-improvement — declarative memory and procedural Skills, both persistent, both curated, both governable. **Part VII — MCP and Tools** (Chapters 46–53) will turn outward to how the agent acts on the world: the Model Context Protocol, tool integration, building MCP servers, tool calling, browser automation, web search, and custom tools.
