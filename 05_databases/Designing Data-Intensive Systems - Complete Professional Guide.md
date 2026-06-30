@@ -188,7 +188,7 @@ on read timeline for V:
 
 These are pointers for further study; this guide does not reproduce their text.
 
-- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017) — ISBN 978-1449373320.
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 1 "Reliable, Scalable, and Maintainable Applications" — ISBN 978-1449373320.
 - Official docs: PostgreSQL (https://www.postgresql.org/docs/), Apache Cassandra (https://cassandra.apache.org/doc/), Apache Kafka (https://kafka.apache.org/documentation/).
 
 ---
@@ -301,7 +301,7 @@ CREATE INDEX idx_orders_items_sku ON orders USING gin ((items -> 'skus'));
 
 - E. F. Codd, "A Relational Model of Data for Large Shared Data Banks," *CACM* (1970).
 - Official docs: PostgreSQL JSON types (https://www.postgresql.org/docs/current/datatype-json.html), Neo4j Cypher (https://neo4j.com/docs/).
-- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017) — ISBN 978-1449373320, for the broader treatment.
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 2 "Data Models and Query Languages" — ISBN 978-1449373320, for the broader treatment.
 
 ---
 

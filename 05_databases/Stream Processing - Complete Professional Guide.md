@@ -140,7 +140,7 @@ window assignment: floor(eventTime to hour) -> 14:00 bucket
 
 ### 1.12 References
 
-- T. Akidau, S. Chernyak, R. Lax, *Streaming Systems* (O'Reilly, 2018) — ISBN 978-1491983874.
+- T. Akidau, S. Chernyak, R. Lax, *Streaming Systems* (O'Reilly, 2018), Chapter 1 "Streaming 101" — ISBN 978-1491983874.
 - Apache Flink docs, "Event Time": https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/.
 
 ---
@@ -239,7 +239,7 @@ result: per-session duration & event count, matching real engagement bursts
 
 ### 2.12 References
 
-- T. Akidau, S. Chernyak, R. Lax, *Streaming Systems* (O'Reilly, 2018) — ISBN 978-1491983874.
+- T. Akidau, S. Chernyak, R. Lax, *Streaming Systems* (O'Reilly, 2018), Chapter 2 "The What, Where, When, and How of Data Processing" — ISBN 978-1491983874.
 - Apache Beam docs, "Windowing": https://beam.apache.org/documentation/programming-guide/#windowing.
 
 ---

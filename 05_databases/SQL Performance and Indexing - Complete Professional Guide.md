@@ -145,7 +145,7 @@ SELECT id, password_hash FROM users WHERE email = :email;
 
 ### 1.12 References
 
-- M. Winand, *SQL Performance Explained* (2012) — ISBN 978-3950307825; also https://use-the-index-luke.com.
+- M. Winand, *SQL Performance Explained* (2012), Chapter 1 "Anatomy of an Index" — ISBN 978-3950307825; also https://use-the-index-luke.com.
 - PostgreSQL docs, "Indexes": https://www.postgresql.org/docs/current/indexes.html.
 
 ---
@@ -244,7 +244,7 @@ LIMIT 20;
 
 ### 2.12 References
 
-- M. Winand, *SQL Performance Explained* (2012) — ISBN 978-3950307825; also https://use-the-index-luke.com.
+- M. Winand, *SQL Performance Explained* (2012), Chapter 2 "The Where Clause" (concatenated/composite indexes) — ISBN 978-3950307825; also https://use-the-index-luke.com.
 - MySQL docs, "Multiple-Column Indexes": https://dev.mysql.com/doc/refman/en/multiple-column-indexes.html.
 
 ---

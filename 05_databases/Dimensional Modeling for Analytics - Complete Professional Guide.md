@@ -157,7 +157,7 @@ ORDER BY d.year, d.month, p.category;
 
 ### 1.12 References
 
-- R. Kimball, M. Ross, *The Data Warehouse Toolkit*, 3rd ed. (Wiley, 2013) — ISBN 978-1118530801.
+- R. Kimball, M. Ross, *The Data Warehouse Toolkit*, 3rd ed. (Wiley, 2013), Chapter 1 "Data Warehousing, Business Intelligence, and Dimensional Modeling Primer" — ISBN 978-1118530801.
 - Cloud warehouse docs: e.g. BigQuery, Snowflake modeling guides.
 
 ---
@@ -255,7 +255,7 @@ sales_line_fact
 
 ### 2.12 References
 
-- R. Kimball, M. Ross, *The Data Warehouse Toolkit*, 3rd ed. (Wiley, 2013) — ISBN 978-1118530801.
+- R. Kimball, M. Ross, *The Data Warehouse Toolkit*, 3rd ed. (Wiley, 2013), Chapter 1 "...Dimensional Modeling Primer" (star schema, declaring the grain) — ISBN 978-1118530801.
 - R. Kimball, "Declaring the grain" (Kimball Group design tips), https://www.kimballgroup.com.
 
 ---

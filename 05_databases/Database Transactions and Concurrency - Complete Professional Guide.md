@@ -151,7 +151,7 @@ COMMIT;   -- both applied, durably; any failure -> ROLLBACK, neither applied
 
 ### 1.12 References
 
-- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019) — ISBN 978-0078022159.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 17 "Transactions" — §17.1 Transaction Concept, §17.4 Transaction Atomicity and Durability — ISBN 978-0078022159.
 - J. Gray, A. Reuter, *Transaction Processing* (Morgan Kaufmann, 1992) — ISBN 978-1558601901.
 
 ---
@@ -255,7 +255,7 @@ COMMIT;   -- concurrent conflicting txn gets a serialization error -> retry
 
 ### 2.12 References
 
-- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019) — ISBN 978-0078022159.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 17 "Transactions" — §17.5 Transaction Isolation, §17.8 Transaction Isolation Levels — ISBN 978-0078022159.
 - PostgreSQL docs, "Transaction Isolation": https://www.postgresql.org/docs/current/transaction-iso.html.
 
 ---

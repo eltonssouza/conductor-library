@@ -145,8 +145,8 @@ Decision: LSM-based store; tune compaction for read latency on recent data.
 
 ### 1.12 References
 
-- A. Petrov, *Database Internals* (O'Reilly, 2019) — ISBN 978-1492040347.
-- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019) — ISBN 978-0078022159.
+- A. Petrov, *Database Internals* (O'Reilly, 2019), Chapter 2 "B-Tree Basics" and Chapter 7 "Log-Structured Storage" — ISBN 978-1492040347.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 14 "Indexing" — §14.3 B+-Tree Index Files, §14.8 Write-Optimized Index Structures — ISBN 978-0078022159.
 
 ---
 
@@ -243,7 +243,7 @@ COMMIT payment:
 
 ### 2.12 References
 
-- A. Petrov, *Database Internals* (O'Reilly, 2019) — ISBN 978-1492040347.
+- A. Petrov, *Database Internals* (O'Reilly, 2019), Chapter 5 "Transaction Processing and Recovery" — ISBN 978-1492040347.
 - PostgreSQL docs, "Write-Ahead Logging (WAL)": https://www.postgresql.org/docs/current/wal-intro.html.
 
 ---

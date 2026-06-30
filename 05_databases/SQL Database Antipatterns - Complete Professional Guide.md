@@ -152,7 +152,7 @@ WHERE t.name = 'sql';
 
 ### 1.12 References
 
-- B. Karwin, *SQL Antipatterns* (Pragmatic Bookshelf, 2010) — ISBN 978-1934356555.
+- B. Karwin, *SQL Antipatterns* (Pragmatic Bookshelf, 2010), Chapter 2 "Jaywalking" (storing comma-separated lists) — ISBN 978-1934356555.
 - C. Date, *SQL and Relational Theory*, 3rd ed. (O'Reilly, 2015) — ISBN 978-1491941171.
 
 ---
@@ -257,7 +257,7 @@ SELECT * FROM subtree;
 
 ### 2.12 References
 
-- B. Karwin, *SQL Antipatterns* (Pragmatic Bookshelf, 2010) — ISBN 978-1934356555.
+- B. Karwin, *SQL Antipatterns* (Pragmatic Bookshelf, 2010), Chapter 3 "Naive Trees" (adjacency list, recursive CTE, closure table) — ISBN 978-1934356555.
 - PostgreSQL docs, "WITH Queries (Recursive)": https://www.postgresql.org/docs/current/queries-with.html.
 
 ---

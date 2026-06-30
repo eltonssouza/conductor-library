@@ -151,7 +151,7 @@ Because an aggregate is self-contained and accessed by key, the store can **shar
 
 ### 1.12 References
 
-- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012) — ISBN 978-0321826626.
+- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012), Chapter 2 "Aggregate Data Models" — ISBN 978-0321826626.
 - Official docs: Redis (https://redis.io/docs/), MongoDB (https://www.mongodb.com/docs/), Apache Cassandra (https://cassandra.apache.org/doc/).
 
 ---
@@ -248,7 +248,8 @@ LIMIT 10;
 
 ### 2.12 References
 
-- I. Robinson, J. Webber, E. Eifrem, *Graph Databases*, 2nd ed. (O'Reilly, 2015) — ISBN 978-1491930892.
+- I. Robinson, J. Webber, E. Eifrem, *Graph Databases*, 2nd ed. (O'Reilly, 2015), Chapter 2 "Options for Storing Connected Data" and Chapter 6 "Graph Database Internals" (index-free adjacency) — ISBN 978-1491930892.
+- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012), Chapter 3 "More Details on Data Models" (§3.2 Graph Databases) — ISBN 978-0321826626.
 - Neo4j Cypher docs: https://neo4j.com/docs/cypher-manual/current/.
 
 ---
