@@ -13,7 +13,9 @@ software_dev: supporting
 
 > **Original reference book (English).** This is an **independent, originally written** guide. It is not an extract, summary, or paraphrase of any third-party book; it teaches usable design from first principles with original examples. Canonical books are listed under **References** as pointers only. Each chapter follows the TO-BRAIN editorial standard (see `FILE_CONVENTIONS.md`).
 >
-> **Scope notice:** good design makes things understandable and usable by making how they work visible. This guide covers the foundational concepts — affordances, signifiers, feedback, mapping, and mental models — that apply to any interface, current to 2026.
+> **Scope notice:** good design makes things understandable and usable by making how they work visible. This guide covers the foundations of usable design — affordances and signifiers, feedback and mapping, mental and conceptual models, the seven stages of action and the two gulfs, knowledge in the head vs. in the world, constraints and forcing functions, human error and error-tolerant design, and human-centered design with the seven fundamental principles — concepts that apply to any interface, current to 2026.
+>
+> **Canonical source & edition note.** The single canonical reference behind this guide is Donald A. Norman, *The Design of Everyday Things*. This guide cites the **revised edition (Basic Books, 2013, ISBN 978-0465050659)**; the working copy in the source corpus is the **original first edition (Doubleday/Currency, 1988/1990, ISBN 0-385-26774-6**, first published as *The Psychology of Everyday Things)*. The two editions reorganize and rename some material (e.g. *signifiers* is introduced in the revised edition; the chapter on error is "To Err Is Human" in 1988 and "Human Error? No, Bad Design" in 2013). To stay valid across both, **References cite chapters by title** rather than number, and note the edition where a term or framing differs.
 
 ---
 
@@ -153,8 +155,8 @@ After:  show a faint trailing "Archive" affordance on the row / a one-time hint
 
 ### 1.12 References
 
-- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659.
-- NN/g, "Affordances and Signifiers": https://www.nngroup.com/articles/.
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See **Chapter 1, "The Psychopathology of Everyday Things"** — the sections on affordances and signifiers (the revised edition adds *signifiers* as the term for the perceivable signal; the original 1988 edition discusses the same idea under affordances and visibility).
+- NN/g, "Affordances": https://www.nngroup.com/articles/affordances/ · "Signifiers, Not Affordances": https://jnd.org/signifiers_not_affordances/ (Norman).
 
 ---
 
@@ -247,8 +249,8 @@ On Save click:
 
 ### 2.12 References
 
-- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659.
-- J. Nielsen, "Visibility of System Status" (heuristic): https://www.nngroup.com/articles/ten-usability-heuristics/.
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See **Chapter 1, "The Psychopathology of Everyday Things"** — the discussions of *feedback* and of *mapping* / natural mappings (the stove-burner example).
+- J. Nielsen, "Visibility of System Status" (Heuristic #1): https://www.nngroup.com/articles/visibility-system-status/.
 
 ---
 
