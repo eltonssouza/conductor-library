@@ -2593,4 +2593,1293 @@ A "portability probe" workflow that prints whether it is running on Cloud or sel
 
 > **End of Part II.** You can now run n8n anywhere — a single Docker container, a Compose queue-mode stack, Kubernetes with autoscaling workers, the three major clouds, a disciplined self-hosted operation, or managed Cloud — and choose between them on evidence. **Part III — Building Workflows** (Chapters 14–20) shifts from infrastructure to craft: nodes, triggers, expressions, variables, data mapping, error handling, and debugging.
 
+## Part III – Building Workflows
+
+Part III is the craft of n8n: how to assemble nodes into correct, maintainable, observable workflows. Where Part II gave you the runway, Part III teaches you to fly. We cover the node taxonomy, the trigger model, the expression language, the variable system, data mapping between heterogeneous shapes, robust error handling, and disciplined debugging — all aligned to n8n 2.x defaults (secure Code node, Publish/Save, items model).
+
+---
+
+## Chapter 14 — Nodes
+
+### 14.1 Introduction
+
+Nodes are the atoms of n8n. Everything you build is a graph of nodes exchanging items. This chapter establishes the **node taxonomy** — triggers, actions, transformations, and logic/flow — and the cross-cutting mechanics every node shares: input/output items, parameters, execution mode (once per item vs. once for all), credentials, and error handling. Master this and every unfamiliar node becomes legible.
+
+### 14.2 Business context
+
+The difference between a workflow a team can maintain and one that rots is almost always node hygiene: descriptive names, the right node for the job (native over raw HTTP), correct execution mode, and clean separation of logic from side effects. Good node design lowers incident rate and onboarding time — directly affecting the cost of running an automation estate.
+
+### 14.3 Theoretical concepts
+
+n8n nodes fall into four families:
+
+- **Trigger nodes** start a workflow (Webhook, Schedule, app triggers like Gmail Trigger). A workflow has at least one.
+- **Action nodes** perform side effects: call an API (HTTP Request, app nodes), write to a database (Postgres), send a message (Slack).
+- **Transformation nodes** reshape data without external effects: **Edit Fields (Set)**, **Code**, **Split Out**, **Aggregate**, **Sort**, **Limit**, **Rename Keys**.
+- **Logic / flow nodes** control the path: **IF**, **Switch**, **Merge**, **Loop Over Items (Split in Batches)**, **Filter**, **Wait**, **Stop and Error**.
+
+Cross-cutting mechanics:
+
+- **Items in/out:** every node receives an array of items and emits an array.
+- **Execution mode:** *Run Once for Each Item* (N runs) vs *Run Once for All Items* (1 run). Critical for HTTP/DB nodes.
+- **Parameters and expressions:** fields are static or expression-driven (`={{ ... }}`).
+- **Credentials:** referenced by ID, decrypted at runtime.
+- **Per-node error handling:** `onError` (`stopWorkflow`, `continueRegularOutput`, `continueErrorOutput`) and retry settings.
+
+### 14.4 Architecture
+
+```mermaid
+flowchart LR
+    trg[Trigger node] --> tr[Transform: Set/Code]
+    tr --> logic{Logic: IF/Switch}
+    logic -->|true| act1[Action: HTTP/DB]
+    logic -->|false| act2[Action: Notify]
+    act1 --> mrg[Merge]
+    act2 --> mrg
+    mrg --> out[Final output]
+```
+
+### 14.5 Real example
+
+**Scenario.** Enrich incoming leads: for each lead, look up the company via an API, classify size, and route enterprise leads to Salesforce and the rest to a nurture list.
+
+**Problem.** A naive build calls the API once for all items (wrong shape), mixes classification logic with the API call, and uses unnamed nodes nobody can maintain.
+
+**Solution.** Use the right execution mode (per item for the lookup), isolate classification in a Code node, and route with a Switch — every node descriptively named.
+
+**Implementation.** See the workflow JSON; the lookup runs per item, classification is a pure transform, and routing is explicit.
+
+**Result.** Correct per-lead enrichment, readable graph, and clean separation that makes the classification independently testable.
+
+**Future improvements.** Add batching + rate-limit handling on the lookup (Chapter 19) and pin sample data for fast iteration (Chapter 20).
+
+### 14.6 Step by step
+
+1. Add a Webhook trigger receiving the lead.
+2. Add an HTTP Request node (Run Once for Each Item) for the company lookup.
+3. Add a Code node that classifies company size into `band`.
+4. Add a Switch routing on `band`.
+5. Connect enterprise → Salesforce, others → nurture HTTP call.
+
+### 14.7 Complete code (Code node — classification)
+
+```javascript
+// Run Once for Each Item — pure transform, no side effects, no process.env (2.x)
+const employees = Number($json.company?.employees) || 0;
+let band;
+if (employees >= 1000) band = 'enterprise';
+else if (employees >= 100) band = 'mid-market';
+else band = 'smb';
+
+return { json: { ...$json, band } };
+```
+
+### 14.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Lead Enrichment Router",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "lead", "responseMode": "onReceived" },
+      "id": "30000001-0000-0000-0000-000000000001",
+      "name": "Lead Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clearbit.example/v1/company?domain={{ $json.body.email.split('@')[1] }}",
+        "options": {}
+      },
+      "id": "30000002-0000-0000-0000-000000000002",
+      "name": "Lookup Company",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const employees = Number($json.company?.employees) || 0;\nlet band;\nif (employees >= 1000) band = 'enterprise';\nelse if (employees >= 100) band = 'mid-market';\nelse band = 'smb';\nreturn { json: { ...$json, band } };"
+      },
+      "id": "30000003-0000-0000-0000-000000000003",
+      "name": "Classify Size",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            { "conditions": { "options": { "caseSensitive": true }, "conditions": [ { "leftValue": "={{ $json.band }}", "rightValue": "enterprise", "operator": { "type": "string", "operation": "equals" } } ] }, "outputKey": "enterprise" }
+          ]
+        },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "30000004-0000-0000-0000-000000000004",
+      "name": "Route by Band",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [880, 300]
+    }
+  ],
+  "connections": {
+    "Lead Webhook": { "main": [[{ "node": "Lookup Company", "type": "main", "index": 0 }]] },
+    "Lookup Company": { "main": [[{ "node": "Classify Size", "type": "main", "index": 0 }]] },
+    "Classify Size": { "main": [[{ "node": "Route by Band", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 14.9 Exercises
+
+1. List, for three nodes you use often, whether they default to per-item or all-items mode.
+2. Replace a raw HTTP Request with a native app node and note what you gain (pagination/auth/retries).
+3. Add a Filter node that drops leads with a free-email domain.
+
+### 14.10 Challenges
+
+- **Challenge 1.** Convert the classification Code node into a Set/IF combination and discuss the trade-offs.
+- **Challenge 2.** Add per-node retry on the lookup and an error output that sends failures to a dead-letter webhook.
+
+### 14.11 Checklist
+
+- [ ] Every node has a descriptive name.
+- [ ] Execution mode is correct for each action node.
+- [ ] Logic is separated from side effects.
+- [ ] Native nodes are used where they exist.
+- [ ] Error handling is defined where failure is possible.
+
+### 14.12 Best practices
+
+- Prefer native nodes; drop to HTTP Request only when no node exists.
+- Keep transforms pure (no side effects) so they are testable and reorderable.
+- Name nodes after what they do, not their type.
+- Use sticky notes to document intent on the canvas.
+
+### 14.13 Anti-patterns
+
+- "HTTP Request1", "Code3" — unnamed nodes.
+- One Code node doing fetch + transform + write (untestable god-node).
+- Wrong execution mode generating N unintended calls.
+- Business logic buried in many field expressions instead of one place.
+
+### 14.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Node runs N times unexpectedly | Per-item mode on an aggregate step | Switch to all-items / Aggregate first |
+| Expression `undefined` | Wrong item path | Inspect input data of the node |
+| Switch sends everything to fallback | Condition never matches | Verify operator/value types |
+| API node ignores pagination | Used raw HTTP | Use the native node's pagination |
+
+### 14.15 Official references
+
+- Nodes overview: https://docs.n8n.io/integrations/builtin/
+- Core nodes (Set, Code, IF, Switch): https://docs.n8n.io/integrations/builtin/core-nodes/
+- Item linking: https://docs.n8n.io/data/data-mapping/
+- HTTP Request node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/
+
+---
+
+## Chapter 15 — Triggers
+
+### 15.1 Introduction
+
+A trigger is what starts a workflow. n8n 2.x **removed the legacy Start node**; every workflow begins with a specific trigger that defines *how* and *when* it runs. This chapter covers the trigger families — **Webhook**, **Schedule**, **app/event triggers** (polling and push), **Manual**, and special ones like the **Execute Sub-workflow Trigger** and **Error Trigger** — and the semantics that matter in production (active vs. inactive, single vs. queue mode, deduplication).
+
+### 15.2 Business context
+
+The trigger choice shapes latency, cost, and reliability. A polling trigger that checks every minute is simple but laggy and rate-limit-prone; a push webhook is near-real-time but needs a public URL and security. Picking the right trigger — and configuring deduplication and activation correctly — is the difference between a responsive automation and one that double-processes orders or misses events.
+
+### 15.3 Theoretical concepts
+
+- **Webhook trigger:** an HTTP endpoint (`/webhook/<path>`). Production endpoints are active only when the workflow is **Published**; test URLs work in the editor. Supports auth, response modes (`onReceived`, `lastNode`, `responseNode`), and binary input.
+- **Schedule trigger:** cron-like, using intervals or cron expressions; respects `GENERIC_TIMEZONE`.
+- **App triggers:** either **push** (the app calls n8n, e.g., Stripe/GitHub webhooks via dedicated trigger nodes) or **polling** (n8n periodically queries, e.g., Gmail/RSS), with built-in deduplication so the same item isn't reprocessed.
+- **Manual trigger:** for development; not for production.
+- **Execute Sub-workflow Trigger:** entry point for sub-workflows called by other workflows.
+- **Error Trigger:** starts a workflow when *another* workflow fails — the backbone of centralized error handling (Chapter 19).
+- **Activation:** in 2.x, **Publish** activates production triggers (registers webhooks, schedules); **Save** does not.
+
+### 15.4 Architecture
+
+```mermaid
+flowchart TB
+    subgraph triggers["Trigger families"]
+        wh[Webhook<br/>push, real-time]
+        sc[Schedule<br/>cron/interval]
+        poll[App polling<br/>dedup]
+        push[App push<br/>provider webhook]
+        sub[Sub-workflow trigger]
+        err[Error trigger]
+    end
+    wh --> wf[Workflow]
+    sc --> wf
+    poll --> wf
+    push --> wf
+    sub --> wf
+    err --> wfh[Error handler workflow]
+```
+
+### 15.5 Real example
+
+**Scenario.** A logistics app must react to shipment status changes from a carrier. The carrier offers both a push webhook and a polling API.
+
+**Problem.** Polling every minute is laggy and burns rate limit; raw webhooks risk duplicates on carrier retries.
+
+**Solution.** Use the carrier's push webhook with an idempotency check (deduplicate on event ID using workflow static data), responding 200 fast and processing asynchronously.
+
+**Implementation.** Webhook trigger (respond immediately) → dedup Code node keyed on `eventId` → process. See JSON below.
+
+**Result.** Near-real-time updates, no duplicate processing even when the carrier retries, and a fast 200 that keeps the carrier happy.
+
+**Future improvements.** Add an Error Trigger workflow to catch failures and a schedule-based reconciliation sweep as a safety net.
+
+### 15.6 Step by step
+
+1. Add a Webhook trigger, `responseMode: onReceived` (fast 200).
+2. Add a Code node that checks/records `eventId` in static data to dedup.
+3. Branch: new event → process; duplicate → no-op.
+4. Publish to activate the production webhook.
+5. Register the production URL with the carrier.
+
+### 15.7 Complete code (dedup with workflow static data)
+
+```javascript
+// Deduplicate carrier events by eventId using workflow static data.
+const staticData = $getWorkflowStaticData('global');
+staticData.seen = staticData.seen || {};
+
+const id = $json.body.eventId;
+if (staticData.seen[id]) {
+  return [{ json: { duplicate: true, eventId: id } }];
+}
+staticData.seen[id] = $now.toMillis();
+
+// Optional: trim memory of old IDs (keep last 10k)
+const keys = Object.keys(staticData.seen);
+if (keys.length > 10000) {
+  keys.slice(0, keys.length - 10000).forEach(k => delete staticData.seen[k]);
+}
+return [{ json: { duplicate: false, ...$json.body } }];
+```
+
+### 15.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Carrier Webhook with Dedup",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "carrier-status", "responseMode": "onReceived" },
+      "id": "40000001-0000-0000-0000-000000000001",
+      "name": "Carrier Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const s = $getWorkflowStaticData('global');\ns.seen = s.seen || {};\nconst id = $json.body.eventId;\nif (s.seen[id]) return [{ json: { duplicate: true, eventId: id } }];\ns.seen[id] = $now.toMillis();\nreturn [{ json: { duplicate: false, ...$json.body } }];"
+      },
+      "id": "40000002-0000-0000-0000-000000000002",
+      "name": "Dedup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.duplicate }}", "rightValue": false, "operator": { "type": "boolean", "operation": "equals" } } ] }
+      },
+      "id": "40000003-0000-0000-0000-000000000003",
+      "name": "Is New?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "assignments": { "assignments": [ { "id": "p1", "name": "processed", "type": "boolean", "value": true } ] }
+      },
+      "id": "40000004-0000-0000-0000-000000000004",
+      "name": "Process Status",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [880, 220]
+    }
+  ],
+  "connections": {
+    "Carrier Webhook": { "main": [[{ "node": "Dedup", "type": "main", "index": 0 }]] },
+    "Dedup": { "main": [[{ "node": "Is New?", "type": "main", "index": 0 }]] },
+    "Is New?": { "main": [[{ "node": "Process Status", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 15.9 Exercises
+
+1. Build a Schedule trigger that runs at 09:00 in your timezone and confirm `GENERIC_TIMEZONE` is respected.
+2. Convert a polling app trigger to a push webhook and note the latency improvement.
+3. Trigger the dedup workflow twice with the same `eventId` and confirm the second is a no-op.
+
+### 15.10 Challenges
+
+- **Challenge 1.** Replace static-data dedup with a Redis/DB-backed dedup so it survives restarts and works across workers in queue mode.
+- **Challenge 2.** Add an Error Trigger workflow that logs any failure of this workflow to a database.
+
+### 15.11 Checklist
+
+- [ ] Every workflow has an appropriate trigger (no Start node — it's gone).
+- [ ] Production webhooks are activated via Publish.
+- [ ] Push preferred over polling where available.
+- [ ] Idempotency/dedup handled for at-least-once sources.
+- [ ] Schedules respect the configured timezone.
+
+### 15.12 Best practices
+
+- Respond fast (`onReceived`) for webhooks and process asynchronously.
+- Treat external webhooks as **at-least-once**: always dedup.
+- For queue mode, back dedup with a shared store (Redis/DB), not in-process static data.
+- Use Error Triggers for centralized failure handling.
+
+### 15.13 Anti-patterns
+
+- Aggressive polling that burns rate limits and lags.
+- Assuming webhooks are exactly-once (they aren't).
+- Doing heavy work synchronously before responding 200 (timeouts, retries).
+- Relying on workflow static data for dedup across multiple workers.
+
+### 15.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Webhook 404 in production | Not Published | Click Publish |
+| Duplicate processing | No dedup on at-least-once source | Add idempotency key check |
+| Schedule fires at wrong hour | Timezone misconfig | Set `GENERIC_TIMEZONE` |
+| Carrier marks webhook failed | Slow synchronous response | Use `onReceived`, process async |
+| Dedup fails across workers | In-process static data | Use shared Redis/DB dedup |
+
+### 15.15 Official references
+
+- Webhook node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/
+- Schedule trigger: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/
+- Trigger concepts: https://docs.n8n.io/flow-logic/
+- Error workflows: https://docs.n8n.io/flow-logic/error-handling/
+
+---
+
+## Chapter 16 — Expressions
+
+### 16.1 Introduction
+
+Expressions are how data flows dynamically through a workflow. Wrapped in `{{ }}` and powered by JavaScript plus n8n's helper variables and **Luxon** for dates, expressions let any field reference data from the current item, other nodes, the environment, and the execution context. This chapter is the practical reference for the expression language: syntax, the variable catalog, common patterns, and the 2.x constraints (no `process.env` in Code; `$env` availability rules).
+
+### 16.2 Business context
+
+Expressions are where most "small" production bugs live: a wrong path returns `undefined`, a date is formatted in the wrong timezone, a number is concatenated as a string. Fluency in expressions reduces these defects and removes the need to reach for a Code node for trivial transforms — keeping workflows readable and fast.
+
+### 16.3 Theoretical concepts
+
+- **Syntax:** a field becomes an expression with the `=` prefix in JSON or the `{{ }}` toggle in the UI. Inside, you write JavaScript that returns a value.
+- **Core variables:**
+  - `$json` — current item's data.
+  - `$json.field`, `$json["a b"]` — field access.
+  - `$node["Name"].json` / `$("Name").item.json` — another node's output.
+  - `$items("Name")` — all items from a node.
+  - `$now`, `$today` — Luxon DateTime.
+  - `$workflow`, `$execution`, `$runIndex`, `$itemIndex`.
+  - `$vars` — instance variables (Enterprise); `$env` — environment variables (subject to access rules).
+  - `$secrets` — external secrets (Enterprise).
+- **Luxon dates:** `$now.toISO()`, `$now.toFormat('yyyy-LL-dd')`, `$now.plus({ days: 7 })`, `$today.minus({ months: 1 })`.
+- **Built-in data transforms:** n8n adds helper methods on strings/arrays/numbers/dates (e.g., `.toSnakeCase()`, `.first()`, `.last()`, `.sum()`) usable in expressions.
+- **2.x constraints:** `process.env` is blocked in the Code node; use `$env` (where allowed) or credentials. Expressions remain sandboxed.
+
+### 16.4 Architecture
+
+```mermaid
+flowchart LR
+    field[Node field] -->|=/{{ }}| expr[Expression engine]
+    expr --> ctx[(Context:<br/>$json, $node, $now,<br/>$vars, $execution)]
+    ctx --> val[Resolved value]
+    val --> field2[Used in node parameter]
+```
+
+### 16.5 Real example
+
+**Scenario.** Build an invoice email that greets the customer, shows the total in BRL, lists the due date 30 days out, and includes a tracking link with the order ID.
+
+**Problem.** The team scatters string concatenation and date math across many fields, getting timezone-wrong dates and currency formatted as plain numbers.
+
+**Solution.** Centralize the derived fields in one Set node using clean expressions: Luxon for the due date, `toLocaleString` for currency, template strings for text.
+
+**Implementation.** See the Set node expressions below.
+
+**Result.** Correct, localized currency and dates; one place to read and change the derived fields; no Code node needed.
+
+**Future improvements.** Extract repeated formatting into a sub-workflow or instance variable if reused across workflows.
+
+### 16.6 Step by step
+
+1. Add a Set node after the trigger.
+2. Add `customerGreeting`, `totalFormatted`, `dueDate`, `trackingUrl` as expression fields.
+3. Use Luxon for dates and `toLocaleString` for currency.
+4. Reference these fields downstream in the email node.
+
+### 16.7 Complete code (Set node expressions)
+
+```javascript
+// customerGreeting
+=Hi {{ $json.customer.firstName }},
+
+// totalFormatted (BRL)
+={{ $json.order.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
+
+// dueDate (30 days from now, ISO date)
+={{ $now.plus({ days: 30 }).toFormat('dd/LL/yyyy') }}
+
+// trackingUrl
+=https://track.example/orders/{{ $json.order.id }}
+```
+
+### 16.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Invoice Fields Builder",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "invoice", "responseMode": "lastNode" },
+      "id": "50000001-0000-0000-0000-000000000001",
+      "name": "Invoice In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "e1", "name": "greeting", "type": "string", "value": "=Hi {{ $json.body.customer.firstName }}," },
+            { "id": "e2", "name": "totalFormatted", "type": "string", "value": "={{ $json.body.order.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}" },
+            { "id": "e3", "name": "dueDate", "type": "string", "value": "={{ $now.plus({ days: 30 }).toFormat('dd/LL/yyyy') }}" },
+            { "id": "e4", "name": "trackingUrl", "type": "string", "value": "=https://track.example/orders/{{ $json.body.order.id }}" }
+          ]
+        }
+      },
+      "id": "50000002-0000-0000-0000-000000000002",
+      "name": "Build Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 300]
+    }
+  ],
+  "connections": {
+    "Invoice In": { "main": [[{ "node": "Build Fields", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 16.9 Exercises
+
+1. Write an expression returning the first day of next month in `yyyy-LL-dd`.
+2. Reference a field from a node two steps back using `$("NodeName").item.json`.
+3. Format a number as a percentage with one decimal.
+
+### 16.10 Challenges
+
+- **Challenge 1.** Build an expression that returns "today", "yesterday", or the formatted date depending on how old a timestamp is.
+- **Challenge 2.** Convert a deeply nested object into a flat key list using only an expression (no Code node).
+
+### 16.11 Checklist
+
+- [ ] I know the core variables (`$json`, `$node/$()`, `$now`, `$execution`, `$vars`).
+- [ ] I use Luxon for all date math.
+- [ ] I format currency/percent with locale methods.
+- [ ] I avoid `process.env` in Code (2.x) and use `$env`/credentials.
+- [ ] I centralize derived fields in one Set node.
+
+### 16.12 Best practices
+
+- Keep expressions short; if logic grows, move it to a documented Code node.
+- Centralize derived/computed fields in one Set node per concern.
+- Always do date math with Luxon and explicit formats/timezones.
+- Reference nodes by stable names; renaming a node breaks `$()` references.
+
+### 16.13 Anti-patterns
+
+- Giant multiline expressions duplicated across fields.
+- String math on dates instead of Luxon.
+- Referencing `process.env` in Code (blocked in 2.x).
+- Hardcoding values that should be `$vars`/credentials.
+
+### 16.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `undefined` value | Wrong path / missing field | Inspect input; use optional chaining |
+| Date off by hours | Timezone not set | Use Luxon with explicit zone / `GENERIC_TIMEZONE` |
+| `$()` reference errors | Node renamed | Update references to new name |
+| Number rendered oddly | String concatenation | Coerce with `Number()` |
+| `$env` empty | Access disabled (2.x) | Use credentials or enable env access |
+
+### 16.15 Official references
+
+- Expressions: https://docs.n8n.io/code/expressions/
+- Built-in variables: https://docs.n8n.io/code/builtin/overview/
+- Luxon / dates: https://docs.n8n.io/code/builtin/date-time/
+- Data transformation functions: https://docs.n8n.io/code/builtin/data-transformation-functions/
+
+---
+
+## Chapter 17 — Variables
+
+### 17.1 Introduction
+
+"Variables" in n8n spans several distinct mechanisms that beginners conflate: **instance variables** (`$vars`, Enterprise), **environment variables** (`$env`/system env), **workflow static data** (persistent per-workflow state), **external secrets** (`$secrets`, Enterprise vault integration), and ordinary **per-execution data** carried in items. This chapter disentangles them — what each is for, its scope, lifetime, and security posture — so you store the right thing in the right place.
+
+### 17.2 Business context
+
+Putting a secret in the wrong place is a security incident; putting shared config in the wrong place is a maintenance nightmare. Knowing that API keys belong in **credentials/external secrets**, environment-specific URLs belong in **instance variables**, and cross-execution counters belong in **static data** prevents both leaks and brittle copy-paste configuration across workflows.
+
+### 17.3 Theoretical concepts
+
+| Mechanism | Scope | Lifetime | Use for | Security |
+|-----------|-------|----------|---------|----------|
+| Items data | Single execution | One run | Payloads, derived fields | In execution data |
+| `$vars` (instance variables) | Instance-wide | Until changed | Env URLs, flags, non-secret config | Visible to editors (Enterprise) |
+| `$env` / system env | Process | Process life | Host config | Not for secrets in Code (2.x blocks `process.env`) |
+| Workflow static data | Single workflow | Persistent | Counters, cursors, dedup state | Stored with workflow |
+| Credentials | Referenced by nodes | Until changed | API keys, passwords | Encrypted at rest |
+| `$secrets` (external secrets) | Instance-wide | Synced from vault | Secrets from Vault/AWS/etc. | Pulled from external vault (Enterprise) |
+
+- **Instance variables (`$vars`):** key-value config set in the UI/API, read in expressions as `$vars.myKey`. Ideal for per-environment URLs and feature flags.
+- **Static data:** `$getWorkflowStaticData('global'|'node')` — survives executions; perfect for polling cursors and dedup (Chapter 15). Note: in queue mode it persists with the workflow but is not a substitute for a shared store across concurrent workers.
+- **External secrets:** integrate HashiCorp Vault / cloud secret managers; reference as `$secrets.provider.key`.
+
+### 17.4 Architecture
+
+```mermaid
+flowchart TB
+    subgraph runtime["At execution"]
+        items[(Items data<br/>per execution)]
+        vars[($vars<br/>instance config)]
+        static[(Static data<br/>persistent state)]
+        cred[(Credentials<br/>encrypted)]
+        sec[($secrets<br/>external vault)]
+    end
+    node[Node / Expression] --> items
+    node --> vars
+    node --> static
+    node --> cred
+    node --> sec
+```
+
+### 17.5 Real example
+
+**Scenario.** The same workflow runs in dev and prod, calling a base API URL that differs per environment and a secret API key that must never appear in the workflow JSON, while tracking a polling cursor between runs.
+
+**Problem.** The team hardcoded the URL (breaks on promotion) and pasted the key into a header field (leaks in exports).
+
+**Solution.** Put the base URL in an instance variable (`$vars.apiBaseUrl`), the key in credentials/external secrets, and the cursor in workflow static data.
+
+**Implementation.** Expressions reference `$vars.apiBaseUrl`; the HTTP node uses a credential; a Code node reads/writes the cursor in static data.
+
+**Result.** One workflow promotes cleanly across environments, no secret in exports, and incremental polling that resumes where it left off.
+
+**Future improvements.** Move the key to HashiCorp Vault via `$secrets` for centralized rotation.
+
+### 17.6 Step by step
+
+1. Define `apiBaseUrl` as an instance variable per environment.
+2. Store the API key as a credential (or `$secrets`).
+3. Reference `={{ $vars.apiBaseUrl }}` in the HTTP node URL.
+4. Use static data for the polling cursor.
+5. Promote the workflow without editing URLs or keys.
+
+### 17.7 Complete code (Code node — cursor in static data)
+
+```javascript
+// Persistent polling cursor across executions
+const s = $getWorkflowStaticData('global');
+const since = s.cursor || '1970-01-01T00:00:00Z';
+
+// Build the request marker; the HTTP node will use $json.since
+const nextCursor = $now.toISO();
+s.cursor = nextCursor; // advance for next run
+
+return [{ json: { since, nextCursor, baseUrl: $vars.apiBaseUrl } }];
+```
+
+### 17.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Incremental Poller",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "minutes", "minutesInterval": 5 }] } },
+      "id": "60000001-0000-0000-0000-000000000001",
+      "name": "Every 5m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const s = $getWorkflowStaticData('global');\nconst since = s.cursor || '1970-01-01T00:00:00Z';\ns.cursor = $now.toISO();\nreturn [{ json: { since, baseUrl: $vars.apiBaseUrl } }];"
+      },
+      "id": "60000002-0000-0000-0000-000000000002",
+      "name": "Cursor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.baseUrl }}/events?since={{ $json.since }}",
+        "options": {}
+      },
+      "id": "60000003-0000-0000-0000-000000000003",
+      "name": "Fetch Events",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "API Key Header" } }
+    }
+  ],
+  "connections": {
+    "Every 5m": { "main": [[{ "node": "Cursor", "type": "main", "index": 0 }]] },
+    "Cursor": { "main": [[{ "node": "Fetch Events", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 17.9 Exercises
+
+1. Move a hardcoded URL into an instance variable and reference it.
+2. Store and advance a cursor in static data; confirm it persists across runs.
+3. Identify which of your current "variables" are actually secrets and move them to credentials.
+
+### 17.10 Challenges
+
+- **Challenge 1.** Integrate an external secrets provider and reference `$secrets` instead of a stored credential value.
+- **Challenge 2.** Make the cursor safe under queue-mode concurrency by moving it to a Redis/DB store.
+
+### 17.11 Checklist
+
+- [ ] Secrets are in credentials/external secrets, never in fields or static data.
+- [ ] Per-environment config is in instance variables.
+- [ ] Cross-execution state is in static data (single-worker) or a shared store (queue mode).
+- [ ] No `process.env` reads in Code (2.x).
+- [ ] Workflows promote across environments without edits.
+
+### 17.12 Best practices
+
+- One source of truth per concern: secrets→credentials, config→`$vars`, state→static data/shared store.
+- Prefer external secrets for centralized rotation in enterprise setups.
+- Keep static data small; prune old entries.
+- Make workflows environment-agnostic via `$vars`.
+
+### 17.13 Anti-patterns
+
+- Secrets in fields, Code, or static data.
+- Hardcoded per-environment URLs.
+- Static data used as cross-worker shared state under concurrency.
+- Treating items data as durable storage.
+
+### 17.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Config differs per env breaks promotion | Hardcoded values | Use `$vars` |
+| Secret leaked in export | Stored in a field | Move to credentials/`$secrets` |
+| Cursor resets each run | Used items data, not static | Use `$getWorkflowStaticData` |
+| Duplicate processing in queue mode | Static data not shared | Use Redis/DB shared store |
+| `$vars` undefined | Not on Enterprise / not set | Set the variable; check plan |
+
+### 17.15 Official references
+
+- Variables: https://docs.n8n.io/code/variables/
+- Static data: https://docs.n8n.io/code/builtin/workflow-static-data/
+- External secrets: https://docs.n8n.io/external-secrets/
+- Credentials: https://docs.n8n.io/credentials/
+
+---
+
+## Chapter 18 — Data Mapping
+
+### 18.1 Introduction
+
+Integration is mostly **shape translation**: the source emits one structure, the destination expects another. n8n's data mapping toolkit — **Edit Fields (Set)**, **Code**, **Split Out**, **Aggregate**, **Merge**, **Rename Keys**, drag-and-drop mapping, and item linking — is how you bridge them. This chapter covers the patterns: flattening, nesting, joining two streams, fanning out arrays into items, and collapsing items back into one.
+
+### 18.2 Business context
+
+Most integration bugs are mapping bugs: a field renamed, a nested array not flattened, two streams merged on the wrong key. Mastery of mapping turns brittle, copy-pasted transforms into reliable, readable ones — directly reducing the defect rate of every integration you build (Part IV depends entirely on this).
+
+### 18.3 Theoretical concepts
+
+- **Item linking:** n8n tracks which output item came from which input item, so downstream nodes can reference earlier data (`$("Node").item`) correctly even after transformations — crucial when merging.
+- **Set (Edit Fields):** declaratively map/rename/compute fields; "keep only set" vs. "include other fields."
+- **Split Out:** turn an array field into one item per element (fan-out).
+- **Aggregate:** collapse many items into one (gather a field into an array, or combine all data).
+- **Merge:** combine two input streams — by **append**, by **position (index)**, or by **matching key (join)** (inner/outer-style combine).
+- **Code for complex maps:** when declarative nodes aren't enough, a Code node returns a new item array.
+
+### 18.4 Architecture
+
+```mermaid
+flowchart LR
+    src[Source items] --> so[Split Out<br/>array→items]
+    so --> set[Set<br/>rename/compute]
+    set --> mrg[Merge by key]
+    other[Second stream] --> mrg
+    mrg --> agg[Aggregate<br/>items→one]
+    agg --> dest[Destination shape]
+```
+
+### 18.5 Real example
+
+**Scenario.** Combine an orders stream (from an API) with a customers stream (from the CRM) on `customerId`, flatten each order's line items, and produce one record per line item with customer details attached.
+
+**Problem.** Naive concatenation loses the customer-order relationship; line items stay nested; the destination rejects the payload.
+
+**Solution.** Merge orders + customers by matching `customerId`, then Split Out the `lines` array, then Set to flatten the final shape.
+
+**Implementation.** Merge (combine by matching field) → Split Out `lines` → Set mapping. See JSON.
+
+**Result.** One clean item per line item, each carrying the right customer fields — accepted by the destination on the first try.
+
+**Future improvements.** Add a Filter to drop zero-quantity lines and an Aggregate to also produce an order-level summary stream.
+
+### 18.6 Step by step
+
+1. Bring in two streams: Orders and Customers.
+2. Merge by matching `customerId` (combine).
+3. Split Out the `lines` array into items.
+4. Set to flatten: `sku`, `qty`, `price`, `customerName`, `customerTier`.
+5. Send to the destination.
+
+### 18.7 Complete code (Code node — equivalent merge+flatten)
+
+```javascript
+// Alternative to Merge+SplitOut: join orders with customers and flatten lines.
+const orders = $("Orders").all().map(i => i.json);
+const customers = Object.fromEntries(
+  $("Customers").all().map(i => [i.json.customerId, i.json])
+);
+
+const out = [];
+for (const o of orders) {
+  const c = customers[o.customerId] || {};
+  for (const line of (o.lines || [])) {
+    out.push({
+      json: {
+        orderId: o.id,
+        sku: line.sku,
+        qty: Number(line.qty) || 0,
+        price: Number(line.price) || 0,
+        customerName: c.name ?? null,
+        customerTier: c.tier ?? 'standard'
+      }
+    });
+  }
+}
+return out;
+```
+
+### 18.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Orders x Customers Flatten",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "hoursInterval": 1 }] } },
+      "id": "70000001-0000-0000-0000-000000000001",
+      "name": "Hourly",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": { "url": "https://api.example/orders", "options": {} },
+      "id": "70000002-0000-0000-0000-000000000002",
+      "name": "Orders",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [420, 220]
+    },
+    {
+      "parameters": { "url": "https://crm.example/customers", "options": {} },
+      "id": "70000003-0000-0000-0000-000000000003",
+      "name": "Customers",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [420, 380]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "joinMode": "enrichInput1",
+        "mergeByFields": { "values": [ { "field1": "customerId", "field2": "customerId" } ] },
+        "options": {}
+      },
+      "id": "70000004-0000-0000-0000-000000000004",
+      "name": "Merge by Customer",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [640, 300]
+    },
+    {
+      "parameters": { "fieldToSplitOut": "lines", "options": {} },
+      "id": "70000005-0000-0000-0000-000000000005",
+      "name": "Split Lines",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "m1", "name": "sku", "type": "string", "value": "={{ $json.sku }}" },
+            { "id": "m2", "name": "qty", "type": "number", "value": "={{ Number($json.qty) }}" },
+            { "id": "m3", "name": "customerTier", "type": "string", "value": "={{ $json.tier || 'standard' }}" }
+          ]
+        }
+      },
+      "id": "70000006-0000-0000-0000-000000000006",
+      "name": "Flatten",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1080, 300]
+    }
+  ],
+  "connections": {
+    "Hourly": { "main": [[{ "node": "Orders", "type": "main", "index": 0 }, { "node": "Customers", "type": "main", "index": 0 }]] },
+    "Orders": { "main": [[{ "node": "Merge by Customer", "type": "main", "index": 0 }]] },
+    "Customers": { "main": [[{ "node": "Merge by Customer", "type": "main", "index": 1 }]] },
+    "Merge by Customer": { "main": [[{ "node": "Split Lines", "type": "main", "index": 0 }]] },
+    "Split Lines": { "main": [[{ "node": "Flatten", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 18.9 Exercises
+
+1. Use Split Out to turn an array field into items, then Aggregate to put it back.
+2. Merge two streams by position and by matching key; compare results.
+3. Flatten a two-level-nested object into a single-level item with Set.
+
+### 18.10 Challenges
+
+- **Challenge 1.** Implement an outer-join behavior where unmatched orders still pass through with null customer fields.
+- **Challenge 2.** Produce two outputs from one stream: per-line items and an order-level summary, using Split Out + Aggregate.
+
+### 18.11 Checklist
+
+- [ ] I understand item linking and how Merge uses it.
+- [ ] I can fan out arrays with Split Out and collapse with Aggregate.
+- [ ] I can merge by append/position/key.
+- [ ] I flatten/nest with Set or Code appropriately.
+- [ ] My destination shape matches the contract.
+
+### 18.12 Best practices
+
+- Prefer declarative nodes (Set/Split Out/Merge/Aggregate) over Code for clarity.
+- Validate the destination contract before mapping; map to it explicitly.
+- Keep one mapping concern per node; don't overload a single Set.
+- Use Code only when the transform is genuinely complex.
+
+### 18.13 Anti-patterns
+
+- Merging streams by position when you meant by key.
+- Leaving arrays nested when the destination expects items.
+- One Code node doing all mapping (unreadable).
+- Losing item linking by overwriting items in a way that breaks `$("Node").item`.
+
+### 18.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Wrong rows joined | Merge by position not key | Use combine-by-matching-field |
+| Destination rejects nested array | Not flattened | Split Out the array |
+| `$("Node").item` wrong | Item linking broken | Avoid rebuilding items blindly; map fields |
+| Lost fields after Set | "Keep only set" enabled | Include other input fields |
+| Aggregate returns nothing | Wrong field to aggregate | Verify field path |
+
+### 18.15 Official references
+
+- Data mapping: https://docs.n8n.io/data/data-mapping/
+- Merge node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/
+- Split Out / Aggregate: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitout/
+- Item linking: https://docs.n8n.io/data/data-mapping/data-item-linking/
+
+---
+
+## Chapter 19 — Error Handling
+
+### 19.1 Introduction
+
+Production workflows fail: APIs time out, rate limits hit, payloads are malformed. The difference between an amateur and a production-grade workflow is **deliberate error handling** — per-node `onError` behavior, retries with backoff, error outputs, the **Error Trigger** for centralized handling, and **dead-letter** patterns for messages that can't be processed. This chapter makes failure a first-class design concern.
+
+### 19.2 Business context
+
+Unhandled errors cause silent data loss, duplicate side effects, and 3 a.m. pages. A well-designed error strategy turns failures into observable, recoverable events — protecting data integrity and SLAs. For regulated workloads, an auditable failure trail is often a compliance requirement, not a nicety.
+
+### 19.3 Theoretical concepts
+
+- **Per-node `onError`:** `stopWorkflow` (default), `continueRegularOutput` (pass the error item down the normal path), or `continueErrorOutput` (route failures to a second output). The error output enables branch-specific handling.
+- **Retries:** nodes support automatic retries (`retryOnFail`, `maxTries`, `waitBetweenTries`) — essential for transient failures and rate limits.
+- **Error Trigger:** a workflow that runs when *another* workflow errors, receiving the error context. Set per-workflow via Settings → Error Workflow. The backbone of centralized handling/alerting.
+- **Stop and Error node:** deliberately throw with a custom message (e.g., on failed validation).
+- **Dead-letter pattern:** route irrecoverable items to a durable store/queue for later inspection/replay, instead of dropping them.
+- **Idempotency:** combine with dedup (Chapter 15) so retries don't double-apply side effects.
+
+### 19.4 Architecture
+
+```mermaid
+flowchart TB
+    n[Action node] -->|success| ok[Continue]
+    n -->|error output| handle[Handle error]
+    handle --> retry{Transient?}
+    retry -->|yes| again[Retry/backoff]
+    retry -->|no| dlq[(Dead-letter store)]
+    wf[Any workflow] -. on failure .-> et[Error Trigger workflow]
+    et --> alert[Alert + log]
+    et --> dlq
+```
+
+### 19.5 Real example
+
+**Scenario.** A payment-reconciliation workflow calls a flaky bank API. Transient 5xx and 429 rate limits are common; occasionally a record is permanently invalid.
+
+**Problem.** Without handling, a single 429 fails the whole batch and loses progress; invalid records crash the run with no trail.
+
+**Solution.** Enable retries with backoff on the API node, route hard failures to the error output → dead-letter table, and attach a centralized Error Trigger workflow that alerts and logs.
+
+**Implementation.** Retry config on the HTTP node; `continueErrorOutput` → Postgres dead-letter insert; an Error Trigger workflow posts to Slack and logs the error context.
+
+**Result.** Transient failures self-heal via retry; permanent failures are captured in a dead-letter table for replay; the team is alerted with full context — no silent loss.
+
+**Future improvements.** Add exponential backoff with jitter via a Wait+loop, and an automated replay workflow that re-processes dead-letter rows.
+
+### 19.6 Step by step
+
+1. On the API node, enable `retryOnFail`, set `maxTries=3`, `waitBetweenTries` and `onError=continueErrorOutput`.
+2. Route the error output to a Postgres insert (dead-letter).
+3. Create an Error Trigger workflow; set it as the workflow's Error Workflow.
+4. In the Error Trigger workflow, post to Slack and log the error JSON.
+
+### 19.7 Complete code (Error Trigger handler — Code node)
+
+```javascript
+// Runs inside the Error Trigger workflow. Normalizes error context for alerting/logging.
+const e = $json;   // Error Trigger provides execution + error metadata
+return [{
+  json: {
+    workflow: e.workflow?.name ?? 'unknown',
+    executionId: e.execution?.id ?? null,
+    nodeName: e.execution?.lastNodeExecuted ?? null,
+    message: e.execution?.error?.message ?? e.error?.message ?? 'unknown error',
+    stack: e.execution?.error?.stack ?? null,
+    at: $now.toISO()
+  }
+}];
+```
+
+### 19.8 Complete n8n workflow (importable JSON — centralized error handler)
+
+```json
+{
+  "name": "Central Error Handler",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "80000001-0000-0000-0000-000000000001",
+      "name": "On Error",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $json;\nreturn [{ json: { workflow: e.workflow?.name, executionId: e.execution?.id, node: e.execution?.lastNodeExecuted, message: e.execution?.error?.message || 'unknown', at: $now.toISO() } }];"
+      },
+      "id": "80000002-0000-0000-0000-000000000002",
+      "name": "Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": { "__rl": true, "value": "public", "mode": "list" },
+        "table": { "__rl": true, "value": "workflow_errors", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {} },
+        "options": {}
+      },
+      "id": "80000003-0000-0000-0000-000000000003",
+      "name": "Log to DB",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [660, 220],
+      "credentials": { "postgres": { "id": "1", "name": "Ops Postgres" } }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"text\": ':rotating_light: *' + $json.workflow + '* failed at node *' + $json.node + '*: ' + $json.message } }}",
+        "options": {}
+      },
+      "id": "80000004-0000-0000-0000-000000000004",
+      "name": "Alert Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 380]
+    }
+  ],
+  "connections": {
+    "On Error": { "main": [[{ "node": "Normalize", "type": "main", "index": 0 }]] },
+    "Normalize": { "main": [[{ "node": "Log to DB", "type": "main", "index": 0 }, { "node": "Alert Slack", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 19.9 Exercises
+
+1. Configure retries on an HTTP node and force a 500 to watch it retry.
+2. Route an error output to a dead-letter table.
+3. Attach the Central Error Handler as the Error Workflow for a flow and trigger a failure.
+
+### 19.10 Challenges
+
+- **Challenge 1.** Implement exponential backoff with jitter for 429 responses using Wait + a loop, honoring `Retry-After`.
+- **Challenge 2.** Build a replay workflow that reads dead-letter rows and re-processes them idempotently.
+
+### 19.11 Checklist
+
+- [ ] Critical nodes have retry + sensible `onError`.
+- [ ] Hard failures go to a dead-letter store, not the void.
+- [ ] A centralized Error Trigger workflow alerts + logs.
+- [ ] Side effects are idempotent so retries are safe.
+- [ ] Error context is captured for debugging/audit.
+
+### 19.12 Best practices
+
+- Distinguish transient (retry) from permanent (dead-letter) failures.
+- Always pair retries with idempotency to avoid double side effects.
+- Centralize alerting/logging in one Error Trigger workflow reused across flows.
+- Honor `Retry-After` and rate-limit headers.
+
+### 19.13 Anti-patterns
+
+- `onError=continueRegularOutput` everywhere, silently swallowing failures.
+- Retrying non-idempotent writes without dedup (double charges, duplicate records).
+- No dead-letter: bad items vanish.
+- Per-workflow ad-hoc alerting instead of a shared handler.
+
+### 19.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Whole batch fails on one bad item | No error output branch | Use `continueErrorOutput` |
+| Duplicate side effects after retry | Non-idempotent writes | Add idempotency/dedup |
+| Failures unnoticed | No Error Workflow set | Attach a central Error Trigger |
+| 429 storms | No backoff | Backoff + honor `Retry-After` |
+| Lost bad records | No dead-letter | Route errors to a durable store |
+
+### 19.15 Official references
+
+- Error handling: https://docs.n8n.io/flow-logic/error-handling/
+- Error Trigger node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/
+- Node error options/retries: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.stopanderror/
+- Executions: https://docs.n8n.io/workflows/executions/
+
+---
+
+## Chapter 20 — Debugging
+
+### 20.1 Introduction
+
+Debugging is where time is won or lost. n8n provides a strong toolkit: the **Executions** view (full input/output per node, including errors), **data pinning** (freeze a node's output to iterate without re-calling APIs), **manual execution** with step inspection, **re-run from a node**, and the **Code node** with logging. This chapter is a practical method for diagnosing workflow problems fast, plus the 2.x specifics (task-runner logs, secure Code node).
+
+### 20.2 Business context
+
+Mean-time-to-resolution on a broken automation directly affects the business it serves. A team that knows how to pin data, inspect executions, and reproduce failures resolves incidents in minutes; one that doesn't re-deploys blindly and erodes trust in the platform. Debugging skill is operational leverage.
+
+### 20.3 Theoretical concepts
+
+- **Executions view:** every run is persisted (subject to save settings) with per-node input/output and error details — your primary forensic tool. You can open a failed execution and inspect exactly what each node received and returned.
+- **Data pinning:** pin a node's output during development so downstream nodes use frozen data — no repeated external calls, deterministic iteration. Pinned data is for editing/testing, not production.
+- **Manual execution + partial runs:** run the workflow in the editor and execute from a specific node, reusing upstream data.
+- **Code node logging:** `console.log` output appears in the execution logs / runner logs; use it to trace values.
+- **Re-run / retry executions:** re-execute a past execution to reproduce or to recover after a fix.
+- **2.x notes:** Code runs in a task runner; logs surface in runner output. `process.env` is blocked — don't debug by printing env.
+
+### 20.4 Architecture
+
+```mermaid
+flowchart LR
+    dev([Developer]) --> editor[Editor]
+    editor -->|manual run| engine[Engine]
+    engine --> exec[(Executions store)]
+    editor -->|pin| pin[(Pinned data)]
+    exec --> inspect[Per-node input/output]
+    inspect --> dev
+    code[Code node console.log] --> runner[Task runner logs]
+    runner --> dev
+```
+
+### 20.5 Real example
+
+**Scenario.** A workflow intermittently produces emails with `undefined` customer names. It calls a slow CRM API and a templating Set node.
+
+**Problem.** The failure is intermittent and tied to live API responses, making it hard to reproduce by re-running (the API behaves differently each time).
+
+**Solution.** Capture a failing execution, pin the CRM node's output from that run, and iterate on the Set node deterministically until the expression is robust to missing fields.
+
+**Implementation.** Open the failing execution → copy the CRM output → pin it on the CRM node → fix the Set expression with optional chaining + fallback → unpin → publish.
+
+**Result.** Root cause found (some CRM records lack `name`); expression hardened with a fallback; the intermittent bug eliminated — all without hammering the live API.
+
+**Future improvements.** Add a Filter/validation step that flags records missing required fields, and a test that runs the workflow against pinned edge-case data in CI (Chapter 44).
+
+### 20.6 Step by step
+
+1. Reproduce: open the failing execution in the Executions view.
+2. Inspect each node's input/output to localize where `name` becomes `undefined`.
+3. Pin the upstream node's output from the failing run.
+4. Iterate on the failing node with frozen data until fixed.
+5. Harden the expression; unpin; publish.
+
+### 20.7 Complete code (defensive Set/Code with logging)
+
+```javascript
+// Defensive transform with tracing; safe under missing fields.
+const name = $json.customer?.name?.trim();
+if (!name) {
+  console.log('Missing customer name for record', $json.customer?.id ?? '(no id)');
+}
+return {
+  json: {
+    ...$json,
+    greetingName: name || 'there',     // safe fallback
+    needsReview: !name
+  }
+};
+```
+
+### 20.8 Complete n8n workflow (importable JSON — debug-friendly)
+
+```json
+{
+  "name": "Debuggable Greeting",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "greet", "responseMode": "lastNode" },
+      "id": "90000001-0000-0000-0000-000000000001",
+      "name": "In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const name = $json.body?.customer?.name?.trim();\nif (!name) console.log('Missing name', $json.body?.customer?.id);\nreturn { json: { ...$json.body, greetingName: name || 'there', needsReview: !name } };"
+      },
+      "id": "90000002-0000-0000-0000-000000000002",
+      "name": "Safe Greeting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.needsReview }}", "rightValue": true, "operator": { "type": "boolean", "operation": "equals" } } ] }
+      },
+      "id": "90000003-0000-0000-0000-000000000003",
+      "name": "Needs Review?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "In": { "main": [[{ "node": "Safe Greeting", "type": "main", "index": 0 }]] },
+    "Safe Greeting": { "main": [[{ "node": "Needs Review?", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 20.9 Exercises
+
+1. Pin a node's output and iterate on a downstream node without re-calling the API.
+2. Open a failed execution and trace where a field became `undefined`.
+3. Add `console.log` to a Code node and find the output in the logs.
+
+### 20.10 Challenges
+
+- **Challenge 1.** Build a small library of pinned edge-case payloads and run the workflow against each to prove robustness.
+- **Challenge 2.** Re-run a historical failed execution after a fix and confirm it now succeeds.
+
+### 20.11 Checklist
+
+- [ ] I use the Executions view to inspect per-node I/O.
+- [ ] I pin data to iterate without external calls.
+- [ ] I write defensive expressions (optional chaining + fallbacks).
+- [ ] I use `console.log` and read runner logs.
+- [ ] I unpin before publishing.
+
+### 20.12 Best practices
+
+- Pin once, iterate many — never debug against a live, changing API.
+- Make transforms defensive; treat missing fields as expected.
+- Keep failing executions saved so you can reproduce.
+- Flag (don't silently fix) bad data via a `needsReview` path.
+
+### 20.13 Anti-patterns
+
+- Re-deploying blindly without inspecting executions.
+- Leaving pinned data in a published workflow (stale/fake production data).
+- Swallowing `undefined` instead of flagging it.
+- Disabling execution saving, then being unable to reproduce failures.
+
+### 20.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Can't reproduce intermittent bug | Live API variance | Pin the failing payload and iterate |
+| Production uses fake data | Pinned data left on | Unpin before Publish |
+| No execution to inspect | Saving disabled | Enable execution saving for the flow |
+| `console.log` not visible | Looking in wrong place (2.x) | Check task-runner/execution logs |
+| Field `undefined` downstream | Upstream missing field | Add optional chaining + fallback |
+
+### 20.15 Official references
+
+- Executions: https://docs.n8n.io/workflows/executions/
+- Data pinning: https://docs.n8n.io/data/data-pinning/
+- Debugging: https://docs.n8n.io/workflows/executions/debug/
+- Code node: https://docs.n8n.io/code/code-node/
+
+---
+
+> **End of Part III.** You can now build workflows with intent: the right nodes and triggers, fluent expressions, the correct variable mechanism for each concern, reliable data mapping, deliberate error handling, and fast debugging. **Part IV — Integrations** (Chapters 21–30) puts these skills to work against the real world: REST and GraphQL APIs, webhooks, databases, message brokers (Kafka, RabbitMQ), Redis, and the AWS/Google/Microsoft service ecosystems.
+
 <!--APPEND-PARTE-II-->
