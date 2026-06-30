@@ -98,7 +98,7 @@ Progressive depth across five maturity levels:
 21. GraalVM native images and AOT processing
 22. Production hardening and the twelve-factor checklist
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–3). **In progress:** Parts II–VIII.
+> **Status of this edition:** complete — all eight parts are written to the same depth standard. **Ready:** Parts I–VIII (Ch. 1–22).
 
 ---
 
@@ -4637,5 +4637,3 @@ Stage the work as one concern per PR — baselines, recipe output, module fixes,
 ---
 
 > **End of Part VIII — and of the guide.** You now hold the full arc of Spring Boot 4: the **foundations** (starters, the managed BOM, modular auto-configuration, the IoC container, JSpecify-null-safe injection), **configuration and web APIs** (externalized config and profiles, REST with built-in API versioning, `ProblemDetail` validation), **data and persistence** (Spring Data, transactions, declarative HTTP and messaging clients), **resilience, observability, and security** (built-in retries and concurrency limits, Micrometer 2 + the OpenTelemetry starter, OAuth2 resource servers), **testing and architecture** (the testing pyramid with Testcontainers, the modular monolith with Spring Modulith), and finally **packaging and production** — layered jars and Cloud Native Buildpacks, GraalVM native images with AOT, and production hardening against the twelve-factor checklist, with a staged, OpenRewrite-driven migration onto a **Java-17 floor** that keeps the move affordable. The throughline of this generation is pragmatic modernization: leaner dependencies, vendor-neutral nullness and telemetry, declarative HTTP, virtual threads, and native images, all delivered without a forced JDK jump. Start new work on Boot 4, harden it for the way it will actually run, migrate existing systems on the November cadence, and lean on the tooling. The map is complete — go build, package, and ship.
-
-<!--APPEND-PARTE-II-->
