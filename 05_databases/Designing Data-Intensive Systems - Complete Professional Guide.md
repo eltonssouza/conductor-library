@@ -60,7 +60,7 @@ software_dev: core
 10. Batch and stream processing
 11. Designing systems of integration (the "unbundled database")
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–IV (Ch. 1–8). **In progress:** Parts V–VII.
+> **Status of this guide:** phased delivery. **Ready:** Parts I–V (Ch. 1–9). **In progress:** Parts VI–VII.
 
 ---
 
@@ -962,4 +962,117 @@ storage: track highest token seen; if incoming token < highest -> REJECT
 
 > **End of Part IV.** You can now reason about correctness under concurrency and failure: **transactions** give all-or-nothing, isolated units (pick the weakest isolation that stays correct, and avoid brittle distributed commit), while the **trouble with distributed systems** — unreliable networks, drifting clocks, partial failures, and process pauses — forces idempotency, logical clocks, and fencing tokens instead of comfortable assumptions. **Part V — Consensus & Coordination** (Chapter 9) builds the positive result on top of this pessimism: the consistency models systems can offer and how nodes *agree* despite all of it.
 
-<!--APPEND-PART-V-->
+---
+
+## Part V – Consensus & Coordination
+
+Part IV established what goes wrong. Part V is the constructive answer: despite unreliable networks and partial failures, nodes *can* agree — on a leader, on a value, on the order of events — and systems *can* offer strong guarantees, at a price. This single chapter ties the guide's distributed-systems thread together: the spectrum of consistency models, and the consensus that makes the strongest of them possible.
+
+---
+
+## Chapter 9 — Consistency models and consensus
+
+### 9.1 Introduction
+
+A **consistency model** is the contract a distributed store offers about what reads can observe. They form a spectrum from **eventual consistency** (replicas converge eventually; reads may be stale) up to **linearizability** (the system behaves as if there is a single, up-to-date copy — every read sees the latest committed write). Stronger models are easier to program against but cost latency and availability. The strongest guarantees, and the agreement that underpins leader election and atomic commit, rest on **consensus**: getting several nodes to irrevocably agree on one value despite failures.
+
+### 9.2 Business context
+
+The consistency model is a promise that leaks straight into product behavior and engineering effort. Linearizability lets developers reason as if there's one copy — no stale reads, no surprises — but it cannot be maintained during a network partition without sacrificing availability (the CAP trade). Choosing where on the spectrum each piece of data sits, and paying for consensus only where you truly need it (leader election, uniqueness, atomic commit), is the difference between a system that's both correct and available *enough* and one that's needlessly slow or subtly wrong.
+
+### 9.3 Theoretical concepts: the consistency spectrum
+
+```mermaid
+flowchart LR
+    eventual["Eventual: replicas converge; stale reads possible"]
+    causal["Causal: causally related ops seen in order (strong-ish, partition-tolerant)"]
+    lin["Linearizable: as if one copy; every read sees the latest write"]
+    eventual --> causal --> lin
+```
+
+- **Eventual consistency** — given no new writes, replicas eventually agree. Cheap and highly available; the app must tolerate staleness and conflicts.
+- **Causal consistency** — operations that are causally related are seen in the same order by everyone (concurrent ones may differ). Often the *strongest* model achievable while staying available under partition — a sweet spot.
+- **Linearizability** — the strongest single-object model: there appears to be one copy and operations take effect atomically at a point in time. Required for things like a lock, uniqueness constraint, or leader election — and impossible to keep available during a partition (CAP).
+
+### 9.4 Architecture: consensus and total order
+
+```mermaid
+flowchart TB
+    propose["Nodes propose values"] --> consensus["Consensus protocol (Raft / Paxos / ZAB)"]
+    consensus --> agree["All non-faulty nodes agree on ONE value"]
+    agree --> uses["Used for: leader election, atomic commit, uniqueness, total-order broadcast"]
+    quorum["Needs a majority (quorum) -> tolerates a minority of failures"]
+```
+
+**Consensus** is the problem of getting nodes to agree on a single value such that the decision is unanimous and final. Practical protocols — **Raft**, **Paxos/Multi-Paxos**, **ZAB** (ZooKeeper) — solve it by requiring a **majority quorum**, so the system tolerates a minority of failures and avoids split-brain. Consensus is equivalent to **total-order broadcast** (every node delivers the same messages in the same order), which is exactly what you need to keep replicas linearizable. Because consensus needs a majority, it *halts* (chooses unavailability) during a partition that breaks quorum — the CAP choice made concrete. The pragmatic pattern: don't reimplement consensus; delegate coordination (leader election, locks, config) to a proven system like **ZooKeeper/etcd**.
+
+### 9.5 Real example
+
+**Scenario.** A cluster of workers must have exactly one **leader** (sole writer) at a time, and the choice must survive node failures without split-brain.
+
+**Problem.** Ad-hoc election by timestamps or "first to grab a row" fails under partitions and clock skew (Chapter 8) — two nodes can both think they won.
+
+**Solution.** Delegate election to a **consensus-backed coordination service** (etcd/ZooKeeper): it elects a leader via a majority quorum and issues a lease + **fencing token** (Chapter 8), so at most one leader is valid and stale writes are rejected.
+
+**Implementation (delegated election).**
+
+```text
+# Don't build consensus yourself; use a quorum-based coordinator.
+etcd/ZooKeeper:
+  - candidates campaign for leadership; the service grants it via majority quorum
+  - winner holds a lease + monotonically increasing fencing token
+  - on partition that loses quorum: NO new leader (chooses consistency over availability)
+  - every write carries the token; storage rejects stale tokens -> no split-brain
+```
+
+**Result.** Exactly one valid leader at any time, correct across failures and partitions; the unavoidable cost is that a quorum-losing partition pauses leadership rather than risking two leaders. The CAP choice is explicit and correct.
+
+**Future improvements.** Reserve consensus for the few things that need it (leadership, uniqueness); keep bulk data on a weaker, more available model (causal/eventual) and reconcile.
+
+### 9.6 Exercises
+
+1. Order eventual, causal, and linearizable consistency by strength and say what each costs.
+2. Why can't a linearizable system stay available during a network partition?
+3. What does consensus require to make progress, and what does it do when that's unavailable?
+
+### 9.7 Challenges
+
+- **Challenge.** Identify one thing in your system that truly needs linearizability (a lock, a unique ID, a leader) and one that doesn't. Justify using a consensus-backed coordinator for the first and a weaker, more available model for the second.
+
+### 9.8 Checklist
+
+- [ ] I can place a guarantee on the eventual → causal → linearizable spectrum.
+- [ ] I know linearizability trades availability under partition (CAP).
+- [ ] I understand consensus needs a majority quorum and halts without one.
+- [ ] I delegate coordination to a proven consensus system rather than rolling my own.
+
+### 9.9 Best practices
+
+- Use the weakest consistency model each dataset can tolerate; reserve linearizability for where it's essential.
+- Delegate leader election, locks, and config to etcd/ZooKeeper, not bespoke code.
+- Pair leadership with fencing tokens so a lost quorum can't cause split-brain.
+
+### 9.10 Anti-patterns
+
+- Demanding linearizability everywhere, paying its latency/availability tax needlessly.
+- Hand-rolling consensus or leader election with timestamps and locks.
+- Ignoring that a quorum-losing partition must (correctly) pause, treating the pause as a bug.
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Two leaders / split-brain | Ad-hoc election without quorum/fencing | Use a consensus coordinator + fencing tokens |
+| Cluster stalls during a partition | Consensus correctly waiting for quorum | Expected; size quorum/regions; don't "fix" by weakening it |
+| Stale reads where correctness needs current | Eventual model used where linearizable is required | Move that operation to a linearizable path |
+
+### 9.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 9 "Consistency and Consensus" — ISBN 978-1449373320.
+- D. Ongaro, J. Ousterhout, "In Search of an Understandable Consensus Algorithm (Raft)," USENIX ATC (2014); Apache ZooKeeper / etcd documentation.
+
+---
+
+> **End of Part V.** You can now reason about agreement despite failure: the **consistency spectrum** from eventual through causal to linearizable (stronger = easier to use, costlier in latency and availability), and **consensus** — majority-quorum protocols (Raft/Paxos/ZAB) that underpin leader election, uniqueness, and atomic commit, and that correctly pause rather than split-brain when quorum is lost. The pragmatic rule: pick the weakest model each dataset tolerates and delegate the rest to a proven coordinator. **Part VI — Derived & Streaming Data** (Chapters 10–11) turns from storing truth to *deriving* value from it: batch and stream processing, and composing whole systems as flows of data.
+
+<!--APPEND-PART-VI-->
