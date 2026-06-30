@@ -154,7 +154,7 @@ flowchart TB
 
 ### 1.12 References
 
-- P. Clements et al., *Documenting Software Architectures: Views and Beyond*, 2nd ed. (Addison-Wesley, 2010) — ISBN 978-0321552686.
+- P. Clements et al., *Documenting Software Architectures: Views and Beyond*, 2nd ed. (Addison-Wesley, 2010), the Prologue ("Software Architectures and Documentation", the "Views" concept) & ch. 9 "Choosing the Views" — ISBN 978-0321552686.
 - S. Brown, "The C4 model for visualising software architecture," https://c4model.com.
 
 ---
@@ -257,7 +257,7 @@ flowchart TB
 ### 2.12 References
 
 - S. Brown, "The C4 model," https://c4model.com.
-- P. Clements et al., *Documenting Software Architectures: Views and Beyond*, 2nd ed. (Addison-Wesley, 2010) — ISBN 978-0321552686.
+- P. Clements et al., *Documenting Software Architectures: Views and Beyond*, 2nd ed. (Addison-Wesley, 2010), ch. 1 "The Module Viewtype" & ch. 2 "Styles of the Module Viewtype" (§2.4 "The Layered Style") — ISBN 978-0321552686.
 
 ---
 

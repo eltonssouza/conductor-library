@@ -156,7 +156,7 @@ final class JpaOrderRepository implements OrderRepository {
 
 ### 1.12 References
 
-- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017) — ISBN 978-0134494166.
+- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017), ch. 22 "The Clean Architecture" (the "Dependency Rule" section) — ISBN 978-0134494166.
 - A. Cockburn, "Hexagonal Architecture" (ports and adapters), https://alistair.cockburn.us/hexagonal-architecture/.
 
 ---
@@ -276,7 +276,7 @@ class NightlyRepricingJob {
 ### 2.12 References
 
 - A. Cockburn, "Hexagonal Architecture," https://alistair.cockburn.us/hexagonal-architecture/.
-- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017) — ISBN 978-0134494166.
+- R. C. Martin, *Clean Architecture* (Prentice Hall, 2017), ch. 17 "Boundaries: Drawing Lines", ch. 18 "Boundary Anatomy" & ch. 34 "The Missing Chapter" (the "Ports and Adapters" section) — ISBN 978-0134494166.
 
 ---
 

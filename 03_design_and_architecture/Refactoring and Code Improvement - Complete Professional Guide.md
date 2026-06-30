@@ -164,7 +164,7 @@ double round(double v)       { return Math.round(v*100)/100.0; }
 
 ### 1.12 References
 
-- M. Fowler, *Refactoring: Improving the Design of Existing Code*, 2nd ed. (Addison-Wesley, 2018) — ISBN 978-0134757599.
+- M. Fowler, *Refactoring: Improving the Design of Existing Code*, 2nd ed. (Addison-Wesley, 2018), ch. 1 "Refactoring: A First Example" & ch. 2 "Principles in Refactoring" — ISBN 978-0134757599.
 - IDE refactoring docs: IntelliJ IDEA (https://www.jetbrains.com/help/idea/refactoring-source-code.html), VS Code (https://code.visualstudio.com/docs/editor/refactoring).
 
 ---
@@ -257,6 +257,7 @@ void characterize(double base, double rate, double expected) {
 
 ### 2.12 References
 
+- M. Fowler, *Refactoring*, 2nd ed. (Addison-Wesley, 2018), ch. 4 "Building Tests" — ISBN 978-0134757599.
 - M. Feathers, *Working Effectively with Legacy Code* (Prentice Hall, 2004) — ISBN 978-0131177055.
 - K. Beck, *Test-Driven Development by Example* (Addison-Wesley, 2002) — ISBN 978-0321146533.
 

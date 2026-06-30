@@ -146,7 +146,7 @@ Result: p99 = 180ms within budget -> risk retired; no extra architecture needed.
 
 ### 1.12 References
 
-- M. Keeling, *Design It! From Programmer to Software Architect* (Pragmatic Bookshelf, 2017) — ISBN 978-1680502091.
+- M. Keeling, *Design It! From Programmer to Software Architect* (Pragmatic Bookshelf, 2017), ch. 3 "Devise a Design Strategy" (the "Let Risk Be Your Guide" section) — ISBN 978-1680502091.
 - G. Fairbanks, *Just Enough Software Architecture* (Marshall & Brainerd, 2010) — ISBN 978-0984618101.
 
 ---
@@ -250,7 +250,7 @@ Alternatives considered: MongoDB (rejected: weaker multi-document integrity).
 ### 2.12 References
 
 - M. Nygard, "Documenting Architecture Decisions" (2011), https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.
-- M. Keeling, *Design It!* (Pragmatic Bookshelf, 2017) — ISBN 978-1680502091.
+- M. Keeling, *Design It!* (Pragmatic Bookshelf, 2017), Activity 20 "Architecture Decision Records" & ch. 11 "Describe the Architecture" (the "Explain the Rationale for Your Decisions" section) — ISBN 978-1680502091.
 
 ---
 

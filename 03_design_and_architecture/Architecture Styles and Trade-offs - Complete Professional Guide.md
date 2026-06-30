@@ -143,7 +143,7 @@ deny:   billing.* -> orders.internal.*     # fails the build if violated
 
 ### 1.12 References
 
-- M. Richards, N. Ford, *Fundamentals of Software Architecture*, 2nd ed. (O'Reilly, 2025) — ISBN 978-1098175511.
+- M. Richards, N. Ford, *Fundamentals of Software Architecture*, 2nd ed. (O'Reilly, 2025), the "Layered Architecture Style" chapter & "Choosing the Appropriate Architecture Style" (the "Modular Monolith" section) — ISBN 978-1098175511.
 - S. Newman, *Monolith to Microservices* (O'Reilly, 2019) — ISBN 978-1492047841.
 
 ---
@@ -241,7 +241,7 @@ billing-service:  owns billing DB; subscribes to OrderPlaced; charges async
 
 ### 2.12 References
 
-- M. Richards, N. Ford, *Fundamentals of Software Architecture*, 2nd ed. (O'Reilly, 2025) — ISBN 978-1098175511.
+- M. Richards, N. Ford, *Fundamentals of Software Architecture*, 2nd ed. (O'Reilly, 2025), the "Event-Driven Architecture Style" & "Microservices Architecture" chapters — ISBN 978-1098175511.
 - S. Newman, *Building Microservices*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492034025.
 
 ---

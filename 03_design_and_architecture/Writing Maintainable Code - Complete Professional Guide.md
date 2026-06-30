@@ -165,7 +165,7 @@ List<Cell> flaggedCells(List<Cell> board) {
 
 ### 1.12 References
 
-- R. C. Martin, *Clean Code* (Prentice Hall, 2008) — ISBN 978-0132350884.
+- R. C. Martin, *Clean Code* (Prentice Hall, 2008), ch. 1 "Clean Code" ("There Will Be Code" — reading vs. writing) — ISBN 978-0132350884.
 - S. McConnell, *Code Complete*, 2nd ed. (Microsoft Press, 2004) — ISBN 978-0735619678.
 - Tooling: Prettier (https://prettier.io), ESLint (https://eslint.org), Spotless (https://github.com/diffplug/spotless).
 
@@ -263,7 +263,7 @@ double grossLineTotal(double unitPrice, int quantity) {
 
 ### 2.12 References
 
-- R. C. Martin, *Clean Code* (Prentice Hall, 2008) — ISBN 978-0132350884.
+- R. C. Martin, *Clean Code* (Prentice Hall, 2008), ch. 2 "Meaningful Names" — ISBN 978-0132350884.
 - E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003) — ISBN 978-0321125217, on shared domain vocabulary.
 
 ---

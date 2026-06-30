@@ -147,7 +147,7 @@ Decision: ONE service for now; revisit if payment scaling diverges. (ADR-0012)
 
 ### 1.12 References
 
-- N. Ford, M. Richards, P. Sadalage, Z. Dehghani, *Software Architecture: The Hard Parts* (O'Reilly, 2021) — ISBN 978-1492086895.
+- N. Ford, M. Richards, P. Sadalage, Z. Dehghani, *Software Architecture: The Hard Parts* (O'Reilly, 2021), ch. 1 "What Happens When There Are No 'Best Practices'?" — ISBN 978-1492086895.
 - M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017) — ISBN 978-1449373320.
 
 ---
@@ -249,7 +249,7 @@ Order list:    read names from the LOCAL read model (no cross-service call)
 
 ### 2.12 References
 
-- N. Ford, M. Richards, P. Sadalage, Z. Dehghani, *Software Architecture: The Hard Parts* (O'Reilly, 2021) — ISBN 978-1492086895.
+- N. Ford, M. Richards, P. Sadalage, Z. Dehghani, *Software Architecture: The Hard Parts* (O'Reilly, 2021), ch. 6 "Pulling Apart Operational Data" — ISBN 978-1492086895.
 - S. Newman, *Building Microservices*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492034025.
 
 ---
