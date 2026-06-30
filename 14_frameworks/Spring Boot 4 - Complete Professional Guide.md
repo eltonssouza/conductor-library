@@ -2573,4 +2573,598 @@ class ReconciliationJob {
 
 > **End of Part IV.** You can now reason about security across the whole request lifecycle: the **`SecurityFilterChain`** and the lambda DSL that decide authentication and authorization (Chapter 10), **stateless JWT** resource servers that validate bearer tokens against a provider's JWKS and map claims to authorities (Chapter 11), and the **OAuth2 / OIDC** client side — interactive login plus client-credentials and automatic token propagation to downstream APIs (Chapter 12). **Part V — Reactive & Resilience** (Chapters 13–15) shifts from securing requests to handling them at scale and under failure: **Project Reactor** (`Mono`/`Flux` and backpressure), **Spring WebFlux** with **R2DBC** for fully non-blocking persistence, and core resilience patterns including declarative retries with `@Retryable` and concurrency control with `@ConcurrencyLimit`.
 
+
+---
+
+# Part V – Reactive & Resilience
+
+Part V covers the non-blocking side of Spring Boot 4 and the resilience patterns that now ship inside the framework. Reactive programming is no longer the only way to scale I/O-bound services — Java 25 virtual threads let blocking code reach comparable concurrency with far less cognitive load — so this part is as much about *when not* to go reactive as about *how* to do it well. We start with **Project Reactor** (the `Mono`/`Flux` engine under WebFlux), move to **Spring WebFlux** and its two programming models (annotated controllers and functional routing), and finish with **reactive data access via R2DBC** plus **Spring Framework 7's built-in resilience** (`@Retryable`, `@ConcurrencyLimit`, `@EnableResilientMethods`). Throughout, we place virtual threads alongside reactive types so you can choose the cheaper model for each workload.
+
+---
+
+## Chapter 13 — Reactive programming with Project Reactor
+
+### 13.1 Introduction
+
+**Project Reactor** is the reactive-streams implementation that powers Spring's reactive stack. It provides two publisher types — `Mono<T>` (0 or 1 element) and `Flux<T>` (0 to N elements) — and a rich set of **operators** for composing asynchronous, non-blocking pipelines with **backpressure**. Where imperative code *pulls* values and blocks a thread while waiting, a Reactor pipeline *declares* a flow of data and runs it on a small pool of event-loop threads, only doing work when a subscriber asks for it. This chapter builds the mental model — publishers, subscribers, operators, schedulers, and the all-important rule that **nothing happens until you subscribe** — before later chapters wire Reactor into WebFlux and R2DBC.
+
+### 13.2 Business context
+
+Reactive pipelines matter where a service spends most of its time **waiting on I/O** — calling other services, querying databases, streaming events — and must serve many concurrent connections without a thread per request. The classic blocking model caps concurrency at the size of the thread pool; under load, requests queue and latency spikes, forcing teams to over-provision machines. Reactor lets a handful of threads multiplex thousands of in-flight operations, cutting infrastructure cost for gateways, aggregators, and streaming endpoints. The trade-off is real: reactive code is harder to write, read, and debug, and it pays off only for genuinely I/O-bound, high-fan-out workloads. In Spring Boot 4, **virtual threads** absorb many cases that previously *required* Reactor, so the business decision is now "reactive *or* virtual threads," not "reactive *or* slow."
+
+### 13.3 Theoretical concepts
+
+- **Publisher / Subscriber.** Reactor implements the Reactive Streams contract. A **publisher** (`Mono`/`Flux`) emits items to a **subscriber**, which signals demand. This demand signalling is **backpressure** — the subscriber controls the rate, so a fast source cannot overwhelm a slow consumer.
+- **`Mono<T>` vs `Flux<T>`.** `Mono` models an asynchronous *single value or empty* (a lookup, a save); `Flux` models an asynchronous *stream* (query results, server-sent events).
+- **Operators.** Pure, chainable transformations: `map` (sync transform), `flatMap` (async transform that returns another publisher), `filter`, `zip` (combine), `onErrorResume` (recover), `retryWhen`, `timeout`. Operators build a *blueprint*; they do not execute on their own.
+- **Lazy subscription.** A pipeline is inert until something subscribes. In a Spring app the framework subscribes for you when it writes the HTTP response — calling `block()` yourself defeats the purpose.
+- **Schedulers.** `Schedulers.boundedElastic()`, `parallel()`, etc. control which threads run which stages, via `subscribeOn`/`publishOn`. Reactor never blocks an event-loop thread; blocking work must be offloaded.
+- **Hot vs cold.** A *cold* publisher restarts work for each subscriber (an HTTP call per subscribe); a *hot* publisher emits regardless of subscribers (a shared event feed).
+
+### 13.4 Architecture: a Reactor pipeline
+
+```mermaid
+flowchart LR
+    src["Source<br/>Mono / Flux"] --> op1["map / filter<br/>(sync transform)"]
+    op1 --> op2["flatMap<br/>(async, returns publisher)"]
+    op2 --> err["onErrorResume<br/>(recover / fallback)"]
+    err --> sub["Subscriber<br/>(framework subscribes)"]
+    sub -. "demand (backpressure)" .-> src
+```
+
+```mermaid
+flowchart TB
+    assemble["Assembly time<br/>build operator chain"] --> nothing["Nothing executes yet<br/>(lazy blueprint)"]
+    nothing --> subscribe["subscribe() signals demand"]
+    subscribe --> run["Subscription time<br/>data flows, operators run"]
+    run --> sched{"Blocking work?"}
+    sched -- yes --> elastic["Offload to<br/>Schedulers.boundedElastic()"]
+    sched -- no --> loop["Stay on event-loop thread"]
+```
+
+### 13.5 What's New in This Version
+
+- **What changed:** Spring Framework 7 keeps Project Reactor as the reactive engine while improving **reactive/imperative interop** — an enhanced `ReactiveAdapterRegistry` and tighter Kotlin coroutine/`Flow` bridging — so mixing Reactor with blocking code is smoother.
+- **Architecture impact:** the wall between "reactive" and "imperative" is lower; you can adopt Reactor only where it earns its keep and stay blocking elsewhere.
+- **Impact for developers:** the same `Mono`/`Flux` API as before, now easier to interleave with virtual-thread blocking code and coroutines.
+- **Impact for enterprises:** reactive becomes an opt-in optimization for specific endpoints rather than an all-or-nothing architectural commitment.
+- **Migration:** keep existing Reactor pipelines; for new I/O-bound endpoints, evaluate virtual threads first and reach for Reactor when you need streaming or backpressure.
+- **Best practices:** never `block()` inside a reactive chain; offload unavoidable blocking calls to `boundedElastic`.
+
+### 13.6 Real example
+
+**Scenario.** A catalog API enriches each product with a live price from a downstream pricing service and must stream a (potentially large) list of products without buffering them all in memory.
+
+**Problem.** A blocking implementation would fetch every product, then loop and call pricing one-by-one — slow, memory-hungry, and unable to begin responding until the whole list is ready.
+
+**Solution.** Model the catalog as a `Flux<Product>`, enrich each element with `flatMap` (bounded concurrency), recover per-element with `onErrorResume`, and let the framework stream results as they arrive.
+
+**Implementation.**
+
+```java
+package com.example.catalog;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CatalogService {
+
+    private final ProductSource products;   // returns Flux<Product>
+    private final PricingGateway pricing;    // returns Mono<Price>
+
+    public CatalogService(ProductSource products, PricingGateway pricing) {
+        this.products = products;
+        this.pricing = pricing;
+    }
+
+    public Flux<PricedProduct> pricedCatalog() {
+        return products.findAll()                       // Flux<Product> (cold, streamed)
+            .flatMap(product ->                          // async enrich, up to 8 in flight
+                pricing.priceFor(product.sku())
+                    .map(price -> new PricedProduct(product, price))
+                    .timeout(java.time.Duration.ofMillis(800))
+                    .onErrorResume(ex ->                 // per-element fallback, never fail the stream
+                        Mono.just(PricedProduct.unpriced(product))),
+                8)                                       // flatMap concurrency cap
+            .doOnError(ex -> log.error("catalog stream failed", ex));
+    }
+
+    private static final org.slf4j.Logger log =
+        org.slf4j.LoggerFactory.getLogger(CatalogService.class);
+}
+```
+
+**Tests.**
+
+```java
+import reactor.test.StepVerifier;
+
+class CatalogServiceTest {
+
+    @Test
+    void enrichesAndFallsBackPerElement() {
+        CatalogService service = new CatalogService(
+            new StubProductSource("SKU-1", "SKU-2"),   // SKU-2 pricing fails
+            new FlakyPricingGateway("SKU-2"));
+
+        // StepVerifier drives the pipeline without blocking and asserts emissions.
+        StepVerifier.create(service.pricedCatalog())
+            .assertNext(p -> assertThat(p.priced()).isTrue())   // SKU-1 priced
+            .assertNext(p -> assertThat(p.priced()).isFalse())  // SKU-2 fell back
+            .verifyComplete();
+    }
+}
+```
+
+**Result.** Products stream out as soon as each is priced, memory stays flat regardless of catalog size, a slow or failing pricing call degrades a *single* product rather than the whole response, and concurrency to the downstream is capped at 8.
+
+**Future improvements.** Add `retryWhen` with exponential backoff for transient pricing errors (Chapter 15 covers the declarative `@Retryable` alternative), publish enrichment latency to Micrometer, and cache hot prices to cut downstream load.
+
+### 13.7 Exercises
+
+1. Explain why "nothing happens until you subscribe," and what subscribes in a Spring WebFlux app.
+2. When do you use `map` versus `flatMap`? What is the type signature difference?
+3. Why must blocking calls be offloaded to `Schedulers.boundedElastic()` rather than run on the event loop?
+
+### 13.8 Challenges
+
+- **Challenge.** Take a blocking method that fetches a list and enriches each item with a second call. Rewrite it as a `Flux` pipeline with bounded `flatMap` concurrency, a per-element timeout, and a per-element fallback, then prove the behavior with a `StepVerifier` test.
+
+### 13.9 Checklist
+
+- [ ] I can distinguish `Mono` from `Flux` and pick the right one.
+- [ ] I never call `block()` inside a reactive chain.
+- [ ] I offload unavoidable blocking work to `boundedElastic`.
+- [ ] I handle errors with `onErrorResume`/`onErrorReturn` instead of letting the stream fail.
+- [ ] I test pipelines with `StepVerifier`, not by blocking and asserting.
+
+### 13.10 Best practices
+
+- Keep pipelines **non-blocking end to end**; one blocking call on the event loop can stall the whole server.
+- Bound `flatMap` concurrency so a fast source cannot flood a fragile downstream.
+- Recover at the smallest sensible scope (per element) so one failure does not collapse the stream.
+- Use `StepVerifier` and virtual-time testing for deterministic, fast reactive tests.
+
+### 13.11 Anti-patterns
+
+- Calling `block()` (or a blocking JDBC/HTTP client) inside a `map`/`flatMap`.
+- Building a pipeline and forgetting to subscribe (it silently does nothing).
+- Unbounded `flatMap`, letting concurrency explode against a downstream.
+- Swallowing errors with an empty `onErrorResume` that hides real failures.
+
+### 13.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Pipeline does nothing | No subscriber | Let the framework subscribe; never build-and-drop |
+| Event loop stalls under load | Blocking call on event-loop thread | Offload to `Schedulers.boundedElastic()` |
+| Downstream overwhelmed | Unbounded `flatMap` | Pass a concurrency limit to `flatMap` |
+| `IllegalStateException: block()` | `block()` on an event-loop thread | Remove `block()`; stay reactive or use a scheduler |
+| Lost stack traces | Async hop loses context | Enable `Hooks.onOperatorDebug()` or use `checkpoint()` |
+
+### 13.13 Official references
+
+- Project Reactor reference: https://projectreactor.io/docs/core/release/reference/
+- Reactive Streams specification: https://www.reactive-streams.org/
+- Spring Framework — Reactive programming: https://docs.spring.io/spring-framework/reference/web/webflux/reactive-spring.html
+- Testing with `StepVerifier`: https://projectreactor.io/docs/core/release/reference/#testing
+
+---
+
+## Chapter 14 — Spring WebFlux and the functional/annotated models
+
+### 14.1 Introduction
+
+**Spring WebFlux** is Spring's non-blocking reactive web stack, built on Project Reactor and running on a small event-loop server (Netty by default). It is the reactive counterpart to Spring MVC and offers **two programming models**: the familiar **annotated** model (`@RestController` returning `Mono`/`Flux`) and a **functional** model (`RouterFunction` + `HandlerFunction`) where routes and handlers are plain code. This chapter shows both models, how WebFlux differs from MVC, and — crucially — **how it relates to virtual threads**, because Spring Boot 4 makes blocking-style MVC scale to high concurrency too, narrowing the cases where WebFlux is the right tool.
+
+### 14.2 Business context
+
+WebFlux exists for services dominated by I/O and concurrency: API gateways, aggregation layers, and streaming endpoints (server-sent events, live feeds) that must hold many open connections cheaply. Choosing the right stack is an architectural lever on both **cost** (fewer machines for the same throughput) and **developer productivity** (reactive code is slower to write and harder to debug). Spring Boot 4 reframes the decision: with `spring.threads.virtual.enabled=true`, a blocking MVC app serves tens of thousands of concurrent requests on virtual threads with ordinary, readable code. WebFlux now earns its place specifically where you need **streaming with backpressure** or very high **fan-out** — not merely "scalability," which virtual threads also deliver at lower complexity.
+
+### 14.3 Theoretical concepts
+
+- **Reactive web stack.** WebFlux uses non-blocking I/O and returns reactive types; the server thread is released while awaiting I/O, so a few threads serve many requests.
+- **Annotated model.** `@RestController` methods return `Mono<T>` or `Flux<T>`; the framework subscribes and writes the response as elements arrive. Streaming `Flux` to `text/event-stream` produces server-sent events.
+- **Functional model.** A `RouterFunction` maps requests to `HandlerFunction`s; handlers take a `ServerRequest` and return `Mono<ServerResponse>`. Routing is explicit, composable code — no annotations.
+- **`WebClient`.** The non-blocking HTTP client for calling downstream services from reactive code (the reactive analogue of `RestClient`).
+- **Virtual threads vs WebFlux.** Virtual threads make *blocking* code scale (MVC stays simple); WebFlux makes *non-blocking* code stream with backpressure. They solve overlapping but distinct problems.
+- **`ReactiveAdapterRegistry`.** Bridges Reactor, RxJava, and Kotlin coroutines/`Flow`, so WebFlux can accept and produce multiple reactive types; SF 7 enhances this interop.
+
+### 14.4 Architecture: two models, one reactive runtime
+
+```mermaid
+flowchart TB
+    req["Incoming request<br/>(Netty event loop)"] --> dispatch{"Programming model?"}
+    dispatch -- annotated --> ctrl["@RestController<br/>returns Mono / Flux"]
+    dispatch -- functional --> router["RouterFunction → HandlerFunction<br/>returns Mono&lt;ServerResponse&gt;"]
+    ctrl --> reactor["Reactor pipeline<br/>(non-blocking)"]
+    router --> reactor
+    reactor --> client["WebClient<br/>(downstream calls)"]
+    reactor --> resp["Stream response<br/>(JSON or text/event-stream)"]
+```
+
+```mermaid
+flowchart LR
+    req["Incoming requests"] --> mvcvt["MVC + virtual threads<br/>blocking code scales"]
+    req --> flux["WebFlux<br/>streaming + backpressure"]
+    mvcvt --> choose{"Need streaming<br/>or backpressure?"}
+    choose -- no --> keep["Stay on MVC + virtual threads<br/>(simpler)"]
+    choose -- yes --> use["Use WebFlux"]
+    flux --> use
+```
+
+### 14.5 What's New in This Version
+
+- **What changed:** virtual-thread support (matured since SF 6.1) plus SF 7's enhanced reactive/imperative interop — Kotlin `CoroutineScope` support in WebFlux and an improved `ReactiveAdapterRegistry`.
+- **Architecture impact:** WebFlux is now a deliberate choice for streaming/backpressure, not the default path to high concurrency.
+- **Impact for developers:** reach for virtual-thread MVC first; adopt WebFlux where reactive streaming genuinely helps, and mix the two more freely.
+- **Impact for enterprises:** high concurrency with simpler, lower-defect code in most services; WebFlux reserved for the endpoints that need it.
+- **Migration:** do not rewrite blocking MVC into WebFlux for "scale" — enable virtual threads instead; keep or add WebFlux for streaming-heavy endpoints.
+- **Best practices:** never block inside a WebFlux handler; use `WebClient` for downstream calls; choose the stack per workload.
+
+### 14.6 Real example
+
+**Scenario.** A market-data service must push live price ticks to many connected browser clients as a continuous stream, and also expose a simple non-blocking quote lookup.
+
+**Problem.** A request-per-tick polling design is wasteful and laggy; a blocking endpoint cannot hold thousands of long-lived streaming connections cheaply.
+
+**Solution.** Use WebFlux: stream ticks as a `Flux` over `text/event-stream` (annotated model) and expose the quote lookup with the functional `RouterFunction` model, calling downstream via `WebClient`.
+
+**Implementation.**
+
+```java
+package com.example.marketdata;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import java.time.Duration;
+
+@RestController
+@RequestMapping("/market")
+class TickController {
+
+    private final TickFeed feed;   // hot Flux<Tick> of live prices
+
+    TickController(TickFeed feed) { this.feed = feed; }
+
+    // Server-sent events: the framework subscribes and streams each tick as it arrives.
+    @GetMapping(value = "/ticks/{symbol}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    Flux<Tick> streamTicks(@PathVariable String symbol) {
+        return feed.forSymbol(symbol)
+            .takeWhile(t -> !t.halted())          // stop when trading halts
+            .timeout(Duration.ofMinutes(30));     // bound idle connections
+    }
+}
+```
+
+```java
+package com.example.marketdata;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.server.*;
+import reactor.core.publisher.Mono;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+
+@Configuration
+class QuoteRoutes {
+
+    @Bean
+    WebClient quoteClient(WebClient.Builder builder) {
+        return builder.baseUrl("https://quotes.internal").build();   // non-blocking
+    }
+
+    // Functional model: routes and handlers are plain, composable code.
+    @Bean
+    RouterFunction<ServerResponse> quoteRouter(WebClient quoteClient) {
+        return route(GET("/market/quote/{symbol}"), request -> {
+            String symbol = request.pathVariable("symbol");
+            Mono<Quote> quote = quoteClient.get()
+                .uri("/quote/{symbol}", symbol)
+                .retrieve()
+                .bodyToMono(Quote.class);
+            return ServerResponse.ok().body(quote, Quote.class);
+        });
+    }
+}
+```
+
+**Tests.**
+
+```java
+import org.springframework.test.web.reactive.server.WebTestClient;
+
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+class MarketDataTest {
+
+    @Autowired WebTestClient client;   // non-blocking test client for WebFlux
+
+    @Test
+    void quoteLookupReturnsBody() {
+        client.get().uri("/market/quote/ACME")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(Quote.class)
+            .value(q -> assertThat(q.symbol()).isEqualTo("ACME"));
+    }
+}
+```
+
+**Result.** Thousands of clients hold open SSE streams on a handful of event-loop threads, ticks flow with backpressure honored, and the quote endpoint stays non-blocking end to end via `WebClient`.
+
+**Future improvements.** Add `@ConcurrencyLimit` (Chapter 15) on the downstream `WebClient` calls, fall back to a last-known quote on timeout, and emit connection-count and tick-rate metrics to Micrometer.
+
+### 14.7 Exercises
+
+1. Contrast the annotated and functional WebFlux models; when is each clearer?
+2. Why does virtual-thread MVC remove most "we need WebFlux for scale" arguments?
+3. What `Content-Type` turns a `Flux` into a server-sent-events stream?
+
+### 14.8 Challenges
+
+- **Challenge.** Implement the same "list users" endpoint twice — once as an annotated `@RestController` returning `Flux<User>`, once as a `RouterFunction`/`HandlerFunction` — and write a `WebTestClient` test that passes against both.
+
+### 14.9 Checklist
+
+- [ ] I can choose between MVC + virtual threads and WebFlux per workload.
+- [ ] I never block inside a WebFlux handler.
+- [ ] I use `WebClient` (not a blocking client) for downstream calls in reactive code.
+- [ ] I stream collections as `Flux` and use `text/event-stream` for SSE.
+- [ ] I test reactive endpoints with `WebTestClient`.
+
+### 14.10 Best practices
+
+- Default to **MVC + virtual threads** for blocking I/O; choose WebFlux for streaming/backpressure/high fan-out.
+- Keep WebFlux handlers fully non-blocking; offload any unavoidable blocking call to a scheduler.
+- Use `WebClient` for downstream HTTP and bound idle streaming connections with `timeout`.
+- Pick **one** programming model per service for consistency, even though both can coexist.
+
+### 14.11 Anti-patterns
+
+- Adopting WebFlux for simple CRUD purely for "scalability" (use virtual threads).
+- Calling a blocking JDBC/`RestClient` inside a WebFlux handler, stalling the event loop.
+- Mixing annotated and functional models arbitrarily, confusing readers.
+- Returning a buffered `List` where a streamed `Flux` would keep memory flat.
+
+### 14.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Throughput collapses under load | Blocking call on event-loop thread | Use `WebClient`/R2DBC or offload to a scheduler |
+| SSE not streaming | Wrong content type | Produce `text/event-stream` and return a `Flux` |
+| Endpoint returns `404` in functional model | Route predicate mismatch | Verify `RouterFunction` method/path predicates |
+| Reactive type not adapted | Missing adapter | Rely on `ReactiveAdapterRegistry` / coroutine support |
+| Connections never close | No idle bound | Add `timeout`/`takeWhile` to the stream |
+
+### 14.13 Official references
+
+- Spring WebFlux reference: https://docs.spring.io/spring-framework/reference/web/webflux.html
+- Functional endpoints (`RouterFunction`): https://docs.spring.io/spring-framework/reference/web/webflux-functional.html
+- `WebClient` reference: https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html
+- Spring Framework 7.0 release notes: https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes
+
+---
+
+## Chapter 15 — Reactive data access (R2DBC) and core resilience
+
+### 15.1 Introduction
+
+A non-blocking web stack is only as reactive as its slowest dependency — and a blocking JDBC call inside a WebFlux handler stalls the event loop. **R2DBC** (Reactive Relational Database Connectivity) is the non-blocking SQL API that completes the reactive chain, exposed in Spring Data through `ReactiveCrudRepository` and the lower-level `DatabaseClient`. This chapter pairs R2DBC with **Spring Framework 7's built-in resilience** — `@Retryable`, `@ConcurrencyLimit`, and `@EnableResilientMethods` — which fold retries and bulkheads into the core framework with no external library. Together they let you build a reactive data path that survives transient faults and protects fragile downstreams, and we note where **virtual threads** make plain blocking JDBC the simpler choice instead.
+
+### 15.2 Business context
+
+End-to-end reactivity demands a reactive driver: mixing blocking JDBC into WebFlux silently caps throughput and erases the stack's benefit, so teams committed to reactive must adopt R2DBC for relational data. Separately, distributed systems fail **partially and intermittently** — a downstream blips, a packet drops, a database briefly contends — and without resilience those transient faults become user-facing errors. Building retries and concurrency limits **into the framework** removes a dependency, cuts version-conflict and CVE risk, and gives every team the same supported vocabulary, lowering both incident rates and maintenance cost. The pragmatic caveat: R2DBC is worth it only when the whole request path is reactive; if you are on **virtual-thread MVC**, ordinary JDBC blocks a virtual thread cheaply and keeps your data code simple.
+
+### 15.3 Theoretical concepts
+
+- **R2DBC.** A non-blocking, reactive SPI for SQL databases. Queries return `Mono`/`Flux`; the connection is released while awaiting results, so it fits the event-loop model.
+- **`ReactiveCrudRepository<T, ID>`.** Spring Data's reactive repository: `save`, `findById`, `findAll`, derived query methods — all returning reactive types.
+- **`DatabaseClient`.** A fluent, lower-level reactive SQL API for custom queries and explicit mapping when repositories are not enough.
+- **`@Retryable`.** Retries a method on failure. Defaults: up to **3 retries** after the initial failure, **1 second** delay. Configurable via `maxRetries`, `delay`, `multiplier` (exponential backoff), and `includes`/`excludes` (which exceptions). It also works with **reactive** return types — it decorates the Reactor pipeline.
+- **`@ConcurrencyLimit`.** Caps how many threads may execute a method concurrently — a lightweight **bulkhead**. Especially valuable with **virtual threads**, where there is no thread-pool ceiling to bound concurrency naturally.
+- **`@EnableResilientMethods`.** Placed on a `@Configuration` class to activate processing of `@Retryable` and `@ConcurrencyLimit`. A programmatic `RetryTemplate` offers the same retry semantics without annotations.
+
+### 15.4 Architecture: reactive data path with resilience
+
+```mermaid
+flowchart LR
+    handler["WebFlux handler<br/>returns Mono / Flux"] --> repo["ReactiveCrudRepository<br/>/ DatabaseClient"]
+    repo --> proxy["AOP proxy<br/>@Retryable · @ConcurrencyLimit"]
+    proxy --> r2dbc["R2DBC driver<br/>(non-blocking)"]
+    r2dbc --> db[("Relational DB")]
+    proxy -. "retry on transient error<br/>(exponential backoff)" .-> r2dbc
+```
+
+```mermaid
+flowchart TB
+    call["Reactive call"] --> cl{"@ConcurrencyLimit<br/>permit available?"}
+    cl -- no --> wait["Wait for a permit<br/>(bulkhead)"]
+    cl -- yes --> attempt{"@Retryable<br/>attempt"}
+    attempt --> target["R2DBC operation"]
+    target -- success --> ok["Emit result"]
+    target -- transient error --> left{"Retries left?"}
+    left -- yes --> backoff["delay × multiplier"] --> attempt
+    left -- no --> fail["Propagate error"]
+```
+
+### 15.5 What's New in This Version
+
+- **What changed:** Spring Framework 7 adds **core, dependency-free** resilience — `@Retryable`, `@ConcurrencyLimit`, `@EnableResilientMethods`, and a redesigned `RetryTemplate` in `spring-core`/`spring-context` — and these annotations support **reactive** return types, so they apply directly to R2DBC pipelines.
+- **Architecture impact:** resilience moves into the core programming model; fewer external libraries (Spring Retry, Resilience4j) to align and patch.
+- **Impact for developers:** declarative retries and bulkheads with one annotation, working on both blocking and reactive methods.
+- **Impact for enterprises:** a standard, supported resilience vocabulary across all services and fewer transitive-dependency CVEs.
+- **Migration:** apps using Spring Retry can move to the built-in annotations (similar semantics); Resilience4j remains an option for advanced circuit-breaking.
+- **Best practices:** retry only **idempotent** operations; pair retries with timeouts and bounded concurrency.
+
+### 15.6 Real example
+
+**Scenario.** A reactive orders service reads and writes orders through R2DBC and calls a flaky downstream ledger to record each posting; ~2% of ledger calls fail transiently, and spikes overwhelm it.
+
+**Problem.** Blocking JDBC would stall the WebFlux event loop, transient ledger failures surface as user errors, and unbounded concurrency makes the ledger worse under load.
+
+**Solution.** Use `ReactiveCrudRepository` for non-blocking persistence and apply `@Retryable` (exponential backoff) plus `@ConcurrencyLimit` to the ledger call — all built into SF 7, no external library.
+
+**Implementation.**
+
+```java
+package com.example.orders;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.resilience.annotation.EnableResilientMethods;
+
+@Configuration
+@EnableResilientMethods // activates @Retryable and @ConcurrencyLimit processing
+class ResilienceConfig { }
+```
+
+```java
+package com.example.orders;
+
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+// Reactive repository: all methods return Mono/Flux, never block.
+interface OrderRepository extends ReactiveCrudRepository<Order, String> {
+    Flux<Order> findByCustomerId(String customerId);   // derived reactive query
+}
+```
+
+```java
+package com.example.orders;
+
+import org.springframework.resilience.annotation.ConcurrencyLimit;
+import org.springframework.resilience.annotation.Retryable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+@Service
+class OrderService {
+
+    private final OrderRepository orders;
+    private final WebClient ledger;   // non-blocking downstream client
+
+    OrderService(OrderRepository orders, WebClient.Builder builder) {
+        this.orders = orders;
+        this.ledger = builder.baseUrl("https://ledger.internal").build();
+    }
+
+    public Mono<Order> place(Order order) {
+        // Persist reactively, then post to the ledger with retry + bulkhead.
+        return orders.save(order)
+            .flatMap(saved -> recordInLedger(saved).thenReturn(saved));
+    }
+
+    // Retry transient 5xx with exponential backoff; bound concurrency to protect the ledger.
+    @Retryable(
+        maxRetries = 4,
+        delay = 200,
+        multiplier = 2.0,                                  // 200ms, 400ms, 800ms, 1600ms
+        includes = { LedgerUnavailableException.class })
+    @ConcurrencyLimit(20)                                  // bulkhead — vital with virtual threads
+    Mono<Void> recordInLedger(Order order) {
+        return ledger.post()
+            .uri("/postings")
+            .bodyValue(order)
+            .retrieve()
+            .onStatus(s -> s.is5xxServerError(),
+                      resp -> Mono.error(new LedgerUnavailableException(order.id())))
+            .toBodilessEntity()
+            .then();
+    }
+}
+```
+
+**Tests.**
+
+```java
+@SpringBootTest
+class OrderServiceResilienceTest {
+
+    @Autowired OrderService service;
+
+    @Test
+    void retriesLedgerThenSucceeds() {
+        // Stub the ledger to fail twice then succeed; assert exactly 3 attempts.
+        StepVerifier.create(service.place(new Order("O-1", "C-1")))
+            .assertNext(o -> assertThat(o.id()).isEqualTo("O-1"))
+            .verifyComplete();
+    }
+
+    @Test
+    void doesNotRetryClientErrors() {
+        // A 4xx (not in 'includes') must propagate immediately, no retries.
+        StepVerifier.create(service.place(new Order("BAD", "C-1")))
+            .expectError(LedgerClientException.class)
+            .verify();
+    }
+}
+```
+
+**Result.** The data path stays non-blocking end to end, transient ledger failures recover automatically with backoff, and concurrent pressure on the ledger is capped at 20 — eliminating the cascading overload during spikes.
+
+**Future improvements.** Add a per-attempt `timeout`, emit retry and bulkhead metrics via Micrometer, consider Resilience4j circuit-breaking for sustained outages, and — if the request path is actually blocking on virtual threads — compare against plain JDBC to confirm R2DBC is pulling its weight.
+
+### 15.7 Exercises
+
+1. Why does a blocking JDBC call break a WebFlux request, and what does R2DBC change?
+2. What are the default `maxRetries` and delay for `@Retryable`, and how do you scope it to specific exceptions?
+3. Why is `@ConcurrencyLimit` especially useful with virtual threads?
+
+### 15.8 Challenges
+
+- **Challenge.** Build a reactive endpoint backed by `ReactiveCrudRepository` that calls a flaky downstream. Add `@Retryable` with exponential backoff and `@ConcurrencyLimit`, then write `StepVerifier` tests proving both the retry count and that client errors are not retried.
+
+### 15.9 Checklist
+
+- [ ] I use R2DBC (not blocking JDBC) inside reactive request paths.
+- [ ] I added `@EnableResilientMethods` to a `@Configuration` class.
+- [ ] I retry only idempotent operations and scope retries with `includes`/`excludes`.
+- [ ] I bound concurrency on calls to fragile downstreams.
+- [ ] I prefer plain JDBC when the path runs on virtual threads, not WebFlux.
+
+### 15.10 Best practices
+
+- Keep the **whole** reactive path non-blocking: reactive web + R2DBC, no JDBC in the middle.
+- Retry **idempotent** operations only; never blindly retry non-idempotent writes.
+- Use **exponential backoff with jitter** to avoid synchronized retry storms.
+- Combine retries with **timeouts** and **bounded concurrency** — resilience is a system, not one annotation.
+
+### 15.11 Anti-patterns
+
+- Calling blocking JDBC from a WebFlux handler, silently stalling the event loop.
+- Retrying everything, including 4xx client errors that will never succeed.
+- Retrying non-idempotent operations (duplicate ledger postings, double charges).
+- Unbounded concurrency on virtual threads, overwhelming a fragile downstream.
+- Self-invoking a `@Retryable` method via `this`, bypassing the proxy.
+
+### 15.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Reactive throughput caps out | Blocking JDBC in the path | Switch to R2DBC or offload to a scheduler |
+| Resilience annotations ignored | `@EnableResilientMethods` missing | Add it to a `@Configuration` class |
+| Self-invocation not retried | Internal `this` call bypasses the proxy | Call through the bean reference |
+| Retry storm | No backoff/jitter | Add `multiplier` and jitter |
+| Threads blocked | `@ConcurrencyLimit` too low | Raise the limit or add a timeout |
+
+### 15.13 Official references
+
+- Spring Data R2DBC reference: https://docs.spring.io/spring-data/relational/reference/r2dbc.html
+- R2DBC specification and drivers: https://r2dbc.io/
+- Spring Framework — Resilience features: https://docs.spring.io/spring-framework/reference/core/resilience.html
+- Core Spring resilience (blog): https://spring.io/blog/2025/09/09/core-spring-resilience-features/
+
+---
+
+> **End of Part V.** You can now build the non-blocking side of Spring Boot 4 deliberately: **Project Reactor** pipelines (`Mono`/`Flux`, operators, backpressure, no blocking on the event loop), **Spring WebFlux** in both the **annotated** and **functional** models — chosen against **virtual-thread MVC** rather than reached for by default — and a fully reactive **R2DBC** data path hardened with Spring Framework 7's built-in **`@Retryable`** and **`@ConcurrencyLimit`** under **`@EnableResilientMethods`**. **Part VI — Testing** (Chapters 16–17) shifts from building to proving: focused **slice tests** (`@WebMvcTest`, `@WebFluxTest`, `@DataR2dbcTest`) that load only the relevant part of the context, and full-stack **`@SpringBootTest` with Testcontainers** for realistic, container-backed integration tests.
+
 <!--APPEND-PARTE-II-->
