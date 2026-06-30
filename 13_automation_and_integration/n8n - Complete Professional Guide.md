@@ -3882,4 +3882,1838 @@ return {
 
 > **End of Part III.** You can now build workflows with intent: the right nodes and triggers, fluent expressions, the correct variable mechanism for each concern, reliable data mapping, deliberate error handling, and fast debugging. **Part IV — Integrations** (Chapters 21–30) puts these skills to work against the real world: REST and GraphQL APIs, webhooks, databases, message brokers (Kafka, RabbitMQ), Redis, and the AWS/Google/Microsoft service ecosystems.
 
+## Part IV – Integrations
+
+Part IV is where n8n earns its keep: connecting heterogeneous systems. We move from generic protocols (REST, GraphQL, webhooks) to data stores (databases, Redis), to event/message infrastructure (Kafka, RabbitMQ), and finally to the three hyperscaler ecosystems (AWS, Google, Microsoft). Each chapter assumes the Part III craft (items, expressions, mapping, error handling) and the Part II infrastructure (queue mode, secrets), and stays strictly within real n8n nodes and APIs.
+
+---
+
+## Chapter 21 — REST APIs
+
+### 21.1 Introduction
+
+The **HTTP Request** node is n8n's universal client: when no dedicated app node exists, it speaks any REST (or plain HTTP) API. This chapter covers it in depth — authentication, pagination, query/body building, headers, response handling, batching, and rate-limit resilience — plus when to prefer a native node over raw HTTP.
+
+### 21.2 Business context
+
+Most enterprise systems expose a REST API, but only a fraction have dedicated n8n nodes. The HTTP Request node is therefore the workhorse that unlocks the long tail of internal and niche APIs. Using it well (correct auth, pagination, retries) is what makes integrations reliable rather than demo-grade.
+
+### 21.3 Theoretical concepts
+
+- **Authentication:** the node integrates with n8n **credentials** — Header Auth, Basic, OAuth2, query-param auth — so secrets stay encrypted and out of the workflow.
+- **Pagination:** built-in pagination modes (response contains next URL, cursor, or page increment) iterate automatically until exhausted, returning all items.
+- **Request building:** query parameters, headers, and body (JSON/form/raw) can each be static or expression-driven.
+- **Response handling:** parse JSON automatically, capture full response (headers/status) when needed, and handle non-2xx via `onError`/retry.
+- **Batching & rate limits:** the node can batch requests and wait between batches; combine with retries honoring `Retry-After`.
+- **Native vs raw:** prefer a dedicated node when it exists (it handles auth/pagination/errors for you); use HTTP Request for the rest.
+
+### 21.4 Architecture
+
+```mermaid
+flowchart LR
+    trg[Trigger] --> http[HTTP Request<br/>auth + pagination]
+    http -->|credential| cred[(Encrypted credential)]
+    http -->|paginate| api[(REST API)]
+    api --> http
+    http --> map[Map/transform]
+    map --> dest[Destination]
+    http -. on error .-> retry[Retry/backoff]
+```
+
+### 21.5 Real example
+
+**Scenario.** Pull all customers from a paginated REST API (cursor-based, 100/page, rate-limited to 60 req/min) and upsert them into a database nightly.
+
+**Problem.** A naive single call fetches only the first page; firing all pages at once trips the rate limit (429).
+
+**Solution.** Use the HTTP node's cursor pagination with batching and retries honoring `Retry-After`, then upsert per item.
+
+**Implementation.** HTTP Request with pagination (next cursor from response) + retry; Postgres upsert. See JSON.
+
+**Result.** Every page fetched, rate limit respected, complete dataset upserted nightly with no manual paging.
+
+**Future improvements.** Make it incremental using a stored cursor (Chapter 17) to fetch only changes.
+
+### 21.6 Step by step
+
+1. Create a credential (e.g., Header Auth with the API key).
+2. Add HTTP Request, GET, attach the credential.
+3. Enable pagination: "next cursor" from `response.body.nextCursor`, stop when empty.
+4. Enable retry; set batching/interval to respect 60/min.
+5. Upsert results into the database.
+
+### 21.7 Complete code (HTTP node config — JSON excerpt)
+
+```json
+{
+  "parameters": {
+    "url": "https://api.example/v1/customers",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendQuery": true,
+    "queryParameters": { "parameters": [ { "name": "limit", "value": "100" } ] },
+    "options": {
+      "pagination": {
+        "pagination": {
+          "paginationMode": "updateAParameterInEachRequest",
+          "parameters": { "parameters": [ { "name": "cursor", "value": "={{ $response.body.nextCursor }}" } ] },
+          "paginationCompleteWhen": "other",
+          "completeExpression": "={{ !$response.body.nextCursor }}"
+        }
+      },
+      "batching": { "batch": { "batchSize": 1, "batchInterval": 1100 } }
+    }
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.2
+}
+```
+
+### 21.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Paginated Customer Sync",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "triggerAtHour": 3 }] } },
+      "id": "a1000001-0000-0000-0000-000000000001",
+      "name": "Nightly",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.example/v1/customers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": { "parameters": [ { "name": "limit", "value": "100" } ] },
+        "options": {
+          "pagination": { "pagination": {
+            "paginationMode": "updateAParameterInEachRequest",
+            "parameters": { "parameters": [ { "name": "cursor", "value": "={{ $response.body.nextCursor }}" } ] },
+            "paginationCompleteWhen": "other",
+            "completeExpression": "={{ !$response.body.nextCursor }}"
+          } },
+          "batching": { "batch": { "batchSize": 1, "batchInterval": 1100 } }
+        }
+      },
+      "id": "a1000002-0000-0000-0000-000000000002",
+      "name": "Fetch Customers",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "API Key" } },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "a1000003-0000-0000-0000-000000000003",
+      "name": "Split Records",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": { "__rl": true, "value": "public", "mode": "list" },
+        "table": { "__rl": true, "value": "customers", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {}, "matchingColumns": ["id"] },
+        "options": {}
+      },
+      "id": "a1000004-0000-0000-0000-000000000004",
+      "name": "Upsert Customers",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [880, 300],
+      "credentials": { "postgres": { "id": "2", "name": "Warehouse" } }
+    }
+  ],
+  "connections": {
+    "Nightly": { "main": [[{ "node": "Fetch Customers", "type": "main", "index": 0 }]] },
+    "Fetch Customers": { "main": [[{ "node": "Split Records", "type": "main", "index": 0 }]] },
+    "Split Records": { "main": [[{ "node": "Upsert Customers", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 21.9 Exercises
+
+1. Configure cursor pagination against a real paginated API and confirm all pages load.
+2. Add Header Auth via a credential and verify the key never appears in the workflow.
+3. Force a 429 and watch retry/backoff behavior.
+
+### 21.10 Challenges
+
+- **Challenge 1.** Make the sync incremental with a stored cursor so only changed records are fetched.
+- **Challenge 2.** Handle a `Retry-After` header explicitly with a Wait node loop.
+
+### 21.11 Checklist
+
+- [ ] Auth via credentials, not inline keys.
+- [ ] Pagination configured to exhaust all pages.
+- [ ] Retries + rate-limit respect in place.
+- [ ] Response parsed and mapped to the destination shape.
+- [ ] Native node used where one exists.
+
+### 21.12 Best practices
+
+- Prefer dedicated app nodes; use HTTP Request for the long tail.
+- Always paginate — never assume one page.
+- Respect rate limits with batching + `Retry-After`.
+- Keep secrets in credentials; reference via the node's auth.
+
+### 21.13 Anti-patterns
+
+- Hardcoding tokens in the URL/headers.
+- Ignoring pagination (silent data truncation).
+- No retry on transient 5xx/429.
+- Using raw HTTP where a richer native node exists.
+
+### 21.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Only first page returned | Pagination off | Configure pagination mode |
+| 401/403 | Wrong auth/credential | Fix credential; check scope |
+| 429 storms | No rate limiting | Batch + honor `Retry-After` |
+| Body rejected | Wrong content type | Set JSON/form body correctly |
+| Token in export | Inline secret | Move to a credential |
+
+### 21.15 Official references
+
+- HTTP Request node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/
+- Pagination: https://docs.n8n.io/code/cookbook/http-node/pagination/
+- Credentials: https://docs.n8n.io/credentials/
+- Built-in app nodes: https://docs.n8n.io/integrations/builtin/app-nodes/
+
+---
+
+## Chapter 22 — GraphQL
+
+### 22.1 Introduction
+
+GraphQL APIs (GitHub, Shopify, Contentful, internal gateways) need a different request shape than REST: a single endpoint, a query/mutation document, and variables. n8n's **GraphQL** node (and the HTTP Request node) handle this. This chapter covers querying, mutations, variables, pagination via cursors (Relay connections), and error handling specific to GraphQL (200-with-errors).
+
+### 22.2 Business context
+
+GraphQL lets clients fetch exactly the fields they need in one round trip — efficient for enrichment and reporting. Many modern SaaS platforms expose GraphQL as their primary API. Knowing how to drive it from n8n unlocks precise, efficient integrations that REST would require multiple calls to achieve.
+
+### 22.3 Theoretical concepts
+
+- **Single endpoint:** all operations POST to one URL; the operation is in the request body.
+- **Query vs mutation:** queries read; mutations write. Both carry **variables** passed alongside the document.
+- **Relay/cursor pagination:** connections expose `edges`, `pageInfo.hasNextPage`, and `endCursor`; iterate with the cursor.
+- **Error semantics:** GraphQL often returns **HTTP 200 with an `errors` array** — you must inspect the body, not just the status. This is the #1 GraphQL gotcha.
+- **Auth:** typically a bearer token via credentials/Header Auth.
+- **n8n GraphQL node:** lets you set endpoint, headers (credential), query, and variables; for complex cases the HTTP Request node with a JSON body works equally well.
+
+### 22.4 Architecture
+
+```mermaid
+flowchart LR
+    trg[Trigger] --> gql[GraphQL node<br/>query + variables]
+    gql -->|bearer| cred[(Token credential)]
+    gql --> api[(GraphQL endpoint)]
+    api --> check{errors[] ?}
+    check -->|yes| err[Handle GraphQL error]
+    check -->|no| data[Extract data]
+    data --> page{hasNextPage?}
+    page -->|yes| gql
+    page -->|no| out[Done]
+```
+
+### 22.5 Real example
+
+**Scenario.** Fetch all open issues from a GitHub repository (GraphQL, cursor-paginated) and create a Slack digest.
+
+**Problem.** REST would need many calls and over-fetch; GraphQL errors come back as 200 so naive success checks miss them.
+
+**Solution.** Use the GraphQL node with a paginated query, loop on `pageInfo`, and explicitly check the `errors` array before proceeding.
+
+**Implementation.** GraphQL query with variables + a Code node to detect errors and drive pagination. See JSON.
+
+**Result.** All issues fetched in minimal round trips, GraphQL errors surfaced instead of silently swallowed, and a clean Slack digest.
+
+**Future improvements.** Cache the `endCursor` to fetch only new issues incrementally.
+
+### 22.6 Step by step
+
+1. Create a bearer-token credential.
+2. Add the GraphQL node; set endpoint and the paginated query with `$cursor` variable.
+3. Add a Code node to check `errors` and read `pageInfo`.
+4. Loop until `hasNextPage` is false.
+5. Aggregate and post to Slack.
+
+### 22.7 Complete code (GraphQL query + error check)
+
+```graphql
+query($owner:String!, $repo:String!, $cursor:String) {
+  repository(owner:$owner, name:$repo) {
+    issues(first:50, states:OPEN, after:$cursor) {
+      pageInfo { hasNextPage endCursor }
+      nodes { number title createdAt }
+    }
+  }
+}
+```
+
+```javascript
+// Code node — detect GraphQL errors (HTTP 200 can still carry errors)
+if (Array.isArray($json.errors) && $json.errors.length) {
+  throw new Error('GraphQL errors: ' + JSON.stringify($json.errors));
+}
+const conn = $json.data.repository.issues;
+return [{ json: { issues: conn.nodes, hasNext: conn.pageInfo.hasNextPage, cursor: conn.pageInfo.endCursor } }];
+```
+
+### 22.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "GitHub Issues Digest (GraphQL)",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "triggerAtHour": 8 }] } },
+      "id": "b1000001-0000-0000-0000-000000000001",
+      "name": "Daily 08:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.github.com/graphql",
+        "authentication": "headerAuth",
+        "requestFormat": "graphql",
+        "query": "query($owner:String!,$repo:String!,$cursor:String){repository(owner:$owner,name:$repo){issues(first:50,states:OPEN,after:$cursor){pageInfo{hasNextPage endCursor} nodes{number title createdAt}}}}",
+        "variables": "={ \"owner\": \"n8n-io\", \"repo\": \"n8n\", \"cursor\": null }"
+      },
+      "id": "b1000002-0000-0000-0000-000000000002",
+      "name": "Query Issues",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1.1,
+      "position": [440, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "GitHub Token" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "if (Array.isArray($json.errors) && $json.errors.length) throw new Error('GraphQL: '+JSON.stringify($json.errors));\nconst c = $json.data.repository.issues;\nreturn c.nodes.map(n => ({ json: n }));"
+      },
+      "id": "b1000003-0000-0000-0000-000000000003",
+      "name": "Extract Issues",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "b1000004-0000-0000-0000-000000000004",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [880, 300]
+    }
+  ],
+  "connections": {
+    "Daily 08:00": { "main": [[{ "node": "Query Issues", "type": "main", "index": 0 }]] },
+    "Query Issues": { "main": [[{ "node": "Extract Issues", "type": "main", "index": 0 }]] },
+    "Extract Issues": { "main": [[{ "node": "Aggregate", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 22.9 Exercises
+
+1. Run a GraphQL query with variables and confirm only requested fields return.
+2. Trigger a GraphQL error and prove your error check catches the 200-with-errors case.
+3. Paginate a connection until `hasNextPage` is false.
+
+### 22.10 Challenges
+
+- **Challenge 1.** Convert the query into a mutation that closes stale issues, handling partial errors.
+- **Challenge 2.** Make the digest incremental by persisting `endCursor`.
+
+### 22.11 Checklist
+
+- [ ] Operations POST to the single endpoint with variables.
+- [ ] `errors` array checked even on HTTP 200.
+- [ ] Cursor pagination loops to completion.
+- [ ] Bearer token via credential.
+- [ ] Only needed fields requested.
+
+### 22.12 Best practices
+
+- Always inspect the `errors` array; never trust HTTP 200 alone.
+- Request minimal fields to reduce payload and cost.
+- Parameterize with variables, not string interpolation, to avoid injection.
+- Persist cursors for incremental fetches.
+
+### 22.13 Anti-patterns
+
+- Treating GraphQL 200 as success without checking `errors`.
+- String-building queries with raw user input (injection risk).
+- Over-fetching entire schemas.
+- Re-querying everything each run instead of paginating incrementally.
+
+### 22.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| "Success" but no data | Errors in 200 body | Check `errors[]` |
+| 401 | Missing/invalid token | Fix bearer credential |
+| Partial data | Stopped paginating | Loop on `pageInfo.hasNextPage` |
+| Variable not applied | Wrong variables JSON | Validate variable names/types |
+| Query rejected | Schema mismatch | Validate against the schema |
+
+### 22.15 Official references
+
+- GraphQL node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.graphql/
+- HTTP Request node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/
+- Credentials: https://docs.n8n.io/credentials/
+- Expressions: https://docs.n8n.io/code/expressions/
+
+---
+
+## Chapter 23 — Webhooks
+
+### 23.1 Introduction
+
+Webhooks are the inbound nervous system of event-driven automation: external systems push events to an n8n endpoint. This chapter goes deep on the **Webhook** node and the **Respond to Webhook** node — methods, paths, response modes, authentication, signature verification, binary uploads, and the production concerns (idempotency, fast acknowledgment, security) that separate a toy endpoint from a hardened one.
+
+### 23.2 Business context
+
+Webhooks turn n8n into a real-time integration hub: Stripe payments, GitHub pushes, form submissions, carrier updates all arrive as they happen. But an exposed webhook is an attack surface and a reliability hazard — unsigned, unauthenticated, or slow endpoints get abused or drop events. Hardening webhooks protects both data integrity and the business processes they trigger.
+
+### 23.3 Theoretical concepts
+
+- **Webhook node:** defines method, path (`/webhook/<path>` in production, test URL in the editor), and response mode.
+- **Response modes:** `onReceived` (immediate 200), `lastNode` (respond with the last node's output), or `responseNode` (use a **Respond to Webhook** node for full control of status/body/headers).
+- **Authentication:** Basic/Header auth on the node, or custom signature verification (HMAC) in a Code node.
+- **Signature verification:** providers (Stripe, GitHub) sign payloads; verify the HMAC against the raw body before trusting it.
+- **Idempotency:** treat inbound as at-least-once; dedup on an event ID (Chapter 15).
+- **Binary input:** webhooks can receive file uploads into the item's `binary`.
+- **Activation:** production endpoints require **Publish** (2.x).
+
+### 23.4 Architecture
+
+```mermaid
+flowchart LR
+    ext[External system] -->|POST signed| wh[Webhook node]
+    wh --> verify[Verify HMAC]
+    verify -->|invalid| reject[401 via Respond]
+    verify -->|valid| dedup[Dedup by event id]
+    dedup --> process[Process async]
+    process --> respond[Respond 200]
+```
+
+### 23.5 Real example
+
+**Scenario.** Receive Stripe `payment_intent.succeeded` events, verify the signature, dedup, record the payment, and respond fast.
+
+**Problem.** Without signature verification, anyone can forge payment events; without a fast 200, Stripe retries and duplicates pile up.
+
+**Solution.** Webhook node in `responseNode` mode → Code node verifies the Stripe-Signature HMAC against the raw body → dedup → respond 200 immediately, process asynchronously.
+
+**Implementation.** HMAC verification Code node + Respond to Webhook. See JSON.
+
+**Result.** Only authentic Stripe events are processed, duplicates are dropped, and Stripe receives a prompt 200 — no forged or repeated payments.
+
+**Future improvements.** Move processing to a sub-workflow triggered after the 200 to fully decouple acknowledgment from work.
+
+### 23.6 Step by step
+
+1. Add a Webhook node, POST, `responseMode: responseNode`, capture raw body.
+2. Add a Code node verifying the provider HMAC signature.
+3. Dedup on the event ID.
+4. Add a Respond to Webhook node returning 200 (or 401 on invalid signature).
+5. Publish to activate.
+
+### 23.7 Complete code (HMAC verification — Code node)
+
+```javascript
+// Verify a provider HMAC signature over the raw request body.
+// NOTE: the signing secret comes from a credential/instance var, not process.env (2.x).
+const crypto = require('crypto');
+const signature = $json.headers['x-signature'] || '';
+const secret = $vars.webhookSigningSecret;       // configured per environment
+const raw = $json.body ? JSON.stringify($json.body) : '';
+
+const expected = crypto.createHmac('sha256', secret).update(raw).digest('hex');
+const valid = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+
+if (!valid) {
+  return [{ json: { valid: false, status: 401 } }];
+}
+return [{ json: { valid: true, status: 200, event: $json.body } }];
+```
+
+### 23.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Secure Signed Webhook",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "stripe", "responseMode": "responseNode", "options": { "rawBody": true } },
+      "id": "c1000001-0000-0000-0000-000000000001",
+      "name": "Stripe Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\nconst sig = $json.headers['x-signature'] || '';\nconst secret = $vars.webhookSigningSecret;\nconst raw = JSON.stringify($json.body || {});\nconst expected = crypto.createHmac('sha256', secret).update(raw).digest('hex');\nlet valid = false;\ntry { valid = crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected)); } catch(e) {}\nreturn [{ json: { valid, status: valid ? 200 : 401, event: $json.body } }];"
+      },
+      "id": "c1000002-0000-0000-0000-000000000002",
+      "name": "Verify Signature",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.valid }}", "rightValue": true, "operator": { "type": "boolean", "operation": "equals" } } ] }
+      },
+      "id": "c1000003-0000-0000-0000-000000000003",
+      "name": "Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": { "respondWith": "text", "responseCode": 200, "responseBody": "ok" },
+      "id": "c1000004-0000-0000-0000-000000000004",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [880, 220]
+    },
+    {
+      "parameters": { "respondWith": "text", "responseCode": 401, "responseBody": "invalid signature" },
+      "id": "c1000005-0000-0000-0000-000000000005",
+      "name": "Respond 401",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [880, 380]
+    }
+  ],
+  "connections": {
+    "Stripe Webhook": { "main": [[{ "node": "Verify Signature", "type": "main", "index": 0 }]] },
+    "Verify Signature": { "main": [[{ "node": "Valid?", "type": "main", "index": 0 }]] },
+    "Valid?": { "main": [[{ "node": "Respond 200", "type": "main", "index": 0 }], [{ "node": "Respond 401", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 23.9 Exercises
+
+1. Build a webhook that returns a custom JSON body and status via Respond to Webhook.
+2. Add HMAC verification and reject a forged request with 401.
+3. Receive a file upload and access it from the item's `binary`.
+
+### 23.10 Challenges
+
+- **Challenge 1.** Decouple acknowledgment from work: respond 200 immediately, then call a sub-workflow asynchronously.
+- **Challenge 2.** Add per-IP rate limiting at the reverse proxy and document the trade-offs.
+
+### 23.11 Checklist
+
+- [ ] Production webhook activated via Publish.
+- [ ] Signature/auth verified before trusting payload.
+- [ ] Idempotency/dedup on event ID.
+- [ ] Fast acknowledgment; heavy work async.
+- [ ] Secrets in credentials/`$vars`, not inline.
+
+### 23.12 Best practices
+
+- Verify signatures with `timingSafeEqual` over the raw body.
+- Respond fast; do work asynchronously.
+- Treat all inbound as at-least-once and dedup.
+- Put the webhook behind TLS and a WAF/reverse proxy.
+
+### 23.13 Anti-patterns
+
+- Unsigned, unauthenticated public webhooks.
+- Synchronous heavy processing before responding (timeouts, retries).
+- Trusting the payload without verifying the signature.
+- Non-constant-time signature comparison (timing attacks).
+
+### 23.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Webhook 404 in prod | Not Published | Publish the workflow |
+| Signature always invalid | Body not raw / wrong secret | Use raw body; verify secret |
+| Duplicate events processed | No dedup | Dedup on event id |
+| Provider marks delivery failed | Slow response | Respond fast, process async |
+| Upload missing | Binary not captured | Enable binary handling on the node |
+
+### 23.15 Official references
+
+- Webhook node: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/
+- Respond to Webhook: https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/
+- Webhook security: https://docs.n8n.io/hosting/securing/
+- Flow logic: https://docs.n8n.io/flow-logic/
+
+---
+
+## Chapter 24 — Databases
+
+### 24.1 Introduction
+
+Databases are the most common integration target: read for enrichment, write to persist, upsert to sync. n8n's **Postgres** node (and the broader SQL/NoSQL ecosystem) is the workhorse here. This chapter covers querying, parameterized statements (to prevent SQL injection), inserts/upserts, transactions, bulk operations, and the patterns that keep database integrations fast and safe. (n8n 2.x supports Postgres/SQLite for its own store; this chapter is about connecting to *external* databases of various kinds.)
+
+### 24.2 Business context
+
+Almost every automation touches a database somewhere — to look up a customer, write an audit row, or sync records. Doing it safely (parameterized queries, upserts, transactions) and efficiently (bulk, not row-by-row) is the difference between an integration that scales and one that locks tables or, worse, opens an injection hole.
+
+### 24.3 Theoretical concepts
+
+- **Operations:** the Postgres node offers Select, Insert, Update, Upsert, and Execute Query (raw SQL with parameters).
+- **Parameterized queries:** use query parameters (`$1, $2`) instead of string interpolation — the single most important security practice to prevent SQL injection.
+- **Upsert:** insert-or-update on a matching column — the canonical sync primitive.
+- **Bulk operations:** send many items in one statement/batch rather than one query per item (huge performance difference).
+- **Transactions:** group statements so they commit or roll back together; for multi-statement integrity, use Execute Query with a transaction or a stored procedure.
+- **Connection pooling:** the n8n DB nodes pool connections; avoid exhausting the database's `max_connections` with too many concurrent workers (Chapter 9 troubleshooting).
+
+### 24.4 Architecture
+
+```mermaid
+flowchart LR
+    src[Items] --> safe[Parameterize values]
+    safe --> op{Operation}
+    op -->|read| sel[Select]
+    op -->|sync| ups[Upsert by key]
+    op -->|audit| ins[Insert]
+    ups --> db[(PostgreSQL)]
+    ins --> db
+    sel --> db
+    db --> out[Result items]
+```
+
+### 24.5 Real example
+
+**Scenario.** Sync a batch of product records from an API into a `products` table, upserting on `sku`, while writing an audit row per change — all safely and in bulk.
+
+**Problem.** A row-by-row, string-interpolated approach is slow and injection-prone; partial failures leave inconsistent state.
+
+**Solution.** Use the Postgres Upsert operation with parameterized auto-mapping (matching on `sku`), and a parameterized Execute Query for the audit insert.
+
+**Implementation.** Postgres Upsert (matching column `sku`) + parameterized audit insert. See JSON.
+
+**Result.** Fast, safe, idempotent sync; an audit trail per change; no injection surface.
+
+**Future improvements.** Wrap the upsert + audit in a transaction so they commit atomically.
+
+### 24.6 Step by step
+
+1. Add a source (HTTP) producing product items.
+2. Add a Postgres node, operation Upsert, matching column `sku`, auto-map fields.
+3. Add a second Postgres node (Execute Query) for the parameterized audit insert.
+4. Connect and test with sample data.
+
+### 24.7 Complete code (parameterized SQL)
+
+```sql
+-- Parameterized audit insert (values bound, never interpolated)
+INSERT INTO product_audit (sku, action, payload, changed_at)
+VALUES ($1, $2, $3, now());
+```
+
+```javascript
+// Code node building safe query parameters for the audit insert
+return $input.all().map(item => ({
+  json: {
+    query: 'INSERT INTO product_audit (sku, action, payload, changed_at) VALUES ($1,$2,$3,now())',
+    params: [item.json.sku, 'upsert', JSON.stringify(item.json)]
+  }
+}));
+```
+
+### 24.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Product Sync + Audit",
+  "nodes": [
+    {
+      "parameters": { "url": "https://api.example/products", "options": {} },
+      "id": "d1000001-0000-0000-0000-000000000001",
+      "name": "Fetch Products",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": { "fieldToSplitOut": "data", "options": {} },
+      "id": "d1000002-0000-0000-0000-000000000002",
+      "name": "Split",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": { "__rl": true, "value": "public", "mode": "list" },
+        "table": { "__rl": true, "value": "products", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {}, "matchingColumns": ["sku"] },
+        "options": {}
+      },
+      "id": "d1000003-0000-0000-0000-000000000003",
+      "name": "Upsert Product",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [640, 300],
+      "credentials": { "postgres": { "id": "1", "name": "App DB" } }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO product_audit (sku, action, payload, changed_at) VALUES ($1,$2,$3,now())",
+        "options": { "queryReplacement": "={{ $json.sku }},upsert,={{ JSON.stringify($json) }}" }
+      },
+      "id": "d1000004-0000-0000-0000-000000000004",
+      "name": "Audit",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [860, 300],
+      "credentials": { "postgres": { "id": "1", "name": "App DB" } }
+    }
+  ],
+  "connections": {
+    "Fetch Products": { "main": [[{ "node": "Split", "type": "main", "index": 0 }]] },
+    "Split": { "main": [[{ "node": "Upsert Product", "type": "main", "index": 0 }]] },
+    "Upsert Product": { "main": [[{ "node": "Audit", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 24.9 Exercises
+
+1. Perform an upsert keyed on a unique column and confirm idempotency.
+2. Rewrite a string-interpolated query as a parameterized one and explain why.
+3. Compare row-by-row inserts vs a bulk insert on timing.
+
+### 24.10 Challenges
+
+- **Challenge 1.** Wrap upsert + audit in a single transaction that rolls back on failure.
+- **Challenge 2.** Add a NoSQL sink (e.g., MongoDB node) writing the same records and compare modeling.
+
+### 24.11 Checklist
+
+- [ ] All queries are parameterized.
+- [ ] Sync uses Upsert on a stable key.
+- [ ] Bulk over row-by-row where possible.
+- [ ] Connection count sized vs DB `max_connections`.
+- [ ] Multi-statement integrity uses transactions.
+
+### 24.12 Best practices
+
+- Never interpolate user data into SQL; always parameterize.
+- Use Upsert for sync; Insert for append-only audit.
+- Batch writes; avoid one-query-per-item.
+- Mind worker concurrency vs DB connection limits (add a pooler if needed).
+
+### 24.13 Anti-patterns
+
+- String-built SQL with payload data (injection).
+- Row-by-row writes at volume.
+- Ignoring transactions for related writes.
+- Too many concurrent workers exhausting DB connections.
+
+### 24.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| SQL injection / odd errors | String interpolation | Parameterize queries |
+| Duplicate rows | Insert instead of Upsert | Use Upsert with a key |
+| Slow sync | Row-by-row | Bulk/batch operations |
+| "too many connections" | Worker concurrency too high | Add pooler / lower concurrency |
+| Partial writes on failure | No transaction | Wrap in a transaction |
+
+### 24.15 Official references
+
+- Postgres node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.postgres/
+- SQL injection guidance: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.postgres/#use-query-parameters
+- MongoDB node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.mongodb/
+- Supported databases (host store): https://docs.n8n.io/hosting/configuration/supported-databases-settings/
+
+---
+
+## Chapter 25 — Kafka
+
+### 25.1 Introduction
+
+Apache Kafka is the backbone of event streaming in many enterprises. n8n integrates via the **Kafka Trigger** (consume) and **Kafka** (produce) nodes, letting workflows participate in event-driven architectures: consuming topics to react to events and producing to topics to emit them. This chapter covers consumer groups, offsets, partitions, serialization, and the reliability concerns of bridging Kafka with n8n.
+
+### 25.2 Business context
+
+Kafka decouples producers from consumers at massive scale; it is the nervous system for analytics, microservice events, and CDC. n8n as a Kafka consumer/producer lets non-streaming systems and business logic plug into that backbone without writing a bespoke consumer service — accelerating event-driven integration while keeping Kafka as the durable, ordered source of truth.
+
+### 25.3 Theoretical concepts
+
+- **Topic & partitions:** messages live in topics split into partitions for parallelism and ordering (order is guaranteed per partition).
+- **Consumer group:** n8n's Kafka Trigger joins a consumer group; the group's members share partitions, enabling horizontal scale. Use a stable `groupId`.
+- **Offsets:** the position in a partition. Committing offsets marks messages as processed; n8n commits as it consumes — design for at-least-once.
+- **Producer:** the Kafka node publishes messages (key, value, headers) to a topic; the key determines the partition (and thus ordering).
+- **Serialization:** values are typically JSON or Avro/Schema Registry; n8n handles JSON natively, Avro via schema configuration.
+- **Reliability:** at-least-once delivery means consumers must be idempotent (dedup on a message key/ID).
+
+### 25.4 Architecture
+
+```mermaid
+flowchart LR
+    prod[Producers] --> topic[(Kafka topic<br/>partitions)]
+    topic --> kt[Kafka Trigger<br/>consumer group]
+    kt --> process[Process event]
+    process --> idem[Idempotent write]
+    process --> emit[Kafka producer node]
+    emit --> topic2[(Downstream topic)]
+```
+
+### 25.5 Real example
+
+**Scenario.** Consume an `orders.created` topic, enrich each order, and produce an `orders.enriched` event for downstream systems, scaling consumers with queue mode.
+
+**Problem.** A single consumer can't keep up at peak; at-least-once delivery risks double-processing on rebalances.
+
+**Solution.** Run the Kafka Trigger in a consumer group across multiple n8n workers (queue mode), make enrichment idempotent (dedup on order ID), and produce the enriched event with the order ID as the message key.
+
+**Implementation.** Kafka Trigger (group) → dedup → enrich → Kafka producer. See JSON.
+
+**Result.** Consumers scale across partitions, duplicates are absorbed by idempotency, and downstream gets ordered enriched events keyed by order ID.
+
+**Future improvements.** Add Schema Registry/Avro for contract enforcement and a dead-letter topic for poison messages.
+
+### 25.6 Step by step
+
+1. Create Kafka credentials (brokers, SASL/TLS).
+2. Add a Kafka Trigger on `orders.created` with a stable `groupId`.
+3. Dedup on order ID (Redis/DB for cross-worker safety).
+4. Enrich the order.
+5. Add a Kafka producer node to `orders.enriched`, key = order ID.
+
+### 25.7 Complete code (idempotent enrichment — Code node)
+
+```javascript
+// At-least-once → enforce idempotency before producing downstream.
+const id = $json.message?.orderId ?? $json.orderId;
+const s = $getWorkflowStaticData('global');   // for single-worker; use Redis in queue mode
+s.processed = s.processed || {};
+if (s.processed[id]) {
+  return [];   // already handled, skip
+}
+s.processed[id] = true;
+
+return [{ json: { orderId: id, enriched: true, total: Number($json.total) || 0, at: $now.toISO() } }];
+```
+
+### 25.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Kafka Enrichment Bridge",
+  "nodes": [
+    {
+      "parameters": {
+        "topic": "orders.created",
+        "groupId": "n8n-enricher",
+        "options": { "jsonParseMessage": true }
+      },
+      "id": "e1000001-0000-0000-0000-000000000001",
+      "name": "Consume Orders",
+      "type": "n8n-nodes-base.kafkaTrigger",
+      "typeVersion": 1.1,
+      "position": [220, 300],
+      "credentials": { "kafka": { "id": "1", "name": "Kafka Cluster" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const id = $json.message?.orderId ?? $json.orderId;\nconst s = $getWorkflowStaticData('global');\ns.processed = s.processed || {};\nif (s.processed[id]) return [];\ns.processed[id] = true;\nreturn [{ json: { orderId: id, enriched: true, total: Number($json.message?.total) || 0, at: $now.toISO() } }];"
+      },
+      "id": "e1000002-0000-0000-0000-000000000002",
+      "name": "Enrich (idempotent)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "topic": "orders.enriched",
+        "sendInputData": false,
+        "message": "={{ JSON.stringify($json) }}",
+        "useKey": true,
+        "key": "={{ $json.orderId }}",
+        "options": {}
+      },
+      "id": "e1000003-0000-0000-0000-000000000003",
+      "name": "Produce Enriched",
+      "type": "n8n-nodes-base.kafka",
+      "typeVersion": 1.1,
+      "position": [660, 300],
+      "credentials": { "kafka": { "id": "1", "name": "Kafka Cluster" } }
+    }
+  ],
+  "connections": {
+    "Consume Orders": { "main": [[{ "node": "Enrich (idempotent)", "type": "main", "index": 0 }]] },
+    "Enrich (idempotent)": { "main": [[{ "node": "Produce Enriched", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 25.9 Exercises
+
+1. Consume a topic with a consumer group and observe partition assignment.
+2. Produce a message with a key and confirm partition stability for that key.
+3. Re-deliver a message and prove your idempotency check skips it.
+
+### 25.10 Challenges
+
+- **Challenge 1.** Replace static-data dedup with Redis so it works across multiple workers.
+- **Challenge 2.** Add a dead-letter topic for messages that fail enrichment after retries.
+
+### 25.11 Checklist
+
+- [ ] Stable `groupId` for the consumer.
+- [ ] Idempotency enforced (at-least-once).
+- [ ] Producer keys set for ordering/partitioning.
+- [ ] SASL/TLS configured in credentials.
+- [ ] Poison messages have a dead-letter path.
+
+### 25.12 Best practices
+
+- Assume at-least-once; make every consumer idempotent.
+- Key messages meaningfully to preserve per-entity ordering.
+- Use consumer groups + queue-mode workers to scale horizontally.
+- Enforce schemas (Avro/Schema Registry) for durable contracts.
+
+### 25.13 Anti-patterns
+
+- Assuming exactly-once delivery.
+- Random/no message key (loses ordering, hot partitions).
+- Cross-worker dedup via in-process state.
+- No dead-letter for poison messages (consumer stuck).
+
+### 25.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Duplicate processing | At-least-once + no idempotency | Add dedup |
+| Consumer rebalancing loop | Unstable groupId / slow processing | Stabilize group; speed up handler |
+| Messages stuck | Poison message | Add dead-letter topic |
+| Auth failure | SASL/TLS misconfig | Fix Kafka credentials |
+| Out-of-order events | No/poor key | Key by entity ID |
+
+### 25.15 Official references
+
+- Kafka Trigger: https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.kafkatrigger/
+- Kafka node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.kafka/
+- Queue mode (scaling consumers): https://docs.n8n.io/hosting/scaling/queue-mode/
+- Error handling: https://docs.n8n.io/flow-logic/error-handling/
+
+---
+
+## Chapter 26 — RabbitMQ
+
+### 26.1 Introduction
+
+RabbitMQ is the classic message broker for task queues and request/response messaging. n8n integrates via the **RabbitMQ Trigger** (consume) and **RabbitMQ** (publish) nodes. Where Kafka is a durable log, RabbitMQ excels at flexible routing (exchanges, queues, bindings), acknowledgments, and work distribution. This chapter covers exchanges, queues, routing keys, acknowledgments (manual ack), and reliability.
+
+### 26.2 Business context
+
+RabbitMQ shines for task distribution and decoupling: a producer drops work, many consumers pull it, and acknowledgments guarantee a message isn't lost if a worker dies. n8n as a RabbitMQ consumer turns workflows into scalable task workers; as a publisher, it injects work into existing AMQP-based systems — bridging business automation with established messaging infrastructure.
+
+### 26.3 Theoretical concepts
+
+- **Exchange → binding → queue:** producers publish to an **exchange**; bindings route by **routing key** to **queues**; consumers read queues. Exchange types: direct, topic, fanout, headers.
+- **Acknowledgments:** with manual ack, a message is removed only after the consumer acks — if the consumer crashes, it is requeued (at-least-once). n8n's trigger can ack on receipt or after successful execution.
+- **Prefetch/QoS:** limits unacked messages per consumer to balance load.
+- **Durability:** durable queues + persistent messages survive broker restarts.
+- **Dead-letter exchange (DLX):** failed/rejected messages route to a DLX for inspection/replay.
+- **Idempotency:** at-least-once requires idempotent consumers.
+
+### 26.4 Architecture
+
+```mermaid
+flowchart LR
+    prod[Producer / n8n] --> ex[Exchange]
+    ex -->|routing key| q1[(Queue: tasks)]
+    q1 --> rt[RabbitMQ Trigger]
+    rt --> work[Process + ack]
+    work -->|fail| dlx[Dead-letter exchange]
+    dlx --> dq[(DLQ)]
+```
+
+### 26.5 Real example
+
+**Scenario.** Distribute document-processing tasks: a producer publishes tasks to a `documents` queue; n8n workers consume, process, and ack only on success, with failures dead-lettered.
+
+**Problem.** If a worker crashes mid-processing, the task must not be lost; permanently failing tasks must not block the queue.
+
+**Solution.** RabbitMQ Trigger with manual ack (ack after successful execution), a durable queue, and a dead-letter exchange for failures.
+
+**Implementation.** RabbitMQ Trigger (ack after execution) → process → on failure route to DLX. See JSON.
+
+**Result.** No task lost on crashes (requeued), poison tasks isolated in the DLQ, and consumers scale by adding workers.
+
+**Future improvements.** Add prefetch tuning and a DLQ replay workflow.
+
+### 26.6 Step by step
+
+1. Create RabbitMQ credentials.
+2. Declare a durable `documents` queue with a DLX bound to a `documents.dlq`.
+3. Add a RabbitMQ Trigger consuming `documents`, ack after execution.
+4. Process; on error, reject (so it routes to DLX) or let the failure requeue per policy.
+5. Scale workers.
+
+### 26.7 Complete code (process with explicit failure signal)
+
+```javascript
+// Process a document task; throw to trigger nack/DLX routing on permanent failure.
+const task = $json.content ?? $json;
+if (!task.documentId) {
+  throw new Error('Invalid task: missing documentId');   // routed to DLX
+}
+// ... do work ...
+return [{ json: { documentId: task.documentId, status: 'processed', at: $now.toISO() } }];
+```
+
+### 26.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "RabbitMQ Document Worker",
+  "nodes": [
+    {
+      "parameters": {
+        "queue": "documents",
+        "options": { "acknowledge": "executionFinishes", "jsonParseBody": true }
+      },
+      "id": "f1000001-0000-0000-0000-000000000001",
+      "name": "Consume Tasks",
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1.1,
+      "position": [220, 300],
+      "credentials": { "rabbitmq": { "id": "1", "name": "RabbitMQ" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const t = $json.content ?? $json;\nif (!t.documentId) throw new Error('Invalid task: missing documentId');\nreturn [{ json: { documentId: t.documentId, status: 'processed', at: $now.toISO() } }];"
+      },
+      "id": "f1000002-0000-0000-0000-000000000002",
+      "name": "Process Document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "queue": "documents.done",
+        "sendInputData": true,
+        "options": {}
+      },
+      "id": "f1000003-0000-0000-0000-000000000003",
+      "name": "Publish Done",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [660, 300],
+      "credentials": { "rabbitmq": { "id": "1", "name": "RabbitMQ" } }
+    }
+  ],
+  "connections": {
+    "Consume Tasks": { "main": [[{ "node": "Process Document", "type": "main", "index": 0 }]] },
+    "Process Document": { "main": [[{ "node": "Publish Done", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 26.9 Exercises
+
+1. Declare a durable queue with a DLX and route a failing message to it.
+2. Set ack "after execution" and kill a worker mid-process to see requeue.
+3. Publish to an exchange with a routing key and observe binding behavior.
+
+### 26.10 Challenges
+
+- **Challenge 1.** Build a DLQ replay workflow that reprocesses dead-lettered tasks idempotently.
+- **Challenge 2.** Tune prefetch to balance throughput vs fairness across workers.
+
+### 26.11 Checklist
+
+- [ ] Durable queues + persistent messages.
+- [ ] Manual ack after successful execution.
+- [ ] DLX/DLQ for failures.
+- [ ] Idempotent consumers (at-least-once).
+- [ ] Prefetch tuned for the workload.
+
+### 26.12 Best practices
+
+- Ack after success, not on receipt, so crashes requeue.
+- Use a DLX for poison messages; never let them block the queue.
+- Make consumers idempotent.
+- Use durable queues + persistent delivery for important work.
+
+### 26.13 Anti-patterns
+
+- Auto-ack on receipt (lost work on crash).
+- No DLX (poison message blocks consumers).
+- Non-durable queues for critical tasks.
+- Unbounded prefetch causing uneven load.
+
+### 26.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Lost messages on crash | Auto-ack on receipt | Ack after execution |
+| Queue blocked | Poison message, no DLX | Add a dead-letter exchange |
+| Messages gone after restart | Non-durable queue | Make queue durable + persistent |
+| One worker overloaded | Prefetch too high | Lower prefetch |
+| Duplicate processing | At-least-once | Add idempotency |
+
+### 26.15 Official references
+
+- RabbitMQ Trigger: https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.rabbitmqtrigger/
+- RabbitMQ node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.rabbitmq/
+- Error handling: https://docs.n8n.io/flow-logic/error-handling/
+- Queue mode: https://docs.n8n.io/hosting/scaling/queue-mode/
+
+---
+
+## Chapter 27 — Redis
+
+### 27.1 Introduction
+
+Redis is the Swiss-army knife of fast, ephemeral state. Beyond powering n8n's own queue mode, the **Redis** node lets workflows use Redis directly: caching, distributed locks, counters, rate limiting, deduplication, and pub/sub. This chapter covers the key operations and the patterns that make Redis the right tool for cross-execution and cross-worker coordination — which workflow static data cannot safely provide under concurrency.
+
+### 27.2 Business context
+
+Many production problems — "dedup across workers," "rate-limit a downstream API globally," "cache an expensive lookup" — require shared, fast state. Redis solves all three. Using it from n8n turns single-worker hacks (static data) into correct, concurrent-safe patterns, which is essential once you run queue mode at scale.
+
+### 27.3 Theoretical concepts
+
+- **Operations:** GET/SET (with TTL), INCR/DECR (atomic counters), keys, lists, sets, hashes, and pub/sub via the Redis node.
+- **Caching:** SET with TTL to memoize expensive results; GET to read; saves API calls and latency.
+- **Distributed dedup:** SET a key with NX (only if absent) + TTL to atomically claim an event ID across all workers.
+- **Distributed rate limiting:** INCR a per-window key with TTL to enforce a global limit.
+- **Distributed lock:** SET NX with TTL as a simple lock (release by deleting); for robustness use a token to avoid releasing someone else's lock.
+- **Pub/Sub:** publish/subscribe for lightweight fan-out (the Redis Trigger can subscribe).
+
+### 27.4 Architecture
+
+```mermaid
+flowchart LR
+    w1[Worker 1] --> redis[(Redis)]
+    w2[Worker 2] --> redis
+    w3[Worker N] --> redis
+    redis --> cache[Cache GET/SET TTL]
+    redis --> dedup[Dedup SET NX]
+    redis --> rate[Rate limit INCR+TTL]
+    redis --> lock[Lock SET NX token]
+```
+
+### 27.5 Real example
+
+**Scenario.** Many concurrent workers call a third-party API limited to 100 requests/minute globally; they also must not process the same event twice.
+
+**Problem.** Static-data dedup and per-worker counters fail under concurrency: workers collectively blow the rate limit and double-process events.
+
+**Solution.** Use Redis for a global per-minute counter (INCR + TTL) to gate calls, and SET NX with TTL to claim event IDs atomically across workers.
+
+**Implementation.** Redis SET NX for dedup; Redis INCR for the rate window. See JSON.
+
+**Result.** Exactly one worker processes each event; the global rate limit holds regardless of worker count.
+
+**Future improvements.** Add a token-bucket Lua script for smoother rate limiting and a circuit breaker key.
+
+### 27.6 Step by step
+
+1. Create Redis credentials.
+2. Dedup: Redis SET key `evt:<id>` with NX + TTL; if not set, it's new.
+3. Rate limit: INCR `rate:<minute>`; set TTL on first increment; gate if over limit.
+4. Proceed only when new and under limit.
+
+### 27.7 Complete code (rate-limit gate — Code node calling Redis pattern)
+
+```javascript
+// Conceptual gate; in practice use Redis nodes for INCR/EXPIRE atomically.
+// Pseudocode showing the logic the Redis nodes implement:
+//   claimed = SET evt:<id> 1 NX EX 3600     -> dedup (true if newly claimed)
+//   count   = INCR rate:<yyyymmddHHmm>       -> per-minute counter
+//   if count == 1: EXPIRE rate:<...> 60
+//   allowed = count <= 100
+const id = $json.eventId;
+const minute = $now.toFormat('yyyyLLddHHmm');
+return [{ json: { id, dedupKey: `evt:${id}`, rateKey: `rate:${minute}` } }];
+```
+
+### 27.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Redis Dedup + Rate Limit",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "gated", "responseMode": "lastNode" },
+      "id": "11000001-0000-0000-0000-000000000001",
+      "name": "Event In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=evt:{{ $json.body.eventId }}",
+        "value": "1",
+        "keyType": "string",
+        "expire": true,
+        "ttl": 3600,
+        "options": { "setIfNotExist": true }
+      },
+      "id": "11000002-0000-0000-0000-000000000002",
+      "name": "Claim Event (NX)",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [420, 300],
+      "credentials": { "redis": { "id": "1", "name": "Redis" } }
+    },
+    {
+      "parameters": {
+        "operation": "incr",
+        "key": "=rate:{{ $now.toFormat('yyyyLLddHHmm') }}",
+        "expire": true,
+        "ttl": 60
+      },
+      "id": "11000003-0000-0000-0000-000000000003",
+      "name": "Rate Counter",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [640, 300],
+      "credentials": { "redis": { "id": "1", "name": "Redis" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ Number($json.rate) }}", "rightValue": 100, "operator": { "type": "number", "operation": "lte" } } ] }
+      },
+      "id": "11000004-0000-0000-0000-000000000004",
+      "name": "Under Limit?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [860, 300]
+    }
+  ],
+  "connections": {
+    "Event In": { "main": [[{ "node": "Claim Event (NX)", "type": "main", "index": 0 }]] },
+    "Claim Event (NX)": { "main": [[{ "node": "Rate Counter", "type": "main", "index": 0 }]] },
+    "Rate Counter": { "main": [[{ "node": "Under Limit?", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 27.9 Exercises
+
+1. Cache an expensive lookup with SET+TTL and serve subsequent calls from GET.
+2. Implement cross-worker dedup with SET NX and prove a duplicate is rejected.
+3. Build a per-minute rate counter with INCR+EXPIRE.
+
+### 27.10 Challenges
+
+- **Challenge 1.** Implement a token-bucket limiter using a Lua script for atomicity.
+- **Challenge 2.** Build a distributed lock with a token and safe release, and use it to serialize a critical section.
+
+### 27.11 Checklist
+
+- [ ] Shared state lives in Redis, not static data, under concurrency.
+- [ ] Dedup uses SET NX + TTL.
+- [ ] Rate limiting uses atomic INCR + EXPIRE.
+- [ ] Caches have sensible TTLs.
+- [ ] Locks use tokens and TTLs.
+
+### 27.12 Best practices
+
+- Use Redis for any cross-worker coordination (dedup, rate, lock, cache).
+- Always set TTLs to avoid unbounded growth.
+- Prefer atomic operations (NX, INCR, Lua) over read-modify-write races.
+- Co-locate Redis near workers for low latency.
+
+### 27.13 Anti-patterns
+
+- Static data for cross-worker dedup/locks (races).
+- Keys without TTL (memory leak).
+- Non-atomic read-modify-write for counters/locks.
+- Treating Redis as a durable system of record.
+
+### 27.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Dedup fails across workers | Static data, not Redis | Use SET NX |
+| Rate limit exceeded | Per-worker counters | Global INCR in Redis |
+| Redis memory grows | Missing TTLs | Add EXPIRE to keys |
+| Lock not released | No TTL/crash | TTL + token-based release |
+| Race conditions | Non-atomic ops | Use atomic/Lua operations |
+
+### 27.15 Official references
+
+- Redis node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.redis/
+- Redis Trigger: https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.redistrigger/
+- Queue mode (Redis): https://docs.n8n.io/hosting/scaling/queue-mode/
+- Concurrency: https://docs.n8n.io/hosting/scaling/concurrency-control/
+
+---
+
+## Chapter 28 — AWS Services
+
+### 28.1 Introduction
+
+n8n ships dedicated nodes for the AWS ecosystem: **S3**, **SQS**, **SNS**, **DynamoDB**, **Lambda**, **SES**, **Textract**, **Rekognition**, **Bedrock**, and more, plus the generic AWS credential that the HTTP Request node can use to sign requests to any AWS API. This chapter shows how to orchestrate AWS services from workflows — storage, queues, serverless, and AI — using IAM-scoped credentials.
+
+### 28.2 Business context
+
+Most enterprises already run on AWS. n8n becomes the orchestration glue that wires AWS services to business logic and external systems: drop a file in S3, fan out via SNS, queue work in SQS, invoke a Lambda, run Textract on an upload. This avoids writing bespoke Lambda glue for every cross-service flow and keeps the orchestration visible and versionable.
+
+### 28.3 Theoretical concepts
+
+- **AWS credential:** a single n8n AWS credential (access key/secret or assumed role) signs requests for all AWS nodes; scope it with least-privilege IAM.
+- **S3:** object storage — upload/download/list; ideal for binary data offload (Chapter 9).
+- **SQS:** managed queue — send/receive/delete messages; n8n can produce and (via polling) consume.
+- **SNS:** pub/sub fan-out to subscribers (including SQS, Lambda, HTTP).
+- **Lambda:** invoke functions synchronously/asynchronously for heavy or specialized compute.
+- **AI services:** Textract (OCR), Rekognition (vision), Comprehend (NLP), and **Bedrock** (LLMs) via dedicated nodes or the AWS-signed HTTP node.
+- **Least privilege:** grant only the specific actions/resources the workflow needs.
+
+### 28.4 Architecture
+
+```mermaid
+flowchart LR
+    trg[Trigger] --> s3[AWS S3 upload]
+    s3 --> tex[AWS Textract]
+    tex --> proc[Transform]
+    proc --> sqs[AWS SQS send]
+    proc --> lam[AWS Lambda invoke]
+    cred[(AWS credential<br/>least-privilege IAM)] -.-> s3
+    cred -.-> tex
+    cred -.-> sqs
+    cred -.-> lam
+```
+
+### 28.5 Real example
+
+**Scenario.** Invoices arrive as PDFs; the flow stores them in S3, runs Textract OCR, normalizes the result, and queues a posting job in SQS for the ERP integration to consume.
+
+**Problem.** A bespoke Lambda pipeline for this is overkill and opaque to the business; manual OCR doesn't scale.
+
+**Solution.** An n8n workflow: S3 upload → Textract → normalize → SQS send, all with one least-privilege AWS credential.
+
+**Implementation.** S3 + Textract + SQS nodes. See JSON.
+
+**Result.** Invoices OCR'd and queued automatically, the pipeline visible and editable by the integration team, and IAM tightly scoped.
+
+**Future improvements.** Add a confidence gate routing low-confidence OCR to human review (Chapter 5 pattern).
+
+### 28.6 Step by step
+
+1. Create an IAM user/role with S3, Textract, and SQS permissions only.
+2. Add the AWS credential in n8n.
+3. S3 upload the PDF; Textract analyze it.
+4. Normalize the extraction.
+5. SQS send the posting job.
+
+### 28.7 Complete code (normalize Textract — Code node)
+
+```javascript
+// Reduce Textract blocks to a flat invoice contract for the ERP queue.
+const blocks = $json.Blocks ?? [];
+const lines = blocks.filter(b => b.BlockType === 'LINE').map(b => b.Text);
+return [{
+  json: {
+    source: 's3',
+    rawLineCount: lines.length,
+    text: lines.join('\n'),
+    extractedAt: $now.toISO()
+  }
+}];
+```
+
+### 28.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Invoice OCR to SQS",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "invoice-upload", "responseMode": "onReceived", "options": { "binaryData": true } },
+      "id": "21000001-0000-0000-0000-000000000001",
+      "name": "Upload In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "invoices-inbox",
+        "fileName": "=incoming/{{ $now.toFormat('yyyyLLdd-HHmmss') }}.pdf",
+        "binaryPropertyName": "data"
+      },
+      "id": "21000002-0000-0000-0000-000000000002",
+      "name": "Store in S3",
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [420, 300],
+      "credentials": { "aws": { "id": "1", "name": "AWS least-priv" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const blocks = $json.Blocks ?? [];\nconst lines = blocks.filter(b => b.BlockType==='LINE').map(b => b.Text);\nreturn [{ json: { text: lines.join('\\n'), lineCount: lines.length, at: $now.toISO() } }];"
+      },
+      "id": "21000003-0000-0000-0000-000000000003",
+      "name": "Normalize OCR",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "queue": "erp-posting",
+        "messageBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "21000004-0000-0000-0000-000000000004",
+      "name": "Queue for ERP",
+      "type": "n8n-nodes-base.awsSqs",
+      "typeVersion": 1,
+      "position": [860, 300],
+      "credentials": { "aws": { "id": "1", "name": "AWS least-priv" } }
+    }
+  ],
+  "connections": {
+    "Upload In": { "main": [[{ "node": "Store in S3", "type": "main", "index": 0 }]] },
+    "Store in S3": { "main": [[{ "node": "Normalize OCR", "type": "main", "index": 0 }]] },
+    "Normalize OCR": { "main": [[{ "node": "Queue for ERP", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 28.9 Exercises
+
+1. Upload and download an object via the S3 node.
+2. Send and receive a message through SQS.
+3. Invoke a Lambda synchronously and use its response downstream.
+
+### 28.10 Challenges
+
+- **Challenge 1.** Add a Bedrock node call to summarize the OCR text before queuing.
+- **Challenge 2.** Replace one node with an AWS-signed HTTP Request to an API lacking a native node.
+
+### 28.11 Checklist
+
+- [ ] One least-privilege AWS credential per scope.
+- [ ] Binary offloaded to S3, not the DB.
+- [ ] Queues used to decouple stages.
+- [ ] AI services scoped to needed actions.
+- [ ] No long-lived keys where roles suffice.
+
+### 28.12 Best practices
+
+- Scope IAM to exact actions/resources; prefer assumed roles.
+- Use S3 for binary, SQS/SNS to decouple, Lambda for heavy compute.
+- Keep credentials in n8n's vault; rotate regularly.
+- Co-locate n8n in the same region to cut latency/egress.
+
+### 28.13 Anti-patterns
+
+- A single admin AWS credential reused everywhere.
+- Processing big files in-memory instead of S3.
+- Synchronous Lambda for long jobs (timeouts) — use async/queue.
+- Hardcoded keys outside the credential vault.
+
+### 28.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| AccessDenied | IAM too narrow/wrong | Grant the specific action |
+| Region errors | Wrong region in node | Set correct region |
+| Lambda timeout | Long job sync-invoked | Invoke async / use a queue |
+| Large file failures | In-memory handling | Offload to S3 |
+| Throttling | Service rate limits | Backoff + batch |
+
+### 28.15 Official references
+
+- AWS nodes: https://docs.n8n.io/integrations/builtin/app-nodes/ (AWS section)
+- AWS credentials: https://docs.n8n.io/integrations/builtin/credentials/aws/
+- S3 node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.awss3/
+- HTTP node (AWS signed): https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/
+
+---
+
+## Chapter 29 — Google Services
+
+### 29.1 Introduction
+
+n8n integrates deeply with Google: **Sheets**, **Drive**, **Gmail**, **Calendar**, **BigQuery**, **Cloud Storage**, **Pub/Sub**, and **Vertex AI / Gemini**. Authentication is via **OAuth2** (user-delegated) or a **service account** (server-to-server). This chapter shows the common business-automation patterns (Sheets as a lightweight database, Gmail triggers, Drive file ops) and the data/AI patterns (BigQuery, Vertex).
+
+### 29.2 Business context
+
+Google Workspace is the operational fabric of countless teams: spreadsheets as databases, Gmail as an event source, Drive as document storage. n8n turning these into automation endpoints unlocks enormous low-effort value (the classic "Sheet → process → notify" flow), while BigQuery/Vertex enable serious data and AI pipelines (Chapter 11).
+
+### 29.3 Theoretical concepts
+
+- **OAuth2 vs service account:** OAuth2 acts as a user (good for personal Gmail/Drive); a service account acts as itself (good for server automation, BigQuery, shared resources via domain-wide delegation).
+- **Sheets:** read/append/update rows; a popular lightweight datastore and human-in-the-loop UI.
+- **Gmail trigger:** polling trigger for new emails (with dedup built in).
+- **Drive:** upload/download/list/move files; binary handling.
+- **BigQuery:** insert/query large datasets — the analytics sink for pipelines.
+- **Vertex AI / Gemini:** LLM calls within Google Cloud (Part V revisits Gemini in depth).
+- **Scopes:** request least-privilege OAuth scopes.
+
+### 29.4 Architecture
+
+```mermaid
+flowchart LR
+    gt[Gmail Trigger] --> parse[Parse email]
+    parse --> sheet[Google Sheets append]
+    parse --> drive[Drive: save attachment]
+    sheet --> bq[BigQuery insert]
+    cred[(Google credential<br/>OAuth2 / service account)] -.-> gt
+    cred -.-> sheet
+    cred -.-> drive
+    cred -.-> bq
+```
+
+### 29.5 Real example
+
+**Scenario.** Incoming support emails should be logged to a Google Sheet (for the ops team), attachments saved to Drive, and a row inserted into BigQuery for analytics.
+
+**Problem.** Manual triage doesn't scale; the team wants a live Sheet and an analytics record without bespoke code.
+
+**Solution.** Gmail Trigger → parse → Sheets append + Drive upload + BigQuery insert, one Google credential.
+
+**Implementation.** Gmail Trigger + Sheets + Drive + BigQuery nodes. See JSON (abridged to Sheets path).
+
+**Result.** Every support email is logged to a live Sheet, attachments archived in Drive, and analytics rows land in BigQuery — zero manual triage.
+
+**Future improvements.** Add a Gemini classification step to tag urgency before logging.
+
+### 29.6 Step by step
+
+1. Create a Google credential (OAuth2 for Gmail; service account for BigQuery).
+2. Add a Gmail Trigger for new emails.
+3. Parse subject/sender/body.
+4. Append a row to the Sheet; upload any attachment to Drive.
+5. Insert a row into BigQuery.
+
+### 29.7 Complete code (parse email — Code node)
+
+```javascript
+// Normalize a Gmail item into a flat log record.
+const m = $json;
+return [{
+  json: {
+    from: m.from?.value?.[0]?.address ?? m.from ?? null,
+    subject: m.subject ?? '(no subject)',
+    receivedAt: m.date ?? $now.toISO(),
+    snippet: (m.text ?? '').slice(0, 280)
+  }
+}];
+```
+
+### 29.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Support Email Logger",
+  "nodes": [
+    {
+      "parameters": { "pollTimes": { "item": [{ "mode": "everyMinute" }] }, "simple": false, "filters": {} },
+      "id": "31000001-0000-0000-0000-000000000001",
+      "name": "New Email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 300],
+      "credentials": { "gmailOAuth2": { "id": "1", "name": "Support Gmail" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const m = $json;\nreturn [{ json: { from: m.from?.value?.[0]?.address ?? m.from ?? null, subject: m.subject ?? '(no subject)', receivedAt: m.date ?? $now.toISO(), snippet: (m.text ?? '').slice(0,280) } }];"
+      },
+      "id": "31000002-0000-0000-0000-000000000002",
+      "name": "Parse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SHEET_ID", "mode": "list" },
+        "sheetName": { "__rl": true, "value": "Inbox", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {} },
+        "options": {}
+      },
+      "id": "31000003-0000-0000-0000-000000000003",
+      "name": "Append to Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [640, 300],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "2", "name": "Ops Sheets" } }
+    }
+  ],
+  "connections": {
+    "New Email": { "main": [[{ "node": "Parse", "type": "main", "index": 0 }]] },
+    "Parse": { "main": [[{ "node": "Append to Sheet", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 29.9 Exercises
+
+1. Append and then read back a row from Google Sheets.
+2. Trigger on a new Gmail message and confirm dedup (no reprocessing).
+3. Insert a row into BigQuery from a workflow.
+
+### 29.10 Challenges
+
+- **Challenge 1.** Add a Gemini classification step that tags each email's urgency before logging.
+- **Challenge 2.** Use a service account with domain-wide delegation to read a shared mailbox.
+
+### 29.11 Checklist
+
+- [ ] Right auth model (OAuth2 vs service account) per service.
+- [ ] Least-privilege scopes.
+- [ ] Gmail trigger dedup working.
+- [ ] Sheets used appropriately (not as a high-volume DB).
+- [ ] BigQuery for analytics-scale data.
+
+### 29.12 Best practices
+
+- Use service accounts for server automation and shared resources; OAuth2 for personal data.
+- Request minimal scopes.
+- Treat Sheets as a lightweight datastore/UI, not a transactional DB.
+- Send big/analytics data to BigQuery, not Sheets.
+
+### 29.13 Anti-patterns
+
+- Sheets as a high-volume transactional database (rate limits, locks).
+- Over-broad OAuth scopes.
+- Service-account keys outside the credential vault.
+- Polling Gmail too aggressively (quota burn).
+
+### 29.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| 403 from Google API | Missing scope/permission | Add scope; share resource |
+| Sheets quota errors | Too many writes | Batch; move to BigQuery |
+| Gmail reprocessing | Dedup misconfig | Use the trigger's dedup correctly |
+| BigQuery insert denied | Service account lacks role | Grant `bigquery.dataEditor` |
+| OAuth token expired | Refresh failure | Re-auth the credential |
+
+### 29.15 Official references
+
+- Google nodes: https://docs.n8n.io/integrations/builtin/app-nodes/ (Google section)
+- Google credentials: https://docs.n8n.io/integrations/builtin/credentials/google/
+- Google Sheets node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/
+- Gmail Trigger: https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.gmailtrigger/
+
+---
+
+## Chapter 30 — Microsoft Services
+
+### 30.1 Introduction
+
+n8n integrates with the Microsoft 365 / Azure ecosystem: **Outlook**, **Microsoft Teams**, **SharePoint**, **OneDrive**, **Excel 365**, **Microsoft To Do**, and **Azure** services, mostly through the **Microsoft Graph API** via OAuth2 (and **Entra ID** for identity). This chapter covers the common enterprise patterns — Outlook triggers, Teams notifications, SharePoint/OneDrive file ops, Excel as data — and the auth nuances (delegated vs application permissions).
+
+### 30.2 Business context
+
+For Microsoft-centric enterprises, automation lives in Teams, Outlook, and SharePoint. n8n turning these into endpoints means approvals in Teams, email-driven workflows in Outlook, and document automation in SharePoint — all within the same identity and compliance boundary (Entra ID), which simplifies governance (Chapter 49) and SSO (Chapter 48).
+
+### 30.3 Theoretical concepts
+
+- **Microsoft Graph:** the unified API behind most M365 services; n8n's Microsoft nodes call it under the hood.
+- **Delegated vs application permissions:** delegated acts as a signed-in user; application permissions act as the app itself (daemon/service scenarios) and require admin consent.
+- **Outlook:** trigger on new mail; send mail; manage folders.
+- **Teams:** post messages/cards to channels or chats — the canonical enterprise notification/approval surface.
+- **SharePoint/OneDrive:** list/upload/download documents; binary handling.
+- **Excel 365:** read/write workbook ranges via Graph (different from CSV Excel).
+- **Entra ID:** the identity provider; app registrations define permissions and consent.
+
+### 30.4 Architecture
+
+```mermaid
+flowchart LR
+    ot[Outlook Trigger] --> route{Classify}
+    route -->|approval| teams[Teams: post card]
+    route -->|doc| sp[SharePoint: save file]
+    teams --> wait[Wait for response]
+    cred[(Microsoft credential<br/>OAuth2 via Entra ID)] -.-> ot
+    cred -.-> teams
+    cred -.-> sp
+```
+
+### 30.5 Real example
+
+**Scenario.** When a purchase-request email arrives in a shared Outlook mailbox, post an approval card to a Teams channel; on approval, save the request document to SharePoint and notify the requester.
+
+**Problem.** Approvals over email are slow and untracked; documents scatter across inboxes.
+
+**Solution.** Outlook Trigger → Teams approval card → on approval, SharePoint upload + Outlook reply, all under one Entra-registered app.
+
+**Implementation.** Outlook Trigger + Teams + SharePoint nodes. See JSON (abridged to the notification path).
+
+**Result.** Approvals happen in Teams with a clear audit trail; approved documents land in SharePoint automatically; requesters get notified — all within the M365 boundary.
+
+**Future improvements.** Replace the simple card with an adaptive card capturing structured approval data, and log decisions to a SharePoint list.
+
+### 30.6 Step by step
+
+1. Register an app in Entra ID with the needed Graph permissions; grant admin consent.
+2. Create the Microsoft OAuth2 credential in n8n.
+3. Add an Outlook Trigger on the shared mailbox.
+4. Post an approval message/card to Teams.
+5. On approval, upload to SharePoint and reply via Outlook.
+
+### 30.7 Complete code (build Teams card payload — Code node)
+
+```javascript
+// Build a concise approval message for Teams from the Outlook item.
+const m = $json;
+return [{
+  json: {
+    text: `**Purchase request** from ${m.from?.emailAddress?.address ?? 'unknown'}\n` +
+          `Subject: ${m.subject ?? '(none)'}\n` +
+          `Received: ${m.receivedDateTime ?? $now.toISO()}`,
+    requestId: m.id
+  }
+}];
+```
+
+### 30.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Purchase Approval to Teams",
+  "nodes": [
+    {
+      "parameters": { "pollTimes": { "item": [{ "mode": "everyMinute" }] }, "filters": {}, "options": {} },
+      "id": "41000001-0000-0000-0000-000000000001",
+      "name": "New Outlook Mail",
+      "type": "n8n-nodes-base.microsoftOutlookTrigger",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "credentials": { "microsoftOutlookOAuth2Api": { "id": "1", "name": "Shared Mailbox" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const m = $json;\nreturn [{ json: { text: '**Purchase request** from ' + (m.from?.emailAddress?.address ?? 'unknown') + '\\nSubject: ' + (m.subject ?? '(none)'), requestId: m.id } }];"
+      },
+      "id": "41000002-0000-0000-0000-000000000002",
+      "name": "Build Card",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "resource": "channelMessage",
+        "operation": "create",
+        "teamId": { "__rl": true, "value": "TEAM_ID", "mode": "list" },
+        "channelId": { "__rl": true, "value": "CHANNEL_ID", "mode": "list" },
+        "messageType": "text",
+        "message": "={{ $json.text }}"
+      },
+      "id": "41000003-0000-0000-0000-000000000003",
+      "name": "Post to Teams",
+      "type": "n8n-nodes-base.microsoftTeams",
+      "typeVersion": 2,
+      "position": [640, 300],
+      "credentials": { "microsoftTeamsOAuth2Api": { "id": "2", "name": "Approvals Teams" } }
+    }
+  ],
+  "connections": {
+    "New Outlook Mail": { "main": [[{ "node": "Build Card", "type": "main", "index": 0 }]] },
+    "Build Card": { "main": [[{ "node": "Post to Teams", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 30.9 Exercises
+
+1. Trigger on a new Outlook email and post a summary to Teams.
+2. Upload and list a file in SharePoint/OneDrive.
+3. Read and write a range in an Excel 365 workbook.
+
+### 30.10 Challenges
+
+- **Challenge 1.** Replace the text message with an adaptive card capturing structured approval input.
+- **Challenge 2.** Use application permissions (admin-consented) to run the flow without a signed-in user.
+
+### 30.11 Checklist
+
+- [ ] Entra app registered with least-privilege Graph permissions.
+- [ ] Correct delegated vs application permission model.
+- [ ] Admin consent granted where needed.
+- [ ] Teams used for notifications/approvals.
+- [ ] Documents stored in SharePoint/OneDrive, not inboxes.
+
+### 30.12 Best practices
+
+- Choose delegated vs application permissions deliberately; minimize scopes.
+- Centralize approvals in Teams with an audit trail.
+- Store documents in SharePoint with metadata, not as email attachments.
+- Keep everything under one Entra app for governance.
+
+### 30.13 Anti-patterns
+
+- Over-broad Graph permissions / admin-consenting everything.
+- Email-only approvals with no audit trail.
+- Documents scattered across personal inboxes.
+- Mixing personal OAuth with service automation needs.
+
+### 30.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| 403 from Graph | Missing permission/consent | Add scope + admin consent |
+| Trigger sees no mail | Wrong mailbox/permission | Verify mailbox + delegated access |
+| Teams post fails | Wrong team/channel ID | Re-select team/channel |
+| Excel range error | Wrong workbook/sheet | Validate IDs/ranges |
+| Token expired | Refresh failure | Re-auth credential |
+
+### 30.15 Official references
+
+- Microsoft nodes: https://docs.n8n.io/integrations/builtin/app-nodes/ (Microsoft section)
+- Microsoft credentials: https://docs.n8n.io/integrations/builtin/credentials/microsoft/
+- Microsoft Teams node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams/
+- Microsoft Graph: https://learn.microsoft.com/graph/
+
+---
+
+> **End of Part IV.** You can now integrate n8n with the real world: any REST or GraphQL API, hardened webhooks, databases (safely and in bulk), event/message infrastructure (Kafka, RabbitMQ), Redis for concurrent-safe coordination, and the AWS, Google, and Microsoft ecosystems. **Part V — Generative AI and Agents** (Chapters 31–40) builds on these integrations to create AI-powered automations: OpenAI, Claude, Gemini, MCP, RAG, vectors, LangChain, single and multi-agent systems, and enterprise AI workflows.
+
 <!--APPEND-PARTE-II-->
