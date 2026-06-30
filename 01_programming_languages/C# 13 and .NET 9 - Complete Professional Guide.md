@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–II (Ch. 1–6). **In progress:** Parts III–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–III (Ch. 1–8). **In progress:** Parts IV–VIII.
 
 ---
 
@@ -842,4 +842,223 @@ public sealed class Checkout(IPaymentGateway gateway)
 
 > **End of Part II.** C#'s object model: **classes** encapsulate state behind constructors and validating **properties** (`init`/`required`); **inheritance** with `virtual`/`abstract`/`override` provides polymorphism for genuine specialization; and **interfaces** (with default implementations) plus **composition** keep designs decoupled and testable. Part III covers **records and pattern matching** — value-equality types and expressive `switch`.
 
-<!--APPEND-PART-III-->
+---
+
+## Part III – Records & Pattern Matching
+
+Part II built the class-based object model. Part III covers two features that make C# concise and expressive for data: **records** (reference or value types with built-in value equality and immutability) and **pattern matching** (testing and deconstructing data with `switch` expressions).
+
+---
+
+## Chapter 7 — Records, `init` setters, and value equality
+
+### 7.1 Introduction
+
+A **record** is a type whose identity is its **data**: two records are equal when their members are equal (value equality), not when they're the same reference. Declared positionally (`record Point(int X, int Y);`) the compiler generates the constructor, read-only properties, value-based `Equals`/`GetHashCode`, a readable `ToString`, and a deconstructor. Records are **immutable** by default (init-only properties) and support **`with`-expressions** for non-destructive copies. `record class` is a reference type; `record struct` is a value type — both with value equality.
+
+### 7.2 Business context
+
+Most domains are full of data that should be compared by value and never mutated: money, coordinates, DTOs, events. Modeling these as classes means hand-writing `Equals`, `GetHashCode`, and copy logic — tedious and bug-prone (a forgotten field breaks equality or hashing silently). Records remove that boilerplate and make immutability the default, which eliminates whole classes of aliasing bugs (no one can mutate a shared value) and makes objects safe to use as dictionary keys or in sets. Less code, fewer bugs, clearer intent.
+
+### 7.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    decl["record Point(int X, int Y)"] --> gen["compiler generates: ctor, init props, Equals/GetHashCode, ToString, Deconstruct"]
+    gen --> eq["value equality: equal members => equal records"]
+    gen --> withx["with-expression: copy + change a few members"]
+```
+
+A positional record generates everything that makes a value type ergonomic. **Value equality** compares all members; **`with`** produces a modified copy leaving the original untouched (`p with { X = 5 }`). Properties are **`init`-only**, so instances are immutable after construction. Choose **`record struct`** for small values that should live on the stack and **`record class`** for larger or reference-shared data; both keep value semantics for equality.
+
+### 7.4 Architecture: immutable values, non-destructive updates
+
+```mermaid
+flowchart LR
+    orig["original record (unchanged)"] -->|"with { Field = new }"| copy["modified copy"]
+    note["State changes produce new values; nothing is mutated in place"]
+```
+
+Treating data as immutable records turns "updates" into new values, which makes reasoning and concurrency safer — there's no shared mutable state to corrupt.
+
+### 7.5 Real example
+
+**Scenario.** Model money that must be value-compared, immutable, and easy to "change" safely.
+
+**Problem.** A class would need hand-written equality/hashing and could be mutated by any holder.
+
+**Solution.** A `record` gives value equality, immutability, and `with`-based updates for free.
+
+**Implementation.**
+
+```csharp
+public record Money(decimal Amount, string Currency)
+{
+    public Money Add(decimal more) => this with { Amount = Amount + more }; // non-destructive copy
+}
+
+var a = new Money(10m, "BRL");
+var b = new Money(10m, "BRL");
+Console.WriteLine(a == b);          // True — value equality (generated)
+var c = a.Add(5m);                  // new Money(15, BRL); 'a' unchanged
+Console.WriteLine(a.Amount);        // 10 — original is immutable
+```
+
+**Result.** `Money` compares by value (so `a == b`), can't be mutated (so it's safe to share and use as a key), and "changes" via `with` produce new values. None of `Equals`, `GetHashCode`, `ToString`, or copy logic was hand-written — the record generated it correctly.
+
+**Future improvements.** Use `record struct` if the value is small and allocation matters; add validation in the record body (e.g., reject empty currency) since records can still have constructors/bodies.
+
+### 7.6 Exercises
+
+1. What does a positional record generate for you?
+2. How does a `with`-expression differ from mutating a property?
+3. When would you choose `record struct` over `record class`?
+
+### 7.7 Challenges
+
+- **Challenge.** Model a `DateRange(DateOnly Start, DateOnly End)` record; add a method returning a new range extended by N days using `with`, and confirm two equal ranges compare equal.
+
+### 7.8 Checklist
+
+- [ ] I use records for data compared by value.
+- [ ] I rely on generated equality/hashing instead of hand-writing it.
+- [ ] I update immutable records with `with`-expressions.
+- [ ] I pick `record struct` vs `record class` by size/semantics.
+
+### 7.9 Best practices
+
+- Default to records for DTOs, value objects, and events.
+- Keep records immutable; model changes as new values.
+- Add validation in the record body where invariants matter.
+
+### 7.10 Anti-patterns
+
+- Mutable records with public setters (defeats value semantics).
+- Hand-written `Equals`/`GetHashCode` where a record would suffice.
+- Using a class with value-like semantics and forgetting to override equality.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Two "equal" objects aren't equal | Class with no value equality | Use a record (or override Equals/GetHashCode) |
+| Shared instance mutated unexpectedly | Mutable type | Use an immutable record + `with` |
+| Wrong hashing as a dictionary key | Mutable/by-reference equality | Use an immutable record |
+
+### 7.12 References
+
+- Microsoft, "Records (C# reference)": https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/record.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 8 — Pattern matching, `switch` expressions, and deconstruction
+
+### 8.1 Introduction
+
+**Pattern matching** tests the shape and content of data and binds parts of it in one step. C# supports **type** patterns (`is Circle c`), **property** patterns (`{ Status: Active }`), **relational** patterns (`> 100`), **logical** patterns (`and`/`or`/`not`), and **list** patterns (`[first, .., last]`). The **`switch` expression** turns these into a concise value-producing form, and **deconstruction** pulls a type apart into variables (`var (x, y) = point;`). Together they replace long `if`/`else` and `switch`-statement chains with expressive, exhaustive code.
+
+### 8.2 Business context
+
+Branching on the kind and content of data is everywhere — pricing tiers, state machines, parsing, request routing. Written as nested `if`/`else`, it's verbose and easy to get wrong (a missed case, a wrong cast). Pattern matching makes the branches **declarative** and lets the compiler warn about non-exhaustive `switch` expressions, catching missing cases at build time. The result is less code, fewer casting bugs, and logic that reads close to the business rules it encodes.
+
+### 8.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    val["input value"] --> sw["switch expression"]
+    sw --> p1["type/property/relational/logical pattern -> result"]
+    sw --> p2["another pattern -> result"]
+    sw --> def["_ (discard) -> default result"]
+    note["Compiler warns if cases aren't exhaustive"]
+```
+
+A `switch` **expression** maps an input to a value: each arm is `pattern => result`. Patterns compose — `{ Amount: > 1000, Currency: "BRL" }` combines property and relational patterns; `is not null` is a logical pattern. **Deconstruction** uses a type's `Deconstruct` method (records get one free) to bind members positionally. A discard `_` provides the catch-all; without an exhaustive set, the compiler warns.
+
+### 8.4 Architecture: declarative branching
+
+```mermaid
+flowchart LR
+    data["data (type + properties)"] --> match["match against patterns"]
+    match --> result["produce a value or action"]
+    note["Replaces nested if/else and manual casts"]
+```
+
+Pattern matching centralizes the decision in one readable expression, with the compiler helping ensure every case is handled.
+
+### 8.5 Real example
+
+**Scenario.** Compute a shipping fee from an order's weight and destination.
+
+**Problem.** Nested `if`/`else` on weight ranges and region is verbose and easy to leave incomplete.
+
+**Solution.** A **`switch` expression** with **property** and **relational** patterns.
+
+**Implementation.**
+
+```csharp
+decimal Fee(Order o) => o switch
+{
+    { Weight: <= 1, Region: "local" }      => 5m,
+    { Weight: <= 1 }                        => 9m,
+    { Weight: > 1 and <= 5, Region: "local" } => 12m,
+    { Weight: > 1 and <= 5 }                => 20m,
+    { Weight: > 5 }                         => 35m,
+    _                                       => throw new ArgumentException("invalid order")
+};
+
+// deconstruction (records get Deconstruct for free):
+var (x, y) = point;   // pulls members into variables in one step
+```
+
+**Result.** The fee rules read as a table of patterns rather than a thicket of `if`/`else`, each arm combining relational (`> 1 and <= 5`) and property (`Region: "local"`) patterns. The discard arm makes intent explicit, and the compiler flags if the arms aren't exhaustive — catching a forgotten case before runtime.
+
+**Future improvements.** Use **list patterns** (`[var head, .. var rest]`) for sequence logic; pair pattern matching with records (Ch. 7) so deconstruction and equality come for free.
+
+### 8.6 Exercises
+
+1. Name four kinds of pattern and give a one-line example of each.
+2. How does a `switch` expression differ from a `switch` statement?
+3. What does deconstruction do, and which types get it automatically?
+
+### 8.7 Challenges
+
+- **Challenge.** Write a `switch` expression that classifies an HTTP status code (`>= 200 and < 300` → success, etc.) using relational and logical patterns, with a discard for the unknown case.
+
+### 8.8 Checklist
+
+- [ ] I use `switch` expressions for value-producing branching.
+- [ ] I combine type/property/relational/logical patterns instead of manual casts.
+- [ ] I rely on exhaustiveness warnings to catch missing cases.
+- [ ] I deconstruct records/tuples instead of accessing members one by one.
+
+### 8.9 Best practices
+
+- Prefer `switch` expressions over nested `if`/`else` for classification.
+- Combine patterns to express rules declaratively.
+- Provide a discard arm and heed exhaustiveness warnings.
+
+### 8.10 Anti-patterns
+
+- Long `if`/`else` chains with manual `is`/cast pairs.
+- Ignoring non-exhaustive `switch` warnings.
+- Over-deep pattern nesting that hurts readability.
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Not all cases handled" warning | Non-exhaustive switch expression | Add the missing arm or a `_` discard |
+| `InvalidCastException` in branching | Manual cast after a type test | Use a type pattern (`is T t`) |
+| Verbose nested conditionals | `if`/`else` instead of patterns | Convert to a `switch` expression |
+
+### 8.12 References
+
+- Microsoft, "Pattern matching" & "switch expression": https://learn.microsoft.com/dotnet/csharp/fundamentals/functional/pattern-matching.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+> **End of Part III.** **Records** give value equality, immutability, and `with`-based copies with zero boilerplate, and **pattern matching** (type/property/relational/logical/list patterns in `switch` expressions, plus deconstruction) makes branching declarative and exhaustiveness-checked. Part IV covers **collections and generics** — `List<T>`, dictionaries, collection expressions, and type parameters with constraints and variance.
+
+<!--APPEND-PART-IV-->
