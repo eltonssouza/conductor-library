@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Part I (Ch. 1–3). **In progress:** Parts II–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–II (Ch. 1–6). **In progress:** Parts III–VIII.
 
 ---
 
@@ -542,4 +542,331 @@ If a fourth variant were added to `Shape`, the `area` match would fail to compil
 
 > **End of Part I.** You can now drive Cargo, reason precisely about ownership and borrowing, and model domains with structs, enums, and exhaustive pattern matching — the foundation every later Part builds on. Parts II–VIII (lifetimes, traits and generics, collections and iterators, error handling, modules and smart pointers, concurrency and async, and the mastery topics of macros, testing, unsafe/FFI, performance, and release) continue the same chapter structure and will be appended in subsequent deliveries.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II — The borrow model in depth
+
+Part I introduced ownership. Part II goes deep on **borrowing** — the rules that let you access data without owning it, checked at compile time: **references and aliasing** (shared vs. mutable), **lifetimes** (how long a reference is valid), and **slices/strings** with the **`Sized`** boundary.
+
+---
+
+## Chapter 4 — References, mutability, and aliasing rules
+
+### 4.1 Introduction
+
+A **reference** borrows access to a value without taking ownership: `&T` is a **shared** (immutable) reference, `&mut T` is a **mutable** (exclusive) one. The borrow checker enforces one rule that defines safe Rust: at any time you may have **either** any number of shared references **or** exactly one mutable reference — **never both**. This "aliasing XOR mutability" rule is what eliminates data races and use-after-free *at compile time*, with no garbage collector. Borrowing lets functions read or modify data in place while ownership stays with the original.
+
+### 4.2 Business context
+
+Memory-safety bugs — data races, dangling pointers, iterator invalidation — are among the most expensive and dangerous in systems software (the majority of critical CVEs in C/C++ codebases). Rust's aliasing rule makes those bugs **unrepresentable**: code that would alias-and-mutate simply doesn't compile. For a business, that means a whole category of security vulnerabilities and heisenbugs never reaches production, achieved without the runtime cost of a garbage collector — which is why Rust is adopted for infrastructure, embedded, and performance-critical services where both safety and speed matter.
+
+### 4.3 Theoretical concepts: aliasing XOR mutability
+
+```mermaid
+flowchart TB
+    val["a value"] --> shared["many &T (shared, read-only) — OR —"]
+    val --> mut["one &mut T (exclusive, read-write)"]
+    note["Never shared and mutable at the same time: no data races, no invalidation"]
+```
+
+`&T` permits reading and may be copied freely; `&mut T` permits mutation and is **exclusive** — while it exists, no other reference (shared or mutable) to that value may be used. The borrow checker enforces this over the references' **scope** (non-lexical lifetimes: a borrow ends at its last use). This statically prevents two threads from writing simultaneously, and prevents mutating a collection while iterating it. You **dereference** with `*` to read/write through a reference.
+
+### 4.4 Architecture: borrow instead of move or copy
+
+```mermaid
+flowchart LR
+    owner["owner keeps the value"] -->|"&v / &mut v"| fn["function borrows it"]
+    fn --> back["borrow ends; owner still owns the value"]
+    note["Pass references to read/modify without transferring ownership"]
+```
+
+Functions usually **borrow** their arguments (`&T`/`&mut T`) so the caller retains ownership, avoiding needless moves or clones.
+
+### 4.5 Real example
+
+**Scenario.** A function appends to a vector the caller still needs afterward.
+
+**Problem.** Taking the vector by value would move it (caller loses it); cloning wastes memory.
+
+**Solution.** Borrow it **mutably** (`&mut Vec<T>`); ownership stays with the caller.
+
+**Implementation.**
+
+```rust
+fn push_two(v: &mut Vec<i32>) {   // exclusive borrow: may mutate, caller keeps ownership
+    v.push(1);
+    v.push(2);
+}
+
+fn main() {
+    let mut nums = vec![10];
+    push_two(&mut nums);          // lend it mutably
+    println!("{:?}", nums);       // [10, 1, 2] — still owned and usable here
+
+    let a = &nums;                // shared borrow
+    let b = &nums;                // another shared borrow — fine (no mutation)
+    println!("{} {}", a.len(), b.len());
+    // let m = &mut nums;         // ERROR if a/b still used: can't alias + mutate
+}
+```
+
+**Result.** `push_two` modifies the vector in place via an exclusive `&mut` borrow, and `main` keeps ownership and uses `nums` afterward — no move, no clone. Multiple shared borrows (`a`, `b`) coexist because none mutates; introducing a `&mut` while they're live would be a compile error. The aliasing rule is enforced by the compiler, so the code is memory-safe by construction.
+
+**Future improvements.** Prefer `&[T]`/`&str` parameters (Ch. 6) for read-only access so the function accepts more types; let non-lexical lifetimes end borrows early by structuring code so the `&mut` doesn't overlap shared reads.
+
+### 4.6 Exercises
+
+1. State the aliasing rule in one sentence.
+2. Why can you have many `&T` but only one `&mut T`?
+3. What real bug classes does this rule eliminate at compile time?
+
+### 4.7 Challenges
+
+- **Challenge.** Write a function that takes `&mut Vec<String>` and removes empty strings in place; show the caller still owns and uses the vector afterward. Then try to take a `&mut` while a `&` is live and read the compiler error.
+
+### 4.8 Checklist
+
+- [ ] I borrow (`&T`/`&mut T`) instead of moving when the caller keeps the value.
+- [ ] I never hold a shared and a mutable reference to the same value at once.
+- [ ] I use `&mut` only where mutation is needed (exclusive).
+- [ ] I let borrows end at their last use (non-lexical lifetimes).
+
+### 4.9 Best practices
+
+- Default to shared `&T`; reach for `&mut T` only to mutate.
+- Pass references rather than cloning to read/modify data.
+- Keep mutable borrows short and non-overlapping with shared reads.
+
+### 4.10 Anti-patterns
+
+- Cloning to dodge the borrow checker instead of borrowing correctly.
+- Long-lived `&mut` borrows that block other access unnecessarily.
+- Fighting the checker with workarounds instead of restructuring ownership.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "cannot borrow as mutable because also borrowed as immutable" | Shared + mutable overlap | End the shared borrow before the `&mut` |
+| "use of moved value" | Took by value instead of borrowing | Pass `&T`/`&mut T` |
+| "cannot borrow as mutable more than once" | Two `&mut` overlap | Restructure so only one is live |
+
+### 4.12 References
+
+- *The Rust Programming Language* (Klabnik & Nichols), ch. 4 "Understanding Ownership" — https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html.
+- J. Blandy, J. Orendorff, L. Tindall, *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 5 — Lifetimes and the lifetime elision rules
+
+### 5.1 Introduction
+
+A **lifetime** is the compile-time scope for which a reference is valid. The borrow checker uses lifetimes to guarantee a reference never outlives the data it points to (no dangling references). Usually lifetimes are **inferred** and invisible, but when a function returns a reference derived from its inputs, you sometimes annotate them: `fn longest<'a>(x: &'a str, y: &'a str) -> &'a str`. The **lifetime elision rules** are the compiler's heuristics that let you omit these annotations in the common cases — which is why most Rust code has no explicit lifetimes.
+
+### 5.2 Business context
+
+Dangling pointers — references to freed memory — are a top source of crashes and exploitable vulnerabilities in systems code. Lifetimes let Rust prove, at compile time, that this can't happen, again without a garbage collector. Most of the time the **elision rules** make this free (no annotations), so developers get the safety without the ceremony; understanding when annotations *are* needed (and why) is the difference between fighting the compiler and working with it. The payoff is reference-heavy, zero-copy code (slices, string views) that is provably safe.
+
+### 5.3 Theoretical concepts: references can't outlive their data
+
+```mermaid
+flowchart LR
+    data["owned data (scope)"] --> ref["&data has a lifetime within that scope"]
+    ref --> rule["a returned reference's lifetime is tied to an input's"]
+    note["Compiler rejects any reference that could outlive its data"]
+```
+
+A lifetime parameter (`'a`) **relates** the lifetimes of references — e.g., "the returned reference lives as long as both inputs". It doesn't change how long anything lives; it lets the compiler check the relationship. The **elision rules**: (1) each input reference gets its own lifetime; (2) if there's exactly one input lifetime, it's assigned to all outputs; (3) for methods, the lifetime of `&self` is assigned to outputs. When these resolve the outputs unambiguously, no annotation is needed — covering most functions.
+
+### 5.4 Architecture: tie outputs to inputs
+
+```mermaid
+flowchart TB
+    in1["&'a x"] --> out["-> &'a (output borrows from input)"]
+    in2["&'a y"] --> out
+    note["Annotate only when the compiler can't infer the relationship"]
+```
+
+Explicit lifetimes appear where a returned reference could come from more than one input, telling the compiler (and reader) which data it borrows from.
+
+### 5.5 Real example
+
+**Scenario.** A function returns the longer of two string slices.
+
+**Problem.** The compiler can't tell whether the returned reference borrows from `x` or `y`, so it can't prove it won't dangle.
+
+**Solution.** Annotate a shared lifetime `'a` tying the output to both inputs.
+
+**Implementation.**
+
+```rust
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {   // output lives as long as both inputs
+    if x.len() >= y.len() { x } else { y }
+}
+
+fn main() {
+    let a = String::from("hello");
+    let result;
+    {
+        let b = String::from("hi");
+        result = longest(&a, &b);     // result borrows from a or b
+        println!("{result}");         // OK: used while both a and b are alive
+    }
+    // println!("{result}");          // ERROR: b dropped; result might dangle
+}
+```
+
+**Result.** The `'a` annotation tells the compiler the returned reference is valid only as long as **both** inputs are — so using `result` after `b` is dropped is a compile error, exactly the dangling-reference bug Rust prevents. Within the inner scope, where both strings live, it's safe. The annotation made the safety relationship explicit; without it, the function wouldn't compile.
+
+**Future improvements.** Most functions need no annotations thanks to elision — reserve them for the genuinely ambiguous cases; if lifetimes get complex, consider returning an owned `String` instead of a borrowed `&str`.
+
+### 5.6 Exercises
+
+1. What does a lifetime guarantee about a reference?
+2. Why does `longest` need an explicit lifetime when most functions don't?
+3. State the three lifetime elision rules.
+
+### 5.7 Challenges
+
+- **Challenge.** Write a `first_word<'a>(s: &'a str) -> &'a str` returning the first word; confirm it compiles *without* an explicit annotation (elision rule 2) and explain why.
+
+### 5.8 Checklist
+
+- [ ] I understand a reference may not outlive its data.
+- [ ] I add lifetime annotations only when the compiler can't infer them.
+- [ ] I tie a returned reference to the correct input lifetime.
+- [ ] I consider returning owned data when lifetimes get unwieldy.
+
+### 5.9 Best practices
+
+- Rely on elision; annotate only ambiguous returned references.
+- Keep borrowed return values tied to clear input lifetimes.
+- Prefer owned returns over fighting complex lifetime puzzles.
+
+### 5.10 Anti-patterns
+
+- Sprinkling lifetime annotations where elision already works.
+- Returning references to local (soon-dropped) data.
+- Over-complex lifetime gymnastics where an owned value is simpler.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "missing lifetime specifier" | Ambiguous returned reference | Add `<'a>` tying output to inputs |
+| "borrowed value does not live long enough" | Reference outlives its data | Restrict use to the data's scope or return owned |
+| Lifetime errors everywhere | Returning borrows of locals | Return owned `String`/`Vec` instead |
+
+### 5.12 References
+
+- *The Rust Programming Language*, ch. 10.3 "Validating References with Lifetimes" — https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 6 — Slices, strings, and the `Sized` boundary
+
+### 6.1 Introduction
+
+A **slice** is a borrowed **view** into a contiguous sequence — `&[T]` into a `Vec<T>`/array, `&str` into a `String` — giving access to a range **without copying**. Strings come in two forms: the **owned, growable `String`** and the **borrowed view `&str`** (string slice). Slices and `str` are **dynamically sized types (DSTs)**: they don't implement **`Sized`** (their size isn't known at compile time), so they're always handled **behind a pointer** (`&str`, `&[T]`, `Box<str>`). Accepting `&str`/`&[T]` parameters makes functions maximally flexible.
+
+### 6.2 Business context
+
+Slices are how Rust does zero-copy data processing — parsing, networking, text handling — without the allocations that hurt throughput. Designing functions to take `&str`/`&[T]` rather than `&String`/`&Vec<T>` lets one function serve owned data, literals, and sub-ranges alike, reducing API friction and copies. Understanding the `String`/`&str` distinction (and why) prevents the most common beginner confusion and the needless `.clone()`s that bloat memory use. This directly affects the performance and ergonomics that draw teams to Rust.
+
+### 6.3 Theoretical concepts: views, not copies
+
+```mermaid
+flowchart TB
+    owned["String / Vec<T> (owned, heap)"] --> slice["&str / &[T]: borrowed view (ptr + len), no copy"]
+    dst["str / [T] are unsized (DST) -> always behind a pointer"]
+    sized["most types are Sized (known size); slices are not"]
+```
+
+A slice is a **fat pointer**: a pointer plus a length. `&str` views UTF-8 bytes of a `String` or literal; `&[T]` views part of a `Vec`/array. Because `str` and `[T]` are **unsized**, you never hold them by value — only via `&str`, `&[T]`, `Box<[T]>`, etc. The **`Sized`** trait marks types whose size is known at compile time (the default); generic parameters are implicitly `Sized` unless relaxed with `?Sized`. Slicing (`&s[0..3]`) borrows a range and must fall on valid boundaries (for `str`, char boundaries).
+
+### 6.4 Architecture: accept slices, return owned or borrowed deliberately
+
+```mermaid
+flowchart LR
+    caller["String / Vec / literal / sub-range"] -->|"all coerce to"| param["&str / &[T] parameter"]
+    note["Take slices for flexibility; decide owned vs borrowed for returns"]
+```
+
+A function taking `&str`/`&[T]` accepts the widest set of inputs with no copies — the idiomatic parameter choice for read-only access.
+
+### 6.5 Real example
+
+**Scenario.** Count words in text that may come from a `String`, a literal, or a sub-range.
+
+**Problem.** Taking `&String` forces callers to have an owned `String` and excludes literals/sub-slices.
+
+**Solution.** Take a **`&str`** slice — every string form coerces to it, with no copy.
+
+**Implementation.**
+
+```rust
+fn word_count(text: &str) -> usize {        // accepts String, &str literal, and sub-slices
+    text.split_whitespace().count()
+}
+
+fn main() {
+    let owned = String::from("the quick brown fox");
+    println!("{}", word_count(&owned));     // String -> &str (deref coercion)
+    println!("{}", word_count("a b c"));    // literal is already &str
+    println!("{}", word_count(&owned[4..])); // a sub-slice view, no copy: "quick brown fox"
+}
+```
+
+**Result.** `word_count` works for an owned `String`, a string literal, and a borrowed sub-range alike — all coerce to `&str` with zero copying. Taking the slice instead of `&String` made the function flexible and allocation-free. The `&owned[4..]` sub-slice is a view into the existing buffer, not a new allocation.
+
+**Future improvements.** Return owned `String` only when the caller needs ownership; use `?Sized` bounds when writing generic code that should accept slices; slice on char boundaries to avoid panics with non-ASCII text.
+
+### 6.6 Exercises
+
+1. What is a slice, and why is it called a "fat pointer"?
+2. Why are `str` and `[T]` always used behind a pointer?
+3. Why prefer a `&str` parameter over `&String`?
+
+### 6.7 Challenges
+
+- **Challenge.** Write `fn longest_word(text: &str) -> &str` returning the longest word as a sub-slice (no allocation), and call it with a `String`, a literal, and a sub-range.
+
+### 6.8 Checklist
+
+- [ ] I take `&str`/`&[T]` parameters for flexible, zero-copy read access.
+- [ ] I understand `String` (owned) vs `&str` (borrowed view).
+- [ ] I handle unsized types behind pointers (`&str`, `Box<[T]>`).
+- [ ] I slice on valid (char) boundaries.
+
+### 6.9 Best practices
+
+- Accept slices (`&str`/`&[T]`) rather than owned references in parameters.
+- Return owned data only when ownership is genuinely needed.
+- Use `?Sized` to write generics that also accept slices.
+
+### 6.10 Anti-patterns
+
+- `&String`/`&Vec<T>` parameters that needlessly restrict callers.
+- `.clone()`/`.to_string()` to avoid slices where a borrow works.
+- Slicing a `str` at a non-char boundary (panics).
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Function won't accept a literal | Parameter is `&String` | Change it to `&str` |
+| "doesn't have a size known at compile-time" | Holding `str`/`[T]` by value | Use it behind a pointer (`&str`, `Box<[T]>`) |
+| Panic slicing a string | Cut on a non-char boundary | Slice on char boundaries (e.g., via `char_indices`) |
+
+### 6.12 References
+
+- *The Rust Programming Language*, ch. 4.3 "The Slice Type" & ch. 19.4 (`Sized`/DSTs) — https://doc.rust-lang.org/book/ch04-03-slices.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+> **End of Part II.** Rust's borrow model: **references** with the **aliasing-XOR-mutability** rule (many `&T` or one `&mut T`) eliminate data races and invalidation at compile time; **lifetimes** (mostly elided) prove references never dangle; and **slices**/`&str` give zero-copy views, with unsized `str`/`[T]` always behind a pointer (`Sized`). Part III covers Rust's **type system** — scalars, compounds, sum types (`enum`, `Option`, `Result`), and exhaustive pattern matching.
+
+<!--APPEND-PART-III-->
