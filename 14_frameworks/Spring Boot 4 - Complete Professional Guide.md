@@ -3573,4 +3573,452 @@ abstract class AbstractPostgresIT {
 
 > **End of Part VI.** You can now place every test at the right altitude: plain **JUnit 5 + Mockito** unit tests at the base, focused **slices** (`@WebMvcTest`, `@DataJpaTest`) with `@MockitoBean` in the middle, and full-context **`@SpringBootTest`** integration tests over **Testcontainers** + `@ServiceConnection` at the top — a fast suite that still proves the app works against real infrastructure. **Part VII — Observability** (Chapters 18–19) turns to running these applications in production: **Actuator** health, info, and management endpoints, then **Micrometer** for metrics, distributed tracing, and structured logs.
 
+
+---
+
+# Part VII – Observability
+
+Part VII is where a Spring Boot 4 service learns to report on itself. A system you cannot see is a system you operate by guesswork — and in production, guesswork is downtime. This part covers the two pillars that make a Boot 4 application observable: **Spring Boot Actuator**, which exposes ready-made operational endpoints (health, info, metrics, Prometheus) and the liveness/readiness signals Kubernetes depends on; and **Micrometer 2** with the **Observation API**, which lets you instrument code once and emit both metrics and distributed traces, exporting them through the **OpenTelemetry starter** that ships with Boot 4. Together they turn "is it up?" from a hopeful question into a measurable contract.
+
+---
+
+## Chapter 18 — Spring Boot Actuator
+
+### 18.1 Introduction
+
+**Spring Boot Actuator** is the auto-configured module that exposes a running application's operational surface: a `health` endpoint orchestrators can probe, an `info` endpoint that describes the build, a `metrics` endpoint backed by Micrometer, and a `prometheus` endpoint a scraper can read. Add the `spring-boot-starter-actuator` dependency and these endpoints appear under `/actuator` with safe defaults — most are hidden over HTTP until you explicitly expose them. This chapter covers the endpoint model, health groups for **liveness** and **readiness**, custom `HealthIndicator` beans, the `info` contributor mechanism, and how to secure management traffic in production. In Boot 4 the endpoints are unchanged in spirit but realigned to **Micrometer 2** and the OpenTelemetry export path introduced in Chapter 19.
+
+### 18.2 Business context
+
+Actuator converts operational uncertainty into signals an orchestrator can act on. Kubernetes routes traffic and restarts pods based on **liveness** and **readiness** probes; without accurate signals it either sends requests to an instance that cannot yet serve them or kills one that is merely busy. Operators alert on metrics so they learn about a degradation before users file tickets. Because Actuator supplies all of this out of the box, teams spend their time wiring probes and dashboards rather than building telemetry plumbing — a direct improvement to uptime, autoscaling accuracy, and mean-time-to-resolution. The cost is discipline: management endpoints expose internals, so exposing the wrong ones in production is a real security risk.
+
+### 18.3 Theoretical concepts
+
+- **Endpoints.** Discrete operational features — `health`, `info`, `metrics`, `prometheus`, `env`, `loggers`, `httpexchanges`, `threaddump`, `heapdump` — each individually enableable and exposable over HTTP or JMX.
+- **Exposure vs. enablement.** An endpoint is *enabled* (it exists) separately from being *exposed* (reachable over a transport). `management.endpoints.web.exposure.include` controls the HTTP-visible set; by default only `health` is exposed.
+- **Health groups.** The `health` endpoint aggregates `HealthIndicator` contributions. Named **groups** — conventionally `liveness` and `readiness` — bundle a subset of indicators so each maps cleanly onto a Kubernetes probe.
+- **Liveness vs. readiness.** *Liveness* answers "is the process broken and in need of a restart?" and must stay cheap and self-contained. *Readiness* answers "can it accept traffic right now?" and is the right place to gate on dependencies.
+- **Custom indicators.** A `HealthIndicator` bean (or the reactive `ReactiveHealthIndicator`) contributes `UP`/`DOWN` plus detail; its name is derived from the bean and it can be assigned to a group.
+- **Info contributors.** `InfoContributor` beans (and the built-in build/git/env contributors) populate `/actuator/info` with metadata such as version and commit.
+- **Security.** Management endpoints should be minimized, authenticated, and ideally bound to a separate internal port so sensitive data is never publicly reachable.
+
+### 18.4 Architecture: health groups to Kubernetes probes
+
+```mermaid
+flowchart TB
+    kubelet["Kubernetes kubelet"] -- "livenessProbe GET" --> live["/actuator/health/liveness"]
+    kubelet -- "readinessProbe GET" --> ready["/actuator/health/readiness"]
+    prom["Prometheus"] -- "scrape" --> metrics["/actuator/prometheus"]
+    app["Boot 4 app + Actuator"] --> live
+    app --> ready
+    app --> metrics
+    live -. "livenessState only (cheap)" .-> ls["LivenessStateHealthIndicator"]
+    ready -. "gated by dependencies" .-> deps["readinessState + db + downstream indicators"]
+    fail["DOWN on readiness"] -. "kubelet withholds traffic" .-> kubelet
+    fail2["DOWN on liveness"] -. "kubelet restarts pod" .-> kubelet
+```
+
+### 18.5 Architecture: endpoint exposure and management port
+
+```mermaid
+flowchart LR
+    client["External traffic<br/>(internet)"] --> app["App port 8080<br/>(business endpoints)"]
+    ops["Operators / scrapers<br/>(internal network)"] --> mgmt["Management port 8081"]
+    mgmt --> health["health + groups"]
+    mgmt --> info["info"]
+    mgmt --> prometheus["prometheus"]
+    mgmt -. "NOT exposed" .-> hidden["env / heapdump / threaddump"]
+    cfg["exposure.include = health,info,prometheus"] --> mgmt
+```
+
+### 18.6 Real example
+
+**Scenario.** A `catalog-service` must report readiness only when its database and a downstream inventory API are reachable, expose Prometheus metrics for scraping, surface its build version on `/actuator/info`, and keep sensitive endpoints unreachable from outside the cluster.
+
+**Problem.** The default readiness state ignores application dependencies, so Kubernetes routes traffic the instant the process is up — before the database connection pool is warm. Meanwhile `env` and `heapdump` would leak configuration and memory contents if exposed on the public port.
+
+**Solution.** Move management to a separate internal port, expose only `health`, `info`, and `prometheus`, enable the liveness/readiness probes, add the database indicator to the readiness group, contribute a custom downstream-readiness indicator, and turn on the build-info contributor.
+
+**Implementation.**
+
+```yaml
+# application.yml
+management:
+  server:
+    port: 8081                          # management on an internal-only port
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus # nothing sensitive over HTTP
+  endpoint:
+    health:
+      probes:
+        enabled: true                   # exposes liveness + readiness groups
+      show-details: when-authorized
+      group:
+        readiness:
+          include: readinessState,db,downstream   # gate readiness on real deps
+        liveness:
+          include: livenessState                  # keep liveness cheap
+  info:
+    build:
+      enabled: true                     # populate /actuator/info from build metadata
+  metrics:
+    tags:
+      application: catalog-service      # common tag on every meter
+```
+
+```java
+package com.example.catalog.health;
+
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
+
+// Bean name "downstream" -> contributes the "downstream" indicator,
+// referenced by name in the readiness group above.
+@Component("downstream")
+class DownstreamReadinessIndicator implements HealthIndicator {
+
+    private final InventoryClient inventory;
+
+    DownstreamReadinessIndicator(InventoryClient inventory) {
+        this.inventory = inventory;
+    }
+
+    @Override
+    public Health health() {
+        try {
+            inventory.ping();
+            return Health.up().withDetail("inventory", "reachable").build();
+        } catch (Exception e) {
+            // Readiness goes DOWN -> Kubernetes withholds traffic until recovery.
+            return Health.down(e).withDetail("inventory", "unreachable").build();
+        }
+    }
+}
+```
+
+```yaml
+# Kubernetes deployment excerpt — probes pointed at Actuator health groups.
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8081
+  initialDelaySeconds: 10
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8081
+  initialDelaySeconds: 5
+  periodSeconds: 5
+```
+
+**Tests.**
+
+```java
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+class ActuatorEndpointsTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void readinessGroupIsExposed() throws Exception {
+        mvc.perform(get("/actuator/health/readiness"))
+           .andExpect(status().isOk())
+           .andExpect(jsonPath("$.status").exists());
+    }
+
+    @Test
+    void prometheusEndpointIsExposed() throws Exception {
+        mvc.perform(get("/actuator/prometheus"))
+           .andExpect(status().isOk());
+    }
+
+    @Test
+    void sensitiveEndpointIsNotExposed() throws Exception {
+        mvc.perform(get("/actuator/env"))
+           .andExpect(status().isNotFound());   // never exposed over HTTP
+    }
+}
+```
+
+**Result.** Kubernetes withholds traffic until the database and inventory API are both reachable, restarts the pod only when liveness fails, and scrapes Prometheus metrics from the internal port. `/actuator/info` reports the build version, while `env` and `heapdump` return 404 over HTTP.
+
+**Future improvements.** Add the OpenTelemetry starter (Chapter 19) so the same service exports traces, wire alerting rules on the key timers, contribute a `git` info section, and secure the management port with Spring Security in addition to network isolation.
+
+### 18.7 Exercises
+
+1. What is the difference between an endpoint being *enabled* and being *exposed*?
+2. How do you expose only `health`, `info`, and `prometheus` over HTTP?
+3. Which property turns on the liveness and readiness probe groups, and where do you list the indicators each group includes?
+
+### 18.8 Challenges
+
+- **Challenge.** Add a `HealthIndicator` gated on a real dependency (a database or an HTTP downstream), place it in the readiness group, point a Kubernetes `readinessProbe` at `/actuator/health/readiness`, then take the dependency down and prove that traffic is withheld while liveness keeps the pod alive.
+
+### 18.9 Checklist
+
+- [ ] Liveness and readiness probe groups are enabled and wired to Kubernetes probes.
+- [ ] Only the required endpoints are exposed over HTTP.
+- [ ] Management runs on a secured/internal port (or is protected by Spring Security).
+- [ ] Readiness is gated on real dependencies; liveness is cheap and self-contained.
+- [ ] `/actuator/info` reports build (and ideally git) metadata.
+- [ ] Metrics carry a common application tag for filtering.
+
+### 18.10 Best practices
+
+- Gate readiness on the dependencies that must be ready to serve traffic; keep liveness self-contained so it never causes a restart loop.
+- Expose the minimum endpoint set, and never expose `env`, `heapdump`, or `threaddump` over a public transport.
+- Bind management to a separate internal port and add authentication for defense in depth.
+- Tag metrics with the application name and environment so dashboards can slice across the fleet.
+
+### 18.11 Anti-patterns
+
+- Exposing `env`, `heapdump`, or `threaddump` publicly, leaking secrets or memory contents.
+- Putting dependency checks in **liveness**, turning a transient outage into a restart loop.
+- Using identical logic for liveness and readiness, so a slow dependency kills the pod instead of just pausing traffic.
+- Leaving `exposure.include` set to `*` "to be safe," exposing every endpoint by accident.
+
+### 18.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Pod restart loop | A dependency check lives in liveness | Move it to the readiness group |
+| Traffic arrives before the app is ready | Readiness not gated on dependencies | Add the indicator to the `readiness` group |
+| Endpoint returns 404 | Not listed in `exposure.include` | Add it (only if safe to expose) |
+| Health shows no details | `show-details` defaults to hidden | Set `show-details: when-authorized` or `always` |
+| `/actuator/info` is empty | No info contributor active | Enable `management.info.build.enabled` and generate build info |
+| Sensitive data reachable externally | Over-broad exposure / shared port | Restrict exposure and use a separate management port |
+
+### 18.13 Official references
+
+- Actuator overview: https://docs.spring.io/spring-boot/reference/actuator/index.html
+- Endpoints and exposure: https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
+- Health, groups, and Kubernetes probes: https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health
+- Metrics: https://docs.spring.io/spring-boot/reference/actuator/metrics.html
+
+---
+
+## Chapter 19 — Observability with Micrometer
+
+### 19.1 Introduction
+
+You cannot operate what you cannot see. **Observability** is the union of metrics, traces, and logs that lets you reason about a running system. Spring Boot 4 builds on **Micrometer 2** for metrics and the **Micrometer Observation API** for traces, the generation aligned with OpenTelemetry semantics. The defining idea is *instrument once, emit twice*: a single `Observation` produces both a timer metric and a distributed-tracing span. Boot 4 ships an **OpenTelemetry (OTel) starter** so those traces export over OTLP to any compatible backend without vendor-specific bridges. This chapter covers the `MeterRegistry` and the meter types, the `@Timed` shortcut, the Observation API, Micrometer Tracing with the OTel exporter, and log correlation via trace and span IDs.
+
+### 19.2 Business context
+
+In production, mean-time-to-resolution is bounded by observability. A request that fans out across ten services is effectively undebuggable without **distributed tracing**, and capacity planning without **metrics** is guesswork. OpenTelemetry is the vendor-neutral industry standard: adopting it means an enterprise can route telemetry to Prometheus, Grafana Tempo, Jaeger, Datadog, or any OTLP backend without rewiring instrumentation or locking into a single APM vendor. Better observability translates directly into faster incident resolution, fewer prolonged outages, and data-driven scaling decisions — all measurable cost savings. The discipline it demands is **cardinality control**: tags chosen carelessly can multiply metric series until the monitoring backend itself becomes the bottleneck.
+
+### 19.3 Theoretical concepts
+
+- **Metrics (Micrometer 2).** A vendor-neutral metrics facade. **Counters** count events, **gauges** sample a current value, **timers** record duration and rate, and **distribution summaries** record event magnitude — all registered through a `MeterRegistry`.
+- **Observation API.** A single instrumentation point that, when started and stopped, produces both a metric and a span. Instrument once; get both signals with the same tags.
+- **Tags / KeyValues.** Dimensions attached to a measurement. **Low-cardinality** keys (region, status) are safe as metric tags; **high-cardinality** keys (cart ID, user ID) belong on spans only.
+- **`@Timed`.** A declarative annotation that wraps a method in a timer without hand-writing registry calls, backed by an aspect.
+- **Distributed tracing.** Spans across services are linked into one trace via propagated **W3C trace-context** (trace and span IDs), revealing end-to-end latency and the slowest hop.
+- **Micrometer Tracing + OTel.** Micrometer Tracing bridges the Observation API to a tracer; the Boot 4 OTel starter exports spans over **OTLP** to a collector or backend.
+- **Sampling.** The fraction of traces actually exported — typically full in development, low in production while retaining error traces.
+- **Log correlation.** With tracing active, Boot injects `traceId`/`spanId` into the MDC so logs can be joined to the trace that produced them.
+
+### 19.4 Architecture: one observation, two signals
+
+```mermaid
+flowchart TB
+    code["Instrumented code<br/>Observation API"] --> obs["Micrometer Observation"]
+    obs --> metrics["Metrics<br/>Micrometer 2"]
+    obs --> traces["Spans / traces"]
+    obs --> logs["MDC traceId + spanId<br/>(log correlation)"]
+    metrics --> prom[("Prometheus")]
+    traces --> otel["OpenTelemetry exporter (OTLP)"]
+    otel --> tempo[("Tempo / Jaeger")]
+    otel --> apm[("APM vendor")]
+    prom --> graf["Grafana dashboards"]
+    tempo --> graf
+```
+
+### 19.5 Architecture: trace propagation across services
+
+```mermaid
+flowchart LR
+    client["Client request"] --> gw["API gateway<br/>(starts trace)"]
+    gw -- "traceparent header (W3C)" --> svcA["catalog-service<br/>span A"]
+    svcA -- "propagated context" --> svcB["pricing-service<br/>span B"]
+    svcA -- "propagated context" --> svcC["inventory-service<br/>span C"]
+    svcA --> otel["OTLP exporter"]
+    svcB --> otel
+    svcC --> otel
+    otel --> backend[("Trace backend<br/>(single linked trace)")]
+```
+
+### 19.6 Real example
+
+**Scenario.** A checkout endpoint occasionally spikes in latency, and operators cannot tell whether the database write, the pricing call, or serialization is to blame.
+
+**Problem.** There is no per-step timing and no distributed trace, so every investigation is guesswork and the slow hop is invisible.
+
+**Solution.** Wrap the critical section in an `Observation` — producing one checkout timer and one span with useful tags — export the span over OTLP via the Boot 4 OTel starter, and keep high-cardinality detail (the cart ID) on the span rather than the metric.
+
+**Implementation.**
+
+```yaml
+# application.yml — sampling + OTLP export (Boot 4 OpenTelemetry starter)
+management:
+  tracing:
+    sampling:
+      probability: 1.0                 # sample all traces in dev; lower in prod
+  otlp:
+    tracing:
+      endpoint: http://otel-collector:4318/v1/traces
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  observations:
+    key-values:
+      deployment.environment: dev      # common KeyValue on every observation
+```
+
+```java
+package com.example.checkout;
+
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CheckoutService {
+
+    private final ObservationRegistry registry;
+    private final PricingClient pricing;
+    private final OrderRepository orders;
+
+    public CheckoutService(ObservationRegistry registry, PricingClient pricing, OrderRepository orders) {
+        this.registry = registry;
+        this.pricing = pricing;
+        this.orders = orders;
+    }
+
+    public Receipt checkout(Cart cart) {
+        // One Observation -> one "checkout" timer metric + one span.
+        return Observation.createNotStarted("checkout", registry)
+            .lowCardinalityKeyValue("region", cart.region())  // safe as a metric tag
+            .highCardinalityKeyValue("cartId", cart.id())     // span-only detail
+            .observe(() -> {
+                Price price = pricing.priceFor(cart.firstSku());
+                Order order = orders.save(Order.from(cart, price));
+                return Receipt.from(order);
+            });
+    }
+}
+```
+
+```java
+package com.example.checkout;
+
+import io.micrometer.core.annotation.Timed;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+class CheckoutController {
+
+    private final CheckoutService service;
+
+    CheckoutController(CheckoutService service) {
+        this.service = service;
+    }
+
+    // Declarative timer: records http-level timing without manual registry calls.
+    @Timed(value = "checkout.http", description = "Checkout endpoint latency")
+    @PostMapping("/checkout")
+    Receipt checkout(@RequestBody Cart cart) {
+        return service.checkout(cart);
+    }
+}
+```
+
+**Tests.**
+
+```java
+@SpringBootTest
+class CheckoutObservabilityTest {
+
+    @Autowired CheckoutService service;
+    @Autowired MeterRegistry meterRegistry;   // a SimpleMeterRegistry in tests
+
+    @Test
+    void recordsCheckoutTimerMetric() {
+        service.checkout(Cart.sample());
+
+        Timer timer = meterRegistry.find("checkout").timer();
+        assertThat(timer).isNotNull();
+        assertThat(timer.count()).isEqualTo(1);
+    }
+}
+```
+
+**Result.** Each checkout records a `checkout` timer visible in Prometheus and Grafana, emits a span exported over OTLP, and stamps `traceId`/`spanId` into the logs — so operators can open the trace, see exactly which sub-step caused the spike, and jump to the correlated log lines.
+
+**Future improvements.** Add child observations per downstream call so each hop is its own span, alert on the timer's p99, lower the production sampling probability while always keeping error traces, and route OTLP through a collector for batching and redaction.
+
+### 19.7 Exercises
+
+1. What two (or three) signals does a single `Observation` produce?
+2. Why is exporting traces via OpenTelemetry preferred over a vendor-specific tracer?
+3. Distinguish low-cardinality from high-cardinality tags and explain why the distinction protects the metrics backend.
+
+### 19.8 Challenges
+
+- **Challenge.** Instrument a multi-step endpoint with nested observations, run a local OpenTelemetry collector, export traces to Jaeger or Grafana Tempo, and identify the slowest span in the trace view. Then confirm that the same instrumentation produced a timer metric in Prometheus and that the logs for that request carry the matching `traceId`.
+
+### 19.9 Checklist
+
+- [ ] I instrument with the Observation API so metrics and traces come from one point.
+- [ ] I export traces via the OpenTelemetry starter over OTLP.
+- [ ] I keep metric tags low-cardinality and push high-cardinality detail to spans.
+- [ ] I tune sampling per environment (full in dev, sparing in prod, errors retained).
+- [ ] My logs include `traceId`/`spanId` for correlation.
+
+### 19.10 Best practices
+
+- Instrument once with the **Observation API** and let it emit both the metric and the span.
+- Keep **metric** tags low-cardinality; put high-cardinality identifiers on **spans** only.
+- Sample fully in development and sparingly in production, but always keep error traces.
+- Standardize on OpenTelemetry and OTLP so telemetry is portable across backends.
+- Ensure W3C trace-context propagation so spans link across service boundaries.
+
+### 19.11 Anti-patterns
+
+- High-cardinality metric tags (user IDs, cart IDs) causing a series explosion that overwhelms the backend.
+- Vendor-locked tracing instead of OTel, forcing a rewrite to change backends.
+- Logging without correlation — no `traceId`/`spanId` — so logs and traces can't be joined.
+- Sampling at 100% in production, generating crippling trace volume and cost.
+
+### 19.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No traces in the backend | Exporter or endpoint misconfigured | Set the OTLP endpoint and a non-zero sampling probability |
+| Metric cardinality explosion | High-cardinality tags on meters | Move them to spans; use bounded, low-cardinality tags |
+| Spans not linked across services | Trace context not propagated | Ensure W3C trace-context propagation on every client/server |
+| Missing metrics | Registry or exporter disabled | Enable the exporter (e.g., Prometheus) and confirm the registry bean |
+| Logs lack trace IDs | Tracing not active or pattern omits MDC | Enable tracing and include `traceId`/`spanId` in the log pattern |
+| `@Timed` records nothing | Timed aspect not present | Ensure the aspect/AOP support and a `MeterRegistry` are on the classpath |
+
+### 19.13 Official references
+
+- Spring Boot observability (tracing & metrics): https://docs.spring.io/spring-boot/reference/actuator/tracing.html
+- Spring Framework observability: https://docs.spring.io/spring-framework/reference/integration/observability.html
+- Micrometer: https://micrometer.io
+- Micrometer Observation API: https://docs.micrometer.io/micrometer/reference/observation.html
+- OpenTelemetry: https://opentelemetry.io
+
+---
+
+> **End of Part VII.** Your Boot 4 service can now see itself: **Actuator** exposes health (with liveness/readiness groups mapped to Kubernetes probes), info, metrics, and a Prometheus endpoint behind a secured management port; **Micrometer 2** with the **Observation API** instruments code once to emit both metrics and traces, exporting over **OTLP** through the Boot 4 **OpenTelemetry starter** with trace-correlated logs. **Part VIII — Packaging & Production** (Chapters 20–22) turns the observable application into a shippable, hardened artifact: executable and layered jars plus Cloud Native Buildpacks, GraalVM native images with AOT processing, and production hardening aligned with the twelve-factor methodology.
+
 <!--APPEND-PARTE-II-->
