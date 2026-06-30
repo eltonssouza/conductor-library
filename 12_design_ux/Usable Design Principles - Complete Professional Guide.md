@@ -39,9 +39,9 @@ software_dev: supporting
 2. Feedback and mapping
 
 **Part II – The user's mind**
-3. Mental models and error-tolerant design
+3. Mental models and conceptual models
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** phased delivery. **Ready:** Parts I–II (Ch. 1–3). **In progress:** Part III onward (the psychology of action, knowledge and constraints, human error, and the design process).
 
 ---
 
@@ -238,6 +238,107 @@ On Save click:
 
 ---
 
-> **End of Part I.** You can now design for understandability: provide perceivable **signifiers** for the actions your interface **affords** so they're discoverable, give immediate, informative **feedback** that closes the action loop, and use natural **mapping** so controls relate obviously to their effects. **Part II — The user's mind** (Chapter 3) covers mental models (designing so the system matches users' expectations) and error-tolerant design (preventing errors and making them easy to recover from — blaming the design, not the user).
+> **End of Part I.** You can now design for understandability: provide perceivable **signifiers** for the actions your interface **affords** so they're discoverable, give immediate, informative **feedback** that closes the action loop, and use natural **mapping** so controls relate obviously to their effects. **Part II — The user's mind** (Chapter 3) covers the **mental and conceptual models** people build of a system — and how the design either matches them or fights them. (Error-tolerant design — preventing errors and making them recoverable, blaming the design rather than the user — gets its own treatment later, in **Part V**.)
+
+---
+
+## Part II – The user's mind
+
+People don't operate the system you built; they operate the system they *think* you built. Every user constructs a **mental model** — a private story of how the thing works — and acts on that story. When the story is right, the interface feels obvious; when it's wrong, even a "powerful" product feels broken. The designer's leverage is indirect: you can't install a model in someone's head, but you can shape the **system image** — everything the product shows and says — so the model people infer is the one that lets them succeed.
+
+---
+
+## Chapter 3 — Mental models and conceptual models
+
+### 3.1 Introduction
+
+A **conceptual model** is a simplified explanation of how something works — enough to predict what it will do, not a complete or technically accurate account. Three models matter and must be distinguished. The **design model** is the conceptual model held by the designer — how the system *actually* works. The **user's model** (the mental model) is the conceptual model the user builds from experience. Crucially, the designer and the user never talk directly: the only thing that connects them is the **system image** — the visible structure, controls, labels, behavior, documentation, everything the product presents. If the system image doesn't clearly communicate the design model, the user builds a *wrong* model — and a wrong model produces confident mistakes. Good design is, in large part, building a system image that hands the user the right model for free.
+
+### 3.2 Business context
+
+A correct mental model is the difference between a product people master and one they abandon. When the system image teaches the right model, users predict behavior, recover from surprises, and need little support; when it teaches a wrong (or no) model, they hesitate, distrust the system, fabricate superstitions ("always do X twice or it won't save"), and flood support with "why did it do that?" tickets. Mental-model failures are expensive precisely because they're invisible in a feature list — the feature works, yet adoption stalls because no one can form a story that makes it usable. Investing in a coherent, communicated model is cheaper than the churn and support cost of a product that is powerful but unexplainable.
+
+### 3.3 Theoretical concepts: three models, one channel
+
+```mermaid
+flowchart LR
+    design["Design model<br/>(how it really works)"] --> image["System image<br/>(what the product shows)"]
+    image --> user["User's model<br/>(what the user infers)"]
+    user --> predict["User predicts &amp; acts"]
+```
+
+The designer's model reaches the user *only* through the system image — never directly. So the design question is not "do I understand my system?" but "does what I show let the user reconstruct a model that works?" Models are allowed to be **incomplete and even technically wrong** as long as they're *predictive*: a thermostat user who believes "higher setting = heats faster" holds a false model that still mostly works for setting a temperature — until it causes the error of cranking it to maximum. The fix is a system image that suggests the correct model (the room heats at a fixed rate toward the target), not a physics lecture.
+
+### 3.4 Architecture: does the image teach the model?
+
+```mermaid
+flowchart TB
+    img["What the interface shows"] --> q{"Does it suggest how the system works?"}
+    q -- "no" --> wrong["User invents a model -> confident, wrong predictions -> errors"]
+    q -- "yes" --> right["User infers the design model -> correct predictions -> mastery"]
+```
+
+### 3.5 Real example
+
+**Scenario.** A note-taking app syncs to the cloud in the background. There is no visible model of *when* a note is safe.
+
+**Problem.** Users build the wrong mental model — "it saved when I closed it" — or no model at all, so they distrust sync, manually copy notes elsewhere, and lose edits made offline because they assumed an immediate save.
+
+**Solution.** Make the model visible through the system image: show sync state explicitly ("Saving… / Saved / Offline — will sync when connected") so the user's model matches reality.
+
+**Implementation (communicate the model).**
+
+```text
+Before: silent background sync -> user guesses the rules -> wrong model, lost trust
+After:  per-note status: "Saved 2s ago", "Offline — changes kept locally, will sync",
+        a one-line explainer on first use ("Notes save locally instantly, then sync")
+        -> user infers the real model: local-first, sync-when-online
+```
+
+**Result.** Users stop inventing superstitions and manual backups; they correctly predict that offline edits are safe and will sync later. The behavior didn't change — the *communicated model* did.
+
+**Future improvements.** Surface conflict resolution in the same model ("edited on two devices — keep both?") so the user's model extends gracefully to the hard cases instead of breaking on them.
+
+### 3.6 Exercises
+
+1. Distinguish the design model, the user's model, and the system image.
+2. Why can a *technically wrong* mental model still be useful — and when does it bite?
+3. The designer "talks" to the user through only one channel. Which one, and what follows from that?
+
+### 3.7 Challenges
+
+- **Challenge.** Pick a feature users misunderstand. Write the model they *currently* infer and the model you *want* them to have. Change the system image (labels, states, defaults, a one-line explainer) to close the gap — then check whether the misunderstanding drops.
+
+### 3.8 Checklist
+
+- [ ] The system image clearly suggests how the system works.
+- [ ] The model I want users to hold is written down — and visible in the UI, not just in my head.
+- [ ] Hidden state that affects predictions (sync, modes, background work) is made visible.
+- [ ] I've checked the *wrong* models users might infer and designed against them.
+
+### 3.9 Best practices
+
+- Decide the conceptual model you want users to hold, then engineer the system image to teach it.
+- Make invisible state visible — users can only model what they can perceive.
+- Prefer a simple, predictive model over a complete, accurate one.
+
+### 3.10 Anti-patterns
+
+- Hidden behavior that forces users to guess the rules (and guess wrong).
+- Assuming "obvious to me" equals "communicated" — the design model never reaches users directly.
+- Inconsistent behavior that makes a coherent model impossible to form.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Users invent superstitions/workarounds | No communicated model — they guessed | Make the model visible in the system image |
+| "Why did it do that?" surprises | User's model diverges from the design model | Align the image (states, labels) to the real behavior |
+| Same input, unpredictable result to users | Inconsistent behavior blocks model-building | Make behavior consistent, then signal it |
+
+### 3.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 1 ("The Psychopathology of Everyday Things"), the section on conceptual models, the design model / user's model / system image, and the *Gulfs* introduced there.
+- NN/g, "Mental Models": https://www.nngroup.com/articles/mental-models/.
 
 <!--APPEND-PART-II-->
