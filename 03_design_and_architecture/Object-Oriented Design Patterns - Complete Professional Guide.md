@@ -156,8 +156,8 @@ class ReportExporter {
 
 ### 1.12 References
 
-- E. Gamma, R. Helm, R. Johnson, J. Vlissides, *Design Patterns* (Addison-Wesley, 1994) — ISBN 978-0201633610.
-- E. Freeman, E. Robson, *Head First Design Patterns*, 2nd ed. (O'Reilly, 2020) — ISBN 978-1492078005.
+- E. Gamma, R. Helm, R. Johnson, J. Vlissides, *Design Patterns* (Addison-Wesley, 1994), ch. 1 "Introduction" ("What Is a Design Pattern?") — ISBN 978-0201633610.
+- E. Freeman, E. Robson, *Head First Design Patterns*, 2nd ed. (O'Reilly, 2020), ch. 1 "Welcome to Design Patterns" — ISBN 978-1492078005.
 
 ---
 
@@ -263,8 +263,8 @@ Notifier n = new LoggingNotifier(new EmailNotifier());
 
 ### 2.12 References
 
-- E. Gamma, R. Helm, R. Johnson, J. Vlissides, *Design Patterns* (Addison-Wesley, 1994) — ISBN 978-0201633610.
-- E. Freeman, E. Robson, *Head First Design Patterns*, 2nd ed. (O'Reilly, 2020) — ISBN 978-1492078005.
+- E. Gamma, R. Helm, R. Johnson, J. Vlissides, *Design Patterns* (Addison-Wesley, 1994), ch. 3 "Creational Patterns", ch. 4 "Structural Patterns" & ch. 5 "Behavioral Patterns" (Abstract Factory; Adapter; Strategy/Observer) — ISBN 978-0201633610.
+- E. Freeman, E. Robson, *Head First Design Patterns*, 2nd ed. (O'Reilly, 2020), ch. 4 (the Factory Pattern), ch. 7 (the Adapter Pattern) & ch. 2 (the Observer Pattern) — ISBN 978-1492078005.
 
 ---
 
