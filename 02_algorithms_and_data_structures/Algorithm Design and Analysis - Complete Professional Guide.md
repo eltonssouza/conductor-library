@@ -58,7 +58,11 @@ software_dev: foundational
 10. Elementary data structures and hashing
 11. Balanced search trees and disjoint sets
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VI (Ch. 1–11).
+**Part VII – Graph algorithms**
+12. Graph search and minimum spanning trees
+13. Shortest paths and network flow
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VII (Ch. 1–13).
 
 ---
 
@@ -1339,3 +1343,247 @@ union(x, y):                               # with UNION BY RANK
 ---
 
 > **End of Part VI.** The right data structure decides an algorithm's speed. **Hash tables** give expected `O(1)` lookup-by-key (dictionaries, caches, dedup, joins) but are **unordered**; **stacks**, **queues**, and **linked lists** make one access pattern `O(1)`. When **order** matters, **balanced search trees** guarantee `O(log n)` — **red-black trees** in memory, **B-trees** on disk (the index behind every database) — and the **disjoint-set (union-find)** structure answers connectivity queries in near-constant amortized time via union by rank and path compression. **Part VII — Graph algorithms** builds directly on these structures (priority queues, union-find) to traverse and optimize networks.
+
+---
+
+## Part VII – Graph algorithms
+
+A **graph** — vertices joined by edges — models almost any network: roads, social connections, dependencies, the web, supply chains, circuits. Graph algorithms are how we traverse, order, and optimize these networks, and they bring together everything so far: BFS/DFS use **queues and stacks**, Prim and Dijkstra use a **priority queue (heap)**, and Kruskal uses **union-find**. This part covers the two pillars: **graph search** (BFS, DFS, topological sort, strongly connected components) and **minimum spanning trees**, then the optimization classics — **shortest paths** (Dijkstra, Bellman–Ford, Floyd–Warshall) and **network flow** (max-flow / min-cut and bipartite matching).
+
+---
+
+## Chapter 12 — Graph search and minimum spanning trees
+
+### 12.1 Introduction
+
+The two fundamental graph traversals are **breadth-first search (BFS)**, which explores level by level from a source using a **queue** and finds **shortest paths in unweighted graphs**, and **depth-first search (DFS)**, which dives as deep as possible using a **stack**/recursion and reveals structure through its edge classification. DFS powers **topological sort** (a linear order of a DAG respecting all dependencies) and **strongly connected components** (maximal mutually-reachable groups). Both run in **`O(V + E)`** on an adjacency-list representation. The chapter's second theme is the **minimum spanning tree (MST)** — the cheapest set of edges connecting all vertices — solved greedily by **Kruskal**'s algorithm (sort edges, add if no cycle, using union-find) and **Prim**'s (grow a tree using a priority queue).
+
+### 12.2 Business context
+
+Graph search is everywhere a network needs traversing. **BFS** finds shortest hop-distance: degrees of separation in a social graph, the fewest moves in a puzzle, web crawling by proximity, GPS routing on unweighted maps. **DFS** drives dependency resolution and cycle detection — and **topological sort** is *the* algorithm behind build systems (Make, Bazel), package managers (npm, Maven resolving install order), task schedulers, and spreadsheet recalculation: anything that must order steps so each runs after its prerequisites. **Strongly connected components** find tightly-coupled modules, deadlock cycles, and link-farm clusters. **MST** is direct cost optimization: laying minimum-cost cable/road/pipe networks, clustering, and approximation building blocks (Part VIII). These are bread-and-butter algorithms whose absence forces teams to reinvent slow, buggy versions.
+
+### 12.3 Theoretical concepts: traversal and the greedy MST
+
+```mermaid
+flowchart TB
+    rep["Adjacency list: O(V+E) space, iterate neighbors fast"] --> bfs["BFS: queue, level order -> unweighted shortest paths, O(V+E)"]
+    rep --> dfs["DFS: stack/recursion, edge classification, O(V+E)"]
+    dfs --> topo["Topological sort of a DAG (DFS finish order)"]
+    dfs --> scc["Strongly connected components"]
+    rep --> mst["MST: Kruskal (sort edges + union-find) / Prim (priority queue)"]
+```
+
+A graph is usually stored as an **adjacency list** (`O(V + E)` space, efficient neighbor iteration) rather than an adjacency matrix (`O(V²)`, good only for dense graphs). **BFS** processes vertices in a FIFO queue, so it discovers them in increasing distance from the source — giving unweighted shortest paths. **DFS** recurses (or uses an explicit stack), and the order in which vertices *finish* gives a **topological sort** of a DAG; running DFS twice (on the graph and its transpose) yields **strongly connected components**. **MST** algorithms are greedy (Part V): **Kruskal** sorts all edges and adds the next-cheapest that does not form a cycle (cycle test = union-find `find`), `O(E log E)`; **Prim** grows one tree, repeatedly adding the cheapest edge leaving it via a **min-priority queue**, `O(E log V)`.
+
+### 12.4 Architecture: which traversal/MST algorithm
+
+```mermaid
+flowchart TB
+    bfs["Unweighted shortest path / fewest hops -> BFS"]
+    dfs["Reachability, cycle detection, structure -> DFS"]
+    topo["Order tasks with dependencies (DAG) -> topological sort"]
+    scc["Find mutually-reachable groups -> strongly connected components"]
+    kruskal["Sparse graph, edges easy to sort -> Kruskal (+ union-find)"]
+    prim["Dense graph / streaming edges from a start -> Prim (+ heap)"]
+```
+
+Pick the traversal by the question: **BFS** for fewest-hops/unweighted-shortest-path, **DFS** for reachability, cycle detection, and the structural algorithms (topo sort, SCC). For **MST**, both Kruskal and Prim are correct and greedy; **Kruskal** (edge-centric, union-find) is natural for sparse graphs or when edges arrive as a sortable list, while **Prim** (vertex-centric, heap) suits dense graphs or growing a tree from a seed. Both depend on data structures from Part VI — which is why graph algorithms are where the whole curriculum converges.
+
+### 12.5 Real example
+
+**Scenario.** A build system must run tasks so that every task runs only after the tasks it depends on, and must reject impossible (cyclic) dependency graphs.
+
+**Problem.** Dependencies form a directed graph; running tasks in arbitrary order breaks builds, and a dependency cycle (A needs B needs A) must be detected, not looped on forever.
+
+**Solution.** Model tasks as a DAG and compute a **topological sort** with DFS: a vertex is emitted only after all its dependents finish, and a *back edge* discovered during DFS signals a cycle.
+
+**Implementation.**
+
+```text
+topological_sort(G):                         # G is a DAG of tasks
+    visited = {}; on_stack = {}; order = []   # order built in reverse
+    def dfs(u):
+        visited[u] = true; on_stack[u] = true
+        for v in G.adj[u]:
+            if not visited[v]: dfs(v)
+            elif on_stack[v]: raise CycleError  # back edge -> cyclic deps
+        on_stack[u] = false
+        order.append(u)                        # u FINISHES -> prepend later
+    for u in G.vertices:
+        if not visited[u]: dfs(u)
+    return reverse(order)                       # dependencies before dependents
+
+# O(V + E): each vertex and edge visited once. A back edge means the build
+# graph has a cycle and cannot be ordered.
+```
+
+**Result.** Tasks run in a valid dependency order in `O(V + E)`, and cyclic dependency graphs are rejected with a clear error instead of hanging. This is exactly how Make, Bazel, and package managers schedule work.
+
+**Future improvements.** For **parallel** builds, use Kahn's algorithm (BFS over in-degrees) to expose all currently-runnable tasks (in-degree 0) as a frontier you can execute concurrently; for incremental builds, recompute the topological order only over the affected subgraph.
+
+### 12.6 Exercises
+
+1. Why does BFS find shortest paths in *unweighted* graphs but not weighted ones?
+2. How does DFS's finish order produce a topological sort, and what edge type signals a cycle?
+3. Compare Kruskal and Prim — data structures used, complexity, and when each fits.
+4. Why is an adjacency list usually preferred over an adjacency matrix?
+
+### 12.7 Challenges
+
+- **Challenge.** Implement BFS and DFS on an adjacency-list graph. Use DFS for a topological sort with cycle detection, then re-implement the topo sort with Kahn's in-degree BFS and expose the parallelizable frontier. Separately, build an MST with both Kruskal (union-find) and Prim (heap) and confirm they produce equal total weight.
+
+### 12.8 Checklist
+
+- [ ] I store graphs as adjacency lists unless they are dense.
+- [ ] I use BFS for unweighted shortest paths and DFS for structure/cycles.
+- [ ] I topologically sort dependency DAGs and detect cycles via back edges.
+- [ ] I build MSTs greedily with Kruskal (union-find) or Prim (heap).
+- [ ] I reuse the right Part VI structure (queue, stack, heap, union-find) for each.
+
+### 12.9 Best practices
+
+- Default to adjacency lists for `O(V + E)` traversals.
+- Detect dependency cycles explicitly (back edges / in-degree never reaching 0).
+- Use Kahn's algorithm when you want to parallelize independent tasks.
+- Lean on union-find (Kruskal) and priority queues (Prim) rather than re-deriving them.
+
+### 12.10 Anti-patterns
+
+- Using an adjacency matrix for a sparse graph (`O(V²)` space wasted).
+- Applying BFS to a *weighted* graph expecting shortest paths (use Dijkstra).
+- Running tasks without topologically ordering their dependencies.
+- Ignoring cycle detection and looping forever on cyclic input.
+
+### 12.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Shortest path" wrong on weighted graph | BFS ignores edge weights | Use Dijkstra / Bellman–Ford (Ch. 13) |
+| Build runs tasks out of order | No topological sort | Topologically sort the dependency DAG |
+| Scheduler hangs on cyclic deps | No cycle detection | Detect back edges / in-degree stall and error out |
+| Graph traversal uses too much memory | Adjacency matrix on a sparse graph | Switch to an adjacency list |
+
+### 12.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 20 "Elementary Graph Algorithms" (§20.1 representations, §20.2 breadth-first search, §20.3 depth-first search, §20.4 topological sort, §20.5 strongly connected components) and ch. 21 "Minimum Spanning Trees" (§21.2 Kruskal and Prim) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 3 (graph traversal) & ch. 4 (MST) — ISBN 978-0321295354.
+
+---
+
+## Chapter 13 — Shortest paths and network flow
+
+### 13.1 Introduction
+
+When edges carry **weights** (distance, cost, time), BFS no longer finds shortest paths; we need dedicated algorithms. **Dijkstra**'s algorithm finds single-source shortest paths in graphs with **non-negative** weights, using a min-priority queue to greedily settle the closest vertex, in `O(E log V)`. **Bellman–Ford** handles **negative** edge weights and **detects negative cycles**, in `O(VE)`. **Floyd–Warshall** computes **all-pairs** shortest paths with a compact dynamic program in `O(V³)`. The chapter's second topic is **network flow**: the **maximum-flow / minimum-cut** problem (Ford–Fulkerson / Edmonds–Karp) and its elegant reduction of **bipartite matching** — assigning one set to another optimally — to a flow computation.
+
+### 13.2 Business context
+
+Shortest-path algorithms are the math behind navigation and networking. **Dijkstra** powers GPS routing, network packet routing (a variant underlies OSPF), and any "cheapest/fastest path" query; **Bellman–Ford** is used where weights can be negative (currency-exchange arbitrage detection, where a negative cycle is a profit loop) and in distributed distance-vector routing; **Floyd–Warshall** precomputes all pairwise distances for small dense graphs (transit maps, game AI). **Network flow** models throughput and assignment: maximum traffic through a pipeline/network, **bipartite matching** for job/worker assignment, ad-to-slot allocation, scheduling, and the famous min-cut for image segmentation and reliability (the cheapest set of links whose failure disconnects the network). These are direct optimizations with measurable money and latency attached.
+
+### 13.3 Theoretical concepts: relaxation, and flow/cut duality
+
+```mermaid
+flowchart TB
+    relax["Relaxation: if dist[u]+w(u,v) < dist[v], update dist[v]"] --> dij["Dijkstra: settle nearest via min-heap (non-negative weights), O(E log V)"]
+    relax --> bf["Bellman-Ford: relax all edges V-1 times; extra pass detects negative cycle, O(VE)"]
+    relax --> fw["Floyd-Warshall: DP over intermediate vertices, all-pairs, O(V^3)"]
+    flow["Max-flow (Ford-Fulkerson/Edmonds-Karp): augmenting paths"] --> mincut["Max-flow = min-cut; models bipartite matching"]
+```
+
+All shortest-path algorithms share one primitive: **relaxation** — try to improve `dist[v]` using the edge `(u, v)`. **Dijkstra** relaxes greedily, always finalizing the closest unsettled vertex (correct only with non-negative weights, because a settled vertex's distance must never improve later). **Bellman–Ford** relaxes *every* edge `V−1` times (a shortest path has at most `V−1` edges); a further relaxation that still improves something proves a **negative cycle**. **Floyd–Warshall** is a DP: `dist[i][j]` allowing intermediate vertices `1..k` is built from `k−1`. For **flow**, the **Ford–Fulkerson** method repeatedly pushes flow along an augmenting path in the residual graph until none remains; the **max-flow min-cut theorem** says the maximum flow equals the capacity of the cheapest cut — and modeling each match as a unit-capacity edge reduces **bipartite matching** to max flow.
+
+### 13.4 Architecture: choosing a shortest-path / flow method
+
+```mermaid
+flowchart TB
+    dij["Non-negative weights, single source -> Dijkstra (min-heap)"]
+    bf["Negative weights / detect negative cycle -> Bellman-Ford"]
+    fw["All pairs, small dense graph -> Floyd-Warshall"]
+    bfs2["Unweighted -> plain BFS (Ch. 12)"]
+    flow["Throughput / assignment / matching -> max-flow (min-cut)"]
+```
+
+Choose by the weight model and the question. **Unweighted?** BFS (Chapter 12). **Non-negative weights, one source?** Dijkstra. **Negative weights, or need to detect a negative cycle?** Bellman–Ford. **Every pair of distances on a small dense graph?** Floyd–Warshall. For **throughput or optimal assignment**, formulate it as **max-flow**: matching, scheduling, and connectivity reliability all reduce to flow, and the **min-cut** dual often answers the "what's the bottleneck?" question directly. Recognizing that a business problem *is* a flow/matching problem is frequently the hardest and most valuable step.
+
+### 13.5 Real example
+
+**Scenario.** A navigation feature must compute the fastest route between two points on a road network where each road segment has a travel time.
+
+**Problem.** The graph is weighted, so BFS (Chapter 12) gives the fewest *segments*, not the fastest *time*. We need shortest paths by weight, and travel times are non-negative.
+
+**Solution.** Run **Dijkstra**'s algorithm from the origin with a min-priority queue keyed on tentative distance; settle the closest vertex each step until the destination is finalized.
+
+**Implementation.**
+
+```text
+dijkstra(G, source):
+    dist = {v: +infinity for v in G};  dist[source] = 0
+    pq = min_heap()                      # keyed on tentative distance
+    pq.push(source, 0)
+    while pq not empty:
+        u, d = pq.pop_min()              # closest unsettled vertex
+        if d > dist[u]: continue          # stale entry
+        for (v, w) in G.adj[u]:           # RELAX each outgoing edge
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                pq.push(v, dist[v])
+    return dist                           # store predecessors to rebuild the path
+
+# O(E log V) with a binary heap. Correct because weights are non-negative:
+# once popped, a vertex's distance is final. Negative weights? Use Bellman-Ford.
+```
+
+**Result.** The fastest route by travel time is computed in `O(E log V)`; storing each vertex's predecessor lets the feature reconstruct the actual road sequence. The min-heap from Part VI is what makes "settle the nearest vertex" efficient.
+
+**Future improvements.** For continental-scale maps, plain Dijkstra is too slow; production routers add a **goal-directed heuristic (A\*)**, **bidirectional search**, or heavy **preprocessing** (contraction hierarchies) to answer queries in microseconds. If some weights could be negative (e.g. rebates), switch to Bellman–Ford or Johnson's algorithm.
+
+### 13.6 Exercises
+
+1. Why does Dijkstra require non-negative edge weights to be correct?
+2. How does Bellman–Ford detect a negative-weight cycle?
+3. State the running times of Dijkstra, Bellman–Ford, and Floyd–Warshall and when each is the right choice.
+4. Explain how bipartite matching reduces to a maximum-flow problem.
+
+### 13.7 Challenges
+
+- **Challenge.** Implement Dijkstra with a binary heap and Bellman–Ford. Construct a graph with a negative cycle and confirm Bellman–Ford reports it while Dijkstra gives wrong answers. Then model a small job-assignment problem as bipartite matching, solve it via max-flow (Edmonds–Karp), and verify the matching size equals the max flow.
+
+### 13.8 Checklist
+
+- [ ] I use Dijkstra for non-negative weighted single-source shortest paths.
+- [ ] I use Bellman–Ford when weights may be negative or I must detect negative cycles.
+- [ ] I use Floyd–Warshall for all-pairs distances on small dense graphs.
+- [ ] I recognize assignment/throughput problems as max-flow / bipartite matching.
+- [ ] I store predecessors to reconstruct the actual path, not just its length.
+
+### 13.9 Best practices
+
+- Match the algorithm to the weight model (unweighted→BFS, non-negative→Dijkstra, negative→Bellman–Ford).
+- Use a min-priority queue (heap) to keep Dijkstra at `O(E log V)`.
+- Reduce assignment/scheduling problems to flow/matching rather than ad-hoc heuristics.
+- For huge graphs, add A\*/bidirectional/preprocessing on top of Dijkstra.
+
+### 13.10 Anti-patterns
+
+- Running Dijkstra on a graph with negative edges (silently wrong).
+- Using Floyd–Warshall (`O(V³)`) on a large sparse graph (run Dijkstra per source instead).
+- Hand-rolling assignment heuristics where a clean max-flow/matching formulation is optimal.
+- Returning only the distance when the application needs the path itself.
+
+### 13.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Shortest paths wrong with some edges | Negative weights under Dijkstra | Switch to Bellman–Ford (or Johnson's) |
+| All-pairs computation too slow | Floyd–Warshall on a large sparse graph | Run Dijkstra from each source instead |
+| "Infinite" / inconsistent distances | Negative-weight cycle present | Detect it with Bellman–Ford and reject |
+| Assignment solution suboptimal | Greedy heuristic instead of matching | Model as bipartite matching / max-flow |
+
+### 13.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 22 "Single-Source Shortest Paths" (§22.1 Bellman–Ford, §22.3 Dijkstra), ch. 23 "All-Pairs Shortest Paths" (§23.2 Floyd–Warshall), and ch. 24 "Maximum Flow" (§24.2 the Ford–Fulkerson method, §24.3 maximum bipartite matching) — ISBN 978-0262046305.
+- J. Kleinberg, É. Tardos, *Algorithm Design* (Pearson, 2005), ch. 6 (shortest paths) & ch. 7 (network flow) — ISBN 978-0321295354.
+
+---
+
+> **End of Part VII.** Graphs model networks, and their algorithms tie the whole curriculum together. **BFS** (queue) and **DFS** (stack) traverse in `O(V + E)`, with DFS yielding **topological sort** and **strongly connected components**; **MST** algorithms (**Kruskal** with union-find, **Prim** with a heap) connect everything at minimum cost. With weights, **relaxation** drives **Dijkstra** (non-negative, `O(E log V)`), **Bellman–Ford** (negative weights / cycle detection), and **Floyd–Warshall** (all-pairs); and **max-flow / min-cut** solves throughput and **bipartite matching**. Every one of these leans on the data structures of Part VI. **Part VIII — Selected advanced topics** surveys the frontier: strings, number theory and cryptography, the FFT, and the theory of intractability.
