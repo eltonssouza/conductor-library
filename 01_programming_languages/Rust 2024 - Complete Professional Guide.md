@@ -542,4 +542,4 @@ If a fourth variant were added to `Shape`, the `area` match would fail to compil
 
 > **End of Part I.** You can now drive Cargo, reason precisely about ownership and borrowing, and model domains with structs, enums, and exhaustive pattern matching — the foundation every later Part builds on. Parts II–VIII (lifetimes, traits and generics, collections and iterators, error handling, modules and smart pointers, concurrency and async, and the mastery topics of macros, testing, unsafe/FFI, performance, and release) continue the same chapter structure and will be appended in subsequent deliveries.
 
-<!--APPEND-PARTE-II-->
+<!--APPEND-PART-II-->
