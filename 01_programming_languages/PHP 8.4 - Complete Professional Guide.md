@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–II (Ch. 1–6). **In progress:** Parts III–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–III (Ch. 1–9). **In progress:** Parts IV–VIII.
 
 ---
 
@@ -916,4 +916,348 @@ $names = array_map(strtoupper(...), array_column($expensive, 'name'));
 
 > **End of Part II.** PHP's everyday workhorses: **functions** with named arguments, defaults, and variadics for clear, flexible calls; the **array** as a universal ordered map manipulated by a rich set of built-in functions; and **closures**, **arrow functions**, and **first-class callables** that pass behavior as a value. Part III covers **object-oriented PHP** — classes with constructor promotion and `readonly`, interfaces/abstracts/traits, and enums.
 
-<!--APPEND-PART-III-->
+---
+
+## Part III – Object-Oriented PHP
+
+Part III covers PHP's object model, which modern versions have made concise and safe: **classes** with constructor property promotion and `readonly`, the three abstraction tools **interfaces**, **abstract classes**, and **traits**, and **enums** for fixed sets of values.
+
+---
+
+## Chapter 7 — Classes, properties, constructor promotion, `readonly`
+
+### 7.1 Introduction
+
+A PHP **class** bundles typed **properties** with **methods**, with visibility (`public`/`protected`/`private`). PHP 8 cut the boilerplate: **constructor property promotion** declares and assigns properties directly in the constructor signature (`public function __construct(private string $name) {}`), and **`readonly`** properties can be set once (in the constructor) and never again, giving immutability per property. PHP 8.4 adds **property hooks** and **asymmetric visibility** (Part IV). The result is concise, intention-revealing classes that protect their invariants.
+
+### 7.2 Business context
+
+Encapsulation lets a class enforce that its data is always valid and change its internals without breaking callers. Before promotion, every property meant three lines (declare, parameter, assign) — pure ceremony that obscured intent; promotion removes it. `readonly` makes immutability a guarantee the engine enforces, eliminating "who mutated this?" bugs for value objects and DTOs. Concise, safe classes lower the cost of modeling a domain accurately, which is where correctness in a business application starts.
+
+### 7.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    ctor["__construct(private readonly string name)"] --> promote["promotion: declare + assign in one place"]
+    promote --> ro["readonly: assigned once, immutable after"]
+    vis["visibility: public / protected / private"] --> encap["encapsulate state"]
+```
+
+**Constructor promotion** turns a constructor parameter prefixed with a visibility modifier into a class property, declared and assigned automatically. **`readonly`** properties may be initialized once (typically in the constructor) and then are immutable — attempting to write again is a fatal error. Combine them (`private readonly`) for concise immutable value objects. Visibility controls access; prefer the narrowest that works.
+
+### 7.4 Architecture: concise, immutable-by-default state
+
+```mermaid
+flowchart LR
+    caller["caller"] -->|"constructs once"| obj["object with readonly properties"]
+    obj --> safe["state can't change after construction"]
+    note["Promotion + readonly = small, safe value types"]
+```
+
+Promotion plus `readonly` makes the common case — a small type whose data is set at construction and never mutated — both terse to write and safe by construction.
+
+### 7.5 Real example
+
+**Scenario.** Model an immutable `Money` value object.
+
+**Problem.** Hand-declaring properties and guarding against mutation is verbose and easy to get wrong.
+
+**Solution.** **Promote** the properties and mark them **`readonly`**.
+
+**Implementation.**
+
+```php
+final class Money
+{
+    public function __construct(
+        public readonly int $cents,        // promoted + immutable
+        public readonly string $currency,
+    ) {}
+
+    public function add(Money $other): self
+    {
+        if ($this->currency !== $other->currency) {
+            throw new InvalidArgumentException('currency mismatch');
+        }
+        return new self($this->cents + $other->cents, $this->currency); // new value, no mutation
+    }
+}
+
+$price = new Money(1990, 'BRL');
+// $price->cents = 0;   // Error: cannot modify readonly property
+$total = $price->add(new Money(500, 'BRL'));  // => Money(2490, 'BRL')
+```
+
+**Result.** `Money` is declared in a few lines (no separate property declarations or assignments), and its fields are immutable — any mutation is a fatal error, so the value can be shared safely. "Changes" produce new instances via `add`. Promotion + `readonly` made a correct value object cheap to write.
+
+**Future improvements.** Add validation in the constructor (reject negative cents, empty currency); use PHP 8.4 property hooks (Part IV) for computed/validated properties.
+
+### 7.6 Exercises
+
+1. What does constructor property promotion replace?
+2. What guarantee does `readonly` provide, and when can the property be set?
+3. Why model `Money` as immutable?
+
+### 7.7 Challenges
+
+- **Challenge.** Build an immutable `Point` with promoted `readonly` `x`/`y` and a `translate(int $dx, int $dy): self` that returns a new `Point`.
+
+### 7.8 Checklist
+
+- [ ] I use constructor promotion to declare/assign properties concisely.
+- [ ] Value objects use `readonly` for immutability.
+- [ ] Properties have the narrowest visibility that works.
+- [ ] Invariants are validated in the constructor.
+
+### 7.9 Best practices
+
+- Promote constructor parameters into properties to cut boilerplate.
+- Make value objects immutable with `readonly`.
+- Keep properties private/protected unless they must be public.
+
+### 7.10 Anti-patterns
+
+- Public mutable properties exposing internal state.
+- Hand-written declare/assign triples instead of promotion.
+- Mutating a value object instead of producing a new one.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Cannot modify readonly property" | Writing a `readonly` after construction | Produce a new instance instead |
+| Verbose class with repeated assignments | No promotion | Promote parameters in the constructor |
+| Object reached an invalid state | No constructor validation | Validate invariants in `__construct` |
+
+### 7.12 References
+
+- PHP Manual, "Constructor Promotion" & "readonly properties": https://www.php.net/manual/en/language.oop5.properties.php.
+- J. Lockhart, *Modern PHP* (O'Reilly, 2015) — ISBN 978-1491905012.
+
+---
+
+## Chapter 8 — Interfaces, abstract classes, and traits
+
+### 8.1 Introduction
+
+PHP has three tools for abstraction and reuse. An **interface** is a pure contract — method signatures (and constants) a class promises to implement; a class can implement **many**. An **abstract class** is a partial implementation: it can mix abstract methods (must be implemented) with concrete ones (shared), and cannot be instantiated. A **trait** is a unit of reusable methods (and properties) **composed** into a class with `use` — PHP's answer to horizontal code reuse without multiple inheritance. Choosing among them is a core PHP design skill.
+
+### 8.2 Business context
+
+These tools decide how flexible and DRY a codebase is. Interfaces enable substitution and testing (depend on `LoggerInterface`, inject a fake) and underpin the PSR standards that let PHP packages interoperate. Abstract classes share scaffolding across a family of types. Traits avoid copy-pasting the same helper methods into unrelated classes (e.g., a `TimestampableTrait`). Used correctly they reduce duplication and coupling; overused (especially traits) they obscure where behavior comes from. Knowing which to reach for keeps a large PHP codebase maintainable.
+
+### 8.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    i["interface: contract only (implement many)"] --> impl["classes implement it"]
+    a["abstract class: contract + shared code (extend one)"] --> sub["subclasses fill abstract methods"]
+    t["trait: reusable methods (use in many)"] --> compose["composed into a class"]
+```
+
+An **interface** declares *what*, never *how*; a class lists the interfaces it `implements` and the compiler checks coverage. An **abstract class** provides shared implementation plus `abstract` methods subclasses must define; single inheritance applies. A **trait** is `use`d to copy its methods into a class at compile time, enabling reuse across unrelated classes — but conflicts must be resolved explicitly and overuse hides behavior. Rule of thumb: **interface** for a contract, **abstract class** for a shared base of one family, **trait** for cross-cutting helper methods.
+
+### 8.4 Architecture: contracts, shared bases, composed helpers
+
+```mermaid
+flowchart LR
+    contract["interface (substitutability)"] --> consumer["consumer depends on it"]
+    base["abstract base (shared scaffolding)"] --> family["a family of subtypes"]
+    helper["trait (cross-cutting methods)"] --> many["unrelated classes"]
+```
+
+Each tool fits a different reuse shape; mixing them (an abstract class implementing an interface and using a trait) is common and idiomatic.
+
+### 8.5 Real example
+
+**Scenario.** Multiple exporters share timestamp logic but must be interchangeable.
+
+**Problem.** Copying timestamp code into each exporter duplicates it; a single base class can't be shared with unrelated classes that also need timestamps.
+
+**Solution.** An **interface** for substitutability, an **abstract class** for shared export scaffolding, and a **trait** for the cross-cutting timestamp.
+
+**Implementation.**
+
+```php
+interface Exporter { public function export(array $data): string; }   // contract
+
+trait Timestampable {                                                  // cross-cutting reuse
+    public function stamp(): string { return (new DateTimeImmutable())->format('c'); }
+}
+
+abstract class BaseExporter implements Exporter {                      // shared base
+    use Timestampable;
+    public function export(array $data): string {
+        return $this->stamp() . "\n" . $this->body($data);            // template + hook
+    }
+    abstract protected function body(array $data): string;            // subtypes implement
+}
+
+final class CsvExporter extends BaseExporter {
+    protected function body(array $data): string { return implode(',', $data); }
+}
+```
+
+**Result.** Consumers depend on `Exporter` and can swap any implementation (or a fake in tests). `BaseExporter` shares the export skeleton; `CsvExporter` fills only the body. The `Timestampable` trait provides `stamp()` and could be reused by any unrelated class that needs timestamps — three reuse mechanisms each doing what it's best at.
+
+**Future improvements.** Keep traits small and focused; if two traits both define a method, resolve the conflict with `insteadof`/`as`; prefer composition (holding an object) when a trait starts carrying state.
+
+### 8.6 Exercises
+
+1. When do you choose an interface vs an abstract class vs a trait?
+2. Why can a class implement many interfaces but extend only one class?
+3. What problem do traits solve, and what risk do they introduce?
+
+### 8.7 Challenges
+
+- **Challenge.** Define a `Comparable` interface, an abstract base implementing a `max()` helper in terms of an abstract `compareTo()`, and a trait that adds a `describe()` method; combine them in one concrete class.
+
+### 8.8 Checklist
+
+- [ ] I use interfaces for contracts and substitutability.
+- [ ] I use abstract classes for a shared base of one type family.
+- [ ] I use traits for cross-cutting helper methods, kept small.
+- [ ] I resolve trait conflicts explicitly.
+
+### 8.9 Best practices
+
+- Depend on interfaces; inject implementations.
+- Reserve abstract classes for genuine shared scaffolding.
+- Keep traits focused; avoid trait-heavy designs that hide behavior.
+
+### 8.10 Anti-patterns
+
+- "God" traits mixing unrelated responsibilities into many classes.
+- Abstract classes used where a simple interface would do.
+- Deep inheritance for code reuse (prefer traits/composition).
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't tell where a method comes from | Too many traits | Reduce/rename; prefer explicit composition |
+| Trait method name conflict | Two traits define the same method | Resolve with `insteadof`/`as` |
+| Rigid hierarchy | Abstract class used for cross-cutting reuse | Extract a trait or compose |
+
+### 8.12 References
+
+- PHP Manual, "Interfaces", "Abstract classes", "Traits": https://www.php.net/manual/en/language.oop5.php.
+- PHP-FIG, PSR standards (interfaces for interoperability): https://www.php-fig.org/psr/.
+
+---
+
+## Chapter 9 — Enums (pure and backed) and first-class callables on methods
+
+### 9.1 Introduction
+
+A PHP **enum** (since 8.1) is a type with a fixed set of named cases — `enum Status { case Active; case Closed; }`. A **pure** enum's cases have only a name; a **backed** enum assigns each case a scalar value (`enum Status: string { case Active = 'active'; }`) for storage/serialization. Enums are objects: they can implement interfaces and have **methods**. Combined with the **first-class callable syntax** on methods (`$this->method(...)`, Ch. 6), enums make fixed domains type-safe and expressive, replacing loose string/int constants.
+
+### 9.2 Business context
+
+Domains are full of small fixed sets — order status, user role, currency. Modeling them as raw strings or class constants invites typos and invalid values that surface as runtime bugs and bad data. An **enum** makes the set a **type**: only the defined cases exist, the compiler/IDE checks usage, and `switch`/`match` over it is exhaustive-friendly. Backed enums map cleanly to database columns and JSON. Methods on enums put related behavior (a label, a color, a transition rule) where it belongs. This eliminates a whole class of "invalid status" defects.
+
+### 9.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    pure["enum Status { case Active; case Closed; }"] --> cases["a fixed set of singleton cases"]
+    backed["enum Status: string { case Active = 'active'; }"] --> scalar["each case has a scalar value (from/tryFrom)"]
+    methods["enums can implement interfaces + have methods"] --> behavior["behavior lives with the case"]
+```
+
+A **pure** enum case is a singleton object (`Status::Active`). A **backed** enum exposes `from($value)` (throws if invalid) and `tryFrom($value)` (returns null) to convert from the scalar, and `->value` to get it — ideal for persistence and APIs. Enums can declare **methods** and implement **interfaces**, so a `Status` can have a `label()` or `canTransitionTo()` method. Pass an enum method as a value with the first-class callable syntax when a callback is needed.
+
+### 9.4 Architecture: fixed sets as types
+
+```mermaid
+flowchart LR
+    raw["raw string/int constant"] -->|"replace with"| enum["enum type (only valid cases)"]
+    enum --> match["match(status) -> exhaustive handling"]
+    note["Invalid values become impossible, not just discouraged"]
+```
+
+Turning a fixed set into an enum moves "is this a valid value?" from runtime checks to the type system.
+
+### 9.5 Real example
+
+**Scenario.** An order status drives behavior and is stored in the database.
+
+**Problem.** Using `'active'`/`'closed'` strings allows typos and invalid values, and the label logic is scattered.
+
+**Solution.** A **backed enum** with a method, converting via `tryFrom` at the boundary.
+
+**Implementation.**
+
+```php
+enum OrderStatus: string
+{
+    case Pending = 'pending';
+    case Paid    = 'paid';
+    case Shipped = 'shipped';
+
+    public function label(): string         // behavior with the case
+    {
+        return match ($this) {
+            self::Pending => 'Awaiting payment',
+            self::Paid    => 'Paid',
+            self::Shipped => 'On its way',
+        };
+    }
+}
+
+$status = OrderStatus::tryFrom($row['status']) ?? OrderStatus::Pending;  // safe from DB string
+echo $status->label();                                                   // 'Paid'
+echo $status->value;                                                     // 'paid' (to store)
+```
+
+**Result.** Only the three valid statuses exist; a bad database value is handled by `tryFrom` (no invalid enum), and `match` over the enum is checked. The label lives on the type, not in scattered conditionals, and `->value` serializes cleanly back to storage. "Invalid status" bugs are designed out.
+
+**Future improvements.** Add a `canTransitionTo(OrderStatus $next): bool` method to encode the state machine; have the enum implement an interface so consumers depend on the contract.
+
+### 9.6 Exercises
+
+1. What is the difference between a pure and a backed enum?
+2. What do `from()` and `tryFrom()` do, and when do you use each?
+3. Why put a `label()` method on the enum rather than in a separate function?
+
+### 9.7 Challenges
+
+- **Challenge.** Model a `Role` backed enum with `admin`/`editor`/`viewer`, add a `canEdit(): bool` method, and convert a request string to a `Role` safely with `tryFrom`.
+
+### 9.8 Checklist
+
+- [ ] Fixed sets are modeled as enums, not raw strings/constants.
+- [ ] I use backed enums for stored/serialized values.
+- [ ] I convert external values with `tryFrom` (or `from` when invalid is exceptional).
+- [ ] Case-related behavior lives in enum methods.
+
+### 9.9 Best practices
+
+- Replace string/int constants for fixed sets with enums.
+- Use backed enums at persistence/API boundaries.
+- Put behavior (labels, rules) on the enum via methods.
+
+### 9.10 Anti-patterns
+
+- Raw string statuses/roles scattered through the code.
+- `from()` on untrusted input (use `tryFrom` to avoid exceptions).
+- Duplicated `switch` on a constant where an enum method would centralize it.
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Invalid status values in data | Raw strings, no type | Model as a backed enum |
+| Uncaught `ValueError` converting input | `from()` on invalid input | Use `tryFrom()` and handle null |
+| Status logic duplicated | Behavior outside the enum | Move it into an enum method |
+
+### 9.12 References
+
+- PHP Manual, "Enumerations": https://www.php.net/manual/en/language.enumerations.php.
+- B. D. Wiese et al., PHP RFC "Enumerations" (8.1).
+
+---
+
+> **End of Part III.** Modern PHP's object model is concise and safe: **classes** with constructor promotion and **`readonly`**; **interfaces**, **abstract classes**, and **traits** for contracts, shared bases, and cross-cutting reuse; and **enums** that turn fixed sets into checked types with behavior. Part IV covers PHP 8's **modern language features** — attributes, `match`, fibers, and 8.4's property hooks and asymmetric visibility.
+
+<!--APPEND-PART-IV-->
