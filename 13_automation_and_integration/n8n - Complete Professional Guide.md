@@ -5716,4 +5716,1822 @@ return [{
 
 > **End of Part IV.** You can now integrate n8n with the real world: any REST or GraphQL API, hardened webhooks, databases (safely and in bulk), event/message infrastructure (Kafka, RabbitMQ), Redis for concurrent-safe coordination, and the AWS, Google, and Microsoft ecosystems. **Part V — Generative AI and Agents** (Chapters 31–40) builds on these integrations to create AI-powered automations: OpenAI, Claude, Gemini, MCP, RAG, vectors, LangChain, single and multi-agent systems, and enterprise AI workflows.
 
+## Part V – Generative AI and Agents
+
+Part V is where n8n's "AI automation platform" identity comes alive. The AI nodes live in the `@n8n/n8n-nodes-langchain` package and bring chat models, embeddings, vector stores, memory, tools, and agents into the visual canvas. We cover the major LLM providers (OpenAI, Claude, Gemini), the **Model Context Protocol (MCP)**, **RAG**, **vector stores**, **LangChain** primitives, **single** and **multi-agent** orchestration, and how to assemble these into **enterprise-grade AI workflows** with guardrails, observability, and cost control. n8n 2.x's secure-by-default posture (task runners, no `process.env` in Code) applies throughout — secrets stay in credentials.
+
+---
+
+## Chapter 31 — OpenAI
+
+### 31.1 Introduction
+
+OpenAI is the most common entry point into LLM automation. n8n exposes it through the **OpenAI** node and the LangChain **OpenAI Chat Model** sub-node (which plugs into agents and chains). This chapter covers chat completions, structured output, function/tool calling, embeddings, vision, audio (transcription), and the production concerns: temperature, token budgeting, retries, and cost control.
+
+### 31.2 Business context
+
+OpenAI models power the highest-value, fastest-to-build AI automations: classification, extraction, summarization, drafting, and reasoning. The reason n8n + OpenAI is so productive is that the orchestration (triggers, data, side effects, error handling) is already solved — you add intelligence to an existing reliable pipeline rather than building an AI app from scratch.
+
+### 31.3 Theoretical concepts
+
+- **Chat completions:** messages (system/user/assistant) in, a completion out. The system prompt sets behavior; user messages carry the task/data.
+- **Structured output:** request JSON conforming to a schema so downstream nodes get reliable fields (instead of parsing prose).
+- **Function/tool calling:** the model can request a tool; in n8n this underpins the **AI Agent** node (Chapter 38).
+- **Embeddings:** convert text to vectors for semantic search/RAG (Chapters 35–36).
+- **Multimodal:** vision (image input) and audio (Whisper transcription) via the OpenAI node.
+- **Parameters:** `temperature` (creativity), `max_tokens`, `top_p`; lower temperature for deterministic extraction.
+- **Cost/limits:** token usage drives cost; budget prompts, cache where possible, and handle rate limits with retries.
+
+### 31.4 Architecture
+
+```mermaid
+flowchart LR
+    trg[Trigger + input] --> prompt[Build prompt/messages]
+    prompt --> oai[OpenAI node<br/>chat/structured]
+    oai -->|credential| cred[(OpenAI API key)]
+    oai --> parse[Parse structured JSON]
+    parse --> act[Downstream action]
+    oai -. on 429 .-> retry[Retry/backoff]
+```
+
+### 31.5 Real example
+
+**Scenario.** Classify inbound support tickets into category + urgency and extract the customer's intent, returning strict JSON the router can act on.
+
+**Problem.** Free-text LLM output is hard to route; parsing prose is fragile and breaks the workflow.
+
+**Solution.** Use the OpenAI node with a structured-output schema (category enum, urgency enum, intent string) at low temperature, then route on the typed fields.
+
+**Implementation.** OpenAI node with JSON schema + Switch routing. See JSON.
+
+**Result.** Reliable typed output (`category`, `urgency`, `intent`) that the Switch routes deterministically — no prose parsing.
+
+**Future improvements.** Add few-shot examples for edge cases and a confidence field gating low-certainty tickets to human review.
+
+### 31.6 Step by step
+
+1. Create an OpenAI credential.
+2. Add the OpenAI node (Chat), set a system prompt and the ticket as user input.
+3. Enable structured output with a JSON schema (category, urgency, intent).
+4. Set temperature low (e.g., 0.1) for determinism.
+5. Route on the typed fields with a Switch.
+
+### 31.7 Complete code (output JSON schema)
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "category": { "type": "string", "enum": ["billing", "technical", "account", "other"] },
+    "urgency":  { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "intent":   { "type": "string" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "required": ["category", "urgency", "intent", "confidence"]
+}
+```
+
+### 31.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Ticket Classifier (OpenAI)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "ticket", "responseMode": "lastNode" },
+      "id": "51000001-0000-0000-0000-000000000001",
+      "name": "Ticket In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "modelId": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" },
+        "messages": { "values": [
+          { "role": "system", "content": "You classify support tickets. Respond ONLY with the requested JSON." },
+          { "role": "user", "content": "={{ $json.body.message }}" }
+        ] },
+        "jsonOutput": true,
+        "options": { "temperature": 0.1 }
+      },
+      "id": "51000002-0000-0000-0000-000000000002",
+      "name": "Classify",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [420, 300],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": {
+        "rules": { "values": [
+          { "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.message.content.urgency }}", "rightValue": "critical", "operator": { "type": "string", "operation": "equals" } } ] }, "outputKey": "critical" }
+        ] },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "51000003-0000-0000-0000-000000000003",
+      "name": "Route Urgency",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [640, 300]
+    }
+  ],
+  "connections": {
+    "Ticket In": { "main": [[{ "node": "Classify", "type": "main", "index": 0 }]] },
+    "Classify": { "main": [[{ "node": "Route Urgency", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 31.9 Exercises
+
+1. Get strict JSON output and route on a typed field.
+2. Lower temperature and observe determinism on a fixed input.
+3. Add an embeddings call and inspect the vector dimension.
+
+### 31.10 Challenges
+
+- **Challenge 1.** Add a confidence threshold that sends low-confidence tickets to human review.
+- **Challenge 2.** Add vision: classify an uploaded screenshot alongside the text.
+
+### 31.11 Checklist
+
+- [ ] API key in a credential.
+- [ ] Structured output with a schema for routable fields.
+- [ ] Temperature tuned to the task.
+- [ ] Token budget and cost considered.
+- [ ] Rate-limit retries enabled.
+
+### 31.12 Best practices
+
+- Demand structured JSON for anything routed downstream.
+- Use low temperature for extraction/classification, higher for drafting.
+- Keep prompts in one place (system prompt); version them with the workflow.
+- Budget tokens; cache repeated calls (Redis, Chapter 27).
+
+### 31.13 Anti-patterns
+
+- Parsing free-text prose instead of structured output.
+- High temperature for deterministic tasks.
+- Secrets in prompts or Code.
+- No rate-limit handling (429 storms).
+
+### 31.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Output not valid JSON | Structured output off | Enable JSON/schema mode |
+| Inconsistent results | Temperature too high | Lower temperature |
+| 429 errors | Rate limit | Retry/backoff; reduce concurrency |
+| High cost | Verbose prompts/large model | Trim prompt; use smaller model |
+| Wrong routing | Reading wrong output path | Inspect `message.content` shape |
+
+### 31.15 Official references
+
+- OpenAI node: https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-langchain.openai/
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+- Structured output: https://docs.n8n.io/advanced-ai/examples/
+- Credentials: https://docs.n8n.io/integrations/builtin/credentials/openai/
+
+---
+
+## Chapter 32 — Claude
+
+### 32.1 Introduction
+
+Anthropic's **Claude** models are available in n8n through the **Anthropic Chat Model** node (a LangChain sub-node that plugs into agents and chains) and via the HTTP node for the raw Messages API. Claude is prized for long context, careful reasoning, strong instruction-following, and tool use. This chapter covers chat, system prompts, tool use, long-context document workflows, and provider-specific considerations.
+
+### 32.2 Business context
+
+Claude's large context window and reliable reasoning make it a strong fit for document-heavy and high-stakes workflows: analyzing long contracts, multi-step reasoning, and agentic tool use where instruction adherence matters. Offering Claude alongside OpenAI/Gemini in n8n lets teams route tasks to the best model per job and avoid single-vendor lock-in.
+
+### 32.3 Theoretical concepts
+
+- **Messages API:** system prompt + alternating user/assistant turns; Claude returns content blocks (text, tool_use).
+- **System prompt:** a dedicated parameter that strongly shapes behavior — use it for role, constraints, and output contract.
+- **Tool use:** Claude can call tools; in n8n this powers agents (Chapter 38) using the Anthropic model as the reasoning engine.
+- **Long context:** large windows allow whole documents in one call — pair with chunking only when documents exceed the window.
+- **Determinism:** `temperature` low for analysis; Claude tends to follow output constraints well.
+- **Provider considerations:** model IDs (e.g., the Claude family), token limits, and rate limits differ from OpenAI; handle 429 similarly.
+
+### 32.4 Architecture
+
+```mermaid
+flowchart LR
+    doc[Long document] --> prompt[System + user prompt]
+    prompt --> claude[Anthropic Chat Model]
+    claude -->|credential| cred[(Anthropic API key)]
+    claude --> blocks[Content blocks]
+    blocks --> extract[Extract structured result]
+    extract --> store[(Store / act)]
+```
+
+### 32.5 Real example
+
+**Scenario.** Analyze long vendor contracts (20–40 pages) to extract key terms (parties, term length, renewal, liability cap, governing law) into structured JSON.
+
+**Problem.** Splitting the contract into chunks loses cross-references; smaller-context models drop clauses; prose output is hard to consume.
+
+**Solution.** Use Claude's long context to pass the whole contract, with a system prompt that fixes the output contract, returning strict JSON.
+
+**Implementation.** Anthropic Chat Model with a strict system prompt + a parser. See JSON.
+
+**Result.** Whole-contract analysis in one call, structured terms extracted reliably, no chunk-stitching — ready for a contracts database.
+
+**Future improvements.** Add a verification pass (a second model) and a human review gate for high-liability contracts.
+
+### 32.6 Step by step
+
+1. Create an Anthropic credential.
+2. Add the Anthropic Chat Model node; set the system prompt with the output contract.
+3. Pass the contract text as the user message.
+4. Set low temperature.
+5. Parse the JSON and store it.
+
+### 32.7 Complete code (system prompt + parse)
+
+```text
+SYSTEM PROMPT:
+You are a contracts analyst. Extract the following fields and respond with ONLY valid JSON:
+{ "parties": string[], "termMonths": number, "autoRenewal": boolean,
+  "liabilityCapUSD": number|null, "governingLaw": string }
+If a field is absent, use null (or [] for parties). Do not add commentary.
+```
+
+```javascript
+// Parse Claude's text content into an object, tolerant of code fences.
+const text = $json.content?.[0]?.text ?? $json.text ?? '';
+const cleaned = text.replace(/```json|```/g, '').trim();
+let parsed;
+try { parsed = JSON.parse(cleaned); }
+catch (e) { throw new Error('Claude returned non-JSON: ' + cleaned.slice(0, 200)); }
+return [{ json: parsed }];
+```
+
+### 32.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Contract Term Extractor (Claude)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "contract", "responseMode": "lastNode" },
+      "id": "61000001-0000-0000-0000-000000000001",
+      "name": "Contract In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "model": "claude-sonnet-4-5",
+        "options": { "temperature": 0.1, "maxTokensToSample": 1500 },
+        "messages": { "values": [
+          { "role": "user", "content": "=Extract contract terms as strict JSON.\n\n{{ $json.body.text }}" }
+        ] },
+        "system": "You are a contracts analyst. Respond ONLY with valid JSON: { parties: string[], termMonths: number, autoRenewal: boolean, liabilityCapUSD: number|null, governingLaw: string }."
+      },
+      "id": "61000002-0000-0000-0000-000000000002",
+      "name": "Analyze (Claude)",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1.3,
+      "position": [420, 300],
+      "credentials": { "anthropicApi": { "id": "1", "name": "Anthropic" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.content?.[0]?.text ?? $json.text ?? '';\nconst cleaned = text.replace(/```json|```/g,'').trim();\nlet parsed; try { parsed = JSON.parse(cleaned); } catch(e){ throw new Error('Non-JSON: '+cleaned.slice(0,200)); }\nreturn [{ json: parsed }];"
+      },
+      "id": "61000003-0000-0000-0000-000000000003",
+      "name": "Parse JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 300]
+    }
+  ],
+  "connections": {
+    "Contract In": { "main": [[{ "node": "Analyze (Claude)", "type": "main", "index": 0 }]] },
+    "Analyze (Claude)": { "main": [[{ "node": "Parse JSON", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 32.9 Exercises
+
+1. Pass a long document in one call and extract structured fields.
+2. Tighten the system prompt to eliminate commentary.
+3. Compare Claude vs OpenAI on the same extraction.
+
+### 32.10 Challenges
+
+- **Challenge 1.** Add a second-pass verification model that checks the extraction against the source.
+- **Challenge 2.** Use Claude as the reasoning model inside an AI Agent with tools (preview of Chapter 38).
+
+### 32.11 Checklist
+
+- [ ] Anthropic key in a credential.
+- [ ] System prompt fixes the output contract.
+- [ ] Low temperature for analysis.
+- [ ] JSON parsed defensively.
+- [ ] Token limits respected for long docs.
+
+### 32.12 Best practices
+
+- Put the output contract in the system prompt; demand JSON only.
+- Exploit long context instead of over-chunking.
+- Parse defensively (strip fences, try/catch).
+- Route document/reasoning tasks to Claude; pick the best model per job.
+
+### 32.13 Anti-patterns
+
+- Over-chunking documents that fit the context window.
+- Accepting prose where JSON is needed.
+- Hardcoding API keys.
+- Ignoring per-provider rate limits.
+
+### 32.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Non-JSON output | Weak contract / fences | Strengthen system prompt; strip fences |
+| Truncated output | `max_tokens` too low | Raise max tokens |
+| 429 | Rate limit | Retry/backoff |
+| Lost clauses | Over-chunking | Use long context |
+| Wrong content path | Block structure | Read `content[0].text` |
+
+### 32.15 Official references
+
+- Anthropic node: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic/
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+- AI Agent: https://docs.n8n.io/advanced-ai/examples/introduction/
+- Anthropic API: https://docs.anthropic.com/
+
+---
+
+## Chapter 33 — Gemini
+
+### 33.1 Introduction
+
+Google's **Gemini** models are available in n8n via the **Google Gemini (PaLM) Chat Model** node and through Vertex AI. Gemini brings strong multimodal capabilities (text, image, audio, video), competitive reasoning, and tight integration with the Google Cloud data stack (Chapter 11/29). This chapter covers chat, multimodal input, structured output, and the Vertex AI path for enterprise governance.
+
+### 33.2 Business context
+
+For Google Cloud-centric organizations, Gemini keeps AI within the same governance, billing, and data boundary as BigQuery and Workspace. Its multimodal strength suits document/image-heavy workflows (invoices, IDs, screenshots), and Vertex AI provides the enterprise controls (VPC-SC, audit, regional residency) that regulated teams need.
+
+### 33.3 Theoretical concepts
+
+- **Gemini API vs Vertex AI:** the public Gemini API (API key) for quick starts; **Vertex AI** (service account, IAM, regional) for enterprise governance.
+- **Multimodal:** a single prompt can mix text and images (and more) — ideal for OCR-plus-reasoning.
+- **Structured output:** request JSON to make outputs routable.
+- **Safety settings:** configurable content filters.
+- **Parameters:** `temperature`, `topK`, `topP`, `maxOutputTokens`.
+- **Integration:** pairs naturally with Google Sheets/Drive/BigQuery flows (Chapter 29).
+
+### 33.4 Architecture
+
+```mermaid
+flowchart LR
+    input[Text + image] --> prompt[Multimodal prompt]
+    prompt --> gem[Gemini Chat Model]
+    gem -->|credential| cred[(Gemini API key / Vertex SA)]
+    gem --> json[Structured output]
+    json --> sink[BigQuery / Sheets / act]
+```
+
+### 33.5 Real example
+
+**Scenario.** Extract structured data from uploaded ID documents (image) — name, document number, expiry — combining OCR and reasoning in one multimodal call, then log to BigQuery.
+
+**Problem.** Separate OCR + LLM steps add latency and lose layout context; pure OCR misreads fields.
+
+**Solution.** Send the image directly to Gemini with a structured-output prompt; Gemini reads and reasons in one call; log the typed result to BigQuery.
+
+**Implementation.** Gemini multimodal node + BigQuery insert. See JSON (abridged to extraction).
+
+**Result.** One-call multimodal extraction with typed fields, lower latency, and analytics rows in BigQuery.
+
+**Future improvements.** Add a confidence field and a human-review path; enforce safety settings for PII handling.
+
+### 33.6 Step by step
+
+1. Create a Gemini (or Vertex AI service-account) credential.
+2. Add the Gemini Chat Model node; attach the image binary and a structured-output prompt.
+3. Set low temperature; request JSON.
+4. Parse and insert into BigQuery.
+
+### 33.7 Complete code (multimodal prompt contract)
+
+```text
+USER PROMPT (with image attached):
+Read this ID document image and return ONLY JSON:
+{ "fullName": string, "documentNumber": string, "expiry": "yyyy-mm-dd"|null, "confidence": number }
+If unreadable, set fields to null and confidence to 0.
+```
+
+### 33.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "ID Document Extractor (Gemini)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "id-doc", "responseMode": "lastNode", "options": { "binaryData": true } },
+      "id": "71000001-0000-0000-0000-000000000001",
+      "name": "Doc In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "modelId": { "__rl": true, "value": "models/gemini-2.0-flash", "mode": "list" },
+        "messages": { "values": [
+          { "content": "Read this ID image. Return ONLY JSON: { fullName, documentNumber, expiry, confidence }." }
+        ] },
+        "options": { "temperature": 0.1 },
+        "binaryPropertyName": "data"
+      },
+      "id": "71000002-0000-0000-0000-000000000002",
+      "name": "Extract (Gemini)",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [420, 300],
+      "credentials": { "googlePalmApi": { "id": "1", "name": "Gemini" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const t = $json.content ?? $json.text ?? '';\nconst c = String(t).replace(/```json|```/g,'').trim();\nreturn [{ json: JSON.parse(c) }];"
+      },
+      "id": "71000003-0000-0000-0000-000000000003",
+      "name": "Parse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 300]
+    }
+  ],
+  "connections": {
+    "Doc In": { "main": [[{ "node": "Extract (Gemini)", "type": "main", "index": 0 }]] },
+    "Extract (Gemini)": { "main": [[{ "node": "Parse", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 33.9 Exercises
+
+1. Send an image + text prompt and get structured output.
+2. Switch from the Gemini API key to a Vertex AI service-account credential.
+3. Adjust safety settings and observe behavior.
+
+### 33.10 Challenges
+
+- **Challenge 1.** Add a confidence gate and human review for low-confidence extractions.
+- **Challenge 2.** Run the same extraction via Vertex AI in a specific region for residency compliance.
+
+### 33.11 Checklist
+
+- [ ] Credential type chosen (API key vs Vertex SA).
+- [ ] Multimodal input attached correctly.
+- [ ] Structured output requested.
+- [ ] Safety settings configured for sensitive data.
+- [ ] Region/governance considered (Vertex).
+
+### 33.12 Best practices
+
+- Use Vertex AI for enterprise governance and residency.
+- Exploit multimodality to collapse OCR+reasoning into one call.
+- Always request structured output for routable results.
+- Configure safety settings for PII/regulated content.
+
+### 33.13 Anti-patterns
+
+- Separate OCR+LLM steps when multimodal suffices.
+- Public API key for regulated workloads (use Vertex).
+- Prose output for downstream automation.
+- Ignoring safety settings on sensitive content.
+
+### 33.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Image ignored | Binary not attached | Set `binaryPropertyName` |
+| 403 (Vertex) | SA lacks `aiplatform.user` | Grant the role |
+| Blocked response | Safety filter | Adjust safety settings |
+| Non-JSON output | Weak contract | Strengthen prompt; strip fences |
+| Wrong region | Default region | Pin region in Vertex |
+
+### 33.15 Official references
+
+- Google Gemini node: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini/
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+- Vertex AI: https://cloud.google.com/vertex-ai/docs
+- Gemini API: https://ai.google.dev/
+
+---
+
+## Chapter 34 — MCP
+
+### 34.1 Introduction
+
+The **Model Context Protocol (MCP)** is an open standard for connecting AI models to tools and data sources through a uniform interface. n8n supports MCP from both sides: it can act as an **MCP client** (an agent calls external MCP servers as tools) and expose workflows as an **MCP server** (the **MCP Server Trigger**), letting external AI clients invoke n8n workflows as tools. This chapter explains MCP, its role in agentic systems, and both directions of integration.
+
+### 34.2 Business context
+
+MCP standardizes the "AI ↔ tools" boundary the way HTTP standardized client/server. For enterprises, that means tools (databases, internal APIs, n8n workflows) become reusable, governable capabilities any compliant AI client can use — reducing bespoke glue and centralizing access control. n8n as an MCP server turns your existing automations into first-class agent tools.
+
+### 34.3 Theoretical concepts
+
+- **MCP server:** exposes **tools** (callable functions), **resources** (data), and **prompts** to clients over a transport (stdio/HTTP/SSE).
+- **MCP client:** an AI host (or n8n agent) that discovers and calls those tools.
+- **n8n as client:** the **MCP Client Tool** node lets an AI Agent (Chapter 38) call external MCP servers as tools.
+- **n8n as server:** the **MCP Server Trigger** publishes selected workflows/tools so external MCP clients (IDEs, assistants, other agents) can invoke them.
+- **Tool schema:** each tool advertises a name, description, and input schema the model uses to decide when/how to call it.
+- **Security:** authenticate the MCP endpoint; scope which tools are exposed; treat tool calls as untrusted input.
+
+### 34.4 Architecture
+
+```mermaid
+flowchart LR
+    subgraph client["n8n as MCP client"]
+        agent[AI Agent] --> mcpc[MCP Client Tool]
+        mcpc --> extmcp[(External MCP server)]
+    end
+    subgraph server["n8n as MCP server"]
+        ext[External AI client] --> trig[MCP Server Trigger]
+        trig --> tool1[Workflow tool A]
+        trig --> tool2[Workflow tool B]
+    end
+```
+
+### 34.5 Real example
+
+**Scenario.** Expose an internal "order lookup" and "refund" capability as MCP tools so the company's AI assistant (and IDE agents) can use them safely, without direct database access.
+
+**Problem.** Giving the assistant raw DB credentials is unsafe and ungoverned; building bespoke tool adapters for each AI client is wasteful.
+
+**Solution.** Build the lookups/actions as n8n workflows and expose them via the MCP Server Trigger with authentication and least-privilege; any MCP client uses them uniformly.
+
+**Implementation.** MCP Server Trigger publishing two tools backed by sub-workflows. See JSON (server side).
+
+**Result.** AI clients get governed, audited access to order data and refunds through standardized tools — no raw credentials, one implementation reused everywhere.
+
+**Future improvements.** Add per-tool authorization and full audit logging (Chapter 49/50).
+
+### 34.6 Step by step
+
+1. Build sub-workflows for each capability (lookup, refund) with validation.
+2. Add an MCP Server Trigger; register the tools with clear schemas/descriptions.
+3. Secure the endpoint (auth) and scope exposed tools.
+4. Point an MCP client/agent at the endpoint and test tool calls.
+
+### 34.7 Complete code (tool input validation — Code node)
+
+```javascript
+// Validate and normalize an MCP tool call before acting (treat input as untrusted).
+const args = $json.arguments ?? $json;
+if (!args.orderId || typeof args.orderId !== 'string') {
+  throw new Error('Invalid tool input: orderId (string) is required');
+}
+return [{ json: { orderId: args.orderId.trim() } }];
+```
+
+### 34.8 Complete n8n workflow (importable JSON — MCP server)
+
+```json
+{
+  "name": "Order Tools MCP Server",
+  "nodes": [
+    {
+      "parameters": { "path": "order-tools", "authentication": "bearerAuth" },
+      "id": "81000001-0000-0000-0000-000000000001",
+      "name": "MCP Server",
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [220, 300],
+      "credentials": { "httpBearerAuth": { "id": "1", "name": "MCP Bearer" } }
+    },
+    {
+      "parameters": {
+        "name": "lookup_order",
+        "description": "Look up an order by its ID and return status and total.",
+        "workflowId": { "__rl": true, "value": "WF_LOOKUP", "mode": "list" }
+      },
+      "id": "81000002-0000-0000-0000-000000000002",
+      "name": "Tool: lookup_order",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [460, 220]
+    },
+    {
+      "parameters": {
+        "name": "issue_refund",
+        "description": "Issue a refund for an order. Requires orderId and amount.",
+        "workflowId": { "__rl": true, "value": "WF_REFUND", "mode": "list" }
+      },
+      "id": "81000003-0000-0000-0000-000000000003",
+      "name": "Tool: issue_refund",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [460, 380]
+    }
+  ],
+  "connections": {
+    "MCP Server": { "ai_tool": [[
+      { "node": "Tool: lookup_order", "type": "ai_tool", "index": 0 },
+      { "node": "Tool: issue_refund", "type": "ai_tool", "index": 0 }
+    ]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 34.9 Exercises
+
+1. Expose a single read-only workflow as an MCP tool and call it from a client.
+2. Add input validation to a tool and reject a malformed call.
+3. Use the MCP Client Tool node so an agent calls an external MCP server.
+
+### 34.10 Challenges
+
+- **Challenge 1.** Add per-tool authorization so only certain clients can call `issue_refund`.
+- **Challenge 2.** Audit every tool call (who/when/args/result) to a database.
+
+### 34.11 Checklist
+
+- [ ] Tools have clear names, descriptions, and input schemas.
+- [ ] The MCP endpoint is authenticated.
+- [ ] Tool inputs are validated (untrusted).
+- [ ] Exposed tool surface is least-privilege.
+- [ ] Tool calls are audited.
+
+### 34.12 Best practices
+
+- Write precise tool descriptions/schemas — the model relies on them.
+- Treat tool inputs as untrusted; validate before acting.
+- Expose the minimum set of tools; gate destructive actions.
+- Audit all tool invocations for governance.
+
+### 34.13 Anti-patterns
+
+- Exposing destructive tools without authorization.
+- Vague tool descriptions (the model misuses them).
+- Trusting tool arguments blindly.
+- Giving AI clients raw credentials instead of governed tools.
+
+### 34.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Client can't see tools | Endpoint/auth misconfig | Fix path + bearer auth |
+| Tool misused by model | Weak description/schema | Improve tool metadata |
+| Bad input crashes tool | No validation | Validate arguments |
+| Unauthorized refunds | No per-tool authz | Add authorization gate |
+| No audit trail | Logging absent | Log every call |
+
+### 34.15 Official references
+
+- MCP in n8n: https://docs.n8n.io/advanced-ai/
+- MCP Server Trigger: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.mcptrigger/
+- MCP Client Tool: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.mcpclienttool/
+- Model Context Protocol: https://modelcontextprotocol.io/
+
+---
+
+## Chapter 35 — RAG
+
+### 35.1 Introduction
+
+**Retrieval-Augmented Generation (RAG)** grounds LLM responses in your own data: instead of relying on the model's training, you retrieve relevant chunks from a knowledge base and feed them as context. n8n provides the full RAG toolkit — document loaders, **text splitters**, **embeddings**, **vector stores**, **retrievers**, and the **Question and Answer Chain** / agent retrieval tools. This chapter builds an end-to-end RAG pipeline: ingestion (chunk → embed → store) and query (embed question → retrieve → generate).
+
+### 35.2 Business context
+
+RAG is the dominant pattern for enterprise AI: accurate, up-to-date, citable answers over internal documents (policies, manuals, tickets) without fine-tuning or leaking data into training. It turns a generic LLM into a domain expert on *your* content, with answers traceable to sources — essential for trust and compliance.
+
+### 35.3 Theoretical concepts
+
+- **Two phases:** **Ingestion** (offline): load documents → split into chunks → embed → store in a vector DB. **Query** (online): embed the question → retrieve top-k similar chunks → pass as context to the LLM → generate a grounded answer.
+- **Chunking:** split documents into overlapping segments sized to the embedding/context window; overlap preserves cross-boundary meaning.
+- **Embeddings:** vector representations enabling semantic similarity (Chapter 36).
+- **Vector store:** stores chunk vectors + metadata; supports similarity search (Chapter 36 lists options).
+- **Retriever:** fetches the most relevant chunks for a query (top-k, optional filters).
+- **Grounding & citations:** include sources in the answer; instruct the model to answer only from context (reduce hallucination).
+- **Freshness:** re-ingest on document changes; store metadata (source, updated_at) for filtering.
+
+### 35.4 Architecture
+
+```mermaid
+flowchart TB
+    subgraph ingest["Ingestion (offline)"]
+        docs[Documents] --> split[Text Splitter]
+        split --> emb1[Embeddings]
+        emb1 --> vs[(Vector Store)]
+    end
+    subgraph query["Query (online)"]
+        q[User question] --> emb2[Embed question]
+        emb2 --> ret[Retriever top-k]
+        vs --> ret
+        ret --> ctx[Context chunks]
+        ctx --> llm[LLM grounded answer]
+        llm --> ans[Answer + sources]
+    end
+```
+
+### 35.5 Real example
+
+**Scenario.** Build an internal helpdesk assistant that answers employee questions from the company policy handbook, citing the source section.
+
+**Problem.** A raw LLM invents policy details (hallucination) and can't cite sources; employees can't trust it.
+
+**Solution.** Ingest the handbook (chunk → embed → vector store), then answer via retrieval + a grounded prompt that cites chunk metadata and refuses when context is insufficient.
+
+**Implementation.** Two workflows: ingestion and query. The query workflow uses a vector store retriever + QA chain. See JSON (query side).
+
+**Result.** Accurate, cited answers grounded in the handbook; "I don't know" when the answer isn't present — trustworthy and compliant.
+
+**Future improvements.** Add re-ranking, metadata filters (department), and an evaluation set to measure answer quality.
+
+### 35.6 Step by step
+
+1. **Ingestion:** load the handbook → Recursive Character Text Splitter → Embeddings → insert into the vector store with metadata.
+2. **Query:** embed the question → retrieve top-k → pass to the LLM with a grounding prompt → return answer + sources.
+3. Re-run ingestion on document updates.
+
+### 35.7 Complete code (grounding prompt + source assembly)
+
+```text
+SYSTEM PROMPT (query phase):
+Answer the question using ONLY the provided context. Cite the source section for each claim.
+If the answer is not in the context, reply exactly: "I don't have that information in the handbook."
+Context:
+{{context}}
+```
+
+```javascript
+// Assemble retrieved chunks into a context string with citations.
+const chunks = $json.documents ?? [];   // from the retriever
+const context = chunks.map((c, i) =>
+  `[${i + 1}] (${c.metadata?.section ?? 'unknown'}) ${c.pageContent}`
+).join('\n\n');
+return [{ json: { context, question: $json.question } }];
+```
+
+### 35.8 Complete n8n workflow (importable JSON — query side)
+
+```json
+{
+  "name": "Handbook RAG (Query)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "ask-handbook", "responseMode": "lastNode" },
+      "id": "91000001-0000-0000-0000-000000000001",
+      "name": "Question In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": { "model": "text-embedding-3-small", "options": {} },
+      "id": "91000002-0000-0000-0000-000000000002",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 480],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "mode": "retrieve-as-tool", "topK": 4, "options": {} },
+      "id": "91000003-0000-0000-0000-000000000003",
+      "name": "Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [320, 360],
+      "credentials": { "postgres": { "id": "2", "name": "Vector DB" } }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.question }}",
+        "options": { "systemMessage": "Answer ONLY from retrieved context and cite the section. If absent, say you don't have that information." }
+      },
+      "id": "91000004-0000-0000-0000-000000000004",
+      "name": "QA Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [560, 320]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" }, "options": { "temperature": 0 } },
+      "id": "91000005-0000-0000-0000-000000000005",
+      "name": "Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [560, 480],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    }
+  ],
+  "connections": {
+    "Question In": { "main": [[{ "node": "QA Agent", "type": "main", "index": 0 }]] },
+    "Chat Model": { "ai_languageModel": [[{ "node": "QA Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Embeddings": { "ai_embedding": [[{ "node": "Vector Store", "type": "ai_embedding", "index": 0 }]] },
+    "Vector Store": { "ai_tool": [[{ "node": "QA Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 35.9 Exercises
+
+1. Build the ingestion workflow (split → embed → store) for a sample document.
+2. Ask a question and confirm answers cite source chunks.
+3. Ask something not in the corpus and confirm the model refuses.
+
+### 35.10 Challenges
+
+- **Challenge 1.** Add metadata filtering so retrieval is scoped to a department.
+- **Challenge 2.** Add a small evaluation set and measure answer accuracy before/after re-ranking.
+
+### 35.11 Checklist
+
+- [ ] Documents chunked with overlap.
+- [ ] Embeddings consistent between ingest and query.
+- [ ] Retriever returns top-k with metadata.
+- [ ] Grounding prompt forbids out-of-context answers.
+- [ ] Sources cited; refusal path tested.
+
+### 35.12 Best practices
+
+- Use the same embedding model for ingest and query.
+- Chunk to fit the model with overlap; store rich metadata.
+- Force grounding ("answer only from context") and citations.
+- Re-ingest on document changes; track `updated_at`.
+
+### 35.13 Anti-patterns
+
+- Mismatched embedding models between phases.
+- No grounding instruction (hallucination).
+- Chunks too large/small (poor retrieval).
+- No source metadata (uncitable, unfilterable).
+
+### 35.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Irrelevant answers | Poor chunking/top-k | Tune chunk size + k |
+| Hallucinated facts | No grounding | Force "answer only from context" |
+| Empty retrieval | Embedding mismatch | Use same model both phases |
+| Stale answers | No re-ingest | Re-ingest on changes |
+| No citations | Metadata not stored | Store + surface source metadata |
+
+### 35.15 Official references
+
+- RAG in n8n: https://docs.n8n.io/advanced-ai/rag-in-n8n/
+- Text splitters: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/
+- Question and Answer Chain: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+
+---
+
+## Chapter 36 — Vectors
+
+### 36.1 Introduction
+
+Vector stores are the memory of RAG and semantic search. This chapter focuses on the **vector** layer: embeddings, similarity metrics, and the vector store nodes n8n supports — **PGVector** (Postgres), **Pinecone**, **Qdrant**, **Weaviate**, **Supabase**, and the **In-Memory** store. We cover inserting vectors with metadata, similarity search, filtering, and choosing a store for production.
+
+### 36.2 Business context
+
+The vector store choice affects cost, latency, scalability, and operational simplicity. PGVector reuses your existing Postgres (one fewer system); managed stores (Pinecone) reduce ops at a price; Qdrant/Weaviate offer rich filtering and self-hosting. Picking correctly avoids both over-engineering (a managed vector DB for 10k chunks) and under-provisioning (in-memory for millions).
+
+### 36.3 Theoretical concepts
+
+- **Embedding:** a fixed-length float vector capturing semantic meaning; similar texts → nearby vectors.
+- **Similarity metric:** cosine similarity (most common), dot product, or Euclidean distance.
+- **Vector store:** indexes vectors for fast approximate nearest-neighbor (ANN) search, with metadata stored alongside.
+- **Metadata filtering:** combine semantic search with structured filters (e.g., `department = 'HR'`).
+- **Index types:** HNSW/IVF trade recall vs speed/memory.
+- **Store options in n8n:** PGVector (Postgres extension), Pinecone, Qdrant, Weaviate, Supabase, In-Memory (dev/testing).
+- **Dimension consistency:** the store's dimension must match the embedding model's output.
+
+### 36.4 Architecture
+
+```mermaid
+flowchart LR
+    text[Chunk + metadata] --> emb[Embeddings model]
+    emb --> vec[Vector + metadata]
+    vec --> store[(Vector store<br/>PGVector/Pinecone/Qdrant)]
+    q[Query] --> qemb[Embed]
+    qemb --> search[ANN search + filter]
+    store --> search
+    search --> topk[Top-k chunks]
+```
+
+### 36.5 Real example
+
+**Scenario.** Power semantic product search: customers type natural language ("waterproof hiking boots for wide feet") and get the closest catalog items, filtered by in-stock status.
+
+**Problem.** Keyword search misses intent/synonyms; pure vector search returns out-of-stock items.
+
+**Solution.** Embed product descriptions into PGVector with metadata (category, in_stock), and at query time do similarity search with an `in_stock = true` filter.
+
+**Implementation.** Insert workflow + query workflow using the PGVector node with metadata filter. See JSON (query side).
+
+**Result.** Intent-aware search returning only in-stock matches, reusing the existing Postgres — no extra system to operate.
+
+**Future improvements.** Add hybrid search (keyword + vector) and re-ranking for precision.
+
+### 36.6 Step by step
+
+1. Enable the vector extension (e.g., `pgvector`) and create the table with the right dimension.
+2. Ingest: embed product descriptions → insert vectors + metadata.
+3. Query: embed the query → similarity search with a metadata filter → return top-k.
+
+### 36.7 Complete code (PGVector setup + filtered query)
+
+```sql
+-- Postgres + pgvector setup (dimension must match the embedding model)
+CREATE EXTENSION IF NOT EXISTS vector;
+CREATE TABLE products_vec (
+  id          text PRIMARY KEY,
+  embedding   vector(1536),
+  category    text,
+  in_stock    boolean,
+  description text
+);
+CREATE INDEX ON products_vec USING hnsw (embedding vector_cosine_ops);
+```
+
+```javascript
+// Build the metadata filter for the query (in-stock only).
+return [{ json: { query: $json.body.q, filter: { in_stock: true } } }];
+```
+
+### 36.8 Complete n8n workflow (importable JSON — query side)
+
+```json
+{
+  "name": "Semantic Product Search",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "product-search", "responseMode": "lastNode" },
+      "id": "a2000001-0000-0000-0000-000000000001",
+      "name": "Search In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 340]
+    },
+    {
+      "parameters": { "model": "text-embedding-3-small", "options": {} },
+      "id": "a2000002-0000-0000-0000-000000000002",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 480],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "tableName": "products_vec",
+        "prompt": "={{ $json.body.q }}",
+        "topK": 8,
+        "options": { "metadata": { "in_stock": true } }
+      },
+      "id": "a2000003-0000-0000-0000-000000000003",
+      "name": "PGVector Search",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [560, 340],
+      "credentials": { "postgres": { "id": "2", "name": "Vector DB" } }
+    }
+  ],
+  "connections": {
+    "Search In": { "main": [[{ "node": "PGVector Search", "type": "main", "index": 0 }]] },
+    "Embeddings": { "ai_embedding": [[{ "node": "PGVector Search", "type": "ai_embedding", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 36.9 Exercises
+
+1. Insert vectors with metadata and run a similarity search.
+2. Add a metadata filter and confirm it narrows results.
+3. Change the embedding model and observe the dimension-mismatch error.
+
+### 36.10 Challenges
+
+- **Challenge 1.** Implement hybrid search combining keyword + vector results.
+- **Challenge 2.** Benchmark PGVector vs a managed store for your corpus size.
+
+### 36.11 Checklist
+
+- [ ] Store dimension matches the embedding model.
+- [ ] Cosine (or appropriate) metric chosen.
+- [ ] Metadata stored for filtering.
+- [ ] ANN index created (HNSW/IVF).
+- [ ] Store choice fits scale/ops budget.
+
+### 36.12 Best practices
+
+- Start with PGVector if you already run Postgres.
+- Keep embedding model and store dimension in lockstep.
+- Store rich metadata for filtering and citations.
+- Index for ANN; tune recall vs latency for your SLA.
+
+### 36.13 Anti-patterns
+
+- In-memory store for production.
+- Dimension mismatch between model and table.
+- No metadata (no filtering/citations).
+- Over-adopting a managed vector DB for tiny corpora.
+
+### 36.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Dimension error | Model ≠ table dimension | Align dimensions |
+| Slow search | No ANN index | Create HNSW/IVF index |
+| Poor relevance | Wrong metric/chunking | Use cosine; tune chunks |
+| Filters ignored | Metadata not stored | Store + filter on metadata |
+| Lost data on restart | In-memory store | Use a persistent store |
+
+### 36.15 Official references
+
+- Vector stores: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/ (vector store nodes)
+- PGVector node: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector/
+- Embeddings: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/
+- RAG: https://docs.n8n.io/advanced-ai/rag-in-n8n/
+
+---
+
+## Chapter 37 — LangChain
+
+### 37.1 Introduction
+
+n8n's AI layer is built on **LangChain** primitives, surfaced as visual cluster nodes: **chat models**, **embeddings**, **memory**, **output parsers**, **text splitters**, **retrievers**, **tools**, and **chains/agents**. Understanding these building blocks — and how they snap together via the special AI connection types (`ai_languageModel`, `ai_memory`, `ai_tool`, `ai_embedding`) — lets you compose sophisticated AI workflows without code. This chapter maps the LangChain concepts to their n8n nodes.
+
+### 37.2 Business context
+
+LangChain standardized the vocabulary of LLM apps (chains, memory, tools, agents). n8n exposing these as nodes means teams get LangChain's power without its boilerplate or a separate Python service — composing chains visually, versioning them like any workflow, and operating them with n8n's execution/observability. This collapses the gap between AI prototype and production.
+
+### 37.3 Theoretical concepts
+
+- **Cluster nodes:** a **root node** (e.g., Agent, Chain, Vector Store) accepts **sub-nodes** (model, memory, tools, embeddings) via typed AI connections.
+- **Chat model:** the LLM (OpenAI/Anthropic/Gemini sub-node) connected to a root via `ai_languageModel`.
+- **Memory:** conversation memory (buffer window, Postgres/Redis-backed) via `ai_memory` — gives chatbots continuity.
+- **Output parser:** enforces structured output (e.g., structured/auto-fixing parsers).
+- **Tools:** capabilities an agent can call (HTTP, Code, sub-workflow, vector retriever, MCP) via `ai_tool`.
+- **Chains:** deterministic sequences (e.g., Basic LLM Chain, Summarization, QA) — no autonomous tool choice.
+- **Agents vs chains:** chains follow a fixed path; agents decide which tools to call (Chapter 38).
+
+### 37.4 Architecture
+
+```mermaid
+flowchart TB
+    root[Root: Agent / Chain]
+    model[Chat Model] -->|ai_languageModel| root
+    mem[Memory] -->|ai_memory| root
+    parser[Output Parser] -->|ai_outputParser| root
+    tool1[Tool: HTTP] -->|ai_tool| root
+    tool2[Tool: Vector retriever] -->|ai_tool| root
+    emb[Embeddings] -->|ai_embedding| tool2
+    root --> out[Result]
+```
+
+### 37.5 Real example
+
+**Scenario.** Build a stateful FAQ chatbot that remembers the conversation, answers from a knowledge base, and returns structured output (answer + confidence + sources).
+
+**Problem.** A bare LLM call forgets prior turns, can't access the KB, and returns free text.
+
+**Solution.** Compose a chain/agent root with a chat model, conversation memory, a vector-retriever tool, and a structured output parser — all via AI connections.
+
+**Implementation.** Cluster of nodes wired by AI connection types. See JSON.
+
+**Result.** A chatbot with memory, grounded answers, and structured output — assembled visually, versioned as a workflow.
+
+**Future improvements.** Add an auto-fixing output parser and per-user memory keyed by session ID.
+
+### 37.6 Step by step
+
+1. Add a chat trigger or webhook for the user message.
+2. Add an Agent/Chain root node.
+3. Connect a Chat Model (`ai_languageModel`), Memory (`ai_memory`), a vector retriever tool (`ai_tool`), and an Output Parser (`ai_outputParser`).
+4. Define the system message and output schema.
+
+### 37.7 Complete code (structured output schema)
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "answer": { "type": "string" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sources": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["answer", "confidence", "sources"]
+}
+```
+
+### 37.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Stateful FAQ Chatbot (LangChain)",
+  "nodes": [
+    {
+      "parameters": { "public": true, "options": {} },
+      "id": "b2000001-0000-0000-0000-000000000001",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 340]
+    },
+    {
+      "parameters": {
+        "options": { "systemMessage": "You are an FAQ assistant. Use the knowledge tool and prior context. Return structured output." }
+      },
+      "id": "b2000002-0000-0000-0000-000000000002",
+      "name": "Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [460, 340]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" }, "options": { "temperature": 0.2 } },
+      "id": "b2000003-0000-0000-0000-000000000003",
+      "name": "Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 520],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "sessionIdType": "fromInput", "contextWindowLength": 10 },
+      "id": "b2000004-0000-0000-0000-000000000004",
+      "name": "Window Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [460, 520]
+    },
+    {
+      "parameters": { "mode": "retrieve-as-tool", "topK": 4, "options": {} },
+      "id": "b2000005-0000-0000-0000-000000000005",
+      "name": "KB Tool",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [600, 520],
+      "credentials": { "postgres": { "id": "2", "name": "Vector DB" } }
+    }
+  ],
+  "connections": {
+    "Chat Trigger": { "main": [[{ "node": "Agent", "type": "main", "index": 0 }]] },
+    "Chat Model": { "ai_languageModel": [[{ "node": "Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Window Memory": { "ai_memory": [[{ "node": "Agent", "type": "ai_memory", "index": 0 }]] },
+    "KB Tool": { "ai_tool": [[{ "node": "Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 37.9 Exercises
+
+1. Add memory and confirm the bot recalls a prior turn.
+2. Attach a vector retriever tool and ground answers.
+3. Add a structured output parser and consume the typed fields.
+
+### 37.10 Challenges
+
+- **Challenge 1.** Add an auto-fixing output parser that repairs malformed JSON.
+- **Challenge 2.** Key memory per user/session so concurrent users don't share context.
+
+### 37.11 Checklist
+
+- [ ] Root node wired to model via `ai_languageModel`.
+- [ ] Memory connected for continuity.
+- [ ] Tools attached via `ai_tool`.
+- [ ] Output parser enforces structure.
+- [ ] Session-scoped memory under concurrency.
+
+### 37.12 Best practices
+
+- Compose with sub-nodes; keep each concern (model/memory/tools) separate.
+- Use persistent memory (Postgres/Redis) for production continuity.
+- Enforce structured output with parsers.
+- Version the whole cluster as one workflow.
+
+### 37.13 Anti-patterns
+
+- Shared global memory across users.
+- No output parser where structure is needed.
+- Stuffing everything into one prompt instead of using tools.
+- In-memory conversation memory in production.
+
+### 37.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No memory of prior turns | Memory not connected/scoped | Attach + key by session |
+| Tool never called | Weak tool description | Improve tool metadata |
+| Malformed output | No parser | Add (auto-fixing) parser |
+| Cross-user leakage | Global memory | Session-scoped memory |
+| Connection type error | Wrong AI connection | Use correct `ai_*` type |
+
+### 37.15 Official references
+
+- LangChain in n8n: https://docs.n8n.io/advanced-ai/langchain/overview/
+- Cluster nodes: https://docs.n8n.io/integrations/builtin/cluster-nodes/
+- Memory sub-nodes: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/
+- Output parsers: https://docs.n8n.io/advanced-ai/examples/
+
+---
+
+## Chapter 38 — AI Agents
+
+### 38.1 Introduction
+
+An **AI Agent** is an LLM that decides, autonomously, which tools to call to accomplish a goal — looping through reason → act → observe until done. n8n's **AI Agent** node makes this visual: connect a chat model, memory, and a set of tools, and the agent orchestrates them. This chapter covers the agent loop, tool design, system prompts, guardrails, and when an agent is the right choice versus a deterministic chain.
+
+### 38.2 Business context
+
+Agents handle open-ended tasks where the steps aren't known in advance: "resolve this support ticket," "research this lead," "triage this alert." They collapse multi-branch logic into a goal + tools, dramatically reducing workflow complexity for fuzzy tasks. But autonomy is a double-edged sword — without guardrails, agents take wrong actions; the business value is in well-scoped, well-instrumented agents.
+
+### 38.3 Theoretical concepts
+
+- **Agent loop:** the model reasons, picks a tool, observes the result, and repeats until it produces a final answer (ReAct-style).
+- **Tools:** the agent's capabilities — HTTP request, Code, sub-workflow, vector retriever, MCP client, calculator, etc. Each tool's name/description/schema guides the model.
+- **System prompt:** defines role, goals, constraints, and tool-use policy.
+- **Memory:** for multi-turn agents (Chapter 37).
+- **Guardrails:** max iterations, allowed tools, human-in-the-loop approval for destructive actions, output validation.
+- **Agent vs chain:** use a **chain** when the path is fixed; an **agent** when the path depends on intermediate results.
+- **Cost/latency:** agents make multiple LLM calls; budget iterations and tokens.
+
+### 38.4 Architecture
+
+```mermaid
+flowchart TB
+    goal[Goal/input] --> agent[AI Agent]
+    model[Chat Model] -->|ai_languageModel| agent
+    mem[Memory] -->|ai_memory| agent
+    agent -->|reason→act| tool{Pick tool}
+    tool --> t1[Lookup order]
+    tool --> t2[Check inventory]
+    tool --> t3[Issue refund<br/>human-approved]
+    t1 --> obs[Observe]
+    t2 --> obs
+    t3 --> obs
+    obs --> agent
+    agent --> done[Final answer/action]
+```
+
+### 38.5 Real example
+
+**Scenario.** An autonomous support agent resolves "where is my order / I want a refund" requests by looking up the order, checking the shipment, and — only with human approval — issuing a refund.
+
+**Problem.** Hard-coding every branch (lost package vs delayed vs wrong item) is brittle; customers phrase requests unpredictably.
+
+**Solution.** An AI Agent with three tools (lookup_order, check_shipment, issue_refund) and a guardrail: `issue_refund` requires human approval; max 6 iterations; refusal outside scope.
+
+**Implementation.** Agent + chat model + tools, with the refund tool behind an approval sub-workflow. See JSON.
+
+**Result.** The agent handles varied phrasings, gathers facts via tools, and proposes refunds for human approval — fewer hard-coded branches, safer actions.
+
+**Future improvements.** Add full action logging, per-customer rate limits, and an evaluation harness for resolution quality.
+
+### 38.6 Step by step
+
+1. Add the AI Agent node; write a tight system prompt (role, scope, refusal policy).
+2. Connect a chat model and memory.
+3. Attach tools: lookup_order, check_shipment, issue_refund (approval-gated).
+4. Set max iterations and allowed tools.
+5. Test with diverse phrasings; verify the refund approval gate.
+
+### 38.7 Complete code (system prompt + guardrail tool wrapper)
+
+```text
+SYSTEM PROMPT:
+You are a support agent for ACME. Resolve order-status and refund requests.
+Use tools to gather facts before answering. You may NOT issue a refund directly:
+call issue_refund, which requires human approval. If a request is out of scope,
+politely decline. Never invent order data. Keep answers concise.
+```
+
+```javascript
+// issue_refund sub-workflow guard: require an explicit approved flag before acting.
+const { orderId, amount, approved } = $json;
+if (!approved) {
+  return [{ json: { status: 'pending_approval', orderId, amount } }];
+}
+if (!orderId || !(amount > 0)) {
+  throw new Error('Invalid refund request');
+}
+return [{ json: { status: 'refunded', orderId, amount, at: $now.toISO() } }];
+```
+
+### 38.8 Complete n8n workflow (importable JSON)
+
+```json
+{
+  "name": "Support Resolution Agent",
+  "nodes": [
+    {
+      "parameters": { "public": true, "options": {} },
+      "id": "c2000001-0000-0000-0000-000000000001",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 340]
+    },
+    {
+      "parameters": {
+        "options": { "systemMessage": "You are an ACME support agent. Use tools before answering. You may not refund directly; call issue_refund (needs approval). Decline out-of-scope requests.", "maxIterations": 6 }
+      },
+      "id": "c2000002-0000-0000-0000-000000000002",
+      "name": "Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [460, 340]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o", "mode": "list" }, "options": { "temperature": 0.2 } },
+      "id": "c2000003-0000-0000-0000-000000000003",
+      "name": "Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 520],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "name": "lookup_order", "description": "Get order status/total by orderId.", "workflowId": { "__rl": true, "value": "WF_LOOKUP", "mode": "list" } },
+      "id": "c2000004-0000-0000-0000-000000000004",
+      "name": "Tool: lookup_order",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [560, 520]
+    },
+    {
+      "parameters": { "name": "issue_refund", "description": "Request a refund (requires human approval) for orderId and amount.", "workflowId": { "__rl": true, "value": "WF_REFUND", "mode": "list" } },
+      "id": "c2000005-0000-0000-0000-000000000005",
+      "name": "Tool: issue_refund",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [700, 520]
+    }
+  ],
+  "connections": {
+    "Chat Trigger": { "main": [[{ "node": "Agent", "type": "main", "index": 0 }]] },
+    "Chat Model": { "ai_languageModel": [[{ "node": "Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Tool: lookup_order": { "ai_tool": [[{ "node": "Agent", "type": "ai_tool", "index": 0 }]] },
+    "Tool: issue_refund": { "ai_tool": [[{ "node": "Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 38.9 Exercises
+
+1. Build an agent with two read-only tools and confirm it chooses correctly.
+2. Add a max-iterations guardrail and observe it stop.
+3. Gate a destructive tool behind human approval.
+
+### 38.10 Challenges
+
+- **Challenge 1.** Add full action logging (tool, args, result) for every agent step.
+- **Challenge 2.** Add an evaluation harness scoring resolution quality on a test set.
+
+### 38.11 Checklist
+
+- [ ] Tight, scoped system prompt with refusal policy.
+- [ ] Tools have precise descriptions/schemas.
+- [ ] Destructive actions are human-approved.
+- [ ] Max iterations + allowed tools set.
+- [ ] Every action logged for audit.
+
+### 38.12 Best practices
+
+- Constrain scope; make refusal explicit.
+- Gate destructive tools behind approval/idempotency.
+- Cap iterations and tokens to control cost.
+- Log and evaluate; treat the agent as a system to monitor, not set-and-forget.
+
+### 38.13 Anti-patterns
+
+- Unbounded agents with destructive tools and no approval.
+- Vague tool descriptions causing wrong tool use.
+- No iteration cap (runaway cost/loops).
+- No logging/evaluation (unauditable behavior).
+
+### 38.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Agent loops forever | No iteration cap | Set `maxIterations` |
+| Wrong tool chosen | Weak descriptions | Improve tool metadata |
+| Unsafe action taken | No approval gate | Gate destructive tools |
+| High cost | Too many calls | Cap iterations; smaller model |
+| Hallucinated data | No grounding tools | Force tool use / grounding |
+
+### 38.15 Official references
+
+- AI Agent: https://docs.n8n.io/advanced-ai/examples/introduction/
+- Tools: https://docs.n8n.io/advanced-ai/examples/understand-tools/
+- Agent node: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+
+---
+
+## Chapter 39 — Multi-Agents
+
+### 39.1 Introduction
+
+Complex goals benefit from **multiple specialized agents** collaborating: a coordinator delegates to specialists (researcher, writer, reviewer), or agents form a pipeline. In n8n, multi-agent systems are built by composing agents — one agent calling another via a sub-workflow tool, or a coordinator workflow routing between agent sub-workflows. This chapter covers orchestration patterns (coordinator/worker, pipeline, debate), state passing, and the trade-offs versus a single agent.
+
+### 39.2 Business context
+
+A single agent with too many tools and responsibilities becomes unreliable (it picks wrong tools, loses focus). Decomposing into specialists improves accuracy and maintainability, mirrors how human teams divide labor, and lets each agent be tuned, tested, and governed independently. The cost is more LLM calls and orchestration complexity — justified for genuinely complex tasks.
+
+### 39.3 Theoretical concepts
+
+- **Coordinator/worker:** a coordinator agent decomposes the task and delegates to worker agents (each a tool/sub-workflow), then synthesizes.
+- **Pipeline:** agents in sequence, each transforming the output of the prior (research → draft → review).
+- **Debate/critique:** one agent produces, another critiques; iterate to improve quality.
+- **State passing:** pass structured context between agents (not raw chat) to keep handoffs reliable.
+- **Specialization:** narrow each agent's scope, tools, and prompt.
+- **Governance:** apply guardrails per agent; log the full trace across agents.
+- **When not to:** if a single agent or chain suffices, don't multiply agents (cost/complexity).
+
+### 39.4 Architecture
+
+```mermaid
+flowchart TB
+    goal[Complex goal] --> coord[Coordinator Agent]
+    coord -->|delegate| research[Researcher Agent]
+    coord -->|delegate| writer[Writer Agent]
+    coord -->|delegate| review[Reviewer Agent]
+    research --> coord
+    writer --> coord
+    review --> coord
+    coord --> final[Synthesized result]
+```
+
+### 39.5 Real example
+
+**Scenario.** Generate a researched, well-written, fact-checked market brief: research the topic, draft the brief, then review for accuracy and tone.
+
+**Problem.** One agent doing all three does each poorly — it under-researches, over-drafts, and rarely self-critiques.
+
+**Solution.** A coordinator delegates to a Researcher (with web/vector tools), a Writer (drafts from research), and a Reviewer (critiques and requests fixes), looping until the Reviewer approves.
+
+**Implementation.** Coordinator workflow calling three agent sub-workflows as tools, passing structured state. See JSON (coordinator).
+
+**Result.** Higher-quality briefs: thorough research, focused writing, and a review gate — each stage independently tunable and testable.
+
+**Future improvements.** Add a budget cap across agents and parallelize independent research subtasks.
+
+### 39.6 Step by step
+
+1. Build three agent sub-workflows: Researcher, Writer, Reviewer (each scoped, with its own tools).
+2. Build a Coordinator agent that calls them as tools.
+3. Pass structured state (topic, findings, draft, review notes) between steps.
+4. Loop Writer↔Reviewer until approved or a max-round cap is hit.
+
+### 39.7 Complete code (coordinator state contract — Code node)
+
+```javascript
+// Coordinator maintains a structured shared state across agent calls.
+const state = $json.state ?? { topic: $json.topic, findings: null, draft: null, review: null, round: 0 };
+state.round = (state.round ?? 0) + 1;
+const approved = state.review?.approved === true;
+return [{ json: { state, approved, done: approved || state.round >= 3 } }];
+```
+
+### 39.8 Complete n8n workflow (importable JSON — coordinator skeleton)
+
+```json
+{
+  "name": "Market Brief Multi-Agent",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "market-brief", "responseMode": "lastNode" },
+      "id": "d2000001-0000-0000-0000-000000000001",
+      "name": "Brief Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 340]
+    },
+    {
+      "parameters": {
+        "options": { "systemMessage": "You coordinate Researcher, Writer, Reviewer agents to produce a fact-checked market brief. Delegate via tools, pass structured state, loop until approved or 3 rounds.", "maxIterations": 12 }
+      },
+      "id": "d2000002-0000-0000-0000-000000000002",
+      "name": "Coordinator",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [460, 340]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o", "mode": "list" }, "options": { "temperature": 0.3 } },
+      "id": "d2000003-0000-0000-0000-000000000003",
+      "name": "Coordinator Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 520],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "name": "researcher", "description": "Research a topic and return structured findings.", "workflowId": { "__rl": true, "value": "WF_RESEARCH", "mode": "list" } },
+      "id": "d2000004-0000-0000-0000-000000000004",
+      "name": "Tool: researcher",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [560, 520]
+    },
+    {
+      "parameters": { "name": "writer", "description": "Draft a brief from findings.", "workflowId": { "__rl": true, "value": "WF_WRITER", "mode": "list" } },
+      "id": "d2000005-0000-0000-0000-000000000005",
+      "name": "Tool: writer",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [700, 520]
+    },
+    {
+      "parameters": { "name": "reviewer", "description": "Review a draft for accuracy/tone; approve or return fixes.", "workflowId": { "__rl": true, "value": "WF_REVIEWER", "mode": "list" } },
+      "id": "d2000006-0000-0000-0000-000000000006",
+      "name": "Tool: reviewer",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [840, 520]
+    }
+  ],
+  "connections": {
+    "Brief Request": { "main": [[{ "node": "Coordinator", "type": "main", "index": 0 }]] },
+    "Coordinator Model": { "ai_languageModel": [[{ "node": "Coordinator", "type": "ai_languageModel", "index": 0 }]] },
+    "Tool: researcher": { "ai_tool": [[{ "node": "Coordinator", "type": "ai_tool", "index": 0 }]] },
+    "Tool: writer": { "ai_tool": [[{ "node": "Coordinator", "type": "ai_tool", "index": 0 }]] },
+    "Tool: reviewer": { "ai_tool": [[{ "node": "Coordinator", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 39.9 Exercises
+
+1. Build a two-agent pipeline (writer → reviewer) and pass structured state.
+2. Add a max-round cap to the writer↔reviewer loop.
+3. Compare output quality vs a single agent doing everything.
+
+### 39.10 Challenges
+
+- **Challenge 1.** Add a budget cap (tokens/calls) shared across all agents.
+- **Challenge 2.** Parallelize independent research subtasks and merge findings.
+
+### 39.11 Checklist
+
+- [ ] Each agent is narrowly specialized.
+- [ ] Structured state passed between agents.
+- [ ] Loops are capped (rounds/iterations).
+- [ ] Full cross-agent trace logged.
+- [ ] Multi-agent justified vs a single agent.
+
+### 39.12 Best practices
+
+- Specialize agents; keep each prompt/toolset narrow.
+- Pass structured state, not raw chat, between agents.
+- Cap rounds and total budget.
+- Log the whole trace for debugging/governance.
+
+### 39.13 Anti-patterns
+
+- Multiplying agents when one would do (needless cost).
+- Passing unstructured chat between agents (lossy handoffs).
+- Uncapped loops (cost/latency blowups).
+- No cross-agent observability.
+
+### 39.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Endless writer/reviewer loop | No round cap | Cap rounds |
+| Lossy handoffs | Unstructured state | Pass structured state |
+| Exploding cost | Too many agents/calls | Consolidate; budget cap |
+| Hard to debug | No trace | Log every agent step |
+| Inconsistent results | Overlapping scopes | Tighten specialization |
+
+### 39.15 Official references
+
+- Multi-agent patterns: https://docs.n8n.io/advanced-ai/
+- Tools (sub-workflow as tool): https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow/
+- AI Agent: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/
+- Examples: https://docs.n8n.io/advanced-ai/examples/
+
+---
+
+## Chapter 40 — Enterprise AI Workflows
+
+### 40.1 Introduction
+
+This chapter synthesizes Part V into production discipline: turning AI prototypes into **enterprise-grade workflows** with guardrails, cost control, observability, evaluation, human-in-the-loop, data privacy, and fallbacks. An AI workflow that works in a demo is 20% of the job; the other 80% is making it safe, affordable, observable, and reliable at scale.
+
+### 40.2 Business context
+
+Enterprises adopt AI automation only when it is governable: predictable cost, auditable decisions, privacy-preserving, and resilient to model failures. The gap between "cool prototype" and "trusted production system" is exactly the concerns in this chapter — and bridging it is what unlocks AI's business value at scale (and what Part VIII's projects depend on).
+
+### 40.3 Theoretical concepts
+
+- **Guardrails:** input/output validation, allowed actions, content filtering, refusal policies, human approval for high-stakes actions.
+- **Cost control:** model selection per task, token budgeting, caching (Redis), and rate limiting.
+- **Observability:** log prompts, responses, tokens, latency, and tool calls; trace executions; dashboards (Chapter 50).
+- **Evaluation:** golden datasets and automated scoring to catch regressions when prompts/models change.
+- **Human-in-the-loop:** route low-confidence or high-impact cases to people.
+- **Privacy:** keep PII in-perimeter (self-host, Chapter 12), redact sensitive data before sending to providers, choose enterprise/region-bound endpoints (Vertex/Bedrock).
+- **Fallbacks:** retry, switch models/providers, or degrade gracefully on failure.
+
+### 40.4 Architecture
+
+```mermaid
+flowchart TB
+    in[Input] --> redact[PII redaction]
+    redact --> cache{Cache hit?}
+    cache -->|yes| out[Cached answer]
+    cache -->|no| guard[Input guardrails]
+    guard --> llm[LLM / Agent]
+    llm --> valid[Output validation]
+    valid -->|low confidence| human[Human review]
+    valid -->|ok| act[Action]
+    llm -. on failure .-> fallback[Fallback model/provider]
+    llm --> obs[(Observability:<br/>tokens, latency, trace)]
+    act --> obs
+```
+
+### 40.5 Real example
+
+**Scenario.** A bank deploys an AI workflow to draft responses to customer complaints: it must redact PII before sending to the LLM, cap cost, log everything for audit, route legally-sensitive cases to humans, and fall back to a secondary model on outage.
+
+**Problem.** The prototype sent raw PII to the provider, had unbounded cost, no audit trail, and broke when the provider had an incident — all blockers for a regulated bank.
+
+**Solution.** Wrap the LLM call with PII redaction, Redis caching + token budgeting, full observability logging, a confidence/sensitivity gate to human review, and a provider fallback.
+
+**Implementation.** A hardened pipeline: redact → cache → guardrails → primary model (fallback on error) → validate → route → log. See JSON (skeleton).
+
+**Result.** PII never leaves the perimeter unredacted, cost is bounded and cached, every decision is auditable, sensitive cases get human review, and an outage degrades gracefully — production-ready for a regulated environment.
+
+**Future improvements.** Add automated evaluation on a golden set in CI (Chapter 45) and a cost dashboard (Chapter 50).
+
+### 40.6 Step by step
+
+1. Redact PII from the input (Code/regex or a redaction service).
+2. Check a Redis cache keyed by the redacted prompt.
+3. Apply input guardrails (length, content policy).
+4. Call the primary model; on error, fall back to a secondary.
+5. Validate output (schema + confidence); route low-confidence/sensitive to humans.
+6. Log prompt/response/tokens/latency/trace for audit.
+
+### 40.7 Complete code (PII redaction + observability record)
+
+```javascript
+// Redact common PII before sending to the LLM; emit an observability record.
+function redact(text) {
+  return String(text)
+    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]')
+    .replace(/\b\d{3}\.\d{3}\.\d{3}-\d{2}\b/g, '[CPF]')          // BR CPF
+    .replace(/\b(?:\d[ -]*?){13,19}\b/g, '[CARD]');               // card-like
+}
+const raw = $json.body.message ?? '';
+const redacted = redact(raw);
+return [{
+  json: {
+    redacted,
+    cacheKey: 'ai:' + require('crypto').createHash('sha256').update(redacted).digest('hex'),
+    obs: { receivedAt: $now.toISO(), inputChars: raw.length }
+  }
+}];
+```
+
+### 40.8 Complete n8n workflow (importable JSON — hardened skeleton)
+
+```json
+{
+  "name": "Enterprise AI Response (Hardened)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "ai-respond", "responseMode": "lastNode" },
+      "id": "e2000001-0000-0000-0000-000000000001",
+      "name": "Request In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "function redact(t){return String(t).replace(/[\\w.+-]+@[\\w-]+\\.[\\w.-]+/g,'[EMAIL]').replace(/\\b(?:\\d[ -]*?){13,19}\\b/g,'[CARD]');}\nconst raw=$json.body.message||'';\nconst redacted=redact(raw);\nconst crypto=require('crypto');\nreturn [{ json: { redacted, cacheKey: 'ai:'+crypto.createHash('sha256').update(redacted).digest('hex'), obsAt: $now.toISO() } }];"
+      },
+      "id": "e2000002-0000-0000-0000-000000000002",
+      "name": "Redact + Key",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 320]
+    },
+    {
+      "parameters": { "operation": "get", "key": "={{ $json.cacheKey }}", "keyType": "string" },
+      "id": "e2000003-0000-0000-0000-000000000003",
+      "name": "Cache Lookup",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [620, 320],
+      "credentials": { "redis": { "id": "1", "name": "Redis" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.value }}", "rightValue": "", "operator": { "type": "string", "operation": "notEmpty" } } ] }
+      },
+      "id": "e2000004-0000-0000-0000-000000000004",
+      "name": "Cached?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [820, 320]
+    },
+    {
+      "parameters": {
+        "modelId": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" },
+        "messages": { "values": [ { "role": "user", "content": "={{ $('Redact + Key').item.json.redacted }}" } ] },
+        "options": { "temperature": 0.3 }
+      },
+      "id": "e2000005-0000-0000-0000-000000000005",
+      "name": "Primary Model",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [1020, 420],
+      "credentials": { "openAiApi": { "id": "2", "name": "OpenAI" } },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "connections": {
+    "Request In": { "main": [[{ "node": "Redact + Key", "type": "main", "index": 0 }]] },
+    "Redact + Key": { "main": [[{ "node": "Cache Lookup", "type": "main", "index": 0 }]] },
+    "Cache Lookup": { "main": [[{ "node": "Cached?", "type": "main", "index": 0 }]] },
+    "Cached?": { "main": [[], [{ "node": "Primary Model", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 40.9 Exercises
+
+1. Add PII redaction before any LLM call and verify the provider never sees raw PII.
+2. Cache LLM responses in Redis and confirm a repeat request is served from cache.
+3. Add a confidence gate routing low-confidence outputs to human review.
+
+### 40.10 Challenges
+
+- **Challenge 1.** Add a provider fallback: on primary failure, call a secondary model and continue.
+- **Challenge 2.** Build a golden-set evaluation that runs in CI and fails the build on quality regression.
+
+### 40.11 Checklist
+
+- [ ] PII redacted/kept in-perimeter.
+- [ ] Cost controlled (model choice, caching, budget).
+- [ ] Full observability (tokens, latency, trace) logged.
+- [ ] Human review for low-confidence/high-impact.
+- [ ] Fallbacks on provider failure.
+- [ ] Evaluation guards against regressions.
+
+### 40.12 Best practices
+
+- Treat AI calls like any external dependency: validate, retry, fall back, observe.
+- Redact PII and prefer in-perimeter/region-bound endpoints for regulated data.
+- Cache aggressively; budget tokens; pick the smallest model that works.
+- Evaluate continuously; version prompts with the workflow.
+
+### 40.13 Anti-patterns
+
+- Sending raw PII to third-party providers.
+- Unbounded cost (no caching/budget).
+- No observability (untraceable AI decisions).
+- No human gate for high-impact actions.
+- No fallback (single provider = single point of failure).
+
+### 40.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| PII leaked to provider | No redaction | Add redaction pre-call |
+| Runaway cost | No cache/budget | Cache + token budget |
+| Can't audit a decision | No logging | Log prompt/response/trace |
+| Outage breaks workflow | No fallback | Add provider fallback |
+| Silent quality drop | No evaluation | Add golden-set eval in CI |
+
+### 40.15 Official references
+
+- Advanced AI: https://docs.n8n.io/advanced-ai/
+- External secrets / data privacy: https://docs.n8n.io/external-secrets/
+- Logging & monitoring: https://docs.n8n.io/log-streaming/
+- LangChain overview: https://docs.n8n.io/advanced-ai/langchain/overview/
+
+---
+
+> **End of Part V.** You can now build AI automations end-to-end: call OpenAI, Claude, and Gemini; expose and consume tools via MCP; implement RAG over vector stores; compose LangChain primitives; orchestrate single and multi-agent systems; and harden it all for the enterprise with guardrails, cost control, observability, and privacy. **Part VI — Professional Development** (Chapters 41–46) brings software-engineering rigor to n8n: Git, versioning, environments, testing, CI/CD, and deployment.
+
 <!--APPEND-PARTE-II-->
