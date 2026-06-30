@@ -60,7 +60,7 @@ software_dev: core
 10. Batch and stream processing
 11. Designing systems of integration (the "unbundled database")
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–II (Ch. 1–4). **In progress:** Parts III–VII.
+> **Status of this guide:** phased delivery. **Ready:** Parts I–III (Ch. 1–6). **In progress:** Parts IV–VII.
 
 ---
 
@@ -522,4 +522,222 @@ message Payment {
 
 > **End of Part II.** You can now reason one level below the data model: how **B-tree** and **LSM-tree** storage engines trade reads against writes, and how **schema-compatible encoding** (additive, optional fields in formats like Avro/Protobuf) lets a system evolve while old and new code coexist. **Part III — Distributing Data** (Chapters 5–6) takes the next step: copying data across nodes (replication) and splitting it across nodes (partitioning), the two moves that turn a single database into a distributed one.
 
-<!--APPEND-PART-III-->
+---
+
+## Part III – Distributing Data
+
+A single node has limits: it can fail, it can be saturated, and it sits in one place. Two independent moves spread data across many nodes. **Replication** keeps *copies* of the same data on several nodes (for availability, read scaling, locality). **Partitioning** splits *different* data across nodes (for capacity and write scaling). Real systems combine both — and most distributed-database complexity lives in how they interact.
+
+---
+
+## Chapter 5 — Replication (leader-based, multi-leader, leaderless)
+
+### 5.1 Introduction
+
+**Replication** means keeping a copy of the same data on multiple nodes. It buys availability (survive a node loss), read scaling (spread reads), and locality (a replica near the user). The whole design space comes down to *who accepts writes and when a write counts as replicated*. Three architectures answer that differently: **single-leader** (one writer, many read replicas), **multi-leader** (several writers, e.g. per region), and **leaderless** (any replica accepts writes, quorums reconcile). Each trades consistency against availability and latency.
+
+### 5.2 Business context
+
+Replication is how a data system survives the inevitable single-node failure and serves a global user base without every read crossing an ocean. But the convenient default — asynchronous copying — quietly trades correctness for speed: a user can write and then read a stale value from a lagging replica. The replication architecture a system uses tells you precisely which failures it survives and which anomalies your users will hit, making it a direct product-quality decision, not an ops detail.
+
+### 5.3 Theoretical concepts: the three architectures
+
+```mermaid
+flowchart TB
+    single["Single-leader: one node takes writes, streams log to followers<br/>simple, consistent writes; leader is the write bottleneck/SPOF for writes"]
+    multi["Multi-leader: several leaders accept writes (e.g. per region)<br/>write locality; concurrent writes CONFLICT, need resolution"]
+    leaderless["Leaderless (Dynamo-style): client writes to W, reads from R replicas<br/>W + R > N -> overlap; highly available, eventual consistency"]
+```
+
+- **Single-leader** — all writes go to the leader, which ships its change log to followers; followers serve reads. Simple and consistent for writes; the leader is a write bottleneck and the failover is the tricky part.
+- **Multi-leader** — more than one node accepts writes (typically one per datacenter). Great for write locality and offline tolerance; the cost is **write conflicts** when two leaders modify the same key, requiring conflict resolution (last-write-wins, version vectors, app merge).
+- **Leaderless** — any replica accepts reads and writes; the client talks to several. With **quorums** (`W + R > N`), read and write sets overlap so a read sees the latest write; anti-entropy (read repair, background sync) heals divergence.
+
+### 5.4 Architecture: lag, failover, and reading your writes
+
+```mermaid
+flowchart LR
+    leader["Leader"] -->|async ship log| follower["Follower (lags)"]
+    write["User writes"] --> leader
+    read["User reads"] --> follower
+    follower --> stale["Risk: stale read of own write"]
+    fail["Leader dies"] --> promote["Promote most-caught-up follower"] --> loss["Un-shipped async writes lost"]
+```
+
+**Replication lag** is the gap async followers run behind the leader; under it, a user may not see their own write. The standard mitigations are **read-your-own-writes** (route a user's reads to the leader or a verified caught-up replica for a window after they write) and **monotonic reads** (a user never sees time go backward). **Failover** promotes a follower when the leader dies — and with async replication, any not-yet-shipped writes are lost. That single fact (async = fast but can drop the write tail) is the heart of the durability-vs-availability trade.
+
+### 5.5 Real example
+
+**Scenario.** A read-heavy app adds async replicas and routes all reads to them; a multi-region rollout later adds a leader per region.
+
+**Problem.** (1) Right after a profile update, users read stale data from a lagging replica. (2) Cross-region, two leaders accept conflicting edits to the same record.
+
+**Solution.** Apply read-your-own-writes for the lag window; for multi-leader, define a deterministic conflict-resolution policy (version vectors + app merge) rather than silent last-write-wins.
+
+**Implementation (routing + conflict policy).**
+
+```text
+# Single-leader lag fix
+on write(user):  route to LEADER; record T(user)
+on read(user):   if now - T(user) < lag_window: read LEADER else read FOLLOWER
+
+# Multi-leader conflict policy
+on concurrent edits to key K on leaders A,B:
+    attach version vectors -> detect concurrency
+    resolve by app merge (e.g. union of cart items), NOT blind last-write-wins
+```
+
+**Result.** Users always see their own latest write; the bulk of reads still scale across replicas; cross-region conflicts resolve deterministically instead of silently losing data.
+
+**Future improvements.** Track each replica's log position and route to the least-lagged caught-up replica; alert on lag thresholds; consider CRDTs for conflict-free merge.
+
+### 5.6 Exercises
+
+1. Contrast the failure and consistency profiles of single-leader, multi-leader, and leaderless replication.
+2. Why does asynchronous replication risk losing writes on failover?
+3. With `N = 3` leaderless replicas, what `W`/`R` guarantee a read sees the latest write?
+
+### 5.7 Challenges
+
+- **Challenge.** For a system you run, identify its replication architecture and mode. State exactly which writes you'd lose if the leader's disk died now, and which anomaly a user could observe under lag — then name the fix.
+
+### 5.8 Checklist
+
+- [ ] I can place a store as single-leader, multi-leader, or leaderless.
+- [ ] I know the sync vs async durability/latency trade.
+- [ ] I apply read-your-own-writes / monotonic reads against lag.
+- [ ] I have a conflict-resolution plan before adopting multi-leader/leaderless.
+
+### 5.9 Best practices
+
+- Keep at least one synchronous follower for data you cannot lose.
+- Monitor replication lag and alert before it breaks user-facing guarantees.
+- Adopt multi-leader/leaderless only with an explicit conflict-resolution policy.
+
+### 5.10 Anti-patterns
+
+- Serving all reads from async replicas with no caught-up routing.
+- Pure async replication for critical data, then losing the tail on failover.
+- Multi-leader with blind last-write-wins, silently dropping concurrent edits.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| User can't see data they just saved | Stale read from a lagging replica | Read-your-own-writes routing |
+| Writes lost after failover | Async replication dropped the tail | Add a synchronous follower; tune failover |
+| Conflicting values on one key | Concurrent multi-leader/leaderless writes | Deterministic resolution (version vectors/CRDT) |
+
+### 5.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 5 "Replication" — ISBN 978-1449373320.
+- See also the sibling guide *How Databases Work Internally* (Chapter 3) for replication internals.
+
+---
+
+## Chapter 6 — Partitioning (sharding) and rebalancing
+
+### 6.1 Introduction
+
+When data or write load outgrows a single node, you **partition** (shard) it: split the dataset so each node holds a subset. The central problem is choosing a partitioning scheme that spreads data and load **evenly** while still supporting the queries you need — and then **rebalancing** as nodes are added or removed without downtime or a data avalanche. Done well, partitioning scales nearly linearly; done badly, it creates **hot spots** that defeat the whole point.
+
+### 6.2 Business context
+
+Partitioning is what lets a system grow past one machine's capacity — the foundation of scaling writes and storage. But the scheme is hard to change later (it's wired into where every row lives), and a bad choice concentrates load on one "celebrity" partition while others idle, so the cluster is expensive *and* slow. Choosing a partition key that matches the access pattern, and planning rebalancing up front, is a high-leverage decision that determines whether adding nodes actually adds capacity.
+
+### 6.3 Theoretical concepts: key range vs hash
+
+```mermaid
+flowchart TB
+    range["By key range: contiguous ranges per partition<br/>great range scans; risks hot spots on sequential keys"]
+    hash["By hash of key: hash(key) -> partition<br/>even spread; loses efficient range scans"]
+    skew["Skew/hot spot: one key or range gets disproportionate load"]
+```
+
+- **Range partitioning** keeps keys in sorted, contiguous ranges per node — efficient range scans (e.g. time ranges), but a sequential key (timestamps, auto-increment IDs) sends all new writes to one partition: a **hot spot**.
+- **Hash partitioning** assigns by `hash(key)` — spreads load evenly and kills sequential hot spots, at the cost of efficient range scans (adjacent keys land on different nodes).
+
+**Secondary indexes** complicate this: a **document-partitioned** (local) index is fast to write but a read must scatter-gather across all partitions; a **term-partitioned** (global) index makes reads targeted but writes touch multiple partitions. Neither is free.
+
+### 6.4 Architecture: rebalancing without an avalanche
+
+```mermaid
+flowchart LR
+    add["Add a node"] --> rebal["Rebalance: move some partitions to it"]
+    rebal --> good["Fixed # of partitions (>> nodes): move whole partitions"]
+    rebal --> bad["hash mod N: adding a node remaps almost everything (avoid)"]
+```
+
+The classic mistake is `hash(key) mod N` over the node count: change `N` and almost every key moves — a rebalancing avalanche. The standard fix is a **fixed, large number of partitions** decoupled from node count: create (say) 1000 partitions up front, assign many per node, and to rebalance just move whole partitions to the new node. **Consistent hashing** and explicit partition assignment achieve the same goal — minimal data movement when the cluster size changes. A **request router** (or the client) maps each key to its current partition's node.
+
+### 6.5 Real example
+
+**Scenario.** An events table keyed by `timestamp` is sharded by range; ingestion is heavy and recent.
+
+**Problem.** All new writes have "now" timestamps, so they all hit the **last** partition — one node is saturated while the rest idle. A classic sequential-key hot spot.
+
+**Solution.** Partition by a **compound key** that leads with a high-cardinality, evenly distributed field (e.g. `hash(device_id)`) and keeps time *within* the partition, preserving per-device range scans while spreading write load.
+
+**Implementation (de-hot-spotting the key).**
+
+```text
+# before: partition by timestamp -> all "now" writes hit one partition
+partition_key = timestamp
+
+# after: lead with an evenly distributed field; time is secondary within partition
+partition_key = hash(device_id)          # spreads writes across all partitions
+clustering_key = timestamp               # still supports "this device, this time range"
+# Rebalancing: fixed 1024 partitions assigned across nodes; add a node -> move whole partitions
+```
+
+**Result.** Writes spread evenly across the cluster; adding a node adds real capacity; per-device time-range reads still work. The hot spot is gone by construction.
+
+**Future improvements.** Monitor per-partition load to catch emergent skew (a single hot device); add a salt to split a known hot key across sub-partitions.
+
+### 6.6 Exercises
+
+1. When does range partitioning beat hash partitioning, and what's its failure mode?
+2. Why is `hash(key) mod N` over node count a bad rebalancing scheme?
+3. Contrast document-partitioned vs term-partitioned secondary indexes on read/write cost.
+
+### 6.7 Challenges
+
+- **Challenge.** Take a table you'd shard. Pick a partition key, argue it spreads load for your write pattern, identify any hot-spot risk, and describe how you'd rebalance when adding a node without moving most of the data.
+
+### 6.8 Checklist
+
+- [ ] I choose range vs hash partitioning from the query and write pattern.
+- [ ] I avoid sequential partition keys that create hot spots.
+- [ ] I decouple partition count from node count for clean rebalancing.
+- [ ] I know the read/write trade of local vs global secondary indexes.
+
+### 6.9 Best practices
+
+- Pick a partition key that spreads both data and load evenly.
+- Use a fixed large partition count (or consistent hashing) for rebalancing.
+- Monitor per-partition load to catch skew early.
+
+### 6.10 Anti-patterns
+
+- Sequential keys (timestamps, auto-increment) as the partition key.
+- `hash mod N` rebalancing that remaps the whole dataset on a node change.
+- Ignoring secondary-index partitioning, then suffering scatter-gather reads.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| One node hot, others idle | Sequential/low-cardinality partition key | Repartition on an evenly distributed key |
+| Adding a node barely helps | Skew or near-total remap on rebalance | Fixed partition count; fix the key |
+| Secondary-index reads slow | Scatter-gather over local indexes | Consider a term-partitioned (global) index |
+
+### 6.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 6 "Partitioning" — ISBN 978-1449373320.
+- Apache Cassandra docs, "Data partitioning": https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html.
+
+---
+
+> **End of Part III.** You can now turn a single database into a distributed one along two axes: **replication** (copies of the same data — single-leader, multi-leader, leaderless — trading consistency for availability and locality) and **partitioning** (different data per node — range vs hash keys chosen to avoid hot spots, with rebalancing decoupled from node count). **Part IV — Consistency & Correctness** (Chapters 7–8) asks what guarantees survive once data is distributed: transactions across the spread, and the hard truths of clocks, partial failures, and unreliable networks.
+
+<!--APPEND-PART-IV-->
