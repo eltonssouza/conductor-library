@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Collaboration**
 3. Remotes, pull requests, and workflows
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -247,4 +247,134 @@ git push --force-with-lease origin feature   # update your PR branch safely
 
 > **End of Part I.** You can now reason about Git from its data model: commits are content-addressed snapshots linked to parents, branches are cheap movable pointers, and every clone holds the full distributed history (work offline, no single point of failure). You can branch for isolation and integrate with merge (honest history) or rebase (linear, local-only). **Part II — Collaboration** (Chapter 3) covers remotes, pull-request workflows, and choosing a branching strategy (trunk-based vs GitFlow) for your team.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Collaboration
+
+Part I covered Git as a local data model — snapshots, branches, merge and rebase. But Git's real purpose is letting *many people* work on the same history without stepping on each other. That requires **remotes** (shared copies of the repository), a disciplined way to propose and review changes (**pull requests**), and an agreed **branching workflow** so a team's branches mean the same thing to everyone. This chapter turns the single-developer model into a collaboration model.
+
+---
+
+## Chapter 3 — Remotes, pull requests, and workflows
+
+### 3.1 Introduction
+
+A **remote** is a named reference to another copy of the repository (commonly `origin` on a server like GitHub/GitLab). You synchronize with it via `fetch` (download new commits, don't touch your work), `pull` (fetch + integrate), and `push` (upload your commits). A **pull request** (PR / merge request) is a proposal to merge one branch into another, wrapped in review and automated checks. A **branching workflow** is the team's shared convention for how branches are created, reviewed, and integrated — e.g. **trunk-based development** (short-lived branches merged to one main line many times a day) versus heavier models like **GitFlow** (long-lived develop/release/feature branches).
+
+### 3.2 Business context
+
+Without shared conventions, collaboration degrades into painful merges, lost work, and "works on my branch" surprises. Remotes give everyone a common integration point; pull requests make change **reviewable and gated** (tests + human eyes before code lands), which is where quality and knowledge-sharing happen; and the choice of workflow directly affects delivery speed. Trunk-based development — small, frequently integrated changes — is the workflow consistently associated with high delivery performance, because long-lived branches accumulate divergence and turn integration into a risky event (the very thing continuous delivery avoids).
+
+### 3.3 Theoretical concepts: fetch, integrate, propose
+
+```mermaid
+flowchart LR
+    remote["Remote (origin)"] -- "fetch" --> local["Local repo"]
+    local -- "push" --> remote
+    local --> branch["Short-lived feature branch"]
+    branch --> pr["Pull request: review + CI checks"]
+    pr -- "approved + green" --> main["main (trunk)"]
+```
+
+- **fetch vs pull** — `fetch` is safe (updates remote-tracking refs only); `pull` also merges/rebases into your branch. Preferring `fetch` then a deliberate integrate avoids surprise merges.
+- **Pull request** — the unit of review. Keep it small so review is fast and meaningful; attach CI so it can't merge red.
+- **Trunk-based development** — everyone integrates to `main` frequently via short-lived branches; pairs naturally with feature flags (from the CD guide) to keep `main` always releasable.
+- **GitFlow** — multiple long-lived branches; powerful for versioned/released products with parallel maintenance, but its branch divergence and ceremony slow continuous-delivery teams.
+
+### 3.4 Architecture: the collaboration loop
+
+```mermaid
+flowchart TB
+    dev["Developer: branch from main"] --> commit["Commit small changes"]
+    commit --> push["push branch to origin"]
+    push --> pr["Open PR"]
+    pr --> ci["CI runs tests/build"]
+    pr --> review["Peer review"]
+    ci --> merge{"Green + approved?"}
+    review --> merge
+    merge -- "yes" --> trunk["Merge to main (releasable)"]
+    merge -- "no" --> commit
+```
+
+### 3.5 Real example
+
+**Scenario.** A six-person team works off long-lived feature branches that live for weeks. Merges to `main` are dreaded multi-hour conflict marathons, and nobody reviews changes until the end.
+
+**Problem.** Long-lived branches diverge badly; integration is a rare, high-risk event; review happens too late to be useful; `main` is rarely in a releasable state.
+
+**Solution.** Adopt trunk-based development with small PRs, branch protection, and required CI — integrate to `main` daily.
+
+**Implementation (trunk-based flow).**
+
+```bash
+git fetch origin                       # get latest without touching local work
+git switch -c feat/add-rate-limit origin/main   # short-lived branch off trunk
+# ... small, focused commits ...
+git push -u origin feat/add-rate-limit
+# open a PR; CI runs; a peer reviews a *small* diff
+# branch protection on main: require 1 approval + green CI before merge
+git switch main && git pull            # after merge, sync
+# branch is deleted; next change starts fresh from main
+```
+
+```text
+Branch protection (server-side) on main:
+  - require pull request before merging
+  - require status checks (CI) to pass
+  - require at least 1 approving review
+  - keep branches short-lived (merge within a day or two)
+```
+
+**Result.** Integration becomes a daily non-event because branches are small and short-lived; review is fast and catches issues early; CI keeps `main` green and releasable. The conflict marathons disappear because divergence never accumulates.
+
+**Future improvements.** Pair trunk-based development with feature flags to merge incomplete work safely; add CODEOWNERS for automatic reviewer assignment; enforce linear history or squash-merge for a clean trunk.
+
+### 3.6 Exercises
+
+1. What is the difference between `git fetch` and `git pull`, and why prefer fetch-then-integrate?
+2. What does a pull request add beyond simply pushing to a shared branch?
+3. Why does trunk-based development tend to outperform long-lived-branch workflows for delivery speed?
+
+### 3.7 Challenges
+
+- **Challenge.** Set up branch protection on a repo's `main`: require a PR, a passing CI check, and one review. Then ship a small change end-to-end through the protected flow and explain at which points quality is gated.
+
+### 3.8 Checklist
+
+- [ ] A shared remote (`origin`) is the team's integration point.
+- [ ] Changes land via small, reviewed pull requests, not direct pushes to main.
+- [ ] CI status checks gate merges; `main` stays green and releasable.
+- [ ] Feature branches are short-lived (hours/days, not weeks).
+- [ ] The team has an explicit, agreed branching workflow.
+
+### 3.9 Best practices
+
+- Keep PRs small and single-purpose so review is fast and effective.
+- Integrate to trunk frequently; use feature flags to hide incomplete work.
+- Protect `main` with required reviews and required CI checks.
+- Prefer `fetch` + deliberate integrate over reflexive `pull` on shared branches.
+
+### 3.10 Anti-patterns
+
+- Long-lived feature branches that diverge for weeks (merge hell).
+- Direct pushes to `main` with no review or CI gate.
+- Giant PRs that are impossible to review meaningfully.
+- Rebasing/force-pushing shared branches others have already based work on.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Painful, hours-long merges | Long-lived divergent branches | Switch to short-lived branches; integrate daily |
+| Bugs found only at the end | Review happens too late | Small PRs reviewed continuously |
+| `main` often broken | No required CI gate | Add branch protection + required checks |
+| Lost/overwritten commits | Force-push to shared branch | Never rewrite shared history; protect main |
+
+### 3.12 References
+
+- S. Chacon, B. Straub, *Pro Git*, 2nd ed. (Apress, 2014) — ISBN 978-1484200773 — Ch. 2–3 (Git Basics: remotes) and Ch. 5–6 (Distributed/GitHub workflows); https://git-scm.com/book.
+- "Trunk-Based Development": https://trunkbaseddevelopment.com/.
+
+---
+
+> **End of Part II — and of the guide.** Building on Part I's data model (snapshots, branches, merge/rebase), you can now collaborate at scale: synchronize through **remotes** with safe `fetch`/`push`, propose change through **pull requests** that gate quality with review and CI, and choose a **workflow** — favoring trunk-based development with short-lived branches and feature flags — that keeps `main` continuously integrated and releasable. This is the version-control foundation on which continuous delivery and DevOps flow are built.

@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Designing with doubles**
 3. Mocks to discover roles and interfaces
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -265,4 +265,127 @@ interface Notifier { void confirm(OrderId id); }      // role invented from a ne
 
 > **End of Part I.** You can now grow a system outside-in: start with a deployed walking skeleton, drive each feature from a failing acceptance test through inner TDD cycles, and let each object's needs invent minimal, caller-shaped collaborator interfaces discovered with test doubles. **Part II — Designing with doubles** (Chapter 3) goes deeper on using mocks to discover roles, the difference between commands and queries, and avoiding over-mocking.
 
-<!--APPEND-PART-II-->
+## Part II – Designing with doubles
+
+Part I grew a system outside-in: a walking skeleton, the double feedback loop, and letting each object's needs invent its collaborators. Part II goes deeper into the *technique* that makes this work — using mock objects not as a testing convenience but as a **design tool**. In Freeman and Pryce's approach, mocking a collaborator before it exists forces you to invent the **role** it plays and name the **interface** for that role, shaped by the caller's needs. This chapter covers that discovery process, the command/query (tell-don't-ask) discipline behind it, the kinds of peers an object talks to, and the warning signs of over-mocking — when the tests are telling you the design is wrong.
+
+---
+
+## Chapter 3 — Mocks to discover roles and interfaces
+
+### 3.1 Introduction
+
+In GOOS, mock objects are a **design tool**, not just a substitute for slow dependencies. When you write the test for an object, you describe what that object must *do*, which means describing what it needs from its neighbors. By mocking those neighbors *before they exist*, you are forced to invent the **role** each one plays and express it as a small **interface** named from the *caller's* point of view. This is **need-driven development**: interfaces are discovered from the needs of their clients, so they end up minimal and exactly caller-shaped, rather than being big "header interfaces" that mirror some concrete class. The discipline that makes the discovered interfaces clean is **"Tell, Don't Ask"** — prefer telling an object to *do* something (a command) over asking it for data and acting on the answer (a query chain) — because command-style messages name the *interaction* explicitly, which is exactly the role you want to capture. Freeman and Pryce also classify the peers an object talks to into three stereotypes — **dependencies** (services it can't work without), **notifications** (peers it tells that something happened, fire-and-forget), and **adjustments** (policies that tune its behavior) — which guides what to mock and what each interface should express.
+
+### 3.2 Business context
+
+Interfaces discovered this way are the seams along which a system stays changeable. Because each interface is small and named for what the *client* needs, collaborators can be swapped, re-implemented, or tested in isolation without disturbing their callers — the same decoupling SOLID's DIP prescribes, arrived at organically through the test. The naming itself has business value: forcing yourself to name the role a collaborator plays ("`PaymentApprover`", "`OrderListener`") teases out domain concepts you'd otherwise leave implicit, sharpening the model. The flip side — and a major source of the brittle, over-mocked test suites teams complain about — is *not listening* to the design feedback. When a test needs a tangle of mocks to set up, that pain is signal, not noise: the object under test has too many dependencies or the wrong responsibilities. Heeding it early keeps both the tests and the design healthy; ignoring it produces exactly the fragile, mock-heavy suite that gives mocking a bad name.
+
+### 3.3 Theoretical concepts: needs become roles become interfaces
+
+```mermaid
+flowchart TB
+    need["Object under test has a NEED of a neighbor"] --> mock["Mock the neighbor before it exists"]
+    mock --> role["Invent the ROLE it plays; name it from the caller's view"]
+    role --> iface["Extract a small, caller-shaped INTERFACE"]
+    iface --> impl["Implement later; the caller stays decoupled"]
+```
+
+The core mechanism is **discovery by need**. You don't design a collaborator's interface up front and then call it; you write the call you *wish* you could make, mock the recipient, and let that expectation define the interface. Because the interface exists to serve this caller, it stays small and cohesive. **"Tell, Don't Ask"** keeps the discovered messages command-shaped — you express *what should happen*, not *what data to fetch* — which both hides the collaborator's internals and makes the interaction (the role) explicit and nameable. The three **peer stereotypes** tell you what kind of interface you're discovering: a **dependency** must be passed in (constructor), a **notification** is something you tell without caring about a result, and an **adjustment** is a policy/strategy that configures behavior. Matching the mock to the stereotype keeps the design honest — you mock dependencies and notifications (roles you own), but you don't mock **values** or types you don't own.
+
+### 3.4 Architecture: listen to the tests
+
+```mermaid
+flowchart LR
+    easy["Mocking is easy, interfaces small"] --> good["Roles are right; design is cohesive"]
+    hard["Test needs many mocks / deep setup"] --> smell["Design smell: too many dependencies / wrong responsibility"]
+    smell --> fix["Refactor: split object, introduce a higher-level role, move behavior"]
+```
+
+GOOS's distinctive claim is that **the tests talk back about the design** — "listening to the tests." Mocks are the loudest channel. If mocking is straightforward and the interfaces you discover are small and well-named, the design is healthy. If a test requires many mocks, deep nested setup, or expectations on objects two hops away (mocking a thing to get a thing to get a thing), that friction is a *design* smell: the object under test probably has too many responsibilities, depends on too much, or is reaching through its neighbors instead of telling them what to do. The architectural response is to refactor toward the design the test is asking for — split the object, introduce a new intermediary role, or move behavior closer to the data — not to push through with a more elaborate mock setup. Also avoid **over-specification**: assert only the interactions that matter to the behavior under test, or the test ossifies the implementation.
+
+### 3.5 Real example
+
+**Scenario.** Outside-in, you're building an `OrderProcessor` that must charge a payment, save the order, and let interested parties know it shipped.
+
+**Problem.** None of the collaborators exist yet, and it's tempting to ask each one for data and orchestrate everything inside `OrderProcessor` (an "ask"-heavy god object), which would couple it to every collaborator's internals.
+
+**Solution.** Write the test as a set of *commands* to mocked neighbors, letting each expectation **discover a small role**. Classify each peer: `PaymentService` is a **dependency**, `OrderRepository` a **dependency**, and `ShipmentListener` a **notification**. Name each interface from the caller's need.
+
+**Implementation.**
+
+```java
+@Test void processing_an_order_charges_saves_and_notifies() {
+    PaymentService payments = mock(PaymentService.class);    // dependency (role discovered)
+    OrderRepository orders  = mock(OrderRepository.class);   // dependency
+    ShipmentListener shipped = mock(ShipmentListener.class); // notification (tell, don't ask)
+    var processor = new OrderProcessor(payments, orders, shipped);
+
+    processor.process(anOrder());
+
+    verify(payments).charge(anOrder());        // TELL: a command, names the interaction
+    verify(orders).save(anOrder());            // small, caller-shaped interface
+    verify(shipped).onShipped(anOrder());      // fire-and-forget notification
+    // NOTE: no deep mock-returning-mock setup. If we needed that, the design would be wrong.
+}
+
+// The interfaces FALL OUT of the test — each tiny and named for what OrderProcessor needs:
+interface PaymentService  { void charge(Order o); }
+interface OrderRepository { void save(Order o); }
+interface ShipmentListener{ void onShipped(Order o); }
+```
+
+**Result.** Three minimal, role-named interfaces emerged from the caller's needs; `OrderProcessor` is decoupled from every implementation and trivially testable. The command-style messages named the interactions, and the absence of deep mock setup confirms the responsibilities sit in the right place.
+
+**Future improvements.** Implement each role with a real adapter (a real payment gateway, a DB repository, an email notifier) behind the discovered interface. If a future test starts needing layered mocks, treat it as a prompt to introduce a new intermediary role rather than to grow the setup — keep listening to the tests.
+
+### 3.6 Exercises
+
+1. Explain how mocking a not-yet-existing collaborator helps you *discover* an interface.
+2. Why does "Tell, Don't Ask" produce cleaner discovered roles than asking for data?
+3. Name GOOS's three peer stereotypes and what each implies about how you wire and mock it.
+4. What design problem is a test that needs many mocks or deep setup signaling?
+
+### 3.7 Challenges
+
+- **Challenge.** Build a small orchestrating object outside-in. For each thing it must do, write the command you wish you could send, mock the recipient, and let the expectation define a small interface named from the caller's view. Classify each peer as dependency, notification, or adjustment. Then deliberately give the object one extra responsibility and watch the mock setup grow — that growth is the test telling you to refactor.
+
+### 3.8 Checklist
+
+- [ ] I discover interfaces from the caller's needs, not by mirroring concrete classes.
+- [ ] Discovered interfaces are small and named from the client's point of view.
+- [ ] I prefer command-style messages (Tell, Don't Ask) so interactions are explicit.
+- [ ] I classify peers as dependencies, notifications, or adjustments and mock accordingly.
+- [ ] I treat heavy mock setup as a design smell and refactor instead of pushing through.
+
+### 3.9 Best practices
+
+- Mock only types you own (roles), never values or third-party types directly.
+- Name each discovered role for the relationship it captures, surfacing domain concepts.
+- Assert only the interactions that matter to the behavior; avoid over-specification.
+- Listen to the tests: let mocking friction drive design improvements.
+
+### 3.10 Anti-patterns
+
+- "Header interfaces" that mirror a concrete class one-to-one (no real role discovery).
+- Ask-heavy orchestration reaching through neighbors' getters (violating Tell, Don't Ask).
+- Mocks returning mocks returning mocks (deep setup) instead of fixing responsibilities.
+- Over-specified tests asserting every incidental interaction, ossifying the implementation.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Discovered interface is huge | Mirroring a concrete class, not a role | Re-derive from the single caller's actual needs |
+| Test setup mocks chains of objects | Object reaches through neighbors / too many deps | Apply Tell, Don't Ask; split responsibilities |
+| Tests break on harmless refactors | Over-specified interaction assertions | Assert only the interactions that define the behavior |
+| Unsure whether to mock something | Peer stereotype unclear | Classify it: dependency/notification = mock; value = don't |
+
+### 3.12 References
+
+- S. Freeman, N. Pryce, *Growing Object-Oriented Software, Guided by Tests* (Addison-Wesley, 2010) — ch. 2 "Test-Driven Development with Objects" (Follow the Messages, Tell Don't Ask, mock objects), ch. 6 "Object-Oriented Style" (Object Peer Stereotypes, Internals vs. Peers), ch. 7 "Achieving Object-Oriented Design" (need-driven, interface discovery), ch. 20 "Listening to the Tests" — ISBN 978-0321503626.
+- M. Fowler, "Mocks Aren't Stubs" (2007) — the classical vs. mockist framing.
+
+---
+
+> **End of Part II.** You can now use mocks as a *design* tool the GOOS way: mocking a not-yet-existing collaborator forces you to **discover the role it plays and name a small, caller-shaped interface** for it — need-driven development that yields decoupled seams and sharper domain concepts. **"Tell, Don't Ask"** keeps the discovered messages command-shaped so interactions are explicit, and the **peer stereotypes** (dependencies, notifications, adjustments) guide what to mock. Above all, **listen to the tests**: easy mocking means the roles are right, while heavy mock setup is the design asking to be refactored — not a reason for a bigger mock.

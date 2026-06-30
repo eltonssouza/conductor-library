@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Sustaining it**
 3. Blameless culture and shared ownership
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -248,4 +248,127 @@ After:  the building team is on-call for its service
 
 > **End of Part I.** You can now treat DevOps as culture-first: the CAMS pillars (Culture, Automation, Measurement, Sharing) with culture as the enabler the others depend on, and the breaking of silos by replacing handoffs with shared responsibility and cross-functional ownership ("you build it, you run it"). **Part II — Sustaining it** (Chapter 3) covers blameless postmortems and psychological safety — the practices that keep a collaborative culture healthy so failures generate learning rather than fear.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Sustaining it
+
+A culture-first DevOps (Part I) is easy to start and easy to lose. The moment a serious failure happens, an organization reveals what it truly rewards: learning or self-protection. If people fear blame, they hide information, route around process, and stop volunteering the very signals that prevent the next outage. Sustaining a collaborative culture therefore hinges on how you treat failure. This chapter covers the two practices that keep the culture healthy under stress: **blameless postmortems** and **shared ownership** built on psychological safety.
+
+---
+
+## Chapter 3 — Blameless culture and shared ownership
+
+### 3.1 Introduction
+
+A **blameless postmortem** is a structured review of an incident that asks *what in the system* let the failure happen — and lets a competent person make that choice — rather than *who to blame*. It assumes people acted reasonably given the information they had, and looks for the **second story**: the context, tooling, and process gaps behind the human action. **Shared ownership** is the team-level counterpart: the people who build a service also run it ("you build it, you run it"), so feedback from operating the system flows straight back to those who can change it. Both depend on **psychological safety** — the shared belief that speaking up about mistakes is safe.
+
+### 3.2 Business context
+
+When failures lead to blame, the rational response is to hide them: engineers underreport near-misses, omit details in reviews, and avoid risky-but-valuable work. The organization loses its best source of reliability data and repeats the same outages. A blameless approach inverts this: every incident becomes a free lesson the whole organization can learn from, surfacing the systemic weaknesses that *will* cause the next failure if left alone. Shared ownership closes the loop by putting operational pain in front of the people who can fix it, aligning incentives toward building things that are reliable to run, not just quick to ship.
+
+### 3.3 Theoretical concepts: from blame to learning
+
+```mermaid
+flowchart LR
+    incident["Incident"] --> q{"Reaction?"}
+    q -- "Who caused it?" --> blame["Blame: people hide info, no learning"]
+    q -- "What let it happen?" --> learn["Blameless review: systemic fixes, shared learning"]
+    learn --> safety["Psychological safety grows -> more is reported"]
+    safety --> learn
+```
+
+- **Just culture (Dekker)** — distinguish human error (from systemic conditions) from genuine recklessness; the former is a system signal to learn from, not a fault to punish.
+- **Second story** — behind "human error" is always a context that made the action seem correct at the time; the postmortem's job is to find and fix that context.
+- **Psychological safety (Edmondson)** — the strongest predictor of whether people report problems; blamelessness is how you build it, and reporting is how you sustain learning.
+- **You build it, you run it (Vogels)** — ownership of operations by the building team makes reliability everyone's concern and shortens the feedback loop from production to code.
+
+### 3.4 Architecture: the learning loop
+
+```mermaid
+flowchart TB
+    run["Team runs what it builds (on-call)"] --> signal["Operational pain becomes a felt signal"]
+    signal --> pm["Blameless postmortem: timeline, contributing factors"]
+    pm --> actions["Systemic action items (tooling, process, design)"]
+    actions --> build["Team improves the system it owns"]
+    build --> run
+```
+
+### 3.5 Real example
+
+**Scenario.** An engineer runs a routine migration that takes the database down for 20 minutes during peak hours. In a blame culture, the next step would be to reprimand the engineer.
+
+**Problem.** Punishing the individual teaches everyone to avoid migrations and to be vague in reviews; the *actual* causes — no staging dry-run, a footgun CLI with no guardrail, no off-peak window — remain and will bite the next person.
+
+**Solution.** Run a blameless postmortem that treats the engineer's action as a symptom and fixes the system; reinforce shared ownership so the team that owns the database also owns the safeguards.
+
+**Implementation (postmortem skeleton).**
+
+```text
+INCIDENT: 20-min DB outage during peak (migration)
+TIMELINE: 14:02 migration started · 14:03 locks pile up · 14:22 rolled back
+CONTRIBUTING FACTORS (systemic, blameless):
+  - migration tool offers no "estimated lock time" / dry-run
+  - no enforced off-peak window for schema changes
+  - staging DB too small to reveal the locking behavior
+ACTION ITEMS (owner, due):
+  - add dry-run + lock estimate to the migration tool      (team, 2 wks)
+  - CI check: block peak-hours schema changes              (team, 1 wk)
+  - size staging to mirror prod locking                    (team, 3 wks)
+NOT IN THE DOC: who to blame.  The engineer acted reasonably
+given the tools and information available.
+```
+
+**Result.** The team ships three systemic safeguards; engineers keep reporting issues candidly because doing so is safe and productive. The next migration is dry-run-checked and windowed — the same human action can no longer cause the same outage.
+
+**Future improvements.** Publish postmortems internally so the whole org learns; track action-item completion (a postmortem with no follow-through is theater); review near-misses, not only outages, to learn before failure.
+
+### 3.6 Exercises
+
+1. What is the "second story" behind a human error, and why does a blameless postmortem seek it?
+2. How does psychological safety create a reinforcing loop with incident reporting?
+3. Why does "you build it, you run it" improve reliability rather than just shifting work?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a recent incident (real or hypothetical) and write its postmortem twice: once naming a culprit, once blamelessly with systemic contributing factors and owned action items. Compare what each version teaches the organization — and what each teaches people to do next time.
+
+### 3.8 Checklist
+
+- [ ] Postmortems identify systemic causes and action items, never individuals to blame.
+- [ ] Action items have owners and due dates, and completion is tracked.
+- [ ] The team that builds a service also operates it (on-call, ownership).
+- [ ] Near-misses are reviewed, not just outages.
+- [ ] People report mistakes without fear; reporting is visibly rewarded.
+
+### 3.9 Best practices
+
+- Frame every review around "what let this happen", assuming competent people and good intent.
+- Make postmortems blameless *and* actionable — findings become tracked work, not a filed document.
+- Give building teams operational ownership so feedback reaches those who can act.
+- Share learnings widely; treat near-misses as cheap lessons.
+
+### 3.10 Anti-patterns
+
+- "Human error" as a root cause and stopping there (it's where the investigation should *begin*).
+- Naming and shaming, which drives information underground.
+- Postmortems with no owned, tracked action items.
+- Throwing operations over the wall to a separate team that can't change the code.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Incidents underreported | Blame culture; fear of consequences | Run blameless reviews; protect reporters |
+| Same outage recurs | Postmortems blame people, not systems | Find systemic factors; fix tooling/process |
+| Action items never done | No owners or tracking | Assign owners + due dates; track completion |
+| Ops feedback ignored | Build and run split across teams | Give building team operational ownership |
+
+### 3.12 References
+
+- J. Davis, K. Daniels, *Effective DevOps* (O'Reilly, 2016) — ISBN 978-1491926307 — "A Culture of Blamelessness" and the Affinity/postmortem material.
+- G. Kim, J. Humble, P. Debois, J. Willis, *The DevOps Handbook* (IT Revolution, 2016) — ISBN 978-1942788003 — Part IV "The Third Way": blameless postmortems and a just culture.
+- S. Dekker, *The Field Guide to Understanding 'Human Error'* — second stories and just culture.
+
+---
+
+> **End of Part II — and of the guide.** A collaborative DevOps culture is sustained by how it treats failure: **blameless postmortems** that hunt systemic causes instead of culprits, **shared ownership** ("you build it, you run it") that routes operational feedback to the people who can act, and the **psychological safety** that keeps both alive by making it safe to report. Combined with Part I's culture-first foundation (CAMS and the breaking of silos), this gives an organization a culture where failures become fuel for improvement rather than fear.

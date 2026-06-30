@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Modern observability**
 3. High-cardinality structured events
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -249,4 +249,137 @@ flowchart LR
 
 > **End of Part I.** You can now distinguish observability (asking new questions of rich data to debug unknown failures) from monitoring (alerting on known conditions), and use the three telemetry types — metrics for trends, structured logs for detail, traces for cross-service flow — correlated by trace id to diagnose distributed problems fast. **Part II — Modern observability** (Chapter 3) covers high-cardinality, context-rich structured events as the foundation that makes truly arbitrary querying — and debugging the unknown-unknowns — possible.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Modern observability
+
+Part I framed observability as the ability to ask new questions of your system. But *what data* makes that possible? Pre-aggregated metrics can't — they discard the detail you'd need to slice by a value you didn't anticipate. The foundation of modern observability is the **high-cardinality, context-rich structured event**: capture everything about each unit of work as it happens, keep it raw, and let arbitrary questions be answered after the fact. This chapter explains why that data shape is what truly lets you debug the unknown-unknowns.
+
+---
+
+## Chapter 3 — High-cardinality structured events
+
+### 3.1 Introduction
+
+A **structured event** is a single record — typically one per request per service — that captures *everything* known about that unit of work as a set of key–value fields: timing, status, plus rich context like `user_id`, `build_id`, `region`, `feature_flag`, `db_query_hash`, `shopping_cart_size`. **Cardinality** is the number of distinct values a field can have; `user_id` is *high-cardinality* (millions of values). **Dimensionality** is the number of fields. Modern observability is built on capturing **wide** (many fields) events with **high-cardinality** values and keeping them raw, so you can later group and filter by any combination — including dimensions you never thought to pre-define.
+
+### 3.2 Business context
+
+Traditional metrics force you to decide *in advance* what to measure; a metric like "p99 latency" can't tell you the slow requests are all from one `customer_id` on one `build_id` in one `region` unless you pre-tagged that exact combination — and high-cardinality tags blow up metric storage. So when a novel problem hits ("only *some* enterprise users on the new build see timeouts"), aggregate metrics hide the needle. High-cardinality events let you slice reality arbitrarily after the fact, cutting debugging from hours of guessing to minutes of querying. For the business, that's directly shorter incidents and the ability to answer questions no one anticipated.
+
+### 3.3 Theoretical concepts: keep it wide, raw, and high-cardinality
+
+```mermaid
+flowchart LR
+    req["Each request"] --> evt["One wide structured event (many fields)"]
+    evt --> store["Stored raw (not pre-aggregated)"]
+    store --> query["Query: group/filter by ANY dimension"]
+    query --> needle["Isolate the exact failing slice"]
+```
+
+- **Wide events over narrow metrics** — one rich event per request carries far more diagnostic power than dozens of disconnected counters.
+- **High cardinality is a feature, not a cost to avoid** — the most useful debugging dimensions (user, request id, build, query) are exactly the high-cardinality ones; observability tooling is designed to store and query them, unlike metric systems.
+- **Don't pre-aggregate** — aggregation is a query-time choice, not an ingestion-time one; pre-aggregating throws away the detail that answers tomorrow's question.
+- **Events subsume traces** — a trace is a set of correlated events (spans) sharing a trace id; the same wide-event foundation produces both. **OpenTelemetry** is the vendor-neutral way to emit them.
+
+### 3.4 Architecture: from instrumented code to arbitrary query
+
+```mermaid
+flowchart TB
+    code["Service code (OpenTelemetry instrumentation)"] --> event["Emit wide event per request (+ trace/span ids)"]
+    event --> pipe["Collector / pipeline (sampling)"]
+    pipe --> col["Columnar store (raw, high-cardinality)"]
+    col --> explore["Explorer: group_by(any field), filter(any field)"]
+    explore --> answer["Answer questions not anticipated at write time"]
+```
+
+### 3.5 Real example
+
+**Scenario.** Checkout latency p99 spikes intermittently. Dashboards show the spike but not the cause; the team stares at aggregate graphs and guesses.
+
+**Problem.** Pre-aggregated metrics can't be sliced by the dimensions that matter (which users? which build? which dependency?), because those high-cardinality tags were never baked into the metric.
+
+**Solution.** Emit a wide structured event per checkout request with rich context, store it raw, and slice it after the fact.
+
+**Implementation (wide event + investigative queries).**
+
+```jsonc
+// One structured event per checkout request (emitted via OpenTelemetry)
+{
+  "ts": "2026-06-30T14:02:11Z",
+  "service": "checkout",
+  "trace_id": "a1b2c3...",          // ties spans into a trace
+  "duration_ms": 1840,
+  "status": 200,
+  "user_id": "u_9f33c2",            // high cardinality
+  "customer_tier": "enterprise",
+  "build_id": "checkout-2.4.0",     // high cardinality
+  "region": "eu-west-1",
+  "payment_provider": "stripe",
+  "db_query_hash": "q_7af1",        // high cardinality
+  "cart_items": 23
+}
+```
+
+```text
+Investigate by slicing the raw events (no new deploy needed):
+  group_by(build_id)          -> spikes concentrate on build checkout-2.4.0
+  filter(build_id=2.4.0),
+    group_by(payment_provider)-> only payment_provider="stripe" is slow
+  filter(...), group_by(region) -> only region="eu-west-1"
+  => "2.4.0 + stripe + eu-west-1" is the failing slice — found in minutes
+```
+
+**Result.** Grouping the raw events by `build_id`, then `payment_provider`, then `region` isolates the exact failing slice — a regression in build 2.4.0's Stripe path in one region — without shipping any new instrumentation. The needle that aggregate metrics hid is found by querying dimensions that were captured but never pre-aggregated.
+
+**Future improvements.** Adopt OpenTelemetry across all services for consistent wide events; add tail-based sampling to control volume while keeping the interesting (slow/error) events; build SLO burn alerts on top of the same event data so alerting and debugging share one source of truth.
+
+### 3.6 Exercises
+
+1. Define cardinality and dimensionality, with a high-cardinality and a low-cardinality field example.
+2. Why can't a pre-aggregated p99 latency metric isolate "slow only for enterprise users on build X"?
+3. How does a wide structured event relate to a distributed trace?
+
+### 3.7 Challenges
+
+- **Challenge.** Design the wide event for one request in a service you know: list 8–10 fields including at least three high-cardinality ones, then write the sequence of `group_by`/`filter` queries you'd run to isolate a slice-specific latency problem.
+
+### 3.8 Checklist
+
+- [ ] Services emit one wide structured event per unit of work.
+- [ ] Events include high-cardinality context (ids, build, region, query).
+- [ ] Events are stored raw, not pre-aggregated at ingest.
+- [ ] Instrumentation is vendor-neutral (OpenTelemetry).
+- [ ] Trace/span ids tie events into traces.
+
+### 3.9 Best practices
+
+- Capture rich context at write time; decide aggregation at query time.
+- Embrace high-cardinality fields — they're the most diagnostic.
+- Standardize on OpenTelemetry so events are consistent and portable.
+- Use sampling (ideally tail-based) to manage volume without losing the interesting events.
+
+### 3.10 Anti-patterns
+
+- Pre-aggregating into metrics and discarding per-event detail.
+- Avoiding high-cardinality tags out of metric-cost habit (wrong tool's constraint).
+- Narrow, context-poor logs that can't be sliced by the dimensions that matter.
+- Vendor-locked instrumentation that can't be re-queried or moved.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't slice by the dimension that matters | Data pre-aggregated into metrics | Emit wide raw events; aggregate at query time |
+| "It's slow for some users" stays unsolved | No high-cardinality context captured | Add user/build/region/query fields to events |
+| Telemetry locked to one vendor | Proprietary instrumentation | Adopt OpenTelemetry |
+| Event volume/cost too high | No sampling strategy | Add tail-based sampling, keep slow/error events |
+
+### 3.12 References
+
+- C. Majors, L. Fong-Jones, G. Miranda, *Observability Engineering* (O'Reilly, 2022) — ISBN 978-1492076445 — high-cardinality, high-dimensionality structured events and debugging the unknown-unknowns.
+- OpenTelemetry: https://opentelemetry.io/docs/.
+
+---
+
+> **End of Part II — and of the guide.** Modern observability rests on the **high-cardinality, context-rich structured event**: capture everything about each unit of work, keep it raw, and decide how to aggregate at query time — so you can group and filter by *any* dimension, including ones you never anticipated, and isolate the exact failing slice in minutes. Built on Part I's foundations (observability vs monitoring; metrics, logs, and traces correlated by id), this is what makes debugging the unknown-unknowns of distributed systems actually possible.

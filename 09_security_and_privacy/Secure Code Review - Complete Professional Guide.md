@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Coverage**
 3. Trust boundaries and where bugs cluster
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -252,4 +252,137 @@ if (!target.startsWith(base)) throw new ForbiddenException();  // reject travers
 
 > **End of Part I.** You can now review code for security: read adversarially (hunting the missing defense, focused on high-risk areas, combining human judgment with SAST), and apply taint analysis — tracing untrusted data from sources to dangerous sinks and verifying it's sanitized appropriately for each sink along the way. **Part II — Coverage** (Chapter 3) covers using trust boundaries to drive review scope and the categories of bug that cluster at each boundary, so audits are systematic rather than ad hoc.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Coverage
+
+Part I gave you the *technique* — adversarial reading and taint tracing. Part II gives you the *map*: where to point that technique so a finite review covers the code that actually matters. The organizing idea is the **trust boundary**. Bugs are not scattered uniformly through a codebase; they concentrate where data and control cross from a less-trusted region to a more-trusted one, because that crossing is exactly where someone must validate, and "must validate" is exactly where someone forgets. Find the boundaries and you have found where the bugs cluster.
+
+---
+
+## Chapter 3 — Trust boundaries and where bugs cluster
+
+### 3.1 Introduction
+
+A **trust relationship** is the degree of trust one component places in another; a **trust boundary** is the line between two regions that trust each other differently — a **trust domain** on each side. Data crossing a boundary moves from a region where it was untrusted to one where downstream code assumes it is safe. That assumption is the vulnerability waiting to happen: the boundary is precisely the place where validation is *required*, and therefore precisely the place where a missing or wrong validation becomes a bug. Reviewing by trust boundary turns an open-ended "read all the code" into a targeted "examine every crossing" — systematic coverage instead of ad-hoc spelunking.
+
+### 3.2 Business context
+
+A large codebase cannot be reviewed line-by-line with equal attention in any realistic budget — that is the central practical problem of security assessment. Spreading effort evenly wastes most of it on code that never touches attacker-controlled data, while the few dangerous crossings get the same shallow glance as everything else. Trust boundaries solve the allocation problem: they are a small, enumerable set of places that concentrate risk, so a review scoped to them gets disproportionate return. They also expose the boundaries nobody *designed* — the transitive ones, where your component trusts a library that trusts a network that trusts user input — which are where the subtle, expensive vulnerabilities live. The business value is coverage you can defend: "we reviewed every point where untrusted data enters a trusted domain," rather than "we read a lot of the code and hoped."
+
+### 3.3 Theoretical concepts: domains, boundaries, and transitive trust
+
+Every system decomposes into **trust domains** (regions of shared trust) separated by **trust boundaries** (module edges where trust changes). At each boundary, the more-trusted side must treat input from the less-trusted side as hostile until validated. Three properties make boundaries the natural unit of review:
+
+- **Validation is the boundary's job.** Inside a domain, code reasonably assumes its peers are well-behaved; at the boundary, that assumption is unearned, so the validation must live there. A missing check *inside* a domain is usually benign; a missing check *at* a boundary is usually a vulnerability.
+- **Trust is transitive.** If A trusts B and B trusts C, then A implicitly trusts C — a **chain of trust**. The dangerous boundaries are often the ones no one drew: your app trusts a parser, the parser trusts a file, the file came from an attacker. Auditors must follow trust across components, not stop at the first hop.
+- **Bugs cluster by category at each kind of boundary.** Network/parser boundaries cluster memory-corruption and malformed-input bugs; process/privilege boundaries cluster privilege-escalation and TOCTOU bugs; the app↔datastore boundary clusters injection; the app↔client boundary clusters access-control and authentication bugs. Knowing the boundary type predicts the bug type to hunt.
+
+```mermaid
+flowchart LR
+    untrusted["Untrusted domain<br/>(client, network, file, env)"] -->|"crosses boundary"| boundary{"Trust boundary:<br/>validate here"}
+    boundary -->|"validated"| trusted["Trusted domain<br/>(app logic, privileged code)"]
+    boundary -->|"missing / wrong check"| bug["Vulnerability clusters here"]
+```
+
+### 3.4 Architecture: enumerate boundaries, then audit each crossing
+
+```mermaid
+flowchart TB
+    decompose["Decompose system into trust domains"] --> draw["Draw boundaries (incl. transitive ones)"]
+    draw --> rank["Rank by exposure x privilege of the trusted side"]
+    rank --> audit["At each crossing: is input validated for the downstream sink?"]
+    audit --> categorize["Hunt the bug category that clusters at this boundary type"]
+    categorize --> draw
+```
+
+Scope follows **exposure**: a boundary reachable by a remote, unauthenticated attacker that crosses into highly privileged code is the top priority; an internal boundary between two equally trusted modules is low. Review each crossing by connecting Part I's taint analysis to the boundary — the *source* is the untrusted side, the *sink* is whatever the trusted side does with the data, and the question is whether validation appropriate to that sink happens *at the crossing*.
+
+### 3.5 Real example
+
+**Scenario.** A document-processing service accepts uploaded files, hands them to an in-house parser, and stores extracted metadata in a database. The team plans to "review the whole service."
+
+**Problem.** An undifferentiated read of tens of thousands of lines will exhaust the budget on glue code and miss the dangerous crossings. Worse, the most exposed boundary is *transitive and undrawn*: the HTTP handler trusts the parser, the parser trusts the raw uploaded bytes — so attacker-controlled file content reaches memory-handling code three hops away from any visible "input" check.
+
+**Solution.** Decompose into trust domains, draw the boundaries (including the transitive file→parser→storage chain), rank by exposure, and audit each crossing for the bug category it clusters.
+
+**Implementation (boundary-driven review plan).**
+
+```text
+Trust domains & boundaries (ranked by exposure x downstream privilege):
+
+  B1  [Internet/client] --upload--> [HTTP handler]      remote, unauth   => HIGH
+        sink: file bytes, size, content-type, filename
+        hunt: path traversal in filename, size/DoS, content-type spoofing
+
+  B2  [HTTP handler] --raw bytes--> [in-house parser]    TRANSITIVE       => HIGH
+        the handler trusts the parser; the parser trusts attacker bytes
+        sink: memory handling on malformed input
+        hunt: buffer overflow, integer overflow, out-of-bounds (Part II bug classes)
+
+  B3  [parser] --extracted fields--> [database]          app->datastore   => MEDIUM
+        sink: SQL/NoSQL query construction
+        hunt: injection (is the extracted text parameterized?)
+
+  B4  [worker] --status--> [internal admin UI]            authenticated    => LOW
+
+Review effort: concentrate on B1 + B2; verify validation lives AT each crossing.
+```
+
+**Result.** The review covers every point where untrusted data enters a more-trusted domain, in priority order, hunting the specific bug class each boundary attracts. The high-risk transitive boundary B2 — invisible on an org-chart reading of the code — is now explicitly in scope. Coverage is defensible and the budget lands where the bugs cluster, not on inert glue code.
+
+**Future improvements.** Record the boundary map as living documentation so future changes are reviewed against it; add tests/fuzzing at B1–B2 (the malformed-input boundary); re-run the decomposition whenever a new external dependency adds a transitive boundary.
+
+### 3.6 Exercises
+
+1. Define trust domain, trust boundary, and trust relationship.
+2. Why do bugs cluster at boundaries rather than inside a trust domain?
+3. What is transitive trust, and why does it create the most dangerous boundaries?
+4. Match a boundary type to the bug category it tends to cluster (e.g., app↔datastore → ?).
+
+### 3.7 Challenges
+
+- **Challenge.** Take a service you know. Draw its trust domains and every boundary between them, *including* transitive ones introduced by libraries and external systems. Rank the boundaries by exposure × downstream privilege, and for the top one name the bug category you'd hunt and where the validation should live.
+
+### 3.8 Checklist
+
+- [ ] The system is decomposed into trust domains with explicit boundaries.
+- [ ] Transitive boundaries (via libraries, files, networks) are drawn, not just the obvious ones.
+- [ ] Boundaries are ranked by exposure × privilege of the trusted side.
+- [ ] Each crossing is audited for validation appropriate to its downstream sink.
+- [ ] The bug category that clusters at each boundary type is specifically hunted.
+- [ ] The boundary map is recorded so future changes are reviewed against it.
+
+### 3.9 Best practices
+
+- Scope review by trust boundary, not by file count or even coverage.
+- Follow trust across components; never stop at the first hop.
+- Connect taint analysis to boundaries: untrusted side = source, trusted side's action = sink.
+- Prioritize remote, unauthenticated boundaries into privileged code.
+- Predict the bug class from the boundary type and hunt it deliberately.
+
+### 3.10 Anti-patterns
+
+- Reviewing uniformly, giving glue code the same attention as dangerous crossings.
+- Treating only the visible "input" layer as a boundary, ignoring transitive trust.
+- Assuming a trusted internal component sanitizes input it actually forwards raw.
+- Validating deep inside a domain instead of at the crossing where the data arrives.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Review ran long, found little | Effort spread evenly, not boundary-scoped | Enumerate trust boundaries; audit crossings in priority order |
+| Vulnerability found far from any "input" code | Transitive boundary missed | Follow trust across components; draw chains of trust |
+| Same bug class keeps slipping through | Boundary type's cluster not hunted | Map boundary type → bug category; hunt it deliberately |
+| Validation present but bug remains | Check is in the wrong place | Move validation to the crossing; match it to the sink |
+
+### 3.12 References
+
+- M. Dowd, J. McDonald, J. Schuh, *The Art of Software Security Assessment* (Addison-Wesley, 2006), **Ch. 2 "Design Review"** (trust relationships, trust boundaries, trust domains, the trust model, transitive/chain-of-trust) and **Ch. 1 "Software Vulnerability Fundamentals"** (common threads) — ISBN 978-0321444424.
+- M. Dowd et al., *The Art of Software Security Assessment*, **Ch. 3 "Operational Review"** (exposure/attack surface) and **Ch. 4 "Application Review Process"** (code-auditing strategies).
+- A. Shostack, *Threat Modeling* (Wiley, 2014) — trust boundaries on data-flow diagrams (cross-reference).
+
+---
+
+> **End of Part II — end of guide.** You can now make a security review systematic: decompose the system into trust domains, draw every boundary between them — including the transitive ones no one designed — rank the crossings by exposure and downstream privilege, and at each crossing apply Part I's adversarial reading and taint analysis to confirm that validation appropriate to the sink lives *at the boundary*. Bugs cluster where trust changes; point your finite review there, hunt the bug class each boundary attracts, and your coverage becomes defensible rather than ad hoc.

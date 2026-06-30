@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Operating**
 3. Inspecting a running system
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -253,4 +253,135 @@ kill -KILL 12345       # force-stop (last resort)
 
 > **End of Part I.** You can now work effectively on Linux: compose small single-purpose tools with pipes to answer operational questions on the fly, and handle the core operational objects — processes (find and signal them gracefully), files (one tree, everything-is-a-file), and permissions (least privilege). **Part II — Operating** (Chapter 3) covers inspecting a running system under pressure: disk/memory/network checks, log locations, and the first commands to run during an incident.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Operating
+
+Part I built fluency with composing tools and handling processes, files, and permissions. Operating a real system adds urgency: when a service is slow or down at 3 a.m., you need a fast, ordered way to ask the machine "what is wrong with you?" — is it out of disk, out of memory, saturating CPU, drowning in network, or is a process wedged? This chapter is the operational toolkit: the handful of commands that answer those questions, where the logs live, and the order to run them in during an incident.
+
+---
+
+## Chapter 3 — Inspecting a running system
+
+### 3.1 Introduction
+
+Inspecting a live system means reading its **resources** and **logs** quickly. A small, reliable set of tools covers it: `top`/`htop` (overall CPU/memory and per-process), `ps` (snapshot of processes), `free` (memory), `df` (disk space) and `du` (where the space went), `ss` (sockets/ports), `journalctl` and `/var/log` (logs), plus `lsof` (open files/ports) and `strace` (what a process is actually doing). Most live on the `/proc` filesystem — the kernel's live view of the system exposed as files, true to "everything is a file" from Part I. The skill is knowing which to reach for first.
+
+### 3.2 Business context
+
+During an incident, time-to-diagnosis dominates time-to-recovery. An engineer who knows the right five commands isolates "disk full" or "OOM-killed" or "port not listening" in under a minute; one who doesn't flails while users are down. These tools are universal — present on essentially every Linux box, no agent required — so they are the dependable floor beneath any fancier observability stack. Knowing them is the difference between a calm, ordered triage and a panicked guess.
+
+### 3.3 Theoretical concepts: read resources, then logs
+
+```mermaid
+flowchart LR
+    sym["Symptom: slow / down"] --> res["Check resources: CPU, mem, disk, net"]
+    res --> proc["Identify the process (top/ps)"]
+    proc --> logs["Read its logs (journalctl / /var/log)"]
+    logs --> deep["Deep-dive: lsof / strace if needed"]
+```
+
+- **CPU/load** — `top`/`htop`: who's burning CPU; load average vs core count hints at saturation (links to the USE method in the Systems Performance guide).
+- **Memory** — `free -h` for headroom; check `dmesg` for the OOM killer when processes vanish.
+- **Disk** — `df -h` for "is a filesystem full?", then `du -sh *` to find the culprit directory. A full disk masquerades as countless unrelated failures.
+- **Network** — `ss -tulpn` to see what's listening and on which port (the modern replacement for `netstat`).
+- **Logs** — `journalctl -u <svc>` on systemd hosts; `/var/log/...` elsewhere; tail and grep for the failure window.
+- **Deep-dive** — `lsof -p <pid>` (open files/sockets), `strace -p <pid>` (live syscalls) when a process is stuck and the logs don't say why.
+
+### 3.4 Architecture: where the data comes from
+
+```mermaid
+flowchart TB
+    kernel["Kernel"] --> proc["/proc, /sys (live state as files)"]
+    proc --> tools["top / ps / free / ss read here"]
+    services["Services"] --> jrnl["journald / /var/log (logs)"]
+    jrnl --> read["journalctl / tail / grep"]
+    tools --> triage["Triage decision"]
+    read --> triage
+```
+
+### 3.5 Real example
+
+**Scenario.** A web service starts returning 500s. Alerts fire; you SSH into the host with no idea yet what's wrong.
+
+**Problem.** The symptom (500s) has many possible causes — full disk, exhausted memory, pegged CPU, a dead process, or a port not listening. You need to localize fast.
+
+**Solution.** Run an ordered triage: resources first, then the process, then its logs.
+
+**Implementation (incident triage sequence).**
+
+```bash
+# 1) Resources at a glance
+top                 # CPU/mem hogs, load average (q to quit) — or: htop
+free -h             # memory headroom; is swap thrashing?
+df -h               # any filesystem at 100%?  (a full / breaks everything)
+du -sh /var/log/*   # if df shows full: who ate the disk?
+
+# 2) Is the service even up and listening?
+systemctl status myapp
+ss -tulpn | grep :8080      # is something listening on the port?
+
+# 3) What does the service say?
+journalctl -u myapp --since "10 min ago" --no-pager | tail -n 50
+# non-systemd: tail -n 100 /var/log/myapp/error.log
+
+# 4) Stuck process? see what it's doing
+lsof -p "$(pgrep -f myapp | head -1)"     # open files/sockets (leak? FD exhaustion?)
+strace -p "$(pgrep -f myapp | head -1)"   # live syscalls (blocked on read? connect?)
+```
+
+**Result.** Within a minute `df -h` shows `/` at 100% — a runaway log filled the disk, so the app can't write and returns 500s. `du -sh /var/log/*` pinpoints the file; truncating it and adding log rotation restores service. The ordered sequence turned an ambiguous symptom into a precise cause fast.
+
+**Future improvements.** Capture this sequence as a runbook; add monitoring/alerts for disk and memory thresholds (don't wait for 500s); set up log rotation (`logrotate`) so a single log can't fill the disk again.
+
+### 3.6 Exercises
+
+1. A process disappeared with no error in its own log — which command tells you the kernel OOM-killed it?
+2. How do you find which directory is consuming a full filesystem?
+3. Which command shows what is listening on a given TCP port, and why prefer it over `netstat`?
+
+### 3.7 Challenges
+
+- **Challenge.** Write a 6-line incident triage runbook for a host: the exact commands, in order, to check CPU, memory, disk, listening ports, and service logs — each with one line on what its output tells you and what action it implies.
+
+### 3.8 Checklist
+
+- [ ] I check resources (CPU, memory, disk, network) before guessing.
+- [ ] I know how to find a full filesystem and the directory filling it.
+- [ ] I can confirm a service is running and listening on its port.
+- [ ] I know where this host's logs are (`journalctl` vs `/var/log`).
+- [ ] I can deep-dive a stuck process with `lsof`/`strace`.
+
+### 3.9 Best practices
+
+- Triage in a fixed order (resources → process → logs); don't jump to conclusions.
+- Prefer modern tools (`ss`, `journalctl`, `htop`) but know the classics exist.
+- Treat a full disk as a prime suspect — it causes wildly varied symptoms.
+- Capture repeated triage steps as a runbook so anyone can follow them.
+
+### 3.10 Anti-patterns
+
+- Restarting the service blindly without reading any signal (loses the evidence).
+- Ignoring disk and memory and assuming it's "the app's fault".
+- Editing files/log levels in production with no record of what changed.
+- Running `strace` on a busy production process without understanding its overhead.
+
+### 3.11 Troubleshooting
+
+| Symptom | First command | What it tells you |
+|---------|---------------|-------------------|
+| Everything failing oddly | `df -h` | A filesystem at 100% breaks writes everywhere |
+| Process vanished | `dmesg \| grep -i oom` | Kernel OOM-killed it (out of memory) |
+| "Connection refused" | `ss -tulpn` | Whether anything is listening on the port |
+| Host sluggish | `top` / `uptime` | CPU hogs; load average vs core count |
+| Service stuck, no logs | `strace -p <pid>` | Which syscall it's blocked on |
+
+### 3.12 References
+
+- J. Lee, *Linux Utilities Cookbook* (Packt, 2013) — ISBN 978-1782160779 — process, disk, memory, and network inspection utilities.
+- B. Gregg, *Systems Performance*, 2nd ed. (Addison-Wesley, 2020) — the USE method behind resource triage (see the Systems Performance Analysis guide).
+- `man` pages: `proc(5)`, `top(1)`, `ss(8)`, `journalctl(1)`.
+
+---
+
+> **End of Part II — and of the guide.** Beyond composing tools and managing processes/files/permissions (Part I), you can now **inspect a running system under pressure**: read CPU, memory, disk, and network with a small reliable toolkit, find where the logs live, and run an ordered triage that turns an ambiguous symptom into a precise cause in minutes. This is the operational floor every Linux engineer stands on during an incident — dependable, agentless, and present on every box.

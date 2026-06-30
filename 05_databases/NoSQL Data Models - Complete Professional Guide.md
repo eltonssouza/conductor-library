@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Trade-offs**
 3. Consistency, CAP, and choosing deliberately
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -151,7 +151,7 @@ Because an aggregate is self-contained and accessed by key, the store can **shar
 
 ### 1.12 References
 
-- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012) — ISBN 978-0321826626.
+- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012), Chapter 2 "Aggregate Data Models" — ISBN 978-0321826626.
 - Official docs: Redis (https://redis.io/docs/), MongoDB (https://www.mongodb.com/docs/), Apache Cassandra (https://cassandra.apache.org/doc/).
 
 ---
@@ -248,11 +248,131 @@ LIMIT 10;
 
 ### 2.12 References
 
-- I. Robinson, J. Webber, E. Eifrem, *Graph Databases*, 2nd ed. (O'Reilly, 2015) — ISBN 978-1491930892.
+- I. Robinson, J. Webber, E. Eifrem, *Graph Databases*, 2nd ed. (O'Reilly, 2015), Chapter 2 "Options for Storing Connected Data" and Chapter 6 "Graph Database Internals" (index-free adjacency) — ISBN 978-1491930892.
+- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012), Chapter 3 "More Details on Data Models" (§3.2 Graph Databases) — ISBN 978-0321826626.
 - Neo4j Cypher docs: https://neo4j.com/docs/cypher-manual/current/.
 
 ---
 
 > **End of Part I.** You can now distinguish the NoSQL families: aggregate-oriented stores (key-value, document, column-family) that read/write self-contained units by key and shard easily but sacrifice cross-aggregate queries, versus graph stores that make deep relationship traversal natural and fast. **Part II — Trade-offs** (Chapter 3) covers consistency models, the CAP theorem's real meaning, and choosing a store deliberately rather than by hype — including how 2026 relational engines absorb much of the document model.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Trade-offs
+
+Part I sorted NoSQL by *data model*. But the model is only half the decision; the other half is *what consistency you get when the system runs on a cluster*. NoSQL's defining move — distributing data across nodes — forces trade-offs that a single-server relational database never had to make. Part II makes those trade-offs explicit so you can choose a store for reasons, not for hype.
+
+### 3 — and how to choose
+
+This part is a single chapter: the consistency trade-offs that distribution forces, the CAP theorem stated correctly, and a deliberate decision procedure.
+
+---
+
+## Chapter 3 — Consistency, CAP, and choosing deliberately
+
+### 3.1 Introduction
+
+Once data lives on more than one node, two new questions appear that a single server never raised: **update consistency** (what happens when two clients write the same item at once?) and **read consistency** (can a read see a value that another reader won't, or that's already stale?). NoSQL stores answer these by *relaxing* the strong consistency relational databases give by default — trading it for availability and partition tolerance. The **CAP theorem** is the precise statement of what you can and cannot have. Understanding it — and the **quorum** mechanics that tune the trade — is what separates choosing a store deliberately from cargo-culting "web-scale."
+
+### 3.2 Business context
+
+A consistency model is a promise about what users and other systems can observe, and it leaks directly into product behavior: a shopping cart that loses an item, two users who "both" booked the last seat, a balance that briefly reads wrong. Picking eventual consistency for a bank ledger, or paying for strong consistency on a like-counter, are both expensive mistakes. The CAP trade-off is therefore a business decision wearing a technical costume: which does *this* data need more during a network failure — to keep answering, or to stay correct? Naming that per dataset is the whole job.
+
+### 3.3 Theoretical concepts: consistency and the CAP theorem
+
+```mermaid
+flowchart TB
+    cap["CAP under a network PARTITION you must choose:"]
+    cap --> cp["CP: stay Consistent -> refuse/limit some requests (sacrifice Availability)"]
+    cap --> ap["AP: stay Available -> serve possibly-stale data (sacrifice Consistency)"]
+    note["No partition -> you can have both C and A. CAP only bites during a partition."]
+```
+
+The CAP theorem is widely misquoted as "pick 2 of 3 (Consistency, Availability, Partition tolerance)." Stated correctly: **a distributed system that may suffer network partitions must, *during a partition*, choose between consistency and availability.** Partition tolerance isn't optional on a real network — partitions happen — so the real choice is **CP** (refuse some operations to stay consistent) vs **AP** (answer with possibly-stale data to stay available). When there is *no* partition, a system can offer both. CAP is not a permanent label; it is a behavior *during failure*. Most NoSQL stores lean AP with **eventual consistency**: replicas converge "eventually," so a read may briefly see a stale value.
+
+### 3.4 Architecture: quorums tune the trade-off
+
+```mermaid
+flowchart LR
+    n["N = replicas per item"] --> w["W = nodes that must ack a write"]
+    n --> r["R = nodes consulted on a read"]
+    w --> rule["W + R > N -> read set overlaps write set -> read sees the latest write"]
+    rule --> tune["Tune W,R for the consistency/latency you need per operation"]
+```
+
+Consistency in many distributed stores is not a fixed setting but a per-operation dial via **quorums**. With `N` replicas of an item, requiring `W` nodes to acknowledge a write and `R` nodes to answer a read, the guarantee is: **if `W + R > N`, the read and write sets overlap**, so a read is guaranteed to see the most recent committed write (strong read consistency). Relax below that (`W + R ≤ N`) and you get lower latency and higher availability at the cost of possibly-stale reads. Tuning `W` and `R` — even per request — lets one store serve "must be correct" and "fast and good enough" operations on the same data. **Version stamps** (vector clocks) detect the conflicting concurrent writes this allows, leaving resolution to the application.
+
+### 3.5 Real example
+
+**Scenario.** A team is choosing storage for two features: a session/cart store and a financial ledger. A vendor pitches one AP document store "for everything."
+
+**Problem.** The cart tolerates a brief stale read (AP, eventual consistency is fine, availability matters most). The ledger cannot: a stale balance or a lost write is a correctness failure (it needs strong consistency, CP behavior under partition). One blanket choice is wrong for one of them.
+
+**Solution.** Choose **deliberately per dataset**. Keep the cart on the AP store with eventual consistency (or a low quorum) for availability; put the ledger on a strongly-consistent store (or use a high quorum `W + R > N`, or a relational/NewSQL engine) so reads always see the latest write.
+
+**Implementation (the decision, made explicit).**
+
+```text
+Cart/session:  partition behavior = AP (stay available)
+               consistency = eventual; quorum W small, R small (low latency)
+               rationale: a brief stale cart is acceptable; downtime is not
+
+Ledger:        partition behavior = CP (stay correct)
+               consistency = strong; W + R > N  (read sees latest write)
+               rationale: a wrong/stale balance is unacceptable, even if it means
+                          refusing writes during a partition
+```
+
+**Result.** Each dataset gets the trade-off it actually needs; neither pays for a guarantee it doesn't want nor lacks one it requires. The "one store for everything" pitch is rejected on reasoning, not taste — this is **polyglot persistence**.
+
+**Future improvements.** Note the 2026 reality: mainstream relational engines (PostgreSQL JSONB, etc.) now absorb much of the document model with ACID guarantees, so "I need flexible documents" no longer automatically means leaving the relational world. Default to a relational store and reach for NoSQL when a *specific* distribution or access pattern demands it.
+
+### 3.6 Exercises
+
+1. State the CAP theorem correctly. When does it *not* force a choice?
+2. With `N = 5`, give a `W`/`R` pair that guarantees strong read consistency and one that doesn't.
+3. Give one dataset that should be AP and one that should be CP, and justify each.
+
+### 3.7 Challenges
+
+- **Challenge.** For two datasets in your system, decide AP vs CP by asking "during a network partition, must this keep answering or stay correct?" Then express each as a consistency requirement (and a quorum if your store supports one), and state why a single blanket choice would be wrong.
+
+### 3.8 Checklist
+
+- [ ] I can state CAP correctly (a choice *during a partition*, not "2 of 3").
+- [ ] I distinguish update consistency from read consistency.
+- [ ] I know eventual consistency means replicas converge, with possibly-stale reads meanwhile.
+- [ ] I can use `W + R > N` to reason about quorum read consistency.
+- [ ] I choose a store per dataset's real consistency/availability need (polyglot persistence).
+
+### 3.9 Best practices
+
+- Decide AP vs CP per dataset from its failure-time need, not for the whole system.
+- Use quorums (`W`, `R`) to tune consistency vs latency per operation where supported.
+- Default to a relational/strongly-consistent store; adopt NoSQL for a specific demand.
+- Plan conflict detection (version stamps) and resolution when you relax consistency.
+
+### 3.10 Anti-patterns
+
+- Quoting CAP as "pick 2 of 3" and dropping partition tolerance on a real network.
+- One blanket store/consistency choice for datasets with opposite needs.
+- Eventual consistency for data that must be correct (ledgers, inventory of last unit).
+- Paying for strong consistency on data that tolerates staleness (counters, feeds).
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Reads occasionally return stale values | Eventual consistency / `W + R ≤ N` | Raise quorum to `W + R > N` for that operation |
+| Conflicting concurrent writes overwrite each other | Relaxed consistency without conflict handling | Add version stamps; define a resolution policy |
+| System refuses writes during a network blip | CP behavior under partition (by design) | Confirm this dataset truly needs CP; else relax to AP |
+| Wrong store chosen "because NoSQL" | Hype-driven, not need-driven selection | Re-decide per dataset; consider relational + JSONB |
+
+### 3.12 References
+
+- P. Sadalage, M. Fowler, *NoSQL Distilled* (Addison-Wesley, 2012), Chapter 5 "Consistency" (§5.3.1 The CAP Theorem, §5.5 Quorums), Chapter 4 "Distribution Models", and Chapter 15 "Choosing Your Database" — ISBN 978-0321826626.
+- E. Redmond, J. Wilson, *Seven Databases in Seven Weeks* (Pragmatic Bookshelf, 2012) — comparative consistency/availability profiles across stores — ISBN 978-1934356920.
+
+---
+
+> **End of guide.** You can now choose a data store on its merits: match the **data model** (aggregate-oriented vs graph) to the access pattern (Part I), and match the **consistency/availability trade-off** — CAP stated correctly, tuned with quorums — to each dataset's real need during failure (Part II). The unifying discipline is **deliberate, per-dataset choice**: default to strong consistency and relational stores, relax to eventual consistency or reach for a specialized NoSQL engine only when a concrete distribution or access requirement justifies it — polyglot persistence by reasoning, not by hype.

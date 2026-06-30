@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Doubles & isolation**
 3. Mocks, stubs, and the classical vs London styles
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -264,4 +264,121 @@ Treat the unit as a black box at a meaningful boundary (a class or module with a
 
 > **End of Part I.** You can now judge a test by the balance of regression protection, refactoring resistance, speed, and maintainability — and you know the master rule that maximizes the first two together: test observable behavior through public interfaces, never implementation details. **Part II — Doubles & isolation** (Chapter 3) covers stubs vs mocks, when each is appropriate, and the classical vs London testing styles.
 
-<!--APPEND-PART-II-->
+## Part II – Doubles & isolation
+
+Part I judged a test by four properties and gave the master rule: test observable behavior, not implementation. Part II confronts the tool most responsible for *violating* that rule when misused — the test double. Replacing a real collaborator with a stand-in is sometimes essential and sometimes the very thing that makes a test brittle. The difference turns on *which kind* of double you use and *what* it stands in for. This chapter draws the one distinction that matters (mocks vs stubs), ties it to commands and queries, and explains the two schools of thought — classical and London — that disagree about how much to isolate, and why that disagreement decides how resilient your suite will be.
+
+---
+
+## Chapter 3 — Mocks, stubs, and the classical vs London styles
+
+### 3.1 Introduction
+
+A **test double** is any object that stands in for a real collaborator to make testing easier — the umbrella term Meszaros coined (from "stunt double"). The literature lists five — dummy, stub, fake, spy, mock — but Khorikov collapses them into the only split that affects test design: **stubs** emulate *incoming* interactions (data flowing **into** the system under test — a query result) and **mocks** emulate and *verify* *outgoing* interactions (calls the system makes **out** to a dependency — a command). The rule that follows is sharp: **never assert on a stub**. Asserting that a query was called couples the test to *how* the code gets its data — an implementation detail — and produces a fragile test. You assert only on mocks, and only for genuine outgoing commands that are part of the system's observable behavior. This maps cleanly onto **command-query separation**: mock the commands, stub the queries.
+
+### 3.2 Business context
+
+Test doubles are where teams unknowingly trade away the value Part I prized. A suite stuffed with mocks that verify every internal call looks thorough but fails the moment anyone refactors — because each test asserts the *mechanism*, not the *outcome*. That is the worst trade in testing: maximum maintenance cost, minimum refactoring resistance. Getting doubles right is therefore a direct business concern: it determines whether your tests *enable* change (catching real regressions while staying quiet during safe refactors) or *obstruct* it (breaking on every structural edit until the team stops trusting them and stops refactoring). The classical-vs-London choice is the strategic version of the same decision — how much of the system to replace with doubles — and it sets the resilience of the entire suite, not just one test.
+
+### 3.3 Theoretical concepts: stubs in, mocks out
+
+```mermaid
+flowchart LR
+    stub["Stub: incoming, a QUERY result fed to the SUT"] --> sut["System under test"]
+    sut --> mock["Mock: outgoing, a COMMAND the SUT issues (verify this)"]
+    note["Assert on mocks (commands) only; never assert on stubs (queries)"]
+```
+
+The decisive idea is **direction**. A **stub** supplies the system with input it needs (a repository returning a saved user, a clock returning a fixed time); the system's *use* of that input shows up in its observable result, so you check the result, not the stub call. A **mock** stands for an action the system performs on the outside world (sending an email, publishing an event); that the action happened *is* the observable behavior, so you verify it. Asserting both the result and the query that produced it is **over-specification** — Khorikov's term for tests that pin redundant, internal facts and so break under refactoring. Mock commands, stub queries, and you assert exactly once on exactly the right thing.
+
+### 3.4 Architecture: the two schools
+
+```mermaid
+flowchart TB
+    classical["Classical (Detroit): isolate TESTS from each other"] --> realcollab["Use real collaborators; double only shared/out-of-process deps"]
+    london["London (mockist): isolate the SUT from ALL collaborators"] --> mockall["Replace every dependency with a mock"]
+    realcollab --> unitA["A 'unit' = a behavior (maybe several classes)"]
+    mockall --> unitB["A 'unit' = a single class"]
+```
+
+The schools disagree on what "isolated" means. The **London (mockist)** school isolates the *system under test* from every collaborator, mocking all of them, so a unit is one class. The **classical (Detroit)** school isolates the *tests* from each other (no shared mutable state), uses *real* collaborators wherever practical, and replaces only **shared, out-of-process** dependencies (a database, an external API) — so a unit is a *behavior*, which may span a small cluster of cooperating classes. Khorikov argues for the classical style: London's blanket mocking couples tests to the implementation graph (every collaboration becomes an asserted interaction), yielding brittle tests that verify *how* over *what*, and it also blurs bug localization rather than improving it. The refined guidance: mock only **unmanaged** out-of-process dependencies — those whose calls are observable by other systems (an email gateway, a message bus) — and use the real thing for **managed** dependencies you fully control (your own database), verified through their end state.
+
+### 3.5 Real example
+
+**Scenario.** A `UserService.changeEmail()` loads a user, applies a rule, persists the change, and — when the email actually changes — publishes a `EmailChanged` message to an external bus other systems consume.
+
+**Problem.** The first version of the test mocks the repository *and* the bus and asserts that `repository.getById()` and `repository.save()` were called. It passes, but it breaks every time the persistence is refactored — even when behavior is unchanged — because it asserts queries (implementation details).
+
+**Solution.** **Stub** the repository's read (a query), let the change flow through, and assert on the *outcome*. **Mock** only the message bus (an unmanaged, outgoing command whose call is genuinely observable behavior) and verify the publish — once, and only when the email truly changed.
+
+**Implementation.**
+
+```csharp
+[Fact]
+public void Changing_email_publishes_a_message() {
+    var repo = new StubUserRepository(existing: new User(1, "old@x.com")); // STUB: query in
+    var busMock = new Mock<IMessageBus>();                                 // MOCK: command out
+    var sut = new UserService(repo, busMock.Object);
+
+    sut.ChangeEmail(userId: 1, newEmail: "new@x.com");
+
+    Assert.Equal("new@x.com", repo.Saved.Email);          // assert on OUTCOME (managed dep)
+    busMock.Verify(b => b.Publish(new EmailChanged(1, "new@x.com")), Times.Once); // assert COMMAND
+    // NOTE: no assertion that repo.GetById was called — that's a query (implementation detail)
+}
+```
+
+**Result.** The test now survives persistence refactors and still fails if the externally-visible behavior (the published message) regresses. It asserts exactly two things — the resulting state and the one outgoing command — and nothing about internal mechanics.
+
+**Future improvements.** Replace the hand-written `StubUserRepository` with an in-memory fake for closer-to-real behavior, and keep the bus as the only mock; if more unmanaged dependencies appear, isolate them behind a single facade so the mocking stays at the system's edge, not woven through its internals.
+
+### 3.6 Exercises
+
+1. Distinguish a stub from a mock in terms of interaction *direction*, and state which one you assert on.
+2. Why is asserting that a stubbed query was called an example of over-specification?
+3. Contrast what "isolation" means to the classical school versus the London school.
+4. What is the difference between a *managed* and an *unmanaged* out-of-process dependency, and how does it change whether you mock it?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a service test that mocks all its dependencies and asserts on several interactions. Reclassify each double as standing for a command or a query. Convert the query-doubles to stubs, delete the assertions on them, keep a mock only for genuine outgoing commands, and add an outcome assertion. Then refactor the service's internals and confirm the rewritten test stays green where the original would have broken.
+
+### 3.8 Checklist
+
+- [ ] I assert on mocks (commands), never on stubs (queries).
+- [ ] Each double stands for either an incoming query or an outgoing command — I know which.
+- [ ] I mock only unmanaged out-of-process dependencies, not managed ones.
+- [ ] My tests verify outcomes and externally-visible commands, not internal call sequences.
+- [ ] I default to the classical style and reach for mocks deliberately, at the system's edges.
+
+### 3.9 Best practices
+
+- Mock commands, stub queries — and assert exactly once, on the right thing.
+- Use real or in-memory collaborators for dependencies you control; verify them by end state.
+- Reserve mocks for dependencies whose calls are observable by other systems (buses, email, third-party APIs).
+- Keep doubles at the boundary of the system, not threaded through its internal collaborations.
+
+### 3.10 Anti-patterns
+
+- Asserting interactions with stubs (over-specification) — fragile tests coupled to mechanism.
+- Mocking every collaborator (blanket London style), pinning the implementation graph.
+- Mocking your own database and asserting on its method calls instead of its resulting state.
+- Verifying the *sequence* of internal calls as if it were behavior.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Tests break on every refactor | Asserting on queries / blanket mocking | Stub queries, assert outcomes, mock only commands |
+| Test passes but real integration fails | Mocked a managed dependency away | Use the real/in-memory dependency; verify end state |
+| Hard to tell what a test actually checks | Many interaction assertions | Reduce to one outcome + one command assertion |
+| Bug not localized despite heavy mocking | Over-isolation hides collaboration defects | Prefer classical style; test behavior across the cluster |
+
+### 3.12 References
+
+- V. Khorikov, *Unit Testing: Principles, Practices, and Patterns* (Manning, 2020), ch. 2 "What is a unit test?" (§2.1–2.3 classical and London schools) and ch. 5 "Mocks and test fragility" (§5.1 differentiating mocks from stubs, §5.4 the schools revisited) — ISBN 978-1617296277.
+- G. Meszaros, *xUnit Test Patterns* (Addison-Wesley, 2007) — origin of the test-double taxonomy — ISBN 978-0131495050.
+
+---
+
+> **End of Part II.** You can now use test doubles without sacrificing the resilience Part I prized: **stubs** feed incoming queries and are never asserted on; **mocks** stand for outgoing commands and are the only doubles you verify — mock commands, stub queries, in line with command-query separation. The **classical** school isolates tests from each other and uses real collaborators except for unmanaged out-of-process dependencies, while the **London** school mocks everything and pays in brittleness. Defaulting to classical, and reserving mocks for the system's true external edges, keeps your suite sensitive to real regressions and silent during safe refactors.
