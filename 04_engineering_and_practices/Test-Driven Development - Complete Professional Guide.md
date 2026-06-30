@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Design**
 3. How TDD shapes design (and its limits)
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -259,4 +259,126 @@ Test list for add(s):
 
 > **End of Part I.** You can now run the red-green-refactor cycle in tiny steps that keep you seconds from a known-good state, and manage scope with a running test list that drives one behavior at a time. **Part II — Design** (Chapter 3) examines how writing tests first pressures you toward decoupled, usable designs — and where TDD's design influence stops and explicit design must take over.
 
-<!--APPEND-PART-II-->
+## Part II – Design
+
+Part I treated TDD as a *correctness* engine: tiny red-green-refactor cycles that keep you seconds from green and build a regression suite for free. But Beck's deeper claim is that TDD is also a *design* engine. Because you must call code before it exists, you are forced to design its interface from the outside, as a client; because you keep the bar green, you refactor continuously; because you remove duplication relentlessly, good structure emerges. Part II examines this design influence — how testability pressures decoupling, how patterns show up in the cycle, how refactoring drives design — and, just as importantly, where that influence stops and deliberate, explicit design must take over.
+
+---
+
+## Chapter 3 — How TDD shapes design (and its limits)
+
+### 3.1 Introduction
+
+TDD shapes design through three mechanisms. First, **writing the test first** makes you the first client of your own code, so you design the interface for usability before you commit to an implementation — awkward-to-test code reveals itself as awkward-to-use code. Second, the **refactor** step, performed under green, is where design actually happens: Beck's central rule is *remove duplication*, and removing duplication systematically pushes a design toward the right abstractions, lower coupling, and higher cohesion. Third, the patterns in Beck's catalog (e.g. how design patterns appear during test-writing and refactoring) give the emerging structure names. The result is **emergent design**: structure that grows from concrete needs rather than up-front speculation. But Beck is explicit about the boundary — TDD is "not an excuse for not thinking about design." It excels at the design of *units and their collaborations*; it does **not** hand you a system architecture, a concurrency model, or a UI design. Those remain deliberate decisions TDD supports but cannot replace.
+
+### 3.2 Business context
+
+The business value of TDD's design influence is *changeability over time*. Code grown test-first tends to be decoupled and covered, which is exactly what keeps the cost of future change low — new requirements land as small additions under a green suite rather than risky surgery on tangled code. This is the long-game payoff: teams that let tests pressure their design accumulate less of the structural debt that eventually slows delivery to a crawl. Equally important for the business is knowing the *limits*: a team that believes "if the tests pass, the design is fine" will TDD its way into a locally-clean system with no coherent architecture — many tidy units that don't add up. Understanding that TDD drives *micro*-design while *macro*-design (boundaries, scaling, cross-cutting concerns) needs explicit attention prevents both under-design (no architecture) and over-design (speculative frameworks built before any test demanded them).
+
+### 3.3 Theoretical concepts: testability is designability
+
+```mermaid
+flowchart TB
+    testfirst["Write test first: you are the first client"] --> usable["Interface designed for use, not just implementation"]
+    green["Keep the bar green"] --> refactor["Refactor: remove duplication"]
+    refactor --> abstraction["Right abstractions, low coupling, high cohesion emerge"]
+    usable --> emergent["Emergent design of units & collaborations"]
+    abstraction --> emergent
+```
+
+The load-bearing idea is that **what is hard to test is hard to use and hard to change** — testability is a proxy for good design at the unit level. A class that needs a sprawling setup to test has too many dependencies; one whose behavior you can't observe has poor cohesion or leaky encapsulation. The red-green-refactor loop turns these design signals into immediate feedback. Beck's *remove duplication* heuristic is the engine of the refactor step: duplicated logic and duplicated *knowledge* between test and code is the smell that, when removed, forces you to introduce the abstraction the design was missing. Design isn't skipped in TDD; it is *relocated* into the refactor step and made continuous.
+
+### 3.4 Architecture: what TDD designs, and what it doesn't
+
+```mermaid
+flowchart LR
+    tdd["TDD drives MICRO-design"] --> units["units, methods, object collaborations, interfaces"]
+    explicit["Explicit design still needed for MACRO-design"] --> macro["architecture, boundaries, concurrency, UI, performance, security"]
+    units --> system["A coherent system"]
+    macro --> system
+```
+
+TDD's reach is the **inside-the-unit** and **between-units** scale: method signatures, where responsibilities sit, which object should own a behavior, how collaborators talk. It is excellent there. It is **not** a substitute for decisions at the system scale — module boundaries, data and consistency models, concurrency and failure handling, UI and interaction design, performance and security architecture. Beck's *Mastering TDD* chapter addresses exactly these "how does this scale?" questions and is candid that TDD assumes you also do architecture-level thinking (e.g. via spikes, explicit design sessions, or up-front decisions about hard-to-change choices). The healthy stance: let TDD design the units, and reserve deliberate design effort for the decisions that are expensive to reverse and that no single failing test will surface.
+
+### 3.5 Real example
+
+**Scenario.** A developer TDDs a `PriceCalculator` that needs current exchange rates from an external service.
+
+**Problem.** Writing the test first immediately raises a design question: the calculator can't depend on a live network call, or the test would be slow and erratic. The *test* is exerting design pressure before any implementation exists.
+
+**Solution.** Let the test drive the design. To make the unit testable, introduce a `RateProvider` abstraction the calculator depends on; the test passes a stub. The need for the seam emerged from testability, not from speculation — and it happens to be exactly the right decoupling for the production design.
+
+**Implementation.**
+
+```java
+// The failing test FORCES a collaborator interface into existence
+@Test void converts_using_provided_rate() {
+    RateProvider rates = currency -> new BigDecimal("5.00");   // stub — design pressure made this seam
+    var calc = new PriceCalculator(rates);                     // dependency injected, not hard-wired
+    assertEquals(new BigDecimal("50.00"), calc.inBRL(money("10.00", "USD")));
+}
+
+// Minimal production code to satisfy it; RateProvider is now a clean boundary
+class PriceCalculator {
+    private final RateProvider rates;
+    PriceCalculator(RateProvider rates) { this.rates = rates; }
+    BigDecimal inBRL(Money m) { return m.amount().multiply(rates.rateFor(m.currency())); }
+}
+// LIMIT: TDD designed this unit well. It did NOT decide caching strategy, retry/timeout
+// policy, or where the live HTTP adapter lives — those are explicit architecture choices.
+```
+
+**Result.** The unit is decoupled and fully testable, and the `RateProvider` seam — discovered through the test — is also the right production abstraction. The micro-design fell out of the cycle.
+
+**Future improvements.** The *macro*-decisions the test did not make (how to cache rates, timeout/retry policy, where the real HTTP adapter sits, how stale a rate may be) are decided deliberately — informed by, but not produced by, the TDD cycle.
+
+### 3.6 Exercises
+
+1. Explain why "hard to test" is usually a signal of "hard to use" or "hard to change."
+2. In which step of red-green-refactor does design primarily happen, and what is the guiding heuristic?
+3. Give one design decision TDD will drive for you and one it will not.
+4. Why is "the tests pass, so the design is fine" a dangerous belief?
+
+### 3.7 Challenges
+
+- **Challenge.** TDD a small feature that needs an external dependency (clock, network, or file). Notice the exact moment the test pressures you to introduce a seam, and record what abstraction emerged. Then list three design decisions about the feature that *no* test forced — and decide each one explicitly. Which decisions did TDD make, and which did you?
+
+### 3.8 Checklist
+
+- [ ] I treat awkward-to-test code as a design signal, not a testing nuisance.
+- [ ] I do real design work in the refactor step by removing duplication.
+- [ ] I let collaborator interfaces emerge from testability rather than speculating.
+- [ ] I make expensive-to-reverse architecture decisions deliberately, not as a TDD by-product.
+- [ ] I don't treat a green suite as proof the macro-design is sound.
+
+### 3.9 Best practices
+
+- Write the test as the first *client* of the code to design usable interfaces.
+- Refactor under green and remove duplication to let abstractions emerge.
+- Use spikes or explicit design sessions for architecture-scale, hard-to-reverse decisions.
+- Keep units small and decoupled so the suite stays fast and the design stays changeable.
+
+### 3.10 Anti-patterns
+
+- Believing TDD removes the need to think about architecture.
+- Skipping the refactor step, so design never actually emerges.
+- Building speculative frameworks before any test demands them (over-design).
+- Forcing testability with awkward seams while ignoring the design smell they reveal.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| A unit is very hard to test | Too many dependencies / poor cohesion | Heed the signal; refactor to a seam, split responsibilities |
+| Many tidy units, no coherent architecture | Relying on TDD for macro-design | Add explicit architecture/boundary design |
+| Design never improves | Refactor step skipped | Refactor under green every cycle; remove duplication |
+| Over-built abstractions unused by tests | Speculative design ahead of need | Let abstractions emerge from failing tests |
+
+### 3.12 References
+
+- K. Beck, *Test-Driven Development by Example* (Addison-Wesley, 2002), Part III "Patterns for Test-Driven Development" — ch. 30 "Design Patterns", ch. 31 "Refactoring", ch. 32 "Mastering TDD" (scope, scale, and limits of TDD) — ISBN 978-0321146533.
+- M. Fowler, *Refactoring*, 2nd ed. (Addison-Wesley, 2018) — ISBN 978-0134757599.
+
+---
+
+> **End of Part II.** You can now see TDD as a *design* engine, not only a correctness one: writing the test first makes you the first client and shapes usable interfaces; the **refactor step — driven by removing duplication — is where design actually happens**, growing the right abstractions, low coupling, and high cohesion as *emergent design*. And you know the boundary Beck draws: TDD designs **units and their collaborations** well, but does **not** replace deliberate **macro-design** — architecture, concurrency, UI, performance, security. Let tests drive the micro-design; decide the expensive, hard-to-reverse choices explicitly.
