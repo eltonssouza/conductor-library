@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Deciding what to build**
 3. Prioritizing by value, risk, and evidence
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -140,8 +140,8 @@ After (outcome): goal = "increase new-user activation from 40% to 55%"
 
 ### 1.12 References
 
-- M. Perri, *Escaping the Build Trap* (O'Reilly, 2018) — ISBN 978-1491973790.
-- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — ISBN 978-1119387503.
+- M. Perri, *Escaping the Build Trap* (O'Reilly, 2018) — Ch. 1, "The Build Trap" (output vs outcome), and Ch. 2, "The Value Exchange System." ISBN 978-1491973790.
+- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — Ch. 12, "Product Discovery" (value as the first risk). ISBN 978-1119387503.
 
 ---
 
@@ -234,11 +234,123 @@ After:  "Reduce checkout abandonment (problem); target -10%"
 
 ### 2.12 References
 
-- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — ISBN 978-1119387503.
-- M. Cagan, C. Jones, *Empowered* (Wiley, 2020) — ISBN 978-1119691297.
+- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — Ch. 1, "Key Roles and Responsibilities," and Ch. 4–5, "Product Management vs. Design / Engineering" (the product trio). ISBN 978-1119387503.
+- M. Cagan, C. Jones, *Empowered* (Wiley, 2020) — on empowered product teams. ISBN 978-1119691297.
 
 ---
 
 > **End of Part I.** You can now apply the core of product management: measure success by **outcomes** (value created) rather than **output** (features shipped) to escape the build trap, and run **empowered, cross-functional teams** with a collaborating product trio given problems and outcomes — not pre-decided features — to solve. **Part II — Deciding what to build** (Chapter 3) covers prioritization by value, risk, and evidence, so the bets a team makes toward an outcome are chosen deliberately rather than by loudest opinion.
 
-<!--APPEND-PART-II-->
+## Part II – Deciding what to build
+
+Part I established the *goal* (outcomes, not output) and the *who* (empowered trios). Part II is the *how* of choosing among the endless ideas competing for a team's time. Empowerment without a way to decide degenerates into building whatever the loudest stakeholder wants. The discipline is to prioritize by **value, risk, and evidence** — favoring the bets that promise the most outcome, attacking the biggest risks first, and demanding evidence rather than opinion.
+
+---
+
+## Chapter 3 — Prioritizing by value, risk, and evidence
+
+### 3.1 Introduction
+
+A roadmap is a portfolio of **bets**, and good product work prioritizes them deliberately on three axes: **value** (how much would this move the target outcome?), **risk** (what's most likely to make this fail — and can we test that cheaply, now?), and **evidence** (what do we actually *know*, versus assume?). The core move is to **tackle the biggest risk first with the cheapest possible test**, replacing opinion with evidence before committing real build effort — rather than building the easy parts first and discovering the fatal flaw last.
+
+### 3.2 Business context
+
+Most prioritization is theater: features ranked by who argued hardest, or by what's quickest to build, with the riskiest assumption left untested until launch. That wastes a quarter discovering at the end what a one-week experiment could have shown at the start. Prioritizing by value-weighted, risk-first, evidence-backed bets concentrates investment where it pays and kills bad ideas while they're cheap to kill. For the business, this is the difference between a discovery practice that de-risks investment and a feature factory that gambles a quarter at a time.
+
+### 3.3 Theoretical concepts: value, the four risks, and evidence
+
+```mermaid
+flowchart TB
+    idea["A product idea (a bet)"] --> value["VALUE: would it move the outcome? (size the prize)"]
+    idea --> risk["RISK: what could make it fail?"]
+    risk --> r1["Value risk: will people choose it?"]
+    risk --> r2["Usability risk: can they use it?"]
+    risk --> r3["Feasibility risk: can we build it?"]
+    risk --> r4["Viability risk: does it work for the business?"]
+    value --> evidence["EVIDENCE: test the biggest risk cheaply BEFORE building"]
+    r1 --> evidence
+```
+
+Cagan frames every product idea against **four risks** — value, usability, feasibility, and business viability — and the job of discovery is to address them *before* expensive delivery. Prioritization then means: estimate the **value** (the prize), identify which **risk** is most likely to sink the bet, and design the **cheapest evidence** that resolves it. Perri's **Product Kata** turns this into a loop: pick the outcome, find the biggest obstacle (riskiest assumption), run a small experiment, learn, repeat. You buy down risk with evidence, cheaply, before committing.
+
+### 3.4 Architecture: attack the biggest risk first, cheaply
+
+```mermaid
+flowchart LR
+    outcome["Target outcome"] --> obstacle["What's the biggest obstacle / riskiest assumption?"]
+    obstacle --> test["Design the cheapest experiment that tests it"]
+    test --> learn{"Evidence says?"}
+    learn -- "holds up" --> next["Address the next-biggest risk -> eventually build"]
+    learn -- "fails" --> kill["Kill/pivot the bet now (cheap)"]
+```
+
+### 3.5 Real example
+
+**Scenario.** A team has a quarter to add a feature they believe will lift retention; leadership wants it built and shipped.
+
+**Problem.** The biggest risk is **value risk** — *will users actually adopt it?* — but the team's instinct is to build the easy, certain parts (UI, plumbing) first and leave the "will anyone use it" question for launch. If the answer is no, the whole quarter is wasted.
+
+**Solution.** Prioritize by risk and evidence: identify value risk as the biggest assumption and test it in week one with a cheap experiment, before building the real thing.
+
+**Implementation (risk-first, evidence-based).**
+
+```text
+Outcome: lift 90-day retention
+Bets ranked NOT by ease but by value x risk:
+  biggest risk = VALUE risk ("will users adopt this at all?")
+Cheapest test FIRST (week 1, before real build):
+  - fake-door / prototype to a slice of users -> measure real intent to use
+  - if adoption signal is strong  -> proceed; next address feasibility/usability
+  - if adoption signal is weak     -> kill or pivot NOW (saved ~a quarter)
+Only after evidence clears the biggest risk does full delivery get prioritized.
+```
+
+**Result.** The team spends a week, not a quarter, to learn whether the bet's core assumption holds. Evidence — not the loudest opinion or the easiest task — drives what gets built. Bad bets die cheap; good bets enter delivery already de-risked.
+
+**Future improvements.** Make the Product Kata loop routine: for each outcome, always name the single biggest obstacle and the cheapest experiment that resolves it, before any committed build.
+
+### 3.6 Exercises
+
+1. Name the four product risks.
+2. Why test the biggest risk first, rather than building the easy parts first?
+3. What are the three axes for prioritizing a bet in this chapter?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a feature your team plans to build. Which of the four risks is most likely to make it fail? Design the cheapest experiment that would test that risk this week — before building it.
+
+### 3.8 Checklist
+
+- [ ] Each bet is sized by its likely effect on the target outcome (value).
+- [ ] The biggest risk among the four is identified for each bet.
+- [ ] The riskiest assumption is tested with the cheapest evidence first.
+- [ ] Build commitment follows evidence, not opinion or ease.
+
+### 3.9 Best practices
+
+- Prioritize by value × risk, not by ease or stakeholder volume.
+- Address value, usability, feasibility, and viability risks in discovery, before delivery.
+- Run small experiments (Product Kata) to buy down the biggest risk cheaply.
+
+### 3.10 Anti-patterns
+
+- Prioritizing by who argues hardest, or by what's quickest to build.
+- Building the easy parts first; leaving the fatal risk untested until launch.
+- Treating a roadmap as commitments rather than bets to be validated.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Shipped feature, nobody adopts it | Value risk untested before build | Test adoption cheaply first (fake door/prototype) |
+| Roadmap set by loudest voice | No value/risk prioritization | Rank bets by value × risk; demand evidence |
+| Big build, late fatal surprise | Easy-parts-first sequencing | Attack the biggest risk first with cheap evidence |
+
+### 3.12 References
+
+- M. Cagan, *Inspired*, 2nd ed. (Wiley, 2017) — Ch. 12, "Product Discovery" (the four risks: value, usability, feasibility, viability), and Ch. 11, "Assessing Product Opportunities" (opportunity assessment). ISBN 978-1119387503.
+- M. Perri, *Escaping the Build Trap* (O'Reilly, 2018) — Ch. 19, "The Product Kata" (experiment-driven, evidence-based prioritization), and Ch. 2, "The Value Exchange System." ISBN 978-1491973790.
+
+---
+
+> **End of Part II.** You can now decide *what to build* deliberately: treat the roadmap as a portfolio of **bets**, size each by **value** (effect on the outcome), identify the biggest of the **four risks** (value, usability, feasibility, viability), and resolve the riskiest assumption with the **cheapest evidence first** — killing bad bets while they're cheap and entering delivery already de-risked. With Part I's outcome focus and empowered trios, this completes the core loop of outcome-driven product management.

@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Planning**
 3. Planning around uncertainty and outcomes
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -151,7 +151,7 @@ Flat backlog top items: lots of cart features, zero checkout
 
 ### 1.12 References
 
-- J. Patton, *User Story Mapping* (O'Reilly, 2014) — ISBN 978-1491904909.
+- J. Patton, *User Story Mapping* (O'Reilly, 2014) — Ch. 1, "The Big Picture" (the map and the backbone). ISBN 978-1491904909.
 - jpattonassociates.com: https://www.jpattonassociates.com/story-mapping/.
 
 ---
@@ -247,11 +247,120 @@ Release 2 (more depth): search/filter, saved cards, guest checkout, etc.
 
 ### 2.12 References
 
-- J. Patton, *User Story Mapping* (O'Reilly, 2014) — ISBN 978-1491904909.
-- S. Berkun, *Making Things Happen* (O'Reilly, 2008) — ISBN 978-0596517717.
+- J. Patton, *User Story Mapping* (O'Reilly, 2014) — Ch. 2, "Plan to Build Less" (slicing releases across the map). ISBN 978-1491904909.
+- S. Berkun, *Making Things Happen* (O'Reilly, 2008) — Ch. 3, "How to figure out what to do" (planning what to build). ISBN 978-0596517717.
 
 ---
 
 > **End of Part I.** You can now plan with a story map instead of a flat backlog: arrange work in two dimensions — a backbone of the user's journey with detailed stories stacked by priority below — so the whole experience is visible, and slice **horizontally** so each release is a thin end-to-end path a user can complete, adding depth in later slices. **Part II — Planning** (Chapter 3) covers planning around uncertainty: estimating ranges not points, planning to learn, and keeping plans tied to outcomes rather than fixed feature lists.
 
-<!--APPEND-PART-II-->
+## Part II – Planning
+
+A story map shows the journey and lets you slice releases (Part I) — but a slice is still a *plan*, and every plan is made under uncertainty. Treating a plan as a fixed promise ("all these features, by this date") sets it up to fail, because both the estimates and the assumptions underneath it are guesses. Part II reframes planning around that reality: estimate in ranges, plan to *learn*, and keep plans anchored to outcomes rather than frozen feature lists.
+
+---
+
+## Chapter 3 — Planning around uncertainty and outcomes
+
+### 3.1 Introduction
+
+Plans fail when they pretend to a certainty they don't have. Honest planning does three things: it **estimates in ranges, not points** (early estimates are wildly uncertain, so a single date is a lie); it **plans to learn** — building the smallest thing that answers the biggest open question, so the plan improves as evidence arrives; and it keeps the plan **tied to an outcome** ("reduce checkout abandonment") rather than a fixed list of features, so the team can change *what* it builds while still pursuing the goal. You plan to **minimize output and maximize outcome**.
+
+### 3.2 Business context
+
+Committing to a precise feature list and date early — when uncertainty is highest — is how projects acquire impossible promises that later collapse, eroding trust and forcing death-march delivery of features nobody validated. Planning in ranges, building to learn, and steering by outcome lets a team adjust as reality unfolds: it ships less but achieves more, and it replaces false precision with honest, improving forecasts. For the business, this converts planning from a one-time gamble into a steering mechanism that de-risks delivery over time.
+
+### 3.3 Theoretical concepts: ranges, learning, outcomes
+
+```mermaid
+flowchart TB
+    uncertainty["High uncertainty early"] --> ranges["Estimate in RANGES, not single points"]
+    uncertainty --> learn["Plan to LEARN: build the smallest thing<br/>that answers the biggest question"]
+    learn --> evidence["Evidence arrives -> refine the plan"]
+    outcome["Anchor to an OUTCOME, not a fixed feature list"] --> flex["Change WHAT you build; keep the goal"]
+```
+
+Berkun's point about schedules: early estimates carry huge error, so a schedule should carry that uncertainty honestly (ranges, buffers) rather than present a guess as a commitment. Patton's complement: don't just estimate the uncertainty — **reduce** it. Build the smallest slice that tests the riskiest assumption, learn, and re-plan. And because the goal is an **outcome**, the feature list is a hypothesis about how to reach it, not the definition of success — so the plan stays free to change while the outcome holds steady.
+
+### 3.4 Architecture: plan as a steering loop, not a fixed promise
+
+```mermaid
+flowchart LR
+    plan["Plan toward an outcome (ranges, assumptions)"] --> build["Build the smallest slice that tests the biggest risk"]
+    build --> learn{"What did we learn?"}
+    learn -- "assumption held" --> plan2["Refine plan; tackle next uncertainty"]
+    learn -- "assumption wrong" --> pivot["Change the features; keep the outcome"]
+    plan2 --> plan
+    pivot --> plan
+```
+
+### 3.5 Real example
+
+**Scenario.** Stakeholders want a committed plan: "all 20 features of the new onboarding, delivered in Q3."
+
+**Problem.** The estimates are early-stage guesses, and nobody knows which of the 20 features actually improves activation — the real goal. A fixed 20-feature/date commitment locks in both the estimate error and the unvalidated feature list.
+
+**Solution.** Replan around uncertainty and outcome: state the goal as activation, estimate in ranges, and build the smallest slice that tests which features move it.
+
+**Implementation (plan to learn, steer by outcome).**
+
+```text
+Before: "20 features, all of them, by end of Q3" (false certainty)
+After:
+  outcome: raise new-user activation 40% -> 55%
+  estimate: ranges, not a single date ("first learnable slice in 3-5 weeks")
+  plan to learn: ship the thinnest onboarding slice that tests the riskiest
+                 assumption (which step drives activation?) -> measure
+  steer: keep features that move activation; drop the ones that don't
+         (likely far fewer than 20) -> minimize output, maximize outcome
+```
+
+**Result.** The team commits to an **outcome** and a **learning cadence** instead of a fragile 20-feature promise. The plan improves as evidence arrives, the feature set shrinks to what actually works, and the date is expressed as an honest range — replacing a guaranteed-to-slip commitment with a steering loop.
+
+**Future improvements.** Frame roadmaps as now / next / later bands of confidence rather than dated feature lists, so the plan communicates uncertainty honestly to stakeholders.
+
+### 3.6 Exercises
+
+1. Why estimate in ranges rather than single points early on?
+2. What does "plan to learn" mean in practice?
+3. Why anchor a plan to an outcome instead of a fixed feature list?
+
+### 3.7 Challenges
+
+- **Challenge.** Take a plan stated as "these features by this date." Restate it as an outcome plus the smallest slice that would test its riskiest assumption, with the estimate given as a range. What in the feature list might you not build at all?
+
+### 3.8 Checklist
+
+- [ ] Early estimates are expressed as ranges, not single points.
+- [ ] The plan builds the smallest thing that answers the biggest question.
+- [ ] The plan is anchored to an outcome, not a frozen feature list.
+- [ ] Features are free to change as evidence arrives; the outcome holds.
+
+### 3.9 Best practices
+
+- Estimate in ranges and carry uncertainty honestly.
+- Build to learn: smallest slice that tests the riskiest assumption first.
+- Steer by outcome; treat the feature list as a changeable hypothesis.
+
+### 3.10 Anti-patterns
+
+- Committing to a precise feature list and date when uncertainty is highest.
+- Treating an early point estimate as a promise.
+- Equating "the plan" with a fixed list of features rather than a goal.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Committed dates always slip | Point estimates sold as promises | Estimate in ranges; communicate uncertainty |
+| Built everything, goal not met | Plan was a feature list, not an outcome | Anchor the plan to an outcome; cut non-movers |
+| No way to course-correct | No plan-to-learn slices | Build the smallest slice that tests the biggest risk |
+
+### 3.12 References
+
+- J. Patton, *User Story Mapping* (O'Reilly, 2014) — Ch. 3, "Plan to Learn Faster" (minimize output, maximize outcome; build to learn), and Ch. 2, "Plan to Build Less." ISBN 978-1491904909.
+- S. Berkun, *Making Things Happen* (O'Reilly, 2008) — Ch. 2, "The truth about schedules" (estimate uncertainty; ranges over false-precision dates). ISBN 978-0596517717.
+
+---
+
+> **End of Part II.** You can now plan honestly under uncertainty: estimate in **ranges** rather than false-precision points, **plan to learn** by building the smallest slice that tests the biggest assumption, and keep the plan tied to an **outcome** so the feature set can change while the goal holds. Combined with Part I's story map and horizontal slicing, this turns planning from a one-time promise into a steering loop that minimizes output and maximizes outcome.

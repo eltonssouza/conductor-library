@@ -41,7 +41,7 @@ software_dev: supporting
 **Part II – Interaction**
 3. The three interaction modes
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -140,7 +140,7 @@ Cognitive load: each team owns ONE domain, bounded and comprehensible.
 
 ### 1.12 References
 
-- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — ISBN 978-1942788812.
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 2, "Conway's Law and Why It Matters," and Ch. 3, "Team-First Thinking" (cognitive load). ISBN 978-1942788812.
 - M. Conway, "How Do Committees Invent?" (1968), origin of Conway's Law.
 
 ---
@@ -241,11 +241,119 @@ Result: stream teams' cognitive load drops; less duplication; faster delivery
 
 ### 2.12 References
 
-- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — ISBN 978-1942788812.
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 5, "The Four Fundamental Team Topologies" (stream-aligned, platform, enabling, complicated-subsystem). ISBN 978-1942788812.
 - teamtopologies.com: https://teamtopologies.com.
 
 ---
 
 > **End of Part I.** You can now use team structure as a design lever: apply Conway's Law (the org mirrors the architecture, so design teams to get the architecture you want) while bounding each team's cognitive load, and organize around the four team types — stream-aligned teams delivering value, supported by platform, enabling, and complicated-subsystem teams. **Part II — Interaction** (Chapter 3) covers the three interaction modes (collaboration, X-as-a-service, facilitating) that define how teams should work together to minimize friction.
 
-<!--APPEND-PART-II-->
+## Part II – Interaction
+
+Four team types tell you *what* teams should exist; they don't tell you *how* teams should work together. Get the interactions wrong and even well-shaped teams grind: everyone collaborates with everyone, boundaries blur, and cognitive load creeps back. Team Topologies reduces all the ways teams can interact to **three well-defined modes** — and the discipline is to choose one *deliberately* per relationship, and to let it change over time.
+
+---
+
+## Chapter 3 — The three interaction modes
+
+### 3.1 Introduction
+
+There are exactly three ways two teams should interact: **collaboration** (working closely together for a defined period on a shared problem), **X-as-a-Service** (one team consumes what another provides through a clear, low-friction interface), and **facilitating** (one team helps another learn or unblock). The point is not to discover these modes after the fact but to **assign one on purpose** to each team-to-team relationship — and to expect the mode to evolve as the boundary between teams becomes better understood.
+
+### 3.2 Business context
+
+When interaction is left implicit, the default is "collaborate with everyone," which scales terribly: high-bandwidth collaboration is expensive, raises every team's cognitive load, and dissolves accountability for the shared work. Naming the mode for each relationship makes the cost explicit and bounds it. The biggest payoff is the **evolution**: two teams collaborate intensely to discover an unclear boundary, then deliberately switch to X-as-a-Service once the interface is stable — collapsing ongoing coordination cost to near zero. Organizations that manage interaction modes consciously spend far less effort on cross-team friction.
+
+### 3.3 Theoretical concepts: three modes, each with a cost
+
+```mermaid
+flowchart TB
+    collab["Collaboration: two teams, shared goal,<br/>defined period — high bandwidth"]
+    service["X-as-a-Service: provider exposes a clear<br/>interface; consumer self-serves — low bandwidth"]
+    facil["Facilitating: one team coaches another<br/>to unblock/learn — temporary"]
+    collab --> cost1["Best for discovery at an unclear boundary;<br/>expensive, raises cognitive load — use sparingly"]
+    service --> cost2["Best once the boundary is well understood;<br/>predictable, scales — needs a good interface"]
+    facil --> cost3["Best to remove an obstacle or build capability;<br/>enabling teams' default — then step back"]
+```
+
+**Collaboration** is high-bandwidth and creative but costly and blurry on responsibility — keep it time-boxed. **X-as-a-Service** trades discovery for predictability: it only works when the provided thing has a clean, documented interface (a true paved road). **Facilitating** is a coaching relationship, typically how an enabling team works, and is explicitly temporary.
+
+### 3.4 Architecture: match the mode, then let it evolve
+
+```mermaid
+flowchart LR
+    unclear["Unclear boundary / new capability"] --> collab["Collaboration (discover the interface)"]
+    collab --> stable["Interface now stable"]
+    stable --> service["X-as-a-Service (consume, self-serve)"]
+    gap["Capability gap on a team"] --> facil["Facilitating (enabling team coaches)"]
+    facil --> done["Gap closed -> step back"]
+```
+
+### 3.5 Real example
+
+**Scenario.** A stream-aligned Orders team needs a new payments capability from a Payments team that is still defining what it offers.
+
+**Problem.** They default to permanent close collaboration: constant meetings, shared tickets, neither team fully owning the result — high cognitive load on both, slow delivery.
+
+**Solution.** Make the mode explicit *and* time-boxed: **collaborate** only while the payments interface is unclear, then deliberately switch to **X-as-a-Service** once Payments can expose a stable API.
+
+**Implementation (mode chosen, then evolved).**
+
+```text
+Phase 1 (boundary unclear): Orders <-> Payments = COLLABORATION (time-boxed, 1 quarter)
+        goal: discover and harden the payments interface together
+Phase 2 (interface stable):  Payments exposes a self-service API (paved road)
+        Orders <-> Payments = X-AS-A-SERVICE
+        -> Orders self-serves; coordination cost drops to ~zero; each team owns its side
+Separately: a Platform-enabling team FACILITATES Orders' adoption of the new API, then steps back
+```
+
+**Result.** The expensive collaboration is bounded to the period it adds value (discovering the boundary); once the interface is stable the teams settle into low-friction X-as-a-Service, reclaiming cognitive load and restoring clear ownership. The mode was chosen on purpose and allowed to change.
+
+**Future improvements.** Periodically review each team-to-team relationship: is it still in the right mode, or has a "temporary" collaboration silently become permanent?
+
+### 3.6 Exercises
+
+1. Name the three interaction modes and the situation each fits.
+2. Why must collaboration be time-boxed?
+3. What must be true before two teams can use X-as-a-Service?
+
+### 3.7 Challenges
+
+- **Challenge.** Pick one cross-team relationship in your org. Which mode is it *actually* in, and which *should* it be in? If it's a stale, permanent collaboration, design the interface that would let it become X-as-a-Service.
+
+### 3.8 Checklist
+
+- [ ] Every important team-to-team relationship has a named mode.
+- [ ] Collaboration is time-boxed, not permanent.
+- [ ] X-as-a-Service relationships have a clear, documented interface.
+- [ ] Facilitating (enabling) relationships are temporary and end when the gap closes.
+
+### 3.9 Best practices
+
+- Choose an interaction mode deliberately for each relationship.
+- Use collaboration to discover an unclear boundary, then evolve to X-as-a-Service.
+- Treat a stable interface (paved road) as the prerequisite for self-service.
+
+### 3.10 Anti-patterns
+
+- "Everyone collaborates with everyone" as the default.
+- Permanent collaboration that should have become a service.
+- An enabling team that never steps back (turns into a gatekeeper).
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Endless cross-team meetings | Permanent collaboration | Define an interface; move to X-as-a-Service |
+| Consumer team always blocked on a provider | No real self-service interface | Harden the interface; make it a paved road |
+| Enabling team became a bottleneck | Facilitating never ended | Time-box coaching; hand ownership back |
+
+### 3.12 References
+
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 7, "Team Interaction Modes" (collaboration, X-as-a-Service, facilitating). ISBN 978-1942788812.
+- M. Skelton, M. Pais, *Team Topologies* (IT Revolution, 2019) — Ch. 6, "Choose Team-First Boundaries," on stable interfaces between teams.
+
+---
+
+> **End of Part II.** You now have the full Team Topologies toolkit: shape teams with **Conway's Law and bounded cognitive load** (Ch. 1), organize around the **four fundamental team types** (Ch. 2), and connect them with the **three interaction modes** — collaboration, X-as-a-Service, and facilitating — chosen deliberately and evolved over time (Ch. 3). Together these let an organization design for fast, sustainable flow rather than inheriting whatever structure history left behind.
