@@ -155,8 +155,8 @@ flowchart TB
 
 ### 1.12 References
 
-- S. Shrivastava, N. Srivastav, *Solutions Architect's Handbook*, 3rd ed. (Packt, 2024) — ISBN 978-1835084236.
-- C. Fernando, *Solution Architecture Patterns for Enterprise* (Apress, 2023) — ISBN 978-1484288368.
+- S. Shrivastava, N. Srivastav, *Solutions Architect's Handbook*, 3rd ed. (Packt, 2024), the "The Meaning of Solution Architecture" chapter — ISBN 978-1835084236.
+- C. Fernando, *Solution Architecture Patterns for Enterprise* (Apress, 2023), the "Introduction to Solution Architecture" chapter — ISBN 978-1484288368.
 
 ---
 
@@ -254,7 +254,7 @@ Constraints:    must integrate with existing identity provider
 
 ### 2.12 References
 
-- S. Shrivastava, N. Srivastav, *Solutions Architect's Handbook*, 3rd ed. (Packt, 2024) — ISBN 978-1835084236.
+- S. Shrivastava, N. Srivastav, *Solutions Architect's Handbook*, 3rd ed. (Packt, 2024), the "Solution Architects in an Organization" chapter (understanding business needs & requirements) — ISBN 978-1835084236.
 - ISO/IEC 25010 (quality model): https://iso25000.com/index.php/en/iso-25000-standards/iso-25010.
 
 ---
