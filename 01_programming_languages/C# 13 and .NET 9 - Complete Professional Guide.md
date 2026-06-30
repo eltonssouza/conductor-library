@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VII (Ch. 1–16). **In progress:** Part VIII.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–VIII (Ch. 1–20).
 
 ---
 
@@ -1947,4 +1947,429 @@ public int CountFields(string? header)        // nullable: compiler forces a nul
 
 > **End of Part VII.** Robust C# code **throws and handles exceptions** with a clear strategy (throw meaningfully, catch narrowly, clean up, handle centrally), uses **nullable reference analysis** to turn null bugs into compile-time warnings, and reaches for **`Span<T>`/`Memory<T>`** to process memory without allocations on hot paths. Part VIII closes the guide with the **.NET platform** — runtime and SDK, dependency injection, ASP.NET Core minimal APIs, and EF Core/testing/publishing.
 
-<!--APPEND-PART-VIII-->
+---
+
+## Part VIII – The .NET Platform & Frameworks
+
+The final part lifts from the language to the **platform**: the .NET runtime and SDK that run your code, **dependency injection and configuration** that wire an app together, **ASP.NET Core minimal APIs** for HTTP services, and an overview of **EF Core, testing, performance, and publishing** (including AOT).
+
+---
+
+## Chapter 17 — The .NET runtime, SDK, NuGet, and project structure
+
+### 17.1 Introduction
+
+C# compiles to **IL** (intermediate language) that runs on the **.NET runtime (CLR)**, which **JIT**-compiles IL to native code at runtime (or **AOT**-compiles ahead of time). The **.NET SDK** provides the `dotnet` CLI (`dotnet new`, `build`, `run`, `test`, `publish`) and the **Base Class Library**. Projects are described by a `.csproj` file (an MSBuild XML) declaring the **target framework** (e.g., `net9.0`) and dependencies, which are **NuGet** packages restored from a feed. Understanding this toolchain is what turns C# source into a runnable, distributable app.
+
+### 17.2 Business context
+
+The platform decisions — target framework, dependencies, build configuration — shape an app's portability, security, and supply chain. NuGet packages accelerate delivery but bring transitive dependencies that must be tracked and updated (vulnerabilities live here). The SDK/CLI makes builds reproducible and CI-friendly. A team fluent in the project structure ships faster, keeps dependencies current, and avoids the "works on my machine" class of problems by pinning frameworks and versions explicitly.
+
+### 17.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    src["C# source"] --> il["compile -> IL (assembly .dll)"] --> clr[".NET runtime: JIT (or AOT) -> native"]
+    csproj[".csproj: TargetFramework, PackageReference"] --> restore["dotnet restore (NuGet)"] --> build["dotnet build/run/test/publish"]
+```
+
+The **CLR** provides JIT compilation, garbage collection, and the type system at runtime. The **`.csproj`** declares `<TargetFramework>net9.0</TargetFramework>` and `<PackageReference>` entries; **`dotnet restore`** pulls NuGet packages (with a lock file for reproducibility), and the CLI verbs build, run, test, and publish. The **BCL** supplies core types (`System.*`). Solutions group projects; a typical layout separates the app, libraries, and test projects.
+
+### 17.4 Architecture: source to running app
+
+```mermaid
+flowchart TB
+    proj["project (.csproj + code)"] --> deps["NuGet dependencies"]
+    proj --> sdk["dotnet SDK builds"] --> artifact["assembly / self-contained app"] --> run["CLR runs it"]
+```
+
+The SDK and runtime form a consistent pipeline from source to a runnable artifact, configured declaratively by the project file.
+
+### 17.5 Real example
+
+**Scenario.** Stand up a new service project with a dependency and run its tests.
+
+**Problem.** Ad-hoc setup leads to non-reproducible builds and unpinned dependencies.
+
+**Solution.** Use the SDK to scaffold, add a NuGet package, and pin the target framework in `.csproj`.
+
+**Implementation.**
+
+```bash
+dotnet new web -n OrdersApi          # scaffold an ASP.NET Core project
+cd OrdersApi
+dotnet add package Serilog.AspNetCore # add a NuGet dependency (recorded in .csproj)
+dotnet build                          # restore + compile
+dotnet test                           # run the test project
+```
+
+```xml
+<!-- OrdersApi.csproj -->
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup><TargetFramework>net9.0</TargetFramework><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup><PackageReference Include="Serilog.AspNetCore" Version="8.*" /></ItemGroup>
+</Project>
+```
+
+**Result.** The project is reproducible: the target framework and dependencies are declared in `.csproj`, restored from NuGet, and built/tested by the same CLI commands locally and in CI. `Nullable` is enabled (Ch. 16), and the dependency is versioned explicitly.
+
+**Future improvements.** Commit a NuGet lock file for fully deterministic restores; scan dependencies for vulnerabilities (`dotnet list package --vulnerable`).
+
+### 17.6 Exercises
+
+1. What is IL, and what does the CLR do with it at runtime?
+2. What does the `.csproj` declare, and how are NuGet packages restored?
+3. Which `dotnet` CLI verbs build, run, and test a project?
+
+### 17.7 Challenges
+
+- **Challenge.** Scaffold a class library and a test project, reference the library from the tests, add one NuGet package, and run `dotnet test` — all from the CLI.
+
+### 17.8 Checklist
+
+- [ ] I pin the target framework in `.csproj`.
+- [ ] Dependencies are explicit `PackageReference`s with versions.
+- [ ] I use the `dotnet` CLI for reproducible build/test/publish.
+- [ ] I track and update transitive dependencies for security.
+
+### 17.9 Best practices
+
+- Declare frameworks and dependency versions explicitly.
+- Use the CLI in CI for reproducible builds; commit a lock file.
+- Audit dependencies for vulnerabilities regularly.
+
+### 17.10 Anti-patterns
+
+- Floating/unpinned dependency versions causing irreproducible builds.
+- Ignoring transitive dependency vulnerabilities.
+- Machine-specific build steps outside the SDK/CLI.
+
+### 17.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Works on my machine" build | Unpinned framework/deps | Pin `TargetFramework` and versions; lock file |
+| Vulnerable dependency shipped | Transitive package not tracked | `dotnet list package --vulnerable`; update |
+| Restore fails in CI | Missing/locked feed | Configure the NuGet feed; commit the lock file |
+
+### 17.12 References
+
+- Microsoft, ".NET fundamentals" & "dotnet CLI": https://learn.microsoft.com/dotnet/core/tools/.
+- A. Troelsen, P. Japikse, *Pro C# 10 with .NET 6* (Apress) — platform overview, ISBN 978-1484278680.
+
+---
+
+## Chapter 18 — Dependency injection and configuration
+
+### 18.1 Introduction
+
+.NET has a **built-in dependency injection (DI)** container. You **register** services against their interfaces in a container (`services.AddScoped<IOrders, SqlOrders>()`), and the framework **injects** them into constructors that ask for them. Each registration has a **lifetime**: **singleton** (one instance for the app), **scoped** (one per request/scope), or **transient** (a new one each time). **Configuration** is layered (`appsettings.json`, environment variables, secrets) and read through `IConfiguration` or, typed, through the **options pattern** (`IOptions<T>`).
+
+### 18.2 Business context
+
+DI is what makes the interface-based design of Part II/VI pay off in a real app: components depend on abstractions and the container wires the concrete implementations, so swapping a real service for a fake (tests) or a new provider is a registration change, not a rewrite. Lifetimes prevent subtle bugs (sharing a non-thread-safe service as a singleton, or leaking a scoped service). Layered configuration lets the same build run across dev/staging/prod with environment-specific settings and secrets kept out of code — essential for security and operability.
+
+### 18.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    reg["register: services.AddScoped<IFoo, Foo>()"] --> container["DI container"]
+    container --> inject["constructor injection into consumers"]
+    life["lifetimes: Singleton / Scoped / Transient"] --> container
+    cfg["IConfiguration (appsettings, env, secrets)"] --> opts["IOptions<T> typed config"]
+```
+
+Register services in `Program.cs`; the container resolves a type's dependencies by constructor. **Singleton** must be thread-safe (shared); **scoped** lives for one request (e.g., a DbContext); **transient** is cheap and stateless. **Configuration** providers layer in order (later overrides earlier), so environment variables/secrets override file defaults; bind a section to a typed `Options` class and inject `IOptions<T>` rather than reading raw strings.
+
+### 18.4 Architecture: register once, inject everywhere
+
+```mermaid
+flowchart LR
+    program["Program.cs: register services + config"] --> resolve["container resolves graphs"]
+    resolve --> consumer["consumers receive dependencies via constructor"]
+    note["Composition root configures; the rest just declares what it needs"]
+```
+
+All wiring happens in one **composition root**; the rest of the code just declares constructor dependencies, keeping components decoupled and testable.
+
+### 18.5 Real example
+
+**Scenario.** A handler needs a repository and a typed setting, swappable in tests.
+
+**Problem.** `new`-ing dependencies inside the handler couples it to concretes and to config-reading code.
+
+**Solution.** Register services and bind options; inject them via the constructor.
+
+**Implementation.**
+
+```csharp
+// Program.cs (composition root)
+builder.Services.AddScoped<IOrders, SqlOrders>();          // lifetime: per request
+builder.Services.Configure<FeeOptions>(builder.Configuration.GetSection("Fees")); // typed config
+
+// consumer — declares what it needs; the container supplies it
+public class Checkout(IOrders orders, IOptions<FeeOptions> fees)
+{
+    public decimal Quote(int id) => orders.Get(id).Total * (1 + fees.Value.TaxRate);
+}
+```
+
+**Result.** `Checkout` depends only on `IOrders` and `IOptions<FeeOptions>`; the container injects a `SqlOrders` (or a fake in tests) and the bound configuration. Switching the datastore or the tax rate is a registration/config change with no edit to `Checkout`. Lifetimes are explicit, and settings come from layered configuration, not hard-coded strings.
+
+**Future improvements.** Use scoped lifetime for a `DbContext`; keep secrets in a secret manager/key vault provider rather than `appsettings.json`.
+
+### 18.6 Exercises
+
+1. What are the three service lifetimes, and when is each appropriate?
+2. How does the options pattern differ from reading `IConfiguration` directly?
+3. Why does DI make a component easier to test?
+
+### 18.7 Challenges
+
+- **Challenge.** Register an `IClock` with a real implementation and a fake; inject it into a service and write a test that supplies the fake to assert time-dependent behavior.
+
+### 18.8 Checklist
+
+- [ ] Dependencies are injected via the constructor, not `new`-ed inside.
+- [ ] Service lifetimes are chosen deliberately (singleton thread-safe, scoped per request).
+- [ ] Configuration is layered; secrets live outside source.
+- [ ] Typed options (`IOptions<T>`) are used over raw config reads.
+
+### 18.9 Best practices
+
+- Wire everything in the composition root; depend on abstractions.
+- Match lifetimes to thread-safety and per-request needs.
+- Bind configuration to typed options; keep secrets in a vault.
+
+### 18.10 Anti-patterns
+
+- Service locator / `new`-ing dependencies inside consumers.
+- Capturing a scoped service inside a singleton (captive dependency).
+- Secrets committed in `appsettings.json`.
+
+### 18.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Disposed/`ObjectDisposed` DbContext | Scoped service captured by a singleton | Fix lifetimes (don't capture scoped in singleton) |
+| Hard to test a class | Dependencies `new`-ed internally | Inject abstractions via the constructor |
+| Config value not overriding in prod | Provider order misunderstood | Layer env/secrets after file defaults |
+
+### 18.12 References
+
+- Microsoft, "Dependency injection" & "Configuration in .NET": https://learn.microsoft.com/dotnet/core/extensions/dependency-injection.
+- A. Lock, *ASP.NET Core in Action*, 3rd ed. (Manning, 2023) — ISBN 978-1633438620.
+
+---
+
+## Chapter 19 — ASP.NET Core minimal APIs — overview
+
+### 19.1 Introduction
+
+**ASP.NET Core** is .NET's web framework; **minimal APIs** are its lightweight style for HTTP endpoints. You build a `WebApplication`, register services (Ch. 18), map routes to handlers (`app.MapGet("/orders/{id}", handler)`), and run. Parameters are **bound** from the route, query, body, or DI automatically; handlers return typed **`Results`** (`Results.Ok(x)`, `Results.NotFound()`). A **middleware pipeline** processes each request in order (logging, auth, routing). It's the modern, low-ceremony way to expose a service.
+
+### 19.2 Business context
+
+Minimal APIs reduce the boilerplate between a business operation and an HTTP endpoint, so teams ship services faster and reviewers see the route, inputs, and result in one place. Built-in model binding, validation hooks, and the middleware pipeline (auth, CORS, logging) provide the cross-cutting concerns every real API needs without custom plumbing. Because it's the same DI and configuration as the rest of .NET, endpoints stay testable and consistent with the codebase — lowering the cost of building and operating web services.
+
+### 19.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    req["HTTP request"] --> mw["middleware pipeline (logging, auth, routing)"]
+    mw --> route["MapGet/MapPost -> handler"]
+    route --> bind["bind params (route/query/body/DI)"]
+    bind --> result["return Results.Ok/NotFound/..."]
+```
+
+`WebApplication.CreateBuilder` configures services and config; `app.Use...` adds middleware (order matters); `app.MapGet/MapPost/...` registers endpoints. **Binding** infers each handler parameter's source (route value, query string, JSON body, or an injected service). Handlers return **`IResult`** values that set the status and payload. The pipeline runs middleware in registration order around the endpoint.
+
+### 19.4 Architecture: pipeline + mapped endpoints
+
+```mermaid
+flowchart TB
+    builder["builder: services + config"] --> app["WebApplication"]
+    app --> pipeline["middleware: exception, auth, ..."]
+    pipeline --> endpoints["mapped minimal-API endpoints"]
+```
+
+A minimal-API app is a configured pipeline plus a set of mapped endpoints — small, explicit, and using the same DI/config as everything else.
+
+### 19.5 Real example
+
+**Scenario.** Expose "get order by id" as an HTTP endpoint backed by an injected repository.
+
+**Problem.** Controller scaffolding is more ceremony than this single endpoint needs.
+
+**Solution.** A **minimal API** with route binding, DI, and typed results.
+
+**Implementation.**
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IOrders, SqlOrders>();      // DI (Ch. 18)
+var app = builder.Build();
+
+app.MapGet("/orders/{id:int}", (int id, IOrders orders) =>   // id from route, orders from DI
+    orders.Get(id) is { } order ? Results.Ok(order) : Results.NotFound());
+
+app.Run();
+```
+
+**Result.** The endpoint declares its route, binds `id` from the path and `orders` from DI, and returns `200` with the order or `404` if missing — all visible in a few lines. It uses the same DI/configuration as the rest of the app and runs through the standard middleware pipeline (auth, logging) when those are added.
+
+**Future improvements.** Group endpoints with `MapGroup`; add validation and `Results.ValidationProblem`; document with OpenAPI/Swagger.
+
+### 19.6 Exercises
+
+1. Where can a minimal-API handler parameter be bound from?
+2. What does returning `Results.NotFound()` vs `Results.Ok(x)` control?
+3. Why does middleware registration order matter?
+
+### 19.7 Challenges
+
+- **Challenge.** Build a minimal API with `MapGet` and `MapPost` for an in-memory list, binding the POST body to a record and returning `Results.Created`. Add a simple logging middleware.
+
+### 19.8 Checklist
+
+- [ ] Endpoints are mapped with `MapGet`/`MapPost` and bind inputs declaratively.
+- [ ] Handlers return typed `Results` for correct status codes.
+- [ ] Services come from DI; configuration from the standard providers.
+- [ ] Middleware is ordered intentionally.
+
+### 19.9 Best practices
+
+- Keep handlers thin; delegate to injected services for logic.
+- Return precise `Results` (Ok/NotFound/Created/ValidationProblem).
+- Group related endpoints and document with OpenAPI.
+
+### 19.10 Anti-patterns
+
+- Business logic inline in handlers instead of injected services.
+- Returning bare objects/strings instead of typed `Results`.
+- Misordered middleware (e.g., auth after the endpoint).
+
+### 19.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Parameter is null/unbound | Wrong binding source inferred | Be explicit (`[FromBody]`/`[FromQuery]`) |
+| Auth not enforced | Middleware ordered after routing | Add auth middleware before endpoints |
+| Wrong status code returned | Bare return instead of `Results` | Return `Results.Ok/NotFound/...` |
+
+### 19.12 References
+
+- Microsoft, "Minimal APIs overview": https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis.
+- A. Lock, *ASP.NET Core in Action*, 3rd ed. (Manning, 2023) — ISBN 978-1633438620.
+
+---
+
+## Chapter 20 — EF Core overview, testing (xUnit), performance, and publishing/AOT
+
+### 20.1 Introduction
+
+This closing chapter surveys the production essentials. **EF Core** is .NET's ORM: a **`DbContext`** exposes `DbSet<T>` properties you query with LINQ (translated to SQL), with **migrations** evolving the schema. **xUnit** is the standard test framework (`[Fact]`/`[Theory]`), run by `dotnet test`. **Performance** rests on the habits from earlier parts (async I/O, spans, right collections) plus measuring. **Publishing** produces a deployable app; **trimming** and **Native AOT** can shrink size and startup by compiling ahead of time.
+
+### 20.2 Business context
+
+These are the concerns that decide whether a service is shippable and operable. EF Core speeds data access but its queries must be understood (an accidental N+1 or client-side evaluation can cripple performance). A real test suite (xUnit) is the safety net for change. Publishing options affect cold-start and image size — Native AOT can make a microservice start in milliseconds with a small footprint, lowering cloud cost. Competence here is what turns working code into a reliable, affordable production system.
+
+### 20.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    ctx["DbContext + DbSet<T>"] --> linq["LINQ query -> translated to SQL"]
+    linq --> mig["migrations evolve the schema"]
+    test["xUnit [Fact]/[Theory] -> dotnet test"]
+    pub["dotnet publish -> trimming / Native AOT"] --> small["smaller, faster-starting app"]
+```
+
+**EF Core**: define entities and a `DbContext`; LINQ queries on `DbSet<T>` become SQL (watch for N+1 — use `Include`/projections; avoid client evaluation). **Migrations** (`dotnet ef migrations add`) version the schema. **xUnit**: `[Fact]` for a single case, `[Theory]` + `[InlineData]` for parameterized; assert with the matching library. **Publishing**: `dotnet publish -c Release`; **trimming** removes unused IL; **Native AOT** compiles to a self-contained native binary for fast startup and small size (with some reflection limitations).
+
+### 20.4 Architecture: data, tests, and deployable artifact
+
+```mermaid
+flowchart LR
+    domain["domain + EF Core"] --> tests["xUnit suite (dotnet test)"] --> publish["dotnet publish (Release, AOT/trim)"] --> deploy["deployable artifact"]
+```
+
+The same project flows from data access through a tested codebase to a published, optionally AOT-compiled artifact — one consistent pipeline.
+
+### 20.5 Real example
+
+**Scenario.** Query orders with EF Core, test the logic, and publish a lean service.
+
+**Problem.** A naive query causes N+1; untested logic is risky; a fat deployment starts slowly.
+
+**Solution.** Project/`Include` in the query, cover it with xUnit, and publish with AOT.
+
+**Implementation.**
+
+```csharp
+// EF Core: avoid N+1 by including/projecting what you need
+var summaries = await db.Orders
+    .Where(o => o.CustomerId == id)
+    .Select(o => new OrderSummary(o.Id, o.Total))   // projection -> efficient SQL
+    .ToListAsync(ct);
+
+// xUnit test
+[Theory]
+[InlineData(0.1, 110)]
+public void Quote_applies_tax(decimal rate, decimal expected)
+    => Assert.Equal(expected, new Checkout(rate).Quote(100));
+```
+
+```bash
+dotnet test                                   # run the suite
+dotnet publish -c Release -p:PublishAot=true  # native, small, fast-starting
+```
+
+**Result.** The query projects only needed columns (no N+1, efficient SQL), the behavior is locked by an xUnit theory, and `dotnet publish` with Native AOT yields a small, fast-starting binary. The service is correct, verified, and cheap to run — the goal of the whole guide realized end to end.
+
+**Future improvements.** Add integration tests against a real database (Testcontainers); profile hot paths before optimizing; verify AOT compatibility of reflection-based libraries.
+
+### 20.6 Exercises
+
+1. What causes an N+1 query in EF Core, and how do you avoid it?
+2. What is the difference between `[Fact]` and `[Theory]` in xUnit?
+3. What do trimming and Native AOT each improve, and what's the trade-off?
+
+### 20.7 Challenges
+
+- **Challenge.** Write a `DbContext` with one entity, a LINQ projection query, an xUnit `[Theory]` covering a calculation, and publish the app with `PublishAot=true`.
+
+### 20.8 Checklist
+
+- [ ] EF Core queries project/`Include` to avoid N+1 and client evaluation.
+- [ ] Schema changes go through migrations.
+- [ ] Logic is covered by xUnit `[Fact]`/`[Theory]` tests run in CI.
+- [ ] I publish in Release and consider trimming/AOT for size and startup.
+
+### 20.9 Best practices
+
+- Shape EF Core queries deliberately; measure the generated SQL.
+- Keep a fast xUnit suite as the change safety net.
+- Publish lean (Release, trimming/AOT) and verify AOT compatibility.
+
+### 20.10 Anti-patterns
+
+- N+1 queries / client-side evaluation in EF Core.
+- Shipping without an automated test suite.
+- Optimizing performance by guesswork instead of measurement.
+
+### 20.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Many small SQL queries per request | N+1 (lazy/looped loads) | `Include`/project in one query |
+| Slow cold start / large image | Default publish | Use Release + trimming/Native AOT |
+| Reflection fails after AOT | AOT-incompatible library | Verify/replace; add AOT-friendly config |
+
+### 20.12 References
+
+- Microsoft, "EF Core", "Native AOT deployment", "Unit testing in .NET": https://learn.microsoft.com/ef/core/ · https://learn.microsoft.com/dotnet/core/deploying/native-aot/.
+- J. Smith, *Entity Framework Core in Action*, 2nd ed. (Manning, 2021) — ISBN 978-1617298363.
+
+---
+
+> **End of Part VIII — and of the guide.** From the **language** (types, OOP, records, generics, LINQ, async, robust code) to the **platform** (runtime and SDK, dependency injection, ASP.NET Core minimal APIs, and EF Core/testing/publishing with AOT), you now have a complete working model of professional C# 13 on .NET 9 — writing code that is type-safe, expressive, scalable, robust, and shippable.
