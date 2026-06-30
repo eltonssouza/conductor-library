@@ -3222,4 +3222,412 @@ class OrderRepositoryTest {
 
 > **End of Part V.** You now command the full **reactive stack**: **Project Reactor** (`Mono`/`Flux`, operators, backpressure, schedulers, `StepVerifier`), **Spring WebFlux** in both the **annotated** and **functional** models with `WebClient` and server-sent events, and **R2DBC** for non-blocking relational access via `ReactiveCrudRepository` and `DatabaseClient` — plus the honest framing of **virtual threads** (Boot 3.2+) and external resilience (**Spring Retry**/**Resilience4j**) as the pragmatic alternatives to going fully reactive. **Part VI — Testing** (Chapters 16–17) shifts to verifying all of this: the Spring Boot test slices and the test pyramid, then integration testing with `@SpringBootTest`, `WebTestClient`, MockMvc, and Testcontainers.
 
+
+---
+
+## Part VI – Testing
+
+Part VI is about confidence. A Spring Boot 3 application is only as shippable as its test suite is fast and trustworthy, and Boot gives you a layered toolkit to make that suite both. At the base sit plain JUnit 5 unit tests; above them sit **test slices** (`@WebMvcTest`, `@DataJpaTest`) that boot only the part of the context a test needs; and at the top sit full **`@SpringBootTest`** integration tests that — thanks to the Boot 3.1 **Testcontainers** integration and **`@ServiceConnection`** — run against the real database your production runs against. The two chapters that follow walk the pyramid from bottom to top: Chapter 16 covers unit and slice tests, Chapter 17 covers full integration tests with Testcontainers.
+
+---
+
+## Chapter 16 — Unit and slice tests (`@WebMvcTest`, `@DataJpaTest`)
+
+### 16.1 Introduction
+
+Not every test needs the whole application. A controller test should not start a database; a repository test should not start the web server. Spring Boot 3's **test slices** encode exactly this idea: each slice auto-configures only the layer under test and nothing else. `@WebMvcTest` boots the Spring MVC infrastructure and your controllers — but no services, no JPA, no `DataSource`. `@DataJpaTest` boots JPA, Hibernate, and a `DataSource` — but no controllers. Combined with plain JUnit 5 unit tests for pure business logic and Mockito's `@MockBean` for replacing collaborators, slices give you a suite that runs in seconds instead of minutes. This chapter covers the unit/slice layers of the pyramid and the `spring-boot-starter-test` toolbox (JUnit 5, AssertJ, Mockito, `MockMvc`) that powers them.
+
+### 16.2 Business context
+
+Test speed is a delivery constraint, not a developer nicety. A suite that takes ten minutes runs a handful of times a day; a suite that takes thirty seconds runs on every save. The difference compounds: fast feedback catches a regression while the change is still in working memory, before it reaches review, long before it reaches production. Slices are the lever that keeps the suite fast as the application grows — because each test boots a fraction of the context, total CI time scales with the layers you exercise rather than with the size of the whole application. For an engineering organization this is the difference between a team that refactors freely (the tests will catch it) and one that fears every change because validating it means a slow, all-or-nothing integration run. Cheap, fast tests lower the cost of change, and the cost of change is what governs how quickly a product can evolve.
+
+### 16.3 Theoretical concepts
+
+- **Unit test.** Plain JUnit 5 (`org.junit.jupiter`), no Spring context. You construct the class under test with fakes or Mockito mocks and assert on behavior. The fastest, most numerous tests in the suite.
+- **Test slice.** A composed annotation that auto-configures *one* layer. `@WebMvcTest` (MVC + controllers + JSON, `MockMvc` provided), `@DataJpaTest` (JPA + `DataSource` + `TestEntityManager`, transactional and rolled back per test), plus `@JsonTest`, `@RestClientTest`, `@WebFluxTest`, and more.
+- **`@MockBean` / `@SpyBean`.** Boot 3's annotations for replacing (or wrapping) a bean in the test context with a Mockito mock/spy. `@MockBean` swaps the real bean entirely; `@SpyBean` wraps the real one so you can stub selectively and verify calls. (These begin deprecation in 3.4 in favor of `@MockitoBean`/`@MockitoSpyBean`, but they are present and idiomatic through most of 3.x.)
+- **`MockMvc`.** Drives controllers through the full Spring MVC dispatch (mapping, argument resolution, validation, JSON serialization, exception handling) *without* a running HTTP server or socket — fast and deterministic.
+- **`spring-boot-starter-test`.** The umbrella test starter: JUnit 5, AssertJ, Mockito, Hamcrest, JSONassert, and Spring's test support, version-aligned by the BOM.
+
+### 16.4 Architecture: the test pyramid and what each slice loads
+
+```mermaid
+flowchart TB
+    unit["Unit tests<br/>plain JUnit 5 + Mockito — no Spring context"] --> slice["Slice tests<br/>@WebMvcTest · @DataJpaTest"]
+    slice --> integ["Integration tests<br/>@SpringBootTest + Testcontainers"]
+    integ --> e2e["End-to-end<br/>full app + real backends"]
+    note["Many fast tests at the base,<br/>few slow tests at the top"]
+```
+
+```mermaid
+flowchart LR
+    webmvc["@WebMvcTest"] --> mvcparts["Controllers · MVC infra<br/>Jackson · validation · MockMvc"]
+    webmvc -.->|"not loaded"| nojpa["Services · @Repository · DataSource"]
+    datajpa["@DataJpaTest"] --> jpaparts["JPA · Hibernate · DataSource<br/>TestEntityManager · rollback per test"]
+    datajpa -.->|"not loaded"| noweb["Controllers · web MVC infra"]
+```
+
+### 16.5 Theoretical concepts in practice: choosing the layer
+
+The decision is mechanical once you name what you are verifying. Pure logic with no Spring collaborators (a price calculator, a validator) is a **unit test** — no context, no slice. Request mapping, status codes, JSON shape, validation responses, and exception-to-`ProblemDetail` translation are the controller's job and belong in a **`@WebMvcTest`** with the service `@MockBean`-ed. Query correctness — derived query methods, `@Query` JPQL, mapping, constraints — is the repository's job and belongs in a **`@DataJpaTest`**. Only wiring across all layers (does the whole graph come up and talk to a real DB?) needs the full `@SpringBootTest` of Chapter 17. Reaching for the full context when a slice would do is the single most common cause of a slow suite.
+
+### 16.6 Real example
+
+**Scenario.** A catalog service exposes a `ProductController` (web layer) backed by a `ProductService`, which in turn uses a `ProductRepository` (JPA). The team wants fast, focused coverage of the web layer and the persistence layer independently.
+
+**Problem.** Booting the whole application for a controller test pulls in JPA, the `DataSource`, security, and every service — slow, and it couples a controller test to unrelated wiring. Testing the repository against an in-memory H2 hides PostgreSQL-specific SQL behavior, but at the *slice* level the team first wants to verify query methods quickly; database fidelity is escalated to integration tests in Chapter 17.
+
+**Solution.** Use `@WebMvcTest(ProductController.class)` with `MockMvc` and a `@MockBean ProductService` to test the controller in isolation, and `@DataJpaTest` to test the repository's query methods against the slice's auto-configured database. Keep pure logic (e.g., a discount rule) in a plain JUnit 5 unit test with no context at all.
+
+**Implementation.**
+
+```java
+// build: spring-boot-starter-web, spring-boot-starter-data-jpa, spring-boot-starter-test
+
+// ---- Web slice: only MVC + the controller; the service is mocked. ----
+package com.example.catalog.web;
+
+import com.example.catalog.ProductService;
+import com.example.catalog.Product;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(ProductController.class)
+class ProductControllerTest {
+
+    @Autowired MockMvc mvc;
+    @MockBean ProductService service; // Boot 3 mock annotation
+
+    @Test
+    void returnsProductAsJson() throws Exception {
+        when(service.findBySku("sku-1")).thenReturn(new Product("sku-1", "Widget"));
+
+        mvc.perform(get("/products/sku-1"))
+           .andExpect(status().isOk())
+           .andExpect(jsonPath("$.sku").value("sku-1"))
+           .andExpect(jsonPath("$.name").value("Widget"));
+    }
+
+    @Test
+    void returns404WhenMissing() throws Exception {
+        when(service.findBySku("nope")).thenThrow(new ProductNotFoundException("nope"));
+
+        mvc.perform(get("/products/nope"))
+           .andExpect(status().isNotFound());
+    }
+}
+```
+
+```java
+// ---- Data slice: JPA + DataSource only; transactional, rolled back per test. ----
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DataJpaTest
+class ProductRepositoryTest {
+
+    @Autowired TestEntityManager em;
+    @Autowired ProductRepository repository;
+
+    @Test
+    void findsByNameUsingDerivedQuery() {
+        em.persist(new Product("sku-2", "Gadget"));
+        em.flush();
+
+        assertThat(repository.findByName("Gadget")).isPresent();
+        assertThat(repository.findByName("Absent")).isEmpty();
+    }
+}
+```
+
+```java
+// ---- Unit test: pure logic, no Spring context at all. ----
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
+import static org.assertj.core.api.Assertions.assertThat;
+
+class DiscountRuleTest {
+
+    @Test
+    void appliesTenPercentAboveThreshold() {
+        var rule = new DiscountRule(new BigDecimal("100"), new BigDecimal("0.10"));
+        assertThat(rule.apply(new BigDecimal("150")))
+            .isEqualByComparingTo("135.00");
+    }
+}
+```
+
+**Tests.** The three classes above *are* the tests. Run them with `./mvnw test`; each slice boots only its layer, and the unit test boots nothing.
+
+**Result.** The controller is verified for mapping, JSON shape, and error translation without a database; the repository is verified for query correctness without the web stack; the discount rule runs in microseconds. CI stays fast because the overwhelming majority of tests are slices and units, not full-context runs.
+
+**Future improvements.** Add `@RestClientTest` for any outbound `RestClient`/HTTP Service Client, and `@JsonTest` to pin serialization contracts. Escalate the repository to a real PostgreSQL via Testcontainers (Chapter 17) once query-method correctness is established, to also catch dialect-specific SQL behavior.
+
+### 16.7 Exercises
+
+1. You need to verify that `POST /products` returns `400` with an RFC 7807 `ProblemDetail` when the body fails validation. Which slice do you use, and why not `@SpringBootTest`?
+2. What does `@DataJpaTest` provide that a plain JUnit test does not, and why is each test rolled back by default?
+3. Rewrite a controller test that currently uses `@SpringBootTest` so it uses `@WebMvcTest` and `@MockBean` instead.
+4. When is a plain JUnit 5 unit test (no Spring) the right choice over any slice?
+
+### 16.8 Challenges
+
+- **Challenge.** Take one feature with a controller, a service, and a repository. Write its tests twice — once with everything as `@SpringBootTest`, once split into a unit test, a `@WebMvcTest`, and a `@DataJpaTest`. Measure total wall-clock time for each suite on a cold and a warm JVM, and explain the gap in terms of how much context each approach boots.
+
+### 16.9 Checklist
+
+- [ ] Pure logic is covered by plain JUnit 5 tests with no Spring context.
+- [ ] Controllers are tested with `@WebMvcTest` + `MockMvc`, services replaced by `@MockBean`.
+- [ ] Repositories are tested with `@DataJpaTest`.
+- [ ] No slice pulls in layers it does not exercise.
+- [ ] Assertions use AssertJ (`assertThat(...)`) for readable failures.
+
+### 16.10 Best practices
+
+- Push tests to the lowest layer that can verify the behavior: unit over slice, slice over full context.
+- Keep `@WebMvcTest` classes pointed at one controller (`@WebMvcTest(XController.class)`) so the slice stays minimal.
+- Use `@MockBean` only for collaborators *outside* the layer under test; do not mock the thing you are testing.
+- Prefer `@SpyBean` when you need most of a bean's real behavior but want to stub or verify one method.
+- Assert on observable behavior (status, body, persisted state), not on internal call sequences, so tests survive refactoring.
+
+### 16.11 Anti-patterns
+
+- Using `@SpringBootTest` for a test that only exercises one controller or one repository (needless slowness).
+- Mocking the repository inside a `@DataJpaTest` — the slice exists precisely to run real queries.
+- Over-mocking in `@WebMvcTest` to the point that the test asserts only that mocks were called, verifying nothing real.
+- Leaving query correctness entirely to in-memory databases when production SQL differs (escalate to Testcontainers).
+- Field injection of `MockMvc`/collaborators in ways that hide what the slice actually wires.
+
+### 16.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `@Autowired MockMvc` is `null` | Test not annotated with `@WebMvcTest` (or used `@SpringBootTest` without `@AutoConfigureMockMvc`) | Use `@WebMvcTest`, which provides `MockMvc` |
+| `NoSuchBeanDefinitionException` for a service in `@WebMvcTest` | The slice does not load services | Add `@MockBean` for the collaborator |
+| `@DataJpaTest` cannot find the entity/repository | Entity outside the scanned package or repository not a Spring Data interface | Place under the app root package; extend `JpaRepository` |
+| Repository test data leaks between tests | Expecting committed data | Remember `@DataJpaTest` rolls back each test; assert within the same test |
+| Controller returns `200` but body assertion fails | JSON path or field name mismatch | Verify `jsonPath` expressions against the actual response |
+| Slice still slow | Extra auto-configuration imported via `@Import` or component scan | Trim imports; keep the slice to one layer |
+
+### 16.13 Official references
+
+- Spring Boot — Testing: https://docs.spring.io/spring-boot/reference/testing/index.html
+- Auto-configured tests (test slices): https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.autoconfigured-tests
+- `@WebMvcTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.spring-mvc-tests
+- `@DataJpaTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.autoconfigured-spring-data-jpa
+- Mocking beans (`@MockBean`/`@SpyBean`): https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.mocking-beans
+- `MockMvc`: https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework.html
+
+---
+
+## Chapter 17 — Integration tests with `@SpringBootTest` and Testcontainers
+
+### 17.1 Introduction
+
+Slices verify layers in isolation; **integration tests** verify that the layers, wired together by the real application context, behave correctly against the real infrastructure. `@SpringBootTest` boots the full context, and with `webEnvironment = RANDOM_PORT` it starts the embedded server on a free port so a `TestRestTemplate` or `WebTestClient` can drive it over real HTTP. The fidelity question — *which* database — is answered by **Testcontainers**: throwaway Docker containers running the exact engine and version you run in production. Boot 3.1 made this nearly frictionless with **`@ServiceConnection`**, which reads a container's host, port, and credentials and binds them into the context automatically, replacing the brittle `@DynamicPropertySource` plumbing teams used to write by hand. This chapter covers full-context integration tests and the Testcontainers/`@ServiceConnection` wiring introduced in the Boot 3.x line.
+
+### 17.2 Business context
+
+The most expensive bugs are the ones that only appear against real infrastructure: a query that works on H2 but not on PostgreSQL, a migration that fails on the production engine, a transaction boundary that behaves differently under a real driver. In-memory substitutes trade fidelity for speed, and that trade routinely leaks defects into production. Testcontainers buys back the fidelity — every integration run exercises the same database engine and version as production — while keeping the test hermetic and disposable: the container starts, the test runs, the container is destroyed, leaving no shared state to corrupt the next run. Before Boot 3.1, wiring a container into the context took error-prone boilerplate; `@ServiceConnection` removed it, which is what turned Testcontainers from a specialist tool into the default way Boot teams write integration tests. The payoff is concrete: fewer "works in test, fails in prod" incidents, and the confidence to ship a schema or query change after a green build.
+
+### 17.3 Theoretical concepts
+
+- **`@SpringBootTest`.** Boots the full application context. With `webEnvironment = RANDOM_PORT` it also starts the embedded server on a random free port (avoiding port clashes in CI) and exposes the port via `@LocalServerPort`.
+- **`TestRestTemplate` / `WebTestClient`.** Clients for driving the running server over real HTTP. `TestRestTemplate` is the blocking, lenient client; `WebTestClient` offers a fluent, assertion-rich API and works against both reactive and servlet stacks.
+- **Testcontainers (`@Testcontainers` / `@Container`).** A JUnit 5 extension that manages container lifecycle. `@Testcontainers` activates it; `@Container` marks a container field — a `static` field shares one container across all tests in the class, an instance field gives one per test.
+- **`@ServiceConnection` (Boot 3.1).** Placed on a supported container (`PostgreSQLContainer`, `KafkaContainer`, `RedisContainer`, …), it auto-detects the connection details and registers them as a `ConnectionDetails` bean, so `spring.datasource.*` is filled in for you — no `@DynamicPropertySource`.
+- **`@DynamicPropertySource`.** The pre-3.1 fallback: a `static` method that registers properties (JDBC URL, user, password) pulled from the container. Still useful for containers without `@ServiceConnection` support.
+- **Integration vs. slice.** An integration test answers "does the whole thing work together against real backends?" — necessarily slower, so the pyramid keeps these few.
+
+### 17.4 Architecture: full-context integration and `@ServiceConnection` wiring
+
+```mermaid
+flowchart TB
+    test["@SpringBootTest(webEnvironment = RANDOM_PORT)"] --> ctx["Full ApplicationContext + embedded server on random port"]
+    client["TestRestTemplate / WebTestClient"] --> ctx
+    ctx --> repo["Repositories · services · controllers"]
+    repo --> ds["DataSource"]
+    ds --> realdb[("Real PostgreSQL in a container")]
+```
+
+```mermaid
+flowchart LR
+    container["@Container static PostgreSQLContainer"] --> sc["@ServiceConnection"]
+    sc --> details["JdbcConnectionDetails bean<br/>host · port · database · user · password"]
+    details --> autoconf["DataSource auto-configuration"]
+    autoconf --> ds["DataSource bound to the container"]
+```
+
+### 17.5 Theoretical concepts in practice: making integration tests fast enough
+
+Integration tests are slower than slices by nature, but a few habits keep them from dominating CI. Share one container per test class with a **`static` `@Container`** field so the database starts once, not per test. Keep the number of full-context tests small — they verify wiring and real-backend behavior, not every branch (those belong in slices). Reuse the application context across test classes by keeping configuration identical, so Spring's context cache avoids re-bootstrapping. And let `webEnvironment = RANDOM_PORT` pick the port so parallel CI jobs never collide. The goal is a handful of high-value integration tests that each prove something a slice cannot: that the assembled application, talking to the real engine, does the right thing end to end.
+
+### 17.6 Real example
+
+**Scenario.** The catalog service must persist products to PostgreSQL and expose them over HTTP. The team needs one integration test proving the full path — HTTP request, controller, service, repository, real PostgreSQL — works end to end.
+
+**Problem.** Slice tests proved each layer in isolation, but nothing has verified that the assembled application actually persists to and reads from PostgreSQL over a real HTTP call. An H2-backed test would not catch PostgreSQL-specific SQL or migration issues, and hand-wiring the container's JDBC details into the context is exactly the boilerplate Boot 3.1 set out to remove.
+
+**Solution.** Use `@SpringBootTest(webEnvironment = RANDOM_PORT)` to boot the full app and embedded server, a `static` `@Container PostgreSQLContainer` annotated with `@ServiceConnection` so Boot binds the real database into the context automatically, and a `TestRestTemplate` to exercise the running endpoint over HTTP.
+
+**Implementation.**
+
+```java
+// build: spring-boot-starter-web, spring-boot-starter-data-jpa, spring-boot-starter-test,
+//        org.testcontainers:junit-jupiter, org.testcontainers:postgresql
+package com.example.catalog;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
+class ProductIntegrationTest {
+
+    // One container shared across the class; Boot binds it via @ServiceConnection.
+    @Container
+    @ServiceConnection
+    static PostgreSQLContainer<?> postgres =
+        new PostgreSQLContainer<>("postgres:16-alpine");
+
+    @Autowired TestRestTemplate rest;
+    @Autowired ProductRepository repository;
+
+    @Test
+    void persistsViaHttpAndReadsBackFromRealPostgres() {
+        // Drive the running server over real HTTP.
+        ResponseEntity<Product> created = rest.postForEntity(
+            "/products", new Product("sku-9", "Sprocket"), Product.class);
+
+        assertThat(created.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+        // The row really landed in PostgreSQL.
+        assertThat(repository.findByName("Sprocket")).isPresent();
+
+        // And it is readable back through the API.
+        ResponseEntity<Product> fetched =
+            rest.getForEntity("/products/sku-9", Product.class);
+        assertThat(fetched.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(fetched.getBody().name()).isEqualTo("Sprocket");
+    }
+}
+```
+
+```java
+// Pre-3.1 / unsupported-container fallback: bind connection details manually.
+// Shown for contrast — prefer @ServiceConnection when the container supports it.
+package com.example.catalog;
+
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
+
+class LegacyWiringExample {
+
+    static PostgreSQLContainer<?> postgres =
+        new PostgreSQLContainer<>("postgres:16-alpine");
+
+    @DynamicPropertySource
+    static void datasourceProps(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
+    }
+}
+```
+
+**Tests.** The `ProductIntegrationTest` above *is* the test. Run it with `./mvnw verify` (the integration phase). A Docker daemon must be available to the build; Testcontainers starts and stops the PostgreSQL container automatically.
+
+**Result.** A single integration test proves the assembled application persists to and reads from real PostgreSQL over real HTTP. Connection wiring is one annotation (`@ServiceConnection`), not a block of `@DynamicPropertySource` boilerplate. The container is created at class load and destroyed afterward, so the test is hermetic and leaves nothing behind.
+
+**Future improvements.** Add a second `@Container` (e.g., Kafka or Redis) with its own `@ServiceConnection` to cover messaging or caching paths. Wire Testcontainers into the local dev loop via a `@TestConfiguration` `main` class so `./mvnw spring-boot:test-run` starts the same containers for manual testing. For schema-managed apps, let Flyway/Liquibase run against the container so migrations are validated on the real engine too.
+
+### 17.7 Exercises
+
+1. Why does `webEnvironment = RANDOM_PORT` matter in CI, and how does a test obtain the chosen port?
+2. What does `@ServiceConnection` replace, and what does it bind into the context?
+3. Why is the `@Container PostgreSQLContainer` field `static` in the example? What changes if it is an instance field?
+4. Name one situation where you would still use `@DynamicPropertySource` instead of `@ServiceConnection`.
+
+### 17.8 Challenges
+
+- **Challenge.** Add a Testcontainers-backed integration test to an existing app that currently tests against H2. Run the same repository assertions against H2 and against real PostgreSQL, and find at least one behavioral difference (e.g., case sensitivity, a function, a constraint, or a type mapping) that the in-memory database masks.
+
+### 17.9 Checklist
+
+- [ ] Integration tests use `@SpringBootTest`; HTTP tests use `RANDOM_PORT` + `TestRestTemplate`/`WebTestClient`.
+- [ ] Real backends run in Testcontainers (`@Testcontainers` + `@Container`), matching production engine and version.
+- [ ] Connection details are bound with `@ServiceConnection` where supported.
+- [ ] Containers are `static` (one per class) to keep the suite fast.
+- [ ] CI has a Docker daemon (or Testcontainers Cloud) available.
+- [ ] The integration suite stays small and high-value — the top of the pyramid.
+
+### 17.10 Best practices
+
+- Match the container image to production exactly (same engine, same major/minor version).
+- Prefer `@ServiceConnection` over `@DynamicPropertySource`; reserve the latter for containers without support.
+- Share a `static` container per class and keep configuration identical across classes to exploit Spring's context cache.
+- Use `WebTestClient` for fluent, assertion-rich HTTP verification; `TestRestTemplate` for simple blocking calls.
+- Let migrations (Flyway/Liquibase) run against the container so schema changes are validated on the real engine.
+- Keep integration tests few and meaningful — verify wiring and real-backend behavior, not every branch.
+
+### 17.11 Anti-patterns
+
+- Integration-testing against H2 when production is PostgreSQL (the defects you most want to catch live in the gap).
+- A non-`static` `@Container` that restarts the database for every test method, ballooning suite time.
+- Hand-wiring `@DynamicPropertySource` when `@ServiceConnection` would do it in one line.
+- Hardcoding a fixed `server.port` (or `8080`) instead of `RANDOM_PORT`, causing CI port clashes.
+- Turning every test into a full `@SpringBootTest` + Testcontainers run, inverting the pyramid and crushing CI time.
+- Leaving containers or test data shared/mutable across tests, so order-dependent failures appear.
+
+### 17.12 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Could not find a valid Docker environment` | No Docker daemon reachable | Start Docker; in CI provide Docker or Testcontainers Cloud |
+| Test connects to H2/embedded DB, not the container | `@ServiceConnection` missing or unsupported container | Add `@ServiceConnection`, or bind via `@DynamicPropertySource` |
+| Database restarts every test (slow) | Instance-level `@Container` | Make the container field `static` to share one per class |
+| `Connection refused` to the app | Wrong base URL/port | Use `TestRestTemplate` (auto-targets the random port) or inject `@LocalServerPort` |
+| Container pull times out in CI | Image not cached / registry slow | Pin and pre-pull the image; use a CI image cache |
+| Context fails to start with the container | Schema not created | Let JPA `ddl-auto` or Flyway/Liquibase run against the container |
+| Flaky waits on startup | Asserting before the container is ready | Rely on Testcontainers' built-in wait strategies; do not add manual sleeps |
+
+### 17.13 Official references
+
+- Spring Boot — Testcontainers: https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
+- `@ServiceConnection` and connection details: https://docs.spring.io/spring-boot/reference/features/dev-services.html#features.dev-services.testcontainers
+- `@SpringBootTest`: https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications
+- Testing with a running server (`TestRestTemplate`/`WebTestClient`): https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.with-running-server
+- Testcontainers (project): https://java.testcontainers.org/
+- Spring Boot 3.1 release notes — Testcontainers support: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.1-Release-Notes
+
+---
+
+> **End of Part VI.** You can now place every test on the pyramid and pick the cheapest tool that proves what you need: **unit tests** for pure logic, **`@WebMvcTest`** and **`@DataJpaTest`** slices for the web and persistence layers in isolation, and **`@SpringBootTest`** with **Testcontainers** + **`@ServiceConnection`** for full-context, real-backend integration. A fast base of slices and a small, high-fidelity top of integration tests is what lets a Boot 3 team refactor and ship with confidence. **Part VII — Observability** (Chapters 18–19) builds on a well-tested application to make it operable in production: Actuator endpoints, health and metrics with Micrometer, and distributed tracing.
+
 <!--APPEND-PARTE-II-->
