@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Ch. 1–14). **In progress:** Parts VII–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VII (Ch. 1–16). **In progress:** Part VIII.
 
 ---
 
@@ -1728,4 +1728,223 @@ await foreach (var item in StreamFeedAsync(ct))               // cancellable, st
 
 > **End of Part VI.** C# scales under I/O with **`async`/`await`** over **`Task`** (freeing threads during waits, async all the way, no `.Result`), made production-ready with **cancellation tokens**, **`IAsyncEnumerable`** streaming, and **parallelism** for CPU-bound work. Part VII covers **robust code** — exceptions and error strategy, nullable analysis, and `Span<T>`/`Memory<T>`.
 
-<!--APPEND-PART-VII-->
+---
+
+## Part VII – Robust Code: Errors, Nullable, Spans
+
+Part VII covers writing code that fails well and runs lean: a sound **exception** strategy, **nullable** reference analysis that prevents null bugs at compile time, and **`Span<T>`/`Memory<T>`** for allocation-free work with memory.
+
+---
+
+## Chapter 15 — Exceptions and error-handling strategy
+
+### 15.1 Introduction
+
+C# signals failures with **exceptions**: code `throw`s, and a `try`/`catch`/`finally` higher up handles or cleans up. The discipline is in the **strategy**: throw exceptions for **exceptional** conditions (a contract violated, an unavailable resource), not for ordinary control flow; catch only what you can **meaningfully handle**; and let everything else propagate to a top-level handler. `finally` (and `using`) guarantees cleanup. **Exception filters** (`catch (Ex e) when (...)`) catch conditionally without unwinding, and custom exception types let callers branch on specific failures.
+
+### 15.2 Business context
+
+Error handling decides whether failures are diagnosable or mysterious, recoverable or fatal. Catching and swallowing exceptions hides bugs and corrupts state silently; catching too broadly turns a recoverable hiccup and a fatal bug into the same indistinguishable log line. A clear strategy — throw meaningfully, catch narrowly, clean up reliably, handle centrally — produces systems that fail safe, surface actionable diagnostics, and recover where they can. That directly affects uptime and the cost of operating the software.
+
+### 15.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    op["operation"] --> throw["throw on exceptional condition"]
+    throw --> catch["catch ONLY where you can handle/translate"]
+    catch --> rethrow["otherwise let it propagate to a top-level handler"]
+    op --> finally["finally / using: always clean up"]
+```
+
+Throw for genuinely exceptional situations; for expected, frequent outcomes prefer a result/`Try...` pattern over exceptions (they're costly and noisy). **Catch narrowly** — the specific types you can act on — and either handle, translate (wrap into a domain exception preserving the inner one), or rethrow with `throw;` (never `throw e;`, which resets the stack trace). Use **`finally`**/`using` for deterministic cleanup. **Exception filters** (`when`) let you inspect before catching. Centralize unhandled-exception handling (middleware, global handler) so failures are logged consistently.
+
+### 15.4 Architecture: throw low, handle high
+
+```mermaid
+flowchart LR
+    low["low-level code: throw / wrap with context"] --> mid["middle: let it propagate"]
+    mid --> top["top-level handler: log, translate to a response"]
+    note["Few handling points; cleanup via using/finally everywhere"]
+```
+
+Most code should *not* catch; it should let exceptions flow to a small number of deliberate handling points, with cleanup guaranteed by `using`/`finally` along the way.
+
+### 15.5 Real example
+
+**Scenario.** A service reads and parses a config file and must report failures clearly.
+
+**Problem.** Catching everything and returning a default hides real errors; not cleaning up leaks the file handle.
+
+**Solution.** Translate known failures into a domain exception with context, clean up with `using`, and let unknown errors propagate.
+
+**Implementation.**
+
+```csharp
+public Config LoadConfig(string path)
+{
+    try
+    {
+        using var stream = File.OpenRead(path);     // 'using' guarantees disposal
+        return Parse(stream);
+    }
+    catch (Exception e) when (e is FileNotFoundException or JsonException)  // filter: only known failures
+    {
+        throw new ConfigException($"invalid config at {path}", e);          // translate, preserve inner
+    }
+    // any other exception propagates to the top-level handler unchanged
+}
+```
+
+**Result.** Known failures become a `ConfigException` with the path and the original exception preserved, so callers and logs see exactly what went wrong; the file handle is always released via `using`; and unexpected exceptions propagate to the central handler rather than being swallowed. Failures are diagnosable and resources are safe.
+
+**Future improvements.** For expected, high-frequency cases (e.g., "key not found"), expose a `TryGet` pattern instead of throwing; add structured logging at the top-level handler.
+
+### 15.6 Exercises
+
+1. When should you throw an exception versus return a result/`Try...` value?
+2. Why is `throw;` different from `throw e;`?
+3. What does an exception filter (`when`) let you do?
+
+### 15.7 Challenges
+
+- **Challenge.** Write a method that wraps a low-level `IOException` in a domain `StorageException` (preserving the inner exception) only for transient cases, using an exception filter, and lets other errors propagate.
+
+### 15.8 Checklist
+
+- [ ] I throw for exceptional conditions, not ordinary control flow.
+- [ ] I catch narrowly (specific types I can handle/translate).
+- [ ] I clean up with `using`/`finally`.
+- [ ] I rethrow with `throw;` and handle unhandled errors centrally.
+
+### 15.9 Best practices
+
+- Throw meaningfully; prefer `Try...`/result for expected outcomes.
+- Catch only what you can handle; translate with context, preserve inner.
+- Guarantee cleanup with `using`/`finally`; centralize last-resort handling.
+
+### 15.10 Anti-patterns
+
+- Swallowing exceptions (`catch {}`) — hidden bugs, corrupted state.
+- `catch (Exception)` everywhere, conflating fatal and recoverable.
+- `throw e;` (loses the stack trace); exceptions for normal control flow.
+
+### 15.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Bugs vanish without a trace | Swallowed exceptions | Don't catch what you can't handle; log centrally |
+| Stack trace points to the rethrow | `throw e;` | Use `throw;` to preserve the original |
+| Leaked file/connection on error | No deterministic cleanup | Use `using`/`finally` |
+
+### 15.12 References
+
+- Microsoft, "Exceptions and exception handling" & "Best practices for exceptions": https://learn.microsoft.com/dotnet/standard/exceptions/.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 16 — Nullable analysis, `Span<T>`, and `Memory<T>`
+
+### 16.1 Introduction
+
+Two C# features harden code against its most common bug and its most common waste. **Nullable reference types** (introduced in Ch. 2) bring **compile-time flow analysis**: the compiler tracks whether a reference may be null and warns when you dereference it unsafely, turning `NullReferenceException` into a build warning. **`Span<T>`** and **`Memory<T>`** provide a type-safe **window** over contiguous memory (an array, a string, stack memory) so you can slice and process it **without allocating** copies — critical for high-performance parsing and I/O.
+
+### 16.2 Business context
+
+`NullReferenceException` is famously "the billion-dollar mistake"; nullable analysis moves that class of bug from runtime crashes to compile-time warnings, caught before shipping. On the performance side, copying buffers to slice or parse them creates garbage that the GC must collect, hurting throughput and latency in hot paths (serialization, networking, file processing). `Span<T>` lets that work happen **in place**, eliminating allocations. Together they raise both the **safety** and the **efficiency** of code that handles data at scale.
+
+### 16.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    nrt["nullable reference types: string? vs string"] --> flow["compiler flow analysis warns on unsafe deref"]
+    span["Span<T> / ReadOnlySpan<T>"] --> slice["view + slice contiguous memory, no copy"]
+    mem["Memory<T>"] --> async["like Span but usable across await (heap-storable)"]
+```
+
+A reference is either **non-nullable** (`string`) or **nullable** (`string?`); the compiler's flow analysis warns if you might dereference a possibly-null value, and `?.`, `??`, and pattern checks narrow it to non-null. The **null-forgiving** operator `!` suppresses a warning when *you* know better (use sparingly). **`Span<T>`** is a `ref struct` (stack-only) that windows contiguous memory and slices with no allocation; **`Memory<T>`** is its heap-storable cousessor usable across `await` and in fields, where `Span<T>` can't go.
+
+### 16.4 Architecture: safe by default, allocation-free where it counts
+
+```mermaid
+flowchart LR
+    safe["non-nullable by default + flow analysis"] --> fewer["fewer NREs at runtime"]
+    hot["hot path slicing/parsing"] --> span["Span<T> -> zero-copy"]
+    note["Correctness from nullability; performance from spans"]
+```
+
+Nullability is a correctness tool applied everywhere; spans are a performance tool applied where allocation matters.
+
+### 16.5 Real example
+
+**Scenario.** Parse a comma-separated header value efficiently and null-safely.
+
+**Problem.** `string.Split` allocates an array and substrings (garbage on a hot path), and an unchecked null input risks an NRE.
+
+**Solution.** Take a nullable input, narrow it, and slice with **`ReadOnlySpan<char>`** — no allocations.
+
+**Implementation.**
+
+```csharp
+public int CountFields(string? header)        // nullable: compiler forces a null check
+{
+    if (string.IsNullOrEmpty(header)) return 0;   // narrows header to non-null below
+    ReadOnlySpan<char> span = header;             // window over the string, no copy
+    int count = 1;
+    foreach (var c in span)                        // process in place
+        if (c == ',') count++;
+    return count;
+}
+```
+
+**Result.** The compiler guarantees `header` is checked before use (no NRE), and the parsing walks a `ReadOnlySpan<char>` over the original string with **zero allocations** — no split array, no substrings. On a hot path processing many headers, that removes a major source of GC pressure while staying type-safe.
+
+**Future improvements.** Use `span.Slice`/`IndexOf` to extract fields without substrings; use `Memory<char>` if the window must be stored or passed across an `await`.
+
+### 16.6 Exercises
+
+1. How do nullable reference types turn an NRE into a compile-time issue?
+2. When is the null-forgiving `!` operator appropriate?
+3. Why can `Span<T>` not be stored in a field or used across `await`, and what do you use instead?
+
+### 16.7 Challenges
+
+- **Challenge.** Write a method that returns the first whitespace-trimmed token of a `string?` input using `ReadOnlySpan<char>` and `Slice`, allocating no intermediate strings, and handling null safely.
+
+### 16.8 Checklist
+
+- [ ] I enable nullable reference types and resolve the warnings.
+- [ ] I narrow nullables with `?.`/`??`/checks instead of using `!` casually.
+- [ ] I use `Span<T>`/`ReadOnlySpan<T>` to slice without allocating on hot paths.
+- [ ] I use `Memory<T>` when a window must cross `await` or be stored.
+
+### 16.9 Best practices
+
+- Treat nullable warnings as errors to enforce null-safety.
+- Reserve `!` for cases the compiler genuinely can't prove.
+- Use spans for zero-copy parsing/slicing in performance-critical code.
+
+### 16.10 Anti-patterns
+
+- Disabling nullable warnings or sprinkling `!` to silence them.
+- Allocating split arrays/substrings on hot paths instead of spans.
+- Trying to store a `Span<T>` in a field or use it across `await`.
+
+### 16.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `NullReferenceException` at runtime | Nullable warnings ignored/suppressed | Honor the warnings; narrow before deref |
+| GC pressure on a parsing hot path | Allocating substrings/arrays | Slice with `Span<T>`/`ReadOnlySpan<T>` |
+| "Span cannot be used in async" | `Span<T>` across `await`/in a field | Use `Memory<T>` instead |
+
+### 16.12 References
+
+- Microsoft, "Nullable reference types" & "`Span<T>`, `Memory<T>`": https://learn.microsoft.com/dotnet/csharp/nullable-references.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+> **End of Part VII.** Robust C# code **throws and handles exceptions** with a clear strategy (throw meaningfully, catch narrowly, clean up, handle centrally), uses **nullable reference analysis** to turn null bugs into compile-time warnings, and reaches for **`Span<T>`/`Memory<T>`** to process memory without allocations on hot paths. Part VIII closes the guide with the **.NET platform** — runtime and SDK, dependency injection, ASP.NET Core minimal APIs, and EF Core/testing/publishing.
+
+<!--APPEND-PART-VIII-->
