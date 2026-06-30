@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Reducing it**
 3. Information hiding and defining errors out of existence
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -256,4 +256,115 @@ byte[] data = store.read(path);
 
 > **End of Part I.** You can now define complexity by its symptoms (change amplification, cognitive load, unknown unknowns) and root causes (dependencies, obscurity), adopt a strategic rather than tactical mindset, and design **deep** modules that hide much behind small, stable interfaces. **Part II — Reducing it** (Chapter 3) covers information hiding, choosing what to expose, and "defining errors out of existence" so whole classes of edge cases disappear.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Reducing it
+
+Part I diagnosed complexity and argued that **modules should be deep** — much functionality behind a small, stable interface. Part II covers the two techniques that most reliably produce depth: **information hiding** (and its enemy, leakage) and **defining errors out of existence** so whole categories of edge cases simply never arise.
+
+---
+
+## Chapter 3 — Information hiding and defining errors out of existence
+
+### 3.1 Introduction
+
+The most important technique for making a module **deep** is **information hiding**: each module encapsulates a few design decisions whose details live in the implementation and never appear in the interface. The opposite — the same decision showing up in several modules — is **information leakage**, the single biggest cause of shallow, change-amplifying code. A second, underused technique is **defining errors out of existence**: instead of detecting an exceptional case and throwing, redesign the API so the case is simply *normal* and the exception disappears. Both reduce the interface a reader must hold in their head.
+
+### 3.2 Business context
+
+Leaked design decisions are what turn a one-line change into a ten-file edit (change amplification, Part I): if the format of a record, the order of operations, or a default value is known in five places, all five must change together — and someday one won't. Hiding each decision behind one module localizes change. Likewise, every exception a method throws is interface a caller must understand and handle; proliferating exceptions multiply handling code and the bugs that hide in rarely-run branches. Eliminating those cases by design shrinks both the interface and the defect surface — cheaper to build and far cheaper to maintain.
+
+### 3.3 Theoretical concepts: hiding vs. leakage
+
+```mermaid
+flowchart LR
+    dec["a design decision (format, policy, ordering)"] --> hid["hidden in ONE module (deep)"]
+    dec --> leak["spread across modules (leakage -> shallow)"]
+    note["Leakage often comes from temporal decomposition:<br/>structuring code by execution order, not by knowledge"]
+```
+
+Information hiding (first described by Parnas) means a module's interface exposes *what* it does, never the knowledge of *how* — the data structure, the algorithm, the wire format. When two modules both depend on the same decision, you have **leakage**, even if they never call each other: change one and you must change the other. A common trap is **temporal decomposition** — splitting code by the order operations happen (read, then process, then write) rather than by the knowledge each part owns — which scatters one decision across the phases. The fix is to group by knowledge, so each decision sits in exactly one deep module.
+
+### 3.4 Architecture: define errors out of existence
+
+```mermaid
+flowchart TB
+    case["an 'exceptional' case"] --> opt1["throw an exception (more interface, more handling)"]
+    case --> opt2["redefine semantics so it is NORMAL (no exception)"]
+    opt2 --> mask["or: mask it low, aggregate many into one, or just crash if truly fatal"]
+    note["Fewer exceptions = smaller interface = less complexity"]
+```
+
+The goal is to **minimize the number of places that must deal with an exception**. The strongest move is to **define the error out of existence**: choose semantics under which the formerly-exceptional input is valid. Java's `String.substring` once threw on out-of-range indices; a design that simply **clamps** to the string's bounds makes the "error" impossible and removes handling from every caller. Where you can't eliminate it, **mask** the exception low in a deep module, **aggregate** many exceptions into one handler, or — for truly unrecoverable states — **just crash** with a clear message rather than spreading recovery logic everywhere.
+
+### 3.5 Real example
+
+**Scenario.** A `delete(path)` helper is used throughout a service to remove temp files.
+
+**Problem.** It throws `FileNotFound` when the file is already gone, so every one of the dozens of call sites wraps it in try/catch that does nothing but swallow that case — handling code (and bugs) leaked everywhere.
+
+**Solution.** **Define the error out of existence**: make "delete a file that isn't there" a successful no-op, since the caller's intent ("ensure it's gone") is already satisfied.
+
+**Implementation.**
+
+```text
+# Before: the exception is part of the interface; every caller handles it.
+delete(path):
+    if not exists(path): throw FileNotFound      # callers must try/catch
+    os.remove(path)
+
+# After: the case is defined out of existence — absent file == success.
+delete(path):
+    try: os.remove(path)
+    except NotFound: return        # intent ("be gone") already satisfied
+```
+
+**Result.** The `FileNotFound` case vanishes from the **interface**: no call site needs a try/catch, so dozens of empty handlers — and the chance of mishandling one — disappear. The module got slightly more logic and the system got much simpler, which is exactly the deep-module trade (more hidden, less exposed).
+
+**Future improvements.** Audit other "exceptions" that every caller handles identically — they are candidates to define out of existence; reserve real exceptions for cases callers genuinely act on differently.
+
+### 3.6 Exercises
+
+1. Define information hiding and information leakage; why can two modules leak without calling each other?
+2. How does temporal decomposition cause leakage, and what should you group by instead?
+3. What does "define an error out of existence" mean? Give an example from an API you use.
+
+### 3.7 Challenges
+
+- **Challenge.** Find a method in your codebase whose exception every caller handles the same way. Redesign its semantics so the exceptional case becomes normal, and delete the now-redundant handlers.
+
+### 3.8 Checklist
+
+- [ ] Each design decision lives in exactly one module (no leakage).
+- [ ] I group code by knowledge, not by execution order (avoid temporal decomposition).
+- [ ] I ask whether each exception can be defined out of existence.
+- [ ] I mask, aggregate, or deliberately crash rather than spreading handling code.
+
+### 3.9 Best practices
+
+- Hide design decisions behind small interfaces to deepen modules.
+- Prefer redefining semantics over adding another exception.
+- Where an error must remain, handle it in one place (mask low or aggregate).
+
+### 3.10 Anti-patterns
+
+- Temporal decomposition that scatters one decision across read/process/write phases.
+- Exception proliferation — throwing for cases callers all handle identically.
+- Pass-through interfaces that expose, rather than hide, an internal decision.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| One change forces edits in many files | Information leakage | Consolidate the decision into one deep module |
+| Try/catch boilerplate at every call site | Avoidable exception in the interface | Define the error out of existence (or mask it low) |
+| Classes split by "phase" duplicate logic | Temporal decomposition | Regroup by knowledge/decision owned |
+
+### 3.12 References
+
+- J. Ousterhout, *A Philosophy of Software Design*, 2nd ed. (Yaknyam Press, 2021), ch. 5 "Information Hiding (and Leakage)" & ch. 10 "Define Errors Out Of Existence" (§10.5 Java substring) — ISBN 978-1732102217.
+- D. Parnas, "On the Criteria To Be Used in Decomposing Systems into Modules" (CACM, 1972).
+
+---
+
+> **End of Part II.** Deep modules come from **information hiding** — each design decision encapsulated in one place, never leaked across modules or scattered by temporal decomposition — and from **defining errors out of existence**, redesigning semantics so exceptional cases become normal and disappear from the interface. With Part I's diagnosis of complexity and the case for **deep modules**, you now have the core techniques to keep a system simple as it grows.

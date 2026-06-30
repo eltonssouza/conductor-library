@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Mapping to data**
 3. Data Mapper, Repository, and Unit of Work
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -277,4 +277,114 @@ class RegisterUser {                            // domain
 
 > **End of Part I.** You can now choose between Transaction Script and Domain Model by the domain's real complexity, keep each business rule in one home, and layer an application into presentation/domain/data-source with dependencies pointing downward and a testable domain at the center. **Part II — Mapping to data** (Chapter 3) covers Data Mapper, Repository as a collection-like domain interface, and Unit of Work for coordinating changes in one transaction.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Mapping to data
+
+Part I surveyed how enterprise apps organize domain logic. Part II tackles the boundary every such app must cross: getting objects in and out of a relational database without letting the database shape — or corrupt — the domain model. The patterns are **Data Mapper**, **Repository**, and **Unit of Work**.
+
+---
+
+## Chapter 3 — Data Mapper, Repository, and Unit of Work
+
+### 3.1 Introduction
+
+Three Fowler patterns separate a rich domain model from its database. A **Data Mapper** moves data between objects and the database while keeping them **independent** of each other — the domain class knows nothing about SQL, and vice versa (unlike Active Record, where the object *is* the row). A **Repository** sits on top and offers a **collection-like** interface for one aggregate type (`orders.findById`, `orders.add`), hiding the query layer behind domain language. A **Unit of Work** tracks the objects touched in a business transaction and writes all the changes in **one** coordinated commit, managing order and concurrency.
+
+### 3.2 Business context
+
+In a complex domain, letting persistence leak into business objects is what makes them hard to test and change: every rule drags a database with it, and a schema change ripples into the model. Data Mapper keeps the domain pure (testable without a database, evolvable independently of the schema). Repository gives application code a clean, intention-revealing way to fetch and store aggregates. Unit of Work prevents the classic bugs of partial writes and N scattered `UPDATE`s by committing a consistent set of changes once. Together they let an enterprise model grow in complexity without drowning in data-access code.
+
+### 3.3 Theoretical concepts: separate the model from the store
+
+```mermaid
+flowchart TB
+    app["application service"] --> repo["Repository (collection-like, domain language)"]
+    repo --> uow["Unit of Work (tracks changes, one commit)"]
+    repo --> mapper["Data Mapper (object <-> rows, both independent)"]
+    mapper --> db["database"]
+    note["Domain objects know nothing about SQL"]
+```
+
+**Data Mapper** is the translation layer; the domain object and the table evolve independently. **Repository** is the domain-facing abstraction — code asks for objects by domain criteria, not by writing SQL — which also makes it trivial to substitute a fake in tests. **Unit of Work** records new/dirty/removed objects during a business transaction and, on commit, writes them in the right order within one database transaction, also handling optimistic concurrency. Contrast with **Active Record**, which fuses object and row — simpler for CRUD, but it couples the model to the schema and struggles with rich domains.
+
+### 3.4 Architecture: one transaction, coordinated writes
+
+```mermaid
+flowchart LR
+    begin["start Unit of Work"] --> work["load via Repository, change domain objects"]
+    work --> commit["UoW commits: insert/update/delete in one DB transaction"]
+    note["All changes succeed together or roll back together"]
+```
+
+The Unit of Work turns a business operation that touches several objects into a single atomic write, so the database never sees a half-applied change.
+
+### 3.5 Real example
+
+**Scenario.** Confirming an order updates the order, decrements line stock, and writes an audit entry.
+
+**Problem.** Doing three separate saves risks partial writes, and embedding SQL in the domain objects makes them untestable and schema-coupled.
+
+**Solution.** Fetch via a **Repository**, change pure domain objects, and let a **Unit of Work** commit all changes via a **Data Mapper** in one transaction.
+
+**Implementation.**
+
+```text
+# Domain stays pure (no SQL); Data Mapper handles persistence elsewhere.
+uow = UnitOfWork.begin()
+order = orders.findById(id)        # Repository -> Data Mapper loads the object
+order.confirm()                    # pure domain logic, marks objects dirty
+audit.add(AuditEntry.for(order))   # Repository registers a new object
+uow.commit()                       # ONE DB transaction: update order, update stock, insert audit
+# on failure: uow.rollback() — nothing partially applied
+```
+
+**Result.** The domain objects contain only business logic and can be unit-tested without a database; the Repository reads as domain language; the Unit of Work guarantees the three changes commit together or not at all. Swapping the datastore or schema touches the mappers, not the model.
+
+**Future improvements.** Add optimistic locking (version column) in the Unit of Work; for simple CRUD entities with no rich behavior, Active Record may be the lighter choice — match the pattern to the complexity.
+
+### 3.6 Exercises
+
+1. How does Data Mapper differ from Active Record, and when does each fit?
+2. What does a Repository hide, and why does that help testing?
+3. What problem does a Unit of Work solve across multiple object changes?
+
+### 3.7 Challenges
+
+- **Challenge.** Implement a Repository interface for one aggregate with an in-memory fake and a DB-backed Data Mapper. Write a use case that changes two objects and commits them through a Unit of Work in one transaction.
+
+### 3.8 Checklist
+
+- [ ] Domain objects contain no SQL (Data Mapper handles persistence).
+- [ ] Application code fetches/stores aggregates via Repositories.
+- [ ] Multi-object changes commit through a Unit of Work in one transaction.
+- [ ] I choose Active Record vs. Data Mapper by domain complexity.
+
+### 3.9 Best practices
+
+- Keep the domain ignorant of persistence; map at the boundary.
+- Expose collection-like Repositories per aggregate type.
+- Commit business transactions through a Unit of Work.
+
+### 3.10 Anti-patterns
+
+- SQL and ORM annotations spread through domain logic.
+- Saving each object separately (partial-write bugs).
+- Repositories that leak arbitrary query methods instead of domain intent.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Domain untestable without a database | Persistence embedded in the model | Introduce a Data Mapper; keep the model pure |
+| Partial writes on failure | Independent saves | Coordinate changes in a Unit of Work |
+| Data-access code everywhere | No Repository abstraction | Add Repositories per aggregate |
+
+### 3.12 References
+
+- M. Fowler, *Patterns of Enterprise Application Architecture* (Addison-Wesley, 2002), Data Mapper, Repository, Unit of Work — ISBN 978-0321127426.
+- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003), Repositories — ISBN 978-0321125217.
+
+---
+
+> **End of Part II.** Enterprise apps keep a rich domain free of the database with a **Data Mapper** (object and table independent), a **Repository** (collection-like, domain-language access per aggregate), and a **Unit of Work** (track changes, commit once) — choosing Active Record only for simple CRUD. With Part I's domain-logic patterns, you can now cross the object-relational boundary without letting it corrupt the model.

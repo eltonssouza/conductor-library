@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Guarantees**
 3. Delivery semantics, idempotency, and ordering
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -258,4 +258,115 @@ endpoint(raw):
 
 > **End of Part I.** You can now choose messaging to decouple systems in time and failure, pick queues vs topics deliberately, and decompose any integration into a readable pipeline of channels, routers, translators, and endpoints. **Part II — Guarantees** (Chapter 3) tackles the hard part: at-least-once vs exactly-once delivery, designing idempotent consumers, and when ordering actually matters.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Guarantees
+
+Part I covered the messaging channels and patterns that decouple systems. Part II is about the guarantees those channels actually provide — and the ones they don't: **delivery semantics**, **idempotency**, and **ordering**. Getting these wrong is the most common source of subtle integration bugs.
+
+---
+
+## Chapter 3 — Delivery semantics, idempotency, and ordering
+
+### 3.1 Introduction
+
+Asynchronous messaging trades strong, synchronous guarantees for decoupling, and you must design around what's left. **Delivery semantics** come in three flavors: **at-most-once** (may lose messages), **at-least-once** (may deliver duplicates), and **exactly-once** (ideal but expensive and often illusory across systems). Real brokers almost always give **at-least-once**, so consumers must be **idempotent** — processing the same message twice has the same effect as once. And messaging generally guarantees ordering only within limits, so code must not assume global order. Design for duplicates and reordering, not against them.
+
+### 3.2 Business context
+
+These guarantees decide whether an integration is correct or quietly corrupts data. If a payment message is delivered twice and the consumer isn't idempotent, a customer is charged twice — a real incident, not a theoretical one. If two events arrive out of order, an "account closed" can be processed before "account opened". Teams that assume exactly-once, in-order delivery build systems that work in testing and fail under retries and failover. Designing for at-least-once with idempotent consumers makes the system **safe under the retries that production guarantees will happen**.
+
+### 3.3 Theoretical concepts: assume duplicates, design idempotency
+
+```mermaid
+flowchart LR
+    prod["producer"] -->|"at-least-once (may duplicate)"| broker["broker"]
+    broker --> cons["idempotent consumer (dedup by message id / business key)"]
+    cons --> effect["same result whether processed once or twice"]
+    note["Exactly-once end-to-end is usually at-least-once + idempotency"]
+```
+
+Because at-least-once means a message can arrive more than once (on retry, redelivery, or failover), the consumer must **deduplicate** — track processed message ids, or make the operation naturally idempotent (e.g., "set status = PAID" rather than "increment balance"). What people call "exactly-once" is typically **at-least-once delivery plus idempotent processing**. **Ordering** is usually guaranteed only per-partition/per-queue, not globally; if order matters, key related messages to the same partition or carry a sequence number and handle out-of-order arrival.
+
+### 3.4 Architecture: dedup at the consumer, key for order
+
+```mermaid
+flowchart TB
+    msg["message (carries id + business key + optional sequence)"] --> seen{"id already processed?"}
+    seen -->|yes| skip["skip (idempotent)"]
+    seen -->|no| do["process + record id"]
+    note["Order-sensitive flows: route by key to one partition"]
+```
+
+Idempotency lives at the **consumer**: a processed-id store or a naturally idempotent write. Ordering, when needed, is arranged at the **producer**: route messages that must stay ordered (same account, same order) to the same partition/queue so they're delivered in sequence.
+
+### 3.5 Real example
+
+**Scenario.** A billing service consumes `PaymentReceived` events to mark invoices paid.
+
+**Problem.** The broker is at-least-once, so `PaymentReceived` can arrive twice on retry; a naive consumer would record the payment twice.
+
+**Solution.** Make the consumer **idempotent** using the payment's id, and key events by account to preserve per-account order.
+
+**Implementation.**
+
+```text
+on PaymentReceived(e):
+    if processed.contains(e.paymentId): return        # dedup -> idempotent
+    invoice = invoices.find(e.invoiceId)
+    invoice.markPaid(e.amount)                         # naturally idempotent set, not increment
+    processed.add(e.paymentId)
+
+# producer side: route by accountId so an account's events stay ordered
+publish(topic, key = e.accountId, msg = e)
+```
+
+**Result.** A duplicated `PaymentReceived` is ignored (the id is already recorded), so no double-charge; using a "mark paid" set instead of a balance increment makes reprocessing harmless; keying by account keeps each account's events in order. The integration is correct under the retries production will produce.
+
+**Future improvements.** Use a transactional outbox so producing the event and committing the state change are atomic; add a dead-letter queue for poison messages.
+
+### 3.6 Exercises
+
+1. Name the three delivery semantics and which one brokers typically provide.
+2. Why must an at-least-once consumer be idempotent, and how do you make it so?
+3. What is the usual scope of ordering guarantees, and how do you preserve order when you need it?
+
+### 3.7 Challenges
+
+- **Challenge.** Make a message consumer idempotent two ways: (a) a processed-id store, and (b) a naturally idempotent write. Then arrange producer-side keying so related messages stay ordered.
+
+### 3.8 Checklist
+
+- [ ] I assume at-least-once delivery (design for duplicates).
+- [ ] Consumers deduplicate by message id or use idempotent writes.
+- [ ] Order-sensitive messages are keyed to the same partition/queue.
+- [ ] I don't rely on global ordering or true exactly-once.
+
+### 3.9 Best practices
+
+- Make every consumer idempotent; prefer idempotent operations over counters.
+- Key related messages for per-entity ordering.
+- Use a transactional outbox to publish events atomically with state.
+
+### 3.10 Anti-patterns
+
+- Assuming exactly-once, in-order delivery across systems.
+- Non-idempotent consumers (double effects on retry).
+- Relying on global message order.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Duplicate effects (double charge) | At-least-once + non-idempotent consumer | Dedup by id / use idempotent writes |
+| Events processed out of order | No partition keying | Route related messages to one partition |
+| Event lost after a crash | State committed but event not published | Use a transactional outbox |
+
+### 3.12 References
+
+- G. Hohpe, B. Woolf, *Enterprise Integration Patterns* (Addison-Wesley, 2003), channels, idempotent receiver, guaranteed delivery — ISBN 978-0321200686.
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), delivery semantics & ordering — ISBN 978-1449373320.
+
+---
+
+> **End of Part II.** Messaging guarantees are limited by design: assume **at-least-once** delivery, make consumers **idempotent** (dedup by id or idempotent writes), and arrange **ordering** only where the broker provides it (per-partition keying). With Part I's integration patterns, you can now build integrations that stay correct under the retries and reordering production guarantees.

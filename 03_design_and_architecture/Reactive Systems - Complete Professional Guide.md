@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Applying it**
 3. When to go reactive (and when not to)
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -255,4 +255,114 @@ workers: drain queue at DB's sustainable rate
 
 > **End of Part I.** You can now describe a reactive system as one that stays responsive under load and failure by being resilient, elastic, and message-driven, and you can apply back-pressure to keep async pipelines bounded and failing safely. **Part II — Applying it** (Chapter 3) gives the judgment for when reactive design earns its complexity — and when a simpler synchronous model (or virtual threads) is the better 2026 choice.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Applying it
+
+Part I defined the reactive traits — **responsive, resilient, elastic, message-driven** (the Reactive Manifesto). Part II is the judgment that keeps them from becoming cargo-cult: deciding **when** a system genuinely benefits from going reactive, and when the added complexity isn't worth it.
+
+---
+
+## Chapter 3 — When to go reactive (and when not)
+
+### 3.1 Introduction
+
+A **reactive system** is **message-driven** at its core, and from that foundation it earns **elasticity** (scale with load), **resilience** (isolate and recover from failure), and **responsiveness** (stay timely under both). These properties are valuable — but they come at a real cost in complexity: asynchronous flows, eventual consistency, back-pressure, and harder debugging. Going reactive is the right call when high concurrency, elasticity, or resilience are genuine requirements; it's the wrong call for simple, low-load, request/response CRUD where a straightforward synchronous design is easier to build and operate.
+
+### 3.2 Business context
+
+Reactive is a means, not a goal. Adopted because a workload demands it — millions of concurrent connections, bursty traffic, strict uptime — it lets a system stay responsive and recover gracefully where a synchronous design would topple. Adopted by fashion on a modest CRUD app, it buys asynchronous complexity, eventual-consistency bugs, and a steeper learning curve for no benefit, slowing delivery. Matching the architecture to the actual load and reliability requirements is what keeps engineering effort proportional to business value.
+
+### 3.3 Theoretical concepts: message-driven roots, three benefits
+
+```mermaid
+flowchart TB
+    md["message-driven (async, non-blocking, back-pressure)"] --> el["elastic (scale out/in with load)"]
+    md --> re["resilient (isolate failures, recover)"]
+    el --> resp["responsive (timely under load and failure)"]
+    re --> resp
+    note["The traits are valuable ONLY when the workload needs them"]
+```
+
+The manifesto's traits build on each other: being **message-driven** (asynchronous, non-blocking, with **back-pressure** so fast producers don't overwhelm slow consumers) is what enables elasticity and resilience, which together yield responsiveness. The decision to adopt them should be driven by the workload: high and variable concurrency, the need to isolate failures, or strict responsiveness targets. Absent those, synchronous code is simpler and just as correct.
+
+### 3.4 Architecture: decide by requirement, not trend
+
+```mermaid
+flowchart LR
+    q1{"high/bursty concurrency or strict resilience?"} -->|yes| reactive["go reactive (message-driven, back-pressure)"]
+    q1 -->|no| simple["stay synchronous (simpler, easier to operate)"]
+    note["Reactive complexity must be paid for by a real requirement"]
+```
+
+Treat "go reactive" as a trade-off decision like any architecture-style choice: adopt it where a prioritized quality attribute (elasticity, resilience, responsiveness under load) requires it, and prefer the simpler synchronous design otherwise.
+
+### 3.5 Real example
+
+**Scenario.** Two services: (A) a real-time notifications gateway handling 500k concurrent connections; (B) an internal admin CRUD tool used by 30 staff.
+
+**Problem.** A blanket "everything reactive" policy would over-engineer B; a blanket "everything synchronous" policy would sink A under its connection load.
+
+**Solution.** Decide per workload: **reactive** for A, **synchronous** for B.
+
+**Implementation.**
+
+```text
+Service A (notifications): 500k concurrent, bursty, must stay up
+  -> reactive: message-driven, non-blocking I/O, back-pressure, elastic scaling
+     (the concurrency/resilience requirement justifies the complexity)
+
+Service B (admin CRUD): 30 users, low load, simple flows
+  -> synchronous request/response, plain transactions
+     (no concurrency/elasticity need -> reactive would add cost, not value)
+```
+
+**Result.** Service A stays responsive and resilient under massive, bursty concurrency that a synchronous design couldn't hold; Service B stays simple, easy to build, test, and operate. Each architecture matches its workload, so complexity is spent only where it buys something.
+
+**Future improvements.** Revisit if B's load profile changes; introduce reactive elements (e.g., async messaging) into A incrementally where back-pressure is most needed rather than rewriting wholesale.
+
+### 3.6 Exercises
+
+1. What does "message-driven" enable, and what are the other three reactive traits?
+2. What is back-pressure and why does it matter in a reactive system?
+3. Give a workload where going reactive is justified and one where it isn't.
+
+### 3.7 Challenges
+
+- **Challenge.** For two systems you know, decide reactive vs. synchronous from their concurrency, elasticity, and resilience requirements. Write one sentence justifying each, naming the complexity you accept or avoid.
+
+### 3.8 Checklist
+
+- [ ] I adopt reactive only where concurrency/elasticity/resilience require it.
+- [ ] Reactive cores are message-driven with back-pressure.
+- [ ] I prefer synchronous designs for simple, low-load CRUD.
+- [ ] The decision is tied to a prioritized quality attribute, not a trend.
+
+### 3.9 Best practices
+
+- Drive the reactive decision from real load and reliability requirements.
+- Build reactive systems on message-driven foundations with back-pressure.
+- Keep simple workloads synchronous.
+
+### 3.10 Anti-patterns
+
+- "Everything reactive" by policy, regardless of workload.
+- Reactive code without back-pressure (overwhelmed consumers).
+- Adopting eventual consistency where the domain needs strong consistency and load is low.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Simple app is hard to maintain | Reactive applied without need | Simplify to synchronous request/response |
+| Consumers overwhelmed under load | No back-pressure | Add back-pressure to the message-driven flow |
+| Can't scale under bursty load | Synchronous, blocking design where reactive is needed | Move the hot path to message-driven, elastic design |
+
+### 3.12 References
+
+- J. Bonér et al., "The Reactive Manifesto" — responsive, resilient, elastic, message-driven: https://www.reactivemanifesto.org.
+- R. Kuhn, B. Hanafee, J. Allen, *Reactive Design Patterns* (Manning, 2017) — ISBN 978-1680502398.
+
+---
+
+> **End of Part II.** Reactive systems earn **elasticity, resilience, and responsiveness** from a **message-driven** core with **back-pressure** — but those properties cost real complexity, so go reactive only when high concurrency, elasticity, or strict resilience genuinely require it, and stay synchronous for simple, low-load work. With Part I's reactive traits, you can now apply them as a trade-off, not a trend.

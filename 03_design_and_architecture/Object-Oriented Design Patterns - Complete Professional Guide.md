@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Judgment**
 3. Patterns absorbed by modern language features
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -270,4 +270,118 @@ Notifier n = new LoggingNotifier(new EmailNotifier());
 
 > **End of Part I.** You now treat patterns as a shared vocabulary applied with restraint: name the force before reaching for a pattern, classify problems into creational/structural/behavioral, and prefer the simplest member — composition over inheritance. **Part II — Judgment** (Chapter 3) covers patterns that modern language features (first-class functions, records, enums, built-in iterators) have largely absorbed, so you don't hand-roll what the language now gives you.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Judgment
+
+Part I treated patterns as a vocabulary applied with restraint. Part II is the judgment call that matters most today: several classic GoF patterns were **workarounds** for languages that lacked first-class functions, built-in iteration, or value types. Modern languages provide those natively, so the pattern collapses into a language feature — and hand-rolling the full pattern becomes over-engineering.
+
+---
+
+## Chapter 3 — Patterns absorbed by modern language features
+
+### 3.1 Introduction
+
+Many of the Gang of Four patterns are solutions to problems that **modern languages no longer have**. Strategy, Command, and Template Method exist largely because 1994-era Java and C++ couldn't pass behavior as a value; Iterator exists because collections had no built-in traversal; Singleton papered over the lack of module-level instances and dependency injection. When a language gains **first-class functions, built-in iteration, records/enums, and DI containers**, those patterns shrink to a lambda or a keyword. The pattern's **intent** still matters as vocabulary; its **boilerplate implementation** is now something you should *not* write by hand.
+
+### 3.2 Business context
+
+Hand-rolling an absorbed pattern costs real money: a Strategy implemented as an interface plus three concrete classes plus a factory is a dozen files for what a one-line lambda now expresses. That extra scaffolding is more to read, test, and change — pure ceremony a reviewer must wade through. Recognizing which patterns the language has absorbed keeps a codebase **small and idiomatic**, so new team members see ordinary modern code instead of a 1990s pattern museum. The discipline is knowing when the *named* pattern adds clarity versus when the *language feature* already says it better.
+
+### 3.3 Theoretical concepts: intent persists, implementation collapses
+
+```mermaid
+flowchart LR
+    strat["Strategy / Command / Template Method"] --> fn["first-class functions / lambdas"]
+    iter["Iterator"] --> builtin["built-in iteration (for-each, generators)"]
+    single["Singleton"] --> di["DI container / module instance"]
+    state["State / type-codes"] --> sealed["enums, records, sealed types"]
+    note["The PROBLEM each solved is now a language feature"]
+```
+
+The mapping is direct. **Strategy** ("a family of interchangeable algorithms") is just passing a function; **Command** ("a request as an object") is a closure; **Template Method** ("fixed skeleton, variable steps") is a higher-order function taking the variable steps as parameters. **Iterator** is the language's `for-each`/generators. **Observer** is built-in events or reactive streams. **Singleton** is a single instance wired by a DI container or a module. **State** and many type-code hierarchies become **enums**, **records**, or **sealed types**. In each case the GoF *intent* is a useful name; the multi-class structure is obsolete.
+
+### 3.4 Architecture: keep the name, drop the scaffolding
+
+```mermaid
+flowchart TB
+    intent["Pattern INTENT — still valuable vocabulary"] --> modern["Express with a language feature (lambda, enum, generator, DI)"]
+    intent --> classic["Only hand-roll the full class structure when the language can't express it"]
+    note["Reach for the classic structure as the exception, not the default"]
+```
+
+The rule of thumb: state the intent ("I need an interchangeable algorithm here"), then reach for the **language feature first**. Fall back to the full class-based pattern only when you genuinely need what it adds beyond the feature — for example, a strategy that carries state and identity, or an iterator over a complex external resource.
+
+### 3.5 Real example
+
+**Scenario.** A report engine must sort records by different keys chosen at runtime.
+
+**Problem.** The textbook approach is a `SortStrategy` interface with `ByDate`, `ByAmount`, `ByName` classes and a factory to pick one — many files for one varying step.
+
+**Solution.** Recognize Strategy as **"pass a function"** and use a lambda / comparator value.
+
+**Implementation.**
+
+```text
+# Classic Strategy: interface + N classes + factory (lots of scaffolding)
+interface SortStrategy { compare(a, b) }
+class ByDate implements SortStrategy { ... }
+class ByAmount implements SortStrategy { ... }
+sorter = factory.get("date"); list.sort(sorter)
+
+# Absorbed by first-class functions: the strategy IS a value
+list.sort(by = r -> r.date)          # or: r -> r.amount, r -> r.name
+# choose at runtime by selecting which function to pass
+key = userChoice == "amount" ? (r -> r.amount) : (r -> r.date)
+list.sort(by = key)
+```
+
+**Result.** The same interchangeable-algorithm intent is expressed in one line per strategy, with no interface, no concrete classes, and no factory. The code reads as ordinary modern code; the "pattern" is the language. Less to test, less to change, nothing hidden.
+
+**Future improvements.** Apply the same lens elsewhere: replace Command classes with closures, Template Method with higher-order functions, and type-code hierarchies with enums or sealed types — keeping the classic structure only where it earns its weight.
+
+### 3.6 Exercises
+
+1. Why do Strategy, Command, and Template Method largely disappear in a language with first-class functions?
+2. Which language features absorb Iterator and Singleton, respectively?
+3. When is hand-rolling the full GoF structure still justified?
+
+### 3.7 Challenges
+
+- **Challenge.** Find a Strategy or Command implemented as an interface plus concrete classes in code you know. Replace it with functions/lambdas and delete the now-redundant classes and factory. Confirm behavior is unchanged.
+
+### 3.8 Checklist
+
+- [ ] I state a pattern's intent, then try the language feature first.
+- [ ] I express Strategy/Command/Template Method as functions where possible.
+- [ ] I use built-in iteration, enums/records, and DI instead of hand-rolled Iterator/Singleton.
+- [ ] I keep the classic class structure only where it adds something the feature can't.
+
+### 3.9 Best practices
+
+- Treat patterns as vocabulary; let the language provide the implementation.
+- Prefer lambdas, generators, enums, sealed types, and DI to multi-class scaffolding.
+- Re-evaluate "pattern-heavy" code written for older language versions.
+
+### 3.10 Anti-patterns
+
+- A `FooStrategy` interface with one concrete class and a factory for a single lambda.
+- Hand-written iterators over plain in-memory collections.
+- Classic Singleton with global static state instead of an injected instance.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Many one-method classes + a factory | Strategy/Command hand-rolled | Replace with functions/lambdas |
+| Boilerplate iterator scaffolding | Iterator pattern over a simple collection | Use the language's for-each/generators |
+| Flaky tests from global state | Classic Singleton | Inject a single instance via DI |
+
+### 3.12 References
+
+- E. Gamma, R. Helm, R. Johnson, J. Vlissides, *Design Patterns* (Addison-Wesley, 1994), Strategy (p. 315), Command (p. 233), Iterator (p. 257), Observer (p. 293), Singleton (p. 127) — ISBN 978-0201633610.
+- E. Freeman, E. Robson, *Head First Design Patterns*, 2nd ed. (O'Reilly, 2020) — ISBN 978-1492078005.
+
+---
+
+> **End of Part II.** Many GoF patterns were workarounds for missing language features: **Strategy/Command/Template Method** become first-class functions, **Iterator** becomes built-in iteration, **Singleton** becomes a DI-managed instance, and **State**/type-codes become enums, records, and sealed types. The intent survives as vocabulary; the scaffolding does not. With Part I's restraint in applying patterns, you now have the judgment to use the language instead of hand-rolling what it already provides.

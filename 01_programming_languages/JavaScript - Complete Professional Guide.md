@@ -42,7 +42,7 @@ stack: javascript
 **Part II – Modern JS**
 3. Prototypes, classes, and modules
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -147,7 +147,7 @@ b();        // 1     (b's independent count)
 
 ### 1.12 References
 
-- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024) — ISBN 978-1718503069; https://eloquentjavascript.net.
+- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024), ch. 3 "Functions" — ISBN 978-1718503069; https://eloquentjavascript.net.
 - MDN, "Closures": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures.
 
 ---
@@ -243,11 +243,128 @@ else if (n === 0) { /* exact, predictable match */ }
 
 ### 2.12 References
 
-- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024) — ISBN 978-1718503069.
-- D. Crockford, *JavaScript: The Good Parts* (O'Reilly, 2008) — ISBN 978-0596517748; MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript.
+- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024), ch. 1 "Values, Types, and Operators" — ISBN 978-1718503069.
+- D. Crockford, *JavaScript: The Good Parts* (O'Reilly, 2008), ch. 3–4 (objects, functions) — ISBN 978-0596517748; MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript.
 
 ---
 
 > **End of Part I.** You can now work with JavaScript's core: **first-class functions and closures** (which power encapsulation, factories, and async patterns — using `let`/`const`, not `var`), and the **good-parts discipline** over its loose type model (strict equality, explicit conversion, modern syntax, optionally TypeScript) that eliminates whole classes of coercion bugs. **Part II — Modern JS** (Chapter 3) covers the prototype model behind objects, `class` syntax, and ES modules for structuring real applications.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Modern JS
+
+Part I covered functions, closures, and the good-parts discipline. Part II is about **structuring real applications**: how JavaScript objects actually share behavior (the **prototype** model), the `class` syntax that sits on top of it, and **ES modules** for splitting a program into files with explicit dependencies.
+
+---
+
+## Chapter 3 — Prototypes, classes, and modules
+
+### 3.1 Introduction
+
+Almost every JavaScript object has a hidden link to another object, its **prototype**, used as a fallback when a property is requested that the object itself doesn't have. Lookups walk this **prototype chain** up to `Object.prototype` (then `null`). This single mechanism is how objects share behavior. The `class` keyword (ES2015) is **syntactic sugar** over it — a cleaner way to define a constructor and the methods that live on the prototype. **ES modules** (`import`/`export`) then organize those classes and functions into files with explicit, non-global dependencies.
+
+### 3.2 Business context
+
+Two forces shape maintainable front-end and Node code. First, **sharing behavior without duplication**: a hundred `User` objects should share one set of methods, not carry their own copies — that is exactly what a prototype (or a `class`) provides. Second, **structure at scale**: a real app is many files, and modules let each one declare what it **exports** and what it **imports**, replacing the old error-prone pattern of dumping everything onto the global object. Explicit module boundaries enable encapsulation, dead-code elimination ("tree shaking"), and code that a newcomer can navigate.
+
+### 3.3 Theoretical concepts: the prototype chain
+
+```mermaid
+flowchart LR
+    inst["circle (own: radius)"] -->|"getPrototypeOf"| proto["Circle.prototype (area, ...)"]
+    proto -->|"getPrototypeOf"| op["Object.prototype (toString, ...)"]
+    op -->|"getPrototypeOf"| n["null"]
+    note["Property lookup walks UP the chain until found or null"]
+```
+
+You read a prototype with `Object.getPrototypeOf(obj)` and create an object with a chosen prototype via `Object.create(proto)`. A `class` declaration creates a constructor function whose **`.prototype`** object holds the shared methods; `new Circle(2)` makes an instance whose prototype is `Circle.prototype`. **`extends`** links one class's prototype to another's, and **`super`** calls the parent's constructor or methods. Writing a property on an instance adds it to the *instance*, shadowing — never mutating — the prototype.
+
+### 3.4 Architecture: a program as modules
+
+```mermaid
+flowchart TB
+    shape["shapes.js<br/>export class Shape / Circle"] -->|"import { Circle }"| app["app.js"]
+    util["geometry.js<br/>export function area()"] -->|"import { area }"| shape
+    note["Each file is a module; imports are explicit;<br/>a module's code runs once and is cached"]
+```
+
+Each file is a **module** with its own scope. `export` exposes bindings; `import { name } from './file.js'` pulls them in. A module is evaluated **once** and its exports are cached, so importing the same module from many places shares one instance — the modern replacement for ad-hoc singletons and globals.
+
+### 3.5 Real example
+
+**Scenario.** A drawing app needs several shape types that share common behavior, split across files.
+
+**Problem.** Copying area/description logic into every shape duplicates code; piling all shapes into one global file blocks reuse and testing.
+
+**Solution.** Model shared behavior with a `class` hierarchy and split it into **modules** with explicit exports.
+
+**Implementation.**
+
+```js
+// shapes.js
+export class Shape {
+  describe() { return `${this.constructor.name} of area ${this.area().toFixed(2)}`; }
+  area() { throw new Error("subclass must implement area()"); } // contract
+}
+
+export class Circle extends Shape {
+  constructor(r) { super(); this.r = r; }   // super() runs Shape's constructor
+  area() { return Math.PI * this.r ** 2; }   // lives on Circle.prototype, shared by all circles
+}
+
+// app.js
+import { Circle } from "./shapes.js";
+const shapes = [new Circle(2), new Circle(5)];
+console.log(shapes.map(s => s.describe())); // describe() found via the prototype chain
+```
+
+**Result.** Every `Circle` instance shares one `area`/`describe` pair through `Circle.prototype` → `Shape.prototype` — no duplication. `describe()` is defined once on `Shape` yet works for any subclass because lookup walks the chain. The code lives in focused modules with explicit imports, so each can be tested and reused in isolation.
+
+**Future improvements.** Prefer **composition** (mix in behavior) over deep `extends` chains; add a `#private` field for invariants; ship as a package with a typed (`.d.ts`) or TypeScript surface.
+
+### 3.6 Exercises
+
+1. What is a prototype, and what happens when you read a property an object doesn't directly have?
+2. How does `class … extends …` relate to the prototype chain, and what does `super` do?
+3. Why does a module's code run only once no matter how many files import it?
+
+### 3.7 Challenges
+
+- **Challenge.** Build `Shape`, `Circle`, and `Rectangle` in one module and consume them in another. Confirm with `Object.getPrototypeOf` that instances delegate to the class prototype, and that overriding `area` on one instance does not affect the others.
+
+### 3.8 Checklist
+
+- [ ] I use `class` syntax instead of hand-wiring constructor `.prototype` assignments.
+- [ ] I understand that methods live on the prototype and are shared by instances.
+- [ ] I split code into ES modules with explicit named exports/imports.
+- [ ] I favor composition over deep inheritance hierarchies.
+
+### 3.9 Best practices
+
+- Define shared behavior with `class`; reach for `Object.create` only for low-level prototype work.
+- Prefer **named exports** and one clear responsibility per module.
+- Keep inheritance shallow; compose behavior rather than extending many levels.
+
+### 3.10 Anti-patterns
+
+- Mutating built-in prototypes like `Object.prototype` or `Array.prototype` (breaks everyone).
+- Deep `extends` chains that are hard to follow and refactor.
+- Circular imports and "barrel" files that obscure real dependencies.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Method is `undefined` on an instance | Defined on the instance, not the prototype/class | Declare it as a class method (lives on the prototype) |
+| `Cannot use import statement outside a module` | File not treated as a module | Use `.mjs`, set `"type": "module"`, or a bundler |
+| Subclass `this` is undefined in constructor | `super()` not called first | Call `super(...)` before using `this` |
+
+### 3.12 References
+
+- M. Haverbeke, *Eloquent JavaScript*, 4th ed., ch. 6 "The Secret Life of Objects" & ch. 10 "Modules" — ISBN 978-1718503069; https://eloquentjavascript.net.
+- D. Crockford, *JavaScript: The Good Parts* (O'Reilly, 2008), ch. 5 "Inheritance" — ISBN 978-0596517748.
+
+---
+
+> **End of Part II.** JavaScript shares behavior through the **prototype chain**, which the `class` syntax expresses cleanly (`extends`/`super`), and structures programs with **ES modules** that make dependencies explicit and run once. With Part I's **functions, closures, and good-parts discipline**, you now have both the core semantics and the tools to build and organize real applications.
